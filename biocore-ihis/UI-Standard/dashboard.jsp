@@ -16,116 +16,78 @@
             <!-- main -->		
             <div class="col-md-12 main-dashboard">
                 <div class="row">
+                    
                     <div class="col-md-3">
                         <a href="" class="thumbnail">
                             <div class="kotak text-center">
-                                <i class="fa fa-users" aria-hidden="true" style="color: #333; font-size: 4em;"></i>
-                                <h3>Human Resources</h3>
+                                <i class="fa fa-user" aria-hidden="true" style="color: #17A086;font-size: 4em;"></i>
+                                <h3>Patiant Management System</h3>
                             </div>
                         </a>
-                    </div>
-                    <div class="col-md-3">
+                    </div><div class="col-md-3">
                         <a href="" class="thumbnail">
                             <div class="kotak text-center">
-                                <i class="fa fa-calendar" aria-hidden="true" style="color: #333; font-size: 4em;"></i>
+                                <i class="fa fa-user-md" aria-hidden="true" style="color: #E84C3D;font-size: 4em;"></i>
+                                <h3>Patiant Consultation</h3>
+                            </div>
+                        </a>
+                    </div><div class="col-md-3">
+                        <a href="../PharmacyScreen" class="thumbnail">
+                            <div class="kotak text-center">
+                                <i class="fa fa-medkit" aria-hidden="true" style="color: #9A67A0;font-size: 4em;"></i>
+                                <h3>Pharmacy Info System</h3>
+                            </div>
+                        </a>
+                    </div><div class="col-md-3">
+                        <a href="" class="thumbnail">
+                            <div class="kotak text-center">
+                                <i class="fa fa-database" aria-hidden="true" style="color: #F26353;font-size: 4em;"></i>
+                                <h3>Laboratory Info System</h3>
+                            </div>
+                        </a>
+                    </div><div class="col-md-3">
+                        <a href="" class="thumbnail">
+                            <div class="kotak text-center">
+                                <i class="fa fa-cogs" aria-hidden="true" style="color: #2A80B9;font-size: 4em;"></i>
+                                <h3>Radiology Information System</h3>
+                            </div>
+                        </a>
+                    </div><div class="col-md-3">
+                        <a href="" class="thumbnail">
+                            <div class="kotak text-center">
+                                <i class="fa fa-bed" aria-hidden="true" style="color: #DE3975;font-size: 4em;"></i>
+                                <h3>Admit, Discharge &amp; Transfer System</h3>
+                            </div>
+                        </a>
+                    </div><div class="col-md-3">
+                        <a href="" class="thumbnail">
+                            <div class="kotak text-center">
+                                <i class="fa fa-credit-card" aria-hidden="true" style="color: #34A8DA;font-size: 4em;"></i>
+                                <h3>Billing System</h3>
+                            </div>
+                        </a>
+                    </div><div class="col-md-3">
+                        <a href="" class="thumbnail">
+                            <div class="kotak text-center">
+                                <i class="fa fa-calendar" aria-hidden="true" style="color: #33B3AA;font-size: 4em;"></i>
                                 <h3>Patiant Appointment</h3>
                             </div>
                         </a>
                     </div>
-                    <div class="col-md-3">
+                    
+                    
+                <div class="col-md-3">
                         <a href="" class="thumbnail">
                             <div class="kotak text-center">
-                                <i class="fa fa-stethoscope" aria-hidden="true" style="color: #333; font-size: 4em;"></i>
-                                <h3>Medical Chekup</h3>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col-md-3">
-                        <a href="" class="thumbnail">
-                            <div class="kotak text-center">
-                                <i class="fa fa-cogs" aria-hidden="true" style="color: #333; font-size: 4em;"></i>
-                                <h3>Snomed Maintenance</h3>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-md-3">
-                        <a href="" class="thumbnail">
-                            <div class="kotak text-center">
-                                <i class="fa fa-credit-card" aria-hidden="true" style="color: #333; font-size: 4em;"></i>
-                                <h3>Billing System</h3>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col-md-3">
-                        <a href="" class="thumbnail">
-                            <div class="kotak text-center">
-                                <i class="fa fa-user" aria-hidden="true" style="color: #333; font-size: 4em;"></i>
-                                <h3>Patiant Management System</h3>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col-md-3">
-                        <a href="" class="thumbnail">
-                            <div class="kotak text-center">
-                                <i class="fa fa-user-md" aria-hidden="true" style="color: #333; font-size: 4em;"></i>
-                                <h3>Patiant Consultation</h3>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col-md-3">
-                        <a href="../PharmacyScreen" class="thumbnail">
-                            <div class="kotak text-center">
-                                <i class="fa fa-medkit" aria-hidden="true" style="color: #333; font-size: 4em;"></i>
-                                <h3>Pharmacy Info System</h3>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-md-3">
-                        <a href="" class="thumbnail">
-                            <div class="kotak text-center">
-                                <i class="fa fa-file-text" aria-hidden="true" style="color: #333; font-size: 4em;"></i>
-                                <h3>Reports</h3>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col-md-3">
-                        <a href="" class="thumbnail">
-                            <div class="kotak text-center">
-                                <i class="fa fa-database" aria-hidden="true" style="color: #333; font-size: 4em;"></i>
-                                <h3>Data Management</h3>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col-md-3">
-                        <a href="" class="thumbnail">
-                            <div class="kotak text-center">
-                                <i class="fa fa-bed" aria-hidden="true" style="color: #333; font-size: 4em;"></i>
-                                <h3>Admit, Discharge & Transfer System</h3>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col-md-3">
-                        <a href="" class="thumbnail">
-                            <div class="kotak text-center">
-                                <i class="fa fa-desktop" aria-hidden="true" style="color: #333; font-size: 4em;"></i>
+                                <i class="fa fa-desktop" aria-hidden="true" style="color: #FDC671;font-size: 4em;"></i>
                                 <h3>System Administration</h3>
                             </div>
                         </a>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-md-3">
+                    </div><div class="col-md-3">
                         <a href="" class="thumbnail">
                             <div class="kotak text-center">
-                                <i class="fa fa-check-square-o" aria-hidden="true" style="color: #333; font-size: 4em;"></i>
-                                <h3>Procedure Order System</h3>
+                                <i class="fa fa-file-text" aria-hidden="true" style="color: #17A086;font-size: 4em;"></i>
+                                <h3>Reports</h3>
                             </div>
                         </a>
                     </div>
