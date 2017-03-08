@@ -1101,7 +1101,6 @@ a {
 a:focus,
 a:hover {
     color: #23527c;
-    text-decoration: underline
 }
 a:focus {
     outline: 5px auto -webkit-focus-ring-color;
@@ -5106,7 +5105,7 @@ a.badge:hover {
     margin-left: auto
 }
 a.thumbnail {
-	max-height: 123px;
+	max-height: 121px;
 }
 
 a.thumbnail.active,
@@ -5124,9 +5123,14 @@ a.thumbnail:hover {
     color: #333
 }
 .thumbnail h3{
-	font-size: 20px;
+    font-size: 14px;
     text-align: left;
     margin: 21px 0px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    line-height: 1.4em;
+    font-weight: 500;
+    color: #666;
 }
 
 .alert {
