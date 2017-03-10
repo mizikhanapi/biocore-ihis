@@ -17,7 +17,7 @@
     String discip = "select * from adm_lookup_detail where master_reference_code = '0072'   ";
     String prio = "select * from adm_lookup_detail where master_reference_code = '0036'   ";
     String idTYpe = "select * from adm_lookup_detail where master_reference_code = '0012'   ";
-    String Commonqueue = "select * from pms_queue_list where queue_type='CM' and hfc_cd='"+hfc+"' and status ='Active' group by queue_type ";
+    String Commonqueue = "select * from pms_queue_list where queue_type='CM' and hfc_cd='"+hfc+"' and status ='Active'";
     String Consultationqueue = "select * from pms_queue_list where queue_type='FY' and hfc_cd='"+hfc+"' and status ='Active'";
     String Doctorqueue = "select * from pms_queue_list where queue_type='PN' and hfc_cd='"+hfc+"' and status ='Active'";
 
@@ -174,10 +174,10 @@
                                     <input type="radio" name="radios" id="radios-0" value="Consultant Room">
                                     Consultant Room
                                     <select id="select-0" name="select-0" class="form-control">
-                                        <option value="-" selected="" disabled="">Please select consultation room</option>
+                                        <option value="null" selected="" >Please select consultation room</option>
                                         <%
                                             for (int i = 0; i < dataQueue2.size(); i++) {%>
-                                        <option value="<%=dataQueue2.get(i).get(1)%>"><%="(" + dataQueue2.get(i).get(0) + ") " + dataQueue2.get(i).get(1)%></option>
+                                        <option value="<%=dataQueue2.get(i).get(1)+"|"+dataQueue2.get(i).get(2)%>"><%="(" + dataQueue2.get(i).get(0) + ") " + dataQueue2.get(i).get(1)%></option>
                                         <%  }
                                         %>
                                     </select>
@@ -187,10 +187,10 @@
                                     <input type="radio" name="radios" id="radios-1" value="Queue">
                                     Common Queue
                                     <select id="select-1" name="select-1" class="form-control">
-                                        <option selected="" disabled="">Please select Queue</option>
+                                        <option selected="" value="null">Please select Queue</option>
                                         <%
                                             for (int i = 0; i < dataQueue.size(); i++) {%>
-                                        <option value="<%=dataQueue.get(i).get(1)%>"><%="(" + dataQueue.get(i).get(0) + ") " + dataQueue.get(i).get(1)%></option>
+                                        <option value="<%=dataQueue.get(i).get(1)+"|"+dataQueue.get(i).get(2) %>"><%="(" + dataQueue.get(i).get(0) + ") " + dataQueue.get(i).get(1) +" "+ i%></option>
                                         <%  }
                                         %>
                                     </select>
@@ -199,10 +199,10 @@
                                     <input type="radio" name="radios" id="radios-2" value="Doctor">
                                     Doctor
                                     <select id="select-2" name="select-2" class="form-control">
-                                        <option value="-" disabled="" selected="">Please select Doctor</option>
+                                        <option value="null"  selected="">Please select Doctor</option>
                                         <%
                                             for (int i = 0; i < dataQueue3.size(); i++) {%>
-                                        <option value="<%=dataQueue3.get(i).get(1)%>"><%="(" + dataQueue3.get(i).get(0) + ") " + dataQueue3.get(i).get(1)%></option>
+                                        <option value="<%=dataQueue3.get(i).get(1)+"|"+dataQueue3.get(i).get(2)%>"><%="(" + dataQueue3.get(i).get(0) + ") " + dataQueue3.get(i).get(1)%></option>
                                         <%  }
                                         %>
                                     </select>
@@ -470,14 +470,40 @@
     $('#registerQueue').click(function () {
         getDateNow();
         setInterval(getDateNow, 1000);
+        var array_dat;
+            var str;
+            
+            if ($('#radios-0').is(':checked')) {                
+                str = $('#select-0').find(":selected").val();
+                array_dat= String(str).split("|");
+                queue = array_dat[0];
+                docID = array_dat[1];
+                comTy = "FY";
+            } else if ($('#radios-1').is(':checked')) {
+                str = $('#select-1').find(":selected").val();
+                array_dat= String(str).split("|");
+                queue = array_dat[0];
+                docID = array_dat[1];
+                comTy = "CM";
+            } else if ($('#radios-2').is(':checked')) {
+                str = $('#select-2').find(":selected").val();
+                array_dat= String(str).split("|");
+                queue = array_dat[0];
+                docID = array_dat[1];
+                
+                comTy = "PN";
+            }
+            console.log(str);
         if ($('#pmino').val() === " " || $('#pmino').val() === "") {
             bootbox.alert('Please use a proper PMI no.');
 
-        } else {
+        } else if(str==="null"){
+            bootbox.alert('Please choose a Queue.');
+        }else {
             //var r = confirm("Are you sure want to REGISTER PATIENT?");
 
 
-            var pmi, epiDate, name, newic, oldic, typeId, idNo, rnNo, patCatCode, visTyCode, emTy, eliCatCode, eliTyCode, disCode, subDiscode, consultRoom, comQueue, doctor, prioGruCode, polCase, commDis, natuDisasCode, docTy, guardInd, referNo, gruGuard, glExpDate, epiTime, stat, hfc, comTy,createdBy;
+            var pmi, epiDate, name, newic, oldic, typeId, idNo, rnNo, patCatCode, visTyCode, emTy, eliCatCode, eliTyCode, disCode, subDiscode, consultRoom, comQueue, doctor, prioGruCode, polCase, commDis, natuDisasCode, docTy, guardInd, referNo, gruGuard, glExpDate, epiTime, stat, hfc, comTy,createdBy,queue,docID;
             pmi = $('#pmino').val();
             epiDate = yyyyMMddHHmmss;
             name = $('input[id=pname]').val();
@@ -503,27 +529,8 @@
             
             disCode = $('#Dis').val();
             subDiscode = "-";
-            if ($('#radios-0').is(':checked')) {
-                consultRoom = $('#select-0').find(":selected").val();
-                comTy = "FY";
-            } else {
-                consultRoom = "-";
-            }
-
-            if ($('#radios-1').is(':checked')) {
-                comQueue = $('#select-1').find(":selected").val();
-                comTy = "CM";
-            } else {
-                comQueue = "-";
-            }
-
-            if ($('#radios-2').is(':checked')) {
-                doctor = $('#select-2').find(":selected").val();
-                comTy = "PN";
-            } else {
-                doctor = "-";
-            }
-
+            
+            console.log(docID);
             prioGruCode = $('#prioGru').find(":selected").val();
             polCase = "-";
             commDis = "-";
@@ -572,7 +579,9 @@
                 'hfc': hfc,
                 'now': yyyyMMdd,
                 'comTy': comTy,
-                'createdBy' : createdBy };
+                'createdBy' : createdBy,
+                'queue' : queue,
+                docID : docID};
             //console.log(datas);
             bootbox.confirm({
                 message: "Are you sure want to REGISTER PATIENT?",
