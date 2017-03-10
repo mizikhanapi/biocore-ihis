@@ -1,45 +1,45 @@
-<%-- 
-    Document   : Printer
-    Created on : Feb 21, 2017, 9:39:21 AM
-    Author     : user
---%>
-<%@page import="java.awt.Font"%>
-<%@page import="javax.print.attribute.standard.MediaSize"%>
-<%@page import="java.awt.print.Paper"%>
-<%@page import="java.awt.Stroke"%>
-<%@page import="java.awt.BasicStroke"%>
-<%@page import="javax.print.attribute.Attribute"%>
-<%@page import=" java.awt.Graphics" %>
-<%@page import=" java.awt.Graphics2D" %>
-<%@page import=" java.awt.print.PageFormat" %>
-<%@page import=" java.awt.print.Printable" %>
-<%@page import=" java.awt.print.PrinterException" %>
-<%@page import=" java.awt.print.PrinterJob" %>
-<%@page import=" javax.print.PrintService" %>
-<%@page import=" javax.print.attribute.HashPrintRequestAttributeSet" %>
-<%@page import=" javax.print.attribute.PrintRequestAttributeSet" %>
-<%@page import=" javax.print.attribute.standard.Copies" %>
-<%@page import=" javax.print.attribute.standard.PageRanges" %>
-<%@page import=" javax.print.PrintServiceLookup" %>
-<%! 
+package org.apache.jsp.Controller;
+
+import javax.servlet.*;
+import javax.servlet.http.*;
+import javax.servlet.jsp.*;
+import java.awt.Font;
+import javax.print.attribute.standard.MediaSize;
+import java.awt.print.Paper;
+import java.awt.Stroke;
+import java.awt.BasicStroke;
+import javax.print.attribute.Attribute;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.print.PageFormat;
+import java.awt.print.Printable;
+import java.awt.print.PrinterException;
+import java.awt.print.PrinterJob;
+import javax.print.PrintService;
+import javax.print.attribute.HashPrintRequestAttributeSet;
+import javax.print.attribute.PrintRequestAttributeSet;
+import javax.print.attribute.standard.Copies;
+import javax.print.attribute.standard.PageRanges;
+import javax.print.PrintServiceLookup;
+
+public final class Printer_jsp extends org.apache.jasper.runtime.HttpJspBase
+    implements org.apache.jasper.runtime.JspSourceDependent {
+
+ 
 
 
  
 public class DirectPrint implements Printable {
  
-//    private PrintService[] printService;
+    private PrintService[] printService;
     private PrintService Defultservice;
-//    private PrintService Printer5850II;
     private String text;
  
     public DirectPrint() {
-          //for Printer named 5850II
-//        this.printService = PrinterJob.lookupPrintServices(); 
-//        for(int i = 0 ;i < printService.length; i++)
-//        System.out.println("Normal "+printService[i]);
-
-        //for default printer
-        this.Defultservice = PrintServiceLookup.lookupDefaultPrintService();
+        this.printService = PrinterJob.lookupPrintServices();
+        this.Defultservice = PrintServiceLookup.lookupDefaultPrintService(); 
+        for(int i = 0 ;i < printService.length; i++)
+        System.out.println("Normal "+printService[i]);
         System.out.println("Defult "+Defultservice);
     }
  
@@ -72,21 +72,24 @@ public class DirectPrint implements Printable {
             pf.setPaper(paper);
  
             printJob.setPrintable(this, pf);
+            PrintService Printer5850II=null;
+            String eprintService="";
               try {
-                       //for Printer named 5850II
-//                      for(PrintService theprintService : printService)
-//                        {
-//                            if(theprintService.toString().indexOf("5850II") != -1)
-//                             {
-//                                System.out.println("HERE I AM 5850II ");
-//                                 Printer5850II = theprintService;
-//                                 break;
-//                             } 
-//                        }
-//                    printJob.setPrintService(Printer5850II);
-                    //for default printer
+                      for(PrintService theprintService : printService)
+                        {
+                           
+                            if(eprintService.indexOf("5850II") != -1)
+                             {
+                               eprintService = theprintService.toString();
+                                System.out.println("HERE I AM 5850II ");
+                                System.out.println(theprintService);
+                                 Printer5850II = theprintService;
+                                 break;
+                             } 
+                        }
+                    if(Printer5850II != null)
+                    printJob.setPrintService(Printer5850II);
                     printJob.setPrintService(Defultservice);
-
                     printJob.print();
               } catch (PrinterException pp) {
                 System.out.println(pp);
@@ -170,12 +173,81 @@ public class DirectPrint implements Printable {
 //    }
 
 }
-%>
 
-        <%
+  private static final JspFactory _jspxFactory = JspFactory.getDefaultFactory();
+
+  private static java.util.List<String> _jspx_dependants;
+
+  private org.glassfish.jsp.api.ResourceInjector _jspx_resourceInjector;
+
+  public java.util.List<String> getDependants() {
+    return _jspx_dependants;
+  }
+
+  public void _jspService(HttpServletRequest request, HttpServletResponse response)
+        throws java.io.IOException, ServletException {
+
+    PageContext pageContext = null;
+    HttpSession session = null;
+    ServletContext application = null;
+    ServletConfig config = null;
+    JspWriter out = null;
+    Object page = this;
+    JspWriter _jspx_out = null;
+    PageContext _jspx_page_context = null;
+
+    try {
+      response.setContentType("text/html");
+      pageContext = _jspxFactory.getPageContext(this, request, response,
+      			null, true, 8192, true);
+      _jspx_page_context = pageContext;
+      application = pageContext.getServletContext();
+      config = pageContext.getServletConfig();
+      session = pageContext.getSession();
+      out = pageContext.getOut();
+      _jspx_out = out;
+      _jspx_resourceInjector = (org.glassfish.jsp.api.ResourceInjector) application.getAttribute("com.sun.appserv.jsp.resource.injector");
+
+      out.write("\n");
+      out.write("\n");
+      out.write("\n");
+      out.write("\n");
+      out.write("\n");
+      out.write("\n");
+      out.write("\n");
+      out.write("\n");
+      out.write("\n");
+      out.write("\n");
+      out.write("\n");
+      out.write("\n");
+      out.write("\n");
+      out.write("\n");
+      out.write("\n");
+      out.write("\n");
+      out.write("\n");
+      out.write("\n");
+      out.write("\n");
+      out.write("\n");
+      out.write("\n");
+      out.write("        ");
+
             DirectPrint directPrint = new DirectPrint();
 //            directPrint.printString("E00000000 \n ooo"); 
 //            directPrint.printString("1rrrrrr");
              directPrint.printString("        Biocore Lab"+"\n           Your no: "+"\n    "+3+"\n       Current no :"+2+"\n   Data:"+"12-10-22"+" Time:"+"10:50:30");
-        %>
- 
+        
+      out.write('\n');
+      out.write(' ');
+    } catch (Throwable t) {
+      if (!(t instanceof SkipPageException)){
+        out = _jspx_out;
+        if (out != null && out.getBufferSize() != 0)
+          out.clearBuffer();
+        if (_jspx_page_context != null) _jspx_page_context.handlePageException(t);
+        else throw new ServletException(t);
+      }
+    } finally {
+      _jspxFactory.releasePageContext(_jspx_page_context);
+    }
+  }
+}

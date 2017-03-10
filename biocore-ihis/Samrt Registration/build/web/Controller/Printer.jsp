@@ -20,19 +20,27 @@
 <%@page import=" javax.print.attribute.PrintRequestAttributeSet" %>
 <%@page import=" javax.print.attribute.standard.Copies" %>
 <%@page import=" javax.print.attribute.standard.PageRanges" %>
-
+<%@page import=" javax.print.PrintServiceLookup" %>
 <%! 
 
 
  
 public class DirectPrint implements Printable {
  
-    private PrintService[] printService;
+//    private PrintService[] printService;
+    private PrintService Defultservice;
+//    private PrintService Printer5850II;
     private String text;
  
     public DirectPrint() {
-        this.printService = PrinterJob.lookupPrintServices();
-        System.out.println("SOoO");
+          //for Printer named 5850II
+//        this.printService = PrinterJob.lookupPrintServices(); 
+//        for(int i = 0 ;i < printService.length; i++)
+//        System.out.println("Normal "+printService[i]);
+
+        //for default printer
+        this.Defultservice = PrintServiceLookup.lookupDefaultPrintService();
+        System.out.println("Defult "+Defultservice);
     }
  
 //    public void main(String[] args) {
@@ -65,7 +73,20 @@ public class DirectPrint implements Printable {
  
             printJob.setPrintable(this, pf);
               try {
-                    printJob.setPrintService(printService[5]);
+                       //for Printer named 5850II
+//                      for(PrintService theprintService : printService)
+//                        {
+//                            if(theprintService.toString().indexOf("5850II") != -1)
+//                             {
+//                                System.out.println("HERE I AM 5850II ");
+//                                 Printer5850II = theprintService;
+//                                 break;
+//                             } 
+//                        }
+//                    printJob.setPrintService(Printer5850II);
+                    //for default printer
+                    printJob.setPrintService(Defultservice);
+
                     printJob.print();
               } catch (PrinterException pp) {
                 System.out.println(pp);
