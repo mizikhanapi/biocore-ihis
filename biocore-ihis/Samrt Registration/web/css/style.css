@@ -1,0 +1,267 @@
+
+  body,input, button, select, option, textarea, a, h1, h2 {
+      font-size: 160%;
+      
+  }
+
+
+body {
+  height: 100%;
+    background-repeat: no-repeat;
+    background: #2196F3;
+}
+
+
+.bodyOf {
+    
+    width: 99%;
+    height: 85vh;
+    margin: 2vh auto 0 auto;
+    overflow: hidden;
+}
+
+h1 {
+  text-align: center;
+  margin: 2%;
+}
+
+h2 {
+text-align: center;
+margin: 2%;
+}
+
+h3 {
+  text-align: center;
+}
+
+.btn_center {
+  height: auto;
+  width: 50%;
+  border:3% solid rgb(51, 122, 183);
+  text-align: center;
+  margin: 10% auto;
+}
+
+.btn_bottom {
+  height: 8vh;
+  width: 86%;
+  border:3% solid rgb(51, 122, 183);
+  text-align: center;
+  margin: 0 auto;}
+
+
+.bttn {
+  display: block;
+  min-height: 50px;
+  max-width: 240px;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 700;
+  text-overflow: clip;
+  text-align: center;
+  border-radius: 3px;
+  font-size: 15px;
+  background-color: rgb(104, 145, 162);
+  color: #fff;
+  overflow: visible;
+}
+
+.bttn:hover,
+.bttn:active,
+.bttn:focus {
+    background-color: rgb(12, 97, 33);
+}
+
+
+.bttn_bottom {
+  height: 8vh;
+  width: 27vw;
+  font-size: 1.5vw;
+  border-radius: 1%;
+}
+
+
+.bottom_logo {
+  border: 2px solid rgb(51, 122, 183);
+  height: 6vh;
+  width: 94vw;
+  position: absolute;
+  bottom: 0;
+  left: 1.5vw;
+  border-radius: 3%;
+  margin: 1.5%;
+  padding: 3%;
+}
+
+img {
+  width: 10%;
+}
+
+
+.loginBtn {
+    height: 8vh;
+    width: 25vw;
+    text-align: center;
+    border-radius: 1%;
+    margin: 10vh auto;
+  }
+
+  .marglft {
+    margin-right: 2vw;
+  }
+
+  .dropdown-menu {
+  width: 31vw;
+  position: absolute;
+  left: 34.3%;
+}
+
+.button_dropdown {
+ width: 100%;
+ text-align: center;
+}
+
+.tac {
+  text-align: center;
+}
+
+.labelStyle {
+  display: block;
+    width: 100%;
+    height: 34px;
+    padding: 6px 12px;
+    font-size: 1.2vw;
+    line-height: 1.42857143;
+    color: #555;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.doc_Center{
+  width:90%;
+  height:55vh;
+  position: relative;
+  left: 5%;
+
+}
+
+.middleSizeButton {
+  width: 100%;
+  height:100%;
+  font-size: 1.5vw;
+  border-radius: 1%;
+}
+@viewport{
+  zoom:1.0;
+  width: : extend-to-zoom;
+}
+
+@-ms-viewport {
+  width: extend-to-zoom;
+  zoom: 1.0;
+}
+
+.margin1 {
+    margin: 2% 0;
+}
+
+.centerBtnDisplay {
+    margin: 2% 0;
+    display: inline-block;
+    width: 40%;
+}
+
+/*@page Section1 {
+    size:4.5cm 5.69cm; 
+    margin:0 0; 
+    mso-header-margin:.5in; 
+    mso-footer-margin:.5in; 
+    mso-paper-source:0;
+}
+
+@page narrow {size: 9cm 18cm}
+
+#printableArea {
+    page:Section1;
+} */
+.printableArea {
+   text-align: center;
+ 
+}
+
+
+label.btn span {
+  font-size: 1.5em ;
+}
+
+label input[type="radio"] ~ i.fa.fa-circle-o{
+    color: #c8c8c8;    display: inline;
+}
+label input[type="radio"] ~ i.fa.fa-dot-circle-o{
+    display: none;
+}
+label input[type="radio"]:checked ~ i.fa.fa-circle-o{
+    display: none;
+}
+label input[type="radio"]:checked ~ i.fa.fa-dot-circle-o{
+    color: gray;    display: inline;
+}
+label:hover input[type="radio"] ~ i.fa {
+color: gray;
+}
+
+label input[type="checkbox"] ~ i.fa.fa-square-o{
+    color: #c8c8c8;    display: inline;
+}
+label input[type="checkbox"] ~ i.fa.fa-check-square-o{
+    display: none;
+}
+label input[type="checkbox"]:checked ~ i.fa.fa-square-o{
+    display: none;
+}
+label input[type="checkbox"]:checked ~ i.fa.fa-check-square-o{
+    color: gray;    display: inline;
+}
+label:hover input[type="checkbox"] ~ i.fa {
+color: gray;
+}
+
+div[data-toggle="buttons"] label.active{
+    color: gray;
+}
+
+div[data-toggle="buttons"] label {
+display: inline-block;
+padding: 6px 12px;
+margin-bottom: 0;
+font-size: 14px;
+font-weight: normal;
+line-height: 2em;
+text-align: left;
+white-space: nowrap;
+vertical-align: top;
+cursor: pointer;
+background-color: none;
+border: 0px solid 
+#c8c8c8;
+border-radius: 3px;
+color: #c8c8c8;
+-webkit-user-select: none;
+-moz-user-select: none;
+-ms-user-select: none;
+-o-user-select: none;
+user-select: none;
+}
+
+
+div[data-toggle="buttons"] {
+    padding-bottom: 6.5px;
+}
+
+div[data-toggle="buttons"] label:hover {
+color: gray;
+}
+
+div[data-toggle="buttons"] label:active, div[data-toggle="buttons"] label.active {
+-webkit-box-shadow: none;
+box-shadow: none;
+}
