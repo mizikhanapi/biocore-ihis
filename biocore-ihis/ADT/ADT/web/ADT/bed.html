@@ -1,0 +1,134 @@
+<%@page import="java.util.ArrayList"%>
+<%@page import="Config.Config"%>
+<%@page import="Config.connect"%>
+<%@page import="dBConn.Conn"%>
+<%@page import="main.RMIConnector"%>
+<%@page import="java.sql.*"%>
+
+
+
+<%@page import="java.util.Date"%>
+<%@page import="java.util.*"%>
+<%@page import="java.text.SimpleDateFormat"%>
+
+
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<link rel="stylesheet" href="assets/css/loading.css">
+
+<head>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link rel="stylesheet" href="assets/datepicker/jquery-ui.css">
+    <link href="assets/css/bootstrap.min.css" rel="stylesheet">
+    <script src="assets/js/jquery.min.js"></script>
+    <link href="assets/css/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="assets/font-awesome/css/font-awesome.min.css">
+    <!-- Custom styles for this template -->
+    <link href="assets/css/dashboard.css" rel="stylesheet">
+    <link href="assets/css/Line-tabs.css" rel="stylesheet">
+    <script src="assets/js/jquery.min.js"></script>
+    <link rel="stylesheet" href="assets/css/loading.css">
+    <link href="assets/datepicker/jquery-ui.css" rel="stylesheet">    
+    <link href="assets/datepicker/jquery-ui.css" rel="stylesheet">
+    <script src="assets/datepicker/jquery-ui.js"></script>
+    <script src="assets/js/form-validator.min.js"></script>
+    <script src="assets/js/bootstrap.min.js"></script> 
+    <script src="assets/js/w3data.js"></script>
+    <script src="assets/js/bootbox.min.js"></script>   
+
+    <%
+        Config.getBase_url(request);
+        Config.getFile_url(session);
+        Conn conn = new Conn();
+    %>
+
+    <!-- Select Basic -->
+<div class="form-group">
+    <input type="text" id="test">
+    <div class="col-md-4">
+        <%
+            String sqlBedID = "SELECT bed_id ,bed_status FROM wis_bed_id ORDER BY bed_id";
+            ArrayList<ArrayList<String>> dataBedID = conn.getData(sqlBedID);
+            ArrayList<String> data = dataBedID.get(0);
+            int size = dataBedID.size();
+
+        %>
+        <div id="bedDiv">
+            <table id="tableBed">
+                <tbody>
+                    <%  int count = 0;
+                        String sqlBedID1 = "SELECT bed_id ,bed_status FROM wis_bed_id ORDER BY bed_id";
+                        ArrayList<ArrayList<String>> dataBedID1 = conn.getData(sqlBedID1);
+                        int c = dataBedID1.size() / 2;
+                        int a = (int) Math.round(dataBedID1.size() / 2); //+ 1;
+                        //out.print(a);
+                        //out.print(dataBedID1.size() / 3);
+                        for (int i = 0; i < a; i++) { %>
+                    <tr> 
+                        <%
+                            int x = (dataBedID1.size() / a) + 1;
+                            //out.print(x);
+                            for (int b = 0; b < dataBedID1.size() / a; b++) { %>
+                        <td><%
+                            if (dataBedID.get(count).get(1).equals("Available")) {%>
+                            <button style="background-color: #33cc33"  type="button"  class="btn btn-default" id="bed_<%=count%>">&nbsp; <%= dataBedID.get(count).get(0)%> </button>
+                            <input id="bedID" name="bedID" type="hidden"  class="form-control input-md" value="<%=String.join("|",dataBedID.get(count))%>">
+
+                            <%   } else if (dataBedID.get(count).get(1).equals("Occupied")) {%>
+                            <button style="background-color: #ff3300" type="button"   class="btn btn-default" id="bed_occu<%=count%>">&nbsp; <%= dataBedID.get(count).get(0)%> </button>
+                            <input id="bedID" name="bedID" type="hidden"  class="form-control input-md" value="<%=String.join("|",dataBedID.get(count))%>">
+
+                            <% } else if (dataBedID.get(count).get(1).equals("Pending")) {%>
+                            <button style="background-color: #ffff00"  type="button" class="btn btn-default" id="bed_pen<%=count%>">&nbsp; <%= dataBedID.get(count).get(0)%> </button>
+                            <input id="bedID" name="bedID" type="hidden"  class="form-control input-md" value="<%=String.join("|",dataBedID.get(count))%>">
+
+                            <% } %>
+                            <%
+                                count += 1;
+
+                            %></td>
+
+
+                        <%   } %>
+                    </tr>
+
+
+
+
+
+                    <%    }
+                    %>
+                </tbody>
+            </table>
+        </div>
+
+
+    </div>
+</div>
+<script>
+    $('#bedDiv').on('click', '#tableBed button', function () {
+        var row = $(this).closest("td");
+        //var str = $('#bedID').val();
+        var te = row.find('#bedID').val();
+        
+        var array = te.split("|");
+        
+        var status = array[1], bedID = array[0];
+        //alert(te);
+        bootbox.alert({
+            message: "The bed status is " +status+ "bed ID "+bedID ,
+            title: "Process Result",
+            backdrop: true
+        });
+        
+        if(status === "Available"){
+            
+            //set value
+            $('#test').val(bedID);
+        }
+        
+        
+        
+    });
+</script>
