@@ -5,13 +5,13 @@
 <html lang="en">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link rel="stylesheet" href="libraries/PMSassets/css/loading.css">
-        <link href="libraries/PMSassets/datepicker/jquery-ui.css" rel="stylesheet">    
-        <script src="libraries/PMSassets/js/jquery.min.js"></script>
-        <script src="libraries/PMSassets/datepicker/jquery-ui.js"></script>
-        <script src="libraries/PMSassets/js/form-validator.min.js"></script>
-        <script src="libraries/PMSassets/js/bootstrap.min.js"></script> 
-        <script src="libraries/PMSassets/js/bootbox.min.js"></script> 
+        <link rel="stylesheet" href="libraries/lib/css/loading.css">
+        <link href="libraries/lib/datepicker/jquery-ui.css" rel="stylesheet">    
+        <script src="libraries/lib/js/jquery.min.js"></script>
+        <script src="libraries/lib/datepicker/jquery-ui.js"></script>
+        <script src="libraries/lib/js/form-validator.min.js"></script>
+        <script src="libraries/lib/js/bootstrap.min.js"></script> 
+        <script src="libraries/lib/js/bootbox.min.js"></script> 
         <!-- header -->
     <div><%@include file = "../assets/header.html" %></div>
     <!-- header -->
