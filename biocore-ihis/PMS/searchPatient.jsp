@@ -60,8 +60,8 @@
         </div>
     </form>
 </div>
-<script src="libraries/PMSassets/js/OPMain.js" type="text/javascript"></script>
-<script src="libraries/PMSassets/js/onKeyPress.js" type="text/javascript"></script>
+<script src="libraries/lib/js/OPMain.js" type="text/javascript"></script>
+<script src="libraries/lib/js/onKeyPress.js" type="text/javascript"></script>
 <script>
     //validate max length of input
         $('#idType').on('change', function (e) {
