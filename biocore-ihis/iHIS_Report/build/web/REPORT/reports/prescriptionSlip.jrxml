@@ -1,0 +1,345 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="prescriptionSlip" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="a98e2a19-305e-4537-b250-093eb64b04c6">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<subDataset name="dataset1" uuid="d38fbcd3-f405-4ba1-9f00-fe8d4f25e8de">
+		<parameter name="dsInput1" class="java.lang.String">
+			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+		</parameter>
+		<parameter name="dsType1" class="java.lang.String">
+			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+		</parameter>
+	</subDataset>
+	<parameter name="psType" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="psInput" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     pms_patient_biodata.`PMI_NO` AS pms_patient_biodata_PMI_NO,
+     pms_patient_biodata.`PATIENT_NAME` AS pms_patient_biodata_PATIENT_NAME,
+     pms_patient_biodata.`NEW_IC_NO` AS pms_patient_biodata_NEW_IC_NO,
+     pms_patient_biodata.`OLD_IC_NO` AS pms_patient_biodata_OLD_IC_NO,
+     pms_patient_biodata.`ID_TYPE` AS pms_patient_biodata_ID_TYPE,
+     pms_patient_biodata.`ID_NO` AS pms_patient_biodata_ID_NO,
+     pms_patient_biodata.`SEX_CODE` AS pms_patient_biodata_SEX_CODE,
+     pms_patient_biodata.`NATIONALITY` AS pms_patient_biodata_NATIONALITY,
+     pis_order_detail.`ORDER_NO` AS pis_order_detail_ORDER_NO,
+     pis_order_detail.`DRUG_ITEM_CODE` AS pis_order_detail_DRUG_ITEM_CODE,
+     pis_order_detail.`DRUG_ITEM_DESC` AS pis_order_detail_DRUG_ITEM_DESC,
+     pis_order_detail.`DRUG_FREQUENCY` AS pis_order_detail_DRUG_FREQUENCY,
+     pis_order_detail.`DRUG_ROUTE` AS pis_order_detail_DRUG_ROUTE,
+     pis_order_detail.`DRUG_DOSAGE` AS pis_order_detail_DRUG_DOSAGE,
+     pis_order_detail.`DURATION` AS pis_order_detail_DURATION,
+     pis_order_master.`ORDER_NO` AS pis_order_master_ORDER_NO,
+     pis_order_master.`PMI_NO` AS pis_order_master_PMI_NO,
+     pis_order_detail.`QTY_ORDERED` AS pis_order_detail_QTY_ORDERED,
+     pis_order_detail.`QTY_DISPENSED` AS pis_order_detail_QTY_DISPENSED,
+     pis_mdc2.`UD_MDC_CODE` AS pis_mdc2_UD_MDC_CODE,
+     pis_mdc2.`D_EXP_DATE` AS pis_mdc2_D_EXP_DATE,
+     pis_order_master.`HEALTH_FACILITY_CODE` AS pis_order_master_HEALTH_FACILITY_CODE,
+     pms_patient_biodata.`ALLERGY_IND` AS pms_patient_biodata_ALLERGY_IND,
+     pis_order_master.`ORDER_DATE` AS pis_order_master_ORDER_DATE
+FROM
+     `pis_order_master` pis_order_master INNER JOIN `pis_order_detail` pis_order_detail ON pis_order_master.`order_no` = pis_order_detail.`order_no`
+     INNER JOIN `pms_patient_biodata` pms_patient_biodata ON pis_order_master.`pmi_no` = pms_patient_biodata.`pmi_no`
+     INNER JOIN `pis_mdc2` pis_mdc2 ON pis_order_detail.`drug_item_code` = pis_mdc2.`ud_mdc_code`
+WHERE
+     pis_order_master.`pmi_no` = $P{psInput}
+     or pms_patient_biodata.`NEW_IC_NO` = $P{psInput}
+     or null = (pms_patient_biodata.`ID_TYPE`)
+ AND pms_patient_biodata.`ID_NO` = $P{psInput}
+     or pms_patient_biodata.`OLD_IC_NO` = $P{psInput}]]>
+	</queryString>
+	<field name="pms_patient_biodata_PMI_NO" class="java.lang.String"/>
+	<field name="pms_patient_biodata_PATIENT_NAME" class="java.lang.String"/>
+	<field name="pms_patient_biodata_NEW_IC_NO" class="java.lang.String"/>
+	<field name="pms_patient_biodata_OLD_IC_NO" class="java.lang.String"/>
+	<field name="pms_patient_biodata_ID_TYPE" class="java.lang.String"/>
+	<field name="pms_patient_biodata_ID_NO" class="java.lang.String"/>
+	<field name="pms_patient_biodata_SEX_CODE" class="java.lang.String"/>
+	<field name="pms_patient_biodata_NATIONALITY" class="java.lang.String"/>
+	<field name="pis_order_detail_ORDER_NO" class="java.lang.String"/>
+	<field name="pis_order_detail_DRUG_ITEM_CODE" class="java.lang.String"/>
+	<field name="pis_order_detail_DRUG_ITEM_DESC" class="java.lang.String"/>
+	<field name="pis_order_detail_DRUG_FREQUENCY" class="java.lang.String"/>
+	<field name="pis_order_detail_DRUG_ROUTE" class="java.lang.String"/>
+	<field name="pis_order_detail_DRUG_DOSAGE" class="java.lang.String"/>
+	<field name="pis_order_detail_DURATION" class="java.math.BigDecimal"/>
+	<field name="pis_order_master_ORDER_NO" class="java.lang.String"/>
+	<field name="pis_order_master_PMI_NO" class="java.lang.String"/>
+	<field name="pis_order_detail_QTY_ORDERED" class="java.math.BigDecimal"/>
+	<field name="pis_order_detail_QTY_DISPENSED" class="java.math.BigDecimal"/>
+	<field name="pis_mdc2_UD_MDC_CODE" class="java.lang.String"/>
+	<field name="pis_mdc2_D_EXP_DATE" class="java.lang.String"/>
+	<field name="pis_order_master_HEALTH_FACILITY_CODE" class="java.lang.String"/>
+	<field name="pms_patient_biodata_ALLERGY_IND" class="java.lang.String"/>
+	<field name="pis_order_master_ORDER_DATE" class="java.lang.String"/>
+	<sortField name="pis_order_detail_ORDER_NO"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="215" splitType="Stretch">
+			<textField>
+				<reportElement x="246" y="0" width="311" height="40" uuid="f0ba8e94-8d09-453c-89fc-b4ee74a71967"/>
+				<textElement textAlignment="Center">
+					<font size="28" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{pis_order_master_HEALTH_FACILITY_CODE}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="269" y="40" width="264" height="32" uuid="097a95d2-f686-4faa-9eda-6b9e7eeb8a23"/>
+				<textElement textAlignment="Center">
+					<font size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Prescription Slip for Outpatient]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="72" width="802" height="1" uuid="67e3b64f-26c8-4f89-aec6-e73d1b356025"/>
+			</line>
+			<staticText>
+				<reportElement x="13" y="90" width="100" height="20" uuid="52d25fd9-41b3-4b86-ac58-dea3d864b1c2"/>
+				<textElement textAlignment="Right">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Patient Name:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="13" y="110" width="100" height="20" uuid="8d374232-9424-4e0e-afe8-b55429d925fd"/>
+				<textElement textAlignment="Right">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Gender:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="13" y="130" width="100" height="20" uuid="55274930-1b97-4659-b6ee-d1d7ca9517d4"/>
+				<textElement textAlignment="Right">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Ordered Date:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="543" y="90" width="77" height="20" uuid="1f15f202-c5b7-4b89-bde0-795d44edb874"/>
+				<textElement textAlignment="Right">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nationality:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="557" y="110" width="63" height="20" uuid="754f3c16-ae77-44b6-bc8f-55223e6a7ce1"/>
+				<textElement textAlignment="Right">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[PMI No:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="125" y="90" width="339" height="20" uuid="b6744c98-b220-4df5-8a73-d30bab0ed766"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{pms_patient_biodata_PATIENT_NAME}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="125" y="110" width="339" height="20" uuid="352cb5d3-d2e3-46d6-97f2-938a4025e1a0"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{pms_patient_biodata_SEX_CODE}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="125" y="130" width="339" height="20" uuid="7361dc57-7a53-40d2-afbd-2e87b03cda26"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{pis_order_master_ORDER_DATE}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="631" y="90" width="148" height="20" uuid="8a974870-e302-4f1f-a103-79b71dff9a05"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{pms_patient_biodata_NATIONALITY}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="631" y="110" width="148" height="20" uuid="c3a61075-b164-471e-ac15-365bd93897f6"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{pms_patient_biodata_PMI_NO}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement positionType="Float" x="596" y="195" width="63" height="20" uuid="945bf964-fe02-4c59-8733-7f1a4cf75919"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Duration]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" x="57" y="195" width="56" height="20" uuid="b180bd19-b757-4db9-abf4-63f6bc54b832"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Date]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" x="455" y="195" width="56" height="20" uuid="65ee66d1-294f-43ad-92f8-d0046d142d4f"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Route]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" x="530" y="195" width="63" height="20" uuid="49ad0e67-5107-4d3d-aebd-6dac284e11c1"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Frequency]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" x="1" y="195" width="56" height="20" uuid="2bced6ae-2300-4fdb-9ab1-db0f8f815d56"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Order No]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" x="213" y="195" width="56" height="20" uuid="483a9b0e-113e-4283-abac-5cdaf6e68a3c"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Drug]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" x="736" y="195" width="63" height="20" uuid="dacce550-572f-4f3b-8297-39c75385a7aa"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Disp. Qty]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" x="379" y="195" width="56" height="20" uuid="a6e32bcf-109f-4fa1-9ad6-5ceb7fc3c2e5"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Dosage]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" x="659" y="195" width="77" height="20" uuid="b6beda39-6d99-4b19-8c42-33b82add19be"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Expiry Date]]></text>
+			</staticText>
+			<line>
+				<reportElement positionType="Float" x="0" y="194" width="802" height="1" uuid="7be3ae1a-9275-4d82-8137-623be12f7bdc"/>
+			</line>
+			<staticText>
+				<reportElement x="13" y="150" width="100" height="20" uuid="5c7a52f4-80b0-42e6-a8fc-19e605d9fee6"/>
+				<textElement textAlignment="Right">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Allergy:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="125" y="150" width="339" height="20" uuid="15f31f7f-da1b-4c63-b33c-48300da19e7d"/>
+				<textFieldExpression><![CDATA[$F{pms_patient_biodata_ALLERGY_IND}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy HH.mm.ss">
+				<reportElement x="703" y="0" width="100" height="20" uuid="0ab7c5c9-3915-4108-8c26-1a652aca11ab"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="36" splitType="Stretch">
+			<textField>
+				<reportElement x="1" y="0" width="56" height="20" uuid="78d2e903-f077-4f09-8480-d06c9c92543d"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{pis_order_detail_ORDER_NO}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="57" y="0" width="68" height="36" uuid="447e7ae9-efb8-459b-a6ea-b2b82318b718"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{pis_order_master_ORDER_DATE}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="125" y="0" width="254" height="20" uuid="ab84e903-d9c6-47a7-a225-87340af57428"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{pis_order_detail_DRUG_ITEM_DESC}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="379" y="0" width="68" height="20" uuid="f9b6f36d-b006-4dad-9336-4c13e9a46055"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{pis_order_detail_DRUG_DOSAGE}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="447" y="0" width="68" height="20" uuid="71d2c6f3-8a30-4a66-91f6-4a75ef4bef38"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{pis_order_detail_DRUG_ROUTE}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="515" y="0" width="78" height="20" uuid="63cc19a7-f760-4560-9c17-7f7120c5d422"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{pis_order_detail_DRUG_FREQUENCY}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="596" y="0" width="24" height="20" uuid="4b3c7af2-7d27-45c7-a298-03b09d1c3bb8"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{pis_order_detail_DURATION}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="664" y="0" width="68" height="20" uuid="a8253aef-e538-4962-b1dc-88b0b209b738"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{pis_mdc2_D_EXP_DATE}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0">
+				<reportElement x="736" y="0" width="26" height="20" uuid="70724530-d4bb-4b83-b727-5b1dd2e4e1f4"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{pis_order_detail_QTY_ORDERED}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement positionType="Float" x="1" y="0" width="802" height="1" uuid="8f03dd0b-6632-4c9a-9d18-fca3df006480"/>
+			</line>
+			<staticText>
+				<reportElement x="620" y="1" width="39" height="20" uuid="05bd64dd-2a41-4eca-a71e-1bfb5e7479a4"/>
+				<text><![CDATA[day(s)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="762" y="0" width="29" height="20" uuid="8e881319-a700-45a2-8929-5e4e64230baf"/>
+				<text><![CDATA[TABS]]></text>
+			</staticText>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="67" splitType="Stretch">
+			<staticText>
+				<reportElement x="318" y="10" width="100" height="20" uuid="c8957737-e6e7-4570-b0fc-6c13e1656bad"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[** END OF REPORT **]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1" y="47" width="67" height="20" uuid="2e1515a2-5777-4bfb-9584-46006e6a9136"/>
+				<text><![CDATA[Prepared by:]]></text>
+			</staticText>
+			<textField evaluationTime="Report">
+				<reportElement x="778" y="47" width="24" height="20" uuid="d57bd075-8adf-4af1-af43-c6a6f785c996"/>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+</jasperReport>

@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="fullReportDiagnosis" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="47705bf4-1945-43d9-9245-b12f04eb0058">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="table">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<subDataset name="diagnosis" uuid="bdc3985d-e8cb-460d-9c9a-2a7eeb7cefff">
+		<parameter name="startDate1" class="java.lang.String"/>
+		<parameter name="endDate1" class="java.lang.String"/>
+		<queryString>
+			<![CDATA[SELECT
+     lhr_diagnosis.`Diagnosis_Cd` AS lhr_diagnosis_Diagnosis_Cd,
+     lhr_diagnosis.`ICD10_Description` AS lhr_diagnosis_ICD10_Description,
+     lhr_diagnosis.`Episode_Date` AS lhr_diagnosis_Episode_Date
+FROM
+     `lhr_diagnosis` lhr_diagnosis
+
+WHERE
+lhr_diagnosis.`Episode_Date` BETWEEN $P{startDate1} AND $P{endDate1}
+
+GROUP BY
+ICD10_Description
+
+ORDER BY
+ICD10_Description]]>
+		</queryString>
+		<field name="lhr_diagnosis_Diagnosis_Cd" class="java.lang.String"/>
+		<field name="lhr_diagnosis_ICD10_Description" class="java.lang.String"/>
+		<field name="lhr_diagnosis_Episode_Date" class="java.sql.Timestamp"/>
+		<group name="diagnosis">
+			<groupExpression><![CDATA[$F{lhr_diagnosis_Diagnosis_Cd}]]></groupExpression>
+		</group>
+	</subDataset>
+	<parameter name="startDate" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="endDate" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     lhr_diagnosis.`Diagnosis_Cd` AS lhr_diagnosis_Diagnosis_Cd,
+     lhr_diagnosis.`ICD10_Description` AS lhr_diagnosis_ICD10_Description,
+     lhr_diagnosis.`Episode_Date` AS lhr_diagnosis_Episode_Date
+FROM
+     `lhr_diagnosis` lhr_diagnosis
+
+WHERE
+lhr_diagnosis.`Episode_Date` BETWEEN $P{startDate} AND $P{endDate}
+
+GROUP BY
+ICD10_Description
+
+ORDER BY
+ICD10_Description]]>
+	</queryString>
+	<field name="lhr_diagnosis_Diagnosis_Cd" class="java.lang.String"/>
+	<field name="lhr_diagnosis_ICD10_Description" class="java.lang.String"/>
+	<field name="lhr_diagnosis_Episode_Date" class="java.sql.Timestamp"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band splitType="Stretch"/>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="386" splitType="Stretch">
+			<staticText>
+				<reportElement x="191" y="19" width="174" height="27" uuid="23b1e18f-19f8-4268-8ab0-9395b1f4bde0"/>
+				<textElement>
+					<font size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Statistic Of Diagnosis ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="128" y="68" width="31" height="20" uuid="b369adf2-578e-434c-80c8-87a264701618"/>
+				<text><![CDATA[From]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="221" y="68" width="22" height="20" uuid="14ba75cf-22c9-409f-bce7-652225a73292"/>
+				<text><![CDATA[To]]></text>
+			</staticText>
+			<componentElement>
+				<reportElement key="table 1" style="table 1" x="112" y="99" width="360" height="80" uuid="7d341f29-47e7-4dde-806c-67b69d58a936"/>
+				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+					<datasetRun subDataset="diagnosis" uuid="417d6ea5-b79b-4180-9736-977bd7d65b68">
+						<datasetParameter name="startDate1">
+							<datasetParameterExpression><![CDATA[$P{startDate}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="endDate1">
+							<datasetParameterExpression><![CDATA[$P{endDate}]]></datasetParameterExpression>
+						</datasetParameter>
+						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					</datasetRun>
+					<jr:column width="207" uuid="fa194ec8-b61f-4d64-9148-9c5610ecf8ff">
+						<jr:columnHeader style="table" height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="207" height="30" uuid="e4488963-a52b-4032-90ae-9327dd7ba13c"/>
+								<textElement textAlignment="Center"/>
+								<text><![CDATA[Diagnosis]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table 1_TD" height="20" rowSpan="1">
+							<textField isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="207" height="20" uuid="7b2a7bdb-beab-45ff-8e43-d957fa6529b8"/>
+								<textElement textAlignment="Center"/>
+								<textFieldExpression><![CDATA[$F{lhr_diagnosis_ICD10_Description}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="160" uuid="a480ad9b-274e-459e-8d8b-512562b3d420">
+						<jr:columnHeader style="table" height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="160" height="30" uuid="260bd8f0-8cb4-4c0d-85b8-9bd642116187"/>
+								<textElement textAlignment="Center"/>
+								<text><![CDATA[No of Diagnosis]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table 1_TD" height="20" rowSpan="1">
+							<textField isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="160" height="20" uuid="3c57d63d-369b-4218-9dbe-671a99f65b15"/>
+								<textElement textAlignment="Center"/>
+								<textFieldExpression><![CDATA[$V{diagnosis_COUNT}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+				</jr:table>
+			</componentElement>
+			<textField>
+				<reportElement x="159" y="68" width="62" height="20" uuid="d6cb3bdb-ecb0-44f0-bb53-5b8605c6765e"/>
+				<textFieldExpression><![CDATA[$P{startDate}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="243" y="68" width="73" height="20" uuid="20edd649-ddf0-4af0-bbd9-ca8f09bc58d3"/>
+				<textFieldExpression><![CDATA[$P{endDate}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="355" y="68" width="33" height="20" uuid="a43e9f75-4a1d-4e0e-bd87-8d3cec95bc22"/>
+				<text><![CDATA[Date:]]></text>
+			</staticText>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="388" y="68" width="100" height="20" uuid="ea0ebe02-f1ee-4e81-9abb-84d208e37d8a"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</summary>
+</jasperReport>
