@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="complaint" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="0c56d714-a05e-495d-8088-345e7fd38186">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="startDate" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="endDate" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     lhr_medication.`hfc_cd` AS lhr_medication_hfc_cd,
+     lhr_medication.`episode_date` AS lhr_medication_episode_date,
+     lhr_medication.`drug_cd` AS lhr_medication_drug_cd,
+     lhr_medication.`problem_cd` AS lhr_medication_problem_cd,
+     readcode_chief_complaint.`RCC_CD` AS readcode_chief_complaint_RCC_CD,
+     readcode_chief_complaint.`RCC_DESC` AS readcode_chief_complaint_RCC_DESC
+FROM
+     `lhr_medication` lhr_medication
+INNER JOIN
+     `readcode_chief_complaint` readcode_chief_complaint ON readcode_chief_complaint.`RCC_CD` = lhr_medication.`problem_cd`
+WHERE
+lhr_medication.`episode_date` BETWEEN $P{startDate} AND $P{endDate}
+
+GROUP BY
+readcode_chief_complaint.`RCC_DESC`
+
+ORDER BY
+readcode_chief_complaint.`RCC_DESC`]]>
+	</queryString>
+	<field name="lhr_medication_hfc_cd" class="java.lang.String"/>
+	<field name="lhr_medication_episode_date" class="java.sql.Timestamp"/>
+	<field name="lhr_medication_drug_cd" class="java.lang.String"/>
+	<field name="lhr_medication_problem_cd" class="java.lang.String"/>
+	<field name="readcode_chief_complaint_RCC_CD" class="java.lang.String"/>
+	<field name="readcode_chief_complaint_RCC_DESC" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band splitType="Stretch"/>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="464" splitType="Stretch">
+			<staticText>
+				<reportElement x="117" y="12" width="319" height="28" uuid="f3e7da92-da8b-41d5-a1d7-25ee489749a4"/>
+				<textElement>
+					<font size="22" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Statistics of Chief Complaint]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="160" y="40" width="41" height="20" uuid="d36aa51e-e8ce-4f4d-963d-dd8fea3a26b5"/>
+				<text><![CDATA[From:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="336" y="40" width="21" height="20" uuid="88291831-36c0-4a4e-a77e-c1232a9859e9"/>
+				<text><![CDATA[To:]]></text>
+			</staticText>
+		</band>
+	</summary>
+</jasperReport>

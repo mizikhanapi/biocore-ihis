@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="PastMedicalHistory" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="81a8257c-a21c-4e07-815b-590027a5197d">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="table">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<subDataset name="pastmedicalhistory" uuid="2d856b24-07d1-4b2b-b5a4-0432b9ed0800">
+		<parameter name="startDate1" class="java.lang.String">
+			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+		</parameter>
+		<parameter name="endDate1" class="java.lang.String">
+			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+		</parameter>
+		<queryString>
+			<![CDATA[SELECT
+     lhr_past_medical_history.`pmi_no` AS lhr_past_medical_history_pmi_no,
+     lhr_past_medical_history.`hfc_cd` AS lhr_past_medical_history_hfc_cd,
+     lhr_past_medical_history.`encounter_date` AS lhr_past_medical_history_encounter_date,
+     lhr_past_medical_history.`icd10_description` AS lhr_past_medical_history_icd10_description
+FROM
+     `lhr_past_medical_history` lhr_past_medical_history
+WHERE
+lhr_past_medical_history.`encounter_date` BETWEEN $P{startDate1} AND $P{endDate1} 
+GROUP BY
+ lhr_past_medical_history.`icd10_description`
+
+ORDER BY
+ lhr_past_medical_history.`icd10_description`]]>
+		</queryString>
+		<field name="lhr_past_medical_history_pmi_no" class="java.lang.String"/>
+		<field name="lhr_past_medical_history_hfc_cd" class="java.lang.String"/>
+		<field name="lhr_past_medical_history_encounter_date" class="java.sql.Timestamp"/>
+		<field name="lhr_past_medical_history_icd10_description" class="java.lang.String"/>
+		<group name="totalno">
+			<groupExpression><![CDATA[$F{lhr_past_medical_history_icd10_description}]]></groupExpression>
+		</group>
+	</subDataset>
+	<parameter name="startDate" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="endDate" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     lhr_past_medical_history.`pmi_no` AS lhr_past_medical_history_pmi_no,
+     lhr_past_medical_history.`hfc_cd` AS lhr_past_medical_history_hfc_cd,
+     lhr_past_medical_history.`encounter_date` AS lhr_past_medical_history_encounter_date,
+     lhr_past_medical_history.`icd10_description` AS lhr_past_medical_history_icd10_description
+FROM
+     `lhr_past_medical_history` lhr_past_medical_history
+
+WHERE
+lhr_past_medical_history.`encounter_date` BETWEEN $P{startDate} AND $P{endDate}
+
+GROUP BY
+ lhr_past_medical_history.`icd10_description`
+
+ORDER BY
+ lhr_past_medical_history.`icd10_description`]]>
+	</queryString>
+	<field name="lhr_past_medical_history_pmi_no" class="java.lang.String"/>
+	<field name="lhr_past_medical_history_hfc_cd" class="java.lang.String"/>
+	<field name="lhr_past_medical_history_encounter_date" class="java.sql.Timestamp"/>
+	<field name="lhr_past_medical_history_icd10_description" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band splitType="Stretch"/>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="422" splitType="Stretch">
+			<componentElement>
+				<reportElement key="table" style="table" x="112" y="108" width="360" height="80" isRemoveLineWhenBlank="true" uuid="35967e29-91d2-4019-82a7-17aa0b53917b"/>
+				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+					<datasetRun subDataset="pastmedicalhistory" uuid="053e764d-12ae-4e22-8886-5593dae5d5b9">
+						<datasetParameter name="startDate1">
+							<datasetParameterExpression><![CDATA[$P{startDate}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="endDate1">
+							<datasetParameterExpression><![CDATA[$P{endDate}]]></datasetParameterExpression>
+						</datasetParameter>
+						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					</datasetRun>
+					<jr:column width="182" uuid="c995c083-f772-4ffa-860a-7fc747e5cd8d">
+						<jr:columnHeader style="table" height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="182" height="30" uuid="49f6c128-dd85-4617-9385-dbd4df923c40"/>
+								<textElement textAlignment="Center"/>
+								<text><![CDATA[Past Medical History]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table_TD" height="20" rowSpan="1">
+							<textField>
+								<reportElement isPrintRepeatedValues="false" x="0" y="0" width="182" height="20" isRemoveLineWhenBlank="true" uuid="962d8c3a-33ff-4001-b328-797e94316d3c"/>
+								<textElement textAlignment="Center"/>
+								<textFieldExpression><![CDATA[$F{lhr_past_medical_history_icd10_description}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="177" uuid="5e32f7b4-dd5a-4e25-b0d8-e2f0210f890b">
+						<jr:columnHeader style="table" height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="177" height="30" uuid="4939b642-c0c3-4544-bfaf-dc40f144cb3a"/>
+								<textElement textAlignment="Center"/>
+								<text><![CDATA[Number of Past Medical History]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table_TD" height="20" rowSpan="1">
+							<textField>
+								<reportElement x="0" y="0" width="177" height="20" uuid="dcdd7236-8ac5-4f2a-8f28-cb78a3ca3668"/>
+								<textElement textAlignment="Center"/>
+								<textFieldExpression><![CDATA[$V{totalno_COUNT}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+				</jr:table>
+			</componentElement>
+			<staticText>
+				<reportElement x="112" y="11" width="395" height="36" uuid="9e738ff8-98a7-4f79-a11d-749a6782b7b9"/>
+				<textElement>
+					<font size="22"/>
+				</textElement>
+				<text><![CDATA[Statistics of Past Medical History]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="146" y="47" width="36" height="20" uuid="6d638aa6-9707-48f7-91c2-2c93e9850f93"/>
+				<text><![CDATA[From:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="303" y="47" width="32" height="20" uuid="93561415-bf71-45b8-9e37-4dfb3ad9e06e"/>
+				<text><![CDATA[To:]]></text>
+			</staticText>
+		</band>
+	</summary>
+</jasperReport>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="7f436158-6909-4b32-8dac-1dd5cde4ecc2">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT
+     far_customer_hdr.`customer_id` AS far_customer_hdr_customer_id,
+     far_customer_hdr.`bill_no` AS far_customer_hdr_bill_no,
+     far_customer_hdr.`txn_date` AS far_customer_hdr_txn_date,
+     far_customer_hdr.`item_desc` AS far_customer_hdr_item_desc,
+     far_customer_hdr.`item_amt` AS far_customer_hdr_item_amt,
+     far_customer_hdr.`quantity` AS far_customer_hdr_quantity,
+     far_customer_hdr.`location` AS far_customer_hdr_location,
+     far_customer_hdr.`order_no` AS far_customer_hdr_order_no,
+     far_customer_hdr.`payment` AS far_customer_hdr_payment,
+     far_customer_hdr.`amt_paid` AS far_customer_hdr_amt_paid
+FROM
+     `far_customer_hdr` far_customer_hdr]]>
+	</queryString>
+	<field name="far_customer_hdr_customer_id" class="java.lang.String"/>
+	<field name="far_customer_hdr_bill_no" class="java.lang.String"/>
+	<field name="far_customer_hdr_txn_date" class="java.sql.Timestamp"/>
+	<field name="far_customer_hdr_item_desc" class="java.lang.String"/>
+	<field name="far_customer_hdr_item_amt" class="java.math.BigDecimal"/>
+	<field name="far_customer_hdr_quantity" class="java.math.BigDecimal"/>
+	<field name="far_customer_hdr_location" class="java.lang.String"/>
+	<field name="far_customer_hdr_order_no" class="java.lang.String"/>
+	<field name="far_customer_hdr_payment" class="java.lang.String"/>
+	<field name="far_customer_hdr_amt_paid" class="java.lang.Double"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band splitType="Stretch"/>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="632" splitType="Stretch"/>
+	</summary>
+</jasperReport>

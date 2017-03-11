@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="d8a9a0e9-4014-4ee4-88d3-034768623772">
+	<queryString language="SQL">
+		<![CDATA[SELECT
+     lhr_family_history.`pmi_no` AS lhr_family_history_pmi_no,
+     lhr_family_history.`episode_date` AS lhr_family_history_episode_date,
+     lhr_family_history.`diagnosis_cd` AS lhr_family_history_diagnosis_cd,
+     lhr_family_history.`icd10_description` AS lhr_family_history_icd10_description
+FROM
+     `lhr_family_history` lhr_family_history]]>
+	</queryString>
+	<field name="lhr_family_history_pmi_no" class="java.lang.String"/>
+	<field name="lhr_family_history_episode_date" class="java.sql.Timestamp"/>
+	<field name="lhr_family_history_diagnosis_cd" class="java.lang.String"/>
+	<field name="lhr_family_history_icd10_description" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="61" splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="125" splitType="Stretch"/>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

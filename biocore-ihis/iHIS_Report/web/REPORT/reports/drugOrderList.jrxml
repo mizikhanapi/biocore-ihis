@@ -1,0 +1,328 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="drugOrderList" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="49752331-0864-4bd3-8c6f-300e2750fc8e">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="76"/>
+	<style name="table">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<subDataset name="drug" uuid="c351ae4f-bf2c-4870-b9af-db9a0f4f92c9">
+		<parameter name="startDate1" class="java.lang.String">
+			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+		</parameter>
+		<parameter name="endDate1" class="java.lang.String">
+			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+		</parameter>
+		<queryString>
+			<![CDATA[SELECT
+     pis_dispense_detail.`ORDER_NO` AS pis_dispense_detail_ORDER_NO,
+     pis_dispense_detail.`DRUG_ITEM_CODE` AS pis_dispense_detail_DRUG_ITEM_CODE,
+     pis_dispense_detail.`ORDER_NO` AS pis_dispense_detail_ORDER_NO,
+     pis_dispense_detail.`DRUG_ITEM_CODE` AS pis_dispense_detail_DRUG_ITEM_CODE,
+     pis_dispense_master.`ORDER_NO` AS pis_dispense_master_ORDER_NO,
+     pis_mdc2.`UD_MDC_CODE` AS pis_mdc2_UD_MDC_CODE,
+     pis_mdc2.`D_TRADE_NAME` AS pis_mdc2_D_TRADE_NAME,
+     pis_mdc2.`D_SELL_PRICE` AS pis_mdc2_D_SELL_PRICE,
+     pis_dispense_detail.`DISPENSED_QTY` AS pis_dispense_detail_DISPENSED_QTY,
+     pis_dispense_master.`DISPENSED_DATE` AS pis_dispense_master_DISPENSED_DATE
+FROM
+     `pis_dispense_detail` pis_dispense_detail
+INNER JOIN 
+     `pis_dispense_master` pis_dispense_master ON pis_dispense_master.`order_no` = pis_dispense_detail.`order_no`
+INNER JOIN
+     `pis_mdc2` pis_mdc2 ON pis_mdc2.`ud_mdc_code` = pis_dispense_detail.`drug_item_code`
+WHERE
+    pis_dispense_master.`DISPENSED_DATE` BETWEEN $P{startDate1} AND $P{endDate1}
+GROUP BY
+     ud_mdc_code
+ORDER BY
+     ud_mdc_code ASC]]>
+		</queryString>
+		<field name="pis_dispense_detail_ORDER_NO" class="java.lang.String"/>
+		<field name="pis_dispense_detail_DRUG_ITEM_CODE" class="java.lang.String"/>
+		<field name="pis_dispense_master_ORDER_NO" class="java.lang.String"/>
+		<field name="pis_mdc2_UD_MDC_CODE" class="java.lang.String"/>
+		<field name="pis_mdc2_D_TRADE_NAME" class="java.lang.String"/>
+		<field name="pis_mdc2_D_SELL_PRICE" class="java.lang.Double"/>
+		<field name="pis_dispense_detail_DISPENSED_QTY" class="java.math.BigDecimal"/>
+		<field name="pis_dispense_master_DISPENSED_DATE" class="java.sql.Timestamp"/>
+		<group name="patient">
+			<groupExpression><![CDATA[$F{pis_dispense_master_ORDER_NO}]]></groupExpression>
+		</group>
+	</subDataset>
+	<parameter name="startDate" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="endDate" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     pis_dispense_detail.`ORDER_NO` AS pis_dispense_detail_ORDER_NO,
+     pis_dispense_detail.`DRUG_ITEM_CODE` AS pis_dispense_detail_DRUG_ITEM_CODE,
+     pis_dispense_detail.`ORDER_NO` AS pis_dispense_detail_ORDER_NO,
+     pis_dispense_detail.`DRUG_ITEM_CODE` AS pis_dispense_detail_DRUG_ITEM_CODE,
+     pis_dispense_master.`ORDER_NO` AS pis_dispense_master_ORDER_NO,
+     pis_mdc2.`UD_MDC_CODE` AS pis_mdc2_UD_MDC_CODE,
+     pis_mdc2.`D_TRADE_NAME` AS pis_mdc2_D_TRADE_NAME,
+     pis_mdc2.`D_SELL_PRICE` AS pis_mdc2_D_SELL_PRICE,
+     pis_dispense_detail.`DISPENSED_QTY` AS pis_dispense_detail_DISPENSED_QTY,
+     pis_dispense_master.`DISPENSED_DATE` AS pis_dispense_master_DISPENSED_DATE
+FROM
+     `pis_dispense_detail` pis_dispense_detail
+INNER JOIN 
+     `pis_dispense_master` pis_dispense_master ON pis_dispense_master.`order_no` = pis_dispense_detail.`order_no`
+INNER JOIN
+     `pis_mdc2` pis_mdc2 ON pis_mdc2.`ud_mdc_code` = pis_dispense_detail.`drug_item_code`
+WHERE
+    pis_dispense_master.`DISPENSED_DATE` BETWEEN $P{startDate} AND $P{endDate}
+GROUP BY
+     ud_mdc_code
+ORDER BY
+     ud_mdc_code ASC]]>
+	</queryString>
+	<field name="pis_dispense_detail_ORDER_NO" class="java.lang.String"/>
+	<field name="pis_dispense_detail_DRUG_ITEM_CODE" class="java.lang.String"/>
+	<field name="pis_dispense_master_ORDER_NO" class="java.lang.String"/>
+	<field name="pis_mdc2_UD_MDC_CODE" class="java.lang.String"/>
+	<field name="pis_mdc2_D_TRADE_NAME" class="java.lang.String"/>
+	<field name="pis_mdc2_D_SELL_PRICE" class="java.lang.Double"/>
+	<field name="pis_dispense_detail_DISPENSED_QTY" class="java.math.BigDecimal"/>
+	<field name="pis_dispense_master_DISPENSED_DATE" class="java.sql.Timestamp"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band splitType="Stretch"/>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="652" splitType="Stretch">
+			<staticText>
+				<reportElement x="214" y="112" width="91" height="20" uuid="d4ad79ba-9006-48fc-b212-7464a08934ea"/>
+				<text><![CDATA[Total Drug Cost]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="138" y="132" width="32" height="20" uuid="52736969-3877-4d79-8beb-2e07b8b5f7df"/>
+				<text><![CDATA[Start]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="250" y="132" width="23" height="20" uuid="f4786188-0172-413a-8bb3-71d9b4fba5b4"/>
+				<text><![CDATA[To:]]></text>
+			</staticText>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="474" y="132" width="66" height="20" uuid="17a1ceae-489a-4c81-9f51-ab10f7a6e8be"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<componentElement>
+				<reportElement key="table 1" style="table 1" positionType="Float" x="0" y="152" width="555" height="227" uuid="75ad60f4-2dcb-4ced-92fa-ad4104ccceee"/>
+				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+					<datasetRun subDataset="drug" uuid="2b456cd3-13df-400b-b383-f8e73158cf5c">
+						<datasetParameter name="startDate1">
+							<datasetParameterExpression><![CDATA[$P{startDate}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="endDate1">
+							<datasetParameterExpression><![CDATA[$P{endDate}]]></datasetParameterExpression>
+						</datasetParameter>
+						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					</datasetRun>
+					<jr:column width="24" uuid="475ee6f8-dfd0-425a-9a6e-30cd19b1758e">
+						<jr:columnHeader style="table" height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="24" height="30" uuid="e6a9b827-b49a-4f90-8efe-a96d456475ab"/>
+								<textElement textAlignment="Center"/>
+								<text><![CDATA[No.]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table_TD" height="30" rowSpan="1">
+							<textField>
+								<reportElement x="0" y="0" width="24" height="30" uuid="6b191841-c3f0-4943-acdc-503d7618cd58"/>
+								<textElement textAlignment="Center"/>
+								<textFieldExpression><![CDATA[$V{COLUMN_COUNT}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="82" uuid="8e2118a3-2a89-4962-9fb2-4fdd93eb69eb">
+						<jr:columnHeader style="table" height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="82" height="30" uuid="6a803ebc-23d5-4d16-9825-9eed8ce2b67d"/>
+								<textElement textAlignment="Center"/>
+								<text><![CDATA[Drug Code]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table 1_TD" height="30" rowSpan="1">
+							<textField>
+								<reportElement x="0" y="0" width="82" height="30" uuid="d1924922-c98f-4a02-9202-65f87b1b6bba"/>
+								<textElement textAlignment="Center"/>
+								<textFieldExpression><![CDATA[$F{pis_dispense_detail_DRUG_ITEM_CODE}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="223" uuid="0819ec2e-064b-4c25-9de6-7d029171b266">
+						<jr:columnHeader style="table" height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="68" y="0" width="90" height="30" uuid="962357b8-9992-4fc9-ae2b-3de1e8233aa9"/>
+								<textElement textAlignment="Center"/>
+								<text><![CDATA[Description]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table 1_TD" height="30" rowSpan="1">
+							<textField>
+								<reportElement x="0" y="0" width="223" height="30" uuid="cf3c19be-a0dc-408c-bab8-c7c0c52cc4e9"/>
+								<textElement textAlignment="Center"/>
+								<textFieldExpression><![CDATA[$F{pis_mdc2_D_TRADE_NAME}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="46" uuid="86a3c89d-195e-46bf-8346-3664c2754de8">
+						<jr:columnHeader style="table" height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="46" height="30" uuid="eb0d8dc3-e6bb-4004-8624-b237cc210776"/>
+								<textElement textAlignment="Center"/>
+								<text><![CDATA[Price]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table 1_TD" height="30" rowSpan="1">
+							<textField>
+								<reportElement x="0" y="0" width="46" height="30" uuid="e1a6c91e-47d1-4efd-aef6-7cb77c939a29"/>
+								<textElement textAlignment="Center"/>
+								<textFieldExpression><![CDATA[$F{pis_mdc2_D_SELL_PRICE}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="44" uuid="2c28d7dc-b37a-47ac-888a-c4192b6622ec">
+						<jr:columnHeader style="table" height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="44" height="30" uuid="4bf9ddbb-f826-4d98-935f-af3d7ac77539"/>
+								<textElement textAlignment="Center"/>
+								<text><![CDATA[Total Patient]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table_TD" height="30" rowSpan="1">
+							<textField>
+								<reportElement x="0" y="0" width="44" height="30" uuid="6aa84d04-31c7-48d1-84fe-f97504957bb7"/>
+								<textElement textAlignment="Center"/>
+								<textFieldExpression><![CDATA[$V{patient_COUNT}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="61" uuid="4bf38f19-3a6f-4e43-afc0-7edf1342638e">
+						<jr:columnHeader style="table" height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="48" height="30" uuid="db0ab726-ec9e-4336-9def-9e0185df649c"/>
+								<textElement textAlignment="Center"/>
+								<text><![CDATA[Total Usage]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table_TD" height="30" rowSpan="1">
+							<textField pattern="###0">
+								<reportElement x="0" y="0" width="61" height="30" uuid="ab597ce2-d83c-4ff4-88b4-2dc521d71048"/>
+								<textElement textAlignment="Center"/>
+								<textFieldExpression><![CDATA[$F{pis_dispense_detail_DISPENSED_QTY}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="57" uuid="aa0fb0d9-7313-4cc1-bef4-8337b1be75b9">
+						<jr:columnHeader style="table" height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="57" height="30" uuid="56925608-6f58-426f-b9e7-2c71f26b348c"/>
+								<textElement textAlignment="Center"/>
+								<text><![CDATA[Total Amount]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table_TD" height="30" rowSpan="1">
+							<textField pattern="###0.0">
+								<reportElement x="0" y="0" width="57" height="30" uuid="aaf02315-7ccc-4cd3-b212-d1ccd35be384"/>
+								<textElement textAlignment="Center"/>
+								<textFieldExpression><![CDATA[($F{pis_mdc2_D_SELL_PRICE}.doubleValue()*$F{pis_dispense_detail_DISPENSED_QTY}.doubleValue())]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+				</jr:table>
+			</componentElement>
+			<textField>
+				<reportElement x="170" y="132" width="80" height="20" uuid="61aa8510-ae3a-42b6-acb8-dbd9e88881a7"/>
+				<textFieldExpression><![CDATA[$P{startDate}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="273" y="132" width="100" height="20" uuid="ecb9eca4-a03d-42af-90fa-350436b102e8"/>
+				<textFieldExpression><![CDATA[$P{endDate}]]></textFieldExpression>
+			</textField>
+			<image>
+				<reportElement x="170" y="0" width="339" height="100" uuid="3b3427f4-ebd8-48df-a97e-85e8a240bb22"/>
+				<imageExpression><![CDATA["C:\\Users\\user\\Desktop\\Mimi\\Reports\\iHIS_Report\\web\\reports\\LogoUTeM-2016.jpg"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="443" y="132" width="31" height="20" uuid="18fc61c0-6c52-443c-b115-bc5ef575c6cf"/>
+				<text><![CDATA[Date:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="112" width="51" height="20" uuid="f3e9aeca-e8a8-485c-a64b-bab9481e611f"/>
+				<text><![CDATA[Category]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="132" width="100" height="20" uuid="c02324db-4d81-431a-a827-e926564f4cef"/>
+				<text><![CDATA[FacultyCentre:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="610" width="100" height="20" uuid="57ddda6e-877f-4166-9873-9f774c08df21"/>
+				<text><![CDATA[Disediakan Oleh:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" x="205" y="379" width="100" height="20" uuid="72c98eeb-eab6-4003-ad48-119a284920ba"/>
+				<text><![CDATA[** End Of Report **]]></text>
+			</staticText>
+		</band>
+	</summary>
+</jasperReport>
