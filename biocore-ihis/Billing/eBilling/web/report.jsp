@@ -65,7 +65,7 @@
                 </div>
             </div>
         </div>
-                    
+
         <%@include file = "includes/message.html" %>    
         <!--js-->
         <script src="assets/js/dateformat.js" type="text/javascript"></script>

@@ -176,34 +176,34 @@ public class Receipt extends HttpServlet {
             ArrayList<ArrayList<String>> userData = Conn.getData(sql_getHFC);
             String hfc = userData.get(0).get(0);
             
-//            String sql_getHFAddr = 
-//                    "SELECT hfc_name, address1, address2, address3 "
-//                    + "FROM adm_health_facility "
-//                    + "WHERE hfc_cd = '"+ hfc +"'";
-//            ArrayList<ArrayList<String>> hfData = Conn.getData(sql_getHFAddr);
-//            String hfName = hfData.get(0).get(0);
-//            String hfAddr1 = hfData.get(0).get(1);
-//            String hfAddr2 = hfData.get(0).get(2);
-//            String hfAddr3 = hfData.get(0).get(3); 
+            String sql_getHFAddr = 
+                    "SELECT hfc_name, address1, address2, address3 "
+                    + "FROM adm_health_facility "
+                    + "WHERE hfc_cd = '"+ hfc +"'";
+            ArrayList<ArrayList<String>> hfData = Conn.getData(sql_getHFAddr);
+            String hfName = hfData.get(0).get(0);
+            String hfAddr1 = hfData.get(0).get(1);
+            String hfAddr2 = hfData.get(0).get(2);
+            String hfAddr3 = hfData.get(0).get(3); 
             
 //            String imgPath = getServletContext().getRealPath("/assets/img/LogoJawiUTeM.png");
 //            Image logo = Image.getInstance(imgPath);
 //            logo.scaleAbsolute(120, 60);
 //
-//            PdfPCell cell1 = new PdfPCell(logo);
-//            cell1.setHorizontalAlignment(Element.ALIGN_RIGHT);
-//            cell1.setBorder(Rectangle.NO_BORDER);
-//            cell1.setColspan(2);
-//            cell1.setLeading(15f, 0.3f);
-//            header.addCell(cell1);
+            PdfPCell cell1 = new PdfPCell();
+            cell1.setHorizontalAlignment(Element.ALIGN_RIGHT);
+            cell1.setBorder(Rectangle.NO_BORDER);
+            cell1.setColspan(2);
+            cell1.setLeading(15f, 0.3f);
+            header.addCell(cell1);
             
-//            String addr = 
-//                    " "+ hfName +", \n"
-//                    + " "+ hfAddr1 +" \n"
-//                    + " "+ hfAddr2 +", \n"
-//                    + " "+ hfAddr3;
+            String addr = 
+                    " "+ hfName +", \n"
+                    + " "+ hfAddr1 +" \n"
+                    + " "+ hfAddr2 +","
+                    + " "+ hfAddr3;
             
-            PdfPCell cellAddress = new PdfPCell(new Phrase(hfc, rectemja));
+            PdfPCell cellAddress = new PdfPCell(new Phrase(addr, rectemja));
             cellAddress.setHorizontalAlignment(Element.ALIGN_LEFT);
             cellAddress.setBorder(Rectangle.NO_BORDER);
             cellAddress.setColspan(2);

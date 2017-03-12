@@ -136,7 +136,7 @@
         
 <div>
     <div id="listOfItems">
-        <table id="tableItems" class="table table-filter table-striped" style="background: #fff; border: 1px solid #ccc; border-top: none;">
+        <table id="tableItems" class="table table-filter table-striped table-bordered">
             <thead>
                 <th>Item Code</th>
                 <th>Item Description</th>
