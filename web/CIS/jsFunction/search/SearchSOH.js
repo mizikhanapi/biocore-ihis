@@ -70,7 +70,7 @@ function searchSOHCode(){
             var usohCode = array_data[0];
             console.log(usohCode);
            
-            $('#codeSOH').val(usohCode);
+            $('#codeSOH').val(usohCode.trim());
   
           }
         });
@@ -87,7 +87,7 @@ function usearchSOHCode(){
             var usohCode = array_data[0];
             console.log(usohCode);
            
-            $('#usohCode').val(usohCode);
+            $('#usohCode').val(usohCode.trim());
   
           }
         });

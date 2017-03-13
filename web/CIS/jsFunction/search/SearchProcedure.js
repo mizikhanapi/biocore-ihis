@@ -1,4 +1,60 @@
 //js search in add procedure
+function searchPOStype(){
+  
+        var id = $.trim($('#Problem18').val());
+        $.ajax({
+        type:'post',
+        url:'search/searchProcedureTypes.jsp',
+        data: {'id': id},                
+        success: function(reply_data){
+            //console.log(reply_data);
+           $('#proType').html(reply_data);
+           $('#pproType').html(reply_data);
+          }
+        });
+   
+};
+function getProcedureCode(){
+     $('#proType').change(function(){
+        $.ajax({
+        type:'post',
+        url:'search/getProcedureCode.jsp',
+        data: 'id='+ $('#proType').val(),                
+        success: function(reply_data){
+            //console.log(reply_data);
+            $('#procedure_cd').val(reply_data.trim());
+          }
+        });
+     });
+}
+function UsearchPOStype(){
+  
+        var id = $.trim($('#PProblem19').val());
+        $.ajax({
+        type:'post',
+        url:'search/searchProcedureTypes.jsp',
+        data: {'id': id},                
+        success: function(reply_data){
+          //  console.log(reply_data);
+           $('#pproType').html(reply_data);
+          }
+        });
+   
+};
+
+function ugetProcedureCode(){
+     $('#pproType').change(function(){
+        $.ajax({
+        type:'post',
+        url:'search/getProcedureCode.jsp',
+        data: 'id='+ $('#pproType').val(),                
+        success: function(reply_data){
+            //console.log(reply_data);
+            $('#pprocedure_cd').val(reply_data.trim());
+          }
+        });
+     });
+}
  $(function () {
                  $("#Problem18").on('keyup', function () { // everytime keyup event
                     var input = $(this).val(); // We take the input value
@@ -15,6 +71,8 @@
                                 $('#matchList li').on('click', function () { // When click on an element in the list
                                     $('#Problem18').val($(this).text()); // Update the field with the new element
                                     $('#match18').text(''); // Clear the <div id="match"></div>
+                                    searchPOStype();
+                                    getProcedureCode();
                                 });
                             },
                             error: function () { // if error
@@ -78,6 +136,8 @@
                                 $('#matchList li').on('click', function () { // When click on an element in the list
                                     $('#PProblem19').val($(this).text()); // Update the field with the new element
                                     $('#match19').text(''); // Clear the <div id="match"></div>
+                                    UsearchPOStype();
+                                    ugetProcedureCode();
                                 });
                             },
                             error: function () { // if error
@@ -120,5 +180,7 @@
 //                        });
 //                    }
 //                });
+
+
             });
 //End js search in Update procedure

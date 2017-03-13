@@ -93,10 +93,10 @@
 				<!-- SIDEBAR USER TITLE -->
 				<div class="profile-usertitle">
 					<div class="profile-usertitle-name">
-						Marcus Doe
+						<%out.print(username);%>
 					</div>
 					<div class="profile-usertitle-job">
-						Developer
+						-
 					</div>
 				</div>
 				<!-- SIDEBAR BUTTONS -->
@@ -113,6 +113,7 @@
                 <li><a id="queueBtn"><i class="fa fa-users fa-lg"></i> Queue</a></li>
 <!--                <li><a id="missingBtn"><i class="fa fa-circle-o fa-lg"></i> Missing</a></li>-->
                 <li><a id="searchBtn"><i class="fa fa-search fa-lg"></i> Search</a></li>
+                 <li><a id="settingBtn"><i class="fa fa-gear fa-lg"></i> Setting</a></li>
                 <!-- // menu tanpa dropdown -->
 
                 <!--

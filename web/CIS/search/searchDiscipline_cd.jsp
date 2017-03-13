@@ -10,10 +10,10 @@
 <%
     //String key = request.getParameter("input");
     String id = request.getParameter("id");
-    
+    Conn conn = new Conn();
     //id.toLowerCase();
     String searchProblem = "SELECT discipline_cd FROM adm_discipline where discipline_name = '"+id+"'";
-    ArrayList<ArrayList<String>> search = Conn.getData(searchProblem);
+    ArrayList<ArrayList<String>> search = conn.getData(searchProblem);
     //out.println(searchProblem);
     if (search.size() > 0) {
 

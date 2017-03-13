@@ -1,30 +1,30 @@
-$(document).ready(function(){
+$(document).ready(function () {
     /* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+     * To change this license header, choose License Headers in Project Properties.
+     * To change this template file, choose Tools | Templates
+     * and open the template in the editor.
+     */
 
 //---------------------------------------------------------------------------------------------Drug Order Modal.
- //js ADD for Drug Order
+    //js ADD for Drug Order
     $('#acceptBtnDTO').click(function () {
-        
+
         var searchDTO = $('#searchDTO').val();
-     
+
         var drugName = $('#drugNameDTO').val();
         var drugStr = $('#drugStrDTO').val();
-      
+
         var drugDose = $('#doseDTO').val();
         var drugFreq = $('#drugFrequencyDTO').val();
         var drugDur1 = $('#durationDTO').val();
         var unit = $('#unitDTO').val();
         var drugInst = $('#drugInstructionDTO').val();
         var cautionary = $('#cautionaryDTO').val();
-         var comment = $('#commentDTO').val();
+        var comment = $('#commentDTO').val();
 //                    notes+= "DTO|" + getDate() + "^" +  
 
         var $items = $('#searchDTO, #dtoCode, #drugNameDTO, #drugQtyDTO, #drugStrDTO, #doseDTO, #durationDTO, #unitDTO, #drugFrequencyDTO, #drugInstructionDTO, #cautionaryDTO, #commentDTO');
-        var obj1 = {Acode:'DTO'};
+        var obj1 = {Acode: 'DTO'};
         $items.each(function () {
             obj1[this.id] = $(this).val();
         });
@@ -33,11 +33,7 @@ $(document).ready(function(){
 
         console.log(obj1);
 
-        var _tr = '<tr data-status="pagado" ><td><div class="ckbox"><input type="checkbox" id="checkbox1"><label for="checkbox1"></label></div></td><td><div class="media"><div class="media-body">Drug To Order :<p class="summary" id="sum' + i + '">' + searchDTO  + ' | Drug Name: ' + drugName  + ' | Strength: ' + drugStr  + ' | Dose: ' + drugDose  + ' | Frequency: ' + drugFreq  + ' | Duration: ' + drugDur1  + '  ' + unit  + ' | Instruction: ' + drugInst  + ' | Cautionary: ' + cautionary  + ' | Comment: ' + comment + '</p></div></div></td><td><a data-toggle="modal"  data-target="#update_CIS040002" href="" class="updateDrugOrder" id="row|' + i + '"><i class="fa fa-pencil-square-o" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #337ab7;" ></i></a></a></td><td><a href="javascript:;" class="star"><a href="#" class="deleteBtn12" id="row|' + i + '"><i class="fa fa-times" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #d9534f;"></i></a></a></td></tr>';
-
-        $('#consultationNotes').append(_tr);
-        console.log(i);
-        i = i + 1;
+        displayDTO(searchDTO, drugName, drugStr, drugDose, drugFreq, drugDur1, unit, drugInst, cautionary, comment);
 
         $("#problem11").val("");
         $("#qty").val("");
@@ -57,7 +53,7 @@ $(document).ready(function(){
     });
 
     //js UPDATE for Drug Order
-    $('#consultationNotes').on('click', '.updateDrugOrder', function () {
+    $('#DTONotes').on('click', '.updateDrugOrder', function () {
         var idName = $(this).get(0).id;
         var id = idName.split("|");
         var updateObj = _data[id[1]];
@@ -81,11 +77,11 @@ $(document).ready(function(){
 
     $('#updateBtnDTO').click(function (e) {
         e.preventDefault();
-      
+
         var upObject = _data[$('#jsonId').val()];
-        
+
         rowId = $('#jsonId').val();
-       // console.log(upObject);
+        // console.log(upObject);
         var update_searchDTO = $('#update_searchDTO').val();
         var update_dtoCode = $('#update_dtoCode').val();
         var update_drugNameDTO = $('#update_pro').val();
@@ -98,7 +94,7 @@ $(document).ready(function(){
         var update_instDTO = $('#update_inst').val();
         var update_caoutionaryDTO = $('#update_cautionaryDTO').val();
         var update_commentsDTO = $('#update_commentDTO').val();
-        
+
         upObject.searchDTO = update_searchDTO;
         upObject.dtoCode = update_dtoCode;
         upObject.drugNameDTO = update_drugNameDTO;
@@ -111,104 +107,141 @@ $(document).ready(function(){
         upObject.drugInstructionDTO = update_instDTO;
         upObject.cautionaryDTO = update_caoutionaryDTO;
         upObject.commentDTO = update_commentsDTO;
-        
 
-       var sum =  update_searchDTO  + ' | Drug Name: ' + update_drugNameDTO  + ' | Strength: ' + update_drugStrDTO  + ' | Dose: ' + update_drugDoseDTO  + ' | Frequency: ' + update_freqDTO  + ' | Duration: ' + update_durationDTO  + '  ' + update_unitDurDTO  + ' | Instruction: ' + update_instDTO  + ' | Cautionary: ' + update_caoutionaryDTO  + ' | Comment: ' + update_commentsDTO
+
+        var sum = update_searchDTO + ' | Drug Name: ' + update_drugNameDTO + ' | Strength: ' + update_drugStrDTO + ' | Dose: ' + update_drugDoseDTO + ' | Frequency: ' + update_freqDTO + ' | Duration: ' + update_durationDTO + '  ' + update_unitDurDTO + ' | Instruction: ' + update_instDTO + ' | Cautionary: ' + update_caoutionaryDTO + ' | Comment: ' + update_commentsDTO
 //
         $('#sum' + rowId).html(sum);
         $("#update_CIS040002").modal('toggle');
         //$(".modal-backdrop").hide();
     });
 
-    //js DELETE for Drug Order
-    $('#consultationNotes').on("click", ".deleteBtn12", function () {
-        var delConfirm = confirm('Are you want to delete this notes? ');
-        if (delConfirm === true) {
-            var idName = $(this).get(0).id;
-            var id = idName.split("|");
-            delete _data[id[1]];
-            $(this).closest('tr').remove();
-            console.log(_data);
-        } else {
-            return false;
-        }
-    });
-    
+
+
     //---------------------------------------------------------------------------------------------Second Opinion 
-    
+
     //js ADD for Second opinion
-    $('#acceptBtnSOF').click(function (e) {
-        e.preventDefault();
+    $('#acceptBtn11').click(function (e) {
+        var btnName = $(this).text();
+        if (btnName === "Accept") {
+            console.log(btnName);
+            e.preventDefault();
 
-        var Problem10 = $('#Problem10').val();
-        var comment10 = $('#comment10').val();
-        var $items = $('#Problem10, #comment10');
-        var obj1 = {};
-        $items.each(function () {
-            obj1[this.id] = $(this).val();
-        });
+            var hfcName = $('#hfc').val();
+            var hfcCode = $('#hfc1').val();
+            var disName = $('#hfcDiscipline').val();
+            var disCode = $('#disciplin_cd').val();
+            var doctorName = $('#Searchdoctor').val();
+            var doctorCode = $('#user_id').val();
 
-        _data.push(obj1);
+            var comment10 = $('#comment10').val();
+            var $items = $('#hfc, #hfc1,#hfcDiscipline,#disciplin_cd,#Searchdoctor,#user_id,#comment10');
+            var obj1 = {Acode: 'SOP'};
+            $items.each(function () {
+                obj1[this.id] = $.trim($(this).val());
+            });
 
-        console.log(_data);
+            _data.push(obj1);
 
-        var _tr = '<tr data-status="pagado" ><td><div class="ckbox"><input type="checkbox" id="checkbox1"><label for="checkbox1"></label></div></td><td><div class="media"><div class="media-body">Second Opinion :<p class="summary" id="sum' + i + '">' + Problem10 + '| ' + comment10 + '</p></div></div></td><td><a data-toggle="modal"  data-target="#update_CIS040005" href="" class="updateSOF" id="row|' + i + '"><i class="fa fa-pencil-square-o" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #337ab7;" ></i></a></a></td><td><a href="javascript:;" class="star"><a href="#" class="deleteBtn11" id="row|' + i + '"><i class="fa fa-times" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #d9534f;"></i></a></a></td></tr>';
+            console.log(_data);
 
-        $('#consultationNotes').append(_tr);
-        console.log(i);
-        i = i + 1;
+            displaySOP(hfcName, disName, doctorName, comment10);
 
-        $("#Problem10").val("");
-        $("#comment10").val("");
+            $('#hfc').val("");
+            $('#hfc1').val("");
+            $('#hfcDiscipline').val("");
+            $('#disciplin_cd').val("");
+            $('#Searchdoctor').val("");
+            $('#user_id').val("");
+            $("#comment10").val("");
 
-        $("#CIS040005").modal('toggle');
-       // $(".modal-backdrop").hide();
+            $("#CIS040005").modal('toggle');
+            // $(".modal-backdrop").hide();
+        } else if (btnName === "Update") {
+            var upObject = _data[$('#jsonId').val()];
+            var rowId = $('#jsonId').val();
+
+            var UhfcName = $('#hfc').val();
+            var UhfcCode = $('#hfc1').val();
+            var UdisName = $('#hfcDiscipline').val();
+            var UdisCode = $('#disciplin_cd').val();
+            var UdoctorName = $('#Searchdoctor').val();
+            var UdoctorCode = $('#user_id').val();
+            var Ucomment10 = $('#comment10').val();
+
+            upObject.hfc = UhfcName;
+            upObject.hfc1 = UhfcCode;
+            upObject.hfcDiscipline = UdisName;
+            upObject.disciplin_cd = UdisCode;
+            upObject.Searchdoctor = UdoctorName;
+            upObject.user_id = UdoctorCode;
+            upObject.comment10 = Ucomment10;
+
+
+            var sum = UhfcName + '| Discipline: ' + UdisName + '| Doctor: ' + UdoctorName + '| Comments: ' + Ucomment10;
+
+            $('#sum' + rowId).html(sum);
+            $('#hfc').val("");
+            $('#hfc1').val("");
+            $('#hfcDiscipline').val("");
+            $('#disciplin_cd').val("");
+            $('#Searchdoctor').val("");
+            $('#user_id').val("");
+            $("#comment10").val("");
+            $("#CIS040005").modal('toggle');
+
+        }
+        ;
+
 
     });
 
     //js UPDATE for Second opinion
-    $('#consultationNotes').on('click', '.updateSOF', function () {
+    $('#SOPNotes').on('click', '.updateSOF', function () {
         var idName = $(this).get(0).id;
         var id = idName.split("|");
         var updateObj = _data[id[1]];
+//        $('#lineModalLabel1').hide();
+        $('#acceptBtn11').text("Update");
+        $('#lineModalLabel1').text("Update Second Opinion Form");
+        console.log("_data: ");
         console.log(_data);
-        $('#PProblem10').val(updateObj.Problem10);
-        $('#Pcomment10').val(updateObj.comment10);
+        $('#hfc').val(updateObj.hfc);
+        $('#hfc1').val(updateObj.hfc1);
+        $('#hfcDiscipline').val(updateObj.hfcDiscipline);
+        $('#disciplin_cd').val(updateObj.disciplin_cd);
+        $('#Searchdoctor').val(updateObj.Searchdoctor);
+        $('#user_id').val(updateObj.user_id);
+        $("#comment10").val(updateObj.comment10);
+
+
+//        $('#PProblem10').val(updateObj.Problem10);
+//        $('#Pcomment10').val(updateObj.comment10);
         $('#jsonId').val(id[1]);
         //$(this).closest('tr').remove();
 
     });
 
-    $('#updateSOF').click(function () {
-        var upObject = _data[$('#jsonId').val()];
-        var rowId = $('#jsonId').val();
-        var _PProblem10 = $('#PProblem10').val();
-        var _Pcomment10 = $('#Pcomment10').val();
-        upObject.Problem10 = _PProblem10;
-        upObject.comment10 = _Pcomment10;
-        var sum = _PProblem10 + '| ' + _Pcomment10
+    $('#updateBtn11').click(function () {
 
-        $('#sum' + rowId).html(sum);
-        $("#update_CIS040005").modal('toggle');
- 
     });
 
-    //js DELETE for Second opinion
-    $('#consultationNotes').on("click", ".deleteBtn11", function () {
-        var delConfirm = confirm('Are you want to delete this notes? ');
-        if (delConfirm === true) {
-            var idName = $(this).get(0).id;
-            var id = idName.split("|");
-            delete _data[id[1]];
-            $(this).closest('tr').remove();
-            console.log(_data);
-        } else {
-            return false;
-        }
+    $('#CIS040005').on('hidden.bs.modal', function (e) {
+        $('#acceptBtn11').text("Accept");
+        $('#lineModalLabel1').text("Second Opinion Form");
+        $('#hfc').val("");
+        $('#hfc1').val("");
+        $('#hfcDiscipline').val("");
+        $('#disciplin_cd').val("");
+        $('#Searchdoctor').val("");
+        $('#user_id').val("");
+        $("#comment10").val("");
+
     });
-    
-    
-     //---------------------------------------------------------------------------------------------Procedure
+
+
+
+    //---------------------------------------------------------------------------------------------Procedure
     //js for add Procedure
     $('#acceptProcedure').click(function () {
         //var procedure_cd = "P0125245";
@@ -231,9 +264,9 @@ $(document).ready(function(){
 //                            alert("Eroor" + e)
 //                        }
 //                    })
-        notes += "POS|" + procedure_cd + "^" + proType + "|<cr>\n";
+        //notes += "POS|" + procedure_cd + "^" + proType + "|<cr>\n";
         var $items = $('#Problem18,#proType,#procedure_cd');
-        var obj1 = {};
+        var obj1 = {Acode:"POS"};
         $items.each(function () {
             obj1[this.id] = $(this).val();
         });
@@ -242,11 +275,7 @@ $(document).ready(function(){
 
         console.log(_data);
 
-        var _tr = '<tr data-status="pagado" ><td><div class="ckbox"><input type="checkbox" id="checkbox1"><label for="checkbox1"></label></div></td><td><div class="media"><div class="media-body">Procedure Order Segment :<p class="summary" id="sum' + i + '">' + Problem18 + '|' + proType + '|' + procedure_cd + '</p></div></div></td><td><a data-toggle="modal"  data-target="#update_CIS040006" href="" class="updateBtn13" id="row|' + i + '"><i class="fa fa-pencil-square-o" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #337ab7;" ></i></a></a></td><td><a href="javascript:;" class="star"><a href="#" class="deleteBtn13" id="row|' + i + '"><i class="fa fa-times" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #d9534f;"></i></a></a></td></tr>';
-
-        $('#consultationNotes').append(_tr);
-        console.log(i);
-        i = i + 1;
+        displayPOS(Problem18, proType, procedure_cd);
 
         $("#Problem18").val("");
         $("#proType").val("");
@@ -257,7 +286,7 @@ $(document).ready(function(){
     });
 
 //               //js UPDATE for Procedure
-    $('#consultationNotes').on('click', '.updateBtn13', function () {
+    $('#POSNotes').on('click', '.updateBtn13', function () {
         var idName = $(this).get(0).id;
         var id = idName.split("|");
         var updateObj = _data[id[1]];
@@ -283,23 +312,10 @@ $(document).ready(function(){
 
         $('#sum' + rowId).html(sum);
         $("#update_CIS040006").modal('toggle');
-       // $(".modal-backdrop").hide();
+        // $(".modal-backdrop").hide();
     });
 
-    //js DELETE for Procedure
-    $('#consultationNotes').on("click", ".deleteBtn13", function () {
-        var delConfirm = confirm('Are you want to delete this notes? ');
-        if (delConfirm === true) {
-            var idName = $(this).get(0).id;
-            var id = idName.split("|");
-            delete _data[id[1]];
-            $(this).closest('tr').remove();
-            console.log(_data);
-        } else {
-            return false;
-        }
-    });
-    
+
     //---------------------------------------------------------------------------------------------MC and Time Slip
     //js add for MC & Time Slip
     $('#acceptMCTS').click(function (e) {
@@ -320,11 +336,7 @@ $(document).ready(function(){
         _data.push(obj1);
         console.log(_data);
 
-        var _tr = '<tr data-status="pagado" ><td><div class="ckbox"><input type="checkbox" id="checkbox1"><label for="checkbox1"></label></div></td><td><div class="media"><div class="media-body">MC & Time Slip :<p class="summary" id="sum' + i + '">' + DateFrom + '|' + DateTo + '|' + num1 + '|' + num2 + '|' + num3 + '</p></div></div></td><td><a data-toggle="modal"  data-target="#update_CIS040008" href="" class="updateBtn14" id="row|' + i + '"><i class="fa fa-pencil-square-o" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #337ab7;" ></i></a></a></td><td><a href="javascript:;" class="star"><a href="#" class="deleteBtn14" id="row|' + i + '"><i class="fa fa-times" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #d9534f;"></i></a></a></td></tr>';
-
-        $('#consultationNotes').append(_tr);
-        console.log(i);
-        i = i + 1;
+        displayMCTS(DateFrom, DateTo, num1, num2, num3);
 
         $("#DateFrom").val("");
         $("#DateTo").val("");
@@ -332,12 +344,12 @@ $(document).ready(function(){
         $("#num2").val("");
         $("#num3").val("");
         $("#CIS040008").modal('toggle');
-       // $(".modal-backdrop").hide();
+        // $(".modal-backdrop").hide();
 
     });
 
     //js update for MC & Time Slip
-    $('#consultationNotes').on('click', '.updateBtn14', function () {
+    $('#MCTSNotes').on('click', '.updateBtn14', function () {
         var idName = $(this).get(0).id;
         var id = idName.split("|");
         var updateObj = _data[id[1]];
@@ -373,8 +385,77 @@ $(document).ready(function(){
         //$(".modal-backdrop").hide();
     });
 
-    //js DELETE for Procedure
-    $('#consultationNotes').on("click", ".deleteBtn14", function () {
+
+    
+        //---------------------------------------------------------------------------------------------Radiology Request
+    //js add for Radiology request
+    $('#acceptROS').click(function (e) {
+        e.preventDefault();
+        var ROS = $('#ROS').val();
+        var codeROS = $('#codeROS').val();
+        var commentROS = $('#commentROS').val();
+        console.log(codeROS);
+        
+        var $items = $('#ROS, #codeROS, #commentROS');
+        var obj1 = {Acode: 'ROS'};
+        $items.each(function () {
+            obj1[this.id] = $(this).val();
+        });
+
+        _data.push(obj1);
+
+        console.log(obj1);
+
+        displayROS(codeROS, ROS, commentROS);
+
+        $("#ROS").val("");
+        $("#codeROS").val("");
+        $("#commentROS").val("");
+        $("#CIS040000").modal('toggle');
+
+        //$(".modal-backdrop").hide();
+
+    });
+
+    //js update for Radiology request
+    $('#ROSNotes').on('click', '.updateBtn15', function () {
+        var idName = $(this).get(0).id;
+        var id = idName.split("|");
+        var updateObj = _data[id[1]];
+        console.log(_data);
+        $('#UcodeROS').val(updateObj.codeROS);
+        $('#UROS').val(updateObj.ROS);
+        $('#UcommentROS').val(updateObj.commentROS);
+        $('#jsonId').val(id[1]);
+        //$(this).closest('tr').remove();
+        console.log($('#UROS').val());
+
+    });
+
+    $('#updateROSProcedure').click(function (e) {
+        e.preventDefault();
+        var upObject = _data[$('#jsonId').val()];
+        var rowId = $('#jsonId').val();
+        var _UcodeROS = $('#UcodeROS').val();
+        var _UROS = $('#UROS').val();
+        var _UcommentROS = $('#UcommentROS').val();
+        
+        //console.log($('#UROS').val());
+         console.log(rowId);
+        
+        upObject.ROS = _UROS;
+        upObject.codeROS = _UcodeROS;
+        upObject.commentROS = _UcommentROS;
+
+        var sum =  _UROS + '| ' + _UcommentROS 
+
+        $('#sum' + rowId).html(sum);
+        $("#update_CIS040000").modal('toggle');
+        //$(".modal-backdrop").hide();
+    });
+
+    //js DELETE for Radiology request
+    $('#consultationNotes').on("click", ".deleteBtn15", function () {
         var delConfirm = confirm('Are you want to delete this notes? ');
         if (delConfirm === true) {
             var idName = $(this).get(0).id;
@@ -386,6 +467,133 @@ $(document).ready(function(){
             return false;
         }
     });
-    
+
+        //---------------------------------------------------------------------------------------------Laboratory Request
+    //js add for Laboratory request
+    $('#acceptBtnLOS').click(function (e) {
+        e.preventDefault();
+        var searchLOS = $('#searchLOS').val();
+        var codeLOS = $('#codeLOS').val();
+        var catLOS = $('#catLOS').val();
+        var sourceLOS = $('#sourceLOS').val();
+        var containerLOS =$('#containerLOS').val();
+        var volumeLOS =$('#volumeLOS').val();
+        var spclLOS =$('#spclLOS').val();
+        var commentLOS =$('#commentLOS').val();
+        
+        var $items = $('#searchLOS, #codeLOS, #catLOS,#sourceLOS,#containerLOS,#volumeLOS,#spclLOS,#commentLOS');
+        var obj1 = {Acode: 'LOS'};
+        $items.each(function () {
+            obj1[this.id] = $(this).val();
+        });
+
+        _data.push(obj1);
+
+        console.log(obj1);
+
+        displayLOS(searchLOS, codeLOS, catLOS,sourceLOS,containerLOS,volumeLOS,spclLOS,commentLOS);
+
+        $("#searchLOS").val("");
+        $("#codeLOS").val("");
+        $("#catLOS").val("");
+        $("#sourceLOS").val("");
+        $("#containerLOS").val("");
+        $("#volumeLOS").val("");
+        $("#spclLOS").val("");
+        $("#commentLOS").val("");
+        
+        $("#CIS040001").modal('toggle');
+
+        //$(".modal-backdrop").hide();
+
+    });
+
+    //js update for Laboratory request
+    $('#LOSNotes').on('click', '.updateBtnLOS', function () {
+        var idName = $(this).get(0).id;
+        var id = idName.split("|");
+        var updateObj = _data[id[1]];
+        console.log(id);
+        $("#UsearchLOS").val(updateObj.searchLOS);
+        $("#UcodeLOS").val(updateObj.codeLOS);
+        $("#UcatLOS").val(updateObj.catLOS);
+        $("#UsourceLOS").val(updateObj.sourceLOS);
+        $("#UcontainerLOS").val(updateObj.containerLOS);
+        $("#UvolumeLOS").val(updateObj.volumeLOS);
+        $("#UspclLOS").val(updateObj.spclLOS);
+        $("#UcommentLOS").val(updateObj.commentLOS);
+        
+        $('#jsonIdLOS').val(id[1]);
+        //$(this).closest('tr').remove();
+//        console.log($('#UROS').val());
+
+    });
+
+    $('#updateBtnLOS').click(function (e) {
+        e.preventDefault();
+        var upObject = _data[$('#jsonId').val()];
+        var rowId = $('#jsonId').val();
+        var _UsearchLOS = $('#UsearchLOS').val();
+        var _UcodeLOS = $('#UcodeLOS').val();
+        var _UcatLOS = $('#UcatLOS').val();
+        var _UsourceLOS = $('#UsourceLOS').val();
+        var _UcontainerLOS =$('#UcontainerLOS').val();
+        var _UvolumeLOS =$('#UvolumeLOS').val();
+        var _UspclLOS =$('#UspclLOS').val();
+        var _UcommentLOS =$('#UcommentLOS').val();
+
+        upObject.searchLOS=_UsearchLOS;
+        upObject.codeLOS=_UcodeLOS;
+        upObject.catLOS=_UcatLOS;
+        upObject.sourceLOS=_UsourceLOS;
+        upObject.containerLOS=_UcontainerLOS;
+        upObject.volumeLOS=_UvolumeLOS;
+        upObject.spclLOS=_UspclLOS;
+        upObject.commentLOS=_UcommentLOS;
+
+
+        var sum =  _UsearchLOS+ '|' + _UcatLOS+ '|' +_UsourceLOS+ '|' +_UcontainerLOS+ '|' +_UvolumeLOS+ '|' +_UspclLOS+ '|' +_UcommentLOS; 
+
+        $('#sum' + rowId).html(sum);
+        $("#update_CIS040001").modal('toggle');
+        //$(".modal-backdrop").hide();
+    });
+
 
 });
+
+function displayDTO(searchDTO, drugName, drugStr, drugDose, drugFreq, drugDur1, unit, drugInst, cautionary, comment) {
+    var _tr = '<tr data-status="pagado" ><td><div class="ckbox"><input type="checkbox" id="checkbox1"><label for="checkbox1"></label></div></td><td><div class="media"><div class="media-body">Drug To Order :<p class="summary" id="sum' + i + '">' + searchDTO + ' | Drug Name: ' + drugName + ' | Strength: ' + drugStr + ' | Dose: ' + drugDose + ' | Frequency: ' + drugFreq + ' | Duration: ' + drugDur1 + '  ' + unit + ' | Instruction: ' + drugInst + ' | Cautionary: ' + cautionary + ' | Comment: ' + comment + '</p></div></div></td><td><a data-toggle="modal"  data-target="#update_CIS040002" href="" class="updateDrugOrder" id="row|' + i + '"><i class="fa fa-pencil-square-o" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #337ab7;" ></i></a></a></td><td><a href="javascript:;" class="star"><a href="#" class="deleteBtn" id="row|' + i + '"><i class="fa fa-times" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #d9534f;"></i></a></a></td></tr>';
+    $('#DTONotes').append(_tr);
+    i = i + 1;
+}
+
+function displaySOP(hfcName, disName, doctorName, comment10) {
+    var _tr = '<tr data-status="pagado" ><td><div class="ckbox"><input type="checkbox" id="checkbox1"><label for="checkbox1"></label></div></td><td><div class="media"><div class="media-body">Second Opinion :<p class="summary" id="sum' + i + '">' + hfcName + '| Discipline: ' + disName + '| Doctor: ' + doctorName + '| Comments: ' + comment10 + '</p></div></div></td><td><a data-toggle="modal"  data-target="#CIS040005" href="" class="updateSOF" id="row|' + i + '"><i class="fa fa-pencil-square-o" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #337ab7;" ></i></a></a></td><td><a href="javascript:;" class="star"><a href="#" class="deleteBtn" id="row|' + i + '"><i class="fa fa-times" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #d9534f;"></i></a></a></td></tr>';
+    $('#SOPNotes').append(_tr);
+    i = i + 1;
+    }
+
+function displayPOS(Problem18, proType, procedure_cd) {
+    var _tr = '<tr data-status="pagado" ><td><div class="ckbox"><input type="checkbox" id="checkbox1"><label for="checkbox1"></label></div></td><td><div class="media"><div class="media-body">Procedure Order Segment :<p class="summary" id="sum' + i + '">' + Problem18 + '|' + proType + '|' + procedure_cd + '</p></div></div></td><td><a data-toggle="modal"  data-target="#update_CIS040006" href="" class="updateBtn13" id="row|' + i + '"><i class="fa fa-pencil-square-o" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #337ab7;" ></i></a></a></td><td><a href="javascript:;" class="star"><a href="#" class="deleteBtn" id="row|' + i + '"><i class="fa fa-times" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #d9534f;"></i></a></a></td></tr>';
+    $('#POSNotes').append(_tr);
+    i = i + 1;
+}
+
+function displayMCTS(DateFrom, DateTo, num1, num2, num3) {
+    var _tr = '<tr data-status="pagado" ><td><div class="ckbox"><input type="checkbox" id="checkbox1"><label for="checkbox1"></label></div></td><td><div class="media"><div class="media-body">MC & Time Slip :<p class="summary" id="sum' + i + '">' + DateFrom + '|' + DateTo + '|' + num1 + '|' + num2 + '|' + num3 + '</p></div></div></td><td><a data-toggle="modal"  data-target="#update_CIS040008" href="" class="updateBtn14" id="row|' + i + '"><i class="fa fa-pencil-square-o" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #337ab7;" ></i></a></a></td><td><a href="javascript:;" class="star"><a href="#" class="deleteBtn" id="row|' + i + '"><i class="fa fa-times" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #d9534f;"></i></a></a></td></tr>';
+    $('#MCTSNotes').append(_tr);
+    i = i + 1;
+}
+
+function displayROS(codeROS, ROS, commentROS) {
+    var _tr = '<tr data-status="pagado" ><td><div class="ckbox"><input type="checkbox" id="checkbox1"><label for="checkbox1"></label></div></td><td><div class="media"><div class="media-body">Radiology Request :<p class="summary" id="sum' + i + '">' + ROS + '|' + commentROS + '</p></div></div></td><td><a data-toggle="modal"  data-target="#update_CIS040000" href="" class="updateBtn15" id="row|' + i + '"><i class="fa fa-pencil-square-o" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #337ab7;" ></i></a></a></td><td><a href="javascript:;" class="star"><a href="#" class="deleteBtn" id="row|' + i + '"><i class="fa fa-times" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #d9534f;"></i></a></a></td></tr>';
+    $('#ROSNotes').append(_tr);
+    i = i + 1;
+}
+
+function displayLOS(searchLOS, codeLOS, catLOS,sourceLOS,containerLOS,volumeLOS,spclLOS,commentLOS) {
+    var _tr = '<tr data-status="pagado" ><td><div class="ckbox"><input type="checkbox" id="checkbox1"><label for="checkbox1"></label></div></td><td><div class="media"><div class="media-body">Laboratory Request :<p class="summary" id="sum' + i + '">' + searchLOS+ '|' + catLOS+ '|' +sourceLOS+ '|' +containerLOS+ '|' +volumeLOS+ '|' +spclLOS+ '|' +commentLOS+ '</p></div></div></td><td><a data-toggle="modal"  data-target="#update_CIS040001" href="" class="updateBtnLOS" id="row|' + i + '"><i class="fa fa-pencil-square-o" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #337ab7;" ></i></a></a></td><td><a href="javascript:;" class="star"><a href="#" class="deleteBtn" id="row|' + i + '"><i class="fa fa-times" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #d9534f;"></i></a></a></td></tr>';
+    $('#LOSNotes').append(_tr);
+    i = i + 1;
+}

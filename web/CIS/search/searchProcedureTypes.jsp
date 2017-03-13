@@ -16,12 +16,6 @@
     String searchProblem = "select p.procedure_cd,p1.procedure_1_cd, p1.procedure_1_name from cis_procedure p, cis_procedure_1 p1 where p.`PROCEDURE_CD` = p1.`PROCEDURE_CD` and CONCAT(UPPER(PROCEDURE_NAME),LOWER(PROCEDURE_NAME)) like '%" + id + "%' ";
     ArrayList<ArrayList<String>> search = Conn.getData(searchProblem);
    
-//            out.println(search.get(i).get(0));
-//            out.println(search.get(i).get(1));
-//            out.println(search.get(i).get(2));
-//            out.print(String.join("|", search.get(i)));
-//        }
-//    }
 %>
   <div class="form-group">
                     <select name="proType1" id="proType" class="form-control input-lg">

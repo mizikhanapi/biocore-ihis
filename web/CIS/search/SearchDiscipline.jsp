@@ -10,9 +10,10 @@
 <%@page import="main.RMIConnector"%>
 <%
    // String key = request.getParameter("input");
+   Conn conn = new Conn();
     String id = StringUtils.trim(request.getParameter("id"));
     String searchProblem = "select d.discipline_name from adm_discipline d,adm_hfc_discipline hfcd where d.discipline_cd = hfcd.discipline_cd and hfcd.hfc_cd='"+id+"';";
-    ArrayList<ArrayList<String>> search = Conn.getData(searchProblem);
+    ArrayList<ArrayList<String>> search = conn.getData(searchProblem);
     out.print(search);
     out.print(searchProblem);
    

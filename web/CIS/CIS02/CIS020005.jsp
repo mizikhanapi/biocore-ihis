@@ -25,7 +25,7 @@
 
       
                         <div class="form-group">
-                            <input type="text" name="OSat" id="OSat" class="form-control input-lg" placeholder="Oxygen Saturation" tabindex="4">
+                            <input type="number" name="OSat" id="OSat" class="form-control input-lg" placeholder="Oxygen Saturation" tabindex="4">
                             <input type="hidden" name="idOS" id="idOS" class="form-control input-lg" placeholder="Oxygen Saturation" tabindex="4">
                         </div>
 

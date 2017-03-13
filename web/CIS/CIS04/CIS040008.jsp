@@ -30,19 +30,14 @@
                 </div>
 
                 <div class="row">
-                    <div class="col-xs-4 col-sm-4 col-md-4">
+                    <div class="col-xs-6 col-sm-6 col-md-6">
                         <div class="form-group">
                             <input class="form-control input-lg" type="number" name="num1" id="num1" min="00" max="23" placeholder="....">
                         </div>
                     </div>
-                    <div class="col-xs-4 col-sm-4 col-md-4">
+                    <div class="col-xs-6 col-sm-6 col-md-6">
                         <div class="form-group">
                             <input class="form-control input-lg" type="number" name="num2" id="num2" min="00" max="59" placeholder="....">
-                        </div>
-                    </div>
-                    <div class="col-xs-4 col-sm-4 col-md-4">
-                        <div class="form-group">
-                            <input class="form-control input-lg" type="number" name="num3" id="num3" min="00" max="59" placeholder="....">
                         </div>
                     </div>
                 </div>

@@ -25,11 +25,11 @@
                     <form role="form" id="myForm2">
 
                         <div class="form-group">
-                            <input type="text" name="resultMain" id="resultMain" class="form-control input-lg" placeholder="Result" tabindex="4">
+                            <input type="text" name="resultMain" id="resultMain" class="form-control input-lg" placeholder="Result" tabindex="4" readonly="">
                         </div>
                         <div class="form-group">
-                            <input type="text" name="pointMain" id="pointMain" class="form-control input-lg" placeholder="Point" tabindex="4">
-                            <input type="hidden" name="Jsonid" id="Jsonid" class="form-control input-lg" placeholder="Jsonid" tabindex="4">
+                            <input type="text" name="pointMain" id="pointMain" class="form-control input-lg" placeholder="Point" tabindex="4" readonly="">
+                            <input type="hidden" name="Jsonid" id="Jsonid" class="form-control input-lg" placeholder="Jsonid" tabindex="4" >
                         </div>
                         <div class="form-group">
                             <table class="table table-striped" align="center" id="gcs_table">
@@ -102,10 +102,10 @@
                     <form role="form" id="myForm2">
 
                         <div class="form-group">
-                            <input type="text" id="tpoint" class="form-control input-lg" placeholder="Total Point" tabindex="4">
+                            <input type="text" id="tpoint" class="form-control input-lg" placeholder="Total Point" tabindex="4" readonly="">
                         </div>
                         <div class="form-group">
-                            <input type="text"  id="result" class="form-control input-lg" placeholder="Result" tabindex="4">
+                            <input type="text"  id="result" class="form-control input-lg" placeholder="Result" tabindex="4" readonly="">
                           
                         </div>
                       <div class="form-group">

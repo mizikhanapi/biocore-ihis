@@ -20,13 +20,14 @@
                     <form role="form" id="myForm2" method="post">
                         <input type="hidden" name="otherId" id="otherId" class="form-control input-lg" placeholder="cm" tabindex="4">
                         <div class="row">
-                            <div class="col-xs-2 col-sm-2 col-md-2"><h5>Height</h5></div>
-                            <div class="col-xs-4 col-sm-4 col-md-4">
+                            <div class="col-xs-2 col-sm-2 col-md-2"><h4>Height</h4></div>
+                            <div class="col-xs-2 col-sm-2 col-md-2">
                                 <div class="form-group">
                                     
-                                    <input type="text" name="bmiHeight" id="bmiHeight" class="form-control input-lg" placeholder="cm" tabindex="4">
+                                    <input type="text" name="bmiHeight" id="bmiHeight" class="form-control input-lg" placeholder="" tabindex="4">
                                 </div>
                             </div>
+                            <div class="col-xs-2 col-sm-2 col-md-2"><h4>cm</h4></div>
                             <div class="col-xs-6 col-sm-6 col-md-6">
                                 <div class="form-group slider">
                                     <div id="bmiHeightSlider"></div>
@@ -35,12 +36,13 @@
                        
                         </div>
                         <div class="row">
-                            <div class="col-xs-2 col-sm-2 col-md-2"><h5>Weight</h5></div>
-                            <div class="col-xs-4 col-sm-4 col-md-4">
+                            <div class="col-xs-2 col-sm-2 col-md-2"><h4>Weight</h4></div>
+                            <div class="col-xs-2 col-sm-2 col-md-2">
                                 <div class="form-group">
-                                    <input type="text" name="bmiWeight" id="bmiWeight" class="form-control input-lg" placeholder="kg" tabindex="4">
+                                    <input type="text" name="bmiWeight" id="bmiWeight" class="form-control input-lg" placeholder="" tabindex="4">
                                 </div>
                             </div>
+                            <div class="col-xs-2 col-sm-2 col-md-2"><h4>kg</h4></div>
                             <div class="col-xs-6 col-sm-6 col-md-6">
                                 <div class="form-group slider">
                                     <div id="bmiWeightSlider"></div>
@@ -85,11 +87,15 @@
                                     <div class="form-group">
                                         <h5>Head Circumference</h5></div>
                                     </div>
-                                <div class="col-xs-4 col-sm-4 col-md-4">
+                                <div class="col-xs-2 col-sm-2 col-md-2">
                                     <div class="form-group">
 
                                         <input type="text" name="headCir" id="headCir" class="form-control input-lg" placeholder="cm" tabindex="4">
                                     </div>
+                                </div>
+                                <div class="col-xs-2 col-sm-2 col-md-2">
+                                    <div class="form-group">
+                                        <h4>cm</h4></div>
                                 </div>
                                 <div class="col-xs-6 col-sm-6 col-md-6">
                                     <div class="form-group slider">
@@ -108,13 +114,13 @@
                             <div class="row lineSeperator">
                                 <div class="col-xs-2 col-sm-2 col-md-3"></div>
                                 <div class="col-xs-2 col-sm-2 col-md-2"><h5>Blood Glucose</h5></div>
-                                <div class="col-xs-4 col-sm-4 col-md-4">
+                                <div class="col-xs-2 col-sm-2 col-md-2">
                                     <div class="form-group">
 
-                                        <input type="text" name="bloodGlucose" id="bloodGlucose" class="form-control input-lg" placeholder="mmol/L" tabindex="4">
+                                        <input type="text" name="bloodGlucose" id="bloodGlucose" class="form-control input-lg" placeholder="" tabindex="4">
                                     </div>
                                 </div>
-
+                                <div class="col-xs-2 col-sm-2 col-md-2"><h4>mmol/L</h4></div>
                                 <div class="col-xs-2 col-sm-2 col-md-3"></div>
                             </div>
                 </div>
@@ -162,13 +168,13 @@
                   max:220,
                   step:1,
                   slide:function(event,ui){
-                      $('#bmiHeight').val(ui.value+" cm");
+                      $('#bmiHeight').val(ui.value+"");
                   }
               });
               $('#bmiHeight').on('change',function(e){
                  var bmiInput = parseInt($('#bmiHeight').val()) ;
                   $('#bmiHeightSlider').slider("option","value",bmiInput);
-                  $('#bmiHeight').val(bmiInput+" cm");
+                  $('#bmiHeight').val(bmiInput+"");
               });
               $('#bmiWeightSlider').slider({
                   value:0,
@@ -176,13 +182,13 @@
                   max:150,
                   step:1,
                   slide:function(event,ui){
-                      $('#bmiWeight').val(ui.value+" kg");
+                      $('#bmiWeight').val(ui.value+"");
                   }
               });
              $('#bmiWeight').on('change',function(e){
                  var bmiWInput = parseInt($('#bmiWeight').val()) ;
                   $('#bmiWeightSlider').slider("option","value",bmiWInput);
-                  $('#bmiWeight').val(bmiWInput+" kg");
+                  $('#bmiWeight').val(bmiWInput+"");
               });
               $('#calcBMI').on('click',function(e){
                   var height =   $('#bmiHeight').val().split(" ");
@@ -207,14 +213,14 @@
                   max:100,
                   step:1,
                   slide:function(event,ui){
-                      $('#headCir').val(ui.value + "cm");
+                      $('#headCir').val(ui.value + "");
                   }
               });
           
           $('#headCir').on('change',function(e){
               var headCir = parseInt($('#headCir').val());
               $('#headCirSlider').slider("option","value",headCir);
-              $('#headCir').val(headCir + " cm");
+              $('#headCir').val(headCir + "");
           })
    
           });

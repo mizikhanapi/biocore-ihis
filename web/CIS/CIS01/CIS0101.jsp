@@ -5,7 +5,7 @@
 --%>
 
   <!-- Modal add complaint -->
-        <div class="modal fade" id="squarespaceModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+        <div class="modal fade" id="CIS01000001" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -98,7 +98,7 @@
         <!--End Modal add complaint -->
         
          <!-- modal update complain-->
-        <div class="modal fade" id="updateModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+        <div class="modal fade" id="update_CIS01000001" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -171,7 +171,7 @@
                     <div class="modal-footer">
                         <div class="btn-group btn-group-justified" role="group" aria-label="group button">
                             <div class="btn-group" role="group">
-                                <button type="button" class="btn btn-success btn-block btn-lg" id="updateBtn" role="button">Update</button>
+                                <button type="button" class="btn btn-success btn-block btn-lg" id="updateBtnCCN" role="button">Update</button>
                             </div>
                             <div class="btn-group btn-delete hidden" role="group">
                                 <button type="button" id="delImage" class="btn btn-danger btn-block btn-lg" data-dismiss="modal"  role="button">Clear</button>
@@ -187,7 +187,7 @@
         <!--End modal update complain-->
         
           <!-- Modal HPI -->
-        <div class="modal fade" id="squarespaceModal2" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+        <div class="modal fade" id="CIS01000002" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -206,7 +206,7 @@
                     <div class="modal-footer">
                         <div class="btn-group btn-group-justified" role="group" aria-label="group button">
                             <div class="btn-group" role="group">
-                                <button type="button" class="btn btn-success btn-block btn-lg" id="acceptBtn1" role="button">Accept</button>
+                                <button type="button" class="btn btn-success btn-block btn-lg" id="acceptBtnHPI" role="button">Accept</button>
                             </div>
                             <div class="btn-group btn-delete hidden" role="group">
                                 <button type="button" id="delImage" class="btn btn-danger btn-block btn-lg" data-dismiss="modal"  role="button">Clear</button>
@@ -222,7 +222,7 @@
         <!--End ADD HPI-->
 
         <!-- modal update HPI-->
-        <div class="modal fade" id="updateModal1" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+        <div class="modal fade" id="update_CIS01000002" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -239,7 +239,7 @@
                     <div class="modal-footer">
                         <div class="btn-group btn-group-justified" role="group" aria-label="group button">
                             <div class="btn-group" role="group">
-                                <button type="button" class="btn btn-success btn-block btn-lg" id="updateBtn1" role="button">Update</button>
+                                <button type="button" class="btn btn-success btn-block btn-lg" id="updateBtnHPI" role="button">Update</button>
                             </div>
                             <div class="btn-group btn-delete hidden" role="group">
                                 <button type="button" id="delImage" class="btn btn-danger btn-block btn-lg" data-dismiss="modal"  role="button">Clear</button>
@@ -255,7 +255,7 @@
         <!--End HPI modal-->
         
            <!-- Modal ADD PMH -->
-        <div class="modal fade" id="squarespaceModal3" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+        <div class="modal fade" id="CIS01000003" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -286,7 +286,7 @@
                     <div class="modal-footer">
                         <div class="btn-group btn-group-justified" role="group" aria-label="group button">
                             <div class="btn-group" role="group">
-                                <button type="button" class="btn btn-success btn-block btn-lg" id="acceptBtn2" role="button">Accept</button>
+                                <button type="button" class="btn btn-success btn-block btn-lg" id="acceptBtnPMH" role="button">Accept</button>
                             </div>
                             <div class="btn-group btn-delete hidden" role="group">
                                 <button type="button" id="delImage" class="btn btn-danger btn-block btn-lg" data-dismiss="modal"  role="button">Clear</button>
@@ -302,7 +302,7 @@
         <!--End ADD PMH-->
 
         <!-- Modal Update PMH -->
-        <div class="modal fade" id="updateModal2" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+        <div class="modal fade" id="update_CIS01000003" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -333,7 +333,7 @@
                     <div class="modal-footer">
                         <div class="btn-group btn-group-justified" role="group" aria-label="group button">
                             <div class="btn-group" role="group">
-                                <button type="button" class="btn btn-success btn-block btn-lg" id="updateBtn2" role="button">Update</button>
+                                <button type="button" class="btn btn-success btn-block btn-lg" id="updateBtnPMH" role="button">Update</button>
                             </div>
                             <div class="btn-group btn-delete hidden" role="group">
                                 <button type="button" id="delImage" class="btn btn-danger btn-block btn-lg" data-dismiss="modal"  role="button">Clear</button>
@@ -349,7 +349,7 @@
         <!--End Update PMH-->
         
          <!-- Modal ADD FMH -->
-        <div class="modal fade" id="squarespaceModal4" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+        <div class="modal fade" id="CIS01000004" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -359,7 +359,7 @@
                     <div class="modal-body">
                         <!-- content goes here -->
                          <div class="form-group">
-                            <input type="text" name="FMH" id="codeFMH" class="form-control input-lg" tabindex="4">
+                            <input type="hidden" name="FMH" id="codeFMH" class="form-control input-lg" tabindex="4">
                         </div>
                         <div class="form-group">
                             <input class="form-control input-lg" type="text" name="problem3"  id="Problem3" placeholder="Search FMH Problem..." tabindex="4">
@@ -397,7 +397,7 @@
                     <div class="modal-footer">
                         <div class="btn-group btn-group-justified" role="group" aria-label="group button">
                             <div class="btn-group" role="group">
-                                <button type="button" class="btn btn-success btn-block btn-lg" id="acceptBtn3" role="button">Accept</button>
+                                <button type="button" class="btn btn-success btn-block btn-lg" id="acceptBtnFMH" role="button">Accept</button>
                             </div>
                             <div class="btn-group btn-delete hidden" role="group">
                                 <button type="button" id="delImage" class="btn btn-danger btn-block btn-lg" data-dismiss="modal"  role="button">Clear</button>
@@ -413,7 +413,7 @@
         <!--End ADD FMH-->
         
         <!-- Modal Update FMH -->
-        <div class="modal fade" id="updateModal3" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+        <div class="modal fade" id="update_CIS01000004" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -459,7 +459,7 @@
                     <div class="modal-footer">
                         <div class="btn-group btn-group-justified" role="group" aria-label="group button">
                             <div class="btn-group" role="group">
-                                <button type="button" class="btn btn-success btn-block btn-lg" id="updateBtn3" role="button">Update</button>
+                                <button type="button" class="btn btn-success btn-block btn-lg" id="updateBtnFMH" role="button">Update</button>
                             </div>
                             <div class="btn-group btn-delete hidden" role="group">
                                 <button type="button" id="delImage" class="btn btn-danger btn-block btn-lg" data-dismiss="modal"  role="button">Clear</button>
@@ -475,7 +475,7 @@
         <!--End Update FMH-->
         
           <!-- Modal ADD Social History -->
-        <div class="modal fade" id="squarespaceModal5" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+        <div class="modal fade" id="CIS01000005" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -485,7 +485,7 @@
                     <div class="modal-body">
                         <!-- content goes here -->
                          <div class="form-group">
-                            <input type="text" name="SOH" id="codeSOH" class="form-control input-lg" tabindex="4">
+                            <input type="hidden" name="SOH" id="codeSOH" class="form-control input-lg" tabindex="4">
                         </div>
                         <div class="form-group">
                             <input class="form-control input-lg" type="text" name="problem"  id="Problem4" placeholder="Please Type Social History" tabindex="4">
@@ -504,7 +504,7 @@
                     <div class="modal-footer">
                         <div class="btn-group btn-group-justified" role="group" aria-label="group button">
                             <div class="btn-group" role="group">
-                                <button type="button" class="btn btn-success btn-block btn-lg" id="acceptBtn4" role="button">Accept</button>
+                                <button type="button" class="btn btn-success btn-block btn-lg" id="acceptBtnSOH" role="button">Accept</button>
                             </div>
                             <div class="btn-group btn-delete hidden" role="group">
                                 <button type="button" id="delImage" class="btn btn-danger btn-block btn-lg" data-dismiss="modal"  role="button">Clear</button>
@@ -520,7 +520,7 @@
         <!--End ADD Social History-->
 
         <!-- Modal Update Social History -->
-        <div class="modal fade" id="updateModal4" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+        <div class="modal fade" id="update_CIS01000005" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -534,7 +534,7 @@
                             <div id="match5"></div>
                         </div>
                          <div class="form-group">
-                                <input class="form-control input-lg" type="text" name="usohCode"  id="usohCode" tabindex="4">
+                                <input class="form-control input-lg" type="hidden" name="usohCode"  id="usohCode" tabindex="4">
                         </div>
                         <div class="form-group">
                             <input class="form-control input-lg" type="text" name="ddate" id="ddate" placeholder="Social History Date">
@@ -563,7 +563,7 @@
         <!--End Update Social History-->
         
          <!-- Modal ADD Blood Group/G6PD -->
-        <div class="modal fade" id="squarespaceModal6" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+        <div class="modal fade" id="CIS01000006" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -608,7 +608,7 @@
                     <div class="modal-footer">
                         <div class="btn-group btn-group-justified" role="group" aria-label="group button">
                             <div class="btn-group" role="group">
-                                <button type="button" class="btn btn-success btn-block btn-lg" id="acceptBtn5" role="button">Accept</button>
+                                <button type="button" class="btn btn-success btn-block btn-lg" id="acceptBtnBLD" role="button">Accept</button>
                             </div>
                             <div class="btn-group btn-delete hidden" role="group">
                                 <button type="button" id="delImage" class="btn btn-danger btn-block btn-lg" data-dismiss="modal"  role="button">Clear</button>
@@ -624,7 +624,7 @@
         <!--End ADD Blood Group/G6PD-->
 
         <!-- Modal Update Blood Group/G6PD -->
-        <div class="modal fade" id="updateModal5" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+        <div class="modal fade" id="update_CIS01000006" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -668,7 +668,7 @@
                         <div class="modal-footer">
                             <div class="btn-group btn-group-justified" role="group" aria-label="group button">
                                 <div class="btn-group" role="group">
-                                    <button type="button" class="btn btn-success btn-block btn-lg" id="updateBtn5" role="button">Update</button>
+                                    <button type="button" class="btn btn-success btn-block btn-lg" id="updateBtnBLD" role="button">Update</button>
                                 </div>
                                 <div class="btn-group btn-delete hidden" role="group">
                                     <button type="button" id="delImage" class="btn btn-danger btn-block btn-lg" data-dismiss="modal"  role="button">Clear</button>
@@ -685,7 +685,7 @@
         <!--End Update Blood Group/G6PD -->
         
          <!-- Modal ADD Allergy -->
-        <div class="modal fade" id="squarespaceModal7" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+        <div class="modal fade" id="CIS01000007" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -695,7 +695,7 @@
                     <div class="modal-body">
                         <!-- content goes here -->
                         <div class="form-group">
-                            <input type="text" name="Allergy" id="codeALG" class="form-control input-lg" tabindex="4">
+                            <input type="hidden" name="Allergy" id="codeALG" class="form-control input-lg" tabindex="4">
                         </div>
                         <div class="form-group">
                             <input class="form-control input-lg" type="text" name="problem"  id="Problem5" placeholder="Please Type Allergy" tabindex="4">
@@ -712,7 +712,7 @@
                     <div class="modal-footer">
                         <div class="btn-group btn-group-justified" role="group" aria-label="group button">
                             <div class="btn-group" role="group">
-                                <button type="button" class="btn btn-success btn-block btn-lg" id="acceptBtn6" role="button">Accept</button>
+                                <button type="button" class="btn btn-success btn-block btn-lg" id="acceptBtnALG" role="button">Accept</button>
                             </div>
                             <div class="btn-group btn-delete hidden" role="group">
                                 <button type="button" id="delImage" class="btn btn-danger btn-block btn-lg" data-dismiss="modal"  role="button">Clear</button>
@@ -728,7 +728,7 @@
         <!--End ADD Allergy-->
 
         <!-- Modal Update Allergy -->
-        <div class="modal fade" id="updateModal6" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+        <div class="modal fade" id="update_CIS01000007" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -742,7 +742,7 @@
                             <div id="match23"></div>
                         </div>
                         <div class="form-group">
-                              <input class="form-control input-lg" type="text" name="uALG_cd"  id="uALG_cd" tabindex="4">
+                              <input class="form-control input-lg" type="hidden" name="uALG_cd"  id="uALG_cd" tabindex="4">
                         </div>
                         <div class="form-group">
                             <input class="form-control input-lg" type="text" name="ddate1" id="ddate1" placeholder="Allergy Date">
@@ -755,7 +755,7 @@
                     <div class="modal-footer">
                         <div class="btn-group btn-group-justified" role="group" aria-label="group button">
                             <div class="btn-group" role="group">
-                                <button type="button" class="btn btn-success btn-block btn-lg" id="updateBtn6" role="button">Update</button>
+                                <button type="button" class="btn btn-success btn-block btn-lg" id="updateBtnALG" role="button">Update</button>
                             </div>
                             <div class="btn-group btn-delete hidden" role="group">
                                 <button type="button" id="delImage" class="btn btn-danger btn-block btn-lg" data-dismiss="modal"  role="button">Clear</button>
@@ -771,7 +771,7 @@
         <!--End Update Allergy-->
         
          <!-- Modal ADD Immunization -->
-        <div class="modal fade" id="squarespaceModal8" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+        <div class="modal fade" id="CIS01000008" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -781,7 +781,7 @@
                     <div class="modal-body">
                         <!-- content goes here -->
                           <div class="form-group">
-                            <input type="text" name="IMU" id="codeIMU" class="form-control input-lg" tabindex="4">
+                            <input type="hidden" name="IMU" id="codeIMU" class="form-control input-lg" tabindex="4">
                         </div>
                         <div class="form-group">
                             <input class="form-control input-lg" type="text" name="problem"  id="Problem6" placeholder="Please Type Immunization" tabindex="4">
@@ -798,7 +798,7 @@
                     <div class="modal-footer">
                         <div class="btn-group btn-group-justified" role="group" aria-label="group button">
                             <div class="btn-group" role="group">
-                                <button type="button" class="btn btn-success btn-block btn-lg" id="acceptBtn7" role="button">Accept</button>
+                                <button type="button" class="btn btn-success btn-block btn-lg" id="acceptBtnIMU" role="button">Accept</button>
                             </div>
                             <div class="btn-group btn-delete hidden" role="group">
                                 <button type="button" id="delImage" class="btn btn-danger btn-block btn-lg" data-dismiss="modal"  role="button">Clear</button>
@@ -814,7 +814,7 @@
         <!--End ADD Immunization-->
 
         <!-- Modal Update Immunization -->
-        <div class="modal fade" id="updateModal7" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+        <div class="modal fade" id="update_CIS01000008" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -828,7 +828,7 @@
                             <div id="match25"></div>
                         </div>
                         <div class="form-group">
-                              <input class="form-control input-lg" type="text" name="uIMU_cd"  id="uIMU_cd" tabindex="4">
+                              <input class="form-control input-lg" type="hidden" name="uIMU_cd"  id="uIMU_cd" tabindex="4">
                         </div>
                         <div class="form-group">
                               <input class="form-control input-lg" type="text" name="ddate2" id="ddate2" placeholder="Immunization Date">
@@ -841,7 +841,7 @@
                     <div class="modal-footer">
                         <div class="btn-group btn-group-justified" role="group" aria-label="group button">
                             <div class="btn-group" role="group">
-                                <button type="button" class="btn btn-success btn-block btn-lg" id="updateBtn7" role="button">Update</button>
+                                <button type="button" class="btn btn-success btn-block btn-lg" id="updateBtnIMU" role="button">Update</button>
                             </div>
                             <div class="btn-group btn-delete hidden" role="group">
                                 <button type="button" id="delImage" class="btn btn-danger btn-block btn-lg" data-dismiss="modal"  role="button">Clear</button>
@@ -857,7 +857,7 @@
         <!--End Update Immunization-->
         
          <!-- Modal ADD Disability -->
-        <div class="modal fade" id="squarespaceModal9" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+        <div class="modal fade" id="CIS01000009" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -886,7 +886,7 @@
                     <div class="modal-footer">
                         <div class="btn-group btn-group-justified" role="group" aria-label="group button">
                             <div class="btn-group" role="group">
-                                <button type="button" class="btn btn-success btn-block btn-lg" id="acceptBtn8" role="button">Accept</button>
+                                <button type="button" class="btn btn-success btn-block btn-lg" id="acceptBtnDAB" role="button">Accept</button>
                             </div>
                             <div class="btn-group btn-delete hidden" role="group">
                                 <button type="button" id="delImage" class="btn btn-danger btn-block btn-lg" data-dismiss="modal"  role="button">Clear</button>
@@ -902,7 +902,7 @@
         <!--End ADD Disability-->
 
         <!-- Modal Update Disability -->
-        <div class="modal fade" id="updateModal8" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+        <div class="modal fade" id="update_CIS01000009" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -929,7 +929,7 @@
                     <div class="modal-footer">
                         <div class="btn-group btn-group-justified" role="group" aria-label="group button">
                             <div class="btn-group" role="group">
-                                <button type="button" class="btn btn-success btn-block btn-lg" id="updateBtn8" role="button">Update</button>
+                                <button type="button" class="btn btn-success btn-block btn-lg" id="updateBtnDAB" role="button">Update</button>
                             </div>
                             <div class="btn-group btn-delete hidden" role="group">
                                 <button type="button" id="delImage" class="btn btn-danger btn-block btn-lg" data-dismiss="modal"  role="button">Clear</button>

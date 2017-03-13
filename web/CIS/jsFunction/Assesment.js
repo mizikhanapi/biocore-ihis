@@ -54,14 +54,7 @@ $(document).ready(function(){
         });
 
         _data.push(obj1);
-
-        console.log(_data);
-
-        var _tr = '<tr data-status="pagado" ><td><div class="ckbox"><input type="checkbox" id="checkbox1"><label for="checkbox1"></label></div></td><td><div class="media"><div class="media-body">Diagnosis :<p class="summary" id="sum' + i + '">' + Type + '| ' + date4 + '| ' + Problem8 + '| ' + Severity1 + '| ' + Site1 + '| ' + Laterality1 + '| ' + comment8 + '</p></div></div></td><td><a data-toggle="modal"  data-target="#update_CIS030001" href="" class="updateBtn9" id="row|' + i + '"><i class="fa fa-pencil-square-o" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #337ab7;" ></i></a></a></td><td><a href="javascript:;" class="star"><a href="#" class="deleteBtn9" id="row|' + i + '"><i class="fa fa-times" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #d9534f;"></i></a></a></td></tr>';
-
-        $('#consultationNotes').append(_tr);
-        console.log(i);
-        i = i + 1;
+         displayDGS(Type,date4,Problem8,Severity1,Site1,Laterality1,comment8);
 
         $("#searchDiag").val("");
         $("#commentDGS").val("");
@@ -71,12 +64,12 @@ $(document).ready(function(){
     });
 
     //js UPDATE for Diagnosis
-    $('#consultationNotes').on('click', '.updateBtn9', function () {
+    $('#DGSNotes').on('click', '.updateBtnDGS', function () {
         var idName = $(this).get(0).id;
         var id = idName.split("|");
         var updateObj = _data[id[1]];
         console.log(idName);
-        console.log(_data);
+        //console.log(_data);
         $('#update_TypeDGS').val(updateObj.TypeDGS);
         $('#update_dateDGS').val(updateObj.dateDGS);
         $('#update_searchDiag').val(updateObj.searchDiag);
@@ -86,31 +79,35 @@ $(document).ready(function(){
         $('#update_commentDGS').val(updateObj.commentDGS);
         $('#update_dgsCode').val(updateObj.dgsCode);
         $('#jsonIdDGS').val(id[1]);
-        //$(this).closest('tr').remove();
+         $("#update_CIS030001").modal('toggle');
 
     });
 
-    $('#updateBtn9').click(function () {
-        var upObject = _data[$('#jsonId').val()];
-        var rowId = $('#jsonId').val();
-        var _TType = $('#TType').val();
-        var _ddate4 = $('#ddate4').val();
-        var _PProblem8 = $('#PProblem8').val();
-        var _SSeverity1 = $('#SSeverity1').val();
-        var _SSite1 = $('#SSite1').val();
-        var _LLaterality1 = $('#LLaterality1').val();
-        var _Pcomment8 = $('#Pcomment8').val();
-        upObject.Type = _TType;
+    $('#updateBtnDGS').click(function () {
+        
+        var upObject = _data[$('#jsonIdDGS').val()];
+        var rowId = $('#jsonIdDGS').val();
+        var _TType = $('#update_TypeDGS').val();
+        var _ddate4 = $('#update_dateDGS').val();
+        var _PProblem8 = $('#update_searchDiag').val();
+        var _SSeverity1 = $('#update_SeverityDGS').val();
+        var _SSite1 = $('#update_SiteDGS').val();
+        var _LLaterality1 = $('#update_LateralityDGS').val();
+        var _Pcomment8 = $('#update_commentDGS').val();
+        var _dgsCode = $('#update_dgsCode').val();
+        upObject.TypeDGS = _TType;
         upObject.date4 = _ddate4;
         upObject.Problem8 = _PProblem8;
         upObject.Severity1 = _SSeverity1;
         upObject.Site1 = _SSite1;
         upObject.Laterality1 = _LLaterality1;
         upObject.comment8 = _Pcomment8;
+        upObject.dgsCode=_dgsCode;
         var sum = _TType + '| ' + _ddate4 + '| ' + _PProblem8 + '| ' + _SSeverity1 + '| ' + _SSite1 + '| ' + _LLaterality1 + '| ' + _Pcomment8
 
         $('#sum' + rowId).html(sum);
         $("#update_CIS030001").modal('toggle');
+        
         //$(".modal-backdrop").hide();
     });
 
@@ -144,32 +141,24 @@ $(document).ready(function(){
         $items.each(function () {
             obj1[this.id] = $(this).val();
         });
-
         _data.push(obj1);
-
+        displayPNT(pnt);
         console.log(_data);
-
-        var _tr = '<tr data-status="pagado" ><td><div class="ckbox"><input type="checkbox" id="checkbox1"><label for="checkbox1"></label></div></td><td><div class="media"><div class="media-body">Progress Notes :<p class="summary" id="sum' + i + '">' +  pnt + '</p></div></div></td><td><a data-toggle="modal"  data-target="#update_CIS030002" href="" class="updateBtn10" id="row|' + i + '"><i class="fa fa-pencil-square-o" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #337ab7;" ></i></a></a></td><td><a href="javascript:;" class="star"><a href="#" class="deleteBtn10" id="row|' + i + '"><i class="fa fa-times" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #d9534f;"></i></a></a></td></tr>';
-
-        $('#consultationNotes').append(_tr);
-        console.log(i);
-        i = i + 1;
 
         $("#comment9").val("");
         $("#CIS030002").modal('toggle');
-        //$(".modal-backdrop").hide();
 
     });
 
     //js UPDATE for Progress Notes
-    $('#consultationNotes').on('click', '.updateBtn10', function () {
+    $('#PNTNotes').on('click', '.updateBtnPNT', function () {
         var idName = $(this).get(0).id;
         var id = idName.split("|");
         var updateObj = _data[id[1]];
         console.log(_data);
         $('#update_PNT').val(updateObj.PNT);
         $('#jsonId').val(id[1]);
-        //$(this).closest('tr').remove();
+        $("#update_CIS030002").modal('toggle');
 
     });
 
@@ -179,23 +168,22 @@ $(document).ready(function(){
         var update_PNT = $('#update_PNT').val();
         upObject.PNT = update_PNT;
         var sum = update_PNT;
-
         $('#sum' + rowId).html(sum);
         $("#update_CIS030002").modal('toggle');
-        //$(".modal-backdrop").hide();
+
     });
 
-    //js DELETE for Progress Notes
-    $('#consultationNotes').on("click", ".deleteBtn10", function () {
-        var delConfirm = confirm('Are you want to delete this notes? ');
-        if (delConfirm === true) {
-            var idName = $(this).get(0).id;
-            var id = idName.split("|");
-            delete _data[id[1]];
-            $(this).closest('tr').remove();
-            console.log(_data);
-        } else {
-            return false;
-        }
-    });
+
 })
+
+function displayDGS(Type,date4,Problem8,Severity1,Site1,Laterality1,comment8){
+    var _tr = '<tr data-status="pagado" ><td><div class="ckbox"><input type="checkbox" id="checkbox1"><label for="checkbox1"></label></div></td><td><div class="media"><div class="media-body">Diagnosis :<p class="summary" id="sum' + i + '">' + Type + '| ' + date4 + '| ' + Problem8 + '| ' + Severity1 + '| ' + Site1 + '| ' + Laterality1 + '| ' + comment8 + '</p></div></div></td><td><a data-toggle="modal"  href="" class="updateBtnDGS" id="row|' + i + '"><i class="fa fa-pencil-square-o" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #337ab7;" ></i></a></a></td><td><a href="javascript:;" class="star"><a href="#" class="deleteBtn" id="row|' + i + '"><i class="fa fa-times" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #d9534f;"></i></a></a></td></tr>';
+        $('#DGSNotes').append(_tr);
+        i = i + 1;
+}
+
+function displayPNT(pnt){
+        var _tr = '<tr data-status="pagado" ><td><div class="ckbox"><input type="checkbox" id="checkbox1"><label for="checkbox1"></label></div></td><td><div class="media"><div class="media-body">Progress Notes :<p class="summary" id="sum' + i + '">' +  pnt + '</p></div></div></td><td><a data-toggle="modal"  href="" class="updateBtnPNT" id="row|' + i + '"><i class="fa fa-pencil-square-o" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #337ab7;" ></i></a></a></td><td><a href="javascript:;" class="star"><a href="#" class="deleteBtn" id="row|' + i + '"><i class="fa fa-times" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #d9534f;"></i></a></a></td></tr>';
+        $('#PNTNotes').append(_tr);
+        i = i + 1;
+}

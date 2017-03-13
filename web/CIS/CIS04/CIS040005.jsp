@@ -9,7 +9,8 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
-                <h3 class="modal-title" id="lineModalLabel">Second Opinion Form</h3>
+                <h3 class="modal-title" id="lineModalLabel1">Second Opinion Form</h3>
+<!--                <h3 class="modal-title" id="lineModalLabel2">Update Second Opinion Form</h3>-->
             </div>
             <div class="modal-body">
                 <!-- content goes here -->
@@ -45,6 +46,8 @@
                  <div class="form-group">
                     <div class="form-group">
                         <input class="form-control input-lg" type="text" name="problem"  id="Searchdoctor" placeholder="Search Doctor & Specialist & Consultant..." tabindex="4">
+                        <input class="form-control input-lg" type="hidden" name="problem"  id="user_id" tabindex="4">
+
                         <div id="match101"></div>
                     </div>   
                 </div>
@@ -57,6 +60,7 @@
                 <div class="btn-group btn-group-justified" role="group" aria-label="group button">
                     <div class="btn-group" role="group">
                         <button type="submit" class="btn btn-success btn-block btn-lg" id="acceptBtn11" role="button">Accept</button>
+<!--                        <button type="submit" class="btn btn-success btn-block btn-lg" id="updateBtn11" role="button" hidden="true">Update</button>-->
                     </div>
                     <div class="btn-group btn-delete hidden" role="group">
                         <button type="button" id="delImage" class="btn btn-danger btn-block btn-lg" data-dismiss="modal"  role="button">Clear</button>

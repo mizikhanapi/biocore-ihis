@@ -310,7 +310,11 @@ function convertEHR(ehr) {
                 displayPGCS(objPGCS.resultpgcsMain, objPGCS.pointpgcsMain);
 
             } 
-                        var objBP = {
+            if(VTSData[4] === "" && VTSData[33] === "undefined" && VTSData[3] === "" && VTSData[2] === ""&& VTSData[32] === "undefined" && VTSData[1] === ""&& VTSData[6] === "" && VTSData[34] === "undefined" && VTSData[5] === ""){
+                console.log("no BP");
+            }else{
+                
+                      var objBP = {
                     Acode: "VTS",
                     lyingD: VTSData[4],
                     lyingP: VTSData[33],
@@ -324,64 +328,82 @@ function convertEHR(ehr) {
                 };
                 _data.push(objBP);
                displayBP(objBP.sitS, objBP.sitD, objBP.sitP, objBP.standS, objBP.standD, objBP.standP, objBP.lyingS, objBP.lyingD, objBP.lyingP);
-               
-                var objRRate = {
+            }
+               if(VTSData[10] === "" || VTSData[10]==="undefined"){
+                   console.log("no rrrate");
+               }else{
+                 var objRRate = {
                     Acode: "VTS",
                     rrRate: VTSData[10]
                 };
                 _data.push(objRRate);
                 displayrrRate(objRRate.rrRate);
-                
-                  var objOsat = {
+               }
+
+                if(VTSData[29]==="" || VTSData[29]==="undefined"){
+                    console.log("no osat");
+                }else{
+                   var objOsat = {
                     Acode: "VTS",
                     OSat: VTSData[29]
                 };
                 _data.push(objOsat);
                 displayOsat(objOsat.OSat);
                 
-                
+                }
+
+                if(VTSData[0]==="" || VTSData[0] ==="undefined"){
+
+                }else{
                   var objBTemp = {
                     Acode: "VTS",
                     BTemp: VTSData[0]
                 };
                 _data.push(objBTemp);
-                displayBTemp(objBTemp.BTemp)
-                
-                 var objPainScale = {
+                displayBTemp(objBTemp.BTemp);
+                }
+
+                if(VTSData[30] === "" || VTSData[30] ==="undefined"){
+                    
+                }else{
+                  var objPainScale = {
                     Acode: "VTS",
                     painScale: VTSData[30],
                     resultPanScale: resultPC
                 };
                 _data.push(objPainScale);
-                displayPanScale(objPainScale.painScale, objPainScale.resultpainScale);
-
-            
-
-            
-                var heightO = VTSData[8].split(" ");
-                var weightO =VTSData[7].split(" ");
+                displayPanScale(objPainScale.painScale, objPainScale.resultPanScale);
+                }
                 
+                if(VTSData[8] === "" && VTSData[7] ==="" && VTSData[31] === ""  ){
+                    
+                }else{
+                        var heightO = VTSData[8].split(" ");
+                       var weightO = VTSData[7].split(" ");
+                       var heightN = parseFloat(heightO[0]) / 100;
+                       heightN = heightN * heightN;
+                       var weightN = parseFloat(weightO[0]);
 
-                var heightN = parseFloat(heightO[0])/100;
-                heightN = heightN*heightN;
-                var weightN = parseFloat(weightO[0]);
-                
-                var bmi = calcBMI(heightN, weightN);
-                
-                         
-            var objOther = {
-                Acode: "VTS",
-                bloodGlucose: VTSData[31],
-                bmi: bmi[0],
-                bmiHeight: VTSData[8] ,
-                bmiStatus: bmi[1] ,
-                bmiWeight: VTSData[7],
-                headCir :VTSData[9]
-            };
-           // heightNew = 
-              _data.push(objOther);
-              console.log(objOther);
-            displayOther(heightO[0],weightO[0],objOther.bmi,objOther.bmiStatus,objOther.headCir,objOther.bloodGlucose);
+                       var bmi = calcBMI(heightN, weightN);
+
+
+                       var objOther = {
+                           Acode: "VTS",
+                           bloodGlucose: VTSData[31],
+                           bmi: bmi[0],
+                           bmiHeight: VTSData[8],
+                           bmiStatus: bmi[1],
+                           bmiWeight: VTSData[7],
+                           headCir: VTSData[9]
+                       };
+                       // heightNew = 
+                       _data.push(objOther);
+                       console.log(objOther);
+                       displayOther(heightO[0], weightO[0], objOther.bmi, objOther.bmiStatus, objOther.headCir, objOther.bloodGlucose);
+                }
+
+
+
 
 
 
@@ -423,7 +445,7 @@ function convertEHR(ehr) {
             if (pe0t8[8] === undefined) {
                 pe8 = "";
             }
-            
+           
             var objPEM = {
                 Acode:"PEM",
                 PEComment:PEMData[5],
@@ -438,8 +460,10 @@ function convertEHR(ehr) {
                 pe7:pe7,
                 pe8:pe8
                 
-            }
+            };
+             var PEMNotes =    convertPEMtoNotes(objPEM);
            _data.push(objPEM);
+           displayPEM(objPEM.PEMNotes,objPEM.PEComment);
             
         }else if (header === "DGS") {
             DGS = EHRArry[i];
@@ -456,6 +480,7 @@ function convertEHR(ehr) {
                 searchDiag:DGSData[7]
             };
             _data.push(objDGS);
+            displayDGS(objDGS.TypeDGS,objDGS.dateDGS,objDGS.searchDiag,objDGS.SeverityDGS,objDGS.SiteDGS,objDGS.LateralityDGS,objDGS.commentDGS)
            //console.log(DGSData);
         } else if (header === "PNT") {
             PNT = EHRArry[i];
@@ -466,8 +491,74 @@ function convertEHR(ehr) {
                 codePNT:"PNT"
             };
             _data.push(objPNT);
+            displayPNT(objPNT.PNT);
    
-        } 
+        } else if (header === "ROS") {
+            ROS = EHRArry[i];
+            var ROSData = convertNoteToData(ROS);
+         
+            var objROS = {
+                Acode: "ROS",
+                ROS: ROSData[1],
+                codeROS: ROSData[0],
+                commentROS:ROSData[2]
+            };
+            _data.push(objROS);
+            displayROS(objROS.codeROS, objROS.ROS, objROS.commentROS) 
+
+        } else if (header === "LIO") {
+            LIO = EHRArry[i];
+            var LIOData = convertNoteToData(LIO);
+          
+            var objLIO = {
+                Acode: "LOS",
+                catLOS:LIOData[0]+"/"+LIOData[1],
+                codeLOS:LIOData[3],
+                commentLOS:LIOData[12],
+                containerLOS:LIOData[5],
+                searchLOS:LIOData[4],
+                sourceLOS:LIOData[2],
+                spclLOS:"",
+                volumeLOS:LIOData[11]
+
+            };
+            _data.push(objLIO);
+           displayLOS(objLIO.searchLOS,objLIO.codeLOS, objLIO.catLOS,objLIO.sourceLOS,objLIO.containerLOS,objLIO.volumeLOS,objLIO.spclLOS,objLIO.commentLOS) 
+
+        }else if (header === "DTO") {
+            DTO = EHRArry[i];
+            var DTOData = convertNoteToData(DTO);
+            //console.log(DTOData);
+            var objDTO = {
+                Acode: "DTO",
+                cautionaryDTO:DTOData[17],
+                commentDTO:DTOData[18],
+                doseDTO:DTOData[9],
+                drugFrequencyDTO:DTOData[6],
+                drugInstructionDTO:DTOData[7],
+                drugNameDTO:DTOData[4],
+                drugQtyDTO:DTOData[15],
+                drugStrDTO:DTOData[10],
+                dtoCode:DTOData[1],
+                durationDTO:DTOData[14],
+                searchDTO:DTOData[2],
+                unitDTO:DTOData[8]
+            };
+            _data.push(objDTO);
+           displayDTO(objDTO.searchDTO, objDTO.drugNameDTO, objDTO.drugStrDTO, objDTO.doseDTO, objDTO.drugFrequencyDTO, objDTO.durationDTO, objDTO.unitDTO, objDTO.drugInstructionDTO, objDTO.cautionaryDTO, objDTO.commentDTO) ;
+        }else if (header === "POS") {
+            POS = EHRArry[i];
+            var POSData = convertNoteToData(POS);
+            console.log(POSData);
+            var objPOS = {
+                Acode:"POS",
+                Problem18:POSData[2],
+                proType: POSData[4],
+                procedure_cd:POSData[3]
+            };
+            _data.push(objPOS);
+           displayPOS(objPOS.Problem18, objPOS.proType, objPOS.procedure_cd) ;
+       }
     }
     console.log(_data);
 }

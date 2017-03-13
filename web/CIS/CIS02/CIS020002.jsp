@@ -22,10 +22,10 @@
                 <form role="form" id="myForm2">
 
                     <div class="form-group">
-                        <input type="text" name="resultpgcsMain" id="resultpgcsMain" class="form-control input-lg" placeholder="Result" tabindex="4">
+                        <input type="text" name="resultpgcsMain" id="resultpgcsMain" class="form-control input-lg" placeholder="Result" tabindex="4" readonly="">
                     </div>
                     <div class="form-group">
-                        <input type="text" name="pointpgcsMain" id="pointpgcsMain" class="form-control input-lg" placeholder="Point" tabindex="4">
+                        <input type="text" name="pointpgcsMain" id="pointpgcsMain" class="form-control input-lg" placeholder="Point" tabindex="4" readonly="">
                     </div>
                     <div class="form-group">
                         <table class="table table-striped" align="center" id="gcs_table">
@@ -104,10 +104,10 @@
                 <form role="form" id="myForm2">
 
                     <div class="form-group">
-                        <input type="text" id="pgcstpoint" class="form-control input-lg" placeholder="Total Point" tabindex="4">
+                        <input type="text" id="pgcstpoint" class="form-control input-lg" placeholder="Total Point" tabindex="4" readonly="">
                     </div>
                     <div class="form-group">
-                        <input type="text"  id="pgcsresult" class="form-control input-lg" placeholder="Result" tabindex="4">
+                        <input type="text"  id="pgcsresult" class="form-control input-lg" placeholder="Result" tabindex="4" readonly="">
                         <input type="hidden"  id="pgcsid" class="form-control input-lg" placeholder="pgcsid" tabindex="4">
 
                     </div>

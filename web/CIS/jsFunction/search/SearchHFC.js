@@ -20,7 +20,7 @@ function searchHFCcode(){
                 data: {id: hfcCode},
                 success: function (reply_data) {
                     $('#hfcDiscipline').html(reply_data);
-                    console.log(reply_data);
+                    //console.log(reply_data);
                 }
             });
         }

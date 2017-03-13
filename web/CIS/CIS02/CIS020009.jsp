@@ -82,31 +82,31 @@
                     <div id="divpe1"></div>
                 </div>
                 <div class="form-group">
-                    <input type="text" name="pe1" id="pe1" class="form-control input-lg" placeholder="" tabindex="4">
+                    <input type="text" name="pe1" id="pe1" class="form-control input-lg" placeholder="Type to search" tabindex="4">
                 </div>
 
                 <div class="form-group">
-                    <input type="text" name="pe2" id="pe2" class="form-control input-lg" placeholder="" tabindex="4">
+                    <input type="text" name="pe2" id="pe2" class="form-control input-lg" placeholder="Type to search" tabindex="4">
                 </div>
                 <div class="form-group">
-                    <input type="text" name="pe3" id="pe3" class="form-control input-lg" placeholder="" tabindex="4">
+                    <input type="text" name="pe3" id="pe3" class="form-control input-lg" placeholder="Type to search" tabindex="4">
                 </div>
                 <div class="form-group">
-                    <input type="text" name="pe4" id="pe4" class="form-control input-lg" placeholder="" tabindex="4">
-                </div>
-
-                <div class="form-group">
-                    <input type="text" name="pe5" id="pe5" class="form-control input-lg" placeholder="" tabindex="4">
-                </div>
-                <div class="form-group">
-                    <input type="text" name="pe6" id="pe6" class="form-control input-lg" placeholder="" tabindex="4">
+                    <input type="text" name="pe4" id="pe4" class="form-control input-lg" placeholder="Type to search" tabindex="4">
                 </div>
 
                 <div class="form-group">
-                    <input type="text" name="pe7" id="pe7" class="form-control input-lg" placeholder="" tabindex="4">
+                    <input type="text" name="pe5" id="pe5" class="form-control input-lg" placeholder="Type to search" tabindex="4">
                 </div>
                 <div class="form-group">
-                    <input type="text" name="pe8" id="pe8" class="form-control input-lg" placeholder="" tabindex="4">
+                    <input type="text" name="pe6" id="pe6" class="form-control input-lg" placeholder="Type to search" tabindex="4">
+                </div>
+
+                <div class="form-group">
+                    <input type="text" name="pe7" id="pe7" class="form-control input-lg" placeholder="Type to search" tabindex="4">
+                </div>
+                <div class="form-group">
+                    <input type="text" name="pe8" id="pe8" class="form-control input-lg" placeholder="Type to search" tabindex="4">
                 </div>
 
 

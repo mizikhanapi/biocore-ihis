@@ -8,6 +8,15 @@
         Config.getBase_url(request);
         Config.getFile_url(session);
         Conn Conn = new Conn();
+        
+        String hfc_cd = session.getAttribute("HEALTH_FACILITY_CODE").toString();
+        String hfcName = session.getAttribute("HFC_NAME").toString();
+        String user_id = session.getAttribute("USER_ID").toString();
+        String username = session.getAttribute("USER_NAME").toString();
+        String discipline = session.getAttribute("DISCIPLINE_CODE").toString();
+        String subdicipline = session.getAttribute("SUB_DISCIPLINE_CODE").toString();
+        
+
 %>
 <!DOCTYPE html>
 <!-- saved from url=(0044)https://getbootstrap.com/examples/dashboard/ -->
@@ -17,9 +26,16 @@
   
         <!-- header -->
           <%@ include file="../assets/header.html" %> 
-<%@ include file="libraries/header.jsp" %>
-    
+    <%@ include file="libraries/header.jsp" %> 
     <!-- header -->
+    
+    <script type="text/javascript">
+        hfc_cd = '<%out.print(hfc_cd);%>';
+        doctor_id = '<%out.print(user_id);%>';
+        doctor_name = '<%out.print(username);%>';
+        discipline =  '<%out.print(discipline);%>';
+        subdis = '<%out.print(subdicipline);%>';
+        </script>
 </head>
 
 <body>
@@ -124,9 +140,37 @@
                             <h4  id="mainConsultBar">Consultation Notes</h4>
 
                             <table class="table table-filter table-striped" style="background: #fff; border: 1px solid #ccc;">
-                                <tbody id="consultationNotes">
-                                 
-                                </tbody>
+                                
+                                <tbody id="CCNNotes" style=" border-style: solid;border-width: 5px;" class="ConsultationNotes"></tbody>
+                                <tbody id="HPINotes" style=" border-style: solid;border-width: 5px;"  class="ConsultationNotes"> </tbody>
+                                <tbody id="PMHNotes" style=" border-style: solid;border-width: 5px;"  class="ConsultationNotes"></tbody>
+                                <tbody id="FMHNotes" style=" border-style: solid;border-width: 5px;"  class="ConsultationNotes"> </tbody>
+                                <tbody id="SOHNotes" style=" border-style: solid;border-width: 5px;"  class="ConsultationNotes"></tbody>
+                                <tbody id="BLDNotes" style=" border-style: solid;border-width: 5px;" class="ConsultationNotes"> </tbody>
+                                <tbody id="ALGNotes" style=" border-style: solid;border-width: 5px;"  class="ConsultationNotes"></tbody>
+                                <tbody id="IMUNotes" style=" border-style: solid;border-width: 5px;"  class="ConsultationNotes"> </tbody>
+                                <tbody id="DABNotes" style=" border-style: solid;border-width: 5px;"  class="ConsultationNotes"> </tbody>
+                                
+                                <tbody id="GCSNotes" style=" border-style: solid;border-width: 5px;"  class="ConsultationNotes"> </tbody>
+                                <tbody id="PGCSNotes" style=" border-style: solid;border-width: 5px;"  class="ConsultationNotes"> </tbody>
+                                <tbody id="BPNotes" style=" border-style: solid;border-width: 5px;"  class="ConsultationNotes"> </tbody>
+                                <tbody id="RRNotes" style=" border-style: solid;border-width: 5px;"  class="ConsultationNotes"> </tbody>
+                                <tbody id="OSATNotes" style=" border-style: solid;border-width: 5px;"  class="ConsultationNotes"> </tbody>
+                                <tbody id="PSCNotes" style=" border-style: solid;border-width: 5px;"  class="ConsultationNotes"> </tbody>
+                                <tbody id="BTEMPNotes" style=" border-style: solid;border-width: 5px;"  class="ConsultationNotes"> </tbody>
+                                <tbody id="OTRNotes" style=" border-style: solid;border-width: 5px;"  class="ConsultationNotes"> </tbody>
+                                <tbody id="PEMNotes" style=" border-style: solid;border-width: 5px;"  class="ConsultationNotes"> </tbody>
+                                
+                                <tbody id="DGSNotes" style=" border-style: solid;border-width: 5px;"  class="ConsultationNotes"> </tbody>
+                                <tbody id="PNTNotes" style=" border-style: solid;border-width: 5px;"  class="ConsultationNotes"> </tbody>
+                                
+                                <tbody id="DTONotes" style=" border-style: solid;border-width: 5px;"  class="ConsultationNotes"> </tbody>
+                                <tbody id="SOPNotes" style=" border-style: solid;border-width: 5px;"  class="ConsultationNotes"> </tbody>
+                                <tbody id="POSNotes" style=" border-style: solid;border-width: 5px;"  class="ConsultationNotes"> </tbody>
+                                <tbody id="MCTSNotes" style=" border-style: solid;border-width: 5px;"  class="ConsultationNotes"> </tbody>
+                                <tbody id="ROSNotes" style=" border-style: solid;border-width: 5px;"  class="ConsultationNotes"> </tbody>
+                                <tbody id="LOSNotes" style=" border-style: solid;border-width: 5px;"  class="ConsultationNotes"> </tbody>
+                                
                             </table>
 
                         </div>
@@ -142,6 +186,7 @@
   
     <%@ include file="queue/QueueModal.jsp" %> 
     <%@ include file="search/SearchModal.jsp" %>
+    <%@ include file="setting/settingModal.jsp" %>
     
     <%@ include file="CIS01/CIS0101.jsp" %>
     <%@ include file="CIS01/CIS010001.jsp" %> 
@@ -174,8 +219,6 @@
     <!-- Bootstrap core Javascript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-
- 
     
 <!--    <script src="assets/jquery.min.js.download"></script>
     <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>');</script>

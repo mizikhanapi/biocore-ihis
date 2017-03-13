@@ -15,15 +15,12 @@ $(document).ready(function (e) {
 
     //------------------------------------------------------------ DISCHARGE BUTTON
     $('#dischargeBtn').click(function () {
-
-       var pmiNo = $('#pmiNumber').text();
-       var c = confirm("Are you sure you want DISCHARGE this patient?");       
+        
        
-       if(c === true){
-           storeData(1);
-       } else {
-           alert('Discharge Cancel');
-       }
+       var pmiNo = $('#pmiNumber').text();
+       
+       getSettingConsult(doctor_id);
+       
     });
 
     //------------------------------------------------------------ ON HOLD BUTTON
@@ -160,6 +157,26 @@ $("#nextBtn").click(function(){
 
         return PEMNotes;
     }
+    
+    function convertToOrderNotes(data){
+         var orderNotes = "ORC|OK||||<cr>\n";
+        for(var key in data){
+            if (data[key].Acode === "ROS") {
+                orderNotes += "ROS|" + getDate() + "|"+ data[key].codeROS+"^" + data[key].ROS+"^"+ data[key].commentROS+"^"+ "|<cr>\n";
+            } else if (data[key].Acode === "DTO") {
+                var note1 = data[key].drugFrequencyDTO+"^"+data[key].drugInstructionDTO+"^"+data[key].unitDTO+"^"+data[key].doseDTO;
+               var note2 = "^"+data[key].drugStrDTO+"^^^^"+data[key].durationDTO+"^"+data[key].drugQtyDTO+"^^"+data[key].cautionaryDTO+"^"+data[key].commentDTO;
+               var note3 = "^"+hfc_cd+"^^" + discipline + "^^"+ subdis + "^^" + "|<cr>\n";
+                orderNotes += "DTO|" + getDate() + "|^"+data[key].dtoCode+"^ "+data[key].searchDTO+"^^"+data[key].drugNameDTO+"^^" + note1 + note2 + note3;
+            } else if (data[key].Acode === "LOS") {
+                var search = data[key].catLOS.split("/");
+                 orderNotes += "LIO|" + getDate() + "|"+search[0]+"^"+search[1]+"^"+data[key].sourceLOS+"^"+data[key].codeLOS+"^"+data[key].searchLOS+"^"+data[key].containerLOS+"^^^^^^"+data[key].volumeLOS+"^"+data[key].commentLOS+"^"+hfc_cd+"^^" + discipline + "^^"+ subdis + "^^" + "|<cr>\n";
+            } else if (data[key].Acode === "POS") {
+                 orderNotes += "POS|" + getDate() + "|^^"+data[key].Problem18+"^"+data[key].procedure_cd+"^"+data[key].proType+"^^^^^^^^^^^"+hfc_cd+"|<cr>\n";
+            } 
+        }
+        return orderNotes;
+    }
 
     function convertToNotes(data) {
         for (var key in data) {
@@ -189,8 +206,8 @@ $("#nextBtn").click(function(){
             } else if (data[key].Acode === "DGS") {
                 processNotes += "DGS|" + getDate() + "|" + data[key].TypeDGS + "^^^" + data[key].dateDGS + "^^^"+data[key].dgsCode+"^"+data[key].searchDiag+"^^"+data[key].SeverityDGS+"^^"+data[key].SiteDGS+"^^^^"+data[key].LateralityDGS+"^^^"+data[key].commentDGS+"^^^"+getDate()+"^"+hfc_cd+"^"+doctor_id+"^"+doctor_name+"^^^|<cr>\n";
             } else if (data[key].Acode === "PNT") {
-                processNotes += "PNT|" + getDate() + "|" + data[key].PNT + "^^^^" + getDate() +hfc_cd+"^"+doctor_id+"^"+doctor_name+"|<cr>\n";
-            } 
+                processNotes += "PNT|" + getDate() + "|" + data[key].PNT + "^^^^" + getDate() +"^"+hfc_cd+"^"+doctor_id+"^"+doctor_name+"|<cr>\n";
+            }
 
         }
         var VTSNotes = convertVTS(VTSObj);
@@ -218,7 +235,7 @@ $("#nextBtn").click(function(){
        
         var msh = "MSH|^~|CIS|"+hfc_cd+"^"+discipline+"^"+subdis+"|" + getDate() + "|||||<cr>\n";
         var pdi = PDIInfo+"|<cr>\n";
-        
+        var ord = convertToOrderNotes(_data);
         countVTS(_data);
 
         //console.log(vtsCounter);
@@ -227,10 +244,10 @@ $("#nextBtn").click(function(){
         console.log(_data);
         var SendNotes = convertToNotes(_data);
            
-           notes = msh + pdi + SendNotes;
-           console.log(notes);
+           notes = msh + pdi + SendNotes+ord;
+           console.log(episodeDate);
+           console.log(pmiNo)
            
-
         $.ajax({
             url: "topMenuFunction/discharge.jsp",
             type: "post",
@@ -245,9 +262,12 @@ $("#nextBtn").click(function(){
                 var d = data.trim();
                  console.log(data);
                 if(d === '|1|'){
-                    // $('#consultationNotes').html("");
+
                     clearCIS();
                     alert('Patient has been '+ statusDesc);
+                } else  if(d==='|3|'){
+                  clearCIS();
+                    alert('Patient record has been '+ statusDesc);
                 }
             },
             error: function (err) {
@@ -259,7 +279,7 @@ $("#nextBtn").click(function(){
     }
 
     
- });
+
      
     function nextPatient(currentDate, hfc){
 
@@ -273,17 +293,123 @@ $("#nextBtn").click(function(){
             },
             success:function(result){
                 //console.log(result);
-                var nextPArry = result.trim().split("|");
-                pmiNo =nextPArry[0];
-                episodeDate = nextPArry[1];
+                if(result.trim() === "|O|"){
+                    alert("No patient in queue");
+                }else {
+                    var nextPArry = result.trim().split("|");
+                    pmiNo = nextPArry[0];
+                    episodeDate = nextPArry[1];
 
-              findPatient(pmiNo);
-              $('.soap-select').unbind('click');
-              getPDI(pmiNo);
-             //updateStatus(pmiNoN,epiDate,5);
+                    findPatient(pmiNo);
+                    $('.soap-select').unbind('click');
+                    getPDI(pmiNo);
+                    //updateStatus(pmiNoN,epiDate,5);
+                }
+              
              
 
             }
         })
     }
  
+ 
+ function getSettingConsult(user_id){
+     var checkCCN = false;
+     var checkDGS = false;
+     
+      $.ajax({
+        url: 'setting/LoadSetting.jsp',
+        method: "POST",
+        timeout: 5000,
+        data: {
+            userId: user_id
+        },
+        success: function (result) {
+            if(result.trim() === "|O|"){
+                alert("You not set up your consultation yet. You need set up before consult the patient");
+                $("#settingModal").modal("toggle");
+            } else {
+                    var Dsetting = result.trim().split("^");
+
+                    for (var i = 0; i < Dsetting.length; i++) {
+                        var set = Dsetting[i].split("|");
+                        if (set[0] === "CCN") {
+                            if (set[1] === "1") {
+                                checkCCN = true;
+                            }
+                        } else if (set[0] === "DGS") {
+                            if (set[1] === "1") {
+                                checkDGS = true;
+                            }
+                        }
+                    }
+
+                    var dataDischarge = getStatusData(_data);
+
+
+                    if (checkCCN === true && checkDGS === true) {
+                        if (dataDischarge[0] === true && dataDischarge[1] === true) {
+                            var c = confirm("Are you sure you want DISCHARGE this patient?");
+                            if (c === true) {
+                                storeData(1);
+                            } else {
+                                alert('Discharge Cancel');
+                            }
+
+                        } else if (dataDischarge[0] === false && dataDischarge[1] === true) {
+                            alert("Need to add CCN");
+                        } else if (dataDischarge[0] === true && dataDischarge[1] === false) {
+                            alert("Need to add DGS");
+                        } else if (dataDischarge[0] === false && dataDischarge[1] === false) {
+                            alert("Need to add CCN and DGS");
+                        }
+
+                    } else if (checkCCN === false && checkDGS === true) {
+                        if (dataDischarge[1] === true) {
+                            var c = confirm("Are you sure you want DISCHARGE this patient?");
+                            if (c === true) {
+                                storeData(1);
+                            } else {
+                                alert('Discharge Cancel');
+                            }
+                        } else if (dataDischarge[1] === false) {
+                            alert("Need to add DGS");
+                        }
+
+                    } else if (checkCCN === true && checkDGS === false) {
+                        if (dataDischarge[0] === true) {
+                            var c = confirm("Are you sure you want DISCHARGE this patient?");
+                            if (c === true) {
+                                storeData(1);
+                            } else {
+                                alert('Discharge Cancel');
+                            }
+                        } else if (dataDischarge[0] === false) {
+                            alert("Need to add CCN");
+                        }
+                    }
+            
+            }
+
+            
+            
+        }
+    });
+ }
+ 
+ 
+ function getStatusData(data){
+     var sCCN = false;
+     var sDGS = false;
+     
+     for(var key in data){
+             if (data[key].Acode === "CCN") {
+                 sCCN = true;
+             } else  if (data[key].Acode === "DGS") {
+                 sDGS = true;
+             }
+     }
+     
+     return [sCCN,sDGS];
+ }
+  });
