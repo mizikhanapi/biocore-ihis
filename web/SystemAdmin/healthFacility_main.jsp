@@ -31,60 +31,60 @@
                         <div class="col-md-12">
                             <!-- Text input-->
                             <div class="form-group" >
-                                <label class="col-md-2 control-label" for="textinput">Health Facility Name</label>
+                                <label class="col-md-2 control-label" for="textinput">Health Facility Name*</label>
                                 <div class="col-md-8">
-                                    <input type="text"  class="form-control" id="HFM_hfcName" placeholder="Name" maxlength="30"> 
+                                    <input type="text"  class="form-control" id="HFM_hfcName" placeholder="Insert health facility name" maxlength="30"> 
                                 </div>
                             </div>
-                            
+
                             <!-- Text input-->
                             <div class="form-group" >
-                                <label class="col-md-2 control-label" for="textinput">Health Facility Code</label>
+                                <label class="col-md-2 control-label" for="textinput">Health Facility Code*</label>
                                 <div class="col-md-8">
-                                    <input type="text"  class="form-control" id="HFM_hfcCode" placeholder="Health Facility Code" maxlength="30">   
+                                    <input type="text"  class="form-control" id="HFM_hfcCode" placeholder="Insert Health Facility Code" maxlength="30">   
                                 </div>
                             </div>
-                            
+
                             <!-- Text input-->
                             <div class="form-group" >
                                 <label class="col-md-2 control-label" for="textinput">Address-1</label>
                                 <div class="col-md-10">
-                                    <input type="text"  class="form-control" id="HFM_address1" placeholder="Address (Optional)" maxlength="40">   
+                                    <input type="text"  class="form-control" id="HFM_address1" placeholder="Insert Address (Optional)" maxlength="40">   
                                 </div>
                             </div>
-                            
-                             <!-- Text input-->
+
+                            <!-- Text input-->
                             <div class="form-group" >
                                 <label class="col-md-2 control-label" for="textinput">Address-2</label>
                                 <div class="col-md-10">
-                                    <input type="text"  class="form-control" id="HFM_address2" placeholder="Address (Optional)" maxlength="40">   
+                                    <input type="text"  class="form-control" id="HFM_address2" placeholder="Insert Address (Optional)" maxlength="40">   
                                 </div>
                             </div>
-                             
-                             <!-- Text input-->
+
+                            <!-- Text input-->
                             <div class="form-group" >
                                 <label class="col-md-2 control-label" for="textinput">Address-3</label>
                                 <div class="col-md-10">
-                                    <input type="text"  class="form-control" id="HFM_address3" placeholder="Address (Optional)" maxlength="40">   
+                                    <input type="text"  class="form-control" id="HFM_address3" placeholder="Insert Address (Optional)" maxlength="40">   
                                 </div>
                             </div> 
-                           
+
                         </div>
-                        
-                         <!--pembahagi form menjadi dua horizontal-->
-                        
+
+                        <!--pembahagi form menjadi dua horizontal-->
+
                         <div class="col-md-6">
-                            
-                             <!-- Text input-->
+
+                            <!-- Text input-->
                             <div class="form-group">
-                                <label class="col-md-4 control-label" for="textinput">State</label>
+                                <label class="col-md-4 control-label" for="textinput">State*</label>
                                 <div class="col-md-8">
                                     <select class="form-control"  id="HFM_state" >
                                         <option  value="0" >Select the state</option>
                                         <%
                                             String sql = "SELECT detail_reference_code, description FROM adm_lookup_detail WHERE master_reference_code = '0002' AND detail_reference_code NOT IN ('00', '98') order by description ";
                                             ArrayList<ArrayList<String>> stateList = conn.getData(sql);
-                                            for(int i = 0; i < stateList.size(); i++){
+                                            for (int i = 0; i < stateList.size(); i++) {
                                         %>
                                         <option  value="<%= stateList.get(i).get(0)%>" ><%= stateList.get(i).get(1)%></option>
                                         <%
@@ -93,102 +93,41 @@
                                     </select>
                                 </div>
                             </div>
-                             
+
                             <!-- Text input-->
                             <div class="form-group">
-                                <label class="col-md-4 control-label" for="textinput">Town</label>
+                                <label class="col-md-4 control-label" for="textinput">District*</label>
+                                <div class="col-md-8" id="selectDistrict">
+                                    <select class="form-control"  id="HFM_district">
+                                        <option  value="0" >-- Select the district --</option>
+
+                                    </select>
+                                </div>
+                            </div>
+
+                            <!-- Text input-->
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" for="textinput">Town*</label>
                                 <div class="col-md-8">
                                     <select class="form-control"  id="HFM_town">
                                         <option  value="0" >-- Select the town --</option>
-                                        
+
                                     </select>
                                 </div>
                             </div> 
-                            
+
                             <!-- Text input-->
                             <div class="form-group">
-                                <label class="col-md-4 control-label" for="textinput">Fax No</label>
+                                <label class="col-md-4 control-label" for="textinput">Postcode*</label>
                                 <div class="col-md-8">
-                                    <input id="HFM_faxNo" maxlength="30"  type="text" placeholder="Fax no" class="form-control input-md">
-                                </div>
-                            </div>
-                            
-                             <!-- Text input-->
-                            <div class="form-group">
-                                <label class="col-md-4 control-label" for="textinput">Email</label>
-                                <div class="col-md-8">
-                                    <input id="HFM_email" maxlength="100"  type="text" placeholder="email@example.com" class="form-control input-md">
-                                </div>
-                            </div>
-                             
-                             <!-- Text input-->
-                            <div class="form-group">
-                                <label class="col-md-4 control-label" for="textinput">IP No</label>
-                                <div class="col-md-8">
-                                    <input id="HFM_IP" maxlength="30"  type="text" placeholder="Health Facility IP No (Optional)" class="form-control input-md">
-                                </div>
-                            </div>
-                                                        
-                                                       
-                            <!-- Text input-->
-                            <div class="form-group">
-                                <label class="col-md-4 control-label" for="textinput">Category</label>
-                                <div class="col-md-8">
-                                    <input id="HFM_category" maxlength="30"  type="text" placeholder="Health Facility Category (Optional)" class="form-control input-md">
-                                </div>
-                            </div>
-                            
-                            <!-- Text input-->
-                            <div class="form-group">
-                                <label class="col-md-4 control-label" for="textinput">Type</label>
-                                <div class="col-md-8">
-                                    <input id="HFM_type" maxlength="30"  type="text" placeholder="Health Facility Type (Optional)" class="form-control input-md">
-                                </div>
-                            </div>
-                            
-                            <!-- Text input-->
-                            <div class="form-group">
-                                <label class="col-md-4 control-label" for="textinput">Director Name</label>
-                                <div class="col-md-8">
-                                    <input id="HFM_director" maxlength="100"  type="text" placeholder="Director Name" class="form-control input-md">
-                                </div>
-                            </div>
-                            
-                             <div class="form-group">
-                                <label class="col-md-4 control-label" for="textinput">Established Date</label>
-                                <div class="col-md-8">
-                                    <input id="HFM_establishedDate" maxlength="30"  type="text" placeholder="Established date (Optional)" class="form-control input-md" readonly="true">
-                                </div>
-                            </div>
-                            
-                        </div>
-                        
-                        <!--pembahagi form menjadi dua vertical-->
-                        
-                        <div class="col-md-6">
-                            
-                             <!-- Text input-->
-                            <div class="form-group">
-                                <label class="col-md-4 control-label" for="textinput">District</label>
-                                <div class="col-md-8" id="selectDistrict">
-                                     <select class="form-control"  id="HFM_district">
-                                        <option  value="0" >-- Select the district --</option>
-                                        
-                                    </select>
-                                </div>
-                            </div>
-                             
-                            <!-- Text input-->
-                            <div class="form-group">
-                                <label class="col-md-4 control-label" for="textinput">Postcode</label>
-                                <div class="col-md-8">
-                                    <input id="HFM_postcode" maxlength="30"  type="text" placeholder="postcode" class="form-control input-md" autocomplete="off">
+                                    <input id="HFM_postcode" maxlength="30"  type="text" placeholder="search postcode" class="form-control input-md" autocomplete="off">
                                     <div id="HFM_match">
                                         <!--for list of postcode-->
                                     </div>
                                 </div>
                             </div>  
-                             
+
+
                             <!-- Text input-->
                             <div class="form-group">
                                 <label class="col-md-4 control-label" for="textinput">Tel No</label>
@@ -196,44 +135,35 @@
                                     <input id="HFM_telNo" maxlength="30"  type="text" placeholder="Telephone Number" class="form-control input-md">
                                 </div>
                             </div> 
-                            
-                             <!-- Text input-->
-                            <div class="form-group">
-                                <label class="col-md-4 control-label" for="textinput">Contact Person</label>
-                                <div class="col-md-8">
-                                    <input id="HFM_contactPerson" maxlength="30"  type="text" placeholder="Contact Person (Optional)" class="form-control input-md">
-                                </div>
-                            </div>
-                            
-                            
-                             <!-- Text input-->
-                            <div class="form-group">
-                                <label class="col-md-4 control-label" for="textinput">Server</label>
-                                <div class="col-md-8">
-                                    <input id="HFM_server" maxlength="30"  type="text" placeholder="Health Facility Server (Optional)" class="form-control input-md">
-                                </div>
-                            </div>
-                                                       
-                            
+
+
                             <!-- Text input-->
                             <div class="form-group">
-                                <label class="col-md-4 control-label" for="textinput">Report to</label>
+                                <label class="col-md-4 control-label" for="textinput">Fax No</label>
                                 <div class="col-md-8">
-                                    <input id="HFM_reportTo" maxlength="30"  type="text" placeholder="Report to (Optional)" class="form-control input-md">
+                                    <input id="HFM_faxNo" maxlength="30"  type="text" placeholder="Fax no" class="form-control input-md">
                                 </div>
                             </div>
-                            
+
                             <!-- Text input-->
                             <div class="form-group">
-                                <label class="col-md-4 control-label" for="textinput">Subtype</label>
+                                <label class="col-md-4 control-label" for="textinput">Email</label>
                                 <div class="col-md-8">
-                                    <input id="HFM_subtype" maxlength="30"  type="text" placeholder="Health Facility Subtype (Optional)" class="form-control input-md">
+                                    <input id="HFM_email" maxlength="100"  type="text" placeholder="email@example.com" class="form-control input-md">
                                 </div>
                             </div>
-                            
+
                             <!-- Text input-->
                             <div class="form-group">
-                                <label class="col-md-4 control-label" for="textinput">Status</label>
+                                <label class="col-md-4 control-label" for="textinput">Director Name</label>
+                                <div class="col-md-8">
+                                    <input id="HFM_director" maxlength="100"  type="text" placeholder="Director Name" class="form-control input-md">
+                                </div>
+                            </div>
+
+                            <!-- Text input-->
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" for="textinput">Status*</label>
                                 <div class="col-md-8">
                                     <select class="form-control"  id="HFM_status">
                                         <option  value="1" >Active</option>
@@ -241,14 +171,114 @@
                                     </select>
                                 </div>
                             </div>
-                            
+
+
                         </div>
+
+                        <!--pembahagi form menjadi dua vertical-->
+
+                        <div class="col-md-6">
+
+                            <!-- Text input-->
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" for="textinput">IP No</label>
+                                <div class="col-md-8">
+                                    <input id="HFM_IP" maxlength="30"  type="text" placeholder="Insert Health Facility IP No (Optional)" class="form-control input-md">
+                                </div>
+                            </div> 
+
+
+                            <!-- Text input-->
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" for="textinput">Server</label>
+                                <div class="col-md-8">
+                                    <input id="HFM_server" maxlength="30"  type="text" placeholder="Health Facility Server (Optional)" class="form-control input-md">
+                                </div>
+                            </div>
+
+                            <!-- Text input-->
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" for="textinput">Contact Person</label>
+                                <div class="col-md-8">
+                                    <input id="HFM_contactPerson" maxlength="30"  type="text" placeholder="Insert Contact Person (Optional)" class="form-control input-md">
+                                </div>
+                            </div> 
+
+
+                            <!-- Text input-->
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" for="textinput">Report to</label>
+                                <div class="col-md-8">
+                                    <input id="HFM_reportTo" maxlength="30"  type="text" placeholder="Insert Report to (Optional)" class="form-control input-md">
+                                </div>
+                            </div>
+
+
+                            <!-- Text input-->
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" for="textinput">Category</label>
+                                <div class="col-md-8">
+                                    <input id="HFM_category" maxlength="30"  type="text" placeholder="Insert Health Facility Category (Optional)" class="form-control input-md">
+                                </div>
+                            </div>
+
+                            <!-- Text input-->
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" for="textinput">Type</label>
+                                <div class="col-md-8">
+                                    <input id="HFM_type" maxlength="30"  type="text" placeholder="Insert Health Facility Type (Optional)" class="form-control input-md">
+                                </div>
+                            </div>
+
+
+                            <!-- Text input-->
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" for="textinput">Subtype</label>
+                                <div class="col-md-8">
+                                    <input id="HFM_subtype" maxlength="30"  type="text" placeholder="Insert Health Facility Subtype (Optional)" class="form-control input-md">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" for="textinput">Established Date</label>
+                                <div class="col-md-8">
+                                    <input id="HFM_establishedDate" maxlength="30"  type="text" placeholder="Pick Established date (Optional)" class="form-control input-md" readonly>
+                                </div>
+                            </div>
+
+
+                        </div>
+
+                        <div class="col-md-12">
+                            <!-- Text input-->
+                            <div class="form-group" >
+                                <label class="col-md-2 control-label" for="textinput">Logo</label>
+                                <div class="col-md-8">
+                                    <input class="form-control" id="inputFileToLoad" type="file" accept=".jpg, .png, .gif" >
+                                </div>
+                            </div>
+                            <!-- Text input-->
+                            <div class="form-group">
+
+                                <div style="width: 50%; margin: 0 auto">
+                                    <div id="dym">
+
+
+
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+
+
                     </div>
 
                 </form>
                 <hr/>
 
-                                <!-- content goes here -->
+                <!-- content goes here -->
             </div>
             <div class="modal-footer">
                 <div class="btn-group btn-group-justified" role="group" aria-label="group button">
@@ -268,9 +298,116 @@
 <script src="libraries/validator.js" type="text/javascript"></script>
 
 <script>
+    
+    (function ($) {
+        $.fn.checkFileType = function (options) {
+            var defaults = {
+                allowedExtensions: [],
+                success: function () {},
+                error: function () {}
+            };
+            options = $.extend(defaults, options);
+
+            return this.each(function () {
+
+                $(this).on('change', function () {
+                    var value = $(this).val(),
+                            file = value.toLowerCase(),
+                            extension = file.substring(file.lastIndexOf('.') + 1);
+
+                    if ($.inArray(extension, options.allowedExtensions) === -1) {
+                        options.error();
+                        $(this).focus();
+                    } else {
+                        options.success();
+
+                    }
+
+                });
+
+            });
+        };
+
+    })(jQuery);
+
+    $('#inputFileToLoad').checkFileType({
+        allowedExtensions: ['jpg', 'jpeg', 'png', 'gif'],
+        success: function () {
+            loadImageFileAsURL();
+        },
+        error: function () {
+            bootbox.alert('Incompatible file type');
+            $('#inputFileToLoad').val("");
+            $('#dym').html("");
+            gambarURI = "";
+        }
+    });
+
+
+    var gambarURI = "";
+
+    function loadImageFileAsURL()
+    {
+
+        var iSize = 0;
+
+        iSize = ($("#inputFileToLoad")[0].files[0].size / 1024);
+
+        var sizeSmall = false;
+
+        if (iSize / 1024 > 1) {
+            sizeSmall = false;
+
+        } else {
+
+            iSize = (Math.round(iSize * 100) / 100);
+
+            sizeSmall = iSize <= 45;
+
+        }
+
+
+
+
+
+
+
+        if (sizeSmall) {
+            document.getElementById("dym").innerHTML = '<div class="loader"></div>';
+            var filesSelected = document.getElementById("inputFileToLoad").files;
+            if (filesSelected.length > 0)
+            {
+                var fileToLoad = filesSelected[0];
+
+                var fileReader = new FileReader();
+
+                fileReader.onload = function (fileLoadedEvent)
+                {
+
+                    gambarURI = fileLoadedEvent.target.result;
+
+
+                    document.getElementById("dym").innerHTML = '<img id="myImage">';
+
+                    document.getElementById("myImage").src = gambarURI;
+                };
+
+                fileReader.readAsDataURL(fileToLoad);
+            }
+
+        } else {
+
+            bootbox.alert("File size must not exceed 40kb");
+            $('#inputFileToLoad').val("");
+            gambarURI = "";
+            $('#dym').html("");
+        }
+
+
+    }
 
     $(document).ready(function () {
-        
+
         $('#HFM_establishedDate').datepicker({
             changeYear: true,
             changeMonth: true,
@@ -278,15 +415,15 @@
             dateFormat: 'dd/mm/yy'
         });
 
-                
-        function HFM_reset(){
+
+        function HFM_reset() {
             document.getElementById("HFM_form").reset();
-            
+
         }
 
-       
+
         $('#HFM_btnReset').on('click', function () {
-            
+
             HFM_reset();
         });
 
@@ -297,7 +434,7 @@
         });
 
         $('#HFM_btnAdd').on('click', function () {
-            
+
             var hfcName = $('#HFM_hfcName').val();
             var hfcCode = $('#HFM_hfcCode').val();
             var address1 = $('#HFM_address1').val();
@@ -335,15 +472,15 @@
                 bootbox.alert("Select the state");
                 $('#HFM_state').focus();
 
-            }else if (district.trim() === "0") {
+            } else if (district.trim() === "0") {
                 bootbox.alert("Select the district");
                 $('#HFM_district').focus();
 
-            }else if (town.trim() === "0") {
+            } else if (town.trim() === "0") {
                 bootbox.alert("Select the town");
                 $('#HFM_town').focus();
 
-            }else if (postcode.trim() === "") {
+            } else if (postcode.trim() === "") {
                 bootbox.alert("Fill in the postcode");
                 $('#HFM_postcode').focus();
 
@@ -355,22 +492,22 @@
                 $('#HFM_postcode').val("");
                 $('#HFM_postcode').focus();
 
-            }else if (email !== "" && ValidateEmail(email) === false) {
+            } else if (email !== "" && ValidateEmail(email) === false) {
                 bootbox.alert("Invalid email.");
                 $('#HFM_email').val("");
                 $('#HFM_email').focus();
 
-            }else if (telNo !== "" && validatePhonenumber(telNo) === false) {
+            } else if (telNo !== "" && validatePhonenumber(telNo) === false) {
                 bootbox.alert("Invalid telephone number. It must contain number, + and - sign without space");
                 $('#HFM_telNo').val("");
                 $('#HFM_telNo').focus();
 
-            }else if (faxNo !== "" && validatePhonenumber(faxNo) === false) {
+            } else if (faxNo !== "" && validatePhonenumber(faxNo) === false) {
                 bootbox.alert("Invalid fax number. It must contain number, + and - sign without space");
                 $('#HFM_faxNo').val("");
                 $('#HFM_faxNo').focus();
 
-            }else if (IP_NO !== "" && ValidateIPaddress(IP_NO) === false) {
+            } else if (IP_NO !== "" && ValidateIPaddress(IP_NO) === false) {
                 bootbox.alert("Invalid IP address. It must contain 4 octets.");
                 $('#HFM_IP').val("");
                 $('#HFM_IP').focus();
@@ -378,28 +515,29 @@
             } else {
 
                 var data = {
-                    hfcName : hfcName,
-                    hfcCode : hfcCode,
-                    address1 : address1,
-                    address2 : address2,
-                    address3 : address3,
-                    state : state,
-                    district : district,
-                    town : town,
-                    postcode : postcode,
-                    faxNo : faxNo,
-                    telNo : telNo,
-                    email : email,
-                    contactPerson : contactPerson,
-                    IP_NO : IP_NO,
-                    server : server,
-                    category : category,
-                    reportTo : reportTo,
-                    type : type,
-                    subtype : subtype,
-                    director : director,
-                    status : status,
-                    establishDate : establishDate
+                    hfcName: hfcName,
+                    hfcCode: hfcCode,
+                    address1: address1,
+                    address2: address2,
+                    address3: address3,
+                    state: state,
+                    district: district,
+                    town: town,
+                    postcode: postcode,
+                    faxNo: faxNo,
+                    telNo: telNo,
+                    email: email,
+                    contactPerson: contactPerson,
+                    IP_NO: IP_NO,
+                    server: server,
+                    category: category,
+                    reportTo: reportTo,
+                    type: type,
+                    subtype: subtype,
+                    director: director,
+                    status: status,
+                    establishDate: establishDate,
+                    logo : gambarURI
                 };
 
                 $.ajax({
@@ -449,7 +587,7 @@
 
         });
 
-        
+
 //        $('#HFM_telNo').on('blur' ,function(){
 //           var number = $('#HFM_telNo').val();
 //           if(validatePhonenumber(number) === false){
@@ -460,13 +598,13 @@
 //        });
 
 
-        $('#HFM_state').on('change', function(){
-            var code =  $('#HFM_state').val();
-            $('#HFM_town').html( '<option  value="0" >-- Select the town --</option>');
-            if(code !== '0'){
-                
-                var dataFields = {code: code, process : "district"};
-                
+        $('#HFM_state').on('change', function () {
+            var code = $('#HFM_state').val();
+            $('#HFM_town').html('<option  value="0" >-- Select the town --</option>');
+            if (code !== '0') {
+
+                var dataFields = {code: code, process: "district"};
+
                 $.ajax({
                     type: "POST",
                     url: "HFM_result.jsp",
@@ -479,24 +617,24 @@
                         console.log("Ajax error");
                     }
                 });
-            }else{
-                $('#HFM_district').html( '<option  value="0" >-- Select the district --</option>');
+            } else {
+                $('#HFM_district').html('<option  value="0" >-- Select the district --</option>');
             }
         });
-        
-        
-        $('#HFM_district').on('change' , function(){
-            
+
+
+        $('#HFM_district').on('change', function () {
+
             var code = $('#HFM_district').val();
-            if(code !== '0'){
-                
-                if(code === '00'){
+            if (code !== '0') {
+
+                if (code === '00') {
                     var front = $('#HFM_state').val();
                     code = front + '00';
                 }
-                
-                var dataFields = {code: code, process : "town"};
-                
+
+                var dataFields = {code: code, process: "town"};
+
                 $.ajax({
                     type: "POST",
                     url: "HFM_result.jsp",
@@ -509,18 +647,18 @@
                         console.log("Ajax error");
                     }
                 });
-            }else{
-                $('#HFM_town').html( '<option  value="0" >-- Select the town --</option>');
+            } else {
+                $('#HFM_town').html('<option  value="0" >-- Select the town --</option>');
             }
-            
+
         });
-        
-        
-        $('#HFM_postcode').on('keyup', function(){
+
+
+        $('#HFM_postcode').on('keyup', function () {
             var input = $(this).val(); // We take the input value
             if (input.length >= 1) { // Minimum characters = 2 (you can change)
                 $('#HFM_match').html('<img src="bootstrap-3.3.6-dist/image/ajax-loader.gif" />'); // Loader icon apprears in the <div id="match"></div>
-                var dataFields = {code : input, process : "postcode"}; // We pass input argument in Ajax
+                var dataFields = {code: input, process: "postcode"}; // We pass input argument in Ajax
                 $.ajax({
                     type: "POST",
                     url: "HFM_result.jsp", // call the php file ajax/tuto-autocomplete.php
@@ -543,10 +681,10 @@
             }
         });
 
-                     
-       
+
+
     });
-    
-   
+
+
 </script>
 

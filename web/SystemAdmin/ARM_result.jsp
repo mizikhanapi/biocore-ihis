@@ -9,6 +9,7 @@
 <%@page import="main.RMIConnector"%>
 <%
     Conn conn = new Conn();
+    String adminHFC = session.getAttribute("HEALTH_FACILITY_CODE").toString();
     String process = request.getParameter("process");
     String user = request.getParameter("user");
     String hfc = request.getParameter("hfc");
@@ -17,7 +18,7 @@
     
     if(process.equalsIgnoreCase("user")){
         
-        String searchProblem = "SELECT user_id, user_name, health_facility_code FROM adm_users WHERE user_id like '%"+user+"%' OR user_name like '%"+user+"%'";
+        String searchProblem = "SELECT user_id, user_name, health_facility_code FROM adm_users WHERE  (user_id like '%"+user+"%' OR user_name like '%"+user+"%') AND health_facility_code = '"+adminHFC+"' ";
         ArrayList<ArrayList<String>> search = conn.getData(searchProblem);
         if (search.size() > 0)
         {

@@ -26,8 +26,8 @@
 <tbody>
 
     <%
-        //                      0       1                       2           3                       4               5                                6        7       8               9           10          11          12      13                  14                                              15                                        16          17              18          19          20                          21                  22          23
-        String sql = " SELECT user_id, health_facility_code, user_name, 'password' as dummy, occupation_code, DATE_FORMAT(birth_date,'%d/%m/%Y'), sex_code, new_icno, home_phone, office_phone, mobile_phone, a.fax_no, a.email, id_category_code, ifnull(DATE_FORMAT(start_date,'%d/%m/%Y'), '') ,ifnull(DATE_FORMAT(end_date,'%d/%m/%Y'), '') , title, nationality_code, user_type, user_group, user_classification_code, ifnull(status, '0'), hfc_name, mother_name "
+        //                      0       1                       2           3                       4               5                                6        7       8               9           10          11          12      13                  14                                              15                                        16          17              18          19          20                          21                  22          23         24
+        String sql = " SELECT user_id, health_facility_code, user_name, 'password' as dummy, occupation_code, DATE_FORMAT(birth_date,'%d/%m/%Y'), sex_code, new_icno, home_phone, office_phone, mobile_phone, a.fax_no, a.email, id_category_code, ifnull(DATE_FORMAT(start_date,'%d/%m/%Y'), '') ,ifnull(DATE_FORMAT(end_date,'%d/%m/%Y'), '') , title, nationality_code, user_type, user_group, user_classification_code, ifnull(status, '0'), hfc_name, mother_name, room_no "
                 + "FROM adm_users a join adm_health_facility b on health_facility_code = hfc_cd "
                 + "WHERE health_facility_code = '" + user_hfc + "'";
         ArrayList<ArrayList<String>> dataUser = conn.getData(sql);
@@ -602,6 +602,7 @@
             var endDate = arrayData[15];
             var userIDStatus = arrayData[21];
             var mother = arrayData[23];
+            var roomNo = arrayData[24];
 
             $('#UT_name').val(name);
             $('#UT_title').val(title);
@@ -627,6 +628,7 @@
             $('#UT_endDate').val(endDate);
             $('#UT_userIDStatus').val(userIDStatus);
             $('#UT_mother').val(mother);
+             $('#UT_roomNO').val(roomNo);
 
             isHFCselected = true;
             selectedHFC = $('#UT_hfc').val();
@@ -662,6 +664,7 @@
             var endDate = $('#UT_endDate').val();
             var userIDStatus = $('#UT_userIDStatus').val();
             var mother = $('#UT_mother').val();
+            var roomNo = $('#UT_roomNO').val();
 
             $('#UT_detail').css('overflow', 'auto');
 
@@ -705,6 +708,9 @@
 
             } else if (mother === "") {
                 bootbox.alert("Fill in the staff mother's name");
+
+            }else if (roomNo === "") {
+                bootbox.alert("Fill in the room number");
 
             } else if (ValidateEmail(email) === false) {
                 bootbox.alert("Invalid email address");
@@ -763,7 +769,8 @@
                     startDate: startDate,
                     endDate: endDate,
                     userIDStatus: userIDStatus,
-                    mother: mother
+                    mother: mother,
+                    roomNo : roomNo
                 };
 
                 $.ajax({

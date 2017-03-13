@@ -11,15 +11,15 @@
             <!-- content -->
             <div class="tab-pane active fade in" id="tab_default_1">
                 <ul class="soap-content nav">
-                    <li><a data-toggle="modal" data-target="#squarespaceModal" href="" class="soap-select"><i class="fa fa-comments  fa-li"></i> Complaints</a></li>
-                <li><a data-toggle="modal" data-target="#squarespaceModal2" href=""  class="soap-select"><i class="fa fa-history  fa-li"></i> History of Present Illness(HPI)</a></li>
-                <li><a data-toggle="modal" data-target="#squarespaceModal3" href=""  class="soap-select"><i class="fa fa-medkit  fa-li"></i> Past Medical History (PMH)</a></li>
-                <li><a data-toggle="modal" data-target="#squarespaceModal4" href=""  class="soap-select"><i class="fa fa-group  fa-li"></i> Family History</a></li>
-                <li><a data-toggle="modal" data-target="#squarespaceModal5" href=""  class="soap-select"><i class="fa fa-share-square  fa-li"></i> Social History</a></li>
-                <li><a data-toggle="modal" data-target="#squarespaceModal6" href=""  class="soap-select"><i class="fa fa-tint  fa-li"></i> Blood Group/G6PD</a></li>
-                <li><a data-toggle="modal" data-target="#squarespaceModal7" href=""  class="soap-select"><i class="fa fa-exclamation-circle  fa-li"></i> Allergy</a></li>
-                <li><a data-toggle="modal" data-target="#squarespaceModal8" href=""  class="soap-select"><i class="fa fa-male  fa-li"></i> Immunization</a></li>
-                <li><a data-toggle="modal" data-target="#squarespaceModal9" href="" class="soap-select" ><i class="fa fa-wheelchair  fa-li"></i> Disability</a></li>
+                    <li><a data-toggle="modal" data-target="#CIS01000001" href="" class="soap-select"><i class="fa fa-comments  fa-li"></i> Complaints</a></li>
+                <li><a data-toggle="modal" data-target="#CIS01000002" href=""  class="soap-select"><i class="fa fa-history  fa-li"></i> History of Present Illness(HPI)</a></li>
+                <li><a data-toggle="modal" data-target="#CIS01000003" href=""  class="soap-select"><i class="fa fa-medkit  fa-li"></i> Past Medical History (PMH)</a></li>
+                <li><a data-toggle="modal" data-target="#CIS01000004" href=""  class="soap-select"><i class="fa fa-group  fa-li"></i> Family History</a></li>
+                <li><a data-toggle="modal" data-target="#CIS01000005" href=""  class="soap-select"><i class="fa fa-share-square  fa-li"></i> Social History</a></li>
+                <li><a data-toggle="modal" data-target="#CIS01000006" href=""  class="soap-select"><i class="fa fa-tint  fa-li"></i> Blood Group/G6PD</a></li>
+                <li><a data-toggle="modal" data-target="#CIS01000007" href=""  class="soap-select"><i class="fa fa-exclamation-circle  fa-li"></i> Allergy</a></li>
+                <li><a data-toggle="modal" data-target="#CIS01000008" href=""  class="soap-select"><i class="fa fa-male  fa-li"></i> Immunization</a></li>
+                <li><a data-toggle="modal" data-target="#CIS01000009" href="" class="soap-select" ><i class="fa fa-wheelchair  fa-li"></i> Disability</a></li>
                 </ul>
             </div>
             <!-- content -->
@@ -65,8 +65,8 @@
             <!-- content -->
             <div class="tab-pane fade" id="tab_default_4">
                 <ul class="soap-content nav">
-                    <li><a data-toggle="modal" data-target="#CIS040001" href="" class="soap-select"><i class="fa fa-bolt fa-li"></i>Radiology Request</a></li>
-                    <li><a data-toggle="modal" data-target="#CIS040009" href="" class="soap-select"><i class="fa fa-thermometer-empty fa-li"></i> Laboratory Request</a></li>
+                      <li><a data-toggle="modal" data-target="#CIS040000" href="" class="soap-select"><i class="fa fa-bolt fa-li"></i>Radiology Request</a></li>
+                    <li><a data-toggle="modal" data-target="#CIS040001" href="" class="soap-select"><i class="fa fa-thermometer-empty fa-li"></i> Laboratory Request</a></li>
                     <li><a data-toggle="modal" data-target="#CIS040002" href="" class="soap-select"> <i class="fa fa-medkit fa-li"></i> Drug Order</a></li>
                     <li><a data-toggle="modal" data-target="#CIS040003" href="" class="soap-select"><i class="fa fa-file-text-o fa-li"></i> Monitoring</a></li>
                     <li><a data-toggle="modal" data-target="#CIS040004" href="" class="soap-select"> <i class="fa fa-bar-chart fa-li"></i> Follow Up</a></li>
