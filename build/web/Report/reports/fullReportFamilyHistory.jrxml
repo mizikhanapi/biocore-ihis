@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="FamilyHistory" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="b37acb17-1075-4d8a-921e-5ad3c19c8faa">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="table">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<subDataset name="family history" uuid="a6a9f9f1-a205-4886-a977-835a07c45973">
+		<parameter name="startDate1" class="java.lang.String">
+			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+		</parameter>
+		<parameter name="endDate1" class="java.lang.String">
+			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+		</parameter>
+		<queryString>
+			<![CDATA[SELECT
+     lhr_family_history.`pmi_no` AS lhr_family_history_pmi_no,
+     lhr_family_history.`hfc_cd` AS lhr_family_history_hfc_cd,
+     lhr_family_history.`episode_date` AS lhr_family_history_episode_date,
+     lhr_family_history.`icd10_description` AS lhr_family_history_icd10_description
+FROM
+     `lhr_family_history` lhr_family_history
+WHERE
+ lhr_family_history.`episode_date` BETWEEN $P{startDate1} AND $P{endDate1}
+
+GROUP BY 
+lhr_family_history.`icd10_description`
+ORDER BY
+lhr_family_history.`icd10_description`]]>
+		</queryString>
+		<field name="lhr_family_history_pmi_no" class="java.lang.String"/>
+		<field name="lhr_family_history_hfc_cd" class="java.lang.String"/>
+		<field name="lhr_family_history_episode_date" class="java.sql.Timestamp"/>
+		<field name="lhr_family_history_icd10_description" class="java.lang.String"/>
+		<variable name="summ" class="java.lang.String" calculation="Sum">
+			<variableExpression><![CDATA[$F{lhr_family_history_pmi_no}]]></variableExpression>
+		</variable>
+		<group name="NoOfFam">
+			<groupExpression><![CDATA[$F{lhr_family_history_icd10_description}]]></groupExpression>
+		</group>
+	</subDataset>
+	<parameter name="startDate" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="endDate" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     lhr_family_history.`pmi_no` AS lhr_family_history_pmi_no,
+     lhr_family_history.`hfc_cd` AS lhr_family_history_hfc_cd,
+     lhr_family_history.`episode_date` AS lhr_family_history_episode_date,
+     lhr_family_history.`icd10_description` AS lhr_family_history_icd10_description
+FROM
+     `lhr_family_history` lhr_family_history
+
+WHERE
+  lhr_family_history.`episode_date` BETWEEN $P{startDate} AND $P{endDate}
+
+GROUP BY
+ lhr_family_history.`icd10_description`
+ORDER BY
+ lhr_family_history.`icd10_description`]]>
+	</queryString>
+	<field name="lhr_family_history_pmi_no" class="java.lang.String"/>
+	<field name="lhr_family_history_hfc_cd" class="java.lang.String"/>
+	<field name="lhr_family_history_episode_date" class="java.sql.Timestamp"/>
+	<field name="lhr_family_history_icd10_description" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band splitType="Stretch"/>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="457" splitType="Stretch">
+			<staticText>
+				<reportElement x="111" y="11" width="333" height="30" uuid="34f4af35-5154-41a7-b000-dc5693a2a8db"/>
+				<textElement>
+					<font size="22" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Statistics of Family History]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="142" y="50" width="35" height="20" uuid="5c977f81-6667-44d8-afb7-e6a0c10df6f2"/>
+				<text><![CDATA[From:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="300" y="50" width="19" height="20" uuid="9545a44c-079c-4c8b-8a49-e8057d482ed5"/>
+				<text><![CDATA[To:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="187" y="50" width="100" height="20" uuid="4b504673-be0b-4bcd-a2b6-64607053231e"/>
+				<textFieldExpression><![CDATA[$P{startDate}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="329" y="50" width="100" height="20" uuid="db7bb1da-03d9-4634-95b5-1be41dfa9e3c"/>
+				<textFieldExpression><![CDATA[$P{endDate}]]></textFieldExpression>
+			</textField>
+			<componentElement>
+				<reportElement key="table 1" style="table 1" isPrintRepeatedValues="false" x="69" y="119" width="360" height="80" uuid="7506aacb-058c-4f18-bdf1-c5d827a79357"/>
+				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+					<datasetRun subDataset="family history" uuid="c38653bb-7daf-4ead-8ca0-701f05580769">
+						<datasetParameter name="startDate1">
+							<datasetParameterExpression><![CDATA[$P{startDate}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="endDate1">
+							<datasetParameterExpression><![CDATA[$P{endDate}]]></datasetParameterExpression>
+						</datasetParameter>
+						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					</datasetRun>
+					<jr:column width="189" uuid="59804435-60c1-43a0-852a-b37e38066017">
+						<jr:columnHeader style="table" height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="52" y="0" width="90" height="30" uuid="7dcba8d5-01a4-417b-bcff-5867c190d616"/>
+								<text><![CDATA[Family History]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table 1_TD" height="20" rowSpan="1">
+							<textField isBlankWhenNull="true">
+								<reportElement isPrintRepeatedValues="false" x="52" y="0" width="90" height="20" isRemoveLineWhenBlank="true" uuid="2a9b1e57-159a-4e54-a1bc-286e9ffee5da"/>
+								<textFieldExpression><![CDATA[$F{lhr_family_history_icd10_description}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="169" uuid="3dbf7a19-0dc8-4247-807a-bd1998588e5b">
+						<jr:columnHeader style="table" height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="23" y="0" width="131" height="30" uuid="8ab44d19-471b-42d1-b806-e59d9dd64e64"/>
+								<text><![CDATA[No of Family History]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table 1_TD" height="20" rowSpan="1">
+							<textField isBlankWhenNull="true">
+								<reportElement x="40" y="0" width="90" height="20" isRemoveLineWhenBlank="true" uuid="2df93331-ec3d-4bb1-8e28-ea0bf11e05b4"/>
+								<textFieldExpression><![CDATA[$V{NoOfFam_COUNT}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+				</jr:table>
+			</componentElement>
+		</band>
+	</summary>
+</jasperReport>

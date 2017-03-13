@@ -1,0 +1,274 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="laporanKosPerubatan" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="12af91db-d025-47d9-8f73-a538292bea36">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="table">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TH" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_CH" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_TH" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_CH" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<subDataset name="koslaporan" uuid="fbcc25e4-188e-43c4-807d-67487539b569">
+		<queryString language="SQL">
+			<![CDATA[SELECT
+     pms_patient_biodata.`PMI_NO` AS pms_patient_biodata_PMI_NO,
+     pms_patient_biodata.`NEW_IC_NO` AS pms_patient_biodata_NEW_IC_NO,
+     pms_patient_biodata.`ID_NO` AS pms_patient_biodata_ID_NO,
+     pms_patient_biodata.`OLD_IC_NO` AS pms_patient_biodata_OLD_IC_NO,
+     far_customer_ledger.`customer_id` AS far_customer_ledger_customer_id,
+     far_customer_ledger.`txn_date` AS far_customer_ledger_txn_date,
+     far_customer_ledger.`bill_amt` AS far_customer_ledger_bill_amt,
+     far_customer_ledger.`bill_desc` AS far_customer_ledger_bill_desc
+FROM
+     `far_customer_ledger` far_customer_ledger INNER JOIN `pms_patient_biodata` pms_patient_biodata ON far_customer_ledger.`customer_id` = pms_patient_biodata.`PMI_NO`]]>
+		</queryString>
+		<field name="far_customer_ledger_txn_date" class="java.sql.Timestamp"/>
+		<field name="far_customer_ledger_bill_desc" class="java.lang.String"/>
+		<field name="pms_patient_biodata_NEW_IC_NO" class="java.lang.String"/>
+		<field name="pms_patient_biodata_ID_NO" class="java.lang.String"/>
+		<field name="far_customer_ledger_bill_amt" class="java.math.BigDecimal"/>
+		<variable name="kosSUMM" class="java.math.BigDecimal" calculation="Sum">
+			<variableExpression><![CDATA[$F{far_customer_ledger_bill_amt}]]></variableExpression>
+			<initialValueExpression><![CDATA[0]]></initialValueExpression>
+		</variable>
+	</subDataset>
+	<parameter name="startDate" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="endDate" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     pms_patient_biodata.`PMI_NO` AS pms_patient_biodata_PMI_NO,
+     pms_patient_biodata.`NEW_IC_NO` AS pms_patient_biodata_NEW_IC_NO,
+     pms_patient_biodata.`ID_NO` AS pms_patient_biodata_ID_NO,
+     pms_patient_biodata.`OLD_IC_NO` AS pms_patient_biodata_OLD_IC_NO,
+     far_customer_ledger.`customer_id` AS far_customer_ledger_customer_id,
+     far_customer_ledger.`txn_date` AS far_customer_ledger_txn_date,
+     far_customer_ledger.`bill_amt` AS far_customer_ledger_bill_amt,
+     far_customer_ledger.`bill_desc` AS far_customer_ledger_bill_desc
+FROM
+     `far_customer_ledger` far_customer_ledger INNER JOIN `pms_patient_biodata` pms_patient_biodata ON far_customer_ledger.`customer_id` = pms_patient_biodata.`PMI_NO`
+WHERE
+     far_customer_ledger.`txn_date` BETWEEN $P{startDate} AND $P{endDate}]]>
+	</queryString>
+	<field name="pms_patient_biodata_PMI_NO" class="java.lang.String"/>
+	<field name="pms_patient_biodata_NEW_IC_NO" class="java.lang.String"/>
+	<field name="pms_patient_biodata_ID_NO" class="java.lang.String"/>
+	<field name="pms_patient_biodata_OLD_IC_NO" class="java.lang.String"/>
+	<field name="far_customer_ledger_customer_id" class="java.lang.String"/>
+	<field name="far_customer_ledger_txn_date" class="java.sql.Timestamp"/>
+	<field name="far_customer_ledger_bill_amt" class="java.math.BigDecimal"/>
+	<field name="far_customer_ledger_bill_desc" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band splitType="Stretch"/>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="633" splitType="Stretch">
+			<staticText>
+				<reportElement x="190" y="119" width="175" height="20" uuid="195f6d6f-5ff9-4e60-87b4-973852f343ac"/>
+				<text><![CDATA[LAPORAN KOS PERUBATAN]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="89" y="152" width="32" height="20" uuid="8570f769-dbc8-42c7-be36-e0cc73571c35"/>
+				<text><![CDATA[Start: ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="194" y="152" width="20" height="20" uuid="c1cda873-10d8-4955-8e1d-1bcc471a795c"/>
+				<text><![CDATA[To:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="121" y="152" width="73" height="20" uuid="ccf7dd1c-39e4-47d3-8dbe-d473a5cbfa63"/>
+				<textFieldExpression><![CDATA[$P{startDate}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="214" y="152" width="100" height="20" uuid="713e90dc-07bf-4d07-8f64-f2537f85ff93"/>
+				<textFieldExpression><![CDATA[$P{endDate}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="418" y="152" width="100" height="20" uuid="7371dfc0-8ecc-4c94-9b54-3af0dcdfd0ad"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<componentElement>
+				<reportElement key="table 1" style="table 1" positionType="Float" x="0" y="195" width="555" height="80" uuid="644281f3-6c6e-42a4-83a2-064b00146711"/>
+				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+					<datasetRun subDataset="koslaporan" uuid="99dfa941-169d-4047-81f3-756c0eb817e2">
+						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					</datasetRun>
+					<jr:column width="25" uuid="953bae53-4641-4f6d-a3e9-d1c044b84b0a">
+						<jr:columnHeader style="table_TH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="25" height="30" uuid="fc1e7728-fbe0-4d91-9657-d2368d328820"/>
+								<text><![CDATA[No.]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table_TD" height="39" rowSpan="1">
+							<textField isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="25" height="20" uuid="7dad4927-ed83-4f63-8b77-1680dca33bc4"/>
+								<textElement>
+									<font size="10"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$V{COLUMN_COUNT}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="66" uuid="6a7597c1-9ecc-41d6-81ba-a61efea8728e">
+						<jr:columnHeader style="table_TH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="64" height="30" uuid="c6a1d888-1b95-488e-97d3-4bfe390a8991"/>
+								<text><![CDATA[Tarikh/ Masa]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table 1_TD" height="39" rowSpan="1">
+							<textField isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="64" height="39" uuid="2811ccae-6e69-4e3d-96c6-5ccb357d30d7"/>
+								<textElement>
+									<font size="10"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{far_customer_ledger_txn_date}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="219" uuid="e103f977-7093-4de2-9c31-deae0b5dce29">
+						<jr:columnHeader style="table_TH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="90" height="30" uuid="dffc1306-a91d-4f79-a853-1f35e17c9d37"/>
+								<text><![CDATA[Nama]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table 1_TD" height="39" rowSpan="1">
+							<textField isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="219" height="20" uuid="3992a628-ab58-47a9-88af-7e894a9366d2"/>
+								<textElement>
+									<font size="10"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{far_customer_ledger_bill_desc}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="008ad188-00e0-4d99-baeb-83f862d8eb08">
+						<jr:columnHeader style="table_TH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="90" height="30" uuid="cd6d6de9-afa8-4996-8fd0-13faa350af49"/>
+								<text><![CDATA[No. K.P]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table 1_TD" height="39" rowSpan="1">
+							<textField isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="90" height="20" uuid="5ba2eff6-6c44-477e-b1f2-8df8735268ee"/>
+								<textElement>
+									<font size="10" isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{pms_patient_biodata_NEW_IC_NO}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="85" uuid="755f996a-807a-45de-8cab-940c226787c9">
+						<jr:columnHeader style="table_TH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="85" height="30" uuid="be5f5665-aa23-4fbf-83ca-85b33a112380"/>
+								<text><![CDATA[Matrik No/Staff No]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:columnFooter height="30">
+							<staticText>
+								<reportElement x="0" y="0" width="85" height="20" uuid="d6edf4ec-4efc-4b62-ba9f-12671c7d6ef0"/>
+								<text><![CDATA[Total Amount]]></text>
+							</staticText>
+						</jr:columnFooter>
+						<jr:detailCell style="table 1_TD" height="39" rowSpan="1">
+							<textField isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="85" height="20" uuid="5249a108-bffb-4544-b749-e6cfcff65e55"/>
+								<textElement>
+									<font size="10"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{pms_patient_biodata_ID_NO}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="51" uuid="4f6466ff-6b09-40c9-b4cd-aff49d8b1022">
+						<jr:columnHeader style="table_TH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="51" height="30" uuid="37fd088b-8790-458b-9edd-296b825379c8"/>
+								<text><![CDATA[Kos Perubatan]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:columnFooter style="table 1" height="30" rowSpan="1">
+							<textField>
+								<reportElement x="0" y="0" width="51" height="30" uuid="370b97fb-a95f-466c-8eba-dc058de1cdda"/>
+								<textFieldExpression><![CDATA[$V{kosSUMM}]]></textFieldExpression>
+							</textField>
+						</jr:columnFooter>
+						<jr:detailCell style="table 1_TD" height="39" rowSpan="1">
+							<textField isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="51" height="20" uuid="af4608ee-838a-4c1b-a507-a37540df6f80"/>
+								<textElement>
+									<font size="10"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{far_customer_ledger_bill_amt}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+				</jr:table>
+			</componentElement>
+			<image>
+				<reportElement x="152" y="0" width="337" height="119" uuid="fe84d6bd-e5d5-46d9-9eb9-bd073d1bbd11"/>
+				<imageExpression><![CDATA["C:\\Users\\user\\Desktop\\Mimi\\Reports\\iHIS_Report\\web\\reports\\LogoUTeM-2016.jpg"]]></imageExpression>
+			</image>
+		</band>
+	</summary>
+</jasperReport>

@@ -1,0 +1,37 @@
+maintainWard.jsp
+InpatientRegistrationMain.jsp
+WardOccupancyMain.jsp
+PatientTransfer.jsp
+
+
+
+1. Copy assets files and put inside folder ihis
+2. edit top-menus
+3. edit sidebar
+
+
+
+
+1. Open views files
+2. replace header path from "libraries/header.html" to "../assets/header.html" using jsp includes "<%@include file = "../assets/header.html" %>"
+2.1. make sure these css file is not on the page:
+<link href="assets/css/bootstrap.min.css" rel="stylesheet">
+<link href="assets/css/style.css" rel="stylesheet">
+<link rel="stylesheet" href="assets/font-awesome/css/font-awesome.min.css">
+<!-- Custom styles for this template -->
+<link href="assets/css/dashboard.css" rel="stylesheet">
+<link href="assets/css/Line-tabs.css" rel="stylesheet">
+
+3. move "menu top" below  <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main" style="background: #f2f4f8;">
+4. remove col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 inside <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main" style="background: #f2f4f8;">. left with <div class="main" style="background: #f2f4f8;">
+5. 
+
+
+top-menus change
+1. in <nav> class, change from "navbar-fixed-top" to "navbar-static-top" and remove the inline-style 'style="background: #F9F8F6; border-bottom: 1px solid #ccc;"'
+2. remove <div> class navbar-header col-md-2 with all the contents.
+
+
+Sidebar
+1. Copy and Paste logo and profile sidebar code from ui-standard/libraries/sideMenus.html to sidemenus.html/jsp below <div class="sidebar">
+2. Follow how menu with sub menu and without submenu works in the ui-standard/libraries/sideMenus.html
