@@ -170,11 +170,9 @@
     <script src="http://www.w3schools.com/lib/w3data.js"></script>
  
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-<!--Latest compiled JavaScript--> 
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<script src="../assets/jquery.PrintArea.js"></script>
-
-    <script src="../assets/js/bootbox.min.js"></script> 
+    <!--Latest compiled JavaScript--> 
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="../assets/jquery.PrintArea.js"></script>
     
       <script>
         w3IncludeHTML();
@@ -299,7 +297,7 @@
             
             function TextFiledchanges() {
                 getDateNow();
-                bootbox.alert(yyyyMMddHHmmss +" "+HHmmss+" "+yyyyMMdd+" "+ddMMyyyy);
+//                bootbox.alert(yyyyMMddHHmmss +" "+HHmmss+" "+yyyyMMdd+" "+ddMMyyyy);
                 console.log("Changed");
                    
                    var userIC;

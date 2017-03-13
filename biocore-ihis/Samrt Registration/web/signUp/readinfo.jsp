@@ -141,6 +141,8 @@
         <link rel="stylesheet" href="/resources/demos/style.css">
         <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
         <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <script src="../assets/js/bootbox.min.js"></script>
       <script>
         w3IncludeHTML();
 //       $(document).ready( function(){
@@ -179,40 +181,40 @@
 //                    var reN = /[0-9]/, reSA = /[a-z]/,reCA = /[A-Z]/;
         
                     if (useric === "") {
-                        alert("Fill in the User IC");
+                        bootbox.alert("Fill in the User IC");
                         $("#inputUserIC").focus();
                     }else if (userid === "") {
-                        alert("Fill in the User ID");
+                        bootbox.alert("Fill in the User ID");
                         $("#inputUserID").focus();
                     }else if (username === "") {
-                        alert("Fill in the User Name");
+                        bootbox.alert("Fill in the User Name");
                         $("#inputUserName").focus();
                     }else if (containsNumber(username)) {
-                        alert("UnValic Name, Contain Numbers");
+                        bootbox.alert("UnValic Name, Contain Numbers");
                         $("#inputUserName").focus();
                     }else if (!$("input[name='gender']:checked").val()) {
-                        alert("Select Gender");
+                        bootbox.alert("Select Gender");
                         $("input[name='gender']").focus();
                     }else if (usernationality === null) {
-                        alert("Select Nationality");
+                        bootbox.alert("Select Nationality");
                         $("#Usernational").focus();
                     }else if (useroccupation === "") {
-                        alert("Fill in user Occupation");
+                        bootbox.alert("Fill in user Occupation");
                         $("#inpuOccupation").focus();
                     }else if (useremail === "") {
-                        alert("Fill in user Email");
+                        bootbox.alert("Fill in user Email");
                         $("#inputUserEmail").focus();
                         $("#inputUserEmail").css("color", "red");
                     }else if (!validateEmail(useremail)) {
-                        alert("Uncorrect Email input");
+                        bootbox.alert("Uncorrect Email input");
                         $("#inputUserEmail").focus();
                     }else if (userphoneno.length < 10 ) {
-                        alert("Phone Number Is Not Complete at least 10 numbers");
+                        bootbox.alert("Phone Number Is Not Complete at least 10 numbers");
                     }else if (!$.isNumeric(userphoneno)) {
-                        alert("Not A Phone Number");
+                        bootbox.alert("Not A Phone Number");
                         $("#inputUserPhoneNo").focus();
                     }else if (userpassword === "") {
-                        alert("Fill in the User Password");
+                        bootbox.alert("Fill in the User Password");
                         $("#inputUserPassword").focus();
                     }else if (validPassword(userpassword)) {
                       
@@ -257,7 +259,7 @@
                                 //var num = parseInt(data);
                                 if (data.search("Existed") >= 0)
                                 {
-                                    alert("Record Already Existed");
+                                    bootbox.alert("Record Already Existed");
                                 } else {
                                     loginInser(loginData);
                                 }
@@ -307,25 +309,25 @@
                  {
                     var re = /[0-9]/; //contain no number
                     if(!re.test(password)) {
-                      alert("Error: password must contain at least one number (0-9)!");
+                      bootbox.alert("Error: password must contain at least one number (0-9)!");
                       $("#inputUserPassword").focus();
                       return false;
                     }
                     re = /[a-z]/;   //contain no small alphbet 
                     if(!re.test(password)) {
-                      alert("Error: password must contain at least one lowercase letter (a-z)!");
+                      bootbox.alert("Error: password must contain at least one lowercase letter (a-z)!");
                       $("#inputUserPassword").focus();
                       return false;
                     }
 //                    re = /[A-Z]/;   //contain no capital alphbet 
 //                    if(!re.test(password)) {
-//                      alert("Error: password must contain at least one uppercase letter (A-Z)!");
+//                      bootbox.alert("Error: password must contain at least one uppercase letter (A-Z)!");
 //                      $("#inputUserPassword").focus();
 //                      return false;
 //                    } 
 //                    
 //                    if(password.length <8) {
-//                      alert("Error: password must contain at least 8 Charachters!");
+//                      bootbox.alert("Error: password must contain at least 8 Charachters!");
 //                      $("#inputUserPassword").focus();
 //                      return false;
 //                    } 

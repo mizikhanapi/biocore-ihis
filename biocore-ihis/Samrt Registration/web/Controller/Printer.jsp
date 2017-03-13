@@ -173,9 +173,9 @@ public class DirectPrint implements Printable {
 %>
 
         <%
-            DirectPrint directPrint = new DirectPrint();
+//            DirectPrint directPrint = new DirectPrint();
 //            directPrint.printString("E00000000 \n ooo"); 
 //            directPrint.printString("1rrrrrr");
-             directPrint.printString("        Biocore Lab"+"\n           Your no: "+"\n    "+3+"\n       Current no :"+2+"\n   Data:"+"12-10-22"+" Time:"+"10:50:30");
+//             directPrint.printString("        Biocore Lab"+"\n           Your no: "+"\n    "+3+"\n       Current no :"+2+"\n   Data:"+"12-10-22"+" Time:"+"10:50:30");
         %>
  

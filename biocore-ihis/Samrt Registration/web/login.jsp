@@ -58,7 +58,9 @@
     <div w3-include-html="libraries/script.html"></div>
 
     <script src="http://www.w3schools.com/lib/w3data.js"></script>
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="assets/js/bootbox.min.js"></script>
       <script>
         w3IncludeHTML();
        $(document).ready(function () {
@@ -70,7 +72,7 @@
         {
             if (e.keyCode === 13)
             {
-                //alert('enter pressed');
+                //bootbox.alert('enter pressed');
                 login();
                 //put button.click() here
             }
@@ -87,10 +89,10 @@
                 var password = $("#inputPassword").val();
 
                 if (userIC === "") {
-                    alert("Fill in the User IC");
+                    bootbox.alert("Fill in the User IC");
                     $("#inputUserIC").focus();
                 } else if (password === "") {
-                    alert("Fill in the password");
+                    bootbox.alert("Fill in the password");
                     $("#inputPassword").focus();
                 } else {
 
@@ -109,15 +111,15 @@
                             if (num === 2)
                                 window.location = "mainMenu.jsp";
                             else if (num === 1)
-                                alert("Wrong password");
+                                bootbox.alert("Wrong password");
                             else if (num === 0)
-                                alert("User IC does not exist");
+                                bootbox.alert("User IC does not exist");
                             else
-                                alert("Error");
+                                bootbox.alert("Error");
                         },
                         error: function (err) {
                             console.log(err);
-                            alert("error :" + err.toString());
+                            bootbox.alert("error :" + err.toString());
                         }
 
                     });
