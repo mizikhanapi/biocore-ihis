@@ -12,12 +12,12 @@
 
 <%
 
-    String id = request.getParameter("iditem");
+    String id = request.getParameter("idbed");
 
     RMIConnector rmic = new RMIConnector();
     Conn conn = new Conn();
     
-    String sql = "DELETE FROM wis_bed_id WHERE ward_class_code = '" + id + "' ";
+    String sql = "DELETE FROM wis_bed_id WHERE bed_id = '" + id + "' ";
 
     boolean status = rmic.setQuerySQL(conn.HOST, conn.PORT, sql);
 

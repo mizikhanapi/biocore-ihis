@@ -27,7 +27,7 @@
 .tabbable-line > .nav-tabs > li.open > a, .tabbable-line > .nav-tabs > li:hover > a {
   border: 0;
   background: none !important;
-  color: #2196F3;
+  color: #2DA3FB;
   transition: .35s ease-in-out; */
 }
 .tabbable-line > .nav-tabs > li.open > a > i, .tabbable-line > .nav-tabs > li:hover > a > i {
@@ -41,7 +41,7 @@
 }
 .tabbable-line > .nav-tabs > li.active > a {
   border: 0;
-  color: #2196F3;
+  color: #2DA3FB;
 }
 .tabbable-line > .nav-tabs > li.active > a > i {
   color: #404040;

@@ -18,7 +18,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal"><i class="fa fa-times fa-lg"></i></button>
-                <h3 class="modal-title" id="lineModalLabel">Add Supplier</h3>
+                <h2 class="modal-title" id="lineModalLabel" align="center">Add Supplier</h2>
             </div>
             <div class="modal-body">
 
@@ -29,7 +29,7 @@
 
                             <!-- Text input-->
                             <div class="form-group">
-                                <label class="col-md-4 control-label" for="textinput">Supplier ID:</label>
+                                <label class="col-md-4 control-label" for="textinput">Supplier ID &nbsp; *</label>
                                 <div class="col-md-8">
                                     <input id="addSupplier_ID" type="text" class="form-control" placeholder="Supplier ID" maxlength="10">
                                 </div>
@@ -37,7 +37,7 @@
 
                             <!-- Text input-->
                             <div class="form-group">
-                                <label class="col-md-4 control-label" for="textinput">Supplier Name:</label>
+                                <label class="col-md-4 control-label" for="textinput">Supplier Name &nbsp; *</label>
                                 <div class="col-md-8">
                                     <input id="addSupplier_Name" type="text" class="form-control" placeholder="Supplier Name" maxlength="100" >
                                 </div>
@@ -45,7 +45,7 @@
 
                             <!-- Text input-->
                             <div class="form-group">
-                                <label class="col-md-4 control-label" for="textinput">Office No:</label>
+                                <label class="col-md-4 control-label" for="textinput">Office No &nbsp; *</label>
                                 <div class="col-md-8">
                                     <input id="addOffice_Tel_No" type="text" class="form-control" placeholder="Office No" maxlength="30">
                                 </div>
@@ -53,7 +53,7 @@
 
                             <!-- Text input-->
                             <div class="form-group">
-                                <label class="col-md-4 control-label" for="textinput">Email:</label>
+                                <label class="col-md-4 control-label" for="textinput">Email &nbsp; *</label>
                                 <div class="col-md-8">
                                     <input id="addEmail" type="text" class="form-control" placeholder="Email" maxlength="30">
                                 </div>
@@ -61,7 +61,7 @@
 
                             <!-- Text input-->
                             <div class="form-group">
-                                <label class="col-md-4 control-label" for="textinput">Address 1:</label>
+                                <label class="col-md-4 control-label" for="textinput">Address 1</label>
                                 <div class="col-md-8">
                                     <input id="addADDRESS1" type="text" class="form-control"  placeholder="Address 1 (Optional)" maxlength="100">
                                 </div>
@@ -69,7 +69,7 @@
 
                             <!-- Text input-->
                             <div class="form-group">
-                                <label class="col-md-4 control-label" for="textinput">Address 2:</label>
+                                <label class="col-md-4 control-label" for="textinput">Address 2</label>
                                 <div class="col-md-8">
                                     <input id="addADDRESS2" type="text" class="form-control" placeholder="Address 2 (Optional)" maxlength="100">
                                 </div>
@@ -77,7 +77,7 @@
 
                             <!-- Text input-->
                             <div class="form-group">
-                                <label class="col-md-4 control-label" for="textinput">Address 3:</label>
+                                <label class="col-md-4 control-label" for="textinput">Address 3</label>
                                 <div class="col-md-8">
                                     <input id="addADDRESS3" type="text" class="form-control" placeholder="Address 3 (Optional)" maxlength="100">
                                 </div>
@@ -90,49 +90,49 @@
 
                             <!-- Text input-->
                             <div class="form-group">
-                                <label class="col-md-4 control-label" for="textinput">District Code:</label>
+                                <label class="col-md-4 control-label" for="textinput">District Code</label>
                                 <div class="col-md-8">
                                     <input id="addDISTRICT_CODE" type="text" class="form-control" placeholder="District Code (Optional)" maxlength="30">
                                 </div>
                             </div>
 
                             <div class="form-group">
-                                <label class="col-md-4 control-label" for="textinput">Town Code:</label>
+                                <label class="col-md-4 control-label" for="textinput">Town Code</label>
                                 <div class="col-md-8">
                                     <input id="addTOWN_CODE" type="text" class="form-control" placeholder="Town Code (Optional)" maxlength="30">
                                 </div>
                             </div>
 
                             <div class="form-group">
-                                <label class="col-md-4 control-label" for="textinput">Postcode:</label>
+                                <label class="col-md-4 control-label" for="textinput">Postcode</label>
                                 <div class="col-md-8">
                                     <input id="addPOSTCODE" type="text" class="form-control" placeholder="Postcode (Optional)" maxlength="30">
                                 </div>
                             </div>
 
                             <div class="form-group">
-                                <label class="col-md-4 control-label" for="textinput">State Code:</label>
+                                <label class="col-md-4 control-label" for="textinput">State Code</label>
                                 <div class="col-md-8">
                                     <input id="addSTATE_CODE" type="text" class="form-control" placeholder="State Code (Optional)" maxlength="30">
                                 </div>
                             </div>
 
                             <div class="form-group">
-                                <label class="col-md-4 control-label" for="textinput">Country Code:</label>
+                                <label class="col-md-4 control-label" for="textinput">Country Code</label>
                                 <div class="col-md-8">
                                     <input id="addCOUNTRY_CODE" type="text" class="form-control" placeholder="Country Code (Optional)" maxlength="30">
                                 </div>
                             </div>
 
                             <div class="form-group">
-                                <label class="col-md-4 control-label" for="textinput">Mobile No:</label>
+                                <label class="col-md-4 control-label" for="textinput">Mobile No</label>
                                 <div class="col-md-8">
                                     <input id="addMobile_No" type="text" class="form-control" placeholder="Mobile No (Optional)" maxlength="30">
                                 </div>
                             </div>
 
                             <div class="form-group">
-                                <label class="col-md-4 control-label" for="textinput">Fax No:</label>
+                                <label class="col-md-4 control-label" for="textinput">Fax No</label>
                                 <div class="col-md-8">
                                     <input id="addFax_No" type="text" class="form-control" placeholder="Fax No (Optional)" maxlength="30">
                                 </div>
@@ -163,8 +163,6 @@
 
 
 <script>
-
-    w3IncludeHTML();
 
     $(document).ready(function () {
 

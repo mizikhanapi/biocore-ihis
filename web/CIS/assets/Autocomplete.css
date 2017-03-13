@@ -1,4 +1,4 @@
-.ui-autocomplete-input {
+/*.ui-autocomplete-input {
   border: none; 
   font-size: 14px;
   width: 300px;
@@ -9,7 +9,7 @@
   padding-top: 0px !important;
   z-index: 1511;
   position: relative;
-}
+}*/
 .ui-menu .ui-menu-item a {
   font-size: 12px;
 }

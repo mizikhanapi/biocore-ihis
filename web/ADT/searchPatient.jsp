@@ -8,11 +8,10 @@
 <%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
-    String idTYpe = "select * from adm_lookup_detail where master_reference_code = '0012' ";
-    ArrayList<ArrayList<String>> dataIdType;
-    Conn conn = new Conn();
-    dataIdType = conn.getData(idTYpe);
-    String dataSystemStatus = session.getAttribute("SYSTEMSTAT").toString();
+    String idTYpe11 = "select * from adm_lookup_detail where master_reference_code = '0012' ";
+    ArrayList<ArrayList<String>> dataIdType12;
+    dataIdType12 = conn.getData(idTYpe11);
+    String dataSystemStatus14 = session.getAttribute("SYSTEMSTAT").toString();
 %>
 <div class="thumbnail">
     <h4>Search Patient
@@ -30,11 +29,11 @@
                     <option value="icold">IC No (OLD)</option>
                     <!--<option value="matricno">Matric No</option>
                     <option value="staffno">Staff No</option>-->
-                    <%                                if (dataSystemStatus.equals("0")) {
+                    <%                                if (dataSystemStatus14.equals("0")) {
 
-                        } else if (dataSystemStatus.equals("1")) {
-                            for (int i = 0; i < dataIdType.size(); i++) {%>
-                    <option value="<%=dataIdType.get(i).get(1)%>"><%=dataIdType.get(i).get(2)%></option>
+                        } else if (dataSystemStatus14.equals("1")) {
+                            for (int i = 0; i < dataIdType12.size(); i++) {%>
+                    <option value="<%=dataIdType12.get(i).get(1)%>"><%=dataIdType12.get(i).get(2)%></option>
                     <%  }
                         }
 
@@ -57,8 +56,8 @@
         </div>
     </form>
 </div>
-<script src="assets/js/OPMain.js" type="text/javascript"></script>
-<script src="assets/js/onKeyPress.js" type="text/javascript"></script>
+<script src="old/assets/js/IPMain.js" type="text/javascript"></script>
+<script src="old/assets/js/onKeyPress.js" type="text/javascript"></script>
 <script>
     //validate max length of input
         $('#idType').on('change', function (e) {
@@ -127,12 +126,12 @@
 
 
                     //split the data into an array
-                    //var array_data = String(list).split("|");
+                    var array_data = String(list).split("|");
 
                     //function when the value that returned either empty/null or has value.
                     //customize this part only
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////           
-                    //Main(array_data);
+                    Main(array_data);
                     
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////                    
                 },
@@ -167,11 +166,6 @@
     //event on click clear buton
     $('#clearSearch').click(function () {
         $('#myForm2')[0].reset();
-        $('#formPMI')[0].reset();
-        $('#kinform')[0].reset();
-        $('#empform')[0].reset();
-        $('#famForm')[0].reset();
-        $('#formMed')[0].reset();
         $("table tbody").remove();
     });
 </script>

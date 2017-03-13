@@ -18,7 +18,7 @@
                 <form role="form" id="myForm2" method="post">
 
                     <div class="form-group">
-                        <input type="text"  id="BTemp" class="form-control input-lg" placeholder="Body Temperature" tabindex="4" readonly >
+                        <input type="text"  id="BTemp" class="form-control input-lg" placeholder="Body Temperature" tabindex="4"  >
                         <input type="hidden"  id="BTid" class="form-control input-lg" placeholder="Body Temperature" tabindex="4" readonly >
                     </div>
                     <div class="form-group">
@@ -71,8 +71,8 @@
             range: "min",
             value: 1,
             step: 1,
-            min: 36,
-            max: 43,
+            min: 1,
+            max: 100,
             slide: function (event, ui) {
                 $("#BTemp").val(ui.value +" "+ ascii(176) + "C");
             }
@@ -84,6 +84,14 @@
             console.log(value);
             $("#slider").slider("value", parseInt(value));
         });
+        
+        $('#BTemp').on('keyup',function(){
+            var value = $('#BTemp').val();
+            $("#slider").slider("value", parseInt(value));
+        
+        });
+     
+     
 
     })
 </script>

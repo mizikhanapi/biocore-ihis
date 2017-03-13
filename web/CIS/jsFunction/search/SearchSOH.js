@@ -14,6 +14,7 @@
                                 $('#match4').html(dataBack); // Return data (UL list) and insert it in the <div id="match"></div>
                                 $('#matchList li').on('click', function () { // When click on an element in the list
                                     $('#Problem4').val($(this).text()); // Update the field with the new element
+                                    searchSOHCode();
                                     $('#match4').text(''); // Clear the <div id="match"></div>
                                 });
                             },
@@ -44,6 +45,7 @@
                                 $('#match5').html(dataBack); // Return data (UL list) and insert it in the <div id="match"></div>
                                 $('#matchList li').on('click', function () { // When click on an element in the list
                                     $('#PProblem4').val($(this).text()); // Update the field with the new element
+                                    usearchSOHCode()
                                     $('#match5').text(''); // Clear the <div id="match"></div>
                                 });
                             },
@@ -57,3 +59,36 @@
                 });
             });
 //End js search in update social history
+function searchSOHCode(){
+     var id = $('#Problem4').val();
+        $.ajax({
+        type:'post',
+        url:'search/SearchSOH_cd.jsp',
+        data: {'id': id},                
+        success: function(reply_data){
+            var array_data = String(reply_data).split("|");
+            var usohCode = array_data[0];
+            console.log(usohCode);
+           
+            $('#codeSOH').val(usohCode);
+  
+          }
+        });
+}
+
+function usearchSOHCode(){
+     var id = $('#PProblem4').val();
+        $.ajax({
+        type:'post',
+        url:'search/SearchSOH_cd.jsp',
+        data: {'id': id},                
+        success: function(reply_data){
+            var array_data = String(reply_data).split("|");
+            var usohCode = array_data[0];
+            console.log(usohCode);
+           
+            $('#usohCode').val(usohCode);
+  
+          }
+        });
+}

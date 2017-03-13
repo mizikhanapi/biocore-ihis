@@ -3,25 +3,24 @@
 <%@page import="Config.connect"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
-    Conn conn = new Conn();
-    String idType = "select * from adm_lookup_detail where master_reference_code = '0012'   ";
-    String district = "select * from adm_lookup_detail where master_reference_code = '0078'   ";
-    String postcode = "select * from adm_lookup_detail where master_reference_code = '0079'   ";
-    String country = "select * from adm_lookup_detail where master_reference_code = '0001'   ";
-    String town = "select * from adm_lookup_detail where master_reference_code = '0003'   ";
-    String state = "select * from adm_lookup_detail where master_reference_code = '0002'   ";
-    String relation = "select * from adm_lookup_detail where master_reference_code = '0007'  ";
-    String occupation = "select * from adm_lookup_detail where master_reference_code = '0050'";
+    String idType61 = "select * from adm_lookup_detail where master_reference_code = '0012'   ";
+    String district61 = "select * from adm_lookup_detail where master_reference_code = '0078'   ";
+    String postcode61 = "select * from adm_lookup_detail where master_reference_code = '0079'   ";
+    String country61 = "select * from adm_lookup_detail where master_reference_code = '0001'   ";
+    String town61 = "select * from adm_lookup_detail where master_reference_code = '0003'   ";
+    String state61 = "select * from adm_lookup_detail where master_reference_code = '0002'   ";
+    String relation61 = "select * from adm_lookup_detail where master_reference_code = '0007'  ";
+    String occupation61 = "select * from adm_lookup_detail where master_reference_code = '0050'";
 
-    ArrayList<ArrayList<String>> dataIdType, dataDistrict, dataPostcode, dataCountry, dataTown, dataState, dataRelation, dataOccu;
-    dataIdType = conn.getData(idType);
-    dataDistrict = conn.getData(district);
-    dataPostcode = conn.getData(postcode);
-    dataCountry = conn.getData(country);
-    dataTown = conn.getData(town);
-    dataState = conn.getData(state);
-    dataRelation = conn.getData(relation);
-    dataOccu = conn.getData(occupation);
+    ArrayList<ArrayList<String>> dataIdType61, dataDistrict61, dataPostcode61, dataCountry61, dataTown61, dataState61, dataRelation61, dataOccu61;
+    dataIdType61 = conn.getData(idType61);
+    dataDistrict61 = conn.getData(district61);
+    dataPostcode61 = conn.getData(postcode61);
+    dataCountry61 = conn.getData(country61);
+    dataTown61 = conn.getData(town61);
+    dataState61 = conn.getData(state61);
+    dataRelation61 = conn.getData(relation61);
+    dataOccu61 = conn.getData(occupation61);
 %>
 <!-- Modal -->
 <div class="modal fade" id="KINModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
@@ -57,8 +56,8 @@
                                             <option value="null" selected="" disabled="">Select Relationship</option>
                                             <option value="-">-</option>
 
-                                            <%                                        for (int i = 0; i < dataRelation.size(); i++) {%>
-                                            <option value="<%=dataRelation.get(i).get(1)%>"><%=dataRelation.get(i).get(2)%></option>
+                                            <%                                        for (int i = 0; i < dataRelation61.size(); i++) {%>
+                                            <option value="<%=dataRelation61.get(i).get(1)%>"><%=dataRelation61.get(i).get(2)%></option>
                                             <%  }
                                             %>
                                         </select>
@@ -83,8 +82,8 @@
                                             <option value="-">-</option>
 
                                             <%
-                                                for (int i = 0; i < dataIdType.size(); i++) {%>
-                                            <option value="<%=dataIdType.get(i).get(2)%>"><%=dataIdType.get(i).get(2)%></option>
+                                                for (int i = 0; i < dataIdType61.size(); i++) {%>
+                                            <option value="<%=dataIdType61.get(i).get(2)%>"><%=dataIdType61.get(i).get(2)%></option>
                                             <%  }
                                             %>
                                         </select>
@@ -151,8 +150,8 @@
                                         <select id="KINoccu" name="KINoccu" class="form-control">
                                             <option selected="" disabled="">Please select Occupation</option>
                                             <option value="-">-</option>
-                                            <% for (int i = 0; i < dataOccu.size(); i++) {%>
-                                            <option value="<%=dataOccu.get(i).get(1)%>"><%=dataOccu.get(i).get(2)%></option>
+                                            <% for (int i = 0; i < dataOccu61.size(); i++) {%>
+                                            <option value="<%=dataOccu61.get(i).get(1)%>"><%=dataOccu61.get(i).get(2)%></option>
                                             <%  }
                                             %>
                                         </select>
@@ -188,8 +187,8 @@
                                             <option value="null" selected="" disabled="">Select District</option>
                                             <option value="-">-</option>
                                             <%
-                                                for (int i = 0; i < dataDistrict.size(); i++) {%>
-                                            <option value="<%=dataDistrict.get(i).get(2)%>"><%=dataDistrict.get(i).get(2)%></option>
+                                                for (int i = 0; i < dataDistrict61.size(); i++) {%>
+                                            <option value="<%=dataDistrict61.get(i).get(2)%>"><%=dataDistrict61.get(i).get(2)%></option>
                                             <%  }
                                             %>
                                         </select>
@@ -203,8 +202,8 @@
                                             <option value="null" selected="" disabled="">Select Postcode</option>
                                             <option value="-">-</option>
                                             <%
-                                                for (int i = 0; i < dataPostcode.size(); i++) {%>
-                                            <option value="<%=dataPostcode.get(i).get(2)%>"><%=dataPostcode.get(i).get(2)%></option>
+                                                for (int i = 0; i < dataPostcode61.size(); i++) {%>
+                                            <option value="<%=dataPostcode61.get(i).get(2)%>"><%=dataPostcode61.get(i).get(2)%></option>
                                             <%  }
                                             %>
                                         </select>
@@ -219,8 +218,8 @@
                                             <option value="null" selected="" disabled="">Select Country</option>
                                             <option value="-">-</option>
                                             <%
-                                                for (int i = 0; i < dataCountry.size(); i++) {%>
-                                            <option value="<%=dataCountry.get(i).get(2)%>"><%=dataCountry.get(i).get(2)%></option>
+                                                for (int i = 0; i < dataCountry61.size(); i++) {%>
+                                            <option value="<%=dataCountry61.get(i).get(2)%>"><%=dataCountry61.get(i).get(2)%></option>
                                             <%  }
                                             %>
                                         </select>
@@ -236,8 +235,8 @@
                                             <option value="null" selected="" disabled="">Select Town</option>
                                             <option value="-">-</option>
                                             <%
-                                                for (int i = 0; i < dataTown.size(); i++) {%>
-                                            <option value="<%=dataTown.get(i).get(2)%>"><%=dataTown.get(i).get(2)%></option>
+                                                for (int i = 0; i < dataTown61.size(); i++) {%>
+                                            <option value="<%=dataTown61.get(i).get(2)%>"><%=dataTown61.get(i).get(2)%></option>
                                             <%  }
                                             %>
                                         </select>
@@ -252,8 +251,8 @@
                                             <option value="null" selected="" disabled="">Select State</option>
                                             <option value="-">-</option>
                                             <%
-                                                for (int i = 0; i < dataState.size(); i++) {%>
-                                            <option value="<%=dataState.get(i).get(2)%>"><%=dataState.get(i).get(2)%></option>
+                                                for (int i = 0; i < dataState61.size(); i++) {%>
+                                            <option value="<%=dataState61.get(i).get(2)%>"><%=dataState61.get(i).get(2)%></option>
                                             <%  }
                                             %>
                                         </select>

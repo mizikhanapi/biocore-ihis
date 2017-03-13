@@ -16,16 +16,7 @@
 
 %>
 
-<%    Conn conn = new Conn();
-
-%>
-
-
-
-
 <table id="OccuTable"  class="table table-striped table-bordered" cellspacing="0" width="100%">
-
-
     <thead>
 
 
@@ -38,51 +29,28 @@
     <th>Discharge</th>
 
 </thead>
+
 <tbody>
-
-    <%        String sqlTransfer = "SELECT * FROM wis_inpatient_episode";
-        ArrayList<ArrayList<String>> dataTransfer = conn.getData(sqlTransfer);
-
-        int size = dataTransfer.size();
-        for (int i = 0; i < size; i++) {
-    %>
-
-
-    <tr>
-
-<input id="dataTransferhidden" type="hidden" value="<%=String.join("|", dataTransfer.get(i))%>">
-<td><%= dataTransfer.get(i).get(0)%></td>
-<td><%= dataTransfer.get(i).get(1)%></td>
-<td><%= dataTransfer.get(i).get(2)%></td>
-<td><%= dataTransfer.get(i).get(3)%></td>
-<td><%= dataTransfer.get(i).get(4)%></td>
-
-
-<td>
-    <!-- Update Part Start -->
-    <a href="PatientTransfer.jsp" ><i class="fa fa-exchange" aria-hidden="true" style="display: inline-block;color: #337ab7;"></i></a>
-    <!-- Update Part End -->
+<td><input id="pid" name="pid" type="text" placeholder="Ward"  readonly class="form-control input-md"></td>
+<td><input id="pid" name="pid" type="text" placeholder="Bed"  readonly class="form-control input-md"></td>
+<td><input id="pname" name="pid" type="text" placeholder="Patient Name"  readonly class="form-control input-md"></td>
+<td><input id="pidno" name="pid" type="text" placeholder="Patient ID"  readonly class="form-control input-md"></td>
+<td> <input id="pid" name="pid" type="text" placeholder="Sponsor"  readonly class="form-control input-md"></td>
+<td>  
+    <a id="Occu_transfer" data-toggle="modal" data-target="#TransferModal"><i class="fa fa-pencil-square-o" aria-hidden="true" style="display: inline-block;color: #337ab7;"></i></a>
 </td>
 <td>
-    <!-- Delete Button Start -->
-    <a id="MWID_delete" class="testing"><i class="fa fa-times" aria-hidden="true" style="display: inline-block;color: #d9534f;" ></i></a>
-    <!-- Delete Button End -->
-</td>
-</tr>
-<%
-    }
+        <a id="Occu_delete" class="testing"><i class="fa fa-times" aria-hidden="true" style="display: inline-block;color: #d9534f;" ></i></a>
 
-%>
+</td>
+
 </tbody>
 </table>
 
 
 
-<tr>
-
-
     <!-- Modal Update -->
-<div class="modal fade" id="Patient_Transfer" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+<div class="modal fade" id="TransferModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content" style="width: 175%">
             <div class="modal-header">
@@ -145,7 +113,7 @@
                             <div class="form-group">
                                 <label class="col-md-4 control-label" for="textinput">Bed no</label>
                                 <div class="col-md-4">
-                                    <input id="Bed" name="age" type="text" readonly placeholder="" class="form-control input-md">
+                                    <input id="Bed" name="Bed" type="text" readonly placeholder="" class="form-control input-md">
                                 </div>
                             </div>
                         </div>
@@ -176,7 +144,7 @@
                             <div class="form-group">
                                 <label class="col-md-4 control-label" for="textinput">Admission Date</label>
                                 <div class="col-md-4">
-                                    <input id="AdmissionType" name="AdmissionType" type="text" readonly placeholder="" class="form-control input-md">
+                                    <input id="AdmissionDate" name="AdmissionDate" type="text" readonly placeholder="AdmissionDate" class="form-control input-md">
                                 </div>
                             </div>
 
@@ -184,7 +152,7 @@
                             <div class="form-group">
                                 <label class="col-md-4 control-label" for="textinput">Treating Consultant</label>
                                 <div class="col-md-4">
-                                    <input id="Consultant" name="Consultant" type="text" readonly placeholder="" class="form-control input-md">
+                                    <input id="Consultant" name="Consultant" type="text" readonly placeholder="Consultant" class="form-control input-md">
                                 </div>
                             </div>
 
@@ -221,14 +189,14 @@
                                         <option value="" selected="" disabled="">List of Discipline</option>
 
 
-                                        <%                                            String sql2 = "SELECT  discipline_cd FROM adm_hfc_discipline";
-                                            ArrayList<ArrayList<String>> dataDiscipline = conn.getData(sql2);
+                                        <%                                            String sql222 = "SELECT  discipline_cd FROM adm_hfc_discipline";
+                                            ArrayList<ArrayList<String>> dataDiscipline222 = conn.getData(sql222);
 
-                                            int size3 = dataDiscipline.size();
+                                            int size3 = dataDiscipline222.size();
 
                                             for (int i = 0; i < size3; i++) {
                                         %>
-                                        <option value="<%= dataDiscipline.get(i).get(0)%>"><%= dataDiscipline.get(i).get(0)%> </option>
+                                        <option value="<%= dataDiscipline222.get(i).get(0)%>"><%= dataDiscipline222.get(i).get(0)%> </option>
                                         <%
                                             }
                                         %>
@@ -246,13 +214,13 @@
 
                                         <%
                                             String sqlWname = "SELECT  ward_name  FROM wis_ward_name";
-                                            ArrayList<ArrayList<String>> dataWname = conn.getData(sqlWname);
+                                            ArrayList<ArrayList<String>> dataWname245 = conn.getData(sqlWname);
 
-                                            int size4 = dataWname.size();
+                                            int size4 = dataWname245.size();
 
                                             for (int i = 0; i < size4; i++) {
                                         %>
-                                        <option value="<%= dataWname.get(i).get(0)%>"><%= dataWname.get(i).get(0)%> </option>
+                                        <option value="<%= dataWname245.get(i).get(0)%>"><%= dataWname245.get(i).get(0)%> </option>
                                         <%
                                             }
                                         %>
@@ -293,12 +261,18 @@
                                 </div>
                             </div>   
 
-
+                            <!-- Text input-->
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" for="textinput">Transfer Reason</label>
+                                <div class="col-md-4">
+                                    <input id="TransferReason" name="TransferReason" type="text" readonly placeholder="" class="form-control input-md">
+                                </div>
+                            </div>
                             <!-- Select Basic -->
                             <div class="form-group">
                                 <label class="col-md-4 control-label" for="selectbasic">Bed ID</label>
                                 <div class="col-md-4">
-                                    <select id="BedID" name="Dis" class="form-control">
+                                    <select id="BedIDReg" name="Dis" class="form-control">
                                         <option value="" selected="" disabled="">Locate selected bed here..</option>
                                         <%
                                             String sqlBed = "SELECT  bed_id FROM wis_bed_id";
@@ -318,16 +292,20 @@
                             </div>
 
 
-                            <!-- Text input-->
-                            <div class="form-group">
-                                <label class="col-md-4 control-label" for="textinput">Transfer Reason</label>
-                                <div class="col-md-4">
-                                    <input id="TransferReason" name="TransferReason" type="text" readonly placeholder="" class="form-control input-md">
-                                </div>
-                            </div>
+
 
                         </div>
                     </div>
+                    <!-- List of Bed -->
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <div>
+                                <%@include file = "bed.jsp" %>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- List of Bed -->
+
                 </form>
             </div>
             <div class="modal-footer">
@@ -351,11 +329,10 @@
 
     $(document).ready(function () {
 
-$("#transfer").load("PatientTransfer.jsp");
 
 
         //function to edit facility type from table
-        $('#WardOccupancyTable').off('click', '#OccuTable #transfer').on('click', '#OccuTable #transfer', function (e) {
+        $('#WardOccupancyTable').off('click', '#OccuTable #Occu_transfer').on('click', '#OccuTable #Occu_transfer', function (e) {
             e.preventDefault();
             //go to the top
 
@@ -418,7 +395,7 @@ $("#transfer").load("PatientTransfer.jsp");
                     WardType: WardType,
                     BedID: BedID,
                     TransferReason: TransferReason
-                    
+
                 };
                 $.ajax({
                     url: "transferPatient.jsp",

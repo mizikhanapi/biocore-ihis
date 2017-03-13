@@ -1,30 +1,40 @@
-<nav class="navbar navbar-fixed-top" style="background: #F9F8F6; border-bottom: 1px solid #ccc;">
+<nav class="navbar navbar-static-top">
     <div class="container-fluid">
         <div class="row">
-            <div class="navbar-header col-md-2" style="border-right: 1px solid #ccc;">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="#"> Welcome eMedica</a>
-            </div>
+
 
             <div id="navbar" class="navbar-collapse collapse">
-                <ul class="nav navbar-nav navbar-left" style="margin-left: 20px;">
+                <ul class="nav navbar-nav navbar-left back" style="">
+                    <li><a href="../Entrance/dashboard.jsp" title="Back"><i class=" fa fa-caret-left"></i></a></li>
+                </ul>
+<!--                <ul class="nav navbar-nav navbar-left" style="margin-left: 20px;">
+                    <li><a id="backBtn"><i class="fa fa-caret-left fa-1x"></i></a></li>
                     <li><a id="nextBtn">Next</a></li>
                     <li><a id="queueBtn">Queue</a></li>
-                    <li><a id="missingBtn">Missing</a></li>
                     <li><a id="searchBtn">Search</a></li>
-                </ul>
+                </ul>-->
+                <div class="nav navbar-nav navbar-left">
+                    <div style="padding: 10px 20px; display: block; font-size: 22px;">
+                        <span style="font-size: 22px;">Doctor Consultation</span>
+                    </div>
+                </div>
 
 
-                <ul class="nav navbar-nav navbar-right" style="margin-right: 20px;">
+<!--                <ul class="nav navbar-nav navbar-right" style="margin-right: 20px;">
+                    <li><a id="missingBtn">Missing</a></li>
                     <li><a id="holdBtn">On Hold</a></li>
                     <li><a id="dischargeBtn">Discharge</a></li>
-                    <li><a href="../ADM/index.jsp" title="Log Out"><i class=" fa fa-power-off"></i></a></li>
+                </ul>-->
+
+                <ul class="nav navbar-nav navbar-right logout cis-menu" style="margin-right: 20px;">
+                    <li><a id="nextBtn">Next</a></li>
+                    <li><a id="missingBtn">Missing</a></li>
+                    <li><a id="holdBtn">On Hold</a></li>
+                    <li><a id="dischargeBtn" class="discharge">Discharge</a></li>
+                    <li><a href="../Entrance/destroySession.jsp" title="Log Out" style="font-size: 18px;"><i class=" fa fa-power-off"></i></a></li>
                 </ul>
+
+                
 
             </div>
 

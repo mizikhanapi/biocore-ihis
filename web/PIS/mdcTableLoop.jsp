@@ -15,32 +15,51 @@
 
 <table  id="mdcTable"  class="table table-striped table-bordered" cellspacing="0" width="100%">
     <thead>
-    <th>MDC CODE</th>
-    <th>ATC CODE</th>
-    <th>TRADE NAME</th>
-    <th>GNR NAME</th>
-    <th>ROUTE_CODE</th>
-    <th>FORM CODE</th>
-    <th>STRENGTH</th>
-    <th>ADVISORY CODE</th>
-    <th>STOCK QTY</th>
-    <th>Update</th>
-    <th>Delete</th>
+    <th style="text-align: center;">MDC CODE</th>
+    <th style="text-align: center;">ATC CODE</th>
+    <th style="text-align: center;">TRADE NAME</th>
+    <th style="text-align: center;">GNR NAME</th>
+    <th style="text-align: center;">ROUTE_CODE</th>
+    <th style="text-align: center;">FORM CODE</th>
+    <th style="text-align: center;">STRENGTH</th>
+    <th style="text-align: center;">ADVISE</th>
+    <th style="text-align: center;">STOCK QTY</th>
+    <th style="display: none">DOSE QTY</th>
+    <th style="display: none">DOSE TYPE</th>
+    <th style="display: none">DURATION</th>
+    <th style="display: none">DURATION TYPE</th>
+    <th style="display: none">FREQUENCY</th>
+    <th style="display: none">CAUTION</th>
+    <th style="display: none">EXP DATE</th>
+    <th style="display: none">CLASSIFICATION</th>
+    <th style="display: none">STATUS</th>
+    <th style="display: none">LOCATION CODE</th>
+    <th style="display: none">SELL PRICE</th>
+    <th style="display: none">COST PRICE</th>
+    <th style="display: none">PACKAGING</th>
+    <th style="display: none">PACKAGING TYPE</th>
+    <th style="display: none">PRICE/PACK</th>
+    <th style="text-align: center;">Update</th>
+    <th style="text-align: center;">Delete</th>
 </thead>
 <tbody>
 
     <%
-        String sqlMain = " SELECT UD_MDC_CODE,UD_ATC_CODE,D_TRADE_NAME,D_GNR_NAME,D_ROUTE_CODE,D_FORM_CODE,D_STRENGTH,D_ADVISORY_CODE,D_STOCK_QTY,D_QTY,D_QTYT,D_DURATION,D_DURATIONT,D_FREQUENCY,D_CAUTION_CODE,D_EXP_DATE,D_CLASSIFICATION,STATUS,D_LOCATION_CODE,D_SELL_PRICE,D_COST_PRICE,D_PACKAGING,D_PACKAGINGT,D_PRICE_PPACK FROM pis_mdc2 ";
+        String sqlMain = " SELECT UD_MDC_CODE,UD_ATC_CODE,D_TRADE_NAME,D_GNR_NAME,D_ROUTE_CODE,D_FORM_CODE,D_STRENGTH,D_ADVISORY_CODE,"
+                + "D_STOCK_QTY,D_QTY,D_QTYT,D_DURATION,D_DURATIONT,D_FREQUENCY,D_CAUTION_CODE,D_EXP_DATE,D_CLASSIFICATION,STATUS,D_LOCATION_CODE,"
+                + "D_SELL_PRICE,D_COST_PRICE,D_PACKAGING,D_PACKAGINGT,D_PRICE_PPACK FROM pis_mdc2 ";
         ArrayList<ArrayList<String>> dataMTC = conn.getData(sqlMain);
 
         int sizeMain = dataMTC.size();
         for (int s = 0; s < sizeMain; s++) {
     %>
     <%
-        if (Integer.parseInt(dataMTC.get(s).get(8)) < 100) {    %>
-    <tr style="font-weight:bolder; color:red;" >
+        if (Integer.parseInt(dataMTC.get(s).get(8)) < 30) {    %>
+    <tr style="font-weight:bolder; color:yellow; background-color: red;text-align: center;" >
+        <% } else if (Integer.parseInt(dataMTC.get(s).get(8)) < 100) {   %>
+    <tr style="font-weight:bolder; color:red; background-color: yellow;text-align: center;">
         <% } else {   %>
-    <tr >
+    <tr style="text-align: center;">
         <%   }%>
 
 <input id="dataMDChidden" type="hidden" value="<%=String.join("|", dataMTC.get(s))%>">
@@ -53,6 +72,21 @@
 <td><%= dataMTC.get(s).get(6)%></td>
 <td><%= dataMTC.get(s).get(7)%></td>
 <td><%= dataMTC.get(s).get(8)%></td>
+<td style="display: none"><%= dataMTC.get(s).get(9)%></td>
+<td style="display: none"><%= dataMTC.get(s).get(10)%></td>
+<td style="display: none"><%= dataMTC.get(s).get(11)%></td>
+<td style="display: none"><%= dataMTC.get(s).get(12)%></td>
+<td style="display: none"><%= dataMTC.get(s).get(13)%></td>
+<td style="display: none"><%= dataMTC.get(s).get(14)%></td>
+<td style="display: none"><%= dataMTC.get(s).get(15)%></td>
+<td style="display: none"><%= dataMTC.get(s).get(16)%></td>
+<td style="display: none"><%= dataMTC.get(s).get(17)%></td>
+<td style="display: none"><%= dataMTC.get(s).get(18)%></td>
+<td style="display: none"><%= dataMTC.get(s).get(19)%></td>
+<td style="display: none"><%= dataMTC.get(s).get(20)%></td>
+<td style="display: none"><%= dataMTC.get(s).get(21)%></td>
+<td style="display: none"><%= dataMTC.get(s).get(22)%></td>
+<td style="display: none"><%= dataMTC.get(s).get(23)%></td>
 <td>
     <!-- Update Button Start -->
     <a id="mdcUpdateTButton" data-toggle="modal" data-target="#mdcUpdateModal"><i class="fa fa-pencil-square-o" aria-hidden="true" style="display: inline-block;color: #337ab7;"></i></a>
@@ -78,7 +112,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal"><i class="fa fa-times fa-lg"></i></button>
-                <h3 class="modal-title" id="lineModalLabel">Update MTC Code</h3>
+                <h2 class="modal-title" id="lineModalLabel" align="center">Update MDC Code</h2>
             </div>
             <div class="modal-body">
 
@@ -88,37 +122,23 @@
                         <div class="col-md-6">
                             <h4>Drug Information</h4>
                             <hr/>
+
+                            <!-- Text input-->
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" for="textinput">ATC Drug Code</label>
+                                <div class="col-md-8">
+                                    <input id="updateUD_ATC_CODE" name="textinput" type="text" placeholder="ATC Drug Code" class="form-control input-md" readonly>
+                                </div>
+                            </div>
+
                             <!-- Text input-->
                             <div class="form-group">
                                 <label class="col-md-4 control-label" for="textinput">MDC Drug Code</label>
                                 <div class="col-md-8">
-                                    <input id="updateUD_MDC_CODE" name="textinput" type="text" placeholder="Drug Code" class="form-control input-md" readonly>
+                                    <input id="updateUD_MDC_CODE" name="textinput" type="text" placeholder="MDC Drug Code" class="form-control input-md" readonly>
                                 </div>
                             </div>
 
-                            <!-- Select Basic -->
-                            <div class="form-group">
-                                <label class="col-md-4 control-label" for="selectbasic">ATC Drug Code</label>
-                                <div class="col-md-8">
-                                    <select id="updateUD_ATC_CODE" name="selectbasic" class="form-control">
-                                        <option value="Select ATC Code">Select ATC Code</option>
-                                        <%
-                                            String sql = "SELECT UD_ATC_CODE, UD_ATC_Desc FROM pis_atc";
-                                            ArrayList<ArrayList<String>> listofATCCode = conn.getData(sql);
-
-                                            int size = listofATCCode.size();
-
-                                            for (int i = 0;
-                                                    i < size;
-                                                    i++) {
-                                        %>
-                                        <option value="<%= listofATCCode.get(i).get(0)%>"><%= listofATCCode.get(i).get(0)%> - <%= listofATCCode.get(i).get(1)%> </option>
-                                        <%
-                                            }
-                                        %>
-                                    </select>
-                                </div>
-                            </div>
 
                             <!-- Text input-->
                             <div class="form-group">
@@ -152,7 +172,7 @@
                                                     i < size2;
                                                     i++) {
                                         %>
-                                        <option value="<%= listOfDRoute.get(i).get(2)%>"><%= listOfDRoute.get(i).get(1)%> - <%= listOfDRoute.get(i).get(2)%> </option>
+                                        <option value="<%= listOfDRoute.get(i).get(2)%>"><%= listOfDRoute.get(i).get(2)%> </option>
                                         <%
                                             }
                                         %>
@@ -176,7 +196,7 @@
                                                     i < size3;
                                                     i++) {
                                         %>
-                                        <option value="<%= listOfDForm.get(i).get(2)%>"><%= listOfDForm.get(i).get(1)%> - <%= listOfDForm.get(i).get(2)%> </option>
+                                        <option value="<%= listOfDForm.get(i).get(2)%>"><%= listOfDForm.get(i).get(2)%> </option>
                                         <%
                                             }
                                         %>
@@ -283,7 +303,7 @@
                                                     i < size4;
                                                     i++) {
                                         %>
-                                        <option value="<%= listOfDUOM.get(i).get(2)%>"><%= listOfDUOM.get(i).get(1)%> - <%= listOfDUOM.get(i).get(2)%> </option>
+                                        <option value="<%= listOfDUOM.get(i).get(2)%>"><%= listOfDUOM.get(i).get(2)%> </option>
                                         <%
                                             }
                                         %>
@@ -307,7 +327,7 @@
                                                     i < size5;
                                                     i++) {
                                         %>
-                                        <option value="<%= listOfDFreq.get(i).get(2)%>"><%= listOfDFreq.get(i).get(1)%> - <%= listOfDFreq.get(i).get(2)%> </option>
+                                        <option value="<%= listOfDFreq.get(i).get(2)%>"><%= listOfDFreq.get(i).get(2)%> </option>
                                         <%
                                             }
                                         %>
@@ -334,7 +354,7 @@
                                                     i < size6;
                                                     i++) {
                                         %>
-                                        <option value="<%= listOfDDura.get(i).get(2)%>"><%= listOfDDura.get(i).get(1)%> - <%= listOfDDura.get(i).get(2)%> </option>
+                                        <option value="<%= listOfDDura.get(i).get(2)%>"><%= listOfDDura.get(i).get(2)%> </option>
                                         <%
                                             }
                                         %>
@@ -358,7 +378,7 @@
                                                     i < size7;
                                                     i++) {
                                         %>
-                                        <option value="<%= listOfDInst.get(i).get(2)%>"><%= listOfDInst.get(i).get(1)%> - <%= listOfDInst.get(i).get(2)%> </option>
+                                        <option value="<%= listOfDInst.get(i).get(2)%>"><%= listOfDInst.get(i).get(2)%> </option>
                                         <%
                                             }
                                         %>
@@ -398,7 +418,7 @@
                                                     i < size8;
                                                     i++) {
                                         %>
-                                        <option value="<%= listOfDClass.get(i).get(2)%>"><%= listOfDClass.get(i).get(1)%> - <%= listOfDClass.get(i).get(2)%> </option>
+                                        <option value="<%= listOfDClass.get(i).get(2)%>"><%= listOfDClass.get(i).get(2)%> </option>
                                         <%
                                             }
                                         %>
@@ -716,6 +736,29 @@
 
 <script type="text/javascript" charset="utf-8">
     $(document).ready(function () {
-        $('#mdcTable').DataTable();
+        $('#mdcTable').DataTable({
+            pageLength: 15,
+            initComplete: function (settings, json) {
+                $('.loading').hide();
+            },
+            dom: 'Bfrtip',
+            buttons: [
+                {
+                    extend: 'excelHtml5',
+                    text: 'Export To Excel',
+                    title: 'MDC Data Export',
+                    exportOptions: {
+                        columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23]
+                    }
+                }, {
+                    extend: 'csvHtml5',
+                    text: 'Export To Excel CSV',
+                    title: 'MDC Data Export',
+                    exportOptions: {
+                        columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23]
+                    }
+                }
+            ]
+        });
     });
 </script>

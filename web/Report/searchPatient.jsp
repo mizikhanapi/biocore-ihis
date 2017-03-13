@@ -4,7 +4,7 @@
     Author     : shay
 --%>
 
-<%@page import="dBConn.Conn"%>
+<%@page import="dBConn.Conn"%>  
 <%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
@@ -113,13 +113,13 @@
                 success: function (list) {
 
                     //split the data into an array
-                    
+
                     //function when the value that returned either empty/null or has value.
                     //customize this part only
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-                  $('#pmhTableDiv').html(list);
-                    
+                    $('#pmhTablediv').html(list);
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                 },
                 error: function (xhr, status, error) {

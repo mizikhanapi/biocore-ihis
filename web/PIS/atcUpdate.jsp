@@ -14,12 +14,16 @@
     String atcCode = request.getParameter("atcCode");
     String atcDesc = request.getParameter("atcDesc");
     String category = request.getParameter("category");
+    String hfc = request.getParameter("hfc");
+    String discipline = request.getParameter("discipline");
+    String subdiscipline = request.getParameter("subdiscipline");
     String status = request.getParameter("status");
 
     RMIConnector rmic = new RMIConnector();
     Conn conn = new Conn();
 
-    String sqlUpdate = "UPDATE pis_atc SET UD_ATC_Desc = '" + atcDesc + "',Category_Code = '" + category + "', Status = '" + status + "' WHERE UD_ATC_Code = '" + atcCode + "' ";
+    String sqlUpdate = "UPDATE pis_atc SET UD_ATC_Desc = '" + atcDesc + "',Category_Code = '" + category + "',hfc_cd = '" + hfc + "',"
+            + "discipline_cd = '" + discipline + "',subdiscipline_cd = '" + subdiscipline + "', Status = '" + status + "' WHERE UD_ATC_Code = '" + atcCode + "' ";
     boolean isUpdate = rmic.setQuerySQL(conn.HOST, conn.PORT, sqlUpdate);
     
     if (isUpdate == true) {

@@ -3,12 +3,11 @@
 <%@page import="Config.connect"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
-    Conn conn = new Conn();
-    String relation = "select * from adm_lookup_detail where master_reference_code = '0007'   ";
-    String occupation = "select * from adm_lookup_detail where master_reference_code = '0050'";
-    ArrayList<ArrayList<String>> dataRelation,dataOccu;
-    dataRelation = conn.getData(relation);
-    dataOccu = conn.getData(occupation);
+    String relation71 = "select * from adm_lookup_detail where master_reference_code = '0007'   ";
+    String occupation71 = "select * from adm_lookup_detail where master_reference_code = '0050'";
+    ArrayList<ArrayList<String>> dataRelation71,dataOccu71;
+    dataRelation71 = conn.getData(relation71);
+    dataOccu71 = conn.getData(occupation71);
 
 %>
 <!-- Modal -->
@@ -41,8 +40,8 @@
                             <option value="null" disabled="" selected="">Select Family Relationship</option>
                             <option value="-">-</option>
 
-                            <%                                        for (int i = 0; i < dataRelation.size(); i++) {%>
-                            <option value="<%=dataRelation.get(i).get(1)%>"><%=dataRelation.get(i).get(2)%></option>
+                            <%                                        for (int i = 0; i < dataRelation71.size(); i++) {%>
+                            <option value="<%=dataRelation71.get(i).get(1)%>"><%=dataRelation71.get(i).get(2)%></option>
                             <%  }
                             %>
                         </select>
@@ -75,8 +74,8 @@
                         <select id="FAMocc" name="FAMocc" class="form-control">
                             <option selected="" disabled="">Please select Occupation</option>
                             <option value="-">-</option>
-                            <% for (int i = 0; i < dataOccu.size(); i++) {%>
-                            <option value="<%=dataOccu.get(i).get(1)%>"><%=dataOccu.get(i).get(2)%></option>
+                            <% for (int i = 0; i < dataOccu71.size(); i++) {%>
+                            <option value="<%=dataOccu71.get(i).get(1)%>"><%=dataOccu71.get(i).get(2)%></option>
                             <%  }
                             %>
                         </select>

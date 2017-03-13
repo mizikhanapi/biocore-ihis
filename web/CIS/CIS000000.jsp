@@ -14,55 +14,16 @@
 <html lang="en">
     <head>
         <title>eMedica | CIS</title>
-
+  
         <!-- header -->
-    <%@ include file="libraries/header.jsp" %> 
+          <%@ include file="../assets/header.html" %> 
+<%@ include file="libraries/header.jsp" %>
+    
     <!-- header -->
 </head>
 
 <body>
-    <!-- menu top -->
-    <%//@ include file="../../build/web/CIS/libraries/topMenus.html" %> 
-    <nav class="navbar navbar-fixed-top" style="background: #F9F8F6; border-bottom: 1px solid #ccc;">
-    <div class="container-fluid">
-        <div class="row">
-            <div class="navbar-header col-md-2" style="border-right: 1px solid #ccc;">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="/ADM/dashboard.jsp"> Welcome eMedica</a>
-            </div>
 
-            <div id="navbar" class="navbar-collapse collapse">
-            <ul class="nav navbar-nav navbar-left back" style="">
-            <li><a href="/IHIS/ADM/dashboard.jsp" title="Back"><i class=" fa fa-caret-left"></i></a></li>
-            </ul>
-                <ul class="nav navbar-nav navbar-left" style="margin-left: 20px;">
-                    <li><a href="/ADM/dashboard.jsp">Back</a></li>                
-                    <li><a id="nextBtn">Next</a></li>
-                    <li><a id="queueBtn">Queue</a></li>
-                    <li><a id="missingBtn">Missing</a></li>
-                    <li><a id="searchBtn">Search</a></li>
-                </ul>
-
-
-                <ul class="nav navbar-nav navbar-right" style="margin-right: 20px;">
-                    <li><a id="holdBtn">On Hold</a></li>
-                    <li><a id="dischargeBtn">Discharge</a></li>
-                </ul>
-
-            </div>
-
-        </div>
-
-    </div>
-</nav>
-    
-<!--    <div w3-include-html="libraries/topMenus.html"></div>-->
-    <!-- menu top -->
 
     <div class="container-fluid">
         <div class="row">
@@ -73,7 +34,11 @@
             <!-- menu side -->	
 
             <!-- main -->		
-            <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main" style="background: #f2f4f8;">
+            <div class=" main" style="background: #f2f4f8;">
+                <!-- menu top -->
+                <%@ include file="libraries/topMenus.html" %> 
+                <!--    <div w3-include-html="libraries/topMenus.html"></div>-->
+                <!-- menu top -->
                 <div class="row">
                     <div class="col-md-12">
                         <div class="thumbnail">
@@ -127,7 +92,36 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="thumbnail">
-                            <h4>Consultation Notes</h4>
+
+                            <!-- Tab Menu -->
+                            <div class="tabbable-panel cis-tab">
+                                <div class="tabbable-line">
+                                    <ul class="nav nav-tabs ">
+                                        <li class="active">
+                                            <a href="#tab_default_1" data-toggle="tab" aria-expanded="false">
+                                                <i class="fa fa-info-circle fa-lg"></i> Subjective </a>
+                                        </li>
+                                        <li class="">
+                                            <a href="#tab_default_2" data-toggle="tab" aria-expanded="false">
+                                                <i class="fa fa-check fa-lg"></i> Objective  </a>
+                                        </li>
+                                        <li >
+                                            <a href="#tab_default_3" data-toggle="tab" aria-expanded="true">
+                                                <i class="fa fa-th-list fa-lg"></i> Assesment </a>
+                                        </li>
+                                        <li>
+                                            <a href="#tab_default_4" data-toggle="tab" aria-expanded="true">
+                                                <i class="fa fa-list-alt fa-lg"></i> Plan </a>
+                                        </li>
+
+
+                                    </ul>
+                                    <%@ include file="soap-content.jsp" %>
+
+                                </div>
+                            </div>
+                            <!-- Tab Menu -->
+                            <h4  id="mainConsultBar">Consultation Notes</h4>
 
                             <table class="table table-filter table-striped" style="background: #fff; border: 1px solid #ccc;">
                                 <tbody id="consultationNotes">
@@ -147,6 +141,7 @@
 
   
     <%@ include file="queue/QueueModal.jsp" %> 
+    <%@ include file="search/SearchModal.jsp" %>
     
     <%@ include file="CIS01/CIS0101.jsp" %>
     <%@ include file="CIS01/CIS010001.jsp" %> 
@@ -179,6 +174,8 @@
     <!-- Bootstrap core Javascript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
+
+ 
     
 <!--    <script src="assets/jquery.min.js.download"></script>
     <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>');</script>
@@ -191,10 +188,6 @@
   
 
 
-    <script src="http://www.w3schools.com/lib/w3data.js"></script>
-    <script>
-        w3IncludeHTML();
-    </script>
     <script>
         
   (function ($) {

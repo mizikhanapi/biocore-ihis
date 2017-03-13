@@ -3,89 +3,21 @@
 <%@page import="Config.connect"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
-    Conn conn = new Conn();
-    String relation = "select * from adm_lookup_detail where master_reference_code = '0007'   ";
-    String occupation = "select * from adm_lookup_detail where master_reference_code = '0050'";
-    ArrayList<ArrayList<String>> dataRelation,dataOccu;
-    dataRelation = conn.getData(relation);
-    dataOccu = conn.getData(occupation);
+    //Conn conn = new Conn();
+    String relation7 = "select * from adm_lookup_detail where master_reference_code = '0007'   ";
+    String occupation7 = "select * from adm_lookup_detail where master_reference_code = '0050'";
+    ArrayList<ArrayList<String>> dataRelation7,dataOccu7;
+    dataRelation7 = conn.getData(relation7);
+    dataOccu7 = conn.getData(occupation7);
 
 %>
 
 <div class="row">
     <div class="col-md-12">
-<!--        <div class="thumbnail" id="maintainFam">
-            <h4>Family Information</h4>
-            <form class="form-horizontal" id="famForm">
 
-                 Text input
-                <div class="form-group">
-                    <label class="col-md-4 control-label" for="textinput">PMI No.</label>
-                    <div class="col-md-4">
-                        <input id="FAMpmi" name="FAMpmi" type="text"  class="form-control input-md">
-                        <input id="FAMseq" name="FAMseq" type="hidden"  class="form-control input-md">
-                    </div>
-                </div>
-
-                 Select Basic 
-                <div class="form-group">
-                    <label class="col-md-4 control-label" for="selectbasic">Family Relationship</label>
-                    <div class="col-md-4">
-                        <select id="FAMrelay" name="FAMrelay" class="form-control">
-                            <option value="null" disabled="" selected="">Select Family Relationship</option>
-                            <option value="-">-</option>
-
-                            <%                                        for (int i = 0; i < dataRelation.size(); i++) {%>
-                            <option value="<%=dataRelation.get(i).get(1)%>"><%=dataRelation.get(i).get(2)%></option>
-                            <%  }
-                            %>
-                        </select>
-                    </div>
-                </div>
-
-                 Text input
-                <div class="form-group">
-                    <label class="col-md-4 control-label" for="textinput">IC no./ID no.</label>  
-                    <div class="col-md-4">
-                        <input id="FAMpmifam" name="FAMpmifam" type="text"  class="form-control input-md" maxlength="15">
-
-                    </div>
-                </div>
-
-                 Text input
-                <div class="form-group">
-                    <label class="col-md-4 control-label" for="textinput">Name</label>  
-                    <div class="col-md-4">
-                        <input id="FAMname" name="FAMname" type="text"  class="form-control input-md" maxlength="80">
-
-                    </div>
-                </div>
-
-                 Text input
-                <div class="form-group">
-                    <label class="col-md-4 control-label" for="textinput">Occupation</label>
-                    <div class="col-md-4">
-                        <input id="FAMocc" name="FAMocc" type="text"  class="form-control input-md">
-                        <select id="FAMocc" name="FAMocc" class="form-control">
-                            <option selected="" disabled="">Please select Occupation</option>
-                            <option value="-">-</option>
-                            <% for (int i = 0; i < dataOccu.size(); i++) {%>
-                            <option value="<%=dataOccu.get(i).get(1)%>"><%=dataOccu.get(i).get(2)%></option>
-                            <%  }
-                            %>
-                        </select>
-                    </div>
-                </div>
-
-            </form>
-            <div class="text-center">
-                <button id="FAMsave" name="FAMsave" class="btn btn-primary"><i class="fa fa-floppy-o fa-lg"></i>&nbsp; Save</button>
-                <button id="FAMclear" name="FAMclear" class="btn btn-default"><i class="fa fa-ban fa-lg"></i>&nbsp; Clear</button>
-            </div>
-        </div>-->
     </div>
 </div>
-                        <div id="modalFAM"></div>
+                        <div id="modalFAM"><%@include file = "FamilyModal.jsp" %></div>
 <div class="row">
     <div class="col-md-12">		
         <div class="thumbnail">
@@ -107,7 +39,6 @@
     </div>
 </div>
 <script>
-    $('#modalFAM').load('FamilyModal.jsp');
     
     $('#modalFAM').on('shown.bs.modal', function () {
         $(this).find('.modal-dialog').css({width: '70%',

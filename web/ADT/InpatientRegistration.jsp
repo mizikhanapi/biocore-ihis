@@ -3,76 +3,62 @@
 <%@page import="Config.connect"%>
 <%@page import="dBConn.Conn"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<link rel="stylesheet" href="assets/css/loading.css">
+<link rel="stylesheet" href="old/assets/css/loading.css">
 
 
 
 <%
-    String hfc = session.getAttribute("HFC").toString();
+//    String hfc = session.getAttribute("HFC").toString();
     String eliCat = "select * from adm_lookup_detail where master_reference_code = '0063'   ";
     String admit = "select * from lookup_detail where master_ref_code ='0023'";
-    String bed = "select bed_id from wis_bed_id";
     String eliType = "select * from adm_lookup_detail where master_reference_code = '0034'   ";
-    String discip = "select * from adm_lookup_detail where master_reference_code = '0072'   ";
-    String wname = "select ward_name from wis_ward_name";
-    String wtype = "select ward_class_code from wis_ward_name";
+
     String idTYpe = "select * from adm_lookup_detail where master_reference_code = '0012'   ";
 
-    ArrayList<ArrayList<String>> dataEliCat, dataAdmit, dataBed, dataEliType, dataIdType, dataDiscip, dataWardName, dataWardType;
-
-    Conn conn = new Conn();
+    ArrayList<ArrayList<String>> dataEliCat, dataAdmit, dataEliType, dataIdType;
 
     dataEliCat = conn.getData(eliCat);
     dataAdmit = conn.getData(admit);
-    dataBed = conn.getData(bed);
     dataEliType = conn.getData(eliType);
-    dataDiscip = conn.getData(discip);
-    dataWardName = conn.getData(wname);
-    dataWardType = conn.getData(wtype);
     dataIdType = conn.getData(idTYpe);
 
-    String dataSystemStatus = session.getAttribute("SYSTEMSTAT").toString();
-
+    String dataSystemStatus2 = session.getAttribute("SYSTEMSTAT").toString();
 
 %>
 
 
 <div class="row" id="register">
     <div class="col-md-12">
+        <div> <%@include file = "searchPatient.jsp" %></div>
+    </div>
+</div>
+<!--        <div class="thumbnail">
+    <h4>Search Patient
+        <button id="button2id" name="button2id" class="btn btn-success pull-right"><i class="fa fa-user fa-lg"></i>&nbsp; Read MyKad Info</button>
+    </h4>
+    <form class="form-horizontal" name="myForm" id="myForm">
+         Select Basic 
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="selectbasic">ID Type</label>
+            <div class="col-md-4">
+                <select id="idType" name="idType" class="form-control" required="">
+                    <option selected="" disabled="" value="-"> Please select ID type</option>
+                    <option value="pmino">PMI No</option>
+                    <option value="icnew">IC No (NEW)</option>
+                    <option value="icold">IC No (OLD)</option>
+                    <option value="matricno">Matric No</option>
+                  <option value="staffno">Staff No</option>
+<%                                if (dataSystemStatus2.equals("0")) {
 
-        <div class="thumbnail">
+    } else if (dataSystemStatus2.equals("1")) {
+        for (int i = 0; i < dataIdType.size(); i++) {%>
+ <option value="<%=dataIdType.get(i).get(1)%>"><%=dataIdType.get(i).get(2)%></option>
+<%  }
+    }
 
-            <h4>search</h4>
-            <hr/>
-            <div id="searchPatientModule"></div>
-        </div>
-        <!--        <div class="thumbnail">
-            <h4>Search Patient
-                <button id="button2id" name="button2id" class="btn btn-success pull-right"><i class="fa fa-user fa-lg"></i>&nbsp; Read MyKad Info</button>
-            </h4>
-            <form class="form-horizontal" name="myForm" id="myForm">
-                 Select Basic 
-                <div class="form-group">
-                    <label class="col-md-4 control-label" for="selectbasic">ID Type</label>
-                    <div class="col-md-4">
-                        <select id="idType" name="idType" class="form-control" required="">
-                            <option selected="" disabled="" value="-"> Please select ID type</option>
-                            <option value="pmino">PMI No</option>
-                            <option value="icnew">IC No (NEW)</option>
-                            <option value="icold">IC No (OLD)</option>
-                            <option value="matricno">Matric No</option>
-                          <option value="staffno">Staff No</option>
-        <%                                if (dataSystemStatus.equals("0")) {
-
-            } else if (dataSystemStatus.equals("1")) {
-                for (int i = 0; i < dataIdType.size(); i++) {%>
-         <option value="<%=dataIdType.get(i).get(1)%>"><%=dataIdType.get(i).get(2)%></option>
-        <%  }
-            }
-
-        %>
-           
-    </select>
+%>
+   
+</select>
 </div>
 </div>
 
@@ -80,7 +66,7 @@ Text input
 <div class="form-group">
 <label class="col-md-4 control-label" for="textinput">IC No. / ID No.</label>
 <div class="col-md-4">
-    <input type="text" class="form-control input-md" id="idInput" name="idInput" placeholder="ID" maxlength="0"/>
+<input type="text" class="form-control input-md" id="idInput" name="idInput" placeholder="ID" maxlength="0"/>
 </div>
 </div>
 <div class="text-center">
@@ -92,6 +78,8 @@ Text input
 </div>-->
 
 
+<div class="row">
+    <div class="col-md-12">
         <div class="thumbnail">
             <h4>In-Patient Information</h4>
             <hr/>
@@ -260,9 +248,9 @@ Text input
 
                         <!-- Text input-->
                         <div class="form-group">
-                            <label class="col-md-4 control-label" for="textinput">GL expiry date</label>
+                            <label class="col-md-4 control-label" for="textinput"> GL expiry date</label>
                             <div class="col-md-4">
-                                <input id="GL" name="textinput" type="text" placeholder="Pop-up Calendar" class="form-control input-md">
+                                <input id="GL" name="GL" type="text" placeholder="Pop-up Calendar" readonly class="form-control input-md">
                             </div>
                         </div>
 
@@ -340,97 +328,125 @@ Text input
                     <div class="col-md-6">
                         <!-- Select Basic -->
                         <div class="form-group">
-                            <label class="col-md-4 control-label" for="selectbasic">Discipline *</label>
+                            <label class="col-md-4 control-label" for="selectbasic">Discipline</label>
                             <div class="col-md-4">
-                                <select id="Dis" name="Dis" class="form-control">
-                                    <option value="" selected="" disabled="">List of Discipline</option>
+                                <select id="EliSource" name="EliSource" class="form-control">
+                                    <option value="-">-</option>
+                                    <option value="null" selected="" disabled="">Select Discipline</option>
 
                                     <%
-                                        for (int i = 0; i < dataDiscip.size();
-                                                i++) {%>
-                                    <option value="<%=dataDiscip.get(i).get(2)%>"><%=dataDiscip.get(i).get(2)%></option>
-                                    <%  }
+                                        String discip = "select * from adm_lookup_detail where master_reference_code = '0072'   ";
+                                        ArrayList<ArrayList<String>> dataDiscip = conn.getData(discip);
+
+                                        int size = dataDiscip.size();
+
+                                        for (int i = 0; i < size; i++) {
+                                    %>
+                                    <option value="<%= dataDiscip.get(i).get(0)%>"><%= dataDiscip.get(i).get(0)%> </option>
+                                    <%
+                                        }
                                     %>
 
                                 </select>
-                            </div>
+                            </div> 
                         </div>
+
 
                         <!-- Select Basic -->
                         <div class="form-group">
                             <label class="col-md-4 control-label" for="selectbasic">Ward Name</label>
                             <div class="col-md-4">
-                                <select id="wname" name="wname" class="form-control">
-                                    <option value="" selected="" disabled="">List of ward name</option>
+                                <select id="AdmissionType" name="selectbasic" class="form-control">
+                                    <option value="-">-</option>
+                                    <option value="null" selected="" disabled="">Select Ward Name</option>
 
                                     <%
-                                        for (int i = 0; i < dataWardName.size();
-                                                i++) {%>
-                                    <option value="<%=dataWardName.get(i).get(2)%>"><%=dataWardName.get(i).get(2)%></option>
-                                    <%  }
-                                    %>
+                                        String wname = "select ward_name from wis_ward_name";
+                                        ArrayList<ArrayList<String>> dataWardName = conn.getData(wname);
 
+                                        int size1 = dataWardName.size();
+
+                                        for (int i = 0; i < size1; i++) {
+                                    %>
+                                    <option value="<%= dataWardName.get(i).get(0)%>"><%= dataWardName.get(i).get(0)%> </option>
+                                    <%
+                                        }
+                                    %>
                                 </select>
-                            </div>
+                            </div> 
                         </div>
+
+
+
+
 
                         <!-- Text input-->
                         <div class="form-group">
                             <label class="col-md-4 control-label" for="textinput">Deposit (RM)</label>
                             <div class="col-md-4">
-                                <input id="Deposit" name="textinput" type="text" placeholder="" class="form-control input-md">
+                                <input id="Deposit" name="textinput" type="text" placeholder="RM :" class="form-control input-md">
                             </div>
                         </div>
+
+
                     </div>
 
-                    <div class="col-md-6">
 
+
+                    <div class="col-md-6">  
                         <!-- Select Basic -->
                         <div class="form-group">
                             <label class="col-md-4 control-label" for="selectbasic">Ward Type</label>
                             <div class="col-md-4">
-                                <select id="WardType" name="Dis" class="form-control">
-                                    <option value="" selected="" disabled="">List of ward type</option>
+                                <select id="EliTy" name="EliTy" class="form-control">
+                                    <option value="1" selected="" disabled="">Select Ward Type</option>
 
                                     <%
-                                        for (int i = 0; i < dataWardType.size();
-                                                i++) {%>
-                                    <option value="<%=dataWardType.get(i).get(2)%>"><%=dataWardType.get(i).get(2)%></option>
-                                    <%  }
+                                        String wtype = "select ward_class_code from wis_ward_name";
+                                        ArrayList<ArrayList<String>> dataWardType = conn.getData(wtype);
+
+                                        int size2 = dataWardType.size();
+
+                                        for (int i = 0; i < size2; i++) {
                                     %>
+                                    <option value="<%= dataWardType.get(i).get(0)%>"><%= dataWardType.get(i).get(0)%> </option>
+                                    <%
+                                        }
+                                    %>
+
 
                                 </select>
                             </div>
-                        </div>   
-
+                        </div>
 
                         <!-- Select Basic -->
                         <div class="form-group">
                             <label class="col-md-4 control-label" for="selectbasic">Bed ID</label>
                             <div class="col-md-4">
-                                <select id="BedID" name="Dis" class="form-control">
-                                    <option value="" selected="" disabled="">Locate selected bed here..</option>
+                                <input id="BedIDReg" name="textinput" type="text" placeholder="Bed ID" readonly class="form-control input-md">
+                                </br>
 
-                                    <%
-                                        for (int i = 0; i < dataBed.size();
-                                                i++) {%>
-                                    <option value="<%=dataBed.get(i).get(2)%>"><%=dataBed.get(i).get(2)%></option>
-                                    <%  }
-                                    %>
 
-                                </select>
+                                <!--                                <button type="button" class="btn btn-default" onclick="load()" id="listbed">List Bed</button>-->
                             </div>
-                            <button id="buttonlist" class="btn btn-default" type="button"> List Bed</button>
                         </div>
 
                     </div>
                 </div>
-
+                <!-- List of Bed -->
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <div>
+                            <%@include file = "bed.jsp" %>
+                        </div>
+                    </div>
+                </div>
+                <!-- List of Bed -->
 
 
                 <div class="text-center">
-                    <button class="btn btn-primary " type="button" id="registerQueue"><i class="fa fa-floppy-o fa-lg"></i> Register</button>
-                    <button class="btn btn-default " type="button" id="btnclear" name="btnclear" > <i class="fa fa-ban fa-lg"></i>&nbsp; Clear</button>
+                    <button class="btn btn-primary " type="button" id="registerQueue"><i class="fa fa-floppy-o "></i> Register</button>
+                    <button class="btn btn-default " type="button" id="btnclear" name="btnclear" > <i class="fa fa-ban "></i>&nbsp; Clear</button>
                 </div>
 
 
@@ -439,7 +455,8 @@ Text input
     </div>
 </div>
 </div>
-
+</div>
+</div>
 </div>
 <!-- main -->		
 
@@ -455,8 +472,7 @@ Text input
 <script src="bootstrap-3.3.6-dist/js/jquery.dataTables.min.js"></script>-->
 
 
-<script>w3IncludeHTML();</script>  
-<script src="assets/js/bootbox.min.js"></script>
+<script src="old/assets/js/bootbox.min.js"></script>
 
 <script>
 
@@ -466,14 +482,32 @@ Text input
 //            $("#sidemenus").load("libraries/sideMenus.jsp");
 
 
-    $("#searchPatientModule").load("searchPatient.jsp");
+
+//
+//    function load() {
+//        $("#listbed").load('bed.jsp');
+//    }
+
+
+//
+//    $(function () {
+//        $('#listbed').on('click', function (e) {
+//            e.preventDefault();
+//            $("#content").load(this.id + "bed.jsp");
+//        });
+//    });
+
+    $("#GL").datepicker({
+        changeMonth: true,
+        changeYear: true,
+        dateFormat: 'dd/mm/yy'
+    });
 
     var $body = $('body');
     var yyyyMMddHHmmss;
     var HHmmss;
     var yyyyMMdd;
     var ddMMyyyy;
-
     var tahun, bulan, hari, ICbday;
     //function get birth date
 
@@ -484,7 +518,6 @@ Text input
             tahun = x.substr(0, 2);
             bulan = x.substr(2, 2);
             hari = x.substr(4, 2);
-
             if (tahun >= 00 && tahun < 50)
             {
 
@@ -503,7 +536,6 @@ Text input
     function getDateNow() {
         //yyyy-MM-dd HH:mm:ss
         var nowDate = new Date();
-
         var ZeroMinutes, ZeroSeconds, ZeroDay, ZeroMonth;
         //months
         var month = (nowDate.getMonth() + 1);
@@ -552,7 +584,6 @@ Text input
         setInterval(getDateNow, 1000);
         if ($('#pmino').val() === " " || $('#pmino').val() === "") {
             bootbox.alert('Please use a proper PMI no.');
-
         } else {
             //var r = confirm("Are you sure want to REGISTER PATIENT?");
 
@@ -561,7 +592,6 @@ Text input
                     EliSource, AdmissionType, Refer, DocType, GL, EliTy, AdmissionReason, PoliceCase, DocNo, payer,
                     Dis, wname, Deposit, WardType, BedID,
                     guardInd, referNo, referHfc, referDis, gruGuard, epiTime, epiDate, stat, hfc;
-
             pmino = $('#pmino').val();
             epiDate = yyyyMMddHHmmss;
             poic = $('input[id=poic]').val();
@@ -570,7 +600,6 @@ Text input
             pname = $('input[id=pname]').val();
             pnic = $('input[id=pnic]').val();
             pidno = $('input[id=pidno]').val();
-
             EliSource = $('#EliSource').val();
             AdmissionType = $('#AdmissionType').val();
             Refer = $('#Refer').val();
@@ -590,7 +619,6 @@ Text input
             Deposit = $('#Deposit').val();
             WardType = $('#WardType').val();
             BedID = $('#BedID').val();
-
             guardInd = "-";
             referHfc = "-";
             referDis = "-";
@@ -608,7 +636,6 @@ Text input
                 'pname': pname,
                 'pnic': pnic,
                 'pidno': pidno,
-
                 'EliSource': EliSource,
                 'AdmissionType': AdmissionType,
                 'Refer': Refer,
@@ -619,7 +646,6 @@ Text input
                 'PoliceCase': PoliceCase,
                 'DocNo': DocNo,
                 'payer': payer,
-
                 'Dis': Dis,
                 'wname': wname,
                 'Deposit': Deposit,
@@ -629,7 +655,6 @@ Text input
                 'referNo': referNo,
                 'referHfc': referHfc,
                 'referDis': referDis,
-
                 'gruGuard': gruGuard,
                 'epiTime': epiTime,
                 'stat': stat,
@@ -637,7 +662,6 @@ Text input
                 'now': yyyyMMdd
 
             };
-
             //console.log(datas);
             bootbox.confirm({
                 message: "Are you sure want to REGISTER PATIENT?",
@@ -676,17 +700,13 @@ Text input
                     }
                 }
             });
-
         }
 
 
     });
-
-
     //event on click clear buton
     $('#btnclear').click(function () {
         $('#myForm2')[0].reset();
-
     });
 
 

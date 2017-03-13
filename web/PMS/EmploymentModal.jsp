@@ -4,19 +4,19 @@
 <%@page import="dBConn.Conn"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
-    Conn conn = new Conn();
-    String incomeRange = "select * from adm_lookup_detail where master_reference_code = '0028' ";
-    String hcf = "select * from adm_lookup_detail where master_reference_code = '0081'   ";
-    String status = "select * from adm_lookup_detail where master_reference_code = '0014'   ";
-    String occupation = "select * from adm_lookup_detail where master_reference_code = '0050'";
+    // conn = new Conn();
+    String incomeRange51 = "select * from adm_lookup_detail where master_reference_code = '0028' ";
+    String hcf51 = "select * from adm_lookup_detail where master_reference_code = '0081'   ";
+    String status51 = "select * from adm_lookup_detail where master_reference_code = '0014'   ";
+    String occupation51 = "select * from adm_lookup_detail where master_reference_code = '0050'";
 
     //String empList = "select * from pms_employment where pmi_no = ''";
-    ArrayList<ArrayList<String>> dataIncomeRange, dataHfc, dataStatus, dataOccu;
+    ArrayList<ArrayList<String>> dataIncomeRange51, dataHfc51, dataStatus51, dataOccu51;
 
-    dataIncomeRange = conn.getData(incomeRange);
-    dataHfc = conn.getData(hcf);
-    dataStatus = conn.getData(status);
-    dataOccu = conn.getData(occupation);
+    dataIncomeRange51 = conn.getData(incomeRange51);
+    dataHfc51 = conn.getData(hcf51);
+    dataStatus51 = conn.getData(status51);
+    dataOccu51 = conn.getData(occupation51);
 
 
 %>
@@ -69,8 +69,8 @@
                                 <select id="EMPoccu" name="EMPoccu" class="form-control">
                                     <option selected="" disabled="">Please select Occupation</option>
                                     <option value="-">-</option>
-                                    <% for (int i = 0; i < dataOccu.size(); i++) {%>
-                                    <option value="<%=dataOccu.get(i).get(1)%>"><%=dataOccu.get(i).get(2)%></option>
+                                    <% for (int i = 0; i < dataOccu51.size(); i++) {%>
+                                    <option value="<%=dataOccu51.get(i).get(1)%>"><%=dataOccu51.get(i).get(2)%></option>
                                     <%  }
                                     %>
                                 </select>
@@ -93,8 +93,8 @@
                                 <select id="EMPinrange" name="EMPinrange" class="form-control">
                                     <option selected="" disabled="">Please select Income Range</option>
                                     <option value="-">-</option>
-                                    <% for (int i = 0; i < dataIncomeRange.size(); i++) {%>
-                                    <option value="<%=dataIncomeRange.get(i).get(1)%>"><%=dataIncomeRange.get(i).get(2)%></option>
+                                    <% for (int i = 0; i < dataIncomeRange51.size(); i++) {%>
+                                    <option value="<%=dataIncomeRange51.get(i).get(1)%>"><%=dataIncomeRange51.get(i).get(2)%></option>
                                     <%  }
                                     %>
                                 </select>
@@ -108,8 +108,8 @@
                                 <select id="EMPhfc" name="EMPhfc" class="form-control">
                                     <option selected="" disabled="">Please select health facility</option>
                                     <option value="-">-</option>
-                                    <% for (int i = 0; i < dataHfc.size(); i++) {%>
-                                    <option value="<%=dataHfc.get(i).get(1)%>"><%=dataHfc.get(i).get(2)%></option>
+                                    <% for (int i = 0; i < dataHfc51.size(); i++) {%>
+                                    <option value="<%=dataHfc51.get(i).get(1)%>"><%=dataHfc51.get(i).get(2)%></option>
                                     <%  }
                                     %>
                                 </select>
@@ -132,8 +132,8 @@
                                 <select id="EMPstatus" name="EMPstatus" class="form-control">
                                     <option selected="" disabled="">Please select status</option>
                                     <option value="-">-</option>
-                                    <% for (int i = 0; i < dataStatus.size(); i++) {%>
-                                    <option value="<%=dataStatus.get(i).get(1)%>"><%=dataStatus.get(i).get(2)%></option>
+                                    <% for (int i = 0; i < dataStatus51.size(); i++) {%>
+                                    <option value="<%=dataStatus51.get(i).get(1)%>"><%=dataStatus51.get(i).get(2)%></option>
                                     <%  }
                                     %>
                                 </select>

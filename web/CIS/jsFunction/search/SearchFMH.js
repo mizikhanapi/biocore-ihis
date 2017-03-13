@@ -14,6 +14,7 @@
                                 $('#match17').html(dataBack); // Return data (UL list) and insert it in the <div id="match"></div>
                                 $('#matchList li').on('click', function () { // When click on an element in the list
                                     $('#Problem3').val($(this).text()); // Update the field with the new element
+                                    searchCodeFMH();
                                     $('#match17').text(''); // Clear the <div id="match"></div>
                                 });
                             },
@@ -37,14 +38,16 @@
                         var dataFields = {'input': input}; // We pass input argument in Ajax
                         $.ajax({
                             type: "POST",
-                            url: "searchPMH.jsp", // call the php file ajax/tuto-autocomplete.php
+                            url: "search/searchPMH.jsp", // call the php file ajax/tuto-autocomplete.php
                             data: dataFields, // Send dataFields var
                             timeout: 3000,
                             success: function (dataBack) { // If success
                                 $('#match16').html(dataBack); // Return data (UL list) and insert it in the <div id="match"></div>
                                 $('#matchList li').on('click', function () { // When click on an element in the list
                                     $('#PProblem3').val($(this).text()); // Update the field with the new element
+                                    usearchCodeFMH()
                                     $('#match16').text(''); // Clear the <div id="match"></div>
+                                    
                                 });
                             },
                             error: function () { // if error
@@ -57,3 +60,38 @@
                 });
             });
 //End js search in update FMH
+
+
+function searchCodeFMH(){
+       var id = $('#Problem3').val();
+        $.ajax({
+        type:'post',
+        url:'search/SearchPMH_cd.jsp',
+        data: {'id': id},                
+        success: function(reply_data){
+            var array_data = String(reply_data).split("|");
+            var ufmhCode = array_data[0];
+            console.log(ufmhCode);
+           
+            $('#codeFMH').val(ufmhCode.trim());
+  
+          }
+        });
+}
+
+function usearchCodeFMH(){
+       var id = $('#PProblem3').val();
+        $.ajax({
+        type:'post',
+        url:'search/SearchPMH_cd.jsp',
+        data: {'id': id},                
+        success: function(reply_data){
+            var array_data = String(reply_data).split("|");
+            var ufmhCode = array_data[0];
+            console.log(ufmhCode);
+           
+            $('#ufmhCode').val(ufmhCode.trim());
+  
+          }
+        });
+}

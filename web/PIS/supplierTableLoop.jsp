@@ -18,29 +18,50 @@
 
 <table  id="supplierTable"  class="table table-striped table-bordered" cellspacing="0" width="100%">
     <thead>
-    <th>Id</th>
-    <th>Name</th>  
-    <th>Office No.</th>
-    <th>Email</th>
-    <th>Update</th>
-    <th>Delete</th>
+    <th style="text-align: center;">ID</th>
+    <th style="text-align: center;">NAME</th>
+    <th style="text-align: center;">OFFICE NO.</th>
+    <th style="text-align: center;">EMAIL</th>
+    <th style="display: none">MOBILE NO</th>
+    <th style="display: none">FAX NO</th>
+    <th style="display: none">ADDRESS 1</th>
+    <th style="display: none">ADDRESS 2</th>
+    <th style="display: none">ADDRESS 3</th>
+    <th style="display: none">DISTRICT CODE</th>
+    <th style="display: none">TOWN CODE</th>
+    <th style="display: none">POSTCODE</th>
+    <th style="display: none">STATE CODE</th>
+    <th style="display: none">COUNTRY CODE</th>
+    <th style="text-align: center;">Update</th>
+    <th style="text-align: center;">Delete</th>
 </thead>
 <tbody>
 
     <%
-        String sql = " SELECT Supplier_ID, Supplier_Name,Office_Tel_No,IFNULL(Email,''),IFNULL(Mobile_No,''),IFNULL(Fax_No,''),IFNULL(ADDRESS1,''),IFNULL(ADDRESS2,''),IFNULL(ADDRESS3,''),IFNULL(DISTRICT_CODE,''),IFNULL(TOWN_CODE,''),IFNULL(POSTCODE,''),IFNULL(STATE_CODE,''),IFNULL(COUNTRY_CODE,'') FROM pis_supplier_info";
+        String sql = " SELECT Supplier_ID, Supplier_Name,Office_Tel_No,IFNULL(Email,''),IFNULL(Mobile_No,''),IFNULL(Fax_No,''),IFNULL(ADDRESS1,''),IFNULL(ADDRESS2,''),"
+                + "IFNULL(ADDRESS3,''),IFNULL(DISTRICT_CODE,''),IFNULL(TOWN_CODE,''),IFNULL(POSTCODE,''),IFNULL(STATE_CODE,''),IFNULL(COUNTRY_CODE,'') FROM pis_supplier_info";
         ArrayList<ArrayList<String>> dataSupplier = conn.getData(sql);
 
         int size = dataSupplier.size();
         for (int i = 0; i < size; i++) {
     %>
 
-    <tr>
+    <tr style="text-align: center;">
 <input id="dataSupplierhidden" type="hidden" value="<%=String.join("|", dataSupplier.get(i))%>">
 <td><%= dataSupplier.get(i).get(0)%></td>
 <td><%= dataSupplier.get(i).get(1)%></td>
 <td><%= dataSupplier.get(i).get(2)%></td>
 <td><%= dataSupplier.get(i).get(3)%></td>
+<td style="display: none"><%= dataSupplier.get(i).get(4)%></td>
+<td style="display: none"><%= dataSupplier.get(i).get(5)%></td>
+<td style="display: none"><%= dataSupplier.get(i).get(6)%></td>
+<td style="display: none"><%= dataSupplier.get(i).get(7)%></td>
+<td style="display: none"><%= dataSupplier.get(i).get(8)%></td>
+<td style="display: none"><%= dataSupplier.get(i).get(9)%></td>
+<td style="display: none"><%= dataSupplier.get(i).get(10)%></td>
+<td style="display: none"><%= dataSupplier.get(i).get(11)%></td>
+<td style="display: none"><%= dataSupplier.get(i).get(12)%></td>
+<td style="display: none"><%= dataSupplier.get(i).get(13)%></td>
 <td>
     <!-- Update Part Start -->
     <a id="supplierUpdateTButton" data-toggle="modal" data-target="#supplierUpdateModal"><i class="fa fa-pencil-square-o" aria-hidden="true" style="display: inline-block;color: #337ab7;"></i></a>
@@ -77,7 +98,7 @@
 
                             <!-- Text input-->
                             <div class="form-group">
-                                <label class="col-md-4 control-label" for="textinput">Supplier ID:</label>
+                                <label class="col-md-4 control-label" for="textinput">Supplier ID &nbsp; *</label>
                                 <div class="col-md-8">
                                     <input id="updateSupplier_ID" type="text" class="form-control" placeholder="Supplier ID" readonly maxlength="10">
                                 </div>
@@ -85,7 +106,7 @@
 
                             <!-- Text input-->
                             <div class="form-group">
-                                <label class="col-md-4 control-label" for="textinput">Supplier Name:</label>
+                                <label class="col-md-4 control-label" for="textinput">Supplier Name &nbsp; *</label>
                                 <div class="col-md-8">
                                     <input id="updateSupplier_Name" type="text" class="form-control" placeholder="Supplier NAME" maxlength="100">
                                 </div>
@@ -93,7 +114,7 @@
 
                             <!-- Text input-->
                             <div class="form-group">
-                                <label class="col-md-4 control-label" for="textinput">Office No:</label>
+                                <label class="col-md-4 control-label" for="textinput">Office No &nbsp; *</label>
                                 <div class="col-md-8">
                                     <input id="updateOffice_Tel_No" type="text" class="form-control" placeholder="Office No" maxlength="30">
                                 </div>
@@ -101,7 +122,7 @@
 
                             <!-- Text input-->
                             <div class="form-group">
-                                <label class="col-md-4 control-label" for="textinput">Email:</label>
+                                <label class="col-md-4 control-label" for="textinput">Email &nbsp; *</label>
                                 <div class="col-md-8">
                                     <input id="updateEmail" type="text" class="form-control" placeholder="Email" maxlength="30">
                                 </div>
@@ -109,7 +130,7 @@
 
                             <!-- Text input-->
                             <div class="form-group">
-                                <label class="col-md-4 control-label" for="textinput">Address 1:</label>
+                                <label class="col-md-4 control-label" for="textinput">Address 1</label>
                                 <div class="col-md-8">
                                     <input id="updateADDRESS1" type="text" class="form-control" placeholder="Address 1 (Optional)" maxlength="100">
                                 </div>
@@ -117,7 +138,7 @@
 
                             <!-- Text input-->
                             <div class="form-group">
-                                <label class="col-md-4 control-label" for="textinput">Address 2:</label>
+                                <label class="col-md-4 control-label" for="textinput">Address 2</label>
                                 <div class="col-md-8">
                                     <input id="updateADDRESS2" type="text" class="form-control" placeholder="Address 2 (Optional)" maxlength="100">
                                 </div>
@@ -125,7 +146,7 @@
 
                             <!-- Text input-->
                             <div class="form-group">
-                                <label class="col-md-4 control-label" for="textinput">Address 3:</label>
+                                <label class="col-md-4 control-label" for="textinput">Address 3</label>
                                 <div class="col-md-8">
                                     <input id="updateADDRESS3" type="text" class="form-control" placeholder="Address 3 (Optional)" maxlength="100">
                                 </div>
@@ -138,49 +159,49 @@
 
                             <!-- Text input-->
                             <div class="form-group">
-                                <label class="col-md-4 control-label" for="textinput">District Code:</label>
+                                <label class="col-md-4 control-label" for="textinput">District Code</label>
                                 <div class="col-md-8">
                                     <input id="updateDISTRICT_CODE" type="text" class="form-control" placeholder="District Code (Optional)" maxlength="30">
                                 </div>
                             </div>
 
                             <div class="form-group">
-                                <label class="col-md-4 control-label" for="textinput">Town Code:</label>
+                                <label class="col-md-4 control-label" for="textinput">Town Code</label>
                                 <div class="col-md-8">
                                     <input id="updateTOWN_CODE" type="text" class="form-control" placeholder="Town Code (Optional)" maxlength="30">
                                 </div>
                             </div>
 
                             <div class="form-group">
-                                <label class="col-md-4 control-label" for="textinput">Postcode:</label>
+                                <label class="col-md-4 control-label" for="textinput">Postcode</label>
                                 <div class="col-md-8">
                                     <input id="updatePOSTCODE" type="text" class="form-control" placeholder="Postcode (Optional)" maxlength="30">
                                 </div>
                             </div>
 
                             <div class="form-group">
-                                <label class="col-md-4 control-label" for="textinput">State Code:</label>
+                                <label class="col-md-4 control-label" for="textinput">State Code</label>
                                 <div class="col-md-8">
                                     <input id="updateSTATE_CODE" type="text" class="form-control" placeholder="State Code (Optional)" maxlength="30">
                                 </div>
                             </div>
 
                             <div class="form-group">
-                                <label class="col-md-4 control-label" for="textinput">Country Code:</label>
+                                <label class="col-md-4 control-label" for="textinput">Country Code</label>
                                 <div class="col-md-8">
                                     <input id="updateCOUNTRY_CODE" type="text" class="form-control" placeholder="Country Code (Optional)" maxlength="30">
                                 </div>
                             </div>
 
                             <div class="form-group">
-                                <label class="col-md-4 control-label" for="textinput">Mobile No:</label>
+                                <label class="col-md-4 control-label" for="textinput">Mobile No</label>
                                 <div class="col-md-8">
                                     <input id="updateMobile_No" type="text" class="form-control" placeholder="Mobile No (Optional)" maxlength="30">
                                 </div>
                             </div>
 
                             <div class="form-group">
-                                <label class="col-md-4 control-label" for="textinput">Fax No:</label>
+                                <label class="col-md-4 control-label" for="textinput">Fax No</label>
                                 <div class="col-md-8">
                                     <input id="updateFax_No" type="text" class="form-control" placeholder="Fax No (Optional)" maxlength="30">
                                 </div>
@@ -212,7 +233,27 @@
 
 <script type="text/javascript" charset="utf-8">
     $(document).ready(function () {
-        $('#supplierTable').DataTable();
+        $('#supplierTable').DataTable({
+            pageLength: 15,
+            dom: 'Bfrtip',
+            buttons: [
+                {
+                    extend: 'excelHtml5',
+                    text: 'Export To Excel',
+                    title: 'Supplier Data Export',
+                    exportOptions: {
+                        columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]
+                    }
+                }, {
+                    extend: 'csvHtml5',
+                    text: 'Export To Excel CSV',
+                    title: 'Supplier Data Export',
+                    exportOptions: {
+                        columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]
+                    }
+                }
+            ]
+        });
     });
 
 

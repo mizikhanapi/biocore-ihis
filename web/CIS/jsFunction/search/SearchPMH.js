@@ -14,6 +14,7 @@
                                 $('#match2').html(dataBack); // Return data (UL list) and insert it in the <div id="match"></div>
                                 $('#matchList li').on('click', function () { // When click on an element in the list
                                     $('#Problem1').val($(this).text()); // Update the field with the new element
+                                     searchCd();
                                     $('#match2').text(''); // Clear the <div id="match"></div>
                                 });
                             },
@@ -44,6 +45,7 @@
                                 $('#match3').html(dataBack); // Return data (UL list) and insert it in the <div id="match"></div>
                                 $('#matchList li').on('click', function () { // When click on an element in the list
                                     $('#PProblem2').val($(this).text()); // Update the field with the new element
+                                    usearchCd();
                                     $('#match3').text(''); // Clear the <div id="match"></div>
                                 });
                             },
@@ -57,3 +59,36 @@
                 });
             });
 //End js search in Update PMH pop up
+
+function searchCd(){
+       var id = $('#Problem1').val();
+        $.ajax({
+        type:'post',
+        url:'search/SearchPMH_cd.jsp',
+        data: {'id': id},                
+        success: function(reply_data){
+            var array_data = String(reply_data).split("|");
+            var pmhCode = array_data[0];
+            console.log(pmhCode);
+           
+            $('#codePMH').val(pmhCode.trim());
+  
+          }
+        });
+}
+function usearchCd(){
+       var id = $('#PProblem2').val();
+        $.ajax({
+        type:'post',
+        url:'search/SearchPMH_cd.jsp',
+        data: {'id': id},                
+        success: function(reply_data){
+            var array_data = String(reply_data).split("|");
+            var pmhCode = array_data[0];
+            console.log(pmhCode);
+           
+            $('#ucodePMH').val(pmhCode.trim());
+  
+          }
+        });
+}

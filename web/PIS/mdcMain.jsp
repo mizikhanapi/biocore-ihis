@@ -32,65 +32,58 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal"><i class="fa fa-times fa-lg"></i></button>
-                <h3 class="modal-title" id="lineModalLabel">Add New MTC Code</h3>
+                <h2 class="modal-title" id="lineModalLabel" align="center">Add New MDC Code</h2>
             </div>
             <div class="modal-body">
 
                 <!-- content goes here -->
-                <form class="form-horizontal" >
+                <form class="form-horizontal" autocomplete="off">
                     <div class="row">
                         <div class="col-md-6">
                             <h4>Drug Information</h4>
                             <hr/>
+
                             <!-- Text input-->
                             <div class="form-group">
-                                <label class="col-md-4 control-label" for="textinput">MDC Drug Code</label>
+                                <label class="col-md-4 control-label" for="textinput">ATC Drug Code *</label>
                                 <div class="col-md-8">
-                                    <input id="addUD_MDC_CODE" name="textinput" type="text" placeholder="Drug Code" class="form-control input-md" maxlength="25" >
+                                    <input id="addUD_ATC_CODE" name="textinput" type="text" placeholder="Please Search ATC Drug Code" class="form-control input-md" maxlength="25" >
+                                    <div id="addUD_ATC_CODESearch">
+                                        <!--for search area-->
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <!-- Text input-->
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" for="textinput">MDC Drug Code *</label>
+                                <div class="col-md-8">
+                                    <input id="addUD_MDC_CODE" name="textinput" type="text" placeholder="Please Insert MDC Drug Code" class="form-control input-md" maxlength="25" >
+                                </div>
+                            </div>
+
+
+
+                            <!-- Text input-->
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" for="textinput">Product Name *</label>
+                                <div class="col-md-8">
+                                    <input id="addD_TRADE_NAME" name="textinput" type="text" placeholder="Please Insert Product Name" class="form-control input-md" maxlength="200">
+                                </div>
+                            </div>
+
+                            <!-- Text input-->
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" for="textinput">Generic Name *</label>
+                                <div class="col-md-8">
+                                    <textarea id="addD_GNR_NAME" class="form-control" rows="3" maxlength="500" placeholder="Please Insert Generic Name"></textarea>
                                 </div>
                             </div>
 
                             <!-- Select Basic -->
                             <div class="form-group">
-                                <label class="col-md-4 control-label" for="selectbasic">ATC Drug Code</label>
-                                <div class="col-md-8">
-                                    <select id="addUD_ATC_CODE" name="selectbasic" class="form-control">
-                                        <option value="Select ATC Code">Select ATC Code</option>
-                                        <%
-                                            String sql = "SELECT UD_ATC_CODE, UD_ATC_Desc FROM pis_atc";
-                                            ArrayList<ArrayList<String>> listofATCCode = conn.getData(sql);
-
-                                            int size = listofATCCode.size();
-
-                                            for (int i = 0; i < size; i++) {
-                                        %>
-                                        <option value="<%= listofATCCode.get(i).get(0)%>"><%= listofATCCode.get(i).get(0)%> - <%= listofATCCode.get(i).get(1)%> </option>
-                                        <%
-                                            }
-                                        %>
-                                    </select>
-                                </div>
-                            </div>
-
-                            <!-- Text input-->
-                            <div class="form-group">
-                                <label class="col-md-4 control-label" for="textinput">Product Name</label>
-                                <div class="col-md-8">
-                                    <input id="addD_TRADE_NAME" name="textinput" type="text" placeholder="Product Name" class="form-control input-md" maxlength="200">
-                                </div>
-                            </div>
-
-                            <!-- Text input-->
-                            <div class="form-group">
-                                <label class="col-md-4 control-label" for="textinput">Generic Name</label>
-                                <div class="col-md-8">
-                                    <textarea id="addD_GNR_NAME" class="form-control" rows="3" maxlength="500" placeholder="Generic Name"></textarea>
-                                </div>
-                            </div>
-
-                            <!-- Select Basic -->
-                            <div class="form-group">
-                                <label class="col-md-4 control-label" for="selectbasic">Drug Route</label>
+                                <label class="col-md-4 control-label" for="selectbasic">Drug Route *</label>
                                 <div class="col-md-8">
                                     <select id="addD_ROUTE_CODE" name="selectbasic" class="form-control">
                                         <option value="Select Drug Route">Select Drug Route</option>
@@ -102,7 +95,7 @@
 
                                             for (int i = 0; i < size2; i++) {
                                         %>
-                                        <option value="<%= listOfDRoute.get(i).get(2)%>"><%= listOfDRoute.get(i).get(1)%> - <%= listOfDRoute.get(i).get(2)%> </option>
+                                        <option value="<%= listOfDRoute.get(i).get(2)%>"><%= listOfDRoute.get(i).get(2)%> </option>
                                         <%
                                             }
                                         %>
@@ -112,7 +105,7 @@
 
                             <!-- Select Basic -->
                             <div class="form-group">
-                                <label class="col-md-4 control-label" for="selectbasic">Dosage Form</label>
+                                <label class="col-md-4 control-label" for="selectbasic">Dosage Form *</label>
                                 <div class="col-md-8">
                                     <select id="addD_FORM_CODE" name="selectbasic" class="form-control">
                                         <option value="Select Dosage Form">Select Dosage Form</option>
@@ -124,7 +117,7 @@
 
                                             for (int i = 0; i < size3; i++) {
                                         %>
-                                        <option value="<%= listOfDForm.get(i).get(2)%>"><%= listOfDForm.get(i).get(1)%> - <%= listOfDForm.get(i).get(2)%> </option>
+                                        <option value="<%= listOfDForm.get(i).get(2)%>"> <%= listOfDForm.get(i).get(2)%> </option>
                                         <%
                                             }
                                         %>
@@ -135,34 +128,34 @@
 
                             <!-- Text input-->
                             <div class="form-group">
-                                <label class="col-md-4 control-label" for="textinput">Strength</label>
+                                <label class="col-md-4 control-label" for="textinput">Strength *</label>
                                 <div class="col-md-8">
-                                    <input id="addD_STRENGTH" name="textinput" type="text" placeholder="Drug Strength" class="form-control input-md" maxlength="50">
+                                    <input id="addD_STRENGTH" name="textinput" type="text" placeholder="Please Insert Drug Strength" class="form-control input-md" maxlength="50">
                                 </div>
                             </div>
 
                             <!-- Text input-->
                             <div class="form-group">
-                                <label class="col-md-4 control-label" for="textinput">Stock Quantity</label>
+                                <label class="col-md-4 control-label" for="textinput">Stock Quantity *</label>
                                 <div class="col-md-8">
-                                    <input id="addD_STOCK_QTY" name="textinput" type="number" placeholder="Stock Qty" class="form-control input-md" maxlength="20">
+                                    <input id="addD_STOCK_QTY" name="textinput" type="number" placeholder="Please Insert Stock Qty" class="form-control input-md" maxlength="20">
                                 </div>
                             </div>
 
                             <!-- Text input-->
                             <div class="form-group">
-                                <label class="col-md-4 control-label" for="textinput">Location Code</label>
+                                <label class="col-md-4 control-label" for="textinput">Location Code *</label>
                                 <div class="col-md-8">
-                                    <input id="addD_LOCATION_CODE" name="textinput" type="text" placeholder="Location Code" class="form-control input-md" maxlength="4">
+                                    <input id="addD_LOCATION_CODE" name="textinput" type="text" placeholder="Please Insert Location Code" class="form-control input-md" maxlength="4">
                                 </div>
                             </div>
 
                             <div class="form-group">
-                                <label class="col-md-4 control-label" for="selectbasic">Status</label>
+                                <label class="col-md-4 control-label" for="selectbasic">Select Status *</label>
                                 <div class="col-md-8">
                                     <select id="addSTATUS" name="addSTATUS" class="form-control">
                                         <option value="No Status">No Status</option>
-                                        <option value="1">Active</option>
+                                        <option value="1" selected>Active</option>
                                         <option value="0">Inactive</option>     
                                     </select>
                                 </div>
@@ -179,33 +172,33 @@
 
                             <!-- Text input-->
                             <div class="form-group">
-                                <label class="col-md-4 control-label" for="textinput">Packaging</label>
+                                <label class="col-md-4 control-label" for="textinput">Packaging *</label>
                                 <div class="col-md-8">
-                                    <input id="addD_PACKAGING" name="textinput" type="number" placeholder="Packaging" class="form-control input-md" step="0.01" maxlength="60">
+                                    <input id="addD_PACKAGING" name="textinput" type="number" placeholder="Please Insert Packaging" class="form-control input-md" step="0.01" maxlength="60">
                                 </div>
                             </div>
 
                             <!-- Text input-->
                             <div class="form-group">
-                                <label class="col-md-4 control-label" for="textinput">Price per Pack</label>
+                                <label class="col-md-4 control-label" for="textinput">Price per Pack *</label>
                                 <div class="col-md-8">
-                                    <input id="addD_PRICE_PPACK" name="textinput" type="number" placeholder="Price per Pack" class="form-control input-md" step="0.01" maxlength="20">
+                                    <input id="addD_PRICE_PPACK" name="textinput" type="number" placeholder="Please Insert Price per Pack" class="form-control input-md" step="0.01" maxlength="20">
                                 </div>
                             </div>
 
                             <!-- Text input-->
                             <div class="form-group">
-                                <label class="col-md-4 control-label" for="textinput">Purchase Price</label>
+                                <label class="col-md-4 control-label" for="textinput">Purchase Price *</label>
                                 <div class="col-md-8">
-                                    <input id="addD_COST_PRICE" name="textinput" type="number" placeholder="Purchase Price" class="form-control input-md" step="0.01" maxlength="20">
+                                    <input id="addD_COST_PRICE" name="textinput" type="number" placeholder="Please Insert Purchase Price" class="form-control input-md" step="0.01" maxlength="20">
                                 </div>
                             </div>
 
                             <!-- Text input-->
                             <div class="form-group">
-                                <label class="col-md-4 control-label" for="textinput">Sell Price</label>
+                                <label class="col-md-4 control-label" for="textinput">Sell Price *</label>
                                 <div class="col-md-8">
-                                    <input id="addD_SELL_PRICE" name="textinput" type="number" placeholder="Sell Price" class="form-control input-md" step="0.01" maxlength="20">
+                                    <input id="addD_SELL_PRICE" name="textinput" type="number" placeholder="Please Insert Sell Price" class="form-control input-md" step="0.01" maxlength="20">
                                 </div>
                             </div>
 
@@ -214,9 +207,9 @@
                             <hr/>
                             <!-- Select Basic -->
                             <div class="form-group">
-                                <label class="col-md-4 control-label" for="selectbasic">Dose</label>
+                                <label class="col-md-4 control-label" for="selectbasic">Dose *</label>
                                 <div class="col-md-4">
-                                    <input id="addD_QTY" name="textinput" type="number" class="form-control input-md" step="0.01" maxlength="20">
+                                    <input id="addD_QTY" name="textinput" type="number" placeholder="Please Insert Dosage" class="form-control input-md" step="0.01" maxlength="20">
                                 </div>
                                 <div class="col-md-4">
                                     <select id="addD_QTYT" name="addD_QTYT" class="form-control">
@@ -229,7 +222,7 @@
 
                                             for (int i = 0; i < size4; i++) {
                                         %>
-                                        <option value="<%= listOfDUOM.get(i).get(2)%>"><%= listOfDUOM.get(i).get(1)%> - <%= listOfDUOM.get(i).get(2)%> </option>
+                                        <option value="<%= listOfDUOM.get(i).get(2)%>"><%= listOfDUOM.get(i).get(2)%> </option>
                                         <%
                                             }
                                         %>
@@ -239,7 +232,7 @@
 
                             <!-- Select Basic -->
                             <div class="form-group">
-                                <label class="col-md-4 control-label" for="selectbasic">Frequency</label>
+                                <label class="col-md-4 control-label" for="selectbasic">Frequency *</label>
                                 <div class="col-md-8">
                                     <select id="addD_FREQUENCY" name="addD_FREQUENCY" class="form-control" >
                                         <option value="No Frequency">No Frequency</option>
@@ -251,7 +244,7 @@
 
                                             for (int i = 0; i < size5; i++) {
                                         %>
-                                        <option value="<%= listOfDFreq.get(i).get(2)%>"><%= listOfDFreq.get(i).get(1)%> - <%= listOfDFreq.get(i).get(2)%> </option>
+                                        <option value="<%= listOfDFreq.get(i).get(2)%>"><%= listOfDFreq.get(i).get(2)%> </option>
                                         <%
                                             }
                                         %>
@@ -261,9 +254,9 @@
 
                             <!-- Select Basic -->
                             <div class="form-group">
-                                <label class="col-md-4 control-label" for="selectbasic">Duration</label>
+                                <label class="col-md-4 control-label" for="selectbasic">Duration *</label>
                                 <div class="col-md-4">
-                                    <input id="addD_DURATION" name="textinput" type="number" class="form-control input-md" step="0.01" maxlength="60">
+                                    <input id="addD_DURATION" name="textinput" type="number" class="form-control input-md" placeholder="Please Insert Duration" step="0.01" maxlength="60">
                                 </div>
                                 <div class="col-md-4">
                                     <select id="addD_DURATIONT" name="addD_DURATIONT" class="form-control">
@@ -276,7 +269,7 @@
 
                                             for (int i = 0; i < size6; i++) {
                                         %>
-                                        <option value="<%= listOfDDura.get(i).get(2)%>"><%= listOfDDura.get(i).get(1)%> - <%= listOfDDura.get(i).get(2)%> </option>
+                                        <option value="<%= listOfDDura.get(i).get(2)%>"><%= listOfDDura.get(i).get(2)%> </option>
                                         <%
                                             }
                                         %>
@@ -286,7 +279,7 @@
 
                             <!-- Select Basic -->
                             <div class="form-group">
-                                <label class="col-md-4 control-label" for="selectbasic">Instruction</label>
+                                <label class="col-md-4 control-label" for="selectbasic">Instruction *</label>
                                 <div class="col-md-8">
                                     <select id="addD_ADVISORY_CODE" name="addD_ADVISORY_CODE" class="form-control">
                                         <option value="No Instruction">No Instruction</option>
@@ -298,7 +291,7 @@
 
                                             for (int i = 0; i < size7; i++) {
                                         %>
-                                        <option value="<%= listOfDInst.get(i).get(2)%>"><%= listOfDInst.get(i).get(1)%> - <%= listOfDInst.get(i).get(2)%> </option>
+                                        <option value="<%= listOfDInst.get(i).get(2)%>"><%= listOfDInst.get(i).get(2)%> </option>
                                         <%
                                             }
                                         %>
@@ -308,23 +301,23 @@
 
                             <!-- Text input-->
                             <div class="form-group">
-                                <label class="col-md-4 control-label" for="textinput">Cautionary</label>
+                                <label class="col-md-4 control-label" for="textinput">Cautionary *</label>
                                 <div class="col-md-8">
-                                    <textarea id="addD_CAUTIONARY_CODE" class="form-control" rows="3" placeholder="Drug Cautionary" maxlength="150"></textarea>
+                                    <textarea id="addD_CAUTIONARY_CODE" class="form-control" rows="3" placeholder="Please Insert Drug Cautionary" maxlength="150"></textarea>
                                 </div>
                             </div>
 
                             <!-- Text input-->
                             <div class="form-group">
-                                <label class="col-md-4 control-label" for="textinput">Expire Date</label>
+                                <label class="col-md-4 control-label" for="textinput">Expire Date *</label>
                                 <div class="col-md-8">
-                                    <input id="addD_EXP_DATE" name="addD_EXP_DATE" type="text"class="form-control input-md" placeholder="Expire Date" readonly>
+                                    <input id="addD_EXP_DATE" name="addD_EXP_DATE" type="text"class="form-control input-md" placeholder="Select Expire Date" readonly>
                                 </div>
                             </div>
 
                             <!-- Select Basic -->
                             <div class="form-group">
-                                <label class="col-md-4 control-label" for="selectbasic">Classification</label>
+                                <label class="col-md-4 control-label" for="selectbasic">Classification *</label>
                                 <div class="col-md-8">
                                     <select id="addD_CLASSIFICATION" name="addD_CLASSIFICATION" class="form-control">
                                         <option value="No Classification">No Classification</option>
@@ -336,7 +329,7 @@
 
                                             for (int i = 0; i < size8; i++) {
                                         %>
-                                        <option value="<%= listOfDClass.get(i).get(2)%>"><%= listOfDClass.get(i).get(1)%> - <%= listOfDClass.get(i).get(2)%> </option>
+                                        <option value="<%= listOfDClass.get(i).get(2)%>"><%= listOfDClass.get(i).get(2)%> </option>
                                         <%
                                             }
                                         %>
@@ -369,8 +362,6 @@
 
 
 <script>
-
-    w3IncludeHTML();
 
     $(document).ready(function () {
 
@@ -413,6 +404,42 @@
             reset();
         });
 
+
+        // Search HFC Function Start
+        $("#addUD_ATC_CODE").on('keyup', function () { // everytime keyup event
+            var input = $(this).val(); // We take the input value
+
+            if (input.length >= 1) { // Minimum characters = 2 (you can change)
+                $('#addUD_ATC_CODESearch').html('<img src="libraries/LoaderIcon.gif"  />'); // Loader icon apprears in the <div id="match"></div>
+                var dataFields = {input: input}; // We pass input argument in Ajax
+                $.ajax({
+                    type: "POST",
+                    url: "mdcSearchATC.jsp", // call the php file ajax/tuto-autocomplete.php
+                    data: dataFields, // Send dataFields var
+                    timeout: 3000,
+                    success: function (dataBack) { // If success
+                        $('#addUD_ATC_CODESearch').html(dataBack); // Return data (UL list) and insert it in the <div id="match"></div>
+                        $('#matchListATC li').on('click', function () { // When click on an element in the list
+                            //$('#masterCode2').text($(this).text()); // Update the field with the new element
+                            $('#addUD_ATC_CODE').val($(this).text());
+                            $('#addUD_ATC_CODESearch').text(''); // Clear the <div id="match"></div>
+                            var arrayData = $('#addUD_ATC_CODE').val().split("|");
+                            console.log(arrayData);
+                            console.log(arrayData[0].trim());
+                            console.log(arrayData[1].trim());
+                        });
+                    },
+                    error: function () { // if error
+                        $('#addUD_ATC_CODESearch').text('Problem!');
+                    }
+                });
+            } else {
+                $('#addUD_ATC_CODESearch').text(''); // If less than 2 characters, clear the <div id="match"></div>
+            }
+
+        });
+        // Search FHC Function End
+
         $('#addMDCButton').on('click', function () {
 
             console.log("In add");
@@ -445,7 +472,7 @@
 
             if (UD_MDC_CODE === "") {
                 bootbox.alert("Please Insert MDC Code");
-            } else if (UD_ATC_CODE === "Select ATC Code") {
+            } else if (UD_ATC_CODE === "") {
                 bootbox.alert("Select Any ATC Code");
             } else if (D_TRADE_NAME === "") {
                 bootbox.alert("Please Insert Drug Trade Name");
@@ -491,6 +518,9 @@
             } else if (D_CLASSIFICATION === "No Classification") {
                 bootbox.alert("Select Any Classification");
             } else {
+                
+                var arrayDataATC = $('#addUD_ATC_CODE').val().split("|");
+                UD_ATC_CODE = arrayDataATC[0].trim();
 
                 var data = {
                     UD_MDC_CODE: UD_MDC_CODE,

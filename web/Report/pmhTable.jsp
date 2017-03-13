@@ -1,5 +1,5 @@
 <%-- 
-    Document   : dischargeTable
+    Document   : pmhTable
     Created on : Feb 15, 2017, 9:14:41 PM
     Author     : User
 --%>
@@ -16,7 +16,6 @@
     Conn conn = new Conn();
     String idType = request.getParameter("idType");
     String idInput = request.getParameter("idInput");
-    //String idInput = "9509140262901";
 
 
 %>
@@ -25,7 +24,7 @@
 
 
 <div class="thumbnail">
-    <table id="pmhTableDiv" class="table table-filter table-striped" style="background: #fff; border: 1px solid #ccc; margin-top: 20px">
+    <table id="pmhTablediv" class="table table-filter table-striped" style="background: #fff; border: 1px solid #ccc; margin-top: 20px">
 
         <thead>
 
@@ -51,6 +50,15 @@
             for (int i = 0; i < size; i++) {
         %>
         
+        <tr>
+            <td id="PMI_NO"><%= pmh.get(i).get(0)%></td>
+            <td id="episode_date"><%= pmh.get(i).get(1)%></td>
+            <td id="name"><%= pmh.get(i).get(2)%></td>
+            <td id="hfc"><%= pmh.get(i).get(3)%></td>
+            <td><form><input type=submit value="view" id="btn_view_<%=i%>"></form></td>
+
+        </tr>
+        
 
         <%
             }
@@ -66,7 +74,7 @@
 
 <script type="text/javascript" charset="utf-8">
     $(document).ready(function () {
-        $('#pmhTableDiv').DataTable();
+        $('#pmhTablediv').DataTable();
     });
 </script>
 

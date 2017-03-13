@@ -1,7 +1,6 @@
 <%@page import="org.apache.commons.lang3.StringUtils"%>
 <%@page import="dBConn.Conn"%>
 <%@page import="Config.Config"%>
-<%@page import="org.json.JSONArray"%>
 <%@page import="java.sql.*"%>
 <%@page import="java.util.List"%>
 <%@page import="java.util.ArrayList"%>
@@ -30,10 +29,8 @@
             searchPatient = "select * from pms_patient_biodata where NEW_IC_NO='" + idInput + "'";
         } else if (idType.equals("icold")) {
             searchPatient = "select * from pms_patient_biodata where OLD_IC_NO='" + idInput + "'";
-        } else if (idType.equals("004")) {
-            searchPatient = "select * from pms_patient_biodata where ID_NO='" + idInput + "' AND ID_TYPE='004'";
-        } else if (idType.equals("005")) {
-            searchPatient = "select * from pms_patient_biodata where ID_NO='" + idInput + "'AND ID_TYPE='005'";
+        } else {
+            searchPatient = "select * from pms_patient_biodata where ID_NO='" + idInput + "' AND ID_TYPE='" + idType + "'";
         }
 
         ArrayList<ArrayList<String>> search = conn.getData(searchPatient);
@@ -84,6 +81,8 @@
         searchPatient = "select * from pms_patient_biodata where NEW_IC_NO='" + idInput + "'";
     } else if (idType.equals("icold")) {
         searchPatient = "select * from pms_patient_biodata where OLD_IC_NO='" + idInput + "'";
+    } else {
+        searchPatient = "select * from pms_patient_biodata where ID_NO='" + idInput + "' AND ID_TYPE='" + idType + "'";
     }
 
     ArrayList<ArrayList<String>> search = conn.getData(searchPatient);

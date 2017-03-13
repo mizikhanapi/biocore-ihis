@@ -32,8 +32,9 @@
             <td><%=q1.get(i).get(1)%></td>
             <td><%=q1.get(i).get(2)%></td>
             <td>
-                <button  class='btn btn-primary btn-xs' data-toggle="modal" data-target="#basicModal<%=i %>">Update</button>
                 
+                <a data-toggle="modal" data-target="#basicModal<%=i %>"><i class="fa fa-pencil-square-o" aria-hidden="true" style="display: inline-block;color: #337ab7;"></i></a>
+
                 <div class="modal fade" id="basicModal<%=i %>" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="modal-content">
@@ -70,9 +71,7 @@
                 
             </td>
             <td>
-
-                <button id='btn<%=i%>' class='btn btn-danger btn-xs'>Delete</button>
-
+                <a id="btn<%=i%>" class="testing"><i class="fa fa-times" aria-hidden="true" style="display: inline-block;color: #d9534f;" ></i></a>
                 <script type="text/javascript" charset="utf-8">
                     $(document).ready(function () {
                         $("#btn<%=i%>").click(function () {

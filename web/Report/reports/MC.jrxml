@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="MC" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="9070fede-2c3b-4cd5-b397-6a4c743e1e8e">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="MC" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="9070fede-2c3b-4cd5-b397-6a4c743e1e8e">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
+	<import value="org.apache.commons.lang.time.*"/>
 	<parameter name="ID_TYPE" class="java.lang.String">
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
@@ -57,22 +58,31 @@ pms_patient_biodata.`OLD_IC_NO` = $P{mcInput}]]>
 	<field name="lhr_med_leave_end_date" class="java.lang.String"/>
 	<field name="lhr_med_leave_doctor_name" class="java.lang.String"/>
 	<field name="lhr_med_leave_doctor_id" class="java.lang.String"/>
+	<variable name="startDate" class="java.util.Date">
+		<variableExpression><![CDATA[$F{lhr_med_leave_start_date}]]></variableExpression>
+	</variable>
+	<variable name="endDate" class="java.util.Date">
+		<variableExpression><![CDATA[$F{lhr_med_leave_end_date}]]></variableExpression>
+	</variable>
+	<variable name="day" class="java.lang.String">
+		<variableExpression><![CDATA[]]></variableExpression>
+	</variable>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
 	<title>
 		<band height="129" splitType="Stretch">
 			<image>
-				<reportElement x="283" y="0" width="194" height="116" uuid="fa2e9e6d-a199-4689-ba1f-f2f93681bf1a"/>
-				<imageExpression><![CDATA["C:\\Users\\user\\Desktop\\Mimi\\iHIS_R\\web\\reports\\LogoUTeM-2016.jpg"]]></imageExpression>
+				<reportElement x="251" y="0" width="572" height="129" uuid="2e391d59-2b94-45b9-a7e9-426cdd41d549"/>
+				<imageExpression><![CDATA["C:\\Users\\user\\Desktop\\Mimi\\Reports\\iHIS_Report\\web\\reports\\LogoUTeM-2016.jpg"]]></imageExpression>
 			</image>
 		</band>
 	</title>
 	<pageHeader>
 		<band height="35" splitType="Stretch">
 			<textField isBlankWhenNull="true">
-				<reportElement x="295" y="0" width="384" height="35" uuid="11f5d50a-47ea-4994-9972-501eb91097a3"/>
-				<textElement>
+				<reportElement x="209" y="0" width="384" height="35" uuid="11f5d50a-47ea-4994-9972-501eb91097a3"/>
+				<textElement textAlignment="Center">
 					<font size="20" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{lhr_med_leave_hfc_cd}]]></textFieldExpression>
@@ -137,7 +147,7 @@ pms_patient_biodata.`OLD_IC_NO` = $P{mcInput}]]>
 				<text><![CDATA[HINGGA]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="197" y="166" width="98" height="20" uuid="6e6678d8-b24b-4674-95c5-ea7937a9042f"/>
+				<reportElement x="14" y="249" width="98" height="20" uuid="6e6678d8-b24b-4674-95c5-ea7937a9042f"/>
 				<textElement markup="none">
 					<font size="10" isBold="true"/>
 				</textElement>
@@ -167,7 +177,7 @@ pms_patient_biodata.`OLD_IC_NO` = $P{mcInput}]]>
 				<textFieldExpression><![CDATA[$F{lhr_med_leave_end_date}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement x="295" y="166" width="49" height="20" uuid="01e13e12-d6ed-4a7a-bd28-9ab73aefbd7c"/>
+				<reportElement x="112" y="249" width="49" height="20" uuid="01e13e12-d6ed-4a7a-bd28-9ab73aefbd7c"/>
 				<textFieldExpression><![CDATA[$F{lhr_med_leave_doctor_name}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
@@ -187,6 +197,22 @@ pms_patient_biodata.`OLD_IC_NO` = $P{mcInput}]]>
 					<font size="10" isBold="true"/>
 				</textElement>
 				<text><![CDATA[TIDAK SIHAT UNTUK MENJALANKAN TUGAS SELAMA]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="false">
+				<reportElement x="540" y="69" width="15" height="14" isPrintWhenDetailOverflows="true" uuid="eac93a84-7901-4205-b09c-556d48dc05e1">
+					<printWhenExpression><![CDATA[new java.lang.Boolean($F{lhr_med_leave_start_date}!=null && $F{lhr_med_leave_end_date}!=null)]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{lhr_med_leave_end_date}.compareTo($F{lhr_med_leave_start_date} )]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="557" y="69" width="36" height="14" uuid="578e6191-ff16-487a-ae71-f898bc2f4a8d"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[HARI]]></text>
 			</staticText>
 		</band>
 	</detail>

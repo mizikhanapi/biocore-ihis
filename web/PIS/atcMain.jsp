@@ -22,40 +22,75 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal"><i class="fa fa-times fa-lg"></i></button>
-                <h3 class="modal-title" id="lineModalLabel">Add New ATC Code</h3>
+                <h2 class="modal-title" id="lineModalLabel" align="center">Add New ATC Code</h2>
             </div>
             <div class="modal-body">
 
                 <!-- content goes here -->
-                <form class="form-horizontal" id="addForm">
+                <form class="form-horizontal" id="addForm" autocomplete="off">
 
                     <!-- Text input-->
                     <div class="form-group">
-                        <label class="col-md-4 control-label" for="textinput">ATC Code</label>
+                        <label class="col-md-4 control-label" for="textinput">ATC Code *</label>
                         <div class="col-md-8">
-                            <input id="atcCode" name="atcCode" type="text" placeholder="ATC Code" class="form-control input-md" maxlength="15" required>
+                            <input id="atcCode" name="atcCode" type="text" placeholder="Insert ATC Code" class="form-control input-md" maxlength="15" required>
                         </div>
                     </div>
 
                     <!-- Text input-->
                     <div class="form-group">
-                        <label class="col-md-4 control-label" for="textinput">ATC Description</label>
+                        <label class="col-md-4 control-label" for="textinput">ATC Description *</label>
                         <div class="col-md-8">
-                            <textarea id="atcDesc" name="atcDesc" class="form-control" rows="4" placeholder="ATC Description" maxlength="200" required></textarea>
+                            <textarea id="atcDesc" name="atcDesc" class="form-control" rows="4" placeholder="Insert ATC Description" maxlength="200" required></textarea>
                         </div>
                     </div>
 
                     <!-- Text input-->
                     <div class="form-group">
-                        <label class="col-md-4 control-label" for="textinput">Category Code</label>
+                        <label class="col-md-4 control-label" for="textinput">Category Code *</label>
                         <div class="col-md-8">
-                            <input id="category" name="category" type="text" placeholder="Category Code" class="form-control input-md" maxlength="50" required>
+                            <input id="category" name="category" type="text" placeholder="Insert Category Code" class="form-control input-md" maxlength="50" required>
+                        </div>
+                    </div>
+
+
+                    <!-- Text input-->
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="textinput">HFC Code *</label>
+                        <div class="col-md-8">
+                            <input id="hfc" type="text" placeholder="Insert HFC Code" maxlength="30" class="form-control input-md" >
+                            <div id="atcHFCSearch">
+                                <!--for search area-->
+                            </div>
                         </div>
                     </div>
 
                     <!-- Text input-->
                     <div class="form-group">
-                        <label class="col-md-4 control-label" for="textinput">Status</label>
+                        <label class="col-md-4 control-label" for="textinput">Discipline Code *</label>
+                        <div class="col-md-8">
+                            <input id="discipline" type="text" placeholder="Insert Discipline Code" maxlength="30" class="form-control input-md" >
+                            <div id="atcDisciplineSearch">
+                                <!--for search area-->
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Text input-->
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="textinput">Sub-Discipline Code *</label>
+                        <div class="col-md-8">
+                            <input id="subdiscipline" type="text" placeholder="Insert Sub-Discipline Code" maxlength="30" class="form-control input-md" >
+                            <div id="atcSubDisciplineSearch">
+                                <!--for search area-->
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <!-- Text input-->
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="textinput">Status  *</label>
                         <div class="col-md-8">
                             <label class="radio-inline">
                                 <input type="radio" name="status" id="status1" value="1">
@@ -91,26 +126,141 @@
 
 <script>
 
-    w3IncludeHTML();
 
     $(document).ready(function () {
 
-        function reset() {
-            document.getElementById("atcCode").value = "";
-            document.getElementById("atcDesc").value = "";
-            document.getElementById("category").value = "";
-            document.getElementById("status1").checked = false;
-            document.getElementById("status2").checked = false;
-        }
+        // Search HFC Function Start
+        $("#hfc").on('keyup', function () { // everytime keyup event
+            var input = $(this).val(); // We take the input value
 
-        $('#addReset').on('click', function () {
-            reset();
+            if (input.length >= 1) { // Minimum characters = 2 (you can change)
+                $('#atcHFCSearch').html('<img src="libraries/LoaderIcon.gif"  />'); // Loader icon apprears in the <div id="match"></div>
+                var dataFields = {input: input}; // We pass input argument in Ajax
+                $.ajax({
+                    type: "POST",
+                    url: "atcSearchHFC.jsp", // call the php file ajax/tuto-autocomplete.php
+                    data: dataFields, // Send dataFields var
+                    timeout: 3000,
+                    success: function (dataBack) { // If success
+                        $('#atcHFCSearch').html(dataBack); // Return data (UL list) and insert it in the <div id="match"></div>
+                        $('#matchListHFC li').on('click', function () { // When click on an element in the list
+                            //$('#masterCode2').text($(this).text()); // Update the field with the new element
+                            $('#hfc').val($(this).text());
+                            $('#atcHFCSearch').text(''); // Clear the <div id="match"></div>
+                            var arrayData = $('#hfc').val().split("|");
+                            console.log(arrayData);
+                            console.log(arrayData[0].trim());
+                            console.log(arrayData[1].trim());
+                        });
+                    },
+                    error: function () { // if error
+                        $('#atcHFCSearch').text('Problem!');
+                    }
+                });
+            } else {
+                $('#atcHFCSearch').text(''); // If less than 2 characters, clear the <div id="match"></div>
+            }
+
         });
+        // Search FHC Function End
 
+
+        // Search Discipline Function Start
+        $("#discipline").on('keyup', function () { // everytime keyup event
+            var input = $(this).val(); // We take the input value
+            var hfc = $('#hfc').val();
+
+            if (hfc === "" || hfc === null) {
+                $('#discipline').val("");
+                bootbox.alert("Please Search For HFC Code Before Proceeding");
+            } else {
+                if (input.length >= 1) { // Minimum characters = 2 (you can change)
+                    $('#atcDisciplineSearch').html('<img src="libraries/LoaderIcon.gif" />'); // Loader icon apprears in the <div id="match"></div>
+                    var dataFields = {input: input}; // We pass input argument in Ajax
+                    $.ajax({
+                        type: "POST",
+                        url: "atcSearchDiscipline.jsp", // call the php file ajax/tuto-autocomplete.php
+                        data: dataFields, // Send dataFields var
+                        timeout: 3000,
+                        success: function (dataBack) { // If success
+                            $('#atcDisciplineSearch').html(dataBack); // Return data (UL list) and insert it in the <div id="match"></div>
+                            $('#matchListDis li').on('click', function () { // When click on an element in the list
+                                //$('#masterCode2').text($(this).text()); // Update the field with the new element
+                                $('#discipline').val($(this).text());
+                                $('#atcDisciplineSearch').text(''); // Clear the <div id="match"></div>
+                                var arrayData = $('#discipline').val().split("|");
+                                console.log(arrayData);
+                                console.log(arrayData[0].trim());
+                                console.log(arrayData[1].trim());
+                            });
+                        },
+                        error: function () { // if error
+                            $('#atcDisciplineSearch').text('Problem!');
+                        }
+                    });
+                } else {
+                    $('#atcDisciplineSearch').text(''); // If less than 2 characters, clear the <div id="match"></div>
+                }
+            }
+        });
+        // Search Sub Discipline Function End
+
+
+        // Search Sub Discipline Function Start
+        $("#subdiscipline").on('keyup', function () { // everytime keyup event
+            var input = $(this).val(); // We take the input value
+
+            var hfc = $('#hfc').val();
+            var discipline = $('#discipline').val();
+
+            if (hfc === "" || hfc === null) {
+                $('#subdiscipline').val("");
+                bootbox.alert("Please Search For HFC Code Before Proceeding");
+            } else if (discipline === "" || discipline === null) {
+                $('#subdiscipline').val("");
+                bootbox.alert("Please Search For Discipline Code Before Proceeding");
+            } else {
+                if (input.length >= 1) { // Minimum characters = 2 (you can change)
+                    $('#atcSubDisciplineSearch').html('<img src="libraries/LoaderIcon.gif" />'); // Loader icon apprears in the <div id="match"></div>
+                    var dataFields = {input: input}; // We pass input argument in Ajax
+                    $.ajax({
+                        type: "POST",
+                        url: "atcSearchSubDiscipline.jsp", // call the php file ajax/tuto-autocomplete.php
+                        data: dataFields, // Send dataFields var
+                        timeout: 3000,
+                        success: function (dataBack) { // If success
+                            $('#atcSubDisciplineSearch').html(dataBack); // Return data (UL list) and insert it in the <div id="match"></div>
+                            $('#matchListSubDis li').on('click', function () { // When click on an element in the list
+                                //$('#masterCode2').text($(this).text()); // Update the field with the new element
+                                $('#subdiscipline').val($(this).text());
+                                $('#atcSubDisciplineSearch').text(''); // Clear the <div id="match"></div>
+                                var arrayData = $('#subdiscipline').val().split("|");
+                                console.log(arrayData);
+                                console.log(arrayData[0].trim());
+                                console.log(arrayData[1].trim());
+                            });
+                        },
+                        error: function () { // if error
+                            $('#atcSubDisciplineSearch').text('Problem!');
+                        }
+                    });
+                } else {
+                    $('#atcSubDisciplineSearch').text(''); // If less than 2 characters, clear the <div id="match"></div>
+                }
+            }
+        });
+        // Search Sub Discipline Function End
+
+
+        // Add Function Start
         $('#addButton').on('click', function () {
+
             var atcCode = $('#atcCode').val();
             var atcDesc = $('#atcDesc').val();
             var category = $('#category').val();
+            var hfc = $('#hfc').val();
+            var discipline = $('#discipline').val();
+            var subdiscipline = $('#subdiscipline').val();
             var status = $('input[name="status"]:checked').val();
 
             if (atcCode === "" || atcCode === null) {
@@ -119,14 +269,31 @@
                 bootbox.alert("Please Insert ATC Code Description");
             } else if (category === "" || category === null) {
                 bootbox.alert("Please Insert ATC Code Category");
+            } else if (hfc === "" || hfc === null) {
+                bootbox.alert("Please Insert ATC HFC Code");
+            } else if (discipline === "" || discipline === null) {
+                bootbox.alert("Please Insert ATC Discipline Code");
+            } else if (subdiscipline === "" || subdiscipline === null) {
+                bootbox.alert("Please Insert ATC Sub-Discipline Code");
             } else if (status !== "1" && status !== "0") {
                 bootbox.alert("Please Select Any Status");
             } else {
+
+                var arrayDataHFC = $('#hfc').val().split("|");
+                var arrayDataDiscipline = $('#discipline').val().split("|");
+                var arrayDataSubDiscipline = $('#subdiscipline').val().split("|");
+
+                hfc = arrayDataHFC[0].trim();
+                discipline = arrayDataDiscipline[0].trim();
+                subdiscipline = arrayDataSubDiscipline[0].trim();
 
                 var data = {
                     atcCode: atcCode,
                     atcDesc: atcDesc,
                     category: category,
+                    hfc: hfc,
+                    discipline: discipline,
+                    subdiscipline: subdiscipline,
                     status: status
                 };
 
@@ -155,7 +322,7 @@
                                 title: "Process Result",
                                 backdrop: true
                             });
-                            
+
                         } else if (datas.trim() === 'Failed') {
 
                             bootbox.alert({
@@ -177,7 +344,31 @@
             }
 
         });
+        // Add Function End
 
+
+        // Reset Button Function Start
+        $('#addReset').on('click', function () {
+            reset();
+        });
+        // Reset Button Function End
+
+
+        // Reset Function Start
+        function reset() {
+            document.getElementById("atcCode").value = "";
+            document.getElementById("atcDesc").value = "";
+            document.getElementById("category").value = "";
+            document.getElementById("hfc").value = null;
+            document.getElementById("atcHFCSearch").innerHTML = "";
+            document.getElementById("discipline").value = "";
+            document.getElementById("atcDisciplineSearch").innerHTML = "";
+            document.getElementById("subdiscipline").value = "";
+            document.getElementById("atcSubDisciplineSearch").innerHTML = "";
+            document.getElementById("status1").checked = false;
+            document.getElementById("status2").checked = false;
+        }
+        // Reset Function End
 
     });
 

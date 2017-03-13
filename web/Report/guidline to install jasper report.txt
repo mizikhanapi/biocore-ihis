@@ -1,0 +1,8 @@
+step how to use jasper report
+
+1) go to netbeans tab TOOLS
+2) click at the plug in and go to downloaded, click "add plug in"
+3) search for the 3 file that .nbm that contain in the connector file(this file i already included in the REPORT folder)
+4) install
+5) add all the .jar libraries that have in the'connector file' ( it has a alot of .jar)
+^) 

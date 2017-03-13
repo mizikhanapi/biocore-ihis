@@ -14,6 +14,7 @@
                                 $('#match6').html(dataBack); // Return data (UL list) and insert it in the <div id="match"></div>
                                 $('#matchList li').on('click', function () { // When click on an element in the list
                                     $('#Problem6').val($(this).text()); // Update the field with the new element
+                                    searchIMUCode()
                                     $('#match6').text(''); // Clear the <div id="match"></div>
                                 });
                             },
@@ -45,6 +46,7 @@
                                 $('#match25').html(dataBack); // Return data (UL list) and insert it in the <div id="match"></div>
                                 $('#matchList li').on('click', function () { // When click on an element in the list
                                     $('#PProblem6').val($(this).text()); // Update the field with the new element
+                                    usearchIMUCode()
                                     $('#match25').text(''); // Clear the <div id="match"></div>
                                 });
                             },
@@ -58,3 +60,37 @@
                 });
             });
 //End js search in Update Immunization
+
+function searchIMUCode(){
+    var id = $('#Problem6').val();
+    $.ajax({
+        type: 'post',
+        url: 'search/SearchIMU_cd.jsp',
+        data: {'id': id},
+        success: function (reply_data) {
+            var array_data = String(reply_data).split("|");
+            var imuCode = array_data[0];
+            console.log(imuCode);
+
+            $('#codeIMU').val(imuCode.trim());
+            //alert(imuCode);
+        }
+    });
+}
+
+function usearchIMUCode(){
+    var id = $('#PProblem6').val();
+    $.ajax({
+        type: 'post',
+        url: 'search/SearchIMU_cd.jsp',
+        data: {'id': id},
+        success: function (reply_data) {
+            var array_data = String(reply_data).split("|");
+            var imuCode = array_data[0];
+            console.log(imuCode);
+
+            $('#uIMU_cd').val(imuCode.trim());
+            //alert(imuCode);
+        }
+    });
+}

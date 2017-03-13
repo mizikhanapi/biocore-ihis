@@ -95,7 +95,7 @@
                                         <div class="form-group">
                                             <label class="col-md-4 control-label" for="textinput">Ward Class</label>
                                             <div class="col-md-4">
-                                                <input id="age" name="age" type="text" readonly placeholder="" class="form-control input-md">
+                                                <input id="wclass" name="wclass" type="text" readonly placeholder="" class="form-control input-md">
                                             </div>
                                         </div>
 
@@ -103,7 +103,7 @@
                                         <div class="form-group">
                                             <label class="col-md-4 control-label" for="textinput">Bed no</label>
                                             <div class="col-md-4">
-                                                <input id="age" name="age" type="text" readonly placeholder="" class="form-control input-md">
+                                                <input id="bedno" name="bedno" type="text" readonly placeholder="" class="form-control input-md">
                                             </div>
                                         </div>
                                     </div>
@@ -134,7 +134,7 @@
                                         <div class="form-group">
                                             <label class="col-md-4 control-label" for="textinput">Admission Date</label>
                                             <div class="col-md-4">
-                                                <input id="AdmissionType" name="AdmissionType" type="text" readonly placeholder="" class="form-control input-md">
+                                                <input id="AdmissionDate" name="AdmissionDate" type="text" readonly placeholder="AdmissionDate" class="form-control input-md">
                                             </div>
                                         </div>
 
@@ -142,7 +142,7 @@
                                         <div class="form-group">
                                             <label class="col-md-4 control-label" for="textinput">Treating Consultant</label>
                                             <div class="col-md-4">
-                                                <input id="Consultant" name="Consultant" type="text" readonly placeholder="" class="form-control input-md">
+                                                <input id="Consultant" name="Consultant" type="text" readonly placeholder="Consultant" class="form-control input-md">
                                             </div>
                                         </div>
 

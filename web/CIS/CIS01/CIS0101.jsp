@@ -265,15 +265,13 @@
                     <div class="modal-body">
                         <!-- content goes here -->
                         <div class="form-group">
-                            <input type="hidden" name="pmh" id="codePMH" class="form-control input-lg" value="PMH" tabindex="4">
+                            <input type="hidden" name="pmh" id="codePMH" class="form-control input-lg"tabindex="4">
                         </div>
                         <div class="form-group">
                             <input class="form-control input-lg" type="text" name="problem"  id="Problem1" placeholder="Please Type Past Medical History" tabindex="4">
                             <div id="match2"></div>
                         </div>
-                        <div class="form-group">
-                                <input class="form-control input-lg" type="text" name="pmhCode"  id="pmhCode"  tabindex="4">
-                        </div>
+
                         <div class="form-group">
                             <select name="mild" id="Status" class="form-control input-lg">
                                 <option value="1" selected="" disabled="">Status</option>
@@ -318,7 +316,7 @@
                             <div id="match3"></div>
                         </div>
                          <div class="form-group">
-                                <input class="form-control input-lg" type="hidden" name="upmhCode"  id="upmhCode"  tabindex="4">
+                                 <input type="hidden" name="pmh" id="ucodePMH" class="form-control input-lg"tabindex="4">
                         </div>
                         <div class="form-group">
                             <select name="mild" id="PStatus" class="form-control input-lg">
@@ -361,7 +359,7 @@
                     <div class="modal-body">
                         <!-- content goes here -->
                          <div class="form-group">
-                            <input type="hidden" name="FMH" id="codeFMH" class="form-control input-lg" value="FMH" tabindex="4">
+                            <input type="text" name="FMH" id="codeFMH" class="form-control input-lg" tabindex="4">
                         </div>
                         <div class="form-group">
                             <input class="form-control input-lg" type="text" name="problem3"  id="Problem3" placeholder="Search FMH Problem..." tabindex="4">
@@ -487,7 +485,7 @@
                     <div class="modal-body">
                         <!-- content goes here -->
                          <div class="form-group">
-                            <input type="hidden" name="SOH" id="codeSOH" class="form-control input-lg" value="SOH" tabindex="4">
+                            <input type="text" name="SOH" id="codeSOH" class="form-control input-lg" tabindex="4">
                         </div>
                         <div class="form-group">
                             <input class="form-control input-lg" type="text" name="problem"  id="Problem4" placeholder="Please Type Social History" tabindex="4">
@@ -536,7 +534,7 @@
                             <div id="match5"></div>
                         </div>
                          <div class="form-group">
-                                <input class="form-control input-lg" type="hidden" name="usohCode"  id="usohCode" tabindex="4">
+                                <input class="form-control input-lg" type="text" name="usohCode"  id="usohCode" tabindex="4">
                         </div>
                         <div class="form-group">
                             <input class="form-control input-lg" type="text" name="ddate" id="ddate" placeholder="Social History Date">
@@ -697,15 +695,13 @@
                     <div class="modal-body">
                         <!-- content goes here -->
                         <div class="form-group">
-                            <input type="hidden" name="Allergy" id="codeALG" class="form-control input-lg" value="ALG" tabindex="4">
+                            <input type="text" name="Allergy" id="codeALG" class="form-control input-lg" tabindex="4">
                         </div>
                         <div class="form-group">
                             <input class="form-control input-lg" type="text" name="problem"  id="Problem5" placeholder="Please Type Allergy" tabindex="4">
                             <div id="match22"></div>
                         </div>
-                          <div class="form-group">
-                              <input class="form-control input-lg" type="hidden" name="ALG_cd"  id="ALG_cd" tabindex="4">
-                        </div>
+
                         <div class="form-group">
                             <input class="form-control input-lg" type="text" name="date1" id="date1" placeholder="Allergy Date">
                         </div>
@@ -746,7 +742,7 @@
                             <div id="match23"></div>
                         </div>
                         <div class="form-group">
-                              <input class="form-control input-lg" type="hidden" name="uALG_cd"  id="uALG_cd" tabindex="4">
+                              <input class="form-control input-lg" type="text" name="uALG_cd"  id="uALG_cd" tabindex="4">
                         </div>
                         <div class="form-group">
                             <input class="form-control input-lg" type="text" name="ddate1" id="ddate1" placeholder="Allergy Date">
@@ -785,15 +781,13 @@
                     <div class="modal-body">
                         <!-- content goes here -->
                           <div class="form-group">
-                            <input type="hidden" name="IMU" id="codeIMU" class="form-control input-lg" value="IMU" tabindex="4">
+                            <input type="text" name="IMU" id="codeIMU" class="form-control input-lg" tabindex="4">
                         </div>
                         <div class="form-group">
                             <input class="form-control input-lg" type="text" name="problem"  id="Problem6" placeholder="Please Type Immunization" tabindex="4">
                             <div id="match6"></div>
                         </div>
-                         <div class="form-group">
-                              <input class="form-control input-lg" type="hidden" name="IMU_cd"  id="IMU_cd" tabindex="4">
-                        </div>
+                       
                         <div class="form-group">
                             <input class="form-control input-lg" type="text" name="date2" id="date2" placeholder="Immunization Date">
                         </div>
@@ -834,7 +828,7 @@
                             <div id="match25"></div>
                         </div>
                         <div class="form-group">
-                              <input class="form-control input-lg" type="hidden" name="uIMU_cd"  id="uIMU_cd" tabindex="4">
+                              <input class="form-control input-lg" type="text" name="uIMU_cd"  id="uIMU_cd" tabindex="4">
                         </div>
                         <div class="form-group">
                               <input class="form-control input-lg" type="text" name="ddate2" id="ddate2" placeholder="Immunization Date">
@@ -873,7 +867,7 @@
                     <div class="modal-body">
                         <!-- content goes here -->
                           <div class="form-group">
-                            <input type="hidden" name="DAB" id="codeDAB" class="form-control input-lg" value="DAB" tabindex="4">
+                            <input type="hidden" name="DAB" id="codeDAB" class="form-control input-lg"  tabindex="4">
                         </div>
                         <div class="form-group">
                             <input class="form-control input-lg" type="text" name="problem"  id="Problem32" placeholder="Please Type Disability Name" tabindex="4">

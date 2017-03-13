@@ -16,9 +16,6 @@
 
 %>
 
-<%    Conn conn = new Conn();
-
-%>
 
 
 
@@ -44,8 +41,8 @@
                 + "attach_toilet, include_television, attach_bathroom_tiolet, include_telephone, ward_status FROM wis_ward_name";
         ArrayList<ArrayList<String>> dataFacilityID = conn.getData(sqlFacilityID);
 
-        int size = dataFacilityID.size();
-        for (int i = 0; i < size; i++) {
+        int size11 = dataFacilityID.size();
+        for (int i = 0; i < size11; i++) {
     %>
 
 
@@ -109,14 +106,14 @@
                                         <option value="-">-</option>
 
 
-                                        <%                                            String sql1 = "SELECT  ward_class_name FROM wis_ward_class";
-                                            ArrayList<ArrayList<String>> dataClass = conn.getData(sql1);
+                                        <%                                            String sql12 = "SELECT  ward_class_name FROM wis_ward_class";
+                                            ArrayList<ArrayList<String>> dataClass22 = conn.getData(sql12);
 
-                                            int size1 = dataClass.size();
+                                            int size1 = dataClass22.size();
 
                                             for (int i = 0; i < size1; i++) {
                                         %>
-                                        <option value="<%= dataClass.get(i).get(0)%>"><%= dataClass.get(i).get(0)%> </option>
+                                        <option value="<%= dataClass22.get(i).get(0)%>"><%= dataClass22.get(i).get(0)%> </option>
                                         <%
                                             }
                                         %>
@@ -150,14 +147,14 @@
 
 
                                         <%
-                                            String sql2 = "SELECT  discipline_cd FROM adm_hfc_discipline";
-                                            ArrayList<ArrayList<String>> dataDiscipline = conn.getData(sql2);
+                                            String sql23 = "SELECT  discipline_cd FROM adm_hfc_discipline";
+                                            ArrayList<ArrayList<String>> dataDiscipline3 = conn.getData(sql23);
 
-                                            int size3 = dataDiscipline.size();
+                                            int size3 = dataDiscipline3.size();
 
                                             for (int i = 0; i < size3; i++) {
                                         %>
-                                        <option value="<%= dataDiscipline.get(i).get(0)%>"><%= dataDiscipline.get(i).get(0)%> </option>
+                                        <option value="<%= dataDiscipline3.get(i).get(0)%>"><%= dataDiscipline3.get(i).get(0)%> </option>
                                         <%
                                             }
                                         %>

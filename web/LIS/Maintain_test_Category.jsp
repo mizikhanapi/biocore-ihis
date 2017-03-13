@@ -96,11 +96,11 @@
                                         return false; 
                                         
                                     }
-                                    if(testCatName === ""){ 
+                                    else if(testCatName === ""){ 
                                         alert("Complete The Fields");  
                                         return false; 
                                     }
-                                    if(status === ""){ 
+                                    else if(status === ""){ 
                                         alert("Complete The Fields");  
                                         return false; 
                                     }

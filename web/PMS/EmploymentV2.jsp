@@ -4,142 +4,26 @@
 <%@page import="dBConn.Conn"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
-    Conn conn = new Conn();
-    String incomeRange = "select * from adm_lookup_detail where master_reference_code = '0028' ";
-    String hcf = "select * from adm_lookup_detail where master_reference_code = '0081'   ";
-    String status = "select * from adm_lookup_detail where master_reference_code = '0014'   ";
-    String occupation = "select * from adm_lookup_detail where master_reference_code = '0050'";
+    //Conn conn = new Conn();
+    String incomeRange5 = "select * from adm_lookup_detail where master_reference_code = '0028' ";
+    String hcf5 = "select * from adm_lookup_detail where master_reference_code = '0081'   ";
+    String status5 = "select * from adm_lookup_detail where master_reference_code = '0014'   ";
+    String occupation5 = "select * from adm_lookup_detail where master_reference_code = '0050'";
 
     //String empList = "select * from pms_employment where pmi_no = ''";
-    ArrayList<ArrayList<String>> dataIncomeRange, dataHfc, dataStatus, dataOccu;
+    ArrayList<ArrayList<String>> dataIncomeRange5, dataHfc5, dataStatus5, dataOccu5;
 
-    dataIncomeRange = conn.getData(incomeRange);
-    dataHfc = conn.getData(hcf);
-    dataStatus = conn.getData(status);
-    dataOccu = conn.getData(occupation);
+    dataIncomeRange5 = conn.getData(incomeRange5);
+    dataHfc5 = conn.getData(hcf5);
+    dataStatus5 = conn.getData(status5);
+    dataOccu5 = conn.getData(occupation5);
 
 
 %>
 <div class="row">
     <div class="col-md-12">
-        <!--        <div class="thumbnail" id="maintainEMP">
-                    <h4>Employment Information</h4>
-                    <form class="form-horizontal" id="empform">
-        
-                         Text input
-                        <div class="form-group">
-                            <label class="col-md-4 control-label" for="textinput">PMI No.</label>  
-                            <div class="col-md-4">
-                                <input id="EMPpmino" name="EMPpmino" type="text"  class="form-control input-md">
-                                <input id="EMPseq" name="EMPseq" type="hidden"  class="form-control input-md">
-                            </div>
-                        </div>
-        
-                         Text input
-                        <div class="form-group">
-                            <label class="col-md-4 control-label" for="textinput">Employer Code</label>  
-                            <div class="col-md-4">
-                                <input id="EMPempcode" name="EMPempcode" type="text"  class="form-control input-md">
-        
-                            </div>
-                        </div>
-        
-                         Text input
-                        <div class="form-group">
-                            <label class="col-md-4 control-label" for="textinput">Employer Name</label>  
-                            <div class="col-md-4">
-                                <input id="EMPempname" name="EMPempname" type="text"  class="form-control input-md" maxlength="80">
-        
-                            </div>
-                        </div>
-        
-                         Text input
-                        <div class="form-group">
-                            <label class="col-md-4 control-label" for="textinput">Occupation</label>  
-                            <div class="col-md-4">
-                                <input id="EMPoccu" name="EMPoccu" type="text"  class="form-control input-md">
-                                <select id="EMPoccu" name="EMPoccu" class="form-control">
-                                    <option selected="" disabled="">Please select Occupation</option>
-                                    <option value="-">-</option>
-        <% for (int i = 0; i < dataOccu.size(); i++) {%>
-        <option value="<%=dataOccu.get(i).get(1)%>"><%=dataOccu.get(i).get(2)%></option>
-        <%  }
-        %>
-    </select>
-</div>
-</div>
 
-Text input
-<div class="form-group">
-<label class="col-md-4 control-label" for="textinput">Joined Date</label>  
-<div class="col-md-4">
-    <input id="EMPjdate" name="EMPjdate" type="text"  class="form-control input-md">
-
-</div>
-</div>
-
-Select Basic 
-<div class="form-group">
-<label class="col-md-4 control-label" for="selectbasic">Income Range</label>
-<div class="col-md-4">
-    <select id="EMPinrange" name="EMPinrange" class="form-control">
-        <option selected="" disabled="">Please select Income Range</option>
-        <option value="-">-</option>
-        <% for (int i = 0; i < dataIncomeRange.size(); i++) {%>
-        <option value="<%=dataIncomeRange.get(i).get(1)%>"><%=dataIncomeRange.get(i).get(2)%></option>
-        <%  }
-        %>
-    </select>
-</div>
-</div>
-
-Select Basic 
-<div class="form-group">
-<label class="col-md-4 control-label" for="selectbasic">Health Facility</label>
-<div class="col-md-4">
-    <select id="EMPhfc" name="EMPhfc" class="form-control">
-        <option selected="" disabled="">Please select health facility</option>
-        <option value="-">-</option>
-        <% for (int i = 0; i < dataHfc.size(); i++) {%>
-        <option value="<%=dataHfc.get(i).get(1)%>"><%=dataHfc.get(i).get(2)%></option>
-        <%  }
-        %>
-    </select>
-</div>
-</div>
-
-Text input
-<div class="form-group">
-<label class="col-md-4 control-label" for="textinput">Created Date</label>  
-<div class="col-md-4">
-    <input id="EMPcredate" name="EMPcredate" type="text"  class="form-control input-md" readonly>
-
-</div>
-</div>
-
-Select Basic 
-<div class="form-group">
-<label class="col-md-4 control-label" for="selectbasic">Status</label>
-<div class="col-md-4">
-    <select id="EMPstatus" name="EMPstatus" class="form-control">
-        <option selected="" disabled="">Please select status</option>
-        <option value="-">-</option>
-        <% for (int i = 0; i < dataStatus.size(); i++) {%>
-        <option value="<%=dataStatus.get(i).get(1)%>"><%=dataStatus.get(i).get(2)%></option>
-        <%  }
-        %>
-    </select>
-</div>
-</div>
-
-</form>
-<div class="text-center">
-<button id="EMPsave" name="EMPsave" class="btn btn-primary"><i class="fa fa-floppy-o fa-lg"></i>&nbsp; Save</button>
-            <button id="EMPupdate" name="EMPupdate" class="btn btn-default" disabled=""><i class="fa fa-edit fa-lg"></i>&nbsp; Update</button>
-<button id="EMPclear" name="EMPclear" class="btn btn-default"><i class="fa fa-ban fa-lg"></i>&nbsp; Clear</button>
-</div>
-</div>-->
-        <div id="modalEMP"></div>
+        <div id="modalEMP"><%@include file = "EmploymentModal.jsp" %></div>
         <div class="thumbnail">
             <h4>List of Employments
                 <button id="addEMPmodal" name="addEMPmodal" class="btn btn-success pull-right" data-toggle="modal" data-target="#EMPModal"><i class="fa fa-plus"></i>&nbsp; Add Employment Information</button></h4>
@@ -163,7 +47,7 @@ Select Basic
     </div>
 </div>
 <script>
-    $('#modalEMP').load('EmploymentModal.jsp');
+//    $('#modalEMP').load('EmploymentModal.jsp');
     $('#modalEMP').on('shown.bs.modal', function () {
         $(this).find('.modal-dialog').css({width: '70%',
             height: 'auto',

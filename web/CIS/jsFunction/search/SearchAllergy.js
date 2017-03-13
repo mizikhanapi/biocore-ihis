@@ -14,6 +14,7 @@
                                 $('#match22').html(dataBack); // Return data (UL list) and insert it in the <div id="match"></div>
                                 $('#matchList li').on('click', function () { // When click on an element in the list
                                     $('#Problem5').val($(this).text()); // Update the field with the new element
+                                    searchALGCd()
                                     $('#match22').text(''); // Clear the <div id="match"></div>
                                 });
                             },
@@ -45,6 +46,7 @@
                                 $('#match23').html(dataBack); // Return data (UL list) and insert it in the <div id="match"></div>
                                 $('#matchList li').on('click', function () { // When click on an element in the list
                                     $('#PProblem5').val($(this).text()); // Update the field with the new element
+                                    usearchALGCd()
                                     $('#match23').text(''); // Clear the <div id="match"></div>
                                 });
                             },
@@ -58,3 +60,37 @@
                 });
             });
 //End js search in Update Allergy
+
+function searchALGCd(){
+     var id = $('#Problem5').val();
+        $.ajax({
+        type:'post',
+        url:'search/SearchALG_cd.jsp',
+        data: {'id': id},                
+        success: function(reply_data){
+            var array_data = String(reply_data).split("|");
+            var algCode = array_data[0];
+            console.log(algCode);
+           
+            $('#codeALG').val(algCode.trim());
+            // alert(reply_data);
+          }
+        });
+}
+
+function usearchALGCd(){
+     var id = $('#PProblem5').val();
+        $.ajax({
+        type:'post',
+        url:'search/SearchALG_cd.jsp',
+        data: {'id': id},                
+        success: function(reply_data){
+            var array_data = String(reply_data).split("|");
+            var algCode = array_data[0];
+            console.log(algCode);
+           
+            $('#uALG_cd').val(algCode.trim());
+            // alert(reply_data);
+          }
+        });
+}

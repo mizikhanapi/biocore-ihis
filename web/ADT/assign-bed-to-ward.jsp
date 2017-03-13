@@ -21,11 +21,13 @@
 
 
 <%
-    Conn conn = new Conn();
+
+    String sql25 = "SELECT  discipline_cd FROM adm_hfc_discipline";
+    ArrayList<ArrayList<String>> dataDiscipline44 = conn.getData(sql25);
 %>
 
 <h4 style="padding-top: 30px;padding-bottom: 35px; font-weight: bold">
-    MAINTAIN WARD/ FACILITY TYPE
+    MAINTAIN WARD/ ASSIGN BED
     <span class="pull-right">
         <button class="btn btn-success" data-status="pagado" data-toggle="modal" data-id="1" data-target="#beddetail" style=" padding-right: 10px;padding-left: 10px;color: white;"><a data-toggle="tooltip" data-placement="top" title="Add Items" id="test"><i class=" fa fa-plus" style=" padding-right: 10px;padding-left: 10px;color: white;"></i></a>ASSIGN BED</button>
     </span>
@@ -55,22 +57,20 @@
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="selectbasic">Discipline</label>
                         <div class="col-md-4">
-                            <select id="Discipline" name="selectbasic" class="form-control">
+                            <select id="DisciplineWard" name="selectbasic" class="form-control">
                                 <option value="Select Discipline" >Select Discipline</option>
 
 
-                                        <%
-                                            String sql2 = "SELECT  discipline_cd FROM adm_hfc_discipline";
-                                            ArrayList<ArrayList<String>> dataDiscipline = conn.getData(sql2);
+                                <%
 
-                                            int size2 = dataDiscipline.size();
+                                    int size244 = dataDiscipline44.size();
 
-                                            for (int i = 0; i < size2; i++) {
-                                        %>
-                                        <option value="<%= dataDiscipline.get(i).get(0)%>"><%= dataDiscipline.get(i).get(0)%> </option>
-                                        <%
-                                            }
-                                        %>
+                                    for (int i = 0; i < size244; i++) {
+                                %>
+                                <option value="<%= dataDiscipline44.get(i).get(0)%>"><%= dataDiscipline44.get(i).get(0)%> </option>
+                                <%
+                                    }
+                                %>
 
                             </select>
                         </div>
@@ -84,12 +84,12 @@
                                 <option value="Ward Class" >Ward Class</option>
 
                                 <%
-                                    String sql1 = "SELECT ward_class_code, ward_class_name FROM wis_ward_class";
-                                    ArrayList<ArrayList<String>> dataClass = conn.getData(sql1);
+                                    String sql124 = "SELECT ward_class_code, ward_class_name FROM wis_ward_class";
+                                    ArrayList<ArrayList<String>> dataClass = conn.getData(sql124);
 
-                                    int size = dataClass.size();
+                                    int size124 = dataClass.size();
 
-                                    for (int i = 0; i < size; i++) {
+                                    for (int i = 0; i < size124; i++) {
                                 %>
                                 <option value="<%= dataClass.get(i).get(0)%>"><%= dataClass.get(i).get(0)%> ( <%= dataClass.get(i).get(1)%> )</option>
                                 <%
@@ -106,12 +106,12 @@
                             <select id="Ward_ID" name="selectbasic" class="form-control">
                                 <option value="null" selected="" disabled="">Select Ward ID/Name</option>
                                 <%
-                                    String sql3 = "SELECT ward_id, ward_name FROM wis_ward_name";
-                                    ArrayList<ArrayList<String>> dataID = conn.getData(sql3);
+                                    String sql312 = "SELECT ward_id, ward_name FROM wis_ward_name";
+                                    ArrayList<ArrayList<String>> dataID = conn.getData(sql312);
 
-                                    int size3 = dataID.size();
+                                    int size312 = dataID.size();
 
-                                    for (int i = 0; i < size3; i++) {
+                                    for (int i = 0; i < size312; i++) {
                                 %>
                                 <option value="<%= dataID.get(i).get(0)%>"><%= dataID.get(i).get(0)%> ( <%= dataID.get(i).get(1)%> ) </option>
                                 <%
@@ -133,12 +133,16 @@
                         <label class="col-md-4 control-label" for="textinput">Bed Status</label>
                         <div class="col-md-8">
                             <label class="radio-inline">
-                                <input type="radio" name="status" id="status1" value="1">
-                                Active 
+                                <input type="radio" name="status" id="status1" value="Available">
+                                Available 
                             </label>
                             <label class="radio-inline">
-                                <input type="radio" name="status" id="status2" value="0">
-                                Inactive
+                                <input type="radio" name="status" id="status2" value="Pending">
+                                Pending
+                            </label>
+                            <label class="radio-inline">
+                                <input type="radio" name="status" id="status3" value="Occupied">
+                                Occupied
                             </label>
                         </div>
                     </div>
@@ -161,33 +165,37 @@
 <script>
     w3IncludeHTML();
     $(document).ready(function () {
-
+//        $('#Discipline').on('change',function(){
+//           console.log(this.val());
+//        });
 
 
         $('#MWBED_add').on('click', function () {
-            var Discipline = $('#Discipline').val();
+            var Discipline = $('#DisciplineWard').val();
             var Ward_Class = $('#Ward_Class').val();
-            var Ward_ID = $('#MWID').val();
+            var Ward_ID = $('#Ward_ID').val();
             var BedID = $('#BedID').val();
             var status = $('input[name="status"]:checked').val();
             //var hfc = $('#hfc').val();
             // var discipline = $('#discipline').val();
             //var subDicipline = $('#subDicipline').val();
 
+
+            console.log(Discipline);
             if (Discipline === "") {
-                alert("Complete The Fields");
+                alert("Complete The Discipline Fields");
             } else if (Ward_Class === "") {
-                alert("Complete The Fields");
+                alert("Complete Ward Class The Fields");
             } else if (Ward_ID === "") {
-                alert("Complete The Fields");
+                alert("Complete The Ward ID Fields");
             } else if (BedID === "") {
-                alert("Complete The Fields");
-            } else if (status !== "1" && status !== "0") {
+                alert("Complete The Bed ID Fields");
+            } else if (status !== "Available" && status !== "Pending" && status !== "Occupied") {
                 alert("Select Any Status");
             } else {
 
                 var data = {
-                    Discipline:Discipline,
+                    Discipline: Discipline,
                     Ward_Class: Ward_Class,
                     Ward_ID: Ward_ID,
                     BedID: BedID,
@@ -215,8 +223,6 @@
                             });
                             reset();
 
-
-
                         } else if (data.trim() === 'Failed') {
                             bootbox.alert({
                                 message: "Add Failed",
@@ -225,6 +231,13 @@
                             });
                             $('#beddetail').modal('hide');
                             reset();
+
+                        } else if (data.trim() === 'Duplicate') {
+                            bootbox.alert({
+                                message: "Bed ID Duplication Detected. Please Coose A Different Bed ID",
+                                title: "Process Result",
+                                backdrop: true
+                            });
 
                         }
 
@@ -243,15 +256,18 @@
         //function to clear the form when click clear button
 
         function reset() {
-            document.getElementById("Discipline").value = "";
-            document.getElementById("Ward_Class").value = "";
-            document.getElementById("Ward_ID").value = "";
-            document.getElementById("BedID").value = "";
-            document.getElementById("status1").checked = false;
-            document.getElementById("status2").checked = false;
+//            document.getElementById("Discipline").value = "";
+//            document.getElementById("Ward_Class").value = "";
+//            document.getElementById("Ward_ID").value = "";
+//            document.getElementById("BedID").value = "";
+//            document.getElementById("status1").checked = false;
+//            document.getElementById("status2").checked = false;
+//            document.getElementById("status3").checked = false;
+
+document.getElementById("addForm").reset();
         }
 
-        $('#MW_clear').on('click', function (e) {
+        $('#MWBED_clear').on('click', function (e) {
             e.preventDefault();
             reset();
 

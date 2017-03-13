@@ -3,7 +3,7 @@
     Created on : Dec 6, 2016, 11:46:19 AM
     Author     : Ahmed
 --%>
-<%@page import="dbConn1.Conn"%>
+<%@page import="dBConn.Conn"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.util.Date"%>
 <%@page import="java.text.DateFormat"%>
@@ -44,7 +44,7 @@
    Conn conn = new Conn();
    String sqlInsert = "INSERT INTO lis_item_detail(item_cd,item_name,test_cat,spe_source,spe_container,volume,special_inst,status,buy_price,ser_price,hfc_cd,discipline_cd,subdiscipline_cd,created_by,created_date) VALUES ('" + icd10 + "','" + item_name + "','" + ccode + "','"+s_source+"','"+s_container+"','"+v_requerid+"','"+s_instruction+"','"+status+"','"+b_price+"','"+s_price+"','','','','" + createdby + "','0000-00-00')";
     //  + "VALUES ('"+ccode+"','"+cname+"','"+cstatus+"','25','52','1','33','"+createdby+"','-')";
-    boolean isInsert = rmic.setQuerySQL(conn.HOST, connect.PORT, sqlInsert);
+    boolean isInsert = rmic.setQuerySQL(conn.HOST, conn.PORT, sqlInsert);
     //out.println(isInsert);
     if (isInsert) {
         out.print("-|1");

@@ -1,4 +1,4 @@
-<%@page import="dbConn1.Conn"%>
+<%@page import="dBConn.Conn"%>
 <%@page import="java.util.List"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.util.Date"%>
@@ -26,7 +26,7 @@
         RMIConnector rmic = new RMIConnector();
         Conn conn = new Conn();
         String sqlRow = "SELECT COUNT(specimen_no) AS rowcount FROM lis_specimen";
-        rmic.setQuerySQL(connect.HOST, connect.PORT, sqlRow);
+        rmic.setQuerySQL(conn.HOST, conn.PORT, sqlRow);
         ArrayList<ArrayList<String>> q1 = conn.getData(sqlRow);
        
         for(int i=0;i<number;i++)
@@ -34,11 +34,11 @@
             
            
             String hfc_code = "SELECT hfc_cd FROM lis_order_master WHERE pmi_no='"+pmi+"' AND order_no='"+orderno1+"'";
-            rmic.setQuerySQL(connect.HOST, connect.PORT, hfc_code);
+            rmic.setQuerySQL(conn.HOST, conn.PORT, hfc_code);
             ArrayList<ArrayList<String>> q2 = conn.getData(hfc_code);
             
             String sqlInsert = "INSERT INTO lis_specimen(specimen_no,order_no,pmi_no,hfc_cd,item_cd,Collection_date,Collection_time,Status_specimen,patient_name) VALUES ('"+q1.get(0).get(0)+"','"+orderno1+"','"+pmi+"','"+q2.get(0).get(0)+"','"+Specimen[i]+"','"+C_date+"','"+C_time+"','"+status+"','"+patient_name+"')";
-            rmic.setQuerySQL(connect.HOST, conn.PORT, sqlInsert);
+            rmic.setQuerySQL(conn.HOST, conn.PORT, sqlInsert);
 
         }
         

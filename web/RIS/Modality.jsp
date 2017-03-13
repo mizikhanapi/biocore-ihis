@@ -14,11 +14,7 @@
 <!DOCTYPE html>
 <html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <!-- header -->
-<script src="libraries/w3data.js"></script>
-
 <div w3-include-html="libraries/header.html"></div>
-    <script src="bootstrap-3.3.6-dist/js/jquery-1.11.3.js" type="text/javascript"></script>
-    <script src="bootstrap-3.3.6-dist/js/bootstrap.js" type="text/javascript"></script>
 <!-- header -->
 </head>
 
@@ -301,9 +297,9 @@
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-<!--	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-	-->
+	
 	
 	<script src="http://www.w3schools.com/lib/w3data.js"></script>
 	<script>

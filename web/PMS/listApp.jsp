@@ -18,25 +18,27 @@
 
     String idType = request.getParameter("idType");
     String idInput = request.getParameter("idInput");
+    String hfc = session.getAttribute("HEALTH_FACILITY_CODE").toString();
     String sql = "";
     if (idType.isEmpty() && idInput.isEmpty()) {
-        sql = "select a.pmi_no,a.appointment_date,a.start_time,a.appointment_type,b.PATIENT_NAME,b.NEW_IC_NO,b.OLD_IC_NO,b.ID_TYPE,b.ID_NO from pms_appointment a inner join pms_patient_biodata b on a.pmi_no = b.`PMI_NO` where appointment_date like '%" + dateFormat.format(date) + "%' and status ='active' and hfc_cd='" + session.getAttribute("HFC") + "'";
+        sql = "select a.pmi_no,a.appointment_date,a.start_time,a.appointment_type,b.PATIENT_NAME,b.NEW_IC_NO,b.OLD_IC_NO,b.ID_TYPE,b.ID_NO from pms_appointment a inner join pms_patient_biodata b on a.pmi_no = b.`PMI_NO` where appointment_date like '%" + dateFormat.format(date) + "%' and status ='active' and hfc_cd='" + hfc + "'";
 
     } else if (idType.equals("pmino")) {
-        sql = "select a.pmi_no,a.appointment_date,a.start_time,a.appointment_type,b.PATIENT_NAME,b.NEW_IC_NO,b.OLD_IC_NO,b.ID_TYPE,b.ID_NO from pms_appointment a inner join pms_patient_biodata b on a.pmi_no = b.`PMI_NO` where a.pmi_no = '" + idInput + "' and status ='active' and hfc_cd='" + session.getAttribute("HFC") + "'";
+        sql = "select a.pmi_no,a.appointment_date,a.start_time,a.appointment_type,b.PATIENT_NAME,b.NEW_IC_NO,b.OLD_IC_NO,b.ID_TYPE,b.ID_NO from pms_appointment a inner join pms_patient_biodata b on a.pmi_no = b.`PMI_NO` where a.pmi_no = '" + idInput + "' and status ='active' and hfc_cd='" + hfc + "'";
 
     } else if (idType.equals("icnew")) {
-        sql = "select a.pmi_no,a.appointment_date,a.start_time,a.appointment_type,b.PATIENT_NAME,b.NEW_IC_NO,b.OLD_IC_NO,b.ID_TYPE,b.ID_NO from pms_appointment a inner join pms_patient_biodata b on a.pmi_no = b.`PMI_NO` where a.pmi_no = (select pmi_no from pms_patient_biodata where new_ic_no='" + idInput + "') and status ='active' and hfc_cd='" + session.getAttribute("HFC") + "'";
+        sql = "select a.pmi_no,a.appointment_date,a.start_time,a.appointment_type,b.PATIENT_NAME,b.NEW_IC_NO,b.OLD_IC_NO,b.ID_TYPE,b.ID_NO from pms_appointment a inner join pms_patient_biodata b on a.pmi_no = b.`PMI_NO` where a.pmi_no = (select pmi_no from pms_patient_biodata where new_ic_no='" + idInput + "') and status ='active' and hfc_cd='" + hfc + "'";
 
     } else if (idType.equals("icold")) {
-        sql = "select a.pmi_no,a.appointment_date,a.start_time,a.appointment_type,b.PATIENT_NAME,b.NEW_IC_NO,b.OLD_IC_NO,b.ID_TYPE,b.ID_NO from pms_appointment a inner join pms_patient_biodata b on a.pmi_no = b.`PMI_NO` where a.pmi_no = (select pmi_no from pms_patient_biodata where old_ic_no='" + idInput + "') and status ='active' and hfc_cd='" + session.getAttribute("HFC") + "'";
+        sql = "select a.pmi_no,a.appointment_date,a.start_time,a.appointment_type,b.PATIENT_NAME,b.NEW_IC_NO,b.OLD_IC_NO,b.ID_TYPE,b.ID_NO from pms_appointment a inner join pms_patient_biodata b on a.pmi_no = b.`PMI_NO` where a.pmi_no = (select pmi_no from pms_patient_biodata where old_ic_no='" + idInput + "') and status ='active' and hfc_cd='" + hfc + "'";
 
     }else{
-        sql = "select a.pmi_no,a.appointment_date,a.start_time,a.appointment_type,b.PATIENT_NAME,b.NEW_IC_NO,b.OLD_IC_NO,b.ID_TYPE,b.ID_NO from pms_appointment a inner join pms_patient_biodata b on a.pmi_no = b.`PMI_NO` where a.pmi_no = (select pmi_no from pms_patient_biodata where id_no='" + idInput + "') and status ='active' and hfc_cd='" + session.getAttribute("HFC") + "'";
+        sql = "select a.pmi_no,a.appointment_date,a.start_time,a.appointment_type,b.PATIENT_NAME,b.NEW_IC_NO,b.OLD_IC_NO,b.ID_TYPE,b.ID_NO from pms_appointment a inner join pms_patient_biodata b on a.pmi_no = b.`PMI_NO` where a.pmi_no = (select pmi_no from pms_patient_biodata where id_no='" + idInput + "') and status ='active' and hfc_cd='" + hfc + "'";
 
     }
     ArrayList<ArrayList<String>> dataAppointment;
     dataAppointment = conn.getData(sql);
+    //out.print(hfc);
 %>
 <table class="table table-filter table-striped" style="background: #fff; border: 1px solid #ccc;" id="listAppointment">
     <thead>

@@ -8,11 +8,17 @@
 <%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
-    String idTYpe = "select * from adm_lookup_detail where master_reference_code = '0012' ";
-    ArrayList<ArrayList<String>> dataIdType;
-    Conn conn = new Conn();
-    dataIdType = conn.getData(idTYpe);
-    String dataSystemStatus = session.getAttribute("SYSTEMSTAT").toString();
+    
+    String idTYpe2 = "select * from adm_lookup_detail where master_reference_code = '0012' ";
+    ArrayList<ArrayList<String>> dataIdType2;
+    ArrayList<ArrayList<String>> data2 = new ArrayList();
+
+    //Conn conn = new Conn();
+    dataIdType2 = conn.getData(idTYpe2);
+    //out.print(dataIdType);
+    String dataSystemStatus2 = session.getAttribute("SYSTEM_PARAMETER").toString();
+   
+    //out.print(dataSystemStatus2);
 %>
 <div class="thumbnail">
     <h4>Search Patient
@@ -30,14 +36,14 @@
                     <option value="icold">IC No (OLD)</option>
                     <!--<option value="matricno">Matric No</option>
                     <option value="staffno">Staff No</option>-->
-                    <%                                if (dataSystemStatus.equals("0")) {
+                    <%  if (dataSystemStatus2.equals("0")) {
 
-                        } else if (dataSystemStatus.equals("1")) {
-                            for (int i = 0; i < dataIdType.size(); i++) {%>
-                    <option value="<%=dataIdType.get(i).get(1)%>"><%=dataIdType.get(i).get(2)%></option>
-                    <%  }
+                        } else if (dataSystemStatus2.equals("1")) {
+                            data2 = dataIdType2;
                         }
-
+                    for (int i = 0; i < data2.size(); i++) {%>
+                    <option value="<%=data2.get(i).get(1)%>"><%=data2.get(i).get(2)%></option>
+                    <%  }
                     %>
                 </select>
             </div>
@@ -57,8 +63,8 @@
         </div>
     </form>
 </div>
-<script src="assets/js/OPMain.js" type="text/javascript"></script>
-<script src="assets/js/onKeyPress.js" type="text/javascript"></script>
+<script src="libraries/lib/js/OPMain.js" type="text/javascript"></script>
+<script src="libraries/lib/js/onKeyPress.js" type="text/javascript"></script>
 <script>
     //validate max length of input
         $('#idType').on('change', function (e) {
@@ -87,6 +93,7 @@
 
         var opt = $('#idType option[disabled]:selected').val();
         $('#myForm2')[0].reset();
+        
         $('#formPMI')[0].reset();
         $('#kinform')[0].reset();
         $('#empform')[0].reset();
@@ -111,7 +118,7 @@
             //get value from text box and select box
             var idType = $('#idType').find(":selected").val();
             var idInput = $('#idInput').val();
-
+            console.log("<%=session.getAttribute("SYSTEMSTAT")%>");
             //run the MAIN ajax function
             $.ajax({
                 async: true,
@@ -122,7 +129,7 @@
                 success: function (list) {
                     //remove the loading 
                     $body.removeClass("loading");
-
+                    console.log(list);
                     //show console the returned data
 
 
@@ -137,7 +144,7 @@
                 },
                 error: function (xhr, status, error) {
                     var err = eval("(" + xhr.responseText + ")");
-                    bootbox.alert(err.Message);
+                    //bootbox.alert(err.Message);
                 }
             });
         }
@@ -166,6 +173,7 @@
     //event on click clear buton
     $('#clearSearch').click(function () {
         $('#myForm2')[0].reset();
+        $('#myForm')[0].reset();
         $('#formPMI')[0].reset();
         $('#kinform')[0].reset();
         $('#empform')[0].reset();

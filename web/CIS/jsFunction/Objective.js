@@ -119,12 +119,8 @@ $('#queueBtn').click(function(e){
         });
         _data.push(obj1);
         //console.log(_data);
+        displayGCS(gcsResult,gcsPoint);
 
-        var _tr = '<tr data-status="pagado" ><td><div class="ckbox"><input type="checkbox" id="checkbox1"><label for="checkbox1"></label></div></td><td><div class="media"><div class="media-body">Glasgow Coma Scale :<p class="summary" id="sum' + i + '">GCS Result:' + gcsResult + '| GCS Point:' + gcsPoint + '</p></div></div></td><td><a data-toggle="modal"  data-target="#updateModal" href="" class="updateGcs" id="row|' + i + '"><i class="fa fa-pencil-square-o" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #337ab7;" ></i></a></a></td><td><a href="javascript:;" class="star"><a href="#" class="deleteBtn" id="row|' + i + '"><i class="fa fa-times" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #d9534f;"></i></a></a></td></tr>';
-
-        $('#consultationNotes').append(_tr);
-        console.log(i);
-        i = i + 1;
 //        $('#resultMain').val('');
 //        $('#pointMain').val('');
         $("#CIS020001").modal('toggle');
@@ -170,12 +166,7 @@ $('#queueBtn').click(function(e){
         });
         _data.push(obj1);
         //console.log(_data);
-
-        var _tr = '<tr data-status="pagado" ><td><div class="ckbox"><input type="checkbox" id="checkbox1"><label for="checkbox1"></label></div></td><td><div class="media"><div class="media-body">Pediatric Glasgow Coma Scale :<p class="summary" id="sum' + i + '">PGCS Result:' + pgcsResult + '| PGCS Point:' + pgcsPoint + '</p></div></div></td><td><a data-toggle="modal"  data-target="#updateModal" href="" class="updatePgcs" id="row|' + i + '"><i class="fa fa-pencil-square-o" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #337ab7;" ></i></a></a></td><td><a href="javascript:;" class="star"><a href="#" class="deleteBtn" id="row|' + i + '"><i class="fa fa-times" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #d9534f;"></i></a></a></td></tr>';
-
-        $('#consultationNotes').append(_tr);
-        console.log(i);
-        i = i + 1;
+    displayPGCS(pgcsResult,pgcsPoint);
 //        $('#resultMain').val('');
 //        $('#pointMain').val('');
         $("#CIS020002").modal('toggle');
@@ -232,14 +223,8 @@ $('#queueBtn').click(function(e){
         });
         _data.push(obj1);
         console.log(_data);
+        displayBP(_sitBPS,_sitBPD,_sitBPP,_standBPS,_standBPD,_standBPP,_lyingBPS,_lyingBPD,_lyingBPP);
 
-        var _tr = '<tr data-status="pagado" ><td><div class="ckbox"><input type="checkbox" id="checkbox1"><label for="checkbox1"></label></div></td><td><div class="media"><div class="media-body">Blood Pressure :<p class="summary" id="sum' + i + '">BP Sitting: S=' + _sitBPS + 'mmHg | D=' + _sitBPD + 'mmHg | P=' + _sitBPP + 'mmHg BP Standing: S=' + _standBPS + 'mmHg | D=' + _standBPD + 'mmHg | P=' + _standBPP + 'mmHg BP Lying: S=' + _lyingBPS + 'mmHg | D=' + _lyingBPD + 'mmHg | P=' + _lyingBPP + 'mmHg</p></div></div></td><td><a data-toggle="modal"  data-target="#updateModal" href="" class="updateBP" id="row|' + i + '"><i class="fa fa-pencil-square-o" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #337ab7;" ></i></a></a></td><td><a href="javascript:;" class="star"><a href="#" class="deleteBtn" id="row|' + i + '"><i class="fa fa-times" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #d9534f;"></i></a></a></td></tr>';
-
-        $('#consultationNotes').append(_tr);
-        console.log(i);
-        i = i + 1;
-//        $('#resultMain').val('');
-//        $('#pointMain').val('');
         $("#CIS020003").modal('toggle');
 
     });
@@ -303,12 +288,8 @@ $('#queueBtn').click(function(e){
             obj1[this.id] = $(this).val();
         });
         _data.push(obj1);
-
-        var _tr = '<tr data-status="pagado" ><td><div class="ckbox"><input type="checkbox" id="checkbox1"><label for="checkbox1"></label></div></td><td><div class="media"><div class="media-body">Respiratory Rate :<p class="summary" id="sum' + i + '">Respiratory Rate:' + _rrRate + ' breath/min</p></div></div></td><td><a data-toggle="modal"  data-target="#updateModal" href="" class="updateRR" id="row|' + i + '"><i class="fa fa-pencil-square-o" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #337ab7;" ></i></a></a></td><td><a href="javascript:;" class="star"><a href="#" class="deleteBtn" id="row|' + i + '"><i class="fa fa-times" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #d9534f;"></i></a></a></td></tr>';
-
-        $('#consultationNotes').append(_tr);
-        console.log(obj1);
-        i = i + 1;
+        displayrrRate(_rrRate);
+       
         $("#CIS020004").modal('toggle');
 
     });
@@ -352,12 +333,8 @@ $('#queueBtn').click(function(e){
             obj1[this.id] = $(this).val();
         });
         _data.push(obj1);
+        displayOsat(_OSat);
 
-        var _tr = '<tr data-status="pagado" ><td><div class="ckbox"><input type="checkbox" id="checkbox1"><label for="checkbox1"></label></div></td><td><div class="media"><div class="media-body">Oxygen Saturation :<p class="summary" id="sum' + i + '">Oxygen Saturation:' + _OSat + '</p></div></div></td><td><a data-toggle="modal"  data-target="#updateModal" href="" class="updateOS" id="row|' + i + '"><i class="fa fa-pencil-square-o" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #337ab7;" ></i></a></a></td><td><a href="javascript:;" class="star"><a href="#" class="deleteBtn" id="row|' + i + '"><i class="fa fa-times" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #d9534f;"></i></a></a></td></tr>';
-
-        $('#consultationNotes').append(_tr);
-        console.log(obj1);
-        i = i + 1;
         $("#CIS020005").modal('toggle');
     });
 
@@ -399,12 +376,7 @@ $('#queueBtn').click(function(e){
             obj1[this.id] = value[0];
         });
         _data.push(obj1);
-
-        var _tr = '<tr data-status="pagado" ><td><div class="ckbox"><input type="checkbox" id="checkbox1"><label for="checkbox1"></label></div></td><td><div class="media"><div class="media-body">' + title + ' :<p class="summary" id="sum' + i + '">Body Temperature:' + _BTemp + '</p></div></div></td><td><a data-toggle="modal"  data-target="#updateModal" href="" class="updateBT" id="row|' + i + '"><i class="fa fa-pencil-square-o" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #337ab7;" ></i></a></a></td><td><a href="javascript:;" class="star"><a href="#" class="deleteBtn" id="row|' + i + '"><i class="fa fa-times" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #d9534f;"></i></a></a></td></tr>';
-
-        $('#consultationNotes').append(_tr);
-        console.log(obj1);
-        i = i + 1;
+        displayBTemp(_BTemp)
         $("#CIS020006").modal('toggle');
     });
 
@@ -448,11 +420,8 @@ $('#queueBtn').click(function(e){
             obj1[this.id] = $(this).val();
         });
         _data.push(obj1);
-
-        var _tr = '<tr data-status="pagado" ><td><div class="ckbox"><input type="checkbox" id="checkbox1"><label for="checkbox1"></label></div></td><td><div class="media"><div class="media-body">' + title + '<p class="summary" id="sum' + i + '">Pan Scale:' + painScale + '| Result:' + resultpainScale + '</p></div></div></td><td><a data-toggle="modal"  data-target="#updateModal" href="" class="updatePS" id="row|' + i + '"><i class="fa fa-pencil-square-o" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #337ab7;" ></i></a></a></td><td><a href="javascript:;" class="star"><a href="#" class="deleteBtn" id="row|' + i + '"><i class="fa fa-times" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #d9534f;"></i></a></a></td></tr>';
-        $('#consultationNotes').append(_tr);
-        console.log(obj1);
-        i = i + 1;
+        displayPanScale(painScale,resultpainScale);
+       
         $("#CIS020007").modal('toggle');
     });
 
@@ -502,11 +471,8 @@ $('#queueBtn').click(function(e){
         });
         _data.push(obj1);
         console.log(_data);
-
-        var _tr = '<tr data-status="pagado" ><td><div class="ckbox"><input type="checkbox" id="checkbox1"><label for="checkbox1"></label></div></td><td><div class="media"><div class="media-body">' + title + ' :<p class="summary" id="sum' + i + '">Height:' + Oheight + 'cm | Weight:' + Oweight + 'kg | BMI:' + Obmi + 'kg/m2 | Weight Status:' + OWeightStatus + ' | Head Circumference:' + OheadCir + 'cm | Blood Glucose:' + OBloodGlucose + 'mmol/L</p></div></div></td><td><a data-toggle="modal"  data-target="#updateModal" href="" class="updateOther" id="row|' + i + '"><i class="fa fa-pencil-square-o" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #337ab7;" ></i></a></a></td><td><a href="javascript:;" class="star"><a href="#" class="deleteBtn" id="row|' + i + '"><i class="fa fa-times" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #d9534f;"></i></a></a></td></tr>';
-        $('#consultationNotes').append(_tr);
-        console.log(obj1);
-        i = i + 1;
+        displayOther(Oheight,Oweight,Obmi,OWeightStatus,OheadCir,OBloodGlucose);
+     
         $("#CIS020008").modal('toggle');
     });
 
@@ -844,3 +810,63 @@ $('#queueBtn').click(function(e){
 
 });
    
+function displayGCS(gcsResult,gcsPoint){
+         var _tr = '<tr data-status="pagado" ><td><div class="ckbox"><input type="checkbox" id="checkbox1"><label for="checkbox1"></label></div></td><td><div class="media"><div class="media-body">Glasgow Coma Scale :<p class="summary" id="sum' + i + '">GCS Result:' + gcsResult + '| GCS Point:' + gcsPoint + '</p></div></div></td><td><a data-toggle="modal"  data-target="#updateModal" href="" class="updateGcs" id="row|' + i + '"><i class="fa fa-pencil-square-o" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #337ab7;" ></i></a></a></td><td><a href="javascript:;" class="star"><a href="#" class="deleteBtn" id="row|' + i + '"><i class="fa fa-times" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #d9534f;"></i></a></a></td></tr>';
+        $('#consultationNotes').append(_tr);
+        //console.log(i);
+        i = i + 1;
+}
+
+function displayPGCS(pgcsResult,pgcsPoint){
+    
+        var _tr = '<tr data-status="pagado" ><td><div class="ckbox"><input type="checkbox" id="checkbox1"><label for="checkbox1"></label></div></td><td><div class="media"><div class="media-body">Pediatric Glasgow Coma Scale :<p class="summary" id="sum' + i + '">PGCS Result:' + pgcsResult + '| PGCS Point:' + pgcsPoint + '</p></div></div></td><td><a data-toggle="modal"  data-target="#updateModal" href="" class="updatePgcs" id="row|' + i + '"><i class="fa fa-pencil-square-o" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #337ab7;" ></i></a></a></td><td><a href="javascript:;" class="star"><a href="#" class="deleteBtn" id="row|' + i + '"><i class="fa fa-times" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #d9534f;"></i></a></a></td></tr>';
+        $('#consultationNotes').append(_tr);
+        //console.log(i);
+        i = i + 1;
+}
+
+function displayBP(_sitBPS,_sitBPD,_sitBPP,_standBPS,_standBPD,_standBPP,_lyingBPS,_lyingBPD,_lyingBPP){
+    
+        var _tr = '<tr data-status="pagado" ><td><div class="ckbox"><input type="checkbox" id="checkbox1"><label for="checkbox1"></label></div></td><td><div class="media"><div class="media-body">Blood Pressure :<p class="summary" id="sum' + i + '">BP Sitting: S=' + _sitBPS + 'mmHg | D=' + _sitBPD + 'mmHg | P=' + _sitBPP + 'mmHg BP Standing: S=' + _standBPS + 'mmHg | D=' + _standBPD + 'mmHg | P=' + _standBPP + 'mmHg BP Lying: S=' + _lyingBPS + 'mmHg | D=' + _lyingBPD + 'mmHg | P=' + _lyingBPP + 'mmHg</p></div></div></td><td><a data-toggle="modal"  data-target="#updateModal" href="" class="updateBP" id="row|' + i + '"><i class="fa fa-pencil-square-o" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #337ab7;" ></i></a></a></td><td><a href="javascript:;" class="star"><a href="#" class="deleteBtn" id="row|' + i + '"><i class="fa fa-times" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #d9534f;"></i></a></a></td></tr>';
+
+        $('#consultationNotes').append(_tr);
+        //console.log(i);
+        i = i + 1;
+}
+function displayrrRate(_rrRate){
+     var _tr = '<tr data-status="pagado" ><td><div class="ckbox"><input type="checkbox" id="checkbox1"><label for="checkbox1"></label></div></td><td><div class="media"><div class="media-body">Respiratory Rate :<p class="summary" id="sum' + i + '">' + _rrRate + ' breath/min</p></div></div></td><td><a data-toggle="modal"  data-target="#updateModal" href="" class="updateRR" id="row|' + i + '"><i class="fa fa-pencil-square-o" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #337ab7;" ></i></a></a></td><td><a href="javascript:;" class="star"><a href="#" class="deleteBtn" id="row|' + i + '"><i class="fa fa-times" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #d9534f;"></i></a></a></td></tr>';
+
+        $('#consultationNotes').append(_tr);
+        //console.log(obj1);
+        i = i + 1;
+}
+
+function displayOsat(_OSat){
+            var _tr = '<tr data-status="pagado" ><td><div class="ckbox"><input type="checkbox" id="checkbox1"><label for="checkbox1"></label></div></td><td><div class="media"><div class="media-body">Oxygen Saturation :<p class="summary" id="sum' + i + '">' + _OSat + '</p></div></div></td><td><a data-toggle="modal"  data-target="#updateModal" href="" class="updateOS" id="row|' + i + '"><i class="fa fa-pencil-square-o" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #337ab7;" ></i></a></a></td><td><a href="javascript:;" class="star"><a href="#" class="deleteBtn" id="row|' + i + '"><i class="fa fa-times" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #d9534f;"></i></a></a></td></tr>';
+
+        $('#consultationNotes').append(_tr);
+
+        i = i + 1;
+}
+
+function displayPanScale(painScale,resultpainScale){
+     var _tr = '<tr data-status="pagado" ><td><div class="ckbox"><input type="checkbox" id="checkbox1"><label for="checkbox1"></label></div></td><td><div class="media"><div class="media-body">Pan Scale<p class="summary" id="sum' + i + '">Scale:' + painScale + '| Result:' + resultpainScale + '</p></div></div></td><td><a data-toggle="modal"  data-target="#updateModal" href="" class="updatePS" id="row|' + i + '"><i class="fa fa-pencil-square-o" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #337ab7;" ></i></a></a></td><td><a href="javascript:;" class="star"><a href="#" class="deleteBtn" id="row|' + i + '"><i class="fa fa-times" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #d9534f;"></i></a></a></td></tr>';
+        $('#consultationNotes').append(_tr);
+
+        i = i + 1;
+}
+
+function displayBTemp(_BTemp){
+    
+        var _tr = '<tr data-status="pagado" ><td><div class="ckbox"><input type="checkbox" id="checkbox1"><label for="checkbox1"></label></div></td><td><div class="media"><div class="media-body">Body Temperature: :<p class="summary" id="sum' + i + '">' + _BTemp + '</p></div></div></td><td><a data-toggle="modal"  data-target="#updateModal" href="" class="updateBT" id="row|' + i + '"><i class="fa fa-pencil-square-o" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #337ab7;" ></i></a></a></td><td><a href="javascript:;" class="star"><a href="#" class="deleteBtn" id="row|' + i + '"><i class="fa fa-times" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #d9534f;"></i></a></a></td></tr>';
+        $('#consultationNotes').append(_tr);
+
+        i = i + 1;
+}
+
+function displayOther(Oheight,Oweight,Obmi,OWeightStatus,OheadCir,OBloodGlucose){
+       var _tr = '<tr data-status="pagado" ><td><div class="ckbox"><input type="checkbox" id="checkbox1"><label for="checkbox1"></label></div></td><td><div class="media"><div class="media-body">Other :<p class="summary" id="sum' + i + '">Height:' + Oheight + ' cm | Weight:' + Oweight + ' kg | BMI:' + Obmi + 'kg/m2 | Weight Status:' + OWeightStatus + ' | Head Circumference:' + OheadCir + 'cm | Blood Glucose:' + OBloodGlucose + 'mmol/L</p></div></div></td><td><a data-toggle="modal"  data-target="#updateModal" href="" class="updateOther" id="row|' + i + '"><i class="fa fa-pencil-square-o" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #337ab7;" ></i></a></a></td><td><a href="javascript:;" class="star"><a href="#" class="deleteBtn" id="row|' + i + '"><i class="fa fa-times" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #d9534f;"></i></a></a></td></tr>';
+        $('#consultationNotes').append(_tr);
+        console.log(obj1);
+        i = i + 1;
+}

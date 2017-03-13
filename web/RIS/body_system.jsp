@@ -17,7 +17,7 @@
 <!-- header -->
 </head>
 
-<body>
+  <body>
 <!-- menu top -->
 <div w3-include-html="libraries/topMenus.html"></div>
 	<!-- menu top -->
@@ -189,6 +189,4 @@
 	w3IncludeHTML();
 	</script>
 	
-</body>
-
-</html>
+</body></html>

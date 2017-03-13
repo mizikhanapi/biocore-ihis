@@ -34,16 +34,19 @@
                                          <div class="form-group row">
                                             <label for="example-text-input" class="col-xs-2 col-form-label">Category code</label>
                                             <div class="col-xs-10">
-                                            <select class="form-control" id="ccode" required="required"/>
-                                            <option value=""></option>
-                                            <%                                                    
+                                            <select class="form-control" id="ccode" required="required" >
+<%                                                    
                                                 if (q2.size() > 0) {
                                                     for (int i = 0; i < q2.size(); i++) {
 
                                             %>
-                                            <option value="<%=q2.get(i).get(0)%>"><%=q2.get(i).get(0)%> (<%=q2.get(i).get(1)%>)</option>
+                                            <option value="<%=q2.get(i).get(0)%>"><%=q2.get(i).get(0)%></option>
                                             <%}
                                                      }%>
+                                            </select>
+                                            
+                                            
+                                            
                                             </select>
                                             </div>
                                             </div>   
@@ -105,12 +108,18 @@
                                          </div>
                                         </div>
                                             <br>
-                                            <div class="form-group row">
-                                            <div class="col-xs-10">
-                                            <button type="button" class="btn btn-primary" id="btn_add">Submit</button>
-                                            <button type="reset" class="btn btn-success">Reset</button>
+                                            <div class="modal-footer">
+                                                <div class="btn-group btn-group-justified" role="group" aria-label="group button">
+                                                    <div class="btn-group" role="group">
+                                                    <button type="button" class="btn btn-success btn-block btn-lg" role="button" id="btn_add1">Add</button>
+                                                    </div>
+                                                    <div class="btn-group" role="group">
+                                                        <button type="reset" id="btnReset" class="btn btn-default btn-block btn-lg" data-dismiss="modal" role="button" >Cancel</button>
+                                                    </div>
+                                                </div>
                                             </div>
-                                            </div>
+                                            
+                                            
                                             
                                                 </div>
                                             </div>
@@ -137,7 +146,7 @@
                                 $(document).ready(function () {
                                    $("#viewMTDpage").load("viewMTD.jsp");
                                    
-                                   $("#btn_add").click(function () {
+                                   $("#btn_add1").click(function () {
                                        var icd10 = $("#icd10").val();
                                        var item_name = $("#item_name").val();
                                        var ccode = $("#ccode").val();
@@ -153,31 +162,31 @@
                                         alert("Complete The Fields"); 
                                         return false; 
                                     }
-                                    if(item_name === ""){ 
+                                    else if(item_name === ""){ 
                                         alert("Complete The Fields");  
                                         return false; 
                                     }
-                                    if(ccode === ""){ 
+                                    else if(ccode === ""){ 
                                         alert("Complete The Fields"); 
                                         return false; 
                                     }
-                                    if(s_source === ""){ 
+                                    else if(s_source === ""){ 
                                         alert("Complete The Fields");  
                                         return false; 
                                     }
-                                    if(s_container === ""){ 
+                                    else if(s_container === ""){ 
                                         alert("Complete The Fields"); 
                                         return false; 
                                     }
-                                    if(v_req === ""){ 
+                                    else if(v_req === ""){ 
                                        alert("Complete The Fields");  
                                         return false; 
                                     }
-                                    if(b_price === ""){ 
+                                    else if(b_price === ""){ 
                                         alert("Complete The Fields");
                                         return false; 
                                     }
-                                     if(s_price === ""){ 
+                                    else if(s_price === ""){ 
                                         alert("Complete The Fields"); 
                                         return false; 
                                     }
@@ -202,18 +211,10 @@
                                            timeout: 10000,
                                            success: function(data) {
                                                 var d = data.split("|");
-                                                if (d[1] == '1') {
+                                                if (d[1] === '1') {
                                                     $("#viewMTDpage").load("viewMTD.jsp");
-                                                    $("#icd10").val("");
-                                                    $("#item_name").val("");
-                                                    $("#ccode").val("");
-                                                    $("#status").val("Active");
-                                                    $("#s_source").val("");
-                                                    $("#s_container").val("");
-                                                    $("#v_req").val("");
-                                                    $("#s_inst").val("");
-                                                    $("#b_price").val("");
-                                                    $("#s_price").val("");
+                                                    alert("Test is add succesfully!");
+                                                    //$(".modal-backdrop").hide();
                                                 } else {
                                                     alert("Insertion failed!");
                                                 }

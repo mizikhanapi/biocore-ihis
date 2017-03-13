@@ -5,12 +5,6 @@
 <%@page session="true" %>
 
 
-<%
-    Conn conn = new Conn();
-
-%>
-
-
 
 
 <table id="assignBedTable"  class="table table-striped table-bordered" cellspacing="0" width="100%">
@@ -32,8 +26,8 @@
     <%        String sqlbed = "SELECT discipline_cd, ward_class_code, ward_id, bed_id, bed_status FROM wis_bed_id";
         ArrayList<ArrayList<String>> databed = conn.getData(sqlbed);
 
-        int size = databed.size();
-        for (int i = 0; i < size; i++) {
+        int size29 = databed.size();
+        for (int i = 0; i < size29; i++) {
     %>
 
 
@@ -47,7 +41,7 @@
 <td><%= databed.get(i).get(4)%></td>
 <td>
     <!-- Update Part Start -->
-    <a id="MW_edit" data-toggle="modal" data-target="#assignBedUpdateModal"><i class="fa fa-pencil-square-o" aria-hidden="true" style="display: inline-block;color: #337ab7;"></i></a>
+    <a id="MWBed_edit" data-toggle="modal" data-target="#assignBedUpdateModal"><i class="fa fa-pencil-square-o" aria-hidden="true" style="display: inline-block;color: #337ab7;"></i></a>
     <!-- Update Part End -->
 </td>
 <td>
@@ -79,16 +73,16 @@
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="selectbasic">Discipline</label>
                         <div class="col-md-4">
-                            <select id="updateDiscipline" name="selectbasic" class="form-control">
+                            <select id="updateDisciplineBed" name="selectbasic" class="form-control">
                                 <option value="Select Discipline" >Select Discipline</option>
 
 
                                 <%                                    String Discipline = "select * from lookup_detail where master_ref_code ='0072'";
-                                    ArrayList<ArrayList<String>> dataDiscipline;
-                                    dataDiscipline = conn.getData(Discipline);
+                                    ArrayList<ArrayList<String>> dataDiscipline81;
+                                    dataDiscipline81 = conn.getData(Discipline);
 
-                                    for (int i = 0; i < dataDiscipline.size(); i++) {%>
-                                <option value="<%=dataDiscipline.get(i).get(2)%>"><%=dataDiscipline.get(i).get(2)%></option>
+                                    for (int i = 0; i < dataDiscipline81.size(); i++) {%>
+                                <option value="<%=dataDiscipline81.get(i).get(2)%>"><%=dataDiscipline81.get(i).get(2)%></option>
                                 <%  }
                                 %>
 
@@ -100,18 +94,18 @@
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="selectbasic">Ward Class</label>
                         <div class="col-md-4">
-                            <select id="updateWard_Class" name="selectbasic" class="form-control">
+                            <select id="updateWard_ClassBed" name="selectbasic" class="form-control">
                                 <option value="Ward Class" >Ward Class</option>
 
                                 <%
-                                    String sql1 = "SELECT ward_class_code, ward_class_name FROM wis_ward_class";
-                                    ArrayList<ArrayList<String>> dataClass = conn.getData(sql1);
+                                    String sql101 = "SELECT ward_class_code, ward_class_name FROM wis_ward_class";
+                                    ArrayList<ArrayList<String>> dataClass02 = conn.getData(sql101);
 
-                                    int size3 = dataClass.size();
+                                    int size304 = dataClass02.size();
 
-                                    for (int i = 0; i < size3; i++) {
+                                    for (int i = 0; i < size304; i++) {
                                 %>
-                                <option value="<%= dataClass.get(i).get(0)%>"><%= dataClass.get(i).get(0)%> ( <%= dataClass.get(i).get(1)%> )</option>
+                                <option value="<%= dataClass02.get(i).get(0)%>"><%= dataClass02.get(i).get(0)%> ( <%= dataClass02.get(i).get(1)%> )</option>
                                 <%
                                     }
                                 %>
@@ -123,17 +117,17 @@
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="selectbasic">Ward ID/Name</label>
                         <div class="col-md-4">
-                            <select id="updateWard_ID" name="selectbasic" class="form-control">
+                            <select id="updateWard_IDBed" name="selectbasic" class="form-control">
                                 <option value="null" selected="" disabled="">Select Ward ID/Name</option>
                                 <%
-                                    String sql2 = "SELECT ward_id, ward_name FROM wis_ward_name";
-                                    ArrayList<ArrayList<String>> dataID = conn.getData(sql2);
+                                    String sql223 = "SELECT ward_id, ward_name FROM wis_ward_name";
+                                    ArrayList<ArrayList<String>> dataID223 = conn.getData(sql223);
 
-                                    int size2 = dataID.size();
+                                    int size26 = dataID223.size();
 
-                                    for (int i = 0; i < size2; i++) {
+                                    for (int i = 0; i < size26; i++) {
                                 %>
-                                <option value="<%= dataID.get(i).get(0)%>"><%= dataID.get(i).get(0)%> ( <%= dataID.get(i).get(1)%> ) </option>
+                                <option value="<%= dataID223.get(i).get(0)%>"><%= dataID223.get(i).get(0)%> ( <%= dataID223.get(i).get(1)%> ) </option>
                                 <%
                                     }
                                 %>
@@ -145,16 +139,17 @@
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="textinput">Bed ID</label>
                         <div class="col-md-8">
-                            <textarea id="updateBedID" class="form-control" rows="3" maxlength="200" placeholder="Generic Name"></textarea>
+                            <textarea id="updateBedIDBed" class="form-control" rows="3" maxlength="200" placeholder="Generic Name"></textarea>
                         </div>
                     </div>
                     <!-- Select Basic -->
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="selectbasic">Bed Status</label>
                         <div class="col-md-4">
-                            <select class="form-control" name="status" id="updatestatus">
-                                <option value="1">Active</option>
-                                <option value="0">Inactive</option>
+                            <select class="form-control" name="status" id="updatestatusBed">
+                                <option value="Available">Available</option>
+                                <option value="Pending">Pending</option>
+                                <option value="Occupied">Occupied</option>
                             </select>
                         </div>
                     </div>
@@ -164,10 +159,10 @@
             <div class="modal-footer">
                 <div class="btn-group btn-group-justified" role="group" aria-label="group button">
                     <div class="btn-group" role="group">
-                        <button type="submit" class="btn btn-success btn-block btn-lg" role="button" id="updateModalButton">Update</button>
+                        <button type="submit" class="btn btn-success btn-block btn-lg" role="button" id="updateBedButton">Update</button>
                     </div>
                     <div class="btn-group" role="group">
-                        <button type="reset" id="updateReset" class="btn btn-default btn-block btn-lg" data-dismiss="modal" role="button">Cancel</button>
+                        <button type="reset" id="BedReset" class="btn btn-default btn-block btn-lg" data-dismiss="modal" role="button">Cancel</button>
                     </div>
                 </div>
             </div>
@@ -182,7 +177,7 @@
 
     $(document).ready(function () {
         //function to edit facility type from table
-        $('#AssignBedTable').off('click', '#assignBedTable #MW_edit').on('click', '#assignBedTable #MW_edit', function (e) {
+        $('#AssignBedTable').off('click', '#assignBedTable #MWBed_edit').on('click', '#assignBedTable #MWBed_edit', function (e) {
             e.preventDefault();
             //go to the top
 
@@ -198,42 +193,45 @@
             var Ward_ID = arrayData[2];
             var BedID = arrayData[3];
             var status = arrayData[4];
-            $("#updateDisicipline").val(Disicipline);
-            $("#updateWard_Class").val(Ward_Class);
-            $("#updateWard_ID").val(Ward_ID);
-            $("#updateBedID").val(BedID);
-            if (status === '1')
-                $('#updatestatus').val(1);
-            else
-                $('#updatestatus').val(0);
+            $("#updateDisiciplineBed").val(Disicipline);
+            $("#updateWard_ClassBed").val(Ward_Class);
+            $("#updateWard_IDBed").val(Ward_ID);
+            $("#updateBedIDBed").val(BedID);
+            if (status === 'Available')
+                $('#updatestatusBed').val("Available");
+            else if (status === 'Pending')
+                $('#updatestatusBed').val("Pending");
+            else  if (status === 'Occupied')
+                $('#updatestatusBed').val("Occupied");
+
         });
 
-        $("#updateModalButton").off('click').on('click', function (e) {
+        $("#updateBedButton").off('click').on('click', function (e) {
 
             e.preventDefault();
-            var Disicipline = $("#updateDisicipline").val();
-            var Ward_Class = $("#updateWard_Class").val();
-            var Ward_ID = $("#updateWard_ID").val();
-            var BedID = $("#updateBedID").val();
-            var status = $("#updatestatus").val();
+            var Discipline = $("#updateDisciplineBed").val();
+            var Ward_Class = $("#updateWard_ClassBed").val();
+            var Ward_ID = $("#updateWard_IDBed").val();
+            var BedID = $("#updateBedIDBed").val();
+            var status = $("#updatestatusBed").val();
             //var hfc = $('#hfc').val();
             //var discipline = $('#discipline').val();
             //var subDicipline = $('#subDicipline').val();
 
-            if (Disicipline === "" || Disicipline === null) {
-                alert("Complete The Fields");
+            if (Discipline === "" || Discipline === null) {
+                alert("Complete The Discipline Fields");
             } else if (Ward_Class === "" || Ward_Class === null) {
                 alert("Complete The Fields");
             } else if (Ward_ID === "" || Ward_ID === null) {
                 alert("Complete The Fields");
             } else if (BedID === "" || BedID === null) {
                 alert("Complete The Fields");
-            } else if (status !== "1" && status !== "0") {
+            } else if (status !== "Available" && status !== "Pending" && status !== "Occupied") {
                 alert("Select Any Status");
             } else {
 
                 var data = {
-                    Disicipline: Disicipline,
+                    Discipline: Discipline,
                     Ward_Class: Ward_Class,
                     Ward_ID: Ward_ID,
                     BedID: BedID,
@@ -280,7 +278,7 @@
         var arrayData = rowData.split("|");
         console.log(arrayData);
         //assign into seprated val
-        var iditem = arrayData[0];
+        var idbed = arrayData[3];
         bootbox.confirm({
             message: "Are you sure want to delete information?",
             title: "Delete Item?",
@@ -299,7 +297,7 @@
                 if (result === true) {
 
                     var data = {
-                        iditem: iditem
+                        idbed: idbed
 
                     };
                     $.ajax({

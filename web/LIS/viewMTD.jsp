@@ -128,7 +128,7 @@
             <div class="modal-footer">
                 <div class="btn-group btn-group-justified" role="group" aria-label="group button">
                     <div class="btn-group" role="group">
-                        <button type="button" class="btn btn-success btn-block btn-lg" id="btn_update<%=i%>">Update</button>
+                        <button type="button" class="btn btn-success btn-block btn-lg" id="btn_update1<%=i%>">Update</button>
                     </div>
                     <div class="btn-group" role="group">
                         <button type="button" id="updateReset" class="btn btn-default btn-block btn-lg" data-dismiss="modal" role="button">Cancel</button>
@@ -140,8 +140,8 @@
 </div>
             </td>
             <td>
-                <button id='btn_delete<%=i%>' class='btn btn-danger btn-xs'>Delete</button>
-
+                
+                <a id="btn_delete<%=i%>" class="testing"><i class="fa fa-times" aria-hidden="true" style="display: inline-block;color: #d9534f;" ></i></a>
                 <script type="text/javascript" charset="utf-8">
                     $(document).ready(function () {
                         $("#btn_delete<%=i%>").click(function () {
@@ -171,9 +171,8 @@
                             }
                         });
 
-                        $("#btn_update<%=i%>").click(function () {
+                        $("#btn_update1<%=i%>").click(function () {
                            // var ccode = $("#ccode_<%=i%>").val();
-                           alert("success");
                             var icd10 = $("#icd10_<%=i%>").val();
                             var analytename = $("#analytename_<%=i%>").val();
                             var s_source = $("#ssource_<%=i%>").val();
@@ -199,8 +198,6 @@
                                     s_price: s_price,
                                     status: status
                                 }
-                                
-                                
                             });
                             $("#viewMTDpage").load("viewMTD.jsp");
                             $(".modal-backdrop").hide();

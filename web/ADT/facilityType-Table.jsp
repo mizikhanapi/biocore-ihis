@@ -5,10 +5,6 @@
 <%@page session="true" %>
 
 
-<%
-    Conn conn = new Conn();
-
-%>
 
 
 
@@ -92,7 +88,7 @@
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="textinput">Status</label>
                         <div class="col-md-8">
-                            <select class="form-control" name="tstatus" id="updatestatus">
+                            <select class="form-control" name="tstatus" id="updatestatustype">
                                 <option value="1" >Active</option>
                                 <option value="0" >Inactive</option>
                             </select>
@@ -139,9 +135,9 @@
             $("#updateWardClass").val(MWClass);
             $("#updateWardClassID").val(MWID);
             if (status === '1')
-                $('#updatestatus').val(1);
+                $('#updatestatustype').val(1);
             else
-                $('#updatestatus').val(0);
+                $('#updatestatustype').val(0);
         });
 
         $("#updateModalButton").off('click').on('click', function (e) {
@@ -149,7 +145,7 @@
             e.preventDefault();
             var MWClass = $("#updateWardClass").val();
             var MWID = $("#updateWardClassID").val();
-            var status = $("#updatestatus").val();
+            var status = $("#updatestatustype").val();
             //var hfc = $('#hfc').val();
             //var discipline = $('#discipline').val();
             //var subDicipline = $('#subDicipline').val();
@@ -208,7 +204,7 @@
         var arrayData = rowData.split("|");
         console.log(arrayData);
         //assign into seprated val
-        var idtype = arrayData[0];
+        var idtype = arrayData[1];
         bootbox.confirm({
             message: "Are you sure want to delete facility type information?",
             title: "Delete Item?",

@@ -12,8 +12,9 @@
                             timeout: 3000,
                             success: function (dataBack) { // If success
                                 $('#match32').html(dataBack); // Return data (UL list) and insert it in the <div id="match"></div>
-                                $('#matchList li').on('click', function () { // When click on an element in the list
+                                $('#matchList li').on('click', function () { // When click on an element in the list   
                                     $('#Problem32').val($(this).text()); // Update the field with the new element
+                                    searchDABCd();
                                     $('#match32').text(''); // Clear the <div id="match"></div>
                                 });
                             },
@@ -38,13 +39,14 @@
                         var dataFields = {'input': input}; // We pass input argument in Ajax
                         $.ajax({
                             type: "POST",
-                            url: "SearchDisability.jsp", // call the php file ajax/tuto-autocomplete.php
+                            url: "search/SearchDisability.jsp", // call the php file ajax/tuto-autocomplete.php
                             data: dataFields, // Send dataFields var
                             timeout: 3000,
                             success: function (dataBack) { // If success
                                 $('#mmatch32').html(dataBack); // Return data (UL list) and insert it in the <div id="match"></div>
                                 $('#matchList li').on('click', function () { // When click on an element in the list
                                     $('#PProblem32').val($(this).text()); // Update the field with the new element
+                                    usearchDABCd();
                                     $('#mmatch32').text(''); // Clear the <div id="match"></div>
                                 });
                             },
@@ -58,3 +60,37 @@
                 });
             });
 //End js search in Update Disability
+
+function searchDABCd(){
+     var id = $('#Problem32').val();
+        $.ajax({
+        type:'post',
+        url:'search/SearchDAS_cd.jsp',
+        data: {'id': id},                
+        success: function(reply_data){
+            var array_data = String(reply_data).split("|");
+            var udasCode = array_data[0];
+            console.log(reply_data);
+           
+            $('#codeDAB').val(udasCode.trim());
+  
+          }
+        });
+}
+
+function usearchDABCd(){
+     var id = $('#PProblem32').val();
+        $.ajax({
+        type:'post',
+        url:'search/SearchDAS_cd.jsp',
+        data: {'id': id},                
+        success: function(reply_data){
+            var array_data = String(reply_data).split("|");
+            var udasCode = array_data[0];
+            console.log(udasCode);
+           
+            $('#uDAS_cd').val(udasCode);
+  
+          }
+        });
+}

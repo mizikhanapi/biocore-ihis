@@ -3,15 +3,14 @@
 <%@page import="Config.connect"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
-    Conn conn = new Conn();
     //String relation = "select * from lookup_detail where master_ref_code = '0007' order by Description";
-    String hcf = "select * from adm_lookup_detail where master_reference_code = '0081'   ";
-    String insuranceCompany = "select * from adm_lookup_detail where master_reference_code = '0083'   ";
-    String insurancePolicy = "select * from adm_lookup_detail where master_reference_code = '0058'   ";
-    ArrayList<ArrayList<String>> dataHfc, dataInsurancePolicy, dataInsuranceCompany;
-    dataHfc = conn.getData(hcf);
-    dataInsurancePolicy = conn.getData(insurancePolicy);
-    dataInsuranceCompany = conn.getData(insuranceCompany);
+    String hcf81 = "select * from adm_lookup_detail where master_reference_code = '0081'   ";
+    String insuranceCompany81 = "select * from adm_lookup_detail where master_reference_code = '0083'   ";
+    String insurancePolicy81 = "select * from adm_lookup_detail where master_reference_code = '0058'   ";
+    ArrayList<ArrayList<String>> dataHfc81, dataInsurancePolicy81, dataInsuranceCompany81;
+    dataHfc81 = conn.getData(hcf81);
+    dataInsurancePolicy81 = conn.getData(insurancePolicy81);
+    dataInsuranceCompany81 = conn.getData(insuranceCompany81);
 
 %>
 <!-- Modal -->
@@ -44,8 +43,8 @@
                         <select id="MEDinscom" name="MEDinscom" class="form-control">
                             <option value="1">Please Select Insurance Company</option>
                             <option value="-">-</option>
-                            <% for (int i = 0; i < dataInsuranceCompany.size(); i++) {%>
-                            <option value="<%=dataInsuranceCompany.get(i).get(1)%>"><%=dataInsuranceCompany.get(i).get(2)%></option>
+                            <% for (int i = 0; i < dataInsuranceCompany81.size(); i++) {%>
+                            <option value="<%=dataInsuranceCompany81.get(i).get(1)%>"><%=dataInsuranceCompany81.get(i).get(2)%></option>
                             <%  }
                             %>
                         </select>
@@ -77,8 +76,8 @@
                         <select id="MEDhfc" name="MEDhfc" class="form-control">
                             <option selected="" disabled="">Please select health facility</option>
                             <option value="-">-</option>
-                            <% for (int i = 0; i < dataHfc.size(); i++) {%>
-                            <option value="<%=dataHfc.get(i).get(1)%>"><%=dataHfc.get(i).get(2)%></option>
+                            <% for (int i = 0; i < dataHfc81.size(); i++) {%>
+                            <option value="<%=dataHfc81.get(i).get(1)%>"><%=dataHfc81.get(i).get(2)%></option>
                             <%  }
                             %>
                         </select>
@@ -92,8 +91,8 @@
                         <select id="MEDstatus" name="MEDstatus" class="form-control">
                             <option value="null" selected="" disabled="">Please Select Policy Status</option>
                             <option value="-">-</option>
-                            <% for (int i = 0; i < dataInsurancePolicy.size(); i++) {%>
-                            <option value="<%=dataInsurancePolicy.get(i).get(1)%>"><%=dataInsurancePolicy.get(i).get(2)%></option>
+                            <% for (int i = 0; i < dataInsurancePolicy81.size(); i++) {%>
+                            <option value="<%=dataInsurancePolicy81.get(i).get(1)%>"><%=dataInsurancePolicy81.get(i).get(2)%></option>
                             <%  }
                             %>
                         </select>

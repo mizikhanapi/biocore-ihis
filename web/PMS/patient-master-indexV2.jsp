@@ -4,51 +4,51 @@
 <%@page import="org.apache.commons.lang3.StringUtils"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
-    Conn conn = new Conn();
+    //Conn conn = new Conn();
 
     //for select box items
-    String eliCat = "select * from adm_lookup_detail where master_reference_code = '0063'";
-    String eliType = "select * from adm_lookup_detail where master_reference_code = '0034'";
-    String gender = "select * from adm_lookup_detail where master_reference_code = '0041'";
-    String marital = "select * from adm_lookup_detail where master_reference_code = '0006'";
-    String race = "select * from adm_lookup_detail where master_reference_code = '0004'";
-    String nationality = "select * from adm_lookup_detail where master_reference_code = '0011'";
-    String religion = "select * from adm_lookup_detail where master_reference_code = '0005'";
-    String idType = "select * from adm_lookup_detail where master_reference_code = '0012'";
-    String title = "select * from adm_lookup_detail where master_reference_code = '0026' ";
-    String bloodty = "select * from adm_lookup_detail where master_reference_code = '0074'   ";
-    String rhesus = "select * from adm_lookup_detail where master_reference_code = '0017'   ";
-    String allergy = "select * from adm_lookup_detail where master_reference_code = '0075'   ";
-    String chronicDesease = "select * from adm_lookup_detail where master_reference_code = '0076'  ";
-    String organDonor = "select * from adm_lookup_detail where master_reference_code = '0077'";
-    String district = "select * from adm_lookup_detail where master_reference_code = '0078'   ";
-    String postcode = "select * from adm_lookup_detail where master_reference_code = '0079'   ";
-    String country = "select * from adm_lookup_detail where master_reference_code = '0001'   ";
-    String town = "select * from adm_lookup_detail where master_reference_code = '0003'   ";
-    String state = "select * from adm_lookup_detail where master_reference_code = '0002'   ";
+    String eliCat4 = "select * from adm_lookup_detail where master_reference_code = '0063'";
+    String eliType4 = "select * from adm_lookup_detail where master_reference_code = '0034'";
+    String gender4 = "select * from adm_lookup_detail where master_reference_code = '0041'";
+    String marital4 = "select * from adm_lookup_detail where master_reference_code = '0006'";
+    String race4 = "select * from adm_lookup_detail where master_reference_code = '0004'";
+    String nationality4 = "select * from adm_lookup_detail where master_reference_code = '0011'";
+    String religion4 = "select * from adm_lookup_detail where master_reference_code = '0005'";
+    String idType4 = "select * from adm_lookup_detail where master_reference_code = '0012'";
+    String title4 = "select * from adm_lookup_detail where master_reference_code = '0026' ";
+    String bloodty4 = "select * from adm_lookup_detail where master_reference_code = '0074'   ";
+    String rhesus4 = "select * from adm_lookup_detail where master_reference_code = '0017'   ";
+    String allergy4 = "select * from adm_lookup_detail where master_reference_code = '0075'   ";
+    String chronicDesease4 = "select * from adm_lookup_detail where master_reference_code = '0076'  ";
+    String organDonor4 = "select * from adm_lookup_detail where master_reference_code = '0077'";
+    String district4 = "select * from adm_lookup_detail where master_reference_code = '0078'   ";
+    String postcode4 = "select * from adm_lookup_detail where master_reference_code = '0079'   ";
+    String country4 = "select * from adm_lookup_detail where master_reference_code = '0001'   ";
+    String town4 = "select * from adm_lookup_detail where master_reference_code = '0003'   ";
+    String state4 = "select * from adm_lookup_detail where master_reference_code = '0002'   ";
 
-    ArrayList<ArrayList<String>> dataEliCat, dataEliType, dataIdType, dataGender, dataMarital, dataRace, dataNationality, dataReligion, dataTitle,
-            dataBloodty, dataRhesus, dataAllergy, dataChronicDesease, dataOrganDonor, dataDistrict, dataPostcode, dataCountry, dataTown, dataState;
+    ArrayList<ArrayList<String>> dataEliCat4, dataEliType4, dataIdType4, dataGender4, dataMarital4, dataRace4, dataNationality4, dataReligion4, dataTitle4,
+            dataBloodty4, dataRhesus4, dataAllergy4, dataChronicDesease4, dataOrganDonor4, dataDistrict4, dataPostcode4, dataCountry4, dataTown4, dataState4;
 
-    dataEliCat = conn.getData(eliCat);
-    dataEliType = conn.getData(eliType);
-    dataGender = conn.getData(gender);
-    dataMarital = conn.getData(marital);
-    dataRace = conn.getData(race);
-    dataNationality = conn.getData(nationality);
-    dataReligion = conn.getData(religion);
-    dataIdType = conn.getData(idType);
-    dataTitle = conn.getData(title);
-    dataBloodty = conn.getData(bloodty);
-    dataRhesus = conn.getData(rhesus);
-    dataAllergy = conn.getData(allergy);
-    dataChronicDesease = conn.getData(chronicDesease);
-    dataOrganDonor = conn.getData(organDonor);
-    dataDistrict = conn.getData(district);
-    dataPostcode = conn.getData(postcode);
-    dataCountry = conn.getData(country);
-    dataTown = conn.getData(town);
-    dataState = conn.getData(state);
+    dataEliCat4 = conn.getData(eliCat4);
+    dataEliType4 = conn.getData(eliType4);
+    dataGender4 = conn.getData(gender4);
+    dataMarital4 = conn.getData(marital4);
+    dataRace4 = conn.getData(race4);
+    dataNationality4 = conn.getData(nationality4);
+    dataReligion4 = conn.getData(religion4);
+    dataIdType4 = conn.getData(idType4);
+    dataTitle4 = conn.getData(title4);
+    dataBloodty4 = conn.getData(bloodty4);
+    dataRhesus4 = conn.getData(rhesus4);
+    dataAllergy4 = conn.getData(allergy4);
+    dataChronicDesease4 = conn.getData(chronicDesease4);
+    dataOrganDonor4 = conn.getData(organDonor4);
+    dataDistrict4 = conn.getData(district4);
+    dataPostcode4 = conn.getData(postcode4);
+    dataCountry4 = conn.getData(country4);
+    dataTown4 = conn.getData(town4);
+    dataState4 = conn.getData(state4);
 
     //  ArrayList<String> dataDistrictSingular= new ArrayList<String>(),dataPostcodeSingular = new ArrayList<String>(),dataCountrySingular = new ArrayList<String>(),dataTownSingular = new ArrayList<String>(),dataStateSingular = new ArrayList<String>();
 //   for(int i = 0;i<dataDistrict.size();i++){
@@ -117,8 +117,8 @@
                                 <select id="PMItitle" name="selectbasic" class="form-control">
                                     <option value="-">-</option>
                                     <option value="null" selected="" disabled="">Select Title</option>
-                                    <%                                        for (int i = 0; i < dataTitle.size(); i++) {%>
-                                    <option value="<%=dataTitle.get(i).get(1)%>"><%=dataTitle.get(i).get(2)%></option>
+                                    <%                                        for (int i = 0; i < dataTitle4.size(); i++) {%>
+                                    <option value="<%=dataTitle4.get(i).get(1)%>"><%=dataTitle4.get(i).get(2)%></option>
                                     <%  }
                                     %>
                                 </select>
@@ -148,8 +148,8 @@
                                 <select id="PMIidty" name="selectbasic" class="form-control">
                                     <option value="null" selected="" disabled="">Select ID Type</option>
                                     <%
-                                        for (int i = 0; i < dataIdType.size(); i++) {%>
-                                    <option value="<%=dataIdType.get(i).get(1)%>"><%=dataIdType.get(i).get(2)%></option>
+                                        for (int i = 0; i < dataIdType4.size(); i++) {%>
+                                    <option value="<%=dataIdType4.get(i).get(1)%>"><%=dataIdType4.get(i).get(2)%></option>
                                     <%  }
                                     %>
                                 </select>
@@ -175,8 +175,8 @@
                                     <option value="-">-</option>
                                     <%
                                         for (int i = 0;
-                                                i < dataEliCat.size(); i++) {%>
-                                    <option value="<%=dataEliCat.get(i).get(1)%>"><%=dataEliCat.get(i).get(2)%></option>
+                                                i < dataEliCat4.size(); i++) {%>
+                                    <option value="<%=dataEliCat4.get(i).get(1)%>"><%=dataEliCat4.get(i).get(2)%></option>
                                     <%  }
                                     %>
                                 </select>
@@ -192,9 +192,9 @@
                                     <option value="-">-</option>
                                     <%
                                         for (int i = 0;
-                                                i < dataEliType.size();
+                                                i < dataEliType4.size();
                                                 i++) {%>
-                                    <option value="<%=dataEliType.get(i).get(1)%>"><%=dataEliType.get(i).get(2)%></option>
+                                    <option value="<%=dataEliType4.get(i).get(1)%>"><%=dataEliType4.get(i).get(2)%></option>
                                     <%  }
                                     %>
                                 </select>
@@ -218,9 +218,9 @@
                                     <option value="-">-</option>
                                     <%
                                         for (int i = 0;
-                                                i < dataGender.size();
+                                                i < dataGender4.size();
                                                 i++) {%>
-                                    <option value="<%=dataGender.get(i).get(1)%>"><%=dataGender.get(i).get(2)%></option>
+                                    <option value="<%=dataGender4.get(i).get(1)%>"><%=dataGender4.get(i).get(2)%></option>
                                     <%  }
                                     %>
                                 </select>
@@ -236,9 +236,9 @@
                                     <option value="-">-</option>
                                     <%
                                         for (int i = 0;
-                                                i < dataMarital.size();
+                                                i < dataMarital4.size();
                                                 i++) {%>
-                                    <option value="<%=dataMarital.get(i).get(1)%>"><%=dataMarital.get(i).get(2)%></option>
+                                    <option value="<%=dataMarital4.get(i).get(1)%>"><%=dataMarital4.get(i).get(2)%></option>
                                     <%  }
                                     %>
                                 </select>
@@ -254,9 +254,9 @@
                                     <option value="-">-</option>
                                     <%
                                         for (int i = 0;
-                                                i < dataRace.size();
+                                                i < dataRace4.size();
                                                 i++) {%>
-                                    <option value="<%=dataRace.get(i).get(1)%>"><%=dataRace.get(i).get(2)%></option>
+                                    <option value="<%=dataRace4.get(i).get(1)%>"><%=dataRace4.get(i).get(2)%></option>
                                     <%  }
                                     %>
                                 </select>
@@ -272,9 +272,9 @@
                                     <option value="-">-</option>
                                     <%
                                         for (int i = 0;
-                                                i < dataNationality.size();
+                                                i < dataNationality4.size();
                                                 i++) {%>
-                                    <option value="<%=dataNationality.get(i).get(1)%>"><%=dataNationality.get(i).get(2)%></option>
+                                    <option value="<%=dataNationality4.get(i).get(1)%>"><%=dataNationality4.get(i).get(2)%></option>
                                     <%  }
                                     %>
                                 </select>
@@ -290,9 +290,9 @@
                                     <option value="-">-</option>
                                     <%
                                         for (int i = 0;
-                                                i < dataReligion.size();
+                                                i < dataReligion4.size();
                                                 i++) {%>
-                                    <option value="<%=dataReligion.get(i).get(1)%>"><%=dataReligion.get(i).get(2)%></option>
+                                    <option value="<%=dataReligion4.get(i).get(1)%>"><%=dataReligion4.get(i).get(2)%></option>
                                     <%  }
                                     %>
                                 </select>
@@ -314,9 +314,9 @@
                                     <option value="-">-</option>
                                     <%
                                         for (int i = 0;
-                                                i < dataBloodty.size();
+                                                i < dataBloodty4.size();
                                                 i++) {%>
-                                    <option value="<%=dataBloodty.get(i).get(1)%>"><%=dataBloodty.get(i).get(2)%></option>
+                                    <option value="<%=dataBloodty4.get(i).get(1)%>"><%=dataBloodty4.get(i).get(2)%></option>
                                     <%  }
                                     %>
                                 </select>
@@ -332,9 +332,9 @@
                                     <option value="-">-</option>
                                     <%
                                         for (int i = 0;
-                                                i < dataRhesus.size();
+                                                i < dataRhesus4.size();
                                                 i++) {%>
-                                    <option value="<%=dataRhesus.get(i).get(1)%>"><%=dataRhesus.get(i).get(2)%></option>
+                                    <option value="<%=dataRhesus4.get(i).get(1)%>"><%=dataRhesus4.get(i).get(2)%></option>
                                     <%  }
                                     %>
                                 </select>
@@ -350,9 +350,9 @@
                                     <option value="-">-</option>
                                     <%
                                         for (int i = 0;
-                                                i < dataAllergy.size();
+                                                i < dataAllergy4.size();
                                                 i++) {%>
-                                    <option value="<%=dataAllergy.get(i).get(1)%>"><%=dataAllergy.get(i).get(2)%></option>
+                                    <option value="<%=dataAllergy4.get(i).get(1)%>"><%=dataAllergy4.get(i).get(2)%></option>
                                     <%  }
                                     %>
                                 </select>
@@ -369,9 +369,9 @@
                                     <option value="-">-</option>
                                     <%
                                         for (int i = 0;
-                                                i < dataChronicDesease.size();
+                                                i < dataChronicDesease4.size();
                                                 i++) {%>
-                                    <option value="<%=dataChronicDesease.get(i).get(1)%>"><%=dataChronicDesease.get(i).get(2)%></option>
+                                    <option value="<%=dataChronicDesease4.get(i).get(1)%>"><%=dataChronicDesease4.get(i).get(2)%></option>
                                     <%  }
                                     %>
                                 </select>
@@ -387,9 +387,9 @@
                                     <option value="-">-</option>
                                     <%
                                         for (int i = 0;
-                                                i < dataOrganDonor.size();
+                                                i < dataOrganDonor4.size();
                                                 i++) {%>
-                                    <option value="<%=dataOrganDonor.get(i).get(1)%>"><%=dataOrganDonor.get(i).get(2)%></option>
+                                    <option value="<%=dataOrganDonor4.get(i).get(1)%>"><%=dataOrganDonor4.get(i).get(2)%></option>
                                     <%  }
                                     %>
                                 </select>
@@ -421,9 +421,9 @@
                                     <option value="-">-</option>
                                     <%
                                         for (int i = 0;
-                                                i < dataDistrict.size();
+                                                i < dataDistrict4.size();
                                                 i++) {%>
-                                    <option value="<%=dataDistrict.get(i).get(1)%>"><%=dataDistrict.get(i).get(2)%></option>
+                                    <option value="<%=dataDistrict4.get(i).get(1)%>"><%=dataDistrict4.get(i).get(2)%></option>
                                     <%  }
                                     %>
                                 </select>
@@ -440,9 +440,9 @@
                                     <option value="-">-</option>
                                     <%
                                         for (int i = 0;
-                                                i < dataTown.size();
+                                                i < dataTown4.size();
                                                 i++) {%>
-                                    <option value="<%=dataTown.get(i).get(1)%>"><%=dataTown.get(i).get(2)%></option>
+                                    <option value="<%=dataTown4.get(i).get(1)%>"><%=dataTown4.get(i).get(2)%></option>
                                     <%  }
                                     %>
                                 </select>
@@ -459,9 +459,9 @@
                                     <option value="-">-</option>
                                     <%
                                         for (int i = 0;
-                                                i < dataPostcode.size();
+                                                i < dataPostcode4.size();
                                                 i++) {%>
-                                    <option value="<%=dataPostcode.get(i).get(1)%>"><%=dataPostcode.get(i).get(2)%></option>
+                                    <option value="<%=dataPostcode4.get(i).get(1)%>"><%=dataPostcode4.get(i).get(2)%></option>
                                     <%  }
                                     %>
                                 </select>
@@ -478,9 +478,9 @@
                                     <option value="-">-</option>
                                     <%
                                         for (int i = 0;
-                                                i < dataState.size();
+                                                i < dataState4.size();
                                                 i++) {%>
-                                    <option value="<%=dataState.get(i).get(1)%>"><%=dataState.get(i).get(2)%></option>
+                                    <option value="<%=dataState4.get(i).get(1)%>"><%=dataState4.get(i).get(2)%></option>
                                     <%  }
                                     %>
                                 </select>
@@ -497,9 +497,9 @@
                                     <option value="-">-</option>
                                     <%
                                         for (int i = 0;
-                                                i < dataCountry.size();
+                                                i < dataCountry4.size();
                                                 i++) {%>
-                                    <option value="<%=dataCountry.get(i).get(1)%>"><%=dataCountry.get(i).get(2)%></option>
+                                    <option value="<%=dataCountry4.get(i).get(1)%>"><%=dataCountry4.get(i).get(2)%></option>
                                     <%  }
                                     %>
                                 </select>
@@ -535,9 +535,9 @@
                                     <option value="-">-</option>
                                     <%
                                         for (int i = 0;
-                                                i < dataDistrict.size();
+                                                i < dataDistrict4.size();
                                                 i++) {%>
-                                    <option value="<%=dataDistrict.get(i).get(1)%>"><%=dataDistrict.get(i).get(2)%></option>
+                                    <option value="<%=dataDistrict4.get(i).get(1)%>"><%=dataDistrict4.get(i).get(2)%></option>
                                     <%  }
                                     %>
                                 </select>
@@ -554,9 +554,9 @@
                                     <option value="-">-</option>
                                     <%
                                         for (int i = 0;
-                                                i < dataTown.size();
+                                                i < dataTown4.size();
                                                 i++) {%>
-                                    <option value="<%=dataTown.get(i).get(1)%>"><%=dataTown.get(i).get(2)%></option>
+                                    <option value="<%=dataTown4.get(i).get(1)%>"><%=dataTown4.get(i).get(2)%></option>
                                     <%  }
                                     %>
                                 </select>
@@ -573,9 +573,9 @@
                                     <option value="-">-</option>
                                     <%
                                         for (int i = 0;
-                                                i < dataPostcode.size();
+                                                i < dataPostcode4.size();
                                                 i++) {%>
-                                    <option value="<%=dataPostcode.get(i).get(1)%>"><%=dataPostcode.get(i).get(2)%></option>
+                                    <option value="<%=dataPostcode4.get(i).get(1)%>"><%=dataPostcode4.get(i).get(2)%></option>
                                     <%  }
                                     %>
                                 </select>
@@ -593,9 +593,9 @@
                                     <option value="-">-</option>
                                     <%
                                         for (int i = 0;
-                                                i < dataState.size();
+                                                i < dataState4.size();
                                                 i++) {%>
-                                    <option value="<%=dataState.get(i).get(1)%>"><%=dataState.get(i).get(2)%></option>
+                                    <option value="<%=dataState4.get(i).get(1)%>"><%=dataState4.get(i).get(2)%></option>
                                     <%  }
                                     %>
                                 </select>
@@ -612,9 +612,9 @@
                                     <option value="-">-</option>
                                     <%
                                         for (int i = 0;
-                                                i < dataCountry.size();
+                                                i < dataCountry4.size();
                                                 i++) {%>
-                                    <option value="<%=dataCountry.get(i).get(1)%>"><%=dataCountry.get(i).get(2)%></option>
+                                    <option value="<%=dataCountry4.get(i).get(1)%>"><%=dataCountry4.get(i).get(2)%></option>
                                     <%  }
                                     %>
                                 </select>
@@ -698,7 +698,7 @@
 //        });
 
 
-            $('#PMIbday').datepicker({dateFormat: 'dd-mm-yy', changeMonth: true, changeYear: true});
+            $('#PMIbday').datepicker({dateFormat: 'yy-mm-dd', changeMonth: true, changeYear: true});
 
 
         });
@@ -801,7 +801,7 @@
             } else {
                 pbday = $("#PMIbday").val();
                 var splitBday = String(pbday).split("-");
-                var convertedBday = splitBday[2] + "/" + splitBday[1] + "/" + splitBday[0];
+                var convertedBday = splitBday[0] + "/" + splitBday[1] + "/" + splitBday[2];
             }
 
             if (psex === null) {

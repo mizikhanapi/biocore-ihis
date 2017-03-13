@@ -22,38 +22,102 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-        <link href="assets/css/bootstrap.min.css" rel="stylesheet">
-        <link rel="stylesheet" href="bootstrap-3.3.6-dist/css/dataTables.bootstrap.min.css">
-        <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+        <!-- header -->
+        <%@include file = "libraries/pharmacyHeadLibrary.jsp" %>
+        <%@include file = "../assets/header.html" %>
+        <!-- header -->
     </head>
 
-    
-    
-    <body>
-        <!-- header -->
-        <div w3-include-html="libraries/pharmacyHeader.jsp"></div>
-        <!-- header -->
-        
-        <!-- menu top -->
-        <div w3-include-html="libraries/pharmacyTopMenus.jsp"></div>
-        <!-- menu top -->
+    <style>
+        /* Absolute Center Spinner */
+        .loading {
+            position: fixed;
+            z-index: 999;
+            height: 2em;
+            width: 2em;
+            overflow: show;
+            margin: auto;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+        }
 
+        /* Transparent Overlay */
+        .loading:before {
+            content: '';
+            display: block;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.3);
+        }
+
+        /* :not(:required) hides these rules from IE9 and below */
+        .loading:not(:required) {
+            /* hide "loading..." text */
+            font: 0/0 a;
+            color: transparent;
+            text-shadow: none;
+            background-color: transparent;
+            border: 0;
+        }
+
+        .loading:not(:required):after {
+            content: '';
+            display: block;
+            font-size: 10px;
+            width: 1em;
+            height: 1em;
+            margin-top: -0.5em;
+            -webkit-animation: spinner 1500ms infinite linear;
+            -moz-animation: spinner 1500ms infinite linear;
+            -ms-animation: spinner 1500ms infinite linear;
+            -o-animation: spinner 1500ms infinite linear;
+            animation: spinner 1500ms infinite linear;
+            border-radius: 0.5em;
+            -webkit-box-shadow: rgba(0, 0, 0, 0.75) 1.5em 0 0 0, rgba(0, 0, 0, 0.75) 1.1em 1.1em 0 0, rgba(0, 0, 0, 0.75) 0 1.5em 0 0, rgba(0, 0, 0, 0.75) -1.1em 1.1em 0 0, rgba(0, 0, 0, 0.5) -1.5em 0 0 0, rgba(0, 0, 0, 0.5) -1.1em -1.1em 0 0, rgba(0, 0, 0, 0.75) 0 -1.5em 0 0, rgba(0, 0, 0, 0.75) 1.1em -1.1em 0 0;
+            box-shadow: rgba(0, 0, 0, 0.75) 1.5em 0 0 0, rgba(0, 0, 0, 0.75) 1.1em 1.1em 0 0, rgba(0, 0, 0, 0.75) 0 1.5em 0 0, rgba(0, 0, 0, 0.75) -1.1em 1.1em 0 0, rgba(0, 0, 0, 0.75) -1.5em 0 0 0, rgba(0, 0, 0, 0.75) -1.1em -1.1em 0 0, rgba(0, 0, 0, 0.75) 0 -1.5em 0 0, rgba(0, 0, 0, 0.75) 1.1em -1.1em 0 0;
+        }
+
+        /* Animation */
+
+        @-webkit-keyframes spinner {
+            0% {
+                -webkit-transform: rotate(0deg);
+                -moz-transform: rotate(0deg);
+                -ms-transform: rotate(0deg);
+                -o-transform: rotate(0deg);
+                transform: rotate(0deg);
+            }
+            100% {
+                -webkit-transform: rotate(360deg);
+                -moz-transform: rotate(360deg);
+                -ms-transform: rotate(360deg);
+                -o-transform: rotate(360deg);
+                transform: rotate(360deg);
+            }
+        }
+
+    </style>
+
+    <body>
         <div class="container-fluid">
             <div class="row">       
-                <!-- menu side -->		
-                <div w3-include-html="libraries/pharmacySideMenus.jsp"></div>
                 <!-- menu side -->	
-
+                <%@include file = "libraries/pharmacySideMenus.jsp" %>
+                <!-- menu side -->	
                 <!-- main -->		
-                <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main" style="background: #f2f4f8;">
+                <div class="main" style="background: #f2f4f8;">
+                    <!-- menu top -->
+                    <%@include file = "libraries/pharmacyTopMenus.jsp" %>
+                    <!-- menu top -->
                     <div class="row">
                         <div class="col-md-12">
                             <div class="thumbnail">
-
-
                                 <!-- Tab Menu -->
-
                                 <div class="tabbable-panel">
                                     <div class="tabbable-line">
                                         <ul class="nav nav-tabs ">
@@ -73,90 +137,64 @@
                                         <!-- tab content -->
                                         <div class="tab-content">
                                             <div class="tab-pane active" id="tab_default_1">
-
                                                 <div id="contentATC">
-
                                                     <div id="contentATCMain">
                                                     </div>
                                                     <div id="contentATCTable">
                                                     </div>
-
                                                 </div>
-
                                             </div>
                                             <div class="tab-pane" id="tab_default_2">
-
                                                 <div id="contentMDC">
                                                     <div id="contentMDCMain">
                                                     </div>
                                                     <div id="contentMDCTable">
                                                     </div>
                                                 </div>
-
                                             </div>
                                             <div class="tab-pane" id="tab_default_3">
-
                                                 <div id="contentSup">
-
                                                     <div id="contentSupplierMain">
                                                     </div>
                                                     <div id="contentSupplierTable">
                                                     </div>
-
                                                 </div>
-
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-
                                 <!-- Tab Menu -->
-
-
-
-
                             </div>
                         </div>
                     </div>
-
                 </div>
-
             </div>
             <!-- main -->		
-
         </div>
 
 
-
-
-
-        <!-- Bootstrap core JavaScript
-        ================================================== -->
         <!-- Placed at the end of the document so the pages load faster -->
-        <!-- Bootstrap core JavaScript
-        ================================================== -->
+        <%@include file = "libraries/pharmacyFootLibrary.jsp" %>
         <!-- Placed at the end of the document so the pages load faster -->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-        <script src="http://www.w3schools.com/lib/w3data.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/4.4.0/bootbox.min.js"></script>
-        <script src="bootstrap-3.3.6-dist/js/jquery.dataTables.min.js"></script>
-        <script src="bootstrap-3.3.6-dist/js/dataTables.bootstrap.min.js" type="text/javascript"></script>
-        
-        
+
         <script>
-            w3IncludeHTML();
 
             $(document).ready(function () {
+
+                $('<div class="loading">Loading</div>').appendTo('body');
+
+                // Load ATC Data
                 $("#contentATCMain").load("atcMain.jsp");
                 $("#contentATCTable").load("atcTableLoop.jsp");
-                
+
+                // Load MDC Data
                 $("#contentMDCMain").load("mdcMain.jsp");
                 $("#contentMDCTable").load("mdcTableLoop.jsp");
 
+                // Load Supplier Data
                 $("#contentSupplierMain").load("supplierMain.jsp");
-                $("#contentSupplierTable").load("supplierTableLoop.jsp");     
+                $("#contentSupplierTable").load("supplierTableLoop.jsp");
+
             });
 
         </script>

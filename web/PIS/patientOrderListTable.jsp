@@ -14,7 +14,7 @@
     Conn conn = new Conn();
 %>
 
-<h4 style="padding-top: 2%;padding-bottom: 1%;">Patient Information</h4>
+<h4 style="padding-top: 2%;padding-bottom: 1%;">Drug Order List</h4>
 
 <table  id="patientOrderListTable"  class="table table-filter table-striped table-bordered" style="background: #fff; border: 1px solid #ccc; width: 100%">
     <thead>
@@ -40,12 +40,12 @@
 
     <tr id="moveToOrderDetailsTButton">
 <input id="dataPatientOrderListhidden" type="hidden" value="<%=String.join("|", dataPatientOrderList.get(i))%>">
-<td><%= dataPatientOrderList.get(i).get(0)%></td>
-<td><%= dataPatientOrderList.get(i).get(1)%></td>
-<td><%= dataPatientOrderList.get(i).get(15)%></td>
-<td><%= dataPatientOrderList.get(i).get(5)%></td>
-<td><%= dataPatientOrderList.get(i).get(2)%></td>
-<td><%= dataPatientOrderList.get(i).get(6)%></td>
+<td><%= dataPatientOrderList.get(i).get(0)%></td> <!-- Order No -->
+<td><%= dataPatientOrderList.get(i).get(1)%></td> <!-- PMI No -->
+<td><%= dataPatientOrderList.get(i).get(15)%></td> <!-- Name -->
+<td><%= dataPatientOrderList.get(i).get(5)%></td> <!-- Order Date -->
+<td><%= dataPatientOrderList.get(i).get(2)%></td> <!-- Health Facility Code -->
+<td><%= dataPatientOrderList.get(i).get(6)%></td> <!-- Doctor's Name -->
 </tr>
 <%
     }
@@ -56,7 +56,13 @@
 
 <script type="text/javascript" charset="utf-8">
     $(document).ready(function () {
-        $('#patientOrderListTable').DataTable();
+        $('#patientOrderListTable').DataTable({
+            "language": {
+                "emptyTable": "No Order Available To Display"
+            }, initComplete: function (settings, json) {
+                $('.loading').hide();
+            }
+        });
     });
 </script>
 

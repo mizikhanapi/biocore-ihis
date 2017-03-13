@@ -9,7 +9,7 @@
     session.invalidate();
     HttpSession newSession = request.getSession(false);
 
-    response.sendRedirect("Ciss.jsp");
+    response.sendRedirect("CIS000000.jsp");
   
 
 %>

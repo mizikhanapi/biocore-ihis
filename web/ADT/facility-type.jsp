@@ -11,6 +11,22 @@
 <%@page import="java.sql.*"%>
 <%@page import="org.apache.commons.lang3.StringUtils"%>
 
+  <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="stylesheet" href="old/assets/datepicker/jquery-ui.css">
+        <script src="old/assets/js/jquery.min.js"></script>
+        <!-- Custom styles for this template -->
+        
+        <link rel="stylesheet" href="old/assets/css/loading.css">
+        <link href="old/assets/datepicker/jquery-ui.css" rel="stylesheet">    
+        <script src="old/assets/datepicker/jquery-ui.js"></script>
+        <script src="old/assets/js/form-validator.min.js"></script>
+        <script src="old/assets/js/bootstrap.min.js"></script> 
+        <script src="old/assets/js/w3data.js"></script>
+        <script src="old/assets/js/bootbox.min.js"></script>   
+
+       
+    </head>
 
 
 <%
@@ -23,7 +39,11 @@
 <h4 style="padding-top: 30px;padding-bottom: 35px; font-weight: bold">
     MAINTAIN WARD/ FACILITY TYPE
     <span class="pull-right">
-        <button class="btn btn-success" data-status="pagado" data-toggle="modal" data-id="1" data-target="#detailType" style=" padding-right: 10px;padding-left: 10px;color: white;"><a data-toggle="tooltip" data-placement="top" title="Add Items" id="test"><i class=" fa fa-plus" style=" padding-right: 10px;padding-left: 10px;color: white;"></i></a>ADD FACILITY TYPE</button>
+        <button class="btn btn-success" data-status="pagado" data-toggle="modal" data-id="1" data-target="#detailType" 
+                style=" padding-right: 10px;padding-left: 10px;color: white;">
+            <a data-toggle="tooltip" data-placement="top" title="Add Items" id="test">
+                <i class=" fa fa-plus" style=" padding-right: 10px;padding-left: 10px;color: white;"></i>
+            </a>ADD FACILITY TYPE</button>
     </span>
 </h4>
 <!-- Add Button End -->
@@ -113,7 +133,7 @@
             var MWID = $('#MWID').val();
             var status = $('input[name="status"]:checked').val();
             //var hfc = $('#hfc').val();
-           // var discipline = $('#discipline').val();
+            // var discipline = $('#discipline').val();
             //var subDicipline = $('#subDicipline').val();
 
             if (MWClass === "") {
@@ -136,7 +156,7 @@
                     data: data,
                     timeout: 10000,
                     success: function (data) {
-                        
+
                         console.log(data);
 
                         if (data.trim() === 'Success') {
@@ -173,8 +193,8 @@
             }
 
         });
-        
-        
+
+
         //function to clear the form when click clear button
 
         function reset() {
@@ -183,15 +203,15 @@
             document.getElementById("status1").checked = false;
             document.getElementById("status2").checked = false;
         }
-       
+
         $('#MW_clear').on('click', function (e) {
             e.preventDefault();
             reset();
 
 
         });
-        
-        
+
+
     });
 
 

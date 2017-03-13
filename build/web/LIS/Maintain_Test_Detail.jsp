@@ -40,7 +40,7 @@
                                                     for (int i = 0; i < q2.size(); i++) {
 
                                             %>
-                                            <option value=""><%=q2.get(i).get(0)%></option>
+                                            <option value="<%=q2.get(i).get(0)%>"><%=q2.get(i).get(0)%></option>
                                             <%}
                                                      }%>
                                             </select>
@@ -211,18 +211,10 @@
                                            timeout: 10000,
                                            success: function(data) {
                                                 var d = data.split("|");
-                                                if (d[1] == '1') {
+                                                if (d[1] === '1') {
                                                     $("#viewMTDpage").load("viewMTD.jsp");
-                                                    $("#icd10").val("");
-                                                    $("#item_name").val("");
-                                                    $("#ccode").val("");
-                                                    $("#status").val("Active");
-                                                    $("#s_source").val("");
-                                                    $("#s_container").val("");
-                                                    $("#v_req").val("");
-                                                    $("#s_inst").val("");
-                                                    $("#b_price").val("");
-                                                    $("#s_price").val("");
+                                                    alert("Test is add succesfully!");
+                                                    //$(".modal-backdrop").hide();
                                                 } else {
                                                     alert("Insertion failed!");
                                                 }

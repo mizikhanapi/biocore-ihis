@@ -3,7 +3,7 @@
     Created on : Feb 9, 2017, 4:57:14 PM
     Author     : user
 --%>
-<%@page import="dbConn1.Conn"%>
+<%@page import="dBConn.Conn"%>
 <%@page import="java.util.List"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.util.ArrayList"%>
@@ -81,7 +81,7 @@
                         <em>Specimen No: <% 
                             
                             RMIConnector rmic = new RMIConnector();
-                            String sqlRow = "SELECT COUNT(order_no) AS rowcount FROM lis_order_detail";
+                            String sqlRow = "SELECT COUNT(order_no) AS rowcount FROM lis_specimen";
                             rmic.setQuerySQL(conn.HOST, conn.PORT, sqlRow);
                             ArrayList<ArrayList<String>> q1 = conn.getData(sqlRow);
                             out.print(q1.get(0).get(0));

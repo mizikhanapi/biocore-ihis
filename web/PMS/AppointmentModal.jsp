@@ -7,18 +7,18 @@
 <%@page import="org.apache.commons.lang3.StringUtils"%>
 
 <%
-    Conn conn = new Conn();
+    //Conn conn = new Conn();
     DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
     Date date = new Date();
     //out.println(dateFormat.format(date));
     //String sql = "select a.pmi_no,a.appointment_date,a.start_time,a.appointment_type,b.PATIENT_NAME,b.NEW_IC_NO,b.OLD_IC_NO,b.ID_TYPE,b.ID_NO from pms_appointment a inner join pms_patient_biodata b on a.pmi_no = b.`PMI_NO` where appointment_date like '%" + dateFormat.format(date) + "%' and status ='active' and hfc_cd='" + session.getAttribute("HFC") + "'";
     //out.println(sql);
-    String idTYpe = "select * from adm_lookup_detail where master_reference_code = '0012'   ";
+    String idTYpe3 = "select * from adm_lookup_detail where master_reference_code = '0012'   ";
 
-    ArrayList<ArrayList<String>> dataAppointment, dataIdType;
+    ArrayList<ArrayList<String>> dataAppointment, dataIdType3;
     //dataAppointment = conn.getData(sql);
-    String dataSystemStatus = session.getAttribute("SYSTEMSTAT").toString();
-    dataIdType = conn.getData(idTYpe);
+    String dataSystemStatus3 = session.getAttribute("SYSTEMSTAT").toString();
+    dataIdType3 = conn.getData(idTYpe3);
 
     //out.println(dataAppointment);
 %>
@@ -45,11 +45,11 @@
                                         <option value="icold">IC No (OLD)</option>
                                         <!--<option value="matricno">Matric No</option>
                                         <option value="staffno">Staff No</option>-->
-                                        <%                                if (dataSystemStatus.equals("0")) {
+                                        <%                                if (dataSystemStatus3.equals("0")) {
 
-                                            } else if (dataSystemStatus.equals("1")) {
-                                                for (int i = 0; i < dataIdType.size(); i++) {%>
-                                        <option value="<%=dataIdType.get(i).get(1)%>"><%=dataIdType.get(i).get(2)%></option>
+                                            } else if (dataSystemStatus3.equals("1")) {
+                                                for (int i = 0; i < dataIdType3.size(); i++) {%>
+                                        <option value="<%=dataIdType3.get(i).get(1)%>"><%=dataIdType3.get(i).get(2)%></option>
                                         <%  }
                                             }
 
@@ -124,6 +124,7 @@
             url: "listApp.jsp", // call the php file ajax/tuto-autocomplete.php
             timeout: 10000,
             success: function (list) {
+                console.log(list);
                 $('#modalBodyAppointment').html(list);
             },
             error: function (xhr, status, error) {

@@ -14,6 +14,9 @@
     String atcCode = request.getParameter("atcCode");
     String atcDesc = request.getParameter("atcDesc");
     String category = request.getParameter("category");
+    String hfc = request.getParameter("hfc");
+    String discipline = request.getParameter("discipline");
+    String subdiscipline = request.getParameter("subdiscipline");
     String status = request.getParameter("status");
 
     RMIConnector rmic = new RMIConnector();
@@ -26,7 +29,8 @@
         out.print("Duplicate");
     } else {
 
-        String sqlInsert = "INSERT INTO pis_atc (UD_ATC_Code,UD_ATC_Desc,Category_Code,Status) VALUES ('" + atcCode + "','" + atcDesc + "','" + category + "','" + status + "' )";
+        String sqlInsert = "INSERT INTO pis_atc (UD_ATC_Code,UD_ATC_Desc,Category_Code,hfc_cd,discipline_cd,subdiscipline_cd,Status)"
+                + " VALUES ('" + atcCode + "','" + atcDesc + "','" + category + "','" + hfc + "','" + discipline + "','" + subdiscipline + "','" + status + "' )";
 
         boolean isInsert = rmic.setQuerySQL(conn.HOST, conn.PORT, sqlInsert);
 

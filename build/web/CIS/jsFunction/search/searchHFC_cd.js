@@ -1,5 +1,0 @@
-$('#matchHFC').on('click', function () {
-
-});
-
-   

@@ -9,30 +9,24 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <!--        <link rel="stylesheet" href="assets/datepicker/jquery-ui.css">-->
-        <link href="assets/css/bootstrap.min.css" rel="stylesheet">
-
-        <script src="assets/js/jquery.min.js"></script>
-
-        <link href="assets/css/style.css" rel="stylesheet">
-        <link rel="stylesheet" href="assets/font-awesome/css/font-awesome.min.css">
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="stylesheet" href="old/assets/datepicker/jquery-ui.css">
+        <script src="old/assets/js/jquery.min.js"></script>
         <!-- Custom styles for this template -->
-        <link href="assets/css/dashboard.css" rel="stylesheet">
-        <link href="assets/css/Line-tabs.css" rel="stylesheet">
-
-        <link rel="stylesheet" href="assets/css/loading.css">
-        <link href="assets/datepicker/jquery-ui.css" rel="stylesheet">    
-        <link href="assets/datepicker/jquery-ui.css" rel="stylesheet">
-        <script src="assets/datepicker/jquery-ui.js"></script>
-        <script src="assets/js/form-validator.min.js"></script>
-        <script src="assets/js/bootstrap.min.js"></script> 
-        <script src="assets/js/w3data.js"></script>
-        <script src="assets/js/bootbox.min.js"></script>   
+        
+        <link rel="stylesheet" href="old/assets/css/loading.css">
+        <link href="old/assets/datepicker/jquery-ui.css" rel="stylesheet">    
+        <script src="old/assets/datepicker/jquery-ui.js"></script>
+        <script src="old/assets/js/form-validator.min.js"></script>
+        <script src="old/assets/js/bootstrap.min.js"></script> 
+        
+        <script src="old/assets/js/w3data.js"></script>
+        <script src="old/assets/js/bootbox.min.js"></script>   
 
         <!-- header -->
-    <div  id="headerindex"></div>
-    <!-- header -->
+        <%@include file = "../assets/header.html" %>
+    
+        <!-- header -->
 </head>
 
 <body>
@@ -55,21 +49,21 @@
 
 
     <!-- header -->
-    <!-- menu top -->
-    <div  id="topmenuindex"></div>
-    <!-- menu top -->
+
 
     <div class="container-fluid">
         <div class="row">       
-            <!-- menu side -->		
-            <div id="sidemenus"></div>
-            <!-- menu side -->	
-
+            <!-- menu side -->
+                <%@include file = "libraries/sideMenus.jsp" %>
+                <!-- menu side --> 
+               
             <!-- main -->		
-            <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main" style="background: #f2f4f8;">
+            <div class="main" style="background: #f2f4f8;">
 
 
-
+    <!-- menu top -->
+<%@include file = "libraries/topMenus.html" %>
+    <!-- menu top -->
 
                 <div class="row">
                     <div class="col-md-12">
@@ -93,9 +87,11 @@
 
                                             <div id="Ward">
 
-                                                <div id="WardOccupancy">
+                                                <div>
+                                                     <%@include file = "WardOccupancy.jsp" %>
                                                 </div>
                                                 <div id="WardOccupancyTable">
+                                                    <%@include file = "WardOccupancy-Table.jsp" %>
                                                 </div>
                                             </div>
 
@@ -143,13 +139,13 @@
         w3IncludeHTML();
 
         $(document).ready(function () {
-            $("#WardOccupancy").load("WardOccupancy.jsp");
-            $("#WardOccupancyTable").load("WardOccupancy-Table.jsp");
-            
-            
-            $("#headerindex").load("libraries/header.html");
-            $("#topmenuindex").load("libraries/topMenus.html");
-            $("#sidemenus").load("libraries/sideMenus.jsp");
+//            $("#WardOccupancy").load("WardOccupancy.jsp");
+//            $("#WardOccupancyTable").load("WardOccupancy-Table.jsp");
+//            
+//            
+//            $("#headerindex").load("libraries/header.html");
+//            $("#topmenuindex").load("libraries/topMenus.html");
+//            $("#sidemenus").load("libraries/sideMenus.jsp");
 //                $("#WardOccupancyTable").load("WardOccupancy-Table.jsp");
 
         });

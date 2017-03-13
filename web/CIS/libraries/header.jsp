@@ -9,18 +9,18 @@
 
 <!-- Bootstrap core CSS -->
 <link href="assets/Autocomplete.css" rel="stylesheet">
-<link href="assets/bootstrap.min.css" rel="stylesheet">
+
 <link href="assets/myicons/font/flaticon.css" rel="stylesheet" type="text/css"/>
 <link href="assets/jquery-ui-1.12.1/jquery-ui.css" rel="stylesheet" type="text/css"/>
-<link href="assets/font-awesome-4.7.0/css/font-awesome.css" rel="stylesheet" type="text/css"/>
+
 <link href="assets/style.css" rel="stylesheet">
 
 <!-- Custom styles for this template -->
-<link href="assets/dashboard.css" rel="stylesheet">
+
 
 
 <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-<link href="assets/ie10-viewport-bug-workaround.css" rel="stylesheet">
+
 <link href="assets/stylev1.css" rel="stylesheet">
 
 <script src="assets/jquery-3.1.1.js" type="text/javascript"></script>
@@ -29,13 +29,14 @@
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script src="assets/bootstrap-3.3.7-dist/js/bootstrap.js" type="text/javascript"></script>
 
-
+<script src="jsFunction/MainConfig.js"></script>
  <script src="jsFunction/Objective.js"></script>
  <script src="jsFunction/Subjective.js"></script>
   <script src="jsFunction/Assesment.js"></script>
   <script src="jsFunction/Plan.js"></script>
  <script src="jsFunction/queue.js"></script>
  <script src="jsFunction/TopMenuFunction.js"></script>
+ <script src="jsFunction/searchTopMenu.js"></script>
  
 
  
