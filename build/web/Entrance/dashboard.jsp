@@ -160,7 +160,7 @@
                     %>
                     
                     <div class="col-md-3">
-                        <a href="#" class="thumbnail">
+                        <a href="../LIS/MainPage.jsp" class="thumbnail">
                             <div class="kotak text-center">
                                 <i class="fa fa-database" aria-hidden="true" style="color: #F26353;font-size: 4em;"></i>
                                 <h3>Laboratory Info System</h3>
@@ -174,7 +174,7 @@
                     %>
                     
                     <div class="col-md-3">
-                        <a href="#" class="thumbnail">
+                        <a href="../RIS/receive-order.html" class="thumbnail">
                             <div class="kotak text-center">
                                 <i class="fa fa-cogs" aria-hidden="true" style="color: #2A80B9;font-size: 4em;"></i>
                                 <h3>Radiology Information System</h3>
@@ -202,7 +202,7 @@
                     %>
                     
                     <div class="col-md-3">
-                        <a href="../Billing/Billing.jsp" class="thumbnail">
+                        <a href="../Billing/billing.jsp" class="thumbnail">
                             <div class="kotak text-center">
                                 <i class="fa fa-credit-card" aria-hidden="true" style="color: #34A8DA;font-size: 4em;"></i>
                                 <h3>Billing System</h3>
@@ -216,7 +216,7 @@
                     %>
                     
                     <div class="col-md-3">
-                        <a href="http://biocore-stag.utem.edu.my/e-Appointment/" class="thumbnail">
+                        <a href="http://biocore-stag.utem.edu.my/CSS_Appointment/" class="thumbnail">
                             <div class="kotak text-center">
                                 <i class="fa fa-calendar" aria-hidden="true" style="color: #33B3AA;font-size: 4em;"></i>
                                 <h3>Patient Appointment</h3>

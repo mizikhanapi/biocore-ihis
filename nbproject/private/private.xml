@@ -3,37 +3,8 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/user/Documents/NetBeansProjects/IHIS/web/SystemAdmin/queue_1.html</file>
-            <file>file:/C:/Users/user/Documents/NetBeansProjects/IHIS/web/PIS/atcTableLoop.jsp</file>
-            <file>file:/C:/Users/user/Documents/NetBeansProjects/IHIS/src/java/Class/PdfServlet.java</file>
-            <file>file:/C:/Users/user/Documents/NetBeansProjects/IHIS/web/LIS/viewMTD.jsp</file>
-            <file>file:/C:/Users/user/Documents/NetBeansProjects/IHIS/web/ipcall</file>
-            <file>file:/C:/Users/user/Documents/NetBeansProjects/IHIS/src/java/Config/Config.java</file>
-            <file>file:/C:/Users/user/Documents/NetBeansProjects/IHIS/src/java/Class/EmailSender.java</file>
-            <file>file:/C:/Users/user/Documents/NetBeansProjects/IHIS/web/PMS/login.jsp</file>
-            <file>file:/C:/Users/user/Documents/NetBeansProjects/IHIS/web/Entrance/dashboard_old.jsp</file>
-            <file>file:/C:/Users/user/Documents/NetBeansProjects/IHIS/web/SystemAdmin/libraries/sideMenus.jsp</file>
-            <file>file:/C:/Users/user/Documents/NetBeansProjects/IHIS/web/Entrance/login_process2.jsp</file>
-            <file>file:/C:/Users/user/Documents/NetBeansProjects/IHIS/web/LIS/tRejectSpecimen.jsp</file>
-            <file>file:/C:/Users/user/Documents/NetBeansProjects/IHIS/web/Entrance/login_process1.jsp</file>
-            <file>file:/C:/Users/user/Documents/NetBeansProjects/IHIS/web/LIS/viewMTC.jsp</file>
-            <file>file:/C:/Users/user/Documents/NetBeansProjects/IHIS/web/SystemAdmin/System_Maintenance.jsp</file>
-            <file>file:/C:/Users/user/Documents/NetBeansProjects/IHIS/web/PMS/Lookup-Maintenance.html</file>
-            <file>file:/C:/Users/user/Documents/NetBeansProjects/IHIS/web/PMS/searchPatient.jsp</file>
-            <file>file:/C:/Users/user/Documents/NetBeansProjects/IHIS/web/CIS/CIS000000.jsp</file>
-            <file>file:/C:/Users/user/Documents/NetBeansProjects/IHIS/web/Entrance/login.jsp</file>
-            <file>file:/C:/Users/user/Documents/NetBeansProjects/IHIS/web/PMS/login_process.jsp</file>
-            <file>file:/C:/Users/user/Documents/NetBeansProjects/IHIS/web/Entrance/login_process.jsp</file>
-            <file>file:/C:/Users/user/Documents/NetBeansProjects/IHIS/web/index.jsp</file>
-            <file>file:/C:/Users/user/Documents/NetBeansProjects/IHIS/web/LIS/assignSpecimen.jsp</file>
-            <file>file:/C:/Users/user/Documents/NetBeansProjects/IHIS/web/LIS/ReceiveSpecimen.jsp</file>
-            <file>file:/C:/Users/user/Documents/NetBeansProjects/IHIS/web/PMS/index.jsp</file>
-            <file>file:/C:/Users/user/Documents/NetBeansProjects/IHIS/web/Entrance/dashboard.jsp</file>
-            <file>file:/C:/Users/user/Documents/NetBeansProjects/IHIS/web/LIS/VerifySpecimen.jsp</file>
-            <file>file:/C:/Users/user/Documents/NetBeansProjects/IHIS/web/PMS/registrationV2.jsp</file>
-            <file>file:/C:/Users/user/Documents/NetBeansProjects/IHIS/web/PIS/manageInventory.jsp</file>
-            <file>file:/C:/Users/user/Documents/NetBeansProjects/IHIS/web/LIS/Maintain_Test_Detail.jsp</file>
-            <file>file:/C:/Users/user/Documents/NetBeansProjects/IHIS/web/PIS/atcTable.jsp</file>
+            <file>file:/C:/Users/user/Documents/biocore-ihis/web/SystemAdmin/libraries/sideMenus.jsp</file>
+            <file>file:/C:/Users/user/Documents/biocore-ihis/web/SystemAdmin/Lookup-Maintenance.jsp</file>
         </group>
     </open-files>
 </project-private>

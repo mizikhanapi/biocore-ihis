@@ -10,6 +10,7 @@
 <%@page import="main.RMIConnector"%>
 <%
     Conn conn = new Conn();
+    String user_hfc = session.getAttribute("HEALTH_FACILITY_CODE").toString();
 %>
 <table  id="THE_userTable"  class="table table-striped table-bordered" cellspacing="0" width="100%">
     <thead>
@@ -18,15 +19,17 @@
     <th>Health Facility</th>
     <th>Mobile Phone</th>
     <th style="width: 5% ">Status</th>
+    <th style="width: 5% ">Change Password</th>
     <th style="width: 5% ">Update</th>
     <th style="width: 5% ">Delete</th>
 </thead>
 <tbody>
 
     <%
-        //                      0       1                       2           3           4               5                                6        7       8               9           10          11          12      13                  14                                              15                                        16          17              18          19          20                          21                  22          23
-        String sql = " SELECT user_id, health_facility_code, user_name, password, occupation_code, DATE_FORMAT(birth_date,'%d/%m/%Y'), sex_code, new_icno, home_phone, office_phone, mobile_phone, a.fax_no, a.email, id_category_code, ifnull(DATE_FORMAT(start_date,'%d/%m/%Y'), '') ,ifnull(DATE_FORMAT(end_date,'%d/%m/%Y'), '') , title, nationality_code, user_type, user_group, user_classification_code, ifnull(status, '0'), hfc_name, mother_name "
-                + "FROM adm_users a join adm_health_facility b on health_facility_code = hfc_cd ";
+        //                      0       1                       2           3                       4               5                                6        7       8               9           10          11          12      13                  14                                              15                                        16          17              18          19          20                          21                  22          23
+        String sql = " SELECT user_id, health_facility_code, user_name, 'password' as dummy, occupation_code, DATE_FORMAT(birth_date,'%d/%m/%Y'), sex_code, new_icno, home_phone, office_phone, mobile_phone, a.fax_no, a.email, id_category_code, ifnull(DATE_FORMAT(start_date,'%d/%m/%Y'), '') ,ifnull(DATE_FORMAT(end_date,'%d/%m/%Y'), '') , title, nationality_code, user_type, user_group, user_classification_code, ifnull(status, '0'), hfc_name, mother_name "
+                + "FROM adm_users a join adm_health_facility b on health_facility_code = hfc_cd "
+                + "WHERE health_facility_code = '" + user_hfc + "'";
         ArrayList<ArrayList<String>> dataUser = conn.getData(sql);
 
         int size = dataUser.size();
@@ -45,6 +48,9 @@
         out.print("Active");
     } %></td>
 
+<td>
+    <a id="UT_btnChangePassword" data-toggle="modal" data-target="#UT_detail2" style="cursor: pointer"><i class="fa fa-key" aria-hidden="true" style="display: inline-block;color: #337ab7;" ></i></a>
+</td>
 
 <td>
 
@@ -158,11 +164,11 @@
                                 <div class="form-group">
                                     <label class="col-md-4 control-label" for="textinput">User ID *</label>
                                     <div class="col-md-8">
-                                        <input id="UT_userID"  type="text" placeholder="User ID" class="form-control input-md" maxlength="30" readonly="true">
+                                        <input id="UT_userID"  type="text" placeholder="User ID" class="form-control input-md" maxlength="30" readonly>
                                     </div>
                                 </div>
                             </div>
-
+                           
                             <div class="col-md-6">
                                 <!-- Text input-->
                                 <div class="form-group">
@@ -175,31 +181,19 @@
                                     </div>
                                 </div>
                             </div>
-
-                        </div>
-
-                        <div class="row">
-                            <div class="col-md-6">
+                            
+                             <div class="col-md-6">
                                 <!-- Text input-->
                                 <div class="form-group">
-                                    <label class="col-md-4 control-label" for="textinput">Password *</label>
+                                    <label class="col-md-4 control-label" for="textinput">Room No *</label>
                                     <div class="col-md-8">
-                                        <input id="UT_password"  type="password" placeholder="Password" class="form-control input-md" maxlength="10">
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-md-6">
-                                <!-- Text input-->
-                                <div class="form-group">
-                                    <label class="col-md-4 control-label" for="textinput">Retype Password *</label>
-                                    <div class="col-md-8">
-                                        <input id="UT_password2"  type="password" placeholder="Password" class="form-control input-md" maxlength="10">
+                                        <input id="UT_roomNO"  type="text" placeholder="Insert room number" class="form-control input-md" maxlength="10">
                                     </div>
                                 </div>
                             </div>
 
                         </div>
+
 
                     </div> <!-- end of user id information -->
 
@@ -213,7 +207,7 @@
                                 <div class="form-group">
                                     <label class="col-md-4 control-label" for="textinput">Date of Birth *</label>
                                     <div class="col-md-8">
-                                        <input id="UT_dob"  type="text" placeholder="DD/MM/YYYY" class="form-control input-md" readonly="true">
+                                        <input id="UT_dob"  type="text" placeholder="DD/MM/YYYY" class="form-control input-md" readonly>
                                     </div>
                                 </div>
                             </div>
@@ -394,7 +388,7 @@
                                 <div class="form-group">
                                     <label class="col-md-4 control-label" for="textinput">Start Date *</label>
                                     <div class="col-md-8">
-                                        <input id="UT_startDate" type="text" placeholder="DD/MM/YYYY"  class="form-control input-md" readonly="true">
+                                        <input id="UT_startDate" type="text" placeholder="DD/MM/YYYY"  class="form-control input-md" readonly>
                                     </div>
                                 </div>
                             </div>
@@ -404,7 +398,7 @@
                                 <div class="form-group">
                                     <label class="col-md-4 control-label" for="textinput">End Date *</label>
                                     <div class="col-md-8">
-                                        <input id="UT_endDate"  type="text" placeholder="DD/MM/YYYY" class="form-control input-md" readonly="true">
+                                        <input id="UT_endDate"  type="text" placeholder="DD/MM/YYYY" class="form-control input-md" readonly>
                                     </div>
                                 </div>
                             </div>
@@ -426,7 +420,7 @@
                                     </div>
                                 </div>
                             </div>
-                            
+
                             <div class="col-md-6">
                                 <!-- Text input-->
                                 <div class="form-group">
@@ -460,12 +454,89 @@
 </div>
 <!-- Modal Update -->
 
+<!--modal change password-->
+<div class="modal fade" id="UT_detail2" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><i class="fa fa-times fa-lg"></i></button>
+                <h3 class="modal-title" id="lineModalLabel">Change User's Password</h3>
+            </div>
+            <div class="modal-body">
+
+                <!-- content goes here -->
+                <form class="form-horizontal" id="addForm" autocomplete="off">
+
+                    <div class="row">
+
+                        <div class="col-md-12">
+                            <!-- Text input-->
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" for="textinput">User ID</label>
+                                <div class="col-md-8">
+                                    <input id="UT_userID2"  type="text"  class="form-control input-md" readonly>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-12">
+                            <!-- Text input-->
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" for="textinput">User Name</label>
+                                <div class="col-md-8">
+                                    <input id="UT_userName2"  type="text"  class="form-control input-md" readonly>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-12">
+                            <!-- Text input-->
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" for="textinput">Password *</label>
+                                <div class="col-md-8">
+                                    <input id="UT_password"  type="password" placeholder="Type Password" class="form-control input-md" maxlength="10">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-12">
+                            <!-- Text input-->
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" for="textinput">Retype Password *</label>
+                                <div class="col-md-8">
+                                    <input id="UT_password2"  type="password" placeholder="Type Password" class="form-control input-md" maxlength="10">
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+
+
+                </form>
+                <!-- content goes here -->
+            </div>
+            <div class="modal-footer">
+                <div class="btn-group btn-group-justified" role="group" aria-label="group button">
+                    <div class="btn-group" role="group">
+                        <button type="submit" class="btn btn-success btn-block btn-lg" role="button" id="UT_btnConfirmChangePassword">Change <span class="fa fa-check" aria-hidden="true" style="display: inline-block;" ></span></button>
+                    </div>
+                    <!--                    <div class="btn-group" role="group">
+                                            <button type="reset"  class="btn btn-default btn-block btn-lg" data-dismiss="modal" role="button" >Cancel</button>
+                                        </div>-->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--modal change password-->
+
 <script src="libraries/validator.js" type="text/javascript"></script>
 
 <script type="text/javascript" charset="utf-8">
     $(document).ready(function () {
         $('#THE_userTable').DataTable({
-            deferRender : true
+            deferRender: true
         });
 
         $('#UT_dob').datepicker({
@@ -486,374 +557,443 @@
             changeYear: true,
             dateFormat: 'dd/mm/yy'
         });
-        
+
         var isHFCselected = false;
         var selectedHFC = "";
-        
+
         $('#userTable').off('click', '#THE_userTable #UT_btnUpdate').on('click', '#THE_userTable #UT_btnUpdate', function (e) {
-        e.preventDefault();
-        
-        $('#UT_endDate').datepicker('option', 'minDate', null);
+            e.preventDefault();
 
-        //get the row value
-        var row = $(this).closest("tr");
-        var rowData = row.find("#UT_hidden").val();
-        var arrayData = rowData.split("|");
+            $('#UT_endDate').datepicker('option', 'minDate', null);
 
-        //                      0       1                       2           3           4               5          6        7       8               9           10          
+            //get the row value
+            var row = $(this).closest("tr");
+            var rowData = row.find("#UT_hidden").val();
+            var arrayData = rowData.split("|");
+
+            //                      0       1                       2           3           4               5          6        7       8               9           10          
 //        String sql = " SELECT user_id, health_facility_code, user_name, password, occupation_code, birth_date, sex_code, new_icno, home_phone, office_phone, mobile_phone, 
 //        11          12      13                  14          15      16          17              18          19          20                      21      22
 //        a.fax_no, a.email, id_category_code, start_date, end_date, title, nationality_code, user_type, user_group, user_classification_code, status, hfc_name "
 
 //        
-        //assign into seprated val
-        var name = arrayData[2];
-        var title = arrayData[16];
-        var icNo = arrayData[7];
-        var email = arrayData[12];
-        var userID = arrayData[0];
-        var hfc = arrayData[1];
-        var hfcName = arrayData[22];
-        var password = arrayData[3];
-        var dob = arrayData[5];
-        var gender = arrayData[6];
-        var occupation = arrayData[4];
-        var nationality = arrayData[17];
-        var officeTel = arrayData[9];
-        var homeTel = arrayData[8];
-        var mobilePhone = arrayData[10];
-        var faxNo = arrayData[11];
-        var userIDCategory = arrayData[13];
-        var userType = arrayData[18];
-        var userGroup = arrayData[19];
-        var userClass = arrayData[20];
-        var startDate = arrayData[14];
-        var endDate = arrayData[15];
-        var userIDStatus = arrayData[21];
-        var mother = arrayData[23];
+            //assign into seprated val
+            var name = arrayData[2];
+            var title = arrayData[16];
+            var icNo = arrayData[7];
+            var email = arrayData[12];
+            var userID = arrayData[0];
+            var hfc = arrayData[1];
+            var hfcName = arrayData[22];
+            //var password = arrayData[3];
+            var dob = arrayData[5];
+            var gender = arrayData[6];
+            var occupation = arrayData[4];
+            var nationality = arrayData[17];
+            var officeTel = arrayData[9];
+            var homeTel = arrayData[8];
+            var mobilePhone = arrayData[10];
+            var faxNo = arrayData[11];
+            var userIDCategory = arrayData[13];
+            var userType = arrayData[18];
+            var userGroup = arrayData[19];
+            var userClass = arrayData[20];
+            var startDate = arrayData[14];
+            var endDate = arrayData[15];
+            var userIDStatus = arrayData[21];
+            var mother = arrayData[23];
 
-        $('#UT_name').val(name);
-        $('#UT_title').val(title);
-        $('#UT_icno').val(icNo);
-        $('#UT_email').val(email);
-        $('#UT_userID').val(userID);
-        $('#UT_hfc').val(hfc + " | " + hfcName);
-        $('#UT_password').val(password);
-        $('#UT_password2').val(password);
-        $('#UT_dob').val(dob);
-        $('#UT_gender').val(gender);
-        $('#UT_occupation').val(occupation);
-        $('#UT_nationality').val(nationality);
-        $('#UT_officeTel').val(officeTel);
-        $('#UT_homeTel').val(homeTel);
-        $('#UT_mobile').val(mobilePhone);
-        $('#UT_fax').val(faxNo);
-        $('#UT_userIDCategory').val(userIDCategory);
-        $('#UT_userType').val(userType);
-        $('#UT_userGroup').val(userGroup);
-        $('#UT_userClass').val(userClass);
-        $('#UT_startDate').val(startDate);
-        $('#UT_endDate').val(endDate);
-        $('#UT_userIDStatus').val(userIDStatus);
-        $('#UT_mother').val(mother);
+            $('#UT_name').val(name);
+            $('#UT_title').val(title);
+            $('#UT_icno').val(icNo);
+            $('#UT_email').val(email);
+            $('#UT_userID').val(userID);
+            $('#UT_hfc').val(hfc + " | " + hfcName);
+            //$('#UT_password').val(password);
+            //$('#UT_password2').val(password);
+            $('#UT_dob').val(dob);
+            $('#UT_gender').val(gender);
+            $('#UT_occupation').val(occupation);
+            $('#UT_nationality').val(nationality);
+            $('#UT_officeTel').val(officeTel);
+            $('#UT_homeTel').val(homeTel);
+            $('#UT_mobile').val(mobilePhone);
+            $('#UT_fax').val(faxNo);
+            $('#UT_userIDCategory').val(userIDCategory);
+            $('#UT_userType').val(userType);
+            $('#UT_userGroup').val(userGroup);
+            $('#UT_userClass').val(userClass);
+            $('#UT_startDate').val(startDate);
+            $('#UT_endDate').val(endDate);
+            $('#UT_userIDStatus').val(userIDStatus);
+            $('#UT_mother').val(mother);
 
-        isHFCselected = true;
-        selectedHFC = $('#UT_hfc').val();
-    });
+            isHFCselected = true;
+            selectedHFC = $('#UT_hfc').val();
+        });
 
-    $("#UT_btn_update_").off('click').on('click', function (e) {
+        $("#UT_btn_update_").off('click').on('click', function (e) {
 
-        e.preventDefault();
-        var startDateX = $('#UT_startDate').datepicker('getDate');
-        var endDateX = $('#UT_endDate').datepicker('getDate');
+            e.preventDefault();
+            var startDateX = $('#UT_startDate').datepicker('getDate');
+            var endDateX = $('#UT_endDate').datepicker('getDate');
 
-        var name = $('#UT_name').val();
-        var title = $('#UT_title').val();
-        var icNo = $('#UT_icno').val();
-        var email = $('#UT_email').val();
-        var userID = $('#UT_userID').val();
-        var hfc = $('#UT_hfc').val();
-        var password = $('#UT_password').val();
-        var password2 = $('#UT_password2').val();
-        var dob = $('#UT_dob').val();
-        var gender = $('#UT_gender').val();
-        var occupation = $('#UT_occupation').val();
-        var nationality = $('#UT_nationality').val();
-        var officeTel = $('#UT_officeTel').val();
-        var homeTel = $('#UT_homeTel').val();
-        var mobilePhone = $('#UT_mobile').val();
-        var faxNo = $('#UT_fax').val();
-        var userIDCategory = $('#UT_userIDCategory').val();
-        var userType = $('#UT_userType').val();
-        var userGroup = $('#UT_userGroup').val();
-        var userClass = $('#UT_userClass').val();
-        var startDate = $('#UT_startDate').val();
-        var endDate = $('#UT_endDate').val();
-        var userIDStatus = $('#UT_userIDStatus').val();
-        var mother = $('#UT_mother').val();
+            var name = $('#UT_name').val();
+            var title = $('#UT_title').val();
+            var icNo = $('#UT_icno').val();
+            var email = $('#UT_email').val();
+            var userID = $('#UT_userID').val();
+            var hfc = $('#UT_hfc').val();
+            var password = $('#UT_password').val();
+            var password2 = $('#UT_password2').val();
+            var dob = $('#UT_dob').val();
+            var gender = $('#UT_gender').val();
+            var occupation = $('#UT_occupation').val();
+            var nationality = $('#UT_nationality').val();
+            var officeTel = $('#UT_officeTel').val();
+            var homeTel = $('#UT_homeTel').val();
+            var mobilePhone = $('#UT_mobile').val();
+            var faxNo = $('#UT_fax').val();
+            var userIDCategory = $('#UT_userIDCategory').val();
+            var userType = $('#UT_userType').val();
+            var userGroup = $('#UT_userGroup').val();
+            var userClass = $('#UT_userClass').val();
+            var startDate = $('#UT_startDate').val();
+            var endDate = $('#UT_endDate').val();
+            var userIDStatus = $('#UT_userIDStatus').val();
+            var mother = $('#UT_mother').val();
 
-        $('#UT_detail').css('overflow', 'auto');
+            $('#UT_detail').css('overflow', 'auto');
 
-        if (name === "") {
-            //$('#UT_detail').modal('hide');
+            if (name === "") {
+                //$('#UT_detail').modal('hide');
 
-            bootbox.alert("Fill in the staff name");
+                bootbox.alert("Fill in the staff name");
 
-        } else if (title === "" || title === null) {
-            bootbox.alert("Select the title");
+            } else if (title === "" || title === null) {
+                bootbox.alert("Select the title");
 
-        } else if (icNo === "") {
-            bootbox.alert("Fill in the staff IC/ID Number");
+            } else if (icNo === "") {
+                bootbox.alert("Fill in the staff IC/ID Number");
 
-        } else if (email === "") {
-            bootbox.alert("Fill in the staff email");
+            } else if (email === "") {
+                bootbox.alert("Fill in the staff email");
 
-        } else if (userID === "") {
-            bootbox.alert("Fill in the staff user ID");
+            } else if (userID === "") {
+                bootbox.alert("Fill in the staff user ID");
 
-        } else if (hfc === "") {
-            bootbox.alert("Fill in the staff health facility");
+            } else if (hfc === "") {
+                bootbox.alert("Fill in the staff health facility");
 
-        } else if (password === "" || password2 === "") {
-            bootbox.alert("Fill in all password fields");
+            } else if (dob === "") {
+                bootbox.alert("Select the staff date of birth");
 
-        } else if (dob === "") {
-            bootbox.alert("Select the staff date of birth");
+            } else if (gender === "" || gender === null) {
+                bootbox.alert("Select the staff gender");
 
-        } else if (gender === "" || gender === null) {
-            bootbox.alert("Select the staff gender");
+            } else if (occupation === "" || occupation === null) {
+                bootbox.alert("Select the staff occupation");
 
-        } else if (occupation === "" || occupation === null) {
-            bootbox.alert("Select the staff occupation");
+            } else if (nationality === "" || nationality === null) {
+                bootbox.alert("Select the staff nationality");
 
-        } else if (nationality === "" || nationality === null) {
-            bootbox.alert("Select the staff nationality");
+            } else if (mobilePhone === "") {
+                bootbox.alert("Fill in the staff mobile phone number");
 
-        } else if (mobilePhone === "") {
-            bootbox.alert("Fill in the staff mobile phone number");
+            } else if (startDate === "" || endDate === "") {
+                bootbox.alert("Select the start date and end date of the staff");
 
-        } else if (startDate === "" || endDate === "") {
-            bootbox.alert("Select the start date and end date of the staff");
+            } else if (mother === "") {
+                bootbox.alert("Fill in the staff mother's name");
 
-        }else if (mother === "") {
-            bootbox.alert("Fill in the staff mother's name");
+            } else if (ValidateEmail(email) === false) {
+                bootbox.alert("Invalid email address");
+                $('#UT_email').val("");
 
-        } else if (ValidateEmail(email) === false) {
-            bootbox.alert("Invalid email address");
-            $('#UT_email').val("");
+            } else if (isHFCselected === false || selectedHFC !== hfc) {
+                bootbox.alert("Choose existing health facility");
+                $('#UT_hfc').val("");
 
-        } else if (isHFCselected === false || selectedHFC !== hfc) {
-            bootbox.alert("Choose existing health facility");
-            $('#UT_hfc').val("");
+            } else if (officeTel !== "" && validatePhonenumber(officeTel) === false) {
+                bootbox.alert("Invalid office telephone number. Only numbers and +, - signs are allowed.");
+                $('#UT_officeTel').val("");
 
-        } else if (password.length < 5) {
-            bootbox.alert("Password is too short. Password must have at least 6 characters");
-            $('#UT_password').val("");
-            $('#UT_password2').val("");
+            } else if (faxNo !== "" && validatePhonenumber(faxNo) === false) {
+                bootbox.alert("Invalid fax number. Only numbers and +, - signs are allowed.");
+                $('#UT_fax').val("");
 
-        } else if (password !== password2) {
-            bootbox.alert("Password and password confirmation does not match");
-            $('#UT_password').val("");
-            $('#UT_password2').val("");
+            } else if (homeTel !== "" && validatePhonenumber(homeTel) === false) {
+                bootbox.alert("Invalid home telephone number. Only numbers and +, - signs are allowed.");
+                $('#UT_homeTel').val("");
 
-        } else if (officeTel !== "" && validatePhonenumber(officeTel) === false) {
-            bootbox.alert("Invalid office telephone number. Only numbers and +, - signs are allowed.");
-            $('#UT_officeTel').val("");
+            } else if (validatePhonenumber(mobilePhone) === false) {
+                bootbox.alert("Invalid mobile phone number. Only numbers and +, - signs are allowed.");
+                $('#UT_mobile').val("");
 
-        } else if (faxNo !== "" && validatePhonenumber(faxNo) === false) {
-            bootbox.alert("Invalid fax number. Only numbers and +, - signs are allowed.");
-            $('#UT_fax').val("");
+            } else if (startDateX > endDateX) {
+                bootbox.alert("End date must be later than start date");
+                $('#UT_endDate').datepicker('option', 'minDate', startDateX);
+                $('#UT_endDate').val("");
 
-        } else if (homeTel !== "" && validatePhonenumber(homeTel) === false) {
-            bootbox.alert("Invalid home telephone number. Only numbers and +, - signs are allowed.");
-            $('#UT_homeTel').val("");
+            } else {
 
-        } else if (validatePhonenumber(mobilePhone) === false) {
-            bootbox.alert("Invalid mobile phone number. Only numbers and +, - signs are allowed.");
-            $('#UT_mobile').val("");
+                var array = hfc.split("|");
+                hfc = array[0].trim();
 
-        } else if (startDateX > endDateX) {
-            bootbox.alert("End date must be later than start date");
-            $('#UT_endDate').datepicker('option', 'minDate', startDateX);
-            $('#UT_endDate').val("");
+                var data = {
+                    process: "normal",
+                    name: name,
+                    title: title,
+                    icNo: icNo,
+                    email: email,
+                    userID: userID,
+                    hfc: hfc,
+                    dob: dob,
+                    gender: gender,
+                    occupation: occupation,
+                    nationality: nationality,
+                    officeTel: officeTel,
+                    homeTel: homeTel,
+                    mobilePhone: mobilePhone,
+                    faxNo: faxNo,
+                    userIDCategory: userIDCategory,
+                    userType: userType,
+                    userGroup: userGroup,
+                    userClass: userClass,
+                    startDate: startDate,
+                    endDate: endDate,
+                    userIDStatus: userIDStatus,
+                    mother: mother
+                };
 
-        } else {
+                $.ajax({
+                    url: "user_update.jsp",
+                    type: "post",
+                    data: data,
+                    timeout: 10000,
+                    success: function (datas) {
 
-            var array = hfc.split("|");
-            hfc = array[0].trim();
+                        if (datas.trim() === 'Success') {
 
-            var data = {
-                name: name,
-                title: title,
-                icNo: icNo,
-                email: email,
-                userID: userID,
-                hfc: hfc,
-                password: password,
-                dob: dob,
-                gender: gender,
-                occupation: occupation,
-                nationality: nationality,
-                officeTel: officeTel,
-                homeTel: homeTel,
-                mobilePhone: mobilePhone,
-                faxNo: faxNo,
-                userIDCategory: userIDCategory,
-                userType: userType,
-                userGroup: userGroup,
-                userClass: userClass,
-                startDate: startDate,
-                endDate: endDate,
-                userIDStatus: userIDStatus,
-                mother : mother
-            };
-
-            $.ajax({
-                url: "user_update.jsp",
-                type: "post",
-                data: data,
-                timeout: 10000,
-                success: function (datas) {
-
-                    if (datas.trim() === 'Success') {
-
-                        $('#userTable').load('user_table.jsp');
-                         $(".modal-backdrop").hide();
-                        bootbox.alert("User is updated");
+                            $('#userTable').load('user_table.jsp');
+                            $(".modal-backdrop").hide();
+                            bootbox.alert("User is updated");
 
 
-                    } else if (datas.trim() === 'Failed') {
+                        } else if (datas.trim() === 'Failed') {
 
-                        bootbox.alert("Update failed!");
-                        //$('#UM_detail').modal('hide');
-
-
-                    } else {
-                        bootbox.alert(datas.trim());
-
-                    }
-
-                },
-                error: function (err) {
-                    console.log("Ajax Is Not Success");
-                }
-
-            });
-        }
-
-    });
+                            bootbox.alert("Update failed!");
+                            //$('#UM_detail').modal('hide');
 
 
-    $('#userTable').off('click', '#THE_userTable #UT_btnDelete').on('click', '#THE_userTable #UT_btnDelete', function (e) {
+                        } else {
+                            bootbox.alert(datas.trim());
 
-        e.preventDefault();
-
-        var row = $(this).closest("tr");
-        var rowData = row.find("#UT_hidden").val();
-        var arrayData = rowData.split("|");
-        //assign into seprated val
-        var userID = arrayData[0], name = arrayData[2];
-        console.log(arrayData);
-
-        bootbox.confirm({
-            message: "Are you sure want to delete this user? " + userID + "-" + name,
-            title: "Delete User?",
-            buttons: {
-                confirm: {
-                    label: 'Yes',
-                    className: 'btn-success'
-                },
-                cancel: {
-                    label: 'No',
-                    className: 'btn-danger'
-                }
-            },
-            callback: function (result) {
-
-                if (result === true) {
-
-                    var data = {
-                        userID: userID
-                    };
-
-                    $.ajax({
-                        url: "user_delete.jsp",
-                        type: "post",
-                        data: data,
-                        timeout: 10000, // 10 seconds
-                        success: function (datas) {
-
-                            if (datas.trim() === 'Success') {
-                                $('#userTable').load('user_table.jsp');
-                                //alert("Delete Success");
-
-                                bootbox.alert({
-                                    message: "A user is deleted",
-                                    title: "Process Result",
-                                    backdrop: true
-                                });
-
-                            } else if (datas.trim() === 'Failed') {
-                                bootbox.alert("Delete failed!");
-
-                            } else {
-
-                                bootbox.alert(datas.trim());
-                            }
-
-                        },
-                        error: function (err) {
-                            alert("Error! Deletion failed!!");
                         }
 
-                    });
+                    },
+                    error: function (err) {
+                        console.log("Ajax Is Not Success");
+                    }
 
-                } else {
-                    console.log("Process Is Canceled");
-                }
-
+                });
             }
+
         });
 
 
-    });
+        $('#userTable').off('click', '#THE_userTable #UT_btnDelete').on('click', '#THE_userTable #UT_btnDelete', function (e) {
 
+            e.preventDefault();
 
-    $('#UT_hfc').on('keyup', function () {
+            var row = $(this).closest("tr");
+            var rowData = row.find("#UT_hidden").val();
+            var arrayData = rowData.split("|");
+            //assign into seprated val
+            var userID = arrayData[0], name = arrayData[2];
+            //console.log(arrayData);
 
-        var input = $('#UT_hfc').val();
-
-        if (input.length > 0) {
-
-            var data = {input: input};
-
-            $.ajax({
-                url: "UM_result.jsp",
-                type: 'POST',
-                data: data,
-                timeout: 10000,
-                success: function (data) {
-                    $('#UT_hfc_match').html(data);
-                    $('#UM_hfc_matchlist li').on('click', function () {
-
-                        $('#UT_hfc').val($(this).text());
-                        $('#UT_hfc_match').text('');
-                        isHFCselected = true;
-                        selectedHFC = $('#UT_hfc').val();
-
-                    });
+            bootbox.confirm({
+                message: "Are you sure want to delete this user? " + userID + "-" + name,
+                title: "Delete User?",
+                buttons: {
+                    confirm: {
+                        label: 'Yes',
+                        className: 'btn-success'
+                    },
+                    cancel: {
+                        label: 'No',
+                        className: 'btn-danger'
+                    }
                 },
-                error: function () {
-                    $('#UT_hfc_match').text('Problem!');
-                }
+                callback: function (result) {
 
+                    if (result === true) {
+
+                        var data = {
+                            userID: userID
+                        };
+
+                        $.ajax({
+                            url: "user_delete.jsp",
+                            type: "post",
+                            data: data,
+                            timeout: 10000, // 10 seconds
+                            success: function (datas) {
+
+                                if (datas.trim() === 'Success') {
+                                    $('#userTable').load('user_table.jsp');
+                                    //alert("Delete Success");
+
+                                    bootbox.alert({
+                                        message: "A user is deleted",
+                                        title: "Process Result",
+                                        backdrop: true
+                                    });
+
+                                } else if (datas.trim() === 'Failed') {
+                                    bootbox.alert("Delete failed!");
+
+                                } else {
+
+                                    bootbox.alert(datas.trim());
+                                }
+
+                            },
+                            error: function (err) {
+                                alert("Error! Deletion failed!!");
+                            }
+
+                        });
+
+                    } else {
+                        console.log("Process Is Canceled");
+                    }
+
+                }
             });
 
-        } else {
-            $('#UT_hfc_match').text('');
-        }
 
-    });
+        });
+
+
+        $('#UT_hfc').on('keyup', function () {
+
+            var input = $('#UT_hfc').val();
+
+            if (input.length > 0) {
+
+                var data = {input: input};
+
+                $.ajax({
+                    url: "UM_result.jsp",
+                    type: 'POST',
+                    data: data,
+                    timeout: 10000,
+                    success: function (data) {
+                        $('#UT_hfc_match').html(data);
+                        $('#UM_hfc_matchlist li').on('click', function () {
+
+                            $('#UT_hfc').val($(this).text());
+                            $('#UT_hfc_match').text('');
+                            isHFCselected = true;
+                            selectedHFC = $('#UT_hfc').val();
+
+                        });
+                    },
+                    error: function () {
+                        $('#UT_hfc_match').text('Problem!');
+                    }
+
+                });
+
+            } else {
+                $('#UT_hfc_match').text('');
+            }
+
+        });
+
+        $('#userTable').off('click', '#THE_userTable #UT_btnChangePassword').on('click', '#THE_userTable #UT_btnChangePassword', function (e) {
+
+            e.preventDefault();
+
+            var row = $(this).closest("tr");
+            var rowData = row.find("#UT_hidden").val();
+            var arrayData = rowData.split("|");
+            //assign into seprated val
+            var userID = arrayData[0], name = arrayData[2];
+
+            $('#UT_userID2').val(userID);
+            $('#UT_userName2').val(name);
+
+
+        });
+
+        $('#UT_btnConfirmChangePassword').on('click', function () {
+
+            var userID = $('#UT_userID2').val();
+            var userName = $('#UT_userName2').val();
+
+            var password = $('#UT_password').val();
+            var password2 = $('#UT_password2').val();
+
+            if (userID === "" || userName === "") {
+                bootbox.alert("Something wrong!!!");
+
+            } else if (password === "" || password2 === "") {
+                bootbox.alert("Fill in all fields");
+
+            } else if (password.length < 6) {
+                bootbox.alert("Password must at least has 6 characters");
+                $('#UT_password').val("");
+                $('#UT_password2').val("");
+
+            } else if (password !== password2) {
+                bootbox.alert("Password do not match");
+                $('#UT_password').val("");
+                $('#UT_password2').val("");
+
+
+            } else {
+
+                var data = {
+                    process: "password",
+                    userID: userID,
+                    password: password
+                };
+
+                $.ajax({
+                    type: 'POST',
+                    url: "user_update.jsp",
+                    data: data,
+                    success: function (datas) {
+                        if (datas.trim() === 'Success') {
+
+                            $('#userTable').load('user_table.jsp');
+                            $(".modal-backdrop").hide();
+                            bootbox.alert("User is updated");
+
+
+                        } else if (datas.trim() === 'Failed') {
+
+                            bootbox.alert("Update failed!");
+                            //$('#UM_detail').modal('hide');
+
+
+                        } else {
+                            bootbox.alert(datas.trim());
+
+                        }
+
+                    },
+                    error: function (err) {
+                        console.log("Ajax Is Not Success");
+                    }
+
+                });
+            }
+
+        });
 
 
 

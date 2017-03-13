@@ -15,9 +15,9 @@
 					<div class="profile-usertitle-name">
 						<%=session.getAttribute("USER_NAME").toString() %>
 					</div>
-<!--					<div class="profile-usertitle-job">
-						Developer
-					</div>-->
+					<div class="profile-usertitle-job">
+						<%= session.getAttribute("ROLE_NAME").toString()%>
+					</div>
 				</div>
 				<!-- SIDEBAR BUTTONS -->
 				<div class="profile-userbuttons">

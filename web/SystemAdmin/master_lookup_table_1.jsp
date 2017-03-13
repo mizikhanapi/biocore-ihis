@@ -282,18 +282,23 @@
         var arrayData = rowData.split("|");
         //assign into seprated val
         var masterCode = arrayData[0];
+        var masterName = arrayData[1];
 
         var data = {masterCode: masterCode};
         $('#THE_detailTable').DataTable().destroy();
+        
+        $('#DLT_detailOf').text("Details of "+masterName);
+        $('.nav-tabs a[href="#tab_default_2"]').tab('show');
+        $('#detailTable_body').html('<div class="loader"></div>');
 
         $.ajax({
             type: 'POST',
             url: "detail_lookup_table_loader.jsp",
             data: data,
-            success: function (data, textStatus, jqXHR) {
+            success: function (data) {
                 $('#detailTable_body').html(data);
                
-                $('.nav-tabs a[href="#tab_default_2"]').tab('show');
+                
             }
         });
 

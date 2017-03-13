@@ -1,9 +1,9 @@
 
 
 
+<h3><span id="DLT_detailOf"></span></h3>
 
-
-
+<span id="DLT_detailOf"></span>
 <table  id="THE_detailTable"  class="table table-striped table-bordered" cellspacing="0" width="100%">
     <thead>
     <th>Master Code</th>

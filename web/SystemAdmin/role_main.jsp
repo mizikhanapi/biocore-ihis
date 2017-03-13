@@ -100,11 +100,11 @@
                 var status = $('#RM_status').val();
 
                 if (roleName === "") {
-                    bootbox.alert("Fill in the system name");
+                    bootbox.alert("Fill in the role name");
                     $('#RM_roleName').focus();
                     
                 } else if (roleCode === "") {
-                    bootbox.alert("Fill in the system code");
+                    bootbox.alert("Fill in the role code");
                     $('#RM_roleCode').focus();
                     
                 } else if (status !== "1" && status !== "0") {

@@ -151,6 +151,20 @@
 
                         </div>
 
+                        <div class="row">
+                            <div class="col-md-6">
+                                <!-- Text input-->
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label" for="textinput">Room No *</label>
+                                    <div class="col-md-8">
+                                        <input id="UM_roomNo"  type="text" placeholder="Insert staff room number" class="form-control input-md" maxlength="10">
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+
                     </div> <!-- end of user id information -->
 
                     <div class="col-md-12"> <!-- start of detail information -->
@@ -163,7 +177,7 @@
                                 <div class="form-group">
                                     <label class="col-md-4 control-label" for="textinput">Date of Birth *</label>
                                     <div class="col-md-8">
-                                        <input id="UM_dob"  type="text" placeholder="DD/MM/YYYY" class="form-control input-md" readonly="true">
+                                        <input id="UM_dob"  type="text" placeholder="DD/MM/YYYY" class="form-control input-md" readonly>
                                     </div>
                                 </div>
                             </div>
@@ -344,7 +358,7 @@
                                 <div class="form-group">
                                     <label class="col-md-4 control-label" for="textinput">Start Date *</label>
                                     <div class="col-md-8">
-                                        <input id="UM_startDate" type="text" placeholder="DD/MM/YYYY"  class="form-control input-md" readonly="true">
+                                        <input id="UM_startDate" type="text" placeholder="DD/MM/YYYY"  class="form-control input-md" readonly>
                                     </div>
                                 </div>
                             </div>
@@ -354,7 +368,7 @@
                                 <div class="form-group">
                                     <label class="col-md-4 control-label" for="textinput">End Date *</label>
                                     <div class="col-md-8">
-                                        <input id="UM_endDate"  type="text" placeholder="DD/MM/YYYY" class="form-control input-md" readonly="true">
+                                        <input id="UM_endDate"  type="text" placeholder="DD/MM/YYYY" class="form-control input-md" readonly>
                                     </div>
                                 </div>
                             </div>
@@ -376,8 +390,8 @@
                                     </div>
                                 </div>                          
                             </div>
-                            
-                             <div class="col-md-6">
+
+                            <div class="col-md-6">
                                 <!-- Text input-->
                                 <div class="form-group">
                                     <label class="col-md-4 control-label" for="textinput">Mother's name *</label>
@@ -387,10 +401,38 @@
                                 </div>
                             </div>
 
-                        </div><hr/>
+                        </div>
 
                     </div> <!-- end of additional information -->
 
+                    <div class="col-md-12"> <!-- start of user profile pic -->
+
+                        <div class="row">
+                            <hr/><h4>User Profile Picture</h4><br/>
+
+                            <!-- Text input-->
+                            <div class="form-group">
+
+                                <div style="width: 50%; margin: 0 auto">
+                                    <input class="form-control" id="inputFileToLoad" type="file" accept=".jpg, .png, .gif" >
+
+                                </div>
+                            </div>
+                            <!-- Text input-->
+                            <div class="form-group">
+
+                                <div style="width: 50%; margin: 0 auto">
+                                    <div id="dym">
+
+
+
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </div><hr/>
+                    </div><!-- end of user profile pic -->
 
                 </form>
                 <!-- content goes here -->
@@ -414,10 +456,118 @@
 <script src="libraries/validator.js" type="text/javascript"></script>
 <script>
 
- 
+    (function ($) {
+        $.fn.checkFileType = function (options) {
+            var defaults = {
+                allowedExtensions: [],
+                success: function () {},
+                error: function () {}
+            };
+            options = $.extend(defaults, options);
+
+            return this.each(function () {
+
+                $(this).on('change', function () {
+                    var value = $(this).val(),
+                            file = value.toLowerCase(),
+                            extension = file.substring(file.lastIndexOf('.') + 1);
+
+                    if ($.inArray(extension, options.allowedExtensions) === -1) {
+                        options.error();
+                        $(this).focus();
+                    } else {
+                        options.success();
+
+                    }
+
+                });
+
+            });
+        };
+
+    })(jQuery);
+
+    var gambarURI = "";
+
+    $('#inputFileToLoad').checkFileType({
+        allowedExtensions: ['jpg', 'jpeg'],
+        success: function () {
+            loadImageFileAsURL();
+        },
+        error: function () {
+            bootbox.alert('Incompatible file type');
+            $('#inputFileToLoad').val("");
+            $('#dym').html("");
+            gambarURI = "";
+        }
+    });
+
+
+
+
+    function loadImageFileAsURL()
+    {
+
+        var iSize = 0;
+
+        iSize = ($("#inputFileToLoad")[0].files[0].size / 1024);
+
+        var sizeSmall = false;
+
+        if (iSize / 1024 > 1) {
+            sizeSmall = false;
+
+        } else {
+
+            iSize = (Math.round(iSize * 100) / 100);
+
+            sizeSmall = iSize <= 45;
+
+        }
+
+
+
+
+
+
+
+        if (sizeSmall) {
+            document.getElementById("dym").innerHTML = '<div class="loader"></div>';
+            var filesSelected = document.getElementById("inputFileToLoad").files;
+            if (filesSelected.length > 0)
+            {
+                var fileToLoad = filesSelected[0];
+
+                var fileReader = new FileReader();
+
+                fileReader.onload = function (fileLoadedEvent)
+                {
+
+                    gambarURI = fileLoadedEvent.target.result;
+
+
+                    document.getElementById("dym").innerHTML = '<img id="myImage">';
+
+                    document.getElementById("myImage").src = gambarURI;
+                };
+
+                fileReader.readAsDataURL(fileToLoad);
+            }
+
+        } else {
+
+            bootbox.alert("File size must not exceed 40kb");
+            $('#inputFileToLoad').val("");
+            gambarURI = "";
+            $('#dym').html("");
+        }
+
+
+    }
+
 
     $(document).ready(function () {
-        
+
         var isHFCselected = false;
         var selectedHFC = "";
 
@@ -450,6 +600,8 @@
             $('#UM_endDate').datepicker('option', 'minDate', null);
             isHFCselected = false;
             selectedHFC = "";
+            gambarURI = "";
+            $('#dym').html("");
         });
 
         $('#btnReset').on('click', function () {
@@ -485,6 +637,7 @@
             var endDate = $('#UM_endDate').val();
             var userIDStatus = $('#UM_userIDStatus').val();
             var mother = $('#UM_mother').val();
+            var roomNo = $('#UM_roomNo').val();
 
             $('#UM_detail').css('overflow', 'auto');
 
@@ -529,14 +682,17 @@
             } else if (startDate === "" || endDate === "") {
                 bootbox.alert("Select the start date and end date of the staff");
 
-            }else if (mother === "") {
+            } else if (mother === "") {
                 bootbox.alert("Insert the mother's name");
+
+            } else if (roomNo === "") {
+                bootbox.alert("Insert the staff room number");
 
             } else if (ValidateEmail(email) === false) {
                 bootbox.alert("Invalid email address");
                 $('#UM_email').val("");
 
-            }else if (isHFCselected === false || selectedHFC !== hfc) {
+            } else if (isHFCselected === false || selectedHFC !== hfc) {
                 bootbox.alert("Choose existing health facility");
                 $('#UM_hfc').val("");
 
@@ -572,7 +728,7 @@
                 $('#UM_endDate').val("");
 
             } else {
-                
+
                 var array = hfc.split("|");
                 hfc = array[0].trim();
 
@@ -599,7 +755,9 @@
                     startDate: startDate,
                     endDate: endDate,
                     userIDStatus: userIDStatus,
-                    mother : mother
+                    mother: mother,
+                    roomNo: roomNo,
+                    picture: gambarURI
                 };
 
                 $.ajax({
@@ -615,6 +773,9 @@
                             $('#UM_detail').modal('hide');
                             bootbox.alert("New user is added");
                             UM_reset();
+                            $('#dym').html("");
+                            $('#inputFileToLoad').val("");
+                            gambarURI = "";
 
                         } else if (datas.trim() === 'Failed') {
 
@@ -642,8 +803,8 @@
             var input = $('#UM_hfc').val();
 
             if (input.length > 0) {
-                
-                var data = { input : input};
+
+                var data = {input: input};
 
                 $.ajax({
                     url: "UM_result.jsp",

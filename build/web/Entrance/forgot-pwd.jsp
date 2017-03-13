@@ -17,15 +17,16 @@
 <html lang="en">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
+        
+        <title>iHIS | Forgot Password</title>
 
         <!-- header -->
    
   
-    <%@include file="libraries/header.html"%>
+    <%@include file="../assets/header.html"%>
     <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>-->
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-    <link href="assets/css/login.css" rel="stylesheet">
+    <link href="../assets/css/login.css" rel="stylesheet">
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
@@ -50,7 +51,7 @@
             <div class="profile-img-card">
                 <i class="fa fa-question-circle" aria-hidden="true" style="color: #666; font-size: 100px;"></i>
             </div>
-            <h2 style="text-align: center;">eMedica</h2>
+            <h2 style="text-align: center;"><span style="color: #0ae">iHIS</span></h2>
             <p id="profile-name" class="profile-name-card" style="padding: 5px">Reset Password</p>
             <form class="form-horizontal" id="leForm" >
 
@@ -94,12 +95,11 @@
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
 
-    <div w3-include-html="libraries/script.html"></div>
+    <%@include file="libraries/script.html" %>
     <!--<script src="Dashboard_files\jquery.min.js.download"></script>
     <script src="http://www.w3schools.com/lib/w3data.js"></script>-->
 
-    <script src="assets/js/jquery-3.1.1.min.js" type="text/javascript"></script>
-    <script src="assets/js/w3data.js" type="text/javascript"></script>
+  
     <script>
       
        
