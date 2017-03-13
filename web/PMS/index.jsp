@@ -6,16 +6,14 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" href="libraries/lib/css/loading.css">
-        <link href="libraries/lib/datepicker/jquery-ui.css" rel="stylesheet">    
+        <link href="libraries/lib/datepicker/jquery-ui.css" rel="stylesheet">
         <script src="libraries/lib/js/jquery.min.js"></script>
+        <script src="libraries/lib/js/bootstrap.min.js"></script>
         <script src="libraries/lib/datepicker/jquery-ui.js"></script>
-        <script src="libraries/lib/js/form-validator.min.js"></script>
-        <script src="libraries/lib/js/bootstrap.min.js"></script> 
+        <script src="libraries/lib/js/form-validator.min.js"></script>    
         <script src="libraries/lib/js/bootbox.min.js"></script> 
-        <!-- header -->
-    <div>
-        
-        <%@include file = "../assets/header.html" %></div>
+
+    <div><%@include file = "../assets/header.html" %></div>
     <!-- header -->
 
 </head>
@@ -26,13 +24,10 @@
         Config.getFile_url(session);
         Config.getBase_url(request);
         Conn conn = new Conn();
-        
 
-        //out.println("--------------------------------------------------------------------ipcall: " + conn.getIpCall() + " ");
-        //out.println(Config.getFile_url(session));
-%>
+    %>
     <!-- menu top -->
-    
+
     <!-- menu top -->
 
     <div class="container-fluid">
@@ -125,8 +120,11 @@
     </div>
 
 
+
+
+    <!-- header -->
+
     <script>
-        var patientDOM = [];
 
 //        //load page to the div
 //        $("#registration").load("registrationV2.jsp");
@@ -150,8 +148,24 @@
                 return false;
             }
         });
+        var $body = $('body');
     </script>
-
-
+    <script src="libraries/lib/js/main/registration.js" type="text/javascript"></script>
+    <script src="libraries/lib/js/search/searchDisipline.js" type="text/javascript"></script>
+    <script src="libraries/lib/js/main/appointment.js" type="text/javascript"></script>
+    <script src="libraries/lib/js/main/patient_master_index.js" type="text/javascript"></script>
+    <script src="libraries/lib/js/main/OPMain.js" type="text/javascript"></script>
+    <script src="libraries/lib/js/search/searchPatient.js" type="text/javascript"></script>
+    <script src="libraries/lib/js/onKeyPress.js" type="text/javascript"></script>
+    <script src="libraries/lib/js/search/searchCountry.js" type="text/javascript"></script>
+    <script src="libraries/lib/js/search/searchState.js" type="text/javascript"></script>
+    <script src="libraries/lib/js/search/searchPostcode.js" type="text/javascript"></script>
+    <script src="libraries/lib/js/search/searchTown.js" type="text/javascript"></script>
+    <script src="libraries/lib/js/search/searchDistrict.js" type="text/javascript"></script>
+    <script src="libraries/lib/js/search/searchTitle.js" type="text/javascript"></script>
+    <script src="libraries/lib/js/search/searchNationality.js" type="text/javascript"></script>
+    <script src="libraries/lib/js/search/searchHFC.js" type="text/javascript"></script>
+    <script src="libraries/lib/js/search/searchOccu.js" type="text/javascript"></script>
+    
 </body>
 </html>

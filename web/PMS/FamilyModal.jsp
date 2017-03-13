@@ -70,15 +70,11 @@
                 <div class="form-group">
                     <label class="col-md-4 control-label" for="textinput">Occupation</label>
                     <div class="col-md-8">
-<!--                        <input id="FAMocc" name="FAMocc" type="text"  class="form-control input-md">-->
-                        <select id="FAMocc" name="FAMocc" class="form-control">
-                            <option selected="" disabled="">Please select Occupation</option>
-                            <option value="-">-</option>
-                            <% for (int i = 0; i < dataOccu71.size(); i++) {%>
-                            <option value="<%=dataOccu71.get(i).get(1)%>"><%=dataOccu71.get(i).get(2)%></option>
-                            <%  }
-                            %>
-                        </select>
+
+                       
+                        <input id="FAMocc" name="textinput" type="text" placeholder="select occupation.." class="form-control input-md">
+                                <input id="FAMoccCODE" name="PMIhstateCODE" type="hidden" placeholder="select country.." class="form-control input-md">
+                                <div id="matcFAMocc"></div>
                     </div>
                 </div>
 

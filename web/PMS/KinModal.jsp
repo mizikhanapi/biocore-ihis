@@ -146,15 +146,10 @@
                                 <div class="form-group">
                                     <label class="col-md-4 control-label" for="selectbasic">Occupation</label>
                                     <div class="col-md-7">
-                                        <!--                                <input id="KINoccu" name="KINoccu" type="text" class="form-control input-md">-->
-                                        <select id="KINoccu" name="KINoccu" class="form-control">
-                                            <option selected="" disabled="">Please select Occupation</option>
-                                            <option value="-">-</option>
-                                            <% for (int i = 0; i < dataOccu61.size(); i++) {%>
-                                            <option value="<%=dataOccu61.get(i).get(1)%>"><%=dataOccu61.get(i).get(2)%></option>
-                                            <%  }
-                                            %>
-                                        </select>
+                                       
+                                        <input id="KINoccu" name="textinput" type="text" placeholder="select occupation.." class="form-control input-md">
+                                <input id="KINoccuCODE" name="PMIhstateCODE" type="hidden" placeholder="select country.." class="form-control input-md">
+                                <div id="matcKINoccu"></div>
                                     </div>
                                 </div>
                                 <!-- Select Basic -->

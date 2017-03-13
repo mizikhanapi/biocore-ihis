@@ -6,7 +6,7 @@
 <%
     // conn = new Conn();
     String incomeRange51 = "select * from adm_lookup_detail where master_reference_code = '0028' ";
-    String hcf51 = "select * from adm_lookup_detail where master_reference_code = '0081'   ";
+    //String hcf51 = "select * from adm_lookup_detail where master_reference_code = '0081'   ";
     String status51 = "select * from adm_lookup_detail where master_reference_code = '0014'   ";
     String occupation51 = "select * from adm_lookup_detail where master_reference_code = '0050'";
 
@@ -14,7 +14,7 @@
     ArrayList<ArrayList<String>> dataIncomeRange51, dataHfc51, dataStatus51, dataOccu51;
 
     dataIncomeRange51 = conn.getData(incomeRange51);
-    dataHfc51 = conn.getData(hcf51);
+    //dataHfc51 = conn.getData(hcf51);
     dataStatus51 = conn.getData(status51);
     dataOccu51 = conn.getData(occupation51);
 
@@ -65,15 +65,10 @@
                         <div class="form-group">
                             <label class="col-md-4 control-label" for="textinput">Occupation</label>  
                             <div class="col-md-8">
-                                <!--                        <input id="EMPoccu" name="EMPoccu" type="text"  class="form-control input-md">-->
-                                <select id="EMPoccu" name="EMPoccu" class="form-control">
-                                    <option selected="" disabled="">Please select Occupation</option>
-                                    <option value="-">-</option>
-                                    <% for (int i = 0; i < dataOccu51.size(); i++) {%>
-                                    <option value="<%=dataOccu51.get(i).get(1)%>"><%=dataOccu51.get(i).get(2)%></option>
-                                    <%  }
-                                    %>
-                                </select>
+                                
+                                <input id="EMPoccu" name="textinput" type="text" placeholder="select occupation.." class="form-control input-md">
+                                <input id="EMPoccuCODE" name="PMIhstateCODE" type="hidden" placeholder="select country.." class="form-control input-md">
+                                <div id="matcEMPoccu"></div>
                             </div>
                         </div>
 
@@ -105,14 +100,10 @@
                         <div class="form-group">
                             <label class="col-md-4 control-label" for="selectbasic">Health Facility</label>
                             <div class="col-md-8">
-                                <select id="EMPhfc" name="EMPhfc" class="form-control">
-                                    <option selected="" disabled="">Please select health facility</option>
-                                    <option value="-">-</option>
-                                    <% for (int i = 0; i < dataHfc51.size(); i++) {%>
-                                    <option value="<%=dataHfc51.get(i).get(1)%>"><%=dataHfc51.get(i).get(2)%></option>
-                                    <%  }
-                                    %>
-                                </select>
+             
+                                <input id="EMPhfc" name="textinput" type="text" placeholder="select health facility.." class="form-control input-md">
+                                <input id="EMPhfcCODE" name="PMIhstateCODE" type="hidden" placeholder="select country.." class="form-control input-md">
+                                <div id="matcEMPhfc"></div>
                             </div>
                         </div>
 
