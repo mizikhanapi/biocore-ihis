@@ -89,4 +89,21 @@ public class Conn
         
         return data;
     }
+        public boolean setData(String query) {
+            RMIConnector rmic = new RMIConnector();
+
+            boolean status = false;
+
+    //        String host_db = Config.url_server;
+            String host_server = getIpCall().getProperty(STR_HOST);
+            int host_port = 1098;
+            try {
+                host_port = Integer.parseInt(getIpCall().getProperty(STR_PORT));
+            } catch (Exception e) {
+            }
+
+            status = rmic.setQuerySQL(host_server, host_port, query);
+
+            return status;
+        }
 }
