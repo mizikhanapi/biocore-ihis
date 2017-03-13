@@ -323,6 +323,39 @@
     </div>
 </div>
 <!-- Modal Update -->
+
+<!--modal change logo-->
+<div class="modal fade" id="HFT_detail2" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><i class="fa fa-times fa-lg"></i></button>
+                <h3 class="modal-title" id="lineModalLabel">Health Facility Logo</h3>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+
+                        <div class="col-md-12">
+                            <!-- Text input-->
+                            <div class="form-group">
+                                <label class="col-md-8 control-label" for="textinput" id="hfcLabel"></label>
+                            </div>
+                            <div class="form-group">
+                                <img src="" id="gambaLogo">
+                            </div>
+                            <div class="form-group">
+                                <input class="form-control" id="inputFileToLoad2" type="file" accept=".jpg, .png, .gif" >
+                            </div>
+                        </div>
+                </div>
+              
+                <!-- content goes here -->
+            </div>
+            <div class="modal-footer">
+                <div class="btn-group btn-group-justified" role="group" aria-label="group button">
+                    <div class="btn-group" role="group">
+                        <button type="submit" class="btn btn-success btn-block btn-lg" role="button" id="HFT_btnChangeLogo">Change <span class="fa fa-check" aria-hidden="true" style="display: inline-block;" ></span></button>
+                    </div>
 <!-- Update Part End -->
 
 <!-- Delete Part Start -->
@@ -366,7 +399,7 @@
 
 
 
-        console.log(arrayData);
+        //console.log(arrayData);
     });
 
 
@@ -482,7 +515,7 @@
                 data: data,
                 timeout: 10000,
                 success: function (datas) {
-                    console.log(datas.trim());
+                    //console.log(datas.trim());
                     if (datas.trim() === 'Success') {
                         $('#healthFacilityTable').load('healthFacility_table.jsp');
                         $(".modal-backdrop").hide();
@@ -518,7 +551,7 @@
         var arrayData = rowData.split("|");
         //assign into seprated val
         var hfcCode = arrayData[0], hfcName = arrayData[2];
-        console.log(arrayData);
+        //console.log(arrayData);
         
         bootbox.confirm({
             message: "Are you sure want to delete this item? " + hfcCode + "-" + hfcName,
@@ -679,6 +712,159 @@
                 $('#HFT_match').text(''); // If less than 2 characters, clear the <div id="match"></div>
             }
         });
+        
+     $('#healthFacilityTable').off('click', '#THE_healthFacilityTable #HFT_btnLogo').on('click', '#THE_healthFacilityTable #HFT_btnLogo', function (e){
+         e.preventDefault();
+         
+        $('#gambaLogo').attr("src", "");
+        $('#inputFileToLoad2').val("");
+        gambarURI2 = "";       
+
+        var row = $(this).closest("tr");
+        var rowData = row.find("#HFT_hidden").val();
+        var arrayData = rowData.split("|");
+        
+        var hfcName = arrayData[2], hfcCode = arrayData[0];
+        
+        $('#hfcLabel').html(hfcCode + " | " + hfcName);
+        
+        var data = {
+            process : "get",
+            hfcCode : hfcCode
+        };
+        
+         $.ajax({
+             type: 'POST',
+             url: "healthFacility_logoProcess.jsp",
+             data : data,
+             success: function (data) {
+                        $('#gambaLogo').attr("src", data);
+                    }
+         });
+        
+    });
+    
+    
+    $('#inputFileToLoad2').checkFileType({
+        allowedExtensions: ['jpg', 'jpeg', 'png', 'gif'],
+        success: function () {
+            loadImageFileAsURL();
+        },
+        error: function () {
+            bootbox.alert('Incompatible file type');
+            $('#inputFileToLoad').val("");
+            
+            gambarURI2 = "";
+        }
+    });
+
+
+    var gambarURI2 = "";
+
+    function loadImageFileAsURL()
+    {
+
+        var iSize = 0;
+
+        iSize = ($("#inputFileToLoad2")[0].files[0].size / 1024);
+
+        var sizeSmall = false;
+
+        if (iSize / 1024 > 1) {
+            sizeSmall = false;
+
+        } else {
+
+            iSize = (Math.round(iSize * 100) / 100);
+
+            sizeSmall = iSize <= 45;
+
+        }
+
+
+
+
+
+
+
+        if (sizeSmall) {
+            
+            var filesSelected = document.getElementById("inputFileToLoad2").files;
+            if (filesSelected.length > 0)
+            {
+                var fileToLoad = filesSelected[0];
+
+                var fileReader = new FileReader();
+
+                fileReader.onload = function (fileLoadedEvent)
+                {
+
+                    gambarURI2 = fileLoadedEvent.target.result;
+
+
+                   $('#gambaLogo').attr("src", gambarURI2);
+                };
+
+                fileReader.readAsDataURL(fileToLoad);
+            }
+
+        } else {
+
+            bootbox.alert("File size must not exceed 40kb");
+            $('#inputFileToLoad').val("");
+            gambarURI2 = "";
+            
+        }
+
+
+    }
+    
+    $('#HFT_btnChangeLogo').on('click', function(){
+        
+        var hfc = $('#hfcLabel').text();
+        
+        var arraydata = hfc.split("|");
+        
+        hfc = arraydata[0].trim();
+        
+        if ($('#inputFileToLoad2').get(0).files.length === 0) {
+             bootbox.alert("No files selected.");
+             
+        }else{
+            var data = {
+                process : "set",
+                hfcCode : hfc,
+                picture : gambarURI2
+            };
+            
+            $.ajax({
+                type: 'POST',
+                url: "healthFacility_logoProcess.jsp",
+                data: data,
+                success: function (data) {
+                        
+                        if(data.trim() === "success"){
+                            $('#healthFacilityTable').load('healthFacility_table.jsp');
+                            $(".modal-backdrop").hide();
+                            //alert("Update Success");
+
+                            bootbox.alert({
+                                        message: "Health facility logo is updated",
+                                        title: "Process Result",
+                                        backdrop: true
+                                    });
+                            gambarURI2 = "";
+                            
+                        }else{
+                            bootbox.alert("Oops!!! Something went wrong");
+                            
+                        }
+                    }
+            });
+        }
+        
+    });
+
 
 
 
