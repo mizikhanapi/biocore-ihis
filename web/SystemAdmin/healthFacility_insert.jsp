@@ -36,6 +36,7 @@
     String director = request.getParameter("director");
     String status = request.getParameter("status");
     String establishDate = request.getParameter("establishDate");
+    String logo = request.getParameter("logo");
     
     
     String sqlCheck = "SELECT hfc_cd from adm_health_facility WHERE hfc_cd = '"+hfcCode+"' LIMIT 1 ";
@@ -51,8 +52,8 @@
        
         establishDate = DateFormatter.formatDate(establishDate, "dd/MM/yyyy", "yyyy-MM-dd HH:mm:ss.ms");
         
-        String sqlInsert = "INSERT INTO adm_health_facility(hfc_cd, hfc_type, hfc_name, address1, address2, address3, state_cd, district_cd, town_cd, country_cd, postcode, telephone_no, fax_no, email, hfc_server, hfc_report, established_date, director_name, hfc_category_cd, hfc_sub_type, contact_person, hfc_status, hfc_ip) "+
-                            "VALUES('"+hfcCode+"', '"+type+"', '"+hfcName+"', '"+address1+"', '"+address2+"', '"+address3+"', '"+state+"', '"+district+"', '"+town+"', '001', '"+postcode+"', '"+telNo+"', '"+faxNo+"', '"+email+"', '"+server+"', '"+reportTo+"', '"+establishDate+"', '"+director+"', '"+category+"', '"+subtype+"', '"+contactPerson+"', '"+status+"', '"+ipNo+"')";
+        String sqlInsert = "INSERT INTO adm_health_facility(hfc_cd, hfc_type, hfc_name, address1, address2, address3, state_cd, district_cd, town_cd, country_cd, postcode, telephone_no, fax_no, email, hfc_server, hfc_report, established_date, director_name, hfc_category_cd, hfc_sub_type, contact_person, hfc_status, hfc_ip, logo) "+
+                            "VALUES('"+hfcCode+"', '"+type+"', '"+hfcName+"', '"+address1+"', '"+address2+"', '"+address3+"', '"+state+"', '"+district+"', '"+town+"', '001', '"+postcode+"', '"+telNo+"', '"+faxNo+"', '"+email+"', '"+server+"', '"+reportTo+"', '"+establishDate+"', '"+director+"', '"+category+"', '"+subtype+"', '"+contactPerson+"', '"+status+"', '"+ipNo+"', '"+logo+"')";
 
         boolean isInsert = rmic.setQuerySQL(conn.HOST, conn.PORT, sqlInsert);
 
@@ -64,8 +65,8 @@
     }
     else if(establishDate.equalsIgnoreCase("")){
     
-        String sqlInsert = "INSERT INTO adm_health_facility(hfc_cd, hfc_type, hfc_name, address1, address2, address3, state_cd, district_cd, town_cd, country_cd, postcode, telephone_no, fax_no, email, hfc_server, hfc_report, director_name, hfc_category_cd, hfc_sub_type, contact_person, hfc_status, hfc_ip) "+
-                            "VALUES('"+hfcCode+"', '"+type+"', '"+hfcName+"', '"+address1+"', '"+address2+"', '"+address3+"', '"+state+"', '"+district+"', '"+town+"', '001', '"+postcode+"', '"+telNo+"', '"+faxNo+"', '"+email+"', '"+server+"', '"+reportTo+"', '"+director+"', '"+category+"', '"+subtype+"', '"+contactPerson+"', '"+status+"', '"+ipNo+"')";
+        String sqlInsert = "INSERT INTO adm_health_facility(hfc_cd, hfc_type, hfc_name, address1, address2, address3, state_cd, district_cd, town_cd, country_cd, postcode, telephone_no, fax_no, email, hfc_server, hfc_report, director_name, hfc_category_cd, hfc_sub_type, contact_person, hfc_status, hfc_ip, logo) "+
+                            "VALUES('"+hfcCode+"', '"+type+"', '"+hfcName+"', '"+address1+"', '"+address2+"', '"+address3+"', '"+state+"', '"+district+"', '"+town+"', '001', '"+postcode+"', '"+telNo+"', '"+faxNo+"', '"+email+"', '"+server+"', '"+reportTo+"', '"+director+"', '"+category+"', '"+subtype+"', '"+contactPerson+"', '"+status+"', '"+ipNo+"', '"+logo+"')";
 
         boolean isInsert = rmic.setQuerySQL(conn.HOST, conn.PORT, sqlInsert);
 

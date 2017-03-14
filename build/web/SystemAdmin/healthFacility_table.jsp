@@ -19,6 +19,7 @@
     <th>HFC Name</th>
     <th>Director</th>
     <th>Address</th>
+    <th>Change Logo</th>
     <th>Update</th>
     <th>Delete</th>
 </thead>
@@ -42,6 +43,11 @@
 <td><%= dataHFC.get(i).get(3)%> <%=dataHFC.get(i).get(4)%> <%= dataHFC.get(i).get(5)%></td> <!-- Address  --> 
 
 
+<td style="width: 5% ">
+
+    <!-- Update Part Start -->
+    <a id="HFT_btnLogo" data-toggle="modal" data-target="#HFT_detail2" style="cursor: pointer"><i class="fa fa-picture-o" aria-hidden="true" style="display: inline-block;color: #337ab7;"></i></a>
+</td>
 <td style="width: 5% ">
 
     <!-- Update Part Start -->
@@ -72,13 +78,13 @@
                 <h3 class="modal-title" id="lineModalLabel">Update Health Facility</h3>
             </div>
             <div class="modal-body">
-                <form id="HFT_form" class="form-horizontal">
+                <form id="HFT_form" class="form-horizontal" autocomplete="off">
                     <div class="row">
                         <div class="col-md-12">
                                                         
                             <!-- Text input-->
                             <div class="form-group" >
-                                <label class="col-md-2 control-label" for="textinput">Health Facility Code</label>
+                                <label class="col-md-2 control-label" for="textinput">Health Facility Code*</label>
                                 <div class="col-md-8">
                                     <input type="text"  class="form-control" id="HFT_hfcCode" placeholder="Health Facility Code" maxlength="30" readonly="true">   
                                 </div>
@@ -86,9 +92,9 @@
                             
                             <!-- Text input-->
                             <div class="form-group" >
-                                <label class="col-md-2 control-label" for="textinput">Health Facility Name</label>
+                                <label class="col-md-2 control-label" for="textinput">Health Facility Name*</label>
                                 <div class="col-md-8">
-                                    <input type="text"  class="form-control" id="HFT_hfcName" placeholder="Name" maxlength="30"> 
+                                    <input type="text"  class="form-control" id="HFT_hfcName" placeholder="Insert health facility name" maxlength="30"> 
                                 </div>
                             </div>
                             
@@ -124,7 +130,7 @@
                             
                              <!-- Text input-->
                             <div class="form-group">
-                                <label class="col-md-4 control-label" for="textinput">State</label>
+                                <label class="col-md-4 control-label" for="textinput">State*</label>
                                 <div class="col-md-8">
                                     <select class="form-control"  id="HFT_state" >
                                         <option  value="0" >Select the state</option>
@@ -140,83 +146,10 @@
                                     </select>
                                 </div>
                             </div>
-                             
-                            <!-- Text input-->
-                            <div class="form-group">
-                                <label class="col-md-4 control-label" for="textinput">Town</label>
-                                <div class="col-md-8">
-                                    <select class="form-control"  id="HFT_town">
-                                        <option  value="0" >-- Select the town --</option>
-                                        
-                                    </select>
-                                </div>
-                            </div> 
-                            
-                            <!-- Text input-->
-                            <div class="form-group">
-                                <label class="col-md-4 control-label" for="textinput">Fax No</label>
-                                <div class="col-md-8">
-                                    <input id="HFT_faxNo" maxlength="30"  type="text" placeholder="Fax no" class="form-control input-md">
-                                </div>
-                            </div>
-                            
+                              
                              <!-- Text input-->
                             <div class="form-group">
-                                <label class="col-md-4 control-label" for="textinput">Email</label>
-                                <div class="col-md-8">
-                                    <input id="HFT_email" maxlength="100"  type="text" placeholder="email@example.com" class="form-control input-md">
-                                </div>
-                            </div>
-                             
-                             <!-- Text input-->
-                            <div class="form-group">
-                                <label class="col-md-4 control-label" for="textinput">IP No</label>
-                                <div class="col-md-8">
-                                    <input id="HFT_IP" maxlength="30"  type="text" placeholder="Health Facility IP No (Optional)" class="form-control input-md">
-                                </div>
-                            </div>
-                                                        
-                                                       
-                            <!-- Text input-->
-                            <div class="form-group">
-                                <label class="col-md-4 control-label" for="textinput">Category</label>
-                                <div class="col-md-8">
-                                    <input id="HFT_category" maxlength="30"  type="text" placeholder="Health Facility Category (Optional)" class="form-control input-md">
-                                </div>
-                            </div>
-                            
-                            <!-- Text input-->
-                            <div class="form-group">
-                                <label class="col-md-4 control-label" for="textinput">Type</label>
-                                <div class="col-md-8">
-                                    <input id="HFT_type" maxlength="30"  type="text" placeholder="Health Facility Type (Optional)" class="form-control input-md">
-                                </div>
-                            </div>
-                            
-                            <!-- Text input-->
-                            <div class="form-group">
-                                <label class="col-md-4 control-label" for="textinput">Director Name</label>
-                                <div class="col-md-8">
-                                    <input id="HFT_director" maxlength="100"  type="text" placeholder="Director Name" class="form-control input-md">
-                                </div>
-                            </div>
-                            
-                             <div class="form-group">
-                                <label class="col-md-4 control-label" for="textinput">Established Date</label>
-                                <div class="col-md-8">
-                                    <input id="HFT_establishedDate" maxlength="30"  type="text" placeholder="Established date (Optional)" class="form-control input-md" readonly="true">
-                                </div>
-                            </div>
-                            
-                        </div>
-                        
-                        <!--pembahagi form menjadi dua vertical-->
-                        
-                        <div class="col-md-6">
-                            
-                             <!-- Text input-->
-                            <div class="form-group">
-                                <label class="col-md-4 control-label" for="textinput">District</label>
+                                <label class="col-md-4 control-label" for="textinput">District*</label>
                                 <div class="col-md-8" id="selectDistrict">
                                      <select class="form-control"  id="HFT_district">
                                         <option  value="0" >-- Select the district --</option>
@@ -225,11 +158,23 @@
                                 </div>
                             </div>
                              
+                             
                             <!-- Text input-->
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" for="textinput">Town*</label>
+                                <div class="col-md-8">
+                                    <select class="form-control"  id="HFT_town">
+                                        <option  value="0" >-- Select the town --</option>
+                                        
+                                    </select>
+                                </div>
+                            </div> 
+                            
+                             <!-- Text input-->
                             <div class="form-group">
                                 <label class="col-md-4 control-label" for="textinput">Postcode</label>
                                 <div class="col-md-8">
-                                    <input id="HFT_postcode" maxlength="30"  type="text" placeholder="postcode" class="form-control input-md">
+                                    <input id="HFT_postcode" maxlength="30"  type="text" placeholder="Search postcode" class="form-control input-md">
                                     <div id="HFT_match">
                                         <!--list of postcode-->
                                     </div>
@@ -240,24 +185,74 @@
                             <div class="form-group">
                                 <label class="col-md-4 control-label" for="textinput">Tel No</label>
                                 <div class="col-md-8">
-                                    <input id="HFT_telNo" maxlength="30"  type="text" placeholder="Telephone Number" class="form-control input-md">
+                                    <input id="HFT_telNo" maxlength="30"  type="text" placeholder="Insert Telephone Number" class="form-control input-md">
                                 </div>
                             </div> 
                             
+                            
+                            <!-- Text input-->
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" for="textinput">Fax No</label>
+                                <div class="col-md-8">
+                                    <input id="HFT_faxNo" maxlength="30"  type="text" placeholder="Insert Fax no" class="form-control input-md">
+                                </div>
+                            </div>
+                            
+                             <!-- Text input-->
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" for="textinput">Email</label>
+                                <div class="col-md-8">
+                                    <input id="HFT_email" maxlength="100"  type="text" placeholder="email@example.com" class="form-control input-md">
+                                </div>
+                            </div>
+                            
+                            <!-- Text input-->
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" for="textinput">Director Name</label>
+                                <div class="col-md-8">
+                                    <input id="HFT_director" maxlength="100"  type="text" placeholder="Insert Director Name" class="form-control input-md">
+                                </div>
+                            </div>
+                            
+                            <!-- Text input-->
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" for="textinput">Status*</label>
+                                <div class="col-md-8">
+                                    <select class="form-control"  id="HFT_status">
+                                        <option  value="1" >Active</option>
+                                        <option  value="0" >Inactive</option>
+                                    </select>
+                                </div>
+                            </div>
+                            
+                        </div>
+                        
+                        <!--pembahagi form menjadi dua vertical-->
+                        
+                        <div class="col-md-6">
+                           
+                           
                              <!-- Text input-->
                             <div class="form-group">
                                 <label class="col-md-4 control-label" for="textinput">Contact Person</label>
                                 <div class="col-md-8">
-                                    <input id="HFT_contactPerson" maxlength="30"  type="text" placeholder="Contact Person (Optional)" class="form-control input-md">
+                                    <input id="HFT_contactPerson" maxlength="30"  type="text" placeholder="Insert Contact Person (Optional)" class="form-control input-md">
                                 </div>
                             </div>
-                            
+                             
+                             <!-- Text input-->
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" for="textinput">IP No</label>
+                                <div class="col-md-8">
+                                    <input id="HFT_IP" maxlength="30"  type="text" placeholder="Insert Health Facility IP No (Optional)" class="form-control input-md">
+                                </div>
+                            </div>
                             
                              <!-- Text input-->
                             <div class="form-group">
                                 <label class="col-md-4 control-label" for="textinput">Server</label>
                                 <div class="col-md-8">
-                                    <input id="HFT_server" maxlength="30"  type="text" placeholder="Health Facility Server (Optional)" class="form-control input-md">
+                                    <input id="HFT_server" maxlength="30"  type="text" placeholder="Insert Health Facility Server (Optional)" class="form-control input-md">
                                 </div>
                             </div>
                                                        
@@ -266,28 +261,45 @@
                             <div class="form-group">
                                 <label class="col-md-4 control-label" for="textinput">Report to</label>
                                 <div class="col-md-8">
-                                    <input id="HFT_reportTo" maxlength="30"  type="text" placeholder="Report to (Optional)" class="form-control input-md">
+                                    <input id="HFT_reportTo" maxlength="30"  type="text" placeholder="Insert Report to (Optional)" class="form-control input-md">
                                 </div>
                             </div>
+                          
+                                                       
+                            <!-- Text input-->
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" for="textinput">Category</label>
+                                <div class="col-md-8">
+                                    <input id="HFT_category" maxlength="30"  type="text" placeholder="Insert Health Facility Category (Optional)" class="form-control input-md">
+                                </div>
+                            </div>
+                            
+                            <!-- Text input-->
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" for="textinput">Type</label>
+                                <div class="col-md-8">
+                                    <input id="HFT_type" maxlength="30"  type="text" placeholder="Insert Health Facility Type (Optional)" class="form-control input-md">
+                                </div>
+                            </div>
+                            
                             
                             <!-- Text input-->
                             <div class="form-group">
                                 <label class="col-md-4 control-label" for="textinput">Subtype</label>
                                 <div class="col-md-8">
-                                    <input id="HFT_subtype" maxlength="30"  type="text" placeholder="Health Facility Subtype (Optional)" class="form-control input-md">
+                                    <input id="HFT_subtype" maxlength="30"  type="text" placeholder="Insert Health Facility Subtype (Optional)" class="form-control input-md">
                                 </div>
                             </div>
                             
-                            <!-- Text input-->
-                            <div class="form-group">
-                                <label class="col-md-4 control-label" for="textinput">Status</label>
+                            
+                             <div class="form-group">
+                                <label class="col-md-4 control-label" for="textinput">Established Date</label>
                                 <div class="col-md-8">
-                                    <select class="form-control"  id="HFT_status">
-                                        <option  value="1" >Active</option>
-                                        <option  value="0" >Inactive</option>
-                                    </select>
+                                    <input id="HFT_establishedDate" maxlength="30"  type="text" placeholder="Pick Established date (Optional)" class="form-control input-md" readonly="true">
                                 </div>
                             </div>
+                            
+                            
                             
                         </div>
                     </div>
@@ -311,6 +323,39 @@
     </div>
 </div>
 <!-- Modal Update -->
+
+<!--modal change logo-->
+<div class="modal fade" id="HFT_detail2" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><i class="fa fa-times fa-lg"></i></button>
+                <h3 class="modal-title" id="lineModalLabel">Health Facility Logo</h3>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+
+                        <div class="col-md-12">
+                            <!-- Text input-->
+                            <div class="form-group">
+                                <label class="col-md-8 control-label" for="textinput" id="hfcLabel"></label>
+                            </div>
+                            <div class="form-group">
+                                <img src="" id="gambaLogo">
+                            </div>
+                            <div class="form-group">
+                                <input class="form-control" id="inputFileToLoad2" type="file" accept=".jpg, .png, .gif" >
+                            </div>
+                        </div>
+                </div>
+              
+                <!-- content goes here -->
+            </div>
+            <div class="modal-footer">
+                <div class="btn-group btn-group-justified" role="group" aria-label="group button">
+                    <div class="btn-group" role="group">
+                        <button type="submit" class="btn btn-success btn-block btn-lg" role="button" id="HFT_btnChangeLogo">Change <span class="fa fa-check" aria-hidden="true" style="display: inline-block;" ></span></button>
+                    </div>
 <!-- Update Part End -->
 
 <!-- Delete Part Start -->
@@ -354,7 +399,7 @@
 
 
 
-        console.log(arrayData);
+        //console.log(arrayData);
     });
 
 
@@ -470,7 +515,7 @@
                 data: data,
                 timeout: 10000,
                 success: function (datas) {
-                    console.log(datas.trim());
+                    //console.log(datas.trim());
                     if (datas.trim() === 'Success') {
                         $('#healthFacilityTable').load('healthFacility_table.jsp');
                         $(".modal-backdrop").hide();
@@ -506,7 +551,7 @@
         var arrayData = rowData.split("|");
         //assign into seprated val
         var hfcCode = arrayData[0], hfcName = arrayData[2];
-        console.log(arrayData);
+        //console.log(arrayData);
         
         bootbox.confirm({
             message: "Are you sure want to delete this item? " + hfcCode + "-" + hfcName,
@@ -667,6 +712,159 @@
                 $('#HFT_match').text(''); // If less than 2 characters, clear the <div id="match"></div>
             }
         });
+        
+     $('#healthFacilityTable').off('click', '#THE_healthFacilityTable #HFT_btnLogo').on('click', '#THE_healthFacilityTable #HFT_btnLogo', function (e){
+         e.preventDefault();
+         
+        $('#gambaLogo').attr("src", "");
+        $('#inputFileToLoad2').val("");
+        gambarURI2 = "";       
+
+        var row = $(this).closest("tr");
+        var rowData = row.find("#HFT_hidden").val();
+        var arrayData = rowData.split("|");
+        
+        var hfcName = arrayData[2], hfcCode = arrayData[0];
+        
+        $('#hfcLabel').html(hfcCode + " | " + hfcName);
+        
+        var data = {
+            process : "get",
+            hfcCode : hfcCode
+        };
+        
+         $.ajax({
+             type: 'POST',
+             url: "healthFacility_logoProcess.jsp",
+             data : data,
+             success: function (data) {
+                        $('#gambaLogo').attr("src", data);
+                    }
+         });
+        
+    });
+    
+    
+    $('#inputFileToLoad2').checkFileType({
+        allowedExtensions: ['jpg', 'jpeg', 'png', 'gif'],
+        success: function () {
+            loadImageFileAsURL();
+        },
+        error: function () {
+            bootbox.alert('Incompatible file type');
+            $('#inputFileToLoad').val("");
+            
+            gambarURI2 = "";
+        }
+    });
+
+
+    var gambarURI2 = "";
+
+    function loadImageFileAsURL()
+    {
+
+        var iSize = 0;
+
+        iSize = ($("#inputFileToLoad2")[0].files[0].size / 1024);
+
+        var sizeSmall = false;
+
+        if (iSize / 1024 > 1) {
+            sizeSmall = false;
+
+        } else {
+
+            iSize = (Math.round(iSize * 100) / 100);
+
+            sizeSmall = iSize <= 45;
+
+        }
+
+
+
+
+
+
+
+        if (sizeSmall) {
+            
+            var filesSelected = document.getElementById("inputFileToLoad2").files;
+            if (filesSelected.length > 0)
+            {
+                var fileToLoad = filesSelected[0];
+
+                var fileReader = new FileReader();
+
+                fileReader.onload = function (fileLoadedEvent)
+                {
+
+                    gambarURI2 = fileLoadedEvent.target.result;
+
+
+                   $('#gambaLogo').attr("src", gambarURI2);
+                };
+
+                fileReader.readAsDataURL(fileToLoad);
+            }
+
+        } else {
+
+            bootbox.alert("File size must not exceed 40kb");
+            $('#inputFileToLoad').val("");
+            gambarURI2 = "";
+            
+        }
+
+
+    }
+    
+    $('#HFT_btnChangeLogo').on('click', function(){
+        
+        var hfc = $('#hfcLabel').text();
+        
+        var arraydata = hfc.split("|");
+        
+        hfc = arraydata[0].trim();
+        
+        if ($('#inputFileToLoad2').get(0).files.length === 0) {
+             bootbox.alert("No files selected.");
+             
+        }else{
+            var data = {
+                process : "set",
+                hfcCode : hfc,
+                picture : gambarURI2
+            };
+            
+            $.ajax({
+                type: 'POST',
+                url: "healthFacility_logoProcess.jsp",
+                data: data,
+                success: function (data) {
+                        
+                        if(data.trim() === "success"){
+                            $('#healthFacilityTable').load('healthFacility_table.jsp');
+                            $(".modal-backdrop").hide();
+                            //alert("Update Success");
+
+                            bootbox.alert({
+                                        message: "Health facility logo is updated",
+                                        title: "Process Result",
+                                        backdrop: true
+                                    });
+                            gambarURI2 = "";
+                            
+                        }else{
+                            bootbox.alert("Oops!!! Something went wrong");
+                            
+                        }
+                    }
+            });
+        }
+        
+    });
+
 
 
 

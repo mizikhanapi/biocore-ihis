@@ -73,14 +73,10 @@
                 <div class="form-group">
                     <label class="col-md-4 control-label" for="selectbasic">Health Facility</label>
                     <div class="col-md-8">
-                        <select id="MEDhfc" name="MEDhfc" class="form-control">
-                            <option selected="" disabled="">Please select health facility</option>
-                            <option value="-">-</option>
-                            <% for (int i = 0; i < dataHfc81.size(); i++) {%>
-                            <option value="<%=dataHfc81.get(i).get(1)%>"><%=dataHfc81.get(i).get(2)%></option>
-                            <%  }
-                            %>
-                        </select>
+                        
+                        <input id="MEDhfc" name="textinput" type="text" placeholder="select heatkh facility.." class="form-control input-md">
+                                <input id="MEDhfcCODE" name="PMIhstateCODE" type="hidden" placeholder="select country.." class="form-control input-md">
+                                <div id="matcMEDhfc"></div>
                     </div>
                 </div>
 

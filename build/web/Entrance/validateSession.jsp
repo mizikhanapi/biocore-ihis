@@ -7,4 +7,5 @@
 
 <% if (session.getAttribute("USER_ID") == null) {
         response.sendRedirect("../index.jsp");
+        return;
     }%>

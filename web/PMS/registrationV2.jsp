@@ -4,6 +4,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!--<link rel="stylesheet" href="../assets/css/loading.css">-->
 <!--hfc code in register queue need to get from session -->
+
 <%
     String hfc = session.getAttribute("HEALTH_FACILITY_CODE").toString();
     String id = session.getAttribute("USER_ID").toString();

@@ -1,6 +1,7 @@
 <%@page import="dBConn.Conn"%>
 <%@page import="Config.Config"%>
 <%@ page session="true" %>
+<%@include  file="../Entrance/validateSession.jsp"%>
 <!DOCTYPE html>
 <html lang="en">
     <head>

@@ -37,6 +37,7 @@
     String endDate = request.getParameter("endDate");
     String userIDStatus = request.getParameter("userIDStatus");
     String mother = request.getParameter("mother");
+    String roomNo = request.getParameter("roomNo");
 
     RMIConnector rmic = new RMIConnector();
 
@@ -64,7 +65,7 @@
             + "birth_date='" + dob + "', sex_code ='" + gender + "', new_icno='" + icNo + "', home_phone='" + homeTel + "', office_phone='" + officeTel + "', "
             + "mobile_phone ='" + mobilePhone + "', fax_no ='" + faxNo + "', email='" + email + "', id_category_code='" + userIDCategory + "', start_date='" + startDate + "', end_date='" + endDate + "',"
             + " title='" + title + "', nationality_code='" + nationality + "', user_type='" + userType + "', user_group ='" + userGroup + "', user_classification_code='" + userClass + "', status='" + userIDStatus + "', "
-            + "mother_name = '" + mother + "' WHERE user_id ='" + userID + "'";
+            + "mother_name = '" + mother + "', room_no = '"+roomNo+"' WHERE user_id ='" + userID + "'";
 
     boolean isInsert = rmic.setQuerySQL(conn.HOST, conn.PORT, sqlInsert);
 

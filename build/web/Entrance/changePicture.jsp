@@ -104,13 +104,15 @@
     })(jQuery);
 
     $('#inputFileToLoad').checkFileType({
-        allowedExtensions: ['jpg', 'jpeg'],
+        allowedExtensions: ['jpg', 'jpeg', 'png', 'gif'],
         success: function () {
             loadImageFileAsURL();
         },
         error: function () {
-            alert('Incompatible file type');
+            bootbox.alert('Incompatible file type');
             $('#inputFileToLoad').val("");
+            $('#dym').html("");
+            gambarURI = "";
         }
     });
 
@@ -171,6 +173,7 @@
             bootbox.alert("File size must not exceed 40kb");
             $('#inputFileToLoad').val("");
             gambarURI = "";
+            $('#dym').html("");
         }
 
 

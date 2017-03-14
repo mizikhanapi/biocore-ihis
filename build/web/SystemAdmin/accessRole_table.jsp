@@ -27,12 +27,14 @@
 <tbody>
 
     <%
+        String hfc = session.getAttribute("HEALTH_FACILITY_CODE").toString();
         //                      0           1           2           3           4                   5               6                   7               8                       9
         String sql = "Select ua.user_id, user_name, ua.role_code, role_name, ua.discipline_code, discipline_name, ua.subdiscipline_code, subdiscipline_name, ifnull(ua.status, ''), u.health_facility_code "
                 + "FROM adm_users u join adm_user_access_role ua using(user_id) "
                 + "join adm_role r on ua.role_code = r.role_code or ua.role_code = role_name "
                 + "left join adm_discipline d on discipline_code = d.discipline_cd "
-                + "left join adm_subdiscipline s on subdiscipline_code = subdiscipline_cd and discipline_code = s.discipline_cd ";
+                + "left join adm_subdiscipline s on subdiscipline_code = subdiscipline_cd and discipline_code = s.discipline_cd "
+                + "Where u.health_facility_code = '"+hfc+"'";
         ArrayList<ArrayList<String>> dataAccess = conn.getData(sql);
 
         int size = dataAccess.size();

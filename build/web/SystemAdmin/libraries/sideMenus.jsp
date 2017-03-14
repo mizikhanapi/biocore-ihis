@@ -1,4 +1,20 @@
-		<div class="col-sm-3 col-md-2 sidebar" id="style-3">
+		
+<%--<%@include file="../validateSession.jsp" %>--%>
+<%
+    String gamba ="";
+    String nama = "";
+    String role = "";
+    
+    if(session.getAttribute("USER_NAME") != null){
+        
+        
+        gamba =session.getAttribute("PICTURE").toString();
+        nama = session.getAttribute("USER_NAME").toString();
+        role = session.getAttribute("ROLE_NAME").toString();
+    }
+
+%>
+<div class="col-sm-3 col-md-2 sidebar" id="style-3">
 		<!-- logo -->
 		<div class="logo">
 		Welcome to <span>iHIS</span>
@@ -8,15 +24,15 @@
 		<!-- profile Sidebar -->
 		<div class="profile">
 				<div class="profile-userpic">
-                                    <img src="<%= session.getAttribute("PICTURE").toString()%>" class="img-responsive" alt="profile pic">
+                                    <img src="<%= gamba%>" class="img-responsive" alt="profile pic">
 				</div>
 				<!-- SIDEBAR USER TITLE -->
 				<div class="profile-usertitle">
 					<div class="profile-usertitle-name">
-						<%=session.getAttribute("USER_NAME").toString() %>
+						<%=nama %>
 					</div>
 					<div class="profile-usertitle-job">
-						<%= session.getAttribute("ROLE_NAME").toString()%>
+						<%= role%>
 					</div>
 				</div>
 				<!-- SIDEBAR BUTTONS -->

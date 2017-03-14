@@ -77,6 +77,20 @@
                 </ul>
             </ul>
         </div>-->
+<%
+    String gamba ="";
+    String nama = "";
+    String role = "";
+    
+    if(session.getAttribute("USER_NAME") != null){
+        
+        
+        gamba =session.getAttribute("PICTURE").toString();
+        nama = session.getAttribute("USER_NAME").toString();
+        role = session.getAttribute("ROLE_NAME").toString();
+    }
+
+%>
 
 		<div class="col-sm-3 col-md-2 sidebar">
 <!-- logo -->
@@ -88,20 +102,20 @@
 		<!-- profile Sidebar -->
 		<div class="profile">
 				<div class="profile-userpic">
-					<img src="../assets/profile.jpg" class="img-responsive" alt="">
+					<img src="<%=gamba%>" class="img-responsive" alt="">
 				</div>
 				<!-- SIDEBAR USER TITLE -->
 				<div class="profile-usertitle">
 					<div class="profile-usertitle-name">
-						<%out.print(username);%>
+						<%=nama%>
 					</div>
 					<div class="profile-usertitle-job">
-						-
+						<%=role%>
 					</div>
 				</div>
 				<!-- SIDEBAR BUTTONS -->
 				<div class="profile-userbuttons">
-					<button type="button" class="btn btn-success btn-sm">Manage Account</button>
+					<button type="button" class="btn btn-success btn-sm" onclick="window.location.href='../Entrance/profile.jsp'">Manage Account</button>
 				</div>
 		</div>
 		<hr/>
