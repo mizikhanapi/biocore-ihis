@@ -91,7 +91,7 @@
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="textinput">User</label>
                         <div class="col-md-8">
-                            <input type="text"  class="form-control" id="ART_user" placeholder="User" readonly="true">
+                            <input type="text"  class="form-control" id="ART_user" placeholder="User" readonly>
                             
                         </div>
                     </div>
@@ -303,22 +303,22 @@
                     };
 
                     $.ajax({
-                        url: "subdiscipline_delete.jsp",
+                        url: "accessRole_delete.jsp",
                         subdisciplineCode: "post",
                         data: data,
                         timeout: 10000, // 10 seconds
                         success: function (datas) {
 
-                            if (datas.trim() === 'Success') {
+                            if (datas.trim() === 'success') {
                                 $('#accessRoleTable').load('accessRole_table.jsp');
                                 //alert("Delete Success");
                                  bootbox.alert({
-                                    message: "A subdiscipline is deleted",
+                                    message: "A role is revoked from user " + userID,
                                     title: "Process Result",
                                     backdrop: true
                                 });
                                 
-                            } else if (datas.trim() === 'Failed') {
+                            } else if (datas.trim() === 'fail') {
                                 alert("Delete failed!");
                             }
 
