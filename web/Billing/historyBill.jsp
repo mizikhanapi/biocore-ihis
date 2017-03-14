@@ -4,7 +4,7 @@
     Author     : Mike Ho
 --%>
 
-<%@page import="dbConn1.Conn"%>
+<%@page import="dbConn.Conn"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.text.DecimalFormat"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -27,31 +27,32 @@
                                 <div id="loadBill">
                                     <div style="margin-bottom: 50px">
                                         <h4><b>Manage Bill</b></h4>
-                                        <div class="form-group">
-                                            <label class="col-lg-2">Bill Status</label>
-                                            <div class="col-sm-7 col-md-7" style="margin-bottom: 10px">
-                                                <div class="input-group">
+                                        <form class="form-horizontal" name="myForm" id="myForm">
+                                            <div class="form-group">
+                                                <label class="col-md-4 control-label" for="textinput">Bill Status</label>
+                                                <div class="col-sm-7 col-md-7" style="margin-bottom: 10px">
+                                                    <div class="input-group">
                                                         <div id="rbStatus" class="btn-group">
                                                                 <a class="btn btn-primary btn-sm active" data-toggle="status" data-title="U">UNPAID</a>
                                                                 <a class="btn btn-primary btn-sm" data-toggle="status" data-title="P">PAID</a>
                                                         </div>
-                                                        <input type="hidden" name="happy" id="status">
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                    </div>
-
-                                    <div id="custom-search-input">
-                                        <div class="input-group ">
-                                            <input id="ic" type="text" class="  search-query form-control" placeholder="IC No." />
-                                            <span class="input-group-btn">
-                                                <button id="searchBill" class="btn btn-success pull-right" type="button">Search</button>
-                                            </span>
-                                        </div>
+                                            <div id="custom-search-input">
+                                                <div class="form-group">
+                                                    <label class="col-md-4 control-label" for="textinput">IC No.</label>
+                                                    <div class="col-md-4">
+                                                        <input type="text" class="form-control input-md" id="ic" placeholder="IC No.">
+                                                    </div>
+                                                    <button class="btn btn-primary" type="button" id="searchBill" name="searchPatient"><i class="fa fa-search fa-lg"></i>&nbsp; Search</button>
+                                                </div>
+                                            </div>
+                                        </form>
                                     </div>
 
                                     <div id="billDetails">
-                                        <table id="tableBill" class="table table-filter table-striped" style="background: #fff; border: 1px solid #ccc; border-top: none;">
+                                        <table id="tableBill" class="table table-filter table-striped table-bordered">
                                             <thead>
                                                 <th>Transaction Date</th>
                                                 <th>Bill No.</th>
@@ -78,7 +79,8 @@
         <!--js-->
         <script src="assets/js/jquery.min.js" type="text/javascript"></script>
         <script src="assets/js/custom.js" type="text/javascript"></script>
-        
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script> 
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> 
         <script type="text/javascript">
             $(document).ready(function(){
                 $('#ic').keypress(function(event) {
@@ -112,7 +114,13 @@
                           },
                           timeout: 10000,
                           success: function(data) {
-                              $('#billDetails').html(data);
+                            var d = data.split("|");
+                            $('#billDetails').html(d[0]);
+                            if (d[1] == '-1') {
+                                document.getElementById('messageHeader').innerHTML = "No record!";
+                                document.getElementById('messageContent').innerHTML = d[2];
+                                $("#alertMessage").modal();
+                            }
                           },
                           error: function(err) {
                           }

@@ -4,12 +4,12 @@
     Author     : Mike Ho
 --%>
 
-<%@page import="dbConn1.Conn"%>
+<%@page import="dbConn.Conn"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.text.DecimalFormat"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<table id="tablePara" class="table table-filter table-striped" style="background: #fff; border: 1px solid #ccc; border-top: none;">
+<table id="tablePara" class="table table-filter table-striped table-bordered">
     <thead>
         <th>Code</th>
         <th>Name</th>

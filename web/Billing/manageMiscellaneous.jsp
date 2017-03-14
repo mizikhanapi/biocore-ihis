@@ -2,10 +2,10 @@
     Document   : manageMiscellaneous
     Created on : Jan 1, 2017, 1:36:08 AM
     Author     : Mike Ho
---%><%@page import="dbConn1.Conn"%>
+--%><%@page import="dbConn.Conn"%>
 
 
-<%@page import="dbConn1.Conn"%>
+<%@page import="dbConn.Conn"%>
 <%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
