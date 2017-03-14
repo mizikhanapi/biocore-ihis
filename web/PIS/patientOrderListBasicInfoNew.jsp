@@ -254,7 +254,7 @@
 
     <div class="text-center" id="patientOrderDispenseButtonDiv" > 
         <button class="btn btn-success " type="button" id="btnOrderDispense" name="btnOrderDispense" > <i class="fa fa-shopping-cart fa-lg"></i>&nbsp; Dispense &nbsp;</button>
-        <button class="btn btn-primary " type="button" id="btnOrderDispensePrescribe" name="btnOrderDispensePrescribe" > <i class="fa fa-print fa-lg" ></i>&nbsp; Print Label &nbsp;</button>
+        <button class="btn btn-primary " type="button" id="btnOrderDispensePrescribe" name="btnOrderDispensePrescribe" > <i class="fa fa-print fa-lg" ></i>&nbsp; Generate Label &nbsp;</button>
         <button class="btn btn-default " type="button" id="btnClearOrderDetailDispense" name="btnClearOrderDetailDispense" > <i class="fa fa-ban fa-lg"></i>&nbsp; Back &nbsp;</button>
     </div>
 </div>
@@ -264,6 +264,10 @@
 
 
 //--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------//
+
+    // Disable Dispense Button
+    document.getElementById("btnOrderDispense").disabled = true;
+
 
     // Move to Order Details Fetch Details Start
     $('#patientOrderListContent').off('click', '#patientOrderListTable #moveToOrderDetailsTButton').on('click', '#patientOrderListTable #moveToOrderDetailsTButton', function (e) {
@@ -436,7 +440,7 @@
         $("#orderDrugSearchInput").on('keyup', function () { // everytime keyup event
             var input = $(this).val(); // We take the input value
             if (input.length >= 1) { // Minimum characters = 2 (you can change)
-                $('#orderDrugSearchInputDisplayResult').html('<img src="LoaderIcon.gif"/>'); // Loader icon apprears in the <div id="match"></div>
+                $('#orderDrugSearchInputDisplayResult').html('<img src="libraries/LoaderIcon.gif"/>'); // Loader icon apprears in the <div id="match"></div>
                 var dataFields = {'input': input}; // We pass input argument in Ajax
                 $.ajax({
                     type: "POST",
@@ -915,6 +919,7 @@
     });
     // Dispense Order Data End
 
+
     // Dispense Order Check Function Start
     function checkAll(ele) {
         var checkboxes = document.getElementsByTagName('input');
@@ -932,8 +937,10 @@
             }
         }
     }
-// Dispense Order Check Function End
+    // Dispense Order Check Function End
 
+
+    // Dispense Order Function Start
     function fullDispense() {
 
         var table = $("#patientOrderDetailsListTable tbody");
@@ -1075,6 +1082,8 @@
         resetDispense();
 
     }
+    // Dispense Order Function End
+
 
     // Grand Total Calculator Start
     !function calculateAllTotal() {
@@ -1144,82 +1153,153 @@
     }();
     // Grand Total Calculator End
 
-    // Grand Total Calculator Start
+
+    //===============================================================================  Dispense Part End  ================================================================================//
+
+
+
+
+
+    //------------------------------------------------------------------------------  Prescribe Part Start  -------------------------------------------------------------------------------//
+
+
+    // Priscribe Part Start
+    // Priscribe Button Start
     $('#patientOrderDetailContent').off('click', '#patientOrderDispenseButtonDiv #btnOrderDispensePrescribe').on('click', '#patientOrderDispenseButtonDiv #btnOrderDispensePrescribe', function (e) {
+
 
         var table = $("#patientOrderDetailsListTable tbody");
 
-        var orderNo, drugCode, drugDesc, drugStrength, drugFrequency, drugDuration, drugDose,
-                drugStockQty, drugOrderedQty, drugSuppliedQty, drugDispensedQty, drugPrice, drugTotalPrice, drugStatus;
+        var drugChecked;
+        var cars = [];
 
-        var orderDate, locationCode, arrivalDate, pmino, name;
+        table.find('tr').each(function (i) {
 
-        var today = new Date();
-        var dd = today.getDate();
-        var mm = today.getMonth() + 1; //January is 0!
-        var yyyy = today.getFullYear();
+            var $tds = $(this).find('td');
 
-        if (dd < 10) {
-            dd = '0' + dd;
+
+            drugChecked = $(this).find("#drugDispenseChecked").is(':checked');
+
+            cars.push(drugChecked);
+
+        });
+        var checkedDispense = cars.indexOf(true);
+        console.log(cars);
+        console.log(checkedDispense);
+
+        if (checkedDispense === -1) {
+            bootbox.alert("Please At least Select A Order To Generate Label");
+        } else {
+
+            bootbox.confirm({
+                message: "Are you sure that you want to Generate Label For this Drugs ?",
+                title: "Generate Label ?",
+                buttons: {
+                    confirm: {
+                        label: 'Yes',
+                        className: 'btn-success'
+                    },
+                    cancel: {
+                        label: 'No',
+                        className: 'btn-danger'
+                    }
+                },
+                callback: function (result) {
+
+                    if (result === true) {
+
+                        $('#myModal').modal('show');
+                        updateResetPrescribe();
+
+                    } else {
+                        console.log("Process Is Canceled");
+                    }
+
+                }
+            });
+
         }
-        if (mm < 10) {
-            mm = '0' + mm;
-        }
-        var today = dd + '/' + mm + '/' + yyyy;
+
+    });
+    // Priscribe Button End
 
 
-        pmino = $("#patientpmino").val();
-        orderDate = $("#patientOrderDate").val();
-        locationCode = $("#patientOrderLocationCode").val();
-        arrivalDate = $("#patientOrderDate").val();
-        name = $("#patientName").val();
+    // Priscribe Reset And Update Status Start
+    function updateResetPrescribe() {
+
+        var orderNo = $("#patientOrderNo").val();
+        var table = $("#patientOrderDetailsListTable tbody");
+        var drugCode, drugChecked;
+
+        var data = {
+            orderNo: orderNo
+        };
+
+        $.ajax({
+            url: "patientOrderListDetailsPrescribeResetStatus.jsp",
+            type: "post",
+            data: data,
+            timeout: 3000,
+            success: function (datas) {
+                console.log(datas);
+            }
+        });
 
         table.find('tr').each(function (i) {
 
             var $tds = $(this).find('td');
 
             // Get The Data
-            orderNo = $tds.eq(0).text();
             drugCode = $tds.eq(1).text();
-            drugDesc = $tds.eq(2).text();
-            drugStrength = $tds.eq(3).text();
-            drugFrequency = $tds.eq(4).text();
-            drugDuration = $tds.eq(5).text();
-            drugDose = $tds.eq(6).text();
-            drugStockQty = $tds.eq(7).text();
-            drugOrderedQty = $tds.eq(8).text();
-            drugSuppliedQty = $tds.eq(9).text();
-            drugDispensedQty = $tds.eq(10).text();
-            drugPrice = $tds.eq(11).text();
-            drugTotalPrice = $tds.eq(12).text();
-            drugStatus = $tds.eq(13).text();
+            drugChecked = $(this).find("#drugDispenseChecked").is(':checked');
 
+            if (drugChecked === true) {
 
-            var dataAjax = {
-                orderNo: orderNo,
-                drugCode: drugCode,
-                drugDesc: drugDesc,
-                drugStrength: drugStrength,
-                drugFrequency: drugFrequency,
-                drugDuration: drugDuration,
-                drugDose: drugDose,
-                pmino: pmino,
-                name: name,
-                date: today
-            };
+                var dataAjax = {
+                    orderNo: orderNo,
+                    drugCode: drugCode
+                };
 
-            console.log(dataAjax);
+                $.ajax({
+                    url: "patientOrderListDetailsPrescribeUpdateStatus.jsp",
+                    type: "post",
+                    data: dataAjax,
+                    timeout: 3000,
+                    success: function (datas) {
+                        console.log(datas);
+                    }
+                });
+
+            }
 
         });
+        setTimeout(function () {
+            loadingPrescribe();
+        }, 3000);
+    }
+    // Priscribe Reset And Update Status End
 
-    });
 
-//===============================================================================  Dispense Part End  ================================================================================//
+    // Priscribe Generate PDF Page Start
+    function loadingPrescribe() {
+
+        document.getElementById("btnOrderDispense").disabled = false;
+        $('#myModal').modal('hide');
+        var orderNo = $("#patientOrderNo").val();
+        window.open("patientOrderListDetailsPrescribePDF.jsp?orderNo=" + orderNo + " ");
+
+    }
+    // Priscribe Generate PDF Page End
+    // Prescibe Part End
+
+
+    //==============================================================================  Prescribe Part End  ================================================================================//
 
 
 
 
-//-------------------------------------------------------------------------------  Reset Part Start  --------------------------------------------------------------------------------//
+
+    //-------------------------------------------------------------------------------  Reset Part Start  --------------------------------------------------------------------------------//
 
     // Dispense Loading Part 
     // Hidding Loading Modal
@@ -1235,9 +1315,8 @@
 
     var inProgess = false;
 
-    // Dispense Loading Function 
-    function loading()
-    {
+    // Dispense Loading Function Start
+    function loading() {
         inProgess = true;
         $('#myModal').modal('show');
 
@@ -1255,7 +1334,7 @@
     // Dispense Loading Part End
 
 
-    // Dispense Reset Function  
+    // Dispense Reset Function Start
     function resetDispense() {
         console.log("Ok Clean");
 
@@ -1297,7 +1376,7 @@
     // Dispense Reset Function End
 
 
-    // Reset Fields    
+    // Clear Button Function Start
     $('#patientOrderDetailContent').on('click', '#btnClearOrderDetailDispense', function (e) {
         document.getElementById("patientOrderDetailContentBasicInfoForm").reset();
         document.getElementById("patientOrderDetailContentOrderInfoForm").reset();
@@ -1306,6 +1385,7 @@
         $("#patientOrderDetailContent #patientOrderDetailsListTableDiv").load("patientOrderListBasicInfoNew.jsp #patientOrderDetailsListTableDiv");
         $('.nav-tabs a[href="#tab_default_1"]').tab('show');
     });
+    // Clear Button Function End
 
 
 //=================================================================================  Reset Part End  ==================================================================================//

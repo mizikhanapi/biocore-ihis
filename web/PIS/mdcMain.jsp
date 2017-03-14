@@ -174,7 +174,7 @@
                             <div class="form-group">
                                 <label class="col-md-4 control-label" for="textinput">Packaging *</label>
                                 <div class="col-md-8">
-                                    <input id="addD_PACKAGING" name="textinput" type="number" placeholder="Please Insert Packaging" class="form-control input-md" step="0.01" maxlength="60">
+                                    <input id="addD_PACKAGING" name="textinput" type="number" placeholder="Please Insert Packaging" class="form-control input-md" step="0.01" maxlength="20">
                                 </div>
                             </div>
 
@@ -256,7 +256,7 @@
                             <div class="form-group">
                                 <label class="col-md-4 control-label" for="selectbasic">Duration *</label>
                                 <div class="col-md-4">
-                                    <input id="addD_DURATION" name="textinput" type="number" class="form-control input-md" placeholder="Please Insert Duration" step="0.01" maxlength="60">
+                                    <input id="addD_DURATION" name="textinput" type="number" class="form-control input-md" placeholder="Please Insert Duration" maxlength="10">
                                 </div>
                                 <div class="col-md-4">
                                     <select id="addD_DURATIONT" name="addD_DURATIONT" class="form-control">
@@ -365,6 +365,7 @@
 
     $(document).ready(function () {
 
+        // Date Picker For Insert
         $("#addD_EXP_DATE").datepicker({
             changeMonth: true,
             changeYear: true,
@@ -372,6 +373,8 @@
             minDate: '0'
         });
 
+
+        // Reset Function Start
         function reset() {
             console.log("In reset");
             document.getElementById("addUD_MDC_CODE").value = "";
@@ -399,13 +402,17 @@
             document.getElementById("addD_EXP_DATE").value = "";
             document.getElementById("addD_CLASSIFICATION").value = "No Classification";
         }
+        // Reset Function End
 
+
+        // Reset Button Start
         $('#addMDCReset').on('click', function () {
             reset();
         });
+        // Reset Button End
 
 
-        // Search HFC Function Start
+        // Search MDC Function Start
         $("#addUD_ATC_CODE").on('keyup', function () { // everytime keyup event
             var input = $(this).val(); // We take the input value
 
@@ -438,11 +445,29 @@
             }
 
         });
-        // Search FHC Function End
+        // Search MDC Function End
 
+
+        // Add MDC Function Start
         $('#addMDCButton').on('click', function () {
 
             console.log("In add");
+            var UD_MDC_CODECheck = document.getElementById("addUD_MDC_CODE");
+            var UD_ATC_CODECheck = document.getElementById("addUD_ATC_CODE");
+            var D_TRADE_NAMECheck = document.getElementById("addD_TRADE_NAME");
+            var D_GNR_NAMECheck = document.getElementById("addD_GNR_NAME");
+            var D_STRENGTHCheck = document.getElementById("addD_STRENGTH");
+            var D_STOCK_QTYCheck = document.getElementById("addD_STOCK_QTY");
+            var D_LOCATION_CODECheck = document.getElementById("addD_LOCATION_CODE");
+            var D_PACKAGINGCheck = document.getElementById("addD_PACKAGING");
+            var D_PRICE_PPACKCheck = document.getElementById("addD_PRICE_PPACK");
+            var D_COST_PRICECheck = document.getElementById("addD_COST_PRICE");
+            var D_SELL_PRICECheck = document.getElementById("addD_SELL_PRICE");
+            var D_QTYCheck = document.getElementById("addD_QTY");
+            var D_DURATIONCheck = document.getElementById("addD_DURATION");
+            var D_CAUTIONARY_CODECheck = document.getElementById("addD_CAUTIONARY_CODE");
+
+
             var UD_MDC_CODE = document.getElementById("addUD_MDC_CODE").value;
             var UD_ATC_CODE = document.getElementById("addUD_ATC_CODE").value;
             var D_TRADE_NAME = document.getElementById("addD_TRADE_NAME").value;
@@ -517,8 +542,38 @@
                 bootbox.alert("Please Insert Drug Expire Date");
             } else if (D_CLASSIFICATION === "No Classification") {
                 bootbox.alert("Select Any Classification");
+
+            } else if (UD_MDC_CODECheck.checkValidity() === false) {
+                bootbox.alert("Please Insert MDC Code Not More Than 25 Characters");
+            } else if (UD_ATC_CODECheck.checkValidity() === false) {
+                bootbox.alert("Please Insert ATC Code Not More Than 25 Characters");
+            } else if (D_TRADE_NAMECheck.checkValidity() === false) {
+                bootbox.alert("Please Insert Drug Trade Name Not More Than 200 Characters");
+            } else if (D_GNR_NAMECheck.checkValidity() === false) {
+                bootbox.alert("Please Insert Drug Generic Name Not More Than 500 Characters");
+            } else if (D_STRENGTHCheck.checkValidity() === false) {
+                bootbox.alert("Please Insert Drug Strength Not More Than 50 Characters");
+            } else if (D_STOCK_QTYCheck.checkValidity() === false) {
+                bootbox.alert("Please Insert Drug Stock Not More Than 20 Number");
+            } else if (D_LOCATION_CODECheck.checkValidity() === false) {
+                bootbox.alert("Please Insert Drug Location Not More Than 4 Characters");
+            } else if (D_PACKAGINGCheck.checkValidity() === false) {
+                bootbox.alert("Please Insert Drug Packaging Not More Than 20 Number In Decimal Form");
+            } else if (D_PRICE_PPACKCheck.checkValidity() === false) {
+                bootbox.alert("Please Insert Drug Per Pack Price Not More Than 20 Number In Decimal Form");
+            } else if (D_COST_PRICECheck.checkValidity() === false) {
+                bootbox.alert("Please Insert Drug Cost Price Not More Than 20 Number In Decimal Form");
+            } else if (D_SELL_PRICECheck.checkValidity() === false) {
+                bootbox.alert("Please Insert Drug Sell Price Not More Than 20 Number In Decimal Form");
+            } else if (D_QTYCheck.checkValidity() === false) {
+                bootbox.alert("Please Insert Drug Dose Not More Than 20 Number In Decimal Form");
+            } else if (D_DURATIONCheck.checkValidity() === false) {
+                bootbox.alert("Please Insert Drug Duration Not More Than 10 Number");
+            } else if (D_CAUTIONARY_CODECheck.checkValidity() === false) {
+                bootbox.alert("Please Insert Drug Cautionary Not More Than 150 Characters");
+
             } else {
-                
+
                 var arrayDataATC = $('#addUD_ATC_CODE').val().split("|");
                 UD_ATC_CODE = arrayDataATC[0].trim();
 
@@ -596,12 +651,10 @@
             }
 
         });
-
+        // Add MDC Function End
 
 
     });
-
-
 
 </script>
 

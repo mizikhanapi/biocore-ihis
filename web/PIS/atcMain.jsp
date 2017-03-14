@@ -148,9 +148,9 @@
                             $('#hfc').val($(this).text());
                             $('#atcHFCSearch').text(''); // Clear the <div id="match"></div>
                             var arrayData = $('#hfc').val().split("|");
-                            console.log(arrayData);
-                            console.log(arrayData[0].trim());
-                            console.log(arrayData[1].trim());
+                            //console.log(arrayData);
+                            //console.log(arrayData[0].trim());
+                            //console.log(arrayData[1].trim());
                         });
                     },
                     error: function () { // if error
@@ -189,9 +189,9 @@
                                 $('#discipline').val($(this).text());
                                 $('#atcDisciplineSearch').text(''); // Clear the <div id="match"></div>
                                 var arrayData = $('#discipline').val().split("|");
-                                console.log(arrayData);
-                                console.log(arrayData[0].trim());
-                                console.log(arrayData[1].trim());
+                                //console.log(arrayData);
+                                //console.log(arrayData[0].trim());
+                                //console.log(arrayData[1].trim());
                             });
                         },
                         error: function () { // if error
@@ -235,9 +235,9 @@
                                 $('#subdiscipline').val($(this).text());
                                 $('#atcSubDisciplineSearch').text(''); // Clear the <div id="match"></div>
                                 var arrayData = $('#subdiscipline').val().split("|");
-                                console.log(arrayData);
-                                console.log(arrayData[0].trim());
-                                console.log(arrayData[1].trim());
+                                //console.log(arrayData);
+                                //console.log(arrayData[0].trim());
+                                //console.log(arrayData[1].trim());
                             });
                         },
                         error: function () { // if error
@@ -255,6 +255,13 @@
         // Add Function Start
         $('#addButton').on('click', function () {
 
+            var atcCodeCheck = document.getElementById("atcCode");
+            var atcDescCheck = document.getElementById("atcDesc");
+            var categoryCheck = document.getElementById("category");
+            var hfcCheck = document.getElementById("hfc");
+            var disciplineCheck = document.getElementById("discipline");
+            var subdisciplineCheck = document.getElementById("subdiscipline");
+
             var atcCode = $('#atcCode').val();
             var atcDesc = $('#atcDesc').val();
             var category = $('#category').val();
@@ -265,16 +272,28 @@
 
             if (atcCode === "" || atcCode === null) {
                 bootbox.alert("Please Insert ATC Code Name");
+            } else if (atcCodeCheck.checkValidity() === false) {
+                bootbox.alert("Please Insert ATC Code Name That Is Not More Than 15 Characters");
             } else if (atcDesc === "" || atcDesc === null) {
                 bootbox.alert("Please Insert ATC Code Description");
+            } else if (atcDescCheck.checkValidity() === false) {
+                bootbox.alert("Please Insert ATC Code Description Name That Is Not More Than 200 Characters");
             } else if (category === "" || category === null) {
                 bootbox.alert("Please Insert ATC Code Category");
+            } else if (categoryCheck.checkValidity() === false) {
+                bootbox.alert("Please Insert ATC Code Category Name That Is Not More Than 50 Characters");
             } else if (hfc === "" || hfc === null) {
-                bootbox.alert("Please Insert ATC HFC Code");
+                bootbox.alert("Please Search ATC HFC Code");
+            } else if (hfcCheck.checkValidity() === false) {
+                bootbox.alert("Please Select ATC HFC Code That Is Not More Than 30 Characters");
             } else if (discipline === "" || discipline === null) {
-                bootbox.alert("Please Insert ATC Discipline Code");
+                bootbox.alert("Please Search ATC Discipline Code");
+            } else if (disciplineCheck.checkValidity() === false) {
+                bootbox.alert("Please Select ATC Discipine Code Name That Is Not More Than 30 Characters");
             } else if (subdiscipline === "" || subdiscipline === null) {
-                bootbox.alert("Please Insert ATC Sub-Discipline Code");
+                bootbox.alert("Please Search ATC Sub-Discipline Code");
+            } else if (subdisciplineCheck.checkValidity() === false) {
+                bootbox.alert("Please Select ATC Sub-Discipline Code Name That Is Not More Than 30 Characters");
             } else if (status !== "1" && status !== "0") {
                 bootbox.alert("Please Select Any Status");
             } else {
@@ -337,7 +356,7 @@
 
                     },
                     error: function (err) {
-                        console.log("Ajax Is Not Success");
+                        //console.log("Ajax Is Not Success");
                     }
 
                 });
@@ -359,7 +378,7 @@
             document.getElementById("atcCode").value = "";
             document.getElementById("atcDesc").value = "";
             document.getElementById("category").value = "";
-            document.getElementById("hfc").value = null;
+            document.getElementById("hfc").value = "";
             document.getElementById("atcHFCSearch").innerHTML = "";
             document.getElementById("discipline").value = "";
             document.getElementById("atcDisciplineSearch").innerHTML = "";

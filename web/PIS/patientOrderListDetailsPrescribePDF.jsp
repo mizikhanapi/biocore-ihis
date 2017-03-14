@@ -1,8 +1,9 @@
 <%-- 
-    Document   : ShowPDF
-    Created on : Jan 31, 2017, 10:32:50 AM
-    Author     : user
+    Document   : patientOrderListDetailsPrescribePDF
+    Created on : Mar 14, 2017, 12:50:21 AM
+    Author     : Shammugam
 --%>
+
 <%@page import="Config.Config"%>
 <%@page import="dBConn.Conn"%>
 <%@page import="java.io.*"%> 
@@ -20,19 +21,21 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
-    </head>
+</head>
     <body>
         <%
+            
+            String orderNo = request.getParameter("orderNo");
+            
 
             try {
                 Class.forName("com.mysql.jdbc.Driver").newInstance();
                 Connection conn = DriverManager.getConnection("jdbc:mysql://10.73.32.200:3306/emedica?zeroDateTimeBehavior=convertToNull", "root", "qwerty");
 
-                // String sql = " SELECT  where PMI_NO = '" + PMI_NO + "' ";
-                // ArrayList<ArrayList<String>> dataAdmittedPatient = Conn.getData(sql);
-                File reportFile = new File(application.getRealPath("//report//pharmacyDailyReport.jasper"));
+                File reportFile = new File(application.getRealPath("//PIS//report//pharmacyLabel.jasper"));
 
                 Map parameters = new HashMap();
+                parameters.put("orderNo",orderNo); 
                 byte[] bytes = JasperRunManager.runReportToPdf(reportFile.getPath(), parameters, conn);
 
                 response.setContentType("application/pdf");

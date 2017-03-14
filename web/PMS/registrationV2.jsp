@@ -171,44 +171,44 @@
                             <label class="col-md-4 control-label" for="selectbasic">Please select the Queue</label>
 
                             <label class="col-md-4 control-label" for="selectbasic"></label>
-                            <div class="col-md-8">
+                            <div class="col-md-6">
                                 <label for="radios-0">
                                     <input type="radio" name="radios" id="radios-0" value="Consultant Room">
-                                    Consultant Room
-                                    <select id="select-0" name="select-0" class="form-control">
-                                        <option value="null" selected="" >Please select consultation room</option>
-                                        <%
-                                            for (int i = 0; i < dataQueue2.size(); i++) {%>
-                                        <option value="<%=dataQueue2.get(i).get(1) + "|" + dataQueue2.get(i).get(2)%>"><%="(" + dataQueue2.get(i).get(0) + ") " + dataQueue2.get(i).get(1)%></option>
-                                        <%  }
-                                        %>
-                                    </select>
-
+                                    Consultant Room&nbsp;
                                 </label>
                                 <label for="radios-1">
                                     <input type="radio" name="radios" id="radios-1" value="Queue">
-                                    Common Queue
-                                    <select id="select-1" name="select-1" class="form-control">
-                                        <option selected="" value="null">Please select Queue</option>
-                                        <%
-                                            for (int i = 0; i < dataQueue.size(); i++) {%>
-                                        <option value="<%=dataQueue.get(i).get(1) + "|" + dataQueue.get(i).get(2)%>"><%="(" + dataQueue.get(i).get(0) + ") " + dataQueue.get(i).get(1) + " " + i%></option>
-                                        <%  }
-                                        %>
-                                    </select>
+                                    Common Queue&nbsp;
                                 </label>
                                 <label for="radios-2">
                                     <input type="radio" name="radios" id="radios-2" value="Doctor">
-                                    Doctor
-                                    <select id="select-2" name="select-2" class="form-control">
-                                        <option value="null"  selected="">Please select Doctor</option>
-                                        <%
-                                            for (int i = 0; i < dataQueue3.size(); i++) {%>
-                                        <option value="<%=dataQueue3.get(i).get(1) + "|" + dataQueue3.get(i).get(2)%>"><%="(" + dataQueue3.get(i).get(0) + ") " + dataQueue3.get(i).get(1)%></option>
-                                        <%  }
-                                        %>
-                                    </select>
+                                    Doctor&nbsp;
                                 </label>
+
+                                <select id="select-0" name="select-0" class="form-control">
+                                    <option value="null" selected="" >Please select consultation room</option>
+                                    <%
+                                        for (int i = 0; i < dataQueue2.size(); i++) {%>
+                                    <option value="<%=dataQueue2.get(i).get(1) + "|" + dataQueue2.get(i).get(2)%>"><%="(" + dataQueue2.get(i).get(0) + ") " + dataQueue2.get(i).get(1)%></option>
+                                    <%  }
+                                    %>
+                                </select>
+                                <select id="select-1" name="select-1" class="form-control">
+                                    <option selected="" value="null">Please select Queue</option>
+                                    <%
+                                        for (int i = 0; i < dataQueue.size(); i++) {%>
+                                    <option value="<%=dataQueue.get(i).get(1) + "|" + dataQueue.get(i).get(2)%>"><%="(" + dataQueue.get(i).get(0) + ") " + dataQueue.get(i).get(1) + " " + i%></option>
+                                    <%  }
+                                    %>
+                                </select>
+                                <select id="select-2" name="select-2" class="form-control">
+                                    <option value="null"  selected="">Please select Doctor</option>
+                                    <%
+                                            for (int i = 0; i < dataQueue3.size(); i++) {%>
+                                    <option value="<%=dataQueue3.get(i).get(1) + "|" + dataQueue3.get(i).get(2)%>"><%="(" + dataQueue3.get(i).get(0) + ") " + dataQueue3.get(i).get(1)%></option>
+                                    <%  }
+                                    %>
+                                </select>
                             </div>
 
                         </div>
@@ -258,7 +258,7 @@
                                 <input id="Dis" name="Dis" type="text"  class="form-control input-md">
                                 <div id="disList"></div>
                             </div>
-                            
+
                         </div>
                     </div>
                 </div>
@@ -307,4 +307,3 @@
 
 
 
-                     

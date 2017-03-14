@@ -35,7 +35,7 @@
             z-index: 999;
             height: 2em;
             width: 2em;
-            overflow: show;
+            overflow: visible;
             margin: auto;
             top: 0;
             left: 0;
