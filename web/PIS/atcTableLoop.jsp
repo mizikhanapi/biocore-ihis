@@ -78,7 +78,7 @@
             <div class="modal-body">
 
                 <!-- content goes here -->
-                <form class="form-horizontal" autocomplete="off">
+                <form class="form-horizontal" autocomplete="off" id="atcUpdateForm">
 
                     <!-- Text input-->
                     <div class="form-group">
@@ -157,7 +157,7 @@
                         <button type="submit" class="btn btn-success btn-block btn-lg" role="button" id="updateModalButton">Update</button>
                     </div>
                     <div class="btn-group" role="group">
-                        <button type="reset" id="updateReset" class="btn btn-default btn-block btn-lg" data-dismiss="modal" role="button">Cancel</button>
+                        <button type="reset" id="updateResetButton" class="btn btn-default btn-block btn-lg" data-dismiss="modal" role="button">Cancel</button>
                     </div>
                 </div>
             </div>
@@ -178,7 +178,6 @@
         var rowData = row.find("#dataATChidden").val();
 
         var arrayData = rowData.split("|");
-        console.log(arrayData);
 
         //assign into seprated val
         var atcCode = arrayData[0];
@@ -334,6 +333,13 @@
 
         e.preventDefault();
 
+        var atcCodeCheck = document.getElementById("updateatcCode");
+        var atcDescCheck = document.getElementById("updateatcDesc");
+        var categoryCheck = document.getElementById("updateatccategory");
+        var hfcCheck = document.getElementById("updateatchfc");
+        var disciplineCheck = document.getElementById("updateatcdiscipline");
+        var subdisciplineCheck = document.getElementById("updateatcsubdiscipline");
+
         var atcCode = $("#updateatcCode").val();
         var atcDesc = $("#updateatcDesc").val();
         var category = $("#updateatccategory").val();
@@ -344,16 +350,28 @@
 
         if (atcCode === "" || atcCode === null) {
             bootbox.alert("Please Insert ATC Code Name");
+        } else if (atcCodeCheck.checkValidity() === false) {
+            bootbox.alert("Please Insert ATC Code Name That Is Not More Than 15 Characters");
         } else if (atcDesc === "" || atcDesc === null) {
             bootbox.alert("Please Insert ATC Code Description");
+        } else if (atcDescCheck.checkValidity() === false) {
+            bootbox.alert("Please Insert ATC Code Description Name That Is Not More Than 200 Characters");
         } else if (category === "" || category === null) {
             bootbox.alert("Please Insert ATC Code Category");
+        } else if (categoryCheck.checkValidity() === false) {
+            bootbox.alert("Please Insert ATC Code Category Name That Is Not More Than 50 Characters");
         } else if (hfc === "" || hfc === null) {
-            bootbox.alert("Please Insert HFC Code");
+            bootbox.alert("Please Search ATC HFC Code");
+        } else if (hfcCheck.checkValidity() === false) {
+            bootbox.alert("Please Select ATC HFC Code That Is Not More Than 30 Characters");
         } else if (discipline === "" || discipline === null) {
-            bootbox.alert("Please Insert Discipline Code");
+            bootbox.alert("Please Search ATC Discipline Code");
+        } else if (disciplineCheck.checkValidity() === false) {
+            bootbox.alert("Please Select ATC Discipine Code Name That Is Not More Than 30 Characters");
         } else if (subdiscipline === "" || subdiscipline === null) {
-            bootbox.alert("Please Insert Sub-Discipline Code");
+            bootbox.alert("Please Search ATC Sub-Discipline Code");
+        } else if (subdisciplineCheck.checkValidity() === false) {
+            bootbox.alert("Please Select ATC Sub-Discipline Code Name That Is Not More Than 30 Characters");
         } else if (status !== "1" && status !== "0") {
             bootbox.alert("Please Select Any Status");
         } else {
@@ -408,8 +426,8 @@
         }
     });
     // Update Data Part End
-    
-    
+
+
     // Delete Data Part Start
     $('#contentATCTable').off('click', '#atcTable #deleteTButton').on('click', '#atcTable #deleteTButton', function (e) {
 
@@ -418,11 +436,9 @@
         var row = $(this).closest("tr");
         var rowData = row.find("#dataATChidden").val();
         var arrayData = rowData.split("|");
-        console.log(arrayData);
 
         //assign into seprated val
         var iditem = arrayData[0];
-
 
         bootbox.confirm({
             message: "Are you sure want to delete this item?",
@@ -482,16 +498,23 @@
 
     });
     // Delete Data Part End
-    
-    
+
+
+    // Reset Data Part Start
+    $("#updateResetButton").off('click').on('click', function (e) {
+        document.getElementById("atcUpdateForm").reset();
+    });
+    // Reset Data Part End
+
+
 </script>
 
 
 
 <script type="text/javascript" charset="utf-8">
-    
+
     $(document).ready(function () {
-        
+
         $('#atcTable').DataTable({
             pageLength: 15,
             dom: 'Bfrtip',
@@ -509,6 +532,6 @@
         });
 
     });
-    
+
 </script>
 

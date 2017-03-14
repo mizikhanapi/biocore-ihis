@@ -35,21 +35,21 @@
 
 <table class="table table-filter table-striped table-bordered dt-head-right" style="background: #fff; border: 1px solid #ccc; width: 100%; text-align: center" id="patientOrderDetailsListTable">
     <thead>
-    <th style="display: none">Order No</th>
-    <th >Code</th>
-    <th>Description</th>
-    <th>Strength</th>
-    <th>Frequency</th>
-    <th>Duration</th>
-    <th>Dose</th>
-    <th>Stock Qty</th>
-    <th>Ordered Qty</th>
-    <th>Supplied Qty</th>
-    <th>Dispensed Qty</th>
-    <th>Price/Pack</th>
-    <th>Total (RM)</th>
-    <th>Status</th>
-    <th >Check<!--<br><input id="checkDispenseAll" type="checkbox" onchange="checkAll(this)" name="chk[]" />--></th>
+    <th style="display: none;text-align: center;">Order No</th>
+    <th style="text-align: center;">Code</th>
+    <th style="text-align: center;">Description</th>
+    <th style="text-align: center;">Strength</th>
+    <th style="text-align: center;">Frequency</th>
+    <th style="text-align: center;">Duration</th>
+    <th style="text-align: center;">Dose</th>
+    <th style="text-align: center;">Stock Qty</th>
+    <th style="text-align: center;">Ordered Qty</th>
+    <th style="text-align: center;">Supplied Qty</th>
+    <th style="text-align: center;">Dispensed Qty</th>
+    <th style="text-align: center;">Price/Pack</th>
+    <th style="text-align: center;">Total (RM)</th>
+    <th style="text-align: center;">Status</th>
+    <th style="text-align: center;">Check<!--<br><input id="checkDispenseAll" type="checkbox" onchange="checkAll(this)" name="chk[]" />--></th>
 </thead>
 <tbody>
     <%        for (int i = 0; i < dataOrderList.size(); i++) {
@@ -84,7 +84,7 @@
 
 
     %>
-    <tr >
+    <tr style="text-align: center;">
 <input id="dataPatientOrderDetailsListhidden" type="hidden" value="<%=String.join("|", dataOrderList.get(i))%>">
 <td id="updateOrderDetailsTButton" data-status="pagado" data-toggle="modal" data-id="1" data-target="#updateOrder" align="center" style="display: none"><%= dataOrderList.get(i).get(0)%></td> <!-- Order No -->
 <td id="updateOrderDetailsTButton" data-status="pagado" data-toggle="modal" data-id="1" data-target="#updateOrder" align="center" ><%= dataOrderList.get(i).get(1)%></td> <!-- Code -->

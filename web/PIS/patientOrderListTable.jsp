@@ -18,12 +18,12 @@
 
 <table  id="patientOrderListTable"  class="table table-filter table-striped table-bordered" style="background: #fff; border: 1px solid #ccc; width: 100%">
     <thead>
-    <th>Order No.</th>
-    <th>PMI No.</th>
-    <th>Name</th>
-    <th>Order Date</th>
-    <th>Health Facility Code</th>
-    <th>Doctor's Name</th>
+    <th style="text-align: center;">Order No.</th>
+    <th style="text-align: center;">PMI No.</th>
+    <th style="text-align: center;">Name</th>
+    <th style="text-align: center;">Order Date</th>
+    <th style="text-align: center;">Health Facility Code</th>
+    <th style="text-align: center;">Doctor's Name</th>
 </thead>
 <tbody>
 
@@ -38,7 +38,7 @@
         for (int i = 0; i < size; i++) {
     %>
 
-    <tr id="moveToOrderDetailsTButton">
+    <tr id="moveToOrderDetailsTButton" style="text-align: center;">
 <input id="dataPatientOrderListhidden" type="hidden" value="<%=String.join("|", dataPatientOrderList.get(i))%>">
 <td><%= dataPatientOrderList.get(i).get(0)%></td> <!-- Order No -->
 <td><%= dataPatientOrderList.get(i).get(1)%></td> <!-- PMI No -->

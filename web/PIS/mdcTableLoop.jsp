@@ -450,7 +450,9 @@
 
 
 <script type="text/javascript">
-
+    
+    
+    // Date Picker For Update
     $("#updateD_EXP_DATE").datepicker({
         changeMonth: true,
         changeYear: true,
@@ -459,6 +461,7 @@
     });
 
 
+    // Delete Function Start
     $('#contentMDCTable').off('click', '#mdcTable #mdcDeleteTButton').on('click', '#mdcTable #mdcDeleteTButton', function (e) {
 
         e.preventDefault();
@@ -529,8 +532,10 @@
         });
 
     });
+    // Delete Function End
 
 
+    // Getting Data For Update Start
     $('#contentMDCTable').off('click', '#mdcTable #mdcUpdateTButton').on('click', '#mdcTable #mdcUpdateTButton', function (e) {
 
         e.preventDefault();
@@ -593,11 +598,29 @@
         $("#updateD_CLASSIFICATION").val(D_CLASSIFICATION);
 
     });
+    // Getting Data For Update End
 
 
+    // Update Function Start
     $("#updateMDCButton").off('click').on('click', function (e) {
 
         e.preventDefault();
+
+        var UD_MDC_CODECheck = document.getElementById("updateUD_MDC_CODE");
+        var UD_ATC_CODECheck = document.getElementById("updateUD_ATC_CODE");
+        var D_TRADE_NAMECheck = document.getElementById("updateD_TRADE_NAME");
+        var D_GNR_NAMECheck = document.getElementById("updateD_GNR_NAME");
+        var D_STRENGTHCheck = document.getElementById("updateD_STRENGTH");
+        var D_STOCK_QTYCheck = document.getElementById("updateD_STOCK_QTY");
+        var D_LOCATION_CODECheck = document.getElementById("updateD_LOCATION_CODE");
+        var D_PACKAGINGCheck = document.getElementById("updateD_PACKAGING");
+        var D_PRICE_PPACKCheck = document.getElementById("updateD_PRICE_PPACK");
+        var D_COST_PRICECheck = document.getElementById("updateD_COST_PRICE");
+        var D_SELL_PRICECheck = document.getElementById("updateD_SELL_PRICE");
+        var D_QTYCheck = document.getElementById("updateD_QTY");
+        var D_DURATIONCheck = document.getElementById("updateD_DURATION");
+        var D_CAUTIONARY_CODECheck = document.getElementById("updateD_CAUTIONARY_CODE");
+
 
         var UD_MDC_CODE = $("#updateUD_MDC_CODE").val();
         var UD_ATC_CODE = $("#updateUD_ATC_CODE").val();
@@ -623,6 +646,8 @@
         var D_CAUTIONARY_CODE = $("#updateD_CAUTIONARY_CODE").val();
         var D_EXP_DATE = $("#updateD_EXP_DATE").val();
         var D_CLASSIFICATION = $("#updateD_CLASSIFICATION").val();
+
+
 
         if (UD_MDC_CODE === "") {
             bootbox.alert("Please Insert MDC Code");
@@ -671,6 +696,36 @@
             bootbox.alert("Please Insert Drug Expire Date");
         } else if (D_CLASSIFICATION === "No Classification" || D_CLASSIFICATION === null) {
             bootbox.alert("Select Any Classification");
+
+        } else if (UD_MDC_CODECheck.checkValidity() === false) {
+            bootbox.alert("Please Insert MDC Code Not More Than 25 Characters");
+        } else if (UD_ATC_CODECheck.checkValidity() === false) {
+            bootbox.alert("Please Insert ATC Code Not More Than 25 Characters");
+        } else if (D_TRADE_NAMECheck.checkValidity() === false) {
+            bootbox.alert("Please Insert Drug Trade Name Not More Than 200 Characters");
+        } else if (D_GNR_NAMECheck.checkValidity() === false) {
+            bootbox.alert("Please Insert Drug Generic Name Not More Than 500 Characters");
+        } else if (D_STRENGTHCheck.checkValidity() === false) {
+            bootbox.alert("Please Insert Drug Strength Not More Than 50 Characters");
+        } else if (D_STOCK_QTYCheck.checkValidity() === false) {
+            bootbox.alert("Please Insert Drug Stock Not More Than 20 Number");
+        } else if (D_LOCATION_CODECheck.checkValidity() === false) {
+            bootbox.alert("Please Insert Drug Location Not More Than 4 Characters");
+        } else if (D_PACKAGINGCheck.checkValidity() === false) {
+            bootbox.alert("Please Insert Drug Packaging Not More Than 20 Number In Decimal Form");
+        } else if (D_PRICE_PPACKCheck.checkValidity() === false) {
+            bootbox.alert("Please Insert Drug Per Pack Price Not More Than 20 Number In Decimal Form");
+        } else if (D_COST_PRICECheck.checkValidity() === false) {
+            bootbox.alert("Please Insert Drug Cost Price Not More Than 20 Number In Decimal Form");
+        } else if (D_SELL_PRICECheck.checkValidity() === false) {
+            bootbox.alert("Please Insert Drug Sell Price Not More Than 20 Number In Decimal Form");
+        } else if (D_QTYCheck.checkValidity() === false) {
+            bootbox.alert("Please Insert Drug Dose Not More Than 20 Number In Decimal Form");
+        } else if (D_DURATIONCheck.checkValidity() === false) {
+            bootbox.alert("Please Insert Drug Duration Not More Than 10 Number");
+        } else if (D_CAUTIONARY_CODECheck.checkValidity() === false) {
+            bootbox.alert("Please Insert Drug Cautionary Not More Than 150 Characters");
+
         } else {
 
             var data = {
@@ -731,11 +786,15 @@
 
         }
     });
-
+    // Update Function End
+    
+    
 </script>
 
 <script type="text/javascript" charset="utf-8">
+    
     $(document).ready(function () {
+        
         $('#mdcTable').DataTable({
             pageLength: 15,
             initComplete: function (settings, json) {
@@ -760,5 +819,7 @@
                 }
             ]
         });
+        
+        
     });
 </script>
