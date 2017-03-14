@@ -3,7 +3,7 @@
     Created on : Feb 19, 2017, 8:40:57 PM
     Author     : User
 --%>
-
+<%@include  file="../Entrance/validateSession.jsp"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
