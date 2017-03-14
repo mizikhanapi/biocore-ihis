@@ -76,7 +76,7 @@
                                 </tr>
                                 <tr>
                                     <td>
-                                        Sex:
+                                        Gender:
                                         <span class="p-label" id="pSex">-</span>
                                     </td>
                                     <td>
