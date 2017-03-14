@@ -19,7 +19,7 @@ $(document).ready(function () {
         episodeDate = row.find('#epiDate').text();
         status = row.find('#status').text();
 
-        //var updateConsult = updateStatus(pmiNo,episodeDate,5);
+        var updateConsult = updateStatus(pmiNo,episodeDate,5);
 
         var patient = findPatient(pmiNo);
         var getPDIInfo = getPDI(pmiNo);

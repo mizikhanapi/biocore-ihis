@@ -303,7 +303,7 @@ $("#nextBtn").click(function(){
                     findPatient(pmiNo);
                     $('.soap-select').unbind('click');
                     getPDI(pmiNo);
-                    //updateStatus(pmiNoN,epiDate,5);
+                    updateStatus(pmiNoN,epiDate,5);
                 }
               
              
