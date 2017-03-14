@@ -13,7 +13,7 @@
     <body>
         <div class="container-fluid">
             <div class="row">      
-            <%@include file = "includes/sideMenu.html" %>
+            <%@include file = "includes/sideMenus.jsp" %>
                 <!-- main -->		
 
                 <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main" style="background: #f2f4f8;">
