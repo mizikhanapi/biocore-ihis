@@ -28,7 +28,7 @@ body, html {
  * Card component
  */
 .card {
-    background-color: #F7F7F7;
+    background-color: #ffffff;
     /* just in case there no content*/
     padding: 20px 25px 30px;
     margin: 0 auto 25px;
@@ -50,7 +50,7 @@ body, html {
     -moz-border-radius: 50%;
     -webkit-border-radius: 50%;
     border-radius: 50%;
-	text-align: center;
+    text-align: center;
 }
 
 /*
@@ -82,7 +82,6 @@ body, html {
 .form-signin #inputEmail,
 .form-signin #inputPassword {
     direction: ltr;
-    height: 44px;
     font-size: 16px;
 }
 
@@ -108,9 +107,6 @@ body, html {
 }
 
 .btn.btn-signin {
-    /*background-color: #4d90fe; */
-    background-color: rgb(104, 145, 162);
-    /* background-color: linear-gradient(rgb(104, 145, 162), rgb(12, 97, 33));*/
     padding: 0px;
     font-weight: 700;
     font-size: 14px;
@@ -119,33 +115,45 @@ body, html {
     -webkit-border-radius: 3px;
     border-radius: 3px;
     border: none;
-    -o-transition: all 0.218s;
-    -moz-transition: all 0.218s;
-    -webkit-transition: all 0.218s;
-    transition: all 0.218s;
+    -o-transition: all 0.35s;
+    -moz-transition: all 0.35s;
+    -webkit-transition: all 0.35s;
+    transition: all 0.35s;
+    cursor: pointer;
+    margin-bottom: 10px;
 }
 
 .btn.btn-signin:hover,
 .btn.btn-signin:active,
 .btn.btn-signin:focus {
-    background-color: rgb(12, 97, 33);
+    color: #2DA3FB;
+    background-color: #fff;
+    border-color: #2DA3FB;
+    border: 1px solid;
 }
 
 .forgot-password {
-    color: rgb(104, 145, 162);
+    color: #2DA3FB;
+    margin-top: 5px;
 }
 
 .forgot-password:hover,
 .forgot-password:active,
 .forgot-password:focus{
-    color: rgb(12, 97, 33);
+    color: #666;
 }
 
 .select-full {
-width: 100%;
+    width: 100%;
     margin-bottom: 10px;
 }
 
 .table-user-information > tbody > tr:first-child {
     border-top: 0;
+}
+
+input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
+    background-color: #f7f7f7;
+    background-image: none;
+    color: rgb(0, 0, 0);
 }
