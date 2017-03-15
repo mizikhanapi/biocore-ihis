@@ -11,17 +11,24 @@
 <%@page import="Config.connect"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
-<span class="pull-right">
-<button id="MLM_btnAddNew" class="btn btn-success" data-status="pagado" data-toggle="modal" data-id="1" data-target="#TestCategory" style=" padding-right: 10px;padding-left: 10px;color: white;"><a data-toggle="tooltip" data-placement="top" title="Add Items" id="test"><i class=" fa fa-plus" style=" padding-right: 10px;padding-left: 10px;color: white;"></i></a>ADD Test Category</button>
-</span>
-<br><br>
+<h2>Maintain Test Category
+    <span class="pull-right">
+        <button id="MLM_btnAddNew" class="btn btn-success" data-status="pagado" data-toggle="modal" data-id="1" data-target="#TestCategory" style=" padding-right: 10px;padding-left: 10px;color: white;"><a data-toggle="tooltip" data-placement="top" title="Add Items" id="test"><i class=" fa fa-plus" style=" padding-right: 10px;padding-left: 10px;color: white;"></i></a>ADD Test Category</button>
+    </span>
+</h2>
+<hr/>
+
+<!-- Table -->
+<div class="table-responsive" id='viewMTCpage'></div>
+<!-- Table -->
+
 <div class="modal fade" id="TestCategory" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal"><i class="fa fa-times fa-lg"></i></button>
                 <h3 class="modal-title" id="lineModalLabel">Add Test Category</h3>
-                
+
             </div>
             <div class="modal-body">
 
@@ -43,7 +50,7 @@
                             <input type="text" name="testCatName" id="testCatName" class="form-control"  required="required"/>
                         </div>
                     </div>
-                                        
+
                     <!-- Text input-->
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="textinput">Status</label>
@@ -76,83 +83,57 @@
         </div>
     </div>
 </div>
-                                            
 
-                                        <div class="table-responsive" id='viewMTCpage'>           
+<script>
+    $(document).ready(function () {
+        $("#viewMTCpage").load("viewMTC.jsp");
 
-                                        </div>
-                                   
-        <script>
-                                $(document).ready(function () {
-                                   $("#viewMTCpage").load("viewMTC.jsp");
-                                   
-                                   $("#btn_add").click(function () {
-                                       var testCat = $("#testCat").val();
-                                       var testCatName = $("#testCatName").val();
-                                       var status = $("#status").val();
-                                       
-                                       if(testCat === ""){ 
-                                        alert("Complete The Fields");  
-                                        return false; 
-                                        
-                                    }
-                                    else if(testCatName === ""){ 
-                                        alert("Complete The Fields");  
-                                        return false; 
-                                    }
-                                    else if(status === ""){ 
-                                        alert("Complete The Fields");  
-                                        return false; 
-                                    }
-                                    else{
-                                        $.ajax({
-                                           url: "tCategoryInsert.jsp",
-                                           type: "post",
-                                           data: {
-                                               testCat: testCat,
-                                               testCatName: testCatName,
-                                               status: status
-                                           },
-                                           timeout: 10000,
-                                           success: function(data) {
-                                                var d = data.split("|");
-                                                if (d[1] === '1') {
-                                                    $("#viewMTCpage").load("viewMTC.jsp");
-                                                    $("#testCat").val("");
-                                                    $("#testCatName").val("");
-                                                    $("#status").val("Active");
-                                                    alert("Test is submited succesfully!");
-                                                } else {
-                                                    alert("Insertion failed!");
-                                                }
-                                           },
-                                           error: function(err) {
-                                               
-                                           }
-                                       
-                                       });
-                                    }   
-                                          
-                                       
-                                  });
-                                });
+        $("#btn_add").click(function () {
+            var testCat = $("#testCat").val();
+            var testCatName = $("#testCatName").val();
+            var status = $("#status").val();
 
-                            </script>
-        <script>
-            
-        w3IncludeHTML();
+            if (testCat === "") {
+                alert("Complete The Fields");
+                return false;
 
-        $(document).ready(function () {
-            //$("#WardOccupancy").load("WardOccupancy.jsp");
-            //$("#RecieveOderTable").load("RecieveOder-Table.jsp");
-            
-            
-            $("#headerindex").load("libraries/header.html");
-            $("#topmenuindex").load("libraries/topMenus.html");
-            $("#sidemenus").load("libraries/sideMenus.jsp");
-//                $("#WardOccupancyTable").load("WardOccupancy-Table.jsp");
+            } else if (testCatName === "") {
+                alert("Complete The Fields");
+                return false;
+            } else if (status === "") {
+                alert("Complete The Fields");
+                return false;
+            } else {
+                $.ajax({
+                    url: "tCategoryInsert.jsp",
+                    type: "post",
+                    data: {
+                        testCat: testCat,
+                        testCatName: testCatName,
+                        status: status
+                    },
+                    timeout: 10000,
+                    success: function (data) {
+                        var d = data.split("|");
+                        if (d[1] === '1') {
+                            $("#viewMTCpage").load("viewMTC.jsp");
+                            $("#testCat").val("");
+                            $("#testCatName").val("");
+                            $("#status").val("Active");
+                            alert("Test is submited succesfully!");
+                        } else {
+                            alert("Insertion failed!");
+                        }
+                    },
+                    error: function (err) {
+
+                    }
+
+                });
+            }
+
 
         });
+    });
 
-    </script>
-  
+</script>

@@ -40,7 +40,7 @@
                               <td><%=dataPatientApp.get(i).get(4)%></td>
                               <td><%=dataPatientApp.get(i).get(5)%></td>
                               <td><%=dataPatientApp.get(i).get(6)%></td>
-                              <td><a href='VerifySpecimen.jsp?pmi=<%=dataPatientApp.get(i).get(1)%> &specimen_no=<%=dataPatientApp.get(i).get(0)%>' class='btn btn-primary btn' ><span class='glyphicon glyphicon-'></span>Assign</a></td>
+                              <td><a href='VerifySpecimen.jsp?pmi=<%=dataPatientApp.get(i).get(1)%> &specimen_no=<%=dataPatientApp.get(i).get(0)%>' class='btn btn-primary btn-block' ><span class='glyphicon glyphicon-'></span>Assign</a></td>
                           </tr>
                      <%
                       }}
