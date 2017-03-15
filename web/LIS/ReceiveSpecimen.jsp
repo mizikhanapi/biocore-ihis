@@ -204,7 +204,7 @@
                                         </div>
                                       </div>
                                   </div>
-                <button type="button" class="btn btn-default" id="back">Cancel Receive</button>
+                <button type="button" class="btn btn-default" id="back">Back</button>
             </div></div>
         
                                         </div>

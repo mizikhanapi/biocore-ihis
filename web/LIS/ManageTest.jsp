@@ -47,7 +47,6 @@
                         <div class="tabbable-line" id="navDiv">
                             <ul class="nav nav-tabs" id="ulTabs">
                                 <li class="active"> <a href="#tab_default_1" data-toggle="tab" >Verify Specimen For Test</a> </li>
-                                <li> <a href="#tab_default_2" data-toggle="tab"> Verify Test Result </a> </li>
                             </ul>
                         </div>
                     </div>
@@ -66,7 +65,9 @@
                                     <!-- tab content -->
                                     <div class="tab-content">
                                         <div class="tab-pane active" id="tab_default_1">
-                                            <div class="table-responsive" id='viewMT'></div>
+                                            <div class="table-responsive" id='viewMT'>
+                                                
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

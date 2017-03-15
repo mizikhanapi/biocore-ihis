@@ -8,7 +8,7 @@
                               // Statement st = con.createStatement();
                              //  ResultSet resultset = 
                               // st.executeQuery("SELECT om.order_no,OM.PMI_NO,PMS.PATIENT_NAME,OM.ORDER_DATE,OM.HFC_CD,OM.EPISODE_DATE,OM.ORDER_BY FROM LIS_ORDER_MASTER OM, PMS_PATIENT_BIODATA PMS WHERE OM.pmi_no = PMS.PMI_NO");
-                                     String sqlPatientApp = "SELECT DISTINCT ls.specimen_no,ls.pmi_no,pms.NEW_IC_NO,pms.PATIENT_NAME,lom.order_no,lom.order_date FROM lis_specimen ls,lis_order_detail lod,lis_order_master lom,pms_patient_biodata pms WHERE ls.order_no=lod.order_no AND lod.order_no= lom.order_no AND lom.pmi_no = pms.PMI_NO GROuP BY(ls.specimen_no)";
+                                     String sqlPatientApp = "SELECT DISTINCT ls.specimen_no,ls.pmi_no,pms.NEW_IC_NO,pms.PATIENT_NAME,lom.order_no,ls.Status_specimen,lom.order_date FROM lis_specimen ls,lis_order_detail lod,lis_order_master lom,pms_patient_biodata pms WHERE ls.order_no=lod.order_no AND lod.order_no= lom.order_no AND lom.pmi_no = pms.PMI_NO GROuP BY(ls.specimen_no)";
                                      ArrayList<ArrayList<String>> dataPatientApp = conn.getData(sqlPatientApp);    
 
                         %>
@@ -20,8 +20,8 @@
                                 <th class="col-sm-1">Name</th>
                                 <th class="col-sm-1">Registration No</th>				 
                                 <th class="col-sm-1">Order No</th>
-                                <th class="col-sm-1">Order Date</th>
-                                <th class="col-sm-1">Order Time</th>
+                                <th class="col-sm-1">Specimen Status</th>
+                                <th class="col-sm-1">Order Date Time</th>
                                 <th class="col-sm-1">Action</th>
                             </tr>
                         </thead>
@@ -39,7 +39,7 @@
                               <td></td>
                               <td><%=dataPatientApp.get(i).get(4)%></td>
                               <td><%=dataPatientApp.get(i).get(5)%></td>
-                              <td><%=dataPatientApp.get(i).get(5)%></td>
+                              <td><%=dataPatientApp.get(i).get(6)%></td>
                               <td><a href='VerifySpecimen.jsp?pmi=<%=dataPatientApp.get(i).get(1)%> &specimen_no=<%=dataPatientApp.get(i).get(0)%>' class='btn btn-primary btn' ><span class='glyphicon glyphicon-'></span>Assign</a></td>
                           </tr>
                      <%

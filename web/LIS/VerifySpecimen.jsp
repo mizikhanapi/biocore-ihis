@@ -1,4 +1,6 @@
-
+<%
+session.invalidate();
+%>
 <%-- 
     Document   : view_order
     Created on : Nov 24, 2016, 12:24:01 PM
@@ -31,12 +33,9 @@
         <script src="assets/js/bootstrap.min.js"></script> 
         <script src="assets/js/w3data.js"></script>
         <script src="assets/js/bootbox.min.js"></script>  
-        <script>
-            jQuery(function ($) {
-            document.getElementById("Verify_Result").disabled = true;
-            })
-            
-        </script>
+       
+        
+        
     </head>
     <body>
        
@@ -69,17 +68,17 @@
                                     </ul>
                                     <!-- tab content -->
                                     <div class="tab-content">
+                                        
                                         <div class="tab-pane active" id="tab_default_1">
                                                 <%
-                                                    Conn conn = new Conn();
+                                                Conn conn = new Conn();
                                                 String pmi = request.getParameter("pmi");
                                                 String specimen_no1 = request.getParameter("specimen_no");
                                                 String query1 = "SELECT pb.`PMI_NO`, pb.`NEW_IC_NO`, pb.`PATIENT_NAME`,ls.order_no,ls.specimen_no,ls.`Collection_date`,ls.`Collection_time`,lom.order_date,lom.order_by,lom.hfc_from FROM pms_patient_biodata pb,lis_specimen ls,lis_order_master lom WHERE pb.`PMI_NO` = ls.pmi_no AND ls.pmi_no =lom.pmi_no AND pb.`PMI_NO` = '"+pmi+"' AND ls.specimen_no = '"+specimen_no1+"' GROUP BY(ls.specimen_no)";
                                                 ArrayList<ArrayList<String>> q2 = conn.getData(query1);
                                                 %>  
-                                           
+                                          
                                     <div class="row">
-
                                        <%if (q2.size() > 0) 
                                             {
                                                 for (int i = 0; i < q2.size(); i++) 
@@ -98,6 +97,7 @@
                                         </p>
                                         <p>
                                             <em>Name: <%=q2.get(i).get(2)%></em>
+                                            
                                         </p>
                                         <p>
                                             <em>Registration No: </em>
@@ -117,7 +117,7 @@
                                     <div class="col-xs-6 col-sm-6 col-md-6 text-right">
                                         </br>
                                         <p>
-                                            <em>Specimen No: <%=q2.get(i).get(4)%> <input type="text" name="Specimen_no" id="order_no" value="<%=q2.get(i).get(4)%>" style="display: none;"></em>
+                                            <em>Specimen No: <%=q2.get(i).get(4)%> <input type="text" name="Specimen_no" id="specimen_no" value="<%=q2.get(i).get(4)%>" style="display: none;"></em>
                                         </p>
                                         <p>
                                             <em>Specimen Type: <%%></em>
@@ -148,13 +148,12 @@
     <table id="MTC"  class="table table-striped table-bordered" cellspacing="0" width="100%">
                     <%
                         
-                        String pmi2 = request.getParameter("pmi");
-                        String specimen_no = request.getParameter("specimen_no");
-                                
-                         String query4 = "SELECT ls.specimen_no,lod.item_cd, lod.item_name, lod.spe_container, lod.volume, lod.spe_source, lod.requestor_comments, ls.Status_specimen, ls.commen_specimen FROM lis_order_detail lod,lis_specimen ls WHERE ls.item_cd = lod.item_cd AND ls.specimen_no = '"+specimen_no+"' AND ls.pmi_no='"+pmi2+"' GROUP BY(lod.item_cd)";
-                         ArrayList<ArrayList<String>> q4 = conn.getData(query4);    
+                        String order_no = request.getParameter("order_no");
+                        //out.print(pmi+"   "+specimen_no1);        
+                        String query4 = "SELECT ls.specimen_no,lod.item_cd, lod.item_name, lod.spe_container, lod.volume, lod.spe_source, lod.requestor_comments, ls.Status_specimen, ls.commen_specimen, las.Verification FROM lis_order_detail lod,lis_specimen ls, lis_assign_result las WHERE ls.item_cd = lod.item_cd AND ls.item_cd = las.item_cd AND ls.specimen_no = '"+specimen_no1+"' AND ls.pmi_no='"+pmi+"' GROUP BY(lod.item_cd)";
+                        ArrayList<ArrayList<String>> q4 = conn.getData(query4);    
                      %>
-                     <input type="text" id="pmi" value="<%=pmi2%>" style="display: none;"><input type="text" id="specimen_no" value="<%=specimen_no%>" style="display: none;">
+                     <input type="text" id="pmi" value="<%=pmi%>" style="display: none;"><input type="text" id="specimen_no" value="<%=specimen_no1%>" style="display: none;">
     <thead>
         <tr>
                 <th class="col-sm-1">Item Code</th>
@@ -165,13 +164,12 @@
                 <th class="col-sm-1">Requestor Comment</th>
                 <th class="col-sm-1">Specimen Status</th>
                 <th class="col-sm-1">Specimen Comment</th>
-                <th class="col-sm-1">Result Status</th>
-                <th class="col-sm-1">Selection</th>
+                <th class="col-sm-1">Test Status</th>
+                <th class="col-sm-1">Assign</th>
+                <th class="col-sm-1">Verify</th>
         </tr>
     </thead>
     <tbody>
-
-       
          <%if (q4.size() > 0) 
            {
                 for (int i = 0; i < q4.size(); i++) 
@@ -185,8 +183,13 @@
                 <td><%=q4.get(i).get(6)%></td>
                 <td><%=q4.get(i).get(7)%></td>
                 <td><%=q4.get(i).get(8)%></td>
-                <td></td>
-                <td><input type="checkbox" name="chkSpecimen" id="checky" value="<%=q4.get(i).get(0)%>" class="specimenselect" onchange="document.getElementById('Verify_Result').disabled = !this.checked;"> 
+                <td><%=q4.get(i).get(9)%></td>
+                <td>
+                    <a href='AssignResult.jsp?item_cd=<%=q4.get(i).get(1)%> &item_name=<%=q4.get(i).get(2)%> &pmi1=<%=pmi%> &specimen_no1=<%=specimen_no1%>' class='btn btn-primary btn' ><span class='glyphicon glyphicon-'></span>Assign Result</a>
+                    </td>
+               <td>
+                    <a href='VerifyResult.jsp?item_cd=<%=q4.get(i).get(1)%> &item_name=<%=q4.get(i).get(2)%> &pmi1=<%=pmi%> &specimen_no1=<%=specimen_no1%>' class='btn btn-primary btn' ><span class='glyphicon glyphicon-'></span>Verify Result</a>
+                    
                </td>
         <%
                 }
@@ -196,39 +199,20 @@
           
         </tr>
        
+        
+       
     </tbody>
 </table>
         <div class="col-xs-12 col-md-12">
             
             <div class=" pull-right">
-                <button type="button" class="btn btn-default" id="reject" data-toggle="modal" data-target="#Verify_Specimen">Verify Specimen</button>
-                <button type="button" class="btn btn-default" id="reject" data-toggle="modal" data-target="#Reject_Specimen">Reject Specimen</button>
-                <div class="modal fade" id="Reject_Specimen" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
-                                      <div class="modal-dialog">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <div class="modal-header">
-                                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><%= new SimpleDateFormat("HH:mm:ss").format(new java.util.Date())%></button>
-                                                    <h4 class="modal-title" id="myModalLabel">Reject Specimen</h4>
-                                                </div>
-                                                    <br><br>
-                                                    <div class="form-group">
-                                                        <label for="exampleInputEmail1"> Reason: </label>
-                                                        <textarea name="career[message]" class="form-control" id="fcomment" placeholder="Write your reason" ></textarea>
-                                                    </div>
-                                                    <div class="form-group pull-right">
-                                                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                                                        <button type="submit" class="btn btn-primary" id="sub_reject">Submit</button>
-                                                    </div>
-                                            </div>
-                                        </div>
-                                      </div>
-                                  </div>
-                <button type="button" class="btn btn-default" id="reject" data-toggle="modal" data-target="#Assign_Result">Assign Result</button>
-                <button type="submit" class="btn btn-primary" id="reject" data-toggle="modal" data-target="#Verify_Result">Verify Result</button>
+                
+               
+                
                 
                 <button type="button" class="btn btn-default" id="back">Back</button>
-            </div></div>
+            </div>
+        </div>
         
                                         </div>
                                     </div>

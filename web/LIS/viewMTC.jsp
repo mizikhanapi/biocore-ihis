@@ -44,20 +44,28 @@
                             </div>
                             <div class="modal-body">  
                                 <!--<form name="myForm" action="j.jsp" method="post">-->
+                                    
                                     <div class="form-group">
-                                        <label for="exampleInputEmail1">Test category code</label>
+                                    <label class="col-md-4 control-label" for="textinput">Test category code</label>
+                                    <div class="col-md-8">
                                         <input type="text" class="form-control" name="tcode" id="tcode<%=i%>"  value='<%=q1.get(i).get(0)%>' readonly="">
+                                     </div>
                                     </div>
                                     <div class="form-group">
-                                        <label for="exampleInputEmail1">Test category name</label>
+                                        <label class="col-md-4 control-label" for="textinput">Test category name</label>
+                                        <div class="col-md-8">
                                         <input type="text" class="form-control" name="tname" id="tname<%=i%>"  value='<%=q1.get(i).get(1)%>'>
+                                        </div>
                                     </div>
                                     <div class="form-group">
-                                        <label>Status</label>
-                                        <select class="form-control" name="tstatus" id="tstatus<%=i%>">
+                                        <label class="col-md-4 control-label" for="textinput">Status</label>
+                                        <div class="col-md-8">
+                                            <select class="form-control" name="tstatus" id="tstatus<%=i%>">
                                             <option value="Active" <% if (q1.get(i).get(2).equals("Active")) { out.print("selected"); } %>>Active</option>
                                             <option value="Inactive" <% if (q1.get(i).get(2).equals("Inactive")) { out.print("selected"); } %>>Inactive</option>
                                         </select>
+                                        </div>
+                                        
                                     </div>
                                 <!--</form>-->
                             </div>

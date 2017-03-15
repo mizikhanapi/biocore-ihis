@@ -3,7 +3,7 @@
     Created on : Nov 24, 2016, 12:24:01 PM
     Author     : Ahmed
 --%>
-<%@page import="dbConn1.Conn"%>
+<%@page import="dBConn.Conn"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="Config.connect"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -256,7 +256,7 @@
                 <script>
                      $(document).ready(function () {
                      $("#btn_update_<%=i%>").click(function () {
-                            var tcode = "$("#tcode_<%=i%>").val()";
+                            var tcode = $("#tcode_<%=i%>").val();
                             var fcomment = $("#fcomment_<%=i%>").val();
 
                             $.ajax({

@@ -67,12 +67,8 @@
                                     </ul>
                                     <!-- tab content -->
                                     <div class="tab-content">
-                                        <div class="tab-pane active" id="tab_default_1">
-
-                                            
-
-                                                
-                                               <br>
+                                        <div class="tab-pane active" id="tab_default_1">               
+                            <br>
                             <br>
                     <div class="col-xs-6 col-sm-6 col-md-6">
                     <address>
@@ -180,10 +176,6 @@
                                 <button type="button" class="btn btn-primary" data-dismiss="modal" id="assign">Submit</button> 
                                 <input type="text" id="patient_name" name="patient_name" value="<%out.print(request.getParameter("patient_name"));%>" style="display: none;"> 
                             </div>
-                                           
-
-
-
                                         </div>
                                     </div>
                                 </div>
