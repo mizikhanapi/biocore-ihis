@@ -79,20 +79,20 @@
         text-decoration: none;
         background-color: #1976D2 !important;
     }
-    
+
     .langsir {
-    background-color: rgba(0,0,0,.5);
-    height: 100%;
-    left: 0;
-    opacity: .1;
-    top: 0;
-    visibility: hidden;
-    width: 100%;
-    z-index: 3;
-    position: fixed;
-    transition: visibility 0 linear .4s,opacity .4s cubic-bezier(.4,0,.2,1);
-    transform: translateZ(0);
-}
+        background-color: rgba(0,0,0,.5);
+        height: 100%;
+        left: 0;
+        opacity: .1;
+        top: 0;
+        visibility: hidden;
+        width: 100%;
+        z-index: 3;
+        position: fixed;
+        transition: visibility 0 linear .4s,opacity .4s cubic-bezier(.4,0,.2,1);
+        transform: translateZ(0);
+    }
 
 }
 
@@ -188,7 +188,7 @@
     font-size: 18px;
     color: #fff;
     font-weight: 300;
-    padding: 15px 15px 15px 0px;
+    padding: 18px 15px 12px 0px;
 }
 
 .back>li>a:hover {
@@ -443,37 +443,62 @@ ul.nav.navbar-nav.navbar-left.back {
 }
 
 @media (max-width: 767px) {
-.navbar-left {
-    float: left!important;
-}
+    .navbar-left {
+        float: left!important;
+    }
 
-.navbar-right {
-    float: right!important;
-    margin-right: -15px;
-}
+    .navbar-right {
+        float: right!important;
+        margin-right: -15px;
+    }
 
-.navbar-right>li>a {
-    padding: 15px;
-}
+    .navbar-right>li>a {
+        padding: 15px;
+    }
 
-.navbar-nav {
-    margin: 0px;
-}
+    .navbar-nav {
+        margin: 0px;
+    }
 
-.sidebar {
-    position: fixed;
-    bottom: 0px;
-    background: rgb(255, 255, 255);
-    z-index: 9999999!important;
-    height: 100%;
-    width: 230px;
+    .sidebar {
+        position: fixed;
+        bottom: 0px;
+        background: rgb(255, 255, 255);
+        z-index: 9999999!important;
+        height: 100%;
+        width: 230px;
         transform-style: preserve-3d;
-    transition-delay: .1s;
-    transition-duration: .2s;
-    transition-property: transform,left;
-    transition-timing-function: cubic-bezier(.4,0,.2,1);
+        transition-delay: .1s;
+        transition-duration: .2s;
+        transition-property: transform,left;
+        transition-timing-function: cubic-bezier(.4,0,.2,1);
+    }
+
 }
 
+.search-drop {
+    border: 1px solid #eee;
+    border-top: none;
+    margin-top: -15px;
+}
 
+.search-drop>ul {
+    width: auto !important;
+    height: auto !important;
+    max-height: 200px !important;
+    overflow: auto;
+    list-style: none;
+    padding: 0px;
+}
 
+.search-drop>ul>li>a {
+    display: block;
+    padding: 10px;
+    color: #666;
+    cursor: pointer;
+}
+
+.search-drop>ul>li>a:hover {
+    background: #ccc;
+    color: #333;
 }

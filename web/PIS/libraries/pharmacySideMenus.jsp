@@ -13,11 +13,11 @@
         <!-- SIDEBAR USER TITLE -->
         <div class="profile-usertitle">
             <div class="profile-usertitle-name">
-               <%=session.getAttribute("USER_NAME").toString() %>
+                <%=session.getAttribute("USER_NAME").toString()%>
             </div>
-<!--            <div class="profile-usertitle-job">
-                Developer
-            </div>-->
+            <div class="profile-usertitle-job">
+                <%=session.getAttribute("ROLE_NAME").toString()%>
+            </div>
         </div>
         <!-- SIDEBAR BUTTONS -->
         <div class="profile-userbuttons">
@@ -27,8 +27,8 @@
     <hr/>
     <!-- profile Sidebar -->
     <ul class="nav nav-sidebar" id="side-menu">
-        <li><a href="manageInventory.jsp"><i class="fa fa-credit-card sideIcon" aria-hidden="true" ></i>Manage Drug Inventory </a></li>
-        <li><a href="patientOrderList.jsp"><i class="fa fa-credit-card sideIcon" aria-hidden="true" ></i>Dispense Drug Order</a></li>   
-        <li><a href="manageReport.jsp"><i class="fa fa-credit-card sideIcon" aria-hidden="true" ></i>Report</a></li>
+        <li><a href="manageInventory.jsp"><i class="fa fa-barcode fa-lg" aria-hidden="true" ></i>Manage Drug Inventory </a></li>
+        <li><a href="patientOrderList.jsp"><i class="fa fa-shopping-cart fa-lg" aria-hidden="true" ></i>Dispense Drug Order</a></li>   
+        <li><a href="manageReport.jsp"><i class="fa fa-bar-chart fa-lg" aria-hidden="true" ></i>Report</a></li>
     </ul>  
 </div>

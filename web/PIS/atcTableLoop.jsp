@@ -51,12 +51,12 @@
     } %></td> <!--status 3 --> 
 <td>
     <!-- Update Part Start -->
-    <a id="updateTButton" data-toggle="modal" data-target="#atcUpdateModal"><i class="fa fa-pencil-square-o" aria-hidden="true" style="display: inline-block;color: #337ab7;"></i></a>
+    <a id="updateTButton" data-toggle="modal" data-target="#atcUpdateModal"><i class="fa fa-pencil-square-o fa-lg" aria-hidden="true" style="display: inline-block;color: #337ab7; cursor: pointer;"></i></a>
     <!-- Update Part End -->
 </td>
 <td>
     <!-- Delete Button Start -->
-    <a id="deleteTButton" class="testing"><i class="fa fa-times" aria-hidden="true" style="display: inline-block;color: #d9534f;" ></i></a>
+    <a id="deleteTButton" class="testing"><i class="fa fa-times fa-lg" aria-hidden="true" style="display: inline-block;color: #d9534f; cursor: pointer;" ></i></a>
     <!-- Delete Button End -->
 </td>
 </tr>
@@ -73,7 +73,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal"><i class="fa fa-times fa-lg"></i></button>
-                <h2 class="modal-title" id="lineModalLabel" align="center">Update ATC Code Details</h2>
+                <h3 class="modal-title" id="lineModalLabel">Update ATC Code Details</h3>
             </div>
             <div class="modal-body">
 
@@ -83,7 +83,7 @@
                     <!-- Text input-->
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="textinput">ATC Code</label>
-                        <div class="col-md-8">
+                        <div class="col-md-7">
                             <input id="updateatcCode" type="text" placeholder="ATC Code" class="form-control input-md" maxlength="15" readonly>
                         </div>
                     </div>
@@ -91,7 +91,7 @@
                     <!-- Text input-->
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="textinput">ATC Description</label>
-                        <div class="col-md-8">
+                        <div class="col-md-7">
                             <textarea id="updateatcDesc" class="form-control" rows="4" placeholder="ATC Description" maxlength="200" ></textarea>
                         </div>
                     </div>
@@ -99,7 +99,7 @@
                     <!-- Text input-->
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="textinput">Category Code</label>
-                        <div class="col-md-8">
+                        <div class="col-md-7">
                             <input id="updateatccategory" type="text" placeholder="Category Code" maxlength="50" class="form-control input-md" >
                         </div>
                     </div>
@@ -107,7 +107,7 @@
                     <!-- Text input-->
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="textinput">HFC Code</label>
-                        <div class="col-md-8">
+                        <div class="col-md-7">
                             <input id="updateatchfc" type="text" placeholder="HFC Code" maxlength="30" class="form-control input-md" >
                             <div id="updateatcHFCSearch">
                                 <!--for search area-->
@@ -118,7 +118,7 @@
                     <!-- Text input-->
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="textinput">Discipline Code</label>
-                        <div class="col-md-8">
+                        <div class="col-md-7">
                             <input id="updateatcdiscipline" type="text" placeholder="Discipline Code" maxlength="30" class="form-control input-md" >
                             <div id="updateatcDisciplineSearch">
                                 <!--for search area-->
@@ -129,7 +129,7 @@
                     <!-- Text input-->
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="textinput">Sub-Discipline Code</label>
-                        <div class="col-md-8">
+                        <div class="col-md-7">
                             <input id="updateatcsubdiscipline" type="text" placeholder="Sub-Discipline Code" maxlength="30" class="form-control input-md" >
                             <div id="updateatcSubDisciplineSearch">
                                 <!--for search area-->
@@ -141,7 +141,7 @@
                     <!-- Text input-->
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="textinput">Status</label>
-                        <div class="col-md-8">
+                        <div class="col-md-7">
                             <select class="form-control" name="tstatus" id="updatestatus">
                                 <option value="1" >Active</option>
                                 <option value="0" >Inactive</option>

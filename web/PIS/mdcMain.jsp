@@ -22,7 +22,7 @@
 <h4 style="padding-top: 30px;padding-bottom: 35px; font-weight: bold">
     MDC MEDICINE MANAGEMENT
     <span class="pull-right">
-        <button class="btn btn-success" data-status="pagado" data-toggle="modal" data-id="1" data-target="#mdcAddModal" style=" padding-right: 10px;padding-left: 10px;color: white;"><a data-toggle="tooltip" data-placement="top" title="Add Items" id="test"><i class=" fa fa-plus" style=" padding-right: 10px;padding-left: 10px;color: white;"></i></a>ADD MDC CODE</button>
+        <button class="btn btn-success" data-status="pagado" data-toggle="modal" data-id="1" data-target="#mdcAddModal" style=" padding-right: 10px;padding-left: 10px;"><a data-toggle="tooltip" data-placement="top" title="Add Items" id="test"></a><i class=" fa fa-plus" style=" padding-right: 10px;padding-left: 10px;"></i>ADD MDC CODE</button>
     </span>
 </h4>
 <!-- Add Button End -->
@@ -32,7 +32,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal"><i class="fa fa-times fa-lg"></i></button>
-                <h2 class="modal-title" id="lineModalLabel" align="center">Add New MDC Code</h2>
+                <h3 class="modal-title" id="lineModalLabel">Add New MDC Code</h3>
             </div>
             <div class="modal-body">
 
@@ -46,7 +46,7 @@
                             <!-- Text input-->
                             <div class="form-group">
                                 <label class="col-md-4 control-label" for="textinput">ATC Drug Code *</label>
-                                <div class="col-md-8">
+                                <div class="col-md-7">
                                     <input id="addUD_ATC_CODE" name="textinput" type="text" placeholder="Please Search ATC Drug Code" class="form-control input-md" maxlength="25" >
                                     <div id="addUD_ATC_CODESearch">
                                         <!--for search area-->
@@ -58,7 +58,7 @@
                             <!-- Text input-->
                             <div class="form-group">
                                 <label class="col-md-4 control-label" for="textinput">MDC Drug Code *</label>
-                                <div class="col-md-8">
+                                <div class="col-md-7">
                                     <input id="addUD_MDC_CODE" name="textinput" type="text" placeholder="Please Insert MDC Drug Code" class="form-control input-md" maxlength="25" >
                                 </div>
                             </div>
@@ -68,7 +68,7 @@
                             <!-- Text input-->
                             <div class="form-group">
                                 <label class="col-md-4 control-label" for="textinput">Product Name *</label>
-                                <div class="col-md-8">
+                                <div class="col-md-7">
                                     <input id="addD_TRADE_NAME" name="textinput" type="text" placeholder="Please Insert Product Name" class="form-control input-md" maxlength="200">
                                 </div>
                             </div>
@@ -76,7 +76,7 @@
                             <!-- Text input-->
                             <div class="form-group">
                                 <label class="col-md-4 control-label" for="textinput">Generic Name *</label>
-                                <div class="col-md-8">
+                                <div class="col-md-7">
                                     <textarea id="addD_GNR_NAME" class="form-control" rows="3" maxlength="500" placeholder="Please Insert Generic Name"></textarea>
                                 </div>
                             </div>
@@ -84,7 +84,7 @@
                             <!-- Select Basic -->
                             <div class="form-group">
                                 <label class="col-md-4 control-label" for="selectbasic">Drug Route *</label>
-                                <div class="col-md-8">
+                                <div class="col-md-7">
                                     <select id="addD_ROUTE_CODE" name="selectbasic" class="form-control">
                                         <option value="Select Drug Route">Select Drug Route</option>
                                         <%
@@ -106,7 +106,7 @@
                             <!-- Select Basic -->
                             <div class="form-group">
                                 <label class="col-md-4 control-label" for="selectbasic">Dosage Form *</label>
-                                <div class="col-md-8">
+                                <div class="col-md-7">
                                     <select id="addD_FORM_CODE" name="selectbasic" class="form-control">
                                         <option value="Select Dosage Form">Select Dosage Form</option>
                                         <%
@@ -129,7 +129,7 @@
                             <!-- Text input-->
                             <div class="form-group">
                                 <label class="col-md-4 control-label" for="textinput">Strength *</label>
-                                <div class="col-md-8">
+                                <div class="col-md-7">
                                     <input id="addD_STRENGTH" name="textinput" type="text" placeholder="Please Insert Drug Strength" class="form-control input-md" maxlength="50">
                                 </div>
                             </div>
@@ -137,7 +137,7 @@
                             <!-- Text input-->
                             <div class="form-group">
                                 <label class="col-md-4 control-label" for="textinput">Stock Quantity *</label>
-                                <div class="col-md-8">
+                                <div class="col-md-7">
                                     <input id="addD_STOCK_QTY" name="textinput" type="number" placeholder="Please Insert Stock Qty" class="form-control input-md" maxlength="20">
                                 </div>
                             </div>
@@ -145,14 +145,14 @@
                             <!-- Text input-->
                             <div class="form-group">
                                 <label class="col-md-4 control-label" for="textinput">Location Code *</label>
-                                <div class="col-md-8">
+                                <div class="col-md-7">
                                     <input id="addD_LOCATION_CODE" name="textinput" type="text" placeholder="Please Insert Location Code" class="form-control input-md" maxlength="4">
                                 </div>
                             </div>
 
                             <div class="form-group">
                                 <label class="col-md-4 control-label" for="selectbasic">Select Status *</label>
-                                <div class="col-md-8">
+                                <div class="col-md-7">
                                     <select id="addSTATUS" name="addSTATUS" class="form-control">
                                         <option value="No Status">No Status</option>
                                         <option value="1" selected>Active</option>
@@ -165,7 +165,7 @@
                         </div>
 
 
-                        <div class="col-md-6">
+                        <div class="col-md-6" style="border-left: 1px solid #eee;">
 
                             <h4>Purchase</h4>
                             <hr/>
@@ -173,7 +173,7 @@
                             <!-- Text input-->
                             <div class="form-group">
                                 <label class="col-md-4 control-label" for="textinput">Packaging *</label>
-                                <div class="col-md-8">
+                                <div class="col-md-7">
                                     <input id="addD_PACKAGING" name="textinput" type="number" placeholder="Please Insert Packaging" class="form-control input-md" step="0.01" maxlength="20">
                                 </div>
                             </div>
@@ -181,7 +181,7 @@
                             <!-- Text input-->
                             <div class="form-group">
                                 <label class="col-md-4 control-label" for="textinput">Price per Pack *</label>
-                                <div class="col-md-8">
+                                <div class="col-md-7">
                                     <input id="addD_PRICE_PPACK" name="textinput" type="number" placeholder="Please Insert Price per Pack" class="form-control input-md" step="0.01" maxlength="20">
                                 </div>
                             </div>
@@ -189,7 +189,7 @@
                             <!-- Text input-->
                             <div class="form-group">
                                 <label class="col-md-4 control-label" for="textinput">Purchase Price *</label>
-                                <div class="col-md-8">
+                                <div class="col-md-7">
                                     <input id="addD_COST_PRICE" name="textinput" type="number" placeholder="Please Insert Purchase Price" class="form-control input-md" step="0.01" maxlength="20">
                                 </div>
                             </div>
@@ -197,7 +197,7 @@
                             <!-- Text input-->
                             <div class="form-group">
                                 <label class="col-md-4 control-label" for="textinput">Sell Price *</label>
-                                <div class="col-md-8">
+                                <div class="col-md-7">
                                     <input id="addD_SELL_PRICE" name="textinput" type="number" placeholder="Please Insert Sell Price" class="form-control input-md" step="0.01" maxlength="20">
                                 </div>
                             </div>
@@ -208,7 +208,7 @@
                             <!-- Select Basic -->
                             <div class="form-group">
                                 <label class="col-md-4 control-label" for="selectbasic">Dose *</label>
-                                <div class="col-md-4">
+                                <div class="col-md-3">
                                     <input id="addD_QTY" name="textinput" type="number" placeholder="Please Insert Dosage" class="form-control input-md" step="0.01" maxlength="20">
                                 </div>
                                 <div class="col-md-4">
@@ -233,7 +233,7 @@
                             <!-- Select Basic -->
                             <div class="form-group">
                                 <label class="col-md-4 control-label" for="selectbasic">Frequency *</label>
-                                <div class="col-md-8">
+                                <div class="col-md-7">
                                     <select id="addD_FREQUENCY" name="addD_FREQUENCY" class="form-control" >
                                         <option value="No Frequency">No Frequency</option>
                                         <%
@@ -255,7 +255,7 @@
                             <!-- Select Basic -->
                             <div class="form-group">
                                 <label class="col-md-4 control-label" for="selectbasic">Duration *</label>
-                                <div class="col-md-4">
+                                <div class="col-md-3">
                                     <input id="addD_DURATION" name="textinput" type="number" class="form-control input-md" placeholder="Please Insert Duration" maxlength="10">
                                 </div>
                                 <div class="col-md-4">
@@ -280,7 +280,7 @@
                             <!-- Select Basic -->
                             <div class="form-group">
                                 <label class="col-md-4 control-label" for="selectbasic">Instruction *</label>
-                                <div class="col-md-8">
+                                <div class="col-md-7">
                                     <select id="addD_ADVISORY_CODE" name="addD_ADVISORY_CODE" class="form-control">
                                         <option value="No Instruction">No Instruction</option>
                                         <%
@@ -302,7 +302,7 @@
                             <!-- Text input-->
                             <div class="form-group">
                                 <label class="col-md-4 control-label" for="textinput">Cautionary *</label>
-                                <div class="col-md-8">
+                                <div class="col-md-7">
                                     <textarea id="addD_CAUTIONARY_CODE" class="form-control" rows="3" placeholder="Please Insert Drug Cautionary" maxlength="150"></textarea>
                                 </div>
                             </div>
@@ -310,7 +310,7 @@
                             <!-- Text input-->
                             <div class="form-group">
                                 <label class="col-md-4 control-label" for="textinput">Expire Date *</label>
-                                <div class="col-md-8">
+                                <div class="col-md-7">
                                     <input id="addD_EXP_DATE" name="addD_EXP_DATE" type="text"class="form-control input-md" placeholder="Select Expire Date" readonly>
                                 </div>
                             </div>
@@ -318,7 +318,7 @@
                             <!-- Select Basic -->
                             <div class="form-group">
                                 <label class="col-md-4 control-label" for="selectbasic">Classification *</label>
-                                <div class="col-md-8">
+                                <div class="col-md-7">
                                     <select id="addD_CLASSIFICATION" name="addD_CLASSIFICATION" class="form-control">
                                         <option value="No Classification">No Classification</option>
                                         <%

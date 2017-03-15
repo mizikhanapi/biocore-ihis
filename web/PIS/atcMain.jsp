@@ -10,7 +10,7 @@
 <h4 style="padding-top: 30px;padding-bottom: 35px; font-weight: bold">
     ATC MEDICINE MANAGEMENT
     <span class="pull-right">
-        <button class="btn btn-success" data-status="pagado" data-toggle="modal" data-id="1" data-target="#detail" style=" padding-right: 10px;padding-left: 10px;color: white;"><a data-toggle="tooltip" data-placement="top" title="Add Items" id="test"><i class=" fa fa-plus" style=" padding-right: 10px;padding-left: 10px;color: white;"></i></a>ADD ATC</button>
+        <button class="btn btn-success" data-status="pagado" data-toggle="modal" data-id="1" data-target="#detail" style=" padding-right: 10px;padding-left: 10px;"><a data-toggle="tooltip" data-placement="top" title="Add Items" id="test"></a><i class=" fa fa-plus" style=" padding-right: 10px;padding-left: 10px;"></i>ADD ATC</button>
     </span>
 </h4>
 <!-- Add Button End -->
@@ -22,7 +22,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal"><i class="fa fa-times fa-lg"></i></button>
-                <h2 class="modal-title" id="lineModalLabel" align="center">Add New ATC Code</h2>
+                <h3 class="modal-title" id="lineModalLabel" >Add New ATC Code</h3>
             </div>
             <div class="modal-body">
 
@@ -32,7 +32,7 @@
                     <!-- Text input-->
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="textinput">ATC Code *</label>
-                        <div class="col-md-8">
+                        <div class="col-md-7">
                             <input id="atcCode" name="atcCode" type="text" placeholder="Insert ATC Code" class="form-control input-md" maxlength="15" required>
                         </div>
                     </div>
@@ -40,7 +40,7 @@
                     <!-- Text input-->
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="textinput">ATC Description *</label>
-                        <div class="col-md-8">
+                        <div class="col-md-7">
                             <textarea id="atcDesc" name="atcDesc" class="form-control" rows="4" placeholder="Insert ATC Description" maxlength="200" required></textarea>
                         </div>
                     </div>
@@ -48,7 +48,7 @@
                     <!-- Text input-->
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="textinput">Category Code *</label>
-                        <div class="col-md-8">
+                        <div class="col-md-7">
                             <input id="category" name="category" type="text" placeholder="Insert Category Code" class="form-control input-md" maxlength="50" required>
                         </div>
                     </div>
@@ -57,9 +57,9 @@
                     <!-- Text input-->
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="textinput">HFC Code *</label>
-                        <div class="col-md-8">
+                        <div class="col-md-7">
                             <input id="hfc" type="text" placeholder="Insert HFC Code" maxlength="30" class="form-control input-md" >
-                            <div id="atcHFCSearch">
+                            <div id="atcHFCSearch" class="search-drop">
                                 <!--for search area-->
                             </div>
                         </div>
@@ -68,9 +68,9 @@
                     <!-- Text input-->
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="textinput">Discipline Code *</label>
-                        <div class="col-md-8">
+                        <div class="col-md-7">
                             <input id="discipline" type="text" placeholder="Insert Discipline Code" maxlength="30" class="form-control input-md" >
-                            <div id="atcDisciplineSearch">
+                            <div id="atcDisciplineSearch" class="search-drop">
                                 <!--for search area-->
                             </div>
                         </div>
@@ -79,9 +79,9 @@
                     <!-- Text input-->
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="textinput">Sub-Discipline Code *</label>
-                        <div class="col-md-8">
+                        <div class="col-md-7">
                             <input id="subdiscipline" type="text" placeholder="Insert Sub-Discipline Code" maxlength="30" class="form-control input-md" >
-                            <div id="atcSubDisciplineSearch">
+                            <div id="atcSubDisciplineSearch" class="search-drop">
                                 <!--for search area-->
                             </div>
                         </div>
@@ -91,7 +91,7 @@
                     <!-- Text input-->
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="textinput">Status  *</label>
-                        <div class="col-md-8">
+                        <div class="col-md-7">
                             <label class="radio-inline">
                                 <input type="radio" name="status" id="status1" value="1">
                                 Active 

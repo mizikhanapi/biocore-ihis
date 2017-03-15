@@ -119,7 +119,6 @@
                     <!-- menu top -->
                     <div class="row">
                         <div class="col-md-12">
-                            <div  class="thumbnail">
 
 
                                 <!-- Tab Menu -->
@@ -152,8 +151,6 @@
                                     </div>
                                 </div>
                                 <!-- Tab Menu -->
-
-                            </div>
                         </div>
                     </div>
                 </div>
