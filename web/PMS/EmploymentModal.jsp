@@ -25,19 +25,19 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">X</span><span class="sr-only">Close</span></button>
+                <button type="button" class="close" data-dismiss="modal"><i class="fa fa-times fa-lg"></i><span class="sr-only">Close</span></button>
                 <h3 class="modal-title" id="lineModalLabel">Employment Information</h3>
             </div>
             <div class="modal-body" >
 
-                <div class="thumbnail" id="maintainEMP">
+                <div id="maintainEMP">
                     <!--            <h4>Employment Information</h4>-->
                     <form class="form-horizontal" id="empform">
 
                         <!-- Text input-->
                         <div class="form-group">
                             <label class="col-md-4 control-label" for="textinput">PMI No.</label>  
-                            <div class="col-md-8">
+                            <div class="col-md-6">
                                 <input id="EMPpmino" name="EMPpmino" type="text"  class="form-control input-md">
                                 <input id="EMPseq" name="EMPseq" type="hidden"  class="form-control input-md">
                             </div>
@@ -46,7 +46,7 @@
                         <!-- Text input-->
                         <div class="form-group">
                             <label class="col-md-4 control-label" for="textinput">Employer Code</label>  
-                            <div class="col-md-8">
+                            <div class="col-md-6">
                                 <input id="EMPempcode" name="EMPempcode" type="text"  class="form-control input-md">
 
                             </div>
@@ -55,7 +55,7 @@
                         <!-- Text input-->
                         <div class="form-group">
                             <label class="col-md-4 control-label" for="textinput">Employer Name</label>  
-                            <div class="col-md-8">
+                            <div class="col-md-6">
                                 <input id="EMPempname" name="EMPempname" type="text"  class="form-control input-md" maxlength="80">
 
                             </div>
@@ -64,8 +64,8 @@
                         <!-- Text input-->
                         <div class="form-group">
                             <label class="col-md-4 control-label" for="textinput">Occupation</label>  
-                            <div class="col-md-8">
-                                
+                            <div class="col-md-6">
+
                                 <input id="EMPoccu" name="textinput" type="text" placeholder="select occupation.." class="form-control input-md">
                                 <input id="EMPoccuCODE" name="PMIhstateCODE" type="hidden" placeholder="select country.." class="form-control input-md">
                                 <div id="matcEMPoccu"></div>
@@ -75,7 +75,7 @@
                         <!-- Text input-->
                         <div class="form-group">
                             <label class="col-md-4 control-label" for="textinput">Joined Date</label>  
-                            <div class="col-md-8">
+                            <div class="col-md-6">
                                 <input id="EMPjdate" name="EMPjdate" type="text"  class="form-control input-md">
 
                             </div>
@@ -84,7 +84,7 @@
                         <!-- Select Basic -->
                         <div class="form-group">
                             <label class="col-md-4 control-label" for="selectbasic">Income Range</label>
-                            <div class="col-md-8">
+                            <div class="col-md-6">
                                 <select id="EMPinrange" name="EMPinrange" class="form-control">
                                     <option selected="" disabled="">Please select Income Range</option>
                                     <option value="-">-</option>
@@ -99,8 +99,8 @@
                         <!-- Select Basic -->
                         <div class="form-group">
                             <label class="col-md-4 control-label" for="selectbasic">Health Facility</label>
-                            <div class="col-md-8">
-             
+                            <div class="col-md-6">
+
                                 <input id="EMPhfc" name="textinput" type="text" placeholder="select health facility.." class="form-control input-md">
                                 <input id="EMPhfcCODE" name="PMIhstateCODE" type="hidden" placeholder="select country.." class="form-control input-md">
                                 <div id="matcEMPhfc"></div>
@@ -110,7 +110,7 @@
                         <!-- Text input-->
                         <div class="form-group">
                             <label class="col-md-4 control-label" for="textinput">Created Date</label>  
-                            <div class="col-md-8">
+                            <div class="col-md-6">
                                 <input id="EMPcredate" name="EMPcredate" type="text"  class="form-control input-md" readonly>
 
                             </div>
@@ -119,7 +119,7 @@
                         <!-- Select Basic -->
                         <div class="form-group">
                             <label class="col-md-4 control-label" for="selectbasic">Status</label>
-                            <div class="col-md-8">
+                            <div class="col-md-6">
                                 <select id="EMPstatus" name="EMPstatus" class="form-control">
                                     <option selected="" disabled="">Please select status</option>
                                     <option value="-">-</option>
@@ -132,16 +132,17 @@
                         </div>
 
                     </form>
-                    <div class="text-center">
-                        <button id="EMPsave" name="EMPsave" class="btn btn-primary" data-dismiss="modal" role="button"><i class="fa fa-floppy-o fa-lg"></i>&nbsp; Save</button>
-                        <!--                <button id="EMPupdate" name="EMPupdate" class="btn btn-default" disabled=""><i class="fa fa-edit fa-lg"></i>&nbsp; Update</button>-->
-                        <button id="EMPclear" name="EMPclear" class="btn btn-default"><i class="fa fa-ban fa-lg"></i>&nbsp; Clear</button>
-                    </div>
                 </div>
 
             </div>
             <div class="modal-footer">
                 <div class="btn-group btn-group-justified" role="group" aria-label="group button">
+                    <div class="btn-group" role="group">
+                        <button id="EMPsave" name="EMPsave" class="btn btn-primary btn-block btn-lg" data-dismiss="modal" role="button">Save</button>
+                    </div>
+                    <div class="btn-group" role="group">
+                        <button id="EMPclear" name="EMPclear" class="btn btn-default btn-block btn-lg">Clear</button>
+                    </div>
                 </div>
                 </form>
             </div>
@@ -149,17 +150,17 @@
     </div>
 </div>
 <script>
-    $(document).ready(function(){
-  
-        
-        $(function(){
-            $('#EMPcredate').datepicker({dateFormat:'dd-mm-yy',changeMonth:true,changeYear:true});
+    $(document).ready(function () {
+
+
+        $(function () {
+            $('#EMPcredate').datepicker({dateFormat: 'dd-mm-yy', changeMonth: true, changeYear: true});
         });
-        
-        $(function(){
-            $('#EMPjdate').datepicker({dateFormat:'dd-mm-yy',changeMonth:true,changeYear:true});
+
+        $(function () {
+            $('#EMPjdate').datepicker({dateFormat: 'dd-mm-yy', changeMonth: true, changeYear: true});
         });
-        
+
     });
     //yyyy-MM-dd HH:mm:ss
     var nowDate = new Date();
@@ -204,98 +205,98 @@
     var yyyyMMddHHmmss = year + "-" + ZeroMonth + "-" + ZeroDay + " " + hours + ":" + ZeroMinutes + ":" + ZeroSeconds;
     var HHmmss = hours + ":" + ZeroMinutes + ":" + ZeroSeconds;
     var yyyyMMdd = year + "-" + ZeroMonth + "-" + ZeroDay;
-    var ddMMyyyy= ZeroDay+ "-" + ZeroMonth + "-" +year;
+    var ddMMyyyy = ZeroDay + "-" + ZeroMonth + "-" + year;
     $('#EMPcredate').val(ddMMyyyy);
-    
 
-    
+
+
     //function to save employment when click save button
-        $('#EMPsave').on('click', function () {
+    $('#EMPsave').on('click', function () {
 
-            var EMPpmino = $('#EMPpmino').val(),
-                    EMPseq = $('#EMPseq').val(),
-                    EMPcd = $('#EMPempcode').val(),
-                    EMPname = $('#EMPempname').val(),
-                    EMPoccu = $('#EMPoccuCODE').val(),
-                    EMPjdate = $('#EMPjdate').val(),
-                    EMPinrange = $('#EMPinrange').val(),
-                    EMPhfc = $('#EMPhfcCODE').val(),
-                    EMPcredate = $('#EMPcredate').val(),
-                    EMPstatus = $('#EMPstatus').val();
+        var EMPpmino = $('#EMPpmino').val(),
+                EMPseq = $('#EMPseq').val(),
+                EMPcd = $('#EMPempcode').val(),
+                EMPname = $('#EMPempname').val(),
+                EMPoccu = $('#EMPoccuCODE').val(),
+                EMPjdate = $('#EMPjdate').val(),
+                EMPinrange = $('#EMPinrange').val(),
+                EMPhfc = $('#EMPhfcCODE').val(),
+                EMPcredate = $('#EMPcredate').val(),
+                EMPstatus = $('#EMPstatus').val();
 
-            var splitCreDate = String(EMPcredate).split("-");
-            var convertedCreDate = splitCreDate[0] + "/" + splitCreDate[1] + "/" + splitCreDate[2];
+        var splitCreDate = String(EMPcredate).split("-");
+        var convertedCreDate = splitCreDate[0] + "/" + splitCreDate[1] + "/" + splitCreDate[2];
 
-            var splitJDate = String(EMPjdate).split("-");
-            var convertedJDate = splitJDate[0] + "/" + splitJDate[1] + "/" + splitJDate[2];
+        var splitJDate = String(EMPjdate).split("-");
+        var convertedJDate = splitJDate[0] + "/" + splitJDate[1] + "/" + splitJDate[2];
 
-            var datas = {
-                EMPpmino: EMPpmino,
-                EMPseq: EMPseq,
-                EMPcd: EMPcd,
-                EMPname: EMPname,
-                EMPoccu: EMPoccu,
-                EMPjdate: convertedJDate,
-                EMPinrange: EMPinrange,
-                EMPhfc: EMPhfc,
-                EMPcredate: convertedCreDate,
-                EMPstatus: EMPstatus
-            };
-            //console.log(datas);
-            bootbox.confirm({
-                message: "Are you sure want to save patient's Employment Information?",
-                buttons: {
-                    confirm: {
-                        label: 'Yes',
-                        className: 'btn-success'
-                    },
-                    cancel: {
-                        label: 'No',
-                        className: 'btn-danger'
-                    }
+        var datas = {
+            EMPpmino: EMPpmino,
+            EMPseq: EMPseq,
+            EMPcd: EMPcd,
+            EMPname: EMPname,
+            EMPoccu: EMPoccu,
+            EMPjdate: convertedJDate,
+            EMPinrange: EMPinrange,
+            EMPhfc: EMPhfc,
+            EMPcredate: convertedCreDate,
+            EMPstatus: EMPstatus
+        };
+        //console.log(datas);
+        bootbox.confirm({
+            message: "Are you sure want to save patient's Employment Information?",
+            buttons: {
+                confirm: {
+                    label: 'Yes',
+                    className: 'btn-success'
                 },
-                callback: function (result) {
-                    //if true go to PMI page
-                    if (result === true) {
-                        $.ajax({
-                            type: "post",
-                            url: "controller/saveEmp.jsp",
-                            data: datas,
-                            timeout: 3000,
-                            success: function (data) {
-                                console.log(data);
-                                if (data.trim() === "true") {
-                                    bootbox.alert('Patient Employment Information  saved successfully');
-                                    $('#empform')[0].reset();
-                                    $('input[id=EMPpmino]').val($.trim(EMPpmino));
-                                    //$('#empform').find('input, select, textarea').not("#EMPpmino").val('');
-                                    //$('select').find('option').prop("selected", false);
-                                    $.ajax({
-                                        url: "controller/listEmp.jsp",
-                                        type: "post",
-                                        data: {'PMINO': EMPpmino},
-                                        timeout: 3000,
-                                        success: function (returnhtml) {
-                                            console.log(returnhtml);
-                                            $('#tableListEmp').html(returnhtml);
-                                            $('#EMPpmino').prop('readonly', false);
-                                        }
-                                    });
-                                } else {
-                                    bootbox.alert('Patient Employment Information  fail to save');
-                                }
-
-                            }, error: function () {
-
+                cancel: {
+                    label: 'No',
+                    className: 'btn-danger'
+                }
+            },
+            callback: function (result) {
+                //if true go to PMI page
+                if (result === true) {
+                    $.ajax({
+                        type: "post",
+                        url: "controller/saveEmp.jsp",
+                        data: datas,
+                        timeout: 3000,
+                        success: function (data) {
+                            console.log(data);
+                            if (data.trim() === "true") {
+                                bootbox.alert('Patient Employment Information  saved successfully');
+                                $('#empform')[0].reset();
+                                $('input[id=EMPpmino]').val($.trim(EMPpmino));
+                                //$('#empform').find('input, select, textarea').not("#EMPpmino").val('');
+                                //$('select').find('option').prop("selected", false);
+                                $.ajax({
+                                    url: "controller/listEmp.jsp",
+                                    type: "post",
+                                    data: {'PMINO': EMPpmino},
+                                    timeout: 3000,
+                                    success: function (returnhtml) {
+                                        console.log(returnhtml);
+                                        $('#tableListEmp').html(returnhtml);
+                                        $('#EMPpmino').prop('readonly', false);
+                                    }
+                                });
+                            } else {
+                                bootbox.alert('Patient Employment Information  fail to save');
                             }
 
-                        });
-                    }
+                        }, error: function () {
+
+                        }
+
+                    });
                 }
-            });
-
-
+            }
         });
+
+
+    });
     //function to clear the form when click clear button
     $('#EMPclear').on('click', function () {
         var pmino = $('input[id=EMPpmino]').val();

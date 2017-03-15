@@ -491,6 +491,11 @@ ul.nav.navbar-nav.navbar-left.back {
     padding: 0px;
 }
 
+.search-drop>ul>li:hover{
+    cursor: pointer;
+    background: #eee;
+}
+
 .search-drop>ul>li>a {
     display: block;
     padding: 10px;
