@@ -21,9 +21,9 @@
 
 <div class="row" id="transfer_Patient">
     <div class="col-md-12">
-         <%@include file = "searchPatientTransfer.jsp" %>
+        <%@include file = "searchPatientTransfer.jsp" %>
 
-            <%@include file = "searchWardTransfer.jsp" %>
+        <%@include file = "searchWardTransfer.jsp" %>
 
         <div class="text-center">
             <button id="clearSearch" name="clearSearch" type="button" class="btn btn-default"><i class="fa fa-ban fa-lg"></i>&nbsp; Clear</button>
@@ -32,14 +32,6 @@
         </div>
         </form>
     </div>
-
-
-
-
-
-
-
-</div>
 </div>
 
 <!--</div>-->
@@ -173,7 +165,5 @@
         $("table tbody").remove();
     });
 </script>
-</body>
-
 
 

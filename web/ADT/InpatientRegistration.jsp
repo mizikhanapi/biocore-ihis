@@ -3,9 +3,6 @@
 <%@page import="Config.connect"%>
 <%@page import="dBConn.Conn"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<link rel="stylesheet" href="old/assets/css/loading.css">
-
-
 
 <%
 //    String hfc = session.getAttribute("HFC").toString();
@@ -94,8 +91,9 @@ Text input
                         <!-- Text input-->
                         <div class="form-group">
                             <label class="col-md-4 control-label" for="textinput">PMI No.</label>
-                            <div class="col-md-4">
-                                <input id="pmino" name="pmino" type="text" placeholder=" " readonly class="form-control input-md">                        </div>
+                            <div class="col-md-6">
+                                <input id="pmino" name="pmino" type="text" placeholder=" " readonly class="form-control input-md">                        
+                            </div>
                         </div>
 
 
@@ -103,7 +101,7 @@ Text input
                         <!-- Text input-->
                         <div class="form-group">
                             <label class="col-md-4 control-label" for="textinput">IC NO</label>
-                            <div class="col-md-4">
+                            <div class="col-md-6">
                                 <input id="poic" name="poic" type="text" readonly placeholder="" class="form-control input-md">
                             </div>
                         </div>
@@ -111,7 +109,7 @@ Text input
                         <!-- Select Basic -->
                         <div class="form-group">
                             <label class="col-md-4 control-label" for="selectbasic">ID Type</label>
-                            <div class="col-md-4">
+                            <div class="col-md-6">
                                 <input id="pid" name="pid" type="text" placeholder=""  readonly class="form-control input-md">
                             </div>
                         </div>
@@ -119,7 +117,7 @@ Text input
                         <!-- Text input-->
                         <div class="form-group">
                             <label class="col-md-4 control-label" for="textinput">MRN Number</label>
-                            <div class="col-md-4">
+                            <div class="col-md-6">
                                 <input id="MRN" name="MRN" type="text" readonly placeholder="" class="form-control input-md">
                             </div>
                         </div>
@@ -133,7 +131,7 @@ Text input
                         <!-- Text input-->
                         <div class="form-group">
                             <label class="col-md-4 control-label" for="textinput">Name</label>
-                            <div class="col-md-4">
+                            <div class="col-md-6">
                                 <input id="pname" name="pname" type="text" readonly placeholder="" class="form-control input-md">
                             </div>
                         </div>
@@ -141,7 +139,7 @@ Text input
                         <!-- Text input-->
                         <div class="form-group">
                             <label class="col-md-4 control-label" for="textinput">New IC No.</label>
-                            <div class="col-md-4">
+                            <div class="col-md-6">
                                 <input id="pnic" name="pnic" type="text" readonly placeholder="" class="form-control input-md">
                             </div>
                         </div>
@@ -151,7 +149,7 @@ Text input
                         <!-- Text input-->
                         <div class="form-group">
                             <label class="col-md-4 control-label" for="textinput">ID No</label>
-                            <div class="col-md-4">
+                            <div class="col-md-6">
                                 <input id="pidno" name="pidno" type="text" readonly placeholder="" class="form-control input-md">
                             </div>
                         </div>
@@ -169,7 +167,7 @@ Text input
                         <!-- Select Basic -->
                         <div class="form-group">
                             <label class="col-md-4 control-label" for="selectbasic">Eligibility Source</label>
-                            <div class="col-md-4">
+                            <div class="col-md-6">
                                 <select id="EliSource" name="EliSource" class="form-control">
                                     <option value="-">-</option>
                                     <option value="null" selected="" disabled="">Select Eligibility Source</option>
@@ -189,7 +187,7 @@ Text input
                         <!-- Select Basic -->
                         <div class="form-group">
                             <label class="col-md-4 control-label" for="selectbasic">Admission type</label>
-                            <div class="col-md-4">
+                            <div class="col-md-6">
                                 <select id="AdmissionType" name="selectbasic" class="form-control">
                                     <option value="-">-</option>
                                     <option value="null" selected="" disabled="">Select Admission Type</option>
@@ -210,7 +208,7 @@ Text input
                         <!-- Select Basic -->
                         <div class="form-group">
                             <label class="col-md-4 control-label" for="selectbasic">Referring from</label>
-                            <div class="col-md-4">
+                            <div class="col-md-6">
                                 <select id="Refer" name="Refer" class="form-control">
                                     <option value="" selected="" disabled="">Select </option>
                                     <option value="1">1. KLINIK PESAKIT LUAR PAKAR</option>
@@ -228,7 +226,7 @@ Text input
                         <!-- Select Basic -->
                         <div class="form-group">
                             <label class="col-md-4 control-label" for="selectbasic">Document type</label>
-                            <div class="col-md-4">
+                            <div class="col-md-6">
                                 <select id="DocType" name="DocType" class="form-control">
                                     <option value="" selected="" disabled="">Select </option>
                                     <%--
@@ -249,7 +247,7 @@ Text input
                         <!-- Text input-->
                         <div class="form-group">
                             <label class="col-md-4 control-label" for="textinput"> GL expiry date</label>
-                            <div class="col-md-4">
+                            <div class="col-md-6">
                                 <input id="GL" name="GL" type="text" placeholder="Pop-up Calendar" readonly class="form-control input-md">
                             </div>
                         </div>
@@ -263,7 +261,7 @@ Text input
                         <!-- Select Basic -->
                         <div class="form-group">
                             <label class="col-md-4 control-label" for="selectbasic">Eligibility Type</label>
-                            <div class="col-md-4">
+                            <div class="col-md-6">
                                 <select id="EliTy" name="EliTy" class="form-control">
                                     <option value="1" selected="" disabled="">Select Eligibility Type</option>
 
@@ -283,7 +281,7 @@ Text input
                         <!-- Text input-->
                         <div class="form-group">
                             <label class="col-md-4 control-label" for="textinput">Admission reason</label>
-                            <div class="col-md-4">
+                            <div class="col-md-6">
                                 <input id="AdmissionReason" name="textinput" type="text" placeholder="" class="form-control input-md">
                             </div>
                         </div>
@@ -291,7 +289,7 @@ Text input
                         <!-- Text input-->
                         <div class="form-group">
                             <label class="col-md-4 control-label" for="textinput">Police case</label>
-                            <div class="col-md-8">
+                            <div class="col-md-6">
                                 <label class="radio-inline">
                                     <input type="radio" name="PoliceCase" id="PoliceCase1" value="Yes">
                                     Yes
@@ -306,7 +304,7 @@ Text input
                         <!-- Text input-->
                         <div class="form-group">
                             <label class="col-md-4 control-label" for="textinput">Document no</label>
-                            <div class="col-md-4">
+                            <div class="col-md-6">
                                 <input id="DocNo" name="textinput" type="text" placeholder="" class="form-control input-md">
                             </div>
                         </div>
@@ -315,7 +313,7 @@ Text input
                         <!-- Text input-->
                         <div class="form-group">
                             <label class="col-md-4 control-label" for="textinput">Payer Group</label>
-                            <div class="col-md-4">
+                            <div class="col-md-6">
                                 <input id="payer" name="payer" type="text" placeholder="" class="form-control input-md">
                             </div>
                         </div>
@@ -329,7 +327,7 @@ Text input
                         <!-- Select Basic -->
                         <div class="form-group">
                             <label class="col-md-4 control-label" for="selectbasic">Discipline</label>
-                            <div class="col-md-4">
+                            <div class="col-md-6">
                                 <select id="EliSource" name="EliSource" class="form-control">
                                     <option value="-">-</option>
                                     <option value="null" selected="" disabled="">Select Discipline</option>
@@ -355,7 +353,7 @@ Text input
                         <!-- Select Basic -->
                         <div class="form-group">
                             <label class="col-md-4 control-label" for="selectbasic">Ward Name</label>
-                            <div class="col-md-4">
+                            <div class="col-md-6">
                                 <select id="AdmissionType" name="selectbasic" class="form-control">
                                     <option value="-">-</option>
                                     <option value="null" selected="" disabled="">Select Ward Name</option>
@@ -383,7 +381,7 @@ Text input
                         <!-- Text input-->
                         <div class="form-group">
                             <label class="col-md-4 control-label" for="textinput">Deposit (RM)</label>
-                            <div class="col-md-4">
+                            <div class="col-md-6">
                                 <input id="Deposit" name="textinput" type="text" placeholder="RM :" class="form-control input-md">
                             </div>
                         </div>
@@ -397,7 +395,7 @@ Text input
                         <!-- Select Basic -->
                         <div class="form-group">
                             <label class="col-md-4 control-label" for="selectbasic">Ward Type</label>
-                            <div class="col-md-4">
+                            <div class="col-md-6">
                                 <select id="EliTy" name="EliTy" class="form-control">
                                     <option value="1" selected="" disabled="">Select Ward Type</option>
 
@@ -422,7 +420,7 @@ Text input
                         <!-- Select Basic -->
                         <div class="form-group">
                             <label class="col-md-4 control-label" for="selectbasic">Bed ID</label>
-                            <div class="col-md-4">
+                            <div class="col-md-6">
                                 <input id="BedIDReg" name="textinput" type="text" placeholder="Bed ID" readonly class="form-control input-md">
                                 </br>
 
@@ -434,10 +432,18 @@ Text input
                     </div>
                 </div>
                 <!-- List of Bed -->
-                <div class="panel panel-default">
-                    <div class="panel-body">
-                        <div>
-                            <%@include file = "bed.jsp" %>
+                <div class="row" style="margin: 20px 0;">
+                    <div class="col-md-12">
+                        <h4 style="text-align: center;">List of Bed</h4>
+                    </div>
+
+                    <div class="col-md-10 col-md-offset-1">
+                        <div class="panel panel-default ">
+                            <div class="panel-body">
+                                <div>
+                                    <%@include file = "bed.jsp" %>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -445,10 +451,9 @@ Text input
 
 
                 <div class="text-center">
-                    <button class="btn btn-primary " type="button" id="registerQueue"><i class="fa fa-floppy-o "></i> Register</button>
-                    <button class="btn btn-default " type="button" id="btnclear" name="btnclear" > <i class="fa fa-ban "></i>&nbsp; Clear</button>
+                    <button class="btn btn-primary " type="button" id="registerQueue"><i class="fa fa-plus "></i>&nbsp; Register</button>
+                    <button class="btn btn-default " type="button" id="btnclear" name="btnclear" > <i class="fa fa-times "></i>&nbsp; Clear</button>
                 </div>
-
 
             </form>
         </div>
