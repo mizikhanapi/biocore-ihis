@@ -57,18 +57,18 @@ public final class readinfo_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("\r\n");
 
    
-//        Conn conn = new Conn();
-//    
-//     String nationality = "SELECT * FROM adm_lookup_detail where master_reference_code = '0011'";
-//     String gender = "SELECT * FROM adm_lookup_detail where master_reference_code = '0041'";
-//     
-//     
-//     ArrayList<ArrayList<String>> dataNationality,dataGender;
-//     
-//     
-//     dataNationality = conn.getData(nationality);
-//     dataGender = conn.getData(gender);
-//     
+        Conn conn = new Conn();
+    
+     String nationality = "SELECT * FROM adm_lookup_detail where master_reference_code = '0011'";
+     String gender = "SELECT * FROM adm_lookup_detail where master_reference_code = '0041'";
+     
+     
+     ArrayList<ArrayList<String>> dataNationality,dataGender;
+     
+     
+     dataNationality = conn.getData(nationality);
+     dataGender = conn.getData(gender);
+     
 //     if(dataGender.size() > 0)
 //     {
 //        out.print(dataGender.get(0).get(1) +"<br>");
@@ -155,15 +155,17 @@ public final class readinfo_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                        \r\n");
       out.write("                         ");
 
-                              //  for (int i = 0; i < dataGender.size(); i++) {
+                                for (int i = 0; i < dataGender.size(); i++) {
       out.write("\r\n");
       out.write("                        <label class=\"btn \">\r\n");
-      out.write("                            <input type=\"radio\" name='gender' value=\"<//%=dataGender.get(i).get(1)%>\"><i class=\"fa fa-circle-o fa-2x\"></i><i class=\"fa fa-dot-circle-o fa-2x\"></i><span>");
-//=dataGender.get(i).get(2)
+      out.write("                            <input type=\"radio\" name='gender' value=\"");
+      out.print(dataGender.get(i).get(1));
+      out.write("\"><i class=\"fa fa-circle-o fa-2x\"></i><i class=\"fa fa-dot-circle-o fa-2x\"></i><span>");
+      out.print(dataGender.get(i).get(2));
       out.write("</span>\r\n");
       out.write("                        </label>\r\n");
       out.write("                        ");
- // }
+  }
                              
       out.write("\r\n");
       out.write("                    </div>\r\n");
@@ -184,13 +186,13 @@ public final class readinfo_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                        <div class=\"col-lg-8\">\r\n");
       out.write("                           <div class=\"row\">\r\n");
       out.write("                              <div class=\"col-lg-4\">\r\n");
-      out.write("                                <input type=\"number\" id=\"txt_day\" name=\"txt_day\" class=\"form-control input-sm\"  placeholder=\"DD\" required maxlength=\"2\" data-validation-required-message=\"Day is required\" >\r\n");
+      out.write("                                <input type=\"text\" id=\"txt_day\" name=\"txt_day\" class=\"form-control input-sm\"  placeholder=\"DD\" required maxlength=\"2\" data-validation-required-message=\"Day is required\" >\r\n");
       out.write("                              </div>\r\n");
       out.write("                              <div class=\"col-lg-4\">\r\n");
-      out.write("                               <input type=\"number\" id=\"txt_month\" name=\"txt_month\" class=\"form-control input-sm\"  placeholder=\"MM\" required maxlength=\"2\" data-validation-required-message=\"Month is required\" >\r\n");
+      out.write("                               <input type=\"text\" id=\"txt_month\" name=\"txt_month\" class=\"form-control input-sm\"  placeholder=\"MM\" required maxlength=\"2\" data-validation-required-message=\"Month is required\" >\r\n");
       out.write("                              </div>\r\n");
       out.write("                              <div class=\"col-lg-4\">\r\n");
-      out.write("                                <input type=\"number\" id=\"txt_year\" name=\"txt_year\" class=\"form-control input-sm\"  placeholder=\"YYYY\" required maxlength=\"4\" data-validation-required-message=\"Year is required\" >\r\n");
+      out.write("                                <input type=\"text\" id=\"txt_year\" name=\"txt_year\" class=\"form-control input-sm\"  placeholder=\"YYYY\" required maxlength=\"4\" data-validation-required-message=\"Year is required\" >\r\n");
       out.write("                              </div>\r\n");
       out.write("                           </div>\r\n");
       out.write("                        </div>\r\n");
@@ -205,18 +207,18 @@ public final class readinfo_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                                    <option value=\"-\">-</option>\r\n");
       out.write("                                    ");
 
-                                        //for (int i = 0;
-                                               // i < dataNationality.size();
-                                               // i++) {
+                                        for (int i = 0;
+                                                i < dataNationality.size();
+                                                i++) {
       out.write("\r\n");
       out.write("                                    <option value=\"");
-//=dataNationality.get(i).get(1)
+      out.print(dataNationality.get(i).get(1));
       out.write('"');
       out.write('>');
-//=dataNationality.get(i).get(2)
+      out.print(dataNationality.get(i).get(2));
       out.write("</option>\r\n");
       out.write("                                    ");
-  //}
+  }
                                     
       out.write("\r\n");
       out.write("                 </select>\r\n");

@@ -4,6 +4,8 @@
 <%@page import="org.apache.commons.lang3.StringUtils"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
+   Config.getBase_url(request);
+   Config.getFile_url(session);
    
         Conn conn = new Conn();
     
@@ -269,15 +271,15 @@
                         'userID': userid,
                         'userPassword': userpassword
                         };
-                        console.log(bioData);
-                        console.log(loginData);
+//                        console.log(bioData);
+//                        console.log(loginData);
                         $.ajax({
                             type: "POST",
                             url: "../Controller/insertPatient.jsp",
                             data: bioData,
                             timeout: 3000,
                             success: function (data){
-                                console.log(data.trim());
+//                                console.log(data.trim());
                                 $("#inputUserIC").val("");
                                 $("#inputUserID").val("");
                                 $("#inputUserName").val("");
@@ -312,7 +314,7 @@
                                     data: loginData,
                                     timeout: 3000,
                                     success: function (data){
-                                       console.log(data.trim()); 
+//                                       console.log(data.trim()); 
                                     },
                                     error: function (err) {
                                     console.log(err);

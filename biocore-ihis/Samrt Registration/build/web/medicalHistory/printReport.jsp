@@ -1,10 +1,9 @@
 
 <%
 
-    if (session.getAttribute("USER_IC") == null || session.getAttribute("USER_IC").equals(""))
+    if (session.getAttribute("Patient_IC") == null || session.getAttribute("Patient_IC").equals(""))
         {
             response.sendRedirect("../login.jsp");
-            out.print(session.getAttribute("USER_IC"));
         }
     
     
