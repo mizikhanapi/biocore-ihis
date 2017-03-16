@@ -7,7 +7,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-    <%@include file = "../assets/header.html" %>
+    <%@include file = "includes/header.jsp" %>
     <body onload="yearList()">
         <div class="container-fluid">
             <div class="row">      
