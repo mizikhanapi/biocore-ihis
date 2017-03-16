@@ -13,10 +13,6 @@
                 
                 </script>
 <%
-        }else if ((session.getAttribute("Admin_IC") == null || session.getAttribute("Admin_IC").equals("")))
-        {
-            response.sendRedirect("Adminlogin.jsp");
-            
         }
         else
         {

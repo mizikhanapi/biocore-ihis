@@ -1,9 +1,7 @@
-
-  body,input, button, select, option, textarea, a, h1, h2 {
+body,input, button, select, textarea, a, h1, h2 {
       font-size: 160%;
       
   }
-
 
 body {
   height: 100%;
@@ -59,7 +57,7 @@ h3 {
   text-overflow: clip;
   text-align: center;
   border-radius: 3px;
-  font-size: 15px;
+  font-size: 100%;
   background-color: rgb(104, 145, 162);
   color: #fff;
   overflow: visible;

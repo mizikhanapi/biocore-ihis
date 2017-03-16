@@ -4,15 +4,7 @@
 <%@page import="org.apache.commons.lang3.StringUtils"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
-    
-    if ((session.getAttribute("Admin_IC") == null || session.getAttribute("Admin_IC").equals("")))
-        {
-            response.sendRedirect("../Adminlogin.jsp");
-            
-        } else {
-            out.print(session.getAttribute("HFC"));
-    }
-    
+   
         Conn conn = new Conn();
     
      String nationality = "SELECT * FROM adm_lookup_detail where master_reference_code = '0011'";
@@ -54,7 +46,9 @@
     <link href="../assets/css/login.css" rel="stylesheet">
      <link  rel="stylesheet" href="../css/style.css">
      
-
+     <link rel="stylesheet" href="../css/datePicker lib/themes/default.css">
+    <link rel="stylesheet" href="../css/datePicker lib/themes/default.date.css">
+    
 </head>
 <body>
     
@@ -68,13 +62,12 @@
                  <i class="fa fa-user-md" aria-hidden="true" style="color: #666; font-size: 100px;"></i>
              </div>
              <h2 style="text-align: center;">iHIS</h2>
-             <p id="profile-name" class="profile-name-card">Please Enter your Information to Sign Up</p>
+             <p id="profile-name" class="profile-name-card">Please Fill in your Information Below</p>
              <form class="form-signin" >
                  <span id="reauth-email" class="reauth-email"></span>
                  
-                 <input type="text" id="inputUserIC" class="form-control" placeholder="User IC" name="useric" required autofocus>
-                 <input type="text" id="inputUserID" class="form-control" placeholder="User ID" name="userid" required >
-                 <input type="text" id="inputUserName" class="form-control" placeholder="User Name" name="username" required>
+                 <input type="text" id="inputUserIC" class="form-control" placeholder="Enter Your IC" name="useric" required autofocus>
+                  <input type="text" id="inputUserName" class="form-control" placeholder="Enter Your Name" name="username" required>
                  
                 <div class="form-group  ">
                     <label class="control-label " for="selectbasic">Please Select Gender</label>
@@ -94,12 +87,33 @@
                 </div>
                        
                      <!-- Text input-->
-                        <div class="form-group ">
+<!--                        <div class="form-group ">
                             <label class="col-md-4 " for="textinput">Date of Birth</label>
                             <div class="col-md-8">
-                                <input id="PMIbday" name="textinput" type="text" class="form-control input-md" required="">
+                                <input id="PMIbday" class="form-control"  name="date" type="text" autofocuss>
                             </div>
                         </div>
+                    -->
+                    
+                    <div class="form-group">
+                        <label class="col-lg-4 control-label">Date of Birth:</label>
+                        <div class="col-lg-8">
+                           <div class="row">
+                              <div class="col-lg-4">
+                                <input type="number" id="txt_day" name="txt_day" class="form-control input-sm"  placeholder="DD" required maxlength="2" data-validation-required-message="Day is required" >
+                              </div>
+                              <div class="col-lg-4">
+                               <input type="number" id="txt_month" name="txt_month" class="form-control input-sm"  placeholder="MM" required maxlength="2" data-validation-required-message="Month is required" >
+                              </div>
+                              <div class="col-lg-4">
+                                <input type="number" id="txt_year" name="txt_year" class="form-control input-sm"  placeholder="YYYY" required maxlength="4" data-validation-required-message="Year is required" >
+                              </div>
+                           </div>
+                        </div>
+                    </div>
+                    
+        
+                    
                     
                     
                  <select id="Usernational" name="selectNaationality" class="form-control select-full">
@@ -114,10 +128,13 @@
                                     %>
                  </select>
                  
-                 <input type="text" id="inpuOccupation" class="form-control" placeholder="Occupation" name="occupation" required>   
-                 <input type="text" id="inputUserEmail" class="form-control" placeholder="Email" name="useremail" required>  
-                 <input type="text" id="inputUserPhoneNo" class="form-control" placeholder="Phone Number" name="username" required>     
-                 <input type="password" id="inputUserPassword" class="form-control" placeholder="Password" name="password" required>     
+                 <input type="text" id="inpuOccupation" class="form-control" placeholder="Enter Your Occupation" name="occupation" required>   
+                 <input type="text" id="inputUserEmail" class="form-control" placeholder="Enter Your Email" name="useremail" required>  
+                 <input type="text" id="inputUserPhoneNo" class="form-control" placeholder="Enter Your Phone Number" name="username" required>     
+                 
+                 <label class="control-label margin1 " for="textinput">Account Information</label>
+                 <input type="text" id="inputUserID" class="form-control" placeholder="Enter Your Login Username" name="userid" required >
+                 <input type="password" id="inputUserPassword" class="form-control" placeholder="Enter Your Password" name="password" required>     
                 
              </form><!-- /form -->
              <div class="form-signin tac">
@@ -143,11 +160,27 @@
         <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
         <script src="../assets/js/bootbox.min.js"></script>
-      <script>
+        
+<!--        <script src="../css/datePicker lib/picker.js"></script>
+    <script src="../css/datePicker lib/picker.date.js"></script>
+    <script src="../css/datePicker lib/legacy.js"></script>-->
+
+    <script type="text/javascript">
         w3IncludeHTML();
 //       $(document).ready( function(){
            
-         $('#PMIbday').datepicker({dateFormat: 'dd-mm-yy', changeMonth: true, changeYear: true}); 
+//           $('#PMIbday').pickadate({
+//             format: 'yyyy-mm-dd',
+//            labelMonthNext: 'Go to the next month',
+//            labelMonthPrev: 'Go to the previous month',
+//            labelMonthSelect: 'Pick a month from the dropdown',
+//            labelYearSelect: 'Pick a year from the dropdown',
+//            selectMonths: true,
+//            selectYears: true
+//            });
+           
+           
+//         $('#PMIbday').datepicker({dateFormat: 'dd-mm-yy', changeMonth: true, changeYear: true}); 
            
     
             $("#submitSignup").on("click", function(){
@@ -166,7 +199,7 @@
             function signup() {
                 var useric,userid,username,usergender,usernationality,useremail,userphoneno,
                         useroccupation, userpassword,userbirthday;
-
+                        
                 useric = $("#inputUserIC").val();
                 userid = $("#inputUserID").val();
                 username = $("#inputUserName").val();
@@ -175,9 +208,8 @@
                 useremail = $("#inputUserEmail").val();
                 userphoneno = $("#inputUserPhoneNo").val();
                 userpassword = $("#inputUserPassword").val();
-                userbirthday = $("#PMIbday").val();
+                userbirthday = $("#txt_year").val() + "/" + $("#txt_month").val() + "/" + $("#txt_day").val();
                 useroccupation = $("#inpuOccupation").val();
-                    
 //                    var reN = /[0-9]/, reSA = /[a-z]/,reCA = /[A-Z]/;
         
                     if (useric === "") {
@@ -218,10 +250,10 @@
                         $("#inputUserPassword").focus();
                     }else if (validPassword(userpassword)) {
                       
-                        var splitBday = String(userbirthday).split("-");
-                        console.log(splitBday);
-                        var convertedBday = splitBday[2] + "/" + splitBday[1] + "/" + splitBday[0];
-                        console.log(convertedBday);
+//                        var splitBday = String(userbirthday).split("-");
+//                        console.log(splitBday);
+//                        var convertedBday = splitBday[2] + "/" + splitBday[1] + "/" + splitBday[0];
+//                        console.log(convertedBday);
                         var bioData = {
                         'userIC': useric,
                         'userID': userid,

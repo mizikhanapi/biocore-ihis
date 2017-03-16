@@ -23,18 +23,10 @@
         
     <div w3-include-html="../libraries/header.html"></div>
         <%@include file="../Header.jsp"%>
-        
-  
-    <link href="../assets/css/login.css" rel="stylesheet">
+ <link href="../assets/css/login.css" rel="stylesheet">
      <link  rel="stylesheet" href="../css/style.css">
-     
-    
 </head>
 <body>
-    
-
-    
-    
     <div class="container">
      <div class="" >
          <div class="card card-container" >
@@ -43,18 +35,18 @@
                  <i class="fa fa-user-md" aria-hidden="true" style="color: #666; font-size: 100px;"></i>
              </div>
              <h2 style="text-align: center;">iHIS</h2>
-             <p id="profile-name" class="profile-name-card">Please Enter your Information To Sign Up</p>
+             <p id="profile-name" class="profile-name-card">Please Enter your IC Number to View Report</p>
              
-             
-             
-<!--             <form class="form-signin" action="dashboard.jsp">
+             <input type="text" id="inputUserIC" name="useric" class="form-control margin1" placeholder="Enter Your IC Number">
+              
+        <!-- <form class="form-signin" action="dashboard.jsp">
                  <span id="reauth-email" class="reauth-email"></span>
                  
              </form> /form 
              -->
              <div class="form-signin tac">
                     <div class="tac margin1 centerBtnDisplay">
-                        <button class="btn btn-lg bttn btn_block" type="submit">Print</button>
+                        <button class="btn btn-lg bttn btn_block" type="submit">View Report</button>
                     </div>
                     <div class="tac margin1 centerBtnDisplay">
                         <button id="cancelSignup" class="btn btn-lg bttn btn_block ">Cancel</button>

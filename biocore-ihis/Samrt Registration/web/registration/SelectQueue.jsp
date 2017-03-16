@@ -5,18 +5,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
     
-    
-   if ((session.getAttribute("Admin_IC") == null || session.getAttribute("Admin_IC").equals("")))
-        {
-            response.sendRedirect("../Adminlogin.jsp");
-            
-        }else {
-            out.print(session.getAttribute("HFC").toString());
-        }
-    
-        
-     
-    
+   
     Conn conn = new Conn();
     
     //String Commonqueue = "select * from pms_queue_name where queue_type='CM' and hfc_cd='"+hfc+"'";
@@ -101,12 +90,12 @@
                  <i class="fa fa-user-md" aria-hidden="true" style="color: #666; font-size: 100px;"></i>
              </div>
              <h2 style="text-align: center;">iHIS</h2>
-             <p id="profile-name" class="profile-name-card">Please Enter your Information To Sign Up</p>
+             <p id="profile-name" class="profile-name-card">Please Enter your IC Number</p>
              <form class="form-signin" action="dashboard.jsp">
                  <span id="reauth-email" class="reauth-email"></span>
                  
-                 <input type="text" id="inputUserIC" class="form-control" placeholder="User IC" name="useric">
-                 <input type="text" id="inputUserName" class="form-control" placeholder="User Name" name="username" >
+                 <input type="text" id="inputUserIC" class="form-control" placeholder="Enter Your IC" name="useric">
+                 <input type="text" id="inputUserName" class="form-control" placeholder="" name="username" disabled="">
                  
                 
                  <div class="form-group">

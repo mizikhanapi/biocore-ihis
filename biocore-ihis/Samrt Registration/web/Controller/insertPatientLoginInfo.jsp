@@ -15,7 +15,7 @@
     
     userID = request.getParameter("userID");
     userPassword = request.getParameter("userPassword");
-    hfc = session.getAttribute("HFC").toString();
+    hfc = session.getAttribute("HFCHEALTH_FACILITY_CODE").toString();
         Boolean SQL=false;
             String sql1 = "insert into adm_users(USER_ID, PASSWORD,HEALTH_FACILITY_CODE,"
                     + "ID_CATEGORY_CODE,START_DATE,END_DATE)"

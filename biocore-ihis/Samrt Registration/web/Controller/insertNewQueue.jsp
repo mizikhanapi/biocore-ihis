@@ -20,7 +20,7 @@
     userName = request.getParameter("userName");
     queueType = request.getParameter("queueType");
     selectedQueue = request.getParameter("selectedQueue");
-    String hfc = session.getAttribute("HFC").toString();
+    String hfc = session.getAttribute("HEALTH_FACILITY_CODE").toString();
     
      
     
