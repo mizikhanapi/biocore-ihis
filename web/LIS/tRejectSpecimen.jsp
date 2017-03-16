@@ -9,7 +9,7 @@ String specimen_no = request.getParameter("specimen_no");
 
 RMIConnector rmic = new RMIConnector();
 Conn conn = new Conn();
-String sqlInsert = "UPDATE lis_specimen SET commen_specimen = '"+fcomment+"', Status_specimen = 'Reject' WHERE specimen_no = '"+specimen_no+"' AND pmi_no = '"+pmi+"'";
+String sqlInsert = "UPDATE lis_specimen SET commen_specimen = '"+fcomment+"', specimen_status = 'Reject', Approval = 'Reject Approval' WHERE specimen_no = '"+specimen_no+"' AND pmi_no = '"+pmi+"'";
 rmic.setQuerySQL(conn.HOST, conn.PORT, sqlInsert);
 
  

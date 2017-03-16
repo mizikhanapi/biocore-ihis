@@ -20,7 +20,8 @@
         
         String orderno1 = request.getParameter("Order_no");
         String[] Specimen = request.getParameterValues("Specimen[]");
-        String status = "Order";
+        String status = "Test Not Available Yet";
+        String test = "Waiting for Approval";
         //int test = Integer.parseInt(number);
     
         RMIConnector rmic = new RMIConnector();
@@ -37,7 +38,7 @@
             rmic.setQuerySQL(conn.HOST, conn.PORT, hfc_code);
             ArrayList<ArrayList<String>> q2 = conn.getData(hfc_code);
             
-            String sqlInsert = "INSERT INTO lis_specimen(specimen_no,order_no,pmi_no,hfc_cd,item_cd,Collection_date,Collection_time,Status_specimen,patient_name) VALUES ('"+q1.get(0).get(0)+"','"+orderno1+"','"+pmi+"','"+q2.get(0).get(0)+"','"+Specimen[i]+"','"+C_date+"','"+C_time+"','"+status+"','"+patient_name+"')";
+            String sqlInsert = "INSERT INTO lis_specimen(specimen_no,order_no,pmi_no,hfc_cd,item_cd,Collection_date,Collection_time,specimen_status,patient_name,Approval) VALUES ('"+q1.get(0).get(0)+"','"+orderno1+"','"+pmi+"','"+q2.get(0).get(0)+"','"+Specimen[i]+"','"+C_date+"','"+C_time+"','"+status+"','"+patient_name+"','"+test+"')";
             rmic.setQuerySQL(conn.HOST, conn.PORT, sqlInsert);
 
         }

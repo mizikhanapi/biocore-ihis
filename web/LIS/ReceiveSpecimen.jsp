@@ -253,7 +253,7 @@
                                 
                                 success: function(data) {
                                         alert("Specimen reject succesfully");
-                                         window.location.reload();
+                                         window.location.replace("ManageResult.jsp");
                                          $("#basicModal").hide();
                                          $(".modal-backdrop").hide();
                                     
@@ -279,7 +279,7 @@
                                 timeout: 10000,
                                 success: function(data) {
                                      alert("Specimen Accept succesfully");
-                                         window.location.reload();
+                                         window.location.replace("ManageResult.jsp");
                                          $("#basicModal").hide();
                                          $(".modal-backdrop").hide();
                                      
