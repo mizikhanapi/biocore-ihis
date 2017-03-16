@@ -14,7 +14,7 @@
             </h4>
             <br/>
             <div id="tableListKin" class="form-group">
-                <table class="table table-filter table-striped" style="background: #fff; border: 1px solid #ccc; " id="listKIN">
+                <table class="table table-striped table-bordered" style="background: #fff; border: 1px solid #ccc; " id="listKIN">
                     <thead>
                     <th>Name</th>
                     <th>IC/ID No.</th>

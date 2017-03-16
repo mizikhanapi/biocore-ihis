@@ -19,7 +19,7 @@
     
 
 
-%><table class="table table-filter table-striped" style="background: #fff; border: 1px solid #ccc;" id="listFamily">
+%><table class="table table-striped table-bordered" style="background: #fff; border: 1px solid #ccc;" id="listFamily">
     <thead>
     <th>Family Member's Name</th>
     <th>Relationship</th>

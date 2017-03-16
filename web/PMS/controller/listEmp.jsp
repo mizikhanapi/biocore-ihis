@@ -20,7 +20,7 @@
 
 
 %>
-<table class="table table-filter table-striped" style="background: #fff; border: 1px solid #ccc; " id="listEMP">
+<table class="table table-striped table-bordered" style="background: #fff; border: 1px solid #ccc; " id="listEMP">
     <thead>
     <th>Employer Name</th>
     <th>Occupation</th>
@@ -29,22 +29,22 @@
 </thead>
 <tbody>
     <%  for (int i = 0; i < dataEmpList.size(); i++) {
-    String occuName = "select * from lookup_detail where master_ref_code = '0050' and detail_ref_code = '"+dataEmpList.get(i).get(4)+"'";
-    ArrayList<ArrayList<String>> dataOcuuName;
-    dataOcuuName = conn.getData(occuName);
-    String occu="";
-    if(dataOcuuName.size()== 0){
-        occu = "-";
-    }else{
-        occu = dataOcuuName.get(0).get(2);
-    }
+            String occuName = "select * from lookup_detail where master_ref_code = '0050' and detail_ref_code = '" + dataEmpList.get(i).get(4) + "'";
+            ArrayList<ArrayList<String>> dataOcuuName;
+            dataOcuuName = conn.getData(occuName);
+            String occu = "";
+            if (dataOcuuName.size() == 0) {
+                occu = "-";
+            } else {
+                occu = dataOcuuName.get(0).get(2);
+            }
     %>
-<tr data-status="pagado" data-toggle="modal" data-id="1" data-target="#type">
-    <td id="pmiNumber"><%=dataEmpList.get(i).get(3)%></td>
-    <input id="empval" type="hidden" value="<%=StringUtils.join(dataEmpList.get(i),"|")%>">
-    <td><%=occu%></td>
-    <td><button id="EMPedit" name="EMPedit" class="btn btn-default" data-toggle="modal" data-target="#EMPModal"><i class="fa fa-pencil-square-o" aria-hidden="true" style="display: inline-block;color: #337ab7;"></i></button></td>
-    <td><button id="EMPdel" name="EMPdel" class="btn btn-default"><i class="fa fa-times" aria-hidden="true" style="display: inline-block;color: #d9534f;"></i></button></td>
+    <tr data-status="pagado" data-toggle="modal" data-id="1" data-target="#type">
+        <td id="pmiNumber"><%=dataEmpList.get(i).get(3)%></td>
+<input id="empval" type="hidden" value="<%=StringUtils.join(dataEmpList.get(i), "|")%>">
+<td><%=occu%></td>
+<td><a id="EMPedit" name="EMPedit" data-toggle="modal" data-target="#EMPModal"><i class="fa fa-pencil-square-o fa-lg" aria-hidden="true" style="display: inline-block;color: #337ab7; cursor: pointer;"></i></a></td>
+<td><a id="EMPdel" name="EMPdel" ><i class="fa fa-times fa-lg" aria-hidden="true" style="display: inline-block;color: #d9534f; cursor: pointer;"></i></a></td>
 </tr>
 <%  }
 %>
