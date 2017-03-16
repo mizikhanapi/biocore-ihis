@@ -23,7 +23,7 @@
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.Date"%>
 <%@page import="java.util.ArrayList"%>
-<%@page import="dbConn.Conn"%>
+<%@page import="dbConn1.Conn"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
     String action = request.getParameter("action");
@@ -76,22 +76,22 @@
         boolean bool = true;
         try{
             String sql1 = "DROP TABLE IF EXISTS far_customer_ledger_backup";
-            bool = dbConn.Conn.setData(sql1);
+            bool = dbConn1.Conn.setData(sql1);
             if (bool == false)
                 return 0;
             String sql2 = "CREATE TABLE far_customer_ledger_backup LIKE far_customer_ledger";
-            bool = dbConn.Conn.setData(sql2);
+            bool = dbConn1.Conn.setData(sql2);
             if (bool == false)
                 return 0;
             String sql3 = "INSERT far_customer_ledger_backup SELECT * FROM far_customer_ledger";
-            bool = dbConn.Conn.setData(sql3);
+            bool = dbConn1.Conn.setData(sql3);
             if (bool == false)
                 return 0;
             
             String sql4 = "UPDATE far_year_end_parameter "
                     + "SET process_status = '1' "
                     + "WHERE code = 'yep'";
-            dbConn.Conn.setData(sql4);
+            dbConn1.Conn.setData(sql4);
             
             return 100;
             
@@ -106,7 +106,7 @@
             String sql0 = "SELECT process_status, processed_year "
                     + "FROM far_year_end_parameter "
                     + "WHERE code = 'yep'";
-            ArrayList<ArrayList<String>> yep= dbConn.Conn.getData(sql0);
+            ArrayList<ArrayList<String>> yep= dbConn1.Conn.getData(sql0);
             String processStatus = yep.get(0).get(0);
             String year = yep.get(0).get(1);
             
@@ -115,7 +115,7 @@
 
             if(processStatus.equals("1") && year.equals(strYear)){
                 String sql1 = "SET autocommit = 0";
-                dbConn.Conn.setData(sql1);
+                dbConn1.Conn.setData(sql1);
 
                 String sql2 = 
                         "SELECT "
@@ -132,7 +132,7 @@
                         + "IFNULL(cl.dr_amt_13, 0) "
                         + "FROM far_customer_ledger cl, pms_patient_biodata pb "
                         + "WHERE cl.customer_id = pb.pmi_no";
-                ArrayList<ArrayList<String>> data = dbConn.Conn.getData(sql2);
+                ArrayList<ArrayList<String>> data = dbConn1.Conn.getData(sql2);
 
                 int flag = 0;
                 for (int i = 0; i < data.size() && flag == 0; i++){
@@ -147,29 +147,29 @@
                             + "dr_amt_5 = '0', dr_amt_6 = '0', dr_amt_7 = '0', dr_amt_8 = '0', "
                             + "dr_amt_9 = '0', dr_amt_10 = '0', dr_amt_11 = '0', dr_amt_12 = '0', dr_amt_13 = '"+ totalYearDebit +"' "
                             + "WHERE customer_id = '"+ pmiNo +"'";
-                    boolean bool = dbConn.Conn.setData(sql3);
+                    boolean bool = dbConn1.Conn.setData(sql3);
 
                     if(bool == false){
                         flag = 1;
 
                         String sql4 = "ROLLBACK";
-                        dbConn.Conn.setData(sql4);
+                        dbConn1.Conn.setData(sql4);
 
                         String sql6 = "SET autocommit = 1";
-                        dbConn.Conn.setData(sql6);
+                        dbConn1.Conn.setData(sql6);
 
                         return 50;
                     } else {
                         String sql5 = "COMMIT";
-                        dbConn.Conn.setData(sql5);
+                        dbConn1.Conn.setData(sql5);
 
                         if(i == (data.size()-1)){
                             String sql6 = "SET autocommit = 1";
-                            dbConn.Conn.setData(sql6);
+                            dbConn1.Conn.setData(sql6);
                             String sql7 = "UPDATE far_year_end_parameter "
                                     + "SET process_status = '0', processed_year = '"+ currentYear +"' "
                                     + "WHERE code = 'yep'";
-                            dbConn.Conn.setData(sql7);
+                            dbConn1.Conn.setData(sql7);
 
                             return 100;
                         }
@@ -189,15 +189,15 @@
         boolean bool = true;
         try{
             String sql1 = "DROP TABLE IF EXISTS far_customer_ledger";
-            dbConn.Conn.setData(sql1);
+            dbConn1.Conn.setData(sql1);
             if (bool == false)
                 return 0;
             String sql2 = "CREATE TABLE far_customer_ledger LIKE far_customer_ledger_backup";
-            dbConn.Conn.setData(sql2);
+            dbConn1.Conn.setData(sql2);
             if (bool == false)
                 return 0;
             String sql3 = "INSERT far_customer_ledger SELECT * FROM far_customer_ledger_backup";
-            dbConn.Conn.setData(sql3);
+            dbConn1.Conn.setData(sql3);
             if (bool == false)
                 return 0;
            

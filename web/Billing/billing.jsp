@@ -5,7 +5,7 @@
 --%>
 
 <%@page import="java.util.ArrayList"%>
-<%@page import="dbConn.Conn"%>
+<%@page import="dbConn1.Conn"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>

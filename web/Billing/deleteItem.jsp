@@ -24,7 +24,7 @@
     String sql1 = "DELETE FROM  far_customer_dtl "
            + "WHERE bill_no = '"+ billNo +"' "
            + "AND item_cd = '"+ itemCode +"' ";
-    dbConn.Conn.setData(sql1);
+    dbConn1.Conn.setData(sql1);
 
     String month = new Month().getDebitMonth();
 
@@ -32,7 +32,7 @@
     String sql2 = "SELECT  "+ month +" "
             + "FROM far_customer_ledger "
             + "WHERE customer_id = '"+ custID +"' ";
-    ArrayList<ArrayList<String>> data1 = dbConn.Conn.getData(sql2);
+    ArrayList<ArrayList<String>> data1 = dbConn1.Conn.getData(sql2);
     String currentDebit = data1.get(0).get(0);
     
     if (currentDebit == null){
@@ -44,14 +44,14 @@
     String sql3 = "UPDATE far_customer_ledger "
             + "SET "+ month +" = '"+ currentDebit +"' "
             + "WHERE customer_id = '"+ custID +"' ";
-    dbConn.Conn.setData(sql3);
+    dbConn1.Conn.setData(sql3);
 
     //Get current bill_amt and minus item price;
     String sql4 = "SELECT item_amt, quantity "
             + "FROM far_customer_hdr "
             + "WHERE customer_id = '"+ custID +"' "
             + "AND bill_no = '"+ billNo +"'";
-    ArrayList<ArrayList<String>> data2 = dbConn.Conn.getData(sql4);
+    ArrayList<ArrayList<String>> data2 = dbConn1.Conn.getData(sql4);
     String itemAmt1 = data2.get(0).get(0);
     String quantity = data2.get(0).get(1);
 
@@ -63,5 +63,5 @@
             + "SET txn_date = '"+ txnDate +"', item_amt = '"+ itemAmt1 +"', quantity = '"+ quantity +"' "
             + "WHERE bill_no = '"+ billNo +"' "
             + "AND customer_id = '"+ custID +"'";
-    dbConn.Conn.setData(sql5);
+    dbConn1.Conn.setData(sql5);
 %>
