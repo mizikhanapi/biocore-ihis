@@ -15,7 +15,7 @@ import com.itextpdf.text.Rectangle;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
-import dbConn1.Conn;
+import dbConn.Conn;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
@@ -190,17 +190,17 @@ public class Receipt extends HttpServlet {
 //            Image logo = Image.getInstance(imgPath);
 //            logo.scaleAbsolute(120, 60);
 //
-//            PdfPCell cell1 = new PdfPCell(logo);
-//            cell1.setHorizontalAlignment(Element.ALIGN_RIGHT);
-//            cell1.setBorder(Rectangle.NO_BORDER);
-//            cell1.setColspan(2);
-//            cell1.setLeading(15f, 0.3f);
-//            header.addCell(cell1);
+            PdfPCell cell1 = new PdfPCell();
+            cell1.setHorizontalAlignment(Element.ALIGN_RIGHT);
+            cell1.setBorder(Rectangle.NO_BORDER);
+            cell1.setColspan(2);
+            cell1.setLeading(15f, 0.3f);
+            header.addCell(cell1);
             
             String addr = 
                     " "+ hfName +", \n"
                     + " "+ hfAddr1 +" \n"
-                    + " "+ hfAddr2 +", \n"
+                    + " "+ hfAddr2 +","
                     + " "+ hfAddr3;
             
             PdfPCell cellAddress = new PdfPCell(new Phrase(addr, rectemja));
