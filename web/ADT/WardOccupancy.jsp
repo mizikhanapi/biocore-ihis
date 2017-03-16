@@ -26,11 +26,10 @@
         <%@include file = "searchWardTransfer.jsp" %>
 
         <div class="text-center">
-            <button id="clearSearch" name="clearSearch" type="button" class="btn btn-default"><i class="fa fa-ban fa-lg"></i>&nbsp; Clear</button>
             <button id="button2id" name="button2id" type="button" class="btn btn-success "><i class="fa fa-user fa-lg"></i>&nbsp; Read MyKad Info</button>
-
+            <button id="clearSearch" name="clearSearch" type="button" class="btn btn-default"><i class="fa fa-ban fa-lg"></i>&nbsp; Clear</button>
         </div>
-        </form>
+        <hr/>
     </div>
 </div>
 

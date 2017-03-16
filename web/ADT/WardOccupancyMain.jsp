@@ -10,16 +10,16 @@
 <html lang="en">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <!-- header -->
+        <%@include file = "../assets/header.html" %>
+        <!-- header -->
         <link rel="stylesheet" href="old/assets/datepicker/jquery-ui.css">
         <!-- Custom styles for this template -->
 
         <link rel="stylesheet" href="old/assets/css/loading.css">
         <link href="old/assets/datepicker/jquery-ui.css" rel="stylesheet">
+        <link href="bootstrap-3.3.6-dist/css/dataTables.bootstrap.min.css" rel="stylesheet" type="text/css"/>
 
-        <!-- header -->
-        <%@include file = "../assets/header.html" %>
-
-        <!-- header -->
     </head>
 
     <body>
@@ -112,7 +112,7 @@
 <script src="old/assets/js/w3data.js"></script>
 <script src="old/assets/js/bootbox.min.js"></script>   
 <script src="bootstrap-3.3.6-dist/js/jquery.dataTables.min.js"></script>
-
+<script src="bootstrap-3.3.6-dist/js/dataTables.bootstrap.min.js" type="text/javascript"></script>
 
 
 <script>
