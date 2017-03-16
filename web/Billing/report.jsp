@@ -94,6 +94,8 @@
             $('#year').val(year);
         }
 
+        var contextPath = '<%=request.getContextPath()%>';
+
         $(document).ready(function () {
             $('#ic').keypress(function (event) {
                 if ((event.which != 46 || $(this).val().indexOf('.') != 1) && (event.which < 48 || event.which > 57) && event.which != 8) {
@@ -126,7 +128,7 @@
                             var d = data.split("|");
                             if (d[1] == '1') {
 
-                                var url = "/eBilling/PdfServlet?";
+                                var url = contextPath + "/PdfServlet?";
                                 url += "&action=" + "yearlyStatement";
                                 url += "&ic=" + ic;
                                 url += "&year=" + year;
@@ -175,7 +177,7 @@
                             var d = data.split("|");
                             if (d[1] == '1') {
 
-                                var url = "/eBilling/PdfServlet?";
+                                var url = contextPath + "/PdfServlet?";
                                 url += "&action=" + "detailsStatement";
                                 url += "&ic=" + ic;
                                 url += "&year=" + year;
@@ -212,13 +214,10 @@
                     success: function (data) {
                         var d = data.split("|");
                         if (d[1] == '1') {
-
-                            var url = "/eBilling/PdfServlet?";
+                            var url = contextPath + "/PdfServlet?";
                             url += "&action=" + "yearEndReport";
-
                             var win = window.open(url, '_blank');
                             win.focus();
-
                         } else {
                             document.getElementById('messageHeader').innerHTML = "Failed!";
                             document.getElementById('messageContent').innerHTML = "Failed to create report";

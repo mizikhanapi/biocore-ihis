@@ -7,7 +7,7 @@
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.util.Date"%>
 <%@page import="java.text.DateFormat"%>
-<%@page import="dbConn1.Conn"%>>
+<%@page import="dbConn.Conn"%>
 <%@page import="java.text.DecimalFormat"%>
 <%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -538,6 +538,9 @@
         });
         
         $('#addDrugsItem').click(function (){
+            
+            var contextPath = '<%=request.getContextPath()%>';
+            
             var quantity = document.getElementById('quantity').value;
             
             if (quantity == '' || quantity == 0){
@@ -645,7 +648,7 @@
                     success: function(data) {
                        var d = data.split("|");
                        if (d[1] == 1){
-                            var url = "/eBilling/Receipt?"
+                            var url = contextPath + "/Receipt?"
                             url += "&custID=" + custID;
                             url += "&billNo=" + billNo;
                             url += "&subtotal=" + d[3];
