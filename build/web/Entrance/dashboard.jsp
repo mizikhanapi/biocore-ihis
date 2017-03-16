@@ -174,7 +174,7 @@
                     %>
                     
                     <div class="col-md-3">
-                        <a href="../RIS/receive-order.html" class="thumbnail">
+                        <a href="../RIS/Receive_Order.jsp" class="thumbnail">
                             <div class="kotak text-center">
                                 <i class="fa fa-cogs" aria-hidden="true" style="color: #2A80B9;font-size: 4em;"></i>
                                 <h3>Radiology Information System</h3>
@@ -188,7 +188,7 @@
                     %>
                     
                     <div class="col-md-3">
-                        <a href="../ADT/index.jsp" class="thumbnail">
+                        <a href="../ADT/MaintainWard.jsp" class="thumbnail">
                             <div class="kotak text-center">
                                 <i class="fa fa-bed" aria-hidden="true" style="color: #DE3975;font-size: 4em;"></i>
                                 <h3>Inpatient Management</h3>

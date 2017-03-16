@@ -139,37 +139,37 @@
                             <!-- Tab Menu -->
                             <h4  id="mainConsultBar">Consultation Notes</h4>
 
-                            <table class="table table-filter table-striped" style="background: #fff; border: 1px solid #ccc;">
+                            <table class="table table-filter " style="background: #fff; border: 1px solid #ccc;">
                                 
-                                <tbody id="CCNNotes" style=" border-style: solid;border-width: 5px;" class="ConsultationNotes"></tbody>
-                                <tbody id="HPINotes" style=" border-style: solid;border-width: 5px;"  class="ConsultationNotes"> </tbody>
-                                <tbody id="PMHNotes" style=" border-style: solid;border-width: 5px;"  class="ConsultationNotes"></tbody>
-                                <tbody id="FMHNotes" style=" border-style: solid;border-width: 5px;"  class="ConsultationNotes"> </tbody>
-                                <tbody id="SOHNotes" style=" border-style: solid;border-width: 5px;"  class="ConsultationNotes"></tbody>
-                                <tbody id="BLDNotes" style=" border-style: solid;border-width: 5px;" class="ConsultationNotes"> </tbody>
-                                <tbody id="ALGNotes" style=" border-style: solid;border-width: 5px;"  class="ConsultationNotes"></tbody>
-                                <tbody id="IMUNotes" style=" border-style: solid;border-width: 5px;"  class="ConsultationNotes"> </tbody>
-                                <tbody id="DABNotes" style=" border-style: solid;border-width: 5px;"  class="ConsultationNotes"> </tbody>
+                                <tbody id="CCNNotes"  class="ConsultationNotes"></tbody>
+                                <tbody id="HPINotes"   class="ConsultationNotes"> </tbody>
+                                <tbody id="PMHNotes"   class="ConsultationNotes"></tbody>
+                                <tbody id="FMHNotes"   class="ConsultationNotes"> </tbody>
+                                <tbody id="SOHNotes"   class="ConsultationNotes"></tbody>
+                                <tbody id="BLDNotes"  class="ConsultationNotes"> </tbody>
+                                <tbody id="ALGNotes"   class="ConsultationNotes"></tbody>
+                                <tbody id="IMUNotes"   class="ConsultationNotes"> </tbody>
+                                <tbody id="DABNotes"   class="ConsultationNotes"> </tbody>
                                 
-                                <tbody id="GCSNotes" style=" border-style: solid;border-width: 5px;"  class="ConsultationNotes"> </tbody>
-                                <tbody id="PGCSNotes" style=" border-style: solid;border-width: 5px;"  class="ConsultationNotes"> </tbody>
-                                <tbody id="BPNotes" style=" border-style: solid;border-width: 5px;"  class="ConsultationNotes"> </tbody>
-                                <tbody id="RRNotes" style=" border-style: solid;border-width: 5px;"  class="ConsultationNotes"> </tbody>
-                                <tbody id="OSATNotes" style=" border-style: solid;border-width: 5px;"  class="ConsultationNotes"> </tbody>
-                                <tbody id="PSCNotes" style=" border-style: solid;border-width: 5px;"  class="ConsultationNotes"> </tbody>
-                                <tbody id="BTEMPNotes" style=" border-style: solid;border-width: 5px;"  class="ConsultationNotes"> </tbody>
-                                <tbody id="OTRNotes" style=" border-style: solid;border-width: 5px;"  class="ConsultationNotes"> </tbody>
-                                <tbody id="PEMNotes" style=" border-style: solid;border-width: 5px;"  class="ConsultationNotes"> </tbody>
+                                <tbody id="GCSNotes"   class="ConsultationNotes"> </tbody>
+                                <tbody id="PGCSNotes"   class="ConsultationNotes"> </tbody>
+                                <tbody id="BPNotes"   class="ConsultationNotes"> </tbody>
+                                <tbody id="RRNotes"   class="ConsultationNotes"> </tbody>
+                                <tbody id="OSATNotes"   class="ConsultationNotes"> </tbody>
+                                <tbody id="PSCNotes"   class="ConsultationNotes"> </tbody>
+                                <tbody id="BTEMPNotes"   class="ConsultationNotes"> </tbody>
+                                <tbody id="OTRNotes"   class="ConsultationNotes"> </tbody>
+                                <tbody id="PEMNotes"   class="ConsultationNotes"> </tbody>
                                 
-                                <tbody id="DGSNotes" style=" border-style: solid;border-width: 5px;"  class="ConsultationNotes"> </tbody>
-                                <tbody id="PNTNotes" style=" border-style: solid;border-width: 5px;"  class="ConsultationNotes"> </tbody>
+                                <tbody id="DGSNotes"   class="ConsultationNotes"> </tbody>
+                                <tbody id="PNTNotes"   class="ConsultationNotes"> </tbody>
                                 
-                                <tbody id="DTONotes" style=" border-style: solid;border-width: 5px;"  class="ConsultationNotes"> </tbody>
-                                <tbody id="SOPNotes" style=" border-style: solid;border-width: 5px;"  class="ConsultationNotes"> </tbody>
-                                <tbody id="POSNotes" style=" border-style: solid;border-width: 5px;"  class="ConsultationNotes"> </tbody>
-                                <tbody id="MCTSNotes" style=" border-style: solid;border-width: 5px;"  class="ConsultationNotes"> </tbody>
-                                <tbody id="ROSNotes" style=" border-style: solid;border-width: 5px;"  class="ConsultationNotes"> </tbody>
-                                <tbody id="LOSNotes" style=" border-style: solid;border-width: 5px;"  class="ConsultationNotes"> </tbody>
+                                <tbody id="DTONotes"   class="ConsultationNotes"> </tbody>
+                                <tbody id="SOPNotes"   class="ConsultationNotes"> </tbody>
+                                <tbody id="POSNotes"   class="ConsultationNotes"> </tbody>
+                                <tbody id="MCTSNotes"   class="ConsultationNotes"> </tbody>
+                                <tbody id="ROSNotes"   class="ConsultationNotes"> </tbody>
+                                <tbody id="LOSNotes"   class="ConsultationNotes"> </tbody>
                                 
                             </table>
 

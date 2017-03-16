@@ -29,7 +29,7 @@ import com.itextpdf.text.Rectangle;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
-import dbConn.Conn;
+import dbConn1.Conn;
 import java.io.File;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;

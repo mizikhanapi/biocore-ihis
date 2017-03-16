@@ -35,11 +35,7 @@
             
             if(dataStaff.get(0).get(1).equals(password))
             {
-                session.setAttribute("USER_IC", user_id);
-                String name = dataStaff.get(0).get(2) ;
-                session.setAttribute("USER_NAME", name);
-//                
-
+                session.setAttribute("Patient_IC", user_id);
                 status = LOGIN;
                 //response.sendRedirect("facility.jsp");
             }

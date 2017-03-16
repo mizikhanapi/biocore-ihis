@@ -169,14 +169,16 @@
 
             comTy = "PN";
         }
-        console.log(str);
         if ($('#pmino').val() === " " || $('#pmino').val() === "") {
             bootbox.alert('Please use a proper PMI no.');
 
         } else if (str === "null") {
             bootbox.alert('Please choose a Queue.');
-        } else {
-            //var r = confirm("Are you sure want to REGISTER PATIENT?");
+        } else if($("#Dis").val()===""){
+            bootbox.alert('Please select discipline.');
+        }else if($("#prioGru").val()==="null"){
+            bootbox.alert('Please select priority group.');
+        }else{
 
 
             var pmi, epiDate, name, newic, oldic, typeId, idNo, rnNo, patCatCode, visTyCode, emTy, eliCatCode, eliTyCode, disCode, subDiscode, consultRoom, comQueue, doctor, prioGruCode, polCase, commDis, natuDisasCode, docTy, guardInd, referNo, gruGuard, glExpDate, epiTime, stat, hfc, comTy, createdBy, queue, docID;

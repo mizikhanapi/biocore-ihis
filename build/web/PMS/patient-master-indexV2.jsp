@@ -89,7 +89,7 @@
                         <!-- Text input-->
                         <div class="form-group">
                             <label class="col-md-4 control-label" for="textinput">PMI No.</label>
-                            <div class="col-md-8">
+                            <div class="col-md-6">
                                 <input id="PMIpmino" name="PMIpmino" type="text" placeholder="" class="form-control input-md">
                             </div>
                         </div>
@@ -97,7 +97,7 @@
                         <!-- Text input-->
                         <div class="form-group">
                             <label class="col-md-4 control-label" for="textinput">Temporary PMI No.</label>
-                            <div class="col-md-8">
+                            <div class="col-md-6">
                                 <input id="PMIpminotemp" name="textinput" type="text" placeholder="" class="form-control input-md">
                             </div>
                         </div>
@@ -105,7 +105,7 @@
                         <!-- Text input-->
                         <div class="form-group">
                             <label class="col-md-4 control-label" for="textinput">Name</label>
-                            <div class="col-md-8">
+                            <div class="col-md-6">
                                 <input id="PMIpname" name="PMIpname" type="text" placeholder="" class="form-control input-md" required="require" maxlength="80">
                             </div>
                         </div>
@@ -113,18 +113,18 @@
                         <!-- Select Basic -->
                         <div class="form-group">
                             <label class="col-md-4 control-label" for="selectbasic">Title</label>
-                            <div class="col-md-8">
+                            <div class="col-md-6">
                                 
                                 <input id="PMItitle" name="textinput" type="text" placeholder="select title.." class="form-control input-md">
                                 <input id="PMItitleCODE" name="PMIhstateCODE" type="hidden" placeholder="select country.." class="form-control input-md">
-                                <div id="matchtitle"></div>
+                                <div id="matchtitle" class="search-drop"></div>
                             </div>
                         </div>
 
                         <!-- Text input-->
                         <div class="form-group">
                             <label class="col-md-4 control-label" for="textinput">New IC No.</label>
-                            <div class="col-md-8">
+                            <div class="col-md-6">
                                 <input id="PMInic" name="PMInic" type="text" placeholder="" class="form-control input-md" maxlength="12">
                             </div>
                         </div>
@@ -132,7 +132,7 @@
                         <!-- Text input-->
                         <div class="form-group">
                             <label class="col-md-4 control-label" for="textinput">Old IC No.</label>
-                            <div class="col-md-8">
+                            <div class="col-md-6">
                                 <input id="PMIoic" name="PMIoic" type="text" placeholder="" class="form-control input-md" maxlength="8">
                             </div>
                         </div>
@@ -140,7 +140,7 @@
                         <!-- Select Basic -->
                         <div class="form-group">
                             <label class="col-md-4 control-label" for="selectbasic">ID Type</label>
-                            <div class="col-md-8">
+                            <div class="col-md-6">
                                 <select id="PMIidty" name="selectbasic" class="form-control">
                                     <option value="null" selected="" disabled="">Select ID Type</option>
                                     <%
@@ -155,7 +155,7 @@
                         <!-- Text input-->
                         <div class="form-group">
                             <label class="col-md-4 control-label" for="textinput">Identification No.</label>
-                            <div class="col-md-8">
+                            <div class="col-md-6">
                                 <input id="PMIino" name="textinput" type="text" placeholder="" class="form-control input-md" maxlength="10">
                             </div>
                         </div>
@@ -165,7 +165,7 @@
                         <!-- Select Basic -->
                         <div class="form-group">
                             <label class="col-md-4 control-label" for="selectbasic">Eligibility Category</label>
-                            <div class="col-md-8">
+                            <div class="col-md-6">
                                 <select id="PMIelicat" name="selectbasic" class="form-control">
                                     <option value="null" selected="" disabled="">Select Eligibility Category</option>
                                     <option value="-">-</option>
@@ -182,7 +182,7 @@
                         <!-- Select Basic -->
                         <div class="form-group">
                             <label class="col-md-4 control-label" for="selectbasic">Eligibility Type</label>
-                            <div class="col-md-8">
+                            <div class="col-md-6">
                                 <select id="PMIelity" name="selectbasic" class="form-control">
                                     <option value="null" selected="" disabled="">Select Eligibility Type</option>
                                     <option value="-">-</option>
@@ -200,7 +200,7 @@
                         <!-- Text input-->
                         <div class="form-group">
                             <label class="col-md-4 control-label" for="textinput">Date of Birth</label>
-                            <div class="col-md-8">
+                            <div class="col-md-6">
                                 <input id="PMIbday" name="textinput" type="text" class="form-control input-md" required="">
                             </div>
                         </div>
@@ -208,7 +208,7 @@
                         <!-- Select Basic -->
                         <div class="form-group">
                             <label class="col-md-4 control-label" for="selectbasic">Gender</label>
-                            <div class="col-md-8">
+                            <div class="col-md-6">
                                 <select id="PMIsex" name="selectbasic" class="form-control">
                                     <option value="null" selected="" disabled="">Select Gender</option>
                                     <option value="-">-</option>
@@ -226,7 +226,7 @@
                         <!-- Select Basic -->
                         <div class="form-group">
                             <label class="col-md-4 control-label" for="selectbasic">Martial Status</label>
-                            <div class="col-md-8">
+                            <div class="col-md-6">
                                 <select id="PMImarital" name="selectbasic" class="form-control">
                                     <option value="null" selected="" disabled="">Select Martial Status</option>
                                     <option value="-">-</option>
@@ -244,7 +244,7 @@
                         <!-- Select Basic -->
                         <div class="form-group">
                             <label class="col-md-4 control-label" for="selectbasic">Race</label>
-                            <div class="col-md-8">
+                            <div class="col-md-6">
                                 <select id="PMIrace" name="selectbasic" class="form-control">
                                     <option value="null" selected="" disabled="">Select Race</option>
                                     <option value="-">-</option>
@@ -262,18 +262,18 @@
                         <!-- Select Basic -->
                         <div class="form-group">
                             <label class="col-md-4 control-label" for="selectbasic">Nationality</label>
-                            <div class="col-md-8">
+                            <div class="col-md-6">
                                
                                 <input id="PMInational" name="textinput" type="text" placeholder="select nationality.." class="form-control input-md">
                                 <input id="PMInationalCODE" name="PMIhstateCODE" type="hidden" placeholder="select country.." class="form-control input-md">
-                                <div id="matchnational"></div>
+                                <div id="matchnational" class="search-drop"></div>
                             </div>
                         </div>
 
                         <!-- Select Basic -->
                         <div class="form-group">
                             <label class="col-md-4 control-label" for="selectbasic">Religion</label>
-                            <div class="col-md-8">
+                            <div class="col-md-6">
                                 <select id="PMIreligion" name="selectbasic" class="form-control">
                                     <option value="null" selected="" disabled="">Select Religion</option>
                                     <option value="-">-</option>
@@ -394,7 +394,7 @@
                         <!-- Text input-->
                         <div class="form-group">
                             <label class="col-md-4 control-label" for="textinput">Home Address</label>
-                            <div class="col-md-8">
+                            <div class="col-md-6">
                                 <input id="PMIhadd" name="textinput" type="text" placeholder="" class="form-control input-md">
                             </div>
                         </div>
@@ -402,69 +402,69 @@
                         <!-- Select Basic -->
                         <div class="form-group">
                             <label class="col-md-4 control-label" for="selectbasic">Home District</label>
-                            <div class="col-md-7">
+                            <div class="col-md-6">
 
                                 <input id="PMIhdis" name="textinput" type="text" placeholder="select district.." class="form-control input-md">
                                 <input id="PMIhdisCODE" type="hidden" placeholder="select country.." class="form-control input-md">
-                                <div id="matchHdis"></div>
+                                <div id="matchHdis" class="search-drop"></div>
                             </div>
                         </div>
 
                         <!-- Select Basic -->
                         <div class="form-group">
                             <label class="col-md-4 control-label" for="selectbasic">Home Town</label>
-                            <div class="col-md-7">
+                            <div class="col-md-6">
                                 
                                 <input id="PMIhtown" name="textinput" type="text" placeholder="select town.." class="form-control input-md">
                                 <input id="PMIhtownCODE" name="PMIhstateCODE" type="hidden" placeholder="select country.." class="form-control input-md">
-                                <div id="matchHtown"></div>
+                                <div id="matchHtown" class="search-drop"></div>
                             </div>
                         </div>
 
                         <!-- Select Basic -->
                         <div class="form-group">
                             <label class="col-md-4 control-label" for="selectbasic">Home Postcode</label>
-                            <div class="col-md-7">
+                            <div class="col-md-6">
                                 
                                 <input id="PMIhpostcode" name="textinput" type="text" placeholder="select postcode.." class="form-control input-md">
                                 <input id="PMIhpostcodeCODE" name="PMIhstateCODE" type="hidden" placeholder="select country.." class="form-control input-md">
-                                <div id="matchHpostcode"></div>
+                                <div id="matchHpostcode" class="search-drop"></div>
                             </div>
                         </div>
 
                         <!-- Select Basic -->
                         <div class="form-group">
                             <label class="col-md-4 control-label" for="selectbasic">Home State</label>
-                            <div class="col-md-7">
+                            <div class="col-md-6">
                               
                                 <input id="PMIhstate" name="textinput" type="text" placeholder="select state.." class="form-control input-md">
                                 <input id="PMIhstateCODE" name="PMIhstateCODE" type="hidden" placeholder="select country.." class="form-control input-md">
-                                <div id="matchHstate"></div>
+                                <div id="matchHstate" class="search-drop"></div>
                             </div>
                         </div>
 
                         <!-- Select Basic -->
                         <div class="form-group">
                             <label class="col-md-4 control-label" for="selectbasic">Home Country</label>
-                            <div class="col-md-7">
+                            <div class="col-md-6">
                                 <!--                                <input id="PMIhcountry" class="form-control input-md">-->
                                 <input id="PMIhcountry" name="textinput" type="text" placeholder="select country.." class="form-control input-md">
                                 <input id="PMIhcountryCODE" name="PMIhcountryCODE" type="hidden" placeholder="select country.." class="form-control input-md">
-                                <div id="matchHcountry"></div>
+                                <div id="matchHcountry" class="search-drop"></div>
                             </div>
                         </div>
 
                         <!-- Text input-->
                         <div class="form-group">
                             <label class="col-md-4 control-label" for="textinput">Phone No.(Home)</label>
-                            <div class="col-md-7">
+                            <div class="col-md-6">
                                 <input id="PMIhphone" name="textinput" type="text" placeholder="" class="form-control input-md">
                             </div>
                         </div>
                         <!-- Text input-->
                         <div class="form-group">
                             <label class="col-md-4 control-label" for="textinput">Email Address</label>
-                            <div class="col-md-7">
+                            <div class="col-md-6">
                                 <input id="PMIemail" name="textinput" type="text" placeholder="" class="form-control input-md">
                             </div>
                         </div>
@@ -475,7 +475,7 @@
                         <!-- Text input-->
                         <div class="form-group">
                             <label class="col-md-4 control-label" for="textinput">Postal Address</label>
-                            <div class="col-md-8">
+                            <div class="col-md-6">
                                 <input id="PMIpadd" name="textinput" type="text" placeholder="" class="form-control input-md">
                             </div>
                         </div>
@@ -483,33 +483,33 @@
                         <!-- Select Basic -->
                         <div class="form-group">
                             <label class="col-md-4 control-label" for="selectbasic">Postal District</label>
-                            <div class="col-md-7">
+                            <div class="col-md-6">
                                
                                 <input id="PMIpdis" name="textinput" type="text" placeholder="select district.." class="form-control input-md">
                                 <input id="PMIpdisCODE" type="hidden" placeholder="select country.." class="form-control input-md">
-                                <div id="matchPdis"></div>
+                                <div id="matchPdis" class="search-drop"></div>
                             </div>
                         </div>
 
                         <!-- Select Basic -->
                         <div class="form-group">
                             <label class="col-md-4 control-label" for="selectbasic">Postal Town</label>
-                            <div class="col-md-7">
+                            <div class="col-md-6">
                               
                                 <input id="PMIptown" name="textinput" type="text" placeholder="select town.." class="form-control input-md">
                                 <input id="PMIptownCODE" name="PMIhstateCODE" type="hidden" placeholder="select country.." class="form-control input-md">
-                                <div id="matchPtown"></div>
+                                <div id="matchPtown" class="search-drop"></div>
                             </div>
                         </div>
 
                         <!-- Select Basic -->
                         <div class="form-group">
                             <label class="col-md-4 control-label" for="selectbasic">Postal Postcode</label>
-                            <div class="col-md-7">
+                            <div class="col-md-6">
                                 
                                 <input id="PMIppostcode" name="textinput" type="text" placeholder="select postcode.." class="form-control input-md">
                                 <input id="PMIppostcodeCODE" name="PMIhstateCODE" type="hidden" placeholder="select country.." class="form-control input-md">
-                                <div id="matchPpostcode"></div>
+                                <div id="matchPpostcode" class="search-drop"></div>
                                 
                             </div>
                         </div>
@@ -517,29 +517,29 @@
                         <!-- Select Basic -->
                         <div class="form-group">
                             <label class="col-md-4 control-label" for="selectbasic">Postal State</label>
-                            <div class="col-md-7">
+                            <div class="col-md-6">
                                 
                                 <input id="PMIpstate" name="textinput" type="text" placeholder="select state.." class="form-control input-md">
                                 <input id="PMIpstateCODE" name="PMIhstateCODE" type="hidden" placeholder="select country.." class="form-control input-md">
-                                <div id="matchPstate"></div>
+                                <div id="matchPstate" class="search-drop"></div>
                             </div>
                         </div>
 
                         <!-- Select Basic -->
                         <div class="form-group">
                             <label class="col-md-4 control-label" for="selectbasic">Postal Country</label>
-                            <div class="col-md-7">
+                            <div class="col-md-6">
                                 
                                 <input id="PMIpcountry" name="textinput" type="text" placeholder="select country.." class="form-control input-md">
                                 <input id="PMIpcountryCODE" name="PMIhcountryCODE" type="hidden" placeholder="select country.." class="form-control input-md">
-                                <div id="matchPcountry"></div>
+                                <div id="matchPcountry" class="search-drop"></div>
                             </div>
                         </div>
 
                         <!-- Text input-->
                         <div class="form-group">
                             <label class="col-md-4 control-label" for="textinput">Handphone No.</label>
-                            <div class="col-md-7">
+                            <div class="col-md-6">
                                 <input id="PMIhandphone" name="textinput" type="text" placeholder="" class="form-control input-md">
                             </div>
                         </div>
@@ -549,9 +549,9 @@
 
                 <div class="text-center">
                     <!--                    <button class="btn btn-primary " type="button" disabled="">Save</button>-->
-                    <button class="btn btn-primary " type="button" id="updatePatient"><i class="fa fa-floppy-o fa-lg"></i>&nbsp; Save</button>
+                    <button class="btn btn-primary " type="button" id="updatePatient"><i class="fa fa-floppy-o"></i>&nbsp; Save</button>
                     <!--                    <button class="btn btn-default " type="button"> Appointment List</button>-->
-                    <button class="btn btn-default " type="button" id="clearPMI"> <i class="fa fa-ban fa-lg"></i>&nbsp; Clear</button>
+                    <button class="btn btn-default " type="button" id="clearPMI"> <i class="fa fa-times"></i>&nbsp; Clear</button>
                 </div>
             </form>
         </div>

@@ -61,14 +61,14 @@
                         <!-- Text input-->
                         <div class="form-group">
                             <label class="col-md-4 control-label" for="textinput">PMI No.</label>
-                            <div class="col-md-8">
+                            <div class="col-md-6">
                                 <input id="pmino" name="pmino" type="text" placeholder=" " readonly class="form-control input-md">                        </div>
                         </div>
 
                         <!-- Text input-->
                         <div class="form-group">
                             <label class="col-md-4 control-label" for="textinput">Name</label>
-                            <div class="col-md-8">
+                            <div class="col-md-6">
                                 <input id="pname" name="pname" type="text" readonly placeholder="" class="form-control input-md">
                             </div>
                         </div>
@@ -76,7 +76,7 @@
                         <!-- Text input-->
                         <div class="form-group">
                             <label class="col-md-4 control-label" for="textinput">New IC No.</label>
-                            <div class="col-md-8">
+                            <div class="col-md-6">
                                 <input id="pnic" name="pnic" type="text" readonly placeholder="" class="form-control input-md">
                             </div>
                         </div>
@@ -85,7 +85,7 @@
                         <!-- Text input-->
                         <div class="form-group">
                             <label class="col-md-4 control-label" for="textinput">Old IC No.</label>
-                            <div class="col-md-8">
+                            <div class="col-md-6">
                                 <input id="poic" name="poic" type="text" readonly placeholder="" class="form-control input-md">
                             </div>
                         </div>
@@ -93,7 +93,7 @@
                         <!-- Select Basic -->
                         <div class="form-group">
                             <label class="col-md-4 control-label" for="selectbasic">ID Type</label>
-                            <div class="col-md-8">
+                            <div class="col-md-6">
                                 <input id="pit" name="pit" type="text" placeholder=""  readonly class="form-control input-md">
                             </div>
                         </div>
@@ -101,7 +101,7 @@
                         <!-- Text input-->
                         <div class="form-group">
                             <label class="col-md-4 control-label" for="textinput">Identification No.</label>
-                            <div class="col-md-8">
+                            <div class="col-md-6">
                                 <input id="pino" name="pino" type="text" readonly placeholder="" class="form-control input-md">
                             </div>
                         </div>
@@ -171,44 +171,44 @@
                             <label class="col-md-4 control-label" for="selectbasic">Please select the Queue</label>
 
                             <label class="col-md-4 control-label" for="selectbasic"></label>
-                            <div class="col-md-8">
+                            <div class="col-md-6">
                                 <label for="radios-0">
                                     <input type="radio" name="radios" id="radios-0" value="Consultant Room">
-                                    Consultant Room
-                                    <select id="select-0" name="select-0" class="form-control">
-                                        <option value="null" selected="" >Please select consultation room</option>
-                                        <%
-                                            for (int i = 0; i < dataQueue2.size(); i++) {%>
-                                        <option value="<%=dataQueue2.get(i).get(1) + "|" + dataQueue2.get(i).get(2)%>"><%="(" + dataQueue2.get(i).get(0) + ") " + dataQueue2.get(i).get(1)%></option>
-                                        <%  }
-                                        %>
-                                    </select>
-
+                                    Consultant Room&nbsp;
                                 </label>
                                 <label for="radios-1">
                                     <input type="radio" name="radios" id="radios-1" value="Queue">
-                                    Common Queue
-                                    <select id="select-1" name="select-1" class="form-control">
-                                        <option selected="" value="null">Please select Queue</option>
-                                        <%
-                                            for (int i = 0; i < dataQueue.size(); i++) {%>
-                                        <option value="<%=dataQueue.get(i).get(1) + "|" + dataQueue.get(i).get(2)%>"><%="(" + dataQueue.get(i).get(0) + ") " + dataQueue.get(i).get(1) + " " + i%></option>
-                                        <%  }
-                                        %>
-                                    </select>
+                                    Common Queue&nbsp;
                                 </label>
                                 <label for="radios-2">
                                     <input type="radio" name="radios" id="radios-2" value="Doctor">
-                                    Doctor
-                                    <select id="select-2" name="select-2" class="form-control">
-                                        <option value="null"  selected="">Please select Doctor</option>
-                                        <%
-                                            for (int i = 0; i < dataQueue3.size(); i++) {%>
-                                        <option value="<%=dataQueue3.get(i).get(1) + "|" + dataQueue3.get(i).get(2)%>"><%="(" + dataQueue3.get(i).get(0) + ") " + dataQueue3.get(i).get(1)%></option>
-                                        <%  }
-                                        %>
-                                    </select>
+                                    Doctor&nbsp;
                                 </label>
+
+                                <select id="select-0" name="select-0" class="form-control">
+                                    <option value="null" selected="" >Please select consultation room</option>
+                                    <%
+                                        for (int i = 0; i < dataQueue2.size(); i++) {%>
+                                    <option value="<%=dataQueue2.get(i).get(1) + "|" + dataQueue2.get(i).get(2)%>"><%="(" + dataQueue2.get(i).get(0) + ") " + dataQueue2.get(i).get(1)%></option>
+                                    <%  }
+                                    %>
+                                </select>
+                                <select id="select-1" name="select-1" class="form-control">
+                                    <option selected="" value="null">Please select Queue</option>
+                                    <%
+                                        for (int i = 0; i < dataQueue.size(); i++) {%>
+                                    <option value="<%=dataQueue.get(i).get(1) + "|" + dataQueue.get(i).get(2)%>"><%="(" + dataQueue.get(i).get(0) + ") " + dataQueue.get(i).get(1) + " " + i%></option>
+                                    <%  }
+                                    %>
+                                </select>
+                                <select id="select-2" name="select-2" class="form-control">
+                                    <option value="null"  selected="">Please select Doctor</option>
+                                    <%
+                                            for (int i = 0; i < dataQueue3.size(); i++) {%>
+                                    <option value="<%=dataQueue3.get(i).get(1) + "|" + dataQueue3.get(i).get(2)%>"><%="(" + dataQueue3.get(i).get(0) + ") " + dataQueue3.get(i).get(1)%></option>
+                                    <%  }
+                                    %>
+                                </select>
                             </div>
 
                         </div>
@@ -258,15 +258,15 @@
                                 <input id="Dis" name="Dis" type="text"  class="form-control input-md">
                                 <div id="disList"></div>
                             </div>
-                            
+
                         </div>
                     </div>
                 </div>
 
                 <h4>Registration Details</h4>
                 <hr/>
-                <div class="row">
-                    <div class="col-md-6">
+                <div class="row" style="margin-bottom: 20px;">
+                    <div class="col-md-12">
                         <!-- Select Basic -->
                         <div class="form-group">
                             <label class="col-md-4 control-label" for="selectbasic">Priority Group *</label>
@@ -286,17 +286,19 @@
                     </div>
                 </div>
                 <div class="text-center">
-                    <button class="btn btn-primary " type="button" id="registerQueue"><i class="fa fa-floppy-o fa-lg"></i> Register</button>
-                    <button class="btn btn-default " type="button" id="btnclear" name="btnclear" > <i class="fa fa-ban fa-lg"></i>&nbsp; Clear</button>
+                    <button class="btn btn-primary  " type="button" id="registerQueue"><i class="fa fa-plus"></i> Register</button>
+                    <button class="btn btn-default " type="button" id="btnclear" name="btnclear" > <i class="fa fa-times"></i>&nbsp; Clear</button>
                     <!--                    <div id="dialog" title="Basic dialog">
                                             <p>This is the default dialog which is useful for displaying information. The dialog window can be moved, resized and closed with the 'x' icon.</p>
                                         </div>-->
                 </div>
-                <br/>
+                <!--<br/>
                 <div class="text-center">
+                    
                     <button class="btn btn-default" type="button" data-toggle="modal" data-target="#appointmentModal" id="appointment"> Appointment List</button>
                     <button class="btn btn-default" type="button" data-toggle="modal" data-target="#queueModal" id="queue">List Of Queue</button>
-                </div>
+                    
+                </div>-->
             </form>
         </div>
     </div>
@@ -307,4 +309,3 @@
 
 
 
-                     

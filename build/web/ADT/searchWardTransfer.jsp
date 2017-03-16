@@ -12,8 +12,6 @@
     ArrayList<ArrayList<String>> dataWname = conn.getData(wname);
 
 %>
-<div class="thumbnail">
-
     <form class="form-horizontal" name="myForm2" id="myForm2">
         <!-- Select Basic -->
         <div class="form-group">
@@ -39,7 +37,6 @@
 
 
     </form>
-</div>
 <script src="old/assets/js/IPMain.js" type="text/javascript"></script>
 <script src="old/assets/js/onKeyPress.js" type="text/javascript"></script>
 <script>

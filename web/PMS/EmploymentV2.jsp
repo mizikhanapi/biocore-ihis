@@ -31,12 +31,12 @@
             <div id="tableListEmp" class="form-group">
 
 
-                <table class="table table-filter table-striped" style="background: #fff; border: 1px solid #ccc; " id="listEMP">
+                <table class="table table-striped table-bordered" style="background: #fff; border: 1px solid #ccc; " id="listEMP">
                     <thead>
                     <th>Employer Name</th>
                     <th>Occupation</th>
-                    <th>Update</th>
-                    <th>Delete</th>
+                    <th style="width: 5%;">Update</th>
+                    <th style="width: 5%;">Delete</th>
                     </thead>
                     <tbody>
 

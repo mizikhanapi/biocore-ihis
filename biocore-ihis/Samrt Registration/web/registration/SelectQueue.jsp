@@ -4,7 +4,8 @@
 <%@page import="org.apache.commons.lang3.StringUtils"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
-    
+    Config.getBase_url(request);
+     Config.getFile_url(session);
    
     Conn conn = new Conn();
     
@@ -147,8 +148,6 @@
                         <button id="cancelSignup" class="btn btn-lg bttn btn_block ">Cancel</button>
                     </div>
                 </div>
-             
-             <a href="../destroySession.jsp" class="pull-right" style ="font-size:14px" type="submit">Log Out</a>
          </div>
 
         </div><!-- /card-container -->
@@ -267,7 +266,7 @@
         document.getElementById("commonQueue").onchange = function() {changes();};
        
             function changes() {
-                console.log("click 2");
+//                console.log("click 2");
                     $('#selectedQueue').hide();
                 $("#selectedQueue").val("null");
             };
@@ -276,7 +275,7 @@
         document.getElementById("consultantQueue").onchange = function() {changes1();};
        
             function changes1() {
-                console.log("click 1");
+//                console.log("click 1");
                     $('#selectedQueue').show();
                 
             };
@@ -287,7 +286,7 @@
             function TextFiledchanges() {
                 getDateNow();
 //                bootbox.alert(yyyyMMddHHmmss +" "+HHmmss+" "+yyyyMMdd+" "+ddMMyyyy);
-                console.log("Changed");
+//                console.log("Changed");
                    
                    var userIC;
                    userIC = $("#inputUserIC").val();
@@ -301,29 +300,29 @@
                    }
                    else
                    {
-                       console.log("before ajax");
+//                       console.log("before ajax");
                        $.ajax({
                            type:"POST",
                            url: "../Controller/searchUser.jsp",
                            data: data,
                            timeout: 10000,
                            success: function (data){
-                               console.log("in sucess");
+//                               console.log("in sucess");
                                if(data.trim() === "NOT FOUND")
                                {
                                    bootbox.alert("NOT FOUND");
                                }
                                else
                                {
-                                   console.log(data.trim());
+//                                   console.log(data.trim());
                                    var splitData = String(data.trim()).split("|");
-                                    console.log(splitData);
+//                                    console.log(splitData);
                                     
                                     pmi_no = splitData[0];
                                     user_name = splitData[2];
                                     user_id = splitData[7];
                                    $("#inputUserName").val(user_name);
-                                   console.log(pmi_no +" " +user_name+" "+user_id);
+//                                   console.log(pmi_no +" " +user_name+" "+user_id);
                                }
                            },
                            error: function (err){
@@ -365,7 +364,7 @@
         	queuetype = $("input[name='queuetype']:checked").val();
                 selectedqueue= $("#selectedQueue").val();
                 
-                console.log(useric+" "+username+" "+queuetype+" "+selectedqueue);
+//                console.log(useric+" "+username+" "+queuetype+" "+selectedqueue);
                 
                 if(useric === "")
                 {
@@ -396,7 +395,7 @@
                     };
                     
                     
-                console.log(data);
+//                console.log(data);
                 
                 $.ajax({
                             type: "POST",
@@ -404,7 +403,7 @@
                             data: data,
                             timeout: 10000,
                             success: function (data){
-                                console.log(data.trim());
+//                                console.log(data.trim());
                                 $("#inputUserIC").val("");
                                 $("#inputUserName").val("");
                                 $("#selectedQueue").val("null");

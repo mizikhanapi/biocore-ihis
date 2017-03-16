@@ -3,7 +3,7 @@
     Created on : Nov 4, 2016, 4:07:05 PM
     Author     : Ahmed
 --%>
-<%@page import="dbConn1.Conn"%>
+<%@page import="dBConn.Conn"%>
 <%@page import="main.RMIConnector"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="Config.connect"%>
@@ -11,35 +11,27 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">   
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> 
         <title>Main Page</title>
-         <%@include file="Header.jsp"%>
-         <link href="assets/css/bootstrap.min.css" rel="stylesheet">
-         <script src="assets/js/jquery.min.js"></script>
-
-        <link href="assets/css/style.css" rel="stylesheet">
-        <link rel="stylesheet" href="assets/font-awesome/css/font-awesome.min.css">
-        <!-- Custom styles for this template -->
-        <link href="assets/css/dashboard.css" rel="stylesheet">
-        <link href="assets/css/Line-tabs.css" rel="stylesheet">
-
+        <%@include file="../assets/header.html"%>
+        
+        <link href="bootstrap-3.3.6-dist/css/dataTables.bootstrap.min.css" rel="stylesheet" type="text/css"/>
+        
         <link rel="stylesheet" href="assets/css/loading.css">
         <link href="assets/datepicker/jquery-ui.css" rel="stylesheet">    
-        <link href="assets/datepicker/jquery-ui.css" rel="stylesheet">
-        <script src="assets/datepicker/jquery-ui.js"></script>
-        <script src="assets/js/form-validator.min.js"></script>
-        <script src="assets/js/bootstrap.min.js"></script> 
-        <script src="assets/js/w3data.js"></script>
-        <script src="assets/js/bootbox.min.js"></script>   
     </head>
     <body>
-        <div  id="topmenuindex"></div>
          <div class="container-fluid">
             
              <div class="row">
                
-                <div id="sidemenus"></div>
-                <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main" style="background: #f2f4f8;">
+                 <!-- menu side -->		
+                <%@include file = "libraries/sideMenus.jsp" %>
+                <!-- menu side -->
+                <div class="main" style="background: #f2f4f8;">
+                    <!-- menu top -->
+                <%@include file = "libraries/topMenus.html" %>
+                <!-- menu top -->
                 <div class="row">
                     <div class="col-md-12">
                         <div class="thumbnail">
@@ -74,10 +66,6 @@
                         <div class="table-responsive" id='viewOT'> 
                             
                            <hr>   
-                                           
-
-
-
                                         </div>
                               
 
@@ -272,7 +260,17 @@
      
                         </div>
              </div> 
-       
+       <script src="assets/js/jquery.min.js"></script>                            
+        <script src="assets/datepicker/jquery-ui.js"></script>
+        <script src="assets/js/form-validator.min.js"></script>
+        <script src="assets/js/bootstrap.min.js"></script> 
+        <script src="assets/js/w3data.js"></script>
+        <script src="assets/js/bootbox.min.js"></script> 
+        
+        <script src="bootstrap-3.3.6-dist/js/jquery.dataTables.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/4.4.0/bootbox.min.js"></script>
+        <script src="bootstrap-3.3.6-dist/js/jquery.dataTables.min.js"></script>
+        <script src="bootstrap-3.3.6-dist/js/dataTables.bootstrap.min.js" type="text/javascript"></script>
        <script>
         w3IncludeHTML();
 

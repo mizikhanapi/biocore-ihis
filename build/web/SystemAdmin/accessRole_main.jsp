@@ -190,7 +190,7 @@
 
                             if (datas.trim() === 'Success') {
 
-                                $('#assignRoleTable').load('accessRole_table.jsp');
+                                $('#accessRoleTable').load('accessRole_table.jsp');
                                 $('#ARM_detail').modal('hide');
                                 //alert("Insertion Success");
                                 bootbox.alert({

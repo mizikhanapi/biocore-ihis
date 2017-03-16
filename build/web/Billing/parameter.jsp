@@ -10,7 +10,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-    <%@include file = "includes/header.html" %>
+    <%@include file = "includes/header.jsp" %>
     <body>
         <div class="container-fluid">
             <div class="row">      
@@ -57,7 +57,7 @@
                                           <input type="text" class="form-control" name="value" id="value">
                                         </div>
                                         <label class="col-lg-2">Enabled</label>
-                                        <div class="col-sm-7 col-md-7" style="margin-bottom: 10px">
+                                        <div class="col-sm-7 col-md-7" style="margin-bottom: 30px">
                                                 <div class="input-group">
                                                         <div id="rbEnable" class="btn-group">
                                                                 <a class="btn btn-primary btn-sm active" data-toggle="enable" data-title="Y">YES</a>
@@ -68,22 +68,35 @@
                                         </div>
                                         <label class="col-lg-2"></label>
                                         <div class="col-lg-10 pull-right" style="margin-bottom: 10px">
-                                            <button id="add" class="btn btn-success">Add</button>
-                                            <button id="update" class="btn btn-success" disabled="true">Update</button>
-                                            <button id="delete" class="btn btn-danger" disabled="true">Delete</button>
+                                            <button id="add" class="btn btn-success">
+                                                <i class=" fa fa-plus" style=" padding-right: 10px; padding-left: 10px;color: white;"></i>
+                                                Add
+                                            </button>
+                                            <button id="update" class="btn btn-success" disabled="true">
+                                                <i class="fa fa-pencil-square-o" style=" padding-right: 10px; padding-left: 10px;color: white;"></i>
+                                                Update
+                                            </button>
+                                            <button id="delete" class="btn btn-danger" disabled="true">
+                                                <i class="fa fa-times" style=" padding-right: 10px; padding-left: 10px;color: white;"></i>
+                                                Delete
+                                            </button>
                                         </div>
                                     </div>
                                 </div>
-                                <div id="custom-search-input">
-                                    <div class="input-group ">
-                                        <input id="search" type="text" class=" search-query form-control" placeholder="Item Name" onkeyup="searchItem()"/>
-                                        <span class="input-group-btn">
-                                            <button class="btn btn-success pull-right">Search</button>
-                                        </span>
-                                    </div>
-                                </div>
-                                <div id="billPara"></div>
                             </div>
+                            <div class = "thumbnail">
+                                <form class="form-horizontal" name="myForm">
+                                    <div id="custom-search-input">
+                                        <div class="form-group">
+                                            <label class="col-md-4 control-label" for="textinput">Enter Item Name to Filter</label>
+                                            <div class="col-md-4">
+                                                <input id="search" type="text" class=" search-query form-control" placeholder="Item Name" onkeyup="searchItem()"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>   
+                                <div id="billPara"></div>         
+                            </div>                
                         </div>
                     </div>
                 </div>
@@ -92,11 +105,10 @@
 
         <%@include file = "includes/message.html" %>    
         <!--js-->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script> 
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> 
         <script src="assets/js/jquery.min.js" type="text/javascript"></script>
         <script src="assets/js/custom.js" type="text/javascript"></script>
-
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script> 
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> 
         <script type="text/javascript">
             function searchItem() {
                 // Declare variables

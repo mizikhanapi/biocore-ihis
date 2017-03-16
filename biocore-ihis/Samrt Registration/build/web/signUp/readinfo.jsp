@@ -4,6 +4,8 @@
 <%@page import="org.apache.commons.lang3.StringUtils"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
+   Config.getBase_url(request);
+   Config.getFile_url(session);
    
         Conn conn = new Conn();
     
@@ -95,18 +97,18 @@
                         </div>
                     -->
                     
-                    <div class="form-group">
+                    <div class="form-group margin1">
                         <label class="col-lg-4 control-label">Date of Birth:</label>
                         <div class="col-lg-8">
                            <div class="row">
                               <div class="col-lg-4">
-                                <input type="number" id="txt_day" name="txt_day" class="form-control input-sm"  placeholder="DD" required maxlength="2" data-validation-required-message="Day is required" >
+                                <input type="text" id="txt_day" name="txt_day" class="form-control input-sm"  placeholder="DD" required maxlength="2" data-validation-required-message="Day is required" >
                               </div>
                               <div class="col-lg-4">
-                               <input type="number" id="txt_month" name="txt_month" class="form-control input-sm"  placeholder="MM" required maxlength="2" data-validation-required-message="Month is required" >
+                               <input type="text" id="txt_month" name="txt_month" class="form-control input-sm"  placeholder="MM" required maxlength="2" data-validation-required-message="Month is required" >
                               </div>
                               <div class="col-lg-4">
-                                <input type="number" id="txt_year" name="txt_year" class="form-control input-sm"  placeholder="YYYY" required maxlength="4" data-validation-required-message="Year is required" >
+                                <input type="text" id="txt_year" name="txt_year" class="form-control input-sm"  placeholder="YYYY" required maxlength="4" data-validation-required-message="Year is required" >
                               </div>
                            </div>
                         </div>
@@ -269,15 +271,15 @@
                         'userID': userid,
                         'userPassword': userpassword
                         };
-                        console.log(bioData);
-                        console.log(loginData);
+//                        console.log(bioData);
+//                        console.log(loginData);
                         $.ajax({
                             type: "POST",
                             url: "../Controller/insertPatient.jsp",
                             data: bioData,
                             timeout: 3000,
                             success: function (data){
-                                console.log(data.trim());
+//                                console.log(data.trim());
                                 $("#inputUserIC").val("");
                                 $("#inputUserID").val("");
                                 $("#inputUserName").val("");
@@ -312,7 +314,7 @@
                                     data: loginData,
                                     timeout: 3000,
                                     success: function (data){
-                                       console.log(data.trim()); 
+//                                       console.log(data.trim()); 
                                     },
                                     error: function (err) {
                                     console.log(err);

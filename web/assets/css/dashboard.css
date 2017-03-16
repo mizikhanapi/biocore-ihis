@@ -508,3 +508,25 @@ ul.nav.navbar-nav.navbar-left.back {
     background: #ccc;
     color: #333;
 }
+
+.ConsultationNotes>tr{
+    border-bottom: 2px solid #2196F3;
+}
+
+.table-bordered>thead>tr>th:last-child {
+    text-align: center;
+    width: 5%;
+}
+
+.table-bordered>thead>tr>th:nth-last-child(2) {
+    text-align: center;
+    width: 5%;
+}
+
+.table-bordered>tbody>tr>td:last-child {
+    text-align: center;
+}
+
+.table-bordered>tbody>tr>td:nth-last-child(2) {
+    text-align: center;
+}

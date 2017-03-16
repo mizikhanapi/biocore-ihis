@@ -4,7 +4,7 @@
     Author     : Mike Ho
 --%>
 
-<%@page import="dbConn.Conn"%>
+<%@page import="dbConn1.Conn"%>
 <%@page import="java.text.DecimalFormat"%>
 <%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -18,7 +18,7 @@
             "SELECT patient_name, home_address, new_ic_no, id_no, mobile_phone "
             + "FROM pms_patient_biodata "
             + "WHERE pmi_no = '" + custID + "'";
-    ArrayList<ArrayList<String>> dataPatient = dbConn.Conn.getData(query1);
+    ArrayList<ArrayList<String>> dataPatient = Conn.getData(query1);
 %>
 <div style="margin-bottom: 50px">
     <h4><b>Bill Detail</b></h4>
@@ -59,7 +59,7 @@
 </div>
 <div>
     <div id="listOfItems">
-        <table id="tableItems" class="table table-filter table-striped" style="background: #fff; border: 1px solid #ccc; border-top: none;">
+        <table id="tableItems" class="table table-filter table-striped table-bordered">
             <thead>
                 <th>Transaction Date</th>
                 <th>Item Code</th>
@@ -67,7 +67,11 @@
                 <th style="text-align: right;">Item Quantity</th>
                 <th style="text-align: right;">Unit Price (RM)</th>
                 <th style="text-align: right;">Total Amount (RM)</th>
-                <th><th>
+<%
+            if (status.equalsIgnoreCase("unpaid")){
+%>
+                <th></th>
+<%}%>
             </thead>
             <tbody>
 <%
@@ -75,7 +79,7 @@
                 "SELECT txn_date, item_cd, item_desc, quantity, item_amt/quantity, item_amt "
                 + "FROM far_customer_dtl "
                 + "WHERE bill_no = '"+ billNo +"' ";
-        ArrayList<ArrayList<String>> dataBill = dbConn.Conn.getData(query2);
+        ArrayList<ArrayList<String>> dataBill = Conn.getData(query2);
 
         if (!dataBill.isEmpty()){
 
@@ -95,7 +99,7 @@
                     <button id="delete<%=i%>" class="btn btn-danger pull-right" type="button">Delete</button>
                 </td>
 <%} else {%>
-                <td></td>
+<!--                <td></td>-->
 <%}%>
             </tr>
 <%}}%>
@@ -209,23 +213,24 @@
                             <div id="tabMiscItem" class="tab-pane active">
                                 <!-- Misc Item -->
                                 <div id="custom-search-input" style="margin-top: 10px;">
-                                    <div class="input-group ">
-                                        <input id="searchMiscItem" type="text" class=" search-query form-control" placeholder="Item Name" onkeyup="searchMiscItem()"/>
-                                        <span class="input-group-btn">
-                                            <button class="btn btn-success pull-right">Search</button>
-                                        </span>
+                                    <div class="form-group ">
+                                        <label class="col-md-4 control-label" for="textinput">Enter Item Name to Filter</label>
+                                        <div class="col-md-4">
+                                            <input id="searchMiscItem" type="text" class=" search-query form-control" placeholder="Item Name" onkeyup="searchMiscItem()"/>
+                                        </div>
                                     </div>
                                 </div>
                                 <div id="miscItem" ></div>
                             </div>
+
                             <div id="tabDrugsItem" class="tab-pane">
                                 <!-- Drugs Item -->
                                 <div id="custom-search-input" style="margin-top: 10px;">
-                                    <div class="input-group ">
-                                        <input id="searchDrugsItem" type="text" class=" search-query form-control" placeholder="Item Name" onkeyup="searchDrugsItem()"/>
-                                        <span class="input-group-btn">
-                                            <button class="btn btn-success pull-right">Search</button>
-                                        </span>
+                                    <div class="form-group ">
+                                        <label class="col-md-4 control-label" for="textinput">Enter Item Name to Filter</label>
+                                        <div class="col-md-4">
+                                            <input id="searchDrugsItem" type="text" class=" search-query form-control" placeholder="Item Name" onkeyup="searchDrugsItem()"/>
+                                        </div>
                                     </div>
                                 </div>
                                 <div id="drugsItem" ></div>
@@ -310,6 +315,9 @@
     }
 
     $(document).ready(function(){
+        
+        var contextPath = '<%=request.getContextPath()%>';
+        
         $('#txnDate').val('<%=dataBill.get(0).get(0)%>');
         
         $('#amtReceived').keypress(function(event) {
@@ -560,7 +568,7 @@
                             document.getElementById('messageContent').innerHTML = d[2];
                             $("#alertMessage").modal();
                            
-                            var url = "/eBilling/Receipt?"
+                            var url = contextPath + "/Receipt?"
                             url += "&custID=" + custID;
                             url += "&billNo=" + billNo;
                             url += "&subtotal=" + d[3];
@@ -608,7 +616,7 @@
                    var d = data.split("|");
                    if (d[1] == 1){
 
-                        var url = "/eBilling/Receipt?"
+                        var url = contextPath + "/Receipt?"
                         url += "&custID=" + custID;
                         url += "&billNo=" + billNo;
                         url += "&subtotal=" + d[3];
