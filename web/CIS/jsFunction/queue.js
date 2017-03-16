@@ -18,7 +18,16 @@ $(document).ready(function () {
         pmiNo = row.find('#pmiNumber').text();
         episodeDate = row.find('#epiDate').text();
         status = row.find('#status').text();
-
+        statusBe4 = row.find('#status').text();
+        if(statusBe4 === 'On Hold'){
+            statusNow = 2;
+        } else if (statusBe4 === 'Waiting'){
+            statusNow = 0;
+        } else if (statusBe4 === 'Missing'){
+            statusNow = 4;
+        } else if (statusBe4 === 'Discharge'){
+            statusNow = 1;
+        }
         var updateConsult = updateStatus(pmiNo,episodeDate,5);
 
         var patient = findPatient(pmiNo);
@@ -26,10 +35,7 @@ $(document).ready(function () {
         console.log(PDIInfo);
 
         if (status === 'On Hold') {
-
             getEHRPatient(pmiNo, episodeDate);
-
-            // convertEHR(EHRrecord);
         }
 
         $('#queueModal').modal('toggle');

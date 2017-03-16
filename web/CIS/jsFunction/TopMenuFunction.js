@@ -7,6 +7,20 @@
 var processNotes = "";
 
 $(document).ready(function (e) {
+    $(window).on('beforeunload', function (e) {
+        console.log(pmiNo);
+        if (pmiNo === "") {
+            console.log("no pmi");
+        } else {
+            updateStatus(pmiNo, episodeDate, statusNow);
+            return "Sure U are?";
+        }
+    });
+
+    $(window).on('unload', function (e) {
+
+        
+    });
     
     $('#mainConsultBar').hide();
 
@@ -30,6 +44,7 @@ $(document).ready(function (e) {
         if (c === true) {
             getPDI(pmiNo);
             storeData(2);
+            updateStatus(pmiNo, episodeDate, "2");
         } else {
             alert('ON HOLD Cancel');
         }
@@ -42,6 +57,7 @@ $("#missingBtn").click(function(){
        
        if(c === true){
            storeData(4);
+           updateStatus(pmiNo, episodeDate, "4");
        } else {
            alert('Data not be saved');
        }
