@@ -118,6 +118,8 @@
         <!-- main --> 
 
     </div>
+    <div  id="modalSaya"><%@include file = "AppointmentModal.jsp" %></div>
+    <div id="modalSaya2"><%@include file = "QueueModal.jsp" %></div>
 
 
 

@@ -168,7 +168,7 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-md-4 control-label" for="selectbasic">Please select the Queue</label>
+                            <label class="col-md-4 control-label" for="selectbasic">Please select the Queue *</label>
 
                             <label class="col-md-4 control-label" for="selectbasic"></label>
                             <div class="col-md-6">
@@ -221,10 +221,7 @@
                             <div class="col-md-6">
                                 <select id="EliCat" name="EliCat" class="form-control">
                                     <option value="1" selected="" disabled="">Select Eligibility Category</option>
-                                    <!--<option value="2">Government</option>
-                                    <option value="2">Private</option>
-                                    <option value="2">Public</option>
-                                    <option value="2">SOCSO</option>-->
+                                    
                                     <%
                                         for (int i = 0; i < dataEliCat.size(); i++) {%>
                                     <option value="<%=dataEliCat.get(i).get(1)%>"><%=dataEliCat.get(i).get(2)%></option>
@@ -255,7 +252,7 @@
                         <div class="form-group">
                             <label class="col-md-4 control-label" for="selectbasic">Discipline *</label>
                             <div class="col-md-6">
-                                <input id="Dis" name="Dis" type="text"  class="form-control input-md">
+                                <input id="Dis" name="Dis" type="text"  class="form-control input-md" placeholder="Please select discipline..">
                                 <div id="disList"></div>
                             </div>
 
@@ -272,7 +269,7 @@
                             <label class="col-md-4 control-label" for="selectbasic">Priority Group *</label>
                             <div class="col-md-6">
                                 <select id="prioGru" name="prioGru" class="form-control">
-                                    <option value="1" selected="" disabled="">Select Priority Group</option>
+                                    <option value="null" selected="" disabled="">Select Priority Group</option>
                                     <%
                                         for (int i = 0; i < dataPrio.size(); i++) {%>
                                     <option value="<%=dataPrio.get(i).get(1)%>"><%=dataPrio.get(i).get(2)%></option>
@@ -303,9 +300,8 @@
         </div>
     </div>
 </div>
-<div  id="modalSaya"><%@include file = "AppointmentModal.jsp" %></div>
+
 <div class="modalLoad"></div>
-<div id="modalSaya2"><%@include file = "QueueModal.jsp" %></div>
 
 
 
