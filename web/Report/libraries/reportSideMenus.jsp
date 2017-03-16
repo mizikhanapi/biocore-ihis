@@ -47,7 +47,7 @@
         <li><a href="prescriptionSlipMain.jsp"><i class="fa fa-list-ul fa-lg" aria-hidden="true" ></i> Prescription Slip</a></li>
         <li><a href="dispensingSheetMain.jsp"><i class="fa fa-file-text fa-lg" aria-hidden="true" ></i> Dispensing Sheet</a></li>
         <li><a href="ICD10Main.jsp"><i class="fa fa-stethoscope fa-lg" aria-hidden="true" ></i>ICD 10</a></li>   
-        <li><a href="fullReportMain.jsp"><i class="fa fa-bar-chart fa-lg" aria-hidden="true" ></i>Statistics</a></li>
+        <li><a href="fullreportMain.jsp"><i class="fa fa-bar-chart fa-lg" aria-hidden="true" ></i>Statistics</a></li>
         <li><a href="pmhMain.jsp"><i class="fa fa-medkit fa-lg" aria-hidden="true" ></i>Past Medical History</a></li>
         <li><a href="drugOrderList.jsp"><i class="fa fa-money fa-lg" aria-hidden="true" ></i>Total Drug Cost</a></li>
         <li><a href="laporanKosPerubatan.jsp"><i class="fa fa-file-text fa-lg" aria-hidden="true" ></i>Laporan Kos Perubatan</a></li>

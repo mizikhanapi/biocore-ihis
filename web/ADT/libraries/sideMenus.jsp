@@ -1,13 +1,12 @@
 <%@page import="Config.Config"%>
 <%
-    String gamba ="";
+    String gamba = "";
     String nama = "";
     String role = "";
-    
-    if(session.getAttribute("USER_NAME") != null){
-        
-        
-        gamba =session.getAttribute("PICTURE").toString();
+
+    if (session.getAttribute("USER_NAME") != null) {
+
+        gamba = session.getAttribute("PICTURE").toString();
         nama = session.getAttribute("USER_NAME").toString();
         role = session.getAttribute("ROLE_NAME").toString();
     }
@@ -26,7 +25,7 @@
     <!-- profile Sidebar -->
     <div class="profile">
         <div class="profile-userpic">
-            
+
             <img src="<%= gamba%>" class="img-responsive" alt="">
         </div>
         <!-- SIDEBAR USER TITLE -->
@@ -40,19 +39,19 @@
         </div>
         <!-- SIDEBAR BUTTONS -->
         <div class="profile-userbuttons">
-            <button type="button" class="btn btn-success btn-sm" onclick="window.location.href='../Entrance/profile.jsp'">Manage Account</button>
+            <button type="button" class="btn btn-success btn-sm" onclick="window.location.href = '../Entrance/profile.jsp'">Manage Account</button>
         </div>
     </div>
     <hr/>
     <!-- profile Sidebar -->
 
 
-   
+
     <ul id="menu-content" class="nav nav-sidebar">
         <!-- // menu tanpa dropdown -->
-        <li><a  href="MaintainWard.jsp" ><i class="fa fa-briefcase fa-lg"></i> Maintain Ward Code </a> </li>
-        
-        
+        <li><a  href="MaintainWard.jsp" ><i class="fa fa-code fa-lg"></i> Maintain Ward Code </a> </li>
+
+
         <li>
             <a  href="InpatientRegistrationMain.jsp" >
                 <i class="fa fa-bed fa-lg"></i> Manage In-Patient
@@ -60,10 +59,10 @@
         </li>
         <li>
             <a  href="WardOccupancyMain.jsp" >
-                <i class="fa fa-briefcase fa-lg"></i> Ward Occupancy
+                <i class="fa fa-hospital-o fa-lg"></i> Ward Occupancy
             </a>
         </li>
-             
+
         <!-- // menu tanpa dropdown -->
 
         <!-- Menu with dropdown -->

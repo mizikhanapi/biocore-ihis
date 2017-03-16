@@ -18,8 +18,8 @@
     <th>Ward Class</th>
     <th>Ward Class ID</th>
     <th>Status</th>
-    <th>Update</th>
-    <th>Delete</th>
+    <th style="width: 5%; text-align: center;">Update</th>
+    <th style="width: 5%; text-align: center;">Delete</th>
 </thead>
 <tbody>
 
@@ -37,14 +37,14 @@
 <td><%= dataFacilityType.get(i).get(0)%></td>
 <td><%= dataFacilityType.get(i).get(1)%></td>
 <td><%= dataFacilityType.get(i).get(2)%></td>
-<td>
+<td style="text-align: center;">
     <!-- Update Part Start -->
-    <a id="MW_edit" data-toggle="modal" data-target="#FacilityTypeUpdateModal"><i class="fa fa-pencil-square-o" aria-hidden="true" style="display: inline-block;color: #337ab7;"></i></a>
+    <a id="MW_edit" data-toggle="modal" data-target="#FacilityTypeUpdateModal"><i class="fa fa-pencil-square-o fa-lg" aria-hidden="true" style="display: inline-block;color: #337ab7; cursor: pointer;"></i></a>
     <!-- Update Part End -->
 </td>
-<td>
+<td style="text-align: center;">
     <!-- Delete Button Start -->
-    <a id="MW_delete" class="testing"><i class="fa fa-times" aria-hidden="true" style="display: inline-block;color: #d9534f;" ></i></a>
+    <a id="MW_delete" class="testing"><i class="fa fa-times fa-lg" aria-hidden="true" style="display: inline-block;color: #d9534f; cursor: pointer;" ></i></a>
     <!-- Delete Button End -->
 </td>
 </tr>

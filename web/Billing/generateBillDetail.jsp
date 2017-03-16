@@ -538,6 +538,9 @@
         });
         
         $('#addDrugsItem').click(function (){
+            
+            var contextPath = '<%=request.getContextPath()%>';
+            
             var quantity = document.getElementById('quantity').value;
             
             if (quantity == '' || quantity == 0){
@@ -645,7 +648,7 @@
                     success: function(data) {
                        var d = data.split("|");
                        if (d[1] == 1){
-                            var url = "/eBilling/Receipt?"
+                            var url = contextPath + "/Receipt?"
                             url += "&custID=" + custID;
                             url += "&billNo=" + billNo;
                             url += "&subtotal=" + d[3];

@@ -13,7 +13,7 @@
     dataIdType12 = conn.getData(idTYpe11);
     String dataSystemStatus155 = session.getAttribute("SYSTEMSTAT").toString();
 %>
-<div class="thumbnail">
+
     <form class="form-horizontal" name="myForm" id="myForm">
         <!-- Select Basic -->
         <div class="form-group">
@@ -48,9 +48,8 @@
             <button class="btn btn-primary" type="button" id="searchPatient" name="searchPatient"><i class="fa fa-search fa-lg"></i>&nbsp; Search</button>
 
         </div>
-        
+
     </form>
-</div>
 <script src="old/assets/js/OccuPatient.js" type="text/javascript"></script>
 <script src="old/assets/js/onKeyPress.js" type="text/javascript"></script>
 <script>

@@ -16,10 +16,10 @@
     session.getAttribute("subDicipline");
 %>
 
-<h4 style="padding-top: 30px;padding-bottom: 35px; font-weight: bold">
+<h4 style="padding: 30px 0;">
     MAINTAIN WARD/ FACILITY ID
     <span class="pull-right">
-        <button class="btn btn-success" data-status="pagado" data-toggle="modal" data-id="1" data-target="#detailID" style=" padding-right: 10px;padding-left: 10px;color: white;"><a data-toggle="tooltip" data-placement="top" title="Add Items" id="test"><i class=" fa fa-plus" style=" padding-right: 10px;padding-left: 10px;color: white;"></i></a>ADD FACILITY ID</button>
+        <button class="btn btn-success" data-status="pagado" data-toggle="modal" data-id="1" data-target="#detailID" ><a data-toggle="tooltip" data-placement="top" title="Add Items" id="test"></a><i class=" fa fa-plus"></i>&nbsp;ADD FACILITY ID</button>
     </span>
 </h4>
 <!-- Add Button End -->
@@ -42,13 +42,13 @@
                     <input id="hfc" type="hidden" value="<%= session.getAttribute("hfc")%>">
                     <input id="discipline" type="hidden" value="<%= session.getAttribute("discipline")%>">
                     <input id="sub" type="hidden" value="<%= session.getAttribute("subDicipline")%>">
-                    
-                    
+
+
                     <div class="col-md-12" style="width: 100%">
-                        
+
                         <div class="col-md-12"> 
-                            
-                            
+
+
                             <!-- Select Basic -->
                             <div class="form-group">
                                 <label class="col-md-4 control-label" for="selectbasic">Ward Class</label>
@@ -124,11 +124,11 @@
                         </div>
 
                     </div>
-</br>
- </br>
- </br>
+                    </br>
+                    </br>
+                    </br>
                     <div class="row">
-                        
+
 
                         <div class="col-sm-4">
                             <div class="form-group">
@@ -138,7 +138,7 @@
                                 </div>
                             </div>
                         </div>
-                            
+
                         <div class="col-sm-4">
                             <div class="form-group">
                                 <label class="col-md-4 control-label" for="textinput">Citizen Deposit</label>
@@ -155,10 +155,10 @@
                                 </div>
                             </div>
                         </div>
-                            
+
 
                     </div>
-</br>
+                    </br>
                     <div class="row">
                         <div class="col-sm-4">
                             <div class="form-group">
@@ -186,7 +186,7 @@
                             </div>
                         </div>
                     </div>
-</br>
+                    </br>
                     <div class="row">
                         <div class="col-sm-4">
                             <div class="form-group">
@@ -214,7 +214,7 @@
                         </div>
                     </div>
 
-</br>
+                    </br>
                     <div class="row">
                         <div class="col-md-6">
 
@@ -263,7 +263,7 @@
                         </div>
                     </div>
 
-                   <!-- Select Basic -->
+                    <!-- Select Basic -->
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="textinput">Status</label>
                         <div class="col-md-8">
@@ -281,19 +281,19 @@
                 </form>
             </div>
             <!-- content goes here -->
-        
-        <div class="modal-footer">
-            <div class="btn-group btn-group-justified" role="group" aria-label="group button">
-                <div class="btn-group" role="group">
-                    <button type="submit" class="btn btn-success btn-block btn-lg" role="button" id="MWID_add">Add</button>
-                </div>
-                <div class="btn-group" role="group">
-                    <button type="reset" id="MWID_clear" class="btn btn-default btn-block btn-lg" data-dismiss="modal" role="button" >Cancel</button>
+
+            <div class="modal-footer">
+                <div class="btn-group btn-group-justified" role="group" aria-label="group button">
+                    <div class="btn-group" role="group">
+                        <button type="submit" class="btn btn-success btn-block btn-lg" role="button" id="MWID_add">Add</button>
+                    </div>
+                    <div class="btn-group" role="group">
+                        <button type="reset" id="MWID_clear" class="btn btn-default btn-block btn-lg" data-dismiss="modal" role="button" >Cancel</button>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 </div>
 
 <!--<script src="bootstrap-3.3.6-dist/js/jquery-2.1.4.js" type="text/javascript"></script>
@@ -435,7 +435,7 @@
                 telephone: telephone,
                 status: status
             };
-            
+
             console.log(data);
 
             $.ajax({
@@ -467,7 +467,7 @@
                 }
 
             });
-        
+
 
         });
 
@@ -509,8 +509,3 @@
 
 
 </script> 
-<br>
-
-
-</body>
-</html>

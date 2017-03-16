@@ -31,8 +31,8 @@
     <th>Discipline</th>
     <th>Citizen Rate</th>
     <th>Non Citizen Rate</th>
-    <th>Update</th>
-    <th>Delete</th>
+    <th style="width: 5%; text-align: center;">Update</th>
+    <th style="width: 5%; text-align: center;">Delete</th>
 </thead>
 <tbody>
 
@@ -55,14 +55,14 @@
 <td><%= dataFacilityID.get(i).get(5)%></td>
 <td><%= dataFacilityID.get(i).get(8)%></td>
 
-<td>
+<td style="text-align: center;">
     <!-- Update Part Start -->
-    <a id="MWID_edit" data-toggle="modal" data-target="#FacilityIDUpdateModal"><i class="fa fa-pencil-square-o" aria-hidden="true" style="display: inline-block;color: #337ab7;"></i></a>
+    <a id="MWID_edit" data-toggle="modal" data-target="#FacilityIDUpdateModal"><i class="fa fa-pencil-square-o fa-lg" aria-hidden="true" style="display: inline-block;color: #337ab7;"></i></a>
     <!-- Update Part End -->
 </td>
-<td>
+<td style="text-align: center;">
     <!-- Delete Button Start -->
-    <a id="MWID_delete" class="testing"><i class="fa fa-times" aria-hidden="true" style="display: inline-block;color: #d9534f;" ></i></a>
+    <a id="MWID_delete" class="testing"><i class="fa fa-times fa-lg" aria-hidden="true" style="display: inline-block;color: #d9534f;" ></i></a>
     <!-- Delete Button End -->
 </td>
 </tr>

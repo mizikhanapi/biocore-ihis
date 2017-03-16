@@ -78,8 +78,8 @@
 </div>
 <script>
     $(function(){
-         $('#bedDiv').on('click', '#tableBed button', function () {
-        var row = $(this).closest("div");
+         $('#bedDiv').on('click', '.bed button', function () {
+        var row = $(this).closest(".bed");
         //var str = $('#bedID').val();
         var te = row.find('#bedID').val();
 

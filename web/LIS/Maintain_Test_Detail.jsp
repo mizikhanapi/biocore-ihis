@@ -18,7 +18,7 @@
 <h2>Maintain Test Detail
 
     <span class="pull-right">
-        <button id="MLM_btnAddNew" class="btn btn-success" data-status="pagado" data-toggle="modal" data-id="1" data-target="#TestDetail" style=" padding-right: 10px;padding-left: 10px;color: white;"><a data-toggle="tooltip" data-placement="top" title="Add Items" id="test"><i class=" fa fa-plus" style=" padding-right: 10px;padding-left: 10px;color: white;"></i></a>ADD Test Detail</button>
+        <button id="MLM_btnAddNew" class="btn btn-success" data-status="pagado" data-toggle="modal" data-id="1" data-target="#TestDetail" style=" padding-right: 10px;padding-left: 10px;"><a data-toggle="tooltip" data-placement="top" title="Add Items" id="test"></a><i class=" fa fa-plus" style=" padding-right: 10px;padding-left: 10px;"></i>&nbsp;ADD Test Detail</button>
     </span>
 </h2>
 <hr/>
@@ -33,6 +33,8 @@
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal"><i class="fa fa-times fa-lg"></i></button>
                 <h3 class="modal-title" id="lineModalLabel">ADD Test Detail</h3>
+            </div>
+            <div class="modal-body">
                 <%
                     Conn conn = new Conn();
                     String query = "SELECT category_code, category_name from lis_item_category";
@@ -115,7 +117,7 @@
                         </select>
                     </div>
                 </div>
-                <br>
+            </div>
                 <div class="modal-footer">
                     <div class="btn-group btn-group-justified" role="group" aria-label="group button">
                         <div class="btn-group" role="group">

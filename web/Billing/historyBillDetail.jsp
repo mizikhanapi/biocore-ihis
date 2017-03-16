@@ -315,6 +315,9 @@
     }
 
     $(document).ready(function(){
+        
+        var contextPath = '<%=request.getContextPath()%>';
+        
         $('#txnDate').val('<%=dataBill.get(0).get(0)%>');
         
         $('#amtReceived').keypress(function(event) {
@@ -565,7 +568,7 @@
                             document.getElementById('messageContent').innerHTML = d[2];
                             $("#alertMessage").modal();
                            
-                            var url = "/eBilling/Receipt?"
+                            var url = contextPath + "/Receipt?"
                             url += "&custID=" + custID;
                             url += "&billNo=" + billNo;
                             url += "&subtotal=" + d[3];
@@ -613,7 +616,7 @@
                    var d = data.split("|");
                    if (d[1] == 1){
 
-                        var url = "/eBilling/Receipt?"
+                        var url = contextPath + "/Receipt?"
                         url += "&custID=" + custID;
                         url += "&billNo=" + billNo;
                         url += "&subtotal=" + d[3];

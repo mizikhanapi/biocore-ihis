@@ -9,7 +9,7 @@
 <%@page import="java.text.DateFormat"%>
 <%@page import="java.text.DecimalFormat"%>
 <%@page import="Class.Month"%>
-<%@page import="dbConn.Conn"%>
+<%@page import="dbConn1.Conn"%>
 <%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
