@@ -191,6 +191,17 @@
                                     </div>
                                 </div>
                             </div>
+                            
+                            
+                            <div class="col-md-6">
+                                <!-- Text input-->
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label" for="textinput">Mother's Name *</label>
+                                    <div class="col-md-8">
+                                        <input id="UT_mother"  type="text" placeholder="Insert the staff mother's name" class="form-control input-md" maxlength="30">
+                                    </div>
+                                </div>
+                            </div>
 
                         </div>
 
@@ -421,15 +432,6 @@
                                 </div>
                             </div>
 
-                            <div class="col-md-6">
-                                <!-- Text input-->
-                                <div class="form-group">
-                                    <label class="col-md-4 control-label" for="textinput">Mother's Name *</label>
-                                    <div class="col-md-8">
-                                        <input id="UT_mother"  type="text" placeholder="Insert the staff mother's name" class="form-control input-md" maxlength="30">
-                                    </div>
-                                </div>
-                            </div>
 
                         </div><hr/>
 

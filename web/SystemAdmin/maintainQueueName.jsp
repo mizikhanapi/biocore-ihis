@@ -5,9 +5,9 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<h4>Maintain Queue Name
+<h4 style="padding-top: 30px;padding-bottom: 35px; font-weight: bold">Maintain Queue Name
     <span class="pull-right">
-        <a id="Nplus" alt="Add Items" data-placement="top" data-toggle="modal" data-target="#names"><i class=" fa fa-plus" style=" padding-right: 5px;"></i></a>
+        <button id="Nplus" class="btn btn-success" data-status="pagado" data-toggle="modal" data-id="1" data-target="#names" style=" padding-right: 10px;padding-left: 10px;color: white;"><a data-toggle="tooltip" data-placement="top" title="Add Items" ><i class=" fa fa-plus" style=" padding-right: 10px;padding-left: 10px;color: white;"></i></a>ADD Queue Name</button>
     </span>
 </h4>
 <div id="QNdiv">

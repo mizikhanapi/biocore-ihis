@@ -32,7 +32,7 @@
     dataQL = conn.getData(sql);
     //out.print(dataQL);
 %>
-<table class="table table-filter table-striped" style="background: #fff; border: 1px solid #ccc;" id="QLtable">
+<table class="table table-filter table-striped table-bordered table-hover" style="background: #fff; border: 1px solid #ccc;" id="QLtable">
     <thead>
     <th>Queue Name</th>
     <th>Staff Name</th>

@@ -11,31 +11,28 @@
     Conn conn = new Conn();
     String adminHFC = session.getAttribute("HEALTH_FACILITY_CODE").toString();
     String process = request.getParameter("process");
-    String user = request.getParameter("user");
+    //String user = request.getParameter("user");
     String hfc = request.getParameter("hfc");
     String discipline = request.getParameter("discipline");
     
     
     if(process.equalsIgnoreCase("user")){
         
-        String searchProblem = "SELECT user_id, user_name, health_facility_code FROM adm_users WHERE  (user_id like '%"+user+"%' OR user_name like '%"+user+"%') AND health_facility_code = '"+adminHFC+"' ";
+        String searchProblem = "Select user_id, user_name from adm_users where health_facility_code = '"+adminHFC+"' AND user_id not in (Select user_id from adm_user_access_role)";
         ArrayList<ArrayList<String>> search = conn.getData(searchProblem);
         if (search.size() > 0)
         {
-        %>
-        <ul id="ARM_user_matchlist" style="width: 300px; height: 100%; max-height: 200px; overflow: auto">
-        <% 
+        
             for (int i = 0; i < search.size(); i++)
             {
             %>
-                <li data-hfc="<%=search.get(i).get(2)%>"><a style="cursor:pointer"><%=search.get(i).get(0)%> | <%=search.get(i).get(1)%></a></li>
+                <option value="<%= search.get(i).get(0)%>">(<%= search.get(i).get(0)%>) <%= search.get(i).get(1)%></option>
             <%
             }
-        %>
-        </ul>
 
-    <%}else{%>
-    <span>No Record Found!</span>
+       }else{
+    %>
+    <option disabled>No Record Found!</option>
     <% 
         }
     

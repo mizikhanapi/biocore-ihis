@@ -7,13 +7,13 @@
     String hfc = session.getAttribute("HEALTH_FACILITY_CODE").toString();
 %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<h4>Maintain Queue List
+<h4 style="padding-top: 30px;padding-bottom: 35px; font-weight: bold">Maintain Queue List
     <span class="pull-right">
-        <a alt="Add Items" id="Lplus" data-placement="top" data-toggle="modal" data-target="#list"><i class=" fa fa-plus" style=" padding-right: 5px;"></i></a>
+        <button id="Lplus" class="btn btn-success" data-status="pagado" data-toggle="modal" data-id="1" data-target="#list" style=" padding-right: 10px;padding-left: 10px;color: white;"><a data-toggle="tooltip" data-placement="top" title="Add Items" ><i class=" fa fa-plus" style=" padding-right: 10px;padding-left: 10px;color: white;"></i></a>ADD Queue List</button>
     </span>
 </h4>
 <div id="QLdiv">
-    <table class="table table-filter table-striped" style="background: #fff; border: 1px solid #ccc; "id="QLtable">
+    <table class="table table-filter table-striped" style="background: #fff; border: 1px solid #ccc; " id="QLtable">
     <thead>
     <th>Queue Name</th>
     <th>Staff Name</th>

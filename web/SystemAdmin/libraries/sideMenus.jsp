@@ -53,7 +53,7 @@
                 <!-- // menu tanpa dropdown -->
 				<li><a href="Lookup-Maintenance.jsp"><i class="fa fa-search fa-lg"></i>Lookup Code Maintenance</a></li>
 				<li><a href="User_Administration_Maintenance.jsp"><i class="fa fa-users fa-lg" ></i>Users Administration</a></li>
-				<li><a href="queue_1.html"><i class="fa fa-files-o fa-lg"></i>Queue Maintenance</a></li>
+				<li><a href="queue.jsp"><i class="fa fa-files-o fa-lg"></i>Queue Maintenance</a></li>
                                 <li><a href="Health_Facility_Maintenance.jsp"><i class="fa fa-hospital-o fa-lg"></i>Health Facility Maintenance</a></li>
                                 <li><a href="System_Maintenance.jsp"><i class="fa fa-desktop fa-lg"></i>System Code Maintenance</a></li>
 				<!-- // menu tanpa dropdown -->

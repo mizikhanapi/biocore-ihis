@@ -26,7 +26,7 @@
     ArrayList<ArrayList<String>> dataQN;
     dataQN = conn.getData(sql);
 %>
-<table class="table table-filter table-striped" style="background: #fff; border: 1px solid #ccc;" id="QNtable">
+<table class="table table-filter table-striped table-bordered table-hover" style="background: #fff; border: 1px solid #ccc;" id="QNtable">
         <thead>
         <th>Queue Type Code</th>
         <th>Queue Name Code</th>

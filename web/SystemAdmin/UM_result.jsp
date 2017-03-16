@@ -10,7 +10,7 @@
 <%
     Conn conn = new Conn();
     String key = request.getParameter("input");
-    String searchProblem = "SELECT hfc_cd, hfc_name FROM adm_health_facility WHERE hfc_cd like '%"+key+"%' OR hfc_name like '%"+key+"%'";
+    String searchProblem = "SELECT hfc_cd, hfc_name FROM adm_health_facility WHERE concat(hfc_cd, ' | ', hfc_name) like '%"+key+"%' ";
     ArrayList<ArrayList<String>> search = conn.getData(searchProblem);
     if (search.size() > 0)
             {

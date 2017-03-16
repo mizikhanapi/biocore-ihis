@@ -20,7 +20,7 @@
     ArrayList<ArrayList<String>> dataQT;
     dataQT = conn.getData(sql);
 %>
-<table class="table table-filter table-striped" style="background: #fff; border: 1px solid #ccc;" id="QTtable">
+<table class="table table-filter table-striped table-bordered table-hover" style="background: #fff; border: 1px solid #ccc;" id="QTtable">
         <thead>
         <th>Queue Type Code</th>
         <th>Description</th>

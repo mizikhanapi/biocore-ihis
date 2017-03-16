@@ -71,7 +71,7 @@
                                             </li>
                                             <li>
                                                 <a href="#PR_tab3" data-toggle="tab">
-                                                    CHANGE PICTURE </a>
+                                                    UPLOAD PICTURE </a>
                                             </li>
 
 

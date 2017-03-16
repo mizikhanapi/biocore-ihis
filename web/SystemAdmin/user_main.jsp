@@ -55,7 +55,7 @@
                                         <select id="UM_title" class="form-control input-md">
                                             <option value="">-- Select title --</option>
                                             <%
-                                                String sqlTitle = "Select detail_reference_code, description FROM adm_lookup_detail WHERE master_reference_code = '0026'";
+                                                String sqlTitle = "Select detail_reference_code, description FROM adm_lookup_detail WHERE master_reference_code = '0026' ORDER BY description, priority_indicator";
                                                 ArrayList<ArrayList<String>> dataTitle = conn.getData(sqlTitle);
 
                                                 for (int i = 0; i < dataTitle.size(); i++) {
@@ -161,6 +161,17 @@
                                     </div>
                                 </div>
                             </div>
+                            
+                            <div class="col-md-6">
+                                <!-- Text input-->
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label" for="textinput">Mother's name *</label>
+                                    <div class="col-md-8">
+                                        <input id="UM_mother"  type="text" placeholder="Insert the staff mother's name" class="form-control input-md" maxlength="30">
+                                    </div>
+                                </div>
+                            </div>
+
 
 
                         </div>
@@ -389,16 +400,6 @@
                                         </select>
                                     </div>
                                 </div>                          
-                            </div>
-
-                            <div class="col-md-6">
-                                <!-- Text input-->
-                                <div class="form-group">
-                                    <label class="col-md-4 control-label" for="textinput">Mother's name *</label>
-                                    <div class="col-md-8">
-                                        <input id="UM_mother"  type="text" placeholder="Insert the staff mother's name" class="form-control input-md" maxlength="30">
-                                    </div>
-                                </div>
                             </div>
 
                         </div>

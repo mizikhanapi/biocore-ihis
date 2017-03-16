@@ -13,9 +13,9 @@
 //    out.print("--"+session.getAttribute("DISCIPLINE_CODE")+"--");
 //    out.print("--| "+session.getAttribute("SUB_DISCIPLINE_CODE")+" |--");
 %>
-<h4>Maintain Queue Type
+<h4 style="padding-top: 30px;padding-bottom: 35px; font-weight: bold">Maintain Queue Type
     <span class="pull-right">
-        <a alt="Add Items" data-placement="top" data-toggle="modal" data-target="#type" id="Tplus"><i class=" fa fa-plus" style=" padding-right: 5px;"></i></a>
+       <button id="Tplus" class="btn btn-success" data-status="pagado" data-toggle="modal" data-id="1" data-target="#type" style=" padding-right: 10px;padding-left: 10px;color: white;"><a data-toggle="tooltip" data-placement="top" title="Add Items" ><i class=" fa fa-plus" style=" padding-right: 10px;padding-left: 10px;color: white;"></i></a>ADD Queue Type</button>
     </span>
 </h4>
 <div id="QTdiv">
