@@ -15,7 +15,7 @@
 </h4>
 <br/>
             <div id="tableListMed" class="form-group">
-                <table class="table table-filter table-striped" style="background: #fff; border: 1px solid #ccc; " id="listMED">
+                <table class="table table-striped table-bordered" style="background: #fff; border: 1px solid #ccc; " id="listMED">
                     <thead>
                     <th>Insurance Company</th>
                     <th>Policy No.</th>

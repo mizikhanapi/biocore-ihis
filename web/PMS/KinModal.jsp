@@ -17,14 +17,13 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">X</span><span class="sr-only">Close</span></button>
+                <button type="button" class="close" data-dismiss="modal"><i class="fa fa-times fa-lg"></i><span class="sr-only">Close</span></button>
                 <h3 class="modal-title" id="lineModalLabel">Next Of Kin Information</h3>
             </div>
             <div class="modal-body" >
 
-                <div class="thumbnail" id="maintainKIN">
+                <div id="maintainKIN">
                     <!--                    <h4>Next of Kin Information</h4>-->
-                    <hr/>
                     <form class="form-horizontal" id="kinform">
                         <div class="row">
                             <div class="col-md-6">
