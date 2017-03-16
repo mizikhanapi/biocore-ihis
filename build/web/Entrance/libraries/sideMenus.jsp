@@ -8,6 +8,7 @@
     String gamba ="";
     String nama = "";
     String role = "";
+    String hfcName = "";
     
     if(session.getAttribute("USER_NAME") != null){
         
@@ -15,6 +16,7 @@
         gamba =session.getAttribute("PICTURE").toString();
         nama = session.getAttribute("USER_NAME").toString();
         role = session.getAttribute("ROLE_NAME").toString();
+        hfcName = session.getAttribute("HFC_NAME").toString();
     }
 
 %>
@@ -38,6 +40,10 @@
             </div>
             <div class="profile-usertitle-job">
                 <%= role%>
+            </div>
+            @
+            <div class="profile-usertitle-job">
+                <%= hfcName%>
             </div>
         </div>
         <!-- SIDEBAR BUTTONS -->

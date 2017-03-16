@@ -65,7 +65,12 @@
                                     <h1>Health Facility Maintenance</h1>
                                     <div class="tabbable-line">
                                         <ul class="nav nav-tabs ">
-                                            <li class="active">
+                                             <li class="active">
+                                                <a href="#HM_tab3" data-toggle="tab">
+                                                    HEALTH FACILITY </a>
+                                            </li>
+                                            
+                                            <li>
                                                 <a href="#HM_tab1" data-toggle="tab">
                                                     DISCIPLINE </a>
                                             </li>
@@ -76,11 +81,6 @@
                                             </li>
 
                                             <li>
-                                                <a href="#HM_tab3" data-toggle="tab">
-                                                    HEALTH FACILITY </a>
-                                            </li>
-
-                                            <li>
                                                 <a href="#HM_tab4" data-toggle="tab">
                                                     ASSIGN DISCIPLINE</a>
                                             </li>
@@ -88,7 +88,7 @@
                                         </ul>
                                         <!-- tab content -->
                                         <div class="tab-content">
-                                            <div class="tab-pane active" id="HM_tab1">
+                                            <div class="tab-pane" id="HM_tab1">
 
                                                 <div id="discipline">
 
@@ -112,7 +112,7 @@
 
                                             </div>
 
-                                            <div class="tab-pane" id="HM_tab3">
+                                            <div class="tab-pane active" id="HM_tab3">
 
                                                 <div id="healthFacility">
                                                     <div id="healthFacilityMain">

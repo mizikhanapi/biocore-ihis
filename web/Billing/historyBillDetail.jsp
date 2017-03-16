@@ -18,7 +18,7 @@
             "SELECT patient_name, home_address, new_ic_no, id_no, mobile_phone "
             + "FROM pms_patient_biodata "
             + "WHERE pmi_no = '" + custID + "'";
-    ArrayList<ArrayList<String>> dataPatient = dbConn.Conn.getData(query1);
+    ArrayList<ArrayList<String>> dataPatient = Conn.getData(query1);
 %>
 <div style="margin-bottom: 50px">
     <h4><b>Bill Detail</b></h4>
@@ -79,7 +79,7 @@
                 "SELECT txn_date, item_cd, item_desc, quantity, item_amt/quantity, item_amt "
                 + "FROM far_customer_dtl "
                 + "WHERE bill_no = '"+ billNo +"' ";
-        ArrayList<ArrayList<String>> dataBill = dbConn.Conn.getData(query2);
+        ArrayList<ArrayList<String>> dataBill = Conn.getData(query2);
 
         if (!dataBill.isEmpty()){
 

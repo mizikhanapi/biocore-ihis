@@ -3,15 +3,6 @@
 <%@page import="Config.connect"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
-    
-    //String relation = "select * from lookup_detail where master_ref_code = '0007' order by Description";
-    String hcf8 = "select * from adm_lookup_detail where master_reference_code = '0081'   ";
-    String insuranceCompany8 = "select * from adm_lookup_detail where master_reference_code = '0083'   ";
-    String insurancePolicy8 = "select * from adm_lookup_detail where master_reference_code = '0058'   ";
-    ArrayList<ArrayList<String>> dataHfc8, dataInsurancePolicy8, dataInsuranceCompany8;
-    dataHfc8 = conn.getData(hcf8);
-    dataInsurancePolicy8 = conn.getData(insurancePolicy8);
-    dataInsuranceCompany8 = conn.getData(insuranceCompany8);
 
 %>			
 <div class="row">
@@ -63,17 +54,20 @@
         var rowData = row.find("#medval").val();
         var arrayData = rowData.split("|");
         //assign into seprated val
-        var pmino = arrayData[0], insuran = arrayData[1], policy = arrayData[2], maturitydate = arrayData[3], hfc = arrayData[4], status = arrayData[5];
+        var pmino = arrayData[0], insuran = arrayData[1], policy = arrayData[2], maturitydate = arrayData[3], hfc = arrayData[4], status = arrayData[5],medHFCname= arrayData[6],medInsName= arrayData[7];
         //convert date
         var splitmaturitydate = String(maturitydate).split("/");
         var convertedmaturitydate = splitmaturitydate[0] + "-" + splitmaturitydate[1] + "-" + splitmaturitydate[2];
 
         $('#MEDpmino').val(pmino);
-        $('#MEDinscom').val(insuran);
+        $('#MEDinscom').val(medInsName);
         $('#MEDpolicy').val(policy);
         $('#MEDdate').val(convertedmaturitydate);
-        $('#MEDhfc').val(hfc);
+        $('#MEDhfc').val(medHFCname);
         $('#MEDstatus').val(status);
+        
+        $("#MEDinscomCODE").val(insuran);
+        $("#MEDhfcCODE").val(hfc);
 
         console.log(convertedmaturitydate);
         console.log(arrayData);
@@ -110,7 +104,7 @@
                     console.log(datas);
                     $.ajax({
                         type: "post",
-                        url: "delMedical.jsp",
+                        url: "controller/delMedical.jsp",
                         data: datas,
                         timeout: 3000,
                         success: function (data) {

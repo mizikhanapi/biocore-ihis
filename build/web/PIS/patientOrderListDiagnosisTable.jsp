@@ -31,19 +31,19 @@
 
 <table class="table table-filter table-striped table-bordered dt-head-right" style="background: #fff; border: 1px solid #ccc; width: 100%; text-align: center" id="patientDiagnosisListTable">
     <thead>
-    <th style="display: none">PMI NO</th>
-    <th >HFC CODE</th>
-    <th>EPISODE DATE</th>
-    <th>ENCOUNTER DATE</th>
-    <th>DIAGNOSIS CODE</th>
-    <th>DIAGNOSIS DESCRIPTION</th>
-    <th>COMMENT</th>
+    <th style="display: none;text-align: center;">PMI NO</th>
+    <th style="text-align: center;">HFC CODE</th>
+    <th style="text-align: center;">EPISODE DATE</th>
+    <th style="text-align: center;">ENCOUNTER DATE</th>
+    <th style="text-align: center;">DIAGNOSIS CODE</th>
+    <th style="text-align: center;">DIAGNOSIS DESCRIPTION</th>
+    <th style="text-align: center;">COMMENT</th>
 </thead>
 <tbody>
     <%        for (int i = 0; i < dataDiagnosisList.size(); i++) {
 
     %>
-    <tr >
+    <tr style="text-align: center;">
 <input id="dataPatientDiagnosisListhidden" type="hidden" value="<%=String.join("|", dataDiagnosisList.get(i))%>">
 <td style="display: none"><%= dataDiagnosisList.get(i).get(0)%></td> <!-- Order No -->
 <td  ><%= dataDiagnosisList.get(i).get(1)%></td> <!-- Code -->
