@@ -83,6 +83,26 @@
 			<pen lineWidth="0.5" lineColor="#000000"/>
 		</box>
 	</style>
+	<style name="table 4">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 4_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 4_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 4_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
 	<subDataset name="daily" uuid="98914a29-d4f3-4be8-9342-c3768795107a">
 		<queryString>
 			<![CDATA[SELECT
@@ -104,8 +124,7 @@ GROUP BY
  pis_dispense_master.`DISPENSED_DATE`
 
 ORDER BY
- pis_dispense_master.`DISPENSED_DATE`
-]]>
+ pis_dispense_master.`DISPENSED_DATE`]]>
 		</queryString>
 		<field name="pis_dispense_master_ORDER_NO" class="java.lang.String"/>
 		<field name="pis_dispense_master_DISPENSED_DATE" class="java.sql.Date"/>
@@ -115,6 +134,43 @@ ORDER BY
 		<field name="pis_mdc2_UD_MDC_CODE" class="java.lang.String"/>
 		<field name="pis_mdc2_D_SELL_PRICE" class="java.lang.Double"/>
 	</subDataset>
+	<subDataset name="dailyTable" uuid="986398ee-d566-4943-bd85-41a244e59cc5">
+		<queryString language="SQL">
+			<![CDATA[SELECT
+     pis_dispense_master.`ORDER_NO` AS pis_dispense_master_ORDER_NO,
+     pis_dispense_master.`DISPENSED_DATE` AS pis_dispense_master_DISPENSED_DATE,
+     pis_dispense_detail.`ORDER_NO` AS pis_dispense_detail_ORDER_NO,
+     pis_dispense_detail.`DISPENSED_QTY` AS pis_dispense_detail_DISPENSED_QTY,
+     pis_dispense_detail.`DRUG_ITEM_CODE` AS pis_dispense_detail_DRUG_ITEM_CODE,
+     pis_mdc2.`UD_MDC_CODE` AS pis_mdc2_UD_MDC_CODE,
+     pis_mdc2.`D_SELL_PRICE` AS pis_mdc2_D_SELL_PRICE,
+DATE_FORMAT(pis_dispense_master.`DISPENSED_DATE`, '%d %b %Y') AS DATE,
+COUNT(pis_dispense_detail.`DRUG_ITEM_CODE`) AS COUNT,
+SUM(pis_dispense_detail.`DISPENSED_QTY`) AS SUMQTY,
+SUM(pis_dispense_detail.`DISPENSED_QTY` * pis_mdc2.`D_SELL_PRICE`) AS SUMPRICE
+FROM
+     `pis_dispense_master` pis_dispense_master
+INNER JOIN
+     `pis_dispense_detail` pis_dispense_detail ON pis_dispense_detail.`order_no` = pis_dispense_master.`order_no`
+INNER JOIN
+`pis_mdc2` pis_mdc2 ON pis_mdc2.`ud_mdc_code` = pis_dispense_detail.`drug_item_code`
+GROUP BY
+ DATE]]>
+		</queryString>
+		<field name="pis_dispense_master_ORDER_NO" class="java.lang.String"/>
+		<field name="pis_dispense_master_DISPENSED_DATE" class="java.sql.Timestamp"/>
+		<field name="pis_dispense_detail_ORDER_NO" class="java.lang.String"/>
+		<field name="pis_dispense_detail_DISPENSED_QTY" class="java.math.BigDecimal"/>
+		<field name="pis_dispense_detail_DRUG_ITEM_CODE" class="java.lang.String"/>
+		<field name="pis_mdc2_UD_MDC_CODE" class="java.lang.String"/>
+		<field name="pis_mdc2_D_SELL_PRICE" class="java.lang.Double"/>
+		<field name="DATE" class="java.lang.String">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+		<field name="COUNT" class="java.lang.Long"/>
+		<field name="SUMQTY" class="java.math.BigDecimal"/>
+		<field name="SUMPRICE" class="java.lang.Double"/>
+	</subDataset>
 	<queryString>
 		<![CDATA[SELECT
      pis_dispense_master.`ORDER_NO` AS pis_dispense_master_ORDER_NO,
@@ -123,20 +179,19 @@ ORDER BY
      pis_dispense_detail.`DISPENSED_QTY` AS pis_dispense_detail_DISPENSED_QTY,
      pis_dispense_detail.`DRUG_ITEM_CODE` AS pis_dispense_detail_DRUG_ITEM_CODE,
      pis_mdc2.`UD_MDC_CODE` AS pis_mdc2_UD_MDC_CODE,
-     pis_mdc2.`D_SELL_PRICE` AS pis_mdc2_D_SELL_PRICE
+     pis_mdc2.`D_SELL_PRICE` AS pis_mdc2_D_SELL_PRICE,
+DATE_FORMAT(pis_dispense_master.`DISPENSED_DATE`, '%d %b %Y') AS DATE,
+COUNT(pis_dispense_detail.`DRUG_ITEM_CODE`) AS COUNT,
+SUM(pis_dispense_detail.`DISPENSED_QTY`) AS SUMQTY,
+SUM(pis_dispense_detail.`DISPENSED_QTY` * pis_mdc2.`D_SELL_PRICE`) AS SUMPRICE
 FROM
      `pis_dispense_master` pis_dispense_master
 INNER JOIN
      `pis_dispense_detail` pis_dispense_detail ON pis_dispense_detail.`order_no` = pis_dispense_master.`order_no`
 INNER JOIN
 `pis_mdc2` pis_mdc2 ON pis_mdc2.`ud_mdc_code` = pis_dispense_detail.`drug_item_code`
-
 GROUP BY
- pis_dispense_master.`DISPENSED_DATE`
-
-ORDER BY
- pis_dispense_master.`DISPENSED_DATE`
-]]>
+ DATE]]>
 	</queryString>
 	<field name="pis_dispense_master_ORDER_NO" class="java.lang.String"/>
 	<field name="pis_dispense_master_DISPENSED_DATE" class="java.sql.Timestamp"/>
@@ -145,6 +200,12 @@ ORDER BY
 	<field name="pis_dispense_detail_DRUG_ITEM_CODE" class="java.lang.String"/>
 	<field name="pis_mdc2_UD_MDC_CODE" class="java.lang.String"/>
 	<field name="pis_mdc2_D_SELL_PRICE" class="java.lang.Double"/>
+	<field name="DATE" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="COUNT" class="java.lang.Long"/>
+	<field name="SUMQTY" class="java.math.BigDecimal"/>
+	<field name="SUMPRICE" class="java.lang.Double"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
@@ -167,97 +228,92 @@ ORDER BY
 		<band splitType="Stretch"/>
 	</pageFooter>
 	<summary>
-		<band height="519" splitType="Stretch">
+		<band height="585" splitType="Stretch">
 			<staticText>
-				<reportElement x="179" y="23" width="207" height="30" uuid="17bdc0b5-44af-4e49-823e-7ffe451ead87"/>
-				<textElement>
+				<reportElement x="172" y="83" width="207" height="30" uuid="17bdc0b5-44af-4e49-823e-7ffe451ead87"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="14" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Daily Pharmacy Report]]></text>
 			</staticText>
 			<componentElement>
-				<reportElement key="table 3" style="table 3" x="64" y="127" width="360" height="80" uuid="6bd26d9e-df46-4237-80f9-7dc7cb113a74"/>
+				<reportElement key="table 4" style="table 4" x="20" y="136" width="481" height="412" uuid="1a462a35-6bc8-4710-b2ae-5fe570615178"/>
 				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
-					<datasetRun subDataset="daily" uuid="5c7581a3-5017-4006-a5b8-e4a69ad9804c">
+					<datasetRun subDataset="dailyTable" uuid="448a8d1f-0ec7-42b4-9e16-85809b5d949e">
 						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
 					</datasetRun>
-					<jr:column width="90" uuid="a510a9e6-0072-48f1-a23c-2f87c0dbbcac">
-						<jr:columnHeader style="table 3_CH" height="30" rowSpan="1">
+					<jr:column width="122" uuid="1c62a7f5-f1dc-4d7e-8267-0682b888f20d">
+						<jr:columnHeader style="table 4_CH" height="48" rowSpan="1">
 							<staticText>
-								<reportElement x="0" y="0" width="90" height="30" uuid="56b4e3e4-34b9-4a6c-8e10-c05b67e1e49a"/>
-								<textElement textAlignment="Center"/>
-								<text><![CDATA[Date]]></text>
+								<reportElement x="0" y="0" width="122" height="48" uuid="36a3bc71-57a8-4104-a0cd-a5e9807ddb01"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="14" isBold="true"/>
+								</textElement>
+								<text><![CDATA[DATE]]></text>
 							</staticText>
 						</jr:columnHeader>
-						<jr:detailCell style="table 3_TD" height="30" rowSpan="1">
+						<jr:detailCell style="table 4_TD" height="20" rowSpan="1">
 							<textField>
-								<reportElement x="0" y="0" width="90" height="20" uuid="5d5bb55e-f727-4385-9056-01f789bac687"/>
-								<textElement textAlignment="Center"/>
-								<textFieldExpression><![CDATA[$F{pis_dispense_master_DISPENSED_DATE}]]></textFieldExpression>
+								<reportElement x="0" y="0" width="122" height="20" uuid="17b30e81-4bd6-4780-b108-7235fa5130ed"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$F{DATE}]]></textFieldExpression>
 							</textField>
 						</jr:detailCell>
 					</jr:column>
-					<jr:column width="90" uuid="62b01f23-7490-4035-ab48-3ae52f5a2bb3">
-						<jr:columnHeader style="table 3_CH" height="30" rowSpan="1">
+					<jr:column width="122" uuid="2a3c15e1-5041-4650-84df-9bf7014634c7">
+						<jr:columnHeader style="table 4_CH" height="48" rowSpan="1">
 							<staticText>
-								<reportElement x="0" y="0" width="90" height="30" uuid="6074ba83-ff50-443c-b516-c16c4eec1d05"/>
-								<textElement textAlignment="Center"/>
-								<text><![CDATA[Quantity]]></text>
+								<reportElement x="0" y="0" width="122" height="48" uuid="a389f1d8-dbde-4949-8c0c-1e94ecbe8d81"/>
+								<box>
+									<rightPen lineStyle="Solid"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="14" isBold="true"/>
+								</textElement>
+								<text><![CDATA[TOTAL PRODUCT DISPENSED]]></text>
 							</staticText>
 						</jr:columnHeader>
-						<jr:detailCell style="table 3_TD" height="30" rowSpan="1">
-							<textField pattern="###0">
-								<reportElement x="0" y="0" width="90" height="20" uuid="e8ad267d-52aa-45cf-8458-770408a02cdf"/>
-								<textElement textAlignment="Center"/>
-								<textFieldExpression><![CDATA[$F{pis_dispense_detail_DISPENSED_QTY}]]></textFieldExpression>
-							</textField>
-						</jr:detailCell>
-					</jr:column>
-					<jr:column width="90" uuid="abc56211-3466-4a29-90c2-2b639cd57f28">
-						<jr:columnHeader style="table 3_CH" height="30" rowSpan="1">
-							<staticText>
-								<reportElement x="0" y="0" width="90" height="30" uuid="31ab4ec5-5823-4146-a0f4-e59a603218ec"/>
-								<textElement textAlignment="Center"/>
-								<text><![CDATA[item code]]></text>
-							</staticText>
-						</jr:columnHeader>
-						<jr:detailCell style="table 3_TD" height="30" rowSpan="1">
+						<jr:detailCell style="table 4_TD" height="20" rowSpan="1">
 							<textField>
-								<reportElement x="0" y="0" width="90" height="20" uuid="4a075574-1146-4298-86c3-9b2e8c0c1cdd"/>
-								<textElement textAlignment="Center"/>
-								<textFieldExpression><![CDATA[$F{pis_dispense_detail_DRUG_ITEM_CODE}]]></textFieldExpression>
+								<reportElement x="0" y="0" width="122" height="20" uuid="9b9cc06f-de3e-4d50-bb8e-3a9f737946ea"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$F{COUNT}]]></textFieldExpression>
 							</textField>
 						</jr:detailCell>
 					</jr:column>
-					<jr:column width="90" uuid="37e99db1-0696-42b8-8688-e1bd6f5473ff">
-						<jr:columnHeader style="table 3_CH" height="30" rowSpan="1">
+					<jr:column width="133" uuid="26192f66-172c-49c3-97e6-a77aae9bf7ba">
+						<jr:columnHeader style="table 4_CH" height="48" rowSpan="1">
 							<staticText>
-								<reportElement x="0" y="0" width="90" height="30" uuid="43c377c8-94a8-4c6b-bfde-65fb33acc735"/>
-								<textElement textAlignment="Center"/>
-								<text><![CDATA[price]]></text>
+								<reportElement x="0" y="0" width="133" height="46" uuid="bb8139ca-f537-4fb6-bdb4-0da6f86eba4d"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="14" isBold="true"/>
+								</textElement>
+								<text><![CDATA[TOTAL PRODUCT DISPENSED]]></text>
 							</staticText>
 						</jr:columnHeader>
-						<jr:detailCell style="table 3_TD" height="30" rowSpan="1">
+						<jr:detailCell style="table 4_TD" height="20" rowSpan="1">
 							<textField>
-								<reportElement x="0" y="0" width="90" height="20" uuid="05fcdc0d-c071-40c2-b28d-7d26cd17ad1e"/>
-								<textElement textAlignment="Center"/>
-								<textFieldExpression><![CDATA[$F{pis_mdc2_D_SELL_PRICE}]]></textFieldExpression>
+								<reportElement x="0" y="0" width="133" height="20" uuid="6b952f98-97a8-40b7-8a72-b8b4ea479eb9"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$F{SUMQTY}]]></textFieldExpression>
 							</textField>
 						</jr:detailCell>
 					</jr:column>
-					<jr:column width="90" uuid="9e0e4a9f-d2cc-4a95-a4ec-fa1ff0590765">
-						<jr:columnHeader style="table" height="30" rowSpan="1">
+					<jr:column width="147" uuid="b4937f0a-c77e-48ef-b648-d42d6b507151">
+						<jr:columnHeader style="table 4_CH" height="48" rowSpan="1">
 							<staticText>
-								<reportElement x="0" y="0" width="90" height="30" uuid="5323d1a4-594e-4188-b489-84b0de35d778"/>
-								<textElement textAlignment="Center"/>
-								<text><![CDATA[total]]></text>
+								<reportElement x="0" y="0" width="146" height="48" uuid="ecdb1f1e-e862-40fc-87a2-cfd1c69ea5f1"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="14" isBold="true"/>
+								</textElement>
+								<text><![CDATA[TOTAL PRICE]]></text>
 							</staticText>
 						</jr:columnHeader>
-						<jr:detailCell style="table_TD" height="30" rowSpan="1">
-							<textField pattern="###0.00">
-								<reportElement x="0" y="0" width="90" height="30" uuid="6dcafc43-f55b-462d-b4a9-d51a75264a22"/>
-								<textElement textAlignment="Center"/>
-								<textFieldExpression><![CDATA[($F{pis_dispense_detail_DISPENSED_QTY}.doubleValue()*$F{pis_mdc2_D_SELL_PRICE}.doubleValue())]]></textFieldExpression>
+						<jr:detailCell style="table 4_TD" height="20" rowSpan="1">
+							<textField>
+								<reportElement x="0" y="0" width="146" height="20" uuid="f25e35d4-ad4e-45ca-b4e5-b5eaa7e8d960"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$F{SUMPRICE}]]></textFieldExpression>
 							</textField>
 						</jr:detailCell>
 					</jr:column>
