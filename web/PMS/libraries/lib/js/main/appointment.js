@@ -1,20 +1,15 @@
  //validate max length of input
     $('#idTypeApp').on('change', function () {
         var id = $('#idTypeApp').val();
-        if (id === "pmino" || id==="001") {
+        if (id === "001") {
             $('#idInputApp').attr('maxlength', '13');
-            $('#idInputApp').on('keydown', function (evt) {
-                    isNumberKey(evt);
-                });
-        } else if (id === "icnew" || id==="002") {
+        } else if (id === "002") {
             $('#idInputApp').attr('maxlength', '12');
-        } else if (id === "icold" || id==="003") {
+        } else if (id === "003") {
             $('#idInputApp').attr('maxlength', '8');
-        } else if (id === "004") {
+        } else {
             $('#idInputApp').attr('maxlength', '10');
-        } else if (id === "005") {
-            $('#idInputApp').attr('maxlength', '10');
-        }
+        } 
     });
 
     function searchApp() {
@@ -55,4 +50,5 @@
     
     $('#clearApp').click( function(){
         $('#myFormApp')[0].reset();
+        $("#listAppointment tbody").empty();
     });

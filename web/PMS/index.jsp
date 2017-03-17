@@ -11,7 +11,8 @@
         <script src="libraries/lib/js/bootstrap.min.js"></script>
         <script src="libraries/lib/datepicker/jquery-ui.js"></script>
         <script src="libraries/lib/js/form-validator.min.js"></script>    
-        <script src="libraries/lib/js/bootbox.min.js"></script> 
+        <script src="libraries/lib/js/bootbox.min.js"></script>
+        <script src="libraries/lib/js/search/searchPatient.js" type="text/javascript"></script>
 
     <div><%@include file = "../assets/header.html" %></div>
     <!-- header -->
@@ -128,15 +129,7 @@
 
     <script>
 
-//        //load page to the div
-//        $("#registration").load("registrationV2.jsp");
-//        $("#patientMasterIndex").load("patient-master-indexV2.jsp");
-//        $("#employment").load("EmploymentV2.jsp");
-//        $("#nextOfKin").load("kinV2.jsp");
-//        $("#family").load("familyV2.jsp");
-//        $("#medical").load("medical-insuranceV2.jsp");
-//////        $("#test").load("dummy.html");
-//        $("#sidemenus").load("../libraries/PMS/sideMenus.jsp");
+
 
         $('a[data-toggle="tab"]').click(function (e) {
             // $('#tab_a').find('a').removeAttr('data-toggle');
@@ -152,13 +145,14 @@
         });
         var $body = $('body');
     </script>
+    <script src="libraries/lib/js/onKeyPress.js" type="text/javascript"></script>
     <script src="libraries/lib/js/main/registration.js" type="text/javascript"></script>
     <script src="libraries/lib/js/search/searchDisipline.js" type="text/javascript"></script>
-    <script src="libraries/lib/js/main/appointment.js" type="text/javascript"></script>
+    
     <script src="libraries/lib/js/main/patient_master_index.js" type="text/javascript"></script>
     <script src="libraries/lib/js/main/OPMain.js" type="text/javascript"></script>
-    <script src="libraries/lib/js/search/searchPatient.js" type="text/javascript"></script>
-    <script src="libraries/lib/js/onKeyPress.js" type="text/javascript"></script>
+    
+    
     <script src="libraries/lib/js/main/nextOfKin.js" type="text/javascript"></script>
     <script src="libraries/lib/js/search/searchCountry.js" type="text/javascript"></script>
     <script src="libraries/lib/js/search/searchState.js" type="text/javascript"></script>

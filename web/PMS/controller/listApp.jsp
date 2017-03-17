@@ -23,13 +23,13 @@
     if (idType.isEmpty() && idInput.isEmpty()) {
         sql = "select a.pmi_no,a.appointment_date,a.start_time,a.appointment_type,b.PATIENT_NAME,b.NEW_IC_NO,b.OLD_IC_NO,b.ID_TYPE,b.ID_NO from pms_appointment a inner join pms_patient_biodata b on a.pmi_no = b.`PMI_NO` where appointment_date like '%" + dateFormat.format(date) + "%' and status ='active' and hfc_cd='" + hfc + "'";
 
-    } else if (idType.equals("pmino")|| idType.equals("001") ) {
+    } else if (idType.equals("001") ) {
         sql = "select a.pmi_no,a.appointment_date,a.start_time,a.appointment_type,b.PATIENT_NAME,b.NEW_IC_NO,b.OLD_IC_NO,b.ID_TYPE,b.ID_NO from pms_appointment a inner join pms_patient_biodata b on a.pmi_no = b.`PMI_NO` where a.pmi_no = '" + idInput + "' and status ='active' and hfc_cd='" + hfc + "'";
 
-    } else if (idType.equals("icnew")|| idType.equals("002"))  {
+    } else if (idType.equals("002"))  {
         sql = "select a.pmi_no,a.appointment_date,a.start_time,a.appointment_type,b.PATIENT_NAME,b.NEW_IC_NO,b.OLD_IC_NO,b.ID_TYPE,b.ID_NO from pms_appointment a inner join pms_patient_biodata b on a.pmi_no = b.`PMI_NO` where a.pmi_no = (select pmi_no from pms_patient_biodata where new_ic_no='" + idInput + "') and status ='active' and hfc_cd='" + hfc + "'";
 
-    } else if (idType.equals("icold")|| idType.equals("003")) {
+    } else if (idType.equals("003")) {
         sql = "select a.pmi_no,a.appointment_date,a.start_time,a.appointment_type,b.PATIENT_NAME,b.NEW_IC_NO,b.OLD_IC_NO,b.ID_TYPE,b.ID_NO from pms_appointment a inner join pms_patient_biodata b on a.pmi_no = b.`PMI_NO` where a.pmi_no = (select pmi_no from pms_patient_biodata where old_ic_no='" + idInput + "') and status ='active' and hfc_cd='" + hfc + "'";
 
     }else{

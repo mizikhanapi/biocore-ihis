@@ -1,31 +1,57 @@
-$(function(){
-  
+$(function () {
+
     //validate max length of input
-        $('#idType').on('change', function (e) {
-            var id = $('#idType').val();
-            console.log(id);
-            if (id === "pmino" || id==="001") {
-                $('#idInput').attr('maxlength', '13');
-                $('#idInput').on('keydown', function (evt) {
-                    isNumberKey(evt);
-                });
-            } else if (id === "icnew" || id==="002") {
-                $('#idInput').attr('maxlength', '12');
-                $('#idInput').keypress(function (evt) {
-                    isNumberKey(evt);
-                });
-            } else if (id === "icold" || id==="003") {
-                $('#idInput').attr('maxlength', '8');
-            } else {
-                $('#idInput').attr('maxlength', '10');
-            } 
-        });
+    $('#idType').on('change', function (e) {
+        var id = $('#idType').val();
+        console.log(id);
+        if (id === "001") {
+            $('#idInput').attr('maxlength', '13');
+            
+//            $("#idInput").on('keydown',function (e) {
+//                //if the letter is not digit then display error and don't type anything
+//                if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+//                    //display error message
+//                    $("#errmsg").html("Digits Only").show().fadeOut("slow");
+//                    return false;
+//                }
+//            });
+        } else if (id === "002") {
+            $('#idInput').attr('maxlength', '12');
+            
+//            $("#idInput").on('keydown',function (e) {
+//                //if the letter is not digit then display error and don't type anything
+//                if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+//                    //display error message
+//                    return false;
+//                }
+//            });
+        } else if (id === "003") {
+            $('#idInput').attr('maxlength', '8');
+//            $("#idInput").on('keydown',function (e) {
+//                if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57) &&(e.which <97 || e.which > 122)) {
+//                    //display error message
+//                    $("#errmsg").html("Digits Only").show().fadeOut("slow");
+//                    return false;
+//                }
+//            });
+                
+        } else {
+            $('#idInput').attr('maxlength', '10');
+//            $("#idInput").on('keydown',function (e) {
+//                if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57) && (e.which <97 || e.which > 122)) {
+//                    //display error message
+//                    $("#errmsg").html("Digits Only").show().fadeOut("slow");
+//                    return false;
+//                }
+//            });
+        }
+    });
     //seaching patient function   
     function searchPatient() {
 
         var opt = $('#idType option[disabled]:selected').val();
         $('#myForm2')[0].reset();
-        
+
         $('#formPMI')[0].reset();
         $('#kinform')[0].reset();
         $('#empform')[0].reset();
@@ -50,7 +76,7 @@ $(function(){
             //get value from text box and select box
             var idType = $('#idType').find(":selected").val();
             var idInput = $('#idInput').val();
-            
+
             //run the MAIN ajax function
             $.ajax({
                 async: true,
@@ -72,6 +98,7 @@ $(function(){
                     //customize this part only
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////           
                     Main(array_data);
+                    $("#myForm")[0].reset();
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////                    
                 },
                 error: function (xhr, status, error) {
@@ -81,7 +108,8 @@ $(function(){
             });
         }
 
-    };
+    }
+    ;
 
     //event on click search button
     $('#searchPatient').on('click', function () {
