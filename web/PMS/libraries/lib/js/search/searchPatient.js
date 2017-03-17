@@ -4,23 +4,21 @@ $(function(){
         $('#idType').on('change', function (e) {
             var id = $('#idType').val();
             console.log(id);
-            if (id === "pmino") {
+            if (id === "pmino" || id==="001") {
                 $('#idInput').attr('maxlength', '13');
                 $('#idInput').on('keydown', function (evt) {
                     isNumberKey(evt);
                 });
-            } else if (id === "icnew") {
+            } else if (id === "icnew" || id==="002") {
                 $('#idInput').attr('maxlength', '12');
                 $('#idInput').keypress(function (evt) {
                     isNumberKey(evt);
                 });
-            } else if (id === "icold") {
+            } else if (id === "icold" || id==="003") {
                 $('#idInput').attr('maxlength', '8');
-            } else if (id === "004") {
+            } else {
                 $('#idInput').attr('maxlength', '10');
-            } else if (id === "005") {
-                $('#idInput').attr('maxlength', '10');
-            }
+            } 
         });
     //seaching patient function   
     function searchPatient() {

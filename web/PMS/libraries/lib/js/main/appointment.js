@@ -1,11 +1,14 @@
  //validate max length of input
     $('#idTypeApp').on('change', function () {
         var id = $('#idTypeApp').val();
-        if (id === "pmino") {
+        if (id === "pmino" || id==="001") {
             $('#idInputApp').attr('maxlength', '13');
-        } else if (id === "icnew") {
+            $('#idInputApp').on('keydown', function (evt) {
+                    isNumberKey(evt);
+                });
+        } else if (id === "icnew" || id==="002") {
             $('#idInputApp').attr('maxlength', '12');
-        } else if (id === "icold") {
+        } else if (id === "icold" || id==="003") {
             $('#idInputApp').attr('maxlength', '8');
         } else if (id === "004") {
             $('#idInputApp').attr('maxlength', '10');

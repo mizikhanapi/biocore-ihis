@@ -28,9 +28,9 @@
             <div class="col-md-4">
                 <select id="idType" name="idType" class="form-control" required="">
                     <option selected="" disabled="" value="-"> Please select ID type</option>
-                    <option value="pmino">PMI No</option>
+<!--                    <option value="pmino">PMI No</option>
                     <option value="icnew">IC No (NEW)</option>
-                    <option value="icold">IC No (OLD)</option>
+                    <option value="icold">IC No (OLD)</option>-->
                     <!--<option value="matricno">Matric No</option>
                     <option value="staffno">Staff No</option>-->
                     <%  if (dataSystemStatus2.equals("0")) {

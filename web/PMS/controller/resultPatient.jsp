@@ -24,7 +24,7 @@
 
     if (status.equals("1")) {
 
-        if (idType.equals("pmino")) {
+        if (idType.equals("pmino") || idType.equals("001") ) {
             searchPatient = "select a.pmi_no,a.pmi_no_temp,a.patient_name,a.title_code,a.new_ic_no,a.old_ic_no,a.id_type,a.id_no,a.eligibility_category_code,a.eligibility_type_code,"
                     + "a.birth_date,a.sex_code,a.marital_status_code,a.race_code,a.nationality,a.religion_code,a.blood_type,"
                     + "a.blood_rhesus_code,"
@@ -46,7 +46,7 @@
 + " left join adm_lookup_detail l on l.detail_reference_code=a.title_code and l.master_reference_code='0026'"
 + " left join adm_lookup_detail m on m.detail_reference_code=a.nationality and m.master_reference_code='0011'"
 + " where a.PMI_NO='" + idInput + "'";
-        } else if (idType.equals("icnew")) {
+        } else if (idType.equals("icnew") || idType.equals("002")) {
             searchPatient = "select a.pmi_no,a.pmi_no_temp,a.patient_name,a.title_code,a.new_ic_no,a.old_ic_no,a.id_type,a.id_no,a.eligibility_category_code,a.eligibility_type_code,"
                     + "a.birth_date,a.sex_code,a.marital_status_code,a.race_code,a.nationality,a.religion_code,a.blood_type,"
                     + "a.blood_rhesus_code,"
@@ -69,7 +69,7 @@
 + " left join adm_lookup_detail m on m.detail_reference_code=a.nationality and m.master_reference_code='0011'"
 + " where a.NEW_IC_NO='" + idInput + "'";
             
-        } else if (idType.equals("icold")) {
+        } else if (idType.equals("icold") || idType.equals("003")) {
             searchPatient = "select a.pmi_no,a.pmi_no_temp,a.patient_name,a.title_code,a.new_ic_no,a.old_ic_no,a.id_type,a.id_no,a.eligibility_category_code,a.eligibility_type_code,"
                     + "a.birth_date,a.sex_code,a.marital_status_code,a.race_code,a.nationality,a.religion_code,a.blood_type,"
                     + "a.blood_rhesus_code,"
@@ -136,7 +136,7 @@
 <%out.print("N/A1");%>
 <%
     }
-} else if (search.size() == 0 && idType.equals("icnew")) {
+} else if (search.size() == 0 && (idType.equals("icnew") || idType.equals("002"))) {
     String searchSpecial = "select national_id_no,person_id_no,person_type,name,gender,race,nationality,home_address,home_address_2,postcode,country,phone_no from special_integration_information where national_id_no ='" + idInput + "'";
     ArrayList<ArrayList<String>> search2 = conn.getData(searchSpecial);
     if (search2.size() > 0) {
@@ -157,7 +157,7 @@
 
 } else if (status.equals("0")) {
 
-    if (idType.equals("pmino")) {
+    if (idType.equals("pmino") || idType.equals("001")) {
             searchPatient = "select a.pmi_no,a.pmi_no_temp,a.patient_name,a.title_code,a.new_ic_no,a.old_ic_no,a.id_type,a.id_no,a.eligibility_category_code,a.eligibility_type_code,"
                     + "a.birth_date,a.sex_code,a.marital_status_code,a.race_code,a.nationality,a.religion_code,a.blood_type,"
                     + "a.blood_rhesus_code,"
@@ -179,7 +179,7 @@
 + " left join adm_lookup_detail l on l.detail_reference_code=a.title_code and l.master_reference_code='0026'"
 + " left join adm_lookup_detail m on m.detail_reference_code=a.nationality and m.master_reference_code='0011'"
 + " where a.PMI_NO='" + idInput + "'";
-        } else if (idType.equals("icnew")) {
+        } else if (idType.equals("icnew")|| idType.equals("002") ) {
             searchPatient = "select a.pmi_no,a.pmi_no_temp,a.patient_name,a.title_code,a.new_ic_no,a.old_ic_no,a.id_type,a.id_no,a.eligibility_category_code,a.eligibility_type_code,"
                     + "a.birth_date,a.sex_code,a.marital_status_code,a.race_code,a.nationality,a.religion_code,a.blood_type,"
                     + "a.blood_rhesus_code,"
@@ -202,7 +202,7 @@
 + " left join adm_lookup_detail m on m.detail_reference_code=a.nationality and m.master_reference_code='0011'"
 + " where a.NEW_IC_NO='" + idInput + "'";
             
-        } else if (idType.equals("icold")) {
+        } else if (idType.equals("icold")|| idType.equals("003") ) {
             searchPatient = "select a.pmi_no,a.pmi_no_temp,a.patient_name,a.title_code,a.new_ic_no,a.old_ic_no,a.id_type,a.id_no,a.eligibility_category_code,a.eligibility_type_code,"
                     + "a.birth_date,a.sex_code,a.marital_status_code,a.race_code,a.nationality,a.religion_code,a.blood_type,"
                     + "a.blood_rhesus_code,"
