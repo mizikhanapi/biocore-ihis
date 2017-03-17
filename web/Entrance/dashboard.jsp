@@ -280,6 +280,8 @@
 <!-- Placed at the end of the document so the pages load faster -->
 <%@include file="libraries/script.html"%>
 <script type="text/javascript" >
+       
+    
     $(function() {
   // Handler for .ready() called.
         

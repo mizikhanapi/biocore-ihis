@@ -7,7 +7,18 @@
 <%@page import="dBConn.Conn"%>
 <%@page import="Config.Config"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+
+
 <%
+    
+    if(session.getAttribute("TEMP_ID") == null){
+    
+        response.sendRedirect("login.jsp");
+        
+        return;
+    
+    }
+    
 //    Config.getBase_url(request);
 //    Config.getFile_url(session);
     Conn conn = new Conn();
@@ -34,8 +45,8 @@
                 <h2 style="text-align: center;"><span style="color: #0ae">iHIS</span></h2>
                 <p id="profile-name" class="profile-name-card">Clinical Support System</p>
                 <form class="form-signin" id="leForm" >
-                    <span id="reauth-email" class="reauth-email"></span>
-                    <input type="text" id="inputUserID" class="form-control" placeholder="Enter User ID" name="username" required autofocus>
+                    <br><span style="color: red">Please log in using your IC number / Passport number and your password</span>
+                    <input type="text" id="inputUserID" class="form-control" placeholder="Enter IC/Passport" name="username" required autofocus>
                     <input type="password" id="inputPassword" class="form-control" placeholder="Enter Password" name="password" required>
                     <!--                
                     <div id="remember" class="checkbox">
@@ -102,7 +113,7 @@
                     $.ajax({
                         url: "login_process2.jsp",
                         type: "post",
-                        data: {userID: userID,
+                        data: {userIC: userID,
                             password: password
                         },
                         timeout: 3000,
@@ -118,8 +129,8 @@
                             else if (num === 3)
                                 alert("You don't have proper user access. Contact your admin to configure your user access");
                             else if (num === 4){
-                                alert("You have logged in to another PC or you did not log out properly");
-                                window.location = "login_ic.jsp";
+                                alert("Wrong IC/Passport number");
+                                
                             }    
                             else
                                 alert("Error");
