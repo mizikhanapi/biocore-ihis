@@ -8,12 +8,11 @@ var processNotes = "";
 
 $(document).ready(function (e) {
     $(window).on('beforeunload', function (e) {
-        console.log(pmiNo);
-        if(reloadStat === 0){
-            console.log("no reload")
-        }else if(reloadStat === 1){
+        if(reloadStat === "1"){
              updateStatus(pmiNo, episodeDate, statusNow);
             return "Sure U are?";
+        }else {
+            console.log("no patient");
         }
 
     });
@@ -33,8 +32,8 @@ $(document).ready(function (e) {
         
         reloadStat = 0;
        var pmiNo = $('#pmiNumber').text();
-       
-       getSettingConsult(doctor_id);
+       sendOrder(_data);
+     getSettingConsult(doctor_id);
        
     });
 
@@ -67,7 +66,8 @@ $("#missingBtn").click(function(){
 });
 
 $("#nextBtn").click(function(){
-        reloadStat  = 1;
+        reloadStat  = "1";
+        console.log(reloadStat);
         var currentDate = getDateNext();
         var date = currentDate[0];
         console.log(currentDate);
@@ -77,6 +77,23 @@ $("#nextBtn").click(function(){
         nextPatient(currentDate, hfc_cd);
 });
 
+
+function sendOrder(data){
+    for(var k in data){
+        if(data[k].Acode === "DTO"){
+            console.log(data[k]);
+            $.ajax({
+                url:'topMenuFunction/SendOrder.jsp',
+                method:'POST',
+                timeout:5000,
+                data:data[k],
+                success:function(result){
+                    console.log(result);
+                }
+            });
+        }
+    }
+}
 
    function convertVTS(VTSData) {
 
@@ -320,7 +337,7 @@ $("#nextBtn").click(function(){
                     pmiNo = nextPArry[0];
                     episodeDate = nextPArry[1];
 
-                    findPatient(pmiNo);
+                    findPatient(pmiNo,episodeDate);
                     $('.soap-select').unbind('click');
                     getPDI(pmiNo);
                     updateStatus(pmiNo,episodeDate,5);

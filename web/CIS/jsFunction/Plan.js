@@ -23,7 +23,7 @@ $(document).ready(function () {
         var comment = $('#commentDTO').val();
 //                    notes+= "DTO|" + getDate() + "^" +  
 
-        var $items = $('#searchDTO, #dtoCode, #drugNameDTO, #drugQtyDTO, #drugStrDTO, #doseDTO, #durationDTO, #unitDTO, #drugFrequencyDTO, #drugInstructionDTO, #cautionaryDTO, #commentDTO');
+        var $items = $('#searchDTO, #dtoCode, #drugNameDTO, #drugQtyDTO, #drugStrDTO, #doseDTO, #durationDTO, #unitDTO, #drugFrequencyDTO, #drugInstructionDTO, #cautionaryDTO, #commentDTO, #dRouteDTO');
         var obj1 = {Acode: 'DTO'};
         $items.each(function () {
             obj1[this.id] = $(this).val();
@@ -70,6 +70,8 @@ $(document).ready(function () {
         $('#update_inst').val(updateObj.drugInstructionDTO);
         $('#update_cautionaryDTO').val(updateObj.cautionaryDTO);
         $('#update_commentDTO').val(updateObj.commentDTO);
+        $('#update_RouteDTO').val(updateObj.dRouteDTO);
+
         $('#jsonId').val(id[1]);
         //$(this).closest('tr').remove();
 
@@ -94,6 +96,7 @@ $(document).ready(function () {
         var update_instDTO = $('#update_inst').val();
         var update_caoutionaryDTO = $('#update_cautionaryDTO').val();
         var update_commentsDTO = $('#update_commentDTO').val();
+        var update_dRouteDTO =  $('#update_RouteDTO').val();
 
         upObject.searchDTO = update_searchDTO;
         upObject.dtoCode = update_dtoCode;
@@ -107,6 +110,7 @@ $(document).ready(function () {
         upObject.drugInstructionDTO = update_instDTO;
         upObject.cautionaryDTO = update_caoutionaryDTO;
         upObject.commentDTO = update_commentsDTO;
+        upObject.dRouteDTO = update_dRouteDTO;
 
 
         var sum = update_searchDTO + ' | Drug Name: ' + update_drugNameDTO + ' | Strength: ' + update_drugStrDTO + ' | Dose: ' + update_drugDoseDTO + ' | Frequency: ' + update_freqDTO + ' | Duration: ' + update_durationDTO + '  ' + update_unitDurDTO + ' | Instruction: ' + update_instDTO + ' | Cautionary: ' + update_caoutionaryDTO + ' | Comment: ' + update_commentsDTO

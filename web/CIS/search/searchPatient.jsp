@@ -18,6 +18,7 @@
     Conn conn = new Conn();
     CheckDateFormat cdf = new CheckDateFormat();
     String pmiNo = request.getParameter("pmiNo");
+    String episodeDate = request.getParameter("episodeDate");
     //String pmiNo ="7805110451210";
    
     
@@ -138,6 +139,7 @@ String patientBio = dataQueue.get(0).get(0) + "|"+dataQueue.get(0).get(1)+"|"+da
 session.setAttribute("patientPMINo",dataQueue.get(0).get(0));
 //session.setAttribute("patientPMINo","6303190161596");
 session.setAttribute("patientBio", patientBio);
+session.setAttribute("episodeDate", episodeDate);
 
 
 out.print(patientBio);
