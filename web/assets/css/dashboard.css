@@ -357,6 +357,7 @@ ul.soap-content>li>a:hover{
 
 ul.soap-content>li>a:focus {
     background: none;
+    color: #2196F3;
 }
 
 .cis-tab {
@@ -509,8 +510,9 @@ ul.nav.navbar-nav.navbar-left.back {
     color: #333;
 }
 
-.ConsultationNotes>tr{
-    border-bottom: 2px solid #2196F3;
+.ConsultationNotes{
+    border-bottom: 5px solid #eee;
+    border-left: 3px solid #feb405;
 }
 
 .table-bordered>thead>tr>th:last-child {
@@ -530,3 +532,10 @@ ul.nav.navbar-nav.navbar-left.back {
 .table-bordered>tbody>tr>td:nth-last-child(2) {
     text-align: center;
 }
+
+.btn-group>.btn, .btn-group>.btn {
+    border-radius: 0px;
+    border: none;
+    padding: 15px;
+}
+

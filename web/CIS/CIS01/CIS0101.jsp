@@ -9,7 +9,7 @@
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+                        <button type="button" class="close" data-dismiss="modal"><i class="fa fa-times fa-lg"></i><span class="sr-only">Close</span></button>
                         <h3 class="modal-title" id="lineModalLabel">Chief Complaint</h3>
                     </div>
                     <div class="modal-body">
@@ -85,10 +85,10 @@
                                 <button type="button" class="btn btn-success btn-block btn-lg" id="acceptBtn" role="button">Accept</button>
                             </div>
                             <div class="btn-group btn-delete hidden" role="group">
-                                <button type="button" id="delImage" class="btn btn-danger btn-block btn-lg" data-dismiss="modal"  role="button">Clear</button>
+                                <button type="button" id="delImage" class="btn btn-default btn-block btn-lg" data-dismiss="modal"  role="button">Clear</button>
                             </div>
                             <div class="btn-group" role="group">
-                                <button type="button" id="saveImage" class="btn btn-danger btn-block btn-lg" data-dismiss="modal" role="button">Close</button>
+                                <button type="button" id="saveImage" class="btn btn-default btn-block btn-lg" data-dismiss="modal" role="button">Close</button>
                             </div>
                         </div>
                     </div>
@@ -102,7 +102,7 @@
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+                        <button type="button" class="close" data-dismiss="modal"><i class="fa fa-times fa-lg"></i><span class="sr-only">Close</span></button>
                         <h3 class="modal-title" id="lineModalLabel">Chief Complaint Update</h3>
                     </div>
                     <div class="modal-body">
@@ -174,10 +174,10 @@
                                 <button type="button" class="btn btn-success btn-block btn-lg" id="updateBtnCCN" role="button">Update</button>
                             </div>
                             <div class="btn-group btn-delete hidden" role="group">
-                                <button type="button" id="delImage" class="btn btn-danger btn-block btn-lg" data-dismiss="modal"  role="button">Clear</button>
+                                <button type="button" id="delImage" class="btn btn-default btn-block btn-lg" data-dismiss="modal"  role="button">Clear</button>
                             </div>
                             <div class="btn-group" role="group">
-                                <button type="button" id="saveImage" class="btn btn-danger btn-block btn-lg" data-dismiss="modal" role="button">Close</button>
+                                <button type="button" id="saveImage" class="btn btn-default btn-block btn-lg" data-dismiss="modal" role="button">Close</button>
                             </div>
                         </div>
                     </div>
@@ -191,7 +191,7 @@
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+                        <button type="button" class="close" data-dismiss="modal"><i class="fa fa-times fa-lg"></i><span class="sr-only">Close</span></button>
                         <h3 class="modal-title" id="lineModalLabel">History of Present Illness</h3>
                     </div>
                     <div class="modal-body">
@@ -209,10 +209,10 @@
                                 <button type="button" class="btn btn-success btn-block btn-lg" id="acceptBtnHPI" role="button">Accept</button>
                             </div>
                             <div class="btn-group btn-delete hidden" role="group">
-                                <button type="button" id="delImage" class="btn btn-danger btn-block btn-lg" data-dismiss="modal"  role="button">Clear</button>
+                                <button type="button" id="delImage" class="btn btn-default btn-block btn-lg" data-dismiss="modal"  role="button">Clear</button>
                             </div>
                             <div class="btn-group" role="group">
-                                <button type="button" id="saveImage" class="btn btn-danger btn-block btn-lg" data-dismiss="modal" role="button">Close</button>
+                                <button type="button" id="saveImage" class="btn btn-default btn-block btn-lg" data-dismiss="modal" role="button">Close</button>
                             </div>
                         </div>
                     </div>
@@ -226,7 +226,7 @@
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+                        <button type="button" class="close" data-dismiss="modal"><i class="fa fa-times fa-lg"></i><span class="sr-only">Close</span></button>
                         <h3 class="modal-title" id="lineModalLabel">History of Present Illness Update</h3>
                     </div>
                     <div class="modal-body">
@@ -242,10 +242,10 @@
                                 <button type="button" class="btn btn-success btn-block btn-lg" id="updateBtnHPI" role="button">Update</button>
                             </div>
                             <div class="btn-group btn-delete hidden" role="group">
-                                <button type="button" id="delImage" class="btn btn-danger btn-block btn-lg" data-dismiss="modal"  role="button">Clear</button>
+                                <button type="button" id="delImage" class="btn btn-default btn-block btn-lg" data-dismiss="modal"  role="button">Clear</button>
                             </div>
                             <div class="btn-group" role="group">
-                                <button type="button" id="saveImage" class="btn btn-danger btn-block btn-lg" data-dismiss="modal" role="button">Close</button>
+                                <button type="button" id="saveImage" class="btn btn-default btn-block btn-lg" data-dismiss="modal" role="button">Close</button>
                             </div>
                         </div>
                     </div>
@@ -259,7 +259,7 @@
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+                        <button type="button" class="close" data-dismiss="modal"><i class="fa fa-times fa-lg"></i><span class="sr-only">Close</span></button>
                         <h3 class="modal-title" id="lineModalLabel">Past Medical History</h3>
                     </div>
                     <div class="modal-body">
@@ -289,10 +289,10 @@
                                 <button type="button" class="btn btn-success btn-block btn-lg" id="acceptBtnPMH" role="button">Accept</button>
                             </div>
                             <div class="btn-group btn-delete hidden" role="group">
-                                <button type="button" id="delImage" class="btn btn-danger btn-block btn-lg" data-dismiss="modal"  role="button">Clear</button>
+                                <button type="button" id="delImage" class="btn btn-default btn-block btn-lg" data-dismiss="modal"  role="button">Clear</button>
                             </div>
                             <div class="btn-group" role="group">
-                                <button type="button" id="saveImage" class="btn btn-danger btn-block btn-lg" data-dismiss="modal" role="button">Close</button>
+                                <button type="button" id="saveImage" class="btn btn-default btn-block btn-lg" data-dismiss="modal" role="button">Close</button>
                             </div>
                         </div>
                     </div>
@@ -306,7 +306,7 @@
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+                        <button type="button" class="close" data-dismiss="modal"><i class="fa fa-times fa-lg"></i><span class="sr-only">Close</span></button>
                         <h3 class="modal-title" id="lineModalLabel">Past Medical History Update</h3>
                     </div>
                     <div class="modal-body">
@@ -336,10 +336,10 @@
                                 <button type="button" class="btn btn-success btn-block btn-lg" id="updateBtnPMH" role="button">Update</button>
                             </div>
                             <div class="btn-group btn-delete hidden" role="group">
-                                <button type="button" id="delImage" class="btn btn-danger btn-block btn-lg" data-dismiss="modal"  role="button">Clear</button>
+                                <button type="button" id="delImage" class="btn btn-default btn-block btn-lg" data-dismiss="modal"  role="button">Clear</button>
                             </div>
                             <div class="btn-group" role="group">
-                                <button type="button" id="saveImage" class="btn btn-danger btn-block btn-lg" data-dismiss="modal" role="button">Close</button>
+                                <button type="button" id="saveImage" class="btn btn-default btn-block btn-lg" data-dismiss="modal" role="button">Close</button>
                             </div>
                         </div>
                     </div>
@@ -353,7 +353,7 @@
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+                        <button type="button" class="close" data-dismiss="modal"><i class="fa fa-times fa-lg"></i><span class="sr-only">Close</span></button>
                         <h3 class="modal-title" id="lineModalLabel">Family Health History</h3>
                     </div>
                     <div class="modal-body">
@@ -400,10 +400,10 @@
                                 <button type="button" class="btn btn-success btn-block btn-lg" id="acceptBtnFMH" role="button">Accept</button>
                             </div>
                             <div class="btn-group btn-delete hidden" role="group">
-                                <button type="button" id="delImage" class="btn btn-danger btn-block btn-lg" data-dismiss="modal"  role="button">Clear</button>
+                                <button type="button" id="delImage" class="btn btn-default btn-block btn-lg" data-dismiss="modal"  role="button">Clear</button>
                             </div>
                             <div class="btn-group" role="group">
-                                <button type="button" id="saveImage" class="btn btn-danger btn-block btn-lg" data-dismiss="modal" role="button">Close</button>
+                                <button type="button" id="saveImage" class="btn btn-default btn-block btn-lg" data-dismiss="modal" role="button">Close</button>
                             </div>
                         </div>
                     </div>
@@ -417,7 +417,7 @@
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+                        <button type="button" class="close" data-dismiss="modal"><i class="fa fa-times fa-lg"></i><span class="sr-only">Close</span></button>
                         <h3 class="modal-title" id="lineModalLabel">Family Health History Update</h3>
                     </div>
                     <div class="modal-body">
@@ -462,10 +462,10 @@
                                 <button type="button" class="btn btn-success btn-block btn-lg" id="updateBtnFMH" role="button">Update</button>
                             </div>
                             <div class="btn-group btn-delete hidden" role="group">
-                                <button type="button" id="delImage" class="btn btn-danger btn-block btn-lg" data-dismiss="modal"  role="button">Clear</button>
+                                <button type="button" id="delImage" class="btn btn-default btn-block btn-lg" data-dismiss="modal"  role="button">Clear</button>
                             </div>
                             <div class="btn-group" role="group">
-                                <button type="button" id="saveImage" class="btn btn-danger btn-block btn-lg" data-dismiss="modal" role="button">Close</button>
+                                <button type="button" id="saveImage" class="btn btn-default btn-block btn-lg" data-dismiss="modal" role="button">Close</button>
                             </div>
                         </div>
                     </div>
@@ -479,7 +479,7 @@
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+                        <button type="button" class="close" data-dismiss="modal"><i class="fa fa-times fa-lg"></i><span class="sr-only">Close</span></button>
                         <h3 class="modal-title" id="lineModalLabel">Social History</h3>
                     </div>
                     <div class="modal-body">
@@ -507,10 +507,10 @@
                                 <button type="button" class="btn btn-success btn-block btn-lg" id="acceptBtnSOH" role="button">Accept</button>
                             </div>
                             <div class="btn-group btn-delete hidden" role="group">
-                                <button type="button" id="delImage" class="btn btn-danger btn-block btn-lg" data-dismiss="modal"  role="button">Clear</button>
+                                <button type="button" id="delImage" class="btn btn-default btn-block btn-lg" data-dismiss="modal"  role="button">Clear</button>
                             </div>
                             <div class="btn-group" role="group">
-                                <button type="button" id="saveImage" class="btn btn-danger btn-block btn-lg" data-dismiss="modal" role="button">Close</button>
+                                <button type="button" id="saveImage" class="btn btn-default btn-block btn-lg" data-dismiss="modal" role="button">Close</button>
                             </div>
                         </div>
                     </div>
@@ -524,7 +524,7 @@
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+                        <button type="button" class="close" data-dismiss="modal"><i class="fa fa-times fa-lg"></i><span class="sr-only">Close</span></button>
                         <h3 class="modal-title" id="lineModalLabel">Social History Update</h3>
                     </div>
                     <div class="modal-body">
@@ -550,10 +550,10 @@
                                 <button type="button" class="btn btn-success btn-block btn-lg" id="updateBtn4" role="button">Update</button>
                             </div>
                             <div class="btn-group btn-delete hidden" role="group">
-                                <button type="button" id="delImage" class="btn btn-danger btn-block btn-lg" data-dismiss="modal"  role="button">Clear</button>
+                                <button type="button" id="delImage" class="btn btn-default btn-block btn-lg" data-dismiss="modal"  role="button">Clear</button>
                             </div>
                             <div class="btn-group" role="group">
-                                <button type="button" id="saveImage" class="btn btn-danger btn-block btn-lg" data-dismiss="modal" role="button">Close</button>
+                                <button type="button" id="saveImage" class="btn btn-default btn-block btn-lg" data-dismiss="modal" role="button">Close</button>
                             </div>
                         </div>
                     </div>
@@ -567,7 +567,7 @@
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+                        <button type="button" class="close" data-dismiss="modal"><i class="fa fa-times fa-lg"></i><span class="sr-only">Close</span></button>
                         <h3 class="modal-title" id="lineModalLabel">Blood Group/G6PD</h3>
                     </div>
                     <div class="modal-body">
@@ -611,10 +611,10 @@
                                 <button type="button" class="btn btn-success btn-block btn-lg" id="acceptBtnBLD" role="button">Accept</button>
                             </div>
                             <div class="btn-group btn-delete hidden" role="group">
-                                <button type="button" id="delImage" class="btn btn-danger btn-block btn-lg" data-dismiss="modal"  role="button">Clear</button>
+                                <button type="button" id="delImage" class="btn btn-default btn-block btn-lg" data-dismiss="modal"  role="button">Clear</button>
                             </div>
                             <div class="btn-group" role="group">
-                                <button type="button" id="saveImage" class="btn btn-danger btn-block btn-lg" data-dismiss="modal" role="button">Close</button>
+                                <button type="button" id="saveImage" class="btn btn-default btn-block btn-lg" data-dismiss="modal" role="button">Close</button>
                             </div>
                         </div>
                     </div>
@@ -628,7 +628,7 @@
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+                        <button type="button" class="close" data-dismiss="modal"><i class="fa fa-times fa-lg"></i><span class="sr-only">Close</span></button>
                         <h3 class="modal-title" id="lineModalLabel">Blood Group/G6PD Update</h3>
                     </div>
                     <div class="modal-body">
@@ -671,10 +671,10 @@
                                     <button type="button" class="btn btn-success btn-block btn-lg" id="updateBtnBLD" role="button">Update</button>
                                 </div>
                                 <div class="btn-group btn-delete hidden" role="group">
-                                    <button type="button" id="delImage" class="btn btn-danger btn-block btn-lg" data-dismiss="modal"  role="button">Clear</button>
+                                    <button type="button" id="delImage" class="btn btn-default btn-block btn-lg" data-dismiss="modal"  role="button">Clear</button>
                                 </div>
                                 <div class="btn-group" role="group">
-                                    <button type="button" id="saveImage" class="btn btn-danger btn-block btn-lg" data-dismiss="modal" role="button">Close</button>
+                                    <button type="button" id="saveImage" class="btn btn-default btn-block btn-lg" data-dismiss="modal" role="button">Close</button>
                                 </div>
                             </div>
                         </div>
@@ -689,7 +689,7 @@
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+                        <button type="button" class="close" data-dismiss="modal"><i class="fa fa-times fa-lg"></i><span class="sr-only">Close</span></button>
                         <h3 class="modal-title" id="lineModalLabel">Allergy</h3>
                     </div>
                     <div class="modal-body">
@@ -715,10 +715,10 @@
                                 <button type="button" class="btn btn-success btn-block btn-lg" id="acceptBtnALG" role="button">Accept</button>
                             </div>
                             <div class="btn-group btn-delete hidden" role="group">
-                                <button type="button" id="delImage" class="btn btn-danger btn-block btn-lg" data-dismiss="modal"  role="button">Clear</button>
+                                <button type="button" id="delImage" class="btn btn-default btn-block btn-lg" data-dismiss="modal"  role="button">Clear</button>
                             </div>
                             <div class="btn-group" role="group">
-                                <button type="button" id="saveImage" class="btn btn-danger btn-block btn-lg" data-dismiss="modal" role="button">Close</button>
+                                <button type="button" id="saveImage" class="btn btn-default btn-block btn-lg" data-dismiss="modal" role="button">Close</button>
                             </div>
                         </div>
                     </div>
@@ -732,7 +732,7 @@
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+                        <button type="button" class="close" data-dismiss="modal"><i class="fa fa-times fa-lg"></i><span class="sr-only">Close</span></button>
                         <h3 class="modal-title" id="lineModalLabel">Allergy Update</h3>
                     </div>
                     <div class="modal-body">
@@ -758,10 +758,10 @@
                                 <button type="button" class="btn btn-success btn-block btn-lg" id="updateBtnALG" role="button">Update</button>
                             </div>
                             <div class="btn-group btn-delete hidden" role="group">
-                                <button type="button" id="delImage" class="btn btn-danger btn-block btn-lg" data-dismiss="modal"  role="button">Clear</button>
+                                <button type="button" id="delImage" class="btn btn-default btn-block btn-lg" data-dismiss="modal"  role="button">Clear</button>
                             </div>
                             <div class="btn-group" role="group">
-                                <button type="button" id="saveImage" class="btn btn-danger btn-block btn-lg" data-dismiss="modal" role="button">Close</button>
+                                <button type="button" id="saveImage" class="btn btn-default btn-block btn-lg" data-dismiss="modal" role="button">Close</button>
                             </div>
                         </div>
                     </div>
@@ -775,7 +775,7 @@
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+                        <button type="button" class="close" data-dismiss="modal"><i class="fa fa-times fa-lg"></i><span class="sr-only">Close</span></button>
                         <h3 class="modal-title" id="lineModalLabel">Immunization</h3>
                     </div>
                     <div class="modal-body">
@@ -801,10 +801,10 @@
                                 <button type="button" class="btn btn-success btn-block btn-lg" id="acceptBtnIMU" role="button">Accept</button>
                             </div>
                             <div class="btn-group btn-delete hidden" role="group">
-                                <button type="button" id="delImage" class="btn btn-danger btn-block btn-lg" data-dismiss="modal"  role="button">Clear</button>
+                                <button type="button" id="delImage" class="btn btn-default btn-block btn-lg" data-dismiss="modal"  role="button">Clear</button>
                             </div>
                             <div class="btn-group" role="group">
-                                <button type="button" id="saveImage" class="btn btn-danger btn-block btn-lg" data-dismiss="modal" role="button">Close</button>
+                                <button type="button" id="saveImage" class="btn btn-default btn-block btn-lg" data-dismiss="modal" role="button">Close</button>
                             </div>
                         </div>
                     </div>
@@ -818,7 +818,7 @@
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+                        <button type="button" class="close" data-dismiss="modal"><i class="fa fa-times fa-lg"></i><span class="sr-only">Close</span></button>
                         <h3 class="modal-title" id="lineModalLabel">Immunization Update</h3>
                     </div>
                     <div class="modal-body">
@@ -844,10 +844,10 @@
                                 <button type="button" class="btn btn-success btn-block btn-lg" id="updateBtnIMU" role="button">Update</button>
                             </div>
                             <div class="btn-group btn-delete hidden" role="group">
-                                <button type="button" id="delImage" class="btn btn-danger btn-block btn-lg" data-dismiss="modal"  role="button">Clear</button>
+                                <button type="button" id="delImage" class="btn btn-default btn-block btn-lg" data-dismiss="modal"  role="button">Clear</button>
                             </div>
                             <div class="btn-group" role="group">
-                                <button type="button" id="saveImage" class="btn btn-danger btn-block btn-lg" data-dismiss="modal" role="button">Close</button>
+                                <button type="button" id="saveImage" class="btn btn-default btn-block btn-lg" data-dismiss="modal" role="button">Close</button>
                             </div>
                         </div>
                     </div>
@@ -861,7 +861,7 @@
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+                        <button type="button" class="close" data-dismiss="modal"><i class="fa fa-times fa-lg"></i><span class="sr-only">Close</span></button>
                         <h3 class="modal-title" id="lineModalLabel">Disability</h3>
                     </div>
                     <div class="modal-body">
@@ -889,10 +889,10 @@
                                 <button type="button" class="btn btn-success btn-block btn-lg" id="acceptBtnDAB" role="button">Accept</button>
                             </div>
                             <div class="btn-group btn-delete hidden" role="group">
-                                <button type="button" id="delImage" class="btn btn-danger btn-block btn-lg" data-dismiss="modal"  role="button">Clear</button>
+                                <button type="button" id="delImage" class="btn btn-default btn-block btn-lg" data-dismiss="modal"  role="button">Clear</button>
                             </div>
                             <div class="btn-group" role="group">
-                                <button type="button" id="saveImage" class="btn btn-danger btn-block btn-lg" data-dismiss="modal" role="button">Close</button>
+                                <button type="button" id="saveImage" class="btn btn-default btn-block btn-lg" data-dismiss="modal" role="button">Close</button>
                             </div>
                         </div>
                     </div>
@@ -906,7 +906,7 @@
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+                        <button type="button" class="close" data-dismiss="modal"><i class="fa fa-times fa-lg"></i><span class="sr-only">Close</span></button>
                         <h3 class="modal-title" id="lineModalLabel">Disability Update</h3>
                     </div>
                     <div class="modal-body">
@@ -932,10 +932,10 @@
                                 <button type="button" class="btn btn-success btn-block btn-lg" id="updateBtnDAB" role="button">Update</button>
                             </div>
                             <div class="btn-group btn-delete hidden" role="group">
-                                <button type="button" id="delImage" class="btn btn-danger btn-block btn-lg" data-dismiss="modal"  role="button">Clear</button>
+                                <button type="button" id="delImage" class="btn btn-default btn-block btn-lg" data-dismiss="modal"  role="button">Clear</button>
                             </div>
                             <div class="btn-group" role="group">
-                                <button type="button" id="saveImage" class="btn btn-danger btn-block btn-lg" data-dismiss="modal" role="button">Close</button>
+                                <button type="button" id="saveImage" class="btn btn-default btn-block btn-lg" data-dismiss="modal" role="button">Close</button>
                             </div>
                         </div>
                     </div>

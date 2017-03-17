@@ -13,7 +13,7 @@
     <div class="modal-dialog"  id="mainModalPGCS">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">—</span><span class="sr-only">Close</span></button>
+                <button type="button" class="close" data-dismiss="modal"><i class="fa fa-times fa-lg"></i><span class="sr-only">Close</span></button>
                 <h3 class="modal-title" id="lineModalLabel">Pediatric Glasgow Coma Scale</h3>
             </div>
             <div class="modal-body">
@@ -65,10 +65,10 @@
                         <a class="btn btn-success btn-block btn-lg gcsUpdate " id="pgcsUpdate" >Update</a>
                     </div>
                     <div class="btn-group btn-delete hidden" role="group">
-                        <button type="button" id="delImage" class="btn btn-danger btn-block btn-lg" data-dismiss="modal"  role="button">Clear</button>
+                        <button type="button" id="delImage" class="btn btn-default btn-block btn-lg" data-dismiss="modal"  role="button">Clear</button>
                     </div>
                     <div class="btn-group" role="group">
-                        <button type="button" id="saveImage" class="btn btn-danger btn-block btn-lg" data-dismiss="modal" role="button">Close</button>
+                        <button type="button" id="saveImage" class="btn btn-default btn-block btn-lg" data-dismiss="modal" role="button">Close</button>
                     </div>
                 </div>
                 </form>
@@ -80,10 +80,10 @@
                         <a class="btn btn-success btn-block btn-lg gcsAccept " id="pgcsAccept" >Accept</a>
                     </div>
                     <div class="btn-group btn-delete hidden" role="group">
-                        <button type="button" id="delImage" class="btn btn-danger btn-block btn-lg" data-dismiss="modal"  role="button">Clear</button>
+                        <button type="button" id="delImage" class="btn btn-default btn-block btn-lg" data-dismiss="modal"  role="button">Clear</button>
                     </div>
                     <div class="btn-group" role="group">
-                        <button type="button" id="saveImage" class="btn btn-danger btn-block btn-lg" data-dismiss="modal" role="button">Close</button>
+                        <button type="button" id="saveImage" class="btn btn-default btn-block btn-lg" data-dismiss="modal" role="button">Close</button>
                     </div>
                 </div>
                 </form>
@@ -95,7 +95,7 @@
     <div class="modal-dialog" id="subModalPGCS">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">—</span><span class="sr-only">Close</span></button>
+                <button type="button" class="close" data-dismiss="modal"><i class="fa fa-times fa-lg"></i><span class="sr-only">Close</span></button>
                 <h3 class="modal-title" id="lineModalLabel">Pediatric Glasgow Coma Scale</h3>
             </div>
             <div class="modal-body">
@@ -196,10 +196,10 @@
                         <a class="btn btn-success btn-block btn-lg  " id="pgcsDone" >Done</a>
                     </div>
                     <div class="btn-group btn-delete hidden" role="group">
-                        <button type="button" id="delImage" class="btn btn-danger btn-block btn-lg"   role="button">Clear</button>
+                        <button type="button" id="delImage" class="btn btn-default btn-block btn-lg"   role="button">Clear</button>
                     </div>
                     <div class="btn-group" role="group">
-                        <button type="button" id="backPgcs" class="btn btn-danger btn-block btn-lg"  role="button">Back</button>
+                        <button type="button" id="backPgcs" class="btn btn-default btn-block btn-lg"  role="button">Back</button>
                     </div>
                 </div>
                 </form>

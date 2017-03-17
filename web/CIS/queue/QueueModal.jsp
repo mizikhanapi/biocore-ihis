@@ -11,11 +11,10 @@
     <div class="modal-dialog" style="width: 65%">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">X</span><span class="sr-only">Close</span></button>
+                <button type="button" class="close" data-dismiss="modal"><i class="fa fa-times fa-lg"></i><span class="sr-only">Close</span></button>
                 <h3 class="modal-title" id="lineModalLabel">Queue List</h3>
             </div>
             <div class="modal-body" >
-                <div class="thumbnail">
                     <div class="row"id="modalBodyQueue" >
                         <!-- content goes here -->
                         <form role="form" id="formQueueSaya">
@@ -35,14 +34,7 @@
                             </table>
                         </form>
                     </div>
-                </div>
 
-            </div>
-            <div class="modal-footer">
-                <div class="btn-group btn-group-justified" role="group" aria-label="group button">
-
-                </div>
-                </form>
             </div>
         </div>
     </div>

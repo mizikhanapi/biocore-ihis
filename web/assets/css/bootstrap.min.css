@@ -4455,7 +4455,8 @@ tbody.collapse.in {
 .btn-group>.btn-group:first-child:not(:last-child)>.btn:last-child,
 .btn-group>.btn-group:first-child:not(:last-child)>.dropdown-toggle {
     border-top-right-radius: 0;
-    border-bottom-right-radius: 0
+    border-bottom-right-radius: 0;
+    border-right: 1px solid #eee;
 }
 
 .btn-group>.btn-group:last-child:not(:first-child)>.btn:first-child {
@@ -7123,7 +7124,6 @@ button.close {
 }
 
 .modal-footer {
-    padding: 15px;
     text-align: right;
     border-top: 1px solid #e5e5e5
 }
