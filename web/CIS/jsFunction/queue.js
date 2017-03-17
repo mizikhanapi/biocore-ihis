@@ -12,6 +12,7 @@ $(document).ready(function () {
 
 
     $('#listQueue').on('click', '#consultBtn', function (e) {
+        reloadStat = 1;
         e.preventDefault();
           $('#mainConsultBar').show();
         var row = $(this).closest('tr');

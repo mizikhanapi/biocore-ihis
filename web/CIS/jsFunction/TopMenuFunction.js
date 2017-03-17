@@ -9,12 +9,13 @@ var processNotes = "";
 $(document).ready(function (e) {
     $(window).on('beforeunload', function (e) {
         console.log(pmiNo);
-        if (pmiNo === "") {
-            console.log("no pmi");
-        } else {
-            updateStatus(pmiNo, episodeDate, statusNow);
+        if(reloadStat === 0){
+            console.log("no reload")
+        }else if(reloadStat === 1){
+             updateStatus(pmiNo, episodeDate, statusNow);
             return "Sure U are?";
         }
+
     });
 
     $(window).on('unload', function (e) {
@@ -30,7 +31,7 @@ $(document).ready(function (e) {
     //------------------------------------------------------------ DISCHARGE BUTTON
     $('#dischargeBtn').click(function () {
         
-       
+        reloadStat = 0;
        var pmiNo = $('#pmiNumber').text();
        
        getSettingConsult(doctor_id);
@@ -39,6 +40,7 @@ $(document).ready(function (e) {
 
     //------------------------------------------------------------ ON HOLD BUTTON
     $('#holdBtn').click(function () {
+        reloadStat = 0;
         var c = confirm("Are you sure you want ON HOLD this patient?");
         var pmiNo = $('#pmiNumber').text();
         if (c === true) {
@@ -51,6 +53,7 @@ $(document).ready(function (e) {
 });
 
 $("#missingBtn").click(function(){
+    reloadStat = 0;
     alert("Missing Button");
      var pmiNo = $('#pmiNumber').text();
        var c = confirm("Are you sure you want declare this patient are MISSING?");       
@@ -64,6 +67,7 @@ $("#missingBtn").click(function(){
 });
 
 $("#nextBtn").click(function(){
+        reloadStat  = 1;
         var currentDate = getDateNext();
         var date = currentDate[0];
         console.log(currentDate);
@@ -319,11 +323,8 @@ $("#nextBtn").click(function(){
                     findPatient(pmiNo);
                     $('.soap-select').unbind('click');
                     getPDI(pmiNo);
-                    updateStatus(pmiNoN,epiDate,5);
+                    updateStatus(pmiNo,episodeDate,5);
                 }
-              
-             
-
             }
         })
     }

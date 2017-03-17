@@ -20,6 +20,8 @@ var userSetting;
 var pmiNo = "";
 var episodeDate="";
 
+var reloadStat = 0;
+
 var PDIFULL;
 var HCS;
 
