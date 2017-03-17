@@ -12,11 +12,18 @@
 
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" href="old/assets/datepicker/jquery-ui.css">
-
+        <script src="old/assets/js/jquery.min.js"></script>
         <!-- Custom styles for this template -->
 
         <link rel="stylesheet" href="old/assets/css/loading.css">
-        <link href="old/assets/datepicker/jquery-ui.css" rel="stylesheet">  
+        <link href="old/assets/datepicker/jquery-ui.css" rel="stylesheet">    
+        <script src="old/assets/datepicker/jquery-ui.js"></script>
+        <script src="old/assets/js/form-validator.min.js"></script>
+        <script src="old/assets/js/bootstrap.min.js"></script> 
+
+        <script src="old/assets/js/w3data.js"></script>
+        <script src="old/assets/js/bootbox.min.js"></script>   
+
         <!-- header -->
         <%@include file = "../assets/header.html" %>
 
@@ -24,15 +31,12 @@
     </head>
     <body>
         <%
-            String hfc = "04010101";
-            String dataSystemStatus = "1";
-            String disc = "Inpatient";
-            String subdis = "-";
+           String dataSystemStatus2 = "1";
 
-            session.setAttribute("HFC", hfc);
-            session.setAttribute("SYSTEMSTAT", dataSystemStatus);
-            session.setAttribute("discipline", disc);
-            session.setAttribute("subDicipline", subdis);
+//            session.setAttribute("HFC", hfc);
+session.setAttribute("SYSTEMSTAT", dataSystemStatus2);
+//            session.setAttribute("discipline", disc);
+//            session.setAttribute("subDicipline", subdis);
 
             Config.getFile_url(session);
             Config.getBase_url(request);
@@ -63,7 +67,7 @@
                     <!-- menu top -->
 
 
-                    <div>  <%@include file = "InpatientRegistration.jsp" %>
+                    <div id="InpatientRegister">  <%//@include file = "InpatientRegistration.jsp" %>
                     </div>
 
 
@@ -85,22 +89,15 @@
                             <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/4.4.0/bootbox.min.js"></script>
                             <script src="bootstrap-3.3.6-dist/js/jquery.dataTables.min.js"></script>-->
 
-                    <script src="old/assets/js/jquery.min.js"></script>
-                    <script src="old/assets/datepicker/jquery-ui.js"></script>
-                    <script src="old/assets/js/form-validator.min.js"></script>
-                    <script src="old/assets/js/bootstrap.min.js"></script> 
 
-                    <script src="old/assets/js/w3data.js"></script>
-                    <script src="old/assets/js/bootbox.min.js"></script>  
 
                     <script>
-                        w3IncludeHTML();
-
+                 
                         $(document).ready(function () {
                             //            $("#sidemenus").load("libraries/sideMenus.jsp");
                             //            $("#headerindex").load("libraries/header.html");
                             //            $("#topmenuindex").load("libraries/topMenus.html");
-                            //            $("#InpatientRegister").load("InpatientRegistration.jsp");
+                                        $("#InpatientRegister").load("InpatientRegistration.jsp");
                             //                $("#WardOccupancyTable").load("WardOccupancy-Table.jsp");
 
                         });

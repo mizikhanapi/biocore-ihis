@@ -17,7 +17,7 @@ function Main(array_data) {
                 }
             },
             callback: function (result) {
-                
+
                 //if true go to PMI page
                 if (result === true) {
                     //$body.addClass("loading");
@@ -34,12 +34,9 @@ function Main(array_data) {
                             getBday(x);
                             getDateNow();
 
-                           
-                            //registration
+                            //transfer
                             $('input[id=pmino]').val($.trim(list));
                             $('input[id=pnic]').val($.trim(idInput));
-                            
-
                             $body.removeClass("loading");
                             $('.nav-tabs a[href="#tab_default_2"]').tab('show');
                         }
@@ -63,7 +60,7 @@ function Main(array_data) {
                 country = array_data[11],
                 phone = array_data[12];
         bootbox.confirm({
-            message: "Patient biodata is not existed, Data will retrieved from the SMP/SMSM",
+            message: "Patient biodata is not existed, Data will retieved from the SMP/SMSM",
             buttons: {
                 confirm: {
                     label: 'Continue',
@@ -77,8 +74,6 @@ function Main(array_data) {
             callback: function (result) {
                 //if true go to PMI page
                 if (result === true) {
-                    
-                    
 //                    if (persontype === "1") {
 //                        $("#PMIidty").val($.trim("004"));
 //                        $('input[id=pit]').val("Matric No.");
@@ -91,7 +86,7 @@ function Main(array_data) {
                     $('#pname').val($.trim(name));
                     $('input[id=poic]').val("-");
 
-                    $('input[id=pidno]').val($.trim(idnumber));
+                    $('input[id=pino]').val($.trim(idnumber));
 
 
                     $body.addClass("loading");
@@ -105,14 +100,11 @@ function Main(array_data) {
                             x = newic;
                             getBday(x);
                             getDateNow();
-                         
+
                             //registration
                             $('input[id=pmino]').val($.trim(list));
                             $('input[id=pnic]').val($.trim(newic));
-                            
-                            
 
-                            console.log(ddMMyyyy);
                             $body.removeClass("loading");
                             $('.nav-tabs a[href="#tab_default_2"]').tab('show');
                         }
@@ -140,7 +132,7 @@ function Main(array_data) {
                 //if true go to PMI page
                 if (result === true) {
                     //$body.addClass("loading");
-                    
+
                     $.ajax({
                         async: true,
                         type: "POST",
@@ -151,13 +143,11 @@ function Main(array_data) {
                             x = idInput;
                             getBday(x);
                             getDateNow();
-          
+
                             //registration
                             $('input[id=pmino]').val($.trim(list));
                             $('input[id=pnic]').val($.trim(idInput));
-                            
-                            
-     
+
                             console.log(ddMMyyyy);
                             $body.removeClass("loading");
                             $('.nav-tabs a[href="#tab_default_2"]').tab('show');
@@ -168,46 +158,43 @@ function Main(array_data) {
         });
     } else {
         getDateNow();
-        var     pmino = array_data[0],
-                pminotemp = array_data[1],
-                pname = array_data[2],
-                ptitle = array_data[3],
-                pnic = array_data[4],
-                poic = array_data[5],
-                pid = array_data[6],
-                pino = array_data[7],
-                pelicat = array_data[8],
-                pelity = array_data[9],
-                pbday = array_data[10],
-                psex = array_data[11],
-                pmarital = array_data[12],
-                prace = array_data[13],
-                pnational = array_data[14],
-                preligional = array_data[15],
-                pbloodty = array_data[16],
-                prhesus = array_data[17],
-                pallergy = array_data[18],
-                pchronic = array_data[19],
-                porgandonor = array_data[20],
-                phomeadd = array_data[21],
-                phomedistrict = array_data[22],
-                phometowncd = array_data[23],
-                ppostcode = array_data[24],
-                pstate = array_data[25],
-                pcountry = array_data[26],
-                phomephone = array_data[27],
-                ppostaladd = array_data[28],
-                ppostaldistrict = array_data[29],
-                ppostaltown = array_data[30],
-                ppostalpostcode = array_data[31],
-                ppostalstate = array_data[32],
-                ppostalcountry = array_data[33],
-                pmobilephone = array_data[34],
-                pemail = array_data[35];
-        var splitBday = String(pbday).split("/");
-        var daysplitted = splitBday[0];
-        var monthsplitted = splitBday[1];
-        var yearsplitted = splitBday[2];
+        var pnic = array_data[0],
+                poic = array_data[1],
+                pid = array_data[2],
+                pino = array_data[3],
+                pcase = array_data[4],
+                hfc = array_data[5],
+                pmino = array_data[6],
+                epidate = array_data[7],
+                dis = array_data[8],
+                subdis = array_data[9],
+                wcode = array_data[10],
+                wid = array_data[11],
+                bedid = array_data[12],
+                payer = array_data[13],
+                pat = array_data[14],
+                visit = array_data[15],
+                emg = array_data[16],
+                elity = array_data[17],
+                elicat = array_data[18],
+                refhfc = array_data[19],
+                refdis = array_data[20],
+                refno = array_data[21],
+                order = array_data[22],
+                admreason = array_data[23],
+                admdes = array_data[24],
+                guard = array_data[25],
+                groupguard = array_data[26],
+                gl = array_data[27],
+                status = array_data[28],
+                createdby = array_data[29],
+                createddate = array_data[30],
+                deposit = array_data[31],
+                docty = array_data[32],
+                docno = array_data[33],
+                pname = array_data[34];
+
+
         var idtype;
         //console.log(splitBday);
         //console.log(daysplitted);
@@ -220,17 +207,32 @@ function Main(array_data) {
         }
 
         //var newbday = yearsplitted + "-" + monthsplitted + "-" + daysplitted;
-        var newbday = daysplitted + "-" + monthsplitted + "-" + yearsplitted;
+        //var newbday = daysplitted + "-" + monthsplitted + "-" + yearsplitted;
 
         //console.log(newbday);
 
         $('input[id=pmino]').val($.trim(pmino));
+        $('input[id=pmino]').prop('readonly', true);
         $('input[id=pname]').val($.trim(pname));
         $('input[id=pnic]').val($.trim(pnic));
+        $('#pnic').prop('readonly', true);
         $('input[id=poic]').val($.trim(poic));
         $('input[id=pid]').val($.trim(idtype));
-        $('input[id=pidno]').val($.trim(pino));
-        
+        $('input[id=pino]').val($.trim(pino));
+
+
+        $('#WardClass').val($.trim(wcode));
+        $('#Bed').val($.trim(bedid));
+        $('#AdmissionDate').val($.trim(createddate));
+        $('#WardName').val($.trim(wid));
+        $('#Rate').val($.trim(deposit));
+ 
+
+
+
+
+
+
 
 
         $('#radios-1').prop('checked', true);
@@ -239,9 +241,9 @@ function Main(array_data) {
         $('#visTy').val('001');
         $('#EmTy').val('-');
         $('#EliCat').val('003');
-        if ($('input[id=pid]').val() === "004") {
+        if ($('input[id=pit]').val() === "004") {
             $('#EliTy').val('003');
-        } else if ($('input[id=pid]').val() === "005") {
+        } else if ($('input[id=pit]').val() === "005") {
             $('#EliTy').val('005');
         }
 

@@ -17,7 +17,7 @@ function Main(array_data) {
                 }
             },
             callback: function (result) {
-                
+
                 //if true go to PMI page
                 if (result === true) {
                     //$body.addClass("loading");
@@ -34,11 +34,11 @@ function Main(array_data) {
                             getBday(x);
                             getDateNow();
 
-                           
+
                             //registration
                             $('input[id=pmino]').val($.trim(list));
                             $('input[id=pnic]').val($.trim(idInput));
-                            
+
 
                             $body.removeClass("loading");
                             $('.nav-tabs a[href="#tab_default_2"]').tab('show');
@@ -77,8 +77,8 @@ function Main(array_data) {
             callback: function (result) {
                 //if true go to PMI page
                 if (result === true) {
-                    
-                    
+
+
 //                    if (persontype === "1") {
 //                        $("#PMIidty").val($.trim("004"));
 //                        $('input[id=pit]').val("Matric No.");
@@ -105,12 +105,12 @@ function Main(array_data) {
                             x = newic;
                             getBday(x);
                             getDateNow();
-                         
+
                             //registration
                             $('input[id=pmino]').val($.trim(list));
                             $('input[id=pnic]').val($.trim(newic));
-                            
-                            
+
+
 
                             console.log(ddMMyyyy);
                             $body.removeClass("loading");
@@ -140,7 +140,7 @@ function Main(array_data) {
                 //if true go to PMI page
                 if (result === true) {
                     //$body.addClass("loading");
-                    
+
                     $.ajax({
                         async: true,
                         type: "POST",
@@ -151,13 +151,13 @@ function Main(array_data) {
                             x = idInput;
                             getBday(x);
                             getDateNow();
-          
+
                             //registration
                             $('input[id=pmino]').val($.trim(list));
                             $('input[id=pnic]').val($.trim(idInput));
-                            
-                            
-     
+
+
+
                             console.log(ddMMyyyy);
                             $body.removeClass("loading");
                             $('.nav-tabs a[href="#tab_default_2"]').tab('show');
@@ -169,45 +169,13 @@ function Main(array_data) {
     } else {
         getDateNow();
         var pmino = array_data[0],
-                pminotemp = array_data[1],
                 pname = array_data[2],
-                ptitle = array_data[3],
                 pnic = array_data[4],
                 poic = array_data[5],
                 pid = array_data[6],
-                pino = array_data[7],
-                pelicat = array_data[8],
-                pelity = array_data[9],
-                pbday = array_data[10],
-                psex = array_data[11],
-                pmarital = array_data[12],
-                prace = array_data[13],
-                pnational = array_data[14],
-                preligional = array_data[15],
-                pbloodty = array_data[16],
-                prhesus = array_data[17],
-                pallergy = array_data[18],
-                pchronic = array_data[19],
-                porgandonor = array_data[20],
-                phomeadd = array_data[21],
-                phomedistrict = array_data[22],
-                phometowncd = array_data[23],
-                ppostcode = array_data[24],
-                pstate = array_data[25],
-                pcountry = array_data[26],
-                phomephone = array_data[27],
-                ppostaladd = array_data[28],
-                ppostaldistrict = array_data[29],
-                ppostaltown = array_data[30],
-                ppostalpostcode = array_data[31],
-                ppostalstate = array_data[32],
-                ppostalcountry = array_data[33],
-                pmobilephone = array_data[34],
-                pemail = array_data[35];
-        var splitBday = String(pbday).split("/");
-        var daysplitted = splitBday[0];
-        var monthsplitted = splitBday[1];
-        var yearsplitted = splitBday[2];
+                pino = array_data[7]
+
+   
         var idtype;
         //console.log(splitBday);
         //console.log(daysplitted);
@@ -220,7 +188,6 @@ function Main(array_data) {
         }
 
         //var newbday = yearsplitted + "-" + monthsplitted + "-" + daysplitted;
-        var newbday = daysplitted + "-" + monthsplitted + "-" + yearsplitted;
 
         //console.log(newbday);
 
@@ -230,7 +197,7 @@ function Main(array_data) {
         $('input[id=poic]').val($.trim(poic));
         $('input[id=pid]').val($.trim(idtype));
         $('input[id=pidno]').val($.trim(pino));
-        
+
 
 
         $('#radios-1').prop('checked', true);

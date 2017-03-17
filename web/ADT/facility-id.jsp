@@ -8,18 +8,46 @@
 <%@page import="Config.connect"%>
 <%@page import="dBConn.Conn"%>
 <%@page import="java.sql.*"%>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link rel="stylesheet" href="old/assets/datepicker/jquery-ui.css">
+    <script src="old/assets/js/jquery.min.js"></script>
+    <!-- Custom styles for this template -->
+
+    <link rel="stylesheet" href="old/assets/css/loading.css">
+    <link href="old/assets/datepicker/jquery-ui.css" rel="stylesheet">    
+    <script src="old/assets/datepicker/jquery-ui.js"></script>
+    <script src="old/assets/js/form-validator.min.js"></script>
+    <script src="old/assets/js/bootstrap.min.js"></script> 
+
+    <script src="old/assets/js/w3data.js"></script>
+    <script src="old/assets/js/bootbox.min.js"></script>   
+
+    <!-- header -->
+    <%@include file = "../assets/header.html" %>
+
+    <!-- header -->
+</head>
+
+<%
+    String hfc = session.getAttribute("HEALTH_FACILITY_CODE").toString();
+    String id = session.getAttribute("USER_ID").toString();
+    String dis = session.getAttribute("DISCIPLINE_CODE").toString();
+    String sub = session.getAttribute("SUB_DISCIPLINE_CODE").toString();
+    
+            Conn conn = new Conn();
+
+  %>
+<input type="hidden" value="<%=hfc%>" id="Rhfc">
+<input type="hidden" value="<%=id%>" id="Rid">
+<input type="hidden" value="<%=dis%>" id="Rdis">
+<input type="hidden" value="<%=sub%>" id="Rsub">
 
 
-
-<%    session.getAttribute("hfc");
-    session.getAttribute("discipline");
-    session.getAttribute("subDicipline");
-%>
-
-<h4 style="padding: 30px 0;">
+<h4 style="padding-top: 30px;padding-bottom: 35px; font-weight: bold">
     MAINTAIN WARD/ FACILITY ID
     <span class="pull-right">
-        <button class="btn btn-success" data-status="pagado" data-toggle="modal" data-id="1" data-target="#detailID" ><a data-toggle="tooltip" data-placement="top" title="Add Items" id="test"></a><i class=" fa fa-plus"></i>&nbsp;ADD FACILITY ID</button>
+        <button class="btn btn-success" data-status="pagado" data-toggle="modal" data-id="1" data-target="#detailID" style=" padding-right: 10px;padding-left: 10px;color: white;"><a data-toggle="tooltip" data-placement="top" title="Add Items" id="test"><i class=" fa fa-plus" style=" padding-right: 10px;padding-left: 10px;color: white;"></i></a>ADD FACILITY ID</button>
     </span>
 </h4>
 <!-- Add Button End -->
@@ -38,11 +66,7 @@
                 <!-- content goes here -->
                 <form class="form-horizontal" id="addIDForm">
 
-                    <!-- session -->
-                    <input id="hfc" type="hidden" value="<%= session.getAttribute("hfc")%>">
-                    <input id="discipline" type="hidden" value="<%= session.getAttribute("discipline")%>">
-                    <input id="sub" type="hidden" value="<%= session.getAttribute("subDicipline")%>">
-
+            
 
                     <div class="col-md-12" style="width: 100%">
 
@@ -92,28 +116,12 @@
 
                             <!-- Select Basic -->
                             <div class="form-group">
-                                <label class="col-md-4 control-label" for="selectbasic">Discipline</label>
-                                <div class="col-md-4">
-                                    <select id="Discipline" name="selectbasic" class="form-control">
-                                        <option value="null" selected="" disabled="">Select Discipline</option>
-
-
-
-                                        <%
-                                            String sql2 = "SELECT  discipline_cd FROM adm_hfc_discipline";
-                                            ArrayList<ArrayList<String>> dataDiscipline = conn.getData(sql2);
-
-                                            int size2 = dataDiscipline.size();
-
-                                            for (int i = 0; i < size2; i++) {
-                                        %>
-                                        <option value="<%= dataDiscipline.get(i).get(0)%>"><%= dataDiscipline.get(i).get(0)%> </option>
-                                        <%
-                                            }
-                                        %>
-
-                                    </select>
+                                <label class="col-md-4 control-label" for="selectbasic">Discipline *</label>
+                                <div class="col-md-6">
+                                    <input id="Dis" name="Dis" type="text"  class="form-control input-md">
+                                    <div id="disList"></div>
                                 </div>
+
                             </div>
                             <div class="form-group">
                                 <label class="col-md-4 control-label" for="textinput">No of bed</label>
@@ -300,6 +308,10 @@
 <script src="bootstrap-3.3.6-dist/js/bootstrap.min.js" type="text/javascript"></script>
 
 <script src="http://www.w3schools.com/lib/w3data.js"></script>-->
+<script src="bootstrap-3.3.6-dist/js/jquery.dataTables.min.js"></script>
+<script src="searchDiscipline.jsp"></script>
+<script src="old/assets/js/searchDisipline.js" type="text/javascript"></script>
+
 
 <script>
     w3IncludeHTML();
@@ -310,7 +322,9 @@
 
             var WardClass = $('#WardClass').val();
             var WardID = $('#WardID').val();
-            var Discipline = $('#Discipline').val();
+            var Dis = $('#Dis').val();
+            var array_dis = Dis.split("|");
+            var Dis = array_dis[0];
             var WardName = $('#WardName').val();
             var CitizenRates = $('#CitizenRates').val();
             var CitizenDeposit = $('#CitizenDeposit').val();
@@ -327,65 +341,69 @@
             var television = $('#television').val();
             var telephone = $('#telephone').val();
             var status = $('input[name="status"]:checked').val();
+            var hfc = $("#Rhfc").val();
+            var createdBy = $("#Rid").val();
+            var dis = $("#Rdis").val();
+            var sub = $("#Rsub").val();
 
             if (WardClass === "") {
-                alert("Complete The Fields");
+                bootbox.alert("Complete The Fields of Ward Class");
                 return false;
             }
             if (WardID === "") {
-                alert("Complete The Fields");
+                bootbox.alert("Complete The Fields of Ward ID");
                 return false;
             }
-            if (Discipline === "") {
-                alert("Complete The Fields");
+            if (Dis === "") {
+                bootbox.alert("Complete The Fields of Discipline");
                 return false;
             }
             if (WardName === "") {
-                alert("Complete The Fields");
+                bootbox.alert("Complete The Fields of Ward Name");
                 return false;
             }
             if (CitizenRates === "") {
-                alert("Complete The Fields");
+                bootbox.alert("Complete The Fields of Citizen Rates");
                 return false;
             }
             if (CitizenDeposit === "") {
-                alert("Complete The Fields");
+                bootbox.alert("Complete The Fields of Citizen Deposit");
                 return false;
             }
             if (CitizenDiscount === "") {
-                alert("Complete The Fields");
+                bootbox.alert("Complete The Fields of Citizen Discount");
                 return false;
             }
             if (NonCitizenRates === "") {
-                alert("Complete The Fields");
+                bootbox.alert("Complete The Fields of Non Citizen Rates");
                 return false;
             }
             if (NonCitizenDeposit === "") {
-                alert("Complete The Fields");
+                bootbox.alert("Complete The Fields of Non Citizen Deposit");
                 return false;
             }
             if (NonCitizenDiscount === "") {
-                alert("Complete The Fields");
+                bootbox.alert("Complete The Fields of Non Citizen Discount");
                 return false;
             }
             if (PensionerDeposit === "") {
-                alert("Complete The Fields");
+                bootbox.alert("Complete The Fields of Pensioner Deposit");
                 return false;
             }
             if (PensionerRates === "") {
-                alert("Complete The Fields");
+                bootbox.alert("Complete The Fields of Pensioner Rates");
                 return false;
             }
             if (PensionerDiscount === "") {
-                alert("Complete The Fields");
+                bootbox.alert("Complete The Fields of Pensioner Discount");
                 return false;
             }
             if (NoOfBed === "") {
-                alert("Complete The Fields");
+                bootbox.alert("Complete The Fields of No Of Bed");
                 return false;
             }
             if (status !== "1" && status !== "0") {
-                alert("Select any status");
+                bootbox.alert("Select any status");
             } else {
 
             }
@@ -417,7 +435,7 @@
             var data = {
                 WardClass: WardClass,
                 WardID: WardID,
-                Discipline: Discipline,
+                Dis: Dis,
                 WardName: WardName,
                 CitizenRates: CitizenRates,
                 CitizenDeposit: CitizenDeposit,
@@ -433,7 +451,11 @@
                 toilet: toilet,
                 television: television,
                 telephone: telephone,
-                status: status
+                status: status,
+                hfc: hfc,
+                createdBy: createdBy,
+                dis: dis,
+                sub: sub
             };
 
             console.log(data);
@@ -447,6 +469,8 @@
                     if (data.trim() === 'Success') {
                         $("#FacilityIDTable").load("facilityID-Table.jsp");
                         $('#detailID').modal('hide');
+                        $(".modal-backdrop").hide();
+
                         bootbox.alert({
                             message: "Successfully added",
                             title: "Process Result",
@@ -475,7 +499,7 @@
         function reset() {
             document.getElementById("WardClass").value = "";
             document.getElementById("WardID").value = "";
-            document.getElementById("Discipline").value = "";
+            document.getElementById("Dis").value = "";
             document.getElementById("WardName").value = "";
             document.getElementById("CitizenRates").value = "";
             document.getElementById("CitizenDeposit").value = "";
@@ -509,3 +533,8 @@
 
 
 </script> 
+<br>
+
+
+</body>
+</html>

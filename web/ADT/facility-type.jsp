@@ -10,18 +10,28 @@
 <%@page import="dBConn.Conn"%>
 <%@page import="java.sql.*"%>
 <%@page import="org.apache.commons.lang3.StringUtils"%>
-<%
-    session.getAttribute("hfc");
-    session.getAttribute("discipline");
-    session.getAttribute("subDicipline");
-    //session.setAttribute("hfc", "hfc_test");
-%>
 
-<h4 style="padding: 30px 0;">
+
+<%
+    String hfc = session.getAttribute("HEALTH_FACILITY_CODE").toString();
+    String id = session.getAttribute("USER_ID").toString();
+    String dis = session.getAttribute("DISCIPLINE_CODE").toString();
+    String sub = session.getAttribute("SUB_DISCIPLINE_CODE").toString();
+    
+  %>
+<input type="hidden" value="<%=hfc%>" id="Rhfc">
+<input type="hidden" value="<%=id%>" id="Rid">
+<input type="hidden" value="<%=dis%>" id="Rdis">
+<input type="hidden" value="<%=sub%>" id="Rsub">
+
+<h4 style="padding-top: 30px;padding-bottom: 35px; font-weight: bold">
     MAINTAIN WARD/ FACILITY TYPE
     <span class="pull-right">
-        <button class="btn btn-success" data-status="pagado" data-toggle="modal" data-id="1" data-target="#detailType">
-            <a data-toggle="tooltip" data-placement="top" title="Add Items" id="test"></a><i class=" fa fa-plus" ></i>&nbsp;ADD FACILITY TYPE</button>
+        <button class="btn btn-success" data-status="pagado" data-toggle="modal" data-id="1" data-target="#detailType" 
+                style=" padding-right: 10px;padding-left: 10px;color: white;">
+            <a data-toggle="tooltip" data-placement="top" title="Add Items" id="test">
+                <i class=" fa fa-plus" style=" padding-right: 10px;padding-left: 10px;color: white;"></i>
+            </a>ADD FACILITY TYPE</button>
     </span>
 </h4>
 <!-- Add Button End -->
@@ -40,15 +50,11 @@
                 <!-- content goes here -->
                 <form class="form-horizontal" id="addTypeForm">
 
-                    <!-- session -->
-                    <input id="hfc" type="hidden" value="<%= session.getAttribute("hfc")%>">
-                    <input id="discipline" type="hidden" value="<%= session.getAttribute("discipline")%>">
-                    <input id="sub" type="hidden" value="<%= session.getAttribute("subDicipline")%>">
-
+                  
                     <!-- Text input-->
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="textinput">Ward Class.</label>
-                        <div class="col-md-6">
+                        <div class="col-md-4">
                             <input id="MWClass" name="MWClass" type="text" placeholder="Ward Class" maxlength="100" class="form-control input-md">
                         </div>
                     </div>
@@ -56,7 +62,7 @@
                     <!-- Text input-->
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="textinput">Ward Class ID.</label>
-                        <div class="col-md-6">
+                        <div class="col-md-4">
                             <input id="MWID" name="MWID" type="text" placeholder="Ward Class ID" maxlength="30" class="form-control input-md">
                         </div>
                     </div>
@@ -66,7 +72,7 @@
                     <!-- Select Basic -->
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="textinput">Ward Status</label>
-                        <div class="col-md-6">
+                        <div class="col-md-8">
                             <label class="radio-inline">
                                 <input type="radio" name="status" id="status1" value="1">
                                 Active 
@@ -99,9 +105,10 @@
 <!--        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>-->
 <!--        <script src="bootstrap-3.3.6-dist/js/bootstrap.js" type="text/javascript"></script>-->
+<script src="bootstrap-3.3.6-dist/js/jquery.dataTables.min.js"></script>
 
-<script>
-    w3IncludeHTML();
+<script type="text/javascript" charset="utf-8">
+
     $(document).ready(function () {
 
 
@@ -110,22 +117,31 @@
             var MWClass = $('#MWClass').val();
             var MWID = $('#MWID').val();
             var status = $('input[name="status"]:checked').val();
+            var  hfc = $("#Rhfc").val();
+            var id = $("#Rid").val();
+             var  dis = $("#Rdis").val();
+            var sub = $("#Rsub").val();
             //var hfc = $('#hfc').val();
             // var discipline = $('#discipline').val();
             //var subDicipline = $('#subDicipline').val();
 
             if (MWClass === "") {
-                alert("Complete The Fields");
+                bootbox.alert("Complete The Fields of Ward Class");
             } else if (MWID === "") {
-                alert("Complete The Fields");
+                bootbox.alert("Complete The Fields of Ward ID");
             } else if (status !== "1" && status !== "0") {
-                alert("Select Any Status");
+                bootbox.alert("Select Any Status");
             } else {
 
                 var data = {
                     MWClass: MWClass,
                     MWID: MWID,
-                    status: status
+                    status: status,
+                    hfc: hfc,
+                    id :id,
+                    dis :dis,
+                    sub : sub
+                    
                 };
 
                 $.ajax({
@@ -141,6 +157,8 @@
 
                             $("#FacilityTypeTable").load("facilityType-Table.jsp");
                             $('#detailType').modal('hide');
+                            $(".modal-backdrop").hide();
+
                             bootbox.alert({
                                 message: "Successfully added",
                                 title: "Process Result",
@@ -194,3 +212,9 @@
 
 
 </script> 
+<br>
+
+
+
+</body>
+</html>

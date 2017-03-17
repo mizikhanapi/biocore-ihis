@@ -17,18 +17,20 @@
 
     wclass = request.getParameter("Ward_Class");
     wclassid = request.getParameter("Ward_ID");
-    dis = request.getParameter("Discipline");
+    dis = request.getParameter("Dis");
     wbedid = request.getParameter("BedID");
     wstatus = request.getParameter("status");
 
     String bedName = "bed name";
-    String hfc_cd = "25";
-    String subdispline_cd = "1";
 
     DateFormat df = new SimpleDateFormat("dd/MM/yy HH:mm:ss");
     Date dateobj = new Date();
     df.format(dateobj);
-    String createdby = "Izzlyn Izzaty";
+
+    String hfc = request.getParameter("hfc");
+    String sub = request.getParameter("sub");
+
+    String createdBy = request.getParameter("createdBy");
 
     String sqlCheck = "Select * From wis_bed_id WHERE bed_id = '" + wbedid + "' ";
     ArrayList<ArrayList<String>> dataCheck = conn.getData(sqlCheck);
@@ -38,7 +40,7 @@
     } else {
 
         String sqlInsert = "INSERT INTO wis_bed_id(ward_id,ward_class_code,bed_id, bed_status,bed_name,hfc_cd,discipline_cd,subdiscipline_cd,created_by,created_date) "
-                + "VALUES ('" + wclassid + "','" + wclass + "','" + wbedid + "','" + wstatus + "','" + bedName + "','" + hfc_cd + "','" + dis + "','" + subdispline_cd + "','" + createdby + "','0000-00-00')";
+                + "VALUES ('" + wclassid + "','" + wclass + "','" + wbedid + "','" + wstatus + "','" + bedName + "','" + hfc + "','" + dis + "','" + sub + "','" + createdBy + "',now())";
         //  + "VALUES ('"+ccode+"','"+cname+"','"+cstatus+"','25','52','1','33','"+createdby+"','-')";
 
         boolean isInsert = rmic.setQuerySQL(conn.HOST, conn.PORT, sqlInsert);

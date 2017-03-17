@@ -5,55 +5,69 @@
 <%@page session="true" %>
 
 
-
-
-
-
-<table id="facilityTypeTable"  class="table table-striped table-bordered" cellspacing="0" width="100%">
-
-
-    <thead>
-
-
-    <th>Ward Class</th>
-    <th>Ward Class ID</th>
-    <th>Status</th>
-    <th style="width: 5%; text-align: center;">Update</th>
-    <th style="width: 5%; text-align: center;">Delete</th>
-</thead>
-<tbody>
-
-    <%        String sqlFacilityType = "SELECT ward_class_name,ward_class_code,ward_class_status FROM wis_ward_class";
-        ArrayList<ArrayList<String>> dataFacilityType = conn.getData(sqlFacilityType);
-
-        int size = dataFacilityType.size();
-        for (int i = 0; i < size; i++) {
-    %>
-
-
-    <tr>
-
-<input id="dataFacilityTypehidden" type="hidden" value="<%=String.join("|", dataFacilityType.get(i))%>">
-<td><%= dataFacilityType.get(i).get(0)%></td>
-<td><%= dataFacilityType.get(i).get(1)%></td>
-<td><%= dataFacilityType.get(i).get(2)%></td>
-<td style="text-align: center;">
-    <!-- Update Part Start -->
-    <a id="MW_edit" data-toggle="modal" data-target="#FacilityTypeUpdateModal"><i class="fa fa-pencil-square-o fa-lg" aria-hidden="true" style="display: inline-block;color: #337ab7; cursor: pointer;"></i></a>
-    <!-- Update Part End -->
-</td>
-<td style="text-align: center;">
-    <!-- Delete Button Start -->
-    <a id="MW_delete" class="testing"><i class="fa fa-times fa-lg" aria-hidden="true" style="display: inline-block;color: #d9534f; cursor: pointer;" ></i></a>
-    <!-- Delete Button End -->
-</td>
-</tr>
+  
 <%
-    }
+    String hfc = session.getAttribute("HEALTH_FACILITY_CODE").toString();
+    String id = session.getAttribute("USER_ID").toString();
+    String dis = session.getAttribute("DISCIPLINE_CODE").toString();
+    String sub = session.getAttribute("SUB_DISCIPLINE_CODE").toString();
+    
+  %>
+<input type="hidden" value="<%=hfc%>" id="Rhfc">
+<input type="hidden" value="<%=id%>" id="Rid">
+<input type="hidden" value="<%=dis%>" id="Rdis">
+<input type="hidden" value="<%=sub%>" id="Rsub">  
+    
+<div id="tablefacilityTypeTable" class="form-group">
 
-%>
-</tbody>
-</table>
+    <table id="facilityTypeTable"  class="table table-striped table-bordered" cellspacing="0" width="100%">
+
+
+        <thead>
+
+
+        <th>Ward Class</th>
+        <th>Ward Class ID</th>
+        <th>Status</th>
+        <th>Update</th>
+        <th>Delete</th>
+        </thead>
+        <tbody>
+
+            <%
+                Conn conn = new Conn();
+                String sqlFacilityType = "SELECT ward_class_name,ward_class_code,ward_class_status, hfc_cd  FROM wis_ward_class";
+                ArrayList<ArrayList<String>> dataFacilityType = conn.getData(sqlFacilityType);
+
+                int size = dataFacilityType.size();
+                for (int i = 0; i < size; i++) {
+            %>
+
+
+            <tr>
+
+        <input id="dataFacilityTypehidden" type="hidden" value="<%=String.join("|", dataFacilityType.get(i))%>">
+        <td><%= dataFacilityType.get(i).get(0)%></td>
+        <td><%= dataFacilityType.get(i).get(1)%></td>
+        <td><%= dataFacilityType.get(i).get(2)%></td>
+        <td>
+            <!-- Update Part Start -->
+            <a id="MW_edit" data-toggle="modal" data-target="#FacilityTypeUpdateModal"><i class="fa fa-pencil-square-o" aria-hidden="true" style="display: inline-block;color: #337ab7;"></i></a>
+            <!-- Update Part End -->
+        </td>
+        <td>
+            <!-- Delete Button Start -->
+            <a id="MW_delete" class="testing"><i class="fa fa-times" aria-hidden="true" style="display: inline-block;color: #d9534f;" ></i></a>
+            <!-- Delete Button End -->
+        </td>
+        </tr>
+        <%
+            }
+
+        %>
+        </tbody>
+    </table>
+</div>
 <!-- Modal Update -->
 <div class="modal fade" id="FacilityTypeUpdateModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -112,9 +126,9 @@
 </div>
 
 
+<script src="bootstrap-3.3.6-dist/js/jquery.dataTables.min.js"></script>
 
-
-<script type="text/javascript">
+<script type="text/javascript" charset="utf-8">
 
     $(document).ready(function () {
         //function to edit facility type from table
@@ -128,7 +142,10 @@
             var arrayData = rowData.split("|");
             console.log(arrayData);
             //assign into seprated val
-
+            var hfc = $("#Rhfc").val();
+            var createdBy = $("#Rid").val();
+            var dis = $("#Rdis").val();
+            var sub = $("#Rsub").val();
             var MWClass = arrayData[0];
             var MWID = arrayData[1];
             var status = arrayData[2];
@@ -143,6 +160,10 @@
         $("#updateModalButton").off('click').on('click', function (e) {
 
             e.preventDefault();
+            var  hfc = $("#Rhfc").val();
+            var id = $("#Rid").val();
+             var  dis = $("#Rdis").val();
+            var sub = $("#Rsub").val();
             var MWClass = $("#updateWardClass").val();
             var MWID = $("#updateWardClassID").val();
             var status = $("#updatestatustype").val();
@@ -151,7 +172,7 @@
             //var subDicipline = $('#subDicipline').val();
 
             if (MWClass === "" || MWClass === null) {
-                alert("Complete The Fields");
+                bootbox.alert("Complete The Ward Class Fields");
 //            } else if (MWID === "" || MWID === null) {
 //                alert("Complete The Fields");
 //            } else if (status !== "1" && status !== "0") {
@@ -161,7 +182,11 @@
                 var data = {
                     MWClass: MWClass,
                     MWID: MWID,
-                    status: status
+                    status: status,
+                     hfc: hfc,
+                    id :id,
+                    dis :dis,
+                    sub : sub
                 };
                 $.ajax({
                     url: "facilityTypeUpdate.jsp",
@@ -196,7 +221,7 @@
         });
     });
 //delete function when click delete on next of kin
-    $('#FacilityTypeTable').off('click', '#facilityTypeTable #MW_delete').on('click', '#facilityTypeTable #MW_delete', function (e) {
+    $('#tablefacilityTypeTable').on('click', '#facilityTypeTable #MW_delete', function (e) {
 
         e.preventDefault();
         var row = $(this).closest("tr");
@@ -204,7 +229,7 @@
         var arrayData = rowData.split("|");
         console.log(arrayData);
         //assign into seprated val
-        var idtype = arrayData[1];
+        var idtype = arrayData[1], hfc = arrayData[3];
         bootbox.confirm({
             message: "Are you sure want to delete facility type information?",
             title: "Delete Item?",
@@ -223,7 +248,8 @@
                 if (result === true) {
 
                     var data = {
-                        idtype: idtype
+                        idtype: idtype,
+                        hfc:hfc
 
                     };
                     $.ajax({
@@ -234,6 +260,7 @@
                         success: function (datas) {
 
                             if (datas.trim() === 'Success') {
+                                row.remove();
 
                                 $('#FacilityTypeTable').load('facilityType-Table.jsp');
                                 bootbox.alert({

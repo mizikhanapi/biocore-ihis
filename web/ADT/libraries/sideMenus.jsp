@@ -1,17 +1,4 @@
 <%@page import="Config.Config"%>
-<%
-    String gamba = "";
-    String nama = "";
-    String role = "";
-
-    if (session.getAttribute("USER_NAME") != null) {
-
-        gamba = session.getAttribute("PICTURE").toString();
-        nama = session.getAttribute("USER_NAME").toString();
-        role = session.getAttribute("ROLE_NAME").toString();
-    }
-
-%>
 
 <div class="col-sm-3 col-md-2 sidebar" id="style-3">
 
@@ -25,44 +12,51 @@
     <!-- profile Sidebar -->
     <div class="profile">
         <div class="profile-userpic">
-
-            <img src="<%= gamba%>" class="img-responsive" alt="">
+            
+            <img src="../assets/profile.jpg" class="img-responsive" alt="">
         </div>
         <!-- SIDEBAR USER TITLE -->
         <div class="profile-usertitle">
             <div class="profile-usertitle-name">
-                <%= nama%>
+                Marcus Doe
             </div>
             <div class="profile-usertitle-job">
-                <%= role%>
+                Developer
             </div>
         </div>
         <!-- SIDEBAR BUTTONS -->
         <div class="profile-userbuttons">
-            <button type="button" class="btn btn-success btn-sm" onclick="window.location.href = '../Entrance/profile.jsp'">Manage Account</button>
+            <button type="button" class="btn btn-success btn-sm">Manage Account</button>
         </div>
     </div>
     <hr/>
     <!-- profile Sidebar -->
 
 
-
+   
     <ul id="menu-content" class="nav nav-sidebar">
         <!-- // menu tanpa dropdown -->
-        <li><a  href="MaintainWard.jsp" ><i class="fa fa-code fa-lg"></i> Maintain Ward Code </a> </li>
-
-
+        
         <li>
-            <a  href="InpatientRegistrationMain.jsp" >
+            <a  href="index.jsp" >
                 <i class="fa fa-bed fa-lg"></i> Manage In-Patient
             </a>
         </li>
         <li>
             <a  href="WardOccupancyMain.jsp" >
-                <i class="fa fa-hospital-o fa-lg"></i> Ward Occupancy
+                <i class="fa fa-briefcase fa-lg"></i> Ward Occupancy
             </a>
         </li>
-
+        <li><a  href="MaintainWard.jsp" ><i class="fa fa-briefcase fa-lg"></i> Maintain Ward Code </a> </li>
+        
+        
+        <li>
+            <a  href="#" >
+                <i class="fa fa-bed fa-lg"></i> Bed Booking Master Summary
+            </a>
+        </li>
+        
+             
         <!-- // menu tanpa dropdown -->
 
         <!-- Menu with dropdown -->

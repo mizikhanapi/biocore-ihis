@@ -15,10 +15,15 @@
 
     String wclass, wid, wdiscipline, wwardname, wcitizenrates, wcitizendeposit, wcitizendiscount, wnoncitizenrates, wnoncitizendeposit,
             wnoncitizendiscount, wpensionerdeposit,wpensionerdiscount, wpensionerrates,wnobed, wbathroom, wtoilet, wtelevision, wtelephone, wstatus;
+    String hfc = request.getParameter("hfc");
+     String dis = request.getParameter("dis");
+      String sub = request.getParameter("sub");
+
+    String createdBy = request.getParameter("createdBy");
     
     wclass = request.getParameter("WardClass");
     wid = request.getParameter("WardID");
-    wdiscipline = request.getParameter("Discipline");
+    wdiscipline = request.getParameter("Dis");
     wwardname = request.getParameter("WardName");
     wcitizenrates = request.getParameter("CitizenRates");
     wcitizendeposit = request.getParameter("CitizenDeposit");
@@ -38,14 +43,13 @@
     DateFormat df = new SimpleDateFormat("dd/MM/yy HH:mm:ss");
     Date dateobj = new Date();
     df.format(dateobj);
-    String createdby = "Izzlyn Izzaty";
 
     String sqlInsert = "INSERT INTO wis_ward_name (ward_class_code, hfc_cd, ward_id, discipline_cd, ward_name, subdiscipline_cd,"
             + "citizen_room_cost, citizen_deposit, citizen_discount,non_citizen_room_cost,non_citizen_deposit, non_citizen_discount, pensioner_deposit, pensioner_room_cost, pensioner_discount, "
             + "no_of_bed, attach_bathroom_tiolet,attach_toilet, include_television, include_telephone, ward_status, created_by, created_date) "
-            + "VALUES ('" + wclass + "','1','" + wid + "','" + wdiscipline + "','" + wwardname + "','a',"
+            + "VALUES ('" + wclass + "','" + hfc + "','" + wid + "','" + wdiscipline + "','" + wwardname + "','" + sub + "',"
             + "'" + wcitizenrates + "','" + wcitizendeposit + "','" + wcitizendiscount + "','" + wnoncitizenrates + "','" + wnoncitizendeposit + "','" + wnoncitizendiscount + "','" + wpensionerdeposit + "','" + wpensionerrates + "','" + wpensionerdiscount + "',"
-            + "'" + wnobed + "','" + wbathroom + "','" + wtoilet + "','" + wtelevision + "','" + wtelephone + "','" + wstatus + "','" + createdby + "', now())";
+            + "'" + wnobed + "','" + wbathroom + "','" + wtoilet + "','" + wtelevision + "','" + wtelephone + "','" + wstatus + "','" + createdBy + "', now())";
     //  + "VALUES ('"+ccode+"','"+cname+"','"+cstatus+"','25','52','1','33','"+createdby+"','-')";
     boolean isInsert = rmic.setQuerySQL(conn.HOST, conn.PORT, sqlInsert);
 

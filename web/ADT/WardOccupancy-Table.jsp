@@ -16,40 +16,66 @@
 
 %>
 
-<table id="OccuTable"  class="table table-striped table-bordered" cellspacing="0" width="100%">
-    <thead>
+<div id="tableOccuTable" class="form-group">
 
 
-    <th>Ward </th>
-    <th>Bed</th>
-    <th>Patient Name</th>
-    <th>Patient ID</th>
-    <th>Sponsor</th>
-    <th>Transfer</th>
-    <th>Discharge</th>
-
-</thead>
-
-<tbody>
-<td><input id="pid" name="pid" type="text" placeholder="Ward"  readonly class="form-control input-md"></td>
-<td><input id="pid" name="pid" type="text" placeholder="Bed"  readonly class="form-control input-md"></td>
-<td><input id="pname" name="pid" type="text" placeholder="Patient Name"  readonly class="form-control input-md"></td>
-<td><input id="pidno" name="pid" type="text" placeholder="Patient ID"  readonly class="form-control input-md"></td>
-<td> <input id="pid" name="pid" type="text" placeholder="Sponsor"  readonly class="form-control input-md"></td>
-<td>  
-    <a id="Occu_transfer" data-toggle="modal" data-target="#TransferModal"><i class="fa fa-pencil-square-o" aria-hidden="true" style="display: inline-block;color: #337ab7;"></i></a>
-</td>
-<td>
-        <a id="Occu_delete" class="testing"><i class="fa fa-times" aria-hidden="true" style="display: inline-block;color: #d9534f;" ></i></a>
-
-</td>
-
-</tbody>
-</table>
+    <table id="OccuTable"  class="table table-striped table-bordered" cellspacing="0" width="100%">
 
 
+        <thead>
 
-    <!-- Modal Update -->
+
+        <th>Ward Name</th>
+        <th>Bed</th>
+        <th>Patient Name</th>
+        <th>Patient ID</th>
+        <th>Sponsor</th>
+        <th>Transfer</th>
+        <th>Discharge</th>
+        </thead>
+        <tbody>
+
+            <%                Conn conn = new Conn();
+                String sqldataOccu = "SELECT ward_class_code, bed_id, PATIENT_NAME, ID_NO, eligibility_category_cd  FROM wis_inpatient_episode";
+                ArrayList<ArrayList<String>> dataOccu = conn.getData(sqldataOccu);
+
+                int size11 = dataOccu.size();
+                for (int i = 0; i < size11; i++) {
+            %>
+
+
+            <tr>
+
+        <input id="dataFacilityIDhidden" type="hidden" value="<%=String.join("|", dataOccu.get(i))%>">
+        <td><%= dataOccu.get(i).get(0)%></td>
+        <td><%= dataOccu.get(i).get(1)%></td>
+        <td><%= dataOccu.get(i).get(2)%></td>
+        <td><%= dataOccu.get(i).get(3)%></td>
+        <td><%= dataOccu.get(i).get(4)%></td>
+
+        <td>
+            <!-- Update Part Start -->
+            <a id="Occu_transfer" data-toggle="modal" data-target="#TransferModal"><i class="fa fa-pencil-square-o" aria-hidden="true" style="display: inline-block;color: #337ab7;"></i></a>
+            <!-- Update Part End -->
+        </td>
+        <td>
+            <!-- Delete Button Start -->
+            <a id="Occu_delete" class="testing"><i class="fa fa-times" aria-hidden="true" style="display: inline-block;color: #d9534f;" ></i></a>
+            <!-- Delete Button End -->
+        </td>
+        </tr>
+        <%
+            }
+
+        %>
+        </tbody>
+    </table>
+</div>
+
+
+
+
+<!-- Modal Update -->
 <div class="modal fade" id="TransferModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content" style="width: 175%">
@@ -63,117 +89,6 @@
                 <form class="form-horizontal" id="TransferForm">
 
 
-
-                    <div class="row">
-                        <div class="col-md-6">
-
-
-                            <!-- Text input-->
-                            <div class="form-group">
-                                <label class="col-md-4 control-label" for="textinput">PMI No.</label>
-                                <div class="col-md-4">
-                                    <input id="pmino" name="pmino" type="text" placeholder=" " readonly class="form-control input-md">                        </div>
-                            </div>
-
-
-
-                            <!-- Text input-->
-                            <div class="form-group">
-                                <label class="col-md-4 control-label" for="textinput">IC NO</label>
-                                <div class="col-md-4">
-                                    <input id="poic" name="poic" type="text" readonly placeholder="" class="form-control input-md">
-                                </div>
-                            </div>
-
-                            <!-- Select Basic -->
-                            <div class="form-group">
-                                <label class="col-md-4 control-label" for="selectbasic">Gender</label>
-                                <div class="col-md-4">
-                                    <input id="gender" name="gender" type="text" placeholder=""  readonly class="form-control input-md">
-                                </div>
-                            </div>
-
-                            <!-- Text input-->
-                            <div class="form-group">
-                                <label class="col-md-4 control-label" for="textinput">Age</label>
-                                <div class="col-md-4">
-                                    <input id="age" name="age" type="text" readonly placeholder="" class="form-control input-md">
-                                </div>
-                            </div>
-
-                            <!-- Text input-->
-                            <div class="form-group">
-                                <label class="col-md-4 control-label" for="textinput">Ward Class</label>
-                                <div class="col-md-4">
-                                    <input id="WardClass" name="age" type="text" readonly placeholder="" class="form-control input-md">
-                                </div>
-                            </div>
-
-                            <!-- Text input-->
-                            <div class="form-group">
-                                <label class="col-md-4 control-label" for="textinput">Bed no</label>
-                                <div class="col-md-4">
-                                    <input id="Bed" name="Bed" type="text" readonly placeholder="" class="form-control input-md">
-                                </div>
-                            </div>
-                        </div>
-
-
-
-                        <div class="col-md-6">
-
-                            <!-- Text input-->
-                            <div class="form-group">
-                                <label class="col-md-4 control-label" for="textinput">Name</label>
-                                <div class="col-md-4">
-                                    <input id="pname" name="pname" type="text" readonly placeholder="" class="form-control input-md">
-                                </div>
-                            </div>
-
-                            <!-- Text input-->
-                            <div class="form-group">
-                                <label class="col-md-4 control-label" for="textinput">MRN Number</label>
-                                <div class="col-md-4">
-                                    <input id="MRN" name="MRN" type="text" readonly placeholder="" class="form-control input-md">
-                                </div>
-                            </div>
-
-
-
-                            <!-- Text input-->
-                            <div class="form-group">
-                                <label class="col-md-4 control-label" for="textinput">Admission Date</label>
-                                <div class="col-md-4">
-                                    <input id="AdmissionDate" name="AdmissionDate" type="text" readonly placeholder="AdmissionDate" class="form-control input-md">
-                                </div>
-                            </div>
-
-                            <!-- Text input-->
-                            <div class="form-group">
-                                <label class="col-md-4 control-label" for="textinput">Treating Consultant</label>
-                                <div class="col-md-4">
-                                    <input id="Consultant" name="Consultant" type="text" readonly placeholder="Consultant" class="form-control input-md">
-                                </div>
-                            </div>
-
-                            <!-- Text input-->
-                            <div class="form-group">
-                                <label class="col-md-4 control-label" for="textinput">Ward Name</label>
-                                <div class="col-md-4">
-                                    <input id="WardName" name="WardName" type="text" readonly placeholder="" class="form-control input-md">
-                                </div>
-                            </div>
-
-                            <!-- Text input-->
-                            <div class="form-group">
-                                <label class="col-md-4 control-label" for="textinput">Rate</label>
-                                <div class="col-md-4">
-                                    <input id="Rate" name="Rate" type="text" readonly placeholder="" class="form-control input-md">
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
 
 
                     <h4>Transfer Ward</h4>
@@ -194,9 +109,9 @@
 
                                             int size3 = dataDiscipline222.size();
 
-                                            for (int i = 0; i < size3; i++) {
+                                            for (int R = 0; R < size3; R++) {
                                         %>
-                                        <option value="<%= dataDiscipline222.get(i).get(0)%>"><%= dataDiscipline222.get(i).get(0)%> </option>
+                                        <option value="<%= dataDiscipline222.get(R).get(0)%>"><%= dataDiscipline222.get(R).get(0)%> </option>
                                         <%
                                             }
                                         %>
@@ -218,9 +133,9 @@
 
                                             int size4 = dataWname245.size();
 
-                                            for (int i = 0; i < size4; i++) {
+                                            for (int J = 0; J < size4; J++) {
                                         %>
-                                        <option value="<%= dataWname245.get(i).get(0)%>"><%= dataWname245.get(i).get(0)%> </option>
+                                        <option value="<%= dataWname245.get(J).get(0)%>"><%= dataWname245.get(J).get(0)%> </option>
                                         <%
                                             }
                                         %>
@@ -251,9 +166,9 @@
 
                                             int size5 = dataWtype.size();
 
-                                            for (int i = 0; i < size5; i++) {
+                                            for (int K = 0; K < size5; K++) {
                                         %>
-                                        <option value="<%= dataWtype.get(i).get(0)%>"><%= dataWtype.get(i).get(0)%> </option>
+                                        <option value="<%= dataWtype.get(K).get(0)%>"><%= dataWtype.get(K).get(0)%> </option>
                                         <%
                                             }
                                         %>
@@ -280,9 +195,9 @@
 
                                             int size6 = dataBed.size();
 
-                                            for (int i = 0; i < size6; i++) {
+                                            for (int H = 0; H < size6; H++) {
                                         %>
-                                        <option value="<%= dataBed.get(i).get(0)%>"><%= dataBed.get(i).get(0)%> </option>
+                                        <option value="<%= dataBed.get(H).get(0)%>"><%= dataBed.get(H).get(0)%> </option>
                                         <%
                                             }
                                         %>

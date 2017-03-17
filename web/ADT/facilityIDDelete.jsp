@@ -13,11 +13,13 @@
 <%
 
     String id = request.getParameter("iditem");
+    String hfc = request.getParameter(" hfc");
+    String wid = request.getParameter(" wid");
 
     RMIConnector rmic = new RMIConnector();
     Conn conn = new Conn();
     
-    String sql = "DELETE FROM wis_ward_name WHERE ward_class_code = '" + id + "' ";
+    String sql = "DELETE FROM wis_ward_name WHERE ward_class_code = '" + id + "', ward_id = '" + wid + "' AND hfc_cd = '" + hfc + "' ";
 
     boolean status = rmic.setQuerySQL(conn.HOST, conn.PORT, sql);
 

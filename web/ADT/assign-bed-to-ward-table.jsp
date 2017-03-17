@@ -4,58 +4,63 @@
 <%@page import="main.RMIConnector"%>
 <%@page session="true" %>
 
+<div id="tableassignBedTable" class="form-group">
 
 
 
-<table id="assignBedTable"  class="table table-striped table-bordered" cellspacing="0" width="100%">
+    <table id="assignBedTable"  class="table table-striped table-bordered" cellspacing="0" width="100%">
 
 
-    <thead>
+        <thead>
 
 
-    <th>Discipline</th>
-    <th>Ward Class</th>
-    <th>Ward Name</th>
-    <th>Bed ID</th>
-    <th>Bed Status</th>
-    <th style="width: 5%; text-align: center;">Update</th>
-    <th style="width: 5%; text-align: center;">Delete</th>
-</thead>
-<tbody>
+        <th>Discipline</th>
+        <th>Ward Class</th>
+        <th>Ward Name</th>
+        <th>Bed ID</th>
+        <th>Bed Status</th>
+        <th>Update</th>
+        <th>Delete</th>
+        </thead>
+        <tbody>
 
-    <%        String sqlbed = "SELECT discipline_cd, ward_class_code, ward_id, bed_id, bed_status FROM wis_bed_id";
-        ArrayList<ArrayList<String>> databed = conn.getData(sqlbed);
+            <%
+                Conn conn = new Conn();
 
-        int size29 = databed.size();
-        for (int i = 0; i < size29; i++) {
-    %>
+                String sqlbed = "SELECT discipline_cd, ward_class_code, ward_id, bed_id, bed_status,hfc_cd FROM wis_bed_id";
+                ArrayList<ArrayList<String>> databed = conn.getData(sqlbed);
+
+                int size29 = databed.size();
+                for (int i = 0; i < size29; i++) {
+            %>
 
 
-    <tr>
+            <tr>
 
-<input id="dataAssignBedhidden" type="hidden" value="<%=String.join("|", databed.get(i))%>">
-<td><%= databed.get(i).get(0)%></td>
-<td><%= databed.get(i).get(1)%></td>
-<td><%= databed.get(i).get(2)%></td>
-<td><%= databed.get(i).get(3)%></td>
-<td><%= databed.get(i).get(4)%></td>
-<td style="text-align: center;">
-    <!-- Update Part Start -->
-    <a id="MWBed_edit" data-toggle="modal" data-target="#assignBedUpdateModal"><i class="fa fa-pencil-square-o fa-lg" aria-hidden="true" style="display: inline-block;color: #337ab7; cursor: pointer;"></i></a>
-    <!-- Update Part End -->
-</td>
-<td style="text-align: center;">
-    <!-- Delete Button Start -->
-    <a id="BED_delete" class="testing"><i class="fa fa-times fa-lg" aria-hidden="true" style="display: inline-block;color: #d9534f; cursor: pointer;" ></i></a>
-    <!-- Delete Button End -->
-</td>
-</tr>
-<%
-    }
+        <input id="dataAssignBedhidden" type="hidden" value="<%=String.join("|", databed.get(i))%>">
+        <td><%= databed.get(i).get(0)%></td>
+        <td><%= databed.get(i).get(1)%></td>
+        <td><%= databed.get(i).get(2)%></td>
+        <td><%= databed.get(i).get(3)%></td>
+        <td><%= databed.get(i).get(4)%></td>
+        <td>
+            <!-- Update Part Start -->
+            <a id="MWBed_edit" data-toggle="modal" data-target="#assignBedUpdateModal"><i class="fa fa-pencil-square-o" aria-hidden="true" style="display: inline-block;color: #337ab7;"></i></a>
+            <!-- Update Part End -->
+        </td>
+        <td>
+            <!-- Delete Button Start -->
+            <a id="BED_delete" class="testing"><i class="fa fa-times" aria-hidden="true" style="display: inline-block;color: #d9534f;" ></i></a>
+            <!-- Delete Button End -->
+        </td>
+        </tr>
+        <%
+            }
 
-%>
-</tbody>
-</table>
+        %>
+        </tbody>
+    </table>
+</div>
 <!-- Modal Update -->
 <div class="modal fade" id="assignBedUpdateModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -71,23 +76,12 @@
 
                     <!-- Select Basic -->
                     <div class="form-group">
-                        <label class="col-md-4 control-label" for="selectbasic">Discipline</label>
-                        <div class="col-md-4">
-                            <select id="updateDisciplineBed" name="selectbasic" class="form-control">
-                                <option value="Select Discipline" >Select Discipline</option>
-
-
-                                <%                                    String Discipline = "select * from lookup_detail where master_ref_code ='0072'";
-                                    ArrayList<ArrayList<String>> dataDiscipline81;
-                                    dataDiscipline81 = conn.getData(Discipline);
-
-                                    for (int i = 0; i < dataDiscipline81.size(); i++) {%>
-                                <option value="<%=dataDiscipline81.get(i).get(2)%>"><%=dataDiscipline81.get(i).get(2)%></option>
-                                <%  }
-                                %>
-
-                            </select>
+                        <label class="col-md-4 control-label" for="selectbasic">Discipline *</label>
+                        <div class="col-md-6">
+                            <input id="Dis" name="Dis" type="text"  class="form-control input-md">
+                            <div id="disList"></div>
                         </div>
+
                     </div>
 
                     <!-- Select Basic -->
@@ -97,8 +91,7 @@
                             <select id="updateWard_ClassBed" name="selectbasic" class="form-control">
                                 <option value="Ward Class" >Ward Class</option>
 
-                                <%
-                                    String sql101 = "SELECT ward_class_code, ward_class_name FROM wis_ward_class";
+                                <%                                    String sql101 = "SELECT ward_class_code, ward_class_name FROM wis_ward_class";
                                     ArrayList<ArrayList<String>> dataClass02 = conn.getData(sql101);
 
                                     int size304 = dataClass02.size();
@@ -139,7 +132,7 @@
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="textinput">Bed ID</label>
                         <div class="col-md-8">
-                            <textarea id="updateBedIDBed" class="form-control" rows="3" maxlength="200" placeholder="Generic Name"></textarea>
+                            <textarea id="updateBedIDBed" class="form-control" readonly rows="3" maxlength="200" placeholder="Generic Name"></textarea>
                         </div>
                     </div>
                     <!-- Select Basic -->
@@ -170,13 +163,17 @@
     </div>
 </div>
 
-
-
+<script src="bootstrap-3.3.6-dist/js/jquery.dataTables.min.js"></script>
+<script src="searchDiscipline.jsp"></script>
+<script src="old/assets/js/searchDisipline.js" type="text/javascript"></script>
 
 <script type="text/javascript">
 
     $(document).ready(function () {
         //function to edit facility type from table
+
+        // var row;
+
         $('#AssignBedTable').off('click', '#assignBedTable #MWBed_edit').on('click', '#assignBedTable #MWBed_edit', function (e) {
             e.preventDefault();
             //go to the top
@@ -188,12 +185,19 @@
             console.log(arrayData);
             //assign into seprated val
 
-            var Disicipline = arrayData[0];
+            var Dis = arrayData[0];
             var Ward_Class = arrayData[1];
             var Ward_ID = arrayData[2];
             var BedID = arrayData[3];
             var status = arrayData[4];
-            $("#updateDisiciplineBed").val(Disicipline);
+            Dis = $('#Dis').val();
+            var array_dis = Dis.split("|");
+            var Dis = array_dis[0];
+            var hfc = $("#Rhfc").val();
+            var createdBy = $("#Rid").val();
+            var dis = $("#Rdis").val();
+            var sub = $("#Rsub").val();
+
             $("#updateWard_ClassBed").val(Ward_Class);
             $("#updateWard_IDBed").val(Ward_ID);
             $("#updateBedIDBed").val(BedID);
@@ -208,41 +212,72 @@
 
         $("#updateBedButton").off('click').on('click', function (e) {
 
+
+
             e.preventDefault();
-            var Discipline = $("#updateDisciplineBed").val();
+//            console.log(row);
+//
+//            var rowData = row.find("#dataAssignBedhidden").val();
+//            var arrayData = rowData.split("|");
+//
+//            console.log(arrayData);
+//
+//            var DisciplineOld = arrayData[0];
+//            var Ward_ClassOld = arrayData[1];
+//            var Ward_IDOld = arrayData[2];
+//            var BedIDOld = arrayData[3];
+//            var statusOld = arrayData[4];
+//            var hfcOld = arrayData[5];
+            var Dis = $("#Dis").val();
             var Ward_Class = $("#updateWard_ClassBed").val();
             var Ward_ID = $("#updateWard_IDBed").val();
             var BedID = $("#updateBedIDBed").val();
             var status = $("#updatestatusBed").val();
+            var hfc = $("#Rhfc").val();
+            var createdBy = $("#Rid").val();
+            var dis = $("#Rdis").val();
+            var sub = $("#Rsub").val();
             //var hfc = $('#hfc').val();
             //var discipline = $('#discipline').val();
             //var subDicipline = $('#subDicipline').val();
 
-            if (Discipline === "" || Discipline === null) {
-                alert("Complete The Discipline Fields");
+            if (Dis === "Select Discipline" || Dis === null) {
+                bootbox.alert("Complete The Discipline Fields");
             } else if (Ward_Class === "" || Ward_Class === null) {
-                alert("Complete The Fields");
+                bootbox.alert("Complete The Ward_Class Fields");
             } else if (Ward_ID === "" || Ward_ID === null) {
-                alert("Complete The Fields");
+                bootbox.alert("Complete The Ward_ID Fields");
             } else if (BedID === "" || BedID === null) {
-                alert("Complete The Fields");
+                bootbox.alert("Complete The BedID Fields");
             } else if (status !== "Available" && status !== "Pending" && status !== "Occupied") {
-                alert("Select Any Status");
+                bootbox.alert("Select Any Status");
             } else {
 
                 var data = {
-                    Discipline: Discipline,
+                    Dis: Dis,
                     Ward_Class: Ward_Class,
                     Ward_ID: Ward_ID,
                     BedID: BedID,
-                    status: status
+                    status: status,
+                    hfc: hfc,
+                    createdBy: createdBy,
+                    dis: dis,
+                    sub: sub
+//                    hfcOld: hfcOld
+//                    DisciplineOld: DisciplineOld,
+//                    Ward_ClassOld: Ward_ClassOld,
+//                    Ward_IDOld: Ward_IDOld,
+//                    BedIDOld: BedIDOld,
+//                    statusOld: statusOld
                 };
+                //console.log(data);
                 $.ajax({
                     url: "assignBedUpdate.jsp",
                     type: "post",
                     data: data,
                     timeout: 10000,
                     success: function (datas) {
+                        console.log(datas);
 
                         if (datas.trim() === 'Success') {
 
@@ -270,7 +305,7 @@
         });
     });
 //delete function when click delete on next of kin
-    $('#AssignBedTable').off('click', '#assignBedTable #BED_delete').on('click', '#assignBedTable #BED_delete', function (e) {
+    $('#tableassignBedTable').on('click', '#assignBedTable #BED_delete', function (e) {
 
         e.preventDefault();
         var row = $(this).closest("tr");
@@ -278,7 +313,7 @@
         var arrayData = rowData.split("|");
         console.log(arrayData);
         //assign into seprated val
-        var idbed = arrayData[3];
+        var idbed = arrayData[3], hfc = arrayData[5];
         bootbox.confirm({
             message: "Are you sure want to delete information?",
             title: "Delete Item?",
@@ -297,7 +332,8 @@
                 if (result === true) {
 
                     var data = {
-                        idbed: idbed
+                        idbed: idbed,
+                        hfc: hfc
 
                     };
                     $.ajax({
@@ -309,7 +345,7 @@
 
                             if (datas.trim() === 'Success') {
 
-                                $('#AssignBedTable').load('assign-bed-to-ward-table.jsp');
+                                row.remove();
                                 bootbox.alert({
                                     message: "Successfully deleted",
                                     title: "Process Result",

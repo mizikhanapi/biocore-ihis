@@ -25,7 +25,7 @@
     if (status.equals("1")) {
 
         if (idType.equals("pmino")) {
-            searchPatient = "select * from wis_inpatient_episode where PMI_NO='" + idInput + "'";
+            searchPatient = "select * from wis_inpatient_episode where pmi_no='" + idInput + "'";
         } else if (idType.equals("icnew")) {
             searchPatient = "select * from wis_inpatient_episode where NEW_IC_NO='" + idInput + "'";
         } else if (idType.equals("icold")) {
@@ -79,7 +79,7 @@
 } else if (status.equals("0")) {
 
     if (idType.equals("pmino")) {
-        searchPatient = "select * from wis_inpatient_episode where PMI_NO='" + idInput + "'";
+        searchPatient = "select * from wis_inpatient_episode where pmi_no='" + idInput + "'";
     } else if (idType.equals("icnew")) {
         searchPatient = "select * from wis_inpatient_episode where NEW_IC_NO='" + idInput + "'";
     } else if (idType.equals("icold")) {

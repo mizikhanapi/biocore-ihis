@@ -14,10 +14,15 @@
     
     String wclass, wid, wdiscipline, wwardname, wcitizenrates, wcitizendeposit, wcitizendiscount, wnoncitizenrates, wnoncitizendeposit,
             wnoncitizendiscount, wpensionerdeposit, wpensionerrates, wpensionerdiscount, wnobed, wbathroom, wtoilet, wtelevision, wtelephone, wstatus;
+    String hfc = request.getParameter("hfc");
+     String dis = request.getParameter("dis");
+      String sub = request.getParameter("sub");
+
+    String createdBy = request.getParameter("createdBy");
     
     wclass = request.getParameter("WardClass");
     wid = request.getParameter("WardID");
-    wdiscipline = request.getParameter("Discipline");
+    wdiscipline = request.getParameter("Dis");
     wwardname = request.getParameter("WardName");
     wcitizenrates = request.getParameter("CitizenRates");
     wcitizendeposit = request.getParameter("CitizenDeposit");
@@ -37,11 +42,13 @@
     RMIConnector rmic = new RMIConnector();
     Conn conn = new Conn();
 
-    String sqlUpdate = "UPDATE wis_ward_name SET ward_class_code = '" + wclass + "',ward_id = '" + wid + "',ward_name = '" + wwardname + "',citizen_room_cost = '" + wcitizenrates + "', citizen_deposit = '" + wcitizendeposit + "',"
-            + "citizen_discount = '" + wcitizendiscount + "', non_citizen_room_cost = '" + wnoncitizenrates + "', non_citizen_deposit = '" + wnoncitizendeposit + "', non_citizen_discount = '" + wnoncitizendiscount + "',"
+    String sqlUpdate = "UPDATE wis_ward_name SET ward_class_code = '" + wclass + "',ward_id = '" + wid + "',ward_name = '" + wwardname + "',citizen_room_cost = '" + wcitizenrates + "',"
+            + " citizen_deposit = '" + wcitizendeposit + "',citizen_discount = '" + wcitizendiscount + "', non_citizen_room_cost = '" + wnoncitizenrates + "',"
+            + " non_citizen_deposit = '" + wnoncitizendeposit + "', non_citizen_discount = '" + wnoncitizendiscount + "',"
             + " pensioner_deposit = '" + wpensionerdeposit + "',pensioner_discount = '" + wpensionerdiscount + "', pensioner_room_cost = '" + wpensionerrates + "',"
-            + "no_of_bed = '" + wnobed + "', attach_bathroom_tiolet = '" + wbathroom + "',attach_toilet = '" + wtoilet + "',include_television = '" + wtelevision + "',include_telephone = '" + wtelephone + "',"
-            + "ward_status = '" + wstatus + "',discipline_cd = '" + wdiscipline + "' WHERE ward_class_code = '" + wclass + "' ";
+            + "no_of_bed = '" + wnobed + "', attach_bathroom_tiolet = '" + wbathroom + "',attach_toilet = '" + wtoilet + "',include_television = '" + wtelevision + "',"
+            + "include_telephone = '" + wtelephone + "', ward_status = '" + wstatus + "',discipline_cd = '" + wdiscipline + "',"
+            + "hfc_cd = '" + hfc + "',subdiscipline_cd = '" + sub + "', created_by = '" + createdBy + "' WHERE ward_class_code = '" + wclass + "', hfc_cd = '" + hfc + "' AND ward_id = '" + wid + "' ";
 
          
             
