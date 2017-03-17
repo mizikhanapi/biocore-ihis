@@ -58,21 +58,23 @@
         var rowStat = row.find("#Lstat").text();
         var rowStart = row.find("#Lstart").text();
         var rowEnd = row.find("#Lend").text();
-
+        var rowStaffName = row.find("#LuserName").text();
+        
           $('#QLName').val(rowname);
-          $('#QLStaff').val(rowStaff);
-          
-          $('#QLStaff option:not(:selected)').prop('disabled', true);
-          
+          $('#QLStaffCODE').val(rowStaff);
+          $('#QLStaff').val(rowStaffName);
+          //$('#QLStaff option:not(:selected)').prop('disabled', true);
+          $("#QLStaff").prop('disabled', true);
           $('#startDate').val(rowStart);
           $('#endDate').val(rowEnd);
           $('#QLStatus').val(rowStat);
     });
     
     $('#Lplus').on('click',function(){
-        $('#QLStaff option:not(:selected)').prop('disabled', false);
+        //$('#QLStaff option:not(:selected)').prop('disabled', false);
         $('#QLName option:not(:selected)').prop('disabled', false);
         $('#Lform')[0].reset();
+        $("#QLStaff").prop('disabled', false);
     });
 </script>
 

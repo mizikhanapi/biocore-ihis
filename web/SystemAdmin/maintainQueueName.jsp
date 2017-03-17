@@ -48,13 +48,17 @@
         var rowDesc = row.find("#desc").text();
         var rowQuota = row.find("#quota").text();
         var rowStatus = row.find("#status23").text();
-
+        var rowStaffNameN = row.find("#idName").text();
         //console.log(row);
 //        console.log(rowCode);
 //        console.log(rowDesc);
         console.log(rowStatus);
         $('#Nform')[0].reset();
-        $('#QName').val(':selected',true);
+        $('#QName').val(rowStaffNameN);
+        
+        $('#QNameCD').val(rowId);          
+        
+          
         $('#Qtype').val(rowCode);
         //$('#Qtype').prop('readonly', true);
         $('#Qtype option:not(:selected)').prop('disabled', true);

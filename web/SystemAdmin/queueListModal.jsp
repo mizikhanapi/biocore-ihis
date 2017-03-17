@@ -16,15 +16,15 @@
     String queueSql = "select queue_type,queue_name from pms_queue_name where hfc_cd = '" + hfc + "' and discipline_code='"+dis+"';";
     ArrayList<ArrayList<String>> dataQueue = conn.getData(queueSql);
 
-    String sqlDoctorAvailable = "SELECT doc.*,DATE(pdr.start_date),DATE(pdr.end_date) "
-            + "from pms_duty_roster pdr, "
-            + "(SELECT USER_ID,LCASE(USER_NAME),OCCUPATION_CODE "
-            + "FROM adm_user "
-            + "WHERE OCCUPATION_CODE = 'DOCTOR' and health_facility_code = '" + hfc + "'"
-            + "ORDER BY LCASE(USER_NAME) ASC)doc "
-            + "where doc.USER_ID=pdr.user_id AND pdr.status='active' AND "
-            + "DATE(now()) BETWEEN DATE(start_date) AND DATE(end_date) ";
-    ArrayList<ArrayList<String>> dataDoctorAvailable = conn.getData(sqlDoctorAvailable);
+//    String sqlDoctorAvailable = "SELECT doc.*,DATE(pdr.start_date),DATE(pdr.end_date) "
+//            + "from pms_duty_roster pdr, "
+//            + "(SELECT USER_ID,LCASE(USER_NAME),OCCUPATION_CODE "
+//            + "FROM adm_users "
+//            + "WHERE OCCUPATION_CODE = '002' and health_facility_code = '" + hfc + "'"
+//            + "ORDER BY LCASE(USER_NAME) ASC)doc "
+//            + "where doc.USER_ID=pdr.user_id AND pdr.status='active' AND "
+//            + "DATE(now()) BETWEEN DATE(start_date) AND DATE(end_date) ";
+//    ArrayList<ArrayList<String>> dataDoctorAvailable = conn.getData(sqlDoctorAvailable);
 
 
 %>
@@ -52,28 +52,12 @@
                     </div>
                     <div class="form-group">
                         <div><label>Staff *: </label></div>
-                        <select class="form-control" id="QLStaff">
-                            <option selected="true" disabled="true">Select Staff to be assigned</option>
-                            <%
-                                for (int i = 0; i < dataDoctorAvailable.size(); i++) {%>
-                                <option value="<%=dataDoctorAvailable.get(i).get(0)%>"><%="(" + dataDoctorAvailable.get(i).get(0) + ") " + dataDoctorAvailable.get(i).get(1)%></option>
-                            <%
-                                }
-                            %>
-                        </select>
+                        
+                        <input id="QLStaff" name="textinput" type="text" placeholder="select staff.." class="form-control input-md">
+                        <input id="QLStaffCODE" name="PMIhstateCODE" type="hidden" placeholder="select country.." class="form-control input-md">
+                        <div id="matchDoctor" class="search-drop"></div>
                     </div>
-                    <!--                    <div class="form-group">
-                                            <div><label>Health Facility : </label></div>
-                                            <input type="text" class="form-control" placeholder="Health Facility">
-                                        </div>
-                                        <div class="form-group">
-                                            <div><label>Discipline : </label></div>
-                                            <input type="text" class="form-control" placeholder="Discipline">
-                                        </div>
-                                        <div class="form-group">
-                                            <div><label>Sub-Discipline : </label></div>
-                                            <input type="text" class="form-control" placeholder="Sub-Discipline">
-                                        </div>-->
+                   
                     <div class="form-group">
                         <div><label>Start date : </label></div>
                         <input type="text" id="startDate" class="form-control" placeholder="YYYY-MM-DD">
@@ -107,7 +91,9 @@
     </div>
 </div>
 <!-- Modal -->
+<script src="../PMS/libraries/lib/js/search/searchDoctor.js" type="text/javascript"></script>
 <script>
+            
     $(document).ready(function(){
        $(function(){
             $('#startDate').datepicker({dateFormat:'yy-mm-dd',changeMonth:true,changeYear:true});
@@ -117,7 +103,7 @@
     
     //function to save or update the queue name
     $('#saveList').on('click', function () {
-        var staff = $('#QLStaff').val();
+        var staff = $('#QLStaffCODE').val();
         var name = $('#QLName').val();
         var createdBy = "<%=user_id%>";
         var hfc = "<%=hfc%>";
