@@ -17,7 +17,7 @@
         <title>Print MC</title>
     </head>
     <body>
-        <%@include file = "../assets/header.html" %>
+        <%@include file = "../../assets/header.html" %>
 
         <div class="main" style="background: #f2ff4f8;"> 
             <!-- menu top -->

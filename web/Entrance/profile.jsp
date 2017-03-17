@@ -46,7 +46,7 @@
 
                 <!-- main -->	
 
-                <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main" style="background: #f2f4f8;">
+                <div class="main" style="background: #f2f4f8;">
                     <!-- menu top -->
                     <%@include file="libraries/topMenus.html" %>
                     <!-- menu top -->

@@ -20,7 +20,7 @@
     </head>
     <body>
         <!--header -->
-        <%@include file = "../assets/header.html" %>
+        <%@include file = "../../assets/header.html" %>
         <!--header -->
 
         <div class="main" style="background: #f2f4f8;">

@@ -4558,9 +4558,10 @@ tbody.collapse.in {
 
 .btn-group-justified {
     display: table;
-    width: 100%;
     table-layout: fixed;
-    border-collapse: separate
+    border-collapse: separate;
+    margin: -15px;
+    width: 105.4%;
 }
 
 .btn-group-justified>.btn,
@@ -7125,6 +7126,7 @@ button.close {
 
 .modal-footer {
     text-align: right;
+    padding: 15px;
     border-top: 1px solid #e5e5e5
 }
 

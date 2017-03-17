@@ -14,7 +14,7 @@
             <%@include file = "includes/sideMenus.jsp" %>
                 <!-- main -->		
 
-                <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main" style="background: #f2f4f8;">
+                <div class=" main" style="background: #f2f4f8;">
                     
                 <%@include file = "includes/topMenu.html" %>
                     <div class="row">
@@ -25,7 +25,7 @@
                                 <div style="margin-bottom: 250px">
                                     <h4>Year End Processing</h4>
 
-                                    <div class="col-lg-10" style="margin-bottom: 20px">
+                                    <div class="col-md-12" style="margin-bottom: 20px">
                                         <div id="backup" class="progress">
                                             <div id="backupPB" class="progress-bar">
                                                 <div id="percentBackup"></div>
@@ -34,7 +34,7 @@
                                         <button id="btnBackup" type="submit" class="btn btn-info" >Backup Customer Data</button><br>
                                     </div>
 
-                                    <div class="col-lg-10" style="margin-bottom: 20px">
+                                    <div class="col-md-12" style="margin-bottom: 20px">
                                         <div id="process" class="progress">
                                             <div id="processPB" class="progress-bar">
                                                 <div id="percentProcess"></div>
@@ -43,7 +43,7 @@
                                         <button id="btnProcess" type="submit" class="btn btn-info" disabled="true">Start Year End Processing</button><br>
                                     </div>
 
-                                    <div class="col-lg-10" style="margin-bottom: 20px">
+                                    <div class="col-md-12" style="margin-bottom: 20px">
                                         <div id="restore" class="progress">
                                             <div id="restorePB" class="progress-bar">
                                                 <div id="percentRestore"></div>

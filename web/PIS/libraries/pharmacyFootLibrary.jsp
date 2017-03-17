@@ -4,15 +4,15 @@
     Author     : Shammugam
 --%>
 
-<script src="js/jquery-ui.js" type="text/javascript"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/4.4.0/bootbox.min.js"></script>
+<script src="libraries/js/jquery-ui.js" type="text/javascript"></script>
+<script src="libraries/js/bootstrap.min.js" type="text/javascript"></script>
+<script src="libraries/js/bootbox.min.js" type="text/javascript"></script>
 <script src="bootstrap-3.3.6-dist/js/jquery.dataTables.min.js"></script>
 <script src="bootstrap-3.3.6-dist/js/dataTables.bootstrap.min.js" type="text/javascript"></script>
-<script src="https://cdn.datatables.net/buttons/1.2.4/js/dataTables.buttons.min.js" ></script>
-<script src="https://cdn.datatables.net/buttons/1.2.4/js/buttons.flash.min.js" ></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/2.5.0/jszip.min.js" ></script>
-<script src="js/pdfmake.min.js" type="text/javascript"></script>
-<script src="js/vfs_fonts.js" type="text/javascript"></script>
-<script src="https://cdn.datatables.net/buttons/1.2.4/js/buttons.html5.min.js" ></script>
+<script src="libraries/js/dataTables.buttons.min.js" type="text/javascript"></script>
+<script src="libraries/js/buttons.flash.min.js" type="text/javascript"></script>
+<script src="libraries/js/jszip.min.js" type="text/javascript"></script>
+<script src="libraries/js/pdfmake.min.js" type="text/javascript"></script>
+<script src="libraries/js/vfs_fonts.js" type="text/javascript"></script>
+<script src="libraries/js/buttons.html5.min.js" type="text/javascript"></script>
 
