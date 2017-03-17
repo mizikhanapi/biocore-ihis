@@ -3,7 +3,9 @@
     Created on : Mar 16, 2017, 10:14:31 PM
     Author     : user
 --%>
+<%@include file="validateSession.jsp" %>
 
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
     <head>

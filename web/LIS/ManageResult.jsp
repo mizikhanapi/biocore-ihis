@@ -10,6 +10,8 @@
 <%@page import="main.RMIConnector"%>
 <%@page import="Config.connect"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+
+<%@include file="../Entrance/validateSession.jsp" %>
 <!DOCTYPE html>
 <html>
     <head>

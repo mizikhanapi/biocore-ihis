@@ -4,6 +4,7 @@
 <%@page import="Config.Config"%>
 <%@page import="main.RMIConnector"%>
 <%@ page session="true" %>
+<%@include file="../Entrance/validateSession.jsp" %>
 
 
 <!DOCTYPE html>

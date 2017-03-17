@@ -8,6 +8,7 @@
 <%@page import="dBConn.Conn"%>
 <%@page import="main.RMIConnector"%>
 <%@page import="Config.Config"%>
+<%@include file="../Entrance/validateSession.jsp" %>
 <%
     Config.getBase_url(request);
     Config.getFile_url(session);

@@ -5,6 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@include file="../Entrance/validateSession.jsp" %>
 <!DOCTYPE html>
 <html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <!-- header -->
@@ -16,7 +17,7 @@
         <div class="container-fluid">
             <div class="row">       
                 <!-- menu side -->
-                <%@include file = "libraries/sideMenus.html" %>
+                <%@include file = "libraries/sideMenus.jsp" %>
                 <!-- menu side -->	
 
                 <!-- main -->		

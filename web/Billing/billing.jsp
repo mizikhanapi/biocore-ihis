@@ -7,6 +7,7 @@
 <%@page import="java.util.ArrayList"%>
 <%@page import="dbConn1.Conn"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@include file="../Entrance/validateSession.jsp" %>
 <!DOCTYPE html>
 <html>
     <%@include file = "includes/header.jsp" %>

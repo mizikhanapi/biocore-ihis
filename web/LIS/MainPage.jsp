@@ -8,7 +8,7 @@
 <%@page import="dBConn.Conn"%>
 <%@page import="main.RMIConnector"%>
 
-
+<%@include file="../Entrance/validateSession.jsp" %>
 <%
     Conn conn = new Conn();
 

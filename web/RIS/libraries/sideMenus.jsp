@@ -1,4 +1,20 @@
+<%
+    String gamba = "";
+    String nama = "";
+    String role = "";
+    String hfcName = "";
+
+    if (session.getAttribute("USER_NAME") != null) {
+
+        gamba = session.getAttribute("PICTURE").toString();
+        nama = session.getAttribute("USER_NAME").toString();
+        role = session.getAttribute("ROLE_NAME").toString();
+        hfcName = session.getAttribute("HFC_NAME").toString();
+    }
+
+%>
 <div class="col-sm-3 col-md-2 sidebar">
+    <div class="brand"></div>
     <!-- logo -->
     <div class="logo">
         Welcome to <span>iHIS</span>
@@ -8,15 +24,19 @@
     <!-- profile Sidebar -->
     <div class="profile">
         <div class="profile-userpic">
-            <img src="<%= session.getAttribute("PICTURE").toString()%>" class="img-responsive" alt="">
+            <img src="<%= gamba%>" class="img-responsive" alt="">
         </div>
         <!-- SIDEBAR USER TITLE -->
         <div class="profile-usertitle">
             <div class="profile-usertitle-name">
-                <%=session.getAttribute("USER_NAME").toString()%>
+                <%= nama%>
             </div>
             <div class="profile-usertitle-job">
-                <%=session.getAttribute("ROLE_NAME").toString()%>
+                <%= role%>
+            </div>
+            @
+            <div class="profile-usertitle-job">
+                <%= hfcName%>
             </div>
         </div>
         <!-- SIDEBAR BUTTONS -->
@@ -39,8 +59,8 @@
 </a>
 </li> -->
         <li>
-            <a href="receive-order.html">
-                <i class="fa fa-files-o fa-lg"></i> Receive Order
+            <a href="Receive_Order.jsp">
+                <i class="fa fa-shopping-cart fa-lg"></i> Receive Order
             </a>
         </li>
         <!--<li>
@@ -49,12 +69,12 @@
 </a>
 </li> -->
         <li>
-            <a href="body-system.html">
-                <i class="fa fa-files-o fa-lg"></i> Body System
+            <a href="body_system.jsp">
+                <i class="fa fa-user fa-lg"></i> Body System
             </a>
         </li>
         <li>
-            <a href="RIS-procedure.html">
+            <a href="RISProcedure.jsp">
                 <i class="fa fa-files-o fa-lg"></i> RIS Procedure
             </a>
         </li>
