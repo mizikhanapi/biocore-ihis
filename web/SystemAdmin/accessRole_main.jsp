@@ -20,7 +20,7 @@
 <% Conn conn = new Conn();%>
 <!-- Add Modal Start -->
 <div class="modal fade" id="ARM_detail" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
-    <div class="modal-dialog" >
+    <div class="modal-dialog" style="width: 50%">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal"><i class="fa fa-times fa-lg"></i></button>
@@ -29,7 +29,7 @@
             <div class="modal-body">
 
                 <!-- content goes here -->
-                <form style="width: 500px; margin: 0 auto;" id="ARM_addForm" autocomplete="off">
+                <form style="width: 100%; margin: 0 auto;" id="ARM_addForm" autocomplete="off">
 
                     <!-- Text input-->
                     <div class="form-group">

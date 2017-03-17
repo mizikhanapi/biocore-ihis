@@ -31,9 +31,9 @@
 
                     <!-- Text input-->
                     <div class="form-group">
-                        <label class="col-md-4 control-label" for="textinput">Discipline code</label>
+                        <label class="col-md-4 control-label" for="textinput">Discipline code*</label>
                         <div class="col-md-8">
-                            <input type="text"  class="form-control" id="SDM_disciplineCode" placeholder="Discipline Code" maxlength="30">
+                            <input type="text"  class="form-control" id="SDM_disciplineCode" placeholder="Search Discipline Code" maxlength="30">
                             <div id="SDM_match">
                                 <!--for search area-->
                             </div>
@@ -44,17 +44,17 @@
 
                     <!-- Text input-->
                     <div class="form-group">
-                        <label class="col-md-4 control-label" for="textinput">Subdiscipline Name</label>
+                        <label class="col-md-4 control-label" for="textinput">Subdiscipline Name*</label>
                         <div class="col-md-8">
-                            <input id="SDM_subdisciplineName" maxlength="100"  type="text" placeholder="Subdiscipline Name" class="form-control input-md">
+                            <input id="SDM_subdisciplineName" maxlength="100"  type="text" placeholder="Insert Subdiscipline Name" class="form-control input-md">
                         </div>
                     </div>
 
                     <!-- Text input-->
                     <div class="form-group">
-                        <label class="col-md-4 control-label" for="textinput">Subdiscipline Code</label>
+                        <label class="col-md-4 control-label" for="textinput">Subdiscipline Code*</label>
                         <div class="col-md-8">
-                            <input id="SDM_subdisciplineCode" maxlength="30" type="text" placeholder="Subdiscipline Code" class="form-control input-md">
+                            <input id="SDM_subdisciplineCode" maxlength="30" type="text" placeholder="Insert Subdiscipline Code" class="form-control input-md">
                         </div>
                     </div>
 
@@ -62,13 +62,13 @@
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="textinput">Type</label>
                         <div class="col-md-8">
-                            <input id="SDM_type"  type="text" maxlength="30" placeholder="Subdiscipline Type" class="form-control input-md">
+                            <input id="SDM_type"  type="text" maxlength="30" placeholder="Insert Subdiscipline Type (optional)" class="form-control input-md">
                         </div>
                     </div>
 
                    
                      <div class="form-group">
-                        <label class="col-md-4 control-label" for="textinput">Status</label>
+                        <label class="col-md-4 control-label" for="textinput">Status*</label>
                         <div class="col-md-8">
                             <select class="form-control" id="SDM_status">
                                 <option  value="0" >Active</option>

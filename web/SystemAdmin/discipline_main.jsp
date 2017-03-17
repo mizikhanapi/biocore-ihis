@@ -30,17 +30,17 @@
 
                     <!-- Text input-->
                     <div class="form-group">
-                        <label class="col-md-4 control-label" for="textinput">Discipline Name</label>
+                        <label class="col-md-4 control-label" for="textinput">Discipline Name*</label>
                         <div class="col-md-8">
-                            <input id="disciplineName"  type="text" placeholder="Name required" class="form-control input-md" maxlength="100">
+                            <input id="disciplineName"  type="text" placeholder="Insert discipline name" class="form-control input-md" maxlength="100">
                         </div>
                     </div>
 
                     <!-- Text input-->
                     <div class="form-group">
-                        <label class="col-md-4 control-label" for="textinput">Discipline Code</label>
+                        <label class="col-md-4 control-label" for="textinput">Discipline Code*</label>
                         <div class="col-md-8">
-                            <input id="disciplineCode"  type="text" placeholder="Code required" class="form-control input-md" maxlength="30">
+                            <input id="disciplineCode"  type="text" placeholder="Insert discipline code" class="form-control input-md" maxlength="30">
                         </div>
                     </div>
                     
@@ -48,7 +48,7 @@
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="textinput">Group Code</label>
                         <div class="col-md-8">
-                            <input id="groupCode"  type="text" placeholder="Optional" class="form-control input-md" maxlength="30">
+                            <input id="groupCode"  type="text" placeholder="Insert group code (optional)" class="form-control input-md" maxlength="30">
                         </div>
                     </div>
                      
@@ -56,7 +56,7 @@
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="textinput">Category Code</label>
                         <div class="col-md-8">
-                            <input id="categoryCode"  type="text" placeholder="Optional" class="form-control input-md" maxlength="30">
+                            <input id="categoryCode"  type="text" placeholder="Insert category code (optional)" class="form-control input-md" maxlength="30">
                         </div>
                     </div>
                      
@@ -64,13 +64,13 @@
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="textinput">Specialty Code</label>
                         <div class="col-md-8">
-                            <input id="specialtyCode"  type="text" placeholder="Optional" class="form-control input-md" maxlength="30">
+                            <input id="specialtyCode"  type="text" placeholder="Insert specialty code (optional)" class="form-control input-md" maxlength="30">
                         </div>
                     </div>
 
                     
                      <div class="form-group">
-                        <label class="col-md-4 control-label" for="textinput">Status</label>
+                        <label class="col-md-4 control-label" for="textinput">Status*</label>
                         <div class="col-md-8">
                             <select class="form-control" name="tstatus" id="DM_status">
                                 <option  value="0" >Active</option>

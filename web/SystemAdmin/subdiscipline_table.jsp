@@ -85,7 +85,7 @@
 
                     <!-- Text input-->
                     <div class="form-group">
-                        <label class="col-md-4 control-label" for="textinput">Discipline Code</label>
+                        <label class="col-md-4 control-label" for="textinput">Discipline Code*</label>
                         <div class="col-md-8">
                             <input id="SDT_disciplineCode" name="textinput" type="text" class="form-control input-md" readonly>
                         </div>
@@ -93,7 +93,7 @@
 
                     <!-- Text input-->
                     <div class="form-group">
-                        <label class="col-md-4 control-label" for="textinput">Subdiscipline Code</label>
+                        <label class="col-md-4 control-label" for="textinput">Subdiscipline Code*</label>
                         <div class="col-md-8">
                             <input id="SDT_subdisciplineCode"  type="text"  class="form-control input-md" readonly>
                         </div>
@@ -101,9 +101,9 @@
 
                     <!-- Text input-->
                     <div class="form-group">
-                        <label class="col-md-4 control-label" for="textinput">Subdiscipline Name</label>
+                        <label class="col-md-4 control-label" for="textinput">Subdiscipline Name*</label>
                         <div class="col-md-8">
-                            <input id="SDT_subdisciplineName" class="form-control" maxlength="100"  >
+                            <input id="SDT_subdisciplineName" class="form-control" maxlength="100"  placeholder="Insert subdiscipline name">
                         </div>
                     </div>
 
@@ -118,7 +118,7 @@
                    
                     <!-- Text input-->
                     <div class="form-group">
-                        <label class="col-md-4 control-label" for="textinput">Status</label>
+                        <label class="col-md-4 control-label" for="textinput">Status*</label>
                         <div class="col-md-8">
                             <select class="form-control" name="tstatus" id="SDT_status">
                                 <option  value="0" >Active</option>

@@ -88,34 +88,34 @@
 
                      <!-- Text input-->
                     <div class="form-group">
-                        <label class="col-md-4 control-label" for="textinput">Health Facility</label>
+                        <label class="col-md-4 control-label" for="textinput">Health Facility*</label>
                         <div class="col-md-8">
-                            <input type="text"  class="form-control" id="ADT_hfc" placeholder="Health Facility" readonly="true">
+                            <input type="text"  class="form-control" id="ADT_hfc" placeholder="Health Facility" readonly>
                             
                         </div>
                     </div>
 
                     <!-- Text input-->
                     <div class="form-group">
-                        <label class="col-md-4 control-label" for="textinput">Discipline</label>
+                        <label class="col-md-4 control-label" for="textinput">Discipline*</label>
                         <div class="col-md-8">
-                            <input type="text"  class="form-control" id="ADT_discipline" placeholder="Discipline" readonly="true">
+                            <input type="text"  class="form-control" id="ADT_discipline" placeholder="Discipline" readonly>
                             
                         </div>
                     </div>
                     
                      <!-- Text input-->
                     <div class="form-group">
-                        <label class="col-md-4 control-label" for="textinput">Subdiscipline</label>
+                        <label class="col-md-4 control-label" for="textinput">Subdiscipline*</label>
                         <div class="col-md-8">
-                            <input type="text"  class="form-control" id="ADT_subdiscipline" placeholder="Subdiscipline" readonly="true">
+                            <input type="text"  class="form-control" id="ADT_subdiscipline" placeholder="Subdiscipline" readonly>
                           
                         </div>
                     </div>
                      
                     
                      <div class="form-group">
-                        <label class="col-md-4 control-label" for="textinput">Status</label>
+                        <label class="col-md-4 control-label" for="textinput">Status*</label>
                         <div class="col-md-8">
                             <select class="form-control"  id="ADT_status">
                                 <option  value="0" >Active</option>

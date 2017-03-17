@@ -30,9 +30,9 @@
 
                     <!-- Text input-->
                     <div class="form-group">
-                        <label class="col-md-4 control-label" for="textinput">Health Facility</label>
+                        <label class="col-md-4 control-label" for="textinput">Health Facility*</label>
                         <div class="col-md-8">
-                            <input type="text"  class="form-control" id="ADM_hfc" placeholder="Health Facility">
+                            <input type="text"  class="form-control" id="ADM_hfc" placeholder="Search Health Facility">
                             <div id="ADM_hfc_match">
                                 <!--for search area-->
                             </div>
@@ -41,9 +41,9 @@
 
                     <!-- Text input-->
                     <div class="form-group">
-                        <label class="col-md-4 control-label" for="textinput">Discipline</label>
+                        <label class="col-md-4 control-label" for="textinput">Discipline*</label>
                         <div class="col-md-8">
-                             <input type="text"  class="form-control" id="ADM_discipline" placeholder="Discipline">
+                             <input type="text"  class="form-control" id="ADM_discipline" placeholder="Search Discipline">
                             <div id="ADM_discipline_match">
                                 <!--for search area-->
                             </div>
@@ -52,9 +52,9 @@
                     
                      <!-- Text input-->
                     <div class="form-group">
-                        <label class="col-md-4 control-label" for="textinput">Subdiscipline</label>
+                        <label class="col-md-4 control-label" for="textinput">Subdiscipline*</label>
                         <div class="col-md-8">
-                             <input type="text"  class="form-control" id="ADM_subdiscipline" placeholder="Subdiscipline">
+                             <input type="text"  class="form-control" id="ADM_subdiscipline" placeholder="Search Subdiscipline">
                             <div id="ADM_subdiscipline_match">
                                 <!--for search area-->
                             </div>
@@ -63,7 +63,7 @@
                      
                     
                      <div class="form-group">
-                        <label class="col-md-4 control-label" for="textinput">Status</label>
+                        <label class="col-md-4 control-label" for="textinput">Status*</label>
                         <div class="col-md-8">
                             <select class="form-control"  id="ADM_status">
                                 <option  value="0" >Active</option>
