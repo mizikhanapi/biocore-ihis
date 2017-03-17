@@ -60,13 +60,13 @@ WHERE
      pis_mdc2.`D_CAUTION_CODE` AS D_CAUTION_CODE,
      DATE_FORMAT(NOW(),'%d/%m/%Y') AS DATE,
      adm_health_facility.`logo` AS LOGO,
-     CONVERT(adm_health_facility.`logo` USING utf8) AS LOGOCON
+     adm_health_facility.`hfc_name` AS HFCNAME
 FROM
      `pis_order_master` pis_order_master 
 INNER JOIN `pis_order_detail` pis_order_detail ON pis_order_master.`ORDER_NO` = pis_order_detail.`ORDER_NO`
 INNER JOIN `pms_patient_biodata` pms_patient_biodata ON pis_order_master.`PMI_NO` = pms_patient_biodata.`PMI_NO`
 INNER JOIN `pis_mdc2` pis_mdc2 ON pis_order_detail.`DRUG_ITEM_CODE` = pis_mdc2.`ud_mdc_code`
-INNER JOIN `adm_health_facility` adm_health_facility ON  pis_order_master.`HEALTH_FACILITY_CODE` = adm_health_facility.`hfc_name`
+INNER JOIN `adm_health_facility` adm_health_facility ON  pis_order_master.`HEALTH_FACILITY_CODE` = adm_health_facility.`hfc_cd`
 
 WHERE
      pis_order_detail.`STATUS` = 1
@@ -111,7 +111,7 @@ WHERE
 	<field name="LOGO" class="java.lang.Object">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
-	<field name="LOGOCON" class="java.lang.String"/>
+	<field name="HFCNAME" class="java.lang.String"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
@@ -144,16 +144,23 @@ WHERE
 				<textFieldExpression><![CDATA["Name : " + $F{PATIENT_NAME}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="44" y="2" width="119" height="23" uuid="6005423c-a99b-4925-bf4a-ebde13f46413"/>
+				<reportElement x="3" y="6" width="157" height="20" uuid="6005423c-a99b-4925-bf4a-ebde13f46413"/>
+				<box>
+					<pen lineWidth="1.25"/>
+					<topPen lineWidth="1.25"/>
+					<leftPen lineWidth="1.25"/>
+					<bottomPen lineWidth="1.25"/>
+					<rightPen lineWidth="1.25"/>
+				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="12" isBold="true"/>
+					<font size="10" isBold="true"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{HFC}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{HFCNAME}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="1" y="26" width="161" height="42" uuid="be3ec8a9-161a-4fdf-89d4-ec8d84e74a72"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="15" isBold="true"/>
+					<font size="14" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{ADVISORY_CODE}]]></textFieldExpression>
 			</textField>
@@ -171,10 +178,6 @@ WHERE
 				</textElement>
 				<textFieldExpression><![CDATA[$F{ITEM_DESC} + " ( " + $F{DOSAGE} + " )"]]></textFieldExpression>
 			</textField>
-			<image>
-				<reportElement x="3" y="2" width="41" height="23" uuid="8dcb4025-4163-435a-973c-b62f0688a8e7"/>
-				<imageExpression><![CDATA["C:\\Users\\Shammugam\\Desktop\\SHAM\\I_Pharmacy\\web\\PIS\\libraries\\UTeM.jpg"]]></imageExpression>
-			</image>
 		</band>
 	</detail>
 	<columnFooter>
