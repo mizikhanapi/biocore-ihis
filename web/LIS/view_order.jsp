@@ -178,7 +178,7 @@
             </div>
       </nav>
            <%}}%>
-    <h3 class="headerTitle">List of Test Order Detail</h3>
+           <h3 class="headerTitle">List of Test Order Detail<input type="text" name="order_no" id="order_no3" value="<%=orderno%>" style=" display: none;"></h3>
     <div class="table-responsive" id='viewVODpage'>
         
     <table id="MTC"  class="table table-striped table-bordered" cellspacing="0" width="100%">
@@ -258,18 +258,20 @@
                      $("#btn_update_<%=i%>").click(function () {
                             var tcode = $("#tcode_<%=i%>").val();
                             var fcomment = $("#fcomment_<%=i%>").val();
-
+                            var order_no = $("#order_no3").val();
                             $.ajax({
                                 url: "odUpdate.jsp",
                                 type: "post",
                                 data: {
                                     tcode: tcode,
+                                    order_no: order_no,
                                     fcomment: fcomment
                                 },
                                 timeout: 10000,
                                 success: function(data) {
                                      var d = data.split("|");
                                      if (d[1] == '1') {
+                                         alert("Comment are filled.")
                                          window.location.reload();
                                          $("#basicModal_<%=i %>").hide();
                                          $(".modal-backdrop").hide();

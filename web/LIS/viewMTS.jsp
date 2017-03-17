@@ -90,12 +90,20 @@
                                     <h4 class="modal-title" id="myModalLabel">Order Source</h4>
                                 </div>
                                 <br><br>
-                                <div class="form-group">
-                                    <label for="exampleInputEmail1"> Requester Name: <%=dataPatientApp.get(i).get(4)%></label>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail1"> Requester Name: <%=dataPatientApp.get(i).get(4)%></label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail1"> Requester Location: <%=dataPatientApp.get(i).get(10)%></label>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="form-group">
-                                    <label for="exampleInputEmail1"> Requester Location: <%=dataPatientApp.get(i).get(10)%></label>
-                                </div>
+                                
+                                
                             </div>
                         </div>
                     </div>
