@@ -37,6 +37,8 @@
         boolean isInsert = rmic.setQuerySQL(conn.HOST, conn.PORT, sqlInsert);
 
         if (isInsert == true) {
+            String sqlInsertSub = "INSERT INTO adm_subdiscipline values('"+disciplineCode+"', '"+disciplineCode+"', '"+disciplineName+"', '', '"+userID+"', now(), '"+status+"')";
+            rmic.setQuerySQL(conn.HOST, conn.PORT, sqlInsertSub);
             out.print("Success");
         } else {
             out.print("Failed");
