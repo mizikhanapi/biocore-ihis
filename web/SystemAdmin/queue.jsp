@@ -38,7 +38,7 @@
                 <!-- menu top -->
                 <%@include file="libraries/topMenus.jsp" %>
                 <!-- menu top -->
-                
+                <input id="hfcCODE" name="hfcCODE" type="hidden" value="<%=session.getAttribute("HEALTH_FACILITY_CODE").toString()%>">
                 <div class="row">
                     <div class="col-md-12">
                         <div class="thumbnail">
