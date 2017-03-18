@@ -90,7 +90,7 @@
                                             </li>
                                             <li>
                                                 <a href="#UAM_tab4" data-toggle="tab">
-                                                    ASSIGN RESPONSIBILITY TO ROLE </a>
+                                                    ASSIGN PAGE TO ROLE </a>
                                             </li>
 
                                         </ul>
