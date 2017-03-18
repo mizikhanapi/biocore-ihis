@@ -57,7 +57,7 @@
     String insertEpisode="";
 
     //String testInsert = "insert into pms_episode(pmi_no)values('"+pmi+"')";
-    String isAlreadyRegister = "select pmi_no from pms_episode where pmi_no = '" + pmi + "' and (status like '%Consult%' or status = '0' or status = '2' or status like '%Second Opinion%') and episode_date like '%" + now + "%';";
+    String isAlreadyRegister = "select pmi_no from pms_episode where pmi_no = '" + pmi + "' and (status = '5' or status = '0' or status = '2') and episode_date like '%" + now + "%';";
     ArrayList<ArrayList<String>> alreadyRegis = conn.getData(isAlreadyRegister);
     
     String sqlRoom = "select room_no from adm_users where user_id='"+docID+"'";

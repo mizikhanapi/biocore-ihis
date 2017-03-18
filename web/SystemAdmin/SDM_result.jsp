@@ -4,12 +4,12 @@
 <%
     Conn conn = new Conn();
     String key = request.getParameter("input");
-    String searchProblem = "SELECT discipline_cd, discipline_name FROM adm_discipline WHERE discipline_cd like '%"+key+"%' OR discipline_name like '%"+key+"%'";
+    String searchProblem = "SELECT discipline_cd, discipline_name FROM adm_discipline WHERE concat(discipline_cd, ' | ', discipline_name) like '%"+key+"%'";
     ArrayList<ArrayList<String>> search = conn.getData(searchProblem);
     if (search.size() > 0)
     {
 %>
-<ul id="SDM_matchList" style="width: 300px; height: 200px; overflow: auto">
+<ul id="SDM_matchList" style="width: 300px; max-height: 200px; height: 100%; overflow: auto">
     <% for (int i = 0; i < search.size(); i++)
         {
     %>

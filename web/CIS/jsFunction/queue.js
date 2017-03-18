@@ -12,7 +12,8 @@ $(document).ready(function () {
 
 
     $('#listQueue').on('click', '#consultBtn', function (e) {
-        reloadStat = 1;
+        reloadStat = "1";
+        console.log(reloadStat);
         e.preventDefault();
           $('#mainConsultBar').show();
         var row = $(this).closest('tr');
@@ -31,7 +32,7 @@ $(document).ready(function () {
         }
         var updateConsult = updateStatus(pmiNo,episodeDate,5);
 
-        var patient = findPatient(pmiNo);
+        var patient = findPatient(pmiNo,episodeDate);
         var getPDIInfo = getPDI(pmiNo);
         console.log(PDIInfo);
 
@@ -46,12 +47,13 @@ $(document).ready(function () {
     });
 });
 
-function findPatient(pmiNo) {
+function findPatient(pmiNo,episodeDate) {
     $.ajax({
         url: 'search/searchPatient.jsp',
         method: 'POST',
         data: {
-            pmiNo: pmiNo
+            pmiNo: pmiNo,
+            episodeDate:episodeDate
         },
         timeout: 10000,
         success: function (result) {

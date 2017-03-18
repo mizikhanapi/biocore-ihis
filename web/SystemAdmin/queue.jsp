@@ -3,7 +3,10 @@
     Created on : Mar 16, 2017, 10:14:31 PM
     Author     : user
 --%>
+<%@include file="validateSession.jsp" %>
+<%@include file="validateModuleAccess.jsp" %>
 
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -35,7 +38,7 @@
                 <!-- menu top -->
                 <%@include file="libraries/topMenus.jsp" %>
                 <!-- menu top -->
-                
+                <input id="hfcCODE" name="hfcCODE" type="hidden" value="<%=session.getAttribute("HEALTH_FACILITY_CODE").toString()%>">
                 <div class="row">
                     <div class="col-md-12">
                         <div class="thumbnail">

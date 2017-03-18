@@ -9,6 +9,7 @@
 <%@page import="Config.Config"%>
 <%@page import="main.RMIConnector"%>
 <%@include file="validateSession.jsp" %>
+<%@include file="validateModuleAccess.jsp" %>
 
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -89,7 +90,7 @@
                                             </li>
                                             <li>
                                                 <a href="#UAM_tab4" data-toggle="tab">
-                                                    ASSIGN RESPONSIBILITY TO ROLE </a>
+                                                    ASSIGN PAGE TO ROLE </a>
                                             </li>
 
                                         </ul>

@@ -27,7 +27,6 @@
         </thead>
     </table>
 </div>
-
 <script>
     $(document).ready(function(){
        $.ajax({

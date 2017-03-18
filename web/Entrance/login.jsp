@@ -35,8 +35,8 @@
                 <p id="profile-name" class="profile-name-card">Clinical Support System</p>
                 <form class="form-signin" id="leForm" >
                     <span id="reauth-email" class="reauth-email"></span>
-                    <input type="text" id="inputUserID" class="form-control" placeholder="User ID" name="username" required autofocus>
-                    <input type="password" id="inputPassword" class="form-control" placeholder="Password" name="password" required>
+                    <input type="text" id="inputUserID" class="form-control" placeholder="Enter User ID" name="username" required autofocus>
+                    <input type="password" id="inputPassword" class="form-control" placeholder="Enter Password" name="password" required>
                     <!--                
                     <div id="remember" class="checkbox">
                                         <label>
@@ -117,6 +117,10 @@
                                 alert("User ID does not exist");
                             else if (num === 3)
                                 alert("You don't have proper user access. Contact your admin to configure your user access");
+                            else if (num === 4){
+                                alert("You have logged in to another PC or you did not log out properly");
+                                window.location = "login_ic.jsp";
+                            }    
                             else
                                 alert("Error");
                         },

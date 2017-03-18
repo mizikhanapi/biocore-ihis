@@ -18,7 +18,9 @@ function DTOupdateSearchCode(){
             $('#update_pro').val(dtoGnr);
             $('#update_qty').val(dtoQty);
             $('#ppack').val(dtoPackage);
-
+            $('#udrugStrDTO').val(array_data[4].trim());
+            $('#udoseDTO').val(array_data[5].trim());
+            $('#update_RouteDTO').val(array_data[6].trim());
           }
         });
 }
@@ -35,7 +37,7 @@ function DTOSearchCode(){
             var dtoGnr = array_data[1];
             var dtoQty = array_data[2];
             var dtoPackage = array_data[3];
-            console.log(dtoCode);
+            console.log(array_data);
             
             if(dtoGnr===""){
                 dtoGnr="No product name";
@@ -43,8 +45,11 @@ function DTOSearchCode(){
            
             $('#dtoCode').val(dtoCode.trim());
             $('#drugNameDTO').val(dtoGnr.trim());
-            $('#drugQtyDTO').val(dtoQty.trim());
+            $('#drugStockDTO').val(dtoQty.trim());
             $('#pack').val(dtoPackage);
+            $('#drugStrDTO').val(array_data[4].trim());
+            $('#doseDTO').val(array_data[5].trim());
+            $('#dRouteDTO').val(array_data[6].trim());
 
           }
         });

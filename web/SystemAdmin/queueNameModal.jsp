@@ -57,7 +57,7 @@
                         </div>
                     </div>
                     <div>
-                        <div><label>Queue Name Code *: </label></div>
+                        <div><label>Queue Name *: </label></div>
                         <div class="form-group">
                             <input type="text" class="form-control" placeholder="Queue Name Code" maxlength="200" id="QnameCode">
                         </div>
@@ -65,15 +65,10 @@
                     <div>
                         <div><label>Staff(Optional): </label></div>
                         <div class="form-group">
-                            <select class="form-control" id="QName">
-                                <option selected="" disabled="">Select staff (Optional)</option>
-                                <%
-                                    for (int i = 0; i < dataDoctorAvailable.size(); i++) {%>
-                                <option value="<%=dataDoctorAvailable.get(i).get(0) + "|" + dataDoctorAvailable.get(i).get(1)%>"><%="(" + dataDoctorAvailable.get(i).get(0) + ") " + dataDoctorAvailable.get(i).get(1)%></option>
-                                <%
-                                    }
-                                %>
-                            </select>
+                            
+                            <input id="QName" name="textinput" type="text" placeholder="select staff.." class="form-control input-md">
+                        <input id="QNameCD" name="PMIhstateCODE" type="hidden" placeholder="" class="form-control input-md">
+                        <div id="matchDoctorQ" class="search-drop"></div>
                         </div>
                     </div>  
                     <div>
@@ -120,6 +115,7 @@
     </div>
 </div>
 <!-- Modal -->
+<script src="../PMS/libraries/lib/js/search/searchDoctor.js" type="text/javascript"></script>
 <script>
     var type;
     var userId;
@@ -175,12 +171,12 @@
         } else {
             var B2 = $('#QName').val();
             //
-            var array_data2;
-            array_data2 = B2.split("|");
+//            var array_data2;
+//            array_data2 = B2.split("|");
 
 
             var desc = $('#QnameDes').val();
-            var uid = array_data2[0];
+            var uid =  $('#QNameCD').val();
             console.log("userid when updated" + uid);
             var quota = $('#typeQuota').val();
 

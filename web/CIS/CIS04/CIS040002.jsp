@@ -13,7 +13,6 @@
             </div>
             <div class="modal-body">
                 <!-- content goes here -->
-
                 <div class="row">
                     <div class="col-xs-12 col-sm-12 col-md-12">
 
@@ -53,10 +52,12 @@
                     </div>
                     <div class="col-xs-4 col-sm-4 col-md-4">
                         <div class="form-group ">
-                            <input class="form-control input-lg" type="text" name="qty" id="drugQtyDTO" placeholder="" readonly="">
+                            <input class="form-control input-lg" type="text" name="qty" id="drugStockDTO" placeholder="" readonly="">
                         </div>
                     </div>
                 </div>
+                
+                
 
                 <div class="row">
                     <div class="col-xs-2 col-sm-2 col-md-2">
@@ -79,9 +80,31 @@
                             <input class="form-control input-lg" type="text" name="dose" id="doseDTO" placeholder="" readonly="">
                         </div>
                     </div>
-
                 </div>
-
+                
+                                <div class="row">
+                    <div class="col-xs-2 col-sm-2 col-md-2">
+                        <div class="form-group modalTextLabel">
+                            <h4 class="modal-title">Quantity</h4>
+                        </div>
+                    </div>
+                    <div class="col-xs-4 col-sm-4 col-md-4">
+                        <div class="form-group">
+                           <input type="number" name="display_name" id="drugQtyDTO" class="form-control input-lg" placeholder="" tabindex="3">
+                        </div>
+                    </div>
+                    <div class="col-xs-2 col-sm-2 col-md-2">
+                        <div class="form-group">
+                            <h4 class="modal-title modalTextLabel">Route</h4>
+                        </div>
+                    </div>
+                    <div class="col-xs-4 col-sm-4 col-md-4">
+                        <div class="form-group ">
+                            <input class="form-control input-lg" type="text" name="qty" id="dRouteDTO" placeholder="" readonly="">
+                        </div>
+                    </div>
+                </div>
+                
                 <div class="row">
                     <div class="col-xs-2 col-sm-2 col-md-2">
                         <div class="form-group">
@@ -254,7 +277,7 @@
                     </div>
                     <div class="col-xs-4 col-sm-4 col-md-4">
                         <div class="form-group ">
-                            <input class="form-control input-lg" type="text" name="qty" id="update_qty" placeholder="" readonly="">
+                            <input class="form-control input-lg" type="text" name="qty" id="update_stock" placeholder="" readonly="">
                         </div>
                     </div>
                 </div>
@@ -282,7 +305,28 @@
                     </div>
 
                 </div>
-
+                                <div class="row">
+                    <div class="col-xs-2 col-sm-2 col-md-2">
+                        <div class="form-group modalTextLabel">
+                            <h4 class="modal-title">Quantity</h4>
+                        </div>
+                    </div>
+                    <div class="col-xs-4 col-sm-4 col-md-4">
+                        <div class="form-group">
+                           <input type="number" name="display_name" id="update_qty" class="form-control input-lg" placeholder="" tabindex="3">
+                        </div>
+                    </div>
+                    <div class="col-xs-2 col-sm-2 col-md-2">
+                        <div class="form-group">
+                            <h4 class="modal-title modalTextLabel">Route</h4>
+                        </div>
+                    </div>
+                    <div class="col-xs-4 col-sm-4 col-md-4">
+                        <div class="form-group ">
+                            <input class="form-control input-lg" type="text" name="qty" id="update_RouteDTO" placeholder="" readonly="">
+                        </div>
+                    </div>
+                </div>
                 <div class="row">
                     <div class="col-xs-2 col-sm-2 col-md-2">
                         <div class="form-group">

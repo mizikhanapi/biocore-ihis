@@ -20,7 +20,7 @@
 <% Conn conn = new Conn();%>
 <!-- Add Modal Start -->
 <div class="modal fade" id="ARM_detail" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
-    <div class="modal-dialog" >
+    <div class="modal-dialog" style="width: 50%">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal"><i class="fa fa-times fa-lg"></i></button>
@@ -29,63 +29,69 @@
             <div class="modal-body">
 
                 <!-- content goes here -->
-                <form style="width: 500px; margin: 0 auto;" id="ARM_addForm" autocomplete="off">
+                <form style="width: 100%; margin: 0 auto;" id="ARM_addForm" autocomplete="off">
 
                     <!-- Text input-->
                     <div class="form-group">
-                        
-                        
-                        <div style="align-items: center; text-align: center">
-                            <label for="textinput">Select User</label>
-                            <select id="ARM_user" multiple="multiple"></select>
 
+
+                        <div style="align-items: center; text-align: center">
+                            <label for="textinput">Select User</label><br>
+                            <span>
+                                <a href="#" id="ARM_user_selectAll">Select all</a>
+                                <span style="color: white">--------------------------</span>
+                                <a href="#" id="ARM_user_deselectAll">Deselect all</a>
+                            </span>
+                            <div>
+                                <select id="ARM_user" multiple="multiple"></select>
+                            </div>    
                         </div>
                     </div>
 
                     <!-- Text input-->
                     <div class="form-group">
-                       
-                            <select id="ARM_role" class="form-control input-md">
-                                <option value="">-- Select role --</option>
-                                <%
-                                    String sqlRole = "Select role_code, role_name FROM adm_role";
-                                    ArrayList<ArrayList<String>> dataRole = conn.getData(sqlRole);
 
-                                    for (int i = 0; i < dataRole.size(); i++) {
+                        <select id="ARM_role" class="form-control input-md">
+                            <option value="">-- Select role --</option>
+                            <%
+                                String sqlRole = "Select role_code, role_name FROM adm_role";
+                                ArrayList<ArrayList<String>> dataRole = conn.getData(sqlRole);
 
-                                %><option value="<%=dataRole.get(i).get(0)%>"><%=dataRole.get(i).get(1)%></option><%
-                                    }
-                                %>
+                                for (int i = 0; i < dataRole.size(); i++) {
 
-                            </select>
+                            %><option value="<%=dataRole.get(i).get(0)%>"><%=dataRole.get(i).get(1)%></option><%
+                                }
+                            %>
+
+                        </select>
                     </div>
 
                     <!-- Text input-->
                     <div class="form-group">
-                        
-                            <select id="ARM_discipline" class="form-control input-md">
-                                <option value="">-- Select discipline--</option>
-                            </select>
-                       
+
+                        <select id="ARM_discipline" class="form-control input-md">
+                            <option value="">-- Select discipline--</option>
+                        </select>
+
                     </div>
 
                     <!-- Text input-->
                     <div class="form-group">
-                                             
-                            <select id="ARM_subdiscipline" class="form-control input-md">
-                                <option value="">-- Select subdiscipline--</option>
-                            </select>
-                        
+
+                        <select id="ARM_subdiscipline" class="form-control input-md">
+                            <option value="">-- Select subdiscipline--</option>
+                        </select>
+
                     </div> 
 
 
                     <div class="form-group">
-                         <select class="form-control"  id="ARM_status">
-                                <option  value="" >-- Select status --</option>
-                                <option  value="0" >Active</option>
-                                <option  value="1" >Inactive</option>
-                            </select>
-                        
+                        <select class="form-control"  id="ARM_status">
+                            <option  value="" >-- Select status --</option>
+                            <option  value="0" >Active</option>
+                            <option  value="1" >Inactive</option>
+                        </select>
+
                     </div>
 
 
@@ -135,18 +141,18 @@
         });
 
         $('#ARM_btnAdd').on('click', function () {
-            
+
             var arraySelect = [];
-                $("#ARM_user option:selected").each(function () {
-                    arraySelect.push($(this));
+            $("#ARM_user option:selected").each(function () {
+                arraySelect.push($(this));
 
-                });
+            });
 
-                var strUser = arraySelect.map(function (elem) {
-                    return elem.val();
-                }).join("|");
+            var strUser = arraySelect.map(function (elem) {
+                return elem.val();
+            }).join("|");
 
-                console.log(strUser);
+            console.log(strUser);
 
 
             //var user = $('#ARM_user').val();
@@ -155,10 +161,10 @@
             var subdiscipline = $('#ARM_subdiscipline').val();
             var status = $('#ARM_status').val();
 
-            if (strUser=== "") {
+            if (strUser === "") {
                 bootbox.alert("Select at least one user");
 
-            }else if (role === "") {
+            } else if (role === "") {
                 bootbox.alert("Select the role");
 
             } else if (discipline === "") {
@@ -216,9 +222,9 @@
                     error: function (err) {
                         console.log("Ajax Is Not Success");
                     },
-                    complete: function (jqXHR, textStatus ) {
+                    complete: function (jqXHR, textStatus) {
                         $('.loading').hide();
-                }
+                    }
 
                 });
             }
@@ -267,7 +273,7 @@
                 process: "user",
                 hfc: G_hfcCode
             };
-             $('#ARM_user').multiSelect('destroy');
+            $('#ARM_user').multiSelect('destroy');
 
             $.ajax({
                 type: 'POST',
@@ -285,6 +291,19 @@
             });
 
         }
+
+
+        $('#ARM_user_selectAll').on('click', function (e) {
+            e.preventDefault();
+            $('#ARM_user').multiSelect('select_all');
+            return false;
+        });
+        
+        $('#ARM_user_deselectAll').on('click', function (e) {
+            e.preventDefault();
+            $('#ARM_user').multiSelect('deselect_all');
+            return false;
+        });
 
 
         function createDisciplineList() {
