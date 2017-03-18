@@ -17,7 +17,7 @@
 
     //String sql = "select l.queue_type,l.queue_name,l.user_id,l.start_date,l.end_date,l.hfc_cd,l.discipline_cd,l.sub_discipline_cd,l.status,u.user_name,l.hfc_cd,l.created_by,l.created_date,x.user_name from pms_queue_list l inner join adm_user u  on u.user_id = l.user_id inner join adm_user x on x.user_id = l.created_by where l.hfc_cd = '"+hfc+"';";
     //String sql = "select l.queue_type,l.queue_name,l.user_id,l.start_date,l.end_date,l.hfc_cd,l.discipline_cd,l.sub_discipline_cd,l.status,u.user_name,l.hfc_cd,l.created_by,l.created_date,x.user_name,d.hfc_name from pms_queue_list l inner join adm_user u  on u.user_id = l.user_id inner join adm_user x on x.user_id = l.created_by inner join adm_health_facility d on d.hfc_cd = l.hfc_cd where l.hfc_cd = '"+hfc+"';";
-    String sql = "select l.queue_type,l.queue_name,l.user_id,l.start_date,l.end_date,l.hfc_cd,l.discipline_cd,l.sub_discipline_cd,l.status,u.user_name,l.created_by,l.created_date,x.user_name,h.hfc_name,d.discipline_name,s.subdiscipline_name"
+    String sql = "select distinct l.queue_type,l.queue_name,l.user_id,l.start_date,l.end_date,l.hfc_cd,l.discipline_cd,l.sub_discipline_cd,l.status,u.user_name,l.created_by,l.created_date,x.user_name,h.hfc_name,d.discipline_name,s.subdiscipline_name"
 +" from pms_queue_list l"
 +" inner join adm_users x on x.user_id = l.created_by"
 +" inner join adm_users u on u.user_id = l.user_id"       
@@ -26,7 +26,7 @@
 +" inner join adm_discipline d on d.discipline_cd = a.discipline_cd"
 +" inner join pms_queue_type q on q.queue_type = l.queue_type and q.status='Active' and q.hfc_cd = l.hfc_cd and q.discipline_code = l.discipline_cd"
 +" inner join pms_queue_name n on n.queue_type = l.queue_type and n.status='Active' and n.hfc_cd = l.hfc_cd and n.discipline_code = l.discipline_cd"
-+" LEFT OUTER JOIN adm_subdiscipline s on s.subdiscipline_cd = a.subdiscipline_cd and s.discipline_cd = a.discipline_cd"
++" INNER JOIN adm_subdiscipline s on s.subdiscipline_cd = a.subdiscipline_cd and s.discipline_cd = a.discipline_cd"
 +" where l.hfc_cd = '"+hfc+"' and l.discipline_cd='"+disL+"';";
     ArrayList<ArrayList<String>> dataQL;
     dataQL = conn.getData(sql);
