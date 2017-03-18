@@ -14,14 +14,14 @@
 
                 <!-- Text input-->
                 <div class="form-group">
-                    <label class="col-md-3 control-label" for="textinput">PMI No.</label>
+                    <label class="col-md-4 control-label" for="textinput">PMI No.</label>
                     <div class="col-md-8">
                         <input id="patientpmino" name="patientpmino" type="text" placeholder="" readonly class="form-control input-md">   
                     </div>
                 </div>
                 <!-- Text input-->
                 <div class="form-group">
-                    <label class="col-md-3 control-label" for="textinput">Name</label>
+                    <label class="col-md-4 control-label" for="textinput">Name</label>
                     <div class="col-md-8">
                         <input id="patientName" name="patientName" type="text" readonly placeholder="" class="form-control input-md">
                     </div>
@@ -33,14 +33,14 @@
 
                 <!-- Text input-->
                 <div class="form-group">
-                    <label class="col-md-3 control-label" for="textinput">New IC No.</label>
+                    <label class="col-md-4 control-label" for="textinput">New IC No.</label>
                     <div class="col-md-8">
                         <input id="patientnic" name="patientnic" type="text" readonly placeholder="" class="form-control input-md">
                     </div>
                 </div>
                 <!--Text input-->
                 <div class="form-group">
-                    <label class="col-md-3 control-label" for="textinput">Gender</label>
+                    <label class="col-md-4 control-label" for="textinput">Gender</label>
                     <div class="col-md-8">
                         <input id="patientGender" name="patientGender" type="text" readonly placeholder="" class="form-control input-md">
                     </div>
@@ -52,14 +52,14 @@
 
                 <!--Text input-->
                 <div class="form-group">
-                    <label class="col-md-3 control-label" for="textinput">D.O.B</label>
+                    <label class="col-md-4 control-label" for="textinput">D.O.B</label>
                     <div class="col-md-8">
                         <input id="patientBdate" name="patientBdate" type="text" readonly placeholder="" class="form-control input-md">
                     </div>
                 </div>
                 <!--Text input-->
                 <div class="form-group">
-                    <label class="col-md-3 control-label" for="textinput">Blood Type</label>
+                    <label class="col-md-4 control-label" for="textinput">Blood Type</label>
                     <div class="col-md-8">
                         <input id="patientBtype" name="patientBtype" type="text" readonly placeholder="" class="form-control input-md">
                     </div>
@@ -126,7 +126,7 @@
 
                 <!-- Text input-->
                 <div class="form-group">
-                    <label class="col-md-3 control-label" for="textinput">Order No.</label>
+                    <label class="col-md-4 control-label" for="textinput">Order No.</label>
                     <div class="col-md-8">
                         <input id="patientOrderNo" name="patientOrderNo" type="text" placeholder=" " readonly class="form-control input-md">   
                     </div>
@@ -139,7 +139,7 @@
 
                 <!-- Text input-->
                 <div class="form-group">
-                    <label class="col-md-3 control-label" for="textinput">Order Date</label>
+                    <label class="col-md-4 control-label" for="textinput">Order Date</label>
                     <div class="col-md-8">
                         <input id="patientOrderDate" name="patientOrderDate" type="text" readonly placeholder="" class="form-control input-md">
                     </div>
@@ -152,7 +152,7 @@
 
                 <!-- Text input-->
                 <div class="form-group">
-                    <label class="col-md-3 control-label" for="textinput">Location</label>
+                    <label class="col-md-4 control-label" for="textinput">Location</label>
                     <div class="col-md-8">
                         <input id="patientOrderLocationCode" name="patientOrderLocationCode" type="text" readonly placeholder="" class="form-control input-md">
                     </div>
@@ -1052,20 +1052,20 @@
                     success: function (datas) {
                         console.log(datas);
 
-                        $.ajax({
-                            url: "patientOrderListDetailsDispenceFarTable.jsp",
-                            type: "post",
-                            data: dataAjax,
-                            timeout: 3000,
-                            success: function (datas) {
-                                console.log(datas);
-
-                            },
-                            error: function (err) {
-                                console.log("Error update!");
-                            }
-
-                        });
+//                        $.ajax({
+//                            url: "patientOrderListDetailsDispenceFarTable.jsp",
+//                            type: "post",
+//                            data: dataAjax,
+//                            timeout: 3000,
+//                            success: function (datas) {
+//                                console.log(datas);
+//
+//                            },
+//                            error: function (err) {
+//                                console.log("Error update!");
+//                            }
+//
+//                        });
 
                     },
                     error: function (err) {
@@ -1344,23 +1344,34 @@
                 function () {
                     console.log("Inclean");
 
+//                    $.ajax({
+//                        url: "patientOrderListDetailsDispenceFarTableBillNoUpdate.jsp",
+//                        type: "post",
+//                        timeout: 3000,
+//                        success: function (data) {
+//                            console.log(data);
+//
+//                            $.ajax({
+//                                url: "patientOrderListTable.jsp",
+//                                type: 'POST',
+//                                timeout: 3000,
+//                                success: function (data) {
+//                                    console.log(data);
+//                                    $("#patientOrderListContent").html(data);
+//                                }
+//                            });
+//
+//                        }
+//                    });
+
+
                     $.ajax({
-                        url: "patientOrderListDetailsDispenceFarTableBillNoUpdate.jsp",
-                        type: "post",
+                        url: "patientOrderListTable.jsp",
+                        type: 'POST',
                         timeout: 3000,
                         success: function (data) {
                             console.log(data);
-
-                            $.ajax({
-                                url: "patientOrderListTable.jsp",
-                                type: 'POST',
-                                timeout: 3000,
-                                success: function (data) {
-                                    console.log(data);
-                                    $("#patientOrderListContent").html(data);
-                                }
-                            });
-
+                            $("#patientOrderListContent").html(data);
                         }
                     });
 
