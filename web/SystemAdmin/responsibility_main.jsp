@@ -7,7 +7,7 @@
 <!-- Add Part Start -->
 <!-- Add Button Start -->
 <h4 style="padding-top: 30px;padding-bottom: 35px; font-weight: bold">
-    ASSIGN RESPONSIBILITY
+    ASSIGN PAGE TO ROLE
     <span class="pull-right">
         <button id="RESM_btnModal" class="btn btn-success" data-status="pagado" data-toggle="modal" data-id="1" data-target="#RESM_detail" style=" padding-right: 10px;padding-left: 10px;color: white;"><a data-toggle="tooltip" data-placement="top" title="Add Items" id="test"><i class=" fa fa-plus" style=" padding-right: 10px;padding-left: 10px;color: white;"></i></a>Assign Responsibility</button>
     </span>

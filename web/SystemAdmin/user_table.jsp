@@ -26,8 +26,8 @@
 <tbody>
 
     <%
-        //                      0       1                       2           3                       4               5                                6        7       8               9           10          11          12      13                  14                                              15                                        16          17              18          19          20                          21                  22          23         24
-        String sql = " SELECT user_id, health_facility_code, user_name, 'password' as dummy, occupation_code, DATE_FORMAT(birth_date,'%d/%m/%Y'), sex_code, new_icno, home_phone, office_phone, mobile_phone, a.fax_no, a.email, id_category_code, ifnull(DATE_FORMAT(start_date,'%d/%m/%Y'), '') ,ifnull(DATE_FORMAT(end_date,'%d/%m/%Y'), '') , title, nationality_code, user_type, user_group, user_classification_code, ifnull(status, '0'), hfc_name, mother_name, room_no "
+        //                      0       1                       2           3                       4               5                                6        7       8               9           10          11          12      13                  14                                              15                                        16          17              18          19          20                          21                  22          23         24           25
+        String sql = " SELECT user_id, health_facility_code, user_name, 'password' as dummy, occupation_code, DATE_FORMAT(birth_date,'%d/%m/%Y'), sex_code, new_icno, home_phone, office_phone, mobile_phone, a.fax_no, a.email, id_category_code, ifnull(DATE_FORMAT(start_date,'%d/%m/%Y'), '') ,ifnull(DATE_FORMAT(end_date,'%d/%m/%Y'), '') , title, nationality_code, user_type, user_group, user_classification_code, ifnull(status, '0'), hfc_name, mother_name, room_no, ifnull(login_status, '0') "
                 + "FROM adm_users a join adm_health_facility b on health_facility_code = hfc_cd "
                 + "WHERE health_facility_code = '" + user_hfc + "'";
         ArrayList<ArrayList<String>> dataUser = conn.getData(sql);
@@ -199,6 +199,19 @@
                                     <label class="col-md-4 control-label" for="textinput">Mother's Name *</label>
                                     <div class="col-md-8">
                                         <input id="UT_mother"  type="text" placeholder="Insert the staff mother's name" class="form-control input-md" maxlength="30">
+                                    </div>
+                                </div>
+                            </div>
+                            
+                             <div class="col-md-6">
+                                <!-- Text input-->
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label" for="textinput">Login Status *</label>
+                                    <div class="col-md-8">
+                                        <select id="UT_loginStatus"  class="form-control input-md">
+                                            <option value="0">Logged Out</option>
+                                            <option value="1">Logged In</option>
+                                        </select>
                                     </div>
                                 </div>
                             </div>
@@ -605,6 +618,7 @@
             var userIDStatus = arrayData[21];
             var mother = arrayData[23];
             var roomNo = arrayData[24];
+            var loginStatus = arrayData[25]
 
             $('#UT_name').val(name);
             $('#UT_title').val(title);
@@ -630,7 +644,8 @@
             $('#UT_endDate').val(endDate);
             $('#UT_userIDStatus').val(userIDStatus);
             $('#UT_mother').val(mother);
-             $('#UT_roomNO').val(roomNo);
+            $('#UT_roomNO').val(roomNo);
+            $('#UT_loginStatus').val(loginStatus);
 
             isHFCselected = true;
             selectedHFC = $('#UT_hfc').val();
@@ -648,8 +663,8 @@
             var email = $('#UT_email').val();
             var userID = $('#UT_userID').val();
             var hfc = $('#UT_hfc').val();
-            var password = $('#UT_password').val();
-            var password2 = $('#UT_password2').val();
+            //var password = $('#UT_password').val();
+            //var password2 = $('#UT_password2').val();
             var dob = $('#UT_dob').val();
             var gender = $('#UT_gender').val();
             var occupation = $('#UT_occupation').val();
@@ -667,6 +682,7 @@
             var userIDStatus = $('#UT_userIDStatus').val();
             var mother = $('#UT_mother').val();
             var roomNo = $('#UT_roomNO').val();
+            var loginStatus = $('#UT_loginStatus').val() ;
 
             $('#UT_detail').css('overflow', 'auto');
 
@@ -772,7 +788,8 @@
                     endDate: endDate,
                     userIDStatus: userIDStatus,
                     mother: mother,
-                    roomNo : roomNo
+                    roomNo : roomNo,
+                    loginStatus : loginStatus
                 };
 
                 $.ajax({
