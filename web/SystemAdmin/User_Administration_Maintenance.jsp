@@ -9,6 +9,7 @@
 <%@page import="Config.Config"%>
 <%@page import="main.RMIConnector"%>
 <%@include file="validateSession.jsp" %>
+<%@include file="validateModuleAccess.jsp" %>
 
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>

@@ -12,6 +12,7 @@
 <%@page import="Config.Config"%>
 
 <%@include file="../Entrance/validateSession.jsp" %>
+<%@include file="validateModuleAccess.jsp" %>
 
 
 <%

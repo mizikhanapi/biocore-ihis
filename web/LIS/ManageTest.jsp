@@ -12,6 +12,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <%@include file="../Entrance/validateSession.jsp" %>
+<%@include file="validateModuleAccess.jsp" %>
 <!DOCTYPE html>
 <html>
     <head>

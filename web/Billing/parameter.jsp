@@ -9,6 +9,7 @@
 <%@page import="java.text.DecimalFormat"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@include file="../Entrance/validateSession.jsp" %>
+<%@include file="validateModuleAccess.jsp" %>
 <!DOCTYPE html>
 <html>
     <%@include file = "includes/header.jsp" %>

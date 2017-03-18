@@ -6,6 +6,7 @@
 <%@ page buffer="8192kb" %>
 
 <%@include file="../Entrance/validateSession.jsp" %>
+<%@include file="validateModuleAccess.jsp" %>
 
 <%
     Config.getBase_url(request);

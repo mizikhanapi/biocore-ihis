@@ -9,6 +9,7 @@
 <%@page import="main.RMIConnector"%>
 
 <%@include file="../Entrance/validateSession.jsp" %>
+<%@include file="validateModuleAccess.jsp" %>
 <%
     Conn conn = new Conn();
 

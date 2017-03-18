@@ -9,6 +9,7 @@
 <%@page import="main.RMIConnector"%>
 <%@page import="Config.Config"%>
 <%@include file="../Entrance/validateSession.jsp" %>
+<%@include file="validateModuleAccess.jsp" %>
 <%
     Config.getBase_url(request);
     Config.getFile_url(session);

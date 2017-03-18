@@ -16,28 +16,19 @@
     final int WRONG_PASSWORD = 1;
     final int LOGIN = 2;
     final int CONFIGURE = 3;
-    final int NOT_LOGOUT = 4;
     int status = 0;
 
     Conn conn = new Conn();
 
     String user_id = request.getParameter("userID");
     String password = request.getParameter("password");
-    String user_ic = "";
 
-    if (request.getParameter("userIC") != null) {
-
-        user_ic = request.getParameter("userIC");
-        user_id = session.getAttribute("TEMP_ID").toString();
-
-    }
-
-    //                       0           1      2           3                   4                   5                               6                           7
-    String sql = "Select user_id, password, user_name, health_facility_code, hfc_name, ifnull(convert(picture using utf8), ''), ifnull(login_status, '0'), new_icno from adm_users "
+    //                       0           1      2           3                   4                   5
+    String sql = "Select user_id, password, user_name, health_facility_code, hfc_name, ifnull(convert(picture using utf8), ''), login_status from adm_users "
             + "Join adm_health_facility on health_facility_code = hfc_cd "
             + "where user_id = '" + user_id + "' AND status = '0' limit 1";
     String sql4 = "select status from adm_system_parameter where system_code = 'IT' and parameter_code ='1';";
-
+    
     ArrayList<ArrayList<String>> dataStaff = conn.getData(sql);
     ArrayList<ArrayList<String>> dataSysPara = conn.getData(sql4);
 
@@ -47,19 +38,7 @@
     {
 
         if (dataStaff.get(0).get(1).equals(password)) {
-
-            if (dataStaff.get(0).get(6).equals("1")) {
-
-                if (!dataStaff.get(0).get(7).equals(user_ic)) {
-
-                    session.setAttribute("TEMP_ID", user_id);
-
-                    out.print(NOT_LOGOUT);
-
-                    return;
-                }
-
-            }
+            
 
             //                                 0        1           2                  3                        4            
             String sqlUserAccess = "Select user_id, a.role_code, a.discipline_code, a.subdiscipline_code, system_code, role_name from adm_user_access_role a "
@@ -72,8 +51,8 @@
 
                 user_name = dataStaff.get(0).get(2);
                 proPic = dataStaff.get(0).get(5);
-
-                if (proPic.equalsIgnoreCase("")) {
+                
+                if(proPic.equalsIgnoreCase("")){
                     proPic = "../assets/profile.jpg";
                 }
                 hfc_cd = dataStaff.get(0).get(3);
@@ -128,28 +107,21 @@
 
                 session.setAttribute("SUB_DISCIPLINE_CODE", subdiscipline_code);
 
-                String dataSystemStatus = "1";
+                 String dataSystemStatus = "1";
                 //session.setAttribute("HFC", hfc);
                 session.setAttribute("SYSTEMSTAT", dataSystemStatus);
-
+                
                 String sysParaIT = dataSysPara.get(0).get(0);
                 session.setAttribute("SYSTEM_PARAMETER", sysParaIT);
-
-                status = LOGIN;
                 
-                session.removeAttribute("TEMP_ID");
-
-                RMIConnector rmic = new RMIConnector();
-
-                String query = "Update adm_users set login_status = '1' where user_id = '" + user_id + "'";
-
-                rmic.setQuerySQL(conn.HOST, conn.PORT, query);
+                status = LOGIN;
 
             } else {
 
                 status = CONFIGURE;
 
             }
+
 
         } else {
             status = WRONG_PASSWORD;
