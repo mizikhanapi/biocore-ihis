@@ -26,7 +26,7 @@
                 String sql = "SELECT e.PMI_NO,e.NAME,EPISODE_TIME,e.COMMON_QUEUE,e.DOCTOR,e.STATUS,q.QUEUE_NO FROM PMS_EPISODE e,PMS_PATIENT_QUEUE q WHERE e.EPISODE_DATE LIKE '%" + now + "%' AND e.STATUS NOT LIKE 'Discharge' AND q.PMI_NO=e.PMI_NO";
                 String newSql = "SELECT e.PMI_NO,e.name,e.EPISODE_TIME,e.COMMON_QUEUE,e.DOCTOR,e.STATUS,q.QUEUE_NO FROM PMS_EPISODE e,PMS_PATIENT_QUEUE q WHERE (e.STATUS NOT LIKE 'Discharge') AND ((e.EPISODE_DATE LIKE '%" + now + "%') AND  (q.PMI_NO=e.PMI_NO) AND e.HEALTH_FACILITY_CODE='" + hfc + "' AND e.EPISODE_DATE=q.episode_date)";
                 String newnewSql = "select e.pmi_no,e.name,e.episode_time,e.common_queue,q.queue_no,e.doctor,e.status from pms_episode e,pms_patient_queue q where e.status !='Discharge' and e.EPISODE_DATE like '%" + now + "%' and e.HEALTH_FACILITY_CODE='" + hfc + "' and e.PMI_NO = q.pmi_no and e.EPISODE_DATE = q.episode_date";
-                String newnewnewsql ="select e.pmi_no,e.name,e.episode_date,e.episode_time,e.common_queue,q.queue_no,e.doctor,e.status from pms_episode e inner join pms_patient_queue q on q.pmi_no = e.pmi_no where e.status !='Discharge' and e.EPISODE_DATE like '%" + now + "%' and e.HEALTH_FACILITY_CODE='" + hfc + "'";
+                String newnewnewsql = "select e.pmi_no,e.name,e.episode_date,e.episode_time,e.common_queue,q.queue_no,e.doctor,e.status from pms_episode e inner join pms_patient_queue q on q.pmi_no = e.pmi_no where e.status !='Discharge' and e.EPISODE_DATE like '%" + now + "%' and e.HEALTH_FACILITY_CODE='" + hfc + "'";
                 ArrayList<ArrayList<String>> dataQueue;
                 dataQueue = conn.getData(newnewnewsql);
                 //out.print(dataQueue.toString());
@@ -50,22 +50,13 @@
                                             <a href="#tab_default_1" data-toggle="tab">
                                                 Patient Queue List </a>
                                         </li>
-                                        <!--									<li>
-                                                                                                                        <a href="#tab_default_2" data-toggle="tab">
-                                                                                                                        Maintain Queue Name </a>
-                                                                                                                </li>
-                                                                                                                <li>
-                                                                                                                        <a href="#tab_default_3" data-toggle="tab">
-                                                                                                                        Maintain Queue List </a>
-                                                                                                                </li>-->
+                                        <!--						
                                     </ul>
                                     <!-- tab content -->
                                     <div class="tab-content">
                                         <div class="tab-pane active" id="tab_default_1">
                                             <h4>Patient Queue List
-                                                <!--											<span class="pull-right">
-                                                                                                                                                <a href="#" alt="Add Items" data-toggle="tooltip" data-placement="top" title="Add Items"><i class=" fa fa-plus" style=" padding-right: 5px;"></i></a>
-                                                                                                                                        </span>-->
+                                               
                                             </h4>
                                             <table class="table table-filter table-striped" style="background: #fff; border: 1px solid #ccc; ">
                                                 <thead>
@@ -82,9 +73,9 @@
                                                 </thead>
                                                 <tbody>
 
-                                                   
+
                                                     <%
-                                                                                                                            for (int i = 0; i < dataQueue.size(); i++) {%>
+                                                        for (int i = 0; i < dataQueue.size(); i++) {%>
                                                     <tr data-status="pagado" data-toggle="modal" data-id="1" data-target="#type">
                                                         <td id="pmiNumber"><%=dataQueue.get(i).get(0)%></td>
                                                         <td><%=dataQueue.get(i).get(1)%></td>
@@ -102,7 +93,7 @@
                                                 </tbody>
                                             </table>
                                         </div>
-                                        
+
                                     </div>
                                 </div>
                             </div>
@@ -135,11 +126,10 @@
 <!-- Bootstrap core JavaScript
 ================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>-->
 
 
-<script src="http://www.w3schools.com/lib/w3data.js"></script>
 <script>
     //w3IncludeHTML();
 
@@ -201,29 +191,30 @@
 //             alert(pmino+" "+dateNow);
 //         };
 
-        $('table').on('click', 'button', function (e) {
-            var item = $(this).closest("tr").find("#pmiNumber").text();
-            var epiTime = $(this).closest("tr").find("#epiTime").text();
-            var datas = {'pmino': item, 'today': epiTime};
-            $.ajax({
-                type: "POST",
-                url: "deletePMSQueue.jsp",
-                data: datas, // Send input
-                timeout: 3000,
-                success: function (list) {
-                    console.log(list);
-                    if ($.trim(list) === "success") {
-                        alert("Succeed deleting patient in queue.");
-                    } else if ($.trim(list) === "fail") {
-                        alert("Failed deleting patient in queue.");
-                    }
-                }, error: function () {
-                    alert("There is an error!");
-                }
-            });
-            //alert(item+" "+yyyyMMdd);
-            $(this).closest('tr').remove();
-        });
+//        $('table').on('click', 'delQueue', function (e) {
+//            var item = $(this).closest("tr").find("#pmiNumber").text();
+//            var epiTime = $.trim($(this).closest("tr").find("#epiDate").text());
+//            var datas = {'pmino': item, 'today': epiTime};
+//            console.log(datas);
+//            $.ajax({
+//                type: "POST",
+//                url: "deletePMSQueue.jsp",
+//                data: datas, // Send input
+//                timeout: 3000,
+//                success: function (list) {
+//                    console.log(list);
+//                    if ($.trim(list) === "success") {
+//                        alert("Succeed deleting patient in queue.");
+//                    } else if ($.trim(list) === "fail") {
+//                        alert("Failed deleting patient in queue.");
+//                    }
+//                }, error: function () {
+//                    alert("There is an error!");
+//                }
+//            });
+//            //alert(item+" "+yyyyMMdd);
+//            $(this).closest('tr').remove();
+//        });
 
     });
 </script>
