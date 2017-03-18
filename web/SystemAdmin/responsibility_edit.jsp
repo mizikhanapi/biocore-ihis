@@ -27,6 +27,12 @@
     rmic.setQuerySQL(conn.HOST, conn.PORT, sqlDelete);
     
      String sqlInsert = "";
+     
+     if(pages.length == 1 && pages[0].equalsIgnoreCase("")){
+          out.print("Done");
+          return;
+     
+     }
     
     for(int i = 0; i < pages.length; i++){
     

@@ -13,7 +13,7 @@
     
     if(process.equalsIgnoreCase("role")){
         
-        String sql = "Select role_code, role_name from adm_role";
+        String sql = "Select role_code, role_name from adm_role where role_code not in(Select role_code from adm_responsibility)";
         
         ArrayList<ArrayList<String>> dataRole = conn.getData(sql);
         
@@ -47,12 +47,10 @@
         
         ArrayList<ArrayList<String>> dataPage = conn.getData(sql);
         
-        %><option value="">--Select Page--</option><%
-        
         if(dataPage.size() <= 0){
         
             %>
-            <option value="-">-</option>
+            <option disabled>No data available</option>
             <%
         
         }else{
