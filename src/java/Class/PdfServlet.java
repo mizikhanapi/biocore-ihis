@@ -14,21 +14,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
  
-import com.itextpdf.text.DocumentException;
+import com.lowagie.text.Document;
+import com.lowagie.text.Element;
+import com.lowagie.text.Font;
+import com.lowagie.text.PageSize;
+import com.lowagie.text.Phrase;
+import com.lowagie.text.Rectangle;
+import com.lowagie.text.pdf.PdfPCell;
+import com.lowagie.text.pdf.PdfPTable;
+import com.lowagie.text.pdf.PdfWriter;
 import java.text.SimpleDateFormat;
 import java.text.DateFormat;
 import java.text.DecimalFormat;
 import java.util.Date;
-import com.itextpdf.text.Document;
-import com.itextpdf.text.Element;
-import com.itextpdf.text.Font;
-import com.itextpdf.text.Image;
-import com.itextpdf.text.PageSize;
-import com.itextpdf.text.Phrase;
-import com.itextpdf.text.Rectangle;
-import com.itextpdf.text.pdf.PdfPCell;
-import com.itextpdf.text.pdf.PdfPTable;
-import com.itextpdf.text.pdf.PdfWriter;
+
 import dbConn1.Conn;
 import java.io.File;
 import java.util.ArrayList;
@@ -173,9 +172,9 @@ public class PdfServlet extends HttpServlet {
                 document.open();
 
                 //initialize pdf
-                Font recti = new Font(Font.FontFamily.HELVETICA, 16, Font.BOLD);
-                Font rectem = new Font(Font.FontFamily.HELVETICA, 12, Font.BOLD);
-                Font rectemja = new Font(Font.FontFamily.COURIER, 12);
+                Font recti = new Font(Font.HELVETICA, 16, Font.BOLD);
+                Font rectem = new Font(Font.HELVETICA, 12, Font.BOLD);
+                Font rectemja = new Font(Font.COURIER, 12);
 
                 //header
                 PdfPTable table = new PdfPTable(6);
@@ -583,9 +582,9 @@ public class PdfServlet extends HttpServlet {
                     document.open();
 
                     //initialize pdf
-                    Font recti = new Font(Font.FontFamily.HELVETICA, 16, Font.BOLD);
-                    Font rectem = new Font(Font.FontFamily.HELVETICA, 12, Font.BOLD);
-                    Font rectemja = new Font(Font.FontFamily.COURIER, 12);
+                    Font recti = new Font(Font.HELVETICA, 16, Font.BOLD);
+                    Font rectem = new Font(Font.HELVETICA, 12, Font.BOLD);
+                    Font rectemja = new Font(Font.COURIER, 12);
 
                     //header
                     PdfPTable table = new PdfPTable(6);
@@ -888,9 +887,9 @@ public class PdfServlet extends HttpServlet {
                         }
                         
                         //initialize pdf
-                        Font recti = new Font(Font.FontFamily.HELVETICA, 16, Font.BOLD);
-                        Font rectem = new Font(Font.FontFamily.HELVETICA, 12, Font.BOLD);
-                        Font rectemja = new Font(Font.FontFamily.COURIER, 12);
+                        Font recti = new Font(Font.HELVETICA, 16, Font.BOLD);
+                        Font rectem = new Font(Font.HELVETICA, 12, Font.BOLD);
+                        Font rectemja = new Font(Font.COURIER, 12);
 
                         //header
                         PdfPTable table = new PdfPTable(6);
@@ -1132,9 +1131,9 @@ public class PdfServlet extends HttpServlet {
             document.open();
 
             //initialize pdf
-            Font recti = new Font(Font.FontFamily.HELVETICA, 16, Font.BOLD);
-            Font rectem = new Font(Font.FontFamily.HELVETICA, 12, Font.BOLD);
-            Font rectemja = new Font(Font.FontFamily.COURIER, 12);
+            Font recti = new Font(Font.HELVETICA, 16, Font.BOLD);
+            Font rectem = new Font(Font.HELVETICA, 12, Font.BOLD);
+            Font rectemja = new Font(Font.COURIER, 12);
 
             //header
             PdfPTable table = new PdfPTable(6);

@@ -27,6 +27,8 @@
            
             String psType = request.getParameter("psType");
             String psInput = request.getParameter("psInput");
+            
+            out.print(psInput);
           
 
             try {

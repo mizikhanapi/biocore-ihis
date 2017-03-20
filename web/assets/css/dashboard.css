@@ -539,3 +539,6 @@ ul.nav.navbar-nav.navbar-left.back {
     padding: 15px;
 }
 
+tr#moveToOrderDetailsTButton {
+    cursor: pointer;
+}
