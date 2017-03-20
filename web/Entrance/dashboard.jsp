@@ -117,7 +117,7 @@
             <div class="col-md-12 main-dashboard">
                 <div class="row">
                     <%if(mod03){%>
-                    <div class="col-md-3">
+                    <div class="col-sm-6 col-md-3">
                         <a href="../PMS/index.jsp" class="thumbnail">
                             <div class="kotak text-center">
                                 <i class="fa fa-user" aria-hidden="true" style="color: #17A086;font-size: 4em;"></i>
@@ -131,7 +131,7 @@
                         if(mod02){
                     %>
                     
-                    <div class="col-md-3">
+                    <div class="col-sm-6 col-md-3">
                         <a href="../CIS/CIS000000.jsp" class="thumbnail">
                             <div class="kotak text-center">
                                 <i class="fa fa-user-md" aria-hidden="true" style="color: #E84C3D;font-size: 4em;"></i>
@@ -145,7 +145,7 @@
                         if(mod04){
                     %>
                     
-                    <div class="col-md-3">
+                    <div class="col-sm-6 col-md-3">
                         <a href="../PIS/manageInventory.jsp" class="thumbnail">
                             <div class="kotak text-center">
                                 <i class="fa fa-medkit" aria-hidden="true" style="color: #9A67A0;font-size: 4em;"></i>
@@ -159,7 +159,7 @@
                         if(mod05){
                     %>
                     
-                    <div class="col-md-3">
+                    <div class="col-sm-6 col-md-3">
                         <a href="../LIS/MainPage.jsp" class="thumbnail">
                             <div class="kotak text-center">
                                 <i class="fa fa-database" aria-hidden="true" style="color: #F26353;font-size: 4em;"></i>
@@ -173,7 +173,7 @@
                         if(mod06){
                     %>
                     
-                    <div class="col-md-3">
+                    <div class="col-sm-6 col-md-3">
                         <a href="../RIS/Receive_Order.jsp" class="thumbnail">
                             <div class="kotak text-center">
                                 <i class="fa fa-cogs" aria-hidden="true" style="color: #2A80B9;font-size: 4em;"></i>
@@ -187,7 +187,7 @@
                         if(mod07){
                     %>
                     
-                    <div class="col-md-3">
+                    <div class="col-sm-6 col-md-3">
                         <a href="../ADT/MaintainWard.jsp" class="thumbnail">
                             <div class="kotak text-center">
                                 <i class="fa fa-bed" aria-hidden="true" style="color: #DE3975;font-size: 4em;"></i>
@@ -201,7 +201,7 @@
                         if(mod08){
                     %>
                     
-                    <div class="col-md-3">
+                    <div class="col-sm-6 col-md-3">
                         <a href="../Billing/billing.jsp" class="thumbnail">
                             <div class="kotak text-center">
                                 <i class="fa fa-credit-card" aria-hidden="true" style="color: #34A8DA;font-size: 4em;"></i>
@@ -215,7 +215,7 @@
                         if(mod03){
                     %>
                     
-                    <div class="col-md-3">
+                    <div class="col-sm-6 col-md-3">
                         <a href="http://biocore-stag.utem.edu.my/CSS_Appointment/" class="thumbnail">
                             <div class="kotak text-center">
                                 <i class="fa fa-calendar" aria-hidden="true" style="color: #33B3AA;font-size: 4em;"></i>
@@ -230,7 +230,7 @@
                     %>
                     
                     
-                <div class="col-md-3">
+                <div class="col-sm-6 col-md-3">
                         <a href="../SystemAdmin/Lookup-Maintenance.jsp" class="thumbnail">
                             <div class="kotak text-center">
                                 <i class="fa fa-desktop" aria-hidden="true" style="color: #FDC671;font-size: 4em;"></i>
@@ -239,7 +239,7 @@
                         </a>
                     </div>
                     
-                    <div class="col-md-3">
+                    <div class="col-sm-6 col-md-3">
                         <a href="../Registration/" class="thumbnail">
                             <div class="kotak text-center">
                                 <i class="fa fa-users" aria-hidden="true" style="color: #c0a16b;font-size: 4em;"></i>
@@ -253,7 +253,7 @@
                         if(mod11){
                     %>
                     
-                    <div class="col-md-3">
+                    <div class="col-sm-6 col-md-3">
                         <a href="../Report/MainMenu.jsp" class="thumbnail">
                             <div class="kotak text-center">
                                 <i class="fa fa-file-text" aria-hidden="true" style="color: #17A086;font-size: 4em;"></i>

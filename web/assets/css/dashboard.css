@@ -188,7 +188,7 @@
     font-size: 18px;
     color: #fff;
     font-weight: 300;
-    padding: 18px 15px 12px 0px;
+    padding: 18px 10px 12px 5px;
 }
 
 .back>li>a:hover {
@@ -460,6 +460,7 @@ ul.nav.navbar-nav.navbar-left.back {
 
     .navbar-nav {
         margin: 0px;
+        margin-left: 0px !important;
     }
 
     .sidebar {
@@ -474,6 +475,16 @@ ul.nav.navbar-nav.navbar-left.back {
         transition-duration: .2s;
         transition-property: transform,left;
         transition-timing-function: cubic-bezier(.4,0,.2,1);
+    }
+
+    .tutup {
+        position: absolute;
+        top: -10;
+        right: -15;
+    }
+
+    .tutup>i {
+        color: #eee;
     }
 
 }
