@@ -185,9 +185,10 @@
                     <%
                         String pmi2 = request.getParameter("pmi");
                         String orderno1 = request.getParameter("order_no");
-                                
-                         String query4 = "SELECT item_cd,item_name,spe_source,volume,requestor_comments,filler_comments FROM lis_order_detail WHERE order_no='"+orderno1+"' AND pmi_no='"+pmi2+"'";
-                         ArrayList<ArrayList<String>> q4 = conn.getData(query4);    
+                        
+                         String query4 = "SELECT item_cd,item_name,spe_source,volume,requestor_comments,filler_comments,specimen_status,Verification FROM lis_order_detail  WHERE order_no='"+orderno1+"' AND pmi_no='"+pmi2+"'";
+                         ArrayList<ArrayList<String>> q4 = conn.getData(query4);
+                         
                      %>
     <thead>
         <tr>
@@ -196,9 +197,10 @@
                 <th class="col-sm-1">Specimen Source</th>
                 <th class="col-sm-1">Volume</th>
                 <th class="col-sm-1">Requestor Comments</th>
-                <th class="col-sm-1">Status Result</th>
                 <th class="col-sm-1">Filler Comments</th>
-                <th class="col-sm-1">Update</th>
+                <th class="col-sm-1">Specimen Status</th>
+                <th class="col-sm-1">Verification</th>
+                <th class="col-sm-1">Update Comments</th>
                 <th class="col-sm-1">Check for Assign Specimen</th>
         </tr>
     </thead>
@@ -215,10 +217,11 @@
                 <td><%=q4.get(i).get(2)%></td>
                 <td><%=q4.get(i).get(3)%></td>
                 <td style="background-color: lawngreen"><%=q4.get(i).get(4)%></td>
-                <td><%%></td>
                 <td><%=q4.get(i).get(5)%></td>
+                <td><%=q4.get(i).get(6)%></td>
+                <td><%=q4.get(i).get(7)%></td>
             <td>
-                <button  class='btn btn-warning btn-xs' data-toggle="modal" data-target="#basicModal_<%=i %>">Update</button>
+                <button  class='btn btn-warning btn-xs' data-toggle="modal" data-target="#basicModal_<%=i %>">Filler Comments</button>
                 
                 <div class="modal fade" id="basicModal_<%=i %>" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
                     <div class="modal-dialog">

@@ -72,6 +72,7 @@
                                                 session.setAttribute( "item_cd", null );
                                                 session.setAttribute( "item_name", null );
                                                 session.setAttribute( "specimen_no", null );
+                                                session.setAttribute( "order_no", null );
                                                 Conn conn = new Conn();
                                                 String pmi = request.getParameter("pmi");
                                                 String specimen_no1 = request.getParameter("specimen_no");
@@ -149,9 +150,9 @@
     <table id="MTC"  class="table table-striped table-bordered" cellspacing="0" width="100%">
                     <%
                         
-                        String order_no = request.getParameter("order_no");
+                        //String order_no = request.getParameter("order_no");
                         //out.print(pmi+"   "+specimen_no1);        
-                        String query4 = "SELECT  ls.item_cd,lod.item_name, lod.spe_container, lod.volume, lod.spe_source, lod.requestor_comments,ls.specimen_status, ls.commen_specimen,ls.Approval FROM lis_specimen ls,lis_order_detail lod WHERE ls.item_cd = lod.item_cd AND ls.specimen_no='"+specimen_no1+"' AND ls.pmi_no='"+pmi+"' GROUP BY(lod.item_cd)";
+                        String query4 = "SELECT  ls.item_cd,lod.item_name, lod.spe_container, lod.volume, lod.spe_source, lod.requestor_comments,ls.specimen_status, ls.commen_specimen,ls.Approval,ls.order_no FROM lis_specimen ls,lis_order_detail lod WHERE ls.item_cd = lod.item_cd AND ls.specimen_no='"+specimen_no1+"' AND ls.pmi_no='"+pmi+"' GROUP BY(lod.item_cd)";
                         ArrayList<ArrayList<String>> q4 = conn.getData(query4);    
                      %>
                      <input type="text" id="pmi" value="<%=pmi%>" style="display: none;"><input type="text" id="specimen_no" value="<%=specimen_no1%>" style="display: none;">
@@ -186,10 +187,10 @@
                 <td><%=q4.get(i).get(7)%></td>
                 <td><%=q4.get(i).get(8)%></td>
                 <td>
-                    <a href='AssignResult.jsp?item_cd=<%=q4.get(i).get(0)%> &item_name=<%=q4.get(i).get(2)%> &pmi1=<%=pmi%> &specimen_no1=<%=specimen_no1%>' class='btn btn-primary btn' ><span class='glyphicon glyphicon-'></span>Assign Result</a>
+                    <a href='AssignResult.jsp?item_cd=<%=q4.get(i).get(0)%> &order_no=<%=q4.get(i).get(9)%> &item_name=<%=q4.get(i).get(2)%> &pmi1=<%=pmi%> &specimen_no1=<%=specimen_no1%>' class='btn btn-primary btn' ><span class='glyphicon glyphicon-'></span>Assign Result</a>
                     </td>
                <td>
-                    <a href='VerifyResult.jsp?item_cd=<%=q4.get(i).get(0)%> &item_name=<%=q4.get(i).get(2)%> &pmi1=<%=pmi%> &specimen_no1=<%=specimen_no1%>' class='btn btn-primary btn' ><span class='glyphicon glyphicon-'></span>Verify Result</a>
+                    <a href='VerifyResult.jsp?item_cd=<%=q4.get(i).get(0)%> &order_no=<%=q4.get(i).get(9)%> &item_name=<%=q4.get(i).get(2)%> &pmi1=<%=pmi%> &specimen_no1=<%=specimen_no1%>' class='btn btn-primary btn' ><span class='glyphicon glyphicon-'></span>Verify Result</a>
                     
                </td>
         <%
