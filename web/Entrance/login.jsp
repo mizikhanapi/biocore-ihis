@@ -25,7 +25,7 @@
         <!-- header -->
     </head> 
     <body>
-        <div class="container">
+        <div class="container m-scene">
             <div class="card card-container">
                 <!-- <img class="profile-img-card" src="//lh3.googleusercontent.com/-6V8xOA6M7BA/AAAAAAAAAAI/AAAAAAAAAAA/rzlHcD0KYwo/photo.jpg?sz=120" alt="" /> -->
                 <div class="profile-img-card">
@@ -58,6 +58,7 @@
         ================================================== -->
         <!-- Placed at the end of the document so the pages load faster -->
         <%@include file="libraries/script.html" %>
+        <%@include file="../assets/script.html" %>
         <!--<script src="Dashboard_files\jquery.min.js.download"></script>
         <script src="http://www.w3schools.com/lib/w3data.js"></script>-->
 
@@ -117,11 +118,10 @@
                                 alert("User ID does not exist");
                             else if (num === 3)
                                 alert("You don't have proper user access. Contact your admin to configure your user access");
-                            else if (num === 4){
+                            else if (num === 4) {
                                 alert("You have logged in to another PC or you did not log out properly");
                                 window.location = "login_ic.jsp";
-                            }    
-                            else
+                            } else
                                 alert("Error");
                         },
                         error: function (err) {

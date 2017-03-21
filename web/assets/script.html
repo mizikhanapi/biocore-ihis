@@ -1,0 +1,34 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script> 
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> 
+
+<!-- <script src="https://code.jquery.com/jquery-2.2.1.min.js"></script> -->
+<script src="../assets/js/jquery.smoothState.min.js"></script>
+<script src="../assets/js/main.js"></script>
+
+<!-- Dropdown Script -->
+<script>
+
+    (function ($) {
+        var dropdown = $('.dropdown');
+
+        // Add slidedown animation to dropdown
+        dropdown.on('show.bs.dropdown', function (e) {
+            $(this).find('.dropdown-menu').first().stop(true, true).slideDown();
+        });
+
+        // Add slideup animation to dropdown
+        dropdown.on('hide.bs.dropdown', function (e) {
+            $(this).find('.dropdown-menu').first().stop(true, true).slideUp();
+        });
+    })(jQuery);
+
+    function toggleChevron(e) {
+        $(e.target)
+                .prev('.panel-heading')
+                .find("i.indicator")
+                .toggleClass('fa-chevron-right fa-chevron-down');
+    }
+    $('#accordion').on('hidden.bs.collapse', toggleChevron);
+    $('#accordion').on('shown.bs.collapse', toggleChevron);
+</script>
+<!-- Dropdown Script -->

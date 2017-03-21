@@ -110,7 +110,7 @@
     <%@include file = "libraries/topMenus-dashboard.html" %>
     <!-- menu top -->
 
-    <div class="container-fluid">
+    <div class="container-fluid m-scene">
         <div class="row">       
 
             <!-- main -->		
@@ -279,6 +279,7 @@
 ================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->
 <%@include file="libraries/script.html"%>
+<%@include file="../assets/script.html"%>
 <script type="text/javascript" >
        
     
