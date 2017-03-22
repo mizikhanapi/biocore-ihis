@@ -43,7 +43,7 @@
         </div>
         <!-- SIDEBAR BUTTONS -->
         <div class="profile-userbuttons">
-            <button type="button" class="btn btn-success btn-sm" onclick="window.location.href = '../Entrance/profile.jsp'">Manage Account</button>
+            <button type="button" class="btn btn-success btn-sm" onclick="window.location.href='../Entrance/profile.jsp'">Manage Account</button>
         </div>
     </div>
     <hr/>
@@ -78,7 +78,4 @@
         </ul> -->
         <!-- Menu with dropdown -->
     </ul>
-    <button type="button" class="navbar-toggle collapsed tutup" data-toggle="collapse" data-target=".sidebar" aria-expanded="false" aria-controls="navbar">
-        <i class=" fa fa-times fa-lg"></i>
-    </button>
 </div>  

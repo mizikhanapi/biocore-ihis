@@ -14,11 +14,12 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>View Order</title>
-        <%@include file="Header.jsp"%>
+        
         
        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">   
         <title>Main Page</title>
          <%@include file="../assets/header.html"%>
+         
 
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <script src="assets/js/jquery.min.js"></script>

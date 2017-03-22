@@ -18,9 +18,9 @@
     //String discip = "select * from adm_lookup_detail where master_reference_code = '0072'   ";
     String prio = "select * from adm_lookup_detail where master_reference_code = '0036'   ";
     String idTYpe = "select * from adm_lookup_detail where master_reference_code = '0012'   ";
-    String Commonqueue = "select * from pms_queue_list where queue_type='CM' and hfc_cd='" + hfc + "' and status ='Active' and discipline_cd = '"+dis+"'";
-    String Consultationqueue = "select * from pms_queue_list where queue_type='FY' and hfc_cd='" + hfc + "' and status ='Active' and discipline_cd = '"+dis+"'";
-    String Doctorqueue = "select * from pms_queue_list where queue_type='PN' and hfc_cd='" + hfc + "' and status ='Active' and discipline_cd = '"+dis+"'";
+    String Commonqueue = "select * from pms_queue_list where queue_type='CM' and hfc_cd='" + hfc + "' and status ='Active'";
+    String Consultationqueue = "select * from pms_queue_list where queue_type='FY' and hfc_cd='" + hfc + "' and status ='Active'";
+    String Doctorqueue = "select * from pms_queue_list where queue_type='PN' and hfc_cd='" + hfc + "' and status ='Active'";
 
     ArrayList<ArrayList<String>> dataQueue2, dataQueue3, dataPatCat, dataVisType, dataEliCat, dataEliType, dataDiscip, dataPrio, dataIdType, dataQueue;
 

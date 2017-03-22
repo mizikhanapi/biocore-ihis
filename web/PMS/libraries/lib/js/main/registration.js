@@ -359,7 +359,7 @@
     //queue delete button
     $('#modalSaya2').on('click', '#queueModal #listQueue #delQueue', function (e) {
         var item = $(this).closest("tr").find("#pmiNumber").text();
-        var epiTime = $(this).closest("tr").find("#epiDate").text();
+        var epiTime = $(this).closest("tr").find("#epiTime").text();
         var datas = {'pmino': item, 'today': epiTime};
         console.log("button delete queue");
         $.ajax({
