@@ -240,13 +240,16 @@
                            var fcomment = $("#fcomment").val(); 
                            var pmi = $("#pmi").val();
                            var specimen_no = $("#specimen_no").val();
-                           var itemCode = $("itemCode").val();
+                           var order_no = $("#order_no").val();
+                           var itemCode = $("#itemCode").val();
                            
                            $.ajax({
                                 url: "tRejectSpecimen.jsp",
                                 type: "post",
                                 data: {
                                     fcomment: fcomment,
+                                    order_no: order_no,
+                                    itemCode: itemCode,
                                     pmi: pmi,
                                     specimen_no: specimen_no
                                 },
