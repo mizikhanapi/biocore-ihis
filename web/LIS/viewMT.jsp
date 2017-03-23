@@ -47,13 +47,13 @@
                                      if(a.equals("Accepted"))
                                      {
                                         %>
-                                        <a href='VerifySpecimen.jsp?pmi=<%=dataPatientApp.get(i).get(1)%> &specimen_no=<%=dataPatientApp.get(i).get(0)%>'><button class='btn btn-primary btn-block'>Verify Test</button></a>
+                                        <a href='VerifySpecimen.jsp?pmi=<%=dataPatientApp.get(i).get(1)%> &specimen_no=<%=dataPatientApp.get(i).get(0)%>'><button class='btn btn-primary btn-block'>Assign Result</button></a>
                                         <%
                                      }
                                      else
                                      {
                                         %>
-                                        <a href='VerifySpecimen.jsp?pmi=<%=dataPatientApp.get(i).get(1)%> &specimen_no=<%=dataPatientApp.get(i).get(0)%>'><button class='btn btn-primary btn-block' disabled="disabled">Verify Test</button></a>
+                                        <a href='VerifySpecimen.jsp?pmi=<%=dataPatientApp.get(i).get(1)%> &specimen_no=<%=dataPatientApp.get(i).get(0)%>'><button class='btn btn-primary btn-block' disabled="disabled">Assign Result</button></a>
                                         <%
                                      }
                                   %>

@@ -188,7 +188,7 @@
                 <td><%=q4.get(i).get(7)%></td>
                 <td><%=q4.get(i).get(8)%></td>
                 <td>
-                    <a href='AssignResult.jsp?item_cd=<%=q4.get(i).get(0)%> &order_no=<%=q4.get(i).get(9)%> &item_name=<%=q4.get(i).get(2)%> &pmi1=<%=pmi%> &specimen_no1=<%=specimen_no1%>' class='btn btn-primary btn' ><span class='glyphicon glyphicon-'></span>Assign Result</a>
+                    <a href='AssignResult.jsp?item_cd=<%=q4.get(i).get(0)%> &order_no=<%=q4.get(i).get(9)%> &item_name=<%=q4.get(i).get(2)%> &pmi1=<%=pmi%> &specimen_no1=<%=specimen_no1%>' class='btn btn-primary btn' ><span class='glyphicon glyphicon-'></span>Update Result</a>
                     </td>
                <td>
                     <a href='VerifyResult.jsp?item_cd=<%=q4.get(i).get(0)%> &order_no=<%=q4.get(i).get(9)%> &item_name=<%=q4.get(i).get(2)%> &pmi1=<%=pmi%> &specimen_no1=<%=specimen_no1%>' class='btn btn-primary btn' ><span class='glyphicon glyphicon-'></span>Verify Result</a>

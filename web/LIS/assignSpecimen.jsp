@@ -136,7 +136,7 @@
                     //out.println("Item Code:<br>");
                     for(int j=0;j<itemCD.length; j++)
                     {
-                        out.println("<input type='text' name='specimen"+j+"' value='"+itemCD[j]+"' id='specimen"+j+"'>"); 
+                        //out.println("<input type='text' name='specimen"+j+"' value='"+itemCD[j]+"' id='specimen"+j+"'>"); 
                         
                         count++;
                         String sqlPatientApp = "SELECT LOD.item_name, LOD.spe_container, LOD.order_date, LOM.pmi_no, LOM.hfc_cd, LOD.item_cd FROM lis_order_detail LOD, lis_order_master LOM WHERE LOD.order_no = LOM.order_no AND LOD.item_cd = '"+itemCD[j]+"' AND LOD.order_no = '"+orderno1+"'";
@@ -149,7 +149,7 @@
                             {%>
                             
             <tr>
-                <td><%=dataPatientApp.get(i).get(0)%><input type="text" value="<%=dataPatientApp.get(i).get(5)%>" id="item_cd<%=i%>" name="item_cd<%=i%>"></td>
+                <td><%=dataPatientApp.get(i).get(0)%><input type="text" value="<%=dataPatientApp.get(i).get(5)%>" id="item_cd<%=i%>" name="item_cd<%=i%>" style="display:none;"></td>
                 <td><%=dataPatientApp.get(i).get(1)%></td>
                 <td><%=dataPatientApp.get(i).get(2)%></td>
                 

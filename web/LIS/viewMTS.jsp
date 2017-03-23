@@ -116,7 +116,7 @@
             </td>
             <td><%=dataPatientApp.get(i).get(11)%></td>
             <td>
-                <a href='ReceiveSpecimen.jsp?pmi=<%=dataPatientApp.get(i).get(2)%> &specimen_no=<%=dataPatientApp.get(i).get(1)%>' class='btn btn-primary btn-block' >Assign</a>
+                <a href='ReceiveSpecimen.jsp?pmi=<%=dataPatientApp.get(i).get(2)%> &specimen_no=<%=dataPatientApp.get(i).get(1)%>' class='btn btn-primary btn-block' >Verify Specimen</a>
             </td>
 
         </tr>
