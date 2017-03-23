@@ -221,8 +221,7 @@
                 <td><%=q4.get(i).get(6)%></td>
                 <td><%=q4.get(i).get(7)%></td>
             <td>
-                <button  class='btn btn-warning btn-xs' data-toggle="modal" data-target="#basicModal_<%=i %>">Filler Comments</button>
-                
+                <a  class='btn btn-warning btn-xs' data-toggle="modal" data-target="#basicModal_<%=i %>">Filler Comments</a>
                 <div class="modal fade" id="basicModal_<%=i %>" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="modal-content">
@@ -292,8 +291,7 @@
             </td>
             <td>
                
-                 <input type="checkbox" name="chkSpecimen" id="checky" value="<%=q4.get(i).get(0)%>" class="specimenselect" onchange="document.getElementById('subm').disabled = !this.checked;"> 
-               
+               <input class="chk" type="checkbox" name="chkSpecimen" value="<%=q4.get(i).get(0)%>" id="checky"/>
                 <input type="text" name="itemCD" value="<%=q4.get(i).get(0)%>" style="display:none;">
             </td>
             
@@ -307,11 +305,65 @@
        
     </tbody>
 </table>
-        
+<div class="modal fade" id="Collection" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><i class="fa fa-times fa-lg"></i></button>
+                <h3 class="modal-title" id="lineModalLabel">Set Collection Date</h3>
+
+            </div>
+            <div class="modal-body">
+
+                <!-- content goes here -->
+                
+
+                    <!-- Text input-->
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="textinput">Collection Date</label>
+                        <div class="col-md-8">
+                            <input type="text" id="collection" class="form-control input-md" placeholder="DD-MM-YYYY">
+                        </div>
+                    </div>
+
+                    <!-- Text input-->
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="textinput">Remarks</label>
+                        <div class="col-md-8">
+                            <textarea name="career[message]" class="form-control" id="remarks" placeholder="Write your details" ></textarea>
+                        </div>
+                    </div>
+
+                 
+
+
+
+                <!-- content goes here -->
+            </div>
+            <div class="modal-footer">
+                <div class="btn-group btn-group-justified" role="group" aria-label="group button">
+                    <div class="btn-group" role="group">
+                        <button type="button" class="btn btn-success btn-block btn-lg" role="button" id="btn_add">Submit</button>
+                    </div>
+                    <div class="btn-group" role="group">
+                        <button type="button" class="btn btn-success btn-block btn-lg" role="button" id="btn_add">Cancel Date</button>
+                    </div>
+                    <div class="btn-group" role="group">
+                        <button type="reset" id="btnReset" class="btn btn-default btn-block btn-lg" data-dismiss="modal" role="button" >Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+       
         <div style = "clear: right; float: right; text-align: right;">
             <input type="text" value="<%=pmi2%>" name="pmi" style="display:none;">
             <input type="text" value="<%=orderno1%>" name="order_no" style="display:none;">
             <button type="button" class="btn btn-default" id="cancelAss">Back</button>
+            
+            <input type="button" name="submit" id="submit" value="Set Collection Date" class="btn btn-primary" data-toggle="modal" data-target="#Collection"/>
+    
             <button type="submit" class="btn btn-primary" id="subm">Assign Specimen</button>
         </div>
 
@@ -347,7 +399,13 @@
         $(document).ready(function () {
             //$("#WardOccupancy").load("WardOccupancy.jsp");
             //$("#RecieveOderTable").load("RecieveOder-Table.jsp");
-            
+            $( "#collection" ).datepicker({ 
+            yearRange: '1999:c+1' ,
+            changeMonth: true,
+            changeYear: true,
+            minDate: new Date(1999, 10 - 1, 25),
+            maxDate: '+30Y',
+        });
             
             $("#headerindex").load("libraries/header.html");
             $("#topmenuindex").load("libraries/topMenus.html");
@@ -358,19 +416,19 @@
 
     </script>
     <script type="text/javascript">
-            jQuery(function ($) {
-    //form submit handler
-    document.getElementById("subm").disabled = true;
-    $('#specimenOder').submit(function (e) {
-        //check atleat 1 checkbox is checked
-        if (!$('.specimenselect').is(':checked')) {
-            //prevent the default form submit if it is not checked
-            e.preventDefault();
-           
-        }
-       
-    })
-})
+           $('#submit').prop("disabled", true);
+           $('#subm').prop("disabled", true);
+        
+        $('input:checkbox').click(function() {
+        if ($(this).is(':checked')) {
+			$('#submit').prop("disabled", false);
+                        $('#subm').prop("disabled", false);
+        } else {
+		if ($('.chk').filter(':checked').length < 1){
+			$('#submit').attr('disabled',true);
+                    $('#subm').prop("disabled", true);}
+		}
+});
     
   
        </script>

@@ -2,7 +2,7 @@
 <%@page import="java.util.ArrayList"%>
 <%@page import="models.Query"%>
 
-<%@include file="../Entrance/validateSession.jsp"%>
+<%//@include file="../Entrance/validateSession.jsp"%>
 
 <%
     String sqlx1 = "SELECT * FROM health_facility_code";
