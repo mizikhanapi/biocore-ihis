@@ -36,8 +36,8 @@
     <th style="text-align: center;">EPISODE DATE</th>
     <th style="text-align: center;">ENCOUNTER DATE</th>
     <th style="text-align: center;">DIAGNOSIS CODE</th>
-    <th style="text-align: center;">DIAGNOSIS DESCRIPTION</th>
-    <th style="text-align: center;">COMMENT</th>
+    <th style="text-align: left; width: 40%;">DIAGNOSIS DESCRIPTION</th>
+    <th style="text-align: left; width: 20%;">COMMENT</th>
 </thead>
 <tbody>
     <%        for (int i = 0; i < dataDiagnosisList.size(); i++) {
@@ -50,8 +50,8 @@
 <td ><%= dataDiagnosisList.get(i).get(2)%></td> <!-- Description -->
 <td ><%= dataDiagnosisList.get(i).get(3)%></td> <!-- Strength -->
 <td ><%= dataDiagnosisList.get(i).get(4)%></td> <!-- Frequency -->
-<td ><%= dataDiagnosisList.get(i).get(5)%> </td> <!-- Duration/Duration T -->
-<td ><%= dataDiagnosisList.get(i).get(6)%></td> <!-- Dose -->
+<td style="text-align: left;"><%= dataDiagnosisList.get(i).get(5)%> </td> <!-- Duration/Duration T -->
+<td style="text-align: left;"><%= dataDiagnosisList.get(i).get(6)%></td> <!-- Dose -->
 </tr>
 
 <%  }

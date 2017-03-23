@@ -14,8 +14,7 @@
 <%@include file="validateModuleAccess.jsp" %>
 
 
-<%
-    Config.getFile_url(session);
+<%    Config.getFile_url(session);
     Config.getBase_url(request);
 
     Conn conn = new Conn();
@@ -124,7 +123,7 @@
                     <div class="row">
                         <div class="col-md-12">
 
-
+                            <div class="thumbnail">
                                 <!-- Tab Menu -->
                                 <div class="tabbable-panel">
                                     <div class="tabbable-line">
@@ -155,6 +154,8 @@
                                     </div>
                                 </div>
                                 <!-- Tab Menu -->
+                            </div>
+
                         </div>
                     </div>
                 </div>

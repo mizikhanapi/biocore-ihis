@@ -71,12 +71,7 @@ pms_patient_biodata.`OLD_IC_NO` = $P{mcInput}]]>
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="129" splitType="Stretch">
-			<image>
-				<reportElement x="251" y="0" width="572" height="129" uuid="2e391d59-2b94-45b9-a7e9-426cdd41d549"/>
-				<imageExpression><![CDATA["C:\\Users\\user\\Desktop\\Mimi\\Reports\\iHIS_Report\\web\\reports\\LogoUTeM-2016.jpg"]]></imageExpression>
-			</image>
-		</band>
+		<band height="129" splitType="Stretch"/>
 	</title>
 	<pageHeader>
 		<band height="35" splitType="Stretch">
