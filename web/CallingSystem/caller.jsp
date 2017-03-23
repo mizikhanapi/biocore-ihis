@@ -3,7 +3,7 @@
 <%@page import="bean.Calling_system_bean"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="models.Query"%>
-<p style="text-align: right;"><%
+<p style="text-align: right; position: absolute; top: 38px; right: 80px; color: #58C102; display: block; font-weight: 500; font-size: 18px;"><%
 
     String hfccd = "-";
     String discp = "-";
@@ -35,7 +35,7 @@
     ArrayList<Calling_system_bean> d = q.getQueryCallingSystem(sql);
 
     Date datenow = new Date();
-    SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/YYYY HH:mm:ss");
+    SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/YYYY | HH:mm:ss");
     out.print(sdf.format(datenow));
 
 %></p>

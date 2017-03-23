@@ -30,81 +30,86 @@
 <%@include file = "../assets/header.html" %>
 <!-- header -->
 
+<!-- menu top -->
+<%@include file = "libraries/topMenus-dashboard.html" %>
+<!-- menu top -->
+
 <div class="container-fluid m-scene">
     <div class="row">       
-        <!-- menu side -->		
-        <%@include file = "libraries/sideMenus.html" %>
-        <!-- menu side -->	
 
         <!-- main -->		
-        <div class="main" style="background: #f2f4f8;">
-            <!-- menu top -->
-            <%@include file = "libraries/topMenus.html" %>
-            <!-- menu top -->
+        <div class="col-md-12 main-dashboard" style="background: #f2f4f8;">
+
             <div class="row">
                 <div class="col-md-12">
 
                     <div class="thumbnail">
                         <h4>
                             Calling System Lists
+                            <ul id="menu-content" class="soap-content nav" style="float: right;">
+                                <li data-toggle="collapse" data-target="#filter" class="soap-select collapsed" aria-expanded="false">
+                                    <i class="fa fa-filter fa-lg filter" style="cursor: pointer; color: #ccc; float: right; padding: 0 10px;"></i>
+                                </li>
+                            </ul>
                         </h4>
                         <hr/>
-                        <div class="form-horizontal">
-                            <div class="form-group">
-                                <label class="col-md-4 control-label" for="selectbasic">Search Health Facility</label>
-                                <div class="col-md-4">
-                                    <select id="hfccd" class="form-control">
-                                        <option value="">-- Select health facility --</option>
-                                        <% for (int i = 0; i < dx1.size(); i++) {%>
-                                        <option value="<%=dx1.get(i).get(0)%>" <% try {
-                                                if (hfccd1.equals(dx1.get(i).get(0))) {
-                                                    out.print("selected");
-                                                }
-                                            } catch (Exception ef1) {
-                                            }%>><%=dx1.get(i).get(1)%></option>
-                                        <% } %>
-                                    </select>
+                        <ul class="collapse" id="filter" aria-expanded="false" style="height: 0px;">
+                            <div class="form-horizontal">
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label" for="selectbasic">Search Health Facility</label>
+                                    <div class="col-md-4">
+                                        <select id="hfccd" class="form-control">
+                                            <option value="">-- Select health facility --</option>
+                                            <% for (int i = 0; i < dx1.size(); i++) {%>
+                                            <option value="<%=dx1.get(i).get(0)%>" <% try {
+                                                    if (hfccd1.equals(dx1.get(i).get(0))) {
+                                                        out.print("selected");
+                                                    }
+                                                } catch (Exception ef1) {
+                                                }%>><%=dx1.get(i).get(1)%></option>
+                                            <% } %>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label" for="selectbasic">Search Discipline</label>
+                                    <div class="col-md-4">
+                                        <select id="discp" class="form-control">
+                                            <option value="">-- Select discipline --</option>
+                                            <% for (int i = 0; i < dx2.size(); i++) {%>
+                                            <option value="<%=dx2.get(i).get(0)%>" <% try {
+                                                    if (discp1.equals(dx2.get(i).get(0))) {
+                                                        out.print("selected");
+                                                    }
+                                                } catch (Exception ef2) {
+                                                }%>><%=dx2.get(i).get(1)%></option>
+                                            <% } %>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label" for="selectbasic">Search Sub-Discipline</label>
+                                    <div class="col-md-4">
+                                        <select id="subdi" class="form-control">
+                                            <option value="">-- Select sub-discipline --</option>
+                                            <% for (int i = 0; i < dx3.size(); i++) {%>
+                                            <option value="<%=dx3.get(i).get(0)%>" <% try {
+                                                    if (subdi1.equals(dx3.get(i).get(0))) {
+                                                        out.print("selected");
+                                                    }
+                                                } catch (Exception ef3) {
+                                                }%>><%=dx3.get(i).get(1)%></option>
+                                            <% } %>
+                                        </select>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <label class="col-md-4 control-label" for="selectbasic">Search Discipline</label>
-                                <div class="col-md-4">
-                                    <select id="discp" class="form-control">
-                                        <option value="">-- Select discipline --</option>
-                                        <% for (int i = 0; i < dx2.size(); i++) {%>
-                                        <option value="<%=dx2.get(i).get(0)%>" <% try {
-                                                if (discp1.equals(dx2.get(i).get(0))) {
-                                                    out.print("selected");
-                                                }
-                                            } catch (Exception ef2) {
-                                            }%>><%=dx2.get(i).get(1)%></option>
-                                        <% } %>
-                                    </select>
-                                </div>
+                            <div class="text-center">
+                                <button class="btn btn-success" id="tapis"><i class="fa fa-filter"></i>&nbsp; Filter</button>
+                                <button class="btn btn-default" id="clear">Clear</button>
                             </div>
-                            <div class="form-group">
-                                <label class="col-md-4 control-label" for="selectbasic">Search Sub-Discipline</label>
-                                <div class="col-md-4">
-                                    <select id="subdi" class="form-control">
-                                        <option value="">-- Select sub-discipline --</option>
-                                        <% for (int i = 0; i < dx3.size(); i++) {%>
-                                        <option value="<%=dx3.get(i).get(0)%>" <% try {
-                                                if (subdi1.equals(dx3.get(i).get(0))) {
-                                                    out.print("selected");
-                                                }
-                                            } catch (Exception ef3) {
-                                            }%>><%=dx3.get(i).get(1)%></option>
-                                        <% } %>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="text-center">
-                            <button class="btn btn-success" id="tapis"><i class="fa fa-filter"></i>&nbsp; Filter</button>
-                            <button class="btn btn-default" id="clear">Clear</button>
-                        </div>
-
-                        <hr/>
+                            <hr/>
+                        </ul>
 
                         <div id="papar">
                             <p>.. Preparing ...</p>
