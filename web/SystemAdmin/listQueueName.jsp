@@ -15,7 +15,9 @@
     String hfcN = session.getAttribute("HEALTH_FACILITY_CODE").toString();
     String disN = session.getAttribute("DISCIPLINE_CODE").toString();
 
-    String sql = "select n.queue_type,n.queue_name,n.queue_description,n.user_id,n.quota,n.status,n.created_by,n.created_date,n.hfc_cd,d.discipline_name,s.subdiscipline_name,h.hfc_name,x.user_name"
+    //                                                                                      DATE_FORMAT(n.created_date,'%d/%m/%Y')
+    
+    String sql = "select n.queue_type,n.queue_name,n.queue_description,n.user_id,n.quota,n.status,n.created_by, DATE_FORMAT(n.created_date,'%d/%m/%Y'),n.hfc_cd,d.discipline_name,s.subdiscipline_name,h.hfc_name,x.user_name"
             + " from pms_queue_name n "
             + "inner join adm_users x on x.user_id = n.user_id "
             + "inner join adm_health_facility h on h.hfc_cd = n.hfc_cd "

@@ -4,14 +4,14 @@
     Author     : user
 --%>
 
-<%@page import="dBConn.Conn"%>
+<%@page import="dbConn.Conn" %>
 <%@page import="Config.Config"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
 //    Config.getBase_url(request);
 //    Config.getFile_url(session);
     Conn conn = new Conn();
-    //out.print(conn.getIpCall());
+   // out.print(conn.getIpCall());
 %>
 <!DOCTYPE html>
 <html lang="en">

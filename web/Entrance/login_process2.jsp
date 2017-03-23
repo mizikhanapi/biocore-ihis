@@ -4,6 +4,7 @@
     Author     : user
 --%>
 
+<%@page import="iHIS.Encrypt.EncryptUtils"%>
 <%@page import="dBConn.Conn"%>
 <%@page import="com.sun.java.swing.plaf.windows.resources.windows"%>
 <%@page import="java.util.ArrayList"%>
@@ -31,6 +32,8 @@
         user_id = session.getAttribute("TEMP_ID").toString();
 
     }
+    
+    //password = EncryptUtils.getEncryptText(password);
 
     //                       0           1      2           3                   4                   5                               6                           7
     String sql = "Select user_id, password, user_name, health_facility_code, hfc_name, ifnull(convert(picture using utf8), ''), ifnull(login_status, '0'), new_icno from adm_users "

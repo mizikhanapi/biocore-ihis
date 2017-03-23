@@ -13,11 +13,11 @@
     Config.getFile_url(session);
     Conn conn = new Conn();
     String hfc = request.getParameter("hfc");
-    String disL = session.getAttribute("DISCIPLINE_CODE").toString();
+    String disL = session.getAttribute("DISCIPLINE_CODE").toString();// DATE_FORMAT(l.created_date,'%d/%m/%Y')
 
     //String sql = "select l.queue_type,l.queue_name,l.user_id,l.start_date,l.end_date,l.hfc_cd,l.discipline_cd,l.sub_discipline_cd,l.status,u.user_name,l.hfc_cd,l.created_by,l.created_date,x.user_name from pms_queue_list l inner join adm_user u  on u.user_id = l.user_id inner join adm_user x on x.user_id = l.created_by where l.hfc_cd = '"+hfc+"';";
     //String sql = "select l.queue_type,l.queue_name,l.user_id,l.start_date,l.end_date,l.hfc_cd,l.discipline_cd,l.sub_discipline_cd,l.status,u.user_name,l.hfc_cd,l.created_by,l.created_date,x.user_name,d.hfc_name from pms_queue_list l inner join adm_user u  on u.user_id = l.user_id inner join adm_user x on x.user_id = l.created_by inner join adm_health_facility d on d.hfc_cd = l.hfc_cd where l.hfc_cd = '"+hfc+"';";
-    String sql = "select distinct l.queue_type,l.queue_name,l.user_id,l.start_date,l.end_date,l.hfc_cd,l.discipline_cd,l.sub_discipline_cd,l.status,u.user_name,l.created_by,l.created_date,x.user_name,h.hfc_name,d.discipline_name,s.subdiscipline_name"
+    String sql = "select distinct l.queue_type,l.queue_name,l.user_id,DATE_FORMAT(l.start_date,'%d/%m/%Y'),DATE_FORMAT(l.end_date,'%d/%m/%Y'),l.hfc_cd,l.discipline_cd,l.sub_discipline_cd,l.status,u.user_name,l.created_by,DATE_FORMAT(l.created_date,'%d/%m/%Y'),x.user_name,h.hfc_name,d.discipline_name,s.subdiscipline_name"
 +" from pms_queue_list l"
 +" inner join adm_users x on x.user_id = l.created_by"
 +" inner join adm_users u on u.user_id = l.user_id"       
