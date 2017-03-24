@@ -44,12 +44,23 @@
               }
        
     }else{
+                      boolean updatePatientQueueElse = conn.setData("UPDATE pms_patient_queue SET status = '" + status + "' WHERE pmi_no = '" + pmino + "' AND episode_date = '" + episodedate + "';");
+                          boolean updatePMSEpisodeElse = conn.setData("UPDATE pms_episode SET status = '" + status + "' WHERE pmi_no = '" + pmino + "' AND episode_date = '" + episodedate + "';");
                      boolean updateEHR = conn.setData("UPDATE ehr_central SET status = '"+status+"', c_txndata = '"+notes+"' WHERE pmi_no = '"+pmino+"' AND c_txndate = '"+episodedate+"' ; ");
-                     if(updateEHR){
-                         out.print("|3|");
-                     } else{
-                         out.print("|NA|");
-                     }
+
+                                       if (updatePatientQueueElse) {
+                                               if (updatePMSEpisodeElse) {
+                                                                        if (updateEHR) {
+                                                                                out.print("|3|");
+                                                                            } else {
+                                                                                out.print("|NA|");
+                                                                            }
+                                               } else {
+                                                   out.print("updatePMSEpisode not run");
+                                               }
+                                           } else {
+                                               out.print("updatePatientQueue not run");
+                                           }
     }
 
 

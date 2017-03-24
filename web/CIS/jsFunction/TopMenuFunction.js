@@ -6,35 +6,41 @@
 
 var processNotes = "";
 
+function goToHome() {
+    location.href = '../Entrance/dashboard.jsp';
+}
+
 $(document).ready(function (e) {
+    
     $(window).on('beforeunload', function (e) {
-        if(reloadStat === "1"){
-             updateStatus(pmiNo, episodeDate, statusNow);
+        if (reloadStat === "1") {
+            updateStatus(pmiNo, episodeDate, statusNow);
             return "Sure U are?";
-        }else {
+        } else {
             console.log("no patient");
         }
-
-    });
-
-    $(window).on('unload', function (e) {
-
-        
     });
     
-    $('#mainConsultBar').hide();
+    $('.changePatientBtn').unbind('click');
 
+    $('#backBtn').click(function (e) {
+        e.preventDefault();
+        if (pmiNo === "") {
+            goToHome();
+        } else {
+            alert('You need complete the consultation on patient before first');
+        }
+    });
+
+    $('#mainConsultBar').hide();
     var VTSObj = {};
     var vtsCounter = 0;
-
     //------------------------------------------------------------ DISCHARGE BUTTON
     $('#dischargeBtn').click(function () {
-        
         reloadStat = 0;
-       var pmiNo = $('#pmiNumber').text();
-       sendOrder(_data);
-     getSettingConsult(doctor_id);
-       
+        var pmiNo = $('#pmiNumber').text();
+        sendOrder(_data);
+        getSettingConsult(doctor_id);
     });
 
     //------------------------------------------------------------ ON HOLD BUTTON
@@ -49,53 +55,58 @@ $(document).ready(function (e) {
         } else {
             alert('ON HOLD Cancel');
         }
-});
+    });
 
-$("#missingBtn").click(function(){
-    reloadStat = 0;
-    alert("Missing Button");
-     var pmiNo = $('#pmiNumber').text();
-       var c = confirm("Are you sure you want declare this patient are MISSING?");       
-       
-       if(c === true){
-           storeData(4);
-           updateStatus(pmiNo, episodeDate, "4");
-       } else {
-           alert('Data not be saved');
-       }
-});
+    $("#missingBtn").click(function () {
+        reloadStat = 0;
+        alert("Missing Button");
+        var pmiNo = $('#pmiNumber').text();
+        var c = confirm("Are you sure you want declare this patient are MISSING?");
 
-$("#nextBtn").click(function(){
-        reloadStat  = "1";
+        if (c === true) {
+            storeData(4);
+            updateStatus(pmiNo, episodeDate, "4");
+        } else {
+            alert('Data not be saved');
+        }
+    });
+
+    $("#nextBtn").click(function () {
+        reloadStat = "1";
         console.log(reloadStat);
         var currentDate = getDateNext();
         var date = currentDate[0];
         console.log(currentDate);
         //console.log(date);
         console.log(hfc_cd);
+        if (pmiNo === "") {
+            nextPatient(currentDate, hfc_cd);
+        } else {
+            alert('You need complete the consultation on patient before first');
+        }
 
-        nextPatient(currentDate, hfc_cd);
-});
+
+    });
 
 
-function sendOrder(data){
-    for(var k in data){
-        if(data[k].Acode === "DTO"){
-            console.log(data[k]);
-            $.ajax({
-                url:'topMenuFunction/SendOrder.jsp',
-                method:'POST',
-                timeout:5000,
-                data:data[k],
-                success:function(result){
-                    console.log(result);
-                }
-            });
+    function sendOrder(data) {
+        for (var k in data) {
+            if (data[k].Acode === "DTO") {
+                console.log(data[k]);
+                $.ajax({
+                    url: 'topMenuFunction/SendOrder.jsp',
+                    method: 'POST',
+                    timeout: 5000,
+                    data: data[k],
+                    success: function (result) {
+                        console.log(result);
+                    }
+                });
+            }
         }
     }
-}
 
-   function convertVTS(VTSData) {
+    function convertVTS(VTSData) {
 
         var d = VTSData;
 
@@ -158,25 +169,23 @@ function sendOrder(data){
         }
 
         var vtsNotes = "";
-        vtsNotes += "VTS|" + getDate() + "|" + d.BTemp + "^" + d.sitS + "^" + d.sitD + "^" + d.lyingS + "^" + d.lyingD + "^" + d.standS + "^" + d.standD + "^" + d.bmiWeight + "^" + d.bmiHeight + "^" + d.headCir + "^" + d.rrRate + "^" + d.pointMain + "^" + "^^^^^^^^^^" +hfc_cd +"^"+doctor_id+"^"+doctor_name+"^" + d.pointMain + "^" + d.resultMain + "^" + d.pointpgcsMain + "^" + d.resultpgcsMain + "^" + d.OSat + "^" + d.painScale + "^" + d.bloodGlucose + "^" +d.sitP+"^"+d.lyingP+"^"+d.standP+ "|<cr>\n";
+        vtsNotes += "VTS|" + getDate() + "|" + d.BTemp + "^" + d.sitS + "^" + d.sitD + "^" + d.lyingS + "^" + d.lyingD + "^" + d.standS + "^" + d.standD + "^" + d.bmiWeight + "^" + d.bmiHeight + "^" + d.headCir + "^" + d.rrRate + "^" + d.pointMain + "^" + "^^^^^^^^^^" + hfc_cd + "^" + doctor_id + "^" + doctor_name + "^" + d.pointMain + "^" + d.resultMain + "^" + d.pointpgcsMain + "^" + d.resultpgcsMain + "^" + d.OSat + "^" + d.painScale + "^" + d.bloodGlucose + "^" + d.sitP + "^" + d.lyingP + "^" + d.standP + "|<cr>\n";
         return vtsNotes;
     }
-    
+
     function countVTS(data) {
         $.each(data, function (index, value) {
             if (value === undefined) {
                 console.log("no object");
-            } else {
-
+            } else { 
                 if (data[index].Acode === "VTS") {
                     vtsCounter += 1;
                 }
             }
         });
     }
-    
-    function convertPEM(PEMData) {
 
+    function convertPEM(PEMData) {
         var PECodes = PEMData.id;
         var PECounter = 0;
         var PECd = "";
@@ -188,29 +197,27 @@ function sendOrder(data){
                 console.log(PECd);
             }
         }
-
         var Comment = PEMData.PEComment;
-        PEMNotes = "PEM|2015-01-16  16:27:58|^^" + PECd + "^" + NotesPE + "^^" + Comment + "^^^^^"+getDate()+"^"+hfc_cd+"^"+doctor_id+"^"+doctor_name+"|<cr>\n";
-
+        PEMNotes = "PEM|2015-01-16  16:27:58|^^" + PECd + "^" + NotesPE + "^^" + Comment + "^^^^^" + getDate() + "^" + hfc_cd + "^" + doctor_id + "^" + doctor_name + "|<cr>\n";
         return PEMNotes;
     }
-    
-    function convertToOrderNotes(data){
-         var orderNotes = "ORC|OK||||<cr>\n";
-        for(var key in data){
+
+    function convertToOrderNotes(data) {
+        var orderNotes = "ORC|OK||||<cr>\n";
+        for (var key in data) {
             if (data[key].Acode === "ROS") {
-                orderNotes += "ROS|" + getDate() + "|"+ data[key].codeROS+"^" + data[key].ROS+"^"+ data[key].commentROS+"^"+ "|<cr>\n";
+                orderNotes += "ROS|" + getDate() + "|" + data[key].codeROS + "^" + data[key].ROS + "^" + data[key].commentROS + "^" + "|<cr>\n";
             } else if (data[key].Acode === "DTO") {
-                var note1 = data[key].drugFrequencyDTO+"^"+data[key].drugInstructionDTO+"^"+data[key].unitDTO+"^"+data[key].doseDTO;
-               var note2 = "^"+data[key].drugStrDTO+"^^^^"+data[key].durationDTO+"^"+data[key].drugQtyDTO+"^^"+data[key].cautionaryDTO+"^"+data[key].commentDTO;
-               var note3 = "^"+hfc_cd+"^^" + discipline + "^^"+ subdis + "^^" + "|<cr>\n";
-                orderNotes += "DTO|" + getDate() + "|^"+data[key].dtoCode+"^ "+data[key].searchDTO+"^^"+data[key].drugNameDTO+"^^" + note1 + note2 + note3;
+                var note1 = data[key].drugFrequencyDTO + "^" + data[key].drugInstructionDTO + "^" + data[key].unitDTO + "^" + data[key].doseDTO;
+                var note2 = "^" + data[key].drugStrDTO + "^^^^" + data[key].durationDTO + "^" + data[key].drugQtyDTO + "^^" + data[key].cautionaryDTO + "^" + data[key].commentDTO;
+                var note3 = "^" + hfc_cd + "^^" + discipline + "^^" + subdis + "^^" + "|<cr>\n";
+                orderNotes += "DTO|" + getDate() + "|^" + data[key].dtoCode + "^ " + data[key].searchDTO + "^^" + data[key].drugNameDTO + "^^" + note1 + note2 + note3;
             } else if (data[key].Acode === "LOS") {
                 var search = data[key].catLOS.split("/");
-                 orderNotes += "LIO|" + getDate() + "|"+search[0]+"^"+search[1]+"^"+data[key].sourceLOS+"^"+data[key].codeLOS+"^"+data[key].searchLOS+"^"+data[key].containerLOS+"^^^^^^"+data[key].volumeLOS+"^"+data[key].commentLOS+"^"+hfc_cd+"^^" + discipline + "^^"+ subdis + "^^" + "|<cr>\n";
+                orderNotes += "LIO|" + getDate() + "|" + search[0] + "^" + search[1] + "^" + data[key].sourceLOS + "^" + data[key].codeLOS + "^" + data[key].searchLOS + "^" + data[key].containerLOS + "^^^^^^" + data[key].volumeLOS + "^" + data[key].commentLOS + "^" + hfc_cd + "^^" + discipline + "^^" + subdis + "^^" + "|<cr>\n";
             } else if (data[key].Acode === "POS") {
-                 orderNotes += "POS|" + getDate() + "|^^"+data[key].Problem18+"^"+data[key].procedure_cd+"^"+data[key].proType+"^^^^^^^^^^^"+hfc_cd+"|<cr>\n";
-            } 
+                orderNotes += "POS|" + getDate() + "|^^" + data[key].Problem18 + "^" + data[key].procedure_cd + "^" + data[key].proType + "^^^^^^^^^^^" + hfc_cd + "|<cr>\n";
+            }
         }
         return orderNotes;
     }
@@ -218,60 +225,59 @@ function sendOrder(data){
     function convertToNotes(data) {
         for (var key in data) {
             if (data[key].Acode === "CCN") {
-                processNotes += "CCN|" + getDate() + "|^" + data[key].ccnCode + "^" + data[key].problem + "^^" + data[key].Mild + "^" + data[key].duration + "^^" + data[key].sdur + "^^"+data[key].Site+"^^"+data[key].Laterality+"^" + data[key].Comment + "|<cr>\n";          
+                processNotes += "CCN|" + getDate() + "|^" + data[key].ccnCode + "^" + data[key].problem + "^^" + data[key].Mild + "^" + data[key].duration + "^^" + data[key].sdur + "^^" + data[key].Site + "^^" + data[key].Laterality + "^" + data[key].Comment + "|<cr>\n";
             } else if (data[key].Acode === "HPI") {
-                processNotes += "HPI|" + getDate() + "|" + data[key].details + "^" + getDate() + "^"+hfc_cd+"^"+doctor_id+"^"+doctor_name+"|<cr>\n";
+                processNotes += "HPI|" + getDate() + "|" + data[key].details + "^" + getDate() + "^" + hfc_cd + "^" + doctor_id + "^" + doctor_name + "|<cr>\n";
             } else if (data[key].Acode === "PMH") {
-                processNotes += "PMH|" + getDate() + "|"+ data[key].codePMH+"^" + data[key].Problem1 + "^^^^"+data[key].comment1+"^^^"+data[key].Status+"^"+getDate()+"^"+hfc_cd+"^"+doctor_id+"^"+doctor_name+"^^^|<cr>\n";
+                processNotes += "PMH|" + getDate() + "|" + data[key].codePMH + "^" + data[key].Problem1 + "^^^^" + data[key].comment1 + "^^^" + data[key].Status + "^" + getDate() + "^" + hfc_cd + "^" + doctor_id + "^" + doctor_name + "^^^|<cr>\n";
             } else if (data[key].Acode === "FMH") {
-                processNotes += "FMH|" + getDate() + "|" + data[key].f_relationship + "^" + data[key].codeFMH +"^" + data[key].Problem3 + "^^^^"+ data[key].comment2 +"^^^^^"  + getDate() + "^" +hfc_cd+"^"+doctor_id+"^"+doctor_name+"^|<cr>\n";
+                processNotes += "FMH|" + getDate() + "|" + data[key].f_relationship + "^" + data[key].codeFMH + "^" + data[key].Problem3 + "^^^^" + data[key].comment2 + "^^^^^" + getDate() + "^" + hfc_cd + "^" + doctor_id + "^" + doctor_name + "^|<cr>\n";
             } else if (data[key].Acode === "SOH") {
-                processNotes += "SOH|" + getDate() + "|" +data[key].codeSOH + "^" + data[key].Problem4 + "^^^^^^"  + data[key].date + "^^^^"+ data[key].comment3 +"^^^" + getDate() +  "^" +hfc_cd+"^"+doctor_id+"^"+doctor_name +"|<cr>\n";
+                processNotes += "SOH|" + getDate() + "|" + data[key].codeSOH + "^" + data[key].Problem4 + "^^^^^^" + data[key].date + "^^^^" + data[key].comment3 + "^^^" + getDate() + "^" + hfc_cd + "^" + doctor_id + "^" + doctor_name + "|<cr>\n";
             } else if (data[key].Acode === "BLD") {
-                processNotes += "BLD|" + getDate() + "|" + data[key].blood + "^" + data[key].Rhesus_Type + "^" + data[key].G6PD_Status + "^"+data[key].comment4+"|<cr>\n";
+                processNotes += "BLD|" + getDate() + "|" + data[key].blood + "^" + data[key].Rhesus_Type + "^" + data[key].G6PD_Status + "^" + data[key].comment4 + "|<cr>\n";
             } else if (data[key].Acode === "ALG") {
-                processNotes += "ALG|" + getDate() + "|" + data[key].codeALG + "^" + data[key].Problem5 + "^" + data[key].date1 + "^" + data[key].comment5 + "^^^^^"+getDate()+"^" +hfc_cd+"^"+doctor_id+"^"+doctor_name+"^^^|<cr>\n";
+                processNotes += "ALG|" + getDate() + "|" + data[key].codeALG + "^" + data[key].Problem5 + "^" + data[key].date1 + "^" + data[key].comment5 + "^^^^^" + getDate() + "^" + hfc_cd + "^" + doctor_id + "^" + doctor_name + "^^^|<cr>\n";
             } else if (data[key].Acode === "IMU") {
-                processNotes += "IMU|" + getDate() + "|" + data[key].codeIMU + "^" + data[key].Problem6 + "^" + data[key].date2 + "^" + data[key].comment6 + "^^^^"+getDate()+"^" +hfc_cd+"^"+doctor_id+"^"+doctor_name+"^^^|<cr>\n";
+                processNotes += "IMU|" + getDate() + "|" + data[key].codeIMU + "^" + data[key].Problem6 + "^" + data[key].date2 + "^" + data[key].comment6 + "^^^^" + getDate() + "^" + hfc_cd + "^" + doctor_id + "^" + doctor_name + "^^^|<cr>\n";
             } else if (data[key].Acode === "DAB") {
-                processNotes += "DAB|" + getDate() + "|" + data[key].codeDAB + "^" + data[key].Problem32 + "^" + data[key].date3 + "^^^"+data[key].comment7+"|<cr>\n";
+                processNotes += "DAB|" + getDate() + "|" + data[key].codeDAB + "^" + data[key].Problem32 + "^" + data[key].date3 + "^^^" + data[key].comment7 + "|<cr>\n";
             } else if (data[key].Acode === "VTS") {
                 $.extend(VTSObj, data[key]);
             } else if (data[key].Acode === "PEM") {
                 var peFnote = convertPEM(data[key]);
                 processNotes += peFnote;
             } else if (data[key].Acode === "DGS") {
-                processNotes += "DGS|" + getDate() + "|" + data[key].TypeDGS + "^^^" + data[key].dateDGS + "^^^"+data[key].dgsCode+"^"+data[key].searchDiag+"^^"+data[key].SeverityDGS+"^^"+data[key].SiteDGS+"^^^^"+data[key].LateralityDGS+"^^^"+data[key].commentDGS+"^^^"+getDate()+"^"+hfc_cd+"^"+doctor_id+"^"+doctor_name+"^^^|<cr>\n";
+                processNotes += "DGS|" + getDate() + "|" + data[key].TypeDGS + "^^^" + data[key].dateDGS + "^^^" + data[key].dgsCode + "^" + data[key].searchDiag + "^^" + data[key].SeverityDGS + "^^" + data[key].SiteDGS + "^^^^" + data[key].LateralityDGS + "^^^" + data[key].commentDGS + "^^^" + getDate() + "^" + hfc_cd + "^" + doctor_id + "^" + doctor_name + "^^^|<cr>\n";
             } else if (data[key].Acode === "PNT") {
-                processNotes += "PNT|" + getDate() + "|" + data[key].PNT + "^^^^" + getDate() +"^"+hfc_cd+"^"+doctor_id+"^"+doctor_name+"|<cr>\n";
+                processNotes += "PNT|" + getDate() + "|" + data[key].PNT + "^^^^" + getDate() + "^" + hfc_cd + "^" + doctor_id + "^" + doctor_name + "|<cr>\n";
             }
 
         }
         var VTSNotes = convertVTS(VTSObj);
-        processNotes +=VTSNotes;
+        processNotes += VTSNotes;
         console.log(HCSContent);
-
         return processNotes;
     }
 
     function clearCIS() {
-      location.href = './CIS000000.jsp';
+        location.href = './CIS000000.jsp';
     }
-    
-    function storeData(status){
+
+    function storeData(status) {
         var statusDesc;
-        if(status === 2){
+        if (status === 2) {
             statusDesc = "Oh Hold";
-        } else if(status === 1){
+        } else if (status === 1) {
             statusDesc = "Discharge";
-        } else if(status === 0){
+        } else if (status === 0) {
             statusDesc = "Waiting";
-        } else if(status === 4){
+        } else if (status === 4) {
             statusDesc = "Missing";
-        } 
-       
-        var msh = "MSH|^~|CIS|"+hfc_cd+"^"+discipline+"^"+subdis+"|" + getDate() + "|||||<cr>\n";
-        var pdi = PDIInfo+"|<cr>\n";
+        }
+
+        var msh = "MSH|^~|CIS|" + hfc_cd + "^" + discipline + "^" + subdis + "|" + getDate() + "|||||<cr>\n";
+        var pdi = PDIInfo + "|<cr>\n";
         var ord = convertToOrderNotes(_data);
         countVTS(_data);
 
@@ -280,11 +286,11 @@ function sendOrder(data){
 
         console.log(_data);
         var SendNotes = convertToNotes(_data);
-           
-           notes = msh + pdi + SendNotes+ord;
-           console.log(episodeDate);
-           console.log(pmiNo)
-           
+
+        notes = msh + pdi + SendNotes + ord;
+        console.log(episodeDate);
+        console.log(pmiNo)
+
         $.ajax({
             url: "topMenuFunction/discharge.jsp",
             type: "post",
@@ -292,19 +298,18 @@ function sendOrder(data){
                 notes: notes,
                 pmino: pmiNo,
                 episodedate: episodeDate,
-                status: status,              
+                status: status,
             },
             success: function (data) {
-               
-                var d = data.trim();
-                 console.log(data);
-                if(d === '|1|'){
 
+                var d = data.trim();
+                console.log(data);
+                if (d === '|1|') {
                     clearCIS();
-                    alert('Patient has been '+ statusDesc);
-                } else  if(d==='|3|'){
-                  clearCIS();
-                    alert('Patient record has been '+ statusDesc);
+                    alert('Patient has been ' + statusDesc);
+                } else if (d === '|3|') {
+                    clearCIS();
+                    alert('Patient record has been ' + statusDesc);
                 }
             },
             error: function (err) {
@@ -315,54 +320,53 @@ function sendOrder(data){
         });
     }
 
-    
 
-     
-    function nextPatient(currentDate, hfc){
 
+
+    function nextPatient(currentDate, hfc) {
         $.ajax({
-            url:"topMenuFunction/searchNextPatient.jsp",
-            method:"POST",
-            timeout:10000,
-            data:{
-                date:currentDate,
-                hfc:hfc
+            url: "topMenuFunction/searchNextPatient.jsp",
+            method: "POST",
+            timeout: 10000,
+            data: {
+                date: currentDate,
+                hfc: hfc
             },
-            success:function(result){
+            success: function (result) {
                 //console.log(result);
-                if(result.trim() === "|O|"){
+                if (result.trim() === "|O|") {
                     alert("No patient in queue");
-                }else {
+                } else {
                     var nextPArry = result.trim().split("|");
                     pmiNo = nextPArry[0];
                     episodeDate = nextPArry[1];
 
-                    findPatient(pmiNo,episodeDate);
+                    findPatient(pmiNo, episodeDate);
                     $('.soap-select').unbind('click');
                     getPDI(pmiNo);
-                    updateStatus(pmiNo,episodeDate,5);
+                    updateStatus(pmiNo, episodeDate, 5);
                 }
             }
         })
     }
- 
- 
- function getSettingConsult(user_id){
-     var checkCCN = false;
-     var checkDGS = false;
-     
-      $.ajax({
-        url: 'setting/LoadSetting.jsp',
-        method: "POST",
-        timeout: 5000,
-        data: {
-            userId: user_id
-        },
-        success: function (result) {
-            if(result.trim() === "|O|"){
-                alert("You not set up your consultation yet. You need set up before consult the patient");
-                $("#settingModal").modal("toggle");
-            } else {
+
+
+    function getSettingConsult(user_id) {
+        var checkCCN = false;
+        var checkDGS = false;
+
+        $.ajax({
+            url: 'setting/LoadSetting.jsp',
+            method: "POST",
+            timeout: 5000,
+            data: {
+                userId: user_id
+            },
+            success: function (result) {
+                if (result.trim() === "|O|") {
+                    alert("You not set up your consultation yet. You need set up before consult the patient");
+                    $("#settingModal").modal("toggle");
+                } else {
                     var Dsetting = result.trim().split("^");
 
                     for (var i = 0; i < Dsetting.length; i++) {
@@ -377,9 +381,8 @@ function sendOrder(data){
                             }
                         }
                     }
-
+                    
                     var dataDischarge = getStatusData(_data);
-
 
                     if (checkCCN === true && checkDGS === true) {
                         if (dataDischarge[0] === true && dataDischarge[1] === true) {
@@ -422,28 +425,24 @@ function sendOrder(data){
                             alert("Need to add CCN");
                         }
                     }
-            
+                }
             }
+        });
+    }
 
-            
-            
+
+    function getStatusData(data) {
+        var sCCN = false;
+        var sDGS = false;
+
+        for (var key in data) {
+            if (data[key].Acode === "CCN") {
+                sCCN = true;
+            } else if (data[key].Acode === "DGS") {
+                sDGS = true;
+            }
         }
-    });
- }
- 
- 
- function getStatusData(data){
-     var sCCN = false;
-     var sDGS = false;
-     
-     for(var key in data){
-             if (data[key].Acode === "CCN") {
-                 sCCN = true;
-             } else  if (data[key].Acode === "DGS") {
-                 sDGS = true;
-             }
-     }
-     
-     return [sCCN,sDGS];
- }
-  });
+
+        return [sCCN, sDGS];
+    }
+});

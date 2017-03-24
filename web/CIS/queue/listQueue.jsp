@@ -59,7 +59,12 @@
                                         <td><%=dataQueue.get(i).get(6)%></td>
                                         <td><%=dataQueue.get(i).get(8)%></td>
                                         <td id="status"><%=dataQueue.get(i).get(7)%></td>
-                                        <td><a class="btn btn-primary" id="consultBtn" >Consult</a> </td>
+                                        <% if(dataQueue.get(i).get(7).equals("Consult")){ %>
+                                        <td><button class="btn btn-primary changePatientBtn" id="consultBtn" disabled="">Consult</button> </td>
+                                        <% } else {%>
+                                        <td><button class="btn btn-primary changePatientBtn" id="consultBtn" >Consult</button> </td>
+                                            <%}%>
+                                     
                                     </tr>    
                                     <%    }
                                     %>

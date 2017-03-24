@@ -29,25 +29,34 @@ var HCS;
 var i = 0;
 
 //declare the Main Consultation Notes
-var ConsultationNotes = []
+var ConsultationNotes = [];
 
-var HCSContent = []
+var HCSContent = [];
+console.log(reloadStat);
+            if(reloadStat === 1){
+            window.onbeforeunload = function (event) {
+                updateStatus(pmiNo, episodeDate, statusNow);
+                event.returnValue = "Write something clever here..";
+            };
+            }
 
 $(document).ready(function(){
+    
 
     loadSetting(doctor_id);
+    
     $('.soap-select').click(function () {
         alert("You need to select the patient");
-        return false;});
+        return false;
+    });
     
     $('#settingBtn').click(function(){
        $('#settingModal').modal('toggle');
-// alert(hfc_cd);
     });
     
     $("#acceptSettingBtn").click(function(){
         var setCCN= false;
-       var setDGS =false;
+        var setDGS =false;
            var setting = $(".setting").val();
            
            if ($('#setCCN').is(":checked"))
@@ -170,8 +179,6 @@ function loadSetting(user_id){
                 }
             }
 
-            
-           // console.log(setting);
         }
     });
 }
