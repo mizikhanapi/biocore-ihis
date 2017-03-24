@@ -47,9 +47,6 @@
     color: #404040;
 }
 .tabbable-line > .tab-content {
-    margin-top: -3px;
-    border: 0;
-    padding: 15px 0;
 }
 .portlet .tabbable-line > .tab-content {
     padding-bottom: 0;

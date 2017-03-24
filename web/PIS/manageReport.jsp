@@ -15,8 +15,7 @@
 <%@include file="validateModuleAccess.jsp" %>
 
 
-<%
-    Config.getFile_url(session);
+<%    Config.getFile_url(session);
     Config.getBase_url(request);
 
 %>
