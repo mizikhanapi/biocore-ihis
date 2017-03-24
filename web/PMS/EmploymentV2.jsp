@@ -24,25 +24,23 @@
     <div class="col-md-12">
 
         <div id="modalEMP"><%@include file = "EmploymentModal.jsp" %></div>
-        <div class="thumbnail">
-            <h4>List of Employments
-                <button id="addEMPmodal" name="addEMPmodal" class="btn btn-success pull-right" data-toggle="modal" data-target="#EMPModal"><i class="fa fa-plus"></i>&nbsp; Add Employment Information</button></h4>
-            <br/>
-            <div id="tableListEmp" class="form-group">
+        <h4>List of Employments
+            <button id="addEMPmodal" name="addEMPmodal" class="btn btn-success pull-right" data-toggle="modal" data-target="#EMPModal"><i class="fa fa-plus"></i>&nbsp; Add Employment Information</button></h4>
+        <br/>
+        <div id="tableListEmp" class="form-group">
 
 
-                <table class="table table-striped table-bordered" style="background: #fff; border: 1px solid #ccc; " id="listEMP">
-                    <thead>
-                    <th>Employer Name</th>
-                    <th>Occupation</th>
-                    <th style="width: 5%;">Update</th>
-                    <th style="width: 5%;">Delete</th>
-                    </thead>
-                    <tbody>
+            <table class="table table-striped table-bordered" style="background: #fff; border: 1px solid #ccc; " id="listEMP">
+                <thead>
+                <th>Employer Name</th>
+                <th>Occupation</th>
+                <th style="width: 5%;">Update</th>
+                <th style="width: 5%;">Delete</th>
+                </thead>
+                <tbody>
 
-                    </tbody>
-                </table>
-            </div>
+                </tbody>
+            </table>
         </div>
     </div>
 </div>
@@ -72,7 +70,7 @@
         var rowData = row.find("#empval").val();
         var arrayData = rowData.split("|");
         //assign into seprated val
-        var pmino = arrayData[0], seqno = arrayData[1], empcode = arrayData[2], empname = arrayData[3], occu = arrayData[4], jdate = arrayData[5], incomerange = arrayData[6], hfc = arrayData[7], credate = arrayData[8], empstatus = arrayData[9],empoccuName =arrayData[10],emphfcName=arrayData[11];
+        var pmino = arrayData[0], seqno = arrayData[1], empcode = arrayData[2], empname = arrayData[3], occu = arrayData[4], jdate = arrayData[5], incomerange = arrayData[6], hfc = arrayData[7], credate = arrayData[8], empstatus = arrayData[9], empoccuName = arrayData[10], emphfcName = arrayData[11];
         //convert date
         var splitCreDate = String(credate).split("/");
         var convertedCreDate = splitCreDate[0] + "-" + splitCreDate[1] + "-" + splitCreDate[2];
@@ -92,7 +90,7 @@
         $('#EMPcredate').val(convertedCreDate);
         $('#EMPstatus').val(empstatus);
         $('#EMPseq').val(seqno);
-        
+
         $("#EMPhfcCODE").val(hfc);
         $("#EMPoccuCODE").val(occu);
 
