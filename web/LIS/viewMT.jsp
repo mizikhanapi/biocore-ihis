@@ -8,7 +8,7 @@
                               // Statement st = con.createStatement();
                              //  ResultSet resultset = 
                               // st.executeQuery("SELECT om.order_no,OM.PMI_NO,PMS.PATIENT_NAME,OM.ORDER_DATE,OM.HFC_CD,OM.EPISODE_DATE,OM.ORDER_BY FROM LIS_ORDER_MASTER OM, PMS_PATIENT_BIODATA PMS WHERE OM.pmi_no = PMS.PMI_NO");
-                                     String sqlPatientApp = "SELECT DISTINCT ls.specimen_no,ls.pmi_no,pms.NEW_IC_NO,pms.PATIENT_NAME,lom.order_no,ls.specimen_status,lom.order_date,ls.item_cd FROM lis_specimen ls,lis_order_detail lod,lis_order_master lom,pms_patient_biodata pms WHERE ls.order_no=lod.order_no AND lod.order_no= lom.order_no AND lom.pmi_no = pms.PMI_NO GROUP BY(ls.specimen_no)";
+                                     String sqlPatientApp = "SELECT DISTINCT ls.specimen_no,ls.pmi_no,pms.NEW_IC_NO,pms.PATIENT_NAME,lom.order_no,ls.specimen_status,lom.order_date,ls.item_cd FROM lis_specimen ls,lis_order_detail lod,lis_order_master lom,pms_patient_biodata pms WHERE ls.order_no=lod.order_no AND receive_specimen_status = 'Approve' AND lod.order_no= lom.order_no AND lom.pmi_no = pms.PMI_NO GROUP BY(ls.specimen_no)";
                                      ArrayList<ArrayList<String>> dataPatientApp = conn.getData(sqlPatientApp);    
 
                         %>
@@ -42,21 +42,8 @@
                               <td></td>
                               <td><%=dataPatientApp.get(i).get(5)%></td>
                               <td><%=dataPatientApp.get(i).get(6)%></td>
-                              <td><%
-                                  String a = dataPatientApp.get(i).get(5);
-                                     if(a.equals("Accepted"))
-                                     {
-                                        %>
-                                        <a href='VerifySpecimen.jsp?pmi=<%=dataPatientApp.get(i).get(1)%> &specimen_no=<%=dataPatientApp.get(i).get(0)%>'><button class='btn btn-primary btn-block'>Assign Result</button></a>
-                                        <%
-                                     }
-                                     else
-                                     {
-                                        %>
-                                        <a href='VerifySpecimen.jsp?pmi=<%=dataPatientApp.get(i).get(1)%> &specimen_no=<%=dataPatientApp.get(i).get(0)%>'><button class='btn btn-primary btn-block' disabled="disabled">Assign Result</button></a>
-                                        <%
-                                     }
-                                  %>
+                              <td><a href='VerifySpecimen.jsp?pmi=<%=dataPatientApp.get(i).get(1)%> &specimen_no=<%=dataPatientApp.get(i).get(0)%>'><button class='btn btn-primary btn-block'>Assign Result</button></a>
+                                  
                               </td>
                           </tr>
                      <%
