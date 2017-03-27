@@ -61,7 +61,7 @@
         </li> 
         <li>
             <a  href="ManageTest.jsp" >
-                <i class="fa fa-file-text fa-lg"></i> Manage Test
+                <i class="fa fa-file-text fa-lg"></i> Verify Specimen for Test
             </a>
         </li> 
         <li>

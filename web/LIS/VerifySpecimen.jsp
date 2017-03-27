@@ -38,7 +38,7 @@
     </head>
     <body>
        
-      
+        <form name="" action="VerifyResult.jsp" method="post">
       <div class="container-fluid">
           <div class="row">
           <!-- menu side -->		
@@ -75,8 +75,13 @@
                                                 session.setAttribute( "specimen_no", null );
                                                 session.setAttribute( "order_no", null );
                                                 Conn conn = new Conn();
+                                                
                                                 String pmi = request.getParameter("pmi");
+                                                session.setAttribute( "pmi", pmi );
+                                                
                                                 String specimen_no1 = request.getParameter("specimen_no");
+                                                session.setAttribute( "specimen_no", specimen_no1 );
+                                                
                                                 String query1 = "SELECT pb.`PMI_NO`, pb.`NEW_IC_NO`, pb.`PATIENT_NAME`,ls.order_no,ls.specimen_no,ls.`Collection_date`,ls.`Collection_time`,lom.order_date,lom.order_by,lom.hfc_from FROM pms_patient_biodata pb,lis_specimen ls,lis_order_master lom WHERE pb.`PMI_NO` = ls.pmi_no AND ls.pmi_no =lom.pmi_no AND pb.`PMI_NO` = '"+pmi+"' AND ls.specimen_no = '"+specimen_no1+"' GROUP BY(ls.specimen_no)";
                                                 ArrayList<ArrayList<String>> q2 = conn.getData(query1);
                                                 %>  
@@ -148,73 +153,10 @@
                     
     <div class="table-responsive" id='viewVODpage'>
         
-    <table id="MTC"  class="table table-striped table-bordered" cellspacing="0" width="100%">
-                    <%
-                        
-                        //String order_no = request.getParameter("order_no");
-                        //out.print(pmi+"   "+specimen_no1);        
-                        String query4 = "SELECT  ls.item_cd,lod.item_name, lod.spe_container, lod.volume, lod.spe_source, lod.requestor_comments,ls.specimen_status, ls.commen_specimen,ls.Approval,ls.order_no FROM lis_specimen ls,lis_order_detail lod WHERE ls.item_cd = lod.item_cd AND ls.specimen_no='"+specimen_no1+"' AND ls.pmi_no='"+pmi+"' GROUP BY(lod.item_cd)";
-                        ArrayList<ArrayList<String>> q4 = conn.getData(query4);    
-                     %>
-                     <input type="text" id="pmi" value="<%=pmi%>" style="display: none;"><input type="text" id="specimen_no" value="<%=specimen_no1%>" style="display: none;">
-    <thead>
-        <tr>
-                <th class="col-sm-1">Item Code</th>
-                <th class="col-sm-1">Item Name</th>
-                <th class="col-sm-1">Specimen Container</th>
-                <th class="col-sm-1">Volume</th>
-                <th class="col-sm-1">Specimen Source</th>
-                <th class="col-sm-1">Requestor Comment</th>
-                <th class="col-sm-1">Specimen Status</th>
-                <th class="col-sm-1">Specimen Comment</th>
-                <th class="col-sm-1">Test Status</th>
-                <th class="col-sm-1">Assign</th>
-                <th class="col-sm-1">Verify</th>
-        </tr>
-    </thead>
-    <tbody>
-         <%if (q4.size() > 0) 
-           {
-                for (int i = 0; i < q4.size(); i++) 
-           {%> 
-        <tr>    
-                <td><%=q4.get(i).get(0)%></td>
-                <td><%=q4.get(i).get(1)%></td>
-                <td><%=q4.get(i).get(2)%></td>
-                <td><%=q4.get(i).get(3)%></td>
-                <td><%=q4.get(i).get(4)%></td>
-                <td><%=q4.get(i).get(5)%></td>
-                <td><%=q4.get(i).get(6)%></td>
-                <td><%=q4.get(i).get(7)%></td>
-                <td><%=q4.get(i).get(8)%></td>
-                <td>
-                    <a href='AssignResult.jsp?item_cd=<%=q4.get(i).get(0)%> &order_no=<%=q4.get(i).get(9)%> &item_name=<%=q4.get(i).get(2)%> &pmi1=<%=pmi%> &specimen_no1=<%=specimen_no1%>' class='btn btn-primary btn' ><span class='glyphicon glyphicon-'></span>Assign Result</a>
-                    </td>
-               <td>
-                    <a href='VerifyResult.jsp?item_cd=<%=q4.get(i).get(0)%> &order_no=<%=q4.get(i).get(9)%> &item_name=<%=q4.get(i).get(2)%> &pmi1=<%=pmi%> &specimen_no1=<%=specimen_no1%>' class='btn btn-primary btn' ><span class='glyphicon glyphicon-'></span>Verify Result</a>
-                    
-               </td>
-        <%
-                }
-            }
-        %>
-             
-          
-        </tr>
-       
+    
         
-       
-    </tbody>
-</table>
-        <div class="col-xs-12 col-md-12">
+        <div id="viewVS">
             
-            <div class=" pull-right">
-                
-               
-                
-                
-                <button type="button" class="btn btn-default" id="back">Back</button>
-            </div>
         </div>
         
                                         </div>
@@ -243,9 +185,9 @@
             <script>
         w3IncludeHTML();
         $(document).ready(function () { 
-                     $("#back").click(function () {
-                           window.location.replace("ManageTest.jsp");
-                        });
+                    
+                     
+                     
                         
                      $("#sub_reject").click(function () {
                            var fcomment = $("#fcomment").val(); 
@@ -301,11 +243,13 @@
                     });
         $(document).ready(function () {
 
+            $("#viewVS").load("viewVS.jsp");
             $("#headerindex").load("libraries/header.html");
             $("#topmenuindex").load("libraries/topMenus.html");
             $("#sidemenus").load("libraries/sideMenus.jsp");
         });
 
     </script>
+        </form>
         </body>
 </html>

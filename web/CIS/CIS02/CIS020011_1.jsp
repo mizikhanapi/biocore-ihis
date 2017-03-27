@@ -26,7 +26,7 @@
     String bodySystemName;
     String diagnosis;
 
-String sqlRIS = "SELECT lis_order_detail.order_no,lis_order_detail.item_cd,lis_order_detail.item_name,lis_order_detail.spe_source,lis_order_detail.volume,lis_order_detail.comment,lis_order_detail.filler_comments FROM  lis_order_detail INNER JOIN lis_order_master ON lis_order_detail.order_no = lis_order_master.order_no WHERE lis_order_master.pmi_no='"+pmiNo+"'" ;
+String sqlRIS = "select result,remark,test_date,`testTime`,specimen_no,test_name,`performBy`,`Verification` from lis_assign_result where pmi_no = '"+pmiNo+"'" ;
 ArrayList<ArrayList<String>> dataRIS = conn.getData(sqlRIS);
 
 %>
@@ -34,12 +34,13 @@ ArrayList<ArrayList<String>> dataRIS = conn.getData(sqlRIS);
     
     <thead>
         <tr>
-            <th>Order No</th>
-            <th>Item Name</th>
-            <th>Volume</th>
-            <th>Specimen Source</th>
-            <th>Comments</th>
-            <th>Filler Comments</th>
+            <th>Test Name</th>
+            <th>Test Date</th>
+            <th>Test Time</th>
+            <th>Result</th>
+            <th>Remarks</th>
+            <th>Perform By</th>
+             <th>Verification</th>
         </tr>
     </thead>
     <tbody>
@@ -47,12 +48,13 @@ ArrayList<ArrayList<String>> dataRIS = conn.getData(sqlRIS);
             for(int i=0; i<dataRIS.size();i++){
                 %>
                 <tr>
-                    <td><%out.print(dataRIS.get(i).get(0));%></td>
-                    <td><%out.print(dataRIS.get(i).get(2));%></td>
-                    <td><%out.print(dataRIS.get(i).get(4));%></td>
-                    <td><%out.print(dataRIS.get(i).get(3));%></td>
                     <td><%out.print(dataRIS.get(i).get(5));%></td>
+                    <td><%out.print(dataRIS.get(i).get(2));%></td>
+                    <td><%out.print(dataRIS.get(i).get(3));%></td>
+                    <td><%out.print(dataRIS.get(i).get(0));%></td>
+                    <td><%out.print(dataRIS.get(i).get(1));%></td>
                     <td><%out.print(dataRIS.get(i).get(6));%></td>
+                    <td><%out.print(dataRIS.get(i).get(7));%></td>
               </tr>
                 <%
             }

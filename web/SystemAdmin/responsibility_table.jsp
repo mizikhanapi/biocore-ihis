@@ -5,11 +5,13 @@
 --%>
 
 
+<%@page import="dbConn.Conn"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.sql.*"%>
-<%@page import="dBConn.Conn"%>
+
 <%@page import="main.RMIConnector"%>
 <%
+    //Conn conn = new Conn();
     Conn conn = new Conn();
 %>
 <table  id="THE_responsibilityTable"  class="table table-striped table-bordered" cellspacing="0" width="100%">

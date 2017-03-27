@@ -9,7 +9,7 @@
         //  ResultSet resultset = 
         // st.executeQuery("SELECT om.order_no,OM.PMI_NO,PMS.PATIENT_NAME,OM.ORDER_DATE,OM.HFC_CD,OM.EPISODE_DATE,OM.ORDER_BY FROM LIS_ORDER_MASTER OM, PMS_PATIENT_BIODATA PMS WHERE OM.pmi_no = PMS.PMI_NO");
         Conn conn = new Conn();
-        String sqlPatientApp = "SELECT DISTINCT ls.item_cd,ls.specimen_no,ls.pmi_no,ls.patient_name,lom.order_by,pms.NEW_IC_NO,pms.SEX_CODE,pms.RACE_CODE,pms.BIRTH_DATE,pms.NATIONALITY,ls.hfc_cd,ls.specimen_status,ls.order_no,ls.item_cd FROM lis_specimen ls,lis_order_detail lod,lis_order_master lom,pms_patient_biodata pms WHERE ls.order_no=lod.order_no AND lod.order_no= lom.order_no AND lom.pmi_no = pms.PMI_NO GROuP BY(ls.specimen_no)";
+        String sqlPatientApp = "SELECT DISTINCT ls.item_cd,ls.specimen_no,ls.pmi_no,ls.patient_name,lom.order_by,pms.NEW_IC_NO,pms.SEX_CODE,pms.RACE_CODE,pms.BIRTH_DATE,pms.NATIONALITY,ls.hfc_cd,ls.specimen_status,ls.order_no,ls.item_cd,ls.receive_specimen_status FROM lis_specimen ls,lis_order_detail lod,lis_order_master lom,pms_patient_biodata pms WHERE ls.order_no=lod.order_no AND lod.order_no= lom.order_no AND lom.pmi_no = pms.PMI_NO GROuP BY(ls.specimen_no)";
         ArrayList<ArrayList<String>> dataPatientApp = conn.getData(sqlPatientApp);
 
     %>
@@ -22,7 +22,7 @@
             <th class="col-sm-1">Registration No</th>				 
             <th class="col-sm-1">Patient Name</th>
             <th class="col-sm-1">Order Source</th>
-            <th class="col-sm-1">Specimen Status</th>
+            <th class="col-sm-1">Receive Specimen</th>
             <th class="col-sm-1">Action</th>
         </tr>
     </thead>
@@ -114,9 +114,9 @@
                 </div>
 
             </td>
-            <td><%=dataPatientApp.get(i).get(11)%></td>
+            <td><%=dataPatientApp.get(i).get(14)%></td>
             <td>
-                <a href='ReceiveSpecimen.jsp?pmi=<%=dataPatientApp.get(i).get(2)%> &specimen_no=<%=dataPatientApp.get(i).get(1)%>' class='btn btn-primary btn-block' >Assign</a>
+                <a href='ReceiveSpecimen.jsp?pmi=<%=dataPatientApp.get(i).get(2)%> &specimen_no=<%=dataPatientApp.get(i).get(1)%>' class='btn btn-primary btn-block' >Identify Specimen</a>
             </td>
 
         </tr>

@@ -4,259 +4,248 @@
     Author     : Shammugam
 --%>
 
-<div class="thumbnail">
-    <h4>Basic Info</h4>
-    <hr/>
-    <form class="form-horizontal" name="patientOrderDetailContentBasicInfoForm" id="patientOrderDetailContentBasicInfoForm">
-        <div class="row">
+<h4>Basic Info</h4>
+<form class="form-horizontal" name="patientOrderDetailContentBasicInfoForm" id="patientOrderDetailContentBasicInfoForm">
+    <div class="row">
 
-            <div class="col-md-4">
+        <div class="col-md-4">
 
-                <!-- Text input-->
-                <div class="form-group">
-                    <label class="col-md-4 control-label" for="textinput">PMI No.</label>
-                    <div class="col-md-8">
-                        <input id="patientpmino" name="patientpmino" type="text" placeholder="" readonly class="form-control input-md">   
-                    </div>
+            <!-- Text input-->
+            <div class="form-group">
+                <label class="col-md-3 control-label" for="textinput">PMI No.</label>
+                <div class="col-md-7">
+                    <input id="patientpmino" name="patientpmino" type="text" placeholder="" readonly class="form-control input-md">   
                 </div>
-                <!-- Text input-->
-                <div class="form-group">
-                    <label class="col-md-4 control-label" for="textinput">Name</label>
-                    <div class="col-md-8">
-                        <input id="patientName" name="patientName" type="text" readonly placeholder="" class="form-control input-md">
-                    </div>
-                </div>
-
             </div>
-
-            <div class="col-md-4">
-
-                <!-- Text input-->
-                <div class="form-group">
-                    <label class="col-md-4 control-label" for="textinput">New IC No.</label>
-                    <div class="col-md-8">
-                        <input id="patientnic" name="patientnic" type="text" readonly placeholder="" class="form-control input-md">
-                    </div>
+            <!-- Text input-->
+            <div class="form-group">
+                <label class="col-md-3 control-label" for="textinput">Name</label>
+                <div class="col-md-7">
+                    <input id="patientName" name="patientName" type="text" readonly placeholder="" class="form-control input-md">
                 </div>
-                <!--Text input-->
-                <div class="form-group">
-                    <label class="col-md-4 control-label" for="textinput">Gender</label>
-                    <div class="col-md-8">
-                        <input id="patientGender" name="patientGender" type="text" readonly placeholder="" class="form-control input-md">
-                    </div>
-                </div>
-
-            </div>
-
-            <div class="col-md-4">
-
-                <!--Text input-->
-                <div class="form-group">
-                    <label class="col-md-4 control-label" for="textinput">D.O.B</label>
-                    <div class="col-md-8">
-                        <input id="patientBdate" name="patientBdate" type="text" readonly placeholder="" class="form-control input-md">
-                    </div>
-                </div>
-                <!--Text input-->
-                <div class="form-group">
-                    <label class="col-md-4 control-label" for="textinput">Blood Type</label>
-                    <div class="col-md-8">
-                        <input id="patientBtype" name="patientBtype" type="text" readonly placeholder="" class="form-control input-md">
-                    </div>
-                </div>
-
             </div>
 
         </div>
-    </form>
 
-    <hr/>
-    <h5 style="padding-bottom: 1%;font-weight: bolder">
-        Allergy List
-    </h5>
+        <div class="col-md-4">
 
-    <div id="patientAllergyListTableDiv" class="form-group">
-        <table class="table table-filter table-striped table-bordered" style="background: #fff; border: 1px solid #ccc; width: 100%" id="patientAllergyListTable">
-            <thead>
-            <th style="display: none">PMI NO</th>
-            <th>HFC CODE</th>
-            <th>EPISODE DATE</th>
-            <th>ENCOUNTER DATE</th>
-            <th>ALLERGY CODE</th>
-            <th>ALLERGY DESCRIPTION</th>
-            <th>COMMENT</th>
-            </thead>
-            <tbody>
+            <!-- Text input-->
+            <div class="form-group">
+                <label class="col-md-3 control-label" for="textinput">New IC No.</label>
+                <div class="col-md-7">
+                    <input id="patientnic" name="patientnic" type="text" readonly placeholder="" class="form-control input-md">
+                </div>
+            </div>
+            <!--Text input-->
+            <div class="form-group">
+                <label class="col-md-3 control-label" for="textinput">Gender</label>
+                <div class="col-md-7">
+                    <input id="patientGender" name="patientGender" type="text" readonly placeholder="" class="form-control input-md">
+                </div>
+            </div>
 
-            </tbody>
-        </table>
+        </div>
+
+        <div class="col-md-4">
+
+            <!--Text input-->
+            <div class="form-group">
+                <label class="col-md-3 control-label" for="textinput">D.O.B</label>
+                <div class="col-md-7">
+                    <input id="patientBdate" name="patientBdate" type="text" readonly placeholder="" class="form-control input-md">
+                </div>
+            </div>
+            <!--Text input-->
+            <div class="form-group">
+                <label class="col-md-3 control-label" for="textinput">Blood Type</label>
+                <div class="col-md-7">
+                    <input id="patientBtype" name="patientBtype" type="text" readonly placeholder="" class="form-control input-md">
+                </div>
+            </div>
+
+        </div>
+
     </div>
+</form>
+
+<h5 style="font-weight: 500;">
+    Allergy List
+</h5>
+
+<div id="patientAllergyListTableDiv" class="form-group" style="margin-bottom: 40px;">
+    <table class="table table-filter table-striped table-bordered" style="background: #fff; border: 1px solid #ccc; width: 100%" id="patientAllergyListTable">
+        <thead>
+        <th style="display: none">PMI NO</th>
+        <th>HFC CODE</th>
+        <th>EPISODE DATE</th>
+        <th>ENCOUNTER DATE</th>
+        <th>ALLERGY CODE</th>
+        <th style="text-align: left; width: 40%;">ALLERGY DESCRIPTION</th>
+        <th style="text-align: left; width: 20%;">COMMENT</th>
+        </thead>
+        <tbody>
+
+        </tbody>
+    </table>
 </div>
 
+<hr/>
+<h4>Diagnosis Info</h4>
+<div id="patientDiagnosisListTableDiv" class="form-group" style="margin-bottom: 40px;">
+    <table class="table table-filter table-striped table-bordered" style="background: #fff; border: 1px solid #ccc; width: 100%" id="patientDiagnosisListTable">
+        <thead>
+        <th style="display: none">PMI NO</th>
+        <th >HFC CODE</th>
+        <th>EPISODE DATE</th>
+        <th>ENCOUNTER DATE</th>
+        <th>DIAGNOSIS CODE</th>
+        <th style="text-align: left; width: 40%;">DIAGNOSIS DESCRIPTION</th>
+        <th style="text-align: left; width: 20%;">COMMENT</th>
+        </thead>
+        <tbody>
 
-<div class="thumbnail">
-    <h4>Diagnosis Info</h4>
-    <hr/>
-    <div id="patientDiagnosisListTableDiv" class="form-group">
-        <table class="table table-filter table-striped table-bordered" style="background: #fff; border: 1px solid #ccc; width: 100%" id="patientDiagnosisListTable">
-            <thead>
-            <th style="display: none">PMI NO</th>
-            <th >HFC CODE</th>
-            <th>EPISODE DATE</th>
-            <th>ENCOUNTER DATE</th>
-            <th>DIAGNOSIS CODE</th>
-            <th>DIAGNOSIS DESCRIPTION</th>
-            <th>COMMENT</th>
-            </thead>
-            <tbody>
-
-            </tbody>
-        </table>
-    </div>
+        </tbody>
+    </table>
 </div>
 
-
-<div class="thumbnail">
-    <h4>Order Info</h4>
-    <hr/>
-    <form class="form-horizontal" name="patientOrderDetailContentOrderInfoForm" id="patientOrderDetailContentOrderInfoForm">
-        <div class="row">
-
-            <div class="col-md-4">
-
-                <!-- Text input-->
-                <div class="form-group">
-                    <label class="col-md-4 control-label" for="textinput">Order No.</label>
-                    <div class="col-md-8">
-                        <input id="patientOrderNo" name="patientOrderNo" type="text" placeholder=" " readonly class="form-control input-md">   
-                    </div>
-                </div>
-
-            </div>
-
-
-            <div class="col-md-4">
-
-                <!-- Text input-->
-                <div class="form-group">
-                    <label class="col-md-4 control-label" for="textinput">Order Date</label>
-                    <div class="col-md-8">
-                        <input id="patientOrderDate" name="patientOrderDate" type="text" readonly placeholder="" class="form-control input-md">
-                    </div>
-                </div>
-
-            </div>
-
-
-            <div class="col-md-4">
-
-                <!-- Text input-->
-                <div class="form-group">
-                    <label class="col-md-4 control-label" for="textinput">Location</label>
-                    <div class="col-md-8">
-                        <input id="patientOrderLocationCode" name="patientOrderLocationCode" type="text" readonly placeholder="" class="form-control input-md">
-                    </div>
-                </div>
-
-            </div>
-
-
-        </div>
-    </form>
-    <hr/>
-    <h4 style="padding-bottom: 1%">
-        <div class="pull-right">
-            <button id="patientOrderNewDrugButton" name="patientOrderNewDrugButton" class="btn btn-primary" data-toggle="modal" ><i class="fa fa-plus fa-lg"></i>&nbsp; New Order</button>
-        </div>
-        <br>
-    </h4>
-
-
-    <div id="patientOrderDetailsListTableDiv" class="form-group">
-        <table class="table table-filter table-striped table-bordered" style="background: #fff; border: 1px solid #ccc; width: 100%" id="patientOrderDetailsListTable">
-            <thead>
-            <th>Order No</th>
-            <th>Code</th>
-            <th>Description</th>
-            <th>Strength</th>
-            <th>Frequency</th>
-            <th>Duration</th>
-            <th>Dose</th>
-            <th>Price/Pack</th>
-            <th>Stock Qty</th>
-            <th>Ordered Qty</th>
-            <th>Supplied Qty</th>
-            <th>Dispensed Qty</th>
-            <!--    <th>Total Price (RM)</th>-->
-            <th>Status</th>
-            </thead>
-            <tbody>
-
-            </tbody>
-        </table>
+<hr/>
+<h4>Order Info
+    <div class="pull-right">
+        <button id="patientOrderNewDrugButton" name="patientOrderNewDrugButton" class="btn btn-primary" data-toggle="modal" ><i class="fa fa-plus fa-lg"></i>&nbsp; New Order</button>
     </div>
+</h4>
+<form class="form-horizontal" name="patientOrderDetailContentOrderInfoForm" id="patientOrderDetailContentOrderInfoForm">
+    <div class="row">
 
-    <div style="padding-top: 1%; padding-bottom: 8%;">
-        <!-- content goes here -->
-        <form class="form-horizontal" id="addForm">
+        <div class="col-md-4">
 
+            <!-- Text input-->
+            <div class="form-group">
+                <label class="col-md-3 control-label" for="textinput">Order No.</label>
+                <div class="col-md-7">
+                    <input id="patientOrderNo" name="patientOrderNo" type="text" placeholder=" " readonly class="form-control input-md">   
+                </div>
+            </div>
+
+        </div>
+
+
+        <div class="col-md-4">
+
+            <!-- Text input-->
+            <div class="form-group">
+                <label class="col-md-3 control-label" for="textinput">Order Date</label>
+                <div class="col-md-7">
+                    <input id="patientOrderDate" name="patientOrderDate" type="text" readonly placeholder="" class="form-control input-md">
+                </div>
+            </div>
+
+        </div>
+
+
+        <div class="col-md-4">
+
+            <!-- Text input-->
+            <div class="form-group">
+                <label class="col-md-3 control-label" for="textinput">Location</label>
+                <div class="col-md-7">
+                    <input id="patientOrderLocationCode" name="patientOrderLocationCode" type="text" readonly placeholder="" class="form-control input-md">
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</form>
+
+
+<div id="patientOrderDetailsListTableDiv" class="form-group" style="margin-bottom: 40px;">
+    <table class="table table-filter table-striped table-bordered" style="background: #fff; border: 1px solid #ccc; width: 100%" id="patientOrderDetailsListTable">
+        <thead>
+        <th>Order No</th>
+        <th>Code</th>
+        <th>Description</th>
+        <th>Strength</th>
+        <th>Frequency</th>
+        <th>Duration</th>
+        <th>Dose</th>
+        <th>Price/Pack</th>
+        <th>Stock Qty</th>
+        <th>Ordered Qty</th>
+        <th>Supplied Qty</th>
+        <th>Dispensed Qty</th>
+        <!--    <th>Total Price (RM)</th>-->
+        <th>Status</th>
+        </thead>
+        <tbody>
+
+        </tbody>
+    </table>
+</div>
+
+<div>
+    <!-- content goes here -->
+    <form class="form-horizontal" id="addForm">
+        <div class="row">
             <div class="col-md-2">
                 <input id="dispenseFarBillNo" name="dispenseFarBillNo" type="hidden" class="form-control input-md" maxlength="50" readonly>
             </div>
 
-            <div class="col-md-3">
+            <div class="col-md-4">
                 <input id="dispenseTotalQuantity" name="dispenseTotalQuantity" type="hidden" placeholder="Total Order" class="form-control input-md" maxlength="50" readonly>
                 <input id="dispenseTotalQuantityChecked" name="dispenseTotalQuantityChecked" type="hidden" placeholder="Total Order" class="form-control input-md" maxlength="50" readonly>
             </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3" style="margin-bottom: 20px;">
+                <div class="col-md-6">
 
-            <div class="col-md-3">
-
-                <!-- Text input-->
-                <div class="form-group">
-                    <label class="col-md-5 control-label" for="textinput">Total Order</label>
-                    <div class="col-md-4">
-                        <input id="dispenseTotalOrder" name="dispenseTotalOrder" type="text" placeholder="Total Order" class="form-control input-md" maxlength="50" readonly>
+                    <!-- Text input-->
+                    <div class="form-group">
+                        <label class="col-md-7 control-label" for="textinput">Total Order</label>
+                        <div class="col-md-5">
+                            <input id="dispenseTotalOrder" name="dispenseTotalOrder" type="text" placeholder="Total Order" class="form-control input-md" maxlength="50" readonly>
+                        </div>
                     </div>
+
+                    <!-- Text input-->
+                    <div class="form-group">
+                        <label class="col-md-7 control-label" for="textinput">Total Order Final</label>
+                        <div class="col-md-5">
+                            <input id="dispenseTotalOrderChecked" name="dispenseTotalOrderChecked" type="text" placeholder="Total Order" class="form-control input-md" maxlength="50" readonly>
+                        </div>
+                    </div>
+
                 </div>
 
-                <!-- Text input-->
-                <div class="form-group">
-                    <label class="col-md-5 control-label" for="textinput">Total Order Final</label>
-                    <div class="col-md-4">
-                        <input id="dispenseTotalOrderChecked" name="dispenseTotalOrderChecked" type="text" placeholder="Total Order" class="form-control input-md" maxlength="50" readonly>
-                    </div>
-                </div>
+                <div class="col-md-6">
 
+                    <!-- Text input-->
+                    <div class="form-group">
+                        <label class="col-md-7 control-label" for="textinput">Grand Total (RM)</label>
+                        <div class="col-md-5">
+                            <input id="dispenseGrandTotal" name="dispenseGrandTotal" type="number" placeholder="Grand Total (RM)" class="form-control input-md" maxlength="50" readonly>
+                        </div>
+                    </div>
+
+                    <!-- Text input-->
+                    <div class="form-group">
+                        <label class="col-md-7 control-label" for="textinput">Grand Total Final (RM)</label>
+                        <div class="col-md-5">
+                            <input id="dispenseGrandTotalChecked" name="dispenseGrandTotalChecked" type="number" placeholder="Grand Total (RM)" class="form-control input-md" maxlength="50" readonly>
+                        </div>
+                    </div>
+
+                </div>
             </div>
+        </div>
+    </form>
+</div>
 
-            <div class="col-md-4">
-
-                <!-- Text input-->
-                <div class="form-group">
-                    <label class="col-md-5 control-label" for="textinput">Grand Total (RM)</label>
-                    <div class="col-md-4">
-                        <input id="dispenseGrandTotal" name="dispenseGrandTotal" type="number" placeholder="Grand Total (RM)" class="form-control input-md" maxlength="50" readonly>
-                    </div>
-                </div>
-
-                <!-- Text input-->
-                <div class="form-group">
-                    <label class="col-md-5 control-label" for="textinput">Grand Total Final (RM)</label>
-                    <div class="col-md-4">
-                        <input id="dispenseGrandTotalChecked" name="dispenseGrandTotalChecked" type="number" placeholder="Grand Total (RM)" class="form-control input-md" maxlength="50" readonly>
-                    </div>
-                </div>
-
-            </div>
-
-        </form>
-    </div>
-
-    <div class="text-center" id="patientOrderDispenseButtonDiv" > 
-        <button class="btn btn-success " type="button" id="btnOrderDispense" name="btnOrderDispense" > <i class="fa fa-shopping-cart fa-lg"></i>&nbsp; Dispense &nbsp;</button>
-        <button class="btn btn-primary " type="button" id="btnOrderDispensePrescribe" name="btnOrderDispensePrescribe" > <i class="fa fa-print fa-lg" ></i>&nbsp; Generate Label &nbsp;</button>
-        <button class="btn btn-default " type="button" id="btnClearOrderDetailDispense" name="btnClearOrderDetailDispense" > <i class="fa fa-ban fa-lg"></i>&nbsp; Back &nbsp;</button>
-    </div>
+<div class="text-center" id="patientOrderDispenseButtonDiv" > 
+    <button class="btn btn-success " type="button" id="btnOrderDispense" name="btnOrderDispense" > <i class="fa fa-shopping-cart fa-lg"></i>&nbsp; Dispense &nbsp;</button>
+    <button class="btn btn-primary " type="button" id="btnOrderDispensePrescribe" name="btnOrderDispensePrescribe" > <i class="fa fa-print fa-lg" ></i>&nbsp; Generate Label &nbsp;</button>
+    <button class="btn btn-default " type="button" id="btnClearOrderDetailDispense" name="btnClearOrderDetailDispense" > <i class="fa fa-ban fa-lg"></i>&nbsp; Back &nbsp;</button>
 </div>
 
 

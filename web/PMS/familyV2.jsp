@@ -6,7 +6,7 @@
     //Conn conn = new Conn();
     String relation7 = "select * from adm_lookup_detail where master_reference_code = '0007'   ";
     String occupation7 = "select * from adm_lookup_detail where master_reference_code = '0050'";
-    ArrayList<ArrayList<String>> dataRelation7,dataOccu7;
+    ArrayList<ArrayList<String>> dataRelation7, dataOccu7;
     dataRelation7 = conn.getData(relation7);
     dataOccu7 = conn.getData(occupation7);
 
@@ -17,29 +17,27 @@
 
     </div>
 </div>
-                        <div id="modalFAM"><%@include file = "FamilyModal.jsp" %></div>
+<div id="modalFAM"><%@include file = "FamilyModal.jsp" %></div>
 <div class="row">
     <div class="col-md-12">		
-        <div class="thumbnail">
-            <h4>List of Family
-                            <button id="addFAMmodal" name="addFAMmodal" class="btn btn-success pull-right" data-toggle="modal" data-target="#FamilyModal"><i class="fa fa-plus"></i>&nbsp; Add Family Information</button></h4>
-</h4>
-<br/>
-            <div id="tableListFamily" class="form-group">
-                <table class="table table-striped table-bordered" style="background: #fff; border: 1px solid #ccc;" id="listFamily">
-                    <thead>
-                    <th>Family Member's Name</th>
-                    <th>Relationship</th>
-                    <th>Update</th>
-                    <th>Delete</th>
-                    </thead>
-                </table>
-            </div>
+        <h4>List of Family
+            <button id="addFAMmodal" name="addFAMmodal" class="btn btn-success pull-right" data-toggle="modal" data-target="#FamilyModal"><i class="fa fa-plus"></i>&nbsp; Add Family Information</button></h4>
+        </h4>
+        <br/>
+        <div id="tableListFamily" class="form-group">
+            <table class="table table-striped table-bordered" style="background: #fff; border: 1px solid #ccc;" id="listFamily">
+                <thead>
+                <th>Family Member's Name</th>
+                <th>Relationship</th>
+                <th>Update</th>
+                <th>Delete</th>
+                </thead>
+            </table>
         </div>
     </div>
 </div>
 <script>
-    
+
     $('#modalFAM').on('shown.bs.modal', function () {
         $(this).find('.modal-dialog').css({width: '70%',
             height: 'auto',
@@ -62,7 +60,7 @@
         var rowData = row.find("#famval").val();
         var arrayData = rowData.split("|");
         //assign into seprated val
-        var pmino = arrayData[0], seqno = arrayData[1], relationship = arrayData[2], fampmino = arrayData[3], name = arrayData[4], occu = arrayData[5],occuName = arrayData[6];
+        var pmino = arrayData[0], seqno = arrayData[1], relationship = arrayData[2], fampmino = arrayData[3], name = arrayData[4], occu = arrayData[5], occuName = arrayData[6];
         //set value in input on the top
         $('#FAMpmi').val(pmino);
         $('#FAMseq').val(seqno);
@@ -71,7 +69,7 @@
         $('#FAMocc').val(occuName);
         $('#FAMname').val(name);
         $('#FAMoccCODE').val(occu);
-        
+
 
         console.log(arrayData);
     });

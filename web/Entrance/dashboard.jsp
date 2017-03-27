@@ -146,7 +146,7 @@
                     %>
                     
                     <div class="col-sm-6 col-md-3">
-                        <a href="../PIS/manageInventory.jsp" class="thumbnail">
+                        <a href="../PIS/patientOrderList.jsp" class="thumbnail">
                             <div class="kotak text-center">
                                 <i class="fa fa-medkit" aria-hidden="true" style="color: #9A67A0;font-size: 4em;"></i>
                                 <h3>Pharmacy Info System</h3>
@@ -243,7 +243,7 @@
                         <a href="../Registration/" class="thumbnail">
                             <div class="kotak text-center">
                                 <i class="fa fa-users" aria-hidden="true" style="color: #c0a16b;font-size: 4em;"></i>
-                                <h3>Registration</h3>
+                                <h3>Medical Kiosk</h3>
                             </div>
                         </a>
                     </div>

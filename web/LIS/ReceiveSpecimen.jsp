@@ -92,7 +92,7 @@
                                             <em>Registration No: </em>
                                         </p>
                                         <p>
-                                            <em>Order No: <%=q2.get(i).get(3)%><input type="text" name="order_no" id="order_no" value="<%=q2.get(i).get(3)%>"></em>
+                                            <em>Order No: <%=q2.get(i).get(3)%><input type="text" name="order_no" id="order_no" value="<%=q2.get(i).get(3)%>" style="display: none;"></em>
                                         </p>
                                         <p>
                                             <em>Order Date: <%=q2.get(i).get(7)%></em>
@@ -157,7 +157,7 @@
                 for (int i = 0; i < q4.size(); i++) 
            {%> 
         <tr>    
-                <td><%=q4.get(i).get(1)%><input type="text" name="itemCode" id="itemCode" value="<%=q4.get(i).get(1)%>"></td>
+                <td><%=q4.get(i).get(1)%><input type="text" name="itemCode" id="itemCode" value="<%=q4.get(i).get(1)%>" style="display: none;"></td>
                 <td><%=q4.get(i).get(2)%></td>
                 <td><%=q4.get(i).get(3)%></td>
                 <td><%=q4.get(i).get(4)%></td>

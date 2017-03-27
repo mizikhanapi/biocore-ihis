@@ -42,7 +42,7 @@
                     <div class="row" >
                         <div class="col-md-12" >
                             <div class="thumbnail">
-                                <h2>Verify Specimen For Test</h2>
+                                <h2>Manage Test</h2>
                                 <hr/>
                                 <div class="table-responsive" id='viewMT'></div>
                             </div>
