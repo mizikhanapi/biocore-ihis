@@ -67,17 +67,19 @@
         padding: 10px 35px;
     }
     .list-group>li>a{
-        color: #eee;
-        display: inline-block;
-        padding: 10px 30px;
-        width: 100%;
+        /*        color: #eee;
+                display: inline-block;
+                padding: 10px 30px;
+                width: 100%;*/
+        font-weight: 500;
     }
     .list-group>li>a:hover{
         text-decoration: none;
+        background-color: none;
     }
     .list-group>li:hover{
         text-decoration: none;
-        background-color: #1976D2 !important;
+/*        background-color: #1976D2 !important;*/
     }
 
     .langsir {
