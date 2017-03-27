@@ -107,9 +107,12 @@
                                     timeout: 10000,
                                     success: function (list) {
                                         console.log(list);
+                                        if(list.trim() === "1"){
+                                            alert("No Problem!");
+                                        }else{
                                         $('#episodeDetail').html(list);
                                     }
-                                });
+                                }});
                             });
                             
                             $('#detailList1').on('click','#ViewDetail1',function () {
@@ -127,9 +130,12 @@
                                     timeout: 10000,
                                     success: function (list) {
                                         console.log(list);
+                                        if(list.trim() === "1"){
+                                         alert("No Problem!");
+                                        }else{
                                         $('#episodeDetail1').html(list);
                                     }
-                                });
+                                }});
                             });
                         }},
                         error: function (xhr, status, error) {

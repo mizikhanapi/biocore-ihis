@@ -9,7 +9,8 @@
 
         <!--Modal ADD Diagnosis-->
         <%@ include file="CIS030001.jsp" %> 
-        <%@ include file="CIS030002.jsp" %> 
+        <%@ include file="CIS030002.jsp" %>
+        <%@ include file="CIS030003.jsp" %> 
         
 
      

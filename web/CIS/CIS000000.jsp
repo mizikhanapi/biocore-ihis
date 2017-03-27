@@ -174,6 +174,7 @@
                                     <tbody id="MCTSNotes"   class="ConsultationNotes"> </tbody>
                                     <tbody id="ROSNotes"   class="ConsultationNotes"> </tbody>
                                     <tbody id="LOSNotes"   class="ConsultationNotes"> </tbody>
+                                    <tbody id="FLUNotes"   class="ConsultationNotes"> </tbody>
 
                                 </table>
 

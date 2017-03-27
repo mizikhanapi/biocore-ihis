@@ -4,7 +4,21 @@ $(document).ready(function () {
      * To change this template file, choose Tools | Templates
      * and open the template in the editor.
      */
+    $("#DateFollowUp").datepicker({
 
+        changeMonth: true,
+        changeYear: true,
+        yearRange: "-100:+0",
+        dateFormat: "dd-mm-yy"
+    });
+
+    $("#uDateFollowUp").datepicker({
+
+        changeMonth: true,
+        changeYear: true,
+        yearRange: "-100:+0",
+        dateFormat: "dd-mm-yy"
+    });
 //---------------------------------------------------------------------------------------------Drug Order Modal.
     //js ADD for Drug Order
     $('#acceptBtnDTO').click(function () {
@@ -96,7 +110,7 @@ $(document).ready(function () {
         var update_instDTO = $('#update_inst').val();
         var update_caoutionaryDTO = $('#update_cautionaryDTO').val();
         var update_commentsDTO = $('#update_commentDTO').val();
-        var update_dRouteDTO =  $('#update_RouteDTO').val();
+        var update_dRouteDTO = $('#update_RouteDTO').val();
 
         upObject.searchDTO = update_searchDTO;
         upObject.dtoCode = update_dtoCode;
@@ -270,7 +284,7 @@ $(document).ready(function () {
 //                    })
         //notes += "POS|" + procedure_cd + "^" + proType + "|<cr>\n";
         var $items = $('#Problem18,#proType,#procedure_cd');
-        var obj1 = {Acode:"POS"};
+        var obj1 = {Acode: "POS"};
         $items.each(function () {
             obj1[this.id] = $(this).val();
         });
@@ -390,8 +404,8 @@ $(document).ready(function () {
     });
 
 
-    
-        //---------------------------------------------------------------------------------------------Radiology Request
+
+    //---------------------------------------------------------------------------------------------Radiology Request
     //js add for Radiology request
     $('#acceptROS').click(function (e) {
         e.preventDefault();
@@ -399,7 +413,7 @@ $(document).ready(function () {
         var codeROS = $('#codeROS').val();
         var commentROS = $('#commentROS').val();
         console.log(codeROS);
-        
+
         var $items = $('#ROS, #codeROS, #commentROS');
         var obj1 = {Acode: 'ROS'};
         $items.each(function () {
@@ -443,15 +457,15 @@ $(document).ready(function () {
         var _UcodeROS = $('#UcodeROS').val();
         var _UROS = $('#UROS').val();
         var _UcommentROS = $('#UcommentROS').val();
-        
+
         //console.log($('#UROS').val());
-         console.log(rowId);
-        
+        console.log(rowId);
+
         upObject.ROS = _UROS;
         upObject.codeROS = _UcodeROS;
         upObject.commentROS = _UcommentROS;
 
-        var sum =  _UROS + '| ' + _UcommentROS 
+        var sum = _UROS + '| ' + _UcommentROS
 
         $('#sum' + rowId).html(sum);
         $("#update_CIS040000").modal('toggle');
@@ -472,7 +486,7 @@ $(document).ready(function () {
         }
     });
 
-        //---------------------------------------------------------------------------------------------Laboratory Request
+    //---------------------------------------------------------------------------------------------Laboratory Request
     //js add for Laboratory request
     $('#acceptBtnLOS').click(function (e) {
         e.preventDefault();
@@ -480,12 +494,16 @@ $(document).ready(function () {
         var codeLOS = $('#codeLOS').val();
         var catLOS = $('#catLOS').val();
         var sourceLOS = $('#sourceLOS').val();
-        var containerLOS =$('#containerLOS').val();
-        var volumeLOS =$('#volumeLOS').val();
-        var spclLOS =$('#spclLOS').val();
-        var commentLOS =$('#commentLOS').val();
-        
-        var $items = $('#searchLOS, #codeLOS, #catLOS,#sourceLOS,#containerLOS,#volumeLOS,#spclLOS,#commentLOS');
+        var containerLOS = $('#containerLOS').val();
+        var volumeLOS = $('#volumeLOS').val();
+        var spclLOS = $('#spclLOS').val();
+        var commentLOS = $('#commentLOS').val();
+        var appointmentLOS = $('#appointmentLOS').val();
+        var priorityLOS = $('#priorityLOS').val();
+        var hfcLOS = $('#hfcLOS').val();
+        var hfcIdLOS = $('#hfcIdLOS').val();
+
+        var $items = $('#searchLOS, #codeLOS, #catLOS,#sourceLOS,#containerLOS,#volumeLOS,#spclLOS,#commentLOS,#appointmentLOS,#priorityLOS,#hfcLOS,#hfcIdLOS');
         var obj1 = {Acode: 'LOS'};
         $items.each(function () {
             obj1[this.id] = $(this).val();
@@ -495,7 +513,7 @@ $(document).ready(function () {
 
         console.log(obj1);
 
-        displayLOS(searchLOS, codeLOS, catLOS,sourceLOS,containerLOS,volumeLOS,spclLOS,commentLOS);
+        displayLOS(searchLOS, codeLOS, catLOS, sourceLOS, containerLOS, volumeLOS, spclLOS, commentLOS, appointmentLOS, priorityLOS,hfcLOS,hfcIdLOS);
 
         $("#searchLOS").val("");
         $("#codeLOS").val("");
@@ -505,7 +523,11 @@ $(document).ready(function () {
         $("#volumeLOS").val("");
         $("#spclLOS").val("");
         $("#commentLOS").val("");
-        
+        $("#appointmentLOS").val("");
+        $("#priorityLOS").val("");
+        $('#hfcLOS').val("");
+        $('#hfcIdLOS').val("");
+
         $("#CIS040001").modal('toggle');
 
         //$(".modal-backdrop").hide();
@@ -526,7 +548,12 @@ $(document).ready(function () {
         $("#UvolumeLOS").val(updateObj.volumeLOS);
         $("#UspclLOS").val(updateObj.spclLOS);
         $("#UcommentLOS").val(updateObj.commentLOS);
+        $("#UappointmentLOS").val(updateObj.appointmentLOS);
+        $("#UpriorityLOS").val(updateObj.priorityLOS);
         
+        $("#UhfcLOS").val(updateObj.hfcLOS);
+        $("#UhfcIdLOS").val(updateObj.hfcIdLOS);
+
         $('#jsonIdLOS').val(id[1]);
         //$(this).closest('tr').remove();
 //        console.log($('#UROS').val());
@@ -535,33 +562,123 @@ $(document).ready(function () {
 
     $('#updateBtnLOS').click(function (e) {
         e.preventDefault();
-        var upObject = _data[$('#jsonId').val()];
-        var rowId = $('#jsonId').val();
+        var upObject = _data[$('#jsonIdLOS').val()];
+        var rowId = $('#jsonIdLOS').val();
         var _UsearchLOS = $('#UsearchLOS').val();
         var _UcodeLOS = $('#UcodeLOS').val();
         var _UcatLOS = $('#UcatLOS').val();
         var _UsourceLOS = $('#UsourceLOS').val();
-        var _UcontainerLOS =$('#UcontainerLOS').val();
-        var _UvolumeLOS =$('#UvolumeLOS').val();
-        var _UspclLOS =$('#UspclLOS').val();
-        var _UcommentLOS =$('#UcommentLOS').val();
+        var _UcontainerLOS = $('#UcontainerLOS').val();
+        var _UvolumeLOS = $('#UvolumeLOS').val();
+        var _UspclLOS = $('#UspclLOS').val();
+        var _UcommentLOS = $('#UcommentLOS').val();
+        var _UappointmentLOS = $('#UappointmentLOS').val();
+        var _UpriorityLOS = $('#UpriorityLOS').val();
+        var _UhfcLOS = $('#UhfcLOS').val();
+        var _UhfcIdLOS = $('#UhfcIdLOS').val();
 
-        upObject.searchLOS=_UsearchLOS;
-        upObject.codeLOS=_UcodeLOS;
-        upObject.catLOS=_UcatLOS;
-        upObject.sourceLOS=_UsourceLOS;
-        upObject.containerLOS=_UcontainerLOS;
-        upObject.volumeLOS=_UvolumeLOS;
-        upObject.spclLOS=_UspclLOS;
-        upObject.commentLOS=_UcommentLOS;
+        upObject.searchLOS = _UsearchLOS;
+        upObject.codeLOS = _UcodeLOS;
+        upObject.catLOS = _UcatLOS;
+        upObject.sourceLOS = _UsourceLOS;
+        upObject.containerLOS = _UcontainerLOS;
+        upObject.volumeLOS = _UvolumeLOS;
+        upObject.spclLOS = _UspclLOS;
+        upObject.commentLOS = _UcommentLOS;
+        upObject.appointmentLOS = _UappointmentLOS;
+        upObject.priorityLOS = _UpriorityLOS;
+        upObject.hfcLOS = _UhfcLOS;
+        upObject.hfcIdLOS = _UhfcIdLOS;
 
-
-        var sum =  _UsearchLOS+ '|' + _UcatLOS+ '|' +_UsourceLOS+ '|' +_UcontainerLOS+ '|' +_UvolumeLOS+ '|' +_UspclLOS+ '|' +_UcommentLOS; 
-
+        var sum = _UsearchLOS + '|' + _UcatLOS + '|' + _UsourceLOS + '|' + _UcontainerLOS + '|' + _UvolumeLOS + '|' + _UspclLOS + '|' + _UcommentLOS + '|' + _UappointmentLOS + '|' + _UpriorityLOS+ '|' + _UhfcLOS;
+        console.log(upObject);
         $('#sum' + rowId).html(sum);
         $("#update_CIS040001").modal('toggle');
         //$(".modal-backdrop").hide();
     });
+
+    //------------------------------------------------------------------------------------------------------------------------------- Follow Up
+    $('#acceptFLU').click(function (e) {
+        e.preventDefault();
+        var searchFLU = $('#searchFLU').val();
+        var DateFollowUp = $('#DateFollowUp').val();
+        var commentFLU = $('#commentFLU').val();
+
+        //console.log(codeFLU);
+
+        var $items = $('#searchFLU, #DateFollowUp, #commentFLU');
+        var obj1 = {Acode: 'FLU'};
+        $items.each(function () {
+            obj1[this.id] = $(this).val();
+        });
+
+        _data.push(obj1);
+
+        console.log(obj1);
+
+        displayFLU(searchFLU, DateFollowUp, commentFLU);
+
+        //$("#codeFLU").val("");
+        $("#searchFLU").val("");
+        $("#DateFollowUp").val("");
+        $("#commentFLU").val("");
+        $("#CIS040004").modal('toggle');
+
+        $(".modal-backdrop").hide();
+
+    });
+
+    //js update for Radiology request
+    $('#FLUNotes').on('click', '.updateBtnFLU', function () {
+        var idName = $(this).get(0).id;
+        var id = idName.split("|");
+        var updateObj = _data[id[1]];
+        console.log(_data);
+        $('#usearchFLU').val(updateObj.searchFLU);
+        $('#uDateFollowUp').val(updateObj.DateFollowUp);
+        $('#ucommentFLU').val(updateObj.commentFLU);
+        $('#jsonId').val(id[1]);
+        //$(this).closest('tr').remove();
+        //console.log($('#UROS').val());
+
+    });
+
+    $('#updateBtnFollowUp_FLU').click(function (e) {
+        e.preventDefault();
+        var upObject = _data[$('#jsonId').val()];
+        var rowId = $('#jsonId').val();
+        var _usearchFLU = $('#usearchFLU').val();
+        var _uDateFollowUp = $('#uDateFollowUp').val();
+        var _ucommentFLU = $('#ucommentFLU').val();
+
+        //console.log($('#UROS').val());
+        //console.log(rowId);
+
+        upObject.searchFLU = _usearchFLU;
+        upObject.DateFollowUp = _uDateFollowUp;
+        upObject.commentFLU = _ucommentFLU;
+
+        var sum = _usearchFLU + '| ' + _uDateFollowUp + '| ' + _ucommentFLU;
+
+        $('#sum' + rowId).html(sum);
+        $("#update_CIS040004").modal('toggle');
+        //$(".modal-backdrop").hide();
+    });
+
+    //js DELETE for Radiology request
+    $('#consultationNotes').on("click", ".deleteBtn15", function () {
+        var delConfirm = confirm('Are you want to delete this notes? ');
+        if (delConfirm === true) {
+            var idName = $(this).get(0).id;
+            var id = idName.split("|");
+            delete _data[id[1]];
+            $(this).closest('tr').remove();
+            console.log(_data);
+        } else {
+            return false;
+        }
+    });
+
 
 
 });
@@ -576,7 +693,7 @@ function displaySOP(hfcName, disName, doctorName, comment10) {
     var _tr = '<tr data-status="pagado" ><td><div class="ckbox"><input type="checkbox" id="checkbox1"><label for="checkbox1"></label></div></td><td><div class="media"><div class="media-body">Second Opinion :<p class="summary" id="sum' + i + '">' + hfcName + '| Discipline: ' + disName + '| Doctor: ' + doctorName + '| Comments: ' + comment10 + '</p></div></div></td><td><a data-toggle="modal"  data-target="#CIS040005" href="" class="updateSOF" id="row|' + i + '"><i class="fa fa-pencil-square-o" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #337ab7;" ></i></a></a></td><td><a href="javascript:;" class="star"><a href="#" class="deleteBtn" id="row|' + i + '"><i class="fa fa-times" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #d9534f;"></i></a></a></td></tr>';
     $('#SOPNotes').append(_tr);
     i = i + 1;
-    }
+}
 
 function displayPOS(Problem18, proType, procedure_cd) {
     var _tr = '<tr data-status="pagado" ><td><div class="ckbox"><input type="checkbox" id="checkbox1"><label for="checkbox1"></label></div></td><td><div class="media"><div class="media-body">Procedure Order Segment :<p class="summary" id="sum' + i + '">' + Problem18 + '|' + proType + '|' + procedure_cd + '</p></div></div></td><td><a data-toggle="modal"  data-target="#update_CIS040006" href="" class="updateBtn13" id="row|' + i + '"><i class="fa fa-pencil-square-o" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #337ab7;" ></i></a></a></td><td><a href="javascript:;" class="star"><a href="#" class="deleteBtn" id="row|' + i + '"><i class="fa fa-times" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #d9534f;"></i></a></a></td></tr>';
@@ -596,8 +713,14 @@ function displayROS(codeROS, ROS, commentROS) {
     i = i + 1;
 }
 
-function displayLOS(searchLOS, codeLOS, catLOS,sourceLOS,containerLOS,volumeLOS,spclLOS,commentLOS) {
-    var _tr = '<tr data-status="pagado" ><td><div class="ckbox"><input type="checkbox" id="checkbox1"><label for="checkbox1"></label></div></td><td><div class="media"><div class="media-body">Laboratory Request :<p class="summary" id="sum' + i + '">' + searchLOS+ '|' + catLOS+ '|' +sourceLOS+ '|' +containerLOS+ '|' +volumeLOS+ '|' +spclLOS+ '|' +commentLOS+ '</p></div></div></td><td><a data-toggle="modal"  data-target="#update_CIS040001" href="" class="updateBtnLOS" id="row|' + i + '"><i class="fa fa-pencil-square-o" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #337ab7;" ></i></a></a></td><td><a href="javascript:;" class="star"><a href="#" class="deleteBtn" id="row|' + i + '"><i class="fa fa-times" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #d9534f;"></i></a></a></td></tr>';
+function displayLOS(searchLOS, codeLOS, catLOS, sourceLOS, containerLOS, volumeLOS, spclLOS, commentLOS, appointmentLOS, priorityLOS,hfcLOS,hfcIdLOS) {
+    var _tr = '<tr data-status="pagado" ><td><div class="ckbox"><input type="checkbox" id="checkbox1"><label for="checkbox1"></label></div></td><td><div class="media"><div class="media-body">Laboratory Request :<p class="summary" id="sum' + i + '">' + searchLOS + '|' + catLOS + '|' + sourceLOS + '|' + containerLOS + '|' + volumeLOS + '|' + spclLOS + '|' + commentLOS + '|' + appointmentLOS + '|' + priorityLOS + '|' + hfcLOS  +'</p></div></div></td><td><a data-toggle="modal"  data-target="#update_CIS040001" href="" class="updateBtnLOS" id="row|' + i + '"><i class="fa fa-pencil-square-o" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #337ab7;" ></i></a></a></td><td><a href="javascript:;" class="star"><a href="#" class="deleteBtn" id="row|' + i + '"><i class="fa fa-times" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #d9534f;"></i></a></a></td></tr>';
     $('#LOSNotes').append(_tr);
+    i = i + 1;
+}
+
+function displayFLU(searchFLU, DateFollowUp, commentFLU) {
+    var _tr = '<tr data-status="pagado" ><td><div class="ckbox"><input type="checkbox" id="checkbox1"><label for="checkbox1"></label></div></td><td><div class="media"><div class="media-body">Follow Up :<p class="summary" id="sum' + i + '">' + searchFLU + '|' + DateFollowUp + '|' + commentFLU + '</p></div></div></td><td><a data-toggle="modal"  data-target="#update_CIS040004" href="" class="updateBtnFLU" id="row|' + i + '"><i class="fa fa-pencil-square-o" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #337ab7;" ></i></a></a></td><td><a href="javascript:;" class="star"><a href="#" class="deleteBtn" id="row|' + i + '"><i class="fa fa-times" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #d9534f;"></i></a></a></td></tr>';
+    $('#FLUNotes').append(_tr);
     i = i + 1;
 }

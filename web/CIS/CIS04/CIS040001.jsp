@@ -38,7 +38,7 @@
                 <div class="row">
                     <div class="col-xs-2 col-sm-2 col-md-2">
                         <div class="form-group modalTextLabel">
-                            <h4 class="modal-title">Item Category</h4>
+                            <h4 class="modal-title">Analyte </h4>
                         </div>
                     </div>
                     <div class="col-xs-6 col-sm-6 col-md-6">
@@ -86,7 +86,8 @@
                         </div>
                     </div>
                 </div>
-
+                
+                
 
 
 
@@ -102,7 +103,61 @@
                         </div>
                     </div>
                 </div>
-
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-12">
+                        <div class="form-group">
+                            <h4 class="modal-title" style="font-weight: bold">Appointment</h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">                    
+                    <div class="col-xs-2 col-sm-2 col-md-2">
+                        <div class="form-group">
+                            <h4 class="modal-title modalTextLabel">Appointment </h4>
+                        </div>
+                    </div>
+                    <div class="col-xs-4 col-sm-4 col-md-4">
+                        <div class="form-group">
+                            <input class="form-control input-lg" type="text"  id="appointmentLOS" placeholder="">
+                        </div>
+                    </div>
+                    <div class="col-xs-2 col-sm-2 col-md-2">
+                        <div class="form-group">
+                            <h4 class="modal-title modalTextLabel">Patient Condition </h4>
+                        </div>
+                    </div>
+                    <div class="col-xs-4 col-sm-4 col-md-4">
+                        <div class="form-group">
+<!--                            <input class="form-control input-lg" type="text"  id="priorityLOS" placeholder="">-->
+                            <select id="priorityLOS" class="form-control input-lg">
+                                <option disabled="" selected="">Please select condition..</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-12">
+                        <div class="form-group">
+                            <h4 class="modal-title" style="font-weight: bold">Service Provider</h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">                    
+                    <div class="col-xs-2 col-sm-2 col-md-2">
+                        <div class="form-group">
+                            <h4 class="modal-title modalTextLabel">Health Facility </h4>
+                        </div>
+                    </div>
+                    <div class="col-xs-4 col-sm-4 col-md-4">
+                        <div class="form-group">
+                            <input class="form-control input-lg" type="text"  id="hfcLOS" placeholder="">
+                            <input class="form-control input-lg" type="hidden"  id="hfcIdLOS">
+                            <div id="matchHFCLOS" ></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
                 <div class="row">
                     <div class="col-xs-12 col-sm-12 col-md-12">
 
@@ -235,7 +290,61 @@
                         </div>
                     </div>
                 </div>
-
+                 <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-12">
+                        <div class="form-group">
+                            <h4 class="modal-title" style="font-weight: bold">Appointment</h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">                    
+                    <div class="col-xs-2 col-sm-2 col-md-2">
+                        <div class="form-group">
+                            <h4 class="modal-title modalTextLabel">Appointment </h4>
+                        </div>
+                    </div>
+                    <div class="col-xs-4 col-sm-4 col-md-4">
+                        <div class="form-group">
+                            <input class="form-control input-lg" type="text"  id="UappointmentLOS" placeholder="">
+                        </div>
+                    </div>
+                    <div class="col-xs-2 col-sm-2 col-md-2">
+                        <div class="form-group">
+                            <h4 class="modal-title modalTextLabel">Patient Condition </h4>
+                        </div>
+                    </div>
+                    <div class="col-xs-4 col-sm-4 col-md-4">
+                        <div class="form-group">
+<!--                            <input class="form-control input-lg" type="text"  id="priorityLOS" placeholder="">-->
+                            <select id="UpriorityLOS" class="form-control input-lg">
+                                <option disabled="" selected="">Please select condition..</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-12">
+                        <div class="form-group">
+                            <h4 class="modal-title" style="font-weight: bold">Service Provider</h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">                    
+                    <div class="col-xs-2 col-sm-2 col-md-2">
+                        <div class="form-group">
+                            <h4 class="modal-title modalTextLabel">Health Facility </h4>
+                        </div>
+                    </div>
+                    <div class="col-xs-4 col-sm-4 col-md-4">
+                        <div class="form-group">
+                            <input class="form-control input-lg" type="text"  id="UhfcLOS" placeholder="">
+                            <input class="form-control input-lg" type="hidden"  id="UhfcIdLOS">
+                            <div id="UmatchHFCLOS" ></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
                 <div class="row">
                     <div class="col-xs-12 col-sm-12 col-md-12">
 
@@ -245,7 +354,6 @@
                         </div>
                     </div>
                 </div>
-
 
             </div>
 
@@ -265,3 +373,10 @@
         </div>
     </div>
 </div>
+<script>
+    $(document).ready(function () {
+        $(function () {
+            $('#appointmentLOS').datepicker({dateFormat: 'dd-mm-yy', changeMonth: true, changeYear: true});
+        });
+    });
+</script>

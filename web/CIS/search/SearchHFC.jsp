@@ -18,7 +18,7 @@
 <ul id="matchList" style="width: auto; height: 200px; overflow: auto">
     <% for (int i = 0; i < search.size(); i++) 
                                             {%>
-    <li onClick= "selectCountry('<%=search.get(i).get(0)%>');"><%=search.get(i).get(0)%></li>
+    <li><%=search.get(i).get(0)%></li>
 <%}%>
 </ul>
 <%}else{%>
