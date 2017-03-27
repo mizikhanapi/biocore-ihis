@@ -200,7 +200,7 @@
                 <th class="col-sm-1">Filler Comments</th>
                 <th class="col-sm-1">Specimen Status</th>
                 <th class="col-sm-1">Verification</th>
-                <th class="col-sm-1">Update Comments</th>
+                <th class="col-sm-1">Set Collection Date</th>
                 <th class="col-sm-1">Check for Assign Specimen</th>
         </tr>
     </thead>
@@ -221,52 +221,84 @@
                 <td><%=q4.get(i).get(6)%></td>
                 <td><%=q4.get(i).get(7)%></td>
             <td>
-                <a  class='btn btn-warning btn-xs' data-toggle="modal" data-target="#basicModal_<%=i %>">Filler Comments</a>
-                <div class="modal fade" id="basicModal_<%=i %>" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+                <a  class='btn btn-warning btn-xs' data-toggle="modal" data-target="#Collection<%=i %>">   </a>
+                <div class="modal fade" id="Collection<%=i %>" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="modal-content">
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
-                                <h4 class="modal-title" id="myModalLabel">Edit</h4>
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal"><i class="fa fa-times fa-lg"></i></button>
+                            <h3 class="modal-title" id="lineModalLabel">Set Collection Date</h3>
+
+                        </div>
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" for="textinput">Collection Date</label>
+                                <div class="col-md-8">
+                                    <input type="text" class="form-control" id="tcode_<%=i%>" name="tcode" value="<%=q4.get(i).get(0)%>" readonly="">
+                                </div>
                             </div>
-                            <div class="modal-body">  
-                                <!--<form name="myForm" action="j.jsp" method="post">-->
-                                     <div class="form-group">
-                                        <label for="text">Item Code</label>
-                                        <input type="text" class="form-control" id="tcode_<%=i%>" name="tcode" value="<%=q4.get(i).get(0)%>" readonly="">
-                                     </div>
-                                   <div class="form-group">
-                                        <label for="text">Item Name</label>
-                                        <input type="text" class="form-control" id="tname_<%=i%>" name="tcode" value="<%=q4.get(i).get(1)%>" readonly="">
-                                   </div>
-                                    <div class="form-group">
-                                    <label for ="inputMessage">Filler Comments</label>
-                                    <textarea name="career[message]" class="form-control" id="fcomment_<%=i%>" placeholder="Write your details" ></textarea>
-                                     </div> 
-                                <!--</form>-->
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" for="textinput">Collection Date</label>
+                                <div class="col-md-8">
+                                    <input type="text" class="form-control" id="tname_<%=i%>" name="tcode" value="<%=q4.get(i).get(1)%>" readonly="">
+                                </div>
                             </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-primary" id="btn_update_<%=i%>">Save changes</button>
-                                
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" for="textinput">Collection Date</label>
+                            <div class="col-md-8">
+                                <input type="text" id="collection<%=i %>" class="form-control input-md" placeholder="DD-MM-YYYY">
+                                <script>
+                                    $( "#collection<%=i %>" ).datepicker({ 
+                                        yearRange: '1999:c+1' ,
+                                        changeMonth: true,
+                                        changeYear: true,
+                                        minDate: new Date(1999, 10 - 1, 25),
+                                        maxDate: '+30Y',
+                                        });
+                                </script>
                                 
                             </div>
                         </div>
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label" for="textinput">Remarks</label>
+                                    <div class="col-md-8">
+                                        <textarea name="career[message]" class="form-control" id="fcomment_<%=i%>" placeholder="Write your details" ><%=q4.get(i).get(5)%></textarea>
+                                
+                                    </div>
+                                </div>
+            </div>
+            <div class="modal-footer">
+                <div class="btn-group btn-group-justified" role="group" aria-label="group button">
+                    <div class="btn-group" role="group">
+                        <button type="button" class="btn btn-success btn-block btn-lg" role="button" id="btn_submit<%=i %>">Submit</button>
+                    </div>
+                    <div class="btn-group" role="group">
+                        <button type="button" class="btn btn-success btn-block btn-lg" role="button" id="btn_cancel<%=i %>">Cancel Date</button>
+                    </div>
+                    <div class="btn-group" role="group">
+                        <button type="reset" id="btnReset" class="btn btn-default btn-block btn-lg" data-dismiss="modal" role="button" >Cancel</button>
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
+</div>
                           
                 <script>
                      $(document).ready(function () {
-                     $("#btn_update_<%=i%>").click(function () {
+                     $("#btn_submit<%=i %>").click(function () {
                             var tcode = $("#tcode_<%=i%>").val();
                             var fcomment = $("#fcomment_<%=i%>").val();
                             var order_no = $("#order_no3").val();
+                            var collectionDate = $("#collection<%=i%>").val();
+                            
                             $.ajax({
                                 url: "odUpdate.jsp",
                                 type: "post",
                                 data: {
                                     tcode: tcode,
                                     order_no: order_no,
+                                    collectionDate: collectionDate,
                                     fcomment: fcomment
                                 },
                                 timeout: 10000,
@@ -305,66 +337,13 @@
        
     </tbody>
 </table>
-<div class="modal fade" id="Collection" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal"><i class="fa fa-times fa-lg"></i></button>
-                <h3 class="modal-title" id="lineModalLabel">Set Collection Date</h3>
 
-            </div>
-            <div class="modal-body">
-
-                <!-- content goes here -->
-                
-
-                    <!-- Text input-->
-                    <div class="form-group">
-                        <label class="col-md-4 control-label" for="textinput">Collection Date</label>
-                        <div class="col-md-8">
-                            <input type="text" id="collection" class="form-control input-md" placeholder="DD-MM-YYYY">
-                        </div>
-                    </div>
-
-                    <!-- Text input-->
-                    <div class="form-group">
-                        <label class="col-md-4 control-label" for="textinput">Remarks</label>
-                        <div class="col-md-8">
-                            <textarea name="career[message]" class="form-control" id="remarks" placeholder="Write your details" ></textarea>
-                        </div>
-                    </div>
-
-                 
-
-
-
-                <!-- content goes here -->
-            </div>
-            <div class="modal-footer">
-                <div class="btn-group btn-group-justified" role="group" aria-label="group button">
-                    <div class="btn-group" role="group">
-                        <button type="button" class="btn btn-success btn-block btn-lg" role="button" id="btn_add">Submit</button>
-                    </div>
-                    <div class="btn-group" role="group">
-                        <button type="button" class="btn btn-success btn-block btn-lg" role="button" id="btn_add">Cancel Date</button>
-                    </div>
-                    <div class="btn-group" role="group">
-                        <button type="reset" id="btnReset" class="btn btn-default btn-block btn-lg" data-dismiss="modal" role="button" >Cancel</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
        
         <div style = "clear: right; float: right; text-align: right;">
             <input type="text" value="<%=pmi2%>" name="pmi" style="display:none;">
             <input type="text" value="<%=orderno1%>" name="order_no" style="display:none;">
-            <button type="button" class="btn btn-default" id="cancelAss">Back</button>
-            
-            <input type="button" name="submit" id="submit" value="Set Collection Date" class="btn btn-primary" data-toggle="modal" data-target="#Collection"/>
-    
             <button type="submit" class="btn btn-primary" id="subm">Assign Specimen</button>
+            <button type="button" class="btn btn-default" id="cancelAss">Back</button>
         </div>
 
                                         </div>
