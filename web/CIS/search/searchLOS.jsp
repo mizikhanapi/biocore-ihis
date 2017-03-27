@@ -13,14 +13,14 @@
     //String id = request.getParameter("id");
     
    
-    String searchProblem = "select item_name,item_cd from lis_item_detail where CONCAT(UPPER(item_name),LOWER(item_name)) like '%" +  key + "%' ";
+    String searchProblem = "select item_name,item_cd,spe_source from lis_item_detail where CONCAT(UPPER(item_name),LOWER(item_name)) like '%" +  key + "%' ";
     ArrayList<ArrayList<String>> search = Conn.getData(searchProblem);
     if (search.size() > 0) {
 %>                           
 <ul id="LOSmatchList" style="width: 100%; height: 200px; overflow: auto">
     <% for (int i = 0; i < search.size(); i++) 
                                             {%>
-    <li><%=search.get(i).get(0)+"|"+search.get(i).get(1)%></li>
+    <li><%=search.get(i).get(1)+"|"+search.get(i).get(0)+"|"+search.get(i).get(2)%></li>
 <%}%>
 </ul>
 <%}else{%>
