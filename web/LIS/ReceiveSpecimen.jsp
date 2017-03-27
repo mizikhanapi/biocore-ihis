@@ -204,6 +204,7 @@
                                         </div>
                                       </div>
                                   </div>
+                <button type="button" class="btn btn-default" id="cancelReceive">Cancel Receive</button>
                 <button type="button" class="btn btn-default" id="back">Back</button>
             </div></div>
         
@@ -265,6 +266,37 @@
                                 
                             });
                             
+                        });
+                        
+                        $("#cancelReceive").click(function () {
+                           var fcomment = $("#fcomment").val(); 
+                           var pmi = $("#pmi").val();
+                           var specimen_no = $("#specimen_no").val();
+                           var order_no = $("#order_no").val();
+                           var itemCode = $("#itemCode").val();
+                           
+                           var answer=confirm("Are you sure you want to continue");
+                            if (answer==true)
+                            {
+                                $.ajax({
+                                url: "tcancelReceive.jsp",
+                                type: "post",
+                                data: {
+                                    itemCode: itemCode,
+                                    specimen_no: specimen_no
+                                },
+                                timeout: 10000,
+                                
+                                success: function(data) {
+                                        alert("Cancel Receive succesfully");
+                                         window.location.replace("ManageResult.jsp");
+                                         $("#basicModal").hide();
+                                         $(".modal-backdrop").hide();
+                                    
+                                },
+                                
+                            });
+                            }
                         });
                         
                         $("#sendAccept").click(function () {
