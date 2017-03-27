@@ -4,7 +4,8 @@
     Author     : user
 --%>
 
-<%@page import="dbConn.Conn" %>
+<%@page import="dBConn.Conn"%>
+
 <%@page import="Config.Config"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%

@@ -4,7 +4,7 @@
     Author     : user
 --%>
 
-<%@page import="iHIS.Encrypt.EncryptUtils"%>
+
 <%@page import="dBConn.Conn"%>
 <%@page import="com.sun.java.swing.plaf.windows.resources.windows"%>
 <%@page import="java.util.ArrayList"%>

@@ -4,9 +4,10 @@
     Author     : user
 --%>
 
+<%@page import="dbConn.Conn"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.sql.*"%>
-<%@page import="dBConn.Conn"%>
+
 <%@page import="main.RMIConnector"%>
 <%
     Conn conn = new Conn();
