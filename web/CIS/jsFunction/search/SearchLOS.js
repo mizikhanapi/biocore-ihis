@@ -31,7 +31,7 @@ function searchLOSCD(code){
 };
 function UsearchLOSCD(code){
   
-        var id = $.trim($('#UROS').val());
+        var id = code;
         $.ajax({
         type:'post',
         url:'search/searchLOS_cd.jsp',
@@ -73,10 +73,10 @@ function UsearchLOSCD(code){
                                 $('#LOSmatchList li').on('click', function () {
                                     // When click on an element in the list
                                     var array_data = $(this).text().split("|");
-                                    $('#searchLOS').val(array_data[0].trim()); // Update the field with the new element
-                                    $('#codeLOS').val(array_data[1].trim());
+                                    $('#searchLOS').val(array_data[1].trim()); // Update the field with the new element
+                                    $('#codeLOS').val(array_data[0].trim());
                                     $('#matchLOS').text(''); // Clear the <div id="match"></div>
-                                    var code = array_data[1].trim();
+                                    var code = array_data[0].trim();
                                     searchLOSCD(code);
                                 });
                             },
@@ -110,10 +110,10 @@ function UsearchLOSCD(code){
                                 $('#LOSmatchList li').on('click', function () {
                                     // When click on an element in the list
                                     var array_data = $(this).text().split("|");
-                                     $('#UsearchLOS').val(array_data[0].trim()); // Update the field with the new element
-                                    $('#UcodeLOS').val(array_data[1].trim()); // Update the field with the new element
+                                     $('#UsearchLOS').val(array_data[1].trim()); // Update the field with the new element
+                                    $('#UcodeLOS').val(array_data[0].trim()); // Update the field with the new element
                                     $('#UmatchLOS').text(''); // Clear the <div id="match"></div>
-                                    var code = array_data[1].trim();
+                                    var code = array_data[0].trim();
                                     UsearchLOSCD(code);
                                 });
                             },
