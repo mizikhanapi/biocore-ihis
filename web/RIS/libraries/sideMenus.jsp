@@ -49,21 +49,24 @@
     <ul id="menu-content" class="nav nav-sidebar">
         <!-- // menu tanpa dropdown -->
         <li>
-            <a href="Manage-RIS.html">
-                <i class="fa fa-search fa-lg"></i> Manage RIS Code
+            <a href="Receive_Order.jsp">
+                <i class="fa fa-shopping-cart fa-lg"></i> Receive Order
             </a>
         </li>
+        
+        <li>
+            <a href="HIS060002.jsp">  
+                <i class="fa fa-code fa-lg"></i>RIS Code Maintenance
+            </a>
+        </li>
+        
         <li>
             <a href="order-RIS.html">
                 <i class="fa fa-users fa-lg"></i> Order RIS Procedure
             </a>
         </li>
-        <li>
-            <a href="Receive_Order.jsp">
-                <i class="fa fa-shopping-cart fa-lg"></i> Receive Order
-            </a>
-        </li>
-        <li>
+        
+<!--        <li>
             <a href="modality.html">
                 <i class="fa fa-files-o fa-lg"></i> Modality
             </a>
@@ -77,7 +80,7 @@
             <a href="RISProcedure.jsp">
                 <i class="fa fa-files-o fa-lg"></i> RIS Procedure
             </a>
-        </li>
+        </li>-->
 
         <!-- // menu tanpa dropdown -->
 

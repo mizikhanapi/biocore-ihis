@@ -71,7 +71,7 @@
 
 
                                 <!-- Tab Menu -->
-                                <%-- <h3>Welcome <%= session.getAttribute("USER_NAME")%></h3> --%>
+                                
                                 <div class="tabbable-panel">
                                     <h1>Lookup Code Maintenance</h1>
                                     <div class="tabbable-line">

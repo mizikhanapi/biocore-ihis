@@ -37,7 +37,6 @@
                         <button type="button" id="saveImage" class="btn btn-default btn-block btn-lg" data-dismiss="modal" role="button">Cancel</button>
                     </div>
                 </div>
-                </form>
             </div>
         </div>
     </div>

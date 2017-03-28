@@ -14,7 +14,7 @@
 <%           
     Conn conn = new Conn();
     String creator = session.getAttribute("USER_ID").toString();
-    String name  = request.getParameter("name");
+    String name  = request.getParameter("name").toUpperCase();
     String title  = request.getParameter("title");
     String icNo  = request.getParameter("icNo");
     String email  = request.getParameter("email");
@@ -36,7 +36,7 @@
     String startDate  = request.getParameter("startDate");
     String endDate  = request.getParameter("endDate");
     String userIDStatus  = request.getParameter("userIDStatus");
-    String mother  = request.getParameter("mother");
+    String mother  = request.getParameter("mother").toUpperCase();
     String roomNo  = request.getParameter("roomNo");
     String picture  = request.getParameter("picture");
     
