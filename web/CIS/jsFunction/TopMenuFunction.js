@@ -39,7 +39,7 @@ $(document).ready(function (e) {
     $('#dischargeBtn').click(function () {
         reloadStat = 0;
         var pmiNo = $('#pmiNumber').text();
-        sendOrder(_data);
+       
         getSettingConsult(doctor_id);
     });
 
@@ -102,7 +102,18 @@ $(document).ready(function (e) {
                         console.log(result);
                     }
                 });
-            }
+            } else  if (data[k].Acode === "LIO") {
+                console.log(data[k]);
+                $.ajax({
+                    url: 'topMenuFunction/SendOrderLIO.jsp',
+                    method: 'POST',
+                    timeout: 5000,
+                    data: data[k],
+                    success: function (result) {
+                        console.log(result);
+                    }
+                });
+            } 
         }
     }
 
@@ -265,6 +276,7 @@ $(document).ready(function (e) {
     }
 
     function storeData(status) {
+         sendOrder(_data);
         var statusDesc;
         if (status === 2) {
             statusDesc = "Oh Hold";
