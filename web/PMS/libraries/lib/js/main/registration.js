@@ -178,6 +178,10 @@
             bootbox.alert('Please select discipline.');
         }else if($("#prioGru").val()==="null"){
             bootbox.alert('Please select priority group.');
+        } else if($("#visTy").val()===""){
+            bootbox.alert('Please select discipline.');
+        }else if($("#patCat").val()==="null"){
+            bootbox.alert('Please select priority group.');
         }else{
 
 
@@ -359,9 +363,9 @@
     //queue delete button
     $('#modalSaya2').on('click', '#queueModal #listQueue #delQueue', function (e) {
         var item = $(this).closest("tr").find("#pmiNumber").text();
-        var epiTime = $(this).closest("tr").find("#epiTime").text();
+        var epiTime = $(this).closest("tr").find("#epiDate").text();
         var datas = {'pmino': item, 'today': epiTime};
-        console.log("button delete queue");
+        console.log(datas);
         $.ajax({
             type: "POST",
             url: "controller/deletePMSQueue.jsp",

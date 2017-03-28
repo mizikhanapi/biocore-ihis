@@ -1,5 +1,6 @@
 function Main(array_data) {
     var idInput = $('#idInput').val();
+    var idType = $('#idType').find(":selected").val();
     //onsole.log(array_data);
     //if the return value is empty
     if ($.trim(array_data) === "N/A1") {
@@ -33,9 +34,22 @@ function Main(array_data) {
                             x = idInput;
                             getBday(x);
                             getDateNow();
+                            
                             //pmi
+                            switch(idType){
+                                case "002":
+                                    $('#PMInic').val($.trim(idInput));
+                                    break;
+                                case "003":
+                                    $('#PMIoic').val($.trim(idInput));
+                                    break;
+                                case "001" :
+                                    break;
+                                default:
+                                    $('#PMIino').val($.trim(idInput));
+                            }
                             $('input[id=PMIpmino]').val($.trim(list));
-                            $('#PMInic').val($.trim(idInput));
+                            //$('#PMInic').val($.trim(idInput));
                             $('#PMIbday').val($.trim(ICbday));
                             //console.log(ICbday);
                             //registration
@@ -178,8 +192,20 @@ function Main(array_data) {
                             getBday(x);
                             getDateNow();
                             //pmi
+                            switch(idType){
+                                case "002":
+                                    $('#PMInic').val($.trim(idInput));
+                                    break;
+                                case "003":
+                                    $('#PMIoic').val($.trim(idInput));
+                                    break;
+                                case "001" :
+                                    break;
+                                default:
+                                    $('#PMIino').val($.trim(idInput));
+                            }
                             $('input[id=PMIpmino]').val($.trim(list));
-                            $('#PMInic').val($.trim(idInput));
+                            //$('#PMInic').val($.trim(idInput));
                             $('#PMIbday').val($.trim(ICbday));
                             //console.log(ICbday);
                             //registration
