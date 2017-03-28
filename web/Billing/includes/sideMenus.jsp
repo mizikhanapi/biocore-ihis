@@ -55,12 +55,12 @@
 
     <ul id="menu-content" class="nav nav-sidebar">
         <!-- // menu tanpa dropdown -->
-        <li><a href="billing.jsp"><i class="fa fa-usd fa-lg" aria-hidden="true"></i>Billing</a></li>
-        <li><a href="historyBill.jsp"><i class="fa fa-credit-card fa-lg " aria-hidden="true" ></i>Manage Bills</a></li>
-        <li><a href="miscellaneous.jsp"><i class="fa fa-asterisk fa-lg " aria-hidden="true" ></i>Miscellaneous</a></li>
-        <li><a href="parameter.jsp"><i class="fa fa-sliders fa-lg " aria-hidden="true" ></i>Bill Parameter</a></li>
-        <li><a href="report.jsp"><i class="fa fa-th-list fa-lg " aria-hidden="true" ></i>Report</a></li>
-        <li><a href="closing.jsp"><i class="fa fa-calendar fa-lg " aria-hidden="true" ></i>Year End Process</a></li>
+        <li><a href="HIS080001.jsp"><i class="fa fa-usd fa-lg" aria-hidden="true"></i>Billing</a></li>
+        <li><a href="HIS080002.jsp"><i class="fa fa-credit-card fa-lg " aria-hidden="true" ></i>Manage Bills</a></li>
+        <li><a href="HIS080003.jsp"><i class="fa fa-asterisk fa-lg " aria-hidden="true" ></i>Miscellaneous</a></li>
+        <li><a href="HIS080004.jsp"><i class="fa fa-sliders fa-lg " aria-hidden="true" ></i>Bill Parameter</a></li>
+        <li><a href="HIS080005.jsp"><i class="fa fa-th-list fa-lg " aria-hidden="true" ></i>Report</a></li>
+        <li><a href="HIS080006.jsp"><i class="fa fa-calendar fa-lg " aria-hidden="true" ></i>Year End Process</a></li>
 
         <!-- // menu tanpa dropdown -->
 
