@@ -223,7 +223,7 @@
                 <td><%=q4.get(i).get(6)%></td>
                 <td><%=q4.get(i).get(7)%></td>
             <td>
-                <a  class='btn btn-warning btn-xs' data-toggle="modal" data-target="#Collection<%=i %>">   </a>
+                <a  style="cursor: pointer;" data-toggle="modal" data-target="#Collection<%=i %>"><i class="fa fa-calendar fa-lg"></i></a>
                 <div class="modal fade" id="Collection<%=i %>" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="modal-content">
@@ -275,11 +275,9 @@
                         <button type="button" class="btn btn-success btn-block btn-lg" role="button" id="btn_submit<%=i %>">Submit</button>
                     </div>
                     <div class="btn-group" role="group">
-                        <button type="button" class="btn btn-success btn-block btn-lg" role="button" id="btn_cancel<%=i %>">Cancel Date</button>
+                        <button type="button" class="btn btn-default btn-block btn-lg" role="button" id="btn_cancel<%=i %>">Cancel Date</button>
                     </div>
-                    <div class="btn-group" role="group">
-                        <button type="reset" id="btnReset" class="btn btn-default btn-block btn-lg" data-dismiss="modal" role="button" >Cancel</button>
-                    </div>
+                    
                 </div>
             </div>
         </div>
