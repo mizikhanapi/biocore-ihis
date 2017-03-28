@@ -34,12 +34,12 @@ var ConsultationNotes = [];
 var HCSContent = [];
 console.log(reloadStat);
             if(reloadStat === 1){
-            window.onbeforeunload = function (event) {
+            window.onbeforeunload = function () {
                 updateStatus(pmiNo, episodeDate, statusNow);
-                event.returnValue = "Write something clever here..";
+                return "You work will be lost";
             };
             }
-
+            
 $(document).ready(function(){
     
 
