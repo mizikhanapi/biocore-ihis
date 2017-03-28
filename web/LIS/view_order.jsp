@@ -186,7 +186,7 @@
                         String pmi2 = request.getParameter("pmi");
                         String orderno1 = request.getParameter("order_no");
                         
-                         String query4 = "SELECT item_cd,item_name,spe_source,volume,requestor_comments,filler_comments,specimen_status,Verification FROM lis_order_detail  WHERE order_no='"+orderno1+"' AND pmi_no='"+pmi2+"'";
+                         String query4 = "SELECT item_cd,item_name,spe_source,volume,requestor_comments,filler_comments,specimen_status,Verification,collectionDate FROM lis_order_detail  WHERE order_no='"+orderno1+"' AND pmi_no='"+pmi2+"'";
                          ArrayList<ArrayList<String>> q4 = conn.getData(query4);
                          
                      %>
@@ -197,7 +197,8 @@
                 <th class="col-sm-1">Specimen Source</th>
                 <th class="col-sm-1">Volume</th>
                 <th class="col-sm-1">Requestor Comments</th>
-                <th class="col-sm-1">Filler Comments</th>
+                <th class="col-sm-1">Collection Date</th>
+                <th class="col-sm-1">Comments</th>
                 <th class="col-sm-1">Specimen Status</th>
                 <th class="col-sm-1">Verification</th>
                 <th class="col-sm-1">Set Collection Date</th>
@@ -217,6 +218,7 @@
                 <td><%=q4.get(i).get(2)%></td>
                 <td><%=q4.get(i).get(3)%></td>
                 <td style="background-color: lawngreen"><%=q4.get(i).get(4)%></td>
+                <td><%=q4.get(i).get(8)%></td>
                 <td><%=q4.get(i).get(5)%></td>
                 <td><%=q4.get(i).get(6)%></td>
                 <td><%=q4.get(i).get(7)%></td>
@@ -246,7 +248,7 @@
                         <div class="form-group">
                             <label class="col-md-4 control-label" for="textinput">Collection Date</label>
                             <div class="col-md-8">
-                                <input type="text" id="collection<%=i %>" class="form-control input-md" placeholder="DD-MM-YYYY">
+                                <input type="text" id="collection<%=i %>" class="form-control input-md" placeholder="DD-MM-YYYY" value="<%=q4.get(i).get(8)%>">
                                 <script>
                                     $( "#collection<%=i %>" ).datepicker({ 
                                         yearRange: '1999:c+1' ,
@@ -281,9 +283,7 @@
                 </div>
             </div>
         </div>
-    </div>
-</div>
-                          
+    </div>   
                 <script>
                      $(document).ready(function () {
                      $("#btn_submit<%=i %>").click(function () {
@@ -305,7 +305,40 @@
                                 success: function(data) {
                                      var d = data.split("|");
                                      if (d[1] == '1') {
-                                         alert("Comment are filled.")
+                                         alert("Collection date updated.")
+                                         window.location.reload();
+                                         $("#basicModal_<%=i %>").hide();
+                                         $(".modal-backdrop").hide();
+                                     } else {
+                                         alert("Update failed!");
+                                     }
+                                },
+                                error: function(err) {
+                                    alert("Error update!");
+                                }
+                            });
+                        });
+                        
+                        $("#btn_cancel<%=i %>").click(function () {
+                            var tcode = $("#tcode_<%=i%>").val();
+                            var fcomment = $("#fcomment_<%=i%>").val();
+                            var order_no = $("#order_no3").val();
+                            var collectionDate = $("#collection<%=i%>").val();
+                            
+                            $.ajax({
+                                url: "odcancel.jsp",
+                                type: "post",
+                                data: {
+                                    tcode: tcode,
+                                    order_no: order_no,
+                                    collectionDate: collectionDate,
+                                    fcomment: fcomment
+                                },
+                                timeout: 10000,
+                                success: function(data) {
+                                     var d = data.split("|");
+                                     if (d[1] == '1') {
+                                         alert("Collection date is cancel.")
                                          window.location.reload();
                                          $("#basicModal_<%=i %>").hide();
                                          $(".modal-backdrop").hide();
