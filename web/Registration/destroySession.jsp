@@ -6,8 +6,7 @@
 
 <%
     
-    session.invalidate();
-    HttpSession newSession = request.getSession(false);
+    session.setAttribute("Patient_IC",null);
 
     response.sendRedirect("welcome.jsp");
   

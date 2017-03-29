@@ -3,7 +3,7 @@
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <%
     
-    if (!(session.getAttribute("USER_IC") == null || session.getAttribute("USER_IC").equals("")))
+    if (!(session.getAttribute("Patient_IC") == null || session.getAttribute("Patient_IC").equals("")))
         {
      %>
             <script type="text/javascript">
@@ -13,10 +13,6 @@
                 
                 </script>
 <%
-        }else if ((session.getAttribute("Admin_IC") == null || session.getAttribute("Admin_IC").equals("")))
-        {
-            response.sendRedirect("Adminlogin.jsp");
-            
         }
         else
         {

@@ -18,5 +18,7 @@
 
       <!-- local bootstrap library -->
       <!-- <link  rel="stylesheet" href="css/bootstrap.css"> -->
-   
+      
+    <script src="../assets/js/bootbox.min.js"></script>
+    
 </head>
