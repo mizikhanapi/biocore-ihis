@@ -136,7 +136,7 @@
           $('<div class="loading">Loading</div>').appendTo('body');
 
             $("#bodySystemMain").load("bodySystem_main.jsp");
-            //$("#bodySystemTable").load("discipline_table.jsp");
+            $("#bodySystemTable").load("bodySystem_table.jsp");
 
 //                $("#subdisciplineMain").load("subdiscipline_main.jsp");
 //                $("#subdisciplineTable").load("subdiscipline_table.jsp");

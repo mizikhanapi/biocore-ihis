@@ -23,7 +23,7 @@
                         <label class="col-md-4 control-label" for="textinput">Body System Code*</label>
                         <div class="col-md-8">
                             <input id="BS_bodySystemCode"  type="text" placeholder="Insert body system code" class="form-control input-md" maxlength="30">
-                            
+
                         </div>
                     </div>
 
@@ -32,12 +32,12 @@
                         <label class="col-md-4 control-label" for="textinput">Body System Name*</label>
                         <div class="col-md-8">
                             <input id="BS_bodySystemName"  type="text" placeholder="Insert body system name" class="form-control input-md" maxlength="300">
-                            
+
                         </div>
                     </div>
-                    
-                    
-                     <div class="form-group">
+
+
+                    <div class="form-group">
                         <label class="col-md-4 control-label" for="textinput">Status*</label>
                         <div class="col-md-8">
                             <select class="form-control"  id="BS_status">

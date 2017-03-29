@@ -21,68 +21,73 @@
         $('#BS_modal_title').text("Add New Body System");
         $('#BS_bodySystemCode').prop('readonly', false);
         $('#BS_div_btnAdd_or_update').html('<button type="submit" class="btn btn-success btn-block btn-lg" role="button" id="BS_btnAdd">Add</button>');
-        
+
         $('#BS_addForm')[0].reset();
 
-        //------------------------------------------------------------ add new body system ----------------------------------------------------------------
-
-        $('#BS_btnAdd').on('click', function () {
-
-            var bs_name = $('#BS_bodySystemName').val();
-            var bs_code = $('#BS_bodySystemCode').val();
-            var bs_status = $('#BS_status').val();
-
-            if (bs_name === "") {
-                bootbox.alert("Insert the body system name");
-
-            }else if(bs_code === ""){
-                bootbox.alert("Insert the body system code");
-                
-            }else{
-                var data = {
-                    bs_code : bs_code,
-                    bs_name : bs_name,
-                    status : bs_status
-                };
-                
-                $.ajax({
-                    type: 'POST',
-                    url: "controller/bodySystem_insert.jsp",
-                    data: data,
-                    success: function (data, textStatus, jqXHR) {
-                        
-                        if(data.trim() === 'success'){
-                            $('#bodySystemTable').load('bodySystem_table.jsp');
-                            $('#BS_detail').modal('hide');
-                            //alert("Insertion Success");
-                            bootbox.alert({
-                                    message: "New body system code is added",
-                                    title: "Process Result",
-                                    backdrop: true
-                                });
-                            
-                        }else if(data.trim() === 'fail'){
-                            bootbox.alert("Failed to add new body system code");
-                            
-                        }else{
-                            
-                            bootbox.alert(data.trim());
-                        }
-                        
-                    },
-                    error: function (jqXHR, textStatus, errorThrown) {
-                        bootbox.alert("Opps! "+ errorThrown);
-                    }
-                });
-                
-            }
-
-        });
-
-        //------------------------------------------------------------ add new body system end ----------------------------------------------------------------
 
 
     });
+
+
+    //------------------------------------------------------------ add new body system ----------------------------------------------------------------
+
+    $('#BS_div_btnAdd_or_update').on('click', '#BS_btnAdd', function (e) {
+
+        e.preventDefault();
+
+        var bs_name = $('#BS_bodySystemName').val();
+        var bs_code = $('#BS_bodySystemCode').val();
+        var bs_status = $('#BS_status').val();
+
+        if (bs_name === "") {
+            bootbox.alert("Insert the body system name");
+
+        } else if (bs_code === "") {
+            bootbox.alert("Insert the body system code");
+
+        } else {
+            var data = {
+                bs_code: bs_code,
+                bs_name: bs_name,
+                status: bs_status
+            };
+
+            $.ajax({
+                type: 'POST',
+                url: "controller/bodySystem_insert.jsp",
+                data: data,
+                success: function (data, textStatus, jqXHR) {
+
+                    if (data.trim() === 'success') {
+                        $('#bodySystemTable').load('bodySystem_table.jsp');
+                        $('#BS_detail').modal('hide');
+                        //alert("Insertion Success");
+                        bootbox.alert({
+                            message: "New body system code is added",
+                            title: "Process Result",
+                            backdrop: true
+                        });
+
+                    } else if (data.trim() === 'fail') {
+                        bootbox.alert("Failed to add new body system code");
+
+                    } else {
+
+                        bootbox.alert(data.trim());
+                    }
+
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    bootbox.alert("Opps! " + errorThrown);
+                }
+            });
+
+        }
+
+    });
+
+    //------------------------------------------------------------ add new body system end ----------------------------------------------------------------
+
 
 
     $(function () {
