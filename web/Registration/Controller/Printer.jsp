@@ -3,6 +3,12 @@
     Created on : Feb 21, 2017, 9:39:21 AM
     Author     : user
 --%>
+<%@page import="org.apache.poi.util.IOUtils"%>
+<%@page import="java.io.FileInputStream"%>
+<%@page import="java.io.File"%>
+<%@page import="java.io.IOException"%>
+<%@page import="javax.imageio.ImageIO"%>
+<%@page import="java.awt.image.BufferedImage"%>
 <%@page import="java.awt.Font"%>
 <%@page import="javax.print.attribute.standard.MediaSize"%>
 <%@page import="java.awt.print.Paper"%>
@@ -27,20 +33,20 @@
  
 public class DirectPrint implements Printable {
  
-//    private PrintService[] printService;
-    private PrintService Defultservice;
+    private PrintService[] printService;
+//    private PrintService Defultservice;
 //    private PrintService Printer5850II;
     private String text;
  
     public DirectPrint() {
           //for Printer named 5850II
-//        this.printService = PrinterJob.lookupPrintServices(); 
+        this.printService = PrinterJob.lookupPrintServices(); 
 //        for(int i = 0 ;i < printService.length; i++)
 //        System.out.println("Normal "+printService[i]);
 
         //for default printer
-        this.Defultservice = PrintServiceLookup.lookupDefaultPrintService();
-        System.out.println("Defult "+Defultservice);
+//        this.Defultservice = PrintServiceLookup.lookupDefaultPrintService();
+//        System.out.println("Defult "+Defultservice);
     }
  
 //    public void main(String[] args) {
@@ -61,9 +67,9 @@ public class DirectPrint implements Printable {
         PrinterJob printJob = PrinterJob.getPrinterJob();
        
 
-         //PageFormat pf = printJob.pageDialog(aset);
+//         PageFormat pf = printJob.pageDialog(aset);
 
-
+//
          PageFormat pf = printJob.defaultPage();
             Paper paper = new Paper();
             double margin = 0; 
@@ -72,26 +78,26 @@ public class DirectPrint implements Printable {
             pf.setPaper(paper);
  
             printJob.setPrintable(this, pf);
-              try {
-                       //for Printer named 5850II
-//                      for(PrintService theprintService : printService)
-//                        {
-//                            if(theprintService.toString().indexOf("5850II") != -1)
-//                             {
-//                                System.out.println("HERE I AM 5850II ");
-//                                 Printer5850II = theprintService;
-//                                 break;
-//                             } 
-//                        }
-//                    printJob.setPrintService(Printer5850II);
-                    //for default printer
-                    printJob.setPrintService(Defultservice);
-
-                    printJob.print();
-              } catch (PrinterException pp) {
-                System.out.println(pp);
-              }
-            }
+//              try {
+//                       //for Printer named 5850II
+////                      for(PrintService theprintService : printService)
+////                        {
+////                            if(theprintService.toString().indexOf("5850II") != -1)
+////                             {
+////                                System.out.println("HERE I AM 5850II ");
+////                                 Printer5850II = theprintService;
+////                                 break;
+////                             } 
+////                        }
+////                    printJob.setPrintService(Printer5850II);
+//                    //for default printer
+//                    printJob.setPrintService(Defultservice);
+//
+//                    printJob.print();
+//              } catch (PrinterException pp) {
+//                System.out.println(pp);
+//              }
+//            }
  
 
 //        Paper page = new Paper();
@@ -99,23 +105,23 @@ public class DirectPrint implements Printable {
 //        
 //        pf = printJob.getPageFormat(aset);
 //        printJob.setPrintable(this);
-//
-//     try {
-//            
-//            for(int i = 0; i<printService.length;i++)
-//            {
-//                System.out.println(printService[i]);
-//                  
-//            }
-//
-////            printJob.setPrintService(printService[7]);
-//            //index of installed printers on you system
-//            //not sure if default-printer is always '0'
-//            printJob.print(aset);
-//        } catch (PrinterException err) {
-//            System.err.println(err);
-//        }
-//    }
+
+     try {
+            
+            for(int i = 0; i<printService.length;i++)
+            {
+                System.out.println(printService[i]);
+                  
+            }
+
+            printJob.setPrintService(printService[5]);
+            //index of installed printers on you system
+            //not sure if default-printer is always '0'
+            printJob.print(aset);
+        } catch (PrinterException err) {
+            System.err.println(err);
+        }
+    }
  
     public int print(Graphics g, PageFormat pf, int pageIndex) throws PrinterException {
        int y = 0;
@@ -129,25 +135,56 @@ public class DirectPrint implements Printable {
         g.setFont(new Font("TimesRoman", Font.PLAIN, 10));
         String [] lines = new String [5];
         //g.drawString(line, 15, y += g.getFontMetrics().getHeight())
-        int count = 0;
-        for (String line : this.text.split("\n"))
-        {
-            lines[count]=line;
-            count++;
-        }
-        for (int i =0;i<lines.length;i++)
-        {
-            if(i == 2)
-            {
-                g.setFont(new Font("TimesRoman", Font.PLAIN, 40));
-            } else if (i == 3){
-                g.setFont(new Font("TimesRoman", Font.PLAIN, 10));
-            } else if(i == 4)
-            {
-                g.setFont(new Font("TimesRoman", Font.PLAIN, 7));
-            }
-            g.drawString(lines[i], 15, y += g.getFontMetrics().getHeight());
-        }
+//        int count = 0;
+//        for (String line : this.text.split("\n"))
+//        {
+//            lines[count]=line;
+//            count++;
+//        }
+//        for (int i =0;i<lines.length;i++)
+//        {
+//            if(i == 2)
+//            {
+//                g.setFont(new Font("TimesRoman", Font.PLAIN, 10));
+//               
+//            } else if (i == 3){
+//                g.setFont(new Font("TimesRoman", Font.PLAIN, 10));
+//               
+//            } else if(i == 4)
+//            {
+//                g.setFont(new Font("TimesRoman", Font.ITALIC, 7));
+//            }
+//             
+//            g.drawString(lines[i], 15, y += g.getFontMetrics().getHeight());
+//        }
+//        try
+//                   {
+//                       BufferedImage img = ImageIO.read(new File("C:/Users/user/Box Sync/temp/malaysia_ministry_logo33x33px.png")); 
+//       //                img = img.getSubimage(50, 50, 500, 500); // 500 x 500
+//                       g.drawImage(img, 0, 0, null);
+//
+//                   }catch(IOException e)
+//                   {
+//                       e.printStackTrace();
+//                   } 
+
+
+          
+              try {
+            
+              FileInputStream fis = new FileInputStream("C:/Users/user/Documents/biocore-ihis/web/Registration/Controller/MedicalReport.pdf");
+               byte [] data = IOUtils.toByteArray(fis);
+              g.drawBytes(data, 0, data.length, 50, 130);
+
+              
+            } catch (IOException err) {
+                System.err.println(err);
+            }              
+             
+
+
+
+
 //        g.drawString(String.valueOf(this.text), 15, y+= g.getFontMetrics().getHeight());
         //debug(g2, 0, 0, pf.getImageableWidth(), pf.getImageableHeight());
 
@@ -176,6 +213,5 @@ public class DirectPrint implements Printable {
             DirectPrint directPrint = new DirectPrint();
 //            directPrint.printString("E00000000 \n ooo"); 
 //            directPrint.printString("1rrrrrr");
-             directPrint.printString("        Biocore Lab"+"\n           Your no: "+"\n    "+3+"\n       Current no :"+2+"\n   Data:"+"12-10-22"+" Time:"+"10:50:30");
+             directPrint.printString("             Hospital Serdang"+"\n         Satelits Farmasi Daycare "+"\nNombor anda:"+3+"\n       Current no :"+2+"\n  Monday"+"12-10-22"+"        "+"10:50");
         %>
- 

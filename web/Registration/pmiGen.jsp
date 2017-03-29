@@ -13,8 +13,8 @@
     Conn conn = new Conn();
     RMIConnector rmic = new RMIConnector();
     String pmino;
-    String input =  request.getParameter("icInput");
-    //String input = "9506070152";
+//    String input =  request.getParameter("icInput");
+    String input = "9506070152";
     pmino = rmic.getPMI(conn.HOST, conn.PORT, input);
     //int PMINOGEN = pmiw.getNewPmi();
     //pmino = rmic.getPMI(input);

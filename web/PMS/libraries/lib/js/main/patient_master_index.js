@@ -45,12 +45,8 @@
                     ppostalcountry = $("#PMIpcountryCODE").val(),
                     pmobilephone = $("#PMIhandphone").val(),
                     pemail = $("#PMIemail").val();
-            console.log("title code: "+ptitle);
-            if (pname === "") {
-                pname = "-";
-            } else {
-                pname = $("#PMIpname").val();
-            }
+            //console.log("title code: "+ptitle);
+            
 
             if (pminotemp === "") {
                 pminotemp = "-";
@@ -58,17 +54,9 @@
                 pminotemp = $("#PMIpminotemp").val();
             }
 
-            if (ptitle === "") {
-                ptitle = "-";
-            } else {
-                ptitle = $("#PMItitleCODE").val();
-            }
+            
 
-            if (pnic === "") {
-                pnic = "-";
-            } else {
-                pnic = $("#PMInic").val();
-            }
+            
 
             if (poic === "") {
                 poic = "-";
@@ -88,50 +76,7 @@
                 pino = $("#PMIino").val();
             }
 
-            if (pelicat === null) {
-                pelicat = "-";
-            } else {
-                pelicat = $("#PMIelicat").val();
-            }
-
-            if (pelity === null) {
-                pelity = "-";
-            } else {
-                pelity = $("#PMIelity").val();
-            }
-
-            if (pbday === null) {
-                convertedBday = "-";
-
-            } else {
-                pbday = $("#PMIbday").val();
-                var splitBday = String(pbday).split("-");
-                var convertedBday = splitBday[0] + "/" + splitBday[1] + "/" + splitBday[2];
-            }
-
-            if (psex === null) {
-                psex = "-";
-            } else {
-                psex = $("#PMIsex").val();
-            }
-
-            if (pmarital === null) {
-                pmarital = "-";
-            } else {
-                pmarital = $("#PMImarital").val();
-            }
-
-            if (prace === null) {
-                prace = "-";
-            } else {
-                prace = $("#PMIrace").val();
-            }
-
-            if (pnational === "") {
-                pnational = "-";
-            } else {
-                pnational = $("#PMInationalCODE").val();
-            }
+            
 
             if (preligional === null) {
                 preligional = "-";
@@ -169,11 +114,7 @@
                 porgandonor = $("#PMIorgan").val();
             }
 
-            if (phomeadd === "") {
-                phomeadd = "-";
-            } else {
-                phomeadd = $("#PMIhadd").val();
-            }
+            
 
             if (phomedistrict === "") {
                 phomedistrict = "-";
@@ -259,7 +200,9 @@
                 pemail = $("#PMIemail").val();
             }
 
-
+                //pbday = $("#PMIbday").val();
+                var splitBday = String(pbday).split("-");
+                var convertedBday = splitBday[0] + "/" + splitBday[1] + "/" + splitBday[2];
 
             var data = {'pmino': pmino,
                 'pminotemp': pminotemp,
@@ -352,6 +295,45 @@
 
         $("#updatePatient").on("click", function () {
             //var r = confirm("Are you sure want to Save patient's biodata?");
+            var pmino = $("#PMIpmino").val(),                    
+                    pname = $("#PMIpname").val(),
+                    ptitle = $("#PMItitleCODE").val(),
+                    pnic = $("#PMInic").val(),
+                    poic = $("#PMIoic").val(),
+                    pit = $("#PMIidty").val(),
+                    pino = $("#PMIino").val(),
+                    pelicat = $("#PMIelicat").val(),
+                    pelity = $("#PMIelity").val(),
+                    pbday = $("#PMIbday").val(),
+                    psex = $("#PMIsex").val(),
+                    pmarital = $("#PMImarital").val(),
+                    prace = $("#PMIrace").val(),
+                    pnational = $("#PMInationalCODE").val(),                    
+                    phomeadd = $("#PMIhadd").val();
+                    
+               if (pname === "") {
+                bootbox.alert("Please key in patient's name..");
+            }else if (ptitle === "") {
+                bootbox.alert("Please key in patient's title..");
+            }else if (pnic === "") {
+                bootbox.alert("Please key in patient's New IC Number..");
+            }else if (pbday === null) {
+                bootbox.alert("Please key in patient's date of birth..");
+            }else if (pelicat === null) {
+               bootbox.alert("Please key in patient's eligibility category..");
+            }else if (pelity === null) {
+                bootbox.alert("Please key in patient's eligibility type..");
+            }else if (psex === null) {
+                bootbox.alert("Please key in patient's gender..");
+            }else if (pmarital === null) {
+                bootbox.alert("Please key in patient's marital status..");
+            }else if (prace === null) {
+                bootbox.alert("Please key in patient's race..");
+            }else if (pnational === "") {
+                bootbox.alert("Please key in patient's nationality..");
+            }else if (phomeadd === "") {
+                bootbox.alert("Please key in patient's home address..");
+            }else {
             bootbox.confirm({
                 message: "Are you sure want to Save patient's biodata?",
                 buttons: {
@@ -372,7 +354,7 @@
                 }
             });
 
-
+            }
         });
 
         $('#clearPMI').on('click', function () {
