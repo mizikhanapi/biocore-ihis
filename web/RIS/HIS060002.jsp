@@ -72,11 +72,13 @@
 
                                             <div class="tab-pane" id="BS_tab2">
 
-                                                <div id="subdiscipline">
-                                                    <div id="subdisciplineMain">
+                                                <div id="modality">
+                                                    <div id="modalityMain">
                                                     </div>
-                                                    <div id="subdisciplineTable">
+                                                    <div id="modalityTable">
                                                     </div>
+                                                    <%@include file="modal/modality_modal.jsp" %>
+                                                   
                                                 </div>
 
                                             </div>
@@ -92,16 +94,6 @@
 
                                             </div>
 
-                                            <div class="tab-pane" id="BS_tab4">
-
-                                                <div id="assign">
-                                                    <div id="assignDisciplineMain">
-                                                    </div>
-                                                    <div id="assignDisciplineTable">
-                                                    </div>
-                                                </div>
-
-                                            </div>
 
                                         </div>
                                     </div>
@@ -138,8 +130,8 @@
             $("#bodySystemMain").load("bodySystem_main.jsp");
             $("#bodySystemTable").load("bodySystem_table.jsp");
 
-//                $("#subdisciplineMain").load("subdiscipline_main.jsp");
-//                $("#subdisciplineTable").load("subdiscipline_table.jsp");
+                $("#modalityMain").load("modality_main.jsp");
+                $("#modalityTable").load("modality_table.jsp");
 //
 //                $("#healthFacilityMain").load("healthFacility_main.jsp");
 //                $("#healthFacilityTable").load("healthFacility_table.jsp");

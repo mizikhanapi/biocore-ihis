@@ -1,49 +1,49 @@
 <%-- 
-    Document   : bodySystem_main
-    Created on : Mar 28, 2017, 12:37:37 PM
+    Document   : modality_main
+    Created on : Mar 30, 2017, 7:25:00 PM
     Author     : user
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!-- Add Button Start -->
 <h4 style="padding-top: 30px;padding-bottom: 35px; font-weight: bold">
-    BODY SYSTEM CODE MANAGEMENT
+    MODALITY CODE MANAGEMENT
     <span class="pull-right">
-        <button id="BS_btnAddNew" class="btn btn-success" data-status="pagado" data-toggle="modal" data-id="1" data-target="#BS_detail" style=" padding-right: 10px;padding-left: 10px;color: white;"><a data-toggle="tooltip" data-placement="top" title="Add Items" id="test"><i class=" fa fa-plus" style=" padding-right: 10px;padding-left: 10px;color: white;"></i></a>ADD Body System</button>
+        <button id="MOD_btnAddNew" class="btn btn-success" data-status="pagado" data-toggle="modal" data-id="1" data-target="#MOD_detail" style=" padding-right: 10px;padding-left: 10px;color: white;"><a data-toggle="tooltip" data-placement="top" title="Add Items" id="test"><i class=" fa fa-plus" style=" padding-right: 10px;padding-left: 10px;color: white;"></i></a>ADD Modality</button>
     </span>
 </h4>
 <!-- Add Button End -->
 
 <script>
 
-    $('#BS_btnAddNew').on('click', function () {
+    $('#MOD_btnAddNew').on('click', function () {
 
-        $('#BS_modal_title').text("Add New Body System");
-        $('#BS_bodySystemCode').prop('readonly', false);
-        $('#BS_div_btnAdd_or_update').html('<button type="submit" class="btn btn-success btn-block btn-lg" role="button" id="BS_btnAdd">Add</button>');
+        $('#MOD_modal_title').text("Add New Modality");
+        $('#MOD_modalityCode').prop('readonly', false);
+        $('#MOD_div_btnAdd_or_update').html('<button type="submit" class="btn btn-success btn-block btn-lg" role="button" id="MOD_btnAdd">Add</button>');
 
-        $('#BS_addForm')[0].reset();
+        $('#MOD_addForm')[0].reset();
 
 
 
     });
 
 
-    //------------------------------------------------------------ add new body system ----------------------------------------------------------------
+    //------------------------------------------------------------ add new modality ----------------------------------------------------------------
 
-    $('#BS_div_btnAdd_or_update').on('click', '#BS_btnAdd', function (e) {
+    $('#MOD_div_btnAdd_or_update').on('click', '#MOD_btnAdd', function (e) {
 
         e.preventDefault();
 
-        var bs_name = $('#BS_bodySystemName').val();
-        var bs_code = $('#BS_bodySystemCode').val();
-        var bs_status = $('#BS_status').val();
+        var bs_name = $('#MOD_modalityName').val();
+        var bs_code = $('#MOD_modalityCode').val();
+        var bs_status = $('#MOD_status').val();
 
         if (bs_code === "") {
-            bootbox.alert("Insert the body system code");
+            bootbox.alert("Insert the modality code");
 
         } else if (bs_name === "") {
-            bootbox.alert("Insert the body system name");
+            bootbox.alert("Insert the modality name");
 
         } else {
             var data = {
@@ -54,22 +54,22 @@
 
             $.ajax({
                 type: 'POST',
-                url: "controller/bodySystem_insert.jsp",
+                url: "controller/modality_insert.jsp",
                 data: data,
                 success: function (data, textStatus, jqXHR) {
 
                     if (data.trim() === 'success') {
-                        $('#bodySystemTable').load('bodySystem_table.jsp');
-                        $('#BS_detail').modal('hide');
+                        $('#modalityTable').load('modality_table.jsp');
+                        $('#MOD_detail').modal('hide');
                         //alert("Insertion Success");
                         bootbox.alert({
-                            message: "New body system code is added",
+                            message: "New modality code is added",
                             title: "Process Result",
                             backdrop: true
                         });
 
                     } else if (data.trim() === 'fail') {
-                        bootbox.alert("Failed to add new body system code");
+                        bootbox.alert("Failed to add new modality code");
 
                     } else {
 
@@ -86,27 +86,27 @@
 
     });
 
-    //------------------------------------------------------------ add new body system end ----------------------------------------------------------------
+    //------------------------------------------------------------ add new modality end ----------------------------------------------------------------
 
 
     //-----------------------------------------creatting modal for update----------------------------------------------------------------------
 
-    $('#bodySystemTable').on('click', '#THE_bodySystemTable #BS_btnModalUpdate', function (e) {
+    $('#modalityTable').on('click', '#THE_modalityTable #MOD_btnModalUpdate', function (e) {
         e.preventDefault();
 
         var row = $(this).closest("tr");
-        var rowData = row.find("#BS_hidden").val();
+        var rowData = row.find("#MOD_hidden").val();
         var arrayData = rowData.split("|");
 
         var bs_code = arrayData[0], bs_name = arrayData[1], status = arrayData[2];
 
-        $('#BS_bodySystemCode').val(bs_code);
-        $('#BS_bodySystemName').val(bs_name);
-        $('#BS_status').val(status);
+        $('#MOD_modalityCode').val(bs_code);
+        $('#MOD_modalityName').val(bs_name);
+        $('#MOD_status').val(status);
 
-        $('#BS_modal_title').text("Update Body System");
-        $('#BS_bodySystemCode').prop('readonly', true);
-        $('#BS_div_btnAdd_or_update').html('<button type="submit" class="btn btn-success btn-block btn-lg" role="button" id="BS_btnUpdate">Update</button>');
+        $('#MOD_modal_title').text("Update Body System");
+        $('#MOD_modalityCode').prop('readonly', true);
+        $('#MOD_div_btnAdd_or_update').html('<button type="submit" class="btn btn-success btn-block btn-lg" role="button" id="MOD_btnUpdate">Update</button>');
 
 
 
@@ -118,17 +118,17 @@
 
     //------------------------------- update upon button click ----------------------------------------------------------------
 
-    $('#BS_div_btnAdd_or_update').on('click', '#BS_btnUpdate', function () {
+    $('#MOD_div_btnAdd_or_update').on('click', '#MOD_btnUpdate', function () {
 
-        var bs_code = $('#BS_bodySystemCode').val();
-        var bs_name = $('#BS_bodySystemName').val();
-        var status = $('#BS_status').val();
+        var bs_code = $('#MOD_modalityCode').val();
+        var bs_name = $('#MOD_modalityName').val();
+        var status = $('#MOD_status').val();
 
         if (bs_code === "") {
             bootbox.alert("Body system code can't be empty");
 
         } else if (bs_name === "") {
-            bootbox.alert("Please fill in the body system name");
+            bootbox.alert("Please fill in the modality name");
 
         } else {
 
@@ -140,14 +140,14 @@
 
             $.ajax({
                 type: 'POST',
-                url: "controller/bodySystem_update.jsp",
+                url: "controller/modality_update.jsp",
                 data: data,
                 success: function (data, textStatus, jqXHR) {
 
                     if (data.trim() === 'success') {
-                        $('#bodySystemTable').load('bodySystem_table.jsp');
+                        $('#modalityTable').load('modality_table.jsp');
                         $(".modal-backdrop").hide();
-                        $('#BS_detail').modal('hide');
+                        $('#MOD_detail').modal('hide');
                         //alert("Update Success");
 
                         bootbox.alert({
@@ -157,7 +157,7 @@
                         });
 
                     }else if(data.trim() === 'fail'){
-                        bootbox.alert("Failed to update body system code");
+                        bootbox.alert("Failed to update modality code");
                     }
 
 
@@ -174,11 +174,11 @@
 
     //------------------------------- delete upon button click -------------------------------------------------------
 
-    $('#bodySystemTable').on('click', '#THE_bodySystemTable #BS_btnDelete', function (e) {
+    $('#modalityTable').on('click', '#THE_modalityTable #MOD_btnDelete', function (e) {
         e.preventDefault();
 
         var row = $(this).closest('tr');
-        var rowData = row.find('#BS_hidden').val();
+        var rowData = row.find('#MOD_hidden').val();
         var arrayData = rowData.split("|");
 
         var bs_code = arrayData[0], bs_name = arrayData[1];
@@ -205,18 +205,18 @@
 
                     $.ajax({
                         type: 'POST',
-                        url: "controller/bodySystem_delete.jsp",
+                        url: "controller/modality_delete.jsp",
                         data: data,
                         success: function (data, textStatus, jqXHR) {
 
                             if (data.trim() === 'success') {
 
-                                $('#bodySystemTable').load('bodySystem_table.jsp');
+                                $('#modalityTable').load('modality_table.jsp');
                                 $(".modal-backdrop").hide();
                                 //alert("Update Success");
 
                                 bootbox.alert({
-                                    message: "A body system code is deleted",
+                                    message: "A modality code is deleted",
                                     title: "Process Result",
                                     backdrop: true
                                 });

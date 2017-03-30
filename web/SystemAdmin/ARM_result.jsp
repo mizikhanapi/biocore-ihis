@@ -18,7 +18,7 @@
     
     if(process.equalsIgnoreCase("user")){
         
-        String searchProblem = "Select user_id, user_name from adm_users where health_facility_code = '"+adminHFC+"' AND user_id not in (Select user_id from adm_user_access_role) order by user_name, user_id";
+        String searchProblem = "Select user_id, user_name from adm_users where health_facility_code = '"+adminHFC+"' AND user_name is not null AND user_id not in (Select user_id from adm_user_access_role)  order by user_name, user_id";
         ArrayList<ArrayList<String>> search = conn.getData(searchProblem);
         if (search.size() > 0)
         {
