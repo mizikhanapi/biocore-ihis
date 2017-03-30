@@ -5,7 +5,6 @@
 --%>
 <%@page import="dBConn.Conn"%>
 <%@page import="main.RMIConnector"%>
-<%@page import="org.json.JSONArray"%>
 <%@page import="java.sql.*"%>
 <%@page import="java.util.List"%>
 <%@page import="java.util.ArrayList"%>
