@@ -120,6 +120,8 @@
             bootbox.alert("Please Fill in the name input");
         }else if(startDate === "" || endDate===""){
             bootbox.alert("Please Fill in the date input");
+        }else if(staff === "" || staff===""){
+            bootbox.alert("Please Fill in the staff input");
         } else {
             //var B2 = $('#QName').val();
             //
