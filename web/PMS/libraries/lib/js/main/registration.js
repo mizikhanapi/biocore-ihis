@@ -148,6 +148,7 @@
         setInterval(getDateNow, 1000);
         var array_dat;
         var str;
+        var pmi, epiDate, name, newic, oldic, typeId, idNo, rnNo, patCatCode, visTyCode, emTy, eliCatCode, eliTyCode, disCode, subDiscode, consultRoom, comQueue, doctor, prioGruCode, polCase, commDis, natuDisasCode, docTy, guardInd, referNo, gruGuard, glExpDate, epiTime, stat, hfc, comTy, createdBy, queue, docID;
 
         if ($('#radios-0').is(':checked')) {
             str = $('#select-0').find(":selected").val();
@@ -169,6 +170,8 @@
 
             comTy = "PN";
         }
+        console.log(array_dat);
+        
         if ($('#pmino').val() === " " || $('#pmino').val() === "") {
             bootbox.alert('Please use a proper PMI no.');
 
@@ -185,7 +188,7 @@
         }else{
 
 
-            var pmi, epiDate, name, newic, oldic, typeId, idNo, rnNo, patCatCode, visTyCode, emTy, eliCatCode, eliTyCode, disCode, subDiscode, consultRoom, comQueue, doctor, prioGruCode, polCase, commDis, natuDisasCode, docTy, guardInd, referNo, gruGuard, glExpDate, epiTime, stat, hfc, comTy, createdBy, queue, docID;
+            
             pmi = $('#pmino').val();
             epiDate = yyyyMMddHHmmss;
             name = $('input[id=pname]').val();
@@ -299,6 +302,7 @@
                                 }
                             }, error: function () {
                                 bootbox.alert("There is an error!");
+                                $body.removeClass("loading");
                             }
                         });
                     }

@@ -52,6 +52,7 @@
     String docID = request.getParameter("docID");
     int queue_now = 0;
     int newQueueNo = 0;
+    String roomNo="";
 
     String insertEpisode="";
 
@@ -61,7 +62,12 @@
     
     String sqlRoom = "select room_no from adm_users where user_id='"+docID+"'";
     ArrayList<ArrayList<String>> dataRoom = conn.getData(sqlRoom);
-    String roomNo = dataRoom.get(0).get(0);
+    if(dataRoom.size()>0){
+        roomNo = dataRoom.get(0).get(0);
+    }else{
+        roomNo = "";
+    }
+    
     
     if (alreadyRegis.size() > 0) {
         out.print("already");

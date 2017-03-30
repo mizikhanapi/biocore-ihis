@@ -17,7 +17,7 @@
     String pmino = request.getParameter("pmino");
     String now = request.getParameter("today");
     
-    String delSql ="DELETE FROM PMS_EPISODE WHERE PMI_NO ='"+pmino+"' AND EPISODE_TIME = '"+now+"'";
+    String delSql ="DELETE FROM PMS_EPISODE WHERE PMI_NO ='"+pmino+"' AND EPISODE_DATE = '"+now+"'";
     Boolean delSuccess = rmic.setQuerySQL(conn.HOST, conn.PORT, delSql);
     if(delSuccess == true){
 out.print("success");
