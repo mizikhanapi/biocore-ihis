@@ -265,7 +265,12 @@ $(document).ready(function (e) {
             }
 
         }
-        var VTSNotes = convertVTS(VTSObj);
+        
+        if(vtsCounter === 0){
+            VTSNotes = '';
+        }else {
+            var VTSNotes = convertVTS(VTSObj);
+        }
         processNotes += VTSNotes;
         console.log(HCSContent);
         return processNotes;
@@ -293,14 +298,15 @@ $(document).ready(function (e) {
         var ord = convertToOrderNotes(_data);
         countVTS(_data);
 
-        //console.log(vtsCounter);
+        console.log(vtsCounter);
         vtsCounter = 0;
 
         console.log(_data);
         var SendNotes = convertToNotes(_data);
 
         notes = msh + pdi + SendNotes + ord;
-        console.log(episodeDate);
+        console.log(notes);
+        console.log(VTSObj);
         console.log(pmiNo)
 
         $.ajax({
