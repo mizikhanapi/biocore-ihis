@@ -13,7 +13,7 @@
     String id = request.getParameter("id");
     
     id.toLowerCase();
-    String searchProblem = "select ris_procedure_cd from ris_procedure_master where CONCAT(UPPER(ris_procedure_name),LOWER(ris_procedure_name)) like '%" + id + "%' ";
+    String searchProblem = "select ris_procedure_cd,modality_cd,body_system_cd,modality_name,body_system_name from ris_procedure_master where CONCAT(UPPER(ris_procedure_name),LOWER(ris_procedure_name)) like '%" + id + "%' ";
     ArrayList<ArrayList<String>> search = Conn.getData(searchProblem);
     if (search.size() > 0) {
 

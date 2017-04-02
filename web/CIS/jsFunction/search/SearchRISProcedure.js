@@ -9,9 +9,21 @@ function searchROSCD(){
         success: function(reply_data){
             var array_data = String(reply_data).split("|");
             var urosCode = array_data[0];
+            var modalityCODE = array_data[1];
+            var bodySystem = array_data[2];
+            
+            var modalityName = array_data[3];
+            var bodySystemName = array_data[4];
             //console.log(urosCode);
            
             $('#codeROS').val(urosCode.trim());
+            
+            $('#modalityROS').val(modalityName.trim());
+            $('#bodySystemROS').val(bodySystemName.trim());
+            
+            $('#modalityROSCode').val(modalityCODE.trim());
+            $('#bodySystemROSCode').val(bodySystem.trim());
+            
             //console.log($('#codeROS').val());
           }
         });
@@ -27,9 +39,19 @@ function UsearchROSCD(){
         success: function(reply_data){
             var array_data = String(reply_data).split("|");
             var urosCode = array_data[0];
+            var modalityCODE = array_data[1];
+            var bodySystem = array_data[2];
+            
+            var modalityName = array_data[3];
+            var bodySystemName = array_data[4];
             console.log(urosCode);
            
             $('#UcodeROS').val(urosCode.trim());
+            $('#UmodalityROS').val(modalityName.trim());
+            $('#UbodySystemROS').val(bodySystemName.trim());
+            
+            $('#UmodalityROSCode').val(modalityCODE.trim());
+            $('#UbodySystemROSCode').val(bodySystem.trim());
           }
         });
    
