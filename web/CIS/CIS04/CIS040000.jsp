@@ -103,7 +103,7 @@
                     </div>
                     <div class="col-xs-4 col-sm-4 col-md-4">
                         <div class="form-group">
-                            <input class="form-control input-lg" type="text"  id="appointmentLOS" placeholder="">
+                            <input class="form-control input-lg" type="text"  id="appointmentROS" placeholder="">
                         </div>
                     </div>
                     <div class="col-xs-2 col-sm-2 col-md-2">
@@ -228,7 +228,7 @@
                         </div>
                     </div>
                     <div class="col-xs-8 col-sm-8 col-md-8">
-                        <textarea type="text" name="display_name" id="UlocationROS" class="form-control input-lg" tabindex="3"></textarea>
+                        <textarea type="text" name="display_name" id="UlocationROS" class="form-control input-lg" tabindex="3" readonly=""></textarea>
 
                     </div>
                 </div>
@@ -250,7 +250,7 @@
                     </div>
                     <div class="col-xs-4 col-sm-4 col-md-4">
                         <div class="form-group">
-                            <input class="form-control input-lg" type="text"  id="UappointmentLOS" placeholder="">
+                            <input class="form-control input-lg" type="text"  id="UappointmentROS" placeholder="">
                         </div>
                     </div>
                     <div class="col-xs-2 col-sm-2 col-md-2">

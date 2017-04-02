@@ -19,6 +19,20 @@ $(document).ready(function () {
         yearRange: "-100:+0",
         dateFormat: "dd-mm-yy"
     });
+     $("#appointmentROS").datepicker({
+
+        changeMonth: true,
+        changeYear: true,
+        yearRange: "-100:+0",
+        dateFormat: "dd-mm-yy"
+    });
+    $("#UappointmentROS").datepicker({
+
+        changeMonth: true,
+        changeYear: true,
+        yearRange: "-100:+0",
+        dateFormat: "dd-mm-yy"
+    });
 //---------------------------------------------------------------------------------------------Drug Order Modal.
     //js ADD for Drug Order
     $('#acceptBtnDTO').click(function () {
@@ -412,9 +426,19 @@ $(document).ready(function () {
         var ROS = $('#ROS').val();
         var codeROS = $('#codeROS').val();
         var commentROS = $('#commentROS').val();
+        var modalityROS = $('#modalityROS').val();
+        var modalityROScode = $('#modalityROSCode').val();
+        var bodysysROS = $('#bodySystemROS').val();
+        var bodysysROScode = $('#bodySystemROSCode').val();
+        var hfcROS = $('#hfcROS').val();
+        var hfcROScode = $('#hfcIdROS').val();
+        var locationHFCROS = $('#locationROS').val();
+        var appointmentROS = $('#appointmentROS').val();
+        var patientConditionROS = $('#priorityROS').val();
+        
         console.log(codeROS);
 
-        var $items = $('#ROS, #codeROS, #commentROS');
+        var $items = $('#ROS, #codeROS, #commentROS,#modalityROS,#modalityROSCode,#bodySystemROS,#bodySystemROSCode,#hfcROS,#hfcIdROS,#locationROS,#appointmentROS,#priorityROS');
         var obj1 = {Acode: 'ROS'};
         $items.each(function () {
             obj1[this.id] = $(this).val();
@@ -424,11 +448,20 @@ $(document).ready(function () {
 
         console.log(obj1);
 
-        displayROS(codeROS, ROS, commentROS);
+        displayROS(codeROS, ROS, commentROS,modalityROS,modalityROScode,bodysysROS,bodysysROS,bodysysROScode,hfcROS,hfcROScode,locationHFCROS,appointmentROS,patientConditionROS);
 
         $("#ROS").val("");
         $("#codeROS").val("");
         $("#commentROS").val("");
+        $('#modalityROS').val("");
+        $('#modalityROSCode').val("");
+        $('#bodySystemROS').val("");
+        $('#bodySystemROSCode').val("");
+        $('#hfcROS').val("");
+        $('#hfcIdROS').val("");
+        $('#locationROS').val("");
+        $('#appointmentROS').val("");
+        $('#priorityROS').val("");
         $("#CIS040000").modal('toggle');
 
         //$(".modal-backdrop").hide();
@@ -445,6 +478,16 @@ $(document).ready(function () {
         $('#UROS').val(updateObj.ROS);
         $('#UcommentROS').val(updateObj.commentROS);
         $('#jsonId').val(id[1]);
+        
+        $('#UmodalityROS').val(updateObj.modalityROS);
+        $('#UmodalityROSCode').val(updateObj.modalityROSCode);
+        $('#UbodySystemROS').val(updateObj.bodySystemROS);
+        $('#UbodySystemROSCode').val(updateObj.bodySystemROSCode);
+        $('#UhfcROS').val(updateObj.hfcROS);
+        $('#UhfcIdROS').val(updateObj.hfcIdROS);
+        $('#UlocationROS').val(updateObj.locationROS);
+        $('#UappointmentROS').val(updateObj.appointmentROS);
+        $('#UpriorityROS').val(updateObj.priorityROS);
         //$(this).closest('tr').remove();
         console.log($('#UROS').val());
 
@@ -457,6 +500,16 @@ $(document).ready(function () {
         var _UcodeROS = $('#UcodeROS').val();
         var _UROS = $('#UROS').val();
         var _UcommentROS = $('#UcommentROS').val();
+        
+        var _UmodalityROS = $('#UmodalityROS').val();
+        var _UmodalityROScode = $('#UmodalityROSCode').val();
+        var _UbodysysROS = $('#UbodySystemROS').val();
+        var _UbodysysROScode = $('#UbodySystemROSCode').val();
+        var _UhfcROS = $('#UhfcROS').val();
+        var _UhfcROScode = $('#UhfcIdROS').val();
+        var _UlocationHFCROS = $('#UlocationROS').val();
+        var _UappointmentROS = $('#UappointmentROS').val();
+        var _UpatientConditionROS = $('#UpriorityROS').val();
 
         //console.log($('#UROS').val());
         console.log(rowId);
@@ -465,7 +518,7 @@ $(document).ready(function () {
         upObject.codeROS = _UcodeROS;
         upObject.commentROS = _UcommentROS;
 
-        var sum = _UROS + '| ' + _UcommentROS
+        var sum = _UROS + '| ' + _UcommentROS + '|'+_UmodalityROS+ '|'+_UbodysysROS+ '|'+_UhfcROS+ '|'+_UlocationHFCROS+ '|'+_UappointmentROS+ '|'+_UpatientConditionROS ;
 
         $('#sum' + rowId).html(sum);
         $("#update_CIS040000").modal('toggle');
@@ -707,8 +760,8 @@ function displayMCTS(DateFrom, DateTo, num1, num2, num3) {
     i = i + 1;
 }
 
-function displayROS(codeROS, ROS, commentROS) {
-    var _tr = '<tr data-status="pagado" ><td><div class="ckbox"><input type="checkbox" id="checkbox1"><label for="checkbox1"></label></div></td><td><div class="media"><div class="media-body">Radiology Request :<p class="summary" id="sum' + i + '">' + ROS + '|' + commentROS + '</p></div></div></td><td><a data-toggle="modal"  data-target="#update_CIS040000" href="" class="updateBtn15" id="row|' + i + '"><i class="fa fa-pencil-square-o" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #337ab7;" ></i></a></a></td><td><a href="javascript:;" class="star"><a href="#" class="deleteBtn" id="row|' + i + '"><i class="fa fa-times" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #d9534f;"></i></a></a></td></tr>';
+function displayROS(codeROS, ROS, commentROS,modalityROS,modalityROScode,bodysysROS,bodysysROS,bodysysROScode,hfcROS,hfcROScode,locationHFCROS,appointmentROS,patientConditionROS) {
+    var _tr = '<tr data-status="pagado" ><td><div class="ckbox"><input type="checkbox" id="checkbox1"><label for="checkbox1"></label></div></td><td><div class="media"><div class="media-body">Radiology Request :<p class="summary" id="sum' + i + '">' + ROS + '|' + commentROS + '|'+modalityROS+ '|'+bodysysROS+ '|'+hfcROS+ '|'+locationHFCROS+ '|'+appointmentROS+ '|'+patientConditionROS +'</p></div></div></td><td><a data-toggle="modal"  data-target="#update_CIS040000" href="" class="updateBtn15" id="row|' + i + '"><i class="fa fa-pencil-square-o" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #337ab7;" ></i></a></a></td><td><a href="javascript:;" class="star"><a href="#" class="deleteBtn" id="row|' + i + '"><i class="fa fa-times" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #d9534f;"></i></a></a></td></tr>';
     $('#ROSNotes').append(_tr);
     i = i + 1;
 }

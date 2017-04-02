@@ -12,7 +12,7 @@
     //String key = request.getParameter("input");
     String id = request.getParameter("id");
 
-    String searchProblem = "select hfc_cd from adm_health_facility where hfc_name like '%" + id + "%' ";
+    String searchProblem = "select hfc_cd,Concat(address1 ,address2,address3) AS location from adm_health_facility where hfc_name like '%" + id + "%' ";
     ArrayList<ArrayList<String>> search = Conn.getData(searchProblem);
    // out.print(searchProblem);
     if (search.size() > 0) {
