@@ -59,7 +59,7 @@ subUl{
 
 
 li :hover{
-    background-color: #1484DE;
+    color: #1484DE;
      text-decoration: none;
 }
 li:selected{
