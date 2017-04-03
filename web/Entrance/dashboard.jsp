@@ -202,7 +202,7 @@
                     %>
                     
                     <div class="col-sm-6 col-md-3">
-                        <a href="../Billing/billing.jsp" class="thumbnail">
+                        <a href="../Billing/HIS080001.jsp" class="thumbnail">
                             <div class="kotak text-center">
                                 <i class="fa fa-credit-card" aria-hidden="true" style="color: #34A8DA;font-size: 4em;"></i>
                                 <h3>Billing System</h3>

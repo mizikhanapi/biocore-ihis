@@ -35,21 +35,21 @@
 
         e.preventDefault();
 
-        var bs_name = $('#MOD_modalityName').val();
-        var bs_code = $('#MOD_modalityCode').val();
-        var bs_status = $('#MOD_status').val();
+        var mod_name = $('#MOD_modalityName').val();
+        var mod_code = $('#MOD_modalityCode').val();
+        var mod_status = $('#MOD_status').val();
 
-        if (bs_code === "") {
+        if (mod_code === "") {
             bootbox.alert("Insert the modality code");
 
-        } else if (bs_name === "") {
+        } else if (mod_name === "") {
             bootbox.alert("Insert the modality name");
 
         } else {
             var data = {
-                bs_code: bs_code,
-                bs_name: bs_name,
-                status: bs_status
+                mod_code: mod_code,
+                mod_name: mod_name,
+                status: mod_status
             };
 
             $.ajax({
@@ -98,10 +98,10 @@
         var rowData = row.find("#MOD_hidden").val();
         var arrayData = rowData.split("|");
 
-        var bs_code = arrayData[0], bs_name = arrayData[1], status = arrayData[2];
+        var mod_code = arrayData[0], mod_name = arrayData[1], status = arrayData[2];
 
-        $('#MOD_modalityCode').val(bs_code);
-        $('#MOD_modalityName').val(bs_name);
+        $('#MOD_modalityCode').val(mod_code);
+        $('#MOD_modalityName').val(mod_name);
         $('#MOD_status').val(status);
 
         $('#MOD_modal_title').text("Update Body System");
@@ -120,21 +120,21 @@
 
     $('#MOD_div_btnAdd_or_update').on('click', '#MOD_btnUpdate', function () {
 
-        var bs_code = $('#MOD_modalityCode').val();
-        var bs_name = $('#MOD_modalityName').val();
+        var mod_code = $('#MOD_modalityCode').val();
+        var mod_name = $('#MOD_modalityName').val();
         var status = $('#MOD_status').val();
 
-        if (bs_code === "") {
-            bootbox.alert("Body system code can't be empty");
+        if (mod_code === "") {
+            bootbox.alert("Modality code can't be empty");
 
-        } else if (bs_name === "") {
+        } else if (mod_name === "") {
             bootbox.alert("Please fill in the modality name");
 
         } else {
 
             var data = {
-                bs_code: bs_code,
-                bs_name: bs_name,
+                mod_code: mod_code,
+                mod_name: mod_name,
                 status: status
             };
 
@@ -151,7 +151,7 @@
                         //alert("Update Success");
 
                         bootbox.alert({
-                            message: "Body system code is updated",
+                            message: "Modality code is updated",
                             title: "Process Result",
                             backdrop: true
                         });
@@ -181,11 +181,11 @@
         var rowData = row.find('#MOD_hidden').val();
         var arrayData = rowData.split("|");
 
-        var bs_code = arrayData[0], bs_name = arrayData[1];
+        var mod_code = arrayData[0], mod_name = arrayData[1];
 
         bootbox.confirm({
             title: "Delete item?",
-            message: "Are you sure you want to delete " + bs_code + " - " + bs_name,
+            message: "Are you sure you want to delete " + mod_code + " - " + mod_name,
             buttons: {
                 confirm: {
                     label: "Yes",
@@ -200,7 +200,7 @@
 
                 if (result) {
                     var data = {
-                        bs_code: bs_code
+                        mod_code: mod_code
                     };
 
                     $.ajax({
@@ -223,7 +223,7 @@
 
                             } else if (data.trim() === 'fail') {
 
-                                bootbox.alert("Failed to delete " + bs_code + " - " + bs_name);
+                                bootbox.alert("Failed to delete " + mod_code + " - " + mod_name);
                             
                             }else{
                                 
