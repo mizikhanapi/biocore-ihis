@@ -9,7 +9,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>iHIS | Health Facility Maintenance</title>
+        <title>iHIS | Radiology Code Maintenance</title>
         <!-- header -->
         <%@include file = "libraries/radiologyHeadLibrary.jsp" %>
         <%@include file="../assets/header.html"%>
@@ -35,7 +35,7 @@
                             <div class="thumbnail">
 
                                 <div class="tabbable-panel">
-                                    <h1>Health Facility Maintenance</h1>
+                                    <h1>Radiology Maintenance</h1>
                                     <div class="tabbable-line">
                                         <ul class="nav nav-tabs ">
                                             <li class="active">
@@ -78,18 +78,19 @@
                                                     <div id="modalityTable">
                                                     </div>
                                                     <%@include file="modal/modality_modal.jsp" %>
-                                                   
+
                                                 </div>
 
                                             </div>
 
                                             <div class="tab-pane" id="BS_tab3">
 
-                                                <div id="healthFacility">
-                                                    <div id="healthFacilityMain">
+                                                <div id="procedure">
+                                                    <div id="procedureMain">
                                                     </div>
-                                                    <div id="healthFacilityTable">
+                                                    <div id="procedureTable">
                                                     </div>
+                                                    <%@include file="modal/procedure_modal.jsp" %>
                                                 </div>
 
                                             </div>
@@ -125,15 +126,15 @@
         <script>
 
 
-          $('<div class="loading">Loading</div>').appendTo('body');
+            $('<div class="loading">Loading</div>').appendTo('body');
 
             $("#bodySystemMain").load("bodySystem_main.jsp");
             $("#bodySystemTable").load("bodySystem_table.jsp");
 
-                $("#modalityMain").load("modality_main.jsp");
-                $("#modalityTable").load("modality_table.jsp");
-//
-//                $("#healthFacilityMain").load("healthFacility_main.jsp");
+            $("#modalityMain").load("modality_main.jsp");
+            $("#modalityTable").load("modality_table.jsp");
+
+            $("#procedureMain").load("procedure_main.jsp");
 //                $("#healthFacilityTable").load("healthFacility_table.jsp");
 //
 //                $("#assignDisciplineMain").load("assignDiscipline_main.jsp");
