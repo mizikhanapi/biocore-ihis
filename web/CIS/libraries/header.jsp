@@ -13,7 +13,7 @@
 <link href="assets/myicons/font/flaticon.css" rel="stylesheet" type="text/css"/>
 <link href="assets/jquery-ui-1.12.1/jquery-ui.css" rel="stylesheet" type="text/css"/>
 
-<link href="assets/style.css" rel="stylesheet">
+<!--<link href="assets/style.css" rel="stylesheet">-->
 
 <!-- Custom styles for this template -->
 
@@ -30,64 +30,64 @@
 <script src="assets/bootstrap-3.3.7-dist/js/bootstrap.js" type="text/javascript"></script>
 
 <script src="jsFunction/MainConfig.js"></script>
- <script src="jsFunction/Objective.js"></script>
- <script src="jsFunction/Subjective.js"></script>
-  <script src="jsFunction/Assesment.js"></script>
-  <script src="jsFunction/Plan.js"></script>
- <script src="jsFunction/queue.js"></script>
- <script src="jsFunction/TopMenuFunction.js"></script>
- <script src="jsFunction/searchTopMenu.js"></script>
- 
+<script src="jsFunction/Objective.js"></script>
+<script src="jsFunction/Subjective.js"></script>
+<script src="jsFunction/Assesment.js"></script>
+<script src="jsFunction/Plan.js"></script>
+<script src="jsFunction/queue.js"></script>
+<script src="jsFunction/TopMenuFunction.js"></script>
+<script src="jsFunction/searchTopMenu.js"></script>
 
- 
- <script src="jsFunction/search/SeaarchuCCN_cd.js" type="text/javascript"></script>
 
- <script src="jsFunction/search/SearchALG_cd.js" type="text/javascript"></script>
- <script src="jsFunction/search/SearchAllergy.js" type="text/javascript"></script>
- <script src="jsFunction/search/SearchCCN_cd1.js" type="text/javascript"></script>
- <script src="jsFunction/search/SearchCNN.js" type="text/javascript"></script>
- <script src="jsFunction/search/SearchDAS_cd.js" type="text/javascript"></script>
- <script src="jsFunction/search/SearchDTO.js" type="text/javascript"></script>
- <script src="jsFunction/search/SearchDTO_cd.js" type="text/javascript"></script>
- <script src="jsFunction/search/SearchDisability1.js" type="text/javascript"></script>
- <script src="jsFunction/search/SearchFMH.js" type="text/javascript"></script>
- <script src="jsFunction/search/SearchFMH_cd1.js" type="text/javascript"></script>
- <script src="jsFunction/search/SearchIMU_cd.js" type="text/javascript"></script>
- <script src="jsFunction/search/SearchImmunization.js" type="text/javascript"></script>
- <script src="jsFunction/search/SearchPMH.js" type="text/javascript"></script>
- <script src="jsFunction/search/SearchPMH_cd1.js" type="text/javascript"></script>
- <script src="jsFunction/search/SearchPOS_type.js" type="text/javascript"></script>
- <script src="jsFunction/search/SearchProcedure.js" type="text/javascript"></script>
- <script src="jsFunction/search/SearchProcedureCode.js" type="text/javascript"></script>
- <script src="jsFunction/search/SearchSOH.js" type="text/javascript"></script>
- <script src="jsFunction/search/SearchSOH_cd1.js" type="text/javascript"></script>
- <script src="jsFunction/search/SearchSOP.js" type="text/javascript"></script>
- <script src="jsFunction/search/SearchuALG_cd.js" type="text/javascript"></script>
- <script src="jsFunction/search/SearchuDAS_cd.js" type="text/javascript"></script>
- <script src="jsFunction/search/SearchuDTO_cd.js" type="text/javascript"></script>
- <script src="jsFunction/search/SearchuFMH_cd.js" type="text/javascript"></script>
- <script src="jsFunction/search/SearchuIMU_cd.js" type="text/javascript"></script>
- <script src="jsFunction/search/SearchuPMH_cd.js" type="text/javascript"></script>
- <script src="jsFunction/search/SearchuPOS_type.js" type="text/javascript"></script>
- <script src="jsFunction/search/UpdateProcedureCode.js" type="text/javascript"></script>
- 
- 
-  <script src="jsFunction/search/SearchDGS_cd1.js" type="text/javascript"></script>
-   <script src="jsFunction/search/SearchDGS.js" type="text/javascript"></script>
-   
-   <script src="jsFunction/search/SearchHFC.js" type="text/javascript"></script>
-   <script src="jsFunction/search/SearchHFC_Discipline.js" type="text/javascript"></script>
-   <script src="jsFunction/search/searchDiscipline_cd1.js" type="text/javascript"></script>
-   <script src="jsFunction/search/SearchDoctor.js" type="text/javascript"></script>
-   <script src="jsFunction/search/SearchRISProcedure.js" type="text/javascript"></script>
-   <script src="jsFunction/search/SearchLOS.js" type="text/javascript"></script>
-   <script src="jsFunction/search/searchDoc_FLU.js" type="text/javascript"></script>
- 
-  <style>
-.ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default, .ui-button, html .ui-button.ui-state-disabled:hover, html .ui-button.ui-state-disabled:active{
-    background:#337ab7;
-}
-.ui-widget-content{
-    background:#ccd2dd;
-}
-  </style>
+
+<script src="jsFunction/search/SeaarchuCCN_cd.js" type="text/javascript"></script>
+
+<script src="jsFunction/search/SearchALG_cd.js" type="text/javascript"></script>
+<script src="jsFunction/search/SearchAllergy.js" type="text/javascript"></script>
+<script src="jsFunction/search/SearchCCN_cd1.js" type="text/javascript"></script>
+<script src="jsFunction/search/SearchCNN.js" type="text/javascript"></script>
+<script src="jsFunction/search/SearchDAS_cd.js" type="text/javascript"></script>
+<script src="jsFunction/search/SearchDTO.js" type="text/javascript"></script>
+<script src="jsFunction/search/SearchDTO_cd.js" type="text/javascript"></script>
+<script src="jsFunction/search/SearchDisability1.js" type="text/javascript"></script>
+<script src="jsFunction/search/SearchFMH.js" type="text/javascript"></script>
+<script src="jsFunction/search/SearchFMH_cd1.js" type="text/javascript"></script>
+<script src="jsFunction/search/SearchIMU_cd.js" type="text/javascript"></script>
+<script src="jsFunction/search/SearchImmunization.js" type="text/javascript"></script>
+<script src="jsFunction/search/SearchPMH.js" type="text/javascript"></script>
+<script src="jsFunction/search/SearchPMH_cd1.js" type="text/javascript"></script>
+<script src="jsFunction/search/SearchPOS_type.js" type="text/javascript"></script>
+<script src="jsFunction/search/SearchProcedure.js" type="text/javascript"></script>
+<script src="jsFunction/search/SearchProcedureCode.js" type="text/javascript"></script>
+<script src="jsFunction/search/SearchSOH.js" type="text/javascript"></script>
+<script src="jsFunction/search/SearchSOH_cd1.js" type="text/javascript"></script>
+<script src="jsFunction/search/SearchSOP.js" type="text/javascript"></script>
+<script src="jsFunction/search/SearchuALG_cd.js" type="text/javascript"></script>
+<script src="jsFunction/search/SearchuDAS_cd.js" type="text/javascript"></script>
+<script src="jsFunction/search/SearchuDTO_cd.js" type="text/javascript"></script>
+<script src="jsFunction/search/SearchuFMH_cd.js" type="text/javascript"></script>
+<script src="jsFunction/search/SearchuIMU_cd.js" type="text/javascript"></script>
+<script src="jsFunction/search/SearchuPMH_cd.js" type="text/javascript"></script>
+<script src="jsFunction/search/SearchuPOS_type.js" type="text/javascript"></script>
+<script src="jsFunction/search/UpdateProcedureCode.js" type="text/javascript"></script>
+
+
+<script src="jsFunction/search/SearchDGS_cd1.js" type="text/javascript"></script>
+<script src="jsFunction/search/SearchDGS.js" type="text/javascript"></script>
+
+<script src="jsFunction/search/SearchHFC.js" type="text/javascript"></script>
+<script src="jsFunction/search/SearchHFC_Discipline.js" type="text/javascript"></script>
+<script src="jsFunction/search/searchDiscipline_cd1.js" type="text/javascript"></script>
+<script src="jsFunction/search/SearchDoctor.js" type="text/javascript"></script>
+<script src="jsFunction/search/SearchRISProcedure.js" type="text/javascript"></script>
+<script src="jsFunction/search/SearchLOS.js" type="text/javascript"></script>
+<script src="jsFunction/search/searchDoc_FLU.js" type="text/javascript"></script>
+
+<style>
+    .ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default, .ui-button, html .ui-button.ui-state-disabled:hover, html .ui-button.ui-state-disabled:active{
+        background:#337ab7;
+    }
+    .ui-widget-content{
+        background:#ccd2dd;
+    }
+</style>

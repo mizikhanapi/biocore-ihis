@@ -366,8 +366,7 @@ ul.soap-content>li>a:focus {
 }
 
 .cis-tab {
-    border-bottom: 1px solid #eee;
-    margin-bottom: 25px;
+    margin-bottom: 20px;
 }
 
 .sub-soap>li>a {
@@ -527,7 +526,6 @@ ul.nav.navbar-nav.navbar-left.back {
 }
 
 .ConsultationNotes{
-    border-bottom: 5px solid #eee;
     border-left: 3px solid #58c102;
 }
 
@@ -587,4 +585,22 @@ tr#moveToOrderDetailsTButton {
 
 .tab-content {
     padding: 20px 0 0;
+}
+
+.modal-body h4 {
+    padding: 20px 30px 0px;
+}
+
+.summary {
+    font-size: 18px;
+}
+
+.p-label {
+    display: block;
+    font-weight: 700;
+    color: #333;
+}
+
+#mainConsultBar {
+    padding-top: 0px;
 }

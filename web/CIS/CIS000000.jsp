@@ -145,40 +145,41 @@
                                     </div>
                                 </div>
                                 <!-- Tab Menu -->
-                                <h4  id="mainConsultBar">Consultation Notes</h4>
+                                <hr class="pemisah" />
+                                <h4 id="mainConsultBar">Consultation Notes</h4>
 
-                                <table class="table table-filter " style="background: #fff; border: 1px solid #ccc;">
+                                <table class="table table-filter " style="background: #fff; border: 1px solid #ccc; margin-left: -31px; margin-right: -31px; width: auto; max-width: inherit; ">
 
-                                    <tbody id="CCNNotes"  class="ConsultationNotes"></tbody>
-                                    <tbody id="HPINotes"   class="ConsultationNotes"> </tbody>
-                                    <tbody id="PMHNotes"   class="ConsultationNotes"></tbody>
-                                    <tbody id="FMHNotes"   class="ConsultationNotes"> </tbody>
-                                    <tbody id="SOHNotes"   class="ConsultationNotes"></tbody>
-                                    <tbody id="BLDNotes"  class="ConsultationNotes"> </tbody>
-                                    <tbody id="ALGNotes"   class="ConsultationNotes"></tbody>
-                                    <tbody id="IMUNotes"   class="ConsultationNotes"> </tbody>
-                                    <tbody id="DABNotes"   class="ConsultationNotes"> </tbody>
+                                    <tbody id="CCNNotes"  class="S ConsultationNotes"></tbody>
+                                    <tbody id="HPINotes"   class="S ConsultationNotes"> </tbody>
+                                    <tbody id="PMHNotes"   class="S ConsultationNotes"></tbody>
+                                    <tbody id="FMHNotes"   class="S ConsultationNotes"> </tbody>
+                                    <tbody id="SOHNotes"   class="S ConsultationNotes"></tbody>
+                                    <tbody id="BLDNotes"  class="S ConsultationNotes"> </tbody>
+                                    <tbody id="ALGNotes"   class="S ConsultationNotes"></tbody>
+                                    <tbody id="IMUNotes"   class="S ConsultationNotes"> </tbody>
+                                    <tbody id="DABNotes"   class="S ConsultationNotes"> </tbody>
 
-                                    <tbody id="GCSNotes"   class="ConsultationNotes"> </tbody>
-                                    <tbody id="PGCSNotes"   class="ConsultationNotes"> </tbody>
-                                    <tbody id="BPNotes"   class="ConsultationNotes"> </tbody>
-                                    <tbody id="RRNotes"   class="ConsultationNotes"> </tbody>
-                                    <tbody id="OSATNotes"   class="ConsultationNotes"> </tbody>
-                                    <tbody id="PSCNotes"   class="ConsultationNotes"> </tbody>
-                                    <tbody id="BTEMPNotes"   class="ConsultationNotes"> </tbody>
-                                    <tbody id="OTRNotes"   class="ConsultationNotes"> </tbody>
-                                    <tbody id="PEMNotes"   class="ConsultationNotes"> </tbody>
+                                    <tbody id="GCSNotes"   class="O ConsultationNotes"> </tbody>
+                                    <tbody id="PGCSNotes"   class="O ConsultationNotes"> </tbody>
+                                    <tbody id="BPNotes"   class="O ConsultationNotes"> </tbody>
+                                    <tbody id="RRNotes"   class="O ConsultationNotes"> </tbody>
+                                    <tbody id="OSATNotes"   class="O ConsultationNotes"> </tbody>
+                                    <tbody id="PSCNotes"   class="O ConsultationNotes"> </tbody>
+                                    <tbody id="BTEMPNotes"   class="O ConsultationNotes"> </tbody>
+                                    <tbody id="OTRNotes"   class="O ConsultationNotes"> </tbody>
+                                    <tbody id="PEMNotes"   class="O ConsultationNotes"> </tbody>
 
-                                    <tbody id="DGSNotes"   class="ConsultationNotes"> </tbody>
-                                    <tbody id="PNTNotes"   class="ConsultationNotes"> </tbody>
+                                    <tbody id="DGSNotes"   class="A ConsultationNotes"> </tbody>
+                                    <tbody id="PNTNotes"   class="A ConsultationNotes"> </tbody>
 
-                                    <tbody id="DTONotes"   class="ConsultationNotes"> </tbody>
-                                    <tbody id="SOPNotes"   class="ConsultationNotes"> </tbody>
-                                    <tbody id="POSNotes"   class="ConsultationNotes"> </tbody>
-                                    <tbody id="MCTSNotes"   class="ConsultationNotes"> </tbody>
-                                    <tbody id="ROSNotes"   class="ConsultationNotes"> </tbody>
-                                    <tbody id="LOSNotes"   class="ConsultationNotes"> </tbody>
-                                    <tbody id="FLUNotes"   class="ConsultationNotes"> </tbody>
+                                    <tbody id="DTONotes"   class="P ConsultationNotes"> </tbody>
+                                    <tbody id="SOPNotes"   class="P ConsultationNotes"> </tbody>
+                                    <tbody id="POSNotes"   class="P ConsultationNotes"> </tbody>
+                                    <tbody id="MCTSNotes"   class="P ConsultationNotes"> </tbody>
+                                    <tbody id="ROSNotes"   class="P ConsultationNotes"> </tbody>
+                                    <tbody id="LOSNotes"   class="P ConsultationNotes"> </tbody>
+                                    <tbody id="FLUNotes"   class="P ConsultationNotes"> </tbody>
 
                                 </table>
 
