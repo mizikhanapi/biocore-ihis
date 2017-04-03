@@ -46,3 +46,52 @@ $(function () {
         }
     });
 });
+
+function searchDoctorcode(){
+    var name = $('#docREF').val();
+    $.ajax({
+        type: 'post',
+        url: 'search/searchDoctor_cd.jsp',
+        data: {'id': name},
+        success: function (reply_data) {
+            var array_data = String(reply_data).split("|");
+            var docCode = array_data[0];
+            console.log(docCode);
+        }
+    });
+}
+
+$(function () {
+    $("#docREF").on('keyup', function () {
+        var input = $(this).val();
+        //var id = $('#Searchdoctor').val();
+        var disCode = $.trim($('#disREFcode').val());
+        var hfc = $.trim($('#hfcREFcode').val());
+                if (input.length >= 1) { // Minimum characters = 2 (you can change)
+            $('#matchREFDOC').html('<img src="img/LoaderIcon.gif" />'); // Loader icon apprears in the <div id="match"></div>
+            var data = {name: input, hfc: hfc, dis: disCode};
+            $.ajax({
+                type: "POST",
+                url: "search/SearchDoctor_.jsp", // call the php file ajax/tuto-autocomplete.php
+                data: data, // Send dataFields var
+                timeout: 3000,
+                success: function (dataBack) { // If success
+                    console.log(data);
+                    console.log(dataBack);
+                    $('#matchREFDOC').html(dataBack); // Return data (UL list) and insert it in the <div id="match"></div>
+                    $('#matchListDoctor li').on('click', function () { // When click on an element in the list
+                        $('#docREF').val($(this).text()); // Update the field with the new element
+                        $('#matchREFDOC').text(''); // Clear the <div id="match"></div>
+                        //searchHFCcode();
+                        searchDoctorcode();
+                    });
+                },
+                error: function () { // if error
+                    $('#matchREFDOC').text('Problem!');
+                }
+            });
+        } else {
+            $('#matchREFDOC').text(''); // If less than 2 characters, clear the <div id="match"></div>
+        }
+    });
+});

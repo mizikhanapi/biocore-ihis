@@ -20,6 +20,7 @@
                 <div class="form-group">
                     <h4 class="modal-title modalTextLabel">Health Facility Name :</h4>
                     <input class="form-control input-lg" type="text" name="problem"  id="REF" tabindex="4" placeholder="if other,please specify">
+                    <input type="hidden" id="hfcREFcode"></input>
                     <div id="matchREF"></div>
                 </div>
 
@@ -27,6 +28,7 @@
                 <div class="form-group">
                     <h4 class="modal-title">Discipline :</h4>
                     <input class="form-control input-lg" type="text" name="pro" id="disREF" placeholder="if other,please specify">
+                    <input type="hidden" id="disREFcode"></input>
                     <div id="matchREFD"></div>
                 </div>
 
