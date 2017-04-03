@@ -82,7 +82,7 @@
 <script src="jsFunction/search/SearchRISProcedure.js" type="text/javascript"></script>
 <script src="jsFunction/search/SearchLOS.js" type="text/javascript"></script>
 <script src="jsFunction/search/searchDoc_FLU.js" type="text/javascript"></script>
-
+<script src="jsFunction/search/searchDisipline.js" type="text/javascript"></script>
 <style>
     .ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default, .ui-button, html .ui-button.ui-state-disabled:hover, html .ui-button.ui-state-disabled:active{
         background:#337ab7;
