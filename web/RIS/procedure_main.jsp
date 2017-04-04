@@ -382,11 +382,11 @@
         var rowData = row.find('#PRO_hidden').val();
         var arrayData = rowData.split("|");
 
-        var mod_code = arrayData[0], mod_name = arrayData[1];
+        var pro_cd = arrayData[5], pro_name = arrayData[6];
 
         bootbox.confirm({
             title: "Delete item?",
-            message: "Are you sure you want to delete " + mod_code + " - " + mod_name,
+            message: "Are you sure you want to delete " + pro_cd + " - " + pro_name,
             buttons: {
                 confirm: {
                     label: "Yes",
@@ -401,12 +401,12 @@
 
                 if (result) {
                     var data = {
-                        mod_code: mod_code
+                        proCode : pro_cd
                     };
 
                     $.ajax({
                         type: 'POST',
-                        url: "controller/modality_delete.jsp",
+                        url: "controller/procedure_delete.jsp",
                         data: data,
                         success: function (data, textStatus, jqXHR) {
 
@@ -417,14 +417,14 @@
                                 //alert("Update Success");
 
                                 bootbox.alert({
-                                    message: "A modality code is deleted",
+                                    message: "A procedure code is deleted",
                                     title: "Process Result",
                                     backdrop: true
                                 });
 
                             } else if (data.trim() === 'fail') {
 
-                                bootbox.alert("Failed to delete " + mod_code + " - " + mod_name);
+                                bootbox.alert("Failed to delete " + pro_cd + " - " + pro_name);
 
                             } else {
 
