@@ -57,7 +57,7 @@
                 <ul class="soap-content nav">
                     <li><a data-toggle="modal" data-target="#CIS030001" href="" class="soap-select"><i class="fa fa-stethoscope fa-li"></i> Diagnosis</a></li>
                     <li><a data-toggle="modal" data-target="#CIS030002" href="" class="soap-select"><i class="fa fa-tasks fa-li"></i> Progress Notes</a></li>
-                    <li><a data-toggle="modal" data-target="#CIS030003" href="" ><i class="fa fa-list-ul fa-li"></i> Problem List</a></li>
+                    <li id="Problemlist"><a data-toggle="modal" data-target="#CIS030003" href="" class="soap-select" ><i class="fa fa-list-ul fa-li"></i> Problem List</a></li>
                 </ul>
             </div>
             <!-- content -->

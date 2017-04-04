@@ -128,7 +128,7 @@
                                      }else{
                                      $('#inpatientProblem').html(getData);
                                  }
-                             }})
+                             }});
                           
                           });
                         </script>
@@ -151,7 +151,7 @@
                                      }else{
                                      $('#outpatientProblem').html(getData);
                                  }
-                             }})
+                             }});
                           
     });
                         </script>

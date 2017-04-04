@@ -3,9 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 $(document).ready(function(){
-    $('#Problemlist').on('click',function(){
+    
+  $( function() {
+      $('#Problemlist').on('click',function(){
      //alert("Works");
         $.get("CIS03/CIS030003_1.jsp", function (data) {
             console.log(data);
@@ -14,10 +15,6 @@ $(document).ready(function(){
 
         });
     });
-    });
-$(document).ready(function(){
-    
-  $( function() {
     $( "#dateDGS" ).datepicker({
 
       changeMonth: true,
