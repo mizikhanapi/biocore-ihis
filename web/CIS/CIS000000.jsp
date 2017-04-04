@@ -180,6 +180,7 @@
                                     <tbody id="ROSNotes"   class="P ConsultationNotes"> </tbody>
                                     <tbody id="LOSNotes"   class="P ConsultationNotes"> </tbody>
                                     <tbody id="FLUNotes"   class="P ConsultationNotes"> </tbody>
+                                    <tbody id="PRINotes"   class="P ConsultationNotes"> </tbody>
 
                                 </table>
 

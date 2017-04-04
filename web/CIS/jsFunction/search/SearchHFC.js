@@ -232,3 +232,50 @@ $(function () {
     });
 
 });
+
+function searchHFCcodeUREF() {
+    var id = $('#UREF').val();
+    $.ajax({
+        type: 'post',
+        url: 'search/searchHFC_cd.jsp',
+        data: {'id': id},
+        success: function (reply_data) {
+            var array_data = String(reply_data).split("|");
+            var hfcCode = array_data[0];
+            var hfcLocation = array_data[1];
+            //console.log(hfcCode);
+
+            $('#UhfcREFcode').val(hfcCode.trim());
+            
+        }
+    });
+}
+$(function () {
+    $("#UREF").on('keyup', function () { // everytime keyup event
+        var input = $(this).val(); // We take the input value
+        if (input.length >= 1) { // Minimum characters = 2 (you can change)
+            $('#UmatchREF').html('<img src="img/LoaderIcon.gif" />'); // Loader icon apprears in the <div id="match"></div>
+            var dataFields = {'input': input}; // We pass input argument in Ajax
+            $.ajax({
+                type: "POST",
+                url: "search/SearchHFC.jsp", // call the php file ajax/tuto-autocomplete.php
+                data: dataFields, // Send dataFields var
+                timeout: 3000,
+                success: function (dataBack) { // If success
+                    $('#UmatchREF').html(dataBack); // Return data (UL list) and insert it in the <div id="match"></div>
+                    $('#matchList li').on('click', function () { // When click on an element in the list
+                        $('#UREF').val($(this).text()); // Update the field with the new element
+                        $('#UmatchREF').text(''); // Clear the <div id="match"></div>
+                        searchHFCcodeUREF();
+                    });
+                },
+                error: function () { // if error
+                    $('#UmatchREF').text('Problem!');
+                }
+            });
+        } else {
+            $('#UmatchREF').text(''); // If less than 2 characters, clear the <div id="match"></div>
+        }
+    });
+
+});
