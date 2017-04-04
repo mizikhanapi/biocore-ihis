@@ -135,7 +135,7 @@
             $("#modalityTable").load("modality_table.jsp");
 
             $("#procedureMain").load("procedure_main.jsp");
-//                $("#healthFacilityTable").load("healthFacility_table.jsp");
+            $("#procedureTable").load("procedure_table.jsp");
 //
 //                $("#assignDisciplineMain").load("assignDiscipline_main.jsp");
 //                $("#assignDisciplineTable").load("assignDiscipline_table.jsp");

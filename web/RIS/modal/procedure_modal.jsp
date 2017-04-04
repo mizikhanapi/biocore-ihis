@@ -4,6 +4,21 @@
     Author     : user
 --%>
 
+<%@page import="java.util.ArrayList"%>
+<%@page import="dBConn.Conn"%>
+<%
+    Conn conn = new Conn();
+    
+    String query = "Select detail_reference_code from adm_lookup_detail where master_reference_code = '0094' AND description like '%radiology%' order by created_date desc limit 1";
+    
+    ArrayList<ArrayList<String>> dataRadiologyCode = conn.getData(query);
+    String code = "5";
+    
+    if(dataRadiologyCode.size()>0){
+        code = dataRadiologyCode.get(0).get(0);
+    }
+%>
+
 <!-- Modal Detail -->
 <!-- Add Modal Start -->
 <div class="modal fade" id="PRO_detail" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
@@ -22,7 +37,7 @@
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="textinput">Clinical Discipline Code*</label>
                         <div class="col-md-8">
-                            <input id="PRO_clinical"  type="text" class="form-control input-md"  readonly value="5">
+                            <input id="PRO_clinical"  type="text" class="form-control input-md"  readonly value="<%= code%>">
 
                         </div>
                     </div>
@@ -53,12 +68,12 @@
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="textinput">Procedure Code*</label>
                         <div class="col-md-8">
-                            <div class="col-md-2">
-                                <input type="text" placeholder="Insert radiology procedure code" class="form-control" readonly id="PRO_proCode1">
+                            <div class="col-md-3">
+                                <input type="text" placeholder="Auto" class="form-control" readonly id="PRO_proCode1">
                             </div>
-                            <label class="col-md-2 control-label" for="textinput">-</label>
+                            <label class="col-md-1 control-label" for="textinput">-</label>
                             <div class="col-md-8">
-                                <input type="text" placeholder="Insert last 4 character of radiology procedure code" class="form-control" maxlength="27" id="PRO_proCode2">
+                                <input type="text" placeholder="Insert last 4 character of code" class="form-control" maxlength="27" id="PRO_proCode2">
                             </div>                           
                         </div>
                     </div>
@@ -76,6 +91,7 @@
                         <label class="col-md-4 control-label" for="textinput">Buying Price (RM)*</label>
                         <div class="col-md-8">
                             <input type="text" placeholder="Insert radiology procedure buying price" class="form-control" maxlength="9" id="PRO_buyPrice">
+                            <p id="PRO_buyPrice_err" style="color: red"></p>
                         </div>
                     </div>
                     
@@ -84,6 +100,16 @@
                         <label class="col-md-4 control-label" for="textinput">Selling Price (RM)*</label>
                         <div class="col-md-8">
                             <input type="text" placeholder="Insert radiology procedure selling price" class="form-control" maxlength="9" id="PRO_sellPrice">
+                            <p id="PRO_sellPrice_err" style="color: red"></p>
+                        </div>
+                    </div>
+                    
+                    <!-- Text input-->
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="textinput">Quantity*</label>
+                        <div class="col-md-8">
+                            <input type="text" placeholder="Insert quantity of available radiology procedure" class="form-control" maxlength="9" id="PRO_quantity">
+                            <p id="PRO_quantity_err" style="color: red"></p>
                         </div>
                     </div>
 
