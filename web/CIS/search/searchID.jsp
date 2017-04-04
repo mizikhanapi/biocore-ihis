@@ -41,30 +41,28 @@
     searchID1 = conn.getData(sql2);
 
     //out.println(searchID);
-    
-if(searchID.size() > 0 && searchID1.size()>0){
-    
+    if (searchID.size() > 0 && searchID1.size() > 0) {
+
 
 %>
-<center>
-    <h4>PREVIOUS VISIT (INPATIENT EPISODE) 
-<!--        <a class="btn btn-primary pull-right" data-toggle="collapse" href="#searchPatient1" aria-expanded="false" aria-controls="searchPatient1">
-            View Inpatient Episode
-        </a>-->
-    </h4>
-</center>
-<br/>
+<hr/>
+<h4 style="padding: 10px 0px 15px; ">Previous Visit (Inpatient Episode) 
+    <!--        <a class="btn btn-primary pull-right" data-toggle="collapse" href="#searchPatient1" aria-expanded="false" aria-controls="searchPatient1">
+                View Inpatient Episode
+            </a>-->
+</h4>
+
 <table class="table table-filter table-striped" style="background: #fff; border: 1px solid #ccc;" id="searchPatient1">
     <thead>
     <th>Episode Date</th>
     <th>Health Care Facility</th>
     <th>Discipline</th>
-    <th>Action</th>
+    <th style="width: 5%;"></th>
 </thead>
 <tbody id="detailList">
     <%        for (int i = 0; i < searchID.size(); i++) {
             if (searchID.size() > 0) {
-           //out.print(String.join("|", searchID.get(i)));
+                //out.print(String.join("|", searchID.get(i)));
 
     %>
     <tr>
@@ -77,7 +75,7 @@ if(searchID.size() > 0 && searchID1.size()>0){
         </td>
         <td><%=searchID.get(i).get(2)%></td>
         <td><%=searchID.get(i).get(3)%></td>
-        <td><a href="#episodeDetail" id="ViewDetail" name="ViewDetail" class="btn btn-default" type="button" role="button"><i class="fa fa-eye" aria-hidden="true" style="display: inline-block;color: #337ab7;"></i></a></td>
+        <td><a href="#episodeDetail" id="ViewDetail" name="ViewDetail" class="btn btn-default" type="button" role="button">View Details</a></td>
     </tr>
 
     <% }
@@ -85,20 +83,21 @@ if(searchID.size() > 0 && searchID1.size()>0){
     %>
 </tbody>
 </table>
-<center><h4>PREVIOUS VISIT (OUTPATIENT EPISODE)</h4></center>
+<br/>
+<h4 style="padding: 10px 0px 15px;">Previous Visit (Outpatient Episode)</h4>
 <table class="table table-filter table-striped" style="background: #fff; border: 1px solid #ccc;" id="searchPatient1">
     <thead>
-    <th>Episode Date</th>
-    <th>Health Care Facility</th>
-    <th>Discipline</th>
-    <th>Action</th>
-</thead>
+        <th>Episode Date</th>
+        <th>Health Care Facility</th>
+        <th>Discipline</th>
+        <th style="width: 5%;"></th>
+    </thead>
 <tbody id="detailList1">
     <%
         for (int i = 0; i < searchID1.size(); i++) {
             if (searchID1.size() > 0) {
 
-           //out.print(String.join("|", searchID1.get(i)));
+                //out.print(String.join("|", searchID1.get(i)));
     %>
     <tr>
         <td><%=searchID1.get(i).get(1)%>
@@ -110,7 +109,7 @@ if(searchID.size() > 0 && searchID1.size()>0){
         </td>
         <td><%=searchID1.get(i).get(2)%></td>
         <td><%=searchID1.get(i).get(3)%></td>
-        <td><a href="#episodeDetail" id="ViewDetail1" name="ViewDetail" class="btn btn-default" type="button" role="button"><i class="fa fa-eye" aria-hidden="true" style="display: inline-block;color: #337ab7;"></i></a></td>
+        <td><a href="#episodeDetail1" id="ViewDetail1" name="ViewDetail" class="btn btn-default" type="button" role="button" >View Details</a></td>
     </tr>
 
     <% }
@@ -119,10 +118,9 @@ if(searchID.size() > 0 && searchID1.size()>0){
 </tbody>
 </table>
 
-<% 
-}
-else{
-    out.print("1");
-}
+<%
+    } else {
+        out.print("1");
+    }
 %>
 
