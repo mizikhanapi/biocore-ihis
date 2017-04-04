@@ -145,8 +145,8 @@
 }
 
 .m-scene .thumbnail {
-    -webkit-animation-duration: 1.5s;
-    animation-duration: 1.5s;
+    -webkit-animation-duration: 0.5s;
+    animation-duration: 0.5s;
     -webkit-transition-timing-function: ease-in;
     transition-timing-function: ease-in;
     -webkit-animation-fill-mode: both;

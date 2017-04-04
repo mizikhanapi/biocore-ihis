@@ -19,6 +19,14 @@ $(document).ready(function () {
         yearRange: "-100:+0",
         dateFormat: "dd-mm-yy"
     });
+    
+    $("#UappREF").datepicker({
+
+        changeMonth: true,
+        changeYear: true,
+        yearRange: "-100:+0",
+        dateFormat: "dd-mm-yy"
+    });
 
     $("#uDateFollowUp").datepicker({
 
@@ -740,7 +748,89 @@ $(document).ready(function () {
         }
     });
 
+    //---------------------------------------------------------------------------------------------------------------------------------------------
+        //js ADD for rEFERRAL
+    $('#acceptREF').click(function () {
 
+        var hfcREFname = $('#REF').val();
+        var hfcREFcode = $('#hfcREFcode').val();
+        var disREFname = $('#disREF').val();
+        var disREFcode = $('#disREFcode').val();
+        var docREFname = $('#docREF').val();
+        var appREF = $('#appREF').val();
+        var medhistoryREF = $('#medicalHisREF').val();
+
+        var $items = $('#REF, #hfcREFcode, #disREF, #disREFcode, #docREF, #appREF, #medicalHisREF');
+        var obj1 = {Acode: 'PRI'};
+        $items.each(function () {
+            obj1[this.id] = $(this).val();
+        });
+
+        _data.push(obj1);
+
+        console.log(obj1);
+
+        displayPRI(hfcREFname, hfcREFcode, disREFname, disREFcode, docREFname, appREF, medhistoryREF);
+
+        $("#REF").val("");
+        $("#hfcREFcode").val("");
+        $("#disREF").val("");
+        $("#disREFcode").val("");
+        $("#docREF").val("");
+        $("#appREF").val("");
+        $("#medicalHisREF").val("");       
+        $("#CIS040009").modal('toggle');
+        //$(".modal-backdrop").hide();
+
+    });
+    //js UPDATE for Drug Order
+    $('#PRINotes').on('click', '.updateBtnPRI', function () {
+        var idName = $(this).get(0).id;
+        var id = idName.split("|");
+        var updateObj = _data[id[1]];
+        console.log(updateObj);
+        $("#UREF").val(updateObj.REF);
+        $("#UhfcREFcode").val(updateObj.hfcREFcode);
+        $("#UdisREF").val(updateObj.disREF);
+        $("#UdisREFcode").val(updateObj.disREFcode);
+        $("#UdocREF").val(updateObj.docREF);
+        $("#UappREF").val(updateObj.appREF);
+        $("#UmedicalHisREF").val(updateObj.medicalHisREF);      
+
+        $('#jsonId').val(id[1]);
+        //$(this).closest('tr').remove();
+
+    });
+
+    $('#updateREF').click(function (e) {
+        e.preventDefault();
+
+        var upObject = _data[$('#jsonId').val()];
+
+        rowId = $('#jsonId').val();
+        
+        var _UREF = $('#UREF').val();
+        var _UdisREF = $('#UhfcREFcode').val();
+        var _UdisREF = $('#UdisREF').val();
+        var _UdisREFcode = $('#UdisREFcode').val();
+        var _UdocREF = $('#UdocREF').val();
+        var _UappREF = $('#UappREF').val();
+        var _UmedicalHisREF = $('#UmedicalHisREF').val();
+      
+        upObject.REF = _UREF;
+        upObject.hfcREFcode = _UdisREF;
+        upObject.disREF = _UdisREF;
+        upObject.disREFcode = _UdisREFcode;
+        upObject.docREF = _UdocREF;
+        upObject.appREF = _UappREF;
+        upObject.medicalHisREF = _UmedicalHisREF;    
+
+        var sum =  _UREF + '|' + _UdisREF + '|' + _UdocREF + '|'+_UappREF+'|'+_UmedicalHisREF;
+//
+        $('#sum' + rowId).html(sum);
+        $("#update_CIS040009").modal('toggle');
+    });
+    //----------------------------------------------------------------------------------------------------------------
 
 });
 
@@ -783,5 +873,11 @@ function displayLOS(searchLOS, codeLOS, catLOS, sourceLOS, containerLOS, volumeL
 function displayFLU(searchFLU, DateFollowUp, commentFLU) {
     var _tr = '<tr data-status="pagado" ><td><div class="ckbox"><input type="checkbox" id="checkbox1"><label for="checkbox1"></label></div></td><td><div class="media"><div class="media-body">Follow Up :<p class="summary" id="sum' + i + '">' + searchFLU + '|' + DateFollowUp + '|' + commentFLU + '</p></div></div></td><td><a data-toggle="modal"  data-target="#update_CIS040004" href="" class="updateBtnFLU" id="row|' + i + '"><i class="fa fa-pencil-square-o" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #337ab7;" ></i></a></a></td><td><a href="javascript:;" class="star"><a href="#" class="deleteBtn" id="row|' + i + '"><i class="fa fa-times" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #d9534f;"></i></a></a></td></tr>';
     $('#FLUNotes').append(_tr);
+    i = i + 1;
+}
+
+function displayPRI(hfcREFname, hfcREFcode, disREFname, disREFcode, docREFname, appREF, medhistoryREF){
+     var _tr = '<tr data-status="pagado" ><td><div class="ckbox"><input type="checkbox" id="checkbox1"><label for="checkbox1"></label></div></td><td><div class="media"><div class="media-body">Referral :<p class="summary" id="sum' + i + '">' + hfcREFname + '|' + disREFname + '|' + docREFname + '|'+appREF+'|'+medhistoryREF+ '</p></div></div></td><td><a data-toggle="modal"  data-target="#update_CIS040009" href="" class="updateBtnPRI" id="row|' + i + '"><i class="fa fa-pencil-square-o" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #337ab7;" ></i></a></a></td><td><a href="javascript:;" class="star"><a href="#" class="deleteBtn" id="row|' + i + '"><i class="fa fa-times" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #d9534f;"></i></a></a></td></tr>';
+    $('#PRINotes').append(_tr);
     i = i + 1;
 }

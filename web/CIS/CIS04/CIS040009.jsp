@@ -55,7 +55,7 @@
             <div class="modal-footer">
                 <div class="btn-group btn-group-justified" role="group" aria-label="group button">
                     <div class="btn-group" role="group">
-                        <button type="button" class="btn btn-success btn-block btn-lg" id="acceptMCTS" role="button">Accept</button>
+                        <button type="button" class="btn btn-success btn-block btn-lg" id="acceptREF" role="button">Accept</button>
                     </div>
                     <div class="btn-group btn-delete hidden" role="group">
                         <button type="button" id="delImage" class="btn btn-default btn-block btn-lg" data-dismiss="modal"  role="button">Clear</button>
@@ -83,10 +83,14 @@
                 <!-- content goes here -->
                 <div class="form-group">
                     <input type="hidden" name="POS" id="codeREF" class="form-control input-lg"  tabindex="4">
+                    <input type="hidden" name="POS" id="jsonId" class="form-control input-lg"  tabindex="4">
+
                 </div>
                 <div class="form-group">
                     <h4 class="modal-title modalTextLabel">Health Facility Name :</h4>
                     <input class="form-control input-lg" type="text" name="problem"  id="UREF" tabindex="4" placeholder="if other,please specify">
+                    <input type="hidden" name="POS" id="UhfcREFcode" class="form-control input-lg"  tabindex="4">
+
                     <div id="UmatchREF"></div>
                 </div>
 
@@ -94,6 +98,8 @@
                 <div class="form-group">
                     <h4 class="modal-title">Discipline :</h4>
                     <input class="form-control input-lg" type="text" name="pro" id="UdisREF" placeholder="if other,please specify">
+                    <input type="hidden" name="POS" id="UdisREFcode" class="form-control input-lg"  tabindex="4">
+
                     <div id="UmatchREFD"></div>
                 </div>
 
@@ -117,7 +123,7 @@
             <div class="modal-footer">
                 <div class="btn-group btn-group-justified" role="group" aria-label="group button">
                     <div class="btn-group" role="group">
-                        <button type="button" class="btn btn-success btn-block btn-lg" id="updateROSProcedure" role="button">Update</button>
+                        <button type="button" class="btn btn-success btn-block btn-lg" id="updateREF" role="button">Update</button>
                     </div>
                     <div class="btn-group btn-delete hidden" role="group">
                         <button type="button" id="delImage" class="btn btn-default btn-block btn-lg" data-dismiss="modal"  role="button">Clear</button>
