@@ -71,8 +71,15 @@
                 <% if (cs_callingtime > 0) {%>
                 $(document).ready(function () {
                     var name = $("#name_<%=i%>").html();
+                    name = name.toLowerCase().replace(/\b[a-z]/g, function(letter) {
+                return letter.toUpperCase();
+            });
+            
                     var qno = $("#qno_<%=i%>").html();
                     var qname = $("#qname_<%=i%>").html();
+                     qname = qname.toLowerCase().replace(/\b[a-z]/g, function(letter) {
+                return letter.toUpperCase();
+            });
                     var ayat = name + ", Number " + qno + ", queue " + qname;
                     //var ayat = "Number " + qno + ", queue " + qname;
                     var msg = new SpeechSynthesisUtterance(ayat);

@@ -80,12 +80,13 @@ function findPatient(pmiNo,episodeDate) {
 }
 
 
-function getPDI(pmiNo) {
+function getPDI(pmiNo, episodeDate) {
     $.ajax({
         url: 'search/getPDI.jsp',
         method: 'POST',
         data: {
-            pmiNo: pmiNo
+            pmiNo: pmiNo,
+            episodeDate:episodeDate
         },
         timeout: 10000,
         success: function (result) {
