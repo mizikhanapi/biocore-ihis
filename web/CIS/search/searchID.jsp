@@ -41,7 +41,7 @@
     searchID1 = conn.getData(sql2);
 
     //out.println(searchID);
-    if (searchID.size() > 0 && searchID1.size() > 0) {
+    if (searchID.size() > 0 || searchID1.size() > 0) {
 
 
 %>

@@ -79,7 +79,7 @@
     }
     .list-group>li:hover{
         text-decoration: none;
-/*        background-color: #1976D2 !important;*/
+        /*        background-color: #1976D2 !important;*/
     }
 
     .langsir {
@@ -458,6 +458,10 @@ ul.nav.navbar-nav.navbar-left.back {
         margin-right: -15px;
     }
 
+    .navbar-right>li {
+        float: left;
+    }
+    
     .navbar-right>li>a {
         padding: 15px;
     }
@@ -525,9 +529,22 @@ ul.nav.navbar-nav.navbar-left.back {
     color: #333;
 }
 
-.ConsultationNotes{
-    border-left: 3px solid #58c102;
+.S {
+   border-left: 3px solid #58c102;
 }
+
+.O {
+   border-left: 3px solid #ffb41e;
+}
+
+.A {
+   border-left: 3px solid #fa3446;
+}
+
+.P {
+   border-left: 3px solid #a0aabe;
+}
+
 
 .table-bordered>thead>tr>th:last-child {
     text-align: center;
@@ -603,4 +620,52 @@ tr#moveToOrderDetailsTButton {
 
 #mainConsultBar {
     padding-top: 0px;
+}
+
+.ckbox {
+    position: relative;
+}
+.ckbox input[type="checkbox"] {
+    opacity: 0;
+}
+.ckbox label {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+.ckbox label:before {
+    content: '';
+    top: 1px;
+    left: 0;
+    width: 18px;
+    height: 18px;
+    display: block;
+    position: absolute;
+    border-radius: 2px;
+    border: 1px solid #bbb;
+    background-color: #fff;
+}
+.ckbox input[type="checkbox"]:checked + label:before {
+    border-color: #2BBCDE;
+    background-color: #2BBCDE;
+}
+.ckbox input[type="checkbox"]:checked + label:after {
+    top: 3px;
+    left: 3.5px;
+    content: '\e013';
+    color: #fff;
+    font-size: 11px;
+    font-family: 'Glyphicons Halflings';
+    position: absolute;
+}
+
+.ConsultationNotes>tr>td:first-child {
+    padding-left: 30px;
+    padding-right: 30px;
+}
+
+.ConsultationNotes>tr>td:last-child {
+    padding-left: 30px;
+    padding-right: 30px;
 }

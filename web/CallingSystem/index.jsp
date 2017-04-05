@@ -46,16 +46,16 @@
                 <div class="col-md-12">
 
                     <div class="thumbnail">
-                        <h4>
+                        <h2 style="padding-left: 30px; padding-right: 30px;">
                             Calling System Lists
                             <ul id="menu-content" class="soap-content nav" style="float: right;">
                                 <li data-toggle="collapse" data-target="#filter" class="soap-select collapsed" aria-expanded="false">
                                     <i class="fa fa-filter fa-lg filter" style="cursor: pointer; color: #ccc; float: right; padding: 0 10px;"></i>
                                 </li>
                             </ul>
-                        </h4>
-                        <hr/>
-                        <ul class="collapse" id="filter" aria-expanded="false" style="height: 0px;">
+                        </h2>
+                        <hr class="pemisah" />
+                        <ul class="collapse" id="filter" aria-expanded="false" style="height: 0px; padding-left: 0px">
                             <div class="form-horizontal">
                                 <div class="form-group">
                                     <label class="col-md-4 control-label" for="selectbasic">Search Health Facility</label>

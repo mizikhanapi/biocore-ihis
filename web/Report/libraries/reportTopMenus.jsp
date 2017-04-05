@@ -17,7 +17,7 @@
                 <a class="navbar-brand" href="#"> Welcome eMedica</a>
             </div>-->
 
-            <div id="navbar" class="navbar-collapse collapse">
+            <div id="navbar" class="navbar-collapse ">
                 <ul class="nav navbar-nav navbar-left back" style="">
                     <li><a href="../Entrance/dashboard.jsp" title="Back"><i class=" fa fa-chevron-left"></i></a></li>
                 </ul>

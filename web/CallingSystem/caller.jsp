@@ -3,7 +3,7 @@
 <%@page import="bean.Calling_system_bean"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="models.Query"%>
-<p style="text-align: right; position: absolute; top: 38px; right: 80px; color: #58C102; display: block; font-weight: 500; font-size: 18px;"><%
+<p style="text-align: right; position: absolute; top: 38px; right: 80px; color: #58C102; display: none; font-weight: 500; font-size: 18px;"><%
 
     String hfccd = "-";
     String discp = "-";
@@ -38,14 +38,15 @@
     SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/YYYY | HH:mm:ss");
     out.print(sdf.format(datenow));
 
-%></p>
+    %></p>
 
-<table class="table table-striped table-bordered">
+<table class="table table-hover table-striped" style="background: #ffffff; text-transform: uppercase; font-weight: 500; ">
     <thead>
         <tr>
-            <th><center>Name</center></th>
-<th style="width: 20%;"><center>Patient No.</center></th>
-<th style="width: 20%;"><center>Queue Name</center></th>
+            <th style="width: 10%; text-align: left; ">Queue No.</th>
+            <th style="width: 80%; text-align: left;">Name</th>
+
+            <th style="width: 10%;">Room Name</th>
 </tr>
 </thead>
 <tbody>
@@ -55,34 +56,41 @@
                 int cs_callingtime = d.get(i).getCs_callingtime();
     %>
     <tr>
-        <td><center id="name_<%=i%>"><%=d.get(i).getCs_patient_name()%></center></td>
-<td><center id="qno_<%=i%>"><%=d.get(i).getCs_queue_no()%></center></td>
-<td>
-<center id="qname_<%=i%>"><%=d.get(i).getCs_queue_name()%></center>
-<script>
-    <% if (cs_callingtime > 0) {%>
-    $(document).ready(function () {
-        //var name = $("#name_<%=i%>").html();
-        var qno = $("#qno_<%=i%>").html();
-        var qname = $("#qname_<%=i%>").html();
-        //var ayat = name + ", Number " + qno + ", queue " + qname;
-        var ayat = "Number " + qno + ", queue " + qname;
-        var msg = new SpeechSynthesisUtterance(ayat);
-        window.speechSynthesis.speak(msg);
-    });
+        <td style="text-align: left; font-weight: 400; "><span id="qno_<%=i%>"><%=d.get(i).getCs_queue_no()%></span></td>
+        <td style="text-align: left; font-weight: 500; padding: 30px 0; font-size: 21px;"><span id="name_<%=i%>"><%=d.get(i).getCs_patient_name()%></span></td>
+        <td style="text-align: left;">
+            <span style="    
+                  border: 1px solid #58C102;
+                  padding: 5px;
+                  margin: 5px;
+                  border-radius: 4px;
+                  font-weight: 500;
+                  color: #333;
+                  font-size: 21px;" id="qname_<%=i%>"><%=d.get(i).getCs_queue_name()%></span>
+            <script>
+                <% if (cs_callingtime > 0) {%>
+                $(document).ready(function () {
+                    var name = $("#name_<%=i%>").html();
+                    var qno = $("#qno_<%=i%>").html();
+                    var qname = $("#qname_<%=i%>").html();
+                    var ayat = name + ", Number " + qno + ", queue " + qname;
+                    //var ayat = "Number " + qno + ", queue " + qname;
+                    var msg = new SpeechSynthesisUtterance(ayat);
+                    window.speechSynthesis.speak(msg);
+                });
+                <%
+                        Query q2 = new Query();
+                        cs_callingtime -= 1;
+                        String sql2 = "UPDATE calling_system SET cs_callingtime = '" + cs_callingtime + "' WHERE cs_id = '" + cs_id + "' ";
+                        q2.setQuery(sql2);
+                    } else {
+                    } %>
+            </script>
+        </td>
+    </tr>
     <%
-            Query q2 = new Query();
-            cs_callingtime -= 1;
-            String sql2 = "UPDATE calling_system SET cs_callingtime = '" + cs_callingtime + "' WHERE cs_id = '" + cs_id + "' ";
-            q2.setQuery(sql2);
-        } else {
-        } %>
-</script>
-</td>
-</tr>
-<%
+            }
         }
-    }
-%>
+    %>
 </tbody>
 </table>
