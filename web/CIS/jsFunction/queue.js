@@ -34,7 +34,7 @@ $(document).ready(function () {
             var updateConsult = updateStatus(pmiNo, episodeDate, 5);
 
             var patient = findPatient(pmiNo, episodeDate);
-            var getPDIInfo = getPDI(pmiNo);
+            var getPDIInfo = getPDI(pmiNo, episodeDate);
             console.log(PDIInfo);
 
             if (status === 'On Hold') {
@@ -81,6 +81,7 @@ function findPatient(pmiNo,episodeDate) {
 
 
 function getPDI(pmiNo, episodeDate) {
+    //alert(pmiNo+"   /  "+episodeDate);
     $.ajax({
         url: 'search/getPDI.jsp',
         method: 'POST',

@@ -36,12 +36,19 @@
     out.print(PDI);
     
     //sent to calling table  
-
-    String sqlPMS = "SELECT ppq.hfc_cd,pql.discipline_cd,pql.sub_discipline_cd,ppq.pmi_no,pe.`NAME`,ppq.queue_no,ppq.queue_name,ppq.episode_date FROM pms_queue_list pql, pms_patient_queue ppq, pms_episode pe WHERE pql.hfc_cd = ppq.hfc_cd AND ppq.pmi_no = pe.`PMI_NO` AND ppq.pmi_no = '"+pmiNo+"' AND ppq.episode_date = '"+episodeDate+"' GROUp BY ppq.episode_date";
-    ArrayList<ArrayList<String>> dataPMS = conn.getData(sqlPMS);
     
+    String sqlPMS = "SELECT ppq.hfc_cd,pql.discipline_cd,pql.sub_discipline_cd,ppq.pmi_no,pe.`NAME`,ppq.queue_no,ppq.queue_name,ppq.episode_date FROM pms_queue_list pql, pms_patient_queue ppq, pms_episode pe WHERE pql.hfc_cd = ppq.hfc_cd AND ppq.pmi_no = pe.`PMI_NO` AND ppq.pmi_no = '"+pmiNo+"' AND ppq.episode_date = '"+episodeDate+"' GROUP BY ppq.episode_date";
+    ArrayList<ArrayList<String>> dataPMS = conn.getData(sqlPMS);
     RMIConnector rmic = new RMIConnector();
-    String sqlInsert = "INSERT INTO calling_system(cs_id,cs_hfc_cd,cs_discipline,cs_sub_discipline,cs_pmi_no,cs_patient_name,cs_queue_no,cs_queue_name,cs_datetime,cs_callingtime) VALUES ('"+dataPMS.get(0).get(7)+"1','"+dataPMS.get(0).get(0)+"','"+dataPMS.get(0).get(1)+"','"+dataPMS.get(0).get(2)+"','"+dataPMS.get(0).get(3)+"','"+dataPMS.get(0).get(4)+"','"+dataPMS.get(0).get(5)+"','"+dataPMS.get(0).get(6)+"','"+dataPMS.get(0).get(7)+"','2')";
-    rmic.setQuerySQL(conn.HOST, conn.PORT, sqlInsert);
+    
+    try
+    {
+     String sqlInsert = "INSERT INTO qcs_calling_system_queue(cs_hfc_cd,cs_discipline,cs_sub_discipline,cs_pmi_no,cs_patient_name,cs_queue_no,cs_queue_name,cs_datetime,cs_callingtime) VALUES ('"+dataPMS.get(0).get(0)+"','"+dataPMS.get(0).get(1)+"','"+dataPMS.get(0).get(2)+"','"+dataPMS.get(0).get(3)+"','"+dataPMS.get(0).get(4)+"','"+dataPMS.get(0).get(5)+"','"+dataPMS.get(0).get(6)+"','"+dataPMS.get(0).get(7)+"','4')";
+     rmic.setQuerySQL(conn.HOST, conn.PORT, sqlInsert);
+    }
+    catch(Exception e)
+    {
+     //error handling code
+    }
     
 %>

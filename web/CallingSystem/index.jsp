@@ -1,35 +1,57 @@
 
 <%@page import="java.util.ArrayList"%>
 <%@page import="models.Query"%>
-
+<%@page import="main.RMIConnector"%>
+<%@page import="dBConn.Conn"%>
 <%//@include file="../Entrance/validateSession.jsp"%>
 
 <%
-    String sqlx1 = "SELECT * FROM health_facility_code";
-    Query qx1 = new Query();
-    ArrayList<ArrayList<String>> dx1 = qx1.getQuery(sqlx1);
-
-    String sqlx2 = "SELECT * FROM discipline_code";
-    Query qx2 = new Query();
-    ArrayList<ArrayList<String>> dx2 = qx2.getQuery(sqlx2);
-
-    String sqlx3 = "SELECT * FROM sub_discipline_code";
-    Query qx3 = new Query();
-    ArrayList<ArrayList<String>> dx3 = qx3.getQuery(sqlx3);
-
+    String gamba ="";
+    String nama = "";
+    String role = "";
+    String namaHfc = "";
+    
+    if(session.getAttribute("USER_NAME") != null){
+        
+        
+        gamba =session.getAttribute("PICTURE").toString();
+        nama = session.getAttribute("USER_NAME").toString();
+        role = session.getAttribute("ROLE_NAME").toString();
+        namaHfc = session.getAttribute("HFC_NAME").toString();
+    }
+    
+    Conn conn = new Conn();
+    RMIConnector rmic = new RMIConnector();
+   
+           
+    String sqlHFC = "SELECT ahd.hfc_cd,ahd.discipline_cd,ahd.subdiscipline_cd,ahf.hfc_name FROM adm_hfc_discipline ahd, adm_health_facility ahf WHERE ahd.hfc_cd = ahf.hfc_cd AND ahf.hfc_name='"+namaHfc+"'";
+    ArrayList<ArrayList<String>> dataHFC = conn.getData(sqlHFC);
+    
     String hfccd1 = "";
     String discp1 = "";
     String subdi1 = "";
     try {
-        hfccd1 = request.getParameter("hfccd");
-        discp1 = request.getParameter("discp");
-        subdi1 = request.getParameter("subdi");
+        
+        hfccd1 = dataHFC.get(0).get(0);
+        discp1 = dataHFC.get(0).get(1);
+        subdi1 = dataHFC.get(0).get(2);
+
     } catch (Exception e3) {
     }
+
 %>
 
 <!-- header -->
 <%@include file = "../assets/header.html" %>
+<style>
+div#papar table>tbody>tr>td:first-child {
+    padding-left: 30px;
+}
+
+div#papar table>tbody>tr>td:last-child {
+    padding-right: 30px;
+}
+</style>
 <!-- header -->
 
 <!-- menu top -->
@@ -45,47 +67,37 @@
             <div class="row">
                 <div class="col-md-12">
 
-                    <div class="thumbnail">
-                        <h2 style="padding-left: 30px; padding-right: 30px;">
-                            Calling System Lists
+                    <div class="thumbnail" style="padding: 30px 0px; padding: 30px 0px;height: 90vh;overflow: hidden;"><div class="nav navbar-nav dashboard" style="display: block; top: 30px;">
+                            <div style=" display: block; font-size: 22px; text-align: center;">
+                                <span style="font-size: 22px; font-weight: 300;"><i class="fa fa-hospital-o fa-lg" style="color: #999; font-size: 45px;"></i></span>
+                            </div>
+                        </div>
+                        <h2 style="font-weight: 300; text-transform: uppercase; margin-top: 50px; padding:0px 30px; text-align: center;">
+                            Welcome to <span style="font-weight: 500; color: #2196f3;"><%= namaHfc%></span>
                             <ul id="menu-content" class="soap-content nav" style="float: right;">
                                 <li data-toggle="collapse" data-target="#filter" class="soap-select collapsed" aria-expanded="false">
-                                    <i class="fa fa-filter fa-lg filter" style="cursor: pointer; color: #ccc; float: right; padding: 0 10px;"></i>
+                                    <i class="fa fa-ellipsis-v fa-lg filter" style="cursor: pointer; color: #ccc; float: right;"></i>
                                 </li>
                             </ul>
                         </h2>
+                            <input type="text" id="hfccd" name="hfccd" value="<%=hfccd1%>" style=" display: none;">  
                         <hr class="pemisah" />
-                        <ul class="collapse" id="filter" aria-expanded="false" style="height: 0px; padding-left: 0px">
+                        <ul class="collapse" id="filter" aria-expanded="false" style="height: 0px; padding-left: 0px;">
                             <div class="form-horizontal">
-                                <div class="form-group">
-                                    <label class="col-md-4 control-label" for="selectbasic">Search Health Facility</label>
-                                    <div class="col-md-4">
-                                        <select id="hfccd" class="form-control">
-                                            <option value="">-- Select health facility --</option>
-                                            <% for (int i = 0; i < dx1.size(); i++) {%>
-                                            <option value="<%=dx1.get(i).get(0)%>" <% try {
-                                                    if (hfccd1.equals(dx1.get(i).get(0))) {
-                                                        out.print("selected");
-                                                    }
-                                                } catch (Exception ef1) {
-                                                }%>><%=dx1.get(i).get(1)%></option>
-                                            <% } %>
-                                        </select>
-                                    </div>
-                                </div>
+                                
                                 <div class="form-group">
                                     <label class="col-md-4 control-label" for="selectbasic">Search Discipline</label>
                                     <div class="col-md-4">
                                         <select id="discp" class="form-control">
                                             <option value="">-- Select discipline --</option>
-                                            <% for (int i = 0; i < dx2.size(); i++) {%>
-                                            <option value="<%=dx2.get(i).get(0)%>" <% try {
-                                                    if (discp1.equals(dx2.get(i).get(0))) {
-                                                        out.print("selected");
-                                                    }
-                                                } catch (Exception ef2) {
-                                                }%>><%=dx2.get(i).get(1)%></option>
-                                            <% } %>
+                                            <%
+                                            if (dataHFC.size() > 0) {
+                                                for (int i = 0; i < dataHFC.size(); i++) {
+
+                                                %>
+                                                <option value="<%=dataHFC.get(i).get(1)%>"><%=dataHFC.get(i).get(1)%></option>
+                                                <%}
+                                            }%>
                                         </select>
                                     </div>
                                 </div>
@@ -94,14 +106,14 @@
                                     <div class="col-md-4">
                                         <select id="subdi" class="form-control">
                                             <option value="">-- Select sub-discipline --</option>
-                                            <% for (int i = 0; i < dx3.size(); i++) {%>
-                                            <option value="<%=dx3.get(i).get(0)%>" <% try {
-                                                    if (subdi1.equals(dx3.get(i).get(0))) {
-                                                        out.print("selected");
-                                                    }
-                                                } catch (Exception ef3) {
-                                                }%>><%=dx3.get(i).get(1)%></option>
-                                            <% } %>
+                                            <%
+                                            if (dataHFC.size() > 0) {
+                                                for (int i = 0; i < dataHFC.size(); i++) {
+
+                                                %>
+                                                <option value="<%=dataHFC.get(i).get(2)%>"><%=dataHFC.get(i).get(2)%></option>
+                                                <%}
+                                            }%>
                                         </select>
                                     </div>
                                 </div>
@@ -110,7 +122,7 @@
                                 <button class="btn btn-success" id="tapis"><i class="fa fa-filter"></i>&nbsp; Filter</button>
                                 <button class="btn btn-default" id="clear">Clear</button>
                             </div>
-                            <hr/>
+                            <hr class="pemisah" />
                         </ul>
 
                         <div id="papar">
