@@ -189,7 +189,7 @@ public class PdfServlet extends HttpServlet {
 
                 String sql_getHFC = 
                         "SELECT health_facility_code "
-                        + "FROM adm_user "
+                        + "FROM adm_users "
                         + "WHERE user_id = '"+ userID +"'";
                 ArrayList<ArrayList<String>> userData = Conn.getData(sql_getHFC);
                 String hfc = userData.get(0).get(0);
@@ -599,7 +599,7 @@ public class PdfServlet extends HttpServlet {
                     
                     String sql_getHFC = 
                             "SELECT health_facility_code "
-                            + "FROM adm_user "
+                            + "FROM adm_users "
                             + "WHERE user_id = '"+ userID +"'";
                     ArrayList<ArrayList<String>> userData = Conn.getData(sql_getHFC);
                     String hfc = userData.get(0).get(0);
@@ -904,7 +904,7 @@ public class PdfServlet extends HttpServlet {
                         
                         String sql_getHFC = 
                                 "SELECT health_facility_code "
-                                + "FROM adm_user "
+                                + "FROM adm_users "
                                 + "WHERE user_id = '"+ userID +"'";
                         ArrayList<ArrayList<String>> userData = Conn.getData(sql_getHFC);
                         String hfc = userData.get(0).get(0);
@@ -1148,7 +1148,7 @@ public class PdfServlet extends HttpServlet {
 
             String sql_getHFC = 
                     "SELECT health_facility_code "
-                    + "FROM adm_user "
+                    + "FROM adm_users "
                     + "WHERE user_id = '"+ userID +"'";
             ArrayList<ArrayList<String>> userData = Conn.getData(sql_getHFC);
             String hfc = userData.get(0).get(0);

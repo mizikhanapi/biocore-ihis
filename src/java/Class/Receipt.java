@@ -170,7 +170,7 @@ public class Receipt extends HttpServlet {
             //--------------------------table header------------------------------------------>
             String sql_getHFC = 
                     "SELECT health_facility_code "
-                    + "FROM adm_user "
+                    + "FROM adm_users "
                     + "WHERE user_id = '"+ userID +"'";
             ArrayList<ArrayList<String>> userData = Conn.getData(sql_getHFC);
             String hfc = userData.get(0).get(0);
@@ -184,7 +184,7 @@ public class Receipt extends HttpServlet {
             String hfAddr1 = hfData.get(0).get(1);
             String hfAddr2 = hfData.get(0).get(2);
             String hfAddr3 = hfData.get(0).get(3); 
-            
+
 //            String imgPath = getServletContext().getRealPath("/assets/img/LogoJawiUTeM.png");
 //            Image logo = Image.getInstance(imgPath);
 //            logo.scaleAbsolute(120, 60);
@@ -484,6 +484,32 @@ public class Receipt extends HttpServlet {
             total.addCell(cell151);
             total.addCell(cell156);
             
+            //----------------------------table creator of pdf----------------------------->
+            PdfPTable creator = new PdfPTable(6);
+            creator.setWidths(new float[]{0.5f, 1.5f, 4f, 1.5f, 1.5f, 1.5f});
+            creator.setLockedWidth(true);
+            creator.setTotalWidth(document.right() - document.left());
+            
+            PdfPCell cell161 = new PdfPCell(new Phrase("", rectem));
+            cell151.setHorizontalAlignment(Element.ALIGN_RIGHT);
+            cell151.setColspan(5);
+            cell151.setBorder(Rectangle.NO_BORDER);
+            PdfPCell cell166 = new PdfPCell(new Phrase("", rectemjaBold));
+            cell156.setHorizontalAlignment(Element.ALIGN_CENTER);
+            cell156.setBorder(Rectangle.NO_BORDER);
+            creator.addCell(cell161);
+            creator.addCell(cell166);
+            
+            PdfPCell cell171 = new PdfPCell(new Phrase("by ", rectem));
+            cell151.setHorizontalAlignment(Element.ALIGN_RIGHT);
+            cell151.setColspan(5);
+            cell151.setBorder(Rectangle.NO_BORDER);
+            PdfPCell cell176 = new PdfPCell(new Phrase(userID, rectemja));
+            cell156.setHorizontalAlignment(Element.ALIGN_CENTER);
+            cell156.setBorder(Rectangle.NO_BORDER);
+            creator.addCell(cell171);
+            creator.addCell(cell176);
+            
             //----------------------------table footer--------------------------------------->
 
             PdfPTable footer = new PdfPTable(1);
@@ -506,6 +532,7 @@ public class Receipt extends HttpServlet {
             document.add(header);
             document.add(table);
             document.add(total);
+            document.add(creator);
             document.add(footer);
             
             document.close();//close document

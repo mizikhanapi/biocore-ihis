@@ -567,7 +567,7 @@
                        if (d[1] == 1){
                             document.getElementById('messageHeader').innerHTML = "Success!";
                             document.getElementById('messageContent').innerHTML = d[2];
-                            $("#alertMessage").modal();
+                            $("#alertMessage").modal('show');
                            
                             var url = contextPath + "/Receipt?"
                             url += "&custID=" + custID;
@@ -588,7 +588,7 @@
                        } else {
                             document.getElementById('messageHeader').innerHTML = "Failed!";
                             document.getElementById('messageContent').innerHTML = d[2];
-                            $("#alertMessage").modal();
+                            $("#alertMessage").modal('show');
                        }
                     },
                     error: function(err) {
