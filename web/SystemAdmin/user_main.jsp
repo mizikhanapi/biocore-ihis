@@ -6,7 +6,24 @@
 
 <%@page import="java.util.ArrayList"%>
 <%@page import="dBConn.Conn"%>
-<% Conn conn = new Conn();%>
+<% 
+    Conn conn = new Conn();
+    
+    String hfc_default = "";
+    
+    if(session.getAttribute("HEALTH_FACILITY_CODE") != null){
+        String hfc_kod , hfc_nama ;
+        hfc_kod = session.getAttribute("HEALTH_FACILITY_CODE").toString();
+        hfc_nama = session.getAttribute("HFC_NAME").toString();
+        
+        hfc_default = hfc_kod +" | "+hfc_nama;
+    }
+%>
+
+<!--hidden input for js uses-->
+
+<input id="UM_hfc_default" type="hidden" value="<%= hfc_default%>">
+
 <!-- Add Part Start -->
 <!-- Add Button Start -->
 <h4 style="padding-top: 30px;padding-bottom: 35px; font-weight: bold">
@@ -55,7 +72,7 @@
                                         <select id="UM_title" class="form-control input-md">
                                             <option value="">-- Select title --</option>
                                             <%
-                                                String sqlTitle = "Select detail_reference_code, description FROM adm_lookup_detail WHERE master_reference_code = '0026' ORDER BY description, priority_indicator";
+                                                String sqlTitle = "Select detail_reference_code, description FROM adm_lookup_detail WHERE master_reference_code = '0026' AND status = '0' ORDER BY priority_indicator desc, description";
                                                 ArrayList<ArrayList<String>> dataTitle = conn.getData(sqlTitle);
 
                                                 for (int i = 0; i < dataTitle.size(); i++) {
@@ -201,7 +218,7 @@
                                         <select id="UM_gender" class="form-control input-md">
                                             <option value="">-- Select gender --</option>
                                             <%
-                                                String sqlGender = "Select detail_reference_code, description FROM adm_lookup_detail WHERE master_reference_code = '0041'";
+                                                String sqlGender = "Select detail_reference_code, description FROM adm_lookup_detail WHERE master_reference_code = '0041' AND status = '0' ORDER BY priority_indicator desc, description";
                                                 ArrayList<ArrayList<String>> dataGender = conn.getData(sqlGender);
 
                                                 for (int i = 0; i < dataGender.size(); i++) {
@@ -226,7 +243,7 @@
                                         <select id="UM_occupation" class="form-control input-md">
                                             <option value="">-- Select occupation --</option>  
                                             <%
-                                                String sqlOccupation = "Select detail_reference_code, description FROM adm_lookup_detail WHERE master_reference_code = '0050'";
+                                                String sqlOccupation = "Select detail_reference_code, description FROM adm_lookup_detail WHERE master_reference_code = '0050' AND status = '0' ORDER BY priority_indicator desc, description";
                                                 ArrayList<ArrayList<String>> dataOccupation = conn.getData(sqlOccupation);
 
                                                 for (int i = 0; i < dataOccupation.size(); i++) {
@@ -247,7 +264,7 @@
                                         <select id="UM_nationality" class="form-control input-md">
                                             <option value="">-- Select nationality --</option>  
                                             <%
-                                                String sqlNationality = "Select detail_reference_code, description FROM adm_lookup_detail WHERE master_reference_code = '0011'";
+                                                String sqlNationality = "Select detail_reference_code, description FROM adm_lookup_detail WHERE master_reference_code = '0011' AND status = '0' ORDER BY priority_indicator desc, description";
                                                 ArrayList<ArrayList<String>> dataNationality = conn.getData(sqlNationality);
 
                                                 for (int i = 0; i < dataNationality.size(); i++) {
@@ -568,15 +585,19 @@
 
 
     $(document).ready(function () {
+        
+    //---------------- global variable for confirming hfc is selected from search ------------------------------------
 
         var isHFCselected = false;
         var selectedHFC = "";
+     //---------------- global variable for confirming hfc is selected from search ------------------------------------
 
         $('#UM_dob').datepicker({
             changeMonth: true,
             changeYear: true,
             maxDate: 0,
-            dateFormat: 'dd/mm/yy'
+            dateFormat: 'dd/mm/yy',
+            yearRange: "-100:+nn"
         });
 
         $('#UM_startDate').datepicker({
@@ -603,6 +624,12 @@
             selectedHFC = "";
             gambarURI = "";
             $('#dym').html("");
+            
+            //-------------------------------------- creating default hfc for hfc input
+            $('#UM_hfc').val($('#UM_hfc_default').val());
+            isHFCselected = true;
+            selectedHFC = $('#UM_hfc').val();
+            
         });
 
         $('#btnReset').on('click', function () {
@@ -834,8 +861,9 @@
             }
 
         });
-
-
+        
+        
+        
 
 
     });
