@@ -3,7 +3,7 @@
 <%@page import="bean.Calling_system_bean"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="models.Query"%>
-<p style="text-align: right; position: absolute; top: 38px; right: 80px; color: #58C102; display: none; font-weight: 500; font-size: 18px;"><%
+<p style="text-align: right; position: absolute; top: 30px; left: 30px; color: #666; display: block; font-weight: 500; font-size: 18px;"><%
 
     String hfccd = "-";
     String discp = "-";
