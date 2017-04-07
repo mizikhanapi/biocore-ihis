@@ -35,7 +35,7 @@
     
     out.print(PDI);
     
-    //sent to calling table  
+////Insert PMS data to table calling System
     
     String sqlPMS = "SELECT ppq.hfc_cd,pql.discipline_cd,pql.sub_discipline_cd,ppq.pmi_no,pe.`NAME`,ppq.queue_no,ppq.queue_name,ppq.episode_date FROM pms_queue_list pql, pms_patient_queue ppq, pms_episode pe WHERE pql.hfc_cd = ppq.hfc_cd AND ppq.pmi_no = pe.`PMI_NO` AND ppq.pmi_no = '"+pmiNo+"' AND ppq.episode_date = '"+episodeDate+"' GROUP BY ppq.episode_date";
     ArrayList<ArrayList<String>> dataPMS = conn.getData(sqlPMS);
