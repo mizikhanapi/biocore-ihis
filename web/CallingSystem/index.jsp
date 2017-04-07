@@ -10,7 +10,8 @@
     String nama = "";
     String role = "";
     String namaHfc = "";
-    
+    Conn conn = new Conn();
+
     if(session.getAttribute("USER_NAME") != null){
         
         
@@ -18,14 +19,28 @@
         nama = session.getAttribute("USER_NAME").toString();
         role = session.getAttribute("ROLE_NAME").toString();
         namaHfc = session.getAttribute("HFC_NAME").toString();
+        
+        
     }
     
-    Conn conn = new Conn();
     RMIConnector rmic = new RMIConnector();
    
            
     String sqlHFC = "SELECT ahd.hfc_cd,ahd.discipline_cd,ahd.subdiscipline_cd,ahf.hfc_name FROM adm_hfc_discipline ahd, adm_health_facility ahf WHERE ahd.hfc_cd = ahf.hfc_cd AND ahf.hfc_name='"+namaHfc+"'";
     ArrayList<ArrayList<String>> dataHFC = conn.getData(sqlHFC);
+    
+    
+    String hfc_cd = "SELECT hfc_cd FROM adm_health_facility WHERE hfc_name='"+namaHfc+"'";
+    ArrayList<ArrayList<String>> mysqlhfc_cd = conn.getData(hfc_cd);
+    
+    String sql_dis = "SELECT ad.discipline_cd,ad.discipline_name FROM adm_discipline ad, adm_hfc_discipline ahd WHERE  ahd.discipline_cd = ad.discipline_cd AND ahd.hfc_cd = '"+mysqlhfc_cd.get(0).get(0)+"' GROUP BY ad.discipline_cd";
+    ArrayList<ArrayList<String>> sql_discipline = conn.getData(sql_dis);
+    
+    //String sqldiscipline = "SELECT ahd.discipline_cd,ahd.subdiscipline_cd,ad.discipline_name FROM adm_discipline ad, adm_hfc_discipline ahd WHERE ad.discipline_cd = ahd.discipline_cd AND ahd.hfc_cd = '"+mysqlhfc_cd.get(0).get(0)+"'"; 
+    String sql_subDis = "SELECT asd.subdiscipline_cd,asd.subdiscipline_name FROM adm_discipline ad, adm_subdiscipline asd, adm_hfc_discipline ahd WHERE  ahd.discipline_cd = ad.discipline_cd AND ad.discipline_cd = asd.discipline_cd AND ahd.hfc_cd = '"+mysqlhfc_cd.get(0).get(0)+"' GROUP BY subdiscipline_name";
+    ArrayList<ArrayList<String>> sql_Subdiscipline = conn.getData(sql_subDis); 
+    
+    
     
     String hfccd1 = "";
     String discp1 = "";
@@ -91,11 +106,11 @@ div#papar table>tbody>tr>td:last-child {
                                         <select id="discp" class="form-control">
                                             <option value="">-- Select discipline --</option>
                                             <%
-                                            if (dataHFC.size() > 0) {
-                                                for (int i = 0; i < dataHFC.size(); i++) {
+                                            if (sql_discipline.size() > 0) {
+                                                for (int i = 0; i < sql_discipline.size(); i++) {
 
                                                 %>
-                                                <option value="<%=dataHFC.get(i).get(1)%>"><%=dataHFC.get(i).get(1)%></option>
+                                                <option value="<%=sql_discipline.get(i).get(0)%>"><%=sql_discipline.get(i).get(1)%></option>
                                                 <%}
                                             }%>
                                         </select>
@@ -107,11 +122,11 @@ div#papar table>tbody>tr>td:last-child {
                                         <select id="subdi" class="form-control">
                                             <option value="">-- Select sub-discipline --</option>
                                             <%
-                                            if (dataHFC.size() > 0) {
-                                                for (int i = 0; i < dataHFC.size(); i++) {
+                                            if (sql_Subdiscipline.size() > 0) {
+                                                for (int i = 0; i < sql_Subdiscipline.size(); i++) {
 
                                                 %>
-                                                <option value="<%=dataHFC.get(i).get(2)%>"><%=dataHFC.get(i).get(2)%></option>
+                                                <option value="<%=sql_Subdiscipline.get(i).get(0)%>"><%=sql_Subdiscipline.get(i).get(1)%></option>
                                                 <%}
                                             }%>
                                         </select>
