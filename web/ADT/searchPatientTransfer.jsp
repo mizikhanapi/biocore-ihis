@@ -24,11 +24,7 @@
             <div class="col-md-4">
                 <select id="idType" name="idType" class="form-control" required="">
                     <option selected="" disabled="" value="-"> Please select ID type</option>
-                    <option value="pmino">PMI No</option>
-                    <option value="icnew">IC No (NEW)</option>
-                    <option value="icold">IC No (OLD)</option>
-                    <!--<option value="matricno">Matric No</option>
-                    <option value="staffno">Staff No</option>-->
+               
                     <%                                if (dataSystemStatus155.equals("0")) {
 
                         } else if (dataSystemStatus155.equals("1")) {
@@ -92,12 +88,7 @@
             document.getElementById("spn").value = "";
 
             $('#TransferForm')[0].reset();
-//        $('#formPMI')[0].reset();
-//        $('#kinform')[0].reset();
-//        $('#empform')[0].reset();
-//        $('#famForm')[0].reset();
-//        $('#formMed')[0].reset();
-//        $("table tbody").remove();
+
 
             //check if the input text or the select box is empty.
 
@@ -128,18 +119,7 @@
                         //remove the loading 
                         $body.removeClass("loading");
                         console.log(list);
-                        //show console the returned data
-
-
-                        //split the data into an array
-                        var array_data = String(list).split("|");
-
-                        //function when the value that returned either empty/null or has value.
-                        //customize this part only
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////           
-                        Main(array_data);
-
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////                    
+                          $('#transfer_Patient OccuTable').html(list);                    
                     },
                     error: function (xhr, status, error) {
                         var err = eval("(" + xhr.responseText + ")");

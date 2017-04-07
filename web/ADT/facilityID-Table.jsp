@@ -11,31 +11,15 @@
     String id = session.getAttribute("USER_ID").toString();
     String dis = session.getAttribute("DISCIPLINE_CODE").toString();
     String sub = session.getAttribute("SUB_DISCIPLINE_CODE").toString();
-    
-            //Conn conn = new Conn();
 
-  %>
+    //Conn conn = new Conn();
+
+%>
 <input type="hidden" value="<%=hfc%>" id="Rhfc">
 <input type="hidden" value="<%=id%>" id="Rid">
 <input type="hidden" value="<%=dis%>" id="Rdis">
 <input type="hidden" value="<%=sub%>" id="Rsub">
-<head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <link rel="stylesheet" href="old/assets/datepicker/jquery-ui.css">
-    <script src="old/assets/js/jquery.min.js"></script>
-    <!-- Custom styles for this template -->
 
-    <link rel="stylesheet" href="old/assets/css/loading.css">
-    <link href="old/assets/datepicker/jquery-ui.css" rel="stylesheet">    
-    <script src="old/assets/datepicker/jquery-ui.js"></script>
-    <script src="old/assets/js/form-validator.min.js"></script>
-    <script src="old/assets/js/bootstrap.min.js"></script> 
-
-    <script src="old/assets/js/w3data.js"></script>
-    <script src="old/assets/js/bootbox.min.js"></script>   
-
-   
-</head>
 
 <div id="tablefacilityIDTable" class="form-group">
 
@@ -45,21 +29,19 @@
 
         <thead>
 
-
-        <th>Ward Name</th>
-        <th>No of Bed</th>
-        <th>Discipline</th>
-        <th>Citizen Rate</th>
-        <th>Non Citizen Rate</th>
-        <th>Update</th>
-        <th>Delete</th>
+        <th style="text-align: center;">Ward Class</th>
+        <th style="text-align: center;">Ward Name</th>
+        <th style="text-align: center;">No of Bed</th>
+        <th style="text-align: center;">Discipline Code</th>
+        <th style="text-align: center;">Citizen Rate</th>
+        <th style="text-align: center;">Non Citizen Rate</th>
+        <th style="text-align: center;">Update</th>
+        <th style="text-align: center;">Delete</th>
         </thead>
         <tbody>
 
             <%                Conn conn = new Conn();
-                String sqlFacilityID = "SELECT ward_class_code, ward_name, ward_id,discipline_cd, no_of_bed,"
-                        + "citizen_room_cost, citizen_deposit, citizen_discount, non_citizen_room_cost, non_citizen_deposit, non_citizen_discount, pensioner_room_cost,  pensioner_deposit, pensioner_discount,"
-                        + "attach_toilet, include_television, attach_bathroom_tiolet, include_telephone, ward_status, hfc_cd FROM wis_ward_name";
+                String sqlFacilityID = "SELECT a.ward_class_code, a.ward_name, a.ward_id, b.discipline_name, a.no_of_bed, a.citizen_room_cost, a.citizen_deposit, a.citizen_discount, a.non_citizen_room_cost, a.non_citizen_deposit, a.non_citizen_discount, a.pensioner_room_cost,  a.pensioner_deposit, a.pensioner_discount,a.attach_toilet, a.include_television, a.attach_bathroom_tiolet, a.include_telephone, a.ward_status, a.hfc_cd , a.discipline_cd, b.discipline_cd FROM wis_ward_name a LEFT JOIN adm_discipline b ON a.discipline_cd = b.discipline_cd where a.hfc_cd ="+hfc+";";
                 ArrayList<ArrayList<String>> dataFacilityID = conn.getData(sqlFacilityID);
 
                 int size11 = dataFacilityID.size();
@@ -70,6 +52,7 @@
             <tr>
 
         <input id="dataFacilityIDhidden" type="hidden" value="<%=String.join("|", dataFacilityID.get(i))%>">
+        <td><%= dataFacilityID.get(i).get(0)%></td>
         <td><%= dataFacilityID.get(i).get(1)%></td>
         <td><%= dataFacilityID.get(i).get(4)%></td>
         <td><%= dataFacilityID.get(i).get(3)%></td>
@@ -118,57 +101,41 @@
 
                         <div class="col-md-12"> 
 
-
                             <!-- Select Basic -->
                             <div class="form-group">
-                                <label class="col-md-4 control-label" for="selectbasic">Ward Class</label>
+                                <label class="col-md-4 control-label" for="textinput">Discipline Code</label>
                                 <div class="col-md-4">
-                                    <select id="updateWardClass" name="updateWardClass" class="form-control">
-                                        <!--                                        <option value="null" selected="" disabled="">Select Ward Class</option>
-                                                                                <option value="-">-</option>-->
+                                    <input id="updateDis" type="text"  readonly class="form-control input-md" >
 
-
-                                        <%                                            String sql12 = "SELECT  ward_class_name FROM wis_ward_class";
-                                            ArrayList<ArrayList<String>> dataClass22 = conn.getData(sql12);
-
-                                            int size1 = dataClass22.size();
-
-                                            for (int i = 0; i < size1; i++) {
-                                        %>
-                                        <option value="<%= dataClass22.get(i).get(0)%>"><%= dataClass22.get(i).get(0)%> </option>
-                                        <%
-                                            }
-                                        %>
-
-
-                                    </select>
                                 </div>
                             </div>
 
+                            <!-- Select Basic -->
                             <div class="form-group">
-                                <label class="col-md-4 control-label" for="textinput">Ward Name</label>
+                                <label class="col-md-4 control-label" for="textinput">Ward Class </label>
+                                <div class="col-md-4">
+                                    <input id="updateWC" name="updateWC"  readonly class="form-control input-md">
+
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" for="textinput">Ward ID</label>
+                                <div class="col-md-4">
+                                    <input id="updateWardID" name="updateWardID" readonly class="form-control input-md">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" for="textinput">Ward Name *</label>
                                 <div class="col-md-4">
                                     <input id="updateWardName" name="updateWardName" type="text" placeholder="" class="form-control input-md">
                                 </div>
                             </div>
 
-                            <div class="form-group">
-                                <label class="col-md-4 control-label" for="textinput">Ward ID</label>
-                                <div class="col-md-4">
-                                    <input id="updateWardID" name="updateWardID" type="text" placeholder="" class="form-control input-md">
-                                </div>
-                            </div>
-                           <!-- Select Basic -->
-                            <div class="form-group">
-                                <label class="col-md-4 control-label" for="selectbasic">Discipline *</label>
-                                <div class="col-md-6">
-                                    <input id="Dis" name="Dis" type="text"  class="form-control input-md">
-                                    <div id="disList"></div>
-                                </div>
 
-                            </div>
+
+
                             <div class="form-group">
-                                <label class="col-md-4 control-label" for="textinput">No of bed</label>
+                                <label class="col-md-4 control-label" for="textinput">No of bed *</label>
                                 <div class="col-md-4">
                                     <input id="updateNoOfBed" name="updateNoOfBed" type="text" placeholder="" class="form-control input-md">
                                 </div>
@@ -290,12 +257,7 @@
                                 <label class="col-md-4 control-label" for="textinput">Attach bathroom and toilet</label>
                                 <div class="col-md-4">
                                     <input id="updatebathroom" name="updatebathroom"  type="checkbox"  class="form-control input-md">
-                                    <%--
-                                    <% request.getParameter(bathroom);
-
-                                            %>
-                                    --%>
-
+                                   
                                 </div>
                             </div>
 
@@ -374,22 +336,22 @@
             var NonCitizenDiscount = arrayData[10];
             var PensionerRates = arrayData[11];
             var PensionerDeposit = arrayData[12];
-
             var PensionerDiscount = arrayData[13];
             var toilet = arrayData[14];
             var televison = arrayData[15];
             var bathroom = arrayData[16];
             var telephone = arrayData[17];
             var status = arrayData[18];
-            $('#updateWardClass').val(WardClass);
+            
+            
+            
+             $('#updateDis').val(Dis);
+            $('#updateWC').val(WardClass);
             $('#updateWardName').val(WardName);
             $('#updateWardID').val(WardID);
-            Dis = $('#Dis').val();
-            var array_dis = Dis.split("|");
-            var Dis = array_dis[0];
-            var  hfc = $("#Rhfc").val();
+            var hfc = $("#Rhfc").val();
             var createdBy = $("#Rid").val();
-             var  dis = $("#Rdis").val();
+            var dis = $("#Rdis").val();
             var sub = $("#Rsub").val();
 
             $('#updateNoOfBed').val(NoOfBed);
@@ -415,7 +377,7 @@
         $("#updateIDButton").off('click').on('click', function (e) {
 
             e.preventDefault();
-            var WardClass = $('#updateWardClass').val();
+            var WardClass = $('#updateWC').val();
             var WardName = $('#updateWardName').val();
             var WardID = $('#updateWardID').val();
             var Dis = $('#Dis').val();
@@ -434,21 +396,12 @@
             var bathroom = $('#updatebathroom').val();
             var telephone = $('#updatetelephone').val();
             var status = $('#updatestatus').val();
-var  hfc = $("#Rhfc").val();
+            var hfc = $("#Rhfc").val();
             var createdBy = $("#Rid").val();
-             var  dis = $("#Rdis").val();
+            var dis = $("#Rdis").val();
             var sub = $("#Rsub").val();
-            //var hfc = $('#hfc').val();
-            //var discipline = $('#discipline').val();
-            //var subDicipline = $('#subDicipline').val();
 
-            if (WardClass === "" || WardClass === null) {
-                bootbox.alert("Complete The Fields of Ward Class update");
-            } else if (WardID === "" || WardID === null) {
-                bootbox.alert("Complete The Fields of Ward ID");
-            } else if (Dis === "" || Dis === null) {
-                bootbox.alert("Complete The Fields of Discipline");
-            } else if (WardName === "" || WardName === null) {
+           if (WardName === "" || WardName === null) {
                 bootbox.alert("Complete The Fields of Ward Name");
             } else if (CitizenRates === "" || CitizenRates === null) {
                 bootbox.alert("Complete The Fields of Citizen Rates");
@@ -494,10 +447,10 @@ var  hfc = $("#Rhfc").val();
                     bathroom: bathroom,
                     telephone: telephone,
                     status: status,
-                     hfc: hfc,
-                    createdBy :createdBy,
-                    dis :dis,
-                    sub : sub
+                    hfc: hfc,
+                    createdBy: createdBy,
+                    dis: dis,
+                    sub: sub
                 };
                 $.ajax({
                     url: "facilityIDUpdate.jsp",
@@ -540,7 +493,7 @@ var  hfc = $("#Rhfc").val();
         var arrayData = rowData.split("|");
         console.log(arrayData);
         //assign into seprated val
-        var iditem = arrayData[0], wid = arrayData[2], hfc = arrayData[19];
+        var wcd = arrayData[0], wid = arrayData[2], hfc = arrayData[19];
         bootbox.confirm({
             message: "Are you sure want to delete facility ID information?",
             title: "Delete Item?",
@@ -558,16 +511,16 @@ var  hfc = $("#Rhfc").val();
 
                 if (result === true) {
 
-                    var data = {
-                        iditem: iditem,
-                        wid:wid,
-                        hfc:hfc
+                    var datas = {
+                        wcd: wcd,
+                        wid: wid,
+                        hfc: hfc
 
                     };
                     $.ajax({
                         type: "post",
                         url: "facilityIDDelete.jsp",
-                        data: data,
+                        datas: datas,
                         timeout: 10000,
                         success: function (datas) {
 

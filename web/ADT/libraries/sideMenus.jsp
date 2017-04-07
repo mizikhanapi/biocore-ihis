@@ -55,20 +55,20 @@
         <!-- // menu tanpa dropdown -->
         
         <li>
-            <a  href="index.jsp" >
+            <a  href="HIS070001.jsp" >
                 <i class="fa fa-bed fa-lg"></i> Manage In-Patient
             </a>
         </li>
         <li>
-            <a  href="WardOccupancyMain.jsp" >
+            <a  href="HIS070002.jsp" >
                 <i class="fa fa-briefcase fa-lg"></i> Ward Occupancy
             </a>
         </li>
-        <li><a  href="MaintainWard.jsp" ><i class="fa fa-briefcase fa-lg"></i> Maintain Ward Code </a> </li>
+        <li><a  href="HIS070003.jsp" ><i class="fa fa-briefcase fa-lg"></i> Maintain Ward Code </a> </li>
         
         
         <li>
-            <a  href="#" >
+            <a  href="HIS070004.jsp" >
                 <i class="fa fa-bed fa-lg"></i> Bed Booking Master Summary
             </a>
         </li>

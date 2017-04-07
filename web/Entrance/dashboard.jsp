@@ -188,7 +188,7 @@
                     %>
                     
                     <div class="col-sm-6 col-md-3">
-                        <a href="../ADT/MaintainWard.jsp" class="thumbnail">
+                        <a href="../ADT/HIS070001.jsp" class="thumbnail">
                             <div class="kotak text-center">
                                 <i class="fa fa-bed" aria-hidden="true" style="color: #DE3975;font-size: 4em;"></i>
                                 <h3>Inpatient Management</h3>

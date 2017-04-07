@@ -19,31 +19,30 @@
     wclassid = request.getParameter("MWID");
     wstatus = request.getParameter("status");
     String hfc = request.getParameter("hfc");
-     String dis = request.getParameter("dis");
-      String sub = request.getParameter("sub");
+    String dis = request.getParameter("dis");
+    String sub = request.getParameter("sub");
 
     String createdBy = request.getParameter("id");
     DateFormat df = new SimpleDateFormat("dd/MM/yy HH:mm:ss");
     Date dateobj = new Date();
     df.format(dateobj);
+    String sqlCheck = "SELECT ward_class_code from wis_ward_class WHERE ward_class_code = '" + wclassid + "' LIMIT 1 ";
+    ArrayList<ArrayList<String>> duplicate = conn.getData(sqlCheck);
 
-    // out.println(ccode);
-    // out.println(cname);
-    // out.println(cstatus);
-    // out.println(dateobj);
-    // out.println(createdby);
-    //Statement st = con.createStatement();
-    // st.executeUpdate("INSERT INTO lis_item_category(category_code,category_name,status,hfc_cd,discipline_cd,subdiscipline_cd,created_by,created_date) VALUES ('"+ccode+"','"+cname+"','"+cstatus+"','25','52','1','"+createdby+"','0000-00-00')");
-    String sqlInsert = "INSERT INTO wis_ward_class(ward_class_name,ward_class_code,ward_class_status,hfc_cd,discipline_cd,subdiscipline_cd,created_by,created_date) VALUES"
-            + " ('" + wclass + "','" + wclassid + "','" + wstatus + "','" + hfc + "','" + dis + "','" + sub + "','" + createdBy + "',now())";
-    //  + "VALUES ('"+ccode+"','"+cname+"','"+cstatus+"','25','52','1','33','"+createdby+"','-')";
-
-    boolean isInsert = rmic.setQuerySQL(conn.HOST, conn.PORT, sqlInsert);
-
-    if (isInsert == true) {
-        out.print("Success");
+    if (duplicate.size() > 0) {
+        out.print("Duplicate");
     } else {
-        out.print("Failed");
+
+        String sqlInsert = "INSERT INTO wis_ward_class(ward_class_name,ward_class_code,ward_class_status,hfc_cd,discipline_cd,subdiscipline_cd,created_by,created_date) VALUES"
+                + " ('" + wclass + "','" + wclassid + "','" + wstatus + "','" + hfc + "','" + dis + "','" + sub + "','" + createdBy + "',now())";
+
+        boolean isInsert = rmic.setQuerySQL(conn.HOST, conn.PORT, sqlInsert);
+
+        if (isInsert == true) {
+            out.print("Success");
+        } else {
+            out.print("Failed");
+        }
     }
 
 %>

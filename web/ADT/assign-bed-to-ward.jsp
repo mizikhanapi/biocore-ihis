@@ -30,7 +30,6 @@
 
     <!-- header -->
 </head>
-
 <%
     String hfc = session.getAttribute("HEALTH_FACILITY_CODE").toString();
     String id = session.getAttribute("USER_ID").toString();
@@ -72,25 +71,24 @@
                     <!-- content goes here -->
                     <form class="form-horizontal" id="addForm">
 
-                      <!-- Select Basic -->
-                            <div class="form-group">
-                                <label class="col-md-4 control-label" for="selectbasic">Discipline *</label>
-                                <div class="col-md-6">
-                                    <input id="Dis" name="Dis" type="text"  class="form-control input-md">
-                                    <div id="disList"></div>
-                                </div>
-
+                        <!-- Select Basic -->
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" for="selectbasic">Discipline *</label>
+                            <div class="col-md-6">
+                                <input id="Dis" name="Dis" placeholder="Insert Discipline Code" maxlength="30" type="text"  class="form-control input-md">
+                                <div id="disList" class="search-drop"></div>
                             </div>
+
+                        </div>
 
                         <!-- Select Basic -->
                         <div class="form-group">
                             <label class="col-md-4 control-label" for="selectbasic">Ward Class</label>
-                            <div class="col-md-4">
+                            <div class="col-md-6">
                                 <select id="Ward_Class" name="selectbasic" class="form-control">
                                     <option value="Ward Class" >Ward Class</option>
 
-                                    <%
-                                        String sql124 = "SELECT ward_class_code, ward_class_name FROM wis_ward_class";
+                                    <%                                        String sql124 = "SELECT ward_class_code, ward_class_name FROM wis_ward_class";
                                         ArrayList<ArrayList<String>> dataClass = conn.getData(sql124);
 
                                         int size124 = dataClass.size();
@@ -108,7 +106,7 @@
                         <!-- Select Basic -->
                         <div class="form-group">
                             <label class="col-md-4 control-label" for="selectbasic">Ward ID/Name</label>
-                            <div class="col-md-4">
+                            <div class="col-md-6">
                                 <select id="Ward_ID" name="selectbasic" class="form-control">
                                     <option value="null" selected="" disabled="">Select Ward ID/Name</option>
                                     <%
@@ -130,8 +128,8 @@
                         <!-- Text input-->
                         <div class="form-group">
                             <label class="col-md-4 control-label" for="textinput">Bed ID</label>
-                            <div class="col-md-8">
-                                <textarea id="BedID" class="form-control" rows="3" maxlength="200" placeholder="Generic Name"></textarea>
+                            <div class="col-md-6">
+                                <input id="BedID" class="form-control" rows="3" maxlength="200" placeholder="Generic Name">
                                 </br>
 
                                 <!--
@@ -192,7 +190,42 @@
 //        $('#Discipline').on('change',function(){
 //           console.log(this.val());
 //        });
+      
+        $("#Dis").on('keyup', function () { // everytime keyup event
+            var input = $(this).val(); // We take the input value
+            var hfc = $("#Rhfc").val();
+               
 
+
+            if (input.length >= 1) { // Minimum characters = 2 (you can change)
+                $('#disList').html('<img src="libraries/LoaderIcon.gif" />'); // Loader icon apprears in the <div id="match"></div>
+                var dataFields = {input: input, hfc: hfc}; // We pass input argument in Ajax
+                $.ajax({
+                    type: "POST",
+                    url: "searchDiscipline.jsp", // call the php file ajax/tuto-autocomplete.php
+                    data: dataFields, // Send dataFields var
+                    timeout: 3000,
+                    success: function (dataBack) { // If success
+                        $('#disList').html(dataBack); // Return data (UL list) and insert it in the <div id="match"></div>
+                        $('#matchListDis li').on('click', function () { // When click on an element in the list
+                            //$('#masterCode2').text($(this).text()); // Update the field with the new element
+                            $('#Dis').val($(this).text());
+                            $('#disList').text(''); // Clear the <div id="match"></div>
+                            var arrayData = $('#Dis').val().split("|");
+                            //console.log(arrayData);
+                            //console.log(arrayData[0].trim());
+                            //console.log(arrayData[1].trim());
+                        });
+                    },
+                    error: function () { // if error
+                        $('#disList').text('Problem!');
+                    }
+                });
+            } else {
+                $('#disList').text(''); // If less than 2 characters, clear the <div id="match"></div>
+            }
+
+        });
 
         var BedID = "";
 
@@ -251,7 +284,7 @@
 //            if (Dis === "") {
 //                bootbox.alert("Complete The Discipline Fields");
 //            } else
-             if (Ward_Class === "") {
+            if (Ward_Class === "") {
                 bootbox.alert("Complete Ward Class The Fields");
             } else if (Ward_ID === "") {
                 bootbox.alert("Complete The Ward ID Fields");
