@@ -183,6 +183,99 @@ $(function () {
 
 });
 
+//function in laboratory request
+function searchHFCcodeLOS() {
+    var id = $('#hfcLOS').val();
+    $.ajax({
+        type: 'post',
+        url: 'search/searchHFC_cd.jsp',
+        data: {'id': id},
+        success: function (reply_data) {
+            var array_data = String(reply_data).split("|");
+            var hfcCode = array_data[0];
+            console.log(hfcCode);
+
+            $('#hfcIdLOS').val(hfcCode.trim());
+            
+        }
+    });
+}
+$(function () {
+    $("#hfcLOS").on('keyup', function () { // everytime keyup event
+        var input = $(this).val(); // We take the input value
+        if (input.length >= 1) { // Minimum characters = 2 (you can change)
+            $('#matchHFCLOS').html('<img src="img/LoaderIcon.gif" />'); // Loader icon apprears in the <div id="match"></div>
+            var dataFields = {'input': input}; // We pass input argument in Ajax
+            $.ajax({
+                type: "POST",
+                url: "search/SearchHFC.jsp", // call the php file ajax/tuto-autocomplete.php
+                data: dataFields, // Send dataFields var
+                timeout: 3000,
+                success: function (dataBack) { // If success
+                    $('#matchHFCLOS').html(dataBack); // Return data (UL list) and insert it in the <div id="match"></div>
+                    $('#matchList li').on('click', function () { // When click on an element in the list
+                        $('#hfcLOS').val($(this).text()); // Update the field with the new element
+                        $('#matchHFCLOS').text(''); // Clear the <div id="match"></div>
+                        searchHFCcodeLOS();
+                    });
+                },
+                error: function () { // if error
+                    $('#matchHFCLOS').text('Problem!');
+                }
+            });
+        } else {
+            $('#matchHFCLOS').text(''); // If less than 2 characters, clear the <div id="match"></div>
+        }
+    });
+
+});
+
+function searchUHFCcodeROS() {
+    var id = $('#UhfcLOS').val();
+    $.ajax({
+        type: 'post',
+        url: 'search/searchHFC_cd.jsp',
+        data: {'id': id},
+        success: function (reply_data) {
+            var array_data = String(reply_data).split("|");
+            var hfcCode = array_data[0];
+            var hfcLocation = array_data[1];
+            console.log(hfcCode);
+
+            $('#UhfcIdLOS').val(hfcCode.trim());
+        }
+    });
+}
+$(function () {
+    $("#UhfcLOS").on('keyup', function () { // everytime keyup event
+        var input = $(this).val(); // We take the input value
+        if (input.length >= 1) { // Minimum characters = 2 (you can change)
+            $('#UmatchHFCLOS').html('<img src="img/LoaderIcon.gif" />'); // Loader icon apprears in the <div id="match"></div>
+            var dataFields = {'input': input}; // We pass input argument in Ajax
+            $.ajax({
+                type: "POST",
+                url: "search/SearchHFC.jsp", // call the php file ajax/tuto-autocomplete.php
+                data: dataFields, // Send dataFields var
+                timeout: 3000,
+                success: function (dataBack) { // If success
+                    $('#UmatchHFCLOS').html(dataBack); // Return data (UL list) and insert it in the <div id="match"></div>
+                    $('#matchList li').on('click', function () { // When click on an element in the list
+                        $('#UhfcLOS').val($(this).text()); // Update the field with the new element
+                        $('#UmatchHFCLOS').text(''); // Clear the <div id="match"></div>
+                        searchUHFCcodeROS();
+                    });
+                },
+                error: function () { // if error
+                    $('#UmatchHFCLOS').text('Problem!');
+                }
+            });
+        } else {
+            $('#UmatchHFCLOS').text(''); // If less than 2 characters, clear the <div id="match"></div>
+        }
+    });
+
+});
+
 
 
 //////////////////////////////////////////////////////////////////////
