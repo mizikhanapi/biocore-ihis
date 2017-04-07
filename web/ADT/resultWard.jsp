@@ -5,34 +5,66 @@
 <%@page import="java.sql.*"%>
 <%@page import="java.util.List"%>
 <%@page import="java.util.ArrayList"%>
-<%
-    String idWard = request.getParameter("idWard");
-//    String idInput = request.getParameter("idInput");
-    Config.getBase_url(request);
-    Config.getFile_url(session);
-    Conn conn = new Conn();
-
-    //String systemParam = "select * from system_param";
-    //ArrayList<ArrayList<String>> systemParams = connect.getData(systemParam);
-    //String status = systemParams.get(0).get(2);
-    //if status = 1,select from table pms_patient_biodata and special_intergration_information
-    // status 0 = public
-    // status 1 = universiti
-    // status bole dapat kat session
-//    String status = session.getAttribute("SYSTEMSTAT").toString();
-    String searchWard = "";
-
-    searchWard = "select ward_id from wis_inpatient_episode where ward_id ='" + idWard + "'";
 
 
-    ArrayList<ArrayList<String>> search = conn.getData(searchWard);
-    if (search.size() > 0) {
-        ArrayList<String> search1 = search.get(0);
-        String newVal = StringUtils.join(search1, "|");
-%>
-<%out.print(newVal);%>
+
+
+<table id="OccuTableTT"  class="table table-striped table-bordered" cellspacing="0" width="100%">
+
+
+    <thead>
+
+
+    <th>Ward Name</th>
+    <th>Bed</th>
+    <th>Patient Name</th>
+    <th>Patient ID</th>
+    <th>Sponsor</th>
+    <th>Transfer</th>
+    <th>Discharge</th>
+</thead>
+<tbody>
+
+    <%            String idWard = request.getParameter("idWard");
+    String idType = request.getParameter("idType");
+    String idInput = request.getParameter("idInput");
+
+        Conn conn = new Conn();
+        String wardTran = "SELECT ward_class_code, bed_id, PATIENT_NAME, ID_NO, pmi_no, ward_id, eligibility_category_cd,DEPOSIT_INPATIENT  FROM wis_inpatient_episode where ward_id ='" + idWard + "'";
+        ArrayList<ArrayList<String>> datawardTran = conn.getData(wardTran);
+
+        int size1141 = datawardTran.size();
+        for (int i = 0; i < size1141; i++) {
+
+
+    %>
+
+
+    <tr id="moveToPatientTransferButton">
+
+<input id="dataWardhidden" type="hidden" value="<%=String.join("|", datawardTran.get(i))%>">
+<td><input readonly type="text"  name="WardClass" id="WardClass" value="<%= datawardTran.get(i).get(0)%>" /></td>
+<td><input readonly="" type="text"  name="Bed" id="Bed" value="<%= datawardTran.get(i).get(1)%>" /></td>
+<td><input readonly type="text"  name="pname" id="pname" value="<%= datawardTran.get(i).get(2)%>"/></td>
+<td><input readonly type="text"  name="pino" id="pino" value="<%= datawardTran.get(i).get(3)%>"/></td>
+<td><input readonly type="text"  name="sponsor" id="sponsor" value="<%= datawardTran.get(i).get(6)%>"/></td>
+
+<td>
+    <!-- Update Part Start -->
+    <a id="Occu_transfer"><i class="fa fa-pencil-square-o" aria-hidden="true" style="display: inline-block;color: #337ab7;"></i></a>
+
+    <!-- Update Part End -->
+</td>
+<td>
+    <!-- Delete Button Start -->
+    <a id="Occu_delete" class="testing"><i class="fa fa-times" aria-hidden="true" style="display: inline-block;color: #d9534f;" ></i></a>
+    <!-- Delete Button End -->
+</td>
+</tr>
 <%
     }
 
+%>
 
-%>   
+</tbody>
+</table>

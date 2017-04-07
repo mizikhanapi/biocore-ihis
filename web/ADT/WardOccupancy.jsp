@@ -8,11 +8,11 @@
 <%--<%@page contentType="text/html" pageEncoding="UTF-8"%>--%>
 
 <%
-    String idTYpe = "select * from adm_lookup_detail where master_reference_code = '0012' ";
-    ArrayList<ArrayList<String>> dataIdType;
-    Conn conn = new Conn();
-    dataIdType = conn.getData(idTYpe);
-    String dataSystemStatus15 = session.getAttribute("SYSTEMSTAT").toString();
+//    String idTYpe = "select * from adm_lookup_detail where master_reference_code = '0012' ";
+//    ArrayList<ArrayList<String>> dataIdType;
+//    Conn conn = new Conn();
+//    dataIdType = conn.getData(idTYpe);
+//    String dataSystemStatus15 = session.getAttribute("SYSTEMSTAT").toString();
 
 
 %>
@@ -53,7 +53,6 @@
 
 
 </div>
-</div>
 
 <!--</div>-->
 
@@ -92,7 +91,7 @@
 //s
     $("#searchWardTransfer").load("searchWardTransfer.jsp");
     $("#searchPatientTransfer").load("searchPatientTransfer.jsp");
-    $("#OccuTable").load("testtable.jsp");
+    //$("#OccuTable").load("testtable.jsp");
 
 
 </script>

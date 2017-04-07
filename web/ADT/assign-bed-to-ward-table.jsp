@@ -27,7 +27,8 @@
             <%
                 Conn conn = new Conn();
 
-                String sqlbed = "SELECT discipline_cd, ward_class_code, ward_id, bed_id, bed_status,hfc_cd FROM wis_bed_id";
+                String sqlbed = "SELECT  d.discipline_name ,  b.ward_class_name,c.ward_name, a.bed_id,a.bed_status,  a.discipline_cd,  a.ward_class_code, a.ward_id,  a.hfc_cd,b.ward_class_code,  c.ward_id, d.discipline_cd FROM wis_bed_id a LEFT JOIN wis_ward_class b ON a.ward_class_code = b.ward_class_code LEFT JOIN wis_ward_name c ON a.ward_id = c.ward_id LEFT JOIN adm_discipline d ON a.discipline_cd = d.discipline_cd ";
+                
                 ArrayList<ArrayList<String>> databed = conn.getData(sqlbed);
 
                 int size29 = databed.size();
@@ -76,10 +77,9 @@
 
                     <!-- Select Basic -->
                     <div class="form-group">
-                        <label class="col-md-4 control-label" for="selectbasic">Discipline *</label>
+                        <label class="col-md-4 control-label" for="selectbasic">Discipline </label>
                         <div class="col-md-6">
-                            <input id="Dis" name="Dis" type="text"  class="form-control input-md">
-                            <div id="disList"></div>
+                            <input id="DisB" readonly  class="form-control">
                         </div>
 
                     </div>
@@ -87,58 +87,31 @@
                     <!-- Select Basic -->
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="selectbasic">Ward Class</label>
-                        <div class="col-md-4">
-                            <select id="updateWard_ClassBed" name="selectbasic" class="form-control">
-                                <option value="Ward Class" >Ward Class</option>
-
-                                <%                                    String sql101 = "SELECT ward_class_code, ward_class_name FROM wis_ward_class";
-                                    ArrayList<ArrayList<String>> dataClass02 = conn.getData(sql101);
-
-                                    int size304 = dataClass02.size();
-
-                                    for (int i = 0; i < size304; i++) {
-                                %>
-                                <option value="<%= dataClass02.get(i).get(0)%>"><%= dataClass02.get(i).get(0)%> ( <%= dataClass02.get(i).get(1)%> )</option>
-                                <%
-                                    }
-                                %>
-                            </select>
+                        <div class="col-md-6">
+                            <input id="updateWard_ClassBed" readonly class="form-control">
                         </div>
                     </div>
 
                     <!-- Select Basic -->
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="selectbasic">Ward ID/Name</label>
-                        <div class="col-md-4">
-                            <select id="updateWard_IDBed" name="selectbasic" class="form-control">
-                                <option value="null" selected="" disabled="">Select Ward ID/Name</option>
-                                <%
-                                    String sql223 = "SELECT ward_id, ward_name FROM wis_ward_name";
-                                    ArrayList<ArrayList<String>> dataID223 = conn.getData(sql223);
-
-                                    int size26 = dataID223.size();
-
-                                    for (int i = 0; i < size26; i++) {
-                                %>
-                                <option value="<%= dataID223.get(i).get(0)%>"><%= dataID223.get(i).get(0)%> ( <%= dataID223.get(i).get(1)%> ) </option>
-                                <%
-                                    }
-                                %>
-                            </select>
+                        <div class="col-md-6">
+                            <input id="updateWard_IDBed" readonly class="form-control">
+                          
                         </div>
                     </div>   
 
                     <!-- Text input-->
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="textinput">Bed ID</label>
-                        <div class="col-md-8">
-                            <textarea id="updateBedIDBed" class="form-control" readonly rows="3" maxlength="200" placeholder="Generic Name"></textarea>
+                        <div class="col-md-6">
+                            <input id="updateBedIDBed" readonly class="form-control" >
                         </div>
                     </div>
                     <!-- Select Basic -->
                     <div class="form-group">
-                        <label class="col-md-4 control-label" for="selectbasic">Bed Status</label>
-                        <div class="col-md-4">
+                        <label class="col-md-4 control-label" for="selectbasic">Bed Status *</label>
+                        <div class="col-md-6">
                             <select class="form-control" name="status" id="updatestatusBed">
                                 <option value="Available">Available</option>
                                 <option value="Pending">Pending</option>
@@ -190,14 +163,14 @@
             var Ward_ID = arrayData[2];
             var BedID = arrayData[3];
             var status = arrayData[4];
-            Dis = $('#Dis').val();
-            var array_dis = Dis.split("|");
-            var Dis = array_dis[0];
-            var hfc = $("#Rhfc").val();
-            var createdBy = $("#Rid").val();
-            var dis = $("#Rdis").val();
-            var sub = $("#Rsub").val();
-
+//            Dis = $('#Dis').val();
+//            var array_dis = Dis.split("|");
+//            var Dis = array_dis[0];
+//            var hfc = $("#Rhfc").val();
+//            var createdBy = $("#Rid").val();
+//            var dis = $("#Rdis").val();
+//            var sub = $("#Rsub").val();
+            $("#DisB").val(Dis);
             $("#updateWard_ClassBed").val(Ward_Class);
             $("#updateWard_IDBed").val(Ward_ID);
             $("#updateBedIDBed").val(BedID);
@@ -215,20 +188,8 @@
 
 
             e.preventDefault();
-//            console.log(row);
-//
-//            var rowData = row.find("#dataAssignBedhidden").val();
-//            var arrayData = rowData.split("|");
-//
-//            console.log(arrayData);
-//
-//            var DisciplineOld = arrayData[0];
-//            var Ward_ClassOld = arrayData[1];
-//            var Ward_IDOld = arrayData[2];
-//            var BedIDOld = arrayData[3];
-//            var statusOld = arrayData[4];
-//            var hfcOld = arrayData[5];
-            var Dis = $("#Dis").val();
+
+            var Dis = $("#DisB").val();
             var Ward_Class = $("#updateWard_ClassBed").val();
             var Ward_ID = $("#updateWard_IDBed").val();
             var BedID = $("#updateBedIDBed").val();
@@ -237,9 +198,7 @@
             var createdBy = $("#Rid").val();
             var dis = $("#Rdis").val();
             var sub = $("#Rsub").val();
-            //var hfc = $('#hfc').val();
-            //var discipline = $('#discipline').val();
-            //var subDicipline = $('#subDicipline').val();
+         
 
             if (Dis === "Select Discipline" || Dis === null) {
                 bootbox.alert("Complete The Discipline Fields");

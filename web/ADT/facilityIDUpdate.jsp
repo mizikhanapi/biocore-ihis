@@ -42,7 +42,7 @@
     RMIConnector rmic = new RMIConnector();
     Conn conn = new Conn();
 
-    String sqlUpdate = "UPDATE wis_ward_name SET ward_class_code = '" + wclass + "',ward_id = '" + wid + "',ward_name = '" + wwardname + "',citizen_room_cost = '" + wcitizenrates + "',"
+    String sqlUpdate = "UPDATE wis_ward_name SET ward_name = '" + wwardname + "',citizen_room_cost = '" + wcitizenrates + "',"
             + " citizen_deposit = '" + wcitizendeposit + "',citizen_discount = '" + wcitizendiscount + "', non_citizen_room_cost = '" + wnoncitizenrates + "',"
             + " non_citizen_deposit = '" + wnoncitizendeposit + "', non_citizen_discount = '" + wnoncitizendiscount + "',"
             + " pensioner_deposit = '" + wpensionerdeposit + "',pensioner_discount = '" + wpensionerdiscount + "', pensioner_room_cost = '" + wpensionerrates + "',"

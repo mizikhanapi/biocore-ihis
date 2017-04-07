@@ -14,13 +14,13 @@
     Conn conn = new Conn();
 
     String wclass, wid, wdiscipline, wwardname, wcitizenrates, wcitizendeposit, wcitizendiscount, wnoncitizenrates, wnoncitizendeposit,
-            wnoncitizendiscount, wpensionerdeposit,wpensionerdiscount, wpensionerrates,wnobed, wbathroom, wtoilet, wtelevision, wtelephone, wstatus;
+            wnoncitizendiscount, wpensionerdeposit, wpensionerdiscount, wpensionerrates, wnobed, wbathroom, wtoilet, wtelevision, wtelephone, wstatus;
     String hfc = request.getParameter("hfc");
-     String dis = request.getParameter("dis");
-      String sub = request.getParameter("sub");
+    String dis = request.getParameter("dis");
+    String sub = request.getParameter("sub");
 
     String createdBy = request.getParameter("createdBy");
-    
+
     wclass = request.getParameter("WardClass");
     wid = request.getParameter("WardID");
     wdiscipline = request.getParameter("Dis");
@@ -31,32 +31,41 @@
     wnoncitizenrates = request.getParameter("NonCitizenRates");
     wnoncitizendeposit = request.getParameter("NonCitizenDeposit");
     wnoncitizendiscount = request.getParameter("NonCitizenDiscount");
-    wpensionerrates = request.getParameter("PensionerDeposit");
-    wpensionerdiscount = request.getParameter("PensionerDeposit");
+    wpensionerrates = request.getParameter("PensionerRates");
+    wpensionerdiscount = request.getParameter("PensionerDiscount");
     wpensionerdeposit = request.getParameter("PensionerDeposit");
     wnobed = request.getParameter("NoOfBed");
     wbathroom = request.getParameter("bathroom");
     wtoilet = request.getParameter("toilet");
-    wtelevision = request.getParameter("televison");
+    wtelevision = request.getParameter("television");
     wtelephone = request.getParameter("telephone");
     wstatus = request.getParameter("status");
     DateFormat df = new SimpleDateFormat("dd/MM/yy HH:mm:ss");
     Date dateobj = new Date();
     df.format(dateobj);
 
-    String sqlInsert = "INSERT INTO wis_ward_name (ward_class_code, hfc_cd, ward_id, discipline_cd, ward_name, subdiscipline_cd,"
-            + "citizen_room_cost, citizen_deposit, citizen_discount,non_citizen_room_cost,non_citizen_deposit, non_citizen_discount, pensioner_deposit, pensioner_room_cost, pensioner_discount, "
-            + "no_of_bed, attach_bathroom_tiolet,attach_toilet, include_television, include_telephone, ward_status, created_by, created_date) "
-            + "VALUES ('" + wclass + "','" + hfc + "','" + wid + "','" + wdiscipline + "','" + wwardname + "','" + sub + "',"
-            + "'" + wcitizenrates + "','" + wcitizendeposit + "','" + wcitizendiscount + "','" + wnoncitizenrates + "','" + wnoncitizendeposit + "','" + wnoncitizendiscount + "','" + wpensionerdeposit + "','" + wpensionerrates + "','" + wpensionerdiscount + "',"
-            + "'" + wnobed + "','" + wbathroom + "','" + wtoilet + "','" + wtelevision + "','" + wtelephone + "','" + wstatus + "','" + createdBy + "', now())";
-    //  + "VALUES ('"+ccode+"','"+cname+"','"+cstatus+"','25','52','1','33','"+createdby+"','-')";
-    boolean isInsert = rmic.setQuerySQL(conn.HOST, conn.PORT, sqlInsert);
+    String sqlCheck = "SELECT ward_id from wis_ward_name WHERE ward_id = '" + wid + "' LIMIT 1 ";
+    ArrayList<ArrayList<String>> duplicate = conn.getData(sqlCheck);
 
-    if (isInsert == true) {
-        out.print("Success");
+    if (duplicate.size() > 0) {
+        out.print("Duplicate");
     } else {
-        out.print("Failed");
+
+        String sqlInsert = "INSERT INTO wis_ward_name (ward_class_code, hfc_cd, ward_id, discipline_cd, ward_name, subdiscipline_cd,"
+                + "citizen_room_cost, citizen_deposit, citizen_discount,non_citizen_room_cost,non_citizen_deposit, non_citizen_discount, pensioner_deposit, pensioner_room_cost, pensioner_discount, "
+                + "no_of_bed, attach_bathroom_tiolet,attach_toilet, include_television, include_telephone, ward_status, created_by, created_date) "
+                + "VALUES ('" + wclass + "','" + hfc + "','" + wid + "','" + wdiscipline + "','" + wwardname + "','" + sub + "',"
+                + "'" + wcitizenrates + "','" + wcitizendeposit + "','" + wcitizendiscount + "','" + wnoncitizenrates + "','" + wnoncitizendeposit + "','" + wnoncitizendiscount + "','" + wpensionerdeposit + "','" + wpensionerrates + "','" + wpensionerdiscount + "',"
+                + "'" + wnobed + "','" + wbathroom + "','" + wtoilet + "','" + wtelevision + "','" + wtelephone + "','" + wstatus + "','" + createdBy + "', now())";
+        //  + "VALUES ('"+ccode+"','"+cname+"','"+cstatus+"','25','52','1','33','"+createdby+"','-')";
+        boolean isInsert = rmic.setQuerySQL(conn.HOST, conn.PORT, sqlInsert);
+
+        if (isInsert == true) {
+            out.print("Success");
+        } else {
+            out.print("Failed");
+        }
     }
+
 
 %>

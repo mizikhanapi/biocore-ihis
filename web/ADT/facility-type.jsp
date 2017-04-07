@@ -17,8 +17,8 @@
     String id = session.getAttribute("USER_ID").toString();
     String dis = session.getAttribute("DISCIPLINE_CODE").toString();
     String sub = session.getAttribute("SUB_DISCIPLINE_CODE").toString();
-    
-  %>
+
+%>
 <input type="hidden" value="<%=hfc%>" id="Rhfc">
 <input type="hidden" value="<%=id%>" id="Rid">
 <input type="hidden" value="<%=dis%>" id="Rdis">
@@ -50,10 +50,10 @@
                 <!-- content goes here -->
                 <form class="form-horizontal" id="addTypeForm">
 
-                  
+
                     <!-- Text input-->
                     <div class="form-group">
-                        <label class="col-md-4 control-label" for="textinput">Ward Class.</label>
+                        <label class="col-md-4 control-label" for="textinput">Ward Class *</label>
                         <div class="col-md-4">
                             <input id="MWClass" name="MWClass" type="text" placeholder="Ward Class" maxlength="100" class="form-control input-md">
                         </div>
@@ -61,7 +61,7 @@
 
                     <!-- Text input-->
                     <div class="form-group">
-                        <label class="col-md-4 control-label" for="textinput">Ward Class ID.</label>
+                        <label class="col-md-4 control-label" for="textinput">Ward Class ID *</label>
                         <div class="col-md-4">
                             <input id="MWID" name="MWID" type="text" placeholder="Ward Class ID" maxlength="30" class="form-control input-md">
                         </div>
@@ -71,7 +71,7 @@
 
                     <!-- Select Basic -->
                     <div class="form-group">
-                        <label class="col-md-4 control-label" for="textinput">Ward Status</label>
+                        <label class="col-md-4 control-label" for="textinput">Ward Status *</label>
                         <div class="col-md-8">
                             <label class="radio-inline">
                                 <input type="radio" name="status" id="status1" value="1">
@@ -107,19 +107,22 @@
 <!--        <script src="bootstrap-3.3.6-dist/js/bootstrap.js" type="text/javascript"></script>-->
 <script src="bootstrap-3.3.6-dist/js/jquery.dataTables.min.js"></script>
 
-<script type="text/javascript" charset="utf-8">
+<script>
 
     $(document).ready(function () {
 
 
 
         $('#MW_add').on('click', function () {
+            
+         
+            
             var MWClass = $('#MWClass').val();
             var MWID = $('#MWID').val();
             var status = $('input[name="status"]:checked').val();
-            var  hfc = $("#Rhfc").val();
+            var hfc = $("#Rhfc").val();
             var id = $("#Rid").val();
-             var  dis = $("#Rdis").val();
+            var dis = $("#Rdis").val();
             var sub = $("#Rsub").val();
             //var hfc = $('#hfc').val();
             // var discipline = $('#discipline').val();
@@ -138,10 +141,10 @@
                     MWID: MWID,
                     status: status,
                     hfc: hfc,
-                    id :id,
-                    dis :dis,
-                    sub : sub
-                    
+                    id: id,
+                    dis: dis,
+                    sub: sub
+
                 };
 
                 $.ajax({
@@ -160,12 +163,19 @@
                             $(".modal-backdrop").hide();
 
                             bootbox.alert({
-                                message: "Successfully added",
+                                message: "Ward Class ID Successfully added",
                                 title: "Process Result",
                                 backdrop: true
                             });
                             reset();
 
+                        } else if (data.trim() === 'Duplicate') {
+
+                            bootbox.alert({
+                                message: "Ward Class ID Duplication Detected. Please use diffrerent Ward Class ID",
+                                title: "Process Result",
+                                backdrop: true
+                            });
 
 
                         } else if (data.trim() === 'Failed') {

@@ -34,10 +34,10 @@
     String id = session.getAttribute("USER_ID").toString();
     String dis = session.getAttribute("DISCIPLINE_CODE").toString();
     String sub = session.getAttribute("SUB_DISCIPLINE_CODE").toString();
-    
-            Conn conn = new Conn();
 
-  %>
+    Conn conn = new Conn();
+
+%>
 <input type="hidden" value="<%=hfc%>" id="Rhfc">
 <input type="hidden" value="<%=id%>" id="Rid">
 <input type="hidden" value="<%=dis%>" id="Rdis">
@@ -66,7 +66,7 @@
                 <!-- content goes here -->
                 <form class="form-horizontal" id="addIDForm">
 
-            
+
 
                     <div class="col-md-12" style="width: 100%">
 
@@ -75,7 +75,7 @@
 
                             <!-- Select Basic -->
                             <div class="form-group">
-                                <label class="col-md-4 control-label" for="selectbasic">Ward Class</label>
+                                <label class="col-md-4 control-label" for="selectbasic">Ward Class *</label>
                                 <div class="col-md-4">
                                     <select id="WardClass" name="selectbasic" class="form-control">
                                         <option value="null" selected="" disabled="">Select Ward Class</option>
@@ -83,7 +83,7 @@
 
 
                                         <%
-                                            String sql1 = "SELECT  ward_class_name FROM wis_ward_class";
+                                            String sql1 = "SELECT  ward_class_name FROM wis_ward_class WHERE hfc_cd ="+hfc+";";
                                             ArrayList<ArrayList<String>> dataClass1 = conn.getData(sql1);
 
                                             int size4 = dataClass1.size();
@@ -101,14 +101,14 @@
                             </div>
 
                             <div class="form-group">
-                                <label class="col-md-4 control-label" for="textinput">Ward Name</label>
+                                <label class="col-md-4 control-label" for="textinput">Ward Name *</label>
                                 <div class="col-md-4">
                                     <input id="WardName" name="WardName" type="text" placeholder="" class="form-control input-md">
                                 </div>
                             </div>
 
                             <div class="form-group">
-                                <label class="col-md-4 control-label" for="textinput">Ward ID</label>
+                                <label class="col-md-4 control-label" for="textinput">Ward ID *</label>
                                 <div class="col-md-4">
                                     <input id="WardID" name="WardID" type="text" placeholder="" class="form-control input-md">
                                 </div>
@@ -118,13 +118,13 @@
                             <div class="form-group">
                                 <label class="col-md-4 control-label" for="selectbasic">Discipline *</label>
                                 <div class="col-md-6">
-                                    <input id="Dis" name="Dis" type="text"  class="form-control input-md">
-                                    <div id="disList"></div>
+                                    <input id="Dis" name="Dis" placeholder="Insert Discipline Code" maxlength="30" type="text"  class="form-control input-md">
+                                    <div id="disList" class="search-drop"></div>
                                 </div>
 
                             </div>
                             <div class="form-group">
-                                <label class="col-md-4 control-label" for="textinput">No of bed</label>
+                                <label class="col-md-4 control-label" for="textinput">No of bed *</label>
                                 <div class="col-md-4">
                                     <input id="NoOfBed" name="NoOfBed" type="text" placeholder="" class="form-control input-md">
                                 </div>
@@ -140,7 +140,7 @@
 
                         <div class="col-sm-4">
                             <div class="form-group">
-                                <label class="col-md-4 control-label" for="textinput">Citizen Rates</label>
+                                <label class="col-md-4 control-label" for="textinput">Citizen Rates *</label>
                                 <div class="col-md-4">
                                     <input id="CitizenRates" name="CitizenRates" type="text" placeholder="RM:" class="form-control input-md">
                                 </div>
@@ -149,7 +149,7 @@
 
                         <div class="col-sm-4">
                             <div class="form-group">
-                                <label class="col-md-4 control-label" for="textinput">Citizen Deposit</label>
+                                <label class="col-md-4 control-label" for="textinput">Citizen Deposit *</label>
                                 <div class="col-md-4">
                                     <input id="CitizenDeposit" name="CitizenDeposit" type="text" placeholder="RM:" class="form-control input-md">
                                 </div>
@@ -157,9 +157,9 @@
                         </div>
                         <div class="col-sm-4">
                             <div class="form-group">
-                                <label class="col-md-4 control-label" for="textinput">Citizen Discount</label>
+                                <label class="col-md-4 control-label" for="textinput">Citizen Discount *</label>
                                 <div class="col-md-4">
-                                    <input id="CitizenDiscount" name="CitizenDiscount" type="text" placeholder="RM:" class="form-control input-md">
+                                    <input id="CitizenDiscount" name="CitizenDiscount" type="text" placeholder="%:" class="form-control input-md">
                                 </div>
                             </div>
                         </div>
@@ -170,7 +170,7 @@
                     <div class="row">
                         <div class="col-sm-4">
                             <div class="form-group">
-                                <label class="col-md-4 control-label" for="textinput">Non Citizen Rates</label>
+                                <label class="col-md-4 control-label" for="textinput">Non Citizen Rates *</label>
                                 <div class="col-md-4">
                                     <input id="NonCitizenRates" name="NonCitizenRates" type="text" placeholder="RM:" class="form-control input-md">
                                 </div>
@@ -178,7 +178,7 @@
                         </div>
                         <div class="col-sm-4">
                             <div class="form-group">
-                                <label class="col-md-4 control-label" for="textinput">Non Citizen Deposit</label>
+                                <label class="col-md-4 control-label" for="textinput">Non Citizen Deposit *</label>
                                 <div class="col-md-4">
                                     <input id="NonCitizenDeposit" name="NonCitizenDeposit" type="text" placeholder="RM:" class="form-control input-md">
                                 </div>
@@ -187,9 +187,9 @@
                         </div>
                         <div class="col-sm-4">
                             <div class="form-group">
-                                <label class="col-md-4 control-label" for="textinput">Non Citizen Discount</label>
+                                <label class="col-md-4 control-label" for="textinput">Non Citizen Discount *</label>
                                 <div class="col-md-4">
-                                    <input id="NonCitizenDiscount" name="NonCitizenDiscount" type="text" placeholder="RM:" class="form-control input-md">
+                                    <input id="NonCitizenDiscount" name="NonCitizenDiscount" type="text" placeholder="%:" class="form-control input-md">
                                 </div>
                             </div>
                         </div>
@@ -198,7 +198,7 @@
                     <div class="row">
                         <div class="col-sm-4">
                             <div class="form-group">
-                                <label class="col-md-4 control-label" for="textinput">Pensioner Rates</label>
+                                <label class="col-md-4 control-label" for="textinput">Pensioner Rates *</label>
                                 <div class="col-md-4">
                                     <input id="PensionerRates" name="PensionerRates" type="text" placeholder="RM:" class="form-control input-md">
                                 </div>
@@ -206,7 +206,7 @@
                         </div>
                         <div class="col-sm-4">
                             <div class="form-group">
-                                <label class="col-md-4 control-label" for="textinput">Pensioner Deposit</label>
+                                <label class="col-md-4 control-label" for="textinput">Pensioner Deposit *</label>
                                 <div class="col-md-4">
                                     <input id="PensionerDeposit" name="PensionerDeposit" type="text" placeholder="RM:" class="form-control input-md">
                                 </div>
@@ -214,9 +214,9 @@
                         </div>
                         <div class="col-sm-4">
                             <div class="form-group">
-                                <label class="col-md-4 control-label" for="textinput">Pensioner Discount</label>
+                                <label class="col-md-4 control-label" for="textinput">Pensioner Discount *</label>
                                 <div class="col-md-4">
-                                    <input id="PensionerDiscount" name="PensionerDiscount" type="text" placeholder="RM:" class="form-control input-md">
+                                    <input id="PensionerDiscount" name="PensionerDiscount" type="text" placeholder="%:" class="form-control input-md">
                                 </div>
                             </div>
                         </div>
@@ -273,7 +273,7 @@
 
                     <!-- Select Basic -->
                     <div class="form-group">
-                        <label class="col-md-4 control-label" for="textinput">Status</label>
+                        <label class="col-md-4 control-label" for="textinput">Status *</label>
                         <div class="col-md-8">
                             <label class="radio-inline">
                                 <input type="radio" name="status" id="status1" value="1">
@@ -309,13 +309,49 @@
 
 <script src="http://www.w3schools.com/lib/w3data.js"></script>-->
 <script src="bootstrap-3.3.6-dist/js/jquery.dataTables.min.js"></script>
-<script src="searchDiscipline.jsp"></script>
-<script src="old/assets/js/searchDisipline.js" type="text/javascript"></script>
+<!--<script src="searchDiscipline.jsp"></script>
+<script src="old/assets/js/searchDisipline.js" type="text/javascript"></script>-->
 
 
 <script>
     w3IncludeHTML();
     $(document).ready(function () {
+
+        $("#Dis").on('keyup', function () { // everytime keyup event
+            var input = $(this).val(); // We take the input value
+            var hfc = $("#Rhfc").val();
+               
+
+
+            if (input.length >= 1) { // Minimum characters = 2 (you can change)
+                $('#disList').html('<img src="libraries/LoaderIcon.gif" />'); // Loader icon apprears in the <div id="match"></div>
+                var dataFields = {input: input, hfc: hfc}; // We pass input argument in Ajax
+                $.ajax({
+                    type: "POST",
+                    url: "searchDiscipline.jsp", // call the php file ajax/tuto-autocomplete.php
+                    data: dataFields, // Send dataFields var
+                    timeout: 3000,
+                    success: function (dataBack) { // If success
+                        $('#disList').html(dataBack); // Return data (UL list) and insert it in the <div id="match"></div>
+                        $('#matchListDis li').on('click', function () { // When click on an element in the list
+                            //$('#masterCode2').text($(this).text()); // Update the field with the new element
+                            $('#Dis').val($(this).text());
+                            $('#disList').text(''); // Clear the <div id="match"></div>
+                            var arrayData = $('#Dis').val().split("|");
+                            //console.log(arrayData);
+                            //console.log(arrayData[0].trim());
+                            //console.log(arrayData[1].trim());
+                        });
+                    },
+                    error: function () { // if error
+                        $('#disList').text('Problem!');
+                    }
+                });
+            } else {
+                $('#disList').text(''); // If less than 2 characters, clear the <div id="match"></div>
+            }
+
+        });
 
 
         $('#MWID_add').on('click', function () {
@@ -477,6 +513,14 @@
                             backdrop: true
                         });
                         reset();
+                    } else if (data.trim() === 'Duplicate') {
+
+                        bootbox.alert({
+                            message: "Facility ID Duplication Detected. Please use diffrerent Facility ID",
+                            title: "Process Result",
+                            backdrop: true
+                        });
+
                     } else if (data.trim() === 'Failed') {
                         bootbox.alert({
                             message: "Add Failed",

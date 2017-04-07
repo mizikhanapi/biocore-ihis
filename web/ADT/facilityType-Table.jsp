@@ -5,19 +5,19 @@
 <%@page session="true" %>
 
 
-  
+
 <%
     String hfc = session.getAttribute("HEALTH_FACILITY_CODE").toString();
     String id = session.getAttribute("USER_ID").toString();
     String dis = session.getAttribute("DISCIPLINE_CODE").toString();
     String sub = session.getAttribute("SUB_DISCIPLINE_CODE").toString();
-    
-  %>
+
+%>
 <input type="hidden" value="<%=hfc%>" id="Rhfc">
 <input type="hidden" value="<%=id%>" id="Rid">
 <input type="hidden" value="<%=dis%>" id="Rdis">
 <input type="hidden" value="<%=sub%>" id="Rsub">  
-    
+
 <div id="tablefacilityTypeTable" class="form-group">
 
     <table id="facilityTypeTable"  class="table table-striped table-bordered" cellspacing="0" width="100%">
@@ -26,17 +26,17 @@
         <thead>
 
 
-        <th>Ward Class</th>
-        <th>Ward Class ID</th>
-        <th>Status</th>
-        <th>Update</th>
-        <th>Delete</th>
+        <th style="text-align: center;">Ward Class</th>
+        <th style="text-align: center;">Ward Class ID</th>
+        <th style="text-align: center;">Status</th>
+        <th style="text-align: center;">Update</th>
+        <th style="text-align: center;">Delete</th>
         </thead>
         <tbody>
 
             <%
                 Conn conn = new Conn();
-                String sqlFacilityType = "SELECT ward_class_name,ward_class_code,ward_class_status, hfc_cd  FROM wis_ward_class";
+                String sqlFacilityType = "SELECT ward_class_name,ward_class_code,ward_class_status, hfc_cd  FROM wis_ward_class where hfc_cd ="+hfc+";";
                 ArrayList<ArrayList<String>> dataFacilityType = conn.getData(sqlFacilityType);
 
                 int size = dataFacilityType.size();
@@ -49,7 +49,11 @@
         <input id="dataFacilityTypehidden" type="hidden" value="<%=String.join("|", dataFacilityType.get(i))%>">
         <td><%= dataFacilityType.get(i).get(0)%></td>
         <td><%= dataFacilityType.get(i).get(1)%></td>
-        <td><%= dataFacilityType.get(i).get(2)%></td>
+        <td><%if (dataFacilityType.get(i).get(2).equals("1")) {
+                out.print("Active");
+            } else {
+                out.print("Inactive");
+            }%></td>
         <td>
             <!-- Update Part Start -->
             <a id="MW_edit" data-toggle="modal" data-target="#FacilityTypeUpdateModal"><i class="fa fa-pencil-square-o" aria-hidden="true" style="display: inline-block;color: #337ab7;"></i></a>
@@ -80,27 +84,27 @@
 
                 <!-- content goes here -->
                 <form class="form-horizontal">
-
                     <!-- Text input-->
                     <div class="form-group">
-                        <label class="col-md-4 control-label" for="textinput">Ward Class</label>
+                        <label class="col-md-4 control-label" for="textinput">Ward Class ID</label>
+                        <div class="col-md-8">
+                            <input id="updateWardClassID" class="form-control" readonly >
+                        </div>
+                    </div>
+                    <!-- Text input-->
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="textinput">Ward Class  *</label>
                         <div class="col-md-8">
                             <input id="updateWardClass" name="textinput" type="text" class="form-control input-md" maxlength="100" >
                         </div>
                     </div>
 
-                    <!-- Text input-->
-                    <div class="form-group">
-                        <label class="col-md-4 control-label" for="textinput">Ward Class ID</label>
-                        <div class="col-md-8">
-                            <textarea id="updateWardClassID" class="form-control" rows="4" maxlength="30" ></textarea>
-                        </div>
-                    </div>
+
 
 
                     <!-- Text input-->
                     <div class="form-group">
-                        <label class="col-md-4 control-label" for="textinput">Status</label>
+                        <label class="col-md-4 control-label" for="textinput">Status  *</label>
                         <div class="col-md-8">
                             <select class="form-control" name="tstatus" id="updatestatustype">
                                 <option value="1" >Active</option>
@@ -160,9 +164,9 @@
         $("#updateModalButton").off('click').on('click', function (e) {
 
             e.preventDefault();
-            var  hfc = $("#Rhfc").val();
+            var hfc = $("#Rhfc").val();
             var id = $("#Rid").val();
-             var  dis = $("#Rdis").val();
+            var dis = $("#Rdis").val();
             var sub = $("#Rsub").val();
             var MWClass = $("#updateWardClass").val();
             var MWID = $("#updateWardClassID").val();
@@ -175,27 +179,27 @@
                 bootbox.alert("Complete The Ward Class Fields");
 //            } else if (MWID === "" || MWID === null) {
 //                alert("Complete The Fields");
-//            } else if (status !== "1" && status !== "0") {
-//                alert("Select Any Status");
+            } else if (status !== "1" && status !== "0") {
+                alert("Select Any Status");
             } else {
 
                 var data = {
                     MWClass: MWClass,
                     MWID: MWID,
                     status: status,
-                     hfc: hfc,
-                    id :id,
-                    dis :dis,
-                    sub : sub
+                    hfc: hfc,
+                    id: id,
+                    dis: dis,
+                    sub: sub
                 };
                 $.ajax({
                     url: "facilityTypeUpdate.jsp",
                     type: "post",
                     data: data,
                     timeout: 10000,
-                    success: function (datas) {
+                    success: function (data) {
 
-                        if (datas.trim() === 'Success') {
+                        if (data.trim() === 'Success') {
 
                             $('#FacilityTypeTable').load("facilityType-Table.jsp");
                             $(".modal-backdrop").hide();
@@ -204,7 +208,7 @@
                                 title: "Process Result",
                                 backdrop: true
                             });
-                        } else if (datas.trim() === 'Failed') {
+                        } else if (data.trim() === 'Failed') {
                             bootbox.alert({
                                 message: "Update Failed",
                                 title: "Process Result",
@@ -249,7 +253,7 @@
 
                     var data = {
                         idtype: idtype,
-                        hfc:hfc
+                        hfc: hfc
 
                     };
                     $.ajax({

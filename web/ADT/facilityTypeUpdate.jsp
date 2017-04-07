@@ -21,8 +21,8 @@
     String createdBy = request.getParameter("id");
     RMIConnector rmic = new RMIConnector();
     Conn conn = new Conn();
-//,,,
-    String sqlUpdate = "UPDATE wis_ward_class SET  discipline_cd = '" + dis + "',subdiscipline_cd = '" + sub + "', created_by = '" + createdBy + "', ward_class_code = '" + wclassid + "',ward_class_name = '" + wclass + "', ward_class_status = '" + wstatus + "' WHERE ward_class_code = '" + wclass + "' AND  hfc_cd = '" + hfc + "' ";
+
+    String sqlUpdate = "UPDATE wis_ward_class SET  discipline_cd = '" + dis + "',subdiscipline_cd = '" + sub + "', created_by = '" + createdBy + "', ward_class_code = '" + wclassid + "',ward_class_name = '" + wclass + "', ward_class_status = '" + wstatus + "' WHERE ward_class_code = '" + wclassid + "' AND  hfc_cd = '" + hfc + "' ";
     boolean isUpdate = rmic.setQuerySQL(conn.HOST, conn.PORT, sqlUpdate);
     
     if (isUpdate == true) {
