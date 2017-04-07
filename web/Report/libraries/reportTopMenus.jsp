@@ -7,15 +7,6 @@
 <nav class="navbar navbar-static-top">
     <div class="container-fluid">
         <div class="row">
-<!--            <div class="navbar-header col-md-2" style="border-right: 1px solid #ccc;">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="#"> Welcome eMedica</a>
-            </div>-->
 
             <div id="navbar" class="navbar-collapse ">
                 <ul class="nav navbar-nav navbar-left back" style="">
@@ -28,6 +19,11 @@
                 </div>
 
                 <ul class="nav navbar-nav navbar-right logout" style="">
+                    <li>
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#style-3" aria-expanded="false" aria-controls="navbar">
+                            <i class="fa fa-bars fa-lg"></i>
+                        </button>
+                    </li>
                     <li><a href="../Entrance/destroySession.jsp" title="Log Out"><i class=" fa fa-power-off"></i></a></li>
                 </ul>
 

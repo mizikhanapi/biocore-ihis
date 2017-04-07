@@ -173,7 +173,8 @@
 
     String sql4 = "SELECT * FROM far_miscellaneous_item WHERE item_code = '"+ type +"'";
     ArrayList<ArrayList<String>> dataItem = Conn.getData(sql4);
-    subtotal = subtotal + Double.parseDouble(dataItem.get(0).get(4));
+    if(!dataItem.isEmpty()){
+        subtotal = subtotal + Double.parseDouble(dataItem.get(0).get(4));
 %>
         <tr>
             <td><%=dataItem.get(0).get(1)%></td>
@@ -182,7 +183,8 @@
             <td style="text-align: right;"><%=df.format(Double.parseDouble(dataItem.get(0).get(4)))%></td>
             <td style="text-align: right;"><%=df.format(Double.parseDouble(dataItem.get(0).get(4)))%></td>
         </tr>
-<%
+<%  }
+    
     //Search and add billing parameters
     String sql5 = "SELECT param_code, param_name, param_value FROM far_billing_parameter WHERE enable = 'yes'";
     ArrayList<ArrayList<String>>billingParameters = Conn.getData(sql5);
