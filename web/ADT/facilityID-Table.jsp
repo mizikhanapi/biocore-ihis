@@ -7,18 +7,18 @@
 <%@ page session="true" %>
 
 <%
-    String hfc = session.getAttribute("HEALTH_FACILITY_CODE").toString();
-    String id = session.getAttribute("USER_ID").toString();
-    String dis = session.getAttribute("DISCIPLINE_CODE").toString();
-    String sub = session.getAttribute("SUB_DISCIPLINE_CODE").toString();
+    String hfcID = session.getAttribute("HEALTH_FACILITY_CODE").toString();
+    String idID = session.getAttribute("USER_ID").toString();
+    String disID = session.getAttribute("DISCIPLINE_CODE").toString();
+    String subID = session.getAttribute("SUB_DISCIPLINE_CODE").toString();
 
-    //Conn conn = new Conn();
+    Conn conn3 = new Conn();
 
 %>
-<input type="hidden" value="<%=hfc%>" id="Rhfc">
-<input type="hidden" value="<%=id%>" id="Rid">
-<input type="hidden" value="<%=dis%>" id="Rdis">
-<input type="hidden" value="<%=sub%>" id="Rsub">
+<input type="hidden" value="<%=hfcID%>" id="Rhfc">
+<input type="hidden" value="<%=idID%>" id="Rid">
+<input type="hidden" value="<%=disID%>" id="Rdis">
+<input type="hidden" value="<%=subID%>" id="Rsub">
 
 
 <div id="tablefacilityIDTable" class="form-group">
@@ -40,9 +40,9 @@
         </thead>
         <tbody>
 
-            <%                Conn conn = new Conn();
-                String sqlFacilityID = "SELECT a.ward_class_code, a.ward_name, a.ward_id, b.discipline_name, a.no_of_bed, a.citizen_room_cost, a.citizen_deposit, a.citizen_discount, a.non_citizen_room_cost, a.non_citizen_deposit, a.non_citizen_discount, a.pensioner_room_cost,  a.pensioner_deposit, a.pensioner_discount,a.attach_toilet, a.include_television, a.attach_bathroom_tiolet, a.include_telephone, a.ward_status, a.hfc_cd , a.discipline_cd, b.discipline_cd FROM wis_ward_name a LEFT JOIN adm_discipline b ON a.discipline_cd = b.discipline_cd where a.hfc_cd ="+hfc+";";
-                ArrayList<ArrayList<String>> dataFacilityID = conn.getData(sqlFacilityID);
+            <% //                Conn conn = new Conn();
+                String sqlFacilityID = "SELECT a.ward_class_code, a.ward_name, a.ward_id, b.discipline_name, a.no_of_bed, a.citizen_room_cost, a.citizen_deposit, a.citizen_discount, a.non_citizen_room_cost, a.non_citizen_deposit, a.non_citizen_discount, a.pensioner_room_cost,  a.pensioner_deposit, a.pensioner_discount,a.attach_toilet, a.include_television, a.attach_bathroom_tiolet, a.include_telephone, a.ward_status, a.hfc_cd , a.discipline_cd, b.discipline_cd FROM wis_ward_name a LEFT JOIN adm_discipline b ON a.discipline_cd = b.discipline_cd where a.hfc_cd ="+hfcID+";";
+                ArrayList<ArrayList<String>> dataFacilityID = conn3.getData(sqlFacilityID);
 
                 int size11 = dataFacilityID.size();
                 for (int i = 0; i < size11; i++) {
@@ -106,7 +106,7 @@
                                 <label class="col-md-4 control-label" for="textinput">Discipline Code</label>
                                 <div class="col-md-4">
                                     <input id="updateDis" type="text"  readonly class="form-control input-md" >
-
+                                    <input type="hidden" id="UdisCode">
                                 </div>
                             </div>
 
@@ -299,9 +299,9 @@
     </div>
 </div>
 
-<script src="bootstrap-3.3.6-dist/js/jquery.dataTables.min.js"></script>
+<!--<script src="bootstrap-3.3.6-dist/js/jquery.dataTables.min.js"></script>
 <script src="searchDiscipline.jsp"></script>
-<script src="old/assets/js/searchDisipline.js" type="text/javascript"></script>
+<script src="old/assets/js/searchDisipline.js" type="text/javascript"></script>-->
 
 
 
@@ -342,9 +342,11 @@
             var bathroom = arrayData[16];
             var telephone = arrayData[17];
             var status = arrayData[18];
+            var disCode = arrayData[21];
             
             
             
+            $('#UdisCode').val(disCode);
              $('#updateDis').val(Dis);
             $('#updateWC').val(WardClass);
             $('#updateWardName').val(WardName);
@@ -398,9 +400,10 @@
             var status = $('#updatestatus').val();
             var hfc = $("#Rhfc").val();
             var createdBy = $("#Rid").val();
-            var dis = $("#Rdis").val();
+            var dis = $("#UdisCode").val();
             var sub = $("#Rsub").val();
-
+            
+            console.log(dis);
            if (WardName === "" || WardName === null) {
                 bootbox.alert("Complete The Fields of Ward Name");
             } else if (CitizenRates === "" || CitizenRates === null) {
@@ -452,6 +455,7 @@
                     dis: dis,
                     sub: sub
                 };
+                console.log(data);
                 $.ajax({
                     url: "facilityIDUpdate.jsp",
                     type: "post",
@@ -491,9 +495,10 @@
         var row = $(this).closest("tr");
         var rowData = row.find("#dataFacilityIDhidden").val();
         var arrayData = rowData.split("|");
-        console.log(arrayData);
+        
         //assign into seprated val
         var wcd = arrayData[0], wid = arrayData[2], hfc = arrayData[19];
+        console.log(arrayData);
         bootbox.confirm({
             message: "Are you sure want to delete facility ID information?",
             title: "Delete Item?",
@@ -510,7 +515,7 @@
             callback: function (result) {
 
                 if (result === true) {
-
+                    console.log(arrayData);
                     var datas = {
                         wcd: wcd,
                         wid: wid,
@@ -520,12 +525,11 @@
                     $.ajax({
                         type: "post",
                         url: "facilityIDDelete.jsp",
-                        datas: datas,
+                        data: datas,
                         timeout: 10000,
-                        success: function (datas) {
-
-                            if (datas.trim() === 'Success') {
-
+                        success: function (result) {
+                            console.log(result);
+                            if (result.trim() === 'Success') {                                
                                 row.remove();
 
 
@@ -534,7 +538,7 @@
                                     title: "Process Result",
                                     backdrop: true
                                 });
-                            } else if (datas.trim() === 'Failed') {
+                            } else if (result.trim() === 'Failed') {
                                 bootbox.alert({
                                     message: "Delete Failed",
                                     title: "Process Result",

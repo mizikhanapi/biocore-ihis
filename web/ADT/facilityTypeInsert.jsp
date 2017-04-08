@@ -26,7 +26,7 @@
     DateFormat df = new SimpleDateFormat("dd/MM/yy HH:mm:ss");
     Date dateobj = new Date();
     df.format(dateobj);
-    String sqlCheck = "SELECT ward_class_code from wis_ward_class WHERE ward_class_code = '" + wclassid + "' LIMIT 1 ";
+    String sqlCheck = "SELECT ward_class_code from wis_ward_class WHERE ward_class_code = '" + wclassid + "'AND hfc_cd='"+hfc+"' LIMIT 1 ";
     ArrayList<ArrayList<String>> duplicate = conn.getData(sqlCheck);
 
     if (duplicate.size() > 0) {

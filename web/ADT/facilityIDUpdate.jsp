@@ -22,7 +22,7 @@
     
     wclass = request.getParameter("WardClass");
     wid = request.getParameter("WardID");
-    wdiscipline = request.getParameter("Dis");
+    wdiscipline = request.getParameter("dis");
     wwardname = request.getParameter("WardName");
     wcitizenrates = request.getParameter("CitizenRates");
     wcitizendeposit = request.getParameter("CitizenDeposit");
@@ -48,7 +48,7 @@
             + " pensioner_deposit = '" + wpensionerdeposit + "',pensioner_discount = '" + wpensionerdiscount + "', pensioner_room_cost = '" + wpensionerrates + "',"
             + "no_of_bed = '" + wnobed + "', attach_bathroom_tiolet = '" + wbathroom + "',attach_toilet = '" + wtoilet + "',include_television = '" + wtelevision + "',"
             + "include_telephone = '" + wtelephone + "', ward_status = '" + wstatus + "',discipline_cd = '" + wdiscipline + "',"
-            + "hfc_cd = '" + hfc + "',subdiscipline_cd = '" + sub + "', created_by = '" + createdBy + "' WHERE ward_class_code = '" + wclass + "', hfc_cd = '" + hfc + "' AND ward_id = '" + wid + "' ";
+            + "hfc_cd = '" + hfc + "',subdiscipline_cd = '" + sub + "', created_by = '" + createdBy + "' WHERE ward_class_code = '" + wclass + "' AND hfc_cd = '" + hfc + "' AND ward_id = '" + wid + "' ";
 
          
             
@@ -57,7 +57,8 @@
     if (isUpdate == true) {
         out.print("Success");
     } else {
-        out.print("Failed");
+        //out.print("Failed");
+        out.print(sqlUpdate);
     }
 
 %>

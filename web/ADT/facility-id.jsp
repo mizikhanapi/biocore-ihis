@@ -10,8 +10,8 @@
 <%@page import="java.sql.*"%>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <link rel="stylesheet" href="old/assets/datepicker/jquery-ui.css">
-    <script src="old/assets/js/jquery.min.js"></script>
+<!--    <link rel="stylesheet" href="old/assets/datepicker/jquery-ui.css">-->
+<!--    <script src="old/assets/js/jquery.min.js"></script>-->
     <!-- Custom styles for this template -->
 
     <link rel="stylesheet" href="old/assets/css/loading.css">
@@ -35,7 +35,7 @@
     String dis = session.getAttribute("DISCIPLINE_CODE").toString();
     String sub = session.getAttribute("SUB_DISCIPLINE_CODE").toString();
 
-    Conn conn = new Conn();
+    
 
 %>
 <input type="hidden" value="<%=hfc%>" id="Rhfc">
@@ -76,7 +76,7 @@
                             <!-- Select Basic -->
                             <div class="form-group">
                                 <label class="col-md-4 control-label" for="selectbasic">Ward Class *</label>
-                                <div class="col-md-4">
+                                <div class="col-md-4" id="selectID">
                                     <select id="WardClass" name="selectbasic" class="form-control">
                                         <option value="null" selected="" disabled="">Select Ward Class</option>
                                         <option value="-">-</option>

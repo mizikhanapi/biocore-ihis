@@ -7,16 +7,16 @@
 
 
 <%
-    String hfc = session.getAttribute("HEALTH_FACILITY_CODE").toString();
-    String id = session.getAttribute("USER_ID").toString();
-    String dis = session.getAttribute("DISCIPLINE_CODE").toString();
-    String sub = session.getAttribute("SUB_DISCIPLINE_CODE").toString();
+    String hfcTYT = session.getAttribute("HEALTH_FACILITY_CODE").toString();
+    String idTYT = session.getAttribute("USER_ID").toString();
+    String disTYT = session.getAttribute("DISCIPLINE_CODE").toString();
+    String subTYT = session.getAttribute("SUB_DISCIPLINE_CODE").toString();
 
 %>
-<input type="hidden" value="<%=hfc%>" id="Rhfc">
-<input type="hidden" value="<%=id%>" id="Rid">
-<input type="hidden" value="<%=dis%>" id="Rdis">
-<input type="hidden" value="<%=sub%>" id="Rsub">  
+<input type="hidden" value="<%=hfcTYT%>" id="Rhfc">
+<input type="hidden" value="<%=idTYT%>" id="Rid">
+<input type="hidden" value="<%=disTYT%>" id="Rdis">
+<input type="hidden" value="<%=subTYT%>" id="Rsub">  
 
 <div id="tablefacilityTypeTable" class="form-group">
 
@@ -35,9 +35,9 @@
         <tbody>
 
             <%
-                Conn conn = new Conn();
-                String sqlFacilityType = "SELECT ward_class_name,ward_class_code,ward_class_status, hfc_cd  FROM wis_ward_class where hfc_cd ="+hfc+";";
-                ArrayList<ArrayList<String>> dataFacilityType = conn.getData(sqlFacilityType);
+                Conn conns = new Conn();
+                String sqlFacilityType = "SELECT ward_class_name,ward_class_code,ward_class_status, hfc_cd  FROM wis_ward_class where hfc_cd ="+hfcTYT+";";
+                ArrayList<ArrayList<String>> dataFacilityType = conns.getData(sqlFacilityType);
 
                 int size = dataFacilityType.size();
                 for (int i = 0; i < size; i++) {
@@ -130,7 +130,7 @@
 </div>
 
 
-<script src="bootstrap-3.3.6-dist/js/jquery.dataTables.min.js"></script>
+<!--<script src="bootstrap-3.3.6-dist/js/jquery.dataTables.min.js"></script>-->
 
 <script type="text/javascript" charset="utf-8">
 
@@ -208,6 +208,14 @@
                                 title: "Process Result",
                                 backdrop: true
                             });
+                            $.ajax({
+                                url:"listWard.jsp",
+                                type:"post",
+                                timeout: 10000,
+                                success: function(result2){
+                                  $("#selectID").html(result2);  
+                                }
+                            });
                         } else if (data.trim() === 'Failed') {
                             bootbox.alert({
                                 message: "Update Failed",
@@ -272,6 +280,14 @@
                                     title: "Process Result",
                                     backdrop: true
                                 });
+                                $.ajax({
+                                url:"listWard.jsp",
+                                type:"post",
+                                timeout: 10000,
+                                success: function(result2){
+                                  $("#selectID").html(result2);  
+                                }
+                            });
                             } else if (datas.trim() === 'Failed') {
                                 bootbox.alert({
                                     message: "Delete Failed",

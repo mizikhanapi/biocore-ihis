@@ -13,16 +13,16 @@
 
 
 <%
-    String hfc = session.getAttribute("HEALTH_FACILITY_CODE").toString();
-    String id = session.getAttribute("USER_ID").toString();
-    String dis = session.getAttribute("DISCIPLINE_CODE").toString();
-    String sub = session.getAttribute("SUB_DISCIPLINE_CODE").toString();
+    String hfcTY = session.getAttribute("HEALTH_FACILITY_CODE").toString();
+    String idTY = session.getAttribute("USER_ID").toString();
+    String disTY = session.getAttribute("DISCIPLINE_CODE").toString();
+    String subTY = session.getAttribute("SUB_DISCIPLINE_CODE").toString();
 
 %>
-<input type="hidden" value="<%=hfc%>" id="Rhfc">
-<input type="hidden" value="<%=id%>" id="Rid">
-<input type="hidden" value="<%=dis%>" id="Rdis">
-<input type="hidden" value="<%=sub%>" id="Rsub">
+<input type="hidden" value="<%=hfcTY%>" id="Rhfc">
+<input type="hidden" value="<%=idTY%>" id="Rid">
+<input type="hidden" value="<%=disTY%>" id="Rdis">
+<input type="hidden" value="<%=subTY%>" id="Rsub">
 
 <h4 style="padding-top: 30px;padding-bottom: 35px; font-weight: bold">
     MAINTAIN WARD/ FACILITY TYPE
@@ -103,9 +103,9 @@
 </div>
 
 <!--        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>-->
-<!--        <script src="bootstrap-3.3.6-dist/js/bootstrap.js" type="text/javascript"></script>-->
-<script src="bootstrap-3.3.6-dist/js/jquery.dataTables.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <script src="bootstrap-3.3.6-dist/js/bootstrap.js" type="text/javascript"></script>
+<script src="bootstrap-3.3.6-dist/js/jquery.dataTables.min.js"></script>-->
 
 <script>
 
@@ -157,8 +157,25 @@
                         console.log(data);
 
                         if (data.trim() === 'Success') {
+//                            $("#FacilityTypeTable").html('');
+                            //$("#selectID").load('#selectID');
+                            $.ajax({
+                                url:"facilityType-Table.jsp",
+                                type:"post",
+                                timeout: 10000,
+                                success: function(result){
+                                  $("#FacilityTypeTable").html(result);  
+                                }
+                            });
+                            $.ajax({
+                                url:"listWard.jsp",
+                                type:"post",
+                                timeout: 10000,
+                                success: function(result2){
+                                  $("#selectID").html(result2);  
+                                }
+                            });
 
-                            $("#FacilityTypeTable").load("facilityType-Table.jsp");
                             $('#detailType').modal('hide');
                             $(".modal-backdrop").hide();
 
