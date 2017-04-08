@@ -32,6 +32,6 @@
     } else {
         out.print("Failed");
     }
-    out.print(sqlUpdate);
+    //out.print(sqlUpdate);
 
 %>

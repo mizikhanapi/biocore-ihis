@@ -76,8 +76,8 @@
                         <div class="form-group">
                             <label class="col-md-4 control-label" for="selectbasic">Discipline *</label>
                             <div class="col-md-6">
-                                <input id="Dis" name="Dis" placeholder="Insert Discipline Code" maxlength="30" type="text"  class="form-control input-md">
-                                <div id="disList" class="search-drop"></div>
+                                <input id="DisAss" name="Dis" placeholder="Insert Discipline Code" maxlength="30" type="text"  class="form-control input-md">
+                                <div id="disListAss" class="search-drop"></div>
                             </div>
 
                         </div>
@@ -107,7 +107,7 @@
                         <!-- Select Basic -->
                         <div class="form-group">
                             <label class="col-md-4 control-label" for="selectbasic">Ward ID/Name</label>
-                            <div class="col-md-6">
+                            <div class="col-md-6" id="divwardName">
                                 <select id="Ward_ID" name="selectbasic" class="form-control">
                                     <option value="null" selected="" disabled="">Select Ward ID/Name</option>
                                     <%
@@ -192,12 +192,12 @@
 //           console.log(this.val());
 //        });
 
-        $("#Dis").on('keyup', function () { // everytime keyup event
+        $("#DisAss").on('keyup', function () { // everytime keyup event
             var input = $(this).val(); // We take the input value
             var hfc = $("#Rhfc").val();
 
             if (input.length >= 1) { // Minimum characters = 2 (you can change)
-                $('#disList').html('<img src="libraries/LoaderIcon.gif" />'); // Loader icon apprears in the <div id="match"></div>
+                $('#disListAss').html('<img src="libraries/LoaderIcon.gif" />'); // Loader icon apprears in the <div id="match"></div>
                 var dataFields = {input: input, hfc: hfc}; // We pass input argument in Ajax
                 $.ajax({
                     type: "POST",
@@ -205,23 +205,23 @@
                     data: dataFields, // Send dataFields var
                     timeout: 3000,
                     success: function (dataBack) { // If success
-                        $('#disList').html(dataBack); // Return data (UL list) and insert it in the <div id="match"></div>
+                        $('#disListAss').html(dataBack); // Return data (UL list) and insert it in the <div id="match"></div>
                         $('#matchListDis li').on('click', function () { // When click on an element in the list
                             //$('#masterCode2').text($(this).text()); // Update the field with the new element
-                            $('#Dis').val($(this).text());
-                            $('#disList').text(''); // Clear the <div id="match"></div>
-                            var arrayData = $('#Dis').val().split("|");
+                            $('#DisAss').val($(this).text());
+                            $('#disListAss').text(''); // Clear the <div id="match"></div>
+                            var arrayData = $('#DisAss').val().split("|");
                             //console.log(arrayData);
                             //console.log(arrayData[0].trim());
                             //console.log(arrayData[1].trim());
                         });
                     },
                     error: function () { // if error
-                        $('#disList').text('Problem!');
+                        $('#disListAss').text('Problem!');
                     }
                 });
             } else {
-                $('#disList').text(''); // If less than 2 characters, clear the <div id="match"></div>
+                $('#disListAss').text(''); // If less than 2 characters, clear the <div id="match"></div>
             }
 
         });
@@ -236,14 +236,26 @@
 //        });
         $('#Ward_Class').on('change', function () {
             //bootbox.alert("Ward Class");
+            var ward = $('#Ward_Class').val();
+            console.log(ward);
+            $.ajax({
+               url:'listWardName.jsp',
+               type:'post',
+               data:{ward:ward},
+               timeout:3000,
+               success:function(databack){
+                   $('#divwardName').html(databack);
+                   //console.log(databack);
+               },
+               error:function(){
+                   bootbox.alert('error when retrieving the data');
+               }
+            });
             BedID = $('#Ward_Class').val() + "/";
             $('#BedID').val(BedID);
         });
-        $('#Ward_ID').on('change', function () {
-            //bootbox.alert("Ward ID");
-            BedID += $('#Ward_ID').val() + "/";
-            $('#BedID').val(BedID);
-        });
+        
+       
 //        $('#gen_bedID').on('click', function () {
 //
 //            $.ajax({
@@ -263,7 +275,7 @@
 
 
         $('#MWBED_add').on('click', function () {
-            var Dis = $('#Dis').val();
+            var Dis = $('#DisAss').val();
             var array_dis = Dis.split("|");
             var Dis = array_dis[0];
             var Ward_Class = $('#Ward_Class').val();

@@ -83,14 +83,14 @@
 
 
                                         <%
-                                            String sql1 = "SELECT  ward_class_name FROM wis_ward_class WHERE hfc_cd ="+hfc+";";
+                                            String sql1 = "SELECT  ward_class_code,ward_class_name FROM wis_ward_class WHERE hfc_cd ="+hfc+";";
                                             ArrayList<ArrayList<String>> dataClass1 = conn.getData(sql1);
 
                                             int size4 = dataClass1.size();
 
                                             for (int i = 0; i < size4; i++) {
                                         %>
-                                        <option value="<%= dataClass1.get(i).get(0)%>"><%= dataClass1.get(i).get(0)%> </option>
+                                        <option value="<%= dataClass1.get(i).get(0)%>"><%= dataClass1.get(i).get(1)%> </option>
                                         <%
                                             }
                                         %>
