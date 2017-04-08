@@ -116,7 +116,7 @@
                         </div>
                     </div>
                     
-                     <!-- Text input-->
+<!--                      Text input
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="textinput">Discipline</label>
                         <div class="col-md-8">
@@ -126,7 +126,7 @@
                         </div>
                     </div>
                      
-                     <!-- Text input-->
+                      Text input
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="textinput">Subdiscipline</label>
                         <div class="col-md-8">
@@ -134,7 +134,7 @@
                                 <option value="">-- Select subdiscipline--</option>
                             </select>
                         </div>
-                    </div> 
+                    </div> -->
                      
                     
                      <div class="form-group">
@@ -185,13 +185,13 @@
         var userID = arrayData[0], userName = arrayData[1], roleCode = arrayData[2], disciplineCode = arrayData[4], status = arrayData[8], subdisciplineCode = arrayData[6], hfcCode = arrayData[9];
         //set value in input on the top
         ART_G_hfcCode = hfcCode;
-        ART_createDisciplineList(disciplineCode);
-        ART_createSubList(disciplineCode, subdisciplineCode);
+        //ART_createDisciplineList(disciplineCode);
+        //ART_createSubList(disciplineCode, subdisciplineCode);
         
         $('#ART_user').val(userID +" | "+ userName);
         $('#ART_role').val(roleCode);
         
-        $('#ART_subdiscipline').val(subdisciplineCode);
+        //$('#ART_subdiscipline').val(subdisciplineCode);
        
         if (status === '1')
             $('#ART_status').val(1);
@@ -206,20 +206,14 @@
 
         var userID = $('#ART_user').val();
         var roleCode = $('#ART_role').val();
-        var disciplineCode = $('#ART_discipline').val();
-        var subdisciplineCode = $('#ART_subdiscipline').val();
+       // var disciplineCode = $('#ART_discipline').val();
+       // var subdisciplineCode = $('#ART_subdiscipline').val();
         var status = $('#ART_status').val();
 
         if (roleCode === "" || roleCode === null) { 
             bootbox.alert("Please choose the role");
             
-        }else if (disciplineCode === "" || disciplineCode === null) {
-            bootbox.alert("Select the discipline");
-            
-        } else if (subdisciplineCode === "" || subdisciplineCode === null) {
-            bootbox.alert("Select the subdiscipline");
-            
-        } else if (status !== '1' && status !== '0') {
+        }else if (status !== '1' && status !== '0') {
             bootbox.alert("Please choose the status");
             
 
@@ -231,8 +225,6 @@
             var data = {
                 userID : userID,
                 roleCode : roleCode,
-                disciplineCode : disciplineCode,
-                subdisciplineCode : subdisciplineCode,
                 status : status
             };
 

@@ -40,6 +40,9 @@
     String roomNo  = request.getParameter("roomNo");
     String picture  = request.getParameter("picture");
     
+    String disc = request.getParameter("discipline");
+    String subdisc = request.getParameter("subdiscipline");
+    
     
     String sqlCheck = "SELECT user_id from adm_users WHERE user_id = '"+userID+"' limit 1 ";
     ArrayList<ArrayList<String>> duplicate = conn.getData(sqlCheck);
@@ -56,13 +59,17 @@
         startDate = DateFormatter.formatDate(startDate, "dd/MM/yyyy", "yyyy-MM-dd HH:mm:ss.ms");
         endDate = DateFormatter.formatDate(endDate, "dd/MM/yyyy", "yyyy-MM-dd HH:mm:ss.ms");
     
-        String sqlInsert = "INSERT INTO adm_users (user_id, health_facility_code, user_name, password, occupation_code, birth_date, sex_code, new_icno, home_phone, office_phone, mobile_phone, fax_no, email, id_category_code, start_date, end_date, title, nationality_code, user_type, user_group, user_classification_code, status, created_by, created_date, mother_name, room_no, picture) "+
-                            "VALUES('"+userID+"', '"+hfc+"', '"+name+"', '"+password+"', '"+occupation+"', '"+dob+"', '"+gender+"', '"+icNo+"', '"+homeTel+"', '"+officeTel+"', '"+mobilePhone+"', '"+faxNo+"', '"+email+"', '"+userIDCategory +"', '"+startDate +"', '"+endDate +"', '"+title +"', '"+nationality+"', '"+userType+"', '"+userGroup+"', '"+userClass+"', '"+userIDStatus+"', '"+creator+"', now(), '"+mother+"', '"+roomNo+"', '"+picture+"')";
+        String sqlInsert = "INSERT INTO adm_users (user_id, health_facility_code, user_name, password, occupation_code, birth_date, sex_code, new_icno, home_phone, office_phone, mobile_phone, fax_no, email, id_category_code, start_date, end_date, title, nationality_code, user_type, user_group, user_classification_code, status, created_by, created_date, mother_name, room_no, picture, login_status) "+
+                            "VALUES('"+userID+"', '"+hfc+"', '"+name+"', '"+password+"', '"+occupation+"', '"+dob+"', '"+gender+"', '"+icNo+"', '"+homeTel+"', '"+officeTel+"', '"+mobilePhone+"', '"+faxNo+"', '"+email+"', '"+userIDCategory +"', '"+startDate +"', '"+endDate +"', '"+title +"', '"+nationality+"', '"+userType+"', '"+userGroup+"', '"+userClass+"', '"+userIDStatus+"', '"+creator+"', now(), '"+mother+"', '"+roomNo+"', '"+picture+"', '0')";
 
         boolean isInsert = rmic.setQuerySQL(conn.HOST, conn.PORT, sqlInsert);
 
         if (isInsert == true) {
             out.print("Success");
+            String query = "Insert into adm_user_access_role(user_id, discipline_code, subdiscipline_code, health_facility_code, role_code) "
+                    + "values('"+userID+"', '"+disc+"', '"+subdisc+"', '"+hfc+"', '-x-')";
+            rmic.setQuerySQL(conn.HOST, conn.PORT, query);
+            
         } else {
             out.print("Failed");
         }

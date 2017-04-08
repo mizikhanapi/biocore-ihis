@@ -15,7 +15,7 @@
     if (search.size() > 0)
             {
 %>
-<ul id="UM_hfc_matchlist" style="width: 300px; height: 100px; overflow: auto">
+<ul id="UM_hfc_matchlist" style="width: 300px; height: 100%; max-height: 100px; overflow: auto">
     <% for (int i = 0; i < search.size(); i++)
         {
     %>

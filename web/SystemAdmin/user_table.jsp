@@ -26,10 +26,13 @@
 <tbody>
 
     <%
-        //                      0       1                       2           3                       4               5                                6        7       8               9           10          11          12      13                  14                                              15                                        16          17              18          19          20                          21                  22          23         24           25
-        String sql = " SELECT user_id, health_facility_code, user_name, 'password' as dummy, occupation_code, DATE_FORMAT(birth_date,'%d/%m/%Y'), sex_code, new_icno, home_phone, office_phone, mobile_phone, a.fax_no, a.email, id_category_code, ifnull(DATE_FORMAT(start_date,'%d/%m/%Y'), '') ,ifnull(DATE_FORMAT(end_date,'%d/%m/%Y'), '') , title, nationality_code, user_type, user_group, user_classification_code, ifnull(status, '0'), hfc_name, mother_name, room_no, ifnull(login_status, '0') "
-                + "FROM adm_users a join adm_health_facility b on health_facility_code = hfc_cd "
-                + "WHERE health_facility_code = '" + user_hfc + "'";
+        //                      0       1                       2           3                       4               5                                6        7       8               9           10          11          12      13                  14                                              15                                        16          17              18          19          20                          21                  22          23         24           25                      26                  27                  28                      29
+        String sql = " SELECT user_id, a.health_facility_code, user_name, 'password' as dummy, occupation_code, DATE_FORMAT(birth_date,'%d/%m/%Y'), sex_code, new_icno, home_phone, office_phone, mobile_phone, a.fax_no, a.email, id_category_code, ifnull(DATE_FORMAT(start_date,'%d/%m/%Y'), '') ,ifnull(DATE_FORMAT(end_date,'%d/%m/%Y'), '') , title, nationality_code, user_type, user_group, user_classification_code, ifnull(a.status, '0'), hfc_name, mother_name, room_no, ifnull(login_status, '0'), c.discipline_code, d.discipline_name, c.subdiscipline_code, e.subdiscipline_name "
+                + "FROM adm_users a join adm_health_facility b on a.health_facility_code = hfc_cd "
+                + "join adm_user_access_role c using (user_id) "
+                + "join adm_discipline d on c.discipline_code = d.discipline_cd "
+                + "join adm_subdiscipline e on c.discipline_code = e.discipline_cd AND c.subdiscipline_code = e.subdiscipline_cd "
+                + "WHERE a.health_facility_code = '" + user_hfc + "'";
         ArrayList<ArrayList<String>> dataUser = conn.getData(sql);
 
         int size = dataUser.size();
@@ -168,7 +171,7 @@
                                     </div>
                                 </div>
                             </div>
-                           
+
                             <div class="col-md-6">
                                 <!-- Text input-->
                                 <div class="form-group">
@@ -181,8 +184,34 @@
                                     </div>
                                 </div>
                             </div>
-                            
-                             <div class="col-md-6">
+
+                            <div class="col-md-6">
+                                <!-- Text input-->
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label" for="textinput">Discipline *</label>
+                                    <div class="col-md-8">
+                                        <input id="UT_discipline"  type="text" placeholder="Search Discipline" class="form-control input-md">
+                                        <div id="UT_discipline_match">
+                                            <!--search result-->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <!-- Text input-->
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label" for="textinput">Subdiscipline *</label>
+                                    <div class="col-md-8">
+                                        <input id="UT_subdiscipline"  type="text" placeholder="Search Subdiscipline" class="form-control input-md">
+                                        <div id="UT_subdiscipline_match">
+                                            <!--search result-->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
                                 <!-- Text input-->
                                 <div class="form-group">
                                     <label class="col-md-4 control-label" for="textinput">Room No *</label>
@@ -191,8 +220,8 @@
                                     </div>
                                 </div>
                             </div>
-                            
-                            
+
+
                             <div class="col-md-6">
                                 <!-- Text input-->
                                 <div class="form-group">
@@ -202,8 +231,8 @@
                                     </div>
                                 </div>
                             </div>
-                            
-                             <div class="col-md-6">
+
+                            <div class="col-md-6">
                                 <!-- Text input-->
                                 <div class="form-group">
                                     <label class="col-md-4 control-label" for="textinput">Login Status *</label>
@@ -550,6 +579,7 @@
 
 <script type="text/javascript" charset="utf-8">
     $(document).ready(function () {
+
         $('#THE_userTable').DataTable({
             deferRender: true
         });
@@ -573,8 +603,17 @@
             dateFormat: 'dd/mm/yy'
         });
 
+//--------------------- global variable for hfc, discipline, subdiscipline ----------------------------------
         var isHFCselected = false;
         var selectedHFC = "";
+
+        var isDisciplineSelected = false;
+        var selectedDiscipline = "";
+
+        var isSubdisciplineSelected = false;
+        var selectedSubdiscipline = "";
+
+//--------------------- global variable for hfc, discipline, subdiscipline end----------------------------------
 
         $('#userTable').off('click', '#THE_userTable #UT_btnUpdate').on('click', '#THE_userTable #UT_btnUpdate', function (e) {
             e.preventDefault();
@@ -618,7 +657,11 @@
             var userIDStatus = arrayData[21];
             var mother = arrayData[23];
             var roomNo = arrayData[24];
-            var loginStatus = arrayData[25]
+            var loginStatus = arrayData[25];
+            var dis_cd = arrayData[26];
+            var dis_name = arrayData[27];
+            var sub_cd = arrayData[28];
+            var sub_name = arrayData[29];
 
             $('#UT_name').val(name);
             $('#UT_title').val(title);
@@ -626,6 +669,8 @@
             $('#UT_email').val(email);
             $('#UT_userID').val(userID);
             $('#UT_hfc').val(hfc + " | " + hfcName);
+            $('#UT_discipline').val(dis_cd + " | " + dis_name);
+            $('#UT_subdiscipline').val(sub_cd + " | " + sub_name);
             //$('#UT_password').val(password);
             //$('#UT_password2').val(password);
             $('#UT_dob').val(dob);
@@ -649,6 +694,12 @@
 
             isHFCselected = true;
             selectedHFC = $('#UT_hfc').val();
+
+            isDisciplineSelected = true;
+            selectedDiscipline = $('#UT_discipline').val();
+
+            isSubdisciplineSelected = true;
+            selectedSubdiscipline = $('#UT_subdiscipline').val();
         });
 
         $("#UT_btn_update_").off('click').on('click', function (e) {
@@ -663,6 +714,8 @@
             var email = $('#UT_email').val();
             var userID = $('#UT_userID').val();
             var hfc = $('#UT_hfc').val();
+            var discipline = $('#UT_discipline').val();
+            var subdiscipline = $('#UT_subdiscipline').val();
             //var password = $('#UT_password').val();
             //var password2 = $('#UT_password2').val();
             var dob = $('#UT_dob').val();
@@ -682,7 +735,7 @@
             var userIDStatus = $('#UT_userIDStatus').val();
             var mother = $('#UT_mother').val();
             var roomNo = $('#UT_roomNO').val();
-            var loginStatus = $('#UT_loginStatus').val() ;
+            var loginStatus = $('#UT_loginStatus').val();
 
             $('#UT_detail').css('overflow', 'auto');
 
@@ -706,6 +759,12 @@
             } else if (hfc === "") {
                 bootbox.alert("Fill in the staff health facility");
 
+            } else if (discipline === "") {
+                bootbox.alert("Fill in the staff discipline");
+
+            } else if (subdiscipline === "") {
+                bootbox.alert("Fill in the staff subdiscipline");
+
             } else if (dob === "") {
                 bootbox.alert("Select the staff date of birth");
 
@@ -727,7 +786,7 @@
             } else if (mother === "") {
                 bootbox.alert("Fill in the staff mother's name");
 
-            }else if (roomNo === "") {
+            } else if (roomNo === "") {
                 bootbox.alert("Fill in the room number");
 
             } else if (ValidateEmail(email) === false) {
@@ -737,6 +796,14 @@
             } else if (isHFCselected === false || selectedHFC !== hfc) {
                 bootbox.alert("Choose existing health facility");
                 $('#UT_hfc').val("");
+
+            } else if (isDisciplineSelected === false || selectedDiscipline !== discipline) {
+                bootbox.alert("Choose existing discipline");
+                $('#UT_discipline').val("");
+
+            } else if (isSubdisciplineSelected === false || selectedSubdiscipline !== subdiscipline) {
+                bootbox.alert("Choose existing subdiscipline");
+                $('#UT_subdiscipline').val("");
 
             } else if (officeTel !== "" && validatePhonenumber(officeTel) === false) {
                 bootbox.alert("Invalid office telephone number. Only numbers and +, - signs are allowed.");
@@ -764,6 +831,12 @@
                 var array = hfc.split("|");
                 hfc = array[0].trim();
 
+                var array2 = discipline.split("|");
+                discipline = array2[0].trim();
+
+                var array3 = subdiscipline.split("|");
+                subdiscipline = array3[0].trim();
+
                 var data = {
                     process: "normal",
                     name: name,
@@ -772,6 +845,8 @@
                     email: email,
                     userID: userID,
                     hfc: hfc,
+                    discipline: discipline,
+                    subdiscipline: subdiscipline,
                     dob: dob,
                     gender: gender,
                     occupation: occupation,
@@ -788,8 +863,8 @@
                     endDate: endDate,
                     userIDStatus: userIDStatus,
                     mother: mother,
-                    roomNo : roomNo,
-                    loginStatus : loginStatus
+                    roomNo: roomNo,
+                    loginStatus: loginStatus
                 };
 
                 $.ajax({
@@ -902,7 +977,7 @@
 
         });
 
-
+//----------------------------- search hfc --------------------------------
         $('#UT_hfc').on('keyup', function () {
 
             var input = $('#UT_hfc').val();
@@ -938,6 +1013,192 @@
             }
 
         });
+//----------------------------- search hfc end --------------------------------
+
+//----------------------------- search hfc --------------------------------
+        $('#UT_hfc').on('keyup', function () {
+
+            var input = $('#UT_hfc').val();
+
+            if (input.length > 0) {
+
+                var data = {input: input};
+
+                $.ajax({
+                    url: "UM_result.jsp",
+                    type: 'POST',
+                    data: data,
+                    timeout: 10000,
+                    success: function (data) {
+                        $('#UT_hfc_match').html(data);
+                        $('#UM_hfc_matchlist li').on('click', function () {
+
+                            $('#UT_hfc').val($(this).text());
+                            $('#UT_hfc_match').text('');
+                            isHFCselected = true;
+                            selectedHFC = $('#UT_hfc').val();
+
+                        });
+                    },
+                    error: function () {
+                        $('#UT_hfc_match').text('Problem!');
+                    }
+
+                });
+
+            } else {
+                $('#UT_hfc_match').text('');
+            }
+
+        });
+//----------------------------- search hfc end --------------------------------
+
+//----------------------------- search discipline --------------------------------
+        $('#UT_discipline').on('keyup', function () {
+            var hfc = $('#UT_hfc').val();
+            var input = $(this).val();
+
+            if (input.length > 0) {
+
+                //make sure hfc is selected fisrt before we can search discipline
+                if (isHFCselected === false || selectedHFC !== hfc) {
+                    bootbox.alert("Select health facility first!");
+
+                } else {
+
+                    $('#UT_discipline_match').html('<img src = "img/ajax-loader.gif">');
+                    var array = hfc.split("|");
+                    hfc = array[0];
+                    var data = {
+                        process: 'discipline',
+                        hfc: hfc,
+                        searchKey: input
+                    };
+
+                    $.ajax({
+                        type: 'POST',
+                        url: 'controller/UM_search_discipline_subdiscipline.jsp',
+                        data: data,
+                        success: function (data, textStatus, jqXHR) {
+
+                            $('#UT_discipline_match').html(data);
+                            $('#UM_discipline_matchlist li').on('click', function () {
+
+                                $('#UT_discipline').val($(this).text());
+                                $('#UT_discipline_match').text('');
+                                isDisciplineSelected = true;
+                                selectedDiscipline = $('#UT_discipline').val();
+
+                            });
+
+                        },
+                        error: function (jqXHR, textStatus, errorThrown) {
+                            $('#UT_discipline_match').text("Opps! " + errorThrown);
+
+                        }
+                    });
+
+                }
+
+            } else {
+                $('#UT_discipline_match').text('');
+
+            }
+
+
+        });
+//----------------------------- search discipline end --------------------------------
+
+//------------------------------------ search subdiscipline ------------------------------------------
+        $('#UT_subdiscipline').on('keyup', function () {
+            var hfc = $('#UT_hfc').val();
+            var discipline = $('#UT_discipline').val();
+            var input = $(this).val();
+            
+            if (input.length > 0) {
+
+                //make sure discipline is selected fisrt before we can search discipline
+                if (isDisciplineSelected === false || selectedDiscipline !== discipline) {
+                    bootbox.alert("Select discipline first!");
+
+                } else {
+                    
+                    $('#UT_subdiscipline_match').html('<img src = "img/ajax-loader.gif">');
+                    var array = hfc.split("|");
+                    hfc = array[0].trim();
+                    
+                    var array2 = discipline.split("|");
+                    discipline = array2[0].trim();
+                    
+                    var data = {
+                        process: 'subdiscipline',
+                        discipline: discipline,
+                        hfc: hfc,
+                        searchKey: input
+                    };
+
+                    $.ajax({
+                        type: 'POST',
+                        url: 'controller/UM_search_discipline_subdiscipline.jsp',
+                        data: data,
+                        success: function (data, textStatus, jqXHR) {
+
+                            $('#UT_subdiscipline_match').html(data);
+                            $('#UM_subdiscipline_matchlist li').on('click', function () {
+
+                                $('#UT_subdiscipline').val($(this).text());
+                                $('#UT_subdiscipline_match').text('');
+                                isSubdisciplineSelected = true;
+                                selectedSubdiscipline = $('#UT_subdiscipline').val();
+
+                            });
+
+                        },
+                        error: function (jqXHR, textStatus, errorThrown) {
+                            $('#UT_subdiscipline_match').text("Opps! " + errorThrown);
+                            console.log(discipline);
+
+                        }
+                    });
+
+                }
+
+            } else {
+                $('#UT_subdiscipline_match').text('');
+
+            }
+
+
+        });
+
+//------------------------------------ search subdiscipline end------------------------------------------     
+
+//----------------------- check changes of hfc, discipline after selection is made ------------------------------ 
+        $('#UT_hfc').on('blur', function(){
+            
+            // if change then clear discipline and subdiscipline
+            if(isHFCselected === false || selectedHFC !== $(this).val()){
+                 $('#UT_discipline').val('');
+                 $('#UT_subdiscipline').val('');
+            
+            }else{
+                return false;
+            }
+        });
+        
+        $('#UT_discipline').on('blur', function(){
+            
+            // if change then clear subdiscipline
+            if(isDisciplineSelected === false || selectedDiscipline !== $(this).val()){
+                $('#UT_subdiscipline').val('');
+                 
+            
+            }else{
+                return false;
+            }
+        });
+
+//----------------------- check changes of hfc, discipline after selection is made end ------------------------------
 
         $('#userTable').off('click', '#THE_userTable #UT_btnChangePassword').on('click', '#THE_userTable #UT_btnChangePassword', function (e) {
 

@@ -6,17 +6,17 @@
 
 <%@page import="java.util.ArrayList"%>
 <%@page import="dBConn.Conn"%>
-<% 
+<%
     Conn conn = new Conn();
-    
+
     String hfc_default = "";
-    
-    if(session.getAttribute("HEALTH_FACILITY_CODE") != null){
-        String hfc_kod , hfc_nama ;
+
+    if (session.getAttribute("HEALTH_FACILITY_CODE") != null) {
+        String hfc_kod, hfc_nama;
         hfc_kod = session.getAttribute("HEALTH_FACILITY_CODE").toString();
         hfc_nama = session.getAttribute("HFC_NAME").toString();
-        
-        hfc_default = hfc_kod +" | "+hfc_nama;
+
+        hfc_default = hfc_kod + " | " + hfc_nama;
     }
 %>
 
@@ -149,6 +149,35 @@
                             <div class="col-md-6">
                                 <!-- Text input-->
                                 <div class="form-group">
+                                    <label class="col-md-4 control-label" for="textinput">Discipline *</label>
+                                    <div class="col-md-8">
+                                        <input id="UM_discipline"  type="text" placeholder="Search discipline" class="form-control input-md">
+                                        <div id="UM_discipline_match">
+                                            <!--search result-->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <!-- Text input-->
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label" for="textinput">Subdiscipline *</label>
+                                    <div class="col-md-8">
+                                        <input id="UM_subdiscipline"  type="text" placeholder="Search subdiscipline" class="form-control input-md">
+                                        <div id="UM_subdiscipline_match">
+                                            <!--search result-->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <!-- Text input-->
+                                <div class="form-group">
                                     <label class="col-md-4 control-label" for="textinput">Password *</label>
                                     <div class="col-md-8">
                                         <input id="UM_password"  type="password" placeholder=" Type your Password" class="form-control input-md" maxlength="10">
@@ -178,7 +207,7 @@
                                     </div>
                                 </div>
                             </div>
-                            
+
                             <div class="col-md-6">
                                 <!-- Text input-->
                                 <div class="form-group">
@@ -585,12 +614,18 @@
 
 
     $(document).ready(function () {
-        
-    //---------------- global variable for confirming hfc is selected from search ------------------------------------
+
+        //---------------- global variable for confirming hfc, discipline, subdiscipline is selected from search ------------------------------------
 
         var isHFCselected = false;
         var selectedHFC = "";
-     //---------------- global variable for confirming hfc is selected from search ------------------------------------
+        
+        var isDisciplineSelected = false;
+        var selectedDiscipline = "";
+        
+        var isSubdisciplineSelected = false;
+        var selectedSubsiscipline = "";
+        //---------------- global variable for confirming hfc is selected from search ------------------------------------
 
         $('#UM_dob').datepicker({
             changeMonth: true,
@@ -624,12 +659,12 @@
             selectedHFC = "";
             gambarURI = "";
             $('#dym').html("");
-            
+
             //-------------------------------------- creating default hfc for hfc input
             $('#UM_hfc').val($('#UM_hfc_default').val());
             isHFCselected = true;
             selectedHFC = $('#UM_hfc').val();
-            
+
         });
 
         $('#btnReset').on('click', function () {
@@ -647,6 +682,8 @@
             var email = $('#UM_email').val();
             var userID = $('#UM_userID').val();
             var hfc = $('#UM_hfc').val();
+            var discipline = $('#UM_discipline').val();
+            var subdiscipline = $('#UM_subdiscipline').val();
             var password = $('#UM_password').val();
             var password2 = $('#UM_password2').val();
             var dob = $('#UM_dob').val();
@@ -689,6 +726,12 @@
             } else if (hfc === "") {
                 bootbox.alert("Fill in the staff health facility");
 
+            }else if (discipline === "") {
+                bootbox.alert("Fill in the staff discipline");
+
+            }else if (subdiscipline === "") {
+                bootbox.alert("Fill in the staff subdiscipline");
+
             } else if (password === "" || password2 === "") {
                 bootbox.alert("Fill in all password fields");
 
@@ -723,6 +766,14 @@
             } else if (isHFCselected === false || selectedHFC !== hfc) {
                 bootbox.alert("Choose existing health facility");
                 $('#UM_hfc').val("");
+
+            }else if (isDisciplineSelected === false || selectedDiscipline !== discipline) {
+                bootbox.alert("Choose existing discipline");
+                $('#UM_discipline').val("");
+
+            }else if (isSubdisciplineSelected === false || selectedSubsiscipline !== subdiscipline) {
+                bootbox.alert("Choose existing subdiscipline");
+                $('#UM_subdiscipline').val("");
 
             } else if (password.length < 5) {
                 bootbox.alert("Password is too short. Password must have at least 6 characters");
@@ -759,6 +810,12 @@
 
                 var array = hfc.split("|");
                 hfc = array[0].trim();
+                
+                var array2 = discipline.split("|");
+                discipline = array2[0].trim();
+                
+                var array3 = subdiscipline.split("|");
+                subdiscipline = array3[0].trim();
 
                 var data = {
                     name: name,
@@ -785,7 +842,9 @@
                     userIDStatus: userIDStatus,
                     mother: mother,
                     roomNo: roomNo,
-                    picture: gambarURI
+                    picture: gambarURI,
+                    discipline: discipline,
+                    subdiscipline: subdiscipline
                 };
 
                 $.ajax({
@@ -861,9 +920,157 @@
             }
 
         });
+
+
+
+//------------------------------------ search discipline ------------------------------------------
+        $('#UM_discipline').on('keyup', function () {
+            var hfc = $('#UM_hfc').val();
+            var input = $(this).val();
+
+            if (input.length > 0) {
+
+                //make sure hfc is selected fisrt before we can search discipline
+                if (isHFCselected === false || selectedHFC !== hfc) {
+                    bootbox.alert("Select health facility first!");
+
+                } else {
+                    
+                    $('#UM_discipline_match').html('<img src = "img/ajax-loader.gif">');
+                    var array = hfc.split("|");
+                    hfc = array[0];
+                    var data = {
+                        process: 'discipline',
+                        hfc: hfc,
+                        searchKey: input
+                    };
+
+                    $.ajax({
+                        type: 'POST',
+                        url: 'controller/UM_search_discipline_subdiscipline.jsp',
+                        data: data,
+                        success: function (data, textStatus, jqXHR) {
+
+                            $('#UM_discipline_match').html(data);
+                            $('#UM_discipline_matchlist li').on('click', function () {
+
+                                $('#UM_discipline').val($(this).text());
+                                $('#UM_discipline_match').text('');
+                                isDisciplineSelected = true;
+                                selectedDiscipline = $('#UM_discipline').val();
+
+                            });
+
+                        },
+                        error: function (jqXHR, textStatus, errorThrown) {
+                            $('#UM_discipline_match').text("Opps! " + errorThrown);
+
+                        }
+                    });
+
+                }
+
+            } else {
+                $('#UM_discipline_match').text('');
+
+            }
+
+
+        });
+
+//------------------------------------ search discipline end------------------------------------------        
+
+//------------------------------------ search subdiscipline ------------------------------------------
+        $('#UM_subdiscipline').on('keyup', function () {
+            var hfc = $('#UM_hfc').val();
+            var discipline = $('#UM_discipline').val();
+            var input = $(this).val();
+            
+            if (input.length > 0) {
+
+                //make sure discipline is selected fisrt before we can search discipline
+                if (isDisciplineSelected === false || selectedDiscipline !== discipline) {
+                    bootbox.alert("Select discipline first!");
+
+                } else {
+                    
+                    $('#UM_subdiscipline_match').html('<img src = "img/ajax-loader.gif">');
+                    var array = hfc.split("|");
+                    hfc = array[0].trim();
+                    
+                    var array2 = discipline.split("|");
+                    discipline = array2[0].trim();
+                    
+                    var data = {
+                        process: 'subdiscipline',
+                        discipline: discipline,
+                        hfc: hfc,
+                        searchKey: input
+                    };
+
+                    $.ajax({
+                        type: 'POST',
+                        url: 'controller/UM_search_discipline_subdiscipline.jsp',
+                        data: data,
+                        success: function (data, textStatus, jqXHR) {
+
+                            $('#UM_subdiscipline_match').html(data);
+                            $('#UM_subdiscipline_matchlist li').on('click', function () {
+
+                                $('#UM_subdiscipline').val($(this).text());
+                                $('#UM_subdiscipline_match').text('');
+                                isSubdisciplineSelected = true;
+                                selectedSubsiscipline = $('#UM_subdiscipline').val();
+
+                            });
+
+                        },
+                        error: function (jqXHR, textStatus, errorThrown) {
+                            $('#UM_subdiscipline_match').text("Opps! " + errorThrown);
+                            console.log(discipline);
+
+                        }
+                    });
+
+                }
+
+            } else {
+                $('#UM_subdiscipline_match').text('');
+
+            }
+
+
+        });
+
+//------------------------------------ search subdiscipline end------------------------------------------        
+
+
+//----------------------- check changes of hfc, discipline after selection is made ------------------------------ 
+        $('#UM_hfc').on('blur', function(){
+            
+            // if change then clear discipline and subdiscipline
+            if(isHFCselected === false || selectedHFC !== $(this).val()){
+                 $('#UM_discipline').val('');
+                 $('#UM_subdiscipline').val('');
+            
+            }else{
+                return false;
+            }
+        });
         
-        
-        
+        $('#UM_discipline').on('blur', function(){
+            
+            // if change then clear subdiscipline
+            if(isDisciplineSelected === false || selectedDiscipline !== $(this).val()){
+                $('#UM_subdiscipline').val('');
+                 
+            
+            }else{
+                return false;
+            }
+        });
+
+//----------------------- check changes of hfc, discipline after selection is made end ------------------------------
 
 
     });

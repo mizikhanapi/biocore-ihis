@@ -66,7 +66,7 @@
 
             //                                 0        1           2                  3                        4            
             String sqlUserAccess = "Select user_id, a.role_code, a.discipline_code, a.subdiscipline_code, system_code, role_name from adm_user_access_role a "
-                    + "join adm_responsibility using(role_code) join adm_role using(role_code) where user_id = '" + user_id + "' AND a.status = '0' limit 1";
+                    + "join adm_responsibility using(role_code) join adm_role using(role_code) where user_id = '" + user_id + "' AND a.status = '0' AND a.role_code <> '-x-' limit 1";
             ArrayList<ArrayList<String>> dataUserAccess = conn.getData(sqlUserAccess);
 
             if (dataUserAccess.size() > 0) {

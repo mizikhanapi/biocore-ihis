@@ -39,6 +39,9 @@
     String mother = request.getParameter("mother").toUpperCase();
     String roomNo = request.getParameter("roomNo");
     String loginStatus = request.getParameter("loginStatus");
+    
+    String discipline = request.getParameter("discipline");
+    String subdiscipline = request.getParameter("subdiscipline");
 
     RMIConnector rmic = new RMIConnector();
 
@@ -47,6 +50,7 @@
         String sqlInsert = "UPDATE adm_users set password = '"+password+"' Where user_id = '"+userID+"'";
 
         boolean isInsert = rmic.setQuerySQL(conn.HOST, conn.PORT, sqlInsert);
+       
 
         if (isInsert == true) {
             out.print("Success");
@@ -69,6 +73,10 @@
             + "mother_name = '" + mother + "', room_no = '"+roomNo+"', login_status = '"+loginStatus+"' WHERE user_id ='" + userID + "'";
 
     boolean isInsert = rmic.setQuerySQL(conn.HOST, conn.PORT, sqlInsert);
+    
+     String sqlUpdateUserAccess = "UPDATE adm_user_access_role set discipline_code = '"+discipline+"', subdiscipline_code = '"+subdiscipline+"', health_facility_code = '"+hfc+"' "
+             + "WHERE user_id = '"+userID+"' ";
+     isInsert = rmic.setQuerySQL(conn.HOST, conn.PORT, sqlUpdateUserAccess);
 
     if (isInsert == true) {
         out.print("Success");

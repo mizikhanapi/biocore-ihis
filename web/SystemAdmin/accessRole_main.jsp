@@ -66,7 +66,7 @@
                         </select>
                     </div>
 
-                    <!-- Text input-->
+<!--                     Text input
                     <div class="form-group">
 
                         <select id="ARM_discipline" class="form-control input-md">
@@ -75,14 +75,14 @@
 
                     </div>
 
-                    <!-- Text input-->
+                     Text input
                     <div class="form-group">
 
                         <select id="ARM_subdiscipline" class="form-control input-md">
                             <option value="">-- Select subdiscipline--</option>
                         </select>
 
-                    </div> 
+                    </div> -->
 
 
                     <div class="form-group">
@@ -136,7 +136,7 @@
 //                isUserSelected = false;
 //                selectedUser = "";
             createUserList();
-            createDisciplineList();
+            //createDisciplineList();
 
         });
 
@@ -152,13 +152,13 @@
                 return elem.val();
             }).join("|");
 
-            console.log(strUser);
+            //console.log(strUser);
 
 
             //var user = $('#ARM_user').val();
             var role = $('#ARM_role').val();
-            var discipline = $('#ARM_discipline').val();
-            var subdiscipline = $('#ARM_subdiscipline').val();
+            //var discipline = $('#ARM_discipline').val();
+            //var subdiscipline = $('#ARM_subdiscipline').val();
             var status = $('#ARM_status').val();
 
             if (strUser === "") {
@@ -167,23 +167,15 @@
             } else if (role === "") {
                 bootbox.alert("Select the role");
 
-            } else if (discipline === "") {
-                bootbox.alert("Select the discipline");
-
-            } else if (subdiscipline === "") {
-                bootbox.alert("Select the subdiscipline");
-
             } else if (status !== "1" && status !== "0") {
                 bootbox.alert("Select Any Status");
 
             } else {
-                $('<div class="loading">Loading</div>').appendTo('body');
+                $('<div class="loading">Loading</div>').appendTo('#ARM_detail');
 
                 var data = {
                     userCode: strUser,
                     roleCode: role,
-                    disciplineCode: discipline,
-                    subdisciplineCode: subdiscipline,
                     status: status
                 };
 
