@@ -10,6 +10,10 @@
 <%@page import="main.RMIConnector"%>
 <%
     Conn conn = new Conn();
+    String LT_user = session.getAttribute("USER_ID").toString();
+    String LT_hfc = session.getAttribute("HEALTH_FACILITY_CODE").toString();
+    
+    String LT_last = LT_user.substring(LT_user.length() - 1);
 %>
 <table  id="THE_masterTable"  class="table table-striped table-bordered" cellspacing="0" width="100%">
     <thead>
@@ -18,8 +22,14 @@
     <th>Source</th>
     <th>Status</th>
     <th>View Detail</th>
+    <%
+    if(LT_hfc.equals("99_iHIS_99") && LT_last.equals("9")){
+    %>
     <th>Update</th>
     <th>Delete</th>
+    <%
+    }
+    %>
 </thead>
 <tbody>
 
@@ -28,7 +38,9 @@
         ArrayList<ArrayList<String>> dataMaster = conn.getData(sql);
 
         int size = dataMaster.size();
-        for (int i = 0; i < size; i++) {
+        
+        if(LT_hfc.equals("99_iHIS_99") && LT_last.equals("9")){
+            for (int i = 0; i < size; i++) {
     %>
 
     <tr>
@@ -66,7 +78,29 @@
 <!-- Delete Button End -->
 </tr>
 <%
-    }
+        }
+    }else{
+        for (int i = 0; i < size; i++) {
+        %>
+<tr>
+<input id="MLT_hidden" type="hidden" value="<%=String.join("|", dataMaster.get(i))%>">
+<td><%= dataMaster.get(i).get(0)%></td>
+<td><%= dataMaster.get(i).get(1)%></td>
+<td><%= dataMaster.get(i).get(3)%></td>
+<td><%if (dataMaster.get(i).get(2).equals("1")) {
+                out.print("Inactive");
+            } else {
+                out.print("Active");
+            } %></td>
+
+<td style="width: 5% ">
+
+    <a id="MLT_btnViewDetail" style="cursor: pointer"><i class="fa fa-arrow-right" aria-hidden="true" style="display: inline-block;color: #337ab7;"></i></a>
+
+</td>
+        <%
+        }
+    } 
 %>
 </tbody>
 </table>    

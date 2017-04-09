@@ -10,12 +10,13 @@
 
 
 <%
+    String hfc_cd = session.getAttribute("HEALTH_FACILITY_CODE").toString();
     String masterCode = request.getParameter("masterCode");
 
     Conn conn = new Conn();
     String sql = " SELECT lm.master_reference_code, ld.detail_reference_code, ld.description, IFNULL(ld.status, ''), lm.description, ifnull(ld.priority_indicator, '0'), ifnull(DATE_FORMAT(ld.start_date,'%d/%m/%Y'), ''), ifnull(DATE_FORMAT(ld.end_date,'%d/%m/%Y'), '')"
             + " FROM adm_lookup_detail ld join adm_lookup_master lm using (master_reference_code) "
-            + "WHERE master_reference_code = '"+masterCode+"'";
+            + "WHERE master_reference_code = '"+masterCode+"' AND ld.hfc_cd = '"+hfc_cd+"'";
     ArrayList<ArrayList<String>> dataDetail = conn.getData(sql);
 
     int size = dataDetail.size();

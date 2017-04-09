@@ -39,10 +39,13 @@
     String logo = request.getParameter("logo");
     
     
+    
+    
     String sqlCheck = "SELECT hfc_cd from adm_health_facility WHERE hfc_cd = '"+hfcCode+"' LIMIT 1 ";
     ArrayList<ArrayList<String>> duplicate = conn.getData(sqlCheck);
     
      RMIConnector rmic = new RMIConnector();
+     boolean isInsert = false;
     
     if(duplicate.size() > 0)
     {
@@ -55,7 +58,7 @@
         String sqlInsert = "INSERT INTO adm_health_facility(hfc_cd, hfc_type, hfc_name, address1, address2, address3, state_cd, district_cd, town_cd, country_cd, postcode, telephone_no, fax_no, email, hfc_server, hfc_report, established_date, director_name, hfc_category_cd, hfc_sub_type, contact_person, hfc_status, hfc_ip, logo) "+
                             "VALUES('"+hfcCode+"', '"+type+"', '"+hfcName+"', '"+address1+"', '"+address2+"', '"+address3+"', '"+state+"', '"+district+"', '"+town+"', '001', '"+postcode+"', '"+telNo+"', '"+faxNo+"', '"+email+"', '"+server+"', '"+reportTo+"', '"+establishDate+"', '"+director+"', '"+category+"', '"+subtype+"', '"+contactPerson+"', '"+status+"', '"+ipNo+"', '"+logo+"')";
 
-        boolean isInsert = rmic.setQuerySQL(conn.HOST, conn.PORT, sqlInsert);
+        isInsert = rmic.setQuerySQL(conn.HOST, conn.PORT, sqlInsert);
 
         if (isInsert == true) {
             out.print("Success");
@@ -68,7 +71,7 @@
         String sqlInsert = "INSERT INTO adm_health_facility(hfc_cd, hfc_type, hfc_name, address1, address2, address3, state_cd, district_cd, town_cd, country_cd, postcode, telephone_no, fax_no, email, hfc_server, hfc_report, director_name, hfc_category_cd, hfc_sub_type, contact_person, hfc_status, hfc_ip, logo) "+
                             "VALUES('"+hfcCode+"', '"+type+"', '"+hfcName+"', '"+address1+"', '"+address2+"', '"+address3+"', '"+state+"', '"+district+"', '"+town+"', '001', '"+postcode+"', '"+telNo+"', '"+faxNo+"', '"+email+"', '"+server+"', '"+reportTo+"', '"+director+"', '"+category+"', '"+subtype+"', '"+contactPerson+"', '"+status+"', '"+ipNo+"', '"+logo+"')";
 
-        boolean isInsert = rmic.setQuerySQL(conn.HOST, conn.PORT, sqlInsert);
+        isInsert = rmic.setQuerySQL(conn.HOST, conn.PORT, sqlInsert);
 
         if (isInsert == true) {
             out.print("Success");
@@ -77,6 +80,17 @@
         }
     
     
+    
+    }
+    
+    if(isInsert){
+        String creator = session.getAttribute("USER_ID").toString();
+        
+        String copyLookup = "INSERT INTO adm_lookup_detail(Master_Reference_code, Detail_Reference_code, Description, priority_indicator, start_date, end_date, status, created_by, created_date, hfc_cd) "
+                + "Select Master_Reference_code, Detail_Reference_code, Description, priority_indicator, start_date, end_date, status, '"+creator+"', now(), '"+hfcCode+"' "
+                + "from adm_lookup_detail where hfc_cd = '99_iHIS_99'";
+        
+        rmic.setQuerySQL(conn.HOST, conn.PORT, copyLookup);
     
     }
 %>

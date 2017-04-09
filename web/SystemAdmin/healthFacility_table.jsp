@@ -745,14 +745,16 @@
     });
     
     
+    
+    
     $('#inputFileToLoad2').checkFileType({
         allowedExtensions: ['jpg', 'jpeg', 'png', 'gif'],
         success: function () {
-            loadImageFileAsURL();
+            loadImageFileAsURL2();
         },
         error: function () {
             bootbox.alert('Incompatible file type');
-            $('#inputFileToLoad').val("");
+            $('#inputFileToLoad2').val("");
             
             gambarURI2 = "";
         }
@@ -761,7 +763,7 @@
 
     var gambarURI2 = "";
 
-    function loadImageFileAsURL()
+    function loadImageFileAsURL2()
     {
 
         var iSize = 0;
@@ -811,7 +813,7 @@
         } else {
 
             bootbox.alert("File size must not exceed 40kb");
-            $('#inputFileToLoad').val("");
+            $('#inputFileToLoad2').val("");
             gambarURI2 = "";
             
         }

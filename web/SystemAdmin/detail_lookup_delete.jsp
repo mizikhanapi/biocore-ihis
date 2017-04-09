@@ -20,7 +20,8 @@
     Conn conn = new Conn();
     String detailCode = request.getParameter("detailCode");
     String masterCode = request.getParameter("masterCode");
-
+    
+   
     String sqlSelect = "select detail_reference_code, description from adm_lookup_detail a join adm_health_facility b "
             + "on a.Detail_Reference_code = b.district_cd or a.detail_reference_code = b.town_cd "
             + "or a.detail_reference_code = b.state_cd WHERE detail_reference_code = '"+detailCode+"' limit 1";

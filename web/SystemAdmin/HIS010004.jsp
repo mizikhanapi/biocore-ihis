@@ -21,6 +21,7 @@
         <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
         <link rel="stylesheet" href="bootstrap-3.3.6-dist/css/dataTables.bootstrap.min.css">
         <link rel="stylesheet" href="css/table.css">
+        <link rel="stylesheet" href="css/loading_sham.css">
 
         <!-- Bootstrap core JavaScript
       ================================================== -->

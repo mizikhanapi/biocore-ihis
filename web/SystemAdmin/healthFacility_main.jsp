@@ -16,7 +16,10 @@
 </h4>
 <!-- Add Button End -->
 
-<% Conn conn = new Conn();%>
+<% Conn conn = new Conn();
+    
+   String hfc_cd = session.getAttribute("HEALTH_FACILITY_CODE").toString();
+%>
 <!-- Add Modal Start -->
 <div class="modal fade" id="HFM_detail" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
     <div class="modal-dialog" style="width: 50%">
@@ -82,7 +85,7 @@
                                     <select class="form-control"  id="HFM_state" >
                                         <option  value="0" >Select the state</option>
                                         <%
-                                            String sql = "SELECT detail_reference_code, description FROM adm_lookup_detail WHERE master_reference_code = '0002' AND detail_reference_code NOT IN ('00', '98') order by description ";
+                                            String sql = "SELECT detail_reference_code, description FROM adm_lookup_detail WHERE master_reference_code = '0002' AND hfc_cd = '"+hfc_cd+"' AND detail_reference_code NOT IN ('00', '98') order by description ";
                                             ArrayList<ArrayList<String>> stateList = conn.getData(sql);
                                             for (int i = 0; i < stateList.size(); i++) {
                                         %>
@@ -513,6 +516,8 @@
                 $('#HFM_IP').focus();
 
             } else {
+                
+                $('<div class="loading">Loading</div>').appendTo('#HFM_detail');
 
                 var data = {
                     hfcName: hfcName,
@@ -580,7 +585,10 @@
                     },
                     error: function (err) {
                         console.log("Ajax Is Not Success: ");
-                    }
+                    },
+                    complete: function (jqXHR, textStatus ) {
+                        $('.loading').hide();
+                }
 
                 });
             }
