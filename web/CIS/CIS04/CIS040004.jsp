@@ -22,6 +22,7 @@
                     <div class="form-group">
                         <input class="form-control input-lg" type="text" name="problem"  id="searchFLU" placeholder="Search Doctor" tabindex="4">
                         <div id="matchFLU"></div>
+                        <input id="docFLUCode" type="hidden">
                     </div>   
                 </div>
                 
@@ -76,6 +77,7 @@
                     <div class="form-group">
                         <input class="form-control input-lg" type="text" name="problem"  id="usearchFLU" placeholder="Search Doctor" tabindex="4">
                         <div id="umatchFLU"></div>
+                        <input id="UdocFLUCode" type="hidden">
                     </div>   
                 </div>
                 

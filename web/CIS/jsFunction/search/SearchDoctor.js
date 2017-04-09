@@ -11,6 +11,20 @@ function searchDoctorcode(){
         }
     });
 }
+function searchDoctorcodeREF(){
+    var name = $('#docREF').val();
+     console.log(name);
+    $.ajax({
+        type: 'post',
+        url: 'search/SearchDoctor_cd.jsp',
+        data: {id: name},
+        timeout:5000,
+        success: function (reply_data) {
+            $('#docREFcode').val(reply_data.trim());
+            console.log(reply_data);
+        }
+    });
+}
 
 $(function () {
     $("#Searchdoctor").on('keyup', function () {
@@ -71,7 +85,7 @@ $(function () {
                         $('#docREF').val($(this).text()); // Update the field with the new element
                         $('#matchREFDOC').text(''); // Clear the <div id="match"></div>
                         //searchHFCcode();
-                        //searchDoctorcode();
+                        searchDoctorcodeREF();
                     });
                 },
                 error: function () { // if error

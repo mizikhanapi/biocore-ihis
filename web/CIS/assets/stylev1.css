@@ -171,3 +171,7 @@ select option:first-child{
 .modalTextLabel{
     margin: 10px;
 }
+
+.ui-timepicker-container{ 
+     z-index:1151 !important; 
+}

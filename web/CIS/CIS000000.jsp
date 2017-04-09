@@ -39,10 +39,35 @@
             window.onhashchange=function(){window.location.hash="no-back-button";};
           
             hfc_cd = '<%out.print(hfc_cd);%>';
+            hfc_name = '<%out.print(hfcName);%>';
             doctor_id = '<%out.print(user_id);%>';
             doctor_name = '<%out.print(username);%>';
             discipline = '<%out.print(discipline);%>';
             subdis = '<%out.print(subdicipline);%>';
+            console.log(discipline);
+            console.log(subdis);
+            
+            
+            $.ajax({
+            url: "search/searchRRI.jsp",
+            type: "post",
+            data: {
+
+                discipline_cd: discipline,
+                subdis_cd: subdis
+           },
+            success: function (data) {
+                
+                var dataA = data.trim().split("|");
+                disciplineName = dataA[0];
+                subdisName = dataA[1];
+                console.log(disciplineName);
+                console.log(subdisName);
+            },
+            error: function (err) {
+                console.log(err);
+            }
+        });
         </script>
     </head>
 

@@ -14,7 +14,7 @@
 <link href="assets/jquery-ui-1.12.1/jquery-ui.css" rel="stylesheet" type="text/css"/>
 
 <!--<link href="assets/style.css" rel="stylesheet">-->
-
+<link href="assets/jquery.timepicker.min.css" rel="stylesheet" type="text/css"/>
 <!-- Custom styles for this template -->
 
 
@@ -28,6 +28,7 @@
 <!-- <script src="assets/jquery-ui-1.12.1/jquery-ui.js" type="text/javascript"></script>-->
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script src="assets/bootstrap-3.3.7-dist/js/bootstrap.js" type="text/javascript"></script>
+<script src="assets/jquery.timepicker.min.js" type="text/javascript"></script>
 
 <script src="jsFunction/MainConfig.js"></script>
 <script src="jsFunction/Objective.js"></script>

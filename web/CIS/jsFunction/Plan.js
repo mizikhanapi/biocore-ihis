@@ -49,6 +49,46 @@ $(document).ready(function () {
         yearRange: "-100:+0",
         dateFormat: "dd-mm-yy"
     });
+        $(".DateFromMEC").datepicker({
+
+        changeMonth: true,
+        changeYear: true,
+        yearRange: "-100:+0",
+        dateFormat: "dd-mm-yy"
+    });
+        $(".DateToMEC").datepicker({
+
+        changeMonth: true,
+        changeYear: true,
+        yearRange: "-100:+0",
+        dateFormat: "dd-mm-yy"
+    });
+    
+    $('.num1MEC').timepicker({
+        timeFormat: 'H:mm ',
+        interval: 60,
+        minTime: '00:00',
+        maxTime: '23:59',
+        defaultTime: '13:00',
+        startTime: '10:00',
+        dynamic: false,
+        dropdown: true,
+        scrollbar: true
+    });
+      $('.num2MEC').timepicker({
+        timeFormat: 'H:mm ',
+        interval: 60,
+        minTime: '00:00',
+        maxTime: '23:59',
+        defaultTime: '13:00',
+        startTime: '10:00',
+        dynamic: false,
+        dropdown: true,
+        scrollbar: true
+    });
+  
+
+    
 //---------------------------------------------------------------------------------------------Drug Order Modal.
     //js ADD for Drug Order
     $('#acceptBtnDTO').click(function () {
@@ -368,14 +408,16 @@ $(document).ready(function () {
     //js add for MC & Time Slip
     $('#acceptMCTS').click(function (e) {
         e.preventDefault();
-        var DateFrom = $('#DateFrom').val();
-        var DateTo = $('#DateTo').val();
-        var num1 = $('#num1').val();
-        var num2 = $('#num2').val();
-        var num3 = $('#num3').val();
-        notes += "MEC|"
-        var $items = $('#DateFrom,#DateTo,#num1,#num2,#num3');
-        var obj1 = {};
+        var DateFrom = $('#DateFromMEC').val();
+        var DateTo = $('#DateToMEC').val();
+        var num1 = $('#num1MEC').val();
+        var num2 = $('#num2MEC').val();
+        
+
+        var $items = $('#DateFromMEC,#DateToMEC,#num1MEC,#num2MEC');
+        var obj1 = {
+            Acode:"MEC"
+        };
 
         $items.each(function () {
             obj1[this.id] = $(this).val();
@@ -384,13 +426,13 @@ $(document).ready(function () {
         _data.push(obj1);
         console.log(_data);
 
-        displayMCTS(DateFrom, DateTo, num1, num2, num3);
+        displayMCTS(DateFrom, DateTo, num1, num2);
 
-        $("#DateFrom").val("");
-        $("#DateTo").val("");
-        $("#num1").val("");
-        $("#num2").val("");
-        $("#num3").val("");
+        $("#DateFromMEC").val("");
+        $("#DateToMEC").val("");
+        $("#num1MEC").val("");
+        $("#num2MEC").val("");
+   
         $("#CIS040008").modal('toggle');
         // $(".modal-backdrop").hide();
 
@@ -402,11 +444,11 @@ $(document).ready(function () {
         var id = idName.split("|");
         var updateObj = _data[id[1]];
         console.log(_data);
-        $('#DDateFrom').val(updateObj.DateFrom);
-        $('#DDateTo').val(updateObj.DateTo);
-        $('#nnum1').val(updateObj.num1);
-        $('#nnum2').val(updateObj.num2);
-        $('#nnum3').val(updateObj.num3);
+        $('#UDateFromMEC').val(updateObj.DateFromMEC);
+        $('#UDateToMEC').val(updateObj.DateToMEC);
+        $('#Unum1MEC').val(updateObj.num1MEC);
+        $('#Unum2MEC').val(updateObj.num2MEC);
+
         $('#jsonId').val(id[1]);
         //$(this).closest('tr').remove();
 
@@ -416,17 +458,17 @@ $(document).ready(function () {
         e.preventDefault();
         var upObject = _data[$('#jsonId').val()];
         var rowId = $('#jsonId').val();
-        var _DDateFrom = $('#DDateFrom').val();
-        var _DDateTo = $('#DDateTo').val();
-        var _nnum1 = $('#nnum1').val();
-        var _nnum2 = $('#nnum2').val();
-        var _nnum3 = $('#nnum3').val();
-        upObject.DateFrom = _DDateFrom;
-        upObject.DateTo = _DDateTo;
-        upObject.num1 = _nnum1;
-        upObject.num2 = _nnum2;
-        upObject.num3 = _nnum3;
-        var sum = _DDateFrom + '| ' + _DDateTo + '| ' + _nnum1 + '| ' + _nnum2 + '| ' + _nnum3
+        var _DDateFrom = $('#UDateFromMEC').val();
+        var _DDateTo = $('#UDateToMEC').val();
+        var _nnum1 = $('#Unum1MEC').val();
+        var _nnum2 = $('#Unum2MEC').val();
+
+        upObject.DateFromMEC = _DDateFrom;
+        upObject.DateToMEC = _DDateTo;
+        upObject.num1MEC = _nnum1;
+        upObject.num2MEC = _nnum2;
+
+        var sum ="Date Start : "+ _DDateFrom + '</br> Date End: ' + _DDateTo + ' </br> Time Start : ' + _nnum1 + '</br> Time End:  ' + _nnum2 ;
 
         $('#sum' + rowId).html(sum);
         $("#update_CIS040008").modal('toggle');
@@ -675,7 +717,7 @@ $(document).ready(function () {
 
         //console.log(codeFLU);
 
-        var $items = $('#searchFLU, #DateFollowUp, #commentFLU');
+        var $items = $('#searchFLU, #DateFollowUp, #commentFLU,#docFLUCode');
         var obj1 = {Acode: 'FLU'};
         $items.each(function () {
             obj1[this.id] = $(this).val();
@@ -706,6 +748,7 @@ $(document).ready(function () {
         $('#usearchFLU').val(updateObj.searchFLU);
         $('#uDateFollowUp').val(updateObj.DateFollowUp);
         $('#ucommentFLU').val(updateObj.commentFLU);
+        $('#UdocFLUCode').val(updateObj.docFLUCode);
         $('#jsonId').val(id[1]);
         //$(this).closest('tr').remove();
         //console.log($('#UROS').val());
@@ -719,6 +762,7 @@ $(document).ready(function () {
         var _usearchFLU = $('#usearchFLU').val();
         var _uDateFollowUp = $('#uDateFollowUp').val();
         var _ucommentFLU = $('#ucommentFLU').val();
+         var _udocFLUCode = $('#UdocFLUCode').val();
 
         //console.log($('#UROS').val());
         //console.log(rowId);
@@ -726,6 +770,7 @@ $(document).ready(function () {
         upObject.searchFLU = _usearchFLU;
         upObject.DateFollowUp = _uDateFollowUp;
         upObject.commentFLU = _ucommentFLU;
+        upObject.docFLUCode = _udocFLUCode;
 
         var sum = _usearchFLU + '| ' + _uDateFollowUp + '| ' + _ucommentFLU;
 
@@ -760,7 +805,7 @@ $(document).ready(function () {
         var appREF = $('#appREF').val();
         var medhistoryREF = $('#medicalHisREF').val();
 
-        var $items = $('#REF, #hfcREFcode, #disREF, #disREFcode, #docREF, #appREF, #medicalHisREF');
+        var $items = $('#REF, #hfcREFcode, #disREF, #disREFcode, #docREF,#docREFcode, #appREF, #medicalHisREF');
         var obj1 = {Acode: 'PRI'};
         $items.each(function () {
             obj1[this.id] = $(this).val();
@@ -794,8 +839,9 @@ $(document).ready(function () {
         $("#UdisREF").val(updateObj.disREF);
         $("#UdisREFcode").val(updateObj.disREFcode);
         $("#UdocREF").val(updateObj.docREF);
+        $("#UdocREFcode").val(updateObj.docREFcode);
         $("#UappREF").val(updateObj.appREF);
-        $("#UmedicalHisREF").val(updateObj.medicalHisREF);      
+        $("#UmedicalHisREF").val(updateObj.medicalHisRef);      
 
         $('#jsonId').val(id[1]);
         //$(this).closest('tr').remove();
@@ -815,6 +861,7 @@ $(document).ready(function () {
         var _UdisREFcode = $('#UdisREFcode').val();
         var _UdocREF = $('#UdocREF').val();
         var _UappREF = $('#UappREF').val();
+        var _UdocREFcode = $('#UdocREFcode').val();
         var _UmedicalHisREF = $('#UmedicalHisREF').val();
       
         upObject.REF = _UREF;
@@ -822,6 +869,7 @@ $(document).ready(function () {
         upObject.disREF = _UdisREF;
         upObject.disREFcode = _UdisREFcode;
         upObject.docREF = _UdocREF;
+         upObject.docREFcode = _UdocREFcode;
         upObject.appREF = _UappREF;
         upObject.medicalHisREF = _UmedicalHisREF;    
 
@@ -847,13 +895,13 @@ function displaySOP(hfcName, disName, doctorName, comment10) {
 }
 
 function displayPOS(Problem18, proType, procedure_cd) {
-    var _tr = '<tr data-status="pagado" ><td><div class="ckbox"><input type="checkbox" id="checkbox1"><label for="checkbox1"></label></div></td><td><div class="media"><div class="media-body">Procedure Order Segment :<p class="summary" id="sum' + i + '">' + Problem18 + '|' + proType + '|' + procedure_cd + '</p></div></div></td><td><a data-toggle="modal"  data-target="#update_CIS040006" href="" class="updateBtn13" id="row|' + i + '"><i class="fa fa-pencil-square-o" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #337ab7;" ></i></a></a></td><td><a href="javascript:;" class="star"><a href="#" class="deleteBtn" id="row|' + i + '"><i class="fa fa-times" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #d9534f;"></i></a></a></td></tr>';
+    var _tr = '<tr data-status="pagado" ><td><div class="ckbox"><input type="checkbox" id="checkbox1"><label for="checkbox1"></label></div></td><td><div class="media"><div class="media-body">Procedure Order Segment :<p class="summary" id="sum' + i + '">' + Problem18 + '|' + proType + '|'  + '</p></div></div></td><td><a data-toggle="modal"  data-target="#update_CIS040006" href="" class="updateBtn13" id="row|' + i + '"><i class="fa fa-pencil-square-o" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #337ab7;" ></i></a></a></td><td><a href="javascript:;" class="star"><a href="#" class="deleteBtn" id="row|' + i + '"><i class="fa fa-times" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #d9534f;"></i></a></a></td></tr>';
     $('#POSNotes').append(_tr);
     i = i + 1;
 }
 
-function displayMCTS(DateFrom, DateTo, num1, num2, num3) {
-    var _tr = '<tr data-status="pagado" ><td><div class="ckbox"><input type="checkbox" id="checkbox1"><label for="checkbox1"></label></div></td><td><div class="media"><div class="media-body">MC & Time Slip :<p class="summary" id="sum' + i + '">' + DateFrom + '|' + DateTo + '|' + num1 + '|' + num2 + '|' + num3 + '</p></div></div></td><td><a data-toggle="modal"  data-target="#update_CIS040008" href="" class="updateBtn14" id="row|' + i + '"><i class="fa fa-pencil-square-o" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #337ab7;" ></i></a></a></td><td><a href="javascript:;" class="star"><a href="#" class="deleteBtn" id="row|' + i + '"><i class="fa fa-times" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #d9534f;"></i></a></a></td></tr>';
+function displayMCTS(DateFrom, DateTo, num1, num2) {
+    var _tr = '<tr data-status="pagado" ><td><div class="ckbox"><input type="checkbox" id="checkbox1"><label for="checkbox1"></label></div></td><td><div class="media"><div class="media-body">MC & Time Slip :<p class="summary" id="sum' + i + '">Date From: ' + DateFrom + '</br> Date End :' + DateTo + '</br> Time Start :' + num1 + '</br> Time Start :' + num2 + '|' + '</p></div></div></td><td><a data-toggle="modal"  data-target="#update_CIS040008" href="" class="updateBtn14" id="row|' + i + '"><i class="fa fa-pencil-square-o" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #337ab7;" ></i></a></a></td><td><a href="javascript:;" class="star"><a href="#" class="deleteBtn" id="row|' + i + '"><i class="fa fa-times" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #d9534f;"></i></a></a></td></tr>';
     $('#MCTSNotes').append(_tr);
     i = i + 1;
 }

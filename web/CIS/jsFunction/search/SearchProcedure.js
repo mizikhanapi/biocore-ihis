@@ -19,7 +19,9 @@ function getProcedureCode(){
         $.ajax({
         type:'post',
         url:'search/getProcedureCode.jsp',
-        data: 'id='+ $('#proType').val(),                
+        data: {
+            id:$('#proType').val()
+        },                
         success: function(reply_data){
             //console.log(reply_data);
             $('#procedure_cd').val(reply_data.trim());
@@ -47,7 +49,9 @@ function ugetProcedureCode(){
         $.ajax({
         type:'post',
         url:'search/getProcedureCode.jsp',
-        data: 'id='+ $('#pproType').val(),                
+        data: {
+            id:$('#pproType').val()
+        },              
         success: function(reply_data){
             //console.log(reply_data);
             $('#pprocedure_cd').val(reply_data.trim());

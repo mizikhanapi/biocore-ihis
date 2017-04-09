@@ -14,7 +14,9 @@ var hfc_cd = "04010101";
 var doctor_id = "SITI";
 var doctor_name = "DR. SITI HALIJAH BINTI ABU BAKAR";
 var discipline = "001";
+var disciplineName = "001";
 var subdis = "26";
+var subdisName = "26";
 var userSetting;
 
 var pmiNo = "";

@@ -35,6 +35,7 @@
                 <div class="form-group">
                     <h4 class="modal-title">Doctor referred to :</h4>
                     <input class="form-control input-lg" type="text" name="pro" id="docREF" placeholder="if other,please specify">
+                    <input type="hidden" id="docREFcode"></input>
                     <div id="matchREFDOC"></div>
                 </div>
 
@@ -107,6 +108,7 @@
                     <h4 class="modal-title">Doctor referred to :</h4>
                     <input class="form-control input-lg" type="text" name="pro" id="UdocREF" placeholder="if other,please specify">
                     <div id="UmatchREFDOC"></div>
+                    <input type="hidden" id="UdocREFcode"></input>
                 </div>
 
                 <div class="form-group">
