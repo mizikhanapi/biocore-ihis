@@ -11,6 +11,7 @@
 <%
      Conn Conn = new Conn();
     //String key = request.getParameter("input");
+    String hfc = session.getAttribute("HEALTH_FACILITY_CODE").toString();
     String id = request.getParameter("id");
     quoteFomatter quotee = new quoteFomatter();
     id.toLowerCase();
@@ -19,7 +20,7 @@
     
 
     
-    String searchProblem = "select detail_reference_code from adm_lookup_detail where master_reference_code = '0026' and description = '"+ newVal +"';";
+    String searchProblem = "select detail_reference_code from adm_lookup_detail where master_reference_code = '0026' and description = '"+ newVal +"'AND hfc_cd = '"+hfc+"';";
     ArrayList<ArrayList<String>> search = Conn.getData(searchProblem);
     if (search.size() > 0) {
 

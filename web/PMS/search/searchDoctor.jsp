@@ -11,7 +11,7 @@
     Conn Conn = new Conn();
     String input = request.getParameter("input");
     String hfc = request.getParameter("hfc");
-
+    
     String searchProblem = "select user_name from adm_users where CONCAT(UPPER(user_name),LOWER(user_name)) like '%" + input + "%' and health_facility_code ='"+hfc+"' ;";
     ArrayList<ArrayList<String>> search = Conn.getData(searchProblem);
     if (search.size() > 0) {

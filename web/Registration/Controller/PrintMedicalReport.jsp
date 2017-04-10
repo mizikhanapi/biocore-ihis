@@ -33,15 +33,27 @@
                 parameters.put("PMI_NO",pmiNo); 
                 byte[] bytes = JasperRunManager.runReportToPdf(reportFile.getPath(), parameters, conn);
 
+//                JRGraphics2DExporter exporter = new JRGraphics2DExporter();
+//                BufferedImage bufferedImage = new BufferedImage(595, 860, BufferedImage.TYPE_INT_RGB);
+//                Graphics2D g = (Graphics2D)bufferedImage.getGraphics();
+//                exporter.setParameter(JRGraphics2DExporterParameter.GRAPHICS_2D, g);
+//                exporter.setParameter(JRGraphics2DExporterParameter.ZOOM_RATIO, Float.valueOf(1));
+//                exporter.setParameter(JRExporterParameter.JASPER_PRINT, print);
+//                PrintRequestAttributeSet attrs = new HashPrintRequestAttributeSet();
+//                attrs.add(new PrinterResolution(500, 440, ResolutionSyntax.DPI));
+//                exporter.setParameter(JRPrintServiceExporterParameter.PRINT_REQUEST_ATTRIBUTE_SET, attrs);
+//                exporter.exportReport();
+//                g.dispose();
+//                ImageIO.write(bufferedImage, "PNG", out);
+
+                
+                
                 response.setContentType("application/pdf");
                 response.setContentLength(bytes.length);
                 ServletOutputStream outStream = response.getOutputStream();
                 outStream.write(bytes, 0, bytes.length);
-                OutputStream outt = new FileOutputStream("MedicalReport.pdf");
-                outt.write(bytes);
                 outStream.flush();
-                outStream.close();  
-                outt.close();
+                outStream.close(); 
                 
                
              } catch (Exception ex) {

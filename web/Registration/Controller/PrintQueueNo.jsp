@@ -47,11 +47,8 @@
                 response.setContentLength(bytes.length);
                 ServletOutputStream outStream = response.getOutputStream();
                 outStream.write(bytes, 0, bytes.length);
-                OutputStream outt = new FileOutputStream("C:/Users/user/Documents/biocore-ihis/web/Registration/Controller/QueueNO.pdf");
-                outt.write(bytes);
                 outStream.flush();
                 outStream.close();
-                outt.close();
             } catch (Exception ex) {
                 out.println("Error: " + ex.getMessage());
             }

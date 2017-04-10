@@ -17,9 +17,13 @@
 
     //                                                                                      DATE_FORMAT(n.created_date,'%d/%m/%Y')
     
-    String sql = "select n.queue_type,n.queue_name,n.queue_description,n.user_id,n.quota,n.status,n.created_by, DATE_FORMAT(n.created_date,'%d/%m/%Y'),n.hfc_cd,d.discipline_name,s.subdiscipline_name,h.hfc_name,x.user_name"
+    String sql = "select n.queue_type,n.queue_name,n.queue_description,ifnull(n.user_id, '-'),n.quota,n.status,n.created_by, DATE_FORMAT(n.created_date,'%d/%m/%Y'),n.hfc_cd,d.discipline_name,s.subdiscipline_name,h.hfc_name,x.user_name"
             + " from pms_queue_name n "
+<<<<<<< HEAD
             + "left join adm_users x on x.user_id = n.user_id " //aku tukar inner jadi left untuk test.
+=======
+            + "left join adm_users x on x.user_id = n.user_id "
+>>>>>>> f67f94f56e3f4d66dbc96f843ff489bd2fc7ddd7
             + "inner join adm_health_facility h on h.hfc_cd = n.hfc_cd "
             + "inner join adm_hfc_discipline a on a.discipline_cd = n.discipline_code and a.subdiscipline_cd = n.subdiscipline_code and a.hfc_cd = n.hfc_cd "
             + "inner join adm_discipline d on d.discipline_cd = a.discipline_cd "

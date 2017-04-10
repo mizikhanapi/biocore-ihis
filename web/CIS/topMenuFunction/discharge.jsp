@@ -71,7 +71,6 @@
     
     try
     {
-     //String sqlInsert = "INSERT INTO qcs_calling_system_queue(cs_hfc_cd,cs_discipline,cs_sub_discipline,cs_pmi_no,cs_patient_name,cs_queue_no,cs_queue_name,cs_datetime,cs_callingtime) VALUES ('"+dataPMS.get(0).get(0)+"','"+dataPMS.get(0).get(1)+"','"+dataPMS.get(0).get(2)+"','"+dataPMS.get(0).get(3)+"','"+dataPMS.get(0).get(4)+"','"+dataPMS.get(0).get(5)+"','"+dataPMS.get(0).get(6)+"','"+dataPMS.get(0).get(7)+"','4')";
        String sqlDelete = "DELETE FROM qcs_calling_system_queue WHERE cs_pmi_no = '"+pmino+"' AND cs_datetime = '"+episodedate+"'";
        rmic.setQuerySQL(conn.HOST, conn.PORT, sqlDelete);
     }

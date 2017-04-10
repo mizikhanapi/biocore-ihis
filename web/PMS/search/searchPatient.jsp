@@ -10,7 +10,7 @@
     String idTYpe2 = "select * from adm_lookup_detail where master_reference_code = '0012' AND hfc_cd = '"+hfc+"' ";
     ArrayList<ArrayList<String>> dataIdType2;
     ArrayList<ArrayList<String>> data2 = new ArrayList();
-
+    //String hfc = session.getAttribute("HEALTH_FACILITY_CODE").toString();
     //Conn conn = new Conn();
     dataIdType2 = conn.getData(idTYpe2);
     //out.print(dataIdType);

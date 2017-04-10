@@ -53,17 +53,22 @@
     String docID = request.getParameter("docID");
     int queue_now = 0;
     int newQueueNo = 0;
-
+    String roomNo = "";
     String insertEpisode="";
 
     //String testInsert = "insert into pms_episode(pmi_no)values('"+pmi+"')";
     String isAlreadyRegister = "select pmi_no from pms_episode where pmi_no = '" + pmi + "' and (status = '5' or status = '0' or status = '2') and episode_date like '%" + now + "%';";
     ArrayList<ArrayList<String>> alreadyRegis = conn.getData(isAlreadyRegister);
-    
+     if(docID.equals("-"))
+    {
+        roomNo = "";
+    } else
+    {
     String sqlRoom = "select room_no from adm_users where user_id='"+docID+"'";
     ArrayList<ArrayList<String>> dataRoom = conn.getData(sqlRoom);
-    String roomNo = dataRoom.get(0).get(0);
-    
+    roomNo = dataRoom.get(0).get(0);
+    }
+     
     if (alreadyRegis.size() > 0) {
         out.print("already");
 //out.print(queue_now);
