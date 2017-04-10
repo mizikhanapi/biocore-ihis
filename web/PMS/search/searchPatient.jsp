@@ -7,7 +7,7 @@
 <%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
-    String idTYpe2 = "select * from adm_lookup_detail where master_reference_code = '0012' ";
+    String idTYpe2 = "select * from adm_lookup_detail where master_reference_code = '0012' AND hfc_cd = '"+hfc+"' ";
     ArrayList<ArrayList<String>> dataIdType2;
     ArrayList<ArrayList<String>> data2 = new ArrayList();
 

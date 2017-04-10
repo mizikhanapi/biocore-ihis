@@ -5,10 +5,10 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
     // conn = new Conn();
-    String incomeRange51 = "select * from adm_lookup_detail where master_reference_code = '0028' ";
+    String incomeRange51 = "select * from adm_lookup_detail where master_reference_code = '0028' AND hfc_cd = '"+hfc+"' ";
     //String hcf51 = "select * from adm_lookup_detail where master_reference_code = '0081'   ";
-    String status51 = "select * from adm_lookup_detail where master_reference_code = '0014'   ";
-    String occupation51 = "select * from adm_lookup_detail where master_reference_code = '0050'";
+    String status51 = "select * from adm_lookup_detail where master_reference_code = '0014' AND hfc_cd = '"+hfc+"'   ";
+    String occupation51 = "select * from adm_lookup_detail where master_reference_code = '0050' AND hfc_cd = '"+hfc+"'";
 
     //String empList = "select * from pms_employment where pmi_no = ''";
     ArrayList<ArrayList<String>> dataIncomeRange51, dataHfc51, dataStatus51, dataOccu51;

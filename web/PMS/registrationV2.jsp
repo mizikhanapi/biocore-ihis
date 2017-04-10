@@ -11,13 +11,13 @@
     String dis = session.getAttribute("DISCIPLINE_CODE").toString();
     String sub = session.getAttribute("SUB_DISCIPLINE_CODE").toString();
 
-    String patCat = "select * from adm_lookup_detail where master_reference_code = '0033'   ";
-    String visType = "select * from adm_lookup_detail where master_reference_code = '0022'   ";
-    String eliCat = "select * from adm_lookup_detail where master_reference_code = '0063'   ";
-    String eliType = "select * from adm_lookup_detail where master_reference_code = '0034'   ";
+    String patCat = "select * from adm_lookup_detail where master_reference_code = '0033' AND hfc_cd = '"+hfc+"'   ";
+    String visType = "select * from adm_lookup_detail where master_reference_code = '0022' AND hfc_cd = '"+hfc+"'   ";
+    String eliCat = "select * from adm_lookup_detail where master_reference_code = '0063' AND hfc_cd = '"+hfc+"'   ";
+    String eliType = "select * from adm_lookup_detail where master_reference_code = '0034' AND hfc_cd = '"+hfc+"'   ";
     //String discip = "select * from adm_lookup_detail where master_reference_code = '0072'   ";
-    String prio = "select * from adm_lookup_detail where master_reference_code = '0036'   ";
-    String idTYpe = "select * from adm_lookup_detail where master_reference_code = '0012'   ";
+    String prio = "select * from adm_lookup_detail where master_reference_code = '0036' AND hfc_cd = '"+hfc+"'   ";
+    String idTYpe = "select * from adm_lookup_detail where master_reference_code = '0012' AND hfc_cd = '"+hfc+"'   ";
     String Commonqueue = "select * from pms_queue_list where queue_type='CM' and hfc_cd='" + hfc + "' and status ='Active' and discipline_cd = '" + dis + "'";
     String Consultationqueue = "select * from pms_queue_list where queue_type='FY' and hfc_cd='" + hfc + "' and status ='Active' and discipline_cd = '" + dis + "'";
     String Doctorqueue = "select * from pms_queue_list where queue_type='PN' and hfc_cd='" + hfc + "' and status ='Active' and discipline_cd = '" + dis + "'";

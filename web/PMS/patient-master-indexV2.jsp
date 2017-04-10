@@ -7,20 +7,20 @@
     //Conn conn = new Conn();
 
     //for select box items
-    String eliCat4 = "select * from adm_lookup_detail where master_reference_code = '0063'";
-    String eliType4 = "select * from adm_lookup_detail where master_reference_code = '0034'";
-    String gender4 = "select * from adm_lookup_detail where master_reference_code = '0041'";
-    String marital4 = "select * from adm_lookup_detail where master_reference_code = '0006'";
-    String race4 = "select * from adm_lookup_detail where master_reference_code = '0004'";
+    String eliCat4 = "select * from adm_lookup_detail where master_reference_code = '0063' AND hfc_cd = '"+hfc+"'";
+    String eliType4 = "select * from adm_lookup_detail where master_reference_code = '0034' AND hfc_cd = '"+hfc+"'";
+    String gender4 = "select * from adm_lookup_detail where master_reference_code = '0041' AND hfc_cd = '"+hfc+"'";
+    String marital4 = "select * from adm_lookup_detail where master_reference_code = '0006' AND hfc_cd = '"+hfc+"'";
+    String race4 = "select * from adm_lookup_detail where master_reference_code = '0004' AND hfc_cd = '"+hfc+"'";
     //String nationality4 = "select * from adm_lookup_detail where master_reference_code = '0011'";
-    String religion4 = "select * from adm_lookup_detail where master_reference_code = '0005'";
-    String idType4 = "select * from adm_lookup_detail where master_reference_code = '0012'";
+    String religion4 = "select * from adm_lookup_detail where master_reference_code = '0005' AND hfc_cd = '"+hfc+"'";
+    String idType4 = "select * from adm_lookup_detail where master_reference_code = '0012' AND hfc_cd = '"+hfc+"'";
     //String title4 = "select * from adm_lookup_detail where master_reference_code = '0026' ";
-    String bloodty4 = "select * from adm_lookup_detail where master_reference_code = '0074'   ";
-    String rhesus4 = "select * from adm_lookup_detail where master_reference_code = '0017'   ";
-    String allergy4 = "select * from adm_lookup_detail where master_reference_code = '0075'   ";
-    String chronicDesease4 = "select * from adm_lookup_detail where master_reference_code = '0076'  ";
-    String organDonor4 = "select * from adm_lookup_detail where master_reference_code = '0077'";
+    String bloodty4 = "select * from adm_lookup_detail where master_reference_code = '0074' AND hfc_cd = '"+hfc+"'   ";
+    String rhesus4 = "select * from adm_lookup_detail where master_reference_code = '0017' AND hfc_cd = '"+hfc+"'   ";
+    String allergy4 = "select * from adm_lookup_detail where master_reference_code = '0075' AND hfc_cd = '"+hfc+"'   ";
+    String chronicDesease4 = "select * from adm_lookup_detail where master_reference_code = '0076' AND hfc_cd = '"+hfc+"'  ";
+    String organDonor4 = "select * from adm_lookup_detail where master_reference_code = '0077' AND hfc_cd = '"+hfc+"'";
 //    String district4 = "select * from adm_lookup_detail where master_reference_code = '0078'   ";
 //    String postcode4 = "select * from adm_lookup_detail where master_reference_code = '0079'   ";
 //    String country4 = "select * from adm_lookup_detail where master_reference_code = '0001'   ";

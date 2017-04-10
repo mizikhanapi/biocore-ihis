@@ -4,8 +4,8 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
     //Conn conn = new Conn();
-    String relation7 = "select * from adm_lookup_detail where master_reference_code = '0007'   ";
-    String occupation7 = "select * from adm_lookup_detail where master_reference_code = '0050'";
+    String relation7 = "select * from adm_lookup_detail where master_reference_code = '0007' AND hfc_cd = '"+hfc+"'   ";
+    String occupation7 = "select * from adm_lookup_detail where master_reference_code = '0050' AND hfc_cd = '"+hfc+"'";
     ArrayList<ArrayList<String>> dataRelation7, dataOccu7;
     dataRelation7 = conn.getData(relation7);
     dataOccu7 = conn.getData(occupation7);
