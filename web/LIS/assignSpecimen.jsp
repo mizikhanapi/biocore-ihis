@@ -3,6 +3,7 @@
     Created on : Feb 9, 2017, 4:57:14 PM
     Author     : user
 --%>
+<%@page import="java.util.Calendar"%>
 <%@page import="dBConn.Conn"%>
 <%@page import="java.util.List"%>
 <%@page import="java.text.SimpleDateFormat"%>
@@ -75,12 +76,22 @@
                         
                     <p>
                         <em>Specimen No: <% 
-                            String max  = "SELECT MAX(specimen_no) FROM lis_specimen";
-                            ArrayList<ArrayList<String>> q4 = conn.getData(max);
-
-                            int get1 = Integer.parseInt(q4.get(0).get(0));	
-                            int result = get1+1; 
-                            out.print(result);
+                             
+                            try{
+                                
+                                int year = Calendar.getInstance().get(Calendar.YEAR);
+                                String test = "SELECT CONCAT('SPE',LPAD(SUBSTRING(COALESCE(MAX(specimen_no),'SPE000'),4,4)+1,4,'0'))FROM lis_specimen";
+                                ArrayList<ArrayList<String>> q4 = conn.getData(test);
+                            
+                                out.print(q4.get(0).get(0));
+                            }
+                            catch(Exception e)
+                            {
+                             //error handling code
+                            }
+                            
+                            //String generate = "SELECT RIGHT ('0000'+ CAST (@Number AS varchar), 4)";
+                           
                         %></em>
                     </p>
                     <p>

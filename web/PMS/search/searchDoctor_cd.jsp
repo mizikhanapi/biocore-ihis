@@ -11,9 +11,9 @@
      Conn Conn = new Conn();
     //String key = request.getParameter("input");
     String id = request.getParameter("id");
-    
+    String hfc = session.getAttribute("HEALTH_FACILITY_CODE").toString();
     id.toLowerCase();
-    String searchProblem = "select user_id from adm_users where user_name='"+id+"';";
+    String searchProblem = "select user_id from adm_users where user_name='"+id+"' AND health_facility_code = '"+hfc+"';";
     ArrayList<ArrayList<String>> search = Conn.getData(searchProblem);
     if (search.size() > 0) {
 

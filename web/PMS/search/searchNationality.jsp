@@ -10,8 +10,9 @@
 <%
     Conn Conn = new Conn();
     String input = request.getParameter("input");
+     String hfc = session.getAttribute("HEALTH_FACILITY_CODE").toString();
 
-    String searchProblem = "select description from adm_lookup_detail where master_reference_code = '0011' and CONCAT(UPPER(description),LOWER(description)) like '%" + input + "%';";
+    String searchProblem = "select description from adm_lookup_detail where master_reference_code = '0011' and CONCAT(UPPER(description),LOWER(description)) like '%" + input + "%' AND hfc_cd = '"+hfc+"';";
     ArrayList<ArrayList<String>> search = Conn.getData(searchProblem);
     if (search.size() > 0) {
 %>

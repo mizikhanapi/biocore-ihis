@@ -1,3 +1,8 @@
+<%--
+Document   : SelectQueue_2
+Created on : Apr 10, 2017, 4:25:40 PM
+Author     : user
+--%>
 <%@page import="dBConn.Conn"%>
 <%@page import="Config.Config"%>
 <%@page import="java.util.ArrayList"%>
@@ -5,10 +10,10 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
     Config.getBase_url(request);
-     Config.getFile_url(session);
-   
+    Config.getFile_url(session);
+
     Conn conn = new Conn();
- 
+
     String Consultationqueue = "select * from pms_queue_name where queue_type='FY' ";
     String Doctorqueue = "select * from pms_queue_name where queue_type='PN' ";
       
@@ -19,66 +24,59 @@
         dataQueue2 = conn.getData(Consultationqueue);
 %>
 
-
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Kiosk | Registration Page</title>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Kiosk | Signup Page</title>
+        <!--header-->
+        <%@include file="../assets/header.html"%>
+        <link  rel="stylesheet" href="../assets/css/radiobtn.css">
 
-  
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        
-    <script src="../Dashboard_files/jquery.min.js.download"></script>
-        
-    <div w3-include-html="../libraries/header.html"></div>
-        <%@include file="../Header.jsp"%>
-        
-  
-    <link href="../assets/css/login.css" rel="stylesheet">
-     <link  rel="stylesheet" href="../css/style.css">
-     
-  
-  
-</head>
+        <!--header-->
+    </head>
+    <body>
+        <input type="text" id="Rhfc" name="hiddeninput_HFC" hidden="" value='<%=session.getAttribute("HEALTH_FACILITY_CODE").toString()%>'>
+        <div class="container-fluid m-scene">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="row">
+                        <div class="col-md-4 col-md-offset-4" style="margin-top: 2%;">
+                            <div class="thumbnail">
+                                <a href="../mainMenu.jsp" title="Back to Dashboard"><i class="fa fa-arrow-left fa-lg pull-left" style="color: #ccc;"></i></a>
+                                <a href="../../Entrance/destroySession.jsp" title="Log Out"><i class="fa fa-power-off fa-lg pull-right" style="color: #ccc;"></i></a>
+                                <div class="profile-img-card" style="text-align: center;" >
+                                    <i class="fa fa-user-md" aria-hidden="true" style="color: #666; font-size: 100px;"></i>
+                                </div>
+                                <div class="logo" style="font-size: 32px; text-align: center;">
+                                    Please Enter your IC Number
+                                </div>
+                                <br/>
+                                <form class="form-signin" action="dashboard.jsp">
+                                    <span id="reauth-email" class="reauth-email"></span>
 
-<body>
-  
-    <input type="text" id="Rhfc" name="hiddeninput_HFC" hidden="" value='<%=session.getAttribute("HEALTH_FACILITY_CODE").toString()%>'>
-    <div class="container">
-     <div class="" >
-         <div class="card card-container" >
-             <!-- <img class="profile-img-card" src="//lh3.googleusercontent.com/-6V8xOA6M7BA/AAAAAAAAAAI/AAAAAAAAAAA/rzlHcD0KYwo/photo.jpg?sz=120" alt="" /> -->
-             <div class="profile-img-card">
-                 <i class="fa fa-user-md" aria-hidden="true" style="color: #666; font-size: 100px;"></i>
-             </div>
-             <h2 style="text-align: center;">iHIS</h2>
-             <p id="profile-name" class="profile-name-card">Please Enter your IC Number</p>
-             <form class="form-signin" action="dashboard.jsp">
-                 <span id="reauth-email" class="reauth-email"></span>
-                 
-                 <input type="text" id="inputUserIC" class="form-control" placeholder="Enter Your IC" name="useric">
-                 <input type="text" id="inputUserName" class="form-control" placeholder="" name="username" disabled="">
-                 
-                
-                 <div class="form-group">
-                    <label class="control-label" for="selectbasic">Please Select Queue</label>
-                    <!--<div class="col-md-8">-->
-                          <br>      
-                    <div class="btn-group" data-toggle="buttons">
-                        <label class="btn active marglft" for="commonQueue">
-                            <input type="radio" id ="commonQueue" name='queuetype' value="CM"><i class="fa fa-circle-o fa-2x"></i><i class="fa fa-dot-circle-o fa-2x "></i> <span>Consultation</span>
-                        </label>
-                        <label class="btn marglft" for="consultantQueue">
-                            <input type="radio" id ="consultantQueue" name='queuetype' value="FY"><i class="fa fa-circle-o fa-2x"></i><i class="fa fa-dot-circle-o fa-2x "></i><span>Services</span>
-                        </label>
-                         <label class="btn marglft" for="doctorQueue">
-                            <input type="radio" id ="doctorQueue" name='queuetype' value="PN"><i class="fa fa-circle-o fa-2x"></i><i class="fa fa-dot-circle-o fa-2x "></i><span>Doctors</span>
-                        </label>
-                    </div>
-                    <!--</div>-->
+                                    <input type="text" id="inputUserIC" class="form-control" placeholder="Enter Your IC" name="useric">
+                                    <input type="text" id="inputUserName" class="form-control" placeholder="Your Name" name="username" disabled="">
 
-                </div>
-                 <select  id="selectedServiceQueue"  class="form-control select-full" hidden>
+
+                                    <div class="form-group">
+                                        <label class="control-label" for="selectbasic">Please Select Queue</label>
+                                        <!--<div class="col-md-8">-->
+                                        <br>      
+                                        <div class="btn-group" data-toggle="buttons">
+                                            <label class="btn active marglft" for="commonQueue">
+                                                <input type="radio" id ="commonQueue" name='queuetype' value="CM"><i class="fa fa-circle-o fa-2x"></i><i class="fa fa-dot-circle-o fa-2x "></i> <span>Consultation</span>
+                                            </label>
+                                            <label class="btn marglft" for="consultantQueue">
+                                                <input type="radio" id ="consultantQueue" name='queuetype' value="FY"><i class="fa fa-circle-o fa-2x"></i><i class="fa fa-dot-circle-o fa-2x "></i><span>Services</span>
+                                            </label>
+											<label class="btn marglft" for="doctorQueue">
+												<input type="radio" id ="doctorQueue" name='queuetype' value="PN"><i class="fa fa-circle-o fa-2x"></i><i class="fa fa-dot-circle-o fa-2x "></i><span>Doctors</span>
+											</label>
+                                        </div>
+                                        <!--</div>-->
+                                    </div>
+                                    <select  id="selectedServiceQueue"  class="form-control select-full" hidden>
                      <option value="null" selected="" disabled="">Please Select Queue</option>
                      
                         <%
@@ -118,40 +116,38 @@
                         %>
                        
                  </select>
-                        
-                        
-             </form><!-- /form -->
-    
-             <div class="form-signin tac">
-                    <div class="tac margin1 centerBtnDisplay">
-                        <button id="registerSignup" class="btn btn-lg bttn btn_block">Register</button>
-                    </div>
-                    <div class="tac margin1 centerBtnDisplay">
-                        <button id="cancelSignup" class="btn btn-lg bttn btn_block ">Cancel</button>
+
+                                </form>
+                                <div class="text-center">
+                                    <button id="registerSignup" class="btn btn-lg btn-primary">Register</button>
+                                    <button id="cancelSignup" class="btn btn-lg btn-default">Cancel</button>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-         </div>
+            </div>
+        </div>
 
-        </div><!-- /card-container -->
-    </div><!-- /container -->
-	
-       <div w3-include-html="../libraries/script.html"></div>
+        <!--Script-->
 
-    <script src="http://www.w3schools.com/lib/w3data.js"></script>
- 
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-    <!--Latest compiled JavaScript--> 
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script src="../assets/jquery.PrintArea.js"></script>
-    
-      <script>
-        w3IncludeHTML();
-        
+        <div w3-include-html="../libraries/script.html"></div>
 
-            $('#selectedDoctorQueue').hide();
-            $('#selectedServiceQueue').hide();
+        <script src="http://www.w3schools.com/lib/w3data.js"></script>
+        <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <script src="../assets/js/bootbox.min.js"></script>
+        <%@include file="../assets/script.html"%>
+        <script src="../assets/jquery.PrintArea.js"></script>
+
+        <script>
+            w3IncludeHTML();
             
-            var $body = $('body');
+			$('#selectedDoctorQueue').hide();
+            $('#selectedServiceQueue').hide();
+			
+			var $body = $('body');
             var yyyyMMddHHmmss;
             var HHmmss;
             var yyyyMMdd;
@@ -160,58 +156,52 @@
             var pmi_no;
             var user_id;
             var user_name;
-            
             //function to get date 
-    function getDateNow() {
-        //yyyy-MM-dd HH:mm:ss
-        var nowDate = new Date();
-        timeStamp = nowDate;
-        var ZeroMinutes, ZeroSeconds, ZeroDay, ZeroMonth;
-        //months
-        var month = (nowDate.getMonth() + 1);
-        if (month < 10) {
-            ZeroMonth = "0" + month;
-        } else {
-            ZeroMonth = month;
-        }
-
-        //days
-        var day = (nowDate.getDate());
-        if (day < 10) {
-            ZeroDay = "0" + day;
-        } else {
-            ZeroDay = day;
-        }
-
-        //years
-        var year = (nowDate.getFullYear());
-        //hours
-        var hours = nowDate.getHours();
-        //minutes
-        var minutes = nowDate.getMinutes();
-        if (minutes < 10) {
-            ZeroMinutes = "0" + minutes;
-        } else {
-            ZeroMinutes = minutes;
-        }
-        //seconds
-        var seconds = nowDate.getSeconds();
-        if (seconds < 10) {
-            ZeroSeconds = "0" + seconds;
-        } else {
-            ZeroSeconds = seconds;
-        }
-        //complete day
-        yyyyMMddHHmmss = year + "-" + ZeroMonth + "-" + ZeroDay + " " + hours + ":" + ZeroMinutes + ":" + ZeroSeconds;
-        HHmmss = hours + ":" + ZeroMinutes + ":" + ZeroSeconds;
-        yyyyMMdd = year + "-" + ZeroMonth + "-" + ZeroDay;
-        ddMMyyyy = ZeroDay + "-" + ZeroMonth + "-" + year;
-    }
+            function getDateNow() {
+                //yyyy-MM-dd HH:mm:ss
+                var nowDate = new Date();
+                timeStamp = nowDate;
+                var ZeroMinutes, ZeroSeconds, ZeroDay, ZeroMonth;
+                //months
+                var month = (nowDate.getMonth() + 1);
+                if (month < 10) {
+                    ZeroMonth = "0" + month;
+                } else {
+                    ZeroMonth = month;
+                }
+                //days
+                var day = (nowDate.getDate());
+                if (day < 10) {
+                    ZeroDay = "0" + day;
+                } else {
+                    ZeroDay = day;
+                }
+                //years
+                var year = (nowDate.getFullYear());
+                //hours
+                var hours = nowDate.getHours();
+                //minutes
+                var minutes = nowDate.getMinutes();
+                if (minutes < 10) {
+                    ZeroMinutes = "0" + minutes;
+                } else {
+                    ZeroMinutes = minutes;
+                }
+                //seconds
+                var seconds = nowDate.getSeconds();
+                if (seconds < 10) {
+                    ZeroSeconds = "0" + seconds;
+                } else {
+                    ZeroSeconds = seconds;
+                }
+                //complete day
+                yyyyMMddHHmmss = year + "-" + ZeroMonth + "-" + ZeroDay + " " + hours + ":" + ZeroMinutes + ":" + ZeroSeconds;
+                HHmmss = hours + ":" + ZeroMinutes + ":" + ZeroSeconds;
+                yyyyMMdd = year + "-" + ZeroMonth + "-" + ZeroDay;
+                ddMMyyyy = ZeroDay + "-" + ZeroMonth + "-" + year;
+            }
             
-   
-  
-  
-        //event when radio consolate is change
+			      //event when radio consolate is change
         document.getElementById("commonQueue").onchange = function() {changesConsClicked();};
        
             function changesConsClicked() {
@@ -245,58 +235,55 @@
                 $("#selectedServiceQueue").val("null");
                 
             };
-    
-    
+  
+			
+			
+			
             //event when radio button1 is change
-        document.getElementById("inputUserIC").onchange = function() {TextFiledchanges();};
-            
-            function TextFiledchanges() {
-
-                   var userIC;
-                   userIC = $("#inputUserIC").val();
-                   
-                   var data = {
-                       userIC:userIC
-                   };
-                   if(userIC === "")
-                   {
-                       bootbox.alert("please Fill in the user IC");
-                   }
-                   else
-                   {
-//                       console.log("before ajax");
-                       $.ajax({
-                           type:"POST",
-                           url: "../Controller/searchUser.jsp",
-                           data: data,
-                           timeout: 10000,
-                           success: function (data){
-//                               console.log("in sucess");
-                               if(data.trim() === "NOT FOUND")
-                               {
-                                   bootbox.alert("User NOT Found");
-                               }
-                               else
-                               {
-//                                   console.log(data.trim());
-                                   var splitData = String(data.trim()).split("|");
-//                                    console.log(splitData);
-                                    
-                                    pmi_no = splitData[0];
-                                    user_name = splitData[2];
-                                    user_id = splitData[7];
-                                   $("#inputUserName").val(user_name);
-//                                   console.log(pmi_no +" " +user_name+" "+user_id);
-                               }
-                           },
-                           error: function (err){
-                               console.log(err);
-                           }
-                       });
-                   }
+            document.getElementById("inputUserIC").onchange = function () {
+                TextFiledchanges();
             };
-            
-            
+            function TextFiledchanges() {
+                var userIC;
+                userIC = $("#inputUserIC").val();
+                var data = {
+                    userIC: userIC
+                };
+                if (userIC === "")
+                {
+                    bootbox.alert("please Fill in the user IC");
+                } else
+                {
+//                       console.log("before ajax");
+                    $.ajax({
+                        type: "POST",
+                        url: "../Controller/searchUser.jsp",
+                        data: data,
+                        timeout: 10000,
+                        success: function (data) {
+//                               console.log("in sucess");
+                            if (data.trim() === "NOT FOUND")
+                            {
+                                bootbox.alert("User NOT Found");
+                            } else
+                            {
+//                                   console.log(data.trim());
+                                var splitData = String(data.trim()).split("|");
+//                                    console.log(splitData);
+                                pmi_no = splitData[0];
+                                user_name = splitData[2];
+                                user_id = splitData[7];
+                                $("#inputUserName").val(user_name);
+//                                   console.log(pmi_no +" " +user_name+" "+user_id);
+                            }
+                        },
+                        error: function (err) {
+                            console.log(err);
+                        }
+                    });
+                }
+            }
+            ;
 //            
 //            
 //            
@@ -311,22 +298,17 @@
 //                } 
 //            });
 //               
-            
-            
-           $("#cancelSignup").on("click", function(){
-               
-                   window.history.back();
-                              
-           });//on clcik submitSignup
-           
-           $("#registerSignup").click(function(){
-               getDateNow();
+            $("#cancelSignup").on("click", function () {
+                window.history.back();
+            });//on clcik submitSignup
+            $("#registerSignup").click(function () {
+                getDateNow();
                 var useric, username, queuetype, selectedqueue;
-                
-                useric= $("#inputUserIC").val();
-                username= $("#inputUserName").val();
-        	queuetype = $("input[name='queuetype']:checked").val();
-                if(queuetype === "CM")
+                useric = $("#inputUserIC").val();
+                username = $("#inputUserName").val();
+                queuetype = $("input[name='queuetype']:checked").val();
+            
+			              if(queuetype === "CM")
                     {
                         selectedqueue ="Normal Queue";
                     }
@@ -338,27 +320,26 @@
                     {
                         selectedqueue =  $('#selectedServiceQueue').val();
                     }
+			
+			
 //                console.log(useric+" "+username+" "+queuetype+" "+selectedqueue);
-                
-                if(useric === "")
+                if (useric === "")
                 {
                     bootbox.alert("Fill in the user IC");
                     $("#inputUserIC").focus();
                 } else if (username === "") {
                     bootbox.alert("Fill in the user Name");
                     $("#inputUserName").focus();
-                }else if (containsNumber(username)) {
+                } else if (containsNumber(username)) {
                     bootbox.alert("UnValic Name, Contain Numbers");
-                     $("#inputUserName").focus();
+                    $("#inputUserName").focus();
                 } else if (selectedqueue === "" || selectedqueue === null) {
                     bootbox.alert("Please Select Queue");
-                     $("#selectedQueue").focus();
+                    $("#selectedQueue").focus();
                 } else {
                     
-                    
-                    
-           
-            //hfc amik kat session
+					
+					 //hfc amik kat session
             hfc = $("#Rhfc").val();
             var datas = {'pmi': pmi_no,
                 'epiDate': yyyyMMdd+" "+HHmmss,
@@ -416,12 +397,10 @@
                             }, error: function (err) {
                                 console.log(err);   
                                 bootbox.alert("There is an error!");
-                            }
-                        });
-                    
-                    
-                    
-                    
+								
+								
+                        }
+                    });
 //                    
 //                    var data = {
 //                        'userIC': useric,
@@ -452,15 +431,11 @@
 //                                    console.log(err);
 //                            }
 //                        });
-            
-                    
                 }
-                
 //                var mode = 'iframe'; //popup
 //                var close = mode == "popup";
 //                var options = { mode : mode, popClose : close};
 //                $("div.printableArea").printArea( options );
-               
 //                var prtContent = document.getElementById("printableArea");
 //                var WinPrint = window.open('', 'Queue', 'left=0,top=0,width=4.8cm,height=4.8cm,toolbar=0,scrollbars=0,status=0');
 //                WinPrint.document.write(prtContent.innerHTML);
@@ -469,7 +444,6 @@
 //                WinPrint.print();
                 //WinPrint.close();
 //                
-                
 //            var printContents = document.getElementById(divName).innerHTML;
 //            var originalContents = document.body.innerHTML;
 //
@@ -478,26 +452,17 @@
 //            window.print(); 
 //
 //            document.body.innerHTML = originalContents;
-        });
-          
-                 function containsNumber(any){    
-                    var alpha = /^[a-zA-Z-,]+(\s{0,1}[a-zA-Z-, ])*$/; //for sentence allow space
-                    //var re = /^[A-Za-z]+$/; for one word only don't allow space
-                    if(alpha.test(any))//contain no number
-                       return false;
-                    else               //comtain number
-                      return true;      
-                 };
-                
-               
-         
-    
+            });
+            function containsNumber(any) {
+                var alpha = /^[a-zA-Z-,]+(\s{0,1}[a-zA-Z-, ])*$/; //for sentence allow space
+                //var re = /^[A-Za-z]+$/; for one word only don't allow space
+                if (alpha.test(any))//contain no number
+                    return false;
+                else               //comtain number
+                    return true;
+            };
 //    });
-      </script>
-   
-    
-    
-</div>
-</body>
+        </script>
 
+    </body>
 </html>
