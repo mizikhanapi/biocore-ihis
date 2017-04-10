@@ -11,6 +11,8 @@
 <%
     Conn conn = new Conn();
     String user_hfc = session.getAttribute("HEALTH_FACILITY_CODE").toString();
+    String super_user = (String)session.getAttribute("USER_ID");
+    String last_nine = super_user.substring(super_user.length() - 1);
 %>
 <table  id="THE_userTable"  class="table table-striped table-bordered" cellspacing="0" width="100%">
     <thead>
@@ -26,13 +28,20 @@
 <tbody>
 
     <%
+        String whereClause = "";
+        
+        if(!user_hfc.equals("99_iHIS_99") || !last_nine.equals("9")){
+    
+          whereClause = "WHERE a.health_facility_code = '" + user_hfc + "'";
+        }
+        
         //                      0       1                       2           3                       4               5                                6        7       8               9           10          11          12      13                  14                                              15                                        16          17              18          19          20                          21                  22          23         24           25                      26                  27                  28                      29
         String sql = " SELECT user_id, a.health_facility_code, user_name, 'password' as dummy, occupation_code, DATE_FORMAT(birth_date,'%d/%m/%Y'), sex_code, new_icno, home_phone, office_phone, mobile_phone, a.fax_no, a.email, id_category_code, ifnull(DATE_FORMAT(start_date,'%d/%m/%Y'), '') ,ifnull(DATE_FORMAT(end_date,'%d/%m/%Y'), '') , title, nationality_code, user_type, user_group, user_classification_code, ifnull(a.status, '0'), hfc_name, mother_name, room_no, ifnull(login_status, '0'), c.discipline_code, d.discipline_name, c.subdiscipline_code, e.subdiscipline_name "
                 + "FROM adm_users a join adm_health_facility b on a.health_facility_code = hfc_cd "
                 + "join adm_user_access_role c using (user_id) "
                 + "join adm_discipline d on c.discipline_code = d.discipline_cd "
                 + "join adm_subdiscipline e on c.discipline_code = e.discipline_cd AND c.subdiscipline_code = e.subdiscipline_cd "
-                + "WHERE a.health_facility_code = '" + user_hfc + "'";
+                + whereClause;
         ArrayList<ArrayList<String>> dataUser = conn.getData(sql);
 
         int size = dataUser.size();

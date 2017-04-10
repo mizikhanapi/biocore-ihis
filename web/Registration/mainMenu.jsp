@@ -1,88 +1,78 @@
-  <%@page import="dBConn.Conn"%>
+<%-- 
+    Document   : mainMenu_2
+    Created on : Apr 10, 2017, 12:10:43 PM
+    Author     : user
+--%>
+<%@page import="dBConn.Conn"%>
 <%@page import="Config.Config"%>
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-<%
-    
-    if (!(session.getAttribute("Patient_IC") == null || session.getAttribute("Patient_IC").equals("")))
-        {
-     %>
-            <script type="text/javascript">
-                $(document).ready(function () {
-                    $('#signupBtn').hide();
-                 });
-                
-                </script>
-<%
-        }
-        else
-        {
 
-%>
-            <script type="text/javascript">
-                $(document).ready(function () {
-                    $('#logoutBtn').hide();
-                 });
-                
-                </script>
-<%
-
-        }
-   
-%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-<head>
-    <title>Kiosk | Main Menu Page</title>
-     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        
-    <script src="Dashboard_files\jquery.min.js.download"></script>
-        
-    <div w3-include-html="libraries/header.html"></div>
-        <%@include file="Header.jsp"%>
-        
-  
-    <link href="assets/css/login.css" rel="stylesheet">
-     <link  rel="stylesheet" href="css/style.css">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Kiosk | Main Menu</title>
+        <!--header-->
+        <%@include file="../assets/header.html"%>
+        <!--header-->
 
-  
-</head>
-<body>
-    
-    
-    
-      <div class="container">
-        <div class="card card-container">
-            <div class="profile-img-card">
-                <i class="fa fa-user-md" aria-hidden="true" style="color: #666; font-size: 100px;"></i>
-            </div>
-            <h2 style="text-align: center; margin-bottom: 10%">iHIS</h2>
-            
-            <p id="profile-name" class="profile-name-card " style="font: 17px; margin: 10%;">PLEASE SELECT Service</p>
-            <div class="tac">
-                <div id="signupBtn" class="tac margin1 centerBtnDisplay">
-                     <a  href="signUp/readinfo.jsp" class="btn btn-lg  bttn " >Sign up</a>
-                </div>
-                <div class="tac margin1 centerBtnDisplay">
-                     <a href="registration/SelectQueue.jsp" class="btn btn-lg  bttn " >Registration</a> 
-                </div>
-                
-                <div class="tac margin1 centerBtnDisplay">
-                     <a href="medicalHistory/printReport.jsp" class="btn btn-lg  bttn " >View Medical History</a> 
+    </head>
+    <body>
+        <div class="container-fluid m-scene">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="row">
+                        <div class="col-md-4 col-md-offset-4" style="margin-top: 2%;">
+                            <div class="thumbnail" style="text-align: center;">
+                                <a href="." title="Back to Dashboard"><i class="fa fa-arrow-left fa-lg pull-left" style="color: #ccc;"></i></a>
+                                <a href="../Entrance/destroySession.jsp" title="Log Out"><i class="fa fa-power-off fa-lg pull-right" style="color: #ccc;"></i></a>
+                                <div class="profile-img-card" >
+                                    <i class="fa fa-user-md" aria-hidden="true" style="color: #666; font-size: 100px;"></i>
+                                </div>
+                                <div class="logo" style="font-size: 32px;">
+                                    Please Select Services
+                                </div>
+                                <div class="text-center">
+                                    <a href="signUp/readinfo.jsp" class="btn btn-success btn-lg" >Sign Up</a>
+                                    <a href="registration/SelectQueue.jsp" class="btn btn-default btn-lg" >Registration</a> 
+                                </div>
+
+                                <div class="text-center" style="margin-top: 5px;">
+                                    <a href="medicalHistory/printReport.jsp" class="btn btn-info btn-lg" >View Medical History</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <a id="logoutBtn" href="destroySession.jsp" class="pull-right" style ="font-size:14px" type="submit">Log Out</a>
-            
-        </div><!-- /card-container -->
-    </div><!-- /container -->
-      
-  
-       <div w3-include-html="libraries/script.html"></div>
+        </div>
 
-    <script src="http://www.w3schools.com/lib/w3data.js"></script>
+        <!--Script-->
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+        <%@include file="../assets/script.html"%>
+        <%
 
-      <script>
-        w3IncludeHTML();
-      </script>
-      
-</body>
+            if (!(session.getAttribute("Patient_IC") == null || session.getAttribute("Patient_IC").equals(""))) {
+        %>
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $('#signupBtn').hide();
+            });
+
+        </script>
+        <%
+        } else {
+
+        %>
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $('#logoutBtn').hide();
+            });
+
+        </script>
+        <%    }
+
+        %>
+
+    </body>
 </html>

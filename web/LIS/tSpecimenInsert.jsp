@@ -1,3 +1,4 @@
+<%@page import="java.util.Calendar"%>
 <%@page import="dBConn.Conn"%>
 <%@page import="java.util.List"%>
 <%@page import="java.text.SimpleDateFormat"%>
@@ -28,11 +29,15 @@
         RMIConnector rmic = new RMIConnector();
         Conn conn = new Conn();
         
-        String max  = "SELECT MAX(specimen_no) FROM lis_specimen";
-        ArrayList<ArrayList<String>> q4 = conn.getData(max);
-        int get1 = Integer.parseInt(q4.get(0).get(0));	
-        int result = get1+1;
+//        String max  = "SELECT MAX(specimen_no) FROM lis_specimen";
+//        ArrayList<ArrayList<String>> q4 = conn.getData(max);
+//        int get1 = Integer.parseInt(q4.get(0).get(0));	
+//        int result = get1+1;
        
+        int year = Calendar.getInstance().get(Calendar.YEAR);
+        String count1 = "SELECT CONCAT('SPE',LPAD(SUBSTRING(COALESCE(MAX(specimen_no),'SPE000'),4,4)+1,4,'0'))FROM lis_specimen";
+        ArrayList<ArrayList<String>> result = conn.getData(count1);
+        
         for(int i=0;i<number;i++)
         {
             
@@ -41,7 +46,7 @@
             rmic.setQuerySQL(conn.HOST, conn.PORT, hfc_code);
             ArrayList<ArrayList<String>> q2 = conn.getData(hfc_code);
             
-            String sqlInsert = "INSERT INTO lis_specimen(specimen_no,order_no,pmi_no,hfc_cd,item_cd,Collection_date,Collection_time,specimen_status,patient_name,receive_specimen_status) VALUES ('"+result+"','"+orderno1+"','"+pmi+"','"+q2.get(0).get(0)+"','"+Specimen[i]+"','"+C_date+"','"+C_time+"','"+status+"','"+patient_name+"','"+test+"')";
+            String sqlInsert = "INSERT INTO lis_specimen(specimen_no,order_no,pmi_no,hfc_cd,item_cd,Collection_date,Collection_time,specimen_status,patient_name,receive_specimen_status) VALUES ('"+result.get(0).get(0)+"','"+orderno1+"','"+pmi+"','"+q2.get(0).get(0)+"','"+Specimen[i]+"','"+C_date+"','"+C_time+"','"+status+"','"+patient_name+"','"+test+"')";
             rmic.setQuerySQL(conn.HOST, conn.PORT, sqlInsert);
             
             String sqlInsert1 = "UPDATE lis_order_detail SET specimen_status = 'Test Not Available Yet',Verification = 'Wait for Assign Specimen' WHERE order_no = '"+orderno1+"' AND item_cd = '"+Specimen[i]+"'";

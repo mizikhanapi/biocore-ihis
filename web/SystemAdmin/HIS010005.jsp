@@ -74,10 +74,10 @@
                                                     MODULE </a>
                                             </li>
 
-<!--                                            <li>
+                                            <li>
                                                 <a href="#S_tab3" data-toggle="tab">
                                                     TRANSACTION CODE </a>
-                                            </li>-->
+                                            </li>
 
                                             <li>
                                                 <a href="#S_tab4" data-toggle="tab">
@@ -174,8 +174,8 @@
                 $("#moduleMain").load("module_main.jsp");
                 $("#moduleTable").load("module_table.jsp");
 
-//                $("#transactionMain").load("transaction_main.jsp");
-//                $("#transactionTable").load("transaction_table.jsp");
+                $("#transactionMain").load("transaction_main.jsp");
+                $("#transactionTable").load("transaction_table.jsp");
 
                 $("#pageMain").load("page_main.jsp");
                 $("#pageTable").load("page_table.jsp");
