@@ -8,10 +8,11 @@
 <%@page import="dBConn.Conn"%>
 <%
     String roleCode = request.getParameter("roleCode");
+    String hfc_cd = session.getAttribute("HEALTH_FACILITY_CODE").toString();
     
     Conn conn = new Conn();
     
-    String sqlexistingPageRole = "Select page_code from adm_responsibility where role_code = '"+roleCode+"'";
+    String sqlexistingPageRole = "Select page_code from adm_responsibility where role_code = '"+roleCode+"' AND health_facility_code = '"+hfc_cd+"'";
     
     ArrayList<ArrayList<String>> dataCurRolePage = conn.getData(sqlexistingPageRole);
     

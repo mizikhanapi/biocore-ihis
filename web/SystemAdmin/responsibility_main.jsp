@@ -106,7 +106,7 @@
 
             var roleCode = $('#RESM_selectRole').val();
             var status = $('#RESM_selectStatus').val();
-            
+
             console.log(systemCode);
             console.log(moduleCode);
             console.log(pageCode);
@@ -131,7 +131,7 @@
                     page: pageCode,
                     status: status
                 };
-
+                $('<div class="loading">Loading</div>').appendTo('#RESM_detail');
 
 
                 $.ajax({
@@ -168,6 +168,9 @@
                     },
                     error: function (err) {
                         console.log("Ajax Is Not Success");
+                    },
+                    complete: function (jqXHR, textStatus) {
+                        $('.loading').hide();
                     }
 
                 });
@@ -201,7 +204,7 @@
             var data = {process: "page"};
 
             $('#RESM_selectPage').multiSelect('destroy');
-
+            $('<div class="loading">Loading</div>').appendTo('#RESM_detail');
             $.ajax({
                 data: data,
                 type: 'POST',
@@ -217,7 +220,10 @@
 
                 },
                 error: function (jqXHR, textStatus, errorThrown) {
-
+                    bootbox.alert("Opps! " + errorThrown);
+                },
+                complete: function (jqXHR, textStatus) {
+                    $('.loading').hide();
                 }
             });
         }

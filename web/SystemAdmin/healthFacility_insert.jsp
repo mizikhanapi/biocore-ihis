@@ -94,8 +94,13 @@
                 + "select role_code, role_name, status, '"+creator+"', now(), '"+hfcCode+"' "
                 + "from adm_role where hfc_cd = '99_iHIS_99'";
         
+        String copyResponsibility = "insert into adm_responsibility(role_code, system_code, module_code, page_code, health_facility_code, status, created_by, created_date) "
+                + "select role_code, system_code, module_code, page_code, '"+hfcCode+"', status, '"+creator+"', now() from adm_responsibility "
+                + "WHERE health_facility_code = '99_iHIS_99'";
+        
         rmic.setQuerySQL(conn.HOST, conn.PORT, copyLookup);
         rmic.setQuerySQL(conn.HOST, conn.PORT, copyRole);
+        rmic.setQuerySQL(conn.HOST, conn.PORT, copyResponsibility);
     
     }
 %>

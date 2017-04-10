@@ -15,6 +15,7 @@
 
 <%
     Conn conn = new Conn();
+    String hfc_cd = session.getAttribute("HEALTH_FACILITY_CODE").toString();
 
     String roleCode = request.getParameter("roleCode");
     String pageCode = request.getParameter("pageCode");
@@ -23,7 +24,7 @@
    
 
     RMIConnector rmic = new RMIConnector();
-    String sql = "DELETE FROM adm_responsibility WHERE role_code = '" + roleCode + "' AND page_code = '"+pageCode+"'";
+    String sql = "DELETE FROM adm_responsibility WHERE role_code = '" + roleCode + "' AND page_code = '"+pageCode+"' AND health_facility_code = '"+hfc_cd+"'";
 
     boolean status = rmic.setQuerySQL(conn.HOST, conn.PORT, sql);
 

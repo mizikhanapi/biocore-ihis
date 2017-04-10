@@ -24,10 +24,13 @@
 <tbody>
 
     <%
+        String hfc_cd = session.getAttribute("HEALTH_FACILITY_CODE").toString();
+        
         //                          0           1           2           3               4               5               6
         String sql = " select res.page_code, page_name, res.role_code, role_name, res.system_code, res.module_code, res.status "
                 + "from adm_responsibility res join adm_role r using (role_code) "
-                + "join adm_page p using (page_code)";
+                + "join adm_page p using (page_code) "
+                + "WHERE res.health_facility_code = r.hfc_cd AND res.health_facility_code = '"+hfc_cd+"'";
         ArrayList<ArrayList<String>> dataRes = conn.getData(sql);
 
         int size = dataRes.size();
@@ -237,25 +240,27 @@
         $('#REST_role2').val(roleName);
         $('#REST_hidden_roleCode').val(roleCode);
         $('#REST_status2').val('0');
+        
+        $('<div class="loading">Loading</div>').appendTo('#REST_detail2');
 
         createPageList(roleCode);
     });
 
 
-    $('#REST_user_selectAll').on('click', function (e) {
+    $('#REST_user_selectAll').off('click').on('click', function (e) {
         e.preventDefault();
         $('#REST_page2').multiSelect('select_all');
         return false;
     });
 
-    $('#REST_user_deselectAll').on('click', function (e) {
+    $('#REST_user_deselectAll').off('click').on('click', function (e) {
         e.preventDefault();
         $('#REST_page2').multiSelect('deselect_all');
         return false;
     });
 
 
-    $('#REST_btnSave').on('click', function () {
+    $('#REST_btnSave').off('click').on('click', function () {
 
         var roleCode = $('#REST_hidden_roleCode').val();
         var status = $('#REST_status2').val();
@@ -289,7 +294,7 @@
             bootbox.alert("Please select the status");
         
         }else{
-            
+            $('<div class="loading">Loading</div>').appendTo('#REST_detail2');
             var data = {
                 system : strSystemCode,
                 module : strModuleCode,
@@ -313,7 +318,10 @@
                     },
                 error: function (jqXHR, textStatus, errorThrown) {
                         bootbox.alert("Opps! "+errorThrown + ". Please try again later");
-                    }
+                    },
+                complete: function (jqXHR, textStatus ) {
+                        $('.loading').hide();
+                }
             });
             
             
@@ -488,7 +496,7 @@
             roleCode: roleCode
         };
         $('#REST_page2').multiSelect('destroy');
-
+       
         $.ajax({
             type: 'POST',
             url: "REST_result_multiSelect.jsp",
@@ -501,7 +509,10 @@
                     keepOrder: true
                 });
 
-            }
+            },
+            complete: function (jqXHR, textStatus ) {
+                        $('.loading').hide();
+                }
         });
 
     }

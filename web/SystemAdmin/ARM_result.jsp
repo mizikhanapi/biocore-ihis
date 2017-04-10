@@ -10,6 +10,10 @@
 <%
     Conn conn = new Conn();
     String adminHFC = session.getAttribute("HEALTH_FACILITY_CODE").toString();
+    String user_id = session.getAttribute("USER_ID").toString();
+    
+    String last_nine = user_id.substring(user_id.length() - 1);
+        
     String process = request.getParameter("process");
     //String user = request.getParameter("user");
     String hfc = request.getParameter("hfc");
@@ -18,8 +22,15 @@
     
     if(process.equalsIgnoreCase("user")){
         
-        String searchProblem = "Select user_id, user_name from adm_users where health_facility_code = '"+adminHFC+"' AND user_name is not null AND "
+        String whereClause = "";
+        if(!last_nine.equals("9") || !adminHFC.equals("99_iHIS_99")){
+        
+            whereClause = " AND health_facility_code = '"+adminHFC+"' ";
+        }
+        
+        String searchProblem = "Select user_id, user_name from adm_users where user_name is not null AND "
                 + "user_id in (Select user_id from adm_user_access_role where role_code = '-x-') "
+                +whereClause
                 + "order by user_name, user_id";
         ArrayList<ArrayList<String>> search = conn.getData(searchProblem);
         if (search.size() > 0)

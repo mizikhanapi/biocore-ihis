@@ -10,10 +10,13 @@
 <%
     Conn conn = new Conn();
     String process = request.getParameter("process");
+    String hfc_cd = session.getAttribute("HEALTH_FACILITY_CODE").toString();
     
     if(process.equalsIgnoreCase("role")){
         
-        String sql = "Select role_code, role_name from adm_role where role_code not in(Select role_code from adm_responsibility)";
+        String sql = "Select role_code, role_name from adm_role "
+                + "where role_code not in(Select role_code from adm_responsibility WHERE health_facility_code = '"+hfc_cd+"') "
+                + "AND hfc_cd = '"+hfc_cd+"'";
         
         ArrayList<ArrayList<String>> dataRole = conn.getData(sql);
         

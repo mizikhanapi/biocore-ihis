@@ -22,6 +22,7 @@
         <!-- header -->
         <%@include file = "../assets/header.html" %>
         <link href="../assets/css/login.css" rel="stylesheet">
+        <link href="libraries/loading_sham.css" rel="stylesheet">
         <!-- header -->
     </head> 
     <body>
@@ -99,6 +100,7 @@
                     alert("Fill in the password");
                     $("#inputPassword").focus();
                 } else {
+                    $('<div class="loading">Loading</div>').appendTo('#leForm');
 
                     $.ajax({
                         url: "login_process2.jsp",
@@ -126,6 +128,9 @@
                         },
                         error: function (err) {
                             alert("error :" + err.toString());
+                        },
+                        complete: function (jqXHR, textStatus ) {
+                            $('.loading').hide();
                         }
 
                     });

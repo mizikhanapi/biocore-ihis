@@ -17,7 +17,11 @@
 </h4>
 <!-- Add Button End -->
 
-<% Conn conn = new Conn();%>
+<% 
+    Conn conn = new Conn();
+    String hfc_cd = session.getAttribute("HEALTH_FACILITY_CODE").toString();
+
+%>
 <!-- Add Modal Start -->
 <div class="modal fade" id="ARM_detail" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
     <div class="modal-dialog" style="width: 50%">
@@ -54,7 +58,7 @@
                         <select id="ARM_role" class="form-control input-md">
                             <option value="">-- Select role --</option>
                             <%
-                                String sqlRole = "Select role_code, role_name FROM adm_role";
+                                String sqlRole = "Select role_code, role_name FROM adm_role WHERE hfc_cd = '"+hfc_cd+"'";
                                 ArrayList<ArrayList<String>> dataRole = conn.getData(sqlRole);
 
                                 for (int i = 0; i < dataRole.size(); i++) {
@@ -266,6 +270,7 @@
                 hfc: G_hfcCode
             };
             $('#ARM_user').multiSelect('destroy');
+            $('<div class="loading">Loading</div>').appendTo('#ARM_detail');
 
             $.ajax({
                 type: 'POST',
@@ -279,6 +284,12 @@
                         keepOrder: true
                     });
 
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                        bootbox.alert("Opps! "+errorThrown);
+                    },
+                complete: function (jqXHR, textStatus ) {
+                        $('.loading').hide();
                 }
             });
 

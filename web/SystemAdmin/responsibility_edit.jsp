@@ -8,6 +8,7 @@
 <%@page import="dBConn.Conn"%>
 <%
     String creator = session.getAttribute("USER_ID").toString();
+    String hfc_cd = session.getAttribute("HEALTH_FACILITY_CODE").toString();
     
     String strSystem = request.getParameter("system");
     String strModule = request.getParameter("module");
@@ -37,7 +38,7 @@
     for(int i = 0; i < pages.length; i++){
     
         sqlInsert = "INSERT INTO adm_responsibility(role_code, system_code, module_code, page_code, health_facility_code, status, created_by, created_date) "+
-                    "VALUES('"+roleCode+"', '"+system[i]+"', '"+modules[i]+"', '"+pages[i]+"', '0', '"+status+"', '"+creator+"', now())";
+                    "VALUES('"+roleCode+"', '"+system[i]+"', '"+modules[i]+"', '"+pages[i]+"', '"+hfc_cd+"', '"+status+"', '"+creator+"', now())";
         
         rmic.setQuerySQL(conn.HOST, conn.PORT, sqlInsert);
     
