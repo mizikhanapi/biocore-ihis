@@ -187,20 +187,24 @@
                                     <label class="col-md-4 control-label" for="textinput">Health Facility *</label>
                                     <div class="col-md-8">
                                         <input id="UT_hfc"  type="text" placeholder="Search Health Facility" class="form-control input-md">
-                                        <div id="UT_hfc_match">
+                                        <div id="UT_hfc_match"  class="search-drop">
                                             <!--search result-->
                                         </div>
                                     </div>
                                 </div>
                             </div>
-
-                            <div class="col-md-6">
+                            
+                        </div>
+                            
+                            <div class="row">
+                                
+                                <div class="col-md-6">
                                 <!-- Text input-->
                                 <div class="form-group">
                                     <label class="col-md-4 control-label" for="textinput">Discipline *</label>
                                     <div class="col-md-8">
                                         <input id="UT_discipline"  type="text" placeholder="Search Discipline" class="form-control input-md">
-                                        <div id="UT_discipline_match">
+                                        <div id="UT_discipline_match" class="search-drop">
                                             <!--search result-->
                                         </div>
                                     </div>
@@ -213,12 +217,16 @@
                                     <label class="col-md-4 control-label" for="textinput">Subdiscipline *</label>
                                     <div class="col-md-8">
                                         <input id="UT_subdiscipline"  type="text" placeholder="Search Subdiscipline" class="form-control input-md">
-                                        <div id="UT_subdiscipline_match">
+                                        <div id="UT_subdiscipline_match" class="search-drop">
                                             <!--search result-->
                                         </div>
                                     </div>
                                 </div>
                             </div>
+                                
+                            </div>
+
+                            
 
                             <div class="col-md-6">
                                 <!-- Text input-->
@@ -254,7 +262,7 @@
                                 </div>
                             </div>
 
-                        </div>
+                        
 
 
                     </div> <!-- end of user id information -->

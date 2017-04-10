@@ -11,11 +11,14 @@
 
 <%
     Conn conn = new Conn();
+    String current_user = (String) session.getAttribute("USER_ID");
+    String hfc_cd = session.getAttribute("HEALTH_FACILITY_CODE").toString();
+    String last_nine = current_user.substring(current_user.length() - 1);
 %>
 
 <h4>Order List</h4>
 
-<table  id="risManageOrderListTable"  class="table table-filter table-striped table-bordered" style="background: #fff; border: 1px solid #ccc; width: 100%">
+<table  id="risManageOrderListTable"  class="table table-filter table-striped table-bordered table-hover" style="background: #fff; border: 1px solid #ccc; width: 100%">
     <thead>
     <th style="text-align: center; width: 8%;">Order No.</th>
     <th style="text-align: center; width: 10%;">PMI No.</th>
@@ -28,10 +31,17 @@
 
 
     <%
+        String whereClause = "";
+
+        if (!hfc_cd.equals("99_iHIS_99") || !last_nine.equals("9")) {
+            whereClause = " where ris_order_master.hfc_cd = '"+hfc_cd+"' ";
+        }
+
         String sql = "SELECT ris_order_master.pmi_no,ris_order_master.order_no,ris_order_master.hfc_cd,ris_order_master.episode_date,ris_order_master.encounter_date,ris_order_master.order_date,"
                 + "ris_order_master.order_by,ris_order_master.hfc_from,ris_order_master.hfc_to,ris_order_master.order_status,ris_order_master.diagnosis_cd,ris_order_master.created_by,ris_order_master.created_date,"
                 + "pms_patient_biodata.PATIENT_NAME,pms_patient_biodata.NEW_IC_NO,pms_patient_biodata.BIRTH_DATE,pms_patient_biodata.SEX_CODE,pms_patient_biodata.BLOOD_TYPE "
-                + "FROM ris_order_master JOIN pms_patient_biodata ON (ris_order_master.pmi_no = pms_patient_biodata.PMI_NO);";
+                + "FROM ris_order_master JOIN pms_patient_biodata ON (ris_order_master.pmi_no = pms_patient_biodata.PMI_NO) "
+                + whereClause + " ;";
 
         ArrayList<ArrayList<String>> dataRISOrderList = conn.getData(sql);
 
@@ -55,16 +65,16 @@
 </table>
 
 <script type="text/javascript" charset="utf-8">
-    
+
     $(document).ready(function () {
         $('#risManageOrderListTable').DataTable({
-            "language": {
-                "emptyTable": "No Order Available To Display"
+            language: {
+                emptyTable: "No Order Available To Display"
             }, initComplete: function (settings, json) {
                 $('.loading').hide();
             }
         });
     });
-    
+
 </script>
 

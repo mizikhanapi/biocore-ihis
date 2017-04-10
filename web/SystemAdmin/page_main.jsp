@@ -33,7 +33,7 @@
                         <label class="col-md-4 control-label" for="textinput">System Name*</label>
                         <div class="col-md-8">
                             <input id="PM_systemName"  type="text" placeholder="Search system name" class="form-control input-md" maxlength="110">
-                             <div id="PM_match_system">
+                             <div id="PM_match_system" class="search-drop">
                                 <!--for search area-->
                             </div>
                         </div>
@@ -44,7 +44,7 @@
                         <label class="col-md-4 control-label" for="textinput">Module Name*</label>
                         <div class="col-md-8">
                             <input id="PM_moduleName"  type="text" placeholder="Search module name" class="form-control input-md" maxlength="110">
-                            <div id="PM_match_module">
+                            <div id="PM_match_module" class="search-drop">
                                 <!--for search area-->
                             </div>
                         </div>

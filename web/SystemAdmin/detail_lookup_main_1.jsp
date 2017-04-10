@@ -36,7 +36,7 @@
                         <label class="col-md-4 control-label" for="textinput">Master code</label>
                         <div class="col-md-8">
                             <input type="text"  class="form-control" id="masterCode2" placeholder="Master Code" maxlength="30">
-                            <div id="match">
+                            <div id="match" class="search-drop">
                                 <!--for search area-->
                             </div>
 

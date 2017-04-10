@@ -136,7 +136,7 @@
                                     <label class="col-md-4 control-label" for="textinput">Health Facility *</label>
                                     <div class="col-md-8">
                                         <input id="UM_hfc"  type="text" placeholder="Search Health Facility" class="form-control input-md">
-                                        <div id="UM_hfc_match">
+                                        <div id="UM_hfc_match" class="search-drop">
                                             <!--search result-->
                                         </div>
                                     </div>
@@ -152,7 +152,7 @@
                                     <label class="col-md-4 control-label" for="textinput">Discipline *</label>
                                     <div class="col-md-8">
                                         <input id="UM_discipline"  type="text" placeholder="Search discipline" class="form-control input-md">
-                                        <div id="UM_discipline_match">
+                                        <div id="UM_discipline_match" class="search-drop">
                                             <!--search result-->
                                         </div>
                                     </div>
@@ -165,7 +165,7 @@
                                     <label class="col-md-4 control-label" for="textinput">Subdiscipline *</label>
                                     <div class="col-md-8">
                                         <input id="UM_subdiscipline"  type="text" placeholder="Search subdiscipline" class="form-control input-md">
-                                        <div id="UM_subdiscipline_match">
+                                        <div id="UM_subdiscipline_match" class="search-drop">
                                             <!--search result-->
                                         </div>
                                     </div>
@@ -659,6 +659,7 @@
             selectedHFC = "";
             gambarURI = "";
             $('#dym').html("");
+            $('#UM_detail').css('overflow', 'auto');
 
             //-------------------------------------- creating default hfc for hfc input
             $('#UM_hfc').val($('#UM_hfc_default').val());
@@ -704,7 +705,7 @@
             var mother = $('#UM_mother').val();
             var roomNo = $('#UM_roomNo').val();
 
-            $('#UM_detail').css('overflow', 'auto');
+            //$('#UM_detail').css('overflow', 'auto');
 
             if (name === "") {
                 //$('#UM_detail').modal('hide');
@@ -927,12 +928,15 @@
         $('#UM_discipline').on('keyup', function () {
             var hfc = $('#UM_hfc').val();
             var input = $(this).val();
+            //$('#UM_detail').css('overflow', 'auto');
 
             if (input.length > 0) {
 
                 //make sure hfc is selected fisrt before we can search discipline
                 if (isHFCselected === false || selectedHFC !== hfc) {
+                    
                     bootbox.alert("Select health facility first!");
+                    //$('#UM_detail').css('overflow', 'auto');
 
                 } else {
                     
@@ -991,6 +995,7 @@
                 //make sure discipline is selected fisrt before we can search discipline
                 if (isDisciplineSelected === false || selectedDiscipline !== discipline) {
                     bootbox.alert("Select discipline first!");
+                    $(this).val('');
 
                 } else {
                     
