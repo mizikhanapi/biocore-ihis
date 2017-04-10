@@ -114,7 +114,7 @@
                                         <select id="UT_title" class="form-control input-md">
                                             <option value="">-- Select title --</option>
                                             <%
-                                                String sqlTitle = "Select detail_reference_code, description FROM adm_lookup_detail WHERE master_reference_code = '0026'";
+                                                String sqlTitle = "Select detail_reference_code, description FROM adm_lookup_detail WHERE master_reference_code = '0026' AND hfc_cd = '"+user_hfc+"' AND status = '0'";
                                                 ArrayList<ArrayList<String>> dataTitle = conn.getData(sqlTitle);
 
                                                 for (int i = 0; i < dataTitle.size(); i++) {
@@ -273,7 +273,7 @@
                                         <select id="UT_gender" class="form-control input-md">
                                             <option value="">-- Select gender --</option>
                                             <%
-                                                String sqlGender = "Select detail_reference_code, description FROM adm_lookup_detail WHERE master_reference_code = '0041'";
+                                                String sqlGender = "Select detail_reference_code, description FROM adm_lookup_detail WHERE master_reference_code = '0041' AND hfc_cd = '"+user_hfc+"' AND status = '0'";
                                                 ArrayList<ArrayList<String>> dataGender = conn.getData(sqlGender);
 
                                                 for (int i = 0; i < dataGender.size(); i++) {
@@ -298,7 +298,7 @@
                                         <select id="UT_occupation" class="form-control input-md">
                                             <option value="">-- Select occupation --</option>  
                                             <%
-                                                String sqlOccupation = "Select detail_reference_code, description FROM adm_lookup_detail WHERE master_reference_code = '0050'";
+                                                String sqlOccupation = "Select detail_reference_code, description FROM adm_lookup_detail WHERE master_reference_code = '0050' AND hfc_cd = '"+user_hfc+"' AND status = '0'";
                                                 ArrayList<ArrayList<String>> dataOccupation = conn.getData(sqlOccupation);
 
                                                 for (int i = 0; i < dataOccupation.size(); i++) {
@@ -319,7 +319,7 @@
                                         <select id="UT_nationality" class="form-control input-md">
                                             <option value="">-- Select nationality --</option>  
                                             <%
-                                                String sqlNationality = "Select detail_reference_code, description FROM adm_lookup_detail WHERE master_reference_code = '0011'";
+                                                String sqlNationality = "Select detail_reference_code, description FROM adm_lookup_detail WHERE master_reference_code = '0011' AND hfc_cd = '"+user_hfc+"' AND status = '0'";
                                                 ArrayList<ArrayList<String>> dataNationality = conn.getData(sqlNationality);
 
                                                 for (int i = 0; i < dataNationality.size(); i++) {
@@ -588,7 +588,8 @@
             changeMonth: true,
             changeYear: true,
             maxDate: 0,
-            dateFormat: 'dd/mm/yy'
+            dateFormat: 'dd/mm/yy',
+            yearRange: '-100:nn'
         });
 
         $('#UT_startDate').datepicker({

@@ -10,9 +10,9 @@
     Conn conn = new Conn();
 
     String hfc_default = "";
-
+    String hfc_kod = "";
     if (session.getAttribute("HEALTH_FACILITY_CODE") != null) {
-        String hfc_kod, hfc_nama;
+        String hfc_nama;
         hfc_kod = session.getAttribute("HEALTH_FACILITY_CODE").toString();
         hfc_nama = session.getAttribute("HFC_NAME").toString();
 
@@ -72,7 +72,7 @@
                                         <select id="UM_title" class="form-control input-md">
                                             <option value="">-- Select title --</option>
                                             <%
-                                                String sqlTitle = "Select detail_reference_code, description FROM adm_lookup_detail WHERE master_reference_code = '0026' AND status = '0' ORDER BY priority_indicator desc, description";
+                                                String sqlTitle = "Select detail_reference_code, description FROM adm_lookup_detail WHERE master_reference_code = '0026' AND hfc_cd = '"+hfc_kod+"' AND status = '0' ORDER BY priority_indicator desc, description";
                                                 ArrayList<ArrayList<String>> dataTitle = conn.getData(sqlTitle);
 
                                                 for (int i = 0; i < dataTitle.size(); i++) {
@@ -247,7 +247,7 @@
                                         <select id="UM_gender" class="form-control input-md">
                                             <option value="">-- Select gender --</option>
                                             <%
-                                                String sqlGender = "Select detail_reference_code, description FROM adm_lookup_detail WHERE master_reference_code = '0041' AND status = '0' ORDER BY priority_indicator desc, description";
+                                                String sqlGender = "Select detail_reference_code, description FROM adm_lookup_detail WHERE master_reference_code = '0041' AND hfc_cd = '"+hfc_kod+"' AND status = '0' ORDER BY priority_indicator desc, description";
                                                 ArrayList<ArrayList<String>> dataGender = conn.getData(sqlGender);
 
                                                 for (int i = 0; i < dataGender.size(); i++) {
@@ -272,7 +272,7 @@
                                         <select id="UM_occupation" class="form-control input-md">
                                             <option value="">-- Select occupation --</option>  
                                             <%
-                                                String sqlOccupation = "Select detail_reference_code, description FROM adm_lookup_detail WHERE master_reference_code = '0050' AND status = '0' ORDER BY priority_indicator desc, description";
+                                                String sqlOccupation = "Select detail_reference_code, description FROM adm_lookup_detail WHERE master_reference_code = '0050' AND hfc_cd = '"+hfc_kod+"' AND status = '0' ORDER BY priority_indicator desc, description";
                                                 ArrayList<ArrayList<String>> dataOccupation = conn.getData(sqlOccupation);
 
                                                 for (int i = 0; i < dataOccupation.size(); i++) {
@@ -293,7 +293,7 @@
                                         <select id="UM_nationality" class="form-control input-md">
                                             <option value="">-- Select nationality --</option>  
                                             <%
-                                                String sqlNationality = "Select detail_reference_code, description FROM adm_lookup_detail WHERE master_reference_code = '0011' AND status = '0' ORDER BY priority_indicator desc, description";
+                                                String sqlNationality = "Select detail_reference_code, description FROM adm_lookup_detail WHERE master_reference_code = '0011' AND hfc_cd = '"+hfc_kod+"' AND status = '0' ORDER BY priority_indicator desc, description";
                                                 ArrayList<ArrayList<String>> dataNationality = conn.getData(sqlNationality);
 
                                                 for (int i = 0; i < dataNationality.size(); i++) {
