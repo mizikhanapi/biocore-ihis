@@ -33,7 +33,6 @@ if(dataNextPatient.size() < 1){
     out.print(dataNextPatient.get(0).get(4)+"|"+dataNextPatient.get(0).get(2));
 }
 
-//out.print(dataNextPatient);
 ////Insert PMS data to table calling System
 
      String sqlPMS = "SELECT ppq.hfc_cd,pql.discipline_cd,pql.sub_discipline_cd,ppq.pmi_no,pe.`NAME`,ppq.queue_no,ppq.queue_name,ppq.episode_date FROM pms_queue_list pql, pms_patient_queue ppq, pms_episode pe WHERE pql.hfc_cd = ppq.hfc_cd AND ppq.pmi_no = pe.`PMI_NO` AND ppq.status = '0' AND ppq.episode_date LIKE '%"+now+"%' AND ppq.hfc_cd = '"+hfc_cd+"' GROUP BY ppq.episode_date ORDER BY ppq.queue_no LIMIT 1";
@@ -42,7 +41,7 @@ if(dataNextPatient.size() < 1){
     
 try
     {
-     String sqlInsert = "INSERT INTO qcs_calling_system_queue(cs_hfc_cd,cs_discipline,cs_sub_discipline,cs_pmi_no,cs_patient_name,cs_queue_no,cs_queue_name,cs_datetime,cs_callingtime) VALUES ('"+dataPMS.get(0).get(0)+"','"+dataPMS.get(0).get(1)+"','"+dataPMS.get(0).get(2)+"','"+dataPMS.get(0).get(3)+"','"+dataPMS.get(0).get(4)+"','"+dataPMS.get(0).get(5)+"','"+dataPMS.get(0).get(6)+"','"+dataPMS.get(0).get(7)+"','4')";
+     String sqlInsert = "INSERT INTO qcs_calling_system_queue(cs_hfc_cd,cs_discipline,cs_sub_discipline,cs_pmi_no,cs_patient_name,cs_queue_no,cs_queue_name,cs_datetime,cs_callingtime) VALUES ('"+dataPMS.get(0).get(0)+"','"+dataPMS.get(0).get(1)+"','"+dataPMS.get(0).get(2)+"','"+dataPMS.get(0).get(3)+"','"+dataPMS.get(0).get(4)+"','"+dataPMS.get(0).get(5)+"','"+dataPMS.get(0).get(6)+"','"+dataPMS.get(0).get(7)+"','2')";
      rmic.setQuerySQL(conn.HOST, conn.PORT, sqlInsert);
     }
     catch(Exception e)

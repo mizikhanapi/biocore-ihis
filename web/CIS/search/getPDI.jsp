@@ -18,9 +18,6 @@
     String pmiNo = request.getParameter("pmiNo");
     String episodeDate = request.getParameter("episodeDate");
     SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-    String now = sdf.format(new Date());
-    String hfc = session.getAttribute("HEALTH_FACILITY_CODE").toString();
-    String doctor = session.getAttribute("USER_NAME").toString();
 
     String PDI = "";
 
@@ -43,7 +40,7 @@
     
     try
     {
-     String sqlInsert = "INSERT INTO qcs_calling_system_queue(cs_hfc_cd,cs_discipline,cs_sub_discipline,cs_pmi_no,cs_patient_name,cs_queue_no,cs_queue_name,cs_datetime,cs_callingtime) VALUES ('"+dataPMS.get(0).get(0)+"','"+dataPMS.get(0).get(1)+"','"+dataPMS.get(0).get(2)+"','"+dataPMS.get(0).get(3)+"','"+dataPMS.get(0).get(4)+"','"+dataPMS.get(0).get(5)+"','"+dataPMS.get(0).get(6)+"','"+dataPMS.get(0).get(7)+"','4')";
+     String sqlInsert = "INSERT INTO qcs_calling_system_queue(cs_hfc_cd,cs_discipline,cs_sub_discipline,cs_pmi_no,cs_patient_name,cs_queue_no,cs_queue_name,cs_datetime,cs_callingtime) VALUES ('"+dataPMS.get(0).get(0)+"','"+dataPMS.get(0).get(1)+"','"+dataPMS.get(0).get(2)+"','"+dataPMS.get(0).get(3)+"','"+dataPMS.get(0).get(4)+"','"+dataPMS.get(0).get(5)+"','"+dataPMS.get(0).get(6)+"','"+dataPMS.get(0).get(7)+"','2')";
      rmic.setQuerySQL(conn.HOST, conn.PORT, sqlInsert);
     }
     catch(Exception e)
