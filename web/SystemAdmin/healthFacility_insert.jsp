@@ -90,7 +90,12 @@
                 + "Select Master_Reference_code, Detail_Reference_code, Description, priority_indicator, start_date, end_date, status, '"+creator+"', now(), '"+hfcCode+"' "
                 + "from adm_lookup_detail where hfc_cd = '99_iHIS_99'";
         
+        String copyRole = "insert into adm_role(role_code, role_name, status, created_by, created_date, hfc_cd) "
+                + "select role_code, role_name, status, '"+creator+"', now(), '"+hfcCode+"' "
+                + "from adm_role where hfc_cd = '99_iHIS_99'";
+        
         rmic.setQuerySQL(conn.HOST, conn.PORT, copyLookup);
+        rmic.setQuerySQL(conn.HOST, conn.PORT, copyRole);
     
     }
 %>

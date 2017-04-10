@@ -10,6 +10,7 @@
 <%@page import="main.RMIConnector"%>
 <%
     Conn conn = new Conn();
+    String hfc_cd = session.getAttribute("HEALTH_FACILITY_CODE").toString();
 %>
 <table  id="THE_roleTable"  class="table table-striped table-bordered" cellspacing="0" width="100%">
     <thead>
@@ -22,7 +23,7 @@
 <tbody>
 
     <%
-        String sql = " SELECT role_code, role_name, status FROM adm_role";
+        String sql = " SELECT role_code, role_name, status FROM adm_role WHERE hfc_cd = '"+hfc_cd+"'";
         ArrayList<ArrayList<String>> dataRole = conn.getData(sql);
 
         int size = dataRole.size();
