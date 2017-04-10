@@ -71,11 +71,14 @@
                         <label class="btn marglft" for="consultantQueue">
                             <input type="radio" id ="consultantQueue" name='queuetype' value="FY"><i class="fa fa-circle-o fa-2x"></i><i class="fa fa-dot-circle-o fa-2x "></i><span>Services</span>
                         </label>
+                         <label class="btn marglft" for="doctorQueue">
+                            <input type="radio" id ="doctorQueue" name='queuetype' value="PN"><i class="fa fa-circle-o fa-2x"></i><i class="fa fa-dot-circle-o fa-2x "></i><span>Doctors</span>
+                        </label>
                     </div>
                     <!--</div>-->
 
                 </div>
-                 <select  id="selectedServiceQueue"  class="form-control select-full" >
+                 <select  id="selectedServiceQueue"  class="form-control select-full" hidden>
                      <option value="null" selected="" disabled="">Please Select Queue</option>
                      
                         <%
@@ -99,7 +102,7 @@
                        
                  </select>
                  
-                    <select  id="selectedDoctorQueue"  class="form-control select-full" >
+                    <select  id="selectedDoctorQueue"  class="form-control select-full">
                      <option value="null" selected="" disabled="">Please Select Queue</option>
                      
                         <%
@@ -145,7 +148,8 @@
         w3IncludeHTML();
         
 
-            $('#selectedQueue').hide();
+            $('#selectedDoctorQueue').hide();
+            $('#selectedServiceQueue').hide();
             
             var $body = $('body');
             var yyyyMMddHHmmss;
@@ -207,24 +211,42 @@
    
   
   
-        //event when radio button1 is change
-        document.getElementById("commonQueue").onchange = function() {changes();};
+        //event when radio consolate is change
+        document.getElementById("commonQueue").onchange = function() {changesConsClicked();};
        
-            function changes() {
+            function changesConsClicked() {
 //                console.log("click 2");
-                    $('#selectedQueue').hide();
-                $("#selectedQueue").val("null");
+                    $('#selectedDoctorQueue').hide();
+                    $('#selectedServiceQueue').hide();
+                $("#selectedDoctorQueue").val("null");
+                $("#selectedServiceQueue").val("null");
             };
             
-             //event when radio button2 is change
-        document.getElementById("consultantQueue").onchange = function() {changes1();};
+             //event when radio doctor is change
+        document.getElementById("doctorQueue").onchange = function() {changesDocClicked();};
        
-            function changes1() {
+            function changesDocClicked() {
 //                console.log("click 1");
-                    $('#selectedQueue').show();
+                    $('#selectedDoctorQueue').show();
+                    $('#selectedServiceQueue').hide();
+                $("#selectedDoctorQueue").val("null");
+                $("#selectedServiceQueue").val("null");
                 
             };
-            
+        
+         //event when radio service is change
+        document.getElementById("consultantQueue").onchange = function() {changesSerClicked();};
+       
+            function changesSerClicked() {
+//                console.log("click 1");
+                    $('#selectedServiceQueue').show();
+                    $('#selectedDoctorQueue').hide();
+                $("#selectedDoctorQueue").val("null");
+                $("#selectedServiceQueue").val("null");
+                
+            };
+    
+    
             //event when radio button1 is change
         document.getElementById("inputUserIC").onchange = function() {TextFiledchanges();};
             
@@ -304,11 +326,18 @@
                 useric= $("#inputUserIC").val();
                 username= $("#inputUserName").val();
         	queuetype = $("input[name='queuetype']:checked").val();
-                selectedqueue= $("#selectedQueue").val();
                 if(queuetype === "CM")
                     {
                         selectedqueue ="Normal Queue";
-                    };
+                    }
+                    else if (queuetype === "PN")
+                    {
+                       selectedqueue =  $('#selectedDoctorQueue').val();
+                    }
+                    else if (queuetype === "FY")
+                    {
+                        selectedqueue =  $('#selectedServiceQueue').val();
+                    }
 //                console.log(useric+" "+username+" "+queuetype+" "+selectedqueue);
                 
                 if(useric === "")
