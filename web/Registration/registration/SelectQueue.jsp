@@ -10,11 +10,13 @@
     Conn conn = new Conn();
  
     String Consultationqueue = "select * from pms_queue_name where queue_type='FY' ";
-        
+    String Doctorqueue = "select * from pms_queue_name where queue_type='PN' ";
+      
+     ArrayList<ArrayList<String>> dataQueue;
      ArrayList<ArrayList<String>> dataQueue2;
      
+        dataQueue = conn.getData(Doctorqueue);
         dataQueue2 = conn.getData(Consultationqueue);
-     
 %>
 
 
@@ -73,7 +75,7 @@
                     <!--</div>-->
 
                 </div>
-                 <select  id="selectedQueue"  class="form-control select-full" >
+                 <select  id="selectedServiceQueue"  class="form-control select-full" >
                      <option value="null" selected="" disabled="">Please Select Queue</option>
                      
                         <%
@@ -96,6 +98,24 @@
                         %>
                        
                  </select>
+                 
+                    <select  id="selectedDoctorQueue"  class="form-control select-full" >
+                     <option value="null" selected="" disabled="">Please Select Queue</option>
+                     
+                        <%
+                           
+                            for (int i = 0; i < dataQueue.size(); i++) {
+                                    if (dataQueue.get(i).get(1) != ""|| dataQueue.get(i).get(1) != null)
+                                        {          
+                        %>
+                            
+                        <option value="<%=dataQueue.get(i).get(1)%>"><%="(" + dataQueue.get(i).get(0) + ") " + dataQueue.get(i).get(1)%></option>
+                        <%                  }
+                                        } 
+                        %>
+                       
+                 </select>
+                        
                         
              </form><!-- /form -->
     
@@ -346,7 +366,7 @@
                 'createdBy': user_id,
                 'queue': selectedqueue,
                 'docID': '-'};
-            console.log(datas);
+            //console.log(datas);
             
                         $.ajax({
                             type: "POST",
