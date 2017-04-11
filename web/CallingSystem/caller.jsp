@@ -37,11 +37,15 @@
     ArrayList<ArrayList<String>> d = conn.getData(sql);
 
     Date datenow = new Date();
-    SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/YYYY | HH:mm:ss");
-    out.print(sdf.format(datenow));
+    SimpleDateFormat tarikh = new SimpleDateFormat("dd/MM/YYYY");
+    SimpleDateFormat masa = new SimpleDateFormat("HH:mm");
+    //out.print(sdf.format(datenow));
 
     %></p>
-
+<p style="text-align: right; position: absolute; top: 25px; left: 30px; color: #666; display: block; font-weight: 500; font-size: 54px;">
+    <span style="display: block; font-size: 21px; letter-spacing: .11em; margin-bottom: -10px;"><%out.print(tarikh.format(datenow));%></span>
+    <%out.print(masa.format(datenow));%>
+</p>
 <table class="table table-hover" style="background: #ffffff; text-transform: uppercase; font-weight: 500; margin-top:-30px;">
 
     <tbody>
@@ -53,7 +57,7 @@
         %>
         <tr>
             <td style="text-align: left; font-weight: 400; width: 5%; font-size:12px;">
-                
+
                 <span id="qno_<%=i%>" style="    
                       background: #58C102;
                       padding: 5px 10px;
@@ -68,22 +72,22 @@
                       color: #333; font-size: 26px;" id="qname_<%=i%>"><%=d.get(i).get(3)%></span>
                 <script>
                     <% if (cs_callingtime > 0) {%>
-                $(document).ready(function () {
-                    var name = $("#name_<%=i%>").html();
-                    name = name.toLowerCase().replace(/\b[a-z]/g, function (letter) {
-                        return letter.toUpperCase();
-                    });
+                    $(document).ready(function () {
+                        var name = $("#name_<%=i%>").html();
+                        name = name.toLowerCase().replace(/\b[a-z]/g, function (letter) {
+                            return letter.toUpperCase();
+                        });
 
-                    var qno = $("#qno_<%=i%>").html();
-                    var qname = $("#qname_<%=i%>").html();
-                    qname = qname.toLowerCase().replace(/\b[a-z]/g, function (letter) {
-                        return letter.toUpperCase();
+                        var qno = $("#qno_<%=i%>").html();
+                        var qname = $("#qname_<%=i%>").html();
+                        qname = qname.toLowerCase().replace(/\b[a-z]/g, function (letter) {
+                            return letter.toUpperCase();
+                        });
+                        var ayat = name + ", Number " + qno + ", " + qname;
+                        //var ayat = "Number " + qno + ", queue " + qname;
+                        var msg = new SpeechSynthesisUtterance(ayat);
+                        window.speechSynthesis.speak(msg);
                     });
-                    var ayat = name + ", Number " + qno + ", " + qname;
-                    //var ayat = "Number " + qno + ", queue " + qname;
-                    var msg = new SpeechSynthesisUtterance(ayat);
-                    window.speechSynthesis.speak(msg);
-                });
                     <%
                             Query q2 = new Query();
                             cs_callingtime -= 1;
