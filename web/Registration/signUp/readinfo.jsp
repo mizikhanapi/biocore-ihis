@@ -26,15 +26,7 @@
      dataGender = conn.getData(gender);
      
 
-//     if(dataGender.size() > 0)
-//     {
-//        out.print(dataGender.get(0).get(1) +"<br>");
-//        out.print(dataGender.get(0).get(2));
-//     }
-//     else
-//    {
-//        out.print("Select NUll");
-//    }
+
 %>
 
 
@@ -57,7 +49,6 @@
                         <div class="col-md-4 col-md-offset-4" style="margin-top: 2%;">
                             <div class="thumbnail">
                                 <a href="../mainMenu.jsp" title="Back to Dashboard"><i class="fa fa-arrow-left fa-lg pull-left" style="color: #ccc;"></i></a>
-                                <a href="../../Entrance/destroySession.jsp" title="Log Out"><i class="fa fa-power-off fa-lg pull-right" style="color: #ccc;"></i></a>
                                 <div class="profile-img-card" style="text-align: center;" >
                                     <i class="fa fa-user-md" aria-hidden="true" style="color: #666; font-size: 100px;"></i>
                                 </div>
@@ -101,13 +92,13 @@
                                         <div class="col-lg-8">
                                             <div class="row">
                                                 <div class="col-lg-4">
-                                                    <input type="text" id="txt_day" name="txt_day" class="form-control input-sm"  placeholder="DD" required maxlength="2" data-validation-required-message="Day is required" >
+                                                    <input type="text"  id="txt_day" name="txt_day" class="form-control input-sm"  placeholder="DD" required maxlength="2" data-validation-required-message="Day is required" onchange="bdDayCahnged()" >
                                                 </div>
                                                 <div class="col-lg-4">
-                                                    <input type="text" id="txt_month" name="txt_month" class="form-control input-sm"  placeholder="MM" required maxlength="2" data-validation-required-message="Month is required" >
+                                                    <input type="text" id="txt_month" name="txt_month" class="form-control input-sm"  placeholder="MM" required maxlength="2" data-validation-required-message="Month is required" onchange="bdMonthCahnged()">
                                                 </div>
                                                 <div class="col-lg-4">
-                                                    <input type="text" id="txt_year" name="txt_year" class="form-control input-sm"  placeholder="YYYY" required maxlength="4" data-validation-required-message="Year is required" >
+                                                    <input type="text" id="txt_year" name="txt_year" class="form-control input-sm"  placeholder="YYYY" required maxlength="4" data-validation-required-message="Year is required" onchange="bdYearCahnged()">
                                                 </div>
                                             </div>
                                         </div>
@@ -162,35 +153,69 @@
 
         <script type="text/javascript">
             w3IncludeHTML();
-            //       $(document).ready( function(){
-
-            //           $('#PMIbday').pickadate({
-            //             format: 'yyyy-mm-dd',
-            //            labelMonthNext: 'Go to the next month',
-            //            labelMonthPrev: 'Go to the previous month',
-            //            labelMonthSelect: 'Pick a month from the dropdown',
-            //            labelYearSelect: 'Pick a year from the dropdown',
-            //            selectMonths: true,
-            //            selectYears: true
-            //            });
-
-
-            //         $('#PMIbday').datepicker({dateFormat: 'dd-mm-yy', changeMonth: true, changeYear: true}); 
-
-
+           
             $("#submitSignup").on("click", function () {
 
                 signup();
 
-            });//on clcik submitSignup
+            });//on clcik submit
 
             $("#cancelSignup").on("click", function () {
 
                 window.history.back();
 
-            });//on clcik submitSignup
+            });//on clcik cancel
 
 
+            function bdDayCahnged()
+            {
+                var day=$("#txt_day").val();
+               
+               if ($.isNumeric(day)) 
+               {
+                    if (day < 0 || day > 31 ) {
+                        bootbox.alert("Wrong Day !!");
+                        $("#txt_day").focus();}
+                }
+                else{   
+                        bootbox.alert("Enter Numric Day !!");
+                }
+            };
+            
+                    function bdMonthCahnged()
+            {
+                
+                var month=$("#txt_month").val();
+               
+               if ($.isNumeric(month)) 
+               {
+                    if (month < 0 || month > 12 ) {
+                        bootbox.alert("Wrong Month !!");
+                        $("#txt_month").focus();}
+                }
+                else{   
+                        bootbox.alert("Enter Numric Month !!");
+                }
+            };
+            
+            
+                    function bdYearCahnged()
+            {
+               
+                var  year=$("#txt_year").val();
+               
+               if ($.isNumeric(year)) 
+               {
+                    if (year < 1850 ) {
+                        bootbox.alert("Wrong Year !!");
+                        $("#txt_year").focus();}
+                }
+                else{   
+                        bootbox.alert("Enter Numric Year !!");
+                }
+            };
+            
+            
             function signup() {
                 var useric, userid, username, usergender, usernationality, useremail, userphoneno,
                         useroccupation, userpassword, userbirthday;
@@ -205,50 +230,50 @@
                 userpassword = $("#inputUserPassword").val();
                 userbirthday = $("#txt_year").val() + "/" + $("#txt_month").val() + "/" + $("#txt_day").val();
                 useroccupation = $("#inpuOccupation").val();
-                //                    var reN = /[0-9]/, reSA = /[a-z]/,reCA = /[A-Z]/;
 
                 if (useric === "") {
-                    bootbox.alert("Fill in the User IC");
+                    bootbox.alert("Fill in the User IC !");
                     $("#inputUserIC").focus();
-                } else if (userid === "") {
-                    bootbox.alert("Fill in the User ID");
-                    $("#inputUserID").focus();
                 } else if (username === "") {
-                    bootbox.alert("Fill in the User Name");
+                    bootbox.alert("Fill in the User Name !");
                     $("#inputUserName").focus();
                 } else if (containsNumber(username)) {
-                    bootbox.alert("UnValic Name, Contain Numbers");
+                    bootbox.alert("UnValic Name, Contain Numbers !");
                     $("#inputUserName").focus();
                 } else if (!$("input[name='gender']:checked").val()) {
-                    bootbox.alert("Select Gender");
+                    bootbox.alert("Select Gender !");
                     $("input[name='gender']").focus();
+                } else if (!isValidDate(userbirthday)) {
+                    bootbox.alert("Wrong Birthday Date !");
+                    console.log(userbirthday);
+                    $("#txt_day").focus();
                 } else if (usernationality === null) {
-                    bootbox.alert("Select Nationality");
+                    bootbox.alert("Select Nationality !");
                     $("#Usernational").focus();
                 } else if (useroccupation === "") {
-                    bootbox.alert("Fill in user Occupation");
+                    bootbox.alert("Fill in user Occupation!");
                     $("#inpuOccupation").focus();
                 } else if (useremail === "") {
-                    bootbox.alert("Fill in user Email");
+                    bootbox.alert("Fill in user Email !");
                     $("#inputUserEmail").focus();
                     $("#inputUserEmail").css("color", "red");
                 } else if (!validateEmail(useremail)) {
-                    bootbox.alert("Uncorrect Email input");
+                    bootbox.alert("Uncorrect Email input !");
                     $("#inputUserEmail").focus();
                 } else if (userphoneno.length < 10) {
-                    bootbox.alert("Phone Number Is Not Complete at least 10 numbers");
+                    bootbox.alert("Phone Number Is Not Complete at least 10 numbers !");
                 } else if (!$.isNumeric(userphoneno)) {
-                    bootbox.alert("Not A Phone Number");
+                    bootbox.alert("Not A Phone Number!");
                     $("#inputUserPhoneNo").focus();
+                } else if (userid === "") {
+                    bootbox.alert("Fill in the User ID !");
+                    $("#inputUserID").focus();
                 } else if (userpassword === "") {
-                    bootbox.alert("Fill in the User Password");
+                    bootbox.alert("Fill in the User Password !");
                     $("#inputUserPassword").focus();
                 } else if (validPassword(userpassword)) {
+                   
 
-                    //                        var splitBday = String(userbirthday).split("-");
-                    //                        console.log(splitBday);
-                    //                        var convertedBday = splitBday[2] + "/" + splitBday[1] + "/" + splitBday[0];
-                    //                        console.log(convertedBday);
                     var bioData = {
                         'userIC': useric,
                         'userName': username,
@@ -271,7 +296,7 @@
                         data: bioData,
                         timeout: 3000,
                         success: function (data) {
-                            //                                console.log(data.trim());
+                            //console.log(data.trim());
                             $("#inputUserIC").val("");
                             $("#inputUserID").val("");
                             $("#inputUserName").val("");
@@ -302,7 +327,7 @@
                     });
                 }
 
-            }
+            }// sign up funtion
             ;
 
             function loginInser(loginData)
@@ -313,7 +338,7 @@
                     data: loginData,
                     timeout: 3000,
                     success: function (data) {
-                        //                                       console.log(data.trim()); 
+                        //console.log(data.trim()); 
                         //window.history.back();
                     },
                     error: function (err) {
@@ -339,8 +364,36 @@
                 var re = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
 
                 return re.test(email);
-            }
-            ;
+            };
+            
+            // Validates that the input string is a valid date formatted as "yyyy/mm/dd"
+        function isValidDate(dateString)
+        {
+            // First check for the pattern \
+            // not correct always return false need edit for the number like 4/2/2
+//            if(!/^\d{1,2}\/\d{1,2}\/\d{4}$/.test(dateString)) 
+//            //                return false;
+
+            // Parse the date parts to integers
+            var parts = dateString.split("/");
+            var day = parseInt(parts[2], 10);
+            var month = parseInt(parts[1], 10);
+            var year = parseInt(parts[0], 10);
+
+                    console.log(dateString);
+            // Check the ranges of month and year
+            if(year < 1000 || year > 3000 || month == 0 || month > 12)
+                return false;
+
+            var monthLength = [ 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 ];
+
+            // Adjust for leap years
+            if(year % 400 == 0 || (year % 100 != 0 && year % 4 == 0))
+                monthLength[1] = 29;
+
+            // Check the range of the day
+            return day > 0 && day <= monthLength[month - 1];
+        };
 
 
             function validPassword(password)

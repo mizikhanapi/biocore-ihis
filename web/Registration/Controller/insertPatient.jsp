@@ -47,7 +47,7 @@
             out.print(pmino);
             
             Boolean SQL=false;
-            String sql1 = "insert into PMS_PATIENT_BIODATA(PMI_NO,PATIENT_NAME,NEW_IC_NO,ID_NO,NATIONALITY,"
+            String sql1 = "insert into PMS_PATIENT_BIODATA(PMI_NO,PATIENT_NAME,NEW_IC_NO,NATIONALITY,"
                    + "BIRTH_DATE,SEX_CODE,MOBILE_PHONE,EMAIL_ADDRESS)"
                    + "values('" + pmino + "', '" + userName + "', '" + userIC 
                    + "', '" + userNationality +"', '" + userBirthday + "', '" + userGender + "', '" + userPhoneNo + "', '" + userEmail + "')";
