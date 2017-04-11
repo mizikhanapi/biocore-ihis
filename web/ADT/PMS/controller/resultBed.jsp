@@ -32,10 +32,10 @@
         <tbody>
             <%  int count = 0;
 
-                String sqlBedID1 = "SELECT bed_id ,bed_status FROM wis_bed_id WHERE  discipline_cd =' " + disb + "' and ward_class_code = ' " + WardTypeb + "' AND ward_id =  '" + wnameb + "' ORDER BY bed_id asc";
+                String sqlBedID1 = "SELECT bed_id ,bed_status FROM wis_bed_id WHERE  discipline_cd ='" + disb + "' and ward_class_code = '" + WardTypeb + "' AND ward_id =  '" + wnameb + "' ORDER BY bed_id asc";
                 //discipline_cd =' " + disb + "',  ward_class_code = ' "+WardTypeb+ "' AND ward_id =  '"+wnameb+"'
                 ArrayList<ArrayList<String>> dataBedID1 = conn.getData(sqlBedID1);
-                out.print(sqlBedID1);
+//                out.print(sqlBedID1);
                 int a = dataBedID1.size();
 
 //                int z = a % 2;

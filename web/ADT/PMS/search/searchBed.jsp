@@ -14,33 +14,6 @@
 
         </div>
 
-
-        <!-- Select Basic -->
-        <div class="form-group">
-            <label class="col-md-4 control-label" for="selectbasic">Ward Name</label>
-            <div class="col-md-4">
-                <select id="wname" name="selectbasic" class="form-control">
-                    <option value="-">-</option>
-                    <option value="null" selected="" disabled="">Select Ward Name</option>
-
-                    <%
-                        String wname = "select ward_id,ward_name from wis_ward_name where hfc_cd='"+hfc+"'";
-                        ArrayList<ArrayList<String>> dataWardName = conn.getData(wname);
-
-                        int size1 = dataWardName.size();
-
-                        for (int i = 0; i < size1; i++) {
-                    %>
-                    <option value="<%= dataWardName.get(i).get(0)%>"><%= dataWardName.get(i).get(1)%> </option>
-                    <%
-                        }
-                    %>
-                </select>
-            </div> 
-        </div>
-
-
-
         <!-- Select Basic -->
         <div class="form-group">
             <label class="col-md-4 control-label" for="selectbasic">Ward Type</label>
@@ -49,7 +22,7 @@
                     <option value="1" selected="" disabled="">Select Ward Type</option>
 
                     <%
-                        String wtype = "select ward_class_code,ward_class_name from wis_ward_class where hfc_cd='"+hfc+"'";
+                        String wtype = "select ward_class_code,ward_class_name from wis_ward_class where hfc_cd='" + hfc + "'";
                         ArrayList<ArrayList<String>> dataWardType = conn.getData(wtype);
 
                         int size2 = dataWardType.size();
@@ -63,10 +36,39 @@
 
 
                 </select>
-                <button class="btn btn-primary" type="button" id="searchBed" name="searchBed"><i class="fa fa-search"></i>&nbsp; Search Bed</button>
 
             </div>
         </div>
+
+        <!-- Select Basic -->
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="selectbasic">Ward Name</label>
+            <div class="col-md-4">
+                <select id="wname" name="selectbasic" class="form-control">
+                    <option value="-">-</option>
+                    <option value="null" selected="" disabled="">Select Ward Name</option>
+
+                    <%
+                        String wname = "select ward_id,ward_name from wis_ward_name where hfc_cd='" + hfc + "'";
+                        ArrayList<ArrayList<String>> dataWardName = conn.getData(wname);
+
+                        int size1 = dataWardName.size();
+
+                        for (int i = 0; i < size1; i++) {
+                    %>
+                    <option value="<%= dataWardName.get(i).get(0)%>"><%= dataWardName.get(i).get(1)%> </option>
+                    <%
+                        }
+                    %>
+                </select>
+                <button class="btn btn-primary" type="button" id="searchBed" name="searchBed"><i class="fa fa-search"></i>&nbsp; Search Bed</button>
+
+            </div> 
+        </div>
+
+
+
+
 
 
 
@@ -114,10 +116,10 @@
 
             if (input.length >= 1) { // Minimum characters = 2 (you can change)
                 $('#disList').html('<img src="libraries/LoaderIcon.gif" />'); // Loader icon apprears in the <div id="match"></div>
-                var dataFields = {input: input, hfc:hfc, dis: dis, sub : sub}; // We pass input argument in Ajax
+                var dataFields = {input: input, hfc: hfc, dis: dis, sub: sub}; // We pass input argument in Ajax
                 $.ajax({
                     type: "POST",
-                    url: "PMS/search/searchDiscipline_1.jsp", // call the php file ajax/tuto-autocomplete.php
+                    url: "search/searchDiscipline.jsp", // call the php file ajax/tuto-autocomplete.php
                     data: dataFields, // Send dataFields var
                     timeout: 3000,
                     success: function (dataBack) { // If success
@@ -141,81 +143,80 @@
             }
 
         });
-        
-         //seaching bed function   
-    function searchBed() {
-         
-        var DisO = $('#Dis').val();
-        var wnameO = $('#wname').val();
-        var WardTypeO = $('#WardType').val();
+
+        //seaching bed function   
+        function searchBed() {
+
+            var DisO = $('#Dis').val();
+            var wnameO = $('#wname').val();
+            var WardTypeO = $('#WardType').val();
 
 
 
-        //check if the input text or the select box is empty.
+            //check if the input text or the select box is empty.
 
-        if (DisO === "-") {
+            if (DisO === "-") {
 
-            bootbox.alert('Please select Discipline Code first');
-        } else if (wnameO === "-") {
+                bootbox.alert('Please select Discipline Code first');
+            } else if (wnameO === "-") {
 
-            bootbox.alert('Please select Ward Name first.');
-        } else if (WardTypeO === "-") {
+                bootbox.alert('Please select Ward Name first.');
+            } else if (WardTypeO === "-") {
 
-            bootbox.alert('Please select Ward Type first.');
-        } else {
-            //if the select box is choosen and the input in key-in.
+                bootbox.alert('Please select Ward Type first.');
+            } else {
+                //if the select box is choosen and the input in key-in.
 
-            //show loading icon
-            $body.addClass("loading");
+                //show loading icon
+                $body.addClass("loading");
 
-            //get value from text box and select box
-            //var Dis = $('#Dis').val();
-            var Diso = $('#Dis').val();
-            var array_dis = Diso.split("|");
-            var Dis = array_dis[0];
-            var wname = $('#wname').val();
-            var WardType = $('#WardType').val();
-            console.log(Dis);
-            console.log(wname);
-            console.log(WardType);
+                //get value from text box and select box
+                //var Dis = $('#Dis').val();
+                var Diso = $('#Dis').val();
+                var array_dis = Diso.split("|");
+                var Dis = array_dis[0];
+                var wname = $('#wname').val();
+                var WardType = $('#WardType').val();
+                console.log(Dis);
+                console.log(wname);
+                console.log(WardType);
 
-            //run the MAIN ajax function
-            $.ajax({
-                async: true,
-                type: "POST",
-                url: "PMS/controller/resultBed.jsp",
-                data: {'Dis': Dis, 'wname': wname, 'WardType': WardType},
-                timeout: 10000,
-                success: function (list) {
-                    //remove the loading 
-                    $body.removeClass("loading");
-                    console.log(list);
-                    $('#register bedtest').html(list);
+                //run the MAIN ajax function
+                $.ajax({
+                    async: true,
+                    type: "POST",
+                    url: "PMS/controller/resultBed.jsp",
+                    data: {'Dis': Dis, 'wname': wname, 'WardType': WardType},
+                    timeout: 10000,
+                    success: function (list) {
+                        //remove the loading 
+                        $body.removeClass("loading");
+                        console.log(list);
+                        $('#bedtest').html(list);
 
-                },
-                error: function (xhr, status, error) {
-                    var err = eval("(" + xhr.responseText + ")");
-                    //bootbox.alert(err.Message);
-                }
-            });
+                    },
+                    error: function (xhr, status, error) {
+                        var err = eval("(" + xhr.responseText + ")");
+                        //bootbox.alert(err.Message);
+                    }
+                });
+            }
+
         }
+        ;
 
-    }
-    ;
+        //event on click search button
+        $('#searchBed').on('click', function (e) {
+            e.preventDefault();
+            searchBed();
 
-    //event on click search button
-    $('#searchBed').on('click', function (e) {
-        e.preventDefault();
-        searchBed();
+        });
 
+
+        //event on click clear buton
+        $('#clearSearch').click(function () {
+
+        });
     });
-
-
-    //event on click clear buton
-    $('#clearSearch').click(function () {
-
-    });
-    });
-
 
 </script> 

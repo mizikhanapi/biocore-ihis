@@ -157,7 +157,7 @@
                 if (result === true) {
                     $.ajax({
                         type: "post",
-                        url: "controller/saveKin.jsp",
+                        url: "PMS/controller/saveKin.jsp",
                         data: datas,
                         timeout: 3000,
                         success: function (data) {
@@ -168,7 +168,7 @@
                                 $('input[id=KINpmino]').val($.trim(KINpmino));
 
                                 $.ajax({
-                                    url: "controller/listKin.jsp",
+                                    url: "PMS/controller/listKin.jsp",
                                     type: "post",
                                     data: {'PMINO': KINpmino},
                                     timeout: 3000,
@@ -302,7 +302,7 @@
                     console.log(datas);
                     $.ajax({
                         type: "post",
-                        url: "controller/delKin.jsp",
+                        url: "PMS/controller/delKin.jsp",
                         data: datas,
                         timeout: 3000,
                         success: function (data) {
