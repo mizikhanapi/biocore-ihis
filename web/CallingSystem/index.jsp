@@ -66,6 +66,10 @@ div#papar table>tbody>tr>td:first-child {
 div#papar table>tbody>tr>td:last-child {
     padding-right: 30px;
 }
+
+div#papar table>tbody>tr>td{
+    border-top: 1px solid #ddd;
+}
 </style>
 <!-- header -->
 

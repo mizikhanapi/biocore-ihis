@@ -52,17 +52,20 @@
                     int cs_callingtime = Integer.parseInt(number);
         %>
         <tr>
-            <td style="text-align: left; font-weight: 400; width: 5%; font-size:24px;"><span id="qno_<%=i%>"><%=d.get(i).get(2)%></span></td>
+            <td style="text-align: left; font-weight: 400; width: 5%; font-size:12px;">
+                
+                <span id="qno_<%=i%>" style="    
+                      background: #58C102;
+                      padding: 5px 10px;
+                      margin-right: 30px;
+                      font-weight: 500;
+                      color: #fff; font-size: 21px;"><%=d.get(i).get(2)%></span></td>
             <td style="text-align: left; font-weight: 400; padding: 30px 0; font-size: 24px;"><span id="name_<%=i%>"><%=d.get(i).get(1)%></span></td>
             <td style="text-align: right;">
-                <p>Room No</p>
+                <p style="margin-bottom: 3px; font-weight: 400;">Room No</p>
                 <span style="    
-                      border: 1px solid #58C102;
-                      padding: 5px;
-                      margin: 5px;
-                      border-radius: 4px;
                       font-weight: 500;
-                      color: #333; font-size: 21px;" id="qname_<%=i%>"><%=d.get(i).get(3)%></span>
+                      color: #333; font-size: 26px;" id="qname_<%=i%>"><%=d.get(i).get(3)%></span>
                 <script>
                     <% if (cs_callingtime > 0) {%>
                 $(document).ready(function () {
