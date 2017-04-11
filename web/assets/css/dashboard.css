@@ -530,21 +530,40 @@ ul.nav.navbar-nav.navbar-left.back {
 }
 
 .S {
-   border-left: 3px solid #58c102;
+   border-left: 5px solid #d54e21;
 }
 
 .O {
-   border-left: 3px solid #ffb41e;
+   border-left: 5px solid #ffba00;
 }
 
 .A {
-   border-left: 3px solid #fa3446;
+   border-left: 5px solid #46b450;
 }
 
 .P {
-   border-left: 3px solid #a0aabe;
+   border-left: 5px solid #00a0d2;
 }
 
+.S .media-body {
+    color: #d54e21;
+}
+
+.O .media-body {
+    color: #ffba00;
+}
+
+.A .media-body {
+    color: #46b450;
+}
+
+.P .media-body {
+    color: #00a0d2;
+}
+
+.S .media-body>.summary, .O .media-body>.summary, .A .media-body>.summary, .P .media-body>.summary {
+    color: #666;
+}
 
 .table-bordered>thead>tr>th:last-child {
     text-align: center;
