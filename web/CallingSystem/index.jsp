@@ -173,11 +173,11 @@ div#papar table>tbody>tr>td{
             timeout: 60000,
             success: function (data) {
                 $("#papar").html(data);
-                var t = setTimeout("ulangPanggil('" + hfccd + "', '" + discp + "', '" + subdi + "')", 5500);
+                var t = setTimeout("ulangPanggil('" + hfccd + "', '" + discp + "', '" + subdi + "')", 8000);
             },
             error: function (err) {
                 $("#papar").html("Error viewing data!");
-                var t = setTimeout("ulangPanggil('" + hfccd + "', '" + discp + "', '" + subdi + "')", 5500);
+                var t = setTimeout("ulangPanggil('" + hfccd + "', '" + discp + "', '" + subdi + "')", 8000);
             }
         });
     }

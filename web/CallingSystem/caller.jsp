@@ -39,12 +39,13 @@
     Date datenow = new Date();
     SimpleDateFormat tarikh = new SimpleDateFormat("dd/MM/YYYY");
     SimpleDateFormat masa = new SimpleDateFormat("HH:mm");
+    SimpleDateFormat formate = new SimpleDateFormat("a");
     //out.print(sdf.format(datenow));
 
     %></p>
-<p style="text-align: right; position: absolute; top: 25px; left: 30px; color: #666; display: block; font-weight: 500; font-size: 54px;">
-    <span style="display: block; font-size: 21px; letter-spacing: .11em; margin-bottom: -10px;"><%out.print(tarikh.format(datenow));%></span>
-    <%out.print(masa.format(datenow));%>
+<p style="text-align: right; position: absolute; top: 37px; left: 30px; color: #666; display: block; font-weight: 500; font-size: 40px; ">
+    <span style="display: block; font-size: 26px; letter-spacing: .14em; margin-bottom: -10px; font-weight: 300;"><%out.print(tarikh.format(datenow));%></span>
+    <%out.print(masa.format(datenow));%>&nbsp;<%out.print(formate.format(datenow));%>
 </p>
 <table class="table table-hover" style="background: #ffffff; text-transform: uppercase; font-weight: 500; margin-top:-30px;">
 
