@@ -13,11 +13,11 @@
     String dis = session.getAttribute("DISCIPLINE_CODE").toString();
     String sub = session.getAttribute("SUB_DISCIPLINE_CODE").toString();
 
-    String eliCat = "select * from adm_lookup_detail where master_reference_code = '0063'   ";
+    String eliCat = "select * from adm_lookup_detail where master_reference_code = '0063' and hfc_cd ='"+hfc+"'  ";
     String admit = "select * from lookup_detail where master_ref_code ='0023'";
-    String eliType = "select * from adm_lookup_detail where master_reference_code = '0034'   ";
+    String eliType = "select * from adm_lookup_detail where master_reference_code = '0034'  and hfc_cd ='"+hfc+"' ";
 
-    String idTYpe = "select * from adm_lookup_detail where master_reference_code = '0012'   ";
+    String idTYpe = "select * from adm_lookup_detail where master_reference_code = '0012' and hfc_cd ='"+hfc+"'  ";
 
     ArrayList<ArrayList<String>> dataEliCat, dataAdmit, dataEliType, dataIdType;
 

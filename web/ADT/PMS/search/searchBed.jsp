@@ -24,14 +24,14 @@
                     <option value="null" selected="" disabled="">Select Ward Name</option>
 
                     <%
-                        String wname = "select ward_name from wis_ward_name";
+                        String wname = "select ward_id,ward_name from wis_ward_name where hfc_cd='"+hfc+"'";
                         ArrayList<ArrayList<String>> dataWardName = conn.getData(wname);
 
                         int size1 = dataWardName.size();
 
                         for (int i = 0; i < size1; i++) {
                     %>
-                    <option value="<%= dataWardName.get(i).get(0)%>"><%= dataWardName.get(i).get(0)%> </option>
+                    <option value="<%= dataWardName.get(i).get(0)%>"><%= dataWardName.get(i).get(1)%> </option>
                     <%
                         }
                     %>
@@ -49,14 +49,14 @@
                     <option value="1" selected="" disabled="">Select Ward Type</option>
 
                     <%
-                        String wtype = "select ward_class_code from wis_ward_name";
+                        String wtype = "select ward_class_code,ward_class_name from wis_ward_class where hfc_cd='"+hfc+"'";
                         ArrayList<ArrayList<String>> dataWardType = conn.getData(wtype);
 
                         int size2 = dataWardType.size();
 
                         for (int i = 0; i < size2; i++) {
                     %>
-                    <option value="<%= dataWardType.get(i).get(0)%>"><%= dataWardType.get(i).get(0)%> </option>
+                    <option value="<%= dataWardType.get(i).get(0)%>"><%= dataWardType.get(i).get(1)%> </option>
                     <%
                         }
                     %>
@@ -141,6 +141,80 @@
             }
 
         });
+        
+         //seaching bed function   
+    function searchBed() {
+         
+        var DisO = $('#Dis').val();
+        var wnameO = $('#wname').val();
+        var WardTypeO = $('#WardType').val();
+
+
+
+        //check if the input text or the select box is empty.
+
+        if (DisO === "-") {
+
+            bootbox.alert('Please select Discipline Code first');
+        } else if (wnameO === "-") {
+
+            bootbox.alert('Please select Ward Name first.');
+        } else if (WardTypeO === "-") {
+
+            bootbox.alert('Please select Ward Type first.');
+        } else {
+            //if the select box is choosen and the input in key-in.
+
+            //show loading icon
+            $body.addClass("loading");
+
+            //get value from text box and select box
+            //var Dis = $('#Dis').val();
+            var Diso = $('#Dis').val();
+            var array_dis = Diso.split("|");
+            var Dis = array_dis[0];
+            var wname = $('#wname').val();
+            var WardType = $('#WardType').val();
+            console.log(Dis);
+            console.log(wname);
+            console.log(WardType);
+
+            //run the MAIN ajax function
+            $.ajax({
+                async: true,
+                type: "POST",
+                url: "PMS/controller/resultBed.jsp",
+                data: {'Dis': Dis, 'wname': wname, 'WardType': WardType},
+                timeout: 10000,
+                success: function (list) {
+                    //remove the loading 
+                    $body.removeClass("loading");
+                    console.log(list);
+                    $('#register bedtest').html(list);
+
+                },
+                error: function (xhr, status, error) {
+                    var err = eval("(" + xhr.responseText + ")");
+                    //bootbox.alert(err.Message);
+                }
+            });
+        }
+
+    }
+    ;
+
+    //event on click search button
+    $('#searchBed').on('click', function (e) {
+        e.preventDefault();
+        searchBed();
+
+    });
+
+
+    //event on click clear buton
+    $('#clearSearch').click(function () {
+
+    });
     });
 
 

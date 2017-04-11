@@ -1,4 +1,4 @@
-+ <%-- 
+<%-- 
   Document   : searchPatient
   Created on : Feb 6, 2017, 2:53:34 PM
   Author     : shay
@@ -19,13 +19,13 @@
                     <option selected="" disabled="" value="-"> Please select Ward Name</option>
 
                     <%
-                        Conn conn = new Conn();
+                        //Conn conn = new Conn();
                         String wname1 = "SELECT  ward_name FROM wis_ward_name";
                         ArrayList<ArrayList<String>> dataWname25 = conn.getData(wname1);
 
-                        int size4 = dataWname25.size();
+                        int sizeward = dataWname25.size();
 
-                        for (int i = 0; i < size4; i++) {
+                        for (int i = 0; i < sizeward; i++) {
                     %>
                     <option value="<%= dataWname25.get(i).get(0)%>"><%= dataWname25.get(i).get(0)%> </option>
                     <%
@@ -42,8 +42,7 @@
 </div>
 
 
-<script src="old/assets/js/WardMain.js" type="text/javascript"></script>
-<script src="old/assets/js/onKeyPress.js" type="text/javascript"></script>
+
 <script>
     //validate max length of input
     $('#idWard').on('change', function (e) {
