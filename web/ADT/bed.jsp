@@ -17,7 +17,7 @@
 <%
 //    Config.getBase_url(request);
 //    Config.getFile_url(session);
-  // Conn conn = new Conn();
+    // Conn conn = new Conn();
 %>
 <%
     String sqlBedID = "SELECT bed_id ,bed_status FROM wis_bed_id order by bed_id asc";
@@ -25,7 +25,8 @@
     ArrayList<String> data = dataBedID.get(0);
 
 %>
-<div id="bedDiv">
+ <div class="col-md-8">
+     <div id="bedDiv">
     <table id="tableBed">
         <tbody>
             <%  int count = 0;
@@ -81,35 +82,59 @@
         </tbody>
     </table>
 </div>
-<script>
-    $(function () {
-        $('#bedDiv').on('click', '.bed button', function () {
-            var row = $(this).closest(".bed");
-            //var str = $('#bedID').val();
-            var te = row.find('#bedID').val();
-
-            var array = te.split("|");
-
-            var status = array[1], bedID = array[0];
-            //alert(te);
-            bootbox.alert({
-                message: "The bed status : " + status +
-                        ",  the bed ID: " + bedID,
-                title: "Process Result",
-                backdrop: true
-            });
-
-            if (status === "Available") {
-
-                //set value
-                $('#BedIDReg').val(bedID);
-            }
+ </div>
+         <div class="col-md-8">
+<div id="tableassignBedTable" class="form-group">
 
 
 
-        });
+    <table id="assignBedTable"  border = "border" cellspacing="0" width="15%">
 
 
-    });
 
-</script>
+        <tr>
+            <th bgcolor="#33cc33">A</th>
+            <td bgcolor="#33cc33">AVAILABLE</td>
+        </tr>
+
+        <tr>
+
+            <th bgcolor="#ffff99">AB</th>
+            <td bgcolor="#ffff99">AVAILABLE BUT BOOKED</td>
+        </tr>
+
+
+        <tr>
+
+            <th bgcolor="#ff5050">D</th>
+            <td bgcolor="#ff5050">DISCHARGED</td>
+        </tr>
+        <tr>
+
+            <th bgcolor="#ffcc99">DB</th>
+            <td bgcolor="#ffcc99">DISCHARGED BUT BOOKED</td>
+        </tr>
+        <tr>
+
+            <th bgcolor="#3399ff">M</th>
+            <td bgcolor="#3399ff">OCCUPIED MALE</td>
+        </tr>
+        <tr>
+
+            <th bgcolor="#ffc0cb">F</th>
+            <td bgcolor="#ffc0cb">OCCUPIED FEMALE</td>
+        </tr>
+        </tr>
+
+
+
+        <tr>
+
+
+
+
+        </tr>
+
+    </table>
+</div>
+         </div>
