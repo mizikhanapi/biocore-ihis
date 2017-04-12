@@ -15,8 +15,8 @@
    
         Conn conn = new Conn();
     
-     String nationality = "SELECT * FROM adm_lookup_detail where master_reference_code = '0011' and hfc_cd = "+session.getAttribute("HEALTH_FACILITY_CODE")+" ";
-     String gender = "SELECT * FROM adm_lookup_detail where master_reference_code = '0041' and hfc_cd = "+session.getAttribute("HEALTH_FACILITY_CODE")+" ";
+     String nationality = "SELECT * FROM adm_lookup_detail where master_reference_code = '0011' and hfc_cd = '"+session.getAttribute("HEALTH_FACILITY_CODE")+"' ";
+     String gender = "SELECT * FROM adm_lookup_detail where master_reference_code = '0041' and hfc_cd = '"+session.getAttribute("HEALTH_FACILITY_CODE")+"' ";
      
      
      ArrayList<ArrayList<String>> dataNationality,dataGender;
