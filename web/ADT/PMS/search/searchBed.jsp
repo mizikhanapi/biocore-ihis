@@ -33,21 +33,17 @@
                     <%
                         }
                     %>
-
-
                 </select>
-
             </div>
         </div>
 
         <!-- Select Basic -->
         <div class="form-group">
             <label class="col-md-4 control-label" for="selectbasic">Ward Name</label>
-            <div class="col-md-4">
+            <div class="col-md-4" id="wardNameDropdown">
                 <select id="wname" name="selectbasic" class="form-control">
                     <option value="-">-</option>
                     <option value="null" selected="" disabled="">Select Ward Name</option>
-
                     <%
                         String wname = "select ward_id,ward_name from wis_ward_name where hfc_cd='" + hfc + "'";
                         ArrayList<ArrayList<String>> dataWardName = conn.getData(wname);
@@ -61,18 +57,15 @@
                         }
                     %>
                 </select>
-                <button class="btn btn-primary" type="button" id="searchBed" name="searchBed"><i class="fa fa-search"></i>&nbsp; Search Bed</button>
+            </div>
 
-            </div> 
         </div>
-
-
-
-
-
-
-
-
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="selectbasic"></label>
+            <div class="col-md-4" >                
+                <button class="btn btn-primary" type="button" id="searchBed" name="searchBed"><i class="fa fa-search"></i>&nbsp; Search Bed</button>
+            </div>
+        </div>
     </div>
 
 
@@ -93,9 +86,6 @@
             <div class="col-md-4">
                 <input id="BedIDReg" name="textinput" type="text" placeholder="Bed ID" readonly class="form-control input-md">
                 </br>
-
-
-
             </div>
         </div>
 
@@ -119,7 +109,7 @@
                 var dataFields = {input: input, hfc: hfc, dis: dis, sub: sub}; // We pass input argument in Ajax
                 $.ajax({
                     type: "POST",
-                    url: "search/searchDiscipline.jsp", // call the php file ajax/tuto-autocomplete.php
+                    url: "PMS/search/searchDiscipline.jsp", // call the php file ajax/tuto-autocomplete.php
                     data: dataFields, // Send dataFields var
                     timeout: 3000,
                     success: function (dataBack) { // If success
@@ -142,6 +132,27 @@
                 $('#disList').text(''); // If less than 2 characters, clear the <div id="match"></div>
             }
 
+        });
+
+        $("#WardType").on('change', function () {
+            var classCode = $(this).val();
+            $.ajax({
+                type: "post",
+                url: "PMS/controller/listbedname.jsp",
+                data: {'classCode': classCode},
+                timeout: 10000,
+                success: function (list) {
+                    //remove the loading 
+                    //$body.removeClass("loading");
+                    console.log(list);
+                    $('#wardNameDropdown').html(list);
+
+                },
+                error: function (xhr, status, error) {
+                    var err = eval("(" + xhr.responseText + ")");
+                    //bootbox.alert(err.Message);
+                }
+            });
         });
 
         //seaching bed function   
@@ -191,7 +202,7 @@
                     success: function (list) {
                         //remove the loading 
                         $body.removeClass("loading");
-                        console.log(list);
+                        //console.log(list);
                         $('#bedtest').html(list);
 
                     },

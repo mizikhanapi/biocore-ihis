@@ -173,7 +173,7 @@ function Main(array_data) {
                 pnic = array_data[4],
                 poic = array_data[5],
                 pid = array_data[6],
-                pino = array_data[7]
+                pino = array_data[7];
 
    
         var idtype;
