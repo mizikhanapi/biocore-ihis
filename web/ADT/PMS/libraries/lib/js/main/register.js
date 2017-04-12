@@ -1,133 +1,20 @@
-<script>
-
-    //load appointment modal into the registration page
-//            $("#headerindex").load("libraries/header.html");
-//            $("#topmenuindex").load("libraries/topMenus.html");
-//            $("#sidemenus").load("libraries/sideMenus.jsp");
 
 
+    //set modal width to dynamic
+    $('#modalSaya').on('shown.bs.modal', function () {
+        $(this).find('.modal-dialog').css({width: '70%',
+            height: 'auto',
+            'max-height': '100%'});
+    });
+    $('#modalSaya2').on('shown.bs.modal', function () {
+        $(this).find('.modal-dialog').css({width: '70%',
+            height: 'auto',
+            'max-height': '100%'});
+    });
+    
+    
 
-//
-//    function load() {
-//        $("#listbed").load('bed.jsp');
-//    }
-
-
-//
-//    $(function () {
-//        $('#listbed').on('click', function (e) {
-//            e.preventDefault();
-//            $("#content").load(this.id + "bed.jsp");
-//        });
-//    });
-
-    //event on click search button
-
-    $(document).ready(function () {
-
-
-        $('#listbed').on('click', function () {
-            //console.log("lalu sini");
-            listbed();
-            //console.log(" sudah lalu sini");
-        });
-
-        function listbed() {
-//                                            var Dis = "";
-//                                            var wname = "";
-//                                            var WardType = "";
-//
-//
-//
-//                                            $('#discip').on('change', function () {
-//                                                //bootbox.alert("Discipline Ward");
-//                                                Dis = $('#discip').val();
-//                                                $('#discip').val(Dis);
-//                                            });
-//                                            $('#wname').on('change', function () {
-//                                                //bootbox.alert("Ward Class");
-//                                                wname += $('#wname').val();
-//                                                $('#wname').val(wname);
-//                                            });
-//                                            $('#wtype').on('change', function () {
-//                                                //bootbox.alert("Ward ID");
-//                                                WardType += $('#wtype').val();
-//                                                $('#wtype').val(WardType);
-//                                            });
-
-            var Dis = $('#Dis').val();
-            var WardType = $('#wtype').val();
-            var wname = $('#wname').val();
-
-
-            if (Dis === "") {
-                bootbox.alert("Please select the discipline");
-            } else if (wname === "") {
-                bootbox.alert("Please select the ward name");
-            } else if (WardType === "") {
-                bootbox.alert("Please select the ward type");
-            } else {
-
-                var data = {
-                    Dis: Dis,
-                    wname: wname,
-                    WardType: WardType
-                };
-
-                $.ajax({
-                    url: "bed.jsp",
-                    type: "post",
-                    data: data,
-                    timeout: 10000,
-                    success: function (data) {
-
-                        console.log(data);
-
-                        if (data.trim() === 'Success') {
-                            $("#InpatientRegister").load("InpatientRegistration.jsp");
-
-                            bootbox.alert({
-                                message: " You have successfully make your choice",
-                                title: "Process Result",
-                                backdrop: true
-                            });
-                            reset();
-
-
-
-                        } else if (data.trim() === 'Failed') {
-                            bootbox.alert({
-                                message: "You have failed to make your choice",
-                                title: "Process Result",
-                                backdrop: true
-                            });
-
-
-                        }
-
-                    }, error: function (err) {
-                        console.log("Ajax Is Not Success");
-
-                    }
-
-                });
-
-            }
-
-
-
-        }
-        ;
-
-
-
-
-
-        $("#GL").datepicker({
-            changeMonth: true,
-            changeYear: true,
-            dateFormat: 'dd/mm/yy'
-        });
+       
 
         var $body = $('body');
         var yyyyMMddHHmmss;
@@ -205,7 +92,7 @@
         }
 
         //register patient
-        $('#registerQueue').click(function () {
+        $('#registerBed').click(function () {
             getDateNow();
             setInterval(getDateNow, 1000);
             if ($('#pmino').val() === " " || $('#pmino').val() === "") {
@@ -342,7 +229,128 @@
         $('#btnclear').click(function () {
             $('#myForm2')[0].reset();
         });
-    });
 
 
-</script>  
+
+//
+//
+//    //load appointment modal into the registration page
+////            $("#headerindex").load("libraries/header.html");
+////            $("#topmenuindex").load("libraries/topMenus.html");
+////            $("#sidemenus").load("libraries/sideMenus.jsp");
+//
+//
+//
+////
+////    function load() {
+////        $("#listbed").load('bed.jsp');
+////    }
+//
+//
+////
+////    $(function () {
+////        $('#listbed').on('click', function (e) {
+////            e.preventDefault();
+////            $("#content").load(this.id + "bed.jsp");
+////        });
+////    });
+//
+//    //event on click search button
+//
+//    $(document).ready(function () {
+//
+//
+//        $('#listbed').on('click', function () {
+//            //console.log("lalu sini");
+//            listbed();
+//            console.log(" sudah lalu sini");
+//            });
+//
+//        function listbed() {
+////                                            var Dis = "";
+////                                            var wname = "";
+////                                            var WardType = "";
+////
+////
+////
+////                                            $('#discip').on('change', function () {
+////                                                //bootbox.alert("Discipline Ward");
+////                                                Dis = $('#discip').val();
+////                                                $('#discip').val(Dis);
+////                                            });
+////                                            $('#wname').on('change', function () {
+////                                                //bootbox.alert("Ward Class");
+////                                                wname += $('#wname').val();
+////                                                $('#wname').val(wname);
+////                                            });
+////                                            $('#wtype').on('change', function () {
+////                                                //bootbox.alert("Ward ID");
+////                                                WardType += $('#wtype').val();
+////                                                $('#wtype').val(WardType);
+////                                            });
+//
+//            var Dis = $('#Dis').val();
+//            var WardType = $('#wtype').val();
+//            var wname = $('#wname').val();
+//
+//
+//            if (Dis === "") {
+//                bootbox.alert("Please select the discipline");
+//            } else if (wname === "") {
+//                bootbox.alert("Please select the ward name");
+//            } else if (WardType === "") {
+//                bootbox.alert("Please select the ward type");
+//            } else {
+//
+//                var data = {
+//                    Dis: Dis,
+//                    wname: wname,
+//                    WardType: WardType
+//                };
+//
+//                $.ajax({
+//                    url: "bed.jsp",
+//                    type: "post",
+//                    data: data,
+//                    timeout: 10000,
+//                    success: function (data) {
+//
+//                        console.log(data);
+//
+//                        if (data.trim() === 'Success') {
+//                            $("#InpatientRegister").load("InpatientRegistration.jsp");
+//
+//                            bootbox.alert({
+//                                message: " You have successfully make your choice",
+//                                title: "Process Result",
+//                                backdrop: true
+//                            });
+//                            reset();
+//
+//
+//
+//                        } else if (data.trim() === 'Failed') {
+//                            bootbox.alert({
+//                                message: "You have failed to make your choice",
+//                                title: "Process Result",
+//                                backdrop: true
+//                            });
+//
+//
+//                        }
+//
+//                    }, error: function (err) {
+//                        console.log("Ajax Is Not Success");
+//
+//                    }
+//
+//                });
+//
+//            }
+//
+//
+//
+//        }
+//        ;
+//
+

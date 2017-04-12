@@ -125,7 +125,7 @@
 
     </div>
 
-    <script src="old/assets/js/register.js" type="text/javascript"></script>
+<!--    <script src="old/assets/js/register.js" type="text/javascript"></script>-->
     <!--                                    <script src="../PMS/libraries/lib/js/main/registration.js" type="text/javascript"></script>-->
 
     <!-- header -->
@@ -155,7 +155,7 @@
         });
         var $body = $('body');
     </script>
-    <script src="PMS/libraries/lib/js/main/registration.js" type="text/javascript"></script>
+<!--    <script src="PMS/libraries/lib/js/main/registration.js" type="text/javascript"></script>-->
     <script src="PMS/libraries/lib/js/search/searchDisipline.js" type="text/javascript"></script>
     <script src="PMS/libraries/lib/js/main/appointment.js" type="text/javascript"></script>
     <script src="PMS/libraries/lib/js/main/patient_master_index.js" type="text/javascript"></script>
@@ -175,9 +175,7 @@
     <script src="PMS/libraries/lib/js/search/searchInsCom.js" type="text/javascript"></script>
     <script src="PMS/libraries/lib/js/search/searchBed.js" type="text/javascript"></script>
     <script src="old/assets/js/onKeyPress.js" type="text/javascript"></script>
-    <script src="libraries/js/register.js" type="text/javascript"></script>
-
-
+    <script src="PMS/libraries/lib/js/main/register.js" type="text/javascript"></script>
 
 
 

@@ -72,15 +72,15 @@
                                             <div class="tab-pane active" id="tab_default_1">
 
                                                 <div>
-                                                    <div class="col-md-8">
+                                                    <div class="col-md-6">
                                                         <div id="bed">
-                                                            <%@include file = "bed.jsp" %>
+                                                            <%@include file = "bedsummary.jsp" %>
                                                         </div>
                                                     </div>
 
 
 
-                                                    <div class="col-md-8">
+                                                    <div class="col-md-6">
                                                         <div id="BedRemarks">
                                                             <%@include file = "BedRemarks.jsp" %>
                                                         </div>
