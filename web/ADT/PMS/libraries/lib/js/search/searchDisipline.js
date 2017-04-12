@@ -8,7 +8,7 @@
                         var dataFields = {'input': input,'hfc':hfc}; // We pass input argument in Ajax
                         $.ajax({
                             type: "POST",
-                            url: "search/searchDiscipline.jsp", // call the php file ajax/tuto-autocomplete.php
+                            url: "PMS/search/searchDiscipline.jsp", // call the php file ajax/tuto-autocomplete.php
                             data: dataFields, // Send dataFields var
                             timeout: 3000,
                             success: function (dataBack) { // If success

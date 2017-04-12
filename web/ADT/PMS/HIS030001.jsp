@@ -24,9 +24,12 @@
 </head>
 
 <body>
-    <%        Config.getFile_url(session);
+    <%
+
+        Config.getFile_url(session);
         Config.getBase_url(request);
         Conn conn = new Conn();
+        String hfc = session.getAttribute("HEALTH_FACILITY_CODE").toString();
 
     %>
     <!-- menu top -->
@@ -44,27 +47,25 @@
                 <div><%@include file = "libraries/topMenus.html" %></div>
                 <div class="row" >
                     <div class="col-md-12" >
-
+                        <div class="tabbable-line" id="navDiv">
+                            <ul class="nav nav-tabs" id="ulTabs">
+                                <li class="active"> <a href="#tab_default_1" data-toggle="tab" >Outpatient Registration </a> </li>
+                                <li> <a href="#tab_default_2" data-toggle="tab"> Patient Master Index </a> </li>
+                                <li> <a href="#tab_default_3" data-toggle="tab"> Employment </a> </li>
+                                <li> <a href="#tab_default_4" data-toggle="tab"> Next of Kin </a> </li>
+                                <li> <a href="#tab_default_5" data-toggle="tab"> Family </a> </li>
+                                <li> <a href="#tab_default_6" data-toggle="tab"> Medical Insurance </a> </li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
 
                 <div class="row">
                     <div class="col-md-12">
-                        <div class="thumbnail">
-                            <!-- Tab Menu -->
+                        <!-- Tab Menu -->
 
-                            <div class="tabbable-panel">
-                                <div class="tabbable-line" id="navDiv">
-                                    <ul class="nav nav-tabs" id="ulTabs">
-                                        <li class="active"> <a href="#tab_default_1" data-toggle="tab" >Outpatient Registration </a> </li>
-                                        <li> <a href="#tab_default_2" data-toggle="tab"> Patient Master Index </a> </li>
-                                        <li> <a href="#tab_default_3" data-toggle="tab"> Employment </a> </li>
-                                        <li> <a href="#tab_default_4" data-toggle="tab"> Next of Kin </a> </li>
-                                        <li> <a href="#tab_default_5" data-toggle="tab"> Family </a> </li>
-                                        <li> <a href="#tab_default_6" data-toggle="tab"> Medical Insurance </a> </li>
-                                    </ul>
-                                </div>
-
+                        <div class="tabbable-panel">
+                            <div class="tabbable-line">
                                 <!-- tab content -->
                                 <div class="tab-content">
                                     <!--
@@ -113,9 +114,9 @@
 
                                 </div>
                             </div>
-
-                            <!-- Tab Menu --> 
                         </div>
+
+                        <!-- Tab Menu --> 
                     </div>
                 </div>
             </div>
@@ -152,11 +153,11 @@
     <script src="libraries/lib/js/onKeyPress.js" type="text/javascript"></script>
     <script src="libraries/lib/js/main/registration.js" type="text/javascript"></script>
     <script src="libraries/lib/js/search/searchDisipline.js" type="text/javascript"></script>
-
+    
     <script src="libraries/lib/js/main/patient_master_index.js" type="text/javascript"></script>
     <script src="libraries/lib/js/main/OPMain.js" type="text/javascript"></script>
-
-
+    
+    
     <script src="libraries/lib/js/main/nextOfKin.js" type="text/javascript"></script>
     <script src="libraries/lib/js/search/searchCountry.js" type="text/javascript"></script>
     <script src="libraries/lib/js/search/searchState.js" type="text/javascript"></script>
@@ -168,6 +169,6 @@
     <script src="libraries/lib/js/search/searchHFC.js" type="text/javascript"></script>
     <script src="libraries/lib/js/search/searchOccu.js" type="text/javascript"></script>
     <script src="libraries/lib/js/search/searchInsCom.js" type="text/javascript"></script>
-
+    
 </body>
 </html>

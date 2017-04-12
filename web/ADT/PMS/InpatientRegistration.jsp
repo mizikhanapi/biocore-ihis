@@ -35,8 +35,9 @@
 <input type="hidden" value="<%=dis%>" id="dis">
 <input type="hidden" value="<%=sub%>" id="sub">
 <div class="row" id="register">
-    <div class="col-md-12">
-        <div> <%@include file = "search/searchPatient.jsp" %></div>
+    <div class="col-md-12 ">
+        
+        <div class="thumbnail"> <%@include file = "search/searchPatient.jsp" %></div>
     </div>
 </div>
 
@@ -288,7 +289,7 @@
                 <div class="row" id="register">
                     <div class="col-md-12">
                         <div> <%@include file = "search/searchBed.jsp" %></div>
-                        <div id="bedtest"> </div> 
+                        
                     </div>
                 </div>
 
@@ -302,7 +303,7 @@
                         <div class="panel panel-default form-horizontal">
                             <div class="panel-body">
                                 <div>
-<!--                                    <//%@include file = "bed.jsp" %>-->
+                                <div id="bedtest"> </div>  
                                 </div>
                             </div>
                         </div>
@@ -311,7 +312,7 @@
                 </div>
 
                 <div class="text-center">
-                    <button class="btn btn-primary " type="button" id="registerQueue"><i class="fa fa-floppy-o "></i> Register</button>
+                    <button class="btn btn-primary " type="button" id="registerBed"><i class="fa fa-floppy-o "></i> Register</button>
                     <button class="btn btn-default " type="button" id="btnclear" name="btnclear" > <i class="fa fa-ban "></i>&nbsp; Clear</button>
                 </div>
 

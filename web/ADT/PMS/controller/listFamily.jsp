@@ -11,8 +11,9 @@
 <%
     Conn conn = new Conn();
     String pmiFAM = request.getParameter("PMINO");
+    String hfc = session.getAttribute("HEALTH_FACILITY_CODE").toString();
     String famList = "select a.*,g.description from pms_family a"
-            + " left join adm_lookup_detail g on g.detail_reference_code=a.occupation_code and g.master_reference_code='0050'"
+            + " left join adm_lookup_detail g on g.detail_reference_code=a.occupation_code and g.master_reference_code='0050' and g.hfc_cd ='"+hfc+"'"
             + " where pmi_no = '" + pmiFAM + "'";
     ArrayList<ArrayList<String>> dataFamList;
     dataFamList = conn.getData(famList);
