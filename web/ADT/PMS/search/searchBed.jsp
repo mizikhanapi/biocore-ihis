@@ -96,30 +96,7 @@
 <script>
 
     $(document).ready(function () {
-        
-        function searchWardType(){
-            var Dis = $("#Dis").val();
-            var array_data = Dis.split("|");
-            var disCode = array_data[0];
-            
-            $.ajax({
-                type:"post",
-                url:"PMS/controller/listWardType.jsp",
-                data: {'Dis': disCode},
-                timeout: 10000,
-                success: function (list) {
-                        //remove the loading 
-                        
-                        console.log(list);
-                        $('#wardTypeList').html(list);
 
-                    },
-                    error: function (xhr, status, error) {
-                        var err = eval("(" + xhr.responseText + ")");
-                        //bootbox.alert(err.Message);
-                    }
-            });
-        }
         
         $("#Dis").on('keyup', function () { // everytime keyup event
             var input = $(this).val(); // We take the input value
@@ -143,7 +120,23 @@
                             $('#Dis').val($(this).text());
                             $('#disList').text(''); // Clear the <div id="match"></div>
                             var arrayData = $('#Dis').val().split("|");
-                            searchWardType();
+                            var discode=arrayData[0];
+                            console.log(arrayData);
+                            $.ajax({
+                                type:"post",
+                                url:"PMS/controller/listWardType.jsp",
+                                data: {'Dis': discode},
+                                timeout: 10000,
+                                success: function (list) {
+                                        //remove the loading 
+                                        console.log(list);
+                                        $('#wardTypeList').html(list);
+                                    },
+                                    error: function (xhr, status, error) {
+                                        var err = eval("(" + xhr.responseText + ")");
+                                        //bootbox.alert(err.Message);
+                                    }
+                            });
                         });
                     },
                     error: function () { // if error
