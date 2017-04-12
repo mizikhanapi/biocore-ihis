@@ -25,13 +25,12 @@
     </head>
 
     <body>
-<!--    <input type="text" id="test">-->
+        <!--    <input type="text" id="test">-->
 
-<%
-    Config.getBase_url(request);
-    Config.getFile_url(session);
-  Conn conn = new Conn();
-%>
+        <%    Config.getBase_url(request);
+            Config.getFile_url(session);
+            Conn conn = new Conn();
+        %>
 
 
         <!-- header -->
@@ -65,7 +64,7 @@
                                                 <a href="#tab_default_1" data-toggle="tab">
                                                     Bed Booking Master Summary </a>
                                             </li>
-                                            
+
 
                                         </ul>
                                         <!-- tab content -->
@@ -73,18 +72,28 @@
                                             <div class="tab-pane active" id="tab_default_1">
 
                                                 <div>
+                                                    <div class="col-md-8">
+                                                        <div id="bed">
+                                                            <%@include file = "bed.jsp" %>
+                                                        </div>
+                                                    </div>
 
-                                                    <div id="bed">
-                                                        <%@include file = "bed.jsp" %>
+
+
+                                                    <div class="col-md-8">
+                                                        <div id="BedRemarks">
+                                                            <%@include file = "BedRemarks.jsp" %>
+                                                        </div>
+
                                                     </div>
                                                     </br>
-                                                   
+
                                                 </div>
 
 
 
                                             </div>
-                                            
+
 
 
                                         </div>

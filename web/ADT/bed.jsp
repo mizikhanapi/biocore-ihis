@@ -18,14 +18,16 @@
 //    Config.getBase_url(request);
 //    Config.getFile_url(session);
     // Conn conn = new Conn();
+ String hfc = session.getAttribute("HEALTH_FACILITY_CODE").toString();
+
 %>
 <%
-    String sqlBedID = "SELECT bed_id ,bed_status FROM wis_bed_id order by bed_id asc";
+    String sqlBedID = "SELECT bed_id ,bed_status FROM wis_bed_id WHERE hfc_cd = '"+hfc+"' order by bed_id asc";
     ArrayList<ArrayList<String>> dataBedID = conn.getData(sqlBedID);
     ArrayList<String> data = dataBedID.get(0);
 
 %>
- <div class="col-md-8">
+ 
      <div id="bedDiv">
     <table id="tableBed">
         <tbody>
@@ -82,59 +84,5 @@
         </tbody>
     </table>
 </div>
- </div>
-         <div class="col-md-8">
-<div id="tableassignBedTable" class="form-group">
-
-
-
-    <table id="assignBedTable"  border = "border" cellspacing="0" width="15%">
-
-
-
-        <tr>
-            <th bgcolor="#33cc33">A</th>
-            <td bgcolor="#33cc33">AVAILABLE</td>
-        </tr>
-
-        <tr>
-
-            <th bgcolor="#ffff99">AB</th>
-            <td bgcolor="#ffff99">AVAILABLE BUT BOOKED</td>
-        </tr>
-
-
-        <tr>
-
-            <th bgcolor="#ff5050">D</th>
-            <td bgcolor="#ff5050">DISCHARGED</td>
-        </tr>
-        <tr>
-
-            <th bgcolor="#ffcc99">DB</th>
-            <td bgcolor="#ffcc99">DISCHARGED BUT BOOKED</td>
-        </tr>
-        <tr>
-
-            <th bgcolor="#3399ff">M</th>
-            <td bgcolor="#3399ff">OCCUPIED MALE</td>
-        </tr>
-        <tr>
-
-            <th bgcolor="#ffc0cb">F</th>
-            <td bgcolor="#ffc0cb">OCCUPIED FEMALE</td>
-        </tr>
-        </tr>
-
-
-
-        <tr>
-
-
-
-
-        </tr>
-
-    </table>
-</div>
-         </div>
+ 
+         
