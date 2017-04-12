@@ -54,7 +54,7 @@
                         <div><label>Staff *: </label></div>
                         
                         <input id="QLStaff" name="textinput" type="text" placeholder="select staff.." class="form-control input-md">
-                        <input id="QLStaffCODE" name="PMIhstateCODE" type="hidden" placeholder="select country.." class="form-control input-md">
+                        <input id="QLStaffCODE" name="PMIhstateCODE" type="hidden" class="form-control input-md">
                         <div id="matchDoctor" class="search-drop"></div>
                     </div>
                    
