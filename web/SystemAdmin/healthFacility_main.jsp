@@ -8,18 +8,26 @@
 <%@page import="dBConn.Conn"%>
 <!-- Add Part Start -->
 <!-- Add Button Start -->
+<%
+    Conn conn = new Conn();
+
+    String hfc_cd = session.getAttribute("HEALTH_FACILITY_CODE").toString();
+    String user_id = session.getAttribute("USER_ID").toString();
+    String last9 = user_id.substring(user_id.length() - 1);
+%>
 <h4 style="padding-top: 30px;padding-bottom: 35px; font-weight: bold">
     HEALTH FACILITY MANAGEMENT
+    <%
+        if(last9.equals("9") && hfc_cd.equals("99_iHIS_99")){
+    %>
     <span class="pull-right">
         <button id="HFM_btnAddNew" class="btn btn-success" data-status="pagado" data-toggle="modal" data-id="1" data-target="#HFM_detail" style=" padding-right: 10px;padding-left: 10px;color: white;"><a data-toggle="tooltip" data-placement="top" title="Add Items" id="test"><i class=" fa fa-plus" style=" padding-right: 10px;padding-left: 10px;color: white;"></i></a>ADD Health Facility</button>
     </span>
+    <%
+        }
+    %>
 </h4>
 <!-- Add Button End -->
-
-<% Conn conn = new Conn();
-    
-   String hfc_cd = session.getAttribute("HEALTH_FACILITY_CODE").toString();
-%>
 <!-- Add Modal Start -->
 <div class="modal fade" id="HFM_detail" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
     <div class="modal-dialog" style="width: 50%">
@@ -85,7 +93,7 @@
                                     <select class="form-control"  id="HFM_state" >
                                         <option  value="0" >Select the state</option>
                                         <%
-                                            String sql = "SELECT detail_reference_code, description FROM adm_lookup_detail WHERE master_reference_code = '0002' AND hfc_cd = '"+hfc_cd+"' AND detail_reference_code NOT IN ('00', '98') order by description ";
+                                            String sql = "SELECT detail_reference_code, description FROM adm_lookup_detail WHERE master_reference_code = '0002' AND hfc_cd = '" + hfc_cd + "' AND detail_reference_code NOT IN ('00', '98') order by description ";
                                             ArrayList<ArrayList<String>> stateList = conn.getData(sql);
                                             for (int i = 0; i < stateList.size(); i++) {
                                         %>
@@ -301,7 +309,7 @@
 <script src="libraries/validator.js" type="text/javascript"></script>
 
 <script>
-    
+
     (function ($) {
         $.fn.checkFileType = function (options) {
             var defaults = {
@@ -516,7 +524,7 @@
                 $('#HFM_IP').focus();
 
             } else {
-                
+
                 $('<div class="loading">Loading</div>').appendTo('#HFM_detail');
 
                 var data = {
@@ -542,7 +550,7 @@
                     director: director,
                     status: status,
                     establishDate: establishDate,
-                    logo : gambarURI
+                    logo: gambarURI
                 };
 
                 $.ajax({
@@ -586,9 +594,9 @@
                     error: function (err) {
                         console.log("Ajax Is Not Success: ");
                     },
-                    complete: function (jqXHR, textStatus ) {
+                    complete: function (jqXHR, textStatus) {
                         $('.loading').hide();
-                }
+                    }
 
                 });
             }
