@@ -97,7 +97,7 @@
             setInterval(getDateNow, 1000);
             if ($('#pmino').val() === " " || $('#pmino').val() === "") {
                 bootbox.alert('Please use a proper PMI no.');
-            } else if ($('input[name="PoliceCase"]').prop("checked")===false) {
+            } else if ($('input[name="PoliceCase"]').val()===null) {
                 bootbox.alert('Please choose the police case');
             }else if ($('#GL').val() === " ") {
                 bootbox.alert('Please choose the GL expiry date');
@@ -148,7 +148,7 @@
                 }else{
                     payer = $('#payer').val();
                 }
-                Dis = $('#Dis').val();
+                Dis = $('#DisWard').val();
                 var array_dis = Dis.split("|");
                 var Dis = array_dis[0];
                 wname = $('#wname').val();

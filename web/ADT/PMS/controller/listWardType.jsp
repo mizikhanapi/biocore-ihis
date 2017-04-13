@@ -30,3 +30,25 @@
                         }
                     %>
                 </select>
+                <script>
+                    $("#WardType").on('change', function () {
+            var classCode = $(this).val();
+            $.ajax({
+                type: "post",
+                url: "PMS/controller/listbedname.jsp",
+                data: {'classCode': classCode},
+                timeout: 10000,
+                success: function (list) {
+                    //remove the loading 
+                    //$body.removeClass("loading");
+                    console.log(list);
+                    $('#wardNameDropdown').html(list);
+
+                },
+                error: function (xhr, status, error) {
+                    var err = eval("(" + xhr.responseText + ")");
+                    //bootbox.alert(err.Message);
+                }
+            });
+        });
+                </script>

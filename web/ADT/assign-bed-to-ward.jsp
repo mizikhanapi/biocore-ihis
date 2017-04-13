@@ -71,18 +71,6 @@
 
                     <!-- content goes here -->
                     <form class="form-horizontal" id="addForm">
-
-                        <!-- Select Basic -->
-                        <div class="form-group">
-                            <label class="col-md-4 control-label" for="selectbasic">Discipline *</label>
-                            <div class="col-md-6">
-                                <input id="DisAss" name="Dis" placeholder="Insert Discipline Code" maxlength="30" type="text"  class="form-control input-md">
-                                <div id="disListAss" class="search-drop"></div>
-                            </div>
-
-                        </div>
-
-                        <!-- Select Basic -->
                         <div class="form-group">
                             <label class="col-md-4 control-label" for="selectbasic">Ward Class</label>
                             <div class="col-md-6">
@@ -103,6 +91,20 @@
                                 </select>
                             </div>
                         </div>
+                                
+                        <!-- Select Basic -->
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" for="selectbasic">Discipline *</label>
+                            <div class="col-md-6">
+                                <input id="DisView" name="Dis" placeholder="" maxlength="30" type="text"  class="form-control input-md" readonly="">
+                                <input id="DisAss" type="hidden">
+
+                            </div>
+
+                        </div>
+
+                        <!-- Select Basic -->
+                        
 
                         <!-- Select Basic -->
                         <div class="form-group">
@@ -191,40 +193,42 @@
 //        $('#Discipline').on('change',function(){
 //           console.log(this.val());
 //        });
-
-        $("#DisAss").on('keyup', function () { // everytime keyup event
-            var input = $(this).val(); // We take the input value
-            var hfc = $("#Rhfc").val();
-
-            if (input.length >= 1) { // Minimum characters = 2 (you can change)
-                $('#disListAss').html('<img src="libraries/LoaderIcon.gif" />'); // Loader icon apprears in the <div id="match"></div>
-                var dataFields = {input: input, hfc: hfc}; // We pass input argument in Ajax
-                $.ajax({
-                    type: "POST",
-                    url: "searchDiscipline.jsp", // call the php file ajax/tuto-autocomplete.php
-                    data: dataFields, // Send dataFields var
-                    timeout: 3000,
-                    success: function (dataBack) { // If success
-                        $('#disListAss').html(dataBack); // Return data (UL list) and insert it in the <div id="match"></div>
-                        $('#matchListDis li').on('click', function () { // When click on an element in the list
-                            //$('#masterCode2').text($(this).text()); // Update the field with the new element
-                            $('#DisAss').val($(this).text());
-                            $('#disListAss').text(''); // Clear the <div id="match"></div>
-                            var arrayData = $('#DisAss').val().split("|");
-                            //console.log(arrayData);
-                            //console.log(arrayData[0].trim());
-                            //console.log(arrayData[1].trim());
-                        });
-                    },
-                    error: function () { // if error
-                        $('#disListAss').text('Problem!');
-                    }
-                });
-            } else {
-                $('#disListAss').text(''); // If less than 2 characters, clear the <div id="match"></div>
-            }
-
-        });
+        
+        
+        
+//        $("#DisAss").on('keyup', function () { // everytime keyup event
+//            var input = $(this).val(); // We take the input value
+//            var hfc = $("#Rhfc").val();
+//
+//            if (input.length >= 1) { // Minimum characters = 2 (you can change)
+//                $('#disListAss').html('<img src="libraries/LoaderIcon.gif" />'); // Loader icon apprears in the <div id="match"></div>
+//                var dataFields = {input: input, hfc: hfc}; // We pass input argument in Ajax
+//                $.ajax({
+//                    type: "POST",
+//                    url: "searchDiscipline.jsp", // call the php file ajax/tuto-autocomplete.php
+//                    data: dataFields, // Send dataFields var
+//                    timeout: 3000,
+//                    success: function (dataBack) { // If success
+//                        $('#disListAss').html(dataBack); // Return data (UL list) and insert it in the <div id="match"></div>
+//                        $('#matchListDis li').on('click', function () { // When click on an element in the list
+//                            //$('#masterCode2').text($(this).text()); // Update the field with the new element
+//                            $('#DisAss').val($(this).text());
+//                            $('#disListAss').text(''); // Clear the <div id="match"></div>
+//                            var arrayData = $('#DisAss').val().split("|");
+//                            //console.log(arrayData);
+//                            //console.log(arrayData[0].trim());
+//                            //console.log(arrayData[1].trim());
+//                        });
+//                    },
+//                    error: function () { // if error
+//                        $('#disListAss').text('Problem!');
+//                    }
+//                });
+//            } else {
+//                $('#disListAss').text(''); // If less than 2 characters, clear the <div id="match"></div>
+//            }
+//
+//        });
 
         var BedID = "";
 
@@ -253,6 +257,26 @@
             });
             BedID = $('#Ward_Class').val() + "/";
             $('#BedID').val(BedID);
+            
+            var dis = $('#Ward_Class').val();
+            var hfc = '<%=hfcAS%>';
+           
+           $.ajax({
+              type:"POST",
+              url:"PMS/search/getDisWard.jsp",
+              data:{'input':dis,'hfc':hfc},
+              timeout:3000,
+              success:function(databack){
+                  
+                  console.log("this is the fc: "+databack);
+                  var array = databack.split("|");
+                   $('#DisAss').val(array[0].trim());
+                   $("#DisView").val(array[1].trim());
+              },
+              error: function(){
+                  
+              }              
+           });
         });
         
        
