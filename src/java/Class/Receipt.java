@@ -109,7 +109,8 @@ public class Receipt extends HttpServlet {
                     + "(cd.item_amt/cd.quantity), "
                     + "cd.item_amt, "
                     + "ch.item_amt, "
-                    + "ch.bill_no "
+                    + "ch.bill_no, "
+                    + "pb.email_address "
                     + "FROM far_customer_hdr ch "
                     + "INNER JOIN far_customer_dtl cd "
                     + "ON ch.bill_no = cd.bill_no "
@@ -117,7 +118,7 @@ public class Receipt extends HttpServlet {
                     + "ON ch.customer_id = pb.pmi_no "
                     + "WHERE ch.customer_id = '"+ custId +"' "
                     + "AND ch.bill_no = '"+ billNo +"' ";
-            ArrayList<ArrayList<String>> data1 = Conn.getData(sql1);
+            ArrayList<ArrayList<String>> personalData = Conn.getData(sql1);
 
             //Get the last sequence no of receipt
             String sql2 = "SELECT last_seq_no "
@@ -227,13 +228,13 @@ public class Receipt extends HttpServlet {
             cell001.setColspan(4);
             header.addCell(cell001);
 
-            String nama = data1.get(0).get(0);
-            String address = data1.get(0).get(1);
-            String custId = data1.get(0).get(2);
-            String id = data1.get(0).get(3);
-            String phone = data1.get(0).get(4);
-            String billNo = data1.get(0).get(5);
-            String date = data1.get(0).get(6);
+            String nama = personalData.get(0).get(0);
+            String address = personalData.get(0).get(1);
+            String custId = personalData.get(0).get(2);
+            String id = personalData.get(0).get(3);
+            String phone = personalData.get(0).get(4);
+            String billNo = personalData.get(0).get(5);
+            String date = personalData.get(0).get(6);
 
             //--------------------------Receipt item------------------------------------------>
             PdfPCell cell11 = new PdfPCell(new Phrase("Name", rectem));
@@ -347,17 +348,17 @@ public class Receipt extends HttpServlet {
             table.addCell(cell65);
             table.addCell(cell66);
 
-            for (int i = 0; i < data1.size() ; i++) {
+            for (int i = 0; i < personalData.size() ; i++) {
 
-                if ((data1.get(i).get(7).charAt(0) == 'B') && (data1.get(i).get(7).charAt(1) == 'P')){
+                if ((personalData.get(i).get(7).charAt(0) == 'B') && (personalData.get(i).get(7).charAt(1) == 'P')){
                 } else {
                     String no = Integer.toString(num+1);
 
-                    String item = data1.get(i).get(7);
-                    String description = data1.get(i).get(8);
-                    String quantity = data1.get(i).get(9);
-                    String price = df.format(Double.parseDouble(data1.get(i).get(10)));
-                    String total = data1.get(i).get(11);
+                    String item = personalData.get(i).get(7);
+                    String description = personalData.get(i).get(8);
+                    String quantity = personalData.get(i).get(9);
+                    String price = df.format(Double.parseDouble(personalData.get(i).get(10)));
+                    String total = personalData.get(i).get(11);
 
                     PdfPCell cell71 = new PdfPCell(new Phrase(no, rectemja));
                     cell71.setHorizontalAlignment(Element.ALIGN_CENTER);
@@ -552,6 +553,19 @@ public class Receipt extends HttpServlet {
             baos.writeTo(os);
             os.flush();
             os.close();
+            
+            String email = personalData.get(0).get(14);
+            
+            if (email != null){
+                EmailSender es = new EmailSender(
+                        email,
+                        "Receipt",
+                        "Hope you recover soon. Thank you.",
+                        date1,
+                        baos
+                );
+                es.email();
+            }
 
         } catch (Exception e) {
         } 

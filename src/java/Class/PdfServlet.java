@@ -535,8 +535,13 @@ public class PdfServlet extends HttpServlet {
                 os.close();
 
                 if (email != null){
-//                        EmailSender es = new EmailSender(email, "Yearly Account Statement", "", "YearStatement.pdf");
-//                        es.sendEmail();
+                    EmailSender es = new EmailSender(
+                            email,
+                            "Yearly Account Statement",
+                            "",
+                            "YearlyStatement",
+                            baos);
+                    es.email();
                 }
 
             }catch(Exception e){
@@ -816,8 +821,13 @@ public class PdfServlet extends HttpServlet {
                     os.close();
                     
                     if (email != null){
-//                        EmailSender es = new EmailSender(email, "Details Account Statement", "", "DetailsStatement.pdf");
-//                        es.sendEmail();
+                        EmailSender es = new EmailSender(
+                                email,
+                                "Details Account Statement",
+                                "",
+                                "DetailsStatement",
+                                baos);
+                        es.email();
                     }
                 } catch (Exception e) {
                 }
@@ -880,8 +890,15 @@ public class PdfServlet extends HttpServlet {
                                 os.flush();
                                 os.close();
 
-//                                EmailSender es = new EmailSender(email, "Details Account Statement", "", "DetailsStatement.pdf");
-//                                es.sendEmail();
+                                if (email != null){
+                                    EmailSender es = new EmailSender(
+                                            email,
+                                            "Details Account Statement",
+                                            "",
+                                            "DetailsStatement",
+                                            baos);
+                                    es.email();
+                                }
                             }
                             continue;
                         }
