@@ -17,7 +17,7 @@
         <!-- Select Basic -->
         <div class="form-group">
             <label class="col-md-4 control-label" for="selectbasic">Ward Type</label>
-            <div class="col-md-4">
+            <div class="col-md-4" id="wardTypeList">
                 <select id="WardType" name="WardType" class="form-control">
                     <option value="1" selected="" disabled="">Select Ward Type</option>
 
@@ -97,6 +97,7 @@
 
     $(document).ready(function () {
 
+        
         $("#Dis").on('keyup', function () { // everytime keyup event
             var input = $(this).val(); // We take the input value
             var hfc = $("#Rhfc").val();
@@ -119,9 +120,23 @@
                             $('#Dis').val($(this).text());
                             $('#disList').text(''); // Clear the <div id="match"></div>
                             var arrayData = $('#Dis').val().split("|");
-                            //console.log(arrayData);
-                            //console.log(arrayData[0].trim());
-                            //console.log(arrayData[1].trim());
+                            var discode=arrayData[0];
+                            console.log(arrayData);
+                            $.ajax({
+                                type:"post",
+                                url:"PMS/controller/listWardType.jsp",
+                                data: {'Dis': discode},
+                                timeout: 10000,
+                                success: function (list) {
+                                        //remove the loading 
+                                        console.log(list);
+                                        $('#wardTypeList').html(list);
+                                    },
+                                    error: function (xhr, status, error) {
+                                        var err = eval("(" + xhr.responseText + ")");
+                                        //bootbox.alert(err.Message);
+                                    }
+                            });
                         });
                     },
                     error: function () { // if error
