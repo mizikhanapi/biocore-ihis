@@ -125,21 +125,12 @@
 
     </div>
 
-    <script src="old/assets/js/register.js" type="text/javascript"></script>
+<!--    <script src="old/assets/js/register.js" type="text/javascript"></script>-->
     <!--                                    <script src="../PMS/libraries/lib/js/main/registration.js" type="text/javascript"></script>-->
 
     <!-- header -->
     <script>
 
-  //        //load page to the div
-  //        $("#registration").load("registrationV2.jsp");
-  //        $("#patientMasterIndex").load("patient-master-indexV2.jsp");
-  //        $("#employment").load("EmploymentV2.jsp");
-  //        $("#nextOfKin").load("kinV2.jsp");
-  //        $("#family").load("familyV2.jsp");
-  //        $("#medical").load("medical-insuranceV2.jsp");
-  //////        $("#test").load("dummy.html");
-  //        $("#sidemenus").load("../libraries/PMS/sideMenus.jsp");
 
         $('a[data-toggle="tab"]').click(function (e) {
             // $('#tab_a').find('a').removeAttr('data-toggle');
@@ -155,7 +146,7 @@
         });
         var $body = $('body');
     </script>
-    <script src="PMS/libraries/lib/js/main/registration.js" type="text/javascript"></script>
+<!--    <script src="PMS/libraries/lib/js/main/registration.js" type="text/javascript"></script>-->
     <script src="PMS/libraries/lib/js/search/searchDisipline.js" type="text/javascript"></script>
     <script src="PMS/libraries/lib/js/main/appointment.js" type="text/javascript"></script>
     <script src="PMS/libraries/lib/js/main/patient_master_index.js" type="text/javascript"></script>
@@ -175,9 +166,7 @@
     <script src="PMS/libraries/lib/js/search/searchInsCom.js" type="text/javascript"></script>
     <script src="PMS/libraries/lib/js/search/searchBed.js" type="text/javascript"></script>
     <script src="old/assets/js/onKeyPress.js" type="text/javascript"></script>
-
-
-
+    <script src="PMS/libraries/lib/js/main/register.js" type="text/javascript"></script>
 
 
 

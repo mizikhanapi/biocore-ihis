@@ -278,6 +278,7 @@ function Main(array_data) {
         $('input[id=pnic]').val($.trim(pnic));
         $('input[id=poic]').val($.trim(poic));
         $('input[id=pit]').val($.trim(idtype));
+        $('input[id=pitID]').val($.trim(pit));
         $('input[id=pino]').val($.trim(pino));
         // set value in PMI page
         $('input[id=PMIpmino]').val($.trim(pmino));
