@@ -14,14 +14,12 @@
 
     <div class="row">
 <%
-                Conn conn44 = new Conn();
-                String hfcASS = session.getAttribute("HEALTH_FACILITY_CODE").toString();
-                String sqlbedSum = "SELECT  d.discipline_name ,  b.ward_class_name,c.ward_name, a.bed_id,a.bed_status,  a.discipline_cd,  a.ward_class_code, a.ward_id,  a.hfc_cd,b.ward_class_code,  c.ward_id, d.discipline_cd FROM wis_bed_id a LEFT JOIN wis_ward_class b ON a.ward_class_code = b.ward_class_code LEFT JOIN wis_ward_name c ON a.ward_id = c.ward_id LEFT JOIN adm_discipline d ON a.discipline_cd = d.discipline_cd where a.hfc_cd = '"+hfcASS+"'";
-                
-                ArrayList<ArrayList<String>> databedSum = conn44.getData(sqlbedSum);
+                String sqlbedRemarks = "SELECT  a.ward_class_name, b.ward_name,  a.hfc_cd, a.ward_class_code,b.ward_class_code,  b.ward_id  FROM wis_ward_class a LEFT JOIN wis_ward_name b ON a.ward_class_code = b.ward_class_code  where a.hfc_cd = '" + hfc + "'";
 
-                int size29 = databedSum.size();
-                for (int i = 0; i < size29; i++) {
+            ArrayList<ArrayList<String>> databedRemarks = conn.getData(sqlbedRemarks);
+
+            int sizeR = databedRemarks.size();
+            for (int i = 0; i < sizeR; i++) {
             %>
         <div class="col-md-4" width="5%">
 
@@ -30,7 +28,7 @@
 
 
         <tr>
-            <th colspan="2" bgcolor="#a6a6a6"><%= databedSum.get(i).get(2)%></th>
+            <th colspan="2" bgcolor="#a6a6a6"><%= databedRemarks.get(i).get(0) + " | " + databedRemarks.get(i).get(1)%></th>
 
         </tr>
 

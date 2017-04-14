@@ -30,6 +30,8 @@
         <%    Config.getBase_url(request);
             Config.getFile_url(session);
             Conn conn = new Conn();
+                            String hfc = session.getAttribute("HEALTH_FACILITY_CODE").toString();
+
         %>
 
 

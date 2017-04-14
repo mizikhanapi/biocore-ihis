@@ -15,7 +15,7 @@
 //    Config.getBase_url(request);
 //    Config.getFile_url(session);
     // Conn conn = new Conn();
-    String hfc = session.getAttribute("HEALTH_FACILITY_CODE").toString();
+   // String hfc = session.getAttribute("HEALTH_FACILITY_CODE").toString();
 
 %>
 <div id="wardTable" class="form-group">
@@ -25,7 +25,7 @@
 
         <%//                Conn conn44 = new Conn();
 //                String hfc = session.getAttribute("HEALTH_FACILITY_CODE").toString();
-            String sqlbedSum2 = "SELECT  d.discipline_name ,  b.ward_class_name, c.ward_name, a.bed_id,a.bed_status,  a.discipline_cd,  a.ward_class_code, a.ward_id,  a.hfc_cd,b.ward_class_code,  c.ward_id, d.discipline_cd FROM wis_bed_id a LEFT JOIN wis_ward_class b ON a.ward_class_code = b.ward_class_code LEFT JOIN wis_ward_name c ON a.ward_id = c.ward_id LEFT JOIN adm_discipline d ON a.discipline_cd = d.discipline_cd where a.hfc_cd = '" + hfc + "'";
+                String sqlbedSum2 = "SELECT  a.ward_class_name, b.ward_name,  a.hfc_cd, a.ward_class_code,b.ward_class_code,  b.ward_id  FROM wis_ward_class a LEFT JOIN wis_ward_name b ON a.ward_class_code = b.ward_class_code  where a.hfc_cd = '" + hfc + "'";
 
             ArrayList<ArrayList<String>> databedSum2 = conn.getData(sqlbedSum2);
 
@@ -36,7 +36,7 @@
             <table class="table table-bordered" id="wardBedTable"  width="30%">
 
                 <tr>
-                    <th colspan="2" style="background:#a6a6a6"><%= databedSum2.get(i).get(1) + " | " + databedSum2.get(i).get(2)%></th>
+                    <th colspan="2" style="background:#a6a6a6"><%= databedSum2.get(i).get(0) + " | " + databedSum2.get(i).get(1)%></th>
 
                 </tr>
                 <tr>
@@ -48,35 +48,35 @@
 
                 </tr>
                 <tr>
-                    <% String wardid = databedSum2.get(i).get(7);
-                        String wardclass = databedSum2.get(i).get(6);
-                        String sqlbedSum3 = "SELECT  bed_id from wis_bed_id where ward_id = '" + wardid + "' and ward_class_code = '" + wardclass + "'";
-                        ArrayList<ArrayList<String>> databedSum23 = conn.getData(sqlbedSum3);
-
-                        int size2923 = databedSum23.size();
-                        for (int i3 = 0; i3 < size2923; i++) {
+                    <% // String wardid = databedSum2.get(i).get(5);
+//                        String wardclass = databedSum2.get(i).get(4);
+//                        String sqlbedSum3 = "SELECT  bed_id, bed_status from wis_bed_id where ward_id = '" + wardid + "' and ward_class_code = '" + wardclass + "'  ";
+//                        ArrayList<ArrayList<String>> databedSum23 = conn.getData(sqlbedSum3);
+//                        out.print(sqlbedSum3);
+//                        int size2923 = databedSum23.size();
+//                        for (int i3 = 0; i3 < size2923; i++) {
                     %>
-                    <th style="background:#ffffcc"><%= databedSum23.get(i3).get(0)%></th>
+                    <th style="background:#ffffcc"><%//= databedSum23.get(i3).get(0)%></th>
 
 
 
-                    <% 
-                        {
-                            if (databedSum2.get(i).get(4).equals("Available")) {
+                    <%
+                        
+                            //if (databedSum23.get(i3).get(1).equals("Available")) {
                     %>
                     <td style="background:#33cc33" >A</td>
 
 
-                    <%} else if (databedSum2.get(i).get(4).equals("Occupied")) { %>
+                    <%//} //else if (databedSum23.get(i3).get(1).equals("Occupied")) { %>
 
                     <td style="background:#ff5050" >O</td>
 
-                    <%} else if (databedSum2.get(i).get(4).equals("Pending")) { %>
+                    <%//}// else if (databedSum23.get(i3).get(1).equals("Pending")) { %>
 
                     <td style="background:#ffff99" >P</td>
-                    <% }
-                        }
-                    }%>
+                    <%// }
+                            
+                       // }%>
 
                 </tr>
 
