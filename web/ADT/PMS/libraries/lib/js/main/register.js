@@ -97,7 +97,7 @@
             setInterval(getDateNow, 1000);
             if ($('#pmino').val() === " " || $('#pmino').val() === "") {
                 bootbox.alert('Please use a proper PMI no.');
-            } else if ($('input[name="PoliceCase"]').prop("checked")===false) {
+            } else if ($('input[name="PoliceCase"]').val()===null) {
                 bootbox.alert('Please choose the police case');
             }else if ($('#GL').val() === " ") {
                 bootbox.alert('Please choose the GL expiry date');
@@ -120,13 +120,14 @@
                 pmino = $('#pmino').val();
                 epiDate = yyyyMMddHHmmss;
                 poic = $('input[id=poic]').val();
-                pid = $('input[id=pit]').val();
+                pid = $('input[id=pitID]').val();
                 MRN = $('input[id=MRN]').val();
                 pname = $('input[id=pname]').val();
                 pnic = $('input[id=pnic]').val();
                 pidno = $('input[id=pino]').val();
                 EliSource = $('#EliSource').val();
                 AdmissionType = $('#AdmissionType').val();
+                
                 Refer = $('#Refer').val();
                 DocType = $('#DocType').val();
                 GL = $('#GL').val();
@@ -148,7 +149,7 @@
                 }else{
                     payer = $('#payer').val();
                 }
-                Dis = $('#Dis').val();
+                Dis = $('#DisWard').val();
                 var array_dis = Dis.split("|");
                 var Dis = array_dis[0];
                 wname = $('#wname').val();

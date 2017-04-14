@@ -55,11 +55,9 @@
 <td><%= dataUser.get(i).get(22)%></td>
 <td><%= dataUser.get(i).get(10)%></td>
 <td><%if (dataUser.get(i).get(21).equals("1")) {
-        out.print("Terminated");
-    } else if(dataUser.get(i).get(21).equals("0")){
+        out.print("Inactive");
+    } else {
         out.print("Active");
-    }else{
-        out.print("Suspended");
     } %></td>
 
 <td>

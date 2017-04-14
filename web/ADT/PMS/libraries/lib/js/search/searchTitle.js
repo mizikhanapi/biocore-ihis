@@ -4,7 +4,7 @@
         var id = $.trim($('#PMItitle').val());
         $.ajax({
         type:'post',
-        url:'PMS/search/searchTitle_cd.jsp',
+        url:'search/searchTitle_cd.jsp',
         data: {'id': id},                
         success: function(reply_data){
             var array_data = String(reply_data).split("|");
@@ -28,7 +28,7 @@
                         var dataFields = {'input': input}; // We pass input argument in Ajax
                         $.ajax({
                             type: "POST",
-                            url: "PMS/search/searchTitle.jsp", // call the php file ajax/tuto-autocomplete.php
+                            url: "search/searchTitle.jsp", // call the php file ajax/tuto-autocomplete.php
                             data: dataFields, // Send dataFields var
                             timeout: 3000,
                             success: function (dataBack) { // If success

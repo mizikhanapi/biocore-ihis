@@ -24,13 +24,13 @@
 
 
         <div id="searchPatientTransfer">
-            <%@include file = "searchPatientTransfer.jsp" %>
+
         </div>
 
 
 
         <div id="searchWardTransfer">
-            <%@include file = "searchWardTransfer.jsp" %>
+
         </div>
 
         <div class="text-center">
@@ -76,7 +76,10 @@
 <script src="http://www.w3schools.com/lib/w3data.js"></script>-->
 
 
+<script src="bootstrap-3.3.6-dist/js/jquery.dataTables.min.js"></script>
 
+<script src="old/assets/js/IPMain.js" type="text/javascript"></script>
+<script src="old/assets/js/onKeyPress.js" type="text/javascript"></script>
 
 
 </body>
@@ -86,8 +89,8 @@
 <script>
 
 //s
-//    $("#searchWardTransfer").load("searchWardTransfer.jsp");
-//    $("#searchPatientTransfer").load("searchPatientTransfer.jsp");
+    $("#searchWardTransfer").load("searchWardTransfer.jsp");
+    $("#searchPatientTransfer").load("searchPatientTransfer.jsp");
     //$("#OccuTable").load("testtable.jsp");
 
 

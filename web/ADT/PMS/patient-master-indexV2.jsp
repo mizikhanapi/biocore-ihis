@@ -7,20 +7,20 @@
     //Conn conn = new Conn();
 
     //for select box items
-    String eliCat4 = "select * from adm_lookup_detail where master_reference_code = '0063' AND hfc_cd = '"+hfc+"'";
-    String eliType4 = "select * from adm_lookup_detail where master_reference_code = '0034' AND hfc_cd = '"+hfc+"'";
-    String gender4 = "select * from adm_lookup_detail where master_reference_code = '0041' AND hfc_cd = '"+hfc+"'";
-    String marital4 = "select * from adm_lookup_detail where master_reference_code = '0006' AND hfc_cd = '"+hfc+"'";
-    String race4 = "select * from adm_lookup_detail where master_reference_code = '0004' AND hfc_cd = '"+hfc+"'";
+    String eliCat4 = "select * from adm_lookup_detail where master_reference_code = '0063'";
+    String eliType4 = "select * from adm_lookup_detail where master_reference_code = '0034'";
+    String gender4 = "select * from adm_lookup_detail where master_reference_code = '0041'";
+    String marital4 = "select * from adm_lookup_detail where master_reference_code = '0006'";
+    String race4 = "select * from adm_lookup_detail where master_reference_code = '0004'";
     //String nationality4 = "select * from adm_lookup_detail where master_reference_code = '0011'";
-    String religion4 = "select * from adm_lookup_detail where master_reference_code = '0005' AND hfc_cd = '"+hfc+"'";
-    String idType4 = "select * from adm_lookup_detail where master_reference_code = '0012' AND hfc_cd = '"+hfc+"'";
+    String religion4 = "select * from adm_lookup_detail where master_reference_code = '0005'";
+    String idType4 = "select * from adm_lookup_detail where master_reference_code = '0012'";
     //String title4 = "select * from adm_lookup_detail where master_reference_code = '0026' ";
-    String bloodty4 = "select * from adm_lookup_detail where master_reference_code = '0074' AND hfc_cd = '"+hfc+"'   ";
-    String rhesus4 = "select * from adm_lookup_detail where master_reference_code = '0017' AND hfc_cd = '"+hfc+"'   ";
-    String allergy4 = "select * from adm_lookup_detail where master_reference_code = '0075' AND hfc_cd = '"+hfc+"'   ";
-    String chronicDesease4 = "select * from adm_lookup_detail where master_reference_code = '0076' AND hfc_cd = '"+hfc+"'  ";
-    String organDonor4 = "select * from adm_lookup_detail where master_reference_code = '0077' AND hfc_cd = '"+hfc+"'";
+    String bloodty4 = "select * from adm_lookup_detail where master_reference_code = '0074'   ";
+    String rhesus4 = "select * from adm_lookup_detail where master_reference_code = '0017'   ";
+    String allergy4 = "select * from adm_lookup_detail where master_reference_code = '0075'   ";
+    String chronicDesease4 = "select * from adm_lookup_detail where master_reference_code = '0076'  ";
+    String organDonor4 = "select * from adm_lookup_detail where master_reference_code = '0077'";
 //    String district4 = "select * from adm_lookup_detail where master_reference_code = '0078'   ";
 //    String postcode4 = "select * from adm_lookup_detail where master_reference_code = '0079'   ";
 //    String country4 = "select * from adm_lookup_detail where master_reference_code = '0001'   ";
@@ -88,7 +88,7 @@
                     <div class="col-md-6">
                         <!-- Text input-->
                         <div class="form-group">
-                            <label class="col-md-4 control-label" for="textinput">PMI No. *</label>
+                            <label class="col-md-4 control-label" for="textinput">PMI No.</label>
                             <div class="col-md-6">
                                 <input id="PMIpmino" name="PMIpmino" type="text" placeholder="" class="form-control input-md">
                             </div>
@@ -104,7 +104,7 @@
 
                         <!-- Text input-->
                         <div class="form-group">
-                            <label class="col-md-4 control-label" for="textinput">Name *</label>
+                            <label class="col-md-4 control-label" for="textinput">Name</label>
                             <div class="col-md-6">
                                 <input id="PMIpname" name="PMIpname" type="text" placeholder="" class="form-control input-md" required="require" maxlength="80">
                             </div>
@@ -112,7 +112,7 @@
 
                         <!-- Select Basic -->
                         <div class="form-group">
-                            <label class="col-md-4 control-label" for="selectbasic">Title *</label>
+                            <label class="col-md-4 control-label" for="selectbasic">Title</label>
                             <div class="col-md-6">
                                 
                                 <input id="PMItitle" name="textinput" type="text" placeholder="select title.." class="form-control input-md">
@@ -123,7 +123,7 @@
 
                         <!-- Text input-->
                         <div class="form-group">
-                            <label class="col-md-4 control-label" for="textinput">New IC No. *</label>
+                            <label class="col-md-4 control-label" for="textinput">New IC No.</label>
                             <div class="col-md-6">
                                 <input id="PMInic" name="PMInic" type="text" placeholder="" class="form-control input-md" maxlength="12">
                             </div>
@@ -139,7 +139,7 @@
 
                         <!-- Select Basic -->
                         <div class="form-group">
-                            <label class="col-md-4 control-label" for="selectbasic">ID Type *</label>
+                            <label class="col-md-4 control-label" for="selectbasic">ID Type</label>
                             <div class="col-md-6">
                                 <select id="PMIidty" name="selectbasic" class="form-control">
                                     <option value="null" selected="" disabled="">Select ID Type</option>
@@ -154,7 +154,7 @@
 
                         <!-- Text input-->
                         <div class="form-group">
-                            <label class="col-md-4 control-label" for="textinput">Identification No. *</label>
+                            <label class="col-md-4 control-label" for="textinput">Identification No.</label>
                             <div class="col-md-6">
                                 <input id="PMIino" name="textinput" type="text" placeholder="" class="form-control input-md" maxlength="10">
                             </div>
@@ -164,7 +164,7 @@
 
                         <!-- Select Basic -->
                         <div class="form-group">
-                            <label class="col-md-4 control-label" for="selectbasic">Eligibility Category *</label>
+                            <label class="col-md-4 control-label" for="selectbasic">Eligibility Category</label>
                             <div class="col-md-6">
                                 <select id="PMIelicat" name="selectbasic" class="form-control">
                                     <option value="null" selected="" disabled="">Select Eligibility Category</option>
@@ -181,7 +181,7 @@
 
                         <!-- Select Basic -->
                         <div class="form-group">
-                            <label class="col-md-4 control-label" for="selectbasic">Eligibility Type *</label>
+                            <label class="col-md-4 control-label" for="selectbasic">Eligibility Type</label>
                             <div class="col-md-6">
                                 <select id="PMIelity" name="selectbasic" class="form-control">
                                     <option value="null" selected="" disabled="">Select Eligibility Type</option>
@@ -199,7 +199,7 @@
 
                         <!-- Text input-->
                         <div class="form-group">
-                            <label class="col-md-4 control-label" for="textinput">Date of Birth *</label>
+                            <label class="col-md-4 control-label" for="textinput">Date of Birth</label>
                             <div class="col-md-6">
                                 <input id="PMIbday" name="textinput" type="text" class="form-control input-md" required="">
                             </div>
@@ -207,7 +207,7 @@
 
                         <!-- Select Basic -->
                         <div class="form-group">
-                            <label class="col-md-4 control-label" for="selectbasic">Gender *</label>
+                            <label class="col-md-4 control-label" for="selectbasic">Gender</label>
                             <div class="col-md-6">
                                 <select id="PMIsex" name="selectbasic" class="form-control">
                                     <option value="null" selected="" disabled="">Select Gender</option>
@@ -225,7 +225,7 @@
 
                         <!-- Select Basic -->
                         <div class="form-group">
-                            <label class="col-md-4 control-label" for="selectbasic">Martial Status *</label>
+                            <label class="col-md-4 control-label" for="selectbasic">Martial Status</label>
                             <div class="col-md-6">
                                 <select id="PMImarital" name="selectbasic" class="form-control">
                                     <option value="null" selected="" disabled="">Select Martial Status</option>
@@ -243,7 +243,7 @@
 
                         <!-- Select Basic -->
                         <div class="form-group">
-                            <label class="col-md-4 control-label" for="selectbasic">Race *</label>
+                            <label class="col-md-4 control-label" for="selectbasic">Race</label>
                             <div class="col-md-6">
                                 <select id="PMIrace" name="selectbasic" class="form-control">
                                     <option value="null" selected="" disabled="">Select Race</option>
@@ -261,7 +261,7 @@
 
                         <!-- Select Basic -->
                         <div class="form-group">
-                            <label class="col-md-4 control-label" for="selectbasic">Nationality *</label>
+                            <label class="col-md-4 control-label" for="selectbasic">Nationality</label>
                             <div class="col-md-6">
                                
                                 <input id="PMInational" name="textinput" type="text" placeholder="select nationality.." class="form-control input-md">
@@ -393,9 +393,9 @@
                     <div class="col-md-6">
                         <!-- Text input-->
                         <div class="form-group">
-                            <label class="col-md-4 control-label" for="textinput">Home Address *</label>
+                            <label class="col-md-4 control-label" for="textinput">Home Address</label>
                             <div class="col-md-6">
-                                <textarea  id="PMIhadd" name="textinput" type="text" placeholder="" class="form-control input-md"></textarea>
+                                <input id="PMIhadd" name="textinput" type="text" placeholder="" class="form-control input-md">
                             </div>
                         </div>
 
@@ -476,7 +476,7 @@
                         <div class="form-group">
                             <label class="col-md-4 control-label" for="textinput">Postal Address</label>
                             <div class="col-md-6">
-                                <textarea  id="PMIpadd" name="textinput" type="text" placeholder="" class="form-control input-md"></textarea>
+                                <input id="PMIpadd" name="textinput" type="text" placeholder="" class="form-control input-md">
                             </div>
                         </div>
 

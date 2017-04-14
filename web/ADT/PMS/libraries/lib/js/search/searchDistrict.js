@@ -4,7 +4,7 @@
         var id = $.trim($('#PMIhdis').val());
         $.ajax({
         type:'post',
-        url:'PMS/search/searchDistrict_cd.jsp',
+        url:'search/searchDistrict_cd.jsp',
         data: {'id': id},                
         success: function(reply_data){
             var array_data = String(reply_data).split("|");
@@ -27,7 +27,7 @@
                         var dataFields = {'input': input}; // We pass input argument in Ajax
                         $.ajax({
                             type: "POST",
-                            url: "PMS/search/searchDistrict.jsp", // call the php file ajax/tuto-autocomplete.php
+                            url: "search/searchDistrict.jsp", // call the php file ajax/tuto-autocomplete.php
                             data: dataFields, // Send dataFields var
                             timeout: 3000,
                             success: function (dataBack) { // If success
@@ -55,7 +55,7 @@
         var id = $.trim($('#PMIpdis').val());
         $.ajax({
         type:'post',
-        url:'PMS/search/searchDistrict_cd.jsp',
+        url:'search/searchDistrict_cd.jsp',
         data: {'id': id},                
         success: function(reply_data){
             var array_data = String(reply_data).split("|");
@@ -77,7 +77,7 @@
                         var dataFields = {'input': input}; // We pass input argument in Ajax
                         $.ajax({
                             type: "POST",
-                            url: "PMS/search/searchDistrict.jsp", // call the php file ajax/tuto-autocomplete.php
+                            url: "search/searchDistrict.jsp", // call the php file ajax/tuto-autocomplete.php
                             data: dataFields, // Send dataFields var
                             timeout: 3000,
                             success: function (dataBack) { // If success
@@ -106,7 +106,7 @@
         var id = $.trim($('#KINdistrict').val());
         $.ajax({
         type:'post',
-        url:'PMS/search/searchDistrict_cd.jsp',
+        url:'search/searchDistrict_cd.jsp',
         data: {'id': id},                
         success: function(reply_data){
             var array_data = String(reply_data).split("|");
@@ -128,7 +128,7 @@
                         var dataFields = {'input': input}; // We pass input argument in Ajax
                         $.ajax({
                             type: "POST",
-                            url: "PMS/search/searchDistrict.jsp", // call the php file ajax/tuto-autocomplete.php
+                            url: "search/searchDistrict.jsp", // call the php file ajax/tuto-autocomplete.php
                             data: dataFields, // Send dataFields var
                             timeout: 3000,
                             success: function (dataBack) { // If success

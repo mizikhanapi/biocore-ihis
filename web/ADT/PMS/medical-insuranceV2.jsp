@@ -8,11 +8,12 @@
 <div class="row">
     <div class="col-md-12">
 
-        <div id="modalMED"><%@include file = "MedicalModal.jsp" %></div>
+                            <div id="modalMED"><%@include file = "MedicalModal.jsp" %></div>
+        <div class="thumbnail">
             <h4>List of Medical Insurance
-                <button id="addMEDmodal" name="addMEDmodal" class="btn btn-success pull-right" data-toggle="modal" data-target="#MEDModal"><i class="fa fa-plus"></i>&nbsp; Add Medical Insurance Information</button></h4>
-            </h4>
-            <br/>
+                            <button id="addMEDmodal" name="addMEDmodal" class="btn btn-success pull-right" data-toggle="modal" data-target="#MEDModal"><i class="fa fa-plus"></i>&nbsp; Add Medical Insurance Information</button></h4>
+</h4>
+<br/>
             <div id="tableListMed" class="form-group">
                 <table class="table table-striped table-bordered" style="background: #fff; border: 1px solid #ccc; " id="listMED">
                     <thead>
@@ -26,10 +27,13 @@
                     </tbody>
                 </table>
             </div>
+
+
+        </div>
     </div>
 </div>
 <script>
-    $('#modalMED').on('shown.bs.modal', function () {
+ $('#modalMED').on('shown.bs.modal', function () {
         $(this).find('.modal-dialog').css({width: '70%',
             height: 'auto',
             'max-height': '100%'});
@@ -50,7 +54,7 @@
         var rowData = row.find("#medval").val();
         var arrayData = rowData.split("|");
         //assign into seprated val
-        var pmino = arrayData[0], insuran = arrayData[1], policy = arrayData[2], maturitydate = arrayData[3], hfc = arrayData[4], status = arrayData[5], medHFCname = arrayData[6], medInsName = arrayData[7];
+        var pmino = arrayData[0], insuran = arrayData[1], policy = arrayData[2], maturitydate = arrayData[3], hfc = arrayData[4], status = arrayData[5],medHFCname= arrayData[6],medInsName= arrayData[7];
         //convert date
         var splitmaturitydate = String(maturitydate).split("/");
         var convertedmaturitydate = splitmaturitydate[0] + "-" + splitmaturitydate[1] + "-" + splitmaturitydate[2];
@@ -61,14 +65,14 @@
         $('#MEDdate').val(convertedmaturitydate);
         $('#MEDhfc').val(medHFCname);
         $('#MEDstatus').val(status);
-
+        
         $("#MEDinscomCODE").val(insuran);
         $("#MEDhfcCODE").val(hfc);
 
         console.log(convertedmaturitydate);
         console.log(arrayData);
     });
-
+    
     //delete function when click delete on next of kin
     $('#tableListMed').on('click', '#listMED #MEDdel', function (e) {
         e.preventDefault();
@@ -96,11 +100,11 @@
                     var arrayData2 = rowData2.split("|");
                     //assign into seprated val
                     var pmino = arrayData2[0], policy = arrayData2[2];
-                    var datas = {pmino: pmino, policy: policy};
+                    var datas = {pmino: pmino, policy : policy};
                     console.log(datas);
                     $.ajax({
                         type: "post",
-                        url: "PMS/controller/delMedical.jsp",
+                        url: "controller/delMedical.jsp",
                         data: datas,
                         timeout: 3000,
                         success: function (data) {

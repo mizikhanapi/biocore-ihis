@@ -53,7 +53,7 @@ $(function () {
         $('#myForm2')[0].reset();
 
         $('#formPMI')[0].reset();
-        $('#kinform')[0].reset();
+        //$('#kinform')[0].reset();
         $('#empform')[0].reset();
         $('#famForm')[0].reset();
         $('#formMed')[0].reset();

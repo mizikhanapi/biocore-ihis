@@ -10,7 +10,7 @@
 <%@page import="java.sql.*"%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@include file="controller/super_user_check.jsp" %>
+
 
 <%
     Conn conn = new Conn();
@@ -24,23 +24,6 @@
 
     if (status == true) {
         out.print("Success");
-        
-        //clear lookup detail from db
-        sql = "Delete from adm_lookup_detail where hfc_cd = '"+id+"'";
-        rmic.setQuerySQL(conn.HOST, conn.PORT, sql);
-        
-        //clear role from db
-        sql = "Delete from adm_role where hfc_cd = '"+id+"'";
-        rmic.setQuerySQL(conn.HOST, conn.PORT, sql);
-        
-        //clear responsibility from db
-        sql = "Delete from adm_responsibility where health_facility_code = '"+id+"'";
-        rmic.setQuerySQL(conn.HOST, conn.PORT, sql);
-        
-        //clear hfc discipline from db
-        sql = "Delete from adm_hfc_discipline where hfc_cd = '"+id+"'";
-        rmic.setQuerySQL(conn.HOST, conn.PORT, sql);
-        
     } else {
         out.print("Failed");
     }

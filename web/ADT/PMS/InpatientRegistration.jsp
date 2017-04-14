@@ -81,6 +81,7 @@
                         <div class="form-group">
                             <label class="col-md-4 control-label" for="selectbasic">ID Type</label>
                             <div class="col-md-4">
+                                <input type="hidden" id="pitID">
                                 <input id="pit" name="pit" type="text" placeholder=""  readonly class="form-control input-md">
                             </div>
                         </div>
@@ -139,7 +140,7 @@
 
 
                                     <%                                        for (int i = 0; i < dataEliCat.size(); i++) {%>
-                                    <option value="<%=dataEliCat.get(i).get(2)%>"><%=dataEliCat.get(i).get(2)%></option>
+                                    <option value="<%=dataEliCat.get(i).get(1)%>"><%=dataEliCat.get(i).get(2)%></option>
                                     <%  }
                                     %>
 
@@ -159,7 +160,7 @@
 
 
                                     <% for (int i = 0; i < dataAdmit.size(); i++) {%>
-                                    <option value="<%=dataAdmit.get(i).get(2)%>"><%=dataAdmit.get(i).get(2)%></option>
+                                    <option value="<%=dataAdmit.get(i).get(1)%>"><%=dataAdmit.get(i).get(2)%></option>
                                     <%  }
                                     %>
 
@@ -199,7 +200,7 @@
                                   
                                     <%
                                         for (int i = 0; i < dataDocumentType.size(); i++) {%>
-                                    <option value="<%=dataDocumentType.get(i).get(2)%>"><%=dataDocumentType.get(i).get(2)%></option>
+                                    <option value="<%=dataDocumentType.get(i).get(1)%>"><%=dataDocumentType.get(i).get(2)%></option>
                                     <%  }
                                     %>
                                     
@@ -232,7 +233,7 @@
 
                                     <%
                                         for (int i = 0; i < dataEliType.size(); i++) {%>
-                                    <option value="<%=dataEliType.get(i).get(2)%>"><%=dataEliType.get(i).get(2)%></option>
+                                    <option value="<%=dataEliType.get(i).get(1)%>"><%=dataEliType.get(i).get(2)%></option>
                                     <%  }
                                     %>
 
@@ -283,7 +284,7 @@
                                     <option value="-" >-</option>
                                     <%
                                         for (int i = 0; i < dataPayerGroup.size(); i++) {%>
-                                    <option value="<%=dataPayerGroup.get(i).get(2)%>"><%=dataPayerGroup.get(i).get(2)%></option>
+                                    <option value="<%=dataPayerGroup.get(i).get(1)%>"><%=dataPayerGroup.get(i).get(2)%></option>
                                     <%  }
                                     %>
 

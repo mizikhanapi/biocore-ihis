@@ -3,8 +3,8 @@
 <%@page import="Config.connect"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
-    String relation71 = "select * from adm_lookup_detail where master_reference_code = '0007' AND hfc_cd = '"+hfc+"'   ";
-    String occupation71 = "select * from adm_lookup_detail where master_reference_code = '0050' AND hfc_cd = '"+hfc+"'";
+    String relation71 = "select * from adm_lookup_detail where master_reference_code = '0007'   ";
+    String occupation71 = "select * from adm_lookup_detail where master_reference_code = '0050'";
     ArrayList<ArrayList<String>> dataRelation71,dataOccu71;
     dataRelation71 = conn.getData(relation71);
     dataOccu71 = conn.getData(occupation71);
@@ -143,7 +143,7 @@
                 if (result === true) {
                     $.ajax({
                         type: "post",
-                        url: "PMS/controller/saveFamily.jsp",
+                        url: "controller/saveFamily.jsp",
                         data: datas,
                         timeout: 3000,
                         success: function (data) {
@@ -154,7 +154,7 @@
                                 $('input[id=FAMpmi]').val(pmino);
 
                                 $.ajax({
-                                    url: "PMS/controller/listFamily.jsp",
+                                    url: "controller/listFamily.jsp",
                                     type: "post",
                                     data: {'PMINO': pmino},
                                     timeout: 3000,

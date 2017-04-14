@@ -8,6 +8,7 @@
     <div class="col-md-12">
 
         <div id="ModalKin"><%@include file = "KinModal.jsp" %></div>
+        <div class="thumbnail">
             <h4>List of Next of Kin
                 <button id="addKINmodal" name="addKINmodal" class="btn btn-success pull-right" data-toggle="modal" data-target="#KINModal"><i class="fa fa-plus"></i>&nbsp; Add Next Of Kin Information</button></h4>
             </h4>
@@ -26,6 +27,9 @@
 
                 </table>
             </div>
+
+
+        </div>
     </div>
 </div>
 <script>

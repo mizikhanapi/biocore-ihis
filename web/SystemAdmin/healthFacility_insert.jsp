@@ -12,7 +12,6 @@
 <%@page import="java.sql.*"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
-<%@include file="controller/super_user_check.jsp"  %>
 <%           
     Conn conn = new Conn();
     String hfcName = request.getParameter("hfcName");

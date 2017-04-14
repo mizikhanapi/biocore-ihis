@@ -12,10 +12,9 @@
 <%
     Conn conn = new Conn();
     String pmiMED = request.getParameter("PMINO");
-    String hfc = session.getAttribute("HEALTH_FACILITY_CODE").toString();
     String medList = "SELECT a.*,h.hfc_name,g.description FROM PMS_MEDICAL_INSURANCE a"
             + " left join adm_health_facility h on h.hfc_cd=a.health_facility"
-            + " left join adm_lookup_detail g on g.detail_reference_code=a.insurance_company_code and g.master_reference_code='0083' and g.hfc_cd ='"+hfc+"'"
+            + " left join adm_lookup_detail g on g.detail_reference_code=a.insurance_company_code and g.master_reference_code='0083'"
             + " where pmi_no = '" + pmiMED + "'";
     ArrayList<ArrayList<String>> dataMedList;
     dataMedList = conn.getData(medList);

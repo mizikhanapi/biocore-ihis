@@ -11,14 +11,15 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal"><i class="fa fa-times fa-lg"></i><span class="sr-only">Close</span></button>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">X</span><span class="sr-only">Close</span></button>
                 <h3 class="modal-title" id="lineModalLabel">Queue List</h3>
             </div>
             <div class="modal-body" >
+                <div class="thumbnail">
                     <div class="row"id="modalBodyQueue" >
                         <!-- content goes here -->
                         <form role="form" id="formQueueSaya">
-                            <table class="table table-filter table-striped table-responsive" style="background: #fff;" id="listQueue">
+                            <table class="table table-filter table-striped table-responsive" style="background: #fff; border: 1px solid #ccc; " id="listQueue">
                                 <thead>
                                 <th>PMI no. </th>
                                 <th>Name </th>
@@ -34,6 +35,7 @@
                             </table>
                         </form>
                     </div>
+                </div>
 
             </div>
             <div class="modal-footer">

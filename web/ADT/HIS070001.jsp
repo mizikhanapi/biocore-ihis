@@ -131,15 +131,6 @@
     <!-- header -->
     <script>
 
-  //        //load page to the div
-  //        $("#registration").load("registrationV2.jsp");
-  //        $("#patientMasterIndex").load("patient-master-indexV2.jsp");
-  //        $("#employment").load("EmploymentV2.jsp");
-  //        $("#nextOfKin").load("kinV2.jsp");
-  //        $("#family").load("familyV2.jsp");
-  //        $("#medical").load("medical-insuranceV2.jsp");
-  //////        $("#test").load("dummy.html");
-  //        $("#sidemenus").load("../libraries/PMS/sideMenus.jsp");
 
         $('a[data-toggle="tab"]').click(function (e) {
             // $('#tab_a').find('a').removeAttr('data-toggle');

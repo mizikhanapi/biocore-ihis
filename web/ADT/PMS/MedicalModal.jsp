@@ -4,9 +4,9 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
     //String relation = "select * from lookup_detail where master_ref_code = '0007' order by Description";
-    String hcf81 = "select * from adm_lookup_detail where master_reference_code = '0081' AND hfc_cd = '"+hfc+"'   ";
+    String hcf81 = "select * from adm_lookup_detail where master_reference_code = '0081'   ";
     //String insuranceCompany81 = "select * from adm_lookup_detail where master_reference_code = '0083'   ";
-    String insurancePolicy81 = "select * from adm_lookup_detail where master_reference_code = '0058' AND hfc_cd = '"+hfc+"'   ";
+    String insurancePolicy81 = "select * from adm_lookup_detail where master_reference_code = '0058'   ";
     ArrayList<ArrayList<String>> dataHfc81, dataInsurancePolicy81, dataInsuranceCompany81;
     dataHfc81 = conn.getData(hcf81);
     dataInsurancePolicy81 = conn.getData(insurancePolicy81);
@@ -172,7 +172,7 @@
                 if (result === true) {
                     $.ajax({
                         type: "post",
-                        url: "PMS/controller/saveMedical.jsp",
+                        url: "controller/saveMedical.jsp",
                         data: datas,
                         timeout: 3000,
                         success: function (data) {
@@ -183,7 +183,7 @@
                                 $('input[id=MEDpmino]').val(pmino);
 
                                 $.ajax({
-                                    url: "PMS/controller/listMedical.jsp",
+                                    url: "controller/listMedical.jsp",
                                     type: "post",
                                     data: {'PMINO': pmino},
                                     timeout: 3000,

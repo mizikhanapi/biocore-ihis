@@ -11,17 +11,7 @@
 
 <%
     Conn conn = new Conn();
-    String hfc_cd = session.getAttribute("HEALTH_FACILITY_CODE").toString();
-    String user_id = session.getAttribute("USER_ID").toString();
-    String last9 = user_id.substring(user_id.length() - 1);
-    
-    String whereClause = " ";
-    
-    if(!last9.equals("9") || !hfc_cd.equals("99_iHIS_99")){
-        whereClause = "WHERE hfc_cd = '"+hfc_cd+"' ";
-    }
 %>
-
 
 <table  id="THE_healthFacilityTable"  class="table table-striped table-bordered" cellspacing="0" width="100%">
     <thead>
@@ -31,26 +21,18 @@
     <th>Address</th>
     <th>Change Logo</th>
     <th>Update</th>
-    <%
-        if(last9.equals("9") && hfc_cd.equals("99_iHIS_99")){
-    %>
     <th>Delete</th>
-    <%
-        }
-    %>
 </thead>
 <tbody>
 
     <%
         String sql ="Select hfc_cd, hfc_type, hfc_name, address1, address2, address3, state_cd, district_cd, town_cd, country_cd, postcode, telephone_no, fax_no, email, hfc_server, hfc_report, ifnull(DATE_FORMAT(established_date,'%d/%m/%Y'), ''), director_name, hfc_category_cd, hfc_sub_type, contact_person, hfc_status, hfc_ip "+
-                    "FROM adm_health_facility "
-                +whereClause;
+                    "FROM adm_health_facility";
         
         ArrayList<ArrayList<String>> dataHFC = conn.getData(sql);
 
         int size = dataHFC.size();
-        if(last9.equals("9") && hfc_cd.equals("99_iHIS_99")){
-            for (int i = 0; i < size; i++) {
+        for (int i = 0; i < size; i++) {
     %>
 
     <tr>
@@ -81,37 +63,7 @@
 
 
 <%
-        }//end for loop
-    }//end if
-    else{
-        for (int i = 0; i < size; i++) {
-
-%>
-<tr>
-    <input id="HFT_hidden" type="hidden" value="<%=String.join("|", dataHFC.get(i))%>">
-    <td><%= dataHFC.get(i).get(0)%></td> <!-- HFC code -->   
-    <td><%= dataHFC.get(i).get(2)%></td> <!-- HFC name  --> 
-    <td><%= dataHFC.get(i).get(17)%></td> <!-- Director --> 
-    <td><%= dataHFC.get(i).get(3)%> <%=dataHFC.get(i).get(4)%> <%= dataHFC.get(i).get(5)%></td> <!-- Address  --> 
-
-
-    <td style="width: 5% ">
-
-        <!-- Update Part Start -->
-        <a id="HFT_btnLogo" data-toggle="modal" data-target="#HFT_detail2" style="cursor: pointer"><i class="fa fa-picture-o" aria-hidden="true" style="display: inline-block;color: #337ab7;"></i></a>
-    </td>
-    <td style="width: 5% ">
-
-        <!-- Update Part Start -->
-        <a id="HFT_btnUpdate" data-toggle="modal" data-target="#HFT_detail" style="cursor: pointer"><i class="fa fa-pencil-square-o" aria-hidden="true" style="display: inline-block;color: #337ab7;"></i></a>
-    </td>
-</tr>
-
-<%
-
-        }//end for loop
-
-    }//end else
+    }
 %>
 
 </tbody>
@@ -928,14 +880,8 @@
 
 <script type="text/javascript" charset="utf-8">
     $(document).ready(function () {
-        
-        <%
-            if(last9.equals("9") && hfc_cd.equals("99_iHIS_99")){
-        %>
         $('#THE_healthFacilityTable').DataTable();
-        <%
-            }
-        %>
+        
         $('#HFT_establishedDate').datepicker({
             changeYear: true,
             changeMonth: true,

@@ -11,7 +11,7 @@
      Conn Conn = new Conn();
     //String key = request.getParameter("input");
     String id = request.getParameter("id");
-    String hfc = session.getAttribute("HEALTH_FACILITY_CODE").toString();
+    
     id.toLowerCase();
     String searchProblem = "select hfc_cd from adm_health_facility where CONCAT(UPPER(hfc_name),LOWER(hfc_name)) like '%" + id + "%';";
     ArrayList<ArrayList<String>> search = Conn.getData(searchProblem);

@@ -5,6 +5,7 @@
 --%>
 <%@page import="dBConn.Conn"%>
 <%@page import="main.RMIConnector"%>
+<%@page import="org.json.JSONArray"%>
 <%@page import="java.sql.*"%>
 <%@page import="java.util.List"%>
 <%@page import="java.util.ArrayList"%>
@@ -52,7 +53,6 @@
     String docID = request.getParameter("docID");
     int queue_now = 0;
     int newQueueNo = 0;
-    String roomNo="";
 
     String insertEpisode="";
 
@@ -62,12 +62,7 @@
     
     String sqlRoom = "select room_no from adm_users where user_id='"+docID+"'";
     ArrayList<ArrayList<String>> dataRoom = conn.getData(sqlRoom);
-    if(dataRoom.size()>0){
-        roomNo = dataRoom.get(0).get(0);
-    }else{
-        roomNo = "";
-    }
-    
+    String roomNo = dataRoom.get(0).get(0);
     
     if (alreadyRegis.size() > 0) {
         out.print("already");

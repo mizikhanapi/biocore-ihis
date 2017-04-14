@@ -11,9 +11,8 @@
 <%
     Conn conn = new Conn();
     String pmiEMP = request.getParameter("PMINO");
-    String hfc = session.getAttribute("HEALTH_FACILITY_CODE").toString();
     String empList = "select a.*,g.description,h.hfc_name from pms_employment a"
-            + " left join adm_lookup_detail g on g.detail_reference_code=a.occupation_code and g.master_reference_code='0050' and g.hfc_cd ='"+hfc+"'"
+            + " left join adm_lookup_detail g on g.detail_reference_code=a.occupation_code and g.master_reference_code='0050'"
             + " left join adm_health_facility h on h.hfc_cd=a.health_facility"
             + " where pmi_no = '" + pmiEMP + "'";
     ArrayList<ArrayList<String>> dataEmpList;

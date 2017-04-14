@@ -11,9 +11,9 @@
      Conn Conn = new Conn();
     //String key = request.getParameter("input");
     String id = request.getParameter("id");
-    String hfc = session.getAttribute("HEALTH_FACILITY_CODE").toString();
+    
     id.toLowerCase();
-    String searchProblem = "select detail_reference_code from adm_lookup_detail where master_reference_code = '0002' and CONCAT(UPPER(description),LOWER(description)) like '%" + id + "%'AND hfc_cd = '"+hfc+"';";
+    String searchProblem = "select detail_reference_code from adm_lookup_detail where master_reference_code = '0002' and CONCAT(UPPER(description),LOWER(description)) like '%" + id + "%';";
     ArrayList<ArrayList<String>> search = Conn.getData(searchProblem);
     if (search.size() > 0) {
 

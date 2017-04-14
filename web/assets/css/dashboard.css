@@ -547,32 +547,22 @@ ul.nav.navbar-nav.navbar-left.back {
 
 .S .media-body {
     color: #d54e21;
-    font-weight: 500;
-    letter-spacing: .05em;
 }
 
 .O .media-body {
     color: #ffba00;
-    font-weight: 500;
-    letter-spacing: .05em;
 }
 
 .A .media-body {
     color: #46b450;
-    font-weight: 500;
-    letter-spacing: .05em;
 }
 
 .P .media-body {
     color: #00a0d2;
-    font-weight: 500;
-    letter-spacing: .05em;
 }
 
 .S .media-body>.summary, .O .media-body>.summary, .A .media-body>.summary, .P .media-body>.summary {
     color: #666;
-    font-weight: 400;
-    letter-spacing: normal;
 }
 
 .table-bordered>thead>tr>th:last-child {

@@ -92,7 +92,7 @@
         }
 
         //register patient
-        $('#registerBed').click(function () {
+        $('#registerQueue').click(function () {
             getDateNow();
             setInterval(getDateNow, 1000);
             if ($('#pmino').val() === " " || $('#pmino').val() === "") {

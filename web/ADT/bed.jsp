@@ -17,17 +17,15 @@
 <%
 //    Config.getBase_url(request);
 //    Config.getFile_url(session);
-    // Conn conn = new Conn();
-
+  // Conn conn = new Conn();
 %>
 <%
-    String sqlBedID = "SELECT bed_id ,bed_status FROM wis_bed_id WHERE hfc_cd = '"+hfc+"' order by bed_id asc";
+    String sqlBedID = "SELECT bed_id ,bed_status FROM wis_bed_id order by bed_id asc";
     ArrayList<ArrayList<String>> dataBedID = conn.getData(sqlBedID);
     ArrayList<String> data = dataBedID.get(0);
 
 %>
- 
-     <div id="bedDiv">
+<div id="bedDiv">
     <table id="tableBed">
         <tbody>
             <%  int count = 0;
@@ -52,7 +50,7 @@
                 //int a = (int) Math.round(dataBedID1.size() / 4); //+ 1;
                 //out.print(dataBedID1.size() / 3);
                 for (int E = 0; E < a; E++) { %>
-        <div class="row-md-2" id="bedCol">
+        <div class="col-md-2" id="bedCol">
             <%
                 //int x = (dataBedID1.size() / a) + 1;
                 //out.print(x);
@@ -83,5 +81,35 @@
         </tbody>
     </table>
 </div>
- 
-         
+<script>
+    $(function () {
+        $('#bedDiv').on('click', '.bed button', function () {
+            var row = $(this).closest(".bed");
+            //var str = $('#bedID').val();
+            var te = row.find('#bedID').val();
+
+            var array = te.split("|");
+
+            var status = array[1], bedID = array[0];
+            //alert(te);
+            bootbox.alert({
+                message: "The bed status : " + status +
+                        ",  the bed ID: " + bedID,
+                title: "Process Result",
+                backdrop: true
+            });
+
+            if (status === "Available") {
+
+                //set value
+                $('#BedIDReg').val(bedID);
+            }
+
+
+
+        });
+
+
+    });
+
+</script>

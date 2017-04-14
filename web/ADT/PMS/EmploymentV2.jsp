@@ -5,10 +5,10 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
     //Conn conn = new Conn();
-    String incomeRange5 = "select * from adm_lookup_detail where master_reference_code = '0028' AND hfc_cd = '"+hfc+"' ";
-    String hcf5 = "select * from adm_lookup_detail where master_reference_code = '0081' AND hfc_cd = '"+hfc+"'   ";
-    String status5 = "select * from adm_lookup_detail where master_reference_code = '0014' AND hfc_cd = '"+hfc+"'   ";
-    String occupation5 = "select * from adm_lookup_detail where master_reference_code = '0050' AND hfc_cd = '"+hfc+"'";
+    String incomeRange5 = "select * from adm_lookup_detail where master_reference_code = '0028' ";
+    String hcf5 = "select * from adm_lookup_detail where master_reference_code = '0081'   ";
+    String status5 = "select * from adm_lookup_detail where master_reference_code = '0014'   ";
+    String occupation5 = "select * from adm_lookup_detail where master_reference_code = '0050'";
 
     //String empList = "select * from pms_employment where pmi_no = ''";
     ArrayList<ArrayList<String>> dataIncomeRange5, dataHfc5, dataStatus5, dataOccu5;
@@ -24,23 +24,25 @@
     <div class="col-md-12">
 
         <div id="modalEMP"><%@include file = "EmploymentModal.jsp" %></div>
-        <h4>List of Employments
-            <button id="addEMPmodal" name="addEMPmodal" class="btn btn-success pull-right" data-toggle="modal" data-target="#EMPModal"><i class="fa fa-plus"></i>&nbsp; Add Employment Information</button></h4>
-        <br/>
-        <div id="tableListEmp" class="form-group">
+        <div class="thumbnail">
+            <h4>List of Employments
+                <button id="addEMPmodal" name="addEMPmodal" class="btn btn-success pull-right" data-toggle="modal" data-target="#EMPModal"><i class="fa fa-plus"></i>&nbsp; Add Employment Information</button></h4>
+            <br/>
+            <div id="tableListEmp" class="form-group">
 
 
-            <table class="table table-striped table-bordered" style="background: #fff; border: 1px solid #ccc; " id="listEMP">
-                <thead>
-                <th>Employer Name</th>
-                <th>Occupation</th>
-                <th style="width: 5%;">Update</th>
-                <th style="width: 5%;">Delete</th>
-                </thead>
-                <tbody>
+                <table class="table table-striped table-bordered" style="background: #fff; border: 1px solid #ccc; " id="listEMP">
+                    <thead>
+                    <th>Employer Name</th>
+                    <th>Occupation</th>
+                    <th style="width: 5%;">Update</th>
+                    <th style="width: 5%;">Delete</th>
+                    </thead>
+                    <tbody>
 
-                </tbody>
-            </table>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 </div>
@@ -70,7 +72,7 @@
         var rowData = row.find("#empval").val();
         var arrayData = rowData.split("|");
         //assign into seprated val
-        var pmino = arrayData[0], seqno = arrayData[1], empcode = arrayData[2], empname = arrayData[3], occu = arrayData[4], jdate = arrayData[5], incomerange = arrayData[6], hfc = arrayData[7], credate = arrayData[8], empstatus = arrayData[9], empoccuName = arrayData[10], emphfcName = arrayData[11];
+        var pmino = arrayData[0], seqno = arrayData[1], empcode = arrayData[2], empname = arrayData[3], occu = arrayData[4], jdate = arrayData[5], incomerange = arrayData[6], hfc = arrayData[7], credate = arrayData[8], empstatus = arrayData[9],empoccuName =arrayData[10],emphfcName=arrayData[11];
         //convert date
         var splitCreDate = String(credate).split("/");
         var convertedCreDate = splitCreDate[0] + "-" + splitCreDate[1] + "-" + splitCreDate[2];
@@ -90,7 +92,7 @@
         $('#EMPcredate').val(convertedCreDate);
         $('#EMPstatus').val(empstatus);
         $('#EMPseq').val(seqno);
-
+        
         $("#EMPhfcCODE").val(hfc);
         $("#EMPoccuCODE").val(occu);
 
@@ -128,7 +130,7 @@
                     console.log(datas);
                     $.ajax({
                         type: "post",
-                        url: "PMS/controller/delEmp.jsp",
+                        url: "controller/delEmp.jsp",
                         data: datas,
                         timeout: 3000,
                         success: function (data) {

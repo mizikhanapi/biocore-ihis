@@ -51,53 +51,56 @@
     String referHfc = "referHfc";
     String referDis = "referDis";
     String queueSql = "";
-    String updateBed = "";
+    String insertPatientQueue = "";
     String subDis = "sub Discipline";
     String patCat = "patient Category";
     String visTy = "Visit Type";
     String emTy = "Emergency Type";
     String order = "Order By";
-    String sub = request.getParameter("sub");
-
-    String createdBy = request.getParameter("createdBy");
-
+   
+    
     DateFormat df = new SimpleDateFormat("dd/MM/yy HH:mm:ss");
     Date dateobj = new Date();
     df.format(dateobj);
-    Boolean regis,updBed;
+    String createdby = "Izzlyn Izzaty";
+
+
+    
+
+
+
     int queue_now = 0;
     int newQueueNo = 0;
 
     String insertEpisode = "";
-    String isAlreadyRegister = "select pmi_no from wis_inpatient_episode where pmi_no = '" + pmino + "';";
+    String isAlreadyRegister = "select pmi_no from pms_episode where pmi_no = '" + pmino + "' and (status like '%Consult%' or status = '0' or status = '2' or status like '%Second Opinion%') and episode_date like '%" + now + "%';";
     ArrayList<ArrayList<String>> alreadyRegis = conn.getData(isAlreadyRegister);
 
     if (alreadyRegis.size() > 0) {
         out.print("already");
 //out.print(queue_now);
     } else {
-
+       
+       // insertPatientQueue = "insert into pms_patient_queue(hfc_cd,queue_name,episode_date,pmi_no,queue_no,queue_type)values('" + hfc + "','" + comQueue + "','" + epiDate + "','" + pmi + "','" + newQueueNo + "','" + comTy + "');";
         insertEpisode = "INSERT INTO wis_inpatient_episode(hfc_cd, pmi_no, episode_date, discipline_cd, subdiscipline_cd, "
                 + "ward_class_code, ward_id, bed_id, patient_category_cd, visit_type_cd,"
                 + "emergency_type_cd, eligibility_type_cd, eligibility_category_cd, referred_from_hfc, referred_from_discipline, referred_reference_no, order_by,"
                 + "admission_reason, admission_description, guardian_ind, group_guardian,inpatient_status, created_by, created_date,"
                 + "NEW_IC_NO, OLD_IC_NO, ID_TYPE, ID_NO, POLICE_CASE, PAYER_GROUP, gl_expiry_date, DEPOSIT_INPATIENT, DOCUMENT_TYPE, DOCUMENT_NO, PATIENT_NAME)"
-                + "VALUES ('" + hfc + "','" + pmino + "','" + epiDate + "','" + Dis + "','" + sub + "',"
+                + "VALUES ('" + hfc + "','" + pmino + "','" + epiDate + "','" + Dis + "','" + subDis + "',"
                 + "'" + WardType + "','" + wname + "','" + BedID + "','" + patCat + "','" + visTy + "',"
-                + "'" + emTy + "','" + EliTy + "','" + EliSource + "','" + referHfc + "','" + referDis + "','" + referNo + "','" + order + "',"
-                + "'" + AdmissionType + "','" + AdmissionReason + "',"
-                + "'" + guardInd + "','" + gruGuard + "','" + stat + "', '" + createdBy + "', now() ,"
-                + "'" + pnic + "','" + poic + "','" + pid + "','" + pidno + "','" + PoliceCase + "','" + payer + "','" + GL + "','" + Deposit + "','" + DocType + "', '" + DocNo + "', '" + pname + "');";
-        updateBed = "UPDATE wis_bed_id SET bed_status = 'Occupied' where hfc_cd ='"+hfc+"' and discipline_cd ='"+Dis+"' and bed_id ='"+BedID+"' ";
-        regis = rmic.setQuerySQL(conn.HOST, conn.PORT, insertEpisode);
-        updBed = rmic.setQuerySQL(conn.HOST, conn.PORT, updateBed);
-        if(regis == true && updBed == true){
-            out.print("Success");
-        }else{
-            out.print("false");
-            //out.print(insertEpisode);
-        }
-        
+                + "'" + emTy + "','" + EliTy + "','" + EliSource + "',"
+                + "'" + AdmissionType + "','" + AdmissionReason + "','" + EliSource + "','" + referHfc + "','" + referDis + "','" + referNo + "','" + order + "',"
+                + "'" + AdmissionReason + "','" + guardInd + "','" + gruGuard + "','" + stat + "', '" + createdby + "', now() ,"
+                + "'" + pnic + "','" + poic + "','" + pid + "','" + pidno + "','" + PoliceCase + "','" + payer + "','" + GL + "','" + Deposit + "','" + DocType + "', '" + DocNo + "', " + pname + "');";
+
+        rmic.setQuerySQL(conn.HOST, conn.PORT, insertEpisode);
+        rmic.setQuerySQL(conn.HOST, conn.PORT, insertPatientQueue);
+        rmic.setQuerySQL(conn.HOST, conn.PORT, queueSql);
+        out.print("Success");
+        //out.print(queueSql);
+//out.print(insertEpisode);
+//out.print(insertEpisode);
     }
 
 %>

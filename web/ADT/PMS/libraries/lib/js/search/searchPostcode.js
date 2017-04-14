@@ -4,7 +4,7 @@
         var id = $.trim($('#PMIhpostcode').val());
         $.ajax({
         type:'post',
-        url:'PMS/search/searchPostcode_cd.jsp',
+        url:'search/searchPostcode_cd.jsp',
         data: {'id': id},                
         success: function(reply_data){
             var array_data = String(reply_data).split("|");
@@ -27,7 +27,7 @@
                         var dataFields = {'input': input}; // We pass input argument in Ajax
                         $.ajax({
                             type: "POST",
-                            url: "PMS/search/searchPostcode.jsp", // call the php file ajax/tuto-autocomplete.php
+                            url: "search/searchPostcode.jsp", // call the php file ajax/tuto-autocomplete.php
                             data: dataFields, // Send dataFields var
                             timeout: 3000,
                             success: function (dataBack) { // If success
@@ -55,7 +55,7 @@
         var id = $.trim($('#PMIppostcode').val());
         $.ajax({
         type:'post',
-        url:'PMS/search/searchPostcode_cd.jsp',
+        url:'search/searchPostcode_cd.jsp',
         data: {'id': id},                
         success: function(reply_data){
             var array_data = String(reply_data).split("|");
@@ -77,7 +77,7 @@
                         var dataFields = {'input': input}; // We pass input argument in Ajax
                         $.ajax({
                             type: "POST",
-                            url: "PMS/search/searchPostcode.jsp", // call the php file ajax/tuto-autocomplete.php
+                            url: "search/searchPostcode.jsp", // call the php file ajax/tuto-autocomplete.php
                             data: dataFields, // Send dataFields var
                             timeout: 3000,
                             success: function (dataBack) { // If success
@@ -107,7 +107,7 @@
         var id = $.trim($('#KINpostcode').val());
         $.ajax({
         type:'post',
-        url:'PMS/search/searchPostcode_cd.jsp',
+        url:'search/searchPostcode_cd.jsp',
         data: {'id': id},                
         success: function(reply_data){
             var array_data = String(reply_data).split("|");
@@ -129,7 +129,7 @@
                         var dataFields = {'input': input}; // We pass input argument in Ajax
                         $.ajax({
                             type: "POST",
-                            url: "PMS/search/searchPostcode.jsp", // call the php file ajax/tuto-autocomplete.php
+                            url: "search/searchPostcode.jsp", // call the php file ajax/tuto-autocomplete.php
                             data: dataFields, // Send dataFields var
                             timeout: 3000,
                             success: function (dataBack) { // If success

@@ -13,7 +13,7 @@
     //out.println(dateFormat.format(date));
     //String sql = "select a.pmi_no,a.appointment_date,a.start_time,a.appointment_type,b.PATIENT_NAME,b.NEW_IC_NO,b.OLD_IC_NO,b.ID_TYPE,b.ID_NO from pms_appointment a inner join pms_patient_biodata b on a.pmi_no = b.`PMI_NO` where appointment_date like '%" + dateFormat.format(date) + "%' and status ='active' and hfc_cd='" + session.getAttribute("HFC") + "'";
     //out.println(sql);
-    String idTYpe3 = "select * from adm_lookup_detail where master_reference_code = '0012' AND hfc_cd = '"+hfc+"' ";
+    String idTYpe3 = "select * from adm_lookup_detail where master_reference_code = '0012'   ";
 
     ArrayList<ArrayList<String>> dataAppointment, dataIdType3;
     //dataAppointment = conn.getData(sql);
@@ -28,71 +28,69 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal"><i class="fa fa-times fa-lg"></i><span class="sr-only">Close</span></button>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">X</span><span class="sr-only">Close</span></button>
                 <h3 class="modal-title" id="lineModalLabel">Appointment List</h3>
             </div>
             <div class="modal-body" >
-                <div class="row" id="searchAppointment" style="    margin-top: 30px;">
-                    <form class="form-horizontal" name="myFormApp" id="myFormApp">
-                        <!-- Select Basic -->
-                        <div class="form-group">
-                            <label class="col-md-4 control-label" for="selectbasic">ID Type</label>
-                            <div class="col-md-4">
-                                <select id="idTypeApp" name="idTypeApp" class="form-control" required="">
-                                    <option selected="" disabled="" value="-"> Please select ID type</option>
+                <div class="thumbnail"><div class="row" id="searchAppointment">
+                        <form class="form-horizontal" name="myFormApp" id="myFormApp">
+                            <!-- Select Basic -->
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" for="selectbasic">ID Type</label>
+                                <div class="col-md-4">
+                                    <select id="idTypeApp" name="idTypeApp" class="form-control" required="">
+                                        <option selected="" disabled="" value="-"> Please select ID type</option>
 
-                                    <%                                if (dataSystemStatus3.equals("0")) {
+                                        <%                                if (dataSystemStatus3.equals("0")) {
 
-                                        } else if (dataSystemStatus3.equals("1")) {
-                                            for (int i = 0; i < dataIdType3.size(); i++) {%>
-                                    <option value="<%=dataIdType3.get(i).get(1)%>"><%=dataIdType3.get(i).get(2)%></option>
-                                    <%  }
-                                        }
+                                            } else if (dataSystemStatus3.equals("1")) {
+                                                for (int i = 0; i < dataIdType3.size(); i++) {%>
+                                        <option value="<%=dataIdType3.get(i).get(1)%>"><%=dataIdType3.get(i).get(2)%></option>
+                                        <%  }
+                                            }
 
-                                    %>
-                                </select>
+                                        %>
+                                    </select>
+                                </div>
                             </div>
-                        </div>
 
-                        <!-- Text input-->
-                        <div class="form-group">
-                            <label class="col-md-4 control-label" for="textinput">IC No. / ID No.</label>
-                            <div class="col-md-4">
-                                <input type="text" class="form-control input-md" id="idInputApp" name="idInputApp" placeholder="ID" maxlength="0"/>
+                            <!-- Text input-->
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" for="textinput">IC No. / ID No.</label>
+                                <div class="col-md-4">
+                                    <input type="text" class="form-control input-md" id="idInputApp" name="idInputApp" placeholder="ID" maxlength="0"/>
+                                </div>
                             </div>
-                        </div>
-                        <div class="text-center">
-                            <button class="btn btn-primary" type="button" id="searchApp" name="searchPatient"><i class="fa fa-search fa-lg"></i>&nbsp; Search</button>
+                            <div class="text-center">
+                                <button class="btn btn-primary" type="button" id="searchApp" name="searchPatient"><i class="fa fa-search fa-lg"></i>&nbsp; Search</button>
 
-                            <button id="clearApp" name="clearApp" type="button" class="btn btn-default"><i class="fa fa-ban fa-lg"></i>&nbsp; Clear</button>
-                        </div>
-                    </form>
+                                <button id="clearApp" name="clearApp" type="button" class="btn btn-default"><i class="fa fa-ban fa-lg"></i>&nbsp; Clear</button>
+                            </div>
+                        </form>
+                    </div></div>
+                <div class="thumbnail"><div class="row"id="modalBodyAppointment" >
+                        <!-- content goes here -->
+                        <form role="form" id="formAppointmentSaya" method="post">
+                            <table class="table table-filter table-striped" style="background: #fff; border: 1px solid #ccc;" id="listAppointment">
+                                <thead>
+                                <th>PMI No.</th>
+                                <th>Name</th>
+                                <th>Appointment Date</th>
+                                <th>Appointment Time</th>
+                                <th>Appointment Type</th>
+                                <th>Action</th>
+                                </thead>
+
+                            </table>
+                        </form>
+                    </div></div>
+
+            </div>
+            <div class="modal-footer">
+                <div class="btn-group btn-group-justified" role="group" aria-label="group button">
                 </div>
+                </form>
             </div>
-<hr/>
-            <div class="modal-table"><div class="row"id="modalBodyAppointment" >
-                    <!-- content goes here -->
-                    <form role="form" id="formAppointmentSaya" method="post">
-                        <table class="table table-filter table-striped" style="background: #fff; border: 1px solid #ccc;" id="listAppointment">
-                            <thead>
-                            <th>PMI No.</th>
-                            <th>Name</th>
-                            <th>Appointment Date</th>
-                            <th>Appointment Time</th>
-                            <th>Appointment Type</th>
-                            <th>Action</th>
-                            </thead>
-
-                        </table>
-                    </form>
-                </div>
-            </div>
-
-        </div>
-        <div class="modal-footer">
-            <div class="btn-group btn-group-justified" role="group" aria-label="group button">
-            </div>
-            </form>
         </div>
     </div>
 </div>

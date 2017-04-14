@@ -267,7 +267,7 @@
                         <div class="panel panel-default">
                             <div class="panel-body">
                                 <div>
-                                    <%@include file = "bed.jsp" %>
+                                    <%//@include file = "bed.jsp" %>
                                 </div>
                             </div>
                         </div>
@@ -304,8 +304,6 @@
     
 
     <script>
-
-
         $('#OccuTable').off('click', '#OccuTableTT #moveToPatientTransferButton').on('click', '#OccuTableTT #moveToPatientTransferButton', function (e) {
 
             e.preventDefault();

@@ -38,9 +38,7 @@
     //                       0           1      2           3                   4                   5                               6                           7
     String sql = "Select user_id, password, user_name, health_facility_code, hfc_name, ifnull(convert(picture using utf8), ''), ifnull(login_status, '0'), new_icno from adm_users "
             + "Join adm_health_facility on health_facility_code = hfc_cd "
-            + "where user_id = '" + user_id + "' AND status = '0' "
-            + "and now() between start_date AND end_date "
-            + "limit 1";
+            + "where user_id = '" + user_id + "' AND status = '0' limit 1";
     String sql4 = "select status from adm_system_parameter where system_code = 'IT' and parameter_code ='1';";
 
     ArrayList<ArrayList<String>> dataStaff = conn.getData(sql);
@@ -65,25 +63,15 @@
                 }
 
             }
-            
-            //must get hfc code first
-            String hfc_cd ="";
-            hfc_cd = dataStaff.get(0).get(3);
 
             //                                 0        1           2                  3                        4            
-            String sqlUserAccess = "Select user_id, a.role_code, a.discipline_code, a.subdiscipline_code, system_code, role_name "
-                    + "from adm_user_access_role a "
-                    + "join adm_responsibility res using(role_code) "
-                    + "join adm_role r using(role_code) "
-                    + "where user_id = '" + user_id + "' AND a.status = '0' "
-                    + "AND a.health_facility_code = '"+hfc_cd+"' AND res.health_facility_code = '"+hfc_cd+"' AND r.hfc_cd = '"+hfc_cd+"' "
-                    + "AND a.role_code <> '-x-' limit 1";
+            String sqlUserAccess = "Select user_id, a.role_code, a.discipline_code, a.subdiscipline_code, system_code, role_name from adm_user_access_role a "
+                    + "join adm_responsibility using(role_code) join adm_role using(role_code) where user_id = '" + user_id + "' AND a.status = '0' AND a.role_code <> '-x-' limit 1";
             ArrayList<ArrayList<String>> dataUserAccess = conn.getData(sqlUserAccess);
 
             if (dataUserAccess.size() > 0) {
-                
-                //hfc_cd was taken out; original position was before hfc_name
-                String user_name, proPic, hfc_name, discipline_code, subdiscipline_code, role_code, role_name, system_code, module_code, page_code;
+
+                String user_name, proPic, hfc_cd, hfc_name, discipline_code, subdiscipline_code, role_code, role_name, system_code, module_code, page_code;
 
                 user_name = dataStaff.get(0).get(2);
                 proPic = dataStaff.get(0).get(5);
@@ -91,7 +79,7 @@
                 if (proPic.equalsIgnoreCase("")) {
                     proPic = "../assets/profile.jpg";
                 }
-//                hfc_cd = dataStaff.get(0).get(3);
+                hfc_cd = dataStaff.get(0).get(3);
                 hfc_name = dataStaff.get(0).get(4);
 
                 discipline_code = dataUserAccess.get(0).get(2);
@@ -100,8 +88,7 @@
                 role_name = dataUserAccess.get(0).get(5);
                 system_code = dataUserAccess.get(0).get(4);
 
-                String sqlModule = "Select distinct(module_code) from adm_responsibility where role_code = '" + role_code + "' AND status = '0' "
-                        + "AND health_facility_code = '"+hfc_cd+"'";
+                String sqlModule = "Select distinct(module_code) from adm_responsibility where role_code = '" + role_code + "' AND status = '0'";
                 ArrayList<ArrayList<String>> dataModule = conn.getData(sqlModule);
 
                 ArrayList<String> modules = new ArrayList<String>();
@@ -113,8 +100,7 @@
 
                 module_code = String.join("|", modules);
 
-                String sqlPage = "Select page_code from adm_responsibility where role_code = '" + role_code + "' AND status = '0' "
-                        + "AND health_facility_code = '"+hfc_cd+"'";
+                String sqlPage = "Select page_code from adm_responsibility where role_code = '" + role_code + "' AND status = '0'";
                 ArrayList<ArrayList<String>> dataPage = conn.getData(sqlPage);
 
                 ArrayList<String> pages = new ArrayList<String>();

@@ -39,8 +39,6 @@
     ArrayList<ArrayList<String>> dataAppointment;
     dataAppointment = conn.getData(sql);
     //out.print(hfc);
-    if(dataAppointment.size()>0){
-    
 %>
 <table class="table table-filter table-striped" style="background: #fff; border: 1px solid #ccc;" id="listAppointment">
     <thead>
@@ -69,25 +67,6 @@
         <td><button id="APPedit" name="APPedit" class="btn btn-default" type="button" data-dismiss="modal" role="button"><i class="fa fa-pencil-square-o" aria-hidden="true" style="display: inline-block;color: #337ab7;"></i></button></td>                                
     </tr>
     <% }
-    }
-else{
-%>
-    <table class="table table-filter table-striped" style="background: #fff; border: 1px solid #ccc;" id="listAppointment">
-    <thead>
-    <th>PMI No.</th>
-    <th>Name</th>
-    <th>Appointment Date</th>
-    <th>Appointment Time</th>
-    <th>Appointment Type</th>
-    <th>Action</th>
-</thead>
-<tbody>
-    
-    <tr>
-        <td colspan="6" align="center">NO RECORD FOUND!</td>
-    </tr>
-    <%
-}
     %>
 
 </tbody>

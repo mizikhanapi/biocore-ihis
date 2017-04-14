@@ -18,7 +18,7 @@
         $.ajax({
             type: "POST",
             data: {idType: typeApp, idInput: inputApp},
-            url: "PMS/controller/listApp.jsp", // call the php file ajax/tuto-autocomplete.php
+            url: "controller/listApp.jsp", // call the php file ajax/tuto-autocomplete.php
             timeout: 10000,
             success: function (list) {
                 console.log(list);

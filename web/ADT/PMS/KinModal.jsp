@@ -3,9 +3,9 @@
 <%@page import="Config.connect"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
-    String idType61 = "select * from adm_lookup_detail where master_reference_code = '0012' AND hfc_cd = '"+hfc+"'   ";
+    String idType61 = "select * from adm_lookup_detail where master_reference_code = '0012'   ";
     
-    String relation61 = "select * from adm_lookup_detail where master_reference_code = '0007' AND hfc_cd = '"+hfc+"'  ";
+    String relation61 = "select * from adm_lookup_detail where master_reference_code = '0007'  ";
 
     ArrayList<ArrayList<String>> dataIdType61, dataRelation61;
     dataIdType61 = conn.getData(idType61);

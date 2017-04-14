@@ -15,7 +15,7 @@
         $.ajax({
             type: "POST",
             data: {idType: "", idInput: ""},
-            url: "PMS/controller/listApp.jsp", // call the php file ajax/tuto-autocomplete.php
+            url: "controller/listApp.jsp", // call the php file ajax/tuto-autocomplete.php
             timeout: 10000,
             success: function (list) {
                 $('#modalBodyAppointment').html(list);
@@ -31,7 +31,7 @@
         $.ajax({
             type: "POST",
             data: {idType: "", idInput: ""},
-            url: "PMS/controller/listQueue.jsp", // call the php file ajax/tuto-autocomplete.php
+            url: "controller/listQueue.jsp", // call the php file ajax/tuto-autocomplete.php
             timeout: 10000,
             success: function (list) {
                 $('#modalBodyQueue').html(list);
@@ -148,7 +148,6 @@
         setInterval(getDateNow, 1000);
         var array_dat;
         var str;
-        var pmi, epiDate, name, newic, oldic, typeId, idNo, rnNo, patCatCode, visTyCode, emTy, eliCatCode, eliTyCode, disCode, subDiscode, consultRoom, comQueue, doctor, prioGruCode, polCase, commDis, natuDisasCode, docTy, guardInd, referNo, gruGuard, glExpDate, epiTime, stat, hfc, comTy, createdBy, queue, docID;
 
         if ($('#radios-0').is(':checked')) {
             str = $('#select-0').find(":selected").val();
@@ -170,8 +169,6 @@
 
             comTy = "PN";
         }
-        console.log(array_dat);
-        
         if ($('#pmino').val() === " " || $('#pmino').val() === "") {
             bootbox.alert('Please use a proper PMI no.');
 
@@ -181,14 +178,10 @@
             bootbox.alert('Please select discipline.');
         }else if($("#prioGru").val()==="null"){
             bootbox.alert('Please select priority group.');
-        } else if($("#visTy").val()===""){
-            bootbox.alert('Please select discipline.');
-        }else if($("#patCat").val()==="null"){
-            bootbox.alert('Please select priority group.');
         }else{
 
 
-            
+            var pmi, epiDate, name, newic, oldic, typeId, idNo, rnNo, patCatCode, visTyCode, emTy, eliCatCode, eliTyCode, disCode, subDiscode, consultRoom, comQueue, doctor, prioGruCode, polCase, commDis, natuDisasCode, docTy, guardInd, referNo, gruGuard, glExpDate, epiTime, stat, hfc, comTy, createdBy, queue, docID;
             pmi = $('#pmino').val();
             epiDate = yyyyMMddHHmmss;
             name = $('input[id=pname]').val();
@@ -288,7 +281,7 @@
                         $body.addClass("loading");
                         $.ajax({
                             type: "POST",
-                            url: "../registerqueue.jsp",
+                            url: "controller/registerqueue.jsp",
                             data: datas, // Send input
                             timeout: 3000,
                             success: function (list) {
@@ -302,7 +295,6 @@
                                 }
                             }, error: function () {
                                 bootbox.alert("There is an error!");
-                                $body.removeClass("loading");
                             }
                         });
                     }
@@ -327,7 +319,7 @@
 
     //appointment edit button
     $('#modalSaya').on('click', '#appointmentModal #listAppointment #APPedit', function () {
-        //console.log("u're clicking the edit button in appointment table");
+        console.log("u're clicking the edit button in appointment table");
         var row = $(this).closest("tr");
         var rowData = row.find("#appval").val();
 
@@ -367,12 +359,12 @@
     //queue delete button
     $('#modalSaya2').on('click', '#queueModal #listQueue #delQueue', function (e) {
         var item = $(this).closest("tr").find("#pmiNumber").text();
-        var epiTime = $(this).closest("tr").find("#epiDate").text();
+        var epiTime = $(this).closest("tr").find("#epiTime").text();
         var datas = {'pmino': item, 'today': epiTime};
-        console.log(datas);
+        console.log("button delete queue");
         $.ajax({
             type: "POST",
-            url: "PMS/controller/deletePMSQueue.jsp",
+            url: "controller/deletePMSQueue.jsp",
             data: datas, // Send input
             timeout: 3000,
             success: function (list) {

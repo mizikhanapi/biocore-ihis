@@ -20,14 +20,14 @@
 
                     <%
                         //Conn conn = new Conn();
-                        String wname1 = "SELECT  ward_name FROM wis_ward_name";
+                        String wname1 = "SELECT ward_id,ward_name FROM wis_ward_name where hfc_cd ='"+hfc+"'";
                         ArrayList<ArrayList<String>> dataWname25 = conn.getData(wname1);
 
                         int sizeward = dataWname25.size();
 
                         for (int i = 0; i < sizeward; i++) {
                     %>
-                    <option value="<%= dataWname25.get(i).get(0)%>"><%= dataWname25.get(i).get(0)%> </option>
+                    <option value="<%= dataWname25.get(i).get(0)%>"><%= dataWname25.get(i).get(1)%> </option>
                     <%
                         }
                     %>
