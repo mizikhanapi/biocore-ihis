@@ -16,12 +16,10 @@
     
     Conn conn = new Conn();
     
-    String user_id = request.getParameter("userIC");
+    String user_ic = request.getParameter("userIC");
     String password = request.getParameter("password");
-      
     
-    
-    String sql = "SELECT USER_ID, PASSWORD, USER_NAME from adm_users where USER_ID='"+user_id+"';";
+    String sql = "SELECT ic_no, password, username from adm_signup_tbl where ic_no='"+user_ic+"';";
     ArrayList<ArrayList<String>> dataStaff = conn.getData(sql);
 
 //    out.print(dataPatient.size());
@@ -35,7 +33,7 @@
             
             if(dataStaff.get(0).get(1).equals(password))
             {
-                session.setAttribute("Patient_IC", user_id);
+                session.setAttribute("Patient_IC", user_ic);
                 status = LOGIN;
                 //response.sendRedirect("facility.jsp");
             }

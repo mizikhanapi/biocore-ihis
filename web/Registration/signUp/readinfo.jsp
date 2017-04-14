@@ -154,6 +154,9 @@
         <script type="text/javascript">
             w3IncludeHTML();
            
+           var guseric, gusername, gusergender, gusernationality, guseremail, guserphoneno,
+                        guseroccupation, guserbirthday, userExist=false;
+           
             $("#submitSignup").on("click", function () {
 
                 signup();
@@ -199,6 +202,71 @@
             };
             
             
+            
+              document.getElementById("inputUserIC").onchange = function () {
+                icFiledchanges();
+            };
+            function icFiledchanges() {
+                var userIC;
+                userIC = $("#inputUserIC").val();
+                var data = {
+                    userIC: userIC
+                };
+                if (userIC === "")
+                {
+                    bootbox.alert("please Fill in the your IC");
+                } else {
+//                       console.log("before ajax");
+                    $.ajax({
+                        type: "POST",
+                        url: "../Controller/searchUser.jsp",
+                        data: data,
+                        timeout: 10000,
+                        success: function (data) {
+//                               console.log("in sucess");
+                            if (data.trim() === "NOT FOUND")
+                            {
+                                userExist=false;
+                                bootbox.alert("User Not Found");
+                            } else
+                            {
+                                userExist=true;
+//                                   console.log(data.trim());
+                                var splitData = String(data.trim()).split("|");
+//                                    console.log(splitData);
+                                 
+                                gusername=splitData[2];
+                                gusergender=splitData[11];
+                                gusernationality=splitData[14];
+                                guseremail=splitData[35];
+                                guserphoneno=splitData[34];
+                                guserbirthday=splitData[10];
+//                                guseroccupation=splitData[7];
+                            $("#inputUserName").val(gusername);
+                            $("input[name=gender][value=" + gusergender + "]").prop('checked', true);
+                            $("#Usernational").val(gusernationality);
+                            $("#inputUserEmail").val(guseremail);
+                            $("#inputUserPhoneNo").val(guserphoneno);
+                            var bdDate = guserbirthday.split("/");
+//                            console.log(bdDate);
+                            $("#txt_year").val(bdDate[2]);
+                            $("#txt_month").val(bdDate[1]);
+                            $("#txt_day").val(bdDate[0]);
+//                            $("#inpuOccupation").val("");
+                               
+//                                   console.log(pmi_no +" " +user_name+" "+user_id);
+                            }
+                        },
+                        error: function (err) {
+                            console.log(err);
+                        }
+                    });
+                }
+            };
+            
+            
+            
+            
                     function bdYearCahnged()
             {
                
@@ -228,7 +296,7 @@
                 useremail = $("#inputUserEmail").val();
                 userphoneno = $("#inputUserPhoneNo").val();
                 userpassword = $("#inputUserPassword").val();
-                userbirthday = $("#txt_year").val() + "/" + $("#txt_month").val() + "/" + $("#txt_day").val();
+                userbirthday = $("#txt_day").val()+ "/" + $("#txt_month").val() + "/" +$("#txt_year").val();
                 useroccupation = $("#inpuOccupation").val();
 
                 if (useric === "") {
@@ -245,7 +313,6 @@
                     $("input[name='gender']").focus();
                 } else if (!isValidDate(userbirthday)) {
                     bootbox.alert("Wrong Birthday Date !");
-                    console.log(userbirthday);
                     $("#txt_day").focus();
                 } else if (usernationality === null) {
                     bootbox.alert("Select Nationality !");
@@ -271,7 +338,8 @@
                 } else if (userpassword === "") {
                     bootbox.alert("Fill in the User Password !");
                     $("#inputUserPassword").focus();
-                } else if (validPassword(userpassword)) {
+                } else if (validPassword(userpassword)) 
+                    {
                    
 
                     var bioData = {
@@ -285,8 +353,11 @@
                         'userbirthday': userbirthday};
 
                     var loginData = {
-                        'userID': userid,
-                        'userPassword': userpassword
+                        'userIC': useric,
+                        'userName': username,
+                        'userPassword': userpassword,
+                        'userEmail': useremail,
+                        'userPhoneNo': userphoneno
                     };
                     //                        console.log(bioData);
                     //                        console.log(loginData);
@@ -314,15 +385,15 @@
                             //                                var num = parseInt(data);
                             if (data.search("Existed") >= 0)
                             {
-                                bootbox.alert("Record Already Existed");
+                                loginInser(loginData); 
                             } else {
-                                loginInser(loginData);
+                                bootbox.alert("User not found, Please re-enter the your IC OR go to neareast Clinic or Hospital to register your information");
                             }
 
                         },
                         error: function (err) {
                             console.log(err);
-                            bootbox.alert("There is an error!");
+                            bootbox.alert("Seems like system have problem in the system!");
                         }
                     });
                 }
@@ -338,12 +409,14 @@
                     data: loginData,
                     timeout: 3000,
                     success: function (data) {
-                        //console.log(data.trim()); 
-                        //window.history.back();
+                         if (data.search("Existed") >= 0)
+                            {
+                                bootbox.alert("You are already registered, you can login to the system.");
+                            } else {}
                     },
                     error: function (err) {
                         console.log(err);
-                        bootbox.alert("There is an error!");
+                        bootbox.alert("Seems like system have problem in the system!");
                     }
                 });
             }
@@ -376,15 +449,14 @@
 
             // Parse the date parts to integers
             var parts = dateString.split("/");
-            var day = parseInt(parts[2], 10);
+            var day = parseInt(parts[0], 10);
             var month = parseInt(parts[1], 10);
-            var year = parseInt(parts[0], 10);
+            var year = parseInt(parts[2], 10);
 
-                    console.log(dateString);
+
             // Check the ranges of month and year
             if(year < 1000 || year > 3000 || month == 0 || month > 12)
                 return false;
-
             var monthLength = [ 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 ];
 
             // Adjust for leap years
