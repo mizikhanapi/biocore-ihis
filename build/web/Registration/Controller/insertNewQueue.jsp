@@ -20,7 +20,7 @@
     userName = request.getParameter("userName");
     queueType = request.getParameter("queueType");
     selectedQueue = request.getParameter("selectedQueue");
-    String hfc = session.getAttribute("HFC").toString();
+    String hfc = session.getAttribute("HEALTH_FACILITY_CODE").toString();
     
      
     
@@ -44,12 +44,10 @@
     if (queueType.equals("CM"))
     {
         comQueue = selectedQueue;
-        out.print("          CM            ");
     }
     else if (queueType.equals("FY"))
     {
         serviceRoom = selectedQueue;
-        out.print("          FY            ");
     }
     
      String isAlreadyRegister = "select pmi_no from pms_episode where pmi_no = '" + pmi + "' and (status like '%Consult%' or status = '0' or status = '2' or status like '%Second Opinion%') and episode_date like '%" + today + "%';";

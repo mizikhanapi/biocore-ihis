@@ -268,7 +268,8 @@
     </div>
 </div>
                
-
+<script src="assets/js/jquery.min.js" type="text/javascript"></script>
+<script src="assets/js/custom.js" type="text/javascript"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script> 
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> 
 <script type="text/javascript">
@@ -566,7 +567,7 @@
                        if (d[1] == 1){
                             document.getElementById('messageHeader').innerHTML = "Success!";
                             document.getElementById('messageContent').innerHTML = d[2];
-                            $("#alertMessage").modal();
+                            $("#alertMessage").modal('show');
                            
                             var url = contextPath + "/Receipt?"
                             url += "&custID=" + custID;
@@ -587,7 +588,7 @@
                        } else {
                             document.getElementById('messageHeader').innerHTML = "Failed!";
                             document.getElementById('messageContent').innerHTML = d[2];
-                            $("#alertMessage").modal();
+                            $("#alertMessage").modal('show');
                        }
                     },
                     error: function(err) {

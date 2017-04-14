@@ -3,14 +3,27 @@
     Created on : Jan 25, 2017, 4:11:22 PM
     Author     : user
 --%>
+<%
+    String LM_user = session.getAttribute("USER_ID").toString();
+    String LM_hfc = session.getAttribute("HEALTH_FACILITY_CODE").toString();
+    
+    String LM_last = LM_user.substring(LM_user.length() - 1);
+
+%>
 
 <!-- Add Part Start -->
 <!-- Add Button Start -->
 <h4 style="padding-top: 30px;padding-bottom: 35px; font-weight: bold">
     LOOKUP MASTER MANAGEMENT
+    <%
+        if(LM_hfc.equals("99_iHIS_99") && LM_last.equals("9")){
+    %>
     <span class="pull-right">
         <button id="MLM_btnAddNew" class="btn btn-success" data-status="pagado" data-toggle="modal" data-id="1" data-target="#detail" style=" padding-right: 10px;padding-left: 10px;color: white;"><a data-toggle="tooltip" data-placement="top" title="Add Items" id="test"><i class=" fa fa-plus" style=" padding-right: 10px;padding-left: 10px;color: white;"></i></a>ADD Lookup Master</button>
     </span>
+    <%
+        }
+    %>
 </h4>
 <!-- Add Button End -->
 

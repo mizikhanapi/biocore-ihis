@@ -3,7 +3,7 @@
 
 <h3><span id="DLT_detailOf"></span></h3>
 
-<span id="DLT_detailOf"></span>
+<!--<span id="DLT_detailOf"></span>-->
 <table  id="THE_detailTable"  class="table table-striped table-bordered" cellspacing="0" width="100%">
     <thead>
     <th>Master Code</th>
@@ -155,7 +155,7 @@
 
 
 
-    $('#DLT_btn_update_').on('click', function () {
+    $('#DLT_btn_update_').off('click').on('click', function () {
 
         var masterCode = $('#DLT_masterCode_').val();
         var detailCode = $('#detailCode_').val();
@@ -217,6 +217,7 @@
                         $('#detailTable').load('detail_lookup_table_1.jsp');
                         $(".modal-backdrop").hide();
                         bootbox.alert("A lookup detail code is updated");
+                        backToMasterTab();
                     } else if (datas.trim() === 'Failed') {
                         alert("Update failed!");
 
@@ -263,6 +264,7 @@
                     if (datas.trim() === 'Success') {
                         $('#detailTable').load('detail_lookup_table_1.jsp');
                         bootbox.alert("A lookup detail is deleted");
+                        backToMasterTab();
                         
                     } else if (datas.trim() === 'Failed') {
                         bootbox.alert("Delete failed!");
@@ -281,12 +283,14 @@
 
         }
             
-        }  );
+        });
         
-
-
-
     });
+    
+     //------------- redirect user to master lookup
+        function backToMasterTab(){
+            $('.nav-tabs a[href="#tab_default_1"]').tab('show');
+        }
 
 
 

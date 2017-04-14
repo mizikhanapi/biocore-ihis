@@ -59,7 +59,7 @@ subUl{
 
 
 li :hover{
-    background-color: #1484DE;
+    color: #1484DE;
      text-decoration: none;
 }
 li:selected{
@@ -170,4 +170,8 @@ select option:first-child{
 
 .modalTextLabel{
     margin: 10px;
+}
+
+.ui-timepicker-container{ 
+     z-index:1151 !important; 
 }

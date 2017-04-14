@@ -12,6 +12,7 @@
 <%@page import="java.sql.*"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
+<%@include file="controller/super_user_check.jsp"  %>
 <%           
     Conn conn = new Conn();
     String hfcName = request.getParameter("hfcName");
@@ -39,10 +40,13 @@
     String logo = request.getParameter("logo");
     
     
+    
+    
     String sqlCheck = "SELECT hfc_cd from adm_health_facility WHERE hfc_cd = '"+hfcCode+"' LIMIT 1 ";
     ArrayList<ArrayList<String>> duplicate = conn.getData(sqlCheck);
     
      RMIConnector rmic = new RMIConnector();
+     boolean isInsert = false;
     
     if(duplicate.size() > 0)
     {
@@ -55,7 +59,7 @@
         String sqlInsert = "INSERT INTO adm_health_facility(hfc_cd, hfc_type, hfc_name, address1, address2, address3, state_cd, district_cd, town_cd, country_cd, postcode, telephone_no, fax_no, email, hfc_server, hfc_report, established_date, director_name, hfc_category_cd, hfc_sub_type, contact_person, hfc_status, hfc_ip, logo) "+
                             "VALUES('"+hfcCode+"', '"+type+"', '"+hfcName+"', '"+address1+"', '"+address2+"', '"+address3+"', '"+state+"', '"+district+"', '"+town+"', '001', '"+postcode+"', '"+telNo+"', '"+faxNo+"', '"+email+"', '"+server+"', '"+reportTo+"', '"+establishDate+"', '"+director+"', '"+category+"', '"+subtype+"', '"+contactPerson+"', '"+status+"', '"+ipNo+"', '"+logo+"')";
 
-        boolean isInsert = rmic.setQuerySQL(conn.HOST, conn.PORT, sqlInsert);
+        isInsert = rmic.setQuerySQL(conn.HOST, conn.PORT, sqlInsert);
 
         if (isInsert == true) {
             out.print("Success");
@@ -68,7 +72,7 @@
         String sqlInsert = "INSERT INTO adm_health_facility(hfc_cd, hfc_type, hfc_name, address1, address2, address3, state_cd, district_cd, town_cd, country_cd, postcode, telephone_no, fax_no, email, hfc_server, hfc_report, director_name, hfc_category_cd, hfc_sub_type, contact_person, hfc_status, hfc_ip, logo) "+
                             "VALUES('"+hfcCode+"', '"+type+"', '"+hfcName+"', '"+address1+"', '"+address2+"', '"+address3+"', '"+state+"', '"+district+"', '"+town+"', '001', '"+postcode+"', '"+telNo+"', '"+faxNo+"', '"+email+"', '"+server+"', '"+reportTo+"', '"+director+"', '"+category+"', '"+subtype+"', '"+contactPerson+"', '"+status+"', '"+ipNo+"', '"+logo+"')";
 
-        boolean isInsert = rmic.setQuerySQL(conn.HOST, conn.PORT, sqlInsert);
+        isInsert = rmic.setQuerySQL(conn.HOST, conn.PORT, sqlInsert);
 
         if (isInsert == true) {
             out.print("Success");
@@ -77,6 +81,27 @@
         }
     
     
+    
+    }
+    
+    if(isInsert){
+        String creator = session.getAttribute("USER_ID").toString();
+        
+        String copyLookup = "INSERT INTO adm_lookup_detail(Master_Reference_code, Detail_Reference_code, Description, priority_indicator, start_date, end_date, status, created_by, created_date, hfc_cd) "
+                + "Select Master_Reference_code, Detail_Reference_code, Description, priority_indicator, start_date, end_date, status, '"+creator+"', now(), '"+hfcCode+"' "
+                + "from adm_lookup_detail where hfc_cd = '99_iHIS_99'";
+        
+        String copyRole = "insert into adm_role(role_code, role_name, status, created_by, created_date, hfc_cd) "
+                + "select role_code, role_name, status, '"+creator+"', now(), '"+hfcCode+"' "
+                + "from adm_role where hfc_cd = '99_iHIS_99'";
+        
+        String copyResponsibility = "insert into adm_responsibility(role_code, system_code, module_code, page_code, health_facility_code, status, created_by, created_date) "
+                + "select role_code, system_code, module_code, page_code, '"+hfcCode+"', status, '"+creator+"', now() from adm_responsibility "
+                + "WHERE health_facility_code = '99_iHIS_99'";
+        
+        rmic.setQuerySQL(conn.HOST, conn.PORT, copyLookup);
+        rmic.setQuerySQL(conn.HOST, conn.PORT, copyRole);
+        rmic.setQuerySQL(conn.HOST, conn.PORT, copyResponsibility);
     
     }
 %>

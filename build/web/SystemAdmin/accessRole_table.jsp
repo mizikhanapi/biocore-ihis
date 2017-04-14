@@ -28,13 +28,24 @@
 
     <%
         String hfc = session.getAttribute("HEALTH_FACILITY_CODE").toString();
+        String user_id = session.getAttribute("USER_ID").toString();
+        String last_nine = user_id.substring(user_id.length() - 1);
+        
+        String whereClause = "";
+        
+        if(!last_nine.equals("9") || !hfc.equals("99_iHIS_99")){
+        
+            whereClause = " AND u.health_facility_code = '"+hfc+"' ";
+        }
+        
+        
         //                      0           1           2           3           4                   5               6                   7               8                       9
         String sql = "Select ua.user_id, user_name, ua.role_code, role_name, ua.discipline_code, discipline_name, ua.subdiscipline_code, subdiscipline_name, ifnull(ua.status, ''), u.health_facility_code "
                 + "FROM adm_users u join adm_user_access_role ua using(user_id) "
                 + "join adm_role r on ua.role_code = r.role_code or ua.role_code = role_name "
                 + "left join adm_discipline d on discipline_code = d.discipline_cd "
                 + "left join adm_subdiscipline s on subdiscipline_code = subdiscipline_cd and discipline_code = s.discipline_cd "
-                + "Where u.health_facility_code = '"+hfc+"'";
+                + "Where r.hfc_cd = u.health_facility_code " + whereClause;
         ArrayList<ArrayList<String>> dataAccess = conn.getData(sql);
 
         int size = dataAccess.size();
@@ -116,7 +127,7 @@
                         </div>
                     </div>
                     
-                     <!-- Text input-->
+<!--                      Text input
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="textinput">Discipline</label>
                         <div class="col-md-8">
@@ -126,7 +137,7 @@
                         </div>
                     </div>
                      
-                     <!-- Text input-->
+                      Text input
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="textinput">Subdiscipline</label>
                         <div class="col-md-8">
@@ -134,7 +145,7 @@
                                 <option value="">-- Select subdiscipline--</option>
                             </select>
                         </div>
-                    </div> 
+                    </div> -->
                      
                     
                      <div class="form-group">
@@ -185,13 +196,13 @@
         var userID = arrayData[0], userName = arrayData[1], roleCode = arrayData[2], disciplineCode = arrayData[4], status = arrayData[8], subdisciplineCode = arrayData[6], hfcCode = arrayData[9];
         //set value in input on the top
         ART_G_hfcCode = hfcCode;
-        ART_createDisciplineList(disciplineCode);
-        ART_createSubList(disciplineCode, subdisciplineCode);
+        //ART_createDisciplineList(disciplineCode);
+        //ART_createSubList(disciplineCode, subdisciplineCode);
         
         $('#ART_user').val(userID +" | "+ userName);
         $('#ART_role').val(roleCode);
         
-        $('#ART_subdiscipline').val(subdisciplineCode);
+        //$('#ART_subdiscipline').val(subdisciplineCode);
        
         if (status === '1')
             $('#ART_status').val(1);
@@ -206,20 +217,14 @@
 
         var userID = $('#ART_user').val();
         var roleCode = $('#ART_role').val();
-        var disciplineCode = $('#ART_discipline').val();
-        var subdisciplineCode = $('#ART_subdiscipline').val();
+       // var disciplineCode = $('#ART_discipline').val();
+       // var subdisciplineCode = $('#ART_subdiscipline').val();
         var status = $('#ART_status').val();
 
         if (roleCode === "" || roleCode === null) { 
             bootbox.alert("Please choose the role");
             
-        }else if (disciplineCode === "" || disciplineCode === null) {
-            bootbox.alert("Select the discipline");
-            
-        } else if (subdisciplineCode === "" || subdisciplineCode === null) {
-            bootbox.alert("Select the subdiscipline");
-            
-        } else if (status !== '1' && status !== '0') {
+        }else if (status !== '1' && status !== '0') {
             bootbox.alert("Please choose the status");
             
 
@@ -231,8 +236,6 @@
             var data = {
                 userID : userID,
                 roleCode : roleCode,
-                disciplineCode : disciplineCode,
-                subdisciplineCode : subdisciplineCode,
                 status : status
             };
 

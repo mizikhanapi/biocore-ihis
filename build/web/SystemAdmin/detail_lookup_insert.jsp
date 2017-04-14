@@ -25,7 +25,9 @@
     String startDate = request.getParameter("startDate");
     String endDate = request.getParameter("endDate");
     String status = request.getParameter("status");
+    
     String userID = (String) session.getAttribute("USER_ID");
+    String hfc_cd = session.getAttribute("HEALTH_FACILITY_CODE").toString();
 
     String sqlCheck = "Select master_reference_code FROM adm_lookup_detail WHERE master_reference_code = '" + masterCode + "' AND detail_reference_code = '" + detailCode + "' LIMIT 1 ";
 
@@ -48,8 +50,8 @@
         
         RMIConnector rmic = new RMIConnector();
 
-        String sqlInsert = "INSERT INTO adm_lookup_detail"
-                + " VALUES('" + masterCode + "', '" + detailCode + "', '" + detailDesc + "', '"+priority+"', '"+startDate+"', '"+endDate+"', '" + status + "', '" + userID + "', now())";
+        String sqlInsert = "INSERT INTO adm_lookup_detail(master_reference_code, detail_reference_code, hfc_cd, description, priority_indicator, start_date, end_date, status, created_by, created_date)"
+                + " VALUES('" + masterCode + "', '" + detailCode + "', '"+hfc_cd+"', '" + detailDesc + "', '"+priority+"', '"+startDate+"', '"+endDate+"', '" + status + "', '" + userID + "', now())";
 
         boolean isInsert = rmic.setQuerySQL(conn.HOST, conn.PORT, sqlInsert);
 

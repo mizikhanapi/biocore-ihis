@@ -57,7 +57,7 @@
                 <ul class="soap-content nav">
                     <li><a data-toggle="modal" data-target="#CIS030001" href="" class="soap-select"><i class="fa fa-stethoscope fa-li"></i> Diagnosis</a></li>
                     <li><a data-toggle="modal" data-target="#CIS030002" href="" class="soap-select"><i class="fa fa-tasks fa-li"></i> Progress Notes</a></li>
-                    <li><a data-toggle="modal" data-target="#CIS030003" href="" class="soap-select"><i class="fa fa-list-ul fa-li"></i> Problem List</a></li>
+                    <li id="Problemlist"><a data-toggle="modal" data-target="#CIS030003" href="" class="soap-select" ><i class="fa fa-list-ul fa-li"></i> Problem List</a></li>
                 </ul>
             </div>
             <!-- content -->
@@ -74,6 +74,7 @@
                     <li><a data-toggle="modal" data-target="#CIS040006" href="" class="soap-select"><i class="fa fa-list-ol fa-li"></i> Procedure</a></li>
                     <li><a data-toggle="modal" data-target="#CIS040007" href="" class="soap-select"><i class="fa fa-bed fa-li"></i> Admit To Ward</a></li>
                     <li><a data-toggle="modal" data-target="#CIS040008" href="" class="soap-select"><i class="fa fa-clock-o fa-li"></i> MC & Time Slip</a></li>
+                    <li><a data-toggle="modal" data-target="#CIS040009" href="" class="soap-select"><i class="fa fa-clock-o fa-li"></i> Referral</a></li>
                 </ul>
             </div>
             <!-- content -->

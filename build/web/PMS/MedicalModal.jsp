@@ -4,9 +4,9 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
     //String relation = "select * from lookup_detail where master_ref_code = '0007' order by Description";
-    String hcf81 = "select * from adm_lookup_detail where master_reference_code = '0081'   ";
+    String hcf81 = "select * from adm_lookup_detail where master_reference_code = '0081' AND hfc_cd = '"+hfc+"'   ";
     //String insuranceCompany81 = "select * from adm_lookup_detail where master_reference_code = '0083'   ";
-    String insurancePolicy81 = "select * from adm_lookup_detail where master_reference_code = '0058'   ";
+    String insurancePolicy81 = "select * from adm_lookup_detail where master_reference_code = '0058' AND hfc_cd = '"+hfc+"'   ";
     ArrayList<ArrayList<String>> dataHfc81, dataInsurancePolicy81, dataInsuranceCompany81;
     dataHfc81 = conn.getData(hcf81);
     dataInsurancePolicy81 = conn.getData(insurancePolicy81);

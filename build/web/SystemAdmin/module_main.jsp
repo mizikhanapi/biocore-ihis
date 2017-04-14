@@ -33,7 +33,7 @@
                         <label class="col-md-4 control-label" for="textinput">System Name</label>
                         <div class="col-md-8">
                             <input id="MM_systemName"  type="text" placeholder="Name required" class="form-control input-md" maxlength="120">
-                             <div id="MM_match">
+                             <div id="MM_match" class="search-drop">
                                 <!--for search area-->
                             </div>
                         </div>

@@ -17,6 +17,8 @@
 
 <%
     Conn conn = new Conn();
+    
+    String hfc_cd = session.getAttribute("HEALTH_FACILITY_CODE").toString();
 
     String masterCode = request.getParameter("masterCode");
     String detailCode = request.getParameter("detailCode");
@@ -32,7 +34,7 @@
     RMIConnector rmic = new RMIConnector();
 
     String sqlInsert = "UPDATE adm_lookup_detail set description = '" + detailDesc + "', status = '" + status + "', priority_indicator = '"+priority+"', start_date = '"+startDate+"', end_Date = '"+endDate+"'"
-            + " WHERE master_reference_code = '" + masterCode + "' AND detail_reference_code = '" + detailCode + "'";
+            + " WHERE master_reference_code = '" + masterCode + "' AND detail_reference_code = '" + detailCode + "' AND hfc_cd = '"+hfc_cd+"'";
 
 //    out.print(sqlInsert);
     boolean isInsert = rmic.setQuerySQL(conn.HOST, conn.PORT, sqlInsert);

@@ -15,10 +15,11 @@
 
 <%
     Conn conn = new Conn();
+    String hfc_cd = session.getAttribute("HEALTH_FACILITY_CODE").toString();
 
     String roleCode = request.getParameter("roleCode");
 
-    String sqlCheck = "Select role_code from adm_user_access_role where role_code = '" + roleCode + "' limit 1";
+    String sqlCheck = "Select role_code from adm_user_access_role where role_code = '" + roleCode + "' AND health_facility_code = '"+hfc_cd+"' limit 1";
 
     ArrayList<ArrayList<String>> dataUse = conn.getData(sqlCheck);
 
@@ -29,7 +30,7 @@
     } else {
 
         RMIConnector rmic = new RMIConnector();
-        String sql = "DELETE FROM adm_role WHERE role_code = '" + roleCode + "' ";
+        String sql = "DELETE FROM adm_role WHERE role_code = '" + roleCode + "' AND hfc_cd = '"+hfc_cd+"' ";
 
         boolean status = rmic.setQuerySQL(conn.HOST, conn.PORT, sql);
 

@@ -13,7 +13,7 @@
     
     String userID = request.getParameter("userID");
     String IC = request.getParameter("IC");
-    String mother = request.getParameter("mother");
+    String mother = request.getParameter("mother").toUpperCase();
     
                
     String sql = "Select user_id from adm_users where user_id = '"+userID+"' AND new_icno = '"+IC+"' AND mother_name = '"+mother+"' LIMIT 1";
