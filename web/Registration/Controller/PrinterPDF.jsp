@@ -1,9 +1,3 @@
-<%-- 
-    Document   : PrinterPDF
-    Created on : Mar 24, 2017, 6:49:17 PM
-    Author     : user
---%>
-
 <%@page import="javax.print.DocPrintJob"%>
 <%@page import="javax.print.PrintService"%>
 <%@page import="javax.print.SimpleDoc"%>

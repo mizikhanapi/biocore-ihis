@@ -1,8 +1,3 @@
-<%--
-Document   : SelectQueue_2
-Created on : Apr 10, 2017, 4:25:40 PM
-Author     : user
---%>
 <%@page import="dBConn.Conn"%>
 <%@page import="Config.Config"%>
 <%@page import="java.util.ArrayList"%>
@@ -16,7 +11,7 @@ Author     : user
 
     String Consultationqueue = "select * from pms_queue_name where queue_type='FY' ";
     String Doctorqueue = "select * from pms_queue_name where queue_type='PN' ";
-      
+
      ArrayList<ArrayList<String>> dataQueue;
      ArrayList<ArrayList<String>> dataQueue2;
      

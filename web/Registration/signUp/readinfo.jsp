@@ -1,8 +1,3 @@
-<%-- 
-    Document   : readinfo_2
-    Created on : Apr 10, 2017, 3:06:29 PM
-    Author     : user
---%>
 <%@page import="dBConn.Conn"%>
 <%@page import="Config.Config"%>
 <%@page import="java.util.ArrayList"%>

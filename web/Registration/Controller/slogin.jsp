@@ -1,8 +1,3 @@
-<%-- 
-    Document   : login
-    Created on : Feb 14, 2017, 9:42:17 PM
-    Author     : user
---%>
 <%@page import ="dBConn.Conn"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="org.apache.commons.lang3.StringUtils"%>

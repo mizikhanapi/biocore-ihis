@@ -1,9 +1,3 @@
-<%-- 
-    Document   : PrintMedicalReport
-    Created on : Mar 17, 2017, 2:26:37 AM
-    Author     : user
---%>
-    
 <%@page import="Config.Config"%>
 <%@page import="dBConn.Conn"%>
 <%@page import="java.io.*"%> 
