@@ -10,6 +10,9 @@
 <%@page import="main.RMIConnector"%>
 <%
     Conn conn = new Conn();
+    String hfc_cd = session.getAttribute("HEALTH_FACILITY_CODE").toString();
+    String user_id = session.getAttribute("USER_ID").toString();
+    String last9 = user_id.substring(user_id.length() - 1);
 %>
 <table  id="THE_disciplineTable"  class="table table-striped table-bordered" cellspacing="0" width="100%">
     <thead>
@@ -19,8 +22,14 @@
     <th>Category Code</th>
     <th>Specialty Code</th>
     <th style="width: 5% ">Status</th>
+    <%
+        if(last9.equals("9") && hfc_cd.equals("99_iHIS_99")){
+    %>
     <th style="width: 5% ">Update</th>
     <th style="width: 5% ">Delete</th>
+    <%
+        }
+    %>
 </thead>
 <tbody>
 
@@ -29,7 +38,9 @@
         ArrayList<ArrayList<String>> dataDiscipline = conn.getData(sql);
 
         int size = dataDiscipline.size();
-        for (int i = 0; i < size; i++) {
+        
+        if(last9.equals("9") && hfc_cd.equals("99_iHIS_99")){
+            for (int i = 0; i < size; i++) {
     %>
 
     <tr>
@@ -62,7 +73,27 @@
         <!-- Delete Button End -->
     </tr>
     <%
-        }
+            }//end for loop
+        }//end if
+        else{
+            for (int i = 0; i < size; i++) {
+    %>
+    <tr>
+        <input id="DT_hidden" type="hidden" value="<%=String.join("|", dataDiscipline.get(i))%>">
+        <td><%= dataDiscipline.get(i).get(0)%></td>
+        <td><%= dataDiscipline.get(i).get(1)%></td>
+        <td><%= dataDiscipline.get(i).get(2)%></td>
+        <td><%= dataDiscipline.get(i).get(3)%></td>
+        <td><%= dataDiscipline.get(i).get(4)%></td>
+        <td><%if(dataDiscipline.get(i).get(5).equals("1"))
+                out.print("Inactive"); 
+              else
+                out.print("Active"); %></td>
+    </tr>   
+    <%
+
+            }//end loop
+        }//end else
     %>
 </tbody>
 </table>    

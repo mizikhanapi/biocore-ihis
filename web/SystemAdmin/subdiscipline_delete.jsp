@@ -12,7 +12,8 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
-
+<%@include file="validateSession.jsp" %>
+<%@include file="controller/super_user_check.jsp" %>
 <%
     Conn conn = new Conn();
 

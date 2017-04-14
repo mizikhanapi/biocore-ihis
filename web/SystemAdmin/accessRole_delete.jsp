@@ -14,7 +14,8 @@
     
     RMIConnector rmic = new RMIConnector();
     
-    String query = "Delete from adm_user_access_role Where user_id = '"+userID+"'";
+    String query = "Update adm_user_access_role set role_code = '-x-'"
+            + " Where user_id = '"+userID+"'";
     
     boolean isDelete = rmic.setQuerySQL(conn.HOST, conn.PORT, query);
     

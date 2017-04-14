@@ -10,7 +10,8 @@
 <%@page import="main.RMIConnector"%>
 <%@page import="java.sql.*"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-
+<%@include file="validateSession.jsp" %>
+<%@include file="controller/super_user_check.jsp" %>
 <%           
     Conn conn = new Conn();
     String disciplineCode = request.getParameter("disciplineCode");

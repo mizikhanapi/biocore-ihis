@@ -11,6 +11,8 @@
 <%@page import="java.sql.*"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
+<%@include file="validateSession.jsp" %>
+<%@include file="controller/super_user_check.jsp" %>
 <%  
 //    Config.getBase_url(request);
 //    Config.getFile_url(session);

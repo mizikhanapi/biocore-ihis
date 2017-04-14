@@ -4,13 +4,24 @@
     Author     : user
 --%>
 
+<%
+    String hfc_cd = session.getAttribute("HEALTH_FACILITY_CODE").toString();
+    String user_id = session.getAttribute("USER_ID").toString();
+    String last9 = user_id.substring(user_id.length() - 1);
+%>
 <!-- Add Part Start -->
 <!-- Add Button Start -->
 <h4 style="padding-top: 30px;padding-bottom: 35px; font-weight: bold">
     DISCIPLINE MANAGEMENT
+    <%
+        if(last9.equals("9") && hfc_cd.equals("99_iHIS_99")){
+    %>
     <span class="pull-right">
-        <button class="btn btn-success" data-status="pagado" data-toggle="modal" data-id="1" data-target="#DM_detail" style=" padding-right: 10px;padding-left: 10px;color: white;"><a data-toggle="tooltip" data-placement="top" title="Add Items" id="test"><i class=" fa fa-plus" style=" padding-right: 10px;padding-left: 10px;color: white;"></i></a>ADD Discipline</button>
+        <button id="DM_btnAddNew" class="btn btn-success" data-status="pagado" data-toggle="modal" data-id="1" data-target="#DM_detail" style=" padding-right: 10px;padding-left: 10px;color: white;"><a data-toggle="tooltip" data-placement="top" title="Add Items" id="test"><i class=" fa fa-plus" style=" padding-right: 10px;padding-left: 10px;color: white;"></i></a>ADD Discipline</button>
     </span>
+    <%
+        }
+    %>
 </h4>
 <!-- Add Button End -->
 
@@ -114,6 +125,11 @@
             }
 
             $('#DM_btnReset').on('click', function () {
+                DM_reset();
+            });
+            
+            $('#DM_btnAddNew').on('click', function(){
+                
                 DM_reset();
             });
 

@@ -4,14 +4,24 @@
     Author     : user
 --%>
 
-
+<%
+    String hfc_cd = session.getAttribute("HEALTH_FACILITY_CODE").toString();
+    String user_id = session.getAttribute("USER_ID").toString();
+    String last9 = user_id.substring(user_id.length() - 1);
+%>
 <!-- Add Part Start -->
 <!-- Add Button Start -->
 <h4 style="padding-top: 30px;padding-bottom: 35px; font-weight: bold">
     SUBDISCIPLINE MANAGEMENT
+    <%
+        if(last9.equals("9") && hfc_cd.equals("99_iHIS_99")){
+    %>
     <span class="pull-right">
         <button id="SDM_btnAddNew" class="btn btn-success" data-status="pagado" data-toggle="modal" data-id="1" data-target="#SDM_detail" style=" padding-right: 10px;padding-left: 10px;color: white;"><a data-toggle="tooltip" data-placement="top" title="Add Items" id="test"><i class=" fa fa-plus" style=" padding-right: 10px;padding-left: 10px;color: white;"></i></a>ADD Subdiscipline</button>
     </span>
+    <%
+        }
+    %>
 </h4>
 <!-- Add Button End -->
 
@@ -34,7 +44,7 @@
                         <label class="col-md-4 control-label" for="textinput">Discipline code*</label>
                         <div class="col-md-8">
                             <input type="text"  class="form-control" id="SDM_disciplineCode" placeholder="Search Discipline Code" maxlength="30">
-                            <div id="SDM_match">
+                            <div id="SDM_match" class="search-drop">
                                 <!--for search area-->
                             </div>
 

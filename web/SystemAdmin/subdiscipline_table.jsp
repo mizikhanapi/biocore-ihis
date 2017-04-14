@@ -13,6 +13,9 @@
 
 <%
     Conn conn = new Conn();
+    String hfc_cd = session.getAttribute("HEALTH_FACILITY_CODE").toString();
+    String user_id = session.getAttribute("USER_ID").toString();
+    String last9 = user_id.substring(user_id.length() - 1);
 %>
 
 <table  id="THE_subdisciplineTable"  class="table table-striped table-bordered" cellspacing="0" width="100%">
@@ -23,8 +26,14 @@
     <th>Subdiscipline Name</th>
     <th>Type</th>
     <th>Status</th>
+    <%
+        if(last9.equals("9") && hfc_cd.equals("99_iHIS_99")){
+    %>
     <th>Update</th>
     <th>Delete</th>
+    <%
+        }
+    %>
 </thead>
 <tbody>
 
@@ -34,7 +43,9 @@
         ArrayList<ArrayList<String>> dataDetail = conn.getData(sql);
 
         int size = dataDetail.size();
-        for (int i = 0; i < size; i++) {
+        
+        if(last9.equals("9") && hfc_cd.equals("99_iHIS_99")){
+            for (int i = 0; i < size; i++) {
     %>
 
     <tr>
@@ -64,7 +75,33 @@
 
 
 <%
-    }
+        }//END FOR LOOP
+    }//end if
+    else{
+
+        for (int i = 0; i < size; i++) {
+    %>
+
+    <tr>
+<input id="SDT_hidden" type="hidden" value="<%=String.join("|", dataDetail.get(i))%>">
+<td><%= dataDetail.get(i).get(0)%></td> <!--discipline code  -->   
+<td><%= dataDetail.get(i).get(1)%></td> <!--discipline name  --> 
+<td><%= dataDetail.get(i).get(2)%></td> <!--sub code  --> 
+<td><%= dataDetail.get(i).get(3)%></td> <!--sub name  --> 
+<td><%= dataDetail.get(i).get(4)%></td> <!--Type  -->
+<td><%if(dataDetail.get(i).get(5).equals("1"))
+                out.print("Inactive"); 
+              else
+                out.print("Active"); %></td> <!--status --> 
+
+</tr>
+
+
+
+<%
+        }//END FOR LOOP
+
+    }//end else
 %>
 
 </tbody>
