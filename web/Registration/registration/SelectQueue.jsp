@@ -14,8 +14,8 @@ Author     : user
 
     Conn conn = new Conn();
 
-    String Consultationqueue = "select * from pms_queue_name where queue_type='FY' ";
-    String Doctorqueue = "select * from pms_queue_name where queue_type='PN' ";
+    String Consultationqueue = "select * from pms_queue_name where queue_type='FY' and hfc_cd = '"+session.getAttribute("HEALTH_FACILITY_CODE")+"' ";
+    String Doctorqueue = "select * from pms_queue_name where queue_type='PN' and hfc_cd = '"+session.getAttribute("HEALTH_FACILITY_CODE")+"' ";
       
      ArrayList<ArrayList<String>> dataQueue;
      ArrayList<ArrayList<String>> dataQueue2;
@@ -251,8 +251,7 @@ Author     : user
                 if (userIC === "")
                 {
                     bootbox.alert("please Fill in the user IC");
-                } else
-                {
+                } else {
 //                       console.log("before ajax");
                     $.ajax({
                         type: "POST",
@@ -281,8 +280,7 @@ Author     : user
                         }
                     });
                 }
-            }
-            ;
+            };
 //            
 //            
 //            

@@ -7,27 +7,43 @@
    
     Conn conn = new Conn();
     
-    String userID, userPassword,hfc, startDate, endDate, idCategory;
+    String userIC, userPassword,userMobileNO,userName,userEmail;
     
-    startDate="2016-09-05";
-    endDate="2020-11-27";
-    idCategory="Fixed";
+  
     
-    userID = request.getParameter("userID");
+    userIC = request.getParameter("userIC");
+    userName = request.getParameter("userName");
     userPassword = request.getParameter("userPassword");
-    hfc = session.getAttribute("HEALTH_FACILITY_CODE").toString();
+    userEmail = request.getParameter("userEmail");
+    userMobileNO = request.getParameter("userPhoneNo");
+    
+     String searchPatient, exsited;
+    
+     searchPatient = "select * from adm_signup_tbl where ic_no='" + userIC + "'";
+    
+     
+     ArrayList<ArrayList<String>> patientRow = conn.getData(searchPatient);
+     out.print(patientRow);
+     
+     if(patientRow.size() > 0)
+     {
+        
+        exsited= " Existed ";
+     }  else {
+         
+            exsited= " not "; 
+            
+            
         Boolean SQL=false;
-            String sql1 = "insert into adm_users(USER_ID, PASSWORD,HEALTH_FACILITY_CODE,"
-                    + "ID_CATEGORY_CODE,START_DATE,END_DATE)"
-                    + "values('" + userID + "', '" + userPassword + "', '" + hfc 
-                    + "', '" + idCategory + "', '" + startDate + "', '" + endDate + "')";
+            String sql1 = "insert into adm_signup_tbl(ic_no,username, password,email,mobile_no)"
+                    + "values('" + userIC + "', '" + userName + "', '" + userPassword 
+                    + "', '" + userEmail + "', '" + userMobileNO + "')";
 
             SQL = rmic.setQuerySQL(conn.HOST, conn.PORT, sql1);
             out.print(SQL+"|"+sql1);
-
+             out.print(userIC+" "+userName);
+     }
+     out.print(exsited);
     
-    
-    
-    
-    out.print(userID+"-"+userPassword+"-"+hfc);
+   
 %>
