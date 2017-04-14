@@ -13,7 +13,8 @@
 
 <%
     String pmiNo = session.getAttribute("patientPMINo").toString();
-    String hfc_cd = "04010101";
+    String hfc_cd = session.getAttribute("HEALTH_FACILITY_CODE").toString();
+    String episodeDate = session.getAttribute("episodeDate").toString();
     
     Conn conn = new Conn();
     
@@ -23,43 +24,40 @@ String sqlRIS = "SELECT ris_order_master.order_no,ris_detail_order.procedure_cd,
 ArrayList<ArrayList<String>> dataRIS = conn.getData(sqlRIS);
 //out.print(sqlRIS);
 %>
+
 <table class="table table-striped table-filter table-bordered" id="risTable">
-    <thead>
-        <tr>
-            <th>Order No</th>
-            <th>Modality Name</th>
-            <th>Body System Name</th>
-            <th>Procedure Name</th>
-            <th>Filler Comment</th>
-            <th>Result</th>
-        </tr>
-    </thead>
-    <tbody>
-        <%
-            for(int i=0; i<dataRIS.size();i++){
-                %>
-                <tr>
-                    <td><%out.print(dataRIS.get(i).get(0));%></td>
-                    <td><%out.print(dataRIS.get(i).get(3));%></td>
-                    <td><%out.print(dataRIS.get(i).get(4));%></td>
-                    <td><%out.print(dataRIS.get(i).get(2));%></td>
-                    <td><%out.print(dataRIS.get(i).get(6));%></td>
-                    <td><%out.print(dataRIS.get(i).get(5));%></td>
-                </tr>
-                <%
-            }
+    <%
+        if(dataRIS.size() >0){%>
+        <thead>
+            <tr>
+                <th>Order No</th>
+                <th>Modality Name</th>
+                <th>Body System Name</th>
+                <th>Procedure Name</th>
+                <th>Filler Comment</th>
+                <th>Result</th>
+            </tr>
+        </thead>
+        <tbody>
+            <%
+                for (int i = 0; i < dataRIS.size(); i++) {
             %>
-
-
-
-
-    </tbody>
+            <tr>
+                <td><%out.print(dataRIS.get(i).get(0));%></td>
+                <td><%out.print(dataRIS.get(i).get(3));%></td>
+                <td><%out.print(dataRIS.get(i).get(4));%></td>
+                <td><%out.print(dataRIS.get(i).get(2));%></td>
+                <td><%out.print(dataRIS.get(i).get(6));%></td>
+                <td><%out.print(dataRIS.get(i).get(5));%></td>
+            </tr>
+            <%
+                }
+            %>
+        </tbody>
 </table>
-<%
 
-
-    
-
-
-    
-%>
+        <%}
+else{
+out.print("No Result for this moment");
+}
+        %>

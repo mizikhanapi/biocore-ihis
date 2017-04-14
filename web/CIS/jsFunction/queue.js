@@ -343,6 +343,7 @@ function convertEHR(ehr) {
                     standS: VTSData[5]
                 };
                 _data.push(objBP);
+                console.log()
                displayBP(objBP.sitS, objBP.sitD, objBP.sitP, objBP.standS, objBP.standD, objBP.standP, objBP.lyingS, objBP.lyingD, objBP.lyingP);
             }
                if(VTSData[10] === "" || VTSData[10]==="undefined"){
@@ -511,17 +512,21 @@ function convertEHR(ehr) {
    
         } else if (header === "ROS") {
             ROS = EHRArry[i];
-            var ROSData1 = ROS.split("^CTV3^");
-            var ROSData = ROSData1[1].split("^");
-            //var ROSData = convertNoteToData(ROS);
-         console.log(ROSData);
+            var ROSData1 = ROS.split("|");
+            var imgInv = ROSData1[2].split("^");
+            var hfcAry = ROSData1[4].split("^");
+            var prioyAry = ROSData1[6].split("^");
+            
+//            var ROSData = ROSData1[1].split("^");
+//            var ROSData = convertNoteToData(ROS);
+         console.log(ROSData1);
 
             $.ajax({
                 method:'POST',
                 url:'search/searchRISProcedure_EHR.jsp',
                 data:{
-                    id:ROSData[1],
-                    hfc_cd:ROSData[4]
+                    id:imgInv[1],
+                    hfc_cd:hfcAry[0]
                 },
                 timeout:5000,
                 success:function(result){
@@ -530,18 +535,18 @@ function convertEHR(ehr) {
                     //console.log(detailROS);
                     var objROS = {
                         Acode: "ROS",
-                        ROS: ROSData[1],
-                        appointmentROS:ROSData[3],
+                        ROS: imgInv[1],
+                        appointmentROS:ROSData1[3],
                         bodySystemROS:detailROS[4],
                         bodySystemROSCode:detailROS[2],
-                        codeROS: ROSData[0],
-                        commentROS: ROSData[11],
-                        hfcIdROS:ROSData[4],
-                        hfcROS: ROSData[5],
+                        codeROS: imgInv[0],
+                        commentROS: ROSData1[7],
+                        hfcIdROS:hfcAry[0],
+                        hfcROS: hfcAry[1],
                         locationROS:detailROS[5],
                         modalityROS:detailROS[3],
                         modalityROSCode:detailROS[2],
-                        priorityROS:ROSData[10]
+                        priorityROS:prioyAry[2]
                     };
                     _data.push(objROS);
                     displayROS(objROS.codeROS, objROS.ROS, objROS.commentROS, objROS.modalityROS, objROS.modalityROScode, objROS.bodySystemROS, objROS.bodySystemROS, objROS.bodySystemROSCode, objROS.hfcROS, objROS.hfcROScode,objROS.locationROS,objROS.appointmentROS,objROS.priorityROS);
@@ -552,16 +557,19 @@ function convertEHR(ehr) {
 
         } else if (header === "LIO") {
             LIO = EHRArry[i];
-            var LIOData_2 = LIO.split("^CTV3^");
-            console.log(LIOData_2);
-            var LIOData = LIOData_2[1].split("^");
-          //console.log(LIOData);
-         // console.log(LIOData[2]);
+            var LIOData = LIO.split("|");
+            console.log(LIOData);
+//            var LIOData = LIOData_2[1].split("^");
+            var labAry = LIOData[2].split("^");
+            var prioAry = LIOData[5].split("^");
+            var hfcAry = LIOData[6].split("^");
+            
+
           $.ajax({
               method:'post',
               url:'search/searchLOS_EHR.jsp',
               data:{
-                  name:LIOData[1]
+                  name:labAry[1]
               },
               timeout:5000,
               success:function(result){
@@ -571,18 +579,19 @@ function convertEHR(ehr) {
                         Acode: "LOS",
                         appointmentLOS: LIOData[3],
                         catLOS: LIODetail[2],
-                        codeLOS: LIOData[0],
-                        commentLOS: LIOData[11],
-                        containerLOS: LIOData[4],
-                        hfcIdLOS: LIOData[8],
-                        hfcLOS: LIOData[9],
-                        priorityLOS: LIOData[7],
-                        searchLOS: LIOData[1],
+                        codeLOS: labAry[0],
+                        commentLOS: LIOData[7],
+                        containerLOS: LIODetail[4],
+                        hfcIdLOS: hfcAry[0],
+                        hfcLOS: hfcAry[1],
+                        priorityLOS: prioAry[1],
+                        searchLOS: labAry[1],
                         sourceLOS: LIODetail[3],
                         spclLOS: LIODetail[6].trim(),
                         volumeLOS: LIODetail[5]
                     };
                     _data.push(objLIO);
+                    console.log(objLIO);
                     displayLOS(objLIO.searchLOS, objLIO.codeLOS, objLIO.catLOS, objLIO.sourceLOS, objLIO.containerLOS, objLIO.volumeLOS, objLIO.spclLOS, objLIO.commentLOS, objLIO.appointmentLOS, objLIO.priorityLOS,objLIO.hfcLOS,objLIO.hfcIdLOS)
               },
               error:function(err){
@@ -593,37 +602,44 @@ function convertEHR(ehr) {
 
         }else if (header === "DTO") {
             DTO = EHRArry[i];
-            var DTOData1 = DTO.split("^CTV3");
-            var DTOData = DTOData1[1].split("^");
-            console.log(DTOData);
+            var DTOData1 = DTO.split("|");
+            //var DTOData = DTOData1[1].split("^");
+            var reqDrugAry = DTOData1[2].split("^");
+            var reqDrugFormAry = DTOData1[3].split("^");
+            var reqDrugRouteAry = DTOData1[4].split("^");
+            var reqDrugFreqAry = DTOData1[5].split("^");
+            var reqDrugUOMAry = DTOData1[9].split("^");
+            var hfcDeliverAry = DTOData1[12].split("^");
+            var commentAry = DTOData1[5].split("^");
+            console.log(DTOData1);
  
             var objDTO = {
                 Acode: "DTO",
-                cautionaryDTO:DTOData[25],
-                commentDTO:DTOData[26],
-                doseDTO:DTOData[15],
-                drugFrequencyDTO:DTOData[12],
-                drugInstructionDTO:DTOData[19],
-                drugNameDTO:DTOData[4],
-                drugQtyDTO:DTOData[21],
-                drugStrDTO:DTOData[16],
-                dtoCode:DTOData[1],
-                durationDTO:DTOData[20],
-                searchDTO:DTOData[2],
-                unitDTO:DTOData[14]
+                cautionaryDTO:commentAry[0],
+                commentDTO:commentAry[1],
+                doseDTO:DTOData1[7],
+                drugFrequencyDTO:reqDrugFreqAry[1],
+                drugInstructionDTO:reqDrugUOMAry[2],
+                drugNameDTO:reqDrugFormAry[0],
+                drugQtyDTO:DTOData1[11],
+                drugStrDTO:DTOData1[8],
+                dtoCode:reqDrugAry[0],
+                durationDTO:DTOData1[10],
+                searchDTO:reqDrugAry[1],
+                unitDTO:DTOData1[6]
             };
             _data.push(objDTO);
            displayDTO(objDTO.searchDTO, objDTO.drugNameDTO, objDTO.drugStrDTO, objDTO.doseDTO, objDTO.drugFrequencyDTO, objDTO.durationDTO, objDTO.unitDTO, objDTO.drugInstructionDTO, objDTO.cautionaryDTO, objDTO.commentDTO) ;
         }else if (header === "POS") {
             POS = EHRArry[i];
-            var POSData1 = POS.split("^CTV3");
-            var POSData = POSData1[1].split("^");
-            console.log(POSData);
+            var POSData1 = POS.split("|");
+            var POSData = POSData1[2].split("^");
+           console.log(POSData1);
             var objPOS = {
                 Acode:"POS",
-                Problem18:POSData[3],
-                proType: POSData[5],
-                procedure_cd:POSData[2]
+                Problem18:POSData[1],
+                proType: POSData1[4],
+                procedure_cd:POSData[0]
             };
             _data.push(objPOS);
            displayPOS(objPOS.Problem18, objPOS.proType, objPOS.procedure_cd) ;

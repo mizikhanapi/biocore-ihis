@@ -23,8 +23,8 @@
    
    
     if(dataEHR.size() < 1){
-          boolean stats = conn.setData("INSERT INTO ehr_central(pmi_no, c_txndate, c_txndata, status) "
-                      + "VALUES('" + pmino + "','" + episodedate + "','" + notes + "','" + status + "') ");
+          boolean stats = conn.setData("INSERT INTO ehr_central(pmi_no, c_txndate, c_txndata, status,status_1,status_2,status_3,status_4,status_5) "
+                      + "VALUES('" + pmino + "','" + episodedate + "','" + notes + "','" + status + "','0','0','0','0','0') ");
 
               boolean updatePatientQueue = conn.setData("UPDATE pms_patient_queue SET status = '" + status + "' WHERE pmi_no = '" + pmino + "' AND episode_date = '" + episodedate + "';");
               boolean updatePMSEpisode = conn.setData("UPDATE pms_episode SET status = '" + status + "' WHERE pmi_no = '" + pmino + "' AND episode_date = '" + episodedate + "';");
