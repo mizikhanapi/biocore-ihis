@@ -21,8 +21,6 @@ var userSetting;
 
 var pmiNo = "";
 var episodeDate="";
-var HFCOrderDetail = [];
-var  HFCProviderDetail = [];
 
 var reloadStat = 0;
 

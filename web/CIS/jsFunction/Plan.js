@@ -114,8 +114,7 @@ $(document).ready(function () {
         });
 
         _data.push(obj1);
-        var index = _data.length -1;
-        getORCHFCDetail(hfc_cd, hfc_cd,index);
+
         console.log(obj1);
 
         displayDTO(searchDTO, drugName, drugStr, drugDose, drugFreq, drugDur1, unit, drugInst, cautionary, comment);
@@ -361,8 +360,7 @@ $(document).ready(function () {
         });
 
         _data.push(obj1);
-         var index = _data.length -1;
-        getORCHFCDetail(hfc_cd,hfc_cd,index);
+
         console.log(_data);
 
         displayPOS(Problem18, proType, procedure_cd);
@@ -495,27 +493,18 @@ $(document).ready(function () {
         var locationHFCROS = $('#locationROS').val();
         var appointmentROS = $('#appointmentROS').val();
         var patientConditionROS = $('#priorityROS').val();
-        var patientCondition =  $('#patientConditionROSCd  :selected').text().trim();
-        var priority =  $('#priorityROScd :selected').text().trim();
-        
         
         console.log(codeROS);
 
-        var $items = $('#ROS, #codeROS, #commentROS,#modalityROS,#modalityROSCode,#bodySystemROS,#bodySystemROSCode,#hfcROS,#hfcIdROS,#locationROS,#appointmentROS,#patientConditionROSCd,#priorityROScd');
-        var obj1 = {Acode: 'ROS',
-                          patientConditionROS:   patientCondition,
-                          priorityROS: priority
-                      };
-      
+        var $items = $('#ROS, #codeROS, #commentROS,#modalityROS,#modalityROSCode,#bodySystemROS,#bodySystemROSCode,#hfcROS,#hfcIdROS,#locationROS,#appointmentROS,#priorityROS');
+        var obj1 = {Acode: 'ROS'};
         $items.each(function () {
             obj1[this.id] = $(this).val();
         });
 
         _data.push(obj1);
-        var index = _data.length -1;
-         getORCHFCDetail(hfc_cd, hfcROScode,index);
-        console.log(_data.length);
-        console.log(_data);
+
+        console.log(obj1);
 
         displayROS(codeROS, ROS, commentROS,modalityROS,modalityROScode,bodysysROS,bodysysROS,bodysysROScode,hfcROS,hfcROScode,locationHFCROS,appointmentROS,patientConditionROS);
 
@@ -530,7 +519,7 @@ $(document).ready(function () {
         $('#hfcIdROS').val("");
         $('#locationROS').val("");
         $('#appointmentROS').val("");
-        //$('#priorityROS').val("");
+        $('#priorityROS').val("");
         $("#CIS040000").modal('toggle');
 
         //$(".modal-backdrop").hide();
@@ -556,8 +545,7 @@ $(document).ready(function () {
         $('#UhfcIdROS').val(updateObj.hfcIdROS);
         $('#UlocationROS').val(updateObj.locationROS);
         $('#UappointmentROS').val(updateObj.appointmentROS);
-        $('#UpatientConditionROScd').val(updateObj.patientConditionROSCd);
-        $('#UpriorityROScd').val(updateObj.priorityROScd);
+        $('#UpriorityROS').val(updateObj.priorityROS);
         //$(this).closest('tr').remove();
         console.log($('#UROS').val());
 
@@ -579,11 +567,7 @@ $(document).ready(function () {
         var _UhfcROScode = $('#UhfcIdROS').val();
         var _UlocationHFCROS = $('#UlocationROS').val();
         var _UappointmentROS = $('#UappointmentROS').val();
-        var _UpatientConditionROSCd = $('#UpatientConditionROScd').val();
-        var _UPriorityROScd = $('#UpriorityROScd').val();
-        var _UPatientCondition = $('#UpatientConditionROSCd :selected').val();
-        var _UPriorityROS = $('#UpriorityROScd :selected').val();
-        
+        var _UpatientConditionROS = $('#UpriorityROS').val();
 
         //console.log($('#UROS').val());
         console.log(rowId);
@@ -591,9 +575,8 @@ $(document).ready(function () {
         upObject.ROS = _UROS;
         upObject.codeROS = _UcodeROS;
         upObject.commentROS = _UcommentROS;
-        getORCHFCDetail(hfc_cd, _UhfcROScode,$('#jsonId').val());
 
-        var sum = _UROS + '| ' + _UcommentROS + '|'+_UmodalityROS+ '|'+_UbodysysROS+ '|'+_UhfcROS+ '|'+_UlocationHFCROS+ '|'+_UappointmentROS+ '|'+_UPatientCondition ;
+        var sum = _UROS + '| ' + _UcommentROS + '|'+_UmodalityROS+ '|'+_UbodysysROS+ '|'+_UhfcROS+ '|'+_UlocationHFCROS+ '|'+_UappointmentROS+ '|'+_UpatientConditionROS ;
 
         $('#sum' + rowId).html(sum);
         $("#update_CIS040000").modal('toggle');
@@ -630,23 +613,15 @@ $(document).ready(function () {
         var priorityLOS = $('#priorityLOS').val();
         var hfcLOS = $('#hfcLOS').val();
         var hfcIdLOS = $('#hfcIdLOS').val();
-        var patientCondition =  $('#patientConditionLOScd :selected').text();
-        var priority = $('#priorityLOScd :selected').text();
-        
 
-        var $items = $('#searchLOS, #codeLOS, #catLOS,#sourceLOS,#containerLOS,#volumeLOS,#spclLOS,#commentLOS,#appointmentLOS,#priorityLOS,#hfcLOS,#hfcIdLOS,#patientConditionLOScd,#priorityLOScd');
-        var obj1 = {
-            Acode: 'LOS',
-            patientCondition:patientCondition,
-            priority:priority
-        };
+        var $items = $('#searchLOS, #codeLOS, #catLOS,#sourceLOS,#containerLOS,#volumeLOS,#spclLOS,#commentLOS,#appointmentLOS,#priorityLOS,#hfcLOS,#hfcIdLOS');
+        var obj1 = {Acode: 'LOS'};
         $items.each(function () {
             obj1[this.id] = $(this).val();
         });
 
         _data.push(obj1);
-        var index = _data.length -1;
-        getORCHFCDetail(hfc_cd, hfcIdLOS,index);
+
         console.log(obj1);
 
         displayLOS(searchLOS, codeLOS, catLOS, sourceLOS, containerLOS, volumeLOS, spclLOS, commentLOS, appointmentLOS, priorityLOS,hfcLOS,hfcIdLOS);
@@ -685,8 +660,7 @@ $(document).ready(function () {
         $("#UspclLOS").val(updateObj.spclLOS);
         $("#UcommentLOS").val(updateObj.commentLOS);
         $("#UappointmentLOS").val(updateObj.appointmentLOS);
-        $("#UpatientConditionLOScd").val(updateObj.patientConditionLOScd);
-        $("#UpriorityLOScd").val(updateObj.priorityLOScd);
+        $("#UpriorityLOS").val(updateObj.priorityLOS);
         
         $("#UhfcLOS").val(updateObj.hfcLOS);
         $("#UhfcIdLOS").val(updateObj.hfcIdLOS);
@@ -710,13 +684,9 @@ $(document).ready(function () {
         var _UspclLOS = $('#UspclLOS').val();
         var _UcommentLOS = $('#UcommentLOS').val();
         var _UappointmentLOS = $('#UappointmentLOS').val();
-       
+        var _UpriorityLOS = $('#UpriorityLOS').val();
         var _UhfcLOS = $('#UhfcLOS').val();
         var _UhfcIdLOS = $('#UhfcIdLOS').val();
-         var _UpriorityLOS = $('#UpriorityLOScd: selected').text().trim();
-         var _UpatientConditionLOS = $('#UpatientConditionROScd: selected').text().trim();
-        var _UpriorityLOScd = $('#UpriorityLOScd').val();
-         var _UpatientConditionLOScd = $('#UpatientConditionROScd').val();
 
         upObject.searchLOS = _UsearchLOS;
         upObject.codeLOS = _UcodeLOS;
@@ -730,10 +700,6 @@ $(document).ready(function () {
         upObject.priorityLOS = _UpriorityLOS;
         upObject.hfcLOS = _UhfcLOS;
         upObject.hfcIdLOS = _UhfcIdLOS;
-        upObject.patientCondition = _UpriorityLOScd;
-        upObject.priority = _UpriorityLOS;
-        upObject.patientConditionROScd = _UpatientConditionLOScd;
-        upObject.priorityLOScd = _UpriorityLOScd;
 
         var sum = _UsearchLOS + '|' + _UcatLOS + '|' + _UsourceLOS + '|' + _UcontainerLOS + '|' + _UvolumeLOS + '|' + _UspclLOS + '|' + _UcommentLOS + '|' + _UappointmentLOS + '|' + _UpriorityLOS+ '|' + _UhfcLOS;
         console.log(upObject);
@@ -963,42 +929,3 @@ function displayPRI(hfcREFname, hfcREFcode, disREFname, disREFcode, docREFname, 
     $('#PRINotes').append(_tr);
     i = i + 1;
 }
-
-    function getORCHFCDetail(OrderingHFC, ProviderHFC,index){
-        var order = "";
-        var provide = "";
-        var detail1 = [" "];
-        var hfcCode = {
-            orderingHFC:OrderingHFC,
-            providerHFC:ProviderHFC
-        };
-        console.log(hfcCode);
-        $.ajax({
-            url:"search/getORCHFC.jsp",
-            method:"POST",
-            timeout:3000,
-            data:hfcCode,
-//            async: false,
-            success:function(result){
-                console.log(result);
-                var resultAry = result.split("[#-#]");
-   
-                order = resultAry[0].trim();
-                provide = resultAry[1].trim();
-                if(order === "-NA-"){
-                    order = "-|-|-|-|-|-|-|-|-|-|-|-|-|-|-";
-                }
-                if(provide === "-NA-"){
-                    provide = "-|-|-|-|-|-|-|-|-|-|-|-|-|-|-";
-                }
-                 var dataTemp = _data[index];
-                dataTemp.hfcOrderDetail = order;
-                dataTemp.hfcProviderDetail = provide;
-
-//                HFCOrderDetail.push(resultAry[0]) ;
-//                HFCProviderDetail.push(resultAry[1]);
-
-            }
-        });
-       
-    }

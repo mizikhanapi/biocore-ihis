@@ -4,12 +4,6 @@
     Author     : shay
 --%>
 <!--Modal add Procedure-->
-<%
-        String searchPatientCondition= "select Detail_Reference_code,Description from adm_lookup_detail where Master_Reference_code = '0096' order by priority_indicator ASC";
-        ArrayList<ArrayList<String>> dataPatientCondition = Conn.getData(searchPatientCondition);
-                String searchPriority= "select Detail_Reference_code,Description from adm_lookup_detail where Master_Reference_code = '0095' order by priority_indicator ASC";
-        ArrayList<ArrayList<String>> dataPriority = Conn.getData(searchPriority);
-    %>
 <div class="modal fade" id="CIS040000" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
     <div class="modal-dialog" style="width: 65%; height: 100%">
         <div class="modal-content">
@@ -120,51 +114,10 @@
                     <div class="col-xs-4 col-sm-4 col-md-4">
                         <div class="form-group">
                             <!--                            <input class="form-control input-lg" type="text"  id="priorityLOS" placeholder="">-->
-                            <select id="patientConditionROSCd" class="form-control input-lg">
-                                <option disabled="" >Please select Priority...</option>
-                                <%
-                                    if(dataPatientCondition.size()>0){
-                                        for(int i = 0; i < dataPatientCondition.size();i++){
-                                            %>
-                                            <option value="<%out.print(dataPatientCondition.get(i).get(0));%>"><%out.print(dataPatientCondition.get(i).get(1));%></option>
-                                            <%
-                                        }
-                                    }%>
-                                
+                            <select id="priorityROS" class="form-control input-lg">
+                                <option disabled="" selected="">Please select condition..</option>
                             </select>
                         </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-xs-3col-sm-3 col-md-3">
-
-                    </div>
-                    <div class="col-xs-3col-sm-3 col-md-3">
-
-                        <div class="form-group">
-                            <h4 class="modal-title modalTextLabel">Priority</h4>
-                            
-                        </div>
-                    </div>
-                    <div class="col-xs-3 col-sm-3 col-md-3">
-
-                        <div class="form-group">
-                            <select id="priorityROScd" class="form-control input-lg">
-                                <option disabled="">Please select condition..</option>
-                                <%
-                                    if (dataPriority.size() > 0) {
-                                        for (int i = 0; i < dataPriority.size(); i++) {
-                                %>
-                                <option value="<%out.print(dataPriority.get(i).get(0));%>"><%out.print(dataPriority.get(i).get(1));%></option>
-                                <%
-                                                    }
-                                                }%>
-
-                            </select>
-                        </div>
-                    </div>
-                     <div class="col-xs-3 col-sm-3 col-md-3">
-
                     </div>
                 </div>
                 <div class="row">
@@ -308,50 +261,10 @@
                     <div class="col-xs-4 col-sm-4 col-md-4">
                         <div class="form-group">
                             <!--                            <input class="form-control input-lg" type="text"  id="priorityLOS" placeholder="">-->
-                            <select id="UpatientConditionROScd" class="form-control input-lg">
-                                <option disabled="" >Please select condition..</option>
-                                      <%
-                                    if (dataPatientCondition.size() > 0) {
-                                        for (int i = 0; i < dataPatientCondition.size(); i++) {
-                                %>
-                                <option value="<%out.print(dataPatientCondition.get(i).get(0));%>"><%out.print(dataPatientCondition.get(i).get(1));%></option>
-                                <%
-                                                    }
-                                                }%>
+                            <select id="UpriorityROS" class="form-control input-lg">
+                                <option disabled="" selected="">Please select condition..</option>
                             </select>
                         </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-xs-3col-sm-3 col-md-3">
-
-                    </div>
-                    <div class="col-xs-3col-sm-3 col-md-3">
-
-                        <div class="form-group">
-                            <h4 class="modal-title modalTextLabel">Priority</h4>
-
-                        </div>
-                    </div>
-                    <div class="col-xs-3 col-sm-3 col-md-3">
-
-                        <div class="form-group">
-                            <select id="UpriorityROScd" class="form-control input-lg">
-                                <option disabled="" >Please select condition..</option>
-                                <%
-                                    if (dataPriority.size() > 0) {
-                                        for (int i = 0; i < dataPriority.size(); i++) {
-                                %>
-                                <option value="<%out.print(dataPriority.get(i).get(0));%>"><%out.print(dataPriority.get(i).get(1));%></option>
-                                <%
-                                        }
-                                    }%>
-
-                            </select>
-                        </div>
-                    </div>
-                    <div class="col-xs-3 col-sm-3 col-md-3">
-
                     </div>
                 </div>
                 <div class="row">
