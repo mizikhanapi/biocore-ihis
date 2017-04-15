@@ -18,20 +18,174 @@
     String pmiNo = request.getParameter("pmiNo");
     String episodeDate = request.getParameter("episodeDate");
     SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-
+//    String pmiNo = "9504050251851";
     String PDI = "";
+    String IdType = "-";
+    String gender = "-";
+    String race = "-";
+    String maritialStatus = "-";
+    String religion = "-";
+    String nationality = "-";
+    String homeTown = "-";
+    String district = "-";
+    String state = "-";
+    String country = "-";
 
-    String sqlPatient = "select * FROM pms_patient_biodata where pmi_no = '" + pmiNo + "'";
+    String sqlPatient = " select PMI_NO,PATIENT_NAME,NEW_IC_NO,OLD_IC_NO,ID_TYPE,ID_NO,ELIGIBILITY_CATEGORY_CODE,ELIGIBILITY_TYPE_CODE,BIRTH_DATE,SEX_CODE,MARITAL_STATUS_CODE, RACE_CODE,"
+            + "NATIONALITY,RELIGION_CODE,HOME_ADDRESS,HOME_DISTRICT_CODE,HOME_TOWN_CODE,HOME_POSTCODE,HOME_STATE_CODE,HOME_COUNTRY_CODE,HOME_PHONE,MOBILE_PHONE,"
+            + "EMAIL_ADDRESS FROM pms_patient_biodata  WHERE pmi_no ='" + pmiNo + "'";
     ArrayList<ArrayList<String>> dataPDI = conn.getData(sqlPatient);
 
-    PDI = "PDI|" + dataPDI.get(0).get(0) + "|" + dataPDI.get(0).get(2);
+    String sqlIdType = "select `Description`  from adm_lookup_detail where `Master_Reference_code` = '0012' and `Detail_Reference_code` = '" + dataPDI.get(0).get(4) + "' group by description";
+    ArrayList<ArrayList<String>> descIDType = conn.getData(sqlIdType);
 
-    for (int i = 3; i < dataPDI.get(0).size(); i++) {
-        PDI += "^" + dataPDI.get(0).get(i);
+    String sqlGender = "select `Description`  from adm_lookup_detail where `Master_Reference_code` = '0041' and `Detail_Reference_code` = '" + dataPDI.get(0).get(9) + "' group by description";
+    ArrayList<ArrayList<String>> descsqlGender = conn.getData(sqlGender);
+
+    String sqlrace = "select `Description`  from adm_lookup_detail where `Master_Reference_code` = '0004' and `Detail_Reference_code` = '" + dataPDI.get(0).get(3) + "' group by description";
+    ArrayList<ArrayList<String>> descsqlrace = conn.getData(sqlrace);
+
+    String sqlmaritialStatus = "select `Description`  from adm_lookup_detail where `Master_Reference_code` = '0006' and `Detail_Reference_code` = '" + dataPDI.get(0).get(10) + "' group by description";
+    ArrayList<ArrayList<String>> descsqlmaritialStatus = conn.getData(sqlmaritialStatus);
+
+    String sqlreligion = "select `Description`  from adm_lookup_detail where `Master_Reference_code` = '0005' and `Detail_Reference_code` = '" + dataPDI.get(0).get(13) + "' group by description";
+    ArrayList<ArrayList<String>> descsqlreligion = conn.getData(sqlreligion);
+
+    String sqlnationality = "select `Description`  from adm_lookup_detail where `Master_Reference_code` = '0011' and `Detail_Reference_code` = '" + dataPDI.get(0).get(12) + "' group by description";
+    ArrayList<ArrayList<String>> descsqlnationality = conn.getData(sqlnationality);
+
+    String sqlhomeTown = "select `Description`  from adm_lookup_detail where `Master_Reference_code` = '0003' and `Detail_Reference_code` = '" + dataPDI.get(0).get(16) + "' group by description";
+    ArrayList<ArrayList<String>> descsqlhomeTown = conn.getData(sqlhomeTown);
+
+    String sqldistrict = "select `Description`  from adm_lookup_detail where `Master_Reference_code` = '0078' and `Detail_Reference_code` = '" + dataPDI.get(0).get(15) + "' group by description";
+    ArrayList<ArrayList<String>> descdistrict = conn.getData(sqldistrict);
+
+    String sqlstate = "select `Description`  from adm_lookup_detail where `Master_Reference_code` = '0002' and `Detail_Reference_code` = '" + dataPDI.get(0).get(18) + "' group by description";
+    ArrayList<ArrayList<String>> descstate = conn.getData(sqlstate);
+
+    String sqlcountry = "select `Description`  from adm_lookup_detail where `Master_Reference_code` = '0001' and `Detail_Reference_code` = '" + dataPDI.get(0).get(19) + "' group by description";
+    ArrayList<ArrayList<String>> desccountry = conn.getData(sqlcountry);
+    if (dataPDI.size() > 0) {
+        if (dataPDI.get(0).get(0).equals("-")) {
+            IdType = "-";
+        } else {
+            IdType = descIDType.get(0).get(0);
+        }
+    } else {
+        IdType = "-";
     }
-    
+
+    if (descsqlGender.size() > 0) {
+        if (descsqlGender.get(0).get(0).equals("-")) {
+            gender = "-";
+        } else {
+
+            gender = descsqlGender.get(0).get(0);
+        }
+    } else {
+        gender = "-";
+    }
+
+    if (descsqlrace.size() > 0) {
+        if (descsqlrace.get(0).get(0).equals("-")) {
+            race = "-";
+        } else {
+
+            race = descsqlrace.get(0).get(0);
+        }
+    } else {
+        race = "-";
+    }
+
+    if (descsqlmaritialStatus.size() > 0) {
+        if (descsqlmaritialStatus.get(0).get(0).equals("-")) {
+            maritialStatus = "-";
+        } else {
+            maritialStatus = descsqlmaritialStatus.get(0).get(0);
+        }
+    } else {
+        maritialStatus = "-";
+    }
+
+    if (descsqlreligion.size() > 0) {
+        if (descsqlreligion.get(0).get(0).equals("-")) {
+            religion = "-";
+        } else {
+
+            religion = descsqlreligion.get(0).get(0);
+        }
+
+    } else {
+        religion = "-";
+    }
+
+    if (descsqlnationality.size() > 0) {
+        if (descsqlnationality.get(0).get(0).equals("-")) {
+            nationality = "-";
+        } else {
+            nationality = descsqlnationality.get(0).get(0);
+        }
+    } else {
+        nationality = "-";
+    }
+
+    if (descsqlhomeTown.size() > 0) {
+        if (descsqlhomeTown.get(0).get(0).equals("-")) {
+            homeTown = "-";
+        } else {
+
+            homeTown = descsqlhomeTown.get(0).get(0);
+        }
+    } else {
+        homeTown = "-";
+    }
+
+    if (descdistrict.size() > 0) {
+        if (descdistrict.get(0).get(0).equals("-")) {
+            district = "-";
+        } else {
+
+            district = descdistrict.get(0).get(0);
+        }
+    } else {
+        district = "-";
+    }
+
+    if (descstate.size() > 0) {
+        if (descstate.get(0).get(0).equals("-")) {
+            state = "-";
+        } else {
+
+            state = descstate.get(0).get(0);
+        }
+    } else {
+        state = "-";
+    }
+
+    if (desccountry.size() > 0) {
+        if (desccountry.get(0).get(0).equals("-")) {
+            country = "-";
+        } else {
+
+            country = desccountry.get(0).get(0);
+        }
+    } else {
+        country = "-";
+    }
+
+    String PDI1 = "PDI|" + dataPDI.get(0).get(0) + "|" + dataPDI.get(0).get(1) + "|" + dataPDI.get(0).get(2) + "|" + dataPDI.get(0).get(3) + "|012^" + IdType + "^" + dataPDI.get(0).get(4) + "|" + dataPDI.get(0).get(5) + "|041^" + gender + "^" + dataPDI.get(0).get(9) + "|" + dataPDI.get(0).get(8);
+    String PDI2 = "|004^" + race + "^" + dataPDI.get(0).get(3) + "|006^" + maritialStatus + "^" + dataPDI.get(0).get(10) + "|005^" + religion + "" + dataPDI.get(0).get(13) + "|011^" + nationality + "^" + dataPDI.get(0).get(12) + "|" + dataPDI.get(0).get(14) + "|||003^" + homeTown + "^" + dataPDI.get(0).get(16);
+    String PDI3 = "|088^" + district + "^" + dataPDI.get(0).get(15) + "|002^" + state + "^" + dataPDI.get(0).get(18) + "|001^" + country + "^" + dataPDI.get(0).get(19) + "|" + dataPDI.get(0).get(17) + "|" + dataPDI.get(0).get(20) + "||" + dataPDI.get(0).get(21) + "|" + dataPDI.get(0).get(22) + "|<cr>\n";
+
+    PDI = PDI1 + PDI2 + PDI3;
+//    for (int i = 0; i < dataPDI.get(0).size(); i++) {
+//        out.print(i + " - - " + dataPDI.get(0).get(i));
+//%> <%
+//    }
+//    
+//    out.print(PDI + "\n");
     out.print(PDI);
-    
+
 ////Insert PMS data to table calling System
     
     String sqlPMS = "SELECT ppq.hfc_cd,pql.discipline_cd,pql.sub_discipline_cd,ppq.pmi_no,pe.`NAME`,ppq.queue_no,ppq.queue_name,ppq.episode_date FROM pms_queue_list pql, pms_patient_queue ppq, pms_episode pe WHERE pql.hfc_cd = ppq.hfc_cd AND ppq.pmi_no = pe.`PMI_NO` AND ppq.pmi_no = '"+pmiNo+"' AND ppq.episode_date = '"+episodeDate+"' GROUP BY ppq.episode_date";

@@ -132,12 +132,52 @@
                     <div class="col-xs-4 col-sm-4 col-md-4">
                         <div class="form-group">
 <!--                            <input class="form-control input-lg" type="text"  id="priorityLOS" placeholder="">-->
-                            <select id="priorityLOS" class="form-control input-lg">
+                            <select id="patientConditionLOScd" class="form-control input-lg">
                                 <option disabled="" selected="">Please select condition..</option>
+                                  <%
+                                    if(dataPatientCondition.size()>0){
+                                        for(int i = 0; i < dataPatientCondition.size();i++){
+                                            %>
+                                            <option value="<%out.print(dataPatientCondition.get(i).get(0));%>"><%out.print(dataPatientCondition.get(i).get(1));%></option>
+                                            <%
+                                        }
+                                    }%>
                             </select>
                         </div>
                     </div>
                 </div>
+                                    <div class="row">
+                                        <div class="col-xs-3col-sm-3 col-md-3">
+
+                                        </div>
+                                        <div class="col-xs-3col-sm-3 col-md-3">
+
+                                            <div class="form-group">
+                                                <h4 class="modal-title modalTextLabel">Priority</h4>
+
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-3 col-sm-3 col-md-3">
+
+                                            <div class="form-group">
+                                                <select id="priorityLOScd" class="form-control input-lg">
+                                                    <option disabled="" selected="">Please select condition..</option>
+                                                    <%
+                                                        if (dataPriority.size() > 0) {
+                                                            for (int i = 0; i < dataPriority.size(); i++) {
+                                                    %>
+                                                    <option value="<%out.print(dataPriority.get(i).get(0));%>"><%out.print(dataPriority.get(i).get(1));%></option>
+                                                    <%
+                                        }
+                                    }%>
+
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-3 col-sm-3 col-md-3">
+
+                                        </div>
+                                    </div>
                 <br/>
                 <br/>
                 <div class="row">
@@ -321,10 +361,50 @@
                     <div class="col-xs-4 col-sm-4 col-md-4">
                         <div class="form-group">
 <!--                            <input class="form-control input-lg" type="text"  id="priorityLOS" placeholder="">-->
-                            <select id="UpriorityLOS" class="form-control input-lg">
+                            <select id="UpriorityLOScd" class="form-control input-lg">
                                 <option disabled="" selected="">Please select condition..</option>
+                                   <%
+                                    if (dataPatientCondition.size() > 0) {
+                                        for (int i = 0; i < dataPatientCondition.size(); i++) {
+                                %>
+                                <option value="<%out.print(dataPatientCondition.get(i).get(0));%>"><%out.print(dataPatientCondition.get(i).get(1));%></option>
+                                <%
+                                                    }
+                                                }%>
                             </select>
                         </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-3col-sm-3 col-md-3">
+
+                    </div>
+                    <div class="col-xs-3col-sm-3 col-md-3">
+
+                        <div class="form-group">
+                            <h4 class="modal-title modalTextLabel">Priority</h4>
+                            
+                        </div>
+                    </div>
+                    <div class="col-xs-3 col-sm-3 col-md-3">
+
+                        <div class="form-group">
+                            <select id="ureal_priorityLIO" class="form-control input-lg">
+                                <option disabled="" selected="">Please select Priority..</option>
+                                <%
+                                    if (dataPriority.size() > 0) {
+                                        for (int i = 0; i < dataPriority.size(); i++) {
+                                %>
+                                <option value="<%out.print(dataPriority.get(i).get(0));%>"><%out.print(dataPriority.get(i).get(1));%></option>
+                                <%
+                                                    }
+                                                }%>
+
+                            </select>
+                        </div>
+                    </div>
+                     <div class="col-xs-3 col-sm-3 col-md-3">
+
                     </div>
                 </div>
                 <div class="row">

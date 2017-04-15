@@ -31,21 +31,23 @@ ArrayList<ArrayList<String>> dataRIS = conn.getData(sqlRIS);
 
 %>
 <table class="table table-striped table-filter table-bordered" id="lisTable">
-    
-    <thead>
-        <tr>
-            <th>Test Name</th>
-            <th>Test Date</th>
-            <th>Test Time</th>
-            <th>Result</th>
-            <th>Remarks</th>
-            <th>Perform By</th>
-             <th>Verification</th>
-        </tr>
-    </thead>
-    <tbody>
-        <%
-            for(int i=0; i<dataRIS.size();i++){
+    <%
+        if(dataRIS.size() >0){
+            %>
+            <thead>
+                <tr>
+                    <th>Test Name</th>
+                    <th>Test Date</th>
+                    <th>Test Time</th>
+                    <th>Result</th>
+                    <th>Remarks</th>
+                    <th>Perform By</th>
+                    <th>Verification</th>
+                </tr>
+            </thead>
+            <tbody>
+                <%
+                    for (int i = 0; i < dataRIS.size(); i++) {
                 %>
                 <tr>
                     <td><%out.print(dataRIS.get(i).get(5));%></td>
@@ -55,12 +57,15 @@ ArrayList<ArrayList<String>> dataRIS = conn.getData(sqlRIS);
                     <td><%out.print(dataRIS.get(i).get(1));%></td>
                     <td><%out.print(dataRIS.get(i).get(6));%></td>
                     <td><%out.print(dataRIS.get(i).get(7));%></td>
-              </tr>
+                </tr>
                 <%
-            }
-            %>
-    </tbody>
+                    }
+                %>
+            </tbody>
 </table>
-<%
-
-%>
+            <%
+        } else{
+out.print("No record for this moment");
+}
+        %>
+   
