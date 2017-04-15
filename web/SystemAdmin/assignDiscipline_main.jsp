@@ -6,6 +6,12 @@
 
 <!-- Add Part Start -->
 <!-- Add Button Start -->
+<%
+    String hfc_cd = session.getAttribute("HEALTH_FACILITY_CODE").toString();
+    String hfc_name = (String) session.getAttribute("HFC_NAME");
+    String user_id = session.getAttribute("USER_ID").toString();
+    String last9 = user_id.substring(user_id.length() - 1);
+%>
 <h4 style="padding-top: 30px;padding-bottom: 35px; font-weight: bold">
     ASSIGN DISCIPLINE TO HEALTH FACILITY
     <span class="pull-right">
@@ -33,7 +39,7 @@
                         <label class="col-md-4 control-label" for="textinput">Health Facility*</label>
                         <div class="col-md-8">
                             <input type="text"  class="form-control" id="ADM_hfc" placeholder="Search Health Facility">
-                            <div id="ADM_hfc_match">
+                            <div id="ADM_hfc_match" class="search-drop">
                                 <!--for search area-->
                             </div>
                         </div>
@@ -43,26 +49,26 @@
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="textinput">Discipline*</label>
                         <div class="col-md-8">
-                             <input type="text"  class="form-control" id="ADM_discipline" placeholder="Search Discipline">
-                            <div id="ADM_discipline_match">
+                            <input type="text"  class="form-control" id="ADM_discipline" placeholder="Search Discipline">
+                            <div id="ADM_discipline_match" class="search-drop">
                                 <!--for search area-->
                             </div>
                         </div>
                     </div>
-                    
-                     <!-- Text input-->
+
+                    <!-- Text input-->
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="textinput">Subdiscipline*</label>
                         <div class="col-md-8">
-                             <input type="text"  class="form-control" id="ADM_subdiscipline" placeholder="Search Subdiscipline">
-                            <div id="ADM_subdiscipline_match">
+                            <input type="text"  class="form-control" id="ADM_subdiscipline" placeholder="Search Subdiscipline">
+                            <div id="ADM_subdiscipline_match" class="search-drop">
                                 <!--for search area-->
                             </div>
                         </div>
                     </div>
-                     
-                    
-                     <div class="form-group">
+
+
+                    <div class="form-group">
                         <label class="col-md-4 control-label" for="textinput">Status*</label>
                         <div class="col-md-8">
                             <select class="form-control"  id="ADM_status">
@@ -93,227 +99,251 @@
 <!-- Add Part End -->
 
 
- <script>
+<script>
 
 
     $(document).ready(function () {
-            
-            var isHFCSelected = false;
-            var selectedHFC = "";
-            var isDisciplineSelected = false;
-            var selectedDiscipline = "";
-            var isSubdisciplineSelected = false;
-            var selectedSubdiscipline = "";
-            
-            function ADM_reset() {
+        //--------------------------------------------------- global variable       
+        var isHFCSelected = false;
+        var selectedHFC = "";
+        var isDisciplineSelected = false;
+        var selectedDiscipline = "";
+        var isSubdisciplineSelected = false;
+        var selectedSubdiscipline = "";
+        //================================================================        
+
+        function ADM_reset() {
 //               $('#ADM_select_HFC').val('0');
 //               $('#ADM_select_discipline').val('0');
 //               $('#ADM_select_subdiscipline').val('0');
 //               $('#ADM_status').val('0');
-                 document.getElementById("ADM_addForm").reset();
-            }
+            document.getElementById("ADM_addForm").reset();
+        }
 
-            $('#ADM_btnReset').on('click', function () {
-                ADM_reset();
-            });
-            
-            $('#ADM_btnAddNew').on('click', function(){
-                ADM_reset();
-                isHFCSelected = false;
-                selectedHFC = "";
-                isDisciplineSelected = false;
-                selectedDiscipline = "";
-                isSubdisciplineSelected = false;
-                selectedSubdiscipline = "";
-            });
+        $('#ADM_btnReset').on('click', function () {
+            ADM_reset();
+        });
 
-            $('#ADM_btnAdd').on('click', function () {
-                               
-                var hfc = $('#ADM_hfc').val();
-                var discipline = $('#ADM_discipline').val();
-                var subdiscipline = $('#ADM_subdiscipline').val();
-                var status = $('#ADM_status').val();
+        $('#ADM_btnAddNew').on('click', function () {
+            ADM_reset();
+            isHFCSelected = false;
+            selectedHFC = "";
+            isDisciplineSelected = false;
+            selectedDiscipline = "";
+            isSubdisciplineSelected = false;
+            selectedSubdiscipline = "";
+    <%
+                   if (!last9.equals("9") || !hfc_cd.equals("99_iHIS_99")) {
+                       String curHFC = hfc_cd + " | " + hfc_name;
+    %>
 
-                if (hfc === "") {
-                    bootbox.alert("Fill in the health facility");
-                    $('#ADM_hfc').focus();
-                    
-                } else if (discipline === "") {
-                    bootbox.alert("Fill in the discipline");
-                    $('#ADM_discipline').focus();
-                    
-                }else if (subdiscipline === "") {
-                    bootbox.alert("Fill in the subdiscipline");
-                    $('#ADM_subdiscipline').focus();
-                    
-                } else if (status !== "1" && status !== "0") {
-                    bootbox.alert("Select Any Status");
-                    $('#ADM_status').focus();
-                    
-                } else if (isHFCSelected === false || hfc !== selectedHFC) {
-                    bootbox.alert("Choose existing health facility");
-                    $('#ADM_hfc').val("");
-                    
-                }else if (isDisciplineSelected === false || discipline !== selectedDiscipline) {
-                    bootbox.alert("Choose existing discipline");
-                    $('#ADM_discipline').val("");
-                    
-                }else if (isSubdisciplineSelected === false || subdiscipline !== selectedSubdiscipline) {
-                    bootbox.alert("Choose existing subdiscipline");
-                    $('#ADM_subdiscipline').val("");
-                    
-                } else {
-                    
-                    var array1 = hfc.split("|");
-                    hfc = array1[0].trim();
-                    
-                    var array2 = discipline.split("|");
-                    discipline = array2[0].trim();
-                    
-                    var array3 = subdiscipline.split("|");
-                    subdiscipline = array3[0].trim();
+            $('#ADM_hfc').val('<%=curHFC%>').prop('readonly', true);
+            $('#ADM_hfc').prop('disabled', true);
+            isHFCSelected = true;
+            selectedHFC =  $('#ADM_hfc').val();
+            console.log(selectedHFC);
 
-                    var data = {
-                        hfcCode : hfc,
-                        disciplineCode : discipline,
-                        subdisciplineCode : subdiscipline,
-                        status : status
-                    };
+    <%
 
-                    $.ajax({
-                        url: "assignDiscipline_insert.jsp",
-                        type: "post",
-                        data: data,
-                        timeout: 10000,
-                        success: function (datas) {
+                }//end if
+    %>
 
-                            if (datas.trim() === 'Success') {
+        });
 
-                                $('#assignDisciplineTable').load('assignDiscipline_table.jsp');
-                                $('#ADM_detail').modal('hide');
-                                //alert("Insertion Success");
-                                bootbox.alert({
+        $('#ADM_btnAdd').on('click', function () {
+
+            var hfc = $('#ADM_hfc').val();
+            var discipline = $('#ADM_discipline').val();
+            var subdiscipline = $('#ADM_subdiscipline').val();
+            var status = $('#ADM_status').val();
+
+            if (hfc === "") {
+                bootbox.alert("Fill in the health facility");
+                $('#ADM_hfc').focus();
+
+            } else if (discipline === "") {
+                bootbox.alert("Fill in the discipline");
+                $('#ADM_discipline').focus();
+
+            } else if (subdiscipline === "") {
+                bootbox.alert("Fill in the subdiscipline");
+                $('#ADM_subdiscipline').focus();
+
+            } else if (status !== "1" && status !== "0") {
+                bootbox.alert("Select Any Status");
+                $('#ADM_status').focus();
+
+            } else if (isHFCSelected === false || hfc !== selectedHFC) {
+                bootbox.alert("Choose existing health facility");
+                $('#ADM_hfc').val("");
+
+            } else if (isDisciplineSelected === false || discipline !== selectedDiscipline) {
+                bootbox.alert("Choose existing discipline");
+                $('#ADM_discipline').val("");
+
+            } else if (isSubdisciplineSelected === false || subdiscipline !== selectedSubdiscipline) {
+                bootbox.alert("Choose existing subdiscipline");
+                $('#ADM_subdiscipline').val("");
+
+            } else {
+
+                var array1 = hfc.split("|");
+                hfc = array1[0].trim();
+
+                var array2 = discipline.split("|");
+                discipline = array2[0].trim();
+
+                var array3 = subdiscipline.split("|");
+                subdiscipline = array3[0].trim();
+
+                var data = {
+                    hfcCode: hfc,
+                    disciplineCode: discipline,
+                    subdisciplineCode: subdiscipline,
+                    status: status
+                };
+
+                $.ajax({
+                    url: "assignDiscipline_insert.jsp",
+                    type: "post",
+                    data: data,
+                    timeout: 10000,
+                    success: function (datas) {
+
+                        if (datas.trim() === 'Success') {
+
+                            $('#assignDisciplineTable').load('assignDiscipline_table.jsp');
+                            $('#ADM_detail').modal('hide');
+                            //alert("Insertion Success");
+                            bootbox.alert({
                                 message: "Discipline is successfully assigned to a health facility",
                                 title: "Process Result",
                                 backdrop: true
                             });
-                                ADM_reset();
-                                
-                            } else if (datas.trim() === 'Failed') {
-                                
-                                alert("Insertion failed!");
-                                //$('#ADM_detail').modal('hide');
-                                ADM_reset();
-                                
-                            } else{
-                                bootbox.alert(datas.trim());
-                                $('#ADM_subdiscipline').val("");
-                                $('#ADM_subdiscipline').focus();
-                            }
-                            
-                        },
-                        error: function (err) {
-                            console.log("Ajax Is Not Success");
+                            ADM_reset();
+
+                        } else if (datas.trim() === 'Failed') {
+
+                            alert("Insertion failed!");
+                            //$('#ADM_detail').modal('hide');
+                            ADM_reset();
+
+                        } else {
+                            bootbox.alert(datas.trim());
+                            $('#ADM_subdiscipline').val("");
+                            $('#ADM_subdiscipline').focus();
                         }
 
-                    });
-                }
+                    },
+                    error: function (err) {
+                        console.log("Ajax Is Not Success");
+                    }
 
-            });
-            
-            
-            $('#ADM_hfc').on('keyup', function(){
-                
-                var input = $(this).val(); // We take the input value
-                if (input.length >= 1) { // Minimum characters = 2 (you can change)
-                    $('#ADM_hfc_match').html('<img src="bootstrap-3.3.6-dist/image/ajax-loader.gif" />'); // Loader icon apprears in the <div id="PM_match_system"></div>
-                    var dataFields = {input : input, process : "hfc"}; // We pass input argument in Ajax
-                    $.ajax({
-                        type: "POST",
-                        url: "ADM_result.jsp", // call the php file ajax/tuto-autocomplete.php
-                        data: dataFields, // Send dataFields var
-                        timeout: 5000,
-                        success: function (dataBack) { // If success
-                            $('#ADM_hfc_match').html(dataBack); // Return data (UL list) and insert it in the <div id="PM_match_system"></div>
-                            $('#ADM_hfc_matchlist li').on('click', function () { // When click on an element in the list
-                               // Update the field with the new element
-                                $('#ADM_hfc').val($(this).text());
-                                $('#ADM_hfc_match').text(''); // Clear the <div id="PM_match_system"></div>
-                                
-                                isHFCSelected = true;
-                                selectedHFC = $('#ADM_hfc').val();
-                               
-                            });
-                        },
-                        error: function () { // if error
-                            $('#ADM_hfc_match').text('Problem!');
-                        }
-                    });
+                });
+            }
+
+        });
+
+<%
+    //make sure only super user can search other hfc
+    if (last9.equals("9") && hfc_cd.equals("99_iHIS_99")) {
+%>
+
+        $('#ADM_hfc').on('keyup', function () {
+
+            var input = $(this).val(); // We take the input value
+            if (input.length >= 1) { // Minimum characters = 2 (you can change)
+                $('#ADM_hfc_match').html('<img src="bootstrap-3.3.6-dist/image/ajax-loader.gif" />'); // Loader icon apprears in the <div id="PM_match_system"></div>
+                var dataFields = {input: input, process: "hfc"}; // We pass input argument in Ajax
+                $.ajax({
+                    type: "POST",
+                    url: "ADM_result.jsp", // call the php file ajax/tuto-autocomplete.php
+                    data: dataFields, // Send dataFields var
+                    timeout: 5000,
+                    success: function (dataBack) { // If success
+                        $('#ADM_hfc_match').html(dataBack); // Return data (UL list) and insert it in the <div id="PM_match_system"></div>
+                        $('#ADM_hfc_matchlist li').on('click', function () { // When click on an element in the list
+                            // Update the field with the new element
+                            $('#ADM_hfc').val($(this).text());
+                            $('#ADM_hfc_match').text(''); // Clear the <div id="PM_match_system"></div>
+
+                            isHFCSelected = true;
+                            selectedHFC = $('#ADM_hfc').val();
+
+                        });
+                    },
+                    error: function () { // if error
+                        $('#ADM_hfc_match').text('Problem!');
+                    }
+                });
             } else {
                 $('#ADM_hfc_match').text(''); // If less than 2 characters, clear the <div id="PM_match_system"></div>
             }
-                
+
         });
-        
-        
-        $('#ADM_discipline').on('keyup', function(){
-                
-                var input = $(this).val(); // We take the input value
-                if (input.length >= 1) { // Minimum characters = 2 (you can change)
-                    $('#ADM_discipline_match').html('<img src="bootstrap-3.3.6-dist/image/ajax-loader.gif" />'); // Loader icon apprears in the <div id="PM_match_system"></div>
-                    var dataFields = {input : input, process : "discipline"}; // We pass input argument in Ajax
-                    $.ajax({
-                        type: "POST",
-                        url: "ADM_result.jsp", // call the php file ajax/tuto-autocomplete.php
-                        data: dataFields, // Send dataFields var
-                        timeout: 5000,
-                        success: function (dataBack) { // If success
-                            $('#ADM_discipline_match').html(dataBack); // Return data (UL list) and insert it in the <div id="PM_match_system"></div>
-                            $('#ADM_discipline_matchlist li').on('click', function () { // When click on an element in the list
-                               // Update the field with the new element
-                                $('#ADM_discipline').val($(this).text());
-                                $('#ADM_discipline_match').text(''); // Clear the <div id="PM_match_system"></div>
-                                
-                                isDisciplineSelected = true;
-                                selectedDiscipline = $('#ADM_discipline').val();
-                               
-                            });
-                        },
-                        error: function () { // if error
-                            $('#ADM_discipline_match').text('Problem!');
-                        }
-                    });
+<%
+    }// end if
+%>
+
+
+        $('#ADM_discipline').on('keyup', function () {
+
+            var input = $(this).val(); // We take the input value
+            if (input.length >= 1) { // Minimum characters = 2 (you can change)
+                $('#ADM_discipline_match').html('<img src="bootstrap-3.3.6-dist/image/ajax-loader.gif" />'); // Loader icon apprears in the <div id="PM_match_system"></div>
+                var dataFields = {input: input, process: "discipline"}; // We pass input argument in Ajax
+                $.ajax({
+                    type: "POST",
+                    url: "ADM_result.jsp", // call the php file ajax/tuto-autocomplete.php
+                    data: dataFields, // Send dataFields var
+                    timeout: 5000,
+                    success: function (dataBack) { // If success
+                        $('#ADM_discipline_match').html(dataBack); // Return data (UL list) and insert it in the <div id="PM_match_system"></div>
+                        $('#ADM_discipline_matchlist li').on('click', function () { // When click on an element in the list
+                            // Update the field with the new element
+                            $('#ADM_discipline').val($(this).text());
+                            $('#ADM_discipline_match').text(''); // Clear the <div id="PM_match_system"></div>
+
+                            isDisciplineSelected = true;
+                            selectedDiscipline = $('#ADM_discipline').val();
+
+                        });
+                    },
+                    error: function () { // if error
+                        $('#ADM_discipline_match').text('Problem!');
+                    }
+                });
             } else {
                 $('#ADM_discipline_match').text(''); // If less than 2 characters, clear the <div id="PM_match_system"></div>
             }
-                
+
         });
-        
-        
+
+
         $("#ADM_subdiscipline").on('keyup', function () { // everytime keyup event
             var input = $(this).val(); // We take the input value
-            
+
             var discipline = $('#ADM_discipline').val();
-            
-            if(discipline === "" || isDisciplineSelected === false){
-                
+
+            if (discipline === "" || isDisciplineSelected === false) {
+
                 bootbox.alert("Fill in discipline first!");
                 $('#ADM_discipline').focus();
                 $("#ADM_subdiscipline").val("");
-            
-            }else if(discipline !== selectedDiscipline || selectedDiscipline === "" || selectedDiscipline === null){
-                
+
+            } else if (discipline !== selectedDiscipline || selectedDiscipline === "" || selectedDiscipline === null) {
+
                 bootbox.alert("Please choose existing discipline first!");
                 $('#ADM_discipline').focus();
-            
-            }else if (input.length >= 1) { // Minimum characters = 2 (you can change)
-                
+
+            } else if (input.length >= 1) { // Minimum characters = 2 (you can change)
+
                 var arrayX = discipline.split("|");
                 var disciplineCodeX = arrayX[0].trim();
-                
-                
+
+
                 $('#ADM_subdiscipline_match').html('<img src="bootstrap-3.3.6-dist/image/ajax-loader.gif" />'); // Loader icon apprears in the <div id="PM_match_system"></div>
-                var dataFields = {input : input, process : "subdiscipline", disciplineCode : disciplineCodeX}; // We pass input argument in Ajax
+                var dataFields = {input: input, process: "subdiscipline", disciplineCode: disciplineCodeX}; // We pass input argument in Ajax
                 $.ajax({
                     type: "POST",
                     url: "ADM_result.jsp", // call the php file ajax/tuto-autocomplete.php
@@ -325,10 +355,10 @@
                             // Update the field with the new element
                             $('#ADM_subdiscipline').val($(this).text());
                             $('#ADM_subdiscipline_match').text(''); // Clear the <div id="PM_match_system"></div>
-                           
+
                             isSubdisciplineSelected = true;
                             selectedSubdiscipline = $('#ADM_subdiscipline').val();
-                           
+
                         });
                     },
                     error: function () { // if error
@@ -346,5 +376,5 @@
 
 
 
-    </script>
+</script>
 

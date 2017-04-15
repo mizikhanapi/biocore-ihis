@@ -7,6 +7,8 @@
 <%@page import="java.util.ArrayList"%>
 <%@page import="dBConn.Conn"%>
 <%@page import="main.RMIConnector"%>
+<%@include file="validateSession.jsp" %>
+
 
 <%
     String input = request.getParameter("input");

@@ -46,11 +46,11 @@
     </head>
 
     <body>
-        
+
         <div class="container-fluid">
             <div class="row">       
                 <!-- menu side -->		
-               
+
                 <%@include file="libraries/sideMenus.jsp" %>
                 <!-- menu side -->	
 
@@ -66,11 +66,11 @@
                                     <h1>Health Facility Maintenance</h1>
                                     <div class="tabbable-line">
                                         <ul class="nav nav-tabs ">
-                                             <li class="active">
+                                            <li class="active">
                                                 <a href="#HM_tab3" data-toggle="tab">
                                                     HEALTH FACILITY </a>
                                             </li>
-                                            
+
                                             <li>
                                                 <a href="#HM_tab1" data-toggle="tab">
                                                     DISCIPLINE </a>
@@ -163,7 +163,7 @@
 
 
         <script>
-           
+
 
             $(document).ready(function () {
 
@@ -171,13 +171,23 @@
                 $("#disciplineTable").load("discipline_table.jsp");
 
                 $("#subdisciplineMain").load("subdiscipline_main.jsp");
-                $("#subdisciplineTable").load("subdiscipline_table.jsp");
+                //$("#subdisciplineTable").load("subdiscipline_table.jsp");
 
                 $("#healthFacilityMain").load("healthFacility_main.jsp");
                 $("#healthFacilityTable").load("healthFacility_table.jsp");
 
                 $("#assignDisciplineMain").load("assignDiscipline_main.jsp");
                 $("#assignDisciplineTable").load("assignDiscipline_table.jsp");
+
+                $('a[data-toggle="tab"]').click(function (e) {
+                    // $('#tab_a').find('a').removeAttr('data-toggle');
+                    var target = $(e.target).attr("href");
+                    e.preventDefault();
+                    //console.log(target);
+                    if(target === '#HM_tab2'){
+                        $("#subdisciplineTable").load("subdiscipline_table.jsp");
+                    }
+                });
 
             });
 

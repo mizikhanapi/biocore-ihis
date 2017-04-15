@@ -766,7 +766,10 @@
          
         $('#gambaLogo').attr("src", "");
         $('#inputFileToLoad2').val("");
-        gambarURI2 = "";       
+        gambarURI2 = "";   
+        
+        //disable change button until bew picture is chosen
+        $('#HFT_btnChangeLogo').addClass('disabled').prop('disabled', true);
 
         var row = $(this).closest("tr");
         var rowData = row.find("#HFT_hidden").val();
@@ -831,12 +834,6 @@
 
         }
 
-
-
-
-
-
-
         if (sizeSmall) {
             
             var filesSelected = document.getElementById("inputFileToLoad2").files;
@@ -853,6 +850,7 @@
 
 
                    $('#gambaLogo').attr("src", gambarURI2);
+                   $('#HFT_btnChangeLogo').removeClass('disabled').prop('disabled', false);
                 };
 
                 fileReader.readAsDataURL(fileToLoad);
