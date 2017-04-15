@@ -1,7 +1,6 @@
 <%@page import="org.apache.commons.lang3.StringUtils"%>
 <%@page import="dBConn.Conn"%>
 <%@page import="Config.Config"%>
-<%@page import="org.json.JSONArray"%>
 <%@page import="java.sql.*"%>
 <%@page import="java.util.List"%>
 <%@page import="java.util.ArrayList"%>
@@ -25,15 +24,45 @@
 </thead>
 <tbody>
 
-    <%            String idWard = request.getParameter("idWard");
+    <%
+    String hfc = session.getAttribute("HEALTH_FACILITY_CODE").toString();
+    String idWard = request.getParameter("idWard");
     String idType = request.getParameter("idType");
     String idInput = request.getParameter("idInput");
+    String methodSearching = request.getParameter("methodSearch"); 
+    String searching = "";
+    Conn conn = new Conn();
+    //1 --- search by patient
+    //0 --- search by ward list
+    if(methodSearching.equalsIgnoreCase("1")){
+        if (idType.equals("pmino") || idType.equals("001")) {
+            searching = "select new_ic_no,old_ic_no,id_type,id_no,police_case,hfc_cd,pmi_no,episode_date,discipline_cd,subdiscipline_cd,ward_class_code,ward_id,bed_id,payer_group,patient_category_cd,visit_type_cd,emergency_type_cd,eligibility_type_cd,eligibility_category_cd,referred_from_hfc,referred_from_discipline,referred_reference_no,order_by,admission_reason,admission_description,guardian_ind,group_guardian,gl_expiry_date,inpatient_status,created_by,created_date,deposit_inpatient,document_type,document_no,patient_name"
+                    + " from wis_inpatient_episode "
+                    + " where pmi_no='" + idInput + "' and hfc_cd='"+hfc+"'";
+        } else if (idType.equals("icnew") || idType.equals("002")) {
+            searching = "select new_ic_no,old_ic_no,id_type,id_no,police_case,hfc_cd,pmi_no,episode_date,discipline_cd,subdiscipline_cd,ward_class_code,ward_id,bed_id,payer_group,patient_category_cd,visit_type_cd,emergency_type_cd,eligibility_type_cd,eligibility_category_cd,referred_from_hfc,referred_from_discipline,referred_reference_no,order_by,admission_reason,admission_description,guardian_ind,group_guardian,gl_expiry_date,inpatient_status,created_by,created_date,deposit_inpatient,document_type,document_no,patient_name"
+                    + " from wis_inpatient_episode"
+                    + " where NEW_IC_NO='" + idInput + "' and hfc_cd='"+hfc+"'";
 
-        Conn conn = new Conn();
-        String wardTran = "SELECT ward_class_code, bed_id, PATIENT_NAME, ID_NO, pmi_no, ward_id, eligibility_category_cd,DEPOSIT_INPATIENT  FROM wis_inpatient_episode where ward_id ='" + idWard + "'";
-        ArrayList<ArrayList<String>> datawardTran = conn.getData(wardTran);
+        } else if (idType.equals("icold") || idType.equals("003")) {
+            searching = "select new_ic_no,old_ic_no,id_type,id_no,police_case,hfc_cd,pmi_no,episode_date,discipline_cd,subdiscipline_cd,ward_class_code,ward_id,bed_id,payer_group,patient_category_cd,visit_type_cd,emergency_type_cd,eligibility_type_cd,eligibility_category_cd,referred_from_hfc,referred_from_discipline,referred_reference_no,order_by,admission_reason,admission_description,guardian_ind,group_guardian,gl_expiry_date,inpatient_status,created_by,created_date,deposit_inpatient,document_type,document_no,patient_name"
+                    + " from wis_inpatient_episode"
+                    + " where OLD_IC_NO='" + idInput + "' and hfc_cd='"+hfc+"'";
+        } else {
+            searching = "select new_ic_no,old_ic_no,id_type,id_no,police_case,hfc_cd,pmi_no,episode_date,discipline_cd,subdiscipline_cd,ward_class_code,ward_id,bed_id,payer_group,patient_category_cd,visit_type_cd,emergency_type_cd,eligibility_type_cd,eligibility_category_cd,referred_from_hfc,referred_from_discipline,referred_reference_no,order_by,admission_reason,admission_description,guardian_ind,group_guardian,gl_expiry_date,inpatient_status,created_by,created_date,deposit_inpatient,document_type,document_no,patient_name"
+                    + " from wis_inpatient_episode"
+                    + " where ID_NO='" + idInput + "' AND ID_TYPE='" + idType + "' and hfc_cd='"+hfc+"'";
+        }
+        
+    }else if(methodSearching.equalsIgnoreCase("0")){
+        searching = "select new_ic_no,old_ic_no,id_type,id_no,police_case,hfc_cd,pmi_no,episode_date,discipline_cd,subdiscipline_cd,ward_class_code,ward_id,bed_id,payer_group,patient_category_cd,visit_type_cd,emergency_type_cd,eligibility_type_cd,eligibility_category_cd,referred_from_hfc,referred_from_discipline,referred_reference_no,order_by,admission_reason,admission_description,guardian_ind,group_guardian,gl_expiry_date,inpatient_status,created_by,created_date,deposit_inpatient,document_type,document_no,patient_name from wis_inpatient_episode where ward_id ='"+idWard+"' and hfc_cd='"+hfc+"'";
+    }
+    
+    ArrayList<ArrayList<String>> dataList = conn.getData(searching);
 
-        int size1141 = datawardTran.size();
+        int size1141 = dataList.size();
+        if(size1141 > 0 ){
+        
         for (int i = 0; i < size1141; i++) {
 
 
@@ -42,12 +71,12 @@
 
     <tr id="moveToPatientTransferButton">
 
-<input id="dataWardhidden" type="hidden" value="<%=String.join("|", datawardTran.get(i))%>">
-<td><input readonly type="text"  name="WardClass" id="WardClass" value="<%= datawardTran.get(i).get(0)%>" /></td>
-<td><input readonly="" type="text"  name="Bed" id="Bed" value="<%= datawardTran.get(i).get(1)%>" /></td>
-<td><input readonly type="text"  name="pname" id="pname" value="<%= datawardTran.get(i).get(2)%>"/></td>
-<td><input readonly type="text"  name="pino" id="pino" value="<%= datawardTran.get(i).get(3)%>"/></td>
-<td><input readonly type="text"  name="sponsor" id="sponsor" value="<%= datawardTran.get(i).get(6)%>"/></td>
+<input id="dataWardhidden" type="hidden" value="<%=String.join("|", dataList.get(i))%>">
+<td><%= dataList.get(i).get(10)%></td>
+<td><%= dataList.get(i).get(12)%></td>
+<td><%= dataList.get(i).get(34)%></td>
+<td><%= dataList.get(i).get(6)%></td>
+<td><%= dataList.get(i).get(6)%></td>
 
 <td>
     <!-- Update Part Start -->
@@ -63,7 +92,9 @@
 </tr>
 <%
     }
-
+}else if(size1141 < 1){ %>
+<td colspan="7"> No row selected! </td>
+<% }
 %>
 
 </tbody>

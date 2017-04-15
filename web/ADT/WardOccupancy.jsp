@@ -5,18 +5,6 @@
 <%@page import="main.RMIConnector"%>
 <%@page import="dBConn.Conn"%>
 
-<%--<%@page contentType="text/html" pageEncoding="UTF-8"%>--%>
-
-<%
-//    String idTYpe = "select * from adm_lookup_detail where master_reference_code = '0012' ";
-//    ArrayList<ArrayList<String>> dataIdType;
-//    Conn conn = new Conn();
-//    dataIdType = conn.getData(idTYpe);
-//    String dataSystemStatus15 = session.getAttribute("SYSTEMSTAT").toString();
-
-
-%>
-
 
 
 <div class="row" id="transfer_Patient">
@@ -46,34 +34,13 @@
     </br>
 
 
-    <div id="OccuTable">
+    <div id="WardOccuTable" class="form-group">
 
     </div>
 
 
 
 </div>
-
-<!--</div>-->
-
-<!--</div>-->
-<!-- main -->		
-
-<!--</div>-->
-
-
-
-
-
-<!-- Bootstrap core JavaScript
-================================================== -->
-<!-- Placed at the end of the document so the pages load faster -->
-<!-- Bootstrap core JavaScript
-================================================== -->
-<!-- Placed at the end of the document so the pages load faster -->
-<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<script src="http://www.w3schools.com/lib/w3data.js"></script>-->
 
 
 
@@ -82,13 +49,3 @@
 </body>
 
 
-
-<script>
-
-//s
-//    $("#searchWardTransfer").load("searchWardTransfer.jsp");
-//    $("#searchPatientTransfer").load("searchPatientTransfer.jsp");
-    //$("#OccuTable").load("testtable.jsp");
-
-
-</script>
