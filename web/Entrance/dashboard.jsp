@@ -2,12 +2,15 @@
 <%@page import="java.util.Arrays"%>
 <%@page import="java.util.ArrayList"%>
 
-<%--<% if (session.getAttribute("USER_ID") == null) {
-        response.sendRedirect("../index.jsp");
-    }%>
---%>
-
+<%@include file="validateSession.jsp" %>
 <%
+    //------------------- Checking whether super user or not ------------------------------
+    if(session.getAttribute("HFC_99") == null){
+        String hfc_cd = (String) session.getAttribute("HEALTH_FACILITY_CODE");
+        session.setAttribute("HFC_99", hfc_cd);
+    }
+    
+    //====================================================================================
     String modules = session.getAttribute("MODULE_CODE").toString();
 
     ArrayList<String> arrayModule = new ArrayList<String>(Arrays.asList(modules.split("\\|")));

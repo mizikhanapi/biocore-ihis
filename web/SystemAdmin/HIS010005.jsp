@@ -6,6 +6,18 @@
 
 <%@include file="validateSession.jsp" %>
 <%@include file="validateModuleAccess.jsp" %>
+<%    
+    String temp_hfc_99 = (String) session.getAttribute("HFC_99");
+    String temp_user_id = (String) session.getAttribute("USER_ID");
+
+    String temp_last_9 = temp_user_id.substring(temp_user_id.length() - 1);
+
+    if(!temp_last_9.equals("9") || !temp_hfc_99.equals("99_iHIS_99")){
+        response.sendRedirect("../Entrance/dashboard.jsp");
+        return;
+    }
+
+%>
 
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -21,6 +33,7 @@
         <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
         <link rel="stylesheet" href="bootstrap-3.3.6-dist/css/dataTables.bootstrap.min.css">
         <link rel="stylesheet" href="css/table.css">
+        <link rel="stylesheet" href="css/loading_sham.css">
 
         <!-- Bootstrap core JavaScript
         ================================================== -->
@@ -83,6 +96,11 @@
                                                 <a href="#S_tab4" data-toggle="tab">
                                                     PAGE </a>
                                             </li>
+                                            
+                                            <li>
+                                                <a href="#S_tab5" data-toggle="tab">
+                                                    SESSION </a>
+                                            </li>
 
                                         </ul>
                                         <!-- tab content -->
@@ -132,6 +150,17 @@
                                                 </div>
 
                                             </div>
+                                            
+                                            <div class="tab-pane" id="S_tab5">
+
+                                                <div id="session">
+                                                    <div id="sessionMain">
+                                                    </div>
+<!--                                                    <div id="pageTable">
+                                                    </div>-->
+                                                </div>
+
+                                            </div>
 
                                         </div>
                                     </div>
@@ -155,7 +184,7 @@
 
 
         <script>
-           
+
 
             //        $(function(){
             //            setInterval(sayHai, 10000);
@@ -179,6 +208,8 @@
 
                 $("#pageMain").load("page_main.jsp");
                 $("#pageTable").load("page_table.jsp");
+                
+                $('#sessionMain').load("session_main.jsp");
 
 
 
