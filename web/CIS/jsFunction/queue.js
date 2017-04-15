@@ -146,6 +146,22 @@ function convertNoteToData(noteAr) {
     return noteData;
 }
 
+function convertPEMId(idAry){
+    var newIdAry = [];
+    var id = "";
+    var size = idAry.length;
+    for(var i = 0; i<size; i++){
+        if (id === ""){
+            id = id + idAry[i] ;
+        } else{
+            id = id +","+ idAry[i] ;
+        }
+        newIdAry.push(id);  
+    }
+    console.log(newIdAry);
+    return newIdAry;
+}
+
 function convertEHR(ehr) {
     var EHRArry = ehr.split("<cr>");
     var PDI;
@@ -426,6 +442,7 @@ function convertEHR(ehr) {
 
         } else if (header === "PEM") {
             PEM = EHRArry[i];
+            console.log(PEM);
             var PEMData = convertNoteToData(PEM);
             var idArr = PEMData[2].split(",");
             var pe0t8 = PEMData[3].split(',');
@@ -438,6 +455,7 @@ function convertEHR(ehr) {
             var pe6 = pe0t8[6];
             var pe7 = pe0t8[7];
             var pe8 = pe0t8[8];
+            var newIdAry = convertPEMId(idArr);
             if (pe0t8[1] === undefined) {
                 pe1 = "";
             }
@@ -466,7 +484,7 @@ function convertEHR(ehr) {
             var objPEM = {
                 Acode:"PEM",
                 PEComment:PEMData[5],
-                id:idArr,
+                id:newIdAry,
                 pe0:pe0,
                 pe1:pe1,
                 pe2:pe2,
@@ -480,7 +498,8 @@ function convertEHR(ehr) {
             };
              var PEMNotes =    convertPEMtoNotes(objPEM);
            _data.push(objPEM);
-           displayPEM(objPEM.PEMNotes,objPEM.PEComment);
+           console.log(objPEM);
+           displayPEM(PEMNotes,objPEM.PEComment);
             
         }else if (header === "DGS") {
             DGS = EHRArry[i];

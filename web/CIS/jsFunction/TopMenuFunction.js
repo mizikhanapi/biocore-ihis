@@ -215,7 +215,26 @@ $(document).ready(function (e) {
         var PECodes = PEMData.id;
         var PECounter = 0;
         var PECd = "";
-
+        var newPENotes = ""
+        
+        if (PEMData.pe1.length < 1) {
+            newPENotes = PEMData.pe0;
+        } else if (PEMData.pe2.length < 1) {
+            newPENotes = PEMData.pe0 + ', ' + PEMData.pe1;
+        } else if (PEMData.pe3.length < 1) {
+            newPENotes = PEMData.pe0 + ', ' + PEMData.pe1 + ', ' + PEMData.pe2;
+        } else if (PEMData.pe4.length < 1) {
+            newPENotes = PEMData.pe0 + ', ' + PEMData.pe1 + ', ' + PEMData.pe2 + ',' + PEMData.pe3;
+        } else if (PEMData.pe5.length < 1) {
+            newPENotes = PEMData.pe0 + ', ' + PEMData.pe1 + ', ' + PEMData.pe2 + ',' + PEMData.pe3 + ', ' + PEMData.pe4;
+        } else if (PEMData.pe6.length < 1) {
+            newPENotes = PEMData.pe0 + ', ' + PEMData.pe1 + ', ' + PEMData.pe2 + ',' + PEMData.pe3 + ', ' + PEMData.pe4 + ', ' + PEMData.pe5;
+        } else if (PEMData.pe7.length < 1) {
+            newPENotes = PEMData.pe0 + ', ' + PEMData.pe1 + ', ' + PEMData.pe2 + ',' + PEMData.pe3 + ', ' + PEMData.pe4 + ', ' + PEMData.pe5 + ', ' + PEMData.pe6;
+        } else if (PEMData.pe8.length < 1) {
+            newPENotes = PEMData.pe0 + ', ' + PEMData.pe1 + ', ' + PEMData.pe2 + ',' + PEMData.pe3 + ', ' + PEMData.pe4 + ', ' + PEMData.pe5 + ', ' + PEMData.pe6 + ', ' + PEMData.pe7;
+        }
+        
         for (var i = 0; i < PECodes.length; i++) {
             if (PECodes[i] !== "") {
                 PECd = PECodes[i];
@@ -224,7 +243,7 @@ $(document).ready(function (e) {
             }
         }
         var Comment = PEMData.PEComment;
-        PEMNotes = "PEM|2015-01-16  16:27:58|^^" + PECd + "^" + NotesPE + "^^" + Comment + "^^^^^" + getDate() + "^" + hfc_cd + "^" + doctor_id + "^" + doctor_name + "|<cr>\n";
+        PEMNotes = "PEM|2015-01-16  16:27:58|^^" + PECd + "^" + newPENotes + "^^" + Comment + "^^^^^" + getDate() + "^" + hfc_cd + "^" + doctor_id + "^" + doctor_name + "|<cr>\n";
         return PEMNotes;
     }
 
