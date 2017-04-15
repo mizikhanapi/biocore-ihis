@@ -1,5 +1,6 @@
 
 <input type="hidden" value="<%=hfc%>" id="Rhfc">
+<input type="hidden" value="<%=pageNow%>" id="pageNow">
 
 <div class="row">
     <div class="col-md-6">
@@ -182,8 +183,7 @@
 
                 //get value from text box and select box
                 //var Dis = $('#Dis').val();
-                var Diso = $('#dis_cd').val();
-                
+                var Diso = $('#dis_cd').val();                
                 var Dis = Diso;
                 var wname = $('#wname').val();
                 var WardType = $('#WardType').val();
@@ -202,7 +202,12 @@
                         //remove the loading 
                         $body.removeClass("loading");
                         //console.log(list);
-                        $('#bedtest').html(list);
+                        var pageNow = $('#pageNow').val();
+                        if(pageNow==="PT"){
+                            $('#listbedPT').html(list);
+                        }else if(pageNow==="IR"){
+                            $('#bedtest').html(list);
+                        }                       
 
                     },
                     error: function (xhr, status, error) {

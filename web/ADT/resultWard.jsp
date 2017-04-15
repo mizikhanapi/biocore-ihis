@@ -99,3 +99,32 @@
 
 </tbody>
 </table>
+<script>
+    $("#WardOccuTable").on('click',"#OccuTableTT #Occu_transfer",function(){
+        //get the row value
+        var row = $(this).closest("tr");
+        var rowData = row.find("#dataWardhidden").val();
+        var arrayData = rowData.split("|");
+        console.log("hai");
+        $('.nav-tabs a[href="#tab_default_2"]').tab('show');
+        
+        var pmi = arrayData[6];
+        var icno = arrayData[0];
+        //var gender = arrayData[];
+        var name = arrayData[34];
+        var wardClass = arrayData[10];
+        var wardName = arrayData[11];
+        var bedId = arrayData[12];
+        var rate = arrayData[31];
+        var admissionDate = arrayData[7];
+        
+        $("#pmino").val(pmi);
+        $("#pinof").val(icno);
+        $("#WardClassf").val(wardClass);
+        $("#Bedf").val(bedId);
+        $("#pnamef").val(name);
+        $("#WardNamef").val(wardName);
+        $("#Ratef").val(rate);
+        $("#AdmissionDatef").val(admissionDate);
+    });
+</script>
