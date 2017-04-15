@@ -9,18 +9,18 @@
 
 <%
     
-    Conn conn = new Conn();
+    //Conn conn = new Conn();
 %>
 
 <!DOCTYPE html>
 <html lang="en">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link rel="stylesheet" href="old/assets/datepicker/jquery-ui.css">
-        <script src="old/assets/js/jquery.min.js"></script>
+<!--        <link rel="stylesheet" href="old/assets/datepicker/jquery-ui.css">
+        <script src="old/assets/js/jquery.min.js"></script>-->
         <!-- Custom styles for this template -->
 
-        <link rel="stylesheet" href="old/assets/css/loading.css">
+<!--        <link rel="stylesheet" href="old/assets/css/loading.css">
         <link href="old/assets/datepicker/jquery-ui.css" rel="stylesheet">    
         <script src="old/assets/datepicker/jquery-ui.js"></script>
         <script src="old/assets/js/form-validator.min.js"></script>
@@ -28,9 +28,9 @@
 
         <script src="old/assets/js/w3data.js"></script>
         <script src="old/assets/js/bootbox.min.js"></script>  
-        <script src="searchDiscipline.jsp"></script>
-<script src="old/assets/js/searchDisipline.js" type="text/javascript"></script>
-    <script src="../PMS/libraries/lib/js/search/searchDisipline.js" type="text/javascript"></script>
+        <script src="searchDiscipline.jsp"></script>-->
+<!--<script src="old/assets/js/searchDisipline.js" type="text/javascript"></script>
+    <script src="../PMS/libraries/lib/js/search/searchDisipline.js" type="text/javascript"></script>-->
 
 
     </head>
@@ -267,7 +267,7 @@
                         <div class="panel panel-default">
                             <div class="panel-body">
                                 <div>
-                                    <%@include file = "bed.jsp" %>
+                                    <%//@include file = "bed.jsp" %>
                                 </div>
                             </div>
                         </div>
@@ -301,11 +301,9 @@
 
     </div>
 
-    <script src="bootstrap-3.3.6-dist/js/jquery.dataTables.min.js"></script>
+    
 
     <script>
-
-
         $('#OccuTable').off('click', '#OccuTableTT #moveToPatientTransferButton').on('click', '#OccuTableTT #moveToPatientTransferButton', function (e) {
 
             e.preventDefault();

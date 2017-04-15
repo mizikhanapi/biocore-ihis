@@ -97,8 +97,20 @@
             setInterval(getDateNow, 1000);
             if ($('#pmino').val() === " " || $('#pmino').val() === "") {
                 bootbox.alert('Please use a proper PMI no.');
-            } else {
-                //var r = confirm("Are you sure want to REGISTER PATIENT?");
+            } else if ($('input[name="PoliceCase"]').val()===null) {
+                bootbox.alert('Please choose the police case');
+            }else if ($('#GL').val() === " ") {
+                bootbox.alert('Please choose the GL expiry date');
+            }
+            else if ($('#DocType').val() === null) {
+                bootbox.alert('Please choose Document Type');
+            }
+            else if ($('#AdmissionType').val() === " ") {
+                bootbox.alert('Please choose the admission type');
+            }
+            else if ($('#Refer').val() === " ") {
+                bootbox.alert('Please choose the reffering from');
+            }else{
 
 
                 var pmino, poic, pid, MRN, pname, pnic, pidno,
@@ -108,32 +120,42 @@
                 pmino = $('#pmino').val();
                 epiDate = yyyyMMddHHmmss;
                 poic = $('input[id=poic]').val();
-                pid = $('input[id=pid]').val();
+                pid = $('input[id=pitID]').val();
                 MRN = $('input[id=MRN]').val();
                 pname = $('input[id=pname]').val();
                 pnic = $('input[id=pnic]').val();
-                pidno = $('input[id=pidno]').val();
+                pidno = $('input[id=pino]').val();
                 EliSource = $('#EliSource').val();
                 AdmissionType = $('#AdmissionType').val();
+                
                 Refer = $('#Refer').val();
                 DocType = $('#DocType').val();
                 GL = $('#GL').val();
+                
                 if ($('#EliTy').val() === null) {
                     EliTy = "-";
                 } else {
                     EliTy = $('#EliTy').val();
                 }
+                
                 AdmissionReason = $('#AdmissionReason').val();
                 PoliceCase = $('input[name="PoliceCase"]:checked').val();
+                
+                
                 DocNo = $('#DocNo').val();
                 payer = $('#payer').val();
-                Dis = $('#Dis').val();
+                if(payer ===null){
+                    payer ="-";
+                }else{
+                    payer = $('#payer').val();
+                }
+                Dis = $('#DisWard').val();
                 var array_dis = Dis.split("|");
                 var Dis = array_dis[0];
                 wname = $('#wname').val();
                 Deposit = $('#Deposit').val();
                 WardType = $('#WardType').val();
-                BedID = $('#BedID').val();
+                BedID = $('#BedIDReg').val();
                 guardInd = "-";
                 referHfc = "-";
                 referDis = "-";
@@ -144,8 +166,8 @@
                 var hfc = $("#Rhfc").val();
                 var createdBy = $("#Rid").val();
                 var sub = $("#Rsub").val();
-                //hfc amik kat session
-                hfc = $('#sessionHfc').val();
+                
+                hfc = $('#Rhfc').val();
                 var datas = {'pmino': pmino,
                     'epiDate': epiDate,
                     'poic': poic,
@@ -177,8 +199,7 @@
                     'epiTime': epiTime,
                     'stat': stat,
                     'hfc': hfc,
-                    'now': yyyyMMdd,
-                    hfc: hfc,
+                    'now': yyyyMMdd,                    
                     createdBy: createdBy,
                     sub: sub
 
@@ -202,17 +223,18 @@
                             $body.addClass("loading");
                             $.ajax({
                                 type: "POST",
-                                url: "registration.jsp",
+                                url: "PMS/registration.jsp",
                                 data: datas, // Send input
                                 timeout: 3000,
                                 success: function (list) {
                                     console.log(list);
                                     $body.removeClass("loading");
                                     if ($.trim(list) === "Success") {
-
                                         bootbox.alert("Patient has been register successfully");
                                     } else if ($.trim(list) === "already") {
                                         bootbox.alert("Patient is already registered");
+                                    }else if($.trim(list) === "false"){
+                                        bootbox.alert("There something error with the query");
                                     }
                                 }, error: function () {
                                     bootbox.alert("There is an error!");

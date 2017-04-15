@@ -9,9 +9,9 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
 
-        Conn conn = new Conn();
+        //Conn conn = new Conn();
 
-     String idTYpe11 = "select * from adm_lookup_detail where master_reference_code = '0012' ";
+     String idTYpe11 = "select * from adm_lookup_detail where master_reference_code = '0012' and hfc_cd='"+hfc+"' ";
     ArrayList<ArrayList<String>> dataIdType12;
     dataIdType12 = conn.getData(idTYpe11);
     String dataSystemStatus155 = session.getAttribute("SYSTEMSTAT").toString();
@@ -50,10 +50,7 @@
 
     </form>
 </div>
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
-<script type="text/javascript" src="./javascript.js"></script>
-<script src="old/assets/js/OccuPatient.js" type="text/javascript"></script>
-<script src="old/assets/js/onKeyPress.js" type="text/javascript"></script>
+
 <script>
         //validate max length of input
         $('#idType').on('change', function (e) {

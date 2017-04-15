@@ -291,7 +291,7 @@
             //var subDicipline = $('#subDicipline').val();
 
 
-            console.log(Dis);
+            console.log(status);
 //            if (Dis === "") {
 //                bootbox.alert("Complete The Discipline Fields");
 //            } else
@@ -301,8 +301,6 @@
                 bootbox.alert("Complete The Ward ID Fields");
             } else if (BedID === "") {
                 bootbox.alert("Complete The Bed ID Fields");
-            } else if (status !== "Available" && status !== "Pending" && status !== "Occupied") {
-                bootbox.alert("Select Any Status");
             } else {
 
                 var data = {

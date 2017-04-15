@@ -3,7 +3,6 @@
 <%@page import="Config.connect"%>
 <%@page import="dBConn.Conn"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!--<link rel="stylesheet" href="../old/assets/css/loading.css">-->
 
 
 <%
@@ -13,18 +12,22 @@
     String dis = session.getAttribute("DISCIPLINE_CODE").toString();
     String sub = session.getAttribute("SUB_DISCIPLINE_CODE").toString();
 
-    String eliCat = "select * from adm_lookup_detail where master_reference_code = '0063'   ";
-    String admit = "select * from lookup_detail where master_ref_code ='0023'";
-    String eliType = "select * from adm_lookup_detail where master_reference_code = '0034'   ";
+    String eliCat = "select * from adm_lookup_detail where master_reference_code = '0063' and hfc_cd ='" + hfc + "'  ";
+    String admit = "select * from adm_lookup_detail where master_reference_code ='0023' and hfc_cd ='" + hfc + "'";
+    String eliType = "select * from adm_lookup_detail where master_reference_code = '0034'  and hfc_cd ='" + hfc + "' ";
 
-    String idTYpe = "select * from adm_lookup_detail where master_reference_code = '0012'   ";
+    String idTYpe = "select * from adm_lookup_detail where master_reference_code = '0012' and hfc_cd ='" + hfc + "'  ";
+    String documentType = "select * from adm_lookup_detail where master_reference_code = '0065' and hfc_cd ='" + hfc + "'  ";
+    String payerGroup = "select * from adm_lookup_detail where master_reference_code = '0055' and hfc_cd ='" + hfc + "'  ";
 
-    ArrayList<ArrayList<String>> dataEliCat, dataAdmit, dataEliType, dataIdType;
+    ArrayList<ArrayList<String>> dataEliCat, dataAdmit, dataEliType, dataDocumentType,dataIdType,dataPayerGroup;
 
     dataEliCat = conn.getData(eliCat);
     dataAdmit = conn.getData(admit);
     dataEliType = conn.getData(eliType);
     dataIdType = conn.getData(idTYpe);
+    dataDocumentType = conn.getData(documentType);
+    dataPayerGroup = conn.getData(payerGroup);
 
     String dataSystemStatus2 = session.getAttribute("SYSTEMSTAT").toString();
 
@@ -35,8 +38,9 @@
 <input type="hidden" value="<%=dis%>" id="dis">
 <input type="hidden" value="<%=sub%>" id="sub">
 <div class="row" id="register">
-    <div class="col-md-12">
-        <div> <%@include file = "search/searchPatient.jsp" %></div>
+    <div class="col-md-12 ">
+
+        <div class="thumbnail"> <%@include file = "search/searchPatient.jsp" %></div>
     </div>
 </div>
 
@@ -76,6 +80,7 @@
                         <div class="form-group">
                             <label class="col-md-4 control-label" for="selectbasic">ID Type</label>
                             <div class="col-md-4">
+                                <input type="hidden" id="pitID">
                                 <input id="pit" name="pit" type="text" placeholder=""  readonly class="form-control input-md">
                             </div>
                         </div>
@@ -134,7 +139,7 @@
 
 
                                     <%                                        for (int i = 0; i < dataEliCat.size(); i++) {%>
-                                    <option value="<%=dataEliCat.get(i).get(2)%>"><%=dataEliCat.get(i).get(2)%></option>
+                                    <option value="<%=dataEliCat.get(i).get(1)%>"><%=dataEliCat.get(i).get(2)%></option>
                                     <%  }
                                     %>
 
@@ -146,15 +151,15 @@
 
                         <!-- Select Basic -->
                         <div class="form-group">
-                            <label class="col-md-4 control-label" for="selectbasic">Admission type</label>
+                            <label class="col-md-4 control-label" for="selectbasic">Admission type *</label>
                             <div class="col-md-4">
                                 <select id="AdmissionType" name="selectbasic" class="form-control">
                                     <option value="-">-</option>
                                     <option value="null" selected="" disabled="">Select Admission Type</option>
 
 
-                                    <%                                        for (int i = 0; i < dataAdmit.size(); i++) {%>
-                                    <option value="<%=dataAdmit.get(i).get(2)%>"><%=dataAdmit.get(i).get(2)%></option>
+                                    <% for (int i = 0; i < dataAdmit.size(); i++) {%>
+                                    <option value="<%=dataAdmit.get(i).get(1)%>"><%=dataAdmit.get(i).get(2)%></option>
                                     <%  }
                                     %>
 
@@ -167,7 +172,7 @@
 
                         <!-- Select Basic -->
                         <div class="form-group">
-                            <label class="col-md-4 control-label" for="selectbasic">Referring from</label>
+                            <label class="col-md-4 control-label" for="selectbasic">Referring from *</label>
                             <div class="col-md-4">
                                 <select id="Refer" name="Refer" class="form-control">
                                     <option value="" selected="" disabled="">Select </option>
@@ -185,30 +190,26 @@
 
                         <!-- Select Basic -->
                         <div class="form-group">
-                            <label class="col-md-4 control-label" for="selectbasic">Document type</label>
+                            <label class="col-md-4 control-label" for="selectbasic">Document type *</label>
                             <div class="col-md-4">
                                 <select id="DocType" name="DocType" class="form-control">
                                     <option value="-">-</option>
 
-                                    <option value="" selected="" disabled="">Select </option>
-                                    <%--
-                                    <option value="1">1. KLINIK PESAKIT LUAR PAKAR</option>
-                                    <option value="2">2. LAIN HOSP. KERAJAAN</option>
+                                    <option value="" selected="" disabled="">Select </option>                               
                                   
-                                    
                                     <%
-                                        for (int i = 0; i < dataDiscip.size(); i++) {%>
-                                    <option value="<%=dataDiscip.get(i).get(2)%>"><%=dataDiscip.get(i).get(2)%></option>
+                                        for (int i = 0; i < dataDocumentType.size(); i++) {%>
+                                    <option value="<%=dataDocumentType.get(i).get(1)%>"><%=dataDocumentType.get(i).get(2)%></option>
                                     <%  }
                                     %>
-                                    --%>
+                                    
                                 </select>
                             </div>
                         </div>
 
                         <!-- Text input-->
                         <div class="form-group">
-                            <label class="col-md-4 control-label" for="textinput"> GL expiry date</label>
+                            <label class="col-md-4 control-label" for="textinput"> GL expiry date *</label>
                             <div class="col-md-4">
                                 <input id="GL" name="GL" type="text" placeholder="Pop-up Calendar" readonly class="form-control input-md">
                             </div>
@@ -231,7 +232,7 @@
 
                                     <%
                                         for (int i = 0; i < dataEliType.size(); i++) {%>
-                                    <option value="<%=dataEliType.get(i).get(2)%>"><%=dataEliType.get(i).get(2)%></option>
+                                    <option value="<%=dataEliType.get(i).get(1)%>"><%=dataEliType.get(i).get(2)%></option>
                                     <%  }
                                     %>
 
@@ -242,7 +243,7 @@
 
                         <!-- Text input-->
                         <div class="form-group">
-                            <label class="col-md-4 control-label" for="textinput">Admission reason</label>
+                            <label class="col-md-4 control-label" for="textinput">Admission reason </label>
                             <div class="col-md-4">
                                 <input id="AdmissionReason" name="textinput" type="text" placeholder="" class="form-control input-md">
                             </div>
@@ -250,7 +251,7 @@
 
                         <!-- Text input-->
                         <div class="form-group">
-                            <label class="col-md-4 control-label" for="textinput">Police case</label>
+                            <label class="col-md-4 control-label" for="textinput">Police case *</label>
                             <div class="col-md-8">
                                 <label class="radio-inline">
                                     <input type="radio" name="PoliceCase" id="PoliceCase1" value="Yes">
@@ -276,7 +277,19 @@
                         <div class="form-group">
                             <label class="col-md-4 control-label" for="textinput">Payer Group</label>
                             <div class="col-md-4">
-                                <input id="payer" name="payer" type="text" placeholder="" class="form-control input-md">
+                               
+                                <select id="payer" name="payer" class="form-control">
+                                    <option value="null" selected="" disabled="">Select Payer group</option>
+                                    <option value="-" >-</option>
+                                    <%
+                                        for (int i = 0; i < dataPayerGroup.size(); i++) {%>
+                                    <option value="<%=dataPayerGroup.get(i).get(1)%>"><%=dataPayerGroup.get(i).get(2)%></option>
+                                    <%  }
+                                    %>
+
+
+                                </select>
+                            
                             </div>
                         </div>
                     </div>
@@ -288,7 +301,7 @@
                 <div class="row" id="register">
                     <div class="col-md-12">
                         <div> <%@include file = "search/searchBed.jsp" %></div>
-                        <div id="bedtest"> </div> 
+
                     </div>
                 </div>
 
@@ -302,7 +315,7 @@
                         <div class="panel panel-default form-horizontal">
                             <div class="panel-body">
                                 <div>
-<!--                                    <//%@include file = "bed.jsp" %>-->
+                                    <div id="bedtest"> </div>  
                                 </div>
                             </div>
                         </div>
@@ -311,7 +324,7 @@
                 </div>
 
                 <div class="text-center">
-                    <button class="btn btn-primary " type="button" id="registerQueue"><i class="fa fa-floppy-o "></i> Register</button>
+                    <button class="btn btn-primary " type="button" id="registerBed"><i class="fa fa-floppy-o "></i> Register</button>
                     <button class="btn btn-default " type="button" id="btnclear" name="btnclear" > <i class="fa fa-ban "></i>&nbsp; Clear</button>
                 </div>
 
@@ -320,19 +333,11 @@
         </div>
     </div>
 </div>
-
-<!-- main -->		
-
-
-
-
-
-<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<script src="http://www.w3schools.com/lib/w3data.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/4.4.0/bootbox.min.js"></script>
-<script src="bootstrap-3.3.6-dist/js/jquery.dataTables.min.js"></script>-->
-<!--
-<script src="old/assets/js/bootbox.min.js"></script>
-<script src="old/assets/js/searchDisipline.js" type="text/javascript"></script>-->
+<script>
+    $("#GL").datepicker({
+        changeMonth: true,
+        changeYear: true,
+        dateFormat: 'yy-mm-dd',
+        minDate: '0'
+    });
+</script>

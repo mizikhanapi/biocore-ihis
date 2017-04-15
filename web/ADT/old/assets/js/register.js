@@ -202,7 +202,7 @@
                             $body.addClass("loading");
                             $.ajax({
                                 type: "POST",
-                                url: "registration.jsp",
+                                url: "PMS/registration.jsp",
                                 data: datas, // Send input
                                 timeout: 3000,
                                 success: function (list) {
