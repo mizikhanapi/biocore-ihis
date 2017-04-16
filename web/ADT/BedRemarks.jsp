@@ -34,52 +34,54 @@
                 </tr>
 
                 <%
-
-                    String totalA = "";
-                    String totalP = "";
-                    String totalO = "";
-                     String totalS = "";
-                    
                     String wardid = databedRemarks.get(i).get(5);
                     String wardclass = databedRemarks.get(i).get(4);
 
+                    String totalA = "";
+
                     String a = "Available";
-                    String p = "Pending";
-                    String o = "Occupied";
 
                     String totalAV = "SELECT COUNT(bed_status) FROM wis_bed_id where bed_status = '" + a + "' AND ward_id = '" + wardid + "' AND ward_class_code = '" + wardclass + "'";
-                    ArrayList<ArrayList<String>> dataTotalA = conn.getData(totalAV);
+                    ArrayList<ArrayList<String>> dataTotalAV = conn.getData(totalAV);
 
-                    int sizetotalA = dataTotalA.size();
-                    for (int iTA = 0; iTA < sizetotalA; iTA++) {
-                        String tA = dataTotalA.get(iTA).get(0);
+                    int sizetotalAV = dataTotalAV.size();
+                    for (int iTA = 0; iTA < sizetotalAV; iTA++) {
+                        String tA = dataTotalAV.get(iTA).get(0);
                         totalA = tA;
                     }
 
+                    String totalP = "";
+                    String p = "Pending";
                     String totalPN = "SELECT COUNT(bed_status) FROM wis_bed_id where bed_status = '" + p + "' AND ward_id = '" + wardid + "' AND ward_class_code = '" + wardclass + "' ";
                     ArrayList<ArrayList<String>> dataTotalP = conn.getData(totalPN);
 
-                    int sizetotalP = dataTotalA.size();
+                    int sizetotalP = dataTotalP.size();
                     for (int iTP = 0; iTP < sizetotalP; iTP++) {
                         String tP = dataTotalP.get(iTP).get(0);
                         totalP = tP;
                     }
 
-                    String totalOC = "SELECT COUNT(bed_status) FROM wis_bed_id where bed_status = '" + o + "' AND ward_id = '" + wardid + "' AND ward_class_code = '" + wardclass + "' ";
-                    ArrayList<ArrayList<String>> dataTotalO = conn.getData(totalOC);
-                   // out.print(totalOC);
-                    int sizetotalO = dataTotalO.size();
-                    for (int iTO = 0; iTO < sizetotalO; iTO++) {
-                        String tO = dataTotalA.get(iTO).get(0);
-                        totalO = tO;
+                    String totalO = "";
+                    String red = "Occupied";
+                    String totalOC = "SELECT COUNT(bed_status) FROM wis_bed_id where bed_status = '" + red + "' AND ward_id = '" + wardid + "' AND ward_class_code = '" + wardclass + "' ";
+                    ArrayList<ArrayList<String>> dataTotalOC = conn.getData(totalOC);
+
+                    int sizetotalOC = dataTotalOC.size();
+                    for (int iOC = 0; iOC < sizetotalOC; iOC++) {
+                        String tOC = dataTotalOC.get(iOC).get(0);
+                        totalO = tOC;
                     }
 
-                   String totalSum = "SELECT COUNT(bed_status) FROM wis_bed_id where ward_id = '" + wardid + "' AND ward_class_code = '" + wardclass + "' ";
+                    String totalS = "";
+
+                 
+
+                    String totalSum = "SELECT COUNT(bed_status) FROM wis_bed_id where ward_id = '" + wardid + "' AND ward_class_code = '" + wardclass + "' ";
                     ArrayList<ArrayList<String>> dataTotalSum = conn.getData(totalSum);
-                   // out.print(totalOC);
+                    // out.print(totalOC);
                     int sizetotalSum = dataTotalSum.size();
                     for (int sum1 = 0; sum1 < sizetotalSum; sum1++) {
-                        String sum = dataTotalA.get(sum1).get(0);
+                        String sum = dataTotalSum.get(sum1).get(0);
                         totalS = sum;
                     }
 
@@ -88,31 +90,31 @@
 
                 <tr>
                     <th style="background:#33cc33">A</th>
-                    <td style="background:#33cc33"><%= totalA %></td>
+                    <td style="background:#33cc33"><%= totalA%></td>
                 </tr>
 
                 <tr>
 
                     <th style="background:#ffff99">P</th>
-                    <td style="background:#ffff99"><%= totalP %></td>
+                    <td style="background:#ffff99"><%= totalP%></td>
                 </tr>
 
 
                 <tr>
 
                     <th style="background:#ff5050">O</th>
-                    <td style="background:#ff5050"><%= totalO %></td>
+                    <td style="background:#ff5050"><%= totalO%></td>
                 </tr>
 
 
                 <%     //}
-                %>
+%>
 
                 <tr>
 
 
                     <th bgcolor="#a6a6a6"> Total</th>
-                    <td bgcolor="#a6a6a6"><%= totalS %></td>
+                    <td bgcolor="#a6a6a6"><%= totalS%></td>
 
 
                 </tr>
@@ -130,12 +132,12 @@
     </br>
 </div>
 
-        
-        
-        
-        
-        
-        
+
+
+
+
+
+
 <div id="remarksBedTable" class="form-group">
 
 
@@ -159,7 +161,12 @@
         <tr>
 
             <th bgcolor="#ff5050">O</th>
-            <td bgcolor="#ff5050">OCCUPIED</td>
+            <td bgcolor="#ff5050">OCCUPIED</td><br>
+        </tr>
+        </br>
+        <tr>
+
+            <td colspan="2" bgcolor="#ff99ff">NOTE : THIS SCREEN IS REFRESHED EVERY 20 SECONDS</td>
         </tr>
 
 

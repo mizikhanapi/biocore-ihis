@@ -15,8 +15,9 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <html lang="en">
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="refresh" content="20; URL=HIS070004.jsp">
 
         <!-- header -->
         <%@include file = "../assets/header.html" %>
@@ -30,7 +31,7 @@
         <%    Config.getBase_url(request);
             Config.getFile_url(session);
             Conn conn = new Conn();
-                            String hfc = session.getAttribute("HEALTH_FACILITY_CODE").toString();
+            String hfc = session.getAttribute("HEALTH_FACILITY_CODE").toString();
 
         %>
 
@@ -74,6 +75,13 @@
                                             <div class="tab-pane active" id="tab_default_1">
 
                                                 <div>
+                                                    <div>
+                                                        <%     Date datenow = new Date();
+                                                            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/YYYY | HH:mm:ss");
+                                                             out.print("Date :");
+                                                            out.print(sdf.format(datenow));
+                                                        %>
+                                                    </div> </br>
                                                     <div class="col-md-6">
                                                         <div id="bed">
                                                             <%@include file = "bedsummary.jsp" %>
