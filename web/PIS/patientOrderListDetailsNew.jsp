@@ -82,9 +82,15 @@
             /* Total Price */
             String totalPrice = formatter.format(Double.parseDouble(checkDispensed) * Double.parseDouble(price));
 
-
     %>
+
+    <%            if (((Double.parseDouble(dispensed)) > (Double.parseDouble(stock))) && ((Double.parseDouble(stock)) > 0 ))  {    %>
+    <tr style="font-weight:bolder; background-color: yellow;text-align: center;" >
+        <% } else if (Integer.parseInt(stock) == 0) {   %>
+    <tr style="font-weight:bolder; background-color: red;text-align: center;">
+        <% } else {   %>
     <tr style="text-align: center;">
+        <%   }%>
 <input id="dataPatientOrderDetailsListhidden" type="hidden" value="<%=String.join("|", dataOrderList.get(i))%>">
 <td id="updateOrderDetailsTButton" data-status="pagado" data-toggle="modal" data-id="1" data-target="#updateOrder" align="center" style="display: none"><%= dataOrderList.get(i).get(0)%></td> <!-- Order No -->
 <td id="updateOrderDetailsTButton" data-status="pagado" data-toggle="modal" data-id="1" data-target="#updateOrder" align="center" ><%= dataOrderList.get(i).get(1)%></td> <!-- Code -->
