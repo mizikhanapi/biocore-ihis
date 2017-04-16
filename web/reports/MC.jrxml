@@ -10,6 +10,12 @@
 	<parameter name="mcInput" class="java.lang.String">
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
+	<parameter name="startDate" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="hfccode" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
 	<queryString>
 		<![CDATA[SELECT
      pms_patient_biodata.`PMI_NO` AS pms_patient_biodata_PMI_NO,
@@ -30,16 +36,15 @@
      lhr_med_leave.`doctor_name` AS lhr_med_leave_doctor_name,
      lhr_med_leave.`doctor_id` AS lhr_med_leave_doctor_id
 FROM
-     `lhr_med_leave` lhr_med_leave
-
-INNER JOIN
-`pms_patient_biodata` pms_patient_biodata ON pms_patient_biodata.`PMI_NO` = lhr_med_leave.`PMI_NO`
-
+     `pms_patient_biodata` pms_patient_biodata INNER JOIN `lhr_med_leave` lhr_med_leave ON pms_patient_biodata.`PMI_NO` = lhr_med_leave.`PMI_NO`
 WHERE
-lhr_med_leave.`pmi_no` = $P{mcInput} or
-pms_patient_biodata.`NEW_IC_NO` = $P{mcInput} or
-(pms_patient_biodata.`ID_TYPE`) AND pms_patient_biodata. `ID_NO` = $P{mcInput} or
-pms_patient_biodata.`OLD_IC_NO` = $P{mcInput}]]>
+     lhr_med_leave.`pmi_no` = $P{mcInput}
+     or pms_patient_biodata.`NEW_IC_NO` = $P{mcInput}
+     or null = (pms_patient_biodata.`ID_TYPE`)
+ AND pms_patient_biodata.`ID_NO` = $P{mcInput}
+     or pms_patient_biodata.`OLD_IC_NO` = $P{mcInput}
+ AND  lhr_med_leave.`encounter_date` = $P{startDate}
+]]>
 	</queryString>
 	<field name="pms_patient_biodata_PMI_NO" class="java.lang.String"/>
 	<field name="pms_patient_biodata_PMI_NO_TEMP" class="java.lang.String"/>

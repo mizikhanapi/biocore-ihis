@@ -14,6 +14,10 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+        <!--        <link rel="stylesheet" href="/resources/demos/style.css">-->
+        <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
         <title>Dispensing Sheet</title>
         <%@include file = "../assets/header.html" %>
     </head>
@@ -65,12 +69,20 @@
 
                         </br></br></br>
 
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" for="textinput">Date:</label>
+                            <div class="col-md-6">
+                                <input id="startDate" name="startDate" type="text" class="form-control datepicker" placeholder="" readonly>
+                            </div>
+                        </div>
+                        </br></br></br>
+
                         <div class="btn-group btn-group-justified" role="group" aria-label="group button">
                             <div class="btn-group" role="group">
                                 <button type="submit" class="btn btn-success btn-block btn-lg" role="button" id="printDispensingSheet">Generate Dispensing Sheet</button>
                             </div>
                             <div class="btn-group" role="group">
-                                <button type="reset" id="PrintReset" class="btn btn-default btn-block btn-lg" data-dismiss="modal" role="button" >Cancel</button>
+                                <button type="reset" id="Reset" class="btn btn-default btn-block btn-lg" data-dismiss="modal" role="button" >Cancel</button>
                             </div>
                         </div>
                     </div>
@@ -82,16 +94,27 @@
 
 <script>
 
-    $('#printDispensingSheet').on('click', function (e) {
+    $(document).ready(function () {
 
-        e.preventDefault();
+        $("#startDate").datepicker({
+            changeMonth: true,
+            changeYear: true,
+            dateFormat: 'yy-mm-dd',
+        });
 
-        var dsType = $("#dsType").val();
-        var dsInput = $("#dsInput").val();
-        console.log(dsType);
-        console.log(dsInput);
+        $('#printDispensingSheet').on('click', function (e) {
 
-        window.open("dispensingSheetReport.jsp?dsType=" + dsType + "&dsInput=" + dsInput);
+            e.preventDefault();
+
+            var dsType = $("#dsType").val();
+            var dsInput = $("#dsInput").val();
+            var startDate = $("startDate").val();
+            console.log(dsType);
+            console.log(dsInput);
+            console.log(startDate);
+
+            window.open("dispensingSheetReport.jsp?dsType=" + dsType + "&dsInput=" + dsInput + "&startDate" +startDate );
+        });
     });
 
 </script>

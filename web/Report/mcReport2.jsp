@@ -23,22 +23,26 @@
     </head>
     <body>
         <%
-           
+
             String mcType = request.getParameter("mcType");
             String mcInput = request.getParameter("mcInput");
-          
+            String startDate = request.getParameter("startDate");
+//            String hfccode = request.getParameter("hfccode");
 
             try {
 
                 Class.forName("com.mysql.jdbc.Driver").newInstance();
                 Connection conn = DriverManager.getConnection("jdbc:mysql://10.73.32.200:3306/emedica?zeroDateTimeBehavior=convertToNull", "root", "qwerty");
 
-                File reportFile = new File(application.getRealPath("//reports//MC.jasper"));
+                File reportFile = new File(application.getRealPath("MC.jasper"));
 
                 if (mcType.equals("PMI_NO")) {
 
                     Map parameters = new HashMap();
                     parameters.put("mcInput", mcInput);
+                    parameters.put("startDate", startDate);
+//                    parameters.put("hfccode", hfccode);
+//                    parameters.put("endDate", endDate);
                     //parameters.put("ID_TYPE", ID_TYPE);
 
                     byte[] bytes = JasperRunManager.runReportToPdf(reportFile.getPath(), parameters, conn);
@@ -54,6 +58,9 @@
 
                     Map parameters = new HashMap();
                     parameters.put("mcInput", mcInput);
+                    parameters.put("startDate", startDate);
+//                    parameters.put("hfccode", hfccode);
+//                    parameters.put("endDate", endDate);
                     //parameters.put("ID_TYPE", ID_TYPE);
                     byte[] bytes = JasperRunManager.runReportToPdf(reportFile.getPath(), parameters, conn);
 
@@ -68,7 +75,10 @@
 
                     Map parameters = new HashMap();
                     parameters.put("mcInput", mcInput);
-                   // parameters.put("ID_TYPE", ID_TYPE);
+                    parameters.put("startDate", startDate);
+//                    parameters.put("hfccode", hfccode);
+//                    parameters.put("endDate", endDate);
+                    // parameters.put("ID_TYPE", ID_TYPE);
                     byte[] bytes = JasperRunManager.runReportToPdf(reportFile.getPath(), parameters, conn);
 
                     response.setContentType("application/pdf");

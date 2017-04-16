@@ -9,6 +9,9 @@
 	<parameter name="dsType" class="java.lang.String">
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
+	<parameter name="startDate" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
 	<queryString>
 		<![CDATA[SELECT
      pis_mdc2.`UD_MDC_CODE` AS pis_mdc2_UD_MDC_CODE,
@@ -37,19 +40,20 @@
      pis_order_master.`HEALTH_FACILITY_CODE` AS pis_order_master_HEALTH_FACILITY_CODE,
      pis_mdc2.`D_TRADE_NAME` AS pis_mdc2_D_TRADE_NAME,
      pis_mdc2.`D_DURATION` AS pis_mdc2_D_DURATION,
-     pis_mdc2.`D_DURATIONT` AS pis_mdc2_D_DURATIONT
+     pis_mdc2.`D_DURATIONT` AS pis_mdc2_D_DURATIONT,
+     pis_order_master.`ORDER_DATE` AS pis_order_master_ORDER_DATE
 FROM
      `pis_dispense_master` pis_dispense_master INNER JOIN `pis_order_master` pis_order_master ON pis_dispense_master.`order_no` = pis_order_master.`order_no`
      INNER JOIN `pis_dispense_detail` pis_dispense_detail ON pis_order_master.`order_no` = pis_dispense_detail.`order_no`
      INNER JOIN `pms_patient_biodata` pms_patient_biodata ON pis_order_master.`pmi_no` = pms_patient_biodata.`pmi_no`
      INNER JOIN `pis_mdc2` pis_mdc2 ON pis_dispense_detail.`DRUG_ITEM_CODE` = pis_mdc2.`UD_MDC_CODE`
-
 WHERE
      pis_order_master.`pmi_no` = $P{dsInput}
      or pms_patient_biodata.`NEW_IC_NO` = $P{dsInput}
      or null = (pms_patient_biodata.`ID_TYPE`)
  AND pms_patient_biodata.`ID_NO` = $P{dsInput}
-     or pms_patient_biodata.`OLD_IC_NO` = $P{dsInput}]]>
+     or pms_patient_biodata.`OLD_IC_NO` = $P{dsInput}
+ AND $P{startDate} = pis_order_master.`ORDER_DATE`]]>
 	</queryString>
 	<field name="pis_mdc2_UD_MDC_CODE" class="java.lang.String"/>
 	<field name="pis_mdc2_D_ROUTE_CODE" class="java.lang.String"/>
@@ -78,6 +82,7 @@ WHERE
 	<field name="pis_mdc2_D_TRADE_NAME" class="java.lang.String"/>
 	<field name="pis_mdc2_D_DURATION" class="java.math.BigDecimal"/>
 	<field name="pis_mdc2_D_DURATIONT" class="java.lang.String"/>
+	<field name="pis_order_master_ORDER_DATE" class="java.lang.String"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>

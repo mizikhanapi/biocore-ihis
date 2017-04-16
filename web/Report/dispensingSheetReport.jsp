@@ -24,10 +24,10 @@
     </head>
     <body>
         <%
-           
+
             String dsType = request.getParameter("dsType");
             String dsInput = request.getParameter("dsInput");
-          
+            String startDate = request.getParameter("startDate");
 
             try {
 
@@ -40,6 +40,7 @@
 
                     Map parameters = new HashMap();
                     parameters.put("dsInput", dsInput);
+                    parameters.put("startDate", startDate);
                     //parameters.put("ID_TYPE", ID_TYPE);
 
                     byte[] bytes = JasperRunManager.runReportToPdf(reportFile.getPath(), parameters, conn);
@@ -55,6 +56,7 @@
 
                     Map parameters = new HashMap();
                     parameters.put("dsInput", dsInput);
+                    parameters.put("startDate", startDate);
                     //parameters.put("ID_TYPE", ID_TYPE);
                     byte[] bytes = JasperRunManager.runReportToPdf(reportFile.getPath(), parameters, conn);
 
@@ -69,7 +71,8 @@
 
                     Map parameters = new HashMap();
                     parameters.put("dsInput", dsInput);
-                   // parameters.put("ID_TYPE", ID_TYPE);
+                    parameters.put("startDate", startDate);
+                    // parameters.put("ID_TYPE", ID_TYPE);
                     byte[] bytes = JasperRunManager.runReportToPdf(reportFile.getPath(), parameters, conn);
 
                     response.setContentType("application/pdf");

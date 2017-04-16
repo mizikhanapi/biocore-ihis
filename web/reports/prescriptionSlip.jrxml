@@ -17,6 +17,9 @@
 	<parameter name="psInput" class="java.lang.String">
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
+	<parameter name="startDate" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
 	<queryString>
 		<![CDATA[SELECT
      pms_patient_biodata.`PMI_NO` AS pms_patient_biodata_PMI_NO,
@@ -52,7 +55,8 @@ WHERE
      or pms_patient_biodata.`NEW_IC_NO` = $P{psInput}
      or null = (pms_patient_biodata.`ID_TYPE`)
  AND pms_patient_biodata.`ID_NO` = $P{psInput}
-     or pms_patient_biodata.`OLD_IC_NO` = $P{psInput}]]>
+     or pms_patient_biodata.`OLD_IC_NO` = $P{psInput}
+AND $P{startDate} =  pis_order_master.`ORDER_DATE`]]>
 	</queryString>
 	<field name="pms_patient_biodata_PMI_NO" class="java.lang.String"/>
 	<field name="pms_patient_biodata_PATIENT_NAME" class="java.lang.String"/>

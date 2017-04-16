@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="a8044015-c0cd-4eeb-9bd3-c952ff27188e">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="startDate" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="endDate" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     icd10_blocks.`Id` AS icd10_blocks_Id,
+     icd10_blocks.`name` AS icd10_blocks_name,
+     icd10_codes.`icd10_code` AS icd10_codes_icd10_code,
+     icd10_codes.`icd10_chapter` AS icd10_codes_icd10_chapter,
+     icd10_codes.`icd10_block` AS icd10_codes_icd10_block,
+     icd10_codes.`icd10_desc` AS icd10_codes_icd10_desc,
+     icd10_codes.`icd10_digit` AS icd10_codes_icd10_digit,
+     lhr_diagnosis.`PMI_no` AS lhr_diagnosis_PMI_no,
+     lhr_diagnosis.`Episode_Date` AS lhr_diagnosis_Episode_Date,
+     lhr_diagnosis.`Diagnosis_Cd` AS lhr_diagnosis_Diagnosis_Cd,
+     lhr_diagnosis.`HFC_Cd` AS lhr_diagnosis_HFC_Cd,
+     icd10_chapters.`Id` AS icd10_chapters_Id,
+     icd10_chapters.`name` AS icd10_chapters_name,
+     lhr_diagnosis.`Centre_Code` AS lhr_diagnosis_Centre_Code,
+     icd10_raw.`Id` AS icd10_raw_Id,
+     icd10_raw.`id9` AS icd10_raw_id9,
+     icd10_raw.`name` AS icd10_raw_name
+FROM
+     `icd10_codes` icd10_codes INNER JOIN `lhr_diagnosis` lhr_diagnosis ON icd10_codes.`icd10_code` = lhr_diagnosis.`diagnosis_cd`
+     INNER JOIN `icd10_chapters` icd10_chapters ON icd10_codes.`icd10_chapter` = icd10_chapters.`id`
+     INNER JOIN `icd10_blocks` icd10_blocks ON icd10_codes.`icd10_block` = icd10_blocks.`id`
+INNER JOIN
+     `icd10_raw` icd10_raw ON  icd10_raw.`Id` =  icd10_codes.`icd10_digit`
+WHERE
+     lhr_diagnosis.`Episode_Date` BETWEEN $P{startDate} AND $P{endDate}
+ AND lhr_diagnosis.`Centre_Code` = 'FTMK'
+
+ORDER BY
+     icd10_chapters.`Id` ASC,
+     icd10_blocks.`Id` ASC,  icd10_raw.`id9`]]>
+	</queryString>
+	<field name="icd10_blocks_Id" class="java.lang.String"/>
+	<field name="icd10_blocks_name" class="java.lang.String"/>
+	<field name="icd10_codes_icd10_code" class="java.lang.String"/>
+	<field name="icd10_codes_icd10_chapter" class="java.lang.String"/>
+	<field name="icd10_codes_icd10_block" class="java.lang.String"/>
+	<field name="icd10_codes_icd10_desc" class="java.lang.String"/>
+	<field name="icd10_codes_icd10_digit" class="java.lang.String"/>
+	<field name="lhr_diagnosis_PMI_no" class="java.lang.String"/>
+	<field name="lhr_diagnosis_Episode_Date" class="java.sql.Timestamp"/>
+	<field name="lhr_diagnosis_Diagnosis_Cd" class="java.lang.String"/>
+	<field name="lhr_diagnosis_HFC_Cd" class="java.lang.String"/>
+	<field name="icd10_chapters_Id" class="java.lang.String"/>
+	<field name="icd10_chapters_name" class="java.lang.String"/>
+	<field name="lhr_diagnosis_Centre_Code" class="java.lang.String"/>
+	<field name="icd10_raw_Id" class="java.lang.String"/>
+	<field name="icd10_raw_id9" class="java.lang.String"/>
+	<field name="icd10_raw_name" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement x="128" y="28" width="248" height="20" uuid="c761ec50-3311-43a6-bb59-900167d0f08e"/>
+				<text><![CDATA[List International Classification of Disease (ICD10)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="128" y="48" width="34" height="20" uuid="d3db24a3-385b-4c84-9b49-cf57d0438760"/>
+				<text><![CDATA[From:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="272" y="48" width="21" height="20" uuid="66d66b06-d054-4f71-9092-4907bdc1807f"/>
+				<text><![CDATA[To:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="162" y="48" width="100" height="20" uuid="27f4d90a-65ba-4170-ae5e-62a9fb217b57"/>
+				<textFieldExpression><![CDATA[$P{startDate}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="293" y="48" width="100" height="20" uuid="0303df8a-af7d-4c54-ac0b-41a053a1f38c"/>
+				<textFieldExpression><![CDATA[$P{endDate}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="61" splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="125" splitType="Stretch">
+			<elementGroup>
+				<elementGroup>
+					<textField>
+						<reportElement isPrintRepeatedValues="false" x="117" y="20" width="241" height="20" isRemoveLineWhenBlank="true" uuid="88e188ab-8548-4c46-90b1-222ae0263057"/>
+						<textFieldExpression><![CDATA[$F{icd10_chapters_name}]]></textFieldExpression>
+					</textField>
+					<textField>
+						<reportElement isPrintRepeatedValues="false" x="60" y="20" width="33" height="20" isRemoveLineWhenBlank="true" uuid="6cd1f688-3d65-4aed-83f5-d21bbe37628c"/>
+						<textFieldExpression><![CDATA[$F{icd10_chapters_Id}]]></textFieldExpression>
+					</textField>
+				</elementGroup>
+			</elementGroup>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

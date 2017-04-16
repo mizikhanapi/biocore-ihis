@@ -1,6 +1,6 @@
 <%-- 
-    Document   : ICD10Main
-    Created on : Feb 19, 2017, 10:08:10 PM
+    Document   : dataAnaysisMain
+    Created on : Apr 16, 2017, 5:04:52 PM
     Author     : user
 --%>
 
@@ -18,7 +18,8 @@
         <link rel="stylesheet" href="/resources/demos/style.css">
         <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
         <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-        <title>ICD10</title>
+
+        <title> Data Analysis</title>
         <%@include file = "../assets/header.html" %>
     </head>
     <body>
@@ -36,13 +37,13 @@
             <div class="row">      
                 <div class="col-md-12">
                     <div class="thumbnail">
-                        <h2 style="text-align: center"> ICD 10 </h2>
+                        <h2 style="text-align: center"> Data Analysis </h2>
                         </br>
 
                         </br></br>
 
                         <div class="form-group">
-                            <label style="text-align: center" class="col-md-6 control-label" for="textinput">Discipline:</label>
+                            <label style="text-align: center" class="col-md-6 control-label" for="textinput">Discipline</label>
 
 
                             <div class="form-group">
@@ -52,9 +53,9 @@
                                         <option value="inpatient" id="allergy" >Inpatient</option>
                                         <option value="outpatient" id="complaint" >Outpatient</option>
                                     </select>
-
                                 </div>
                             </div>
+
                             </br></br></br>
 
                             <div class="form-group">
@@ -64,7 +65,6 @@
                                 </div>
                             </div>
 
-                            </br></br>
                             <div class="form-group">
                                 <label style="text-align: center" class="col-md-6 control-label" for="textinput">To</label>
                                 <div class="col-md-6">
@@ -72,10 +72,13 @@
                                 </div>
                             </div>
 
-                            </br></br></br>
+
                             <div class="btn-group btn-group-justified" role="group" aria-label="group button">
                                 <div class="btn-group" role="group">
-                                    <button type="submit" class="btn btn-success btn-block btn-lg" role="button" id="printLaporanKedatangan">Generate Report</button>
+                                    <button type="submit" class="btn btn-success btn-block btn-lg" role="button" id="dataReport">Generate Report</button>
+                                </div>
+                                <div class="btn-group" role="group">
+                                    <button type="submit" class="btn btn-success btn-block btn-lg" role="button" id="dataChart">Generate Chart</button>
                                 </div>
                                 <div class="btn-group" role="group">
                                     <button type="reset" id="PrintReset" class="btn btn-default btn-block btn-lg" data-dismiss="modal" role="button" >Cancel</button>
@@ -103,20 +106,39 @@
             changeYear: true,
             dateFormat: 'yy-mm-dd',
         });
-        $('#printICD10').on('click', function () {
+        $('#dataReport').on('click', function () {
 
             var startDate = document.getElementById("startDate").value;
             var endDate = document.getElementById("endDate").value;
-            var disiplinType = document.getElementByID("disiplinType").value;
+            var disiplinType = document.getElementById("disiplinType").value;
+
 
             console.log(startDate);
             console.log(endDate);
             console.log(disiplinType);
 
-            window.open("ICD10Report.jsp?startDate=" + startDate + "&endDate=" + endDate + "&disiplinType" + disiplinType);
+            window.open("laporanKedatanganJumlahPesakitLuarReport.jsp?startDate=" + startDate + "&endDate=" + endDate + "&disiplinType" + disiplinType);
 
         });
+
+        $('#dataChart').on('click', function () {
+
+            var startDate = document.getElementById("startDate").value;
+            var endDate = document.getElementById("endDate").value;
+            var disiplinType = document.getElementByID("disiplinType").value;
+
+
+            console.log(startDate);
+            console.log(endDate);
+            console.log(disiplinType);
+
+            window.open("");
+
+
+        });
+
+
     });
+
+
 </script>
-
-

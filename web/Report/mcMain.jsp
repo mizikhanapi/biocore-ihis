@@ -15,6 +15,10 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<!--        <link rel="stylesheet" href="/resources/demos/style.css">-->
+        <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
         <title>Print MC</title>
     </head>
     <body>
@@ -69,6 +73,23 @@
 
                             </br></br></br>
 
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" for="textinput">Date:</label>
+                                <div class="col-md-6">
+                                    <input id="startDate" name="startDate" type="text" class="form-control datepicker" placeholder="" readonly>
+                                </div>
+                            </div>
+                            </br></br></br>
+
+<!--                            <div class="form-group">
+                                <label class="col-md-4 control-label" for="textinput">To :</label>
+
+                                <div class="col-md-6">
+                                    <input id="endDate" name="endDate" type="text" class="form-control datepicker" placeholder="" readonly>
+                                </div>
+
+                            </div>-->
+
                             <div class="btn-group btn-group-justified" role="group" aria-label="group button">
                                 <div class="btn-group" role="group">
                                     <button type="submit" class="btn btn-success btn-block btn-lg" role="button" id="printMC">Generate MC</button>
@@ -88,18 +109,34 @@
 
 <script>
 
+    $(document).ready(function () {
+        
+         $("#startDate").datepicker({
+                changeMonth: true,
+                changeYear: true,
+                dateFormat: 'yy-mm-dd',
+            });
+//            $("#endDate").datepicker({
+//                changeMonth: true,
+//                changeYear: true,
+//                dateFormat: 'yy-mm-dd',
+//            });
 
-    $('#printMC').on('click', function (e) {
+        $('#printMC').on('click', function (e) {
 
-        e.preventDefault();
+            e.preventDefault();
 
-        var mcType = $("#mcType").val();
-        var mcInput = $("#mcInput").val();
-        console.log(mcType);
-        console.log(mcInput);
+            var mcType = $("#mcType").val();
+            var mcInput = $("#mcInput").val();
+            var startDate = $("#startDate").val();
+            console.log(mcType);
+            console.log(mcInput);
+            console.log(startDate);
+//              +"&startDate" + startDate
 
-        window.open("mcReport.jsp?mcType=" + mcType + "&mcInput=" + mcInput);
+            window.open("mcReport2.jsp?mcType=" + mcType + "&mcInput=" + mcInput  +"&startDate" + startDate);
 
+        });
     });
 
 </script>
