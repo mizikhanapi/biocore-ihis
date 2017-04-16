@@ -101,6 +101,7 @@
 
                 //set value
                 $('#BedIDReg').val(bedID);
+                $('#bednew').val(bedID);
             }
 
 

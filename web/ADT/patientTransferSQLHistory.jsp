@@ -13,9 +13,9 @@
   
     String BedN, WardNameN, WardClassN, Dis, Deposit,pmino;
     
-    BedN = request.getParameter("BedN");
-    WardNameN = request.getParameter("WardNameN");
-    WardClassN = request.getParameter("WardClassN");
+    BedN = request.getParameter("BedO");
+    WardNameN = request.getParameter("WardNameO");
+    WardClassN = request.getParameter("WardClassO");
     Dis = request.getParameter("Dis");
     pmino = request.getParameter("pmino");
     Deposit = request.getParameter("Deposit");

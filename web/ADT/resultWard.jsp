@@ -105,7 +105,7 @@
         var row = $(this).closest("tr");
         var rowData = row.find("#dataWardhidden").val();
         var arrayData = rowData.split("|");
-        console.log("hai");
+        //console.log("hai");
         $('.nav-tabs a[href="#tab_default_2"]').tab('show');
         
         var pmi = arrayData[6];
@@ -117,6 +117,8 @@
         var bedId = arrayData[12];
         var rate = arrayData[31];
         var admissionDate = arrayData[7];
+        var inStat = arrayData[28];
+        var oldDis = arrayData[8];
         
         $("#pmino").val(pmi);
         $("#pinof").val(icno);
@@ -126,5 +128,7 @@
         $("#WardNamef").val(wardName);
         $("#Ratef").val(rate);
         $("#AdmissionDatef").val(admissionDate);
+        $("#inStat").val(inStat);
+        $("#oldDis").val(oldDis);
     });
 </script>

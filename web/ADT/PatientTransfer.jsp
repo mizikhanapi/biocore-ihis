@@ -34,7 +34,8 @@
                         <div class="row">
                             <div class="col-md-6">
 
-
+                                <input type="hidden" id="inStat">
+                                <input type="hidden" id="oldDis">
                                 <!-- Text input-->
                                 <div class="form-group">
                                     <label class="col-md-4 control-label" for="textinput">PMI No. *</label>
@@ -155,6 +156,10 @@
                         </div>
                         <div>                                       
                             <%@include file = "PMS/search/searchBed.jsp" %>
+                            <input type="hidden" id="bednew">
+                            <input type="hidden" id="wardnew">
+                            <input type="hidden" id="classnew">
+                            <input type="hidden" id="ratenew">
                         </div>
                         <div id="listbedPT"></div>
                         
@@ -164,7 +169,7 @@
 
 
                 <div class="text-center">
-                    <button class="btn btn-primary " type="button" id="transfer"> Transfer</button>
+                    <button class="btn btn-primary " type="button" id="transferBtn"> Transfer</button>
 
                     <button class="btn btn-default " type="button" id="btncancel" name="btncancel" > Cancel</button>
                 </div>
@@ -257,34 +262,33 @@
             ddMMyyyy = ZeroDay + "-" + ZeroMonth + "-" + year;
         }
 
-        //register patient
-        $("#transfer").off('click').on('click', function (e) {
-
-
-
-
-            e.preventDefault();
+        $(document).ready(function(){
+            //register patient
+        $("#transferBtn").on('click', function () {
             var pmino = $('#pmino').val();
-            var pino = $('#pino').val();
-            var gender = $('#gender').val();
-            var age = $('#age').val();
-            var Bed = $('#Bed').val();
-            var pname = $('#pname').val();
-            var MRN = $('#MRN').val();
-            var AdmissionType = $('#AdmissionType').val();
-            var Consultant = $('#Consultant').val();
-            var WardClass = $('#WardClass').val();
-            var WardName = $('#WardName').val();
-            var Rate = $('#Rate').val();
-            var BedN = $('#BedN').val();
-            var WardNameN = $('#WardNameN').val();
-            var WardClassN = $('#WardClassN').val();
-            var Dis = $('#Dis').val();
+            //var pino = $('#pino').val();
+            //var gender = $('#gender').val();
+            //var age = $('#age').val();
+            var Bed = $('#bednew').val();
+            //var pname = $('#pname').val();
+            //var MRN = $('#MRN').val();
+            //var AdmissionType = $('#AdmissionType').val();
+            //var Consultant = $('#Consultant').val();
+            var WardClass = $('#classnew').val();
+            var WardName = $('#wardnew').val();
+            //var Rate = $('#Rate').val();
+            var BedO = $('#Bedf').val();
+            var WardNameO = $('#WardNamef').val();
+            var WardClassO = $('#WardClassf').val();
+            var Dis = $('#dis_cd').val();
             var TransferReason = $('#TransferReason').val();
             var Deposit = $('#Deposit').val();
             var hfc = $("#Rhfc").val();
             var createdBy = $("#Rid").val();
-            var sub = $("#Rsub").val();
+            //var sub = $("#Rsub").val();
+            var status = $('#inStat').val();
+            var oldDis = $("#oldDis").val();
+            var episode_date =$("#AdmissionDatef").val();
 
 
             //var hfc = $('#hfc').val();
@@ -292,106 +296,129 @@
             //var subDicipline = $('#subDicipline').val();
 
             if (Dis === "" || Dis === null) {
-                //bootbox.alert("Complete The Fields of Discipline ");
-            } else if (WardClassN === "" || WardClassN === null) {
-                //bootbox.alert("Complete The Fields of Ward ID");
+                bootbox.alert("Complete The Fields of Discipline ");
+            } else if (WardClassO === "" || WardClassO === null) {
+                bootbox.alert("Complete The Fields of Ward ID");
             } else if (TransferReason === "" || TransferReason === null) {
-                // bootbox.alert("Complete The Fields of TransferReason");
-            } else if (WardNameN === "" || WardNameN === null) {
-                //bootbox.alert("Complete The Fields of Ward Name");
+                 bootbox.alert("Complete The Fields of TransferReason");
+            } else if (WardNameO === "" || WardNameO === null) {
+                bootbox.alert("Complete The Fields of Ward Name");
             } else if (Deposit === "" || Deposit === null) {
-                //bootbox.alert("Complete The Fields of Citizen Rates");
-            } else if (BedN === "" || BedN === null) {
-                // bootbox.alert("Complete The Fields of Citizen Deposit");
+                bootbox.alert("Complete The Fields of Citizen Rates");
+            } else if (BedO === "" || BedO === null) {
+                 bootbox.alert("Select Bed first");
 
             } else {
 
                 var data = {
                     pmino: pmino,
-                    WardName: WardName,
-                    pino: pino,
-                    gender: gender,
-                    age: age,
-                    Bed: Bed,
-                    pname: pname,
-                    MRN: MRN,
-                    AdmissionType: AdmissionType,
-                    Consultant: Consultant,
-                    WardClass: WardClass,
-                    Rate: Rate,
-                    BedN: BedN,
-                    WardNameN: WardNameN,
-                    WardClassN: WardClassN,
+                    WardNameO: WardNameO,
+                    BedO: BedO,
+                    WardClassO: WardClassO,
+                    BedN: Bed,
+                    WardNameN: WardName,
+                    WardClassN: WardClass,
                     Dis: Dis,
                     TransferReason: TransferReason,
                     Deposit: Deposit,
                     hfc: hfc,
-                    createdBy: createdBy,
-                    sub: sub
+                    status: status,
+                    oldDis: oldDis,
+                    episode_date : episode_date
                 };
+                console.log(data);
+                
                 $.ajax({
-                    url: "patientTransferSQL.jsp",
-                    type: "post",
-                    data: data,
-                    timeout: 10000,
-                    success: function (datas) {
-
-                        if (datas.trim() === 'Success') {
-
-
-                            bootbox.alert({
-                                message: "Successfully update new patient information",
-                                title: "Process Result",
-                                backdrop: true
-                            });
-                        } else if (datas.trim() === 'Failed') {
-                            bootbox.alert({
-                                message: "Update Failed",
-                                title: "Process Result",
-                                backdrop: true
-                            });
-                        }
-
-                    },
-                    error: function (err) {
-                        bootbox.alert("Error update!");
-                    }
+                   type:"post",
+                   url:"transfer.jsp",
+                   timeout:10000,
+                   data:data,
+                   success: function(databack){
+                       console.log(databack);
+                       if(databack.trim() === "success"){
+                           bootbox.alert("success");
+                           
+                       }else if(databack.trim() === "fail"){
+                           bootbox.alert("fail");
+                       }
+                       $('#TransferForm')[0].reset();
+                   },error: function(){
+                       
+                   }
                 });
-
-                $.ajax({
-                    url: "patientTransferSQLHistory.jsp",
-                    type: "post",
-                    data: data,
-                    timeout: 10000,
-                    success: function (datas) {
-
-                        if (datas.trim() === 'Success') {
-
-
-                            bootbox.alert({
-                                message: "Successfully transfer patient",
-                                title: "Process Result",
-                                backdrop: true
-                            });
-                        } else if (datas.trim() === 'Failed') {
-                            bootbox.alert({
-                                message: "Update Failed",
-                                title: "Process Result",
-                                backdrop: true
-                            });
-                        }
-
-                    },
-                    error: function (err) {
-                        bootbox.alert("Error update!");
-                    }
-                });
+//                
+//                
+//                
+//                
+//                
+//                $.ajax({
+//                    url: "patientTransferSQL.jsp",
+//                    type: "post",
+//                    data: data,
+//                    timeout: 10000,
+//                    success: function (datas) {
+//
+//                        if (datas.trim() === 'Success') {
+//
+//
+//                            bootbox.alert({
+//                                message: "Successfully update new patient information",
+//                                title: "Process Result",
+//                                backdrop: true
+//                            });
+//                        } else if (datas.trim() === 'Failed') {
+//                            bootbox.alert({
+//                                message: "Update Failed",
+//                                title: "Process Result",
+//                                backdrop: true
+//                            });
+//                        }
+//
+//                    },
+//                    error: function (err) {
+//                        bootbox.alert("Error update!");
+//                    }
+//                });
+//
+//                $.ajax({
+//                    url: "patientTransferSQLHistory.jsp",
+//                    type: "post",
+//                    data: data,
+//                    timeout: 10000,
+//                    success: function (datas) {
+//
+//                        if (datas.trim() === 'Success') {
+//
+//
+//                            bootbox.alert({
+//                                message: "Successfully transfer patient",
+//                                title: "Process Result",
+//                                backdrop: true
+//                            });
+//                        } else if (datas.trim() === 'Failed') {
+//                            bootbox.alert({
+//                                message: "Update Failed",
+//                                title: "Process Result",
+//                                backdrop: true
+//                            });
+//                        }
+//
+//                    },
+//                    error: function (err) {
+//                        bootbox.alert("Error update!");
+//                    }
+//                });
             }
         });
+        
         //event on click clear buton
         $('#btnclear').click(function () {
-            $('#myForm2')[0].reset();
+            $('#TransferForm')[0].reset();
         });
+        
+        });
+        
+        
 
 
     </script>                       

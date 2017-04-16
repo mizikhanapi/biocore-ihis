@@ -124,7 +124,7 @@
                             var arrayData = $('#DisWard').val().split("|");
                             var discode=arrayData[0];
                             $('#dis_cd').val(discode);
-                            console.log(arrayData);
+                            //console.log(arrayData);
                             
                             $.ajax({
                                 type:"post",
@@ -133,7 +133,7 @@
                                 timeout: 10000,
                                 success: function (list) {
                                         //remove the loading 
-                                        console.log(list);
+                                        //console.log(list);
                                         $('#wardTypeList').html(list);
                                     },
                                     error: function (xhr, status, error) {
@@ -204,6 +204,13 @@
                         //console.log(list);
                         var pageNow = $('#pageNow').val();
                         if(pageNow==="PT"){
+                            var Diso = $('#dis_cd').val();
+                            var wname = $('#wname').val();
+                            var WardType = $('#WardType').val();
+                            
+                            $('#wardnew').val(wname);
+                            $('#classnew').val(WardType);
+                            //$('#ratenew').val();
                             $('#listbedPT').html(list);
                         }else if(pageNow==="IR"){
                             $('#bedtest').html(list);
