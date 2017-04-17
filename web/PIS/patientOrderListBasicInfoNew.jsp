@@ -31,7 +31,7 @@
                     <label class="col-md-4 control-label" for="textinput">PMI No.</label>
                     <div class="col-md-8">
                         <input id="patientpmino" name="patientpmino" type="text" placeholder="" readonly class="form-control input-md">
-                        <input id="dataPDI" name="dataPDI" type="text" placeholder="" readonly class="form-control input-md">   
+                        <input id="dataPDI" name="dataPDI" type="hidden" placeholder="" readonly class="form-control input-md">   
                     </div>
                 </div>
                 <!-- Text input-->
@@ -264,8 +264,7 @@
         </form>
     </div>
 
-    <div class="text-center" id="patientOrderDispenseButtonDiv" > 
-        <button class="btn btn-success " type="button" id="test" name="btnOrderDispense" > <i class="fa fa-shopping-cart fa-lg"></i>&nbsp; test &nbsp;</button>
+    <div class="text-center" id="patientOrderDispenseButtonDiv" >
         <button class="btn btn-success " type="button" id="btnOrderDispense" name="btnOrderDispense" > <i class="fa fa-shopping-cart fa-lg"></i>&nbsp; Dispense &nbsp;</button>
         <button class="btn btn-primary " type="button" id="btnOrderDispensePrescribe" name="btnOrderDispensePrescribe" > <i class="fa fa-print fa-lg" ></i>&nbsp; Generate Label &nbsp;</button>
         <button class="btn btn-default " type="button" id="btnClearOrderDetailDispense" name="btnClearOrderDetailDispense" > <i class="fa fa-ban fa-lg"></i>&nbsp; Back &nbsp;</button>
