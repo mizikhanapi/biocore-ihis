@@ -223,7 +223,7 @@
         var rispmino = arrayData[0];
         var risName = arrayData[13];
         var risnic = arrayData[14];
-        var risGender = arrayData[16];
+        var risGender = arrayData[18];
         var risBdate = arrayData[15];
         var risBtype = arrayData[17];
         var risOrderNo = arrayData[1];
