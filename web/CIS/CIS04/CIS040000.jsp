@@ -5,7 +5,7 @@
 --%>
 <!--Modal add Procedure-->
 <%
-        String searchPatientCondition= "select Detail_Reference_code,Description from adm_lookup_detail where Master_Reference_code = '0096' order by priority_indicator ASC";
+        String searchPatientCondition= "select Detail_Reference_code,Description from adm_lookup_detail where Master_Reference_code = '0096' AND hfc_cd = '"+hfc_cd+"' order by priority_indicator ASC";
         ArrayList<ArrayList<String>> dataPatientCondition = Conn.getData(searchPatientCondition);
                 String searchPriority= "select Detail_Reference_code,Description from adm_lookup_detail where Master_Reference_code = '0095' order by priority_indicator ASC";
         ArrayList<ArrayList<String>> dataPriority = Conn.getData(searchPriority);

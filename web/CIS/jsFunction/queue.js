@@ -567,6 +567,7 @@ function convertEHR(ehr) {
                         modalityROSCode:detailROS[2],
                         priorityROS:prioyAry[2]
                     };
+                    getObjectORCHFCDetail(hfc_cd, objROS.hfcIdROS,objROS);
                     _data.push(objROS);
                     displayROS(objROS.codeROS, objROS.ROS, objROS.commentROS, objROS.modalityROS, objROS.modalityROScode, objROS.bodySystemROS, objROS.bodySystemROS, objROS.bodySystemROSCode, objROS.hfcROS, objROS.hfcROScode,objROS.locationROS,objROS.appointmentROS,objROS.priorityROS);
                 }
@@ -609,6 +610,7 @@ function convertEHR(ehr) {
                         spclLOS: LIODetail[6].trim(),
                         volumeLOS: LIODetail[5]
                     };
+                     getObjectORCHFCDetail(hfc_cd, objLIO.hfcIdLOS,objLIO);
                     _data.push(objLIO);
                     console.log(objLIO);
                     displayLOS(objLIO.searchLOS, objLIO.codeLOS, objLIO.catLOS, objLIO.sourceLOS, objLIO.containerLOS, objLIO.volumeLOS, objLIO.spclLOS, objLIO.commentLOS, objLIO.appointmentLOS, objLIO.priorityLOS,objLIO.hfcLOS,objLIO.hfcIdLOS)
@@ -647,6 +649,7 @@ function convertEHR(ehr) {
                 searchDTO:reqDrugAry[1],
                 unitDTO:DTOData1[6]
             };
+             getObjectORCHFCDetail(hfc_cd, hfc_cd,objDTO);
             _data.push(objDTO);
            displayDTO(objDTO.searchDTO, objDTO.drugNameDTO, objDTO.drugStrDTO, objDTO.doseDTO, objDTO.drugFrequencyDTO, objDTO.durationDTO, objDTO.unitDTO, objDTO.drugInstructionDTO, objDTO.cautionaryDTO, objDTO.commentDTO) ;
         }else if (header === "POS") {
@@ -660,6 +663,7 @@ function convertEHR(ehr) {
                 proType: POSData1[4],
                 procedure_cd:POSData[0]
             };
+            getObjectORCHFCDetail(hfc_cd, hfc_cd,objPOS);
             _data.push(objPOS);
            displayPOS(objPOS.Problem18, objPOS.proType, objPOS.procedure_cd) ;
        }else if (header === "MEC") {
