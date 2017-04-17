@@ -112,10 +112,10 @@ $(document).ready(function () {
         $items.each(function () {
             obj1[this.id] = $(this).val();
         });
-
+        getObjectORCHFCDetail(hfc_cd, hfc_cd,obj1);
         _data.push(obj1);
         var index = _data.length -1;
-        getORCHFCDetail(hfc_cd, hfc_cd,index);
+        //etORCHFCDetail(hfc_cd, hfc_cd,index);
         console.log(obj1);
 
         displayDTO(searchDTO, drugName, drugStr, drugDose, drugFreq, drugDur1, unit, drugInst, cautionary, comment);
@@ -359,10 +359,10 @@ $(document).ready(function () {
         $items.each(function () {
             obj1[this.id] = $(this).val();
         });
-
+        getObjectORCHFCDetail(hfc_cd, hfc_cd,obj1); 
         _data.push(obj1);
          var index = _data.length -1;
-        getORCHFCDetail(hfc_cd,hfc_cd,index);
+       // getORCHFCDetail(hfc_cd,hfc_cd,index);
         console.log(_data);
 
         displayPOS(Problem18, proType, procedure_cd);
@@ -506,16 +506,16 @@ $(document).ready(function () {
                           patientConditionROS:   patientCondition,
                           priorityROS: priority
                       };
-      
+      getObjectORCHFCDetail(hfc_cd, hfcROScode,obj1);
         $items.each(function () {
             obj1[this.id] = $(this).val();
         });
 
         _data.push(obj1);
         var index = _data.length -1;
-         getORCHFCDetail(hfc_cd, hfcROScode,index);
-        console.log(_data.length);
-        console.log(_data);
+         //getORCHFCDetail(hfc_cd, hfcROScode,index);
+      //  console.log(_data.length);
+        console.log(obj1);
 
         displayROS(codeROS, ROS, commentROS,modalityROS,modalityROScode,bodysysROS,bodysysROS,bodysysROScode,hfcROS,hfcROScode,locationHFCROS,appointmentROS,patientConditionROS);
 
@@ -591,7 +591,8 @@ $(document).ready(function () {
         upObject.ROS = _UROS;
         upObject.codeROS = _UcodeROS;
         upObject.commentROS = _UcommentROS;
-        getORCHFCDetail(hfc_cd, _UhfcROScode,$('#jsonId').val());
+         getObjectORCHFCDetail(hfc_cd, _UhfcROScode,upObject);
+        //getORCHFCDetail(hfc_cd, _UhfcROScode,$('#jsonId').val());
 
         var sum = _UROS + '| ' + _UcommentROS + '|'+_UmodalityROS+ '|'+_UbodysysROS+ '|'+_UhfcROS+ '|'+_UlocationHFCROS+ '|'+_UappointmentROS+ '|'+_UPatientCondition ;
 
@@ -640,13 +641,14 @@ $(document).ready(function () {
             patientCondition:patientCondition,
             priority:priority
         };
+        getObjectORCHFCDetail(hfc_cd, hfcIdLOS,obj1);
         $items.each(function () {
             obj1[this.id] = $(this).val();
         });
-
+    
         _data.push(obj1);
         var index = _data.length -1;
-        getORCHFCDetail(hfc_cd, hfcIdLOS,index);
+       // getORCHFCDetail(hfc_cd, hfcIdLOS,index);
         console.log(obj1);
 
         displayLOS(searchLOS, codeLOS, catLOS, sourceLOS, containerLOS, volumeLOS, spclLOS, commentLOS, appointmentLOS, priorityLOS,hfcLOS,hfcIdLOS);
@@ -734,6 +736,7 @@ $(document).ready(function () {
         upObject.priority = _UpriorityLOS;
         upObject.patientConditionROScd = _UpatientConditionLOScd;
         upObject.priorityLOScd = _UpriorityLOScd;
+        getObjectORCHFCDetail(hfc_cd, _UhfcIdLOS,upObject);
 
         var sum = _UsearchLOS + '|' + _UcatLOS + '|' + _UsourceLOS + '|' + _UcontainerLOS + '|' + _UvolumeLOS + '|' + _UspclLOS + '|' + _UcommentLOS + '|' + _UappointmentLOS + '|' + _UpriorityLOS+ '|' + _UhfcLOS;
         console.log(upObject);
@@ -994,6 +997,45 @@ function displayPRI(hfcREFname, hfcREFcode, disREFname, disREFcode, docREFname, 
                  var dataTemp = _data[index];
                 dataTemp.hfcOrderDetail = order;
                 dataTemp.hfcProviderDetail = provide;
+
+//                HFCOrderDetail.push(resultAry[0]) ;
+//                HFCProviderDetail.push(resultAry[1]);
+
+            }
+        });
+       
+    }
+    
+    
+    function getObjectORCHFCDetail(OrderingHFC, ProviderHFC,obj1){
+        var order = "";
+        var provide = "";
+        var detail1 = [" "];
+        var hfcCode = {
+            orderingHFC:OrderingHFC,
+            providerHFC:ProviderHFC
+        };
+        console.log(hfcCode);
+        $.ajax({
+            url:"search/getORCHFC.jsp",
+            method:"POST",
+            timeout:3000,
+            data:hfcCode,
+//            async: false,
+            success:function(result){
+                console.log(result);
+                var resultAry = result.split("[#-#]");
+   
+                order = resultAry[0].trim();
+                provide = resultAry[1].trim();
+                if(order === "-NA-"){
+                    order = "-|-|-|-|-|-|-|-|-|-|-|-|-|-|-";
+                }
+                if(provide === "-NA-"){
+                    provide = "-|-|-|-|-|-|-|-|-|-|-|-|-|-|-";
+                }
+                 obj1.hfcOrderDetail = order;             
+                obj1.hfcProviderDetail = provide;
 
 //                HFCOrderDetail.push(resultAry[0]) ;
 //                HFCProviderDetail.push(resultAry[1]);

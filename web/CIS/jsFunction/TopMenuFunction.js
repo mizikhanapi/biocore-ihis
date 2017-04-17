@@ -261,8 +261,8 @@ $(document).ready(function (e) {
                 if(orderNotesROS === ""){
                     var hfcOFDetail = data[key].hfcOrderDetail.split("|");
                     var hfcPFDetail = data[key].hfcProviderDetail.split("|");
-                    var orc = getORC("T12102", "", "", "NO", data[key].priorityROS, getDate(), episodeDate, episodeDate, doctor_id, doctor_id, "", hfc_cd,discipline, subdis, "RIS", hfcOFDetail[1],
-                            hfcOFDetail[2],hfcOFDetail[3],hfcOFDetail[3], hfcOFDetail[10], hfcOFDetail[14], hfcOFDetail[13], hfcOFDetail[7],hfcOFDetail[9], hfcPFDetail[0], "-", "", "RIS", hfcPFDetail[1],
+                    var orc = getORC("T12102", "", "", "NO", data[key].priorityROS, getDate(), episodeDate, episodeDate, doctor_id, doctor_id, "", hfc_cd,discipline, subdis, "02", hfcOFDetail[1],
+                            hfcOFDetail[2],hfcOFDetail[3],hfcOFDetail[3], hfcOFDetail[10], hfcOFDetail[14], hfcOFDetail[13], hfcOFDetail[7],hfcOFDetail[9], hfcPFDetail[0], "-", "", "06", hfcPFDetail[1],
                             hfcPFDetail[2],hfcPFDetail[3], hfcPFDetail[10]);
                             orderNotesROS = orc + "ROS|"+ ccnProblem + "" + dgsProblem + "CTV3|" + data[key].codeROS + "^" + data[key].ROS + "^ICD10-PCS|"+ data[key].appointmentROS +"|"+ data[key].hfcIdROS +"^"+ data[key].hfcROS +"^PSDD|038^" + data[key].priorityROScd +"^" + data[key].priorityROS +"|096^" + data[key].patientConditionROSCd +"^" + data[key].patientConditionROS +"|"+ data[key].commentROS +  "|" + getRRI();
                 }else {
@@ -271,12 +271,12 @@ $(document).ready(function (e) {
             } else if (data[key].Acode === "DTO") {
                 var note1 = "DTO|" + ccnProblem + "" + dgsProblem + "CTV3|" + data[key].dtoCode + "^ " + data[key].searchDTO + "^MDC|" + data[key].drugNameDTO;
                 var note2 = "^^^MDC|066^^" + data[key].dRouteDTO + "|^" + data[key].drugFrequencyDTO + "^SG|" + data[key].unitDTO + "|" + data[key].doseDTO + "|" + data[key].drugStrDTO;
-                var note3 = "|025^^" + data[key].drugInstructionDTO + "|" + data[key].durationDTO + "|" + data[key].drugQtyDTO + "|hfcSendCode^hfcSendName^PSDD|" + data[key].cautionaryDTO + "^" + data[key].commentDTO + "|" + getRRI();
+                var note3 = "|025^^" + data[key].drugInstructionDTO + "|" + data[key].durationDTO + "|" + data[key].drugQtyDTO + "|"+hfc_cd+"^"+hfc_name+"^PSDD|" + data[key].cautionaryDTO + "^" + data[key].commentDTO + "|" + getRRI();
                 if (orderNotesDTO === "") {
                     var hfcOFDetail = data[key].hfcOrderDetail.split("|");
                     var hfcPFDetail = data[key].hfcProviderDetail.split("|");
-                    var orc = getORC("T12100", "", "", "NO", "-", getDate(), episodeDate, episodeDate, doctor_id, doctor_id, "", hfc_cd, discipline, subdis, "RIS", hfcOFDetail[1],
-                            hfcOFDetail[2], hfcOFDetail[3], hfcOFDetail[3], hfcOFDetail[10], hfcOFDetail[14], hfcOFDetail[13], hfcOFDetail[7], hfcOFDetail[9], hfcPFDetail[0], "-", "", "RIS", hfcPFDetail[1],
+                    var orc = getORC("T12100", "", "", "NO", "-", getDate(), episodeDate, episodeDate, doctor_id, doctor_id, "", hfc_cd, discipline, subdis, "02", hfcOFDetail[1],
+                            hfcOFDetail[2], hfcOFDetail[3], hfcOFDetail[3], hfcOFDetail[10], hfcOFDetail[14], hfcOFDetail[13], hfcOFDetail[7], hfcOFDetail[9], hfcPFDetail[0], "-", "", "04", hfcPFDetail[1],
                             hfcPFDetail[2], hfcPFDetail[3], hfcPFDetail[10]);
                     orderNotesDTO = orc + note1 + note2 + note3;
                 } else {
@@ -287,8 +287,8 @@ $(document).ready(function (e) {
                 if (orderNotesLIO === "") {
                     var hfcOFDetail = data[key].hfcOrderDetail.split("|");
                     var hfcPFDetail = data[key].hfcProviderDetail.split("|");
-                    var orc = getORC("T12102", "", "", "NO", data[key].priority, getDate(), episodeDate, episodeDate, doctor_id, doctor_id, "", hfc_cd, discipline, subdis, "RIS", hfcOFDetail[1],
-                            hfcOFDetail[2], hfcOFDetail[3], hfcOFDetail[3], hfcOFDetail[10], hfcOFDetail[14], hfcOFDetail[13], hfcOFDetail[7], hfcOFDetail[9], hfcPFDetail[0], "-", "", "RIS", hfcPFDetail[1],
+                    var orc = getORC("T12101", "", "", "NO", data[key].priority, getDate(), episodeDate, episodeDate, doctor_id, doctor_id, "", hfc_cd, discipline, subdis, "02", hfcOFDetail[1],
+                            hfcOFDetail[2], hfcOFDetail[3], hfcOFDetail[3], hfcOFDetail[10], hfcOFDetail[14], hfcOFDetail[13], hfcOFDetail[7], hfcOFDetail[9], hfcPFDetail[0], "-", "", "05", hfcPFDetail[1],
                             hfcPFDetail[2], hfcPFDetail[3], hfcPFDetail[10]);
                     orderNotesLIO = orc +  "LIO|"  + ccnProblem + "" + dgsProblem + "CTV3|" + data[key].codeLOS + "^" + data[key].searchLOS + "^ICD10-PCS|" + data[key].appointmentLOS + "|038^" + data[key].priority + "^" + data[key].priorityLOScd + "|096^" + data[key].patientConditionLOScd + "^" + data[key].patientCondition + "|" + data[key].hfcIdLOS + "^" + data[key].hfcLOS + "^PSDD|" + data[key].commentLOS + "|" + getRRI();
                 } else {
@@ -300,8 +300,8 @@ $(document).ready(function (e) {
                 if (orderNotesPOS === "") {
                     var hfcOFDetail = data[key].hfcOrderDetail.split("|");
                     var hfcPFDetail = data[key].hfcProviderDetail.split("|");
-                    var orc = getORC("T12102", "", "", "NO", "-", getDate(), episodeDate, episodeDate, doctor_id, doctor_id, "", hfc_cd, discipline, subdis, "RIS", hfcOFDetail[1],
-                            hfcOFDetail[2], hfcOFDetail[3], hfcOFDetail[3], hfcOFDetail[10], hfcOFDetail[14], hfcOFDetail[13], hfcOFDetail[7], hfcOFDetail[9], hfcPFDetail[0], "-", "", "RIS", hfcPFDetail[1],
+                    var orc = getORC("T12103", "", "", "NO", "-", getDate(), episodeDate, episodeDate, doctor_id, doctor_id, "", hfc_cd, discipline, subdis, "02", hfcOFDetail[1],
+                            hfcOFDetail[2], hfcOFDetail[3], hfcOFDetail[3], hfcOFDetail[10], hfcOFDetail[14], hfcOFDetail[13], hfcOFDetail[7], hfcOFDetail[9], hfcPFDetail[0], "-", "", "18", hfcPFDetail[1],
                             hfcPFDetail[2], hfcPFDetail[3], hfcPFDetail[10]);
                     orderNotesPOS = orc +"POS|" + ccnProblem + "" +  "CTV3|" + "^" + data[key].procedure_cd +"^"+ data[key].Problem18 +  "^ICD10-PCS||"+data[key].proType+"|||||"+hfc_cd+"|"+hfc_name+"||hfc_cd_receiving|<cr>\n";
                 } else {
