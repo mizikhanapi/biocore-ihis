@@ -17,7 +17,7 @@
 
 <%
     Conn conn = new Conn();
-
+   
     String masterCode = request.getParameter("masterCode");
     String detailCode = request.getParameter("detailCode");
     String detailDesc = request.getParameter("detailName");
@@ -27,9 +27,9 @@
     String status = request.getParameter("status");
     
     String userID = (String) session.getAttribute("USER_ID");
-    String hfc_cd = session.getAttribute("HEALTH_FACILITY_CODE").toString();
+    String hfc_cd = (String) session.getAttribute("HEALTH_FACILITY_CODE");
 
-    String sqlCheck = "Select master_reference_code FROM adm_lookup_detail WHERE master_reference_code = '" + masterCode + "' AND detail_reference_code = '" + detailCode + "' LIMIT 1 ";
+    String sqlCheck = "Select master_reference_code FROM adm_lookup_detail WHERE master_reference_code = '" + masterCode + "' AND detail_reference_code = '" + detailCode + "' AND hfc_cd = '"+hfc_cd+"'  LIMIT 1 ";
 
     ArrayList<ArrayList<String>> duplicate = conn.getData(sqlCheck);
     

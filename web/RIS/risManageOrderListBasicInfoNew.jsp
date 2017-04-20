@@ -225,7 +225,7 @@
         var risnic = arrayData[14];
         var risGender = arrayData[18];
         var risBdate = arrayData[15];
-        var risBtype = arrayData[17];
+        var risBtype = arrayData[19];
         var risOrderNo = arrayData[1];
         var risOrderDate = arrayData[5];
         var risOrderLocationCode = arrayData[2];
