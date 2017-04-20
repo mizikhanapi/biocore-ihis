@@ -32,6 +32,10 @@
 
 <table class="table table-filter table-striped table-bordered dt-head-right" style="background: #fff; border: 1px solid #ccc; width: 100%; text-align: center" id="risManageOrderDetailsListTable">
     <thead>
+    <th>Order No</th>
+    <th>Name</th>
+    <th>Modality</th>
+    <th>Body System</th>
     <th>Requestor Instruction</th>
     <th>Result</th>
     <th>Status</th>

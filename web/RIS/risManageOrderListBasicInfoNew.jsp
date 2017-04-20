@@ -171,9 +171,10 @@
     </form>
     <hr/>
     <h4 style="padding-bottom: 2%">
-        <div class="pull-right">
+        Order Detail
+        <span class="pull-right">
             <button id="risOrderNewRequestButton" name="risOrderNewRequestButton" class="btn btn-primary" data-toggle="modal" ><i class="fa fa-plus fa-lg"></i>&nbsp; New Request</button>
-        </div>
+        </span>
         <br>
     </h4>
 

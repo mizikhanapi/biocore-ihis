@@ -24,6 +24,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>iHIS | RIS</title>
         <!-- header -->
         <%@include file = "libraries/radiologyHeadLibrary.jsp" %>
         <%@include file = "../assets/header.html" %>
