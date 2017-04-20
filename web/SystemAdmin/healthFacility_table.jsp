@@ -45,7 +45,7 @@
         //----------------      0        1           2       3           4       5           6       7           8          9           10                 11         12     13        14         15       16                                                      17                18              19            20               21        22            23                   
         String sql ="Select a.hfc_cd, hfc_type, hfc_name, address1, address2, address3, state_cd, district_cd, town_cd, country_cd, post.description, telephone_no, fax_no, email, hfc_server, hfc_report, ifnull(DATE_FORMAT(established_date,'%d/%m/%Y'), ''), director_name, hfc_category_cd, hfc_sub_type, contact_person, hfc_status, hfc_ip, post.detail_reference_code "
                 +"FROM adm_health_facility a "
-                + "JOIN adm_lookup_detail post on master_reference_code = '0079' AND post.detail_reference_code = postcode AND post.hfc_cd = '"+hfc_cd+"' "
+                + "JOIN adm_lookup_detail post on master_reference_code = '0079' AND post.detail_reference_code = postcode AND post.hfc_cd = '"+hfc_cd+"' "  
                 +whereClause;
         
         ArrayList<ArrayList<String>> dataHFC = conn.getData(sql);
