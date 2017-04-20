@@ -18,7 +18,7 @@
     String whereClause = " ";
     
     if(!last9.equals("9") || !hfc_cd.equals("99_iHIS_99")){
-        whereClause = "WHERE hfc_cd = '"+hfc_cd+"' ";
+        whereClause = "WHERE a.hfc_cd = '"+hfc_cd+"' ";
     }
 %>
 
@@ -42,8 +42,10 @@
 <tbody>
 
     <%
-        String sql ="Select hfc_cd, hfc_type, hfc_name, address1, address2, address3, state_cd, district_cd, town_cd, country_cd, postcode, telephone_no, fax_no, email, hfc_server, hfc_report, ifnull(DATE_FORMAT(established_date,'%d/%m/%Y'), ''), director_name, hfc_category_cd, hfc_sub_type, contact_person, hfc_status, hfc_ip "+
-                    "FROM adm_health_facility "
+        //----------------      0        1           2       3           4       5           6       7           8          9           10                 11         12     13        14         15       16                                                      17                18              19            20               21        22            23                   
+        String sql ="Select a.hfc_cd, hfc_type, hfc_name, address1, address2, address3, state_cd, district_cd, town_cd, country_cd, post.description, telephone_no, fax_no, email, hfc_server, hfc_report, ifnull(DATE_FORMAT(established_date,'%d/%m/%Y'), ''), director_name, hfc_category_cd, hfc_sub_type, contact_person, hfc_status, hfc_ip, post.detail_reference_code "
+                +"FROM adm_health_facility a "
+                + "JOIN adm_lookup_detail post on master_reference_code = '0079' AND post.detail_reference_code = postcode AND post.hfc_cd = '99_iHIS_99' "
                 +whereClause;
         
         ArrayList<ArrayList<String>> dataHFC = conn.getData(sql);
@@ -223,6 +225,7 @@
                                 <label class="col-md-4 control-label" for="textinput">Postcode</label>
                                 <div class="col-md-8">
                                     <input id="HFT_postcode" maxlength="30"  type="text" placeholder="Search postcode" class="form-control input-md">
+                                    <input id="HFT_postcode_hidden" type="hidden">
                                     <div id="HFT_match">
                                         <!--list of postcode-->
                                     </div>
@@ -267,8 +270,8 @@
                                 <label class="col-md-4 control-label" for="textinput">Status*</label>
                                 <div class="col-md-8">
                                     <select class="form-control"  id="HFT_status">
-                                        <option  value="1" >Active</option>
-                                        <option  value="0" >Inactive</option>
+                                        <option  value="0" >Active</option>
+                                        <option  value="1" >Inactive</option>
                                     </select>
                                 </div>
                             </div>
@@ -419,7 +422,7 @@
         var rowData = row.find("#HFT_hidden").val();
         var arrayData = rowData.split("|");
         //assign into seprated val
-        var hfc_cd = arrayData[0], hfc_type = arrayData[1], hfc_name = arrayData[2], address1 = arrayData[3], address2 = arrayData[4], address3 = arrayData[5], state_cd = arrayData[6], district_cd = arrayData[7], town_cd = arrayData[8], country_cd = arrayData[9], postcode = arrayData[10], telephone_no = arrayData[11], fax_no = arrayData[12], email = arrayData[13], hfc_server = arrayData[14], hfc_report = arrayData[15], established_date = arrayData[16], director_name = arrayData[17], hfc_category_cd = arrayData[18], hfc_sub_type = arrayData[19], contact_person = arrayData[20], hfc_status = arrayData[21], hfc_ip = arrayData[22];
+        var hfc_cd = arrayData[0], hfc_type = arrayData[1], hfc_name = arrayData[2], address1 = arrayData[3], address2 = arrayData[4], address3 = arrayData[5], state_cd = arrayData[6], district_cd = arrayData[7], town_cd = arrayData[8], country_cd = arrayData[9], postcode = arrayData[10], telephone_no = arrayData[11], fax_no = arrayData[12], email = arrayData[13], hfc_server = arrayData[14], hfc_report = arrayData[15], established_date = arrayData[16], director_name = arrayData[17], hfc_category_cd = arrayData[18], hfc_sub_type = arrayData[19], contact_person = arrayData[20], hfc_status = arrayData[21], hfc_ip = arrayData[22], postcode_hidden = arrayData[23];
         //set value in input on the top
         $('#HFT_hfcCode').val(hfc_cd);
         $('#HFT_hfcName').val(hfc_name);
@@ -428,6 +431,7 @@
         $('#HFT_address3').val(address3);
         $('#HFT_state').val(state_cd);
         $('#HFT_postcode').val(postcode);
+        $('#HFT_postcode_hidden').val(postcode_hidden);
         $('#HFT_telNo').val(telephone_no);
         $('#HFT_faxNo').val(fax_no);
         $('#HFT_email').val(email);
@@ -462,6 +466,7 @@
         var district = $('#HFT_district').val();
         var town = $('#HFT_town').val();
         var postcode = $('#HFT_postcode').val();
+        var postcode_hidden = $('#HFT_postcode_hidden').val();
         var faxNo = $('#HFT_faxNo').val();
         var telNo = $('#HFT_telNo').val();
         var email = $('#HFT_email').val();
@@ -498,8 +503,8 @@
             bootbox.alert("Select the town");
             $('#HFT_town').focus();
 
-        }else if (postcode.trim() === "") {
-            bootbox.alert("Fill in the postcode");
+        }else if (postcode.trim() === "" || postcode_hidden === "") {
+            bootbox.alert("Please choose existing postcode");
             $('#HFT_postcode').focus();
 
         } else if (status !== "1" && status !== "0") {
@@ -541,7 +546,7 @@
                     state : state,
                     district : district,
                     town : town,
-                    postcode : postcode,
+                    postcode : postcode_hidden,
                     faxNo : faxNo,
                     telNo : telNo,
                     email : email,
@@ -745,11 +750,16 @@
                     data: dataFields, // Send dataFields var
                     timeout: 3000,
                     success: function (dataBack) { // If success
+                        $('#HFT_postcode_hidden').val('');
                         $('#HFT_match').html(dataBack); // Return data (UL list) and insert it in the <div id="match"></div>
                         $('#matchList li').on('click', function () { // When click on an element in the list
                             //$('#masterCode2').text($(this).text()); // Update the field with the new element
                             $('#HFT_postcode').val($(this).text());
+                            $('#HFT_postcode_hidden').val($(this).data('code'));
+                            
                             $('#HFT_match').text(''); // Clear the <div id="match"></div>
+                            
+                            
                         });
                     },
                     error: function () { // if error
