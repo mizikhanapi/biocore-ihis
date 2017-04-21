@@ -30,9 +30,10 @@
             for (int i = 0; i < size292; i++) {
         %>
         <div class="col-md-4">
-            <div class="thumbnail" style="height: 302px; overflow: auto;">
+            <div class="thumbnail">
                 <h4 style="padding-top: 0px; padding-bottom: 10px;"><%= databedSum2.get(i).get(0) + " | " + databedSum2.get(i).get(1)%></h4>
                 <hr class="pemisah" />
+                <div style="height: 192px; overflow: auto; margin-top:-30px; padding-top: 30px;">    
                     <table class="table table-striped" id="wardBedTable"  width="30%" style="margin-bottom: 0px; margin-top:-30px;">
                         <thead>
                             <tr>
@@ -88,12 +89,13 @@
                             %>
                         </tbody>
                     </table>
-                    <div style="position: absolute; color: #999; top: 30px; right: 30px; font-weight: 500; text-transform: uppercase">Total Room: <%= totalNew%></div>
                 </div>
+                <div style="position: absolute; color: #999; top: 30px; right: 30px; font-weight: 500; text-transform: uppercase">Total Room: <%= totalNew%></div>
             </div>
-            <%
-                }
-
-            %>
         </div>
+        <%
+            }
+
+        %>
     </div>
+</div>
