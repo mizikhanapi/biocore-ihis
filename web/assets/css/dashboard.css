@@ -782,3 +782,31 @@ tr#moveToOrderDetailsTButton {
 .tab-content .tab-pane {    
     position: relative !important;
 }
+
+.bed-booking-title {
+    font-weight: 500;
+    text-transform: uppercase;
+    color: #666;
+}
+
+.bed-booking-total {
+    font-weight: 500;
+    font-size: 50px;
+}
+
+.bed-booking-a, .bed-booking-o, .bed-booking-p {
+    font-weight: 500;
+    margin: 0px 5px;
+}
+
+.bed-booking-a{
+    color:#26a69a;
+}
+
+.bed-booking-o{
+    color:#f5707a;
+}
+
+.bed-booking-p{
+    color:#f9c851;
+}

@@ -26,6 +26,48 @@
                     <!-- menu top -->
 
                     <div class="row">
+                        <div class="col-md-2">
+                            <div class="thumbnail">
+                                <div class="text-center">
+                                    <div class="bed-booking-title">First Class | WARD 01</div>
+                                    <span class="bed-booking-total">123</span>
+                                    <div>
+                                        <span class="bed-booking-a"><i class="fa fa-square"></i>&nbsp;12</span> 
+                                        <span class="bed-booking-p"><i class="fa fa-square"></i>&nbsp;10</span>
+                                        <span class="bed-booking-o"><i class="fa fa-square"></i>&nbsp;2</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="thumbnail">
+                                <div class="text-center">
+                                    <div class="bed-booking-title">First Class | WARD 01</div>
+                                    <span class="bed-booking-total">123</span>
+                                    <div>
+                                        <span class="bed-booking-a"><i class="fa fa-square"></i>&nbsp;12</span> 
+                                        <span class="bed-booking-p"><i class="fa fa-square"></i>&nbsp;10</span>
+                                        <span class="bed-booking-o"><i class="fa fa-square"></i>&nbsp;2</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="thumbnail">
+                                <div class="text-center">
+                                    <div class="bed-booking-title">First Class | WARD 01</div>
+                                    <span class="bed-booking-total">123</span>
+                                    <div>
+                                        <span class="bed-booking-a"><i class="fa fa-square"></i>&nbsp;12</span> 
+                                        <span class="bed-booking-p"><i class="fa fa-square"></i>&nbsp;10</span>
+                                        <span class="bed-booking-o"><i class="fa fa-square"></i>&nbsp;2</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
                         <div class="col-md-12">
                             <div class="thumbnail">
                                 <h4>
