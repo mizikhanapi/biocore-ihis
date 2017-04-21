@@ -19,7 +19,7 @@
         <!-- Select Basic -->
         <div class="form-group">
             <label class="col-md-4 control-label" for="selectbasic">Ward Type</label>
-            <div class="col-md-4" id="wardTypeList">
+            <div class="col-md-6" id="wardTypeList">
                 <select id="WardType" name="WardType" class="form-control" disabled="">
                     <option value="1" selected="" disabled="">Select Ward Type</option>
 
@@ -42,7 +42,7 @@
         <!-- Select Basic -->
         <div class="form-group">
             <label class="col-md-4 control-label" for="selectbasic">Ward Name</label>
-            <div class="col-md-4" id="wardNameDropdown">
+            <div class="col-md-6" id="wardNameDropdown">
                 <select id="wname" name="selectbasic" class="form-control" disabled="">
                     <option value="-">-</option>
                     <option value="null" selected="" disabled="">Select Ward Name</option>
@@ -64,7 +64,7 @@
         </div>
         <div class="form-group">
             <label class="col-md-4 control-label" for="selectbasic"></label>
-            <div class="col-md-4" >                
+            <div class="col-md-6" >                
                 <button class="btn btn-primary" type="button" id="searchBed" name="searchBed"><i class="fa fa-search"></i>&nbsp; Search Bed</button>
             </div>
         </div>
@@ -76,7 +76,7 @@
         <!-- Text input-->
         <div class="form-group">
             <label class="col-md-4 control-label" for="textinput">Deposit (RM)</label>
-            <div class="col-md-4">
+            <div class="col-md-6">
                 <input id="Deposit" name="textinput" type="text" placeholder="RM :" class="form-control input-md">
             </div>
         </div>
@@ -85,7 +85,7 @@
         <!-- Select Basic -->
         <div class="form-group">
             <label class="col-md-4 control-label" for="selectbasic">Bed ID</label>
-            <div class="col-md-4">
+            <div class="col-md-6">
                 <input id="BedIDReg" name="textinput" type="text" placeholder="Bed ID" readonly class="form-control input-md">
                 </br>
             </div>

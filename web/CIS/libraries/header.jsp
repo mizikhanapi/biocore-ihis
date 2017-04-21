@@ -5,8 +5,6 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>eMedica | Pharmacy</title>
-
 <!-- Bootstrap core CSS -->
 <link href="assets/Autocomplete.css" rel="stylesheet">
 

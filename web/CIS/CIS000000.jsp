@@ -26,7 +26,7 @@
 <!-- saved from url=(0044)https://getbootstrap.com/examples/dashboard/ -->
 <html lang="en">
     <head>
-        <title>eMedica | CIS</title>
+        <title>iHIS | CIS</title>
 
         <!-- header -->
         <%@ include file="../assets/header.html" %> 

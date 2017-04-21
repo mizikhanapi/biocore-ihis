@@ -17,9 +17,7 @@
 %>
 
 <div id="tableOccuTable" class="form-group">
-
-
-    <table id="OccuTable"  class="table table-striped table-bordered" cellspacing="0" width="100%">
+        <table id="OccuTable"  class="table table-striped table-bordered" cellspacing="0" width="100%">
 
 
         <thead>
@@ -72,9 +70,6 @@
     </table>
 </div>
 
-
-
-
 <!-- Modal Update -->
 <div class="modal fade" id="TransferModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -87,13 +82,8 @@
 
                 <!-- content goes here -->
                 <form class="form-horizontal" id="TransferForm">
-
-
-
-
                     <h4>Transfer Ward</h4>
                     <hr/>
-
                     <div class="row">
                         <div class="col-md-6">
                             <!-- Select Basic -->

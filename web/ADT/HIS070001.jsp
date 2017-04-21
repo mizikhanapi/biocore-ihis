@@ -7,7 +7,7 @@
 <html lang="en">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    
+
 
         <link rel="stylesheet" href="PMS/libraries/lib/css/loading.css">
         <link href="PMS/libraries/lib/datepicker/jquery-ui.css" rel="stylesheet">
@@ -44,45 +44,45 @@
                 <div class="row" >
                     <div class="col-md-12" >
                         <div class="tabbable-line" id="navDiv">
-                            <ul class="nav nav-tabs" id="ulTabs">
-                                <li class="active"> <a href="#tab_default_1" data-toggle="tab" >Inpatient Registration </a> </li>
-                                <li> <a href="#tab_default_2" data-toggle="tab"> Patient Master Index </a> </li>
-                                <li> <a href="#tab_default_3" data-toggle="tab"> Employment </a> </li>
-                                <li> <a href="#tab_default_4" data-toggle="tab"> Next of Kin </a> </li>
-                                <li> <a href="#tab_default_5" data-toggle="tab"> Family </a> </li>
-                                <li> <a href="#tab_default_6" data-toggle="tab"> Medical Insurance </a> </li>
-                            </ul>
+
                         </div>
                     </div>
                 </div>
 
                 <div class="row">
                     <div class="col-md-12">
-                        <!-- Tab Menu -->
-
-                        <div class="tabbable-panel">
-                            <div class="tabbable-line">
+                        <div class="thumbnail">
+                            <!-- Tab Menu -->
+                            <div class="tabbable-panel">
+                                <div class="tabbable-line">
+                                    <ul class="nav nav-tabs" id="ulTabs">
+                                        <li class="active"> <a href="#tab_default_1" data-toggle="tab" >Inpatient Registration </a> </li>
+                                        <li> <a href="#tab_default_2" data-toggle="tab"> Patient Master Index </a> </li>
+                                        <li> <a href="#tab_default_3" data-toggle="tab"> Employment </a> </li>
+                                        <li> <a href="#tab_default_4" data-toggle="tab"> Next of Kin </a> </li>
+                                        <li> <a href="#tab_default_5" data-toggle="tab"> Family </a> </li>
+                                        <li> <a href="#tab_default_6" data-toggle="tab"> Medical Insurance </a> </li>
+                                    </ul>
+                                </div>
                                 <!-- tab content -->
                                 <div class="tab-content">
-                                    <!--
-                                        search and registation tab
-                                    -->
+                                    <!--search and registation tab-->
                                     <div class="tab-pane active" id="tab_default_1">
                                         <div id="registration"><%@include file = "PMS/InpatientRegistration.jsp" %></div>
-                                        <!--                                        <a href="InpatientRegistration.jsp"></a>-->
+                                        <!--<a href="InpatientRegistration.jsp"></a>-->
                                     </div>
-                                    <!--
-                                        PMI master index  tab
-                                    -->                                    
+
+                                    <!--PMI master index  tab-->                                    
                                     <div class="tab-pane" id="tab_default_2">
                                         <div id="patientMasterIndex"><%@include file = "PMS/patient-master-indexV2.jsp" %></div>
-                                    </div><!--
+                                    </div>
+                                    <!--
                                     <a href="PMS/patient-master-indexV2.jsp"></a>
                                     
                                     <a href="../PMS/registrationV2.jsp"></a>
                                         Employment tab
-                                    
-                                    -->                                    <div class="tab-pane" id="tab_default_3">
+                                    -->
+                                    <div class="tab-pane" id="tab_default_3">
                                         <div id="employment"><%@include file = "PMS/EmploymentV2.jsp" %></div>
                                     </div><!--
 
@@ -111,12 +111,11 @@
                                     -->
 
 
-
                                 </div>
                             </div>
-                        </div>
 
-                        <!-- Tab Menu --> 
+                            <!-- Tab Menu --> 
+                        </div>
                     </div>
                 </div>
             </div>
@@ -125,7 +124,7 @@
 
     </div>
 
-<!--    <script src="old/assets/js/register.js" type="text/javascript"></script>-->
+    <!--    <script src="old/assets/js/register.js" type="text/javascript"></script>-->
     <!--                                    <script src="../PMS/libraries/lib/js/main/registration.js" type="text/javascript"></script>-->
 
     <!-- header -->
@@ -146,7 +145,7 @@
         });
         var $body = $('body');
     </script>
-<!--    <script src="PMS/libraries/lib/js/main/registration.js" type="text/javascript"></script>-->
+    <!--    <script src="PMS/libraries/lib/js/main/registration.js" type="text/javascript"></script>-->
     <script src="PMS/libraries/lib/js/search/searchDisipline.js" type="text/javascript"></script>
     <script src="PMS/libraries/lib/js/main/appointment.js" type="text/javascript"></script>
     <script src="PMS/libraries/lib/js/main/patient_master_index.js" type="text/javascript"></script>

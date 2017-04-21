@@ -3,9 +3,9 @@
 <%@page import="Config.connect"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
-    String idType61 = "select * from adm_lookup_detail where master_reference_code = '0012' AND hfc_cd = '"+hfc+"'   ";
-    
-    String relation61 = "select * from adm_lookup_detail where master_reference_code = '0007' AND hfc_cd = '"+hfc+"'  ";
+    String idType61 = "select * from adm_lookup_detail where master_reference_code = '0012' AND hfc_cd = '" + hfc + "'   ";
+
+    String relation61 = "select * from adm_lookup_detail where master_reference_code = '0007' AND hfc_cd = '" + hfc + "'  ";
 
     ArrayList<ArrayList<String>> dataIdType61, dataRelation61;
     dataIdType61 = conn.getData(idType61);
@@ -29,7 +29,7 @@
                             <div class="col-md-6">
                                 <!-- Text input-->
                                 <div class="form-group">
-                                    <label class="col-md-4 control-label" for="textinput">PMI No.</label>  
+                                    <label class="col-md-4 control-label" for="textinput">Patient PMI No.</label>  
                                     <div class="col-md-7">
                                         <input id="KINpmino" name="KINpmino" type="text"  class="form-control input-md">
                                         <input id="KINseq" name="KINseq" type="hidden"  class="form-control input-md">
@@ -50,6 +50,15 @@
                                             <%  }
                                             %>
                                         </select>
+                                    </div>
+                                </div>
+
+                                <!-- Text input-->
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label" for="textinput">Name of Next of Kin</label>  
+                                    <div class="col-md-7">
+                                        <input id="KINname" name="KINname" type="text"  class="form-control input-md" maxlength="80">
+
                                     </div>
                                 </div>
 
@@ -88,27 +97,13 @@
                                     </div>
                                 </div>
 
-                                <!-- Select Basic -->
-                                <div class="form-group">
-                                    <label class="col-md-4 control-label" for="selectbasic">Handphone Number</label>
-                                    <div class="col-md-7">
-                                        <input id="KINphone" name="KINphone" type="text" class="form-control input-md"maxlength="12" >
-                                    </div>
-                                </div>
-                                
+
+
 
                             </div>
 
                             <div class="col-md-6">
 
-                                <!-- Text input-->
-                                <div class="form-group">
-                                    <label class="col-md-4 control-label" for="textinput">Name</label>  
-                                    <div class="col-md-7">
-                                        <input id="KINname" name="KINname" type="text"  class="form-control input-md" maxlength="80">
-
-                                    </div>
-                                </div>
                                 <!-- Select Basic -->
                                 <div class="form-group">
                                     <label class="col-md-4 control-label" for="selectbasic">Email</label>
@@ -143,6 +138,14 @@
                                 </div>
                                 <!-- Select Basic -->
                                 <div class="form-group">
+                                    <label class="col-md-4 control-label" for="selectbasic">Handphone Number</label>
+                                    <div class="col-md-7">
+                                        <input id="KINphone" name="KINphone" type="text" class="form-control input-md"maxlength="12" >
+                                    </div>
+                                </div>
+
+                                <!-- Select Basic -->
+                                <div class="form-group">
                                     <label class="col-md-4 control-label" for="selectbasic">Homephone Number</label>
                                     <div class="col-md-7">
                                         <input id="KINhomephone" name="KINhomephone" type="text" class="form-control input-md" maxlength="12">
@@ -150,9 +153,9 @@
                                 </div>
                             </div>
                         </div>
-
-                        <h4>Address</h4>
                         <hr/>
+                        <h4>Address</h4>
+
                         <div class="row">
                             <div class="col-md-6">
                                 <!-- Select Basic -->
@@ -219,18 +222,16 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="text-center">
-                            <button id="KINsave" name="KINsave" class="btn btn-primary" data-dismiss="modal" role="button"><i class="fa fa-floppy-o fa-lg"></i>&nbsp; Save</button>
-                            <button id="KINclear" name="KINclear" class="btn btn-default"><i class="fa fa-ban fa-lg"></i>&nbsp; Clear</button>
-                        </div>
+
                     </form>
                 </div>
 
             </div>
             <div class="modal-footer">
-                <div class="btn-group btn-group-justified" role="group" aria-label="group button">
+                <div class="text-right">
+                    <button id="KINclear" name="KINclear" class="btn btn-default"><i class="fa fa-ban fa-lg"></i>&nbsp; Clear</button>
+                    <button id="KINsave" name="KINsave" class="btn btn-primary" data-dismiss="modal" role="button"><i class="fa fa-floppy-o fa-lg"></i>&nbsp; Save</button>
                 </div>
-                </form>
             </div>
         </div>
     </div>
