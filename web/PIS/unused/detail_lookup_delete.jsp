@@ -1,3 +1,9 @@
+<%-- 
+    Document   : detail_lookup_delete
+    Created on : Jan 26, 2017, 12:27:04 PM
+    Author     : user
+--%>
+
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.util.Date"%>
 <%@page import="java.text.DateFormat"%>
@@ -11,16 +17,12 @@
 
 
 <%
-
-    String id = request.getParameter("iditem");
-    String hfc = request.getParameter("hfc");
-    String dis = request.getParameter("dis");
-    String subdis = request.getParameter("subdis");
+    Conn conn = new Conn();
+    String detailCode = request.getParameter("detailCode");
+    String masterCode = request.getParameter("masterCode");
 
     RMIConnector rmic = new RMIConnector();
-    Conn conn = new Conn();
-    
-    String sql = "DELETE FROM pis_atc WHERE UD_ATC_Code = '" + id + "' AND hfc_cd = '" + hfc + "' AND discipline_cd = '" + dis + "' AND subdiscipline_cd = '" + subdis + "' ";
+    String sql = "DELETE FROM adm_lookup_detail WHERE master_reference_code = '"+masterCode+"' AND detail_reference_code = '" + detailCode + "' ";
 
     boolean status = rmic.setQuerySQL(conn.HOST, conn.PORT, sql);
 

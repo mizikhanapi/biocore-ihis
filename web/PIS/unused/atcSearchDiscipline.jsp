@@ -11,7 +11,9 @@
 <%
     Conn conn = new Conn();
     String key = request.getParameter("input");
-    String searchProblem = "SELECT discipline_cd,discipline_name FROM adm_discipline WHERE discipline_cd like '%"+key+"%' OR discipline_name like '%"+key+"%'";
+    String hfc = request.getParameter("hfc");
+    
+    String searchProblem = "SELECT DISTINCT(adm_hfc_discipline.discipline_cd),adm_discipline.discipline_name FROM adm_hfc_discipline JOIN adm_discipline ON (adm_hfc_discipline.discipline_cd = adm_discipline.discipline_cd) WHERE hfc_cd = '"+hfc+"' AND (adm_hfc_discipline.discipline_cd like '%"+key+"%' OR adm_discipline.discipline_name like '%"+key+"%') ";
     ArrayList<ArrayList<String>> search = conn.getData(searchProblem);
     if (search.size() > 0)
             {

@@ -11,6 +11,7 @@
 
 <%
     Conn conn = new Conn();
+    String hfc = session.getAttribute("HEALTH_FACILITY_CODE").toString();
 %>
 
 
@@ -29,7 +30,7 @@
 <tbody>
 
     <%
-        String sql = " SELECT UD_ATC_Code, UD_ATC_Desc, Category_Code,hfc_cd,discipline_cd,subdiscipline_cd,Status FROM pis_atc ";
+        String sql = " SELECT UD_ATC_Code, UD_ATC_Desc, Category_Code,hfc_cd,discipline_cd,subdiscipline_cd,Status FROM pis_atc WHERE hfc_cd  = '" + hfc + "' ";
         ArrayList<ArrayList<String>> dataATC = conn.getData(sql);
 
         int size = dataATC.size();
@@ -51,12 +52,12 @@
     } %></td> <!--status 3 --> 
 <td>
     <!-- Update Part Start -->
-    <a id="updateTButton" data-toggle="modal" data-target="#atcUpdateModal"><i class="fa fa-pencil-square-o fa-lg" aria-hidden="true" style="display: inline-block;color: #337ab7; cursor: pointer;"></i></a>
+    <a id="updateTButton" data-toggle="modal" data-target="#atcUpdateModal"><i class="fa fa-pencil-square-o" aria-hidden="true" style="display: inline-block;color: #337ab7;"></i></a>
     <!-- Update Part End -->
 </td>
 <td>
     <!-- Delete Button Start -->
-    <a id="deleteTButton" class="testing"><i class="fa fa-times fa-lg" aria-hidden="true" style="display: inline-block;color: #d9534f; cursor: pointer;" ></i></a>
+    <a id="deleteTButton" class="testing"><i class="fa fa-times" aria-hidden="true" style="display: inline-block;color: #d9534f;" ></i></a>
     <!-- Delete Button End -->
 </td>
 </tr>
@@ -73,7 +74,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal"><i class="fa fa-times fa-lg"></i></button>
-                <h3 class="modal-title" id="lineModalLabel">Update ATC Code Details</h3>
+                <h2 class="modal-title" id="lineModalLabel" align="center">Update ATC Code Details</h2>
             </div>
             <div class="modal-body">
 
@@ -83,7 +84,7 @@
                     <!-- Text input-->
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="textinput">ATC Code</label>
-                        <div class="col-md-7">
+                        <div class="col-md-8">
                             <input id="updateatcCode" type="text" placeholder="ATC Code" class="form-control input-md" maxlength="15" readonly>
                         </div>
                     </div>
@@ -91,7 +92,7 @@
                     <!-- Text input-->
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="textinput">ATC Description</label>
-                        <div class="col-md-7">
+                        <div class="col-md-8">
                             <textarea id="updateatcDesc" class="form-control" rows="4" placeholder="ATC Description" maxlength="200" ></textarea>
                         </div>
                     </div>
@@ -99,7 +100,7 @@
                     <!-- Text input-->
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="textinput">Category Code</label>
-                        <div class="col-md-7">
+                        <div class="col-md-8">
                             <input id="updateatccategory" type="text" placeholder="Category Code" maxlength="50" class="form-control input-md" >
                         </div>
                     </div>
@@ -107,33 +108,24 @@
                     <!-- Text input-->
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="textinput">HFC Code</label>
-                        <div class="col-md-7">
-                            <input id="updateatchfc" type="text" placeholder="HFC Code" maxlength="30" class="form-control input-md" >
-                            <div id="updateatcHFCSearch">
-                                <!--for search area-->
-                            </div>
+                        <div class="col-md-8">
+                            <input id="updateatchfc" type="text" placeholder="HFC Code" maxlength="30" class="form-control input-md" readonly>
                         </div>
                     </div>
 
                     <!-- Text input-->
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="textinput">Discipline Code</label>
-                        <div class="col-md-7">
-                            <input id="updateatcdiscipline" type="text" placeholder="Discipline Code" maxlength="30" class="form-control input-md" >
-                            <div id="updateatcDisciplineSearch">
-                                <!--for search area-->
-                            </div>
+                        <div class="col-md-8">
+                            <input id="updateatcdiscipline" type="text" placeholder="Discipline Code" maxlength="30" class="form-control input-md" readonly>
                         </div>
                     </div>
 
                     <!-- Text input-->
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="textinput">Sub-Discipline Code</label>
-                        <div class="col-md-7">
-                            <input id="updateatcsubdiscipline" type="text" placeholder="Sub-Discipline Code" maxlength="30" class="form-control input-md" >
-                            <div id="updateatcSubDisciplineSearch">
-                                <!--for search area-->
-                            </div>
+                        <div class="col-md-8">
+                            <input id="updateatcsubdiscipline" type="text" placeholder="Sub-Discipline Code" maxlength="30" class="form-control input-md" readonly>
                         </div>
                     </div>
 
@@ -141,7 +133,7 @@
                     <!-- Text input-->
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="textinput">Status</label>
-                        <div class="col-md-7">
+                        <div class="col-md-8">
                             <select class="form-control" name="tstatus" id="updatestatus">
                                 <option value="1" >Active</option>
                                 <option value="0" >Inactive</option>
@@ -205,129 +197,6 @@
     // Getting Data Part End
 
 
-    // Search HFC Function Start
-    $("#updateatchfc").on('keyup', function () { // everytime keyup event
-        var input = $(this).val(); // We take the input value
-
-        if (input.length >= 1) { // Minimum characters = 2 (you can change)
-            $('#updateatcHFCSearch').html('<img src="libraries/LoaderIcon.gif" />'); // Loader icon apprears in the <div id="match"></div>
-            var dataFields = {input: input}; // We pass input argument in Ajax
-            $.ajax({
-                type: "POST",
-                url: "atcSearchHFC.jsp", // call the php file ajax/tuto-autocomplete.php
-                data: dataFields, // Send dataFields var
-                timeout: 3000,
-                success: function (dataBack) { // If success
-                    $('#updateatcHFCSearch').html(dataBack); // Return data (UL list) and insert it in the <div id="match"></div>
-                    $('#matchListHFC li').on('click', function () { // When click on an element in the list
-                        //$('#masterCode2').text($(this).text()); // Update the field with the new element
-                        $('#updateatchfc').val($(this).text());
-                        $('#updateatcHFCSearch').text(''); // Clear the <div id="match"></div>
-                        var arrayData = $('#updateatchfc').val().split("|");
-                        console.log(arrayData);
-                        console.log(arrayData[0].trim());
-                        console.log(arrayData[1].trim());
-                    });
-                },
-                error: function () { // if error
-                    $('#updateatcHFCSearch').text('Problem!');
-                }
-            });
-        } else {
-            $('#updateatcHFCSearch').text(''); // If less than 2 characters, clear the <div id="match"></div>
-        }
-
-    });
-    // Search FHC Function End
-
-
-    // Search Discipline Function Start
-    $("#updateatcdiscipline").on('keyup', function () { // everytime keyup event
-        var input = $(this).val(); // We take the input value
-        var hfc = $('#updateatchfc').val();
-
-        if (hfc === "" || hfc === null) {
-            $('#updateatchfc').val("");
-            bootbox.alert("Please Search For HFC Code Before Proceeding");
-        } else {
-            if (input.length >= 1) { // Minimum characters = 2 (you can change)
-                $('#updateatcDisciplineSearch').html('<img src="libraries/LoaderIcon.gif" />'); // Loader icon apprears in the <div id="match"></div>
-                var dataFields = {input: input}; // We pass input argument in Ajax
-                $.ajax({
-                    type: "POST",
-                    url: "atcSearchDiscipline.jsp", // call the php file ajax/tuto-autocomplete.php
-                    data: dataFields, // Send dataFields var
-                    timeout: 3000,
-                    success: function (dataBack) { // If success
-                        $('#updateatcDisciplineSearch').html(dataBack); // Return data (UL list) and insert it in the <div id="match"></div>
-                        $('#matchListDis li').on('click', function () { // When click on an element in the list
-                            //$('#masterCode2').text($(this).text()); // Update the field with the new element
-                            $('#updateatcdiscipline').val($(this).text());
-                            $('#updateatcDisciplineSearch').text(''); // Clear the <div id="match"></div>
-                            var arrayData = $('#updateatcdiscipline').val().split("|");
-                            console.log(arrayData);
-                            console.log(arrayData[0].trim());
-                            console.log(arrayData[1].trim());
-                        });
-                    },
-                    error: function () { // if error
-                        $('#updateatcDisciplineSearch').text('Problem!');
-                    }
-                });
-            } else {
-                $('#updateatcDisciplineSearch').text(''); // If less than 2 characters, clear the <div id="match"></div>
-            }
-        }
-    });
-    // Search Sub Discipline Function End
-
-
-    // Search Sub Discipline Function Start
-    $("#updateatcsubdiscipline").on('keyup', function () { // everytime keyup event
-        var input = $(this).val(); // We take the input value
-
-        var hfc = $('#updateatchfc').val();
-        var discipline = $('#updateatcdiscipline').val();
-
-        if (hfc === "" || hfc === null) {
-            $('#updateatcsubdiscipline').val("");
-            bootbox.alert("Please Search For HFC Code Before Proceeding");
-        } else if (discipline === "" || discipline === null) {
-            $('#updateatcsubdiscipline').val("");
-            bootbox.alert("Please Search For Discipline Code Before Proceeding");
-        } else {
-            if (input.length >= 1) { // Minimum characters = 2 (you can change)
-                $('#updateatcSubDisciplineSearch').html('<img src="libraries/LoaderIcon.gif"/>'); // Loader icon apprears in the <div id="match"></div>
-                var dataFields = {input: input}; // We pass input argument in Ajax
-                $.ajax({
-                    type: "POST",
-                    url: "atcSearchSubDiscipline.jsp", // call the php file ajax/tuto-autocomplete.php
-                    data: dataFields, // Send dataFields var
-                    timeout: 3000,
-                    success: function (dataBack) { // If success
-                        $('#updateatcSubDisciplineSearch').html(dataBack); // Return data (UL list) and insert it in the <div id="match"></div>
-                        $('#matchListSubDis li').on('click', function () { // When click on an element in the list
-                            //$('#masterCode2').text($(this).text()); // Update the field with the new element
-                            $('#updateatcsubdiscipline').val($(this).text());
-                            $('#updateatcSubDisciplineSearch').text(''); // Clear the <div id="match"></div>
-                            var arrayData = $('#updateatcsubdiscipline').val().split("|");
-                            console.log(arrayData);
-                            console.log(arrayData[0].trim());
-                            console.log(arrayData[1].trim());
-                        });
-                    },
-                    error: function () { // if error
-                        $('#updateatcSubDisciplineSearch').text('Problem!');
-                    }
-                });
-            } else {
-                $('#updateatcSubDisciplineSearch').text(''); // If less than 2 characters, clear the <div id="match"></div>
-            }
-        }
-    });
-    // Search Sub Discipline Function End
-
-
     // Update Data Part Start
     $("#updateModalButton").off('click').on('click', function (e) {
 
@@ -375,14 +244,6 @@
         } else if (status !== "1" && status !== "0") {
             bootbox.alert("Please Select Any Status");
         } else {
-
-            var arrayDataHFC = $('#updateatchfc').val().split("|");
-            var arrayDataDiscipline = $('#updateatcdiscipline').val().split("|");
-            var arrayDataSubDiscipline = $('#updateatcsubdiscipline').val().split("|");
-
-            hfc = arrayDataHFC[0].trim();
-            discipline = arrayDataDiscipline[0].trim();
-            subdiscipline = arrayDataSubDiscipline[0].trim();
 
             var data = {
                 atcCode: atcCode,
@@ -439,6 +300,10 @@
 
         //assign into seprated val
         var iditem = arrayData[0];
+        var hfc = arrayData[3];
+        var dis = arrayData[4];
+        var subdis = arrayData[5];
+        console.log(rowData);
 
         bootbox.confirm({
             message: "Are you sure want to delete this item?",
@@ -457,8 +322,11 @@
 
                 if (result === true) {
                     var data = {
-                        iditem: iditem
-                    };
+                        iditem: iditem,
+                        hfc: hfc,
+                        dis: dis,
+                        subdis: subdis
+                    };                
 
                     $.ajax({
                         url: "atcDelete.jsp",

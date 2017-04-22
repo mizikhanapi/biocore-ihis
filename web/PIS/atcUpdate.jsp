@@ -22,8 +22,8 @@
     RMIConnector rmic = new RMIConnector();
     Conn conn = new Conn();
 
-    String sqlUpdate = "UPDATE pis_atc SET UD_ATC_Desc = '" + atcDesc + "',Category_Code = '" + category + "',hfc_cd = '" + hfc + "',"
-            + "discipline_cd = '" + discipline + "',subdiscipline_cd = '" + subdiscipline + "', Status = '" + status + "' WHERE UD_ATC_Code = '" + atcCode + "' ";
+    String sqlUpdate = "UPDATE pis_atc SET UD_ATC_Desc = '" + atcDesc + "',Category_Code = '" + category + "',Status = '" + status + "' "
+            + " WHERE UD_ATC_Code = '" + atcCode + "' AND hfc_cd = '" + hfc + "' AND discipline_cd = '" + discipline + "' AND subdiscipline_cd = '" + subdiscipline + "' ";
     boolean isUpdate = rmic.setQuerySQL(conn.HOST, conn.PORT, sqlUpdate);
     
     if (isUpdate == true) {

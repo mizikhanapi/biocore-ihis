@@ -15,6 +15,7 @@
                 background-color: #fff;
                 border-color: #ccc;    
             }
+            
             .file-preview-input input[type=file] {
                 position: absolute;
                 top: 0;
@@ -26,6 +27,7 @@
                 opacity: 0;
                 filter: alpha(opacity=0);
             }
+            
             .file-preview-input-title {
                 margin-left:2px;
             }

@@ -31,6 +31,7 @@
                     <label class="col-md-4 control-label" for="textinput">PMI No.</label>
                     <div class="col-md-8">
                         <input id="patientpmino" name="patientpmino" type="text" placeholder="" readonly class="form-control input-md">
+                        <input id="dataPDI" name="dataPDI" type="text" placeholder="" readonly class="form-control input-md">   
                     </div>
                 </div>
                 <!-- Text input-->
@@ -215,11 +216,13 @@
         <!-- content goes here -->
         <form class="form-horizontal" id="addForm">
 
+            <div class="col-md-2">
+                <input id="dispenseFarBillNo" name="dispenseFarBillNo" type="hidden" class="form-control input-md" maxlength="50" readonly>
+            </div>
+
             <div class="col-md-3">
                 <input id="dispenseTotalQuantity" name="dispenseTotalQuantity" type="hidden" placeholder="Total Order" class="form-control input-md" maxlength="50" readonly>
                 <input id="dispenseTotalQuantityChecked" name="dispenseTotalQuantityChecked" type="hidden" placeholder="Total Order" class="form-control input-md" maxlength="50" readonly>
-                <input id="dataMSHPDIORC" name="dataMSHPDIORC" type="hidden" placeholder="" readonly class="form-control input-md">  
-                <input id="dataBIL" name="dataBIL" type="hidden" placeholder="" readonly class="form-control input-md">  
             </div>
 
             <div class="col-md-3">
@@ -266,6 +269,7 @@
     </div>
 
     <div class="text-center" id="patientOrderDispenseButtonDiv" > 
+        <button class="btn btn-success " type="button" id="test" name="btnOrderDispense" > <i class="fa fa-shopping-cart fa-lg"></i>&nbsp; test &nbsp;</button>
         <button class="btn btn-success " type="button" id="btnOrderDispense" name="btnOrderDispense" > <i class="fa fa-shopping-cart fa-lg"></i>&nbsp; Dispense &nbsp;</button>
         <button class="btn btn-primary " type="button" id="btnOrderDispensePrescribe" name="btnOrderDispensePrescribe" > <i class="fa fa-print fa-lg" ></i>&nbsp; Generate Label &nbsp;</button>
         <button class="btn btn-default " type="button" id="btnClearOrderDetailDispense" name="btnClearOrderDetailDispense" > <i class="fa fa-ban fa-lg"></i>&nbsp; Back &nbsp;</button>
@@ -278,13 +282,12 @@
 
 //--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------//
 
+    // Disable Dispense Button
+    document.getElementById("btnOrderDispense").disabled = true;
 
 
     // Move to Order Details Fetch Details Start
     $('#patientOrderListContent').off('click', '#patientOrderListTable #moveToOrderDetailsTButton').on('click', '#patientOrderListTable #moveToOrderDetailsTButton', function (e) {
-
-        // Disable Dispense Button
-        document.getElementById("btnOrderDispense").disabled = true;
 
         e.preventDefault();
 
@@ -297,73 +300,38 @@
         var patientpmino = arrayData[1];
         var patientName = arrayData[15];
         var patientnic = arrayData[16];
-        var patientGender = arrayData[21];
+        var patientGender = arrayData[18];
         var patientBdate = arrayData[17];
-        var patientBtype = arrayData[22];
+        var patientBtype = arrayData[19];
         var patientOrderNo = arrayData[0];
         var patientOrderDate = arrayData[5];
         var patientOrderLocationCode = arrayData[2];
 
 
-        var pmiNo = patientpmino;
-        var orderNo = patientOrderNo;
-        var orderDate = patientOrderDate;
-
-        var data = {
-            pmiNo: pmiNo,
-            orderNo: orderNo,
-            orderDate: orderDate
-        };
-
         $.ajax({
-            url: "patientOrderListDetailDispenseEHRCentralGetMSH.jsp",
+            url: "patientOrderListDetailsDispenceFarTableBillNo.jsp",
             type: "post",
             timeout: 3000,
-            data: data,
-            success: function (returnDataMSHFull) {
+            success: function (data) {
 
-                $.ajax({
-                    url: "patientOrderListDetailDispenseEHRCentralGetPDIFinal.jsp",
-                    type: "post",
-                    timeout: 3000,
-                    data: data,
-                    success: function (returnDataPDIFull) {
+                var billNo = data.trim();
 
+                //Set value to the Second Tab 
+                $("#patientpmino").val(patientpmino);
+                $("#patientName").val(patientName);
+                $("#patientnic").val(patientnic);
+                $("#patientGender").val(patientGender);
+                $("#patientBdate").val(patientBdate);
+                $("#patientBtype").val(patientBtype);
+                $("#patientOrderNo").val(patientOrderNo);
+                $("#patientOrderDate").val(patientOrderDate);
+                $("#patientOrderLocationCode").val(patientOrderLocationCode);
+                $("#dispenseFarBillNo").val(billNo);
 
-                        $.ajax({
-                            url: "patientOrderListDetailDispenseEHRCentralGetORC.jsp",
-                            type: "post",
-                            data: data,
-                            timeout: 3000,
-                            success: function (returnDataORCFull) {
-
-                                //Set value to the Second Tab 
-                                $("#patientpmino").val(patientpmino);
-                                $("#patientName").val(patientName);
-                                $("#patientnic").val(patientnic);
-                                $("#patientGender").val(patientGender);
-                                $("#patientBdate").val(patientBdate);
-                                $("#patientBtype").val(patientBtype);
-                                $("#patientOrderNo").val(patientOrderNo);
-                                $("#patientOrderDate").val(patientOrderDate);
-                                $("#patientOrderLocationCode").val(patientOrderLocationCode);
-                                $("#dataMSHPDIORC").val(returnDataMSHFull.trim() + returnDataPDIFull.trim() + returnDataORCFull.trim());
-
-                                console.log(returnDataMSHFull.trim());
-                                console.log(returnDataPDIFull.trim());
-                                console.log(returnDataORCFull.trim());
-                                console.log($("#dataMSHPDIORC").val());
-
-                                loadAllergyDiagnosisOrder(patientOrderNo, patientpmino);
-
-                            }
-                        });
-
-                    }
-                });
-
+                loadAllergyDiagnosisOrder(patientOrderNo, patientpmino);
             }
         });
+
 
 
     });
@@ -922,14 +890,6 @@
 //-------------------------------------------------------------------------------  Dispense Part Start  -------------------------------------------------------------------------------//
 
 
-    // Get date function End
-    function getDate() {
-        var d = new Date();
-        var dates = d.getFullYear() + "-" + (d.getMonth() + 1) + "-" + d.getDate() + " " + d.getHours() + ":" + d.getMinutes() + ":" + d.getSeconds();
-        return dates;
-    }
-    // Get date function End
-
     // Dispense Order Data
     $('#patientOrderDetailContent').off('click', '#patientOrderDispenseButtonDiv #btnOrderDispense').on('click', '#patientOrderDispenseButtonDiv #btnOrderDispense', function (e) {
 
@@ -1025,7 +985,6 @@
     }
     // Dispense Order Check Function End
 
-    var ehrCentralBill;
 
     // Dispense Order Function Start
     function fullDispense() {
@@ -1035,19 +994,16 @@
         var orderNo, drugCode, drugDesc, drugStrength, drugFrequency, drugDuration, drugDose,
                 drugStockQty, drugOrderedQty, drugSuppliedQty, drugDispensedQty, drugPrice, drugTotalPrice, drugStatus, drugChecked;
 
-        var orderDate, locationCode, arrivalDate, pmino, pname, dispenseFarMasterQuantity, dispenseFarMasterTotal, dispenseFarMasterQuantityChecked, dispenseFarMasterTotalChecked;
+        var orderDate, locationCode, arrivalDate, pmino, pname, dispenseFarBillNo, dispenseFarMasterQuantity, dispenseFarMasterTotal, dispenseFarMasterQuantityChecked, dispenseFarMasterTotalChecked;
 
 
-        var dateBill = getDate();
-        var userIDBill = $("#dataPatientOrderListUserIDhidden").val();
-
-        ehrCentralBill = "";
 
         pmino = $("#patientpmino").val();
         pname = $("#patientName").val();
         orderDate = $("#patientOrderDate").val();
         locationCode = $("#patientOrderLocationCode").val();
         arrivalDate = $("#patientOrderDate").val();
+        dispenseFarBillNo = $("#dispenseFarBillNo").val();
         dispenseFarMasterQuantity = $("#dispenseTotalQuantity").val();
         dispenseFarMasterTotal = $("#dispenseGrandTotal").val();
         dispenseFarMasterQuantityChecked = $("#dispenseTotalQuantityChecked").val();
@@ -1074,12 +1030,6 @@
             drugTotalPrice = $tds.eq(12).text();
             drugStatus = $tds.eq(13).text();
             drugChecked = $(this).find("#drugDispenseChecked").is(':checked');
-
-//                              0        1     2     3     4          5            6            7              8                    9                       10               11
-            var dataOneRow = "BIL|T^" + dateBill + "|CH|" + pmino + "|" + drugCode + "|" + drugDesc + "|" + drugPrice + "|" + drugDispensedQty + "|" + userIDBill + "|" + dateBill + "<cr>";
-
-            ehrCentralBill = ehrCentralBill + dataOneRow;
-
 
 
             if (drugChecked === true && drugDispensedQty !== "0") {
@@ -1130,6 +1080,7 @@
                     pmino: pmino,
                     pname: pname,
                     drugTotalPrice: drugTotalPrice,
+                    dispenseFarBillNo: dispenseFarBillNo,
                     dispenseDrugMasterQuantity: dispenseFarMasterQuantity,
                     dispenseDrugMasterTotal: dispenseFarMasterTotal,
                     dispenseDrugMasterQuantityChecked: dispenseFarMasterQuantityChecked,
@@ -1145,7 +1096,22 @@
                     data: dataAjax,
                     timeout: 3000,
                     success: function (datas) {
-                        console.log(datas.trim());
+                        console.log(datas);
+
+//                        $.ajax({
+//                            url: "patientOrderListDetailsDispenceFarTable.jsp",
+//                            type: "post",
+//                            data: dataAjax,
+//                            timeout: 3000,
+//                            success: function (datas) {
+//                                console.log(datas);
+//
+//                            },
+//                            error: function (err) {
+//                                console.log("Error update!");
+//                            }
+//
+//                        });
 
                     },
                     error: function (err) {
@@ -1167,34 +1133,7 @@
 
         });
 
-
-        $("#dataBIL").val(ehrCentralBill);
-
-        var EHRFirstHeader = $("#dataMSHPDIORC").val();
-        var EHRSecondHeader = $("#dataBIL").val();
-
-        var dataEHRcentralFull = {
-            pmino: pmino,
-            EHRFirstHeader: EHRFirstHeader,
-            EHRSecondHeader: EHRSecondHeader
-        };
-
-        $.ajax({
-            url: "patientOrderListDetailsDispenceEHRCentralInsert.jsp",
-            type: "post",
-            data: dataEHRcentralFull,
-            timeout: 3000,
-            success: function (datas) {
-                console.log(datas.trim());
-
-                resetDispense();
-
-            },
-            error: function (err) {
-                console.log("Error Dispense!" + err);
-            }
-        });
-
+        resetDispense();
 
     }
     // Dispense Order Function End
@@ -1341,9 +1280,6 @@
                         if (result === true) {
 
                             $('#myModal').modal('show');
-                            //$("#patientOrderDetailsListTableDiv table input:checkbox").disabled = true;
-                            //document.getElementsByTagName('input:checkbox').disabled = true;
-                            //document.getElementById('drugDispenseChecked').disabled = true;
                             updateResetPrescribe();
 
                         } else {
@@ -1376,14 +1312,13 @@
 
 
         setTimeout(function () {
-
             $.ajax({
                 url: "patientOrderListDetailsPrescribeResetStatus.jsp",
                 type: "post",
                 data: data,
                 timeout: 3000,
                 success: function (datas) {
-                    console.log(datas.trim());
+                    console.log(datas);
                 }
             });
 
@@ -1408,7 +1343,7 @@
                         data: dataAjax,
                         timeout: 3000,
                         success: function (datas) {
-                            console.log(datas.trim());
+                            console.log(datas);
                         }
                     });
 
@@ -1442,12 +1377,69 @@
 
 
 
+    // Dispense Order Data
+    $('#patientOrderDetailContent').off('click', '#patientOrderDispenseButtonDiv #test').on('click', '#patientOrderDispenseButtonDiv #test', function (e) {
+
+        var rowData = $("#patientOrderLocationCodeFull").val();
+        var pmiNo = $("#patientpmino").val();
+        var arrayData = rowData.split("|");
+        var hfc_cd = arrayData[0];
+        var discipline = arrayData[1];
+        var subdis = arrayData[2];
+
+        function getDate() {
+            var d = new Date();
+            var dates = d.getFullYear() + "-" + (d.getMonth() + 1) + "-" + d.getDate() + " " + d.getHours() + ":" + d.getMinutes() + ":" + d.getSeconds();
+            return dates;
+        }
+
+
+        function getPDI() {
+
+            var data = {
+                pmiNo: pmiNo
+            };
+
+            $.ajax({
+                url: "patientOrderListDetailDispenseEHRCentralGetPDI.jsp",
+                type: "post",
+                data: data,
+                timeout: 1000,
+                success: function (datas) {
+                    $("#dataPDI").val(datas.trim());
+                }
+            });
+            
+        }
+
+        var MSH = "MSH|^~|PIS|" + hfc_cd + "^" + discipline + "^" + subdis + "|||" + getDate() + "|||||||||||||<cr>\n";
+
+        console.log(MSH);
+
+        var test = getPDI();
+        
+        test = $("#dataPDI").val();
+        
+        console.log(test);
+
+    });
+    // Dispense Order Data End
 
 
 
     //-------------------------------------------------------------------------------  Reset Part Start  --------------------------------------------------------------------------------//
 
     // Dispense Loading Part 
+    // Hidding Loading Modal
+//    $('#myModal').modal({
+//        show: false
+//    });
+
+    // prevents closure while the ajax call is in progress
+//    $('#myModal').on('hide.bs.modal', function (e) {
+//        if (inProgess === true)
+//            return false;
+//    });
 
     var inProgess = false;
 
@@ -1479,6 +1471,27 @@
         setTimeout(
                 function () {
                     console.log("Inclean");
+
+//                    $.ajax({
+//                        url: "patientOrderListDetailsDispenceFarTableBillNoUpdate.jsp",
+//                        type: "post",
+//                        timeout: 3000,
+//                        success: function (data) {
+//                            console.log(data);
+//
+//                            $.ajax({
+//                                url: "patientOrderListTable.jsp",
+//                                type: 'POST',
+//                                timeout: 3000,
+//                                success: function (data) {
+//                                    console.log(data);
+//                                    $("#patientOrderListContent").html(data);
+//                                }
+//                            });
+//
+//                        }
+//                    });
+
 
                     $.ajax({
                         url: "patientOrderListTable.jsp",
