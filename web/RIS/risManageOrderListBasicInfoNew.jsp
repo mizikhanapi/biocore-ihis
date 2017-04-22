@@ -218,7 +218,7 @@
         var row = $(this).closest("tr");
         var rowData = row.find("#dataRISOrderListhidden").val();
         var arrayData = rowData.split("|");
-        console.log(arrayData);
+        //console.log(arrayData);
 
         //Assign Array into seprated val
         var rispmino = arrayData[0];
@@ -270,7 +270,7 @@
             data: dataAllergy,
             timeout: 3000,
             success: function (returnAllergyTableHTML) {
-                console.log(returnAllergyTableHTML);
+                //console.log(returnAllergyTableHTML);
                 $('#risManageAllergyListTable').html(returnAllergyTableHTML);
 
                 $.ajax({
@@ -279,7 +279,7 @@
                     data: dataDiagnosis,
                     timeout: 3000,
                     success: function (returnDiagnosisTableHTML) {
-                        console.log(returnDiagnosisTableHTML);
+                        //console.log(returnDiagnosisTableHTML);
                         $('#risManageDiagnosisListTable').html(returnDiagnosisTableHTML);
 
                         $.ajax({
