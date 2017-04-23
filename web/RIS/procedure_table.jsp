@@ -10,8 +10,11 @@
     Conn conn = new Conn();
     String PRO_hfc = session.getAttribute("HEALTH_FACILITY_CODE").toString();
     //                          0                            1               2              3           4               5               6                   7               8           9       10
-    String sqlPRO = "Select clinical_discipline_cd, body_system_cd, body_system_name, modality_cd, modality_name, ris_procedure_cd, ris_procedure_name, buying_price, selling_price, quantity, status from ris_procedure_master"
-            + " where hfc_cd = '" + PRO_hfc + "'";
+    String sqlPRO = "Select rpm.clinical_discipline_cd, rpm.body_system_cd, bs.body_system_name, rpm.modality_cd, md.modality_name, rpm.ris_procedure_cd, rpm.ris_procedure_name, buying_price, selling_price, quantity, rpm.status "
+            + "from ris_procedure_master rpm "
+            + "left join ris_body_system bs on bs.body_system_cd = rpm.body_system_cd AND bs.hfc_cd = rpm.hfc_cd "
+            + "left join ris_modality md on md.modality_cd = rpm.modality_cd AND md.hfc_cd = rpm.hfc_cd "
+            + "where rpm.hfc_cd = '"+PRO_hfc+"'";
 
     ArrayList<ArrayList<String>> dataPRO = conn.getData(sqlPRO);
 
