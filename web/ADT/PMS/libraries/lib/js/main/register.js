@@ -1,256 +1,272 @@
 
 
-    //set modal width to dynamic
-    $('#modalSaya').on('shown.bs.modal', function () {
-        $(this).find('.modal-dialog').css({width: '70%',
-            height: 'auto',
-            'max-height': '100%'});
-    });
-    $('#modalSaya2').on('shown.bs.modal', function () {
-        $(this).find('.modal-dialog').css({width: '70%',
-            height: 'auto',
-            'max-height': '100%'});
-    });
-    
-    
-
-       
-
-        var $body = $('body');
-        var yyyyMMddHHmmss;
-        var HHmmss;
-        var yyyyMMdd;
-        var ddMMyyyy;
-        var tahun, bulan, hari, ICbday;
-        //function get birth date
-
-        function getBday(x) {
+//set modal width to dynamic
+$('#modalSaya').on('shown.bs.modal', function () {
+    $(this).find('.modal-dialog').css({width: '70%',
+        height: 'auto',
+        'max-height': '100%'});
+});
+$('#modalSaya2').on('shown.bs.modal', function () {
+    $(this).find('.modal-dialog').css({width: '70%',
+        height: 'auto',
+        'max-height': '100%'});
+});
 
 
-            if (x.length === 12) {
-                tahun = x.substr(0, 2);
-                bulan = x.substr(2, 2);
-                hari = x.substr(4, 2);
-                if (tahun >= 00 && tahun < 50)
-                {
 
-                    //                    ICbday = "20" + tahun + "-" + bulan + "-" + hari;
-                    ICbday = hari + "-" + bulan + "-" + "20" + tahun;
-                } else
-                {
-                    //                    ICbday = "19" + tahun + "-" + bulan + "-" + hari;
-                    ICbday = hari + "-" + bulan + "-" + "19" + tahun;
-                }
-            }
 
+
+var $body = $('body');
+var yyyyMMddHHmmss;
+var HHmmss;
+var yyyyMMdd;
+var ddMMyyyy;
+var tahun, bulan, hari, ICbday;
+//function get birth date
+
+function getBday(x) {
+
+
+    if (x.length === 12) {
+        tahun = x.substr(0, 2);
+        bulan = x.substr(2, 2);
+        hari = x.substr(4, 2);
+        if (tahun >= 00 && tahun < 50)
+        {
+
+            //                    ICbday = "20" + tahun + "-" + bulan + "-" + hari;
+            ICbday = hari + "-" + bulan + "-" + "20" + tahun;
+        } else
+        {
+            //                    ICbday = "19" + tahun + "-" + bulan + "-" + hari;
+            ICbday = hari + "-" + bulan + "-" + "19" + tahun;
+        }
+    }
+
+}
+
+//function to get date 
+function getDateNow() {
+    //yyyy-MM-dd HH:mm:ss
+    var nowDate = new Date();
+    var ZeroMinutes, ZeroSeconds, ZeroDay, ZeroMonth;
+    //months
+    var month = (nowDate.getMonth() + 1);
+    if (month < 10) {
+        ZeroMonth = "0" + month;
+    } else {
+        ZeroMonth = month;
+    }
+
+    //days
+    var day = (nowDate.getDate());
+    if (day < 10) {
+        ZeroDay = "0" + day;
+    } else {
+        ZeroDay = day;
+    }
+
+    //years
+    var year = (nowDate.getFullYear());
+    //hours
+    var hours = nowDate.getHours();
+    //minutes
+    var minutes = nowDate.getMinutes();
+    if (minutes < 10) {
+        ZeroMinutes = "0" + minutes;
+    } else {
+        ZeroMinutes = minutes;
+    }
+    //seconds
+    var seconds = nowDate.getSeconds();
+    if (seconds < 10) {
+        ZeroSeconds = "0" + seconds;
+    } else {
+        ZeroSeconds = seconds;
+    }
+    //complete day
+    yyyyMMddHHmmss = year + "-" + ZeroMonth + "-" + ZeroDay + " " + hours + ":" + ZeroMinutes + ":" + ZeroSeconds;
+    HHmmss = hours + ":" + ZeroMinutes + ":" + ZeroSeconds;
+    yyyyMMdd = year + "-" + ZeroMonth + "-" + ZeroDay;
+    ddMMyyyy = ZeroDay + "-" + ZeroMonth + "-" + year;
+}
+
+//register patient
+$('#registerBed').click(function () {
+    getDateNow();
+    setInterval(getDateNow, 1000);
+    if ($('#pmino').val() === " " || $('#pmino').val() === "") {
+        bootbox.alert('Please use a proper PMI no.');
+    } else if ($('input[name="PoliceCase"]').val() === null) {
+        bootbox.alert('Please choose the police case');
+    } else if ($('#GL').val() === " ") {
+        bootbox.alert('Please choose the GL expiry date');
+    } else if ($('#DocType').val() === null) {
+        bootbox.alert('Please choose Document Type');
+    } else if ($('#AdmissionType').val() === " ") {
+        bootbox.alert('Please choose the admission type');
+    } else if ($('#Refer').val() === " ") {
+        bootbox.alert('Please choose the reffering from');
+    } else {
+
+
+        var pmino, poic, pid, MRN, pname, pnic, pidno,
+                EliSource, AdmissionType, Refer, DocType, GL, EliTy, AdmissionReason, PoliceCase, DocNo, payer,
+                Dis, wname, Deposit, WardType, BedID,
+                guardInd, referNo, referHfc, referDis, gruGuard, epiTime, epiDate, stat, hfc;
+        pmino = $('#pmino').val();
+        epiDate = yyyyMMddHHmmss;
+        poic = $('input[id=poic]').val();
+        pid = $('input[id=pitID]').val();
+        MRN = $('input[id=MRN]').val();
+        pname = $('input[id=pname]').val();
+        pnic = $('input[id=pnic]').val();
+        pidno = $('input[id=pino]').val();
+        EliSource = $('#EliSource').val();
+        AdmissionType = $('#AdmissionType').val();
+
+        Refer = $('#Refer').val();
+        DocType = $('#DocType').val();
+        GL = $('#GL').val();
+
+        if ($('#EliTy').val() === null) {
+            EliTy = "-";
+        } else {
+            EliTy = $('#EliTy').val();
         }
 
-        //function to get date 
-        function getDateNow() {
-            //yyyy-MM-dd HH:mm:ss
-            var nowDate = new Date();
-            var ZeroMinutes, ZeroSeconds, ZeroDay, ZeroMonth;
-            //months
-            var month = (nowDate.getMonth() + 1);
-            if (month < 10) {
-                ZeroMonth = "0" + month;
-            } else {
-                ZeroMonth = month;
-            }
+        AdmissionReason = $('#AdmissionReason').val();
+        PoliceCase = $('input[name="PoliceCase"]:checked').val();
 
-            //days
-            var day = (nowDate.getDate());
-            if (day < 10) {
-                ZeroDay = "0" + day;
-            } else {
-                ZeroDay = day;
-            }
 
-            //years
-            var year = (nowDate.getFullYear());
-            //hours
-            var hours = nowDate.getHours();
-            //minutes
-            var minutes = nowDate.getMinutes();
-            if (minutes < 10) {
-                ZeroMinutes = "0" + minutes;
-            } else {
-                ZeroMinutes = minutes;
-            }
-            //seconds
-            var seconds = nowDate.getSeconds();
-            if (seconds < 10) {
-                ZeroSeconds = "0" + seconds;
-            } else {
-                ZeroSeconds = seconds;
-            }
-            //complete day
-            yyyyMMddHHmmss = year + "-" + ZeroMonth + "-" + ZeroDay + " " + hours + ":" + ZeroMinutes + ":" + ZeroSeconds;
-            HHmmss = hours + ":" + ZeroMinutes + ":" + ZeroSeconds;
-            yyyyMMdd = year + "-" + ZeroMonth + "-" + ZeroDay;
-            ddMMyyyy = ZeroDay + "-" + ZeroMonth + "-" + year;
+        DocNo = $('#DocNo').val();
+        payer = $('#payer').val();
+        if (payer === null) {
+            payer = "-";
+        } else {
+            payer = $('#payer').val();
         }
+        Dis = $('#DisWard').val();
+        var array_dis = Dis.split("|");
+        var Dis = array_dis[0];
+        wname = $('#wname').val();
+        Deposit = $('#Deposit').val();
+        WardType = $('#WardType').val();
+        BedID = $('#BedIDReg').val();
+        guardInd = "-";
+        referHfc = "-";
+        referDis = "-";
+        referNo = "-";
+        gruGuard = "-";
+        epiTime = HHmmss;
+        stat = "0";
+        var hfc = $("#Rhfc").val();
+        var createdBy = $("#Rid").val();
+        var sub = $("#Rsub").val();
 
-        //register patient
-        $('#registerBed').click(function () {
-            getDateNow();
-            setInterval(getDateNow, 1000);
-            if ($('#pmino').val() === " " || $('#pmino').val() === "") {
-                bootbox.alert('Please use a proper PMI no.');
-            } else if ($('input[name="PoliceCase"]').val()===null) {
-                bootbox.alert('Please choose the police case');
-            }else if ($('#GL').val() === " ") {
-                bootbox.alert('Please choose the GL expiry date');
-            }
-            else if ($('#DocType').val() === null) {
-                bootbox.alert('Please choose Document Type');
-            }
-            else if ($('#AdmissionType').val() === " ") {
-                bootbox.alert('Please choose the admission type');
-            }
-            else if ($('#Refer').val() === " ") {
-                bootbox.alert('Please choose the reffering from');
-            }else{
+        hfc = $('#Rhfc').val();
+        var datas = {'pmino': pmino,
+            'epiDate': epiDate,
+            'poic': poic,
+            'pid': pid,
+            'MRN': MRN,
+            'pname': pname,
+            'pnic': pnic,
+            'pidno': pidno,
+            'EliSource': EliSource,
+            'AdmissionType': AdmissionType,
+            'Refer': Refer,
+            'DocType': DocType,
+            'GL': GL,
+            'EliTy': EliTy,
+            'AdmissionReason': AdmissionReason,
+            'PoliceCase': PoliceCase,
+            'DocNo': DocNo,
+            'payer': payer,
+            'Dis': Dis,
+            'wname': wname,
+            'Deposit': Deposit,
+            'WardType': WardType,
+            'BedID': BedID,
+            'guardInd': guardInd,
+            'referNo': referNo,
+            'referHfc': referHfc,
+            'referDis': referDis,
+            'gruGuard': gruGuard,
+            'epiTime': epiTime,
+            'stat': stat,
+            'hfc': hfc,
+            'now': yyyyMMdd,
+            createdBy: createdBy,
+            sub: sub
 
-
-                var pmino, poic, pid, MRN, pname, pnic, pidno,
-                        EliSource, AdmissionType, Refer, DocType, GL, EliTy, AdmissionReason, PoliceCase, DocNo, payer,
-                        Dis, wname, Deposit, WardType, BedID,
-                        guardInd, referNo, referHfc, referDis, gruGuard, epiTime, epiDate, stat, hfc;
-                pmino = $('#pmino').val();
-                epiDate = yyyyMMddHHmmss;
-                poic = $('input[id=poic]').val();
-                pid = $('input[id=pitID]').val();
-                MRN = $('input[id=MRN]').val();
-                pname = $('input[id=pname]').val();
-                pnic = $('input[id=pnic]').val();
-                pidno = $('input[id=pino]').val();
-                EliSource = $('#EliSource').val();
-                AdmissionType = $('#AdmissionType').val();
-                
-                Refer = $('#Refer').val();
-                DocType = $('#DocType').val();
-                GL = $('#GL').val();
-                
-                if ($('#EliTy').val() === null) {
-                    EliTy = "-";
-                } else {
-                    EliTy = $('#EliTy').val();
+        };
+        //console.log(datas);
+        bootbox.confirm({
+            message: "Are you sure want to REGISTER PATIENT?",
+            buttons: {
+                confirm: {
+                    label: 'Yes',
+                    className: 'btn-success'
+                },
+                cancel: {
+                    label: 'No',
+                    className: 'btn-danger'
                 }
-                
-                AdmissionReason = $('#AdmissionReason').val();
-                PoliceCase = $('input[name="PoliceCase"]:checked').val();
-                
-                
-                DocNo = $('#DocNo').val();
-                payer = $('#payer').val();
-                if(payer ===null){
-                    payer ="-";
-                }else{
-                    payer = $('#payer').val();
+            },
+            callback: function (result) {
+                //if true go to PMI page
+                if (result === true) {
+                    $body.addClass("loading");
+                    $.ajax({
+                        type: "POST",
+                        url: "PMS/registration.jsp",
+                        data: datas, // Send input
+                        timeout: 3000,
+                        success: function (list) {
+                            console.log(list);
+                            $body.removeClass("loading");
+                            if ($.trim(list) === "Success") {
+                                bootbox.alert("Patient has been register successfully");
+                            } else if ($.trim(list) === "already") {
+                                bootbox.alert("Patient is already registered");
+                            } else if ($.trim(list) === "false") {
+                                bootbox.alert("There something error with the query");
+                            }
+                        }, error: function () {
+                            bootbox.alert("There is an error!");
+                        }
+                    });
+                    $.ajax({
+                        type: "POST",
+                        url: "PMS/addQueue.jsp",
+                        data: datas, // Send input
+                        timeout: 3000,
+                        success: function (list) {
+                            console.log(list);
+                            $body.removeClass("loading");
+                            if ($.trim(list) === "Success") {
+                                bootbox.alert("Patient has been add to queue successfully");
+                            } else if ($.trim(list) === "already") {
+                                bootbox.alert("Patient is already add to queue");
+                            } else if ($.trim(list) === "false") {
+                                bootbox.alert("There something error with the query");
+                            }
+                        }, error: function () {
+                            bootbox.alert("There is an error!");
+                        }
+                    });
                 }
-                Dis = $('#DisWard').val();
-                var array_dis = Dis.split("|");
-                var Dis = array_dis[0];
-                wname = $('#wname').val();
-                Deposit = $('#Deposit').val();
-                WardType = $('#WardType').val();
-                BedID = $('#BedIDReg').val();
-                guardInd = "-";
-                referHfc = "-";
-                referDis = "-";
-                referNo = "-";
-                gruGuard = "-";
-                epiTime = HHmmss;
-                stat = "0";
-                var hfc = $("#Rhfc").val();
-                var createdBy = $("#Rid").val();
-                var sub = $("#Rsub").val();
-                
-                hfc = $('#Rhfc').val();
-                var datas = {'pmino': pmino,
-                    'epiDate': epiDate,
-                    'poic': poic,
-                    'pid': pid,
-                    'MRN': MRN,
-                    'pname': pname,
-                    'pnic': pnic,
-                    'pidno': pidno,
-                    'EliSource': EliSource,
-                    'AdmissionType': AdmissionType,
-                    'Refer': Refer,
-                    'DocType': DocType,
-                    'GL': GL,
-                    'EliTy': EliTy,
-                    'AdmissionReason': AdmissionReason,
-                    'PoliceCase': PoliceCase,
-                    'DocNo': DocNo,
-                    'payer': payer,
-                    'Dis': Dis,
-                    'wname': wname,
-                    'Deposit': Deposit,
-                    'WardType': WardType,
-                    'BedID': BedID,
-                    'guardInd': guardInd,
-                    'referNo': referNo,
-                    'referHfc': referHfc,
-                    'referDis': referDis,
-                    'gruGuard': gruGuard,
-                    'epiTime': epiTime,
-                    'stat': stat,
-                    'hfc': hfc,
-                    'now': yyyyMMdd,                    
-                    createdBy: createdBy,
-                    sub: sub
-
-                };
-                //console.log(datas);
-                bootbox.confirm({
-                    message: "Are you sure want to REGISTER PATIENT?",
-                    buttons: {
-                        confirm: {
-                            label: 'Yes',
-                            className: 'btn-success'
-                        },
-                        cancel: {
-                            label: 'No',
-                            className: 'btn-danger'
-                        }
-                    },
-                    callback: function (result) {
-                        //if true go to PMI page
-                        if (result === true) {
-                            $body.addClass("loading");
-                            $.ajax({
-                                type: "POST",
-                                url: "PMS/registration.jsp",
-                                data: datas, // Send input
-                                timeout: 3000,
-                                success: function (list) {
-                                    console.log(list);
-                                    $body.removeClass("loading");
-                                    if ($.trim(list) === "Success") {
-                                        bootbox.alert("Patient has been register successfully");
-                                    } else if ($.trim(list) === "already") {
-                                        bootbox.alert("Patient is already registered");
-                                    }else if($.trim(list) === "false"){
-                                        bootbox.alert("There something error with the query");
-                                    }
-                                }, error: function () {
-                                    bootbox.alert("There is an error!");
-                                }
-                            });
-                        }
-                    }
-                });
             }
+        });
+    }
 
 
-        });
-        //event on click clear buton
-        $('#btnclear').click(function () {
-            $('#myForm2')[0].reset();
-        });
+});
+//event on click clear buton
+$('#btnclear').click(function () {
+    $('#myForm2')[0].reset();
+});
 
 
 

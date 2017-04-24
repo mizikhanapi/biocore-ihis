@@ -15,20 +15,23 @@
 
     String eliCat = "select * from adm_lookup_detail where master_reference_code = '0063' and hfc_cd ='" + hfc + "'  ";
     String admit = "select * from adm_lookup_detail where master_reference_code ='0023' and hfc_cd ='" + hfc + "'";
-    String eliType = "select * from adm_lookup_detail where master_reference_code = '0034'  and hfc_cd ='" + hfc + "' ";
 
     String idTYpe = "select * from adm_lookup_detail where master_reference_code = '0012' and hfc_cd ='" + hfc + "'  ";
     String documentType = "select * from adm_lookup_detail where master_reference_code = '0065' and hfc_cd ='" + hfc + "'  ";
     String payerGroup = "select * from adm_lookup_detail where master_reference_code = '0055' and hfc_cd ='" + hfc + "'  ";
 
-    ArrayList<ArrayList<String>> dataEliCat, dataAdmit, dataEliType, dataDocumentType, dataIdType, dataPayerGroup;
+    String DR2 = "002";
+
+    String role2 = "SELECT  b.USER_ID, b.USER_NAME,a.USER_ID, a.ROLE_CODE, a.HEALTH_FACILITY_CODE, a.DISCIPLINE_CODE FROM adm_user_access_role a LEFT JOIN adm_users b ON a.USER_ID = b.USER_ID where  a.ROLE_CODE = " + DR2 + " AND a.HEALTH_FACILITY_CODE=" + hfc + ";";
+
+    ArrayList<ArrayList<String>> dataRole2, dataEliCat, dataAdmit, dataEliType, dataDocumentType, dataIdType, dataPayerGroup;
 
     dataEliCat = conn.getData(eliCat);
     dataAdmit = conn.getData(admit);
-    dataEliType = conn.getData(eliType);
     dataIdType = conn.getData(idTYpe);
     dataDocumentType = conn.getData(documentType);
     dataPayerGroup = conn.getData(payerGroup);
+    dataRole2 = conn.getData(role2);
 
     String dataSystemStatus2 = session.getAttribute("SYSTEMSTAT").toString();
 
@@ -108,25 +111,38 @@
             <h4>Registration Information</h4>
 
             <div class="row">
-                <div class="col-md-6">
+
+                <div class="col-md-4">  
                     <!-- Select Basic -->
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="selectbasic">Eligibility Source</label>
                         <div class="col-md-6">
                             <select id="EliSource" name="EliSource" class="form-control">
                                 <option value="-">-</option>
-                                <option value="null" selected="" disabled="">Select Eligibility Source</option>
+                                <option value="null" selected="" >Select Eligibility Source</option>
 
 
                                 <%                                        for (int i = 0; i < dataEliCat.size(); i++) {%>
                                 <option value="<%=dataEliCat.get(i).get(1)%>"><%=dataEliCat.get(i).get(2)%></option>
                                 <%  }
                                 %>
-
-
                             </select>
                         </div> 
                     </div>
+
+                              <!-- Select Basic -->
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="selectbasic">Eligibility Type</label>
+            <div class="col-md-6" id="EligibilityTypeDropdown">
+                <select id="EliTy" name="selectbasic" class="form-control" disabled="">
+                   
+                    
+                </select>
+            </div>
+
+        </div>
+                            
+                    
 
 
                     <!-- Select Basic -->
@@ -148,34 +164,29 @@
                         </div> 
                     </div>
 
-
-
-                    <!-- Select Basic -->
+                    <!-- Text input-->
                     <div class="form-group">
-                        <label class="col-md-4 control-label" for="selectbasic">Referring from *</label>
+                        <label class="col-md-4 control-label" for="textinput">Admission reason </label>
                         <div class="col-md-6">
-                            <select id="Refer" name="Refer" class="form-control">
-                                <option value="" selected="" disabled="">Select </option>
-                                <option value="1">1. KLINIK PESAKIT LUAR PAKAR</option>
-                                <option value="2">2. LAIN HOSP. KERAJAAN</option>
-                                <option value="3">3. KLINIK KESIHATAN/JPL</option>
-                                <option value="4">4. PENGAMAL PERUBATAN</option>
-                                <option value="5">5. BERSALIN</option>
-                                <option value="6">6. JABATAN KECEMASAN</option>
-                                <option value="7">9. LAIN-LAIN</option>
-
-                            </select>
+                            <textarea id="AdmissionReason" name="textinput" type="text" placeholder="" class="form-control input-md"></textarea>
                         </div>
                     </div>
 
-                    <!-- Select Basic -->
+
+                </div>
+
+
+
+
+                <div class="col-md-4">
+
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="selectbasic">Document type *</label>
                         <div class="col-md-6">
                             <select id="DocType" name="DocType" class="form-control">
                                 <option value="-">-</option>
 
-                                <option value="" selected="" disabled="">Select </option>                               
+                                <option value="" selected="" disabled="">Select Document type </option>                               
 
                                 <%
                                     for (int i = 0; i < dataDocumentType.size(); i++) {%>
@@ -186,6 +197,64 @@
                             </select>
                         </div>
                     </div>
+                    <!-- Text input-->
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="textinput">Document no</label>
+                        <div class="col-md-6">
+                            <input id="DocNo" name="textinput" type="text" placeholder="" class="form-control input-md">
+                        </div>
+                    </div>
+
+
+
+                    <!-- Select Basic -->
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="selectbasic">Referring from *</label>
+                        <div class="col-md-6">
+                            <select id="Refer" name="Refer" class="form-control">
+                                <option value="" selected="" disabled="">Select Referring from </option>
+                                <option value="1">1. KLINIK PESAKIT LUAR PAKAR</option>
+                                <option value="2">2. LAIN HOSP. KERAJAAN</option>
+                                <option value="3">3. KLINIK KESIHATAN/JPL</option>
+                                <option value="4">4. PENGAMAL PERUBATAN</option>
+                                <option value="5">5. BERSALIN</option>
+                                <option value="6">6. JABATAN KECEMASAN</option>
+                                <option value="7">9. LAIN-LAIN</option>
+
+                            </select>
+                        </div>
+                    </div>   
+                    <!-- Select Basic -->
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="selectbasic">Referred By *</label>
+                        <div class="col-md-6">
+                            <select id="RefDR" name="RefDR" class="form-control" >
+                                <option value="1" selected="" >Select Referred By</option>
+
+                                <%
+                                    int sizeDR2 = dataRole2.size();
+
+                                    for (int i = 0; i < sizeDR2; i++) {
+                                %>
+                                <option value="<%= dataRole2.get(i).get(0)%>"><%= dataRole2.get(i).get(1)%> </option>
+                                <%
+                                    }
+                                %>
+                            </select>
+                        </div>
+                    </div> 
+
+
+
+
+
+
+
+                </div>
+
+
+
+                <div class="col-md-4">  
 
                     <!-- Text input-->
                     <div class="form-group">
@@ -196,61 +265,8 @@
                     </div>
 
 
-                </div>
 
-
-
-                <div class="col-md-6">  
                     <!-- Select Basic -->
-                    <div class="form-group">
-                        <label class="col-md-4 control-label" for="selectbasic">Eligibility Type</label>
-                        <div class="col-md-6">
-                            <select id="EliTy" name="EliTy" class="form-control">
-                                <option value="1" selected="" disabled="">Select Eligibility Type</option>
-
-
-
-                                <%
-                                    for (int i = 0; i < dataEliType.size(); i++) {%>
-                                <option value="<%=dataEliType.get(i).get(1)%>"><%=dataEliType.get(i).get(2)%></option>
-                                <%  }
-                                %>
-
-
-                            </select>
-                        </div>
-                    </div>
-
-                    <!-- Text input-->
-                    <div class="form-group">
-                        <label class="col-md-4 control-label" for="textinput">Admission reason </label>
-                        <div class="col-md-6">
-                            <input id="AdmissionReason" name="textinput" type="text" placeholder="" class="form-control input-md">
-                        </div>
-                    </div>
-
-                    <!-- Text input-->
-                    <div class="form-group">
-                        <label class="col-md-4 control-label" for="textinput">Police case *</label>
-                        <div class="col-md-8">
-                            <label class="radio-inline">
-                                <input type="radio" name="PoliceCase" id="PoliceCase1" value="Yes">
-                                Yes
-                            </label>
-                            <label class="radio-inline">
-                                <input type="radio" name="PoliceCase" id="PoliceCase2" value="No">
-                                No
-                            </label>
-                        </div>
-                    </div>
-
-                    <!-- Text input-->
-                    <div class="form-group">
-                        <label class="col-md-4 control-label" for="textinput">Document no</label>
-                        <div class="col-md-6">
-                            <input id="DocNo" name="textinput" type="text" placeholder="" class="form-control input-md">
-                        </div>
-                    </div>
 
 
                     <!-- Text input-->
@@ -272,6 +288,21 @@
 
                         </div>
                     </div>
+                    <!-- Text input-->
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="textinput">Police case *</label>
+                        <div class="col-md-8">
+                            <label class="radio-inline">
+                                <input type="radio" name="PoliceCase" id="PoliceCase1" value="Yes">
+                                Yes
+                            </label>
+                            <label class="radio-inline">
+                                <input type="radio" name="PoliceCase" id="PoliceCase2" value="No">
+                                No
+                            </label>
+                        </div>
+                    </div>
+
                 </div>
             </div>
 
@@ -312,6 +343,29 @@
     </div>
 </div>
 <script>
+       $("#EliSource").on('change', function () {
+            var EliSrc = $(this).val();
+            $.ajax({
+                type: "post",
+                url: "listEliTy.jsp",
+                data: {'EliSrc': EliSrc},
+                timeout: 10000,
+                success: function (list) {
+                    //remove the loading 
+                    //$body.removeClass("loading");
+                    console.log(list);
+                    $('#EligibilityTypeDropdown').html(list);
+
+                },
+                error: function (xhr, status, error) {
+                    var err = eval("(" + xhr.responseText + ")");
+                    //bootbox.alert(err.Message);
+                }
+            });
+        });
+            
+    
+    
     $("#GL").datepicker({
         changeMonth: true,
         changeYear: true,
