@@ -132,7 +132,8 @@
                                 <label class="col-md-4 control-label" for="textinput">Postcode*</label>
                                 <div class="col-md-8">
                                     <input id="HFM_postcode" maxlength="30"  type="text" placeholder="search postcode" class="form-control input-md" autocomplete="off">
-                                    <div id="HFM_match">
+                                    <input id="HFM_postcode_hidden" type="hidden">
+                                    <div id="HFM_match" class="search-drop">
                                         <!--for list of postcode-->
                                     </div>
                                 </div>
@@ -177,8 +178,8 @@
                                 <label class="col-md-4 control-label" for="textinput">Status*</label>
                                 <div class="col-md-8">
                                     <select class="form-control"  id="HFM_status">
-                                        <option  value="1" >Active</option>
-                                        <option  value="0" >Inactive</option>
+                                        <option  value="0" >Active</option>
+                                        <option  value="1" >Inactive</option>
                                     </select>
                                 </div>
                             </div>
@@ -458,6 +459,7 @@
             var district = $('#HFM_district').val();
             var town = $('#HFM_town').val();
             var postcode = $('#HFM_postcode').val();
+            var postcode_hidden = $('#HFM_postcode_hidden').val();
             var faxNo = $('#HFM_faxNo').val();
             var telNo = $('#HFM_telNo').val();
             var email = $('#HFM_email').val();
@@ -494,8 +496,8 @@
                 bootbox.alert("Select the town");
                 $('#HFM_town').focus();
 
-            } else if (postcode.trim() === "") {
-                bootbox.alert("Fill in the postcode");
+            } else if (postcode.trim() === "" || postcode_hidden.trim() === "") {
+                bootbox.alert("Please choose existing postcode!");
                 $('#HFM_postcode').focus();
 
             } else if (status !== "1" && status !== "0") {
@@ -539,7 +541,7 @@
                     state: state,
                     district: district,
                     town: town,
-                    postcode: postcode,
+                    postcode: postcode_hidden,
                     faxNo: faxNo,
                     telNo: telNo,
                     email: email,
@@ -573,13 +575,13 @@
                                 title: "Process Result",
                                 backdrop: true
                             });
-                            reset();
+                            //HFM_reset();
 
                         } else if (datas.trim() === 'Failed') {
 
                             alert("Insertion failed!");
                             $('#HFM_detail').modal('hide');
-                            reset();
+                            //HFM_reset();
 
                         } else {
 
@@ -684,11 +686,18 @@
                     data: dataFields, // Send dataFields var
                     timeout: 3000,
                     success: function (dataBack) { // If success
+                        $('#HFM_postcode_hidden').val('');
                         $('#HFM_match').html(dataBack); // Return data (UL list) and insert it in the <div id="match"></div>
                         $('#matchList li').on('click', function () { // When click on an element in the list
                             //$('#masterCode2').text($(this).text()); // Update the field with the new element
                             $('#HFM_postcode').val($(this).text());
+                            
+                             //console.log($(this).data('code'));
+                            $('#HFM_postcode_hidden').val($(this).data('code'));
+                            
                             $('#HFM_match').text(''); // Clear the <div id="match"></div>
+                            
+                           
                         });
                     },
                     error: function () { // if error

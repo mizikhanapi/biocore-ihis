@@ -461,7 +461,7 @@ ul.nav.navbar-nav.navbar-left.back {
     .navbar-right>li {
         float: left;
     }
-    
+
     .navbar-right>li>a {
         padding: 15px;
     }
@@ -530,19 +530,19 @@ ul.nav.navbar-nav.navbar-left.back {
 }
 
 .S {
-   border-left: 5px solid #d54e21;
+    border-left: 5px solid #d54e21;
 }
 
 .O {
-   border-left: 5px solid #ffba00;
+    border-left: 5px solid #ffba00;
 }
 
 .A {
-   border-left: 5px solid #46b450;
+    border-left: 5px solid #46b450;
 }
 
 .P {
-   border-left: 5px solid #00a0d2;
+    border-left: 5px solid #00a0d2;
 }
 
 .S .media-body {
@@ -615,7 +615,7 @@ tr#moveToOrderDetailsTButton {
     margin-bottom: 30px !important;
 }
 
-#searchPatientModule {
+#searchPatientModule, .searchPatientModule {
     padding: 0px 0px 20px;
 }
 
@@ -624,7 +624,7 @@ tr#moveToOrderDetailsTButton {
 }
 
 .modal-body h4 {
-    padding: 20px 30px 0px;
+    padding: 0px 30px 20px;
 }
 
 .summary {
@@ -643,6 +643,9 @@ tr#moveToOrderDetailsTButton {
 
 .ckbox {
     position: relative;
+    float: left;
+    margin-right: 20px;
+    cursor: pointer;
 }
 .ckbox input[type="checkbox"] {
     opacity: 0;
@@ -652,6 +655,7 @@ tr#moveToOrderDetailsTButton {
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
+    cursor: pointer;
 }
 .ckbox label:before {
     content: '';
@@ -662,7 +666,7 @@ tr#moveToOrderDetailsTButton {
     display: block;
     position: absolute;
     border-radius: 2px;
-    border: 1px solid #bbb;
+    border: 2px solid #bbb;
     background-color: #fff;
 }
 .ckbox input[type="checkbox"]:checked + label:before {
@@ -679,6 +683,34 @@ tr#moveToOrderDetailsTButton {
     position: absolute;
 }
 
+.radiobtn {
+    position: relative;
+    float: left;
+    margin-right: 20px;
+}
+
+.radiobtn input[type="radio"] {
+    display: none;
+}
+
+.radiobtn label {
+    width: 18px;
+    height: 18px;
+    display: block;
+    border-radius: 50%;
+    border: 2px solid #bbb;
+    background-color: #fff;
+    cursor: pointer;
+}
+
+.radiobtn input[type="radio"]:checked+label {
+    border-color: #bbb;
+    background-color: #2BBCDE;
+}
+
+
+
+
 .ConsultationNotes>tr>td:first-child {
     padding-left: 30px;
     padding-right: 30px;
@@ -691,4 +723,90 @@ tr#moveToOrderDetailsTButton {
 
 .modal-table {
     padding: 30px;
+}
+
+.input-number {
+    border: 1px solid #ddd;
+    margin-bottom: 0px !important;
+    padding-left: 10px;
+}
+
+.soalan {
+    border-top: 1px solid #ddd;
+    padding: 15px;
+    margin-bottom: 0px;
+    margin-left: 0px !important;
+    margin-right: 0px !important;
+}
+
+.cek-soalan .ckbox {
+    float: right;
+}
+
+/*.soalan:last-child {
+    border-bottom: 1px solid #ddd;
+}*/
+
+.kedua .soalan {
+    border-right: none;
+}
+
+.tajuk>h4 {
+    padding: 0px 30px 10px;
+}
+
+.tajuk>p {
+    color: #999;
+}
+
+.margin-top-50px {
+    margin-top: 50px;
+}
+
+.margin-top-30px {
+    margin-top: 30px;
+}
+
+.margin-bottom-10px {
+    margin-bottom: 10px;
+}
+
+.margin-bottom-30px {
+    margin-bottom: 30px;
+}
+
+.golongan-soalan>p {
+    font-weight: 500;
+}
+
+.tab-content .tab-pane {    
+    position: relative !important;
+}
+
+.bed-booking-title {
+    font-weight: 500;
+    text-transform: uppercase;
+    color: #666;
+}
+
+.bed-booking-total {
+    font-weight: 500;
+    font-size: 50px;
+}
+
+.bed-booking-a, .bed-booking-o, .bed-booking-p {
+    font-weight: 500;
+    margin: 0px 5px;
+}
+
+.bed-booking-a{
+    color:#26a69a;
+}
+
+.bed-booking-o{
+    color:#f5707a;
+}
+
+.bed-booking-p{
+    color:#f9c851;
 }

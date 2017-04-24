@@ -1,0 +1,58 @@
+<div class="col-sm-3 col-md-2 sidebar" id="style-3">
+    <!-- logo -->
+    <div class="logo">
+        Welcome to <span>iHIS</span>
+    </div>
+    <!-- logo -->
+
+    <!-- profile Sidebar -->
+    <div class="profile">
+        <div class="profile-userpic">
+            <img src="../assets/profile.jpg" class="img-responsive" alt="">
+        </div>
+
+        <!-- SIDEBAR USER TITLE -->
+        <div class="profile-usertitle">
+            <div class="profile-usertitle-name">
+                Marcus Doe
+            </div>
+            <div class="profile-usertitle-job">
+                Developer
+            </div>
+        </div>
+        <!-- SIDEBAR BUTTONS -->
+        <div class="profile-userbuttons">
+            <button type="button" class="btn btn-success btn-sm">Manage Account</button>
+        </div>
+    </div>
+    <hr/>
+    <!-- profile Sidebar -->
+
+    <ul id="menu-content" class="nav nav-sidebar">
+        <!-- // menu tanpa dropdown -->
+        <li><a href="Patient-order-list.html"><i class="fa fa-list fa-lg"></i> Patient Order List</a></li>
+        <li><a href="patient-drug-dispense.html"><i class="fa fa-filter fa-lg" ></i> Patient Drug Dispense</a></li>
+        <li><a href="drug-order.html"><i class="fa fa-sort fa-lg"></i> Drug Order</a></li>
+        <!-- // menu tanpa dropdown -->
+
+        <!-- Menu with dropdown -->
+        <li  data-toggle="collapse" data-target="#Inventory" class="collapsed active">
+            <a href="#"><i class="fa fa-file-text-o fa-lg"></i> Inventory <span class="arrow"><i class="fa fa-angle-right" aria-hidden="true"></i></span></a>
+        </li>
+        <ul class="sub-menu collapse" id="Inventory">
+            <li><a href="atc.html">ATC</a></li>
+            <li><a href="mdc.html">MDC</a></li>
+            <li><a href="import.html">Import</a></li>
+            <li><a href="add-supplier.html">Add Supplier</a></li>
+            <li><a href="dispense.html">Dispense Report</a></li>
+        </ul>
+        <!-- Menu with dropdown -->
+
+        <hr/>
+
+        <!-- Menu panel -->
+        <li class="active"><a href="#generic" role="tab" data-toggle="tab" class="panelito"><i class="fa fa-hospital-o fa-lg"></i> Generic SOAP</a></li>
+        <li><a href="#orthopedic" role="tab" data-toggle="tab" class="panelito"><i class="fa fa-wheelchair fa-lg"></i> Orthopedic</a></li>
+
+    </ul>
+</div>

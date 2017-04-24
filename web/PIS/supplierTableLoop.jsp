@@ -64,12 +64,12 @@
 <td style="display: none"><%= dataSupplier.get(i).get(13)%></td>
 <td>
     <!-- Update Part Start -->
-    <a id="supplierUpdateTButton" data-toggle="modal" data-target="#supplierUpdateModal"><i class="fa fa-pencil-square-o fa-lg" aria-hidden="true" style="display: inline-block;color: #337ab7; cursor: pointer;"></i></a>
+    <a id="supplierUpdateTButton" data-toggle="modal" data-target="#supplierUpdateModal"><i class="fa fa-pencil-square-o" aria-hidden="true" style="display: inline-block;color: #337ab7;"></i></a>
     <!-- Update Part End -->
 </td>
 <td>
     <!-- Delete Button Start -->
-    <a id="supllierDeleteTButton" class="testing"><i class="fa fa-times fa-lg" aria-hidden="true" style="display: inline-block;color: #d9534f; cursor: pointer; " ></i></a>
+    <a id="supllierDeleteTButton" class="testing"><i class="fa fa-times" aria-hidden="true" style="display: inline-block;color: #d9534f; width: " ></i></a>
     <!-- Delete Button End -->
 </td>
 </tr>
@@ -94,12 +94,12 @@
                 <!-- content goes here -->
                 <form class="form-horizontal" >
                     <div class="row">
-                        <div class="col-md-6" style="border-right: 1px solid #eee;">
+                        <div class="col-md-6">
 
                             <!-- Text input-->
                             <div class="form-group">
                                 <label class="col-md-4 control-label" for="textinput">Supplier ID &nbsp; *</label>
-                                <div class="col-md-7">
+                                <div class="col-md-8">
                                     <input id="updateSupplier_ID" type="text" class="form-control" placeholder="Please Insert Supplier ID" readonly maxlength="10">
                                 </div>
                             </div>
@@ -107,7 +107,7 @@
                             <!-- Text input-->
                             <div class="form-group">
                                 <label class="col-md-4 control-label" for="textinput">Supplier Name &nbsp; *</label>
-                                <div class="col-md-7">
+                                <div class="col-md-8">
                                     <input id="updateSupplier_Name" type="text" class="form-control" placeholder="Please Insert Supplier NAME" maxlength="100">
                                 </div>
                             </div>
@@ -115,7 +115,7 @@
                             <!-- Text input-->
                             <div class="form-group">
                                 <label class="col-md-4 control-label" for="textinput">Office No &nbsp; *</label>
-                                <div class="col-md-7">
+                                <div class="col-md-8">
                                     <input id="updateOffice_Tel_No" type="text" class="form-control" placeholder="Please Insert Office No" pattern="[0-9]{9,11}"  maxlength="30">
                                 </div>
                             </div>
@@ -123,7 +123,7 @@
                             <!-- Text input-->
                             <div class="form-group">
                                 <label class="col-md-4 control-label" for="textinput">Email &nbsp; *</label>
-                                <div class="col-md-7">
+                                <div class="col-md-8">
                                     <input id="updateEmail" type="email" class="form-control" placeholder="Please Insert Email" maxlength="30">
                                 </div>
                             </div>
@@ -131,7 +131,7 @@
                             <!-- Text input-->
                             <div class="form-group">
                                 <label class="col-md-4 control-label" for="textinput">Address 1</label>
-                                <div class="col-md-7">
+                                <div class="col-md-8">
                                     <input id="updateADDRESS1" type="text" class="form-control" placeholder="Please Insert Address 1 (Optional)" maxlength="100">
                                 </div>
                             </div>
@@ -139,7 +139,7 @@
                             <!-- Text input-->
                             <div class="form-group">
                                 <label class="col-md-4 control-label" for="textinput">Address 2</label>
-                                <div class="col-md-7">
+                                <div class="col-md-8">
                                     <input id="updateADDRESS2" type="text" class="form-control" placeholder="Please Insert Address 2 (Optional)" maxlength="100">
                                 </div>
                             </div>
@@ -147,7 +147,7 @@
                             <!-- Text input-->
                             <div class="form-group">
                                 <label class="col-md-4 control-label" for="textinput">Address 3</label>
-                                <div class="col-md-7">
+                                <div class="col-md-8">
                                     <input id="updateADDRESS3" type="text" class="form-control" placeholder="Please Insert Address 3 (Optional)" maxlength="100">
                                 </div>
                             </div>
@@ -160,7 +160,7 @@
                             <!-- Text input-->
                             <div class="form-group">
                                 <label class="col-md-4 control-label" for="textinput">Country Code</label>
-                                <div class="col-md-7">
+                                <div class="col-md-8">
                                     <input id="updateCOUNTRY_CODE" type="text" class="form-control" placeholder="Please Search Country Code (Optional)" maxlength="10">
                                     <div id="updateCOUNTRY_CODESearch">
                                         <!--for search area-->
@@ -171,7 +171,7 @@
                             <!-- Text input-->
                             <div class="form-group">
                                 <label class="col-md-4 control-label" for="textinput">State Code</label>
-                                <div class="col-md-7">
+                                <div class="col-md-8">
                                     <input id="updateSTATE_CODE" type="text" class="form-control" placeholder="Please Search State Code (Optional)" maxlength="10">
                                     <div id="updateSTATE_CODESearch">
                                         <!--for search area-->
@@ -182,7 +182,7 @@
                             <!-- Text input-->
                             <div class="form-group">
                                 <label class="col-md-4 control-label" for="textinput">District Code</label>
-                                <div class="col-md-7">
+                                <div class="col-md-8">
                                     <input id="updateDISTRICT_CODE" type="text" class="form-control" placeholder="Please Search District Code (Optional)" maxlength="10">
                                     <div id="updateDISTRICT_CODESearch">
                                         <!--for search area-->
@@ -193,7 +193,7 @@
                             <!-- Text input-->
                             <div class="form-group">
                                 <label class="col-md-4 control-label" for="textinput">Town Code</label>
-                                <div class="col-md-7">
+                                <div class="col-md-8">
                                     <input id="updateTOWN_CODE" type="text" class="form-control" placeholder="Please Search Town Code (Optional)" maxlength="10">
                                     <div id="updateTOWN_CODESearch">
                                         <!--for search area-->
@@ -204,7 +204,7 @@
                             <!-- Text input-->
                             <div class="form-group">
                                 <label class="col-md-4 control-label" for="textinput">Postcode</label>
-                                <div class="col-md-7">
+                                <div class="col-md-8">
                                     <input id="updatePOSTCODE" type="number" class="form-control" placeholder="Please Search Postcode (Optional)" maxlength="10">
                                     <div id="updatePOSTCODESearch">
                                         <!--for search area-->
@@ -216,7 +216,7 @@
                             <!-- Text input-->
                             <div class="form-group">
                                 <label class="col-md-4 control-label" for="textinput">Mobile No</label>
-                                <div class="col-md-7">
+                                <div class="col-md-8">
                                     <input id="updateMobile_No" type="text" class="form-control" placeholder="Please Insert Mobile No (Optional)" pattern="[0-9]{9,11}" maxlength="15">
                                 </div>
                             </div>
@@ -225,7 +225,7 @@
                             <!-- Text input-->
                             <div class="form-group">
                                 <label class="col-md-4 control-label" for="textinput">Fax No</label>
-                                <div class="col-md-7">
+                                <div class="col-md-8">
                                     <input id="updateFax_No" type="text" class="form-control" placeholder="Please Insert Fax No (Optional)" pattern="[0-9]{9,11}" maxlength="15">
                                 </div>
                             </div>

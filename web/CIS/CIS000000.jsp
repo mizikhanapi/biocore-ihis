@@ -26,7 +26,7 @@
 <!-- saved from url=(0044)https://getbootstrap.com/examples/dashboard/ -->
 <html lang="en">
     <head>
-        <title>eMedica | CIS</title>
+        <title>iHIS | CIS</title>
 
         <!-- header -->
         <%@ include file="../assets/header.html" %> 
@@ -206,6 +206,8 @@
                                     <tbody id="LOSNotes"   class="P ConsultationNotes"> </tbody>
                                     <tbody id="FLUNotes"   class="P ConsultationNotes"> </tbody>
                                     <tbody id="PRINotes"   class="P ConsultationNotes"> </tbody>
+                                    <tbody id="MONNotes"   class="P ConsultationNotes"> </tbody>
+                                    <tbody id="ADWNotes"   class="P ConsultationNotes"> </tbody>
 
                                 </table>
 

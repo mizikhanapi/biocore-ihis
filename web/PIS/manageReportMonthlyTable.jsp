@@ -17,7 +17,7 @@
 %>
 
 
-<h4>
+<h4 style="padding-top: 1%;padding-bottom: 2%; font-weight: bold;text-align: center;">
     MONTHLY DISPENSE DATA
 </h4>
 
@@ -59,7 +59,7 @@
 
 <script type="text/javascript" charset="utf-8">
     $(document).ready(function () {
-
+        
 
 
         $('#reportMonthlyTable').DataTable({

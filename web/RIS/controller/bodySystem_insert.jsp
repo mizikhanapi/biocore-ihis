@@ -31,7 +31,7 @@
         RMIConnector rmic = new RMIConnector();
         
         String query = "Insert into ris_body_system(hfc_cd, modality_cd, body_system_cd, body_system_name, discipline_cd, subdiscipline_cd, created_by, created_date, status) "
-                + "values ('"+hfcCode+"', '0', '"+bs_code+"', '"+bs_name+"', '"+discipline+"', '"+subdiscipline+"', '"+creator+"', now(), '"+status+"')";
+                + "values ('"+hfcCode+"', '-', '"+bs_code+"', '"+bs_name+"', '"+discipline+"', '"+subdiscipline+"', '"+creator+"', now(), '"+status+"')";
         
         boolean isInsert = rmic.setQuerySQL(conn.HOST, conn.PORT, query);
         

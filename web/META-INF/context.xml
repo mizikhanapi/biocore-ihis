@@ -1,2 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<<<<<<< HEAD
 <Context path="/biocore-ihis3"/>
+=======
+<Context path="/BIOCORE-IHIS"/>
+>>>>>>> c2abe94706cc68c1476e62df9327af195c763d07

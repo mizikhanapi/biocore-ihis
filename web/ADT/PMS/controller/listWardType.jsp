@@ -15,7 +15,7 @@
 %>
 
                 <select id="WardType" name="WardType" class="form-control">
-                    <option value="1" selected="" disabled="">Select Ward Type</option>
+                    <option value="1" selected="" disabled="">Select Ward Type </option>
 
                     <%
                         String wtype = "select ward_class_code,ward_class_name from wis_ward_class where hfc_cd='" + hfc + "' and discipline_cd = '"+disipline+"'";

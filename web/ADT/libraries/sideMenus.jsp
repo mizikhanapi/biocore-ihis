@@ -55,6 +55,12 @@
         <!-- // menu tanpa dropdown -->
         
         <li>
+            <a type="button" data-toggle="modal" data-target="#queueModal" id="queue">
+                <i class="fa fa-users fa-lg"></i> List Of Queue
+            </a>
+        </li>
+        
+        <li>
             <a  href="HIS070001.jsp" >
                 <i class="fa fa-bed fa-lg"></i> Manage In-Patient
             </a>

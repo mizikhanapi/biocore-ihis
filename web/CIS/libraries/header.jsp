@@ -5,8 +5,6 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>eMedica | Pharmacy</title>
-
 <!-- Bootstrap core CSS -->
 <link href="assets/Autocomplete.css" rel="stylesheet">
 
@@ -84,6 +82,8 @@
 <script src="jsFunction/search/SearchLOS.js" type="text/javascript"></script>
 <script src="jsFunction/search/searchDoc_FLU.js" type="text/javascript"></script>
 <script src="jsFunction/search/searchDisipline.js" type="text/javascript"></script>
+<script src="jsFunction/search/SearchMON.js" type="text/javascript"></script>
+<script src="jsFunction/search/searchDisiplineADW.js" type="text/javascript"></script>
 <style>
     .ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default, .ui-button, html .ui-button.ui-state-disabled:hover, html .ui-button.ui-state-disabled:active{
         background:#337ab7;

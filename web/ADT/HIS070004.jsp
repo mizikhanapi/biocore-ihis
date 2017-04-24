@@ -17,11 +17,10 @@
     <head>
 
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta http-equiv="refresh" content="20; URL=HIS070004.jsp">
+        <meta http-equiv="refresh" content="20; URL=HIS070004.jsp">
 
         <!-- header -->
         <%@include file = "../assets/header.html" %>
-
         <!-- header -->
     </head>
 
@@ -34,10 +33,6 @@
             String hfc = session.getAttribute("HEALTH_FACILITY_CODE").toString();
 
         %>
-
-
-        <!-- header -->
-
 
         <div class="container-fluid">
             <div class="row">       
@@ -55,63 +50,27 @@
 
                     <div class="row">
                         <div class="col-md-12">
-                            <div class="thumbnail">
-
-
-                                <!-- Tab Menu -->
-
-                                <div class="tabbable-panel">
-                                    <div class="tabbable-line">
-                                        <ul class="nav nav-tabs ">
-                                            <li class="active">
-                                                <a href="#tab_default_1" data-toggle="tab">
-                                                    Bed Booking Master Summary </a>
-                                            </li>
-
-
-                                        </ul>
-                                        <!-- tab content -->
-                                        <div class="tab-content">
-                                            <div class="tab-pane active" id="tab_default_1">
-
-                                                <div>
-                                                    <div>
-                                                        <%     Date datenow = new Date();
-                                                            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/YYYY | HH:mm:ss");
-                                                             out.print("Date :");
-                                                            out.print(sdf.format(datenow));
-                                                        %>
-                                                    </div> </br>
-                                                    <div class="col-md-6">
-                                                        <div id="bed">
-                                                            <%@include file = "bedsummary.jsp" %>
-                                                        </div>
-                                                    </div>
-
-
-
-                                                    <div class="col-md-6">
-                                                        <div id="BedRemarks">
-                                                            <%@include file = "BedRemarks.jsp" %>
-                                                        </div>
-
-                                                    </div>
-                                                    </br>
-
-                                                </div>
-
-
-
-                                            </div>
-
-
-
-                                        </div>
+                            <h4>Bed Booking Master Summary</h4>
+                            <div class="row margin-bottom-30px">
+                                <div class="col-md-12">
+                                    <%     Date datenow = new Date();
+                                        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/YYYY | HH:mm:ss");
+                                        out.print("Date :");
+                                        out.print(sdf.format(datenow));
+                                    %>
+                                    <div class="pull-right">
+                                        <span class="bed-booking-a"><i class="fa fa-square"></i>&nbsp;Available</span> 
+                                        <span class="bed-booking-p"><i class="fa fa-square"></i>&nbsp;Pending</span>
+                                        <span class="bed-booking-o"><i class="fa fa-square"></i>&nbsp;Occupied</span>
                                     </div>
                                 </div>
-
-                                <!-- Tab Menu -->
-
+                            </div>
+                            <div id="BedRemarks">
+                                <%@include file = "BedRemarks.jsp" %>
+                            </div>
+                            <hr />
+                            <div id="bed">
+                                <%@include file = "bedsummary.jsp" %>
                             </div>
                         </div>
                     </div>
@@ -120,11 +79,6 @@
 
             </div>
             <!-- main -->		
-
         </div>
-
-
-
-
     </body>
 </html>

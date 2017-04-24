@@ -14,11 +14,12 @@
 
     //                          0       1              2            3                                      4            5          6            7           8           9           10        11              12                13              14              
     String query = "SELECT  room_no, hfc_name, oc.description, DATE_FORMAT(birth_date,'%d/%m/%Y'), sx.description, new_icno, home_phone, office_phone, mobile_phone, a.fax_no, a.email, id_category_code, tit.description, nat.description, mother_name "
-            + "FROM adm_users a join adm_health_facility b on health_facility_code = hfc_cd "
-            + "join adm_lookup_detail oc on oc.detail_reference_code = occupation_code and oc.master_reference_code = '0050' "
-            + "join adm_lookup_detail sx on sx.detail_reference_code = sex_code and sx.master_reference_code = '0041' "
-            + "join adm_lookup_detail tit on tit.detail_reference_code = title and tit.master_reference_code = '0026' "
-            + "join adm_lookup_detail nat on nat.detail_reference_code = nationality_code and nat.master_reference_code = '0011'"
+            + "FROM adm_users a "
+            + "left join adm_health_facility b on health_facility_code = b.hfc_cd "
+            + "left join adm_lookup_detail oc on oc.detail_reference_code = occupation_code and oc.master_reference_code = '0050' AND  health_facility_code = oc.hfc_cd  "
+            + "left join adm_lookup_detail sx on sx.detail_reference_code = sex_code and sx.master_reference_code = '0041' AND  health_facility_code = sx.hfc_cd   "
+            + "left join adm_lookup_detail tit on tit.detail_reference_code = title and tit.master_reference_code = '0026' AND  health_facility_code = tit.hfc_cd   "
+            + "left join adm_lookup_detail nat on nat.detail_reference_code = nationality_code and nat.master_reference_code = '0011' AND  health_facility_code = nat.hfc_cd  "
             + " WHERE user_id = '" + userID + "'";
 
     ArrayList<ArrayList<String>> personalData = conn.getData(query);

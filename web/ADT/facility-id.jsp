@@ -140,7 +140,7 @@
 
                         <div class="col-sm-4">
                             <div class="form-group">
-                                <label class="col-md-4 control-label" for="textinput">Citizen Rates *</label>
+                                <label class="col-md-4 control-label" for="textinput">Citizen Rates (RM)*</label>
                                 <div class="col-md-4">
                                     <input id="CitizenRates" name="CitizenRates" type="text" placeholder="RM:" class="form-control input-md">
                                 </div>
@@ -149,7 +149,7 @@
 
                         <div class="col-sm-4">
                             <div class="form-group">
-                                <label class="col-md-4 control-label" for="textinput">Citizen Deposit *</label>
+                                <label class="col-md-4 control-label" for="textinput">Citizen Deposit (RM)*</label>
                                 <div class="col-md-4">
                                     <input id="CitizenDeposit" name="CitizenDeposit" type="text" placeholder="RM:" class="form-control input-md">
                                 </div>
@@ -157,7 +157,7 @@
                         </div>
                         <div class="col-sm-4">
                             <div class="form-group">
-                                <label class="col-md-4 control-label" for="textinput">Citizen Discount *</label>
+                                <label class="col-md-4 control-label" for="textinput">Citizen Discount (%)*</label>
                                 <div class="col-md-4">
                                     <input id="CitizenDiscount" name="CitizenDiscount" type="text" placeholder="%:" class="form-control input-md">
                                 </div>
@@ -170,7 +170,7 @@
                     <div class="row">
                         <div class="col-sm-4">
                             <div class="form-group">
-                                <label class="col-md-4 control-label" for="textinput">Non Citizen Rates *</label>
+                                <label class="col-md-4 control-label" for="textinput">Non Citizen Rates (RM)*</label>
                                 <div class="col-md-4">
                                     <input id="NonCitizenRates" name="NonCitizenRates" type="text" placeholder="RM:" class="form-control input-md">
                                 </div>
@@ -178,7 +178,7 @@
                         </div>
                         <div class="col-sm-4">
                             <div class="form-group">
-                                <label class="col-md-4 control-label" for="textinput">Non Citizen Deposit *</label>
+                                <label class="col-md-4 control-label" for="textinput">Non Citizen Deposit (RM)*</label>
                                 <div class="col-md-4">
                                     <input id="NonCitizenDeposit" name="NonCitizenDeposit" type="text" placeholder="RM:" class="form-control input-md">
                                 </div>
@@ -187,7 +187,7 @@
                         </div>
                         <div class="col-sm-4">
                             <div class="form-group">
-                                <label class="col-md-4 control-label" for="textinput">Non Citizen Discount *</label>
+                                <label class="col-md-4 control-label" for="textinput">Non Citizen Discount (%)*</label>
                                 <div class="col-md-4">
                                     <input id="NonCitizenDiscount" name="NonCitizenDiscount" type="text" placeholder="%:" class="form-control input-md">
                                 </div>
@@ -198,7 +198,7 @@
                     <div class="row">
                         <div class="col-sm-4">
                             <div class="form-group">
-                                <label class="col-md-4 control-label" for="textinput">Pensioner Rates *</label>
+                                <label class="col-md-4 control-label" for="textinput">Pensioner Rates (RM)*</label>
                                 <div class="col-md-4">
                                     <input id="PensionerRates" name="PensionerRates" type="text" placeholder="RM:" class="form-control input-md">
                                 </div>
@@ -206,7 +206,7 @@
                         </div>
                         <div class="col-sm-4">
                             <div class="form-group">
-                                <label class="col-md-4 control-label" for="textinput">Pensioner Deposit *</label>
+                                <label class="col-md-4 control-label" for="textinput">Pensioner Deposit (RM)*</label>
                                 <div class="col-md-4">
                                     <input id="PensionerDeposit" name="PensionerDeposit" type="text" placeholder="RM:" class="form-control input-md">
                                 </div>
@@ -214,7 +214,7 @@
                         </div>
                         <div class="col-sm-4">
                             <div class="form-group">
-                                <label class="col-md-4 control-label" for="textinput">Pensioner Discount *</label>
+                                <label class="col-md-4 control-label" for="textinput">Pensioner Discount (%)*</label>
                                 <div class="col-md-4">
                                     <input id="PensionerDiscount" name="PensionerDiscount" type="text" placeholder="%:" class="form-control input-md">
                                 </div>

@@ -34,7 +34,7 @@
         String whereClause = "";
 
         if (!hfc_cd.equals("99_iHIS_99") || !last_nine.equals("9")) {
-            whereClause = " where ris_order_master.hfc_cd = '"+hfc_cd+"' AND sx.hfc_cd = '"+hfc_cd+"' ";
+            whereClause = " where ris_order_master.hfc_cd = '"+hfc_cd+"' ";
         }
 //                                  0                       1                       2                           3                                   4                       5                       
         String sql = "SELECT ris_order_master.pmi_no,ris_order_master.order_no,ris_order_master.hfc_cd,ris_order_master.episode_date,ris_order_master.encounter_date,ris_order_master.order_date,"
@@ -42,10 +42,11 @@
                 + "ris_order_master.order_by,ris_order_master.hfc_from,ris_order_master.hfc_to,ris_order_master.order_status,ris_order_master.diagnosis_cd,ris_order_master.created_by,ris_order_master.created_date,"
                 //  13                                          14                              15                                  16                          17
                 + "pms_patient_biodata.PATIENT_NAME,pms_patient_biodata.NEW_IC_NO,pms_patient_biodata.BIRTH_DATE,pms_patient_biodata.SEX_CODE,pms_patient_biodata.BLOOD_TYPE, "
-                //  18
-                + "sx.description "
+                //  18                  19
+                + "sx.description, blot.description "
                 + "FROM ris_order_master JOIN pms_patient_biodata ON (ris_order_master.pmi_no = pms_patient_biodata.PMI_NO) "
-                + "JOIN adm_lookup_detail sx on pms_patient_biodata.SEX_CODE = sx.detail_reference_code AND sx.master_reference_code = '0041' "
+                + "JOIN adm_lookup_detail sx on pms_patient_biodata.SEX_CODE = sx.detail_reference_code AND sx.master_reference_code = '0041' AND sx.hfc_cd = ris_order_master.hfc_cd "
+                + "LEFT JOIN adm_lookup_detail blot on pms_patient_biodata.BLOOD_TYPE = blot.detail_reference_code AND blot.master_reference_code = '0074' AND blot.hfc_cd = ris_order_master.hfc_cd"
                 + whereClause + " ;";
 
         ArrayList<ArrayList<String>> dataRISOrderList = conn.getData(sql);

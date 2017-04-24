@@ -30,7 +30,7 @@
         <script src="old/assets/js/WardMain.js" type="text/javascript"></script>
         <script src="bootstrap-3.3.6-dist/js/jquery.dataTables.min.js"></script>
         <!--<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>-->
-<!--        <script type="text/javascript" src="../javascript.js"></script>-->
+        <!--        <script type="text/javascript" src="../javascript.js"></script>-->
         <script src="old/assets/js/OccuPatient.js" type="text/javascript"></script>
         <script src="old/assets/js/onKeyPress.js" type="text/javascript"></script>
         <script src="old/assets/js/IPMain.js" type="text/javascript"></script>
@@ -72,8 +72,6 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div class="thumbnail">
-
-
                                 <!-- Tab Menu -->
 
                                 <div class="tabbable-panel">
@@ -92,9 +90,7 @@
                                         <!-- tab content -->
                                         <div class="tab-content">
                                             <div class="tab-pane active" id="tab_default_1">
-
                                                 <div>
-
                                                     <div id="WardOccupancy">
                                                         <%@include file = "WardOccupancy.jsp" %>
                                                     </div>
@@ -103,21 +99,14 @@
                                                         <%//@include file = "WardOccupancy-Table.jsp" %>
                                                     </div>
                                                 </div>
-
-
-
                                             </div>
+
                                             <div class="tab-pane" id="tab_default_2">
-
                                                 <div>
-
                                                     <div  id="PatientTransfer"> 
                                                         <%@include file = "PatientTransfer.jsp" %>
-
                                                     </div>
-
                                                 </div>
-
                                             </div>
 
 
@@ -137,12 +126,6 @@
             <!-- main -->		
 
         </div>
-
-
-
-
-
-
         <script>
 
             $(document).ready(function () {

@@ -392,6 +392,10 @@ $(document).ready(function (e) {
             }else if (data[key].Acode === "FLU") {
 
                 processNotes += "ARQ|" + getDate() + "|^^" + data[key].DateFollowUp + "^"+hfc_cd+"^"+hfc_name+"^"+discipline+"^"+disciplineName+"^^^^^"+data[key].commentFLU+"^^" + getDate() +  "^" + data[key].docFLUCode + "^" + data[key].searchFLU+"|<cr>\n";
+            }else if (data[key].Acode === "MON") {
+                processNotes += "MOR|"+data[key].codeMON+"^" +data[key].searchMON+"|"+data[key].reqItem+"^"+data[key].testMON+"|"+data[key].MONHFC_cd+"^"+data[key].searchHFC_MON+"^"+data[key].searchDIS_MON+"|<cr>\n";
+            }else if (data[key].Acode === "ADW") {
+                //processNotes += "ADW|"+data[key].codeMON+"^" +data[key].searchMON+"|"+data[key].reqItem+"^"+data[key].testMON+"|"+data[key].MONHFC_cd+"^"+data[key].searchHFC_MON+"^"+data[key].searchDIS_MON+"|<cr>\n";
             }
 
         }

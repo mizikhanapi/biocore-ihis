@@ -7,8 +7,8 @@
 
 
 
-
-<table id="OccuTableTT"  class="table table-striped table-bordered" cellspacing="0" width="100%">
+<hr class="pemisah" />
+<table id="OccuTableTT"  class="table table-striped table-bordered margin-top-30px" cellspacing="0" width="100%">
 
 
     <thead>

@@ -171,9 +171,10 @@
     </form>
     <hr/>
     <h4 style="padding-bottom: 2%">
-        <div class="pull-right">
+        Order Detail
+        <span class="pull-right">
             <button id="risOrderNewRequestButton" name="risOrderNewRequestButton" class="btn btn-primary" data-toggle="modal" ><i class="fa fa-plus fa-lg"></i>&nbsp; New Request</button>
-        </div>
+        </span>
         <br>
     </h4>
 
@@ -217,7 +218,7 @@
         var row = $(this).closest("tr");
         var rowData = row.find("#dataRISOrderListhidden").val();
         var arrayData = rowData.split("|");
-        console.log(arrayData);
+        //console.log(arrayData);
 
         //Assign Array into seprated val
         var rispmino = arrayData[0];
@@ -225,7 +226,7 @@
         var risnic = arrayData[14];
         var risGender = arrayData[18];
         var risBdate = arrayData[15];
-        var risBtype = arrayData[17];
+        var risBtype = arrayData[19];
         var risOrderNo = arrayData[1];
         var risOrderDate = arrayData[5];
         var risOrderLocationCode = arrayData[2];
@@ -269,7 +270,7 @@
             data: dataAllergy,
             timeout: 3000,
             success: function (returnAllergyTableHTML) {
-                console.log(returnAllergyTableHTML);
+                //console.log(returnAllergyTableHTML);
                 $('#risManageAllergyListTable').html(returnAllergyTableHTML);
 
                 $.ajax({
@@ -278,7 +279,7 @@
                     data: dataDiagnosis,
                     timeout: 3000,
                     success: function (returnDiagnosisTableHTML) {
-                        console.log(returnDiagnosisTableHTML);
+                        //console.log(returnDiagnosisTableHTML);
                         $('#risManageDiagnosisListTable').html(returnDiagnosisTableHTML);
 
                         $.ajax({

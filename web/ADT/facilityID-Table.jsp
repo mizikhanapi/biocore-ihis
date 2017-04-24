@@ -33,8 +33,8 @@
         <th style="text-align: center;">Ward Name</th>
         <th style="text-align: center;">No of Bed</th>
         <th style="text-align: center;">Discipline Code</th>
-        <th style="text-align: center;">Citizen Rate</th>
-        <th style="text-align: center;">Non Citizen Rate</th>
+        <th style="text-align: center;">Citizen Rate (RM)</th>
+        <th style="text-align: center;">Non Citizen Rate (RM)</th>
         <th style="text-align: center;">Update</th>
         <th style="text-align: center;">Delete</th>
         </thead>
@@ -149,53 +149,25 @@
                     <div class="row">
                         <div class="col-sm-4">
                             <div class="form-group">
-                                <label class="col-md-4 control-label" for="textinput">Citizen Rates</label>
+                                <label class="col-md-4 control-label" for="textinput">Citizen Rates (RM)</label>
                                 <div class="col-md-4">
-                                    <input id="updateCitizenRates" name="updateCitizenRates" type="text" placeholder="" class="form-control input-md">
+                                    <input id="updateCitizenRates" name="updateCitizenRates" type="text" placeholder="(RM)" class="form-control input-md">
                                 </div>
                             </div>
                         </div>
                         <div class="col-sm-4">
                             <div class="form-group">
-                                <label class="col-md-4 control-label" for="textinput">Citizen Deposit</label>
+                                <label class="col-md-4 control-label" for="textinput">Citizen Deposit (RM)</label>
                                 <div class="col-md-4">
-                                    <input id="updateCitizenDeposit" name="updateCitizenDeposit" type="text" placeholder="" class="form-control input-md">
+                                    <input id="updateCitizenDeposit" name="updateCitizenDeposit" type="text" placeholder="(RM)" class="form-control input-md">
                                 </div>
                             </div>
                         </div>
                         <div class="col-sm-4">
                             <div class="form-group">
-                                <label class="col-md-4 control-label" for="textinput">Citizen Discount</label>
+                                <label class="col-md-4 control-label" for="textinput">Citizen Discount (%)</label>
                                 <div class="col-md-4">
-                                    <input id="updateCitizenDiscount" name="updateCitizenDiscount" type="text" placeholder="" class="form-control input-md">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-sm-4">
-                            <div class="form-group">
-                                <label class="col-md-4 control-label" for="textinput">Non Citizen Rates</label>
-                                <div class="col-md-4">
-                                    <input id="updateNonCitizenRates" name="updateNonCitizenRates" type="text" placeholder="" class="form-control input-md">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-4">
-                            <div class="form-group">
-                                <label class="col-md-4 control-label" for="textinput">Non Citizen Deposit</label>
-                                <div class="col-md-4">
-                                    <input id="updateNonCitizenDeposit" name="updateNonCitizenDeposit" type="text" placeholder="" class="form-control input-md">
-                                </div>
-                            </div>
-
-                        </div>
-                        <div class="col-sm-4">
-                            <div class="form-group">
-                                <label class="col-md-4 control-label" for="textinput">Non Citizen Discount</label>
-                                <div class="col-md-4">
-                                    <input id="updateNonCitizenDiscount" name="updateNonCitizenDiscount" type="text" placeholder="" class="form-control input-md">
+                                    <input id="updateCitizenDiscount" name="updateCitizenDiscount" type="text" placeholder="(%)" class="form-control input-md">
                                 </div>
                             </div>
                         </div>
@@ -204,25 +176,53 @@
                     <div class="row">
                         <div class="col-sm-4">
                             <div class="form-group">
-                                <label class="col-md-4 control-label" for="textinput">Pensioner Rates</label>
+                                <label class="col-md-4 control-label" for="textinput">Non Citizen Rates (RM)</label>
                                 <div class="col-md-4">
-                                    <input id="updatePensionerRates" name="updatePensionerRates" type="text" placeholder="" class="form-control input-md">
+                                    <input id="updateNonCitizenRates" name="updateNonCitizenRates" type="text" placeholder="(RM)" class="form-control input-md">
                                 </div>
                             </div>
                         </div>
                         <div class="col-sm-4">
                             <div class="form-group">
-                                <label class="col-md-4 control-label" for="textinput">Pensioner Deposit</label>
+                                <label class="col-md-4 control-label" for="textinput">Non Citizen Deposit (RM)</label>
                                 <div class="col-md-4">
-                                    <input id="updatePensionerDeposit" name="updatePensionerDeposit" type="text" placeholder="" class="form-control input-md">
+                                    <input id="updateNonCitizenDeposit" name="updateNonCitizenDeposit" type="text" placeholder="(RM)" class="form-control input-md">
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" for="textinput">Non Citizen Discount (%)</label>
+                                <div class="col-md-4">
+                                    <input id="updateNonCitizenDiscount" name="updateNonCitizenDiscount" type="text" placeholder="(%)" class="form-control input-md">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" for="textinput">Pensioner Rates (RM)</label>
+                                <div class="col-md-4">
+                                    <input id="updatePensionerRates" name="updatePensionerRates" type="text" placeholder="(RM)" class="form-control input-md">
                                 </div>
                             </div>
                         </div>
                         <div class="col-sm-4">
                             <div class="form-group">
-                                <label class="col-md-4 control-label" for="textinput">Pensioner Discount</label>
+                                <label class="col-md-4 control-label" for="textinput">Pensioner Deposit (RM)</label>
                                 <div class="col-md-4">
-                                    <input id="updatePensionerDiscount" name="updatePensionerDiscount" type="text" placeholder="" class="form-control input-md">
+                                    <input id="updatePensionerDeposit" name="updatePensionerDeposit" type="text" placeholder="(RM)" class="form-control input-md">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" for="textinput">Pensioner Discount (%)</label>
+                                <div class="col-md-4">
+                                    <input id="updatePensionerDiscount" name="updatePensionerDiscount" type="text" placeholder="(%)" class="form-control input-md">
                                 </div>
                             </div>
                         </div>

@@ -68,18 +68,18 @@
         }
     }else if(process.equalsIgnoreCase("postcode")){
     
-        String sql = "Select description from adm_lookup_detail where master_reference_code = '0079' AND hfc_cd = '"+hfc_cd+"' AND description like '"+code+"%' order by description";
+        String sql = "Select detail_reference_code, description from adm_lookup_detail where master_reference_code = '0079' AND hfc_cd = '"+hfc_cd+"' AND description like '"+code+"%' order by description";
             
         ArrayList<ArrayList<String>> listPostcode = conn.getData(sql); 
         
         if(listPostcode.size() > 0){
            
-           %><ul id="matchList" style="width: 150px; height: 150px; overflow: auto"><%
+           %><ul id="matchList" style="width: 150px; max-height: 150px; height: 100%; overflow: auto"><%
            
             for(int i = 0; i < listPostcode.size(); i++){
 
                 %>
-                <li><a style="cursor:pointer"><%= listPostcode.get(i).get(0) %></a></li>
+                <li data-code="<%=listPostcode.get(i).get(0)%>"><a style="cursor:pointer"><%= listPostcode.get(i).get(1) %></a></li>
             
                 <%
 

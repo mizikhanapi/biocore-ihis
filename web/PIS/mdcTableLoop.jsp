@@ -11,6 +11,7 @@
 
 <%
     Conn conn = new Conn();
+    String hfc = session.getAttribute("HEALTH_FACILITY_CODE").toString();
 %>
 
 <table  id="mdcTable"  class="table table-striped table-bordered" cellspacing="0" width="100%">
@@ -47,7 +48,7 @@
     <%
         String sqlMain = " SELECT UD_MDC_CODE,UD_ATC_CODE,D_TRADE_NAME,D_GNR_NAME,D_ROUTE_CODE,D_FORM_CODE,D_STRENGTH,D_ADVISORY_CODE,"
                 + "D_STOCK_QTY,D_QTY,D_QTYT,D_DURATION,D_DURATIONT,D_FREQUENCY,D_CAUTION_CODE,D_EXP_DATE,D_CLASSIFICATION,STATUS,D_LOCATION_CODE,"
-                + "D_SELL_PRICE,D_COST_PRICE,D_PACKAGING,D_PACKAGINGT,D_PRICE_PPACK FROM pis_mdc2 ";
+                + "D_SELL_PRICE,D_COST_PRICE,D_PACKAGING,D_PACKAGINGT,D_PRICE_PPACK FROM pis_mdc2 WHERE hfc_cd  = '"+hfc+"'";
         ArrayList<ArrayList<String>> dataMTC = conn.getData(sqlMain);
 
         int sizeMain = dataMTC.size();
@@ -89,12 +90,12 @@
 <td style="display: none"><%= dataMTC.get(s).get(23)%></td>
 <td>
     <!-- Update Button Start -->
-    <a id="mdcUpdateTButton" data-toggle="modal" data-target="#mdcUpdateModal"><i class="fa fa-pencil-square-o fa-lg" aria-hidden="true" style="display: inline-block;color: #337ab7; cursor: pointer;"></i></a>
+    <a id="mdcUpdateTButton" data-toggle="modal" data-target="#mdcUpdateModal"><i class="fa fa-pencil-square-o" aria-hidden="true" style="display: inline-block;color: #337ab7;"></i></a>
     <!-- Update Button End -->
 </td>
 <td>
     <!-- Delete Button Start -->
-    <a id="mdcDeleteTButton" class="testing"><i class="fa fa-times fa-lg" aria-hidden="true" style="display: inline-block;color: #d9534f; cursor: pointer;" ></i></a>
+    <a id="mdcDeleteTButton" class="testing"><i class="fa fa-times" aria-hidden="true" style="display: inline-block;color: #d9534f;" ></i></a>
     <!-- Delete Button End -->
 </td>
 </tr>
@@ -112,7 +113,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal"><i class="fa fa-times fa-lg"></i></button>
-                <h3 class="modal-title" id="lineModalLabel" >Update MDC Code</h3>
+                <h2 class="modal-title" id="lineModalLabel" align="center">Update MDC Code</h2>
             </div>
             <div class="modal-body">
 
@@ -126,7 +127,7 @@
                             <!-- Text input-->
                             <div class="form-group">
                                 <label class="col-md-4 control-label" for="textinput">ATC Drug Code</label>
-                                <div class="col-md-7">
+                                <div class="col-md-8">
                                     <input id="updateUD_ATC_CODE" name="textinput" type="text" placeholder="ATC Drug Code" class="form-control input-md" readonly>
                                 </div>
                             </div>
@@ -134,7 +135,7 @@
                             <!-- Text input-->
                             <div class="form-group">
                                 <label class="col-md-4 control-label" for="textinput">MDC Drug Code</label>
-                                <div class="col-md-7">
+                                <div class="col-md-8">
                                     <input id="updateUD_MDC_CODE" name="textinput" type="text" placeholder="MDC Drug Code" class="form-control input-md" readonly>
                                 </div>
                             </div>
@@ -143,7 +144,7 @@
                             <!-- Text input-->
                             <div class="form-group">
                                 <label class="col-md-4 control-label" for="textinput">Product Name</label>
-                                <div class="col-md-7">
+                                <div class="col-md-8">
                                     <input id="updateD_TRADE_NAME" name="textinput" type="text" placeholder="Product Name" class="form-control input-md" maxlength="200">
                                 </div>
                             </div>
@@ -151,7 +152,7 @@
                             <!-- Text input-->
                             <div class="form-group">
                                 <label class="col-md-4 control-label" for="textinput">Generic Name</label>
-                                <div class="col-md-7">
+                                <div class="col-md-8">
                                     <textarea id="updateD_GNR_NAME" class="form-control" rows="3" maxlength="500"></textarea>
                                 </div>
                             </div>
@@ -159,7 +160,7 @@
                             <!-- Select Basic -->
                             <div class="form-group">
                                 <label class="col-md-4 control-label" for="selectbasic">Drug Route</label>
-                                <div class="col-md-7">
+                                <div class="col-md-8">
                                     <select id="updateD_ROUTE_CODE" name="selectbasic" class="form-control">
                                         <option value="Select Drug Route">Select Drug Route</option>
                                         <%
@@ -183,7 +184,7 @@
                             <!-- Select Basic -->
                             <div class="form-group">
                                 <label class="col-md-4 control-label" for="selectbasic">Dosage Form</label>
-                                <div class="col-md-7">
+                                <div class="col-md-8">
                                     <select id="updateD_FORM_CODE" name="selectbasic" class="form-control">
                                         <option value="Select Dosage Form">Select Dosage Form</option>
                                         <%
@@ -208,7 +209,7 @@
                             <!-- Text input-->
                             <div class="form-group">
                                 <label class="col-md-4 control-label" for="textinput">Strength</label>
-                                <div class="col-md-7">
+                                <div class="col-md-8">
                                     <input id="updateD_STRENGTH" name="textinput" type="text" placeholder="Strength" class="form-control input-md" maxlength="50">
                                 </div>
                             </div>
@@ -216,7 +217,7 @@
                             <!-- Text input-->
                             <div class="form-group">
                                 <label class="col-md-4 control-label" for="textinput">Stock Quantity</label>
-                                <div class="col-md-7">
+                                <div class="col-md-8">
                                     <input id="updateD_STOCK_QTY" name="textinput" type="number" step="0.01" placeholder="Stock Qty" class="form-control input-md" maxlength="20">
                                 </div>
                             </div>
@@ -224,14 +225,14 @@
                             <!-- Text input-->
                             <div class="form-group">
                                 <label class="col-md-4 control-label" for="textinput">Location Code</label>
-                                <div class="col-md-7">
+                                <div class="col-md-8">
                                     <input id="updateD_LOCATION_CODE" name="textinput" type="text" placeholder="Location Code" class="form-control input-md" maxlength="4">
                                 </div>
                             </div>
 
                             <div class="form-group">
                                 <label class="col-md-4 control-label" for="selectbasic">Status</label>
-                                <div class="col-md-7">
+                                <div class="col-md-8">
                                     <select id="updateSTATUS" name="addSTATUS" class="form-control">
                                         <option value="No Status">No Status</option>
                                         <option value="1">Active</option>
@@ -244,7 +245,7 @@
                         </div>
 
 
-                        <div class="col-md-6" style="border-left: 1px solid #eee;">
+                        <div class="col-md-6">
 
                             <h4>Purchase</h4>
                             <hr/>
@@ -252,7 +253,7 @@
                             <!-- Text input-->
                             <div class="form-group">
                                 <label class="col-md-4 control-label" for="textinput">Packaging</label>
-                                <div class="col-md-7">
+                                <div class="col-md-8">
                                     <input id="updateD_PACKAGING" name="textinput" type="text" placeholder="Packaging" class="form-control input-md" maxlength="60">
                                 </div>
                             </div>
@@ -260,7 +261,7 @@
                             <!-- Text input-->
                             <div class="form-group">
                                 <label class="col-md-4 control-label" for="textinput">Price per Pack</label>
-                                <div class="col-md-7">
+                                <div class="col-md-8">
                                     <input id="updateD_PRICE_PPACK" name="textinput" type="text" placeholder="Price per Pack" class="form-control input-md" maxlength="20">
                                 </div>
                             </div>
@@ -268,7 +269,7 @@
                             <!-- Text input-->
                             <div class="form-group">
                                 <label class="col-md-4 control-label" for="textinput">Purchase Price</label>
-                                <div class="col-md-7">
+                                <div class="col-md-8">
                                     <input id="updateD_COST_PRICE" name="textinput" type="text" placeholder="Purchase Price" class="form-control input-md" maxlength="20">
                                 </div>
                             </div>
@@ -276,7 +277,7 @@
                             <!-- Text input-->
                             <div class="form-group">
                                 <label class="col-md-4 control-label" for="textinput">Sell Price</label>
-                                <div class="col-md-7">
+                                <div class="col-md-8">
                                     <input id="updateD_SELL_PRICE" name="textinput" type="text" placeholder="Sell Price" class="form-control input-md" maxlength="20">
                                 </div>
                             </div>
@@ -287,7 +288,7 @@
                             <!-- Select Basic -->
                             <div class="form-group">
                                 <label class="col-md-4 control-label" for="selectbasic">Dose</label>
-                                <div class="col-md-3">
+                                <div class="col-md-4">
                                     <input id="updateD_QTY" name="textinput" type="text" class="form-control input-md" step="0.01" maxlength="20">
                                 </div>
                                 <div class="col-md-4">
@@ -314,7 +315,7 @@
                             <!-- Select Basic -->
                             <div class="form-group">
                                 <label class="col-md-4 control-label" for="selectbasic">Frequency</label>
-                                <div class="col-md-7">
+                                <div class="col-md-8">
                                     <select id="updateD_FREQUENCY" name="addD_FREQUENCY" class="form-control">
                                         <option value="No Frequency">No Frequency</option>
                                         <%
@@ -338,7 +339,7 @@
                             <!-- Select Basic -->
                             <div class="form-group">
                                 <label class="col-md-4 control-label" for="selectbasic">Duration</label>
-                                <div class="col-md-3">
+                                <div class="col-md-4">
                                     <input id="updateD_DURATION" name="textinput" type="number" class="form-control input-md" step="0.01" maxlength="60">
                                 </div>
                                 <div class="col-md-4">
@@ -365,7 +366,7 @@
                             <!-- Select Basic -->
                             <div class="form-group">
                                 <label class="col-md-4 control-label" for="selectbasic">Instruction</label>
-                                <div class="col-md-7">
+                                <div class="col-md-8">
                                     <select id="updateD_ADVISORY_CODE" name="addD_ADVISORY_CODE" class="form-control">
                                         <option value="No Instruction">No Instruction</option>
                                         <%
@@ -389,7 +390,7 @@
                             <!-- Text input-->
                             <div class="form-group">
                                 <label class="col-md-4 control-label" for="textinput">Cautionary</label>
-                                <div class="col-md-7">
+                                <div class="col-md-8">
                                     <textarea id="updateD_CAUTIONARY_CODE" class="form-control" rows="3" placeholder="Drug Cautionary" maxlength="150"></textarea>
                                 </div>
                             </div>
@@ -397,7 +398,7 @@
                             <!-- Text input-->
                             <div class="form-group">
                                 <label class="col-md-4 control-label" for="textinput">Expire Date</label>
-                                <div class="col-md-7">
+                                <div class="col-md-8">
                                     <input id="updateD_EXP_DATE" name="updateD_EXP_DATE" type="text" class="form-control input-md" readonly>
                                 </div>
                             </div>
@@ -405,7 +406,7 @@
                             <!-- Select Basic -->
                             <div class="form-group">
                                 <label class="col-md-4 control-label" for="selectbasic">Classification</label>
-                                <div class="col-md-7">
+                                <div class="col-md-8">
                                     <select id="updateD_CLASSIFICATION" name="updateD_CLASSIFICATION" class="form-control">
                                         <option value="No Classification">No Classification</option>
                                         <%
@@ -450,8 +451,8 @@
 
 
 <script type="text/javascript">
-
-
+    
+    
     // Date Picker For Update
     $("#updateD_EXP_DATE").datepicker({
         changeMonth: true,
@@ -787,14 +788,14 @@
         }
     });
     // Update Function End
-
-
+    
+    
 </script>
 
 <script type="text/javascript" charset="utf-8">
-
+    
     $(document).ready(function () {
-
+        
         $('#mdcTable').DataTable({
             pageLength: 15,
             initComplete: function (settings, json) {
@@ -819,7 +820,7 @@
                 }
             ]
         });
-
-
+        
+        
     });
 </script>
