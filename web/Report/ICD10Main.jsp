@@ -41,7 +41,7 @@
 
                         </br></br>
 
-                        <div class="form-group">
+<!--                        <div class="form-group">
                             <label style="text-align: center" class="col-md-6 control-label" for="textinput">Discipline:</label>
 
 
@@ -55,31 +55,31 @@
 
                                 </div>
                             </div>
-                            </br></br></br>
+                        </div>
+                        </br></br></br>-->
 
-                            <div class="form-group">
-                                <label style="text-align: center" class="col-md-6 control-label" for="textinput">Start Date</label>
-                                <div class="col-md-6">
-                                    <input id="startDate" name="startDate" type="text" class="form-control datepicker" placeholder="" readonly>
-                                </div>
+                        <div class="form-group">
+                            <label style="text-align: center" class="col-md-6 control-label" for="textinput">Start Date</label>
+                            <div class="col-md-6">
+                                <input id="startDate" name="startDate" type="text" class="form-control datepicker" placeholder="" readonly>
                             </div>
+                        </div>
 
-                            </br></br>
-                            <div class="form-group">
-                                <label style="text-align: center" class="col-md-6 control-label" for="textinput">To</label>
-                                <div class="col-md-6">
-                                    <input id="endDate" name="endDate" type="text" class="form-control datepicker" placeholder="" readonly>
-                                </div>
+                        </br></br>
+                        <div class="form-group">
+                            <label style="text-align: center" class="col-md-6 control-label" for="textinput">To</label>
+                            <div class="col-md-6">
+                                <input id="endDate" name="endDate" type="text" class="form-control datepicker" placeholder="" readonly>
                             </div>
+                        </div>
 
-                            </br></br></br>
-                            <div class="btn-group btn-group-justified" role="group" aria-label="group button">
-                                <div class="btn-group" role="group">
-                                    <button type="submit" class="btn btn-success btn-block btn-lg" role="button" id="printLaporanKedatangan">Generate Report</button>
-                                </div>
-                                <div class="btn-group" role="group">
-                                    <button type="reset" id="PrintReset" class="btn btn-default btn-block btn-lg" data-dismiss="modal" role="button" >Cancel</button>
-                                </div>
+                        </br></br></br>
+                        <div class="btn-group btn-group-justified" role="group" aria-label="group button">
+                            <div class="btn-group" role="group">
+                                <button type="submit" class="btn btn-success btn-block btn-lg" role="button" id="printLaporanKedatangan">Generate Report</button>
+                            </div>
+                            <div class="btn-group" role="group">
+                                <button type="reset" id="PrintReset" class="btn btn-default btn-block btn-lg" data-dismiss="modal" role="button" >Cancel</button>
                             </div>
                         </div>
                     </div>
@@ -113,7 +113,7 @@
             console.log(endDate);
             console.log(disiplinType);
 
-            window.open("ICD10Report.jsp?startDate=" + startDate + "&endDate=" + endDate + "&disiplinType" + disiplinType);
+            window.open("ICD10Report.jsp?startDate=" + startDate + "&endDate=" + endDate );
 
         });
     });

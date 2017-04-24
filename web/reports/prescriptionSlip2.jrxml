@@ -1,0 +1,412 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="prescriptionSlip2" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="847b31ff-d6ce-4613-be74-f2d96acd1b00">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="table">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<subDataset name="ps" uuid="7846efd7-f89c-4c7c-9872-6cdd85376676">
+		<parameter name="psInput1" class="java.lang.String">
+			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+		</parameter>
+		<parameter name="psType1" class="java.lang.String">
+			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+		</parameter>
+		<parameter name="startDate1" class="java.lang.String">
+			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+		</parameter>
+		<queryString>
+			<![CDATA[SELECT
+     pms_patient_biodata.`PMI_NO` AS pms_patient_biodata_PMI_NO,
+     pms_patient_biodata.`PATIENT_NAME` AS pms_patient_biodata_PATIENT_NAME,
+     pms_patient_biodata.`NEW_IC_NO` AS pms_patient_biodata_NEW_IC_NO,
+     pms_patient_biodata.`OLD_IC_NO` AS pms_patient_biodata_OLD_IC_NO,
+     pms_patient_biodata.`ID_TYPE` AS pms_patient_biodata_ID_TYPE,
+     pms_patient_biodata.`ID_NO` AS pms_patient_biodata_ID_NO,
+     pms_patient_biodata.`SEX_CODE` AS pms_patient_biodata_SEX_CODE,
+     pms_patient_biodata.`NATIONALITY` AS pms_patient_biodata_NATIONALITY,
+     pis_order_detail.`ORDER_NO` AS pis_order_detail_ORDER_NO,
+     pis_order_detail.`DRUG_ITEM_CODE` AS pis_order_detail_DRUG_ITEM_CODE,
+     pis_order_detail.`DRUG_ITEM_DESC` AS pis_order_detail_DRUG_ITEM_DESC,
+     pis_order_detail.`DRUG_FREQUENCY` AS pis_order_detail_DRUG_FREQUENCY,
+     pis_order_detail.`DRUG_ROUTE` AS pis_order_detail_DRUG_ROUTE,
+     pis_order_detail.`DRUG_DOSAGE` AS pis_order_detail_DRUG_DOSAGE,
+     pis_order_detail.`DURATION` AS pis_order_detail_DURATION,
+     pis_order_master.`ORDER_NO` AS pis_order_master_ORDER_NO,
+     pis_order_master.`PMI_NO` AS pis_order_master_PMI_NO,
+     pis_order_detail.`QTY_ORDERED` AS pis_order_detail_QTY_ORDERED,
+     pis_order_detail.`QTY_DISPENSED` AS pis_order_detail_QTY_DISPENSED,
+     pis_mdc2.`UD_MDC_CODE` AS pis_mdc2_UD_MDC_CODE,
+     pis_mdc2.`D_EXP_DATE` AS pis_mdc2_D_EXP_DATE,
+     pis_order_master.`HEALTH_FACILITY_CODE` AS pis_order_master_HEALTH_FACILITY_CODE,
+     pms_patient_biodata.`ALLERGY_IND` AS pms_patient_biodata_ALLERGY_IND,
+     pis_order_master.`ORDER_DATE` AS pis_order_master_ORDER_DATE
+FROM
+     `pis_order_master` pis_order_master INNER JOIN `pis_order_detail` pis_order_detail ON pis_order_master.`order_no` = pis_order_detail.`order_no`
+     INNER JOIN `pms_patient_biodata` pms_patient_biodata ON pis_order_master.`pmi_no` = pms_patient_biodata.`pmi_no`
+     INNER JOIN `pis_mdc2` pis_mdc2 ON pis_order_detail.`drug_item_code` = pis_mdc2.`ud_mdc_code`
+WHERE
+     pis_order_master.`pmi_no` = $P{psInput1}
+     or pms_patient_biodata.`NEW_IC_NO` = $P{psInput1}
+     or null = (pms_patient_biodata.`ID_TYPE`)
+ AND pms_patient_biodata.`ID_NO` = $P{psInput1}
+     or pms_patient_biodata.`OLD_IC_NO` = $P{psInput1}
+AND  pis_order_master.`ORDER_DATE` = $P{startDate1}]]>
+		</queryString>
+		<field name="pms_patient_biodata_PMI_NO" class="java.lang.String"/>
+		<field name="pms_patient_biodata_PATIENT_NAME" class="java.lang.String"/>
+		<field name="pms_patient_biodata_NEW_IC_NO" class="java.lang.String"/>
+		<field name="pms_patient_biodata_OLD_IC_NO" class="java.lang.String"/>
+		<field name="pms_patient_biodata_ID_TYPE" class="java.lang.String"/>
+		<field name="pms_patient_biodata_ID_NO" class="java.lang.String"/>
+		<field name="pms_patient_biodata_SEX_CODE" class="java.lang.String"/>
+		<field name="pms_patient_biodata_NATIONALITY" class="java.lang.String"/>
+		<field name="pis_order_detail_ORDER_NO" class="java.lang.String"/>
+		<field name="pis_order_detail_DRUG_ITEM_CODE" class="java.lang.String"/>
+		<field name="pis_order_detail_DRUG_ITEM_DESC" class="java.lang.String"/>
+		<field name="pis_order_detail_DRUG_FREQUENCY" class="java.lang.String"/>
+		<field name="pis_order_detail_DRUG_ROUTE" class="java.lang.String"/>
+		<field name="pis_order_detail_DRUG_DOSAGE" class="java.lang.String"/>
+		<field name="pis_order_detail_DURATION" class="java.lang.String"/>
+		<field name="pis_order_master_ORDER_NO" class="java.lang.String"/>
+		<field name="pis_order_master_PMI_NO" class="java.lang.String"/>
+		<field name="pis_order_detail_QTY_ORDERED" class="java.lang.String"/>
+		<field name="pis_order_detail_QTY_DISPENSED" class="java.lang.String"/>
+		<field name="pis_mdc2_UD_MDC_CODE" class="java.lang.String"/>
+		<field name="pis_mdc2_D_EXP_DATE" class="java.lang.String"/>
+		<field name="pis_order_master_HEALTH_FACILITY_CODE" class="java.lang.String"/>
+		<field name="pms_patient_biodata_ALLERGY_IND" class="java.lang.String"/>
+		<field name="pis_order_master_ORDER_DATE" class="java.lang.String"/>
+	</subDataset>
+	<parameter name="psInput" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="psType" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="startDate" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     pms_patient_biodata.`PMI_NO` AS pms_patient_biodata_PMI_NO,
+     pms_patient_biodata.`PATIENT_NAME` AS pms_patient_biodata_PATIENT_NAME,
+     pms_patient_biodata.`NEW_IC_NO` AS pms_patient_biodata_NEW_IC_NO,
+     pms_patient_biodata.`OLD_IC_NO` AS pms_patient_biodata_OLD_IC_NO,
+     pms_patient_biodata.`ID_TYPE` AS pms_patient_biodata_ID_TYPE,
+     pms_patient_biodata.`ID_NO` AS pms_patient_biodata_ID_NO,
+     pms_patient_biodata.`SEX_CODE` AS pms_patient_biodata_SEX_CODE,
+     pms_patient_biodata.`NATIONALITY` AS pms_patient_biodata_NATIONALITY,
+     pis_order_detail.`ORDER_NO` AS pis_order_detail_ORDER_NO,
+     pis_order_detail.`DRUG_ITEM_CODE` AS pis_order_detail_DRUG_ITEM_CODE,
+     pis_order_detail.`DRUG_ITEM_DESC` AS pis_order_detail_DRUG_ITEM_DESC,
+     pis_order_detail.`DRUG_FREQUENCY` AS pis_order_detail_DRUG_FREQUENCY,
+     pis_order_detail.`DRUG_ROUTE` AS pis_order_detail_DRUG_ROUTE,
+     pis_order_detail.`DRUG_DOSAGE` AS pis_order_detail_DRUG_DOSAGE,
+     pis_order_detail.`DURATION` AS pis_order_detail_DURATION,
+     pis_order_master.`ORDER_NO` AS pis_order_master_ORDER_NO,
+     pis_order_master.`PMI_NO` AS pis_order_master_PMI_NO,
+     pis_order_detail.`QTY_ORDERED` AS pis_order_detail_QTY_ORDERED,
+     pis_order_detail.`QTY_DISPENSED` AS pis_order_detail_QTY_DISPENSED,
+     pis_mdc2.`UD_MDC_CODE` AS pis_mdc2_UD_MDC_CODE,
+     pis_mdc2.`D_EXP_DATE` AS pis_mdc2_D_EXP_DATE,
+     pis_order_master.`HEALTH_FACILITY_CODE` AS pis_order_master_HEALTH_FACILITY_CODE,
+     pms_patient_biodata.`ALLERGY_IND` AS pms_patient_biodata_ALLERGY_IND,
+     pis_order_master.`ORDER_DATE` AS pis_order_master_ORDER_DATE
+FROM
+     `pis_order_master` pis_order_master INNER JOIN `pis_order_detail` pis_order_detail ON pis_order_master.`order_no` = pis_order_detail.`order_no`
+     INNER JOIN `pms_patient_biodata` pms_patient_biodata ON pis_order_master.`pmi_no` = pms_patient_biodata.`pmi_no`
+     INNER JOIN `pis_mdc2` pis_mdc2 ON pis_order_detail.`drug_item_code` = pis_mdc2.`ud_mdc_code`
+WHERE
+     pis_order_master.`pmi_no` = $P{psInput}
+     or pms_patient_biodata.`NEW_IC_NO` = $P{psInput}
+     or null = (pms_patient_biodata.`ID_TYPE`)
+ AND pms_patient_biodata.`ID_NO` = $P{psInput}
+     or pms_patient_biodata.`OLD_IC_NO` = $P{psInput}
+AND  pis_order_master.`ORDER_DATE` = $P{startDate}]]>
+	</queryString>
+	<field name="pms_patient_biodata_PMI_NO" class="java.lang.String"/>
+	<field name="pms_patient_biodata_PATIENT_NAME" class="java.lang.String"/>
+	<field name="pms_patient_biodata_NEW_IC_NO" class="java.lang.String"/>
+	<field name="pms_patient_biodata_OLD_IC_NO" class="java.lang.String"/>
+	<field name="pms_patient_biodata_ID_TYPE" class="java.lang.String"/>
+	<field name="pms_patient_biodata_ID_NO" class="java.lang.String"/>
+	<field name="pms_patient_biodata_SEX_CODE" class="java.lang.String"/>
+	<field name="pms_patient_biodata_NATIONALITY" class="java.lang.String"/>
+	<field name="pis_order_detail_ORDER_NO" class="java.lang.String"/>
+	<field name="pis_order_detail_DRUG_ITEM_CODE" class="java.lang.String"/>
+	<field name="pis_order_detail_DRUG_ITEM_DESC" class="java.lang.String"/>
+	<field name="pis_order_detail_DRUG_FREQUENCY" class="java.lang.String"/>
+	<field name="pis_order_detail_DRUG_ROUTE" class="java.lang.String"/>
+	<field name="pis_order_detail_DRUG_DOSAGE" class="java.lang.String"/>
+	<field name="pis_order_detail_DURATION" class="java.lang.String"/>
+	<field name="pis_order_master_ORDER_NO" class="java.lang.String"/>
+	<field name="pis_order_master_PMI_NO" class="java.lang.String"/>
+	<field name="pis_order_detail_QTY_ORDERED" class="java.lang.String"/>
+	<field name="pis_order_detail_QTY_DISPENSED" class="java.lang.String"/>
+	<field name="pis_mdc2_UD_MDC_CODE" class="java.lang.String"/>
+	<field name="pis_mdc2_D_EXP_DATE" class="java.lang.String"/>
+	<field name="pis_order_master_HEALTH_FACILITY_CODE" class="java.lang.String"/>
+	<field name="pms_patient_biodata_ALLERGY_IND" class="java.lang.String"/>
+	<field name="pis_order_master_ORDER_DATE" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band splitType="Stretch"/>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="486" splitType="Stretch">
+			<textField>
+				<reportElement x="631" y="110" width="148" height="20" uuid="ca12f700-3d07-48de-aa54-41631ddc9a49"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{pms_patient_biodata_PMI_NO}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="543" y="90" width="77" height="20" uuid="7b3fd926-4ae9-4f3a-9ad8-1257900038b9"/>
+				<textElement textAlignment="Right">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nationality:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="125" y="110" width="339" height="20" uuid="0cefae70-fee7-4237-8d8a-af53bc727369"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{pms_patient_biodata_SEX_CODE}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="13" y="130" width="100" height="20" uuid="56a4ab70-8a82-4b39-a1e3-d4fe89e35917"/>
+				<textElement textAlignment="Right">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Ordered Date:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="557" y="110" width="63" height="20" uuid="52d8603f-f2c1-490a-8b59-b17d5b8d4f5f"/>
+				<textElement textAlignment="Right">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[PMI No:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="13" y="110" width="100" height="20" uuid="c53d60ae-f9ee-4e27-bc80-62f4d01b6716"/>
+				<textElement textAlignment="Right">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Gender:]]></text>
+			</staticText>
+			<textField pattern="dd/MM/yyyy HH.mm.ss">
+				<reportElement x="703" y="0" width="100" height="20" uuid="a37403d6-bb1f-4b3f-b268-ca19ad0eaf60"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="13" y="150" width="100" height="20" uuid="1a1d8b9f-8646-42dc-b604-bcfd22f3ce8a"/>
+				<textElement textAlignment="Right">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Allergy:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="13" y="90" width="100" height="20" uuid="a6585377-d951-4571-8c32-e3b47f674375"/>
+				<textElement textAlignment="Right">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Patient Name:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="246" y="0" width="311" height="40" uuid="d4e7be62-4f6c-4e36-9ec0-851417e2a7d7"/>
+				<textElement textAlignment="Center">
+					<font size="28" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{pis_order_master_HEALTH_FACILITY_CODE}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="125" y="90" width="339" height="20" uuid="c72e71f7-8202-4d42-84fb-6c15178c24d8"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{pms_patient_biodata_PATIENT_NAME}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="125" y="130" width="339" height="20" uuid="53ae49f3-8013-49c8-9277-bf3cdea9e52c"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{pis_order_master_ORDER_DATE}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="125" y="150" width="339" height="20" uuid="18c63641-321b-4f96-9a53-6894fce1e459"/>
+				<textFieldExpression><![CDATA[$F{pms_patient_biodata_ALLERGY_IND}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="269" y="40" width="264" height="32" uuid="8a7ae845-4f60-473d-92c0-ee3eeacd4960"/>
+				<textElement textAlignment="Center">
+					<font size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Prescription Slip for Outpatient]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="72" width="802" height="1" uuid="0d49ba96-6fa0-462c-aa81-61ca7ca35fdd"/>
+			</line>
+			<textField>
+				<reportElement x="631" y="90" width="148" height="20" uuid="645f3e8b-79fa-4ad5-947c-d8320797e5a4"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{pms_patient_biodata_NATIONALITY}]]></textFieldExpression>
+			</textField>
+			<componentElement>
+				<reportElement key="table" style="table" x="0" y="204" width="802" height="80" uuid="b6a0f7c5-b3df-47fd-9d87-3cb0dd20e49e"/>
+				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+					<datasetRun subDataset="ps" uuid="f96b17c8-4fbb-43dc-86db-c0a052242645">
+						<datasetParameter name="psType1">
+							<datasetParameterExpression><![CDATA[$P{psType}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="psInput1">
+							<datasetParameterExpression><![CDATA[$P{psInput}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="startDate1">
+							<datasetParameterExpression><![CDATA[$P{startDate}]]></datasetParameterExpression>
+						</datasetParameter>
+						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					</datasetRun>
+					<jr:column width="90" uuid="4ecaead7-2ee9-4b4a-b5f8-145d2501e830">
+						<jr:columnHeader style="table_CH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="90" height="30" uuid="ba859720-8f8a-4792-995f-9e7f6d5ec7c1"/>
+								<text><![CDATA[pis_order_detail_ORDER_NO]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table_TD" height="20" rowSpan="1">
+							<textField>
+								<reportElement x="0" y="0" width="90" height="20" uuid="2851a744-d007-4a96-b1b8-9b6de1d3b9ce"/>
+								<textFieldExpression><![CDATA[$F{pis_order_detail_ORDER_NO}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="f6f49a60-c63b-47ca-a1f8-a71c24b639c7">
+						<jr:columnHeader style="table_CH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="90" height="30" uuid="79d1935f-4865-4fd3-b43b-5ac4a1e9764b"/>
+								<text><![CDATA[pis_order_master_ORDER_DATE]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table_TD" height="20" rowSpan="1">
+							<textField>
+								<reportElement x="0" y="0" width="90" height="20" uuid="67564749-0338-4bc2-87d9-193e5c188ea6"/>
+								<textFieldExpression><![CDATA[$F{pis_order_master_ORDER_DATE}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="7edd9a4f-fe07-4c1d-9c35-d2b27c39808c">
+						<jr:columnHeader style="table_CH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="90" height="30" uuid="cddf800f-ad6d-4f35-8845-aee4686891a9"/>
+								<text><![CDATA[pis_order_detail_DRUG_ITEM_DESC]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table_TD" height="20" rowSpan="1">
+							<textField>
+								<reportElement x="0" y="0" width="90" height="20" uuid="e747b6d1-1461-40ac-8556-f7bb110cf589"/>
+								<textFieldExpression><![CDATA[$F{pis_order_detail_DRUG_ITEM_DESC}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="aed8226d-acac-4bcb-81eb-0bdadf9dfc75">
+						<jr:columnHeader style="table_CH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="90" height="30" uuid="e17cefe4-dd29-46dd-9f9f-1bd276dc129d"/>
+								<text><![CDATA[pis_order_detail_DRUG_DOSAGE]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table_TD" height="20" rowSpan="1">
+							<textField>
+								<reportElement x="0" y="0" width="90" height="20" uuid="dbf95077-91fc-4a86-b8c3-99e3c8fe9d53"/>
+								<textFieldExpression><![CDATA[$F{pis_order_detail_DRUG_DOSAGE}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="4eb3ac78-2c25-4f99-846e-bf8a52fd8fbe">
+						<jr:columnHeader style="table_CH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="90" height="30" uuid="9581f325-dec3-431b-a8a4-cf0a41194a46"/>
+								<text><![CDATA[pis_order_detail_DRUG_FREQUENCY]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table_TD" height="20" rowSpan="1">
+							<textField>
+								<reportElement x="0" y="0" width="90" height="20" uuid="3f89d85a-6432-4e95-ad7b-00110b43eb5d"/>
+								<textFieldExpression><![CDATA[$F{pis_order_detail_DRUG_FREQUENCY}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="39eb423c-6230-4c09-9a48-3042c27c9e6d">
+						<jr:columnHeader style="table_CH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="90" height="30" uuid="04c25552-6d45-40b4-9d79-9e772face6d5"/>
+								<text><![CDATA[pis_order_detail_DRUG_ROUTE]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table_TD" height="20" rowSpan="1">
+							<textField>
+								<reportElement x="0" y="0" width="90" height="20" uuid="f0d80a51-eb10-4d43-8e5a-2e1b22cd6e1a"/>
+								<textFieldExpression><![CDATA[$F{pis_order_detail_DRUG_ROUTE}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="9581bcf9-7031-4fd6-85a4-508838629109">
+						<jr:columnHeader style="table_CH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="90" height="30" uuid="6f1be6ad-bca9-4ab5-80cc-0f8f5b0a1c3e"/>
+								<text><![CDATA[pis_order_detail_DURATION]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table_TD" height="20" rowSpan="1">
+							<textField>
+								<reportElement x="0" y="0" width="90" height="20" uuid="ccc68fb8-acb6-45e3-a5a1-7676233fdef3"/>
+								<textFieldExpression><![CDATA[$F{pis_order_detail_DURATION}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+				</jr:table>
+			</componentElement>
+		</band>
+	</summary>
+</jasperReport>

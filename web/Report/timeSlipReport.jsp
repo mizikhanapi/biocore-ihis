@@ -1,8 +1,9 @@
 <%-- 
-    Document   : ShowPDF
-    Created on : Jan 31, 2017, 10:32:50 AM
+    Document   : timeslip
+    Created on : Feb 16, 2017, 5:04:53 AM
     Author     : user
 --%>
+
 <%@page import="Config.Config"%>
 <%@page import="dBConn.Conn"%>
 <%@page import="java.io.*"%> 
@@ -23,26 +24,24 @@
     </head>
     <body>
         <%
-
-            String mcType = request.getParameter("mcType");
-            String mcInput = request.getParameter("mcInput");
-            String episodeDate2 = request.getParameter("episodeDate2"); 
-//            String hfccode = request.getParameter("hfccode");
+           
+            String tsType = request.getParameter("tsType");
+            String tsInput = request.getParameter("tsInput");
+            String episodeDate2 = request.getParameter("episodeDate2");
+          
 
             try {
 
                 Class.forName("com.mysql.jdbc.Driver").newInstance();
                 Connection conn = DriverManager.getConnection("jdbc:mysql://10.73.32.200:3306/emedica?zeroDateTimeBehavior=convertToNull", "root", "qwerty");
 
-                File reportFile = new File(application.getRealPath("//reports//MC22.jasper"));
+                File reportFile = new File(application.getRealPath("//reports//TS22.jasper"));
 
-                if (mcType.equals("PMI_NO")) {
+                if (tsType.equals("PMI_NO")) {
 
                     Map parameters = new HashMap();
-                    parameters.put("mcInput", mcInput);
-                    parameters.put("episodeDate2", episodeDate2);
-//                    parameters.put("hfccode", hfccode);
-//                    parameters.put("endDate", endDate);
+                    parameters.put("tsInput", tsInput);
+                    parameters.put("episodeDate2",episodeDate2);
                     //parameters.put("ID_TYPE", ID_TYPE);
 
                     byte[] bytes = JasperRunManager.runReportToPdf(reportFile.getPath(), parameters, conn);
@@ -54,13 +53,11 @@
                     outStream.flush();
                     outStream.close();
 
-                } else if (mcType.equals("NEW_IC_NO") || mcType.equals("OLD_IC_NO")) {
+                } else if (tsType.equals("NEW_IC_NO") || tsType.equals("OLD_IC_NO")) {
 
                     Map parameters = new HashMap();
-                    parameters.put("mcInput", mcInput);
-                    parameters.put("episodeDate2", episodeDate2);
-//                    parameters.put("hfccode", hfccode);
-//                    parameters.put("endDate", endDate);
+                    parameters.put("tsInput", tsInput);
+                    parameters.put("episodeDate2",episodeDate2);
                     //parameters.put("ID_TYPE", ID_TYPE);
                     byte[] bytes = JasperRunManager.runReportToPdf(reportFile.getPath(), parameters, conn);
 
@@ -74,11 +71,9 @@
                 } else {
 
                     Map parameters = new HashMap();
-                    parameters.put("mcInput", mcInput);
-                    parameters.put("episodeDate2", episodeDate2);
-//                    parameters.put("hfccode", hfccode);
-//                    parameters.put("endDate", endDate);
-                    // parameters.put("ID_TYPE", ID_TYPE);
+                    parameters.put("tsInput", tsInput);
+                    parameters.put("episodeDate2",episodeDate2);
+                   // parameters.put("ID_TYPE", ID_TYPE);
                     byte[] bytes = JasperRunManager.runReportToPdf(reportFile.getPath(), parameters, conn);
 
                     response.setContentType("application/pdf");

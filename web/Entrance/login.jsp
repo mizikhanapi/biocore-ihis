@@ -126,8 +126,8 @@
                             } else
                                 alert("Error");
                         },
-                        error: function (err) {
-                            alert("error :" + err.toString());
+                        error: function (err, errorThrown) {
+                            alert("error :" + errorThrown.toString());
                         },
                         complete: function (jqXHR, textStatus ) {
                             $('.loading').hide();

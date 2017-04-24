@@ -1,7 +1,7 @@
 <%-- 
-    Document   : searchPatient
-    Created on : Feb 6, 2017, 2:53:34 PM
-    Author     : shay
+    Document   : searchDataAnalysis
+    Created on : Apr 23, 2017, 9:08:22 PM
+    Author     : user
 --%>
 
 <%@page import="dBConn.Conn"%>  
@@ -23,12 +23,12 @@
         <div class="form-group">
             <label class="col-md-4 control-label" for="selectbasic">ID Type</label>
             <div class="col-md-4">
-                <select id="idType" name="idType" class="form-control" required="">
+                <select id="daType" name="daType" class="form-control" required="">
                     <option selected="" disabled="" value="-"> Please select ID type</option>
                     <option value="pmino">PMI No</option>
                     <option value="icnew">IC No (NEW)</option>
                     <option value="icold">IC No (OLD)</option>
-                    <!--<option value="matricno">Matric No</option>
+                    <option value="matricno">Matric No</option><!--
                     <option value="staffno">Staff No</option>-->
                     <%                                if (dataSystemStatus.equals("0")) {
 
@@ -47,7 +47,7 @@
         <div class="form-group">
             <label class="col-md-4 control-label" for="textinput">IC No. / ID No.</label>
             <div class="col-md-4">
-                <input type="text" class="form-control input-md" id="idInput" name="idInput" placeholder="ID" maxlength="0"/>
+                <input type="text" class="form-control input-md" id="daInput" name="daInput" placeholder="ID" maxlength="0"/>
             </div>
         </div>
         <div class="text-center">
@@ -61,18 +61,18 @@
 
 <script>
     //validate max length of input
-    $('#idType').on('change', function () {
-        var id = $('#idType').val();
+    $('#daType').on('change', function () {
+        var id = $('#daType').val();
         if (id === "pmino") {
-            $('#idInput').attr('maxlength', '13');
+            $('#daInput').attr('maxlength', '13');
         } else if (id === "icnew") {
-            $('#idInput').attr('maxlength', '12');
+            $('#daInput').attr('maxlength', '12');
         } else if (id === "icold") {
-            $('#idInput').attr('maxlength', '8');
+            $('#daInput').attr('maxlength', '8');
         } else if (id === "004") {
-            $('#idInput').attr('maxlength', '10');
+            $('#daInput').attr('maxlength', '10');
         } else if (id === "005") {
-            $('#idInput').attr('maxlength', '10');
+            $('#daInput').attr('maxlength', '10');
         }
     });
 
@@ -86,11 +86,11 @@
     //seaching patient function   
     function searchPatient() {
 
-        var opt = $('#idType option[disabled]:selected').val();
+        var opt = $('#daType option[disabled]:selected').val();
 
         //check if the input text or the select box is empty.
 
-        if ($('#idInput').val() === "" || $('#idInput').val() === " ") {
+        if ($('#daInput').val() === "" || $('#daInput').val() === " ") {
             //if the id/ic input is empty
             bootbox.alert('Please key in PMI no. or IC no. or IDENTIFICATION no. to continue seaching process');
         } else if (opt === "-") {
@@ -100,15 +100,15 @@
             //if the select box is choosen and the input in key-in.
 
             //get value from text box and select box
-            var idType = $('#idType').find(":selected").val();
-            var idInput = $('#idInput').val();
+            var daType = $('#daType').find(":selected").val();
+            var daInput = $('#daInput').val();
 
             //run the MAIN ajax function
             $.ajax({
                 async: true,
                 type: "POST",
-                url: "pmhTable.jsp",
-                data: {'idType': idType, 'idInput': idInput},
+                url: "mcTable.jsp",
+                data: {'daType': daType, 'daInput': daInput},
                 timeout: 10000,
                 success: function (list) {
 
@@ -118,7 +118,7 @@
                     //customize this part only
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-                    $('#pmhTablediv').html(list);
+                    $('#mcTableDivision').html(list);
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                 },
@@ -132,7 +132,7 @@
 
 
     //event when press ENTER after inserting the ID
-    $("#idInput").on("keydown", function (e) {
+    $("#daInput").on("keydown", function (e) {
 
         var code = e.keyCode;
         if (code === 13) {
@@ -145,7 +145,7 @@
 
     //event on click clear buton
     $('#clearSearch').click(function () {
-        $('#idInput').prop('readonly', false);
+        $('#daInput').prop('readonly', false);
         $('#myForm2')[0].reset();
         $('#myForm')[0].reset();
     });

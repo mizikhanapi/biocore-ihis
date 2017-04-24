@@ -1,7 +1,7 @@
 <%-- 
-    Document   : searchPatient
-    Created on : Feb 6, 2017, 2:53:34 PM
-    Author     : shay
+    Document   : searchMc
+    Created on : Apr 17, 2017, 3:16:53 PM
+    Author     : user
 --%>
 
 <%@page import="dBConn.Conn"%>  
@@ -23,12 +23,12 @@
         <div class="form-group">
             <label class="col-md-4 control-label" for="selectbasic">ID Type</label>
             <div class="col-md-4">
-                <select id="idType" name="idType" class="form-control" required="">
+                <select id="tsType" name="tsType" class="form-control" required="">
                     <option selected="" disabled="" value="-"> Please select ID type</option>
                     <option value="pmino">PMI No</option>
                     <option value="icnew">IC No (NEW)</option>
                     <option value="icold">IC No (OLD)</option>
-                    <!--<option value="matricno">Matric No</option>
+                    <option value="matricno">Matric No</option><!--
                     <option value="staffno">Staff No</option>-->
                     <%                                if (dataSystemStatus.equals("0")) {
 
@@ -47,13 +47,13 @@
         <div class="form-group">
             <label class="col-md-4 control-label" for="textinput">IC No. / ID No.</label>
             <div class="col-md-4">
-                <input type="text" class="form-control input-md" id="idInput" name="idInput" placeholder="ID" maxlength="0"/>
+                <input type="text" class="form-control input-md" id="tsInput" name="tsInput" placeholder="ID" maxlength="0"/>
             </div>
         </div>
         <div class="text-center">
             <button class="btn btn-primary" type="button" id="searchPatient" name="searchPatient"><i class="fa fa-search fa-lg"></i>&nbsp; Search</button>
 
-            <button id="clearSearch" name="clearSearch" type="button" class="btn btn-default"><i class="fa fa-ban fa-lg"></i>&nbsp; Clear</button>
+            <button id="clearSearch" name="clearSearch" type="clear" class="btn btn-default"><i class="fa fa-ban fa-lg"></i>&nbsp; Clear</button>
         </div>
     </form>
 </div>
@@ -61,18 +61,18 @@
 
 <script>
     //validate max length of input
-    $('#idType').on('change', function () {
-        var id = $('#idType').val();
+    $('#tsType').on('change', function () {
+        var id = $('#tsType').val();
         if (id === "pmino") {
-            $('#idInput').attr('maxlength', '13');
+            $('#tsInput').attr('maxlength', '13');
         } else if (id === "icnew") {
-            $('#idInput').attr('maxlength', '12');
+            $('#tsInput').attr('maxlength', '12');
         } else if (id === "icold") {
-            $('#idInput').attr('maxlength', '8');
+            $('#tsInput').attr('maxlength', '8');
         } else if (id === "004") {
-            $('#idInput').attr('maxlength', '10');
+            $('#tsInput').attr('maxlength', '10');
         } else if (id === "005") {
-            $('#idInput').attr('maxlength', '10');
+            $('#tsInput').attr('maxlength', '10');
         }
     });
 
@@ -86,29 +86,29 @@
     //seaching patient function   
     function searchPatient() {
 
-        var opt = $('#idType option[disabled]:selected').val();
+        var opt = $('#tsType option[disabled]:selected').val();
 
         //check if the input text or the select box is empty.
 
-        if ($('#idInput').val() === "" || $('#idInput').val() === " ") {
+        if ($('#tsInput').val() === "" || $('#tsInput').val() === " ") {
             //if the id/ic input is empty
-            bootbox.alert('Please key in PMI no. or IC no. or IDENTIFICATION no. to continue seaching process');
+            alert('Please key in PMI no. or IC no. or IDENTIFICATION no. to continue seaching process');
         } else if (opt === "-") {
             //if the select box is not selected
-            bootbox.alert('Please select ID Type first.');
+            alert('Please select ID Type first.');
         } else {
             //if the select box is choosen and the input in key-in.
 
             //get value from text box and select box
-            var idType = $('#idType').find(":selected").val();
-            var idInput = $('#idInput').val();
+            var tsType = $('#tsType').find(":selected").val();
+            var tsInput = $('#tsInput').val();
 
             //run the MAIN ajax function
             $.ajax({
                 async: true,
                 type: "POST",
-                url: "pmhTable.jsp",
-                data: {'idType': idType, 'idInput': idInput},
+                url: "tsTable.jsp",
+                data: {'tsType': tsType, 'tsInput': tsInput},
                 timeout: 10000,
                 success: function (list) {
 
@@ -118,7 +118,7 @@
                     //customize this part only
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-                    $('#pmhTablediv').html(list);
+                    $('#tsTableDivision').html(list);
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                 },
@@ -132,7 +132,7 @@
 
 
     //event when press ENTER after inserting the ID
-    $("#idInput").on("keydown", function (e) {
+    $("#tsInput").on("keydown", function (e) {
 
         var code = e.keyCode;
         if (code === 13) {
@@ -145,7 +145,7 @@
 
     //event on click clear buton
     $('#clearSearch').click(function () {
-        $('#idInput').prop('readonly', false);
+        $('#tsInput').prop('readonly', false);
         $('#myForm2')[0].reset();
         $('#myForm')[0].reset();
     });

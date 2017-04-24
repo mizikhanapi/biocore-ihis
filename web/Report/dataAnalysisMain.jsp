@@ -42,47 +42,52 @@
 
                         </br></br>
 
+
                         <div class="form-group">
-                            <label style="text-align: center" class="col-md-6 control-label" for="textinput">Discipline</label>
+                            <label style="text-align: center" class="col-md-6 control-label" for="textinput">Category</label>
 
 
                             <div class="form-group">
                                 <div class="col-md-6">
-                                    <select class="form-control" name="disiplinType" id="disiplinType">
-                                        <option value="0" id="0" >Please Select</option>
-                                        <option value="inpatient" id="allergy" >Inpatient</option>
-                                        <option value="outpatient" id="complaint" >Outpatient</option>
+                                    <select class="form-control" name="daType" id="daType">
+                                        <option value="0" >Please Select</option>
+                                        <option value="refferal" >outpatient referral source</option>
+                                        <option value="list" >outpatient list</option>
+                                        <option value="mix" >total outpatient list based on age, sex and race</option>
+                                        <option value="patientreg" >patient registration</option>
                                     </select>
                                 </div>
                             </div>
+                        </div>
 
-                            </br></br></br>
+                        </br></br></br>
 
-                            <div class="form-group">
-                                <label style="text-align: center" class="col-md-6 control-label" for="textinput">Start Date</label>
-                                <div class="col-md-6">
-                                    <input id="startDate" name="startDate" type="text" class="form-control datepicker" placeholder="" readonly>
-                                </div>
+
+
+                        <div class="form-group">
+                            <label style="text-align: center" class="col-md-6 control-label" for="textinput">From:</label>
+                            <div class="col-md-6">
+                                <input id="startDate" name="startDate" type="text" class="form-control datepicker" placeholder="" readonly>
                             </div>
+                        </div>
 
-                            <div class="form-group">
-                                <label style="text-align: center" class="col-md-6 control-label" for="textinput">To</label>
-                                <div class="col-md-6">
-                                    <input id="endDate" name="endDate" type="text" class="form-control datepicker" placeholder="" readonly>
-                                </div>
+                        <div class="form-group">
+                            <label style="text-align: center" class="col-md-6 control-label" for="textinput">To:</label>
+                            <div class="col-md-6">
+                                <input id="endDate" name="endDate" type="text" class="form-control datepicker" placeholder="" readonly>
                             </div>
+                        </div>
 
 
-                            <div class="btn-group btn-group-justified" role="group" aria-label="group button">
-                                <div class="btn-group" role="group">
-                                    <button type="submit" class="btn btn-success btn-block btn-lg" role="button" id="dataReport">Generate Report</button>
-                                </div>
-                                <div class="btn-group" role="group">
-                                    <button type="submit" class="btn btn-success btn-block btn-lg" role="button" id="dataChart">Generate Chart</button>
-                                </div>
-                                <div class="btn-group" role="group">
-                                    <button type="reset" id="PrintReset" class="btn btn-default btn-block btn-lg" data-dismiss="modal" role="button" >Cancel</button>
-                                </div>
+                        <div class="btn-group btn-group-justified" role="group" aria-label="group button">
+                            <div class="btn-group" role="group">
+                                <button type="submit" class="btn btn-success btn-block btn-lg" role="button" id="dataReport">Generate Report</button>
+                            </div>
+                            <div class="btn-group" role="group">
+                                <button type="submit" class="btn btn-success btn-block btn-lg" role="button" id="dataChart">Generate Chart</button>
+                            </div>
+                            <div class="btn-group" role="group">
+                                <button id="clearSearch" name="clearSearch" type="clear" class="btn btn-default"><i class="fa fa-ban fa-lg"></i>&nbsp; Clear</button>
                             </div>
                         </div>
                     </div>
@@ -110,14 +115,14 @@
 
             var startDate = document.getElementById("startDate").value;
             var endDate = document.getElementById("endDate").value;
-            var disiplinType = document.getElementById("disiplinType").value;
+            var daType = document.getElementById("daType").value;
 
 
             console.log(startDate);
             console.log(endDate);
-            console.log(disiplinType);
+            console.log(daType);
 
-            window.open("laporanKedatanganJumlahPesakitLuarReport.jsp?startDate=" + startDate + "&endDate=" + endDate + "&disiplinType" + disiplinType);
+            window.open("dataAnalysisReport.jsp?daType=" + daType + "&startDate=" + startDate + "&endDate=" + endDate);
 
         });
 
@@ -125,16 +130,21 @@
 
             var startDate = document.getElementById("startDate").value;
             var endDate = document.getElementById("endDate").value;
-            var disiplinType = document.getElementByID("disiplinType").value;
+            var daType = document.getElementByID("daType").value;
 
 
             console.log(startDate);
             console.log(endDate);
-            console.log(disiplinType);
+            console.log(daType);
 
-            window.open("");
+            window.open("chartquery.jsp?daType=" + daType + "&startDate=" + startDate + "&endDate=" + endDate);
 
 
+        });
+        $('#clearSearch').click(function () {
+            $('#daType').prop('readonly', false);
+            $('#startDate')[0].reset();
+            $('#endDate')[0].reset();
         });
 
 

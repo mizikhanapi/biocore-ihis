@@ -1,0 +1,52 @@
+﻿<!DOCTYPE HTML>
+<html>
+    <head>
+    <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+        <script type="text/javascript" src="canvasjs.min.js"></script>
+        <title>
+            test chart
+        </title>
+
+
+        <script type="text/javascript">
+            window.onload = function () {
+                var chart = new CanvasJS.Chart("chartContainer",
+                        {
+                            title: {
+                                text: "Bar chart"
+                            },
+
+                            data: [
+                                {
+                                    type: "bar",
+
+                                    dataPoints: [
+                                        {x: 10, y: 90, label: "Apple"},
+                                        {x: 20, y: 70, label: "Mango"},
+                                        {x: 30, y: 50, label: "Orange"},
+                                        {x: 40, y: 60, label: "Banana"},
+                                        {x: 50, y: 20, label: "Pineapple"},
+                                        {x: 60, y: 30, label: "Pears"},
+                                        {x: 70, y: 35, label: "Grapes"},
+                                        {x: 80, y: 40, label: "Lychee"},
+                                        {x: 90, y: 30, label: "Jackfruit"}
+                                    ]
+                                }
+                            ]
+                        });
+
+                chart.render();
+            }
+        </script>
+        <title>CanvasJS Example</title>
+    </head>
+
+    <body>
+        <div id="chartContainer" style="height: 400px; width: 100%;">
+        </div>
+    </body>
+</html>
