@@ -916,8 +916,202 @@ $(document).ready(function () {
         $("#update_CIS040009").modal('toggle');
     });
     //----------------------------------------------------------------------------------------------------------------
+    //---------------------------------------------------------------------------------------------Monitoring Request Modal.
+    $('#searchDIS_MON').hide();
+$('#acceptMON').click(function(){
+    //alert('hi ahmed');
+         var searchMON = $('#searchMON').val();
+         var reqItem = $('#reqItem').val();
+         var testMON = $('#testMON').val();
+         var searchHFC_MON = $('#searchHFC_MON').val();
+         var searchDIS_MON = $('#searchDIS_MON').val();
+        
+        //console.log(codeFLU);
+        
+        var $items = $('#searchMON, #reqItem, #testMON, #searchHFC_MON, #searchDIS_MON,#MONHFC_cd,#codeMON');
+        var obj1 = {Acode: 'MON'};
+        $items.each(function () {
+            obj1[this.id] = $(this).val();
+        });
 
-});
+        _data.push(obj1);
+
+        console.log(obj1);
+
+        displayMON(searchMON,searchHFC_MON, searchDIS_MON);
+
+        //$("#codeFLU").val("");
+        $("#searchMON").val("");
+        $("#reqItem").val("");
+        $("#testMON").val("");
+        $("#searchHFC_MON").val("");
+        $("#searchDIS_MON").val("");
+        $("#CIS040003").modal('toggle');
+
+        $(".modal-backdrop").hide();
+    });
+    
+    //js update for monitoring request
+    //    //js UPDATE for Drug Order
+    $('#MONNotes').on('click', '.updateBtnMON', function () {
+        var idName = $(this).get(0).id;
+        var id = idName.split("|");
+        var updateObj = _data[id[1]];
+        console.log(updateObj);
+        $('#usearchMON').val(updateObj.searchMON);
+        $('#ureqItem').val(updateObj.reqItem);
+        $('#utestMON').val(updateObj.testMON);
+        $('#usearchHFC_MON').val(updateObj.searchHFC_MON);
+        $('#usearchDIS_MON').val(updateObj.searchDIS_MON);
+        $('#ucodeMON').val(updateObj.codeMON);
+        $('#uMONHFC_cd').val(updateObj.MONHFC_cd);
+        $('#jsonId').val(id[1]);
+        
+        //getDiscipline(updateObj.MONHFC_cd,"update");
+        
+        
+        //$(this).closest('tr').remove();
+
+    });
+
+    $('#updateBtnMonitoring_MON').click(function (e) {
+        e.preventDefault();
+          var upObject = _data[$('#jsonId').val()];
+          var rowId = $('#jsonId').val();
+          var _usearchMON = $('#usearchMON').val();
+          var _ureqItem = $('#ureqItem').val();
+          var _utestMON = $('#utestMON').val();
+          var _usearchHFC_MON = $('#usearchHFC_MON').val();
+          var _usearchDIS_MON = $('#usearchDIS_MON').val();
+          var _ucodeMON = $('#ucodeMON').val();
+          var _uHFCMON_cd = $('#uMONHFC_cd').val();
+//          alert(_usearchMON);
+//          alert(_usearchHFC_MON);
+//          alert(_usearchDIS_MON);
+//          
+        upObject.searchMON = _usearchMON;
+        upObject.reqItem = _ureqItem;
+        upObject.testMON = _utestMON;
+        upObject.searchHFC_MON = _usearchHFC_MON;
+        upObject.searchDIS_MON = _usearchDIS_MON;
+        upObject.codeMON = _ucodeMON;
+        upObject.MONHFC_cd =_uHFCMON_cd;
+        
+         
+        var sum =  _usearchMON + '| ' +  _usearchHFC_MON + '| ' + _usearchDIS_MON ;
+        console.log(upObject);
+        $('#sum' + rowId).html(sum);
+        $("#update_CIS040003").modal('toggle');
+        
+    });
+
+    //js DELETE for Radiology request monitoring request
+    $('#consultationNotes').on("click", ".deleteBtn15", function () {
+        var delConfirm = confirm('Are you want to delete this notes? ');
+        if (delConfirm === true) {
+            var idName = $(this).get(0).id;
+            var id = idName.split("|");
+            delete _data[id[1]];
+            $(this).closest('tr').remove();
+            console.log(_data);
+        } else {
+            return false;
+        }
+    });
+    
+
+
+//---------------------------------------Admit to ward modal 
+$('#acceptADW').click(function(){
+    var _admitToDis = $('#tCIS_ADWsearchDis').val();
+     var _admitToDisCd = $('#tCIS_ADWsearchDisCd').val();
+    var _patientReferFrom = $('#tCIS_ADWreferFrom').val();
+     var _patientReferCd = $('#tCIS_ADWreferFromCd').val();
+    var _reason = $('#tCIS_ADWreason').val();
+  
+    var _admitB4 = $('input[name="rCIS_ADWAB"]:checked' ).val();
+    var _admitDate = $('#tCIS_ADWdate').val();
+    var _admitTime = $('#tCIS_ADWtime').val();
+    var _wardName = $('#tCIS_ADWwardName').val();
+    var _wardNameCd = $('#tCIS_ADWwardNameCd').val();
+    
+    var obj1 = {
+        Acode : 'ADW',
+        AdmitToDiscipline : _admitToDis,
+        AdmitToDisciplineCd : _admitToDisCd,
+        PatientReferFrom : _patientReferFrom,
+        PatientReferFromCd : _patientReferCd,
+        Reason : _reason,
+        AdmittedBefore:_admitB4,
+        AdmitDate : _admitDate,
+        AdmitTime:_admitTime,
+        WardName:_wardName,
+        WardNameCd:_wardNameCd
+    };
+    console.log(obj1);
+    _data.push(obj1);
+      displayADW(_admitToDis, _patientReferFrom, _reason,_admitDate,_admitTime,_wardName);
+        $("#CIS040007").modal('toggle');
+    });
+
+    $('#ADWNotes').on('click', '.updateBtnADW', function () {
+        var rowId = $('#jsonId').val();
+        var idName = $(this).get(0).id;
+        var id = idName.split("|");
+        var updateObj = _data[id[1]];
+         $('#jsonId').val(id[1]);
+        console.log(updateObj);
+        $('#tCIS_ADWsearchDis_Update').val(updateObj.AdmitToDiscipline);
+        $('#tCIS_ADWsearchDisCd_Update').val(updateObj.AdmitToDisciplineCd);
+        $('#tCIS_ADWreferFrom_Update').val(updateObj.PatientReferFrom);
+        $('#tCIS_ADWreferFromCd_Update').val(updateObj.PatientReferFromCd);
+        $('#tCIS_ADWreason_Update').val(updateObj.Reason);
+        $('input[name="rCIS_ADWAB_Update"][value=' + updateObj.AdmittedBefore + ']').prop('checked', true);
+        $('#tCIS_ADWdate_Update').val(updateObj.AdmitDate);
+        $('#tCIS_ADWtime_Update').val(updateObj.AdmitTime);
+        $('#tCIS_ADWwardName_Update').val(updateObj.WardName);
+        $('#tCIS_ADWwardNameCd_Update').val(updateObj.WardNameCd);
+
+    });
+    
+    $('#updateADW').click(function(e){
+                e.preventDefault();
+          var upObject = _data[$('#jsonId').val()];
+          var rowId = $('#jsonId').val();
+            var _admitToDis = $('#tCIS_ADWsearchDis_Update').val();
+            var _admitToDisCd = $('#tCIS_ADWsearchDisCd_Update').val();
+           var _patientReferFrom = $('#tCIS_ADWreferFrom_Update').val();
+            var _patientReferCd = $('#tCIS_ADWreferFromCd_Update').val();
+           var _reason = $('#tCIS_ADWreason_Update').val();
+
+           var _admitB4 = $('input[name="rCIS_ADWAB_Update"]:checked' ).val();
+           var _admitDate = $('#tCIS_ADWdate_Update').val();
+           var _admitTime = $('#tCIS_ADWtime_Update').val();
+           var _wardName = $('#tCIS_ADWwardName_Update').val();
+           var _wardNameCd = $('#tCIS_ADWwardNameCd_Update').val();
+           
+            upObject.AdmitToDiscipline = _admitToDis;
+            upObject.AdmitToDisciplineCd = _admitToDisCd;
+            upObject.PatientReferFrom = _patientReferFrom;
+            upObject.PatientReferFromCd = _patientReferCd;
+            upObject.Reason = _reason;
+            upObject.AdmittedBefore=_admitB4;
+            upObject.AdmitDate = _admitDate;
+            upObject.AdmitTime=_admitTime;
+            upObject.WardName=_wardName;
+            upObject.WardNameCd=_wardNameCd;
+            
+                    var sum = ' From' + _patientReferFrom +  '<br> Admit to : '+_admitToDis+'<br> Date / Time:'+_admitDate+' /  '+_admitTime+'<br> Ward :'+_wardName+ '<br> Reason :'+_reason
+                console.log(upObject);
+                $('#sum' + rowId).html(sum);
+                $("#update_CIS040007").modal('toggle');
+            
+            
+    });
+    
+    
+    
+    });
 
 function displayDTO(searchDTO, drugName, drugStr, drugDose, drugFreq, drugDur1, unit, drugInst, cautionary, comment) {
     var _tr = '<tr data-status="pagado" ><td><div class="ckbox"><input type="checkbox" id="checkbox1"><label for="checkbox1"></label></div></td><td><div class="media"><div class="media-body">Drug To Order :<p class="summary" id="sum' + i + '">' + searchDTO + ' | Drug Name: ' + drugName + ' | Strength: ' + drugStr + ' | Dose: ' + drugDose + ' | Frequency: ' + drugFreq + ' | Duration: ' + drugDur1 + '  ' + unit + ' | Instruction: ' + drugInst + ' | Cautionary: ' + cautionary + ' | Comment: ' + comment + '</p></div></div></td><td><a data-toggle="modal"  data-target="#update_CIS040002" href="" class="updateDrugOrder" id="row|' + i + '"><i class="fa fa-pencil-square-o" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #337ab7;" ></i></a></a></td><td><a href="javascript:;" class="star"><a href="#" class="deleteBtn" id="row|' + i + '"><i class="fa fa-times" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #d9534f;"></i></a></a></td></tr>';
@@ -964,6 +1158,16 @@ function displayFLU(searchFLU, DateFollowUp, commentFLU) {
 function displayPRI(hfcREFname, hfcREFcode, disREFname, disREFcode, docREFname, appREF, medhistoryREF){
      var _tr = '<tr data-status="pagado" ><td><div class="ckbox"><input type="checkbox" id="checkbox1"><label for="checkbox1"></label></div></td><td><div class="media"><div class="media-body">Referral :<p class="summary" id="sum' + i + '">' + hfcREFname + '|' + disREFname + '|' + docREFname + '|'+appREF+'|'+medhistoryREF+ '</p></div></div></td><td><a data-toggle="modal"  data-target="#update_CIS040009" href="" class="updateBtnPRI" id="row|' + i + '"><i class="fa fa-pencil-square-o" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #337ab7;" ></i></a></a></td><td><a href="javascript:;" class="star"><a href="#" class="deleteBtn" id="row|' + i + '"><i class="fa fa-times" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #d9534f;"></i></a></a></td></tr>';
     $('#PRINotes').append(_tr);
+    i = i + 1;
+}
+function    displayMON(searchMON, searchHFC_MON, searchDIS_MON){
+     var _tr = '<tr data-status="pagado" ><td><div class="ckbox"><input type="checkbox" id="checkbox1"><label for="checkbox1"></label></div></td><td><div class="media"><div class="media-body">Monitoring :<p class="summary" id="sum' + i + '">' + searchMON +  '<br> Health Facility: '+searchHFC_MON+'<br> Discipline :'+searchDIS_MON+ '</p></div></div></td><td><a data-toggle="modal"  data-target="#update_CIS040003" href="" class="updateBtnMON" id="row|' + i + '"><i class="fa fa-pencil-square-o" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #337ab7;" ></i></a></a></td><td><a href="javascript:;" class="star"><a href="#" class="deleteBtn" id="row|' + i + '"><i class="fa fa-times" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #d9534f;"></i></a></a></td></tr>';
+    $('#MONNotes').append(_tr);
+    i = i + 1;
+}
+function  displayADW(_admitToDis, _patientReferFrom, _reason,_admitDate,_admitTime,_wardName){
+     var _tr = '<tr data-status="pagado" ><td><div class="ckbox"><input type="checkbox" id="checkbox1"><label for="checkbox1"></label></div></td><td><div class="media"><div class="media-body">Admit to Ward :<p class="summary" id="sum' + i + '">From' + _patientReferFrom +  '<br> Admit to : '+_admitToDis+'<br> Date / Time:'+_admitDate+' /  '+_admitTime+'<br> Ward :'+_wardName+ '<br> Reason :'+_reason+'</p></div></div></td><td><a data-toggle="modal"  data-target="#update_CIS040007" href="" class="updateBtnADW" id="row|' + i + '"><i class="fa fa-pencil-square-o" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #337ab7;" ></i></a></a></td><td><a href="javascript:;" class="star"><a href="#" class="deleteBtn" id="row|' + i + '"><i class="fa fa-times" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #d9534f;"></i></a></a></td></tr>';
+    $('#ADWNotes').append(_tr);
     i = i + 1;
 }
 
