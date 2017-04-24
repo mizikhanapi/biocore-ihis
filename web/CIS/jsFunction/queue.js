@@ -435,11 +435,6 @@ function convertEHR(ehr) {
                        displayOther(heightO[0], weightO[0], objOther.bmi, objOther.bmiStatus, objOther.headCir, objOther.bloodGlucose);
                 }
 
-
-
-
-
-
         } else if (header === "PEM") {
             PEM = EHRArry[i];
             console.log(PEM);
@@ -713,6 +708,29 @@ function convertEHR(ehr) {
             _data.push(objARQ);
            //  console.log(objPRI);
          displayFLU(objARQ.searchFLU, objARQ.DateFollowUp, objARQ.commentFLU)
+       }else if (header === "MOR") {
+            MOR = EHRArry[i];
+            console.log(MOR);
+            var monArry = MOR.split("|");
+            var monArryInfo = monArry[1].split("^");
+            var monArryTest = monArry[2].split("^");
+            var monArryHfc = monArry[3].split("^");
+          //    processNotes += "MOR|"+data[key].codeMON+"^" +data[key].searchMON+"|"+data[key].reqItem+"^"+data[key].testMON+"|"+data[key].MONHFC_cd+"^"+data[key].searchHFC_MON+"^"+data[key].searchDIS_MON+"|<cr>\n";
+           // var MORData = convertNoteToData(ARQ);
+//            console.log(ARQData);
+            var objMON = {
+                Acode:"MON",
+                codeMON:monArryInfo[0],
+                searchMON:monArryInfo[1],
+                reqItem:monArryTest[0],
+                testMON:monArryTest[1],
+                MONHFC_cd:monArryHfc[0],
+                searchHFC_MON:monArryHfc[1],
+                searchDIS_MON:monArryHfc[2]
+            };
+           _data.push(objMON);
+           //  console.log(objPRI);
+        displayMON(objMON.searchMON,objMON.searchHFC_MON, objMON.searchDIS_MON);
        }
     }
     console.log(_data);

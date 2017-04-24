@@ -11,22 +11,16 @@
 <%
    // String key = request.getParameter("input");
    Conn conn = new Conn();
-    String id = StringUtils.trim(request.getParameter("id"));
+
+    String id =request.getParameter("id");
     String searchProblem = "select d.discipline_name from adm_discipline d,adm_hfc_discipline hfcd where d.discipline_cd = hfcd.discipline_cd and hfcd.hfc_cd='"+id+"';";
     ArrayList<ArrayList<String>> search = conn.getData(searchProblem);
-    //out.print(search);
-    //out.print(searchProblem);
-   
-//            out.println(search.get(i).get(0));
-//            out.println(search.get(i).get(1));
-//            out.println(search.get(i).get(2));
-//            out.print(String.join("|", search.get(i)));
-//        }
-//    }
+
 %>
   <div class="form-group">
-                    <select name="hhh" id="hfcDiscipline1" class="form-control input-lg">
+                    <select name="hhh" id="hfcDisciplineMON" class="form-control input-lg">
                         <option value="1" selected="" disabled="">Discipline</option>
+                        <option value="2">Discipline2</option>
                         <% if (search.size() > 0) {
 
         for (int i = 0; i < search.size(); i++) {
