@@ -49,14 +49,29 @@ FROM
 	</pageFooter>
 	<summary>
 		<band height="477" splitType="Stretch">
-			<staticText>
-				<reportElement x="206" y="153" width="100" height="20" uuid="8057aa76-784b-49f4-9592-dc9805ad979b"/>
-				<text><![CDATA[adsbasldas]]></text>
-			</staticText>
 			<textField>
-				<reportElement x="194" y="255" width="100" height="20" uuid="7388a8a8-450d-4573-9619-aee76e4c4851"/>
+				<reportElement x="118" y="75" width="100" height="20" uuid="7388a8a8-450d-4573-9619-aee76e4c4851"/>
 				<textFieldExpression><![CDATA[$P{startDate}]]></textFieldExpression>
 			</textField>
+			<staticText>
+				<reportElement x="182" y="29" width="155" height="20" uuid="8f2fcf17-a4fc-4eda-a64c-dbf2e3b354ba"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Laporan Pendaftaran Pesakit]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="307" y="75" width="100" height="20" uuid="bc1d06d3-1a8d-4156-83f7-af5592be8052"/>
+				<textFieldExpression><![CDATA[$P{endDate}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="75" y="75" width="43" height="20" uuid="96907d28-69c9-4ad3-9bd3-c558810268b6"/>
+				<text><![CDATA[From:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="267" y="75" width="40" height="20" uuid="9fea06a1-1513-404b-8b92-54420e5f0bf9"/>
+				<text><![CDATA[To:]]></text>
+			</staticText>
 		</band>
 	</summary>
 </jasperReport>

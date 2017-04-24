@@ -52,13 +52,21 @@ FROM
 	<summary>
 		<band height="496" splitType="Stretch">
 			<textField>
-				<reportElement x="248" y="147" width="100" height="20" uuid="b18a585c-70bd-44f8-a01c-7213e548beb9"/>
+				<reportElement x="136" y="96" width="100" height="20" uuid="b18a585c-70bd-44f8-a01c-7213e548beb9"/>
 				<textFieldExpression><![CDATA[$P{startDate}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="261" y="200" width="100" height="20" uuid="10839fdf-52d1-4671-a32f-b025e03a6218"/>
+				<reportElement x="266" y="96" width="100" height="20" uuid="10839fdf-52d1-4671-a32f-b025e03a6218"/>
 				<textFieldExpression><![CDATA[$P{endDate}]]></textFieldExpression>
 			</textField>
+			<staticText>
+				<reportElement x="90" y="96" width="46" height="20" uuid="415f3f37-8125-46dc-8522-89ccf5629c82"/>
+				<text><![CDATA[From:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="236" y="96" width="30" height="20" uuid="9fbf43ec-7a1b-4bc4-ba69-a9734e0ba9bd"/>
+				<text><![CDATA[To:]]></text>
+			</staticText>
 		</band>
 	</summary>
 </jasperReport>

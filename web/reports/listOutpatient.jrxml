@@ -191,7 +191,7 @@ WHERE
 			<staticText>
 				<reportElement x="176" y="15" width="198" height="27" uuid="9ad097a5-3c26-415a-8679-46c100ee0f88"/>
 				<textElement>
-					<font size="14"/>
+					<font size="14" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Senarai Pesakit Luar]]></text>
 			</staticText>

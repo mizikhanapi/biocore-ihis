@@ -51,7 +51,7 @@
                                 <div class="col-md-6">
                                     <select class="form-control" name="daType" id="daType">
                                         <option value="0" >Please Select</option>
-                                        <option value="refferal" >outpatient referral source</option>
+                                        <!--                                        <option value="refferal" >outpatient referral source</option>-->
                                         <option value="list" >outpatient list</option>
                                         <option value="mix" >total outpatient list based on age, sex and race</option>
                                         <option value="patientreg" >patient registration</option>
@@ -113,16 +113,22 @@
         });
         $('#dataReport').on('click', function () {
 
-            var startDate = document.getElementById("startDate").value;
-            var endDate = document.getElementById("endDate").value;
-            var daType = document.getElementById("daType").value;
+            if ($('#startDate').val() === "" || $('#endDate').val() === " ") {
+                //if the id/ic input is empty
+                alert('Please choose date to prooceed');
+            } else {
+
+                var startDate = document.getElementById("startDate").value;
+                var endDate = document.getElementById("endDate").value;
+                var daType = document.getElementById("daType").value;
 
 
-            console.log(startDate);
-            console.log(endDate);
-            console.log(daType);
+                console.log(startDate);
+                console.log(endDate);
+                console.log(daType);
 
-            window.open("dataAnalysisReport.jsp?daType=" + daType + "&startDate=" + startDate + "&endDate=" + endDate);
+                window.open("dataAnalysisReport.jsp?daType=" + daType + "&startDate=" + startDate + "&endDate=" + endDate);
+            }
 
         });
 
