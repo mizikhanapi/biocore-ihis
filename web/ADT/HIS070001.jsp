@@ -123,6 +123,8 @@
         <!-- main --> 
 
     </div>
+                                        <div id="modalSaya2"><%@include file = "QueueModal.jsp" %></div>
+
 
     <!--    <script src="old/assets/js/register.js" type="text/javascript"></script>-->
     <!--                                    <script src="../PMS/libraries/lib/js/main/registration.js" type="text/javascript"></script>-->
@@ -169,6 +171,7 @@
 
 
 
+    <script src="libraries/js/queue.js" type="text/javascript"></script>
 
 
 </body>
