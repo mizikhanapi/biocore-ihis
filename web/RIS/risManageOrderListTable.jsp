@@ -16,7 +16,7 @@
     String last_nine = current_user.substring(current_user.length() - 1);
 %>
 
-<h4>Order List</h4>
+
 
 <table  id="risManageOrderListTable"  class="table table-filter table-striped table-bordered table-hover" style="background: #fff; border: 1px solid #ccc; width: 100%">
     <thead>
@@ -32,9 +32,25 @@
 
     <%
         String whereClause = "";
+        String orderWhereClause = " ";
+        
+        //-------------------------- to refresh order table based on request--------------------------------
+        String process = "1";
+        
+        if(request.getParameter("process") != null){
+        
+            process = request.getParameter("process");
+        }
+        
+         if(process.equalsIgnoreCase("1")){
+             
+             orderWhereClause = " AND date(ris_order_master.order_date) = date(now()) ";
+         }
+        
+        //=============================================================================================
 
         if (!hfc_cd.equals("99_iHIS_99") || !last_nine.equals("9")) {
-            whereClause = " where ris_order_master.hfc_cd = '"+hfc_cd+"' ";
+            whereClause = " AND ris_order_master.hfc_cd = '"+hfc_cd+"' ";
         }
 //                                  0                       1                       2                           3                                   4                       5                       
         String sql = "SELECT ris_order_master.pmi_no,ris_order_master.order_no,ris_order_master.hfc_cd,ris_order_master.episode_date,ris_order_master.encounter_date,ris_order_master.order_date,"
@@ -44,9 +60,12 @@
                 + "pms_patient_biodata.PATIENT_NAME,pms_patient_biodata.NEW_IC_NO,pms_patient_biodata.BIRTH_DATE,pms_patient_biodata.SEX_CODE,pms_patient_biodata.BLOOD_TYPE, "
                 //  18                  19
                 + "sx.description, blot.description "
-                + "FROM ris_order_master JOIN pms_patient_biodata ON (ris_order_master.pmi_no = pms_patient_biodata.PMI_NO) "
-                + "JOIN adm_lookup_detail sx on pms_patient_biodata.SEX_CODE = sx.detail_reference_code AND sx.master_reference_code = '0041' AND sx.hfc_cd = ris_order_master.hfc_cd "
-                + "LEFT JOIN adm_lookup_detail blot on pms_patient_biodata.BLOOD_TYPE = blot.detail_reference_code AND blot.master_reference_code = '0074' AND blot.hfc_cd = ris_order_master.hfc_cd"
+                + "FROM ris_order_master "
+                + "LEFT JOIN pms_patient_biodata ON (ris_order_master.pmi_no = pms_patient_biodata.PMI_NO) "
+                + "LEFT JOIN adm_lookup_detail sx on pms_patient_biodata.SEX_CODE = sx.detail_reference_code AND sx.master_reference_code = '0041' AND sx.hfc_cd = ris_order_master.hfc_cd "
+                + "LEFT JOIN adm_lookup_detail blot on pms_patient_biodata.BLOOD_TYPE = blot.detail_reference_code AND blot.master_reference_code = '0074' AND blot.hfc_cd = ris_order_master.hfc_cd "
+                + "WHERE ris_order_master.order_no in (select distinct(order_no) from ris_order_detail ) "
+                +orderWhereClause
                 + whereClause + " ;";
 
         ArrayList<ArrayList<String>> dataRISOrderList = conn.getData(sql);
@@ -80,6 +99,8 @@
                 $('.loading').hide();
             }
         });
+        
+              
     });
 
 </script>

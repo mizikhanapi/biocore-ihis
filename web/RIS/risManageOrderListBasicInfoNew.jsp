@@ -5,8 +5,8 @@
 --%>
 
 <div class="thumbnail">
-    <h4>Basic Info</h4>
-    <hr/>
+    <h4><u>Basic Info</u></h4>
+    <!--    <hr/>-->
     <form class="form-horizontal" name="risManageOrderDetailContentBasicInfoForm" id="risManageOrderDetailContentBasicInfoForm">
         <div class="row">
 
@@ -74,7 +74,7 @@
 
     <hr/>
     <h5 style="padding-bottom: 1%;font-weight: bolder">
-        Allergy List
+        <u>Allergy List</u>
     </h5>
 
     <div id="risManageAllergyListTableDiv" class="form-group">
@@ -99,8 +99,8 @@
 
 
 <div class="thumbnail">
-    <h4>Diagnosis Info</h4>
-    <hr/>
+    <h4><u>Diagnosis Info</u></h4>
+    <!--<hr/>-->
     <div id="risManageDiagnosisListTableDiv" class="form-group">
         <table class="table table-filter table-striped table-bordered" style="background: #fff; border: 1px solid #ccc; width: 100%" id="risManageDiagnosisListTable">
             <thead>
@@ -123,8 +123,8 @@
 
 
 <div class="thumbnail">
-    <h4>Request Info</h4>
-    <hr/>
+    <h4><u>Request Info</u></h4>
+    <!--<hr/>-->
     <form class="form-horizontal" name="risManageOrderDetailContentOrderInfoForm" id="risManageOrderDetailContentOrderInfoForm">
         <div class="row">
 
@@ -169,11 +169,13 @@
 
         </div>
     </form>
-    <hr/>
+    <!--<hr/>-->
     <h4 style="padding-bottom: 2%">
-        Order Detail
+        <u>Order Detail</u>
         <span class="pull-right">
-            <button id="risOrderNewRequestButton" name="risOrderNewRequestButton" class="btn btn-primary" data-toggle="modal" ><i class="fa fa-plus fa-lg"></i>&nbsp; New Request</button>
+            <button id="risOrderNewRequestButton" class="btn btn-primary" >
+                <i class="fa fa-plus fa-lg"></i>&nbsp; New Request
+            </button>
         </span>
         <br>
     </h4>
@@ -182,13 +184,13 @@
     <div id="risManageOrderDetailsListTableDiv" class="form-group">
         <table class="table table-filter table-striped table-bordered" style="background: #fff; border: 1px solid #ccc; width: 100%" id="risManageOrderDetailsListTable">
             <thead>
-            <th>Order No</th>
-            <th>Name</th>
-            <th>Modality</th>
-            <th>Body System</th>
-            <th>Requestor Instruction</th>
-            <th>Result</th>
-            <th>Status</th>
+            <th style="width: 15%">Body System</th>
+            <th style="width: 5%">Modality</th>
+            <th style="width: 5%">Procedure Code</th>
+            <th style="width: 15%">Procedure Name</th>
+            <th style="width: 25%">Requestor Instruction</th>
+            <th style="width: 5%">Exam Date</th>
+            <th style="width: 5%">Status</th>
             </thead>
             <tbody>
 
@@ -288,7 +290,7 @@
                             data: dataOrder,
                             timeout: 3000,
                             success: function (returnOrderDetailsTableHTML) {
-                                $('#risManageOrderDetailsListTable').html(returnOrderDetailsTableHTML);
+                                $('#risManageOrderDetailsListTableDiv').html(returnOrderDetailsTableHTML);
                                 $('#risManageOrderDetailsListTable').trigger('contentchanged');
                                 $('.nav-tabs a[href="#tab_default_2"]').tab('show');
                             }
@@ -305,7 +307,7 @@
 
 
     // Load Datatable To Tables Start
-    $(document).on('contentchanged', '#patientOrderDetailsListTableDiv', function () {
+    $(document).on('contentchanged', '#risManageOrderDetailsListTableDiv', function () {
 
         $('#risManageOrderDetailsListTable').DataTable().destroy();
 
@@ -319,12 +321,184 @@
             }
         });
 
+        console.log('Table is changed');
+
     });
     // Load Datatable To Tables End 
 
 
 //======================================================================================================================================================================================//
 
+    //---------------------- create modal for request new order --------------------------------
+    $('#risOrderNewRequestButton').on('click', function () {
+        var orderNo = $('#risOrderNo').val();
+        if (orderNo === "") {
+
+            bootbox.alert('Please select an order first');
+            $('.nav-tabs a[href="#tab_default_1"]').tab('show');
+            return false;
+        }
+
+        $('#modal_requestNewOrder').modal('show');
+
+        $('#RNO_modalTitle').text('Request New Order');
+
+        $('#RNO_addForm')[0].reset(); //reset the form
+
+        $('#RNO_div_btnAdd_or_update').html('<button type="submit" class="btn btn-success btn-block btn-lg" role="button" id="RNO_btnAdd">Add</button>');
+    });
+    //=============================================================================
+
+    //-------------------search procedure of new order --------------------------------
+
+    //global variable for procedure search
+    var selectedPro = "";
+    var isProSelected = false;
+
+    $('#RNO_proName').on('keyup', function () {
+        var BScode = $('#RNO_bodySystem').val();
+        var MODcode = $('#RNO_modality').val();
+
+        var input = $(this).val();
+
+        if (input.length > 0) {
+
+            if (BScode === "" || MODcode === "") {
+                bootbox.alert('Please select body system and modality first.');
+                $(this).val('');
+
+            } else {
+                $('#RNO_pro_match').html('<img src="img/ajax-loader.gif">');
+                var data = {
+                    BScode: BScode,
+                    MODcode: MODcode,
+                    key: input
+                };
+
+                $.ajax({
+                    type: 'POST',
+                    url: "order_control/searchProcedure.jsp",
+                    data: data,
+                    success: function (data, textStatus, jqXHR) {
+                        $('#RNO_pro_match').html(data);
+                        $('#RNO_pro_matchlist li').on('click', function () {
+
+                            $('#RNO_proName').val($(this).text());
+                            $('#RNO_pro_match').html('');
+                            isProSelected = true;
+                            selectedPro = $('#RNO_proName').val();
+
+                        });
+
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                        $('#RNO_pro_match').text("Opps! " + errorThrown);
+
+                    }
+
+
+                });//end ajax
+            }
+
+        } else {
+            $('#RNO_pro_match').html('');
+        }
+    });
+
+    //==============================================================================
+
+    //------------------------- add new order start --------------------------------
+    $('#RNO_div_btnAdd_or_update').on('click', '#RNO_btnAdd', function () {
+
+        var orderNo = $('#risOrderNo').val();
+
+        var bsCode = $('#RNO_bodySystem').val();
+        var modCode = $('#RNO_modality').val();
+        var procedure = $('#RNO_proName').val();
+        var instruction = $('#RNO_instruction').val();
+
+        if (bsCode === "") {
+            bootbox.alert('Select body system.', function () {
+                $('#RNO_bodySystem').focus();
+            });
+
+        } else if (modCode === "") {
+            bootbox.alert('Select body system.', function () {
+                $('#RNO_modality').focus();
+            });
+
+        } else if (isProSelected === false || selectedPro !== procedure) {
+            bootbox.alert('Please choose existing procedure.', function () {
+                $('#RNO_proName').focus();
+            });
+
+        } else {
+            instruction = instruction.replace(/'/g, "\\\'").replace(/"/g, "\\\"");
+            var arrData = procedure.split('|');
+            procedure = arrData[0].trim();
+
+
+
+            var data = {
+                orderNo: orderNo,
+                modCode: modCode,
+                bsCode: bsCode,
+                proCode: procedure,
+                instruction: instruction
+            };
+            $('#risManageOrderDetailsListTableDiv').append('<div class="loading">Loading</div>');
+            $.ajax({
+                type: 'POST',
+                url: "order_control/requestNewOrder_insert.jsp",
+                data: data,
+                success: function (data, textStatus, jqXHR) {
+                    if (data.trim() === 'success') {
+                        bootbox.alert('New order is added.');
+                        loadOrderDetailList(orderNo);
+
+                    } else if (data.trim() === 'duplicate') {
+                        bootbox.alert('Duplicate order. Please order different item');
+                        $('.loading').hide();
+
+                    } else if (data.trim() === 'fail') {
+
+                        bootbox.alert('Fail to add new order.');
+                        $('.loading').hide();
+                    }
+
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    bootbox.alert('Opps! ' + errorThrown);
+                    $('.loading').hide();
+                },
+                complete: function (jqXHR, textStatus) {
+                    //$('.loading').hide();
+                    $('.modal-backdrop').hide();
+                    $('#modal_requestNewOrder').modal('hide');
+                }
+            });
+        }
+    });
+
+    function loadOrderDetailList(orderNo) {
+
+        var dataOrder = {orderNo: orderNo};
+
+        $.ajax({
+            url: "risManageOrderListDetails.jsp",
+            type: "post",
+            data: dataOrder,
+            success: function (returnOrderDetailsTableHTML) {
+                $('#risManageOrderDetailsListTableDiv').html(returnOrderDetailsTableHTML);
+                $('#risManageOrderDetailsListTable').trigger('contentchanged');
+                //$('.nav-tabs a[href="#tab_default_2"]').tab('show');
+            },
+            complete: function (jqXHR, textStatus) {
+                $('.loading').hide();
+            }
+        });
+    }
+    //===============================================================================
 
     // Save Button Function Start
     $('#patientOrderDispenseButtonDiv').on('click', '#btnRISOrderSave', function (e) {
@@ -351,6 +525,7 @@
         $('.nav-tabs a[href="#tab_default_1"]').tab('show');
     });
     // Clear Button Function End
+
 
 
 </script>
