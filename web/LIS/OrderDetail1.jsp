@@ -67,8 +67,7 @@
 
     </div>
 </form>
-
-<h4>Allergy List</h4>
+<h5>ALLERGY LIST</h5>
 <div id="ManageAllergyListTable" class="form-group" style="margin-bottom: 40px;">
     <table class="table table-filter table-striped table-bordered" style="background: #fff; border: 1px solid #ccc; width: 100%" id="patientAllergyListTable">
         <thead>
@@ -77,7 +76,7 @@
         <th>EPISODE DATE</th>
         <th>ENCOUNTER DATE</th>
         <th>ALLERGY CODE</th>
-        <th style="text-align: left; width: 40%;">ALLERGY DESCRIPTION</th>
+        <th style="text-align: left; width: 50%;">ALLERGY DESCRIPTION</th>
         <th style="text-align: left; width: 20%;">COMMENT</th>
         </thead>
         <tbody>
@@ -174,8 +173,6 @@
         </tbody>
     </table>
 </div>
-
-
 
 <script>
 

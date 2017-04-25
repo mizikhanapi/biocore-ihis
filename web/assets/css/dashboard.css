@@ -565,7 +565,7 @@ ul.nav.navbar-nav.navbar-left.back {
     color: #666;
 }
 
-.table-bordered>thead>tr>th:last-child {
+/*.table-bordered>thead>tr>th:last-child {
     text-align: center;
     width: 5%;
 }
@@ -573,15 +573,15 @@ ul.nav.navbar-nav.navbar-left.back {
 .table-bordered>thead>tr>th:nth-last-child(2) {
     text-align: center;
     width: 5%;
-}
+}*/
 
-.table-bordered>tbody>tr>td:last-child {
+/*.table-bordered>tbody>tr>td:last-child {
     text-align: center;
 }
 
 .table-bordered>tbody>tr>td:nth-last-child(2) {
     text-align: center;
-}
+}*/
 
 .btn-group>.btn, .btn-group>.btn {
     border-radius: 0px;

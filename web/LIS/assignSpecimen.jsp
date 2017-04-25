@@ -58,131 +58,107 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="thumbnail">
+                                    <h4 class="col-md-12">Recieve Order</h4>
+                                    <div class="row">
+                                        <div class="col-xs-6 col-sm-6 col-md-6">
+                                            <address>
 
+                                                <p>
+                                                    Specimen No: 
+                                                    <span class="p-label">
+                                                        <%                            try {
 
-                                    <!-- Tab Menu -->
+                                                                int year = Calendar.getInstance().get(Calendar.YEAR);
+                                                                String test = "SELECT CONCAT('SPE',LPAD(SUBSTRING(COALESCE(MAX(specimen_no),'SPE000'),4,4)+1,4,'0'))FROM lis_specimen";
+                                                                ArrayList<ArrayList<String>> q4 = conn.getData(test);
 
-                                    <div class="tabbable-panel">
-                                        <div class="tabbable-line">
-                                            <ul class="nav nav-tabs ">
-                                                <li class="active">
-                                                    <a href="#tab_default_1" data-toggle="tab">
-                                                        Recieve Order </a>
-                                                </li>
+                                                                out.print(q4.get(0).get(0));
+                                                            } catch (Exception e) {
+                                                                //error handling code
+                                                            }
 
-                                            </ul>
-                                            <!-- tab content -->
-                                            <div class="tab-content">
-                                                <div class="tab-pane active" id="tab_default_1">               
-                                                    <br>
-                                                    <br>
-                                                    <div class="col-xs-6 col-sm-6 col-md-6">
-                                                        <address>
+                                                            //String generate = "SELECT RIGHT ('0000'+ CAST (@Number AS varchar), 4)";
 
-                                                            <p>
-                                                                <em>Specimen No: <%                            try {
+                                                        %>
+                                                    </span>
+                                                </p>
+                                                <p>Specimen Source:
+                                                    <span class="p-label">
+                                                        <% out.println(pmi2);%>
+                                                    </span>
+                                                </p>
+                                            </address>
+                                        </div>
+                                        <div class="col-xs-6 col-sm-6 col-md-6">
+                                            <address>
+                                                <p>
+                                                    Collection Date:
+                                                    <span class="p-label">
+                                                        <%= new SimpleDateFormat("dd/MM/yyyy").format(new java.util.Date())%><input type='text' name='Collection_date' id="C_date" value='<%= new SimpleDateFormat("dd/MM/yyyy").format(new java.util.Date())%>' style='display:none;'> 
+                                                    </span>
 
-                                                                        int year = Calendar.getInstance().get(Calendar.YEAR);
-                                                                        String test = "SELECT CONCAT('SPE',LPAD(SUBSTRING(COALESCE(MAX(specimen_no),'SPE000'),4,4)+1,4,'0'))FROM lis_specimen";
-                                                                        ArrayList<ArrayList<String>> q4 = conn.getData(test);
-
-                                                                        out.print(q4.get(0).get(0));
-                                                                    } catch (Exception e) {
-                                                                        //error handling code
-                                                                    }
-
-                                                                    //String generate = "SELECT RIGHT ('0000'+ CAST (@Number AS varchar), 4)";
-
-                                                                    %></em>
-                                                            </p>
-                                                            <p>
-                                                                <em>Specimen Source: </em><%
-                                                                out.println(pmi2);
-                                                                %>
-                                                            </p>
-                                                            <p>
-                                                                <em></em>
-                                                            </p>
-                                                            <p>
-                                                                <em></em>
-                                                            </p>
-                                                        </address>
-                                                    </div>
-                                                    <div class="col-xs-6 col-sm-6 col-md-6 text-right">
-                                                        <address>
-                                                            <p>
-                                                                <em>Collection Date: <%= new SimpleDateFormat("dd/MM/yyyy").format(new java.util.Date())%><input type='text' name='Collection_date' id="C_date" value='<%= new SimpleDateFormat("dd/MM/yyyy").format(new java.util.Date())%>' style='display:none;'></em>
-                                                            </p>
-                                                            <p>
-                                                                <em>Collection Time: <%= new SimpleDateFormat("HH:mm:ss").format(new java.util.Date())%><input type='text' name='Collection_time' id="C_time" value='<%= new SimpleDateFormat("HH:mm:ss").format(new java.util.Date())%>' style='display:none;'</em>
-                                                            </p>
-                                                            <p>
-                                                                <em> </em>
-                                                            </p>
-                                                            <p>
-                                                                <em> </em>
-                                                            </p>
-                                                        </address>
-                                                    </div>    
-                                                    <table id="orderRecieve"  class="table table-striped table-bordered" cellspacing="0" width="100%">
-
-                                                        <thead>
-                                                            <tr>
-                                                                <th class="col-sm-1">Item Name</th>
-                                                                <th class="col-sm-1">Container Information</th>
-                                                                <th class="col-sm-1">Order Date</th>	
-                                                            </tr>
-                                                        </thead>
-                                                        <tbody>
-                                                            <%
-
-                                                                itemCD = request.getParameterValues("chkSpecimen");
-                                                                out.println("<input type='text' name='pmi' value='" + pmi2 + "' id='pmi' style='display:none;'>");
-                                                                out.println("<input type='text' name='order_no' value='" + orderno1 + "' id='order_no'  style='display:none;'>");
-                                                                int count = 0;
-                                                                if (itemCD != null) {
-                                                                    for (int j = 0; j < itemCD.length; j++) {
-                                                                        out.println("<input type='text' name='specimen" + j + "' value='" + itemCD[j] + "' id='specimen" + j + "' style='display:none;'>");
-
-                                                                        count++;
-                                                                        String sqlPatientApp = "SELECT LID.item_cd,LID.item_name,LID.spe_container,LOD.created_date,LOM.hfc_cd,LOM.pmi_no,LOM.patient_name FROM lis_order_detail LOD, lis_item_detail LID, lis_order_master LOM WHERE LOD.item_cd = LID.item_cd AND LOD.order_no = LOM.order_no AND LOD.item_cd = '" + itemCD[j] + "' AND LOD.order_no = '" + orderno1 + "'";
-                                                                        //String sqlPatientApp = "SELECT item_name, order_no, item_cd FROM lis_order_detail WHERE order_no = '"+orderno1+"' AND item_cd = '"+itemCD[j]+"'";
-                                                                        ArrayList<ArrayList<String>> dataPatientApp = conn.getData(sqlPatientApp);
-
-                                                                        if (dataPatientApp.size() > 0) {
-                                                                            for (int i = 0; i < dataPatientApp.size(); i++) {%>
-
-                                                            <tr>
-                                                                <td><%=dataPatientApp.get(i).get(1)%><input type="text" value="<%=dataPatientApp.get(i).get(0)%>" id="item_cd<%=i%>" name="item_cd<%=i%>" style=" display: none;"></td>
-                                                                <td><%=dataPatientApp.get(i).get(2)%></td>
-                                                                <td><%=dataPatientApp.get(i).get(3)%><input type="text" id="patient_name" name="patient_name" value="<%=dataPatientApp.get(i).get(6)%>" style=" display: none;"> </td>
-
-                                                            </tr>
-                                                            <%
-                                                                            }
-                                                                        }
-
-                                                                    }
-                                                                    out.println("<input type='text' name='TotalOptions' value='" + count + "' id='TotalOptions' style='display:none;'>");
-                                                                } else {
-                                                                    out.println("none");
-                                                                }
-
-                                                            %>
-
-                                                        </tbody>
-                                                    </table>
-                                                    <div class="modal-footer">
-                                                        <button type="button" class="btn btn-primary" data-dismiss="modal" id="assign">Submit</button> 
-                                                        
-                                                    </div>
-                                                </div>
-                                            </div>
+                                                </p>
+                                                <p>
+                                                    Collection Time: 
+                                                    <span class="p-label">
+                                                        <%= new SimpleDateFormat("HH:mm:ss").format(new java.util.Date())%><input type='text' name='Collection_time' id="C_time" value='<%= new SimpleDateFormat("HH:mm:ss").format(new java.util.Date())%>' style='display:none;'>
+                                                    </span>
+                                                </p>
+                                            </address>
                                         </div>
                                     </div>
+                                    <hr/>
+                                    <table id="orderRecieve"  class="table table-striped table-bordered" cellspacing="0" width="100%">
 
-                                    <!-- Tab Menu -->
+                                        <thead>
+                                            <tr>
+                                                <th class="col-sm-1">Item Name</th>
+                                                <th class="col-sm-1">Container Information</th>
+                                                <th class="col-sm-1">Order Date</th>	
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <%
 
+                                                itemCD = request.getParameterValues("chkSpecimen");
+                                                out.println("<input type='text' name='pmi' value='" + pmi2 + "' id='pmi' style='display:none;'>");
+                                                out.println("<input type='text' name='order_no' value='" + orderno1 + "' id='order_no'  style='display:none;'>");
+                                                int count = 0;
+                                                if (itemCD != null) {
+                                                    for (int j = 0; j < itemCD.length; j++) {
+                                                        out.println("<input type='text' name='specimen" + j + "' value='" + itemCD[j] + "' id='specimen" + j + "' style='display:none;'>");
+
+                                                        count++;
+                                                        String sqlPatientApp = "SELECT LID.item_cd,LID.item_name,LID.spe_container,LOD.created_date,LOM.hfc_cd,LOM.pmi_no,LOM.patient_name FROM lis_order_detail LOD, lis_item_detail LID, lis_order_master LOM WHERE LOD.item_cd = LID.item_cd AND LOD.order_no = LOM.order_no AND LOD.item_cd = '" + itemCD[j] + "' AND LOD.order_no = '" + orderno1 + "'";
+                                                        //String sqlPatientApp = "SELECT item_name, order_no, item_cd FROM lis_order_detail WHERE order_no = '"+orderno1+"' AND item_cd = '"+itemCD[j]+"'";
+                                                        ArrayList<ArrayList<String>> dataPatientApp = conn.getData(sqlPatientApp);
+
+                                                        if (dataPatientApp.size() > 0) {
+                                                            for (int i = 0; i < dataPatientApp.size(); i++) {%>
+
+                                            <tr>
+                                                <td><%=dataPatientApp.get(i).get(1)%><input type="text" value="<%=dataPatientApp.get(i).get(0)%>" id="item_cd<%=i%>" name="item_cd<%=i%>" style=" display: none;"></td>
+                                                <td><%=dataPatientApp.get(i).get(2)%></td>
+                                                <td><%=dataPatientApp.get(i).get(3)%><input type="text" id="patient_name" name="patient_name" value="<%=dataPatientApp.get(i).get(6)%>" style=" display: none;"> </td>
+
+                                            </tr>
+                                            <%
+                                                            }
+                                                        }
+
+                                                    }
+                                                    out.println("<input type='text' name='TotalOptions' value='" + count + "' id='TotalOptions' style='display:none;'>");
+                                                } else {
+                                                    out.println("none");
+                                                }
+
+                                            %>
+
+                                        </tbody>
+                                    </table>
+                                    <div class="text-right">
+                                        <button type="button" class="btn btn-primary" data-dismiss="modal" id="assign">Submit</button> 
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -228,7 +204,7 @@
                             Total: TotalOptions}
 
                     });
-                    alert(specimen[0]+" "+pmi+" "+order_no+" "+C_date+" "+C_time+" "+TotalOptions+" "+patient_name);
+                    alert(specimen[0] + " " + pmi + " " + order_no + " " + C_date + " " + C_time + " " + TotalOptions + " " + patient_name);
                     window.location.replace("MainPage.jsp");
                 }
             });

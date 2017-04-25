@@ -3,7 +3,6 @@
     Created on : Mar 28, 2017, 5:59:03 PM
     Author     : Shammugam
 --%>
-
 <%@page import="java.text.DecimalFormat"%>
 <%@page import="java.text.NumberFormat"%>
 <%@page import="org.apache.commons.lang3.StringUtils"%>
@@ -28,26 +27,26 @@
 
 <table class="table table-filter table-striped table-bordered dt-head-right" style="background: #fff; border: 1px solid #ccc; width: 100%; text-align: center" id="ManageOrderListDetailTable">
     <thead>
-    <th style="display: none;text-align: center;">PMI NO</th>
-    <th style="text-align: center;">HFC</th>
-    <th style="text-align: center;">EPISODE DATE</th>
-    <th style="text-align: center;">ENCOUNTER DATE</th>
-    <th style="text-align: center;">DIAGNOSIS CODE</th>
-    <th style="text-align: center;">DIAGNOSIS DESCRIPTION</th>
-    <th style="text-align: center;">COMMENT</th>
+    <th style="display: none;">PMI NO</th>
+    <th >HFC</th>
+    <th >EPISODE DATE</th>
+    <th >ENCOUNTER DATE</th>
+    <th >DIAGNOSIS CODE</th>
+    <th >DIAGNOSIS DESCRIPTION</th>
+    <th >COMMENT</th>
 </thead>
 <tbody>
     <%        for (int i = 0; i < dataDiagnosisList.size(); i++) {
 
     %>
-    <tr style="text-align: center;">
+    <tr style="text-align: left;">
 <input id="dataRISManageDiagnosisListhidden" type="hidden" value="<%=String.join("|", dataDiagnosisList.get(i))%>">
 <td style="display: none"><%= dataDiagnosisList.get(i).get(0)%></td> <!-- Order No -->
 <td  ><%= dataDiagnosisList.get(i).get(1)%></td> <!-- Code -->
 <td ><%= dataDiagnosisList.get(i).get(2)%></td> <!-- Episode Date -->
 <td ><%= dataDiagnosisList.get(i).get(3)%></td> <!-- Encounter Date -->
 <td ><%= dataDiagnosisList.get(i).get(4)%></td> <!-- Diagnosis Code -->
-<td ><%= dataDiagnosisList.get(i).get(5)%> </td> <!-- Diagnosis Description -->
+<td style="font-weight: 500;" ><%= dataDiagnosisList.get(i).get(5)%> </td> <!-- Diagnosis Description -->
 <td ><%= dataDiagnosisList.get(i).get(6)%></td> <!-- Comment -->
 </tr>
 
@@ -65,8 +64,10 @@
                 emptyTable: "No Order Available To Display"
             }, initComplete: function (settings, json) {
                 $('.loading').hide();
-            }
+            },
+            "iDisplayLength": 3,
         });
+        
     });
 
 </script>

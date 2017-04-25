@@ -212,7 +212,6 @@
     <input type="text" value="<%=pmino%>" name="pmino" style=" display: none;">
     <input type="text" value="<%=orderNo%>" name="order_no" style="display:none;">
     <button type="submit" class="btn btn-primary" id="subm">Assign Specimen</button>
-    <button type="button" class="btn btn-default" id="cancelAss">Back</button>
 </div>
 <script type="text/javascript">
     $('#submit').prop("disabled", true);

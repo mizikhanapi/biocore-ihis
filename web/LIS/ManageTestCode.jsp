@@ -9,18 +9,15 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> 
         <title>Main Page</title>
         <%@include file="../assets/header.html"%>
-        
+
         <link href="bootstrap-3.3.6-dist/css/dataTables.bootstrap.min.css" rel="stylesheet" type="text/css"/>
-        
+
         <link rel="stylesheet" href="assets/css/loading.css">
         <link href="assets/datepicker/jquery-ui.css" rel="stylesheet"> 
 
     </head>
 
     <body>
-
-
-
         <div class="container-fluid">
             <div class="row"> 
                 <!-- menu side -->		
@@ -81,7 +78,7 @@
         <script src="assets/js/bootstrap.min.js"></script> 
         <script src="assets/js/w3data.js"></script>
         <script src="assets/js/bootbox.min.js"></script> 
-        
+
         <script src="bootstrap-3.3.6-dist/js/jquery.dataTables.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/4.4.0/bootbox.min.js"></script>
         <script src="bootstrap-3.3.6-dist/js/jquery.dataTables.min.js"></script>
@@ -98,7 +95,5 @@
 
             w3IncludeHTML();
         </script>
-
-
     </body>
 </html>
