@@ -1382,7 +1382,7 @@ body {
     font-family: 'Roboto', sans-serif;
     font-size: 14px;
     line-height: 1.42857143;
-    color: #333;
+    color: #666;
     background-color: #f2f4f8
 }
 
@@ -2859,7 +2859,8 @@ th {
 .table-bordered>tfoot>tr>th,
 .table-bordered>thead>tr>td,
 .table-bordered>thead>tr>th {
-    border: 1px solid #ddd
+    border: 1px solid #ddd;
+    border-top: none;
 }
 
 .table-bordered>thead>tr>td,
@@ -7124,7 +7125,8 @@ button.close {
 .modal-footer {
     text-align: right;
     padding: 15px;
-    border-top: 1px solid #e5e5e5
+    border-top: 1px solid #e5e5e5;
+    overflow: hidden;
 }
 
 .modal-footer .btn+.btn {

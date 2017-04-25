@@ -29,7 +29,7 @@
             int size292 = databedSum2.size();
             for (int i = 0; i < size292; i++) {
         %>
-        <div class="col-md-4">
+        <div class="col-md-6 col-lg-4">
             <div class="thumbnail">
                 <h4 style="padding-top: 0px; padding-bottom: 10px;"><%= databedSum2.get(i).get(0) + " | " + databedSum2.get(i).get(1)%></h4>
                 <hr class="pemisah" />

@@ -646,6 +646,9 @@ tr#moveToOrderDetailsTButton {
     float: left;
     margin-right: 20px;
     cursor: pointer;
+    height: 18px;
+    width: 18px;
+    margin-top: 5px;
 }
 .ckbox input[type="checkbox"] {
     opacity: 0;
@@ -809,4 +812,16 @@ tr#moveToOrderDetailsTButton {
 
 .bed-booking-p{
     color:#f9c851;
+}
+
+#BedRemarks{
+    height: 175px; 
+    width: 100%; 
+    overflow: hidden;
+}
+
+#BedRemarks:hover{
+    overflow-x: hidden; 
+    overflow-y: auto;
+    transition: .35s ease-in-out;
 }

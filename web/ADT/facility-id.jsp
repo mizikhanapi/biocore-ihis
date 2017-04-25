@@ -10,8 +10,8 @@
 <%@page import="java.sql.*"%>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<!--    <link rel="stylesheet" href="old/assets/datepicker/jquery-ui.css">-->
-<!--    <script src="old/assets/js/jquery.min.js"></script>-->
+    <!--    <link rel="stylesheet" href="old/assets/datepicker/jquery-ui.css">-->
+    <!--    <script src="old/assets/js/jquery.min.js"></script>-->
     <!-- Custom styles for this template -->
 
     <link rel="stylesheet" href="old/assets/css/loading.css">
@@ -35,7 +35,6 @@
     String dis = session.getAttribute("DISCIPLINE_CODE").toString();
     String sub = session.getAttribute("SUB_DISCIPLINE_CODE").toString();
 
-    
 
 %>
 <input type="hidden" value="<%=hfc%>" id="Rhfc">
@@ -55,8 +54,8 @@
 
 <!-- Add Modal Start -->
 <div class="modal fade" id="detailID" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content" style="width: 175%">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal"><i class="fa fa-times fa-lg"></i></button>
                 <h3 class="modal-title" id="lineIDLabel">Add New Facility ID</h3>
@@ -65,25 +64,19 @@
 
                 <!-- content goes here -->
                 <form class="form-horizontal" id="addIDForm">
-
-
-
-                    <div class="col-md-12" style="width: 100%">
-
+                    <div class="row">
                         <div class="col-md-12"> 
-
-
                             <!-- Select Basic -->
                             <div class="form-group">
-                                <label class="col-md-4 control-label" for="selectbasic">Ward Class *</label>
-                                <div class="col-md-4" id="selectID">
+                                <label class="col-md-3 control-label" for="selectbasic">Ward Class *</label>
+                                <div class="col-md-7" id="selectID">
                                     <select id="WardClass" name="selectbasic" class="form-control">
                                         <option value="null" selected="" disabled="">Select Ward Class</option>
                                         <option value="-">-</option>
 
 
                                         <%
-                                            String sql1 = "SELECT  ward_class_code,ward_class_name FROM wis_ward_class WHERE hfc_cd ="+hfc+";";
+                                            String sql1 = "SELECT  ward_class_code,ward_class_name FROM wis_ward_class WHERE hfc_cd =" + hfc + ";";
                                             ArrayList<ArrayList<String>> dataClass1 = conn.getData(sql1);
 
                                             int size4 = dataClass1.size();
@@ -99,21 +92,30 @@
                                     </select>
                                 </div>
                             </div>
+                        </div>
+                    </div>
 
+                    <div class="row">
+                        <div class="col-md-6">
                             <div class="form-group">
                                 <label class="col-md-4 control-label" for="textinput">Ward Name *</label>
-                                <div class="col-md-4">
+                                <div class="col-md-6">
                                     <input id="WardName" name="WardName" type="text" placeholder="" class="form-control input-md">
                                 </div>
                             </div>
-
+                        </div>
+                        <div class="col-md-6">
                             <div class="form-group">
                                 <label class="col-md-4 control-label" for="textinput">Ward ID *</label>
-                                <div class="col-md-4">
+                                <div class="col-md-6">
                                     <input id="WardID" name="WardID" type="text" placeholder="" class="form-control input-md">
                                 </div>
                             </div>
+                        </div>
+                    </div>
 
+                    <div class="row">
+                        <div class="col-md-6">
                             <!-- Select Basic -->
                             <div class="form-group">
                                 <label class="col-md-4 control-label" for="selectbasic">Discipline *</label>
@@ -121,35 +123,30 @@
                                     <input id="Dis" name="Dis" placeholder="Insert Discipline Code" maxlength="30" type="text"  class="form-control input-md">
                                     <div id="disList" class="search-drop"></div>
                                 </div>
-
                             </div>
+                        </div>
+                        <div class="col-md-6">
                             <div class="form-group">
                                 <label class="col-md-4 control-label" for="textinput">No of bed *</label>
-                                <div class="col-md-4">
+                                <div class="col-md-6">
                                     <input id="NoOfBed" name="NoOfBed" type="text" placeholder="" class="form-control input-md">
                                 </div>
                             </div>
                         </div>
-
                     </div>
-                    </br>
-                    </br>
-                    </br>
+                    <hr/>
                     <div class="row">
-
-
                         <div class="col-sm-4">
                             <div class="form-group">
-                                <label class="col-md-4 control-label" for="textinput">Citizen Rates (RM)*</label>
+                                <label class="col-md-6 control-label" for="textinput">Citizen Rates (RM)*</label>
                                 <div class="col-md-4">
                                     <input id="CitizenRates" name="CitizenRates" type="text" placeholder="RM:" class="form-control input-md">
                                 </div>
                             </div>
                         </div>
-
                         <div class="col-sm-4">
                             <div class="form-group">
-                                <label class="col-md-4 control-label" for="textinput">Citizen Deposit (RM)*</label>
+                                <label class="col-md-6 control-label" for="textinput">Citizen Deposit (RM)*</label>
                                 <div class="col-md-4">
                                     <input id="CitizenDeposit" name="CitizenDeposit" type="text" placeholder="RM:" class="form-control input-md">
                                 </div>
@@ -157,20 +154,18 @@
                         </div>
                         <div class="col-sm-4">
                             <div class="form-group">
-                                <label class="col-md-4 control-label" for="textinput">Citizen Discount (%)*</label>
+                                <label class="col-md-6 control-label" for="textinput">Citizen Discount (%)*</label>
                                 <div class="col-md-4">
                                     <input id="CitizenDiscount" name="CitizenDiscount" type="text" placeholder="%:" class="form-control input-md">
                                 </div>
                             </div>
                         </div>
-
-
                     </div>
                     </br>
                     <div class="row">
                         <div class="col-sm-4">
                             <div class="form-group">
-                                <label class="col-md-4 control-label" for="textinput">Non Citizen Rates (RM)*</label>
+                                <label class="col-md-6 control-label" for="textinput">Non Citizen Rates (RM)*</label>
                                 <div class="col-md-4">
                                     <input id="NonCitizenRates" name="NonCitizenRates" type="text" placeholder="RM:" class="form-control input-md">
                                 </div>
@@ -178,7 +173,7 @@
                         </div>
                         <div class="col-sm-4">
                             <div class="form-group">
-                                <label class="col-md-4 control-label" for="textinput">Non Citizen Deposit (RM)*</label>
+                                <label class="col-md-6 control-label" for="textinput">Non Citizen Deposit (RM)*</label>
                                 <div class="col-md-4">
                                     <input id="NonCitizenDeposit" name="NonCitizenDeposit" type="text" placeholder="RM:" class="form-control input-md">
                                 </div>
@@ -187,7 +182,7 @@
                         </div>
                         <div class="col-sm-4">
                             <div class="form-group">
-                                <label class="col-md-4 control-label" for="textinput">Non Citizen Discount (%)*</label>
+                                <label class="col-md-6 control-label" for="textinput">Non Citizen Discount (%)*</label>
                                 <div class="col-md-4">
                                     <input id="NonCitizenDiscount" name="NonCitizenDiscount" type="text" placeholder="%:" class="form-control input-md">
                                 </div>
@@ -198,7 +193,7 @@
                     <div class="row">
                         <div class="col-sm-4">
                             <div class="form-group">
-                                <label class="col-md-4 control-label" for="textinput">Pensioner Rates (RM)*</label>
+                                <label class="col-md-6 control-label" for="textinput">Pensioner Rates (RM)*</label>
                                 <div class="col-md-4">
                                     <input id="PensionerRates" name="PensionerRates" type="text" placeholder="RM:" class="form-control input-md">
                                 </div>
@@ -206,7 +201,7 @@
                         </div>
                         <div class="col-sm-4">
                             <div class="form-group">
-                                <label class="col-md-4 control-label" for="textinput">Pensioner Deposit (RM)*</label>
+                                <label class="col-md-6 control-label" for="textinput">Pensioner Deposit (RM)*</label>
                                 <div class="col-md-4">
                                     <input id="PensionerDeposit" name="PensionerDeposit" type="text" placeholder="RM:" class="form-control input-md">
                                 </div>
@@ -214,33 +209,37 @@
                         </div>
                         <div class="col-sm-4">
                             <div class="form-group">
-                                <label class="col-md-4 control-label" for="textinput">Pensioner Discount (%)*</label>
+                                <label class="col-md-6 control-label" for="textinput">Pensioner Discount (%)*</label>
                                 <div class="col-md-4">
                                     <input id="PensionerDiscount" name="PensionerDiscount" type="text" placeholder="%:" class="form-control input-md">
                                 </div>
                             </div>
                         </div>
                     </div>
-
-                    </br>
+                    <hr/>
                     <div class="row">
                         <div class="col-md-6">
 
 
                             <div class="form-group">
-                                <label class="col-md-4 control-label" for="textinput">Attach toilet</label>
+                                <label class="col-md-7 control-label" for="textinput">Attach toilet</label>
                                 <div class="col-md-4">
-                                    <input id="toilet" name="toilet" type="checkbox"  class="form-control input-md">
+                                    <div class="ckbox">
+                                        <input id="toilet" name="toilet" type="checkbox"  class="form-control input-md">
+                                        <label for="toilet"></label>
+                                    </div>
                                 </div>
                             </div>
 
                             <div class="form-group">
-                                <label class="col-md-4 control-label" for="textinput">Television</label>
+                                <label class="col-md-7 control-label" for="textinput">Television</label>
                                 <div class="col-md-4">
-                                    <input id="television" name="television" type="checkbox"  class="form-control input-md">
+                                    <div class="ckbox">
+                                        <input id="television" name="television" type="checkbox"  class="form-control input-md">
+                                        <label for="television"></label>
+                                    </div>
                                 </div>
                             </div>
-
 
                         </div>
                         <div class="col-md-6">
@@ -248,9 +247,12 @@
 
 
                             <div class="form-group">
-                                <label class="col-md-4 control-label" for="textinput">Attach bathroom and toilet</label>
+                                <label class="col-md-6 control-label" for="textinput">Attach bathroom and toilet</label>
                                 <div class="col-md-4">
-                                    <input id="bathroom" name="bathroom" value="bathroom" type="checkbox"  class="form-control input-md">
+                                    <div class="ckbox">
+                                        <input id="bathroom" name="bathroom" value="bathroom" type="checkbox"  class="form-control input-md">
+                                        <label for="bathroom"></label>
+                                    </div>
                                     <%--
                                     <% request.getParameter(bathroom);
 
@@ -261,28 +263,31 @@
                             </div>
 
                             <div class="form-group">
-                                <label class="col-md-4 control-label" for="textinput">Telephone</label>
+                                <label class="col-md-6 control-label" for="textinput">Telephone</label>
                                 <div class="col-md-4">
-                                    <input id="telephone" name="telephone" type="checkbox"  class="form-control input-md">
+                                    <div class="ckbox">
+                                        <input id="telephone" name="telephone" type="checkbox"  class="form-control input-md">
+                                        <label for="telephone"></label>
+                                    </div>
                                 </div>
                             </div>
-
-
                         </div>
                     </div>
-
-                    <!-- Select Basic -->
-                    <div class="form-group">
-                        <label class="col-md-4 control-label" for="textinput">Status *</label>
-                        <div class="col-md-8">
-                            <label class="radio-inline">
-                                <input type="radio" name="status" id="status1" value="1">
-                                Active 
-                            </label>
-                            <label class="radio-inline">
-                                <input type="radio" name="status" id="status2" value="0">
-                                Inactive
-                            </label>
+                    <hr/>
+                    <div class="row">
+                        <!-- Select Basic -->
+                        <div class="form-group">
+                            <label class="col-md-5 control-label" for="textinput">Status *</label>
+                            <div class="col-md-6">
+                                <label class="radio-inline">
+                                    <input type="radio" name="status" id="status1" value="1">
+                                    Active 
+                                </label>
+                                <label class="radio-inline">
+                                    <input type="radio" name="status" id="status2" value="0">
+                                    Inactive
+                                </label>
+                            </div>
                         </div>
                     </div>
 
@@ -320,7 +325,7 @@
         $("#Dis").on('keyup', function () { // everytime keyup event
             var input = $(this).val(); // We take the input value
             var hfc = $("#Rhfc").val();
-               
+
 
 
             if (input.length >= 1) { // Minimum characters = 2 (you can change)

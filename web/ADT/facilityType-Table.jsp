@@ -36,7 +36,7 @@
 
             <%
                 Conn conns = new Conn();
-                String sqlFacilityType = "SELECT ward_class_name,ward_class_code,ward_class_status, hfc_cd  FROM wis_ward_class where hfc_cd ="+hfcTYT+";";
+                String sqlFacilityType = "SELECT ward_class_name,ward_class_code,ward_class_status, hfc_cd  FROM wis_ward_class where hfc_cd =" + hfcTYT + ";";
                 ArrayList<ArrayList<String>> dataFacilityType = conns.getData(sqlFacilityType);
 
                 int size = dataFacilityType.size();
@@ -56,12 +56,12 @@
             }%></td>
         <td>
             <!-- Update Part Start -->
-            <a id="MW_edit" data-toggle="modal" data-target="#FacilityTypeUpdateModal"><i class="fa fa-pencil-square-o" aria-hidden="true" style="display: inline-block;color: #337ab7;"></i></a>
-            <!-- Update Part End -->
+            <a id="MW_edit" data-toggle="modal" data-target="#FacilityTypeUpdateModal"><i class="fa fa-pencil-square-o fa-lg" aria-hidden="true" style="display: inline-block;color: #337ab7;"></i></a>
+            <!-- Update Part End -->            
         </td>
         <td>
             <!-- Delete Button Start -->
-            <a id="MW_delete" class="testing"><i class="fa fa-times" aria-hidden="true" style="display: inline-block;color: #d9534f;" ></i></a>
+            <a id="MW_delete" class="testing"><i class="fa fa-times fa-lg" aria-hidden="true" style="display: inline-block;color: #d9534f;"></i></a>
             <!-- Delete Button End -->
         </td>
         </tr>
@@ -209,11 +209,11 @@
                                 backdrop: true
                             });
                             $.ajax({
-                                url:"listWard.jsp",
-                                type:"post",
+                                url: "listWard.jsp",
+                                type: "post",
                                 timeout: 10000,
-                                success: function(result2){
-                                  $("#selectID").html(result2);  
+                                success: function (result2) {
+                                    $("#selectID").html(result2);
                                 }
                             });
                         } else if (data.trim() === 'Failed') {
@@ -281,13 +281,13 @@
                                     backdrop: true
                                 });
                                 $.ajax({
-                                url:"listWard.jsp",
-                                type:"post",
-                                timeout: 10000,
-                                success: function(result2){
-                                  $("#selectID").html(result2);  
-                                }
-                            });
+                                    url: "listWard.jsp",
+                                    type: "post",
+                                    timeout: 10000,
+                                    success: function (result2) {
+                                        $("#selectID").html(result2);
+                                    }
+                                });
                             } else if (datas.trim() === 'Failed') {
                                 bootbox.alert({
                                     message: "Delete Failed",
