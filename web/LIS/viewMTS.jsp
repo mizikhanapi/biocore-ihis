@@ -1,3 +1,5 @@
+<%@page import="java.util.Calendar"%>
+<%@page import="jxl.format.Pattern"%>
 <%@page import="dBConn.Conn"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="Config.connect"%>
@@ -51,12 +53,21 @@
                                         <div class="form-group">
                                             <label for="exampleInputEmail1"> PMI No: <%=dataPatientApp.get(i).get(2)%></label>
                                         </div>
+                                        <br>
                                         <div class="form-group">
                                             <label for="exampleInputEmail1"> IC No: <%=dataPatientApp.get(i).get(5)%></label>
                                         </div>
+                                        <br>
                                         <div class="form-group">
-                                            <label for="exampleInputEmail1"> Sex: <%=dataPatientApp.get(i).get(6)%></label>
+                                            <label for="exampleInputEmail1"> Gender: 
+                                                <%
+                                                    String getGender = "SELECT ald.`Description` FROM adm_lookup_master alm,adm_lookup_detail ald WHERE alm.`Master_Reference_code`=ald.`Master_Reference_code` AND alm.`Description` = 'Gender' AND ald.`Detail_Reference_code` = '"+dataPatientApp.get(i).get(6)+"'";
+                                                    ArrayList<ArrayList<String>> q2 = conn.getData(getGender);
+                                                    out.println(q2.get(0).get(0));
+                                                %>
+                                            </label>
                                         </div>
+                                        <br>
                                         <div class="form-group">
                                             <label for="exampleInputEmail1"> Race: <%=dataPatientApp.get(i).get(7)%></label>
                                         </div>
@@ -65,12 +76,24 @@
                                         <div class="form-group">
                                             <label for="exampleInputEmail1"> Name: <%=dataPatientApp.get(i).get(3)%></label>
                                         </div>
+                                        <br>
                                         <div class="form-group">
-                                            <label for="exampleInputEmail1"> Age: <%=dataPatientApp.get(i).get(5)%></label>
+                                            <label for="exampleInputEmail1"> Age: <%
+                                                String birth = dataPatientApp.get(i).get(8);
+                                                String[] parts = birth.split("/");
+                                                int years = Integer.parseInt(parts[2]);
+                                                Calendar now = Calendar.getInstance();   // Gets the current date and time
+                                                int year = now.get(Calendar.YEAR); 
+                                                int age = year-years;
+                                                out.println(age);
+                                                
+                                            %></label>
                                         </div>
+                                        <br>
                                         <div class="form-group">
                                             <label for="exampleInputEmail1"> Date of Birth: <%=dataPatientApp.get(i).get(8)%></label>
                                         </div>
+                                        <br>
                                         <div class="form-group">
                                             <label for="exampleInputEmail1"> Nationality: <%=dataPatientApp.get(i).get(9)%></label>
                                         </div>
@@ -106,8 +129,6 @@
                                         </div>
                                     </div>
                                 </div>
-                                
-                                
                             </div>
                         </div>
                     </div>

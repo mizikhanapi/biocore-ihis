@@ -49,7 +49,7 @@
             String sqlInsert = "INSERT INTO lis_specimen(specimen_no,order_no,pmi_no,hfc_cd,item_cd,Collection_date,Collection_time,specimen_status,patient_name,receive_specimen_status) VALUES ('"+result.get(0).get(0)+"','"+orderno1+"','"+pmi+"','"+q2.get(0).get(0)+"','"+Specimen[i]+"','"+C_date+"','"+C_time+"','"+status+"','"+patient_name+"','"+test+"')";
             rmic.setQuerySQL(conn.HOST, conn.PORT, sqlInsert);
             
-            String sqlInsert1 = "UPDATE lis_order_detail SET specimen_status = 'Test Not Available Yet',Verification = 'Wait for Assign Specimen' WHERE order_no = '"+orderno1+"' AND item_cd = '"+Specimen[i]+"'";
+            String sqlInsert1 = "UPDATE lis_order_detail SET specimen_status = 'Test Not Available Yet',Verification = 'Wait for Assign Specimen',detail_status='1' WHERE order_no = '"+orderno1+"' AND item_cd = '"+Specimen[i]+"'";
             rmic.setQuerySQL(conn.HOST, conn.PORT, sqlInsert1);
         }
         

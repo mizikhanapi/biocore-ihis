@@ -44,7 +44,9 @@
                             <div class="thumbnail">
                                 <h2>Manage Test</h2>
                                 <hr/>
-                                <div class="table-responsive" id='viewMT'></div>
+                                <div class="table-responsive" id='viewMT'>
+                                    
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -60,7 +62,6 @@
         <script src="assets/js/w3data.js"></script>
         <script src="assets/js/bootbox.min.js"></script>  
         <script src="bootstrap-3.3.6-dist/js/jquery.dataTables.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/4.4.0/bootbox.min.js"></script>
         <script src="bootstrap-3.3.6-dist/js/jquery.dataTables.min.js"></script>
         <script src="bootstrap-3.3.6-dist/js/dataTables.bootstrap.min.js" type="text/javascript"></script>
 

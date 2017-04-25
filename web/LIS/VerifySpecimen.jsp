@@ -33,8 +33,6 @@
         <script src="assets/js/w3data.js"></script>
         <script src="assets/js/bootbox.min.js"></script>  
        
-        
-        
     </head>
     <body>
        
@@ -155,7 +153,7 @@
         
     
         
-        <div id="viewVS">
+        <div id="view_VS">
             
         </div>
         
@@ -185,10 +183,7 @@
             <script>
         w3IncludeHTML();
         $(document).ready(function () { 
-                    
                      
-                     
-                        
                      $("#sub_reject").click(function () {
                            var fcomment = $("#fcomment").val(); 
                            var pmi = $("#pmi").val();
@@ -243,7 +238,7 @@
                     });
         $(document).ready(function () {
 
-            $("#viewVS").load("viewVS.jsp");
+            $("#view_VS").load("viewVS.jsp");
             $("#headerindex").load("libraries/header.html");
             $("#topmenuindex").load("libraries/topMenus.html");
             $("#sidemenus").load("libraries/sideMenus.jsp");

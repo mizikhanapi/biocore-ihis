@@ -145,8 +145,6 @@
                 <th class="col-sm-1">Volume</th>
                 <th class="col-sm-1">Specimen Source</th>
                 <th class="col-sm-1">Requestor Comment</th>
-                <th class="col-sm-1">Collection Remark</th>
-                <th class="col-sm-1">TCA Date</th>
         </tr>
     </thead>
     <tbody>
@@ -163,8 +161,6 @@
                 <td><%=q4.get(i).get(4)%></td>
                 <td><%=q4.get(i).get(5)%></td>
                 <td><%=q4.get(i).get(6)%></td>
-                <td></td>
-                <td></td>
         <%
                 }
             }
@@ -176,7 +172,9 @@
     </tbody>
 </table>
         <div class="col-xs-12 col-md-12">
-            <button type="button" class="btn btn-primary" id="sendAccept">Send Specimen</button> To <select name="healthCentre" id="healthCentre"><option>Select Healthcare</option>
+            <button type="button" class="btn btn-primary" id="sendAccept">Send Specimen</button> 
+            To <select name="healthCentre" id="healthCentre">
+                    <option value="">Select Healthcare</option>
                     <option value="Sample Lab 1">Sample Lab 1</option>
                     <option value="Sample Lab 2">Sample Lab 2</option>
                     <option value="Sample Lab 3">Sample Lab 3</option>
@@ -300,13 +298,17 @@
                         });
                         
                         $("#sendAccept").click(function () {
-                           var healthCentre = $("#healthCentre").val(); 
+                           var healthCentre = $("#healthCentre").val();
                            var pmi = $("#pmi").val();
                            var specimen_no = $("#specimen_no").val();
                            var order_no = $("#order_no").val();
                            var itemCode = $("#itemCode").val();
-                           
-                           $.ajax({
+                           if(healthCentre=="")
+                           {
+                               alert("Make sure you select the Health Lab Centre.")
+                           }
+                           else{
+                               $.ajax({
                                 url: "tAcceptSpecimen.jsp",
                                 type: "post",
                                 data: {
@@ -325,7 +327,7 @@
                                      
                                 },
                             });
-                            
+                           }
                         });
                     });
         $(document).ready(function () {
