@@ -13,14 +13,14 @@
     String id = session.getAttribute("USER_ID").toString();
     String dis = session.getAttribute("DISCIPLINE_CODE").toString();
     String sub = session.getAttribute("SUB_DISCIPLINE_CODE").toString();
-    String wclassCode = request.getParameter("classCode");
+    String EliSrc = request.getParameter("EliSrc");
 %>
 <select id="EliTy" name="selectbasic" class="form-control">
                     <option value="-">-</option>
                     <option value="null" selected="" disabled="">Select Eligibility Type</option>
 
                     <%
-    String eliType = "select * from adm_lookup_detail where master_reference_code = '0034' and  Detail_Reference_Code like '002%' and hfc_cd ='" + hfc + "' ";
+    String eliType = "select  Detail_Reference_Code, Description from adm_lookup_detail where master_reference_code = '0034' and  Detail_Reference_Code like '" + EliSrc + "%' and hfc_cd ='" + hfc + "' ";
     ArrayList<ArrayList<String>> dataEliType;
                         
                             dataEliType = conn.getData(eliType);

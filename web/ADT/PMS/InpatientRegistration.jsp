@@ -347,7 +347,7 @@
             var EliSrc = $(this).val();
             $.ajax({
                 type: "post",
-                url: "listEliTy.jsp",
+                url: "PMS/listEliTy.jsp",
                 data: {'EliSrc': EliSrc},
                 timeout: 10000,
                 success: function (list) {

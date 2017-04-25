@@ -16,19 +16,19 @@
     String wclassCode = request.getParameter("classCode");
 %>
 <select id="wname" name="selectbasic" class="form-control">
-                    <option value="-">-</option>
-                    <option value="null" selected="" disabled="">Select Ward Name</option>
+    <option value="-">-</option>
+    <option value="null" selected="" disabled="">Select Ward Name</option>
 
-                    <%
-                        String wname = "select ward_id,ward_name from wis_ward_name where hfc_cd='" + hfc + "' and ward_class_code='"+wclassCode+"'";
-                        ArrayList<ArrayList<String>> dataWardName = conn.getData(wname);
+    <%
+        String wname = "select ward_id,ward_name from wis_ward_name where hfc_cd='" + hfc + "' and ward_class_code='" + wclassCode + "'";
+        ArrayList<ArrayList<String>> dataWardName = conn.getData(wname);
 
-                        int size1 = dataWardName.size();
+        int size1 = dataWardName.size();
 
-                        for (int i = 0; i < size1; i++) {
-                    %>
-                    <option value="<%= dataWardName.get(i).get(0)%>"><%= dataWardName.get(i).get(1)%> </option>
-                    <%
-                        }
-                    %>
-                </select>
+        for (int i = 0; i < size1; i++) {
+    %>
+    <option value="<%= dataWardName.get(i).get(0)%>"><%= dataWardName.get(i).get(1)%> </option>
+    <%
+        }
+    %>
+</select>

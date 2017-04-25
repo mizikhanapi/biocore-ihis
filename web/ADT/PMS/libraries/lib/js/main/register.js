@@ -113,7 +113,7 @@ $('#registerBed').click(function () {
         var pmino, poic, pid, MRN, pname, pnic, pidno,
                 EliSource, AdmissionType, Refer, DocType, GL, EliTy, AdmissionReason, PoliceCase, DocNo, payer,
                 Dis, wname, Deposit, WardType, BedID,
-                guardInd, referNo, referHfc, referDis, gruGuard, epiTime, epiDate, stat, hfc;
+                guardInd, referNo, referHfc, referDis, gruGuard, epiTime, epiDate, stat, hfc, RefDR;
         pmino = $('#pmino').val();
         epiDate = yyyyMMddHHmmss;
         poic = $('input[id=poic]').val();
@@ -150,6 +150,8 @@ $('#registerBed').click(function () {
         var array_dis = Dis.split("|");
         var Dis = array_dis[0];
         wname = $('#wname').val();
+                RefDR = $('#RefDR').val();
+
         Deposit = $('#Deposit').val();
         WardType = $('#WardType').val();
         BedID = $('#BedIDReg').val();
@@ -198,6 +200,7 @@ $('#registerBed').click(function () {
             'hfc': hfc,
             'now': yyyyMMdd,
             createdBy: createdBy,
+            RefDR :RefDR,
             sub: sub
 
         };
@@ -231,7 +234,7 @@ $('#registerBed').click(function () {
                             } else if ($.trim(list) === "already") {
                                 bootbox.alert("Patient is already registered");
                             } else if ($.trim(list) === "false") {
-                                bootbox.alert("There something error with the query");
+                                bootbox.alert("There something error with the query of register the inpatient");
                             }
                         }, error: function () {
                             bootbox.alert("There is an error!");
@@ -250,7 +253,7 @@ $('#registerBed').click(function () {
                             } else if ($.trim(list) === "already") {
                                 bootbox.alert("Patient is already add to queue");
                             } else if ($.trim(list) === "false") {
-                                bootbox.alert("There something error with the query");
+                                bootbox.alert("There something error with the query of add patient to queue");
                             }
                         }, error: function () {
                             bootbox.alert("There is an error!");
