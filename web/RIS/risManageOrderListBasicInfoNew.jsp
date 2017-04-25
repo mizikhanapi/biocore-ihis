@@ -207,6 +207,19 @@
 </div>
 
 <script>
+//------------------on document ready to create datepicker --------------------------------
+    $(function () {
+        //console.log('hai');
+        //creating datepicker.........
+        $('#SED_date').datepicker({
+            changeMonth: true,
+            changeYear: true,
+            minDate: 0,
+            dateFormat: 'dd/mm/yy'
+        });
+    });
+//==========================================================================================
+
 
 
 //--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------//
@@ -291,7 +304,7 @@
                             timeout: 3000,
                             success: function (returnOrderDetailsTableHTML) {
                                 $('#risManageOrderDetailsListTableDiv').html(returnOrderDetailsTableHTML);
-                                $('#risManageOrderDetailsListTable').trigger('contentchanged');
+                                //$('#risManageOrderDetailsListTable').trigger('contentchanged');
                                 $('.nav-tabs a[href="#tab_default_2"]').tab('show');
                             }
                         });
@@ -307,23 +320,23 @@
 
 
     // Load Datatable To Tables Start
-    $(document).on('contentchanged', '#risManageOrderDetailsListTableDiv', function () {
-
-        $('#risManageOrderDetailsListTable').DataTable().destroy();
-
-        // do something after the div content has changed
-        $('#risManageOrderDetailsListTable').DataTable({
-            "paging": false,
-            "searching": false,
-            "info": false,
-            "language": {
-                "emptyTable": "No Request Available To Display"
-            }
-        });
-
-        console.log('Table is changed');
-
-    });
+//    $(document).on('contentchanged', '#risManageOrderDetailsListTableDiv', function () {
+//
+//        $('#risManageOrderDetailsListTable').DataTable().destroy();
+//
+//        // do something after the div content has changed
+//        $('#risManageOrderDetailsListTable').DataTable({
+//            "paging": false,
+//            "searching": false,
+//            "info": false,
+//            "language": {
+//                "emptyTable": "No Request Available To Display"
+//            }
+//        });
+//
+//        console.log('Table is changed');
+//
+//    });
     // Load Datatable To Tables End 
 
 
@@ -349,7 +362,7 @@
     });
     //=============================================================================
 
-    //-------------------search procedure of new order --------------------------------
+    //-------------------search procedure of new order --------------------------------------------------------
 
     //global variable for procedure search
     var selectedPro = "";
@@ -405,6 +418,22 @@
         }
     });
 
+    //--------------------------- reset procedure name on bs and mod change ----------------------------------------
+
+    function resetProcedureName() {
+        $('#RNO_proName').val('');
+        isProSelected = false;
+        selectedPro = '';
+    }
+
+    $('#RNO_bodySystem').on('change', function () {
+        resetProcedureName();
+    });
+
+    $('#RNO_modality').on('change', function () {
+        resetProcedureName();
+    });
+
     //==============================================================================
 
     //------------------------- add new order start --------------------------------
@@ -427,7 +456,7 @@
                 $('#RNO_modality').focus();
             });
 
-        } else if (isProSelected === false || selectedPro !== procedure) {
+        } else if (isProSelected === false || selectedPro !== procedure || procedure === "") {
             bootbox.alert('Please choose existing procedure.', function () {
                 $('#RNO_proName').focus();
             });
@@ -490,15 +519,171 @@
             data: dataOrder,
             success: function (returnOrderDetailsTableHTML) {
                 $('#risManageOrderDetailsListTableDiv').html(returnOrderDetailsTableHTML);
-                $('#risManageOrderDetailsListTable').trigger('contentchanged');
+                //$('#risManageOrderDetailsListTable').trigger('contentchanged');
                 //$('.nav-tabs a[href="#tab_default_2"]').tab('show');
             },
             complete: function (jqXHR, textStatus) {
-                $('.loading').hide();
+                destroyScreenLoading();
             }
         });
     }
     //===============================================================================
+
+    //------------------- set exam date -------------------------------------------------
+    $('#risManageOrderDetailsListTableDiv').on('click', '#risManageOrderDetailsListTable #MOD_btnModalDate', function () {
+
+        var row = $(this).closest("tr");
+        var arrData = row.find('td').eq(0).text().split('|');
+        //var button = row.find('#MOD_btnModalDate');
+
+        var status = arrData[8].trim();
+
+        //creating modal..........
+
+        if (status === "0") {
+            var bsCode = arrData[2], bsName = arrData[11], modCode = arrData[1], modName = arrData[12], proCode = arrData[3], proName = arrData[9], exDate = arrData[10];
+
+            $('#SED_bodySystem').val(bsName);
+            $('#SED_bodySystem_cd').val(bsCode);
+            $('#SED_modality').val(modName);
+            $('#SED_modality_cd').val(modCode);
+            $('#SED_proName').val(proName);
+            $('#SED_pro_cd').val(proCode);
+            $('#SED_date').val(exDate);
+
+
+            $('#modal_setExamDate').modal('show');
+
+        } else {
+            $(this).prop('disabled', true);
+        }
+        //console.log(data);
+    });
+
+
+    //---------- confirm exam date-------------------
+    $('#SED_btnAdd').on('click', function () {
+
+        var exDate = $('#SED_date').val();
+        var orderNo = $('#risOrderNo').val();
+        var bsCode = $('#SED_bodySystem_cd').val();
+        var modCode = $('#SED_modality_cd').val();
+        var proCode = $('#SED_pro_cd').val();
+
+        if (exDate === '') {
+            bootbox.alert('Please pick a date first.', function () {
+                $('#SED_date').focus();
+            });
+
+        } else {
+            $('#modal_setExamDate').modal('hide');
+
+            var data = {
+                process: 'setDate',
+                orderNo: orderNo,
+                bsCode: bsCode,
+                modCode: modCode,
+                proCode: proCode,
+                exDate: exDate
+            };
+
+            createScreenLoading();
+
+            $.ajax({
+                type: 'POST',
+                url: "order_control/order_update.jsp",
+                data: data,
+                success: function (data, textStatus, jqXHR) {
+                    if (data.trim() === 'success') {
+                        loadOrderDetailList(orderNo);
+
+                    } else if (data.trim() === 'fail') {
+                        bootbox.alert('Failed to set exam date. Try again.');
+                        destroyScreenLoading();
+                    }
+
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    bootbox.alert('Opps! ' + errorThrown);
+                    destroyScreenLoading();
+                }
+
+            });
+        }
+
+    });
+
+    //===================================== exam date ===================================================
+
+
+
+    //------------------- perform exam on click --------------------------------------
+    $('#risManageOrderDetailsListTableDiv').on('click', '#risManageOrderDetailsListTable #MOD_btnPerform', function () {
+
+        var row = $(this).closest("tr");
+        var arrData = row.find('td').eq(0).text().split('|');
+        var bsCode = arrData[2], modCode = arrData[1], proCode = arrData[3], proName = arrData[9], orderNo = arrData[0];
+
+        bootbox.confirm({
+            message: "Are you sure want to perform this exam? " + proCode + "-" + proName,
+            title: "Perform Exam?",
+            buttons: {
+                confirm: {
+                    label: 'Yes',
+                    className: 'btn-success'
+                },
+                cancel: {
+                    label: 'No',
+                    className: 'btn-danger'
+                }
+            },
+            callback: function (result) {
+
+                if (result === true) {
+
+                    var data = {
+                        process: 'perform',
+                        orderNo: orderNo,
+                        bsCode: bsCode,
+                        modCode: modCode,
+                        proCode: proCode
+                    };
+                    
+                    createScreenLoading();
+
+                    $.ajax({
+                        url: "order_control/order_update.jsp",
+                        type: "post",
+                        data: data,
+                        success: function (datas) {
+
+                            if (datas.trim() === 'success') {
+                                bootbox.alert('Exam is performed.');
+                                loadOrderDetailList(orderNo);
+                                
+
+                            } else if (datas.trim() === 'fail') {
+                                bootbox.alert("Fail to perform exam!");
+                                destroyScreenLoading();
+
+                            }
+                        },
+                        error: function (jqXHR, textStatus, errorThrown) {
+                            bootbox.alert("Opps! "+errorThrown);
+                            destroyScreenLoading();
+                        }
+
+                    });
+
+                } else {
+                    console.log("Process Is Canceled");
+                }
+
+            }
+        });
+
+    });
+    //=========================== perform the exam ============================================
 
     // Save Button Function Start
     $('#patientOrderDispenseButtonDiv').on('click', '#btnRISOrderSave', function (e) {

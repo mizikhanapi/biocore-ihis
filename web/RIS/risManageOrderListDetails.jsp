@@ -19,8 +19,8 @@
 
     NumberFormat formatter = new DecimalFormat("#0.00");
     NumberFormat formatterInt = new DecimalFormat("#0");
-//                                  0           1               2                   3               4               5                    6              7               8           9                   10                      11                  12
-    String orderList = "select order_no, rod.modality_cd, rod.body_system_cd, rod.procedure_cd, episode_date, encounter_date, requestor_comments, filler_comments, order_status, rpm.ris_procedure_name, ifnull(exam_date, ''), bs.body_system_name, rmod.modality_name "
+//                                  0           1               2                   3               4               5                    6              7               8           9                                   10                                   11                  12
+    String orderList = "select order_no, rod.modality_cd, rod.body_system_cd, rod.procedure_cd, episode_date, encounter_date, requestor_comments, filler_comments, order_status, rpm.ris_procedure_name, ifnull(DATE_FORMAT(exam_date,'%d/%m/%Y'), ''), bs.body_system_name, rmod.modality_name "
             + "FROM ris_order_detail rod "
             + "Left join ris_procedure_master rpm  on rpm.ris_procedure_cd = rod.procedure_cd AND rpm.hfc_cd = '"+hfc_cd+"' "
             + "Left join ris_body_system bs on bs.body_system_cd = rod.body_system_cd AND bs.hfc_cd = '"+hfc_cd+"' "
@@ -35,33 +35,44 @@
 
 <table class="table table-filter table-striped table-bordered dt-head-right" style="background: #fff; border: 1px solid #ccc; width: 100%; text-align: center" id="risManageOrderDetailsListTable">
     <thead>
+    <th style="display: none">Hidden</th>    
     <th style="width: 15%">Body System</th>
     <th style="width: 5%">Modality</th>
     <th style="width: 5%">Procedure Code</th>
     <th style="width: 15%">Procedure Name</th>
-    <th style="width: 25%">Requestor Instruction</th>
+    <th style="width: 20%">Requestor Instruction</th>
     <th style="width: 5%">Exam Date</th>
+    <th style="width: 5%">Set Exam Date</th>
+    <th style="width: 5%">Perform Exam</th>
+    <th style="width: 5%">Prepare Report</th>
     <th style="width: 5%">Status</th>
 </thead>
 <tbody>
     <%        for (int i = 0; i < dataOrderList.size(); i++) {
               String status = dataOrderList.get(i).get(8);
+              String performDisabled = "";
+              String prepareDisabled = "";
               if(status.equalsIgnoreCase("0")){
                   status = "New";
+                  prepareDisabled = "disabled";
               }else if(status.equalsIgnoreCase("1")){
                   status = "In progress";
+                  performDisabled = "disabled";
               }
 
     %>
     <tr>
-        <%--<input id="dataRISManageOrderDetailsListhidden" type="hidden" value="<%=String.join("|", dataOrderList.get(i))%>">
-<td style="display: none"><%= dataOrderList.get(i).get(0)%></td> <!-- Order No -->--%>
+       
+<td style="display: none"><%= String.join("|", dataOrderList.get(i))%></td> <!-- hidden -->
 <td><%= dataOrderList.get(i).get(11)%></td> <!-- body -->
 <td><%= dataOrderList.get(i).get(12)%></td> <!-- modality -->
 <td><%= dataOrderList.get(i).get(3)%></td> <!-- procedure code-->
 <td><%= dataOrderList.get(i).get(9)%></td> <!-- procedure name-->
 <td><%= dataOrderList.get(i).get(6)%></td> <!-- Instruction -->
 <td><%= dataOrderList.get(i).get(10)%></td><!-- exam date -->
+<td> <button id="MOD_btnModalDate" class="btn btn-default" <%out.print(performDisabled);%> ><i class="fa fa-calendar" aria-hidden="true" style="display: inline-block;color: #d9534f;" ></i></button></td><!-- set date -->
+<td> <button id="MOD_btnPerform" class="btn btn-default" <%out.print(performDisabled);%> ><i class="fa fa-film" aria-hidden="true" style="display: inline-block;color: #d9534f;" ></i></button></td><!-- perform -->
+<td> <button id="MOD_btnPrepare" class="btn btn-default" <%out.print(prepareDisabled);%> ><i class="fa fa-file-excel-o" aria-hidden="true" style="display: inline-block;color: #d9534f;" ></i></button></td><!-- prepare -->
 <td><%= status%></td> <!-- status -->
 
 <!--<td align="center"><input type="checkbox" id="risRequestChecked" checked></td>  Status -->
@@ -74,4 +85,15 @@
 </tbody>
 </table>
 
+<script>
+     $('#risManageOrderDetailsListTable').DataTable({
+            "paging": false,
+            "searching": false,
+            "info": false,
+            "language": {
+                "emptyTable": "No Request Available To Display"
+            }
+        });
+    
+</script>
 

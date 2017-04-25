@@ -79,6 +79,7 @@
 
                                                 </div>
                                                 <%@include file="order_modal/requestNewOrder_modal.jsp" %>
+                                                <%@include file="order_modal/setExamDate_modal.jsp" %>
                                             </div>
 
                                         </div>
