@@ -63,7 +63,12 @@
             <a  href="ManageTest.jsp" >
                 <i class="fa fa-file-text fa-lg"></i> Verify Specimen for Test
             </a>
-        </li> 
+        </li>
+        <li>
+            <a  href="Billing.jsp" >
+                <i class="fa fa-file-text fa-lg"></i> Post To Bill
+            </a>
+        </li>
         <li>
             <a  href="ManageTestCode.jsp" >
                 <i class="fa fa-code fa-lg"></i> Manage Test Code
