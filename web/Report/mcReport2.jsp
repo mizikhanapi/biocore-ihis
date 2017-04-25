@@ -54,7 +54,7 @@
                     outStream.flush();
                     outStream.close();
 
-                } else if (mcType.equals("NEW_IC_NO") || mcType.equals("OLD_IC_NO")) {
+                } else if (mcType.equals("NEW_IC_NO")){
 
                     Map parameters = new HashMap();
                     parameters.put("mcInput", mcInput);

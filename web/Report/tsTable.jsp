@@ -30,19 +30,18 @@
 
         <th> PMI No </th>
         <th> Episode date </th>
-        <th> Diagnosis code </th>
-        <th> Centre Code     </th>
+        <th> status</th>
         <th> Reprint </th>
 
         <%  String sql = "";
             if (tsType.equals("pmino")) {
-                sql = "SELECT PMI_NO, EPISODE_DATE, DIAGNOSIS_CD, CENTRE_CODE FROM LHR_DIAGNOSIS WHERE pmi_no = '" + tsInput + "'";
+                sql = "SELECT A.PATIENT_NAME, B.EPISODE_DATE, B.ELIGIBILITY_TYPE_CODE FROM PMS_PATIENT_BIODATA A JOIN PMS_EPISODE B ON A.`PMI_NO` = B.`PMI_NO` JOIN LHR_DIAGNOSIS C ON B.`PMI_NO` = C.`PMI_no` WHERE A.PMI_NO = '" + tsInput + "'";
             } else if (tsType.equals("icnew")) {
-                sql = "SELECT PMI_NO, EPISODE_DATE, DIAGNOSIS_CD, CENTRE_CODE FROM LHR_DIAGNOSIS WHERE NATIONAL_ID_N0 = '" + tsInput + "'";
+                sql = "SELECT A.PATIENT_NAME, B.EPISODE_DATE, B.ELIGIBILITY_TYPE_CODE FROM PMS_PATIENT_BIODATA A JOIN PMS_EPISODE B ON A.`PMI_NO` = B.`PMI_NO` JOIN LHR_DIAGNOSIS C ON B.`PMI_NO` = C.`PMI_no` WHERE A.NEW_IC_NO = '" + tsInput + "'";
             } else if (tsType.equals("icold")) {
-                sql = "SELECT PMI_NO, EPISODE_DATE, DIAGNOSIS_CD, CENTRE_CODE FROM LHR_DIAGNOSIS WHERE NATIONAL_ID_N0 = '" + tsInput + "'";
+                sql = "SELECT A.PATIENT_NAME, B.EPISODE_DATE, B.ELIGIBILITY_TYPE_CODE FROM PMS_PATIENT_BIODATA A JOIN PMS_EPISODE B ON A.`PMI_NO` = B.`PMI_NO` JOIN LHR_DIAGNOSIS C ON B.`PMI_NO` = C.`PMI_no` WHERE A.OLD_IC_NO = '" + tsInput + "'";
             } else {
-                sql = "SELECT PMI_NO, EPISODE_DATE, DIAGNOSIS_CD, CENTRE_CODE FROM LHR_DIAGNOSIS WHERE ID_TYPE = '" + tsInput + "' AND ID_NO = '" + tsInput + "'";
+                sql = "SELECT A.PATIENT_NAME, B.EPISODE_DATE, B.ELIGIBILITY_TYPE_CODE FROM PMS_PATIENT_BIODATA A JOIN PMS_EPISODE B ON A.`PMI_NO` = B.`PMI_NO` JOIN LHR_DIAGNOSIS C ON B.`PMI_NO` = C.`PMI_no` WHERE A.ID_NO = '" + tsInput + "' AND ID_NO = '" + tsInput + "'";
             }
             ArrayList<ArrayList<String>> ts = conn.getData(sql);
 
@@ -55,19 +54,19 @@
             <td id="episodeDate2"><%= ts.get(i).get(1)%>
                 <input type="hidden" id="episodeDate2_<%=i%>" value="<%= ts.get(i).get(1)%>">
             </td>
-            <td id="NAME"><%= ts.get(i).get(2)%></td>
-            <td id="DOCTOR"><%= ts.get(i).get(3)%></td>
-            <td><form><input type=submit value="reprint" id="printTC_<%=i %>"></form></td>
+            <td id="status"><%= ts.get(i).get(2)%></td>
+
+            <td><form><input type=submit value="reprint" id="printTC_<%=i%>"></form></td>
         <script type="text/javascript" charset="utf-8">
 
             $(document).ready(function () {
-                $('#printTC_<%=i %>').on('click', function (e) {
+                $('#printTC_<%=i%>').on('click', function (e) {
 
                     e.preventDefault();
 //                    var row = $(this).closest("tr");
                     var tsType = $("#tsType").val();
                     var tsInput = $("#tsInput").val();
-                    var episodeDate2 = $("#episodeDate2_<%=i %>").val();
+                    var episodeDate2 = $("#episodeDate2_<%=i%>").val();
 
 
                     console.log(tsType);

@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="9c8e4069-7f35-46b8-8b57-492ba5135c5c">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString>
+		<![CDATA[SELECT
+     pms_episode.`PMI_NO` AS pms_episode_PMI_NO,
+     pms_episode.`DISCIPLINE_CODE` AS pms_episode_DISCIPLINE_CODE,
+     pms_episode.`SUBDISCIPLINE_CODE` AS pms_episode_SUBDISCIPLINE_CODE,
+     pms_episode.`HEALTH_FACILITY_CODE` AS pms_episode_HEALTH_FACILITY_CODE,
+     pms_patient_biodata.`PMI_NO` AS pms_patient_biodata_PMI_NO,
+     pms_patient_biodata.`PATIENT_NAME` AS pms_patient_biodata_PATIENT_NAME,
+     pms_patient_biodata.`NEW_IC_NO` AS pms_patient_biodata_NEW_IC_NO,
+     pms_patient_biodata.`BIRTH_DATE` AS pms_patient_biodata_BIRTH_DATE,
+     adm_discipline.`discipline_cd` AS adm_discipline_discipline_cd,
+     adm_discipline.`discipline_name` AS adm_discipline_discipline_name,
+     pms_patient_biodata.`SEX_CODE` AS pms_patient_biodata_SEX_CODE,
+     pms_episode.`EPISODE_DATE` AS pms_episode_EPISODE_DATE,
+     pms_episode.`EPISODE_TIME` AS pms_episode_EPISODE_TIME,
+     pms_patient_biodata.`RACE_CODE` AS pms_patient_biodata_RACE_CODE,
+     pms_patient_biodata.`NATIONALITY` AS pms_patient_biodata_NATIONALITY,
+     pms_episode.`DOCTOR` AS pms_episode_DOCTOR
+FROM
+     `pms_patient_biodata` pms_patient_biodata INNER JOIN `pms_episode` pms_episode ON pms_patient_biodata.`PMI_NO` = pms_episode.`PMI_NO`
+     INNER JOIN `adm_discipline` adm_discipline ON pms_episode.`HEALTH_FACILITY_CODE` = adm_discipline.`discipline_cd`]]>
+	</queryString>
+	<field name="pms_episode_PMI_NO" class="java.lang.String"/>
+	<field name="pms_episode_DISCIPLINE_CODE" class="java.lang.String"/>
+	<field name="pms_episode_SUBDISCIPLINE_CODE" class="java.lang.String"/>
+	<field name="pms_episode_HEALTH_FACILITY_CODE" class="java.lang.String"/>
+	<field name="pms_patient_biodata_PMI_NO" class="java.lang.String"/>
+	<field name="pms_patient_biodata_PATIENT_NAME" class="java.lang.String"/>
+	<field name="pms_patient_biodata_NEW_IC_NO" class="java.lang.String"/>
+	<field name="pms_patient_biodata_BIRTH_DATE" class="java.lang.String"/>
+	<field name="adm_discipline_discipline_cd" class="java.lang.String"/>
+	<field name="adm_discipline_discipline_name" class="java.lang.String"/>
+	<field name="pms_patient_biodata_SEX_CODE" class="java.lang.String"/>
+	<field name="pms_episode_EPISODE_DATE" class="java.sql.Timestamp"/>
+	<field name="pms_episode_EPISODE_TIME" class="java.lang.String"/>
+	<field name="pms_patient_biodata_RACE_CODE" class="java.lang.String"/>
+	<field name="pms_patient_biodata_NATIONALITY" class="java.lang.String"/>
+	<field name="pms_episode_DOCTOR" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band splitType="Stretch"/>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="636" splitType="Stretch">
+			<staticText>
+				<reportElement x="152" y="19" width="241" height="20" uuid="94b39a6e-3d82-49ee-b0af-455feb85ec52"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[PATIENT PREVIOUS VISIT SUMMARY]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="17" y="45" width="68" height="20" uuid="370362b3-cbe0-4dd6-be11-bd826a1f5569"/>
+				<text><![CDATA[Name:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="17" y="65" width="68" height="20" uuid="982702b8-f9c0-4c5d-b798-2ad3d5432366"/>
+				<text><![CDATA[PMI No:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="17" y="85" width="68" height="20" uuid="96574ec5-7b25-405b-8c57-d7a2b7ec5ada"/>
+				<text><![CDATA[IC No:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="17" y="105" width="68" height="20" uuid="bbb8fb26-f9d6-4325-bc8d-5187fca431a6"/>
+				<text><![CDATA[Sex:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="17" y="125" width="68" height="20" uuid="2697cbc3-f800-4a96-92db-724d1e8721a3"/>
+				<text><![CDATA[Date of Birth:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="17" y="145" width="68" height="20" uuid="93fc56bb-c59f-496d-b7f4-ec0c27c9fec9"/>
+				<text><![CDATA[Race:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="85" y="45" width="191" height="20" uuid="774dead2-aa2d-45cd-81b8-7fb9d1a90b3d"/>
+				<textFieldExpression><![CDATA[$F{pms_patient_biodata_PATIENT_NAME}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="85" y="65" width="100" height="20" uuid="a12c6054-9836-4408-bae5-1e4f1d56c71c"/>
+				<textFieldExpression><![CDATA[$F{pms_patient_biodata_PMI_NO}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="85" y="85" width="100" height="20" uuid="45ada095-16f8-4ca5-93f9-d7fe766924eb"/>
+				<textFieldExpression><![CDATA[$F{pms_patient_biodata_NEW_IC_NO}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="85" y="105" width="100" height="20" uuid="377e1476-1871-43c8-b218-9aa1a7c461d6"/>
+				<textFieldExpression><![CDATA[$F{pms_patient_biodata_SEX_CODE}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="85" y="125" width="100" height="20" uuid="fa8d9c70-ad04-4553-a8f1-0c274f1f36e4"/>
+				<textFieldExpression><![CDATA[$F{pms_patient_biodata_BIRTH_DATE}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="85" y="145" width="100" height="20" uuid="73f33de1-1a87-4fa5-9ae4-cbc8c180ef55"/>
+				<textFieldExpression><![CDATA[$F{pms_patient_biodata_RACE_CODE}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="322" y="45" width="100" height="20" uuid="edd73a8a-6815-407a-8faf-2d77abfdca74"/>
+				<text><![CDATA[Discipline:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="322" y="65" width="100" height="20" uuid="c52477fe-295e-47c5-8c2d-06410c9d4872"/>
+				<text><![CDATA[Subdiscpline:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="322" y="85" width="100" height="20" uuid="8a9a3f73-f560-4dc8-bda9-d45912d17963"/>
+				<text><![CDATA[Attending Doctor:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="422" y="45" width="100" height="20" uuid="f19746e8-f9d0-4b53-8228-10faf5e58aee"/>
+				<textFieldExpression><![CDATA[-$F{adm_discipline_discipline_name}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="422" y="85" width="100" height="20" uuid="9b75ffc8-1f0d-4e03-9548-239485d088fc"/>
+				<textFieldExpression><![CDATA[$F{pms_episode_DOCTOR}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="17" y="234" width="100" height="20" uuid="af4f6e56-966a-4272-84da-d893fb00d07f"/>
+				<text><![CDATA[Chief Complaint]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="17" y="297" width="100" height="20" uuid="bca52a3f-b69c-44c1-946b-2495337f5058"/>
+				<text><![CDATA[Social History]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="17" y="364" width="100" height="20" uuid="c5eaa0cb-7541-4b41-97e5-881fc469dafe"/>
+				<text><![CDATA[Family Medical History]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="17" y="414" width="100" height="20" uuid="3bca83af-f5b2-4c2e-8249-63f0e5e98817"/>
+				<text><![CDATA[Allergy]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="17" y="462" width="135" height="20" uuid="769e9cff-e001-4c5a-9a04-3a16b1cc149f"/>
+				<text><![CDATA[History of present illness]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="17" y="514" width="100" height="20" uuid="aa35c593-a78b-4eef-bb28-316fb4f2ef82"/>
+				<text><![CDATA[Immunisation]]></text>
+			</staticText>
+		</band>
+	</summary>
+</jasperReport>
