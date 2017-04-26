@@ -11,7 +11,12 @@
 
 <%
     Conn conn = new Conn();
-    String textSearch = request.getParameter("textSearch");
+    String ic = request.getParameter("ic");
+    String order_no = request.getParameter("order_no");
+    String DateFrom = request.getParameter("DateFrom");
+    String DateTo = request.getParameter("DateTo");
+    //out.print(DateFrom+" "+DateTo+" "+order_no+" "+ic);
+    //String textSearch = "950405025185";
     //String idcat = request.getParameter("idcat");
     String current_user = (String) session.getAttribute("USER_ID");
     String hfc_cd = session.getAttribute("HEALTH_FACILITY_CODE").toString();
@@ -28,36 +33,163 @@
     <th style="text-align: center;">Health Facility Code</th>
     <th style="text-align: center;">Doctor's Name</th>
     <th style="text-align: center;">Action</th>
+    <th style="text-align: center;">Send the bill</th>
 </thead>
 <tbody>
 
 
     <%
         //String whereClause = "";
-
         //if (!hfc_cd.equals("99_iHIS_99") || !last_nine.equals("9")) {
-           // whereClause = "lis_order_master.hfc_cd = '"+hfc_cd+"' ";
+        // whereClause = "lis_order_master.hfc_cd = '"+hfc_cd+"' ";
         //}
+        String sql = "";
 
-        String sql = "SELECT lis_order_master.pmi_no,lis_order_master.order_no,lis_order_master.hfc_cd,lis_order_master.episode_date,lis_order_master.encounter_date,lis_order_master.order_date,lis_order_master.order_by,lis_order_master.hfc_from,lis_order_master.hfc_to,lis_order_master.order_status,lis_order_master.diagnosis_cd,lis_order_master.created_by,lis_order_master.created_date,pms_patient_biodata.PATIENT_NAME,pms_patient_biodata.NEW_IC_NO,pms_patient_biodata.BIRTH_DATE,pms_patient_biodata.SEX_CODE,pms_patient_biodata.BLOOD_TYPE FROM lis_order_master JOIN pms_patient_biodata ON (lis_order_master.pmi_no = pms_patient_biodata.PMI_NO) WHERE lis_order_master.order_status='0' AND pms_patient_biodata.NEW_IC_NO = '"+textSearch+"' AND lis_order_master.hfc_cd = '"+hfc_cd+"'";
-                //+ whereClause + "";
+        if (ic != "") {
+            sql = "SELECT lis_order_master.pmi_no,lis_order_master.order_no,lis_order_master.hfc_cd,lis_order_master.episode_date,lis_order_master.encounter_date,lis_order_master.order_date,lis_order_master.order_by,lis_order_master.hfc_from,lis_order_master.hfc_to,lis_order_master.order_status,lis_order_master.diagnosis_cd,lis_order_master.created_by,lis_order_master.created_date,pms_patient_biodata.PATIENT_NAME,pms_patient_biodata.NEW_IC_NO,pms_patient_biodata.BIRTH_DATE,pms_patient_biodata.SEX_CODE,pms_patient_biodata.BLOOD_TYPE FROM lis_order_master JOIN pms_patient_biodata ON (lis_order_master.pmi_no = pms_patient_biodata.PMI_NO) WHERE lis_order_master.order_status='0' AND pms_patient_biodata.NEW_IC_NO = '" + ic + "' AND lis_order_master.hfc_cd = '" + hfc_cd + "'";
+        } else if (order_no != "") {
+            sql = "SELECT lis_order_master.pmi_no,lis_order_master.order_no,lis_order_master.hfc_cd,lis_order_master.episode_date,lis_order_master.encounter_date,lis_order_master.order_date,lis_order_master.order_by,lis_order_master.hfc_from,lis_order_master.hfc_to,lis_order_master.order_status,lis_order_master.diagnosis_cd,lis_order_master.created_by,lis_order_master.created_date,pms_patient_biodata.PATIENT_NAME,pms_patient_biodata.NEW_IC_NO,pms_patient_biodata.BIRTH_DATE,pms_patient_biodata.SEX_CODE,pms_patient_biodata.BLOOD_TYPE FROM lis_order_master JOIN pms_patient_biodata ON (lis_order_master.pmi_no = pms_patient_biodata.PMI_NO) WHERE lis_order_master.order_status='0' AND lis_order_master.hfc_cd = '" + hfc_cd + "' AND lis_order_master.order_no = '" + order_no + "'";
+        } else if (DateFrom != "" && DateTo != "") {
+            sql = "SELECT lis_order_master.pmi_no,lis_order_master.order_no,lis_order_master.hfc_cd,lis_order_master.episode_date,lis_order_master.encounter_date,lis_order_master.order_date,lis_order_master.order_by,lis_order_master.hfc_from,lis_order_master.hfc_to,lis_order_master.order_status,lis_order_master.diagnosis_cd,lis_order_master.created_by,lis_order_master.created_date,pms_patient_biodata.PATIENT_NAME,pms_patient_biodata.NEW_IC_NO,pms_patient_biodata.BIRTH_DATE,pms_patient_biodata.SEX_CODE,pms_patient_biodata.BLOOD_TYPE FROM lis_order_master JOIN pms_patient_biodata ON (lis_order_master.pmi_no = pms_patient_biodata.PMI_NO) WHERE lis_order_master.order_status='0' AND lis_order_master.hfc_cd = '" + hfc_cd + "' AND lis_order_master.created_date BETWEEN '" + DateFrom + "' AND '" + DateTo + "'";
+        }
 
-        ArrayList<ArrayList<String>> dataRISOrderList = conn.getData(sql);
+        ArrayList<ArrayList<String>> dataPatientOrderList = conn.getData(sql);
 
-        int size = dataRISOrderList.size();
+        int size = dataPatientOrderList.size();
         for (int i = 0; i < size; i++) {
     %>
 
     <tr id="moveToRISOrderDetailsTButton" style="text-align: center;">
-<input id="dataRISOrderListhidden" type="hidden" value="<%=String.join("|", dataRISOrderList.get(i))%>">
-<td><%= dataRISOrderList.get(i).get(1)%></td> <!-- Order No -->
-<td><%= dataRISOrderList.get(i).get(0)%></td> <!-- PMI No -->
-<td><%= dataRISOrderList.get(i).get(14)%></td> <!-- IC No -->
-<td><%= dataRISOrderList.get(i).get(13)%></td> <!-- Name -->
-<td><%= dataRISOrderList.get(i).get(5)%></td> <!-- Order Date -->
-<td><%= dataRISOrderList.get(i).get(2)%></td> <!-- Health Facility Code -->
-<td><%= dataRISOrderList.get(i).get(6)%></td> <!-- Doctor's Name -->
-<td><input type="checkbox" id="checkBill" name="checkBill" value="<%= dataRISOrderList.get(i).get(1)%>"></td> <!-- Doctor's Name -->
+<input id="dataPatientOrderListhidden" type="hidden" value="<%=String.join("|", dataPatientOrderList.get(i))%>">
+<td><%= dataPatientOrderList.get(i).get(1)%></td> <!-- Order No -->
+<td><%= dataPatientOrderList.get(i).get(0)%></td> <!-- PMI No -->
+<td><%= dataPatientOrderList.get(i).get(14)%></td> <!-- IC No -->
+<td><%= dataPatientOrderList.get(i).get(13)%></td> <!-- Name -->
+<td><%= dataPatientOrderList.get(i).get(5)%></td> <!-- Order Date -->
+<td><%= dataPatientOrderList.get(i).get(2)%></td> <!-- Health Facility Code -->
+<td><%= dataPatientOrderList.get(i).get(6)%></td> <!-- Doctor's Name -->
+<td><button class="btn btn-success " type="button" id="btnOrderDispense_<%=i%>" name="btnOrderDispense" > <i class="fa fa-shopping-cart fa-lg"></i></button>
+    <script>
+
+        //    $('input:checkbox').click(function () {
+        //        if ($(this).is(':checked')) {
+        //            $('#btnOrderDispense').prop("disabled", false);
+        //            //$('#reject').prop("disabled", false);
+        //            //$('#AssignResult').prop("disabled", false);
+        //            //$('#VerifyResult').prop("disabled", false);
+        //        } else {
+        //            if ($('.chk').filter(':checked').length < 1) {
+        //                $('#btnOrderDispense').attr('disabled', true);
+        //                //$('#reject').prop("disabled", true);
+        //                //$('#AssignResult').prop("disabled", true);
+        //                //$('#VerifyResult').prop("disabled", true);
+        //            }
+        //        }
+        //    });
+        $("#btnOrderDispense_<%=i%>").click(function () {
+
+            var row = $(this).closest("tr");
+            var rowData = row.find("#dataPatientOrderListhidden").val();
+            var arrayData = rowData.split("|");
+            console.log(arrayData);
+
+            //Assign Array into seprated val
+            var patientpmino = arrayData[0];
+            var patientName = arrayData[15];
+            var patientnic = arrayData[16];
+            var patientGender = arrayData[21];
+            var patientBdate = arrayData[17];
+            var patientBtype = arrayData[22];
+            var patientOrderNo = arrayData[1];
+            var patientOrderDate = arrayData[5];
+            var patientOrderLocationCode = arrayData[2];
+
+
+            var pmiNo = patientpmino;
+            var orderNo = patientOrderNo;
+            var orderDate = patientOrderDate;
+            alert(pmiNo + " " + orderNo + " " + orderDate);
+            var data = {
+                pmiNo: pmiNo,
+                orderNo: orderNo,
+                orderDate: orderDate
+            };
+            $.ajax({
+                url: "patientOrderListDetailDispenseEHRCentralGetMSH.jsp",
+                type: "post",
+                timeout: 3000,
+                data: data,
+                success: function (returnDataMSHFull) {
+
+                    $.ajax({
+                        url: "patientOrderListDetailDispenseEHRCentralGetPDIFinal.jsp",
+                        type: "post",
+                        timeout: 3000,
+                        data: data,
+                        success: function (returnDataPDIFull) {
+
+
+                            $.ajax({
+                                url: "patientOrderListDetailDispenseEHRCentralGetORC.jsp",
+                                type: "post",
+                                data: data,
+                                timeout: 3000,
+                                success: function (returnDataORCFull) {
+
+                                    //Set value to the Second Tab 
+                                    $("#patientpmino").val(patientpmino);
+                                    $("#patientName").val(patientName);
+                                    $("#patientnic").val(patientnic);
+                                    $("#patientGender").val(patientGender);
+                                    $("#patientBdate").val(patientBdate);
+                                    $("#patientBtype").val(patientBtype);
+                                    $("#patientOrderNo").val(patientOrderNo);
+                                    $("#patientOrderDate").val(patientOrderDate);
+                                    $("#patientOrderLocationCode").val(patientOrderLocationCode);
+                                    $("#dataMSHPDIORC").val(returnDataMSHFull.trim() + returnDataPDIFull.trim() + returnDataORCFull.trim());
+
+                                    console.log(returnDataMSHFull.trim());
+                                    console.log(returnDataPDIFull.trim());
+                                    console.log(returnDataORCFull.trim());
+                                    console.log($("#dataMSHPDIORC").val());
+
+                                    //loadAllergyDiagnosisOrder(patientOrderNo, patientpmino);
+
+                                    $.ajax({
+                                        url: "patientOrderListDetailItem.jsp",
+                                        type: "post",
+                                        data: data,
+                                        timeout: 3000,
+                                        success: function (returnDataItem) {
+                                            $("#datatest").val(returnDataItem.trim());
+                                            //$('#dataItem').html(returnDataItem);
+                                            //$('#dataItem').trigger('contentchanged');
+                                            console.log(returnDataItem.trim());
+                                            console.log($("#datatest").val());
+
+
+
+                                        }
+                                    });
+
+                                }
+                            });
+
+                        }
+                    });
+
+                }
+            });
+
+        });
+
+
+
+    </script>
+</td>
+<td>
+    <input type="checkbox" id="checky" name="order" value="<%= dataPatientOrderList.get(i).get(1)%>|<%= dataPatientOrderList.get(i).get(0)%>|<%= dataPatientOrderList.get(i).get(5)%>|<%=dataPatientOrderList.get(i).get(14)%>|<%=dataPatientOrderList.get(i).get(13)%>">
+</td><!-- Doctor's Name -->
 </tr>
 <%
     }
@@ -78,103 +210,20 @@
                 <input id="dispenseTotalQuantityChecked" name="dispenseTotalQuantityChecked" type="hidden" placeholder="Total Order" class="form-control input-md" maxlength="50" readonly="" value="0">
             </div>
         </div>
-        <div class="row">
-            <div class="col-md-6 col-md-offset-3" style="margin-bottom: 20px;">
-                <div class="col-md-6">
-
-                    <!-- Text input-->
-                    <div class="form-group">
-                        <label class="col-md-7 control-label" for="textinput">Total Order</label>
-                        <div class="col-md-5">
-                            <input id="dispenseTotalOrder" name="dispenseTotalOrder" type="text" placeholder="Total Order" class="form-control input-md" maxlength="50" readonly="">
-                        </div>
-                    </div>
-
-                    <!-- Text input-->
-                    <div class="form-group">
-                        <label class="col-md-7 control-label" for="textinput">Total Order Final</label>
-                        <div class="col-md-5">
-                            <input id="dispenseTotalOrderChecked" name="dispenseTotalOrderChecked" type="text" placeholder="Total Order" class="form-control input-md" maxlength="50" readonly="">
-                        </div>
-                    </div>
-
-                </div>
-
-                <div class="col-md-6">
-
-                    <!-- Text input-->
-                    <div class="form-group">
-                        <label class="col-md-7 control-label" for="textinput">Grand Total (RM)</label>
-                        <div class="col-md-5">
-                            <input id="dispenseGrandTotal" name="dispenseGrandTotal" type="number" placeholder="Grand Total (RM)" class="form-control input-md" maxlength="50" readonly="">
-                        </div>
-                    </div>
-
-                    <!-- Text input-->
-                    <div class="form-group">
-                        <label class="col-md-7 control-label" for="textinput">Grand Total Final (RM)</label>
-                        <div class="col-md-5">
-                            <input id="dispenseGrandTotalChecked" name="dispenseGrandTotalChecked" type="number" placeholder="Grand Total (RM)" class="form-control input-md" maxlength="50" readonly="">
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </div>
     </form>
 </div>
-<div class="text-center" id="patientOrderDispenseButtonDiv"> 
-    <button class="btn btn-success " type="button" id="btnOrderDispense" name="btnOrderDispense" disabled=""> <i class="fa fa-shopping-cart fa-lg"></i>&nbsp; Dispense &nbsp;</button>
-    <button class="btn btn-primary " type="button" id="btnOrderDispensePrescribe" name="btnOrderDispensePrescribe"> <i class="fa fa-print fa-lg"></i>&nbsp; Generate Label &nbsp;</button>
-    <button class="btn btn-default " type="button" id="btnClearOrderDetailDispense" name="btnClearOrderDetailDispense"> <i class="fa fa-ban fa-lg"></i>&nbsp; Back &nbsp;</button>
-</div>
-<script>
 
-    $("#back").click(function () {
-            window.location.replace("ManageTest.jsp");
-        });
-        
-   
-</script>
-<script>
-        w3IncludeHTML();
-        $(document).ready(function () {
-            
-            //var item_cd = $("#item_cd").val();
-            
-            //$("#viewTA").load("viewTA.jsp");
-           
-                      
-                     
-                        
-                        $("#btn_update").click(function () {
-                           var healthCentre = $("#healthCentre").val(); 
-                           var pmi = $("#pmi").val();
-                           var specimen_no = $("#specimen_no").val();
-                           
-                           $.ajax({
-                                url: "tAcceptSpecimen.jsp",
-                                type: "post",
-                                data: {
-                                    healthCentre: healthCentre,
-                                    pmi: pmi,
-                                    specimen_no: specimen_no
-                                },
-                                timeout: 10000,
-                                success: function(data) {
-                                     alert("Specimen Accept succesfully");
-                                        
-                                         //$("#basicModal").hide();
-                                         //$(".modal-backdrop").hide();
-                                     
-                                },
-                            });
-                            
-                        });
-                    });
-       
 
-    </script>
+<button class="btn btn-primary " type="button" id="btnSendToBill" name="btnSendToBill" > <i class="fa fa-print fa-lg"></i>&nbsp; Send &nbsp;</button>
+<hr class="pemisah">
+<textarea rows="4" cols="50" id="dataMSHPDIORC">
+</textarea>
+
+<textarea rows="4" cols="50" id="datatest">
+</textarea>
+
+
+
 
 
 <script type="text/javascript" charset="utf-8">
@@ -189,4 +238,100 @@
         });
     });
 
+
+    $("#btnSendToBill").click(function () {
+        var rates = document.getElementsByName('order');
+        var rate_value;
+
+        for (var i = 0; i < rates.length; i++) {
+            if (rates[i].checked) {
+                rate_value = rates[i].value;
+                var arrayData1 = rate_value.split("|");
+                console.log(arrayData1);
+
+                var patientorderNo = arrayData1[0];
+                var patientpmino = arrayData1[1];
+                var patientOrderDate = arrayData1[2];
+                var patientnic = arrayData1[3];
+                var patientName = arrayData1[4];
+
+                alert(patientpmino + "  " + patientorderNo + "  " + patientOrderDate + "  " + patientnic + "  " + patientName);
+                var data = {
+                    pmiNo: patientpmino,
+                    orderNo: patientorderNo,
+                    orderDate: patientOrderDate
+                };
+                $.ajax({
+                    url: "patientOrderListDetailDispenseEHRCentralGetMSH.jsp",
+                    type: "post",
+                    timeout: 3000,
+                    data: data,
+                    success: function (returnDataMSHFull) {
+
+                        $.ajax({
+                            url: "patientOrderListDetailDispenseEHRCentralGetPDIFinal.jsp",
+                            type: "post",
+                            timeout: 3000,
+                            data: data,
+                            success: function (returnDataPDIFull) {
+
+
+                                $.ajax({
+                                    url: "patientOrderListDetailDispenseEHRCentralGetORC.jsp",
+                                    type: "post",
+                                    data: data,
+                                    timeout: 3000,
+                                    success: function (returnDataORCFull) {
+
+                                        //Set value to the Second Tab 
+                                        $("#patientpmino").val(patientpmino);
+                                        $("#patientName").val(patientName);
+                                        $("#patientnic").val(patientnic);
+                                        //$("#patientGender").val(patientGender);
+                                        //$("#patientBdate").val(patientBdate);
+                                        //$("#patientBtype").val(patientBtype);
+                                        //$("#patientOrderNo").val(patientorderNo);
+                                        //$("#patientOrderDate").val(patientOrderDate);
+                                        //$("#patientOrderLocationCode").val(patientOrderLocationCode);
+                                        $("#dataMSHPDIORC").val(returnDataMSHFull.trim() + returnDataPDIFull.trim() + returnDataORCFull.trim());
+
+                                        console.log(returnDataMSHFull.trim());
+                                        console.log(returnDataPDIFull.trim());
+                                        console.log(returnDataORCFull.trim());
+                                        console.log($("#dataMSHPDIORC").val());
+
+                                        //loadAllergyDiagnosisOrder(patientOrderNo, patientpmino);
+
+                                        $.ajax({
+                                            url: "patientOrderListDetailItem.jsp",
+                                            type: "post",
+                                            data: data,
+                                            timeout: 3000,
+                                            success: function (returnDataItem) {
+                                                $("#datatest").val(returnDataItem.trim());
+                                                //$('#dataItem').html(returnDataItem);
+                                                //$('#dataItem').trigger('contentchanged');
+                                                console.log(returnDataItem.trim());
+                                                console.log($("#datatest").val());
+
+
+
+                                            }
+                                        });
+
+                                    }
+                                });
+
+                            }
+                        });
+
+                    }
+                });
+
+            }
+        }
+    });
+
+
 </script>
+
