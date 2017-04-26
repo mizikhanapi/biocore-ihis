@@ -115,7 +115,7 @@
                         data: {userID: userID,
                             password: password
                         },
-                        timeout: 3000,
+                        timeout: 30000,
                         success: function (data) {
                             var num = parseInt(data);
 
@@ -133,8 +133,8 @@
                             } else
                                 alert("Error");
                         },
-                        error: function (err, errorThrown) {
-                            alert("error :" + errorThrown.toString());
+                        error: function (jqXHR, textStatus, errorThrown) {
+                            alert("Opps! " + errorThrown);
                         },
                         complete: function (jqXHR, textStatus ) {
                             $('.loading').hide();
