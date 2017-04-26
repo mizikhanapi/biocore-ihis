@@ -232,9 +232,6 @@
                             var order_no = "";
                             var ic = "";
                         }
-
-
-
                         var data = {
                             ic: ic,
                             order_no: order_no,
@@ -261,85 +258,6 @@
                             error: function (err) {
                                 alert("Error update!");
                             }
-                        });
-
-                    });
-
-
-
-
-
-
-
-                    $("#back").click(function () {
-                        var specimen_no = $("#specimen_no").val();
-                        var pmi = $("#pmi").val();
-                        window.location.replace("VerifySpecimen.jsp?pmi=" + pmi + " &specimen_no=" + specimen_no);
-                    });
-
-                    $("#btn_add").click(function () {
-//                        var specimen_no = $("#specimen_no").val();
-//                        var pmi = $("#pmi").val();
-//                        var item_cd = $("#item_cd").val();
-//                        var testName = $("#testName").val();
-//                        var order_no = $("#order_no").val();
-//                        var Result = $("#Result").val();
-//                        var Remark = $("#Remark").val();
-//                        var testDate = $("#testDate").val();
-//                        var testTime = $("#testTime").val();
-//                        var performBy = $("#performBy").val();
-
-                        var textSearch = $("#idIC").val();
-
-                        //alert(specimen_no + "  " + pmi + " " + item_cd + " " + testName + " " + Result + " " + Remark);
-                        $.ajax({
-                            url: "tAssignResult.jsp",
-                            type: "post",
-                            data: {
-                                specimen_no: specimen_no,
-                                pmi: pmi,
-                                item_cd: item_cd,
-                                testName: testName,
-                                order_no: order_no,
-                                Result: Result,
-                                Remark: Remark,
-                                testDate: testDate,
-                                testTime: testTime,
-                                performBy: performBy
-                            },
-                            timeout: 10000,
-                            success: function (data) {
-                                alert("Specimen Accept succesfully");
-                                $("#viewTA").load("viewTA.jsp");
-
-                            },
-                        });
-
-                        //$(".modal-backdrop").hide();
-
-                    });
-
-                    $("#btn_update").click(function () {
-                        var healthCentre = $("#healthCentre").val();
-                        var pmi = $("#pmi").val();
-                        var specimen_no = $("#specimen_no").val();
-
-                        $.ajax({
-                            url: "tAcceptSpecimen.jsp",
-                            type: "post",
-                            data: {
-                                healthCentre: healthCentre,
-                                pmi: pmi,
-                                specimen_no: specimen_no
-                            },
-                            timeout: 10000,
-                            success: function (data) {
-                                alert("Specimen Accept succesfully");
-                                window.location.reload();
-                                $("#basicModal").hide();
-                                $(".modal-backdrop").hide();
-
-                            },
                         });
 
                     });
