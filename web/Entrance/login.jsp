@@ -8,6 +8,13 @@
 <%@page import="Config.Config"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
+    if(session.getAttribute("USER_ID")!= null && session.getAttribute("HEALTH_FACILITY_CODE")!= null && session.getAttribute("ROLE_CODE")!= null){
+        
+        response.sendRedirect("dashboard.jsp");
+        
+        return;
+    }
+    
     Config.getBase_url(request);
     Config.getFile_url(session);
     Conn conn = new Conn();
