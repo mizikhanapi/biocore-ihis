@@ -47,4 +47,19 @@
         }
 
     }//end perform
+    else if (process.equalsIgnoreCase("cancel")) {
+        
+        String sql = "Delete from ris_order_detail "
+                + "where order_no = '" + orderNo + "' AND modality_cd = '" + modCode + "' AND body_system_cd = '" + bsCode + "' AND procedure_cd = '" + proCode + "' ";
+
+        boolean isUpdate = rmic.setQuerySQL(conn.HOST, conn.PORT, sql);
+
+        if (isUpdate) {
+            out.print("success");
+        } else {
+            out.print("fail");
+        }
+
+    
+    }//end cancel
 %>
