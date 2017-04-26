@@ -195,7 +195,7 @@
                                 <option selected="" value="null">Please select Queue</option>
                                 <%
                                     for (int i = 0; i < dataQueue.size(); i++) {%>
-                                <option value="<%=dataQueue.get(i).get(1) + "|" + dataQueue.get(i).get(2)%>"><%="(" + dataQueue.get(i).get(0) + ") " + dataQueue.get(i).get(1) + " " + i%></option>
+                                <option value="<%=dataQueue.get(i).get(1) + "|" + dataQueue.get(i).get(2)%>"><%="(" + dataQueue.get(i).get(0) + ") " + dataQueue.get(i).get(1) + " " %></option>
                                 <%  }
                                 %>
                             </select>

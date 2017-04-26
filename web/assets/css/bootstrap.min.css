@@ -2865,7 +2865,11 @@ th {
 
 .table-bordered>thead>tr>td,
 .table-bordered>thead>tr>th {
-    border-bottom-width: 2px
+    border-bottom-width: 2px;
+    text-transform: uppercase;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .table-striped>tbody>tr:nth-of-type(odd) {
