@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="TS22" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="27f1169a-478b-4f51-ab82-8d76c9c078ba">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="TS22" language="groovy" pageWidth="806" pageHeight="523" orientation="Landscape" columnWidth="766" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="27f1169a-478b-4f51-ab82-8d76c9c078ba">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
@@ -25,18 +25,22 @@
      pms_episode.`ID_NO` AS pms_episode_ID_NO,
      pms_episode.`EPISODE_TIME` AS pms_episode_EPISODE_TIME,
      lhr_diagnosis.`Episode_Date` AS lhr_diagnosis_Episode_Date,
-     lhr_diagnosis.`Diagnosis_Cd` AS lhr_diagnosis_Diagnosis_Cd
+     lhr_diagnosis.`Diagnosis_Cd` AS lhr_diagnosis_Diagnosis_Cd,
+     pms_episode.`DOCTOR` AS pms_episode_DOCTOR,
+     lhr_diagnosis.`HFC_Cd` AS lhr_diagnosis_HFC_Cd,
+     adm_health_facility.`hfc_cd` AS adm_health_facility_hfc_cd,
+     adm_health_facility.`hfc_name` AS adm_health_facility_hfc_name
 FROM
-     `lhr_diagnosis` lhr_diagnosis
+     `pms_episode` pms_episode INNER JOIN `lhr_diagnosis` lhr_diagnosis ON pms_episode.`pmi_no` = lhr_diagnosis.`pmi_no`
 INNER JOIN
-     `pms_episode` pms_episode ON pms_episode.`pmi_no` = lhr_diagnosis.`pmi_no`
+     `adm_health_facility` adm_health_facility ON adm_health_facility.`hfc_cd` = lhr_diagnosis.`HFC_Cd`
 WHERE
      pms_episode.`PMI_NO` = $P{tsInput}
-     or  pms_episode.`NEW_IC_NO` = $P{tsInput}
+     or pms_episode.`NEW_IC_NO` = $P{tsInput}
      or (pms_episode.`ID_TYPE` = $P{tsType}
- AND  pms_episode.`ID_NO` = $P{tsInput})
+     or pms_episode.`ID_NO` = $P{tsInput})
      or pms_episode.`OLD_IC_NO` = $P{tsInput}
-AND lhr_diagnosis.`Episode_Date` = $P{episodeDate2}]]>
+ AND lhr_diagnosis.`Episode_Date` = $P{episodeDate2}]]>
 	</queryString>
 	<field name="lhr_diagnosis_ICD10_Description" class="java.lang.String"/>
 	<field name="lhr_diagnosis_PMI_no" class="java.lang.String"/>
@@ -50,6 +54,10 @@ AND lhr_diagnosis.`Episode_Date` = $P{episodeDate2}]]>
 	<field name="pms_episode_EPISODE_TIME" class="java.lang.String"/>
 	<field name="lhr_diagnosis_Episode_Date" class="java.sql.Timestamp"/>
 	<field name="lhr_diagnosis_Diagnosis_Cd" class="java.lang.String"/>
+	<field name="pms_episode_DOCTOR" class="java.lang.String"/>
+	<field name="lhr_diagnosis_HFC_Cd" class="java.lang.String"/>
+	<field name="adm_health_facility_hfc_cd" class="java.lang.String"/>
+	<field name="adm_health_facility_hfc_name" class="java.lang.String"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
@@ -74,51 +82,85 @@ AND lhr_diagnosis.`Episode_Date` = $P{episodeDate2}]]>
 	<summary>
 		<band height="423" splitType="Stretch">
 			<staticText>
-				<reportElement x="221" y="57" width="296" height="29" uuid="b432903e-017f-41d9-a213-c9fffe2cc222"/>
-				<textElement textAlignment="Center">
-					<font size="14" isBold="true"/>
+				<reportElement x="222" y="146" width="283" height="33" uuid="cfb921b7-b83d-4415-9d72-172e56e8bf8a"/>
+				<textElement>
+					<font size="16" isBold="true"/>
 				</textElement>
 				<text><![CDATA[SURAT MENDAPAT RAWATAN]]></text>
 			</staticText>
-			<textField>
-				<reportElement x="250" y="190" width="243" height="20" uuid="58db7906-c7ff-4dcc-99ef-6041686b3510"/>
-				<textFieldExpression><![CDATA[$F{pms_episode_NAME}]]></textFieldExpression>
+			<textField isBlankWhenNull="true">
+				<reportElement x="384" y="240" width="100" height="20" uuid="d35cff91-b523-4aaf-bad8-5a5860cc073a"/>
+				<textFieldExpression><![CDATA[$P{episodeDate2}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="170" y="147" width="61" height="20" uuid="8004a6f4-f265-4990-9a7a-73e65d3f092e"/>
-				<text><![CDATA[Kepada:]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="52" y="190" width="198" height="20" uuid="8ae99549-6051-42b6-9bf9-1d137af0f745"/>
+				<reportElement x="141" y="200" width="225" height="20" uuid="1f27d9a1-f597-4e9d-86dd-b78b69a761be"/>
+				<textElement>
+					<font size="12" isBold="false"/>
+				</textElement>
 				<text><![CDATA[Saya sahkan bahawa pesakit bernama:]]></text>
 			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="366" y="200" width="269" height="20" uuid="108728b9-696f-46af-a9b6-ba9d22949f67"/>
+				<textFieldExpression><![CDATA[$F{pms_episode_NAME}]]></textFieldExpression>
+			</textField>
 			<staticText>
-				<reportElement x="150" y="226" width="100" height="20" uuid="622bfd91-f424-4310-a33c-7e5227594851"/>
+				<reportElement x="297" y="220" width="58" height="20" uuid="62b667bf-7b55-4d24-9dcc-2488ced2f28f"/>
+				<textElement>
+					<font size="12" isBold="false"/>
+				</textElement>
 				<text><![CDATA[NO K/P:]]></text>
 			</staticText>
-			<textField>
-				<reportElement x="250" y="226" width="243" height="20" uuid="ef5c8dcf-613d-4a0e-a8df-85e8b052eaed"/>
-				<textFieldExpression><![CDATA[$F{pms_episode_NEW_IC_NO} ]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="277" y="261" width="100" height="20" uuid="44a72705-91ce-4a5e-a005-60a29566566d"/>
-				<textFieldExpression><![CDATA[$F{pms_episode_EPISODE_TIME}]]></textFieldExpression>
+			<textField isBlankWhenNull="true">
+				<reportElement x="355" y="220" width="269" height="20" uuid="c38477bd-74be-4803-a8b5-0997ec882d6a"/>
+				<textFieldExpression><![CDATA[$F{pms_episode_NEW_IC_NO}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="98" y="261" width="179" height="20" uuid="d50eda05-be83-4c35-a01e-a418e09610ba"/>
+				<reportElement x="182" y="240" width="202" height="20" uuid="12f6d9ac-a2c2-4457-a163-d756e2e6b673"/>
+				<textElement>
+					<font size="12" isBold="false"/>
+				</textElement>
 				<text><![CDATA[Mendapat rawatan di Klinik dari jam:]]></text>
 			</staticText>
-			<textField>
-				<reportElement x="189" y="294" width="61" height="20" uuid="d3ff90c7-bffd-4bd7-8ab5-78ab96972840"/>
-				<textFieldExpression><![CDATA[Diagnosa:]]></textFieldExpression>
+			<staticText>
+				<reportElement x="271" y="260" width="84" height="20" uuid="2d56d5b1-7747-49db-a22c-3be87bb32ca1"/>
+				<textElement>
+					<font size="12" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Diagnosa:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="355" y="260" width="100" height="20" uuid="097b019b-9cd1-4b62-863a-cbf01b266333"/>
+				<textFieldExpression><![CDATA[$F{lhr_diagnosis_ICD10_Description}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="15" y="360" width="85" height="20" uuid="4951a766-9863-47cf-964e-e825f0cbf7a5"/>
+				<text><![CDATA[Disediakan Oleh:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="546" y="340" width="220" height="20" uuid="f3b2d0f4-d70e-4c1b-9759-7ec382a22306"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[.....................................................................]]></text>
+			</staticText>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="546" y="380" width="100" height="20" uuid="06666a13-5d66-4bef-975e-c66e60f2cc0a"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="250" y="294" width="100" height="20" uuid="20334e75-1884-4e80-addd-f15d778f1609"/>
-				<textFieldExpression><![CDATA[$F{lhr_diagnosis_Diagnosis_Cd}]]></textFieldExpression>
+				<reportElement x="100" y="360" width="100" height="20" uuid="48ad9d2c-a55a-472f-939d-088d372c0bdc"/>
+				<textFieldExpression><![CDATA[$F{pms_episode_DOCTOR}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="231" y="147" width="244" height="20" uuid="8efec4eb-1158-4d8c-a41a-339259a7974c"/>
-				<textFieldExpression><![CDATA[$F{pms_episode_NAME}]]></textFieldExpression>
+				<reportElement x="546" y="360" width="100" height="20" uuid="9b431355-dfda-4638-a35e-cf6d3204eb0d"/>
+				<textFieldExpression><![CDATA[$F{pms_episode_DOCTOR}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="244" y="66" width="273" height="46" uuid="65577e5f-b106-4794-8048-e6f683ec18c1"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{adm_health_facility_hfc_name}]]></textFieldExpression>
 			</textField>
 		</band>
 	</summary>

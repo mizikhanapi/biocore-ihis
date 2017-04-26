@@ -41,22 +41,22 @@
 
                         </br></br>
 
-<!--                        <div class="form-group">
-                            <label style="text-align: center" class="col-md-6 control-label" for="textinput">Discipline:</label>
-
-
-                            <div class="form-group">
-                                <div class="col-md-6">
-                                    <select class="form-control" name="disiplinType" id="disiplinType">
-                                        <option value="0" id="0" >Please Select</option>
-                                        <option value="inpatient" id="allergy" >Inpatient</option>
-                                        <option value="outpatient" id="complaint" >Outpatient</option>
-                                    </select>
-
-                                </div>
-                            </div>
-                        </div>
-                        </br></br></br>-->
+                        <!--                        <div class="form-group">
+                                                    <label style="text-align: center" class="col-md-6 control-label" for="textinput">Discipline:</label>
+                        
+                        
+                                                    <div class="form-group">
+                                                        <div class="col-md-6">
+                                                            <select class="form-control" name="disiplinType" id="disiplinType">
+                                                                <option value="0" id="0" >Please Select</option>
+                                                                <option value="inpatient" id="allergy" >Inpatient</option>
+                                                                <option value="outpatient" id="complaint" >Outpatient</option>
+                                                            </select>
+                        
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                </br></br></br>-->
 
                         <div class="form-group">
                             <label style="text-align: center" class="col-md-6 control-label" for="textinput">Start Date</label>
@@ -76,10 +76,10 @@
                         </br></br></br>
                         <div class="btn-group btn-group-justified" role="group" aria-label="group button">
                             <div class="btn-group" role="group">
-                                <button type="submit" class="btn btn-success btn-block btn-lg" role="button" id="printLaporanKedatangan">Generate Report</button>
+                                <button type="submit" class="btn btn-success btn-block btn-lg" role="button" id="printICD10">Generate Report</button>
                             </div>
                             <div class="btn-group" role="group">
-                                <button type="reset" id="PrintReset" class="btn btn-default btn-block btn-lg" data-dismiss="modal" role="button" >Cancel</button>
+                                <button type="clear" id="PrintReset" class="btn btn-default btn-block btn-lg" data-dismiss="modal" role="button" >Cancel</button>
                             </div>
                         </div>
                     </div>
@@ -104,16 +104,21 @@
             dateFormat: 'yy-mm-dd',
         });
         $('#printICD10').on('click', function () {
+            if ($('#startDate').val() === "" || $('#endDate').val() === " ") {
+                //if the id/ic input is empty
+                alert('Please choose date to prooceed');
+            } else {
 
-            var startDate = document.getElementById("startDate").value;
-            var endDate = document.getElementById("endDate").value;
-            var disiplinType = document.getElementByID("disiplinType").value;
+                var startDate = document.getElementById("startDate").value;
+                var endDate = document.getElementById("endDate").value;
+//            var disiplinType = document.getElementByID("disiplinType").value;
 
-            console.log(startDate);
-            console.log(endDate);
-            console.log(disiplinType);
+                console.log(startDate);
+                console.log(endDate);
+//            console.log(disiplinType);
 
-            window.open("ICD10Report.jsp?startDate=" + startDate + "&endDate=" + endDate );
+                window.open("ICD10Report.jsp?startDate=" + startDate + "&endDate=" + endDate);
+            }
 
         });
     });

@@ -1,10 +1,12 @@
 <%@page import ="dBConn.Conn"%>
+<%@page import ="Config.Config"%>
 <%@page import="main.RMIConnector"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="org.apache.commons.lang3.StringUtils"%>
 
 <%
-
+    Config.getBase_url(request);
+    Config.getFile_url(session);
     Conn conn = new Conn();
     String searchPatient, userIC;
     
