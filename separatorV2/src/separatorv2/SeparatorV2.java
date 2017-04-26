@@ -37,6 +37,7 @@ public class SeparatorV2 {
     private Vector<VTS2> vvts;
     private Vector<ADW2> vadw;
     private Vector<BLI2> vbli;
+    private Vector<MSH2> vmsh;
 
     public SeparatorV2() {
         this.vccn = new Vector<CCN2>();
@@ -59,6 +60,7 @@ public class SeparatorV2 {
         this.vdgs = new Vector<DGS2>();
         this.vbli = new Vector<BLI2>();
         this.vadw = new Vector<ADW2>();
+        this.vmsh = new Vector<MSH2>();
     }
 
     public Vector<ORC2> getVorc() {
@@ -139,6 +141,9 @@ public class SeparatorV2 {
 
     public Vector<BLI2> getVbli() {
         return vbli;
+    }
+    public Vector<MSH2> getVmsh() {
+        return vmsh;
     }
     
     
@@ -277,6 +282,27 @@ public class SeparatorV2 {
                 sm.showAAL();
                 vts.setValue(sm.getAal());
                 vvts.addElement(vts);
+                System.out.println("---------------------------------------------------------------------------------");
+            }else if(cols[0].contains("BLI")){
+                BLI2 bli = new BLI2();
+                sm.separatePipe(rows[i]);
+                sm.showAAL();
+                bli.setValue(sm.getAal());
+                vbli.addElement(bli);
+                System.out.println("---------------------------------------------------------------------------------");
+            }else if(cols[0].contains("ADW")){
+                ADW2 adw = new ADW2();
+                sm.separatePipe(rows[i]);
+                sm.showAAL();
+                adw.setValue(sm.getAal());
+                vadw.addElement(adw);
+                System.out.println("---------------------------------------------------------------------------------");
+            }else if(cols[0].contains("MSH")){
+                MSH2 msh = new MSH2();
+                sm.separatePipe(rows[i]);
+                sm.showAAL();
+                msh.setValue(sm.getAal());
+                vmsh.addElement(msh);
                 System.out.println("---------------------------------------------------------------------------------");
             }
         }
