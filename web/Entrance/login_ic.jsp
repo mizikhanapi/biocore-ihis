@@ -10,15 +10,15 @@
 
 
 <%
-    
-    if(session.getAttribute("TEMP_ID") == null){
-    
+
+    if (session.getAttribute("TEMP_ID") == null) {
+
         response.sendRedirect("login.jsp");
-        
+
         return;
-    
+
     }
-    
+
 //    Config.getBase_url(request);
 //    Config.getFile_url(session);
     Conn conn = new Conn();
@@ -42,10 +42,12 @@
                 <div class="profile-img-card">
                     <i class="fa fa-user-md" aria-hidden="true" style="color: #666; font-size: 100px;"></i>
                 </div>
-                <h2 style="text-align: center;"><span style="color: #0ae">iHIS</span></h2>
-                <p id="profile-name" class="profile-name-card">Clinical Support System</p>
+                <div class="logo" style="font-size: 32px;">
+                    Welcome to <span>iHIS</span>
+                </div>
+                <p id="profile-name" class="profile-name-card" style="font-weight: 400;">Integrated Health Information System</p>
                 <form class="form-signin" id="leForm" >
-                    <br><span style="color: red">Please log in using your IC number / Passport number and your password</span>
+                    <span style="color: red; margin-bottom: 10px;">Please log in using your IC number / Passport number and your password</span>
                     <input type="text" id="inputUserID" class="form-control" placeholder="Enter IC/Passport" name="username" required autofocus>
                     <input type="password" id="inputPassword" class="form-control" placeholder="Enter Password" name="password" required>
                     <!--                
@@ -128,11 +130,10 @@
                                 alert("User ID does not exist");
                             else if (num === 3)
                                 alert("You don't have proper user access. Contact your admin to configure your user access");
-                            else if (num === 4){
+                            else if (num === 4) {
                                 alert("Wrong IC/Passport number");
-                                
-                            }    
-                            else
+
+                            } else
                                 alert("Error");
                         },
                         error: function (err) {
