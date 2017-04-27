@@ -7,8 +7,15 @@ function searchHFCcode() {
         url: 'search/searchHFC_cd.jsp',
         data: {'id': id},
         success: function (reply_data) {
-            var array_data = String(reply_data).split("|");
+            console.log(reply_data);
+            var arryDetail = reply_data.trim().split("[#-#]");
+            
+            var array_data = String(arryDetail[0]).split("|");
             var hfcCode = array_data[0];
+            
+            $("#hfcOrderDetail").val(arryDetail[1]);
+            $("#hfcProviderDetail").val(arryDetail[2]);
+
             console.log(hfcCode);
 
             $('#hfc1').val(hfcCode);
@@ -96,7 +103,15 @@ function searchHFCcodeROS() {
         url: 'search/searchHFC_cd.jsp',
         data: {'id': id},
         success: function (reply_data) {
-            var array_data = String(reply_data).split("|");
+            var arryDetail = reply_data.trim().split("[#-#]");
+            
+            var array_data = String(arryDetail[0]).split("|");
+            var hfcCode = array_data[0];
+            
+            $("#hfcOrderDetail").val(arryDetail[1]);
+            $("#hfcProviderDetail").val(arryDetail[2]);
+            
+//            var array_data = String(reply_data).split("|");
             var hfcCode = array_data[0];
             var hfcLocation = array_data[1];
             console.log(hfcCode);
@@ -143,10 +158,21 @@ function searchUHFCcodeROS() {
         url: 'search/searchHFC_cd.jsp',
         data: {'id': id},
         success: function (reply_data) {
-            var array_data = String(reply_data).split("|");
+
+            var arryDetail = reply_data.trim().split("[#-#]");
+            
+            var array_data = String(arryDetail[0]).split("|");
+            var hfcCode = array_data[0];
+            
+            $("#UhfcOrderDetail").val(arryDetail[1]);
+            $("#UhfcProviderDetail").val(arryDetail[2]);
+            
+//            var array_data = String(reply_data).split("|");
             var hfcCode = array_data[0];
             var hfcLocation = array_data[1];
             console.log(hfcCode);
+
+
 
             $('#UhfcIdROS').val(hfcCode.trim());
             $('#UlocationROS').val(hfcLocation.trim());
@@ -191,10 +217,14 @@ function searchHFCcodeLOS() {
         url: 'search/searchHFC_cd.jsp',
         data: {'id': id},
         success: function (reply_data) {
-            var array_data = String(reply_data).split("|");
+            var arryDetail = reply_data.trim().split("[#-#]");
+            
+            var array_data = String(arryDetail[0]).split("|");
             var hfcCode = array_data[0];
-            console.log(hfcCode);
 
+            console.log(hfcCode);
+            $("#hfcOrderDetailLIO").val(arryDetail[1]);
+            $("#hfcProviderDetailLIO").val(arryDetail[2]);
             $('#hfcIdLOS').val(hfcCode.trim());
             
         }
@@ -231,18 +261,62 @@ $(function () {
 });
 
 function searchUHFCcodeROS() {
+    var id = $('#UhfcROS').val();
+    $.ajax({
+        type: 'post',
+        url: 'search/searchHFC_cd.jsp',
+        data: {'id': id},
+        success: function (reply_data) {
+
+            var arryDetail = reply_data.trim().split("[#-#]");
+            
+            var array_data = String(arryDetail[0]).split("|");
+            var hfcCode = array_data[0];
+            
+            $("#UhfcOrderDetail").val(arryDetail[1]);
+            $("#UhfcProviderDetail").val(arryDetail[2]);
+            
+//            var array_data = String(reply_data).split("|");
+            var hfcCode = array_data[0];
+            var hfcLocation = array_data[1];
+            console.log(hfcCode);
+
+
+
+            $('#UhfcIdROS').val(hfcCode.trim());
+            $('#UlocationROS').val(hfcLocation.trim());
+
+            $('#UhfcIdROS').val(hfcCode.trim());
+        }
+    });
+}
+function searchUHFCcodeLIO() {
     var id = $('#UhfcLOS').val();
     $.ajax({
         type: 'post',
         url: 'search/searchHFC_cd.jsp',
         data: {'id': id},
         success: function (reply_data) {
-            var array_data = String(reply_data).split("|");
+
+            var arryDetail = reply_data.trim().split("[#-#]");
+            
+            var array_data = String(arryDetail[0]).split("|");
+            var hfcCode = array_data[0];
+            
+            $("#UhfcOrderDetailLIO").val(arryDetail[1]);
+            $("#UhfcProviderDetailLIO").val(arryDetail[2]);
+            
+//            var array_data = String(reply_data).split("|");
             var hfcCode = array_data[0];
             var hfcLocation = array_data[1];
             console.log(hfcCode);
 
-            $('#UhfcIdLOS').val(hfcCode.trim());
+
+
+            $('#UhfcIdLIO').val(hfcCode.trim());
+            //$('#UlocationLIO').val(hfcLocation.trim());
+
+            $('#UhfcIdLIO').val(hfcCode.trim());
         }
     });
 }
@@ -262,7 +336,7 @@ $(function () {
                     $('#matchList li').on('click', function () { // When click on an element in the list
                         $('#UhfcLOS').val($(this).text()); // Update the field with the new element
                         $('#UmatchHFCLOS').text(''); // Clear the <div id="match"></div>
-                        searchUHFCcodeROS();
+                        searchUHFCcodeLIO();
                     });
                 },
                 error: function () { // if error

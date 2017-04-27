@@ -1,4 +1,30 @@
+function luar(){
+    alert("luar");
+}
+    function searchHFCDetail(modal) {
+    var id = hfc_name;
+    var modal = modal;
+    $.ajax({
+        type: 'post',
+        url: 'search/searchHFC_cd.jsp',
+        data: {'id': id},
+        success: function (reply_data) {
+            var arryDetail = reply_data.trim().split("[#-#]");
+            
+            var array_data = String(arryDetail[0]).split("|");
+            var hfcCode = array_data[0];
+
+            console.log(hfcCode);
+            $("#hfcOrderDetail"+modal).val(arryDetail[1]);
+            $("#hfcProviderDetail"+modal).val(arryDetail[2]);
+            $('#hfcId'+modal).val(hfcCode.trim());
+            
+        }
+    });
+}
+
 $(document).ready(function () {
+
     /* 
      * To change this license header, choose License Headers in Project Properties.
      * To change this template file, choose Tools | Templates
@@ -86,13 +112,18 @@ $(document).ready(function () {
         dropdown: true,
         scrollbar: true
     });
-  
+    
+    
 
+
+$('#CIS040002').on('shown',function(){
+    console.log("function doo");
+});
     
 //---------------------------------------------------------------------------------------------Drug Order Modal.
     //js ADD for Drug Order
     $('#acceptBtnDTO').click(function () {
-
+         
         var searchDTO = $('#searchDTO').val();
 
         var drugName = $('#drugNameDTO').val();
@@ -105,10 +136,16 @@ $(document).ready(function () {
         var drugInst = $('#drugInstructionDTO').val();
         var cautionary = $('#cautionaryDTO').val();
         var comment = $('#commentDTO').val();
+        var hfcOrderDetail = $('#hfcOrderDetailDTO').val();
+        var hfcProviderDetail = $('#hfcProviderDTO').val();
 //                    notes+= "DTO|" + getDate() + "^" +  
 
         var $items = $('#searchDTO, #dtoCode, #drugNameDTO, #drugQtyDTO, #drugStrDTO, #doseDTO, #durationDTO, #unitDTO, #drugFrequencyDTO, #drugInstructionDTO, #cautionaryDTO, #commentDTO, #dRouteDTO');
-        var obj1 = {Acode: 'DTO'};
+        var obj1 = {
+            Acode: 'DTO',
+            hfcOrderDetail:hfcOrderDetail,
+            hfcProviderDetail:hfcProviderDetail
+        };
         $items.each(function () {
             obj1[this.id] = $(this).val();
         });
@@ -337,29 +374,15 @@ $(document).ready(function () {
         var Problem18 = $('#Problem18').val();
         var proType = $('#proType').val();
         var procedure_cd = $('#procedure_cd').val();
-//                    $.ajax({
-//                        type: 'post',
-//                        url: 'getProcedureCode.jsp',
-//                        data: {'ProType': proType},
-//                        success: function(data){
-//                            console.log(data);
-//                            var array_data = String(data).split("|");
-//                            
-//                             procedure_cd = array_data[0];
-//                            alert(procedure_cd);
-//                            // notes+= "POS|" + procedure_cd + "^" + proType + "|<cr>\n";
-//                        },
-//                        error: function(e){
-//                            alert("Eroor" + e)
-//                        }
-//                    })
-        //notes += "POS|" + procedure_cd + "^" + proType + "|<cr>\n";
+        var hfcOrderDetail = $('#hfcOrderDetailPOS').val();
+        var hfcProviderDetail = $('#hfcProviderDetailPOS').val();
+
         var $items = $('#Problem18,#proType,#procedure_cd');
-        var obj1 = {Acode: "POS"};
+        var obj1 = {Acode: "POS",hfcOrderDetail:hfcOrderDetail,hfcProviderDetail:hfcProviderDetail};
         $items.each(function () {
             obj1[this.id] = $(this).val();
         });
-        getObjectORCHFCDetail(hfc_cd, hfc_cd,obj1); 
+        //getObjectORCHFCDetail(hfc_cd, hfc_cd,obj1); 
         _data.push(obj1);
          var index = _data.length -1;
        // getORCHFCDetail(hfc_cd,hfc_cd,index);
@@ -501,12 +524,12 @@ $(document).ready(function () {
         
         console.log(codeROS);
 
-        var $items = $('#ROS, #codeROS, #commentROS,#modalityROS,#modalityROSCode,#bodySystemROS,#bodySystemROSCode,#hfcROS,#hfcIdROS,#locationROS,#appointmentROS,#patientConditionROSCd,#priorityROScd');
+        var $items = $('#ROS, #codeROS, #commentROS,#modalityROS,#modalityROSCode,#bodySystemROS,#bodySystemROSCode,#hfcROS,#hfcIdROS,#locationROS,#appointmentROS,#patientConditionROSCd,#priorityROScd,#hfcOrderDetail,#hfcProviderDetail');
         var obj1 = {Acode: 'ROS',
                           patientConditionROS:   patientCondition,
                           priorityROS: priority
                       };
-      getObjectORCHFCDetail(hfc_cd, hfcROScode,obj1);
+      //getObjectORCHFCDetail(hfc_cd, hfcROScode,obj1);
         $items.each(function () {
             obj1[this.id] = $(this).val();
         });
@@ -517,7 +540,7 @@ $(document).ready(function () {
       //  console.log(_data.length);
         console.log(obj1);
 
-        displayROS(codeROS, ROS, commentROS,modalityROS,modalityROScode,bodysysROS,bodysysROS,bodysysROScode,hfcROS,hfcROScode,locationHFCROS,appointmentROS,patientConditionROS);
+        displayROS(codeROS, ROS, commentROS,modalityROS,modalityROScode,bodysysROS,bodysysROS,bodysysROScode,hfcROS,hfcROScode,locationHFCROS,appointmentROS,patientCondition);
 
         $("#ROS").val("");
         $("#codeROS").val("");
@@ -547,7 +570,8 @@ $(document).ready(function () {
         $('#UROS').val(updateObj.ROS);
         $('#UcommentROS').val(updateObj.commentROS);
         $('#jsonId').val(id[1]);
-        
+        $('#UhfcOrderDetail').val(updateObj.hfcOrderDetail);
+        $('#UhfcProviderDetail').val(updateObj.hfcProviderDetail);
         $('#UmodalityROS').val(updateObj.modalityROS);
         $('#UmodalityROSCode').val(updateObj.modalityROSCode);
         $('#UbodySystemROS').val(updateObj.bodySystemROS);
@@ -570,7 +594,7 @@ $(document).ready(function () {
         var _UcodeROS = $('#UcodeROS').val();
         var _UROS = $('#UROS').val();
         var _UcommentROS = $('#UcommentROS').val();
-        
+        var _UhfcIdROS = $('#UhfcIdROS').val();
         var _UmodalityROS = $('#UmodalityROS').val();
         var _UmodalityROScode = $('#UmodalityROSCode').val();
         var _UbodysysROS = $('#UbodySystemROS').val();
@@ -581,17 +605,35 @@ $(document).ready(function () {
         var _UappointmentROS = $('#UappointmentROS').val();
         var _UpatientConditionROSCd = $('#UpatientConditionROScd').val();
         var _UPriorityROScd = $('#UpriorityROScd').val();
-        var _UPatientCondition = $('#UpatientConditionROSCd :selected').val();
-        var _UPriorityROS = $('#UpriorityROScd :selected').val();
-        
+        var _UPatientCondition = $('#UpatientConditionROScd :selected').text();
+        var _UPriorityROS = $('#UpriorityROScd :selected').text();
+        var _UhfcOrderDetail = $('#UhfcOrderDetail').val();
+        var _UhfcProviderDetail = $('#UhfcProviderDetail').val();
 
         //console.log($('#UROS').val());
         console.log(rowId);
+        upObject.ROS = _UROS;
+        upObject.appointmentROS = _UappointmentROS;
+        upObject.bodySystemROS = _UbodysysROS;
+        upObject.bodySystemROSCode = _UbodysysROScode;
+        upObject.codeROS = _UcodeROS;
+        upObject.commentROS = _UcommentROS;
+        upObject.hfcIdROS = _UhfcIdROS;
+        upObject.hfcOrderDetail = _UhfcOrderDetail;
+        upObject.hfcProviderDetail = _UhfcProviderDetail;
+        upObject.hfcROS = _UhfcROS;
+        upObject.locationROS = _UlocationHFCROS;
+        upObject.modalityROS = _UmodalityROS;
+        upObject.modalityROSCode = _UmodalityROScode;
+        upObject.patientConditionROS = _UPatientCondition;
+        upObject.patientConditionROSCd = _UpatientConditionROSCd;
+        upObject.priorityROS = _UPriorityROS;
+        upObject.priorityROScd = _UPriorityROScd;
 
         upObject.ROS = _UROS;
         upObject.codeROS = _UcodeROS;
         upObject.commentROS = _UcommentROS;
-         getObjectORCHFCDetail(hfc_cd, _UhfcROScode,upObject);
+         //getObjectORCHFCDetail(hfc_cd, _UhfcROScode,upObject);
         //getORCHFCDetail(hfc_cd, _UhfcROScode,$('#jsonId').val());
 
         var sum = _UROS + '| ' + _UcommentROS + '|'+_UmodalityROS+ '|'+_UbodysysROS+ '|'+_UhfcROS+ '|'+_UlocationHFCROS+ '|'+_UappointmentROS+ '|'+_UPatientCondition ;
@@ -631,17 +673,23 @@ $(document).ready(function () {
         var priorityLOS = $('#priorityLOS').val();
         var hfcLOS = $('#hfcLOS').val();
         var hfcIdLOS = $('#hfcIdLOS').val();
-        var patientCondition =  $('#patientConditionLOScd :selected').text();
-        var priority = $('#priorityLOScd :selected').text();
+        var pcVal = $('#patientConditionLOScd').val();
+        var patientCondition =  $("#patientConditionLOScd  option:selected").text();
+        var priVal = $("#priorityLOScd").val();
+        var priority = $("#priorityLOScd  option:selected").text();
+        var hfcOrderDetail = $('#hfcOrderDetailLIO').val();
+        var hfcProviderDetail = $('#hfcProviderDetailLIO').val();
         
 
         var $items = $('#searchLOS, #codeLOS, #catLOS,#sourceLOS,#containerLOS,#volumeLOS,#spclLOS,#commentLOS,#appointmentLOS,#priorityLOS,#hfcLOS,#hfcIdLOS,#patientConditionLOScd,#priorityLOScd');
         var obj1 = {
             Acode: 'LOS',
             patientCondition:patientCondition,
-            priority:priority
+            priority:priority,
+            hfcOrderDetail:hfcOrderDetail,
+            hfcProviderDetail:hfcProviderDetail
         };
-        getObjectORCHFCDetail(hfc_cd, hfcIdLOS,obj1);
+       // getObjectORCHFCDetail(hfc_cd, hfcIdLOS,obj1);
         $items.each(function () {
             obj1[this.id] = $(this).val();
         });
@@ -651,7 +699,7 @@ $(document).ready(function () {
        // getORCHFCDetail(hfc_cd, hfcIdLOS,index);
         console.log(obj1);
 
-        displayLOS(searchLOS, codeLOS, catLOS, sourceLOS, containerLOS, volumeLOS, spclLOS, commentLOS, appointmentLOS, priorityLOS,hfcLOS,hfcIdLOS);
+        displayLOS(searchLOS, codeLOS, catLOS, sourceLOS, containerLOS, volumeLOS, spclLOS, commentLOS, appointmentLOS, priority,hfcLOS,patientCondition);
 
         $("#searchLOS").val("");
         $("#codeLOS").val("");
@@ -688,7 +736,10 @@ $(document).ready(function () {
         $("#UcommentLOS").val(updateObj.commentLOS);
         $("#UappointmentLOS").val(updateObj.appointmentLOS);
         $("#UpatientConditionLOScd").val(updateObj.patientConditionLOScd);
-        $("#UpriorityLOScd").val(updateObj.priorityLOScd);
+        $("#UpriorityLOScd").val(updateObj.patientConditionLOScd);
+        $('#ureal_priorityLIO').val(updateObj.priorityLOScd);
+         $('#UhfcOrderDetailLIO').val(updateObj.hfcOrderDetail);
+        $('#UhfcProviderDetailLIO').val(updateObj.hfcProviderDetail);
         
         $("#UhfcLOS").val(updateObj.hfcLOS);
         $("#UhfcIdLOS").val(updateObj.hfcIdLOS);
@@ -703,42 +754,49 @@ $(document).ready(function () {
         e.preventDefault();
         var upObject = _data[$('#jsonIdLOS').val()];
         var rowId = $('#jsonIdLOS').val();
-        var _UsearchLOS = $('#UsearchLOS').val();
-        var _UcodeLOS = $('#UcodeLOS').val();
-        var _UcatLOS = $('#UcatLOS').val();
-        var _UsourceLOS = $('#UsourceLOS').val();
-        var _UcontainerLOS = $('#UcontainerLOS').val();
-        var _UvolumeLOS = $('#UvolumeLOS').val();
-        var _UspclLOS = $('#UspclLOS').val();
-        var _UcommentLOS = $('#UcommentLOS').val();
-        var _UappointmentLOS = $('#UappointmentLOS').val();
+        
+        var _UappointmentLOS = $("#UappointmentLOS").val();
+        var _UcatLOS = $("#UcatLOS").val();
+        var _UcodeLOS =   $("#UcodeLOS").val();
+        var _UcommentLOS = $("#UcommentLOS").val();
+        var _UcontainerLOS = $("#UcontainerLOS").val();
+        var _UhfcIdLOS =  $("#UhfcIdLOS").val();
+        var _UhfcLOS =  $("#UhfcLOS").val();
+        var _UhfcOrderDetail =  $('#UhfcOrderDetailLIO').val();
+        var _UhfcProviderDetail = $('#UhfcProviderDetailLIO').val();    
+      
+         var _UpatientCondition = $('#UpriorityLOScd ').val();
+           var _UpatientConditionLOScd = $("#UpriorityLOScd option[value="+_UpatientCondition+"]").text();
        
-        var _UhfcLOS = $('#UhfcLOS').val();
-        var _UhfcIdLOS = $('#UhfcIdLOS').val();
-         var _UpriorityLOS = $('#UpriorityLOScd: selected').text().trim();
-         var _UpatientConditionLOS = $('#UpatientConditionROScd: selected').text().trim();
-        var _UpriorityLOScd = $('#UpriorityLOScd').val();
-         var _UpatientConditionLOScd = $('#UpatientConditionROScd').val();
-
-        upObject.searchLOS = _UsearchLOS;
-        upObject.codeLOS = _UcodeLOS;
-        upObject.catLOS = _UcatLOS;
-        upObject.sourceLOS = _UsourceLOS;
-        upObject.containerLOS = _UcontainerLOS;
-        upObject.volumeLOS = _UvolumeLOS;
-        upObject.spclLOS = _UspclLOS;
-        upObject.commentLOS = _UcommentLOS;
+        var _Upriority =  $('#ureal_priorityLIO').val();
+         var _UpriorityLOScd =  $("#ureal_priorityLIO option[value="+_Upriority+"]").text();
+        var _UsearchLOS =  $("#UsearchLOS").val();
+        var _UsourceLOS = $("#UsourceLOS").val();
+        var _UspclLOS =  $("#UspclLOS").val();
+        var _UvolumeLOS = $("#UvolumeLOS").val();
+        
         upObject.appointmentLOS = _UappointmentLOS;
-        upObject.priorityLOS = _UpriorityLOS;
-        upObject.hfcLOS = _UhfcLOS;
+        upObject.catLOS = _UcatLOS;
+        upObject.codeLOS = _UcodeLOS;
+        upObject.commentLOS = _UcommentLOS;
+        upObject.containerLOS = _UcontainerLOS;
         upObject.hfcIdLOS = _UhfcIdLOS;
-        upObject.patientCondition = _UpriorityLOScd;
-        upObject.priority = _UpriorityLOS;
-        upObject.patientConditionROScd = _UpatientConditionLOScd;
-        upObject.priorityLOScd = _UpriorityLOScd;
-        getObjectORCHFCDetail(hfc_cd, _UhfcIdLOS,upObject);
+        upObject.hfcLOS = _UhfcLOS;
+       upObject.hfcOrderDetail = _UhfcOrderDetail;
+       upObject.hfcProviderDetail = _UhfcProviderDetail;
+       upObject.patientCondition = _UpatientCondition;
+       upObject.patientConditionLOScd = _UpatientConditionLOScd;
+       upObject.priority = _Upriority;
+       upObject.priorityLOScd = _UpriorityLOScd;
+       upObject.searchLOS = _UsearchLOS;
+       upObject.sourceLOS = _UsourceLOS;
+       upObject.spclLOS = _UspclLOS;
+       upObject.volumeLOS = _UvolumeLOS;
+        
+     
+   
 
-        var sum = _UsearchLOS + '|' + _UcatLOS + '|' + _UsourceLOS + '|' + _UcontainerLOS + '|' + _UvolumeLOS + '|' + _UspclLOS + '|' + _UcommentLOS + '|' + _UappointmentLOS + '|' + _UpriorityLOS+ '|' + _UhfcLOS;
+        var sum = _UsearchLOS + '|' + _UcatLOS + '|' + _UsourceLOS + '|' + _UcontainerLOS + '|' + _UvolumeLOS + '|' + _UspclLOS + '|' + _UcommentLOS + '|' + _UappointmentLOS + '|' + _Upriority+"|"+_UpatientCondition+ '|' + _UhfcLOS;
         console.log(upObject);
         $('#sum' + rowId).html(sum);
         $("#update_CIS040001").modal('toggle');
@@ -925,11 +983,17 @@ $('#acceptMON').click(function(){
          var testMON = $('#testMON').val();
          var searchHFC_MON = $('#searchHFC_MON').val();
          var searchDIS_MON = $('#searchDIS_MON').val();
+         var hfcOrderDetail = $('#hfcOrderDetailMON').val();
+         var hfcProviderDetail = $("#hfcProviderDetailMON").val();
         
         //console.log(codeFLU);
         
         var $items = $('#searchMON, #reqItem, #testMON, #searchHFC_MON, #searchDIS_MON,#MONHFC_cd,#codeMON');
-        var obj1 = {Acode: 'MON'};
+        var obj1 = {
+            Acode: 'MON',
+            hfcOrderDetail:hfcOrderDetail,
+            hfcProviderDetail:hfcProviderDetail
+        };
         $items.each(function () {
             obj1[this.id] = $(this).val();
         });
@@ -1034,6 +1098,8 @@ $('#acceptADW').click(function(){
     var _admitTime = $('#tCIS_ADWtime').val();
     var _wardName = $('#tCIS_ADWwardName').val();
     var _wardNameCd = $('#tCIS_ADWwardNameCd').val();
+    var _hfcOrderDetail = $('#hfcOrderDetailADW').val();
+    var _hfcProviderDetail = $('#hfcProviderDetailADW').val();
     
     var obj1 = {
         Acode : 'ADW',
@@ -1046,7 +1112,9 @@ $('#acceptADW').click(function(){
         AdmitDate : _admitDate,
         AdmitTime:_admitTime,
         WardName:_wardName,
-        WardNameCd:_wardNameCd
+        WardNameCd:_wardNameCd,
+        hfcOrderDetail:_hfcOrderDetail,
+        hfcProviderDetail : _hfcProviderDetail
     };
     console.log(obj1);
     _data.push(obj1);
@@ -1143,8 +1211,8 @@ function displayROS(codeROS, ROS, commentROS,modalityROS,modalityROScode,bodysys
     i = i + 1;
 }
 
-function displayLOS(searchLOS, codeLOS, catLOS, sourceLOS, containerLOS, volumeLOS, spclLOS, commentLOS, appointmentLOS, priorityLOS,hfcLOS,hfcIdLOS) {
-    var _tr = '<tr data-status="pagado" ><td><div class="ckbox"><input type="checkbox" id="checkbox1"><label for="checkbox1"></label></div></td><td><div class="media"><div class="media-body">Laboratory Request :<p class="summary" id="sum' + i + '">' + searchLOS + '|' + catLOS + '|' + sourceLOS + '|' + containerLOS + '|' + volumeLOS + '|' + spclLOS + '|' + commentLOS + '|' + appointmentLOS + '|' + priorityLOS + '|' + hfcLOS  +'</p></div></div></td><td><a data-toggle="modal"  data-target="#update_CIS040001" href="" class="updateBtnLOS" id="row|' + i + '"><i class="fa fa-pencil-square-o" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #337ab7;" ></i></a></a></td><td><a href="javascript:;" class="star"><a href="#" class="deleteBtn" id="row|' + i + '"><i class="fa fa-times" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #d9534f;"></i></a></a></td></tr>';
+function displayLOS(searchLOS, codeLOS, catLOS, sourceLOS, containerLOS, volumeLOS, spclLOS, commentLOS, appointmentLOS, priorityLOS,hfcLOS,patientCondition) {
+    var _tr = '<tr data-status="pagado" ><td><div class="ckbox"><input type="checkbox" id="checkbox1"><label for="checkbox1"></label></div></td><td><div class="media"><div class="media-body">Laboratory Request :<p class="summary" id="sum' + i + '">' + searchLOS + '|' + catLOS + '|' + sourceLOS + '|' + containerLOS + '|' + volumeLOS + '|' + spclLOS + '|' + commentLOS + '|' + appointmentLOS + '|' + priorityLOS +'|'+patientCondition +'|' + hfcLOS  +'</p></div></div></td><td><a data-toggle="modal"  data-target="#update_CIS040001" href="" class="updateBtnLOS" id="row|' + i + '"><i class="fa fa-pencil-square-o" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #337ab7;" ></i></a></a></td><td><a href="javascript:;" class="star"><a href="#" class="deleteBtn" id="row|' + i + '"><i class="fa fa-times" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #d9534f;"></i></a></a></td></tr>';
     $('#LOSNotes').append(_tr);
     i = i + 1;
 }
@@ -1240,6 +1308,47 @@ function  displayADW(_admitToDis, _patientReferFrom, _reason,_admitDate,_admitTi
                 }
                  obj1.hfcOrderDetail = order;             
                 obj1.hfcProviderDetail = provide;
+
+//                HFCOrderDetail.push(resultAry[0]) ;
+//                HFCProviderDetail.push(resultAry[1]);
+
+            }
+        });
+       
+    }
+    
+        function getObjectORCHFCDetailMON(OrderingHFC, ProviderHFC,obj1){
+        var order = "";
+        var provide = "";
+        var detail1 = [" "];
+        var hfcCode = {
+            orderingHFC:OrderingHFC,
+            providerHFC:ProviderHFC
+        };
+        console.log(hfcCode);
+        $.ajax({
+            url:"search/getORCHFC.jsp",
+            method:"POST",
+            timeout:3000,
+            data:hfcCode,
+//            async: false,
+            success:function(result){
+                console.log(result);
+                var resultAry = result.split("[#-#]");
+   
+                order = resultAry[0].trim();
+                provide = resultAry[1].trim();
+                if(order === "-NA-"){
+                    order = "-|-|-|-|-|-|-|-|-|-|-|-|-|-|-";
+                }
+                if(provide === "-NA-"){
+                    provide = "-|-|-|-|-|-|-|-|-|-|-|-|-|-|-";
+                }
+                var search = provide.split("|");
+                
+                 obj1.hfcOrderDetail = order;             
+                obj1.hfcProviderDetail = provide;
+                obj1.searchHFC_MON = search[11];
 
 //                HFCOrderDetail.push(resultAry[0]) ;
 //                HFCProviderDetail.push(resultAry[1]);

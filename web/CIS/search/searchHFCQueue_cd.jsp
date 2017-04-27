@@ -10,21 +10,13 @@
 <%
     Conn Conn = new Conn();
     //String key = request.getParameter("input");
-    String id = request.getParameter("id");
     //String id = "Klinik UTeM Kampus Industri";
-    String OrderHfc = session.getAttribute("HEALTH_FACILITY_CODE").toString();
-    String ProviderHfc = "";
+    String OrderHfc = request.getParameter("orderHfcCd");
+    String ProviderHfc = request.getParameter("providerHfcCd");
     
     String orderHfcDetail="-NA-";
     String providerHfcDetail="-NA-";
     
-
-    String searchProblem = "select hfc_cd,Concat(address1 ,address2,address3) AS location from adm_health_facility where hfc_name like '%" + id + "%' ";
-    ArrayList<ArrayList<String>> search = Conn.getData(searchProblem);
-   // out.print(searchProblem);
-    if (search.size() > 0) {
-    String searchHfcProblem =  search.get(0).get(0) + "|" + search.get(0).get(1);
-    ProviderHfc = search.get(0).get(0);
     
             String searchOrderHfc = "SELECT f.*,statea.Description AS state_name FROM adm_lookup_detail statea, "
                 + "(SELECT e.*,country.Description AS country_name FROM adm_lookup_detail country, "
@@ -65,12 +57,12 @@
             }
         }
     
-    out.print(searchHfcProblem + "[#-#]" +orderHfcDetail + "[#-#]" +providerHfcDetail);
+    out.print(orderHfcDetail + "[#-#]" +providerHfcDetail);
     
 //        for (int i = 0; i < search.size(); i++) {
 //            
 //            out.print(String.join("|", search.get(i)));
 //        }
 
-    }
+    
 %>        

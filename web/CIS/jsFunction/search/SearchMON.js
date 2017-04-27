@@ -44,6 +44,7 @@
                                 $('#matchHFC_MON').html(dataBack); // Return data (UL list) and insert it in the <div id="match"></div>
                                 $('#matchList li').on('click', function () { // When click on an element in the list
                                     $('#searchHFC_MON').val($(this).text()); // Update the field with the new element
+                                    searchHFCDetailMON();
                                     searchHFCMON();
                                     
                                     $('#matchHFC_MON').text(''); // Clear the <div id="match"></div>
@@ -203,6 +204,47 @@ function searchSOHCode(){
         });
 }
 
+function searchHFCDetailMON() {
+    var id = $('#searchHFC_MON').val();
+    $.ajax({
+        type: 'post',
+        url: 'search/searchHFC_cd.jsp',
+        data: {'id': id},
+        success: function (reply_data) {
+            var arryDetail = reply_data.trim().split("[#-#]");
+            
+            var array_data = String(arryDetail[0]).split("|");
+            var hfcCode = array_data[0];
+
+            console.log(hfcCode);
+            $("#hfcOrderDetailMON").val(arryDetail[1]);
+            $("#hfcProviderDetailMON").val(arryDetail[2]);
+            $('#hfcIdMON').val(hfcCode.trim());
+            
+        }
+    });
+}
+
+function searchHFCDetailUpdateMON() {
+    var id = $('#usearchHFC_MON').val();
+    $.ajax({
+        type: 'post',
+        url: 'search/searchHFC_cd.jsp',
+        data: {'id': id},
+        success: function (reply_data) {
+            var arryDetail = reply_data.trim().split("[#-#]");
+            
+            var array_data = String(arryDetail[0]).split("|");
+            var hfcCode = array_data[0];
+
+            console.log(hfcCode);
+            $("#UhfcOrderDetailMON").val(arryDetail[1]);
+            $("#UhfcProviderDetailMON").val(arryDetail[2]);
+            $('#UhfcIdMON').val(hfcCode.trim());
+            
+        }
+    });
+}
 
 function  searchHFCMON(){
      $('#searchDIS_MON').show();

@@ -19,43 +19,7 @@
             </div>
             <div class="modal-body">
                 <!-- content goes here -->
-                <div class="form-group">
-                    <input type="hidden" name="POS" id="codeROS" class="form-control input-lg"  tabindex="4">
-                </div>
-                <div class="form-group">
-                    <input class="form-control input-lg" type="text" name="problem"  id="ROS" placeholder="Search Radiology Procedure..." tabindex="4">
-                    <div id="matchROS"></div>
-                </div>
-                
-                <div class="row">
-                    <div class="col-xs-2 col-sm-2 col-md-2">
-                        <div class="form-group modalTextLabel">
-                            <h4 class="modal-title">Modality</h4>
-                        </div>
-                    </div>
-                    <div class="col-xs-4 col-sm-4 col-md-4">
-                        <div class="form-group">
-                            <input class="form-control input-lg" type="text" name="pro" id="modalityROS" readonly="">
-                            <input class="form-control input-lg" type="hidden" name="pro" id="modalityROSCode" readonly="">
-                        </div>
-                    </div>
-
-                    <div class="col-xs-2 col-sm-2 col-md-2">
-                        <div class="form-group modalTextLabel">
-                            <h4 class="modal-title">Body System</h4>
-                        </div>
-                    </div>
-                    <div class="col-xs-4 col-sm-4 col-md-4">
-                        <div class="form-group">
-                            <input class="form-control input-lg" type="text" name="pro" id="bodySystemROS" readonly="">
-                            <input class="form-control input-lg" type="hidden" name="pro" id="bodySystemROSCode" readonly="">
-                        </div>
-                    </div>
-
-                </div>
-                <br/>
-                <br/>
-                <div class="row">
+                                <div class="row">
                     <div class="col-xs-12 col-sm-12 col-md-12">
                         <div class="form-group">
                             <h4 class="modal-title" style="font-weight: bold">Service Provider</h4>
@@ -63,7 +27,7 @@
                     </div>
 
                 </div>
-                <div class="row">                    
+                                <div class="row">                    
                     <div class="col-xs-2 col-sm-2 col-md-2">
                         <div class="form-group">
                             <h4 class="modal-title modalTextLabel">Health Facility </h4>
@@ -72,6 +36,8 @@
                     <div class="col-xs-8 col-sm-8 col-md-8">
                         <div class="form-group">
                             <input class="form-control input-lg" type="text"  id="hfcROS" placeholder="">
+                            <input class="form-control input-lg" type="hidden"  id="hfcOrderDetail" placeholder="">
+                            <input class="form-control input-lg" type="hidden"  id="hfcProviderDetail" placeholder="">
                             <input class="form-control input-lg" type="hidden"  id="hfcIdROS">
                             <div id="matchHFCROS" ></div>
                         </div>
@@ -91,6 +57,44 @@
 
                     </div>
                 </div>
+                <div class="form-group">
+                    <input type="hidden" name="POS" id="codeROS" class="form-control input-lg"  tabindex="4">
+                </div>
+                <div class="form-group">
+                    <input class="form-control input-lg" type="text" name="problem"  id="ROS" placeholder="Search Radiology Procedure..." tabindex="4">
+                    <div id="matchROS"></div>
+                </div>
+                
+                <div class="row">
+                    <div class="col-xs-2 col-sm-2 col-md-2">
+                        <div class="form-group modalTextLabel">
+                            <h4 class="modal-title">Modality</h4>
+                        </div>
+                    </div>
+                    <div class="col-xs-4 col-sm-4 col-md-4">
+                        <div class="form-group">
+                            <input class="form-control input-lg" type="text" name="pro" id="modalityROS" readonly="">
+                            <input class="form-control input-lg" type="text" name="pro" id="modalityROSCode" readonly="">
+                        </div>
+                    </div>
+
+                    <div class="col-xs-2 col-sm-2 col-md-2">
+                        <div class="form-group modalTextLabel">
+                            <h4 class="modal-title">Body System</h4>
+                        </div>
+                    </div>
+                    <div class="col-xs-4 col-sm-4 col-md-4">
+                        <div class="form-group">
+                            <input class="form-control input-lg" type="text" name="pro" id="bodySystemROS" readonly="">
+                            <input class="form-control input-lg" type="text" name="pro" id="bodySystemROSCode" readonly="">
+                        </div>
+                    </div>
+
+                </div>
+                <br/>
+                <br/>
+
+
                 <br/>
                 <br/>
                 <div class="row">
@@ -206,6 +210,30 @@
             </div>
             <div class="modal-body">
                 <!-- content goes here -->
+                 <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-12">
+                        <div class="form-group">
+                            <h4 class="modal-title" style="font-weight: bold">Service Provider</h4>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="row">                    
+                    <div class="col-xs-2 col-sm-2 col-md-2">
+                        <div class="form-group">
+                            <h4 class="modal-title modalTextLabel">Health Facility </h4>
+                        </div>
+                    </div>
+                    <div class="col-xs-8 col-sm-8 col-md-8">
+                        <div class="form-group">
+                            <input class="form-control input-lg" type="text"  id="UhfcROS" placeholder="">
+                            <input class="form-control input-lg" type="hidden"  id="UhfcOrderDetail" placeholder="">
+                            <input class="form-control input-lg" type="hidden"  id="UhfcProviderDetail" placeholder="">
+                            <input class="form-control input-lg" type="hidden"  id="UhfcIdROS">
+                            <div id="UmatchHFCROS" ></div>
+                        </div>
+
+                    </div>
                 <div class="form-group">
                     <input type="hidden" name="POS" id="UcodeROS" class="form-control input-lg" tabindex="4">
                     <input type="hidden" name="jsonId" id="jsonId" class="form-control input-lg" placeholder="Comments" tabindex="4">
@@ -243,28 +271,7 @@
                 </div>
                 <br/>
                 <br/>
-                <div class="row">
-                    <div class="col-xs-12 col-sm-12 col-md-12">
-                        <div class="form-group">
-                            <h4 class="modal-title" style="font-weight: bold">Service Provider</h4>
-                        </div>
-                    </div>
-
-                </div>
-                <div class="row">                    
-                    <div class="col-xs-2 col-sm-2 col-md-2">
-                        <div class="form-group">
-                            <h4 class="modal-title modalTextLabel">Health Facility </h4>
-                        </div>
-                    </div>
-                    <div class="col-xs-8 col-sm-8 col-md-8">
-                        <div class="form-group">
-                            <input class="form-control input-lg" type="text"  id="UhfcROS" placeholder="">
-                            <input class="form-control input-lg" type="hidden"  id="UhfcIdROS">
-                            <div id="UmatchHFCROS" ></div>
-                        </div>
-
-                    </div>
+               
 
 
                 </div>

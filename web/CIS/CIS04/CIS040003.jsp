@@ -45,6 +45,9 @@
                     <div class="form-group">
                         <input class="form-control input-lg" type="text" name="searchHFC_MON"  id="searchHFC_MON" placeholder="Search Health Facility"  tabindex="4">
                         <div id="matchHFC_MON"></div>
+                                                      <input class="form-control input-lg" type="hidden"  id="hfcOrderDetailMON" placeholder="">
+                            <input class="form-control input-lg" type="hidden"  id="hfcProviderDetailMON" placeholder="">
+                            <input class="form-control input-lg" type="hidden"  id="hfcIdMON">
                     </div>   
                 </div>
                 

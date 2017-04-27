@@ -715,23 +715,55 @@ function convertEHR(ehr) {
             var monArryInfo = monArry[1].split("^");
             var monArryTest = monArry[2].split("^");
             var monArryHfc = monArry[3].split("^");
-          //    processNotes += "MOR|"+data[key].codeMON+"^" +data[key].searchMON+"|"+data[key].reqItem+"^"+data[key].testMON+"|"+data[key].MONHFC_cd+"^"+data[key].searchHFC_MON+"^"+data[key].searchDIS_MON+"|<cr>\n";
-           // var MORData = convertNoteToData(ARQ);
-//            console.log(ARQData);
+            console.log(monArryInfo);
+            console.log(monArryTest);
+            console.log(monArryHfc);
             var objMON = {
                 Acode:"MON",
                 codeMON:monArryInfo[0],
-                searchMON:monArryInfo[1],
+                searchMON:monArryTest[1],
                 reqItem:monArryTest[0],
-                testMON:monArryTest[1],
-                MONHFC_cd:monArryHfc[0],
-                searchHFC_MON:monArryHfc[1],
-                searchDIS_MON:monArryHfc[2]
+                testMON:monArryTest[0],
+                MONHFC_cd:monArry[12].trim(),
+                searchHFC_MON:monArry[12],
+                searchDIS_MON:monArry[10]
             };
+            getObjectORCHFCDetailMON(hfc_cd, objMON.MONHFC_cd,objMON);
+
            _data.push(objMON);
            //  console.log(objPRI);
         displayMON(objMON.searchMON,objMON.searchHFC_MON, objMON.searchDIS_MON);
+       }else if (header === "ADW") {
+            ADW = EHRArry[i];
+            console.log(ADW);
+            var adwArry = ADW.split("|");
+            var adwInfo = adwArry[2].split("^");
+            var adwDateTime = adwInfo[11].split(" ");
+            console.log(adwInfo);
+
+            var objADW = {
+                Acode:"ADW",
+                AdmitDate: adwDateTime[0],
+                AdmitTime: adwDateTime[1],
+                AdmitToDiscipline: adwInfo[2],
+                AdmitToDisciplineCd: adwInfo[1],
+                AdmittedBefore:adwInfo[10],
+                PatientReferFrom:disciplineName,
+                PatientReferFromCd:discipline,
+                Reason:adwInfo[7],
+                WardName:adwInfo[5],
+                WardNameCd:adwInfo[4]
+                
+            };
+            getObjectORCHFCDetail(hfc_cd, hfc_cd,objADW);
+            displayADW(objADW.AdmitToDiscipline, objADW.PatientReferFrom, objADW.Reason,objADW.AdmitDate,objADW.AdmitTime,objADW.WardName)
+            
+            
+           _data.push(objADW);
+           //  console.log(objPRI);
+       // displayMON(objMON.searchMON,objMON.searchHFC_MON, objMON.searchDIS_MON);
        }
+       
     }
     console.log(_data);
 }

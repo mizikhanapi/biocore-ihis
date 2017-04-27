@@ -10,10 +10,12 @@
 <%
      Conn Conn = new Conn();
     String key = request.getParameter("input");
+    String hfc_cd = request.getParameter("hfc_cd");
+    
     //String id = request.getParameter("id");
     
    
-    String searchProblem = "select ris_procedure_name from ris_procedure_master where CONCAT(UPPER(ris_procedure_name),LOWER(ris_procedure_name)) like '%" +  key + "%' ";
+    String searchProblem = "select ris_procedure_name from ris_procedure_master where CONCAT(UPPER(ris_procedure_name),LOWER(ris_procedure_name)) like '%" +  key + "%' AND hfc_cd = '"+hfc_cd+"' ";
     ArrayList<ArrayList<String>> search = Conn.getData(searchProblem);
     if (search.size() > 0) {
 %>                           

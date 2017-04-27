@@ -2,10 +2,13 @@
 function searchROSCD(){
   
         var id = $.trim($('#ROS').val());
+      
         $.ajax({
         type:'post',
         url:'search/searchRISProcedure_cd.jsp',
-        data: {'id': id},                
+        data: {'id': id,
+ 
+    },                
         success: function(reply_data){
             var array_data = String(reply_data).split("|");
             var urosCode = array_data[0];
@@ -59,9 +62,10 @@ function UsearchROSCD(){
  $(function () {
                  $("#ROS").on('keyup', function () { // everytime keyup event
                     var input = $(this).val(); // We take the input value
+                      var hfc_cd = $('#hfcIdROS').val();
                     if (input.length >= 1) { // Minimum characters = 2 (you can change)
                         $('#matchROS').html('<img src="img/LoaderIcon.gif" />'); // Loader icon apprears in the <div id="match"></div>
-                        var dataFields = {'input': input}; // We pass input argument in Ajax
+                        var dataFields = {'input': input,       'hfc_cd' : hfc_cd}; // We pass input argument in Ajax
                         $.ajax({
                             type: "POST",
                             url: "search/searchRISProcedure.jsp", // call the php file ajax/tuto-autocomplete.php
@@ -92,9 +96,10 @@ function UsearchROSCD(){
  $(function () {
                  $("#UROS").on('keyup', function () { // everytime keyup event
                     var input = $(this).val(); // We take the input value
+                    var hfc_cd = $('#UhfcIdROS').val();
                     if (input.length >= 1) { // Minimum characters = 2 (you can change)
                         $('#UmatchROS').html('<img src="img/LoaderIcon.gif" />'); // Loader icon apprears in the <div id="match"></div>
-                        var dataFields = {'input': input}; // We pass input argument in Ajax
+                        var dataFields = {'input': input,'hfc_cd':hfc_cd}; // We pass input argument in Ajax
                         $.ajax({
                             type: "POST",
                             url: "search/searchRISProcedure.jsp", // call the php file ajax/tuto-autocomplete.php
