@@ -12,6 +12,8 @@
 <%
     Conn conn = new Conn();
     String hfc = session.getAttribute("HEALTH_FACILITY_CODE").toString();
+    String dis = session.getAttribute("DISCIPLINE_CODE").toString();
+    String sub = session.getAttribute("SUB_DISCIPLINE_CODE").toString();
 %>
 
 <table  id="mdcTable"  class="table table-striped table-bordered" cellspacing="0" width="100%">
@@ -40,6 +42,9 @@
     <th style="display: none">PACKAGING</th>
     <th style="display: none">PACKAGING TYPE</th>
     <th style="display: none">PRICE/PACK</th>
+    <th style="display: none">HFC</th>
+    <th style="display: none">DISCIPLINE</th>
+    <th style="display: none">SUB-DISCIPLINE</th>
     <th style="text-align: center;">Update</th>
     <th style="text-align: center;">Delete</th>
 </thead>
@@ -48,7 +53,8 @@
     <%
         String sqlMain = " SELECT UD_MDC_CODE,UD_ATC_CODE,D_TRADE_NAME,D_GNR_NAME,D_ROUTE_CODE,D_FORM_CODE,D_STRENGTH,D_ADVISORY_CODE,"
                 + "D_STOCK_QTY,D_QTY,D_QTYT,D_DURATION,D_DURATIONT,D_FREQUENCY,D_CAUTION_CODE,D_EXP_DATE,D_CLASSIFICATION,STATUS,D_LOCATION_CODE,"
-                + "D_SELL_PRICE,D_COST_PRICE,D_PACKAGING,D_PACKAGINGT,D_PRICE_PPACK FROM pis_mdc2 WHERE hfc_cd  = '"+hfc+"'";
+                + "D_SELL_PRICE,D_COST_PRICE,D_PACKAGING,D_PACKAGINGT,D_PRICE_PPACK,hfc_cd,discipline_cd,subdiscipline_cd "
+                + "FROM pis_mdc2 WHERE hfc_cd  = '" + hfc + "' AND discipline_cd  = '" + dis + "' ";
         ArrayList<ArrayList<String>> dataMTC = conn.getData(sqlMain);
 
         int sizeMain = dataMTC.size();
@@ -88,6 +94,9 @@
 <td style="display: none"><%= dataMTC.get(s).get(21)%></td>
 <td style="display: none"><%= dataMTC.get(s).get(22)%></td>
 <td style="display: none"><%= dataMTC.get(s).get(23)%></td>
+<td style="display: none"><%= dataMTC.get(s).get(24)%></td>
+<td style="display: none"><%= dataMTC.get(s).get(25)%></td>
+<td style="display: none"><%= dataMTC.get(s).get(26)%></td>
 <td>
     <!-- Update Button Start -->
     <a id="mdcUpdateTButton" data-toggle="modal" data-target="#mdcUpdateModal"><i class="fa fa-pencil-square-o" aria-hidden="true" style="display: inline-block;color: #337ab7;"></i></a>
@@ -109,7 +118,7 @@
 
 <!-- Modal Update MTC End -->
 <div class="modal fade" id="mdcUpdateModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
-    <div class="modal-dialog" style="width:60%;">
+    <div class="modal-dialog" style="width:70%;">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal"><i class="fa fa-times fa-lg"></i></button>
@@ -118,9 +127,34 @@
             <div class="modal-body">
 
                 <!-- content goes here -->
-                <form class="form-horizontal" >
+                <form class="form-horizontal" autocomplete="off">
                     <div class="row">
                         <div class="col-md-6">
+
+                            <!-- Text input-->
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" for="textinput">HEALTH FACILITY CODE</label>
+                                <div class="col-md-8">
+                                    <input id="updateMDCHFC" name="textinput" type="text" class="form-control input-md" value="<%= hfc%>" readonly>
+                                </div>
+                            </div>
+
+                            <!-- Text input-->
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" for="textinput">DISCIPLINE CODE</label>
+                                <div class="col-md-8">
+                                    <input id="updateMDCDISCIPLINE" name="textinput" type="text" class="form-control input-md"  value="<%= dis%>" readonly>
+                                </div>
+                            </div>
+
+                            <!-- Text input-->
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" for="textinput">SUB-DISCIPLINE CODE</label>
+                                <div class="col-md-8">
+                                    <input id="updateMDCSUBDISCIPLINE" name="textinput" type="text" class="form-control input-md" value="<%= sub%>" readonly>
+                                </div>
+                            </div>
+
                             <h4>Drug Information</h4>
                             <hr/>
 
@@ -164,7 +198,7 @@
                                     <select id="updateD_ROUTE_CODE" name="selectbasic" class="form-control">
                                         <option value="Select Drug Route">Select Drug Route</option>
                                         <%
-                                            String sql2 = "SELECT Master_Reference_code,Detail_Reference_code, Description FROM adm_lookup_detail where Master_Reference_code = '0066' ";
+                                            String sql2 = "SELECT Master_Reference_code,Detail_Reference_code, Description FROM adm_lookup_detail where Master_Reference_code = '0066' AND hfc_cd = '" + hfc + "' ";
                                             ArrayList<ArrayList<String>> listOfDRoute = conn.getData(sql2);
 
                                             int size2 = listOfDRoute.size();
@@ -188,7 +222,7 @@
                                     <select id="updateD_FORM_CODE" name="selectbasic" class="form-control">
                                         <option value="Select Dosage Form">Select Dosage Form</option>
                                         <%
-                                            String sql3 = "SELECT Master_Reference_code,Detail_Reference_code, Description FROM adm_lookup_detail where Master_Reference_code = '0067' ";
+                                            String sql3 = "SELECT Master_Reference_code,Detail_Reference_code, Description FROM adm_lookup_detail where Master_Reference_code = '0067' AND hfc_cd = '" + hfc + "' ";
                                             ArrayList<ArrayList<String>> listOfDForm = conn.getData(sql3);
 
                                             int size3 = listOfDForm.size();
@@ -295,7 +329,7 @@
                                     <select id="updateD_QTYT" name="addD_QTYT" class="form-control">
                                         <option value="No Dose">No Dose</option>
                                         <%
-                                            String sql4 = "SELECT Master_Reference_code,Detail_Reference_code, Description FROM adm_lookup_detail where Master_Reference_code = '0025' ";
+                                            String sql4 = "SELECT Master_Reference_code,Detail_Reference_code, Description FROM adm_lookup_detail where Master_Reference_code = '0025' AND hfc_cd = '" + hfc + "' ";
                                             ArrayList<ArrayList<String>> listOfDUOM = conn.getData(sql4);
 
                                             int size4 = listOfDUOM.size();
@@ -319,7 +353,7 @@
                                     <select id="updateD_FREQUENCY" name="addD_FREQUENCY" class="form-control">
                                         <option value="No Frequency">No Frequency</option>
                                         <%
-                                            String sql5 = "SELECT Master_Reference_code,Detail_Reference_code, Description FROM adm_lookup_detail where Master_Reference_code = '0088' ";
+                                            String sql5 = "SELECT Master_Reference_code,Detail_Reference_code, Description FROM adm_lookup_detail where Master_Reference_code = '0088' AND hfc_cd = '" + hfc + "' ";
                                             ArrayList<ArrayList<String>> listOfDFreq = conn.getData(sql5);
 
                                             int size5 = listOfDFreq.size();
@@ -346,7 +380,7 @@
                                     <select id="updateD_DURATIONT" name="addD_DURATIONT" class="form-control">
                                         <option value="No Duration">No Duration</option>
                                         <%
-                                            String sql6 = "SELECT Master_Reference_code,Detail_Reference_code, Description FROM adm_lookup_detail where Master_Reference_code = '0089' ";
+                                            String sql6 = "SELECT Master_Reference_code,Detail_Reference_code, Description FROM adm_lookup_detail where Master_Reference_code = '0089' AND hfc_cd = '" + hfc + "' ";
                                             ArrayList<ArrayList<String>> listOfDDura = conn.getData(sql6);
 
                                             int size6 = listOfDDura.size();
@@ -370,7 +404,7 @@
                                     <select id="updateD_ADVISORY_CODE" name="addD_ADVISORY_CODE" class="form-control">
                                         <option value="No Instruction">No Instruction</option>
                                         <%
-                                            String sql7 = "SELECT Master_Reference_code,Detail_Reference_code, Description FROM adm_lookup_detail where Master_Reference_code = '0087' ";
+                                            String sql7 = "SELECT Master_Reference_code,Detail_Reference_code, Description FROM adm_lookup_detail where Master_Reference_code = '0087' AND hfc_cd = '" + hfc + "' ";
                                             ArrayList<ArrayList<String>> listOfDInst = conn.getData(sql7);
 
                                             int size7 = listOfDInst.size();
@@ -410,7 +444,7 @@
                                     <select id="updateD_CLASSIFICATION" name="updateD_CLASSIFICATION" class="form-control">
                                         <option value="No Classification">No Classification</option>
                                         <%
-                                            String sql8 = "SELECT Master_Reference_code,Detail_Reference_code, Description FROM adm_lookup_detail where Master_Reference_code = '0091' ";
+                                            String sql8 = "SELECT Master_Reference_code,Detail_Reference_code, Description FROM adm_lookup_detail where Master_Reference_code = '0091' AND hfc_cd = '" + hfc + "' ";
                                             ArrayList<ArrayList<String>> listOfDClass = conn.getData(sql8);
 
                                             int size8 = listOfDClass.size();
@@ -451,8 +485,8 @@
 
 
 <script type="text/javascript">
-    
-    
+
+
     // Date Picker For Update
     $("#updateD_EXP_DATE").datepicker({
         changeMonth: true,
@@ -788,14 +822,14 @@
         }
     });
     // Update Function End
-    
-    
+
+
 </script>
 
 <script type="text/javascript" charset="utf-8">
-    
+
     $(document).ready(function () {
-        
+
         $('#mdcTable').DataTable({
             pageLength: 15,
             initComplete: function (settings, json) {
@@ -820,7 +854,7 @@
                 }
             ]
         });
-        
-        
+
+
     });
 </script>

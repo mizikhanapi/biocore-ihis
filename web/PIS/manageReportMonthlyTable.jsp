@@ -14,6 +14,9 @@
 
 <%
     Conn conn = new Conn();
+    String hfc = session.getAttribute("HEALTH_FACILITY_CODE").toString();
+    String dis = session.getAttribute("DISCIPLINE_CODE").toString();
+    String sub = session.getAttribute("SUB_DISCIPLINE_CODE").toString();
 %>
 
 
@@ -31,14 +34,16 @@
 </thead>
 <tbody>
 
-    <%
-        NumberFormat formatterInt = new DecimalFormat("#0");
+    <%        NumberFormat formatterInt = new DecimalFormat("#0");
         NumberFormat formatter = new DecimalFormat("#0.00");
 
         String sql = " SELECT DATE_FORMAT(pis_dispense_master.DISPENSED_DATE, '%M %Y') AS DATE,COUNT(pis_dispense_detail.DRUG_ITEM_CODE), "
-                + " SUM(pis_dispense_detail.DISPENSED_QTY),SUM(pis_dispense_detail.DISPENSED_QTY * pis_mdc2.D_SELL_PRICE) "
+                + " SUM(pis_dispense_detail.DISPENSED_QTY),SUM(pis_dispense_detail.DISPENSED_QTY * pis_mdc2.D_SELL_PRICE)  "
                 + " FROM pis_dispense_master JOIN pis_dispense_detail ON (pis_dispense_master.ORDER_NO =  pis_dispense_detail.ORDER_NO) "
-                + " JOIN pis_mdc2 ON (pis_dispense_detail.DRUG_ITEM_CODE =  pis_mdc2.UD_MDC_CODE) GROUP BY DATE;";
+                + " JOIN pis_mdc2 ON (pis_dispense_detail.DRUG_ITEM_CODE =  pis_mdc2.UD_MDC_CODE) "
+                + " WHERE pis_dispense_master.LOCATION_CODE  = '04010101' AND pis_dispense_master.DISCIPLINE_CODE  = '001'  "
+                + " AND pis_mdc2.hfc_cd  = '04010101' AND pis_mdc2.discipline_cd  = '001' GROUP BY DATE; ";
+        
         ArrayList<ArrayList<String>> dataReportMonthly = conn.getData(sql);
 
         int size = dataReportMonthly.size();
@@ -59,7 +64,7 @@
 
 <script type="text/javascript" charset="utf-8">
     $(document).ready(function () {
-        
+
 
 
         $('#reportMonthlyTable').DataTable({

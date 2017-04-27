@@ -23,7 +23,7 @@
             <div class="modal-body">
 
                 <!-- content goes here -->
-                <form class="form-horizontal" >
+                <form class="form-horizontal" autocomplete="off">
                     <div class="row">
                         <div class="col-md-6">
 
@@ -94,7 +94,7 @@
                                 <label class="col-md-4 control-label" for="textinput">Country Code</label>
                                 <div class="col-md-8">
                                     <input id="addCOUNTRY_CODE" type="text" class="form-control" placeholder="Please Search Country Code (Optional)" maxlength="10">
-                                    <div id="addCOUNTRY_CODESearch">
+                                    <div id="addCOUNTRY_CODESearch" class="search-drop">
                                         <!--for search area-->
                                     </div>
                                 </div>
@@ -105,7 +105,7 @@
                                 <label class="col-md-4 control-label" for="textinput">State Code</label>
                                 <div class="col-md-8">
                                     <input id="addSTATE_CODE" type="text" class="form-control" placeholder="Please Search State Code (Optional)" maxlength="10">
-                                    <div id="addSTATE_CODESearch">
+                                    <div id="addSTATE_CODESearch" class="search-drop">
                                         <!--for search area-->
                                     </div>
                                 </div>
@@ -116,7 +116,7 @@
                                 <label class="col-md-4 control-label" for="textinput">District Code</label>
                                 <div class="col-md-8">
                                     <input id="addDISTRICT_CODE" type="text" class="form-control" placeholder="Please Search District Code (Optional)" maxlength="10">
-                                    <div id="addDISTRICT_CODESearch">
+                                    <div id="addDISTRICT_CODESearch" class="search-drop">
                                         <!--for search area-->
                                     </div>
                                 </div>
@@ -127,7 +127,7 @@
                                 <label class="col-md-4 control-label" for="textinput">Town Code</label>
                                 <div class="col-md-8">
                                     <input id="addTOWN_CODE" type="text" class="form-control" placeholder="Please Search Town Code (Optional)" maxlength="10">
-                                    <div id="addTOWN_CODESearch">
+                                    <div id="addTOWN_CODESearch" class="search-drop">
                                         <!--for search area-->
                                     </div>
                                 </div>
@@ -138,7 +138,7 @@
                                 <label class="col-md-4 control-label" for="textinput">Postcode</label>
                                 <div class="col-md-8">
                                     <input id="addPOSTCODE" type="number" class="form-control" placeholder="Please Search Postcode (Optional)" maxlength="10">
-                                    <div id="addPOSTCODESearch">
+                                    <div id="addPOSTCODESearch" class="search-drop">
                                         <!--for search area-->
                                     </div>
                                 </div>

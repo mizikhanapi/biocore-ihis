@@ -13,6 +13,7 @@
 
 <%
     Conn conn = new Conn();
+    String hfc = session.getAttribute("HEALTH_FACILITY_CODE").toString();
 %>
 
 
@@ -39,7 +40,8 @@
 
     <%
         String sql = " SELECT Supplier_ID, Supplier_Name,Office_Tel_No,IFNULL(Email,''),IFNULL(Mobile_No,''),IFNULL(Fax_No,''),IFNULL(ADDRESS1,''),IFNULL(ADDRESS2,''),"
-                + "IFNULL(ADDRESS3,''),IFNULL(DISTRICT_CODE,''),IFNULL(TOWN_CODE,''),IFNULL(POSTCODE,''),IFNULL(STATE_CODE,''),IFNULL(COUNTRY_CODE,'') FROM pis_supplier_info";
+                + "IFNULL(ADDRESS3,''),IFNULL(DISTRICT_CODE,''),IFNULL(TOWN_CODE,''),IFNULL(POSTCODE,''),IFNULL(STATE_CODE,''),IFNULL(COUNTRY_CODE,''),hfc_cd "
+                + " FROM pis_supplier_info  WHERE hfc_cd  = '" + hfc + "'";
         ArrayList<ArrayList<String>> dataSupplier = conn.getData(sql);
 
         int size = dataSupplier.size();
@@ -92,7 +94,7 @@
             <div class="modal-body">
 
                 <!-- content goes here -->
-                <form class="form-horizontal" >
+                <form class="form-horizontal" autocomplete="off">
                     <div class="row">
                         <div class="col-md-6">
 
@@ -162,7 +164,7 @@
                                 <label class="col-md-4 control-label" for="textinput">Country Code</label>
                                 <div class="col-md-8">
                                     <input id="updateCOUNTRY_CODE" type="text" class="form-control" placeholder="Please Search Country Code (Optional)" maxlength="10">
-                                    <div id="updateCOUNTRY_CODESearch">
+                                    <div id="updateCOUNTRY_CODESearch" class="search-drop">
                                         <!--for search area-->
                                     </div>
                                 </div>
@@ -173,7 +175,7 @@
                                 <label class="col-md-4 control-label" for="textinput">State Code</label>
                                 <div class="col-md-8">
                                     <input id="updateSTATE_CODE" type="text" class="form-control" placeholder="Please Search State Code (Optional)" maxlength="10">
-                                    <div id="updateSTATE_CODESearch">
+                                    <div id="updateSTATE_CODESearch" class="search-drop">
                                         <!--for search area-->
                                     </div>
                                 </div>
@@ -184,7 +186,7 @@
                                 <label class="col-md-4 control-label" for="textinput">District Code</label>
                                 <div class="col-md-8">
                                     <input id="updateDISTRICT_CODE" type="text" class="form-control" placeholder="Please Search District Code (Optional)" maxlength="10">
-                                    <div id="updateDISTRICT_CODESearch">
+                                    <div id="updateDISTRICT_CODESearch" class="search-drop">
                                         <!--for search area-->
                                     </div>
                                 </div>
@@ -195,7 +197,7 @@
                                 <label class="col-md-4 control-label" for="textinput">Town Code</label>
                                 <div class="col-md-8">
                                     <input id="updateTOWN_CODE" type="text" class="form-control" placeholder="Please Search Town Code (Optional)" maxlength="10">
-                                    <div id="updateTOWN_CODESearch">
+                                    <div id="updateTOWN_CODESearch" class="search-drop">
                                         <!--for search area-->
                                     </div>
                                 </div>
@@ -206,7 +208,7 @@
                                 <label class="col-md-4 control-label" for="textinput">Postcode</label>
                                 <div class="col-md-8">
                                     <input id="updatePOSTCODE" type="number" class="form-control" placeholder="Please Search Postcode (Optional)" maxlength="10">
-                                    <div id="updatePOSTCODESearch">
+                                    <div id="updatePOSTCODESearch" class="search-drop">
                                         <!--for search area-->
                                     </div>
                                 </div>
@@ -550,7 +552,7 @@
             } else if (Fax_NoCheck.checkValidity() === false) {
                 bootbox.alert("Please Insert The Supplier Fax Number between 9 to 11 Numbers");
             } else {
-                
+
 
                 var data = {
                     Supplier_ID: Supplier_ID,

@@ -9,24 +9,26 @@
 <%@page import="main.RMIConnector"%>
 <%
     Conn conn = new Conn();
+    String hfc = session.getAttribute("HEALTH_FACILITY_CODE").toString();
+    String dis = session.getAttribute("DISCIPLINE_CODE").toString();
+    String sub = session.getAttribute("SUB_DISCIPLINE_CODE").toString();
     String key = request.getParameter("input");
-    String searchProblem = "SELECT UD_ATC_Code,UD_ATC_Desc FROM pis_atc WHERE UD_ATC_Code like '%"+key+"%' OR UD_ATC_Desc like '%"+key+"%'";
+    String searchProblem = "SELECT UD_ATC_Code,UD_ATC_Desc FROM pis_atc WHERE hfc_cd  = '" + hfc + "' AND discipline_cd  = '" + dis + "' AND (UD_ATC_Code like '%" + key + "%' OR UD_ATC_Desc like '%" + key + "%') ";
     ArrayList<ArrayList<String>> search = conn.getData(searchProblem);
-    if (search.size() > 0)
-            {
+    if (search.size() > 0) {
 %>
+
 <ul id="matchListATC" style="width: 300px; height: 200px; overflow: auto">
-    <% for (int i = 0; i < search.size(); i++)
-        {
+    <% for (int i = 0; i < search.size(); i++) {
     %>
     <li value="<%=search.get(i).get(0)%>"><a style="cursor:pointer; color: black;"><%=search.get(i).get(0)%> | <%=search.get(i).get(1)%></a></li>
-    <%
-        }
-    %>
+        <%
+            }
+        %>
 </ul>
-    
-<%}else{%>
+
+<%} else {%>
 <span>No Record Found!</span>
-<% 
+<%
     }
 %>

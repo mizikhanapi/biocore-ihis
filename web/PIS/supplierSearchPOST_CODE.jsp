@@ -11,7 +11,8 @@
 <%
     Conn conn = new Conn();
     String key = request.getParameter("input");
-    String searchProblem = "SELECT Master_Reference_code,Detail_Reference_code,Description FROM adm_lookup_detail WHERE Master_Reference_code = '0079' AND (Detail_Reference_code like '%" + key + "%' OR Description like '%" + key + "%') ";
+    String hfc = session.getAttribute("HEALTH_FACILITY_CODE").toString();
+    String searchProblem = "SELECT Master_Reference_code,Detail_Reference_code,Description FROM adm_lookup_detail WHERE Master_Reference_code = '0079' AND hfc_cd  = '" + hfc + "' AND (Detail_Reference_code like '%" + key + "%' OR Description like '%" + key + "%') ";
     ArrayList<ArrayList<String>> search = conn.getData(searchProblem);
     if (search.size() > 0) {
 %>

@@ -15,6 +15,9 @@
     Config.getBase_url(request);
 
     Conn conn = new Conn();
+    String hfc = session.getAttribute("HEALTH_FACILITY_CODE").toString();
+    String dis = session.getAttribute("DISCIPLINE_CODE").toString();
+    String sub = session.getAttribute("SUB_DISCIPLINE_CODE").toString();
 
 %>
 
@@ -225,7 +228,7 @@
                                         <label class="col-md-4 control-label" for="textinput">Search Drug *</label>
                                         <div class="col-md-8">
                                             <input id="orderDrugSearchInput" name="orderDrugSearchInput" type="text" placeholder="Search Drug"  class="form-control input-md">
-                                            <div id="orderDrugSearchInputDisplayResult"></div>
+                                            <div id="orderDrugSearchInputDisplayResult" class="search-drop"></div>
                                         </div>
                                     </div>
                                     <!-- Text input-->
@@ -312,7 +315,8 @@
                                         <div class="col-md-4">
                                             <select id="orderDrugInputDoseT" name="orderDrugInputDoseT" class="form-control">
                                                 <option value="No Dose">Select Dose</option>
-                                                <%                                            String sql4 = "SELECT Master_Reference_code,Detail_Reference_code, Description FROM adm_lookup_detail where Master_Reference_code = '0025' ";
+                                                <%  String sql4 = "SELECT Master_Reference_code,Detail_Reference_code, Description FROM adm_lookup_detail "
+                                                        + " where Master_Reference_code = '0025' AND hfc_cd = '" + hfc + "' ";
                                                     ArrayList<ArrayList<String>> listOfDUOM = conn.getData(sql4);
 
                                                     int size4 = listOfDUOM.size();
@@ -334,7 +338,8 @@
                                         <div class="col-md-8">
                                             <select id="orderDrugInputFrequency" name="orderDrugInputFrequency" class="form-control">
                                                 <option value="No Frequency">Select Frequency</option>
-                                                <%                                            String sql5 = "SELECT Master_Reference_code,Detail_Reference_code, Description FROM adm_lookup_detail where Master_Reference_code = '0088' ";
+                                                <%  String sql5 = "SELECT Master_Reference_code,Detail_Reference_code, Description FROM adm_lookup_detail "
+                                                        + " where Master_Reference_code = '0088' AND hfc_cd = '"+hfc+"' ";
                                                     ArrayList<ArrayList<String>> listOfDFreq = conn.getData(sql5);
 
                                                     int size5 = listOfDFreq.size();
@@ -359,7 +364,8 @@
                                             <select id="orderDrugInputDurationT" name="orderDrugInputDurationT" class="form-control">
                                                 <option value="No Duration">Select Duration</option>
                                                 <%
-                                                    String sql6 = "SELECT Master_Reference_code,Detail_Reference_code, Description FROM adm_lookup_detail where Master_Reference_code = '0089' ";
+                                                    String sql6 = "SELECT Master_Reference_code,Detail_Reference_code, Description FROM adm_lookup_detail "
+                                                            + " where Master_Reference_code = '0089' AND hfc_cd = '"+hfc+"'  ";
                                                     ArrayList<ArrayList<String>> listOfDDura = conn.getData(sql6);
 
                                                     int size6 = listOfDDura.size();

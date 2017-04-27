@@ -15,17 +15,19 @@
 <%
     Conn conn = new Conn();
     String orderNo = request.getParameter("orderNo");
+    String HEALTH_FACILITY_CODE = (String) session.getAttribute("HEALTH_FACILITY_CODE");
+    String DISCIPLINE_CODE = (String) session.getAttribute("DISCIPLINE_CODE");
 
     NumberFormat formatter = new DecimalFormat("#0.00");
     NumberFormat formatterInt = new DecimalFormat("#0");
 
     String orderList = "select ORDER_NO,DRUG_ITEM_CODE,DRUG_ITEM_DESC,DRUG_FREQUENCY,DRUG_ROUTE,DRUG_FORM,DRUG_STRENGTH,"
-            + "DRUG_DOSAGE,ORDER_OUM,DURATION,ORDER_STATUS,QTY_ORDERED,QTY_SUPPLIED,SUPPLIED_OUM,QTY_DISPENSED,"
-            + "DISPENSE_OUM,pis_order_detail.STATUS,DURATIONT,D_STOCK_QTY,D_SELL_PRICE,"
-            + "CASE ORDER_STATUS WHEN '0' THEN 'New' WHEN '1' THEN 'Partial' WHEN '2' THEN 'Complete Partial' WHEN '3' THEN 'Full Complete' WHEN '4' THEN 'Full' END  AS ORDER_STATUSCON"
-            + " FROM pis_order_detail "
-            + "JOIN pis_mdc2 ON (pis_order_detail.DRUG_ITEM_CODE = pis_mdc2.UD_MDC_CODE) "
-            + "where ORDER_NO = '" + orderNo + "' AND (ORDER_STATUS='0' OR ORDER_STATUS='1')  ";
+            + " DRUG_DOSAGE,ORDER_OUM,DURATION,ORDER_STATUS,QTY_ORDERED,QTY_SUPPLIED,SUPPLIED_OUM,QTY_DISPENSED,"
+            + " DISPENSE_OUM,pis_order_detail.STATUS,DURATIONT,D_STOCK_QTY,D_SELL_PRICE,"
+            + " CASE ORDER_STATUS WHEN '0' THEN 'New' WHEN '1' THEN 'Partial' WHEN '2' THEN 'Complete Partial' WHEN '3' THEN 'Full Complete' WHEN '4' THEN 'Full' END  AS ORDER_STATUSCON"
+            + " FROM pis_order_detail JOIN pis_mdc2 ON (pis_order_detail.DRUG_ITEM_CODE = pis_mdc2.UD_MDC_CODE) "
+            + " WHERE pis_order_detail.ORDER_NO = '" + orderNo + "' AND (ORDER_STATUS='0' OR ORDER_STATUS='1') "
+            + " AND pis_mdc2.hfc_cd = '" + HEALTH_FACILITY_CODE + "' AND pis_mdc2.discipline_cd = '" + DISCIPLINE_CODE + "' ";
 
     ArrayList<ArrayList<String>> dataOrderList;
     dataOrderList = conn.getData(orderList);
@@ -84,7 +86,7 @@
 
     %>
 
-    <%            if (((Double.parseDouble(dispensed)) > (Double.parseDouble(stock))) && ((Double.parseDouble(stock)) > 0 ))  {    %>
+    <%            if (((Double.parseDouble(dispensed)) > (Double.parseDouble(stock))) && ((Double.parseDouble(stock)) > 0)) {    %>
     <tr style="font-weight:bolder; background-color: yellow;text-align: center;" >
         <% } else if (Integer.parseInt(stock) == 0) {   %>
     <tr style="font-weight:bolder; background-color: red;text-align: center;">

@@ -32,6 +32,7 @@
         String hfc = "";
 
         hfc = session.getAttribute("HEALTH_FACILITY_CODE").toString();
+        String dis = (String) session.getAttribute("DISCIPLINE_CODE");
 
         String sql = "SELECT pis_order_master.ORDER_NO,pis_order_master.PMI_NO,pis_order_master.HEALTH_FACILITY_CODE,pis_order_master.EPISODE_CODE,pis_order_master.ENCOUNTER_DATE,"
                 + "pis_order_master.ORDER_DATE,pis_order_master.ORDER_BY,pis_order_master.ORDER_FROM,pis_order_master.ORDER_TO,pis_order_master.HFC_FROM,pis_order_master.HFC_TO,"
@@ -40,7 +41,7 @@
                 + "FROM pis_order_master JOIN pms_patient_biodata ON (pis_order_master.PMI_NO = pms_patient_biodata.PMI_NO) "
                 + "JOIN adm_lookup_detail s on pms_patient_biodata.SEX_CODE = s.detail_reference_code AND s.master_reference_code = '0041' AND s.hfc_cd = pis_order_master.HEALTH_FACILITY_CODE "
                 + "LEFT JOIN adm_lookup_detail b on pms_patient_biodata.BLOOD_TYPE = b.detail_reference_code AND b.master_reference_code = '0074' AND b.hfc_cd = pis_order_master.HEALTH_FACILITY_CODE "
-                + "WHERE pis_order_master.ORDER_STATUS = '0' AND pis_order_master.HEALTH_FACILITY_CODE = '" + hfc + "';";
+                + "WHERE pis_order_master.ORDER_STATUS = '0' AND pis_order_master.HEALTH_FACILITY_CODE = '" + hfc + "' AND pis_order_master.DISCIPLINE_CODE = '" + dis + "'  ";
 
         ArrayList<ArrayList<String>> dataPatientOrderList = conn.getData(sql);
 
@@ -75,6 +76,12 @@
                 $('.loading').hide();
             }
         });
+        
+//        var strCom = 'Ahamad"mom';
+//        var strCom = strCom.replace(/"/g, '\\\"');
+//        
+//        
+//        console.log(strCom);
     });
 </script>
 
