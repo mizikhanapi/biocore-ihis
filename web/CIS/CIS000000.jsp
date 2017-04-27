@@ -8,8 +8,7 @@
 <%@include file="../Entrance/validateSession.jsp" %>
 <%@include file="validateModuleAccess.jsp" %>
 
-<%
-    Config.getBase_url(request);
+<%    Config.getBase_url(request);
     Config.getFile_url(session);
     Conn Conn = new Conn();
 
@@ -34,10 +33,12 @@
         <!-- header -->
 
         <script type="text/javascript">
-            window.location.hash="no-back-button";
-            window.location.hash="Again-No-back-button";//again because google chrome don't insert first hash into history
-            window.onhashchange=function(){window.location.hash="no-back-button";};
-          
+            window.location.hash = "no-back-button";
+            window.location.hash = "Again-No-back-button";//again because google chrome don't insert first hash into history
+            window.onhashchange = function () {
+                window.location.hash = "no-back-button";
+            };
+
             hfc_cd = '<%out.print(hfc_cd);%>';
             hfc_name = '<%out.print(hfcName);%>';
             doctor_id = '<%out.print(user_id);%>';
@@ -46,28 +47,27 @@
             subdis = '<%out.print(subdicipline);%>';
             console.log(discipline);
             console.log(subdis);
-            
-            
-            $.ajax({
-            url: "search/searchRRI.jsp",
-            type: "post",
-            data: {
 
-                discipline_cd: discipline,
-                subdis_cd: subdis
-           },
-            success: function (data) {
-                
-                var dataA = data.trim().split("|");
-                disciplineName = dataA[0];
-                subdisName = dataA[1];
-                console.log(disciplineName);
-                console.log(subdisName);
-            },
-            error: function (err) {
-                console.log(err);
-            }
-        });
+
+            $.ajax({
+                url: "search/searchRRI.jsp",
+                type: "post",
+                data: {
+                    discipline_cd: discipline,
+                    subdis_cd: subdis
+                },
+                success: function (data) {
+
+                    var dataA = data.trim().split("|");
+                    disciplineName = dataA[0];
+                    subdisName = dataA[1];
+                    console.log(disciplineName);
+                    console.log(subdisName);
+                },
+                error: function (err) {
+                    console.log(err);
+                }
+            });
         </script>
     </head>
 
@@ -138,82 +138,89 @@
                         </div>
                     </div>
 
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="thumbnail">
+                    <div class="tab-content" style="padding: 0px;">
+                        <div class="tab-pane fade in active" id="generic">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="thumbnail">
 
-                                <!-- Tab Menu -->
-                                <div class="tabbable-panel cis-tab">
-                                    <div class="tabbable-line">
-                                        <ul class="nav nav-tabs ">
-                                            <li class="active">
-                                                <a href="#tab_default_1" data-toggle="tab" aria-expanded="false">
-                                                    <i class="fa fa-info-circle fa-lg"></i> Subjective </a>
-                                            </li>
-                                            <li class="">
-                                                <a href="#tab_default_2" data-toggle="tab" aria-expanded="false">
-                                                    <i class="fa fa-check fa-lg"></i> Objective  </a>
-                                            </li>
-                                            <li >
-                                                <a href="#tab_default_3" data-toggle="tab" aria-expanded="true">
-                                                    <i class="fa fa-th-list fa-lg"></i> Assesment </a>
-                                            </li>
-                                            <li>
-                                                <a href="#tab_default_4" data-toggle="tab" aria-expanded="true">
-                                                    <i class="fa fa-list-alt fa-lg"></i> Plan </a>
-                                            </li>
+                                        <!-- Tab Menu -->
+                                        <div class="tabbable-panel cis-tab">
+                                            <div class="tabbable-line">
+                                                <ul class="nav nav-tabs ">
+                                                    <li class="active">
+                                                        <a href="#tab_default_1" data-toggle="tab" aria-expanded="false">
+                                                            <i class="fa fa-info-circle fa-lg"></i> Subjective </a>
+                                                    </li>
+                                                    <li class="">
+                                                        <a href="#tab_default_2" data-toggle="tab" aria-expanded="false">
+                                                            <i class="fa fa-check fa-lg"></i> Objective  </a>
+                                                    </li>
+                                                    <li >
+                                                        <a href="#tab_default_3" data-toggle="tab" aria-expanded="true">
+                                                            <i class="fa fa-th-list fa-lg"></i> Assesment </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#tab_default_4" data-toggle="tab" aria-expanded="true">
+                                                            <i class="fa fa-list-alt fa-lg"></i> Plan </a>
+                                                    </li>
 
 
-                                        </ul>
-                                        <%@ include file="soap-content.jsp" %>
+                                                </ul>
+                                                <%@ include file="soap-content.jsp" %>
+
+                                            </div>
+                                        </div>
+                                        <!-- Tab Menu -->
+                                        <hr class="pemisah" />
+                                        <h4 id="mainConsultBar">Consultation Notes</h4>
+
+                                        <table class="table table-filter " style="background: #fff; border: 1px solid #ccc; margin-left: -31px; margin-right: -31px; width: auto; max-width: inherit; ">
+
+                                            <tbody id="CCNNotes"  class="S ConsultationNotes"></tbody>
+                                            <tbody id="HPINotes"   class="S ConsultationNotes"> </tbody>
+                                            <tbody id="PMHNotes"   class="S ConsultationNotes"></tbody>
+                                            <tbody id="FMHNotes"   class="S ConsultationNotes"> </tbody>
+                                            <tbody id="SOHNotes"   class="S ConsultationNotes"></tbody>
+                                            <tbody id="BLDNotes"  class="S ConsultationNotes"> </tbody>
+                                            <tbody id="ALGNotes"   class="S ConsultationNotes"></tbody>
+                                            <tbody id="IMUNotes"   class="S ConsultationNotes"> </tbody>
+                                            <tbody id="DABNotes"   class="S ConsultationNotes"> </tbody>
+
+                                            <tbody id="GCSNotes"   class="O ConsultationNotes"> </tbody>
+                                            <tbody id="PGCSNotes"   class="O ConsultationNotes"> </tbody>
+                                            <tbody id="BPNotes"   class="O ConsultationNotes"> </tbody>
+                                            <tbody id="RRNotes"   class="O ConsultationNotes"> </tbody>
+                                            <tbody id="OSATNotes"   class="O ConsultationNotes"> </tbody>
+                                            <tbody id="PSCNotes"   class="O ConsultationNotes"> </tbody>
+                                            <tbody id="BTEMPNotes"   class="O ConsultationNotes"> </tbody>
+                                            <tbody id="OTRNotes"   class="O ConsultationNotes"> </tbody>
+                                            <tbody id="PEMNotes"   class="O ConsultationNotes"> </tbody>
+
+                                            <tbody id="DGSNotes"   class="A ConsultationNotes"> </tbody>
+                                            <tbody id="PNTNotes"   class="A ConsultationNotes"> </tbody>
+
+                                            <tbody id="DTONotes"   class="P ConsultationNotes"> </tbody>
+                                            <tbody id="SOPNotes"   class="P ConsultationNotes"> </tbody>
+                                            <tbody id="POSNotes"   class="P ConsultationNotes"> </tbody>
+                                            <tbody id="MCTSNotes"   class="P ConsultationNotes"> </tbody>
+                                            <tbody id="ROSNotes"   class="P ConsultationNotes"> </tbody>
+                                            <tbody id="LOSNotes"   class="P ConsultationNotes"> </tbody>
+                                            <tbody id="FLUNotes"   class="P ConsultationNotes"> </tbody>
+                                            <tbody id="PRINotes"   class="P ConsultationNotes"> </tbody>
+                                            <tbody id="MONNotes"   class="P ConsultationNotes"> </tbody>
+                                            <tbody id="ADWNotes"   class="P ConsultationNotes"> </tbody>
+
+                                        </table>
 
                                     </div>
                                 </div>
-                                <!-- Tab Menu -->
-                                <hr class="pemisah" />
-                                <h4 id="mainConsultBar">Consultation Notes</h4>
-
-                                <table class="table table-filter " style="background: #fff; border: 1px solid #ccc; margin-left: -31px; margin-right: -31px; width: auto; max-width: inherit; ">
-
-                                    <tbody id="CCNNotes"  class="S ConsultationNotes"></tbody>
-                                    <tbody id="HPINotes"   class="S ConsultationNotes"> </tbody>
-                                    <tbody id="PMHNotes"   class="S ConsultationNotes"></tbody>
-                                    <tbody id="FMHNotes"   class="S ConsultationNotes"> </tbody>
-                                    <tbody id="SOHNotes"   class="S ConsultationNotes"></tbody>
-                                    <tbody id="BLDNotes"  class="S ConsultationNotes"> </tbody>
-                                    <tbody id="ALGNotes"   class="S ConsultationNotes"></tbody>
-                                    <tbody id="IMUNotes"   class="S ConsultationNotes"> </tbody>
-                                    <tbody id="DABNotes"   class="S ConsultationNotes"> </tbody>
-
-                                    <tbody id="GCSNotes"   class="O ConsultationNotes"> </tbody>
-                                    <tbody id="PGCSNotes"   class="O ConsultationNotes"> </tbody>
-                                    <tbody id="BPNotes"   class="O ConsultationNotes"> </tbody>
-                                    <tbody id="RRNotes"   class="O ConsultationNotes"> </tbody>
-                                    <tbody id="OSATNotes"   class="O ConsultationNotes"> </tbody>
-                                    <tbody id="PSCNotes"   class="O ConsultationNotes"> </tbody>
-                                    <tbody id="BTEMPNotes"   class="O ConsultationNotes"> </tbody>
-                                    <tbody id="OTRNotes"   class="O ConsultationNotes"> </tbody>
-                                    <tbody id="PEMNotes"   class="O ConsultationNotes"> </tbody>
-
-                                    <tbody id="DGSNotes"   class="A ConsultationNotes"> </tbody>
-                                    <tbody id="PNTNotes"   class="A ConsultationNotes"> </tbody>
-
-                                    <tbody id="DTONotes"   class="P ConsultationNotes"> </tbody>
-                                    <tbody id="SOPNotes"   class="P ConsultationNotes"> </tbody>
-                                    <tbody id="POSNotes"   class="P ConsultationNotes"> </tbody>
-                                    <tbody id="MCTSNotes"   class="P ConsultationNotes"> </tbody>
-                                    <tbody id="ROSNotes"   class="P ConsultationNotes"> </tbody>
-                                    <tbody id="LOSNotes"   class="P ConsultationNotes"> </tbody>
-                                    <tbody id="FLUNotes"   class="P ConsultationNotes"> </tbody>
-                                    <tbody id="PRINotes"   class="P ConsultationNotes"> </tbody>
-                                    <tbody id="MONNotes"   class="P ConsultationNotes"> </tbody>
-                                    <tbody id="ADWNotes"   class="P ConsultationNotes"> </tbody>
-
-                                </table>
 
                             </div>
                         </div>
-
+                        <div class="tab-pane fade" id="orthopedic">
+                            <%@include file = "specialistTemplate/Observation-Orthopedic/orthopedic.jsp" %>
+                        </div> 
                     </div>
                 </div>
                 <!-- main -->		
@@ -268,7 +275,8 @@
         -->
 
 
-
+        <script src="specialistTemplate/Observation-Orthopedic/lib/number.js" type="text/javascript"></script>
+        <script src="specialistTemplate/Observation-Orthopedic/lib/specialist-panel.js" type="text/javascript"></script>
         <script>
 
             (function ($) {
@@ -294,7 +302,5 @@
             $('#accordion').on('hidden.bs.collapse', toggleChevron);
             $('#accordion').on('shown.bs.collapse', toggleChevron);
         </script>
-
-
-
-    </body></html>
+    </body>
+</html>

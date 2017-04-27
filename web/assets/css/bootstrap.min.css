@@ -4142,6 +4142,7 @@ fieldset[disabled] .btn-link:hover {
 .btn-lg {
     padding: 10px 16px;
     font-size: 18px;
+    font-weight: 400;
     line-height: 1.3333333;
     -webkit-border-radius: 2px;
     -moz-border-radius: 2px;
