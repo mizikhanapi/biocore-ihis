@@ -92,9 +92,9 @@
                             return letter.toUpperCase();
                         });
                         //var ayat = name + ", Number " + qno + ", " + qname;
-                        var ayat1 = name+", ,"; 
-                        var ayat2 = ", ,";
-                        var ayat3 = ", ," + qname;
+                        var ayat1 = ", Number,"+qno+", "+ name + ", " + qname; 
+                        //var ayat2 = ", ,";
+                        //var ayat3 = ", ," + qname;
                         
                      //var ayat = "Number " + qno + ", queue " + qname;
                         //$("#view_VS").load("newjsp1.jsp?idResult="+<%=myString%>);
@@ -104,12 +104,12 @@
                         window.speechSynthesis.speak(msg1);
                         
                         
-                        var msg2 = new SpeechSynthesisUtterance(ayat2);
-                        window.speechSynthesis.speak(msg2);
-                        
-                        
-                        var msg3 = new SpeechSynthesisUtterance(ayat3);
-                        window.speechSynthesis.speak(msg3);
+//                        var msg2 = new SpeechSynthesisUtterance(ayat2);
+//                        window.speechSynthesis.speak(msg2);
+//                        
+//                        
+//                        var msg3 = new SpeechSynthesisUtterance(ayat3);
+//                        window.speechSynthesis.speak(msg3);
                         
                         //var ayat = "Number " + qno + ", queue " + qname;
                         //var msg = new SpeechSynthesisUtterance(ayat);
