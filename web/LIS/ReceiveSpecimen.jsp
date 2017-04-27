@@ -48,12 +48,17 @@
                                     String specimen_no1 = request.getParameter("specimen_no");
                                     String query1 = "SELECT pb.`PMI_NO`, pb.`NEW_IC_NO`, pb.`PATIENT_NAME`,ls.order_no,ls.specimen_no,ls.`Collection_date`,ls.`Collection_time`,lom.order_date FROM pms_patient_biodata pb,lis_specimen ls,lis_order_master lom WHERE pb.`PMI_NO` = ls.pmi_no AND ls.pmi_no =lom.pmi_no AND pb.`PMI_NO` = '" + pmi + "' AND ls.specimen_no = '" + specimen_no1 + "' GROUP BY(ls.specimen_no)";
                                     ArrayList<ArrayList<String>> q2 = conn.getData(query1);
+
                                 %>  
                                 <h4 class="col-md-12">Receive Specimen</h4>
                                 <div class="row">
 
                                     <%if (q2.size() > 0) {
-                                            for (int i = 0; i < q2.size(); i++) {%> 
+                                            for (int i = 0; i < q2.size(); i++) {
+                                                String datetime = q2.get(i).get(7);
+                                                String[] parts = datetime.split(" ");
+                                    %> 
+
                                     <div class="col-xs-4 col-sm-4 col-md-4">
                                         <address>
                                             <p>
@@ -68,9 +73,7 @@
                                                 Name: 
                                                 <span class="p-label"><%=q2.get(i).get(2)%></span>
                                             </p>
-                                            <p>
-                                                Registration No: 
-                                            </p>
+
                                         </address>  
                                     </div>
                                     <div class="col-xs-4 col-sm-4 col-md-4">
@@ -81,11 +84,11 @@
                                             </p>
                                             <p>
                                                 Order Date: 
-                                                <span class="p-label"><%=q2.get(i).get(7)%></span>
+                                                <span class="p-label"><%=parts[0]%></span>
                                             </p>
                                             <p>
                                                 Order Time: 
-                                                <span class="p-label"><%=q2.get(i).get(7)%></span>
+                                                <span class="p-label"><%=parts[1]%></span>
                                             </p>
                                         </address>  
                                     </div>
@@ -94,10 +97,7 @@
                                             Specimen No: 
                                             <span class="p-label"><%=q2.get(i).get(4)%></span>
                                         </p>
-                                        <p>
-                                            Specimen Type: 
-                                            <span class="p-label"><%%></span>
-                                        </p>
+
                                         <p>
                                             Collection Date: 
                                             <span class="p-label"><%=q2.get(i).get(5)%></span>

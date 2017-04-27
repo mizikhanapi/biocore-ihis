@@ -24,9 +24,12 @@
   
     String sqlUpdate1 = "UPDATE lis_specimen SET Approval='Already Verified' WHERE item_cd='"+item_cd+"' AND specimen_no = '"+specimen_no+"'";
     rmic.setQuerySQL(conn.HOST, conn.PORT, sqlUpdate1);
-    
+       
     String sqlUpdate2 = "UPDATE lis_order_detail SET Verification='Already Verified' WHERE item_cd='"+item_cd+"' AND order_no = '"+order_no+"'";
     rmic.setQuerySQL(conn.HOST, conn.PORT, sqlUpdate2);
+    
+    String sqlUpdate3 = "UPDATE lis_order_master SET order_status = '3' WHERE order_no = '"+order_no+"'";
+    rmic.setQuerySQL(conn.HOST, conn.PORT, sqlUpdate3);
     
     String sqlUpdate = "UPDATE lis_assign_result SET Verification = '" + verify + "' WHERE result='"+Result+"' AND remark='"+Remark+"' AND test_date='"+testDate+"' AND testTime='"+testTime+"'";
     boolean isUpdate = rmic.setQuerySQL(conn.HOST, conn.PORT, sqlUpdate);

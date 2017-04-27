@@ -46,11 +46,11 @@
         String sql = "";
 
         if (ic != "") {
-            sql = "SELECT lis_order_master.pmi_no,lis_order_master.order_no,lis_order_master.hfc_cd,lis_order_master.episode_date,lis_order_master.encounter_date,lis_order_master.order_date,lis_order_master.order_by,lis_order_master.hfc_from,lis_order_master.hfc_to,lis_order_master.order_status,lis_order_master.diagnosis_cd,lis_order_master.created_by,lis_order_master.created_date,pms_patient_biodata.PATIENT_NAME,pms_patient_biodata.NEW_IC_NO,pms_patient_biodata.BIRTH_DATE,pms_patient_biodata.SEX_CODE,pms_patient_biodata.BLOOD_TYPE FROM lis_order_master JOIN pms_patient_biodata ON (lis_order_master.pmi_no = pms_patient_biodata.PMI_NO) WHERE lis_order_master.order_status='0' AND pms_patient_biodata.NEW_IC_NO = '" + ic + "' AND lis_order_master.hfc_cd = '" + hfc_cd + "'";
+            sql = "SELECT lis_order_master.pmi_no,lis_order_master.order_no,lis_order_master.hfc_cd,lis_order_master.episode_date,lis_order_master.encounter_date,lis_order_master.order_date,lis_order_master.order_by,lis_order_master.hfc_from,lis_order_master.hfc_to,lis_order_master.order_status,lis_order_master.diagnosis_cd,lis_order_master.created_by,lis_order_master.created_date,pms_patient_biodata.PATIENT_NAME,pms_patient_biodata.NEW_IC_NO,pms_patient_biodata.BIRTH_DATE,pms_patient_biodata.SEX_CODE,pms_patient_biodata.BLOOD_TYPE FROM lis_order_master JOIN pms_patient_biodata ON (lis_order_master.pmi_no = pms_patient_biodata.PMI_NO) WHERE lis_order_master.order_status='3' AND pms_patient_biodata.NEW_IC_NO = '" + ic + "' AND lis_order_master.hfc_cd = '" + hfc_cd + "'";
         } else if (order_no != "") {
-            sql = "SELECT lis_order_master.pmi_no,lis_order_master.order_no,lis_order_master.hfc_cd,lis_order_master.episode_date,lis_order_master.encounter_date,lis_order_master.order_date,lis_order_master.order_by,lis_order_master.hfc_from,lis_order_master.hfc_to,lis_order_master.order_status,lis_order_master.diagnosis_cd,lis_order_master.created_by,lis_order_master.created_date,pms_patient_biodata.PATIENT_NAME,pms_patient_biodata.NEW_IC_NO,pms_patient_biodata.BIRTH_DATE,pms_patient_biodata.SEX_CODE,pms_patient_biodata.BLOOD_TYPE FROM lis_order_master JOIN pms_patient_biodata ON (lis_order_master.pmi_no = pms_patient_biodata.PMI_NO) WHERE lis_order_master.order_status='0' AND lis_order_master.hfc_cd = '" + hfc_cd + "' AND lis_order_master.order_no = '" + order_no + "'";
+            sql = "SELECT lis_order_master.pmi_no,lis_order_master.order_no,lis_order_master.hfc_cd,lis_order_master.episode_date,lis_order_master.encounter_date,lis_order_master.order_date,lis_order_master.order_by,lis_order_master.hfc_from,lis_order_master.hfc_to,lis_order_master.order_status,lis_order_master.diagnosis_cd,lis_order_master.created_by,lis_order_master.created_date,pms_patient_biodata.PATIENT_NAME,pms_patient_biodata.NEW_IC_NO,pms_patient_biodata.BIRTH_DATE,pms_patient_biodata.SEX_CODE,pms_patient_biodata.BLOOD_TYPE FROM lis_order_master JOIN pms_patient_biodata ON (lis_order_master.pmi_no = pms_patient_biodata.PMI_NO) WHERE lis_order_master.order_status='3' AND lis_order_master.hfc_cd = '" + hfc_cd + "' AND lis_order_master.order_no = '" + order_no + "'";
         } else if (DateFrom != "" && DateTo != "") {
-            sql = "SELECT lis_order_master.pmi_no,lis_order_master.order_no,lis_order_master.hfc_cd,lis_order_master.episode_date,lis_order_master.encounter_date,lis_order_master.order_date,lis_order_master.order_by,lis_order_master.hfc_from,lis_order_master.hfc_to,lis_order_master.order_status,lis_order_master.diagnosis_cd,lis_order_master.created_by,lis_order_master.created_date,pms_patient_biodata.PATIENT_NAME,pms_patient_biodata.NEW_IC_NO,pms_patient_biodata.BIRTH_DATE,pms_patient_biodata.SEX_CODE,pms_patient_biodata.BLOOD_TYPE FROM lis_order_master JOIN pms_patient_biodata ON (lis_order_master.pmi_no = pms_patient_biodata.PMI_NO) WHERE lis_order_master.order_status='0' AND lis_order_master.hfc_cd = '" + hfc_cd + "' AND lis_order_master.created_date BETWEEN '" + DateFrom + "' AND '" + DateTo + "'";
+            sql = "SELECT lis_order_master.pmi_no,lis_order_master.order_no,lis_order_master.hfc_cd,lis_order_master.episode_date,lis_order_master.encounter_date,lis_order_master.order_date,lis_order_master.order_by,lis_order_master.hfc_from,lis_order_master.hfc_to,lis_order_master.order_status,lis_order_master.diagnosis_cd,lis_order_master.created_by,lis_order_master.created_date,pms_patient_biodata.PATIENT_NAME,pms_patient_biodata.NEW_IC_NO,pms_patient_biodata.BIRTH_DATE,pms_patient_biodata.SEX_CODE,pms_patient_biodata.BLOOD_TYPE FROM lis_order_master JOIN pms_patient_biodata ON (lis_order_master.pmi_no = pms_patient_biodata.PMI_NO) WHERE lis_order_master.order_status='3' AND lis_order_master.hfc_cd = '" + hfc_cd + "' AND lis_order_master.created_date BETWEEN '" + DateFrom + "' AND '" + DateTo + "'";
         }
 
         ArrayList<ArrayList<String>> dataPatientOrderList = conn.getData(sql);
@@ -59,7 +59,7 @@
         for (int i = 0; i < size; i++) {
     %>
 
-    <tr id="moveToRISOrderDetailsTButton" style="text-align: center;">
+<tr id="moveToRISOrderDetailsTButton" style="text-align: center;">
 <input id="dataPatientOrderListhidden" type="hidden" value="<%=String.join("|", dataPatientOrderList.get(i))%>">
 <td><%= dataPatientOrderList.get(i).get(1)%></td> <!-- Order No -->
 <td><%= dataPatientOrderList.get(i).get(0)%></td> <!-- PMI No -->
@@ -208,6 +208,7 @@
             <div class="col-md-4">
                 <input id="dispenseTotalQuantity" name="dispenseTotalQuantity" type="hidden" placeholder="Total Order" class="form-control input-md" maxlength="50" readonly="" value="0">
                 <input id="dispenseTotalQuantityChecked" name="dispenseTotalQuantityChecked" type="hidden" placeholder="Total Order" class="form-control input-md" maxlength="50" readonly="" value="0">
+
             </div>
         </div>
     </form>
@@ -216,13 +217,14 @@
 
 <button class="btn btn-primary " type="button" id="btnSendToBill" name="btnSendToBill" > <i class="fa fa-print fa-lg"></i>&nbsp; Send &nbsp;</button>
 <hr class="pemisah">
-<textarea rows="4" cols="50" id="dataMSHPDIORC">
+<textarea rows="4" cols="50" id="dataMSHPDIORC" style=" display: none">
 </textarea>
 
-<textarea rows="4" cols="50" id="datatest">
+<textarea rows="4" cols="50" id="datatest" style=" display: none">
 </textarea>
 
-
+<textarea rows="4" cols="50" id="datatest1" style=" display: none">
+</textarea>
 
 
 
@@ -309,12 +311,31 @@
                                             timeout: 3000,
                                             success: function (returnDataItem) {
                                                 $("#datatest").val(returnDataItem.trim());
+                                                $("#datatest1").val(returnDataMSHFull.trim() + returnDataPDIFull.trim() + returnDataORCFull.trim() + returnDataItem.trim());
                                                 //$('#dataItem').html(returnDataItem);
                                                 //$('#dataItem').trigger('contentchanged');
                                                 console.log(returnDataItem.trim());
                                                 console.log($("#datatest").val());
+                                                console.log($("#datatest1").val());
+                                                var ehr_central = $("#datatest1").val();
+                                                //alert(ehr_central);
+
+                                                var data1 = {
+                                                    pmiNo: patientpmino,
+                                                    ehr_central: ehr_central
+                                                };
+                                                $.ajax({
+                                                    url: "sentToEHRcentral.jsp",
+                                                    type: "post",
+                                                    data: data1,
+                                                    timeout: 3000,
+                                                    success: function (returnEHR) {
+
+                                                        alert("Success transfer to Billing");
 
 
+                                                    }
+                                                });
 
                                             }
                                         });

@@ -18,7 +18,7 @@
     
     String dateBill = dateFormat.format(date);
     String userIDBill = "Raziff";
-    String oderItem = "SELECT LID.item_cd,LID.test_cat,LID.item_name,LID.spe_source,LID.spe_container,LID.volume,LID.special_inst,LID.status,LID.buy_price,LID.ser_price FROM lis_item_detail LID,lis_order_detail LOD WHERE LID.item_cd = LOD.item_cd AND LOD.created_date = '2017-04-12 23:25:59.0' AND LOD.pmi_no = '9504050251851' AND LOD.order_no = 'LIS1595'";
+    String oderItem = "SELECT LID.item_cd,LID.test_cat,LID.item_name,LID.spe_source,LID.spe_container,LID.volume,LID.special_inst,LID.status,LID.buy_price,LID.ser_price,LOD.order_date FROM lis_item_detail LID,lis_order_detail LOD WHERE LID.item_cd = LOD.item_cd AND LOD.order_date = '"+orderDate+"' AND LOD.pmi_no = '"+pmiNo+"' AND LOD.order_no = '"+orderNo+"'";
     ArrayList<ArrayList<String>> dataLISOrderList = conn.getData(oderItem);
 
     int size = dataLISOrderList.size();

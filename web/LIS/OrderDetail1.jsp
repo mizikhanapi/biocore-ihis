@@ -191,17 +191,17 @@
         console.log(arrayData);
 
         //Assign Array into seprated val
-        var pmino = arrayData[0];
+        var pmino = arrayData[1];
         var Name = arrayData[13];
         var nic = arrayData[14];
-        var Gender = arrayData[16];
+        var Gender = arrayData[19];
         var Bdate = arrayData[15];
-        var Btype = arrayData[17];
-        var OrderNo = arrayData[1];
+        var Btype = arrayData[20];
+        var OrderNo = arrayData[0];
         var OrderDate = arrayData[5];
         var OrderLocationCode = arrayData[2];
 
-
+        //alert(pmino+" "+OrderNo);
         //Set value to the Second Tab 
         $("#patientpmino").val(pmino);
         $("#patientName").val(Name);

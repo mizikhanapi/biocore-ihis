@@ -51,6 +51,9 @@
             
             String sqlInsert1 = "UPDATE lis_order_detail SET specimen_status = 'Test Not Available Yet',Verification = 'Wait for Assign Specimen',detail_status='1' WHERE order_no = '"+orderno1+"' AND item_cd = '"+Specimen[i]+"'";
             rmic.setQuerySQL(conn.HOST, conn.PORT, sqlInsert1);
+            
+            String sqlInsert2 = "UPDATE lis_order_master SET order_status = '1' WHERE order_no = '"+orderno1+"'";
+            rmic.setQuerySQL(conn.HOST, conn.PORT, sqlInsert2);
         }
         
         
