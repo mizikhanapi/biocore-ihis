@@ -13,7 +13,7 @@
 
 <%
     Conn conn = new Conn();
-    String pmino = "9411240358411";
+    String pmino = request.getParameter("pmino");
     //String pmino = request.getParameter("pmino");
 //                                      0                       1                   2                   3                          4                        5                   6
     String allergyList = "select lhr_allergy.pmi_no,lhr_allergy.hfc_cd,lhr_allergy.episode_date,lhr_allergy.encounter_cd,lhr_allergy.allergy_cd,icd10_codes.icd10_desc,lhr_allergy.comment"
@@ -56,4 +56,15 @@
 
 </tbody>
 </table>
+<script>
+    $(document).ready(function () {
+        $('#risManageAllergyListTable').DataTable({
+            language: {
+                emptyTable: "No Allegy List Available To Display"
+            }, initComplete: function (settings, json) {
+                $('.loading').hide();
+            }
+        });
+    });
+</script>
 
