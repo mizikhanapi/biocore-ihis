@@ -38,6 +38,8 @@ public class SeparatorV2 {
     private Vector<ADW2> vadw;
     private Vector<BLI2> vbli;
     private Vector<MSH2> vmsh;
+    private Vector<PDI2> vpdi;
+    private Vector<POS2> vpos;
 
     public SeparatorV2() {
         this.vccn = new Vector<CCN2>();
@@ -61,6 +63,8 @@ public class SeparatorV2 {
         this.vbli = new Vector<BLI2>();
         this.vadw = new Vector<ADW2>();
         this.vmsh = new Vector<MSH2>();
+        this.vpdi = new Vector<PDI2>();
+        this.vpos = new Vector<POS2>();
     }
 
     public Vector<ORC2> getVorc() {
@@ -145,165 +149,185 @@ public class SeparatorV2 {
     public Vector<MSH2> getVmsh() {
         return vmsh;
     }
+    public Vector<PDI2> getVpdi() {
+        return vpdi;
+    }
+    public Vector<POS2> getVpos() {
+        return vpos;
+    }
     
     
     public void startProcess(String hai){
          String rows[] = hai.split("\\<cr>");
         int rowNum = rows.length;
-         System.out.println(rowNum);
+         //System.out.println(rowNum);
          
          
         for(int i = 0;i < rowNum;i++){
-            System.out.println(rows[i]);
+            //System.out.println(rows[i]);
             String cols[] = rows[i].split("\\|");
             SeperateMethod sm = new SeperateMethod();
             if(cols[0].contains("ORC")){
                 ORC2 orc = new ORC2();                            
                 sm.separatePipe(rows[i]);
-                sm.showAAL();
+                //sm.showAAL();
                 orc.setValue(sm.getAal());
                 vorc.addElement(orc);
-                System.out.println("---------------------------------------------------------------------------------");
+                //System.out.println("---------------------------------------------------------------------------------");
             }else if(cols[0].contains("DGS")){
                 DGS2 dgs = new DGS2();
                 sm.separatePipe(rows[i]);
-                sm.showAAL();
+                //sm.showAAL();
                 dgs.setValue(sm.getAal());
                 vdgs.addElement(dgs);
-                System.out.println("---------------------------------------------------------------------------------");
+                //System.out.println("---------------------------------------------------------------------------------");
             }else if(cols[0].contains("DTO")){
                 DTO2 dto = new DTO2();
                 sm.separatePipe(rows[i]);
-                sm.showAAL();
+                //sm.showAAL();
                 dto.setValue(sm.getAal());
                 vdto.addElement(dto);
-                System.out.println("---------------------------------------------------------------------------------");
+                //System.out.println("---------------------------------------------------------------------------------");
             }else if(cols[0].contains("ALG")){
                 ALG2 alg = new ALG2();
                 sm.separatePipe(rows[i]);
-                sm.showAAL();
+                //sm.showAAL();
                 alg.setValue(sm.getAal());
                 valg.addElement(alg);
-                System.out.println("---------------------------------------------------------------------------------");
+                //System.out.println("---------------------------------------------------------------------------------");
             }else if(cols[0].contains("BLD")){
                 BLD2 bld = new BLD2();
                 sm.separatePipe(rows[i]);
-                sm.showAAL();
+                //sm.showAAL();
                 bld.setValue(sm.getAal());
                 vbld.addElement(bld);
-                System.out.println("---------------------------------------------------------------------------------");
+                //System.out.println("---------------------------------------------------------------------------------");
             }else if(cols[0].contains("CCN")){
                 CCN2 ccn = new CCN2();
                 sm.separatePipe(rows[i]);
-                sm.showAAL();
+                //sm.showAAL();
                 ccn.setValue(sm.getAal());
                 vccn.addElement(ccn);
-                System.out.println("---------------------------------------------------------------------------------");
+                //System.out.println("---------------------------------------------------------------------------------");
             }else if(cols[0].contains("DAB")){
                 DAB2 dab = new DAB2();
                 sm.separatePipe(rows[i]);
-                sm.showAAL();
+                //sm.showAAL();
                 dab.setValue(sm.getAal());
                 vdab.addElement(dab);
-                System.out.println("---------------------------------------------------------------------------------");
+                //System.out.println("---------------------------------------------------------------------------------");
             }else if(cols[0].contains("FMH")){
                 FMH2 fmh = new FMH2();
                 sm.separatePipe(rows[i]);
-                sm.showAAL();
+                //sm.showAAL();
                 fmh.setValue(sm.getAal());
                 vfmh.addElement(fmh);
-                System.out.println("---------------------------------------------------------------------------------");
+                //System.out.println("---------------------------------------------------------------------------------");
             }else if(cols[0].contains("HPI")){
                 HPI2 hpi = new HPI2();
                 sm.separatePipe(rows[i]);
-                sm.showAAL();
+                //sm.showAAL();
                 hpi.setValue(sm.getAal());
                 vhpi.addElement(hpi);
-                System.out.println("---------------------------------------------------------------------------------");
+                //System.out.println("---------------------------------------------------------------------------------");
             }else if(cols[0].contains("IMU")){
                 IMU2 imu = new IMU2();
                 sm.separatePipe(rows[i]);
-                sm.showAAL();
+                //sm.showAAL();
                 imu.setValue(sm.getAal());
                 vimu.addElement(imu);
-                System.out.println("---------------------------------------------------------------------------------");
+                //System.out.println("---------------------------------------------------------------------------------");
             }else if(cols[0].contains("LIO")){
                 LIO2 lio = new LIO2();
                 sm.separatePipe(rows[i]);
-                sm.showAAL();
+                //sm.showAAL();
                 lio.setValue(sm.getAal());
                 vlio.addElement(lio);
-                System.out.println("---------------------------------------------------------------------------------");
+                //System.out.println("---------------------------------------------------------------------------------");
             }else if(cols[0].contains("LIR")){
                 LIR2 lir = new LIR2();
                 sm.separatePipe(rows[i]);
-                sm.showAAL();
+                //sm.showAAL();
                 lir.setValue(sm.getAal());
                 vlir.addElement(lir);
-                System.out.println("---------------------------------------------------------------------------------");
+                //System.out.println("---------------------------------------------------------------------------------");
             }else if(cols[0].contains("MEC")){
                 MEC2 mec = new MEC2();
                 sm.separatePipe(rows[i]);
-                sm.showAAL();
+                //sm.showAAL();
                 mec.setValue(sm.getAal());
                 vmec.addElement(mec);
-                System.out.println("---------------------------------------------------------------------------------");
+                //System.out.println("---------------------------------------------------------------------------------");
             }else if(cols[0].contains("PMH")){
                 PMH2 pmh = new PMH2();
                 sm.separatePipe(rows[i]);
-                sm.showAAL();
+                //sm.showAAL();
                 pmh.setValue(sm.getAal());
                 vpmh.addElement(pmh);
-                System.out.println("---------------------------------------------------------------------------------");
+                //System.out.println("---------------------------------------------------------------------------------");
             }else if(cols[0].contains("PNT")){
                 PNT2 pnt = new PNT2();
                 sm.separatePipe(rows[i]);
-                sm.showAAL();
+                //sm.showAAL();
                 pnt.setValue(sm.getAal());
                 vpnt.addElement(pnt);
-                System.out.println("---------------------------------------------------------------------------------");
+                //System.out.println("---------------------------------------------------------------------------------");
             }else if(cols[0].contains("ROS")){
                 ROS2 ros = new ROS2();
                 sm.separatePipe(rows[i]);
-                sm.showAAL();
+                //sm.showAAL();
                 ros.setValue(sm.getAal());
                 vros.addElement(ros);
-                System.out.println("---------------------------------------------------------------------------------");
+                //System.out.println("---------------------------------------------------------------------------------");
             }else if(cols[0].contains("SOH")){
                 SOH2 soh = new SOH2();
                 sm.separatePipe(rows[i]);
-                sm.showAAL();
+                //sm.showAAL();
                 soh.setValue(sm.getAal());
                 vsoh.addElement(soh);
-                System.out.println("---------------------------------------------------------------------------------");
+                //System.out.println("---------------------------------------------------------------------------------");
             }else if(cols[0].contains("VTS")){
                 VTS2 vts = new VTS2();
                 sm.separatePipe(rows[i]);
-                sm.showAAL();
+                //sm.showAAL();
                 vts.setValue(sm.getAal());
                 vvts.addElement(vts);
-                System.out.println("---------------------------------------------------------------------------------");
+                //System.out.println("---------------------------------------------------------------------------------");
             }else if(cols[0].contains("BLI")){
                 BLI2 bli = new BLI2();
                 sm.separatePipe(rows[i]);
-                sm.showAAL();
+                //sm.showAAL();
                 bli.setValue(sm.getAal());
                 vbli.addElement(bli);
-                System.out.println("---------------------------------------------------------------------------------");
+                //System.out.println("---------------------------------------------------------------------------------");
             }else if(cols[0].contains("ADW")){
                 ADW2 adw = new ADW2();
                 sm.separatePipe(rows[i]);
-                sm.showAAL();
+                //sm.showAAL();
                 adw.setValue(sm.getAal());
                 vadw.addElement(adw);
-                System.out.println("---------------------------------------------------------------------------------");
+                //System.out.println("---------------------------------------------------------------------------------");
             }else if(cols[0].contains("MSH")){
                 MSH2 msh = new MSH2();
                 sm.separatePipe(rows[i]);
-                sm.showAAL();
+                //sm.showAAL();
                 msh.setValue(sm.getAal());
                 vmsh.addElement(msh);
-                System.out.println("---------------------------------------------------------------------------------");
+                //System.out.println("---------------------------------------------------------------------------------");
+            }else if(cols[0].contains("PDI")){
+                PDI2 pdi = new PDI2();
+                sm.separatePipe(rows[i]);
+                //sm.showAAL();
+                pdi.setValue(sm.getAal());
+                vpdi.addElement(pdi);
+                //System.out.println("---------------------------------------------------------------------------------");
+            }else if(cols[0].contains("POS")){
+                POS2 pos = new POS2();
+                sm.separatePipe(rows[i]);
+                //sm.showAAL();
+                pos.setValue(sm.getAal());
+                vpos.addElement(pos);
+                //System.out.println("---------------------------------------------------------------------------------");
             }
         }
         
@@ -356,32 +380,23 @@ public class SeparatorV2 {
 //                + "null^^^^^^01A90A932^Colorado tick fever^^null^^null^^^^null^^^^^^2017-4-21 17:47:25^04010101^Dr002^PROF KHANAPI GHANI^^^|"
 //                + "<cr>";
 //        
-//        String hai2 = "MSH|"
-//                + "^~(|"
-//                + "CIS|"
-//                + "04010101^001^001|"
-//                + "-|"
-//                + "2017-4-17 14:27:12|"
-//                + "-|"
-//                + "-|"
-//                + "-^^^^-^|"
-//                + "-|"
-//                + "-|"
-//                + "-|"
-//                + "-|"
-//                + "-|"
-//                + "-|"
-//                + "|"
-//                + "|"
-//                + "|"
-//                + "|"
-//                + "<cr>"+
-//"PDI|9504050251851|MUHAMAD BUDIE BIN BASRI|950405025185|-|012^Matric No.^004|D031310012|041^Male^001|05/04/1995|004^-^-|006^SINGLE^1|005^Islam01|011^Malaysian^001|NO 74,LORONG SHAHBANDAR 39|||003^PULAU RUSUKAN KECIL^150031|088^MELAKA TENGAH^401|002^Kedah^02|001^MALAYSIA^001|2499|-||0175757018|email@email.com|<cr>" +
-//"ORC|T12101|NO^undefined^2017-4-12 23:25:59^2017-04-12 22:58:20.0^2017-04-12 22:58:20.0^budie01^budie01^-^04010101^001^001^001^02^address1^address2^address3^orderHFCtown^orderHFCDistrict^orderHFCState^orderHFCCountry^orderHFCPostcode^orderHFCPhoneNo^041140^001^providerSub^05^providerAdd_HIM^providerAdd_ME^providerAdd3^providerTown|<cr>" +
-//"LIO|19B5.^Excessive flatulence^01A30B542^high fever^CTV3|DC2P008^Phosphatase, Isoenzymes,ICD10-PCS^19-04-2017^038^nothing^nothing^096^test1^test2^Biocore_V1^Hospital Pakar Sakit Puan^PPP^asadas^04010101^Klinik UTeM Induk^001^Outpatient Discipline^002^-^|<cr>" +
-//"DTO|19B2.^Excessive flatulence^01A30A421^Abdominal actinomycosis^CTV3|MSP014002^ Annucare supp^MDC|No product name^02^EE^MDC|066^FF^|^6 hourly^SG|Day|1||025^^Before meats|12|21|hfcSendCode^hfcSendName^PSDD|qdqwe^qwewq|04010101^Klinik UTeM Induk^001^Outpatient Discipline^001^04^|<cr>"
-//                + "ORC|T12113|170000061^-^NO^NORMAL^2017-04-23 02:00:02^2017-04-08 13:29:29.0^2017-04-08 13:29:29.0^DR024^DR024^-^04010101^Klinik UTeM Induk^001^Outpatient Discipline^001-Outpatient Discipline^04^-^ Hang Tuah Jaya, 76100 Durian Tunggal,^Melaka, Malaysia^-^0003^40305^DURIAN TUNGGAL^-^0078^403-ALOR GAJAH^0002^04^Melaka^0001^001^MALAYSIA^0079^1936^76100^-^04010101^Klinik UTeM Induk^001^Outpatient Discipline^001^Outpatient Discipline^-^-^-^0003^40305^DURIAN TUNGGAL^0078^403^ALOR GAJAH^0002^08^Melaka^0001^001^MALAYSIA^0079^1936^76100^-^|<cr>" +
-//"BLI|2017-4-23 2:2:2|CH^9504050251851^MTA013001^albendazole^2.60^12^DR024^2017-4-23 2:2:2<cr>";
+//        String hai2 = "MSH|^~|CIS|BC001^001^001||2017-4-26 15:51:39|||||||||||||<cr>\n" +
+//"PDI|9409110361284|HANNANI BINTI MOHD ROOM|940911036128|-|012^Matric No.^004|B031310399|041^Female^002|11/09/1994|004^-^-|006^SINGLE^1|005^--|011^Malaysian^001|LOT 2832 KAMPUNG PADANG BONGOR|||003^-^-|088^-^-|002^-^-|001^-^-|-|-||0137892739|-|<cr>\n" +
+//"CCN|2017-4-26 15:50:47|^1682.^Fatigue^^Severity^^^null^^null^^null^|<cr>\n" +
+//"DGS|2017-4-26 15:50:47|null^^^^^^13M45M484^Fatigue fracture of vertebra^^null^^null^^^^null^^^^^^2017-4-26 15:50:47^BC001^mizikhanapi^MIZI KHANAPI^^^|<cr>\n" +
+//"CCN|2017-4-26 15:50:52|^1682.^Fatigue^^Severity^^^null^^null^^null^|<cr>\n" +
+//"DGS|2017-4-26 15:50:52|null^^^^^^13M45M484^Fatigue fracture of vertebra^^null^^null^^^^null^^^^^^2017-4-26 15:50:52^BC001^mizikhanapi^MIZI KHANAPI^^^|<cr>\n" +
+//"CCN|2017-4-26 15:50:59|^1682.^Fatigue^^Severity^^^null^^null^^null^|<cr>\n" +
+//"DGS|2017-4-26 15:50:59|null^^^^^^13M45M484^Fatigue fracture of vertebra^^null^^null^^^^null^^^^^^2017-4-26 15:50:59^BC001^mizikhanapi^MIZI KHANAPI^^^|<cr>\n" +
+//"CCN|2017-4-26 15:51:2|^1682.^Fatigue^^Severity^^^null^^null^^null^|<cr>\n" +
+//"DGS|2017-4-26 15:51:2|null^^^^^^13M45M484^Fatigue fracture of vertebra^^null^^null^^^^null^^^^^^2017-4-26 15:51:2^BC001^mizikhanapi^MIZI KHANAPI^^^|<cr>\n" +
+//"CCN|2017-4-26 15:51:11|^1682.^Fatigue^^Severity^^^null^^null^^null^|<cr>\n" +
+//"DGS|2017-4-26 15:51:11|null^^^^^^13M45M484^Fatigue fracture of vertebra^^null^^null^^^^null^^^^^^2017-4-26 15:51:11^BC001^mizikhanapi^MIZI KHANAPI^^^|<cr>\n" +
+//"CCN|2017-4-26 15:51:39|^1682.^Fatigue^^Severity^^^null^^null^^null^|<cr>\n" +
+//"DGS|2017-4-26 15:51:39|null^^^^^^13M45M484^Fatigue fracture of vertebra^^null^^null^^^^null^^^^^^2017-4-26 15:51:39^BC001^mizikhanapi^MIZI KHANAPI^^^|<cr>\n" +
+//"ORC|T12103|||NO|-|2017-4-26 15:51:39|2017-04-26 15:47:27.0|2017-04-26 15:47:27.0|mizikhanapi|mizikhanapi||BC001|001|001|001|02|-|-|-|-|-|-|-|-|-|-|-||18|-|-|-|-|<cr>\n" +
+//"POS|1682.^Fatigue^CTV3|^17.1^Apply Bandage ^ICD10-PCS||Small Bandage |||||BC001|Biocore 001||hfc_cd_receiving|<cr>\n" +
+//"";
 //
 //        SeparatorV2 spv2 = new SeparatorV2();
 //        spv2.startProcess(hai2);
