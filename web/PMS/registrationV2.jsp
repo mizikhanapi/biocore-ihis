@@ -11,13 +11,13 @@
     String dis = session.getAttribute("DISCIPLINE_CODE").toString();
     String sub = session.getAttribute("SUB_DISCIPLINE_CODE").toString();
 
-    String patCat = "select * from adm_lookup_detail where master_reference_code = '0033' AND hfc_cd = '"+hfc+"'   ";
-    String visType = "select * from adm_lookup_detail where master_reference_code = '0022' AND hfc_cd = '"+hfc+"'   ";
-    String eliCat = "select * from adm_lookup_detail where master_reference_code = '0063' AND hfc_cd = '"+hfc+"'   ";
-    String eliType = "select * from adm_lookup_detail where master_reference_code = '0034' AND hfc_cd = '"+hfc+"'   ";
+    String patCat = "select * from adm_lookup_detail where master_reference_code = '0033' AND hfc_cd = '" + hfc + "'   ";
+    String visType = "select * from adm_lookup_detail where master_reference_code = '0022' AND hfc_cd = '" + hfc + "'   ";
+    String eliCat = "select * from adm_lookup_detail where master_reference_code = '0063' AND hfc_cd = '" + hfc + "'   ";
+    String eliType = "select * from adm_lookup_detail where master_reference_code = '0034' AND hfc_cd = '" + hfc + "'   ";
     //String discip = "select * from adm_lookup_detail where master_reference_code = '0072'   ";
-    String prio = "select * from adm_lookup_detail where master_reference_code = '0036' AND hfc_cd = '"+hfc+"'   ";
-    String idTYpe = "select * from adm_lookup_detail where master_reference_code = '0012' AND hfc_cd = '"+hfc+"'   ";
+    String prio = "select * from adm_lookup_detail where master_reference_code = '0036' AND hfc_cd = '" + hfc + "'   ";
+    String idTYpe = "select * from adm_lookup_detail where master_reference_code = '0012' AND hfc_cd = '" + hfc + "'   ";
     String Commonqueue = "select * from pms_queue_list where queue_type='CM' and hfc_cd='" + hfc + "' and status ='Active' and discipline_cd = '" + dis + "'";
     String Consultationqueue = "select * from pms_queue_list where queue_type='FY' and hfc_cd='" + hfc + "' and status ='Active' and discipline_cd = '" + dis + "'";
     String Doctorqueue = "select * from pms_queue_list where queue_type='PN' and hfc_cd='" + hfc + "' and status ='Active' and discipline_cd = '" + dis + "'";
@@ -195,7 +195,7 @@
                                 <option selected="" value="null">Please select Queue</option>
                                 <%
                                     for (int i = 0; i < dataQueue.size(); i++) {%>
-                                <option value="<%=dataQueue.get(i).get(1) + "|" + dataQueue.get(i).get(2)%>"><%="(" + dataQueue.get(i).get(0) + ") " + dataQueue.get(i).get(1) + " " %></option>
+                                <option value="<%=dataQueue.get(i).get(1) + "|" + dataQueue.get(i).get(2)%>"><%="(" + dataQueue.get(i).get(0) + ") " + dataQueue.get(i).get(1) + " "%></option>
                                 <%  }
                                 %>
                             </select>
@@ -260,7 +260,7 @@
             <hr/>
             <h4>Registration Details</h4>
 
-            <div class="row" style="margin-bottom: 20px;">
+            <div class="row" style="margin-bottom: 30px;">
                 <div class="col-md-12">
                     <!-- Select Basic -->
                     <div class="form-group">
@@ -280,9 +280,10 @@
                     </div>
                 </div>
             </div>
-            <div class="text-center">
-                <button class="btn btn-primary  " type="button" id="registerQueue"><i class="fa fa-plus"></i> Register</button>
-                <button class="btn btn-default " type="button" id="btnclear" name="btnclear" > <i class="fa fa-times"></i>&nbsp; Clear</button>
+            <hr/>
+            <div class="text-right">
+                <button class="btn btn-link btn-lg " type="button" id="btnclear" name="btnclear" >Clear</button>&nbsp;
+                <button class="btn btn-primary btn-lg" type="button" id="registerQueue">Register</button>
                 <!--                    <div id="dialog" title="Basic dialog">
                                         <p>This is the default dialog which is useful for displaying information. The dialog window can be moved, resized and closed with the 'x' icon.</p>
                                     </div>-->
