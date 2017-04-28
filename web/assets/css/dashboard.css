@@ -512,6 +512,11 @@ ul.nav.navbar-nav.navbar-left.back {
     padding: 0px;
 }
 
+.search-drop>ul>li {
+    border-bottom: 1px solid #ddd;
+    padding: 5px;
+}
+
 .search-drop>ul>li:hover{
     cursor: pointer;
     background: #eee;
@@ -565,7 +570,7 @@ ul.nav.navbar-nav.navbar-left.back {
     color: #666;
 }
 
-.table-bordered>thead>tr>th:last-child {
+/*.table-bordered>thead>tr>th:last-child {
     text-align: center;
     width: 5%;
 }
@@ -573,15 +578,15 @@ ul.nav.navbar-nav.navbar-left.back {
 .table-bordered>thead>tr>th:nth-last-child(2) {
     text-align: center;
     width: 5%;
-}
+}*/
 
-.table-bordered>tbody>tr>td:last-child {
+/*.table-bordered>tbody>tr>td:last-child {
     text-align: center;
 }
 
 .table-bordered>tbody>tr>td:nth-last-child(2) {
     text-align: center;
-}
+}*/
 
 .btn-group>.btn, .btn-group>.btn {
     border-radius: 0px;
@@ -646,6 +651,9 @@ tr#moveToOrderDetailsTButton {
     float: left;
     margin-right: 20px;
     cursor: pointer;
+    height: 18px;
+    width: 18px;
+    margin-top: 5px;
 }
 .ckbox input[type="checkbox"] {
     opacity: 0;
@@ -787,6 +795,9 @@ tr#moveToOrderDetailsTButton {
     font-weight: 500;
     text-transform: uppercase;
     color: #666;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .bed-booking-total {
@@ -809,4 +820,31 @@ tr#moveToOrderDetailsTButton {
 
 .bed-booking-p{
     color:#f9c851;
+}
+
+#BedRemarks{
+    height: 175px; 
+    width: 100%; 
+    overflow: hidden;
+}
+
+#BedRemarks:hover{
+    overflow-x: hidden; 
+    overflow-y: auto;
+    transition: .35s ease-in-out;
+}
+
+.logo-hfc {
+    position: absolute; 
+    text-align: center; 
+    display: inline-block; 
+    top: 50%; 
+    width: 100%; 
+    color: #ffffff; 
+    opacity: 0.2;
+}
+
+.golongan-soalan>.soalan {
+    border-top: none;
+    padding: 0px 15px;
 }

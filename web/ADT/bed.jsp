@@ -20,14 +20,13 @@
     // Conn conn = new Conn();
 
 %>
-<%
-    String sqlBedID = "SELECT bed_id ,bed_status FROM wis_bed_id WHERE hfc_cd = '"+hfc+"' order by bed_id asc";
+<%    String sqlBedID = "SELECT bed_id ,bed_status FROM wis_bed_id WHERE hfc_cd = '" + hfc + "' order by bed_id asc";
     ArrayList<ArrayList<String>> dataBedID = conn.getData(sqlBedID);
     ArrayList<String> data = dataBedID.get(0);
 
 %>
- 
-     <div id="bedDiv">
+
+<div id="bedDiv">
     <table id="tableBed">
         <tbody>
             <%  int count = 0;
@@ -60,15 +59,15 @@
 
             <div class="bed"><%
                 if (dataBedID.get(count).get(1).equals("Available")) {%>
-                <button style="background-color: #bada55"  type="button"  class="btn btn-default" id="bed_<%=count%>">&nbsp; <%= dataBedID.get(count).get(0)%> </button>
+                <button style="background-color: #bada55; width: 100%;"  type="button"  class="btn btn-default" id="bed_<%=count%>">&nbsp; <%= dataBedID.get(count).get(0)%> </button>
                 <input id="bedID" name="bedID" type="hidden"  class="form-control input-md" value="<%=String.join("|", dataBedID.get(count))%>">
 
                 <%   } else if (dataBedID.get(count).get(1).equals("Occupied")) {%>
-                <button style="background-color: #FA424A" type="button"  disabled class="btn btn-default" id="bed_occu<%=count%>">&nbsp; <%= dataBedID.get(count).get(0)%> </button>
+                <button style="background-color: #FA424A; width: 100%;" type="button"  disabled class="btn btn-default" id="bed_occu<%=count%>">&nbsp; <%= dataBedID.get(count).get(0)%> </button>
                 <input id="bedID" name="bedID" type="hidden"  class="form-control input-md" value="<%=String.join("|", dataBedID.get(count))%>">
 
                 <% } else if (dataBedID.get(count).get(1).equals("Pending")) {%>
-                <button style="background-color: #FEB405"  type="button" disabled class="btn btn-default" id="bed_pen<%=count%>">&nbsp; <%= dataBedID.get(count).get(0)%> </button>
+                <button style="background-color: #FEB405; width: 100%;"  type="button" disabled class="btn btn-default" id="bed_pen<%=count%>">&nbsp; <%= dataBedID.get(count).get(0)%> </button>
                 <input id="bedID" name="bedID" type="hidden"  class="form-control input-md" value="<%=String.join("|", dataBedID.get(count))%>">
 
                 <% } %>
@@ -83,5 +82,4 @@
         </tbody>
     </table>
 </div>
- 
-         
+

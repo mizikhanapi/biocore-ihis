@@ -1,6 +1,3 @@
-
-
-
 <%@page import="Config.Config"%>
 <%@page import="java.util.Date"%>
 <%@page import="java.util.*"%>
@@ -67,7 +64,7 @@
                 <h3 class="modal-title" id="lineModalLabel">Assign Bed To Ward</h3>
             </div>
             <div class="modal-body">
-                <div class="thumbnail" id="maintainBED">
+                <div id="maintainBED">
 
                     <!-- content goes here -->
                     <form class="form-horizontal" id="addForm">
@@ -89,7 +86,7 @@
                                 <select id="Ward_Class" name="selectbasic" class="form-control">
                                     <option value="Ward Class" >Ward Class</option>
 
-                                    <%                                        String sql124 = "SELECT ward_class_code, ward_class_name FROM wis_ward_class where hfc_cd ='"+hfcAS+"' ";
+                                    <%                                        String sql124 = "SELECT ward_class_code, ward_class_name FROM wis_ward_class where hfc_cd ='" + hfcAS + "' ";
                                         ArrayList<ArrayList<String>> dataClass = conn.getData(sql124);
 
                                         int size124 = dataClass.size();
@@ -111,7 +108,7 @@
                                 <select id="Ward_ID" name="selectbasic" class="form-control">
                                     <option value="null" selected="" disabled="">Select Ward ID/Name</option>
                                     <%
-                                        String sql312 = "SELECT ward_id, ward_name FROM wis_ward_name where hfc_cd = '"+hfcAS+"'";
+                                        String sql312 = "SELECT ward_id, ward_name FROM wis_ward_name where hfc_cd = '" + hfcAS + "'";
                                         ArrayList<ArrayList<String>> dataID = conn.getData(sql312);
 
                                         int size312 = dataID.size();
@@ -160,18 +157,19 @@
                         </div>
                     </form>
                     <!-- content goes here -->
-                </div>
-                <div class="modal-footer">
-                    <div class="btn-group btn-group-justified" role="group" aria-label="group button">
-                        <div class="btn-group" role="group">
-                            <button type="submit" class="btn btn-success btn-block btn-lg" role="button" id="MWBED_add">Add</button>
-                        </div>
-                        <div class="btn-group" role="group">
-                            <button type="reset" id="MWBED_clear" class="btn btn-default btn-block btn-lg" data-dismiss="modal" role="button" >Cancel</button>
-                        </div>
+                </div>          
+            </div>
+            <div class="modal-footer">
+                <div class="btn-group btn-group-justified" role="group" aria-label="group button">
+                    <div class="btn-group" role="group">
+                        <button type="submit" class="btn btn-success btn-block btn-lg" role="button" id="MWBED_add">Add</button>
+                    </div>
+                    <div class="btn-group" role="group">
+                        <button type="reset" id="MWBED_clear" class="btn btn-default btn-block btn-lg" data-dismiss="modal" role="button" >Cancel</button>
                     </div>
                 </div>
-            </div>
+            </div>          
+
         </div>
     </div>
 </div>
@@ -239,23 +237,23 @@
             var ward = $('#Ward_Class').val();
             console.log(ward);
             $.ajax({
-               url:'listWardName.jsp',
-               type:'post',
-               data:{ward:ward},
-               timeout:3000,
-               success:function(databack){
-                   $('#divwardName').html(databack);
-                   //console.log(databack);
-               },
-               error:function(){
-                   bootbox.alert('error when retrieving the data');
-               }
+                url: 'listWardName.jsp',
+                type: 'post',
+                data: {ward: ward},
+                timeout: 3000,
+                success: function (databack) {
+                    $('#divwardName').html(databack);
+                    //console.log(databack);
+                },
+                error: function () {
+                    bootbox.alert('error when retrieving the data');
+                }
             });
             BedID = $('#Ward_Class').val() + "/";
             $('#BedID').val(BedID);
         });
-        
-       
+
+
 //        $('#gen_bedID').on('click', function () {
 //
 //            $.ajax({

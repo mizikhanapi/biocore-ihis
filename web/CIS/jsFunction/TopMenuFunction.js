@@ -256,6 +256,8 @@ $(document).ready(function (e) {
         var orderNotesDTO = "";
         var orderNotesLIO = "";
         var orderNotesPOS = "";
+          var orderNotesMON = "";
+            var orderNotesADW = "";
         for (var key in data) {
             if (data[key].Acode === "ROS") {
                 if(orderNotesROS === ""){
@@ -269,6 +271,7 @@ $(document).ready(function (e) {
                      orderNotesROS += "ROS|"+ ccnProblem + "" + dgsProblem + "CTV3|" + data[key].codeROS + "^" + data[key].ROS + "^ICD10-PCS|"+ data[key].appointmentROS +"|"+ data[key].hfcIdROS +"^"+ data[key].hfcROS +"^PSDD|038^" + data[key].priorityROScd +"^" + data[key].priorityROS +"|096^" + data[key].patientConditionROSCd +"^" + data[key].patientConditionROS +"|"+ data[key].commentROS +  "|" + getRRI();
                 }
             } else if (data[key].Acode === "DTO") {
+                
                 var note1 = "DTO|" + ccnProblem + "" + dgsProblem + "CTV3|" + data[key].dtoCode + "^ " + data[key].searchDTO + "^MDC|" + data[key].drugNameDTO;
                 var note2 = "^^^MDC|066^^" + data[key].dRouteDTO + "|^" + data[key].drugFrequencyDTO + "^SG|" + data[key].unitDTO + "|" + data[key].doseDTO + "|" + data[key].drugStrDTO;
                 var note3 = "|025^^" + data[key].drugInstructionDTO + "|" + data[key].durationDTO + "|" + data[key].drugQtyDTO + "|"+hfc_cd+"^"+hfc_name+"^PSDD|" + data[key].cautionaryDTO + "^" + data[key].commentDTO + "|" + getRRI();
@@ -284,6 +287,7 @@ $(document).ready(function (e) {
                 }
 
             } else if (data[key].Acode === "LOS") {
+                
                 if (orderNotesLIO === "") {
                     var hfcOFDetail = data[key].hfcOrderDetail.split("|");
                     var hfcPFDetail = data[key].hfcProviderDetail.split("|");
@@ -294,9 +298,9 @@ $(document).ready(function (e) {
                 } else {
                       orderNotesLIO += "LIO|"  + ccnProblem + "" + dgsProblem + "CTV3|" + data[key].codeLOS + "^" + data[key].searchLOS + "^ICD10-PCS|" + data[key].appointmentLOS + "|038^" + data[key].priority + "^" + data[key].priorityLOScd + "|096^" + data[key].patientConditionLOScd + "^" + data[key].patientCondition + "|" + data[key].hfcIdLOS + "^" + data[key].hfcLOS + "^PSDD|" + data[key].commentLOS + "|" + getRRI();
                 }
-                //var search = data[key].catLOS.split("/");
                
             } else if (data[key].Acode === "POS") {
+                
                 if (orderNotesPOS === "") {
                     var hfcOFDetail = data[key].hfcOrderDetail.split("|");
                     var hfcPFDetail = data[key].hfcProviderDetail.split("|");
@@ -308,13 +312,41 @@ $(document).ready(function (e) {
                     orderNotesPOS += "POS|" + ccnProblem + "" +  "CTV3|" + "^" + data[key].procedure_cd +"^"+ data[key].Problem18 +  "^ICD10-PCS||"+data[key].proType+"|||||"+hfc_cd+"|"+hfc_name+"||hfc_cd_receiving|<cr>\n";
                 }
                
+            }else if (data[key].Acode === "MON") {
+                
+              if (orderNotesMON === "") {
+                    var hfcOFDetail = data[key].hfcOrderDetail.split("|");
+                    var hfcPFDetail = data[key].hfcProviderDetail.split("|");
+                    var orc = getORC("T12107", "", "", "NO", "-", getDate(), episodeDate, episodeDate, doctor_id, doctor_id, "", hfc_cd, discipline, subdis, "02", hfcOFDetail[1],
+                            hfcOFDetail[2], hfcOFDetail[3], hfcOFDetail[3], hfcOFDetail[10], hfcOFDetail[14], hfcOFDetail[13], hfcOFDetail[7], hfcOFDetail[9], hfcPFDetail[0], "-", "", "05", hfcPFDetail[1],
+                            hfcPFDetail[2], hfcPFDetail[3], hfcPFDetail[10]);
+                    orderNotesMON = orc +   "MOR|"+ccnProblem+" | "+data[key].codeMON+"^"+data[key].searchMON+" | " +getDate()+" |  |  | "+doctor_id+"| "+doctor_name+" | | "+discipline+" | "+disciplineName+" | | "+data[key].MONHFC_cd+"|<cr>\n";
+                } else {
+                      orderNotesMON +=  "MOR|"+ccnProblem+" | "+data[key].codeMON+"^"+data[key].searchMON+" | " +getDate()+" |  |  | "+doctor_id+"| "+doctor_name+"| | "+discipline+" | "+disciplineName+" |  | "+data[key].MONHFC_cd+"|<cr>\n";
+                }
+   
+                
+            }else if (data[key].Acode === "ADW") {
+                 if (orderNotesADW === "") {
+                    var hfcOFDetail = data[key].hfcOrderDetail.split("|");
+                    var hfcPFDetail = data[key].hfcProviderDetail.split("|");
+                    var orc = getORC("T12111", "", "", "NO", "-", getDate(), episodeDate, episodeDate, doctor_id, doctor_id, "", hfc_cd, discipline, subdis, "02", hfcOFDetail[1],
+                            hfcOFDetail[2], hfcOFDetail[3], hfcOFDetail[3], hfcOFDetail[10], hfcOFDetail[14], hfcOFDetail[13], hfcOFDetail[7], hfcOFDetail[9], hfcPFDetail[0], "-", "", "07", hfcPFDetail[1],
+                            hfcPFDetail[2], hfcPFDetail[3], hfcPFDetail[10]);
+                    orderNotesADW = orc +    "ADW|"+getDate()+"|"+data[key].AdmitDate+" "+data[key].AdmitTime+"^" +data[key].AdmitToDisciplineCd+"^"+data[key].AdmitToDiscipline+"^"+"ST-UD"+"^"+data[key].WardNameCd+"^"+data[key].WardName+"^"+"ST-UD"+"^"+data[key].Reason+"^"+data[key].PatientReferFromCd+"^active^"+data[key].AdmittedBefore+"^"+getDate()+"^"+ hfc_cd + "^" + doctor_id + "^" + doctor_name + "|<cr>\n";
+                } else {
+                      orderNotesADW +=   "ADW|"+getDate()+"|"+data[key].AdmitDate+" "+data[key].AdmitTime+"^" +data[key].AdmitToDisciplineCd+"^"+data[key].AdmitToDiscipline+"^"+"ST-UD"+"^"+data[key].WardNameCd+"^"+data[key].WardName+"^"+"ST-UD"+"^"+data[key].Reason+"^"+data[key].PatientReferFromCd+"^active^"+data[key].AdmittedBefore+"^"+getDate()+"^"+ hfc_cd + "^" + doctor_id + "^" + doctor_name + "|<cr>\n";
+                }
+          
             }
         }
-        var orderNotes = orderNotesROS+orderNotesDTO+orderNotesLIO+orderNotesPOS;
+        var orderNotes = orderNotesROS + orderNotesDTO + orderNotesLIO + orderNotesPOS + orderNotesMON + orderNotesADW;
         orderNotesROS="";
         orderNotesDTO="";
         orderNotesLIO="";
         orderNotesPOS="";
+        orderNotesMON="";
+        orderNotesADW = ""
         return orderNotes;
     }
     
@@ -424,7 +456,7 @@ $(document).ready(function (e) {
         }
 
         var msh = "MSH|^~|CIS|" + hfc_cd + "^" + discipline + "^" + subdis + "||" + getDate() + "|||||||||||||<cr>\n";
-        var pdi = PDIInfo + "|<cr>\n";
+        var pdi = PDIInfo + "\n";
        
         countVTS(_data);
         var SendNotes = convertToNotes(_data);

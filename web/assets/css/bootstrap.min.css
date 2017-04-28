@@ -1382,7 +1382,7 @@ body {
     font-family: 'Roboto', sans-serif;
     font-size: 14px;
     line-height: 1.42857143;
-    color: #333;
+    color: #666;
     background-color: #f2f4f8
 }
 
@@ -2859,12 +2859,17 @@ th {
 .table-bordered>tfoot>tr>th,
 .table-bordered>thead>tr>td,
 .table-bordered>thead>tr>th {
-    border: 1px solid #ddd
+    border: 1px solid #ddd;
+    border-top: none;
 }
 
 .table-bordered>thead>tr>td,
 .table-bordered>thead>tr>th {
-    border-bottom-width: 2px
+    border-bottom-width: 2px;
+    text-transform: uppercase;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .table-striped>tbody>tr:nth-of-type(odd) {
@@ -3662,7 +3667,9 @@ textarea.input-lg {
     user-select: none;
     background-image: none;
     border: 1px solid transparent;
-    border-radius: 4px
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    border-radius: 2px;
 }
 
 .btn.active.focus,
@@ -4135,8 +4142,12 @@ fieldset[disabled] .btn-link:hover {
 .btn-lg {
     padding: 10px 16px;
     font-size: 18px;
+    font-weight: 400;
     line-height: 1.3333333;
-    border-radius: 6px
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    border-radius: 2px;
+
 }
 
 .btn-group-sm>.btn,
@@ -4144,7 +4155,9 @@ fieldset[disabled] .btn-link:hover {
     padding: 5px 10px;
     font-size: 12px;
     line-height: 1.5;
-    border-radius: 3px
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    border-radius: 2px;
 }
 
 .btn-group-xs>.btn,
@@ -4152,7 +4165,9 @@ fieldset[disabled] .btn-link:hover {
     padding: 1px 5px;
     font-size: 12px;
     line-height: 1.5;
-    border-radius: 3px
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    border-radius: 2px;
 }
 
 .btn-block {
@@ -5981,6 +5996,8 @@ a.badge:hover {
     -webkit-transition: border .2s ease-in-out;
     -o-transition: border .2s ease-in-out;
     transition: border .2s ease-in-out;
+    -webkit-box-shadow: 0 2px 5px rgba(0, 0, 0, .26);
+    -moz-box-shadow: 0 2px 5px rgba(0, 0, 0, .26);
     box-shadow: 0 2px 5px rgba(0, 0, 0, .26);
     position: relative;
     overflow: hidden;
@@ -7124,7 +7141,8 @@ button.close {
 .modal-footer {
     text-align: right;
     padding: 15px;
-    border-top: 1px solid #e5e5e5
+    border-top: 1px solid #e5e5e5;
+    overflow: hidden;
 }
 
 .modal-footer .btn+.btn {

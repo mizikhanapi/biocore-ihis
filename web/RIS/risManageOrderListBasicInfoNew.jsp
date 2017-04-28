@@ -5,8 +5,8 @@
 --%>
 
 <div class="thumbnail">
-    <h4>Basic Info</h4>
-    <hr/>
+    <h4><u>Basic Info</u></h4>
+    <!--    <hr/>-->
     <form class="form-horizontal" name="risManageOrderDetailContentBasicInfoForm" id="risManageOrderDetailContentBasicInfoForm">
         <div class="row">
 
@@ -74,7 +74,7 @@
 
     <hr/>
     <h5 style="padding-bottom: 1%;font-weight: bolder">
-        Allergy List
+        <u>Allergy List</u>
     </h5>
 
     <div id="risManageAllergyListTableDiv" class="form-group">
@@ -99,8 +99,8 @@
 
 
 <div class="thumbnail">
-    <h4>Diagnosis Info</h4>
-    <hr/>
+    <h4><u>Diagnosis Info</u></h4>
+    <!--<hr/>-->
     <div id="risManageDiagnosisListTableDiv" class="form-group">
         <table class="table table-filter table-striped table-bordered" style="background: #fff; border: 1px solid #ccc; width: 100%" id="risManageDiagnosisListTable">
             <thead>
@@ -123,8 +123,8 @@
 
 
 <div class="thumbnail">
-    <h4>Request Info</h4>
-    <hr/>
+    <h4><u>Request Info</u></h4>
+    <!--<hr/>-->
     <form class="form-horizontal" name="risManageOrderDetailContentOrderInfoForm" id="risManageOrderDetailContentOrderInfoForm">
         <div class="row">
 
@@ -169,11 +169,17 @@
 
         </div>
     </form>
-    <hr/>
+    <!--<hr/>-->
     <h4 style="padding-bottom: 2%">
-        Order Detail
+        <u>Order Detail</u>
         <span class="pull-right">
-            <button id="risOrderNewRequestButton" name="risOrderNewRequestButton" class="btn btn-primary" data-toggle="modal" ><i class="fa fa-plus fa-lg"></i>&nbsp; New Request</button>
+            <button id="risOrderDetailRefreshBtn" class="btn btn-default" title="Refresh Order Detail">
+                <i class="fa fa-refresh fa-lg"></i>
+            </button>
+            <button id="risOrderNewRequestButton" class="btn btn-primary" >
+                <i class="fa fa-plus fa-lg"></i>&nbsp; New Request
+            </button>
+            
         </span>
         <br>
     </h4>
@@ -182,13 +188,13 @@
     <div id="risManageOrderDetailsListTableDiv" class="form-group">
         <table class="table table-filter table-striped table-bordered" style="background: #fff; border: 1px solid #ccc; width: 100%" id="risManageOrderDetailsListTable">
             <thead>
-            <th>Order No</th>
-            <th>Name</th>
-            <th>Modality</th>
-            <th>Body System</th>
-            <th>Requestor Instruction</th>
-            <th>Result</th>
-            <th>Status</th>
+            <th style="width: 15%">Body System</th>
+            <th style="width: 5%">Modality</th>
+            <th style="width: 5%">Procedure Code</th>
+            <th style="width: 15%">Procedure Name</th>
+            <th style="width: 25%">Requestor Instruction</th>
+            <th style="width: 5%">Exam Date</th>
+            <th style="width: 5%">Status</th>
             </thead>
             <tbody>
 
@@ -198,14 +204,29 @@
 
 
     <div class="text-center" id="patientOrderDispenseButtonDiv" > 
-        <button class="btn btn-success " type="button" id="btnRISOrderSave" name="btnRISOrderSave" > <i class="fa fa-shopping-cart fa-lg"></i>&nbsp; Save &nbsp;</button>
-        <button class="btn btn-primary " type="button" id="btnRISOrderSendResults" name="btnRISOrderSendResults" > <i class="fa fa-print fa-lg" ></i>&nbsp; Send Result &nbsp;</button>
-        <button class="btn btn-default " type="button" id="btnRISClearOrderDetail" name="btnRISClearOrderDetail" > <i class="fa fa-ban fa-lg"></i>&nbsp; Back &nbsp;</button>
+        <!--<button class="btn btn-success " type="button" id="btnRISOrderSave" name="btnRISOrderSave" > <i class="fa fa-shopping-cart fa-lg"></i>&nbsp; Save &nbsp;</button>-->
+        <!--<button class="btn btn-primary " type="button" id="btnRISOrderSendResults" name="btnRISOrderSendResults" > <i class="fa fa-print fa-lg" ></i>&nbsp; Send Result &nbsp;</button>-->
+        <button class="btn btn-default " type="button" id="btnRISClearOrderDetail" name="btnRISClearOrderDetail" > <i class="fa fa-arrow-circle-left fa-lg"></i>&nbsp; Back &nbsp;</button>
     </div>
 </div>
 
 <script>
+//------------------on document ready to create datepicker --------------------------------
+    $(function () {
+        //console.log('hai');
+        //creating datepicker.........
+        $('#SED_date').datepicker({
+            changeMonth: true,
+            changeYear: true,
+            minDate: 0,
+            dateFormat: 'dd/mm/yy'
+        });
+    });
+//==========================================================================================
 
+ //global variable for procedure search
+    var selectedPro = "";
+    var isProSelected = false;
 
 //--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------//
 
@@ -288,8 +309,8 @@
                             data: dataOrder,
                             timeout: 3000,
                             success: function (returnOrderDetailsTableHTML) {
-                                $('#risManageOrderDetailsListTable').html(returnOrderDetailsTableHTML);
-                                $('#risManageOrderDetailsListTable').trigger('contentchanged');
+                                $('#risManageOrderDetailsListTableDiv').html(returnOrderDetailsTableHTML);
+                                //$('#risManageOrderDetailsListTable').trigger('contentchanged');
                                 $('.nav-tabs a[href="#tab_default_2"]').tab('show');
                             }
                         });
@@ -305,26 +326,453 @@
 
 
     // Load Datatable To Tables Start
-    $(document).on('contentchanged', '#patientOrderDetailsListTableDiv', function () {
-
-        $('#risManageOrderDetailsListTable').DataTable().destroy();
-
-        // do something after the div content has changed
-        $('#risManageOrderDetailsListTable').DataTable({
-            "paging": false,
-            "searching": false,
-            "info": false,
-            "language": {
-                "emptyTable": "No Request Available To Display"
-            }
-        });
-
-    });
+//    $(document).on('contentchanged', '#risManageOrderDetailsListTableDiv', function () {
+//
+//        $('#risManageOrderDetailsListTable').DataTable().destroy();
+//
+//        // do something after the div content has changed
+//        $('#risManageOrderDetailsListTable').DataTable({
+//            "paging": false,
+//            "searching": false,
+//            "info": false,
+//            "language": {
+//                "emptyTable": "No Request Available To Display"
+//            }
+//        });
+//
+//        console.log('Table is changed');
+//
+//    });
     // Load Datatable To Tables End 
 
 
 //======================================================================================================================================================================================//
 
+    //------------------- refresh order detail ------------------------------------------
+    $('#risOrderDetailRefreshBtn').on('click', function(){
+        var orderNo = $('#risOrderNo').val();
+        if (orderNo === "") {
+
+            bootbox.alert('Please select an order first');
+            $('.nav-tabs a[href="#tab_default_1"]').tab('show');
+            
+        }
+        else{
+            createScreenLoading();
+            loadOrderDetailList(orderNo);
+        }
+    });
+    
+    //=================== refersh order detail =======================
+
+    //---------------------- create modal for request new order --------------------------------
+    $('#risOrderNewRequestButton').on('click', function () {
+        var orderNo = $('#risOrderNo').val();
+        if (orderNo === "") {
+
+            bootbox.alert('Please select an order first');
+            $('.nav-tabs a[href="#tab_default_1"]').tab('show');
+            return false;
+        }
+
+        $('#modal_requestNewOrder').modal('show');
+
+        $('#RNO_modalTitle').text('Request New Order');
+
+        $('#RNO_addForm')[0].reset(); //reset the form
+
+        $('#RNO_div_btnAdd_or_update').html('<button type="submit" class="btn btn-success btn-block btn-lg" role="button" id="RNO_btnAdd">Add</button>');
+    });
+    //=============================================================================
+
+    //-------------------search procedure of new order --------------------------------------------------------
+   
+
+    $('#RNO_proName').on('keyup', function () {
+        var BScode = $('#RNO_bodySystem').val();
+        var MODcode = $('#RNO_modality').val();
+
+        var input = $(this).val();
+
+        if (input.length > 0) {
+
+            if (BScode === "" || MODcode === "") {
+                bootbox.alert('Please select body system and modality first.');
+                $(this).val('');
+
+            } else {
+                $('#RNO_pro_match').html('<img src="img/ajax-loader.gif">');
+                var data = {
+                    BScode: BScode,
+                    MODcode: MODcode,
+                    key: input
+                };
+
+                $.ajax({
+                    type: 'POST',
+                    url: "order_control/searchProcedure.jsp",
+                    data: data,
+                    success: function (data, textStatus, jqXHR) {
+                        $('#RNO_pro_match').html(data);
+                        $('#RNO_pro_matchlist li').on('click', function () {
+
+                            $('#RNO_proName').val($(this).text());
+                            $('#RNO_pro_match').html('');
+                            isProSelected = true;
+                            selectedPro = $('#RNO_proName').val();
+
+                        });
+
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                        $('#RNO_pro_match').text("Opps! " + errorThrown);
+
+                    }
+
+
+                });//end ajax
+            }
+
+        } else {
+            $('#RNO_pro_match').html('');
+        }
+    });
+
+    //--------------------------- reset procedure name on bs and mod change ----------------------------------------
+
+    function resetProcedureName() {
+        $('#RNO_proName').val('');
+        isProSelected = false;
+        selectedPro = '';
+    }
+
+    $('#RNO_bodySystem').on('change', function () {
+        resetProcedureName();
+    });
+
+    $('#RNO_modality').on('change', function () {
+        resetProcedureName();
+    });
+
+    //==============================================================================
+
+    //------------------------- add new order start --------------------------------
+    $('#RNO_div_btnAdd_or_update').on('click', '#RNO_btnAdd', function () {
+
+        var orderNo = $('#risOrderNo').val();
+
+        var bsCode = $('#RNO_bodySystem').val();
+        var modCode = $('#RNO_modality').val();
+        var procedure = $('#RNO_proName').val();
+        var instruction = $('#RNO_instruction').val();
+
+        if (bsCode === "") {
+            bootbox.alert('Select body system.', function () {
+                $('#RNO_bodySystem').focus();
+            });
+
+        } else if (modCode === "") {
+            bootbox.alert('Select body system.', function () {
+                $('#RNO_modality').focus();
+            });
+
+        } else if (isProSelected === false || selectedPro !== procedure || procedure === "") {
+            bootbox.alert('Please choose existing procedure.', function () {
+                $('#RNO_proName').focus();
+            });
+
+        } else {
+            instruction = instruction.replace(/'/g, "\\\'").replace(/"/g, "\\\"");
+            var arrData = procedure.split('|');
+            procedure = arrData[0].trim();
+
+
+
+            var data = {
+                orderNo: orderNo,
+                modCode: modCode,
+                bsCode: bsCode,
+                proCode: procedure,
+                instruction: instruction
+            };
+            $('#risManageOrderDetailsListTableDiv').append('<div class="loading">Loading</div>');
+            $.ajax({
+                type: 'POST',
+                url: "order_control/requestNewOrder_insert.jsp",
+                data: data,
+                success: function (data, textStatus, jqXHR) {
+                    if (data.trim() === 'success') {
+                        bootbox.alert('New order is added.');
+                        loadOrderDetailList(orderNo);
+
+                    } else if (data.trim() === 'duplicate') {
+                        bootbox.alert('Duplicate order. Please order different item');
+                        $('.loading').hide();
+
+                    } else if (data.trim() === 'fail') {
+
+                        bootbox.alert('Fail to add new order.');
+                        $('.loading').hide();
+                    }
+
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    bootbox.alert('Opps! ' + errorThrown);
+                    $('.loading').hide();
+                },
+                complete: function (jqXHR, textStatus) {
+                    //$('.loading').hide();
+                    $('.modal-backdrop').hide();
+                    $('#modal_requestNewOrder').modal('hide');
+                }
+            });
+        }
+    });
+
+    function loadOrderDetailList(orderNo) {
+
+        var dataOrder = {orderNo: orderNo};
+
+        $.ajax({
+            url: "risManageOrderListDetails.jsp",
+            type: "post",
+            data: dataOrder,
+            success: function (returnOrderDetailsTableHTML) {
+                $('#risManageOrderDetailsListTableDiv').html(returnOrderDetailsTableHTML);
+                //$('#risManageOrderDetailsListTable').trigger('contentchanged');
+                //$('.nav-tabs a[href="#tab_default_2"]').tab('show');
+            },
+            complete: function (jqXHR, textStatus) {
+                destroyScreenLoading();
+            }
+        });
+    }
+    //===============================================================================
+
+    //------------------- set exam date -------------------------------------------------
+    $('#risManageOrderDetailsListTableDiv').on('click', '#risManageOrderDetailsListTable #MOD_btnModalDate', function () {
+
+        var row = $(this).closest("tr");
+        var arrData = row.find('td').eq(0).text().split('|');
+        //var button = row.find('#MOD_btnModalDate');
+
+        var status = arrData[8].trim();
+
+        //creating modal..........
+
+        if (status === "0") {
+            var bsCode = arrData[2], bsName = arrData[11], modCode = arrData[1], modName = arrData[12], proCode = arrData[3], proName = arrData[9], exDate = arrData[10];
+
+            $('#SED_bodySystem').val(bsName);
+            $('#SED_bodySystem_cd').val(bsCode);
+            $('#SED_modality').val(modName);
+            $('#SED_modality_cd').val(modCode);
+            $('#SED_proName').val(proName);
+            $('#SED_pro_cd').val(proCode);
+            $('#SED_date').val(exDate);
+
+
+            $('#modal_setExamDate').modal('show');
+
+        } else {
+            $(this).prop('disabled', true);
+        }
+        //console.log(data);
+    });
+
+
+    //---------- confirm exam date-------------------
+    $('#SED_btnAdd').on('click', function () {
+
+        var exDate = $('#SED_date').val();
+        var orderNo = $('#risOrderNo').val();
+        var bsCode = $('#SED_bodySystem_cd').val();
+        var modCode = $('#SED_modality_cd').val();
+        var proCode = $('#SED_pro_cd').val();
+
+        if (exDate === '') {
+            bootbox.alert('Please pick a date first.', function () {
+                $('#SED_date').focus();
+            });
+
+        } else {
+            $('#modal_setExamDate').modal('hide');
+
+            var data = {
+                process: 'setDate',
+                orderNo: orderNo,
+                bsCode: bsCode,
+                modCode: modCode,
+                proCode: proCode,
+                exDate: exDate
+            };
+
+            createScreenLoading();
+
+            $.ajax({
+                type: 'POST',
+                url: "order_control/order_update.jsp",
+                data: data,
+                success: function (data, textStatus, jqXHR) {
+                    if (data.trim() === 'success') {
+                        loadOrderDetailList(orderNo);
+
+                    } else if (data.trim() === 'fail') {
+                        bootbox.alert('Failed to set exam date. Try again.');
+                        destroyScreenLoading();
+                    }
+
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    bootbox.alert('Opps! ' + errorThrown);
+                    destroyScreenLoading();
+                }
+
+            });
+        }
+
+    });
+
+    //===================================== exam date ===================================================
+
+
+
+    //------------------- perform exam on click --------------------------------------
+    $('#risManageOrderDetailsListTableDiv').on('click', '#risManageOrderDetailsListTable #MOD_btnPerform', function () {
+
+        var row = $(this).closest("tr");
+        var arrData = row.find('td').eq(0).text().split('|');
+        var bsCode = arrData[2], modCode = arrData[1], proCode = arrData[3], proName = arrData[9], orderNo = arrData[0];
+
+        bootbox.confirm({
+            message: "Are you sure want to perform this exam? " + proCode + "-" + proName,
+            title: "Perform Exam?",
+            buttons: {
+                confirm: {
+                    label: 'Yes',
+                    className: 'btn-success'
+                },
+                cancel: {
+                    label: 'No',
+                    className: 'btn-danger'
+                }
+            },
+            callback: function (result) {
+
+                if (result === true) {
+
+                    var data = {
+                        process: 'perform',
+                        orderNo: orderNo,
+                        bsCode: bsCode,
+                        modCode: modCode,
+                        proCode: proCode
+                    };
+
+                    createScreenLoading();
+
+                    $.ajax({
+                        url: "order_control/order_update.jsp",
+                        type: "post",
+                        data: data,
+                        success: function (datas) {
+
+                            if (datas.trim() === 'success') {
+                                bootbox.alert('Exam is performed.');
+                                loadOrderDetailList(orderNo);
+
+
+                            } else if (datas.trim() === 'fail') {
+                                bootbox.alert("Fail to perform exam!");
+                                destroyScreenLoading();
+
+                            }
+                        },
+                        error: function (jqXHR, textStatus, errorThrown) {
+                            bootbox.alert("Opps! " + errorThrown);
+                            destroyScreenLoading();
+                        }
+
+                    });
+
+                } else {
+                    console.log("Process Is Canceled");
+                }
+
+            }
+        });
+
+    });
+    //=========================== perform the exam ============================================
+
+    //------------------------------- cancel order --------------------------------------------
+    $('#risManageOrderDetailsListTableDiv').on('click', '#risManageOrderDetailsListTable #MOD_btnDelete', function () {
+
+        var row = $(this).closest("tr");
+        var arrData = row.find('td').eq(0).text().split('|');
+        var bsCode = arrData[2], modCode = arrData[1], proCode = arrData[3], proName = arrData[9], orderNo = arrData[0];
+
+        bootbox.confirm({
+            message: "Are you sure want to delete(cancel) this order? " + proCode + "-" + proName,
+            title: "Cancel Order?",
+            buttons: {
+                confirm: {
+                    label: 'Yes',
+                    className: 'btn-success'
+                },
+                cancel: {
+                    label: 'No',
+                    className: 'btn-danger'
+                }
+            },
+            callback: function (result) {
+
+                if (result === true) {
+
+                    var data = {
+                        process: 'cancel',
+                        orderNo: orderNo,
+                        bsCode: bsCode,
+                        modCode: modCode,
+                        proCode: proCode
+                    };
+
+                    createScreenLoading();
+
+                    $.ajax({
+                        url: "order_control/order_update.jsp",
+                        type: "post",
+                        data: data,
+                        success: function (datas) {
+
+                            if (datas.trim() === 'success') {
+                                bootbox.alert('Order is cancelled.');
+                                loadOrderDetailList(orderNo);
+
+
+                            } else if (datas.trim() === 'fail') {
+                                bootbox.alert("Fail to cancel order!");
+                                destroyScreenLoading();
+
+                            }
+                        },
+                        error: function (jqXHR, textStatus, errorThrown) {
+                            bootbox.alert("Opps! " + errorThrown);
+                            destroyScreenLoading();
+                        }
+
+                    });
+
+                } else {
+                    console.log("Process Is Canceled");
+                }
+
+            }
+        });
+
+    });
+
+    //=========================== cancel order ==========================================
 
     // Save Button Function Start
     $('#patientOrderDispenseButtonDiv').on('click', '#btnRISOrderSave', function (e) {
@@ -351,6 +799,7 @@
         $('.nav-tabs a[href="#tab_default_1"]').tab('show');
     });
     // Clear Button Function End
+
 
 
 </script>

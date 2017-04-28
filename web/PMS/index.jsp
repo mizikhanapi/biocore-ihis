@@ -9,6 +9,7 @@
 <html lang="en">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <%@include file = "../assets/header.html" %>
         <link rel="stylesheet" href="libraries/lib/css/loading.css">
         <link href="libraries/lib/datepicker/jquery-ui.css" rel="stylesheet">
         <script src="libraries/lib/js/jquery.min.js"></script>
@@ -17,8 +18,6 @@
         <script src="libraries/lib/js/form-validator.min.js"></script>    
         <script src="libraries/lib/js/bootbox.min.js"></script>
         <script src="libraries/lib/js/search/searchPatient.js" type="text/javascript"></script>
-
-    <div><%@include file = "../assets/header.html" %></div>
     <!-- header -->
 
 </head>

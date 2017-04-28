@@ -18,6 +18,9 @@
                 </div>
                 <div class="form-group">
                     <input class="form-control input-lg" type="text" name="problem"  id="Problem18" placeholder="Search Procedure..." tabindex="4">
+                              <input class="form-control input-lg" type="hidden"  id="hfcOrderDetailPOS" placeholder="">
+                            <input class="form-control input-lg" type="hidden"  id="hfcProviderDetailPOS" placeholder="">
+                            <input class="form-control input-lg" type="hidden"  id="hfcIdPOS">
                     <div id="match18"></div>
                 </div>
                 <div id="proType1">
@@ -67,6 +70,9 @@
                 </div>
                 <div class="form-group">
                     <input class="form-control input-lg" type="text" name="problem"  id="PProblem19" placeholder="Search Procedure..." tabindex="4">
+                                                  <input class="form-control input-lg" type="hidden"  id="UhfcOrderDetailPOS" placeholder="">
+                            <input class="form-control input-lg" type="hidden"  id="UhfcProviderDetailPOS" placeholder="">
+                            <input class="form-control input-lg" type="hidden"  id="UhfcIdPOS">
                     <div id="match19"></div>
                 </div>
                 

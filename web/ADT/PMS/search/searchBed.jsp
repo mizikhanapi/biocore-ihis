@@ -1,8 +1,29 @@
+<%
 
+  
+
+    
+    String DR = "002";
+    
+ String role1 = "SELECT  b.USER_ID, b.USER_NAME,a.USER_ID, a.ROLE_CODE, a.HEALTH_FACILITY_CODE, a.DISCIPLINE_CODE FROM adm_user_access_role a LEFT JOIN adm_users b ON a.USER_ID = b.USER_ID where  a.ROLE_CODE = "+DR+" AND a.HEALTH_FACILITY_CODE="+hfc+";";
+ String hfc1 = "SELECT  hfc_name, hfc_cd FROM adm_health_facility where  hfc_cd ="+hfc+";";
+
+    
+    ArrayList<ArrayList<String>> dataRole, dataHFC1;
+
+    dataRole = conn.getData(role1);
+    dataHFC1 = conn.getData(hfc1);
+    
+
+
+%>
 <input type="hidden" value="<%=hfc%>" id="Rhfc">
 <input type="hidden" value="<%=pageNow%>" id="pageNow">
 
+
 <div class="row">
+    
+    
     <div class="col-md-6">
         <!-- Select Basic -->
         <!-- Select Basic -->
@@ -21,20 +42,7 @@
             <label class="col-md-4 control-label" for="selectbasic">Ward Type</label>
             <div class="col-md-6" id="wardTypeList">
                 <select id="WardType" name="WardType" class="form-control" disabled="">
-                    <option value="1" selected="" disabled="">Select Ward Type</option>
 
-                    <%
-                        String wtype = "select ward_class_code,ward_class_name from wis_ward_class where hfc_cd='" + hfc + "'";
-                        ArrayList<ArrayList<String>> dataWardType = conn.getData(wtype);
-
-                        int size2 = dataWardType.size();
-
-                        for (int i = 0; i < size2; i++) {
-                    %>
-                    <option value="<%= dataWardType.get(i).get(0)%>"><%= dataWardType.get(i).get(1)%> </option>
-                    <%
-                        }
-                    %>
                 </select>
             </div>
         </div>
@@ -44,20 +52,8 @@
             <label class="col-md-4 control-label" for="selectbasic">Ward Name</label>
             <div class="col-md-6" id="wardNameDropdown">
                 <select id="wname" name="selectbasic" class="form-control" disabled="">
-                    <option value="-">-</option>
-                    <option value="null" selected="" disabled="">Select Ward Name</option>
-                    <%
-                        String wname = "select ward_id,ward_name from wis_ward_name where hfc_cd='" + hfc + "'";
-                        ArrayList<ArrayList<String>> dataWardName = conn.getData(wname);
-
-                        int size1 = dataWardName.size();
-
-                        for (int i = 0; i < size1; i++) {
-                    %>
-                    <option value="<%= dataWardName.get(i).get(0)%>"><%= dataWardName.get(i).get(1)%> </option>
-                    <%
-                        }
-                    %>
+                   
+                    
                 </select>
             </div>
 
@@ -65,7 +61,7 @@
         <div class="form-group">
             <label class="col-md-4 control-label" for="selectbasic"></label>
             <div class="col-md-6" >                
-                <button class="btn btn-primary" type="button" id="searchBed" name="searchBed"><i class="fa fa-search"></i>&nbsp; Search Bed</button>
+                <button class="btn btn-info" type="button" id="searchBed" name="searchBed"><i class="fa fa-search"></i>&nbsp; Search Bed</button>
             </div>
         </div>
     </div>
@@ -86,8 +82,38 @@
         <div class="form-group">
             <label class="col-md-4 control-label" for="selectbasic">Bed ID</label>
             <div class="col-md-6">
-                <input id="BedIDReg" name="textinput" type="text" placeholder="Bed ID" readonly class="form-control input-md">
+                <input id="BedIDReg" disabled="" name="textinput" type="text" placeholder="Bed ID" readonly class="form-control input-md">
                 </br>
+            </div>
+        </div>
+        <!-- Text input-->
+        <div class="form-group">
+            <label class="col-md-4 control-label" >HFC To :</label>
+            <div class="col-md-6">
+                <input id="hfcTo"  value="<%= dataHFC1.get(0)%>"  class="form-control input-md">
+            </div>
+        </div>
+
+
+        <!-- Select Basic -->
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="selectbasic">Attain by DR :</label>
+            <div class="col-md-6">
+               <select id="AttDR" name="AttDR" class="form-control" >
+                    <option value="1" selected="" >Attain by DR</option>
+
+                    <%
+                  
+
+                        int sizeDR = dataRole.size();
+
+                        for (int i = 0; i < sizeDR; i++) {
+                    %>
+                    <option value="<%= dataRole.get(i).get(0)%>"><%= dataRole.get(i).get(1)%> </option>
+                    <%
+                        }
+                    %>
+                </select>
             </div>
         </div>
 

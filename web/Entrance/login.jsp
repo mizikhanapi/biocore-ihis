@@ -8,10 +8,17 @@
 <%@page import="Config.Config"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
+    if (session.getAttribute("USER_ID") != null && session.getAttribute("HEALTH_FACILITY_CODE") != null && session.getAttribute("ROLE_CODE") != null) {
+
+        response.sendRedirect("dashboard.jsp");
+
+        return;
+    }
+
     Config.getBase_url(request);
     Config.getFile_url(session);
     Conn conn = new Conn();
-   // out.print(conn.getIpCall());
+    // out.print(conn.getIpCall());
 %>
 <!DOCTYPE html>
 <html lang="en">
@@ -32,8 +39,10 @@
                 <div class="profile-img-card">
                     <i class="fa fa-user-md" aria-hidden="true" style="color: #666; font-size: 100px;"></i>
                 </div>
-                <h2 style="text-align: center;"><span style="color: #0ae">iHIS</span></h2>
-                <p id="profile-name" class="profile-name-card">Clinical Support System</p>
+                <div class="logo" style="font-size: 32px;">
+                    Welcome to <span>iHIS</span>
+                </div>
+                <p id="profile-name" class="profile-name-card" style="font-weight: 400;">Integrated Health Information System</p>
                 <form class="form-signin" id="leForm" >
                     <span id="reauth-email" class="reauth-email"></span>
                     <input type="text" id="inputUserID" class="form-control" placeholder="Enter User ID" name="username" required autofocus>
@@ -108,7 +117,7 @@
                         data: {userID: userID,
                             password: password
                         },
-                        timeout: 3000,
+                        timeout: 30000,
                         success: function (data) {
                             var num = parseInt(data);
 
@@ -126,10 +135,10 @@
                             } else
                                 alert("Error");
                         },
-                        error: function (err) {
-                            alert("error :" + err.toString());
+                        error: function (jqXHR, textStatus, errorThrown) {
+                            alert("Opps! " + errorThrown);
                         },
-                        complete: function (jqXHR, textStatus ) {
+                        complete: function (jqXHR, textStatus) {
                             $('.loading').hide();
                         }
 

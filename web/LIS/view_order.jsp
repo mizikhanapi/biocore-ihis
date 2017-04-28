@@ -96,7 +96,11 @@
                         <em>IC_NO: <%=q1.get(i).get(2)%></em>
                     </p>
                     <p>
-                        <em>Gender: <%=q1.get(i).get(4)%></em>
+                        <em>Gender: <%
+                            String getGender = "SELECT ald.`Description` FROM adm_lookup_master alm,adm_lookup_detail ald WHERE alm.`Master_Reference_code`=ald.`Master_Reference_code` AND alm.`Description` = 'Gender' AND ald.`Detail_Reference_code` = '"+q1.get(i).get(4)+"'";
+                            ArrayList<ArrayList<String>> q2 = conn.getData(getGender);
+                            out.println(q2.get(0).get(0));
+                        %></em>
                     </p>
                     </address>
                 </div>
@@ -107,13 +111,26 @@
                         <em>Birth Date: <%=q1.get(i).get(3)%></em>
                     </p>
                     <p>
-                        <em>Race: <%=q1.get(i).get(5)%></em>
+                        <em>Race: <%
+                            String getRace = "SELECT DISTINCT Description FROM adm_lookup_detail WHERE Detail_Reference_code='"+q1.get(i).get(5)+"'";
+                            ArrayList<ArrayList<String>> q3 = conn.getData(getRace);
+                            out.println(q3.get(0).get(0));
+                        %></em>
                     </p>
                      <p>
-                        <em>Blood Type: <%=q1.get(i).get(6)%></em>
+                        <em>Blood Type: <%
+                            String getBlood = "SELECT DISTINCT Description FROM adm_lookup_detail WHERE Master_Reference_code='0074' AND Detail_Reference_code='"+q1.get(i).get(6)+"'";
+                            ArrayList<ArrayList<String>> q4 = conn.getData(getBlood);
+                            out.println(q4.get(0).get(0));
+                        %></em>
                     </p>
                      <p>
-                        <em>Allergy: <%=q1.get(i).get(7)%></em>
+                        <em>Allergy: <%
+                            q1.get(i).get(7);
+                            String getAllergy = "SELECT DISTINCT Description FROM adm_lookup_detail WHERE Master_Reference_code='0075' AND Detail_Reference_code='"+q1.get(i).get(7)+"'";
+                            ArrayList<ArrayList<String>> q5 = conn.getData(getAllergy);
+                            out.println(q5.get(0).get(0));
+                        %></em>
                     </p>
                     
                 </div>          
@@ -126,8 +143,8 @@
          <table id="orderRecieve"  class="table table-striped table-bordered" cellspacing="0" width="100%">    
                      <%
                         String pmi1 = request.getParameter("pmi");
-                         String query2 = "select episode_date,encounter_date,ICD10_DESCRIPTION,severity,comment from lhr_diagnosis where pmi_no = '"+pmi1+"'";
-                         ArrayList<ArrayList<String>> q2 = conn.getData(query2);
+                        String query2 = "select episode_date,encounter_date,ICD10_DESCRIPTION,severity,comment from lhr_diagnosis where pmi_no = '"+pmi1+"'";
+                        ArrayList<ArrayList<String>> q2 = conn.getData(query2);
                      %>
         <thead>
             <tr>
@@ -186,7 +203,7 @@
                         String pmi2 = request.getParameter("pmi");
                         String orderno1 = request.getParameter("order_no");
                         
-                         String query4 = "SELECT item_cd,item_name,spe_source,volume,requestor_comments,filler_comments,specimen_status,Verification,collectionDate FROM lis_order_detail  WHERE order_no='"+orderno1+"' AND pmi_no='"+pmi2+"'";
+                         String query4 = "SELECT item_cd,item_name,spe_source,volume,requestor_comments,filler_comments,specimen_status,Verification,collectionDate FROM lis_order_detail WHERE order_no='"+orderno1+"' AND pmi_no='"+pmi2+"' AND detail_status='0'";
                          ArrayList<ArrayList<String>> q4 = conn.getData(query4);
                          
                      %>
@@ -196,12 +213,12 @@
                 <th class="col-sm-1">Item Name</th>			 
                 <th class="col-sm-1">Specimen Source</th>
                 <th class="col-sm-1">Volume</th>
-                <th class="col-sm-1">Requestor Comments</th>
-                <th class="col-sm-1">Collection Date</th>
-                <th class="col-sm-1">Comments</th>
                 <th class="col-sm-1">Specimen Status</th>
                 <th class="col-sm-1">Verification</th>
+                <th class="col-sm-1">Collection Date</th>
+                <th class="col-sm-1">Comments</th>
                 <th class="col-sm-1">Set Collection Date</th>
+                <th class="col-sm-1">Requestor Comments</th>
                 <th class="col-sm-1">Check for Assign Specimen</th>
         </tr>
     </thead>
@@ -217,11 +234,12 @@
                 <td><%=q4.get(i).get(1)%></td>
                 <td><%=q4.get(i).get(2)%></td>
                 <td><%=q4.get(i).get(3)%></td>
-                <td style="background-color: lawngreen"><%=q4.get(i).get(4)%></td>
-                <td><%=q4.get(i).get(8)%></td>
-                <td><%=q4.get(i).get(5)%></td>
+                
+                
                 <td><%=q4.get(i).get(6)%></td>
                 <td><%=q4.get(i).get(7)%></td>
+                <td><%=q4.get(i).get(8)%></td>
+                <td><%=q4.get(i).get(5)%></td>
             <td>
                 <a  style="cursor: pointer;" data-toggle="modal" data-target="#Collection<%=i %>"><i class="fa fa-calendar fa-lg"></i></a>
                 <div class="modal fade" id="Collection<%=i %>" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
@@ -352,6 +370,7 @@
                     });
             </script>
             </td>
+            <td><%=q4.get(i).get(4)%></td>
             <td>
                
                <input class="chk" type="checkbox" name="chkSpecimen" value="<%=q4.get(i).get(0)%>" id="checky"/>

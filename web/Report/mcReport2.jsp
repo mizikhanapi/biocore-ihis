@@ -26,7 +26,7 @@
 
             String mcType = request.getParameter("mcType");
             String mcInput = request.getParameter("mcInput");
-            String startDate = request.getParameter("startDate");
+            String episodeDate2 = request.getParameter("episodeDate2"); 
 //            String hfccode = request.getParameter("hfccode");
 
             try {
@@ -34,13 +34,13 @@
                 Class.forName("com.mysql.jdbc.Driver").newInstance();
                 Connection conn = DriverManager.getConnection("jdbc:mysql://10.73.32.200:3306/emedica?zeroDateTimeBehavior=convertToNull", "root", "qwerty");
 
-                File reportFile = new File(application.getRealPath("MC.jasper"));
+                File reportFile = new File(application.getRealPath("//reports//MC22.jasper"));
 
                 if (mcType.equals("PMI_NO")) {
 
                     Map parameters = new HashMap();
                     parameters.put("mcInput", mcInput);
-                    parameters.put("startDate", startDate);
+                    parameters.put("episodeDate2", episodeDate2);
 //                    parameters.put("hfccode", hfccode);
 //                    parameters.put("endDate", endDate);
                     //parameters.put("ID_TYPE", ID_TYPE);
@@ -54,11 +54,11 @@
                     outStream.flush();
                     outStream.close();
 
-                } else if (mcType.equals("NEW_IC_NO") || mcType.equals("OLD_IC_NO")) {
+                } else if (mcType.equals("NEW_IC_NO")){
 
                     Map parameters = new HashMap();
                     parameters.put("mcInput", mcInput);
-                    parameters.put("startDate", startDate);
+                    parameters.put("episodeDate2", episodeDate2);
 //                    parameters.put("hfccode", hfccode);
 //                    parameters.put("endDate", endDate);
                     //parameters.put("ID_TYPE", ID_TYPE);
@@ -75,7 +75,7 @@
 
                     Map parameters = new HashMap();
                     parameters.put("mcInput", mcInput);
-                    parameters.put("startDate", startDate);
+                    parameters.put("episodeDate2", episodeDate2);
 //                    parameters.put("hfccode", hfccode);
 //                    parameters.put("endDate", endDate);
                     // parameters.put("ID_TYPE", ID_TYPE);

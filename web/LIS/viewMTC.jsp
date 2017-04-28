@@ -16,8 +16,7 @@
             <th class="col-sm-1">Test cat code</th>
             <th class="col-sm-1">Test category name</th>
             <th class="col-sm-1">Status</th>
-            <th class="col-sm-1">Edit</th>				 
-            <th class="col-sm-1">Delete</th>
+            <th class="col-sm-1">Action</th>
         </tr>
     </thead>
     <tbody>
@@ -32,54 +31,61 @@
             <td><%=q1.get(i).get(1)%></td>
             <td><%=q1.get(i).get(2)%></td>
             <td>
-                
-                <a data-toggle="modal" data-target="#basicModal<%=i %>"><i class="fa fa-pencil-square-o" aria-hidden="true" style="display: inline-block;color: #337ab7;"></i></a>
 
-                <div class="modal fade" id="basicModal<%=i %>" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+                <a data-toggle="modal" data-target="#basicModal<%=i%>"><i class="fa fa-pencil-square-o fa-lg" aria-hidden="true" style="display: inline-block;color: #337ab7; cursor: pointer;"></i></a>
+
+                <div class="modal fade" id="basicModal<%=i%>" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><%= new SimpleDateFormat("HH:mm:ss").format(new java.util.Date())%></button>
-                                <h4 class="modal-title" id="myModalLabel">Edit</h4>
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="fa fa-times fa-lg"></i></button>
+                                <h3 class="modal-title" id="myModalLabel">Edit</h3>
                             </div>
                             <div class="modal-body">  
-                                <!--<form name="myForm" action="j.jsp" method="post">-->
-                                    
+                                <form class="form-horizontal">
                                     <div class="form-group">
-                                    <label class="col-md-4 control-label" for="textinput">Test category code</label>
-                                    <div class="col-md-8">
-                                        <input type="text" class="form-control" name="tcode" id="tcode<%=i%>"  value='<%=q1.get(i).get(0)%>' readonly="">
-                                     </div>
+                                        <label class="col-md-4 control-label" for="textinput">Test category code</label>
+                                        <div class="col-md-8">
+                                            <input type="text" class="form-control" name="tcode" id="tcode<%=i%>"  value='<%=q1.get(i).get(0)%>' readonly="">
+                                        </div>
                                     </div>
                                     <div class="form-group">
                                         <label class="col-md-4 control-label" for="textinput">Test category name</label>
                                         <div class="col-md-8">
-                                        <input type="text" class="form-control" name="tname" id="tname<%=i%>"  value='<%=q1.get(i).get(1)%>'>
+                                            <input type="text" class="form-control" name="tname" id="tname<%=i%>"  value='<%=q1.get(i).get(1)%>'>
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label class="col-md-4 control-label" for="textinput">Status</label>
                                         <div class="col-md-8">
                                             <select class="form-control" name="tstatus" id="tstatus<%=i%>">
-                                            <option value="Active" <% if (q1.get(i).get(2).equals("Active")) { out.print("selected"); } %>>Active</option>
-                                            <option value="Inactive" <% if (q1.get(i).get(2).equals("Inactive")) { out.print("selected"); } %>>Inactive</option>
-                                        </select>
+                                                <option value="Active" <% if (q1.get(i).get(2).equals("Active")) {
+                                                        out.print("selected");
+                                                    } %>>Active</option>
+                                                <option value="Inactive" <% if (q1.get(i).get(2).equals("Inactive")) {
+                                                        out.print("selected");
+                                                    }%>>Inactive</option>
+                                            </select>
                                         </div>
-                                        
                                     </div>
-                                <!--</form>-->
+                                    <!--</form>-->
+                                </form>
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-primary" id="btn_update<%=i%>">Save changes</button>
+                                <div class="btn-group btn-group-justified" role="group" aria-label="group button">
+                                    <div class="btn-group" role="group">
+                                        <button type="button" class="btn btn-primary btn-lg" id="btn_update<%=i%>">Save changes</button>
+                                    </div>
+                                    <div class="btn-group" role="group">
+                                        <button type="button" class="btn btn-default btn-lg" data-dismiss="modal">Close</button>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                
-            </td>
-            <td>
-                <a id="btn<%=i%>" class="testing"><i class="fa fa-times" aria-hidden="true" style="display: inline-block;color: #d9534f;" ></i></a>
+                &nbsp;&nbsp;
+                <a id="btn<%=i%>" class="testing"><i class="fa fa-times fa-lg" aria-hidden="true" style="display: inline-block;color: #d9534f; cursor: pointer;" ></i></a>
                 <script type="text/javascript" charset="utf-8">
                     $(document).ready(function () {
                         $("#btn<%=i%>").click(function () {
@@ -107,7 +113,7 @@
                                 });
                             }
                         });
-                        
+
                         $("#btn_update<%=i%>").click(function () {
                             var testCat = $("#tcode<%=i%>").val();
                             var testCatName = $("#tname<%=i%>").val();
@@ -122,18 +128,18 @@
                                     status: status
                                 },
                                 timeout: 10000,
-                                success: function(data) {
-                                     var d = data.split("|");
-                                     if (d[1] == '1') {
-                                         $("#viewMTCpage").load("viewMTC.jsp");
-//                                         $("#basicModal_<%=i %>").removeClass("in").css("display", "none");
+                                success: function (data) {
+                                    var d = data.split("|");
+                                    if (d[1] == '1') {
+                                        $("#viewMTCpage").load("viewMTC.jsp");
+//                                         $("#basicModal_<%=i%>").removeClass("in").css("display", "none");
                                         $(".modal-backdrop").hide();
                                         alert("Success");
-                                     } else {
-                                         alert("Update failed!");
-                                     }
+                                    } else {
+                                        alert("Update failed!");
+                                    }
                                 },
-                                error: function(err) {
+                                error: function (err) {
                                     alert("Error update!");
                                 }
                             });
@@ -149,7 +155,7 @@
         %>
     </tbody>
 </table>
-    
+
 <script type="text/javascript" charset="utf-8">
     $(document).ready(function () {
         $('#MTC').DataTable();

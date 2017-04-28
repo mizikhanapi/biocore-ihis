@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="MC22" language="groovy" pageWidth="842" pageHeight="540" orientation="Landscape" whenNoDataType="AllSectionsNoDetail" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" whenResourceMissingType="Error" uuid="7d619899-a801-4b32-89f1-a69f1ebcbe20">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="mcInput" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="mcType" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="episodeDate2" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     pms_patient_biodata.`PMI_NO` AS pms_patient_biodata_PMI_NO,
+     pms_patient_biodata.`PMI_NO_TEMP` AS pms_patient_biodata_PMI_NO_TEMP,
+     pms_patient_biodata.`PATIENT_NAME` AS pms_patient_biodata_PATIENT_NAME,
+     pms_patient_biodata.`TITLE_CODE` AS pms_patient_biodata_TITLE_CODE,
+     pms_patient_biodata.`NEW_IC_NO` AS pms_patient_biodata_NEW_IC_NO,
+     pms_patient_biodata.`OLD_IC_NO` AS pms_patient_biodata_OLD_IC_NO,
+     pms_patient_biodata.`ID_TYPE` AS pms_patient_biodata_ID_TYPE,
+     pms_patient_biodata.`ID_NO` AS pms_patient_biodata_ID_NO,
+     pms_patient_biodata.`NATIONALITY` AS pms_patient_biodata_NATIONALITY,
+     lhr_med_leave.`pmi_no` AS lhr_med_leave_pmi_no,
+     lhr_med_leave.`hfc_cd` AS lhr_med_leave_hfc_cd,
+     lhr_med_leave.`episode_date` AS lhr_med_leave_episode_date,
+     lhr_med_leave.`encounter_date` AS lhr_med_leave_encounter_date,
+     lhr_med_leave.`start_date` AS lhr_med_leave_start_date,
+     lhr_med_leave.`end_date` AS lhr_med_leave_end_date,
+     lhr_med_leave.`doctor_name` AS lhr_med_leave_doctor_name,
+     lhr_med_leave.`doctor_id` AS lhr_med_leave_doctor_id,
+     adm_health_facility.`hfc_cd` AS adm_health_facility_hfc_cd,
+     adm_health_facility.`hfc_name` AS adm_health_facility_hfc_name
+FROM
+     `pms_patient_biodata` pms_patient_biodata INNER JOIN `lhr_med_leave` lhr_med_leave ON pms_patient_biodata.`PMI_NO` = lhr_med_leave.`PMI_NO`
+INNER JOIN
+     `adm_health_facility` adm_health_facility ON adm_health_facility.`hfc_cd` = lhr_med_leave.`hfc_cd`
+WHERE
+     lhr_med_leave.`pmi_no` = $P{mcInput}
+     or pms_patient_biodata.`NEW_IC_NO` = $P{mcInput}
+     or pms_patient_biodata.`ID_NO` = $P{mcInput}
+     or pms_patient_biodata.`OLD_IC_NO` = $P{mcInput}
+ AND lhr_med_leave.`episode_date` = $P{episodeDate2}]]>
+	</queryString>
+	<field name="pms_patient_biodata_PMI_NO" class="java.lang.String"/>
+	<field name="pms_patient_biodata_PMI_NO_TEMP" class="java.lang.String"/>
+	<field name="pms_patient_biodata_PATIENT_NAME" class="java.lang.String"/>
+	<field name="pms_patient_biodata_TITLE_CODE" class="java.lang.String"/>
+	<field name="pms_patient_biodata_NEW_IC_NO" class="java.lang.String"/>
+	<field name="pms_patient_biodata_OLD_IC_NO" class="java.lang.String"/>
+	<field name="pms_patient_biodata_ID_TYPE" class="java.lang.String"/>
+	<field name="pms_patient_biodata_ID_NO" class="java.lang.String"/>
+	<field name="pms_patient_biodata_NATIONALITY" class="java.lang.String"/>
+	<field name="lhr_med_leave_pmi_no" class="java.lang.String"/>
+	<field name="lhr_med_leave_hfc_cd" class="java.lang.String"/>
+	<field name="lhr_med_leave_episode_date" class="java.sql.Timestamp"/>
+	<field name="lhr_med_leave_encounter_date" class="java.sql.Timestamp"/>
+	<field name="lhr_med_leave_start_date" class="java.lang.String"/>
+	<field name="lhr_med_leave_end_date" class="java.lang.String"/>
+	<field name="lhr_med_leave_doctor_name" class="java.lang.String"/>
+	<field name="lhr_med_leave_doctor_id" class="java.lang.String"/>
+	<field name="adm_health_facility_hfc_cd" class="java.lang.String"/>
+	<field name="adm_health_facility_hfc_name" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band splitType="Stretch"/>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="407" splitType="Stretch">
+			<staticText>
+				<reportElement x="235" y="173" width="41" height="20" uuid="c80bf453-41c5-4c6f-90ab-71c2012af1f7"/>
+				<textElement>
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<text><![CDATA[NAMA:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="235" y="193" width="56" height="20" uuid="36bd3d84-0362-4317-83da-4fbb831ba6ee"/>
+				<textElement>
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<text><![CDATA[NO K/P:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="276" y="173" width="242" height="20" uuid="e552df09-646b-41e6-be98-5a299ba4f851"/>
+				<textElement>
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{pms_patient_biodata_PATIENT_NAME}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="291" y="193" width="242" height="20" uuid="8f9f1dfc-c5b2-4c25-b781-9cafceb53e9b"/>
+				<textElement>
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{pms_patient_biodata_NEW_IC_NO}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="235" y="232" width="229" height="14" uuid="43ae29bb-d6d9-4625-9274-b28d56bf70a6"/>
+				<textElement markup="none">
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[TIDAK SIHAT UNTUK MENJALANKAN TUGAS SELAMA]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="464" y="232" width="11" height="14" uuid="6c5e3ccd-1f73-4da0-845d-32c0ac6cabd5"/>
+				<textElement>
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{lhr_med_leave_end_date}.compareTo($F{lhr_med_leave_start_date} )]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="475" y="232" width="36" height="14" uuid="6a679eb2-5f4b-4010-9102-3bb9b277b209"/>
+				<textElement>
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[HARI]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="251" y="246" width="32" height="20" uuid="e5357f7a-ff2e-482f-b08e-0e01ef1708a4"/>
+				<textElement markup="none">
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[DARI]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="349" y="246" width="55" height="20" uuid="57d4b078-9f98-4211-a653-592b614fbc84"/>
+				<textElement markup="none">
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[HINGGA]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="283" y="246" width="66" height="20" uuid="298567c4-f5ee-43de-9728-ea57ab074c45"/>
+				<textElement>
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{lhr_med_leave_start_date}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="404" y="246" width="64" height="20" uuid="e6ea98bc-fa5c-4b71-ba3a-98680323e37c"/>
+				<textElement>
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{lhr_med_leave_end_date}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="505" y="309" width="227" height="20" uuid="da87a72e-b6e9-49c1-89df-2c7871d0866a"/>
+				<textElement markup="none">
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[...................................................................]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="505" y="329" width="100" height="20" uuid="0433d689-db48-4da7-a629-f2657a027d4b"/>
+				<textElement>
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{lhr_med_leave_doctor_name}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="505" y="347" width="161" height="18" uuid="4ec88c35-0237-403c-a056-daecad387e03"/>
+				<textElement>
+					<font fontName="Times New Roman" size="12" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{lhr_med_leave_hfc_cd}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="505" y="372" width="41" height="20" uuid="0d1f9ecb-2d79-4d85-8a38-cde1f0d93f0b"/>
+				<textElement>
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<text><![CDATA[Tarikh:]]></text>
+			</staticText>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="550" y="372" width="100" height="20" uuid="c4f19a2f-18d1-4228-8bb8-2b84a15cec2a"/>
+				<textElement>
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="138" y="309" width="165" height="20" uuid="2f627391-df23-4fa0-9926-3070fca1f539"/>
+				<textElement>
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{lhr_med_leave_doctor_name}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="40" y="309" width="98" height="20" uuid="83a44e99-b56a-4de9-8a5d-4e9b2e93b8d2"/>
+				<textElement markup="none">
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[DISEDIAKAN OLEH:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="291" y="135" width="194" height="38" uuid="87f686b6-c6a4-415d-a109-3eb99fd637d9"/>
+				<textElement>
+					<font fontName="Times New Roman" size="20" isBold="true"/>
+				</textElement>
+				<text><![CDATA[SIJIL CUTI SAKIT]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="168" y="72" width="400" height="47" uuid="eda5420b-a7d6-4ff1-99f5-f1ad37fb9415"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="20" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{adm_health_facility_hfc_name}]]></textFieldExpression>
+			</textField>
+		</band>
+	</summary>
+</jasperReport>

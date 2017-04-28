@@ -42,8 +42,6 @@
 
                 <!-- main -->		
                 <div class="main" style="background: #f2f4f8;">
-
-
                     <!-- menu top -->
                     <%@include file = "libraries/topMenus.html" %>
                     <!-- menu top -->

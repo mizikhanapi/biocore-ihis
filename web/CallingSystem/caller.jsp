@@ -47,6 +47,7 @@
     <span style="display: block; font-size: 26px; letter-spacing: .14em; margin-bottom: -10px; font-weight: 300;"><%out.print(tarikh.format(datenow));%></span>
     <%out.print(masa.format(datenow));%>&nbsp;<%out.print(formate.format(datenow));%>
 </p>
+
 <table class="table table-hover" style="background: #ffffff; text-transform: uppercase; font-weight: 500; margin-top:-30px;">
 
     <tbody>
@@ -71,6 +72,12 @@
                 <span style="    
                       font-weight: 500;
                       color: #333; font-size: 26px;" id="qname_<%=i%>"><%=d.get(i).get(3)%></span>
+                      <%
+                        String myString = d.get(i).get(2);
+                        %>
+                        <div id="view_VS">
+                            
+                        </div>
                 <script>
                     <% if (cs_callingtime > 0) {%>
                     $(document).ready(function () {
@@ -84,10 +91,29 @@
                         qname = qname.toLowerCase().replace(/\b[a-z]/g, function (letter) {
                             return letter.toUpperCase();
                         });
-                        var ayat = name + ", Number " + qno + ", " + qname;
+                        //var ayat = name + ", Number " + qno + ", " + qname;
+                        var ayat1 = ", Number,"+qno+", "+ name + ", " + qname; 
+                        //var ayat2 = ", ,";
+                        //var ayat3 = ", ," + qname;
+                        
+                     //var ayat = "Number " + qno + ", queue " + qname;
+                        //$("#view_VS").load("newjsp1.jsp?idResult="+<%=myString%>);
+                        
+                        
+                        var msg1 = new SpeechSynthesisUtterance(ayat1);
+                        window.speechSynthesis.speak(msg1);
+                        
+                        
+//                        var msg2 = new SpeechSynthesisUtterance(ayat2);
+//                        window.speechSynthesis.speak(msg2);
+//                        
+//                        
+//                        var msg3 = new SpeechSynthesisUtterance(ayat3);
+//                        window.speechSynthesis.speak(msg3);
+                        
                         //var ayat = "Number " + qno + ", queue " + qname;
-                        var msg = new SpeechSynthesisUtterance(ayat);
-                        window.speechSynthesis.speak(msg);
+                        //var msg = new SpeechSynthesisUtterance(ayat);
+                        //window.speechSynthesis.speak(msg);
                     });
                     <%
                             Query q2 = new Query();
@@ -97,6 +123,7 @@
                         } else {
                         } %>
                 </script>
+                
             </td>
         </tr>
         <%
@@ -105,3 +132,4 @@
         %>
     </tbody>
 </table>
+   

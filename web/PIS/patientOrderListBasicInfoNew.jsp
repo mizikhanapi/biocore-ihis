@@ -347,7 +347,7 @@
                                 $("#patientOrderNo").val(patientOrderNo);
                                 $("#patientOrderDate").val(patientOrderDate);
                                 $("#patientOrderLocationCode").val(patientOrderLocationCode);
-                                $("#dataMSHPDIORC").val(returnDataMSHFull.trim() + returnDataPDIFull.trim() + returnDataORCFull.trim());
+                                $("#dataMSHPDIORC").val(returnDataMSHFull.trim() + "\n" + returnDataPDIFull.trim() + "\n" + returnDataORCFull.trim() + "\n");
 
                                 console.log(returnDataMSHFull.trim());
                                 console.log(returnDataPDIFull.trim());
@@ -522,7 +522,7 @@
                 var dataFields = {'input': input}; // We pass input argument in Ajax
                 $.ajax({
                     type: "POST",
-                    url: "Search2.jsp", // call the jsp file ajax/auto-autocomplete.php
+                    url: "patientOrderListNewOrderSearch.jsp", // call the jsp file ajax/auto-autocomplete.php
                     data: dataFields, // Send dataFields var
                     timeout: 3000,
                     success: function (dataBack) { // If success
@@ -549,7 +549,7 @@
         var id = $('#orderDrugSearchInput').val();
         $.ajax({
             type: 'post',
-            url: 'SearchDTO_cd.jsp',
+            url: 'patientOrderListNewOrderSearchResult.jsp',
             data: {'id': id},
             success: function (reply_data) {
                 console.log(reply_data);
@@ -1076,7 +1076,7 @@
             drugChecked = $(this).find("#drugDispenseChecked").is(':checked');
 
 //                              0        1     2     3     4          5            6            7              8                    9                       10               11
-            var dataOneRow = "BIL|T^" + dateBill + "|CH|" + pmino + "|" + drugCode + "|" + drugDesc + "|" + drugPrice + "|" + drugDispensedQty + "|" + userIDBill + "|" + dateBill + "<cr>";
+            var dataOneRow = "BLI|T^" + dateBill + "|CH|" + pmino + "|" + drugCode + "|" + drugDesc + "|" + drugPrice + "|" + drugDispensedQty + "|" + userIDBill + "|" + dateBill + "<cr>\n";
 
             ehrCentralBill = ehrCentralBill + dataOneRow;
 

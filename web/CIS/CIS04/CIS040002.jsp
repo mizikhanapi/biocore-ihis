@@ -20,6 +20,10 @@
                             <input type="hidden" name="DTO" id="jsonId" class="form-control input-lg"  tabindex="4">
                             <input class="form-control input-lg" type="text" name="problem"  id="searchDTO" placeholder="Search Drug..." tabindex="4">
                             <input class="form-control input-lg" type="hidden" name="dtoCode"  id="dtoCode" placeholder="Drug Code..." tabindex="4" readonly="">
+                              <input class="form-control input-lg" type="text"  id="hfcDTO" placeholder="">
+                            <input class="form-control input-lg" type="text"  id="hfcOrderDetailDTO" placeholder="s">
+                            <input class="form-control input-lg" type="text"  id="hfcProviderDetailDTO" placeholder="">
+                            <input class="form-control input-lg" type="text"  id="hfcIdDTO">
                             <div id="matchDTO" ></div>
                         </div>
                     </div>

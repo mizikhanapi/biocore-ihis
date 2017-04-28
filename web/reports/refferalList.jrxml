@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="cb194c3d-724d-4a1c-8e48-597487055e84">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="startDate" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="endDate" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     pms_admit.`ADMIT_CODE` AS pms_admit_ADMIT_CODE,
+     pms_admit.`ADMIT_DAY` AS pms_admit_ADMIT_DAY,
+     pms_admit.`ADMIT_MONTH` AS pms_admit_ADMIT_MONTH,
+     pms_admit.`ADMIT_YEAR` AS pms_admit_ADMIT_YEAR,
+     pms_admit.`ADMIT_TIME` AS pms_admit_ADMIT_TIME,
+     pms_admit.`STATUS` AS pms_admit_STATUS,
+     pms_admit.`PMI_NO` AS pms_admit_PMI_NO
+FROM
+     `pms_admit` pms_admit]]>
+	</queryString>
+	<field name="pms_admit_ADMIT_CODE" class="java.lang.String"/>
+	<field name="pms_admit_ADMIT_DAY" class="java.lang.String"/>
+	<field name="pms_admit_ADMIT_MONTH" class="java.lang.String"/>
+	<field name="pms_admit_ADMIT_YEAR" class="java.lang.String"/>
+	<field name="pms_admit_ADMIT_TIME" class="java.lang.String"/>
+	<field name="pms_admit_STATUS" class="java.lang.String"/>
+	<field name="pms_admit_PMI_NO" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band splitType="Stretch"/>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="496" splitType="Stretch">
+			<textField>
+				<reportElement x="136" y="96" width="100" height="20" uuid="b18a585c-70bd-44f8-a01c-7213e548beb9"/>
+				<textFieldExpression><![CDATA[$P{startDate}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="266" y="96" width="100" height="20" uuid="10839fdf-52d1-4671-a32f-b025e03a6218"/>
+				<textFieldExpression><![CDATA[$P{endDate}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="90" y="96" width="46" height="20" uuid="415f3f37-8125-46dc-8522-89ccf5629c82"/>
+				<text><![CDATA[From:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="236" y="96" width="30" height="20" uuid="9fbf43ec-7a1b-4bc4-ba69-a9734e0ba9bd"/>
+				<text><![CDATA[To:]]></text>
+			</staticText>
+		</band>
+	</summary>
+</jasperReport>

@@ -136,7 +136,8 @@
                                 <div class="panel-heading">Patient Consultation</div>
                                 <!-- List group -->
                                 <ul class="list-group">
-                                    <li class="list-group-item"><a href="">Insert Report Menu</a></li>
+                                    <li class="list-group-item"><a href="mcMain2.jsp">Reprint MC</a></li>
+                                    <li class="list-group-item"><a href="timeSlipMain2.jsp">Reprint Time Slip</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -146,7 +147,8 @@
                                 <div class="panel-heading">Pharmacy Info System</div>
                                 <!-- List group -->
                                 <ul class="list-group">
-                                    <li class="list-group-item"><a href="">Insert Report Menu</a></li>
+                                    <li class="list-group-item"><a href="psMain.jsp">Prescription Slip</a></li>
+                                    <li class="list-group-item"><a href="dsMain.jsp">Dispensing Sheet</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -196,7 +198,11 @@
                                 <div class="panel-heading">System Administrator</div>
                                 <!-- List group -->
                                 <ul class="list-group">
-                                    <li class="list-group-item"><a href="">Insert Report Menu</a></li>
+                                    <li class="list-group-item"><a href="dataAnalysisMain.jsp">Data Analysis</a></li>
+                                    <li class="list-group-item"><a href="ICD10Main.jsp">ICD10 </a></li>
+                                    <li class="list-group-item"><a href="laporanKosPerubatan.jsp">Report Health Cost </a></li>
+                                    <li class="list-group-item"><a href="drugOrderList.jsp">Total Drug Cost </a></li>
+                                    
                                 </ul>
                             </div>
                         </div>

@@ -38,6 +38,8 @@
     String FILLED_BY = (String) session.getAttribute("USER_ID"); // Data 14
     String SCREENED_BY = (String) session.getAttribute("USER_ID"); // Data 15
     String ASSIGNED_BY = (String) session.getAttribute("USER_ID"); // Data 16
+    String HEALTH_FACILITY_CODE = (String) session.getAttribute("HEALTH_FACILITY_CODE");
+    String DISCIPLINE_CODE = (String) session.getAttribute("DISCIPLINE_CODE");
     String DISPENSED_UOM = "-";
     int STATUS = 1;
 
@@ -54,7 +56,6 @@
     } else {
 
         // Dispense Table Part Start //
-        
         // Check Master Data Dispense
         String sqlFetchMasterDispenseData = "SELECT * FROM pis_dispense_master WHERE ORDER_NO = '" + ORDER_NO + "' ";
         ArrayList<ArrayList<String>> checkDispenseMaster = conn.getData(sqlFetchMasterDispenseData);
@@ -63,8 +64,8 @@
         if (checkDispenseMaster.size() == 0) {
 
             // Insert Master Dispense
-            String sqlInsertDispenseMaster = "INSERT INTO pis_dispense_master (ORDER_NO, ORDER_DATE, LOCATION_CODE, ARRIVAL_DATE, DISPENSED_DATE, DISPENSED_BY, FILLED_BY, SCREENED_BY, ASSIGNED_BY,STATUS) "
-                    + " VALUES ('" + ORDER_NO + "','" + ORDER_DATE + "','" + LOCATION_CODE + "','" + ARRIVAL_DATE + "','" + DISPENSED_DATE + "','" + DISPENSED_BY + "','" + FILLED_BY + "','" + SCREENED_BY + "','" + ASSIGNED_BY + "'," + STATUS + " )";
+            String sqlInsertDispenseMaster = "INSERT INTO pis_dispense_master (ORDER_NO, ORDER_DATE, LOCATION_CODE, ARRIVAL_DATE, DISPENSED_DATE, DISPENSED_BY, FILLED_BY, SCREENED_BY, ASSIGNED_BY,STATUS,DISCIPLINE_CODE) "
+                    + " VALUES ('" + ORDER_NO + "','" + ORDER_DATE + "','" + LOCATION_CODE + "','" + ARRIVAL_DATE + "','" + DISPENSED_DATE + "','" + DISPENSED_BY + "','" + FILLED_BY + "','" + SCREENED_BY + "','" + ASSIGNED_BY + "'," + STATUS + ",'" + DISCIPLINE_CODE + "' )";
 
             boolean isInsertDispenseMaster = rmic.setQuerySQL(conn.HOST, conn.PORT, sqlInsertDispenseMaster);
 
@@ -176,9 +177,9 @@
         //
         //
         // MDC Table Part Start //
-        
         // Update MDC Stock Qty
-        String sqlUpdateStockData = "UPDATE pis_mdc2 SET D_STOCK_QTY = '" + D_STOCK_QTY + "' WHERE UD_MDC_CODE = '" + DRUG_ITEM_CODE + "' ";
+        String sqlUpdateStockData = "UPDATE pis_mdc2 SET D_STOCK_QTY = '" + D_STOCK_QTY + "' WHERE UD_MDC_CODE = '" + DRUG_ITEM_CODE + "' "
+                + "AND hfc_cd = '" + HEALTH_FACILITY_CODE + "' AND discipline_cd = '" + DISCIPLINE_CODE + "' ";
         boolean isUpdateStockData = rmic.setQuerySQL(conn.HOST, conn.PORT, sqlUpdateStockData);
 
         if (isUpdateStockData == true) {
@@ -186,7 +187,7 @@
         } else {
             out.print("Stock Update Failed ");
         }
-        
+
         // MDC Table Part End //
     }
 

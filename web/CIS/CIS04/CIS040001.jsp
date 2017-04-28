@@ -133,7 +133,7 @@
                         <div class="form-group">
 <!--                            <input class="form-control input-lg" type="text"  id="priorityLOS" placeholder="">-->
                             <select id="patientConditionLOScd" class="form-control input-lg">
-                                <option disabled="" selected="">Please select condition..</option>
+                                <option>Please select condition..</option>
                                   <%
                                     if(dataPatientCondition.size()>0){
                                         for(int i = 0; i < dataPatientCondition.size();i++){
@@ -161,7 +161,7 @@
 
                                             <div class="form-group">
                                                 <select id="priorityLOScd" class="form-control input-lg">
-                                                    <option disabled="" selected="">Please select condition..</option>
+                                                    <option >Please select condition..</option>
                                                     <%
                                                         if (dataPriority.size() > 0) {
                                                             for (int i = 0; i < dataPriority.size(); i++) {
@@ -196,6 +196,8 @@
                     <div class="col-xs-4 col-sm-4 col-md-4">
                         <div class="form-group">
                             <input class="form-control input-lg" type="text"  id="hfcLOS" placeholder="">
+                            <input class="form-control input-lg" type="hidden"  id="hfcOrderDetailLIO" placeholder="">
+                            <input class="form-control input-lg" type="hidden"  id="hfcProviderDetailLIO" placeholder="">
                             <input class="form-control input-lg" type="hidden"  id="hfcIdLOS">
                             <div id="matchHFCLOS" ></div>
                         </div>
@@ -362,7 +364,7 @@
                         <div class="form-group">
 <!--                            <input class="form-control input-lg" type="text"  id="priorityLOS" placeholder="">-->
                             <select id="UpriorityLOScd" class="form-control input-lg">
-                                <option disabled="" selected="">Please select condition..</option>
+                                <option>Please select condition..</option>
                                    <%
                                     if (dataPatientCondition.size() > 0) {
                                         for (int i = 0; i < dataPatientCondition.size(); i++) {
@@ -390,7 +392,7 @@
 
                         <div class="form-group">
                             <select id="ureal_priorityLIO" class="form-control input-lg">
-                                <option disabled="" selected="">Please select Priority..</option>
+                                <option>Please select Priority..</option>
                                 <%
                                     if (dataPriority.size() > 0) {
                                         for (int i = 0; i < dataPriority.size(); i++) {
@@ -423,6 +425,8 @@
                     <div class="col-xs-4 col-sm-4 col-md-4">
                         <div class="form-group">
                             <input class="form-control input-lg" type="text"  id="UhfcLOS" placeholder="">
+                            <input class="form-control input-lg" type="hidden"  id="UhfcOrderDetailLIO" placeholder="">
+                            <input class="form-control input-lg" type="hidden"  id="UhfcProviderDetailLIO" placeholder="">
                             <input class="form-control input-lg" type="hidden"  id="UhfcIdLOS">
                             <div id="UmatchHFCLOS" ></div>
                         </div>

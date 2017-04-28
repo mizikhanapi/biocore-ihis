@@ -14,15 +14,11 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
-
-<h2>Maintain Test Detail
-
+<h4>Maintain Test Detail
     <span class="pull-right">
         <button id="MLM_btnAddNew" class="btn btn-success" data-status="pagado" data-toggle="modal" data-id="1" data-target="#TestDetail" style=" padding-right: 10px;padding-left: 10px;"><a data-toggle="tooltip" data-placement="top" title="Add Items" id="test"></a><i class=" fa fa-plus" style=" padding-right: 10px;padding-left: 10px;"></i>&nbsp;ADD Test Detail</button>
     </span>
-</h2>
-<hr/>
-
+</h4>
 <!-- table -->
 <div id="viewMTDpage"></div>
 <!-- table -->
@@ -40,100 +36,101 @@
                     String query = "SELECT category_code, category_name from lis_item_category";
                     ArrayList<ArrayList<String>> q2 = conn.getData(query);
                 %>
+                <div class="form-horizontal">
+                    <div class="form-group row">
+                        <label for="example-text-input" class="col-md-4 control-label">Category code</label>
+                        <div class="col-md-7">
+                            <select class="form-control" id="ccode" required="required" >
+                                <%
+                                    if (q2.size() > 0) {
+                                        for (int i = 0; i < q2.size(); i++) {
 
-                <div class="form-group row">
-                    <label for="example-text-input" class="col-xs-2 col-form-label">Category code</label>
-                    <div class="col-xs-10">
-                        <select class="form-control" id="ccode" required="required" >
-                            <%
-                                if (q2.size() > 0) {
-                                    for (int i = 0; i < q2.size(); i++) {
-
-                            %>
-                            <option value="<%=q2.get(i).get(0)%>"><%=q2.get(i).get(0)%></option>
-                            <%}
+                                %>
+                                <option value="<%=q2.get(i).get(0)%>"><%=q2.get(i).get(0)%></option>
+                                <%}
                                 }%>
-                        </select>
+                            </select>
 
 
 
-                        </select>
-                    </div>
-                </div>   
-                <div class="form-group row">
-                    <label for="example-text-input" class="col-xs-2 col-form-label">Item code</label>
-                    <div class="col-xs-10">
-                        <input type="text" name="icd10" id="icd10" class="form-control"  required="required"/>
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label for="example-text-input" class="col-xs-2 col-form-label">Item name</label>
-                    <div class="col-xs-10">
-                        <input type="text" name="item_name" id="item_name" class="form-control"  required="required"/>
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label for="example-text-input" class="col-xs-2 col-form-label">Specimen source</label>
-                    <div class="col-xs-10">
-                        <input type="text" name="s_source" id="s_source" class="form-control"  required="required"/>
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label for="example-text-input" class="col-xs-2 col-form-label">Specimen container</label>
-                    <div class="col-xs-10">
-                        <input type="text" name="s_container" id="s_container" class="form-control"  required="required"/>
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label for="example-text-input" class="col-xs-2 col-form-label">Volume required</label>
-                    <div class="col-xs-10">
-                        <input type="text" name="v_req" id="v_req" class="form-control"  required="required"/>
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label for="example-text-input" class="col-xs-2 col-form-label">Special instruction</label>
-                    <div class="col-xs-10">
-                        <input type="text" name="s_inst" id="s_inst" class="form-control"  required="required"/>
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label for="example-text-input" class="col-xs-2 col-form-label">Buying price(RM)</label>
-                    <div class="col-xs-10">
-                        <input type="text" name="b_price" id="b_price" class="form-control"  required="required"/>
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label for="example-text-input" class="col-xs-2 col-form-label">Service price(RM)</label>
-                    <div class="col-xs-10">
-                        <input type="text" name="s_price" id="s_price" class="form-control"  required="required"/>
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label for="example-text-input" class="col-xs-2 col-form-label">Status</label>
-                    <div class="col-xs-10">
-                        <select class="form-control" name="status" id="status">
-                            <option value="Active">Active</option>
-                            <option value="Inactive">Inactive</option>
-                        </select>
-                    </div>
-                </div>
-            </div>
-                <div class="modal-footer">
-                    <div class="btn-group btn-group-justified" role="group" aria-label="group button">
-                        <div class="btn-group" role="group">
-                            <button type="button" class="btn btn-success btn-block btn-lg" role="button" id="btn_add1">Add</button>
+                            </select>
                         </div>
-                        <div class="btn-group" role="group">
-                            <button type="reset" id="btnReset" class="btn btn-default btn-block btn-lg" data-dismiss="modal" role="button" >Cancel</button>
+                    </div>   
+                    <div class="form-group row">
+                        <label for="example-text-input" class="col-md-4 control-label">Item code</label>
+                        <div class="col-md-7">
+                            <input type="text" name="icd10" id="icd10" class="form-control"  required="required"/>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="example-text-input" class="col-md-4 control-label">Item name</label>
+                        <div class="col-md-7">
+                            <input type="text" name="item_name" id="item_name" class="form-control"  required="required"/>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="example-text-input" class="col-md-4 control-label">Specimen source</label>
+                        <div class="col-md-7">
+                            <input type="text" name="s_source" id="s_source" class="form-control"  required="required"/>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="example-text-input" class="col-md-4 control-label">Specimen container</label>
+                        <div class="col-md-7">
+                            <input type="text" name="s_container" id="s_container" class="form-control"  required="required"/>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="example-text-input" class="col-md-4 control-label">Volume required</label>
+                        <div class="col-md-7">
+                            <input type="text" name="v_req" id="v_req" class="form-control"  required="required"/>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="example-text-input" class="col-md-4 control-label">Special instruction</label>
+                        <div class="col-md-7">
+                            <input type="text" name="s_inst" id="s_inst" class="form-control"  required="required"/>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="example-text-input" class="col-md-4 control-label">Buying price(RM)</label>
+                        <div class="col-md-7">
+                            <input type="text" name="b_price" id="b_price" class="form-control"  required="required"/>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="example-text-input" class="col-md-4 control-label">Service price(RM)</label>
+                        <div class="col-md-7">
+                            <input type="text" name="s_price" id="s_price" class="form-control"  required="required"/>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="example-text-input" class="col-md-4 control-label">Status</label>
+                        <div class="col-md-7">
+                            <select class="form-control" name="status" id="status">
+                                <option value="Active">Active</option>
+                                <option value="Inactive">Inactive</option>
+                            </select>
                         </div>
                     </div>
                 </div>
-
-
-
             </div>
+            <div class="modal-footer">
+                <div class="btn-group btn-group-justified" role="group" aria-label="group button">
+                    <div class="btn-group" role="group">
+                        <button type="button" class="btn btn-success btn-block btn-lg" role="button" id="btn_add1">Add</button>
+                    </div>
+                    <div class="btn-group" role="group">
+                        <button type="reset" id="btnReset" class="btn btn-default btn-block btn-lg" data-dismiss="modal" role="button" >Cancel</button>
+                    </div>
+                </div>
+            </div>
+
+
+
         </div>
     </div>
+</div>
 </div>
 <br><br>
 

@@ -1,5 +1,3 @@
-
-
 <%@page import="Config.Config"%>
 <%@page import="java.util.Date"%>
 <%@page import="java.util.*"%>
@@ -54,7 +52,7 @@
                     <!-- Text input-->
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="textinput">Ward Class *</label>
-                        <div class="col-md-4">
+                        <div class="col-md-6">
                             <input id="MWClass" name="MWClass" type="text" placeholder="Ward Class" maxlength="100" class="form-control input-md">
                         </div>
                     </div>
@@ -62,7 +60,7 @@
                     <!-- Text input-->
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="textinput">Ward Class ID *</label>
-                        <div class="col-md-4">
+                        <div class="col-md-6">
                             <input id="MWID" name="MWID" type="text" placeholder="Ward Class ID" maxlength="30" class="form-control input-md">
                         </div>
                     </div>
@@ -72,7 +70,7 @@
                     <!-- Select Basic -->
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="textinput">Ward Status *</label>
-                        <div class="col-md-8">
+                        <div class="col-md-6">
                             <label class="radio-inline">
                                 <input type="radio" name="status" id="status1" value="1">
                                 Active 
@@ -114,9 +112,9 @@
 
 
         $('#MW_add').on('click', function () {
-            
-         
-            
+
+
+
             var MWClass = $('#MWClass').val();
             var MWID = $('#MWID').val();
             var status = $('input[name="status"]:checked').val();
@@ -160,19 +158,19 @@
 //                            $("#FacilityTypeTable").html('');
                             //$("#selectID").load('#selectID');
                             $.ajax({
-                                url:"facilityType-Table.jsp",
-                                type:"post",
+                                url: "facilityType-Table.jsp",
+                                type: "post",
                                 timeout: 10000,
-                                success: function(result){
-                                  $("#FacilityTypeTable").html(result);  
+                                success: function (result) {
+                                    $("#FacilityTypeTable").html(result);
                                 }
                             });
                             $.ajax({
-                                url:"listWard.jsp",
-                                type:"post",
+                                url: "listWard.jsp",
+                                type: "post",
                                 timeout: 10000,
-                                success: function(result2){
-                                  $("#selectID").html(result2);  
+                                success: function (result2) {
+                                    $("#selectID").html(result2);
                                 }
                             });
 

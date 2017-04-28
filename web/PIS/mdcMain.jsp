@@ -14,7 +14,9 @@
 
 <%
     Conn conn = new Conn();
-    String hfc =  session.getAttribute("HEALTH_FACILITY_CODE").toString();
+    String hfc = session.getAttribute("HEALTH_FACILITY_CODE").toString();
+    String dis = session.getAttribute("DISCIPLINE_CODE").toString();
+    String sub = session.getAttribute("SUB_DISCIPLINE_CODE").toString();
 %>
 
 
@@ -24,12 +26,96 @@
     MDC MEDICINE MANAGEMENT
     <span class="pull-right">
         <button class="btn btn-success" data-status="pagado" data-toggle="modal" data-id="1" data-target="#mdcAddModal" style=" padding-right: 10px;padding-left: 10px;color: white;"><a data-toggle="tooltip" data-placement="top" title="Add Items" id="test"><i class=" fa fa-plus" style=" padding-right: 10px;padding-left: 10px;color: white;"></i></a>ADD MDC CODE</button>
+        <button id="MDCClone_btnClone" class="btn btn-primary" data-status="pagado" data-toggle="modal" data-id="1" data-target="#mdcCloneModal" style=" padding-right: 10px;padding-left: 10px;color: white;"><a data-toggle="tooltip" data-placement="top" title="Add Items"><i class=" fa fa-copy" style=" padding-right: 10px;padding-left: 10px;color: white;"></i></a>CLONE MDC CODE</button>
+        <button id="MDCClone_btnSummary" class="btn btn-danger" data-status="pagado" data-toggle="modal" data-id="1" data-target="#mdcSummaryModal" style=" padding-right: 10px;padding-left: 10px;color: white;"><a data-toggle="tooltip" data-placement="top" title="Add Items"><i class=" fa fa-file" style=" padding-right: 10px;padding-left: 10px;color: white;"></i></a>MDC INVENTORY SUMMARY</button>
     </span>
 </h4>
 <!-- Add Button End -->
+
+
+<!-- Summary Modal Start -->
+<div class="modal fade" id="mdcSummaryModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+    <div class="modal-dialog" style="width: 50%">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><i class="fa fa-times fa-lg"></i></button>
+                <h2 class="modal-title" id="lineModalLabel" align="center">MDC Inventory Summary</h2>
+            </div>
+            <div class="modal-body">
+
+                <!-- content goes here -->
+                <form style="width: 100%; margin: 0 auto;" id="mdcSummaryForm" autocomplete="off">
+
+                    <!-- Text input-->
+                    <div class="form-group">
+
+
+                        <div style="align-items: center; text-align: center">
+
+                        </div>
+                    </div>
+
+
+                </form>
+                <!-- content goes here -->
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary btn-block" type="button" id="MDC_btnClone"><i class=" fa fa-check"></i> Clone</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Summary Modal End -->   
+
+
+<!-- Clone Modal Start -->
+<div class="modal fade" id="mdcCloneModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+    <div class="modal-dialog" style="width: 50%">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><i class="fa fa-times fa-lg"></i></button>
+                <h2 class="modal-title" id="lineModalLabel" align="center">Clone MDC Code</h2>
+            </div>
+            <div class="modal-body">
+
+                <!-- content goes here -->
+                <form style="width: 100%; margin: 0 auto;" id="mdcClone_addForm" autocomplete="off">
+
+                    <!-- Text input-->
+                    <div class="form-group">
+
+
+                        <div style="align-items: center; text-align: center">
+                            <br>
+                            <label>Select MDC Drug To Be Cloned</label>
+                            <br><br>
+                            <span>
+                                <a href="#" class="btn btn-default" id="MDC_Code_selectAll">&nbsp; Select all &nbsp;</a>
+                                &nbsp;	&nbsp;	&nbsp;	&nbsp;	&nbsp;	&nbsp;	&nbsp;	&nbsp;	&nbsp;	&nbsp;	&nbsp;	&nbsp;	&nbsp;	&nbsp;
+                                <a href="#" class="btn btn-default" id="MDC_Code_deselectAll">Deselect all</a>
+                            </span>
+                            <br><br>
+                            <div>
+                                <select id="MDC_DrugCode" multiple="multiple"></select>
+                            </div>    
+                        </div>
+                    </div>
+
+
+                </form>
+                <!-- content goes here -->
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary btn-block" type="button" id="MDC_btnClone"><i class=" fa fa-check"></i> Clone</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Clone Modal End -->   
+
 <!-- Modal Add MTC Start -->
 <div class="modal fade" id="mdcAddModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
-    <div class="modal-dialog" style="width:60%;">
+    <div class="modal-dialog" style="width:70%;">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal"><i class="fa fa-times fa-lg"></i></button>
@@ -41,6 +127,32 @@
                 <form class="form-horizontal" autocomplete="off">
                     <div class="row">
                         <div class="col-md-6">
+
+                            <!-- Text input-->
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" for="textinput">HEALTH FACILITY CODE</label>
+                                <div class="col-md-8">
+                                    <input id="addMDCHFC" name="textinput" type="text" class="form-control input-md" value="<%= hfc%>" readonly>
+                                </div>
+                            </div>
+
+                            <!-- Text input-->
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" for="textinput">DISCIPLINE CODE</label>
+                                <div class="col-md-8">
+                                    <input id="addMDCDISCIPLINE" name="textinput" type="text" class="form-control input-md" value="<%= dis%>" readonly>
+                                </div>
+                            </div>
+
+                            <!-- Text input-->
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" for="textinput">SUB-DISCIPLINE CODE</label>
+                                <div class="col-md-8">
+                                    <input id="addMDCSUBDISCIPLINE" name="textinput" type="text" class="form-control input-md" value="<%= sub%>" readonly>
+                                </div>
+                            </div>
+
+
                             <h4>Drug Information</h4>
                             <hr/>
 
@@ -49,7 +161,7 @@
                                 <label class="col-md-4 control-label" for="textinput">ATC Drug Code *</label>
                                 <div class="col-md-8">
                                     <input id="addUD_ATC_CODE" name="textinput" type="text" placeholder="Please Search ATC Drug Code" class="form-control input-md" maxlength="25" >
-                                    <div id="addUD_ATC_CODESearch">
+                                    <div id="addUD_ATC_CODESearch" class="search-drop">
                                         <!--for search area-->
                                     </div>
                                 </div>
@@ -89,7 +201,7 @@
                                     <select id="addD_ROUTE_CODE" name="selectbasic" class="form-control">
                                         <option value="Select Drug Route">Select Drug Route</option>
                                         <%
-                                            String sql2 = "SELECT Master_Reference_code,Detail_Reference_code, Description FROM adm_lookup_detail where Master_Reference_code = '0066' AND hfc_cd = '"+hfc+"' ";
+                                            String sql2 = "SELECT Master_Reference_code,Detail_Reference_code, Description FROM adm_lookup_detail where Master_Reference_code = '0066' AND hfc_cd = '" + hfc + "' ";
                                             ArrayList<ArrayList<String>> listOfDRoute = conn.getData(sql2);
 
                                             int size2 = listOfDRoute.size();
@@ -111,7 +223,7 @@
                                     <select id="addD_FORM_CODE" name="selectbasic" class="form-control">
                                         <option value="Select Dosage Form">Select Dosage Form</option>
                                         <%
-                                            String sql3 = "SELECT Master_Reference_code,Detail_Reference_code, Description FROM adm_lookup_detail where Master_Reference_code = '0067' AND hfc_cd = '"+hfc+"' ";
+                                            String sql3 = "SELECT Master_Reference_code,Detail_Reference_code, Description FROM adm_lookup_detail where Master_Reference_code = '0067' AND hfc_cd = '" + hfc + "' ";
                                             ArrayList<ArrayList<String>> listOfDForm = conn.getData(sql3);
 
                                             int size3 = listOfDForm.size();
@@ -216,7 +328,7 @@
                                     <select id="addD_QTYT" name="addD_QTYT" class="form-control">
                                         <option value="No Dose">No Dose</option>
                                         <%
-                                            String sql4 = "SELECT Master_Reference_code,Detail_Reference_code, Description FROM adm_lookup_detail where Master_Reference_code = '0025' AND hfc_cd = '"+hfc+"' ";
+                                            String sql4 = "SELECT Master_Reference_code,Detail_Reference_code, Description FROM adm_lookup_detail where Master_Reference_code = '0025' AND hfc_cd = '" + hfc + "' ";
                                             ArrayList<ArrayList<String>> listOfDUOM = conn.getData(sql4);
 
                                             int size4 = listOfDUOM.size();
@@ -238,7 +350,7 @@
                                     <select id="addD_FREQUENCY" name="addD_FREQUENCY" class="form-control" >
                                         <option value="No Frequency">No Frequency</option>
                                         <%
-                                            String sql5 = "SELECT Master_Reference_code,Detail_Reference_code, Description FROM adm_lookup_detail where Master_Reference_code = '0088' AND  hfc_cd = '"+hfc+"' ";
+                                            String sql5 = "SELECT Master_Reference_code,Detail_Reference_code, Description FROM adm_lookup_detail where Master_Reference_code = '0088' AND  hfc_cd = '" + hfc + "' ";
                                             ArrayList<ArrayList<String>> listOfDFreq = conn.getData(sql5);
 
                                             int size5 = listOfDFreq.size();
@@ -263,7 +375,7 @@
                                     <select id="addD_DURATIONT" name="addD_DURATIONT" class="form-control">
                                         <option value="No Duration">No Duration</option>
                                         <%
-                                            String sql6 = "SELECT Master_Reference_code,Detail_Reference_code, Description FROM adm_lookup_detail where Master_Reference_code = '0089'  AND hfc_cd = '"+hfc+"' ";
+                                            String sql6 = "SELECT Master_Reference_code,Detail_Reference_code, Description FROM adm_lookup_detail where Master_Reference_code = '0089'  AND hfc_cd = '" + hfc + "' ";
                                             ArrayList<ArrayList<String>> listOfDDura = conn.getData(sql6);
 
                                             int size6 = listOfDDura.size();
@@ -285,7 +397,7 @@
                                     <select id="addD_ADVISORY_CODE" name="addD_ADVISORY_CODE" class="form-control">
                                         <option value="No Instruction">No Instruction</option>
                                         <%
-                                            String sql7 = "SELECT Master_Reference_code,Detail_Reference_code, Description FROM adm_lookup_detail where Master_Reference_code = '0087' AND  hfc_cd = '"+hfc+"' ";
+                                            String sql7 = "SELECT Master_Reference_code,Detail_Reference_code, Description FROM adm_lookup_detail where Master_Reference_code = '0087' AND  hfc_cd = '" + hfc + "' ";
                                             ArrayList<ArrayList<String>> listOfDInst = conn.getData(sql7);
 
                                             int size7 = listOfDInst.size();
@@ -323,7 +435,7 @@
                                     <select id="addD_CLASSIFICATION" name="addD_CLASSIFICATION" class="form-control">
                                         <option value="No Classification">No Classification</option>
                                         <%
-                                            String sql8 = "SELECT Master_Reference_code,Detail_Reference_code, Description FROM adm_lookup_detail where Master_Reference_code = '0091' AND  hfc_cd = '"+hfc+"' ";
+                                            String sql8 = "SELECT Master_Reference_code,Detail_Reference_code, Description FROM adm_lookup_detail where Master_Reference_code = '0091' AND  hfc_cd = '" + hfc + "' ";
                                             ArrayList<ArrayList<String>> listOfDClass = conn.getData(sql8);
 
                                             int size8 = listOfDClass.size();
@@ -379,7 +491,7 @@
         function reset() {
             console.log("In reset");
             document.getElementById("addUD_MDC_CODE").value = "";
-            document.getElementById("addUD_ATC_CODE").value = "Select ATC Code";
+            document.getElementById("addUD_ATC_CODE").value = "";
             document.getElementById("addD_TRADE_NAME").value = "";
             document.getElementById("addD_GNR_NAME").value = "";
             document.getElementById("addD_ROUTE_CODE").value = "Select Drug Route";
@@ -499,7 +611,7 @@
             if (UD_MDC_CODE === "") {
                 bootbox.alert("Please Insert MDC Code");
             } else if (UD_ATC_CODE === "") {
-                bootbox.alert("Select Any ATC Code");
+                bootbox.alert("Please Search Any ATC Code");
             } else if (D_TRADE_NAME === "") {
                 bootbox.alert("Please Insert Drug Trade Name");
             } else if (D_GNR_NAME === "") {
@@ -611,7 +723,7 @@
                     data: data,
                     timeout: 10000,
                     success: function (datas) {
-
+                        console.log(datas.trim());
                         if (datas.trim() === 'Success') {
 
                             $('#contentMDCTable').load('mdcTableLoop.jsp');
@@ -632,7 +744,7 @@
                             });
 
                         } else if (datas.trim() === 'Failed') {
-
+                            console.log(datas.trim());
                             bootbox.alert({
                                 message: "MDC Code Add Failed",
                                 title: "Process Result",
@@ -653,6 +765,133 @@
 
         });
         // Add MDC Function End
+
+
+        // Clone MDC Function Start
+
+        var User_hfcCode = "<%= hfc%>";
+        var User_disCode = "<%= dis%>";
+
+        $('#MDCClone_btnClone').on('click', function () {
+            MDCCloneReset();
+            createMDCCodeList();
+        });
+
+        function MDCCloneReset() {
+            document.getElementById("mdcClone_addForm").reset();
+        }
+
+        function createMDCCodeList() {
+
+            var data = {
+                hfc: User_hfcCode,
+                dis: User_disCode
+            };
+
+            $('#MDC_DrugCode').multiSelect('destroy');
+            $('<div class="loading">Loading</div>').appendTo('#mdcCloneModal');
+
+            $.ajax({
+                type: 'POST',
+                url: "mdcCloneDrugList.jsp",
+                data: data,
+                success: function (data, textStatus, jqXHR) {
+                    $('#MDC_DrugCode').html(data);
+                    $('#MDC_DrugCode').multiSelect({
+                        selectableHeader: "<div style='display:block; color:white; background-color:#2196f3; '>Selectable MDC Code</div>",
+                        selectionHeader: "<div style='display:block; color:white; background-color:#2196f3'>Selected MDC Code</div>",
+                        keepOrder: true
+                    });
+
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    bootbox.alert("Opps! " + errorThrown);
+                },
+                complete: function (jqXHR, textStatus) {
+                    $('.loading').hide();
+                }
+            });
+
+        }
+
+        $('#MDC_btnClone').on('click', function () {
+
+            var arraySelect = [];
+            $("#MDC_DrugCode option:selected").each(function () {
+                arraySelect.push($(this));
+            });
+
+            var strMDCClone = arraySelect.map(function (elem) {
+                return elem.val();
+            }).join("|");
+
+            console.log(strMDCClone);
+
+            if (strMDCClone === "") {
+                bootbox.alert("Select at least one MDC Medcine to be cloned");
+            } else {
+                $('<div class="loading">Loading</div>').appendTo('#ARM_detail');
+
+                var data = {
+                    strMDCClone: strMDCClone
+                };
+
+                $.ajax({
+                    url: "mdcCloneDrugListInsert.jsp",
+                    type: "post",
+                    data: data,
+                    timeout: 15000,
+                    success: function (datas) {
+                        console.log(datas.trim());
+                        if (datas.trim() === 'Success') {
+
+                            $("#contentMDCTable").load("mdcTableLoop.jsp");
+                            $('#mdcCloneModal').modal('hide');
+
+                            bootbox.alert({
+                                message: "MDC Medcine is successfully cloned",
+                                title: "Process Result",
+                                backdrop: true
+                            });
+                            MDCCloneReset();
+
+                        } else if (datas.trim() === 'Failed') {
+
+                            bootbox.alert("Insertion failed!");
+                            MDCCloneReset();
+
+                        } else {
+
+                            bootbox.alert(datas.trim());
+                            $('#MDC_DrugCode').val("");
+
+                        }
+
+                    },
+                    error: function (err) {
+                        console.log("Ajax Is Not Success");
+                    },
+                    complete: function (jqXHR, textStatus) {
+                        $('.loading').hide();
+                    }
+
+                });
+            }
+
+        });
+
+        $('#MDC_Code_selectAll').on('click', function (e) {
+            e.preventDefault();
+            $('#MDC_DrugCode').multiSelect('select_all');
+            return false;
+        });
+
+        $('#MDC_Code_deselectAll').on('click', function (e) {
+            e.preventDefault();
+            $('#MDC_DrugCode').multiSelect('deselect_all');
+            return false;
+        });
+        // Clone MDC Function End
 
 
     });

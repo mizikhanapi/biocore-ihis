@@ -74,21 +74,21 @@
                             </br></br></br>
 
                             <div class="form-group">
-                                <label class="col-md-4 control-label" for="textinput">Date:</label>
+                                <label class="col-md-4 control-label" for="textinput">From:</label>
                                 <div class="col-md-6">
                                     <input id="startDate" name="startDate" type="text" class="form-control datepicker" placeholder="" readonly>
                                 </div>
                             </div>
                             </br></br></br>
 
-<!--                            <div class="form-group">
+                            <div class="form-group">
                                 <label class="col-md-4 control-label" for="textinput">To :</label>
 
                                 <div class="col-md-6">
                                     <input id="endDate" name="endDate" type="text" class="form-control datepicker" placeholder="" readonly>
                                 </div>
 
-                            </div>-->
+                            </div>
 
                             <div class="btn-group btn-group-justified" role="group" aria-label="group button">
                                 <div class="btn-group" role="group">

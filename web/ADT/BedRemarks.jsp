@@ -10,7 +10,7 @@
 
 
 
-<div id="wardTable" class="form-group">
+<div id="wardTable">
 
     <div class="row">
         <%

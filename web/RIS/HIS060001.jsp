@@ -10,6 +10,9 @@
 <%@page import="main.RMIConnector"%>
 <%@page import="Config.Config"%>
 
+<%@include file="../Entrance/validateSession.jsp" %>
+<%@include file="validateModuleAccess.jsp" %>
+
 <%
     Config.getFile_url(session);
     Config.getBase_url(request);
@@ -64,6 +67,9 @@
                                         <!-- tab content -->
                                         <div class="tab-content">
                                             <div class="tab-pane active" id="tab_default_1">
+                                                <div id="risOrderMain">
+                                                    
+                                                </div>
                                                 <div id="risOrderListContent">
 
                                                 </div>
@@ -72,6 +78,8 @@
                                                 <div id="risOrderDetailContent">
 
                                                 </div>
+                                                <%@include file="order_modal/requestNewOrder_modal.jsp" %>
+                                                <%@include file="order_modal/setExamDate_modal.jsp" %>
                                             </div>
 
                                         </div>
@@ -96,7 +104,9 @@
         <script>
 
             $('<div class="loading">Loading</div>').appendTo('body');
-
+            
+            
+            $("#risOrderMain").load("risManageOrderMaster_main.jsp");
             $("#risOrderListContent").load("risManageOrderListTable.jsp");
             $("#risOrderDetailContent").load("risManageOrderListBasicInfoNew.jsp");
 
