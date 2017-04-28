@@ -27,14 +27,8 @@
             + "pb.home_address, "
             + "pb.mobile_phone "
             + "FROM far_order_master om, pms_patient_biodata pb "
-            + "WHERE om.txn_date >= cast(now() as date) "
-            + "AND om.txn_date < cast((now() + interval 1 day) as date) "
-            + "AND pb.new_ic_no = '"+ ic +"' "
-            + "AND NOT EXISTS ("
-            + "SELECT ch.order_no "
-            + "FROM far_customer_hdr ch "
-            + "WHERE ch.order_no = om.order_no"
-            + ") "
+            + "WHERE pb.new_ic_no = '"+ ic +"' "
+            + "AND om.status = 0 "
             + "GROUP BY om.order_no";
     ArrayList<ArrayList<String>> data = Conn.getData(sql);
 %>

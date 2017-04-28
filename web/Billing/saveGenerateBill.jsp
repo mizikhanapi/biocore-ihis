@@ -29,7 +29,7 @@
     
     //Update far_order_master bill_no
     String sql = "UPDATE far_order_master "
-            + "SET bill_no = '"+ billNo +"'";
+            + "SET bill_no = '"+ billNo +"', status = '1'";
     Conn.setData(sql);
     
     //This parses the bill item json and save to far_customer_dtl
