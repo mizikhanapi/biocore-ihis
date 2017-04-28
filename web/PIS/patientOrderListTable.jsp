@@ -29,9 +29,7 @@
 <tbody>
 
     <%
-        String hfc = "";
-
-        hfc = session.getAttribute("HEALTH_FACILITY_CODE").toString();
+        String hfc = session.getAttribute("HEALTH_FACILITY_CODE").toString();
         String dis = (String) session.getAttribute("DISCIPLINE_CODE");
 
         String sql = "SELECT pis_order_master.ORDER_NO,pis_order_master.PMI_NO,pis_order_master.HEALTH_FACILITY_CODE,pis_order_master.EPISODE_CODE,pis_order_master.ENCOUNTER_DATE,"
