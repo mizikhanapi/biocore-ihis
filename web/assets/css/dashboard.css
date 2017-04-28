@@ -512,6 +512,11 @@ ul.nav.navbar-nav.navbar-left.back {
     padding: 0px;
 }
 
+.search-drop>ul>li {
+    border-bottom: 1px solid #ddd;
+    padding: 5px;
+}
+
 .search-drop>ul>li:hover{
     cursor: pointer;
     background: #eee;
@@ -837,4 +842,9 @@ tr#moveToOrderDetailsTButton {
     width: 100%; 
     color: #ffffff; 
     opacity: 0.2;
+}
+
+.golongan-soalan>.soalan {
+    border-top: none;
+    padding: 0px 15px;
 }

@@ -16,6 +16,9 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <%
+    String hfc = session.getAttribute("HEALTH_FACILITY_CODE").toString();
+    String dis = session.getAttribute("DISCIPLINE_CODE").toString();
+    String sub = session.getAttribute("SUB_DISCIPLINE_CODE").toString();
 
     String UD_MDC_CODE = request.getParameter("UD_MDC_CODE");
     String UD_ATC_CODE = request.getParameter("UD_ATC_CODE");
@@ -45,15 +48,18 @@
     RMIConnector rmic = new RMIConnector();
     Conn conn = new Conn();
 
-    String sqlCheck = "SELECT UD_MDC_CODE from pis_mdc2 WHERE UD_MDC_CODE = '" + UD_MDC_CODE + "' LIMIT 1 ";
+    String sqlCheck = "SELECT UD_MDC_CODE from pis_mdc2 WHERE UD_MDC_CODE = '" + UD_MDC_CODE + "' AND hfc_cd  = '" + hfc + "' AND discipline_cd  = '" + dis + "' LIMIT 1 ";
     ArrayList<ArrayList<String>> duplicate = conn.getData(sqlCheck);
 
     if (duplicate.size() > 0) {
         out.print("Duplicate");
     } else {
 
-        String sqlInsert = "INSERT INTO pis_mdc2 (UD_MDC_CODE,UD_ATC_CODE,D_TRADE_NAME,D_GNR_NAME,D_ROUTE_CODE,D_FORM_CODE,D_STRENGTH,D_STOCK_QTY,D_LOCATION_CODE,STATUS , D_PACKAGING,D_PRICE_PPACK,D_COST_PRICE,D_SELL_PRICE,D_QTY,D_QTYT,D_FREQUENCY,D_DURATION,D_DURATIONT,D_ADVISORY_CODE,D_CAUTION_CODE,D_EXP_DATE,D_CLASSIFICATION)"
-                + " VALUES ('" + UD_MDC_CODE + "','" + UD_ATC_CODE + "','" + D_TRADE_NAME + "','" + D_GNR_NAME + "','" + D_ROUTE_CODE + "','" + D_FORM_CODE + "','" + D_STRENGTH + "','" + D_STOCK_QTY + "','" + D_LOCATION_CODE + "','" + STATUS + "','" + D_PACKAGING + "','" + D_PRICE_PPACK + "','" + D_COST_PRICE + "','" + D_SELL_PRICE + "','" + D_QTY + "','" + D_QTYT + "','" + D_FREQUENCY + "','" + D_DURATION + "','" + D_DURATIONT + "','" + D_ADVISORY_CODE + "','" + D_CAUTIONARY_CODE + "','" + D_EXP_DATE + "','" + D_CLASSIFICATION + "'  )";
+        String sqlInsert = "INSERT INTO pis_mdc2 (UD_MDC_CODE,UD_ATC_CODE,D_TRADE_NAME,D_GNR_NAME,D_ROUTE_CODE,D_FORM_CODE,D_STRENGTH,D_STOCK_QTY,D_LOCATION_CODE,STATUS,D_PACKAGING,"
+                + "D_PRICE_PPACK,D_COST_PRICE,D_SELL_PRICE,D_QTY,D_QTYT,D_FREQUENCY,D_DURATION,D_DURATIONT,D_ADVISORY_CODE,D_CAUTION_CODE,D_EXP_DATE,D_CLASSIFICATION,hfc_cd,discipline_cd,subdiscipline_cd)"
+                + " VALUES ('" + UD_MDC_CODE + "','" + UD_ATC_CODE + "','" + D_TRADE_NAME + "','" + D_GNR_NAME + "','" + D_ROUTE_CODE + "','" + D_FORM_CODE + "','" + D_STRENGTH + "',"
+                + "'" + D_STOCK_QTY + "','" + D_LOCATION_CODE + "','" + STATUS + "','" + D_PACKAGING + "','" + D_PRICE_PPACK + "','" + D_COST_PRICE + "','" + D_SELL_PRICE + "','" + D_QTY + "',"
+                + "'" + D_QTYT + "','" + D_FREQUENCY + "','" + D_DURATION + "','" + D_DURATIONT + "','" + D_ADVISORY_CODE + "','" + D_CAUTIONARY_CODE + "','" + D_EXP_DATE + "','" + D_CLASSIFICATION + "','" + hfc + "','" + dis + "','" + sub + "' )";
 
         boolean isInsert = rmic.setQuerySQL(conn.HOST, conn.PORT, sqlInsert);
 
@@ -61,6 +67,7 @@
             out.print("Success");
         } else {
             out.print("Failed");
+            
         }
     }
 

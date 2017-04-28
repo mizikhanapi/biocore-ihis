@@ -16,6 +16,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <%
+    String hfc = session.getAttribute("HEALTH_FACILITY_CODE").toString();
 
     String Supplier_ID = request.getParameter("Supplier_ID");
     String Supplier_Name = request.getParameter("Supplier_Name");
@@ -36,15 +37,15 @@
     RMIConnector rmic = new RMIConnector();
     Conn conn = new Conn();
 
-    String sqlCheck = "SELECT Supplier_ID from pis_supplier_info WHERE Supplier_ID = '" + Supplier_ID + "' LIMIT 1 ";
+    String sqlCheck = "SELECT Supplier_ID from pis_supplier_info WHERE Supplier_ID = '" + Supplier_ID + "' AND hfc_cd  = '" + hfc + "' LIMIT 1 ";
     ArrayList<ArrayList<String>> duplicate = conn.getData(sqlCheck);
 
     if (duplicate.size() > 0) {
         out.print("Duplicate");
     } else {
 
-        String sqlInsert = "INSERT INTO pis_supplier_info (Supplier_ID,Supplier_Name,Office_Tel_No,ADDRESS1,ADDRESS2,ADDRESS3,DISTRICT_CODE , TOWN_CODE,POSTCODE,STATE_CODE,COUNTRY_CODE,Mobile_No,Fax_No,Email)"
-                + " VALUES ('" + Supplier_ID + "','" + Supplier_Name + "','" + Office_Tel_No + "','" + ADDRESS1 + "','" + ADDRESS2 + "','" + ADDRESS3 + "','" + DISTRICT_CODE + "','" + TOWN_CODE + "','" + POSTCODE + "','" + STATE_CODE + "','" + COUNTRY_CODE + "','" + Mobile_No + "','" + Fax_No + "','" + Email + "'  )";
+        String sqlInsert = "INSERT INTO pis_supplier_info (Supplier_ID,Supplier_Name,Office_Tel_No,ADDRESS1,ADDRESS2,ADDRESS3,DISTRICT_CODE , TOWN_CODE,POSTCODE,STATE_CODE,COUNTRY_CODE,Mobile_No,Fax_No,Email,hfc_cd)"
+                + " VALUES ('" + Supplier_ID + "','" + Supplier_Name + "','" + Office_Tel_No + "','" + ADDRESS1 + "','" + ADDRESS2 + "','" + ADDRESS3 + "','" + DISTRICT_CODE + "','" + TOWN_CODE + "','" + POSTCODE + "','" + STATE_CODE + "','" + COUNTRY_CODE + "','" + Mobile_No + "','" + Fax_No + "','" + Email + "','" + hfc + "'  )";
 
         boolean isInsert = rmic.setQuerySQL(conn.HOST, conn.PORT, sqlInsert);
 

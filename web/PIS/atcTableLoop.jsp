@@ -12,6 +12,7 @@
 <%
     Conn conn = new Conn();
     String hfc = session.getAttribute("HEALTH_FACILITY_CODE").toString();
+    String dis = session.getAttribute("DISCIPLINE_CODE").toString();
 %>
 
 
@@ -30,7 +31,7 @@
 <tbody>
 
     <%
-        String sql = " SELECT UD_ATC_Code, UD_ATC_Desc, Category_Code,hfc_cd,discipline_cd,subdiscipline_cd,Status FROM pis_atc WHERE hfc_cd  = '" + hfc + "' ";
+        String sql = " SELECT UD_ATC_Code, UD_ATC_Desc, Category_Code,hfc_cd,discipline_cd,subdiscipline_cd,Status FROM pis_atc WHERE hfc_cd  = '" + hfc + "' AND discipline_cd  = '" + dis + "' ";
         ArrayList<ArrayList<String>> dataATC = conn.getData(sql);
 
         int size = dataATC.size();

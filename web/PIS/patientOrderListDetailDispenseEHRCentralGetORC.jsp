@@ -60,7 +60,7 @@
     String providerHFCORC = hfc;                 // Data 26
     String providerDispORC = dis;                // Data 27
     String providerSubDispORC = subdis;             // Data 28
-    String providerApplicationORC = "";         // Data 29
+    String providerApplicationORC = "08";         // Data 29
     String providerHFCAddress1ORC = "";         // Data 30
     
     String providerHFCAddress2ORC = "";         // Data 31

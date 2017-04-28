@@ -19,8 +19,8 @@
 
     RMIConnector rmic = new RMIConnector();
     Conn conn = new Conn();
-    
-    String sql = "DELETE FROM pis_atc WHERE UD_ATC_Code = '" + id + "' AND hfc_cd = '" + hfc + "' AND discipline_cd = '" + dis + "' AND subdiscipline_cd = '" + subdis + "' ";
+    // AND subdiscipline_cd = '" + subdis + "' 
+    String sql = "DELETE FROM pis_atc WHERE UD_ATC_Code = '" + id + "' AND hfc_cd = '" + hfc + "' AND discipline_cd = '" + dis + "' ";
 
     boolean status = rmic.setQuerySQL(conn.HOST, conn.PORT, sql);
 

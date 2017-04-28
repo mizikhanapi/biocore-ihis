@@ -22,7 +22,8 @@
     RMIConnector rmic = new RMIConnector();
     Conn conn = new Conn();
 
-    String sqlCheck = "SELECT UD_ATC_Code from pis_atc WHERE UD_ATC_Code = '" + atcCode + "' AND hfc_cd  = '"+hfc+"' AND discipline_cd  = '"+discipline+"'AND subdiscipline_cd  = '"+subdiscipline+"' LIMIT 1 ";
+    // subdiscipline_cd  = '"+subdiscipline+"'
+    String sqlCheck = "SELECT UD_ATC_Code from pis_atc WHERE UD_ATC_Code = '" + atcCode + "' AND hfc_cd  = '"+hfc+"' AND discipline_cd  = '"+discipline+"' LIMIT 1 ";
     ArrayList<ArrayList<String>> duplicate = conn.getData(sqlCheck);
 
     if (duplicate.size() > 0) {
