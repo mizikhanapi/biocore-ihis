@@ -47,7 +47,7 @@
 		<hr/>
     <!-- profile Sidebar -->
 
-    <ul class="nav nav-sidebar" id="menu-content" >
+<!--    <ul class="nav nav-sidebar" id="menu-content" >
         <li><a href="mcMain2.jsp"><i class="fa fa-print fa-lg" aria-hidden="true" ></i>Print MC </a></li>
         <li><a href="timeSlipMain2.jsp"><i class="fa fa-clock-o fa-lg" aria-hidden="true" ></i>Time Slip</a></li>
         <li><a href="psMain.jsp"><i class="fa fa-list-ul fa-lg" aria-hidden="true" ></i> Prescription Slip</a></li>
@@ -58,5 +58,5 @@
         <li><a href="laporanKosPerubatan.jsp"><i class="fa fa-file-text fa-lg" aria-hidden="true" ></i>Report Health Cost</a></li>
         <li><a href="dataAnalysisMain.jsp"><i class="fa fa-file-text-o fa-lg" aria-hidden="true" ></i>Data Analysis</a></li>
     </ul>  
-    
+    -->
 </div>

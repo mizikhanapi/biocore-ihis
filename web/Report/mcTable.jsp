@@ -33,10 +33,12 @@
         <th> Reprint </th>
 
         <%  String sql = "";
-            if (mcType.equals("pmino")) {
+            if (mcType.equals("001")) {
                 sql = "SELECT A.PATIENT_NAME , B.EPISODE_DATE, A.`PMI_NO` FROM PMS_PATIENT_BIODATA A JOIN LHR_MED_LEAVE B ON A.`PMI_NO` = B.pmi_no WHERE A.PMI_NO = '" + mcInput + "'";
-            } else if (mcType.equals("icnew")) {
+            } else if (mcType.equals("002")) {
                 sql = "SELECT A.PATIENT_NAME , B.EPISODE_DATE, A.`PMI_NO` FROM PMS_PATIENT_BIODATA A JOIN LHR_MED_LEAVE B ON A.`PMI_NO` = B.pmi_no WHERE A.NEW_IC_NO = '" + mcInput + "'";
+            } else if (mcType.equals("003")) {
+                sql = "SELECT A.PATIENT_NAME , B.EPISODE_DATE, A.`PMI_NO` FROM PMS_PATIENT_BIODATA A JOIN LHR_MED_LEAVE B ON A.`PMI_NO` = B.pmi_no WHERE A.OLD_IC_NO = '" + mcInput + "'";
             } else {
                 sql = "SELECT A.PATIENT_NAME , B.EPISODE_DATE, A.`PMI_NO` FROM PMS_PATIENT_BIODATA A JOIN LHR_MED_LEAVE B ON A.`PMI_NO` = B.pmi_no WHERE A.ID_NO = '" + mcInput + "'";
             }
@@ -49,7 +51,7 @@
         <tr>
             <td id="name"><%= mc.get(i).get(0)%></td>
             <td id="episodeDate2"><%= mc.get(i).get(1)%>
-            <input type="hidden" id="episodeDate2_<%=i%>" value="<%= mc.get(i).get(1)%>">
+                <input type="hidden" id="episodeDate2_<%=i%>" value="<%= mc.get(i).get(1)%>">
             </td>
             <td id="pmino"><%= mc.get(i).get(2)%></td>
             <td><form><input type=submit value="reprint" id="printMC3<%=i%>" role="button"></form></td>
@@ -70,7 +72,7 @@
                     console.log(mcInput);
                     console.log(episodeDate2);
 
-                    window.open("mcReport2.jsp?mcType=" + mcType + "&mcInput=" + mcInput+ "&episodeDate2=" + episodeDate2);
+                    window.open("mcReport2.jsp?mcType=" + mcType + "&mcInput=" + mcInput + "&episodeDate2=" + episodeDate2);
 
                 });
             });

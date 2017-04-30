@@ -83,9 +83,7 @@
                             <div class="btn-group" role="group">
                                 <button type="submit" class="btn btn-success btn-block btn-lg" role="button" id="dataReport">Generate Report</button>
                             </div>
-                            <div class="btn-group" role="group">
-                                <button type="submit" class="btn btn-success btn-block btn-lg" role="button" id="dataChart">Generate Chart</button>
-                            </div>
+                           
                             <div class="btn-group" role="group">
                                 <button id="clearSearch" name="clearSearch" type="clear" class="btn btn-default"><i class="fa fa-ban fa-lg"></i>&nbsp; Clear</button>
                             </div>
