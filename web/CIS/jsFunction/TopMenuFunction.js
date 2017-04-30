@@ -404,7 +404,7 @@ $(document).ready(function (e) {
             } else if (data[key].Acode === "IMU") {
                 processNotes += "IMU|" + getDate() + "|" + data[key].codeIMU + "^" + data[key].Problem6 + "^" + data[key].date2 + "^" + data[key].comment6 + "^^^^" + getDate() + "^" + hfc_cd + "^" + doctor_id + "^" + doctor_name + "^^^|<cr>\n";
             } else if (data[key].Acode === "DAB") {
-                processNotes += "DAB|" + getDate() + "|" + data[key].codeDAB + "^" + data[key].Problem32 + "^" + data[key].date3 + "^^^" + data[key].comment7 + "|<cr>\n";
+                processNotes += "DAB|" + getDate() + "|" + data[key].codeDAB + "^" + data[key].Problem32 + "^" + data[key].date3 + "^" + data[key].comment7 + "^^|<cr>\n";
             } else if (data[key].Acode === "VTS") {
                 $.extend(VTSObj, data[key]);
             } else if (data[key].Acode === "PEM") {
