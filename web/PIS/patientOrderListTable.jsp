@@ -19,12 +19,12 @@
 
 <table  id="patientOrderListTable"  class="table table-filter table-striped table-bordered" style="background: #fff; border: 1px solid #ccc; width: 100%">
     <thead>
-    <th style="text-align: center;">Order No.</th>
-    <th style="text-align: center;">PMI No.</th>
-    <th style="text-align: center;">Name</th>
-    <th style="text-align: center;">Order Date</th>
-    <th style="text-align: center; display: none">Health Facility Code</th>
-    <th style="text-align: center;">Doctor's Name</th>
+    <th style="text-align: left;">Order No.</th>
+    <th style="text-align: left;">PMI No.</th>
+    <th style="text-align: left;">Name</th>
+    <th style="text-align: left;">Order Date</th>
+    <th style="text-align: left; display: none">Health Facility Code</th>
+    <th style="text-align: left;">Doctor's Name</th>
 </thead>
 <tbody>
 
@@ -47,11 +47,11 @@
         for (int i = 0; i < size; i++) {
     %>
 
-    <tr id="moveToOrderDetailsTButton" style="text-align: center;">
+    <tr id="moveToOrderDetailsTButton" style="text-align: left;">
 <input id="dataPatientOrderListhidden" type="hidden" value="<%=String.join("|", dataPatientOrderList.get(i))%>">
 <td><%= dataPatientOrderList.get(i).get(0)%></td> <!-- Order No -->
 <td><%= dataPatientOrderList.get(i).get(1)%></td> <!-- PMI No -->
-<td><%= dataPatientOrderList.get(i).get(15)%></td> <!-- Name -->
+<td style="font-weight: 500;"><%= dataPatientOrderList.get(i).get(15)%></td> <!-- Name -->
 <td><%= dataPatientOrderList.get(i).get(5)%></td> <!-- Order Date -->
 <td style="display: none"><%= dataPatientOrderList.get(i).get(2)%></td> <!-- Health Facility Code -->
 <td><%= dataPatientOrderList.get(i).get(6)%></td> <!-- Doctor's Name -->
