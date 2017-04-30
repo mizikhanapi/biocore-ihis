@@ -641,7 +641,7 @@ function loadImageFileAsURL()
         {
 
             iSize = (Math.round((iSize / 1024) * 100) / 100);
-            sizeSmall = iSize <= 1.8;
+            sizeSmall = iSize <= 0.7;
             //$("#lblSize").html(iSize + "Mb");
 
         }
@@ -649,9 +649,9 @@ function loadImageFileAsURL()
 
     } else {
 
-        //iSize = (Math.round(iSize * 100) / 100);
+        iSize = (Math.round(iSize * 100) / 100);
 
-        sizeSmall = true;
+        sizeSmall = iSize <= 700;
 
     }
 
@@ -682,7 +682,7 @@ function loadImageFileAsURL()
 
     } else {
 
-        bootbox.alert("File size must not exceed 1.5Mb");
+        bootbox.alert("File size must not exceed 650Kb");
         $('#PR_fileToLoad').val("");
         RIS_gambarURI = "";
         $('#PR_gamba').attr('src', RIS_gambarURI);
@@ -709,6 +709,7 @@ $('#PR_btnSubmit').on('click', function () {
         );
     }
     else{
+        comment = comment.replace(/'/g, "\\\'").replace(/"/g, "\\\"");
         var data = {
             process: 'report',
             orderNo: orderNo,

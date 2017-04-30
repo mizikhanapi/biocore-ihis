@@ -54,6 +54,7 @@
     <!-- profile Sidebar -->
     <ul class="nav nav-sidebar" id="side-menu">
         <li><a href="HIS060001.jsp"><i class="fa fa-credit-card sideIcon" aria-hidden="true" ></i>Receive Order</a></li>   
+        <li><a href="HIS060003.jsp"><i class="fa fa-check-square sideIcon" aria-hidden="true" ></i>Verify Result</a></li>   
         <li><a href="HIS060002.jsp"><i class="fa fa-code-fork " aria-hidden="true" ></i>RIS Procedure Maintenance</a></li>
     </ul>  
 </div>

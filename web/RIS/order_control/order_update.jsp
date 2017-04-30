@@ -35,7 +35,7 @@
 
     }//end set date
     else if (process.equalsIgnoreCase("perform")) {
-        
+
         String sql = "Update ris_order_detail set order_status = '1', exam_date = now() "
                 + "where order_no = '" + orderNo + "' AND modality_cd = '" + modCode + "' AND body_system_cd = '" + bsCode + "' AND procedure_cd = '" + proCode + "' ";
 
@@ -49,7 +49,7 @@
 
     }//end perform
     else if (process.equalsIgnoreCase("cancel")) {
-        
+
         String sql = "Delete from ris_order_detail "
                 + "where order_no = '" + orderNo + "' AND modality_cd = '" + modCode + "' AND body_system_cd = '" + bsCode + "' AND procedure_cd = '" + proCode + "' ";
 
@@ -63,34 +63,43 @@
             out.print("fail");
         }
 
-    
     }//end cancel
-    else if(process.equalsIgnoreCase("report")){
-        
-        String creator =(String) session.getAttribute("USER_ID");
-        
+    else if (process.equalsIgnoreCase("report")) {
+
+        String creator = (String) session.getAttribute("USER_ID");
+
         String gambar = request.getParameter("gambar");
         String comment = request.getParameter("comment");
         boolean isSuccess = false;
-        
+
         String sql = "Insert Into ris_result_detail(order_no, modality_cd, body_system_cd, procedure_cd, episode_date, encounter_date, filler_comments, result_status, created_by, created_date, result_image) "
-                + "values('"+orderNo+"', '"+modCode+"', '"+bsCode+"', '"+proCode+"', now(), now(), '"+comment+"', '0', '"+creator+"', now(), '"+gambar+"')";
-        
+                + "values('" + orderNo + "', '" + modCode + "', '" + bsCode + "', '" + proCode + "', now(), now(), '" + comment + "', '0', '" + creator + "', now(), '" + gambar + "')";
+
         isSuccess = rmic.setQuerySQL(conn.HOST, conn.PORT, sql);
-        
-        sql = "Update ris_order_detail set order_status = '5', filler_comments = '"+comment+"' "
-                + "where order_no = '" + orderNo + "' AND modality_cd = '" + modCode + "' AND body_system_cd = '" + bsCode + "' AND procedure_cd = '" + proCode + "' ";
-        
-        isSuccess = rmic.setQuerySQL(conn.HOST, conn.PORT, sql);
-        isSuccess = true;
-        
-        if(isSuccess){
-            out.print("success");
-        
-        }else{
-            out.print("fail");
-        
+
+        if (isSuccess) {
+            sql = "Update ris_order_detail set order_status = '5', filler_comments = '" + comment + "' "
+                    + "where order_no = '" + orderNo + "' AND modality_cd = '" + modCode + "' AND body_system_cd = '" + bsCode + "' AND procedure_cd = '" + proCode + "' ";
+
+            isSuccess = rmic.setQuerySQL(conn.HOST, conn.PORT, sql);
+
         }
-    
+
+        if (isSuccess) {
+            out.print("success");
+
+        } else {
+            out.print("fail");
+            sql = "Update ris_order_detail set order_status = '1', filler_comments = '' "
+                    + "where order_no = '" + orderNo + "' AND modality_cd = '" + modCode + "' AND body_system_cd = '" + bsCode + "' AND procedure_cd = '" + proCode + "' ";
+
+            rmic.setQuerySQL(conn.HOST, conn.PORT, sql);
+            
+            sql = "Delete from ris_result_detail  "
+                    + "where order_no = '" + orderNo + "' AND modality_cd = '" + modCode + "' AND body_system_cd = '" + bsCode + "' AND procedure_cd = '" + proCode + "' ";
+
+            rmic.setQuerySQL(conn.HOST, conn.PORT, sql);
+        }
+
     }//end report
 %>
