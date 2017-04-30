@@ -33,9 +33,14 @@
 <!-- Add Button End -->
 
 
+
+
+
+
+
 <!-- Summary Modal Start -->
 <div class="modal fade" id="mdcSummaryModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
-    <div class="modal-dialog" style="width: 50%">
+    <div class="modal-dialog" style="width: 60%">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal"><i class="fa fa-times fa-lg"></i></button>
@@ -44,23 +49,27 @@
             <div class="modal-body">
 
                 <!-- content goes here -->
-                <form style="width: 100%; margin: 0 auto;" id="mdcSummaryForm" autocomplete="off">
+                <form class="form-horizontal" autocomplete="off">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <br>
+                            <div id="mdcDateSummary">
 
-                    <!-- Text input-->
-                    <div class="form-group">
-
-
-                        <div style="align-items: center; text-align: center">
-
+                            </div>
                         </div>
+                        <br>
+                        <div class="col-md-6">
+                            <div id="mdcStockSummary">
+
+                            </div>
+                        </div>
+                        <br>
                     </div>
-
-
                 </form>
-                <!-- content goes here -->
+
             </div>
             <div class="modal-footer">
-                <button class="btn btn-primary btn-block" type="button" id="MDC_btnClone"><i class=" fa fa-check"></i> Clone</button>
+                <button class="btn btn-primary btn-block" type="button" id="MDC_btnSummaryClose" data-dismiss="modal"><i class=" fa fa-close"></i> Close</button>
             </div>
         </div>
     </div>
@@ -482,7 +491,7 @@
         $("#addD_EXP_DATE").datepicker({
             changeMonth: true,
             changeYear: true,
-            dateFormat: 'dd/mm/yy',
+            dateFormat: 'yy-mm-dd',
             minDate: '0'
         });
 
@@ -606,7 +615,8 @@
             var D_EXP_DATE = document.getElementById("addD_EXP_DATE").value;
             var D_CLASSIFICATION = document.getElementById("addD_CLASSIFICATION").value;
 
-
+            var strCom = D_CAUTIONARY_CODE.replace(/'/g, '\\\'');
+            D_CAUTIONARY_CODE = strCom;
 
             if (UD_MDC_CODE === "") {
                 bootbox.alert("Please Insert MDC Code");
@@ -772,15 +782,23 @@
         var User_hfcCode = "<%= hfc%>";
         var User_disCode = "<%= dis%>";
 
+
+        // Clone MDC Button Click Function Start
         $('#MDCClone_btnClone').on('click', function () {
             MDCCloneReset();
             createMDCCodeList();
         });
+        // Clone MDC Button Click Function End
 
+
+        // Clone MDC Reset Function Start
         function MDCCloneReset() {
             document.getElementById("mdcClone_addForm").reset();
         }
+        // Clone MDC Reset Function End
 
+
+        // Clone MDC Create List Function Start
         function createMDCCodeList() {
 
             var data = {
@@ -813,7 +831,10 @@
             });
 
         }
+        // Clone MDC Create List Function End
 
+
+        // Clone MDC Clone Function Start
         $('#MDC_btnClone').on('click', function () {
 
             var arraySelect = [];
@@ -879,19 +900,79 @@
             }
 
         });
+        // Clone MDC Clone Function End
 
+
+        // Clone MDC Select All Function Start
         $('#MDC_Code_selectAll').on('click', function (e) {
             e.preventDefault();
             $('#MDC_DrugCode').multiSelect('select_all');
             return false;
         });
+        // Clone MDC Select All Function End
 
+
+        // Clone MDC Un-Select All Function Start
         $('#MDC_Code_deselectAll').on('click', function (e) {
             e.preventDefault();
             $('#MDC_DrugCode').multiSelect('deselect_all');
             return false;
         });
+        // Clone MDC Un-Select All Function End
+
         // Clone MDC Function End
+
+
+
+        // Summary MDC Function Start
+
+        // Summary MDC Button Function Start
+        $('#MDCClone_btnSummary').on('click', function () {
+            createMDCSummaryStock();
+            createMDCSummaryDate();
+        });
+        // Summary MDC Button Function End
+
+        // Summary MDC Date Function Start
+        function createMDCSummaryDate() {
+
+            $.ajax({
+                type: 'POST',
+                url: "mdcDummaryDrugDate.jsp",
+                success: function (data, textStatus, jqXHR) {
+                    $('#mdcDateSummary').html(data);
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    bootbox.alert("Opps! " + errorThrown);
+                },
+                complete: function (jqXHR, textStatus) {
+                    $('.loading').hide();
+                }
+            });
+
+        }
+        // Summary MDC Date Function End
+
+
+        // Summary MDC Stock Function Start
+        function createMDCSummaryStock() {
+
+            $.ajax({
+                type: 'POST',
+                url: "mdcDummaryDrugStock.jsp",
+                success: function (data, textStatus, jqXHR) {
+                    $('#mdcStockSummary').html(data);
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    bootbox.alert("Opps! " + errorThrown);
+                },
+                complete: function (jqXHR, textStatus) {
+                    $('.loading').hide();
+                }
+            });
+
+        }
+        // Summary MDC Stock Function Start
 
 
     });

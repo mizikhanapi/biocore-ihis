@@ -720,6 +720,7 @@
     // Reset Order Function Start
     function resetAddOrder() {
         document.getElementById("addDrugOrderForm").reset();
+        document.getElementById("orderDrugSearchInputDisplayResult").innerHTML = "";
     }
     // Reset Order Function End
 
