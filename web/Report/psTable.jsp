@@ -33,10 +33,12 @@
         <th> Reprint </th>
 
         <%  String sql = "";
-            if (psType.equals("pmino")) {
+            if (psType.equals("001")) {
                 sql = "SELECT A.`PATIENT_NAME`, B.`ORDER_DATE`, A.`PMI_NO` FROM PMS_PATIENT_BIODATA A JOIN PIS_ORDER_MASTER B ON A.`PMI_NO` = B.`PMI_NO` WHERE A.PMI_NO = '" + psInput + "'";
-            } else if (psType.equals("icnew")) {
+            } else if (psType.equals("002")) {
                 sql = "SELECT A.`PATIENT_NAME`, B.`ORDER_DATE`, A.`PMI_NO` FROM PMS_PATIENT_BIODATA A JOIN PIS_ORDER_MASTER B ON A.`PMI_NO` = B.`PMI_NO` WHERE A.NEW_IC_N0 = '" + psInput + "'";
+            } else if (psType.equals("003")) {
+                sql = "SELECT A.`PATIENT_NAME`, B.`ORDER_DATE`, A.`PMI_NO` FROM PMS_PATIENT_BIODATA A JOIN PIS_ORDER_MASTER B ON A.`PMI_NO` = B.`PMI_NO` WHERE A.OLD.IC_NO = '" + psInput + "'";
             } else {
                 sql = "SELECT A.`PATIENT_NAME`, B.`ORDER_DATE`, A.`PMI_NO` FROM PMS_PATIENT_BIODATA A JOIN PIS_ORDER_MASTER B ON A.`PMI_NO` = B.`PMI_NO` WHERE A.ID_NO = '" + psInput + "'";
             }
@@ -49,7 +51,7 @@
         <tr>
             <td id="name"><%= ps.get(i).get(0)%></td>
             <td id="startDate"><%= ps.get(i).get(1)%>
-            <input type="hidden" id="startDate_<%=i%>" value="<%= ps.get(i).get(1)%>">
+                <input type="hidden" id="startDate_<%=i%>" value="<%= ps.get(i).get(1)%>">
             </td>
             <td id="pmino"><%= ps.get(i).get(2)%></td>
             <td><form><input type=submit value="reprint" id="printPS<%=i%>" role="button"></form></td>
@@ -70,7 +72,7 @@
                     console.log(psInput);
                     console.log(startDate);
 
-                    window.open("prescriptionSlipReport.jsp?psType=" + psType + "&psInput=" + psInput+ "&startDate=" + startDate);
+                    window.open("prescriptionSlipReport.jsp?psType=" + psType + "&psInput=" + psInput + "&startDate=" + startDate);
 
                 });
             });

@@ -140,27 +140,27 @@ FROM
 				<textFieldExpression><![CDATA[$F{pms_episode_DOCTOR}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="17" y="234" width="100" height="20" uuid="af4f6e56-966a-4272-84da-d893fb00d07f"/>
+				<reportElement x="17" y="211" width="100" height="20" uuid="af4f6e56-966a-4272-84da-d893fb00d07f"/>
 				<text><![CDATA[Chief Complaint]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="17" y="297" width="100" height="20" uuid="bca52a3f-b69c-44c1-946b-2495337f5058"/>
+				<reportElement x="17" y="274" width="100" height="20" uuid="bca52a3f-b69c-44c1-946b-2495337f5058"/>
 				<text><![CDATA[Social History]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="17" y="364" width="100" height="20" uuid="c5eaa0cb-7541-4b41-97e5-881fc469dafe"/>
+				<reportElement x="17" y="341" width="100" height="20" uuid="c5eaa0cb-7541-4b41-97e5-881fc469dafe"/>
 				<text><![CDATA[Family Medical History]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="17" y="414" width="100" height="20" uuid="3bca83af-f5b2-4c2e-8249-63f0e5e98817"/>
+				<reportElement x="17" y="391" width="100" height="20" uuid="3bca83af-f5b2-4c2e-8249-63f0e5e98817"/>
 				<text><![CDATA[Allergy]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="17" y="462" width="135" height="20" uuid="769e9cff-e001-4c5a-9a04-3a16b1cc149f"/>
+				<reportElement x="17" y="439" width="135" height="20" uuid="769e9cff-e001-4c5a-9a04-3a16b1cc149f"/>
 				<text><![CDATA[History of present illness]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="17" y="514" width="100" height="20" uuid="aa35c593-a78b-4eef-bb28-316fb4f2ef82"/>
+				<reportElement x="17" y="491" width="100" height="20" uuid="aa35c593-a78b-4eef-bb28-316fb4f2ef82"/>
 				<text><![CDATA[Immunisation]]></text>
 			</staticText>
 		</band>
