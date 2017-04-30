@@ -70,7 +70,9 @@ INNER JOIN `adm_health_facility` adm_health_facility ON  pis_order_master.`HEALT
 
 WHERE
      pis_order_detail.`STATUS` = 1
- AND pis_order_detail.`ORDER_NO` = $P{orderNo}]]>
+ AND pis_order_detail.`ORDER_NO` = $P{orderNo} 
+AND pis_order_master.`HEALTH_FACILITY_CODE` = pis_mdc2.`hfc_cd`
+AND pis_order_master.`DISCIPLINE_CODE` = pis_mdc2.`discipline_cd`]]>
 	</queryString>
 	<field name="ORDER_NO" class="java.lang.String">
 		<fieldDescription><![CDATA[]]></fieldDescription>
@@ -82,10 +84,10 @@ WHERE
 	<field name="FORM" class="java.lang.String"/>
 	<field name="STRENGTH" class="java.lang.String"/>
 	<field name="DOSAGE" class="java.lang.String"/>
-	<field name="DURATION" class="java.math.BigDecimal">
+	<field name="DURATION" class="java.lang.String">
 		<fieldDescription><![CDATA[numeric]]></fieldDescription>
 	</field>
-	<field name="STATUS" class="java.lang.Boolean">
+	<field name="STATUS" class="java.lang.String">
 		<fieldDescription><![CDATA[boolean]]></fieldDescription>
 	</field>
 	<field name="DURATIONT" class="java.lang.String">
