@@ -17,24 +17,25 @@
                     <div class="col-xs-12 col-sm-12 col-md-12">
 
                         <div class="form-group">
-                            <input type="hidden" name="DTO" id="jsonId" class="form-control input-lg"  tabindex="4">
-                            <input class="form-control input-lg" type="text" name="problem"  id="searchDTO" placeholder="Search Drug..." tabindex="4">
-                            <input class="form-control input-lg" type="hidden" name="dtoCode"  id="dtoCode" placeholder="Drug Code..." tabindex="4" readonly="">
-                              <input class="form-control input-lg" type="hidden"  id="hfcDTO" placeholder="">
-                            <input class="form-control input-lg" type="hidden"  id="hfcOrderDetailDTO" placeholder="s">
-                            <input class="form-control input-lg" type="hidden"  id="hfcProviderDetailDTO" placeholder="">
-                            <input class="form-control input-lg" type="hidden"  id="hfcIdDTO">
-                            <div id="matchDTO" ></div>
+                            <label class="col-md-6 control-label" for="textinput">Search Drug</label>
+                            <div class="col-md-12">
+                                <input type="hidden" name="DTO" id="jsonId" class="form-control input-lg"  tabindex="4">
+                                <input class="form-control input-lg" type="text" name="problem"  id="searchDTO" placeholder="Type to search..." tabindex="4">
+                                <input class="form-control input-lg" type="hidden" name="dtoCode"  id="dtoCode" placeholder="Drug Code..." tabindex="4" readonly="">
+                                <input class="form-control input-lg" type="hidden"  id="hfcDTO" placeholder="">
+                                <input class="form-control input-lg" type="hidden"  id="hfcOrderDetailDTO" placeholder="s">
+                                <input class="form-control input-lg" type="hidden"  id="hfcProviderDetailDTO" placeholder="">
+                                <input class="form-control input-lg" type="hidden"  id="hfcIdDTO">
+                                <div id="matchDTO" class="search-drop" ></div>
+                            </div>
                         </div>
                     </div>
                 </div>
 
+                <hr/>
+
                 <div class="row">
-                    <div class="col-xs-12 col-sm-12 col-md-12">
-                        <div class="form-group">
-                            <h4 class="modal-title" style="font-weight: bold">Drug Details</h4>
-                        </div>
-                    </div>
+                    <h4 class="modal-title" style="font-weight: bold">Drug Details</h4>
                 </div>
 
                 <!-- content goes here -->
@@ -60,8 +61,8 @@
                         </div>
                     </div>
                 </div>
-                
-                
+
+
 
                 <div class="row">
                     <div class="col-xs-2 col-sm-2 col-md-2">
@@ -85,8 +86,8 @@
                         </div>
                     </div>
                 </div>
-                
-                                <div class="row">
+
+                <div class="row">
                     <div class="col-xs-2 col-sm-2 col-md-2">
                         <div class="form-group modalTextLabel">
                             <h4 class="modal-title">Quantity</h4>
@@ -94,7 +95,7 @@
                     </div>
                     <div class="col-xs-4 col-sm-4 col-md-4">
                         <div class="form-group">
-                           <input type="number" name="display_name" id="drugQtyDTO" class="form-control input-lg" placeholder="" tabindex="3">
+                            <input type="number" name="display_name" id="drugQtyDTO" class="form-control input-lg" placeholder="" tabindex="3">
                         </div>
                     </div>
                     <div class="col-xs-2 col-sm-2 col-md-2">
@@ -108,7 +109,7 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="row">
                     <div class="col-xs-2 col-sm-2 col-md-2">
                         <div class="form-group">
@@ -309,7 +310,7 @@
                     </div>
 
                 </div>
-                                <div class="row">
+                <div class="row">
                     <div class="col-xs-2 col-sm-2 col-md-2">
                         <div class="form-group modalTextLabel">
                             <h4 class="modal-title">Quantity</h4>
@@ -317,7 +318,7 @@
                     </div>
                     <div class="col-xs-4 col-sm-4 col-md-4">
                         <div class="form-group">
-                           <input type="number" name="display_name" id="update_qty" class="form-control input-lg" placeholder="" tabindex="3">
+                            <input type="number" name="display_name" id="update_qty" class="form-control input-lg" placeholder="" tabindex="3">
                         </div>
                     </div>
                     <div class="col-xs-2 col-sm-2 col-md-2">
