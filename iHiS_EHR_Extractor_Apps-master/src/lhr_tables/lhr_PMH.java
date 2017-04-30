@@ -107,7 +107,7 @@ public class lhr_PMH {
                                 + "'" + pmh_Obj.getHFC() + "',"
                                 + "" + pmh_Obj.getEncounter_Date() + "," //Modified By Ahmed (13/3/2017)
                                 + "" + pmh_Obj.getEncounter_Date() + ","
-                                + "'" + pmh_Obj.getICD10_Code() + "'," //diagnosis_cd
+                                + "'" + pmh_Obj.getRead_Code()+ "'," //diagnosis_cd
                                 + "" + pmh_Obj.getDiagnosis_Date() + "," //Modified By Ahmed (13/3/2017)
                                 + "'" + pmh_Obj.getTerm_Type() + "',"
 //                                + "'" + pmh_Obj.getICD10_Code() + "'," 
