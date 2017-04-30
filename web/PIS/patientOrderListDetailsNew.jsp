@@ -35,23 +35,23 @@
 
 %>
 
-<table class="table table-filter table-striped table-bordered dt-head-right" style="background: #fff; border: 1px solid #ccc; width: 100%; text-align: center" id="patientOrderDetailsListTable">
+<table class="table table-filter table-striped table-bordered dt-head-right" style="background: #fff; border: 1px solid #ccc; width: 100%; text-align: left" id="patientOrderDetailsListTable">
     <thead>
     <th style="display: none;text-align: center;">Order No</th>
-    <th style="text-align: center;">Code</th>
-    <th style="text-align: center;">Description</th>
-    <th style="text-align: center;">Strength</th>
-    <th style="text-align: center;">Frequency</th>
-    <th style="text-align: center;">Duration</th>
-    <th style="text-align: center;">Dose</th>
-    <th style="text-align: center;">Stock Qty</th>
-    <th style="text-align: center;">Ordered Qty</th>
-    <th style="text-align: center;">Supplied Qty</th>
-    <th style="text-align: center;">Dispensed Qty</th>
-    <th style="text-align: center;">Price/Pack</th>
-    <th style="text-align: center;">Total (RM)</th>
-    <th style="text-align: center;">Status</th>
-    <th style="text-align: center;">Check<!--<br><input id="checkDispenseAll" type="checkbox" onchange="checkAll(this)" name="chk[]" />--></th>
+    <th style="text-align: left;">Code</th>
+    <th style="text-align: left;">Description</th>
+    <th style="text-align: left;">Strength</th>
+    <th style="text-align: left;">Frequency</th>
+    <th style="text-align: left;">Duration</th>
+    <th style="text-align: left;">Dose</th>
+    <th style="text-align: left;">Stock Qty</th>
+    <th style="text-align: left;">Ordered Qty</th>
+    <th style="text-align: left;">Supplied Qty</th>
+    <th style="text-align: left;">Dispensed Qty</th>
+    <th style="text-align: left;">Price/Pack</th>
+    <th style="text-align: left;">Total (RM)</th>
+    <th style="text-align: left;">Status</th>
+    <th style="text-align: left;">Check<!--<br><input id="checkDispenseAll" type="checkbox" onchange="checkAll(this)" name="chk[]" />--></th>
 </thead>
 <tbody>
     <%        for (int i = 0; i < dataOrderList.size(); i++) {
@@ -91,7 +91,7 @@
         <% } else if (Integer.parseInt(stock) == 0) {   %>
     <tr style="font-weight:bolder; background-color: red;text-align: center;">
         <% } else {   %>
-    <tr style="text-align: center;">
+    <tr style="text-align: left;">
         <%   }%>
 <input id="dataPatientOrderDetailsListhidden" type="hidden" value="<%=String.join("|", dataOrderList.get(i))%>">
 <td id="updateOrderDetailsTButton" data-status="pagado" data-toggle="modal" data-id="1" data-target="#updateOrder" align="center" style="display: none"><%= dataOrderList.get(i).get(0)%></td> <!-- Order No -->

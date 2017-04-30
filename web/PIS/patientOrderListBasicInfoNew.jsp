@@ -435,7 +435,6 @@
             "searching": false,
             "info": false,
             "lengthChange": false,
-            "scrollX": true,
             "pageLength": 5,
             "language": {
                 "emptyTable": "No Order Available To Display"
@@ -449,7 +448,6 @@
             "info": false,
             "lengthChange": false,
             "pageLength": 5,
-            "scrollX": true,
             "language": {
                 "emptyTable": "No Record Available To Display"
             }
@@ -462,7 +460,6 @@
             "info": false,
             "lengthChange": false,
             "pageLength": 5,
-            "scrollX": true,
             "language": {
                 "emptyTable": "No Record Available To Display"
             }

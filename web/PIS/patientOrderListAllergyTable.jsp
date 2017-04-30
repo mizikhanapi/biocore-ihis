@@ -29,21 +29,21 @@
 
 %>
 
-<table class="table table-filter table-striped table-bordered dt-head-right" style="background: #fff; border: 1px solid #ccc; width: 100%; text-align: center" id="patientAllergyListTable">
+<table class="table table-filter table-striped table-bordered dt-head-right" style="background: #fff; border: 1px solid #ccc; width: 100%; text-align: left" id="patientAllergyListTable">
     <thead>
     <th style="display: none;text-align: center;">PMI NO</th>
-    <th style="text-align: center;">HFC CODE</th>
-    <th style="text-align: center;">EPISODE DATE</th>
-    <th style="text-align: center;">ENCOUNTER DATE</th>
-    <th style="text-align: center;">DIAGNOSIS CODE</th>
-    <th style="text-align: center;">DIAGNOSIS DESCRIPTION</th>
-    <th style="text-align: center;">COMMENT</th>
+    <th style="text-align: left;">HFC CODE</th>
+    <th style="text-align: left;">EPISODE DATE</th>
+    <th style="text-align: left;">ENCOUNTER DATE</th>
+    <th style="text-align: left;">DIAGNOSIS CODE</th>
+    <th style="text-align: left; width: 50%; font-weight: 500;">DIAGNOSIS DESCRIPTION</th>
+    <th style="text-align: left; width: 20%;">COMMENT</th>
 </thead>
 <tbody>
     <%        for (int i = 0; i < dataAllergyList.size(); i++) {
 
     %>
-    <tr style="text-align: center;">
+    <tr style="text-align: left;">
 <input id="dataPatientAllergyListhidden" type="hidden" value="<%=String.join("|", dataAllergyList.get(i))%>">
 <td style="display: none"><%= dataAllergyList.get(i).get(0)%></td> <!-- Order No -->
 <td ><%= dataAllergyList.get(i).get(1)%></td> <!-- Code -->
