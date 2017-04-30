@@ -26,8 +26,10 @@
                                 <label class="col-md-4 control-label" for="textinput">Health Facility</label>
                                 <div class="col-md-6">
                                     <input class="form-control input-lg" type="text"  id="hfcROS" placeholder="">
+                                    <input class="form-control input-lg" type="hidden"  id="hfcOrderDetail" placeholder="">
+                                    <input class="form-control input-lg" type="hidden"  id="hfcProviderDetail" placeholder="">
                                     <input class="form-control input-lg" type="hidden"  id="hfcIdROS">
-                                    <div id="matchHFCROS" ></div>  
+                                    <div id="matchHFCROS" ></div>
                                 </div>
                             </div>
                         </div>
@@ -165,7 +167,7 @@
 
 <!--Modal update Procedure-->
 <div class="modal fade" id="update_CIS040000" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal"><i class="fa fa-times fa-lg"></i><span class="sr-only">Close</span></button>
