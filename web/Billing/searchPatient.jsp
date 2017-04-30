@@ -29,8 +29,7 @@
             + "FROM far_order_master om, pms_patient_biodata pb "
             + "WHERE pb.new_ic_no = '"+ ic +"' "
             + "AND om.status = 0 "
-            + "GROUP BY om.order_no "
-            + "ORDER BY om.order_no DESC";
+            + "GROUP BY om.order_no";
     ArrayList<ArrayList<String>> data = Conn.getData(sql);
 %>
 <table class="table table-filter table-striped table-bordered">
