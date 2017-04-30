@@ -395,7 +395,7 @@
                                 <img src="" id="gambaLogo">
                             </div>
                             <div class="form-group">
-                                <input class="form-control" id="inputFileToLoad2" type="file" accept=".jpg, .png, .gif" >
+                                <input class="form-control" id="inputFileToLoad2" type="file" accept="image/jpg, image/png, image/gif" >
                             </div>
                         </div>
                 </div>
@@ -407,6 +407,11 @@
                     <div class="btn-group" role="group">
                         <button type="submit" class="btn btn-success btn-block btn-lg" role="button" id="HFT_btnChangeLogo">Change <span class="fa fa-check" aria-hidden="true" style="display: inline-block;" ></span></button>
                     </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 <!-- Update Part End -->
 
 <!-- Delete Part Start -->

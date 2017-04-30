@@ -25,7 +25,7 @@
             + "Left join ris_procedure_master rpm  on rpm.ris_procedure_cd = rod.procedure_cd AND rpm.hfc_cd = '" + hfc_cd + "' "
             + "Left join ris_body_system bs on bs.body_system_cd = rod.body_system_cd AND bs.hfc_cd = '" + hfc_cd + "' "
             + "Left join ris_modality rmod on rmod.modality_cd = rod.modality_cd AND rmod.hfc_cd = '" + hfc_cd + "' "
-            + "where order_no = '" + orderNo + "' AND order_status in ('0', '1')";
+            + "where order_no = '" + orderNo + "' AND order_status in ('0', '1', '5')";
 
     ArrayList<ArrayList<String>> dataOrderList;
     dataOrderList = conn.getData(orderList);
@@ -54,12 +54,18 @@
             String status = dataOrderList.get(i).get(8);
             String performDisabled = "";
             String prepareDisabled = "";
+            String cancelDisabled = "";
             if (status.equalsIgnoreCase("0")) {
                 status = "New";
                 prepareDisabled = "disabled";
             } else if (status.equalsIgnoreCase("1")) {
                 status = "In progress";
                 performDisabled = "disabled";
+            }else if (status.equalsIgnoreCase("5")) {
+                status = "Submitted for verification";
+                performDisabled = "disabled";
+                prepareDisabled = "disabled";
+                cancelDisabled = "disabled";
             }
 
     %>
@@ -76,7 +82,7 @@
         <td> <button id="MOD_btnModalDate" class="btn btn-default" <%out.print(performDisabled);%> ><i class="fa fa-calendar" aria-hidden="true" style="display: inline-block;color: #2DA3FB;" ></i></button></td><!-- set date -->
         <td> <button id="MOD_btnPerform" class="btn btn-default" <%out.print(performDisabled);%> ><i class="fa fa-film" aria-hidden="true" style="display: inline-block;color: #2DA3FB;" ></i></button></td><!-- perform -->
         <td> <button id="MOD_btnPrepare" class="btn btn-default" <%out.print(prepareDisabled);%> ><i class="fa fa-file-text" aria-hidden="true" style="display: inline-block;color: #2DA3FB;" ></i></button></td><!-- prepare -->
-        <td> <button id ="MOD_btnDelete" class="btn btn-default"><i class="fa fa-times" aria-hidden="true" style="display: inline-block;color: #d9534f;" ></i></button></td> <!-- cancel order -->
+        <td> <button id ="MOD_btnDelete" class="btn btn-default" <%out.print(cancelDisabled);%>><i class="fa fa-times" aria-hidden="true" style="display: inline-block;color: #d9534f;" ></i></button></td> <!-- cancel order -->
 
         <!--<td align="center"><input type="checkbox" id="risRequestChecked" checked></td>  Status -->
     </tr>

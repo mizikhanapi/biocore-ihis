@@ -80,6 +80,7 @@
                                                 </div>
                                                 <%@include file="order_modal/requestNewOrder_modal.jsp" %>
                                                 <%@include file="order_modal/setExamDate_modal.jsp" %>
+                                                <%@include file="order_modal/prepareResult_modal.jsp" %>
                                             </div>
 
                                         </div>
@@ -100,6 +101,7 @@
         <!-- Placed at the end of the document so the pages load faster -->
         <%@include file = "libraries/radiologyFootLibrary.jsp" %>
         <!-- Placed at the end of the document so the pages load faster -->
+        <script src="libraries/js/jquery.check-file.js" type="text/javascript"></script>
 
         <script>
 
