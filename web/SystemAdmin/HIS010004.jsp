@@ -62,9 +62,9 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div class="thumbnail">
-
+                                <h3 style="margin: 0px;">Health Facility Maintenance</h3>
+                                <hr class="pemisah" />
                                 <div class="tabbable-panel">
-                                    <h1>Health Facility Maintenance</h1>
                                     <div class="tabbable-line">
                                         <ul class="nav nav-tabs ">
                                             <li class="active">
@@ -185,7 +185,7 @@
                     var target = $(e.target).attr("href");
                     e.preventDefault();
                     //console.log(target);
-                    if(target === '#HM_tab2'){
+                    if (target === '#HM_tab2') {
                         $("#subdisciplineTable").load("subdiscipline_table.jsp");
                     }
                 });

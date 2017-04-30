@@ -70,12 +70,12 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div class="thumbnail">
-
+                                <h3 style="margin: 0px;">User Administration Maintenance</h3>
+                                <hr class="pemisah" />
 
                                 <!-- Tab Menu -->
 
                                 <div class="tabbable-panel">
-                                    <h1>User Administration Maintenance</h1>
                                     <div class="tabbable-line">
                                         <ul class="nav nav-tabs ">
                                             <li class="active">
