@@ -11,7 +11,7 @@
     Conn Conn = new Conn();
 //    String dis = request.getParameter("discipline_cd");
 //    String sub = request.getParameter("subdis_cd");
-        String dis = request.getParameter("discipline_cd");
+    String dis = request.getParameter("discipline_cd");
     String sub = request.getParameter("subdis_cd");
     String desc = "NA";
 

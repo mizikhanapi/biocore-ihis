@@ -20,7 +20,7 @@
 %>
 
 
-<h4 style="padding-top: 1%;padding-bottom: 2%; font-weight: bold;text-align: center;">
+<h4>
     MONTHLY DISPENSE DATA
 </h4>
 

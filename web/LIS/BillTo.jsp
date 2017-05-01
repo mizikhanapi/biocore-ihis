@@ -22,7 +22,7 @@
     String hfc_cd = session.getAttribute("HEALTH_FACILITY_CODE").toString();
     String last_nine = current_user.substring(current_user.length() - 1);
 %>
-
+<hr class="pemisah">
 <table  id="BillTo"  class="table table-filter table-striped table-bordered table-hover" style="background: #fff; border: 1px solid #ccc; width: 100%">
     <thead>
     <th style="text-align: center; width: 8%;">Order No.</th>

@@ -387,7 +387,7 @@ $(document).ready(function (e) {
        console.log(dgsProblem);
         for (var key in data) {
             if (data[key].Acode === "CCN") {
-                processNotes += "CCN|" + getDate() + "|^" + data[key].ccnCode + "^" + data[key].problem + "^^" + data[key].Mild + "^" + data[key].duration + "^^" + data[key].sdur + "^^" + data[key].Site + "^^" + data[key].Laterality + "^" + data[key].Comment + "|<cr>\n";
+                processNotes += "CCN|" + getDate() + "|" + data[key].ccnCode + "^" + data[key].problem + "^^" + data[key].Mild + "^" + data[key].duration +" "+ data[key].sdur + "^^^^" + data[key].Site + "^^" + data[key].Laterality + "^" + data[key].Comment + "^^^" + getDate() + "^" + hfc_cd + "^"+ doctor_id +"^" + doctor_name + "^^^|<cr>\n";
                 ccn_cd.push(data[key].ccnCode+"|"+data[key].problem);
             } else if (data[key].Acode === "HPI") {
                 processNotes += "HPI|" + getDate() + "|" + data[key].details + "^" + getDate() + "^" + hfc_cd + "^" + doctor_id + "^" + doctor_name + "|<cr>\n";
@@ -402,9 +402,9 @@ $(document).ready(function (e) {
             } else if (data[key].Acode === "ALG") {
                 processNotes += "ALG|" + getDate() + "|" + data[key].codeALG + "^" + data[key].Problem5 + "^" + data[key].date1 + "^" + data[key].comment5 + "^^^^^" + getDate() + "^" + hfc_cd + "^" + doctor_id + "^" + doctor_name + "^^^|<cr>\n";
             } else if (data[key].Acode === "IMU") {
-                processNotes += "IMU|" + getDate() + "|" + data[key].codeIMU + "^" + data[key].Problem6 + "^" + data[key].date2 + "^" + data[key].comment6 + "^^^^" + getDate() + "^" + hfc_cd + "^" + doctor_id + "^" + doctor_name + "^^^|<cr>\n";
+                processNotes += "IMU|" + getDate() + "|" + data[key].codeIMU + "^" + data[key].Problem6 + "^" + data[key].date2 + "^" + data[key].comment6 + "^^^^^" + getDate() + "^" + hfc_cd + "^" + doctor_id + "^" + doctor_name + "^^^|<cr>\n";
             } else if (data[key].Acode === "DAB") {
-                processNotes += "DAB|" + getDate() + "|" + data[key].codeDAB + "^" + data[key].Problem32 + "^" + data[key].date3 + "^^^" + data[key].comment7 + "|<cr>\n";
+                processNotes += "DAB|" + getDate() + "|" + data[key].codeDAB + "^" + data[key].Problem32 + "^" + data[key].date3 + "^" + data[key].comment7 + "^^|<cr>\n";
             } else if (data[key].Acode === "VTS") {
                 $.extend(VTSObj, data[key]);
             } else if (data[key].Acode === "PEM") {

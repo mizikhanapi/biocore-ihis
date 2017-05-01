@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="MC22" language="groovy" pageWidth="842" pageHeight="540" orientation="Landscape" whenNoDataType="AllSectionsNoDetail" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" whenResourceMissingType="Error" uuid="7d619899-a801-4b32-89f1-a69f1ebcbe20">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="MC22" language="groovy" pageWidth="810" pageHeight="520" orientation="Landscape" whenNoDataType="AllSectionsNoDetail" columnWidth="770" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" whenResourceMissingType="Error" uuid="7d619899-a801-4b32-89f1-a69f1ebcbe20">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
@@ -32,11 +32,11 @@
      lhr_med_leave.`doctor_name` AS lhr_med_leave_doctor_name,
      lhr_med_leave.`doctor_id` AS lhr_med_leave_doctor_id,
      adm_health_facility.`hfc_cd` AS adm_health_facility_hfc_cd,
-     adm_health_facility.`hfc_name` AS adm_health_facility_hfc_name
+     adm_health_facility.`hfc_name` AS adm_health_facility_hfc_name,
+     adm_health_facility.`logo` AS adm_health_facility_logo
 FROM
      `pms_patient_biodata` pms_patient_biodata INNER JOIN `lhr_med_leave` lhr_med_leave ON pms_patient_biodata.`PMI_NO` = lhr_med_leave.`PMI_NO`
-INNER JOIN
-     `adm_health_facility` adm_health_facility ON adm_health_facility.`hfc_cd` = lhr_med_leave.`hfc_cd`
+     INNER JOIN `adm_health_facility` adm_health_facility ON lhr_med_leave.`hfc_cd` = adm_health_facility.`hfc_cd`
 WHERE
      lhr_med_leave.`pmi_no` = $P{mcInput}
      or pms_patient_biodata.`NEW_IC_NO` = $P{mcInput}
@@ -63,166 +63,129 @@ WHERE
 	<field name="lhr_med_leave_doctor_id" class="java.lang.String"/>
 	<field name="adm_health_facility_hfc_cd" class="java.lang.String"/>
 	<field name="adm_health_facility_hfc_name" class="java.lang.String"/>
+	<field name="adm_health_facility_logo" class="java.lang.Object"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
-	<title>
-		<band splitType="Stretch"/>
-	</title>
-	<pageHeader>
-		<band splitType="Stretch"/>
-	</pageHeader>
-	<columnHeader>
-		<band splitType="Stretch"/>
-	</columnHeader>
-	<detail>
-		<band splitType="Stretch"/>
-	</detail>
-	<columnFooter>
-		<band splitType="Stretch"/>
-	</columnFooter>
-	<pageFooter>
-		<band splitType="Stretch"/>
-	</pageFooter>
 	<summary>
-		<band height="407" splitType="Stretch">
-			<staticText>
-				<reportElement x="235" y="173" width="41" height="20" uuid="c80bf453-41c5-4c6f-90ab-71c2012af1f7"/>
-				<textElement>
-					<font fontName="Times New Roman" size="12"/>
+		<band height="419" splitType="Stretch">
+			<textField>
+				<reportElement x="211" y="95" width="294" height="84" uuid="8cd84e77-426a-4f2d-ae53-a43665d5c6a6"/>
+				<textElement textAlignment="Center">
+					<font size="26" isBold="true"/>
 				</textElement>
-				<text><![CDATA[NAMA:]]></text>
+				<textFieldExpression><![CDATA[$F{adm_health_facility_hfc_name}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="542" y="-169" width="267" height="44" uuid="4803f3e7-bf27-4960-9e49-7de761d394d5"/>
+				<textElement textAlignment="Center">
+					<font size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[SIJIL CUTI SAKIT]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="235" y="193" width="56" height="20" uuid="36bd3d84-0362-4317-83da-4fbb831ba6ee"/>
+				<reportElement x="211" y="179" width="56" height="20" uuid="5e40c189-df30-4cc5-b999-d03a0b6cc54b"/>
 				<textElement>
-					<font fontName="Times New Roman" size="12"/>
+					<font size="12"/>
 				</textElement>
-				<text><![CDATA[NO K/P:]]></text>
+				<text><![CDATA[Nama:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="211" y="199" width="56" height="20" uuid="1ffd9388-5ba0-4711-a6c4-a794d0fa5767"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[No K/P:]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="276" y="173" width="242" height="20" uuid="e552df09-646b-41e6-be98-5a299ba4f851"/>
-				<textElement>
-					<font fontName="Times New Roman" size="12"/>
-				</textElement>
+				<reportElement x="268" y="179" width="207" height="20" uuid="7482705e-1a5a-4050-a3c7-18e6ed430408"/>
 				<textFieldExpression><![CDATA[$F{pms_patient_biodata_PATIENT_NAME}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="291" y="193" width="242" height="20" uuid="8f9f1dfc-c5b2-4c25-b781-9cafceb53e9b"/>
-				<textElement>
-					<font fontName="Times New Roman" size="12"/>
-				</textElement>
+				<reportElement x="268" y="199" width="207" height="20" uuid="f7866eb2-37d9-49c6-879b-e2bb72a8555b"/>
 				<textFieldExpression><![CDATA[$F{pms_patient_biodata_NEW_IC_NO}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="235" y="232" width="229" height="14" uuid="43ae29bb-d6d9-4625-9274-b28d56bf70a6"/>
-				<textElement markup="none">
-					<font fontName="Times New Roman" size="12" isBold="true"/>
+				<reportElement x="197" y="232" width="247" height="20" uuid="c97c3030-ef21-45f3-aada-d3dffa064cd5"/>
+				<textElement>
+					<font size="12"/>
 				</textElement>
-				<text><![CDATA[TIDAK SIHAT UNTUK MENJALANKAN TUGAS SELAMA]]></text>
+				<text><![CDATA[Tidak sihat untuk menjalankan tugas selama]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="464" y="232" width="11" height="14" uuid="6c5e3ccd-1f73-4da0-845d-32c0ac6cabd5"/>
+				<reportElement x="444" y="232" width="20" height="20" uuid="67588204-9c41-4683-b1f8-dec46f348a7b"/>
 				<textElement>
-					<font fontName="Times New Roman" size="12"/>
+					<font size="12"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{lhr_med_leave_end_date}.compareTo($F{lhr_med_leave_start_date} )]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{lhr_med_leave_end_date}.compareTo( $F{lhr_med_leave_start_date} )]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="475" y="232" width="36" height="14" uuid="6a679eb2-5f4b-4010-9102-3bb9b277b209"/>
+				<reportElement x="463" y="232" width="38" height="20" uuid="46688934-9c14-4e26-87ec-f1ea1c89ada5"/>
 				<textElement>
-					<font fontName="Times New Roman" size="12" isBold="true"/>
+					<font size="12"/>
 				</textElement>
-				<text><![CDATA[HARI]]></text>
+				<text><![CDATA[hari]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="251" y="246" width="32" height="20" uuid="e5357f7a-ff2e-482f-b08e-0e01ef1708a4"/>
-				<textElement markup="none">
-					<font fontName="Times New Roman" size="12" isBold="true"/>
+				<reportElement x="230" y="264" width="31" height="20" uuid="405169d6-9c5b-4003-896b-3828e2039ee6"/>
+				<textElement>
+					<font size="12"/>
 				</textElement>
-				<text><![CDATA[DARI]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="349" y="246" width="55" height="20" uuid="57d4b078-9f98-4211-a653-592b614fbc84"/>
-				<textElement markup="none">
-					<font fontName="Times New Roman" size="12" isBold="true"/>
-				</textElement>
-				<text><![CDATA[HINGGA]]></text>
+				<text><![CDATA[Dari:]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="283" y="246" width="66" height="20" uuid="298567c4-f5ee-43de-9728-ea57ab074c45"/>
+				<reportElement x="262" y="264" width="67" height="20" uuid="aac64571-2179-4bb7-80fe-1118a3fadc1d"/>
 				<textElement>
-					<font fontName="Times New Roman" size="12"/>
+					<font size="12"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{lhr_med_leave_start_date}]]></textFieldExpression>
 			</textField>
-			<textField>
-				<reportElement x="404" y="246" width="64" height="20" uuid="e6ea98bc-fa5c-4b71-ba3a-98680323e37c"/>
+			<staticText>
+				<reportElement x="329" y="264" width="54" height="20" uuid="da464c93-0069-4368-8d44-d626bed52cfb"/>
 				<textElement>
-					<font fontName="Times New Roman" size="12"/>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Hingga:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="383" y="264" width="80" height="20" uuid="c2f317b0-0706-4e9c-b0f1-1d9fb967238e"/>
+				<textElement>
+					<font size="12"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{lhr_med_leave_end_date}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="505" y="309" width="227" height="20" uuid="da87a72e-b6e9-49c1-89df-2c7871d0866a"/>
-				<textElement markup="none">
-					<font fontName="Times New Roman" size="12" isBold="true"/>
-				</textElement>
-				<text><![CDATA[...................................................................]]></text>
-			</staticText>
-			<textField isBlankWhenNull="true">
-				<reportElement x="505" y="329" width="100" height="20" uuid="0433d689-db48-4da7-a629-f2657a027d4b"/>
+				<reportElement x="31" y="347" width="100" height="20" uuid="30d2308d-36ef-4075-af88-f4288c136806"/>
 				<textElement>
-					<font fontName="Times New Roman" size="12"/>
+					<font size="12"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{lhr_med_leave_doctor_name}]]></textFieldExpression>
-			</textField>
-			<textField isBlankWhenNull="true">
-				<reportElement x="505" y="347" width="161" height="18" uuid="4ec88c35-0237-403c-a056-daecad387e03"/>
-				<textElement>
-					<font fontName="Times New Roman" size="12" isBold="false"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{lhr_med_leave_hfc_cd}]]></textFieldExpression>
-			</textField>
-			<staticText>
-				<reportElement x="505" y="372" width="41" height="20" uuid="0d1f9ecb-2d79-4d85-8a38-cde1f0d93f0b"/>
-				<textElement>
-					<font fontName="Times New Roman" size="12"/>
-				</textElement>
-				<text><![CDATA[Tarikh:]]></text>
-			</staticText>
-			<textField pattern="dd/MM/yyyy">
-				<reportElement x="550" y="372" width="100" height="20" uuid="c4f19a2f-18d1-4228-8bb8-2b84a15cec2a"/>
-				<textElement>
-					<font fontName="Times New Roman" size="12"/>
-				</textElement>
-				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
-			</textField>
-			<textField isBlankWhenNull="true">
-				<reportElement x="138" y="309" width="165" height="20" uuid="2f627391-df23-4fa0-9926-3070fca1f539"/>
-				<textElement>
-					<font fontName="Times New Roman" size="12"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{lhr_med_leave_doctor_name}]]></textFieldExpression>
-			</textField>
-			<staticText>
-				<reportElement x="40" y="309" width="98" height="20" uuid="83a44e99-b56a-4de9-8a5d-4e9b2e93b8d2"/>
-				<textElement markup="none">
-					<font fontName="Times New Roman" size="12" isBold="true"/>
-				</textElement>
-				<text><![CDATA[DISEDIAKAN OLEH:]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="291" y="135" width="194" height="38" uuid="87f686b6-c6a4-415d-a109-3eb99fd637d9"/>
-				<textElement>
-					<font fontName="Times New Roman" size="20" isBold="true"/>
-				</textElement>
-				<text><![CDATA[SIJIL CUTI SAKIT]]></text>
+				<text><![CDATA[Disediakan oleh:]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="168" y="72" width="400" height="47" uuid="eda5420b-a7d6-4ff1-99f5-f1ad37fb9415"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="20" isBold="true"/>
+				<reportElement x="31" y="367" width="100" height="20" uuid="31106b21-fa1e-47af-9747-fa2164cf56ca"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{lhr_med_leave_doctor_name}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="596" y="345" width="153" height="20" uuid="d4592167-109e-4a99-ad15-26e1f5e0546a"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[..................................................]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="594" y="369" width="155" height="20" uuid="d2baf36c-07ca-4b38-9645-470439241caa"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{lhr_med_leave_doctor_name}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="596" y="389" width="153" height="20" uuid="5a73033e-0e20-4a36-83dd-6944821c5075"/>
+				<textElement>
+					<font size="12"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{adm_health_facility_hfc_name}]]></textFieldExpression>
 			</textField>

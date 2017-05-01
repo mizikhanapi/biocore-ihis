@@ -28,19 +28,19 @@
                     <div class="tab-content">
                         <!-- content -->
                         <div class="tab-pane active fade in" id="neuassessment">
-                            <%@include file="neuAssessment.jsp"%>
+                            <%@include file="specialistTemplate/Observation-Orthopedic/neuAssessment.jsp"%>
                         </div>
                         <!-- content -->
 
                         <!-- content -->
                         <div class="tab-pane fade" id="neuobservation">
-                            <%@include file="neuObservation.jsp"%>
+                            <%@include file="specialistTemplate/Observation-Orthopedic/neuObservation.jsp"%>
                         </div>
                         <!-- content -->
 
                         <!-- content -->
                         <div class="tab-pane fade" id="PIRA">
-                            <%@include file="PIRAssessment.jsp"%>
+                            <%@include file="specialistTemplate/Observation-Orthopedic/PIRAssessment.jsp"%>
                         </div>
                         <!-- content -->
                     </div>
@@ -51,4 +51,4 @@
         </div>
     </div>
 </div>
-<%@include file="modal/addNeurosurgical.jsp"%>
+<%@include file="specialistTemplate/Observation-Orthopedic/modal/addNeurosurgical.jsp"%>

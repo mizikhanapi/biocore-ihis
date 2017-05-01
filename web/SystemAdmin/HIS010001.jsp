@@ -37,7 +37,7 @@
         <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
         <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-        
+
         <script src="bootstrap-3.3.6-dist/js/jquery.dataTables.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/4.4.0/bootbox.min.js"></script>
         <script src="bootstrap-3.3.6-dist/js/jquery.dataTables.min.js"></script>
@@ -54,7 +54,7 @@
         <div class="container-fluid">
             <div class="row">       
                 <!-- menu side -->		
-                
+
                 <%@include file="libraries/sideMenus.jsp"%>
                 <!-- menu side -->	
 
@@ -62,18 +62,19 @@
 
                 <div class="main" style="background: #f2f4f8;">
                     <!-- menu top -->
-                   
+
                     <%@include file="libraries/topMenus.jsp"%>
                     <!-- menu top -->
                     <div class="row">
                         <div class="col-md-12">
                             <div class="thumbnail">
-
+                                <h3 style="margin: 0px;">Lookup Code Maintenance</h3>
+                                <hr class="pemisah" />
 
                                 <!-- Tab Menu -->
-                                
+
                                 <div class="tabbable-panel">
-                                    <h1>Lookup Code Maintenance</h1>
+
                                     <div class="tabbable-line">
                                         <ul class="nav nav-tabs ">
                                             <li class="active">
@@ -86,6 +87,7 @@
                                             </li>
 
                                         </ul>
+
                                         <!-- tab content -->
                                         <div class="tab-content">
                                             <div class="tab-pane active" id="tab_default_1">
@@ -139,7 +141,7 @@
 
 
         <script>
-          
+
 
             $(document).ready(function () {
 

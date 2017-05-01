@@ -1,20 +1,18 @@
+<%@page import="java.util.ArrayList"%>
+
+
 <%
 
-  
-
-    
-    String DR = "002";
-    
- String role1 = "SELECT  b.USER_ID, b.USER_NAME,a.USER_ID, a.ROLE_CODE, a.HEALTH_FACILITY_CODE, a.DISCIPLINE_CODE FROM adm_user_access_role a LEFT JOIN adm_users b ON a.USER_ID = b.USER_ID where  a.ROLE_CODE = "+DR+" AND a.HEALTH_FACILITY_CODE="+hfc+";";
- String hfc1 = "SELECT  hfc_name, hfc_cd FROM adm_health_facility where  hfc_cd ="+hfc+";";
-
-    
-    ArrayList<ArrayList<String>> dataRole, dataHFC1;
-
-    dataRole = conn.getData(role1);
-    dataHFC1 = conn.getData(hfc1);
-    
-
+//    String DR = "002";
+//    
+// String role1 = "SELECT  b.USER_ID, b.USER_NAME,a.USER_ID, a.ROLE_CODE, a.HEALTH_FACILITY_CODE, a.DISCIPLINE_CODE FROM adm_user_access_role a LEFT JOIN adm_users b ON a.USER_ID = b.USER_ID where  a.ROLE_CODE = "+DR+" AND a.HEALTH_FACILITY_CODE="+hfc+";";
+// String hfc1 = "SELECT  hfc_name, hfc_cd FROM adm_health_facility where  hfc_cd ="+hfc+";";
+//
+//    
+//    ArrayList<ArrayList<String>> dataRole, dataHFC1;
+//
+//    dataRole = conn.getData(role1);
+//    dataHFC1 = conn.getData(hfc1);
 
 %>
 <input type="hidden" value="<%=hfc%>" id="Rhfc">
@@ -22,8 +20,8 @@
 
 
 <div class="row">
-    
-    
+
+
     <div class="col-md-6">
         <!-- Select Basic -->
         <!-- Select Basic -->
@@ -52,8 +50,8 @@
             <label class="col-md-4 control-label" for="selectbasic">Ward Name</label>
             <div class="col-md-6" id="wardNameDropdown">
                 <select id="wname" name="selectbasic" class="form-control" disabled="">
-                   
-                    
+
+
                 </select>
             </div>
 
@@ -86,36 +84,43 @@
                 </br>
             </div>
         </div>
-        <!-- Text input-->
-        <div class="form-group">
-            <label class="col-md-4 control-label" >HFC To :</label>
+        <!--         Text input
+        -->        <div class="form-group">
+            <label class="col-md-4 control-label" >HFC To:</label>
             <div class="col-md-6">
-                <input id="hfcTo"  value="<%= dataHFC1.get(0)%>"  class="form-control input-md">
+                <input id="hfcTo"  value="<%=hfc%>"  class="form-control input-md">
             </div>
         </div>
-
 
         <!-- Select Basic -->
         <div class="form-group">
             <label class="col-md-4 control-label" for="selectbasic">Attain by DR :</label>
             <div class="col-md-6">
-               <select id="AttDR" name="AttDR" class="form-control" >
+                <select id="AttDR" name="AttDR" class="form-control" >
                     <option value="1" selected="" >Attain by DR</option>
 
                     <%
-                  
+                        String hfc2 = session.getAttribute("HEALTH_FACILITY_CODE").toString();
+                        String DR22 = "002";
 
-                        int sizeDR = dataRole.size();
+                        String role22 = "SELECT  b.USER_ID, b.USER_NAME,a.USER_ID, a.ROLE_CODE, a.HEALTH_FACILITY_CODE, a.DISCIPLINE_CODE FROM adm_user_access_role a LEFT JOIN adm_users b ON a.USER_ID = b.USER_ID where a.DISCIPLINE_CODE ='"+dis+"' and a.ROLE_CODE = " + DR22 + " AND a.HEALTH_FACILITY_CODE=" + hfc2 + ";";
+                        ArrayList<ArrayList<String>> dataRoleM;
+                        dataRoleM = conn.getData(role22);
 
-                        for (int i = 0; i < sizeDR; i++) {
+                        int sizeDR23 = dataRoleM.size();
+
+                        for (int i = 0; i < sizeDR23; i++) {
                     %>
-                    <option value="<%= dataRole.get(i).get(0)%>"><%= dataRole.get(i).get(1)%> </option>
+                    <option value="<%= dataRoleM.get(i).get(0)%>"><%= dataRoleM.get(i).get(1)%> </option>
                     <%
                         }
                     %>
                 </select>
             </div>
         </div>
+
+
+
 
     </div>
 </div>
@@ -125,7 +130,7 @@
 
     $(document).ready(function () {
 
-        
+
         $("#DisWard").on('keyup', function () { // everytime keyup event
             var input = $(this).val(); // We take the input value
             var hfc = $("#Rhfc").val();
@@ -148,24 +153,24 @@
                             $('#DisWard').val($(this).text());
                             $('#disListWard').text(''); // Clear the <div id="match"></div>
                             var arrayData = $('#DisWard').val().split("|");
-                            var discode=arrayData[0];
+                            var discode = arrayData[0];
                             $('#dis_cd').val(discode);
                             //console.log(arrayData);
-                            
+
                             $.ajax({
-                                type:"post",
-                                url:"PMS/controller/listWardType.jsp",
+                                type: "post",
+                                url: "PMS/controller/listWardType.jsp",
                                 data: {'Dis': discode},
                                 timeout: 10000,
                                 success: function (list) {
-                                        //remove the loading 
-                                        //console.log(list);
-                                        $('#wardTypeList').html(list);
-                                    },
-                                    error: function (xhr, status, error) {
-                                        var err = eval("(" + xhr.responseText + ")");
-                                        //bootbox.alert(err.Message);
-                                    }
+                                    //remove the loading 
+                                    //console.log(list);
+                                    $('#wardTypeList').html(list);
+                                },
+                                error: function (xhr, status, error) {
+                                    var err = eval("(" + xhr.responseText + ")");
+                                    //bootbox.alert(err.Message);
+                                }
                             });
                         });
                     },
@@ -179,7 +184,7 @@
 
         });
 
-        
+
 
         //seaching bed function   
         function searchBed() {
@@ -209,7 +214,7 @@
 
                 //get value from text box and select box
                 //var Dis = $('#Dis').val();
-                var Diso = $('#dis_cd').val();                
+                var Diso = $('#dis_cd').val();
                 var Dis = Diso;
                 var wname = $('#wname').val();
                 var WardType = $('#WardType').val();
@@ -229,18 +234,18 @@
                         $body.removeClass("loading");
                         //console.log(list);
                         var pageNow = $('#pageNow').val();
-                        if(pageNow==="PT"){
+                        if (pageNow === "PT") {
                             var Diso = $('#dis_cd').val();
                             var wname = $('#wname').val();
                             var WardType = $('#WardType').val();
-                            
+
                             $('#wardnew').val(wname);
                             $('#classnew').val(WardType);
                             //$('#ratenew').val();
                             $('#listbedPT').html(list);
-                        }else if(pageNow==="IR"){
+                        } else if (pageNow === "IR") {
                             $('#bedtest').html(list);
-                        }                       
+                        }
 
                     },
                     error: function (xhr, status, error) {

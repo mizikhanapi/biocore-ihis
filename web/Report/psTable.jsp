@@ -22,71 +22,73 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 
-<div class="thumbnail">
-    <table id="psTableDivision" class="table table-filter table-striped" style="background: #fff; border: 1px solid #ccc; margin-top: 20px">
+<hr class="pemisah" />
+<table id="psTableDivision" class="table table-filter table-striped table-bordered margin-top-50px" style="background: #fff; border: 1px solid #ccc; margin-top: 20px">
 
-        <thead>
+    <thead>
 
-        <th> Name </th>
-        <th> Date </th>
-        <th> PMI NO </th>
-        <th> Reprint </th>
+    <th> Name </th>
+    <th> Date </th>
+    <th> PMI NO </th>
+    <th> Reprint </th>
 
-        <%  String sql = "";
-            if (psType.equals("pmino")) {
-                sql = "SELECT A.`PATIENT_NAME`, B.`ORDER_DATE`, A.`PMI_NO` FROM PMS_PATIENT_BIODATA A JOIN PIS_ORDER_MASTER B ON A.`PMI_NO` = B.`PMI_NO` WHERE A.PMI_NO = '" + psInput + "'";
-            } else if (psType.equals("icnew")) {
-                sql = "SELECT A.`PATIENT_NAME`, B.`ORDER_DATE`, A.`PMI_NO` FROM PMS_PATIENT_BIODATA A JOIN PIS_ORDER_MASTER B ON A.`PMI_NO` = B.`PMI_NO` WHERE A.NEW_IC_N0 = '" + psInput + "'";
-            } else {
-                sql = "SELECT A.`PATIENT_NAME`, B.`ORDER_DATE`, A.`PMI_NO` FROM PMS_PATIENT_BIODATA A JOIN PIS_ORDER_MASTER B ON A.`PMI_NO` = B.`PMI_NO` WHERE A.ID_NO = '" + psInput + "'";
-            }
-            ArrayList<ArrayList<String>> ps = conn.getData(sql);
+    <%  String sql = "";
+        if (psType.equals("001")) {
+            sql = "SELECT A.`PATIENT_NAME`, B.`ORDER_DATE`, A.`PMI_NO` FROM PMS_PATIENT_BIODATA A JOIN PIS_ORDER_MASTER B ON A.`PMI_NO` = B.`PMI_NO` WHERE A.PMI_NO = '" + psInput + "'";
+        } else if (psType.equals("002")) {
+            sql = "SELECT A.`PATIENT_NAME`, B.`ORDER_DATE`, A.`PMI_NO` FROM PMS_PATIENT_BIODATA A JOIN PIS_ORDER_MASTER B ON A.`PMI_NO` = B.`PMI_NO` WHERE A.NEW_IC_N0 = '" + psInput + "'";
+        } else if (psType.equals("003")) {
+            sql = "SELECT A.`PATIENT_NAME`, B.`ORDER_DATE`, A.`PMI_NO` FROM PMS_PATIENT_BIODATA A JOIN PIS_ORDER_MASTER B ON A.`PMI_NO` = B.`PMI_NO` WHERE A.OLD.IC_NO = '" + psInput + "'";
+        } else {
+            sql = "SELECT A.`PATIENT_NAME`, B.`ORDER_DATE`, A.`PMI_NO` FROM PMS_PATIENT_BIODATA A JOIN PIS_ORDER_MASTER B ON A.`PMI_NO` = B.`PMI_NO` WHERE A.ID_NO = '" + psInput + "'";
+        }
+        ArrayList<ArrayList<String>> ps = conn.getData(sql);
 
-            int size = ps.size();
-            for (int i = 0; i < size; i++) {
-        %>
+        int size = ps.size();
+        for (int i = 0; i < size; i++) {
+    %>
 
-        <tr>
-            <td id="name"><%= ps.get(i).get(0)%></td>
-            <td id="startDate"><%= ps.get(i).get(1)%>
+    <tr>
+        <td id="name"><%= ps.get(i).get(0)%></td>
+        <td id="startDate"><%= ps.get(i).get(1)%>
             <input type="hidden" id="startDate_<%=i%>" value="<%= ps.get(i).get(1)%>">
-            </td>
-            <td id="pmino"><%= ps.get(i).get(2)%></td>
-            <td><form><input type=submit value="reprint" id="printPS<%=i%>" role="button"></form></td>
+        </td>
+        <td id="pmino"><%= ps.get(i).get(2)%></td>
+        <td><form><input type=submit value="reprint" id="printPS<%=i%>" role="button"></form></td>
 
-        </tr>
+    </tr>
 
-        <script type="text/javascript" charset="utf-8">
+    <script type="text/javascript" charset="utf-8">
 
-            $(document).ready(function () {
-                $('#printPS<%=i%>').on('click', function (e) {
+        $(document).ready(function () {
+            $('#printPS<%=i%>').on('click', function (e) {
 
-                    e.preventDefault();
+                e.preventDefault();
 
-                    var psType = $("#psType").val();
-                    var psInput = $("#psInput").val();
-                    var startDate = $("#startDate_<%=i%>").val();
-                    console.log(psType);
-                    console.log(psInput);
-                    console.log(startDate);
+                var psType = $("#psType").val();
+                var psInput = $("#psInput").val();
+                var startDate = $("#startDate_<%=i%>").val();
+                console.log(psType);
+                console.log(psInput);
+                console.log(startDate);
 
-                    window.open("prescriptionSlipReport.jsp?psType=" + psType + "&psInput=" + psInput+ "&startDate=" + startDate);
+                window.open("prescriptionSlipReport.jsp?psType=" + psType + "&psInput=" + psInput + "&startDate=" + startDate);
 
-                });
             });
+        });
 
 
-        </script>
+    </script>
 
 
-        <%
-            }
-        %>
-        </thead>
+    <%
+        }
+    %>
+</thead>
 
 
-        <tbody>
+<tbody>
 
-        </tbody>
-    </table>
+</tbody>
+</table>
 </div>

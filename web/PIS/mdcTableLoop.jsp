@@ -33,7 +33,7 @@
     <th style="display: none">DURATION TYPE</th>
     <th style="display: none">FREQUENCY</th>
     <th style="display: none">CAUTION</th>
-    <th style="display: none">EXP DATE</th>
+    <th style="text-align: center;">EXP DATE</th>
     <th style="display: none">CLASSIFICATION</th>
     <th style="display: none">STATUS</th>
     <th style="display: none">LOCATION CODE</th>
@@ -62,9 +62,9 @@
     %>
     <%
         if (Integer.parseInt(dataMTC.get(s).get(8)) < 30) {    %>
-    <tr style="font-weight:bolder; color:yellow; background-color: red;text-align: center;" >
+    <tr style="font-weight:bolder;text-align: center;" >
         <% } else if (Integer.parseInt(dataMTC.get(s).get(8)) < 100) {   %>
-    <tr style="font-weight:bolder; color:red; background-color: yellow;text-align: center;">
+    <tr style="font-weight:bolder;text-align: center;">
         <% } else {   %>
     <tr style="text-align: center;">
         <%   }%>
@@ -85,7 +85,7 @@
 <td style="display: none"><%= dataMTC.get(s).get(12)%></td>
 <td style="display: none"><%= dataMTC.get(s).get(13)%></td>
 <td style="display: none"><%= dataMTC.get(s).get(14)%></td>
-<td style="display: none"><%= dataMTC.get(s).get(15)%></td>
+<td ><%= dataMTC.get(s).get(15)%></td>
 <td style="display: none"><%= dataMTC.get(s).get(16)%></td>
 <td style="display: none"><%= dataMTC.get(s).get(17)%></td>
 <td style="display: none"><%= dataMTC.get(s).get(18)%></td>
@@ -491,7 +491,7 @@
     $("#updateD_EXP_DATE").datepicker({
         changeMonth: true,
         changeYear: true,
-        dateFormat: 'dd/mm/yy',
+        dateFormat: 'yy-mm-dd',
         minDate: '0'
     });
 
@@ -682,7 +682,8 @@
         var D_EXP_DATE = $("#updateD_EXP_DATE").val();
         var D_CLASSIFICATION = $("#updateD_CLASSIFICATION").val();
 
-
+        var strCom = D_CAUTIONARY_CODE.replace(/'/g, '\\\'');
+        D_CAUTIONARY_CODE = strCom;
 
         if (UD_MDC_CODE === "") {
             bootbox.alert("Please Insert MDC Code");

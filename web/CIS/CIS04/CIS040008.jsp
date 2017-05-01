@@ -18,61 +18,42 @@
                 <div class="row">
                     <div class="col-xs-6 col-sm-6 col-md-6">
                         <div class="form-group">
-                             <h4>Date Start</h4>
+                            <label class="col-md-6 control-label" for="textinput">Start Date</label>
+                            <div class="col-md-12">
+                                <input class="form-control input-lg DateFromMEC" type="text" name="DateFrom" id="DateFromMEC"  placeholder="DD-MM-YY">
+                            </div>
                         </div>
                     </div>
                     <div class="col-xs-6 col-sm-6 col-md-6">
                         <div class="form-group">
-                            <h4>Date End</h4>
+                            <label class="col-md-6 control-label" for="textinput">End Date</label>
+                            <div class="col-md-12">
+                                <input class="form-control input-lg DateToMEC" type="text" name="DateTo" id="DateToMEC" placeholder="DD-MM-YY">
+                            </div>
                         </div>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-xs-6 col-sm-6 col-md-6">
                         <div class="form-group">
-                            <input class="form-control input-lg DateFromMEC" type="text" name="DateFrom" id="DateFromMEC"  placeholder="DD-MM-YY">
+                            <label class="col-md-6 control-label" for="textinput">Start Time</label>
+                            <div class="col-md-12">
+                                <input class="form-control input-lg num1MEC" type="text" name="num1" id="num1MEC" placeholder="Time Start">
+                            </div>
                         </div>
                     </div>
                     <div class="col-xs-6 col-sm-6 col-md-6">
                         <div class="form-group">
-                            <input class="form-control input-lg DateToMEC" type="text" name="DateTo" id="DateToMEC" placeholder="DD-MM-YY">
+                            <label class="col-md-6 control-label" for="textinput">End Time</label>
+                            <div class="col-md-12">
+                                <input class="form-control input-lg num2MEC" type="text" name="num2" id="num2MEC"  placeholder="End End">
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-xs-6 col-sm-6 col-md-6">
-                        <div class="form-group">
-                             <h4>Time Start</h4>
-                        </div>
-                    </div>
-                    <div class="col-xs-6 col-sm-6 col-md-6">
-                        <div class="form-group">
-                            <h4>Time End</h4>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-xs-6 col-sm-6 col-md-6">
-                        <div class="form-group">
-                            <input class="form-control input-lg num1MEC" type="text" name="num1" id="num1MEC" placeholder="Time Start">
-                        </div>
-                    </div>
-                    <div class="col-xs-6 col-sm-6 col-md-6">
-                        <div class="form-group">
-                            <input class="form-control input-lg num2MEC" type="text" name="num2" id="num2MEC"  placeholder="End End">
-                        </div>
-                    </div>
-                </div>
-                <div class="btn-group btn-group-justified" role="group" aria-label="group button">
-                    <div class="btn-group" role="group">
-                        <button type="button" class="btn btn-primary btn-block btn-lg" id="btnMC">Generate MC</button>
-                    </div>
-                    <div class="btn-group" role="group">
-                        <button type="button" class="btn btn-primary btn-block btn-lg" id="btnTimeSlip">Generate Time Slip</button>
-                    </div>
-                </div>
+
             </div>
-            
+
             <div class="modal-footer">
                 <div class="btn-group btn-group-justified" role="group" aria-label="group button">
                     <div class="btn-group" role="group">
@@ -100,12 +81,12 @@
                 <button type="button" class="close" data-dismiss="modal"><i class="fa fa-times fa-lg"></i><span class="sr-only">Close</span></button>
                 <h3 class="modal-title" id="lineModalLabel">Update Medical Certification (MC) and Time Slip</h3>
             </div>
-                     <div class="modal-body">
+            <div class="modal-body">
                 <!-- content goes here -->
                 <div class="row">
                     <div class="col-xs-6 col-sm-6 col-md-6">
                         <div class="form-group">
-                             <h4>Date Start</h4>
+                            <h4>Date Start</h4>
                         </div>
                     </div>
                     <div class="col-xs-6 col-sm-6 col-md-6">
@@ -129,7 +110,7 @@
                 <div class="row">
                     <div class="col-xs-6 col-sm-6 col-md-6">
                         <div class="form-group">
-                             <h4>Time Start</h4>
+                            <h4>Time Start</h4>
                         </div>
                     </div>
                     <div class="col-xs-6 col-sm-6 col-md-6">

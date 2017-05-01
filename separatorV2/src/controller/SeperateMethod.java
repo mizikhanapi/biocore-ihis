@@ -18,7 +18,7 @@ public class SeperateMethod {
         return aal;
     };
     public void separatePipe(String row){
-        String columns[] = row.split("\\|");
+        String columns[] = row.split("\\|",-1);
         //System.out.println(row);
         for(int i =0;i < columns.length;i++){
             if(columns[i].equalsIgnoreCase(" ")){
@@ -29,11 +29,13 @@ public class SeperateMethod {
             if(columns[i].contains("^")){
                 //System.out.println(columns[i]);
                 ArrayList<String> al2 = new ArrayList();
-               String subColumns[] = columns[i].split("\\^");
+               String subColumns[] = columns[i].split("\\^",-1);
                 for (String subColumn : subColumns) {
-                    //System.out.println(subColumns[j]);
+                    //System.out.println(subColumn);
+                    if(subColumn.isEmpty()){
+                        subColumn = "-";                        
+                    }                  
                     al2.add(subColumn);
-                    
                 }
                 aal.add(al2);
                

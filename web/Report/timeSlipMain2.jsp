@@ -3,7 +3,6 @@
     Created on : Apr 19, 2017, 1:42:43 PM
     Author     : user
 --%>
-
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.sql.*"%>
 <%@page import="dBConn.Conn"%>
@@ -26,35 +25,35 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
         <title>Time Slip</title>
         <%@include file = "../assets/header.html" %>
     </head>
     <body>
-
+        <!-- side bar -->
+        <%@ include file ="libraries/reportSideMenus.jsp" %>
+        <!-- side bar -->
         <div class="main" style="background: #f2ff4f8;"> 
             <!-- menu top -->
             <%@ include file ="libraries/reportTopMenus.jsp" %>
             <!-- menu top -->
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="thumbnail">
+                            <h3 style="margin: 0px;">Time Slip </h3>
+                            <hr class="pemisah"/>
 
-            <!-- side bar -->
-            <%@ include file ="libraries/reportSideMenus.jsp" %>
-            <!-- side bar -->
-        </div>
-        <div class="container">
-            <div class="row">
-                <div class="form-group">
+                            <div id="SearchPatientTCdiv">
+                            </div>
 
-                    <h3 style="text-align: center">Time Slip </h3>
-
-                    <div id="SearchPatientTCdiv">
-                    </div>
-
-                    <div id="tsTableDivision">
+                            <div id="tsTableDivision">
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
+
     </body>
 </html>
 

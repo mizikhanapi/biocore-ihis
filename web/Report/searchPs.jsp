@@ -8,66 +8,66 @@
 <%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
-    String idTYpe = "select * from adm_lookup_detail where master_reference_code = '0012' ";
+    String hfc = session.getAttribute("HEALTH_FACILITY_CODE").toString();
+    String idTYpe = "select * from adm_lookup_detail where master_reference_code = '0012' AND hfc_cd = '" + hfc + "'";
     ArrayList<ArrayList<String>> dataIdType;
     Conn conn = new Conn();
     dataIdType = conn.getData(idTYpe);
     String dataSystemStatus = "1"; //session.getAttribute("SYSTEMSTAT").toString();
 %>
-<div class="thumbnail">
-    <h4>Search Patient
-<!--        <button id="button2id" name="button2id" class="btn btn-success pull-right"><i class="fa fa-user fa-lg"></i>&nbsp; Read MyKad Info</button>-->
-    </h4>
-    <form class="form-horizontal" name="myForm" id="myForm">
-        <!-- Select Basic -->
-        <div class="form-group">
-            <label class="col-md-4 control-label" for="selectbasic">ID Type</label>
-            <div class="col-md-4">
-                <select id="psType" name="psType" class="form-control" required="">
-                    <option selected="" disabled="" value="-"> Please select ID type</option>
-                    <option value="pmino">PMI No</option>
-                    <option value="icnew">IC No (NEW)</option>
-                    <option value="icold">IC No (OLD)</option>
-                    <option value="matricno">Matric No</option><!--
-                    <option value="staffno">Staff No</option>-->
-                    <%                                if (dataSystemStatus.equals("0")) {
 
-                        } else if (dataSystemStatus.equals("1")) {
-                            for (int i = 0; i < dataIdType.size(); i++) {%>
-                    <option value="<%=dataIdType.get(i).get(1)%>"><%=dataIdType.get(i).get(2)%></option>
-                    <%  }
-                        }
+<h4>Search Patient
+    <!--        <button id="button2id" name="button2id" class="btn btn-success pull-right"><i class="fa fa-user fa-lg"></i>&nbsp; Read MyKad Info</button>-->
+</h4>
+<form class="form-horizontal" name="myForm" id="myForm">
+    <!-- Select Basic -->
+    <div class="form-group">
+        <label class="col-md-4 control-label" for="selectbasic">ID Type</label>
+        <div class="col-md-4">
+            <select id="psType" name="psType" class="form-control" required="">
+                <option selected="" disabled="" value="-"> Please select ID type</option>
+                <!--                    <option value="pmino">PMI No</option>
+                                    <option value="icnew">IC No (NEW)</option>
+                                    <option value="icold">IC No (OLD)</option>
+                                    <option value="matricno">Matric No</option>
+                                    <option value="staffno">Staff No</option>-->
+                <%                                if (dataSystemStatus.equals("0")) {
 
-                    %>
-                </select>
-            </div>
+                    } else if (dataSystemStatus.equals("1")) {
+                        for (int i = 0; i < dataIdType.size(); i++) {%>
+                <option value="<%=dataIdType.get(i).get(1)%>"><%=dataIdType.get(i).get(2)%></option>
+                <%  }
+                    }
+
+                %>
+            </select>
         </div>
+    </div>
 
-        <!-- Text input-->
-        <div class="form-group">
-            <label class="col-md-4 control-label" for="textinput">IC No. / ID No.</label>
-            <div class="col-md-4">
-                <input type="text" class="form-control input-md" id="psInput" name="psInput" placeholder="ID" maxlength="0"/>
-            </div>
+    <!-- Text input-->
+    <div class="form-group">
+        <label class="col-md-4 control-label" for="textinput">IC No. / ID No.</label>
+        <div class="col-md-4">
+            <input type="text" class="form-control input-md" id="psInput" name="psInput" placeholder="ID" maxlength=""/>
         </div>
-        <div class="text-center">
-            <button class="btn btn-primary" type="button" id="searchPatient" name="searchPatient"><i class="fa fa-search fa-lg"></i>&nbsp; Search</button>
+    </div>
+    <div class="text-center">
+        <button class="btn btn-primary" type="button" id="searchPatient" name="searchPatient"><i class="fa fa-search fa-lg"></i>&nbsp; Search</button>
 
-            <button id="clearSearch" name="clearSearch" type="clear" class="btn btn-default"><i class="fa fa-ban fa-lg"></i>&nbsp; Clear</button>
-        </div>
-    </form>
-</div>
+        <button id="clearSearch" name="clearSearch" type="clear" class="btn btn-default"><i class="fa fa-ban fa-lg"></i>&nbsp; Clear</button>
+    </div>
+</form>
 
 
 <script>
     //validate max length of input
     $('#psType').on('change', function () {
         var id = $('#psType').val();
-        if (id === "pmino") {
+        if (id === "001") {
             $('#psInput').attr('maxlength', '13');
-        } else if (id === "icnew") {
+        } else if (id === "002") {
             $('#psInput').attr('maxlength', '12');
-        } else if (id === "icold") {
+        } else if (id === "003") {
             $('#psInput').attr('maxlength', '8');
         } else if (id === "004") {
             $('#psInput').attr('maxlength', '10');

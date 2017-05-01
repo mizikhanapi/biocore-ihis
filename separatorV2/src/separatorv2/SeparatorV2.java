@@ -42,29 +42,29 @@ public class SeparatorV2 {
     private Vector<POS2> vpos;
 
     public SeparatorV2() {
-        this.vccn = new Vector<CCN2>();
-        this.vdab = new Vector<DAB2>();
-        this.vfmh = new Vector<FMH2>();
-        this.vhpi = new Vector<HPI2>();
-        this.vimu = new Vector<IMU2>();
-        this.vlio = new Vector<LIO2>();
-        this.vlir = new Vector<LIR2>();
-        this.vmec = new Vector<MEC2>();
-        this.vpmh = new Vector<PMH2>();
-        this.vpnt = new Vector<PNT2>();
-        this.vros = new Vector<ROS2>();
-        this.vsoh = new Vector<SOH2>();
-        this.vvts = new Vector<VTS2>();  
-        this.vbld = new Vector<BLD2>();
-        this.valg = new Vector<ALG2>();
-        this.vorc = new Vector<ORC2>();
-        this.vdto = new Vector<DTO2>();
-        this.vdgs = new Vector<DGS2>();
-        this.vbli = new Vector<BLI2>();
-        this.vadw = new Vector<ADW2>();
-        this.vmsh = new Vector<MSH2>();
-        this.vpdi = new Vector<PDI2>();
-        this.vpos = new Vector<POS2>();
+        this.vccn = new Vector<>();
+        this.vdab = new Vector<>();
+        this.vfmh = new Vector<>();
+        this.vhpi = new Vector<>();
+        this.vimu = new Vector<>();
+        this.vlio = new Vector<>();
+        this.vlir = new Vector<>();
+        this.vmec = new Vector<>();
+        this.vpmh = new Vector<>();
+        this.vpnt = new Vector<>();
+        this.vros = new Vector<>();
+        this.vsoh = new Vector<>();
+        this.vvts = new Vector<>();  
+        this.vbld = new Vector<>();
+        this.valg = new Vector<>();
+        this.vorc = new Vector<>();
+        this.vdto = new Vector<>();
+        this.vdgs = new Vector<>();
+        this.vbli = new Vector<>();
+        this.vadw = new Vector<>();
+        this.vmsh = new Vector<>();
+        this.vpdi = new Vector<>();
+        this.vpos = new Vector<>();
     }
 
     public Vector<ORC2> getVorc() {
@@ -177,7 +177,7 @@ public class SeparatorV2 {
             }else if(cols[0].contains("DGS")){
                 DGS2 dgs = new DGS2();
                 sm.separatePipe(rows[i]);
-                //sm.showAAL();
+                sm.showAAL();
                 dgs.setValue(sm.getAal());
                 vdgs.addElement(dgs);
                 //System.out.println("---------------------------------------------------------------------------------");
@@ -333,75 +333,67 @@ public class SeparatorV2 {
         
     }
     
-//    public static void main(String[] args) {
-//        String hai = "ORC|"
-//                + "T12113|"
-//                + "PIS20170000001|"
-//                + "|"
-//                + "|"
-//                + "NORMAL|"
-//                + "10042017^10:23:34|"
-//                + "10042017^09:23:34|"
-//                + "10042017^10:50:34|"
-//                + "00717|"
-//                + "KAMIL|"
-//                + "|"
-//                + "UTEM KAMPUS INDUK|"
-//                + "OUTPATIENT|"
-//                + "|"
-//                + "04|"
-//                + "06-3315032|"
-//                + "PKU, UNIVERSITI TEKNIKAL MALAYSIA MELAKA|"
-//                + "HANG TUAH JAYA|"
-//                + "DURIAN TUNGGAL|"
-//                + " MELAKA|"
-//                + "MELAKA TENGAH|"
-//                + "MELAKA|"
-//                + "MALAYSIA|"
-//                + "77900|"
-//                + "06-3319298|"
-//                + "UTEM KAMPUS INDUK|"
-//                + "OUTPATIENT|"
-//                + "|"
-//                + "08|"
-//                + "06-3315032|"
-//                + "PKU, UNIVERSITI TEKNIKAL MALAYSIA MELAKA|"
-//                + "HANG TUAH JAYA|DURIAN TUNGGAL| "
-//                + "MELAKA|"
-//                + " MELAKA TENGAH|"
-//                + "MELAKA|"
-//                + "MALAYSIA|"
-//                + "77900|"
-//                + "06-3319298|"
-//                + "All payment mode should be in cash|"
-//                + "<cr>"
-//                + "DGS|"
-//                + "2017-4-21 17:47:25|"
-//                + "null^^^^^^01A90A932^Colorado tick fever^^null^^null^^^^null^^^^^^2017-4-21 17:47:25^04010101^Dr002^PROF KHANAPI GHANI^^^|"
-//                + "<cr>";
-//        
-//        String hai2 = "MSH|^~|CIS|BC001^001^001||2017-4-26 15:51:39|||||||||||||<cr>\n" +
-//"PDI|9409110361284|HANNANI BINTI MOHD ROOM|940911036128|-|012^Matric No.^004|B031310399|041^Female^002|11/09/1994|004^-^-|006^SINGLE^1|005^--|011^Malaysian^001|LOT 2832 KAMPUNG PADANG BONGOR|||003^-^-|088^-^-|002^-^-|001^-^-|-|-||0137892739|-|<cr>\n" +
-//"CCN|2017-4-26 15:50:47|^1682.^Fatigue^^Severity^^^null^^null^^null^|<cr>\n" +
-//"DGS|2017-4-26 15:50:47|null^^^^^^13M45M484^Fatigue fracture of vertebra^^null^^null^^^^null^^^^^^2017-4-26 15:50:47^BC001^mizikhanapi^MIZI KHANAPI^^^|<cr>\n" +
-//"CCN|2017-4-26 15:50:52|^1682.^Fatigue^^Severity^^^null^^null^^null^|<cr>\n" +
-//"DGS|2017-4-26 15:50:52|null^^^^^^13M45M484^Fatigue fracture of vertebra^^null^^null^^^^null^^^^^^2017-4-26 15:50:52^BC001^mizikhanapi^MIZI KHANAPI^^^|<cr>\n" +
-//"CCN|2017-4-26 15:50:59|^1682.^Fatigue^^Severity^^^null^^null^^null^|<cr>\n" +
-//"DGS|2017-4-26 15:50:59|null^^^^^^13M45M484^Fatigue fracture of vertebra^^null^^null^^^^null^^^^^^2017-4-26 15:50:59^BC001^mizikhanapi^MIZI KHANAPI^^^|<cr>\n" +
-//"CCN|2017-4-26 15:51:2|^1682.^Fatigue^^Severity^^^null^^null^^null^|<cr>\n" +
-//"DGS|2017-4-26 15:51:2|null^^^^^^13M45M484^Fatigue fracture of vertebra^^null^^null^^^^null^^^^^^2017-4-26 15:51:2^BC001^mizikhanapi^MIZI KHANAPI^^^|<cr>\n" +
-//"CCN|2017-4-26 15:51:11|^1682.^Fatigue^^Severity^^^null^^null^^null^|<cr>\n" +
-//"DGS|2017-4-26 15:51:11|null^^^^^^13M45M484^Fatigue fracture of vertebra^^null^^null^^^^null^^^^^^2017-4-26 15:51:11^BC001^mizikhanapi^MIZI KHANAPI^^^|<cr>\n" +
-//"CCN|2017-4-26 15:51:39|^1682.^Fatigue^^Severity^^^null^^null^^null^|<cr>\n" +
-//"DGS|2017-4-26 15:51:39|null^^^^^^13M45M484^Fatigue fracture of vertebra^^null^^null^^^^null^^^^^^2017-4-26 15:51:39^BC001^mizikhanapi^MIZI KHANAPI^^^|<cr>\n" +
-//"ORC|T12103|||NO|-|2017-4-26 15:51:39|2017-04-26 15:47:27.0|2017-04-26 15:47:27.0|mizikhanapi|mizikhanapi||BC001|001|001|001|02|-|-|-|-|-|-|-|-|-|-|-||18|-|-|-|-|<cr>\n" +
-//"POS|1682.^Fatigue^CTV3|^17.1^Apply Bandage ^ICD10-PCS||Small Bandage |||||BC001|Biocore 001||hfc_cd_receiving|<cr>\n" +
-//"";
-//
-//        SeparatorV2 spv2 = new SeparatorV2();
-//        spv2.startProcess(hai2);
-//        
-//
-//    }
+    public static void main(String[] args) {
+        String hai = "ORC|"
+                + "T12113|"
+                + "PIS20170000001|"
+                + "|"
+                + "|"
+                + "NORMAL|"
+                + "10042017^10:23:34|"
+                + "10042017^09:23:34|"
+                + "10042017^10:50:34|"
+                + "00717|"
+                + "KAMIL|"
+                + "|"
+                + "UTEM KAMPUS INDUK|"
+                + "OUTPATIENT|"
+                + "|"
+                + "04|"
+                + "06-3315032|"
+                + "PKU, UNIVERSITI TEKNIKAL MALAYSIA MELAKA|"
+                + "HANG TUAH JAYA|"
+                + "DURIAN TUNGGAL|"
+                + " MELAKA|"
+                + "MELAKA TENGAH|"
+                + "MELAKA|"
+                + "MALAYSIA|"
+                + "77900|"
+                + "06-3319298|"
+                + "UTEM KAMPUS INDUK|"
+                + "OUTPATIENT|"
+                + "|"
+                + "08|"
+                + "06-3315032|"
+                + "PKU, UNIVERSITI TEKNIKAL MALAYSIA MELAKA|"
+                + "HANG TUAH JAYA|DURIAN TUNGGAL| "
+                + "MELAKA|"
+                + " MELAKA TENGAH|"
+                + "MELAKA|"
+                + "MALAYSIA|"
+                + "77900|"
+                + "06-3319298|"
+                + "All payment mode should be in cash|"
+                + "<cr>"
+                + "DGS|"
+                + "2017-4-21 17:47:25|"
+                + "null^^^^^^01A90A932^Colorado tick fever^^null^^null^^^^null^^^^^^2017-4-21 17:47:25^04010101^Dr002^PROF KHANAPI GHANI^^^|"
+                + "<cr>";
+        
+        String hai2 = "MSH|^~|CIS|04010101^002^1||2017-4-27 12:15:40|||||||||||||<cr>\n" +
+"PDI|9507060252694|MOHAMAD ARIF SUFFIAN BIN MOHAMAD SHOKRI|950706025269|-|012^Matric No.^004|D031310032|041^Male^001|06/07/1995|004^-^-|006^-^-|005^--|011^-^-|159 TAMAN MAWAR|||003^-^-|088^-^-|002^-^-|001^-^MALAYSIA|-|-||-|email@email.com|<cr>\n" +
+"CCN|2017-4-27 12:15:40|^A600.^Jungle yellow fever ^^Mild^2^^Hour^^Right^^Right^no coment|<cr>\n" +
+"DGS|2017-4-27 12:15:40|Final^^^05-04-2017^^^01A90A9601A90A969^Arenaviral haemorrhagic fever^^Mild^^Left^^^^Right^^^no comment^^^2017-4-27 12:15:40^04010101^ahmed_93^AHMED ABDALLAH SHEIKH^-^-^-|<cr>\n" +
+"ORC|T12101|||NO|Normal|2017-4-27 12:15:40|2017-04-27 04:48:51.0|2017-04-27 04:48:51.0|ahmed_93|ahmed_93||04010101|002|1|1|02| Hang Tuah Jaya, 76100 Durian Tunggal,|Melaka, Malaysia|||DURIAN TUNGGAL|Melaka|MALAYSIA|001||04010101|-||05| Hang Tuah Jaya, 76100 Durian Tunggal,|Melaka, Malaysia||DURIAN TUNGGAL|<cr>\n" +
+"LIO|A600.^Jungle yellow fever ^01A90A9601A90A969^Arenaviral haemorrhagic fever^CTV3|DC2P000^Alkaline Phosphatase^ICD10-PCS|14-04-2017|038^Normal^P01|096^PC01^Conscious|04010101^Klinik UTeM Induk^PSDD||04010101^Klinik UTeM Induk^002^Inpatient Discipline^1^Anesthesiology^|<cr>\n" +
+"LIO|A600.^Jungle yellow fever ^01A90A9601A90A969^Arenaviral haemorrhagic fever^CTV3|DCBM000^Adrenaline (Epinephrine)^ICD10-PCS|14-04-2017|038^Urgent^P02|096^PC02^Unconscious|04010101^Klinik UTeM Induk^PSDD||04010101^Klinik UTeM Induk^002^Inpatient Discipline^1^Anesthesiology^|<cr>\n" +
+"LIO|A600.^Jungle yellow fever ^01A90A9601A90A969^Arenaviral haemorrhagic fever^CTV3|DM6j03r^Culture Mycobacterium^ICD10-PCS||038^Urgent^P02|096^PC02^Unconscious|04010101^Klinik UTeM Induk^PSDD|no comment|04010101^Klinik UTeM Induk^002^Inpatient Discipline^1^Anesthesiology^|<cr>\n" +
+"LIO|A600.^Jungle yellow fever ^01A90A9601A90A969^Arenaviral haemorrhagic fever^CTV3|DP0E333^Histopathological Examination^ICD10-PCS|06-04-2017|038^Normal^P01|096^PC02^Unconscious|04010101^Klinik UTeM Induk^PSDD|no comment|04010101^Klinik UTeM Induk^002^Inpatient Discipline^1^Anesthesiology^|<cr>";
+
+        SeparatorV2 spv2 = new SeparatorV2();
+        spv2.startProcess(hai2);
+        
+
+    }
     
 }

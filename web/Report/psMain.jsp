@@ -26,35 +26,38 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-        <title>Print MC</title>
+        <title>Prescription Slip</title>
         <%@include file = "../assets/header.html" %>
     </head>
     <body>
+        <!-- side bar -->
+        <%@ include file ="libraries/reportSideMenus.jsp" %>
+        <!-- side bar -->
 
         <div class="main" style="background: #f2ff4f8;"> 
             <!-- menu top -->
             <%@ include file ="libraries/reportTopMenus.jsp" %>
             <!-- menu top -->
 
-            <!-- side bar -->
-            <%@ include file ="libraries/reportSideMenus.jsp" %>
-            <!-- side bar -->
-        </div>
-        <div class="container">
-            <div class="row">
-                <div class="form-group">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="thumbnail">
+                            <h3 style="margin: 0px;">Prescription Slip </h3>
+                            <hr class="pemisah" />
+                            <div id="SearchPatientdiv">
+                            </div>
 
-                    <h3 style="text-align: center">Prescription Slip </h3>
+                            <div id="psTableDivision">
+                            </div>
+                        </div>
 
-                    <div id="SearchPatientdiv">
-                    </div>
 
-                    <div id="psTableDivision">
                     </div>
                 </div>
             </div>
         </div>
+
     </body>
 </html>
 
