@@ -138,7 +138,7 @@
                 <div class="col-md-4">  
                     <!-- Select Basic -->
                     <div class="form-group">
-                        <label class="col-md-4 control-label" for="selectbasic">Eligibility Source</label>
+                        <label class="col-md-4 control-label" for="selectbasic">Eligibility Source*</label>
                         <div class="col-md-6">
                             <select id="EliSource" name="EliSource" class="form-control">
                                 <option value="-">-</option>
@@ -155,7 +155,7 @@
 
                               <!-- Select Basic -->
         <div class="form-group">
-            <label class="col-md-4 control-label" for="selectbasic">Eligibility Type</label>
+            <label class="col-md-4 control-label" for="selectbasic">Eligibility Type*</label>
             <div class="col-md-6" id="EligibilityTypeDropdown">
                 <select id="EliTy" name="selectbasic" class="form-control" disabled="">
                    
@@ -189,7 +189,7 @@
 
                     <!-- Text input-->
                     <div class="form-group">
-                        <label class="col-md-4 control-label" for="textinput">Admission reason </label>
+                        <label class="col-md-4 control-label" for="textinput">Admission reason* </label>
                         <div class="col-md-6">
                             <textarea id="AdmissionReason" name="textinput" type="text" placeholder="" class="form-control input-md"></textarea>
                         </div>
@@ -222,7 +222,7 @@
                     </div>
                     <!-- Text input-->
                     <div class="form-group">
-                        <label class="col-md-4 control-label" for="textinput">Document no</label>
+                        <label class="col-md-4 control-label" for="textinput">Document no*</label>
                         <div class="col-md-6">
                             <input id="DocNo" name="textinput" type="text" placeholder="" class="form-control input-md">
                         </div>
@@ -294,7 +294,7 @@
 
                     <!-- Text input-->
                     <div class="form-group">
-                        <label class="col-md-4 control-label" for="textinput">Payer Group</label>
+                        <label class="col-md-4 control-label" for="textinput">Payer Group*</label>
                         <div class="col-md-6">
 
                             <select id="payer" name="payer" class="form-control">
