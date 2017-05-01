@@ -102,7 +102,7 @@ public class lhr_ALG{
                         System.out.println("Done extract alg");
                     } else {
                         System.out.println("False extract alg");
-                        System.out.println("query alg: "+query_alg_lhr_alg);
+                        //System.out.println("query alg: "+query_alg_lhr_alg);
                     }
                     algBr.add(algB);
                     

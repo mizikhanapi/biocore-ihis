@@ -166,7 +166,7 @@ public class lhr_DGS {
                             System.out.println("Done extract DGS");
                         } else {
                             System.out.println("False extract DGS");
-                            System.out.println("query dgs : " + query2);
+                            //System.out.println("query dgs : " + query2);
                         }
 
                         dgsBr.add(dgsB);

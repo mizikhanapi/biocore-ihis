@@ -49,8 +49,8 @@ public class MainExtractor {
 //   lhr_lir.M_LIR();
 //   
 //   //MEC
-//   lhr_MEC lhr_mec = new lhr_MEC();
-//   lhr_mec.M_MEC();
+   lhr_MEC lhr_mec = new lhr_MEC();
+   lhr_mec.M_MEC(spv2.getVmec(),spv2.getVdgs(),spv2.getVccn(),t);
 //   
 //   //PMH
    lhr_PMH lhr_pmh = new lhr_PMH();

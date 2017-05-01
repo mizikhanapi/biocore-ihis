@@ -67,7 +67,7 @@ public class lhr_BLD {
                         System.out.println("Done extract BLD");
                     }else{
                           System.out.println("False extract BLD");
-                           System.out.println("BLD query:" + query_bld_lhr_bld);
+                           //System.out.println("BLD query:" + query_bld_lhr_bld);
                     }
 
                     bldBr.add(bldB);

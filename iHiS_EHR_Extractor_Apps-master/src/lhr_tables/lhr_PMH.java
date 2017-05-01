@@ -133,7 +133,7 @@ public class lhr_PMH {
                                 //System.out.println("Query for PMH: " + query_lhr_pmh);
                                 total_fail_insert++;
                                 System.out.println("false extract pmh");
-                                System.out.println("query : " + query_lhr_pmh);
+                                //System.out.println("query : " + query_lhr_pmh);
                             }else{
                                 System.out.println("done extract pmh");
                             }

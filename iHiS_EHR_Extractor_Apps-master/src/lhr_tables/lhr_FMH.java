@@ -157,7 +157,7 @@ public class lhr_FMH {
                                 //System.out.println("Query for FMH: " + query_fmh_lhr_fh);
                                 total_fail_insert++;
                                 System.out.println("false insert fmh");
-                                System.out.println("query fmh : " + query_fmh_lhr_fh);
+                                //System.out.println("query fmh : " + query_fmh_lhr_fh);
                                 //System.out.println("query fmh : " + query_fmh_lhr_fh);
                             }else{
                                 System.out.println("done insert fmh");

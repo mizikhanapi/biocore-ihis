@@ -3,6 +3,8 @@ package lhr_tables;
 import Bean.MEC;
 import Config_Pack.Config;
 import Process.MainRetrieval;
+import bean.CCN2;
+import bean.DGS2;
 import bean.MEC2;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -15,7 +17,7 @@ import main.RMIConnector;
 
 public class lhr_MEC {
     
-    public boolean M_MEC(Vector<MEC2> mec,get_ehr_central_data t){
+    public boolean M_MEC(Vector<MEC2> mec,Vector<DGS2> dgs2,Vector<CCN2> ccn2,get_ehr_central_data t){
         
         RMIConnector rc = new RMIConnector();
         int total_fail_insert = 0; //total of failed insert
@@ -23,15 +25,23 @@ public class lhr_MEC {
         boolean status_lhr_ml = true;
 
             try {
-
+                int rowdgs = dgs2.size();
+                int numsCol = (rowdgs*2)+2;
+                int rowCcn = ccn2.size();
+                int numsCol2 = (rowCcn*2)+2;
+                int total = numsCol + numsCol2;
                 int rowsMEC = mec.size();
-                     if (rowsMEC > 0) {
-
+                System.out.println("row dgs num: "+rowdgs);
+                System.out.println("row ccn num: "+rowCcn);
+                System.out.println("row total num: "+total);
+                
+                    if (rowsMEC > 0) {
                     ArrayList<MEC> mecBeans = new ArrayList<MEC>();
                     for (int k = 0; k < rowsMEC; k++) {
                         ArrayList<ArrayList<String>> alMec = mec.get(k).getValue();
-                        System.out.println("mec #"+(k+1));
-
+                        int rowsize = alMec.get(2).size();
+                        System.out.println("row rowsize num: "+rowsize);
+                        
                         MEC mecBean = new MEC();
                         mecBean.setPMI_No(t.getPmi_no());
                         mecBean.setEpisode_Date(alMec.get(1).get(0));
@@ -44,12 +54,12 @@ public class lhr_MEC {
 //                        mecBean.setComplaint_Code_ICD10(alMec.get(2).get(0));
 //                        mecBean.setComplaint_Desc_ICD10(alMec.get(2).get(0));
 //                        mecBean.setComments(alMec.get(2).get(0));
-                        mecBean.setTime_From(alMec.get(2).get(4));
-                        mecBean.setTime_To(alMec.get(2).get(5));
-                        mecBean.setDate_From(alMec.get(2).get(6));
-                        mecBean.setDate_To(alMec.get(2).get(7));
-                        mecBean.setTxn_Date(alMec.get(2).get(0));
-                        mecBean.setStatus(alMec.get(2).get(0));
+                        mecBean.setTime_From(alMec.get(2).get(total+1));
+                        mecBean.setTime_To(alMec.get(2).get(total+2));
+                        mecBean.setDate_From(alMec.get(2).get(total+3));
+                        mecBean.setDate_To(alMec.get(2).get(total+4));
+                        mecBean.setTxn_Date(alMec.get(2).get(total+5));
+                        mecBean.setStatus(alMec.get(2).get(total+6));
 
 //                        // increase time 5 sec to prevent duplicate during insert.
 //                        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -67,13 +77,17 @@ public class lhr_MEC {
 //
 //                        mecBean.setEncounter_Date(df.format(d2));
 //                            //                            
+                        if(alMec.get(2).get(total+7).isEmpty() || alMec.get(2).get(total+7).equalsIgnoreCase("-") || alMec.get(2).get(total+7).equalsIgnoreCase(" ")){
+                            mecBean.setEncounter_Date(alMec.get(1).get(0));
+                        }else{
+                            mecBean.setEncounter_Date(alMec.get(2).get(total+7));
+                        }
                         
-                        mecBean.setEncounter_Date(alMec.get(1).get(0));
 
                         //mecBean.setEncounter_Date(dataMEC[k][16]);                              
-                        mecBean.setHFC(alMec.get(2).get(11));
-                        mecBean.setDoctor_ID(alMec.get(2).get(12));
-                        mecBean.setDoctor_Name(alMec.get(2).get(13));
+                        mecBean.setHFC(alMec.get(2).get(total+8));
+                        mecBean.setDoctor_ID(alMec.get(2).get(total+9));
+                        mecBean.setDoctor_Name(alMec.get(2).get(total+10));
 
                         String query_lhr_ml = "insert into lhr_med_leave "
                                 + "(pmi_no,"
@@ -117,6 +131,10 @@ public class lhr_MEC {
                         //System.out.println("Failed to insert data into lhr_med_leave (MEC) where PMI No : " + PMI_no + " & National ID No : " + NATIONAL_ID_NO + " & Person ID No : " + PERSON_ID_NO);   
                                 //System.out.println("Query for MEC: " + query_lhr_ml);
                                 total_fail_insert++;
+                                System.out.println("false extract MEC");
+                            }else{
+                                //System.out.println("Query for MEC: " + query_lhr_ml);
+                                System.out.println("done extract MEC");
                             }
                         } catch (Exception e) {
                             e.printStackTrace();

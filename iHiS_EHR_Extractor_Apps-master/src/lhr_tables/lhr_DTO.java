@@ -145,7 +145,7 @@ public class lhr_DTO {
                         System.out.println("Done extract dto");
                     }else{
                            System.out.println("false extract dto");
-                           System.out.println("query dto: "+query3);
+                           //System.out.println("query dto: "+query3);
                     }
 
                     dtoBrs.add(dtoC);

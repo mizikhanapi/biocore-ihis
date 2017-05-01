@@ -129,7 +129,7 @@ public class lhr_CCN {
                             System.out.println("Done extract ccn");
                         } else {
                             System.out.println("False extract ccn");
-                            System.out.println("query ccn: "+query1);
+                            //System.out.println("query ccn: "+query1);
                         }
 
                         ccnBeans.add(ccnBean);

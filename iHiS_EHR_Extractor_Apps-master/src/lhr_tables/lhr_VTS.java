@@ -171,7 +171,7 @@ public class lhr_VTS {
                             //    //System.out.println("sql vts : " + query_vts_lhr_wh);
                             if (status_vts_lhr_wh == false) {
                                 System.out.println("false extract vts weight height");
-                                System.out.println("query vts wheight height: "+ query_vts_lhr_wh);
+                                //System.out.println("query vts wheight height: "+ query_vts_lhr_wh);
                         //System.out.println("Failed to insert data into lhr_weight_height (VTS_WH) where PMI No : " + PMI_no + " & National ID No : " + NATIONAL_ID_NO + " & Person ID No : " + PERSON_ID_NO);   
                                 //System.out.println("Query for VTS_BP: " + query_vts_lhr_wh);
                             }else{
@@ -234,7 +234,7 @@ public class lhr_VTS {
                                 //System.out.println("Query for VTS_BP: " + query_vts_lhr_bp);
                                 total_fail_insert++;
                                 System.out.println("False extract vts bp");
-                                System.out.println("query vts bp: "+ query_vts_lhr_bp);
+                                //System.out.println("query vts bp: "+ query_vts_lhr_bp);
                             }else{
                                 System.out.println("done extract vts bp");
                             }
@@ -285,7 +285,7 @@ public class lhr_VTS {
                                 //System.out.println("Query for VTS_BG: " + query_vts_lhr_bg);
                                 total_fail_insert++;
                                 System.out.println("false extract vts blood glucose");
-                                System.out.println("query vts blood: "+ query_vts_lhr_bg);
+                                //System.out.println("query vts blood: "+ query_vts_lhr_bg);
                             }else{
                                     System.out.println("done extract vts blood glucose");
                             }
@@ -336,7 +336,7 @@ public class lhr_VTS {
                                 //System.out.println("Query for VTS_SPO2: " + query_vts_lhr_spo2);
                                 total_fail_insert++;
                                 System.out.println("false extract vts spo2");
-                                System.out.println("query vts spo2: "+ query_vts_lhr_spo2);
+                                //System.out.println("query vts spo2: "+ query_vts_lhr_spo2);
                             }else{
                                  System.out.println("done extract vts spo2");
                             }
@@ -386,7 +386,7 @@ public class lhr_VTS {
                                 //System.out.println("Query for VTS_PROC: " + query_vts_lhr_procedure);
                                 total_fail_insert++;
                                 System.out.println("false extract vts procedure");
-                                System.out.println("query vts procedure: "+ query_vts_lhr_procedure);
+                                //System.out.println("query vts procedure: "+ query_vts_lhr_procedure);
                             }else{
                                 System.out.println("done extract vts procedure");
                             }
@@ -439,7 +439,7 @@ public class lhr_VTS {
                                 //System.out.println("Query for VTS_TEMP: " + query_vts_lhr_temperature);
                                 total_fail_insert++;
                                 System.out.println("false extract vts temperature");
-                                System.out.println("query vts temperature: "+ query_vts_lhr_temperature);
+                                //System.out.println("query vts temperature: "+ query_vts_lhr_temperature);
                             }else{
                                 System.out.println("done extract vts temperature");
                             }

@@ -97,7 +97,7 @@ public class lhr_HPI {
                     ////System.out.println("query:" + query2);
                     if (status_hpi_lhr_health_of_present_illness == false) {
                         //System.out.println("Failed to insert data into lhr_diagnosis (DGS) where PMI No : " + PMI_no + " & National ID No : " + NATIONAL_ID_NO + " & Person ID No : " + PERSON_ID_NO);   
-                        System.out.println("Query for HPI: " + query2);
+                        //System.out.println("Query for HPI: " + query2);
                         total_fail_insert++;
                         System.out.println("false extract hpi");
                     }else{

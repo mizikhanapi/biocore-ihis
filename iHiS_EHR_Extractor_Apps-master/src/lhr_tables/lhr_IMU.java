@@ -139,7 +139,7 @@ public class lhr_IMU {
                             ////System.out.println("query:" + query2);
                             if (status_imu_lhr_immunisation == false) {
                                 //System.out.println("Failed to insert data into lhr_diagnosis (DGS) where PMI No : " + PMI_no + " & National ID No : " + NATIONAL_ID_NO + " & Person ID No : " + PERSON_ID_NO);   
-                                System.out.println("Query for IMU: " + query_imu_lhr_imu);
+                                //System.out.println("Query for IMU: " + query_imu_lhr_imu);
                                 System.out.println("false extract IMU");
                                 total_fail_insert++;
                             }else{

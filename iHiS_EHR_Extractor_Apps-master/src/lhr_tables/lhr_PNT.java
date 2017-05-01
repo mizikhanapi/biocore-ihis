@@ -79,7 +79,7 @@ public class lhr_PNT {
                             ////System.out.println("query:" + query2);
                             if (status_pnt_lhr_progress_notes == false) {
                                 //System.out.println("Failed to insert data into lhr_diagnosis (DGS) where PMI No : " + PMI_no + " & National ID No : " + NATIONAL_ID_NO + " & Person ID No : " + PERSON_ID_NO);   
-                                System.out.println("Query for PNT: " + query_pnt_lhr_pnt);
+                                //System.out.println("Query for PNT: " + query_pnt_lhr_pnt);
                                 total_fail_insert++;
                                 System.out.println("false extract PNT");
                             }else{

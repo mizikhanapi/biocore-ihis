@@ -94,13 +94,13 @@ public class lhr_DAB {
 //                        System.err.println(dabB.getDAB_code());
                         status_dab_lhr_disability = rc.setQuerySQL(Config.ipAddressServer, Config.portServer, query_dab_lhr_dab);
 
-                        System.out.println("status_dab_lhr_disability:" + status_dab_lhr_disability);
+                        //System.out.println("status_dab_lhr_disability:" + status_dab_lhr_disability);
 
                         ////System.out.println("stat:" + stat);
                         ////System.out.println("query:" + query2);
                         if (status_dab_lhr_disability == false) {
                             //System.out.println("Failed to insert data into lhr_diagnosis (DGS) where PMI No : " + PMI_no + " & National ID No : " + NATIONAL_ID_NO + " & Person ID No : " + PERSON_ID_NO);   
-                            System.out.println("Query for DAB: " + query_dab_lhr_dab);
+                            //System.out.println("Query for DAB: " + query_dab_lhr_dab);
                             total_fail_insert++;
                             System.out.println("False extract DAB");
                         }else{
