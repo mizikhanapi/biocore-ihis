@@ -121,7 +121,7 @@
                     <div class="row">
 
                         <div class="col-md-3">
-                            <div class="panel panel-default">
+                            <div class="panel panel-default panel-report">
                                 <!-- Default panel contents -->
                                 <div class="panel-heading">Outpatient Registration</div>
                                 <!-- List group -->
@@ -131,7 +131,7 @@
                             </div>
                         </div>
                         <div class="col-md-3">
-                            <div class="panel panel-default">
+                            <div class="panel panel-default panel-report">
                                 <!-- Default panel contents -->
                                 <div class="panel-heading">Patient Consultation</div>
                                 <!-- List group -->
@@ -142,7 +142,7 @@
                             </div>
                         </div>
                         <div class="col-md-3">
-                            <div class="panel panel-default">
+                            <div class="panel panel-default panel-report">
                                 <!-- Default panel contents -->
                                 <div class="panel-heading">Pharmacy Info System</div>
                                 <!-- List group -->
@@ -153,7 +153,7 @@
                             </div>
                         </div>
                         <div class="col-md-3">
-                            <div class="panel panel-default">
+                            <div class="panel panel-default panel-report">
                                 <!-- Default panel contents -->
                                 <div class="panel-heading">Laboratory Info System</div>
                                 <!-- List group -->
@@ -162,8 +162,10 @@
                                 </ul>
                             </div>
                         </div>
+                    </div>
+                    <div class="row">
                         <div class="col-md-3">
-                            <div class="panel panel-default">
+                            <div class="panel panel-default panel-report">
                                 <!-- Default panel contents -->
                                 <div class="panel-heading">Inpatient Management</div>
                                 <!-- List group -->
@@ -173,7 +175,7 @@
                             </div>
                         </div>
                         <div class="col-md-3">
-                            <div class="panel panel-default">
+                            <div class="panel panel-default panel-report">
                                 <!-- Default panel contents -->
                                 <div class="panel-heading">Billing System</div>
                                 <!-- List group -->
@@ -183,7 +185,7 @@
                             </div>
                         </div>
                         <div class="col-md-3">
-                            <div class="panel panel-default">
+                            <div class="panel panel-default panel-report">
                                 <!-- Default panel contents -->
                                 <div class="panel-heading">Patient Appointment</div>
                                 <!-- List group -->
@@ -193,7 +195,7 @@
                             </div>
                         </div>
                         <div class="col-md-3">
-                            <div class="panel panel-default">
+                            <div class="panel panel-default panel-report">
                                 <!-- Default panel contents -->
                                 <div class="panel-heading">System Administrator</div>
                                 <!-- List group -->
@@ -202,12 +204,14 @@
                                     <li class="list-group-item"><a href="ICD10Main.jsp">ICD10 </a></li>
                                     <li class="list-group-item"><a href="laporanKosPerubatan.jsp">Report Health Cost </a></li>
                                     <li class="list-group-item"><a href="drugOrderList.jsp">Total Drug Cost </a></li>
-                                    
+
                                 </ul>
                             </div>
                         </div>
+                    </div>
+                    <div class="row">
                         <div class="col-md-3">
-                            <div class="panel panel-default">
+                            <div class="panel panel-default panel-report">
                                 <!-- Default panel contents -->
                                 <div class="panel-heading">Kiosk</div>
                                 <!-- List group -->
@@ -217,7 +221,7 @@
                             </div>
                         </div>
                         <div class="col-md-3">
-                            <div class="panel panel-default">
+                            <div class="panel panel-default panel-report">
                                 <!-- Default panel contents -->
                                 <div class="panel-heading">Radiology Info System</div>
                                 <!-- List group -->

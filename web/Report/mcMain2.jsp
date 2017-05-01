@@ -30,30 +30,33 @@
         <%@include file = "../assets/header.html" %>
     </head>
     <body>
-
+        <!-- side bar -->
+        <%@ include file ="libraries/reportSideMenus.jsp" %>
+        <!-- side bar -->
         <div class="main" style="background: #f2ff4f8;"> 
             <!-- menu top -->
             <%@ include file ="libraries/reportTopMenus.jsp" %>
             <!-- menu top -->
+            <div class="container-fluid">
+                <div class="row">
 
-            <!-- side bar -->
-            <%@ include file ="libraries/reportSideMenus.jsp" %>
-            <!-- side bar -->
-        </div>
-        <div class="container">
-            <div class="row">
-                <div class="form-group">
+                    <div class="col-md-12">
+                        <div class="thumbnail">
+                            <h3 style="margin: 0px;">Print MC </h3>
+                            <hr class="pemisah"/>
 
-                    <h3 style="text-align: center">Print MC </h3>
+                            <div id="SearchPatientdiv">
+                            </div>
 
-                    <div id="SearchPatientdiv">
-                    </div>
-
-                    <div id="mcTableDivision">
+                            <div id="mcTableDivision">
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
+
         </div>
+
     </body>
 </html>
 
