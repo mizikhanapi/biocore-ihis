@@ -41,6 +41,18 @@
         sql = "Delete from adm_hfc_discipline where hfc_cd = '"+id+"'";
         rmic.setQuerySQL(conn.HOST, conn.PORT, sql);
         
+        //clear hfc body system code from db
+        sql = "Delete from ris_body_system where hfc_cd = '"+id+"'";
+        rmic.setQuerySQL(conn.HOST, conn.PORT, sql);
+        
+        //clear hfc modality from db
+        sql = "Delete from ris_modality where hfc_cd = '"+id+"'";
+        rmic.setQuerySQL(conn.HOST, conn.PORT, sql);
+        
+        //clear hfc procedure from db
+        sql = "Delete from ris_procedure_master where hfc_cd = '"+id+"'";
+        rmic.setQuerySQL(conn.HOST, conn.PORT, sql);
+        
     } else {
         out.print("Failed");
     }
