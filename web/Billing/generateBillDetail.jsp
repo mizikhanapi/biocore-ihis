@@ -670,7 +670,7 @@
             var grandTotal = document.getElementById('grandTotal').value;
             var amtReceived = document.getElementById('amtReceived').value;
             var paymentMethod = document.getElementById('paymentMethod').innerHTML;
-            var custID = document.getElementById('custID').value;
+            var custID = document.getElementById('pmiNo').value;
             var billNo = document.getElementById('billNo').value;
             var change = document.getElementById('change').value;
             
