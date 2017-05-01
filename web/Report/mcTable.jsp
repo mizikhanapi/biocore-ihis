@@ -45,50 +45,44 @@
         int size = mc.size();
         for (int i = 0; i < size; i++) {
     %>
-
-    <tr>
-        <td id="name"><%= mc.get(i).get(0)%></td>
-        <td id="episodeDate2"><%= mc.get(i).get(1)%>
-            <input type="hidden" id="episodeDate2_<%=i%>" value="<%= mc.get(i).get(1)%>">
-        </td>
-        <td id="pmino"><%= mc.get(i).get(2)%></td>
-        <td><form><input type=submit value="reprint" id="printMC3<%=i%>" role="button"></form></td>
-
-    </tr>
-
-    <script type="text/javascript" charset="utf-8">
-
-        $(document).ready(function () {
-            $('#printMC3<%=i%>').on('click', function (e) {
-
-                e.preventDefault();
-
-                var mcType = $("#mcType").val();
-                var mcInput = $("#mcInput").val();
-                var episodeDate2 = $("#episodeDate2_<%=i%>").val();
-                console.log(mcType);
-                console.log(mcInput);
-                console.log(episodeDate2);
-
-                window.open("mcReport2.jsp?mcType=" + mcType + "&mcInput=" + mcInput + "&episodeDate2=" + episodeDate2);
-
-            });
-        });
-
-
-    </script>
-
-
-    <%
-        }
-    %>
 </thead>
+<tr>
+    <td id="name"><%= mc.get(i).get(0)%></td>
+    <td id="episodeDate2"><%= mc.get(i).get(1)%>
+        <input type="hidden" id="episodeDate2_<%=i%>" value="<%= mc.get(i).get(1)%>">
+    </td>
+    <td id="pmino"><%= mc.get(i).get(2)%></td>
+    <td><form><input type=submit value="reprint" id="printMC3<%=i%>" role="button"></form></td>
 
-
-<tbody>
-
-</tbody>
+</tr>
 </table>
+
+<script type="text/javascript" charset="utf-8">
+
+    $(document).ready(function () {
+        $('#printMC3<%=i%>').on('click', function (e) {
+
+            e.preventDefault();
+
+            var mcType = $("#mcType").val();
+            var mcInput = $("#mcInput").val();
+            var episodeDate2 = $("#episodeDate2_<%=i%>").val();
+            console.log(mcType);
+            console.log(mcInput);
+            console.log(episodeDate2);
+
+            window.open("mcReport2.jsp?mcType=" + mcType + "&mcInput=" + mcInput + "&episodeDate2=" + episodeDate2);
+
+        });
+    });
+
+
+</script>
+
+
+<%
+    }
+%>
 
 
 <!--        "&episodeDate=" + episodeDate-->
