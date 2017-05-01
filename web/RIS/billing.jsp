@@ -74,7 +74,7 @@
     <div class="text-center">
         <button class="btn btn-primary" type="button" id="searchOrder" name="searchPatient"><i class="fa fa-search"></i>&nbsp; Search</button>
 
-        <button id="clearSearch" name="clearSearch" type="button" class="btn btn-default"><i class="fa fa-times"></i>&nbsp; Clear</button>
+        <!--<button id="clearSearch" name="clearSearch" type="button" class="btn btn-default"><i class="fa fa-times"></i>&nbsp; Clear</button>-->
     </div>
 
 
@@ -87,7 +87,7 @@
 <script>
 
     $(document).ready(function () {
-        
+
         destroyScreenLoading();
 
         $(function () {
@@ -140,55 +140,59 @@
 
 
         $("#searchOrder").click(function () {
-            createScreenLoading();
-            var orderType = $("#orderType").val();
-            if (orderType === '002' || orderType === '003')
-            {
-                var ic = $("#idIC").val();
-                var order_no = "";
-                var DateFrom = "";
-                var DateTo = "";
-            } else if (orderType === '004')
-            {
-                var order_no = $("#order_no").val();
-                var ic = "";
-                var DateFrom = "";
-                var DateTo = "";
-            } else if (orderType === '005')
-            {
-                //var DateFrom = new Date($('#DateFrom').val());
-                var DateFrom1 = $("#DateFrom").datepicker("getDate");
-                var DateFrom = $.datepicker.formatDate("yy-mm-dd", DateFrom1);
-                var DateTo1 = $("#DateTo").datepicker("getDate");
-                var DateTo = $.datepicker.formatDate("yy-mm-dd", DateTo1);
-                var order_no = "";
-                var ic = "";
-            }
-            var data = {
-                ic: ic,
-                order_no: order_no,
-                DateFrom: DateFrom,
-                DateTo: DateTo
-            };
-
-            $.ajax({
-                url: "BillTo.jsp",
-                type: "post",
-                data: data,
-                success: function (orderDetail) {
-
-                    $('#viewBill').html(orderDetail);
-                    //$('#viewBill').trigger('contentchanged');
-
-
-                },
-                error: function (err) {
-                    alert("Error update!");
-                }
-            });
-
+            loadBillTable();
         });
     });
+
+    function loadBillTable() {
+        createScreenLoading();
+        var orderType = $("#orderType").val();
+        if (orderType === '002' || orderType === '003')
+        {
+            var ic = $("#idIC").val();
+            var order_no = "";
+            var DateFrom = "";
+            var DateTo = "";
+        } else if (orderType === '004')
+        {
+            var order_no = $("#order_no").val();
+            var ic = "";
+            var DateFrom = "";
+            var DateTo = "";
+        } else if (orderType === '005')
+        {
+            //var DateFrom = new Date($('#DateFrom').val());
+            var DateFrom1 = $("#DateFrom").datepicker("getDate");
+            var DateFrom = $.datepicker.formatDate("yy-mm-dd", DateFrom1);
+            var DateTo1 = $("#DateTo").datepicker("getDate");
+            var DateTo = $.datepicker.formatDate("yy-mm-dd", DateTo1);
+            var order_no = "";
+            var ic = "";
+        }
+        var data = {
+            ic: ic,
+            order_no: order_no,
+            DateFrom: DateFrom,
+            DateTo: DateTo
+        };
+
+        $.ajax({
+            url: "BillTo.jsp",
+            type: "post",
+            data: data,
+            success: function (orderDetail) {
+
+                $('#viewBill').html(orderDetail);
+                //$('#viewBill').trigger('contentchanged');
+
+
+            },
+            error: function (err) {
+                alert("Error update!");
+            }
+        });
+
+    }
 
 
 </script>

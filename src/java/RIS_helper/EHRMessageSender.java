@@ -47,7 +47,7 @@ public class EHRMessageSender {
 
         String seperatorMSH = "MSH";                                    // Data 1
         String encodeCharacMSH = "^~";                                  // Data 2
-        String sendAppliMSH = "04";                                     // Data 3
+        String sendAppliMSH = "06";                                     // Data 3
         String sendFacilityMSH = hfc + "^" + dis + "^" + subdis;                // Data 4
         String recieveAppliMSH = "08";                                  // Data 5
         String recieveFacilityMSH = hfc + "^" + dis + "^" + subdis;             // Data 6
@@ -469,7 +469,7 @@ public class EHRMessageSender {
         String sqlGetOrderDetail = "Select rod.procedure_cd, rpm.ris_procedure_name, rpm.selling_price, rod.created_by, rod.created_date "
                 + "from ris_order_detail rod "
                 + "left join ris_procedure_master rpm on rod.procedure_cd = rpm.ris_procedure_cd AND rpm.hfc_cd = '" + hfc + "' "
-                + "where rod.order_status = '2';";
+                + "where rod.order_status = '2' AND rod.order_no = '"+orderNo+"';";
         ArrayList<ArrayList<String>> dataOrderDetail = conn.getData(sqlGetOrderDetail);
 
         if (dataOrderDetail.size() < 1) {
@@ -524,6 +524,10 @@ public class EHRMessageSender {
                 + "from ehr_central;";
 
         rmic.setQuerySQL(conn.HOST, conn.PORT, sqlInsert);
+        
+        String sqlUpdateBillingStatus = "Update ris_order_master set billing_status = '2' Where order_no = '"+orderNo+"';";
+        
+        rmic.setQuerySQL(conn.HOST, conn.PORT, sqlUpdateBillingStatus);
 
     }
 
