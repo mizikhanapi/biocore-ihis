@@ -13,7 +13,6 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
         <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
         <link rel="stylesheet" href="/resources/demos/style.css">
         <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
@@ -23,75 +22,68 @@
         <%@include file = "../assets/header.html" %>
     </head>
     <body>
+        <!-- side bar -->
+        <%@ include file ="libraries/reportSideMenus.jsp" %>
+        <!-- side bar -->
         <div class="main" style="background: #f2ff4f8;"> 
             <!-- menu top -->
             <%@ include file ="libraries/reportTopMenus.jsp" %>
             <!-- menu top -->
 
-            <!-- side bar -->
-            <%@ include file ="libraries/reportSideMenus.jsp" %>
-            <!-- side bar -->
-        </div>
+            <div class="container-fluid">
+                <div class="row">      
+                    <div class="col-md-12">
+                        <div class="thumbnail">
+                            <h2 style="margin: 0px;"> Data Analysis </h2>
+                            <hr class="pemisah" />
+                            <div class="row">
+                                <div class="form-horizontal">
+                                    <div class="form-group">
+                                        <label class="col-md-4 control-label" for="textinput">Category:</label>
+                                        <div class="col-md-4">
+                                            <select class="form-control" name="daType" id="daType">
+                                                <option value="0" >Please Select</option>
+                                                <!--                                        <option value="refferal" >outpatient referral source</option>-->
+                                                <option value="list" >outpatient list</option>
+                                                <option value="mix" >total outpatient list based on age, sex and race</option>
+                                                <option value="patientreg" >patient registration</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-inline">
+                                        <div class="col-md-8 col-md-offset-3">
+                                            <div class="form-group">
+                                                <label class="col-md-4 control-label" for="textinput">From:</label>
+                                                <div class="col-md-4">
+                                                    <input id="startDate" name="startDate" type="text" class="form-control datepicker" placeholder="YYYY/MM/DD" readonly>
+                                                </div>
+                                            </div>
 
-        <div class="container">
-            <div class="row">      
-                <div class="col-md-12">
-                    <div class="thumbnail">
-                        <h2 style="text-align: center"> Data Analysis </h2>
-                        </br>
-
-                        </br></br>
-
-
-                        <div class="form-group">
-                            <label style="text-align: center" class="col-md-6 control-label" for="textinput">Category</label>
-
-
-                            <div class="form-group">
-                                <div class="col-md-6">
-                                    <select class="form-control" name="daType" id="daType">
-                                        <option value="0" >Please Select</option>
-                                        <!--                                        <option value="refferal" >outpatient referral source</option>-->
-                                        <option value="list" >outpatient list</option>
-                                        <option value="mix" >total outpatient list based on age, sex and race</option>
-                                        <option value="patientreg" >patient registration</option>
-                                    </select>
+                                            <div class="form-group">
+                                                <label class="col-md-4 control-label" for="textinput">To:</label>
+                                                <div class="col-md-4">
+                                                    <input id="endDate" name="endDate" type="text" class="form-control datepicker" placeholder="" readonly>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
+                            </div> 
+                            <hr/>
+
+                            <div class="text-right">
+                                <button id="clearSearch" name="clearSearch" type="clear" class="btn btn-link ">Clear</button>
+                                <button type="submit" class="btn btn-success " role="button" id="dataReport">Generate Report</button>
                             </div>
-                        </div>
 
-                        </br></br></br>
-
-
-
-                        <div class="form-group">
-                            <label style="text-align: center" class="col-md-6 control-label" for="textinput">From:</label>
-                            <div class="col-md-6">
-                                <input id="startDate" name="startDate" type="text" class="form-control datepicker" placeholder="" readonly>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label style="text-align: center" class="col-md-6 control-label" for="textinput">To:</label>
-                            <div class="col-md-6">
-                                <input id="endDate" name="endDate" type="text" class="form-control datepicker" placeholder="" readonly>
-                            </div>
-                        </div>
-
-
-                        <div class="btn-group btn-group-justified" role="group" aria-label="group button">
-                            <div class="btn-group" role="group">
-                                <button type="submit" class="btn btn-success btn-block btn-lg" role="button" id="dataReport">Generate Report</button>
-                            </div>
-                           
-                            <div class="btn-group" role="group">
-                                <button id="clearSearch" name="clearSearch" type="clear" class="btn btn-default"><i class="fa fa-ban fa-lg"></i>&nbsp; Clear</button>
-                            </div>
                         </div>
                     </div>
                 </div>
             </div>
+
         </div>
+
+
     </body>
 </html>
 
