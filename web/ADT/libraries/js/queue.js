@@ -108,7 +108,7 @@
         console.log(datas);
         $.ajax({
             type: "POST",
-            url: "deletePMSQueue.jsp",
+            url: "deleteADTQueue.jsp",
             data: datas, // Send input
             timeout: 3000,
             success: function (list) {

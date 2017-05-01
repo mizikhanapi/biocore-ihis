@@ -12,6 +12,9 @@
     String dis = session.getAttribute("DISCIPLINE_CODE").toString();
     String sub = session.getAttribute("SUB_DISCIPLINE_CODE").toString();
     String pageNow = "IR";
+    
+        String hfct = "BC001";
+
 
     String eliCat = "select * from adm_lookup_detail where master_reference_code = '0063' and hfc_cd ='" + hfc + "'  ";
     String admit = "select * from adm_lookup_detail where master_reference_code ='0023' and hfc_cd ='" + hfc + "'";
@@ -21,8 +24,28 @@
     String payerGroup = "select * from adm_lookup_detail where master_reference_code = '0055' and hfc_cd ='" + hfc + "'  ";
 
     String DR2 = "002";
+//    
+// 
 
-    String role2 = "SELECT  b.USER_ID, b.USER_NAME,a.USER_ID, a.ROLE_CODE, a.HEALTH_FACILITY_CODE, a.DISCIPLINE_CODE FROM adm_user_access_role a LEFT JOIN adm_users b ON a.USER_ID = b.USER_ID where  a.ROLE_CODE = " + DR2 + " AND a.HEALTH_FACILITY_CODE=" + hfc + ";";
+    String role2 = "SELECT  b.USER_ID, b.USER_NAME,a.USER_ID, a.ROLE_CODE, a.HEALTH_FACILITY_CODE , a.DISCIPLINE_CODE "
+            + "FROM adm_user_access_role a"
+            + " LEFT JOIN adm_users b"
+            + " ON a.USER_ID = b.USER_ID "
+            + "where a.DISCIPLINE_CODE ='"+dis+"' and  a.ROLE_CODE = '" + DR2 + "' AND a.HEALTH_FACILITY_CODE='" + hfc + "' ";
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 
     ArrayList<ArrayList<String>> dataRole2, dataEliCat, dataAdmit, dataEliType, dataDocumentType, dataIdType, dataPayerGroup;
 
