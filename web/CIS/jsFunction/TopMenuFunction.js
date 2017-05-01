@@ -420,7 +420,7 @@ $(document).ready(function (e) {
             } else if (data[key].Acode === "MEC") {
                        var ccnProblem =   getProblem(ccn_cd);
                        var dgsProblem =  getProblem(dgs_cd);
-                processNotes += "MEC|" + getDate() + "|" + dgsProblem +"ICD10^"+ ccnProblem + "ICD10^^^"+data[key].num1MEC+"^"+data[key].num2MEC+"^"+data[key].DateFromMEC + "^" + data[key].DateToMEC+"^^^^"+hfc_cd + "^" + doctor_id + "^" + doctor_name+"|<cr>\n";
+                processNotes += "MEC|" + getDate() + "|" + dgsProblem +"ICD10^^"+ ccnProblem + "ICD10^^^"+data[key].num1MEC+"^"+data[key].num2MEC+"^"+data[key].DateFromMEC + "^" + data[key].DateToMEC+"^^^^"+hfc_cd + "^" + doctor_id + "^" + doctor_name+"|<cr>\n";
             }else if (data[key].Acode === "FLU") {
 
                 processNotes += "ARQ|" + getDate() + "|^^" + data[key].DateFollowUp + "^"+hfc_cd+"^"+hfc_name+"^"+discipline+"^"+disciplineName+"^^^^^"+data[key].commentFLU+"^^" + getDate() +  "^" + data[key].docFLUCode + "^" + data[key].searchFLU+"|<cr>\n";
