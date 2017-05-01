@@ -23,8 +23,8 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 
-<div class="thumbnail">
-    <table id="tsTableDivision" class="table table-filter table-striped" style="background: #fff; border: 1px solid #ccc; margin-top: 20px">
+<hr class="pemisah" />
+    <table id="tsTableDivision" class="table table-filter table-striped margin-top-50px" style="background: #fff; border: 1px solid #ccc; margin-top: 20px">
 
         <thead>
 
