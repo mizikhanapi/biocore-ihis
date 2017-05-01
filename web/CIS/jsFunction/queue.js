@@ -174,17 +174,20 @@ function convertEHR(ehr) {
         //console.log(header);
         if (header === "CCN") {
             CCN = EHRArry[i];
+            console.log(CCN);
             var CNNData = convertNoteToData(CCN);
+            var ccnsubData = CNNData[4].split(" ");
+            console.log(CNNData);
             var objCCN = {
                 Acode: "CCN",
-                ccnCode: CNNData[1],
-                Laterality:CNNData[11],
-                Site:CNNData[9],
-                problem: CNNData[2],
-                Mild: CNNData[4],
-                duration: CNNData[5],
-                sdur: CNNData[7],
-                Comment: CNNData[12]
+                ccnCode: CNNData[0],
+                Laterality:CNNData[10],
+                Site:CNNData[8],
+                problem: CNNData[1],
+                Mild: CNNData[3],
+                duration: ccnsubData[0],
+                sdur:ccnsubData[1],
+                Comment: CNNData[11]
             };
 
             _data.push(objCCN);
