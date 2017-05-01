@@ -511,6 +511,7 @@ ul.nav.navbar-nav.navbar-left.back {
     overflow: auto;
     list-style: none;
     padding: 0px;
+    margin-bottom: -1px;
 }
 
 .search-drop>ul>li {
@@ -848,4 +849,29 @@ tr#moveToOrderDetailsTButton {
 .golongan-soalan>.soalan {
     border-top: none;
     padding: 0px 15px;
+}
+
+.panel-report {
+    -webkit-transition: border .2s ease-in-out;
+    -o-transition: border .2s ease-in-out;
+    transition: border .2s ease-in-out;
+    -webkit-box-shadow: 0 2px 5px rgba(0, 0, 0, .26);
+    -moz-box-shadow: 0 2px 5px rgba(0, 0, 0, .26);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, .26);
+    -webkit-border-radius: 0px;
+    -moz-border-radius: 0px;
+    border-radius: 0px;
+}
+
+.panel-report>.panel-heading {
+    background: #fff;
+    color: #666;
+    font-weight: 500;
+    text-transform: uppercase;
+}
+
+.panel-report>.list-group:last-child .list-group-item:last-child, .panel-report>.panel-collapse>.list-group:last-child .list-group-item:last-child {
+    -webkit-border-radius: 0px;
+    -moz-border-radius: 0px;
+    border-radius: 0px;
 }

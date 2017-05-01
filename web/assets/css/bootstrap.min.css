@@ -3354,7 +3354,7 @@ textarea.input-sm {
 
 .input-lg {
     height: 46px;
-    padding: 10px 16px;
+    padding: 10px 0px;
     font-size: 18px;
     line-height: 1.3333333
 }
