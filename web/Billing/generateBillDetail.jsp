@@ -81,7 +81,11 @@
             + "WHERE pb.PMI_NO = '"+ pmiNo +"' "
             + "AND om.order_no = '"+ orderNo +"' "
             + "AND od.order_no = '"+ orderNo +"'";
+    System.out.print(sql3);
     ArrayList<ArrayList<String>> data = Conn.getData(sql3);
+    if (data.isEmpty()){
+        out.print("No details found.");
+    } else{
 %>
 <div style="margin-bottom: 50px">
     <h4><b>Bill Detail</b></h4>
@@ -365,6 +369,7 @@
         </div>
     </div>
 </div>
+<%}%>
                 
 <script src="assets/js/jquery.min.js" type="text/javascript"></script>
 <script src="assets/js/custom.js" type="text/javascript"></script>
@@ -708,11 +713,11 @@
                            location.reload();
                            
                             document.getElementById('messageHeader').innerHTML = "Success!";
-                            document.getElementById('messageContent').innerHTML = d[2];
+                            document.getElementById('messageContent').innerHTML = "Success make payement.";
                             $("#alertMessage").modal();
                        } else {
                             document.getElementById('messageHeader').innerHTML = "Error!";
-                            document.getElementById('messageContent').innerHTML = d[2];
+                            document.getElementById('messageContent').innerHTML = "Failed to make payment.";
                             $("#alertMessage").modal();
                        }
                     },
