@@ -20,14 +20,14 @@
 <hr class="pemisah">
 <table  id="BillTo"  class="table table-filter table-striped table-bordered table-hover" style="background: #fff; border: 1px solid #ccc; width: 100%">
     <thead>
-    <th style="text-align: center; width: 8%;">Order No.</th>
-    <th style="text-align: center; width: 10%;">PMI No.</th>
-    <th style="text-align: center; width: 10%;">IC No.</th>
-    <th style="text-align: center; width: 40%;">Name</th>
-    <th style="text-align: center; width: 12%;">Order Date</th>
-    <th style="text-align: center;">Health Facility Code</th>
-    <th style="text-align: center;">Doctor's Name</th>
-    <th style="text-align: center;">Send the bill</th>
+    <th style="text-align: left; width: 8%;">Order No.</th>
+    <th style="text-align: left; width: 10%;">PMI No.</th>
+    <th style="text-align: left; width: 10%;">IC No.</th>
+    <th style="text-align: left; width: 40%;">Name</th>
+    <th style="text-align: left; width: 12%;">Order Date</th>
+    <th style="text-align: left;">Health Facility Code</th>
+    <th style="text-align: left;">Doctor's Name</th>
+    <th style="text-align: left;">Send the bill</th>
 </thead>
 <tbody>
 
@@ -53,12 +53,12 @@
         for (int i = 0; i < size; i++) {
     %>
 
-    <tr id="moveToRISOrderDetailsTButton" style="text-align: center;">
+    <tr id="moveToRISOrderDetailsTButton" style="text-align: left;">
 
         <td><%= dataPatientOrderList.get(i).get(1)%></td> <!-- Order No -->
         <td><%= dataPatientOrderList.get(i).get(0)%></td> <!-- PMI No -->
         <td><%= dataPatientOrderList.get(i).get(14)%></td> <!-- IC No -->
-        <td><%= dataPatientOrderList.get(i).get(13)%></td> <!-- Name -->
+        <td style="font-weight: 500;"><%= dataPatientOrderList.get(i).get(13)%></td> <!-- Name -->
         <td><%= dataPatientOrderList.get(i).get(5)%></td> <!-- Order Date -->
         <td><%= dataPatientOrderList.get(i).get(2)%></td> <!-- Health Facility Code -->
         <td><%= dataPatientOrderList.get(i).get(6)%></td> <!-- Doctor's Name -->
@@ -72,10 +72,10 @@
     %>
 </tbody>
 </table>
-
-
-<button class="btn btn-primary " type="button" id="btnSendToBill" name="btnSendToBill" > <i class="fa fa-print fa-lg"></i>&nbsp; Send &nbsp;</button>
-<hr class="pemisah">
+<hr />
+<div class="text-right">
+    <button class="btn btn-primary " type="button" id="btnSendToBill" name="btnSendToBill" > <i class="fa fa-print fa-lg"></i>&nbsp; Send &nbsp;</button>    
+</div>
 
 
 <script type="text/javascript" charset="utf-8">
@@ -127,7 +127,7 @@
                     } else if (data.trim() === 'fail') {
                         bootbox.alert('Failed to send to billing.');
 
-                    }else{
+                    } else {
                         console.log(data.trim());
                     }
 

@@ -13,10 +13,8 @@
 <%@include file="../Entrance/validateSession.jsp" %>
 <%@include file="validateModuleAccess.jsp" %>
 
-<%
-//    Config.getFile_url(session);
+<%//    Config.getFile_url(session);
 //    Config.getBase_url(request);
-
     Conn conn = new Conn();
 
 %>
@@ -49,35 +47,16 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div  class="thumbnail">
+                                <h3 style="margin: 0px;">Result List</h3>
+                                <hr class="pemisah" />
 
+                                <div id="risResultMain">
 
-                                <!-- Tab Menu -->
-                                <div class="tabbable-panel">
-                                    <div class="tabbable-line">
-                                        <ul class="nav nav-tabs ">
-                                            <li class="active">
-                                                <a href="#tab_default_1" data-toggle="tab">
-                                                    RESULT LIST</a>
-                                            </li>
-                                            
-                                        </ul>
-                                        <!-- tab content -->
-                                        <div class="tab-content">
-                                            <div class="tab-pane active" id="tab_default_1">
-                                                <div id="risResultMain">
-                                                    
-                                                </div>
-                                                <div id="risResultContent">
-
-                                                </div>
-                                                <%@include file="order_modal/verifyResult_modal.jsp" %>
-                                            </div>
-                                           
-                                        </div>
-                                    </div>
                                 </div>
-                                <!-- Tab Menu -->
+                                <div id="risResultContent">
 
+                                </div>
+                                <%@include file="order_modal/verifyResult_modal.jsp" %>
                             </div>
                         </div>
                     </div>
@@ -96,11 +75,11 @@
         <script>
 
             createScreenLoading();
-            
-            
+
+
             $("#risResultMain").load("risResult_main.jsp");
             $("#risResultContent").load("risResult_table.jsp");
-            
+
         </script>
 
     </body>

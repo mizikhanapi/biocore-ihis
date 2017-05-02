@@ -1,8 +1,5 @@
-
-
 <%@include file="../Entrance/validateSession.jsp" %>
 <%@include file="validateModuleAccess.jsp" %>
-
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -33,9 +30,10 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div class="thumbnail">
-
+                                <h3 style="margin: 0px;">Radiology Maintenance</h3>
+                                <hr class="pemisah" />
                                 <div class="tabbable-panel">
-                                    <h1>Radiology Maintenance</h1>
+
                                     <div class="tabbable-line">
                                         <ul class="nav nav-tabs ">
                                             <li class="active">

@@ -20,11 +20,11 @@
 <table  id="risResultTable"  class="table table-filter table-striped table-bordered table-hover" style="background: #fff; border: 1px solid #ccc; width: 100%">
     <thead>        
     <th style="display: none">Hidden</th>
-    <th style="text-align: center; width: 10%;">Order No.</th>
-    <th style="text-align: center; width: 10%;">Body System</th>
-    <th style="text-align: center; width: 10%;">Modality</th>
-    <th style="text-align: center; width: 10%;">Procedure</th>
-    <th style="text-align: center; width: 40%;">Comment</th>
+    <th style="text-align: left; width: 10%;">Order No.</th>
+    <th style="text-align: left; width: 10%;">Body System</th>
+    <th style="text-align: left; width: 10%;">Modality</th>
+    <th style="text-align: left; width: 10%;">Procedure</th>
+    <th style="text-align: left; width: 40%;">Comment</th>
    
 </thead>
 <tbody>
@@ -53,7 +53,7 @@
         for (int i = 0; i < size; i++) {
     %>
 
-    <tr id="risRM_btnModal" style="text-align: center;">
+    <tr id="risRM_btnModal" style="text-align: left;">
         <td style="display: none"><%= String.join("|", dataResultList.get(i))%></td> <!-- hidden -->
         <td><%= dataResultList.get(i).get(0)%></td> <!-- Order No -->
         <td><%= dataResultList.get(i).get(2)%></td> <!-- body system -->

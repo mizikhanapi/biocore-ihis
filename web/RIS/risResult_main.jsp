@@ -10,7 +10,7 @@
     Author     : Shammugam
 --%>
 
-<h4 style="padding-top: 30px;padding-bottom: 35px; font-weight: bold">
+<h4>
     RADIOLOGY EXAM RESULT VERIFICATION
     <span class="pull-right">
         <button id="risRM_btnRefresh" class="btn btn-default" style=" padding-right: 10px;padding-left: 10px;color: black;"><a data-toggle="tooltip" data-placement="top" title="Refresh table" id="test"><i class=" fa fa-refresh" style=" padding-right: 10px;padding-left: 10px;color: black;"></i></a>Refresh</button>

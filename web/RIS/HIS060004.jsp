@@ -41,31 +41,11 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div  class="thumbnail">
+                                <h3 style="margin: 0px;">Completed Order List</h3>
+                                <hr class="pemisah" />
+                                <div id="CompleteOrderListMain">
 
-
-                                <!-- Tab Menu -->
-                                <div class="tabbable-panel">
-                                    <div class="tabbable-line">
-                                        <ul class="nav nav-tabs ">
-                                            <li class="active">
-                                                <a href="#tab_default_1" data-toggle="tab">
-                                                    COMPLETED ORDER LIST</a>
-                                            </li>
-                                            
-                                        </ul>
-                                        <!-- tab content -->
-                                        <div class="tab-content">
-                                            <div class="tab-pane active" id="tab_default_1">
-                                                <div id="CompleteOrderListMain">
-                                                    
-                                                </div>
-                                                
-                                            </div>
-                                           
-                                        </div>
-                                    </div>
                                 </div>
-                                <!-- Tab Menu -->
 
                             </div>
                         </div>
@@ -85,11 +65,11 @@
         <script>
 
             createScreenLoading();
-            
-            
+
+
             $("#CompleteOrderListMain").load("billing.jsp");
             //$("#risResultContent").load("risResult_table.jsp");
-            
+
         </script>
 
     </body>
