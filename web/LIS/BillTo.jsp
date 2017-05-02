@@ -22,7 +22,7 @@
     String hfc_cd = session.getAttribute("HEALTH_FACILITY_CODE").toString();
     String last_nine = current_user.substring(current_user.length() - 1);
 %>
-<hr class="pemisah">
+
 <table  id="BillTo"  class="table table-filter table-striped table-bordered table-hover" style="background: #fff; border: 1px solid #ccc; width: 100%">
     <thead>
     <th style="text-align: center; width: 8%;">Order No.</th>
@@ -45,21 +45,26 @@
         //}
         String sql = "";
 
-        if (ic != "") {
+        if ((!ic.equals(""))) {
             sql = "SELECT lis_order_master.pmi_no,lis_order_master.order_no,lis_order_master.hfc_cd,lis_order_master.episode_date,lis_order_master.encounter_date,lis_order_master.order_date,lis_order_master.order_by,lis_order_master.hfc_from,lis_order_master.hfc_to,lis_order_master.order_status,lis_order_master.diagnosis_cd,lis_order_master.created_by,lis_order_master.created_date,pms_patient_biodata.PATIENT_NAME,pms_patient_biodata.NEW_IC_NO,pms_patient_biodata.BIRTH_DATE,pms_patient_biodata.SEX_CODE,pms_patient_biodata.BLOOD_TYPE FROM lis_order_master JOIN pms_patient_biodata ON (lis_order_master.pmi_no = pms_patient_biodata.PMI_NO) WHERE lis_order_master.order_status='3' AND pms_patient_biodata.NEW_IC_NO = '" + ic + "' AND lis_order_master.hfc_cd = '" + hfc_cd + "'";
-        } else if (order_no != "") {
-            sql = "SELECT lis_order_master.pmi_no,lis_order_master.order_no,lis_order_master.hfc_cd,lis_order_master.episode_date,lis_order_master.encounter_date,lis_order_master.order_date,lis_order_master.order_by,lis_order_master.hfc_from,lis_order_master.hfc_to,lis_order_master.order_status,lis_order_master.diagnosis_cd,lis_order_master.created_by,lis_order_master.created_date,pms_patient_biodata.PATIENT_NAME,pms_patient_biodata.NEW_IC_NO,pms_patient_biodata.BIRTH_DATE,pms_patient_biodata.SEX_CODE,pms_patient_biodata.BLOOD_TYPE FROM lis_order_master JOIN pms_patient_biodata ON (lis_order_master.pmi_no = pms_patient_biodata.PMI_NO) WHERE lis_order_master.order_status='3' AND lis_order_master.hfc_cd = '" + hfc_cd + "' AND lis_order_master.order_no = '" + order_no + "'";
-        } else if (DateFrom != "" && DateTo != "") {
+            //out.print("test1");
+        } 
+        if (!order_no.equals("")) {
+           sql = "SELECT lis_order_master.pmi_no,lis_order_master.order_no,lis_order_master.hfc_cd,lis_order_master.episode_date,lis_order_master.encounter_date,lis_order_master.order_date,lis_order_master.order_by,lis_order_master.hfc_from,lis_order_master.hfc_to,lis_order_master.order_status,lis_order_master.diagnosis_cd,lis_order_master.created_by,lis_order_master.created_date,pms_patient_biodata.PATIENT_NAME,pms_patient_biodata.NEW_IC_NO,pms_patient_biodata.BIRTH_DATE,pms_patient_biodata.SEX_CODE,pms_patient_biodata.BLOOD_TYPE FROM lis_order_master JOIN pms_patient_biodata ON (lis_order_master.pmi_no = pms_patient_biodata.PMI_NO) WHERE lis_order_master.order_status='3' AND lis_order_master.hfc_cd = '" + hfc_cd + "' AND lis_order_master.order_no = '" + order_no + "'";
+           //out.print("test2");
+        }if ((!DateFrom.equals("")) && (!DateTo.equals("")))
+        {
             sql = "SELECT lis_order_master.pmi_no,lis_order_master.order_no,lis_order_master.hfc_cd,lis_order_master.episode_date,lis_order_master.encounter_date,lis_order_master.order_date,lis_order_master.order_by,lis_order_master.hfc_from,lis_order_master.hfc_to,lis_order_master.order_status,lis_order_master.diagnosis_cd,lis_order_master.created_by,lis_order_master.created_date,pms_patient_biodata.PATIENT_NAME,pms_patient_biodata.NEW_IC_NO,pms_patient_biodata.BIRTH_DATE,pms_patient_biodata.SEX_CODE,pms_patient_biodata.BLOOD_TYPE FROM lis_order_master JOIN pms_patient_biodata ON (lis_order_master.pmi_no = pms_patient_biodata.PMI_NO) WHERE lis_order_master.order_status='3' AND lis_order_master.hfc_cd = '" + hfc_cd + "' AND lis_order_master.created_date BETWEEN '" + DateFrom + "' AND '" + DateTo + "'";
+            //out.print("test3");
         }
-
+        
         ArrayList<ArrayList<String>> dataPatientOrderList = conn.getData(sql);
 
         int size = dataPatientOrderList.size();
         for (int i = 0; i < size; i++) {
     %>
 
-<tr id="moveToRISOrderDetailsTButton" style="text-align: center;">
+    <tr id="moveToRISOrderDetailsTButton" style="text-align: center;">
 <input id="dataPatientOrderListhidden" type="hidden" value="<%=String.join("|", dataPatientOrderList.get(i))%>">
 <td><%= dataPatientOrderList.get(i).get(1)%></td> <!-- Order No -->
 <td><%= dataPatientOrderList.get(i).get(0)%></td> <!-- PMI No -->
@@ -70,22 +75,6 @@
 <td><%= dataPatientOrderList.get(i).get(6)%></td> <!-- Doctor's Name -->
 <td><button class="btn btn-success " type="button" id="btnOrderDispense_<%=i%>" name="btnOrderDispense" > <i class="fa fa-shopping-cart fa-lg"></i></button>
     <script>
-
-        //    $('input:checkbox').click(function () {
-        //        if ($(this).is(':checked')) {
-        //            $('#btnOrderDispense').prop("disabled", false);
-        //            //$('#reject').prop("disabled", false);
-        //            //$('#AssignResult').prop("disabled", false);
-        //            //$('#VerifyResult').prop("disabled", false);
-        //        } else {
-        //            if ($('.chk').filter(':checked').length < 1) {
-        //                $('#btnOrderDispense').attr('disabled', true);
-        //                //$('#reject').prop("disabled", true);
-        //                //$('#AssignResult').prop("disabled", true);
-        //                //$('#VerifyResult').prop("disabled", true);
-        //            }
-        //        }
-        //    });
         $("#btnOrderDispense_<%=i%>").click(function () {
 
             var row = $(this).closest("tr");
@@ -162,12 +151,31 @@
                                         timeout: 3000,
                                         success: function (returnDataItem) {
                                             $("#datatest").val(returnDataItem.trim());
+                                            $("#datatest1").val(returnDataMSHFull.trim() + returnDataPDIFull.trim() + returnDataORCFull.trim() + returnDataItem.trim());
                                             //$('#dataItem').html(returnDataItem);
                                             //$('#dataItem').trigger('contentchanged');
                                             console.log(returnDataItem.trim());
                                             console.log($("#datatest").val());
+                                            console.log($("#datatest1").val());
+                                            var ehr_central = $("#datatest1").val();
+                                            //alert(ehr_central);
+
+                                            var data1 = {
+                                                pmiNo: patientpmino,
+                                                ehr_central: ehr_central
+                                            };
+                                            $.ajax({
+                                                url: "sentToEHRcentral.jsp",
+                                                type: "post",
+                                                data: data1,
+                                                timeout: 3000,
+                                                success: function (returnEHR) {
+
+                                                    alert("Success transfer to Billing");
 
 
+                                                }
+                                            });
 
                                         }
                                     });
@@ -257,7 +265,7 @@
                 var patientnic = arrayData1[3];
                 var patientName = arrayData1[4];
 
-                alert(patientpmino + "  " + patientorderNo + "  " + patientOrderDate + "  " + patientnic + "  " + patientName);
+                //alert(patientpmino + "  " + patientorderNo + "  " + patientOrderDate + "  " + patientnic + "  " + patientName);
                 var data = {
                     pmiNo: patientpmino,
                     orderNo: patientorderNo,
@@ -331,7 +339,7 @@
                                                     timeout: 3000,
                                                     success: function (returnEHR) {
 
-                                                        alert("Success transfer to Billing");
+                                                        
 
 
                                                     }
@@ -351,6 +359,7 @@
 
             }
         }
+        alert("Success transfer to Billing");
     });
 
 
