@@ -51,73 +51,87 @@
                 View Inpatient Episode
             </a>-->
 </h4>
+<div class="row">
 
-<table class="table table-filter table-striped" style="background: #fff; border: 1px solid #ccc;" id="searchPatient1">
-    <thead>
-    <th>Episode Date</th>
-    <th>Health Care Facility</th>
-    <th>Discipline</th>
-    <th style="width: 5%;"></th>
-</thead>
-<tbody id="detailList">
-    <%        for (int i = 0; i < searchID.size(); i++) {
-            if (searchID.size() > 0) {
-                //out.print(String.join("|", searchID.get(i)));
+    <ul id="menu-content" class="search-patient" style="padding: 15px;">
+        <%        for (int i = 0; i < searchID.size(); i++) {
+                if (searchID.size() > 0) {
+                    //out.print(String.join("|", searchID.get(i)));
 
-    %>
-    <tr>
-        <td><%=searchID.get(i).get(1)%>
-            <input type="hidden" id="pmi" value="<%=searchID.get(i).get(0)%>">
-            <input type="hidden" id="episode" value="<%=searchID.get(i).get(1)%>">
-            <input type="hidden" id="disipline" value="<%=searchID.get(i).get(3)%>">
-            <input type="hidden" id="ic_no" value="<%=searchID.get(i).get(4)%>">
-            <input type="hidden" id="old_ic_no" value="<%=searchID.get(i).get(5)%>">
-        </td>
-        <td><%=searchID.get(i).get(2)%></td>
-        <td><%=searchID.get(i).get(3)%></td>
-        <td><a href="#episodeDetail" id="ViewDetail" name="ViewDetail" class="btn btn-default" type="button" role="button">View Details</a></td>
-    </tr>
+        %>
+        <!-- Menu with dropdown -->
+        <li  data-toggle="collapse" data-target="#patient-details" class="collapsed active" style="background: #f9f9f9;
+             display: inline-block;
+             width: 100%;
+             border: 1px solid #ddd;
+             padding: 15px 15px;">
 
-    <% }
-        }
-    %>
-</tbody>
-</table>
+            <div class="col-md-3">
+                <%=searchID.get(i).get(1)%>
+                <input type="hidden" id="pmi" value="<%=searchID.get(i).get(0)%>">
+                <input type="hidden" id="episode" value="<%=searchID.get(i).get(1)%>">
+                <input type="hidden" id="disipline" value="<%=searchID.get(i).get(3)%>">
+                <input type="hidden" id="ic_no" value="<%=searchID.get(i).get(4)%>">
+                <input type="hidden" id="old_ic_no" value="<%=searchID.get(i).get(5)%>">
+            </div>
+            <div class="col-md-3"><%=searchID.get(i).get(2)%></div>
+            <div class="col-md-3"><%=searchID.get(i).get(3)%></div>
+            <div class="col-md-3 text-right"><a href="#episodeDetail" id="ViewDetail" name="ViewDetail" type="button" role="button"><i class="fa fa-ellipsis-v fa-lg"></i></a></div>
+
+        </li>
+        <ul class="collapse" id="patient-details">
+            <li><a data-toggle="modal" data-target="#squarespaceModal" href="">Complaints</a></li>
+        </ul> 
+        <!-- Menu with dropdown -->
+        <% }
+            }
+        %>
+    </ul>
+</div>
+
+
 <br/>
 <h4 style="padding: 10px 0px 15px;">Previous Visit (Outpatient Episode)</h4>
-<table class="table table-filter table-striped" style="background: #fff; border: 1px solid #ccc;" id="searchPatient1">
-    <thead>
-        <th>Episode Date</th>
-        <th>Health Care Facility</th>
-        <th>Discipline</th>
-        <th style="width: 5%;"></th>
-    </thead>
-<tbody id="detailList1">
-    <%
-        for (int i = 0; i < searchID1.size(); i++) {
-            if (searchID1.size() > 0) {
 
-                //out.print(String.join("|", searchID1.get(i)));
-    %>
-    <tr>
-        <td><%=searchID1.get(i).get(1)%>
-            <input type="hidden" id="pmi1" value="<%=searchID1.get(i).get(0)%>">
-            <input type="hidden" id="episode1" value="<%=searchID1.get(i).get(1)%>">
-            <input type="hidden" id="disipline1" value="<%=searchID1.get(i).get(3)%>">
-            <input type="hidden" id="ic_no1" value="<%=searchID1.get(i).get(4)%>">
-            <input type="hidden" id="old_ic_no1" value="<%=searchID1.get(i).get(5)%>">
-        </td>
-        <td><%=searchID1.get(i).get(2)%></td>
-        <td><%=searchID1.get(i).get(3)%></td>
-        <td><a href="#episodeDetail1" id="ViewDetail1" name="ViewDetail" class="btn btn-default" type="button" role="button" >View Details</a></td>
-    </tr>
+<div class="row">
 
-    <% }
-        }
-    %>
-</tbody>
-</table>
+    <ul id="menu-content" class="search-patient" style="padding: 15px;">
+        <%
+            for (int i = 0; i < searchID1.size(); i++) {
+                if (searchID1.size() > 0) {
 
+                    //out.print(String.join("|", searchID1.get(i)));
+        %>
+        <!-- Menu with dropdown -->
+        <li  data-toggle="collapse" data-target="#<%=searchID1.get(i).get(1)%>" class="collapsed active" style="background: #f9f9f9;
+             display: inline-block;
+             width: 100%;
+             border: 1px solid #ddd;
+             padding: 15px 15px;">
+
+            <div class="col-md-3">
+                <%=searchID1.get(i).get(1)%>
+                <input type="hidden" id="pmi1" value="<%=searchID1.get(i).get(0)%>">
+                <input type="hidden" id="episode1" value="<%=searchID1.get(i).get(1)%>">
+                <input type="hidden" id="disipline1" value="<%=searchID1.get(i).get(3)%>">
+                <input type="hidden" id="ic_no1" value="<%=searchID1.get(i).get(4)%>">
+                <input type="hidden" id="old_ic_no1" value="<%=searchID1.get(i).get(5)%>">
+            </div>
+            <div class="col-md-3"><%=searchID1.get(i).get(2)%></div>
+            <div class="col-md-3"><%=searchID1.get(i).get(3)%></div>
+            <div class="col-md-3 text-right"><a href="#episodeDetail1" id="ViewDetail1" name="ViewDetail" type="button" role="button"><i class="fa fa-ellipsis-v fa-lg"></i></a></div>
+
+        </li>
+        <ul class="collapse" id="<%=searchID1.get(i).get(1)%>">
+            <li><a data-toggle="modal" data-target="#squarespaceModal" href="">Complaints</a></li>
+        </ul> 
+        <!-- Menu with dropdown -->
+        <% }
+            }
+        %>
+    </ul>
+
+</div>
 <%
     } else {
         out.print("1");
