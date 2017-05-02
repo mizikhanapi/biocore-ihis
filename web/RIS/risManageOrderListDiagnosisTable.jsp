@@ -3,14 +3,12 @@
     Created on : Mar 28, 2017, 5:59:03 PM
     Author     : Shammugam
 --%>
-
 <%@page import="java.text.DecimalFormat"%>
 <%@page import="java.text.NumberFormat"%>
 <%@page import="org.apache.commons.lang3.StringUtils"%>
 <%@page import="dBConn.Conn"%>
 <%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-
 
 <%
     Conn conn = new Conn();
@@ -28,26 +26,26 @@
 
 <table class="table table-filter table-striped table-bordered dt-head-right" style="background: #fff; border: 1px solid #ccc; width: 100%; text-align: center" id="risManageDiagnosisListTable">
     <thead>
-    <th style="display: none;text-align: center;">PMI NO</th>
-    <th style="text-align: center; width: 5%">HFC CODE</th>
-    <th style="text-align: center; width: 15%">EPISODE DATE</th>
-    <th style="text-align: center; width: 15%">ENCOUNTER DATE</th>
-    <th style="text-align: center; width: 15%">DIAGNOSIS CODE</th>
-    <th style="text-align: center; width: 25%">DIAGNOSIS DESCRIPTION</th>
-    <th style="text-align: center; width: 25%">COMMENT</th>
+    <th style="display: none;text-align: left;">PMI NO</th>
+    <th style="text-align: left; width: 5%">HFC CODE</th>
+    <th style="text-align: left; width: 15%">EPISODE DATE</th>
+    <th style="text-align: left; width: 15%">ENCOUNTER DATE</th>
+    <th style="text-align: left; width: 15%">DIAGNOSIS CODE</th>
+    <th style="text-align: left; width: 25%">DIAGNOSIS DESCRIPTION</th>
+    <th style="text-align: left; width: 25%">COMMENT</th>
 </thead>
 <tbody>
     <%        for (int i = 0; i < dataDiagnosisList.size(); i++) {
 
     %>
-    <tr style="text-align: center;">
+    <tr style="text-align: left;">
 <input id="dataRISManageDiagnosisListhidden" type="hidden" value="<%=String.join("|", dataDiagnosisList.get(i))%>">
 <td style="display: none"><%= dataDiagnosisList.get(i).get(0)%></td> <!-- Order No -->
 <td  ><%= dataDiagnosisList.get(i).get(1)%></td> <!-- Code -->
 <td ><%= dataDiagnosisList.get(i).get(2)%></td> <!-- Episode Date -->
 <td ><%= dataDiagnosisList.get(i).get(3)%></td> <!-- Encounter Date -->
 <td ><%= dataDiagnosisList.get(i).get(4)%></td> <!-- Diagnosis Code -->
-<td ><%= dataDiagnosisList.get(i).get(5)%> </td> <!-- Diagnosis Description -->
+<td style="font-weight: 500;" ><%= dataDiagnosisList.get(i).get(5)%> </td> <!-- Diagnosis Description -->
 <td ><%= dataDiagnosisList.get(i).get(6)%></td> <!-- Comment -->
 </tr>
 

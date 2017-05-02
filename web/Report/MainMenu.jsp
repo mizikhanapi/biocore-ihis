@@ -100,10 +100,6 @@
         <!--header -->
         <%@include file = "../assets/header.html" %>
         <!--header -->
-
-
-
-
         <title>Report</title>
     </head>
     <body>

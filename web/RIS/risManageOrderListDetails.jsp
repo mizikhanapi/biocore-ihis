@@ -33,7 +33,7 @@
 
 %>
 
-<table class="table table-filter table-striped table-bordered dt-head-right" style="background: #fff; border: 1px solid #ccc; width: 100%; text-align: center" id="risManageOrderDetailsListTable">
+<table class="table table-filter table-striped table-bordered dt-head-right" style="background: #fff; border: 1px solid #ccc; width: 100%; text-align: left" id="risManageOrderDetailsListTable">
     <thead>
     <th style="display: none">Hidden</th>    
     <th style="width: 15%">Body System</th>

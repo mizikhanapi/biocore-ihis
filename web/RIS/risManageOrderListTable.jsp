@@ -20,12 +20,12 @@
 
 <table  id="risManageOrderListTable"  class="table table-filter table-striped table-bordered table-hover" style="background: #fff; border: 1px solid #ccc; width: 100%">
     <thead>
-    <th style="text-align: center; width: 8%;">Order No.</th>
-    <th style="text-align: center; width: 10%;">PMI No.</th>
-    <th style="text-align: center; width: 40%;">Name</th>
-    <th style="text-align: center; width: 12%;">Order Date</th>
-    <th style="text-align: center;">Health Facility Code</th>
-    <th style="text-align: center;">Doctor's Name</th>
+    <th style="text-align: left; width: 8%;">Order No.</th>
+    <th style="text-align: left; width: 10%;">PMI No.</th>
+    <th style="text-align: left; width: 40%;">Name</th>
+    <th style="text-align: left; width: 12%;">Order Date</th>
+    <th style="text-align: left;">Health Facility Code</th>
+    <th style="text-align: left;">Doctor's Name</th>
 </thead>
 <tbody>
 
@@ -33,24 +33,23 @@
     <%
         String whereClause = "";
         String orderWhereClause = " ";
-        
+
         //-------------------------- to refresh order table based on request--------------------------------
         String process = "1";
-        
-        if(request.getParameter("process") != null){
-        
+
+        if (request.getParameter("process") != null) {
+
             process = request.getParameter("process");
         }
-        
-         if(process.equalsIgnoreCase("1")){
-             
-             orderWhereClause = " AND date(ris_order_master.order_date) = date(now()) ";
-         }
-        
-        //=============================================================================================
 
+        if (process.equalsIgnoreCase("1")) {
+
+            orderWhereClause = " AND date(ris_order_master.order_date) = date(now()) ";
+        }
+
+        //=============================================================================================
         if (!hfc_cd.equals("99_iHIS_99") || !last_nine.equals("9")) {
-            whereClause = " AND ris_order_master.hfc_cd = '"+hfc_cd+"' ";
+            whereClause = " AND ris_order_master.hfc_cd = '" + hfc_cd + "' ";
         }
 //                                  0                       1                       2                           3                                   4                       5                       
         String sql = "SELECT ris_order_master.pmi_no,ris_order_master.order_no,ris_order_master.hfc_cd,ris_order_master.episode_date,ris_order_master.encounter_date,ris_order_master.order_date,"
@@ -65,7 +64,7 @@
                 + "LEFT JOIN adm_lookup_detail sx on pms_patient_biodata.SEX_CODE = sx.detail_reference_code AND sx.master_reference_code = '0041' AND sx.hfc_cd = ris_order_master.hfc_cd "
                 + "LEFT JOIN adm_lookup_detail blot on pms_patient_biodata.BLOOD_TYPE = blot.detail_reference_code AND blot.master_reference_code = '0074' AND blot.hfc_cd = ris_order_master.hfc_cd "
                 + "WHERE ris_order_master.order_no in (select distinct(order_no) from ris_order_detail ) AND ris_order_master.order_status = '0' "
-                +orderWhereClause
+                + orderWhereClause
                 + whereClause + " ;";
 
         ArrayList<ArrayList<String>> dataRISOrderList = conn.getData(sql);
@@ -74,11 +73,11 @@
         for (int i = 0; i < size; i++) {
     %>
 
-    <tr id="moveToRISOrderDetailsTButton" style="text-align: center;">
+    <tr id="moveToRISOrderDetailsTButton" style="text-align: left; cursor: pointer;">
 <input id="dataRISOrderListhidden" type="hidden" value="<%=String.join("|", dataRISOrderList.get(i))%>">
 <td><%= dataRISOrderList.get(i).get(1)%></td> <!-- Order No -->
 <td><%= dataRISOrderList.get(i).get(0)%></td> <!-- PMI No -->
-<td><%= dataRISOrderList.get(i).get(13)%></td> <!-- Name -->
+<td style="font-weight: 500;"><%= dataRISOrderList.get(i).get(13)%></td> <!-- Name -->
 <td><%= dataRISOrderList.get(i).get(5)%></td> <!-- Order Date -->
 <td><%= dataRISOrderList.get(i).get(2)%></td> <!-- Health Facility Code -->
 <td><%= dataRISOrderList.get(i).get(6)%></td> <!-- Doctor's Name -->
@@ -99,8 +98,8 @@
                 $('.loading').hide();
             }
         });
-        
-              
+
+
     });
 
 </script>
