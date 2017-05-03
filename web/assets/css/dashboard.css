@@ -875,3 +875,7 @@ tr#moveToOrderDetailsTButton {
     -moz-border-radius: 0px;
     border-radius: 0px;
 }
+
+.table-guling:hover {
+    overflow-x: auto;
+}
