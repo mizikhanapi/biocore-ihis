@@ -103,7 +103,7 @@
                         String hfc2 = session.getAttribute("HEALTH_FACILITY_CODE").toString();
                         String DR22 = "002";
 
-                        String role22 = "SELECT  b.USER_ID, b.USER_NAME,a.USER_ID, a.ROLE_CODE, a.HEALTH_FACILITY_CODE, a.DISCIPLINE_CODE FROM adm_user_access_role a LEFT JOIN adm_users b ON a.USER_ID = b.USER_ID where a.DISCIPLINE_CODE ='"+dis+"' and a.ROLE_CODE = " + DR22 + " AND a.HEALTH_FACILITY_CODE=" + hfc2 + ";";
+                        String role22 = "SELECT  b.USER_ID, b.USER_NAME,a.USER_ID, a.ROLE_CODE, a.HEALTH_FACILITY_CODE, a.DISCIPLINE_CODE FROM adm_user_access_role a LEFT JOIN adm_users b ON a.USER_ID = b.USER_ID where a.DISCIPLINE_CODE ='" + dis + "' and a.ROLE_CODE = " + DR22 + " AND a.HEALTH_FACILITY_CODE=" + hfc2 + ";";
                         ArrayList<ArrayList<String>> dataRoleM;
                         dataRoleM = conn.getData(role22);
 
@@ -193,6 +193,10 @@
             var wnameO = $('#wname').val();
             var WardTypeO = $('#WardType').val();
 
+            var EliSource = $('#EliSource').val();
+            var EliTy = $('#EliTy').val();
+
+
 
 
             //check if the input text or the select box is empty.
@@ -218,6 +222,11 @@
                 var Dis = Diso;
                 var wname = $('#wname').val();
                 var WardType = $('#WardType').val();
+
+                var EliSource = $('#EliSource').val();
+                var EliTy = $('#EliTy').val();
+
+
                 console.log(Dis);
                 console.log(wname);
                 console.log(WardType);
@@ -227,7 +236,7 @@
                     async: true,
                     type: "POST",
                     url: "PMS/controller/resultBed.jsp",
-                    data: {'Dis': Dis, 'wname': wname, 'WardType': WardType},
+                    data: {'Dis': Dis, 'wname': wname, 'WardType': WardType, 'EliSource': EliSource, 'EliTy': EliTy},
                     timeout: 10000,
                     success: function (list) {
                         //remove the loading 
@@ -253,6 +262,7 @@
                         //bootbox.alert(err.Message);
                     }
                 });
+
             }
 
         }
