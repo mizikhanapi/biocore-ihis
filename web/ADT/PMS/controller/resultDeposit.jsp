@@ -24,6 +24,17 @@
         String citizen = request.getParameter("citizen");
         String non_citizen = request.getParameter("non_citizen");
         String pensioner = request.getParameter("pensioner");
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
 
         String deposit = "SELECT  citizen_deposit, non_citizen_deposit, pensioner_deposit FROM wis_ward_name WHERE "
                 + "discipline_cd =' " + disb + "'  ward_class_code = ' " + WardTypeb + "' AND ward_id =  '" + wnameb + "'  ";
