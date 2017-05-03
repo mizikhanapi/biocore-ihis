@@ -4,6 +4,7 @@
     Author     : user
 --%>
 
+<%@page import="RIS_helper.EHRMessageSender"%>
 <%@page import="RIS_helper.Order_Master"%>
 <%@page import="main.RMIConnector"%>
 <%@page import="dBConn.Conn"%>
@@ -12,12 +13,21 @@
     
     Conn conn = new Conn();
     RMIConnector rmic = new RMIConnector();
+    
+    String userID =(String) session.getAttribute("USER_ID");
+    String hfc =(String) session.getAttribute("HEALTH_FACILITY_CODE");
+    String dis =(String) session.getAttribute("DISCIPLINE_CODE");
+    String subdis =(String) session.getAttribute("SUB_DISCIPLINE_CODE");
+    
     //String process = request.getParameter("process");
     String orderNo = request.getParameter("orderNo");
     String bsCode = request.getParameter("bsCode");
     String modCode = request.getParameter("modCode");
     String proCode = request.getParameter("proCode");
     String comment = request.getParameter("comment");
+    String pmiNo = request.getParameter("pmiNo");
+    String orderDate = request.getParameter("orderDate");
+    
     
     boolean isSuccess = false;
     
@@ -36,6 +46,10 @@
     if(isSuccess){
         Order_Master om = new Order_Master(orderNo);
         om.updateOrderMasterStatus();
+        
+        EHRMessageSender ems = new EHRMessageSender(userID, hfc, dis, subdis, pmiNo, orderNo, orderDate);
+        ems.insertIntoEHR_LHR("06", bsCode, modCode, proCode);
+        
         out.print("success");    
     
     }else{

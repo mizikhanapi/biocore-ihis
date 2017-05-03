@@ -29,7 +29,7 @@
 
         var row = $(this).closest("tr");
         var arrData = row.find('td').eq(0).text().split('|');
-        var bsCode = arrData[1], bsName = arrData[2], modCode = arrData[3], modName = arrData[4], proCode = arrData[5], proName = arrData[6], orderNo = arrData[0], comment = arrData[7];
+        var bsCode = arrData[1], bsName = arrData[2], modCode = arrData[3], modName = arrData[4], proCode = arrData[5], proName = arrData[6], orderNo = arrData[0], comment = arrData[7], pmiNo = arrData[8], orderDate = arrData[9];
 
         var data = {
             orderNo: orderNo,
@@ -61,7 +61,10 @@
         $('#VR_proName').val(proName);
         $('#VR_pro_cd').val(proCode);
         $('#VR_comment').val(comment);
-
+        $('#VR_pmiNo').val(pmiNo);
+        $('#VR_orderDate').val(orderDate);
+        
+        console.log(pmiNo + '-' + orderDate);
         $('#modal_verifyResult').modal('show');
 
     });
@@ -72,6 +75,8 @@
         var modCode = $('#VR_modality_cd').val();
         var proCode = $('#VR_pro_cd').val();
         var comment = $('#VR_comment').val();
+        var pmiNo = $('#VR_pmiNo').val();
+        var orderDate = $('#VR_orderDate').val();
 
         comment = comment.replace(/'/g, "\\\'").replace(/"/g, "\\\"");
         createScreenLoading();
@@ -81,7 +86,9 @@
             bsCode: bsCode,
             modCode: modCode,
             proCode: proCode,
-            comment: comment
+            comment: comment,
+            pmiNo: pmiNo,
+            orderDate: orderDate
         };
 
         $.ajax({

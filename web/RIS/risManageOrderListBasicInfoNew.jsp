@@ -174,7 +174,7 @@
 </h4>
 
 
-<div id="risManageOrderDetailsListTableDiv" class="form-group">
+<div id="risManageOrderDetailsListTableDiv" class="form-group" style="overflow-x:auto;">
     <table class="table table-filter table-striped table-bordered" style="background: #fff; border: 1px solid #ccc; width: 100%" id="risManageOrderDetailsListTable">
         <thead>
         <th style="width: 15%">Body System</th>

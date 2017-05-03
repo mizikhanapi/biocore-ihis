@@ -504,12 +504,6 @@ $('#risManageOrderDetailsListTableDiv').on('click', '#risManageOrderDetailsListT
 
 //-------------------------- prepare exam report --------------------------------------------
 
-//pop up modal....
-$('#risManageOrderDetailsListTableDiv').on('click', '#risManageOrderDetailsListTable #MOD_btnPrepare', function () {
-    $('#PR_modal').modal('show');
-});
-
-//======================== prepare exam report =============================================
 
 //------------------------------- cancel order --------------------------------------------
 $('#risManageOrderDetailsListTableDiv').on('click', '#risManageOrderDetailsListTable #MOD_btnDelete', function () {
@@ -701,10 +695,10 @@ $('#PR_btnSubmit').on('click', function () {
     var proCode = $('#PR_pro_cd').val();
     var comment = $('#PR_comment').val();
 
-    if (RIS_gambarURI === '') {
-        bootbox.alert('Please choose a picture',
+    if (comment === '') {
+        bootbox.alert('Please write a meaningful comment.',
                 function () {
-                    $('#PR_fileToLoad').focus();
+                    $('#PR_comment').focus();
                 }
         );
     }

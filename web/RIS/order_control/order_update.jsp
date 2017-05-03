@@ -71,10 +71,19 @@
         String gambar = request.getParameter("gambar");
         String comment = request.getParameter("comment");
         boolean isSuccess = false;
-
-        String sql = "Insert Into ris_result_detail(order_no, modality_cd, body_system_cd, procedure_cd, episode_date, encounter_date, filler_comments, result_status, created_by, created_date, result_image) "
+        
+        String sql = "";
+        
+        if(!gambar.equalsIgnoreCase("")){
+            sql = "Insert Into ris_result_detail(order_no, modality_cd, body_system_cd, procedure_cd, episode_date, encounter_date, filler_comments, result_status, created_by, created_date, result_image) "
                 + "values('" + orderNo + "', '" + modCode + "', '" + bsCode + "', '" + proCode + "', now(), now(), '" + comment + "', '0', '" + creator + "', now(), '" + gambar + "')";
 
+        }else{
+            sql = "Insert Into ris_result_detail(order_no, modality_cd, body_system_cd, procedure_cd, episode_date, encounter_date, filler_comments, result_status, created_by, created_date) "
+                + "values('" + orderNo + "', '" + modCode + "', '" + bsCode + "', '" + proCode + "', now(), now(), '" + comment + "', '0', '" + creator + "', now())";
+        
+        }
+        
         isSuccess = rmic.setQuerySQL(conn.HOST, conn.PORT, sql);
 
         if (isSuccess) {

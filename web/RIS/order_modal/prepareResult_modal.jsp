@@ -48,7 +48,7 @@
 
                     <!-- Text input-->
                     <div class="form-group">
-                        <label class="col-md-4 control-label" for="textinput" id="hfcLabel">Upload Result*:</label>
+                        <label class="col-md-4 control-label" for="textinput" id="hfcLabel">Upload Result:</label>
                         <div class="col-md-8">
                             <input class="form-control" id="PR_fileToLoad" type="file" accept="image/*" >
                             <!--<input type="hidden" id="PR_gamba_url">-->
@@ -60,9 +60,9 @@
                     
                      <!-- Text input-->
                     <div class="form-group">
-                        <label class="col-md-4 control-label" for="textinput">Comment</label>
+                        <label class="col-md-4 control-label" for="textinput">Comment*</label>
                        <div class="col-md-8">
-                           <textarea id="PR_comment" placeholder="Write your comment here (Optional)" class="form-control input-md" maxlength="500" rows="4"></textarea>
+                           <textarea id="PR_comment" placeholder="Write your comment here (Compulsory)" class="form-control input-md" maxlength="500" rows="4"></textarea>
                         </div>
                     </div>
 

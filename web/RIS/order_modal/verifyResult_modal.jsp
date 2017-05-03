@@ -16,6 +16,9 @@
 
                 <form class="form-horizontal" id="VR_form">
                     
+                    <input type="hidden" id="VR_pmiNo">
+                    <input type="hidden" id="VR_orderDate">
+                    
                      <!-- Text input-->
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="textinput">Order No.*</label>

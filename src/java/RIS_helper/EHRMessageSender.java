@@ -47,7 +47,7 @@ public class EHRMessageSender {
 
         String seperatorMSH = "MSH";                                    // Data 1
         String encodeCharacMSH = "^~";                                  // Data 2
-        String sendAppliMSH =  senderApp;//"06";                        // Data 3 change here for sender: 06-RIS
+        String sendAppliMSH = senderApp;//"06";                        // Data 3 change here for sender: 06-RIS
         String sendFacilityMSH = hfc + "^" + dis + "^" + subdis;        // Data 4
         String recieveAppliMSH = receiverApp; //"08";                   // Data 5 change here for receiever: 08-billing 14-LHR
         String recieveFacilityMSH = hfc + "^" + dis + "^" + subdis;     // Data 6
@@ -74,9 +74,8 @@ public class EHRMessageSender {
 
         return (MSH + "<cr>\n");
     }
-    
-    //======================================================== get MSH end ===================================================================================
 
+    //======================================================== get MSH end ===================================================================================
     public String getPDI() {
         String PDI = "";
 
@@ -457,10 +456,9 @@ public class EHRMessageSender {
 
         DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
         LocalDateTime now = LocalDateTime.now();
-        
+
         /*Sender app varies from 04-PIS, 05-LIS, 06-RIS 
         but receiver App is here is remain the same: 08-Billing  */
-
         String MSH_PDI_ORC = getMSH(senderApp, "08") + getPDI() + getORC("T12113", senderApp, "08");
 
         String FullEHRHeader = "";
@@ -476,7 +474,7 @@ public class EHRMessageSender {
         String sqlGetOrderDetail = "Select rod.procedure_cd, rpm.ris_procedure_name, rpm.selling_price, rod.created_by, rod.created_date "
                 + "from ris_order_detail rod "
                 + "left join ris_procedure_master rpm on rod.procedure_cd = rpm.ris_procedure_cd AND rpm.hfc_cd = '" + hfc + "' "
-                + "where rod.order_status = '2' AND rod.order_no = '"+orderNo+"';";
+                + "where rod.order_status = '2' AND rod.order_no = '" + orderNo + "';";
         ArrayList<ArrayList<String>> dataOrderDetail = conn.getData(sqlGetOrderDetail);
 
         if (dataOrderDetail.size() < 1) {
@@ -531,10 +529,87 @@ public class EHRMessageSender {
                 + "from ehr_central;";
 
         rmic.setQuerySQL(conn.HOST, conn.PORT, sqlInsert);
-        
-        String sqlUpdateBillingStatus = "Update ris_order_master set billing_status = '2' Where order_no = '"+orderNo+"';";
-        
+
+        String sqlUpdateBillingStatus = "Update ris_order_master set billing_status = '2' Where order_no = '" + orderNo + "';";
+
         rmic.setQuerySQL(conn.HOST, conn.PORT, sqlUpdateBillingStatus);
+
+    }
+
+//====================================================== end insert EHR FAR ============================================================================
+    public void insertIntoEHR_LHR(String senderApp, String bodySystemCode, String modalityCode, String procedureCode) {
+
+        RMIConnector rmic = new RMIConnector();
+
+        DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        LocalDateTime now = LocalDateTime.now();
+
+        /*================================================================
+        Sender app varies from 04-PIS, 05-LIS, 06-RIS 
+        but receiver App is here is remain the same: 14-LHR(data warehouse)  
+        Transaction code is T12202 for RIS response report
+        ==================================================================*/
+        String MSH_PDI_ORC = getMSH(senderApp, "14") + getPDI() + getORC("T12202", senderApp, "14");
+
+        String FullEHRHeader = "";
+
+        String EHRSecondHeader = "";
+
+        /*==============RSS format========================
+        RSS|
+        1<investigation test code>^<investigation test name>^<coding standard(ICD10-PCS)>|
+        2<imaging report code>^<imaging report name>^<coding standard(UD)>|  --for time being, let it empty
+        3<perform by id>^<perform by name>^<UD>|
+        4<date perform>|
+        5<report provided by id>^<report provided by name>^<UD>|
+        6<report date>|
+        7<report notes>|
+        <cr>
+        =================================================*/
+        String eachDetail = "RSS||||||||<cr>\n";
+
+        
+        //                                     0                    1                       2             3               4             5                   6
+        String sqlGetResultDetail = "select rrd.procedure_cd, rpm.ris_procedure_name, rrd.created_by, au.USER_NAME, rod.exam_date, rrd.created_date, rrd.filler_comments "
+                + "from ris_result_detail rrd "
+                + "left join ris_order_detail rod on rrd.order_no = rod.order_no AND rrd.body_system_cd = rod.body_system_cd AND rrd.modality_cd = rod.modality_cd AND rrd.procedure_cd = rod.procedure_cd "
+                + "left join ris_procedure_master rpm on rrd.procedure_cd = rpm.ris_procedure_cd AND rpm.hfc_cd = '"+hfc+"' "
+                + "left join adm_users au on rrd.created_by = au.USER_ID "
+                + "where rrd.result_status = '2' AND rrd.order_no = '"+orderNo+"' AND rrd.body_system_cd = '"+bodySystemCode+"' AND rrd.modality_cd='"+modalityCode+"' AND rrd.procedure_cd = '"+procedureCode+"';";
+        
+        ArrayList<ArrayList<String>> dataResultDetail = conn.getData(sqlGetResultDetail);
+
+        if (dataResultDetail.size() < 1) {
+            EHRSecondHeader = eachDetail;
+        } else {
+            
+            eachDetail = "RSS"
+                    + "| "+dataResultDetail.get(0).get(0)+" ^ "+dataResultDetail.get(0).get(1)+" ^ ICD10-PCS "
+                    + "| "
+                    + "| "+dataResultDetail.get(0).get(2)+" ^ "+dataResultDetail.get(0).get(3)+" ^ UD "
+                    + "| "+dataResultDetail.get(0).get(4)
+                    + "| "+dataResultDetail.get(0).get(2)+" ^ "+dataResultDetail.get(0).get(3)+" ^ UD "
+                    + "| "+dataResultDetail.get(0).get(5)
+                    + "| "+dataResultDetail.get(0).get(6)
+                    + "|<cr>\n";
+            
+            EHRSecondHeader = eachDetail;
+        }
+
+        FullEHRHeader = MSH_PDI_ORC + EHRSecondHeader;
+
+//        String CENTRAL_CODE = "";                       // Date 1
+        String PMI_NO = pmiNo;                          // Date 2
+//        String C_TXNDATE = format.format(now);          // Date 3
+        String C_TxnData = FullEHRHeader;               // Date 4
+
+        // Insert Into EHR Central
+        String sqlInsert = "INSERT INTO ehr_central (CENTRAL_CODE,PMI_NO,C_TXNDATE,C_TxnData,STATUS,STATUS_1,STATUS_2,STATUS_3,STATUS_4,STATUS_5) "
+                + "Select (max(CENTRAL_CODE)+1), '" + PMI_NO + "', now(), '" + C_TxnData + "', '0', '0', '0', '0', '0', '0' "
+                + "from ehr_central;";
+
+        rmic.setQuerySQL(conn.HOST, conn.PORT, sqlInsert);
+
 
     }
 

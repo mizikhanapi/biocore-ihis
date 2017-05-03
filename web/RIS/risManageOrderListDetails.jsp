@@ -102,6 +102,7 @@
     $('#risManageOrderDetailsListTable').DataTable({
         "paging": false,
         "searching": false,
+       // "scrollX": true,
         "info": false,
         "language": {
             "emptyTable": "No Request Available To Display"
