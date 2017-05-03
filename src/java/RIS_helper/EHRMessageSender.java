@@ -39,7 +39,7 @@ public class EHRMessageSender {
 
     }
 
-    public String getMSH() {
+    public String getMSH(String senderApp, String receiverApp) {
         String MSH = "";
 
         DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
@@ -47,10 +47,10 @@ public class EHRMessageSender {
 
         String seperatorMSH = "MSH";                                    // Data 1
         String encodeCharacMSH = "^~";                                  // Data 2
-        String sendAppliMSH = "06";                                     // Data 3
-        String sendFacilityMSH = hfc + "^" + dis + "^" + subdis;                // Data 4
-        String recieveAppliMSH = "08";                                  // Data 5
-        String recieveFacilityMSH = hfc + "^" + dis + "^" + subdis;             // Data 6
+        String sendAppliMSH =  senderApp;//"06";                        // Data 3 change here for sender: 06-RIS
+        String sendFacilityMSH = hfc + "^" + dis + "^" + subdis;        // Data 4
+        String recieveAppliMSH = receiverApp; //"08";                   // Data 5 change here for receiever: 08-billing 14-LHR
+        String recieveFacilityMSH = hfc + "^" + dis + "^" + subdis;     // Data 6
         String currentDateMSH = format.format(now);                     // Data 7
         String securityMSH = "";                                        // Data 8
         String messageTypeMSH = "";                                     // Data 9
@@ -70,17 +70,19 @@ public class EHRMessageSender {
                 + //            8                    9                     10                       11                    12                    13                  14                        15
                 securityMSH + "|" + messageTypeMSH + "|" + messageControlMSH + "|" + processingMSH + "|" + versionMSH + "|" + sequenceMSH + "|" + continuationMSH + "|" + acceptAcknowlegmentMSH + "|"
                 + //             16                           17                    18                          19                                        21                          22  
-                applicaAcknowlegmentMSH + "|" + countryCodeMSH + "|" + characterSetMSH + "|" + principalLanguageMSH;
+                applicaAcknowlegmentMSH + "|" + countryCodeMSH + "|" + characterSetMSH + "|" + principalLanguageMSH + "|";
 
         return (MSH + "<cr>\n");
     }
+    
+    //======================================================== get MSH end ===================================================================================
 
     public String getPDI() {
         String PDI = "";
 
         String sqlPatient = "SELECT PMI_NO,PATIENT_NAME,OLD_IC_NO,NEW_IC_NO,ID_TYPE,ID_NO,SEX_CODE,BIRTH_DATE,RACE_CODE,MARITAL_STATUS_CODE,"
                 + "RELIGION_CODE,NATIONALITY,HOME_ADDRESS,POSTAL_TOWN_CODE,POSTAL_DISTRICT_CODE,POSTAL_STATE_CODE,POSTAL_COUNTRY_CODE,"
-                + "POSTAL_POSTCODE,HOME_PHONE,MOBILE_PHONE,EMAIL_ADDRESS FROM pms_patient_biodata WHERE pmi_no = '" + pmiNo + "'";
+                + "POSTAL_POSTCODE,HOME_PHONE,MOBILE_PHONE,EMAIL_ADDRESS FROM pms_patient_biodata WHERE pmi_no = '" + pmiNo + "' LIMIT 1";
         ArrayList<ArrayList<String>> dataPDI = conn.getData(sqlPatient);
 
         // Variable PDI
@@ -266,20 +268,21 @@ public class EHRMessageSender {
                 + //          11                  12               13                  14                  15                16               17                   18              19                        
                 religionPDI + "|" + nationPDI + "|" + addressPDI + "|" + address2PDI + "|" + address3PDI + "|" + townPDI + "|" + districtPDI + "|" + statePDI + "|" + countryPDI + "|"
                 + //          20                  21                22                 23                 24
-                postcodePDI + "|" + homeNoPDI + "|" + officeNoPDI + "|" + mobileNoPDI + "|" + emailPDI;
+                postcodePDI + "|" + homeNoPDI + "|" + officeNoPDI + "|" + mobileNoPDI + "|" + emailPDI + "|";
 
         //out.print(PDIFinal + "<cr>");
         return (PDI + "<cr>\n");
     }
+    // ====================================================================================== end get PDI ====================================================
 
-    public String getORC() {
+    public String getORC(String txn_code, String senderApp, String receiverApp) {
         String ORC = "";
 
         DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
         LocalDateTime now = LocalDateTime.now();
 
         String headORC = "ORC";                           // Data 0
-        String transactionORC = "T12113";                 // Data 1
+        String transactionORC = txn_code; //"T12113";                 // Data 1,T12113 code for billing transaction or T12202 for radiology response
         String orderNoORC = orderNo;                      // Data 2
         String fillerOrderNoORC = "";                     // Data 3
         String orderStatusORC = "NO";                     // Data 4
@@ -295,7 +298,7 @@ public class EHRMessageSender {
         String orderDispORC = dis;                   // Data 13
         String orderSubDispORC = subdis;                // Data 14
 
-        String orderApplicationORC = "06";            // Data 15 I chang here from 04 to 06
+        String orderApplicationORC = senderApp; //"06";            // Data 15 I change here from 04-PIS to 06-RIS sender app
         String orderHFCADMPhoneNoORC = "";          // Data 16
         String orderHFCAddress1ORC = "";            // Data 17
         String orderHFCAddress2ORC = "";            // Data 18
@@ -310,7 +313,7 @@ public class EHRMessageSender {
         String providerHFCORC = hfc;                 // Data 26
         String providerDispORC = dis;                // Data 27
         String providerSubDispORC = subdis;             // Data 28
-        String providerApplicationORC = "08";         // Data 29
+        String providerApplicationORC = receiverApp; //"08";         // Data 29 change here for receiver app: 08-billing(FAR), 14-LHR
         String providerHFCAddress1ORC = "";         // Data 30
 
         String providerHFCAddress2ORC = "";         // Data 31
@@ -441,20 +444,24 @@ public class EHRMessageSender {
                 + //                        
                 orderHFCCountryORC + "|" + orderHFCPostcodeORC + "|" + orderHFCPhoneNoORC + "|" + providerHFCORC + "|" + providerDispORC + "|" + providerSubDispORC + "|" + providerApplicationORC + "|" + providerHFCAddress1ORC + "|"
                 + //          
-                providerHFCAddress2ORC + "|" + providerHFCAddress3ORC + "|" + providerHFCTownORC + "|" + providerHFCDistrictORC + "|" + providerHFCStateORC + "|" + providerHFCCountryORC + "|" + providerHFCPostcodeORC + "|" + providerHFCPhoneNoORC + "|" + commentORC;
+                providerHFCAddress2ORC + "|" + providerHFCAddress3ORC + "|" + providerHFCTownORC + "|" + providerHFCDistrictORC + "|" + providerHFCStateORC + "|" + providerHFCCountryORC + "|" + providerHFCPostcodeORC + "|" + providerHFCPhoneNoORC + "|" + commentORC + "|";
 
         //out.print(ORCFinal + "<cr>");
         return (ORC + "<cr>\n");
-    }//end getORC
+    }
+//==================================================== end getORC ==============================================================================
 
-    public void insertIntoEHR() {
+    public void insertIntoEHR_FAR(String senderApp) {
 
         RMIConnector rmic = new RMIConnector();
 
         DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
         LocalDateTime now = LocalDateTime.now();
+        
+        /*Sender app varies from 04-PIS, 05-LIS, 06-RIS 
+        but receiver App is here is remain the same: 08-Billing  */
 
-        String MSH_PDI_ORC = getMSH() + getPDI() + getORC();
+        String MSH_PDI_ORC = getMSH(senderApp, "08") + getPDI() + getORC("T12113", senderApp, "08");
 
         String FullEHRHeader = "";
 
@@ -486,7 +493,7 @@ public class EHRMessageSender {
                         + "|1"
                         + "|" + dataOrderDetail.get(i).get(3)
                         + "|" + dataOrderDetail.get(i).get(4)
-                        + "<cr>\n";
+                        + "|<cr>\n";
                 EHRSecondHeader = EHRSecondHeader + eachDetail;
             }//end for
 
