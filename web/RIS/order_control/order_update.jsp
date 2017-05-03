@@ -94,7 +94,7 @@
                     + "where order_no = '" + orderNo + "' AND modality_cd = '" + modCode + "' AND body_system_cd = '" + bsCode + "' AND procedure_cd = '" + proCode + "' ";
 
             rmic.setQuerySQL(conn.HOST, conn.PORT, sql);
-            
+
             sql = "Delete from ris_result_detail  "
                     + "where order_no = '" + orderNo + "' AND modality_cd = '" + modCode + "' AND body_system_cd = '" + bsCode + "' AND procedure_cd = '" + proCode + "' ";
 
@@ -102,4 +102,23 @@
         }
 
     }//end report
+    else if (process.equalsIgnoreCase("reject")) {
+
+        String sql = "Update ris_order_detail set order_status = '3', filler_comments = '' "
+                + "where order_no = '" + orderNo + "' AND modality_cd = '" + modCode + "' AND body_system_cd = '" + bsCode + "' AND procedure_cd = '" + proCode + "' ";
+
+        boolean isUpdate = rmic.setQuerySQL(conn.HOST, conn.PORT, sql);
+
+        sql = "Delete from ris_result_detail  "
+                + "where order_no = '" + orderNo + "' AND modality_cd = '" + modCode + "' AND body_system_cd = '" + bsCode + "' AND procedure_cd = '" + proCode + "' ";
+
+        boolean isDelete = rmic.setQuerySQL(conn.HOST, conn.PORT, sql);
+        
+        if(isDelete && isUpdate){
+            out.print("success");
+        }else{
+            out.print("fail");
+        }
+
+    }//end reject
 %>
