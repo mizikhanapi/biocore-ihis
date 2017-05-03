@@ -10,7 +10,7 @@
     
     Conn conn = new Conn();
     RMIConnector rmic = new RMIConnector();
-    String user_id = session.getAttribute("USER_ID").toString();
+    String user_id = (String) session.getAttribute("USER_ID");
     
     String query = "Update adm_users set login_status = '0' where user_id = '"+user_id+"'";
     
