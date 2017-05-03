@@ -21,6 +21,7 @@ public class MainExtractor {
    public boolean extract(){
    
     t.getQuery();
+    if(t.getQuery()== true){
     System.out.println(t.getTxndata());
     
     spv2.startProcess(t.getTxndata());
@@ -95,7 +96,9 @@ public class MainExtractor {
    
     update_ehr_central u = new update_ehr_central();
     u.update_status(t.getCentral_Code());
-   
+    }else{
+        System.out.println("No data");
+    }
    return true;
    }
    
