@@ -32,6 +32,7 @@
     <th style="text-align: center; width: 12%;">Order Date</th>
     <th style="text-align: center;">Health Facility Code</th>
     <th style="text-align: center;">Doctor's Name</th>
+    <th style="text-align: center;">Status</th>
     <th style="text-align: center;">Action</th>
     <th style="text-align: center;">Send the bill</th>
 </thead>
@@ -46,13 +47,13 @@
         String sql = "";
 
         if ((!ic.equals(""))) {
-            sql = "SELECT lis_order_master.pmi_no,lis_order_master.order_no,lis_order_master.hfc_cd,lis_order_master.episode_date,lis_order_master.encounter_date,lis_order_master.order_date,lis_order_master.order_by,lis_order_master.hfc_from,lis_order_master.hfc_to,lis_order_master.order_status,lis_order_master.diagnosis_cd,lis_order_master.created_by,lis_order_master.created_date,pms_patient_biodata.PATIENT_NAME,pms_patient_biodata.NEW_IC_NO,pms_patient_biodata.BIRTH_DATE,pms_patient_biodata.SEX_CODE,pms_patient_biodata.BLOOD_TYPE FROM lis_order_master JOIN pms_patient_biodata ON (lis_order_master.pmi_no = pms_patient_biodata.PMI_NO) WHERE lis_order_master.order_status='3' AND pms_patient_biodata.NEW_IC_NO = '" + ic + "' AND lis_order_master.hfc_cd = '" + hfc_cd + "'";
+            sql = "SELECT lis_order_master.pmi_no,lis_order_master.order_no,lis_order_master.hfc_cd,lis_order_master.episode_date,lis_order_master.encounter_date,lis_order_master.order_date,lis_order_master.order_by,lis_order_master.hfc_from,lis_order_master.hfc_to,lis_order_master.order_status,lis_order_master.diagnosis_cd,lis_order_master.created_by,lis_order_master.created_date,pms_patient_biodata.PATIENT_NAME,pms_patient_biodata.NEW_IC_NO,pms_patient_biodata.BIRTH_DATE,pms_patient_biodata.SEX_CODE,pms_patient_biodata.BLOOD_TYPE,lis_order_master.order_status FROM lis_order_master JOIN pms_patient_biodata ON (lis_order_master.pmi_no = pms_patient_biodata.PMI_NO) WHERE lis_order_master.order_status>='3' AND pms_patient_biodata.NEW_IC_NO = '" + ic + "' AND lis_order_master.hfc_cd = '" + hfc_cd + "'";
         }
         if (!order_no.equals("")) {
-            sql = "SELECT lis_order_master.pmi_no,lis_order_master.order_no,lis_order_master.hfc_cd,lis_order_master.episode_date,lis_order_master.encounter_date,lis_order_master.order_date,lis_order_master.order_by,lis_order_master.hfc_from,lis_order_master.hfc_to,lis_order_master.order_status,lis_order_master.diagnosis_cd,lis_order_master.created_by,lis_order_master.created_date,pms_patient_biodata.PATIENT_NAME,pms_patient_biodata.NEW_IC_NO,pms_patient_biodata.BIRTH_DATE,pms_patient_biodata.SEX_CODE,pms_patient_biodata.BLOOD_TYPE FROM lis_order_master JOIN pms_patient_biodata ON (lis_order_master.pmi_no = pms_patient_biodata.PMI_NO) WHERE lis_order_master.order_status='3' AND lis_order_master.hfc_cd = '" + hfc_cd + "' AND lis_order_master.order_no = '" + order_no + "'";
+            sql = "SELECT lis_order_master.pmi_no,lis_order_master.order_no,lis_order_master.hfc_cd,lis_order_master.episode_date,lis_order_master.encounter_date,lis_order_master.order_date,lis_order_master.order_by,lis_order_master.hfc_from,lis_order_master.hfc_to,lis_order_master.order_status,lis_order_master.diagnosis_cd,lis_order_master.created_by,lis_order_master.created_date,pms_patient_biodata.PATIENT_NAME,pms_patient_biodata.NEW_IC_NO,pms_patient_biodata.BIRTH_DATE,pms_patient_biodata.SEX_CODE,pms_patient_biodata.BLOOD_TYPE,lis_order_master.order_status FROM lis_order_master JOIN pms_patient_biodata ON (lis_order_master.pmi_no = pms_patient_biodata.PMI_NO) WHERE lis_order_master.order_status>='3' AND lis_order_master.hfc_cd = '" + hfc_cd + "' AND lis_order_master.order_no = '" + order_no + "'";
         }
         if ((!DateFrom.equals("")) && (!DateTo.equals(""))) {
-            sql = "SELECT lis_order_master.pmi_no,lis_order_master.order_no,lis_order_master.hfc_cd,lis_order_master.episode_date,lis_order_master.encounter_date,lis_order_master.order_date,lis_order_master.order_by,lis_order_master.hfc_from,lis_order_master.hfc_to,lis_order_master.order_status,lis_order_master.diagnosis_cd,lis_order_master.created_by,lis_order_master.created_date,pms_patient_biodata.PATIENT_NAME,pms_patient_biodata.NEW_IC_NO,pms_patient_biodata.BIRTH_DATE,pms_patient_biodata.SEX_CODE,pms_patient_biodata.BLOOD_TYPE FROM lis_order_master JOIN pms_patient_biodata ON (lis_order_master.pmi_no = pms_patient_biodata.PMI_NO) WHERE lis_order_master.order_status='3' AND lis_order_master.hfc_cd = '" + hfc_cd + "' AND lis_order_master.created_date BETWEEN '" + DateFrom + "' AND '" + DateTo + "'";
+            sql = "SELECT lis_order_master.pmi_no,lis_order_master.order_no,lis_order_master.hfc_cd,lis_order_master.episode_date,lis_order_master.encounter_date,lis_order_master.order_date,lis_order_master.order_by,lis_order_master.hfc_from,lis_order_master.hfc_to,lis_order_master.order_status,lis_order_master.diagnosis_cd,lis_order_master.created_by,lis_order_master.created_date,pms_patient_biodata.PATIENT_NAME,pms_patient_biodata.NEW_IC_NO,pms_patient_biodata.BIRTH_DATE,pms_patient_biodata.SEX_CODE,pms_patient_biodata.BLOOD_TYPE,lis_order_master.order_status FROM lis_order_master JOIN pms_patient_biodata ON (lis_order_master.pmi_no = pms_patient_biodata.PMI_NO) WHERE lis_order_master.order_status>='3' AND lis_order_master.hfc_cd = '" + hfc_cd + "' AND lis_order_master.created_date BETWEEN '" + DateFrom + "' AND '" + DateTo + "'";
         }
 
         ArrayList<ArrayList<String>> dataPatientOrderList = conn.getData(sql);
@@ -70,6 +71,18 @@
 <td><%= dataPatientOrderList.get(i).get(5)%></td> <!-- Order Date -->
 <td><%= dataPatientOrderList.get(i).get(2)%></td> <!-- Health Facility Code -->
 <td><%= dataPatientOrderList.get(i).get(6)%></td> <!-- Doctor's Name -->
+<td><%
+        //out.print(dataPatientOrderList.get(i).get(9));
+    if (dataPatientOrderList.get(i).get(9).equals("4")) {
+    %>
+    Already Sent to Bill
+    <%
+    } else {
+    %>
+    Waiting Sent to Bill
+    <%
+        }
+    %></td>
 <td><button class="btn btn-success " type="button" id="btnOrderDispense_<%=i%>" name="btnOrderDispense" > <i class="fa fa-shopping-cart fa-lg"></i></button>
     <script>
         $("#btnOrderDispense_<%=i%>").click(function () {
@@ -159,7 +172,8 @@
 
                                             var data1 = {
                                                 pmiNo: patientpmino,
-                                                ehr_central: ehr_central
+                                                ehr_central: ehr_central,
+                                                order_no: orderNo
                                             };
                                             $.ajax({
                                                 url: "sentToEHRcentral.jsp",
@@ -193,7 +207,19 @@
     </script>
 </td>
 <td>
+    <%
+        //out.print(dataPatientOrderList.get(i).get(9));
+    if (dataPatientOrderList.get(i).get(9).equals("4")) {
+    %>
+    <input type="checkbox" id="checky" name="order" disabled="disabled" value="<%= dataPatientOrderList.get(i).get(1)%>|<%= dataPatientOrderList.get(i).get(0)%>|<%= dataPatientOrderList.get(i).get(5)%>|<%=dataPatientOrderList.get(i).get(14)%>|<%=dataPatientOrderList.get(i).get(13)%>">
+    <%
+    } else {
+    %>
     <input type="checkbox" id="checky" name="order" value="<%= dataPatientOrderList.get(i).get(1)%>|<%= dataPatientOrderList.get(i).get(0)%>|<%= dataPatientOrderList.get(i).get(5)%>|<%=dataPatientOrderList.get(i).get(14)%>|<%=dataPatientOrderList.get(i).get(13)%>">
+    <%
+        }
+    %>
+
 </td><!-- Doctor's Name -->
 </tr>
 <%
@@ -205,7 +231,7 @@
 
 
 
-<button class="btn btn-primary " type="button" id="btnSendToBill" name="btnSendToBill" disabled="disabled"> <i class="fa fa-print fa-lg" ></i>&nbsp; Send to Bill &nbsp;</button>
+<button class="btn btn-primary " type="button" id="btnSendToBill" name="btnSendToBill"> <i class="fa fa-print fa-lg" ></i>&nbsp; Send to Bill &nbsp;</button>
 <hr class="pemisah">
 <textarea rows="4" cols="50" id="dataMSHPDIORC" style=" display: none">
 </textarea>
@@ -228,11 +254,10 @@
         }
     });
 
-
 </script>
 
 <script type="text/javascript" charset="utf-8">
-
+    $('#btnSendToBill').prop("disabled", true);
     $(document).ready(function () {
         $('#BillTo').DataTable({
             language: {
@@ -260,101 +285,97 @@
                 var patientnic = arrayData1[3];
                 var patientName = arrayData1[4];
 
-                //alert(patientpmino + "  " + patientorderNo + "  " + patientOrderDate + "  " + patientnic + "  " + patientName);
-                var data = {
-                    pmiNo: patientpmino,
-                    orderNo: patientorderNo,
-                    orderDate: patientOrderDate
-                };
-                $.ajax({
-                    url: "patientOrderListDetailDispenseEHRCentralGetMSH.jsp",
-                    type: "post",
-                    timeout: 3000,
-                    data: data,
-                    success: function (returnDataMSHFull) {
-
-                        $.ajax({
-                            url: "patientOrderListDetailDispenseEHRCentralGetPDIFinal.jsp",
-                            type: "post",
-                            timeout: 3000,
-                            data: data,
-                            success: function (returnDataPDIFull) {
+                sentToBill(patientpmino, patientorderNo, patientOrderDate);
 
 
-                                $.ajax({
-                                    url: "patientOrderListDetailDispenseEHRCentralGetORC.jsp",
-                                    type: "post",
-                                    data: data,
-                                    timeout: 3000,
-                                    success: function (returnDataORCFull) {
-
-                                        //Set value to the Second Tab 
-//                                        $("#patientpmino").val(patientpmino);
-//                                        $("#patientName").val(patientName);
-//                                        $("#patientnic").val(patientnic);
-                                        //$("#patientGender").val(patientGender);
-                                        //$("#patientBdate").val(patientBdate);
-                                        //$("#patientBtype").val(patientBtype);
-                                        //$("#patientOrderNo").val(patientorderNo);
-                                        //$("#patientOrderDate").val(patientOrderDate);
-                                        //$("#patientOrderLocationCode").val(patientOrderLocationCode);
-                                        $("#dataMSHPDIORC").val(returnDataMSHFull.trim() + returnDataPDIFull.trim() + returnDataORCFull.trim());
-
-                                        console.log(returnDataMSHFull.trim());
-                                        console.log(returnDataPDIFull.trim());
-                                        console.log(returnDataORCFull.trim());
-                                        console.log($("#dataMSHPDIORC").val());
-
-                                        //loadAllergyDiagnosisOrder(patientOrderNo, patientpmino);
-
-                                        $.ajax({
-                                            url: "patientOrderListDetailItem.jsp",
-                                            type: "post",
-                                            data: data,
-                                            timeout: 3000,
-                                            success: function (returnDataItem) {
-                                                $("#datatest").val(returnDataItem.trim());
-                                                $("#datatest1").val(returnDataMSHFull.trim() + "\n" + returnDataPDIFull.trim() + "\n" + returnDataORCFull.trim() + "\n" + returnDataItem.trim());
-                                                //$('#dataItem').html(returnDataItem);
-                                                //$('#dataItem').trigger('contentchanged');
-                                                console.log(returnDataItem.trim());
-                                                console.log($("#datatest").val());
-                                                console.log($("#datatest1").val());
-                                                var ehr_central = $("#datatest1").val();
-                                                //alert(ehr_central);
-
-                                                var data1 = {
-                                                    pmiNo: patientpmino,
-                                                    ehr_central: ehr_central
-                                                };
-                                                $.ajax({
-                                                    url: "sentToEHRcentral.jsp",
-                                                    type: "post",
-                                                    data: data1,
-                                                    timeout: 3000,
-                                                    success: function (returnEHR) {
-
-
-
-
-                                                    }
-                                                });
-
-                                            }
-                                        });
-
-                                    }
-                                });
-
-                            }
-                        });
-
-                    }
-                });
 
             }
         }
-        alert("Success transfer to Billing");
+
+        function sentToBill(patientpmino, patientorderNo, patientOrderDate) {
+            var data = {
+                pmiNo: patientpmino,
+                orderNo: patientorderNo,
+                orderDate: patientOrderDate
+            };
+
+            $.ajax({
+                url: "patientOrderListDetailDispenseEHRCentralGetMSH.jsp",
+                type: "post",
+                timeout: 3000,
+                data: data[i],
+                success: function (returnDataMSHFull) {
+
+                    $.ajax({
+                        url: "patientOrderListDetailDispenseEHRCentralGetPDIFinal.jsp",
+                        type: "post",
+                        timeout: 3000,
+                        data: data,
+                        success: function (returnDataPDIFull) {
+
+
+                            $.ajax({
+                                url: "patientOrderListDetailDispenseEHRCentralGetORC.jsp",
+                                type: "post",
+                                data: data,
+                                timeout: 3000,
+                                success: function (returnDataORCFull) {
+                                    $("#dataMSHPDIORC").val(returnDataMSHFull.trim() + returnDataPDIFull.trim() + returnDataORCFull.trim());
+
+                                    console.log(returnDataMSHFull.trim());
+                                    console.log(returnDataPDIFull.trim());
+                                    console.log(returnDataORCFull.trim());
+                                    console.log($("#dataMSHPDIORC").val());
+
+                                    //loadAllergyDiagnosisOrder(patientOrderNo, patientpmino);
+
+                                    $.ajax({
+                                        url: "patientOrderListDetailItem.jsp",
+                                        type: "post",
+                                        data: data,
+                                        timeout: 3000,
+                                        success: function (returnDataItem) {
+                                            $("#datatest").val(returnDataItem.trim());
+                                            $("#datatest1").val(returnDataMSHFull.trim() + "\n" + returnDataPDIFull.trim() + "\n" + returnDataORCFull.trim() + "\n" + returnDataItem.trim());
+                                            //$('#dataItem').html(returnDataItem);
+                                            //$('#dataItem').trigger('contentchanged');
+                                            console.log(returnDataItem.trim());
+                                            console.log($("#datatest").val());
+                                            console.log($("#datatest1").val());
+                                            var ehr_central = $("#datatest1").val();
+                                            //alert(ehr_central);
+
+                                            var data1 = {
+                                                pmiNo: patientpmino,
+                                                ehr_central: ehr_central,
+                                                order_no: patientorderNo
+                                            };
+                                            $.ajax({
+                                                url: "sentToEHRcentral.jsp",
+                                                type: "post",
+                                                data: data1,
+                                                timeout: 3000,
+                                                success: function (returnEHR) {
+
+                                                    alert("Success transfer to Billing");
+
+
+                                                }
+                                            });
+
+                                        }
+                                    });
+
+                                }
+                            });
+
+                        }
+                    });
+
+                }
+            });
+        }
+        //alert("Success transfer to Billing");
     });
 
 

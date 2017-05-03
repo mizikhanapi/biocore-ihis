@@ -9,12 +9,11 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <%
-    
-%>
-<%
     Conn conn = new Conn();
     String ehr_central = request.getParameter("ehr_central");
     String pmino = request.getParameter("pmiNo");
+    String orderNo = request.getParameter("order_no");
+    
     String test = "SELECT MAX( CENTRAL_CODE ) + 1 FROM ehr_central";
     ArrayList<ArrayList<String>> q4 = conn.getData(test);
 
@@ -35,6 +34,9 @@
 
     String sqlInsert = "INSERT INTO ehr_central(CENTRAL_CODE,pmi_no,C_TXNDATE,C_TxnData,STATUS,STATUS_1,STATUS_2,STATUS_3,STATUS_4,STATUS_5) VALUES ('" + id_ehr + "','" + pmino + "','"+date_now+"','" + ehr_central + "','" + status + "','" + status1 + "','" + status2 + "','" + status3 + "','" + status4 + "','" + status5 + "')";
     rmic.setQuerySQL(conn.HOST, conn.PORT, sqlInsert);
-
+    
+    
+    String sqlUpdate = "UPDATE lis_order_master SET order_status='4' WHERE order_no = '"+orderNo+"' ";
+    rmic.setQuerySQL(conn.HOST, conn.PORT, sqlUpdate);
 %>
 

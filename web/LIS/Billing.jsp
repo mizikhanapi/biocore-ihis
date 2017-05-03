@@ -146,15 +146,7 @@
                     </div>
                 </div>
             </div>
-            <script type="text/javascript" charset="utf-8">
-
-                $(document).ready(function () {
-                    $("#viewTA").load("viewTA.jsp");
-                    $('#orderRecieve').DataTable();
-                });
-
-
-            </script>
+            
             <script>
                 w3IncludeHTML();
                 $(document).ready(function () {
