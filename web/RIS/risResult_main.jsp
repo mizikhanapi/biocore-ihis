@@ -109,6 +109,73 @@
         });//end ajx
     });
 
+    $('#VR_btnReject').on('click', function () {
+
+        bootbox.confirm({
+            message: "Are you sure want to reject this result? ",
+            title: "Reject?",
+            buttons: {
+                confirm: {
+                    label: 'Yes',
+                    className: 'btn-success'
+                },
+                cancel: {
+                    label: 'No',
+                    className: 'btn-danger'
+                }
+            },
+            callback: function (result) {
+
+                if (result === true) {
+
+                    var orderNo = $('#VR_orderNo').val();
+                    var bsCode = $('#VR_bodySystem_cd').val();
+                    var modCode = $('#VR_modality_cd').val();
+                    var proCode = $('#VR_pro_cd').val();
+
+                    var data = {
+                        process: 'reject',
+                        orderNo: orderNo,
+                        bsCode: bsCode,
+                        modCode: modCode,
+                        proCode: proCode
+                    };
+
+                    createScreenLoading();
+
+                    $.ajax({
+                        url: "order_control/order_update.jsp",
+                        type: "post",
+                        data: data,
+                        success: function (datas) {
+
+                            if (datas.trim() === 'success') {
+                                bootbox.alert('Result is rejected.');
+                                $("#risResultContent").load("risResult_table.jsp");
+
+                            } else if (datas.trim() === 'fail') {
+                                bootbox.alert("Fail to reject result!");
+                                destroyScreenLoading();
+                            }
+                        },
+                        error: function (jqXHR, textStatus, errorThrown) {
+                            bootbox.alert("Opps! " + errorThrown);
+                            destroyScreenLoading();
+                        },
+                        complete: function (jqXHR, textStatus) {
+                            $('#modal_verifyResult').modal('hide');
+                        }
+
+                    });
+                } else {
+                    console.log("Process Is Canceled");
+                }
+
+            }
+
+        });
+    });
+
 </script>
 
 

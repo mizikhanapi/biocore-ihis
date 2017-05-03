@@ -22,6 +22,9 @@
     String disb = request.getParameter("Dis");
     String wnameb = request.getParameter("wname");
     String WardTypeb = request.getParameter("WardType");
+    String EliSource = request.getParameter("EliSource");
+    String EliTy = request.getParameter("EliTy");
+
 //    String sqlBedID = "SELECT bed_id ,bed_status FROM wis_bed_id WHERE discipline_cd =' " + disb + "',  ward_class_code = ' "+WardTypeb+ "' AND ward_id =  '"+wnameb+"'  order by bed_id asc";
 //    ArrayList<ArrayList<String>> dataBedID = conn.getData(sqlBedID);
 //   ArrayList<String> data = dataBedID.get(0);
@@ -85,9 +88,7 @@
             var row = $(this).closest(".bed");
             //var str = $('#bedID').val();
             var te = row.find('#bedID').val();
-
             var array = te.split("|");
-
             var status = array[1], bedID = array[0];
             //alert(te);
             bootbox.alert({
@@ -96,7 +97,6 @@
                 title: "Process Result",
                 backdrop: true
             });
-
             if (status === "Available") {
 
                 //set value
@@ -105,10 +105,36 @@
             }
 
 
+            var Dis = $('#Dis').val();
+            var wname = $('#wname').val();
+            var WardType = $('#WardType').val();
+            var EliSource = $('#EliSource').val();
+            var EliTy = $('#EliTy').val();
+            $.ajax({
+                async: true,
+                type: "POST",
+                url: "PMS/controller/resultEli.jsp",
+                data: {'Dis': Dis, 'wname': wname, 'WardType': WardType, 'EliSource': EliSource, 'EliTy': EliTy},
+                timeout: 10000,
+                success: function (list) {
+                    //remove the loading 
+                    $body.removeClass("loading");
+                    console.log(list);
+                    var Diso = $('#dis_cd').val();
+                    var wname = $('#wname').val();
+                    var WardType = $('#WardType').val();
+                    $('#wardnew').val(wname);
+                    $('#classnew').val(WardType);
+                    //$('#ratenew').val();
 
+
+                },
+                error: function (xhr, status, error) {
+                    var err = eval("(" + xhr.responseText + ")");
+                    //bootbox.alert(err.Message);
+                }
+            });
         });
-
-
     });
 
 </script>

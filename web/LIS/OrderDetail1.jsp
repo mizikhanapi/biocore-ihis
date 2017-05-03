@@ -209,9 +209,9 @@
         $("#patientGender").val(Gender);
         $("#patientBdate").val(Bdate);
         $("#patientBtype").val(Btype);
-        $("#OrderNo").val(OrderNo);
-        $("#OrderDate").val(OrderDate);
-        $("#OrderLocationCode").val(OrderLocationCode);
+        $("#patientOrderNo").val(OrderNo);
+        $("#patientOrderDate").val(OrderDate);
+        $("#patientOrderLocationCode").val(OrderLocationCode);
 
         loadAllergyDiagnosisOrder(OrderNo, pmino);
 
