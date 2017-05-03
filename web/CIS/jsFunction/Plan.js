@@ -137,7 +137,7 @@ $('#CIS040002').on('shown',function(){
         var cautionary = $('#cautionaryDTO').val();
         var comment = $('#commentDTO').val();
         var hfcOrderDetail = $('#hfcOrderDetailDTO').val();
-        var hfcProviderDetail = $('#hfcProviderDTO').val();
+        var hfcProviderDetail = $('#hfcProviderDetailDTO').val();
 //                    notes+= "DTO|" + getDate() + "^" +  
 
         var $items = $('#searchDTO, #dtoCode, #drugNameDTO, #drugQtyDTO, #drugStrDTO, #doseDTO, #durationDTO, #unitDTO, #drugFrequencyDTO, #drugInstructionDTO, #cautionaryDTO, #commentDTO, #dRouteDTO');
