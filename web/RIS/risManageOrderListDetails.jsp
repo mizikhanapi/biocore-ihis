@@ -25,7 +25,7 @@
             + "Left join ris_procedure_master rpm  on rpm.ris_procedure_cd = rod.procedure_cd AND rpm.hfc_cd = '" + hfc_cd + "' "
             + "Left join ris_body_system bs on bs.body_system_cd = rod.body_system_cd AND bs.hfc_cd = '" + hfc_cd + "' "
             + "Left join ris_modality rmod on rmod.modality_cd = rod.modality_cd AND rmod.hfc_cd = '" + hfc_cd + "' "
-            + "where order_no = '" + orderNo + "' AND order_status in ('0', '1', '5')";
+            + "where order_no = '" + orderNo + "' AND order_status in ('0', '1', '5', '3')";
 
     ArrayList<ArrayList<String>> dataOrderList;
     dataOrderList = conn.getData(orderList);
@@ -66,6 +66,10 @@
                 performDisabled = "disabled";
                 prepareDisabled = "disabled";
                 cancelDisabled = "disabled";
+            
+            }else if(status.equalsIgnoreCase("3")){
+                status = "Result Rejected. Please redo.";
+                prepareDisabled = "disabled";
             }
 
     %>

@@ -84,6 +84,9 @@
                     <div class="btn-group" role="group">
                         <button type="submit" class="btn btn-success btn-block btn-lg" role="button" id="VR_btnSubmit">Verify <span class="fa fa-check" aria-hidden="true" style="display: inline-block;" ></span></button>
                     </div>
+                     <div class="btn-group" role="group">
+                        <button type="submit" class="btn btn-danger btn-block btn-lg" role="button" id="VR_btnReject">Reject <span class="fa fa-ban" aria-hidden="true" style="display: inline-block;" ></span></button>
+                    </div>
                 </div>
             </div>
         </div>
