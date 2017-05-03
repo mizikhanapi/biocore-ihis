@@ -47,14 +47,14 @@
 
         if ((!ic.equals(""))) {
             sql = "SELECT lis_order_master.pmi_no,lis_order_master.order_no,lis_order_master.hfc_cd,lis_order_master.episode_date,lis_order_master.encounter_date,lis_order_master.order_date,lis_order_master.order_by,lis_order_master.hfc_from,lis_order_master.hfc_to,lis_order_master.order_status,lis_order_master.diagnosis_cd,lis_order_master.created_by,lis_order_master.created_date,pms_patient_biodata.PATIENT_NAME,pms_patient_biodata.NEW_IC_NO,pms_patient_biodata.BIRTH_DATE,pms_patient_biodata.SEX_CODE,pms_patient_biodata.BLOOD_TYPE FROM lis_order_master JOIN pms_patient_biodata ON (lis_order_master.pmi_no = pms_patient_biodata.PMI_NO) WHERE lis_order_master.order_status='3' AND pms_patient_biodata.NEW_IC_NO = '" + ic + "' AND lis_order_master.hfc_cd = '" + hfc_cd + "'";
-        } 
+        }
         if (!order_no.equals("")) {
-           sql = "SELECT lis_order_master.pmi_no,lis_order_master.order_no,lis_order_master.hfc_cd,lis_order_master.episode_date,lis_order_master.encounter_date,lis_order_master.order_date,lis_order_master.order_by,lis_order_master.hfc_from,lis_order_master.hfc_to,lis_order_master.order_status,lis_order_master.diagnosis_cd,lis_order_master.created_by,lis_order_master.created_date,pms_patient_biodata.PATIENT_NAME,pms_patient_biodata.NEW_IC_NO,pms_patient_biodata.BIRTH_DATE,pms_patient_biodata.SEX_CODE,pms_patient_biodata.BLOOD_TYPE FROM lis_order_master JOIN pms_patient_biodata ON (lis_order_master.pmi_no = pms_patient_biodata.PMI_NO) WHERE lis_order_master.order_status='3' AND lis_order_master.hfc_cd = '" + hfc_cd + "' AND lis_order_master.order_no = '" + order_no + "'";
-        }if ((!DateFrom.equals("")) && (!DateTo.equals("")))
-        {
+            sql = "SELECT lis_order_master.pmi_no,lis_order_master.order_no,lis_order_master.hfc_cd,lis_order_master.episode_date,lis_order_master.encounter_date,lis_order_master.order_date,lis_order_master.order_by,lis_order_master.hfc_from,lis_order_master.hfc_to,lis_order_master.order_status,lis_order_master.diagnosis_cd,lis_order_master.created_by,lis_order_master.created_date,pms_patient_biodata.PATIENT_NAME,pms_patient_biodata.NEW_IC_NO,pms_patient_biodata.BIRTH_DATE,pms_patient_biodata.SEX_CODE,pms_patient_biodata.BLOOD_TYPE FROM lis_order_master JOIN pms_patient_biodata ON (lis_order_master.pmi_no = pms_patient_biodata.PMI_NO) WHERE lis_order_master.order_status='3' AND lis_order_master.hfc_cd = '" + hfc_cd + "' AND lis_order_master.order_no = '" + order_no + "'";
+        }
+        if ((!DateFrom.equals("")) && (!DateTo.equals(""))) {
             sql = "SELECT lis_order_master.pmi_no,lis_order_master.order_no,lis_order_master.hfc_cd,lis_order_master.episode_date,lis_order_master.encounter_date,lis_order_master.order_date,lis_order_master.order_by,lis_order_master.hfc_from,lis_order_master.hfc_to,lis_order_master.order_status,lis_order_master.diagnosis_cd,lis_order_master.created_by,lis_order_master.created_date,pms_patient_biodata.PATIENT_NAME,pms_patient_biodata.NEW_IC_NO,pms_patient_biodata.BIRTH_DATE,pms_patient_biodata.SEX_CODE,pms_patient_biodata.BLOOD_TYPE FROM lis_order_master JOIN pms_patient_biodata ON (lis_order_master.pmi_no = pms_patient_biodata.PMI_NO) WHERE lis_order_master.order_status='3' AND lis_order_master.hfc_cd = '" + hfc_cd + "' AND lis_order_master.created_date BETWEEN '" + DateFrom + "' AND '" + DateTo + "'";
         }
-        
+
         ArrayList<ArrayList<String>> dataPatientOrderList = conn.getData(sql);
 
         int size = dataPatientOrderList.size();
@@ -202,25 +202,10 @@
 </tbody>
 </table>
 
-<div>
-    <!-- content goes here -->
-    <form class="form-horizontal" id="addForm">
-        <div class="row">
-            <div class="col-md-2">
-                <input id="dispenseFarBillNo" name="dispenseFarBillNo" type="hidden" class="form-control input-md" maxlength="50" readonly="" value="1253000000019325042017">
-            </div>
-
-            <div class="col-md-4">
-                <input id="dispenseTotalQuantity" name="dispenseTotalQuantity" type="hidden" placeholder="Total Order" class="form-control input-md" maxlength="50" readonly="" value="0">
-                <input id="dispenseTotalQuantityChecked" name="dispenseTotalQuantityChecked" type="hidden" placeholder="Total Order" class="form-control input-md" maxlength="50" readonly="" value="0">
-
-            </div>
-        </div>
-    </form>
-</div>
 
 
-<button class="btn btn-primary " type="button" id="btnSendToBill" name="btnSendToBill" > <i class="fa fa-print fa-lg"></i>&nbsp; Send &nbsp;</button>
+
+<button class="btn btn-primary " type="button" id="btnSendToBill" name="btnSendToBill" disabled="disabled"> <i class="fa fa-print fa-lg" ></i>&nbsp; Send to Bill &nbsp;</button>
 <hr class="pemisah">
 <textarea rows="4" cols="50" id="dataMSHPDIORC" style=" display: none">
 </textarea>
@@ -231,7 +216,20 @@
 <textarea rows="4" cols="50" id="datatest1" style=" display: none">
 </textarea>
 
+<script>
 
+    $('input:checkbox').click(function () {
+        if ($(this).is(':checked')) {
+            $('#btnSendToBill').prop("disabled", false);
+        } else {
+            if ($('.chk').filter(':checked').length < 1) {
+                $('#btnSendToBill').prop("disabled", true);
+            }
+        }
+    });
+
+
+</script>
 
 <script type="text/javascript" charset="utf-8">
 
@@ -336,7 +334,7 @@
                                                     timeout: 3000,
                                                     success: function (returnEHR) {
 
-                                                        
+
 
 
                                                     }
