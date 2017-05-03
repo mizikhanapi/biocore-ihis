@@ -74,14 +74,14 @@
                                                 session.setAttribute( "order_no", null );
                                                 session.setAttribute( "order_date", null );
                                                 Conn conn = new Conn();
-                                                
+                                                String hfc_cd = session.getAttribute("HEALTH_FACILITY_CODE").toString();
                                                 String pmi = request.getParameter("pmi");
                                                 session.setAttribute( "pmi", pmi );
                                                 
                                                 String specimen_no1 = request.getParameter("specimen_no");
                                                 session.setAttribute( "specimen_no", specimen_no1 );
                                                 
-                                                String query1 = "SELECT pb.`PMI_NO`, pb.`NEW_IC_NO`, pb.`PATIENT_NAME`,ls.order_no,ls.specimen_no,ls.`Collection_date`,ls.`Collection_time`,lom.order_date,lom.order_by,lom.hfc_from FROM pms_patient_biodata pb,lis_specimen ls,lis_order_master lom WHERE pb.`PMI_NO` = ls.pmi_no AND ls.pmi_no =lom.pmi_no AND pb.`PMI_NO` = '"+pmi+"' AND ls.specimen_no = '"+specimen_no1+"' GROUP BY(ls.specimen_no)";
+                                                String query1 = "SELECT pb.`PMI_NO`, pb.`NEW_IC_NO`, pb.`PATIENT_NAME`,ls.order_no,ls.specimen_no,ls.`Collection_date`,ls.`Collection_time`,lom.order_date,lom.order_by,lom.hfc_from FROM pms_patient_biodata pb,lis_specimen ls,lis_order_master lom WHERE pb.`PMI_NO` = ls.pmi_no AND ls.pmi_no =lom.pmi_no AND pb.`PMI_NO` = '"+pmi+"' AND ls.specimen_no = '"+specimen_no1+"' AND ls.hfc_cd = '"+hfc_cd+"' GROUP BY(ls.specimen_no)";
                                                 ArrayList<ArrayList<String>> q2 = conn.getData(query1);
                                                 %>  
                                           
@@ -107,9 +107,6 @@
                                             
                                         </p>
                                         <p>
-                                            <em>Registration No: </em>
-                                        </p>
-                                        <p>
                                             <em>Order No: <%=q2.get(i).get(3)%> <input type="text" name="order_no" id="order_no" value="<%=q2.get(i).get(3)%>" style="display: none;"></em>
                                         </p>
                                         <p>
@@ -125,10 +122,7 @@
                                         </br>
                                         <p>
                                             <em>Specimen No: <%=q2.get(i).get(4)%> <input type="text" name="Specimen_no" id="specimen_no" value="<%=q2.get(i).get(4)%>" style="display: none;"></em>
-                                        </p>
-                                        <p>
-                                            <em>Specimen Type: <%%></em>
-                                        </p>
+                                        </p>    
                                          <p>
                                             <em>Collection Date: <%=q2.get(i).get(5)%></em>
                                         </p>

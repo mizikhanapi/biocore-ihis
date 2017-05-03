@@ -8,7 +8,8 @@
                               // Statement st = con.createStatement();
                              //  ResultSet resultset = 
                               // st.executeQuery("SELECT om.order_no,OM.PMI_NO,PMS.PATIENT_NAME,OM.ORDER_DATE,OM.HFC_CD,OM.EPISODE_DATE,OM.ORDER_BY FROM LIS_ORDER_MASTER OM, PMS_PATIENT_BIODATA PMS WHERE OM.pmi_no = PMS.PMI_NO");
-                                     String sqlPatientApp = "SELECT DISTINCT ls.specimen_no,ls.pmi_no,pms.NEW_IC_NO,pms.PATIENT_NAME,lom.order_no,lom.order_status,lom.order_date,ls.item_cd FROM lis_specimen ls,lis_order_detail lod,lis_order_master lom,pms_patient_biodata pms WHERE ls.order_no=lod.order_no AND receive_specimen_status = 'Approve' AND lod.order_no= lom.order_no AND lom.pmi_no = pms.PMI_NO GROUP BY(ls.specimen_no)";
+                              String hfc_cd = session.getAttribute("HEALTH_FACILITY_CODE").toString();       
+                              String sqlPatientApp = "SELECT DISTINCT ls.specimen_no,ls.pmi_no,pms.NEW_IC_NO,pms.PATIENT_NAME,lom.order_no,lom.order_status,lom.order_date,ls.item_cd FROM lis_specimen ls,lis_order_detail lod,lis_order_master lom,pms_patient_biodata pms WHERE ls.order_no=lod.order_no AND receive_specimen_status = 'Approve' AND lod.order_no= lom.order_no AND lom.pmi_no = pms.PMI_NO GROUP BY(ls.specimen_no)";
                                      ArrayList<ArrayList<String>> dataPatientApp = conn.getData(sqlPatientApp);    
 
                         %>
