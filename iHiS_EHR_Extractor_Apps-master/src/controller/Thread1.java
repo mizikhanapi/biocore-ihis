@@ -37,8 +37,6 @@ public class Thread1 implements Runnable {
                 SimpleDateFormat sdf1 = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
                 System.out.println("["+sdf1.format(date1)+"] Extracting ...");
                 
-//                Main m = new Main();
-//                m.view();
                 
                 MainExtractor me = new MainExtractor();
                 me.extract();
