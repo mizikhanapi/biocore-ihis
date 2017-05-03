@@ -50,10 +50,10 @@
                                             </select>
                                         </div>
                                     </div>
-                                    <div class="form-inline">
-                                        <div class="col-md-8 col-md-offset-3">
+                                    <div class="form-group">
+                                        <label class="col-md-4 control-label" for="textinput">From:</label>
+                                        <div class="form-inline col-md-4">
                                             <div class="form-group">
-                                                <label class="col-md-4 control-label" for="textinput">From:</label>
                                                 <div class="col-md-4">
                                                     <input id="startDate" name="startDate" type="text" class="form-control datepicker" placeholder="YYYY/MM/DD" readonly>
                                                 </div>

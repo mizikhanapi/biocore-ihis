@@ -21,7 +21,7 @@ public class MainView {
     public static void main(String[] args) throws IOException {
         
 //        String host = "ecss.utem.edu.my";
-        File file = new File("c:/ipcall");
+        File file = new File("c:/ipcall.txt");
         FileReader fileReader = new FileReader(file);
         BufferedReader  bufferReader = new BufferedReader(fileReader);
         

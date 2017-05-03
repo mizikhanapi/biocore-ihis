@@ -103,15 +103,13 @@
         <title>Report</title>
     </head>
     <body>
-        <!-- side bar -->
-        <%@ include file ="libraries/reportSideMenus.jsp" %>
-        <!-- side bar -->
+
 
         <div class="container-fluid">
             <div class="row">      
-                <div class="main" style="background: #f2f4f8;">
+                <div class="main-dashboard" style="background: #f2f4f8;">
                     <!-- menu top -->
-                    <%@ include file ="libraries/reportTopMenus.jsp" %>
+                    <%@ include file ="libraries/reportTopMenus-dashboard.html" %>
                     <!-- menu top -->
 
                     <div class="row">

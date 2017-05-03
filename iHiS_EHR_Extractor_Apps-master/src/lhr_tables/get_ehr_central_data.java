@@ -14,9 +14,9 @@ public class get_ehr_central_data {
     private String Centre_Code;
     private String national_id_no;
     private String txndata;
-    
-    
-    public void getQuery() {
+    private Boolean result;
+
+    public boolean getQuery() {
 
         RMIConnector rc = new RMIConnector();
         int total_fail_insert = 0; //total of failed insert
@@ -39,23 +39,29 @@ public class get_ehr_central_data {
                 + "AND ec.status = 1"; // select undischarge patient (1)
 
         ArrayList<ArrayList<String>> data2 = rc.getQuerySQL(Config.ipAddressServer, Config.portServer, sql2);
-        for (int j = 0; j < data2.size(); j++) {
-            try {
+        if (data2.size() > 0) {
+            for (int j = 0; j < data2.size(); j++) {
+                try {
 
-                this.pmi_no = data2.get(j).get(1);
-                this.national_id_no = data2.get(j).get(5);
-                this.PERSON_ID_NO = data2.get(j).get(6);
-                this.PERSON_STATUS = data2.get(j).get(7);
-                this.LOCATION_CODE = data2.get(j).get(8);
-                this.Centre_Code = data2.get(j).get(8);
-                this.Central_Code = data2.get(j).get(0);
-                this.txndata = data2.get(j).get(3);
+                    this.pmi_no = data2.get(j).get(1);
+                    this.national_id_no = data2.get(j).get(5);
+                    this.PERSON_ID_NO = data2.get(j).get(6);
+                    this.PERSON_STATUS = data2.get(j).get(7);
+                    this.LOCATION_CODE = data2.get(j).get(8);
+                    this.Centre_Code = data2.get(j).get(8);
+                    this.Central_Code = data2.get(j).get(0);
+                    this.txndata = data2.get(j).get(3);
 
-            } catch (Exception e) {
-                System.out.println(e.getStackTrace());
+                } catch (Exception e) {
+                    System.out.println(e.getStackTrace());
+                }
+
             }
-
+            result = true;
+        }else{
+            result=false;
         }
+        return result;
     }
 
     public String getPmi_no() {

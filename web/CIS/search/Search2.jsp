@@ -6,9 +6,10 @@
     Conn Conn = new Conn();
                                String key = request.getParameter("input");
                                String hfc_cd = session.getAttribute("HEALTH_FACILITY_CODE").toString();
+                               String discipline = session.getAttribute("DISCIPLINE_CODE").toString();
                                 //String key1 = request.getParameter("input2");
                                   
-                                String searchProblem = "select d_trade_name from pis_mdc2 where CONCAT(UPPER(d_trade_name),LOWER(d_trade_name)) like '%" +  key + "%' AND hfc_cd = '"+hfc_cd+"'   ";
+                                String searchProblem = "select d_trade_name from pis_mdc2 where CONCAT(UPPER(d_trade_name),LOWER(d_trade_name)) like '%" +  key + "%' AND hfc_cd = '"+hfc_cd+"'  AND discipline_cd = '"+discipline+"'   ";
                                 ArrayList<ArrayList<String>> search = Conn.getData(searchProblem); 
                                  if (search.size() > 0) 
                                         {
@@ -20,5 +21,5 @@
 <%}%>
 </ul>
 <%}else{%>
-<span>No Record Found!</span>
+<span>No Record Found!<%out.print(searchProblem);%></span>
 <%}%>
