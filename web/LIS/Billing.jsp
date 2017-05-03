@@ -14,23 +14,26 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>View Order</title>
-        <%@include file="Header.jsp"%>
+
 
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">   
         <title>Main Page</title>
         <%@include file="../assets/header.html"%>
 
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <script src="assets/js/jquery.min.js"></script>
+
         <!-- Custom styles for this template -->
         <link rel="stylesheet" href="assets/css/loading.css">
         <link href="assets/datepicker/jquery-ui.css" rel="stylesheet">    
+
+<!--        <link href="datepicker/jquery-ui.css" rel="stylesheet" type="text/css">-->
+
+        <script src="assets/js/jquery.min.js"></script>
         <script src="assets/datepicker/jquery-ui.js"></script>
         <script src="assets/js/form-validator.min.js"></script>
         <script src="assets/js/bootstrap.min.js"></script> 
         <script src="assets/js/w3data.js"></script>
-        <script src="assets/js/bootbox.min.js"></script>  
-        <link href="datepicker/jquery-ui.css" rel="stylesheet" type="text/css">
+        <script src="assets/js/bootbox.min.js"></script>
 
     </head>
     <body>
@@ -146,7 +149,7 @@
                     </div>
                 </div>
             </div>
-            
+
             <script>
                 w3IncludeHTML();
                 $(document).ready(function () {
