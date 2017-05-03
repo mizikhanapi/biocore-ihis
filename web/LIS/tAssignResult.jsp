@@ -23,12 +23,13 @@
     RMIConnector rmic = new RMIConnector();
     Conn conn = new Conn();
     
-    String count  = "SELECT MAX(id_result) FROM lis_assign_result";
+    //String count  = "SELECT MAX(id_result) FROM lis_assign_result";
+    String count = "SELECT IF(MAX(id_result) IS NULL, '0', MAX(id_result)) FROM lis_assign_result";
     //String count = "SELECT CONCAT('LAR',LPAD(SUBSTRING(COALESCE(MAX(id_result),'LAR000'),4,4)+1,4,'0'))FROM lis_assign_result";
     ArrayList<ArrayList<String>> insert = conn.getData(count);
     
-    int get1 = Integer.parseInt(insert.get(0).get(0));	
-    int idResult = get1+1;       
+    int get = Integer.parseInt(insert.get(0).get(0));	
+    int idResult = get+1;       
     String sqlInsert = "INSERT INTO lis_assign_result(item_cd,pmi_no,specimen_no,result,remark,test_name,test_date,testTime,performBy,verification,order_no,id_result) VALUES ('" + item_cd + "','" + pmi + "','" + specimen_no + "','" + Result + "','" + Remark + "','" + testName + "','"+testDate+"','"+testTime+"','"+performBy+"','"+verification+"','"+order_no+"','"+idResult+"')";
     rmic.setQuerySQL(conn.HOST, conn.PORT, sqlInsert);
     

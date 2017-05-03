@@ -82,20 +82,23 @@
                                         
                                         Conn conn = new Conn();
                                 
-                                        String query4 = "SELECT ls.order_no, lod.item_name FROM lis_order_detail lod,lis_specimen ls WHERE lod.item_cd = ls.item_cd AND ls.item_cd='"+item_cd+"' AND ls.specimen_no = '"+specimen_no1+"'";
+                                        String query4 = "SELECT ls.order_no, lod.item_name,lod.order_date FROM lis_order_detail lod,lis_specimen ls,lis_order_master lom WHERE lod.item_cd = ls.item_cd AND lod.order_no = lom.order_no AND ls.item_cd='"+item_cd+"' AND ls.specimen_no = '"+specimen_no1+"'";
                                         ArrayList<ArrayList<String>> q4 = conn.getData(query4);
                                         
                                         out.println( "Test Name: "+q4.get(0).get(1));
                                         
                                         session.setAttribute( "order_no", q4.get(0).get(0) );
                                         session.setAttribute( "item_name", q4.get(0).get(1) );
+                                        session.setAttribute( "order_date", q4.get(0).get(2) ); 
+                                        session.setAttribute( "pmi_no", pmi1 );
                                         out.println("<span class='pull-right'>Item Code:"+item_cd+"</span>");
                                         %></h3>
                                         <input type="text" id="pmi" value="<%=pmi1%>" style=" display: none;">
                                         <input type="text" id="specimen_no" value="<%=specimen_no1%>" style=" display: none;">
                                         <input type="text" id="item_cd" value="<%=item_cd%>" style=" display: none;">
                                         <input type="text" id="order_no" value="<%=q4.get(0).get(0)%>" style=" display: none;">
-                                             
+                                        <input type="text" id="order_no" value="<%=q4.get(0).get(2)%>" style=" display: none;">
+                                            
 <hr>         
     <div id="viewVR">
     

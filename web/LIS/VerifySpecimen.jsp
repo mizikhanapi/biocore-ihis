@@ -72,6 +72,7 @@
                                                 session.setAttribute( "item_name", null );
                                                 session.setAttribute( "specimen_no", null );
                                                 session.setAttribute( "order_no", null );
+                                                session.setAttribute( "order_date", null );
                                                 Conn conn = new Conn();
                                                 
                                                 String pmi = request.getParameter("pmi");

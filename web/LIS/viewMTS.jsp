@@ -131,7 +131,7 @@ ArrayList<ArrayList<String>> dataPatientApp = conn.getData(sql);
             </td>
             <td><%=dataPatientApp.get(i).get(14)%></td>
             <td>
-                <a href='ReceiveSpecimen.jsp?pmi=<%=dataPatientApp.get(i).get(12)%> &specimen_no=<%=dataPatientApp.get(i).get(14)%>' class='btn btn-primary btn-block' >Identify Specimen</a>
+                <a href='ReceiveSpecimen.jsp?pmi=<%=dataPatientApp.get(i).get(15)%> &specimen_no=<%=dataPatientApp.get(i).get(12)%>' class='btn btn-primary btn-block' >Identify Specimen</a>
             </td>
 
         </tr>

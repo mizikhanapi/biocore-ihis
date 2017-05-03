@@ -4,6 +4,7 @@
 <%@page import="bean.Calling_system_bean"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="models.Query"%>
+
 <p style="text-align: right; position: absolute; top: 80px; left: 30px; color: #666; display: block; font-weight: 500; font-size: 24px;"><%
 
     String hfccd = "-";

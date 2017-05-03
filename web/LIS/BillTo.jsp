@@ -47,15 +47,12 @@
 
         if ((!ic.equals(""))) {
             sql = "SELECT lis_order_master.pmi_no,lis_order_master.order_no,lis_order_master.hfc_cd,lis_order_master.episode_date,lis_order_master.encounter_date,lis_order_master.order_date,lis_order_master.order_by,lis_order_master.hfc_from,lis_order_master.hfc_to,lis_order_master.order_status,lis_order_master.diagnosis_cd,lis_order_master.created_by,lis_order_master.created_date,pms_patient_biodata.PATIENT_NAME,pms_patient_biodata.NEW_IC_NO,pms_patient_biodata.BIRTH_DATE,pms_patient_biodata.SEX_CODE,pms_patient_biodata.BLOOD_TYPE FROM lis_order_master JOIN pms_patient_biodata ON (lis_order_master.pmi_no = pms_patient_biodata.PMI_NO) WHERE lis_order_master.order_status='3' AND pms_patient_biodata.NEW_IC_NO = '" + ic + "' AND lis_order_master.hfc_cd = '" + hfc_cd + "'";
-            //out.print("test1");
         } 
         if (!order_no.equals("")) {
            sql = "SELECT lis_order_master.pmi_no,lis_order_master.order_no,lis_order_master.hfc_cd,lis_order_master.episode_date,lis_order_master.encounter_date,lis_order_master.order_date,lis_order_master.order_by,lis_order_master.hfc_from,lis_order_master.hfc_to,lis_order_master.order_status,lis_order_master.diagnosis_cd,lis_order_master.created_by,lis_order_master.created_date,pms_patient_biodata.PATIENT_NAME,pms_patient_biodata.NEW_IC_NO,pms_patient_biodata.BIRTH_DATE,pms_patient_biodata.SEX_CODE,pms_patient_biodata.BLOOD_TYPE FROM lis_order_master JOIN pms_patient_biodata ON (lis_order_master.pmi_no = pms_patient_biodata.PMI_NO) WHERE lis_order_master.order_status='3' AND lis_order_master.hfc_cd = '" + hfc_cd + "' AND lis_order_master.order_no = '" + order_no + "'";
-           //out.print("test2");
         }if ((!DateFrom.equals("")) && (!DateTo.equals("")))
         {
             sql = "SELECT lis_order_master.pmi_no,lis_order_master.order_no,lis_order_master.hfc_cd,lis_order_master.episode_date,lis_order_master.encounter_date,lis_order_master.order_date,lis_order_master.order_by,lis_order_master.hfc_from,lis_order_master.hfc_to,lis_order_master.order_status,lis_order_master.diagnosis_cd,lis_order_master.created_by,lis_order_master.created_date,pms_patient_biodata.PATIENT_NAME,pms_patient_biodata.NEW_IC_NO,pms_patient_biodata.BIRTH_DATE,pms_patient_biodata.SEX_CODE,pms_patient_biodata.BLOOD_TYPE FROM lis_order_master JOIN pms_patient_biodata ON (lis_order_master.pmi_no = pms_patient_biodata.PMI_NO) WHERE lis_order_master.order_status='3' AND lis_order_master.hfc_cd = '" + hfc_cd + "' AND lis_order_master.created_date BETWEEN '" + DateFrom + "' AND '" + DateTo + "'";
-            //out.print("test3");
         }
         
         ArrayList<ArrayList<String>> dataPatientOrderList = conn.getData(sql);
@@ -97,7 +94,7 @@
             var pmiNo = patientpmino;
             var orderNo = patientOrderNo;
             var orderDate = patientOrderDate;
-            alert(pmiNo + " " + orderNo + " " + orderDate);
+            //alert(pmiNo + " " + orderNo + " " + orderDate);
             var data = {
                 pmiNo: pmiNo,
                 orderNo: orderNo,
@@ -294,9 +291,9 @@
                                     success: function (returnDataORCFull) {
 
                                         //Set value to the Second Tab 
-                                        $("#patientpmino").val(patientpmino);
-                                        $("#patientName").val(patientName);
-                                        $("#patientnic").val(patientnic);
+//                                        $("#patientpmino").val(patientpmino);
+//                                        $("#patientName").val(patientName);
+//                                        $("#patientnic").val(patientnic);
                                         //$("#patientGender").val(patientGender);
                                         //$("#patientBdate").val(patientBdate);
                                         //$("#patientBtype").val(patientBtype);
@@ -319,7 +316,7 @@
                                             timeout: 3000,
                                             success: function (returnDataItem) {
                                                 $("#datatest").val(returnDataItem.trim());
-                                                $("#datatest1").val(returnDataMSHFull.trim() + returnDataPDIFull.trim() + returnDataORCFull.trim() + returnDataItem.trim());
+                                                $("#datatest1").val(returnDataMSHFull.trim() + "\n" + returnDataPDIFull.trim() + "\n" + returnDataORCFull.trim() + "\n" + returnDataItem.trim());
                                                 //$('#dataItem').html(returnDataItem);
                                                 //$('#dataItem').trigger('contentchanged');
                                                 console.log(returnDataItem.trim());

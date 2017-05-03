@@ -151,6 +151,7 @@
                             var testDate = $("#testDate<%=i%>").val();
                             var testTime = $("#testTime<%=i%>").val();
                             var idResult = $("#idresult<%=i%>").val();
+                            var item_cd = "<%=item_cd%>";
                             
                             var conf = confirm('Are you sure want to delete?');
                             if (conf) {
@@ -162,7 +163,8 @@
                                         result: Result,
                                         remark: Remark,
                                         date: testDate,
-                                        time: testTime
+                                        time: testTime,
+                                        item_cd: item_cd
                                     },
                                     timeout: 10000, // 10 seconds
                                     success: function (data) {
@@ -188,7 +190,9 @@
                             var testTime = $("#testTime<%=i%>").val();
                             var performBy = $("#performBy<%=i%>").val();
                             var idResult = $("#idresult<%=i%>").val();
+                            var item_cd = "<%=item_cd%>";
                             
+                            alert(idResult+" "+Remark+" "+testDate+" "+testTime+" "+performBy+" "+Result);
                             $.ajax({
                                 url: "tAssignUpdate.jsp",
                                 type: "post",
@@ -198,14 +202,15 @@
                                     Remark: Remark,
                                     testDate: testDate,
                                     testTime: testTime,
-                                    performBy: performBy
+                                    performBy: performBy,
+                                    item_cd: item_cd
                                     
                                 },
                                 timeout: 10000,
                                 success: function(data) {
                                     $("#viewTA").load("viewTA.jsp");
                                         $(".modal-backdrop").hide();
-                                        alert("Success");
+                                        alert("Success Update result");
                                      
                                 },
                                 error: function(err) {
