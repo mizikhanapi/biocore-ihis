@@ -19,56 +19,77 @@
 <%
     RMIConnector rmic = new RMIConnector();
     Conn conn = new Conn();
-    
+
     DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
     LocalDateTime now = LocalDateTime.now();
 
-    String FullEHRHeader = "";
-    
+    String FullEHRHeaderBLI = "";
+    String FullEHRHeaderDDR = "";
+
     // Requesting Parameter
     String pmino = request.getParameter("pmino");
-    String EHRFirstHeader = request.getParameter("EHRFirstHeader");
-    String EHRSecondHeader = request.getParameter("EHRSecondHeader");
+    String EHRFirstHeaderBLI = request.getParameter("EHRFirstHeaderBLI");
+    String EHRSecondHeaderBLI = request.getParameter("EHRSecondHeaderBLI");
+    String EHRFirstHeaderDDR = request.getParameter("EHRFirstHeaderDDR");
+    String EHRSecondHeaderDDR = request.getParameter("EHRSecondHeaderDDR");
+//    String EHRSecondHeaderDDRUpdated = "";
+//
+//    String drugsDispenseMain[] = EHRSecondHeaderDDR.split("\\<cr>");
+//
+//    for (int main = 0; main < drugsDispenseMain.length; main++) {
+//
+//        String drugsDispenseChild[] = drugsDispenseMain[main].split("\\|");
+//        
+//        String join = "";
+//
+//        for (int child = 0; child < drugsDispenseChild.length; child++) {
+//            
+//            String DDR = drugsDispenseChild[0];
+//            String ATC = drugsDispenseChild[1];
+//            String MDC = drugsDispenseChild[2];
+//            String END = "<cr>\n";
+//            
+//            join = DDR+"|"+ATC+"|"+MDC+"|"+END;
+//            
+//           
+//        }
+//        
+//        EHRSecondHeaderDDRUpdated = EHRSecondHeaderDDRUpdated + join;
+//
+//    }
 
-    FullEHRHeader = EHRFirstHeader + EHRSecondHeader;
+    FullEHRHeaderBLI = EHRFirstHeaderBLI + EHRSecondHeaderBLI;
+    FullEHRHeaderDDR = EHRFirstHeaderDDR + EHRSecondHeaderDDR;
 
     String CENTRAL_CODE = "";                       // Date 1
     String PMI_NO = pmino;                          // Date 2
     String C_TXNDATE = format.format(now);          // Date 3
-    String C_TxnData = FullEHRHeader;               // Date 4
+    String C_TxnDataBLI = FullEHRHeaderBLI;            // Date 4
+    String C_TxnDataDDR = FullEHRHeaderDDR;            // Date 4
     String STATUS = "0";                            // Date 5
     String STATUS_1 = "0";                          // Date 6
     String STATUS_2 = "0";                          // Date 7
     String STATUS_3 = "0";                          // Date 8
     String STATUS_4 = "0";                          // Date 9
     String STATUS_5 = "0";                          // Date 10
-    
-    int tempCENTRAL_CODE = 0;
 
-    // Get Max Code Start
-    String sqlCentralCode = "select MAX(CENTRAL_CODE) FROM  ehr_central";
-    ArrayList<ArrayList<String>> dataCENTRALCODE = conn.getData(sqlCentralCode);
+    // Insert Into EHR Central BLI
+    String sqlInsertBLI = "INSERT INTO ehr_central (CENTRAL_CODE,PMI_NO,C_TXNDATE,C_TxnData,STATUS,STATUS_1,STATUS_2,STATUS_3,STATUS_4,STATUS_5) "
+            + " SELECT (MAX(CENTRAL_CODE)+1),'" + PMI_NO + "','" + C_TXNDATE + "','" + C_TxnDataBLI + "','" + STATUS + "','" + STATUS_1 + "','" + STATUS_2 + "','" + STATUS_3 + "', "
+            + "'" + STATUS_4 + "','" + STATUS_5 + "' FROM ehr_central ";
+    boolean isInsertBLI = rmic.setQuerySQL(conn.HOST, conn.PORT, sqlInsertBLI);
 
-    int sizeCENTRALCODE = dataCENTRALCODE.size();
-    for (int i = 0; i < sizeCENTRALCODE; i++) {
-        tempCENTRAL_CODE = Integer.parseInt(dataCENTRALCODE.get(i).get(0).toString());
-    }
-    // Get Max Code End
+    // Insert Into EHR Central DDR
+    String sqlInsertDDR = "INSERT INTO ehr_central (CENTRAL_CODE,PMI_NO,C_TXNDATE,C_TxnData,STATUS,STATUS_1,STATUS_2,STATUS_3,STATUS_4,STATUS_5)"
+            + " SELECT (MAX(CENTRAL_CODE)+1),'" + PMI_NO + "','" + C_TXNDATE + "','" + C_TxnDataDDR + "','" + STATUS + "','" + STATUS_1 + "','" + STATUS_2 + "','" + STATUS_3 + "', "
+            + "'" + STATUS_4 + "','" + STATUS_5 + "' FROM ehr_central ";
+    boolean isInsertDDR = rmic.setQuerySQL(conn.HOST, conn.PORT, sqlInsertDDR);
 
-    // Generate Centarl Code
-    CENTRAL_CODE = String.valueOf(tempCENTRAL_CODE + 1);
     
-    
-    // Insert Into EHR Central
-    String sqlInsert = "INSERT INTO ehr_central (CENTRAL_CODE,PMI_NO,C_TXNDATE,C_TxnData,STATUS,STATUS_1,STATUS_2,STATUS_3,STATUS_4,STATUS_5)"
-            + " VALUES ('" + CENTRAL_CODE + "','" + PMI_NO + "','" + C_TXNDATE + "','" + C_TxnData + "','" + STATUS + "','" + STATUS_1 + "','" + STATUS_2 + "','" + STATUS_3 + "','" + STATUS_4 + "','" + STATUS_5 + "' )";
-
-    boolean isInsert = rmic.setQuerySQL(conn.HOST, conn.PORT, sqlInsert);
-    
-    if (isInsert == true) {
-        out.print("Success"+"|"+sqlInsert);
+    if (isInsertBLI == true && isInsertDDR == true) {
+        out.print("Success");
     } else {
-        out.print("Failed"+"|"+sqlInsert);
+        out.print("Failed");
     }
 
 %>
