@@ -150,7 +150,7 @@ $('#registerBed').click(function () {
         var array_dis = Dis.split("|");
         var Dis = array_dis[0];
         wname = $('#wname').val();
-                RefDR = $('#RefDR').val();
+        RefDR = $('#RefDR').val();
 
         Deposit = $('#Deposit').val();
         WardType = $('#WardType').val();
@@ -200,7 +200,7 @@ $('#registerBed').click(function () {
             'hfc': hfc,
             'now': yyyyMMdd,
             createdBy: createdBy,
-            RefDR :RefDR,
+            RefDR: RefDR,
             sub: sub
 
         };
@@ -236,29 +236,41 @@ $('#registerBed').click(function () {
                             } else if ($.trim(list) === "false") {
                                 bootbox.alert("There something error with the query of register the inpatient");
                             }
+
+                            var wname = $('#wname').val();
+                            var hfc = $("#Rhfc").val();
+                            var createdBy = $("#Rid").val();
+                            var sub = $("#Rsub").val();
+                            var Dis = $('#DisWard').val();
+
+
+
+
+                            $.ajax({
+                                type: "POST",
+                                url: "PMS/addQueue.jsp",
+                                data: {'wname': wname, 'createdBy': createdBy, 'hfc': hfc, 'Dis': Dis, 'sub': sub}, // Send input
+                                timeout: 3000,
+                                success: function (l) {
+                                    console.log(l);
+                                    $body.removeClass("loading");
+                                    if ($.trim(l) === "Success") {
+                                        bootbox.alert("Patient has been add to queue successfully");
+                                    } else if ($.trim(l) === "Failed") {
+                                        bootbox.alert("There something error with the query of add patient to queue");
+                                    }
+                                }, error: function () {
+                                    bootbox.alert("There is an error!");
+                                }
+                            });
+
+
+
                         }, error: function () {
                             bootbox.alert("There is an error!");
                         }
                     });
-                    $.ajax({
-                        type: "POST",
-                        url: "PMS/addQueue.jsp",
-                        data: datas, // Send input
-                        timeout: 3000,
-                        success: function (list) {
-                            console.log(list);
-                            $body.removeClass("loading");
-                            if ($.trim(list) === "Success") {
-                                bootbox.alert("Patient has been add to queue successfully");
-                            } else if ($.trim(list) === "already") {
-                                bootbox.alert("Patient is already add to queue");
-                            } else if ($.trim(list) === "false") {
-                                bootbox.alert("There something error with the query of add patient to queue");
-                            }
-                        }, error: function () {
-                            bootbox.alert("There is an error!");
-                        }
-                    });
+
                 }
             }
         });
@@ -266,6 +278,15 @@ $('#registerBed').click(function () {
 
 
 });
+
+
+
+
+
+
+
+
+
 //event on click clear buton
 $('#btnclear').click(function () {
     $('#myForm2')[0].reset();

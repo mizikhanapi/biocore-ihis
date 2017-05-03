@@ -12,9 +12,8 @@
     String dis = session.getAttribute("DISCIPLINE_CODE").toString();
     String sub = session.getAttribute("SUB_DISCIPLINE_CODE").toString();
     String pageNow = "IR";
-    
-        String hfct = "BC001";
 
+    String hfct = "BC001";
 
     String eliCat = "select * from adm_lookup_detail where master_reference_code = '0063' and hfc_cd ='" + hfc + "'  ";
     String admit = "select * from adm_lookup_detail where master_reference_code ='0023' and hfc_cd ='" + hfc + "'";
@@ -31,21 +30,7 @@
             + "FROM adm_user_access_role a"
             + " LEFT JOIN adm_users b"
             + " ON a.USER_ID = b.USER_ID "
-            + "where a.DISCIPLINE_CODE ='"+dis+"' and  a.ROLE_CODE = '" + DR2 + "' AND a.HEALTH_FACILITY_CODE='" + hfc + "' ";
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+            + "where a.DISCIPLINE_CODE ='" + dis + "' and  a.ROLE_CODE = '" + DR2 + "' AND a.HEALTH_FACILITY_CODE='" + hfc + "' ";
 
     ArrayList<ArrayList<String>> dataRole2, dataEliCat, dataAdmit, dataEliType, dataDocumentType, dataIdType, dataPayerGroup;
 
@@ -153,19 +138,19 @@
                         </div> 
                     </div>
 
-                              <!-- Select Basic -->
-        <div class="form-group">
-            <label class="col-md-4 control-label" for="selectbasic">Eligibility Type*</label>
-            <div class="col-md-6" id="EligibilityTypeDropdown">
-                <select id="EliTy" name="selectbasic" class="form-control" disabled="">
-                   
-                    
-                </select>
-            </div>
+                    <!-- Select Basic -->
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="selectbasic">Eligibility Type*</label>
+                        <div class="col-md-6" id="EligibilityTypeDropdown">
+                            <select id="EliTy" name="selectbasic" class="form-control" disabled="">
 
-        </div>
-                            
-                    
+
+                            </select>
+                        </div>
+
+                    </div>
+
+
 
 
                     <!-- Select Basic -->
@@ -358,6 +343,7 @@
 
             <div class="text-center">
                 <button class="btn btn-primary " type="button" id="registerBed"><i class="fa fa-floppy-o "></i> Register</button>
+
                 <button class="btn btn-default " type="button" id="btnclear" name="btnclear" > <i class="fa fa-ban "></i>&nbsp; Clear</button>
             </div>
 
@@ -366,29 +352,29 @@
     </div>
 </div>
 <script>
-       $("#EliSource").on('change', function () {
-            var EliSrc = $(this).val();
-            $.ajax({
-                type: "post",
-                url: "PMS/listEliTy.jsp",
-                data: {'EliSrc': EliSrc},
-                timeout: 10000,
-                success: function (list) {
-                    //remove the loading 
-                    //$body.removeClass("loading");
-                    console.log(list);
-                    $('#EligibilityTypeDropdown').html(list);
+    $("#EliSource").on('change', function () {
+        var EliSrc = $(this).val();
+        $.ajax({
+            type: "post",
+            url: "PMS/listEliTy.jsp",
+            data: {'EliSrc': EliSrc},
+            timeout: 10000,
+            success: function (list) {
+                //remove the loading 
+                //$body.removeClass("loading");
+                console.log(list);
+                $('#EligibilityTypeDropdown').html(list);
 
-                },
-                error: function (xhr, status, error) {
-                    var err = eval("(" + xhr.responseText + ")");
-                    //bootbox.alert(err.Message);
-                }
-            });
+            },
+            error: function (xhr, status, error) {
+                var err = eval("(" + xhr.responseText + ")");
+                //bootbox.alert(err.Message);
+            }
         });
-            
-    
-    
+    });
+
+
+
     $("#GL").datepicker({
         changeMonth: true,
         changeYear: true,
