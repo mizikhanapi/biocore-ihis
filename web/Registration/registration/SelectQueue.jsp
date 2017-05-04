@@ -83,10 +83,8 @@ Author     : user
                             for (int i = 0; i < dataQueue2.size(); i++) {
                                     if (dataQueue2.get(i).get(1) != ""|| dataQueue2.get(i).get(1) != null)
                                         {
-                                            text = dataQueue2.get(i).get(1).substring(0, 4);
-//                                            add = add + "-"+text;
-//                                            out.print(add);
-                                            if (!text.equalsIgnoreCase("Room"))
+                                            
+                                            if (!dataQueue2.get(i).get(1).contains("Room"))
                                             {
                                                 
                         %>
@@ -377,7 +375,7 @@ Author     : user
             
                         $.ajax({
                             type: "POST",
-                            url: "../../PMSs/controller/registerqueue.jsp",
+                            url: "../../PMS/controller/registerqueue.jsp",
                             data: datas, // Send input
                             timeout: 10000,
                             success: function (list) {
