@@ -24,14 +24,16 @@
     DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
     LocalDateTime now = LocalDateTime.now();
 
-    String MSHFull = "";
-    
+    String MSHFullBLI = "";
+    String MSHFullDDR = "";
+
     String seperatorMSH = "MSH";                                    // Data 1
     String encodeCharacMSH = "^~";                                  // Data 2
     String sendAppliMSH = "04";                                     // Data 3
-    String sendFacilityMSH = hfc+"^"+dis+"^"+subdis;                // Data 4
-    String recieveAppliMSH = "08";                                  // Data 5
-    String recieveFacilityMSH = hfc+"^"+dis+"^"+subdis;             // Data 6
+    String sendFacilityMSH = hfc + "^" + dis + "^" + subdis;                // Data 4
+    String recieveAppliMSHBLI = "08";                                  // Data 5
+    String recieveAppliMSHDDR = "14";                                  // Data 5
+    String recieveFacilityMSH = hfc + "^" + dis + "^" + subdis;             // Data 6
     String currentDateMSH = format.format(now);                     // Data 7
     String securityMSH = "";                                        // Data 8
     String messageTypeMSH = "";                                     // Data 9
@@ -45,14 +47,21 @@
     String countryCodeMSH = "";                                     // Data 17
     String characterSetMSH = "";                                    // Data 18
     String principalLanguageMSH = "";                               // Data 19
-    
-    //              1                      2                     3                      4                       5                       6                         7
-    MSHFull = seperatorMSH + "|" + encodeCharacMSH + "|" + sendAppliMSH + "|" + sendFacilityMSH + "|" + recieveAppliMSH + "|" + recieveFacilityMSH + "|" + currentDateMSH + "|" + 
-    //            8                    9                     10                       11                    12                    13                  14                        15
-            securityMSH + "|" + messageTypeMSH + "|" + messageControlMSH + "|" + processingMSH + "|" + versionMSH + "|" + sequenceMSH + "|" + continuationMSH + "|" + acceptAcknowlegmentMSH + "|" +
-    //             16                           17                    18                          19                                        21                          22  
-            applicaAcknowlegmentMSH+ "|" + countryCodeMSH + "|" + characterSetMSH + "|"+ principalLanguageMSH;
 
-    out.print(MSHFull + "<cr>");
+    //              1                      2                     3                      4                       5                       6                         7
+    MSHFullBLI = seperatorMSH + "|" + encodeCharacMSH + "|" + sendAppliMSH + "|" + sendFacilityMSH + "|" + recieveAppliMSHBLI + "|" + recieveFacilityMSH + "|" + currentDateMSH + "|"
+            + //            8                    9                     10                       11                    12                    13                  14                        15
+            securityMSH + "|" + messageTypeMSH + "|" + messageControlMSH + "|" + processingMSH + "|" + versionMSH + "|" + sequenceMSH + "|" + continuationMSH + "|" + acceptAcknowlegmentMSH + "|"
+            + //             16                           17                    18                          19                                        21                          22  
+            applicaAcknowlegmentMSH + "|" + countryCodeMSH + "|" + characterSetMSH + "|" + principalLanguageMSH;
+
+    //              1                      2                     3                      4                       5                       6                         7
+    MSHFullDDR = seperatorMSH + "|" + encodeCharacMSH + "|" + sendAppliMSH + "|" + sendFacilityMSH + "|" + recieveAppliMSHDDR + "|" + recieveFacilityMSH + "|" + currentDateMSH + "|"
+            + //            8                    9                     10                       11                    12                    13                  14                        15
+            securityMSH + "|" + messageTypeMSH + "|" + messageControlMSH + "|" + processingMSH + "|" + versionMSH + "|" + sequenceMSH + "|" + continuationMSH + "|" + acceptAcknowlegmentMSH + "|"
+            + //             16                           17                    18                          19                                        21                          22  
+            applicaAcknowlegmentMSH + "|" + countryCodeMSH + "|" + characterSetMSH + "|" + principalLanguageMSH;
+
+    out.print(MSHFullBLI + "<cr>#" + MSHFullDDR + "<cr>");
 
 %>

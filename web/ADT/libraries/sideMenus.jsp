@@ -61,7 +61,7 @@
 
         <li>
             <a type="button" data-toggle="modal" data-target="#queueModal" id="queue">
-                <i class="fa fa-users fa-lg"></i> List Of Queue
+                <i class="fa fa-users fa-lg"></i> List Of Inpatient
             </a>
         </li>
 

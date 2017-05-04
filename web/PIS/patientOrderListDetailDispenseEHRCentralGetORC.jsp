@@ -26,7 +26,8 @@
     DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
     LocalDateTime now = LocalDateTime.now();
 
-    String ORCFinal = "";
+    String ORCFinalBLI = "";
+    String ORCFinalDDR = "";
 
     String headORC = "ORC";                           // Data 0
     String transactionORC = "T12113";                 // Data 1
@@ -60,7 +61,8 @@
     String providerHFCORC = hfc;                 // Data 26
     String providerDispORC = dis;                // Data 27
     String providerSubDispORC = subdis;             // Data 28
-    String providerApplicationORC = "08";         // Data 29
+    String providerApplicationORCBLI = "08";         // Data 29
+    String providerApplicationORCDDR = "14";         // Data 29
     String providerHFCAddress1ORC = "";         // Data 30
     
     String providerHFCAddress2ORC = "";         // Data 31
@@ -193,16 +195,29 @@
     
 
     //             0                1                      2                     3                      4                       5                       6     
-    ORCFinal = headORC + "|" + transactionORC + "|" + orderNoORC + "|" + fillerOrderNoORC + "|" + orderStatusORC + "|" + orderPriorityORC + "|" + orderDateORC + "|" + 
+    ORCFinalBLI = headORC + "|" + transactionORC + "|" + orderNoORC + "|" + fillerOrderNoORC + "|" + orderStatusORC + "|" + orderPriorityORC + "|" + orderDateORC + "|" + 
     //              7                      8                    9                     10                    11                    12                    13                  14          
             episodeDateORC + "|" + encounterDateORC + "|" + enteredByORC + "|" + verifiedByORC + "|" + designationORC + "|" + orderHFCORC + "|" + orderDispORC + "|" + orderSubDispORC + "|" +
     //              15                          16                           17                         18                          19                        20                        21                          22  
             orderApplicationORC+ "|" + orderHFCADMPhoneNoORC + "|" + orderHFCAddress1ORC + "|"+ orderHFCAddress2ORC + "|" + orderHFCAddress3ORC + "|" + orderHFCTownORC + "|" + orderHFCDistrictORC + "|" + orderHFCStateORC + "|" +
     //                        
-            orderHFCCountryORC + "|" + orderHFCPostcodeORC + "|" + orderHFCPhoneNoORC + "|" + providerHFCORC + "|" + providerDispORC + "|" + providerSubDispORC + "|" + providerApplicationORC + "|" + providerHFCAddress1ORC + "|" + 
+            orderHFCCountryORC + "|" + orderHFCPostcodeORC + "|" + orderHFCPhoneNoORC + "|" + providerHFCORC + "|" + providerDispORC + "|" + providerSubDispORC + "|" + providerApplicationORCBLI + "|" + providerHFCAddress1ORC + "|" + 
     //          
             providerHFCAddress2ORC + "|" + providerHFCAddress3ORC + "|" + providerHFCTownORC + "|" + providerHFCDistrictORC + "|" + providerHFCStateORC + "|" + providerHFCCountryORC + "|" + providerHFCPostcodeORC +"|" + providerHFCPhoneNoORC + "|" + commentORC;
 
-    out.print(ORCFinal + "<cr>");
+    
+    //             0                1                      2                     3                      4                       5                       6     
+    ORCFinalDDR = headORC + "|" + transactionORC + "|" + orderNoORC + "|" + fillerOrderNoORC + "|" + orderStatusORC + "|" + orderPriorityORC + "|" + orderDateORC + "|" + 
+    //              7                      8                    9                     10                    11                    12                    13                  14          
+            episodeDateORC + "|" + encounterDateORC + "|" + enteredByORC + "|" + verifiedByORC + "|" + designationORC + "|" + orderHFCORC + "|" + orderDispORC + "|" + orderSubDispORC + "|" +
+    //              15                          16                           17                         18                          19                        20                        21                          22  
+            orderApplicationORC+ "|" + orderHFCADMPhoneNoORC + "|" + orderHFCAddress1ORC + "|"+ orderHFCAddress2ORC + "|" + orderHFCAddress3ORC + "|" + orderHFCTownORC + "|" + orderHFCDistrictORC + "|" + orderHFCStateORC + "|" +
+    //                        
+            orderHFCCountryORC + "|" + orderHFCPostcodeORC + "|" + orderHFCPhoneNoORC + "|" + providerHFCORC + "|" + providerDispORC + "|" + providerSubDispORC + "|" + providerApplicationORCDDR + "|" + providerHFCAddress1ORC + "|" + 
+    //          
+            providerHFCAddress2ORC + "|" + providerHFCAddress3ORC + "|" + providerHFCTownORC + "|" + providerHFCDistrictORC + "|" + providerHFCStateORC + "|" + providerHFCCountryORC + "|" + providerHFCPostcodeORC +"|" + providerHFCPhoneNoORC + "|" + commentORC;
+    
+    
+    out.print(ORCFinalBLI + "<cr>#" + ORCFinalDDR + "<cr>");
 
 %>

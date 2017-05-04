@@ -20,12 +20,21 @@
 
     NumberFormat formatter = new DecimalFormat("#0.00");
     NumberFormat formatterInt = new DecimalFormat("#0");
-
+//                                 0        1           2               3               4           5           6
     String orderList = "select ORDER_NO,DRUG_ITEM_CODE,DRUG_ITEM_DESC,DRUG_FREQUENCY,DRUG_ROUTE,DRUG_FORM,DRUG_STRENGTH,"
+            //      7           8       9           10          11          12          13              14
             + " DRUG_DOSAGE,ORDER_OUM,DURATION,ORDER_STATUS,QTY_ORDERED,QTY_SUPPLIED,SUPPLIED_OUM,QTY_DISPENSED,"
-            + " DISPENSE_OUM,pis_order_detail.STATUS,DURATIONT,D_STOCK_QTY,D_SELL_PRICE,"
-            + " CASE ORDER_STATUS WHEN '0' THEN 'New' WHEN '1' THEN 'Partial' WHEN '2' THEN 'Complete Partial' WHEN '3' THEN 'Full Complete' WHEN '4' THEN 'Full' END  AS ORDER_STATUSCON"
-            + " FROM pis_order_detail JOIN pis_mdc2 ON (pis_order_detail.DRUG_ITEM_CODE = pis_mdc2.UD_MDC_CODE) "
+            //      15                  16                           17                 18                      19
+            + " DISPENSE_OUM,pis_order_detail.STATUS,pis_order_detail.DURATIONT,pis_mdc2.D_STOCK_QTY,pis_mdc2.D_SELL_PRICE,"
+            //                                                                       20 
+            + " CASE ORDER_STATUS WHEN '0' THEN 'New' WHEN '1' THEN 'Partial' WHEN '2' THEN 'Complete Partial' WHEN '3' THEN 'Full Complete' WHEN '4' THEN 'Full' END  AS ORDER_STATUSCON,"
+            //          21                  22                  23                      24                  25                  26                    27
+            + " pis_mdc2.UD_ATC_CODE,pis_atc.UD_ATC_Desc,pis_mdc2.D_TRADE_NAME,pis_mdc2.D_STRENGTH,pis_mdc2.D_FORM_CODE,pis_mdc2.D_ROUTE_CODE,pis_mdc2.D_FREQUENCY, "
+             //       28              29                30                   31                  25                  26                    27
+            + " pis_mdc2.D_QTY,pis_mdc2.D_QTYT,pis_mdc2.D_DURATION,pis_mdc2.D_DURATIONT "
+            + " FROM pis_order_detail "
+            + " JOIN pis_mdc2 ON (pis_order_detail.DRUG_ITEM_CODE = pis_mdc2.UD_MDC_CODE)  "
+            + " JOIN pis_atc ON (pis_mdc2.UD_ATC_CODE = pis_atc.UD_ATC_Code)  "
             + " WHERE pis_order_detail.ORDER_NO = '" + orderNo + "' AND (ORDER_STATUS='0' OR ORDER_STATUS='1') "
             + " AND pis_mdc2.hfc_cd = '" + HEALTH_FACILITY_CODE + "' AND pis_mdc2.discipline_cd = '" + DISCIPLINE_CODE + "' ";
 
@@ -52,6 +61,15 @@
     <th style="text-align: left;">Total (RM)</th>
     <th style="text-align: left;">Status</th>
     <th style="text-align: left;">Check<!--<br><input id="checkDispenseAll" type="checkbox" onchange="checkAll(this)" name="chk[]" />--></th>
+    <th style="display: none;text-align: center;">ATC Code</th>
+    <th style="display: none;text-align: center;">ATC Desc</th>
+    <th style="display: none;text-align: center;">MDC Desc</th>
+    <th style="display: none;text-align: center;">MDC Strength</th>
+    <th style="display: none;text-align: center;">MDC Form Code</th>
+    <th style="display: none;text-align: center;">MDC Route</th>
+    <th style="display: none;text-align: center;">MDC Frequency</th>
+    <th style="display: none;text-align: center;">MDC Dosage</th>
+    <th style="display: none;text-align: center;">MDC Duration</th>
 </thead>
 <tbody>
     <%        for (int i = 0; i < dataOrderList.size(); i++) {
@@ -109,6 +127,17 @@
 <td id="updateOrderDetailsTButton" data-status="pagado" data-toggle="modal" data-id="1" data-target="#updateOrder" align="center"><%= totalPrice%></td> <!--  Total -->
 <td id="updateOrderDetailsTButton" data-status="pagado" data-toggle="modal" data-id="1" data-target="#updateOrder" align="center"><%= dataOrderList.get(i).get(20)%></td> <!-- Status -->
 <td align="center"><input type="checkbox" id="drugDispenseChecked" checked></td> <!-- Status -->
+<td align="center" style="display:none;"><%= dataOrderList.get(i).get(21)%></td> <!-- ATC Code -->
+<td align="center" style="display:none;"><%= dataOrderList.get(i).get(22)%></td> <!-- ATC Desc -->
+<td align="center" style="display:none;"><%= dataOrderList.get(i).get(23)%></td> <!-- MDC Desc -->
+<td align="center" style="display:none;"><%= dataOrderList.get(i).get(24)%></td> <!-- MDC Strength -->
+<td align="center" style="display:none;"><%= dataOrderList.get(i).get(25)%></td> <!-- MDC Form Code -->
+<td align="center" style="display:none;"><%= dataOrderList.get(i).get(26)%></td> <!-- MDC Route Code -->
+<td align="center" style="display:none;"><%= dataOrderList.get(i).get(27)%></td> <!-- MDC Frequency Code -->
+<td align="center" style="display:none;"><%= dataOrderList.get(i).get(28)%><%= dataOrderList.get(i).get(29)%></td> <!-- MDC Dosage -->
+<td align="center" style="display:none;"><%= dataOrderList.get(i).get(30)%><%= dataOrderList.get(i).get(31)%></td> <!-- MDC Duration -->
+
+
 </tr>
 
 

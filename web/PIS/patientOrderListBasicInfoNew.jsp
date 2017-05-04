@@ -208,8 +208,10 @@
         <div class="col-md-3">
             <input id="dispenseTotalQuantity" name="dispenseTotalQuantity" type="hidden" placeholder="Total Order" class="form-control input-md" maxlength="50" readonly>
             <input id="dispenseTotalQuantityChecked" name="dispenseTotalQuantityChecked" type="hidden" placeholder="Total Order" class="form-control input-md" maxlength="50" readonly>
-            <input id="dataMSHPDIORC" name="dataMSHPDIORC" type="hidden" placeholder="" readonly class="form-control input-md">  
-            <input id="dataBIL" name="dataBIL" type="hidden" placeholder="" readonly class="form-control input-md">  
+            <input id="dataMSHPDIORCBLI" name="dataMSHPDIORCBLI" type="hidden" placeholder="" readonly class="form-control input-md">  
+            <input id="dataMSHPDIORCDDR" name="dataMSHPDIORCDDR" type="hidden" placeholder="" readonly class="form-control input-md">  
+            <input id="dataBILBLI" name="dataBILBLI" type="hidden" placeholder="" readonly class="form-control input-md">  
+            <input id="dataBILDDR" name="dataBILDDR" type="hidden" placeholder="" readonly class="form-control input-md">  
         </div>
 
         <div class="col-md-3">
@@ -254,7 +256,7 @@
 
     </form>
 </div>
-                
+
 <hr/>
 
 <div style="float: left;" id="patientOrderDispenseButtonDiv" > 
@@ -316,6 +318,11 @@
             data: data,
             success: function (returnDataMSHFull) {
 
+
+                var arrayReturnDataMSHFull = String(returnDataMSHFull.trim()).split("#");
+                var MSHFORBLI = arrayReturnDataMSHFull[0];
+                var MSHFORDDR = arrayReturnDataMSHFull[1];
+
                 $.ajax({
                     url: "patientOrderListDetailDispenseEHRCentralGetPDIFinal.jsp",
                     type: "post",
@@ -323,6 +330,7 @@
                     data: data,
                     success: function (returnDataPDIFull) {
 
+                        var PDIFORALL = returnDataPDIFull.trim();
 
                         $.ajax({
                             url: "patientOrderListDetailDispenseEHRCentralGetORC.jsp",
@@ -330,6 +338,10 @@
                             data: data,
                             timeout: 3000,
                             success: function (returnDataORCFull) {
+
+                                var arrayReturnDataORCFull = String(returnDataORCFull.trim()).split("#");
+                                var ORCFORBLI = arrayReturnDataORCFull[0];
+                                var ORCFORDDR = arrayReturnDataORCFull[1];
 
                                 //Set value to the Second Tab 
                                 $("#patientpmino").val(patientpmino);
@@ -341,12 +353,11 @@
                                 $("#patientOrderNo").val(patientOrderNo);
                                 $("#patientOrderDate").val(patientOrderDate);
                                 $("#patientOrderLocationCode").val(patientOrderLocationCode);
-                                $("#dataMSHPDIORC").val(returnDataMSHFull.trim() + "\n" + returnDataPDIFull.trim() + "\n" + returnDataORCFull.trim() + "\n");
+                                $("#dataMSHPDIORCBLI").val(MSHFORBLI + "\n" + PDIFORALL + "\n" + ORCFORBLI + "\n");
+                                $("#dataMSHPDIORCDDR").val(MSHFORDDR + "\n" + PDIFORALL + "\n" + ORCFORDDR + "\n");
 
-                                console.log(returnDataMSHFull.trim());
-                                console.log(returnDataPDIFull.trim());
-                                console.log(returnDataORCFull.trim());
-                                console.log($("#dataMSHPDIORC").val());
+                                console.log($("#dataMSHPDIORCBLI").val());
+                                console.log($("#dataMSHPDIORCDDR").val());
 
                                 loadAllergyDiagnosisOrder(patientOrderNo, patientpmino);
 
@@ -1020,7 +1031,8 @@
     }
     // Dispense Order Check Function End
 
-    var ehrCentralBill;
+    var ehrCentralBillBLI;
+    var ehrCentralBillDDR;
 
     // Dispense Order Function Start
     function fullDispense() {
@@ -1032,11 +1044,14 @@
 
         var orderDate, locationCode, arrivalDate, pmino, pname, dispenseFarMasterQuantity, dispenseFarMasterTotal, dispenseFarMasterQuantityChecked, dispenseFarMasterTotalChecked;
 
+        var drugATCCode, drugATCDesc, drugMDCDesc, drugMDCStrength, drugMDCFromCode, drugMDCRouteCode, drugMDCFrequencyCode, drugMDCFrequencyUnitCode, drugMDCDosage, drugMDCOUM,
+                drugMDCDuration, drugMDCDispenseLocation, drugMDCDispenseNotes, drugMDCDispenseProvider, drugMDCIndicator;
 
         var dateBill = getDate();
         var userIDBill = $("#dataPatientOrderListUserIDhidden").val();
 
-        ehrCentralBill = "";
+        ehrCentralBillBLI = "";
+        ehrCentralBillDDR = "";
 
         pmino = $("#patientpmino").val();
         pname = $("#patientName").val();
@@ -1070,10 +1085,34 @@
             drugStatus = $tds.eq(13).text();
             drugChecked = $(this).find("#drugDispenseChecked").is(':checked');
 
-//                              0        1     2     3     4          5            6            7              8                    9                       10               11
-            var dataOneRow = "BLI|T^" + dateBill + "|CH|" + pmino + "|" + drugCode + "|" + drugDesc + "|" + drugPrice + "|" + drugDispensedQty + "|" + userIDBill + "|" + dateBill + "<cr>\n";
 
-            ehrCentralBill = ehrCentralBill + dataOneRow;
+            drugATCCode = $tds.eq(15).text();
+            drugATCDesc = $tds.eq(16).text();
+            drugMDCDesc = $tds.eq(17).text();
+            drugMDCStrength = $tds.eq(18).text();
+            drugMDCFromCode = $tds.eq(19).text();
+            drugMDCRouteCode = $tds.eq(20).text();
+            drugMDCFrequencyCode = $tds.eq(21).text();
+            drugMDCFrequencyUnitCode = "-";
+            drugMDCDosage = $tds.eq(22).text();
+            drugMDCOUM = "-";
+            drugMDCDuration = $tds.eq(23).text();
+            drugMDCDispenseLocation = "-";
+            drugMDCDispenseNotes = "-";
+            drugMDCDispenseProvider = "-";
+            drugMDCIndicator = "-";
+
+
+
+//                              0        1     2     3     4          5            6            7              8                    9                       10               11
+            var dataOneRowBLI = "BLI|T^" + dateBill + "|CH|" + pmino + "|" + drugCode + "|" + drugDesc + "|" + drugPrice + "|" + drugDispensedQty + "|" + userIDBill + "|" + dateBill + "<cr>\n";
+            var dataOneRowDDR = "DDR|" + drugATCCode + "^" + drugATCDesc + "^ATC|" + drugCode + "^" + drugMDCDesc + "^MDC|" + drugMDCStrength + "|" + drugMDCFromCode +
+                    "|" + drugMDCRouteCode + "|" + drugMDCFrequencyCode + "|" + drugMDCFrequencyUnitCode + "|" + drugMDCDosage + "|" + drugMDCOUM + "|" + drugMDCDuration +
+                    "|" + drugDispensedQty + "|" + drugMDCDispenseLocation + "|" + drugMDCDispenseNotes + "|" + getDate() + "|" + drugMDCDispenseProvider + "|" + 
+                    orderDate + "|" + drugMDCIndicator + "<cr>\n";
+
+            ehrCentralBillBLI = ehrCentralBillBLI + dataOneRowBLI;
+            ehrCentralBillDDR = ehrCentralBillDDR + dataOneRowDDR;
 
 
 
@@ -1163,15 +1202,21 @@
         });
 
 
-        $("#dataBIL").val(ehrCentralBill);
+        $("#dataBILBLI").val(ehrCentralBillBLI);
+        $("#dataBILDDR").val(ehrCentralBillDDR);
 
-        var EHRFirstHeader = $("#dataMSHPDIORC").val();
-        var EHRSecondHeader = $("#dataBIL").val();
+        var EHRFirstHeaderBLI = $("#dataMSHPDIORCBLI").val();
+        var EHRSecondHeaderBLI = $("#dataBILBLI").val();
+
+        var EHRFirstHeaderDDR = $("#dataMSHPDIORCDDR").val();
+        var EHRSecondHeaderDDR = $("#dataBILDDR").val();
 
         var dataEHRcentralFull = {
             pmino: pmino,
-            EHRFirstHeader: EHRFirstHeader,
-            EHRSecondHeader: EHRSecondHeader
+            EHRFirstHeaderBLI: EHRFirstHeaderBLI,
+            EHRFirstHeaderDDR: EHRFirstHeaderDDR,
+            EHRSecondHeaderBLI: EHRSecondHeaderBLI,
+            EHRSecondHeaderDDR: EHRSecondHeaderDDR
         };
 
         $.ajax({
