@@ -15,7 +15,7 @@
     </head>
 
     <body>
-
+        <div class="loading"></div>
         <div class="container-fluid">
             <div class="row">       
                 <!-- menu side -->		

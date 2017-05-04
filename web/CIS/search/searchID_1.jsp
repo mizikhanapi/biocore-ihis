@@ -52,6 +52,18 @@
             </a>-->
 </h4>
 
+<ul id="menu-content" class="nav nav-sidebar">
+    <!-- Menu with dropdown -->
+    <li  data-toggle="collapse" data-target="#Subjective" class="collapsed active">
+        <a href="#"><i class="fa fa-gift fa-lg"></i> Subjective <span class="arrow"></span></a>
+    </li>
+    <ul class="sub-menu collapse" id="Subjective">
+        <li><a data-toggle="modal" data-target="#squarespaceModal" href="">Complaints</a></li>
+    </ul> 
+    <!-- Menu with dropdown -->
+</ul>
+
+
 <table class="table table-filter table-striped" style="background: #fff; border: 1px solid #ccc;" id="searchPatient1">
     <thead>
     <th>Episode Date</th>
@@ -87,18 +99,18 @@
 <h4 style="padding: 10px 0px 15px;">Previous Visit (Outpatient Episode)</h4>
 <table class="table table-filter table-striped" style="background: #fff; border: 1px solid #ccc;" id="searchPatient1">
     <thead>
-        <th>Episode Date</th>
-        <th>Health Care Facility</th>
-        <th>Discipline</th>
-        <th style="width: 5%;"></th>
-    </thead>
+    <th>Episode Date</th>
+    <th>Health Care Facility</th>
+    <th>Discipline</th>
+    <th style="width: 5%;"></th>
+</thead>
 <tbody id="detailList1">
     <%
         for (int i = 0; i < searchID1.size(); i++) {
             if (searchID1.size() > 0) {
 
                 //out.print(String.join("|", searchID1.get(i)));
-    %>
+%>
     <tr>
         <td><%=searchID1.get(i).get(1)%>
             <input type="hidden" id="pmi1" value="<%=searchID1.get(i).get(0)%>">

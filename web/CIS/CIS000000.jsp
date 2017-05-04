@@ -32,6 +32,15 @@
         <%@ include file="libraries/header.jsp" %> 
         <!-- header -->
 
+        <script>
+            //loading bar
+            $(window).on('load', function () {
+                // Animate loader off screen
+                $(".loading").fadeOut("slow");
+                ;
+            });
+        </script>
+
         <script type="text/javascript">
             window.location.hash = "no-back-button";
             window.location.hash = "Again-No-back-button";//again because google chrome don't insert first hash into history
@@ -72,7 +81,7 @@
     </head>
 
     <body>
-
+<div class="loading"></div>
 
         <div class="container-fluid">
             <div class="row">
@@ -219,7 +228,7 @@
                             </div>
                         </div>
                         <div class="tab-pane fade" id="orthopedic">
-                            <%//@include file = "specialistTemplate/Observation-Orthopedic/orthopedic.jsp" %>
+                            <%@include file = "specialistTemplate/Observation-Orthopedic/orthopedic.jsp" %>
                         </div> 
                     </div>
                 </div>
@@ -227,7 +236,6 @@
 
             </div>
         </div>
-
 
         <%@ include file="queue/QueueModal.jsp" %> 
         <%@ include file="search/SearchModal.jsp" %>

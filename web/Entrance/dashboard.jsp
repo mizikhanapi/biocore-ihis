@@ -104,11 +104,13 @@
 <!DOCTYPE html>
 <html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <!-- header -->
+        <script src="libraries/jquery.min.js" type="text/javascript"></script>
         <%@include file = "../assets/header.html" %>
         <!-- header -->
     </head>
 
     <body>
+        <div class="loading"></div>
         <!-- menu top -->
         <%@include file = "libraries/topMenus-dashboard.html" %>
         <!-- menu top -->

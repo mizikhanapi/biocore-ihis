@@ -13,8 +13,7 @@
 <%@include file="../Entrance/validateSession.jsp" %>
 <%@include file="validateModuleAccess.jsp" %>
 
-<%
-    Config.getFile_url(session);
+<%    Config.getFile_url(session);
     Config.getBase_url(request);
 
     Conn conn = new Conn();
@@ -35,7 +34,7 @@
     </head>
 
     <body>
-
+        <div class="loading"></div>
         <div class="container-fluid">
             <div class="row">       
                 <!-- menu side -->	
@@ -68,7 +67,7 @@
                                         <div class="tab-content">
                                             <div class="tab-pane active" id="tab_default_1">
                                                 <div id="risOrderMain">
-                                                    
+
                                                 </div>
                                                 <div id="risOrderListContent">
 
@@ -105,9 +104,9 @@
 
         <script>
 
-            $('<div class="loading">Loading</div>').appendTo('body');
-            
-            
+            $('<div class="loading">&nbsp;</div>').appendTo('body');
+
+
             $("#risOrderMain").load("risManageOrderMaster_main.jsp");
             $("#risOrderListContent").load("risManageOrderListTable.jsp");
             $("#risOrderDetailContent").load("risManageOrderListBasicInfoNew.jsp");

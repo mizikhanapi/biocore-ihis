@@ -876,6 +876,10 @@ tr#moveToOrderDetailsTButton {
     border-radius: 0px;
 }
 
+.table-guling {
+    overflow-x: hidden;
+}
+
 .table-guling:hover {
     overflow-x: auto;
 }
