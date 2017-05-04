@@ -43,7 +43,7 @@
     </head>
 
     <body>
-
+        <div class="loading"></div>
 
         <%
             Config.getFile_url(session);

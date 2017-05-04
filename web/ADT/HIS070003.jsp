@@ -26,6 +26,7 @@
     </head>
 
     <body>
+        <div class="loading"></div>
         <%//            Config.getFile_url(session);
 //            Config.getBase_url(request);
             Conn conn = new Conn();

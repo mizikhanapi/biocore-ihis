@@ -20,11 +20,14 @@
         <meta http-equiv="refresh" content="20; URL=HIS070004.jsp">
 
         <!-- header -->
+        <script src="old/assets/js/jquery.min.js"></script>
         <%@include file = "../assets/header.html" %>
         <!-- header -->
     </head>
 
     <body>
+        <div class="loading"></div>
+        
         <!--    <input type="text" id="test">-->
 
         <%    Config.getBase_url(request);

@@ -7,8 +7,7 @@
 <html lang="en">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <%@include file = "../assets/header.html" %>
-
+        
         <link rel="stylesheet" href="PMS/libraries/lib/css/loading.css">
         <link href="PMS/libraries/lib/datepicker/jquery-ui.css" rel="stylesheet">
         <script src="PMS/libraries/lib/js/jquery.min.js"></script>
@@ -16,11 +15,13 @@
         <script src="PMS/libraries/lib/datepicker/jquery-ui.js"></script>
         <script src="PMS/libraries/lib/js/form-validator.min.js"></script>    
         <script src="PMS/libraries/lib/js/bootbox.min.js"></script> 
+        <%@include file = "../assets/header.html" %>
         <!-- header -->
 
     </head>
 
     <body>
+        <div class="loading"></div>
         <%        Config.getFile_url(session);
             Config.getBase_url(request);
             Conn conn = new Conn();
