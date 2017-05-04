@@ -15,8 +15,8 @@
     Conn conn = new Conn();
     String pmino = request.getParameter("pmino");
 //                                               0                   1                   2                          3                               4                        5                   6
-    String diagnosisList = "select lhr_diagnosis.PMI_no,lhr_diagnosis.HFC_Cd,lhr_diagnosis.Episode_Date,lhr_diagnosis.Encounter_Date,lhr_diagnosis.Diagnosis_Cd,icd10_codes.icd10_desc,lhr_diagnosis.Comment"
-            + " FROM lhr_diagnosis JOIN icd10_codes ON (lhr_diagnosis.Diagnosis_Cd = icd10_codes.icd10_code ) "
+    String diagnosisList = "select lhr_diagnosis.PMI_no,AHF.hfc_name,lhr_diagnosis.Episode_Date,lhr_diagnosis.Encounter_Date,lhr_diagnosis.Diagnosis_Cd,icd10_codes.icd10_desc,lhr_diagnosis.Comment"
+            + " FROM lhr_diagnosis JOIN icd10_codes ON (lhr_diagnosis.Diagnosis_Cd = icd10_codes.icd10_code ) JOIN adm_health_facility AHF ON AHF.hfc_cd = lhr_diagnosis.HFC_Cd"
             + " where lhr_diagnosis.PMI_no = '" + pmino + "' ";
 
     ArrayList<ArrayList<String>> dataDiagnosisList;
