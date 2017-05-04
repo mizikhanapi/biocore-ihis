@@ -61,11 +61,15 @@
 
         <li>
             <a type="button" data-toggle="modal" data-target="#queueModal" id="queue">
-                <i class="fa fa-users fa-lg"></i> List Of Inpatient
+                <i class="fa fa-users fa-lg"></i> List Of Admission
             </a>
         </li>
-
-        <hr/>
+        <li>
+            <a  href="HIS070002.jsp" >
+                <i class="fa fa-briefcase fa-lg"></i> List of Discharge Inpatient
+            </a>
+        </li>
+  <hr/>
         <li>
             <a  href="HIS070002.jsp" >
                 <i class="fa fa-briefcase fa-lg"></i> Ward Occupancy

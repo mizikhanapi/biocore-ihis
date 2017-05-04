@@ -16,23 +16,22 @@
     String EliSrc = request.getParameter("EliSrc");
 %>
 <select id="EliTy" name="selectbasic" class="form-control">
-                    <option value="-">-</option>
-                    <option value="null" selected="" disabled="">Select Eligibility Type</option>
+    <option value="-">-</option>
+    <option value="null" selected="" disabled="">Select Eligibility Type </option>
 
-                    <%
-    String eliType = "select  Detail_Reference_Code, Description from adm_lookup_detail where master_reference_code = '0034' and  Detail_Reference_Code like '" + EliSrc + "%' and hfc_cd ='" + hfc + "' ";
-    ArrayList<ArrayList<String>> dataEliType;
-                        
-                            dataEliType = conn.getData(eliType);
+    <%
+        String eliType = "select  Detail_Reference_Code, Description from adm_lookup_detail where master_reference_code = '0034' and  Detail_Reference_Code like '" + EliSrc + "%' and hfc_cd ='" + hfc + "' ";
+        ArrayList<ArrayList<String>> dataEliType;
 
+        dataEliType = conn.getData(eliType);
 
-                        int sizeEL = dataEliType.size();
+        int sizeEL = dataEliType.size();
 
-                        for (int i = 0; i < sizeEL; i++) {
-                    %>
-                    <option value="<%= dataEliType.get(i).get(0)%>"><%= dataEliType.get(i).get(1)%> </option>
-                    <%
-                        }
-                    %>
-                </select>
+        for (int i = 0; i < sizeEL; i++) {
+    %>
+    <option value="<%= dataEliType.get(i).get(0)%>"><%= dataEliType.get(i).get(1)%> </option>
+    <%
+        }
+    %>
+</select>
 

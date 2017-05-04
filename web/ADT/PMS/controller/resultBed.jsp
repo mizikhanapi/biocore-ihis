@@ -105,35 +105,12 @@
             }
 
 
-            var Dis = $('#Dis').val();
-            var wname = $('#wname').val();
-            var WardType = $('#WardType').val();
-            var EliSource = $('#EliSource').val();
-            var EliTy = $('#EliTy').val();
-            $.ajax({
-                async: true,
-                type: "POST",
-                url: "PMS/controller/resultEli.jsp",
-                data: {'Dis': Dis, 'wname': wname, 'WardType': WardType, 'EliSource': EliSource, 'EliTy': EliTy},
-                timeout: 10000,
-                success: function (list) {
-                    //remove the loading 
-                    $body.removeClass("loading");
-                    console.log(list);
-                    var Diso = $('#dis_cd').val();
-                    var wname = $('#wname').val();
-                    var WardType = $('#WardType').val();
-                    $('#wardnew').val(wname);
-                    $('#classnew').val(WardType);
-                    //$('#ratenew').val();
-
-
-                },
-                error: function (xhr, status, error) {
-                    var err = eval("(" + xhr.responseText + ")");
-                    //bootbox.alert(err.Message);
-                }
-            });
+//            var Dis = $('#Dis').val();
+//            var wname = $('#wname').val();
+//            var WardType = $('#WardType').val();
+//            var EliSource = $('#EliSource').val();
+//            var EliTy = $('#EliTy').val();
+          
         });
     });
 

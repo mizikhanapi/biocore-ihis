@@ -13,10 +13,15 @@
 //
 //    dataRole = conn.getData(role1);
 //    dataHFC1 = conn.getData(hfc1);
+    String EliSrc = request.getParameter("EliSrc");
+    String EliSource = request.getParameter("EliSource");
+
 
 %>
 <input type="hidden" value="<%=hfc%>" id="Rhfc">
 <input type="hidden" value="<%=pageNow%>" id="pageNow">
+<input type="hidden" value="<%=EliSrc%>" id="pageNow">
+<input type="hidden" value="<%=EliSource%>" id="pageNow">
 
 
 <div class="row">
@@ -70,7 +75,7 @@
         <!-- Text input-->
         <div class="form-group">
             <label class="col-md-4 control-label" for="textinput">Deposit (RM)</label>
-            <div class="col-md-6">
+            <div class="col-md-6" id="depositResult">
                 <input id="Deposit" name="textinput" type="text" placeholder="RM :" class="form-control input-md">
             </div>
         </div>
@@ -236,7 +241,7 @@
                     async: true,
                     type: "POST",
                     url: "PMS/controller/resultBed.jsp",
-                    data: {'Dis': Dis, 'wname': wname, 'WardType': WardType, 'EliSource': EliSource, 'EliTy': EliTy},
+                    data: {'Dis': Dis, 'wname': wname, 'WardType': WardType},
                     timeout: 10000,
                     success: function (list) {
                         //remove the loading 
@@ -255,6 +260,22 @@
                         } else if (pageNow === "IR") {
                             $('#bedtest').html(list);
                         }
+
+                    },
+                    error: function (xhr, status, error) {
+                        var err = eval("(" + xhr.responseText + ")");
+                        //bootbox.alert(err.Message);
+                    }
+                });
+                $.ajax({
+                    async: true,
+                    type: "POST",
+                    url: "PMS/controller/resultEli.jsp",
+                    data: {'Dis': Dis, 'wname': wname, 'WardType': WardType, 'EliSource': EliSource, 'EliTy': EliTy},
+                    timeout: 10000,
+                    success: function (list) {
+                        console.log(list);
+                        $('#depositResult').html(list);
 
                     },
                     error: function (xhr, status, error) {
