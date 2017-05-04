@@ -65,7 +65,7 @@
             </a>
         </li>
         <li>
-            <a  href="HIS070002.jsp" >
+            <a  href="HIS070005.jsp" >
                 <i class="fa fa-briefcase fa-lg"></i> List of Discharge Inpatient
             </a>
         </li>
