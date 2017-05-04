@@ -193,7 +193,7 @@
                 <td><%=dataOrderList.get(i).get(10)%></td>
                 <td>
                     <%
-                        if (dataOrderList.get(i).get(7).equals("Waiting For Approval")) {
+                    if (dataOrderList.get(i).get(7).equals("Waiting For Approval")||dataOrderList.get(i).get(7).equals("Already Verified")) {
                     %>
                     <input class="chk" type="checkbox" name="chkSpecimen" value="<%=dataOrderList.get(i).get(0)%>" id="checky" disabled="disabled"/>
                     <%

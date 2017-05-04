@@ -17,7 +17,6 @@
         <tr>
             <th class="col-sm-1">Specimen No</th>
             <th class="col-sm-1">Order No</th>
-            <th class="col-sm-1">Item Code</th>
             <th class="col-sm-1">PMI No</th>
             <th class="col-sm-1">IC No</th>
             <th class="col-sm-1">Name</th>
@@ -33,7 +32,6 @@
         <tr>
             <td><%=dataPatientApp.get(i).get(0)%><input type="text" id="specimen_no" value="<%=dataPatientApp.get(i).get(0)%>" style="display: none;"></td>
             <td><%=dataPatientApp.get(i).get(4)%></td>
-            <td><%=dataPatientApp.get(i).get(7)%></td>
             <td><%=dataPatientApp.get(i).get(1)%><input type="text" id="pmi" value="<%=dataPatientApp.get(i).get(1)%>" style="display: none;"></td>
             <td><%=dataPatientApp.get(i).get(2)%></td>
             <td><%=dataPatientApp.get(i).get(3)%></td>
@@ -56,17 +54,7 @@
                 </td>
             <td><%=dataPatientApp.get(i).get(6)%></td>
             <td>
-                <%
-                    if (dataPatientApp.get(i).get(5).equals("2")) {
-                %>
                 <a href='VerifySpecimen.jsp?pmi=<%=dataPatientApp.get(i).get(1)%> &specimen_no=<%=dataPatientApp.get(i).get(0)%>'><button class='btn btn-primary btn-block'>Assign Result</button></a>
-                <%
-                }else {
-                %>
-                <a href='VerifySpecimen.jsp?pmi=<%=dataPatientApp.get(i).get(1)%> &specimen_no=<%=dataPatientApp.get(i).get(0)%>'><button disabled="disabled" class='btn btn-primary btn-block'>Assign Result</button></a>
-                <%
-                    }
-                %>
                 </td>
         </tr>
         <%

@@ -164,7 +164,7 @@
                                                                     var pmiNo = "<%=pmi_no%>";
                                                                     var orderNo = "<%=order_no%>";
                                                                     var orderDate = "<%=order_date%>";
-                                                                    var data = {
+                                                                    var data1 = {
                                                                         pmiNo: pmiNo,
                                                                         orderNo: orderNo,
                                                                         orderDate: orderDate
@@ -174,28 +174,28 @@
                                                                         url: "patientOrderListDetailDispenseEHRCentralGetMSH.jsp",
                                                                         type: "post",
                                                                         timeout: 3000,
-                                                                        data: data,
+                                                                        data: data1,
                                                                         success: function (returnDataMSHFull) {
 
                                                                             $.ajax({
                                                                                 url: "patientOrderListDetailDispenseEHRCentralGetPDIFinal.jsp",
                                                                                 type: "post",
                                                                                 timeout: 3000,
-                                                                                data: data,
+                                                                                data: data1,
                                                                                 success: function (returnDataPDIFull) {
 
 
                                                                                     $.ajax({
                                                                                         url: "patientOrderListDetailDispenseEHRCentralGetORC.jsp",
                                                                                         type: "post",
-                                                                                        data: data,
+                                                                                        data: data1,
                                                                                         timeout: 3000,
                                                                                         success: function (returnDataORCFull) {
 
                                                                                             $.ajax({
                                                                                                 url: "patientOrderResult.jsp",
                                                                                                 type: "post",
-                                                                                                data: data,
+                                                                                                data: data1,
                                                                                                 timeout: 3000,
                                                                                                 success: function (returnDataResult) {
 
@@ -209,15 +209,14 @@
                                                                                                     console.log($("#dataMSHPDIORC").val());
 
                                                                                                     var ehr_central = $("#dataMSHPDIORC").val();
-
-                                                                                                    var data1 = {
+                                                                                                    var data2 = {
                                                                                                         pmiNo: pmiNo,
                                                                                                         ehr_central: ehr_central
                                                                                                     };
                                                                                                     $.ajax({
-                                                                                                        url: "sentToEHRcentral.jsp",
+                                                                                                        url: "sentResultToEHRcentral.jsp",
                                                                                                         type: "post",
-                                                                                                        data: data1,
+                                                                                                        data: data2,
                                                                                                         timeout: 3000,
                                                                                                         success: function (returnEHR) {
 

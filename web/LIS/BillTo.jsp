@@ -288,7 +288,7 @@
 
                 sentToBill(patientpmino, patientorderNo, patientOrderDate);
 
-
+                alert("Success transfer to Billing");
 
             }
         }
@@ -358,7 +358,7 @@
                                                 timeout: 3000,
                                                 success: function (returnEHR) {
 
-                                                    alert("Success transfer to Billing");
+                                                    
 
 
                                                 }

@@ -130,7 +130,6 @@
 
                                                         count++;
                                                         String sqlPatientApp = "SELECT LID.item_cd,LID.item_name,LID.spe_container,LOD.created_date,LOM.hfc_cd,LOM.pmi_no,LOM.patient_name FROM lis_order_detail LOD, lis_item_detail LID, lis_order_master LOM WHERE LOD.item_cd = LID.item_cd AND LOD.order_no = LOM.order_no AND LOD.item_cd = '" + itemCD[j] + "' AND LOD.order_no = '" + orderno1 + "'";
-                                                        //String sqlPatientApp = "SELECT item_name, order_no, item_cd FROM lis_order_detail WHERE order_no = '"+orderno1+"' AND item_cd = '"+itemCD[j]+"'";
                                                         ArrayList<ArrayList<String>> dataPatientApp = conn.getData(sqlPatientApp);
 
                                                         if (dataPatientApp.size() > 0) {
@@ -204,7 +203,7 @@
                             Total: TotalOptions}
 
                     });
-                    alert(specimen[0] + " " + pmi + " " + order_no + " " + C_date + " " + C_time + " " + TotalOptions + " " + patient_name);
+                    //alert(specimen[0] + " " + pmi + " " + order_no + " " + C_date + " " + C_time + " " + TotalOptions + " " + patient_name);
                     window.location.replace("MainPage.jsp");
                 }
             });

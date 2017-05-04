@@ -83,6 +83,7 @@
                                                 
                                                 String query1 = "SELECT pb.`PMI_NO`, pb.`NEW_IC_NO`, pb.`PATIENT_NAME`,ls.order_no,ls.specimen_no,ls.`Collection_date`,ls.`Collection_time`,lom.order_date,lom.order_by,lom.hfc_from FROM pms_patient_biodata pb,lis_specimen ls,lis_order_master lom WHERE pb.`PMI_NO` = ls.pmi_no AND ls.pmi_no =lom.pmi_no AND pb.`PMI_NO` = '"+pmi+"' AND ls.specimen_no = '"+specimen_no1+"' AND ls.hfc_cd = '"+hfc_cd+"' GROUP BY(ls.specimen_no)";
                                                 ArrayList<ArrayList<String>> q2 = conn.getData(query1);
+                                                session.setAttribute( "order_no", q2.get(0).get(3) );
                                                 %>  
                                           
                                     <div class="row">
