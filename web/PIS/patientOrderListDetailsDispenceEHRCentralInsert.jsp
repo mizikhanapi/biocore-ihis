@@ -19,10 +19,10 @@
 <%
     RMIConnector rmic = new RMIConnector();
     Conn conn = new Conn();
-
+    
     DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
     LocalDateTime now = LocalDateTime.now();
-
+    
     String FullEHRHeaderBLI = "";
     String FullEHRHeaderDDR = "";
 
@@ -32,35 +32,10 @@
     String EHRSecondHeaderBLI = request.getParameter("EHRSecondHeaderBLI");
     String EHRFirstHeaderDDR = request.getParameter("EHRFirstHeaderDDR");
     String EHRSecondHeaderDDR = request.getParameter("EHRSecondHeaderDDR");
-//    String EHRSecondHeaderDDRUpdated = "";
-//
-//    String drugsDispenseMain[] = EHRSecondHeaderDDR.split("\\<cr>");
-//
-//    for (int main = 0; main < drugsDispenseMain.length; main++) {
-//
-//        String drugsDispenseChild[] = drugsDispenseMain[main].split("\\|");
-//        
-//        String join = "";
-//
-//        for (int child = 0; child < drugsDispenseChild.length; child++) {
-//            
-//            String DDR = drugsDispenseChild[0];
-//            String ATC = drugsDispenseChild[1];
-//            String MDC = drugsDispenseChild[2];
-//            String END = "<cr>\n";
-//            
-//            join = DDR+"|"+ATC+"|"+MDC+"|"+END;
-//            
-//           
-//        }
-//        
-//        EHRSecondHeaderDDRUpdated = EHRSecondHeaderDDRUpdated + join;
-//
-//    }
-
+    
     FullEHRHeaderBLI = EHRFirstHeaderBLI + EHRSecondHeaderBLI;
     FullEHRHeaderDDR = EHRFirstHeaderDDR + EHRSecondHeaderDDR;
-
+    
     String CENTRAL_CODE = "";                       // Date 1
     String PMI_NO = pmino;                          // Date 2
     String C_TXNDATE = format.format(now);          // Date 3
@@ -92,5 +67,6 @@
         out.print("Failed");
     }
 
+    
 %>
 

@@ -22,10 +22,10 @@
     <th style="text-align: center;">ATC CODE</th>
     <th style="text-align: center;">TRADE NAME</th>
     <th style="text-align: center;">GNR NAME</th>
-    <th style="text-align: center;">ROUTE_CODE</th>
-    <th style="text-align: center;">FORM CODE</th>
+    <th style="display: none">ROUTE_CODE</th>
+    <th style="display: none">FORM CODE</th>
     <th style="text-align: center;">STRENGTH</th>
-    <th style="text-align: center;">ADVISE</th>
+    <th style="display: none">ADVISE</th>
     <th style="text-align: center;">STOCK QTY</th>
     <th style="display: none">DOSE QTY</th>
     <th style="display: none">DOSE TYPE</th>
@@ -37,7 +37,7 @@
     <th style="display: none">CLASSIFICATION</th>
     <th style="display: none">STATUS</th>
     <th style="display: none">LOCATION CODE</th>
-    <th style="display: none">SELL PRICE</th>
+    <th style="text-align: center;">SELL PRICE</th>
     <th style="display: none">COST PRICE</th>
     <th style="display: none">PACKAGING</th>
     <th style="display: none">PACKAGING TYPE</th>
@@ -51,8 +51,11 @@
 <tbody>
 
     <%
+        //                              0         1           2           3           4           5           6           7           
         String sqlMain = " SELECT UD_MDC_CODE,UD_ATC_CODE,D_TRADE_NAME,D_GNR_NAME,D_ROUTE_CODE,D_FORM_CODE,D_STRENGTH,D_ADVISORY_CODE,"
+                //      8       9       10      11      12          13          14          15          16              17          18          
                 + "D_STOCK_QTY,D_QTY,D_QTYT,D_DURATION,D_DURATIONT,D_FREQUENCY,D_CAUTION_CODE,D_EXP_DATE,D_CLASSIFICATION,STATUS,D_LOCATION_CODE,"
+                //      19          20          21              22          23        24        25              26
                 + "D_SELL_PRICE,D_COST_PRICE,D_PACKAGING,D_PACKAGINGT,D_PRICE_PPACK,hfc_cd,discipline_cd,subdiscipline_cd "
                 + "FROM pis_mdc2 WHERE hfc_cd  = '" + hfc + "' AND discipline_cd  = '" + dis + "' ";
         ArrayList<ArrayList<String>> dataMTC = conn.getData(sqlMain);
@@ -74,10 +77,10 @@
 <td><%= dataMTC.get(s).get(1)%></td>
 <td><%= dataMTC.get(s).get(2)%></td>
 <td><%= dataMTC.get(s).get(3)%></td>
-<td><%= dataMTC.get(s).get(4)%></td>
-<td><%= dataMTC.get(s).get(5)%></td>
+<td style="display: none"><%= dataMTC.get(s).get(4)%></td>
+<td style="display: none"><%= dataMTC.get(s).get(5)%></td>
 <td><%= dataMTC.get(s).get(6)%></td>
-<td><%= dataMTC.get(s).get(7)%></td>
+<td style="display: none"><%= dataMTC.get(s).get(7)%></td>
 <td><%= dataMTC.get(s).get(8)%></td>
 <td style="display: none"><%= dataMTC.get(s).get(9)%></td>
 <td style="display: none"><%= dataMTC.get(s).get(10)%></td>
@@ -89,7 +92,7 @@
 <td style="display: none"><%= dataMTC.get(s).get(16)%></td>
 <td style="display: none"><%= dataMTC.get(s).get(17)%></td>
 <td style="display: none"><%= dataMTC.get(s).get(18)%></td>
-<td style="display: none"><%= dataMTC.get(s).get(19)%></td>
+<td ><%= dataMTC.get(s).get(19)%></td>
 <td style="display: none"><%= dataMTC.get(s).get(20)%></td>
 <td style="display: none"><%= dataMTC.get(s).get(21)%></td>
 <td style="display: none"><%= dataMTC.get(s).get(22)%></td>
@@ -207,7 +210,7 @@
                                                     i < size2;
                                                     i++) {
                                         %>
-                                        <option value="<%= listOfDRoute.get(i).get(2)%>"><%= listOfDRoute.get(i).get(2)%> </option>
+                                        <option value="<%= listOfDRoute.get(i).get(1)%>"><%= listOfDRoute.get(i).get(2)%> </option>
                                         <%
                                             }
                                         %>
@@ -231,7 +234,7 @@
                                                     i < size3;
                                                     i++) {
                                         %>
-                                        <option value="<%= listOfDForm.get(i).get(2)%>"><%= listOfDForm.get(i).get(2)%> </option>
+                                        <option value="<%= listOfDForm.get(i).get(1)%>"><%= listOfDForm.get(i).get(2)%> </option>
                                         <%
                                             }
                                         %>
@@ -338,7 +341,7 @@
                                                     i < size4;
                                                     i++) {
                                         %>
-                                        <option value="<%= listOfDUOM.get(i).get(2)%>"><%= listOfDUOM.get(i).get(2)%> </option>
+                                        <option value="<%= listOfDUOM.get(i).get(1)%>"><%= listOfDUOM.get(i).get(2)%> </option>
                                         <%
                                             }
                                         %>
@@ -362,7 +365,7 @@
                                                     i < size5;
                                                     i++) {
                                         %>
-                                        <option value="<%= listOfDFreq.get(i).get(2)%>"><%= listOfDFreq.get(i).get(2)%> </option>
+                                        <option value="<%= listOfDFreq.get(i).get(1)%>"><%= listOfDFreq.get(i).get(2)%> </option>
                                         <%
                                             }
                                         %>
@@ -389,7 +392,7 @@
                                                     i < size6;
                                                     i++) {
                                         %>
-                                        <option value="<%= listOfDDura.get(i).get(2)%>"><%= listOfDDura.get(i).get(2)%> </option>
+                                        <option value="<%= listOfDDura.get(i).get(1)%>"><%= listOfDDura.get(i).get(2)%> </option>
                                         <%
                                             }
                                         %>
@@ -413,7 +416,7 @@
                                                     i < size7;
                                                     i++) {
                                         %>
-                                        <option value="<%= listOfDInst.get(i).get(2)%>"><%= listOfDInst.get(i).get(2)%> </option>
+                                        <option value="<%= listOfDInst.get(i).get(1)%>"><%= listOfDInst.get(i).get(2)%> </option>
                                         <%
                                             }
                                         %>
@@ -453,7 +456,7 @@
                                                     i < size8;
                                                     i++) {
                                         %>
-                                        <option value="<%= listOfDClass.get(i).get(2)%>"><%= listOfDClass.get(i).get(2)%> </option>
+                                        <option value="<%= listOfDClass.get(i).get(1)%>"><%= listOfDClass.get(i).get(2)%> </option>
                                         <%
                                             }
                                         %>

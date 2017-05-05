@@ -22,6 +22,7 @@
     ATC MEDICINE MANAGEMENT
     <span class="pull-right">
         <button id="addATCTriggerHFC" class="btn btn-success" data-status="pagado" data-toggle="modal" data-id="1" data-target="#detail" style=" padding-right: 10px;padding-left: 10px;color: white;"><a data-toggle="tooltip" data-placement="top" title="Add Items" id="test"><i class=" fa fa-plus" style=" padding-right: 10px;padding-left: 10px;color: white;"></i></a>ADD ATC</button>
+        <button id="ATCClone_btnClone" class="btn btn-primary" data-status="pagado" data-toggle="modal" data-id="1" data-target="#atcCloneModal" style=" padding-right: 10px;padding-left: 10px;color: white;"><a data-toggle="tooltip" data-placement="top" title="Add Items"><i class=" fa fa-copy" style=" padding-right: 10px;padding-left: 10px;color: white;"></i></a>CLONE ATC CODE</button>
     </span>
 </h4>
 <!-- Add Button End -->
@@ -69,8 +70,8 @@
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="textinput">HFC Code *</label>
                         <div class="col-md-8">
-                            <input id="hfcFromSession" type="hidden" maxlength="30" class="form-control input-md" value="<%= hfc %>" readonly>
-                            <input id="hfc" type="text" placeholder="Insert HFC Code" maxlength="30" value="<%= hfc %>" class="form-control input-md" readonly>
+                            <input id="hfcFromSession" type="hidden" maxlength="30" class="form-control input-md" value="<%= hfc%>" readonly>
+                            <input id="hfc" type="text" placeholder="Insert HFC Code" maxlength="30" value="<%= hfc%>" class="form-control input-md" readonly>
                         </div>
                     </div>
 
@@ -78,7 +79,7 @@
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="textinput">Discipline Code *</label>
                         <div class="col-md-8">
-                            <input id="discipline" type="text" placeholder="Insert Discipline Code" value="<%= dis %>" maxlength="30" class="form-control input-md" readonly>
+                            <input id="discipline" type="text" placeholder="Insert Discipline Code" value="<%= dis%>" maxlength="30" class="form-control input-md" readonly>
                         </div>
                     </div>
 
@@ -86,7 +87,7 @@
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="textinput">Sub-Discipline Code *</label>
                         <div class="col-md-8">
-                            <input id="subdiscipline" type="text" placeholder="Insert Sub-Discipline Code" maxlength="30" value="<%= subdis %>" class="form-control input-md" readonly>
+                            <input id="subdiscipline" type="text" placeholder="Insert Sub-Discipline Code" maxlength="30" value="<%= subdis%>" class="form-control input-md" readonly>
                         </div>
                     </div>
 
@@ -125,6 +126,52 @@
 </div>
 <!-- Add Modal End -->                         
 <!-- Add Part End -->
+
+
+<!-- Clone Modal Start -->
+<div class="modal fade" id="atcCloneModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+    <div class="modal-dialog" style="width: 50%">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><i class="fa fa-times fa-lg"></i></button>
+                <h2 class="modal-title" id="lineModalLabel" align="center">Clone ATC Code</h2>
+            </div>
+            <div class="modal-body">
+
+                <!-- content goes here -->
+                <form style="width: 100%; margin: 0 auto;" id="atcClone_addForm" autocomplete="off">
+
+                    <!-- Text input-->
+                    <div class="form-group">
+
+
+                        <div style="align-items: center; text-align: center">
+                            <br>
+                            <label>Select ATC Drug To Be Cloned</label>
+                            <br><br>
+                            <span>
+                                <a href="#" class="btn btn-default" id="ATC_Code_selectAll">&nbsp; Select all &nbsp;</a>
+                                &nbsp;	&nbsp;	&nbsp;	&nbsp;	&nbsp;	&nbsp;	&nbsp;	&nbsp;	&nbsp;	&nbsp;	&nbsp;	&nbsp;	&nbsp;	&nbsp;
+                                <a href="#" class="btn btn-default" id="ATC_Code_deselectAll">Deselect all</a>
+                            </span>
+                            <br><br>
+                            <div>
+                                <select id="ATC_DrugCode" multiple="multiple"></select>
+                            </div>    
+                        </div>
+                    </div>
+
+
+                </form>
+                <!-- content goes here -->
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary btn-block" type="button" id="ATC_btnClone"><i class=" fa fa-check"></i> Clone</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Clone Modal End -->   
 
 
 <script>
@@ -188,7 +235,7 @@
                     subdiscipline: subdiscipline,
                     status: status
                 };
-                
+
                 console.log(data);
 
                 $.ajax({
@@ -257,6 +304,152 @@
             document.getElementById("status2").checked = false;
         }
         // Reset Function End
+
+
+        // Clone ATC Function Start
+
+        var User_hfcCode = "<%= hfc%>";
+        var User_disCode = "<%= dis%>";
+
+        // Clone ATC Button Click Function Start
+        $('#ATCClone_btnClone').on('click', function () {
+            ATCCloneReset();
+            createATCCodeList();
+        });
+        // Clone ATC Button Click Function End
+
+
+        // Clone ATC Reset Function Start
+        function ATCCloneReset() {
+            document.getElementById("atcClone_addForm").reset();
+        }
+        // Clone ATC Reset Function End
+
+
+        // Clone ATC Create List Function Start
+        function createATCCodeList() {
+
+            var data = {
+                hfc: User_hfcCode,
+                dis: User_disCode
+            };
+
+            $('#ATC_DrugCode').multiSelect('destroy');
+            $('<div class="loading">Loading</div>').appendTo('#atcCloneModal');
+
+            $.ajax({
+                type: 'POST',
+                url: "atcCloneDrugList.jsp",
+                data: data,
+                success: function (data, textStatus, jqXHR) {
+                    $('#ATC_DrugCode').html(data);
+                    $('#ATC_DrugCode').multiSelect({
+                        selectableHeader: "<div style='display:block; color:white; background-color:#2196f3; '>Selectable ATC Code</div>",
+                        selectionHeader: "<div style='display:block; color:white; background-color:#2196f3'>Selected ATC Code</div>",
+                        keepOrder: true
+                    });
+
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    bootbox.alert("Opps! " + errorThrown);
+                },
+                complete: function (jqXHR, textStatus) {
+                    $('.loading').hide();
+                }
+            });
+
+        }
+        // Clone MDC Create List Function End
+
+
+        // Clone MDC Clone Function Start
+        $('#ATC_btnClone').on('click', function () {
+
+            var arraySelect = [];
+            $("#ATC_DrugCode option:selected").each(function () {
+                arraySelect.push($(this));
+            });
+
+            var strATCClone = arraySelect.map(function (elem) {
+                return elem.val();
+            }).join("|");
+
+            console.log(strATCClone);
+
+            if (strATCClone === "") {
+                bootbox.alert("Select at least one MDC Medcine to be cloned");
+            } else {
+                $('<div class="loading">Loading</div>').appendTo('#atcCloneModal');
+
+                var data = {
+                    strATCClone: strATCClone
+                };
+
+                $.ajax({
+                    url: "atcCloneDrugListInsert.jsp",
+                    type: "post",
+                    data: data,
+                    timeout: 15000,
+                    success: function (datas) {
+                        console.log(datas.trim());
+                        if (datas.trim() === 'Success') {
+
+                            $("#contentATCTable").load("atcTableLoop.jsp");
+                            $('#atcCloneModal').modal('hide');
+
+                            bootbox.alert({
+                                message: "ATC Medcine is successfully cloned",
+                                title: "Process Result",
+                                backdrop: true
+                            });
+                            ATCCloneReset();
+
+                        } else if (datas.trim() === 'Failed') {
+
+                            bootbox.alert("Insertion failed!");
+                            ATCCloneReset();
+
+                        } else {
+
+                            bootbox.alert(datas.trim());
+                            $('#ATC_DrugCode').val("");
+
+                        }
+
+                    },
+                    error: function (err) {
+                        console.log("Ajax Is Not Success");
+                    },
+                    complete: function (jqXHR, textStatus) {
+                        $('.loading').hide();
+                    }
+
+                });
+            }
+
+        });
+        // Clone MDC Clone Function End
+
+
+        // Clone MDC Select All Function Start
+        $('#ATC_Code_selectAll').on('click', function (e) {
+            e.preventDefault();
+            $('#ATC_DrugCode').multiSelect('select_all');
+            return false;
+        });
+        // Clone MDC Select All Function End
+
+
+        // Clone MDC Un-Select All Function Start
+        $('#ATC_Code_deselectAll').on('click', function (e) {
+            e.preventDefault();
+            $('#ATC_DrugCode').multiSelect('deselect_all');
+            return false;
+        });
+        // Clone MDC Un-Select All Function End
+
+        // Clone MDC Function End
+
 
     });
 
