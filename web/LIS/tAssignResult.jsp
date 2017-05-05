@@ -23,15 +23,8 @@
   
     RMIConnector rmic = new RMIConnector();
     Conn conn = new Conn();
-    
-    //String count  = "SELECT MAX(id_result) FROM lis_assign_result";
-    String count = "SELECT IF(MAX(id_result) IS NULL, '0', MAX(id_result)) FROM lis_assign_result";
-    //String count = "SELECT CONCAT('LAR',LPAD(SUBSTRING(COALESCE(MAX(id_result),'LAR000'),4,4)+1,4,'0'))FROM lis_assign_result";
-    ArrayList<ArrayList<String>> insert = conn.getData(count);
-    
-    int get = Integer.parseInt(insert.get(0).get(0));	
-    int idResult = get+1;       
-    String sqlInsert = "INSERT INTO lis_assign_result(item_cd,pmi_no,specimen_no,result,remark,test_name,test_date,testTime,performBy,verification,order_no,id_result,picture) VALUES ('" + item_cd + "','" + pmi + "','" + specimen_no + "','" + Result + "','" + Remark + "','" + testName + "','"+testDate+"','"+testTime+"','"+performBy+"','"+verification+"','"+order_no+"','"+idResult+"','"+gambar+"')";
+        
+    String sqlInsert = "INSERT INTO lis_result(item_cd,pmi_no,specimen_no,result,remark,test_name,test_date,test_time,performBy,verification,order_no,picture) VALUES ('" + item_cd + "','" + pmi + "','" + specimen_no + "','" + Result + "','" + Remark + "','" + testName + "','"+testDate+"','"+testTime+"','"+performBy+"','"+verification+"','"+order_no+"','"+gambar+"')";
     rmic.setQuerySQL(conn.HOST, conn.PORT, sqlInsert);
     
     String sqlUpdate = "UPDATE lis_specimen SET Approval = '" + verification + "' WHERE item_cd = '" + item_cd + "' AND specimen_no = '"+specimen_no+"' ";

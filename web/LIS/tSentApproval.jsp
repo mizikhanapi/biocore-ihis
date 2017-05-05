@@ -11,10 +11,8 @@
 
 <%  
     String verify = request.getParameter("verify");
-    String Result = request.getParameter("Result");
-    String Remark = request.getParameter("Remark");
-    String testDate = request.getParameter("testDate");
-    String testTime = request.getParameter("testTime");
+    String idresult = request.getParameter("idresult");
+    
     String item_cd = (String)session.getAttribute("item_cd");
     String specimen_no = (String)session.getAttribute("specimen_no");
     String order_no = (String)session.getAttribute("order_no");
@@ -29,7 +27,7 @@
     rmic.setQuerySQL(conn.HOST, conn.PORT, sqlUpdate2);
     
    
-    String sqlUpdate = "UPDATE lis_assign_result SET Verification = '" + verify + "' WHERE result='"+Result+"' AND remark='"+Remark+"' AND test_date='"+testDate+"' AND testTime='"+testTime+"'";
+    String sqlUpdate = "UPDATE lis_result SET Verification = '" + verify + "' WHERE id_result='"+idresult+"'";
     boolean isUpdate = rmic.setQuerySQL(conn.HOST, conn.PORT, sqlUpdate);
     
      if (isUpdate) {

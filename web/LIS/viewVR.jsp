@@ -14,7 +14,7 @@
 
         Conn conn = new Conn();
 
-        String query4 = "SELECT * FROM lis_assign_result WHERE item_cd='" + item_cd + "' AND test_name = '" + item_name + "'";
+        String query4 = "SELECT id_result,result,remark,test_date,test_time,Verification,performBy,picture FROM lis_result WHERE item_cd='" + item_cd + "'";
         ArrayList<ArrayList<String>> q4 = conn.getData(query4);
     %>
     <table id="MTC"  class="table table-striped table-bordered" cellspacing="0" width="100%">
@@ -35,12 +35,12 @@
             <%if (q4.size() > 0) {
                     for (int i = 0; i < q4.size(); i++) {%> 
             <tr>    
-                <td><%=q4.get(i).get(0)%></td>
                 <td><%=q4.get(i).get(1)%></td>
                 <td><%=q4.get(i).get(2)%></td>
                 <td><%=q4.get(i).get(3)%></td>
-                <td><%=q4.get(i).get(9)%></td>
-                <td><%=q4.get(i).get(8)%></td>
+                <td><%=q4.get(i).get(4)%></td>
+                <td><%=q4.get(i).get(5)%></td>
+                <td><%=q4.get(i).get(6)%></td>
                 <td>
                     <input type="text" name="item_cd" id="item_cd" value="<%=item_cd%>" style=" display: none;">
                     <a data-toggle="modal" data-target="#TestCategory<%=i%>"><i class="fa fa-pencil-square-o" aria-hidden="true" style="display: inline-block;color: #337ab7;"></i></a>
@@ -72,7 +72,7 @@
                                                 <label class="col-md-4 control-label" for="textinput">Result</label>
                                                 <div class="col-md-8">
                                                     <input type="text" name="testCatName" id="testCatName" class="form-control" style="display: none;"/>
-                                                    <textarea name="career[message]" class="form-control" id="Result<%=i%>" placeholder="Write your result" required="required" disabled="disabled"><%=q4.get(i).get(0)%></textarea>
+                                                    <textarea name="career[message]" class="form-control" id="Result<%=i%>" placeholder="Write your result" required="required" disabled="disabled"><%=q4.get(i).get(1)%></textarea>
                                                 </div>
                                             </div>
 
@@ -81,7 +81,7 @@
                                                 <label class="col-md-4 control-label" for="textinput">Remark</label>
                                                 <div class="col-md-8">
                                                     <input type="text" name="testCatName" id="testCatName" class="form-control" style="display: none;"/>
-                                                    <textarea name="career[message]" class="form-control" id="Remark<%=i%>" placeholder="Write your Remark" required="required" disabled="disabled"><%=q4.get(i).get(1)%></textarea>
+                                                    <textarea name="career[message]" class="form-control" id="Remark<%=i%>" placeholder="Write your Remark" required="required" disabled="disabled"><%=q4.get(i).get(2)%></textarea>
                                                 </div>
                                             </div>
 
@@ -90,7 +90,7 @@
                                             <div class="form-group">
                                                 <label class="col-md-4 control-label" for="textinput">Test Date</label>
                                                 <div class="col-md-8">
-                                                    <input id="testDate<%=i%>" name="textinput" type="text" class="form-control input-md" required="" value="<%=q4.get(i).get(2)%>" disabled="disabled">
+                                                    <input id="testDate<%=i%>" name="textinput" type="text" class="form-control input-md" required="" value="<%=q4.get(i).get(3)%>" disabled="disabled">
                                                 </div>
                                             </div>
                                         </div>
@@ -98,7 +98,7 @@
                                             <div class="form-group">
                                                 <label class="col-md-4 control-label" for="textinput">Test Time</label>
                                                 <div class="col-md-8">
-                                                    <input id="testTime<%=i%>" name="textinput" type="text" class="form-control input-md" required="" value="<%=q4.get(i).get(3)%>" disabled="disabled">
+                                                    <input id="testTime<%=i%>" name="textinput" type="text" class="form-control input-md" required="" value="<%=q4.get(i).get(4)%>" disabled="disabled">
                                                 </div>
                                             </div>
                                         </div>
@@ -106,7 +106,7 @@
                                             <div class="form-group">
                                                 <label class="col-md-4 control-label" for="textinput">Test Perform By</label>
                                                 <div class="col-md-8">
-                                                    <input type="text" name="performBy" id="performBy<%=i%>" class="form-control" value="<%=q4.get(i).get(8)%>" disabled="disabled"/>
+                                                    <input type="text" name="performBy" id="performBy<%=i%>" class="form-control" value="<%=q4.get(i).get(6)%>" disabled="disabled"/>
                                                 </div>
                                             </div>
                                         </div>
@@ -115,16 +115,26 @@
                                                 <label class="col-md-4 control-label" for="textinput">Verify Test</label>
                                                 <div class="col-md-8">
                                                     <select class="form-control" name="verify" id="verify1<%=i%>">
-                                                        <option value="<%=q4.get(i).get(9)%>"><%=q4.get(i).get(9)%></option>
+                                                        <option value="<%=q4.get(i).get(5)%>"><%=q4.get(i).get(5)%></option>
                                                         <option value="Approve">Approve</option>
                                                         <option value="Reject">Reject</option>
                                                     </select>
                                                 </div>
                                             </div>
-                                        </div>       
+                                        </div> 
+                                        <hr/>
+                                        <div class="row">
+                                            <div class="col-md-12" style="width: 100%; margin: 0 auto">
+                                                <div id="dym<%=i%>" style="text-align: center;">
+                                                    <img src="<%=q4.get(i).get(7)%>" >
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                     <!-- content goes here -->
+
                                 </div>
+                                <input type="text" name="idresult<%=i%>" id="idresult<%=i%>" value="<%=q4.get(i).get(0)%>" style=" display: none"/>
                                 <div class="modal-footer">
                                     <div class="btn-group btn-group-justified" role="group" aria-label="group button">
                                         <div class="btn-group" role="group">
@@ -138,21 +148,14 @@
 
                                                     $("#btn_saveChange<%=i%>").click(function () {
 
-
                                                         var verify = $("#verify1<%=i%>").val();
-                                                        var Result = $("#Result<%=i%>").val();
-                                                        var Remark = $("#Remark<%=i%>").val();
-                                                        var testDate = $("#testDate<%=i%>").val();
-                                                        var testTime = $("#testTime<%=i%>").val();
-                                                        //alert(verify);
+                                                        var idresult = $("#idresult<%=i%>").val();
+
                                                         $.ajax({
                                                             url: "tSentApproval.jsp",
                                                             type: "post",
                                                             data: {verify: verify,
-                                                                Result: Result,
-                                                                Remark: Remark,
-                                                                testDate: testDate,
-                                                                testTime: testTime
+                                                                idresult: idresult
                                                             },
                                                             timeout: 10000,
                                                             success: function (data) {
@@ -264,6 +267,6 @@
 
         </tbody>
     </table>
-            <textarea rows="4" cols="50" id="dataMSHPDIORC" style="display: none">
+    <textarea rows="4" cols="50" id="dataMSHPDIORC" style="display: none">
     </textarea>
 </form>

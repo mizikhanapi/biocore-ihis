@@ -67,7 +67,7 @@
 
                                                 <div class="tab-pane active" id="tab_default_1">
                                                     <h3>
-                                                        <%                                            String item_cd = request.getParameter("item_cd");
+                                                        <%  String item_cd = request.getParameter("item_cd");
                                                             session.setAttribute("item_cd", item_cd);
 
                                                             String pmi1 = request.getParameter("pmi");
@@ -87,10 +87,10 @@
                                                             session.setAttribute("item_name", q4.get(0).get(1));
                                                             out.println("<span class='pull-right'>Item Code:" + item_cd + "</span>");
                                                         %></h3>
-                                                    <input type="text" id="pmi" value="<%=pmi1%>" style="display:none;">
-                                                    <input type="text" id="specimen_no" value="<%=specimen_no1%>" style="display:none;">
-                                                    <input type="text" id="item_cd" value="<%=item_cd%>" style="display:none;">
-                                                    <input type="text" id="order_no" value="<%=q4.get(0).get(0)%>" style="display:none;">    
+                                                    <input type="text" id="pmi" value="<%=pmi1%>" style="display: none">
+                                                    <input type="text" id="specimen_no" value="<%=specimen_no1%>" style="display: none">
+                                                    <input type="text" id="item_cd" value="<%=item_cd%>" style="display: none">
+                                                    <input type="text" id="order_no" value="<%=q4.get(0).get(0)%>" style="display: none">    
                                                     <hr>                   
                                                     <span class="pull-right">
                                                         <button id="MLM_btnAddNew" class="btn btn-success" data-status="pagado" data-toggle="modal" data-id="1" data-target="#TestCategory" style=" padding-right: 10px;padding-left: 10px;color: white;"><a data-toggle="tooltip" data-placement="top" title="Add Items" id="test"><i class=" fa fa-plus" style=" padding-right: 10px;padding-left: 10px;color: white;"></i></a>ADD Test Result</button>
@@ -163,22 +163,21 @@
                                                                             </div>
                                                                         </div>
                                                                         <div class="col-md-6">
-                                                                            <label class="col-md-4 control-label" for="textinput">&nbsp;</label>
+                                                                            <label class="col-md-4 control-label" for="textinput">Upload Result</label>
                                                                             <div class="col-md-8">
                                                                                 <input class="form-control" id="inputFileToLoad" type="file" accept=".jpg, .png, .gif" >
-                                                                                <button id="btnClearPic" class="btn btn-default"><i class="fa fa-ban fa-lg"></i>&nbsp; Clear</button>
                                                                             </div>
 
                                                                         </div>
-
-                                                                    </div>
-                                                                    <hr/>
-                                                                    <div class="row">
-                                                                        <div class="col-md-12" style="width: 100%; margin: 0 auto">
-                                                                            <div id="dym" style="text-align: center;">
+                                                                        <hr/>
+                                                                        <div class="row">
+                                                                            <div class="col-md-12" style="width: 100%; margin: 0 auto">
+                                                                                <div id="dym" style="text-align: center;">
+                                                                                </div>
                                                                             </div>
                                                                         </div>
                                                                     </div>
+
 
                                                                     <!-- content goes here -->
                                                                 </div>
@@ -187,9 +186,7 @@
                                                                         <div class="btn-group" role="group">
                                                                             <button type="button" class="btn btn-success btn-block btn-lg" role="button" id="btn_add">Add</button>
                                                                         </div>
-                                                                        <div class="btn-group" role="group">
-                                                                            <button type="reset" id="btnReset" class="btn btn-default btn-block btn-lg" data-dismiss="modal" role="button" >Cancel</button>
-                                                                        </div>
+
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -224,6 +221,7 @@
 
                 $(document).ready(function () {
                     $('#orderRecieve').DataTable();
+
                 });
 
 
@@ -296,13 +294,6 @@
                         sizeSmall = iSize <= 45;
 
                     }
-
-
-
-
-
-
-
                     if (sizeSmall) {
                         document.getElementById("dym").innerHTML = '<div class="loader"></div>';
                         var filesSelected = document.getElementById("inputFileToLoad").files;
@@ -337,33 +328,7 @@
 
                 }
 
-                $('#btnChangePic').on('click', function () {
 
-                    if (gambarURI === "") {
-                        bootbox.alert("Choose a picture");
-                        return;
-                    }
-
-                    var data = {pic: gambarURI};
-
-                    $.ajax({
-                        type: 'POST',
-                        url: "changePicture_process.jsp",
-                        data: data,
-                        success: function (data, textStatus, jqXHR) {
-                            if (data.trim() === 'success') {
-                                bootbox.alert("Picture is changed");
-                                $('#proPic').attr("src", gambarURI);
-                                $('#dym').html("");
-                                $('#inputFileToLoad').val("");
-                                gambarURI = "";
-                            } else {
-                                bootbox.alert("Fail");
-                            }
-                        }
-                    });
-
-                });
 
                 $('#btnClearPic').on('click', function () {
                     $('#dym').html("");
@@ -402,7 +367,7 @@
                         var testDate = $("#testDate").val();
                         var testTime = $("#testTime").val();
                         var performBy = $("#performBy").val();
-                        
+
                         if (gambarURI === "") {
                             bootbox.alert("Choose a picture");
                             return;
@@ -462,7 +427,7 @@
                     });
                 });
                 $(document).ready(function () {
-
+                    $("#viewTA").load("viewTA.jsp");
                     $("#headerindex").load("libraries/header.html");
                     $("#topmenuindex").load("libraries/topMenus.html");
                     $("#sidemenus").load("libraries/sideMenus.jsp");
