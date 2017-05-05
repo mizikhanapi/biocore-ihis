@@ -22,7 +22,7 @@
 <div class="thumbnail">
     <h4 style="padding-top: 0px; padding-bottom: 30px;">Medicine's List That Will Expire (Less Than 10 Days)</h4>
     <hr class="pemisah" />
-    <div style="height: 250px; overflow: auto; margin-top:-30px; padding-top: 30px;">    
+    <div style="height: 200px; overflow: auto; margin-top:-30px; padding-top: 30px;">    
         <table class="table table-striped"  width="30%" style="margin-bottom: 0px; margin-top:-30px;">
             <thead>
                 <tr >

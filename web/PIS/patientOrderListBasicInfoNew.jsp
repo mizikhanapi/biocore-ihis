@@ -279,6 +279,8 @@
     // Move to Order Details Fetch Details Start
     $('#patientOrderListContent').off('click', '#patientOrderListTable #moveToOrderDetailsTButton').on('click', '#patientOrderListTable #moveToOrderDetailsTButton', function (e) {
 
+        $('<div class="loading">Loading</div>').appendTo('body');
+
         // Disable Dispense Button
         document.getElementById("btnOrderDispense").disabled = true;
 
@@ -420,6 +422,7 @@
                                 $('#patientOrderDetailsListTable').html(returnOrderDetailsTableHTML);
                                 $('#patientOrderDetailsListTable').trigger('contentchanged');
                                 $('.nav-tabs a[href="#tab_default_2"]').tab('show');
+                                $('.loading').hide();
                             }
                         });
 
@@ -551,6 +554,9 @@
 
     //Start js Search Select drug
     $('#orderDrugSearchInputDisplayResult').on('click', function () {
+
+        $('<div class="loading">Loading</div>').appendTo('body');
+
         var id = $('#orderDrugSearchInput').val();
         $.ajax({
             type: 'post',
@@ -579,6 +585,8 @@
                 $('#orderDrugDisplayStrength').val(dtoStrength);
                 $('#orderDrugDisplayInstruction').val(dtoInstruction);
                 $('#orderDrugDisplayCautionary').val(dtoCaution);
+
+                $('.loading').hide();
 
             }
         });
@@ -1044,7 +1052,8 @@
 
         var orderDate, locationCode, arrivalDate, pmino, pname, dispenseFarMasterQuantity, dispenseFarMasterTotal, dispenseFarMasterQuantityChecked, dispenseFarMasterTotalChecked;
 
-        var drugATCCode, drugATCDesc, drugMDCDesc, drugMDCStrength, drugMDCFromCode, drugMDCRouteCode, drugMDCFrequencyCode, drugMDCFrequencyUnitCode, drugMDCDosage, drugMDCOUM,
+        var drugATCCode, drugATCDesc, drugMDCDesc, drugMDCStrength, drugMDCFromMCode, drugMDCFromRCode, drugMDCFromDesc, drugMDCRouteMCode, drugMDCRouteRCode, drugMDCRouteDesc,
+                drugMDCFrequencyMCode,drugMDCFrequencyRCode,drugMDCFrequencyDesc, drugMDCFrequencyUnitCode, drugMDCDosage, drugMDCOUM,
                 drugMDCDuration, drugMDCDispenseLocation, drugMDCDispenseNotes, drugMDCDispenseProvider, drugMDCIndicator;
 
         var dateBill = getDate();
@@ -1090,13 +1099,19 @@
             drugATCDesc = $tds.eq(16).text();
             drugMDCDesc = $tds.eq(17).text();
             drugMDCStrength = $tds.eq(18).text();
-            drugMDCFromCode = $tds.eq(19).text();
-            drugMDCRouteCode = $tds.eq(20).text();
-            drugMDCFrequencyCode = $tds.eq(21).text();
+            drugMDCFromMCode = $tds.eq(19).text();
+            drugMDCFromRCode = $tds.eq(20).text();
+            drugMDCFromDesc = $tds.eq(21).text();
+            drugMDCRouteMCode = $tds.eq(22).text();
+            drugMDCRouteRCode = $tds.eq(23).text();
+            drugMDCRouteDesc = $tds.eq(24).text();
+            drugMDCFrequencyMCode = $tds.eq(25).text();
+            drugMDCFrequencyRCode = $tds.eq(26).text();
+            drugMDCFrequencyDesc = $tds.eq(27).text();
             drugMDCFrequencyUnitCode = "-";
-            drugMDCDosage = $tds.eq(22).text();
+            drugMDCDosage = $tds.eq(28).text();
             drugMDCOUM = "-";
-            drugMDCDuration = $tds.eq(23).text();
+            drugMDCDuration = $tds.eq(29).text();
             drugMDCDispenseLocation = "-";
             drugMDCDispenseNotes = "-";
             drugMDCDispenseProvider = "-";
@@ -1106,9 +1121,10 @@
 
 //                              0        1     2     3     4          5            6            7              8                    9                       10               11
             var dataOneRowBLI = "BLI|T^" + dateBill + "|CH|" + pmino + "|" + drugCode + "|" + drugDesc + "|" + drugPrice + "|" + drugDispensedQty + "|" + userIDBill + "|" + dateBill + "<cr>\n";
-            var dataOneRowDDR = "DDR|" + drugATCCode + "^" + drugATCDesc + "^ATC|" + drugCode + "^" + drugMDCDesc + "^MDC|" + drugMDCStrength + "|" + drugMDCFromCode +
-                    "|" + drugMDCRouteCode + "|" + drugMDCFrequencyCode + "|" + drugMDCFrequencyUnitCode + "|" + drugMDCDosage + "|" + drugMDCOUM + "|" + drugMDCDuration +
-                    "|" + drugDispensedQty + "|" + drugMDCDispenseLocation + "|" + drugMDCDispenseNotes + "|" + getDate() + "|" + drugMDCDispenseProvider + "|" + 
+            var dataOneRowDDR = "DDR|" + drugATCCode + "^" + drugATCDesc + "^ATC|" + drugCode + "^" + drugMDCDesc + "^MDC|" + drugMDCStrength + "|" + drugMDCFromMCode + "^" + drugMDCFromRCode + "^" + drugMDCFromDesc +
+                    "|" + drugMDCRouteMCode + "^" + drugMDCRouteRCode + "^" + drugMDCRouteDesc + "|" + drugMDCFrequencyMCode + "^" + drugMDCFrequencyRCode + "^" + drugMDCFrequencyDesc + "|" + 
+                    drugMDCFrequencyUnitCode + "|" + drugMDCDosage + "|" + drugMDCOUM + "|" + drugMDCDuration +
+                    "|" + drugDispensedQty + "|" + drugMDCDispenseLocation + "|" + drugMDCDispenseNotes + "|" + getDate() + "|" + drugMDCDispenseProvider + "|" +
                     orderDate + "|" + drugMDCIndicator + "<cr>\n";
 
             ehrCentralBillBLI = ehrCentralBillBLI + dataOneRowBLI;
@@ -1558,3 +1574,5 @@
 
 
 </script>
+
+

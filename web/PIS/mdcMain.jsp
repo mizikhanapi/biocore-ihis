@@ -40,7 +40,7 @@
 
 <!-- Summary Modal Start -->
 <div class="modal fade" id="mdcSummaryModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
-    <div class="modal-dialog" style="width: 60%">
+    <div class="modal-dialog" style="width: 70%">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal"><i class="fa fa-times fa-lg"></i></button>
@@ -60,6 +60,11 @@
                         <br>
                         <div class="col-md-6">
                             <div id="mdcStockSummary">
+
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div id="mdcATCSummary">
 
                             </div>
                         </div>
@@ -217,7 +222,7 @@
 
                                             for (int i = 0; i < size2; i++) {
                                         %>
-                                        <option value="<%= listOfDRoute.get(i).get(2)%>"><%= listOfDRoute.get(i).get(2)%> </option>
+                                        <option value="<%= listOfDRoute.get(i).get(1)%>"><%= listOfDRoute.get(i).get(2)%> </option>
                                         <%
                                             }
                                         %>
@@ -239,7 +244,7 @@
 
                                             for (int i = 0; i < size3; i++) {
                                         %>
-                                        <option value="<%= listOfDForm.get(i).get(2)%>"> <%= listOfDForm.get(i).get(2)%> </option>
+                                        <option value="<%= listOfDForm.get(i).get(1)%>"> <%= listOfDForm.get(i).get(2)%> </option>
                                         <%
                                             }
                                         %>
@@ -344,7 +349,7 @@
 
                                             for (int i = 0; i < size4; i++) {
                                         %>
-                                        <option value="<%= listOfDUOM.get(i).get(2)%>"><%= listOfDUOM.get(i).get(2)%> </option>
+                                        <option value="<%= listOfDUOM.get(i).get(1)%>"><%= listOfDUOM.get(i).get(2)%> </option>
                                         <%
                                             }
                                         %>
@@ -366,7 +371,7 @@
 
                                             for (int i = 0; i < size5; i++) {
                                         %>
-                                        <option value="<%= listOfDFreq.get(i).get(2)%>"><%= listOfDFreq.get(i).get(2)%> </option>
+                                        <option value="<%= listOfDFreq.get(i).get(1)%>"><%= listOfDFreq.get(i).get(2)%> </option>
                                         <%
                                             }
                                         %>
@@ -391,7 +396,7 @@
 
                                             for (int i = 0; i < size6; i++) {
                                         %>
-                                        <option value="<%= listOfDDura.get(i).get(2)%>"><%= listOfDDura.get(i).get(2)%> </option>
+                                        <option value="<%= listOfDDura.get(i).get(1)%>"><%= listOfDDura.get(i).get(2)%> </option>
                                         <%
                                             }
                                         %>
@@ -413,7 +418,7 @@
 
                                             for (int i = 0; i < size7; i++) {
                                         %>
-                                        <option value="<%= listOfDInst.get(i).get(2)%>"><%= listOfDInst.get(i).get(2)%> </option>
+                                        <option value="<%= listOfDInst.get(i).get(1)%>"><%= listOfDInst.get(i).get(2)%> </option>
                                         <%
                                             }
                                         %>
@@ -451,7 +456,7 @@
 
                                             for (int i = 0; i < size8; i++) {
                                         %>
-                                        <option value="<%= listOfDClass.get(i).get(2)%>"><%= listOfDClass.get(i).get(2)%> </option>
+                                        <option value="<%= listOfDClass.get(i).get(1)%>"><%= listOfDClass.get(i).get(2)%> </option>
                                         <%
                                             }
                                         %>
@@ -851,7 +856,7 @@
             if (strMDCClone === "") {
                 bootbox.alert("Select at least one MDC Medcine to be cloned");
             } else {
-                $('<div class="loading">Loading</div>').appendTo('#ARM_detail');
+                $('<div class="loading">Loading</div>').appendTo('#mdcCloneModal');
 
                 var data = {
                     strMDCClone: strMDCClone
@@ -930,6 +935,7 @@
         $('#MDCClone_btnSummary').on('click', function () {
             createMDCSummaryStock();
             createMDCSummaryDate();
+            createMDCSummaryATC();
         });
         // Summary MDC Button Function End
 
@@ -974,6 +980,26 @@
         }
         // Summary MDC Stock Function Start
 
+
+        // Summary MDC Stock Function Start
+        function createMDCSummaryATC() {
+
+            $.ajax({
+                type: 'POST',
+                url: "mdcDummaryDrugATC.jsp",
+                success: function (data, textStatus, jqXHR) {
+                    $('#mdcATCSummary').html(data);
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    bootbox.alert("Opps! " + errorThrown);
+                },
+                complete: function (jqXHR, textStatus) {
+                    $('.loading').hide();
+                }
+            });
+
+        }
+        // Summary MDC Stock Function Start
 
     });
 
