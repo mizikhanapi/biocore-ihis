@@ -18,6 +18,7 @@
     String testTime = request.getParameter("testTime");
     String performBy = request.getParameter("performBy");
     String order_no = request.getParameter("order_no");
+    String gambar = request.getParameter("pic");
     String verification = "Waiting Approval";
   
     RMIConnector rmic = new RMIConnector();
@@ -30,7 +31,7 @@
     
     int get = Integer.parseInt(insert.get(0).get(0));	
     int idResult = get+1;       
-    String sqlInsert = "INSERT INTO lis_assign_result(item_cd,pmi_no,specimen_no,result,remark,test_name,test_date,testTime,performBy,verification,order_no,id_result) VALUES ('" + item_cd + "','" + pmi + "','" + specimen_no + "','" + Result + "','" + Remark + "','" + testName + "','"+testDate+"','"+testTime+"','"+performBy+"','"+verification+"','"+order_no+"','"+idResult+"')";
+    String sqlInsert = "INSERT INTO lis_assign_result(item_cd,pmi_no,specimen_no,result,remark,test_name,test_date,testTime,performBy,verification,order_no,id_result,picture) VALUES ('" + item_cd + "','" + pmi + "','" + specimen_no + "','" + Result + "','" + Remark + "','" + testName + "','"+testDate+"','"+testTime+"','"+performBy+"','"+verification+"','"+order_no+"','"+idResult+"','"+gambar+"')";
     rmic.setQuerySQL(conn.HOST, conn.PORT, sqlInsert);
     
     String sqlUpdate = "UPDATE lis_specimen SET Approval = '" + verification + "' WHERE item_cd = '" + item_cd + "' AND specimen_no = '"+specimen_no+"' ";
