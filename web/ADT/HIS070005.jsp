@@ -91,20 +91,18 @@
                                         <div class="tab-content">
                                             <div class="tab-pane active" id="tab_default_1">
                                                 <div>
-                                                    <div id="WardOccupancy">
-                                                        <%@include file = "WardOccupancy.jsp" %>
+                                                    <div id="DischargeList">
+                                                        <%@include file = "DischargeList.jsp" %>
                                                     </div>
                                                     </br>
-                                                    <div id="WardOccupancyTable">
-                                                        <%//@include file = "WardOccupancy-Table.jsp" %>
-                                                    </div>
+                                                    
                                                 </div>
                                             </div>
 
                                             <div class="tab-pane" id="tab_default_2">
                                                 <div>
-                                                    <div  id="PatientTransfer"> 
-                                                        <%@include file = "PatientTransfer.jsp" %>
+                                                    <div  id="DischargePatient"> 
+                                                        <%@include file = "DischargePatient.jsp" %>
                                                     </div>
                                                 </div>
                                             </div>
