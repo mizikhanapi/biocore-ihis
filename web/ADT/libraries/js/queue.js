@@ -101,28 +101,28 @@
         yyyyMMdd = year + "-" + ZeroMonth + "-" + ZeroDay;
         ddMMyyyy = ZeroDay + "-" + ZeroMonth + "-" + year;
     }
- $('#modalSaya2').on('click', '#queueModal #listQueue #delQueue', function (e) {
-        var item = $(this).closest("tr").find("#pmiNumber").text();
-        var epiTime = $(this).closest("tr").find("#epiDate").text();
-        var datas = {'pmino': item, 'today': epiTime};
-        console.log(datas);
-        $.ajax({
-            type: "POST",
-            url: "deleteADTQueue.jsp",
-            data: datas, // Send input
-            timeout: 3000,
-            success: function (list) {
-                console.log(list);
-                if ($.trim(list) === "success") {
-                    bootbox.alert("Succeed deleting patient in queue.");
-                } else if ($.trim(list) === "fail") {
-                    bootbox.alert("Failed deleting patient in queue.");
-                }
-            }, error: function () {
-                bootbox.alert("There is an error!");
-            }
-        });
-        //alert(item+" "+yyyyMMdd);
-        $(this).closest('tr').remove();
-
-    });
+// $('#modalSaya2').on('click', '#queueModal #listQueue #delQueue', function (e) {
+//        var item = $(this).closest("tr").find("#pmiNumber").text();
+//        var epiTime = $(this).closest("tr").find("#epiDate").text();
+//        var datas = {'pmino': item, 'today': epiTime};
+//        console.log(datas);
+//        $.ajax({
+//            type: "POST",
+//            url: "deleteADTQueue.jsp",
+//            data: datas, // Send input
+//            timeout: 3000,
+//            success: function (list) {
+//                console.log(list);
+//                if ($.trim(list) === "success") {
+//                    bootbox.alert("Succeed deleting patient in queue.");
+//                } else if ($.trim(list) === "fail") {
+//                    bootbox.alert("Failed deleting patient in queue.");
+//                }
+//            }, error: function () {
+//                bootbox.alert("There is an error!");
+//            }
+//        });
+//        //alert(item+" "+yyyyMMdd);
+//        $(this).closest('tr').remove();
+//
+//    });

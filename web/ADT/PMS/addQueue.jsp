@@ -23,14 +23,15 @@
     //String name = "wname";
     String code = "FY";
     String name = request.getParameter("wname");
-    String desc = "desc";
+    String desc = "1";
     String userid = request.getParameter("createdBy");
-    String quota = "100";
+    String category = "003";
     String status = "Active";
     String createdBy = request.getParameter("createdBy");
     String hfc = request.getParameter("hfc");
     String dis = request.getParameter("Dis");
     String sub = request.getParameter("sub");
+    String pmino = request.getParameter("pmino");
 
     // String createdBy = "Dr002";
     //   String hfc ="04010101";
@@ -40,8 +41,8 @@
     //String sql = "";
     //  Boolean operation = false;
 //    ArrayList<ArrayList<String>> resultCheck;
-    String sql = "insert into pms_queue_name( queue_type,queue_name,queue_description,user_id,quota,status,created_by,created_date,hfc_cd,discipline_code,subdiscipline_code) values"
-            + "('" + code + "','" + name + "','" + desc + "','" + userid + "','" + quota + "','" + status + "','" + createdBy + "',NOW(),'" + hfc + "','" + dis + "','" + sub + "');";
+    String sql = "insert into pms_patient_queue( queue_type,queue_name,queue_no,user_id,patient_category,status,created_by,created_date,hfc_cd,episode_date,pmi_no) values"
+            + "('" + code + "','" + name + "','" + desc + "','" + userid + "','" + category + "','" + status + "','" + createdBy + "',NOW(),'" + hfc + "',NOW(),'" + pmino + "' );";
 
     boolean isInsert = rmic.setQuerySQL(conn.HOST, conn.PORT, sql);
     if (isInsert == true) {

@@ -249,7 +249,7 @@ $('#registerBed').click(function () {
                             $.ajax({
                                 type: "POST",
                                 url: "PMS/addQueue.jsp",
-                                data: {'wname': wname, 'createdBy': createdBy, 'hfc': hfc, 'Dis': Dis, 'sub': sub}, // Send input
+                                data: {'wname': wname, 'createdBy': createdBy, 'hfc': hfc, 'Dis': Dis, 'sub': sub,'pmino':pmino}, // Send input
                                 timeout: 3000,
                                 success: function (l) {
                                     console.log(l);

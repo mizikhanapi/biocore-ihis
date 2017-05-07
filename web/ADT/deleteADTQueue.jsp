@@ -16,8 +16,10 @@
     Conn conn = new Conn();
     String pmino = request.getParameter("pmino");
     String now = request.getParameter("today");
+     //   String delSql ="DELETE FROM wis_order_master WHERE pmi_no ='"+pmino+"' AND EPISODE_DATE = '"+now+"'";
+
     
-    String delSql ="DELETE FROM wis_order_master WHERE pmi_no ='"+pmino+"' AND EPISODE_DATE = '"+now+"'";
+    String delSql ="DELETE FROM wis_order_master WHERE pmi_no ='"+pmino+"' ";
     Boolean delSuccess = rmic.setQuerySQL(conn.HOST, conn.PORT, delSql);
     if(delSuccess == true){
 out.print("success");
