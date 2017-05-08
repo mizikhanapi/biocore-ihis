@@ -9,16 +9,12 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
 
-    String item_cd = (String)session.getAttribute("item_cd");
-    String Result = request.getParameter("result");
-    String Remark = request.getParameter("remark");
-    String testDate = request.getParameter("date");
-    String testTime = request.getParameter("time");
+
     String idResult = request.getParameter("idResult");
     
     RMIConnector rmic = new RMIConnector();
     Conn conn = new Conn();
-    String sql = "DELETE FROM lis_assign_result WHERE item_cd = '" + item_cd + "' AND result='"+Result+"' AND remark='"+Remark+"' AND id_result='"+idResult+"'";
+    String sql = "DELETE FROM lis_result WHERE id_result='"+idResult+"'";
 
     boolean status = rmic.setQuerySQL(conn.HOST, conn.PORT, sql);
 

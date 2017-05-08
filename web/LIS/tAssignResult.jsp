@@ -19,6 +19,7 @@
     String performBy = request.getParameter("performBy");
     String order_no = request.getParameter("order_no");
     String gambar = request.getParameter("pic");
+    //String gambar = "";
     String verification = "Waiting Approval";
   
     RMIConnector rmic = new RMIConnector();

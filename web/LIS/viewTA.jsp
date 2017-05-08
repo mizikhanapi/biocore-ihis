@@ -2,7 +2,6 @@
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="Config.connect"%>
 <%@page import="java.util.ArrayList"%>
-<form enctype="multipart/form-data" method="get">
     <table id="MTC"  class="table table-striped table-bordered" cellspacing="0" width="100%">
         <%
             String item_cd = (String) session.getAttribute("item_cd");
@@ -157,10 +156,7 @@
                     <script type="text/javascript" charset="utf-8">
                         $(document).ready(function () {
                             $("#btnDelete<%=i%>").click(function () {
-                                var Result = $("#Result<%=i%>").val();
-                                var Remark = $("#Remark<%=i%>").val();
-                                var testDate = $("#testDate<%=i%>").val();
-                                var testTime = $("#testTime<%=i%>").val();
+                                
                                 var idResult = $("#idresult<%=i%>").val();
 
                                 var conf = confirm('Are you sure want to delete?');
@@ -169,20 +165,16 @@
                                         url: "tAssignDelete.jsp",
                                         type: "post",
                                         data: {
-                                            idResult: idResult,
-                                            result: Result,
-                                            remark: Remark,
-                                            date: testDate,
-                                            time: testTime
+                                            idResult: idResult
                                         },
                                         timeout: 10000, // 10 seconds
                                         success: function (data) {
                                             var d = data.split("|");
                                             if (d[1] == '1') {
                                                 $("#viewTA").load("viewTA.jsp");
-                                                alert("Success");
+                                                alert("Result delete successfully");
                                             } else {
-                                                alert("Deletion failed!");
+                                                alert("Delete failed!");
                                             }
                                         },
                                         error: function (err) {
@@ -199,8 +191,8 @@
                                 },
                                 error: function () {
                                     bootbox.alert('Incompatible file type');
-                                    $('#inputFileToLoad').val("");
-                                    $('#dym').html("");
+                                    $('#inputFileToLoad<%=i%>').val("");
+                                    $('#dym<%=i%>').html("");
                                     newgambarURI = "";
                                 }
                             });
@@ -293,7 +285,7 @@
                                 var performBy = $("#performBy<%=i%>").val();
                                 var idResult = $("#idresult<%=i%>").val();
                                 
-                                alert(idResult+" "+Result+" "+Remark+" "+testDate+" "+testTime+" "+performBy);
+                                //alert(idResult+" "+Result+" "+Remark+" "+testDate+" "+testTime+" "+performBy);
                                 $.ajax({
                                     url: "tAssignUpdate.jsp",
                                     type: "post",
@@ -311,6 +303,8 @@
                                     success: function (data) {
                                         $("#viewTA").load("viewTA.jsp");
                                         $(".modal-backdrop").hide();
+                                        $('#inputFileToLoad<%=i%>').val("");
+                                        newgambarURI = "";
                                         alert("Result successfully updated");
 
                                     },
@@ -333,5 +327,3 @@
 
         </tbody>
     </table>
-
-</form>

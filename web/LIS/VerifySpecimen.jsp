@@ -36,7 +36,7 @@
     </head>
     <body>
        
-        <form name="" action="VerifyResult.jsp" method="post">
+      <form action="/AssignResult.jsp" method="get"> 
       <div class="container-fluid">
           <div class="row">
           <!-- menu side -->		
@@ -241,6 +241,7 @@
         });
 
     </script>
-        </form>
         </body>
+        
+</form>
 </html>
