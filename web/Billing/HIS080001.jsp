@@ -13,6 +13,7 @@
 <html>
     <%@include file = "includes/header.jsp" %>
     <body>
+        <div class="loading"></div>
         <div class="container-fluid">
             <div class="row">      
             <%@include file = "includes/sideMenus.jsp" %>
@@ -65,7 +66,7 @@
         <%@include file = "includes/message.html" %>    
         
         <!--js-->
-        <script src="assets/js/jquery.min.js" type="text/javascript"></script>
+        
         <script src="assets/js/custom.js" type="text/javascript"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script> 
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> 

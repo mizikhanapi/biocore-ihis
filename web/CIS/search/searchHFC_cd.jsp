@@ -10,8 +10,8 @@
 <%
     Conn Conn = new Conn();
     //String key = request.getParameter("input");
-    String id = request.getParameter("id");
-    //String id = "Klinik UTeM Kampus Industri";
+    //String id = request.getParameter("id");
+    String id = "Klinik UTeM Kampus Industri";
     String OrderHfc = session.getAttribute("HEALTH_FACILITY_CODE").toString();
     String ProviderHfc = "";
     
@@ -37,7 +37,7 @@
                 + "WHERE district.`Master_Reference_code` = '0078' AND district.`Detail_Reference_code` = d.district_cd )e  "
                 + "WHERE country.`Master_Reference_code` = '0001' AND country.`Detail_Reference_code` = e.country_cd) f "
                 + "WHERE statea.`Master_Reference_code` = '0002' AND statea.`Detail_Reference_code` = f.state_cd AND f.hfc_cd = '"+OrderHfc+"' GROUP BY hfc_cd  ";      
-         ArrayList<ArrayList<String>> hfcOrderData = Conn.getData(searchOrderHfc);
+         //ArrayList<ArrayList<String>> hfcOrderData = Conn.getData(searchOrderHfc);
         
       String searchProviderHfc ="SELECT f.*,statea.Description AS state_name FROM adm_lookup_detail statea, "
               + "(SELECT e.*,country.Description AS country_name FROM adm_lookup_detail country,"
@@ -51,21 +51,22 @@
               + "WHERE country.`Master_Reference_code` = '0001' AND country.`Detail_Reference_code` = e.country_cd) f"
               + " WHERE statea.`Master_Reference_code` = '0002' AND statea.`Detail_Reference_code` = f.state_cd AND f.hfc_cd = '"+ProviderHfc+"' GROUP BY hfc_cd  ";      
       
-      ArrayList<ArrayList<String>> hfcProviderData = Conn.getData(searchProviderHfc);
+      //ArrayList<ArrayList<String>> hfcProviderData = Conn.getData(searchProviderHfc);
         
-    if (hfcOrderData.size() > 0) {
-            for (int i = 0; i < hfcOrderData.size(); i++) {
-                orderHfcDetail = String.join("|", hfcOrderData.get(i));
-            }
-        
-        }
-         if (hfcProviderData.size() > 0) {
-            for (int i = 0; i < hfcProviderData.size(); i++) {
-                providerHfcDetail = String.join("|", hfcProviderData.get(i));
-            }
-        }
+//    if (hfcOrderData.size() > 0) {
+//            for (int i = 0; i < hfcOrderData.size(); i++) {
+//                orderHfcDetail = String.join("|", hfcOrderData.get(i));
+//            }
+//        
+//        }
+//         if (hfcProviderData.size() > 0) {
+//            for (int i = 0; i < hfcProviderData.size(); i++) {
+//                providerHfcDetail = String.join("|", hfcProviderData.get(i));
+//            }
+//        }
     
-    out.print(searchHfcProblem + "[#-#]" +orderHfcDetail + "[#-#]" +providerHfcDetail);
+   // out.print(searchHfcProblem + "[#-#]" +orderHfcDetail + "[#-#]" +providerHfcDetail);
+     out.print(searchOrderHfc);
     
 //        for (int i = 0; i < search.size(); i++) {
 //            

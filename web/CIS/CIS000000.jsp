@@ -28,18 +28,11 @@
         <title>iHIS | CIS</title>
 
         <!-- header -->
-        <%@ include file="../assets/header.html" %> 
         <%@ include file="libraries/header.jsp" %> 
+        <%@ include file="../assets/header.html" %> 
         <!-- header -->
 
-        <script>
-            //loading bar
-            $(window).on('load', function () {
-                // Animate loader off screen
-                $(".loading").fadeOut("slow");
-                ;
-            });
-        </script>
+        
 
         <script type="text/javascript">
             window.location.hash = "no-back-button";
@@ -81,7 +74,7 @@
     </head>
 
     <body>
-<div class="loading"></div>
+        <div class="loading"></div>
 
         <div class="container-fluid">
             <div class="row">

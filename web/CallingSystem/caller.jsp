@@ -49,7 +49,7 @@
     <%out.print(masa.format(datenow));%>&nbsp;<%out.print(formate.format(datenow));%>
 </p>
 
-<table class="table table-hover" style="background: #ffffff; text-transform: uppercase; font-weight: 500; margin-top:-30px;">
+<table class="table table-hover" style="text-transform: uppercase; font-weight: 500; margin-top:-30px;">
 
     <tbody>
         <%            if (d.size() > 0) {

@@ -844,6 +844,7 @@ tr#moveToOrderDetailsTButton {
     width: 100%; 
     color: #ffffff; 
     opacity: 0.2;
+    z-index: -2;
 }
 
 .golongan-soalan>.soalan {

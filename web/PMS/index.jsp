@@ -9,7 +9,7 @@
 <html lang="en">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <%@include file = "../assets/header.html" %>
+
         <link rel="stylesheet" href="libraries/lib/css/loading.css">
         <link href="libraries/lib/datepicker/jquery-ui.css" rel="stylesheet">
         <script src="libraries/lib/js/jquery.min.js"></script>
@@ -18,16 +18,8 @@
         <script src="libraries/lib/js/form-validator.min.js"></script>    
         <script src="libraries/lib/js/bootbox.min.js"></script>
         <script src="libraries/lib/js/search/searchPatient.js" type="text/javascript"></script>
-        <script src="http://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.2/modernizr.js"></script>
-        <script>
-            //loading bar
-             
-            $(window).on('load', function () {
-                // Animate loader off screen
-                $(".loading").fadeOut("slow");
-                ;
-            });
-        </script>
+        <script src="../assets/js/modernizr.js" type="text/javascript"></script>
+        <%@include file = "../assets/header.html" %>
 
         <!-- header -->
 

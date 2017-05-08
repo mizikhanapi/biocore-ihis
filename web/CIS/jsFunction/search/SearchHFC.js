@@ -98,9 +98,11 @@ $(function () {
 //function in radiology request
 function searchHFCcodeROS() {
     var id = $('#hfcROS').val();
+    
     $.ajax({
         type: 'post',
         url: 'search/searchHFC_cd.jsp',
+        
         data: {'id': id},
         success: function (reply_data) {
             var arryDetail = reply_data.trim().split("[#-#]");

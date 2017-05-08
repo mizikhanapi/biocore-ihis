@@ -10,16 +10,14 @@ and open the template in the editor.
 
 .modalLoad {
     display:    none;
-    position:   fixed;
-    z-index:    1000;
-    top:        0;
-    left:       0;
-    height:     100%;
-    width:      100%;
-    background: rgba( 255, 255, 255, .8 ) 
-                url('ajax-loader.gif') 
-                50% 50% 
-                no-repeat;
+    position: fixed;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+    background: url(ring.svg) center no-repeat;
+    background-color: rgba(255, 255, 255, 1) !important;
 }
 
 /* When the body has the loading class, we turn
@@ -33,3 +31,4 @@ body.loading {
 body.loading .modalLoad {
     display: block;
 }
+
