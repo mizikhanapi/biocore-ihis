@@ -243,7 +243,7 @@ $(document).ready(function (e) {
             }
         }
         var Comment = PEMData.PEComment;
-        PEMNotes = "PEM|2015-01-16  16:27:58|^^" + PECd + "^" + newPENotes + "^^" + Comment + "^^^^^" + getDate() + "^" + hfc_cd + "^" + doctor_id + "^" + doctor_name + "|<cr>\n";
+        PEMNotes = "PEM|"+getDate()+"|^^" + PECd + "^" + newPENotes + "^^" + Comment + "^^^^^" + getDate() + "^" + hfc_cd + "^" + doctor_id + "^" + doctor_name + "|<cr>\n";
         return PEMNotes;
     }
 

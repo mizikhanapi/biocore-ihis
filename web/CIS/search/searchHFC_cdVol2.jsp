@@ -10,8 +10,8 @@
 <%
     Conn Conn = new Conn();
     //String key = request.getParameter("input");
-    String id = request.getParameter("id");
-   // String id = "Klinik UTeM Kampus Industri";
+    //String id = request.getParameter("id");
+    String id = "Klinik UTeM Kampus Industri";
     String OrderHfc = session.getAttribute("HEALTH_FACILITY_CODE").toString();
     String ProviderHfc = "";
     

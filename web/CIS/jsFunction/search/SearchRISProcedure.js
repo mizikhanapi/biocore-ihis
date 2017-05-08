@@ -65,7 +65,7 @@ function UsearchROSCD(){
                       var hfc_cd = $('#hfcIdROS').val();
                     if (input.length >= 1) { // Minimum characters = 2 (you can change)
                         $('#matchROS').html('<img src="img/LoaderIcon.gif" />'); // Loader icon apprears in the <div id="match"></div>
-                        var dataFields = {'input': input,       'hfc_cd' : hfc_cd}; // We pass input argument in Ajax
+                        var dataFields = {'input': input, 'hfc_cd' : hfc_cd}; // We pass input argument in Ajax
                         $.ajax({
                             type: "POST",
                             url: "search/searchRISProcedure.jsp", // call the php file ajax/tuto-autocomplete.php
