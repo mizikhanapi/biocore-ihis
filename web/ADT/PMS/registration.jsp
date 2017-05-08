@@ -50,10 +50,14 @@
     String hfc = request.getParameter("hfc");
     String referHfc = "referHfc";
     String referDis = "referDis";
+    String orderNo = request.getParameter("orderNo");
     String queueSql = "";
     String updateBed = "";
+    String updateMaster = "";
+    String updateDetail = "";
+
     String subDis = "sub Discipline";
-    String patCat = "patient Category";
+    String patCat = "003";
     String visTy = "Visit Type";
     String emTy = "Emergency Type";
     String order = "Order By";
@@ -64,11 +68,13 @@
     DateFormat df = new SimpleDateFormat("dd/MM/yy HH:mm:ss");
     Date dateobj = new Date();
     df.format(dateobj);
-    Boolean regis,updBed;
+    Boolean regis, updBed, upMaster, upDetail;
     int queue_now = 0;
     int newQueueNo = 0;
 
     String insertEpisode = "";
+    String insertEpisode2 = "";
+
     String isAlreadyRegister = "select pmi_no from wis_inpatient_episode where pmi_no = '" + pmino + "';";
     ArrayList<ArrayList<String>> alreadyRegis = conn.getData(isAlreadyRegister);
 
@@ -76,28 +82,65 @@
         out.print("already");
 //out.print(queue_now);
     } else {
-
         insertEpisode = "INSERT INTO wis_inpatient_episode(hfc_cd, pmi_no, episode_date, discipline_cd, subdiscipline_cd, "
-                + "ward_class_code, ward_id, bed_id, patient_category_cd, visit_type_cd,"
-                + "emergency_type_cd, eligibility_type_cd, eligibility_category_cd, referred_from_hfc, referred_from_discipline, referred_reference_no, order_by,"
-                + "admission_reason, admission_description, guardian_ind, group_guardian,inpatient_status, created_by, created_date,"
-                + "NEW_IC_NO, OLD_IC_NO, ID_TYPE, ID_NO, POLICE_CASE, PAYER_GROUP, gl_expiry_date, DEPOSIT_INPATIENT, DOCUMENT_TYPE, DOCUMENT_NO, PATIENT_NAME)"
-                + "VALUES ('" + hfc + "','" + pmino + "','" + epiDate + "','" + Dis + "','" + sub + "',"
-                + "'" + WardType + "','" + wname + "','" + BedID + "','" + patCat + "','" + visTy + "',"
-                + "'" + emTy + "','" + EliTy + "','" + EliSource + "','" + referHfc + "','" + referDis + "','" + referNo + "','" + order + "',"
-                + "'" + AdmissionType + "','" + AdmissionReason + "',"
-                + "'" + guardInd + "','" + gruGuard + "','" + stat + "', '" + createdBy + "', now() ,"
-                + "'" + pnic + "','" + poic + "','" + pid + "','" + pidno + "','" + PoliceCase + "','" + payer + "','" + GL + "','" + Deposit + "','" + DocType + "', '" + DocNo + "', '" + pname + "');";
-        updateBed = "UPDATE wis_bed_id SET bed_status = 'Occupied' where hfc_cd ='"+hfc+"' and discipline_cd ='"+Dis+"' and bed_id ='"+BedID+"' ";
+                    + "ward_class_code, ward_id, bed_id, patient_category_cd, visit_type_cd,"
+                    + "emergency_type_cd, eligibility_type_cd, eligibility_category_cd, referred_from_hfc, referred_from_discipline, referred_reference_no, order_by,"
+                    + "admission_reason, admission_description, guardian_ind, group_guardian,inpatient_status, created_by, created_date,"
+                    + "NEW_IC_NO, OLD_IC_NO, ID_TYPE, ID_NO, POLICE_CASE, PAYER_GROUP, gl_expiry_date, DEPOSIT_INPATIENT, DOCUMENT_TYPE, DOCUMENT_NO, PATIENT_NAME)"
+                    + "VALUES ('" + hfc + "','" + pmino + "','" + epiDate + "','" + Dis + "','" + sub + "',"
+                    + "'" + WardType + "','" + wname + "','" + BedID + "','" + patCat + "','" + visTy + "',"
+                    + "'" + emTy + "','" + EliTy + "','" + EliSource + "','" + referHfc + "','" + referDis + "','" + referNo + "','" + order + "',"
+                    + "'" + AdmissionType + "','" + AdmissionReason + "',"
+                    + "'" + guardInd + "','" + gruGuard + "','" + stat + "', '" + createdBy + "', now() ,"
+                   + "'" + pnic + "','" + poic + "','" + pid + "','" + pidno + "','" + PoliceCase + "','" + payer + "','" + GL + "','" + Deposit + "','" + DocType + "', '" + DocNo + "', '" + pname + "');";
+            updateBed = "UPDATE wis_bed_id SET bed_status = 'Occupied' where hfc_cd ='" + hfc + "' and discipline_cd ='" + Dis + "' and bed_id ='" + BedID + "' ";
+           updateMaster = "UPDATE wis_order_master SET order_status = '1' where pmi_no ='" + pmino + "' and order_no ='" + orderNo + "'  ";
+            updateDetail = "UPDATE  wis_order_detail SET order_status = '1' where  order_no ='" + orderNo + "'  ";
+
+
+
+//        if (orderNo.equals("")) {
+//
+//            insertEpisode = "INSERT INTO wis_inpatient_episode(hfc_cd, pmi_no, episode_date, discipline_cd, subdiscipline_cd, "
+//                    + "ward_class_code, ward_id, bed_id, patient_category_cd, visit_type_cd,"
+//                    + "emergency_type_cd, eligibility_type_cd, eligibility_category_cd, referred_from_hfc, referred_from_discipline, referred_reference_no, order_by,"
+//                    + "admission_reason, admission_description, guardian_ind, group_guardian,inpatient_status, created_by, created_date,"
+//                    + "NEW_IC_NO, OLD_IC_NO, ID_TYPE, ID_NO, POLICE_CASE, PAYER_GROUP, gl_expiry_date, DEPOSIT_INPATIENT, DOCUMENT_TYPE, DOCUMENT_NO, PATIENT_NAME)"
+//                    + "VALUES ('" + hfc + "','" + pmino + "','" + epiDate + "','" + Dis + "','" + sub + "',"
+//                    + "'" + WardType + "','" + wname + "','" + BedID + "','" + patCat + "','" + visTy + "',"
+//                    + "'" + emTy + "','" + EliTy + "','" + EliSource + "','" + referHfc + "','" + referDis + "','" + referNo + "','" + order + "',"
+//                    + "'" + AdmissionType + "','" + AdmissionReason + "',"
+//                    + "'" + guardInd + "','" + gruGuard + "','" + stat + "', '" + createdBy + "', now() ,"
+//                    + "'" + pnic + "','" + poic + "','" + pid + "','" + pidno + "','" + PoliceCase + "','" + payer + "','" + GL + "','" + Deposit + "','" + DocType + "', '" + DocNo + "', '" + pname + "');";
+//
+//        } else {
+//            insertEpisode = "INSERT INTO wis_inpatient_episode(hfc_cd, pmi_no, episode_date, discipline_cd, subdiscipline_cd, "
+//                    + "ward_class_code, ward_id, bed_id, patient_category_cd, visit_type_cd,"
+//                    + "emergency_type_cd, eligibility_type_cd, eligibility_category_cd, referred_from_hfc, referred_from_discipline, referred_reference_no, order_by,"
+//                    + "admission_reason, admission_description, guardian_ind, group_guardian,inpatient_status, created_by, created_date,"
+//                    + "NEW_IC_NO, OLD_IC_NO, ID_TYPE, ID_NO, POLICE_CASE, PAYER_GROUP, gl_expiry_date, DEPOSIT_INPATIENT, DOCUMENT_TYPE, DOCUMENT_NO, PATIENT_NAME)"
+//                    + "VALUES ('" + hfc + "','" + pmino + "','" + epiDate + "','" + Dis + "','" + sub + "',"
+//                    + "'" + WardType + "','" + wname + "','" + BedID + "','" + patCat + "','" + visTy + "',"
+//                    + "'" + emTy + "','" + EliTy + "','" + EliSource + "','" + referHfc + "','" + referDis + "','" + referNo + "','" + order + "',"
+//                    + "'" + AdmissionType + "','" + AdmissionReason + "',"
+//                    + "'" + guardInd + "','" + gruGuard + "','" + stat + "', '" + createdBy + "', now() ,"
+//                    + "'" + pnic + "','" + poic + "','" + pid + "','" + pidno + "','" + PoliceCase + "','" + payer + "','" + GL + "','" + Deposit + "','" + DocType + "', '" + DocNo + "', '" + pname + "');";
+//            updateBed = "UPDATE wis_bed_id SET bed_status = 'Occupied' where hfc_cd ='" + hfc + "' and discipline_cd ='" + Dis + "' and bed_id ='" + BedID + "' ";
+//            updateMaster = "UPDATE wis_order_master SET order_status = '1' where pmi_no ='" + pmino + "' and order_no ='" + orderNo + "'  ";
+//            updateDetail = "UPDATE  wis_order_detail SET order_status = '1' where  order_no ='" + orderNo + "'  ";
+//        }
         regis = rmic.setQuerySQL(conn.HOST, conn.PORT, insertEpisode);
         updBed = rmic.setQuerySQL(conn.HOST, conn.PORT, updateBed);
-        if(regis == true && updBed == true){
+        upMaster = rmic.setQuerySQL(conn.HOST, conn.PORT, updateMaster);
+        upDetail = rmic.setQuerySQL(conn.HOST, conn.PORT, updateDetail);
+
+        if (regis == true && updBed == true && upMaster == true && upDetail == true) {
             out.print("Success");
-        }else{
+        } else {
             out.print("false");
             //out.print(insertEpisode);
         }
-        
+
     }
 
 %>

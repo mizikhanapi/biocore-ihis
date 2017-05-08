@@ -20,7 +20,6 @@
     <th>Patient ID</th>
     <th>Sponsor</th>
     <th>Transfer</th>
-    <th>Discharge</th>
 </thead>
 <tbody>
 
@@ -84,11 +83,7 @@
 
     <!-- Update Part End -->
 </td>
-<td>
-    <!-- Delete Button Start -->
-    <a id="Occu_delete" class="testing"><i class="fa fa-times" aria-hidden="true" style="display: inline-block;color: #d9534f;" ></i></a>
-    <!-- Delete Button End -->
-</td>
+
 </tr>
 <%
     }

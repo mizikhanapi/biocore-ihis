@@ -29,10 +29,10 @@
 //            + " from pms_patient_queue q , pms_episode e,adm_lookup_detail l,adm_users u "
 //            + "where u.`USER_ID` = q.user_id and  l.`Master_Reference_code` ='0069' and l.`Detail_Reference_code` = q.status and l.hfc_cd ='" + hfc + "' and e.pmi_no = q.pmi_no and e.episode_date = q.episode_date and e.`HEALTH_FACILITY_CODE` = q.hfc_cd and q.episode_date like '%" + now + "%' and q.status !='1' and q.hfc_cd='" + hfc + "' order by q.queue_name  ;";
 
-    String q = "select m.pmi_no,p.PATIENT_NAME,d.episode_date,d.ward_id,d.order_no,u.USER_NAME,m.order_status, m.order_no, m.order_by ,u.USER_ID, p.OLD_IC_NO, p.NEW_IC_NO, p.ID_TYPE, p.ID_NO, d.admission_reason,d.ward_class_code,d.ward_id, d.bed_id"
+    String q = "select m.pmi_no,p.PATIENT_NAME,d.episode_date,d.ward_id,d.order_no,u.USER_NAME,m.order_status, m.order_no, m.order_by ,u.USER_ID, p.OLD_IC_NO, p.NEW_IC_NO, p.ID_TYPE, p.ID_NO, d.admission_reason,d.ward_class_code,d.ward_id, d.bed_id, d.order_status"
             + " from wis_order_master m left join wis_order_detail d on d.order_no = m.order_no "
             + "left join  adm_users u on  u.`USER_ID`= m.order_by "
-            + "left join pms_patient_biodata p on m.pmi_no = p.`PMI_NO`";
+            + "left join pms_patient_biodata p on m.pmi_no = p.`PMI_NO` where m.order_status ='0' and d.order_status ='0' ";
 
     //+ "where u.`USER_ID` = q.user_id and  l.`Master_Reference_code` ='0069' and l.`Detail_Reference_code` = q.status and l.hfc_cd ='"+hfc+"' and e.pmi_no = q.pmi_no and e.episode_date = q.episode_date and e.`HEALTH_FACILITY_CODE` = q.hfc_cd and q.episode_date like '%"+now+"%' and q.status !='1' and q.hfc_cd='"+hfc+"' order by q.queue_name  ;";
 //    
@@ -130,8 +130,10 @@
         var WardType = arrayData[15];
         var wname = arrayData[16];
         var BedIDReg = arrayData[17];
+        var orderNo = arrayData[4];
 
 
+        $("#orderNo").val(orderNo);
 
         $("#pmino").val(pmino);
         $("#poic").val(poic);

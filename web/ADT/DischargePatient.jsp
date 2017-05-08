@@ -5,6 +5,48 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 
+<%
+
+    String disb = request.getParameter("Dis");
+    String wnameb = request.getParameter("wname");
+    String WardTypeb = request.getParameter("WardType");
+    String EliTy = request.getParameter("EliTy");
+    String EliSrc = request.getParameter("EliSrc");
+    String totalelisource = "";
+    String tw = "";
+
+    String pnc = "select non_citizen_deposit from wis_ward_name where discipline_cd ='" + disb + "' and ward_class_code = '" + WardTypeb + "' AND ward_id =  '" + wnameb + "'";
+    ArrayList<ArrayList<String>> datapnc;
+    datapnc = conn.getData(pnc);
+    for (int i2 = 0; i2 < datapnc.size(); i2++) {
+        String w = datapnc.get(i2).get(0);
+        tw = w;
+    }
+
+    String eliCat = "select  from adm_lookup_detail where master_reference_code = '0063' and Detail_Reference_code ='" + EliSrc + "'  ";
+    ArrayList<ArrayList<String>> dataEliCat;
+
+    dataEliCat = conn.getData(eliCat);
+    for (int i = 0; i < dataEliCat.size(); i++) {
+        String elisource = dataEliCat.get(i).get(0);
+        totalelisource = elisource;
+    }
+
+
+%>
+<input  value="<%= disb%>" id="disd">
+<input  value="<%= wnameb%>" id="wnamed">
+<input  value="<%= EliSrc%>" id="EliSrcs">
+<input value="<%= WardTypeb%>" id="WardTypes">
+
+<input id="hfcTos"  value="<%=hfc%>"  disabled="" class="form-control input-md">
+
+
+<div style="color: #999; top: 30px; right: 30px; font-weight: 500; text-transform: uppercase">Total Room: <%= tw%></div>
+<!--<input name="EliSrc" id="EliSrc">-->
+
+
+
 
 
 <div class="row" id="bedDiv1">
@@ -28,14 +70,7 @@
                             <input id="poic" name="poic" type="text" readonly placeholder="" class="form-control input-md">
                         </div>
                     </div>
-                    <!-- Select Basic -->
-                    <div class="form-group">
-                        <label class="col-md-4 control-label" for="selectbasic">ID Type</label>
-                        <div class="col-md-6">
-                            <input type="hidden" id="pitID">
-                            <input id="pit" name="pit" type="text" placeholder=""  readonly class="form-control input-md">
-                        </div>
-                    </div>
+
                 </div>
 
                 <div class="col-md-6">
@@ -43,7 +78,7 @@
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="textinput">Name</label>
                         <div class="col-md-6">
-                            <input id="pname" name="pname" type="text" readonly placeholder="" class="form-control input-md">
+                            <input id="pname" name="pnamef" type="text" readonly placeholder="" class="form-control input-md">
                         </div>
                     </div>
                     <!-- Text input-->
@@ -73,7 +108,8 @@
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="selectbasic">Eligibility Source*</label>
                         <div class="col-md-6">
-                                                              <input disabled="" id="EliSrc" name="EliSrc" type="text" readonly class="form-control input-md">
+
+                            <input value="<%=totalelisource%> "disabled="" id="EliSrc" name="EliSrc" type="text" readonly class="form-control input-md">
 
                         </div> 
                     </div>
@@ -82,7 +118,7 @@
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="selectbasic">Eligibility Type*</label>
                         <div class="col-md-6" id="EligibilityTypeDropdown">
-                                                               <input disabled="" id="EliTy" name="EliTy" type="text" readonly class="form-control input-md">
+                            <input disabled="" id="EliTy" name="EliTy" type="text" readonly class="form-control input-md">
 
                         </div>
 
@@ -95,7 +131,7 @@
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="selectbasic">Admission type *</label>
                         <div class="col-md-6">
-                                                           <input disabled="" id="AdmTy" name="AdmTy" type="text" readonly  class="form-control input-md">
+                            <input disabled="" id="AdmTy" name="AdmTy" type="text" readonly  class="form-control input-md">
 
                         </div> 
                     </div>
@@ -104,7 +140,7 @@
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="textinput">Admission reason* </label>
                         <div class="col-md-6">
-                                                            <input disabled="" id="AdmRe" name="AdmRe" type="text" readonly  class="form-control input-md">
+                            <input disabled="" id="AdmRe" name="AdmRe" type="text" readonly  class="form-control input-md">
 
                         </div>
                     </div>
@@ -120,7 +156,7 @@
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="selectbasic">Document type *</label>
                         <div class="col-md-6">
-                                                           <input disabled="" id="DocTy" name="AdmRe" type="text" readonly  class="form-control input-md">
+                            <input disabled="" id="DocTy" name="AdmRe" type="text" readonly  class="form-control input-md">
 
                         </div>
                     </div>
@@ -138,7 +174,7 @@
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="selectbasic">Referring from *</label>
                         <div class="col-md-6">
-                                                          <input disabled="" id="RefFrom" name="textinput" type="text" placeholder="" class="form-control input-md">
+                            <input disabled="" id="RefFrom" name="textinput" type="text" placeholder="" class="form-control input-md">
 
                         </div>
                     </div>   
@@ -146,7 +182,7 @@
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="selectbasic">Referred By *</label>
                         <div class="col-md-6">
-                                                            <input disabled="" id="RefBy" name="textinput" type="text" placeholder="" class="form-control input-md">
+                            <input disabled="" id="RefBy" name="textinput" type="text" placeholder="" class="form-control input-md">
 
                         </div>
                     </div> 
@@ -181,7 +217,7 @@
                         <label class="col-md-4 control-label" for="textinput">Payer Group*</label>
                         <div class="col-md-6">
 
-                                                           <input disabled="" id="PayerGrp" name="PayerGrp" type="text"  readonly class="form-control input-md">
+                            <input disabled="" id="PayerGrp" name="PayerGrp" type="text"  readonly class="form-control input-md">
 
 
                         </div>
@@ -190,7 +226,7 @@
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="textinput">Police case *</label>
                         <div class="col-md-6">
-                                                           <input disabled="" id="Police" name="Police" type="text"  readonly class="form-control input-md">
+                            <input disabled="" id="Police" name="Police" type="text"  readonly class="form-control input-md">
 
                         </div>
                     </div>
@@ -256,7 +292,7 @@
 
 
                 <div class="col-md-4">  
-                    
+
                     <!--         Text input
                     -->        <div class="form-group">
                         <label class="col-md-4 control-label" >Chronic Indicator </label>
@@ -273,7 +309,7 @@
 
                         </div>
                     </div>
-                     <!--         Text input
+                    <!--         Text input
                     -->        <div class="form-group">
                         <label class="col-md-4 control-label" >Procedure Taken </label>
                         <div class="col-md-6">
@@ -294,9 +330,9 @@
 
 
                 </div>
-                        
+
                 <div class="col-md-4">  
-                    
+
                     <!--         Text input
                     -->        <div class="form-group">
                         <label class="col-md-4 control-label" >HFC To:</label>
@@ -320,46 +356,130 @@
                 </div>
             </div>
 
-           
 
-           
-        <div class="text-center">
-            <button class="btn btn-primary " type="button" id="DischargeBtn"> Discharge</button>
-            <button class="btn btn-default " type="button" id="btncancel" name="btncancel" > Cancel</button>
-        </div>
+
+
+            <div class="text-center">
+                <button class="btn btn-primary " type="button" id="DischargeBtn"> Discharge</button>
+                <button class="btn btn-default " type="button" id="btncancel" name="btncancel" > Cancel</button>
+            </div>
 
 
         </form>
     </div>
 </div>
 <script>
-    $("#EliSource").on('change', function () {
-        var EliSrc = $(this).val();
-        $.ajax({
-            type: "post",
-            url: "PMS/listEliTy.jsp",
-            data: {'EliSrc': EliSrc},
-            timeout: 10000,
-            success: function (list) {
-                //remove the loading 
-                //$body.removeClass("loading");
-                console.log(list);
-                $('#EligibilityTypeDropdown').html(list);
 
-            },
-            error: function (xhr, status, error) {
-                var err = eval("(" + xhr.responseText + ")");
-                //bootbox.alert(err.Message);
+
+
+
+    $("#DischargeBtn").click(function () {
+        var rates = document.getElementsByName('order');
+        var rate_value;
+
+        for (var i = 0; i < rates.length; i++) {
+            if (rates[i].checked) {
+                rate_value = rates[i].value;
+                var arrayData1 = rate_value.split("|");
+                console.log(arrayData1);
+
+                var patientorderNo = arrayData1[0];
+                var patientpmino = arrayData1[1];
+                var patientOrderDate = arrayData1[2];
+                var patientnic = arrayData1[3];
+                var patientName = arrayData1[4];
+
+                sentToBill(patientpmino, patientorderNo, patientOrderDate);
+
+                alert("Success transfer to Billing");
+
             }
-        });
+        }
+
+        function sentToBill(patientpmino, patientorderNo, patientOrderDate) {
+            var data = {
+                pmiNo: patientpmino,
+                orderNo: patientorderNo,
+                orderDate: patientOrderDate
+            };
+
+            $.ajax({
+                url: "patientDischargeDispenseEHRCentralGetMSH.jsp",
+                type: "post",
+                timeout: 3000,
+                data: data[i],
+                success: function (returnDataMSHFull) {
+
+                    $.ajax({
+                        url: "patientDischargeDispenseEHRCentralGetPDIFinal.jsp",
+                        type: "post",
+                        timeout: 3000,
+                        data: data,
+                        success: function (returnDataPDIFull) {
+
+
+                            $.ajax({
+                                url: "patientDischargeDispenseEHRCentralGetORC.jsp",
+                                type: "post",
+                                data: data,
+                                timeout: 3000,
+                                success: function (returnDataORCFull) {
+                                    $("#dataMSHPDIORC").val(returnDataMSHFull.trim() + returnDataPDIFull.trim() + returnDataORCFull.trim());
+
+                                    console.log(returnDataMSHFull.trim());
+                                    console.log(returnDataPDIFull.trim());
+                                    console.log(returnDataORCFull.trim());
+                                    console.log($("#dataMSHPDIORC").val());
+
+                                    //loadAllergyDiagnosisOrder(patientOrderNo, patientpmino);
+
+                                    $.ajax({
+                                        url: "patientDischargeDetailItem.jsp",
+                                        type: "post",
+                                        data: data,
+                                        timeout: 3000,
+                                        success: function (returnDataItem) {
+                                            $("#datatest").val(returnDataItem.trim());
+                                            $("#datatest1").val(returnDataMSHFull.trim() + "\n" + returnDataPDIFull.trim() + "\n" + returnDataORCFull.trim() + "\n" + returnDataItem.trim());
+                                            //$('#dataItem').html(returnDataItem);
+                                            //$('#dataItem').trigger('contentchanged');
+                                            console.log(returnDataItem.trim());
+                                            console.log($("#datatest").val());
+                                            console.log($("#datatest1").val());
+                                            var ehr_central = $("#datatest1").val();
+                                            //alert(ehr_central);
+
+                                            var data1 = {
+                                                pmiNo: patientpmino,
+                                                ehr_central: ehr_central,
+                                                order_no: patientorderNo
+                                            };
+                                            $.ajax({
+                                                url: "sentToEHRcentral.jsp",
+                                                type: "post",
+                                                data: data1,
+                                                timeout: 3000,
+                                                success: function (returnEHR) {
+
+
+
+
+                                                }
+                                            });
+
+                                        }
+                                    });
+
+                                }
+                            });
+
+                        }
+                    });
+
+                }
+            });
+        }
+        //alert("Success transfer to Billing");
     });
 
-
-
-    $("#GL").datepicker({
-        changeMonth: true,
-        changeYear: true,
-        dateFormat: 'yy-mm-dd',
-        minDate: '0'
-    });
 </script>

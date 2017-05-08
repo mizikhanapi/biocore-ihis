@@ -11,14 +11,14 @@
     <div class="col-md-6" style="border-right: 1px solid #ddd;">
         <h4>Search patient by ID </h4>
         <div id="searchPatientTransfer">
-            <%@include file = "searchPatientTransfer.jsp" %>
+            <%@include file = "searchPatientDischarge.jsp" %>
         </div>
     </div>
 
     <div class="col-md-6">
         <h4>Search patient by Ward </h4>
         <div id="searchWardTransfer">
-            <%@include file = "searchWardTransfer.jsp" %>
+            <%@include file = "searchWardDischarge.jsp" %>
         </div>
     </div>
 

@@ -1,4 +1,4 @@
-<%@page import="java.util.ArrayList"%>
+dis<%@page import="java.util.ArrayList"%>
 <%@page import="java.sql.*"%>
 <%@page import="dBConn.Conn"%>
 <%@page import="main.RMIConnector"%>
@@ -28,8 +28,7 @@
         <th>Patient Name</th>
         <th>Patient ID</th>
         <th>Sponsor</th>
-        <th>Transfer</th>
-        <th>Discharge</th>
+        <th>Transfer hh</th>
         </thead>
         <tbody>
 
@@ -56,11 +55,7 @@
             <a id="Occu_transfer" data-toggle="modal" data-target="#TransferModal"><i class="fa fa-pencil-square-o" aria-hidden="true" style="display: inline-block;color: #337ab7;"></i></a>
             <!-- Update Part End -->
         </td>
-        <td>
-            <!-- Delete Button Start -->
-            <a id="Occu_delete" class="testing"><i class="fa fa-times" aria-hidden="true" style="display: inline-block;color: #d9534f;" ></i></a>
-            <!-- Delete Button End -->
-        </td>
+        
         </tr>
         <%
             }
