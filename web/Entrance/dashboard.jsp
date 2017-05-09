@@ -5,11 +5,15 @@
 <%@include file="validateSession.jsp" %>
 <%
     //------------------- Checking whether super user or not ------------------------------
-    if(session.getAttribute("HFC_99") == null){
+    if (session.getAttribute("HFC_99") == null) {
         String hfc_cd = (String) session.getAttribute("HEALTH_FACILITY_CODE");
         session.setAttribute("HFC_99", hfc_cd);
     }
-    
+
+    String hfc_99 = (String) session.getAttribute("HFC_99");
+    String user_99 = (String) session.getAttribute("USER_ID");
+    String last_9 = user_99.substring(user_99.length() - 1);
+
     //====================================================================================
     String modules = session.getAttribute("MODULE_CODE").toString();
 
@@ -19,80 +23,85 @@
 
     mod01 = mod02 = mod03 = mod04 = mod05 = mod06 = mod07 = mod08 = mod09 = mod10 = mod11 = mod12 = mod13 = mod14 = mod15 = mod16 = mod17 = false;
 
-    for (int i = 0; i < arrayModule.size(); i++) {
+    if (last_9.equalsIgnoreCase("9") && hfc_99.equalsIgnoreCase("99_iHIS_99")) {
+        mod01 = mod02 = mod03 = mod04 = mod05 = mod06 = mod07 = mod08 = mod09 = mod10 = mod11 = mod12 = mod13 = mod14 = mod15 = mod16 = mod17 = true;
 
-        if (arrayModule.get(i).equalsIgnoreCase("01")) {
+    } else {
 
-            mod01 = true;
+        for (int i = 0; i < arrayModule.size(); i++) {
 
-        } else if (arrayModule.get(i).equalsIgnoreCase("02")) {
+            if (arrayModule.get(i).equalsIgnoreCase("01")) {
 
-            mod02 = true;
+                mod01 = true;
 
-        } else if (arrayModule.get(i).equalsIgnoreCase("03")) {
+            } else if (arrayModule.get(i).equalsIgnoreCase("02")) {
 
-            mod03 = true;
+                mod02 = true;
 
-        } else if (arrayModule.get(i).equalsIgnoreCase("04")) {
+            } else if (arrayModule.get(i).equalsIgnoreCase("03")) {
 
-            mod04 = true;
+                mod03 = true;
 
-        } else if (arrayModule.get(i).equalsIgnoreCase("05")) {
+            } else if (arrayModule.get(i).equalsIgnoreCase("04")) {
 
-            mod05 = true;
+                mod04 = true;
 
-        } else if (arrayModule.get(i).equalsIgnoreCase("06")) {
+            } else if (arrayModule.get(i).equalsIgnoreCase("05")) {
 
-            mod06 = true;
+                mod05 = true;
 
-        } else if (arrayModule.get(i).equalsIgnoreCase("07")) {
+            } else if (arrayModule.get(i).equalsIgnoreCase("06")) {
 
-            mod07 = true;
+                mod06 = true;
 
-        } else if (arrayModule.get(i).equalsIgnoreCase("08")) {
+            } else if (arrayModule.get(i).equalsIgnoreCase("07")) {
 
-            mod08 = true;
+                mod07 = true;
 
-        } else if (arrayModule.get(i).equalsIgnoreCase("09")) {
+            } else if (arrayModule.get(i).equalsIgnoreCase("08")) {
 
-            mod09 = true;
+                mod08 = true;
 
-        } else if (arrayModule.get(i).equalsIgnoreCase("10")) {
+            } else if (arrayModule.get(i).equalsIgnoreCase("09")) {
 
-            mod10 = true;
+                mod09 = true;
 
-        } else if (arrayModule.get(i).equalsIgnoreCase("11")) {
+            } else if (arrayModule.get(i).equalsIgnoreCase("10")) {
 
-            mod11 = true;
+                mod10 = true;
 
-        } else if (arrayModule.get(i).equalsIgnoreCase("12")) {
+            } else if (arrayModule.get(i).equalsIgnoreCase("11")) {
 
-            mod12 = true;
+                mod11 = true;
 
-        } else if (arrayModule.get(i).equalsIgnoreCase("13")) {
+            } else if (arrayModule.get(i).equalsIgnoreCase("12")) {
 
-            mod13 = true;
+                mod12 = true;
 
-        } else if (arrayModule.get(i).equalsIgnoreCase("14")) {
+            } else if (arrayModule.get(i).equalsIgnoreCase("13")) {
 
-            mod14 = true;
+                mod13 = true;
 
-        } else if (arrayModule.get(i).equalsIgnoreCase("15")) {
+            } else if (arrayModule.get(i).equalsIgnoreCase("14")) {
 
-            mod15 = true;
+                mod14 = true;
 
-        } else if (arrayModule.get(i).equalsIgnoreCase("16")) {
+            } else if (arrayModule.get(i).equalsIgnoreCase("15")) {
 
-            mod16 = true;
+                mod15 = true;
 
-        } else if (arrayModule.get(i).equalsIgnoreCase("17")) {
+            } else if (arrayModule.get(i).equalsIgnoreCase("16")) {
 
-            mod17 = true;
+                mod16 = true;
 
-        }
-    }
+            } else if (arrayModule.get(i).equalsIgnoreCase("17")) {
 
-    
+                mod17 = true;
+
+            }
+        }//end for loop
+
+    }    
 
 %>
 

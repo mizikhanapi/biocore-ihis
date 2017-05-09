@@ -24,7 +24,7 @@
     <th style="text-align: left; width: 10%;">PMI No.</th>
     <th style="text-align: left; width: 40%;">Name</th>
     <th style="text-align: left; width: 12%;">Order Date</th>
-    <th style="text-align: left;">Health Facility Code</th>
+    <th style="text-align: left;">Health Facility</th>
     <th style="text-align: left;">Doctor's Name</th>
 </thead>
 <tbody>
@@ -57,12 +57,13 @@
                 + "ris_order_master.order_by,ris_order_master.hfc_from,ris_order_master.hfc_to,ris_order_master.order_status,ris_order_master.diagnosis_cd,ris_order_master.created_by,ris_order_master.created_date,"
                 //  13                                          14                              15                                  16                          17
                 + "pms_patient_biodata.PATIENT_NAME,pms_patient_biodata.NEW_IC_NO,pms_patient_biodata.BIRTH_DATE,pms_patient_biodata.SEX_CODE,pms_patient_biodata.BLOOD_TYPE, "
-                //  18                  19
-                + "sx.description, blot.description "
+                //  18                  19              20
+                + "sx.description, blot.description, hfc.hfc_name "
                 + "FROM ris_order_master "
                 + "LEFT JOIN pms_patient_biodata ON (ris_order_master.pmi_no = pms_patient_biodata.PMI_NO) "
                 + "LEFT JOIN adm_lookup_detail sx on pms_patient_biodata.SEX_CODE = sx.detail_reference_code AND sx.master_reference_code = '0041' AND sx.hfc_cd = ris_order_master.hfc_cd "
                 + "LEFT JOIN adm_lookup_detail blot on pms_patient_biodata.BLOOD_TYPE = blot.detail_reference_code AND blot.master_reference_code = '0074' AND blot.hfc_cd = ris_order_master.hfc_cd "
+                + "Left JOIN adm_health_facility hfc on hfc.hfc_cd = ris_order_master.hfc_cd "
                 + "WHERE ris_order_master.order_no in (select distinct(order_no) from ris_order_detail ) AND ris_order_master.order_status = '0' "
                 + orderWhereClause
                 + whereClause + " ;";
@@ -79,7 +80,7 @@
 <td><%= dataRISOrderList.get(i).get(0)%></td> <!-- PMI No -->
 <td style="font-weight: 500;"><%= dataRISOrderList.get(i).get(13)%></td> <!-- Name -->
 <td><%= dataRISOrderList.get(i).get(5)%></td> <!-- Order Date -->
-<td><%= dataRISOrderList.get(i).get(2)%></td> <!-- Health Facility Code -->
+<td><%= dataRISOrderList.get(i).get(20)%></td> <!-- Health Facility Code -->
 <td><%= dataRISOrderList.get(i).get(6)%></td> <!-- Doctor's Name -->
 </tr>
 <%
