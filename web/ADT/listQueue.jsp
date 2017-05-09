@@ -131,6 +131,12 @@
         var wname = arrayData[16];
         var BedIDReg = arrayData[17];
         var orderNo = arrayData[4];
+        
+         var orderS = "YesOrder";
+
+
+        $("#OrderStatus").val(orderS);
+
 
 
         $("#orderNo").val(orderNo);

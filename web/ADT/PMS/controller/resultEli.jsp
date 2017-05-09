@@ -40,85 +40,87 @@
 
             if (dataEliSrc.get(E).get(1).equals("002-001")) {
                 String pnc = "select non_citizen_deposit from wis_ward_name where discipline_cd ='" + disb + "' and ward_class_code = '" + WardTypeb + "' AND ward_id =  '" + wnameb + "'";
-                ArrayList<ArrayList<String>> datapnc;
-                datapnc = conn.getData(pnc);
-
-                int sizepnc = datapnc.size();
-
-                for (int i = 0; i < sizepnc; i++) {
+                 ArrayList<ArrayList<String>> deposit = conn.getData(pnc);
+                 for(int i = 0; i < deposit.size(); i++){
+//                ArrayList<ArrayList<String>> datapnc;
+//                datapnc = conn.getData(pnc);
+//                
+//                int sizepnc = datapnc.size();
+//
+//                for (int i = 0; i < sizepnc; i++) {
     %>
 
-    <input id="Deposit"  value="<%=datapnc%>"  class="form-control input-md">
+    <input id="Deposit"  value="<%=deposit.get(i).get(0)%>"  class="form-control input-md">
 
     <%
         }
 
     } else if (dataEliSrc.get(E).get(1).equals("002-002")) {
         String pc = "select citizen_deposit from wis_ward_name where discipline_cd ='" + disb + "' and ward_class_code = '" + WardTypeb + "' AND ward_id =  '" + wnameb + "'";
-        ArrayList<ArrayList<String>> datapc;
-        datapc = conn.getData(pc);
+        ArrayList<ArrayList<String>> datapc = conn.getData(pc);
+       // datapc = conn.getData(pc);
 
-        int sizepc = datapc.size();
+     //   int sizepc = datapc.size();
 
-        for (int i = 0; i < sizepc; i++) {
+        for (int i = 0; i < datapc.size(); i++) {
     %>
 
-    <input id="Deposit"  value="<%=datapc%>"  class="form-control input-md">
+    <input id="Deposit"  value="<%=datapc.get(i).get(0)%>"  class="form-control input-md">
 
     <%}
     } else if (dataEliSrc.get(E).get(1).equals("003-001")) {
         String gst = "select citizen_deposit from wis_ward_name where discipline_cd ='" + disb + "' and ward_class_code = '" + WardTypeb + "' AND ward_id =  '" + wnameb + "'";
-        ArrayList<ArrayList<String>> datagst;
-        datagst = conn.getData(gst);
+        ArrayList<ArrayList<String>> datagst = conn.getData(gst);
+        
 
-        int sizegst = datagst.size();
+        
 
-        for (int i = 0; i < sizegst; i++) {
+        for (int i = 0; i < datagst.size(); i++) {
     %>
 
-    <input id="Deposit"  value="<%=datagst%>"  class="form-control input-md">
+    <input id="Deposit"  value="<%=datagst.get(i).get(0)%>"  class="form-control input-md">
 
     <%
         }
     } else if (dataEliSrc.get(E).get(1).equals("003-002")) {
         String gp = "select pensioner_deposit from wis_ward_name where discipline_cd ='" + disb + "' and ward_class_code = '" + WardTypeb + "' AND ward_id =  '" + wnameb + "'";
-        ArrayList<ArrayList<String>> datagp;
-        datagp = conn.getData(gp);
+        ArrayList<ArrayList<String>>  datagp = conn.getData(gp);
 
-        int sizegp = datagp.size();
+       
+        
 
-        for (int i = 0; i < sizegp; i++) {
+        for (int i = 0; i < datagp.size(); i++) {
     %>
 
-    <input id="Deposit"  value="<%=datagp%>"  class="form-control input-md">
+    <input id="Deposit"  value="<%=datagp.get(i).get(0)%>"  class="form-control input-md">
 
     <%
         }
     } else if (dataEliSrc.get(E).get(1).equals("003-003")) {
         String gss = "select citizen_deposit from wis_ward_name where discipline_cd ='" + disb + "' and ward_class_code = '" + WardTypeb + "' AND ward_id =  '" + wnameb + "'";
-        ArrayList<ArrayList<String>> datagss;
-        datagss = conn.getData(gss);
+        ArrayList<ArrayList<String>> datagss = conn.getData(gss);
+        
 
-        int sizegss = datagss.size();
+       
 
-        for (int i = 0; i < sizegss; i++) {
+        for (int i = 0; i < datagss.size(); i++) {
     %>
 
-    <input id="Deposit"  value="<%=datagss%>"  class="form-control input-md">
+    <input id="Deposit"  value="<%=datagss.get(i).get(0)%>"  class="form-control input-md">
 
     <%
         }
     } else if (dataEliSrc.get(E).get(1).equals("004-001")) {
         String s = "select citizen_deposit from wis_ward_name where discipline_cd ='" + disb + "' and ward_class_code = '" + WardTypeb + "' AND ward_id =  '" + wnameb + "'";
-        ArrayList<ArrayList<String>> datas;
-        datas = conn.getData(s);
+        ArrayList<ArrayList<String>>datas = conn.getData(s);
+        
 
-        int sizes = datas.size();
+       
 
-        for (int i = 0; i < sizes; i++) {
+        for (int i = 0; i < datas.size(); i++) {
     %>
 
-    <input id="Deposit"  value="<%=datas%>"  class="form-control input-md">
+    <input id="Deposit"  value="<%=datas.get(i).get(0)%>"  class="form-control input-md">
 
     <%
                 }

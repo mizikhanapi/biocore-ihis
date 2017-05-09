@@ -48,6 +48,12 @@ $(function () {
     });
     //seaching patient function   
     function searchPatient() {
+        
+        var orderS = "NoOrder";
+
+
+        $("#OrderStatus").val(orderS);
+
 
         var opt = $('#idType option[disabled]:selected').val();
         $('#myForm2')[0].reset();

@@ -41,7 +41,7 @@
         <tbody>
 
             <% //                Conn conn = new Conn();
-                String sqlFacilityID = "SELECT a.ward_class_code, a.ward_name, a.ward_id, b.discipline_name, a.no_of_bed, a.citizen_room_cost, a.citizen_deposit, a.citizen_discount, a.non_citizen_room_cost, a.non_citizen_deposit, a.non_citizen_discount, a.pensioner_room_cost,  a.pensioner_deposit, a.pensioner_discount,a.attach_toilet, a.include_television, a.attach_bathroom_tiolet, a.include_telephone, a.ward_status, a.hfc_cd , a.discipline_cd, b.discipline_cd FROM wis_ward_name a LEFT JOIN adm_discipline b ON a.discipline_cd = b.discipline_cd where a.hfc_cd ="+hfcID+";";
+                String sqlFacilityID = "SELECT a.ward_class_code, a.ward_name, a.ward_id, b.discipline_name, a.no_of_bed, a.citizen_room_cost, a.citizen_deposit, a.citizen_discount, a.non_citizen_room_cost, a.non_citizen_deposit, a.non_citizen_discount, a.pensioner_room_cost,  a.pensioner_deposit, a.pensioner_discount,a.attach_toilet, a.include_television, a.attach_bathroom_tiolet, a.include_telephone, a.ward_status, a.hfc_cd , a.discipline_cd, b.discipline_cd FROM wis_ward_name a LEFT JOIN adm_discipline b ON a.discipline_cd = b.discipline_cd where a.discipline_cd = '"+disID+"' and hfc_cd ='"+hfcID+"' ;";
                 ArrayList<ArrayList<String>> dataFacilityID = conn3.getData(sqlFacilityID);
 
                 int size11 = dataFacilityID.size();

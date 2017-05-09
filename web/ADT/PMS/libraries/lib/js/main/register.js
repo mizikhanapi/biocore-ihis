@@ -113,7 +113,7 @@ $('#registerBed').click(function () {
         var pmino, poic, pid, MRN, pname, pnic, pidno,
                 EliSource, AdmissionType, Refer, DocType, GL, EliTy, AdmissionReason, PoliceCase, DocNo, payer,
                 Dis, wname, Deposit, WardType, BedID,
-                guardInd, referNo, referHfc, referDis, gruGuard, epiTime, epiDate, stat, hfc, RefDR;
+                guardInd, referNo, referHfc, referDis, gruGuard, epiTime, epiDate, stat, hfc, RefDR, orderNo, OrderStatus;
         pmino = $('#pmino').val();
         epiDate = yyyyMMddHHmmss;
         poic = $('input[id=poic]').val();
@@ -124,6 +124,9 @@ $('#registerBed').click(function () {
         pidno = $('input[id=pino]').val();
         EliSource = $('#EliSource').val();
         AdmissionType = $('#AdmissionType').val();
+        orderNo = $('#orderNo').val();
+        OrderStatus = $('#OrderStatus').val();
+
 
         Refer = $('#Refer').val();
         DocType = $('#DocType').val();
@@ -199,9 +202,11 @@ $('#registerBed').click(function () {
             'stat': stat,
             'hfc': hfc,
             'now': yyyyMMdd,
-            createdBy: createdBy,
-            RefDR: RefDR,
-            sub: sub
+            'createdBy': createdBy,
+            'RefDR': RefDR,
+            'sub': sub,
+            'orderNo': orderNo,
+            'OrderStatus':OrderStatus
 
         };
         //console.log(datas);
@@ -228,6 +233,9 @@ $('#registerBed').click(function () {
                         timeout: 3000,
                         success: function (list) {
                             console.log(list);
+                            alert(orderNo);
+                            alert(OrderStatus);
+                            console.log(list);
                             $body.removeClass("loading");
                             if ($.trim(list) === "Success") {
                                 bootbox.alert("Patient has been register successfully");
@@ -249,7 +257,7 @@ $('#registerBed').click(function () {
                             $.ajax({
                                 type: "POST",
                                 url: "PMS/addQueue.jsp",
-                                data: {'wname': wname, 'createdBy': createdBy, 'hfc': hfc, 'Dis': Dis, 'sub': sub,'pmino':pmino}, // Send input
+                                data: {'wname': wname, 'createdBy': createdBy, 'hfc': hfc, 'Dis': Dis, 'sub': sub, 'pmino': pmino}, // Send input
                                 timeout: 3000,
                                 success: function (l) {
                                     console.log(l);

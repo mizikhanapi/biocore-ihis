@@ -50,8 +50,10 @@
 <input type="hidden" value="<%=id%>" id="Rid">
 <input type="hidden" value="<%=dis%>" id="dis">
 <input type="hidden" value="<%=sub%>" id="sub">
-<input name="idno" id="orderNo">
+<input type="hidden" name="idno" id="orderNo">
 
+
+<input type="hidden" name="idno" id="OrderStatus">
 
 <div class="row" id="register">
     <div class="col-md-12 ">

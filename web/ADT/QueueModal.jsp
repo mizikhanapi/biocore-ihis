@@ -1,4 +1,3 @@
-
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.util.Date"%>
@@ -12,7 +11,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal"><i class="fa fa-times fa-lg"></i><span class="sr-only">Close</span></button>
-                <h3 class="modal-title" id="lineModalLabel">Queue List</h3>
+                <h3 class="modal-title" id="lineModalLabel">Admission List</h3>
             </div>
             <div class="modal-body" >
                     <div class="row"id="modalBodyQueue" >
