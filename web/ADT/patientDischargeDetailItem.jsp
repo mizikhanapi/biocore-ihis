@@ -10,40 +10,23 @@
 <%@page import="dBConn.Conn"%>
 <%
     Conn conn = new Conn();
-    String orderNo = request.getParameter("orderNo");
-    String orderDate = request.getParameter("orderDate");
-    String pmiNo = request.getParameter("pmiNo");
     DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
     Date date = new Date();
-    String item_name = "aa";
-    String buy_price = "0";
-    String ser_price = "175";
+
+    String orderDate = request.getParameter("orderDate");
+    String pmiNo = request.getParameter("pmiNo");
+    String ser_price = request.getParameter("Discharge");
 
     String dateBill = dateFormat.format(date);
-    String userIDBill = "Raziff";
-    String oderItem = "SELECT wod.order_date,wod.item_cd,  "
-            + "FROM lis_item_detail LID,lis_order_detail LOD "
-            + "WHERE LID.item_cd = LOD.item_cd AND LOD.order_date = '" + orderDate + "' AND LOD.pmi_no = '" + pmiNo + "' AND LOD.order_no = '" + orderNo + "'";
-    ArrayList<ArrayList<String>> dataLISOrderList = conn.getData(oderItem);
+    String userIDBill = request.getParameter("userID");
 
-    int size = dataLISOrderList.size();
-    for (int i = 0; i < size; i++) {
+    String item_name = "Ward Charges";
+    String item_cd = "WIS001";
+    String buy_price = "0";
 
-        String item_cd = dataLISOrderList.get(i).get(0);
-        String test_category = dataLISOrderList.get(i).get(1);
-//        String item_name = dataLISOrderList.get(i).get(2);
-        String spe_source = dataLISOrderList.get(i).get(3);
-        String spe_container = dataLISOrderList.get(i).get(4);
-        String volume = dataLISOrderList.get(i).get(5);
-        String special_inst = dataLISOrderList.get(i).get(6);
-        String status = dataLISOrderList.get(i).get(7);
-//        String buy_price = dataLISOrderList.get(i).get(8);
-//        String ser_price = dataLISOrderList.get(i).get(9);
-        String total = ser_price + buy_price;
+    String dataOneRow = "BIL|T^" + orderDate + "|CH|" + pmiNo + "|" + item_cd + "|" + item_name + "|" + buy_price + "|" + ser_price + "|" + userIDBill + "|" + dateBill + "<cr>\n";
+    out.print(dataOneRow);
 
-        String dataOneRow = "BIL|T^" + orderDate + "|CH|" + pmiNo + "|" + item_cd + "|" + item_name + "|" + buy_price + "|" + ser_price + "|" + userIDBill + "|" + dateBill + "<cr>\n";
-        out.print(dataOneRow);
-    }
 
 %>
 

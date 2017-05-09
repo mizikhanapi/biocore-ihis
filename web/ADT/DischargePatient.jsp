@@ -6,6 +6,7 @@
 
 
 <%
+    String idTY = session.getAttribute("USER_ID").toString();
 
     String disb = request.getParameter("Dis");
     String wnameb = request.getParameter("wname");
@@ -32,20 +33,41 @@
         totalelisource = elisource;
     }
 
-
 %>
-<input  value="<%= disb%>" id="disd">
-<input  value="<%= wnameb%>" id="wnamed">
-<input  value="<%= EliSrc%>" id="EliSrcs">
-<input value="<%= WardTypeb%>" id="WardTypes">
+<input id="dataMSHPDIORC" disabled="" name="textinput" type="hidden"  readonly class="form-control input-md">
+<input id="datatest" disabled="" name="textinput" type="hidden"  readonly class="form-control input-md">
+<input id="datatest1" disabled="" name="textinput" type="hidden"  readonly class="form-control input-md">
 
-<input id="hfcTos"  value="<%=hfc%>"  disabled="" class="form-control input-md">
+<input  type="hidden" id="totalelisrc"  class="form-control input-md">
+
+<input type="hidden" id="Btype" class="form-control input-md">
+
+<input type="hidden" id="Bdate" class="form-control input-md">
+<input type="hidden"  id="order_no" class="form-control input-md">
+<input type="hidden" id="gender" class="form-control input-md">
+<input type="hidden" id="order_date" class="form-control input-md">
+<input  type="hidden"  value="<%=idTY%>" id="LChfc" class="form-control input-md">
+
+<!--type="hidden" -->
+
+<input id="hfc_cd" type="hidden" class="form-control input-md">
+
+<!--
+<div style="color: #999; top: 30px; right: 30px; font-weight: 500; text-transform: uppercase">Total Room: </div>
+<input name="EliSrc" id="EliSrc">
+
+<div id="resultPatientDischarge">
+    <div class="col-md-6" id="depositResult">
 
 
-<div style="color: #999; top: 30px; right: 30px; font-weight: 500; text-transform: uppercase">Total Room: <%= tw%></div>
-<!--<input name="EliSrc" id="EliSrc">-->
 
+        <input id="dDeposit"   class="form-control input-md">
+        <input id="dCost"   class="form-control input-md">
+        <input id="dDiscount"  class="form-control input-md">
 
+    </div>
+
+</div>-->
 
 
 
@@ -53,9 +75,22 @@
     <div class="col-md-12">
         <h4>In-Patient Information</h4>
 
+
+
+
+
+
         <form class="form-horizontal" name="myForm2" id="myForm2">
             <div class="row">
                 <div class="col-md-6">
+<!--                     Text input
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="textinput">admit date</label>
+                        <div class="col-md-6">
+                            <input id="TotalDate" name="TotalDate" type="text" placeholder=" " readonly class="form-control input-md">                        
+                        </div>
+                    </div>-->
+
                     <!-- Text input-->
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="textinput">PMI No.</label>
@@ -70,6 +105,8 @@
                             <input id="poic" name="poic" type="text" readonly placeholder="" class="form-control input-md">
                         </div>
                     </div>
+
+
 
                 </div>
 
@@ -109,7 +146,9 @@
                         <label class="col-md-4 control-label" for="selectbasic">Eligibility Source*</label>
                         <div class="col-md-6">
 
-                            <input value="<%=totalelisource%> "disabled="" id="EliSrc" name="EliSrc" type="text" readonly class="form-control input-md">
+                            <input  disabled="" id="EliSrc" name="EliSrc" type="text" readonly class="form-control input-md">
+
+
 
                         </div> 
                     </div>
@@ -317,6 +356,14 @@
                         </div>
                     </div>
 
+
+
+
+
+
+                </div>
+
+                <div class="col-md-4"> 
                     <!-- Select Basic -->
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="selectbasic">Discharge Reason</label>
@@ -325,13 +372,13 @@
 
                         </div>
                     </div>
-
-
-
-
-                </div>
-
-                <div class="col-md-4">  
+                    <!-- Text input-->
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="textinput">Total Discharge</label>
+                        <div class="col-md-6">
+                            <input id="TotalDischarge" name="TotalDischarge" type="text" placeholder=" " readonly class="form-control input-md">                        
+                        </div>
+                    </div>
 
                     <!--         Text input
                     -->        <div class="form-group">
@@ -346,6 +393,8 @@
                         <label class="col-md-4 control-label" for="selectbasic">Attain by DR :</label>
                         <div class="col-md-6">
                             <input id="DrAttain" disabled="" name="textinput" type="text"  readonly class="form-control input-md">
+
+
 
                         </div>
                     </div>
@@ -374,112 +423,121 @@
 
 
     $("#DischargeBtn").click(function () {
-        var rates = document.getElementsByName('order');
-        var rate_value;
 
-        for (var i = 0; i < rates.length; i++) {
-            if (rates[i].checked) {
-                rate_value = rates[i].value;
-                var arrayData1 = rate_value.split("|");
-                console.log(arrayData1);
+        var patientpmino = $('#pmino').val();
+        var patientName = $('#pname').val();
+        var patientnic = $('#pnic').val();
+        var patientGender = $("#gender").val();
+        var patientBdate = $("#Bdate").val();
+        var patientBtype = $("#Btype").val();
+        var patientOrderNo = $("#order_no").val();
+        var patientOrderDate = $("#order_date").val();
+        var patientOrderLocationCode = $("#hfc_cd").val();
+        var id = $("LChfc").val();
+        var patientDischarge = $("#TotalDischarge").val();
 
-                var patientorderNo = arrayData1[0];
-                var patientpmino = arrayData1[1];
-                var patientOrderDate = arrayData1[2];
-                var patientnic = arrayData1[3];
-                var patientName = arrayData1[4];
 
-                sentToBill(patientpmino, patientorderNo, patientOrderDate);
+        var pmiNo = patientpmino;
+        var orderNo = patientOrderNo;
+        var orderDate = patientOrderDate;
+        var Discharge = patientDischarge;
+        var userID = id;
 
-                alert("Success transfer to Billing");
+        var data = {
+            pmiNo: pmiNo,
+            orderNo: orderNo,
+            orderDate: orderDate,
+            Discharge: Discharge,
+            userID: userID
+        };
+        $.ajax({
+            url: "patientDischargeDispenseEHRCentralGetMSH.jsp",
+            type: "post",
+            timeout: 3000,
+            data: data,
+            success: function (returnDataMSHFull) {
+
+                $.ajax({
+                    url: "patientDischargeDispenseEHRCentralGetPDIFinal.jsp",
+                    type: "post",
+                    timeout: 3000,
+                    data: data,
+                    success: function (returnDataPDIFull) {
+
+
+                        $.ajax({
+                            url: "patientDischargeDispenseEHRCentralGetORC.jsp",
+                            type: "post",
+                            data: data,
+                            timeout: 3000,
+                            success: function (returnDataORCFull) {
+
+                                //Set value to the Second Tab 
+                                $("#patientpmino").val(patientpmino);
+                                $("#patientName").val(patientName);
+                                $("#patientnic").val(patientnic);
+                                $("#patientGender").val(patientGender);
+                                $("#patientBdate").val(patientBdate);
+                                $("#patientBtype").val(patientBtype);
+                                $("#patientOrderNo").val(patientOrderNo);
+                                $("#patientOrderDate").val(patientOrderDate);
+                                $("#patientOrderLocationCode").val(patientOrderLocationCode);
+                                $("#dataMSHPDIORC").val(returnDataMSHFull.trim() + returnDataPDIFull.trim() + returnDataORCFull.trim());
+
+                                console.log(returnDataMSHFull.trim());
+                                console.log(returnDataPDIFull.trim());
+                                console.log(returnDataORCFull.trim());
+                                console.log($("#dataMSHPDIORC").val());
+
+                                //loadAllergyDiagnosisOrder(patientOrderNo, patientpmino);
+
+                                $.ajax({
+                                    url: "patientDischargeDetailItem.jsp",
+                                    type: "post",
+                                    data: data,
+                                    timeout: 3000,
+                                    success: function (returnDataItem) {
+                                        $("#datatest").val(returnDataItem.trim());
+                                        $("#datatest1").val(returnDataMSHFull.trim() + returnDataPDIFull.trim() + returnDataORCFull.trim() + returnDataItem.trim());
+                                        //$('#dataItem').html(returnDataItem);
+                                        //$('#dataItem').trigger('contentchanged');
+                                        console.log(returnDataItem.trim());
+                                        console.log($("#datatest").val());
+                                        console.log($("#datatest1").val());
+                                        var ehr_central = $("#datatest1").val();
+                                        //alert(ehr_central);
+
+                                        var data1 = {
+                                            pmiNo: patientpmino,
+                                            ehr_central: ehr_central,
+                                            order_no: orderNo
+                                        };
+                                        $.ajax({
+                                            url: "sentToEHRcentral.jsp",
+                                            type: "post",
+                                            data: data1,
+                                            timeout: 3000,
+                                            success: function (returnEHR) {
+
+                                                alert("Success transfer to Billing");
+
+
+                                            }
+                                        });
+
+                                    }
+                                });
+
+                            }
+                        });
+
+                    }
+                });
 
             }
-        }
+        });
 
-        function sentToBill(patientpmino, patientorderNo, patientOrderDate) {
-            var data = {
-                pmiNo: patientpmino,
-                orderNo: patientorderNo,
-                orderDate: patientOrderDate
-            };
-
-            $.ajax({
-                url: "patientDischargeDispenseEHRCentralGetMSH.jsp",
-                type: "post",
-                timeout: 3000,
-                data: data[i],
-                success: function (returnDataMSHFull) {
-
-                    $.ajax({
-                        url: "patientDischargeDispenseEHRCentralGetPDIFinal.jsp",
-                        type: "post",
-                        timeout: 3000,
-                        data: data,
-                        success: function (returnDataPDIFull) {
-
-
-                            $.ajax({
-                                url: "patientDischargeDispenseEHRCentralGetORC.jsp",
-                                type: "post",
-                                data: data,
-                                timeout: 3000,
-                                success: function (returnDataORCFull) {
-                                    $("#dataMSHPDIORC").val(returnDataMSHFull.trim() + returnDataPDIFull.trim() + returnDataORCFull.trim());
-
-                                    console.log(returnDataMSHFull.trim());
-                                    console.log(returnDataPDIFull.trim());
-                                    console.log(returnDataORCFull.trim());
-                                    console.log($("#dataMSHPDIORC").val());
-
-                                    //loadAllergyDiagnosisOrder(patientOrderNo, patientpmino);
-
-                                    $.ajax({
-                                        url: "patientDischargeDetailItem.jsp",
-                                        type: "post",
-                                        data: data,
-                                        timeout: 3000,
-                                        success: function (returnDataItem) {
-                                            $("#datatest").val(returnDataItem.trim());
-                                            $("#datatest1").val(returnDataMSHFull.trim() + "\n" + returnDataPDIFull.trim() + "\n" + returnDataORCFull.trim() + "\n" + returnDataItem.trim());
-                                            //$('#dataItem').html(returnDataItem);
-                                            //$('#dataItem').trigger('contentchanged');
-                                            console.log(returnDataItem.trim());
-                                            console.log($("#datatest").val());
-                                            console.log($("#datatest1").val());
-                                            var ehr_central = $("#datatest1").val();
-                                            //alert(ehr_central);
-
-                                            var data1 = {
-                                                pmiNo: patientpmino,
-                                                ehr_central: ehr_central,
-                                                order_no: patientorderNo
-                                            };
-                                            $.ajax({
-                                                url: "sentToEHRcentral.jsp",
-                                                type: "post",
-                                                data: data1,
-                                                timeout: 3000,
-                                                success: function (returnEHR) {
-
-
-
-
-                                                }
-                                            });
-
-                                        }
-                                    });
-
-                                }
-                            });
-
-                        }
-                    });
-
-                }
-            });
-        }
-        //alert("Success transfer to Billing");
     });
+
 
 </script>

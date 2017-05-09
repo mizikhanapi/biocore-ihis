@@ -36,7 +36,7 @@
     rmic.setQuerySQL(conn.HOST, conn.PORT, sqlInsert);
     
     
-    String sqlUpdate = "UPDATE lis_order_master SET order_status='4' WHERE order_no = '"+orderNo+"' ";
-    rmic.setQuerySQL(conn.HOST, conn.PORT, sqlUpdate);
+//    String sqlUpdate = "UPDATE lis_order_master SET order_status='4' WHERE order_no = '"+orderNo+"' ";
+//    rmic.setQuerySQL(conn.HOST, conn.PORT, sqlUpdate);
 %>
 
