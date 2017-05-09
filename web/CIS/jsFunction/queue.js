@@ -622,34 +622,48 @@ function convertEHR(ehr) {
         }else if (header === "DTO") {
             DTO = EHRArry[i];
             var DTOData1 = DTO.split("|");
-            //var DTOData = DTOData1[1].split("^");
-            var reqDrugAry = DTOData1[2].split("^");
-            var reqDrugFormAry = DTOData1[3].split("^");
-            var reqDrugRouteAry = DTOData1[4].split("^");
-            var reqDrugFreqAry = DTOData1[5].split("^");
-            var reqDrugUOMAry = DTOData1[9].split("^");
-            var hfcDeliverAry = DTOData1[12].split("^");
-            var commentAry = DTOData1[5].split("^");
             console.log(DTOData1);
- 
+            //var DTOData = DTOData1[1].split("^");
+            var drugArry = DTOData1[2].split("^");
+            var drugFormArry = DTOData1[3].split("^");
+            var drugRouteArry = DTOData1[4].split("^");
+            var drugFrequencyDetailArry = DTOData1[5].split("^");
+            var drugDoseArry = DTOData1[7].split(" ");
+            var drugStrengthArry = DTOData1[8].split(" ");
+            var uomCode = DTOData1[9].split("^");
+            var durationArry = DTOData1[10].split(" ");
+//            var reqDrugFormAry = DTOData1[3].split("^");
+//            var reqDrugRouteAry = DTOData1[4].split("^");
+//            var reqDrugFreqAry = DTOData1[5].split("^");
+//            var reqDrugUOMAry = DTOData1[9].split("^");
+//            var hfcDeliverAry = DTOData1[12].split("^");
+//            var commentAry = DTOData1[5].split("^");
+//            console.log(DTOData1);
+// 
             var objDTO = {
-                Acode: "DTO",
-                cautionaryDTO:commentAry[0],
-                commentDTO:commentAry[1],
-                doseDTO:DTOData1[7],
-                drugFrequencyDTO:reqDrugFreqAry[1],
-                drugInstructionDTO:reqDrugUOMAry[2],
-                drugNameDTO:reqDrugFormAry[0],
-                drugQtyDTO:DTOData1[11],
-                drugStrDTO:DTOData1[8],
-                dtoCode:reqDrugAry[0],
-                durationDTO:DTOData1[10],
-                searchDTO:reqDrugAry[1],
-                unitDTO:DTOData1[6]
+                Acode: 'DTO',
+
+            drugName:drugArry[0],
+            drugCode:drugArry[1],
+            drugForm:drugFormArry[0],
+            drugRoute:drugRouteArry[0],
+            drugCaution:"",
+            drugFrequencyDetail:drugFrequencyDetailArry[1],
+            drugStrength:drugStrengthArry[0],
+            drugStrengthUnit:drugStrengthArry[1],
+            drugDose:drugDoseArry[0],
+            drugDoseUnit:drugDoseArry[1],
+            drugDuration:durationArry[0],
+            drugDurationUnit:durationArry[1],
+            drugFrequency:DTOData1[6],
+            uomCode:uomCode[2],
+            remark:DTOData1[13],
+            comment:DTOData1[15],
+            drugQuantity:DTOData1[11]
             };
-             getObjectORCHFCDetail(hfc_cd, hfc_cd,objDTO);
+           getObjectORCHFCDetail(hfc_cd, hfc_cd,objDTO);
             _data.push(objDTO);
-           displayDTO(objDTO.searchDTO, objDTO.drugNameDTO, objDTO.drugStrDTO, objDTO.doseDTO, objDTO.drugFrequencyDTO, objDTO.durationDTO, objDTO.unitDTO, objDTO.drugInstructionDTO, objDTO.cautionaryDTO, objDTO.commentDTO) ;
+          displayDTO(objDTO.drugName, objDTO.drugForm,objDTO. drugStrength+" "+objDTO.drugStrengthUnit, objDTO.drugDose+" "+objDTO.drugDoseUnit ,objDTO.drugFrequency, objDTO.drugDuration+" "+objDTO.drugDurationUnit, objDTO.drugFrequency, objDTO.drugCaution, objDTO.remark, objDTO.comment);
         }else if (header === "POS") {
             POS = EHRArry[i];
             var POSData1 = POS.split("|");

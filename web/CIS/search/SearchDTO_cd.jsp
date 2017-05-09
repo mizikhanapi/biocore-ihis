@@ -14,7 +14,7 @@
     String hfc_cd = session.getAttribute("HEALTH_FACILITY_CODE").toString();
     
     //id.toLowerCase();
-    String searchProblem = "select ud_mdc_code,d_gnr_name,d_stock_qty,d_packaging, `D_STRENGTH`, `D_QTY`, `D_ROUTE_CODE`  from pis_mdc2 where d_trade_name = '" + id + "' AND hfc_cd = '"+hfc_cd+"' ";
+    String searchProblem = "select ud_mdc_code,d_gnr_name,d_stock_qty,d_packaging, `D_STRENGTH`, `D_QTY`, `D_ROUTE_CODE`,D_FORM_CODE,D_CAUTION_CODE, D_FREQUENCY from pis_mdc2 where d_trade_name = '" + id + "' AND hfc_cd = '"+hfc_cd+"' ";
     ArrayList<ArrayList<String>> search = Conn.getData(searchProblem);
     if (search.size() > 0) {
         

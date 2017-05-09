@@ -124,38 +124,78 @@ $('#CIS040002').on('shown',function(){
     //js ADD for Drug Order
     $('#acceptBtnDTO').click(function () {
          
-        var searchDTO = $('#searchDTO').val();
-
-        var drugName = $('#drugNameDTO').val();
-        var drugStr = $('#drugStrDTO').val();
-
-        var drugDose = $('#doseDTO').val();
-        var drugFreq = $('#drugFrequencyDTO').val();
-        var drugDur1 = $('#durationDTO').val();
-        var unit = $('#unitDTO').val();
-        var drugInst = $('#drugInstructionDTO').val();
-        var cautionary = $('#cautionaryDTO').val();
-        var comment = $('#commentDTO').val();
-        var hfcOrderDetail = $('#hfcOrderDetailDTO').val();
-        var hfcProviderDetail = $('#hfcProviderDetailDTO').val();
-//                    notes+= "DTO|" + getDate() + "^" +  
-
-        var $items = $('#searchDTO, #dtoCode, #drugNameDTO, #drugQtyDTO, #drugStrDTO, #doseDTO, #durationDTO, #unitDTO, #drugFrequencyDTO, #drugInstructionDTO, #cautionaryDTO, #commentDTO, #dRouteDTO');
-        var obj1 = {
+         var drugName = $('#tCIS_DTODrugName').val();
+         var drugCode = $('#tCIS_DTODrugCode').val();
+         var drugForm = $('#tCIS_DTODrugForm').val();
+         var drugRoute= $('#tCIS_DTODrugRoute').val();
+         var drugCaution = $('#tCIS_DTODrugCaution').val();
+         var drugFrequencyDetail = $('#tCIS_DTODrugFrequencyDetail').val();
+         var drugStrength = $('#tCIS_DTODrugStrength').val();
+         var drugStrengthUnit = $('#tCIS_DTODrugStrengthUnit').val();
+         var uomCode = $('#tCIS_DTODrugStrengthUnit option:selected').text();
+         var drugDose = $('#tCIS_DTODrugDose').val();
+         var drugDoseUnit = $('#tCIS_DTODrugDoseUnit').val();
+         var drugDuration = $('#tCIS_DTODrugDuration').val();
+         var drugDurationUnit = $('#tCIS_DTODrugUnit').val();
+         var drugFrequency = $('#tCIS_DTODrugFrequency').val();
+         var drugQuantity = $("#tCIS_DTOQuantity").val();
+         var remark = $('#tCIS_DTORemark').val();
+         var comment = $('#tCIS_DTOComment').val();
+          var hfcOrderDetail = $('#hfcOrderDetailDTO').val();
+          var hfcProviderDetail = $('#hfcProviderDetailDTO').val();
+          
+                var obj1 = {
+                    
             Acode: 'DTO',
-            hfcOrderDetail:hfcOrderDetail,
-            hfcProviderDetail:hfcProviderDetail
+            hfcOrderDetail: hfcOrderDetail,
+            hfcProviderDetail: hfcProviderDetail,
+            drugName:drugName,
+            drugCode:drugCode,
+            drugForm:drugForm,
+            drugRoute:drugRoute,
+            drugCaution:drugCaution,
+            drugFrequencyDetail:drugFrequencyDetail,
+            drugStrength:drugStrength,
+            drugStrengthUnit:drugStrengthUnit,
+            drugDose:drugDose,
+            drugDoseUnit:drugDoseUnit,
+            drugDuration:drugDuration,
+            drugDurationUnit:drugDurationUnit,
+            drugFrequency:drugFrequency,
+            uomCode:uomCode,
+            remark:remark,
+            comment:comment,
+            drugQuantity:drugQuantity
+            
         };
-        $items.each(function () {
-            obj1[this.id] = $(this).val();
-        });
+          
+//        var searchDTO = $('#searchDTO').val();
+//
+//        var drugName = $('#drugNameDTO').val();
+//        var drugStr = $('#drugStrDTO').val();
+//
+//        var drugDose = $('#doseDTO').val();
+//        var drugFreq = $('#drugFrequencyDTO').val();
+//        var drugDur1 = $('#durationDTO').val();
+//        var unit = $('#unitDTO').val();
+//        var drugInst = $('#drugInstructionDTO').val();
+//        var cautionary = $('#cautionaryDTO').val();
+//        var comment = $('#commentDTO').val();
+
+////                    notes+= "DTO|" + getDate() + "^" +  
+//
+//        var $items = $('#searchDTO, #dtoCode, #drugNameDTO, #drugQtyDTO, #drugStrDTO, #doseDTO, #durationDTO, #unitDTO, #drugFrequencyDTO, #drugInstructionDTO, #cautionaryDTO, #commentDTO,#drugFormDTO, #dRouteDTO');
+
+//        $items.each(function () {
+//            obj1[this.id] = $(this).val();
+//        });
         getObjectORCHFCDetail(hfc_cd, hfc_cd,obj1);
         _data.push(obj1);
         var index = _data.length -1;
         //etORCHFCDetail(hfc_cd, hfc_cd,index);
         console.log(obj1);
 
-        displayDTO(searchDTO, drugName, drugStr, drugDose, drugFreq, drugDur1, unit, drugInst, cautionary, comment);
+      displayDTO(drugName, drugForm, drugStrength+" "+drugStrengthUnit, drugDose+" "+drugDoseUnit , drugFrequency, drugDuration+" "+drugDurationUnit, drugFrequency, drugCaution, remark, comment);
 
         $("#problem11").val("");
         $("#qty").val("");
@@ -180,19 +220,25 @@ $('#CIS040002').on('shown',function(){
         var id = idName.split("|");
         var updateObj = _data[id[1]];
         console.log(updateObj);
-        $('#update_searchDTO').val(updateObj.searchDTO);
-        $('#update_dtoCode').val(updateObj.dtoCode);
-        $('#update_pro').val(updateObj.drugNameDTO);
-        $('#update_qty').val(updateObj.drugQtyDTO);
-        $('#update_d_strength').val(updateObj.drugStrDTO);
-        $('#update_dose').val(updateObj.doseDTO);
-        $('#update_dur1').val(updateObj.durationDTO);
-        $('#update_ddwwmm').val(updateObj.unitDTO);
-        $('#update_freq').val(updateObj.drugFrequencyDTO);
-        $('#update_inst').val(updateObj.drugInstructionDTO);
-        $('#update_cautionaryDTO').val(updateObj.cautionaryDTO);
-        $('#update_commentDTO').val(updateObj.commentDTO);
-        $('#update_RouteDTO').val(updateObj.dRouteDTO);
+$('#tCIS_DTODrugName_update').val(updateObj.drugName);
+        $('#tCIS_DTODrugCode_update').val(updateObj.drugCode);
+         $('#tCIS_DTODrugForm_update').val(updateObj.drugForm);
+        $('#tCIS_DTODrugRoute_update').val(updateObj.drugRoute);
+          $('#tCIS_DTODrugCaution_update').val(updateObj.drugCaution);
+        $('#tCIS_DTODrugFrequencyDetail_update').val(updateObj.drugFrequencyDetail);
+         $('#tCIS_DTODrugStrength_update').val(updateObj.drugStrength);
+         $('#tCIS_DTODrugStrengthUnit_update').val(updateObj.drugStrengthUnit);
+        // var uomCode = $('#tCIS_DTODrugStrengthUnit option:selected').text();
+          $('#tCIS_DTODrugDose_update').val(updateObj.drugDose);
+          $('#tCIS_DTODrugDoseUnit_update').val(updateObj.drugDoseUnit);
+        $('#tCIS_DTODrugDuration_update').val(updateObj.drugDuration);
+          $('#tCIS_DTODrugUnit_update').val(updateObj.drugDurationUnit);
+         $('#tCIS_DTODrugFrequency_update').val(updateObj.drugFrequency);
+          $("#tCIS_DTOQuantity_update").val(updateObj.drugQuantity);
+          $('#tCIS_DTORemark_update').val(updateObj.remark);
+      $('#tCIS_DTOComment_update').val(updateObj.comment);
+          $('#hfcOrderDetailDTO_update').val(updateObj.hfcOrderDetail);
+           $('#hfcProviderDetailDTO_update').val(updateObj.hfcProviderDetail);
 
         $('#jsonId').val(id[1]);
         //$(this).closest('tr').remove();
@@ -206,36 +252,48 @@ $('#CIS040002').on('shown',function(){
 
         rowId = $('#jsonId').val();
         // console.log(upObject);
-        var update_searchDTO = $('#update_searchDTO').val();
-        var update_dtoCode = $('#update_dtoCode').val();
-        var update_drugNameDTO = $('#update_pro').val();
-        var update_qtyDTO = $('#update_qty').val();
-        var update_drugStrDTO = $('#update_d_strength').val();
-        var update_drugDoseDTO = $('#update_dose').val();
-        var update_durationDTO = $('#update_dur1').val();
-        var update_unitDurDTO = $('#update_ddwwmm').val();
-        var update_freqDTO = $('#update_freq').val();
-        var update_instDTO = $('#update_inst').val();
-        var update_caoutionaryDTO = $('#update_cautionaryDTO').val();
-        var update_commentsDTO = $('#update_commentDTO').val();
-        var update_dRouteDTO = $('#update_RouteDTO').val();
+         var drugName = $('#tCIS_DTODrugName_update').val();
+         var drugCode = $('#tCIS_DTODrugCode_update').val();
+         var drugForm = $('#tCIS_DTODrugForm_update').val();
+         var drugRoute= $('#tCIS_DTODrugRoute_update').val();
+         var drugCaution = $('#tCIS_DTODrugCaution_update').val();
+         var drugFrequencyDetail = $('#tCIS_DTODrugFrequencyDetail_update').val();
+         var drugStrength = $('#tCIS_DTODrugStrength_update').val();
+         var drugStrengthUnit = $('#tCIS_DTODrugStrengthUnit_update').val();
+         var uomCode = $('#tCIS_DTODrugStrengthUnit_update option:selected').text();
+         var drugDose = $('#tCIS_DTODrugDose_update').val();
+         var drugDoseUnit = $('#tCIS_DTODrugDoseUnit_update').val();
+         var drugDuration = $('#tCIS_DTODrugDuration_update').val();
+         var drugDurationUnit = $('#tCIS_DTODrugUnit_update').val();
+         var drugFrequency = $('#tCIS_DTODrugFrequency_update').val();
+         var drugQuantity = $("#tCIS_DTOQuantity_update").val();
+         var remark = $('#tCIS_DTORemark_update').val();
+         var comment = $('#tCIS_DTOComment_update').val();
+          var hfcOrderDetail = $('#hfcOrderDetailDTO_update').val();
+          var hfcProviderDetail = $('#hfcProviderDetailDTO_update').val();
 
-        upObject.searchDTO = update_searchDTO;
-        upObject.dtoCode = update_dtoCode;
-        upObject.drugNameDTO = update_drugNameDTO;
-        upObject.drugQtyDTO = update_qtyDTO;
-        upObject.drugStrDTO = update_drugStrDTO;
-        upObject.doseDTO = update_drugDoseDTO;
-        upObject.durationDTO = update_durationDTO;
-        upObject.unitDTO = update_unitDurDTO;
-        upObject.drugFrequencyDTO = update_freqDTO;
-        upObject.drugInstructionDTO = update_instDTO;
-        upObject.cautionaryDTO = update_caoutionaryDTO;
-        upObject.commentDTO = update_commentsDTO;
-        upObject.dRouteDTO = update_dRouteDTO;
+            upObject.hfcOrderDetail= hfcOrderDetail;
+            upObject.hfcProviderDetail=hfcProviderDetail;
+           upObject. drugName=drugName;
+            upObject.drugCode=drugCode;
+            upObject.drugForm=drugForm;
+            upObject.drugRoute=drugRoute;
+            upObject.drugCaution=drugCaution;
+            upObject.drugFrequencyDetail=drugFrequencyDetail;
+            upObject.drugStrength=drugStrength;
+            upObject.drugStrengthUnit=drugStrengthUnit;
+            upObject.drugDose=drugDose;
+            upObject.drugDoseUnit=drugDoseUnit;
+            upObject.drugDuration=drugDuration;
+            upObject.drugDurationUnit=drugDurationUnit;
+            upObject.drugFrequency=drugFrequency;
+            upObject.uomCode=uomCode;
+            upObject.remark=remark;
+            upObject.comment=comment;
+            upObject.drugQuantity=drugQuantity;
 
 
-        var sum = update_searchDTO + ' | Drug Name: ' + update_drugNameDTO + ' | Strength: ' + update_drugStrDTO + ' | Dose: ' + update_drugDoseDTO + ' | Frequency: ' + update_freqDTO + ' | Duration: ' + update_durationDTO + '  ' + update_unitDurDTO + ' | Instruction: ' + update_instDTO + ' | Cautionary: ' + update_caoutionaryDTO + ' | Comment: ' + update_commentsDTO
+        var sum = drugName + ' | Drug Name: ' + drugRoute + ' | Strength: ' + drugStrength + '  '+ drugStrengthUnit+ '| Dose: ' + drugDose+' '+drugDoseUnit + ' | Frequency: ' + drugFrequency + ' | Duration: ' + drugDuration+' '+drugDurationUnit + '  ' + drugFrequency + ' | Instruction: ' + drugCaution + ' | Cautionary: ' + remark + ' | Comment: ' + comment
 //
         $('#sum' + rowId).html(sum);
         $("#update_CIS040002").modal('toggle');

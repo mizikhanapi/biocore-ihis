@@ -20,8 +20,8 @@
                             <label class="col-md-6 control-label" for="textinput">Search Drug</label>
                             <div class="col-md-12">
                                 <input type="hidden" name="DTO" id="jsonId" class="form-control input-lg"  tabindex="4">
-                                <input class="form-control input-lg" type="text" name="problem"  id="searchDTO" placeholder="Type to search..." tabindex="4">
-                                <input class="form-control input-lg" type="hidden" name="dtoCode"  id="dtoCode" placeholder="Drug Code..." tabindex="4" readonly="">
+                                <input class="form-control input-lg" type="text" name="problem"  id="tCIS_DTODrugName" placeholder="Type to search..." tabindex="4">
+                                <input class="form-control input-lg" type="hidden" name="dtoCode"  id="tCIS_DTODrugCode" placeholder="Drug Code..." tabindex="4" readonly="">
                                 <input class="form-control input-lg" type="hidden"  id="hfcDTO" placeholder="">
                                 <input class="form-control input-lg" type="hidden"  id="hfcOrderDetailDTO" placeholder="s">
                                 <input class="form-control input-lg" type="hidden"  id="hfcProviderDetailDTO" placeholder="">
@@ -38,64 +38,16 @@
                     <h4 class="modal-title" style="font-weight: bold">Drug Details</h4>
                 </div>
 
-                <!-- content goes here -->
-                <div class="row">
-                    <div class="col-xs-2 col-sm-2 col-md-2">
-                        <div class="form-group modalTextLabel">
-                            <h4 class="modal-title">Drug Name</h4>
-                        </div>
-                    </div>
-                    <div class="col-xs-4 col-sm-4 col-md-4">
-                        <div class="form-group">
-                            <input class="form-control input-lg" type="text" name="pro" id="drugNameDTO" placeholder="" readonly="">
-                        </div>
-                    </div>
-                    <div class="col-xs-2 col-sm-2 col-md-2">
-                        <div class="form-group">
-                            <h4 class="modal-title modalTextLabel">Stock</h4>
-                        </div>
-                    </div>
-                    <div class="col-xs-4 col-sm-4 col-md-4">
-                        <div class="form-group ">
-                            <input class="form-control input-lg" type="text" name="qty" id="drugStockDTO" placeholder="" readonly="">
-                        </div>
-                    </div>
-                </div>
-
-
-
                 <div class="row">
                     <div class="col-xs-2 col-sm-2 col-md-2">
                         <div class="form-group">
-                            <h4 class="modal-title modalTextLabel">Strength</h4>
+                            <h4 class="modal-title modalTextLabel">Drug Form</h4>
                         </div>
                     </div>
                     <div class="col-xs-4 col-sm-4 col-md-4">
                         <div class="form-group">
-                            <input class="form-control input-lg" type="text" name="d_strength" id="drugStrDTO" placeholder="" readonly="">
-                        </div>
-                    </div>
-                    <div class="col-xs-2 col-sm-2 col-md-2">
-                        <div class="form-group">
-                            <h4 class="modal-title modalTextLabel">Dosage</h4>
-                        </div>
-                    </div>
-                    <div class="col-xs-4 col-sm-4 col-md-4">
-                        <div class="form-group">
-                            <input class="form-control input-lg" type="text" name="dose" id="doseDTO" placeholder="" readonly="">
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-xs-2 col-sm-2 col-md-2">
-                        <div class="form-group modalTextLabel">
-                            <h4 class="modal-title">Quantity</h4>
-                        </div>
-                    </div>
-                    <div class="col-xs-4 col-sm-4 col-md-4">
-                        <div class="form-group">
-                            <input type="number" name="display_name" id="drugQtyDTO" class="form-control input-lg" placeholder="" tabindex="3">
+                            <input class="form-control input-lg" type="text" name="d_strength" id="tCIS_DTODrugForm" placeholder="" readonly="">
+                           
                         </div>
                     </div>
                     <div class="col-xs-2 col-sm-2 col-md-2">
@@ -105,9 +57,82 @@
                     </div>
                     <div class="col-xs-4 col-sm-4 col-md-4">
                         <div class="form-group ">
-                            <input class="form-control input-lg" type="text" name="qty" id="dRouteDTO" placeholder="" readonly="">
+                            <input class="form-control input-lg" type="text" name="qty" id="tCIS_DTODrugRoute" placeholder="" readonly="">
                         </div>
                     </div>
+                </div>
+                <div class="row">
+
+                    <div class="col-xs-2 col-sm-2 col-md-2">
+                        <div class="form-group">
+                            <h4 class="modal-title modalTextLabel">Cautionary</h4>
+                        </div>
+                    </div>
+                    <div class="col-xs-4 col-sm-4 col-md-4">
+                        <div class="form-group">
+                            <input class="form-control input-lg" type="text" name="cautionary" id="tCIS_DTODrugCaution" placeholder="" readonly="">
+                        </div>
+                    </div>
+                  <div class="col-xs-2 col-sm-2 col-md-2">
+                        <div class="form-group">
+                            <h4 class="modal-title modalTextLabel">Drug Frequency</h4>
+                        </div>
+                    </div>
+                    <div class="col-xs-4 col-sm-4 col-md-4">
+                        <div class="form-group">
+                            <input class="form-control input-lg" type="text" name="d_strength" id="tCIS_DTODrugFrequencyDetail" placeholder="" readonly="">
+                        </div>
+                    </div>
+                    
+                </div>
+                
+                <div class="row">
+                    <h4 class="modal-title" style="font-weight: bold">Order Drug Details</h4>
+                </div>
+                <div class="row">
+                         
+                    <div class="col-xs-2 col-sm-2 col-md-2">
+                        <div class="form-group">
+                            <h4 class="modal-title modalTextLabel">Drug Strength</h4>
+                        </div>
+                    </div>
+                    <div class="col-xs-2 col-sm-2 col-md-2">
+                        <div class="form-group">
+                            <input class="form-control input-lg" type="number" name="dose" id="tCIS_DTODrugStrength" placeholder="" >
+                        </div>
+                    </div>
+                     <div class="col-xs-2 col-sm-2 col-md-2">
+                        <div class="form-group">
+                            <select name="site" id="tCIS_DTODrugStrengthUnit" class="form-control input-lg">
+                                <option value="" disabled="" >Unit</option>
+                                <option value="ml">milliliter</option>
+                                <option value="mg">milligram</option>  
+                                     
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="col-xs-2 col-sm-2 col-md-2">
+                        <div class="form-group">
+                            <h4 class="modal-title modalTextLabel">Dosage</h4>
+                        </div>
+                    </div>
+                    <div class="col-xs-2 col-sm-2 col-md-2">
+                        <div class="form-group">
+                            <input class="form-control input-lg" type="text" name="dose" id="tCIS_DTODrugDose" placeholder="" >
+                        </div>
+                    </div>
+                     <div class="col-xs-2 col-sm-2 col-md-2">
+                        <div class="form-group">
+                            <select name="site" id="tCIS_DTODrugDoseUnit" class="form-control input-lg">
+                                <option value="" disabled="" >Unit</option>
+                                <option value="tab">tab</option>
+                                <option value="cap">cap</option>  
+
+                            </select>
+                        </div>
+                    </div>
+
                 </div>
 
                 <div class="row">
@@ -116,39 +141,34 @@
                             <h4 class="modal-title modalTextLabel">Duration</h4>
                         </div>
                     </div>
-                    <div class="col-xs-4 col-sm-4 col-md-4">
+                   
                         <div class="form-group">
-                            <input class="form-control input-lg" type="number" name="dur1" id="durationDTO" placeholder="Duration" max = "31" min="1">
+                             <div class="col-xs-2 col-sm-2 col-md-2">
+                        <div class="form-group">
+                            <input class="form-control input-lg" type="number" name="durationDTO" id="tCIS_DTODrugDuration" placeholder="" >
                         </div>
                     </div>
-
-                    <div class="col-xs-2 col-sm-2 col-md-2">
+                     <div class="col-xs-2 col-sm-2 col-md-2">
                         <div class="form-group">
-                            <h4 class="modal-title modalTextLabel">Unit</h4>
-                        </div>
-                    </div>
-
-                    <div class="col-xs-4 col-sm-4 col-md-4">
-                        <div class="form-group">
-                            <select name="site" id="unitDTO" class="form-control input-lg">
-                                <option value="" disabled="" selected="">Select Here</option>
-                                <option value="Day">Day</option>
-                                <option value="Week">Week</option>
-                                <option value="Month">Month</option>     
+                            <select name="site" id="tCIS_DTODrugUnit" class="form-control input-lg">
+                                <option value="" disabled="" >Select Here</option>
+                                <option value="day">Day</option>
+                                <option value="week">Week</option>
+                                <option value="month">Month</option>     
                             </select>
                         </div>
                     </div>
-                </div>
+                        </div>
+                
 
-                <div class="row">
                     <div class="col-xs-2 col-sm-2 col-md-2">
                         <div class="form-group">
-                            <h4 class="modal-title modalTextLabel">Frequency</h4>
+                            <h4 class="modal-title modalTextLabel">Drug Frequency</h4>
                         </div>
                     </div>
                     <div class="col-xs-4 col-sm-4 col-md-4">
                         <div class="form-group">
-                            <select name="site" id="drugFrequencyDTO" class="form-control input-lg">
+                            <select name="site" id="tCIS_DTODrugFrequency" class="form-control input-lg">
                                 <option value="1" selected="" disabled="">Select Here</option>
                                 <option value="Once">Once</option>
                                 <option value="In the morning">In the morning</option>
@@ -166,12 +186,12 @@
                             </select>
                         </div>
                     </div>
-                    <div class="col-xs-2 col-sm-2 col-md-2">
-                        <div class="form-group">
-                            <h4 class="modal-title modalTextLabel">Instruction</h4>
-                        </div>
-                    </div>
-                    <div class="col-xs-4 col-sm-4 col-md-4">
+                </div>
+
+                <div class="row">
+
+  
+<!--                    <div class="col-xs-4 col-sm-4 col-md-4">
                         <div class="form-group">
                             <select name="inst" id="drugInstructionDTO" class="form-control input-lg">
                                 <option value="1" selected="" disabled="">Select Here</option>
@@ -185,18 +205,24 @@
                                 <option value="Other">Other</option> 
                             </select>
                         </div>
-                    </div>
+                    </div>-->
 
                 </div>
-                <div class="row">
-                    <div class="col-xs-2 col-sm-2 col-md-2">
+              <div class="row">
+                                      <div class="col-xs-2 col-sm-2 col-md-2">
                         <div class="form-group">
-                            <h4 class="modal-title modalTextLabel">Cautionary</h4>
+                            <h4 class="modal-title modalTextLabel">Quantity</h4>
                         </div>
                     </div>
-                    <div class="col-xs-10 col-sm-10 col-md-10">
+                    <div class="col-xs-4 col-sm-4 col-md-4">
                         <div class="form-group">
-                            <input type="text" name="display_name" id="cautionaryDTO" class="form-control input-lg" placeholder="" tabindex="3">
+                                    <input class="form-control input-lg" type="number" name="dose" id="tCIS_DTOQuantity" placeholder="" >
+                        </div>
+                    </div>
+                    <div class="col-xs-6 col-sm-6 col-md-6">
+                        <div class="form-group">
+                            <h4 class="modal-title modalTextLabel">Remarks</h4>
+                           <input class="form-control input-lg" type="text" name="tCIS_DTORemark" id="tCIS_DTORemark" placeholder="" >
                         </div>
                     </div>
                 </div>
@@ -206,7 +232,7 @@
 
                         <div class="form-group">
                             <h4 class="modal-title modalTextLabel">Comments</h4>
-                            <textarea type="text" name="display_name" id="commentDTO" class="form-control input-lg" placeholder="" tabindex="3"></textarea>
+                            <textarea type="text" name="display_name" id="tCIS_DTOComment" class="form-control input-lg" placeholder="" tabindex="3"></textarea>
                         </div>
                     </div>
                 </div>
@@ -240,85 +266,43 @@
                 <button type="button" class="close" data-dismiss="modal"><i class="fa fa-times fa-lg"></i><span class="sr-only">Close</span></button>
                 <h3 class="modal-title" id="lineModalLabel">Update Drug Order</h3>
             </div>
-            <div class="modal-body">
+           <div class="modal-body">
                 <!-- content goes here -->
-
                 <div class="row">
                     <div class="col-xs-12 col-sm-12 col-md-12">
 
                         <div class="form-group">
-                            <input type="hidden" name="DTO" id="codeDTO" class="form-control input-lg" value="DTO" tabindex="4">
-                            <input class="form-control input-lg" type="text" name="problem"  id="update_searchDTO" placeholder="Search Drug..." tabindex="4">
-                            <input class="form-control input-lg" type="hidden" name="dtoCode"  id="update_dtoCode" placeholder="Drug Code..." tabindex="4" readonly="">
-                            <div id="update_matchDTO" ></div>
+                            <label class="col-md-6 control-label" for="textinput">Search Drug</label>
+                            <div class="col-md-12">
+                                <input type="hidden" name="DTO" id="jsonId" class="form-control input-lg"  tabindex="4">
+                                <input class="form-control input-lg" type="text" name="problem"  id="tCIS_DTODrugName_update" placeholder="Type to search..." tabindex="4">
+                                <input class="form-control input-lg" type="hidden" name="dtoCode"  id="tCIS_DTODrugCode_update" placeholder="Drug Code..." tabindex="4" readonly="">
+                                <input class="form-control input-lg" type="hidden"  id="hfcDTO_update" placeholder="">
+                                <input class="form-control input-lg" type="hidden"  id="hfcOrderDetailDTO_update" placeholder="s">
+                                <input class="form-control input-lg" type="hidden"  id="hfcProviderDetailDTO_update" placeholder="">
+                                <input class="form-control input-lg" type="hidden"  id="hfcIdDTO_update">
+                                <div id="matchDTO" style="width: 100%"></div>
+                            </div>
                         </div>
                     </div>
                 </div>
 
-                <div class="row">
-                    <div class="col-xs-12 col-sm-12 col-md-12">
-                        <div class="form-group">
-                            <h4 class="modal-title" style="font-weight: bold">Drug Details</h4>
-                        </div>
-                    </div>
-                </div>
+                <hr/>
 
-                <!-- content goes here -->
                 <div class="row">
-                    <div class="col-xs-2 col-sm-2 col-md-2">
-                        <div class="form-group modalTextLabel">
-                            <h4 class="modal-title">Drug Name</h4>
-                        </div>
-                    </div>
-                    <div class="col-xs-4 col-sm-4 col-md-4">
-                        <div class="form-group">
-                            <input class="form-control input-lg" type="text" name="pro" id="update_pro" placeholder="" readonly="">
-                        </div>
-                    </div>
-                    <div class="col-xs-2 col-sm-2 col-md-2">
-                        <div class="form-group">
-                            <h4 class="modal-title modalTextLabel">Stock</h4>
-                        </div>
-                    </div>
-                    <div class="col-xs-4 col-sm-4 col-md-4">
-                        <div class="form-group ">
-                            <input class="form-control input-lg" type="text" name="qty" id="update_stock" placeholder="" readonly="">
-                        </div>
-                    </div>
+                    <h4 class="modal-title" style="font-weight: bold">Drug Details</h4>
                 </div>
 
                 <div class="row">
                     <div class="col-xs-2 col-sm-2 col-md-2">
                         <div class="form-group">
-                            <h4 class="modal-title modalTextLabel">Strength</h4>
+                            <h4 class="modal-title modalTextLabel">Drug Form</h4>
                         </div>
                     </div>
                     <div class="col-xs-4 col-sm-4 col-md-4">
                         <div class="form-group">
-                            <input class="form-control input-lg" type="text" name="d_strength" id="update_d_strength" placeholder="" readonly="">
-                        </div>
-                    </div>
-                    <div class="col-xs-2 col-sm-2 col-md-2">
-                        <div class="form-group">
-                            <h4 class="modal-title modalTextLabel">Dosage</h4>
-                        </div>
-                    </div>
-                    <div class="col-xs-4 col-sm-4 col-md-4">
-                        <div class="form-group">
-                            <input class="form-control input-lg" type="text" name="dose" id="update_dose" placeholder="" readonly="">
-                        </div>
-                    </div>
-
-                </div>
-                <div class="row">
-                    <div class="col-xs-2 col-sm-2 col-md-2">
-                        <div class="form-group modalTextLabel">
-                            <h4 class="modal-title">Quantity</h4>
-                        </div>
-                    </div>
-                    <div class="col-xs-4 col-sm-4 col-md-4">
-                        <div class="form-group">
-                            <input type="number" name="display_name" id="update_qty" class="form-control input-lg" placeholder="" tabindex="3">
+                            <input class="form-control input-lg" type="text" name="d_strength" id="tCIS_DTODrugForm_update" placeholder="" readonly="">
+                           
                         </div>
                     </div>
                     <div class="col-xs-2 col-sm-2 col-md-2">
@@ -328,49 +312,119 @@
                     </div>
                     <div class="col-xs-4 col-sm-4 col-md-4">
                         <div class="form-group ">
-                            <input class="form-control input-lg" type="text" name="qty" id="update_RouteDTO" placeholder="" readonly="">
+                            <input class="form-control input-lg" type="text" name="qty" id="tCIS_DTODrugRoute_update" placeholder="" readonly="">
                         </div>
                     </div>
                 </div>
+                <div class="row">
+
+                    <div class="col-xs-2 col-sm-2 col-md-2">
+                        <div class="form-group">
+                            <h4 class="modal-title modalTextLabel">Cautionary</h4>
+                        </div>
+                    </div>
+                    <div class="col-xs-4 col-sm-4 col-md-4">
+                        <div class="form-group">
+                            <input class="form-control input-lg" type="text" name="cautionary" id="tCIS_DTODrugCaution_update" placeholder="" readonly="">
+                        </div>
+                    </div>
+                  <div class="col-xs-2 col-sm-2 col-md-2">
+                        <div class="form-group">
+                            <h4 class="modal-title modalTextLabel">Drug Frequency</h4>
+                        </div>
+                    </div>
+                    <div class="col-xs-4 col-sm-4 col-md-4">
+                        <div class="form-group">
+                            <input class="form-control input-lg" type="text" name="d_strength" id="tCIS_DTODrugFrequencyDetail_update" placeholder="" readonly="">
+                        </div>
+                    </div>
+                    
+                </div>
+                
+                <div class="row">
+                    <h4 class="modal-title" style="font-weight: bold">Order Drug Details</h4>
+                </div>
+                <div class="row">
+                         
+                    <div class="col-xs-2 col-sm-2 col-md-2">
+                        <div class="form-group">
+                            <h4 class="modal-title modalTextLabel">Drug Strength</h4>
+                        </div>
+                    </div>
+                    <div class="col-xs-2 col-sm-2 col-md-2">
+                        <div class="form-group">
+                            <input class="form-control input-lg" type="text" name="dose" id="tCIS_DTODrugStrength_update" placeholder="" >
+                        </div>
+                    </div>
+                     <div class="col-xs-2 col-sm-2 col-md-2">
+                        <div class="form-group">
+                            <select name="site" id="tCIS_DTODrugStrengthUnit_update" class="form-control input-lg">
+                                <option value="" disabled="" >Unit</option>
+                                <option value="ml">milliliter</option>
+                                <option value="mg">milligram</option>  
+                                     
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="col-xs-2 col-sm-2 col-md-2">
+                        <div class="form-group">
+                            <h4 class="modal-title modalTextLabel">Dosage</h4>
+                        </div>
+                    </div>
+                    <div class="col-xs-2 col-sm-2 col-md-2">
+                        <div class="form-group">
+                            <input class="form-control input-lg" type="text" name="dose" id="tCIS_DTODrugDose_update" placeholder="" >
+                        </div>
+                    </div>
+                     <div class="col-xs-2 col-sm-2 col-md-2">
+                        <div class="form-group">
+                            <select name="site" id="tCIS_DTODrugDoseUnit_update" class="form-control input-lg">
+                                <option value="" disabled="" >Unit</option>
+                                <option value="tab">tab</option>
+                                <option value="ml">ml</option>
+                                <option value="cap">cap</option>  
+                                <option value="mg">mg</option>  
+                            </select>
+                        </div>
+                    </div>
+
+                </div>
+
                 <div class="row">
                     <div class="col-xs-2 col-sm-2 col-md-2">
                         <div class="form-group">
                             <h4 class="modal-title modalTextLabel">Duration</h4>
                         </div>
                     </div>
-                    <div class="col-xs-4 col-sm-4 col-md-4">
+                   
                         <div class="form-group">
-                            <input class="form-control input-lg" type="number" name="dur1" id="update_dur1" placeholder="Duration" max = "31" min="1">
+                             <div class="col-xs-2 col-sm-2 col-md-2">
+                        <div class="form-group">
+                            <input class="form-control input-lg" type="number" name="durationDTO" id="tCIS_DTODrugDuration_update" placeholder="" >
                         </div>
                     </div>
-
-                    <div class="col-xs-2 col-sm-2 col-md-2">
+                     <div class="col-xs-2 col-sm-2 col-md-2">
                         <div class="form-group">
-                            <h4 class="modal-title modalTextLabel">Unit</h4>
-                        </div>
-                    </div>
-
-                    <div class="col-xs-4 col-sm-4 col-md-4">
-                        <div class="form-group">
-                            <select name="site" id="update_ddwwmm" class="form-control input-lg">
-                                <option value="" disabled="" selected="">Select Here</option>
-                                <option value="Day">Day</option>
-                                <option value="Week">Week</option>
-                                <option value="Month">Month</option>     
+                            <select name="site" id="tCIS_DTODrugUnit_update" class="form-control input-lg">
+                              <option value="" disabled="" >Select Here</option>
+                                <option value="day">Day</option>
+                                <option value="week">Week</option>
+                                <option value="month">Month</option>     
                             </select>
                         </div>
                     </div>
-                </div>
+                        </div>
+                
 
-                <div class="row">
                     <div class="col-xs-2 col-sm-2 col-md-2">
                         <div class="form-group">
-                            <h4 class="modal-title modalTextLabel">Frequency</h4>
+                            <h4 class="modal-title modalTextLabel">Drug Frequency</h4>
                         </div>
                     </div>
                     <div class="col-xs-4 col-sm-4 col-md-4">
                         <div class="form-group">
-                            <select name="site" id="update_freq" class="form-control input-lg">
+                            <select name="site" id="tCIS_DTODrugFrequency_update" class="form-control input-lg">
                                 <option value="1" selected="" disabled="">Select Here</option>
                                 <option value="Once">Once</option>
                                 <option value="In the morning">In the morning</option>
@@ -388,14 +442,14 @@
                             </select>
                         </div>
                     </div>
-                    <div class="col-xs-2 col-sm-2 col-md-2">
+                </div>
+
+                <div class="row">
+
+  
+<!--                    <div class="col-xs-4 col-sm-4 col-md-4">
                         <div class="form-group">
-                            <h4 class="modal-title modalTextLabel">Instruction</h4>
-                        </div>
-                    </div>
-                    <div class="col-xs-4 col-sm-4 col-md-4">
-                        <div class="form-group">
-                            <select name="inst" id="update_inst" class="form-control input-lg">
+                            <select name="inst" id="drugInstructionDTO" class="form-control input-lg">
                                 <option value="1" selected="" disabled="">Select Here</option>
                                 <option value="If required">If required</option>
                                 <option value="As directed">As directed</option>
@@ -407,18 +461,24 @@
                                 <option value="Other">Other</option> 
                             </select>
                         </div>
-                    </div>
+                    </div>-->
 
                 </div>
-                <div class="row">
-                    <div class="col-xs-2 col-sm-2 col-md-2">
+              <div class="row">
+                                      <div class="col-xs-2 col-sm-2 col-md-2">
                         <div class="form-group">
-                            <h4 class="modal-title modalTextLabel">Cautionary</h4>
+                            <h4 class="modal-title modalTextLabel">Quantity</h4>
                         </div>
                     </div>
-                    <div class="col-xs-10 col-sm-10 col-md-10">
+                    <div class="col-xs-4 col-sm-4 col-md-4">
                         <div class="form-group">
-                            <input type="text" name="display_name" id="update_cautionaryDTO" class="form-control input-lg" placeholder="" tabindex="3">
+                                    <input class="form-control input-lg" type="number" name="dose" id="tCIS_DTOQuantity_update" placeholder="" >
+                        </div>
+                    </div>
+                    <div class="col-xs-6 col-sm-6 col-md-6">
+                        <div class="form-group">
+                            <h4 class="modal-title modalTextLabel">Remarks</h4>
+                           <input class="form-control input-lg" type="text" name="tCIS_DTORemark" id="tCIS_DTORemark_update" placeholder="" >
                         </div>
                     </div>
                 </div>
@@ -428,11 +488,10 @@
 
                         <div class="form-group">
                             <h4 class="modal-title modalTextLabel">Comments</h4>
-                            <textarea type="text" name="display_name" id="update_commentDTO" class="form-control input-lg" placeholder="" tabindex="3"></textarea>
+                            <textarea type="text" name="display_name" id="tCIS_DTOComment_update" class="form-control input-lg" placeholder="" tabindex="3"></textarea>
                         </div>
                     </div>
                 </div>
-
 
             </div>
 

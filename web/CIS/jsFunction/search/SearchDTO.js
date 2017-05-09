@@ -26,7 +26,7 @@ function DTOupdateSearchCode(){
 }
 
 function DTOSearchCode(){
-     var id = $('#searchDTO').val();
+     var id = $('#tCIS_DTODrugName').val();
         $.ajax({
         type:'post',
         url:'search/SearchDTO_cd.jsp',
@@ -43,20 +43,23 @@ function DTOSearchCode(){
                 dtoGnr="No product name";
             }
            
-            $('#dtoCode').val(dtoCode.trim());
-            $('#drugNameDTO').val(dtoGnr.trim());
-            $('#drugStockDTO').val(dtoQty.trim());
-            $('#pack').val(dtoPackage);
-            $('#drugStrDTO').val(array_data[4].trim());
-            $('#doseDTO').val(array_data[5].trim());
-            $('#dRouteDTO').val(array_data[6].trim());
+            $('#tCIS_DTODrugCode').val(array_data[0].trim());
+            $('#tCIS_DTODrugForm').val(array_data[7].trim());
+            $('#tCIS_DTODrugRoute').val(array_data[6].trim());
+            $('#tCIS_DTODrugCaution').val(array_data[8].trim());
+            $('#tCIS_DTODrugFrequencyDetail').val(array_data[9].trim());
+//            $('#doseDTO').val(array_data[5].trim());
+//            $('#dRouteDTO').val(array_data[6].trim());
+//            $("#drugFormDTO").val(array_data[7].trim());
+//            $("#cautionaryDTO").val(array_data[8].trim());
+//            $("#drugFrequencyDetailDTO").val(array_data[9].trim());
 
           }
         });
 }
 
   $(function () {
-                $("#searchDTO").on('keyup', function () { // everytime keyup event
+                $("#tCIS_DTODrugName").on('keyup', function () { // everytime keyup event
                     var input = $(this).val(); // We take the input value
                     if (input.length >= 1) { // Minimum characters = 2 (you can change)
                         $('#matchDTO').html('<img src="img/LoaderIcon.gif" />'); // Loader icon apprears in the <div id="match"></div>
@@ -69,7 +72,7 @@ function DTOSearchCode(){
                             success: function (dataBack) { // If success
                                 $('#matchDTO').html(dataBack); // Return data (UL list) and insert it in the <div id="match"></div>
                                 $('#matchList li').on('click', function () { // When click on an element in the list
-                                    $('#searchDTO').val($(this).text()); // Update the field with the new element
+                                    $('#tCIS_DTODrugName').val($(this).text()); // Update the field with the new element
                                     $('#matchDTO').text(''); // Clear the <div id="match"></div>
                                     DTOSearchCode();
                                 });
