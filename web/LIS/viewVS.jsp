@@ -26,7 +26,6 @@
         String query4 = "SELECT  ls.item_cd,lod.item_name, lod.spe_container, lod.volume, lod.spe_source, lod.requestor_comments,ls.specimen_status, ls.commen_specimen,ls.Approval,ls.order_no,lod.Verification FROM lis_specimen ls,lis_order_detail lod WHERE ls.item_cd = lod.item_cd AND ls.specimen_no='" + specimen_no1 + "' AND ls.pmi_no='" + pmi + "' AND lod.order_no = '" + order_no + "' GROUP BY(lod.item_cd)";
         ArrayList<ArrayList<String>> q4 = conn.getData(query4);
     %>
-    <input type="submit" value="Submit">
     <input type="text" id="pmi" value="<%=pmi%>" style="display: none;">
     <input type="text" id="specimen_no" value="<%=specimen_no1%>" style="display: none;">
     <thead>
