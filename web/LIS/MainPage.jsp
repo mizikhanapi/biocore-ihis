@@ -8,6 +8,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> 
         <title>Main Page</title>
+        <script src="assets/js/jquery.min.js"></script>
         <%@include file="../assets/header.html"%>
 
         <link href="bootstrap-3.3.6-dist/css/dataTables.bootstrap.min.css" rel="stylesheet" type="text/css"/>
@@ -17,6 +18,7 @@
     </head>
 
     <body>
+        <div class="loading"></div>
         <div class="container-fluid">
             <div class="row"> 
                 <!-- menu side -->		
@@ -75,7 +77,7 @@
             <!-- main --> 
         </div>
 
-        <script src="assets/js/jquery.min.js"></script>                            
+        
         <script src="assets/datepicker/jquery-ui.js"></script>
         <script src="assets/js/form-validator.min.js"></script>
         <script src="assets/js/bootstrap.min.js"></script> 

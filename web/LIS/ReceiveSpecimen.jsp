@@ -50,7 +50,8 @@
                                     ArrayList<ArrayList<String>> q2 = conn.getData(query1);
 
                                 %>  
-                                <h4 class="col-md-12">Receive Specimen</h4>
+                                <h3 style="margin: 0px;">Receive Specimen</h3>
+                                <hr class="pemisah" />
                                 <div class="row">
 
                                     <%if (q2.size() > 0) {
@@ -62,6 +63,10 @@
                                     <div class="col-xs-4 col-sm-4 col-md-4">
                                         <address>
                                             <p>
+                                                Name: 
+                                                <span class="p-label"><%=q2.get(i).get(2)%></span>
+                                            </p>
+                                            <p>
                                                 PMI No:
                                                 <span class="p-label"><%=q2.get(i).get(0)%></span>
                                             </p>
@@ -69,10 +74,7 @@
                                                 IC No: 
                                                 <span class="p-label"><%=q2.get(i).get(1)%></span>
                                             </p>
-                                            <p>
-                                                Name: 
-                                                <span class="p-label"><%=q2.get(i).get(2)%></span>
-                                            </p>
+                                            
 
                                         </address>  
                                     </div>
@@ -160,6 +162,8 @@
                                     </table>
                                     <div class="row">
                                         <div class=" pull-left col-md-6">
+                                            <button type="button" class="btn btn-default" id="back">Back</button>
+                                            &nbsp;
                                             <button type="button" class="btn btn-default" id="reject" data-toggle="modal" data-target="#reject_form">Reject Specimen</button>
 
                                             <div class="modal fade" id="reject_form" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
@@ -184,7 +188,7 @@
                                             </div>
 
                                             <button type="button" class="btn btn-default" id="cancelReceive">Cancel Receive</button>
-                                            <button type="button" class="btn btn-default" id="back">Back</button>
+                                            
                                         </div>
                                         <div class="text-right col-md-6">
                                             Send specimen to&nbsp;
@@ -194,7 +198,8 @@
                                                 <option value="Sample Lab 2">Sample Lab 2</option>
                                                 <option value="Sample Lab 3">Sample Lab 3</option>
                                             </select>
-                                            <button type="button" class="btn btn-primary" id="sendAccept">Send Specimen</button>
+                                            &nbsp;
+                                            <button type="button" class="btn btn-primary" id="sendAccept">Send</button>
                                         </div>
                                     </div>
 

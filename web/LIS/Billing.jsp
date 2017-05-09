@@ -26,7 +26,7 @@
         <link rel="stylesheet" href="assets/css/loading.css">
         <link href="assets/datepicker/jquery-ui.css" rel="stylesheet">    
 
-<!--        <link href="datepicker/jquery-ui.css" rel="stylesheet" type="text/css">-->
+        <!--        <link href="datepicker/jquery-ui.css" rel="stylesheet" type="text/css">-->
 
         <script src="assets/js/jquery.min.js"></script>
         <script src="assets/datepicker/jquery-ui.js"></script>
@@ -52,95 +52,76 @@
 
                             <div class="col-md-12">
                                 <div class="thumbnail">
+                                    <h3 style="margin: 0px;">Assign Test Result</h3>
+                                    <hr class="pemisah" />
 
+                                    <div class="form-horizontal">
+                                        <!-- Select Basic -->
+                                        <div class="form-group"> 
+                                            <label class="col-md-4 control-label" for="textinput">ID Type</label>
+                                            <div class="col-md-4">
+                                                <select id="orderType" name="orderType" class="form-control" required="">
+                                                    <option selected="" disabled="" value="-"> Please select ID type</option>
+                                                    <!--                    <option value="pmino">PMI No</option>
+                                                                        <option value="icnew">IC No (NEW)</option>
+                                                                        <option value="icold">IC No (OLD)</option>-->
+                                                    <!--<option value="matricno">Matric No</option>
+                                                    <option value="staffno">Staff No</option>-->
 
-                                    <!-- Tab Menu -->
+                                                    <option value="002">IC No. (NEW)</option>
 
-                                    <div class="tabbable-panel">
-                                        <div class="tabbable-line">
-                                            <ul class="nav nav-tabs ">
-                                                <li class="active">
-                                                    <a href="#tab_default_1" data-toggle="tab">
-                                                        Assign Test Result </a>
-                                                </li>
+                                                    <option value="003">IC No. (OLD)</option>
 
-                                            </ul>
-                                            <!-- tab content -->
-                                            <div class="tab-content form-horizontal" align="center">
+                                                    <option value="004">Order No.</option>
 
+                                                    <option value="005">Date</option>
 
-                                                <!-- Select Basic -->
-                                                <div class="form-group"> 
-                                                    <label class="col-md-4 control-label" for="textinput">ID Type</label>
-                                                    <div class="col-md-4">
-                                                        <select id="orderType" name="orderType" class="form-control" required="">
-                                                            <option selected="" disabled="" value="-"> Please select ID type</option>
-                                                            <!--                    <option value="pmino">PMI No</option>
-                                                                                <option value="icnew">IC No (NEW)</option>
-                                                                                <option value="icold">IC No (OLD)</option>-->
-                                                            <!--<option value="matricno">Matric No</option>
-                                                            <option value="staffno">Staff No</option>-->
-
-                                                            <option value="002">IC No. (NEW)</option>
-
-                                                            <option value="003">IC No. (OLD)</option>
-
-                                                            <option value="004">Order No.</option>
-
-                                                            <option value="005">Date</option>
-
-                                                        </select>
-                                                    </div>
-                                                </div>
-
-                                                <!-- Text input-->
-                                                <div class="form-group" id="ic" style="display: none;">
-
-                                                    <label class="col-md-4 control-label" for="textinput">IC No. / ID No.</label>
-                                                    <div class="col-md-3">
-                                                        <input type="text" class="form-control input-md" id="idIC" name="idIC" placeholder="ID" >
-                                                    </div>
-
-
-                                                </div>
-                                                <div class="form-group" id="order_noText" style="display: none;">
-
-                                                    <label class="col-md-4 control-label" for="textinput">Order No.</label>
-                                                    <div class="col-md-3">
-                                                        <input type="text" class="form-control input-md" id="order_no" name="order_no" placeholder="Order No.">
-                                                    </div>
-
-                                                </div>
-
-                                                <div class="form-group" id="date" style="display: none;">
-                                                    <label class="col-md-4 control-label" for="textinput">From</label>
-                                                    <div class="col-md-2">
-                                                        <input type="text" id="DateFrom" class="form-control input-md Datepicker" placeholder="YYYY-MM-DD">
-                                                    </div>
-
-                                                    <label class="col-md-1 control-label" for="textinput">To</label>
-                                                    <div class="col-md-2">
-                                                        <input type="text" id="DateTo" class="form-control input-md Datepicker" placeholder="YYYY-MM-DD">
-                                                    </div>
-
-                                                </div>
-
-                                                <div class="text-center">
-                                                    <button class="btn btn-primary" type="button" id="searchOrder" name="searchPatient"><i class="fa fa-search"></i>&nbsp; Search</button>
-
-                                                    <button id="clearSearch" name="clearSearch" type="button" class="btn btn-default"><i class="fa fa-times"></i>&nbsp; Clear</button>
-                                                </div>
-
-                                                <hr class="pemisah">
-                                                <div id="viewBill">
-
-                                                </div>
-
+                                                </select>
                                             </div>
                                         </div>
-                                    </div>
 
-                                    <!-- Tab Menu -->
+                                        <!-- Text input-->
+                                        <div class="form-group" id="ic" style="display: none;">
+
+                                            <label class="col-md-4 control-label" for="textinput">IC No. / ID No.</label>
+                                            <div class="col-md-3">
+                                                <input type="text" class="form-control input-md" id="idIC" name="idIC" placeholder="ID" >
+                                            </div>
+
+
+                                        </div>
+                                        <div class="form-group" id="order_noText" style="display: none;">
+
+                                            <label class="col-md-4 control-label" for="textinput">Order No.</label>
+                                            <div class="col-md-3">
+                                                <input type="text" class="form-control input-md" id="order_no" name="order_no" placeholder="Order No.">
+                                            </div>
+
+                                        </div>
+
+                                        <div class="form-group" id="date" style="display: none;">
+                                            <label class="col-md-4 control-label" for="textinput">From</label>
+                                            <div class="col-md-2">
+                                                <input type="text" id="DateFrom" class="form-control input-md Datepicker" placeholder="YYYY-MM-DD">
+                                            </div>
+
+                                            <label class="col-md-1 control-label" for="textinput">To</label>
+                                            <div class="col-md-2">
+                                                <input type="text" id="DateTo" class="form-control input-md Datepicker" placeholder="YYYY-MM-DD">
+                                            </div>
+
+                                        </div>
+
+                                        <div class="text-center">
+                                            <button class="btn btn-primary" type="button" id="searchOrder" name="searchPatient"><i class="fa fa-search"></i>&nbsp; Search</button>
+
+                                            <button id="clearSearch" name="clearSearch" type="button" class="btn btn-default"><i class="fa fa-times"></i>&nbsp; Clear</button>
+                                        </div>
+
+                                        <hr class="pemisah">
+                                        <div id="viewBill"></div>
+
+                                    </div>
 
                                 </div>
                             </div>

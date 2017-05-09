@@ -42,8 +42,8 @@
                     <div class="row" >
                         <div class="col-md-12" >
                             <div class="thumbnail">
-                                <h2>Manage Test</h2>
-                                <hr/>
+                                <h3 style="margin: 0px;">Manage Test</h3>
+                                <hr class="pemisah"/>
                                 <div class="table-responsive" id='viewMT'>
                                     
                                 </div>

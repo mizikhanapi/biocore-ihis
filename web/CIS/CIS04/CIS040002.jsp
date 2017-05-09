@@ -5,7 +5,7 @@
 --%>
 <!--Modal add Drug Order-->
 <div class="modal fade" id="CIS040002" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
-    <div class="modal-dialog" style="width: 65%; height: 100%">
+    <div class="modal-dialog modal-lg" >
         <div class="modal-content" >
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal"><i class="fa fa-times fa-lg"></i><span class="sr-only">Close</span></button>
@@ -26,7 +26,7 @@
                                 <input class="form-control input-lg" type="hidden"  id="hfcOrderDetailDTO" placeholder="s">
                                 <input class="form-control input-lg" type="hidden"  id="hfcProviderDetailDTO" placeholder="">
                                 <input class="form-control input-lg" type="hidden"  id="hfcIdDTO">
-                                <div id="matchDTO" class="search-drop" ></div>
+                                <div id="matchDTO" style="width: 100%"></div>
                             </div>
                         </div>
                     </div>

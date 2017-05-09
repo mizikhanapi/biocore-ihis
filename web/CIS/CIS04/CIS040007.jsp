@@ -23,8 +23,8 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="form-group">
-                            <label class="col-md-2 control-label" for="textinput">Search Discipline</label>
-                            <div class="col-md-9">
+                            <label class="col-md-6 control-label" for="textinput">Search Discipline</label>
+                            <div class="col-md-12">
                                 <input class="form-control input-lg " type="hidden" name="DateTo" id="tCIS_ADWsearchDisCd" placeholder="Code">
                                 <input class="form-control input-lg " type="text" name="DateTo" id="tCIS_ADWsearchDis" placeholder="Type to search...">
                                 <div id="matchCIS_ADWsearchDis" class="search-drop"></div>
@@ -33,7 +33,7 @@
                     </div>
                 </div>
 
-                <hr/>
+                <br/>
                 <div class="row">
                     <h4 class="modal-title" style="font-weight: bold">Patient is referred from :</h4>
                 </div>
@@ -41,8 +41,8 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="form-group">
-                            <label class="col-md-2 control-label" for="textinput">Search Discipline</label>
-                            <div class="col-md-9">
+                            <label class="col-md-6 control-label" for="textinput">Search Discipline</label>
+                            <div class="col-md-12">
                                 <input class="form-control input-lg " type="hidden" name="DateTo" id="tCIS_ADWreferFromCd" placeholder="Code">
                                 <input class="form-control input-lg " type="text" name="DateTo" id="tCIS_ADWreferFrom" placeholder="Type to search...">
                                 <div id="matchCIS_ADWreferFrom" class="search-drop"></div>
@@ -51,59 +51,64 @@
                     </div>
                 </div>
 
+                <br/>
+                <div class="row">
+                    <h4 class="modal-title" style="font-weight: bold">Reason :</h4>
+                </div>
+
                 <div class="row">
                     <div class="col-md-12">
                         <div class="form-group">
-                            <label class="col-md-6 control-label" for="textinput">Reason :</label>
                             <div class="col-md-12">
                                 <textarea type="text" name="display_name" id="tCIS_ADWreason" class="form-control input-lg" placeholder="Type your reason..." tabindex="3"></textarea>
                             </div>
                         </div>
                     </div>
                 </div>
-                
-                <div class="row">
-                    <div class="col-xs-4 col-sm-4 col-md-4">
-                        <div class="form-group">
-                            <h4>Admitted Before :</h4>
-                        </div>
-                    </div>
-                    <div class="col-xs-4 col-sm-4 col-md-4">
-                        <div class="form-group">
-                            <label><input  name="rCIS_ADWAB" type="radio"  value="yes" class="rCIS_ADWAB">Yes</label>
-                        </div>
-                    </div>
-                    <div class="col-xs-4 col-sm-4 col-md-4">
-                        <div class="form-group">
-                            <label><input name="rCIS_ADWAB" type="radio" value="no" class="rCIS_ADWAB">No</label>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-xs-4 col-sm-4 col-md-4">
-                        <div class="form-group">
-                            <h4>Patient have to be admitted before :</h4>
-                        </div>
-                    </div>
-                    <div class="col-xs-4 col-sm-4 col-md-4">
-                        <div class="form-group">
-                            <input class="form-control input-lg DateFromMEC" type="text" name="DateFrom" id="tCIS_ADWdate"  placeholder="DD-MM-YY">
-                        </div>
-                    </div>
-                    <div class="col-xs-4 col-sm-4 col-md-4">
-                        <div class="form-group">
-                            <input class="form-control input-lg num1MEC" type="text" name="num1" id="tCIS_ADWtime" placeholder="Time Start">
-                        </div>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="col-xs-4 col-sm-4 col-md-4"><h4>Ward Name</h4></div>
-                    <div class="col-xs-8 col-sm-8 col-md-8"> 
-                        <input class="form-control input-lg " type="hidden" name="DateTo" id="tCIS_ADWwardNameCd" placeholder="Search Ward Name">
-                        <input class="form-control input-lg " type="text" name="DateTo" id="tCIS_ADWwardName" placeholder="Search Ward Name">
-                        <div id="matchCIS_ADTwardSearch"></div>
-                    </div>
 
+                <hr/>
+
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label class="col-md-3 control-label" for="textinput">Admitted Before :</label>
+                            <div class="col-md-9">
+                                <label><input  name="rCIS_ADWAB" type="radio"  value="yes" class="rCIS_ADWAB">&nbsp;Yes</label>
+                                &nbsp;&nbsp;&nbsp;
+                                <label><input name="rCIS_ADWAB" type="radio" value="no" class="rCIS_ADWAB">&nbsp;No</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br/>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label class="col-md-6 control-label" for="textinput">Patient have to be admitted before :</label>
+                            <div class="col-md-12 form-inline">
+                                <div class="form-group ">
+                                    <input class="form-control input-lg DateFromMEC" type="text" name="DateFrom" id="tCIS_ADWdate"  placeholder="DD-MM-YY">  
+                                </div>
+                                <div class="form-group">
+                                    <input class="form-control input-lg num1MEC" type="text" name="num1" id="tCIS_ADWtime" placeholder="Time Start">  
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label class="col-md-6 control-label" for="textinput">Ward Name</label>
+                            <div class="col-md-12">
+                                <input class="form-control input-lg " type="hidden" name="DateTo" id="tCIS_ADWwardNameCd" placeholder="Search Ward Name">
+                                <input class="form-control input-lg " type="text" name="DateTo" id="tCIS_ADWwardName" placeholder="Search Ward Name">
+                                <div id="matchCIS_ADTwardSearch"></div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
 

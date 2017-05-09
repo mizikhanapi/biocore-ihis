@@ -3,7 +3,7 @@
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="Config.connect"%>
 <%@page import="java.util.ArrayList"%>
-    
+
 <table id="MTC"  class="table table-striped table-bordered" cellspacing="0" width="100%">
     <%
         Conn conn = new Conn();
@@ -15,7 +15,7 @@
         String order_no = (String) session.getAttribute("order_no");
         //out.print(order_no);
         RMIConnector rmic = new RMIConnector();
-        String sqlSelect = "SELECT COUNT(LOD.detail_status) AS Detail FROM lis_order_detail LOD WHERE LOD.detail_status ='1' AND LOD.order_no = '"+order_no+"' AND LOD.pmi_no = '"+pmi+"'";
+        String sqlSelect = "SELECT COUNT(LOD.detail_status) AS Detail FROM lis_order_detail LOD WHERE LOD.detail_status ='1' AND LOD.order_no = '" + order_no + "' AND LOD.pmi_no = '" + pmi + "'";
         ArrayList<ArrayList<String>> get = conn.getData(sqlSelect);
         //out.print(get.get(0).get(0));
 
@@ -135,9 +135,9 @@
                     <br><br>
                     <div id="viewTA_<%=q4.get(i).get(0)%>">
                         <%
-    //                        String item_cd = q4.get(i).get(0);
-    //                        String mysqlresult = "SELECT result,remark,test_date,testTime,Verification,performBy FROM lis_assign_result WHERE item_cd='"+item_cd+"'";
-    //                        ArrayList<ArrayList<String>> lis_result = conn.getData(mysqlresult);
+                            //                        String item_cd = q4.get(i).get(0);
+                            //                        String mysqlresult = "SELECT result,remark,test_date,testTime,Verification,performBy FROM lis_assign_result WHERE item_cd='"+item_cd+"'";
+                            //                        ArrayList<ArrayList<String>> lis_result = conn.getData(mysqlresult);
 %>
                     </div>
 
@@ -240,15 +240,18 @@
 
 </tbody>
 </table>
-
-<div class="col-xs-12 col-md-12">
+<hr/>
+<div>
+    <div class="pull-left">
+        <button type="button" class="btn btn-default" id="back">Back</button>
+    </div>
 
     <div class=" pull-right">
         <input type="button" name="verify" id="verify" value="Verify Specimen" class="btn btn-primary" disabled="disabled" style=" display: none"/>
         <input type="button" name="reject" id="reject" value="Reject Specimen" class="btn btn-primary" disabled="disabled" style=" display: none"/>
         <input type="button" name="AssignResult" id="AssignResult" value="Assign Result" data-status="pagado" data-toggle="modal" data-id="1"  class="btn btn-primary" disabled="disabled"/>
         <input type="button" name="VerifyResult" id="VerifyResult" value="Verify Result" data-status="pagado" data-toggle="modal" data-id="1"  class="btn btn-primary" disabled="disabled"/>
-        <button type="button" class="btn btn-default" id="back">Back</button>
+        
         <script>
 
             $('input:radio').click(function () {

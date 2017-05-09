@@ -33,7 +33,9 @@
                     </div>
                 </div>
                 <hr/>
-                <h4 class="modal-title" style="font-weight: bold">Item Details </h4>
+                <div class="row">
+                    <h4 class="modal-title" style="font-weight: bold">Item Details </h4>    
+                </div>
 
                 <div class="row">
                     <div class="col-md-12">
@@ -85,7 +87,9 @@
                 </div>
 
                 <hr/>
-                <h4 class="modal-title" style="font-weight: bold">Appointment</h4>
+                <div class="row">
+                    <h4 class="modal-title" style="font-weight: bold">Appointment</h4>
+                </div>
 
                 <div class="row">
                     <div class="col-md-6">
@@ -139,7 +143,9 @@
                 </div>
 
                 <hr/>
-                <h4 class="modal-title" style="font-weight: bold">Service Provider</h4>
+                <div class="row">
+                    <h4 class="modal-title" style="font-weight: bold">Service Provider</h4>    
+                </div>
 
                 <div class="row">
                     <div class="col-md-6">
@@ -358,7 +364,7 @@
                         </div>
                     </div>
                 </div>
-                
+
             </div>
 
             <div class="modal-footer">

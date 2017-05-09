@@ -20,7 +20,7 @@
         <title>Main Page</title>
 
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
+        <script src="assets/js/jquery.min.js"></script>
         <%@include file="../assets/header.html"%>
         <link rel="stylesheet" href="assets/css/loading.css">
         <link href="assets/datepicker/jquery-ui.css" rel="stylesheet">
@@ -29,7 +29,7 @@
 
     </head>
     <body>
-
+        <div class="loading"></div>
 
         <div class="container-fluid">
             <div class="row">       
@@ -45,8 +45,8 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div class="thumbnail">
-                                <h2>Receive Specimen</h2>
-                                <hr/>
+                                <h3 style="margin: 0px;">Receive Specimen</h3>
+                                <hr class="pemisah"/>
                                 <div class="table-responsive" id='viewMTS'></div>
                             </div>
                         </div>
@@ -59,7 +59,7 @@
 
         </div> 
 
-        <script src="assets/js/jquery.min.js"></script>
+
         <script src="assets/datepicker/jquery-ui.js"></script>
         <script src="assets/js/form-validator.min.js"></script>
         <script src="assets/js/bootstrap.min.js"></script> 
@@ -72,8 +72,7 @@
         <script>
             function a()
             {
-            <%
-                try {
+            <%                try {
                     String error = request.getParameter("error");
                     if (error != null) {
             %>

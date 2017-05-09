@@ -18,35 +18,45 @@
                     <input type="hidden" name="POS" id="codeREF" class="form-control input-lg"  tabindex="4">
                 </div>
                 <div class="form-group">
-                    <h4 class="modal-title modalTextLabel">Health Facility Name :</h4>
-                    <input class="form-control input-lg" type="text" name="problem"  id="REF" tabindex="4" placeholder="if other,please specify">
-                    <input type="hidden" id="hfcREFcode"></input>
-                    <div id="matchREF"></div>
+                    <label class="col-md-6 control-label" for="textinput">Health Facility Name :</label>
+                    <div class="col-md-12">
+                        <input class="form-control input-lg" type="text" name="problem"  id="REF" tabindex="4" placeholder="Start typing to search...">
+                        <input type="hidden" id="hfcREFcode"></input>
+                        <div id="matchREF"></div> 
+                    </div>
                 </div>
 
 
                 <div class="form-group">
-                    <h4 class="modal-title">Discipline :</h4>
-                    <input class="form-control input-lg" type="text" name="pro" id="disREF" placeholder="if other,please specify">
-                    <input type="hidden" id="disREFcode"></input>
-                    <div id="matchREFD"></div>
+                    <label class="col-md-6 control-label" for="textinput">Discipline :</label>
+                    <div class="col-md-12">
+                        <input class="form-control input-lg" type="text" name="pro" id="disREF" placeholder="Start typing to search...">
+                        <input type="hidden" id="disREFcode"></input>
+                        <div id="matchREFD" class="search-drop"></div>
+                    </div>
                 </div>
 
                 <div class="form-group">
-                    <h4 class="modal-title">Doctor referred to :</h4>
-                    <input class="form-control input-lg" type="text" name="pro" id="docREF" placeholder="if other,please specify">
-                    <input type="hidden" id="docREFcode"></input>
-                    <div id="matchREFDOC"></div>
+                    <label class="col-md-6 control-label" for="textinput">Doctor referred to :</label>
+                    <div class="col-md-12">
+                        <input class="form-control input-lg" type="text" name="pro" id="docREF" placeholder="Start typing to search...">
+                        <input type="hidden" id="docREFcode"></input>
+                        <div id="matchREFDOC" class="search-drop"></div>
+                    </div>
                 </div>
 
                 <div class="form-group">
-                    <h4 class="modal-title">Appointment :</h4>
-                    <input class="form-control input-lg" type="text" name="pro" id="appREF" >
+                    <label class="col-md-6 control-label" for="textinput">Appointment :</label>
+                    <div class="col-md-12">
+                        <input class="form-control input-lg" type="text" name="pro" id="appREF" >
+                    </div>
                 </div>
 
                 <div class="form-group">
-                    <h4 class="modal-title">Medical History Notes :</h4>
-                    <textarea id="medicalHisREF" class="form-control input-lg"></textarea>
+                    <label class="col-md-6 control-label" for="textinput">Medical History Notes :</label>
+                    <div class="col-md-12">
+                        <textarea id="medicalHisREF" class="form-control input-lg"></textarea>
+                    </div>
                 </div>
 
 
