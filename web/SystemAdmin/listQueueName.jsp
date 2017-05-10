@@ -20,11 +20,11 @@
     String sql = "select n.queue_type,n.queue_name,n.queue_description,ifnull(n.user_id, '-'),n.quota,n.status,n.created_by, DATE_FORMAT(n.created_date,'%d/%m/%Y'),n.hfc_cd,d.discipline_name,s.subdiscipline_name,h.hfc_name,x.user_name"
             + " from pms_queue_name n "
             + "left join adm_users x on x.user_id = n.user_id " //aku tukar inner jadi left untuk test.
-            + "inner join adm_health_facility h on h.hfc_cd = n.hfc_cd "
-            + "inner join adm_hfc_discipline a on a.discipline_cd = n.discipline_code and a.subdiscipline_cd = n.subdiscipline_code and a.hfc_cd = n.hfc_cd "
-            + "inner join adm_discipline d on d.discipline_cd = a.discipline_cd "
-            + "inner join pms_queue_type q on q.queue_type = n.queue_type and q.status='Active' and q.hfc_cd = n.hfc_cd and q.discipline_code = n.discipline_code "
-            + "LEFT OUTER JOIN adm_subdiscipline s on s.subdiscipline_cd = a.subdiscipline_cd and s.discipline_cd = a.discipline_cd "
+            + "left join adm_health_facility h on h.hfc_cd = n.hfc_cd "
+            + "left join adm_hfc_discipline a on a.discipline_cd = n.discipline_code and a.subdiscipline_cd = n.subdiscipline_code and a.hfc_cd = n.hfc_cd "
+            + "left join adm_discipline d on d.discipline_cd = a.discipline_cd "
+            + "left join pms_queue_type q on q.queue_type = n.queue_type and q.status='Active' and q.hfc_cd = n.hfc_cd and q.discipline_code = n.discipline_code "
+            + "LEFT JOIN adm_subdiscipline s on s.subdiscipline_cd = a.subdiscipline_cd and s.discipline_cd = a.discipline_cd "
             + "where n.hfc_cd = '"+hfcN+"' and n.discipline_code='"+disN+"';";
     ArrayList<ArrayList<String>> dataQN;
     dataQN = conn.getData(sql);
