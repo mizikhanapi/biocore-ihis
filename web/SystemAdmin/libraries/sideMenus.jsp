@@ -1,23 +1,14 @@
 		
 <%--<%@include file="../validateSession.jsp" %>--%>
 <%
-    String gamba ="";
-    String nama = "";
-    String role = "";
-    String hfcName ="";
+   
     String hfc_cd ="";
     String hfc_99 ="";
     String user_id="";
     String last_9="";
     
     if(session.getAttribute("USER_NAME") != null){
-        
-        
-        gamba =session.getAttribute("PICTURE").toString();
-        nama = session.getAttribute("USER_NAME").toString();
-        role = session.getAttribute("ROLE_NAME").toString();
-        hfcName = session.getAttribute("HFC_NAME").toString();
-        
+          
         hfc_cd = (String) session.getAttribute("HEALTH_FACILITY_CODE");
         hfc_99 = (String) session.getAttribute("HFC_99");
         user_id = (String) session.getAttribute("USER_ID");
@@ -34,28 +25,7 @@
 		<!-- logo -->
 		
 		<!-- profile Sidebar -->
-		<div class="profile">
-				<div class="profile-userpic">
-                                    <img src="<%= gamba%>" class="img-responsive" alt="profile pic">
-				</div>
-				<!-- SIDEBAR USER TITLE -->
-				<div class="profile-usertitle">
-					<div class="profile-usertitle-name">
-						<%=nama %>
-					</div>
-					<div class="profile-usertitle-job">
-						<%= role%>
-					</div>
-                                        @
-                                        <div class="profile-usertitle-job">
-						<%= hfcName%> (<%=hfc_cd%>)
-					</div>
-				</div>
-				<!-- SIDEBAR BUTTONS -->
-				<div class="profile-userbuttons">
-                                    <button type="button" class="btn btn-success btn-sm" onclick="window.location.href='../Entrance/profile.jsp'">Manage Account</button>
-				</div>
-		</div>
+		 <%@include file="../../assets/side_profile.jsp" %>
 		<hr/>
 		<!-- profile Sidebar -->
 				
