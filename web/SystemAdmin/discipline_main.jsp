@@ -154,6 +154,8 @@
                     alert("Select Any Status");
                     $('#DM_status').focus();
                 } else {
+                    
+                    disciplineName = disciplineName.replace(/'/g, "\\\'").replace(/"/g, "\\\"");
 
                     var data = {
                         disciplineName : disciplineName,

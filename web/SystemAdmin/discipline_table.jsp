@@ -233,6 +233,9 @@
             alert("Select the status");
         }
         else{
+            
+            disciplineName = disciplineName.replace(/'/g, "\\\'").replace(/"/g, "\\\"");
+            
             var data = {
                 disciplineCode : disciplineCode,
                 disciplineName : disciplineName,

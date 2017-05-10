@@ -529,6 +529,13 @@
                 $('#HFM_IP').focus();
 
             } else {
+                
+                hfcName = hfcName.replace(/'/g, "\\\'").replace(/"/g, "\\\"");
+                address1 = address1.replace(/'/g, "\\\'").replace(/"/g, "\\\"");
+                address2 = address2.replace(/'/g, "\\\'").replace(/"/g, "\\\"");
+                address3 = address3.replace(/'/g, "\\\'").replace(/"/g, "\\\"");
+                contactPerson = contactPerson.replace(/'/g, "\\\'").replace(/"/g, "\\\"");
+                director = director.replace(/'/g, "\\\'").replace(/"/g, "\\\"");
 
                 $('<div class="loading">Loading</div>').appendTo('#HFM_detail');
 

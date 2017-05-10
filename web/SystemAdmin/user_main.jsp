@@ -808,6 +808,9 @@
                 $('#UM_endDate').val("");
 
             } else {
+                
+                name = name.replace(/'/g, "\\\'").replace(/"/g, "\\\"");
+                mother = mother.replace(/'/g, "\\\'").replace(/"/g, "\\\"");
 
                 var array = hfc.split("|");
                 hfc = array[0].trim();
