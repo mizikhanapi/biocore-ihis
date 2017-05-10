@@ -24,7 +24,7 @@
     RMIConnector rmic = new RMIConnector();
     Conn conn = new Conn();
 
-    String sql = "DELETE FROM pis_supplier_info WHERE Supplier_ID = '" + id + "' AND hfc_cd  = '" + hfc + "' ";
+    String sql = "DELETE FROM fap_vendor WHERE vendor_id = '" + id + "' AND hfc_cd  = '" + hfc + "' ";
 
     boolean status = rmic.setQuerySQL(conn.HOST, conn.PORT, sql);
 

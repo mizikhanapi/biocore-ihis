@@ -177,7 +177,7 @@
     </div>
 </form>
 
-<div id="patientOrderDetailsListTableDiv" class="form-group">
+<div id="patientOrderDetailsListTableDiv" class="form-group table-guling">
     <table class="table table-filter table-striped table-bordered" style="background: #fff; border: 1px solid #ccc; width: 100%" id="patientOrderDetailsListTable">
         <thead>
         <th>Order No</th>
@@ -301,6 +301,7 @@
         var patientOrderNo = arrayData[0];
         var patientOrderDate = arrayData[5];
         var patientOrderLocationCode = arrayData[2];
+        var patientOrderLocationCodeName = arrayData[23];
 
 
         var pmiNo = patientpmino;
@@ -354,7 +355,7 @@
                                 $("#patientBtype").val(patientBtype);
                                 $("#patientOrderNo").val(patientOrderNo);
                                 $("#patientOrderDate").val(patientOrderDate);
-                                $("#patientOrderLocationCode").val(patientOrderLocationCode);
+                                $("#patientOrderLocationCode").val(patientOrderLocationCodeName);
                                 $("#dataMSHPDIORCBLI").val(MSHFORBLI + "\n" + PDIFORALL + "\n" + ORCFORBLI + "\n");
                                 $("#dataMSHPDIORCDDR").val(MSHFORDDR + "\n" + PDIFORALL + "\n" + ORCFORDDR + "\n");
 
@@ -1095,23 +1096,23 @@
             drugChecked = $(this).find("#drugDispenseChecked").is(':checked');
 
 
-            drugATCCode = $tds.eq(15).text();
-            drugATCDesc = $tds.eq(16).text();
-            drugMDCDesc = $tds.eq(17).text();
-            drugMDCStrength = $tds.eq(18).text();
-            drugMDCFromMCode = $tds.eq(19).text();
-            drugMDCFromRCode = $tds.eq(20).text();
-            drugMDCFromDesc = $tds.eq(21).text();
-            drugMDCRouteMCode = $tds.eq(22).text();
-            drugMDCRouteRCode = $tds.eq(23).text();
-            drugMDCRouteDesc = $tds.eq(24).text();
-            drugMDCFrequencyMCode = $tds.eq(25).text();
-            drugMDCFrequencyRCode = $tds.eq(26).text();
-            drugMDCFrequencyDesc = $tds.eq(27).text();
+            drugATCCode = $tds.eq(14).text();
+            drugATCDesc = $tds.eq(15).text();
+            drugMDCDesc = $tds.eq(16).text();
+            drugMDCStrength = $tds.eq(17).text();
+            drugMDCFromMCode = $tds.eq(18).text();
+            drugMDCFromRCode = $tds.eq(19).text();
+            drugMDCFromDesc = $tds.eq(20).text();
+            drugMDCRouteMCode = $tds.eq(21).text();
+            drugMDCRouteRCode = $tds.eq(22).text();
+            drugMDCRouteDesc = $tds.eq(23).text();
+            drugMDCFrequencyMCode = $tds.eq(24).text();
+            drugMDCFrequencyRCode = $tds.eq(25).text();
+            drugMDCFrequencyDesc = $tds.eq(26).text();
             drugMDCFrequencyUnitCode = "-";
-            drugMDCDosage = $tds.eq(28).text();
+            drugMDCDosage = $tds.eq(27).text();
             drugMDCOUM = "-";
-            drugMDCDuration = $tds.eq(29).text();
+            drugMDCDuration = $tds.eq(28).text();
             drugMDCDispenseLocation = "-";
             drugMDCDispenseNotes = "-";
             drugMDCDispenseProvider = "-";

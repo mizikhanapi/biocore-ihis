@@ -19,8 +19,8 @@
     Conn conn = new Conn();
     String pmino = request.getParameter("pmino");
 
-    String diagnosisList = "select lhr_diagnosis.PMI_no,lhr_diagnosis.HFC_Cd,lhr_diagnosis.Episode_Date,lhr_diagnosis.Encounter_Date,lhr_diagnosis.Diagnosis_Cd,icd10_codes.icd10_desc,lhr_diagnosis.Comment"
-            + " FROM lhr_diagnosis JOIN icd10_codes ON (lhr_diagnosis.Diagnosis_Cd = icd10_codes.icd10_code ) "
+    String diagnosisList = "select lhr_diagnosis.PMI_no,lhr_diagnosis.HFC_Cd,lhr_diagnosis.Episode_Date,lhr_diagnosis.Encounter_Date,lhr_diagnosis.Diagnosis_Cd,icd10_codes.icd10_desc,lhr_diagnosis.Comment,adm_health_facility.hfc_name "
+            + " FROM lhr_diagnosis JOIN icd10_codes ON (lhr_diagnosis.Diagnosis_Cd = icd10_codes.icd10_code ) JOIN adm_health_facility ON (lhr_diagnosis.HFC_Cd = adm_health_facility.hfc_cd) "
             + " where lhr_diagnosis.PMI_no = '" + pmino + "' ";
 
     ArrayList<ArrayList<String>> dataDiagnosisList;
@@ -32,7 +32,8 @@
 <table class="table table-filter table-striped table-bordered dt-head-right" style="background: #fff; border: 1px solid #ccc; width: 100%; text-align: left" id="patientDiagnosisListTable">
     <thead>
     <th style="display: none;text-align: left;">PMI NO</th>
-    <th style="text-align: left;">HFC CODE</th>
+    <th style="display: none;text-align: left;">HFC CODE</th>
+    <th style="text-align: left;">HFC NAME</th>
     <th style="text-align: left;">EPISODE DATE</th>
     <th style="text-align: left;">ENCOUNTER DATE</th>
     <th style="text-align: left;">DIAGNOSIS CODE</th>
@@ -45,13 +46,14 @@
     %>
     <tr style="text-align: left;">
 <input id="dataPatientDiagnosisListhidden" type="hidden" value="<%=String.join("|", dataDiagnosisList.get(i))%>">
-<td style="display: none"><%= dataDiagnosisList.get(i).get(0)%></td> <!-- Order No -->
-<td  ><%= dataDiagnosisList.get(i).get(1)%></td> <!-- Code -->
-<td ><%= dataDiagnosisList.get(i).get(2)%></td> <!-- Description -->
-<td ><%= dataDiagnosisList.get(i).get(3)%></td> <!-- Strength -->
-<td ><%= dataDiagnosisList.get(i).get(4)%></td> <!-- Frequency -->
-<td style="font-weight: 500"><%= dataDiagnosisList.get(i).get(5)%> </td> <!-- Duration/Duration T -->
-<td ><%= dataDiagnosisList.get(i).get(6)%></td> <!-- Dose -->
+<td style="display: none"><%= dataDiagnosisList.get(i).get(0)%></td> <!-- PMI No -->
+<td style="display: none"><%= dataDiagnosisList.get(i).get(1)%></td> <!-- HFC Code -->
+<td  ><%= dataDiagnosisList.get(i).get(7)%></td> <!-- HFC Name -->
+<td ><%= dataDiagnosisList.get(i).get(2)%></td> <!-- EPISODE DATE -->
+<td ><%= dataDiagnosisList.get(i).get(3)%></td> <!-- ENCOUNTER DATE -->
+<td ><%= dataDiagnosisList.get(i).get(4)%></td> <!-- DIAGNOSIS CODE -->
+<td style="font-weight: 500"><%= dataDiagnosisList.get(i).get(5)%> </td> <!-- DIAGNOSIS DESCRIPTION -->
+<td ><%= dataDiagnosisList.get(i).get(6)%></td> <!-- COMMENT -->
 </tr>
 
 <%  }
