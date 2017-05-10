@@ -74,6 +74,7 @@
                                                 <div id="risOrderDetailContent">
 
                                                 </div>
+                                                <%@include file="order_modal/requestNewOrder_modal.jsp" %>
                                                 
                                             </div>
 
