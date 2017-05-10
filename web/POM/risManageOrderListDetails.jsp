@@ -79,7 +79,7 @@
         <td><%= dataOrderList.get(i).get(6)%></td> <!-- comment -->
         <td><%= dataOrderList.get(i).get(5)%></td><!-- date -->
         <td><%= status%></td> <!-- status -->
-        <td> <button id="MOD_btnPerform" class="btn btn-default" <%out.print(performDisabled);%> ><i class="fa fa-film" aria-hidden="true" style="display: inline-block;color: #2DA3FB;" ></i></button></td><!-- perform -->
+        <td> <button id="MOD_btnPerform" class="btn btn-default" <%out.print(performDisabled);%> ><i class="fa fa-play-circle-o" aria-hidden="true" style="display: inline-block;color: #2DA3FB;" ></i></button></td><!-- perform -->
         <td> <button id ="MOD_btnDelete" class="btn btn-default" <%out.print(cancelDisabled);%>><i class="fa fa-times" aria-hidden="true" style="display: inline-block;color: #d9534f;" ></i></button></td> <!-- cancel order -->
 
         <!--<td align="center"><input type="checkbox" id="risRequestChecked" checked></td>  Status -->

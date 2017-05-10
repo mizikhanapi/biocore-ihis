@@ -1,8 +1,9 @@
 <%-- 
-    Document   : HIS180001
-    Created on : May 10, 2017, 7:38:38 AM
+    Document   : HIS180002
+    Created on : May 10, 2017, 6:17:41 PM
     Author     : user
 --%>
+
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.sql.*"%>
 <%@page import="dBConn.Conn"%>
@@ -17,7 +18,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>iHIS | Procedure Order Management</title>
+        <title>iHIS | CIS Procedure Management</title>
         <!-- header -->
         <%@include file="libraries/headLibrary.jsp" %>
         <%@include file = "../assets/header.html" %>
@@ -47,28 +48,33 @@
                                         <ul class="nav nav-tabs ">
                                             <li class="active">
                                                 <a href="#tab_default_1" data-toggle="tab">
-                                                    ORDER LIST</a>
+                                                    PROCEDURE</a>
                                             </li>
                                             <li>
                                                 <a href="#tab_default_2" data-toggle="tab">
-                                                    ORDER DETAIL</a>
+                                                    PROCEDURE 1</a>
+                                            </li>
+                                            <li>
+                                                <a href="#tab_default_3" data-toggle="tab">
+                                                    PROCEDURE 2</a>
                                             </li>
                                         </ul>
                                         <!-- tab content -->
                                         <div class="tab-content">
                                             <div class="tab-pane active" id="tab_default_1">
-                                                <div id="risOrderMain">
+                                                <div id="procedureMain">
 
                                                 </div>
-                                                <div id="risOrderListContent">
+                                                <div id="procedureTable">
 
                                                 </div>
+                                                <%@include file="procedure_modal/procedure_modal.jsp" %>
                                             </div>
                                             <div class="tab-pane" id="tab_default_2">
                                                 <div id="risOrderDetailContent">
 
                                                 </div>
-                                                <%@include file="order_modal/requestNewOrder_modal.jsp" %>
+                                                
                                                 
                                             </div>
 
@@ -97,9 +103,9 @@
            // createScreenLoading();
 
 
-            $("#risOrderMain").load("risManageOrderMaster_main.jsp");
-            $("#risOrderListContent").load("risManageOrderListTable.jsp");
-            $("#risOrderDetailContent").load("risManageOrderListBasicInfoNew.jsp");
+            $("#procedureMain").load("procedure_main.jsp");
+            $("#procedureTable").load("procedure_table.jsp");
+            
             
            // destroyScreenLoading();
 
