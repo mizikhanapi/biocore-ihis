@@ -99,7 +99,7 @@
                 + "from ris_modality where hfc_cd = '99_iHIS_99';";
 
         String copyRIS_procedure = "insert into ris_procedure_master(hfc_cd, clinical_discipline_cd, body_system_cd, modality_cd, ris_procedure_cd, ris_procedure_name, discipline_cd, subdiscipline_cd, selling_price, buying_price, quantity, created_by, created_date, status) "
-                + "select '04010101', clinical_discipline_cd, body_system_cd, modality_cd, ris_procedure_cd, ris_procedure_name, '001', '001', selling_price, buying_price, quantity, 'iHIS_99', now(), '0' "
+                + "select '"+hfcCode+"', clinical_discipline_cd, body_system_cd, modality_cd, ris_procedure_cd, ris_procedure_name, '001', '001', selling_price, buying_price, quantity, '"+creator+"', now(), '0' "
                 + "from ris_procedure_master WHERE hfc_cd = '99_iHIS_99';";
 
         rmic.setQuerySQL(conn.HOST, conn.PORT, copyLookup);
