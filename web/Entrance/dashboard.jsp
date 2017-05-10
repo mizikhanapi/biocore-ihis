@@ -1,4 +1,5 @@
 
+<%@page import="dBConn.Conn"%>
 <%@page import="java.util.Arrays"%>
 <%@page import="java.util.ArrayList"%>
 
@@ -8,6 +9,23 @@
     if (session.getAttribute("HFC_99") == null) {
         String hfc_cd = (String) session.getAttribute("HEALTH_FACILITY_CODE");
         session.setAttribute("HFC_99", hfc_cd);
+
+        //setting discipline and subdiscipline name
+        Conn conn = new Conn();
+        
+        String dis_cd = (String) session.getAttribute("DISCIPLINE_CODE");
+        String sub_cd = (String) session.getAttribute("SUB_DISCIPLINE_CODE");
+        
+        String query = "select dis.discipline_name, sub.subdiscipline_name "
+                + "from adm_discipline dis "
+                + "join adm_subdiscipline sub on sub.discipline_cd = dis.discipline_cd "
+                + "where dis.discipline_cd = '"+dis_cd+"' AND sub.subdiscipline_cd = '"+sub_cd+"' LIMIT 1;";
+        
+        ArrayList<ArrayList<String>> dataDis = conn.getData(query);
+        
+        session.setAttribute("DISCIPLINE_NAME", dataDis.get(0).get(0));
+        session.setAttribute("SUB_DISCIPLINE_NAME", dataDis.get(0).get(1));
+        
     }
 
     String hfc_99 = (String) session.getAttribute("HFC_99");
@@ -19,12 +37,12 @@
 
     ArrayList<String> arrayModule = new ArrayList<String>(Arrays.asList(modules.split("\\|")));
 
-    boolean mod01, mod02, mod03, mod04, mod05, mod06, mod07, mod08, mod09, mod10, mod11, mod12, mod13, mod14, mod15, mod16, mod17;
+    boolean mod01, mod02, mod03, mod04, mod05, mod06, mod07, mod08, mod09, mod10, mod11, mod12, mod13, mod14, mod15, mod16, mod17, mod18;
 
-    mod01 = mod02 = mod03 = mod04 = mod05 = mod06 = mod07 = mod08 = mod09 = mod10 = mod11 = mod12 = mod13 = mod14 = mod15 = mod16 = mod17 = false;
+    mod01 = mod02 = mod03 = mod04 = mod05 = mod06 = mod07 = mod08 = mod09 = mod10 = mod11 = mod12 = mod13 = mod14 = mod15 = mod16 = mod17 = mod18 = false;
 
     if (last_9.equalsIgnoreCase("9") && hfc_99.equalsIgnoreCase("99_iHIS_99")) {
-        mod01 = mod02 = mod03 = mod04 = mod05 = mod06 = mod07 = mod08 = mod09 = mod10 = mod11 = mod12 = mod13 = mod14 = mod15 = mod16 = mod17 = true;
+        mod01 = mod02 = mod03 = mod04 = mod05 = mod06 = mod07 = mod08 = mod09 = mod10 = mod11 = mod12 = mod13 = mod14 = mod15 = mod16 = mod17 = mod18 = true;
 
     } else {
 
@@ -98,10 +116,14 @@
 
                 mod17 = true;
 
+            }else if (arrayModule.get(i).equalsIgnoreCase("18")) {
+
+                mod18 = true;
+
             }
         }//end for loop
 
-    }    
+    }
 
 %>
 
@@ -294,6 +316,15 @@
                         <%
                             }
                         %>
+                        <div class="col-sm-6 col-md-3">
+                            <a href="../POM/" class="thumbnail">
+                                <div class="kotak text-center">
+                                    <i class="fa fa-book" aria-hidden="true" style="color: orange;font-size: 4em;"></i>
+                                    <h3>Procedure Order Management</h3>
+                                </div>
+                            </a>
+                        </div>
+                        
                     </div>
 
                 </div>
@@ -302,7 +333,7 @@
             <!-- main -->		
 
         </div>
-    </div>
+  
 
 
     <!-- Bootstrap core JavaScript
