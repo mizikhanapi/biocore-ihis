@@ -255,7 +255,7 @@
                             <div class="form-group">
                                 <label class="col-md-4 control-label" for="textinput">Stock Quantity</label>
                                 <div class="col-md-8">
-                                    <input id="updateD_STOCK_QTY" name="textinput" type="number" step="0.01" placeholder="Stock Qty" class="form-control input-md" maxlength="20">
+                                    <input id="updateD_STOCK_QTY" name="textinput" type="number" step="0.01" placeholder="Stock Qty" class="form-control input-md" maxlength="20" readonly>
                                 </div>
                             </div>
 

@@ -65,7 +65,7 @@
 
             // Insert Master Dispense
             String sqlInsertDispenseMaster = "INSERT INTO pis_dispense_master (ORDER_NO, ORDER_DATE, LOCATION_CODE, ARRIVAL_DATE, DISPENSED_DATE, DISPENSED_BY, FILLED_BY, SCREENED_BY, ASSIGNED_BY,STATUS,DISCIPLINE_CODE) "
-                    + " VALUES ('" + ORDER_NO + "','" + ORDER_DATE + "','" + LOCATION_CODE + "','" + ARRIVAL_DATE + "','" + DISPENSED_DATE + "','" + DISPENSED_BY + "','" + FILLED_BY + "','" + SCREENED_BY + "','" + ASSIGNED_BY + "'," + STATUS + ",'" + DISCIPLINE_CODE + "' )";
+                    + " VALUES ('" + ORDER_NO + "','" + ORDER_DATE + "','" + HEALTH_FACILITY_CODE + "','" + ARRIVAL_DATE + "','" + DISPENSED_DATE + "','" + DISPENSED_BY + "','" + FILLED_BY + "','" + SCREENED_BY + "','" + ASSIGNED_BY + "'," + STATUS + ",'" + DISCIPLINE_CODE + "' )";
 
             boolean isInsertDispenseMaster = rmic.setQuerySQL(conn.HOST, conn.PORT, sqlInsertDispenseMaster);
 

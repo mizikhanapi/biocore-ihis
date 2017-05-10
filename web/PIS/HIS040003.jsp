@@ -1,6 +1,6 @@
 <%-- 
-    Document   : manageReport
-    Created on : Feb 27, 2017, 11:36:51 AM
+    Document   : HIS040003
+    Created on : May 9, 2017, 6:02:28 PM
     Author     : Shammugam
 --%>
 
@@ -14,7 +14,6 @@
 <%
     Config.getFile_url(session);
     Config.getBase_url(request);
-
 %>
 
 
@@ -33,87 +32,47 @@
 
         <div class="container-fluid">
             <div class="row">       
-                <!-- menu side -->	
+
+                <!-- menu side -->		
                 <%@include file = "libraries/pharmacySideMenus.jsp" %>
-                <!-- menu side -->
+                <!-- menu side -->	
+
                 <!-- main -->		
                 <div class="main" style="background: #f2f4f8;">
+
                     <!-- menu top -->
                     <%@include file = "libraries/pharmacyTopMenus.jsp" %>
                     <!-- menu top -->
+
                     <div class="row">
-                        <div class="col-md-12" style="height: 100%;">
+                        <div class="col-md-12">
                             <div class="thumbnail">
+                                <h3 style="margin: 0px;">Delivery Order</h3>
+                                <hr class="pemisah" />
 
-                                <!-- Tab Menu -->
-                                <div class="tabbable-panel">
-                                    <div class="tabbable-line">
-                                        <ul class="nav nav-tabs ">
-                                            <li class="active">
-                                                <a href="#tab_default_1" data-toggle="tab">
-                                                    DAILY REPORT </a>
-                                            </li>
-                                            <li>
-                                                <a href="#tab_default_2" data-toggle="tab">
-                                                    MONTHLY REPORT </a>
-                                            </li>
-                                            <li>
-                                                <a href="#tab_default_3" data-toggle="tab">
-                                                    YEARLY REPORT </a>
-                                            </li>
-                                        </ul>
-                                        <!-- tab content -->
-                                        <div class="tab-content">
-                                            <div class="tab-pane active" id="tab_default_1">
-
-                                                <div id="contentRDaily">
-
-                                                    <div id="contentReportDailyTable">
-                                                    </div>
-                                                    <div id="contentReportDailyButton">
-                                                    </div>
-
-                                                </div>
-
-                                            </div>
-                                            <div class="tab-pane" id="tab_default_2">
-
-                                                <div id="contentRMonthly">
-
-                                                    <div id="contentReportMonthlyTable">
-                                                    </div>
-
-                                                </div>
-
-                                            </div>
-                                            <div class="tab-pane" id="tab_default_3">
-
-                                                <div id="contentRYearly">
-
-                                                    <div id="contentReportYearlyTable">
-                                                    </div>
-
-                                                </div>
-
-                                            </div>
-                                        </div>
-                                    </div>
+                                <div id="deleveryOrderTopContent">
                                 </div>
 
-                                <!-- Tab Menu -->
+                                <hr class="pemisah" />
 
-
-
-
+                                <div id="deleveryOrderBottomContent">
+                                </div>
+                                <%@include file="deleveryOrderModal.jsp" %>
                             </div>
                         </div>
+
                     </div>
+                    <!-- End Panel -->
+
 
                 </div>
+                <!-- main -->		
 
             </div>
-            <!-- main -->		
         </div>
+
+
+
 
         <!-- Placed at the end of the document so the pages load faster -->
         <%@include file = "libraries/pharmacyFootLibrary.jsp" %>
@@ -121,13 +80,12 @@
 
         <script>
 
-            $('<div class="loading">Loading</div>').appendTo('body');
 
             $(document).ready(function () {
-                $("#contentReportDailyTable").load("manageReportDailyTable.jsp");
-                $("#contentReportMonthlyTable").load("manageReportMonthlyTable.jsp");
-                $("#contentReportYearlyTable").load("manageReportYearlyTable.jsp");
+                $("#deleveryOrderTopContent").load("deleveryOrderBasic.jsp");
+                $("#deleveryOrderBottomContent").load("deleveryOrderTable.jsp");
             });
+
 
         </script>
 
