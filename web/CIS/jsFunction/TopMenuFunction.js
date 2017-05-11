@@ -392,7 +392,7 @@ $(document).ready(function (e) {
     
     function getDCG(){
         var dcg = "";
-        dcg = "DCG|"+episodeDate+"^"+hfc+"^"+patientCategory+"^"+episodeDate+"^"+getDate()+"^"+"-"+"^"+doctor_id+"^"+"-"+"^"+doctor_id+"^"+
+        dcg = "DCG|"+episodeDate+"^"+hfc+"^"+patientCategory+"^"+episodeDate+"^"+getDate()+"^"+"-"+"^"+doctor_id+"^"+"-"+"^"+doctor_id+"^";
         return dcg;
     }
     
