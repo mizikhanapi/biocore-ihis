@@ -162,17 +162,66 @@ function convertPEMId(idAry){
     console.log(newIdAry);
     return newIdAry;
 }
-
+function getHFCDetail(orc){
+    var orcArry = orc.split("|");
+    var hfcOrderDetail = orcArry[12] +"|"+ orcArry[17] +"|"+ orcArry[18] +"|"+ orcArry[19] +"|"+ "-" +"|"+ "-" +"|"+ "-" +"|"+ "-" +"|"+ orcArry[24] +"|"+ orcArry[25]+"|"+ orcArry[20] +"|"+ "-" +"|"+ orcArry[21] +"|"+orcArry[23] +"|"+ orcArry[22];
+    var hfcProviderDetail = orcArry[26] +"|"+ orcArry[30] +"|"+ orcArry[31] +"|"+ orcArry[32] +"|"+ "-" +"|"+ "-" +"|"+ "-" +"|"+ "-" +"|"+ orcArry[37] +"|"+ orcArry[38]+"|"+ orcArry[33] +"|"+ "-" +"|"+ orcArry[34] +"|"+orcArry[36] +"|"+ orcArry[35];
+                                               
+   // console.log(orcArry);
+   return [hfcOrderDetail,hfcProviderDetail];
+}
 function convertEHR(ehr) {
     var EHRArry = ehr.split("<cr>");
     var PDI;
     var CCN;
     var HPI;
+    
+   var ROSORC  = 0;
+    var DTOORC = 0;
+    var LOSORC = 0;
+    var POSORC = 0;
+    var MONORC = 0;
+    var ADWORC = 0;
+   
+    console.log(EHRArry);
+  
 
+  
+    
+        for (var i = 0; i < EHRArry.length; i++) {
+        var EHRD = EHRArry[i].trim();
+        var header = EHRD.substring(0, 3);
+          if (header === "ORC") {
+            
+                var EHRD1 = EHRArry[i+1].trim();
+                var header1 = EHRD1.substring(0, 3);
+                if(header1 ==="ROS"){
+                    ROSORC = i;
+                } else   if(header1 ==="DTO"){
+                    DTOORC = i;
+                } else   if(header1 ==="LIO"){
+                    LOSORC = i;
+                } else   if(header1 ==="POS"){
+                    POSORC = i;
+                } else   if(header1 ==="MOR"){
+                    MONORC = i;
+                } else   if(header1 ==="ADW"){
+                    ADWORC = i;
+                }
+          }
+
+    }
+              console.log(ROSORC);
+          console.log(DTOORC);
+          console.log(LOSORC);
+          console.log(POSORC);
+          console.log(MONORC);
+          console.log(ADWORC);
+//console.log(ROSCounter);
     for (var i = 0; i < EHRArry.length; i++) {
         var EHRD = EHRArry[i].trim();
         var header = EHRD.substring(0, 3);
-        //console.log(header);
+       // console.log(header);
         if (header === "CCN") {
             CCN = EHRArry[i];
             console.log(CCN);
@@ -530,6 +579,9 @@ function convertEHR(ehr) {
    
         } else if (header === "ROS") {
             ROS = EHRArry[i];
+            console.log(ROSORC);
+        
+            
             var ROSData1 = ROS.split("|");
             var imgInv = ROSData1[2].split("^");
             var hfcAry = ROSData1[4].split("^");
@@ -548,7 +600,9 @@ function convertEHR(ehr) {
                 },
                 timeout:5000,
                 success:function(result){
-                    
+                        ORC = EHRArry[ROSORC];
+                        console.log(ORC);
+                        var hfcDetail = getHFCDetail(ORC);
                     var detailROS = result.split("|");
                     //console.log(detailROS);
                     var objROS = {
@@ -564,25 +618,30 @@ function convertEHR(ehr) {
                         locationROS:detailROS[5],
                         modalityROS:detailROS[3],
                         modalityROSCode:detailROS[2],
-                        priorityROS:prioyAry[2]
+                        priorityROS:prioyAry[2],
+                        hfcOrderDetail: hfcDetail[0],
+                        hfcProviderDetail: hfcDetail[1]
                     };
-                    getObjectORCHFCDetail(hfc_cd, objROS.hfcIdROS,objROS);
-                    _data.push(objROS);
-                    displayROS(objROS.codeROS, objROS.ROS, objROS.commentROS, objROS.modalityROS, objROS.modalityROScode, objROS.bodySystemROS, objROS.bodySystemROS, objROS.bodySystemROSCode, objROS.hfcROS, objROS.hfcROScode,objROS.locationROS,objROS.appointmentROS,objROS.priorityROS);
+                   // getObjectORCHFCDetail(hfc_cd, objROS.hfcIdROS,objROS);
+                     _data.push(objROS);
+                    displayROS(objROS.codeROS, objROS.ROS, objROS.commentROS, objROS.modalityROS, 
+                    objROS.modalityROScode, objROS.bodySystemROS, objROS.bodySystemROS, objROS.bodySystemROSCode,
+                    objROS.hfcROS, objROS.hfcROScode,objROS.locationROS,objROS.appointmentROS,objROS.priorityROS);
                 }
-                
+               
             });
 
 
         } else if (header === "LIO") {
             LIO = EHRArry[i];
+         
+              
             var LIOData = LIO.split("|");
             console.log(LIOData);
 //            var LIOData = LIOData_2[1].split("^");
             var labAry = LIOData[2].split("^");
             var prioAry = LIOData[5].split("^");
             var hfcAry = LIOData[6].split("^");
-            
 
           $.ajax({
               method:'post',
@@ -592,6 +651,9 @@ function convertEHR(ehr) {
               },
               timeout:5000,
               success:function(result){
+                     
+                ORC = EHRArry[LOSORC];
+                var hfcDetail = getHFCDetail(ORC);
                   var LIODetail = result.trim().split("|");
                   //console.log(LIODetail);
                     var objLIO = {
@@ -607,9 +669,11 @@ function convertEHR(ehr) {
                         searchLOS: labAry[1],
                         sourceLOS: LIODetail[3],
                         spclLOS: LIODetail[6].trim(),
-                        volumeLOS: LIODetail[5]
+                        volumeLOS: LIODetail[5],
+                        hfcOrderDetail:hfcDetail[0],
+                        hfcProviderDetail:hfcDetail[1]
                     };
-                     getObjectORCHFCDetail(hfc_cd, objLIO.hfcIdLOS,objLIO);
+                    // getObjectORCHFCDetail(hfc_cd, objLIO.hfcIdLOS,objLIO);
                     _data.push(objLIO);
                     console.log(objLIO);
                     displayLOS(objLIO.searchLOS, objLIO.codeLOS, objLIO.catLOS, objLIO.sourceLOS, objLIO.containerLOS, objLIO.volumeLOS, objLIO.spclLOS, objLIO.commentLOS, objLIO.appointmentLOS, objLIO.priorityLOS,objLIO.hfcLOS,objLIO.hfcIdLOS)
@@ -622,6 +686,9 @@ function convertEHR(ehr) {
 
         }else if (header === "DTO") {
             DTO = EHRArry[i];
+            ORC = EHRArry[DTOORC];
+            var hfcDetail = getHFCDetail(ORC);
+           
             var DTOData1 = DTO.split("|");
             console.log(DTOData1);
             //var DTOData = DTOData1[1].split("^");
@@ -633,13 +700,7 @@ function convertEHR(ehr) {
             var drugStrengthArry = DTOData1[8].split(" ");
             var uomCode = DTOData1[9].split("^");
             var durationArry = DTOData1[10].split(" ");
-//            var reqDrugFormAry = DTOData1[3].split("^");
-//            var reqDrugRouteAry = DTOData1[4].split("^");
-//            var reqDrugFreqAry = DTOData1[5].split("^");
-//            var reqDrugUOMAry = DTOData1[9].split("^");
-//            var hfcDeliverAry = DTOData1[12].split("^");
-//            var commentAry = DTOData1[5].split("^");
-//            console.log(DTOData1);
+
 // 
             var objDTO = {
                 Acode: 'DTO',
@@ -660,13 +721,18 @@ function convertEHR(ehr) {
             uomCode:uomCode[2],
             remark:DTOData1[13],
             comment:DTOData1[15],
-            drugQuantity:DTOData1[11]
+            drugQuantity:DTOData1[11],
+                hfcOrderDetail: hfcDetail[0],
+                hfcProviderDetail: hfcDetail[1]
             };
-           getObjectORCHFCDetail(hfc_cd, hfc_cd,objDTO);
+           //getObjectORCHFCDetail(hfc_cd, hfc_cd,objDTO);
             _data.push(objDTO);
           displayDTO(objDTO.drugName, objDTO.drugForm,objDTO. drugStrength+" "+objDTO.drugStrengthUnit, objDTO.drugDose+" "+objDTO.drugDoseUnit ,objDTO.drugFrequency, objDTO.drugDuration+" "+objDTO.drugDurationUnit, objDTO.drugFrequency, objDTO.drugCaution, objDTO.remark, objDTO.comment);
         }else if (header === "POS") {
             POS = EHRArry[i];
+            ORC = EHRArry[POSORC];
+            var hfcDetail = getHFCDetail(ORC);
+            
             var POSData1 = POS.split("|");
             var POSData = POSData1[2].split("^");
            console.log(POSData1);
@@ -674,9 +740,11 @@ function convertEHR(ehr) {
                 Acode:"POS",
                 Problem18:POSData[1],
                 proType: POSData1[4],
-                procedure_cd:POSData[0]
+                procedure_cd:POSData[0],
+                hfcOrderDetail: hfcDetail[0],
+                hfcProviderDetail: hfcDetail[1]
             };
-            getObjectORCHFCDetail(hfc_cd, hfc_cd,objPOS);
+           // getObjectORCHFCDetail(hfc_cd, hfc_cd,objPOS);
             _data.push(objPOS);
            displayPOS(objPOS.Problem18, objPOS.proType, objPOS.procedure_cd) ;
        }else if (header === "MEC") {
@@ -725,9 +793,11 @@ function convertEHR(ehr) {
             };
             _data.push(objARQ);
            //  console.log(objPRI);
-         displayFLU(objARQ.searchFLU, objARQ.DateFollowUp, objARQ.commentFLU)
+         displayFLU(objARQ.searchFLU, objARQ.DateFollowUp, objARQ.commentFLU);
        }else if (header === "MOR") {
             MOR = EHRArry[i];
+            ORC = EHRArry[MONORC];
+            var hfcDetail = getHFCDetail(ORC);
             console.log(MOR);
             var monArry = MOR.split("|");
             var monArryInfo = monArry[1].split("^");
@@ -744,15 +814,19 @@ function convertEHR(ehr) {
                 testMON:monArryTest[0],
                 MONHFC_cd:monArry[12].trim(),
                 searchHFC_MON:monArry[12],
-                searchDIS_MON:monArry[10]
+                searchDIS_MON:monArry[10],
+                hfcOrderDetail: hfcDetail[0],
+                hfcProviderDetail: hfcDetail[1]
             };
-            getObjectORCHFCDetailMON(hfc_cd, objMON.MONHFC_cd,objMON);
+            //getObjectORCHFCDetailMON(hfc_cd, objMON.MONHFC_cd,objMON);
 
            _data.push(objMON);
            //  console.log(objPRI);
         displayMON(objMON.searchMON,objMON.searchHFC_MON, objMON.searchDIS_MON);
        }else if (header === "ADW") {
             ADW = EHRArry[i];
+            ORC = EHRArry[ADWORC];
+            var hfcDetail = getHFCDetail(ORC);
             console.log(ADW);
             var adwArry = ADW.split("|");
             var adwInfo = adwArry[2].split("^");
@@ -770,10 +844,12 @@ function convertEHR(ehr) {
                 PatientReferFromCd:discipline,
                 Reason:adwInfo[7],
                 WardName:adwInfo[5],
-                WardNameCd:adwInfo[4]
+                WardNameCd:adwInfo[4],
+                hfcOrderDetail: hfcDetail[0],
+                hfcProviderDetail: hfcDetail[1]
                 
             };
-            getObjectORCHFCDetail(hfc_cd, hfc_cd,objADW);
+            //getObjectORCHFCDetail(hfc_cd, hfc_cd,objADW);
             displayADW(objADW.AdmitToDiscipline, objADW.PatientReferFrom, objADW.Reason,objADW.AdmitDate,objADW.AdmitTime,objADW.WardName)
             
             

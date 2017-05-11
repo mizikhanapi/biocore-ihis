@@ -264,9 +264,12 @@ $(document).ready(function (e) {
                 if(orderNotesROS === ""){
                     var hfcOFDetail = data[key].hfcOrderDetail.split("|");
                     var hfcPFDetail = data[key].hfcProviderDetail.split("|");
-                    var orc = getORC("T12102", "", "", "NO", data[key].priorityROS, getDate(), episodeDate, episodeDate, doctor_id, doctor_id, "", hfc_cd,discipline, subdis, "02", hfcOFDetail[1],
-                            hfcOFDetail[2],hfcOFDetail[3],hfcOFDetail[3], hfcOFDetail[10], hfcOFDetail[14], hfcOFDetail[13], hfcOFDetail[7],hfcOFDetail[9], hfcPFDetail[0], "-", "", "06", hfcPFDetail[1],
-                            hfcPFDetail[2],hfcPFDetail[3], hfcPFDetail[10]);
+                    
+                    var orc = getORC("T12102", "", "", "NO", data[key].priorityROS, getDate(), episodeDate, episodeDate, doctor_id, doctor_id, "", hfc_cd, discipline, subdis, "02", hfcOFDetail[1],
+                            hfcOFDetail[2], hfcOFDetail[3], hfcOFDetail[10], hfcOFDetail[12], hfcOFDetail[14], hfcOFDetail[13], hfcOFDetail[8], hfcOFDetail[9], hfcPFDetail[0], "-", "", "06", hfcPFDetail[1],
+                            hfcPFDetail[2], hfcPFDetail[3], hfcPFDetail[10], hfcPFDetail[12], hfcPFDetail[14], hfcPFDetail[13], hfcPFDetail[8], hfcPFDetail[9], "-");
+                            
+                            
                             orderNotesROS = orc + "ROS|"+ ccnProblem + "" + dgsProblem + "CTV3|" + data[key].codeROS + "^" + data[key].ROS + "^ICD10-PCS|"+ data[key].appointmentROS +"|"+ data[key].hfcIdROS +"^"+ data[key].hfcROS +"^PSDD|038^" + data[key].priorityROScd +"^" + data[key].priorityROS +"|096^" + data[key].patientConditionROSCd +"^" + data[key].patientConditionROS +"|"+ data[key].commentROS +  "|" + getRRI();
                 }else {
                      orderNotesROS += "ROS|"+ ccnProblem + "" + dgsProblem + "CTV3|" + data[key].codeROS + "^" + data[key].ROS + "^ICD10-PCS|"+ data[key].appointmentROS +"|"+ data[key].hfcIdROS +"^"+ data[key].hfcROS +"^PSDD|038^" + data[key].priorityROScd +"^" + data[key].priorityROS +"|096^" + data[key].patientConditionROSCd +"^" + data[key].patientConditionROS +"|"+ data[key].commentROS +  "|" + getRRI();
@@ -289,9 +292,12 @@ $(document).ready(function (e) {
                 if (orderNotesDTO === "") {
                     var hfcOFDetail = data[key].hfcOrderDetail.split("|");
                     var hfcPFDetail = data[key].hfcProviderDetail.split("|");
+                    
                     var orc = getORC("T12100", "", "", "NO", "-", getDate(), episodeDate, episodeDate, doctor_id, doctor_id, "", hfc_cd, discipline, subdis, "02", hfcOFDetail[1],
-                            hfcOFDetail[2], hfcOFDetail[3], hfcOFDetail[3], hfcOFDetail[10], hfcOFDetail[14], hfcOFDetail[13], hfcOFDetail[7], hfcOFDetail[9], hfcPFDetail[0], "-", "", "04", hfcPFDetail[1],
-                            hfcPFDetail[2], hfcPFDetail[3], hfcPFDetail[10]);
+                            hfcOFDetail[2], hfcOFDetail[3], hfcOFDetail[10], hfcOFDetail[12], hfcOFDetail[14], hfcOFDetail[13], hfcOFDetail[8], hfcOFDetail[9], hfcPFDetail[0], "-", "", "04", hfcPFDetail[1],
+                            hfcPFDetail[2], hfcPFDetail[3], hfcPFDetail[10], hfcPFDetail[12], hfcPFDetail[14], hfcPFDetail[13], hfcPFDetail[8], hfcPFDetail[9], "-");
+                    
+
                     orderNotesDTO = orc + problemDTO + drug + drugForm+drugRoute+drugFrequency+drugFrequecyUnit+drugDosage+drugStrength+drugUOM+drugDuration+quantity+theRest;
                 } else {
                     orderNotesDTO += problemDTO + drug + drugForm+drugRoute+drugFrequency+drugFrequecyUnit+drugDosage+drugStrength+drugUOM+drugDuration+quantity+theRest;
@@ -302,9 +308,11 @@ $(document).ready(function (e) {
                 if (orderNotesLIO === "") {
                     var hfcOFDetail = data[key].hfcOrderDetail.split("|");
                     var hfcPFDetail = data[key].hfcProviderDetail.split("|");
-                    var orc = getORC("T12101", "", "", "NO", data[key].priority, getDate(), episodeDate, episodeDate, doctor_id, doctor_id, "", hfc_cd, discipline, subdis, "02", hfcOFDetail[1],
-                            hfcOFDetail[2], hfcOFDetail[3], hfcOFDetail[3], hfcOFDetail[10], hfcOFDetail[14], hfcOFDetail[13], hfcOFDetail[7], hfcOFDetail[9], hfcPFDetail[0], "-", "", "05", hfcPFDetail[1],
-                            hfcPFDetail[2], hfcPFDetail[3], hfcPFDetail[10]);
+                    
+                        var orc = getORC("T12101", "", "", "NO", "-", getDate(), episodeDate, episodeDate, doctor_id, doctor_id, "", hfc_cd, discipline, subdis, "02", hfcOFDetail[1],
+                            hfcOFDetail[2], hfcOFDetail[3], hfcOFDetail[10], hfcOFDetail[12], hfcOFDetail[14], hfcOFDetail[13], hfcOFDetail[8], hfcOFDetail[9], hfcPFDetail[0], "-", "", "05", hfcPFDetail[1],
+                            hfcPFDetail[2], hfcPFDetail[3], hfcPFDetail[10], hfcPFDetail[12], hfcPFDetail[14], hfcPFDetail[13], hfcPFDetail[8], hfcPFDetail[9], "-");
+                    
                     orderNotesLIO = orc +  "LIO|"  +finalDiagnosis+ "^ICD10|"+ data[key].codeLOS + "^" + data[key].searchLOS + "^ICD10-PCS|" + data[key].appointmentLOS + "|038^" + data[key].priority + "^" + data[key].priorityLOScd + "|096^" + data[key].patientConditionLOScd + "^" + data[key].patientCondition + "|" + data[key].hfcIdLOS + "^" + data[key].hfcLOS + "^PSDD|" + data[key].commentLOS + "|" + getRRI();
                 } else {
                       orderNotesLIO += "LIO|"  +finalDiagnosis+ "^ICD10|" + data[key].codeLOS + "^" + data[key].searchLOS + "^ICD10-PCS|" + data[key].appointmentLOS + "|038^" + data[key].priority + "^" + data[key].priorityLOScd + "|096^" + data[key].patientConditionLOScd + "^" + data[key].patientCondition + "|" + data[key].hfcIdLOS + "^" + data[key].hfcLOS + "^PSDD|" + data[key].commentLOS + "|" + getRRI();
@@ -315,9 +323,11 @@ $(document).ready(function (e) {
                 if (orderNotesPOS === "") {
                     var hfcOFDetail = data[key].hfcOrderDetail.split("|");
                     var hfcPFDetail = data[key].hfcProviderDetail.split("|");
+                    
+                    
                     var orc = getORC("T12103", "", "", "NO", "-", getDate(), episodeDate, episodeDate, doctor_id, doctor_id, "", hfc_cd, discipline, subdis, "02", hfcOFDetail[1],
-                            hfcOFDetail[2], hfcOFDetail[3], hfcOFDetail[3], hfcOFDetail[10], hfcOFDetail[14], hfcOFDetail[13], hfcOFDetail[7], hfcOFDetail[9], hfcPFDetail[0], "-", "", "18", hfcPFDetail[1],
-                            hfcPFDetail[2], hfcPFDetail[3], hfcPFDetail[10]);
+                            hfcOFDetail[2], hfcOFDetail[3], hfcOFDetail[10], hfcOFDetail[12], hfcOFDetail[14], hfcOFDetail[13], hfcOFDetail[8], hfcOFDetail[9], hfcPFDetail[0], "-", "", "18", hfcPFDetail[1],
+                            hfcPFDetail[2], hfcPFDetail[3], hfcPFDetail[10],hfcPFDetail[12],hfcPFDetail[14],hfcPFDetail[13],hfcPFDetail[8],hfcPFDetail[9], "-");
                     orderNotesPOS = orc +"POS|" +finalDiagnosis+ "^ICD10|"+ "^" + data[key].procedure_cd +"^"+ data[key].Problem18 +  "^ICD10-PCS||"+data[key].proType+"|||||"+hfc_cd+"|"+hfc_name+"||hfc_cd_receiving|<cr>\n";
                 } else {
                     orderNotesPOS += "POS|" +finalDiagnosis+ "^ICD10|" + "^" + data[key].procedure_cd +"^"+ data[key].Problem18 +  "^ICD10-PCS||"+data[key].proType+"|||||"+hfc_cd+"|"+hfc_name+"||hfc_cd_receiving|<cr>\n";
@@ -328,9 +338,14 @@ $(document).ready(function (e) {
               if (orderNotesMON === "") {
                     var hfcOFDetail = data[key].hfcOrderDetail.split("|");
                     var hfcPFDetail = data[key].hfcProviderDetail.split("|");
+                    
                     var orc = getORC("T12107", "", "", "NO", "-", getDate(), episodeDate, episodeDate, doctor_id, doctor_id, "", hfc_cd, discipline, subdis, "02", hfcOFDetail[1],
-                            hfcOFDetail[2], hfcOFDetail[3], hfcOFDetail[3], hfcOFDetail[10], hfcOFDetail[14], hfcOFDetail[13], hfcOFDetail[7], hfcOFDetail[9], hfcPFDetail[0], "-", "", "05", hfcPFDetail[1],
-                            hfcPFDetail[2], hfcPFDetail[3], hfcPFDetail[10]);
+                            hfcOFDetail[2], hfcOFDetail[3], hfcOFDetail[10], hfcOFDetail[12], hfcOFDetail[14], hfcOFDetail[13], hfcOFDetail[8], hfcOFDetail[9], hfcPFDetail[0], "-", "", "05", hfcPFDetail[1],
+                            hfcPFDetail[2], hfcPFDetail[3], hfcPFDetail[10], hfcPFDetail[12], hfcPFDetail[14], hfcPFDetail[13], hfcPFDetail[8], hfcPFDetail[9], "-");
+                    
+                  
+                            
+                            
                     orderNotesMON = orc +   "MOR|"+finalDiagnosis+" | "+data[key].codeMON+"^"+data[key].searchMON+" | " +getDate()+" |  |  | "+doctor_id+"| "+doctor_name+" | | "+discipline+" | "+disciplineName+" | | "+data[key].MONHFC_cd+"|<cr>\n";
                 } else {
                       orderNotesMON +=  "MOR|"+finalDiagnosis+" | "+data[key].codeMON+"^"+data[key].searchMON+" | " +getDate()+" |  |  | "+doctor_id+"| "+doctor_name+"| | "+discipline+" | "+disciplineName+" |  | "+data[key].MONHFC_cd+"|<cr>\n";
@@ -341,9 +356,11 @@ $(document).ready(function (e) {
                  if (orderNotesADW === "") {
                     var hfcOFDetail = data[key].hfcOrderDetail.split("|");
                     var hfcPFDetail = data[key].hfcProviderDetail.split("|");
-                    var orc = getORC("T12111", "", "", "NO", "-", getDate(), episodeDate, episodeDate, doctor_id, doctor_id, "", hfc_cd, discipline, subdis, "02", hfcOFDetail[1],
-                            hfcOFDetail[2], hfcOFDetail[3], hfcOFDetail[3], hfcOFDetail[10], hfcOFDetail[14], hfcOFDetail[13], hfcOFDetail[7], hfcOFDetail[9], hfcPFDetail[0], "-", "", "07", hfcPFDetail[1],
-                            hfcPFDetail[2], hfcPFDetail[3], hfcPFDetail[10]);
+                    
+                     var orc = getORC("T12111", "", "", "NO", "-", getDate(), episodeDate, episodeDate, doctor_id, doctor_id, "", hfc_cd, discipline, subdis, "02", hfcOFDetail[1],
+                            hfcOFDetail[2], hfcOFDetail[3], hfcOFDetail[10], hfcOFDetail[12], hfcOFDetail[14], hfcOFDetail[13], hfcOFDetail[8], hfcOFDetail[9], hfcPFDetail[0], "-", "", "07", hfcPFDetail[1],
+                            hfcPFDetail[2], hfcPFDetail[3], hfcPFDetail[10], hfcPFDetail[12], hfcPFDetail[14], hfcPFDetail[13], hfcPFDetail[8], hfcPFDetail[9], "-");
+                    
                     orderNotesADW = orc +    "ADW|"+episodeDate+"|"+data[key].AdmitDate+" "+data[key].AdmitTime+"^" +data[key].AdmitToDisciplineCd+"^"+data[key].AdmitToDiscipline+"^"+"ST-UD"+"^"+data[key].WardNameCd+"^"+data[key].WardName+"^"+"ST-UD"+"^"+data[key].Reason+"^"+data[key].PatientReferFromCd+"^active^"+data[key].AdmittedBefore+"^"+getDate()+"^"+ hfc_cd + "^" + doctor_id + "^" + doctor_name + "|<cr>\n";
                 } else {
                       orderNotesADW +=   "ADW|"+episodeDate+"|"+data[key].AdmitDate+" "+data[key].AdmitTime+"^" +data[key].AdmitToDisciplineCd+"^"+data[key].AdmitToDiscipline+"^"+"ST-UD"+"^"+data[key].WardNameCd+"^"+data[key].WardName+"^"+"ST-UD"+"^"+data[key].Reason+"^"+data[key].PatientReferFromCd+"^active^"+data[key].AdmittedBefore+"^"+getDate()+"^"+ hfc_cd + "^" + doctor_id + "^" + doctor_name + "|<cr>\n";
@@ -381,11 +398,11 @@ $(document).ready(function (e) {
     
     function getORC(transectionCode,orderNo,fillerOrderNo,orderStatus, orderPriority, orderDateTime, episodeDate, encounterDateTime, enterBy, verifiedBy, OPD, orderHFC, orderDis, orderSub,orderApp, orderHFCAdd1,
     orderHFCAdd2, orderHFCAdd3, orderHFCtown, orderHFCDistrict, orderHFCState, orderHFCCountry,orderHFCPostcode, orderHFCPhoneNo, providerHFC, providerDis,providerSub,providerApp, providerAdd1, 
-    providerAdd2,providerAdd3, providerTown){
+    providerAdd2,providerAdd3, providerTown,providerDistrict,providerState,providerCountry,providerPostcode,providerPhoneNo, comment){
         var orc = "";
         var  orc1 = "ORC|"+transectionCode+"|"+orderNo+"|"+fillerOrderNo+"|"+orderStatus+"|"+orderPriority+"|"+orderDateTime+"|"+episodeDate+"|"+encounterDateTime+"|"+enterBy+"|"+verifiedBy+"|"+OPD+"|"+orderHFC+"|"+orderDis;
         var orc2  =   "|"+orderSub+"|"+orderSub+"|"+orderApp+"|"+orderHFCAdd1+"|"+orderHFCAdd2+"|"+orderHFCAdd3+"|"+orderHFCtown+"|"+orderHFCDistrict+"|"+orderHFCState+"|"+orderHFCCountry+"|"+orderHFCPostcode;
-        var orc3 = "|"+orderHFCPhoneNo+"|"+providerHFC+"|"+providerDis+"|"+providerSub+"|"+providerApp+"|"+providerAdd1+"|"+providerAdd2+"|"+providerAdd3+"|"+providerTown+ "|<cr>\n";
+        var orc3 = "|"+orderHFCPhoneNo+"|"+providerHFC+"|"+providerDis+"|"+providerSub+"|"+providerApp+"|"+providerAdd1+"|"+providerAdd2+"|"+providerAdd3+"|"+providerTown+ "|"+providerDistrict+"|"+providerState+ "|"+providerCountry+ "|"+providerPostcode+ "|"+providerPhoneNo+ "|"+comment+ "|"+"<cr>\n";
         orc = orc1+orc2+orc3;
         return orc;
     }

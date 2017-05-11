@@ -52,8 +52,8 @@
       String orderTowncd = MainOrder.get(0).get(4);
       String providerTowncd = MainProvider.get(0).get(4);
       
-     String  orderHfccd = MainOrder.get(0).get(1);
-     String providerHfccd = MainProvider.get(0).get(1);
+     String  orderHfccd = MainOrder.get(0).get(0);
+     String providerHfccd = MainProvider.get(0).get(0);
               
      String orderDistrictcd = MainOrder.get(0).get(5);
       String providerDistrictcd = MainProvider.get(0).get(5);
