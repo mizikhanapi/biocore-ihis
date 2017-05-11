@@ -28,6 +28,7 @@ var reloadStat = 0;
 
 var PDIFULL;
 var HCS;
+var patientCategory = "";
 
 //declare the consultation row counter
 var i = 0;

@@ -1349,7 +1349,7 @@ function  displayADW(_admitToDis, _patientReferFrom, _reason,_admitDate,_admitTi
         $.ajax({
             url:"search/getORCHFC.jsp",
             method:"POST",
-            timeout:3000,
+            timeout:5000,
             data:hfcCode,
 //            async: false,
             success:function(result){

@@ -32,13 +32,19 @@
     String dataFull = "";
     String ageS = "";
     
+    String patientCategory = "";
+    
     boolean check;
     
 Calendar now = Calendar.getInstance(); 
 int year = now.get(Calendar.YEAR);  
 int month = now.get(Calendar.MONTH);
     
-
+String sqlPatientCategory = "SELECT patient_category FROM PMS_PATIENT_QUEUE  WHERE pmi_no = '"+pmiNo+"'  AND episode_date = '"+episodeDate+"'";
+ArrayList<ArrayList<String>> dataPatientCategory = conn.getData(sqlPatientCategory);
+if(dataPatientCategory.size() >0){
+    patientCategory = dataPatientCategory.get(0).get(0);
+}
     
     //Convert Code to Description
 String sqlPatient = "select pmi_no,patient_name,new_ic_no,blood_type,sex_code,id_type,birth_date,race_code,allergy_ind from pms_patient_biodata where pmi_no = '"+pmiNo+"'";
@@ -134,7 +140,7 @@ if(check){
 
 //out.print(check);
 
-String patientBio = dataQueue.get(0).get(0) + "|"+dataQueue.get(0).get(1)+"|"+dataQueue.get(0).get(2)+"|"+bloodType+"|"+sex+"|"+IdType+"|"+ageS+"|"+race+"|"+allergy+"|"+dataFull;
+String patientBio = dataQueue.get(0).get(0) + "|"+dataQueue.get(0).get(1)+"|"+dataQueue.get(0).get(2)+"|"+bloodType+"|"+sex+"|"+IdType+"|"+ageS+"|"+race+"|"+allergy+"|"+patientCategory+"|"+dataFull;
 
 session.setAttribute("patientPMINo",dataQueue.get(0).get(0));
 //session.setAttribute("patientPMINo","6303190161596");

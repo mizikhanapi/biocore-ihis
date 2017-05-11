@@ -72,8 +72,9 @@ function findPatient(pmiNo,episodeDate) {
             $('#pAllergy').html(DataArry[8]);
             $('#pAge').html(DataArry[6]);
             $('#pRace').html(DataArry[7]);
-            fullPatientData = DataArry[9];
-
+            patientCategory = DataArry[9];
+            fullPatientData = DataArry[10];
+            console.log(patientCategory);
 
         }
     });
