@@ -54,13 +54,13 @@
                 String sql = "";
 
                 if ((!ic.equals(""))) {
-                    sql = "SELECT lis_order_master.pmi_no,lis_order_master.order_no,lis_order_master.hfc_cd,lis_order_master.episode_date,lis_order_master.encounter_date,lis_order_master.order_date,lis_order_master.order_by,lis_order_master.hfc_from,lis_order_master.hfc_to,lis_order_master.order_status,lis_order_master.diagnosis_cd,lis_order_master.created_by,lis_order_master.created_date,pms_patient_biodata.PATIENT_NAME,pms_patient_biodata.NEW_IC_NO,pms_patient_biodata.BIRTH_DATE,pms_patient_biodata.SEX_CODE,pms_patient_biodata.BLOOD_TYPE,lis_order_master.order_status FROM lis_order_master JOIN pms_patient_biodata ON (lis_order_master.pmi_no = pms_patient_biodata.PMI_NO) WHERE lis_order_master.order_status>='3' AND pms_patient_biodata.NEW_IC_NO = '" + ic + "' AND lis_order_master.hfc_cd = '" + hfc_cd + "'";
+                    sql = "SELECT lis_order_master.pmi_no,lis_order_master.order_no,lis_order_master.hfc_cd,lis_order_master.episode_date,lis_order_master.encounter_date,lis_order_master.order_date,lis_order_master.order_by,lis_order_master.hfc_from,lis_order_master.hfc_to,lis_order_master.order_status,lis_order_master.diagnosis_cd,lis_order_master.created_by,lis_order_master.created_date,pms_patient_biodata.PATIENT_NAME,pms_patient_biodata.NEW_IC_NO,pms_patient_biodata.BIRTH_DATE,pms_patient_biodata.SEX_CODE,pms_patient_biodata.BLOOD_TYPE,lis_order_master.order_status FROM lis_order_master JOIN pms_patient_biodata ON (lis_order_master.pmi_no = pms_patient_biodata.PMI_NO) WHERE lis_order_master.order_status>='3' AND pms_patient_biodata.NEW_IC_NO = '" + ic + "'";
                 }
                 if (!order_no.equals("")) {
-                    sql = "SELECT lis_order_master.pmi_no,lis_order_master.order_no,lis_order_master.hfc_cd,lis_order_master.episode_date,lis_order_master.encounter_date,lis_order_master.order_date,lis_order_master.order_by,lis_order_master.hfc_from,lis_order_master.hfc_to,lis_order_master.order_status,lis_order_master.diagnosis_cd,lis_order_master.created_by,lis_order_master.created_date,pms_patient_biodata.PATIENT_NAME,pms_patient_biodata.NEW_IC_NO,pms_patient_biodata.BIRTH_DATE,pms_patient_biodata.SEX_CODE,pms_patient_biodata.BLOOD_TYPE,lis_order_master.order_status FROM lis_order_master JOIN pms_patient_biodata ON (lis_order_master.pmi_no = pms_patient_biodata.PMI_NO) WHERE lis_order_master.order_status>='3' AND lis_order_master.hfc_cd = '" + hfc_cd + "' AND lis_order_master.order_no = '" + order_no + "'";
+                    sql = "SELECT lis_order_master.pmi_no,lis_order_master.order_no,lis_order_master.hfc_cd,lis_order_master.episode_date,lis_order_master.encounter_date,lis_order_master.order_date,lis_order_master.order_by,lis_order_master.hfc_from,lis_order_master.hfc_to,lis_order_master.order_status,lis_order_master.diagnosis_cd,lis_order_master.created_by,lis_order_master.created_date,pms_patient_biodata.PATIENT_NAME,pms_patient_biodata.NEW_IC_NO,pms_patient_biodata.BIRTH_DATE,pms_patient_biodata.SEX_CODE,pms_patient_biodata.BLOOD_TYPE,lis_order_master.order_status FROM lis_order_master JOIN pms_patient_biodata ON (lis_order_master.pmi_no = pms_patient_biodata.PMI_NO) WHERE lis_order_master.order_status>='3' AND lis_order_master.order_no = '" + order_no + "'";
                 }
                 if ((!DateFrom.equals("")) && (!DateTo.equals(""))) {
-                    sql = "SELECT lis_order_master.pmi_no,lis_order_master.order_no,lis_order_master.hfc_cd,lis_order_master.episode_date,lis_order_master.encounter_date,lis_order_master.order_date,lis_order_master.order_by,lis_order_master.hfc_from,lis_order_master.hfc_to,lis_order_master.order_status,lis_order_master.diagnosis_cd,lis_order_master.created_by,lis_order_master.created_date,pms_patient_biodata.PATIENT_NAME,pms_patient_biodata.NEW_IC_NO,pms_patient_biodata.BIRTH_DATE,pms_patient_biodata.SEX_CODE,pms_patient_biodata.BLOOD_TYPE,lis_order_master.order_status FROM lis_order_master JOIN pms_patient_biodata ON (lis_order_master.pmi_no = pms_patient_biodata.PMI_NO) WHERE lis_order_master.order_status>='3' AND lis_order_master.hfc_cd = '" + hfc_cd + "' AND lis_order_master.created_date BETWEEN '" + DateFrom + "' AND '" + DateTo + "'";
+                    sql = "SELECT lis_order_master.pmi_no,lis_order_master.order_no,lis_order_master.hfc_cd,lis_order_master.episode_date,lis_order_master.encounter_date,lis_order_master.order_date,lis_order_master.order_by,lis_order_master.hfc_from,lis_order_master.hfc_to,lis_order_master.order_status,lis_order_master.diagnosis_cd,lis_order_master.created_by,lis_order_master.created_date,pms_patient_biodata.PATIENT_NAME,pms_patient_biodata.NEW_IC_NO,pms_patient_biodata.BIRTH_DATE,pms_patient_biodata.SEX_CODE,pms_patient_biodata.BLOOD_TYPE,lis_order_master.order_status FROM lis_order_master JOIN pms_patient_biodata ON (lis_order_master.pmi_no = pms_patient_biodata.PMI_NO) WHERE lis_order_master.order_status>='3' AND lis_order_master.created_date BETWEEN '" + DateFrom + "' AND '" + DateTo + "'";
                 }
 
                 ArrayList<ArrayList<String>> dataPatientOrderList = conn.getData(sql);
@@ -190,7 +190,33 @@
                                                         success: function (returnEHR) {
 
                                                             alert("Success transfer to Billing");
-                                                            //$("#viewBill").load("BillTo.jsp");
+                                                            var dataBill = {
+                                                                ic: "<%=ic%>",
+                                                                order_no: "<%=order_no%>",
+                                                                DateFrom: "<%=DateFrom%>",
+                                                                DateTo: "<%=DateTo%>"
+                                                            };
+
+                                                            $.ajax({
+                                                                url: "BillTo.jsp",
+                                                                type: "post",
+                                                                data: dataBill,
+                                                                timeout: 3000,
+                                                                success: function (orderDetail) {
+                                                                    $("#viewBill").val(orderDetail.trim());
+                                                                    //$('#dataItem').html(returnDataItem);
+                                                                    //$('#dataItem').trigger('contentchanged');
+                                                                    //console.log(orderDetail.trim());
+                                                                    //console.log($("#viewBill").val());
+                                                                    $('#viewBill').html(orderDetail);
+                                                                    $('#viewBill').trigger('contentchanged');
+
+
+                                                                },
+                                                                error: function (err) {
+                                                                    alert("Error update!");
+                                                                }
+                                                            });
 
                                                         }
                                                     });
@@ -294,13 +320,42 @@
                 var patientName = arrayData1[4];
 
                 sentToBill(patientpmino, patientorderNo, patientOrderDate);
-
-                alert("Success transfer to Billing");
-
+                
             }
-            $("#viewBill").load("BillTo.jsp");
-        }
 
+        }
+        
+        function refresh()
+        {
+            var dataBill1 = {
+                    ic: "<%=ic%>",
+                    order_no: "<%=order_no%>",
+                    DateFrom: "<%=DateFrom%>",
+                    DateTo: "<%=DateTo%>"
+                };
+
+                $.ajax({
+                    url: "BillTo.jsp",
+                    type: "post",
+                    data: dataBill1,
+                    timeout: 3000,
+                    success: function (orderDetail) {
+                        $("#viewBill").val(orderDetail.trim());
+                        //$('#dataItem').html(returnDataItem);
+                        //$('#dataItem').trigger('contentchanged');
+                        //console.log(orderDetail.trim());
+                        //console.log($("#viewBill").val());
+                        $('#viewBill').html(orderDetail);
+                        $('#viewBill').trigger('contentchanged');
+                        
+
+                    },
+                    error: function (err) {
+                        alert("Error update!");
+                    }
+                });
+        }
+       
         function sentToBill(patientpmino, patientorderNo, patientOrderDate) {
             var data = {
                 pmiNo: patientpmino,
@@ -365,8 +420,8 @@
                                                 data: data1,
                                                 timeout: 3000,
                                                 success: function (returnEHR) {
-
-
+                                                
+                                                refresh();
 
 
                                                 }
@@ -384,8 +439,8 @@
                 }
             });
         }
-        //alert("Success transfer to Billing");
-        
+
+        alert("Success transfer to Billing");
     });
 
 

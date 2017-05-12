@@ -15,10 +15,12 @@
     <%
         Conn conn = new Conn();
         String orderNo = request.getParameter("orderNo");
+        session.setAttribute("orderNo", orderNo);
+
         String pmino = request.getParameter("pmino");
         NumberFormat formatter = new DecimalFormat("#0.00");
         NumberFormat formatterInt = new DecimalFormat("#0");
-        out.print(orderNo);
+        //out.print(orderNo);
         //String orderList = "SELECT item_cd,item_name,spe_source,volume,requestor_comments,filler_comments,specimen_status,Verification,collectionDate FROM lis_order_detail WHERE order_no = '" + orderNo + "'";
         String orderList = "SELECT LID.item_cd,LID.item_name,LID.spe_source,LID.spe_container,LID.volume,LID.special_inst,LID.status,LOD.`Verification`,LOD.created_date,LOD.comment,LOD.requestor_comments,LOD.pmi_no FROM lis_order_detail LOD, lis_item_detail LID WHERE LOD.item_cd = LID.item_cd AND LOD.order_no = '" + orderNo + "'";
         ArrayList<ArrayList<String>> dataOrderList;
@@ -68,13 +70,13 @@
                                 </div>
                                 <div class="modal-body">
                                     <div class="form-group">
-                                        <label class="col-md-4 control-label" for="textinput">Collection Date</label>
+                                        <label class="col-md-4 control-label" for="textinput">Item Code</label>
                                         <div class="col-md-8">
                                             <input type="text" class="form-control" id="tcode_<%=i%>" name="tcode" value="<%=dataOrderList.get(i).get(0)%>" readonly="">
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label class="col-md-4 control-label" for="textinput">Collection Date</label>
+                                        <label class="col-md-4 control-label" for="textinput">Item Name</label>
                                         <div class="col-md-8">
                                             <input type="text" class="form-control" id="tname_<%=i%>" name="tcode" value="<%=dataOrderList.get(i).get(1)%>" readonly="">
                                         </div>
@@ -98,7 +100,7 @@
                                     <div class="form-group">
                                         <label class="col-md-4 control-label" for="textinput">Remarks</label>
                                         <div class="col-md-8">
-                                            <textarea name="career[message]" class="form-control" id="fcomment_<%=i%>" placeholder="Write your details" ><%=dataOrderList.get(i).get(5)%></textarea>
+                                            <textarea name="career[message]" class="form-control" id="fcomment_<%=i%>" placeholder="Write your details" ><%=dataOrderList.get(i).get(9)%></textarea>
 
                                         </div>
                                     </div>
@@ -124,7 +126,7 @@
                                 var fcomment = $("#fcomment_<%=i%>").val();
                                 var order_no = "<%=orderNo%>";
                                 var collectionDate = $("#collection<%=i%>").val();
-                                alert(tcode+" "+fcomment+" "+order_no+" "+collectionDate);
+                                alert(tcode + " " + fcomment + " " + order_no + " " + collectionDate);
                                 $.ajax({
                                     url: "odUpdate.jsp",
                                     type: "post",
@@ -135,19 +137,23 @@
                                         fcomment: fcomment
                                     },
                                     timeout: 10000,
-                                    success: function (returnOrderDetail) {
-                                        var d = data.split("|");
-                                        if (d[1] == '1') {
-                                            alert("Collection date updated.");
-                                            $("#ManageOrderDetailsListTable").load("ManageOrderListDetails.jsp");
-                                            //window.location.reload();
-                                            $("#basicModal_<%=i%>").hide();
-                                            $(".modal-backdrop").hide();
-                                            alert("Data update successfully!");
-                                           
-                                        } else {
-                                            alert("Update failed!");
-                                        }
+                                    success: function () {
+                                        $("#basicModal_<%=i%>").hide();
+                                        $(".modal-backdrop").hide();
+                                        alert("test");
+                                        $.ajax({
+                                            url: "ManageOrderListDetails.jsp",
+                                            type: "post",
+                                            data: {orderNo:"<%=orderNo%>"},
+                                            timeout: 3000,
+                                            success: function (returnOrderDetailsTableHTML) {
+                                                $('#ManageOrderDetailsListTable').html(returnOrderDetailsTableHTML);
+                                                $('#ManageOrderDetailsListTable').trigger('contentchanged');
+                                                $('.nav-tabs a[href="#tab_default_2"]').tab('show');
+                                            }
+                                        });
+
+
                                     },
                                     error: function (err) {
                                         alert("Error update!");
@@ -195,7 +201,7 @@
                 <td><%=dataOrderList.get(i).get(10)%></td>
                 <td>
                     <%
-                    if (dataOrderList.get(i).get(7).equals("Waiting For Approval")||dataOrderList.get(i).get(7).equals("Already Verified")) {
+                        if (dataOrderList.get(i).get(7).equals("Waiting For Approval") || dataOrderList.get(i).get(7).equals("Already Verified")) {
                     %>
                     <input class="chk" type="checkbox" name="chkSpecimen" value="<%=dataOrderList.get(i).get(0)%>" id="checky" disabled="disabled"/>
                     <%
