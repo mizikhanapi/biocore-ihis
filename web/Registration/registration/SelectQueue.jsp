@@ -141,7 +141,7 @@ Author     : user
         <script>
             w3IncludeHTML();
             
-			$('#selectedDoctorQueue').hide();
+            $('#selectedDoctorQueue').hide();
             $('#selectedServiceQueue').hide();
 			
 			var $body = $('body');
@@ -384,6 +384,7 @@ Author     : user
 
                                     bootbox.alert("Patient has been register successfully");
                                     window.history.back();
+                                    PrintLable(selectedqueue);                                  
                                     
                                 } else if ($.trim(list) === "already") {
                                     bootbox.alert("Patient is already registered");
@@ -448,6 +449,35 @@ Author     : user
 //
 //            document.body.innerHTML = originalContents;
             });
+            
+            function PrintLable(queueName)
+            {
+                                    
+                    var data = {
+                        'queuename': queueName,
+                        'today': yyyyMMdd,
+                        'time':HHmmss
+                        
+                    };
+                    
+                    
+//                console.log(data);
+                
+                $.ajax({
+                            type: "POST",
+                            url: "../Controller/PrintQueueNo.jsp",
+                            data: data,
+                            timeout: 10000,
+                            success: function (data){
+                                console.log(data.trim());
+                            },
+                            error: function (err) {
+                                    console.log(err);
+                            }
+                        });
+            }
+            
+            
             function containsNumber(any) {
                 var alpha = /^[a-zA-Z-,]+(\s{0,1}[a-zA-Z-, ])*$/; //for sentence allow space
                 //var re = /^[A-Za-z]+$/; for one word only don't allow space

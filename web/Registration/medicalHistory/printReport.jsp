@@ -31,7 +31,7 @@
                         <div class="col-md-4 col-md-offset-4" style="margin-top: 2%;">
                             <div class="thumbnail">
                                 <a href="../mainMenu.jsp" title="Back to Dashboard"><i class="fa fa-arrow-left fa-lg pull-left" style="color: #ccc;"></i></a>
-                                <a href="../../Entrance/destroySession.jsp" title="Log Out"><i class="fa fa-power-off fa-lg pull-right" style="color: #ccc;"></i></a>
+                                <a href="../destroySession.jsp" title="Log Out"><i class="fa fa-power-off fa-lg pull-right" style="color: #ccc;"></i></a>
                                 <div class="profile-img-card" style="text-align: center;" >
                                     <i class="fa fa-user-md" aria-hidden="true" style="color: #666; font-size: 100px;"></i>
                                 </div>
@@ -76,14 +76,49 @@
            
             $("#printSignup").on("click", function(){
                 search();
-                if (!(pmi_no === "") && respond.trim() !== "NOT FOUND" )
-               window.open("../Controller/PrintMedicalReport.jsp?pmiNo= "+ pmi_no+" ") ;
                 //window.history.back();
                               
            });//on clcik submitSignup
            
-            function search()
-            {
+           function PrintReport(pmi_number)
+           {
+                            
+                var printData = {
+                       pmiNo:pmi_number
+                   };
+                   
+                if(pmi_number === "")
+                   {
+                       bootbox.alert("PMINO null");
+                   }
+                   else {
+//                       console.log("before ajax");
+                       $.ajax({
+                           type:"POST",
+                           url: "../Controller/PrintMedicalReport.jsp",
+                           data: printData,
+                           timeout: 10000,
+                           success: function (data){
+                               console.log("print sent " + data.trim());
+//                               console.log(data.trim());
+                               respond = data;
+                               if (data.trim() === "No Records")
+                                 bootbox.alert("You got no report");
+                           },
+                           error: function (err){
+                               console.log(err);
+                           }
+                       });
+                   }
+               
+//                if (!(pmi_no === "") && respond.trim() !== "NOT FOUND" )
+//                {
+//                     console.log("HELLO");
+////                 window.open("../Controller/PrintMedicalReport.jsp?pmiNo= "+ pmi_no+" ") ;
+//                }
+           };
+           
+            function search() {
                  var userIC;
                    userIC = $("#inputUserIC").val();
                    
@@ -94,8 +129,7 @@
                    {
                        bootbox.alert("please Fill in the user IC");
                    }
-                   else
-                   {
+                   else {
 //                       console.log("before ajax");
                        $.ajax({
                            type:"POST",
@@ -119,6 +153,7 @@
                                     
                                     pmi_no = splitData[0];                                    
 //                                    console.log(pmi_no +" " +user_name+" "+user_id);
+                                    PrintReport(pmi_no);
                                }
                            },
                            error: function (err){
@@ -126,8 +161,7 @@
                            }
                        });
                    }
-                
-            };
+             }
             
        
       </script>
