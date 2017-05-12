@@ -18,7 +18,7 @@
         String pmino = request.getParameter("pmino");
         NumberFormat formatter = new DecimalFormat("#0.00");
         NumberFormat formatterInt = new DecimalFormat("#0");
-
+        out.print(orderNo);
         //String orderList = "SELECT item_cd,item_name,spe_source,volume,requestor_comments,filler_comments,specimen_status,Verification,collectionDate FROM lis_order_detail WHERE order_no = '" + orderNo + "'";
         String orderList = "SELECT LID.item_cd,LID.item_name,LID.spe_source,LID.spe_container,LID.volume,LID.special_inst,LID.status,LOD.`Verification`,LOD.created_date,LOD.comment,LOD.requestor_comments,LOD.pmi_no FROM lis_order_detail LOD, lis_item_detail LID WHERE LOD.item_cd = LID.item_cd AND LOD.order_no = '" + orderNo + "'";
         ArrayList<ArrayList<String>> dataOrderList;
@@ -122,9 +122,9 @@
                             $("#btn_submit<%=i%>").click(function () {
                                 var tcode = $("#tcode_<%=i%>").val();
                                 var fcomment = $("#fcomment_<%=i%>").val();
-                                var order_no = $("#order_no3").val();
+                                var order_no = "<%=orderNo%>";
                                 var collectionDate = $("#collection<%=i%>").val();
-
+                                alert(tcode+" "+fcomment+" "+order_no+" "+collectionDate);
                                 $.ajax({
                                     url: "odUpdate.jsp",
                                     type: "post",
@@ -135,14 +135,16 @@
                                         fcomment: fcomment
                                     },
                                     timeout: 10000,
-                                    success: function (data) {
+                                    success: function (returnOrderDetail) {
                                         var d = data.split("|");
                                         if (d[1] == '1') {
-                                            alert("Collection date updated.")
-                                            //$("#ManageOrderDetailsListTable").load("ManageOrderDetails.jsp");
-                                            window.location.reload();
+                                            alert("Collection date updated.");
+                                            $("#ManageOrderDetailsListTable").load("ManageOrderListDetails.jsp");
+                                            //window.location.reload();
                                             $("#basicModal_<%=i%>").hide();
                                             $(".modal-backdrop").hide();
+                                            alert("Data update successfully!");
+                                           
                                         } else {
                                             alert("Update failed!");
                                         }
@@ -156,7 +158,7 @@
                             $("#btn_cancel<%=i%>").click(function () {
                                 var tcode = $("#tcode_<%=i%>").val();
                                 var fcomment = $("#fcomment_<%=i%>").val();
-                                var order_no = $("#order_no3").val();
+                                var order_no = "<%=orderNo%>";
                                 var collectionDate = $("#collection<%=i%>").val();
 
                                 $.ajax({
@@ -172,8 +174,8 @@
                                     success: function (data) {
                                         var d = data.split("|");
                                         if (d[1] == '1') {
-                                            alert("Collection date is cancel.")
-                                            $("#ManageOrderDetailsListTable").load("ManageOrderDetails.jsp");
+                                            alert("Collection date is cancel.");
+                                            $("#ManageOrderDetailsListTable").load("ManageOrderListDetails.jsp");
                                             //window.location.reload();
                                             $("#basicModal_<%=i%>").hide();
                                             $(".modal-backdrop").hide();

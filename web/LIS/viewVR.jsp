@@ -151,6 +151,7 @@
                                                         var verify = $("#verify1<%=i%>").val();
                                                         var idresult = $("#idresult<%=i%>").val();
 
+
                                                         $.ajax({
                                                             url: "tSentApproval.jsp",
                                                             type: "post",
@@ -172,74 +173,80 @@
                                                                         orderNo: orderNo,
                                                                         orderDate: orderDate
                                                                     };
+                                                                    if (verify == 'Reject')
+                                                                    {
+                                                                        alert("Success approve the result");
+                                                                    } else
+                                                                    {
+                                                                        $.ajax({
+                                                                            url: "patientOrderListDetailDispenseEHRCentralGetMSH.jsp",
+                                                                            type: "post",
+                                                                            timeout: 3000,
+                                                                            data: data1,
+                                                                            success: function (returnDataMSHFull) {
 
-                                                                    $.ajax({
-                                                                        url: "patientOrderListDetailDispenseEHRCentralGetMSH.jsp",
-                                                                        type: "post",
-                                                                        timeout: 3000,
-                                                                        data: data1,
-                                                                        success: function (returnDataMSHFull) {
-
-                                                                            $.ajax({
-                                                                                url: "patientOrderListDetailDispenseEHRCentralGetPDIFinal.jsp",
-                                                                                type: "post",
-                                                                                timeout: 3000,
-                                                                                data: data1,
-                                                                                success: function (returnDataPDIFull) {
-
-
-                                                                                    $.ajax({
-                                                                                        url: "patientOrderListDetailDispenseEHRCentralGetORC.jsp",
-                                                                                        type: "post",
-                                                                                        data: data1,
-                                                                                        timeout: 3000,
-                                                                                        success: function (returnDataORCFull) {
-
-                                                                                            $.ajax({
-                                                                                                url: "patientOrderResult.jsp",
-                                                                                                type: "post",
-                                                                                                data: data1,
-                                                                                                timeout: 3000,
-                                                                                                success: function (returnDataResult) {
-
-                                                                                                    $("#dataMSHPDIORC").val(returnDataMSHFull.trim() + "\n" + returnDataPDIFull.trim() + "\n" + returnDataORCFull.trim() + "\n" + returnDataResult.trim());
-                                                                                                    //$('#dataItem').html(returnDataItem);
-                                                                                                    //$('#dataItem').trigger('contentchanged');
-                                                                                                    console.log(returnDataResult.trim());
-                                                                                                    console.log(returnDataMSHFull.trim());
-                                                                                                    console.log(returnDataPDIFull.trim());
-                                                                                                    console.log(returnDataORCFull.trim());
-                                                                                                    console.log($("#dataMSHPDIORC").val());
-
-                                                                                                    var ehr_central = $("#dataMSHPDIORC").val();
-                                                                                                    var data2 = {
-                                                                                                        pmiNo: pmiNo,
-                                                                                                        ehr_central: ehr_central
-                                                                                                    };
-                                                                                                    $.ajax({
-                                                                                                        url: "sentResultToEHRcentral.jsp",
-                                                                                                        type: "post",
-                                                                                                        data: data2,
-                                                                                                        timeout: 3000,
-                                                                                                        success: function (returnEHR) {
-
-                                                                                                            alert("Success Sent the result");
+                                                                                $.ajax({
+                                                                                    url: "patientOrderListDetailDispenseEHRCentralGetPDIFinal.jsp",
+                                                                                    type: "post",
+                                                                                    timeout: 3000,
+                                                                                    data: data1,
+                                                                                    success: function (returnDataPDIFull) {
 
 
-                                                                                                        }
-                                                                                                    });
+                                                                                        $.ajax({
+                                                                                            url: "patientOrderListDetailDispenseEHRCentralGetORC.jsp",
+                                                                                            type: "post",
+                                                                                            data: data1,
+                                                                                            timeout: 3000,
+                                                                                            success: function (returnDataORCFull) {
 
-                                                                                                }
-                                                                                            });
+                                                                                                $.ajax({
+                                                                                                    url: "patientOrderResult.jsp",
+                                                                                                    type: "post",
+                                                                                                    data: data1,
+                                                                                                    timeout: 3000,
+                                                                                                    success: function (returnDataResult) {
 
-                                                                                        }
-                                                                                    });
+                                                                                                        $("#dataMSHPDIORC").val(returnDataMSHFull.trim() + "\n" + returnDataPDIFull.trim() + "\n" + returnDataORCFull.trim() + "\n" + returnDataResult.trim());
+                                                                                                        //$('#dataItem').html(returnDataItem);
+                                                                                                        //$('#dataItem').trigger('contentchanged');
+                                                                                                        console.log(returnDataResult.trim());
+                                                                                                        console.log(returnDataMSHFull.trim());
+                                                                                                        console.log(returnDataPDIFull.trim());
+                                                                                                        console.log(returnDataORCFull.trim());
+                                                                                                        console.log($("#dataMSHPDIORC").val());
 
-                                                                                }
-                                                                            });
+                                                                                                        var ehr_central = $("#dataMSHPDIORC").val();
+                                                                                                        var data2 = {
+                                                                                                            pmiNo: pmiNo,
+                                                                                                            ehr_central: ehr_central
+                                                                                                        };
+                                                                                                        $.ajax({
+                                                                                                            url: "sentResultToEHRcentral.jsp",
+                                                                                                            type: "post",
+                                                                                                            data: data2,
+                                                                                                            timeout: 3000,
+                                                                                                            success: function (returnEHR) {
 
-                                                                        }
-                                                                    });
+                                                                                                                alert("Success approve the result");
+
+
+                                                                                                            }
+                                                                                                        });
+
+                                                                                                    }
+                                                                                                });
+
+                                                                                            }
+                                                                                        });
+
+                                                                                    }
+                                                                                });
+
+                                                                            }
+                                                                        });
+                                                                    }
+
                                                                 } else {
                                                                     alert("Update failed!");
                                                                 }
@@ -267,6 +274,6 @@
 
         </tbody>
     </table>
-    <textarea rows="4" cols="50" id="dataMSHPDIORC" style="display: none">
+            <textarea rows="4" cols="50" id="dataMSHPDIORC" style="display: none">
     </textarea>
 </form>

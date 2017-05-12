@@ -203,7 +203,7 @@
                                 var iSize = 0;
 
                                 iSize = ($("#inputFileToLoad<%=i%>")[0].files[0].size / 1024);
-
+                                
                                 var sizeSmall = false;
 
                                 if (iSize / 1024 > 1) {
@@ -213,7 +213,7 @@
 
                                     iSize = (Math.round(iSize * 100) / 100);
 
-                                    sizeSmall = iSize <= 45;
+                                    sizeSmall = iSize <= 20000;
 
                                 }
                                 if (sizeSmall) {

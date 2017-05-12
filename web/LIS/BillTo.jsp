@@ -12,17 +12,24 @@
 <%
     Conn conn = new Conn();
     String ic = request.getParameter("ic");
+    session.setAttribute("order_no", ic);
+
     String order_no = request.getParameter("order_no");
+    session.setAttribute("order_no", order_no);
+
     String DateFrom = request.getParameter("DateFrom");
+    session.setAttribute("DateFrom", DateFrom);
+
     String DateTo = request.getParameter("DateTo");
-    //out.print(DateFrom+" "+DateTo+" "+order_no+" "+ic);
+    session.setAttribute("DateTo", DateTo);
+    //out.print(DateFrom + " " + DateTo + " " + order_no + " " + ic);
     //String textSearch = "950405025185";
     //String idcat = request.getParameter("idcat");
     String current_user = (String) session.getAttribute("USER_ID");
     String hfc_cd = session.getAttribute("HEALTH_FACILITY_CODE").toString();
     String last_nine = current_user.substring(current_user.length() - 1);
 %>
-<div class="table-guling">
+<div class="table-guling" id="updateBill">
     <table  id="BillTo"  class="table table-filter table-striped table-bordered table-hover" style="background: #fff; border: 1px solid #ccc; width: 100%">
         <thead>
         <th style="text-align: center; width: 8%;">Order No.</th>
@@ -183,7 +190,7 @@
                                                         success: function (returnEHR) {
 
                                                             alert("Success transfer to Billing");
-
+                                                            //$("#viewBill").load("BillTo.jsp");
 
                                                         }
                                                     });
@@ -291,6 +298,7 @@
                 alert("Success transfer to Billing");
 
             }
+            $("#viewBill").load("BillTo.jsp");
         }
 
         function sentToBill(patientpmino, patientorderNo, patientOrderDate) {
@@ -358,7 +366,7 @@
                                                 timeout: 3000,
                                                 success: function (returnEHR) {
 
-                                                    
+
 
 
                                                 }
@@ -377,6 +385,7 @@
             });
         }
         //alert("Success transfer to Billing");
+        
     });
 
 

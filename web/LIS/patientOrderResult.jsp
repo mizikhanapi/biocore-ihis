@@ -24,7 +24,7 @@
     
     String dateBill = dateFormat.format(date);
     String userIDBill = "Raziff";
-    String oderItem = "SELECT LAR.`result`,LAR.remark,LAR.test_date,LAR.`testTime`,LAR.test_name,LAR.`performBy`,LAR.`Verification` FROM lis_assign_result LAR WHERE LAR.pmi_no = '"+pmiNo+"' AND LAR.order_no = '"+orderNo+"'";
+    String oderItem = "SELECT LAR.`result`,LAR.remark,LAR.test_date,LAR.`test_time`,LAR.test_name,LAR.`performBy`,LAR.`Verification` FROM lis_result LAR WHERE LAR.pmi_no = '"+pmiNo+"' AND LAR.order_no = '"+orderNo+"'";
     ArrayList<ArrayList<String>> dataLISOrderList = conn.getData(oderItem);
 
     int size = dataLISOrderList.size();

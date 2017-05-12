@@ -48,33 +48,35 @@
                                             </li>
 
                                         </ul>
+                                        <h3>
+                                            <%  String item_cd = request.getParameter("item_cd");
+                                                session.setAttribute("item_cd", item_cd);
 
-                                        <%  String item_cd = request.getParameter("item_cd");
-                                            session.setAttribute("item_cd", item_cd);
+                                                String pmi1 = request.getParameter("pmi");
+                                                session.setAttribute("pmi1", pmi1);
 
-                                            String pmi1 = request.getParameter("pmi");
-                                            session.setAttribute("pmi1", pmi1);
+                                                String specimen_no1 = request.getParameter("specimen_no");
+                                                session.setAttribute("specimen_no1", specimen_no1);
 
-                                            String specimen_no1 = request.getParameter("specimen_no");
-                                            session.setAttribute("specimen_no1", specimen_no1);
+                                                //out.print(item_cd + " " + pmi1 + " " + specimen_no1);
+                                                Conn conn = new Conn();
 
-                                            //out.print(item_cd + " " + pmi1 + " " + specimen_no1);
-                                            Conn conn = new Conn();
+                                                String query4 = "SELECT ls.order_no, lod.item_name FROM lis_order_detail lod,lis_specimen ls WHERE lod.item_cd = ls.item_cd AND ls.item_cd='" + item_cd + "' AND ls.specimen_no = '" + specimen_no1 + "'";
+                                                ArrayList<ArrayList<String>> q4 = conn.getData(query4);
 
-                                            String query4 = "SELECT ls.order_no, lod.item_name FROM lis_order_detail lod,lis_specimen ls WHERE lod.item_cd = ls.item_cd AND ls.item_cd='" + item_cd + "' AND ls.specimen_no = '" + specimen_no1 + "'";
-                                            ArrayList<ArrayList<String>> q4 = conn.getData(query4);
+                                                out.println("Test Name: " + q4.get(0).get(1));
 
-                                            out.println("Test Name: " + q4.get(0).get(1));
-
-                                            session.setAttribute("order_no", q4.get(0).get(0));
-                                            session.setAttribute("item_name", q4.get(0).get(1));
-                                            out.println("<span class='pull-right'>Item Code:" + item_cd + "</span>");
-                                        %>
-                                        <br>
+                                                session.setAttribute("order_no", q4.get(0).get(0));
+                                                session.setAttribute("item_name", q4.get(0).get(1));
+                                                out.println("<span class='pull-right'>Item Code:" + item_cd + "</span>");
+                                            %>
+                                        </h3>
+                                        
                                         <span class="pull-right">
                                             <button id="MLM_btnAddNew" class="btn btn-success" data-status="pagado" data-toggle="modal" data-id="1" data-target="#TestCategory" style=" padding-right: 10px;padding-left: 10px;color: white;"><a data-toggle="tooltip" data-placement="top" title="Add Items" id="test"><i class=" fa fa-plus" style=" padding-right: 10px;padding-left: 10px;color: white;"></i></a>ADD Test Result</button>
                                         </span>
-
+                                        <br>
+                                        <hr>
                                         <div class="modal fade" id="TestCategory" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
                                             <div class="modal-dialog" style="width: 950px !important; ">
                                                 <div class="modal-content">
@@ -270,7 +272,7 @@
 
             iSize = (Math.round(iSize * 100) / 100);
 
-            sizeSmall = iSize <= 45;
+            sizeSmall = iSize <= 20000;
 
         }
         if (sizeSmall) {

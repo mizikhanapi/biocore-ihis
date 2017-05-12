@@ -24,7 +24,7 @@
   
     RMIConnector rmic = new RMIConnector();
     Conn conn = new Conn();
-        
+    
     String sqlInsert = "INSERT INTO lis_result(item_cd,pmi_no,specimen_no,result,remark,test_name,test_date,test_time,performBy,verification,order_no,picture) VALUES ('" + item_cd + "','" + pmi + "','" + specimen_no + "','" + Result + "','" + Remark + "','" + testName + "','"+testDate+"','"+testTime+"','"+performBy+"','"+verification+"','"+order_no+"','"+gambar+"')";
     rmic.setQuerySQL(conn.HOST, conn.PORT, sqlInsert);
     
