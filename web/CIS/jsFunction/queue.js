@@ -170,6 +170,60 @@ function getHFCDetail(orc){
    // console.log(orcArry);
    return [hfcOrderDetail,hfcProviderDetail];
 }
+
+function getROSDetail(id,hfc_cd,objROS){
+
+                $.ajax({
+                method:'POST',
+                url:'search/searchRISProcedure_EHR.jsp',
+                data:{
+                    id:id,
+                    hfc_cd:hfc_cd
+                },
+                timeout:5000,
+                success:function(result){
+                    var detailROS = result.split("|");
+                        objROS.bodySystemROS = detailROS[4];
+                        objROS. bodySystemROSCode = detailROS[2];
+                        objROS.locationROS=detailROS[5];
+                        objROS.modalityROS=detailROS[3];
+                        objROS.modalityROSCode=detailROS[2];
+                     
+                    displayROS(objROS.codeROS, objROS.ROS, objROS.commentROS, objROS.modalityROS,
+                    objROS.modalityROScode, objROS.bodySystemROS, objROS.bodySystemROS, objROS.bodySystemROSCode,
+                    objROS.hfcROS, objROS.hfcROScode, objROS.locationROS, objROS.appointmentROS, objROS.patientConditionROS);
+                }
+            });
+}
+
+function getLIODetail(id,objLIO){
+    $.ajax({
+        method: 'post',
+        url: 'search/searchLOS_EHR.jsp',
+        data: {
+            name:id
+        },
+        timeout: 5000,
+        success: function (result) {
+
+
+            var LIODetail = result.trim().split("|");
+            
+            objLIO.catLOS= LIODetail[2]
+             objLIO.containerLOS= LIODetail[4]
+             objLIO.sourceLOS= LIODetail[3],
+             objLIO.spclLOS= LIODetail[6].trim(),
+             objLIO.volumeLOS= LIODetail[5],
+     
+
+            console.log(objLIO);
+            displayLOS(objLIO.searchLOS, objLIO.codeLOS, objLIO.catLOS, objLIO.sourceLOS, objLIO.containerLOS, objLIO.volumeLOS, objLIO.spclLOS, objLIO.commentLOS, objLIO.appointmentLOS, objLIO.priorityLOS, objLIO.hfcLOS, objLIO.hfcIdLOS)
+        },
+        error: function (err) {
+            console.log(err);
+        }
+    });
+}
 function convertEHR(ehr) {
     var EHRArry = ehr.split("<cr>");
     var PDI;
@@ -585,56 +639,57 @@ function convertEHR(ehr) {
             var ROSData1 = ROS.split("|");
             var imgInv = ROSData1[2].split("^");
             var hfcAry = ROSData1[4].split("^");
-            var prioyAry = ROSData1[6].split("^");
+            var patientConditionAry = ROSData1[6].split("^");
+             var priorityAry = ROSData1[5].split("^");
+            
+            ORC = EHRArry[ROSORC];
+            console.log(ORC);
+            var hfcDetail = getHFCDetail(ORC);
             
 //            var ROSData = ROSData1[1].split("^");
 //            var ROSData = convertNoteToData(ROS);
          console.log(ROSData1);
+         
+            var objROS = {
+                Acode: "ROS",
+                ROS: imgInv[1],
+                appointmentROS: ROSData1[3],
+                //bodySystemROS:detailROS[4],
+                //bodySystemROSCode:detailROS[2],
+                codeROS: imgInv[0],
+                commentROS: ROSData1[7],
+                hfcIdROS: hfcAry[0],
+                hfcROS: hfcAry[1],
+                priorityROS:priorityAry[2],
+                priorityROScd:priorityAry[1],
+                //locationROS:detailROS[5],
+                //modalityROS:detailROS[3],
+                //modalityROSCode:detailROS[2],
+                patientConditionROS:patientConditionAry[2],
+                patientConditionROScd:patientConditionAry[1],
+                hfcOrderDetail: hfcDetail[0],
+                hfcProviderDetail: hfcDetail[1]
+            };
+            
+            $.when( getROSDetail(imgInv[1],hfcAry[0],objROS)).done(function(){
+                _data.push(objROS);          
 
-            $.ajax({
-                method:'POST',
-                url:'search/searchRISProcedure_EHR.jsp',
-                data:{
-                    id:imgInv[1],
-                    hfc_cd:hfcAry[0]
-                },
-                timeout:5000,
-                success:function(result){
-                        ORC = EHRArry[ROSORC];
-                        console.log(ORC);
-                        var hfcDetail = getHFCDetail(ORC);
-                    var detailROS = result.split("|");
-                    //console.log(detailROS);
-                    var objROS = {
-                        Acode: "ROS",
-                        ROS: imgInv[1],
-                        appointmentROS:ROSData1[3],
-                        bodySystemROS:detailROS[4],
-                        bodySystemROSCode:detailROS[2],
-                        codeROS: imgInv[0],
-                        commentROS: ROSData1[7],
-                        hfcIdROS:hfcAry[0],
-                        hfcROS: hfcAry[1],
-                        locationROS:detailROS[5],
-                        modalityROS:detailROS[3],
-                        modalityROSCode:detailROS[2],
-                        priorityROS:prioyAry[2],
-                        hfcOrderDetail: hfcDetail[0],
-                        hfcProviderDetail: hfcDetail[1]
-                    };
-                   // getObjectORCHFCDetail(hfc_cd, objROS.hfcIdROS,objROS);
-                     _data.push(objROS);
-                    displayROS(objROS.codeROS, objROS.ROS, objROS.commentROS, objROS.modalityROS, 
-                    objROS.modalityROScode, objROS.bodySystemROS, objROS.bodySystemROS, objROS.bodySystemROSCode,
-                    objROS.hfcROS, objROS.hfcROScode,objROS.locationROS,objROS.appointmentROS,objROS.priorityROS);
-                }
-               
             });
 
+          //  getROSDetail(imgInv[0],hfcAry[0],objROS);
+            // getObjectORCHFCDetail(hfc_cd, objROS.hfcIdROS,objROS);
+           
+//            displayROS(objROS.codeROS, objROS.ROS, objROS.commentROS, objROS.modalityROS,
+//                    objROS.modalityROScode, objROS.bodySystemROS, objROS.bodySystemROS, objROS.bodySystemROSCode,
+//                    objROS.hfcROS, objROS.hfcROScode, objROS.locationROS, objROS.appointmentROS, objROS.priorityROS);
+//           _data.push(objROS);
+
+//console.log(objROS);
 
         } else if (header === "LIO") {
             LIO = EHRArry[i];
-         
+            ORC = EHRArry[LOSORC];
+           var hfcDetail = getHFCDetail(ORC);
               
             var LIOData = LIO.split("|");
             console.log(LIOData);
@@ -642,47 +697,30 @@ function convertEHR(ehr) {
             var labAry = LIOData[2].split("^");
             var prioAry = LIOData[5].split("^");
             var hfcAry = LIOData[6].split("^");
-
-          $.ajax({
-              method:'post',
-              url:'search/searchLOS_EHR.jsp',
-              data:{
-                  name:labAry[1]
-              },
-              timeout:5000,
-              success:function(result){
-                     
-                ORC = EHRArry[LOSORC];
-                var hfcDetail = getHFCDetail(ORC);
-                  var LIODetail = result.trim().split("|");
-                  //console.log(LIODetail);
-                    var objLIO = {
+            
+           var objLIO = {
                         Acode: "LOS",
                         appointmentLOS: LIOData[3],
-                        catLOS: LIODetail[2],
+                       // catLOS: LIODetail[2],
                         codeLOS: labAry[0],
                         commentLOS: LIOData[7],
-                        containerLOS: LIODetail[4],
+                        //containerLOS: LIODetail[4],
                         hfcIdLOS: hfcAry[0],
                         hfcLOS: hfcAry[1],
                         priorityLOS: prioAry[1],
                         searchLOS: labAry[1],
-                        sourceLOS: LIODetail[3],
-                        spclLOS: LIODetail[6].trim(),
-                        volumeLOS: LIODetail[5],
+                        //sourceLOS: LIODetail[3],
+                        //spclLOS: LIODetail[6].trim(),
+                       // volumeLOS: LIODetail[5],
                         hfcOrderDetail:hfcDetail[0],
                         hfcProviderDetail:hfcDetail[1]
                     };
-                    // getObjectORCHFCDetail(hfc_cd, objLIO.hfcIdLOS,objLIO);
-                    _data.push(objLIO);
-                    console.log(objLIO);
-                    displayLOS(objLIO.searchLOS, objLIO.codeLOS, objLIO.catLOS, objLIO.sourceLOS, objLIO.containerLOS, objLIO.volumeLOS, objLIO.spclLOS, objLIO.commentLOS, objLIO.appointmentLOS, objLIO.priorityLOS,objLIO.hfcLOS,objLIO.hfcIdLOS)
-              },
-              error:function(err){
-                  console.log(err);
-              }
-          });
+            
+$.when(getLIODetail(labAry[1],objLIO)).done(function(){
+     _data.push(objLIO);
+})
  
+
 
         }else if (header === "DTO") {
             DTO = EHRArry[i];
@@ -703,8 +741,7 @@ function convertEHR(ehr) {
 
 // 
             var objDTO = {
-                Acode: 'DTO',
-
+             Acode: 'DTO',
             drugName:drugArry[0],
             drugCode:drugArry[1],
             drugForm:drugFormArry[0],
@@ -722,8 +759,8 @@ function convertEHR(ehr) {
             remark:DTOData1[13],
             comment:DTOData1[15],
             drugQuantity:DTOData1[11],
-                hfcOrderDetail: hfcDetail[0],
-                hfcProviderDetail: hfcDetail[1]
+            hfcOrderDetail: hfcDetail[0],
+            hfcProviderDetail: hfcDetail[1]
             };
            //getObjectORCHFCDetail(hfc_cd, hfc_cd,objDTO);
             _data.push(objDTO);

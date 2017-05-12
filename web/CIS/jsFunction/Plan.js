@@ -565,7 +565,7 @@ $('#tCIS_DTODrugName_update').val(updateObj.drugName);
     $('#acceptROS').click(function (e) {
         e.preventDefault();
         var ROS = $('#ROS').val();
-        var codeROS = $('#codeROS').val();
+        var codeROS = $('#codeROS_2').val();
         var commentROS = $('#commentROS').val();
         var modalityROS = $('#modalityROS').val();
         var modalityROScode = $('#modalityROSCode').val();
@@ -582,10 +582,11 @@ $('#tCIS_DTODrugName_update').val(updateObj.drugName);
         
         console.log(codeROS);
 
-        var $items = $('#ROS, #codeROS, #commentROS,#modalityROS,#modalityROSCode,#bodySystemROS,#bodySystemROSCode,#hfcROS,#hfcIdROS,#locationROS,#appointmentROS,#patientConditionROSCd,#priorityROScd,#hfcOrderDetail,#hfcProviderDetail');
+        var $items = $('#ROS, #commentROS,#modalityROS,#modalityROSCode,#bodySystemROS,#bodySystemROSCode,#hfcROS,#hfcIdROS,#locationROS,#appointmentROS,#patientConditionROSCd,#priorityROScd,#hfcOrderDetail,#hfcProviderDetail');
         var obj1 = {Acode: 'ROS',
                           patientConditionROS:   patientCondition,
-                          priorityROS: priority
+                          priorityROS: priority,
+                          codeROS:codeROS
                       };
       //getObjectORCHFCDetail(hfc_cd, hfcROScode,obj1);
         $items.each(function () {

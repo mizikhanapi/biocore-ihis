@@ -47,7 +47,7 @@
                         <div class="col-md-12">
                             <!-- content goes here -->
                             <div class="form-group">
-                                <input type="hidden" name="POS" id="codeROS" class="form-control input-lg"  tabindex="4">
+                                <input type="text" name="POS" id="codeROS_2" class="form-control input-lg"  tabindex="4">
                             </div>
                             <div class="form-group">
                                 <label class="col-md-2 control-label" for="textinput">Search Radiology Procedure</label>

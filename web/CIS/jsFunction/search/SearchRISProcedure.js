@@ -2,11 +2,11 @@
 function searchROSCD(){
   
         var id = $.trim($('#ROS').val());
-      
+        var hfcIdROS = $.trim($('#hfcIdROS').val()); 
         $.ajax({
         type:'post',
         url:'search/searchRISProcedure_cd.jsp',
-        data: {'id': id,
+        data: {'id': id,'hfc_cd':hfcIdROS
  
     },                
         success: function(reply_data){
@@ -19,7 +19,7 @@ function searchROSCD(){
             var bodySystemName = array_data[4];
             //console.log(urosCode);
            
-            $('#codeROS').val(urosCode.trim());
+            $('#codeROS_2').val(urosCode.trim());
             
             $('#modalityROS').val(modalityName.trim());
             $('#bodySystemROS').val(bodySystemName.trim());
