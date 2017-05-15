@@ -4,7 +4,23 @@
     Author     : ahmed
 --%>
 
+<%@page import="dBConn.Conn"%>
+<%@page import="java.util.ArrayList"%>
 <!-- Modal -->
+<%
+    Conn conn = new Conn();
+   String hfc = session.getAttribute("HEALTH_FACILITY_CODE").toString();
+
+    String idTYpe2 = "select * from adm_lookup_detail where master_reference_code = '0012' AND hfc_cd = '"+hfc+"' ";
+    ArrayList<ArrayList<String>> dataIdType2;
+    ArrayList<ArrayList<String>> data2 = new ArrayList();
+    //String hfc = session.getAttribute("HEALTH_FACILITY_CODE").toString();
+    //Conn conn = new Conn();
+    dataIdType2 = conn.getData(idTYpe2);
+    //out.print(dataIdType);
+    String dataSystemStatus2 = session.getAttribute("SYSTEM_PARAMETER").toString();
+    //out.print(dataSystemStatus2);
+%>
 <div class="modal fade" id="searchModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
     <div class="modal-dialog" style="width: 65%">
         <div class="modal-content">
@@ -19,13 +35,22 @@
                         <div class="form-group">
                             <label class="col-md-4 control-label" for="selectbasic">ID Type</label>
                             <div class="col-md-4">
-                                <select id="idTypeApp" name="idTypeApp" class="form-control" required="">
+                                <select id="idType" name="idType" class="form-control" required="">
                                     <option selected="" disabled="" value="-"> Please select ID type</option>
-                                    <option value="pmino">PMI No</option>
-                                    <option value="icnew">IC No (NEW)</option>
-                                    <option value="icold">IC No (OLD)</option>
-                                    <!--<option value="matricno">Matric No</option>
-                                    <option value="staffno">Staff No</option>-->
+                                    <!--                <option value="pmino">PMI No</option>
+                                                    <option value="icnew">IC No (NEW)</option>
+                                                    <option value="icold">IC No (OLD)</option>
+                                                    <option value="matricno">Matric No</option>
+                                                    <option value="staffno">Staff No</option>-->
+                                    <%  if (dataSystemStatus2.equals("0")) {
+
+                                        } else if (dataSystemStatus2.equals("1")) {
+                                            data2 = dataIdType2;
+                                        }
+                                        for (int i = 0; i < data2.size(); i++) {%>
+                                    <option value="<%=data2.get(i).get(1)%>"><%=data2.get(i).get(2)%></option>
+                                    <%  }
+                                    %>
                                 </select>
                             </div>
                         </div>
@@ -56,7 +81,7 @@
 
                 </div>
                 <br/>
-                
+
                 <div  id="episodeDetail1">
 
                 </div>
@@ -72,14 +97,14 @@
                 function searchApp() {
 
                     var inputApp = $('#idInputApp').val();
-                    var typeApp = $('#idTypeApp').val();
-                    typeApp
+                    var typeApp = $('#idType').find(":selected").val();
                     if (inputApp === "") {
                         alert("Please Make Sure The Fields Is Filled!")
                     }
                     if (typeApp === "") {
                         alert("Please Make Sure The Fields Is Filled!")
                     } else {
+                        console.log(inputApp+" "+typeApp);
                         $.ajax({
                             type: "POST",
                             data: {idType: typeApp, idInput: inputApp},
