@@ -13,6 +13,7 @@ var finalDiagnosis = "";
 var hfcDetailOrder = ["a"];
 var orderDetail1 = "";
 var providerDetail1 = "";
+var dischargeModalState = 0;
 
 
 function goToHome() {
@@ -47,13 +48,25 @@ $(document).ready(function (e) {
     var vtsCounter = 0;
     //------------------------------------------------------------ DISCHARGE BUTTON
     $('#dischargeBtn').click(function () {
-        
-        //$('#mCIS_Discharge_Summary').modal('toggle');
         var pmiNo = $('#pmiNumber').text();
-      // $('#divCIS_Discharge_Summary').html($('#tblCIS_Consultation_Table').html());
-      getSettingConsult(doctor_id);
-       reloadStat = 0;
+       $('#mCIS_Discharge_Summary').modal("show");
+     $('#divCIS_Discharge_Summary').html($('#tblCIS_Consultation_Table').html());
+     $('#tblCIS_Consultation_Table').html("");
+     
+    dischargeModalState  =1;
+     
+
+
     });
+    $('#mCIS_Discharge_Summary').on('hidden.bs.modal', function () {
+               
+           $('#tblCIS_Consultation_Table').html($('#divCIS_Discharge_Summary').html());
+       });
+       
+       $('#btnCIS_Discharge_Summary').click(function(){
+              getSettingConsult(doctor_id);
+               reloadStat = 0;
+       })
 
     //------------------------------------------------------------ ON HOLD BUTTON
     $('#holdBtn').click(function () {
