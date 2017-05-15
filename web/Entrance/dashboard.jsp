@@ -3,6 +3,7 @@
 <%@page import="java.util.Arrays"%>
 <%@page import="java.util.ArrayList"%>
 
+
 <%@include file="validateSession.jsp" %>
 <%
     //------------------- Checking whether super user or not ------------------------------

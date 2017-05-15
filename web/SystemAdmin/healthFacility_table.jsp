@@ -144,7 +144,7 @@
                             <div class="form-group" >
                                 <label class="col-md-2 control-label" for="textinput">Health Facility Name*</label>
                                 <div class="col-md-8">
-                                    <input type="text"  class="form-control" id="HFT_hfcName" placeholder="Insert health facility name" maxlength="30"> 
+                                    <input type="text"  class="form-control" id="HFT_hfcName" placeholder="Insert health facility name" maxlength="100"> 
                                 </div>
                             </div>
                             
