@@ -177,7 +177,7 @@
                                         <hr class="pemisah" />
                                         <h4 id="mainConsultBar">Consultation Notes</h4>
 
-                                        <table class="table table-filter " style="background: #fff; border: 1px solid #ccc; margin-left: -31px; margin-right: -31px; width: auto; max-width: inherit; ">
+                                        <table class="table table-filter " style="background: #fff; border: 1px solid #ccc; margin-left: -31px; margin-right: -31px; width: auto; max-width: inherit; " id="tblCIS_Consultation_Table" >
 
                                             <tbody id="CCNNotes"  class="S ConsultationNotes"></tbody>
                                             <tbody id="HPINotes"   class="S ConsultationNotes"> </tbody>
@@ -253,6 +253,7 @@
         <%@ include file="CIS03/CIS0103.jsp" %> 
 
         <%@ include file="CIS04/CIS0104.jsp" %> 
+        <%@ include file="discharge/dischargeSummaryModal.jsp" %> 
 
 
         <!--<div w3-include-html=""></div>
