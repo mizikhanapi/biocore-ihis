@@ -421,7 +421,7 @@ $(document).ready(function (e) {
        console.log(dgsProblem);
         for (var key in data) {
             if (data[key].Acode === "CCN") {
-                processNotes += "CCN|" + getDate() + "|" + data[key].ccnCode + "^" + data[key].problem + "^^" + data[key].Mild + "^" + data[key].duration +" "+ data[key].sdur + "^^^^" + data[key].Site + "^^" + data[key].Laterality + "^" + data[key].Comment + "^^^" + getDate() + "^" + hfc_cd + "^"+ doctor_id +"^" + doctor_name + "^^^|<cr>\n";
+                processNotes += "CCN|" + episodeDate + "|" + data[key].ccnCode + "^" + data[key].problem + "^^" + data[key].Mild + "^" + data[key].duration +" "+ data[key].sdur + "^^^^" + data[key].Site + "^^" + data[key].Laterality + "^" + data[key].Comment + "^^^" + getDate() + "^" + hfc_cd + "^"+ doctor_id +"^" + doctor_name + "^^^|<cr>\n";
                 ccn_cd.push(data[key].ccnCode+"|"+data[key].problem);
                 
             } else if (data[key].Acode === "HPI") {

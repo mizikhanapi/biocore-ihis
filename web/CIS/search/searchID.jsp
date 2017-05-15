@@ -4,6 +4,7 @@
     Author     : ahmed
 --%>
 
+<%@page import="Config.Config"%>
 <%@page import="java.util.Date"%>
 <%@page import="java.text.DateFormat"%>
 <%@page import="java.text.SimpleDateFormat"%>
@@ -20,16 +21,20 @@
     String idInput = request.getParameter("idInput");
     String sql = "";
     String sql2 = "";
+    Config.getBase_url(request);
+    Config.getFile_url(session);
 
-    if (idType.equals("pmino")) {
-        sql = "select w.pmi_no,w.episode_date,h.hfc_name,d.discipline_name,w.new_ic_no,w.old_ic_no from wis_inpatient_episode w inner join adm_health_facility h on w.hfc_cd = h.hfc_cd inner join  adm_discipline d on w.discipline_cd = d.discipline_cd where w.pmi_no = '" + idInput + "'";
+    String hfc = session.getAttribute("HEALTH_FACILITY_CODE").toString();
+
+    if (idType.equals("001")) {
+        sql = "select w.pmi_no, w.episode_date,h.hfc_name,d.discipline_name,w.new_ic_no,w.old_ic_no, from wis_inpatient_episode w inner join adm_health_facility h on w.hfc_cd = h.hfc_cd inner join  adm_discipline d on w.discipline_cd = d.discipline_cd where w.pmi_no = '" + idInput + "'";
         sql2 = "select p.pmi_no,p.episode_date,h.hfc_name,d.discipline_name,p.new_ic_no,p.old_ic_no from pms_episode p inner join adm_health_facility h on p.`HEALTH_FACILITY_CODE` = h.hfc_cd inner join  adm_discipline d on p.DISCIPLINE_CODE = d.discipline_cd where p.pmi_no = '" + idInput + "';";
 
-    } else if (idType.equals("icnew")) {
+    } else if (idType.equals("002")) {
         sql = "select w.pmi_no,w.episode_date,h.hfc_name,d.discipline_name,w.new_ic_no,w.old_ic_no from wis_inpatient_episode w inner join adm_health_facility h on w.hfc_cd = h.hfc_cd inner join  adm_discipline d on w.discipline_cd = d.discipline_cd where w.new_ic_no = '" + idInput + "'";
         sql2 = "select p.pmi_no,p.episode_date,h.hfc_name,d.discipline_name,p.new_ic_no,p.old_ic_no from pms_episode p inner join adm_health_facility h on p.`HEALTH_FACILITY_CODE` = h.hfc_cd inner join  adm_discipline d on p.DISCIPLINE_CODE = d.discipline_cd where p.new_ic_no = '" + idInput + "';";
 
-    } else if (idType.equals("icold")) {
+    } else if (idType.equals("003")) {
         sql = "select w.pmi_no,w.episode_date,h.hfc_name,d.discipline_name,w.new_ic_no,w.old_ic_no from wis_inpatient_episode w inner join adm_health_facility h on w.hfc_cd = h.hfc_cd inner join  adm_discipline d on w.discipline_cd = d.discipline_cd where w.old_ic_no = '" + idInput + "'";
         sql2 = "select p.pmi_no,p.episode_date,h.hfc_name,d.discipline_name,p.new_ic_no,p.old_ic_no from pms_episode p inner join adm_health_facility h on p.`HEALTH_FACILITY_CODE` = h.hfc_cd inner join  adm_discipline d on p.DISCIPLINE_CODE = d.discipline_cd where p.old_ic_no = '" + idInput + "';";
     }
@@ -45,93 +50,78 @@
 
 
 %>
-<hr/>
-<h4 style="padding: 10px 0px 15px; ">Previous Visit (Inpatient Episode) 
-    <!--        <a class="btn btn-primary pull-right" data-toggle="collapse" href="#searchPatient1" aria-expanded="false" aria-controls="searchPatient1">
-                View Inpatient Episode
-            </a>-->
-</h4>
-<div class="row">
-
-    <ul id="menu-content" class="search-patient" style="padding: 15px;">
-        <%        for (int i = 0; i < searchID.size(); i++) {
-                if (searchID.size() > 0) {
-                    //out.print(String.join("|", searchID.get(i)));
-
-        %>
-        <!-- Menu with dropdown -->
-        <li  data-toggle="collapse" data-target="#patient-details" class="collapsed active" style="background: #f9f9f9;
-             display: inline-block;
-             width: 100%;
-             border: 1px solid #ddd;
-             padding: 15px 15px;">
-
-            <div class="col-md-3">
-                <%=searchID.get(i).get(1)%>
-                <input type="hidden" id="pmi" value="<%=searchID.get(i).get(0)%>">
-                <input type="hidden" id="episode" value="<%=searchID.get(i).get(1)%>">
-                <input type="hidden" id="disipline" value="<%=searchID.get(i).get(3)%>">
-                <input type="hidden" id="ic_no" value="<%=searchID.get(i).get(4)%>">
-                <input type="hidden" id="old_ic_no" value="<%=searchID.get(i).get(5)%>">
-            </div>
-            <div class="col-md-3"><%=searchID.get(i).get(2)%></div>
-            <div class="col-md-3"><%=searchID.get(i).get(3)%></div>
-            <div class="col-md-3 text-right"><a href="#episodeDetail" id="ViewDetail" name="ViewDetail" type="button" role="button"><i class="fa fa-ellipsis-v fa-lg"></i></a></div>
-
-        </li>
-        <ul class="collapse" id="patient-details">
-            <li><a data-toggle="modal" data-target="#squarespaceModal" href="">Complaints</a></li>
-        </ul> 
-        <!-- Menu with dropdown -->
-        <% }
-            }
-        %>
-    </ul>
-</div>
-
-
+<center>
+    <h4>PREVIOUS VISIT (INPATIENT EPISODE) 
+        <!--        <a class="btn btn-primary pull-right" data-toggle="collapse" href="#searchPatient1" aria-expanded="false" aria-controls="searchPatient1">
+                    View Inpatient Episode
+                </a>-->
+    </h4>
+</center>
 <br/>
-<h4 style="padding: 10px 0px 15px;">Previous Visit (Outpatient Episode)</h4>
+<table class="table table-filter table-striped" style="background: #fff; border: 1px solid #ccc;" id="searchPatient1">
+    <thead>
+    <th>Episode Date</th>
+    <th>Health Care Facility</th>
+    <th>Discipline</th>
+    <th>Action</th>
+</thead>
+<tbody id="detailList">
+    <%        for (int i = 0; i < searchID.size(); i++) {
+            if (searchID.size() > 0) {
+                //out.print(String.join("|", searchID.get(i)));
 
-<div class="row">
+    %>
+    <tr>
+        <td><%=searchID.get(i).get(1)%>
+            <input type="hidden" id="pmi" value="<%=searchID.get(i).get(0)%>">
+            <input type="hidden" id="episode" value="<%=searchID.get(i).get(1)%>">
+            <input type="hidden" id="disipline" value="<%=searchID.get(i).get(3)%>">
+            <input type="hidden" id="ic_no" value="<%=searchID.get(i).get(4)%>">
+            <input type="hidden" id="old_ic_no" value="<%=searchID.get(i).get(5)%>">
+        </td>
+        <td><%=searchID.get(i).get(2)%></td>
+        <td><%=searchID.get(i).get(3)%></td>
+        <td><a href="#episodeDetail" id="ViewDetail" name="ViewDetail" class="btn btn-default" type="button" role="button"><i class="fa fa-eye" aria-hidden="true" style="display: inline-block;color: #337ab7;"></i></a></td>
+    </tr>
 
-    <ul id="menu-content" class="search-patient" style="padding: 15px;">
-        <%
-            for (int i = 0; i < searchID1.size(); i++) {
-                if (searchID1.size() > 0) {
+    <% }
+        }
+    %>
+</tbody>
+</table>
+<center><h4>PREVIOUS VISIT (OUTPATIENT EPISODE)</h4></center>
+<table class="table table-filter table-striped" style="background: #fff; border: 1px solid #ccc;" id="searchPatient1">
+    <thead>
+    <th>Episode Date</th>
+    <th>Health Care Facility</th>
+    <th>Discipline</th>
+    <th>Action</th>
+</thead>
+<tbody id="detailList1">
+    <%
+        for (int i = 0; i < searchID1.size(); i++) {
+            if (searchID1.size() > 0) {
 
-                    //out.print(String.join("|", searchID1.get(i)));
-        %>
-        <!-- Menu with dropdown -->
-        <li  data-toggle="collapse" data-target="#<%=searchID1.get(i).get(1)%>" class="collapsed active" style="background: #f9f9f9;
-             display: inline-block;
-             width: 100%;
-             border: 1px solid #ddd;
-             padding: 15px 15px;">
+                //out.print(String.join("|", searchID1.get(i)));
+%>
+    <tr>
+        <td><%=searchID1.get(i).get(1)%>
+            <input type="hidden" id="pmi1" value="<%=searchID1.get(i).get(0)%>">
+            <input type="hidden" id="episode1" value="<%=searchID1.get(i).get(1)%>">
+            <input type="hidden" id="disipline1" value="<%=searchID1.get(i).get(3)%>">
+            <input type="hidden" id="ic_no1" value="<%=searchID1.get(i).get(4)%>">
+            <input type="hidden" id="old_ic_no1" value="<%=searchID1.get(i).get(5)%>">
+        </td>
+        <td><%=searchID1.get(i).get(2)%></td>
+        <td><%=searchID1.get(i).get(3)%></td>
+        <td><a href="#episodeDetail" id="ViewDetail1" name="ViewDetail" class="btn btn-default" type="button" role="button"><i class="fa fa-eye" aria-hidden="true" style="display: inline-block;color: #337ab7;"></i></a></td>
+    </tr>
 
-            <div class="col-md-3">
-                <%=searchID1.get(i).get(1)%>
-                <input type="hidden" id="pmi1" value="<%=searchID1.get(i).get(0)%>">
-                <input type="hidden" id="episode1" value="<%=searchID1.get(i).get(1)%>">
-                <input type="hidden" id="disipline1" value="<%=searchID1.get(i).get(3)%>">
-                <input type="hidden" id="ic_no1" value="<%=searchID1.get(i).get(4)%>">
-                <input type="hidden" id="old_ic_no1" value="<%=searchID1.get(i).get(5)%>">
-            </div>
-            <div class="col-md-3"><%=searchID1.get(i).get(2)%></div>
-            <div class="col-md-3"><%=searchID1.get(i).get(3)%></div>
-            <div class="col-md-3 text-right"><a href="#episodeDetail1" id="ViewDetail1" name="ViewDetail" type="button" role="button"><i class="fa fa-ellipsis-v fa-lg"></i></a></div>
-
-        </li>
-        <ul class="collapse" id="<%=searchID1.get(i).get(1)%>">
-            <li><a data-toggle="modal" data-target="#squarespaceModal" href="">Complaints</a></li>
-        </ul> 
-        <!-- Menu with dropdown -->
-        <% }
-            }
-        %>
-    </ul>
-
-</div>
+    <% }
+        }
+    %>
+</tbody>
+</table>
 <%
     } else {
         out.print("1");
