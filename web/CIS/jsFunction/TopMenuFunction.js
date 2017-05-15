@@ -47,16 +47,12 @@ $(document).ready(function (e) {
     var vtsCounter = 0;
     //------------------------------------------------------------ DISCHARGE BUTTON
     $('#dischargeBtn').click(function () {
-        reloadStat = 0;
-//        getORCHFCDetail("04010102", "04010101");
-//        console.log(ORCObj);
-//       var orc =  getORC("transectionCode","orderNo","fillerOrderNo","orderStatus", "orderPriority", "orderDateTime", "episodeDate", "encounterDateTime", "enterBy", "verifiedBy", "OPD", "orderHFC", "orderDis", "orderSub","orderApp", "orderHFCAdd1",
-//        "orderHFCAdd2", "orderHFCAdd3", "orderHFCtown", "orderHFCDistrict", "orderHFCState", "orderHFCCountry","orderHFCPostcode", "orderHFCPhoneNo", "providerHFC", "providerDis","providerSub","providerApp", "providerAdd1", 
-//        "providerAdd2","providerAdd3", "providerTown");
-//        console.log(orc);
+        
+        //$('#mCIS_Discharge_Summary').modal('toggle');
         var pmiNo = $('#pmiNumber').text();
-       
-        getSettingConsult(doctor_id);
+      // $('#divCIS_Discharge_Summary').html($('#tblCIS_Consultation_Table').html());
+      getSettingConsult(doctor_id);
+       reloadStat = 0;
     });
 
     //------------------------------------------------------------ ON HOLD BUTTON
