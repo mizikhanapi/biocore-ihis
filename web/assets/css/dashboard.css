@@ -641,7 +641,7 @@ tr#moveToOrderDetailsTButton {
 .p-label {
     display: block;
     font-weight: 700;
-    color: #333;
+    color: #666;
 }
 
 #mainConsultBar {
@@ -877,10 +877,10 @@ tr#moveToOrderDetailsTButton {
     border-radius: 0px;
 }
 
-.table-guling {
+.table-guling>.dataTables_wrapper>.row>.col-sm-12 {
     overflow-x: hidden;
 }
 
-.table-guling:hover {
+.table-guling>.dataTables_wrapper>.row>.col-sm-12:hover {
     overflow-x: auto;
 }

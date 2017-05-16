@@ -19,9 +19,9 @@
 
 <table  id="supplierTable"  class="table table-striped table-bordered" cellspacing="0" width="100%">
     <thead>
-    <th style="text-align: center;">ID</th>
-    <th style="text-align: center;">NAME</th>
-    <th style="text-align: center;">BANK ACCOUNT NO.</th>
+    <th style="text-align: left;">ID</th>
+    <th style="text-align: left;">NAME</th>
+    <th style="text-align: left;">BANK ACCOUNT NO.</th>
     <th style="display: none">BANK CODE</th>
     <th style="display: none">ADDRESS 1</th>
     <th style="display: none">ADDRESS 2</th>
@@ -31,9 +31,9 @@
     <th style="display: none">DISTRICT</th>
     <th style="display: none">STATE</th>
     <th style="display: none">COUNTRY</th>
-    <th style="text-align: center;">TELEPHONE NO.</th>
-    <th style="text-align: center;">FAX NO.</th>
-    <th style="text-align: center;">EMAIL</th>
+    <th style="text-align: left;">TELEPHONE NO.</th>
+    <th style="text-align: left;">FAX NO.</th>
+    <th style="text-align: left;">EMAIL</th>
     <th style="display: none">GL CODE</th>
     <th style="display: none">ROC NO</th>
     <th style="display: none">REGIS DATE</th>
@@ -43,8 +43,7 @@
     <th style="display: none">CREDIT LIMIT</th>
     <th style="display: none">CURRENCY</th>
     <th style="display: none">STATUS</th>
-    <th style="text-align: center;">Update</th>
-    <th style="text-align: center;">Delete</th>
+    <th style="text-align: left;">ACTION</th>
 </thead>
 <tbody>
 
@@ -60,7 +59,7 @@
         for (int i = 0; i < size; i++) {
     %>
 
-    <tr style="text-align: center;">
+    <tr style="text-align: left;">
 <input id="dataSupplierhidden" type="hidden" value="<%=String.join("|", dataSupplier.get(i))%>">
 <td><%= dataSupplier.get(i).get(0)%></td> <!-- ID -->
 <td><%= dataSupplier.get(i).get(1)%></td> <!-- NAME -->
@@ -88,12 +87,11 @@
 <td style="display: none"><%= dataSupplier.get(i).get(23)%></td> <!-- STATUS -->
 <td>
     <!-- Update Part Start -->
-    <a id="supplierUpdateTButton" data-toggle="modal" data-target="#supplierModal"><i class="fa fa-pencil-square-o" aria-hidden="true" style="display: inline-block;color: #337ab7;"></i></a>
+    <a id="supplierUpdateTButton" data-toggle="modal" data-target="#supplierModal"><i class="fa fa-pencil-square-o fa-lg" aria-hidden="true" style="display: inline-block;color: #337ab7; cursor: pointer;"></i></a>
     <!-- Update Part End -->
-</td>
-<td>
+    &nbsp;&nbsp;&nbsp;
     <!-- Delete Button Start -->
-    <a id="supllierDeleteTButton" ><i class="fa fa-times" aria-hidden="true" style="display: inline-block;color: #d9534f; width: " ></i></a>
+    <a id="supllierDeleteTButton" ><i class="fa fa-times fa-lg" aria-hidden="true" style="display: inline-block; color: #d9534f; cursor: pointer;" ></i></a>
     <!-- Delete Button End -->
 </td>
 </tr>

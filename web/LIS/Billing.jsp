@@ -25,8 +25,8 @@
         <!-- Custom styles for this template -->
         <link rel="stylesheet" href="assets/css/loading.css">
         <link href="assets/datepicker/jquery-ui.css" rel="stylesheet">    
-
-        <!--        <link href="datepicker/jquery-ui.css" rel="stylesheet" type="text/css">-->
+        <link href="bootstrap-3.3.6-dist/css/dataTables.bootstrap.min.css" rel="stylesheet" type="text/css"/>
+     
 
         <script src="assets/js/jquery.min.js"></script>
         <script src="assets/datepicker/jquery-ui.js"></script>
@@ -34,7 +34,9 @@
         <script src="assets/js/bootstrap.min.js"></script> 
         <script src="assets/js/w3data.js"></script>
         <script src="assets/js/bootbox.min.js"></script>
-
+        <script src="bootstrap-3.3.6-dist/js/jquery.dataTables.min.js" type="text/javascript"></script>
+        <script src="bootstrap-3.3.6-dist/js/dataTables.bootstrap.min.js" type="text/javascript"></script>
+        <script src="bootstrap-3.3.6-dist/js/dataTables.buttons.min.js" type="text/javascript"></script>
     </head>
     <body>
 

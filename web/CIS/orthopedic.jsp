@@ -28,27 +28,27 @@
                     <div class="tab-content">
                         <!-- content -->
                         <div class="tab-pane active fade in" id="neuassessment">
-                            <%@include file="neuAssessment.jsp"%>
-                        </div>
-                        <!-- content -->
+                            <jsp:include page ="specialistTemplate/Observation-Orthopedic/neuAssessment.jsp"/>
+                            </div>
+                            <!-- content -->
 
-                        <!-- content -->
-                        <div class="tab-pane fade" id="neuobservation">
-                            <%@include file="neuObservation.jsp"%>
-                        </div>
-                        <!-- content -->
+                            <!-- content -->
+                            <div class="tab-pane fade" id="neuobservation">
+                                <jsp:include page ="specialistTemplate/Observation-Orthopedic/neuObservation.jsp"/>
+                                </div>
+                                <!-- content -->
 
-                        <!-- content -->
-                        <div class="tab-pane fade" id="PIRA">
-                            <%@include file="PIRAssessment.jsp"%>
+                                <!-- content -->
+                                <div class="tab-pane fade" id="PIRA">
+                                    <jsp:include page ="specialistTemplate/Observation-Orthopedic/PIRAssessment.jsp"/>
+                                    </div>
+                                    <!-- content -->
+                                </div>
+
+                            </div>
                         </div>
-                        <!-- content -->
+                        <!-- Tab Menu -->
                     </div>
-
                 </div>
             </div>
-            <!-- Tab Menu -->
-        </div>
-    </div>
-</div>
-<%@include file="modal/addNeurosurgical.jsp"%>
+            <jsp:include page="specialistTemplate/Observation-Orthopedic/modal/addNeurosurgical.jsp"/>
