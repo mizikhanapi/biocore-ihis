@@ -56,16 +56,15 @@
     sql = "select temperature_reading from lhr_temperature where pmi_no = '" + pmi_no + "' and episode_date = '" + episodeDate + "'";
     ArrayList<ArrayList<String>> searchEpisode9 = conn.getData(sql);
 
-    if (searchEpisode.size() > 0 || searchEpisode1.size() > 0 || searchEpisode2.size() > 0 || searchEpisode3.size() > 0 || searchEpisode4.size() > 0
-            || searchEpisode5.size() > 0 || searchEpisode6.size() > 0 || searchEpisode7.size() > 0 || searchEpisode8.size() > 0 || searchEpisode9.size() > 0) {
-
-
 %>
-<h4 style="padding: 10px 0px 15px;">
-    Detail By Episode : <%out.println(episodeDate);%> - <%out.println(disiplineName);%>
-    <a href="#searchPatient1" id="ViewDetail" name="ViewDetail" class="btn btn-default pull-right" type="button" role="button"><i class="fa fa-arrow-up fa-lg" aria-hidden="true" style="display: inline-block;color: #337ab7;"></i></a>
-</h4>
 <table class="table table-filter table-striped" style="background: #fff; border: 1px solid #ccc;">
+    <strong>
+        <h4>
+            <b>Detail By Episode : <%out.println(episodeDate);%> - <%out.println(disiplineName);%></b>
+            <a href="#searchPatient1" id="ViewDetail" name="ViewDetail" class="btn btn-default pull-right" type="button" role="button"><i class="fa fa-arrow-up" aria-hidden="true" style="display: inline-block;color: #337ab7;"></i></a>
+        </h4>
+    </strong>
+    <br/>
     <tbody id="detailbyepisode">
         <%
             if (searchEpisode.size() > 0) {
@@ -76,14 +75,13 @@
             <td>
                 <div class="media">
                     <div class="media-body">
-                        <h5>Chief Complaint <%= i + 1%></h5>
-                        <p class="summary"  id="summary"><%=searchEpisode.get(i).get(0)%> | <%=searchEpisode.get(i).get(1)%></p>
+                        <p class="summary"  id="summary"><b>Chief Complaint <%= i + 1%></b> : <%=searchEpisode.get(i).get(0)%>, <%=searchEpisode.get(i).get(1)%></p>
                     </div>
                 </div>
             </td>
         </tr>
         <%}
-            }%>
+                                 }%>
         <%
             if (searchEpisode1.size() > 0) {
                 for (int i = 0; i < searchEpisode1.size(); i++) {
@@ -93,14 +91,13 @@
             <td>
                 <div class="media">
                     <div class="media-body">
-                        <h5>Family history <%= i + 1%></h5>
-                        <p class="summary"  id="summary"><%=searchEpisode1.get(i).get(0)%></p>
+                        <p class="summary"  id="summary"><b>Family history <%= i + 1%></b> : <%=searchEpisode1.get(i).get(0)%></p>
                     </div>
                 </div>
             </td>
         </tr>
         <%}
-            }%>
+                                 }%>
         <%
             if (searchEpisode2.size() > 0) {
                 for (int i = 0; i < searchEpisode2.size(); i++) {
@@ -110,14 +107,13 @@
             <td>
                 <div class="media">
                     <div class="media-body">
-                        <h5>Past medical history <%= i + 1%></h5>
-                        <p class="summary"  id="summary"><%=searchEpisode2.get(i).get(0)%></p>
+                        <p class="summary"  id="summary"><b>Past medical history <%= i + 1%></b> : <%=searchEpisode2.get(i).get(0)%></p>
                     </div>
                 </div>
             </td>
         </tr>
         <%}
-            }%>
+                                 }%>
         <%
             if (searchEpisode3.size() > 0) {
                 for (int i = 0; i < searchEpisode3.size(); i++) {
@@ -127,14 +123,13 @@
             <td>
                 <div class="media">
                     <div class="media-body">
-                        <h5>immunisation <%= i + 1%></h5>
-                        <p class="summary"  id="summary"><%=searchEpisode3.get(i).get(0)%></p>
+                        <p class="summary"  id="summary"><b>immunisation <%= i + 1%></b> : <%=searchEpisode3.get(i).get(0)%></p>
                     </div>
                 </div>
             </td>
         </tr>
         <%}
-            }%>
+                                 }%>
         <%
             if (searchEpisode4.size() > 0) {
                 for (int i = 0; i < searchEpisode4.size(); i++) {
@@ -144,14 +139,13 @@
             <td>
                 <div class="media">
                     <div class="media-body">
-                        <h5>Medical leave <%= i + 1%></h5>
-                        <p class="summary"  id="summary"><%=searchEpisode4.get(i).get(0)%></p>
+                        <p class="summary"  id="summary"><b>Medical leave <%= i + 1%></b> : <%=searchEpisode4.get(i).get(0)%></p>
                     </div>
                 </div>
             </td>
         </tr>
         <%}
-            }%>
+                                  }%>
         <%
             if (searchEpisode5.size() > 0) {
                 for (int i = 0; i < searchEpisode5.size(); i++) {
@@ -161,14 +155,13 @@
             <td>
                 <div class="media">
                     <div class="media-body">
-                        <h5>Medication <%= i + 1%></h5>
-                        <p class="summary"  id="summary"><%=searchEpisode5.get(i).get(0)%></p>
+                        <p class="summary"  id="summary"><b>Medication <%= i + 1%></b> : <%=searchEpisode5.get(i).get(0)%></p>
                     </div>
                 </div>
             </td>
         </tr>
         <%}
-            }%>
+                                }%>
         <%
             if (searchEpisode6.size() > 0) {
                 for (int i = 0; i < searchEpisode6.size(); i++) {
@@ -178,14 +171,13 @@
             <td>
                 <div class="media">
                     <div class="media-body">
-                        <h5>Diagnosis <%= i + 1%></h5>
-                        <p class="summary"  id="summary"><%=searchEpisode6.get(i).get(0)%></p>
+                        <p class="summary"  id="summary"><b>Diagnosis <%= i + 1%></b> : <%=searchEpisode6.get(i).get(0)%></p>
                     </div>
                 </div>
             </td> 
         </tr>
         <%}
-            }%>
+                                 }%>
         <%
             if (searchEpisode7.size() > 0) {
                 for (int i = 0; i < searchEpisode7.size(); i++) {
@@ -195,14 +187,13 @@
             <td>
                 <div class="media">
                     <div class="media-body">
-                        <h5>Procedure <%= i + 1%></h5>
-                        <p class="summary"  id="summary"><%=searchEpisode7.get(i).get(0)%></p>
+                        <p class="summary"  id="summary"><b>Procedure <%= i + 1%></b> : <%=searchEpisode7.get(i).get(0)%></p>
                     </div>
                 </div>
             </td>
         </tr>
         <%}
-            }%>
+                                 }%>
         <%
             if (searchEpisode8.size() > 0) {
                 for (int i = 0; i < searchEpisode8.size(); i++) {
@@ -212,14 +203,13 @@
             <td>
                 <div class="media">
                     <div class="media-body">
-                        <h5>Allergy <%= i + 1%></h5>
-                        <p class="summary"  id="summary"><%=searchEpisode8.get(i).get(0)%></p>
+                        <p class="summary"  id="summary"><b>Allergy <%= i + 1%></b> : <%=searchEpisode8.get(i).get(0)%></p>
                     </div>
                 </div>
             </td>   
         </tr>
         <%}
-            }%>
+                                }%>
         <%
             if (searchEpisode9.size() > 0) {
                 for (int i = 0; i < searchEpisode9.size(); i++) {
@@ -229,18 +219,12 @@
             <td>
                 <div class="media">
                     <div class="media-body">
-                        <h5>Temperature <%= i + 1%></h5>
-                        <p class="summary"  id="summary"><%=searchEpisode9.get(i).get(0)%></p>
+                        <p class="summary"  id="summary"><b>Temperature <%= i + 1%></b> : <%=searchEpisode9.get(i).get(0)%></p>
                     </div>
                 </div>
             </td>   
         </tr>
         <%}
-            }%>
+                                }%>
     </tbody>
 </table>
-<%
-    } else {
-        out.print("1");
-    }
-%>

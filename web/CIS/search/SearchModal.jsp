@@ -22,7 +22,7 @@
     //out.print(dataSystemStatus2);
 %>
 <div class="modal fade" id="searchModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
-    <div class="modal-dialog" style="width: 65%">
+    <div class="modal-dialog modal-lg" style="width: 65%">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal"><i class="fa fa-times fa-lg"></i><span class="sr-only">Close</span></button>

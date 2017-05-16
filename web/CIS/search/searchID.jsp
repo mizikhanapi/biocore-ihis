@@ -3,7 +3,6 @@
     Created on : 07-Mar-2017, 17:47:59
     Author     : ahmed
 --%>
-
 <%@page import="java.util.Calendar"%>
 <%@page import="java.util.Date"%>
 <%@page import="java.text.DateFormat"%>
@@ -25,7 +24,7 @@
     String idInput = request.getParameter("idInput");
     String sql = "";
     String sql2 = "";
-    
+
     //Patient Info
     String bloodType = "";
     String sex = "";
@@ -33,16 +32,16 @@
     int age = 0;
     String race = "";
     String allergy = "";
-    String dob="";
+    String dob = "";
     String dataFull = "";
     String ageS = "";
-    
+
     boolean check;
-    
-    Calendar now = Calendar.getInstance(); 
-    int year = now.get(Calendar.YEAR);  
+
+    Calendar now = Calendar.getInstance();
+    int year = now.get(Calendar.YEAR);
     int month = now.get(Calendar.MONTH);
-    
+
     Config.getBase_url(request);
     Config.getFile_url(session);
 
@@ -62,7 +61,6 @@
         sql2 = "select p.pmi_no,p.episode_date,h.hfc_name,d.discipline_name,p.new_ic_no,p.old_ic_no from pms_episode p inner join adm_health_facility h on p.`HEALTH_FACILITY_CODE` = h.hfc_cd inner join  adm_discipline d on p.DISCIPLINE_CODE = d.discipline_cd where p.old_ic_no = '" + idInput + "';";
     }
 
-    
     ArrayList<ArrayList<String>> searchID;
     searchID = conn.getData(sql);
 
@@ -72,184 +70,215 @@
     //out.println(searchID);
     if (searchID.size() > 0 || searchID1.size() > 0) {
 
-    //Convert Code to Description
-    String sqlPatient = "select pmi_no,patient_name,new_ic_no,blood_type,sex_code,id_type,birth_date,race_code,allergy_ind,old_ic_no from pms_patient_biodata where pmi_no = '" + idInput + "' or new_ic_no = '"+idInput+"' or old_ic_no = '"+idInput+"'";
-    ArrayList<ArrayList<String>> dataQueue = conn.getData(sqlPatient);
-    
-    String pmino = dataQueue.get(0).get(0);
-    String patient_name = dataQueue.get(0).get(1);
-    String icnew = dataQueue.get(0).get(2);
-    String icold = dataQueue.get(0).get(9);
+        //Convert Code to Description
+        String sqlPatient = "select pmi_no,patient_name,new_ic_no,blood_type,sex_code,id_type,birth_date,race_code,allergy_ind,old_ic_no from pms_patient_biodata where pmi_no = '" + idInput + "' or new_ic_no = '" + idInput + "' or old_ic_no = '" + idInput + "'";
+        ArrayList<ArrayList<String>> dataQueue = conn.getData(sqlPatient);
 
-    String sqlFullPatient = "select * from emedica.pms_patient_biodata where pmi_no = '" + pmino + "' or new_ic_no = '"+icnew+"' or old_ic_no = '"+icold+"'"; 
-    ArrayList<ArrayList<String>> dataPatientFull = conn.getData(sqlFullPatient);
+        String pmino = dataQueue.get(0).get(0);
+        String patient_name = dataQueue.get(0).get(1);
+        String icnew = dataQueue.get(0).get(2);
+        String icold = dataQueue.get(0).get(9);
 
-    if (dataQueue.get(0).get(3).equals("-")) {
-        bloodType = "-";
-    } else {
-        String sqlGetBlood = "select* from adm_lookup_detail where master_reference_code = '0074' and detail_reference_code = '" + dataQueue.get(0).get(3) + "'";
-        ArrayList<ArrayList<String>> dataBlood = conn.getData(sqlGetBlood);
-        if (dataBlood.size() < 1) {
+        String sqlFullPatient = "select * from emedica.pms_patient_biodata where pmi_no = '" + pmino + "' or new_ic_no = '" + icnew + "' or old_ic_no = '" + icold + "'";
+        ArrayList<ArrayList<String>> dataPatientFull = conn.getData(sqlFullPatient);
+
+        if (dataQueue.get(0).get(3).equals("-")) {
             bloodType = "-";
         } else {
-            bloodType = dataBlood.get(0).get(2);
+            String sqlGetBlood = "select* from adm_lookup_detail where master_reference_code = '0074' and detail_reference_code = '" + dataQueue.get(0).get(3) + "'";
+            ArrayList<ArrayList<String>> dataBlood = conn.getData(sqlGetBlood);
+            if (dataBlood.size() < 1) {
+                bloodType = "-";
+            } else {
+                bloodType = dataBlood.get(0).get(2);
+            }
+
         }
 
-    }
-
-    if (dataQueue.get(0).get(4).equals("-")) {
-        sex = "-";
-    } else {
-        String sqlGetSexCd = "select* from adm_lookup_detail where master_reference_code = '0041' and detail_reference_code = '" + dataQueue.get(0).get(4) + "'";
-        ArrayList<ArrayList<String>> dataSexCd = conn.getData(sqlGetSexCd);
-        if (dataSexCd.size() < 1) {
+        if (dataQueue.get(0).get(4).equals("-")) {
             sex = "-";
         } else {
-            sex = dataSexCd.get(0).get(2);
+            String sqlGetSexCd = "select* from adm_lookup_detail where master_reference_code = '0041' and detail_reference_code = '" + dataQueue.get(0).get(4) + "'";
+            ArrayList<ArrayList<String>> dataSexCd = conn.getData(sqlGetSexCd);
+            if (dataSexCd.size() < 1) {
+                sex = "-";
+            } else {
+                sex = dataSexCd.get(0).get(2);
+            }
+
         }
 
-    }
-
-    if (dataQueue.get(0).get(5).equals("-")) {
-        IdType = "-";
-    } else {
-        String sqlGetIdType = "select* from adm_lookup_detail where master_reference_code = '0012' and detail_reference_code = '" + dataQueue.get(0).get(5) + "'";
-        ArrayList<ArrayList<String>> dataIdType = conn.getData(sqlGetIdType);
-        if (dataIdType.size() < 1) {
+        if (dataQueue.get(0).get(5).equals("-")) {
             IdType = "-";
         } else {
-            IdType = dataIdType.get(0).get(2);
+            String sqlGetIdType = "select* from adm_lookup_detail where master_reference_code = '0012' and detail_reference_code = '" + dataQueue.get(0).get(5) + "'";
+            ArrayList<ArrayList<String>> dataIdType = conn.getData(sqlGetIdType);
+            if (dataIdType.size() < 1) {
+                IdType = "-";
+            } else {
+                IdType = dataIdType.get(0).get(2);
+            }
+
         }
 
-    }
-
-    if (dataQueue.get(0).get(7).equals("-")) {
-        race = "-";
-    } else {
-        String sqlGetRace = "select* from adm_lookup_detail where master_reference_code = '0004' and detail_reference_code = '" + dataQueue.get(0).get(7) + "'";
-        ArrayList<ArrayList<String>> dataRace = conn.getData(sqlGetRace);
-        if (dataRace.size() < 1) {
+        if (dataQueue.get(0).get(7).equals("-")) {
             race = "-";
         } else {
-            race = dataRace.get(0).get(2);
+            String sqlGetRace = "select* from adm_lookup_detail where master_reference_code = '0004' and detail_reference_code = '" + dataQueue.get(0).get(7) + "'";
+            ArrayList<ArrayList<String>> dataRace = conn.getData(sqlGetRace);
+            if (dataRace.size() < 1) {
+                race = "-";
+            } else {
+                race = dataRace.get(0).get(2);
+            }
+
         }
 
-    }
-
-    if (dataQueue.get(0).get(8).equals("-")) {
-        allergy = "-";
-    } else {
-        String sqlAllergy = "select* from adm_lookup_detail where master_reference_code = '0075' and detail_reference_code = '" + dataQueue.get(0).get(8) + "'";
-        ArrayList<ArrayList<String>> dataAllergy = conn.getData(sqlAllergy);
-        if (dataAllergy.size() < 1) {
+        if (dataQueue.get(0).get(8).equals("-")) {
             allergy = "-";
         } else {
-            allergy = dataAllergy.get(0).get(2);
+            String sqlAllergy = "select* from adm_lookup_detail where master_reference_code = '0075' and detail_reference_code = '" + dataQueue.get(0).get(8) + "'";
+            ArrayList<ArrayList<String>> dataAllergy = conn.getData(sqlAllergy);
+            if (dataAllergy.size() < 1) {
+                allergy = "-";
+            } else {
+                allergy = dataAllergy.get(0).get(2);
+            }
+
         }
 
-    }
-
-    for (int i = 0; i < dataPatientFull.get(0).size(); i++) {
-        dataFull = dataFull + "#" + dataPatientFull.get(0).get(i);
-    }
+        for (int i = 0; i < dataPatientFull.get(0).size(); i++) {
+            dataFull = dataFull + "#" + dataPatientFull.get(0).get(i);
+        }
 
 // Get Age from Date of Birth
-    dob = dataQueue.get(0).get(6).toString();
+        dob = dataQueue.get(0).get(6).toString();
 
-    check = cdf.isValidFormat("dd/MM/yyyy", dob);  
-    if (check) {    
-        String[] dobAr = StringUtils.split(dob, "/");
-        int dobYear = Integer.parseInt(dobAr[2]);
-        int dobMonth = Integer.parseInt(dobAr[1]);
-        age = year - dobYear; 
-        ageS = Integer.toString(age);
-    } else {
-        ageS = "undefined";
-    }
+        check = cdf.isValidFormat("dd/MM/yyyy", dob);
+        if (check) {
+            String[] dobAr = StringUtils.split(dob, "/");
+            int dobYear = Integer.parseInt(dobAr[2]);
+            int dobMonth = Integer.parseInt(dobAr[1]);
+            age = year - dobYear;
+            ageS = Integer.toString(age);
+        } else {
+            ageS = "undefined";
+        }
 
 
 %>
-<center>
-    <h4>Name : <%=patient_name%>| gender : <%=sex%>| Age : <%= ageS%>| ÏC/ID No : <%=icnew%>| ID Type: <%=IdType%>| Race : <%=race%>| Blood Type : <%=bloodType%>| Allergy : <%=allergy%></h4>
-</center>
-<center>
-    <h4>PREVIOUS VISIT (INPATIENT EPISODE) 
-        <!--        <a class="btn btn-primary pull-right" data-toggle="collapse" href="#searchPatient1" aria-expanded="false" aria-controls="searchPatient1">
-                    View Inpatient Episode
-                </a>-->
-    </h4>
-</center>
-<br/>
-<table class="table table-filter table-striped" style="background: #fff; border: 1px solid #ccc;" id="searchPatient">
-    <thead>
-    <th>Episode Date</th>
-    <th>Health Care Facility</th>
-    <th>Discipline</th>
-    <th>Action</th>
-</thead>
-<tbody id="detailList">
-    <%        for (int i = 0; i < searchID.size(); i++) {
-            if (searchID.size() > 0) {
-                //out.print(String.join("|", searchID.get(i)));
+<div class="row">
+    <hr/>
+    <div class="col-md-12">
+        <h4 style="padding: 0px;">Patient Info</h4>
+    </div>
+    <div class="col-md-3">
+        <address>
+            <p>Name: <span class="p-label"><%=patient_name%></span></p>
+            <p>IC/ID No: <span class="p-label"><%=icnew%></span></p>
+        </address>
+    </div>
+    <div class="col-md-3">
+        <address>
+            <p>gender: <span class="p-label"><%=sex%></span></p>
+            <p>Age: <span class="p-label"><%= ageS%></span></p>
+        </address>
+    </div>
+    <div class="col-md-3">
+        <address>
+            <p>ID Type: <span class="p-label"><%=IdType%></span></p>
+            <p>Race: <span class="p-label"><%=race%></span></p>
+        </address>
+    </div>
+    <div class="col-md-3">
+        <address>
+            <p>Blood Type: <span class="p-label"><%=bloodType%></span></p>
+            <p>Allergy: <span class="p-label"><%=allergy%></span></p>
+        </address>
+    </div>
+</div>
+<div class="row">
+    <hr/>
+    <div class="col-md-12">
+        <h4 style="padding: 0px;">Previous Visit (Inpatient Episode)</h4>
+        <br/>
+        <table class="table table-filter table-striped" style="background: #fff; border: 1px solid #ccc;" id="searchPatient">
+            <thead>
+            <th>Episode Date</th>
+            <th>Health Care Facility</th>
+            <th>Discipline</th>
+            <th>Action</th>
+            </thead>
+            <tbody id="detailList">
+                <%        for (int i = 0; i < searchID.size(); i++) {
+                        if (searchID.size() > 0) {
+                            //out.print(String.join("|", searchID.get(i)));
 
-    %>
-    <tr>
-        <td><%=searchID.get(i).get(1)%>
-            <input type="hidden" id="pmi" value="<%=searchID.get(i).get(0)%>">
-            <input type="hidden" id="episode" value="<%=searchID.get(i).get(1)%>">
-            <input type="hidden" id="disipline" value="<%=searchID.get(i).get(3)%>">
-            <input type="hidden" id="ic_no" value="<%=searchID.get(i).get(4)%>">
-            <input type="hidden" id="old_ic_no" value="<%=searchID.get(i).get(5)%>">
-        </td>
-        <td><%=searchID.get(i).get(2)%></td>
-        <td><%=searchID.get(i).get(3)%></td>
-        <td><a href="#episodeDetail" id="ViewDetail" name="ViewDetail" class="btn btn-default" type="button" role="button"><i class="fa fa-eye" aria-hidden="true" style="display: inline-block;color: #337ab7;"></i></a></td>
-    </tr>
+                %>
+                <tr>
+                    <td><%=searchID.get(i).get(1)%>
+                        <input type="hidden" id="pmi" value="<%=searchID.get(i).get(0)%>">
+                        <input type="hidden" id="episode" value="<%=searchID.get(i).get(1)%>">
+                        <input type="hidden" id="disipline" value="<%=searchID.get(i).get(3)%>">
+                        <input type="hidden" id="ic_no" value="<%=searchID.get(i).get(4)%>">
+                        <input type="hidden" id="old_ic_no" value="<%=searchID.get(i).get(5)%>">
+                    </td>
+                    <td><%=searchID.get(i).get(2)%></td>
+                    <td><%=searchID.get(i).get(3)%></td>
+                    <td><a href="#episodeDetail" id="ViewDetail" name="ViewDetail" class="btn btn-default" type="button" role="button">View Details</a></td>
+                </tr>
 
-    <% }
-        }
-    %>
-</tbody>
-</table>
-<center><h4>PREVIOUS VISIT (OUTPATIENT EPISODE)</h4></center>
-<table class="table table-filter table-striped" style="background: #fff; border: 1px solid #ccc;" id="searchPatient1">
-    <thead>
-    <th>Episode Date</th>
-    <th>Health Care Facility</th>
-    <th>Discipline</th>
-    <th>Action</th>
-</thead>
-<tbody id="detailList1">
-    <%
-        for (int i = 0; i < searchID1.size(); i++) {
-            if (searchID1.size() > 0) {
+                <% }
+                    }
+                %>
+            </tbody>
+        </table>
+    </div>
+</div>
+<div class="row">
+    <hr/>
+    <div class="col-md-12">
+        <h4 style="padding: 0px;">Previous Visit (Outpatient Episode)</h4>
+        <table class="table table-filter table-striped" style="background: #fff; border: 1px solid #ccc;" id="searchPatient1">
+            <thead>
+            <th>Episode Date</th>
+            <th>Health Care Facility</th>
+            <th>Discipline</th>
+            <th>Action</th>
+            </thead>
+            <tbody id="detailList1">
+                <%
+                    for (int i = 0; i < searchID1.size(); i++) {
+                        if (searchID1.size() > 0) {
 
-                //out.print(String.join("|", searchID1.get(i)));
-    %>
-    <tr>
-        <td><%=searchID1.get(i).get(1)%>
-            <input type="hidden" id="pmi1" value="<%=searchID1.get(i).get(0)%>">
-            <input type="hidden" id="episode1" value="<%=searchID1.get(i).get(1)%>">
-            <input type="hidden" id="disipline1" value="<%=searchID1.get(i).get(3)%>">
-            <input type="hidden" id="ic_no1" value="<%=searchID1.get(i).get(4)%>">
-            <input type="hidden" id="old_ic_no1" value="<%=searchID1.get(i).get(5)%>">
-        </td>
-        <td><%=searchID1.get(i).get(2)%></td>
-        <td><%=searchID1.get(i).get(3)%></td>
-        <td><a href="#episodeDetail" id="ViewDetail1" name="ViewDetail" class="btn btn-default" type="button" role="button"><i class="fa fa-eye" aria-hidden="true" style="display: inline-block;color: #337ab7;"></i></a></td>
-    </tr>
+                            //out.print(String.join("|", searchID1.get(i)));
+                %>
+                <tr>
+                    <td><%=searchID1.get(i).get(1)%>
+                        <input type="hidden" id="pmi1" value="<%=searchID1.get(i).get(0)%>">
+                        <input type="hidden" id="episode1" value="<%=searchID1.get(i).get(1)%>">
+                        <input type="hidden" id="disipline1" value="<%=searchID1.get(i).get(3)%>">
+                        <input type="hidden" id="ic_no1" value="<%=searchID1.get(i).get(4)%>">
+                        <input type="hidden" id="old_ic_no1" value="<%=searchID1.get(i).get(5)%>">
+                    </td>
+                    <td><%=searchID1.get(i).get(2)%></td>
+                    <td><%=searchID1.get(i).get(3)%></td>
+                    <td><a href="#episodeDetail" id="ViewDetail1" name="ViewDetail" class="btn btn-default" type="button" role="button">View Details</a></td>
+                </tr>
 
-    <% }
-        }
-    %>
-</tbody>
-</table>
+                <% }
+                    }
+                %>
+            </tbody>
+        </table>
+    </div>
+</div>
 <script type="text/javascript">
-    $(document).ready(function() {
-    $('#searchPatient').DataTable();
-    $('#searchPatient1').DataTable();
-} );
-    </script>
+    $(document).ready(function () {
+        $('#searchPatient').DataTable();
+        $('#searchPatient1').DataTable();
+    });
+</script>
 <%
     } else {
         out.print("1");
