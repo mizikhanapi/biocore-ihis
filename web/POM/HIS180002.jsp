@@ -48,15 +48,15 @@
                                         <ul class="nav nav-tabs ">
                                             <li class="active">
                                                 <a href="#tab_default_1" data-toggle="tab">
-                                                    PROCEDURE</a>
+                                                    LEVEL 1</a>
                                             </li>
                                             <li>
                                                 <a href="#tab_default_2" data-toggle="tab">
-                                                    PROCEDURE 1</a>
+                                                    LEVEL 2</a>
                                             </li>
                                             <li>
                                                 <a href="#tab_default_3" data-toggle="tab">
-                                                    PROCEDURE 2</a>
+                                                    LEVEL 3</a>
                                             </li>
                                         </ul>
                                         <!-- tab content -->
@@ -70,11 +70,15 @@
                                                 </div>
                                                 <%@include file="procedure_modal/procedure_modal.jsp" %>
                                             </div>
+                                            
                                             <div class="tab-pane" id="tab_default_2">
-                                                <div id="risOrderDetailContent">
+                                                <div id="procedure1Main">
 
                                                 </div>
-                                                
+                                                <div id="procedure1Table">
+
+                                                </div>
+                                                <%@include file="procedure_modal/procedure1_modal.jsp" %>                                                
                                                 
                                             </div>
 
@@ -105,6 +109,9 @@
 
             $("#procedureMain").load("procedure_main.jsp");
             $("#procedureTable").load("procedure_table.jsp");
+            
+            $("#procedure1Main").load("procedure1_main.jsp");
+            $("#procedure1Table").load("procedure1_table.jsp");
             
             
            // destroyScreenLoading();

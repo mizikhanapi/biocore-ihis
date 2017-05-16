@@ -34,13 +34,14 @@
         ================================================== -->
         <!-- Placed at the end of the document so the pages load faster -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-<!--        <script src="libraries/jquery-3.1.1.min.js" type="text/javascript"></script>-->
+        <!--        <script src="libraries/jquery-3.1.1.min.js" type="text/javascript"></script>-->
         <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
         <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
         <!--<script src="http://www.w3schools.com/lib/w3data.js"></script>-->
 
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/4.4.0/bootbox.min.js"></script>
+        <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/4.4.0/bootbox.min.js"></script>-->
+        <script src="js/bootbox.min.js"></script>
 
         <!-- header -->
     </head> 
@@ -52,7 +53,7 @@
                     <i class="fa fa-question-circle" aria-hidden="true" style="color: #666; font-size: 100px;"></i>
                 </div>
                 <h2 style="text-align: center;"><span style="color: #0ae">iHIS</span></h2>
-                <p id="profile-name" class="profile-name-card" style="padding: 5px">Reset Password</p>
+                <p id="profile-name" class="profile-name-card" style="padding: 5px">Forget Password</p>
                 <form class="form-horizontal" id="leForm" >
 
                     <!--                <input type="text" id="inputUserID" class="form-control" placeholder="User ID" name="username" required autofocus>
@@ -83,7 +84,7 @@
 
 
                 </form><!-- /form -->
-                <button class="btn btn-lg btn-primary btn-block btn-signin" id="F_btnResetPassword" style="margin: auto; width: 40%; margin-bottom: 10px;">Reset Password</button>
+                <button class="btn btn-lg btn-primary btn-block btn-signin" id="F_btnResetPassword" style="margin: auto; width: 40%; margin-bottom: 10px;">OK</button>
                 <a href="login.jsp" class="forgot-password">
                     <i class="fa fa-arrow-left" aria-hidden="true" style="color: #666; font-size: 15px; padding: 5px"></i> Back to login
                 </a>
@@ -117,7 +118,8 @@
 
                     var data = {userID: userID,
                         IC: IC,
-                        mother: mother
+                        mother: mother,
+                        process: 'check'
                     };
 
                     $.ajax({
@@ -127,8 +129,26 @@
                         success: function (data, textStatus, jqXHR) {
 
                             if (data.trim() === 'success') {
-                                bootbox.alert("Your password has been reset to abc123", function () {
-                                    window.location = "login.jsp";
+                                bootbox.prompt({
+                                    title: "Please select what to do with your password.",
+                                    inputType: 'select',
+                                    inputOptions: [
+                                        {
+                                            text: 'Reset my password to abc123',
+                                            value: '',
+                                        },
+                                        {
+                                            text: 'Send my password to my email',
+                                            value: '2',
+                                        }
+                                    ],
+                                    callback: function (result) {
+                                        if (result === '') {
+                                            resetabc123(userID, IC, mother);
+                                        } else if (result === '2') {
+                                            sendToMyEmail(userID);
+                                        }
+                                    }
                                 });
 
                             } else if (data.trim() === 'fail') {
@@ -154,6 +174,133 @@
                 }
 
             });
+
+            function buildMessage(nama, siapa, lalu) {
+
+                var strMessage = 'Dear ' + nama.trim() + ', '
+                        + '\n\nPlease do not disclose the following information to others. \n'
+                        + '\n\t Your user ID: ' + siapa + ' '
+                        + '\n\t Your password: ' + lalu + ' '
+                        + '\n\n Please remember your password next time.';
+
+
+                return strMessage;
+            }
+
+            function resetabc123(userID, IC, mother) {
+
+                var data = {userID: userID,
+                    IC: IC,
+                    mother: mother,
+                    process: 'reset'
+                };
+
+                $.ajax({
+                    type: 'POST',
+                    url: "reset_password_process.jsp",
+                    data: data,
+                    success: function (data, textStatus, jqXHR) {
+
+                        if (data.trim() === 'success') {
+                            bootbox.alert("Your password has been reset to abc123", function () {
+                                window.location = "login.jsp";
+                            });
+
+                        } else if (data.trim() === 'fail') {
+
+                            bootbox.alert("Something went wrong. Try again later");
+
+                        } else {
+
+                            bootbox.alert(data.trim().toString());
+                            $('#F_userID').val("");
+                            $('#F_IC').val("");
+                            $('#F_mother').val("");
+
+                        }
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+
+                        alert("Error: " + errorThrown.toString());
+
+                    }
+                });
+
+
+            }
+
+            function sendToMyEmail(userID) {
+
+                var data = {
+                    userID: userID,
+                    process: 'email'
+                };
+
+                $.ajax({
+                    type: 'POST',
+                    url: "reset_password_process.jsp",
+                    data: data,
+                    success: function (data, textStatus, jqXHR) {
+
+                        var arrData = data.split("|");
+
+                        if (arrData.length === 4) {
+
+                            var nama = arrData[0], email = arrData[1], siapa = arrData[2], lalu = arrData[3];
+                            var strMsg = buildMessage(nama, siapa, lalu);
+                            postTheMail(email, strMsg);
+
+                        } else {
+
+                            bootbox.alert('Opps! Something went wrong. Please try again.');
+                            console.log(arrData);
+                        }
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+
+                        alert("Error: " + errorThrown.toString());
+
+                    }
+                });
+
+
+            }
+
+            function postTheMail(to, message) {
+
+                var data = {
+                    password: "B10core",
+                    to: to,
+                    subject: "iHIS forgot password - NO REPLY",
+                    message: message
+                };
+
+                $.ajax({
+                    type: 'GET',
+                    url: "http://tuffah.info/biocore/",
+                    data: data,
+                    success: function (data, textStatus, jqXHR) {
+
+                        var arrData = data.split("|");
+                        if(arrData[0].trim() === '0'){
+                            bootbox.alert('An email is sent to '+to, function(){
+                                window.location = "login.jsp";
+                            });
+                            
+                        }else{
+                            bootbox.alert("Failed to send email. Please try again later");
+                        }
+                        
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+
+                        alert("Error: " + errorThrown.toString());
+
+                    }
+                });
+
+
+            }
 
 
         </script>

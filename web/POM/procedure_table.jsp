@@ -8,9 +8,9 @@
 <%@page import="dBConn.Conn"%>
 <%
     Conn conn = new Conn();
-    //String PRO_hfc = session.getAttribute("HEALTH_FACILITY_CODE").toString();
+    String hfc_cd = session.getAttribute("HEALTH_FACILITY_CODE").toString();
     //                          0               1               2
-    String sqlBS = "Select procedure_cd, procedure_name, status from cis_procedure ";
+    String sqlBS = "Select procedure_cd, procedure_name, status from cis_procedure where hfc_cd = '"+hfc_cd+"' order by procedure_cd asc";
 
     ArrayList<ArrayList<String>> dataBS = conn.getData(sqlBS);
 
