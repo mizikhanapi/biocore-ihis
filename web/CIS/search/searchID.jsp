@@ -4,6 +4,10 @@
     Author     : ahmed
 --%>
 
+<%@page import="java.util.Calendar"%>
+<%@page import="java.util.Date"%>
+<%@page import="java.text.DateFormat"%>
+<%@page import="java.text.SimpleDateFormat"%>
 <%@page import="Config.Config"%>
 <%@page import="java.util.Date"%>
 <%@page import="java.text.DateFormat"%>
@@ -11,34 +15,54 @@
 <%@page import="org.apache.commons.lang3.StringUtils"%>
 <%@page import="dBConn.Conn"%>
 <%@page import="java.util.ArrayList"%>
-
+<%@page import="Formatter.CheckDateFormat"%>
 <%
     Conn conn = new Conn();
 //    DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 //    Date date = new Date();
-
+    CheckDateFormat cdf = new CheckDateFormat();
     String idType = request.getParameter("idType");
     String idInput = request.getParameter("idInput");
     String sql = "";
     String sql2 = "";
+    
+    //Patient Info
+    String bloodType = "";
+    String sex = "";
+    String IdType = "";
+    int age = 0;
+    String race = "";
+    String allergy = "";
+    String dob="";
+    String dataFull = "";
+    String ageS = "";
+    
+    boolean check;
+    
+    Calendar now = Calendar.getInstance(); 
+    int year = now.get(Calendar.YEAR);  
+    int month = now.get(Calendar.MONTH);
+    
     Config.getBase_url(request);
     Config.getFile_url(session);
 
     String hfc = session.getAttribute("HEALTH_FACILITY_CODE").toString();
 
-    if (idType.equals("001")) {
+    //search based on ID Type
+    if (idType.equals("001")) { //PMI No
         sql = "select w.pmi_no, w.episode_date,h.hfc_name,d.discipline_name,w.new_ic_no,w.old_ic_no, from wis_inpatient_episode w inner join adm_health_facility h on w.hfc_cd = h.hfc_cd inner join  adm_discipline d on w.discipline_cd = d.discipline_cd where w.pmi_no = '" + idInput + "'";
         sql2 = "select p.pmi_no,p.episode_date,h.hfc_name,d.discipline_name,p.new_ic_no,p.old_ic_no from pms_episode p inner join adm_health_facility h on p.`HEALTH_FACILITY_CODE` = h.hfc_cd inner join  adm_discipline d on p.DISCIPLINE_CODE = d.discipline_cd where p.pmi_no = '" + idInput + "';";
 
-    } else if (idType.equals("002")) {
+    } else if (idType.equals("002")) { // IC No (New)
         sql = "select w.pmi_no,w.episode_date,h.hfc_name,d.discipline_name,w.new_ic_no,w.old_ic_no from wis_inpatient_episode w inner join adm_health_facility h on w.hfc_cd = h.hfc_cd inner join  adm_discipline d on w.discipline_cd = d.discipline_cd where w.new_ic_no = '" + idInput + "'";
         sql2 = "select p.pmi_no,p.episode_date,h.hfc_name,d.discipline_name,p.new_ic_no,p.old_ic_no from pms_episode p inner join adm_health_facility h on p.`HEALTH_FACILITY_CODE` = h.hfc_cd inner join  adm_discipline d on p.DISCIPLINE_CODE = d.discipline_cd where p.new_ic_no = '" + idInput + "';";
 
-    } else if (idType.equals("003")) {
+    } else if (idType.equals("003")) { // IC No (Old)
         sql = "select w.pmi_no,w.episode_date,h.hfc_name,d.discipline_name,w.new_ic_no,w.old_ic_no from wis_inpatient_episode w inner join adm_health_facility h on w.hfc_cd = h.hfc_cd inner join  adm_discipline d on w.discipline_cd = d.discipline_cd where w.old_ic_no = '" + idInput + "'";
         sql2 = "select p.pmi_no,p.episode_date,h.hfc_name,d.discipline_name,p.new_ic_no,p.old_ic_no from pms_episode p inner join adm_health_facility h on p.`HEALTH_FACILITY_CODE` = h.hfc_cd inner join  adm_discipline d on p.DISCIPLINE_CODE = d.discipline_cd where p.old_ic_no = '" + idInput + "';";
     }
 
+    
     ArrayList<ArrayList<String>> searchID;
     searchID = conn.getData(sql);
 
@@ -48,8 +72,106 @@
     //out.println(searchID);
     if (searchID.size() > 0 || searchID1.size() > 0) {
 
+    //Convert Code to Description
+    String sqlPatient = "select pmi_no,patient_name,new_ic_no,blood_type,sex_code,id_type,birth_date,race_code,allergy_ind,old_ic_no from pms_patient_biodata where pmi_no = '" + idInput + "' or new_ic_no = '"+idInput+"' or old_ic_no = '"+idInput+"'";
+    ArrayList<ArrayList<String>> dataQueue = conn.getData(sqlPatient);
+    
+    String pmino = dataQueue.get(0).get(0);
+    String patient_name = dataQueue.get(0).get(1);
+    String icnew = dataQueue.get(0).get(2);
+    String icold = dataQueue.get(0).get(9);
+
+    String sqlFullPatient = "select * from emedica.pms_patient_biodata where pmi_no = '" + pmino + "' or new_ic_no = '"+icnew+"' or old_ic_no = '"+icold+"'"; 
+    ArrayList<ArrayList<String>> dataPatientFull = conn.getData(sqlFullPatient);
+
+    if (dataQueue.get(0).get(3).equals("-")) {
+        bloodType = "-";
+    } else {
+        String sqlGetBlood = "select* from adm_lookup_detail where master_reference_code = '0074' and detail_reference_code = '" + dataQueue.get(0).get(3) + "'";
+        ArrayList<ArrayList<String>> dataBlood = conn.getData(sqlGetBlood);
+        if (dataBlood.size() < 1) {
+            bloodType = "-";
+        } else {
+            bloodType = dataBlood.get(0).get(2);
+        }
+
+    }
+
+    if (dataQueue.get(0).get(4).equals("-")) {
+        sex = "-";
+    } else {
+        String sqlGetSexCd = "select* from adm_lookup_detail where master_reference_code = '0041' and detail_reference_code = '" + dataQueue.get(0).get(4) + "'";
+        ArrayList<ArrayList<String>> dataSexCd = conn.getData(sqlGetSexCd);
+        if (dataSexCd.size() < 1) {
+            sex = "-";
+        } else {
+            sex = dataSexCd.get(0).get(2);
+        }
+
+    }
+
+    if (dataQueue.get(0).get(5).equals("-")) {
+        IdType = "-";
+    } else {
+        String sqlGetIdType = "select* from adm_lookup_detail where master_reference_code = '0012' and detail_reference_code = '" + dataQueue.get(0).get(5) + "'";
+        ArrayList<ArrayList<String>> dataIdType = conn.getData(sqlGetIdType);
+        if (dataIdType.size() < 1) {
+            IdType = "-";
+        } else {
+            IdType = dataIdType.get(0).get(2);
+        }
+
+    }
+
+    if (dataQueue.get(0).get(7).equals("-")) {
+        race = "-";
+    } else {
+        String sqlGetRace = "select* from adm_lookup_detail where master_reference_code = '0004' and detail_reference_code = '" + dataQueue.get(0).get(7) + "'";
+        ArrayList<ArrayList<String>> dataRace = conn.getData(sqlGetRace);
+        if (dataRace.size() < 1) {
+            race = "-";
+        } else {
+            race = dataRace.get(0).get(2);
+        }
+
+    }
+
+    if (dataQueue.get(0).get(8).equals("-")) {
+        allergy = "-";
+    } else {
+        String sqlAllergy = "select* from adm_lookup_detail where master_reference_code = '0075' and detail_reference_code = '" + dataQueue.get(0).get(8) + "'";
+        ArrayList<ArrayList<String>> dataAllergy = conn.getData(sqlAllergy);
+        if (dataAllergy.size() < 1) {
+            allergy = "-";
+        } else {
+            allergy = dataAllergy.get(0).get(2);
+        }
+
+    }
+
+    for (int i = 0; i < dataPatientFull.get(0).size(); i++) {
+        dataFull = dataFull + "#" + dataPatientFull.get(0).get(i);
+    }
+
+// Get Age from Date of Birth
+    dob = dataQueue.get(0).get(6).toString();
+
+    check = cdf.isValidFormat("dd/MM/yyyy", dob);  
+    if (check) {    
+        String[] dobAr = StringUtils.split(dob, "/");
+        int dobYear = Integer.parseInt(dobAr[2]);
+        int dobMonth = Integer.parseInt(dobAr[1]);
+        age = year - dobYear; 
+        ageS = Integer.toString(age);
+    } else {
+        ageS = "undefined";
+    }
+
 
 %>
+<center>
+    <h4>Name : <%=patient_name%>| gender : <%=sex%>| Age : <%= ageS%>| ÏC/ID No : <%=icnew%>| ID Type: <%=IdType%>| Race : <%=race%>| Blood Type : <%=bloodType%>| Allergy : <%=allergy%></h4>
+</center>
 <center>
     <h4>PREVIOUS VISIT (INPATIENT EPISODE) 
         <!--        <a class="btn btn-primary pull-right" data-toggle="collapse" href="#searchPatient1" aria-expanded="false" aria-controls="searchPatient1">
@@ -58,7 +180,7 @@
     </h4>
 </center>
 <br/>
-<table class="table table-filter table-striped" style="background: #fff; border: 1px solid #ccc;" id="searchPatient1">
+<table class="table table-filter table-striped" style="background: #fff; border: 1px solid #ccc;" id="searchPatient">
     <thead>
     <th>Episode Date</th>
     <th>Health Care Facility</th>
@@ -103,7 +225,7 @@
             if (searchID1.size() > 0) {
 
                 //out.print(String.join("|", searchID1.get(i)));
-%>
+    %>
     <tr>
         <td><%=searchID1.get(i).get(1)%>
             <input type="hidden" id="pmi1" value="<%=searchID1.get(i).get(0)%>">
@@ -122,6 +244,12 @@
     %>
 </tbody>
 </table>
+<script type="text/javascript">
+    $(document).ready(function() {
+    $('#searchPatient').DataTable();
+    $('#searchPatient1').DataTable();
+} );
+    </script>
 <%
     } else {
         out.print("1");

@@ -9,9 +9,9 @@
 <!-- Modal -->
 <%
     Conn conn = new Conn();
-   String hfc = session.getAttribute("HEALTH_FACILITY_CODE").toString();
+    String hfc = session.getAttribute("HEALTH_FACILITY_CODE").toString();
 
-    String idTYpe2 = "select * from adm_lookup_detail where master_reference_code = '0012' AND hfc_cd = '"+hfc+"' ";
+    String idTYpe2 = "select * from adm_lookup_detail where master_reference_code = '0012' AND hfc_cd = '" + hfc + "' ";
     ArrayList<ArrayList<String>> dataIdType2;
     ArrayList<ArrayList<String>> data2 = new ArrayList();
     //String hfc = session.getAttribute("HEALTH_FACILITY_CODE").toString();
@@ -104,7 +104,7 @@
                     if (typeApp === "") {
                         alert("Please Make Sure The Fields Is Filled!")
                     } else {
-                        console.log(inputApp+" "+typeApp);
+                        console.log(inputApp + " " + typeApp);
                         $.ajax({
                             type: "POST",
                             data: {idType: typeApp, idInput: inputApp},
@@ -195,6 +195,10 @@
                     $('#myFormApp')[0].reset();
                 });
 
+//                $(document).ready(function () {
+//                    $('#searchPatient').DataTable();
+//                    $('#searchPatient1').DataTable();
+//                });
 
 //     $('#episodeDetail').on('click', '#searchPatient1  #ViewDetail', function () {
 //        var row = $(this).closest("tr");

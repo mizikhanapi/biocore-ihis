@@ -15,7 +15,7 @@
 <link href="assets/jquery.timepicker.min.css" rel="stylesheet" type="text/css"/>
 <!-- Custom styles for this template -->
 
-
+<link href="assets/dataTables.bootstrap.min.css" rel="stylesheet" type="text/css"/>
 
 <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
 
@@ -27,7 +27,8 @@
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script src="assets/bootstrap-3.3.7-dist/js/bootstrap.js" type="text/javascript"></script>
 <script src="assets/jquery.timepicker.min.js" type="text/javascript"></script>
-
+<script src="assets/jquery.dataTables.min.js" type="text/javascript"></script>
+<script src="assets/dataTables.bootstrap.min.js" type="text/javascript"></script>
 <script src="jsFunction/MainConfig.js"></script>
 <script src="jsFunction/Objective.js"></script>
 <script src="jsFunction/Subjective.js"></script>
