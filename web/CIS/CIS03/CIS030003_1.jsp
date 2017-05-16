@@ -30,83 +30,91 @@
     searchOutpatient = conn.getData(sql2);
 
 %>
+<div class="row">
+    <div class="col-md-12">
+        <h4 style="padding: 0px;">PREVIOUS VISIT (INPATIENT EPISODE) <% //out.print(pmiNo);%></h4><br/>
+        <div id="inpatient" >
+            <table id="inPatient" class="table table-stripout.print(pmiNo);ed table-bordered" cellspacing="0" width="100%">
+                <thead>  
+                    <tr>
+                        <th class="col-sm-1">Episode Date</th>
+                        <th class="col-sm-1">Health Care Facility</th>
+                        <th class="col-sm-1">Discipline Name</th>
+                        <th class="col-sm-1">Action</th>				 
+                    </tr>
+                </thead>
 
-<center><h4>PREVIOUS VISIT (INPATIENT EPISODE) <% //out.print(pmiNo);%></h4></center>
-<div class="thumbnail"  id="inpatient" >
-    <table id="inPatient" class="table table-stripout.print(pmiNo);ed table-bordered" cellspacing="0" width="100%">
-        <thead>  
-            <tr>
-                <th class="col-sm-1">Episode Date</th>
-                <th class="col-sm-1">Health Care Facility</th>
-                <th class="col-sm-1">Discipline Name</th>
-                <th class="col-sm-1">Action</th>				 
-            </tr>
-        </thead>
+                <tbody id="inpatient">
+                    <%
+                        if (searchInpatient.size() > 0) {
+                            for (int i = 0; i < searchInpatient.size(); i++) {
 
-        <tbody id="inpatient">
-            <%
-                if (searchInpatient.size() > 0) {
-                    for (int i = 0; i < searchInpatient.size(); i++) {
-
-            %>
-            <tr>
-                <td><%=searchInpatient.get(i).get(1)%>
-                    <input type="hidden" id="pmi" value="<%=searchInpatient.get(i).get(0)%>">
-                    <input type="hidden" id="episode" value="<%=searchInpatient.get(i).get(1)%>">
-                    <input type="hidden" id="discipline" value="<%=searchInpatient.get(i).get(3)%>">
-                </td>
-                <td><%=searchInpatient.get(i).get(2)%></td>
-                <td><%=searchInpatient.get(i).get(3)%></td>
-                <td><a href="#inpatientProblem" id="inBtn" name="ViewDetail" class="btn btn-default" type="button" role="button"><i class="fa fa-eye" aria-hidden="true" style="display: inline-block;color: #337ab7;"></i></a></td>
-            </tr>
-            <%}
-                                }%>
-        </tbody>
-    </table>
+                    %>
+                    <tr>
+                        <td><%=searchInpatient.get(i).get(1)%>
+                            <input type="hidden" id="pmi" value="<%=searchInpatient.get(i).get(0)%>">
+                            <input type="hidden" id="episode" value="<%=searchInpatient.get(i).get(1)%>">
+                            <input type="hidden" id="discipline" value="<%=searchInpatient.get(i).get(3)%>">
+                        </td>
+                        <td><%=searchInpatient.get(i).get(2)%></td>
+                        <td><%=searchInpatient.get(i).get(3)%></td>
+                        <td><a href="#inpatientProblem" id="inBtn" name="ViewDetail" class="btn btn-default" type="button" role="button">View Details</a></td>
+                    </tr>
+                    <%}
+                        }%>
+                </tbody>
+            </table>
+        </div>
+    </div>
 </div>
 
-<center><h4>PREVIOUS VISIT (OUTPATIENT EPISODE)</h4></center>
-<div class="thumbnail" id="outpatient">
-    <table id="outPatient"  class="table table-striped table-bordered" cellspacing="0" width="100%">
-        <thead>  
-            <tr>
-                <th class="col-sm-1">Episode Date</th>
-                <th class="col-sm-1">Health Care Facility</th>
-                <th class="col-sm-1">Discipline Name</th>
-                <th class="col-sm-1">Action</th>				 
-            </tr>
-        </thead>
+<div class="row">
+    <hr/>
+    <div class="col-md-12">
+        <h4 style="padding: 0px;">PREVIOUS VISIT (OUTPATIENT EPISODE)</h4><br/>
+        <div id="outpatient">
+            <table id="outPatient"  class="table table-striped table-bordered" cellspacing="0" width="100%">
+                <thead>  
+                    <tr>
+                        <th class="col-sm-1">Episode Date</th>
+                        <th class="col-sm-1">Health Care Facility</th>
+                        <th class="col-sm-1">Discipline Name</th>
+                        <th class="col-sm-1">Action</th>				 
+                    </tr>
+                </thead>
 
-        <tbody id="outpatient">
-            <%
-                if (searchOutpatient.size() > 0) {
-                    for (int i = 0; i < searchOutpatient.size(); i++) {
+                <tbody id="outpatient">
+                    <%
+                        if (searchOutpatient.size() > 0) {
+                            for (int i = 0; i < searchOutpatient.size(); i++) {
 
-            %>
-            <tr>
-                <td><%=searchOutpatient.get(i).get(1)%>
-                    <input type="hidden" id="pmi1" value="<%=searchOutpatient.get(i).get(0)%>">
-                    <input type="hidden" id="episode1" value="<%=searchOutpatient.get(i).get(1)%>">
-                    <input type="hidden" id="discipline1" value="<%=searchOutpatient.get(i).get(3)%>">
-                </td>
-                <td><%=searchOutpatient.get(i).get(2)%></td>
-                <td><%=searchOutpatient.get(i).get(3)%></td>       
-                <td>
-                    <a href="#outpatientProblem" id="outBtn" name="ViewDetail" class="btn btn-default" type="button" role="button"><i class="fa fa-eye" aria-hidden="true" style="display: inline-block;color: #337ab7;"></i></a>
-                </td>
-            </tr>
-            <%
-                    }
-                }
-            %>
-        </tbody>
-    </table>
-        <script type="text/javascript">
-    $(document).ready(function() {
-    $('#inPatient').DataTable();
-    $('#outPatient').DataTable();
-} );
-    </script>
+                    %>
+                    <tr>
+                        <td><%=searchOutpatient.get(i).get(1)%>
+                            <input type="hidden" id="pmi1" value="<%=searchOutpatient.get(i).get(0)%>">
+                            <input type="hidden" id="episode1" value="<%=searchOutpatient.get(i).get(1)%>">
+                            <input type="hidden" id="discipline1" value="<%=searchOutpatient.get(i).get(3)%>">
+                        </td>
+                        <td><%=searchOutpatient.get(i).get(2)%></td>
+                        <td><%=searchOutpatient.get(i).get(3)%></td>       
+                        <td>
+                            <a href="#outpatientProblem" id="outBtn" name="ViewDetail" class="btn btn-default" type="button" role="button">View Details</a>
+                        </td>
+                    </tr>
+                    <%
+                            }
+                        }
+                    %>
+                </tbody>
+            </table>
+            <script type="text/javascript">
+                $(document).ready(function () {
+                    $('#inPatient').DataTable();
+                    $('#outPatient').DataTable();
+                });
+            </script>
+        </div>
+    </div>
 </div>
 
 <div  id="inpatientProblem">
@@ -117,7 +125,7 @@
 
 </div>
 <script type="text/javascript">
-    
+
     $('#inpatient').on('click', '#inBtn', function () {
         var row = $(this).closest("tr");
         var pmi_no = row.find("#pmi").val();
@@ -136,7 +144,7 @@
                     $('#inpatientProblem').html(getData);
                 }
             }});
-                 
+
     });
 </script>
 <script type="text/javascript">
@@ -163,5 +171,5 @@
 
     });
 
-    
+
 </script>
