@@ -54,6 +54,7 @@
 
 <table class="table table-filter table-striped table-bordered dt-head-right" style="background: #fff; border: 1px solid #ccc; width: 100%; text-align: left" id="patientOrderDetailsListTable">
     <thead>
+    <th style="text-align: left;">Check<!--<br><input id="checkDispenseAll" type="checkbox" onchange="checkAll(this)" name="chk[]" />--></th>
     <th style="display: none;text-align: center;">Order No</th>
     <th style="text-align: left;">Code</th>
     <th style="text-align: left;">Description</th>
@@ -83,7 +84,7 @@
     <th style="display: none;text-align: center;">MDC Frequency Desc</th>
     <th style="display: none;text-align: center;">MDC Dosage</th>
     <th style="display: none;text-align: center;">MDC Duration</th>
-    <th style="text-align: left;">Check<!--<br><input id="checkDispenseAll" type="checkbox" onchange="checkAll(this)" name="chk[]" />--></th>
+
 </thead>
 <tbody>
     <%        for (int i = 0; i < dataOrderList.size(); i++) {
@@ -126,6 +127,7 @@
     <tr style="text-align: left;">
         <%   }%>
 <input id="dataPatientOrderDetailsListhidden" type="hidden" value="<%=String.join("|", dataOrderList.get(i))%>">
+<td align="center"><input type="checkbox" id="drugDispenseChecked" checked></td> <!-- Status -->
 <td id="updateOrderDetailsTButton" data-status="pagado" data-toggle="modal" data-id="1" data-target="#updateOrder" align="center" style="display: none"><%= dataOrderList.get(i).get(0)%></td> <!-- Order No -->
 <td id="updateOrderDetailsTButton" data-status="pagado" data-toggle="modal" data-id="1" data-target="#updateOrder" align="center" ><%= dataOrderList.get(i).get(1)%></td> <!-- Code -->
 <td id="updateOrderDetailsTButton" data-status="pagado" data-toggle="modal" data-id="1" data-target="#updateOrder" align="center"><%= dataOrderList.get(i).get(2)%></td> <!-- Description -->
@@ -155,7 +157,7 @@
 <td align="center" style="display:none;"><%= dataOrderList.get(i).get(33)%></td> <!-- MDC Frequency Desc -->
 <td align="center" style="display:none;"><%= dataOrderList.get(i).get(34)%><%= dataOrderList.get(i).get(35)%></td> <!-- MDC Dosage -->
 <td align="center" style="display:none;"><%= dataOrderList.get(i).get(36)%><%= dataOrderList.get(i).get(37)%></td> <!-- MDC Duration -->
-<td align="center"><input type="checkbox" id="drugDispenseChecked" checked></td> <!-- Status -->
+
 
 
 
