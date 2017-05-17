@@ -130,7 +130,8 @@
         $("#PRO1_div_update").show();
         
         $('#PRO1_div_btnAdd_or_update').html('<button type="submit" class="btn btn-success btn-block btn-lg" role="button" id="PRO1_btnUpdate">Update</button>');
-
+        
+        //console.log( $('#PRO1_level1_code').val());
 
 
 
@@ -144,12 +145,11 @@
     $('#PRO1_div_btnAdd_or_update').on('click', '#PRO1_btnUpdate', function () {
         
         var code_1 = $("#PRO1_level1_code").val();
-        var code = $('#PRO1_Code').val();
+        var code = $('#PRO1_level2_code_upd').val();
         var name = $('#PRO1_Name').val();
         var status = $('#PRO1_status').val();
         
-        console.log(code_1);
-        return;
+        
         if (code === "") {
             bootbox.alert("Procedure code can't be empty");
 
@@ -161,6 +161,7 @@
             name = name.replace(/'/g, "\\\'").replace(/"/g, "\\\"");
 
             var data = {
+                code_1: code_1,
                 code: code,
                 name: name,
                 status: status
@@ -168,7 +169,7 @@
 
             $.ajax({
                 type: 'POST',
-                url: "procedure_controller/procedure_update.jsp",
+                url: "procedure_controller/procedure1_update.jsp",
                 data: data,
                 success: function (data, textStatus, jqXHR) {
 
@@ -209,11 +210,11 @@
         var rowData = row.find('#PRO1_hidden').val();
         var arrayData = rowData.split("|");
 
-        var code = arrayData[0], name = arrayData[1];
+        var code_1 = arrayData[0], name = arrayData[1], code_2 = arrayData[3];
 
         bootbox.confirm({
             title: "Delete item?",
-            message: "Are you sure you want to delete " + code + " - " + name,
+            message: "Are you sure you want to delete " + code_2 + " - " + name,
             buttons: {
                 confirm: {
                     label: "Yes",
@@ -228,12 +229,13 @@
 
                 if (result) {
                     var data = {
-                        code: code
+                        code_1: code_1,
+                        code: code_2
                     };
 
                     $.ajax({
                         type: 'POST',
-                        url: "procedure_controller/procedure_delete.jsp",
+                        url: "procedure_controller/procedure1_delete.jsp",
                         data: data,
                         success: function (data, textStatus, jqXHR) {
 
