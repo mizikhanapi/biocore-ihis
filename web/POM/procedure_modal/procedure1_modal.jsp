@@ -19,23 +19,33 @@
                 <form class="form-horizontal" id="PRO1_addForm" autocomplete="off">
 
                     <!-- Text input-->
-                    <div class="form-group">
+                    <div class="form-group" id="PRO1_div_level1">
                         <label class="col-md-4 control-label" for="textinput">Level 1 Code*</label>
                         <div class="col-md-8">
-                            <input id="PRO1_level1_name"  type="text" placeholder="Search CIS code level 1" class="form-control input-md" maxlength="30">
-                            <input id="PRO1_level1_code" type="hidden">
+                            <input id="PRO1_level1_name"  type="text" placeholder="Search level 1 procedure code" class="form-control input-md" maxlength="30">
+                            <input type="hidden" id="PRO1_level1_code">
+                            <div id="PRO1_match" class="search-drop">
+                                
+                            </div>
 
                         </div>
                     </div>
 
                     <!-- Text input-->
-                    <div class="form-group">
-                        <label class="col-md-4 control-label" for="textinput">Level 2 Code*</label>
+                    <div class="form-group" id="PRO1_div_insert">
+                        <label class="col-md-4 control-label" >Level 2 Code*</label>
                         <div class="col-md-8 input-group">
-                            <input type="text" class="form-control" placeholder="End" size="4">
-                            <span class="input-group-addon" style="border: 0px; background-color: white">.</span>
-                            <input id="PRO1_level2_code"  type="text" placeholder="Insert level 2 procedure code " class="form-control input-md" maxlength="20">
+                            <input id="PRO1_level2_code_front" type="text" class="form-control" style="text-align:right;" placeholder="Auto" size="1" disabled>
+                            <span class="input-group-addon" style="border: 0px; background-color: white; width: 0.15px">.</span>
+                            <input id="PRO1_level2_code_ins"  type="text" placeholder="Insert level 2 procedure code " class="form-control input-md" maxlength="20">
 
+                        </div>
+                    </div>
+                    
+                    <div class="form-group" id="PRO1_div_update">
+                        <label class="col-md-4 control-label">Level 2 Code*</label>
+                        <div class="col-md-8 input-group">
+                            <input id="PRO1_level2_code_upd"  type="text" placeholder="Insert level 2 procedure code" class="form-control input-md" disabled>
                         </div>
                     </div>
 
@@ -78,4 +88,52 @@
 </div>
 <!-- Add Modal End -->  
 <!-- Modal -->
+<script type="text/javascript">
+    
+    //---------------- search level 1 procedure -----------------------------------
+    
+    $('#PRO1_level1_name').on('keyup', function(){
+        var input = $(this).val();
+        
+        $('#PRO1_level2_code_front').val('');
+        
+        if(input.length > 0){
+            var data = {
+                key: input,
+                process: 'level1'
+            };
+            $('#PRO1_match').html('<img src="img/ajax-loader.gif">');
+            
+            
+            $.ajax({
+                type: 'POST',
+                url: "procedure_controller/search_porcedure.jsp",
+                data: data,
+                success: function (data, textStatus, jqXHR) {
+                    
+                        $('#PRO1_match').html(data);
+                        $('#PRO_match_list li').on('click', function(){
+                            $('#PRO1_level1_name').val($(this).text());
+                            $('#PRO1_level2_code_front').val($(this).data('code'));
+                           
+                            $('#PRO1_match').html('');      
+                            
+                        });
+                        
+                    },
+                error: function (jqXHR, textStatus, errorThrown) {
+                        $('#PRO1_match').html(errorThrown);
+                    }
+            });
+            
+        }
+        else{
+            $('#PRO1_match').html('');            
+            
+        }
+        
+    });
+    
+    //=========================================================================
+</script>
 

@@ -25,6 +25,11 @@
         $('#PRO1_modal_title').text("Add New Procedure");
         $('#PRO1_Code').prop('disabled', false);
         $('#PRO1_div_btnAdd_or_update').html('<button type="submit" class="btn btn-success btn-block btn-lg" role="button" id="PRO1_btnAdd">Add</button>');
+        
+        $('#PRO1_div_level1').show();
+        $("#PRO1_div_insert").show();
+        $("#PRO1_div_update").hide();
+        
 
         $('#PRO1_addForm')[0].reset();
 
@@ -40,20 +45,26 @@
         e.preventDefault();
 
         var name = $('#PRO1_Name').val();
-        var code = $('#PRO1_Code').val();
+        var code_1 = $('#PRO1_level2_code_front').val();
+        var code_2 = $('#PRO1_level2_code_ins').val();
         var status = $('#PRO1_status').val();
 
-        if (code === "") {
-            bootbox.alert("Insert the procedure code");
+        if (code_1 === "") {
+            bootbox.alert("Please choose existing level 1 code");
 
-        } else if (name === "") {
-            bootbox.alert("Insert the procedure name");
+        } else if (code_2 === "") {
+            bootbox.alert("Please complete the level 2 code");
+
+        }else if (name === "") {
+            bootbox.alert("Please insert the level 2 name");
 
         } else {
 
             name = name.replace(/'/g, "\\\'").replace(/"/g, "\\\"");
+            var code = code_1.trim() + '.' + code_2.trim();
 
             var data = {
+                code_1: code_1,
                 code: code,
                 name: name,
                 status: status
@@ -61,7 +72,7 @@
 
             $.ajax({
                 type: 'POST',
-                url: "procedure_controller/procedure_insert.jsp",
+                url: "procedure_controller/procedure1_insert.jsp",
                 data: data,
                 success: function (data, textStatus, jqXHR) {
 
@@ -81,6 +92,7 @@
                     } else if (data.trim() === 'duplicate') {
 
                         bootbox.alert('Sorry, the code ' + code + ' has been used. Please enter different code.');
+                        $('#PRO1_level2_code_ins').val('');
                     }
 
                 },
@@ -105,14 +117,18 @@
         var rowData = row.find("#PRO1_hidden").val();
         var arrayData = rowData.split("|");
 
-        var code = arrayData[0], name = arrayData[1], status = arrayData[2];
+        var code_1 = arrayData[0], name = arrayData[1], status = arrayData[2], code_2 = arrayData[3];
 
-        $('#PRO1_Code').val(code);
+        $('#PRO1_level1_code').val(code_1);
+        $('#PRO1_level2_code_upd').val(code_2);
         $('#PRO1_Name').val(name);
         $('#PRO1_status').val(status);
 
         $('#PRO1_modal_title').text("Update Procedure");
-        $('#PRO1_Code').prop('disabled', true);
+         $('#PRO1_div_level1').hide();
+        $("#PRO1_div_insert").hide();
+        $("#PRO1_div_update").show();
+        
         $('#PRO1_div_btnAdd_or_update').html('<button type="submit" class="btn btn-success btn-block btn-lg" role="button" id="PRO1_btnUpdate">Update</button>');
 
 
@@ -126,11 +142,14 @@
     //------------------------------- update upon button click ----------------------------------------------------------------
 
     $('#PRO1_div_btnAdd_or_update').on('click', '#PRO1_btnUpdate', function () {
-
+        
+        var code_1 = $("#PRO1_level1_code").val();
         var code = $('#PRO1_Code').val();
         var name = $('#PRO1_Name').val();
         var status = $('#PRO1_status').val();
-
+        
+        console.log(code_1);
+        return;
         if (code === "") {
             bootbox.alert("Procedure code can't be empty");
 
