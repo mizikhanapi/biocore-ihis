@@ -14,14 +14,14 @@ Author     : user
 
     Conn conn = new Conn();
 
-    String Consultationqueue = "select * from pms_queue_name where queue_type='FY' and hfc_cd = '"+session.getAttribute("HEALTH_FACILITY_CODE")+"' ";
-    String Doctorqueue = "select * from pms_queue_name where queue_type='PN' and hfc_cd = '"+session.getAttribute("HEALTH_FACILITY_CODE")+"' ";
-      
-     ArrayList<ArrayList<String>> dataQueue;
-     ArrayList<ArrayList<String>> dataQueue2;
-     
-        dataQueue = conn.getData(Doctorqueue);
-        dataQueue2 = conn.getData(Consultationqueue);
+    String Consultationqueue = "select * from pms_queue_name where queue_type='FY' and hfc_cd = '" + session.getAttribute("HEALTH_FACILITY_CODE") + "' ";
+    String Doctorqueue = "select * from pms_queue_name where queue_type='PN' and hfc_cd = '" + session.getAttribute("HEALTH_FACILITY_CODE") + "' ";
+
+    ArrayList<ArrayList<String>> dataQueue;
+    ArrayList<ArrayList<String>> dataQueue2;
+
+    dataQueue = conn.getData(Doctorqueue);
+    dataQueue2 = conn.getData(Consultationqueue);
 %>
 
 <!DOCTYPE html>
@@ -33,6 +33,21 @@ Author     : user
         <%@include file="../assets/header.html"%>
         <link  rel="stylesheet" href="../assets/css/radiobtn.css">
 
+        <script src="../../assets/js/jquery.min.js" type="text/javascript"></script>
+        <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+        <!-- keyboard widget css & script (required) -->
+        <link href="../assets/css/keyboard.css" rel="stylesheet">
+        <link href="../assets/css/jquery-ui.min.css" rel="stylesheet">
+        <script src="../assets/js/jquery.keyboard.js"></script>
+
+        <script>
+            $(function () {
+                $('#inputUserIC').keyboard();
+            });
+        </script>
         <!--header-->
     </head>
     <body>
@@ -44,7 +59,7 @@ Author     : user
                         <div class="col-md-4 col-md-offset-4" style="margin-top: 2%;">
                             <div class="thumbnail">
                                 <a href="../mainMenu.jsp" title="Back to Dashboard"><i class="fa fa-arrow-left fa-lg pull-left" style="color: #ccc;"></i></a>
-                               <div class="profile-img-card" style="text-align: center;" >
+                                <div class="profile-img-card" style="text-align: center;" >
                                     <i class="fa fa-user-md" aria-hidden="true" style="color: #666; font-size: 100px;"></i>
                                 </div>
                                 <div class="logo" style="font-size: 32px; text-align: center;">
@@ -53,7 +68,6 @@ Author     : user
                                 <br/>
                                 <form class="form-signin" action="dashboard.jsp">
                                     <span id="reauth-email" class="reauth-email"></span>
-
                                     <input type="text" id="inputUserIC" class="form-control" placeholder="Enter Your IC" name="useric">
                                     <input type="text" id="inputUserName" class="form-control" placeholder="Your Name" name="username" disabled="">
 
@@ -69,50 +83,46 @@ Author     : user
                                             <label class="btn marglft" for="consultantQueue">
                                                 <input type="radio" id ="consultantQueue" name='queuetype' value="FY"><i class="fa fa-circle-o fa-2x"></i><i class="fa fa-dot-circle-o fa-2x "></i><span>Services</span>
                                             </label>
-											<label class="btn marglft" for="doctorQueue">
-												<input type="radio" id ="doctorQueue" name='queuetype' value="PN"><i class="fa fa-circle-o fa-2x"></i><i class="fa fa-dot-circle-o fa-2x "></i><span>Doctors</span>
-											</label>
+                                            <label class="btn marglft" for="doctorQueue">
+                                                <input type="radio" id ="doctorQueue" name='queuetype' value="PN"><i class="fa fa-circle-o fa-2x"></i><i class="fa fa-dot-circle-o fa-2x "></i><span>Doctors</span>
+                                            </label>
                                         </div>
                                         <!--</div>-->
                                     </div>
                                     <select  id="selectedServiceQueue"  class="form-control select-full" hidden>
-                     <option value="null" selected="" disabled="">Please Select Queue</option>
-                     
-                        <%
-                            String add = null, text=null;
-                            for (int i = 0; i < dataQueue2.size(); i++) {
-                                    if (dataQueue2.get(i).get(1) != ""|| dataQueue2.get(i).get(1) != null)
-                                        {
-                                            
-                                            if (!dataQueue2.get(i).get(1).contains("Room"))
-                                            {
-                                                
-                        %>
-                            
-                        <option value="<%=dataQueue2.get(i).get(1)%>"><%="(" + dataQueue2.get(i).get(0) + ") " + dataQueue2.get(i).get(1)%></option>
-                        <%                  }
-                                        } 
-                            }
-                        %>
-                       
-                 </select>
-                 
-                    <select  id="selectedDoctorQueue"  class="form-control select-full">
-                     <option value="null" selected="" disabled="">Please Select Queue</option>
-                     
-                        <%
-                           
-                            for (int i = 0; i < dataQueue.size(); i++) {
-                                    if (dataQueue.get(i).get(1) != ""|| dataQueue.get(i).get(1) != null)
-                                        {          
-                        %>
-                            
-                        <option value="<%=dataQueue.get(i).get(1)%>"><%="(" + dataQueue.get(i).get(0) + ") " + dataQueue.get(i).get(1)%></option>
-                        <%                  }
-                                        } 
-                        %>
-                       
-                 </select>
+                                        <option value="null" selected="" disabled="">Please Select Queue</option>
+
+                                        <%
+                                            String add = null, text = null;
+                                            for (int i = 0; i < dataQueue2.size(); i++) {
+                                                if (dataQueue2.get(i).get(1) != "" || dataQueue2.get(i).get(1) != null) {
+
+                                                    if (!dataQueue2.get(i).get(1).contains("Room")) {
+
+                                        %>
+
+                                        <option value="<%=dataQueue2.get(i).get(1)%>"><%="(" + dataQueue2.get(i).get(0) + ") " + dataQueue2.get(i).get(1)%></option>
+                                        <%                  }
+                                                }
+                                            }
+                                        %>
+
+                                    </select>
+
+                                    <select  id="selectedDoctorQueue"  class="form-control select-full">
+                                        <option value="null" selected="" disabled="">Please Select Queue</option>
+
+                                        <%
+                                            for (int i = 0; i < dataQueue.size(); i++) {
+                                                if (dataQueue.get(i).get(1) != "" || dataQueue.get(i).get(1) != null) {
+                                        %>
+
+                                        <option value="<%=dataQueue.get(i).get(1)%>"><%="(" + dataQueue.get(i).get(0) + ") " + dataQueue.get(i).get(1)%></option>
+                                        <%                  }
+                                            }
+                                        %>
+
+                                    </select>
 
                                 </form>
                                 <div class="text-center">
@@ -131,20 +141,18 @@ Author     : user
         <div w3-include-html="../libraries/script.html"></div>
 
         <script src="http://www.w3schools.com/lib/w3data.js"></script>
-        <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
         <script src="../assets/js/bootbox.min.js"></script>
-        <%@include file="../assets/script.html"%>
+        <%//@include file="../assets/script.html"%>
         <script src="../assets/jquery.PrintArea.js"></script>
 
         <script>
             w3IncludeHTML();
-            
+
             $('#selectedDoctorQueue').hide();
             $('#selectedServiceQueue').hide();
-			
-			var $body = $('body');
+
+            var $body = $('body');
             var yyyyMMddHHmmss;
             var HHmmss;
             var yyyyMMdd;
@@ -197,45 +205,54 @@ Author     : user
                 yyyyMMdd = year + "-" + ZeroMonth + "-" + ZeroDay;
                 ddMMyyyy = ZeroDay + "-" + ZeroMonth + "-" + year;
             }
-            
-			      //event when radio consolate is change
-        document.getElementById("commonQueue").onchange = function() {changesConsClicked();};
-       
+
+            //event when radio consolate is change
+            document.getElementById("commonQueue").onchange = function () {
+                changesConsClicked();
+            };
+
             function changesConsClicked() {
 //                console.log("click 2");
-                    $('#selectedDoctorQueue').hide();
-                    $('#selectedServiceQueue').hide();
+                $('#selectedDoctorQueue').hide();
+                $('#selectedServiceQueue').hide();
                 $("#selectedDoctorQueue").val("null");
                 $("#selectedServiceQueue").val("null");
+            }
+            ;
+
+            //event when radio doctor is change
+            document.getElementById("doctorQueue").onchange = function () {
+                changesDocClicked();
             };
-            
-             //event when radio doctor is change
-        document.getElementById("doctorQueue").onchange = function() {changesDocClicked();};
-       
+
             function changesDocClicked() {
 //                console.log("click 1");
-                    $('#selectedDoctorQueue').show();
-                    $('#selectedServiceQueue').hide();
+                $('#selectedDoctorQueue').show();
+                $('#selectedServiceQueue').hide();
                 $("#selectedDoctorQueue").val("null");
                 $("#selectedServiceQueue").val("null");
-                
+
+            }
+            ;
+
+            //event when radio service is change
+            document.getElementById("consultantQueue").onchange = function () {
+                changesSerClicked();
             };
-        
-         //event when radio service is change
-        document.getElementById("consultantQueue").onchange = function() {changesSerClicked();};
-       
+
             function changesSerClicked() {
 //                console.log("click 1");
-                    $('#selectedServiceQueue').show();
-                    $('#selectedDoctorQueue').hide();
+                $('#selectedServiceQueue').show();
+                $('#selectedDoctorQueue').hide();
                 $("#selectedDoctorQueue").val("null");
                 $("#selectedServiceQueue").val("null");
-                
-            };
-  
-			
-			
-			
+
+            }
+            ;
+
+
+
+
             //event when radio button1 is change
             document.getElementById("inputUserIC").onchange = function () {
                 TextFiledchanges();
@@ -278,7 +295,8 @@ Author     : user
                         }
                     });
                 }
-            };
+            }
+            ;
 //            
 //            
 //            
@@ -302,21 +320,19 @@ Author     : user
                 useric = $("#inputUserIC").val();
                 username = $("#inputUserName").val();
                 queuetype = $("input[name='queuetype']:checked").val();
-            
-			              if(queuetype === "CM")
-                    {
-                        selectedqueue ="Normal Queue";
-                    }
-                    else if (queuetype === "PN")
-                    {
-                       selectedqueue =  $('#selectedDoctorQueue').val();
-                    }
-                    else if (queuetype === "FY")
-                    {
-                        selectedqueue =  $('#selectedServiceQueue').val();
-                    }
-			
-			
+
+                if (queuetype === "CM")
+                {
+                    selectedqueue = "Normal Queue";
+                } else if (queuetype === "PN")
+                {
+                    selectedqueue = $('#selectedDoctorQueue').val();
+                } else if (queuetype === "FY")
+                {
+                    selectedqueue = $('#selectedServiceQueue').val();
+                }
+
+
 //                console.log(useric+" "+username+" "+queuetype+" "+selectedqueue);
                 if (useric === "")
                 {
@@ -332,69 +348,69 @@ Author     : user
                     bootbox.alert("Please Select Queue");
                     $("#selectedQueue").focus();
                 } else {
-                    
-					
-					 //hfc amik kat session
-            hfc = $("#Rhfc").val();
-            var datas = {'pmi': pmi_no,
-                'epiDate': yyyyMMdd+" "+HHmmss,
-                'name': username,
-                'newic': useric,
-                'oldic': '-',
-                'typeId': '-',
-                'idNo': user_id,
-                'rnNo': '-',
-                'patCatCode': '-',
-                'visTyCode': '001',
-                'emTy': '-',
-                'eliCatCode': '-',
-                'eliTyCode': '-',
-                'disCode': '-',
-                'subDiscode': '-',
-                'consultRoom': '-',
-                'comQueue': '-',
-                'doctor': '-',
-                'prioGruCode': '-',
-                'commDis': '-',
-                'polCase': '-',
-                'natuDisasCode': '-',
-                'docTy': '-',
-                'guardInd': '-',
-                'referNo': '-',
-                'gruGuard': '-',
-                'glExpDate': '-',
-                'epiTime': HHmmss,
-                'stat': '0',
-                'hfc': hfc,
-                'now': yyyyMMdd,
-                'comTy': queuetype,
-                'createdBy': user_id,
-                'queue': selectedqueue,
-                'docID': '-'};
-            //console.log(datas);
-            
-                        $.ajax({
-                            type: "POST",
-                            url: "../../PMS/controller/registerqueue.jsp",
-                            data: datas, // Send input
-                            timeout: 10000,
-                            success: function (list) {
-                                console.log(list);
-                                if ($.trim(list) === "Success") {
 
-                                    bootbox.alert("Patient has been register successfully");
-                                    window.history.back();
-                                    PrintLable(selectedqueue);                                  
-                                    
-                                } else if ($.trim(list) === "already") {
-                                    bootbox.alert("Patient is already registered");
-                                }
-                                
-                            }, error: function (err) {
-                                console.log(err);   
-                                bootbox.alert("There is an error!");
-								
-								
+
+                    //hfc amik kat session
+                    hfc = $("#Rhfc").val();
+                    var datas = {'pmi': pmi_no,
+                        'epiDate': yyyyMMdd + " " + HHmmss,
+                        'name': username,
+                        'newic': useric,
+                        'oldic': '-',
+                        'typeId': '-',
+                        'idNo': user_id,
+                        'rnNo': '-',
+                        'patCatCode': '-',
+                        'visTyCode': '001',
+                        'emTy': '-',
+                        'eliCatCode': '-',
+                        'eliTyCode': '-',
+                        'disCode': '-',
+                        'subDiscode': '-',
+                        'consultRoom': '-',
+                        'comQueue': '-',
+                        'doctor': '-',
+                        'prioGruCode': '-',
+                        'commDis': '-',
+                        'polCase': '-',
+                        'natuDisasCode': '-',
+                        'docTy': '-',
+                        'guardInd': '-',
+                        'referNo': '-',
+                        'gruGuard': '-',
+                        'glExpDate': '-',
+                        'epiTime': HHmmss,
+                        'stat': '0',
+                        'hfc': hfc,
+                        'now': yyyyMMdd,
+                        'comTy': queuetype,
+                        'createdBy': user_id,
+                        'queue': selectedqueue,
+                        'docID': '-'};
+                    //console.log(datas);
+
+                    $.ajax({
+                        type: "POST",
+                        url: "../../PMS/controller/registerqueue.jsp",
+                        data: datas, // Send input
+                        timeout: 10000,
+                        success: function (list) {
+                            console.log(list);
+                            if ($.trim(list) === "Success") {
+
+                                bootbox.alert("Patient has been register successfully");
+                                window.history.back();
+                                PrintLable(selectedqueue);
+
+                            } else if ($.trim(list) === "already") {
+                                bootbox.alert("Patient is already registered");
+                            }
+
+                        }, error: function (err) {
+                            console.log(err);
+                            bootbox.alert("There is an error!");
+
+
                         }
                     });
 //                    
@@ -449,35 +465,35 @@ Author     : user
 //
 //            document.body.innerHTML = originalContents;
             });
-            
+
             function PrintLable(queueName)
             {
-                                    
-                    var data = {
-                        'queuename': queueName,
-                        'today': yyyyMMdd,
-                        'time':HHmmss
-                        
-                    };
-                    
-                    
+
+                var data = {
+                    'queuename': queueName,
+                    'today': yyyyMMdd,
+                    'time': HHmmss
+
+                };
+
+
 //                console.log(data);
-                
+
                 $.ajax({
-                            type: "POST",
-                            url: "../Controller/PrintQueueNo.jsp",
-                            data: data,
-                            timeout: 10000,
-                            success: function (data){
-                                console.log(data.trim());
-                            },
-                            error: function (err) {
-                                    console.log(err);
-                            }
-                        });
+                    type: "POST",
+                    url: "../Controller/PrintQueueNo.jsp",
+                    data: data,
+                    timeout: 10000,
+                    success: function (data) {
+                        console.log(data.trim());
+                    },
+                    error: function (err) {
+                        console.log(err);
+                    }
+                });
             }
-            
-            
+
+
             function containsNumber(any) {
                 var alpha = /^[a-zA-Z-,]+(\s{0,1}[a-zA-Z-, ])*$/; //for sentence allow space
                 //var re = /^[A-Za-z]+$/; for one word only don't allow space
@@ -485,7 +501,8 @@ Author     : user
                     return false;
                 else               //comtain number
                     return true;
-            };
+            }
+            ;
 //    });
         </script>
 
