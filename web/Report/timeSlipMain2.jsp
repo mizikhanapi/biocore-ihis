@@ -7,26 +7,27 @@
 <%@page import="java.sql.*"%>
 <%@page import="dBConn.Conn"%>
 <%@page import="main.RMIConnector"%>
-<%@page import="Config.Config"%>
 <%@include file="../Entrance/validateSession.jsp" %>
 <%@include file="validateModuleAccess.jsp" %>
-<%    Config.getBase_url(request);
-    Config.getFile_url(session);
-    Conn conn = new Conn();
-
-
+<%    Conn conn = new Conn();
 %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <!DOCTYPE html>
 <html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-        <title>Time Slip</title>
-        <%@include file = "../assets/header.html" %>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> 
+        <title>Main Page</title>
+
+
+        <script src="../assets/js/jquery.min.js"></script>
+        <script src="../assets/js/jquery-ui.js" type="text/javascript"></script>
+        <script src="../assets/js/bootstrap.min.js" type="text/javascript"></script>
+
+        <%@include file="../assets/header.html"%>
+        <link href="../assets/css/dataTables.bootstrap.min.css" rel="stylesheet" type="text/css"/>
+        <link href="https://cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css"/>
+        <link href="https://cdn.datatables.net/buttons/1.3.1/css/buttons.dataTables.min.css" rel="stylesheet" type="text/css"/>
     </head>
     <body>
         <!-- side bar -->
@@ -53,30 +54,39 @@
                 </div>
             </div>
         </div>
+        <script src="https://code.jquery.com/jquery-1.12.4.js" type="text/javascript"></script>
+        <script src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js" type="text/javascript"></script>
+        <script src="https://cdn.datatables.net/buttons/1.3.1/js/dataTables.buttons.min.js"></script>
+        <script src="https://cdn.datatables.net/buttons/1.3.1/js/buttons.flash.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+        <script src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.27/build/pdfmake.min.js"></script>
+        <script src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.27/build/vfs_fonts.js"></script>
+        <script src="https://cdn.datatables.net/buttons/1.3.1/js/buttons.html5.min.js"></script>
+        <script src="https://cdn.datatables.net/buttons/1.3.1/js/buttons.print.min.js" type="text/javascript" language="javascript"></script>
 
+        <script>
+            $(document).ready(function () {
+                $("#SearchPatientTCdiv").load("searchTs.jsp");
+                $("#tsTableDivision").load("tsTable.jsp");
+
+                $(document).ready(function () {
+                    $.ajax({
+                        type: "post",
+                        url: "tsTable.jsp",
+                        timeout: 3000,
+                        success: function (returnHtml) {
+                            //console.log(returnHtml);
+                            $('#tsTableDivision').html(returnHtml);
+
+                        }, error: function (jqXHR, textStatus, errorThrown) {
+
+                            console.log("ERROR: " + errorThrown);
+                        }
+                    });
+                });
+
+            });
+        </script>
     </body>
 </html>
 
-<script>
-    $(document).ready(function () {
-        $("#SearchPatientTCdiv").load("searchTs.jsp");
-        $("#tsTableDivision").load("tsTable.jsp");
-
-        $(document).ready(function () {
-            $.ajax({
-                type: "post",
-                url: "tsTable.jsp",
-                timeout: 3000,
-                success: function (returnHtml) {
-                    //console.log(returnHtml);
-                    $('#tsTableDivision').html(returnHtml);
-
-                }, error: function (jqXHR, textStatus, errorThrown) {
-
-                    console.log("ERROR: " + errorThrown);
-                }
-            });
-        });
-
-    });
-</script>

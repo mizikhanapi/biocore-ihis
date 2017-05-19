@@ -7,7 +7,6 @@
 <%@page import="java.sql.*"%>
 <%@page import="dBConn.Conn"%>
 <%@page import="main.RMIConnector"%>
-<%@page import="Config.Config"%>
 <%@include file="../Entrance/validateSession.jsp" %>
 <%@include file="validateModuleAccess.jsp" %>
 <%    //Config.getBase_url(request);
@@ -64,7 +63,6 @@
 
         </div>
 
-
         <script src="https://code.jquery.com/jquery-1.12.4.js" type="text/javascript"></script>
         <script src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js" type="text/javascript"></script>
         <script src="https://cdn.datatables.net/buttons/1.3.1/js/dataTables.buttons.min.js"></script>
@@ -73,13 +71,9 @@
         <script src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.27/build/pdfmake.min.js"></script>
         <script src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.27/build/vfs_fonts.js"></script>
         <script src="https://cdn.datatables.net/buttons/1.3.1/js/buttons.html5.min.js"></script>
-        
-        
-        
-        
-        
-        
         <script src="https://cdn.datatables.net/buttons/1.3.1/js/buttons.print.min.js" type="text/javascript" language="javascript"></script>
+
+        
 
         
         

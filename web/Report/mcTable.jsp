@@ -4,13 +4,14 @@
     Author     : user
 --%>
 
+<%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.sql.*"%>
 <%@page import="dBConn.Conn"%>
 <%@page import="main.RMIConnector"%>
 
 <%
-   
+
     Conn conn = new Conn();
     String mcType = request.getParameter("mcType");
     String mcInput = request.getParameter("mcInput");
@@ -51,22 +52,78 @@
         <input type="hidden" id="episodeDate2_<%=i%>" value="<%= mc.get(i).get(1)%>">
     </td>
     <td id="pmino"><%= mc.get(i).get(2)%></td>
-    <td><form><input type=submit value="reprint" id="printMC3<%=i%>" role="button"></form></td>
+    <td>
+        <button  class='btn btn-link' data-toggle="modal" data-target="#basicModal_<%=i%>">View Detail</button>
+        <div class="modal fade" id="basicModal_<%=i%>" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <div class="modal-header">
+                            <input name="b_print" type="button" class="btn btn-success"  onClick="printdiv('div_print<%=i%>');" value=" Print ">
+                             <button type="button" class="close" data-dismiss="modal"><i class="fa fa-times fa-lg"></i></button>
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><%= new SimpleDateFormat("HH:mm:ss").format(new java.util.Date())%></button>
+                            
+                        </div>
+                        <br>
+
+
+                        <div class="row" id="div_print<%=i%>">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for=""> Name: <%=mc.get(i).get(0)%></label>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for=""> Episode Date: <%=mc.get(i).get(1)%></label>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for=""> PMI No.: <%=mc.get(i).get(2)%></label>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </td>
 
 </tr>
-</table>
+
+
 
 <%
     }
 %>
+</table>
+
+                            
 <script>
-  
-$(document).ready(function() {
-    $('#mcTableDivision1').DataTable( {
-        dom: 'Bfrtip',
-        buttons: [
-            'copy', 'csv', 'excel', 'pdf', 'print'
-        ]
-    } );
-} );
+
+    $(document).ready(function () {
+        $('#mcTableDivision1').DataTable({
+            dom: 'Bfrtip',
+            buttons: [
+                'csv', 'excel', 'pdf', 'print'
+            ]
+        });
+
+
+    });
+</script>
+<script language="javascript">
+    function printdiv(printpage)
+    {
+        var headstr = "<html><head><title></title></head><body>";
+        var footstr = "</body>";
+        var newstr = document.all.item(printpage).innerHTML;
+        var oldstr = document.body.innerHTML;
+        document.body.innerHTML = headstr + newstr + footstr;
+        window.print();
+        document.body.innerHTML = oldstr;
+        return false;
+    }
 </script>

@@ -24,74 +24,26 @@
     </head>
     <body>
         <%
-           
-            String tsType = request.getParameter("tsType");
-            String tsInput = request.getParameter("tsInput");
-            String episodeDate2 = request.getParameter("episodeDate2");
-          
-
-            try {
-
-                Class.forName("com.mysql.jdbc.Driver").newInstance();
-                Connection conn = DriverManager.getConnection("jdbc:mysql://10.73.32.200:3306/emedica?zeroDateTimeBehavior=convertToNull", "root", "qwerty");
-
-                File reportFile = new File(application.getRealPath("//reports//TS22.jasper"));
-
-                if (tsType.equals("PMI_NO")) {
-
-                    Map parameters = new HashMap();
-                    parameters.put("tsInput", tsInput);
-                    parameters.put("episodeDate2",episodeDate2);
-                    //parameters.put("ID_TYPE", ID_TYPE);
-
-                    byte[] bytes = JasperRunManager.runReportToPdf(reportFile.getPath(), parameters, conn);
-
-                    response.setContentType("application/pdf");
-                    response.setContentLength(bytes.length);
-                    ServletOutputStream outStream = response.getOutputStream();
-                    outStream.write(bytes, 0, bytes.length);
-                    outStream.flush();
-                    outStream.close();
-
-                } else if (tsType.equals("NEW_IC_NO") || tsType.equals("OLD_IC_NO")) {
-
-                    Map parameters = new HashMap();
-                    parameters.put("tsInput", tsInput);
-                    parameters.put("episodeDate2",episodeDate2);
-                    //parameters.put("ID_TYPE", ID_TYPE);
-                    byte[] bytes = JasperRunManager.runReportToPdf(reportFile.getPath(), parameters, conn);
-
-                    response.setContentType("application/pdf");
-                    response.setContentLength(bytes.length);
-                    ServletOutputStream outStream = response.getOutputStream();
-                    outStream.write(bytes, 0, bytes.length);
-                    outStream.flush();
-                    outStream.close();
-
-                } else {
-
-                    Map parameters = new HashMap();
-                    parameters.put("tsInput", tsInput);
-                    parameters.put("episodeDate2",episodeDate2);
-                   // parameters.put("ID_TYPE", ID_TYPE);
-                    byte[] bytes = JasperRunManager.runReportToPdf(reportFile.getPath(), parameters, conn);
-
-                    response.setContentType("application/pdf");
-                    response.setContentLength(bytes.length);
-                    ServletOutputStream outStream = response.getOutputStream();
-                    outStream.write(bytes, 0, bytes.length);
-                    outStream.flush();
-                    outStream.close();
-
-                }
-
-            } catch (Exception ex) {
-                out.println("Error: " + ex.getMessage());
-            }
-
+            String name = request.getParameter("name");
+            String episode = request.getParameter("episode");
+            String pmi = request.getParameter("pmi");
 
         %>
-
-
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label for=""> Name: <%=name%></label>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for=""> Episode Date: <%=episode%></label>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for=""> PMI No.: <%=pmi%></label>
+                </div>
+            </div>
+        
     </body>
 </html>
