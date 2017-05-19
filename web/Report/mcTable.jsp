@@ -8,11 +8,9 @@
 <%@page import="java.sql.*"%>
 <%@page import="dBConn.Conn"%>
 <%@page import="main.RMIConnector"%>
-<%@page import="Config.Config"%>
 
 <%
-    Config.getBase_url(request);
-    Config.getFile_url(session);
+   
     Conn conn = new Conn();
     String mcType = request.getParameter("mcType");
     String mcInput = request.getParameter("mcInput");
@@ -21,7 +19,8 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <hr class="pemisah" />
-<table id="mcTableDivision" class="table table-filter table-striped margin-top-50px" style="background: #fff; border: 1px solid #ccc; margin-top: 20px">
+
+<table id="mcTableDivision1" class="table table-filter table-striped margin-top-50px" style="background: #fff; border: 1px solid #ccc; margin-top: 20px">
 
     <thead>
 
@@ -57,33 +56,17 @@
 </tr>
 </table>
 
-<script type="text/javascript" charset="utf-8">
-
-    $(document).ready(function () {
-        $('#printMC3<%=i%>').on('click', function (e) {
-
-            e.preventDefault();
-
-            var mcType = $("#mcType").val();
-            var mcInput = $("#mcInput").val();
-            var episodeDate2 = $("#episodeDate2_<%=i%>").val();
-            console.log(mcType);
-            console.log(mcInput);
-            console.log(episodeDate2);
-
-            window.open("mcReport2.jsp?mcType=" + mcType + "&mcInput=" + mcInput + "&episodeDate2=" + episodeDate2);
-
-        });
-    });
-
-
-</script>
-
-
 <%
     }
 %>
-
-
-<!--        "&episodeDate=" + episodeDate-->
-
+<script>
+  
+$(document).ready(function() {
+    $('#mcTableDivision1').DataTable( {
+        dom: 'Bfrtip',
+        buttons: [
+            'copy', 'csv', 'excel', 'pdf', 'print'
+        ]
+    } );
+} );
+</script>
