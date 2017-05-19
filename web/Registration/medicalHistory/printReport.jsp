@@ -21,6 +21,21 @@
         <%@include file="../assets/header.html"%>
         <link  rel="stylesheet" href="../assets/css/radiobtn.css">
 
+        <script src="../../assets/js/jquery.min.js" type="text/javascript"></script>
+        <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+        <!-- keyboard widget css & script (required) -->
+        <link href="../assets/css/keyboard.css" rel="stylesheet">
+        <link href="../assets/css/jquery-ui.min.css" rel="stylesheet">
+        <script src="../assets/js/jquery.keyboard.js"></script>
+
+        <script>
+            $(function () {
+                $('#inputUserIC').keyboard();
+            });
+        </script>
         <!--header-->
     </head>
     <body>
@@ -36,13 +51,13 @@
                                     <i class="fa fa-user-md" aria-hidden="true" style="color: #666; font-size: 100px;"></i>
                                 </div>
                                 <div class="logo" style="font-size: 32px; text-align: center;">
-                                    Please enter your IC Number to <br/>view Report
+                                    Please enter your IC Number to <br/>Print Report
                                 </div>
                                 <br/>
                                 <input type="text" id="inputUserIC" name="useric" class="form-control margin1" placeholder="Enter Your IC Number">
                                 <br/>
                                 <div class="text-center">
-                                        <button id="printSignup" class="btn btn-lg btn-primary">View Report</button>
+                                        <button id="printSignup" class="btn btn-lg btn-primary">Print Report</button>
                                         <button id="cancelSignup" class="btn btn-lg btn-default">Cancel</button>
                                 </div>
                             </div>
@@ -57,12 +72,9 @@
         <div w3-include-html="../libraries/script.html"></div>
 
         <script src="http://www.w3schools.com/lib/w3data.js"></script>
-        <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
         <script src="../assets/js/bootbox.min.js"></script>
-        <%@include file="../assets/script.html"%>
-
+        <%//@include file="../assets/script.html"%>
+   
         <script>
         w3IncludeHTML();
         

@@ -28,7 +28,7 @@
             Conn conn = new Conn();
             
             String pmiNo = request.getParameter("pmiNo").trim();
-//            String pmiNo = "9107211466794";
+//            String pmiNo = "051347716";
             String HelathFacility = session.getAttribute("HFC_NAME").toString();
             try {
         String quary="SELECT distinct"
@@ -38,7 +38,7 @@
         +" IFNULL(lhr_med.`product_name`, 'None') AS lhr_medication_product_name,"
         +" IFNULL(lhr_aller.`allergy_cd`, 'None') AS lhr_allergy_allergy_cd,"
         +" lhr_dia.`Episode_Date` AS lhr_diagnosis_Episode_Date,"
-        +" adm_lookup_det.`Description` AS Textuer_Blood_Type,"
+        +" IFNULL(adm_lookup_det.`Description`, 'No Record') AS Textuer_Blood_Type,"
 
            +" CASE WHEN pbd.`NEW_IC_NO`= '-' THEN 'No Record'"
         +"    ELSE  pbd.`NEW_IC_NO`  END AS pms_patient_biodata_NEW_IC_NO_new,"
@@ -77,7 +77,7 @@
                 Boolean SQL=false;
                 ArrayList<ArrayList<String>> medicalInfo = conn.getData(quary);
                SQL = rmic.setQuerySQL(conn.HOST, conn.PORT, quary);
-//               out.print(" SQL "+SQL);
+               out.print(" SQL "+SQL);
                
            if (SQL == true && !medicalInfo.isEmpty() )
            {
@@ -91,23 +91,23 @@
 //                }
 //                 out.print("</p>");
 //            }
-            
-            String ic,name,bloodtype,diagnosis,medication,allerg,date,time;
-            ic = medicalInfo.get(0).get(0); 
-            name = medicalInfo.get(0).get(1);
-            bloodtype = medicalInfo.get(0).get(6);
-            diagnosis = medicalInfo.get(0).get(2);
-            medication = medicalInfo.get(0).get(3);
-            allerg = medicalInfo.get(0).get(4);
-            date = medicalInfo.get(0).get(5);
-            DirectPrint queueprint = new DirectPrint();
-            queueprint.printString("MedicalReport\n"+HelathFacility+"  "+"\nIC No: "+ic +"\nName: "+name +"\nBlood Type: "+bloodtype +"\nDiagnosis: "+diagnosis+"\nMedication: "+medication+"\nAllergy: "+allerg);
-           
-
+//            
+                String ic,name,bloodtype,diagnosis,medication,allerg,date,time;
+                ic = medicalInfo.get(0).get(0); 
+                name = medicalInfo.get(0).get(1);
+                bloodtype = medicalInfo.get(0).get(6);
+                diagnosis = medicalInfo.get(0).get(2);
+                medication = medicalInfo.get(0).get(3);
+                allerg = medicalInfo.get(0).get(4);
+                date = medicalInfo.get(0).get(5);
+                DirectPrint queueprint = new DirectPrint();
+                queueprint.printString("MedicalReport\n"+HelathFacility+"  "+"\nIC NO: "+ic +"\nNAME: "+name +"\nBLOOD TYPE: "+bloodtype +"\nDIAGNOSIS: "+diagnosis+"\nMEDICATION: "+medication+"\nALLERGY: "+allerg);
+                
+                out.print("Report Printed");
 //            queueprint.printString("MedicalReport\n"+HelathFacility+"  "+"\nIC No: \n"+ic +"\nName: \n"+name +"\nBlood Type: \n"+bloodtype +"\nDiagnosis: \n"+diagnosis+"\nMedication: \n"+medication+"\nAllergy: \n"+allerg);
 //                out.print("MedicalReport\n"+HelathFacility+"  "+"\nIC No: "+ic +"\nName: "+name +"\nBlood Type: "+bloodtype +"\nDiagnosis: "+diagnosis+"        "+"\nMedication: "+medication+"\nAllergy: "+allerg);
            } else{
-               out.print("No Records");
+                out.print("No Records");
            }
             
 //                Class.forName("com.mysql.jdbc.Driver").newInstance();

@@ -39,6 +39,45 @@
         <%@include file="../assets/header.html"%>
         <link  rel="stylesheet" href="../assets/css/radiobtn.css">
 
+        <script src="../../assets/js/jquery.min.js" type="text/javascript"></script>
+        <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+        <!-- keyboard widget css & script (required) -->
+        <link href="../assets/css/keyboard.css" rel="stylesheet">
+        <link href="../assets/css/jquery-ui.min.css" rel="stylesheet">
+        <script src="../assets/js/jquery.keyboard.js"></script>
+
+        <script>
+            $(function () {
+                $('#inputUserIC').keyboard();
+                $('#inputUserName').keyboard();
+                $('#txt_day').keyboard({
+		layout : 'num',
+		restrictInput : true, // Prevent keys not in the displayed keyboard from being typed in
+		preventPaste : true,  // prevent ctrl-v and right click
+		autoAccept : true
+	});
+                $('#txt_month').keyboard({
+		layout : 'num',
+		restrictInput : true, // Prevent keys not in the displayed keyboard from being typed in
+		preventPaste : true,  // prevent ctrl-v and right click
+		autoAccept : true
+	});
+                $('#txt_year').keyboard({
+		layout : 'num',
+		restrictInput : true, // Prevent keys not in the displayed keyboard from being typed in
+		preventPaste : true,  // prevent ctrl-v and right click
+		autoAccept : true
+	});
+                $('#inpuOccupation').keyboard();
+                $('#inputUserEmail').keyboard();
+                $('#inputUserPhoneNo').keyboard();
+                $('#inputUserID').keyboard();
+                $('#inputUserPassword').keyboard();
+            });
+        </script>
         <!--header-->
     </head>
     <body>
@@ -59,7 +98,7 @@
                                 <form class="form-signin" >
                                     <span id="reauth-email" class="reauth-email"></span>
 
-                                    <input type="text" id="inputUserIC" class="form-control" placeholder="Enter Your IC" name="useric" required autofocus>
+                                    <input type="text" id="inputUserIC" class="form-control" placeholder="Enter Your IC" name="useric" required>
                                     <input type="text" id="inputUserName" class="form-control" placeholder="Enter Your Name" name="username" required>
 
                                     <div class="form-group  ">
@@ -144,16 +183,11 @@
 
         <div w3-include-html="../libraries/script.html"></div>
 
-        <script src="http://www.w3schools.com/lib/w3data.js"></script>
-        <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-        <script src="../assets/js/bootbox.min.js"></script>
-        <%@include file="../assets/script.html"%>
+       <script src="../assets/js/bootbox.min.js"></script>
+        <%//@include file="../assets/script.html"%>
 
-        <script type="text/javascript">
-            w3IncludeHTML();
-           
+     
+    <script type="text/javascript">
            var guseric, gusername, gusergender, gusernationality, guseremail, guserphoneno,
                         guseroccupation, guserbirthday, userExist=false;
            
@@ -500,7 +534,7 @@
 
             //       });
 
-        </script>
+    </script>
 
     </body>
 </html>
