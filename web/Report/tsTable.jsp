@@ -58,6 +58,7 @@
 
         <script>
             $('#b_print<%=i%>').click(function () {
+               
                 $.ajax({
                     async: true,
                     type: "POST",
@@ -66,8 +67,9 @@
                     timeout: 10000,
                     success: function (list) {
 
-
+                        $("#test").val(list.trim());
                         $('#test').html(list);
+                        $('#test').trigger('contentchanged');
                     },
                     error: function (xhr, status, error) {
                         var err = eval("(" + xhr.responseText + ")");
@@ -97,13 +99,12 @@
                 <div class="modal-header">
                     <input name="b_print" type="button" class="btn btn-success"  onClick="printdiv('test');" value=" Print ">
                     <button type="button" class="close" data-dismiss="modal"><i class="fa fa-times fa-lg"></i></button>
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><%= new SimpleDateFormat("HH:mm:ss").format(new java.util.Date())%></button>
-
+                    
                 </div>
                 <br>
                 <div id="test">
 
-                </div>
+</div>
 
 
 
@@ -126,10 +127,12 @@
     });
 </script>
 <script language="javascript">
+     
     function printdiv(printpage)
     {
-        //$('#myModal').modal('toggle');
-        //$('#myModal').modal('hide');
+        
+        $(".modal-backdrop").hide();
+        $("#basicModal").hide();
         
         var headstr = "<html><head><title></title></head><body>";
         var footstr = "</body>";
