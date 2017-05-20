@@ -6,6 +6,7 @@
 
 <%
     String hfc_cd = session.getAttribute("HEALTH_FACILITY_CODE").toString();
+    String hfc_name = (String) session.getAttribute("HFC_NAME");
     String user_id = session.getAttribute("USER_ID").toString();
     String last9 = user_id.substring(user_id.length() - 1);
 %>
@@ -13,15 +14,11 @@
 <!-- Add Button Start -->
 <h4 style="padding-top: 30px;padding-bottom: 35px; font-weight: bold">
     DISCIPLINE MANAGEMENT
-    <%
-        if(last9.equals("9") && hfc_cd.equals("99_iHIS_99")){
-    %>
+   
     <span class="pull-right">
         <button id="DM_btnAddNew" class="btn btn-success" data-status="pagado" data-toggle="modal" data-id="1" data-target="#DM_detail" style=" padding-right: 10px;padding-left: 10px;color: white;"><a data-toggle="tooltip" data-placement="top" title="Add Items" id="test"><i class=" fa fa-plus" style=" padding-right: 10px;padding-left: 10px;color: white;"></i></a>ADD Discipline</button>
     </span>
-    <%
-        }
-    %>
+    
 </h4>
 <!-- Add Button End -->
 
@@ -38,6 +35,18 @@
 
                 <!-- content goes here -->
                 <form class="form-horizontal" id="addForm">
+                    
+                    <!-- Text input-->
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="textinput">Health Facility*</label>
+                        <div class="col-md-8">
+                            <input id="D_hfc_name"  type="text" placeholder="Search health facility" class="form-control input-md" maxlength="100">
+                            <!--<input id="D_hfc_cd" type="hidden">-->
+                            <div id="D_match" class="search-drop">
+                                
+                            </div>
+                        </div>
+                    </div>
 
                     <!-- Text input-->
                     <div class="form-group">
@@ -117,6 +126,13 @@
 
         $(document).ready(function () {
             
+            //---------------global variable for selecting hfc --------------------
+            
+            var D_isHFCselected = false;
+            var D_selectedHFC = '';
+            
+            //=====================================================================
+            
             function DM_reset() {
                 document.getElementById("disciplineName").value = "";
                 document.getElementById("disciplineCode").value = "";
@@ -131,33 +147,98 @@
             $('#DM_btnAddNew').on('click', function(){
                 
                 DM_reset();
+                
+    <%
+                   if (!last9.equals("9") || !hfc_cd.equals("99_iHIS_99")) {
+                       String curHFC = hfc_cd + " | " + hfc_name;
+    %>
+
+                $('#D_hfc_name').val('<%=curHFC%>').prop('disabled', true);
+                
+                D_isHFCselected = true;
+                D_selectedHFC = $('#D_hfc_name').val();
+                console.log(D_selectedHFC);
+
+    <%
+
+                }//end if
+    %>
+
             });
+            
+            //------------------------- search health facility -----------------------------------------
+            
+            $('#D_hfc_name').on('keyup', function(){
+                var input = $(this).val();
+                
+                if(input.length > 0){
+                    var data = {
+                        key: input
+                    };
+                    $('#D_match').html('<img src="img/ajax-loader.gif">');
+                    
+                    $.ajax({
+                        type: 'POST',
+                        url: "controller/search_hfc.jsp",
+                        data: data,
+                        success: function (data, textStatus, jqXHR) {
+                            $('#D_match').html(data);
+                            $('#HFC_matchlist li').on('click', function () { // When click on an element in the list
+                            // Update the field with the new element
+                            $('#D_hfc_name').val($(this).text());
+                            
+                            D_isHFCselected = true;
+                            D_selectedHFC =  $('#D_hfc_name').val();
+                            
+                            $('#D_match').text(''); // Clear the <div id="PM_match_system"></div>
+
+
+                        });
+                        },
+                        error: function (jqXHR, textStatus, errorThrown) {
+                            $('#D_match').html('Opps! '+errorThrown);
+                        }
+                    });
+                } 
+                else{
+                    $('#D_match').html('');
+                }
+            });
+            
+            //========================================================================================
 
             $('#DM_btnAdd').on('click', function () {
-                               
+                
+                var hfc_name = $('#D_hfc_name').val();
                 var disciplineName = $('#disciplineName').val();
                 var disciplineCode = $('#disciplineCode').val();
                 var groupCode = $('#groupCode').val();
                 var categoryCode = $('#categoryCode').val();
                 var specialtyCode = $('#specialtyCode').val();
                 var status = $('#DM_status').val();
-
-                if (disciplineName === "") {
-                    alert("Fill in the Discipline name");
+                
+                if(D_isHFCselected === false || D_selectedHFC !== hfc_name){
+                    bootbox.alert('Please choose existing hfc!');
+                }
+                else if (disciplineName === "") {
+                    bootbox.alert("Fill in the Discipline name");
                     $('#disciplineName').focus();
                     
                 } else if (disciplineCode === "") {
-                    alert("Fill in the discipline code");
+                    bootbox.alert("Fill in the discipline code");
                     $('#disciplineCode').focus();
                     
                 } else if (status !== "1" && status !== "0") {
-                    alert("Select Any Status");
+                    bootbox.alert("Select Any Status");
                     $('#DM_status').focus();
                 } else {
                     
                     disciplineName = disciplineName.replace(/'/g, "\\\'").replace(/"/g, "\\\"");
+                    var D_array = D_selectedHFC.split("|");
+                    var hfc_cd = D_array[0].trim();
 
                     var data = {
+                        hfc_cd: hfc_cd,
                         disciplineName : disciplineName,
                         disciplineCode : disciplineCode,
                         groupCode : groupCode,

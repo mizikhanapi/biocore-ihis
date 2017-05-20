@@ -12,7 +12,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <%@include file="validateSession.jsp" %>
-<%@include file="controller/super_user_check.jsp" %>
+<%--<%@include file="controller/super_user_check.jsp" %>--%>
 
 <%           
     Conn conn = new Conn();
@@ -22,10 +22,12 @@
     String categoryCode = request.getParameter("categoryCode");
     String specialtyCode = request.getParameter("specialtyCode");
     String status = request.getParameter("status");
+    String D_hfc_cd = request.getParameter("hfc_cd");
+   
     String userID = (String)session.getAttribute("USER_ID");
     
     
-    String sqlCheck = "SELECT discipline_cd from adm_discipline WHERE discipline_cd = '"+disciplineCode+"' LIMIT 1 ";
+    String sqlCheck = "SELECT discipline_cd from adm_discipline WHERE discipline_cd = '"+disciplineCode+"' and discipline_hfc_cd = '"+D_hfc_cd+"' LIMIT 1 ";
     ArrayList<ArrayList<String>> duplicate = conn.getData(sqlCheck);
     
     if(duplicate.size() > 0)
@@ -35,12 +37,12 @@
     else{
         RMIConnector rmic = new RMIConnector();
 
-        String sqlInsert = "INSERT INTO adm_discipline values('"+disciplineCode+"', '"+disciplineName+"', '"+groupCode+"', '"+categoryCode+"', '"+specialtyCode+"', '"+userID+"', now(), '"+status+"' )";
+        String sqlInsert = "INSERT INTO adm_discipline values('"+disciplineCode+"', '"+disciplineName+"', '"+groupCode+"', '"+categoryCode+"', '"+specialtyCode+"', '"+userID+"', now(), '"+status+"', '"+D_hfc_cd+"' )";
 
         boolean isInsert = rmic.setQuerySQL(conn.HOST, conn.PORT, sqlInsert);
 
         if (isInsert == true) {
-            String sqlInsertSub = "INSERT INTO adm_subdiscipline values('"+disciplineCode+"', '"+disciplineCode+"', '"+disciplineName+"', '', '"+userID+"', now(), '"+status+"')";
+            String sqlInsertSub = "INSERT INTO adm_subdiscipline values('"+disciplineCode+"', '"+disciplineCode+"', '"+disciplineName+"', '', '"+userID+"', now(), '"+status+"', '"+D_hfc_cd+"')";
             rmic.setQuerySQL(conn.HOST, conn.PORT, sqlInsertSub);
             out.print("Success");
         } else {

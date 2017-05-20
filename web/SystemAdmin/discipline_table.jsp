@@ -16,85 +16,76 @@
 %>
 <table  id="THE_disciplineTable"  class="table table-striped table-bordered" cellspacing="0" width="100%">
     <thead>
+    <th>Health Facility</th>    
     <th>Discipline Code</th>
     <th>Discipline Name</th>
     <th>Group Code</th>
     <th>Category Code</th>
     <th>Specialty Code</th>
     <th style="width: 5% ">Status</th>
-    <%
-        if(last9.equals("9") && hfc_cd.equals("99_iHIS_99")){
-    %>
     <th style="width: 5% ">Update</th>
     <th style="width: 5% ">Delete</th>
-    <%
-        }
-    %>
+
 </thead>
 <tbody>
 
     <%
-        String sql = " SELECT discipline_cd, discipline_name, discipline_group_cd, discipline_category_cd, discipline_specialty_cd, discipline_status FROM adm_discipline ";
+        String where_hfc = "";
+        if (!last9.equals("9") || !hfc_cd.equals("99_iHIS_99")) {
+
+            where_hfc = " where discipline_hfc_cd = '" + hfc_cd + "'";
+        }
+
+        //                          0               1                   2                   3                       4                       5            
+        String sql = " SELECT discipline_cd, discipline_name, discipline_group_cd, discipline_category_cd, discipline_specialty_cd, discipline_status, "
+                //          6               7
+                + "discipline_hfc_cd, hfc_name "
+                + "FROM adm_discipline "
+                + "join adm_health_facility on discipline_hfc_cd = hfc_cd "
+                + where_hfc;
         ArrayList<ArrayList<String>> dataDiscipline = conn.getData(sql);
 
         int size = dataDiscipline.size();
-        
-        if(last9.equals("9") && hfc_cd.equals("99_iHIS_99")){
-            for (int i = 0; i < size; i++) {
+
+        for (int i = 0; i < size; i++) {
     %>
 
     <tr>
-        <input id="DT_hidden" type="hidden" value="<%=String.join("|", dataDiscipline.get(i))%>">
-        <td><%= dataDiscipline.get(i).get(0)%></td>
-        <td><%= dataDiscipline.get(i).get(1)%></td>
-        <td><%= dataDiscipline.get(i).get(2)%></td>
-        <td><%= dataDiscipline.get(i).get(3)%></td>
-        <td><%= dataDiscipline.get(i).get(4)%></td>
-        <td><%if(dataDiscipline.get(i).get(5).equals("1"))
-                out.print("Inactive"); 
-              else
-                out.print("Active"); %></td>
+<input id="DT_hidden" type="hidden" value="<%=String.join("|", dataDiscipline.get(i))%>">
+<td>(<%= dataDiscipline.get(i).get(6)%>) <%= dataDiscipline.get(i).get(7)%></td>
+<td><%= dataDiscipline.get(i).get(0)%></td>
+<td><%= dataDiscipline.get(i).get(1)%></td>
+<td><%= dataDiscipline.get(i).get(2)%></td>
+<td><%= dataDiscipline.get(i).get(3)%></td>
+<td><%= dataDiscipline.get(i).get(4)%></td>
+<td><%if (dataDiscipline.get(i).get(5).equals("1")) {
+        out.print("Inactive");
+    } else {
+        out.print("Active");
+    } %></td>
 
 
-        <td>
+<td>
 
-            <!-- Update Part Start -->
-            <a id="DT_btnUpdate" data-toggle="modal" data-target="#DT_detail" style="cursor: pointer"><i class="fa fa-pencil-square-o" aria-hidden="true" style="display: inline-block;color: #337ab7;"></i></a>
+    <!-- Update Part Start -->
+    <a id="DT_btnUpdate" data-toggle="modal" data-target="#DT_detail" style="cursor: pointer"><i class="fa fa-pencil-square-o" aria-hidden="true" style="display: inline-block;color: #337ab7;"></i></a>
 
-            <!-- Modal Update -->
+    <!-- Modal Update -->
 
-            <!-- Update Part End -->
-        </td>
-        <!-- Delete Part Start -->
-        <td>
-            <!-- Delete Button Start -->
-            <a id="DT_btnDelete" class="testing" style="cursor: pointer"><i class="fa fa-times" aria-hidden="true" style="display: inline-block;color: #d9534f;" ></i></a>
-        </td>
-        <!-- Delete Button End -->
-    </tr>
-    <%
-            }//end for loop
-        }//end if
-        else{
-            for (int i = 0; i < size; i++) {
-    %>
-    <tr>
-        <input id="DT_hidden" type="hidden" value="<%=String.join("|", dataDiscipline.get(i))%>">
-        <td><%= dataDiscipline.get(i).get(0)%></td>
-        <td><%= dataDiscipline.get(i).get(1)%></td>
-        <td><%= dataDiscipline.get(i).get(2)%></td>
-        <td><%= dataDiscipline.get(i).get(3)%></td>
-        <td><%= dataDiscipline.get(i).get(4)%></td>
-        <td><%if(dataDiscipline.get(i).get(5).equals("1"))
-                out.print("Inactive"); 
-              else
-                out.print("Active"); %></td>
-    </tr>   
-    <%
+    <!-- Update Part End -->
+</td>
+<!-- Delete Part Start -->
+<td>
+    <!-- Delete Button Start -->
+    <a id="DT_btnDelete" class="testing" style="cursor: pointer"><i class="fa fa-times" aria-hidden="true" style="display: inline-block;color: #d9534f;" ></i></a>
+</td>
+<!-- Delete Button End -->
+</tr>
+<%
+    }//end for loop
 
-            }//end loop
-        }//end else
-    %>
+
+%>
 </tbody>
 </table>    
 
@@ -110,6 +101,14 @@
 
                 <!-- content goes here -->
                 <form class="form-horizontal">
+                    
+                    <!-- Text input-->
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="textinput">Health Facility*</label>
+                        <div class="col-md-8">
+                            <input id="DT_hfc" name="textinput" type="text"  class="form-control input-md"  disabled>
+                        </div>
+                    </div>
 
                     <!-- Text input-->
                     <div class="form-group">
@@ -126,7 +125,7 @@
                             <input type="text" id="DT_disciplineName" class="form-control" maxlength="100" >
                         </div>
                     </div>
-                    
+
                     <!-- Text input-->
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="textinput">Group Code</label>
@@ -134,7 +133,7 @@
                             <input id="DT_groupCode" name="textinput" type="text" placeholder="Insert group code (optional)" class="form-control input-md" maxlength="30">
                         </div>
                     </div>
-                    
+
                     <!-- Text input-->
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="textinput">Category Code</label>
@@ -142,7 +141,7 @@
                             <input id="DT_categoryCode" name="textinput" type="text" placeholder="Insert category code (optional)" class="form-control input-md" maxlength="30">
                         </div>
                     </div>
-                    
+
                     <!-- Text input-->
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="textinput">Specialty Code</label>
@@ -159,7 +158,7 @@
                             <select class="form-control" name="tstatus" id="DT_status">
                                 <option value="0" >Active</option>
                                 <option value="1" >Inactive</option>
-                                
+
                             </select>
                         </div>
                     </div>
@@ -183,35 +182,36 @@
 
 
 <script type="text/javascript" charset="utf-8">
-    
+
     $('#disciplineTable').off('click', '#THE_disciplineTable #DT_btnUpdate').on('click', '#THE_disciplineTable #DT_btnUpdate', function (e) {
         e.preventDefault();
-  
+
         //get the row value
         var row = $(this).closest("tr");
         var rowData = row.find("#DT_hidden").val();
         var arrayData = rowData.split("|");
         //assign into seprated val
-        var disciplineCode = arrayData[0], disciplineName = arrayData[1], groupCode = arrayData[2], categoryCode = arrayData[3], specialtyCode = arrayData[4], status = arrayData[5];
+        var disciplineCode = arrayData[0], disciplineName = arrayData[1], groupCode = arrayData[2], categoryCode = arrayData[3], specialtyCode = arrayData[4], status = arrayData[5], hfc_cd = arrayData[6], hfc_name = arrayData[7];
         //set value in input on the top
+        $('#DT_hfc').val(hfc_cd +' | '+hfc_name);
         $('#DT_disciplineCode').val(disciplineCode);
         $('#DT_disciplineName').val(disciplineName);
         $('#DT_groupCode').val(groupCode);
         $('#DT_categoryCode').val(categoryCode);
         $('#DT_specialtyCode').val(specialtyCode);
-        
-        if(status === '1')
+
+        if (status === '1')
             $('#DT_status').val(1);
         else
             $('#DT_status').val(0);
-          
-        
-        
+
+
+
         console.log(arrayData);
     });
-    
+
     $("#DT_btn_update_").off('click').on('click', function (e) {
-        
+
         e.preventDefault();
         //console.log("entering Update");
         var disciplineCode = $("#DT_disciplineCode").val();
@@ -220,31 +220,34 @@
         var categoryCode = $('#DT_categoryCode').val();
         var specialtyCode = $('#DT_specialtyCode').val();
         var status = $("#DT_status").val();
+        var hfc = $('#DT_hfc').val();
 
-        if(disciplineCode === "" || disciplineCode === null){
-            alert("Fill in the discipline code");
-        }
-        else if(disciplineName === "" || disciplineName === null){
-            alert("Fill in the discipline name");
+        if (disciplineCode === "" || disciplineCode === null) {
+            bootbox.alert("Fill in the discipline code");
+        } else if (disciplineName === "" || disciplineName === null) {
+            bootbox.alert("Fill in the discipline name");
             $("#DT_disciplineName").focus();
-            
-        }
-        else if(status !=='1' && status !=='0'){
-            alert("Select the status");
-        }
-        else{
-            
+
+        } else if (status !== '1' && status !== '0') {
+            bootbox.alert("Select the status");
+        }  else if (hfc === '') {
+            bootbox.alert("Health facility cannot be empty. Try again...");
+        } else {
+
             disciplineName = disciplineName.replace(/'/g, "\\\'").replace(/"/g, "\\\"");
-            
+            var arrdata = hfc.split("|");
+            var hfc_cd = arrdata[0].trim();
+
             var data = {
-                disciplineCode : disciplineCode,
-                disciplineName : disciplineName,
-                groupCode : groupCode,
-                categoryCode : categoryCode,
-                specialtyCode : specialtyCode,
-                status : status
+                hfc_cd: hfc_cd,
+                disciplineCode: disciplineCode,
+                disciplineName: disciplineName,
+                groupCode: groupCode,
+                categoryCode: categoryCode,
+                specialtyCode: specialtyCode,
+                status: status
             };
-            
+
             //console.log("entering Ajax");
             $.ajax({
                 url: "discipline_update.jsp",
@@ -253,20 +256,20 @@
                 timeout: 10000, // 10 seconds
                 success: function (datas) {
 
-                        if (datas.trim() === 'Success') {
-                            $('#disciplineTable').load('discipline_table.jsp');
-                            $(".modal-backdrop").hide();
-                            //alert("Update Success");
-                            
-                            bootbox.alert({
-                                    message: "Discipline is updated",
-                                    title: "Process Result",
-                                    backdrop: true
-                                });
-                            
-                        } else if (datas.trim() === 'Failed') {
-                            alert("Update failed!");
-                        }
+                    if (datas.trim() === 'Success') {
+                        $('#disciplineTable').load('discipline_table.jsp');
+                        $(".modal-backdrop").hide();
+                        //alert("Update Success");
+
+                        bootbox.alert({
+                            message: "Discipline is updated",
+                            title: "Process Result",
+                            backdrop: true
+                        });
+
+                    } else if (datas.trim() === 'Failed') {
+                        alert("Update failed!");
+                    }
 
                 },
                 error: function (err) {
@@ -274,25 +277,25 @@
                 }
 
             });
-        }   
+        }
 
 
     });
-        
-    
-     $('#disciplineTable').off('click', '#THE_disciplineTable #DT_btnDelete').on('click', '#THE_disciplineTable #DT_btnDelete', function (e) {
-         
-         e.preventDefault();
-         
+
+
+    $('#disciplineTable').off('click', '#THE_disciplineTable #DT_btnDelete').on('click', '#THE_disciplineTable #DT_btnDelete', function (e) {
+
+        e.preventDefault();
+
         var row = $(this).closest("tr");
         var rowData = row.find("#DT_hidden").val();
         var arrayData = rowData.split("|");
         //assign into seprated val
-        var disciplineCode = arrayData[0];
+        var disciplineCode = arrayData[0], disName = arrayData[1], hfc_cd = arrayData[6];
         console.log(arrayData);
-        
+
         bootbox.confirm({
-            message: "Are you sure want to delete this item?" + disciplineCode,
+            message: "Are you sure want to delete this item?" + disciplineCode + ' - '+ disName,
             title: "Delete Item?",
             buttons: {
                 confirm: {
@@ -307,53 +310,54 @@
             callback: function (result) {
 
                 if (result === true) {
-                    
-                var data = {
-                    disciplineCode: disciplineCode 
-                };
 
-                $.ajax({
-                    url: "discipline_delete.jsp",
-                    type: "post",
-                    data: data,
-                    timeout: 10000, // 10 seconds
-                    success: function (datas) {
+                    var data = {
+                        disciplineCode: disciplineCode,
+                        hfc_cd: hfc_cd
+                    };
 
-                        if (datas.trim() === 'Success') {
-                            $('#disciplineTable').load('discipline_table.jsp');
-                            //alert("Delete Success");
-                            
-                            bootbox.alert({
+                    $.ajax({
+                        url: "discipline_delete.jsp",
+                        type: "post",
+                        data: data,
+                        timeout: 10000, // 10 seconds
+                        success: function (datas) {
+
+                            if (datas.trim() === 'Success') {
+                                $('#disciplineTable').load('discipline_table.jsp');
+                                //alert("Delete Success");
+
+                                bootbox.alert({
                                     message: "A discipline is deleted",
                                     title: "Process Result",
                                     backdrop: true
                                 });
-                            
-                        } else if (datas.trim() === 'Failed') {
-                            bootbox.alert("Delete failed!");
-                            
-                        }else{
-                            
-                            bootbox.alert(datas.trim());
+
+                            } else if (datas.trim() === 'Failed') {
+                                bootbox.alert("Delete failed!");
+
+                            } else {
+
+                                bootbox.alert(datas.trim());
+                            }
+
+                        },
+                        error: function (err) {
+                            alert("Error! Deletion failed!!");
                         }
 
-                    },
-                    error: function (err) {
-                        alert("Error! Deletion failed!!");
-                    }
+                    });
 
-                });
-                    
                 } else {
                     console.log("Process Is Canceled");
                 }
 
             }
         });
-         
-          
-     });
-    
+
+
+    });
+
 
 </script>  
 
