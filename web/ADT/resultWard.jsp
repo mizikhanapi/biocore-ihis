@@ -18,7 +18,7 @@
     <th>Bed</th>
     <th>Patient Name</th>
     <th>Patient ID</th>
-    <th>Sponsor</th>
+    <th>Date</th>
     <th>Transfer</th>
 </thead>
 <tbody>
@@ -75,7 +75,7 @@
 <td><%= dataList.get(i).get(12)%></td>
 <td><%= dataList.get(i).get(34)%></td>
 <td><%= dataList.get(i).get(6)%></td>
-<td><%= dataList.get(i).get(6)%></td>
+<td><%= dataList.get(i).get(7)%></td>
 
 <td>
     <!-- Update Part Start -->

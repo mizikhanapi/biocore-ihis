@@ -11,11 +11,6 @@ $('#modalSaya2').on('shown.bs.modal', function () {
         height: 'auto',
         'max-height': '100%'});
 });
-
-
-
-
-
 var $body = $('body');
 var yyyyMMddHHmmss;
 var HHmmss;
@@ -47,7 +42,7 @@ function getBday(x) {
 
 //function to get date 
 function getDateNow() {
-    //yyyy-MM-dd HH:mm:ss
+//yyyy-MM-dd HH:mm:ss
     var nowDate = new Date();
     var ZeroMinutes, ZeroSeconds, ZeroDay, ZeroMonth;
     //months
@@ -58,7 +53,7 @@ function getDateNow() {
         ZeroMonth = month;
     }
 
-    //days
+//days
     var day = (nowDate.getDate());
     if (day < 10) {
         ZeroDay = "0" + day;
@@ -66,7 +61,7 @@ function getDateNow() {
         ZeroDay = day;
     }
 
-    //years
+//years
     var year = (nowDate.getFullYear());
     //hours
     var hours = nowDate.getHours();
@@ -77,14 +72,14 @@ function getDateNow() {
     } else {
         ZeroMinutes = minutes;
     }
-    //seconds
+//seconds
     var seconds = nowDate.getSeconds();
     if (seconds < 10) {
         ZeroSeconds = "0" + seconds;
     } else {
         ZeroSeconds = seconds;
     }
-    //complete day
+//complete day
     yyyyMMddHHmmss = year + "-" + ZeroMonth + "-" + ZeroDay + " " + hours + ":" + ZeroMinutes + ":" + ZeroSeconds;
     HHmmss = hours + ":" + ZeroMinutes + ":" + ZeroSeconds;
     yyyyMMdd = year + "-" + ZeroMonth + "-" + ZeroDay;
@@ -126,12 +121,9 @@ $('#registerBed').click(function () {
         AdmissionType = $('#AdmissionType').val();
         orderNo = $('#orderNo').val();
         OrderStatus = $('#OrderStatus').val();
-
-
         Refer = $('#Refer').val();
         DocType = $('#DocType').val();
         GL = $('#GL').val();
-
         if ($('#EliTy').val() === null) {
             EliTy = "-";
         } else {
@@ -140,8 +132,6 @@ $('#registerBed').click(function () {
 
         AdmissionReason = $('#AdmissionReason').val();
         PoliceCase = $('input[name="PoliceCase"]:checked').val();
-
-
         DocNo = $('#DocNo').val();
         payer = $('#payer').val();
         if (payer === null) {
@@ -154,7 +144,6 @@ $('#registerBed').click(function () {
         var Dis = array_dis[0];
         wname = $('#wname').val();
         RefDR = $('#RefDR').val();
-
         Deposit = $('#Deposit').val();
         WardType = $('#WardType').val();
         BedID = $('#BedIDReg').val();
@@ -168,7 +157,6 @@ $('#registerBed').click(function () {
         var hfc = $("#Rhfc").val();
         var createdBy = $("#Rid").val();
         var sub = $("#Rsub").val();
-
         hfc = $('#Rhfc').val();
         var datas = {'pmino': pmino,
             'epiDate': epiDate,
@@ -206,7 +194,7 @@ $('#registerBed').click(function () {
             'RefDR': RefDR,
             'sub': sub,
             'orderNo': orderNo,
-            'OrderStatus':OrderStatus
+            'OrderStatus': OrderStatus
 
         };
         //console.log(datas);
@@ -223,54 +211,68 @@ $('#registerBed').click(function () {
                 }
             },
             callback: function (result) {
+
                 //if true go to PMI page
                 if (result === true) {
                     $body.addClass("loading");
                     $.ajax({
                         type: "POST",
-                        url: "PMS/registration.jsp",
-                        data: datas, // Send input
+                        url: "PMS/checkQueue.jsp",
+                        data: {'wname': wname, 'createdBy': createdBy, 'hfc': hfc, 'Dis': Dis, 'sub': sub, 'pmino': pmino}, // Send input
                         timeout: 3000,
-                        success: function (list) {
-                            console.log(list);
-                            alert(orderNo);
-                            alert(OrderStatus);
-                            console.log(list);
+                        success: function (l) {
+                            console.log(l);
                             $body.removeClass("loading");
-                            if ($.trim(list) === "Success") {
-                                bootbox.alert("Patient has been register successfully");
-                            } else if ($.trim(list) === "already") {
-                                bootbox.alert("Patient is already registered");
-                            } else if ($.trim(list) === "false") {
-                                bootbox.alert("There something error with the query of register the inpatient");
+                            if ($.trim(l) === "Success") {
+                                bootbox.alert("The queue is exists. you can register the patient");
+                                $.ajax({
+                                    type: "POST",
+                                    url: "PMS/registration.jsp",
+                                    data: datas, // Send input
+                                    timeout: 3000,
+                                    success: function (list) {
+                                        console.log(list);
+                                        console.log(list);
+                                        $body.removeClass("loading");
+                                        if ($.trim(list) === "Success") {
+                                            bootbox.alert("Patient has been register successfully");
+                                        } else if ($.trim(list) === "already") {
+                                            bootbox.alert("Patient is already registered");
+                                        } else if ($.trim(list) === "false") {
+                                            bootbox.alert("There something error with the query of register the inpatient");
+                                        }
+
+                                        var wname = $('#wname').val();
+                                        var hfc = $("#Rhfc").val();
+                                        var createdBy = $("#Rid").val();
+                                        var sub = $("#Rsub").val();
+                                        var Dis = $('#DisWard').val();
+                                        $.ajax({
+                                            type: "POST",
+                                            url: "PMS/addQueue.jsp",
+                                            data: {'wname': wname, 'createdBy': createdBy, 'hfc': hfc, 'Dis': Dis, 'sub': sub, 'pmino': pmino}, // Send input
+                                            timeout: 3000,
+                                            success: function (l) {
+                                                console.log(l);
+                                                $body.removeClass("loading");
+                                                if ($.trim(l) === "Success") {
+                                                    bootbox.alert("Patient has been add to queue successfully");
+                                                } else if ($.trim(l) === "Failed") {
+                                                    bootbox.alert("There something error with the query of add patient to queue");
+                                                }
+                                            }, error: function () {
+                                                bootbox.alert("There is an error!");
+                                            }
+                                        });
+                                    }, error: function () {
+                                        bootbox.alert("There is an error!");
+                                    }
+                                });
+                            } else if ($.trim(l) === "Failed") {
+                                bootbox.alert("Cannot register the patient because the queue is not exists");
                             }
 
-                            var wname = $('#wname').val();
-                            var hfc = $("#Rhfc").val();
-                            var createdBy = $("#Rid").val();
-                            var sub = $("#Rsub").val();
-                            var Dis = $('#DisWard').val();
 
-
-
-
-                            $.ajax({
-                                type: "POST",
-                                url: "PMS/addQueue.jsp",
-                                data: {'wname': wname, 'createdBy': createdBy, 'hfc': hfc, 'Dis': Dis, 'sub': sub, 'pmino': pmino}, // Send input
-                                timeout: 3000,
-                                success: function (l) {
-                                    console.log(l);
-                                    $body.removeClass("loading");
-                                    if ($.trim(l) === "Success") {
-                                        bootbox.alert("Patient has been add to queue successfully");
-                                    } else if ($.trim(l) === "Failed") {
-                                        bootbox.alert("There something error with the query of add patient to queue");
-                                    }
-                                }, error: function () {
-                                    bootbox.alert("There is an error!");
-                                }
-                            });
 
 
 
@@ -278,7 +280,6 @@ $('#registerBed').click(function () {
                             bootbox.alert("There is an error!");
                         }
                     });
-
                 }
             }
         });
@@ -286,22 +287,10 @@ $('#registerBed').click(function () {
 
 
 });
-
-
-
-
-
-
-
-
-
 //event on click clear buton
 $('#btnclear').click(function () {
     $('#myForm2')[0].reset();
 });
-
-
-
 //
 //
 //    //load appointment modal into the registration page

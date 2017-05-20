@@ -222,41 +222,26 @@
 
                     <!-- Select Basic -->
                     <div class="form-group">
-                        <label class="col-md-4 control-label" for="selectbasic">Referring from *</label>
+                        <label class="col-md-4 control-label" for="selectbasic">Referring From *</label>
                         <div class="col-md-6">
-                            <select id="Refer" name="Refer" class="form-control">
-                                <option value="" selected="" disabled="">Select Referring from </option>
-                                <option value="1">1. KLINIK PESAKIT LUAR PAKAR</option>
-                                <option value="2">2. LAIN HOSP. KERAJAAN</option>
-                                <option value="3">3. KLINIK KESIHATAN/JPL</option>
-                                <option value="4">4. PENGAMAL PERUBATAN</option>
-                                <option value="5">5. BERSALIN</option>
-                                <option value="6">6. JABATAN KECEMASAN</option>
-                                <option value="7">9. LAIN-LAIN</option>
-
-                            </select>
+                            <input id="HFCFROM" name="HF" placeholder="Insert Health Facility Name" maxlength="30" type="text"  class="form-control input-md">
+                            <input type="hidden" id="HF_cd">
+                            <div id="HF_List" class="search-drop"></div>
                         </div>
-                    </div>   
-                    <!-- Select Basic -->
+
+                    </div>
+                    
+<!-- Select Basic -->
                     <div class="form-group">
-                        <label class="col-md-4 control-label" for="selectbasic">Referred By *</label>
+                        <label class="col-md-4 control-label" for="selectbasic">Referring By *</label>
                         <div class="col-md-6">
-                            <select id="RefDR" name="RefDR" class="form-control" >
-                                <option value="1" selected="" >Select Referred By</option>
-
-                                <%
-                                    int sizeDR2 = dataRole2.size();
-
-                                    for (int i = 0; i < sizeDR2; i++) {
-                                %>
-                                <option value="<%= dataRole2.get(i).get(0)%>"><%= dataRole2.get(i).get(1)%> </option>
-                                <%
-                                    }
-                                %>
-                            </select>
+                            <input id="HFCBY" name="HB" placeholder="Insert Reffered By" maxlength="30" type="text"  class="form-control input-md">
+                            <input type="hidden" id="HB_cd">
+                            <div id="HB_List" class="search-drop"></div>
                         </div>
-                    </div> 
 
+                    </div>
+                    
 
 
 
@@ -357,6 +342,86 @@
     </div>
 </div>
 <script>
+
+    $("#HFCFROM").on('keyup', function () { // everytime keyup event
+        var input = $(this).val(); // We take the input value
+        var hfc = $("#Rhfc").val();
+        var createdBy = $("#Rid").val();
+        var dis = $("#Rdis").val();
+        var sub = $("#Rsub").val();
+
+        if (input.length >= 1) { // Minimum characters = 2 (you can change)
+            $('#HF_List').html('<img src="libraries/LoaderIcon.gif" />'); // Loader icon apprears in the <div id="match"></div>
+            var dataFields = {input: input, hfc: hfc, dis: dis, sub: sub}; // We pass input argument in Ajax
+            $.ajax({
+                type: "POST",
+                url: "PMS/search/searchHFC.jsp", // call the php file ajax/tuto-autocomplete.php
+                data: dataFields, // Send dataFields var
+                timeout: 3000,
+                success: function (dataBack) { // If success
+                    $('#HF_List').html(dataBack); // Return data (UL list) and insert it in the <div id="match"></div>
+                    $('#matchListHFC li').on('click', function () { // When click on an element in the list
+                        //$('#masterCode2').text($(this).text()); // Update the field with the new element
+                        $('#HFCFROM').val($(this).text());
+                        $('#HF_List').text(''); // Clear the <div id="match"></div>
+                        var arrayData = $('#HFCFROM').val().split("|");
+                        var discode = arrayData[0];
+                        $('#HF_cd').val(discode);
+                        //console.log(arrayData);
+
+                
+                    });
+                },
+                error: function () { // if error
+                    $('#HF_List').text('Problem!');
+                }
+            });
+        } else {
+            $('#HF_List').text(''); // If less than 2 characters, clear the <div id="match"></div>
+        }
+
+    });
+
+
+$("#HFCBY").on('keyup', function () { // everytime keyup event
+        var input = $(this).val(); // We take the input value
+        var hfc = $("#Rhfc").val();
+        var createdBy = $("#Rid").val();
+        var dis = $("#Rdis").val();
+        var sub = $("#Rsub").val();
+
+        if (input.length >= 1) { // Minimum characters = 2 (you can change)
+            $('#HB_List').html('<img src="libraries/LoaderIcon.gif" />'); // Loader icon apprears in the <div id="match"></div>
+            var dataFields = {input: input, hfc: hfc, dis: dis, sub: sub}; // We pass input argument in Ajax
+            $.ajax({
+                type: "POST",
+                url: "PMS/search/searchUsers.jsp", // call the php file ajax/tuto-autocomplete.php
+                data: dataFields, // Send dataFields var
+                timeout: 3000,
+                success: function (dataBack) { // If success
+                    $('#HB_List').html(dataBack); // Return data (UL list) and insert it in the <div id="match"></div>
+                    $('#matchListHFC li').on('click', function () { // When click on an element in the list
+                        //$('#masterCode2').text($(this).text()); // Update the field with the new element
+                        $('#HFCBY').val($(this).text());
+                        $('#HB_List').text(''); // Clear the <div id="match"></div>
+                        var arrayData = $('#HFCBY').val().split("|");
+                        var discode = arrayData[0];
+                        $('#HB_cd').val(discode);
+                        //console.log(arrayData);
+
+                
+                    });
+                },
+                error: function () { // if error
+                    $('#HB_List').text('Problem!');
+                }
+            });
+        } else {
+            $('#HB_List').text(''); // If less than 2 characters, clear the <div id="match"></div>
+        }
+
+    });
+
     $("#EliSource").on('change', function () {
         var EliSrc = $(this).val();
         $.ajax({
