@@ -14,6 +14,7 @@
     String input = request.getParameter("input");
     String process = request.getParameter("process");
     String disciplineCode = request.getParameter("disciplineCode");
+    String hfc_cd = request.getParameter("hfc_cd");
     
     Conn conn = new Conn();
     
@@ -48,7 +49,7 @@
     
     }else if(process.equalsIgnoreCase("discipline")){
         
-        String sql = "Select discipline_cd, discipline_name FROM adm_discipline WHERE  concat(discipline_cd, ' | ', discipline_name) like '%"+input+"%'";
+        String sql = "Select discipline_cd, discipline_name FROM adm_discipline WHERE  concat(discipline_cd, ' | ', discipline_name) like '%"+input+"%' and discipline_hfc_cd = '"+hfc_cd+"'";
         ArrayList<ArrayList<String>> search = conn.getData(sql);
         
         if(search.size() > 0){

@@ -269,6 +269,9 @@
 
                             isHFCSelected = true;
                             selectedHFC = $('#ADM_hfc').val();
+                            
+                            $('#ADM_discipline').val('');
+                            $('#ADM_subdiscipline').val('');
 
                         });
                     },
@@ -287,11 +290,26 @@
 
 
         $('#ADM_discipline').on('keyup', function () {
+            
+            var hfc = $('#ADM_hfc').val();
+            
+            if(isHFCSelected === false || selectedHFC !== hfc){
+                bootbox.alert("Please choose existing health facility first!");
+                return;
+            }
+            
+            var hfcArray = hfc.split("|");
+            hfc = hfcArray[0].trim();
 
             var input = $(this).val(); // We take the input value
             if (input.length >= 1) { // Minimum characters = 2 (you can change)
                 $('#ADM_discipline_match').html('<img src="bootstrap-3.3.6-dist/image/ajax-loader.gif" />'); // Loader icon apprears in the <div id="PM_match_system"></div>
-                var dataFields = {input: input, process: "discipline"}; // We pass input argument in Ajax
+                var dataFields = {
+                    input: input, 
+                    process: "discipline",
+                    hfc_cd:hfc
+                
+                }; // We pass input argument in Ajax
                 $.ajax({
                     type: "POST",
                     url: "ADM_result.jsp", // call the php file ajax/tuto-autocomplete.php
@@ -306,6 +324,7 @@
 
                             isDisciplineSelected = true;
                             selectedDiscipline = $('#ADM_discipline').val();
+                            $('#ADM_subdiscipline').val('');
 
                         });
                     },

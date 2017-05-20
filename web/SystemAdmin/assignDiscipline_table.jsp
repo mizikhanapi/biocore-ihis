@@ -35,6 +35,7 @@
             whereClause = " where hd.hfc_cd = '"+hfc_cd+"'";
         }
         
+        //                      0           1           2                   3                   4                   5                       6
         String sql ="SELECT hd.hfc_cd, hf.hfc_name, hd.discipline_cd, d.discipline_name, hd.subdiscipline_cd, sd.subdiscipline_name, hd.hfc_discipline_status "
                 + "from adm_hfc_discipline hd "
                 + "join adm_health_facility hf on hf.hfc_cd = hd.hfc_cd "
@@ -88,7 +89,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal"><i class="fa fa-times fa-lg"></i></button>
-                <h3 class="modal-title" id="lineModalLabel">Update Page</h3>
+                <h3 class="modal-title" id="lineModalLabel">Update Discipline Assignment</h3>
             </div>
             <div class="modal-body">
 
@@ -97,27 +98,51 @@
 
                      <!-- Text input-->
                     <div class="form-group">
-                        <label class="col-md-4 control-label" for="textinput">Health Facility*</label>
+                        <label class="col-md-4 control-label" for="textinput">Health Facility Code*</label>
                         <div class="col-md-8">
                             <input type="text"  class="form-control" id="ADT_hfc" placeholder="Health Facility" readonly>
+                            
+                        </div>
+                    </div>
+                     <!-- Text input-->
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="textinput">Health Facility Name</label>
+                        <div class="col-md-8">
+                            <input type="text"  class="form-control" id="ADT_hfc_name" placeholder="Health Facility" readonly>
                             
                         </div>
                     </div>
 
                     <!-- Text input-->
                     <div class="form-group">
-                        <label class="col-md-4 control-label" for="textinput">Discipline*</label>
+                        <label class="col-md-4 control-label" for="textinput">Discipline Code*</label>
                         <div class="col-md-8">
                             <input type="text"  class="form-control" id="ADT_discipline" placeholder="Discipline" readonly>
+                            
+                        </div>
+                    </div>
+                    <!-- Text input-->
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="textinput">Discipline Name</label>
+                        <div class="col-md-8">
+                            <input type="text"  class="form-control" id="ADT_discipline_name" placeholder="Discipline" readonly>
                             
                         </div>
                     </div>
                     
                      <!-- Text input-->
                     <div class="form-group">
-                        <label class="col-md-4 control-label" for="textinput">Subdiscipline*</label>
+                        <label class="col-md-4 control-label" for="textinput">Subdiscipline Code*</label>
                         <div class="col-md-8">
                             <input type="text"  class="form-control" id="ADT_subdiscipline" placeholder="Subdiscipline" readonly>
+                          
+                        </div>
+                    </div>
+                     <!-- Text input-->
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="textinput">Subdiscipline Name</label>
+                        <div class="col-md-8">
+                            <input type="text"  class="form-control" id="ADT_subdiscipline_name" placeholder="Subdiscipline" readonly>
                           
                         </div>
                     </div>
@@ -165,11 +190,15 @@
         var rowData = row.find("#ADT_hidden").val();
         var arrayData = rowData.split("|");
         //assign into seprated val
-        var hfcCode = arrayData[0], disciplineCode = arrayData[2], subdisciplineCode = arrayData[4], status = arrayData[6];
+        var hfcCode = arrayData[0], hfcName = arrayData[1], disciplineCode = arrayData[2], disName = arrayData[3], subdisciplineCode = arrayData[4], subName = arrayData[5], status = arrayData[6];
         //set value in input on the top
         $('#ADT_hfc').val(hfcCode);
+        $('#ADT_hfc_name').val(hfcName);
+        
         $('#ADT_discipline').val(disciplineCode);
+        $('#ADT_discipline_name').val(disName);
         $('#ADT_subdiscipline').val(subdisciplineCode);
+        $('#ADT_subdiscipline_name').val(subName);
        
         
         if (status === '1')

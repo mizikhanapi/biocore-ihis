@@ -19,8 +19,8 @@
         
         String query = "select dis.discipline_name, sub.subdiscipline_name "
                 + "from adm_discipline dis "
-                + "join adm_subdiscipline sub on sub.discipline_cd = dis.discipline_cd "
-                + "where dis.discipline_cd = '"+dis_cd+"' AND sub.subdiscipline_cd = '"+sub_cd+"' LIMIT 1;";
+                + "join adm_subdiscipline sub on sub.discipline_cd = dis.discipline_cd and sub.subdiscipline_hfc_cd = dis.discipline_hfc_cd "
+                + "where dis.discipline_cd = '"+dis_cd+"' AND sub.subdiscipline_cd = '"+sub_cd+"' and dis.discipline_hfc_cd = '"+hfc_cd+"' LIMIT 1;";
         
         ArrayList<ArrayList<String>> dataDis = conn.getData(query);
         
