@@ -32,14 +32,15 @@
     <%
         String whereClause = " ";
         if(!last9.equals("9") || !hfc_cd.equals("99_iHIS_99")){
-            whereClause = " AND hf.hfc_cd = '"+hfc_cd+"' ";
+            whereClause = " where hd.hfc_cd = '"+hfc_cd+"'";
         }
         
-        String sql ="Select hf.hfc_cd, hf.hfc_name, d.discipline_cd, d.discipline_name, s.subdiscipline_cd, s.subdiscipline_name, hfc_discipline_status "
-                + "FROM adm_health_facility hf Join adm_hfc_discipline hd USING (hfc_cd) "
-                + "join adm_discipline d Using (discipline_cd) "
-                + "join adm_subdiscipline s using (discipline_cd) "
-                + "Where s.subdiscipline_cd = hd.subdiscipline_cd " + whereClause;
+        String sql ="SELECT hd.hfc_cd, hf.hfc_name, hd.discipline_cd, d.discipline_name, hd.subdiscipline_cd, sd.subdiscipline_name, hd.hfc_discipline_status "
+                + "from adm_hfc_discipline hd "
+                + "join adm_health_facility hf on hf.hfc_cd = hd.hfc_cd "
+                + "join adm_discipline d on d.discipline_cd = hd.discipline_cd and d.discipline_hfc_cd = hd.hfc_cd "
+                + "join adm_subdiscipline sd on sd.subdiscipline_cd = hd.subdiscipline_cd and sd.discipline_cd = hd.discipline_cd and sd.subdiscipline_hfc_cd = hd.hfc_cd "
+                +whereClause;
         
         ArrayList<ArrayList<String>> dataHD = conn.getData(sql);
 

@@ -19,37 +19,45 @@
 %>
 
 <table  id="THE_subdisciplineTable"  class="table table-striped table-bordered" cellspacing="0" width="100%">
-    <thead>
+    <thead>        
+    <th>Health Facility</th>
     <th>Discipline Code</th>
     <th>Discipline Name</th>
     <th>Subdiscipline Code</th>
     <th>Subdiscipline Name</th>
     <th>Type</th>
     <th>Status</th>
-    <%
-        if(last9.equals("9") && hfc_cd.equals("99_iHIS_99")){
-    %>
     <th>Update</th>
     <th>Delete</th>
-    <%
-        }
-    %>
+   
 </thead>
 <tbody>
 
     <%
-        String sql = " SELECT dc.discipline_cd, discipline_name, subdiscipline_cd, subdiscipline_name, subdiscipline_type, subdiscipline_status "
-                + " FROM adm_discipline dc join adm_subdiscipline sdc using (discipline_cd)";
+        String whereHFC = "";
+        
+        if(!last9.equalsIgnoreCase("9") || !hfc_cd.equalsIgnoreCase("99_iHIS_99")){
+            
+            whereHFC = " where sdc.subdiscipline_hfc_cd = '"+hfc_cd+"' ";
+        }
+        //                          0                   1                   2                       3                       4                   5
+        String sql = "SELECT sdc.discipline_cd, dc.discipline_name, sdc.subdiscipline_cd, sdc.subdiscipline_name, sdc.subdiscipline_type, sdc.subdiscipline_status, "
+                + "sdc.subdiscipline_hfc_cd, hfc.hfc_name "
+                + "From adm_subdiscipline sdc "
+                + "join adm_discipline dc on dc.discipline_cd = sdc.discipline_cd and dc.discipline_hfc_cd = sdc.subdiscipline_hfc_cd "
+                + "join adm_health_facility hfc on hfc.hfc_cd = sdc.subdiscipline_hfc_cd " 
+                +whereHFC;
         ArrayList<ArrayList<String>> dataDetail = conn.getData(sql);
 
         int size = dataDetail.size();
         
-        if(last9.equals("9") && hfc_cd.equals("99_iHIS_99")){
+       
             for (int i = 0; i < size; i++) {
     %>
 
     <tr>
 <input id="SDT_hidden" type="hidden" value="<%=String.join("|", dataDetail.get(i))%>">
+<td>(<%= dataDetail.get(i).get(6)%>) <%= dataDetail.get(i).get(7)%></td> <!--hfc  -->   
 <td><%= dataDetail.get(i).get(0)%></td> <!--discipline code  -->   
 <td><%= dataDetail.get(i).get(1)%></td> <!--discipline name  --> 
 <td><%= dataDetail.get(i).get(2)%></td> <!--sub code  --> 
@@ -72,36 +80,9 @@
 </td>
 </tr>
 
-
-
 <%
         }//END FOR LOOP
-    }//end if
-    else{
-
-        for (int i = 0; i < size; i++) {
-    %>
-
-    <tr>
-<input id="SDT_hidden" type="hidden" value="<%=String.join("|", dataDetail.get(i))%>">
-<td><%= dataDetail.get(i).get(0)%></td> <!--discipline code  -->   
-<td><%= dataDetail.get(i).get(1)%></td> <!--discipline name  --> 
-<td><%= dataDetail.get(i).get(2)%></td> <!--sub code  --> 
-<td><%= dataDetail.get(i).get(3)%></td> <!--sub name  --> 
-<td><%= dataDetail.get(i).get(4)%></td> <!--Type  -->
-<td><%if(dataDetail.get(i).get(5).equals("1"))
-                out.print("Inactive"); 
-              else
-                out.print("Active"); %></td> <!--status --> 
-
-</tr>
-
-
-
-<%
-        }//END FOR LOOP
-
-    }//end else
+  
 %>
 
 </tbody>
@@ -119,12 +100,26 @@
 
                 <!-- content goes here -->
                 <form autocomplete="off" class="form-horizontal">
+                    <!-- Text input-->
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="textinput">Health Facility*</label>
+                        <div class="col-md-8">
+                            <input id="SDT_hfc" name="textinput" type="text" class="form-control input-md" disabled>
+                        </div>
+                    </div>
 
                     <!-- Text input-->
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="textinput">Discipline Code*</label>
                         <div class="col-md-8">
-                            <input id="SDT_disciplineCode" name="textinput" type="text" class="form-control input-md" readonly>
+                            <input id="SDT_disciplineCode" name="textinput" type="text" class="form-control input-md" disabled>
+                        </div>
+                    </div>
+                    <!-- Text input-->
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="textinput">Discipline Name</label>
+                        <div class="col-md-8">
+                            <input id="SDT_disciplineName" name="textinput" type="text" class="form-control input-md" disabled>
                         </div>
                     </div>
 
@@ -196,9 +191,11 @@
         var rowData = row.find("#SDT_hidden").val();
         var arrayData = rowData.split("|");
         //assign into seprated val
-        var disciplineCode = arrayData[0], subdisciplineCode = arrayData[2], subdisciplineName = arrayData[3], status = arrayData[5], type = arrayData[4];
+        var disciplineCode = arrayData[0], disciplineName = arrayData[1], subdisciplineCode = arrayData[2], subdisciplineName = arrayData[3], status = arrayData[5], type = arrayData[4], hfc_cd = arrayData[6], hfc_name = arrayData[7];
         //set value in input on the top
+        $('#SDT_hfc').val(hfc_cd + ' | '+ hfc_name);
         $('#SDT_disciplineCode').val(disciplineCode);
+        $('#SDT_disciplineName').val(disciplineName);
         $('#SDT_subdisciplineCode').val(subdisciplineCode);
         $('#SDT_subdisciplineName').val(subdisciplineName);
         $('#SDT_type').val(type);
@@ -210,7 +207,7 @@
 
 
 
-        console.log(arrayData);
+        //console.log(arrayData);
     });
 
 
@@ -231,8 +228,12 @@
             $('#SDT_status').focus();
 
         } else {
+            
+            var hfcArray = $('#SDT_hfc').val().split("|");
+            var hfc_cd = hfcArray[0].trim();
 
             var data = {
+                hfc_cd: hfc_cd,
                 disciplineCode: disciplineCode,
                 subdisciplineCode: subdisciplineCode,
                 subdisciplineName: subdisciplineName,
@@ -281,11 +282,11 @@
         var rowData = row.find("#SDT_hidden").val();
         var arrayData = rowData.split("|");
         //assign into seprated val
-        var disciplineCode = arrayData[0], subdisciplineCode = arrayData[2];
+        var disciplineCode = arrayData[0], subdisciplineCode = arrayData[2], subName = arrayData[3], hfc_cd = arrayData[6];
         console.log(arrayData);
         
         bootbox.confirm({
-            message: "Are you sure want to delete this item? " + disciplineCode + "-" + subdisciplineCode,
+            message: "Are you sure want to delete this item? " + disciplineCode + "-" + subdisciplineCode + " - "+subName,
             title: "Delete Item?",
             buttons: {
                 confirm: {
@@ -303,7 +304,8 @@
                     
                     var data = {
                         subdisciplineCode: subdisciplineCode,
-                        disciplineCode: disciplineCode
+                        disciplineCode: disciplineCode,
+                        hfc_cd: hfc_cd
                     };
 
                     $.ajax({
