@@ -1,0 +1,22 @@
+create table lhr_radiology_result (
+pmi_no varchar(30),
+hfc_cd varchar(255),
+episode_date datetime,
+encounter_date datetime,
+investigation_cd varchar(30),
+investigation_name varchar(255),
+image_report_cd varchar(30),
+image_report_name varchar(255),
+perform_by_id varchar(30),
+perform_name varchar(100),
+perform_date_time datetime,
+provide_by_id varchar(30),
+provide_by_name varchar(100),
+report_date_time datetime,
+report_notes varchar(300),
+national_id_no varchar(30),
+person_id_no varchar(30),
+person_status varchar(30),
+centre_code varchar(30),
+primary key (pmi_no,hfc_cd,episode_date,encounter_date,investigation_cd)
+);
