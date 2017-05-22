@@ -17,7 +17,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> 
-        <title>Main Page</title>
+        <title>Time Slip</title>
 
 
         <script src="../assets/js/jquery.min.js"></script>

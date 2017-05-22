@@ -53,42 +53,34 @@
     </td>
     <td id="pmino"><%= mc.get(i).get(2)%></td>
     <td>
-        <button  class='btn btn-link' data-toggle="modal" data-target="#basicModal_<%=i%>">View Detail</button>
-        <div class="modal fade" id="basicModal_<%=i%>" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <div class="modal-header">
-                            <input name="b_print" type="button" class="btn btn-success"  onClick="printdiv('div_print<%=i%>');" value=" Print ">
-                             <button type="button" class="close" data-dismiss="modal"><i class="fa fa-times fa-lg"></i></button>
-                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><%= new SimpleDateFormat("HH:mm:ss").format(new java.util.Date())%></button>
-                            
-                        </div>
-                        <br>
+        <input name="b_print" id="b_print<%=i%>" type="button" class="btn btn-success" value=" Print " data-toggle="modal" data-target="#basicModal">
+        
+        <script>
+            $('#b_print<%=i%>').click(function () {
 
+                $.ajax({
+                    async: true,
+                    type: "POST",
+                    url: "timeSlipReport.jsp",
+                    data: {'name': "<%=mc.get(i).get(0)%>", 'episode': "<%=mc.get(i).get(1)%>", 'pmi': "<%=mc.get(i).get(2)%>"},
+                    timeout: 10000,
+                    success: function (list) {
 
-                        <div class="row" id="div_print<%=i%>">
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <label for=""> Name: <%=mc.get(i).get(0)%></label>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for=""> Episode Date: <%=mc.get(i).get(1)%></label>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for=""> PMI No.: <%=mc.get(i).get(2)%></label>
-                                </div>
-                            </div>
-                        </div>
+                        $("#test").val(list.trim());
+                        $('#test').html(list);
+                        $('#test').trigger('contentchanged');
+                        //printReport();
+                    },
+                    error: function (xhr, status, error) {
+                        var err = eval("(" + xhr.responseText + ")");
+                        bootbox.alert(err.Message);
+                    }
+                });
 
-                    </div>
-                </div>
-            </div>
-        </div>
+            });
+
+        </script>
+
     </td>
 
 </tr>
@@ -99,8 +91,27 @@
     }
 %>
 </table>
+<div class="modal fade" id="basicModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="modal-header">
+                    <input name="b_print" id="b_print" type="button" class="btn btn-success" value=" Print ">
+                    <button type="button" class="close" data-dismiss="modal"><i class="fa fa-times fa-lg"></i></button>
 
-                            
+                </div>
+                <br>
+                <div id="test">
+
+                </div>
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
 <script>
 
     $(document).ready(function () {
@@ -115,15 +126,14 @@
     });
 </script>
 <script language="javascript">
-    function printdiv(printpage)
-    {
-        var headstr = "<html><head><title></title></head><body>";
-        var footstr = "</body>";
-        var newstr = document.all.item(printpage).innerHTML;
-        var oldstr = document.body.innerHTML;
-        document.body.innerHTML = headstr + newstr + footstr;
-        window.print();
-        document.body.innerHTML = oldstr;
-        return false;
+
+
+
+    function printReport() {
+        var divElements = $('#test').html();
+        var popupWin = window.open('', '_blank', 'width=1200,height=500');
+        popupWin.document.open();
+        popupWin.document.write('<html><body onload="window.print()">' + divElements + '</html>');
+        popupWin.document.close();
     }
 </script>

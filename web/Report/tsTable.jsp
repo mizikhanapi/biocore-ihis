@@ -55,10 +55,10 @@
     <td id="status"><%= ts.get(i).get(2)%></td>
 
     <td><input name="b_print" id="b_print<%=i%>" type="button" class="btn btn-success" value=" Print " data-toggle="modal" data-target="#basicModal">
-
+        
         <script>
             $('#b_print<%=i%>').click(function () {
-               
+
                 $.ajax({
                     async: true,
                     type: "POST",
@@ -70,12 +70,14 @@
                         $("#test").val(list.trim());
                         $('#test').html(list);
                         $('#test').trigger('contentchanged');
+                        //printReport();
                     },
                     error: function (xhr, status, error) {
                         var err = eval("(" + xhr.responseText + ")");
                         bootbox.alert(err.Message);
                     }
                 });
+
             });
 
         </script>
@@ -93,25 +95,26 @@
 </table>
 
 <div class="modal fade" id="basicModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <div class="modal-header">
-                    <input name="b_print" type="button" class="btn btn-success"  onClick="printdiv('test');" value=" Print ">
-                    <button type="button" class="close" data-dismiss="modal"><i class="fa fa-times fa-lg"></i></button>
-                    
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <div class="modal-header">
+                            <input name="b_print" id="b_print" type="button" class="btn btn-success" value=" Print ">
+                            <button type="button" class="close" data-dismiss="modal"><i class="fa fa-times fa-lg"></i></button>
+
+                        </div>
+                        <br>
+                        <div id="test">
+
+                        </div>
+
+
+
+                    </div>
                 </div>
-                <br>
-                <div id="test">
-
-</div>
-
-
-
             </div>
         </div>
-    </div>
-</div>
+
 
 <script>
 
@@ -123,25 +126,21 @@
             ]
         });
 
-
+        $('#b_print').click(function () {
+            printReport();
+        });
     });
 </script>
 <script language="javascript">
-     
-    function printdiv(printpage)
-    {
-        
-        $(".modal-backdrop").hide();
-        $("#basicModal").hide();
-        
-        var headstr = "<html><head><title></title></head><body>";
-        var footstr = "</body>";
-        var newstr = document.all.item(printpage).innerHTML;
-        var oldstr = document.body.innerHTML;
-        document.body.innerHTML = headstr + newstr + footstr;
-        window.print();
-        document.body.innerHTML = oldstr;
-        return false;
+
+
+
+    function printReport() {
+        var divElements = $('#test').html();
+        var popupWin = window.open('', '_blank', 'width=1200,height=500');
+        popupWin.document.open();
+        popupWin.document.write('<html><body onload="window.print()">' + divElements + '</html>');
+        popupWin.document.close();
     }
 </script>
 
