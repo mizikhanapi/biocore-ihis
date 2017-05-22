@@ -12,12 +12,11 @@
     Conn conn = new Conn();
     String key = request.getParameter("input");
     String hfc = request.getParameter("hfc");
-    
-     
 
-    String searchProblem = "SELECT a.discipline_cd,a.discipline_name,b.discipline_cd, b.hfc_cd FROM adm_discipline a "
-            + "LEFT JOIN adm_hfc_discipline b ON a.discipline_cd = b.discipline_cd  "
-            + "WHERE b.hfc_cd = '"+hfc+"' AND  (a.discipline_cd like '%"+key+"%' OR discipline_name like '%"+key+"%') group by b.discipline_cd ";
+
+    String searchProblem = "SELECT a.subdiscipline_cd,a.subdiscipline_name,b.subdiscipline_cd, b.hfc_cd FROM adm_subdiscipline a "
+            + "LEFT JOIN adm_hfc_discipline b ON a.subdiscipline_cd = b.subdiscipline_cd  "
+            + "WHERE b.hfc_cd = '"+hfc+"' AND  (a.subdiscipline_cd like '%"+key+"%' OR subdiscipline_name like '%"+key+"%') group by b.subdiscipline_cd ";
     
    
 
