@@ -122,7 +122,9 @@
             ]
         });
 
-
+         $('#b_print').click(function () {
+            printReport();
+        });
     });
 </script>
 <script language="javascript">

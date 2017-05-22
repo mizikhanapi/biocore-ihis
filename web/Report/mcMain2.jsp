@@ -50,7 +50,6 @@
                         <div class="thumbnail">
                             <h3 style="margin: 0px;">Print MC </h3>
                             <hr class="pemisah"/>
-
                             <div id="SearchPatientdiv">
                             </div>
 
