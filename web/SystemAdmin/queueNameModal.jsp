@@ -47,12 +47,15 @@
                         <div class="form-group">
                             <select class="form-control" id="Qtype">
                                 <option selected="" disabled="">Please select Queue Type Code</option>
-                                <%
+                                <option value="CM">(CM) Common Queue</option>
+                                <option value="FY">(FY) Consultant Room</option>
+                                <option value="PN">(PN) Doctor Queue</option>
+                                <%--
                                     for (int i = 0; i < dataTypeCode.size(); i++) {%>
                                 <option value="<%=dataTypeCode.get(i).get(0)%>"><%="(" + dataTypeCode.get(i).get(0) + ") " + dataTypeCode.get(i).get(1)%></option>
                                 <%
                                     }
-                                %>
+                                --%>
                             </select>
                         </div>
                     </div>

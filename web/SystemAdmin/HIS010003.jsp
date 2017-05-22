@@ -49,11 +49,11 @@
                                 <div class="tabbable-panel">
                                     <div class="tabbable-line">
                                         <ul class="nav nav-tabs ">
-                                            <li class="active">
+<!--                                            <li class="active">
                                                 <a href="#tab_default_1" data-toggle="tab">
                                                     Maintain Queue Type </a>
-                                            </li>
-                                            <li>
+                                            </li>-->
+                                            <li class="active">
                                                 <a href="#tab_default_2" data-toggle="tab">
                                                     Maintain Queue Name </a>
                                             </li>
@@ -64,10 +64,10 @@
                                         </ul>
                                         <!-- tab content -->
                                         <div class="tab-content">
-                                            <div class="tab-pane active" id="tab_default_1">
+<!--                                            <div class="tab-pane active" id="tab_default_1">
                                                 <div id="queueType"></div>
-                                            </div>
-                                            <div class="tab-pane" id="tab_default_2">
+                                            </div>-->
+                                            <div class="tab-pane active" id="tab_default_2">
                                                 <div id="queueName"></div>
                                             </div>
                                             <div class="tab-pane" id="tab_default_3">
@@ -88,18 +88,18 @@
 
 
 
-        <div id="modal1"></div>
+        <!--<div id="modal1"></div>-->
         <div id="modal2"></div>
         <div id="modal3"></div>
 
 
         <script>
 
-            $('#queueType').load('maintainQueueType.jsp');
+//            $('#queueType').load('maintainQueueType.jsp');
             $('#queueName').load('maintainQueueName.jsp');
             $('#queueList').load('maintainQueueList.jsp');
 
-            $('#modal1').load('queueTypeModal.jsp');
+//            $('#modal1').load('queueTypeModal.jsp');
             $('#modal2').load('queueNameModal.jsp');
             $('#modal3').load('queueListModal.jsp');
         </script>

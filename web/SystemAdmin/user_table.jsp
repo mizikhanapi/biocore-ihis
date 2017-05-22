@@ -39,8 +39,8 @@
         String sql = " SELECT user_id, a.health_facility_code, user_name, 'password' as dummy, occupation_code, DATE_FORMAT(birth_date,'%d/%m/%Y'), sex_code, new_icno, home_phone, office_phone, mobile_phone, a.fax_no, a.email, id_category_code, ifnull(DATE_FORMAT(start_date,'%d/%m/%Y'), '') ,ifnull(DATE_FORMAT(end_date,'%d/%m/%Y'), '') , title, nationality_code, user_type, user_group, user_classification_code, ifnull(a.status, '0'), hfc_name, mother_name, room_no, ifnull(login_status, '0'), c.discipline_code, d.discipline_name, c.subdiscipline_code, e.subdiscipline_name "
                 + "FROM adm_users a join adm_health_facility b on a.health_facility_code = hfc_cd "
                 + "join adm_user_access_role c using (user_id) "
-                + "join adm_discipline d on c.discipline_code = d.discipline_cd "
-                + "join adm_subdiscipline e on c.discipline_code = e.discipline_cd AND c.subdiscipline_code = e.subdiscipline_cd "
+                + "join adm_discipline d on c.discipline_code = d.discipline_cd and d.discipline_hfc_cd = a.health_facility_code "
+                + "join adm_subdiscipline e on c.discipline_code = e.discipline_cd AND c.subdiscipline_code = e.subdiscipline_cd and e.subdiscipline_hfc_cd = a.health_facility_code "
                 + whereClause;
         ArrayList<ArrayList<String>> dataUser = conn.getData(sql);
 

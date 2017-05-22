@@ -22,8 +22,8 @@
             + "from pms_queue_type t "
             + "left join adm_health_facility h on h.hfc_cd = t.hfc_cd "
             + "left join adm_hfc_discipline a on a.discipline_cd = t.discipline_code and a.subdiscipline_cd = t.subdiscipline_code and a.hfc_cd = t.hfc_cd "
-            + "left join adm_discipline d on d.discipline_cd = a.discipline_cd "
-            + "LEFT JOIN adm_subdiscipline s on s.subdiscipline_cd = a.subdiscipline_cd and s.discipline_cd = a.discipline_cd "
+            + "left join adm_discipline d on d.discipline_cd = a.discipline_cd and d.discipline_hfc_cd = t.hfc_cd "
+            + "LEFT JOIN adm_subdiscipline s on s.subdiscipline_cd = a.subdiscipline_cd and s.discipline_cd = a.discipline_cd and s.subdiscipline_hfc_cd = t.hfc_cd "
             + "where t.hfc_cd = '"+hfcL+"' and t.discipline_code='"+disL+"';";
     ArrayList<ArrayList<String>> dataQT;
     dataQT = conn.getData(sql);
