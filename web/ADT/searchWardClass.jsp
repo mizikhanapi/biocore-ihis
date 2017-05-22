@@ -12,32 +12,27 @@
     Conn conn = new Conn();
     String key = request.getParameter("input");
     String hfc = request.getParameter("hfc");
-    
-     
+    String dis = request.getParameter("dis");
 
-    String searchProblem = "SELECT a.discipline_cd,a.discipline_name,b.discipline_cd, b.hfc_cd FROM adm_discipline a "
-            + "LEFT JOIN adm_hfc_discipline b ON a.discipline_cd = b.discipline_cd  "
-            + "WHERE b.hfc_cd = '"+hfc+"' AND  (a.discipline_cd like '%"+key+"%' OR discipline_name like '%"+key+"%') group by b.discipline_cd ";
-    
-   
+    String searchProblem = "SELECT ward_class_code,ward_class_name FROM wis_ward_class  "
+         
+            + "WHERE hfc_cd = '" + hfc + "' AND  (ward_class_code like '%" + key + "%' OR ward_class_name like '%" + key + "%')  ";
 
     ArrayList<ArrayList<String>> search = conn.getData(searchProblem);
-    if (search.size() > 0)
-            {
+    if (search.size() > 0) {
 %>
 <ul id="matchListDis" style="width: 300px; height: 200px; overflow: auto">
-    <% for (int i = 0; i < search.size(); i++)
-        {
+    <% for (int i = 0; i < search.size(); i++) {
     %>
     <li value="<%=search.get(i).get(0)%>"><a style="cursor:pointer; color: black;"><%=search.get(i).get(0)%> | <%=search.get(i).get(1)%></a></li>
-    <%
-        }
-    %>
+        <%
+            }
+        %>
 </ul>
-    
-<%}else{%>
+
+<%} else {%>
 <span>No Record Found!</span>
-<% 
+<%
     }
 
 %>

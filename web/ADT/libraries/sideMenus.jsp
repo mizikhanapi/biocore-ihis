@@ -23,7 +23,11 @@
                 <i class="fa fa-bed fa-lg"></i> Manage In-Patient
             </a>
         </li>
-
+<li>
+            <a  href="HIS070002.jsp" >
+                <i class="fa fa-briefcase fa-lg"></i> Ward Occupancy
+            </a>
+        </li>
         <li>
             <a type="button" data-toggle="modal" data-target="#queueModal" id="queue">
                 <i class="fa fa-users fa-lg"></i> List Of Admission
@@ -31,19 +35,22 @@
         </li>
         <li>
             <a  href="HIS070005.jsp" >
-                <i class="fa fa-briefcase fa-lg"></i> List of Discharge Inpatient
+                <i class="fa fa-users fa-lg"></i> List of Discharge Inpatient
             </a>
         </li>
+        
   <hr/>
-        <li>
-            <a  href="HIS070002.jsp" >
-                <i class="fa fa-briefcase fa-lg"></i> Ward Occupancy
+        
+<!--        <li>
+            <a  href="HIS070007.jsp" >
+                <i class="fa fa-th-list fa-lg"></i> Eligibility Table
             </a>
-        </li>
-        <li><a  href="HIS070003.jsp" ><i class="fa fa-briefcase fa-lg"></i> Maintain Ward Code </a> </li>
+        </li>-->
+        <li><a  href="HIS070003.jsp" ><i class="fa fa-wrench fa-lg"></i> Maintain Ward Code </a> </li>
+        
+ <li><a  href="HIS070008.jsp" ><i class="fa fa-usd fa-lg"></i> Maintain Hospital Charges </a> </li>
 
-
-        <li>
+ <li>
             <a  href="HIS070004.jsp" >
                 <i class="fa fa-bed fa-lg"></i> Bed Booking Master Summary
             </a>
@@ -55,6 +62,7 @@
                     
                 </i>Report</a>
         </li>
+       
 
         <!-- // menu tanpa dropdown -->
 

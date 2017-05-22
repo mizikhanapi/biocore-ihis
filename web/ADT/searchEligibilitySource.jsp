@@ -12,12 +12,12 @@
     Conn conn = new Conn();
     String key = request.getParameter("input");
     String hfc = request.getParameter("hfc");
-    
-     
+        String mrc = "0063";
 
-    String searchProblem = "SELECT a.discipline_cd,a.discipline_name,b.discipline_cd, b.hfc_cd FROM adm_discipline a "
-            + "LEFT JOIN adm_hfc_discipline b ON a.discipline_cd = b.discipline_cd  "
-            + "WHERE b.hfc_cd = '"+hfc+"' AND  (a.discipline_cd like '%"+key+"%' OR discipline_name like '%"+key+"%') group by b.discipline_cd ";
+   
+
+    String searchProblem = "SELECT Detail_Reference_Code , Description from adm_lookup_detail "
+            + "WHERE hfc_cd = '"+hfc+"' AND Master_Reference_Code = '"+mrc+"' and (Detail_Reference_Code like '%"+key+"%' OR Description like '%"+key+"%')";
     
    
 

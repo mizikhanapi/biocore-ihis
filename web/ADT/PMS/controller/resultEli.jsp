@@ -68,7 +68,7 @@
     <input id="Deposit"  value="<%=datapc.get(i).get(0)%>"  class="form-control input-md">
 
     <%}
-    } else if (dataEliSrc.get(E).get(1).equals("003-001")) {
+    } else if (dataEliSrc.get(E).get(1).equals("003")) {
         String gst = "select citizen_deposit from wis_ward_name where discipline_cd ='" + disb + "' and ward_class_code = '" + WardTypeb + "' AND ward_id =  '" + wnameb + "'";
         ArrayList<ArrayList<String>> datagst = conn.getData(gst);
         
@@ -82,7 +82,7 @@
 
     <%
         }
-    } else if (dataEliSrc.get(E).get(1).equals("003-002")) {
+    } else if (dataEliSrc.get(E).get(1).equals("004")) {
         String gp = "select pensioner_deposit from wis_ward_name where discipline_cd ='" + disb + "' and ward_class_code = '" + WardTypeb + "' AND ward_id =  '" + wnameb + "'";
         ArrayList<ArrayList<String>>  datagp = conn.getData(gp);
 
@@ -96,7 +96,7 @@
 
     <%
         }
-    } else if (dataEliSrc.get(E).get(1).equals("003-003")) {
+    } else if (dataEliSrc.get(E).get(1).equals("005")) {
         String gss = "select citizen_deposit from wis_ward_name where discipline_cd ='" + disb + "' and ward_class_code = '" + WardTypeb + "' AND ward_id =  '" + wnameb + "'";
         ArrayList<ArrayList<String>> datagss = conn.getData(gss);
         
