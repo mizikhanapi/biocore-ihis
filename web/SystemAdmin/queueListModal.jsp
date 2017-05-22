@@ -192,13 +192,15 @@
         //var code = $('#Qtype').val();
         //var name = $('#QnameCode').val();
         var hfc = "<%=hfc%>";
-        var staff = $('#QLStaff').val();
+        var staff = $('#QLStaffCODE').val();
         var name = $('#QLName').val();
         var array_data2;
             array_data2 = name.split("|");
             //var desc = $('#QnameDes').val();
             var ty = array_data2[0];
             var nm = array_data2[1];
+            var data = {"cd": ty, "name": nm, "hfc": hfc, "staff" : staff};
+            console.log(data);
         $.ajax({
             type: "post",
             url: "delQueueList.jsp",
