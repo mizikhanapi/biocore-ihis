@@ -49,6 +49,12 @@
             </a>
         </li>
 
+        <li>
+            <a href="HIS070006.jsp">
+                <i class="fa fa-bar-chart fa-lg" aria-hidden="true" >
+                    
+                </i>Report</a>
+        </li>
 
         <!-- // menu tanpa dropdown -->
 

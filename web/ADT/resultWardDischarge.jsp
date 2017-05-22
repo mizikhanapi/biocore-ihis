@@ -33,6 +33,8 @@
         String methodSearching = request.getParameter("methodSearch");
         String searching = "";
         String txntype = "T12115";
+        String status = "0";
+
 
         Conn conn = new Conn();
         //1 --- search by patient
@@ -52,14 +54,14 @@
                         + " from wis_inpatient_episode a left join wis_order_master b on a.pmi_no = b.pmi_no "
                         + "left join pms_patient_biodata c on a.pmi_no = c.pmi_no "
                       + "left join wis_ward_name wwn on wwn.ward_id = a.ward_id "
-                        + " where a.pmi_no='" + idInput + "' and b.txn_type ='" + txntype + "' and a.hfc_cd='" + hfc + "'";
+                        + " where a.inpatient_status ='" + status + "' and a.pmi_no='" + idInput + "' and b.txn_type ='" + txntype + "' and a.hfc_cd='" + hfc + "'";
             } else if (idType.equals("icnew") || idType.equals("002")) {
                 searching = "select a.new_ic_no,a.old_ic_no,a.id_type,a.id_no,a.police_case,a.hfc_cd,a.pmi_no,a.episode_date,a.discipline_cd,a.subdiscipline_cd,a.ward_class_code,a.ward_id,a.bed_id,a.payer_group,a.patient_category_cd,a.visit_type_cd,a.emergency_type_cd,a.eligibility_type_cd,a.eligibility_category_cd,a.referred_from_hfc,a.referred_from_discipline,a.referred_reference_no,a.order_by,a.admission_reason,a.admission_description,a.guardian_ind,a.group_guardian,a.gl_expiry_date,a.inpatient_status,a.created_by,a.created_date,a.deposit_inpatient,a.document_type,a.document_no,a.patient_name,c.PATIENT_NAME,c.SEX_CODE,c.BIRTH_DATE,c.BLOOD_TYPE,b.order_no,b.order_date"
                         + ",b.hfc_cd,wwn.ward_name"
                         + " from wis_inpatient_episode a left join wis_order_master b on a.pmi_no = b.pmi_no "
                         + "left join pms_patient_biodata c on a.pmi_no = c.pmi_no "
                         + "left join wis_ward_name wwn on wwn.ward_id = a.ward_id "
-                        + " where a.NEW_IC_NO='" + idInput + "' and b.txn_type ='" + txntype + "' and a.hfc_cd='" + hfc + "'";
+                        + " where a.inpatient_status ='" + status + "' and a.NEW_IC_NO='" + idInput + "' and b.txn_type ='" + txntype + "' and a.hfc_cd='" + hfc + "'";
 
             } else if (idType.equals("icold") || idType.equals("003")) {
                 searching = "select a.new_ic_no,a.old_ic_no,a.id_type,a.id_no, a.police_case,a.hfc_cd,a.pmi_no,a.episode_date,a.discipline_cd,a.subdiscipline_cd,a.ward_class_code,a.ward_id,a.bed_id,a.payer_group,a.patient_category_cd,a.visit_type_cd,a.emergency_type_cd,a.eligibility_type_cd,a.eligibility_category_cd,a.referred_from_hfc,a.referred_from_discipline,a.referred_reference_no,a.order_by,a.admission_reason,a.admission_description,a.guardian_ind,a.group_guardian,a.gl_expiry_date,a.inpatient_status,a.created_by,a.created_date,a.deposit_inpatient,a.document_type,a.document_no,a.patient_name,c.PATIENT_NAME,c.SEX_CODE,c.BIRTH_DATE,c.BLOOD_TYPE,b.order_no,b.order_date"
@@ -67,14 +69,14 @@
                         + " from wis_inpatient_episode a left join wis_order_master b on a.pmi_no = b.pmi_no"
                         + "left join pms_patient_biodata c on a.pmi_no = c.pmi_no "
                         + "left join wis_ward_name wwn on wwn.ward_id = a.ward_id "
-                        + " where a.OLD_IC_NO='" + idInput + "' and b.txn_type ='" + txntype + "' and a.hfc_cd='" + hfc + "'";
+                        + " where a.inpatient_status ='" + status + "' and  a.OLD_IC_NO='" + idInput + "' and b.txn_type ='" + txntype + "' and a.hfc_cd='" + hfc + "'";
             } else {
                 searching = "select a.new_ic_no,a.old_ic_no,a.id_type,a.id_no,a.police_case,a.hfc_cd,a.pmi_no,a.episode_date,a.discipline_cd,a.subdiscipline_cd,a.ward_class_code,a.ward_id,a.bed_id,a.payer_group,a.patient_category_cd,a.visit_type_cd,a.emergency_type_cd,a.eligibility_type_cd,a.eligibility_category_cd,a.referred_from_hfc,a.referred_from_discipline,a.referred_reference_no,a.order_by,a.admission_reason,a.admission_description,a.guardian_ind,a.group_guardian,a.gl_expiry_date,a.inpatient_status,a.created_by,a.created_date,a.deposit_inpatient,a.document_type,a.document_no,a.patient_name,c.PATIENT_NAME,c.SEX_CODE,c.BIRTH_DATE,c.BLOOD_TYPE,b.order_no,b.order_date"
                         + ",b.hfc_cd,wwn.ward_name"
                         + " from wis_inpatient_episode a left join wis_order_master b on a.pmi_no = b.pmi_no "
                         + "left join pms_patient_biodata c on a.pmi_no = c.pmi_no"
                         + "left join wis_ward_name wwn on wwn.ward_id = a.ward_id "
-                        + " where a.ID_NO='" + idInput + "' and b.txn_type ='" + txntype + "'AND a.ID_TYPE='" + idType + "' and a.hfc_cd='" + hfc + "'";
+                        + " where a.inpatient_status ='" + status + "' and a.ID_NO='" + idInput + "' and b.txn_type ='" + txntype + "'AND a.ID_TYPE='" + idType + "' and a.hfc_cd='" + hfc + "'";
             }
 
         } else if (methodSearching.equalsIgnoreCase("0")) {
@@ -83,7 +85,7 @@
                     + " from wis_inpatient_episode a left join wis_order_master b on a.pmi_no = b.pmi_no "
                     + "left join pms_patient_biodata c on a.pmi_no = c.pmi_no "
                     + "left join wis_ward_name wwn on wwn.ward_id = a.ward_id "
-                    + "where a.ward_id ='" + idWard + "'and b.txn_type ='" + txntype + "' and a.hfc_cd='" + hfc + "'";
+                    + "where a.inpatient_status ='" + status + "' and a.ward_id ='" + idWard + "'and b.txn_type ='" + txntype + "' and b.hfc_cd='" + hfc + "' group by  a.pmi_no ";
         }
 
         ArrayList<ArrayList<String>> dataList = conn.getData(searching);
@@ -282,13 +284,15 @@
             $("#GL").val(GL);
             $("#PayerGrp").val(PayerGrp);
             $("#Police").val(Police);
-            $("#Dis").val(Dis);
-            $("#WardType").val(WardType);
-            $("#wname").val(wname);
+            $("#disb").val(Dis);
+            $("#WardTypeb").val(WardType);
+            $("#wnameb").val(wname);
             $("#Deposit").val(Deposit);
             $("#BedIDReg").val(BedIDReg);
             $("#hfcTo").val(hfcTo);
             $("#DrAttain").val(DrAttain);
+                        $("#hfc_cd").val(hfc_cd);
+
 
 
             var disi = $("#disi").val();

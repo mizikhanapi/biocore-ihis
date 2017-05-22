@@ -4,7 +4,9 @@
 <%
     Conn conn = new Conn();
     String key = request.getParameter("input");
-    String searchProblem = "SELECT discipline_cd, discipline_name FROM adm_discipline WHERE concat(discipline_cd, ' | ', discipline_name) like '%"+key+"%'";
+    String hfc_cd = request.getParameter("hfc_cd");
+    
+    String searchProblem = "SELECT discipline_cd, discipline_name FROM adm_discipline WHERE concat(discipline_cd, ' | ', discipline_name) like '%"+key+"%' and discipline_hfc_cd = '"+hfc_cd+"'";
     ArrayList<ArrayList<String>> search = conn.getData(searchProblem);
     if (search.size() > 0)
     {

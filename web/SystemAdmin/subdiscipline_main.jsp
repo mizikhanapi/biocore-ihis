@@ -6,6 +6,7 @@
 
 <%
     String hfc_cd = session.getAttribute("HEALTH_FACILITY_CODE").toString();
+    String hfc_name = (String) session.getAttribute("HFC_NAME");
     String user_id = session.getAttribute("USER_ID").toString();
     String last9 = user_id.substring(user_id.length() - 1);
 %>
@@ -13,15 +14,11 @@
 <!-- Add Button Start -->
 <h4 style="padding-top: 30px;padding-bottom: 35px; font-weight: bold">
     SUBDISCIPLINE MANAGEMENT
-    <%
-        if(last9.equals("9") && hfc_cd.equals("99_iHIS_99")){
-    %>
+
     <span class="pull-right">
         <button id="SDM_btnAddNew" class="btn btn-success" data-status="pagado" data-toggle="modal" data-id="1" data-target="#SDM_detail" style=" padding-right: 10px;padding-left: 10px;color: white;"><a data-toggle="tooltip" data-placement="top" title="Add Items" id="test"><i class=" fa fa-plus" style=" padding-right: 10px;padding-left: 10px;color: white;"></i></a>ADD Subdiscipline</button>
     </span>
-    <%
-        }
-    %>
+
 </h4>
 <!-- Add Button End -->
 
@@ -38,6 +35,19 @@
 
                 <!-- content goes here -->
                 <form autocomplete="off" class="form-horizontal" id="addForm">
+
+                    <!-- Text input-->
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="textinput">Health Facility*</label>
+                        <div class="col-md-8">
+                            <input type="text"  class="form-control" id="SDM_hfc" placeholder="Search health facility" maxlength="100">
+                            <div id="SDM_hfc_match" class="search-drop">
+                                <!--for search area-->
+                            </div>
+
+
+                        </div>
+                    </div>
 
                     <!-- Text input-->
                     <div class="form-group">
@@ -76,8 +86,8 @@
                         </div>
                     </div>
 
-                   
-                     <div class="form-group">
+
+                    <div class="form-group">
                         <label class="col-md-4 control-label" for="textinput">Status*</label>
                         <div class="col-md-8">
                             <select class="form-control" id="SDM_status">
@@ -112,64 +122,105 @@
 
     $(document).ready(function () {
 
+        //-------------global variable for selecting ----------------------
         var isDisCodeExist = false;
-        
+        var selectedDis = '';
+
+        var isHfcExist = false;
+        var selectedHFC = '';
+        //===============================================================
+
+
         function SDM_reset() {
-            
+
             document.getElementById("SDM_disciplineCode").value = "";
             document.getElementById("SDM_subdisciplineName").value = "";
             document.getElementById("SDM_subdisciplineCode").value = "";
             document.getElementById("SDM_type").value = "";
-            
+            document.getElementById("SDM_hfc").value = "";
+            $('#SDM_hfc_match').html('');
+            $('#SDM_match').html('');
+
+             isDisCodeExist = false;
+             selectedDis = '';
+
+             isHfcExist = false;
+             selectedHFC = '';
+
         }
 
         $('#SDM_btnReset').on('click', function () {
             SDM_reset();
-            
+
         });
 
         $('#SDM_btnAddNew').on('click', function () {
-            
-            isDisCodeExist = false;
+
             SDM_reset();
+
+    <%
+                if (!last9.equals("9") || !hfc_cd.equals("99_iHIS_99")) {
+                    String curHFC = hfc_cd + " | " + hfc_name;
+    %>
+
+            $('#SDM_hfc').val('<%=curHFC%>').prop('disabled', true);
+
+            isHfcExist = true;
+            selectedHFC = $('#SDM_hfc').val();
+            console.log(selectedHFC);
+
+    <%
+
+        }//end if
+%>
 
         });
 
         $('#SDM_btnAdd').on('click', function () {
             
+            var hfc = $('#SDM_hfc').val();
             var disciplineCode = $('#SDM_disciplineCode').val();
             var subdisciplineName = $('#SDM_subdisciplineName').val();
             var subdisciplineCode = $('#SDM_subdisciplineCode').val();
             var type = $('#SDM_type').val();
             var status = $('#SDM_status').val();
-
-            if (disciplineCode === "" || disciplineCode === "Select Discipline Code" || disciplineCode === null) {
-                alert("Fill in the Discipline Code");
+            
+            
+            if (selectedHFC !== hfc || isHfcExist === false || hfc === '') {
+                bootbox.alert("Please choose existing helath facility");
+                
+            }
+            else if (disciplineCode === "" || disciplineCode === "Select Discipline Code" || disciplineCode === null) {
+                bootbox.alert("Fill in the Discipline Code");
                 $('#SDM_disciplineCode').focus();
 
             } else if (subdisciplineName === "") {
-                alert("Fill in the subdiscipline name");
+                bootbox.alert("Fill in the subdiscipline name");
                 $('#SDM_subdisciplineName').focus();
 
             } else if (subdisciplineCode === "") {
-                alert("Fill in the subdiscipline code");
+                bootbox.alert("Fill in the subdiscipline code");
                 $('#SDM_subdisciplineCode').focus();
 
             } else if (status !== "1" && status !== "0") {
-                alert("Select Any Status");
+                bootbox.alert("Select Any Status");
 
-            } else if (isDisCodeExist === false) {
-                alert("Please choose existing discipline");
+            } else if (isDisCodeExist === false || selectedDis !== disciplineCode) {
+                bootbox.alert("Please choose existing discipline");
                 $('#SDM_disciplineCode').val("");
                 $('#SDM_disciplineCode').focus();
-                
+
             } else {
 
                 var arrayData = $('#SDM_disciplineCode').val().split("|");
                 disciplineCode = arrayData[0].trim();
-               
+                
+                var arrData = hfc.split("|");
+                hfc = arrData[0].trim();
+
 
                 var data = {
+                    hfc_cd: hfc,
                     disciplineCode: disciplineCode,
                     subdisciplineName: subdisciplineName,
                     subdisciplineCode: subdisciplineCode,
@@ -190,37 +241,37 @@
                             $('#SDM_detail').modal('hide');
                             //alert("Insertion Success");
                             bootbox.alert({
-                                    message: "New subdiscipline is added",
-                                    title: "Process Result",
-                                    backdrop: true
-                                });
-                            reset();
+                                message: "New subdiscipline is added",
+                                title: "Process Result",
+                                backdrop: true
+                            });
+                            SDM_reset();
 
                         } else if (datas.trim() === 'Failed') {
 
                             alert("Insertion failed!");
                             $('#SDM_detail').modal('hide');
-                            reset();
+                            SDM_reset();
 
                         } else {
-                            
+
                             //alert(datas.trim());
                             bootbox.alert({
-                                    message: datas.trim(),
-                                    title: "Process Result",
-                                    backdrop: true
-                                });
-                                
-                            if(datas.trim().toString().includes("subdiscipline")){
-                                 $('#SDM_subdisciplineCode').val("");
+                                message: datas.trim(),
+                                title: "Process Result",
+                                backdrop: true
+                            });
+
+                            if (datas.trim().toString().includes("subdiscipline")) {
+                                $('#SDM_subdisciplineCode').val("");
                                 $('#SDM_subdisciplineCode').focus();
-                                
-                            }else if(datas.trim().toString().includes("discipline")){
-                                                               
+
+                            } else if (datas.trim().toString().includes("discipline")) {
+
                                 $('#SDM_disciplineCode').val("");
                                 $('#SDM_disciplineCode').focus();
-                            }    
-                            
+                            }
+
                         }
 
                     },
@@ -234,10 +285,20 @@
         });
 
         $("#SDM_disciplineCode").on('keyup', function () { // everytime keyup event
+            var hfc = $('#SDM_hfc').val();
+            if (selectedHFC !== hfc || isHfcExist === false) {
+                bootbox.alert('Please choose existing health facility first!');
+                return;
+            }
+            var arrData = hfc.split("|");
+            hfc = arrData[0].trim();
             var input = $(this).val(); // We take the input value
             if (input.length >= 1) { // Minimum characters = 2 (you can change)
                 $('#SDM_match').html('<img src="bootstrap-3.3.6-dist/image/ajax-loader.gif" />'); // Loader icon apprears in the <div id="SDM_match"></div>
-                var dataFields = {input: input}; // We pass input argument in Ajax
+                var dataFields = {
+                    input: input,
+                    hfc_cd: hfc
+                }; // We pass input argument in Ajax
                 $.ajax({
                     type: "POST",
                     url: "SDM_result.jsp", // call the php file ajax/tuto-autocomplete.php
@@ -251,6 +312,7 @@
                             $('#SDM_match').text(''); // Clear the <div id="SDM_match"></div>
                             var arrayData = $('#SDM_disciplineCode').val().split("|");
                             isDisCodeExist = true;
+                            selectedDis = $('#SDM_disciplineCode').val();
                             console.log(arrayData);
                             console.log(arrayData[0].trim());
                             console.log(arrayData[1].trim());
@@ -264,6 +326,54 @@
                 $('#SDM_match').text(''); // If less than 2 characters, clear the <div id="SDM_match"></div>
             }
         });
+
+
+        //------------------------- search health facility -----------------------------------------
+<%
+    if(last9.equalsIgnoreCase("9") && hfc_cd.equalsIgnoreCase("99_iHIS_99"))
+    {
+%>
+        $('#SDM_hfc').on('keyup', function () {
+            var input = $(this).val();
+
+            if (input.length > 0) {
+                var data = {
+                    key: input
+                };
+                $('#SDM_hfc_match').html('<img src="img/ajax-loader.gif">');
+
+                $.ajax({
+                    type: 'POST',
+                    url: "controller/search_hfc.jsp",
+                    data: data,
+                    success: function (data, textStatus, jqXHR) {
+                        $('#SDM_hfc_match').html(data);
+                        $('#HFC_matchlist li').on('click', function () { // When click on an element in the list
+                            // Update the field with the new element
+                            $('#SDM_hfc').val($(this).text());
+
+                            isHfcExist = true;
+                            selectedHFC = $('#SDM_hfc').val();
+
+                            $('#SDM_hfc_match').text(''); // Clear the <div id="PM_match_system"></div>
+
+
+                        });
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                        $('#SDM_hfc_match').html('Opps! ' + errorThrown);
+                    }
+                });
+            } else {
+                $('#SDM_hfc_match').html('');
+            }
+        });
+        
+<%
+    }
+%>
+
+        //========================================================================================
 
 
 

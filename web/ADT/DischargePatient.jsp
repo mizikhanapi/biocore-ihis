@@ -7,6 +7,7 @@
 
 <%
     String idTY = session.getAttribute("USER_ID").toString();
+    //  String hfc = session.getAttribute("HEALTH_FACILITY_CODE").toString();
 
     String disb = request.getParameter("Dis");
     String wnameb = request.getParameter("wname");
@@ -46,11 +47,19 @@
 <input type="hidden"  id="order_no" class="form-control input-md">
 <input type="hidden" id="gender" class="form-control input-md">
 <input type="hidden" id="order_date" class="form-control input-md">
+
+
+<input   type="hidden" id="disb" class="form-control input-md">
+<input   type="hidden" id="wnameb" class="form-control input-md">
+<input type="hidden" id="WardTypeb" class="form-control input-md">
+
+
+
 <input  type="hidden"  value="<%=idTY%>" id="LChfc" class="form-control input-md">
 
 <!--type="hidden" -->
 
-<input id="hfc_cd" type="hidden" class="form-control input-md">
+<input type="hidden" id="hfc_cd"   class="form-control input-md">
 
 <!--
 <div style="color: #999; top: 30px; right: 30px; font-weight: 500; text-transform: uppercase">Total Room: </div>
@@ -83,13 +92,13 @@
         <form class="form-horizontal" name="myForm2" id="myForm2">
             <div class="row">
                 <div class="col-md-6">
-<!--                     Text input
-                    <div class="form-group">
-                        <label class="col-md-4 control-label" for="textinput">admit date</label>
-                        <div class="col-md-6">
-                            <input id="TotalDate" name="TotalDate" type="text" placeholder=" " readonly class="form-control input-md">                        
-                        </div>
-                    </div>-->
+                    <!--                     Text input
+                                        <div class="form-group">
+                                            <label class="col-md-4 control-label" for="textinput">admit date</label>
+                                            <div class="col-md-6">
+                                                <input id="TotalDate" name="TotalDate" type="text" placeholder=" " readonly class="form-control input-md">                        
+                                            </div>
+                                        </div>-->
 
                     <!-- Text input-->
                     <div class="form-group">
@@ -368,7 +377,7 @@
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="selectbasic">Discharge Reason</label>
                         <div class="col-md-6">
-                            <input id="DisReason" disabled="" name="textinput" type="text"  readonly class="form-control input-md">
+                            <input id="DisReason"  name="textinput" type="text"   class="form-control input-md">
 
                         </div>
                     </div>
@@ -380,24 +389,9 @@
                         </div>
                     </div>
 
-                    <!--         Text input
-                    -->        <div class="form-group">
-                        <label class="col-md-4 control-label" >HFC To:</label>
-                        <div class="col-md-6">
-                            <input id="hfcTo"  value="<%=hfc%>"  disabled="" class="form-control input-md">
-                        </div>
-                    </div>
+                   
 
-                    <!-- Select Basic -->
-                    <div class="form-group">
-                        <label class="col-md-4 control-label" for="selectbasic">Attain by DR :</label>
-                        <div class="col-md-6">
-                            <input id="DrAttain" disabled="" name="textinput" type="text"  readonly class="form-control input-md">
-
-
-
-                        </div>
-                    </div>
+                    
 
 
 
@@ -435,6 +429,13 @@
         var patientOrderLocationCode = $("#hfc_cd").val();
         var id = $("LChfc").val();
         var patientDischarge = $("#TotalDischarge").val();
+        var BedID = $("#BedIDReg").val();
+        var disb = $("#disb").val();
+        var wnameb = $("#wnameb").val();
+        var WardTypeb = $("#WardTypeb").val();
+        var hfc_cd = $("#hfc_cd").val();
+        var DisReason = $("#DisReason").val();
+
 
 
         var pmiNo = patientpmino;
@@ -442,13 +443,20 @@
         var orderDate = patientOrderDate;
         var Discharge = patientDischarge;
         var userID = id;
+        var BedID = BedID;
 
         var data = {
+            BedID: BedID,
             pmiNo: pmiNo,
             orderNo: orderNo,
             orderDate: orderDate,
             Discharge: Discharge,
-            userID: userID
+            userID: userID,
+            disb: disb,
+            wnameb: wnameb,
+            WardTypeb: WardTypeb,
+            hfc_cd: hfc_cd,
+            DisReason: DisReason
         };
         $.ajax({
             url: "patientDischargeDispenseEHRCentralGetMSH.jsp",
@@ -520,6 +528,32 @@
                                             success: function (returnEHR) {
 
                                                 alert("Success transfer to Billing");
+
+                                                $.ajax({
+                                                    url: "DischargeUpdate.jsp",
+                                                    type: "post",
+                                                    data: data,
+                                                    timeout: 3000,
+                                                    success: function (update) {
+
+                                                        console.log(update);
+
+//                                                        $.ajax({
+//                                                            url: "updatebeddischarge.jsp",
+//                                                            type: "post",
+//                                                            data: data,
+//                                                            timeout: 3000,
+//                                                            success: function (dd) {
+//
+//                                                                console.log(dd);
+//
+//
+//                                                            }
+//                                                        });
+
+
+                                                    }
+                                                });
 
 
                                             }

@@ -12,12 +12,13 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <%@include file="validateSession.jsp" %>
-<%@include file="controller/super_user_check.jsp" %>
+<%--<%@include file="controller/super_user_check.jsp" %>--%>
 <%  
 //    Config.getBase_url(request);
 //    Config.getFile_url(session);
     Conn conn  = new Conn();
     
+    String D_hfc_cd = request.getParameter("hfc_cd");
     String disciplineCode = request.getParameter("disciplineCode");
     String disciplineName = request.getParameter("disciplineName");
     String groupCode = request.getParameter("groupCode");
@@ -28,7 +29,7 @@
     RMIConnector rmic = new RMIConnector();
 
     String sqlUpdate = "UPDATE adm_discipline SET discipline_name = '"+disciplineName+"', discipline_group_cd = '"+groupCode+"', discipline_category_cd = '"+categoryCode+"', discipline_specialty_cd = '"+specialtyCode+"', discipline_status = '"+status+"'"+
-                        " WHERE discipline_cd = '"+disciplineCode+"'";
+                        " WHERE discipline_cd = '"+disciplineCode+"' and discipline_hfc_cd = '"+D_hfc_cd+"'";
     
     boolean isUpdate = rmic.setQuerySQL(conn.HOST, conn.PORT, sqlUpdate);
     

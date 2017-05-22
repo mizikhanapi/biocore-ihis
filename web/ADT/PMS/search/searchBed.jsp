@@ -89,41 +89,9 @@
                 </br>
             </div>
         </div>
-        <!--         Text input
-        -->        <div class="form-group">
-            <label class="col-md-4 control-label" >HFC To:</label>
-            <div class="col-md-6">
-                <input id="hfcTo"  value="<%=hfc%>"  class="form-control input-md">
-            </div>
-        </div>
+      
 
-        <!-- Select Basic -->
-        <div class="form-group">
-            <label class="col-md-4 control-label" for="selectbasic">Attain by DR :</label>
-            <div class="col-md-6">
-                <select id="AttDR" name="AttDR" class="form-control" >
-                    <option value="1" selected="" >Attain by DR</option>
-
-                    <%
-                        String hfc2 = session.getAttribute("HEALTH_FACILITY_CODE").toString();
-                        String DR22 = "002";
-
-                        String role22 = "SELECT  b.USER_ID, b.USER_NAME,a.USER_ID, a.ROLE_CODE, a.HEALTH_FACILITY_CODE, a.DISCIPLINE_CODE FROM adm_user_access_role a LEFT JOIN adm_users b ON a.USER_ID = b.USER_ID where a.DISCIPLINE_CODE ='" + dis + "' and a.ROLE_CODE = " + DR22 + " AND a.HEALTH_FACILITY_CODE=" + hfc2 + ";";
-                        ArrayList<ArrayList<String>> dataRoleM;
-                        dataRoleM = conn.getData(role22);
-
-                        int sizeDR23 = dataRoleM.size();
-
-                        for (int i = 0; i < sizeDR23; i++) {
-                    %>
-                    <option value="<%= dataRoleM.get(i).get(0)%>"><%= dataRoleM.get(i).get(1)%> </option>
-                    <%
-                        }
-                    %>
-                </select>
-            </div>
-        </div>
-
+       
 
 
 

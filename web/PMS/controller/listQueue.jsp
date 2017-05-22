@@ -15,7 +15,7 @@
     Conn conn = new Conn();
     SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
     String now = sdf.format(new Date());
-    
+
     //amik kt session
     String hfc = session.getAttribute("HEALTH_FACILITY_CODE").toString();
     String doctor = "";
@@ -24,44 +24,56 @@
 //    String newnewSql = "select e.pmi_no,e.name,e.episode_date,e.episode_time,e.common_queue,q.queue_no,e.doctor,e.status from pms_episode e,pms_patient_queue q where e.status !='Discharge' and e.EPISODE_DATE like '%" + now + "%' and e.HEALTH_FACILITY_CODE='" + hfc + "' and e.PMI_NO = q.pmi_no and e.EPISODE_DATE = q.episode_date";
     //String newnewnewsql ="select e.pmi_no,e.name,e.episode_date,e.episode_time,e.common_queue,q.queue_no,e.doctor,e.status,e.consultation_room from pms_episode e inner join pms_patient_queue q on q.pmi_no = e.pmi_no and q.episode_date = e.episode_date where e.status !='1' and e.EPISODE_DATE like '%" + now + "%' and e.HEALTH_FACILITY_CODE='" + hfc + "'";
     //String thesqlCIS ="select e.pmi_no,e.name,e.episode_date,e.episode_time,e.common_queue,q.queue_no,e.doctor,e.status,e.consultation_room from pms_episode e inner join pms_patient_queue q on q.pmi_no = e.pmi_no and q.episode_date = e.episode_date where e.status !='1' and e.EPISODE_DATE like '%" + now + "%' and e.HEALTH_FACILITY_CODE='" + hfc + "' and e.doctor = '"+ doctor +"'";
-    String sql = "select q.pmi_no,e.name,q.episode_date,e.episode_time,q.queue_name,q.queue_no,e.doctor,l.description,e.consultation_room from pms_patient_queue q , pms_episode e,adm_lookup_detail l where l.`Master_Reference_code` ='0069' and l.`Detail_Reference_code` = q.status and e.pmi_no = q.pmi_no and e.episode_date = q.episode_date and e.`HEALTH_FACILITY_CODE` = q.hfc_cd and q.episode_date like '%"+now+"%' and q.status !='1' and q.hfc_cd='"+hfc+"'";
-    String sql2 = "select q.pmi_no,e.name,q.episode_date,e.episode_time,q.queue_name,q.queue_no,u.user_name,l.description,e.consultation_room from pms_patient_queue q , pms_episode e,adm_lookup_detail l,adm_users u where u.`USER_ID` = q.user_id and  l.`Master_Reference_code` ='0069' and l.`Detail_Reference_code` = q.status and l.hfc_cd ='"+hfc+"' and e.pmi_no = q.pmi_no and e.episode_date = q.episode_date and e.`HEALTH_FACILITY_CODE` = q.hfc_cd and q.episode_date like '%"+now+"%' and q.status !='1' and q.hfc_cd='"+hfc+"' and q.patient_category='1' order by q.queue_name  ;";
+    String sql = "select q.pmi_no,e.name,q.episode_date,e.episode_time,q.queue_name,q.queue_no,e.doctor,l.description,e.consultation_room from pms_patient_queue q , pms_episode e,adm_lookup_detail l where l.`Master_Reference_code` ='0069' and l.`Detail_Reference_code` = q.status and e.pmi_no = q.pmi_no and e.episode_date = q.episode_date and e.`HEALTH_FACILITY_CODE` = q.hfc_cd and q.episode_date like '%" + now + "%' and q.status !='1' and q.hfc_cd='" + hfc + "'";
+
+    String sql2 = "select q.pmi_no,e.name,q.episode_date,e.episode_time,q.queue_name,q.queue_no,u.user_name,l.description,e.consultation_room from pms_patient_queue q , pms_episode e,adm_lookup_detail l,adm_users u where u.`USER_ID` = q.user_id and  l.`Master_Reference_code` ='0069' and l.`Detail_Reference_code` = q.status and l.hfc_cd ='" + hfc + "' and e.pmi_no = q.pmi_no and e.episode_date = q.episode_date and e.`HEALTH_FACILITY_CODE` = q.hfc_cd and q.episode_date like '%" + now + "%' and q.status !='1' and q.hfc_cd='" + hfc + "' and q.patient_category='1' order by q.queue_name  ;";
+    
+                               //0    //1            //2                //3        //4         //5      //6           //7       //8
+    String sqlV3 = "SELECT q.pmi_no,b.patient_name,q.episode_date,q.queue_name,q.queue_no,q.user_id,l.description,u.room_no,q.patient_category,x.description"
+            + " from pms_patient_queue q"
+            + " join pms_patient_biodata b on b.pmi_no = q.pmi_no"
+            + " join adm_lookup_detail l on l.`Master_Reference_code` ='0069' and l.`Detail_Reference_code` = q.status and l.`hfc_cd` = '" + hfc + "'"
+            + " left join adm_lookup_detail x on x.`Master_Reference_code` ='0033' and x.`Detail_Reference_code` = q.patient_category and x.`hfc_cd` = '" + hfc + "'"
+            + " join adm_users u on u.user_id = q.user_id and u.health_facility_code = '"+hfc+"'"
+            + " where q.episode_date like '%" + now + "%' and q.status !='1' and q.hfc_cd='" + hfc + "'";
     ArrayList<ArrayList<String>> dataQueue;
-    dataQueue = conn.getData(sql2);
+    dataQueue = conn.getData(sqlV3);
     //out.print(dataQueue);
 %>
 <table class="table table-filter table-striped" style="background: #fff; border: 1px solid #ccc; " id="listQueue">
-                                <thead>
-                                <th>PMI no. </th>
-                                <th>Name </th>
-                                <th>Episode Date/Time </th>
-<!--                                <th>Episode Time </th>-->
-                                <th>Queue Name </th>
-                                <th>Queue no.</th>
-                                <th>Doctor </th>
-                                <th>Consultation Room </th>
-                                <th>Status</th>
-                                <th>Action </th>
+    <thead>
+    <th>PMI no. </th>
+    <th>Name </th>
+    <th>Episode Date/Time </th>
+    <!--                                <th>Episode Time </th>-->
+    <th>Queue Name </th>
+    <th>Queue no.</th>
+    <th>Doctor </th>
+    <th>Consultation Room </th>
+    <th>Patient Category</th>
+    <th>Status</th>
+    <th>Action </th>
 
-                                </thead>
-                                <tbody>
-                                    <%
-                                    for (int i = 0; i < dataQueue.size(); i++) {%>
-                                    <tr>
-                                        <td id="pmiNumber"><%=dataQueue.get(i).get(0)%></td>
-                                        <td><%=dataQueue.get(i).get(1)%></td>
-                                         <td id="epiDate"><%=dataQueue.get(i).get(2)%></td>
-                                         <td id="epiTime" hidden="hidden"><%=dataQueue.get(i).get(3)%></td>
-                                        <td ><%=dataQueue.get(i).get(4)%></td>
-                                        <td><%=dataQueue.get(i).get(5)%></td>
-                                        <td><%=dataQueue.get(i).get(6)%></td>
-                                        <td><%=dataQueue.get(i).get(8)%></td>
-                                        <td><%=dataQueue.get(i).get(7)%></td>
-                                        <td><button class="btn btn-danger" id="delQueue" data-dismiss="modal" role="button">Delete</button></td>
-                                    </tr>    
-                                    <%    }
-                                    %>
+</thead>
+<tbody>
+    <%
+                                        for (int i = 0; i < dataQueue.size(); i++) {%>
+    <tr>
+        <td id="pmiNumber"><%=dataQueue.get(i).get(0)%></td>
+        <td><%=dataQueue.get(i).get(1)%></td>
+        <td id="epiDate"><%=dataQueue.get(i).get(2)%></td>
+<!--        <td id="epiTime" hidden="hidden"><% //dataQueue.get(i).get(3)%></td>-->
+        <td ><%=dataQueue.get(i).get(3)%></td>
+        <td><%=dataQueue.get(i).get(4)%></td>
+        <td><%=dataQueue.get(i).get(5)%></td>
+        <td><%=dataQueue.get(i).get(7)%></td>
+        <td><%=dataQueue.get(i).get(9)%></td>
+        <td><%=dataQueue.get(i).get(6)%></td>        
+        <td><button class="btn btn-danger" id="delQueue" data-dismiss="modal" role="button">Delete</button></td>
+ </tr>    
+    <%    }
+    %>
 
-                                </tbody>
-                            </table>
+</tbody>
+</table>
 </table>

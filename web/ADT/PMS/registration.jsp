@@ -97,7 +97,7 @@
         
         updateBed = "UPDATE wis_bed_id SET bed_status = 'Occupied' where hfc_cd ='" + hfc + "' and discipline_cd ='" + Dis + "' and bed_id ='" + BedID + "' ";
                  updateMaster = "UPDATE wis_order_master SET order_status = '1' where pmi_no ='" + pmino + "' and order_no ='" + orderNo + "'  ";
-        //           updateDetail = "UPDATE  wis_order_detail SET order_status = '1' where  order_no ='" + orderNo + "'  ";
+                  updateDetail = "UPDATE  wis_order_detail SET order_status = '1' where  order_no ='" + orderNo + "'  ";
 
 //         System.out.println(orderNo);
 //        if (OrderStatus.equals("NoOrder")) {
@@ -133,10 +133,10 @@
         regis = rmic.setQuerySQL(conn.HOST, conn.PORT, insertEpisode);
         updBed = rmic.setQuerySQL(conn.HOST, conn.PORT, updateBed);
          upMaster = rmic.setQuerySQL(conn.HOST, conn.PORT, updateMaster);
-        //  upDetail = rmic.setQuerySQL(conn.HOST, conn.PORT, updateDetail);
+          upDetail = rmic.setQuerySQL(conn.HOST, conn.PORT, updateDetail);
 // && upDetail == true
 //
-        if ( regis == true && updBed == true && upMaster == true) {
+        if ( regis == true && updBed == true && upMaster == true&& upDetail == true) {
             out.print("Success");
         } else {
             out.print("false");

@@ -11,7 +11,7 @@
     Conn Conn = new Conn();
     String hfc = request.getParameter("hfc");
     String input = request.getParameter("input");
-    String searchProblem = "select a.discipline_name,a.discipline_cd,b.subdiscipline_cd,c.subdiscipline_name from adm_discipline a inner join adm_hfc_discipline b on a.discipline_cd = b.discipline_cd and b.hfc_cd = '"+hfc+"' left join adm_subdiscipline c on b.subdiscipline_cd = c.subdiscipline_cd and b.discipline_cd = c.discipline_cd where CONCAT(UPPER(a.discipline_name),LOWER(a.discipline_name)) like '%" +  input + "%' AND hfc_cd = '"+hfc+"';";
+    String searchProblem = "select a.discipline_name,a.discipline_cd,b.subdiscipline_cd,c.subdiscipline_name from adm_discipline a inner join adm_hfc_discipline b on a.discipline_cd = b.discipline_cd and b.hfc_cd = '"+hfc+"' left join adm_subdiscipline c on b.subdiscipline_cd = c.subdiscipline_cd and b.discipline_cd = c.discipline_cd where CONCAT(UPPER(a.discipline_name),LOWER(a.discipline_name)) like '%" +  input + "%' AND hfc_cd = '"+hfc+"' group by c.subdiscipline_cd ;";
     ArrayList<ArrayList<String>> search = Conn.getData(searchProblem);
     if (search.size() > 0) {
 %>

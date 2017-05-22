@@ -583,7 +583,7 @@ public class EHRMessageSender {
             EHRSecondHeader = eachDetail;
         } else {
             
-            eachDetail = "RSS"
+            eachDetail = "RRS"
                     + "| "+dataResultDetail.get(0).get(0)+" ^ "+dataResultDetail.get(0).get(1)+" ^ ICD10-PCS "
                     + "| "
                     + "| "+dataResultDetail.get(0).get(2)+" ^ "+dataResultDetail.get(0).get(3)+" ^ UD "

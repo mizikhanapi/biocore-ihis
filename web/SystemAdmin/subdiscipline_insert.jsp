@@ -11,9 +11,11 @@
 <%@page import="java.sql.*"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@include file="validateSession.jsp" %>
-<%@include file="controller/super_user_check.jsp" %>
+<%--<%@include file="controller/super_user_check.jsp" %>--%>
 <%           
     Conn conn = new Conn();
+    
+    String hfc_cd = request.getParameter("hfc_cd");
     String disciplineCode = request.getParameter("disciplineCode");
     String subdisciplineCode = request.getParameter("subdisciplineCode");
     String subdisciplineName = request.getParameter("subdisciplineName");
@@ -22,7 +24,7 @@
     String userID = (String)session.getAttribute("USER_ID");
     
     
-    String sqlCheck = "SELECT subdiscipline_cd from adm_subdiscipline WHERE discipline_cd = '"+disciplineCode+"' AND subdiscipline_cd = '"+subdisciplineCode+"' LIMIT 1 ";
+    String sqlCheck = "SELECT subdiscipline_cd from adm_subdiscipline WHERE discipline_cd = '"+disciplineCode+"' AND subdiscipline_cd = '"+subdisciplineCode+"' and subdiscipline_hfc_cd = '"+hfc_cd+"' LIMIT 1 ";
     ArrayList<ArrayList<String>> duplicate = conn.getData(sqlCheck);
     
     
@@ -40,7 +42,7 @@
     else{
         RMIConnector rmic = new RMIConnector();
 
-        String sqlInsert = "INSERT INTO adm_subdiscipline values('"+disciplineCode+"', '"+subdisciplineCode+"', '"+subdisciplineName+"', '"+type+"', '"+userID+"', now(), '"+status+"')";
+        String sqlInsert = "INSERT INTO adm_subdiscipline values('"+disciplineCode+"', '"+subdisciplineCode+"', '"+subdisciplineName+"', '"+type+"', '"+userID+"', now(), '"+status+"', '"+hfc_cd+"')";
 
         boolean isInsert = rmic.setQuerySQL(conn.HOST, conn.PORT, sqlInsert);
 

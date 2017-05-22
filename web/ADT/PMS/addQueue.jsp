@@ -26,7 +26,7 @@
     String desc = "1";
     String userid = request.getParameter("createdBy");
     String category = "003";
-    String status = "1";
+    String status = "0";
     String createdBy = request.getParameter("createdBy");
     String hfc = request.getParameter("hfc");
     String dis = request.getParameter("Dis");
