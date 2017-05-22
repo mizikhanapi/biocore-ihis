@@ -1054,7 +1054,7 @@
         var orderDate, locationCode, arrivalDate, pmino, pname, dispenseFarMasterQuantity, dispenseFarMasterTotal, dispenseFarMasterQuantityChecked, dispenseFarMasterTotalChecked;
 
         var drugATCCode, drugATCDesc, drugMDCDesc, drugMDCStrength, drugMDCFromMCode, drugMDCFromRCode, drugMDCFromDesc, drugMDCRouteMCode, drugMDCRouteRCode, drugMDCRouteDesc,
-                drugMDCFrequencyMCode,drugMDCFrequencyRCode,drugMDCFrequencyDesc, drugMDCFrequencyUnitCode, drugMDCDosage, drugMDCOUM,
+                drugMDCFrequencyMCode, drugMDCFrequencyRCode, drugMDCFrequencyDesc, drugMDCFrequencyUnitCode, drugMDCDosage, drugMDCOUM,
                 drugMDCDuration, drugMDCDispenseLocation, drugMDCDispenseNotes, drugMDCDispenseProvider, drugMDCIndicator;
 
         var dateBill = getDate();
@@ -1119,21 +1119,19 @@
             drugMDCIndicator = "-";
 
 
-
-//                              0        1     2     3     4          5            6            7              8                    9                       10               11
-            var dataOneRowBLI = "BLI|T^" + dateBill + "|CH|" + pmino + "|" + drugCode + "|" + drugDesc + "|" + drugPrice + "|" + drugDispensedQty + "|" + userIDBill + "|" + dateBill + "<cr>\n";
-            var dataOneRowDDR = "DDR|" + drugATCCode + "^" + drugATCDesc + "^ATC|" + drugCode + "^" + drugMDCDesc + "^MDC|" + drugMDCStrength + "|" + drugMDCFromMCode + "^" + drugMDCFromRCode + "^" + drugMDCFromDesc +
-                    "|" + drugMDCRouteMCode + "^" + drugMDCRouteRCode + "^" + drugMDCRouteDesc + "|" + drugMDCFrequencyMCode + "^" + drugMDCFrequencyRCode + "^" + drugMDCFrequencyDesc + "|" + 
-                    drugMDCFrequencyUnitCode + "|" + drugMDCDosage + "|" + drugMDCOUM + "|" + drugMDCDuration +
-                    "|" + drugDispensedQty + "|" + drugMDCDispenseLocation + "|" + drugMDCDispenseNotes + "|" + getDate() + "|" + drugMDCDispenseProvider + "|" +
-                    orderDate + "|" + drugMDCIndicator + "<cr>\n";
-
-            ehrCentralBillBLI = ehrCentralBillBLI + dataOneRowBLI;
-            ehrCentralBillDDR = ehrCentralBillDDR + dataOneRowDDR;
-
-
-
             if (drugChecked === true && drugDispensedQty !== "0") {
+
+                //                              0        1     2     3     4          5            6            7              8                    9                       10               11
+                var dataOneRowBLI = "BLI|T^" + dateBill + "|CH|" + pmino + "|" + drugCode + "|" + drugDesc + "|" + drugPrice + "|" + drugDispensedQty + "|" + userIDBill + "|" + dateBill + "<cr>\n";
+                var dataOneRowDDR = "DDR|" + drugATCCode + "^" + drugATCDesc + "^ATC|" + drugCode + "^" + drugMDCDesc + "^MDC|" + drugMDCStrength + "|" + drugMDCFromMCode + "^" + drugMDCFromRCode + "^" + drugMDCFromDesc +
+                        "|" + drugMDCRouteMCode + "^" + drugMDCRouteRCode + "^" + drugMDCRouteDesc + "|" + drugMDCFrequencyMCode + "^" + drugMDCFrequencyRCode + "^" + drugMDCFrequencyDesc + "|" +
+                        drugMDCFrequencyUnitCode + "|" + drugMDCDosage + "|" + drugMDCOUM + "|" + drugMDCDuration +
+                        "|" + drugDispensedQty + "|" + drugMDCDispenseLocation + "|" + drugMDCDispenseNotes + "|" + getDate() + "|" + drugMDCDispenseProvider + "|" +
+                        orderDate + "|" + drugMDCIndicator + "<cr>\n";
+
+                ehrCentralBillBLI = ehrCentralBillBLI + dataOneRowBLI;
+                ehrCentralBillDDR = ehrCentralBillDDR + dataOneRowDDR;
+                
 
                 console.log("Ok : " + drugCode);
 
@@ -1350,6 +1348,9 @@
 
         var drugChecked;
         var drugStock;
+        var drugOrderNo, drugCode, prescribeLongString, prescibeShortString = "";
+        var prescribeLongString = "";
+        var prescibeShortString = "";
         var checked = [];
         var stock = [];
 
@@ -1360,10 +1361,17 @@
             drugChecked = $(this).find("#drugDispenseChecked").is(':checked');
             drugStock = $tds.eq(7).text();
 
-            console.log(drugStock);
+
+            if (drugChecked === true) {
+                drugOrderNo = $tds.eq(0).text();
+                drugCode = $tds.eq(1).text();
+
+                prescribeLongString = prescribeLongString + drugOrderNo + "|" + drugCode + "#";
+            }
 
             checked.push(drugChecked);
             stock.push(drugStock);
+
 
         });
 
@@ -1374,8 +1382,12 @@
         console.log(stock);
         console.log(stockDispense);
 
+        console.log(prescribeLongString);
+
         if (checkedDispense === -1) {
+
             bootbox.alert("Please At least Select A Order To Generate Label");
+
         } else {
 
             if (stockDispense === -1) {
@@ -1398,10 +1410,38 @@
                         if (result === true) {
 
                             $('#myModal').modal('show');
-                            //$("#patientOrderDetailsListTableDiv table input:checkbox").disabled = true;
-                            //document.getElementsByTagName('input:checkbox').disabled = true;
-                            //document.getElementById('drugDispenseChecked').disabled = true;
-                            updateResetPrescribe();
+
+                            var data = {
+                                orderNo: drugOrderNo,
+                                longString: prescribeLongString
+                            };
+
+                            $.ajax({
+                                url: "patientOrderListDetailsPrescribeResetStatus.jsp",
+                                type: "post",
+                                data: data,
+                                timeout: 3000,
+                                success: function (datas) {
+                                    console.log(datas.trim());
+
+                                    $.ajax({
+                                        url: "patientOrderListDetailsPrescribeUpdateStatus.jsp",
+                                        type: "post",
+                                        data: data,
+                                        timeout: 5000,
+                                        success: function (datas) {
+                                            console.log(datas.trim());
+                                            document.getElementById("btnOrderDispense").disabled = false;
+                                            $('#myModal').modal('hide');
+                                            var orderNoMain = $("#patientOrderNo").val();
+                                            window.open("patientOrderListDetailsPrescribePDF.jsp?orderNo=" + orderNoMain + " ");
+
+                                        }
+                                    });
+                                }
+                            });
+
+                            //updateResetPrescribe();
 
                         } else {
                             console.log("Process Is Canceled");
@@ -1418,80 +1458,6 @@
 
     });
     // Priscribe Button End
-
-
-    // Priscribe Reset And Update Status Start
-    function updateResetPrescribe() {
-
-        var orderNo = $("#patientOrderNo").val();
-        var table = $("#patientOrderDetailsListTable tbody");
-        var drugCode, drugChecked;
-
-        var data = {
-            orderNo: orderNo
-        };
-
-
-        setTimeout(function () {
-
-            $.ajax({
-                url: "patientOrderListDetailsPrescribeResetStatus.jsp",
-                type: "post",
-                data: data,
-                timeout: 3000,
-                success: function (datas) {
-                    console.log(datas.trim());
-                }
-            });
-
-            table.find('tr').each(function (i) {
-
-                var $tds = $(this).find('td');
-
-                // Get The Data
-                drugCode = $tds.eq(1).text();
-                drugChecked = $(this).find("#drugDispenseChecked").is(':checked');
-
-                if (drugChecked === true) {
-
-                    var dataAjax = {
-                        orderNo: orderNo,
-                        drugCode: drugCode
-                    };
-
-                    $.ajax({
-                        url: "patientOrderListDetailsPrescribeUpdateStatus.jsp",
-                        type: "post",
-                        data: dataAjax,
-                        timeout: 3000,
-                        success: function (datas) {
-                            console.log(datas.trim());
-                        }
-                    });
-
-                }
-
-            });
-        }, 3000);
-
-        setTimeout(function () {
-            loadingPrescribe();
-        }, 4000);
-
-    }
-    // Priscribe Reset And Update Status End
-
-
-    // Priscribe Generate PDF Page Start
-    function loadingPrescribe() {
-
-        document.getElementById("btnOrderDispense").disabled = false;
-        $('#myModal').modal('hide');
-        var orderNo = $("#patientOrderNo").val();
-        window.open("patientOrderListDetailsPrescribePDF.jsp?orderNo=" + orderNo + " ");
-
-    }
-    // Priscribe Generate PDF Page End
     // Prescibe Part End
 
 

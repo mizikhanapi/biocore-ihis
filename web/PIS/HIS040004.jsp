@@ -1,9 +1,8 @@
 <%-- 
-    Document   : manageReport
-    Created on : Feb 27, 2017, 11:36:51 AM
+    Document   : HIS040004
+    Created on : May 19, 2017, 12:55:36 AM
     Author     : Shammugam
 --%>
-
 
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.sql.*"%>
@@ -45,65 +44,13 @@
                         <div class="col-md-12" style="height: 100%;">
                             <div class="thumbnail">
 
-                                <!-- Tab Menu -->
-                                <div class="tabbable-panel">
-                                    <div class="tabbable-line">
-                                        <ul class="nav nav-tabs ">
-                                            <li class="active">
-                                                <a href="#tab_default_1" data-toggle="tab">
-                                                    DAILY REPORT </a>
-                                            </li>
-                                            <li>
-                                                <a href="#tab_default_2" data-toggle="tab">
-                                                    MONTHLY REPORT </a>
-                                            </li>
-                                            <li>
-                                                <a href="#tab_default_3" data-toggle="tab">
-                                                    YEARLY REPORT </a>
-                                            </li>
-                                        </ul>
-                                        <!-- tab content -->
-                                        <div class="tab-content">
-                                            <div class="tab-pane active" id="tab_default_1">
-
-                                                <div id="contentRDaily">
-
-                                                    <div id="contentReportDailyTable">
-                                                    </div>
-                                                    <div id="contentReportDailyButton">
-                                                    </div>
-
-                                                </div>
-
-                                            </div>
-                                            <div class="tab-pane" id="tab_default_2">
-
-                                                <div id="contentRMonthly">
-
-                                                    <div id="contentReportMonthlyTable">
-                                                    </div>
-
-                                                </div>
-
-                                            </div>
-                                            <div class="tab-pane" id="tab_default_3">
-
-                                                <div id="contentRYearly">
-
-                                                    <div id="contentReportYearlyTable">
-                                                    </div>
-
-                                                </div>
-
-                                            </div>
-                                        </div>
+                                <div id="contentSup">
+                                    <div id="contentSupplierMain">
                                     </div>
+                                    <div id="contentSupplierTable">
+                                    </div>
+                                    <%@include file="supplierModal.jsp" %>
                                 </div>
-
-                                <!-- Tab Menu -->
-
-
-
 
                             </div>
                         </div>
@@ -124,9 +71,10 @@
             $('<div class="loading">Loading</div>').appendTo('body');
 
             $(document).ready(function () {
-                $("#contentReportDailyTable").load("manageReportDailyTable.jsp");
-                $("#contentReportMonthlyTable").load("manageReportMonthlyTable.jsp");
-                $("#contentReportYearlyTable").load("manageReportYearlyTable.jsp");
+                // Load Supplier Data
+                $("#contentSupplierMain").load("supplierMain.jsp");
+                $("#contentSupplierTable").load("supplierTableLoop.jsp");
+
             });
 
         </script>

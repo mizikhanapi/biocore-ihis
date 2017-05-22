@@ -18,14 +18,15 @@
 
 <table  id="atcTable"  class="table table-striped table-bordered" cellspacing="0" width="100%">
     <thead>
-    <th style="text-align: left;">ATC CODE</th>
-    <th style="text-align: left;">ATC CODE DESCRIPTION</th>
-    <th style="text-align: left;">CATEGORY CODE</th>
-    <th style="text-align: left;">HFC CODE</th>
-    <th style="text-align: left;">DISCIPLINE CODE</th>
-    <th style="text-align: left;">SUBDISCIPLINE CODE</th>
-    <th style="text-align: left;">STATUS</th>
-    <th style="text-align: left;">ACTION</th>
+    <th style="text-align: center;">ATC CODE</th>
+    <th style="text-align: center;">ATC CODE DESCRIPTION</th>
+    <th style="text-align: center;">CATEGORY CODE</th>
+    <th style="text-align: center;">HFC CODE</th>
+    <th style="text-align: center;">DISCIPLINE CODE</th>
+    <th style="text-align: center;">SUBDISCIPLINE CODE</th>
+    <th style="text-align: center;">STATUS</th>
+    <th style="text-align: center;">UPDATE</th>
+    <th style="text-align: center;">DELETE</th>
 </thead>
 <tbody>
 
@@ -37,10 +38,10 @@
         for (int i = 0; i < size; i++) {
     %>
 
-    <tr style="text-align: left;">
+    <tr style="text-align: center;">
 <input id="dataATChidden" type="hidden" value="<%=String.join("|", dataATC.get(i))%>">
 <td><%= dataATC.get(i).get(0)%></td>
-<td style="font-weight: 500;"><%= dataATC.get(i).get(1)%></td>
+<td><%= dataATC.get(i).get(1)%></td>
 <td><%= dataATC.get(i).get(2)%></td>
 <td><%= dataATC.get(i).get(3)%></td>
 <td><%= dataATC.get(i).get(4)%></td>
@@ -52,11 +53,12 @@
     } %></td> <!--status 3 --> 
 <td>
     <!-- Update Part Start -->
-    <a id="updateTButton" data-toggle="modal" data-target="#atcUpdateModal"><i class="fa fa-pencil-square-o fa-lg" aria-hidden="true" style="display: inline-block;color: #337ab7; cursor: pointer"></i></a>
+    <a id="updateTButton" data-toggle="modal" data-target="#atcUpdateModal"><i class="fa fa-pencil-square-o" aria-hidden="true" style="display: inline-block;color: #337ab7;"></i></a>
     <!-- Update Part End -->
-    &nbsp;&nbsp;&nbsp;
+</td>
+<td>
     <!-- Delete Button Start -->
-    <a id="deleteTButton" class="testing"><i class="fa fa-times fa-lg" aria-hidden="true" style="display: inline-block;color: #d9534f; cursor: pointer" ></i></a>
+    <a id="deleteTButton" class="testing"><i class="fa fa-times" aria-hidden="true" style="display: inline-block;color: #d9534f;" ></i></a>
     <!-- Delete Button End -->
 </td>
 </tr>
@@ -325,7 +327,7 @@
                         hfc: hfc,
                         dis: dis,
                         subdis: subdis
-                    };
+                    };                
 
                     $.ajax({
                         url: "atcDelete.jsp",

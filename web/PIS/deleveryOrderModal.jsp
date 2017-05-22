@@ -43,7 +43,7 @@
                         <div class="form-group">
                             <label class="col-md-4 control-label" for="textinput">Drug Code &nbsp; *</label>
                             <div class="col-md-8">
-                                <input id="drug_Code" type="text" class="form-control" readonly>
+                                <input id="drug_Code" type="text" class="form-control">
                             </div>
                         </div>
 
@@ -51,7 +51,7 @@
                         <div class="form-group">
                             <label class="col-md-4 control-label" for="textinput">Drug Price &nbsp; *</label>
                             <div class="col-md-8">
-                                <input id="drug_Price" type="text" class="form-control" readonly>
+                                <input id="drug_Price" type="text" class="form-control">
                             </div>
                         </div>
 
@@ -59,7 +59,7 @@
                         <div class="form-group">
                             <label class="col-md-4 control-label" for="textinput">Drug Stock Quantity &nbsp; *</label>
                             <div class="col-md-8">
-                                <input id="drug_Stock" type="text" class="form-control" readonly>
+                                <input id="drug_Stock" type="text" class="form-control">
                             </div>
                         </div>
 

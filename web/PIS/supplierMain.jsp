@@ -7,7 +7,7 @@
 <!-- Add Part Start -->
 <!-- Add Button Start -->
 <h4 style="padding-top: 30px;padding-bottom: 35px; font-weight: bold">
-    VENDOR MEDICINE MANAGEMENT
+    VENDOR MANAGEMENT
     <span class="pull-right">
         <button id="addNewSupplierButton" class="btn btn-success" data-status="pagado" data-toggle="modal" data-id="1" data-target="#supplierModal" style=" padding-right: 10px;padding-left: 10px;color: white;"><a data-toggle="tooltip" data-placement="top" title="Add Items" id="test"><i class=" fa fa-plus" style=" padding-right: 10px;padding-left: 10px;color: white;"></i></a>ADD SUPPLIER</button>
     </span>
@@ -235,6 +235,105 @@
 
         });
         // Search Post Code Function End
+        
+        
+        // Search Payment Type Function Start
+        $("#vendor_Payment_Term").on('keyup', function () { // everytime keyup event
+            var input = $(this).val(); // We take the input value
+
+            if (input.length >= 1) { // Minimum characters = 2 (you can change)
+                $('#vendor_Payment_Term_Search').html('<img src="libraries/LoaderIcon.gif"  />'); // Loader icon apprears in the <div id="match"></div>
+                var dataFields = {input: input}; // We pass input argument in Ajax
+                $.ajax({
+                    type: "POST",
+                    url: "supplierSearchPAYMENT_TERM.jsp", // call the php file ajax/tuto-autocomplete.php
+                    data: dataFields, // Send dataFields var
+                    timeout: 3000,
+                    success: function (dataBack) { // If success
+                        $('#vendor_Payment_Term_Search').html(dataBack); // Return data (UL list) and insert it in the <div id="match"></div>
+                        $('#matchListPAYMENT li').on('click', function () { // When click on an element in the list
+                            //$('#masterCode2').text($(this).text()); // Update the field with the new element
+                            $('#vendor_Payment_Term').val($(this).text());
+                            $('#vendor_Payment_Term_Search').text(''); // Clear the <div id="match"></div>
+                            var arrayData = $('#vendor_Payment_Term').val().split("|");
+                        });
+                    },
+                    error: function () { // if error
+                        $('#vendor_Payment_Term_Search').text('Problem!');
+                    }
+                });
+            } else {
+                $('#vendor_Payment_Term_Search').text(''); // If less than 2 characters, clear the <div id="match"></div>
+            }
+
+        });
+         // Search Payment Type Function End
+         
+         
+         // Search Accout Type Function Start
+        $("#vendor_Account_Type").on('keyup', function () { // everytime keyup event
+            var input = $(this).val(); // We take the input value
+
+            if (input.length >= 1) { // Minimum characters = 2 (you can change)
+                $('#vendor_Account_Type_Search').html('<img src="libraries/LoaderIcon.gif"  />'); // Loader icon apprears in the <div id="match"></div>
+                var dataFields = {input: input}; // We pass input argument in Ajax
+                $.ajax({
+                    type: "POST",
+                    url: "supplierSearchACCOUNT_TYPE.jsp", // call the php file ajax/tuto-autocomplete.php
+                    data: dataFields, // Send dataFields var
+                    timeout: 3000,
+                    success: function (dataBack) { // If success
+                        $('#vendor_Account_Type_Search').html(dataBack); // Return data (UL list) and insert it in the <div id="match"></div>
+                        $('#matchListACCOUNT li').on('click', function () { // When click on an element in the list
+                            //$('#masterCode2').text($(this).text()); // Update the field with the new element
+                            $('#vendor_Account_Type').val($(this).text());
+                            $('#vendor_Account_Type_Search').text(''); // Clear the <div id="match"></div>
+                            var arrayData = $('#vendor_Account_Type').val().split("|");
+                        });
+                    },
+                    error: function () { // if error
+                        $('#vendor_Account_Type_Search').text('Problem!');
+                    }
+                });
+            } else {
+                $('#vendor_Account_Type_Search').text(''); // If less than 2 characters, clear the <div id="match"></div>
+            }
+
+        });
+         // Search Accout Type Function End
+       
+
+         // Search Currecy Type Function Start
+        $("#vendor_Currency").on('keyup', function () { // everytime keyup event
+            var input = $(this).val(); // We take the input value
+
+            if (input.length >= 1) { // Minimum characters = 2 (you can change)
+                $('#vendor_Currency_Search').html('<img src="libraries/LoaderIcon.gif"  />'); // Loader icon apprears in the <div id="match"></div>
+                var dataFields = {input: input}; // We pass input argument in Ajax
+                $.ajax({
+                    type: "POST",
+                    url: "supplierSearchCURRENCY.jsp", // call the php file ajax/tuto-autocomplete.php
+                    data: dataFields, // Send dataFields var
+                    timeout: 3000,
+                    success: function (dataBack) { // If success
+                        $('#vendor_Currency_Search').html(dataBack); // Return data (UL list) and insert it in the <div id="match"></div>
+                        $('#matchListCURRENCY li').on('click', function () { // When click on an element in the list
+                            //$('#masterCode2').text($(this).text()); // Update the field with the new element
+                            $('#vendor_Currency').val($(this).text());
+                            $('#vendor_Currency_Search').text(''); // Clear the <div id="match"></div>
+                            var arrayData = $('#vendor_Currency').val().split("|");
+                        });
+                    },
+                    error: function () { // if error
+                        $('#vendor_Currency_Search').text('Problem!');
+                    }
+                });
+            } else {
+                $('#vendor_Currency_Search').text(''); // If less than 2 characters, clear the <div id="match"></div>
+            }
+
+        });
+         // Search Currency Type Function End
 
 
         // Add Supplier Function Start
@@ -325,8 +424,8 @@
                 bootbox.alert("Please Insert The Vendor Telephone Number");
             } else if (vendor_fax_no === "" || vendor_fax_no === null) {
                 bootbox.alert("Please Insert The Vendor Fax Number");
-            } else if (vendor_email === "" || vendor_email === null) {
-                bootbox.alert("Please Insert The Vendor Email");
+//            } else if (vendor_email === "" || vendor_email === null) {
+//                bootbox.alert("Please Insert The Vendor Email");
             } else if (vendor_GL_Code === "" || vendor_GL_Code === null) {
                 bootbox.alert("Please Insert The Vendor GL Code");
             } else if (vendor_ROC_No === "" || vendor_ROC_No === null) {
@@ -362,8 +461,8 @@
                 bootbox.alert("Please Insert The Supplier Mobile Number between 9 to 11 Numbers");
             } else if (vendor_fax_noCheck.checkValidity() === false) {
                 bootbox.alert("Please Insert The Supplier Fax Number between 9 to 11 Numbers");
-            } else if (vendor_emailCheck.checkValidity() === false) {
-                bootbox.alert("Please Insert The Supplier Email Not More than 30 Characters");
+//            } else if (vendor_emailCheck.checkValidity() === false) {
+//                bootbox.alert("Please Insert The Supplier Email Not More than 30 Characters");
             } else if (vendor_GL_CodeCheck.checkValidity() === false) {
                 bootbox.alert("Please Insert The Supplier GL Code Not More than 10 Characters");
             } else if (vendor_ROC_NoCheck.checkValidity() === false) {
@@ -591,8 +690,8 @@
                 bootbox.alert("Please Insert The Vendor Telephone Number");
             } else if (vendor_fax_no === "" || vendor_fax_no === null) {
                 bootbox.alert("Please Insert The Vendor Fax Number");
-            } else if (vendor_email === "" || vendor_email === null) {
-                bootbox.alert("Please Insert The Vendor Email");
+//            } else if (vendor_email === "" || vendor_email === null) {
+//                bootbox.alert("Please Insert The Vendor Email");
             } else if (vendor_GL_Code === "" || vendor_GL_Code === null) {
                 bootbox.alert("Please Insert The Vendor GL Code");
             } else if (vendor_ROC_No === "" || vendor_ROC_No === null) {
@@ -628,8 +727,8 @@
                 bootbox.alert("Please Insert The Supplier Mobile Number between 9 to 11 Numbers");
             } else if (vendor_fax_noCheck.checkValidity() === false) {
                 bootbox.alert("Please Insert The Supplier Fax Number between 9 to 11 Numbers");
-            } else if (vendor_emailCheck.checkValidity() === false) {
-                bootbox.alert("Please Insert The Supplier Email Not More than 30 Characters");
+//            } else if (vendor_emailCheck.checkValidity() === false) {
+//                bootbox.alert("Please Insert The Supplier Email Not More than 30 Characters");
             } else if (vendor_GL_CodeCheck.checkValidity() === false) {
                 bootbox.alert("Please Insert The Supplier GL Code Not More than 10 Characters");
             } else if (vendor_ROC_NoCheck.checkValidity() === false) {

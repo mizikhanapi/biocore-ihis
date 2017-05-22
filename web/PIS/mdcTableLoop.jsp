@@ -18,26 +18,26 @@
 
 <table  id="mdcTable"  class="table table-striped table-bordered" cellspacing="0" width="100%">
     <thead>
-    <th style="text-align: left;">MDC CODE</th>
-    <th style="text-align: left;">ATC CODE</th>
-    <th style="text-align: left;">TRADE NAME</th>
-    <th style="text-align: left;">GNR NAME</th>
+    <th style="text-align: center;">MDC CODE</th>
+    <th style="text-align: center;">ATC CODE</th>
+    <th style="text-align: center;">TRADE NAME</th>
+    <th style="text-align: center;">GNR NAME</th>
     <th style="display: none">ROUTE_CODE</th>
     <th style="display: none">FORM CODE</th>
-    <th style="text-align: left;">STRENGTH</th>
+    <th style="text-align: center;">STRENGTH</th>
     <th style="display: none">ADVISE</th>
-    <th style="text-align: left;">STOCK QTY</th>
+    <th style="text-align: center;">STOCK QTY</th>
     <th style="display: none">DOSE QTY</th>
     <th style="display: none">DOSE TYPE</th>
     <th style="display: none">DURATION</th>
     <th style="display: none">DURATION TYPE</th>
     <th style="display: none">FREQUENCY</th>
     <th style="display: none">CAUTION</th>
-    <th style="text-align: left;">EXP DATE</th>
+    <th style="text-align: center;">EXP DATE</th>
     <th style="display: none">CLASSIFICATION</th>
     <th style="display: none">STATUS</th>
     <th style="display: none">LOCATION CODE</th>
-    <th style="text-align: left;">SELL PRICE</th>
+    <th style="text-align: center;">SELL PRICE</th>
     <th style="display: none">COST PRICE</th>
     <th style="display: none">PACKAGING</th>
     <th style="display: none">PACKAGING TYPE</th>
@@ -45,7 +45,8 @@
     <th style="display: none">HFC</th>
     <th style="display: none">DISCIPLINE</th>
     <th style="display: none">SUB-DISCIPLINE</th>
-    <th style="text-align: left;">ACTION</th>
+    <th style="text-align: center;">Update</th>
+    <th style="text-align: center;">Delete</th>
 </thead>
 <tbody>
 
@@ -64,17 +65,17 @@
     %>
     <%
         if (Integer.parseInt(dataMTC.get(s).get(8)) < 30) {    %>
-    <tr style="font-weight:bolder;text-align: left;" >
+    <tr style="font-weight:bolder;text-align: center;" >
         <% } else if (Integer.parseInt(dataMTC.get(s).get(8)) < 100) {   %>
-    <tr style="font-weight:bolder;text-align: left;">
+    <tr style="font-weight:bolder;text-align: center;">
         <% } else {   %>
-    <tr style="text-align: left;">
+    <tr style="text-align: center;">
         <%   }%>
 
 <input id="dataMDChidden" type="hidden" value="<%=String.join("|", dataMTC.get(s))%>">
 <td><%= dataMTC.get(s).get(0)%></td>
 <td><%= dataMTC.get(s).get(1)%></td>
-<td style="font-weight: 500;"><%= dataMTC.get(s).get(2)%></td>
+<td><%= dataMTC.get(s).get(2)%></td>
 <td><%= dataMTC.get(s).get(3)%></td>
 <td style="display: none"><%= dataMTC.get(s).get(4)%></td>
 <td style="display: none"><%= dataMTC.get(s).get(5)%></td>
@@ -101,11 +102,12 @@
 <td style="display: none"><%= dataMTC.get(s).get(26)%></td>
 <td>
     <!-- Update Button Start -->
-    <a id="mdcUpdateTButton" data-toggle="modal" data-target="#mdcUpdateModal"><i class="fa fa-pencil-square-o fa-lg" aria-hidden="true" style="display: inline-block;color: #337ab7; cursor: pointer"></i></a>
+    <a id="mdcUpdateTButton" data-toggle="modal" data-target="#mdcUpdateModal"><i class="fa fa-pencil-square-o" aria-hidden="true" style="display: inline-block;color: #337ab7;"></i></a>
     <!-- Update Button End -->
-    &nbsp;&nbsp;&nbsp;
+</td>
+<td>
     <!-- Delete Button Start -->
-    <a id="mdcDeleteTButton" class="testing"><i class="fa fa-times fa-lg" aria-hidden="true" style="display: inline-block;color: #d9534f; cursor: pointer" ></i></a>
+    <a id="mdcDeleteTButton" class="testing"><i class="fa fa-times" aria-hidden="true" style="display: inline-block;color: #d9534f;" ></i></a>
     <!-- Delete Button End -->
 </td>
 </tr>
@@ -253,7 +255,7 @@
                             <div class="form-group">
                                 <label class="col-md-4 control-label" for="textinput">Stock Quantity</label>
                                 <div class="col-md-8">
-                                    <input id="updateD_STOCK_QTY" name="textinput" type="number" step="0.01" placeholder="Stock Qty" class="form-control input-md" maxlength="20" readonly>
+                                    <input id="updateD_STOCK_QTY" name="textinput" type="number" step="0.01" placeholder="Stock Qty" class="form-control input-md" maxlength="20">
                                 </div>
                             </div>
 

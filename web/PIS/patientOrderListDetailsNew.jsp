@@ -54,37 +54,36 @@
 
 <table class="table table-filter table-striped table-bordered dt-head-right" style="background: #fff; border: 1px solid #ccc; width: 100%; text-align: left" id="patientOrderDetailsListTable">
     <thead>
-    <th style="text-align: left;">Check<!--<br><input id="checkDispenseAll" type="checkbox" onchange="checkAll(this)" name="chk[]" />--></th>
     <th style="display: none;text-align: center;">Order No</th>
-    <th style="text-align: left;">Code</th>
-    <th style="text-align: left;">Description</th>
+    <th style="text-align: left;">Drug Cd</th>
+    <th style="text-align: left;">Drug Name</th>
     <th style="text-align: left;">Strength</th>
     <th style="text-align: left;">Frequency</th>
     <th style="text-align: left;">Duration</th>
     <th style="text-align: left;">Dose</th>
     <th style="text-align: left;">Stock Qty</th>
-    <th style="text-align: left;">Ordered Qty</th>
-    <th style="text-align: left;">Supplied Qty</th>
+    <th style="text-align: left;">Order Qty</th>
     <th style="text-align: left;">Dispensed Qty</th>
-    <th style="text-align: left;">Price/Pack</th>
+    <th style="text-align: left;">Qty To Dispense</th>
+    <th style="text-align: left;">Price/Unit</th>
     <th style="text-align: left;">Total (RM)</th>
     <th style="text-align: left;">Status</th>
     <th style="display: none;text-align: center;">ATC Code</th>
     <th style="display: none;text-align: center;">ATC Desc</th>
     <th style="display: none;text-align: center;">MDC Desc</th>
     <th style="display: none;text-align: center;">MDC Strength</th>
-    <th style="text-align: center;display: none;">MDC Form MCode</th>
-    <th style="text-align: center;">MDC Form RCode</th>
+    <th style="display: none;text-align: center;">MDC Form MCode</th>
+    <th style="display: none;text-align: center;">MDC Form RCode</th>
     <th style="display: none;text-align: center;">MDC Form Desc</th>
     <th style="display: none;text-align: center;">MDC Route MCode</th>
-    <th style="text-align: center;">MDC Route RCode</th>
+    <th style="display: none;text-align: center;">MDC Route RCode</th>
     <th style="display: none;text-align: center;">MDC Route Desc</th>
     <th style="display: none;text-align: center;">MDC Frequency MCode</th>
     <th style="display: none;text-align: center;">MDC Frequency RCode</th>
     <th style="display: none;text-align: center;">MDC Frequency Desc</th>
     <th style="display: none;text-align: center;">MDC Dosage</th>
     <th style="display: none;text-align: center;">MDC Duration</th>
-
+    <th style="text-align: left;">Check<!--<br><input id="checkDispenseAll" type="checkbox" onchange="checkAll(this)" name="chk[]" />--></th>
 </thead>
 <tbody>
     <%        for (int i = 0; i < dataOrderList.size(); i++) {
@@ -127,7 +126,6 @@
     <tr style="text-align: left;">
         <%   }%>
 <input id="dataPatientOrderDetailsListhidden" type="hidden" value="<%=String.join("|", dataOrderList.get(i))%>">
-<td align="center"><input type="checkbox" id="drugDispenseChecked" checked></td> <!-- Status -->
 <td id="updateOrderDetailsTButton" data-status="pagado" data-toggle="modal" data-id="1" data-target="#updateOrder" align="center" style="display: none"><%= dataOrderList.get(i).get(0)%></td> <!-- Order No -->
 <td id="updateOrderDetailsTButton" data-status="pagado" data-toggle="modal" data-id="1" data-target="#updateOrder" align="center" ><%= dataOrderList.get(i).get(1)%></td> <!-- Code -->
 <td id="updateOrderDetailsTButton" data-status="pagado" data-toggle="modal" data-id="1" data-target="#updateOrder" align="center"><%= dataOrderList.get(i).get(2)%></td> <!-- Description -->
@@ -147,17 +145,17 @@
 <td align="center" style="display:none;"><%= dataOrderList.get(i).get(23)%></td> <!-- MDC Desc -->
 <td align="center" style="display:none;"><%= dataOrderList.get(i).get(24)%></td> <!-- MDC Strength -->
 <td align="center" style="display:none;" ><%= dataOrderList.get(i).get(25)%></td> <!-- MDC Form MCode -->
-<td align="center" style=""><%= dataOrderList.get(i).get(26)%></td> <!-- MDC Form RCode -->
+<td align="center" style="display:none;"><%= dataOrderList.get(i).get(26)%></td> <!-- MDC Form RCode -->
 <td align="center" style="display:none;"><%= dataOrderList.get(i).get(27)%></td> <!-- MDC Form Desc -->
 <td align="center" style="display:none;"><%= dataOrderList.get(i).get(28)%></td> <!-- MDC Route MCode -->
-<td align="center" style=""><%= dataOrderList.get(i).get(29)%></td> <!-- MDC Route RCode -->
+<td align="center" style="display:none;"><%= dataOrderList.get(i).get(29)%></td> <!-- MDC Route RCode -->
 <td align="center" style="display:none;"><%= dataOrderList.get(i).get(30)%></td> <!-- MDC Route Desc -->
 <td align="center" style="display:none;"><%= dataOrderList.get(i).get(31)%></td> <!-- MDC Frequency MCode -->
 <td align="center" style="display:none;"><%= dataOrderList.get(i).get(32)%></td> <!-- MDC Frequency RCode -->
 <td align="center" style="display:none;"><%= dataOrderList.get(i).get(33)%></td> <!-- MDC Frequency Desc -->
 <td align="center" style="display:none;"><%= dataOrderList.get(i).get(34)%><%= dataOrderList.get(i).get(35)%></td> <!-- MDC Dosage -->
 <td align="center" style="display:none;"><%= dataOrderList.get(i).get(36)%><%= dataOrderList.get(i).get(37)%></td> <!-- MDC Duration -->
-
+<td align="center"><input type="checkbox" id="drugDispenseChecked" checked></td> <!-- Status -->
 
 
 
