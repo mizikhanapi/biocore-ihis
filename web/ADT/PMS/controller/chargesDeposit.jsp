@@ -26,6 +26,7 @@
     String WardTypeb = request.getParameter("WardType");
     String EliSource = request.getParameter("EliSource");
     String EliTy = request.getParameter("EliTy");
+    String total = "";
 //eligibility_source_cd ='" + EliSource + "'
 
 %>
@@ -34,17 +35,20 @@
     <%        String resultEliSrc = "select  charges_fees from wis_hospital_charges  where charges_type = '001' and  ward_class_code ='" + WardTypeb + "' and  hfc_cd ='" + hfc + "' ";
         ArrayList<ArrayList<String>> dataEliSrc = conn.getData(resultEliSrc);
 //                out.print(sqlBedID1);
-      
+
         for (int E = 0; E < dataEliSrc.size(); E++) {
+            String t = dataEliSrc.get(E).get(0);
+            total = t;
+        }
 
     %>
 
-    <input id="Deposit"  value="<%=dataEliSrc.get(E).get(0)%>"  class="form-control input-md">
+    <input id="Deposit"  value="<%=total%>"  class="form-control input-md">
 
 
     <%
 
-        }
+
     %>
 
 </div>
