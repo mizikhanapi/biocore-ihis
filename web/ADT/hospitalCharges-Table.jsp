@@ -43,7 +43,7 @@
 
             <% //                Conn conn = new Conn();
                 String sqlFacilityID = " SELECT es.Description,et.Description, ct.Description,a.eligibility_sources_cd, a.eligibility_type_cd, a.charges_type, a.charges_fees,wwc.ward_class_name,wwn.ward_name, a.ward_class_code,a.ward_id from wis_hospital_charges a  left join adm_lookup_detail es on  a.eligibility_sources_cd = es.Detail_Reference_Code  and es.hfc_cd = a.hfc_cd left join adm_lookup_detail et on  a.eligibility_type_cd = et.Detail_Reference_Code  and et.hfc_cd = a.hfc_cd  left join adm_lookup_detail ct on  a.charges_type = ct.Detail_Reference_Code  and ct.hfc_cd = a.hfc_cd left join wis_ward_class wwc on wwc.ward_class_code = a.ward_class_code  left join wis_ward_name wwn on wwn.ward_id = a.ward_id where "
- +" a.discipline_cd = '"+disID+"' and a.hfc_cd ='"+hfcID+"' and es.`Master_Reference_code`='0063' and et.`Master_Reference_code`='0034' and ct.`Master_Reference_code`='0100'";
+                        + " a.discipline_cd = '" + disID + "' and a.hfc_cd ='" + hfcID + "' and es.`Master_Reference_code`='0063' and et.`Master_Reference_code`='0034' and ct.`Master_Reference_code`='0100'";
                 ArrayList<ArrayList<String>> dataFacilityID = conn3.getData(sqlFacilityID);
 
                 int size11 = dataFacilityID.size();
@@ -109,7 +109,7 @@
                                 <label class="col-md-4 control-label" for="textinput">Eligibility Sources</label>
                                 <div class="col-md-4">
                                     <input disabled="" id="updateEliSrc" type="text"  readonly class="form-control input-md" >
-                                    <input  id="updateEliSrc_cd">
+                                    <input  type="hidden" id="updateEliSrc_cd">
                                 </div>
                             </div>
 
@@ -118,16 +118,16 @@
                                 <label class="col-md-4 control-label" for="textinput">Eligibility Type </label>
                                 <div class="col-md-4">
                                     <input disabled="" id="updateEliTy" name="updateEliTy"  readonly class="form-control input-md">
-                                    <input id="updateEliTy_cd">
+                                    <input type="hidden" id="updateEliTy_cd">
                                 </div>
                             </div>
-                            
-                                <!-- Select Basic -->
+
+                            <!-- Select Basic -->
                             <div class="form-group">
                                 <label class="col-md-4 control-label" for="textinput">Ward Class</label>
                                 <div class="col-md-4">
                                     <input disabled="" id="updatewclass" type="text"  readonly class="form-control input-md" >
-                                    <input  id="updatewclass_cd">
+                                    <input type="hidden"  id="updatewclass_cd">
                                 </div>
                             </div>
 
@@ -136,15 +136,15 @@
                                 <label class="col-md-4 control-label" for="textinput">Ward Name</label>
                                 <div class="col-md-4">
                                     <input disabled="" id="updatewname" name="updatewname"  readonly class="form-control input-md">
-                                    <input id="updatewname_cd">
+                                    <input type="hidden" id="updatewname_cd">
                                 </div>
                             </div>
-                            
+
                             <div class="form-group">
                                 <label class="col-md-4 control-label" for="textinput">Charge Type</label>
                                 <div class="col-md-4">
                                     <input disabled="" id="updateChargeType" name="updateChargeType" readonly class="form-control input-md">
-                                    <input  id="updateChargeType_cd">
+                                    <input type="hidden" id="updateChargeType_cd">
 
                                 </div>
                             </div>
@@ -217,11 +217,16 @@
             var updateEliTy = arrayData[1];
             var updateChargeType = arrayData[2];
             var updateChargeFees = arrayData[6];
+            var updatewclass = arrayData[7];
+            var updatewname = arrayData[8];
+
 
 
             var updateEliSrc_cd = arrayData[3];
             var updateEliTy_cd = arrayData[4];
             var updateChargeType_cd = arrayData[5];
+            var updatewclass_cd = arrayData[9];
+            var updatewname_cd = arrayData[10];
 
 
 
@@ -233,11 +238,15 @@
             $('#updateEliSrc').val(updateEliSrc);
             $('#updateEliTy').val(updateEliTy);
             $('#updateChargeType').val(updateChargeType);
+            $('#updatewclass').val(updatewclass);
+            $('#updatewname').val(updatewname);
 
 
             $('#updateEliSrc_cd').val(updateEliSrc_cd);
             $('#updateEliTy_cd').val(updateEliTy_cd);
             $('#updateChargeType_cd').val(updateChargeType_cd);
+            $('#updatewclass_cd').val(updatewclass_cd);
+            $('#updatewname_cd').val(updatewname_cd);
 
 
             $('#updateChargeFees').val(updateChargeFees);
@@ -250,6 +259,9 @@
             var updateEliSrc_cd = $('#updateEliSrc_cd').val();
             var updateEliTy_cd = $('#updateEliTy_cd').val();
             var updateChargeType_cd = $('#updateChargeType_cd').val();
+                        var updatewclass_cd = $('#updatewclass_cd').val();
+            var updatewname_cd = $('#updatewname_cd').val();
+
 
             var updateEliSrc = $('#updateEliSrc').val();
             var updateEliTy = $('#updateEliTy').val();
@@ -266,6 +278,8 @@
             } else {
 
                 var data = {
+                    updatewclass_cd: updatewclass_cd,
+                    updatewname_cd: updatewname_cd,
                     updateEliSrc: updateEliSrc,
                     updateEliTy: updateEliTy,
                     updateChargeType: updateChargeType,

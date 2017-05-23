@@ -11,7 +11,7 @@
 
 <%
 
-    String updateEliSrc_cd, updateEliTy_cd, updateChargeType_cd,updateChargeFees;
+    String updateEliSrc_cd, updateEliTy_cd, updateChargeType_cd, updateChargeFees, updatewname_cd, updatewclass_cd;
     String hfc = request.getParameter("hfc");
     String dis = request.getParameter("dis");
     String sub = request.getParameter("sub");
@@ -20,13 +20,16 @@
     updateEliSrc_cd = request.getParameter("updateEliSrc_cd");
     updateEliTy_cd = request.getParameter("updateEliTy_cd");
     updateChargeType_cd = request.getParameter("updateChargeType_cd");
+    updatewclass_cd = request.getParameter("updatewclass_cd");
+    updatewname_cd = request.getParameter("updatewname_cd");
+
     updateChargeFees = request.getParameter("updateChargeFees");
-   
+
     RMIConnector rmic = new RMIConnector();
     Conn conn = new Conn();
 
     String sqlUpdate = "UPDATE wis_hospital_charges SET charges_fees = '" + updateChargeFees + "'"
-            + " WHERE eligibility_sources_cd = '" + updateEliSrc_cd + "' AND  eligibility_type_cd = '" + updateEliTy_cd + "' AND hfc_cd = '" + hfc + "'AND subdiscipline_cd = '" + sub + "' AND  discipline_cd = '" + dis + "' AND charges_type = '" + updateChargeType_cd + "' ";
+            + " WHERE ward_class_code = '" + updatewclass_cd + "' AND ward_id = '" + updatewname_cd + "' AND eligibility_sources_cd = '" + updateEliSrc_cd + "' AND  eligibility_type_cd = '" + updateEliTy_cd + "' AND hfc_cd = '" + hfc + "'AND subdiscipline_cd = '" + sub + "' AND  discipline_cd = '" + dis + "' AND charges_type = '" + updateChargeType_cd + "' ";
 
     boolean isUpdate = rmic.setQuerySQL(conn.HOST, conn.PORT, sqlUpdate);
 

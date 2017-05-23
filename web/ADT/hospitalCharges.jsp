@@ -55,12 +55,12 @@
 <!-- Add Modal Start -->
 <div class="modal fade" id="detailID" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
-        <div class="modal-content">
+        <div class="modal-content" style="width:100%">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal"><i class="fa fa-times fa-lg"></i></button>
                 <h3 class="modal-title" id="lineIDLabel">Add Hospital Charges</h3>
             </div>
-            <div class="modal-body" >
+            <div class="modal-body" style="width:100%" >
 
                 <!-- content goes here -->
                 <form class="form-horizontal" id="addIDForm">
@@ -98,7 +98,7 @@
                             </div>
                         </div>
 
-                       
+
 
 
                         <div class="col-md-6">
@@ -111,29 +111,49 @@
                                 </div>
                             </div>
                         </div>
-                         <div class="col-md-6">
+                        <div class="col-md-6">
                             <div class="form-group">
                                 <label class="col-md-6 control-label" for="textinput">Ward Class</label>
                                 <div class="col-md-6">
                                     <input  id="wclass" placeholder="Insert Ward Class" maxlength="30" type="text"   class="form-control input-md" >
-                                    <input type="hidden" id="wclass_cd">
+                                    <input  type="hidden" id="wclass_cd">
                                     <div id="wclassList" class="search-drop"></div>
                                 </div>
                             </div>
                         </div>
 
                         <!-- Select Basic -->
-                        <div class="col-md-6">
+                        <!--                        <div class="col-md-6">
+                        
+                                                    <div class="form-group">
+                                                        <label class="col-md-6 control-label" for="textinput">Ward Name</label>
+                                                        <div class="col-md-6">
+                                                            <input  id="wname" name="wname" placeholder="Insert Ward Name" maxlength="30"  class="form-control input-md">
+                                                            <input type="hidden" id="wname_cd">
+                                                            <div id="wnameList" class="search-drop"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                        -->
 
-                            <div class="form-group">
-                                <label class="col-md-6 control-label" for="textinput">Ward Name</label>
-                                <div class="col-md-6">
-                                    <input  id="wname" name="wname" placeholder="Insert Ward Name" maxlength="30"  class="form-control input-md">
-                                    <input type="hidden" id="wname_cd">
-                                    <div id="wnameList" class="search-drop"></div>
-                                </div>
+                        <!-- Select Basic -->
+                        <div class="form-group">
+                            <label class="col-md-3 control-label" for="selectbasic">Ward Name*</label>
+                            <div class="col-md-3" id="WardNameDropdown">
+                                  
+                                <select id="wname" name="selectbasic" class="form-control" disabled="">
+
+
+                                </select>
+                                <input  type="hidden" id="wclass_cd">
                             </div>
+
                         </div>
+
+
+
+
+
 
                     </div>
 
@@ -194,6 +214,52 @@
     w3IncludeHTML();
     $(document).ready(function () {
 
+
+//        $("#wclass").on('change', function () {
+//            var wclass = $(this).val();
+//            var hfc = $("#Rhfc").val();
+//            $.ajax({
+//                type: "post",
+//                url: "listWardName2.jsp",
+//                data: {'wclass': wclass, 'hfc': hfc},
+//                timeout: 10000,
+//                success: function (list) {
+//                    //remove the loading 
+//                    //$body.removeClass("loading");
+//                    console.log(list);
+//                    $('#WardNameDropdown').html(list);
+//
+//                },
+//                error: function (xhr, status, error) {
+//                    var err = eval("(" + xhr.responseText + ")");
+//                    //bootbox.alert(err.Message);
+//                }
+//            });
+//        });
+
+//        $("#eliSrc").on('change', function () {
+//        var EliSrc = $(this).val();
+//        $.ajax({
+//            type: "post",
+//            url: "PMS/listEliTy.jsp",
+//            data: {'EliSrc': EliSrc},
+//            timeout: 10000,
+//            success: function (list) {
+//                //remove the loading 
+//                //$body.removeClass("loading");
+//                console.log(list);
+//                $('#EligibilityTypeDropdown').html(list);
+//
+//            },
+//            error: function (xhr, status, error) {
+//                var err = eval("(" + xhr.responseText + ")");
+//                //bootbox.alert(err.Message);
+//            }
+//        });
+//    });
+//        
+
+
         $("#wclass").on('keyup', function () { // everytime keyup event
             var input = $(this).val(); // We take the input value
             var hfc = $("#Rhfc").val();
@@ -217,9 +283,26 @@
                             $('#wclass').val($(this).text());
                             $('#wclassList').text(''); // Clear the <div id="match"></div>
                             var arrayData = $('#wclass').val().split("|");
-                            //console.log(arrayData);
-                            //console.log(arrayData[0].trim());
-                            //console.log(arrayData[1].trim());
+                            var wclasscode = arrayData[0];
+                            $('#wclass_cd').val(wclasscode);
+
+                            $.ajax({
+                                type: "post",
+                                url: "listWardName2.jsp",
+                                data: {'wclasscode': wclasscode, 'hfc': hfc},
+                                timeout: 10000,
+                                success: function (list) {
+                                    //remove the loading 
+                                    //$body.removeClass("loading");
+                                    console.log(list);
+                                    $('#WardNameDropdown').html(list);
+
+                                },
+                                error: function (xhr, status, error) {
+                                    var err = eval("(" + xhr.responseText + ")");
+                                    //bootbox.alert(err.Message);
+                                }
+                            });
                         });
                     },
                     error: function () { // if error
@@ -231,7 +314,7 @@
             }
 
         });
-        
+
         $("#wname").on('keyup', function () { // everytime keyup event
             var input = $(this).val(); // We take the input value
             var hfc = $("#Rhfc").val();
@@ -488,11 +571,11 @@
             var wclass = $('#wclass').val();
             var array_wclass = wclass.split("|");
             var wclass = array_wclass[0];
-            
+
             var wname = $('#wname').val();
             var array_wname = wname.split("|");
             var wname = array_wname[0];
-            
+
             var Dis = $('#Dis').val();
             var array_dis = Dis.split("|");
             var Dis = array_dis[0];
@@ -554,8 +637,8 @@
                     createdBy: createdBy,
                     dis: dis,
                     sub: sub,
-                    wname:wname,
-                    wclass:wclass
+                    wname: wname,
+                    wclass: wclass
                 };
 
                 console.log(data);
