@@ -6,11 +6,13 @@
         <%
             String item_cd = (String) session.getAttribute("item_cd");
             String item_name = (String) session.getAttribute("item_name");
-
-            //out.println("item_cd:"+item_cd);
+            String pmi1 = (String) session.getAttribute("pmi1");
+            String order_no = (String) session.getAttribute("order_no");
+            
+            //out.println(pmi1);
             Conn conn = new Conn();
 
-            String query4 = "SELECT id_result,result,remark,test_date,test_time,Verification,performBy,picture FROM lis_result WHERE item_cd='" + item_cd + "'";
+            String query4 = "SELECT id_result,result,remark,test_date,test_time,Verification,performBy,picture FROM lis_result WHERE item_cd='" + item_cd + "' AND pmi_no = '"+pmi1+"' AND order_no = '"+order_no+"'";
             ArrayList<ArrayList<String>> q4 = conn.getData(query4);
         %>
         <thead>

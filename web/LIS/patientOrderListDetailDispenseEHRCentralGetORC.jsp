@@ -60,7 +60,7 @@
     String providerHFCORC = hfc;                 // Data 26
     String providerDispORC = dis;                // Data 27
     String providerSubDispORC = subdis;             // Data 28
-    String providerApplicationORC = "";         // Data 29
+    String providerApplicationORC = "08";         // Data 29
     String providerHFCAddress1ORC = "";         // Data 30
     
     String providerHFCAddress2ORC = "";         // Data 31
@@ -198,10 +198,10 @@
             episodeDateORC + "|" + encounterDateORC + "|" + enteredByORC + "|" + verifiedByORC + "|" + designationORC + "|" + orderHFCORC + "|" + orderDispORC + "|" + orderSubDispORC + "|" +
     //              15                          16                           17                         18                          19                        20                        21                          22  
             orderApplicationORC+ "|" + orderHFCADMPhoneNoORC + "|" + orderHFCAddress1ORC + "|"+ orderHFCAddress2ORC + "|" + orderHFCAddress3ORC + "|" + orderHFCTownORC + "|" + orderHFCDistrictORC + "|" + orderHFCStateORC + "|" +
-    //                        
+    //               23                         24                      25                          26                      27
             orderHFCCountryORC + "|" + orderHFCPostcodeORC + "|" + orderHFCPhoneNoORC + "|" + providerHFCORC + "|" + providerDispORC + "|" + providerSubDispORC + "|" + providerApplicationORC + "|" + providerHFCAddress1ORC + "|" + 
     //          
-            providerHFCAddress2ORC + "|" + providerHFCAddress3ORC + "|" + providerHFCTownORC + "|" + providerHFCDistrictORC + "|" + providerHFCStateORC + "|" + providerHFCCountryORC + "|" + providerHFCPostcodeORC +"|" + providerHFCPhoneNoORC + "|" + commentORC;
+            providerHFCAddress2ORC + "|" + providerHFCAddress3ORC + "|" + providerHFCTownORC + "|" + providerHFCDistrictORC + "|" + providerHFCStateORC + "|" + providerHFCCountryORC + "|" + providerHFCPostcodeORC +"|" + providerHFCPhoneNoORC + "|" + commentORC + "|";
 
     out.print(ORCFinal + "<cr>");
 

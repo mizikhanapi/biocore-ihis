@@ -23,7 +23,8 @@
     Date date = new Date();
     
     String dateBill = dateFormat.format(date);
-    String userIDBill = "Raziff";
+    //String userIDBill = "Raziff";
+    String userIDBill = session.getAttribute("USER_NAME").toString();
     String oderItem = "SELECT LAR.`result`,LAR.remark,LAR.test_date,LAR.`test_time`,LAR.test_name,LAR.`performBy`,LAR.`Verification` FROM lis_result LAR WHERE LAR.pmi_no = '"+pmiNo+"' AND LAR.order_no = '"+orderNo+"'";
     ArrayList<ArrayList<String>> dataLISOrderList = conn.getData(oderItem);
 

@@ -168,7 +168,7 @@
                                                 timeout: 3000,
                                                 success: function (returnDataItem) {
                                                     $("#datatest").val(returnDataItem.trim());
-                                                    $("#datatest1").val(returnDataMSHFull.trim() + returnDataPDIFull.trim() + returnDataORCFull.trim() + returnDataItem.trim());
+                                                    $("#datatest1").val(returnDataMSHFull.trim() + "\n" + returnDataPDIFull.trim() + "\n" + returnDataORCFull.trim() + "\n" + returnDataItem.trim());
                                                     //$('#dataItem').html(returnDataItem);
                                                     //$('#dataItem').trigger('contentchanged');
                                                     console.log(returnDataItem.trim());

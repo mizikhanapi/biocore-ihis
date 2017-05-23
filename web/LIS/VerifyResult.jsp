@@ -89,8 +89,7 @@
                                         
                                         session.setAttribute( "order_no", q4.get(0).get(0) );
                                         session.setAttribute( "item_name", q4.get(0).get(1) );
-                                        session.setAttribute( "order_date", q4.get(0).get(2) ); 
-                                        session.setAttribute( "pmi_no", pmi1 );
+                                        session.setAttribute( "order_date", q4.get(0).get(2) );
                                         out.println("<span class='pull-right'>Item Code:"+item_cd+"</span>");
                                         %></h3>
                                         <input type="text" id="pmi" value="<%=pmi1%>" style=" display: none;">

@@ -10,18 +10,18 @@
         String specimen_no = (String) session.getAttribute("specimen_no");
         String order_no = (String) session.getAttribute("order_no");
         String order_date = (String) session.getAttribute("order_date");
-        String pmi_no = (String) session.getAttribute("pmi_no");
-
+        String pmi_no = (String) session.getAttribute("pmi1");
+        //out.print(order_no+" "+item_cd+" "+pmi_no);
         Conn conn = new Conn();
 
-        String query4 = "SELECT id_result,result,remark,test_date,test_time,Verification,performBy,picture FROM lis_result WHERE item_cd='" + item_cd + "'";
+        String query4 = "SELECT id_result,result,remark,test_date,test_time,Verification,performBy,picture FROM lis_result WHERE item_cd='" + item_cd + "' AND pmi_no='"+pmi_no+"' AND order_no = '"+order_no+"'";
         ArrayList<ArrayList<String>> q4 = conn.getData(query4);
     %>
     <table id="MTC"  class="table table-striped table-bordered" cellspacing="0" width="100%">
         <thead>
             <tr>
 
-                <th class="col-sm-1">Result</th>
+                <th class="col-sm-1">Result1</th>
                 <th class="col-sm-1">Remark</th>
                 <th class="col-sm-1">Test Date</th>
                 <th class="col-sm-1">Test Time</th>
