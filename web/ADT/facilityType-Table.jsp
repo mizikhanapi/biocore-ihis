@@ -36,7 +36,7 @@
 
             <%
                 Conn conns = new Conn();
-                String sqlFacilityType = "SELECT ward_class_name,ward_class_code,ward_class_status, hfc_cd  FROM wis_ward_class where hfc_cd =" + hfcTYT + ";";
+                String sqlFacilityType = "SELECT ward_class_name,ward_class_code,ward_class_status, hfc_cd  FROM wis_ward_class where discipline_cd ="+disTYT+" AND hfc_cd =" + hfcTYT + ";";
                 ArrayList<ArrayList<String>> dataFacilityType = conns.getData(sqlFacilityType);
 
                 int size = dataFacilityType.size();
