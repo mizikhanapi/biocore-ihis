@@ -111,7 +111,7 @@
 
                                                     <div id="systemMain">
                                                     </div>
-                                                    <div id="systemTable">
+                                                    <div id="systemTable" class="table-guling">
                                                     </div>
 
                                                 </div>
@@ -123,7 +123,7 @@
                                                 <div id="module">
                                                     <div id="moduleMain">
                                                     </div>
-                                                    <div id="moduleTable">
+                                                    <div id="moduleTable" class="table-guling">
                                                     </div>
                                                 </div>
 
@@ -134,7 +134,7 @@
                                                 <div id="transaction">
                                                     <div id="transactionMain">
                                                     </div>
-                                                    <div id="transactionTable">
+                                                    <div id="transactionTable" class="table-guling">
                                                     </div>
                                                 </div>
 
@@ -145,7 +145,7 @@
                                                 <div id="page">
                                                     <div id="pageMain">
                                                     </div>
-                                                    <div id="pageTable">
+                                                    <div id="pageTable" class="table-guling">
                                                     </div>
                                                 </div>
 

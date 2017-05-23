@@ -146,7 +146,7 @@
                 createdBy : createdBy
             };
             //console.log(ty + " -|- " + nm);
-            //console.log(data);
+            console.log(data);
             $.ajax({
                 type: "post",
                 url: "saveQueueList.jsp",

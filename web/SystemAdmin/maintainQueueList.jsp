@@ -12,7 +12,7 @@
         <button id="Lplus" class="btn btn-success" data-status="pagado" data-toggle="modal" data-id="1" data-target="#list" style=" padding-right: 10px;padding-left: 10px;color: white;"><a data-toggle="tooltip" data-placement="top" title="Add Items" ><i class=" fa fa-plus" style=" padding-right: 10px;padding-left: 10px;color: white;"></i></a>ADD Queue List</button>
     </span>
 </h4>
-<div id="QLdiv">
+<div id="QLdiv" class="table-guling">
     <table class="table table-filter table-striped" style="background: #fff; border: 1px solid #ccc; " id="QLtable">
     <thead>
     <th>Queue Name</th>

@@ -97,7 +97,7 @@
 
                                                     <div id="disciplineMain">
                                                     </div>
-                                                    <div id="disciplineTable">
+                                                    <div id="disciplineTable" class="table-guling">
                                                     </div>
 
                                                 </div>
@@ -109,7 +109,7 @@
                                                 <div id="subdiscipline">
                                                     <div id="subdisciplineMain">
                                                     </div>
-                                                    <div id="subdisciplineTable">
+                                                    <div id="subdisciplineTable" class="table-guling">
                                                     </div>
                                                 </div>
 
@@ -120,7 +120,7 @@
                                                 <div id="healthFacility">
                                                     <div id="healthFacilityMain">
                                                     </div>
-                                                    <div id="healthFacilityTable">
+                                                    <div id="healthFacilityTable" class="table-guling">
                                                     </div>
                                                 </div>
 
@@ -131,7 +131,7 @@
                                                 <div id="assign">
                                                     <div id="assignDisciplineMain">
                                                     </div>
-                                                    <div id="assignDisciplineTable">
+                                                    <div id="assignDisciplineTable" class="table-guling">
                                                     </div>
                                                 </div>
 

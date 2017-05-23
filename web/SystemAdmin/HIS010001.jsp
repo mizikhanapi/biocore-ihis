@@ -97,7 +97,7 @@
 
                                                     <div id="masterMain">
                                                     </div>
-                                                    <div id="masterTable">
+                                                    <div id="masterTable" class="table-guling">
                                                     </div>
 
                                                 </div>
@@ -108,7 +108,7 @@
                                                 <div id="detail">
                                                     <div id="detailMain">
                                                     </div>
-                                                    <div id="detailTable">
+                                                    <div id="detailTable" class="table-guling">
                                                     </div>
                                                 </div>
 

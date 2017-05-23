@@ -68,10 +68,10 @@
                                                 <div id="queueType"></div>
                                             </div>-->
                                             <div class="tab-pane active" id="tab_default_2">
-                                                <div id="queueName"></div>
+                                                <div id="queueName" class="table-guling"></div>
                                             </div>
                                             <div class="tab-pane" id="tab_default_3">
-                                                <div id="queueList"></div>
+                                                <div id="queueList" class="table-guling"></div>
                                             </div>
                                         </div>
                                     </div>

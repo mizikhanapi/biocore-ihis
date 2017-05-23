@@ -105,7 +105,7 @@
 
                                                     <div id="userMain">
                                                     </div>
-                                                    <div id="userTable">
+                                                    <div id="userTable" class="table-guling">
                                                     </div>
 
                                                 </div>
@@ -116,7 +116,7 @@
                                                 <div id="role">
                                                     <div id="roleMain">
                                                     </div>
-                                                    <div id="roleTable">
+                                                    <div id="roleTable" class="table-guling">
                                                     </div>
                                                 </div>
 
@@ -126,7 +126,7 @@
                                                 <div id="accessrole">
                                                     <div id="accessRoleMain">
                                                     </div>
-                                                    <div id="accessRoleTable">
+                                                    <div id="accessRoleTable" class="table-guling">
                                                     </div>
                                                 </div>
 
@@ -136,7 +136,7 @@
                                                 <div id="responsibility">
                                                     <div id="responsibilityMain">
                                                     </div>
-                                                    <div id="responsibilityTable">
+                                                    <div id="responsibilityTable" class="table-guling">
                                                     </div>
                                                 </div>
 

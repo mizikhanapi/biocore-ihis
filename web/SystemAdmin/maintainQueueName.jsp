@@ -10,8 +10,8 @@
         <button id="Nplus" class="btn btn-success" data-status="pagado" data-toggle="modal" data-id="1" data-target="#names" style=" padding-right: 10px;padding-left: 10px;color: white;"><a data-toggle="tooltip" data-placement="top" title="Add Items" ><i class=" fa fa-plus" style=" padding-right: 10px;padding-left: 10px;color: white;"></i></a>ADD Queue Name</button>
     </span>
 </h4>
-<div id="QNdiv">
-    <table class="table table-filter table-striped" style="background: #fff; border: 1px solid #ccc; " id="QNtable">
+<div id="QNdiv" class="table-guling">
+    <table class="table table-filter table-striped table-guling" style="background: #fff; border: 1px solid #ccc; " id="QNtable">
         <thead>
         <th>Queue Type Code</th>
         <th>Queue Name Code</th>
