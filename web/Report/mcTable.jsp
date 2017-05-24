@@ -54,7 +54,7 @@
     <td id="pmino"><%= mc.get(i).get(2)%></td>
     <td>
         <input name="b_print" id="b_print<%=i%>" type="button" class="btn btn-success" value=" Print " data-toggle="modal" data-target="#basicModal">
-        
+
         <script>
             $('#b_print<%=i%>').click(function () {
 
@@ -63,13 +63,12 @@
                     type: "POST",
                     url: "mcReport.jsp",
                     data: {'name': "<%=mc.get(i).get(0)%>",
-                           'episode': "<%=mc.get(i).get(1)%>", 
-                           'pmi': "<%=mc.get(i).get(2)%>", 
-                           'start_date': "<%=mc.get(i).get(3)%>",
-                           'end_date': "<%=mc.get(i).get(4)%>",
-                           'comment': "<%=mc.get(i).get(5)%>",
-                           'ic': "<%=mc.get(i).get(6)%>"},
-                           
+                        'episode': "<%=mc.get(i).get(1)%>",
+                        'pmi': "<%=mc.get(i).get(2)%>",
+                        'start_date': "<%=mc.get(i).get(3)%>",
+                        'end_date': "<%=mc.get(i).get(4)%>",
+                        'comment': "<%=mc.get(i).get(5)%>",
+                        'ic': "<%=mc.get(i).get(6)%>"},
                     timeout: 10000,
                     success: function (list) {
 
@@ -99,20 +98,25 @@
 %>
 </table>
 <div class="modal fade" id="basicModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-lg">
         <div class="modal-content">
+
             <div class="modal-header">
-                <div class="modal-header">
-                    <input name="b_print" id="b_print" type="button" class="btn btn-success" value=" Print ">
-                    <button type="button" class="close" data-dismiss="modal"><i class="fa fa-times fa-lg"></i></button>
-
+                <button type="button" class="close" data-dismiss="modal"><i class="fa fa-times fa-lg"></i></button>
+                <h3 class="modal-title">Sijil Cuti Sakit</h3>
+            </div>
+            <div class="modal-body">
+                <div id="test"></div>
+            </div>
+            <div class="modal-footer">
+                <div class="btn-group btn-group-justified" role="group" aria-label="group button">
+                    <div class="btn-group" role="group">
+                        <input name="b_print" id="b_print" type="button" class="btn btn-success btn-lg" value=" Approve ">        
+                    </div>
+                    <div class="btn-group" role="group">
+                        <button type="button" class="btn btn-default btn-lg" data-dismiss="modal">Close</button>     
+                    </div>
                 </div>
-                <br>
-                <div id="test">
-
-                </div>
-
-
 
             </div>
         </div>
@@ -129,7 +133,7 @@
             ]
         });
 
-         $('#b_print').click(function () {
+        $('#b_print').click(function () {
             printReport();
         });
     });
