@@ -26,13 +26,17 @@
 
     <thead>
 
-    <th> ID </th>
-    <th> Block Name </th>
     <th> ICD10 Code </th>
+    <th> Chapter </th>
+    <th> Block </th>
+    <th> Description </th>
+    <th> PMI No. </th>
+    <th> HFC Code </th>
+    <th> Center Code </th>
     <th> Reprint </th>
 
     <%  
-         String sql = "SELECT blocks.`Id`,blocks.`name`, codes.`icd10_code`, codes.`icd10_chapter`,codes.`icd10_block`, codes.`icd10_desc`, codes.`icd10_digit`,diagnosis.`PMI_no`,diagnosis.`Episode_Date`,diagnosis.`Diagnosis_Cd`,diagnosis.`HFC_Cd`,diagnosis.`Centre_Code`,chapters.`Id`, chapters.`name` FROM `icd10_codes` codes INNER JOIN `lhr_diagnosis` diagnosis ON codes.`icd10_code` = diagnosis.`diagnosis_cd` INNER JOIN `icd10_chapters` chapters ON codes.`icd10_chapter` = chapters.`id` INNER JOIN `icd10_blocks` blocks ON codes.`icd10_block` = blocks.`id` WHERE diagnosis.`Episode_Date` BETWEEN '2017-04-01' AND '2017-05-22' ORDER BY chapters.`Id` ASC, blocks.`Id` ASC"; 
+         String sql = "SELECT blocks.`Id`,blocks.`name`, codes.`icd10_code`, codes.`icd10_chapter`,codes.`icd10_block`, codes.`icd10_desc`, codes.`icd10_digit`,diagnosis.`PMI_no`,diagnosis.`Episode_Date`,diagnosis.`Diagnosis_Cd`,diagnosis.`HFC_Cd`,diagnosis.`Centre_Code`,chapters.`Id`, chapters.`name` FROM `icd10_codes` codes INNER JOIN `lhr_diagnosis` diagnosis ON codes.`icd10_code` = diagnosis.`diagnosis_cd` INNER JOIN `icd10_chapters` chapters ON codes.`icd10_chapter` = chapters.`id` INNER JOIN `icd10_blocks` blocks ON codes.`icd10_block` = blocks.`id` WHERE diagnosis.`Episode_Date` BETWEEN '"+startDate+"' AND '"+endDate+"' ORDER BY chapters.`Id` ASC, blocks.`Id` ASC"; 
             
         ArrayList<ArrayList<String>> ICD10 = conn.getData(sql);
 
@@ -41,11 +45,13 @@
     %>
 </thead>
 <tr>
-    <td id="name"><%= ICD10.get(i).get(0)%></td>
-    <td id="episodeDate2"><%= ICD10.get(i).get(1)%>
-        <input type="hidden" id="episodeDate2_<%=i%>" value="<%= ICD10.get(i).get(1)%>">
-    </td>
-    <td id="pmino"><%= ICD10.get(i).get(2)%></td>
+    <td id="ICD10Code"><%= ICD10.get(i).get(2)%></td>
+    <td id="chapter"><%= ICD10.get(i).get(3)%></td>
+    <td id="block"><%= ICD10.get(i).get(4)%></td>
+    <td id="desc"><%= ICD10.get(i).get(5)%></td>
+    <td id="pmino"><%= ICD10.get(i).get(8)%></td>
+    <td id="hfc"><%= ICD10.get(i).get(10)%></td>
+    <td id="center"><%= ICD10.get(i).get(11)%></td>
     <td>
         <input name="b_print" id="b_print<%=i%>" type="button" class="btn btn-success" value=" Print " data-toggle="modal" data-target="#basicModal">
         

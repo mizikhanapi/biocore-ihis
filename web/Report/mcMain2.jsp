@@ -61,8 +61,7 @@
             </div>
 
         </div>
-
-        <script src="https://code.jquery.com/jquery-1.12.4.js" type="text/javascript"></script>
+        <script src="../assets/js/jquery-1.12.4.js" type="text/javascript"></script>
         <script src="../assets/js/jquery.dataTables.min.js" type="text/javascript"></script>
         <script src="../assets/js/dataTables.buttons.min.js" type="text/javascript"></script>
         <script src="../assets/js/buttons.flash.min.js" type="text/javascript"></script>

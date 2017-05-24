@@ -22,24 +22,29 @@
     DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
     Date date = new Date();
     
-    String dateBill = dateFormat.format(date);
+    String dateverify = dateFormat.format(date);
     //String userIDBill = "Raziff";
     String userIDBill = session.getAttribute("USER_NAME").toString();
-    String oderItem = "SELECT LAR.`result`,LAR.remark,LAR.test_date,LAR.`test_time`,LAR.test_name,LAR.`performBy`,LAR.`Verification` FROM lis_result LAR WHERE LAR.pmi_no = '"+pmiNo+"' AND LAR.order_no = '"+orderNo+"'";
+    String oderItem = "SELECT LAR.item_cd,LAR.test_name,LAR.id_result,LAR.`result`,LAR.remark,LAR.test_date,LAR.`test_time`,LAR.test_name,LAR.`performBy`,LAR.`Verification`,LAR.`verifyBy`,LOM.order_date FROM lis_result LAR,lis_order_master LOM WHERE LAR.order_no = LOM.order_no AND LAR.pmi_no = '"+pmiNo+"' AND LAR.order_no = '"+orderNo+"'";
     ArrayList<ArrayList<String>> dataLISOrderList = conn.getData(oderItem);
 
     int size = dataLISOrderList.size();
     for (int i = 0; i < size; i++) {
 
-        String result = dataLISOrderList.get(i).get(0);
-        String remark = dataLISOrderList.get(i).get(1);
-        String test_date = dataLISOrderList.get(i).get(2);
-        String testTime = dataLISOrderList.get(i).get(3);
-        String test_name = dataLISOrderList.get(i).get(4);
-        String performBy = dataLISOrderList.get(i).get(5);
-        String Verification = dataLISOrderList.get(i).get(6);
+        String item_cd = dataLISOrderList.get(i).get(0);
+        String item_name = dataLISOrderList.get(i).get(1);
+        String id_result = dataLISOrderList.get(i).get(2);
+        String result = dataLISOrderList.get(i).get(3);
+        String remark = dataLISOrderList.get(i).get(4);
+        String test_date = dataLISOrderList.get(i).get(5);
+        String testTime = dataLISOrderList.get(i).get(6);
+        String episode = dataLISOrderList.get(i).get(11);
+        String performBy = dataLISOrderList.get(i).get(8);
+        String verifyBy = dataLISOrderList.get(i).get(10);
         
-        String dataOneRow = "LIR|T^" + orderDate + "|CH|" + pmiNo + "|" + result + "|" + remark + "|" + test_date + "|" + testTime +"|" + test_name +"|" + performBy + "|" + "|" + Verification + "|" + userIDBill + "|" + dateBill + "<cr>";
+        String dataOneRow = "LIR|"+item_cd+"^"+item_name+"^ICD10-PCS|"+id_result+"^"+result+"^UD|^"+performBy+"^UD|"+test_date+" "+testTime+"|^^UD||^"+verifyBy+"^UD|"+dateverify+"||"+episode+"|";
+        
+        //String dataOneRow = "LIR|T^" + orderDate + "|CH|" + pmiNo + "|" + result + "|" + remark + "|" + test_date + "|" + testTime +"|" + test_name +"|" + performBy + "|" + "|" + Verification + "|" + userIDBill + "|" + dateBill + "<cr>";
         out.print(dataOneRow);
     }
 

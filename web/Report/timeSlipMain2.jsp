@@ -54,20 +54,20 @@
                 </div>
             </div>
         </div>
-        <script src="https://code.jquery.com/jquery-1.12.4.js" type="text/javascript"></script>
-        <script src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js" type="text/javascript"></script>
-        <script src="https://cdn.datatables.net/buttons/1.3.1/js/dataTables.buttons.min.js"></script>
-        <script src="https://cdn.datatables.net/buttons/1.3.1/js/buttons.flash.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
-        <script src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.27/build/pdfmake.min.js"></script>
-        <script src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.27/build/vfs_fonts.js"></script>
-        <script src="https://cdn.datatables.net/buttons/1.3.1/js/buttons.html5.min.js"></script>
-        <script src="https://cdn.datatables.net/buttons/1.3.1/js/buttons.print.min.js" type="text/javascript" language="javascript"></script>
+        <script src="../assets/js/jquery-1.12.4.js" type="text/javascript"></script>
+        <script src="../assets/js/jquery.dataTables.min.js" type="text/javascript"></script>
+        <script src="../assets/js/dataTables.buttons.min.js" type="text/javascript"></script>
+        <script src="../assets/js/buttons.flash.min.js" type="text/javascript"></script>
+        <script src="../assets/js/jszip.min.js" type="text/javascript"></script>
+        <script src="../assets/js/pdfmake.min.js" type="text/javascript"></script>
+        <script src="../assets/js/vfs_fonts.js" type="text/javascript"></script>
+        <script src="../assets/js/buttons.html5.min.js" type="text/javascript"></script>
+        <script src="../assets/js/buttons.print.min.js" type="text/javascript"></script>
 
         <script>
             $(document).ready(function () {
                 $("#SearchPatientTCdiv").load("searchTs.jsp");
-                $("#tsTableDivision").load("tsTable.jsp");
+                //$("#tsTableDivision").load("tsTable.jsp");
 
                 $(document).ready(function () {
                     $.ajax({

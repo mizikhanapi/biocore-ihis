@@ -35,7 +35,7 @@
         String buy_price = dataLISOrderList.get(i).get(8);
         String ser_price = dataLISOrderList.get(i).get(9);
 
-        
+        //String t = "BLI|T^2017-5-24 12:25:1|CH|9504050251851|MTA011004|acetamenophane|0.10|12|DR024|2017-5-24 12:25:1<cr>";
         String dataOneRow = "BIL|T^" + orderDate + "|CH|" + pmiNo + "|" + item_cd + "|" + item_name + "|" + buy_price + "|" + ser_price + "|" + userIDBill + "|" + dateBill + "<cr>\n";
         out.print(dataOneRow);
     }
