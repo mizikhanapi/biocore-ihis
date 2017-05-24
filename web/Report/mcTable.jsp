@@ -32,13 +32,13 @@
 
     <%  String sql = "";
         if (mcType.equals("001")) {
-            sql = "SELECT A.PATIENT_NAME , B.EPISODE_DATE, A.`PMI_NO` FROM PMS_PATIENT_BIODATA A JOIN LHR_MED_LEAVE B ON A.`PMI_NO` = B.pmi_no WHERE A.PMI_NO = '" + mcInput + "'";
+            sql = "SELECT A.PATIENT_NAME , B.EPISODE_DATE, A.`PMI_NO`,B.start_date,B.end_date,B.comment,A.`NEW_IC_NO` FROM PMS_PATIENT_BIODATA A JOIN LHR_MED_LEAVE B ON A.`PMI_NO` = B.pmi_no WHERE A.PMI_NO = '" + mcInput + "'";
         } else if (mcType.equals("002")) {
-            sql = "SELECT A.PATIENT_NAME , B.EPISODE_DATE, A.`PMI_NO` FROM PMS_PATIENT_BIODATA A JOIN LHR_MED_LEAVE B ON A.`PMI_NO` = B.pmi_no WHERE A.NEW_IC_NO = '" + mcInput + "'";
+            sql = "SELECT A.PATIENT_NAME , B.EPISODE_DATE, A.`PMI_NO`,B.start_date,B.end_date,B.comment,A.`NEW_IC_NO` FROM PMS_PATIENT_BIODATA A JOIN LHR_MED_LEAVE B ON A.`PMI_NO` = B.pmi_no WHERE A.NEW_IC_NO = '" + mcInput + "'";
         } else if (mcType.equals("003")) {
-            sql = "SELECT A.PATIENT_NAME , B.EPISODE_DATE, A.`PMI_NO` FROM PMS_PATIENT_BIODATA A JOIN LHR_MED_LEAVE B ON A.`PMI_NO` = B.pmi_no WHERE A.OLD_IC_NO = '" + mcInput + "'";
+            sql = "SELECT A.PATIENT_NAME , B.EPISODE_DATE, A.`PMI_NO`,B.start_date,B.end_date,B.comment,A.`NEW_IC_NO` FROM PMS_PATIENT_BIODATA A JOIN LHR_MED_LEAVE B ON A.`PMI_NO` = B.pmi_no WHERE A.OLD_IC_NO = '" + mcInput + "'";
         } else {
-            sql = "SELECT A.PATIENT_NAME , B.EPISODE_DATE, A.`PMI_NO` FROM PMS_PATIENT_BIODATA A JOIN LHR_MED_LEAVE B ON A.`PMI_NO` = B.pmi_no WHERE A.ID_NO = '" + mcInput + "'";
+            sql = "SELECT A.PATIENT_NAME , B.EPISODE_DATE, A.`PMI_NO`,B.start_date,B.end_date,B.comment,A.`NEW_IC_NO` FROM PMS_PATIENT_BIODATA A JOIN LHR_MED_LEAVE B ON A.`PMI_NO` = B.pmi_no WHERE A.ID_NO = '" + mcInput + "'";
         }
         ArrayList<ArrayList<String>> mc = conn.getData(sql);
 
@@ -61,8 +61,15 @@
                 $.ajax({
                     async: true,
                     type: "POST",
-                    url: "timeSlipReport.jsp",
-                    data: {'name': "<%=mc.get(i).get(0)%>", 'episode': "<%=mc.get(i).get(1)%>", 'pmi': "<%=mc.get(i).get(2)%>"},
+                    url: "mcReport.jsp",
+                    data: {'name': "<%=mc.get(i).get(0)%>",
+                           'episode': "<%=mc.get(i).get(1)%>", 
+                           'pmi': "<%=mc.get(i).get(2)%>", 
+                           'start_date': "<%=mc.get(i).get(3)%>",
+                           'end_date': "<%=mc.get(i).get(4)%>",
+                           'comment': "<%=mc.get(i).get(5)%>",
+                           'ic': "<%=mc.get(i).get(6)%>"},
+                           
                     timeout: 10000,
                     success: function (list) {
 

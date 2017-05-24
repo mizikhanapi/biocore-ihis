@@ -26,7 +26,7 @@
     RMIConnector rmic = new RMIConnector();
     
     String status = "0";
-    String status1 = "1";
+    String status1 = "0";
     String status2 = "0";
     String status3 = "0";
     String status4 = "0";
