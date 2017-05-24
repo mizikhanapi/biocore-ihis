@@ -185,7 +185,7 @@
                                     <select class="form-control"  id="HFT_state" >
                                         <option  value="0" >Select the state</option>
                                         <%
-                                            String sql2 = "SELECT detail_reference_code, description FROM adm_lookup_detail WHERE master_reference_code = '0002' AND detail_reference_code NOT IN ('00', '98') order by description ";
+                                            String sql2 = "SELECT detail_reference_code, description FROM adm_lookup_detail WHERE master_reference_code = '0002' AND hfc_cd = '"+hfc_cd+"' AND detail_reference_code NOT IN ('00', '98') order by description ";
                                             ArrayList<ArrayList<String>> stateList = conn.getData(sql2);
                                             for(int i = 0; i < stateList.size(); i++){
                                         %>

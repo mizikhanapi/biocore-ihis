@@ -60,11 +60,11 @@
                    
                     <div class="form-group">
                         <div><label>Start date : </label></div>
-                        <input type="text" id="startDate" class="form-control" placeholder="YYYY-MM-DD">
+                        <input type="text" id="startDate" class="form-control" placeholder="Choose date dd/mm/yyyy">
                     </div>
                     <div class="form-group">
                         <div><label>End date : </label></div>
-                        <input type="text" id="endDate" class="form-control" placeholder="YYYY-MM-DD">
+                        <input type="text" id="endDate" class="form-control" placeholder="Choose date dd/mm/yyyy">
                     </div>
                     <div class="form-group">
                         <div><label>Status : </label></div>
@@ -96,8 +96,8 @@
             
     $(document).ready(function(){
        $(function(){
-            $('#startDate').datepicker({dateFormat:'yy-mm-dd',changeMonth:true,changeYear:true});
-            $('#endDate').datepicker({dateFormat:'yy-mm-dd',changeMonth:true,changeYear:true});
+            $('#startDate').datepicker({dateFormat:'dd/mm/yy',changeMonth:true,changeYear:true});
+            $('#endDate').datepicker({dateFormat:'dd/mm/yy',changeMonth:true,changeYear:true});
         }); 
     });
     
@@ -146,15 +146,18 @@
                 createdBy : createdBy
             };
             //console.log(ty + " -|- " + nm);
-            console.log(data);
+            //console.log(data);
             $.ajax({
                 type: "post",
                 url: "saveQueueList.jsp",
                 data: data,
                 timeout: 3000,
-                success: function (data, textStatus, jqXHR) {
-                    console.log(data);
-                    bootbox.alert("Queue List successfully been saved",function(){
+                success: function (dataBack, textStatus, jqXHR) {
+                    var msg = 'successfully been saved';
+                    if(!dataBack){
+                        msg = 'failed to save';
+                    }
+                    bootbox.alert("Queue List "+msg,function(){
                         $('#modal1 #type').remove();
                         $('#modal2 #names').remove();
                         $('#modal3 #list').remove();
@@ -162,6 +165,10 @@
                         $('#modal2').load('queueNameModal.jsp');
                         $('#modal3').load('queueListModal.jsp');
                     });
+                    
+                    if(!dataBack){
+                        return;
+                    }
                     $.ajax({
                         type: "post",
                         url: "listQueueList.jsp",
@@ -177,7 +184,7 @@
                         }
                     });
                 }, error: function (jqXHR, textStatus, errorThrown) {
-
+                        console.log('Error: '+errorThrown);
                 }
             });
         }
