@@ -21,22 +21,25 @@
     Conn conn = new Conn();
             String startDate = request.getParameter("startDate");
             String endDate = request.getParameter("endDate");
+            String my_1_hfc_cd = (String) session.getAttribute("HEALTH_FACILITY_CODE");
+            //AND diagnosis.`HFC_Cd`='"+my_1_hfc_cd+"'
 %>
 <table id="ICD10Table" class="table table-filter table-striped margin-top-50px" style="background: #fff; border: 1px solid #ccc; margin-top: 20px">
 
     <thead>
 
     <th> ICD10 Code </th>
-    <th> Chapter </th>
-    <th> Block </th>
-    <th> Description </th>
-    <th> PMI No. </th>
-    <th> HFC Code </th>
-    <th> Center Code </th>
-    <th> Reprint </th>
+    <th> Chapter Code </th>
+    <th> Block Code</th>
+    <th> Chapter Name </th>
+    <th> Block Name </th>
+    <th> Total Patient </th>
+    <th> Description</th>
+    <th> Digit </th>
+    <th> Discipline </th>
 
-    <%  
-         String sql = "SELECT blocks.`Id`,blocks.`name`, codes.`icd10_code`, codes.`icd10_chapter`,codes.`icd10_block`, codes.`icd10_desc`, codes.`icd10_digit`,diagnosis.`PMI_no`,diagnosis.`Episode_Date`,diagnosis.`Diagnosis_Cd`,diagnosis.`HFC_Cd`,diagnosis.`Centre_Code`,chapters.`Id`, chapters.`name` FROM `icd10_codes` codes INNER JOIN `lhr_diagnosis` diagnosis ON codes.`icd10_code` = diagnosis.`diagnosis_cd` INNER JOIN `icd10_chapters` chapters ON codes.`icd10_chapter` = chapters.`id` INNER JOIN `icd10_blocks` blocks ON codes.`icd10_block` = blocks.`id` WHERE diagnosis.`Episode_Date` BETWEEN '"+startDate+"' AND '"+endDate+"' ORDER BY chapters.`Id` ASC, blocks.`Id` ASC"; 
+    <%  String sql = "SELECT codes.`icd10_code`,diagnosis.`Diagnosis_Cd`, codes.`icd10_chapter`,blocks.`Id`, chapters.`name` ,blocks.`name`, count(diagnosis.`PMI_no`), codes.`icd10_desc`, codes.`icd10_digit`,diagnosis.`Centre_Code`FROM `icd10_codes` codes INNER JOIN `lhr_diagnosis` diagnosis ON codes.`icd10_code` = diagnosis.`diagnosis_cd` INNER JOIN `icd10_chapters` chapters ON codes.`icd10_chapter` = chapters.`id` INNER JOIN `icd10_blocks` blocks ON codes.`icd10_block` = blocks.`id` JOIN adm_health_facility ADF ON ADF.hfc_cd = diagnosis.`HFC_Cd` WHERE diagnosis.`Episode_Date` BETWEEN '"+startDate+"' AND '"+endDate+"' AND diagnosis.`HFC_Cd`='"+my_1_hfc_cd+"' GROUP BY diagnosis.`HFC_Cd`,codes.icd10_code ORDER BY chapters.`Id` ASC, blocks.`Id` ASC";
+         //String sql = "SELECT blocks.`Id`,blocks.`name`, codes.`icd10_code`, codes.`icd10_chapter`,codes.`icd10_block`, codes.`icd10_desc`, codes.`icd10_digit`,diagnosis.`PMI_no`,diagnosis.`Episode_Date`,diagnosis.`Diagnosis_Cd`,diagnosis.`HFC_Cd`,diagnosis.`Centre_Code`,chapters.`Id`, chapters.`name` FROM `icd10_codes` codes INNER JOIN `lhr_diagnosis` diagnosis ON codes.`icd10_code` = diagnosis.`diagnosis_cd` INNER JOIN `icd10_chapters` chapters ON codes.`icd10_chapter` = chapters.`id` INNER JOIN `icd10_blocks` blocks ON codes.`icd10_block` = blocks.`id` WHERE diagnosis.`Episode_Date` BETWEEN '"+startDate+"' AND '"+endDate+"' ORDER BY chapters.`Id` ASC, blocks.`Id` ASC"; 
             
         ArrayList<ArrayList<String>> ICD10 = conn.getData(sql);
 
@@ -45,43 +48,16 @@
     %>
 </thead>
 <tr>
-    <td id="ICD10Code"><%= ICD10.get(i).get(2)%></td>
-    <td id="chapter"><%= ICD10.get(i).get(3)%></td>
-    <td id="block"><%= ICD10.get(i).get(4)%></td>
-    <td id="desc"><%= ICD10.get(i).get(5)%></td>
-    <td id="pmino"><%= ICD10.get(i).get(8)%></td>
-    <td id="hfc"><%= ICD10.get(i).get(10)%></td>
-    <td id="center"><%= ICD10.get(i).get(11)%></td>
-    <td>
-        <input name="b_print" id="b_print<%=i%>" type="button" class="btn btn-success" value=" Print " data-toggle="modal" data-target="#basicModal">
-        
-        <script>
-            $('#b_print<%=i%>').click(function () {
-
-                $.ajax({
-                    async: true,
-                    type: "POST",
-                    url: "ICD10Report.jsp",
-                    data: {'name': "<%=ICD10.get(i).get(0)%>", 'episode': "<%=ICD10.get(i).get(1)%>", 'pmi': "<%=ICD10.get(i).get(2)%>"},
-                    timeout: 10000,
-                    success: function (list) {
-
-                        $("#test").val(list.trim());
-                        $('#test').html(list);
-                        $('#test').trigger('contentchanged');
-                        //printReport();
-                    },
-                    error: function (xhr, status, error) {
-                        var err = eval("(" + xhr.responseText + ")");
-                        bootbox.alert(err.Message);
-                    }
-                });
-
-            });
-
-        </script>
-
-    </td>
+    <td id="ICD10Code"><%= ICD10.get(i).get(0)%></td>
+    <td id="chapter"><%= ICD10.get(i).get(2)%></td>
+    <td id="block"><%= ICD10.get(i).get(3)%></td>
+    <td id="desc"><%= ICD10.get(i).get(4)%></td>
+    <td id="pmino"><%= ICD10.get(i).get(5)%></td>
+    <td id="hfc"><%= ICD10.get(i).get(6)%></td>
+    <td id="center"><%= ICD10.get(i).get(7)%></td>
+    <td id="center"><%= ICD10.get(i).get(8)%></td>
+    <td id="center"><%= ICD10.get(i).get(9)%></td>
+    
 
 </tr>
 

@@ -131,7 +131,7 @@
                                 <!-- List group -->
                                 <ul class="list-group">
                                     <li class="list-group-item"><a href="mcMain2.jsp">Reprint MC</a></li>
-                                    <li class="list-group-item"><a href="timeSlipMain2.jsp">Reprint Time Slip</a></li>
+                                    <li class="list-group-item"><a href="timeSlipMain.jsp">Reprint Time Slip</a></li>
                                 </ul>
                             </div>
                         </div>

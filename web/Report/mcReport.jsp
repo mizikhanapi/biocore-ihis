@@ -6,7 +6,6 @@
 
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.util.Date"%>
-<%@page import="Config.Config"%>
 <%@page import="dBConn.Conn"%>
 <%@page import="java.io.*"%> 
 <%@page import="java.sql.Connection"%> 
@@ -59,7 +58,7 @@
     String dateStart = start_date;
     String dateStop = end_date;
 
-    SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+    SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy");
 
     Date d1 = format.parse(dateStart);
     Date d2 = format.parse(dateStop);

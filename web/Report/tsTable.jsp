@@ -62,7 +62,7 @@
                 $.ajax({
                     async: true,
                     type: "POST",
-                    url: "timeSlipReport.jsp",
+                    url: "tsReport.jsp",
                     data: {'name': "<%=ts.get(i).get(0)%>",
                            'episode': "<%=ts.get(i).get(1)%>", 
                            'pmi': "<%=ts.get(i).get(2)%>", 
@@ -74,9 +74,9 @@
                     timeout: 10000,
                     success: function (list) {
 
-                        $("#test").val(list.trim());
-                        $('#test').html(list);
-                        $('#test').trigger('contentchanged');
+                        $("#test1").val(list.trim());
+                        $('#test1').html(list);
+                        $('#test1').trigger('contentchanged');
                         //printReport();
                     },
                     error: function (xhr, status, error) {
@@ -101,28 +101,33 @@
 
 </table>
 
+
+
 <div class="modal fade" id="basicModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <div class="modal-header">
-                            <input name="b_print" id="b_print" type="button" class="btn btn-success" value=" Print ">
-                            <button type="button" class="close" data-dismiss="modal"><i class="fa fa-times fa-lg"></i></button>
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
 
-                        </div>
-                        <br>
-                        <div id="test">
-
-                        </div>
-
-
-
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><i class="fa fa-times fa-lg"></i></button>
+                <h3 class="modal-title">Time Slip</h3>
+            </div>
+            <div class="modal-body">
+                <div id="test1"></div>
+            </div>
+            <div class="modal-footer">
+                <div class="btn-group btn-group-justified" role="group" aria-label="group button">
+                    <div class="btn-group" role="group">
+                        <input name="b_print" id="b_print" type="button" class="btn btn-success btn-lg" value=" Approve ">        
+                    </div>
+                    <div class="btn-group" role="group">
+                        <button type="button" class="btn btn-default btn-lg" data-dismiss="modal">Close</button>     
                     </div>
                 </div>
+
             </div>
         </div>
-
-
+    </div>
+</div>
 <script>
 
     $(document).ready(function () {
@@ -143,7 +148,7 @@
 
 
     function printReport() {
-        var divElements = $('#test').html();
+        var divElements = $('#test1').html();
         var popupWin = window.open('', '_blank', 'width=1200,height=500');
         popupWin.document.open();
         popupWin.document.write('<html><body onload="window.print()">' + divElements + '</html>');

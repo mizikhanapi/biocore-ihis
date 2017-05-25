@@ -71,12 +71,7 @@
         <script src="../assets/js/buttons.html5.min.js" type="text/javascript"></script>
         <script src="../assets/js/buttons.print.min.js" type="text/javascript"></script>
 
-        
-
-        
-        
-        
-        
+   
         <script>
             $(document).ready(function () {
                 $("#SearchPatientdiv").load("searchMc.jsp");
