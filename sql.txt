@@ -1,0 +1,60 @@
+SET SERVEROUTPUT ON
+declare
+p_patient SYS_REFCURSOR;
+p_treat SYS_REFCURSOR;
+patientid varchar(50);
+firstname varchar(50);
+lastname varchar(50);
+dateofbirth date;
+age varchar(50);
+gender varchar(50);
+address varchar(255);
+telno varchar(50);
+email varchar(50);
+picture blob;
+treatmentid varchar(50);
+dateoftreatment date;
+action varchar(50);
+typeofdisease varchar(50);
+patientid3 varchar(50);
+patientid2 varchar(50);
+staffid varchar(50);
+referenceid varchar(50);
+typeoffile varchar(50);
+treatmentid3 varchar(50);
+treatmentid2 varchar(50);
+filetreatment blob;
+
+begin
+getPatientDetail('PA20171054',p_patient,p_treat);
+loop
+   fetch  p_patient into patientid,firstname,lastname,dateofbirth,age,gender,address,telno,email,picture;
+    EXIT WHEN p_patient%NOTFOUND;
+    DBMS_OUTPUT.PUT_LINE(patientid || ' ' || firstname || ' ' || lastname|| ' ' ||age);
+    end loop;
+    
+    loop
+   fetch  p_treat into treatmentid,dateoftreatment,action,typeofdisease,patientid2,staffid,referenceid,typeoffile,treatmentid2,filetreatment;
+    EXIT WHEN p_treat%NOTFOUND;
+    DBMS_OUTPUT.PUT_LINE(treatmentid || ' ' || action || ' ' || referenceid|| ' ' ||treatmentid2);
+    end loop;
+end;
+/
+
+
+
+
+create or replace procedure advanceSearch(p_image in blob,p_treatment out sys_refcursor)
+as
+begin
+open p_treatment for
+select p.patientid,p.firstname,p.lastname,p.dateofbirth,p.age,p.gender,p.address,p.telno,p.email,p.picture,d.doctorid,d.firstname,d.lastname,d.telno,t.dateoftreatment,t.action,t.typeofdisease,rt.filetreatment
+from REFERENCETREATMENT rt
+join TREATMENT t on t.TREATMENTID = rt.TREATMENTID
+join DOCTORTREATMENT dt on dt.TREATMENTID = t.TREATMENTID
+join PATIENT p on p.PATIENTID = t.PATIENTID
+join DOCTOR d on d.DOCTORID = dt.DOCTORID
+where  dbms_lob.instr(rt.FILETREATMENT, p_image, 1, 1) > 0 ;
+
+end;
+/
