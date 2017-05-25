@@ -215,7 +215,7 @@ $('#CIS040002').on('shown',function(){
     });
 
     //js UPDATE for Drug Order
-    $('#DTONotes').on('click', '.updateDrugOrder', function () {
+    $('#tblCIS_Consultation_Table').on('click', '.updateDrugOrder', function () {
         var idName = $(this).get(0).id;
         var id = idName.split("|");
         var updateObj = _data[id[1]];
@@ -381,7 +381,7 @@ $('#tCIS_DTODrugName_update').val(updateObj.drugName);
     });
 
     //js UPDATE for Second opinion
-    $('#SOPNotes').on('click', '.updateSOF', function () {
+    $('#tblCIS_Consultation_Table').on('click', '.updateSOF', function () {
         var idName = $(this).get(0).id;
         var id = idName.split("|");
         var updateObj = _data[id[1]];
@@ -457,7 +457,7 @@ $('#tCIS_DTODrugName_update').val(updateObj.drugName);
     });
 
 //               //js UPDATE for Procedure
-    $('#POSNotes').on('click', '.updateBtn13', function () {
+    $('#tblCIS_Consultation_Table').on('click', '.updateBtn13', function () {
         var idName = $(this).get(0).id;
         var id = idName.split("|");
         var updateObj = _data[id[1]];
@@ -522,7 +522,7 @@ $('#tCIS_DTODrugName_update').val(updateObj.drugName);
     });
 
     //js update for MC & Time Slip
-    $('#MCTSNotes').on('click', '.updateBtn14', function () {
+    $('#tblCIS_Consultation_Table').on('click', '.updateBtn14', function () {
         var idName = $(this).get(0).id;
         var id = idName.split("|");
         var updateObj = _data[id[1]];
@@ -620,7 +620,7 @@ $('#tCIS_DTODrugName_update').val(updateObj.drugName);
     });
 
     //js update for Radiology request
-    $('#ROSNotes').on('click', '.updateBtn15', function () {
+    $('#tblCIS_Consultation_Table').on('click', '.updateBtn15', function () {
         var idName = $(this).get(0).id;
         var id = idName.split("|");
         var updateObj = _data[id[1]];
@@ -780,7 +780,7 @@ $('#tCIS_DTODrugName_update').val(updateObj.drugName);
     });
 
     //js update for Laboratory request
-    $('#LOSNotes').on('click', '.updateBtnLOS', function () {
+    $('#tblCIS_Consultation_Table').on('click', '.updateBtnLOS', function () {
         var idName = $(this).get(0).id;
         var id = idName.split("|");
         var updateObj = _data[id[1]];
@@ -894,7 +894,7 @@ $('#tCIS_DTODrugName_update').val(updateObj.drugName);
     });
 
     //js update for Radiology request
-    $('#FLUNotes').on('click', '.updateBtnFLU', function () {
+    $('#tblCIS_Consultation_Table').on('click', '.updateBtnFLU', function () {
         var idName = $(this).get(0).id;
         var id = idName.split("|");
         var updateObj = _data[id[1]];
@@ -983,7 +983,7 @@ $('#tCIS_DTODrugName_update').val(updateObj.drugName);
 
     });
     //js UPDATE for Drug Order
-    $('#PRINotes').on('click', '.updateBtnPRI', function () {
+    $('#tblCIS_Consultation_Table').on('click', '.updateBtnPRI', function () {
         var idName = $(this).get(0).id;
         var id = idName.split("|");
         var updateObj = _data[id[1]];
@@ -1076,7 +1076,7 @@ $('#acceptMON').click(function(){
     
     //js update for monitoring request
     //    //js UPDATE for Drug Order
-    $('#MONNotes').on('click', '.updateBtnMON', function () {
+    $('#tblCIS_Consultation_Table').on('click', '.updateBtnMON', function () {
         var idName = $(this).get(0).id;
         var id = idName.split("|");
         var updateObj = _data[id[1]];
@@ -1181,7 +1181,7 @@ $('#acceptADW').click(function(){
         $("#CIS040007").modal('toggle');
     });
 
-    $('#ADWNotes').on('click', '.updateBtnADW', function () {
+    $('#tblCIS_Consultation_Table').on('click', '.updateBtnADW', function () {
         var rowId = $('#jsonId').val();
         var idName = $(this).get(0).id;
         var id = idName.split("|");
@@ -1236,65 +1236,179 @@ $('#acceptADW').click(function(){
             
     });
     
+           $('#btnCIS_Discharge_Summary').click(function(){
+           var index = "";
+            $('input[name="CIS_consult_notes"]:checked').each(function() {
+                index = this.id.split("|");
+                dcgIndex.push(index[1]);
+                
+               console.log(dcgIndex); 
+            });
+            
+            var dateDCG = $('#tCIS_DCGDate').val();
+            var timeDCG = $('#tCIS_DCGTime').val();
+            var dispositionCd = $('#tCIS_DCGDisposition :selected').val();
+            var disposition = $('#tCIS_DCGDisposition :selected').text().trim();
+             var commentDCG = $('#tCIS_DCGComment').val();
+             var hfcOrderDetail = $('#tCIS_DCGHFCOrderDetail').val();
+             var hfcProviderDetail = $('#tCIS_DCGHFCProviderDetail').val();
+            
+            var obj1 = {
+                Acode:'DCG',
+                date:dateDCG,
+                time:timeDCG,
+                disposition:dispositionCd,
+                comment:commentDCG,
+                hfcOrderDetail:hfcOrderDetail,
+                hfcProviderDetail:hfcProviderDetail,
+                index:dcgIndex
+            }
+            _data.push(obj1);
+            console.log(obj1);
+            $('#mCIS_Discharge_Summary').modal("hide");
+            displayDCG(dateDCG, timeDCG, disposition,commentDCG);
+            
+            dcgIndex = [];
+
+//              getSettingConsult(doctor_id);
+//               reloadStat = 0;
+       });
+       
+//            $('#update_divCIS_Discharge_Summary').on('change',function(){
+//                    $("#checkbox|0").attr('checked','checked');
+//            });
+       
+       $('#tblCIS_Consultation_Table').on('click', '.updateBtnDCG', function () {
+    
+            $('#update_divCIS_Discharge_Summary').html($('#tblCIS_Consultation_Table').html());
+            $('#tblCIS_Consultation_Table').html("");
+            $('#divCIS_Discharge_Summary').html("");
+            $('.fa-pencil-square-o').css("display","none");
+            $('.fa-times').css("display","none");
+                
+
+            var rowId = $('#jsonId').val();
+            var idName = $(this).get(0).id;
+            var id = idName.split("|");
+            var updateObj = _data[id[1]];
+             $('#jsonId').val(id[1]);
+            console.log(updateObj);
+            
+            var checkIndex = updateObj.index;
+ 
+            for(var idx in checkIndex){
+                console.log(checkIndex[idx]);
+                var checkbox_id = 'checkbox|'+checkIndex[idx];
+                $('input[id="'+checkbox_id+'"]').prop("checked", true);
+            }
+
+            $('#update_tCIS_DCGDate').val(updateObj.date);
+            $('#update_tCIS_DCGTime').val(updateObj.time);
+            $('#update_tCIS_DCGDisposition').val(updateObj.disposition);
+            $('#update_tCIS_DCGComment').val(updateObj.comment);
+
+    });
+    
+    $('#btnCIS_Update_Summary').click(function(){
+        
+            var upObject = _data[$('#jsonId').val()];
+            var rowId = $('#jsonId').val();
+        
+            var date = $('#update_tCIS_DCGDate').val();
+            var time = $('#update_tCIS_DCGTime').val();
+            var disposition = $('#update_tCIS_DCGDisposition').val();
+            var comment =  $('#update_tCIS_DCGComment').val();
+            
+            var index = "";
+            $('input[name="CIS_consult_notes"]:checked').each(function() {
+                index = this.id.split("|");
+                dcgIndex.push(index[1]);
+               console.log(dcgIndex); 
+            });
+            
+            upObject.time = time;
+            upObject.date = date;
+            upObject.disposition = disposition;
+            upObject.comment = comment;
+            upObject.index = dcgIndex;
+            
+               var sum = ' Discharge Date : ' + date + ' <br> Discharge Time: ' + time + ' <br> DIscharge Disposition : ' + disposition +' <br> Comment: ' + comment ;
+                console.log(upObject);
+                $('#sum' + rowId).html(sum);
+                $("#update_mCIS_Discharge_Summary").modal('toggle');
+            
+    });
+    
     
     
     });
 
+
 function displayDTO(searchDTO, drugName, drugStr, drugDose, drugFreq, drugDur1, unit, drugInst, cautionary, comment) {
-    var _tr = '<tr data-status="pagado" ><td><div class="ckbox"><input type="checkbox" id="checkbox'+i+'"><label for="checkbox'+i+'"></label></div></td><td><div class="media"><div class="media-body">Drug To Order :<p class="summary" id="sum' + i + '">' + searchDTO + ' | Drug Name: ' + drugName + ' | Strength: ' + drugStr + ' | Dose: ' + drugDose + ' | Frequency: ' + drugFreq + ' | Duration: ' + drugDur1 + '  ' + unit + ' | Instruction: ' + drugInst + ' | Cautionary: ' + cautionary + ' | Comment: ' + comment + '</p></div></div></td><td><a data-toggle="modal"  data-target="#update_CIS040002" href="" class="updateDrugOrder" id="row|' + i + '"><i class="fa fa-pencil-square-o" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #337ab7;" ></i></a></a></td><td><a href="javascript:;" class="star"><a href="#" class="deleteBtn" id="row|' + i + '"><i class="fa fa-times" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #d9534f;"></i></a></a></td></tr>';
-    $('#DTONotes').append(_tr);
+    var _tr = '<tr data-status="pagado" ><td><div class="ckbox"><input type="checkbox" id="checkbox|'+i+'" name="CIS_consult_notes"><label for="checkbox|'+i+'"></label></div></td><td><div class="media"><div class="media-body">Drug To Order :<p class="summary" id="sum' + i + '">' + searchDTO + ' | Drug Name: ' + drugName + ' | Strength: ' + drugStr + ' | Dose: ' + drugDose + ' | Frequency: ' + drugFreq + ' | Duration: ' + drugDur1 + '  ' + unit + ' | Instruction: ' + drugInst + ' | Cautionary: ' + cautionary + ' | Comment: ' + comment + '</p></div></div></td><td><a data-toggle="modal"  data-target="#update_CIS040002" href="" class="updateDrugOrder" id="row|' + i + '"><i class="fa fa-pencil-square-o" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #337ab7;" ></i></a></a></td><td><a href="javascript:;" class="star"><a href="#" class="deleteBtn" id="row|' + i + '"><i class="fa fa-times" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #d9534f;"></i></a></a></td></tr>';
+    $('#DCGNotes').append(_tr);
     i = i + 1;
 }
 
 function displaySOP(hfcName, disName, doctorName, comment10) {
-    var _tr = '<tr data-status="pagado" ><td><div class="ckbox"><input type="checkbox" id="checkbox'+i+'"><label for="checkbox'+i+'"></label></div></td><td><div class="media"><div class="media-body">Second Opinion :<p class="summary" id="sum' + i + '">' + hfcName + '| Discipline: ' + disName + '| Doctor: ' + doctorName + '| Comments: ' + comment10 + '</p></div></div></td><td><a data-toggle="modal"  data-target="#CIS040005" href="" class="updateSOF" id="row|' + i + '"><i class="fa fa-pencil-square-o" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #337ab7;" ></i></a></a></td><td><a href="javascript:;" class="star"><a href="#" class="deleteBtn" id="row|' + i + '"><i class="fa fa-times" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #d9534f;"></i></a></a></td></tr>';
+    var _tr = '<tr data-status="pagado" ><td><div class="ckbox"><input type="checkbox" id="checkbox|'+i+'" name="CIS_consult_notes"><label for="checkbox|'+i+'"></label></div></td><td><div class="media"><div class="media-body">Second Opinion :<p class="summary" id="sum' + i + '">' + hfcName + '| Discipline: ' + disName + '| Doctor: ' + doctorName + '| Comments: ' + comment10 + '</p></div></div></td><td><a data-toggle="modal"  data-target="#CIS040005" href="" class="updateSOF" id="row|' + i + '"><i class="fa fa-pencil-square-o" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #337ab7;" ></i></a></a></td><td><a href="javascript:;" class="star"><a href="#" class="deleteBtn" id="row|' + i + '"><i class="fa fa-times" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #d9534f;"></i></a></a></td></tr>';
     $('#SOPNotes').append(_tr);
     i = i + 1;
 }
 
 function displayPOS(Problem18, proType, procedure_cd) {
-    var _tr = '<tr data-status="pagado" ><td><div class="ckbox"><input type="checkbox" id="checkbox'+i+'"><label for="checkbox'+i+'"></label></div></td><td><div class="media"><div class="media-body">Procedure Order Segment :<p class="summary" id="sum' + i + '">' + Problem18 + '|' + proType + '|'  + '</p></div></div></td><td><a data-toggle="modal"  data-target="#update_CIS040006" href="" class="updateBtn13" id="row|' + i + '"><i class="fa fa-pencil-square-o" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #337ab7;" ></i></a></a></td><td><a href="javascript:;" class="star"><a href="#" class="deleteBtn" id="row|' + i + '"><i class="fa fa-times" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #d9534f;"></i></a></a></td></tr>';
+    var _tr = '<tr data-status="pagado" ><td><div class="ckbox"><input type="checkbox" id="checkbox|'+i+'" name="CIS_consult_notes"><label for="checkbox|'+i+'"></label></div></td><td><div class="media"><div class="media-body">Procedure Order Segment :<p class="summary" id="sum' + i + '">' + Problem18 + '|' + proType + '|'  + '</p></div></div></td><td><a data-toggle="modal"  data-target="#update_CIS040006" href="" class="updateBtn13" id="row|' + i + '"><i class="fa fa-pencil-square-o" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #337ab7;" ></i></a></a></td><td><a href="javascript:;" class="star"><a href="#" class="deleteBtn" id="row|' + i + '"><i class="fa fa-times" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #d9534f;"></i></a></a></td></tr>';
     $('#POSNotes').append(_tr);
     i = i + 1;
 }
 
 function displayMCTS(DateFrom, DateTo, num1, num2) {
-    var _tr = '<tr data-status="pagado" ><td><div class="ckbox"><input type="checkbox" id="checkbox'+i+'"><label for="checkbox'+i+'"></label></div></td><td><div class="media"><div class="media-body">MC & Time Slip :<p class="summary" id="sum' + i + '">Date From: ' + DateFrom + '</br> Date End :' + DateTo + '</br> Time Start :' + num1 + '</br> Time Start :' + num2 + '|' + '</p></div></div></td><td><a data-toggle="modal"  data-target="#update_CIS040008" href="" class="updateBtn14" id="row|' + i + '"><i class="fa fa-pencil-square-o" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #337ab7;" ></i></a></a></td><td><a href="javascript:;" class="star"><a href="#" class="deleteBtn" id="row|' + i + '"><i class="fa fa-times" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #d9534f;"></i></a></a></td></tr>';
+    var _tr = '<tr data-status="pagado" ><td><div class="ckbox"><input type="checkbox" id="checkbox|'+i+'" name="CIS_consult_notes"><label for="checkbox|'+i+'"></label></div></td><td><div class="media"><div class="media-body">MC & Time Slip :<p class="summary" id="sum' + i + '">Date From: ' + DateFrom + '</br> Date End :' + DateTo + '</br> Time Start :' + num1 + '</br> Time Start :' + num2 + '|' + '</p></div></div></td><td><a data-toggle="modal"  data-target="#update_CIS040008" href="" class="updateBtn14" id="row|' + i + '"><i class="fa fa-pencil-square-o" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #337ab7;" ></i></a></a></td><td><a href="javascript:;" class="star"><a href="#" class="deleteBtn" id="row|' + i + '"><i class="fa fa-times" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #d9534f;"></i></a></a></td></tr>';
     $('#MCTSNotes').append(_tr);
     i = i + 1;
 }
 
 function displayROS(codeROS, ROS, commentROS,modalityROS,modalityROScode,bodysysROS,bodysysROS,bodysysROScode,hfcROS,hfcROScode,locationHFCROS,appointmentROS,patientConditionROS) {
-    var _tr = '<tr data-status="pagado" ><td><div class="ckbox"><input type="checkbox" id="checkbox'+i+'"><label for="checkbox'+i+'"></label></div></td><td><div class="media"><div class="media-body">Radiology Request :<p class="summary" id="sum' + i + '">' + ROS + '|' + commentROS + '|'+modalityROS+ '|'+bodysysROS+ '|'+hfcROS+ '|'+locationHFCROS+ '|'+appointmentROS+ '|'+patientConditionROS +'</p></div></div></td><td><a data-toggle="modal"  data-target="#update_CIS040000" href="" class="updateBtn15" id="row|' + i + '"><i class="fa fa-pencil-square-o" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #337ab7;" ></i></a></a></td><td><a href="javascript:;" class="star"><a href="#" class="deleteBtn" id="row|' + i + '"><i class="fa fa-times" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #d9534f;"></i></a></a></td></tr>';
+    var _tr = '<tr data-status="pagado" ><td><div class="ckbox"><input type="checkbox" id="checkbox|'+i+'" name="CIS_consult_notes"><label for="checkbox|'+i+'"></label></div></td><td><div class="media"><div class="media-body">Radiology Request :<p class="summary" id="sum' + i + '">' + ROS + '|' + commentROS + '|'+modalityROS+ '|'+bodysysROS+ '|'+hfcROS+ '|'+locationHFCROS+ '|'+appointmentROS+ '|'+patientConditionROS +'</p></div></div></td><td><a data-toggle="modal"  data-target="#update_CIS040000" href="" class="updateBtn15" id="row|' + i + '"><i class="fa fa-pencil-square-o" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #337ab7;" ></i></a></a></td><td><a href="javascript:;" class="star"><a href="#" class="deleteBtn" id="row|' + i + '"><i class="fa fa-times" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #d9534f;"></i></a></a></td></tr>';
     $('#ROSNotes').append(_tr);
     i = i + 1;
 }
 
 function displayLOS(searchLOS, codeLOS, catLOS, sourceLOS, containerLOS, volumeLOS, spclLOS, commentLOS, appointmentLOS, priorityLOS,hfcLOS,patientCondition) {
-    var _tr = '<tr data-status="pagado" ><td><div class="ckbox"><input type="checkbox" id="checkbox'+i+'"><label for="checkbox'+i+'"></label></div></td><td><div class="media"><div class="media-body">Laboratory Request :<p class="summary" id="sum' + i + '">' + searchLOS + '|' + catLOS + '|' + sourceLOS + '|' + containerLOS + '|' + volumeLOS + '|' + spclLOS + '|' + commentLOS + '|' + appointmentLOS + '|' + priorityLOS +'|'+patientCondition +'|' + hfcLOS  +'</p></div></div></td><td><a data-toggle="modal"  data-target="#update_CIS040001" href="" class="updateBtnLOS" id="row|' + i + '"><i class="fa fa-pencil-square-o" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #337ab7;" ></i></a></a></td><td><a href="javascript:;" class="star"><a href="#" class="deleteBtn" id="row|' + i + '"><i class="fa fa-times" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #d9534f;"></i></a></a></td></tr>';
+    var _tr = '<tr data-status="pagado" ><td><div class="ckbox"><input type="checkbox" id="checkbox|'+i+'" name="CIS_consult_notes"><label for="checkbox|'+i+'"></label></div></td><td><div class="media"><div class="media-body">Laboratory Request :<p class="summary" id="sum' + i + '">' + searchLOS + '|' + catLOS + '|' + sourceLOS + '|' + containerLOS + '|' + volumeLOS + '|' + spclLOS + '|' + commentLOS + '|' + appointmentLOS + '|' + priorityLOS +'|'+patientCondition +'|' + hfcLOS  +'</p></div></div></td><td><a data-toggle="modal"  data-target="#update_CIS040001" href="" class="updateBtnLOS" id="row|' + i + '"><i class="fa fa-pencil-square-o" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #337ab7;" ></i></a></a></td><td><a href="javascript:;" class="star"><a href="#" class="deleteBtn" id="row|' + i + '"><i class="fa fa-times" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #d9534f;"></i></a></a></td></tr>';
     $('#LOSNotes').append(_tr);
     i = i + 1;
 }
 
 function displayFLU(searchFLU, DateFollowUp, commentFLU) {
-    var _tr = '<tr data-status="pagado" ><td><div class="ckbox"><input type="checkbox" id="checkbox'+i+'"><label for="checkbox'+i+'"></label></div></td><td><div class="media"><div class="media-body">Follow Up :<p class="summary" id="sum' + i + '">' + searchFLU + '|' + DateFollowUp + '|' + commentFLU + '</p></div></div></td><td><a data-toggle="modal"  data-target="#update_CIS040004" href="" class="updateBtnFLU" id="row|' + i + '"><i class="fa fa-pencil-square-o" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #337ab7;" ></i></a></a></td><td><a href="javascript:;" class="star"><a href="#" class="deleteBtn" id="row|' + i + '"><i class="fa fa-times" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #d9534f;"></i></a></a></td></tr>';
+    var _tr = '<tr data-status="pagado" ><td><div class="ckbox"><input type="checkbox" id="checkbox|'+i+'" name="CIS_consult_notes"><label for="checkbox|'+i+'"></label></div></td><td><div class="media"><div class="media-body">Follow Up :<p class="summary" id="sum' + i + '">' + searchFLU + '|' + DateFollowUp + '|' + commentFLU + '</p></div></div></td><td><a data-toggle="modal"  data-target="#update_CIS040004" href="" class="updateBtnFLU" id="row|' + i + '"><i class="fa fa-pencil-square-o" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #337ab7;" ></i></a></a></td><td><a href="javascript:;" class="star"><a href="#" class="deleteBtn" id="row|' + i + '"><i class="fa fa-times" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #d9534f;"></i></a></a></td></tr>';
     $('#FLUNotes').append(_tr);
     i = i + 1;
 }
 
 function displayPRI(hfcREFname, hfcREFcode, disREFname, disREFcode, docREFname, appREF, medhistoryREF){
-     var _tr = '<tr data-status="pagado" ><td><div class="ckbox"><input type="checkbox" id="checkbox'+i+'"><label for="checkbox'+i+'"></label></div></td><td><div class="media"><div class="media-body">Referral :<p class="summary" id="sum' + i + '">' + hfcREFname + '|' + disREFname + '|' + docREFname + '|'+appREF+'|'+medhistoryREF+ '</p></div></div></td><td><a data-toggle="modal"  data-target="#update_CIS040009" href="" class="updateBtnPRI" id="row|' + i + '"><i class="fa fa-pencil-square-o" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #337ab7;" ></i></a></a></td><td><a href="javascript:;" class="star"><a href="#" class="deleteBtn" id="row|' + i + '"><i class="fa fa-times" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #d9534f;"></i></a></a></td></tr>';
+     var _tr = '<tr data-status="pagado" ><td><div class="ckbox"><input type="checkbox" id="checkbox|'+i+'" name="CIS_consult_notes"><label for="checkbox|'+i+'"></label></div></td><td><div class="media"><div class="media-body">Referral :<p class="summary" id="sum' + i + '">' + hfcREFname + '|' + disREFname + '|' + docREFname + '|'+appREF+'|'+medhistoryREF+ '</p></div></div></td><td><a data-toggle="modal"  data-target="#update_CIS040009" href="" class="updateBtnPRI" id="row|' + i + '"><i class="fa fa-pencil-square-o" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #337ab7;" ></i></a></a></td><td><a href="javascript:;" class="star"><a href="#" class="deleteBtn" id="row|' + i + '"><i class="fa fa-times" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #d9534f;"></i></a></a></td></tr>';
     $('#PRINotes').append(_tr);
     i = i + 1;
 }
 function    displayMON(searchMON, searchHFC_MON, searchDIS_MON){
-     var _tr = '<tr data-status="pagado" ><td><div class="ckbox"><input type="checkbox" id="checkbox'+i+'"><label for="checkbox'+i+'"></label></div></td><td><div class="media"><div class="media-body">Monitoring :<p class="summary" id="sum' + i + '">' + searchMON +  '<br> Health Facility: '+searchHFC_MON+'<br> Discipline :'+searchDIS_MON+ '</p></div></div></td><td><a data-toggle="modal"  data-target="#update_CIS040003" href="" class="updateBtnMON" id="row|' + i + '"><i class="fa fa-pencil-square-o" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #337ab7;" ></i></a></a></td><td><a href="javascript:;" class="star"><a href="#" class="deleteBtn" id="row|' + i + '"><i class="fa fa-times" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #d9534f;"></i></a></a></td></tr>';
+     var _tr = '<tr data-status="pagado" ><td><div class="ckbox"><input type="checkbox" id="checkbox|'+i+'" name="CIS_consult_notes"><label for="checkbox|'+i+'"></label></div></td><td><div class="media"><div class="media-body">Monitoring :<p class="summary" id="sum' + i + '">' + searchMON +  '<br> Health Facility: '+searchHFC_MON+'<br> Discipline :'+searchDIS_MON+ '</p></div></div></td><td><a data-toggle="modal"  data-target="#update_CIS040003" href="" class="updateBtnMON" id="row|' + i + '"><i class="fa fa-pencil-square-o" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #337ab7;" ></i></a></a></td><td><a href="javascript:;" class="star"><a href="#" class="deleteBtn" id="row|' + i + '"><i class="fa fa-times" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #d9534f;"></i></a></a></td></tr>';
     $('#MONNotes').append(_tr);
     i = i + 1;
 }
 function  displayADW(_admitToDis, _patientReferFrom, _reason,_admitDate,_admitTime,_wardName){
-     var _tr = '<tr data-status="pagado" ><td><div class="ckbox"><input type="checkbox" id="checkbox'+i+'"><label for="checkbox'+i+'"></label></div></td><td><div class="media"><div class="media-body">Admit to Ward :<p class="summary" id="sum' + i + '">From' + _patientReferFrom +  '<br> Admit to : '+_admitToDis+'<br> Date / Time:'+_admitDate+' /  '+_admitTime+'<br> Ward :'+_wardName+ '<br> Reason :'+_reason+'</p></div></div></td><td><a data-toggle="modal"  data-target="#update_CIS040007" href="" class="updateBtnADW" id="row|' + i + '"><i class="fa fa-pencil-square-o" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #337ab7;" ></i></a></a></td><td><a href="javascript:;" class="star"><a href="#" class="deleteBtn" id="row|' + i + '"><i class="fa fa-times" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #d9534f;"></i></a></a></td></tr>';
+     var _tr = '<tr data-status="pagado" ><td><div class="ckbox"><input type="checkbox" id="checkbox|'+i+'" name="CIS_consult_notes"><label for="checkbox|'+i+'"></label></div></td><td><div class="media"><div class="media-body">Admit to Ward :<p class="summary" id="sum' + i + '">From' + _patientReferFrom +  '<br> Admit to : '+_admitToDis+'<br> Date / Time:'+_admitDate+' /  '+_admitTime+'<br> Ward :'+_wardName+ '<br> Reason :'+_reason+'</p></div></div></td><td><a data-toggle="modal"  data-target="#update_CIS040007" href="" class="updateBtnADW" id="row|' + i + '"><i class="fa fa-pencil-square-o" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #337ab7;" ></i></a></a></td><td><a href="javascript:;" class="star"><a href="#" class="deleteBtn" id="row|' + i + '"><i class="fa fa-times" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #d9534f;"></i></a></a></td></tr>';
     $('#ADWNotes').append(_tr);
+    i = i + 1;
+}
+    function displayDCGId(date, time, disposition,comment,id) {
+    var _tr = '<tr data-status="pagado" ><td><div class="ckbox"><input type="checkbox" id="checkbox|'+id+'" name="CIS_consult_notes"><label for="checkbox|'+id+'"></label></div></td><td><div class="media"><div class="media-body">Discharge Summary:<p class="summary" id="sum' + id + '">Discharge Date : ' + date + ' <br> Discharge Time: ' + time + ' <br> DIscharge Disposition : ' + disposition +' <br> Comment: ' + comment + '</p></div></div></td><td><a data-toggle="modal"  data-target="#update_mCIS_Discharge_Summary" href="" class="updateBtnDCG" id="row|' + id + '"><i class="fa fa-pencil-square-o" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #337ab7;" ></i></a></a></td><td><a href="javascript:;" class="star"><a href="#" class="deleteBtn" id="row|' + id + '"><i class="fa fa-times" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #d9534f;"></i></a></a></td></tr>';
+    $('#DCGNotes').append(_tr);
+    i = i + 1;
+}
+    function displayDCG(date, time, disposition,comment) {
+    var _tr = '<tr data-status="pagado" ><td><div class="ckbox"><input type="checkbox" id="checkbox|'+i+'" name="CIS_consult_notes"><label for="checkbox|'+i+'"></label></div></td><td><div class="media"><div class="media-body">Discharge Summary:<p class="summary" id="sum' + i + '">Discharge Date : ' + date + ' <br> Discharge Time: ' + time + ' <br> DIscharge Disposition : ' + disposition +' <br> Comment: ' + comment + '</p></div></div></td><td><a data-toggle="modal"  data-target="#update_mCIS_Discharge_Summary" href="" class="updateBtnDCG" id="row|' + i + '"><i class="fa fa-pencil-square-o" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #337ab7;" ></i></a></a></td><td><a href="javascript:;" class="star"><a href="#" class="deleteBtn" id="row|' + i + '"><i class="fa fa-times" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #d9534f;"></i></a></a></td></tr>';
+    $('#DCGNotes').append(_tr);
     i = i + 1;
 }
 
@@ -1414,5 +1528,7 @@ function  displayADW(_admitToDis, _patientReferFrom, _reason,_admitDate,_admitTi
 
             }
         });
+        
+        
        
     }

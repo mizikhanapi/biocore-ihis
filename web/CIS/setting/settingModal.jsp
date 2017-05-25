@@ -34,6 +34,10 @@
                                             <input type="checkbox" id="setDGS"  class="setting"  value="DGS"/>
                                             <label for="test6">Required to complete the Diagnosis before discharge</label>
                                         </p>
+                                        <p>
+                                            <input type="checkbox" id="setDCG"  class="setting"  value="DCG"/>
+                                            <label for="test6">Required to complete the Discharge Summary before discharge</label>
+                                        </p>
 
                                     </div>
                                 </div>

@@ -137,7 +137,7 @@ $(document).ready(function () {
     });
 
     //js UPDATE Complaint 
-    $('#CCNNotes').on('click', '.updateBtnCCN', function (e) {
+    $('#tblCIS_Consultation_Table').on('click', '.updateBtnCCN', function (e) {
         e.preventDefault();
         $("#update_CIS01000001").modal("toggle");
         var idName = $(this).get(0).id;
@@ -203,7 +203,7 @@ $(document).ready(function () {
         $("#CIS01000002").modal('toggle');
     });
 
-    $('#HPINotes').on('click', '.updateBtnHPI', function (e) {
+    $('#tblCIS_Consultation_Table').on('click', '.updateBtnHPI', function (e) {
         e.preventDefault();
         var idName = $(this).get(0).id;
         var id = idName.split("|");
@@ -248,7 +248,7 @@ $(document).ready(function () {
     });
 
     //js UPDATE PMH
-    $('#PMHNotes').on('click', '.updateBtnPMH', function (e) {
+    $('#tblCIS_Consultation_Table').on('click', '.updateBtnPMH', function (e) {
         $("#update_CIS01000003").modal('toggle');
         e.preventDefault();
         var idName = $(this).get(0).id;
@@ -304,7 +304,7 @@ $(document).ready(function () {
     });
 
     //js UPDATE for FMH
-    $('#FMHNotes').on('click', '.updateBtnFMH', function () {
+    $('#tblCIS_Consultation_Table').on('click', '.updateBtnFMH', function () {
         
         var idName = $(this).get(0).id;
         var id = idName.split("|");
@@ -363,7 +363,7 @@ $(document).ready(function () {
     });
 
     //js UPDATE for Social History
-    $('#SOHNotes').on('click', '.updateBtnSOH', function () {
+    $('#tblCIS_Consultation_Table').on('click', '.updateBtnSOH', function () {
         
         var idName = $(this).get(0).id;
         var id = idName.split("|");
@@ -420,7 +420,7 @@ $(document).ready(function () {
     });
 
     //js UPDATE for Blood Group/G6PD 
-    $('#BLDNotes').on('click', '.updateBtnBLD', function () {
+    $('#tblCIS_Consultation_Table').on('click', '.updateBtnBLD', function () {
         var idName = $(this).get(0).id;
         var id = idName.split("|");
         var updateObj = _data[id[1]];
@@ -476,7 +476,7 @@ $(document).ready(function () {
     });
 
     //js UPDATE for Allergy
-    $('#ALGNotes').on('click', '.updateBtnALG', function () {
+    $('#tblCIS_Consultation_Table').on('click', '.updateBtnALG', function () {
         var idName = $(this).get(0).id;
         var id = idName.split("|");
         var updateObj = _data[id[1]];
@@ -531,7 +531,7 @@ $(document).ready(function () {
     });
 
     //js UPDATE for Immunization
-    $('#IMUNotes').on('click', '.updateBtnIMU', function () {
+    $('#tblCIS_Consultation_Table').on('click', '.updateBtnIMU', function () {
         var idName = $(this).get(0).id;
         var id = idName.split("|");
         var updateObj = _data[id[1]];
@@ -588,7 +588,7 @@ $(document).ready(function () {
     });
 
     //js UPDATE for Disability
-    $('#DABNotes').on('click', '.updateBtnDAB', function () {
+    $('#tblCIS_Consultation_Table').on('click', '.updateBtnDAB', function () {
         var idName = $(this).get(0).id;
         var id = idName.split("|");
         var updateObj = _data[id[1]];
@@ -623,25 +623,25 @@ $(document).ready(function () {
 });
 
 function displayCCN(problem,Mild,Site,duration,sdur,Laterality,Comment){
-    var _tr = '<tr data-status="pagado" ><td><div class="ckbox"><input type="checkbox" id="checkbox'+i+'"><label for="checkbox'+i+'"></label></div></td><td><div class="media"><div class="media-body">Chief Complaint  :<p class="summary" id="sum' + i + '">' + problem + '|' + Mild + '| ' + Site + '| ' + duration + '| ' + sdur + '| ' + Laterality + '| ' + Comment + '</p></div></div></td><td><a data-toggle="modal"  href="" class="updateBtnCCN" id="row|' + i + '"><i class="fa fa-pencil-square-o" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #337ab7;" ></i></a></a></td><td><a href="javascript:;" class="star"><a href="#" class="deleteBtn" id="row|' + i + '"><i class="fa fa-times" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #d9534f;"></i></a></a></td></tr>';
+    var _tr = '<tr data-status="pagado" ><td><div class="ckbox"><input type="checkbox" id="checkbox|'+i+'" name="CIS_consult_notes"><label for="checkbox|'+i+'"></label></div></td><td><div class="media"><div class="media-body">Chief Complaint  :<p class="summary" id="sum' + i + '">' + problem + '|' + Mild + '| ' + Site + '| ' + duration + '| ' + sdur + '| ' + Laterality + '| ' + Comment + '</p></div></div></td><td><a data-toggle="modal"  href="" class="updateBtnCCN" id="row|' + i + '"><i class="fa fa-pencil-square-o" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #337ab7;" ></i></a></a></td><td><a href="javascript:;" class="star"><a href="#" class="deleteBtn" id="row|' + i + '"><i class="fa fa-times" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #d9534f;"></i></a></a></td></tr>';
     $('#CCNNotes').append(_tr);
     i = i + 1;
 }
  function displayHPI(details){
-    var _tr = '<tr data-status="pagado" ><td><div class="ckbox"><input type="checkbox" id="checkbox'+i+'"><label for="checkbox'+i+'"></label></div></td><td><div class="media"><div class="media-body">History of Present Illness  :<p class="summary" id="sum' + i + '">' + details + '</p></div></div></td><td><a data-toggle="modal"   href="" class="updateBtnHPI" id="row|' + i + '"><i class="fa fa-pencil-square-o" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #337ab7;" ></i></a></a></td><td><a href="javascript:;" class="star"><a href="#" class="deleteBtn" id="row|' + i + '"><i class="fa fa-times" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #d9534f;"></i></a></a></td></tr>';
+    var _tr = '<tr data-status="pagado" ><td><div class="ckbox"><input type="checkbox" id="checkbox|'+i+'" name="CIS_consult_notes"><label for="checkbox|'+i+'"></label></div></td><td><div class="media"><div class="media-body">History of Present Illness  :<p class="summary" id="sum' + i + '">' + details + '</p></div></div></td><td><a data-toggle="modal"   href="" class="updateBtnHPI" id="row|' + i + '"><i class="fa fa-pencil-square-o" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #337ab7;" ></i></a></a></td><td><a href="javascript:;" class="star"><a href="#" class="deleteBtn" id="row|' + i + '"><i class="fa fa-times" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #d9534f;"></i></a></a></td></tr>';
     $('#HPINotes').append(_tr);
     i = i + 1;
  }
  
  function displayPMH(Problem1,Status,comment1){
-             var _tr = '<tr data-status="pagado" ><td><div class="ckbox"><input type="checkbox" id="checkbox'+i+'"><label for="checkbox'+i+'"></label></div></td><td><div class="media"><div class="media-body">Past Medical History  :<p class="summary" id="sum' + i + '">' + Problem1 + '| ' + Status + '| ' + comment1 + '</p></div></div></td><td><a data-toggle="modal"  href="" class="updateBtnPMH" id="row|' + i + '"><i class="fa fa-pencil-square-o" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #337ab7;" ></i></a></a></td><td><a href="javascript:;" class="star"><a href="#" class="deleteBtn" id="row|' + i + '"><i class="fa fa-times" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #d9534f;"></i></a></a></td></tr>';
+             var _tr = '<tr data-status="pagado" ><td><div class="ckbox"><input type="checkbox" id="checkbox|'+i+'" name="CIS_consult_notes"><label for="checkbox|'+i+'"></label></div></td><td><div class="media"><div class="media-body">Past Medical History  :<p class="summary" id="sum' + i + '">' + Problem1 + '| ' + Status + '| ' + comment1 + '</p></div></div></td><td><a data-toggle="modal"  href="" class="updateBtnPMH" id="row|' + i + '"><i class="fa fa-pencil-square-o" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #337ab7;" ></i></a></a></td><td><a href="javascript:;" class="star"><a href="#" class="deleteBtn" id="row|' + i + '"><i class="fa fa-times" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #d9534f;"></i></a></a></td></tr>';
         $('#PMHNotes').append(_tr);
         console.log(i);
         i = i + 1;
  }
  
  function displayFMH(Problem3,f_relationship,comment2){
-             var _tr = '<tr data-status="pagado" ><td><div class="ckbox"><input type="checkbox" id="checkbox'+i+'"><label for="checkbox'+i+'"></label></div></td><td><div class="media"><div class="media-body">Familiy Medical History :<p class="summary" id="sum' + i + '">' + Problem3 + '| ' + f_relationship + '| ' + comment2 + '</p></div></div></td><td><a data-toggle="modal" href="" class="updateBtnFMH" id="row|' + i + '"><i class="fa fa-pencil-square-o" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #337ab7;" ></i></a></a></td><td><a href="javascript:;" class="star"><a href="#" class="deleteBtn" id="row|' + i + '"><i class="fa fa-times" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #d9534f;"></i></a></a></td></tr>';
+             var _tr = '<tr data-status="pagado" ><td><div class="ckbox"><input type="checkbox" id="checkbox|'+i+'" name="CIS_consult_notes"><label for="checkbox|'+i+'"></label></div></td><td><div class="media"><div class="media-body">Familiy Medical History :<p class="summary" id="sum' + i + '">' + Problem3 + '| ' + f_relationship + '| ' + comment2 + '</p></div></div></td><td><a data-toggle="modal" href="" class="updateBtnFMH" id="row|' + i + '"><i class="fa fa-pencil-square-o" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #337ab7;" ></i></a></a></td><td><a href="javascript:;" class="star"><a href="#" class="deleteBtn" id="row|' + i + '"><i class="fa fa-times" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #d9534f;"></i></a></a></td></tr>';
         $('#FMHNotes').append(_tr);
 
         i = i + 1;
@@ -649,7 +649,7 @@ function displayCCN(problem,Mild,Site,duration,sdur,Laterality,Comment){
  
 function displaySOH(Problem4,date,comment3){
     
-        var _tr = '<tr data-status="pagado" ><td><div class="ckbox"><input type="checkbox" id="checkbox'+i+'"><label for="checkbox'+i+'"></label></div></td><td><div class="media"><div class="media-body">Social History:<p class="summary" id="sum' + i + '">'  + Problem4 + '| ' + date + '| ' + comment3 + '</p></div></div></td><td><a data-toggle="modal"  href="" class="updateBtnSOH" id="row|' + i + '"><i class="fa fa-pencil-square-o" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #337ab7;" ></i></a></a></td><td><a href="javascript:;" class="star"><a href="#" class="deleteBtn" id="row|' + i + '"><i class="fa fa-times" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #d9534f;"></i></a></a></td></tr>';
+        var _tr = '<tr data-status="pagado" ><td><div class="ckbox"><input type="checkbox" id="checkbox|'+i+'" name="CIS_consult_notes"><label for="checkbox|'+i+'"></label></div></td><td><div class="media"><div class="media-body">Social History:<p class="summary" id="sum' + i + '">'  + Problem4 + '| ' + date + '| ' + comment3 + '</p></div></div></td><td><a data-toggle="modal"  href="" class="updateBtnSOH" id="row|' + i + '"><i class="fa fa-pencil-square-o" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #337ab7;" ></i></a></a></td><td><a href="javascript:;" class="star"><a href="#" class="deleteBtn" id="row|' + i + '"><i class="fa fa-times" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #d9534f;"></i></a></a></td></tr>';
         $('#SOHNotes').append(_tr);
 
         i = i + 1;
@@ -657,7 +657,7 @@ function displaySOH(Problem4,date,comment3){
 
 function displayBLD(blood,Rhesus_Type,G6PD_Status,comment4){
     
-        var _tr = '<tr data-status="pagado" ><td><div class="ckbox"><input type="checkbox" id="checkbox'+i+'"><label for="checkbox'+i+'"></label></div></td><td><div class="media"><div class="media-body">Blood Group  :<p class="summary" id="sum' + i + '">'  + blood + '| ' + Rhesus_Type + '| ' + G6PD_Status + '|' + comment4 + '</p></div></div></td><td><a data-toggle="modal"  href="" class="updateBtnBLD" id="row|' + i + '"><i class="fa fa-pencil-square-o" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #337ab7;" ></i></a></a></td><td><a href="javascript:;" class="star"><a href="#" class="deleteBtn" id="row|' + i + '"><i class="fa fa-times" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #d9534f;"></i></a></a></td></tr>';
+        var _tr = '<tr data-status="pagado" ><td><div class="ckbox"><input type="checkbox" id="checkbox|'+i+'" name="CIS_consult_notes"><label for="checkbox|'+i+'"></label></div></td><td><div class="media"><div class="media-body">Blood Group  :<p class="summary" id="sum' + i + '">'  + blood + '| ' + Rhesus_Type + '| ' + G6PD_Status + '|' + comment4 + '</p></div></div></td><td><a data-toggle="modal"  href="" class="updateBtnBLD" id="row|' + i + '"><i class="fa fa-pencil-square-o" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #337ab7;" ></i></a></a></td><td><a href="javascript:;" class="star"><a href="#" class="deleteBtn" id="row|' + i + '"><i class="fa fa-times" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #d9534f;"></i></a></a></td></tr>';
 
         $('#BLDNotes').append(_tr);
 
@@ -665,14 +665,14 @@ function displayBLD(blood,Rhesus_Type,G6PD_Status,comment4){
 }
 
 function displayAllergy(Problem5,date1,comment5){
-         var _tr = '<tr data-status="pagado" ><td><div class="ckbox"><input type="checkbox" id="checkbox'+i+'"><label for="checkbox'+i+'"></label></div></td><td><div class="media"><div class="media-body">Allergy  :<p class="summary" id="sum' + i + '">' + Problem5 + '| ' + date1 + '| ' + comment5 + '</p></div></div></td><td><a data-toggle="modal"  href="" class="updateBtnALG" id="row|' + i + '"><i class="fa fa-pencil-square-o" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #337ab7;" ></i></a></a></td><td><a href="javascript:;" class="star"><a href="#" class="deleteBtn" id="row|' + i + '"><i class="fa fa-times" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #d9534f;"></i></a></a></td></tr>';
+         var _tr = '<tr data-status="pagado" ><td><div class="ckbox"><input type="checkbox" id="checkbox|'+i+'" name="CIS_consult_notes"><label for="checkbox|'+i+'"></label></div></td><td><div class="media"><div class="media-body">Allergy  :<p class="summary" id="sum' + i + '">' + Problem5 + '| ' + date1 + '| ' + comment5 + '</p></div></div></td><td><a data-toggle="modal"  href="" class="updateBtnALG" id="row|' + i + '"><i class="fa fa-pencil-square-o" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #337ab7;" ></i></a></a></td><td><a href="javascript:;" class="star"><a href="#" class="deleteBtn" id="row|' + i + '"><i class="fa fa-times" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #d9534f;"></i></a></a></td></tr>';
         $('#ALGNotes').append(_tr);
         console.log(i);
         i = i + 1;
 }
 function displayIMU(Problem6,date2,comment6){
     
-        var _tr = '<tr data-status="pagado" ><td><div class="ckbox"><input type="checkbox" id="checkbox'+i+'"><label for="checkbox'+i+'"></label></div></td><td><div class="media"><div class="media-body">Immunization :<p class="summary" id="sum' + i + '">' + Problem6 + '| ' + date2 + '| ' + comment6 + '</p></div></div></td><td><a data-toggle="modal"   href="" class="updateBtnIMU" id="row|' + i + '"><i class="fa fa-pencil-square-o" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #337ab7;" ></i></a></a></td><td><a href="javascript:;" class="star"><a href="#" class="deleteBtn" id="row|' + i + '"><i class="fa fa-times" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #d9534f;"></i></a></a></td></tr>';
+        var _tr = '<tr data-status="pagado" ><td><div class="ckbox"><input type="checkbox" id="checkbox|'+i+'" name="CIS_consult_notes"><label for="checkbox|'+i+'"></label></div></td><td><div class="media"><div class="media-body">Immunization :<p class="summary" id="sum' + i + '">' + Problem6 + '| ' + date2 + '| ' + comment6 + '</p></div></div></td><td><a data-toggle="modal"   href="" class="updateBtnIMU" id="row|' + i + '"><i class="fa fa-pencil-square-o" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #337ab7;" ></i></a></a></td><td><a href="javascript:;" class="star"><a href="#" class="deleteBtn" id="row|' + i + '"><i class="fa fa-times" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #d9534f;"></i></a></a></td></tr>';
 
         $('#IMUNotes').append(_tr);
         console.log(i);
@@ -680,7 +680,7 @@ function displayIMU(Problem6,date2,comment6){
 }
 
 function displayDAB(Problem32,date3,comment7){
-        var _tr = '<tr data-status="pagado" ><td><div class="ckbox"><input type="checkbox" id="checkbox'+i+'"><label for="checkbox'+i+'"></label></div></td><td><div class="media"><div class="media-body">Disablility :<p class="summary" id="sum' + i + '">'  + Problem32 + '| ' + date3 + '| ' + comment7 + '</p></div></div></td><td><a data-toggle="modal" href="" class="updateBtnDAB" id="row|' + i + '"><i class="fa fa-pencil-square-o" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #337ab7;" ></i></a></a></td><td><a href="javascript:;" class="star"><a href="#" class="deleteBtn" id="row|' + i + '"><i class="fa fa-times" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #d9534f;"></i></a></a></td></tr>';
+        var _tr = '<tr data-status="pagado" ><td><div class="ckbox"><input type="checkbox" id="checkbox|'+i+'" name="CIS_consult_notes"><label for="checkbox|'+i+'"></label></div></td><td><div class="media"><div class="media-body">Disablility :<p class="summary" id="sum' + i + '">'  + Problem32 + '| ' + date3 + '| ' + comment7 + '</p></div></div></td><td><a data-toggle="modal" href="" class="updateBtnDAB" id="row|' + i + '"><i class="fa fa-pencil-square-o" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #337ab7;" ></i></a></a></td><td><a href="javascript:;" class="star"><a href="#" class="deleteBtn" id="row|' + i + '"><i class="fa fa-times" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #d9534f;"></i></a></a></td></tr>';
         $('#DABNotes').append(_tr);
         console.log(i);
         i = i + 1;
