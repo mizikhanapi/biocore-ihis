@@ -101,7 +101,6 @@
         <th style="text-align: left; width: 20%;">COMMENT</th>
         </thead>
         <tbody>
-
         </tbody>
     </table>
 </div>
@@ -322,7 +321,7 @@
         var itemCD = $("#itemCode1").val();
         var pmiNo = $("#patientpmino").val();
         var Comment = $("#requestComment").val();
-        alert(Comment);
+        //alert(Comment);
         $.ajax({
             url: "addOrder.jsp",
             type: "post",
