@@ -4,6 +4,8 @@
     Author     : Shammugam
 --%>
 
+<%@page import="dBConn.Conn"%>
+<%@page import="java.util.ArrayList"%>
 <h4>Basic Info</h4>
 <form class="form-horizontal" name="patientOrderDetailContentBasicInfoForm" id="patientOrderDetailContentBasicInfoForm">
     <div class="row">
@@ -105,7 +107,126 @@
 </div>
 
 <hr/>
-<h4>Order Detail</h4>
+<h4>Order Detail
+    <span class="pull-right">
+       
+        <button id="risOrderNewRequestButton" class="btn btn-primary" data-toggle="modal" data-id="1" data-target="#NewRequest">
+            <i class="fa fa-plus fa-lg"></i>&nbsp; New Request
+        </button>
+    </span>
+</h4>
+<div class="modal fade" id="NewRequest" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+    <div class="modal-dialog" style="width: 600px !important; ">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><i class="fa fa-times fa-lg"></i></button>
+                <h3 class="modal-title" id="RNO_modalTitle">Request New Order</h3>
+            </div>
+            <div class="modal-body">
+
+                <!-- content goes here -->
+                <form class="form-horizontal" id="RNO_addForm" autocomplete="off">
+                    <%
+                        Conn conn = new Conn();
+                        String itemName = "SELECT item_cd,item_name,spe_source FROM lis_item_detail ORDER BY item_name";
+                        ArrayList<ArrayList<String>> q1 = conn.getData(itemName);
+                    %>
+                    <!-- Text input-->
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="textinput">Item Name*</label>
+                        <div class="col-md-8">
+                            <select class="form-control" id="RNO_bodySystem" onchange="leaveChange(this)">
+                                <%
+                                    if (q1.size() > 0) {
+                                        for (int i = 0; i < q1.size(); i++) {
+
+                                %>
+                                <option value="<%=q1.get(i).get(0)%>"><%=q1.get(i).get(0)+" | "+q1.get(i).get(1)+" | "+q1.get(i).get(2)%></option>
+
+
+                                <%        }
+                                    }
+                                %>
+                            </select>
+
+                        </div>
+                    </div>
+
+
+                    <div id="itemCD" >
+
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" for="textinput">Item Code*</label>
+                            <div class="col-md-8" >
+                                <input type="text" placeholder="-" class="form-control" maxlength="330" id="itemCode1" disabled="disabled" value="">
+                            </div>
+                        </div>
+
+                        <!-- Text input-->
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" for="textinput">spe_source*</label>
+                            <div class="col-md-8">
+                                <input type="text" placeholder="-" class="form-control" maxlength="330" id="spe_source" value="">
+                                <div id="RNO_pro_match" class="search-drop">
+                                    <!--search result-->
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Text input-->
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" for="textinput">spe_container*</label>
+                            <div class="col-md-8">
+                                <input type="text" placeholder="-" class="form-control" maxlength="330" id="spe_container" value="">
+                                <div id="RNO_pro_match" class="search-drop">
+                                    <!--search result-->
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Text input-->
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" for="textinput">volume*</label>
+                            <div class="col-md-8">
+                                <input type="text" placeholder="-" class="form-control" maxlength="330" id="volume" value="">
+                                <div id="RNO_pro_match" class="search-drop">
+                                    <!--search result-->
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Text input-->
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" for="textinput">special_inst*</label>
+                            <div class="col-md-8">
+                                <input type="text" placeholder="-" class="form-control" maxlength="330" id="special_inst" value="">
+                                <div id="RNO_pro_match" class="search-drop">
+                                    <!--search result-->
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Text input-->
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" for="textinput">Comment</label>
+                            <div class="col-md-8">
+                                <textarea id="requestComment" placeholder="Write your Comment here (Optional)" class="form-control input-md" maxlength="500" rows="4" spellcheck="true" style="z-index: auto; position: relative; line-height: 20px; font-size: 14px; transition: none; background: none 0% 0% / auto repeat scroll padding-box border-box rgb(255, 255, 255);"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                <!-- content goes here -->
+            </div>
+            <div class="modal-footer">
+                <div class="btn-group btn-group-justified" role="group" aria-label="group button">
+                    <div class="btn-group" role="group" id="RNO_div_btnAdd_or_update"><button type="button" class="btn btn-success btn-block btn-lg" role="button" id="btnAdd">Add</button></div>
+                    <div class="btn-group" role="group">
+                        <button type="reset" id="RNO_btnReset" class="btn btn-default btn-block btn-lg" data-dismiss="modal" role="button">Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 <form class="form-horizontal" name="patientOrderDetailContentOrderInfoForm" id="patientOrderDetailContentOrderInfoForm">
     <div class="row">
 
@@ -176,7 +297,69 @@
 
 <script>
 
+    function leaveChange(control) {
+        var msg = control.value;
+        var order = $("#patientOrderNo").val();
+        //document.getElementById("itemCD").innerHTML = "<input type='text' placeholder='Search radiology procedure name' class='form-control' maxlength='330' id='itemCode1' disabled='disabled' value='" + msg + "'>";
 
+        $.ajax({
+            url: "OrderDetailInfo.jsp",
+            type: "post",
+            data: {itemCd: msg,
+                orderNo: order
+            },
+            timeout: 3000,
+            success: function (itemCd1) {
+                $('#itemCD').html(itemCd1);
+                $('#itemCD').trigger('contentchanged');
+                //$('.nav-tabs a[href="#tab_default_2"]').tab('show');
+            }
+        });
+    }
+
+    $("#btnAdd").click(function () {
+        var order = $("#patientOrderNo").val();
+        var itemCD = $("#itemCode1").val();
+        var pmiNo = $("#patientpmino").val();
+        var Comment = $("#requestComment").val();
+        alert(Comment);
+        $.ajax({
+            url: "addOrder.jsp",
+            type: "post",
+            data: {
+                order: order,
+                pmiNo: pmiNo,
+                itemCD: itemCD,
+                Comment: Comment
+            },
+            timeout: 10000,
+            success: function (returnOrderHTML) {
+                var dataOrder = {
+                    orderNo: order,
+                    pmino: pmiNo
+                };
+                $.ajax({
+                    url: "ManageOrderListDetails.jsp",
+                    type: "post",
+                    data: dataOrder,
+                    timeout: 3000,
+                    success: function (returnOrderDetailsTableHTML) {
+                        $('#ManageOrderDetailsListTable').html(returnOrderDetailsTableHTML);
+                        $('#ManageOrderDetailsListTable').trigger('contentchanged');
+                        $('.nav-tabs a[href="#tab_default_2"]').tab('show');
+                        $("#basicModal").hide();
+                        $(".modal-backdrop").hide();
+                        alert("Success");
+                    }
+                });
+
+
+            },
+            error: function (err) {
+                alert("Error update!");
+            }
+        });
+    });
 //--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------//
 
 
