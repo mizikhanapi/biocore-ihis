@@ -23,6 +23,7 @@ var pmiNo = "";
 var episodeDate="";
 var HFCOrderDetail = [];
 var  HFCProviderDetail = [];
+var dcgIndex = [];
 
 var reloadStat = 0;
 
@@ -62,6 +63,7 @@ $(document).ready(function(){
     $("#acceptSettingBtn").click(function(){
         var setCCN= false;
         var setDGS =false;
+        var setDCG = false;
            var setting = $(".setting").val();
            
            if ($('#setCCN').is(":checked"))
@@ -102,6 +104,25 @@ $(document).ready(function(){
                 var created_date = getDate();
                 setSetting(param_code,param_name,enable,create_by,created_date);
             }
+               if ($('#setDCG').is(":checked"))
+        {
+            setDCG = true;
+            var param_code = "DCG";
+            var param_name = "Diagnosis";
+            var enable = "1";
+            var create_by = doctor_id;
+            var created_date = getDate();
+            setSetting(param_code, param_name, enable, create_by, created_date);
+
+        } else {
+            setDCG = true;
+            var param_code = "DCG";
+            var param_name = "Diagnosis";
+            var enable = "0";
+            var create_by = doctor_id;
+            var created_date = getDate();
+            setSetting(param_code, param_name, enable, create_by, created_date);
+        }
              $('#settingModal').modal('toggle');
         
     });
@@ -179,6 +200,10 @@ function loadSetting(user_id){
                     } else if (set[0] === "DGS") {
                         if (set[1] === "1") {
                             $('#setDGS').prop("checked", true);
+                        }
+                    }else if (set[0] === "DCG") {
+                        if (set[1] === "1") {
+                            $('#setDCG').prop("checked", true);
                         }
                     }
                 }

@@ -250,15 +250,19 @@
                 
                 arrayData = selectedDisc.split('|');
                 var discipline_cd = arrayData[0].trim();
+                var discipline_name = arrayData[1].trim();
                 
                 arrayData = selectedSubdisc.split('|');
                 var subdiscipline_cd = arrayData[0].trim();
+                var subdiscipline_name = arrayData[1].trim();
                 
                 var data = {
                     hfc_cd: hfc_cd,
                     hfc_name: hfc_name,
                     discipline_cd: discipline_cd,
-                    subdiscipline_cd: subdiscipline_cd
+                    discipline_name: discipline_name,
+                    subdiscipline_cd: subdiscipline_cd,
+                    subdiscipline_name: subdiscipline_name
                 };
                 $('<div class="laoding">Loading</div>').appendTo('body');
                 
@@ -267,8 +271,12 @@
                      url: 'controller/session_process.jsp',
                      data: data,
                      success: function (data, textStatus, jqXHR) {
-                         if(data.trim()==='success')
-                            bootbox.alert('Session variable is changed');
+                         if(data.trim()==='success'){
+                            bootbox.alert('Session variable is changed', function(){
+                                location.reload(true);
+                            });
+                            
+                         }   
                         $("#SS_form")[0].reset();
                          
                     },

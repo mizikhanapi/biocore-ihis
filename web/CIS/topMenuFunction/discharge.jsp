@@ -12,6 +12,8 @@
     String pmino = request.getParameter("pmino");
     String episodedate = request.getParameter("episodedate");
     String status = request.getParameter("status");
+    
+    String patientCategory = session.getAttribute("patientCategory").toString();
 
 //    String pmino = "9504050251851";
 //    String episodedate ="2017-03-14 00:07:36.0";
@@ -21,8 +23,8 @@
 
     ArrayList<ArrayList<String>> dataEHR = conn.getData(sqlCheckEHR);
    
-   
-    if(dataEHR.size() < 1){
+   if(patientCategory.equals("001") || patientCategory.equals("002")){
+           if(dataEHR.size() < 1){
           boolean stats = conn.setData("INSERT INTO ehr_central(pmi_no, c_txndate, c_txndata, status,status_1,status_2,status_3,status_4,status_5) "
                       + "VALUES('" + pmino + "','" + episodedate + "','" + notes + "','" + status + "','0','0','0','0','0') ");
 
@@ -78,6 +80,10 @@
     {
      //error handling code
     }
+       
+   }else if(patientCategory.equals("003")){
+       
+   }
 
           
 %>

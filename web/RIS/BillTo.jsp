@@ -27,6 +27,7 @@
     <th style="text-align: left; width: 12%;">Order Date</th>
     <th style="text-align: left;">Health Facility Code</th>
     <th style="text-align: left;">Doctor's Name</th>
+    <th style="text-align: left;">Bill status</th>
     <th style="text-align: left;">Send the bill</th>
 </thead>
 <tbody>
@@ -38,19 +39,29 @@
             whereClause = " AND ris_order_master.hfc_cd = '" + hfc_cd + "' ";
         }
         String sql = "";
-
+        //                       0                          1                       2                           3                           4                                   5                    6                                7                        8                     9                           10                             11                              12                         13                               14                              15                              16                      17                              18                  
         if (!ic.equalsIgnoreCase("")) {
-            sql = "SELECT ris_order_master.pmi_no,ris_order_master.order_no,ris_order_master.hfc_cd,ris_order_master.episode_date,ris_order_master.encounter_date,ris_order_master.order_date,ris_order_master.order_by,ris_order_master.hfc_from,ris_order_master.hfc_to,ris_order_master.order_status,ris_order_master.diagnosis_cd,ris_order_master.created_by,ris_order_master.created_date,pms_patient_biodata.PATIENT_NAME,pms_patient_biodata.NEW_IC_NO,pms_patient_biodata.BIRTH_DATE,pms_patient_biodata.SEX_CODE,pms_patient_biodata.BLOOD_TYPE FROM ris_order_master JOIN pms_patient_biodata ON (ris_order_master.pmi_no = pms_patient_biodata.PMI_NO) WHERE ris_order_master.order_status='2' AND ris_order_master.billing_status='0' AND pms_patient_biodata.NEW_IC_NO = '" + ic + "' " + whereClause;
+            sql = "SELECT ris_order_master.pmi_no,ris_order_master.order_no,ris_order_master.hfc_cd,ris_order_master.episode_date,ris_order_master.encounter_date,ris_order_master.order_date,ris_order_master.order_by,ris_order_master.hfc_from,ris_order_master.hfc_to,ris_order_master.order_status,ris_order_master.diagnosis_cd,ris_order_master.created_by,ris_order_master.created_date,pms_patient_biodata.PATIENT_NAME,pms_patient_biodata.NEW_IC_NO,pms_patient_biodata.BIRTH_DATE,pms_patient_biodata.SEX_CODE,pms_patient_biodata.BLOOD_TYPE, ris_order_master.billing_status FROM ris_order_master JOIN pms_patient_biodata ON (ris_order_master.pmi_no = pms_patient_biodata.PMI_NO) WHERE ris_order_master.order_status='2' AND ris_order_master.billing_status='0' AND pms_patient_biodata.NEW_IC_NO = '" + ic + "' " + whereClause;
         } else if (!order_no.equalsIgnoreCase("")) {
-            sql = "SELECT ris_order_master.pmi_no,ris_order_master.order_no,ris_order_master.hfc_cd,ris_order_master.episode_date,ris_order_master.encounter_date,ris_order_master.order_date,ris_order_master.order_by,ris_order_master.hfc_from,ris_order_master.hfc_to,ris_order_master.order_status,ris_order_master.diagnosis_cd,ris_order_master.created_by,ris_order_master.created_date,pms_patient_biodata.PATIENT_NAME,pms_patient_biodata.NEW_IC_NO,pms_patient_biodata.BIRTH_DATE,pms_patient_biodata.SEX_CODE,pms_patient_biodata.BLOOD_TYPE FROM ris_order_master JOIN pms_patient_biodata ON (ris_order_master.pmi_no = pms_patient_biodata.PMI_NO) WHERE ris_order_master.order_status='2' AND ris_order_master.order_no = '" + order_no + "'" + whereClause;
+            sql = "SELECT ris_order_master.pmi_no,ris_order_master.order_no,ris_order_master.hfc_cd,ris_order_master.episode_date,ris_order_master.encounter_date,ris_order_master.order_date,ris_order_master.order_by,ris_order_master.hfc_from,ris_order_master.hfc_to,ris_order_master.order_status,ris_order_master.diagnosis_cd,ris_order_master.created_by,ris_order_master.created_date,pms_patient_biodata.PATIENT_NAME,pms_patient_biodata.NEW_IC_NO,pms_patient_biodata.BIRTH_DATE,pms_patient_biodata.SEX_CODE,pms_patient_biodata.BLOOD_TYPE, ris_order_master.billing_status FROM ris_order_master JOIN pms_patient_biodata ON (ris_order_master.pmi_no = pms_patient_biodata.PMI_NO) WHERE ris_order_master.order_status='2' AND ris_order_master.order_no = '" + order_no + "'" + whereClause;
         } else if (!DateFrom.equalsIgnoreCase("") && !DateTo.equalsIgnoreCase("")) {
-            sql = "SELECT ris_order_master.pmi_no,ris_order_master.order_no,ris_order_master.hfc_cd,ris_order_master.episode_date,ris_order_master.encounter_date,ris_order_master.order_date,ris_order_master.order_by,ris_order_master.hfc_from,ris_order_master.hfc_to,ris_order_master.order_status,ris_order_master.diagnosis_cd,ris_order_master.created_by,ris_order_master.created_date,pms_patient_biodata.PATIENT_NAME,pms_patient_biodata.NEW_IC_NO,pms_patient_biodata.BIRTH_DATE,pms_patient_biodata.SEX_CODE,pms_patient_biodata.BLOOD_TYPE FROM ris_order_master JOIN pms_patient_biodata ON (ris_order_master.pmi_no = pms_patient_biodata.PMI_NO) WHERE ris_order_master.order_status='2' AND ris_order_master.billing_status='0' AND ris_order_master.created_date BETWEEN '" + DateFrom + "' AND '" + DateTo + "'" + whereClause;
+            sql = "SELECT ris_order_master.pmi_no,ris_order_master.order_no,ris_order_master.hfc_cd,ris_order_master.episode_date,ris_order_master.encounter_date,ris_order_master.order_date,ris_order_master.order_by,ris_order_master.hfc_from,ris_order_master.hfc_to,ris_order_master.order_status,ris_order_master.diagnosis_cd,ris_order_master.created_by,ris_order_master.created_date,pms_patient_biodata.PATIENT_NAME,pms_patient_biodata.NEW_IC_NO,pms_patient_biodata.BIRTH_DATE,pms_patient_biodata.SEX_CODE,pms_patient_biodata.BLOOD_TYPE, ris_order_master.billing_status FROM ris_order_master JOIN pms_patient_biodata ON (ris_order_master.pmi_no = pms_patient_biodata.PMI_NO) WHERE ris_order_master.order_status='2' AND ris_order_master.billing_status='0' AND ris_order_master.created_date BETWEEN '" + DateFrom + "' AND '" + DateTo + "'" + whereClause;
         }
 
         ArrayList<ArrayList<String>> dataPatientOrderList = conn.getData(sql);
 
         int size = dataPatientOrderList.size();
+        
         for (int i = 0; i < size; i++) {
+            String status = "New";
+            String disableCheckBox = "";
+            
+            if(dataPatientOrderList.get(i).get(18).equalsIgnoreCase("2")){
+            
+                status = "Sent";
+                disableCheckBox = "disabled";
+            }
+            
     %>
 
     <tr id="moveToRISOrderDetailsTButton" style="text-align: left;">
@@ -61,10 +72,11 @@
         <td style="font-weight: 500;"><%= dataPatientOrderList.get(i).get(13)%></td> <!-- Name -->
         <td><%= dataPatientOrderList.get(i).get(5)%></td> <!-- Order Date -->
         <td><%= dataPatientOrderList.get(i).get(2)%></td> <!-- Health Facility Code -->
-        <td><%= dataPatientOrderList.get(i).get(6)%></td> <!-- Doctor's Name -->
+       <td><%= dataPatientOrderList.get(i).get(6)%></td> <!-- Doctor's Name -->
+        <td><%= status%></td> <!-- bill status -->
 
         <td>
-            <input type="checkbox" id="checky" name="order" value="<%= dataPatientOrderList.get(i).get(1)%>|<%= dataPatientOrderList.get(i).get(0)%>|<%= dataPatientOrderList.get(i).get(5)%>|<%=dataPatientOrderList.get(i).get(14)%>|<%=dataPatientOrderList.get(i).get(13)%>">
+            <input type="checkbox" id="checky" name="order" <%=disableCheckBox%> value="<%= dataPatientOrderList.get(i).get(1)%>|<%= dataPatientOrderList.get(i).get(0)%>|<%= dataPatientOrderList.get(i).get(5)%>|<%=dataPatientOrderList.get(i).get(14)%>|<%=dataPatientOrderList.get(i).get(13)%>">
         </td><!-- Doctor's Name -->
     </tr>
     <%

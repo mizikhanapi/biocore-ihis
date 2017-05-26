@@ -65,7 +65,7 @@
                                                 <div id="procedureMain">
 
                                                 </div>
-                                                <div id="procedureTable">
+                                                <div id="procedureTable" class="table-guling">
 
                                                 </div>
                                                 <%@include file="procedure_modal/procedure_modal.jsp" %>
@@ -75,12 +75,23 @@
                                                 <div id="procedure1Main">
 
                                                 </div>
-                                                <div id="procedure1Table">
+                                                <div id="procedure1Table" class="table-guling">
 
                                                 </div>
                                                 <%@include file="procedure_modal/procedure1_modal.jsp" %>                                                
                                                 
                                             </div>
+                                                
+                                            <div class="tab-pane" id="tab_default_3">
+                                                <div id="procedure2Main">
+
+                                                </div>
+                                                <div id="procedure2Table" class="table-guling">
+
+                                                </div>
+                                                <%@include file="procedure_modal/procedure2_modal.jsp" %>                                                
+                                                
+                                            </div>    
 
                                         </div>
                                     </div>
@@ -112,6 +123,9 @@
             
             $("#procedure1Main").load("procedure1_main.jsp");
             $("#procedure1Table").load("procedure1_table.jsp");
+            
+            $("#procedure2Main").load("procedure2_main.jsp");
+            $("#procedure2Table").load("procedure2_table.jsp");
             
             
            // destroyScreenLoading();

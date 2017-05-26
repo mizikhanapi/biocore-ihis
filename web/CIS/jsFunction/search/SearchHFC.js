@@ -33,6 +33,26 @@ function searchHFCcode() {
         }
     });
 }
+
+function searchHFCcode(hfc_name, order_field_id, provider_field_id) {
+    var id = hfc_name;
+    $.ajax({
+        type: 'post',
+        url: 'search/searchHFC_cd.jsp',
+        data: {'id': id},
+        success: function (reply_data) {
+            console.log(reply_data);
+            var arryDetail = reply_data.trim().split("[#-#]");
+            
+            var array_data = String(arryDetail[0]).split("|");
+            var hfcCode = array_data[0];
+            
+            $("#"+order_field_id).val(arryDetail[1]);
+            $("#"+provider_field_id).val(arryDetail[2]);
+
+        }
+    });
+}
 $(function () {
     $("#hfc").on('keyup', function () { // everytime keyup event
         var input = $(this).val(); // We take the input value

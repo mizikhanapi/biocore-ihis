@@ -16,8 +16,8 @@
 <%@page import="main.RMIConnector"%>
 <%
 
-    String user_id = request.getParameter("userId");
-    //String user_id = "DR007";
+    //String user_id = request.getParameter("userId");
+    String user_id = "budie01";
     String setting ="";
     
     Conn conn = new Conn();
