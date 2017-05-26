@@ -76,7 +76,7 @@
     
     }else if(process.equalsIgnoreCase("subdiscipline")){
         
-        String sql = "Select subdiscipline_cd, subdiscipline_name FROM adm_subdiscipline WHERE discipline_cd = '"+disciplineCode+"' AND (concat(subdiscipline_cd, ' | ', subdiscipline_name) like '%"+input+"%')";
+        String sql = "Select subdiscipline_cd, subdiscipline_name FROM adm_subdiscipline WHERE discipline_cd = '"+disciplineCode+"' AND subdiscipline_hfc_cd = '"+hfc_cd+"' AND (concat(subdiscipline_cd, ' | ', subdiscipline_name) like '%"+input+"%')";
         ArrayList<ArrayList<String>> search = conn.getData(sql);
         
         if(search.size() > 0){

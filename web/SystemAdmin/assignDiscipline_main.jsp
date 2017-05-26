@@ -343,6 +343,7 @@
             var input = $(this).val(); // We take the input value
 
             var discipline = $('#ADM_discipline').val();
+            var hfc_cd = $('#ADM_hfc').val();
 
             if (discipline === "" || isDisciplineSelected === false) {
 
@@ -359,10 +360,13 @@
 
                 var arrayX = discipline.split("|");
                 var disciplineCodeX = arrayX[0].trim();
+                
+                var arrayY = hfc_cd.split("|");
+                hfc_cd = arrayY[0].trim();
 
 
                 $('#ADM_subdiscipline_match').html('<img src="bootstrap-3.3.6-dist/image/ajax-loader.gif" />'); // Loader icon apprears in the <div id="PM_match_system"></div>
-                var dataFields = {input: input, process: "subdiscipline", disciplineCode: disciplineCodeX}; // We pass input argument in Ajax
+                var dataFields = {input: input, process: "subdiscipline", disciplineCode: disciplineCodeX, hfc_cd:hfc_cd}; // We pass input argument in Ajax
                 $.ajax({
                     type: "POST",
                     url: "ADM_result.jsp", // call the php file ajax/tuto-autocomplete.php

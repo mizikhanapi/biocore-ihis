@@ -194,11 +194,14 @@
             data: data,
             success: function (data, textStatus, jqXHR) {
                 if (data.trim() === 'success') {
-                    bootbox.alert("Picture is changed");
                     $('#proPic').attr("src", gambarURI);
                     $('#dym').html("");
                     $('#inputFileToLoad').val("");
                     gambarURI = "";
+
+                    bootbox.alert("Picture is changed", function(){
+                        location.reload(true);
+                    });
                 } else {
                     bootbox.alert("Fail");
                 }
