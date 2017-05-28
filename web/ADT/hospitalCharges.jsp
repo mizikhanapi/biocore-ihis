@@ -101,16 +101,19 @@
 
 
 
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label class="col-md-6 control-label" for="textinput">Eligibility Type*</label>
-                                <div class="col-md-6">
-                                    <input id="eliTy" name="eliTy" type="text" placeholder="Insert Eligibility Sources" class="form-control input-md">
-                                    <input type="hidden" id="eliTy_cd">
-                                    <div id="eliTyList" class="search-drop"></div>
+                        <div class="form-group">
+                            <div class="col-md-6">
+                                <label class="col-md-6 control-label" for="selectbasic">Eligibility Type*</label>
+                                <div class="col-md-6" id="EligibilityTypeDropdown">
+                                    <select id="EliTy" name="selectbasic" class="form-control" disabled="">
+                                    </select>
                                 </div>
                             </div>
                         </div>
+                    </div>
+
+                    <div class="row">
+
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label class="col-md-6 control-label" for="textinput">Ward Class</label>
@@ -137,68 +140,73 @@
                         -->
 
                         <!-- Select Basic -->
-                        <div class="form-group">
-                            <label class="col-md-3 control-label" for="selectbasic">Ward Name*</label>
-                            <div class="col-md-3" id="WardNameDropdown">
-                                  
-                                <select id="wname" name="selectbasic" class="form-control" disabled="">
-
-
-                                </select>
-                                <input  type="hidden" id="wclass_cd">
-                            </div>
-
-                        </div>
-
-
-
-
-
-
-                    </div>
-
-
-                    <div class="row">
                         <div class="col-md-6">
-                            <!-- Select Basic -->
+
                             <div class="form-group">
-                                <label class="col-md-6 control-label" for="selectbasic">Charges Type *</label>
-                                <div class="col-md-6">
-                                    <input id="ChargeType" name="ChargeType" placeholder="Insert Charges Type" maxlength="30" type="text"  class="form-control input-md">
-                                    <input type="hidden" id="ChargeType_cd">
-                                    <div id="ChargeTypeList" class="search-drop"></div>
+
+                                <label class="col-md-6 control-label" for="selectbasic">Ward Name*</label>
+                                <div class="col-md-6" id="WardNameDropdown">
+
+                                    <select id="wname" name="selectbasic" class="form-control" disabled="">
+
+
+                                    </select>
+                                    <input  type="hidden" id="wclass_cd">
                                 </div>
+
                             </div>
                         </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label class="col-md-6 control-label" for="textinput">Charge Fees *</label>
-                                <div class="col-md-6">
-                                    <input id="ChargeFees" name="ChargeFees" type="text" placeholder="Insert Charges Fees" class="form-control input-md">
-                                </div>
-                            </div>
-                        </div>
+
                     </div>
 
 
 
 
-                </form>
+
             </div>
-            <!-- content goes here -->
 
-            <div class="modal-footer">
-                <div class="btn-group btn-group-justified" role="group" aria-label="group button">
-                    <div class="btn-group" role="group">
-                        <button type="submit" class="btn btn-success btn-block btn-lg" role="button" id="MWID_add">Add</button>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <!-- Select Basic -->
+                    <div class="form-group">
+                        <label class="col-md-6 control-label" for="selectbasic">Charges Type *</label>
+                        <div class="col-md-6">
+                            <input id="ChargeType" name="ChargeType" placeholder="Insert Charges Type" maxlength="30" type="text"  class="form-control input-md">
+                            <input type="hidden" id="ChargeType_cd">
+                            <div id="ChargeTypeList" class="search-drop"></div>
+                        </div>
                     </div>
-                    <div class="btn-group" role="group">
-                        <button type="reset" id="MWID_clear" class="btn btn-default btn-block btn-lg" data-dismiss="modal" role="button" >Cancel</button>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="col-md-6 control-label" for="textinput">Charge Fees *</label>
+                        <div class="col-md-6">
+                            <input id="ChargeFees" name="ChargeFees" type="text" placeholder="Insert Charges Fees" class="form-control input-md">
+                        </div>
                     </div>
+                </div>
+            </div>
+
+
+
+
+            </form>
+        </div>
+        <!-- content goes here -->
+
+        <div class="modal-footer">
+            <div class="btn-group btn-group-justified" role="group" aria-label="group button">
+                <div class="btn-group" role="group">
+                    <button type="submit" class="btn btn-success btn-block btn-lg" role="button" id="MWID_add">Add</button>
+                </div>
+                <div class="btn-group" role="group">
+                    <button type="reset" id="MWID_clear" class="btn btn-default btn-block btn-lg" data-dismiss="modal" role="button" >Cancel</button>
                 </div>
             </div>
         </div>
     </div>
+</div>
 </div>
 
 <!--<script src="bootstrap-3.3.6-dist/js/jquery-2.1.4.js" type="text/javascript"></script>
@@ -393,6 +401,7 @@
         $("#eliSrc").on('keyup', function () { // everytime keyup event
             var input = $(this).val(); // We take the input value
             var hfc = $("#Rhfc").val();
+            var EliSrc = $("#eliSrc").val();
 
 
 
@@ -414,6 +423,23 @@
                             //console.log(arrayData);
                             //console.log(arrayData[0].trim());
                             //console.log(arrayData[1].trim());
+                            $.ajax({
+                                type: "post",
+                                url: "PMS/listEliTy.jsp",
+                                data: {'EliSrc': EliSrc, 'hfc': hfc},
+                                timeout: 10000,
+                                success: function (list) {
+                                    //remove the loading 
+                                    //$body.removeClass("loading");
+                                    console.log(list);
+                                    $('#EligibilityTypeDropdown').html(list);
+
+                                },
+                                error: function (xhr, status, error) {
+                                    var err = eval("(" + xhr.responseText + ")");
+                                    //bootbox.alert(err.Message);
+                                }
+                            });
                         });
                     },
                     error: function () { // if error

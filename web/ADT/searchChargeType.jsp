@@ -12,7 +12,7 @@
     Conn conn = new Conn();
     String key = request.getParameter("input");
     String hfc = request.getParameter("hfc");
-        String mrc = "0100";
+        String mrc = "0098";
 
    
 

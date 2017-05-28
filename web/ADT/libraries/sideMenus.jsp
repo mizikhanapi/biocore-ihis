@@ -23,16 +23,17 @@
                 <i class="fa fa-bed fa-lg"></i> Manage In-Patient
             </a>
         </li>
-<li>
-            <a  href="HIS070002.jsp" >
-                <i class="fa fa-briefcase fa-lg"></i> Ward Occupancy
-            </a>
-        </li>
         <li>
             <a type="button" data-toggle="modal" data-target="#queueModal" id="queue">
                 <i class="fa fa-users fa-lg"></i> List Of Admission
             </a>
         </li>
+<li>
+            <a  href="HIS070002.jsp" >
+                <i class="fa fa-briefcase fa-lg"></i> Ward Occupancy
+            </a>
+        </li>
+        
         <li>
             <a  href="HIS070005.jsp" >
                 <i class="fa fa-users fa-lg"></i> List of Discharge Inpatient
