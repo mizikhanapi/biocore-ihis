@@ -1,6 +1,6 @@
 <%-- 
-    Document   : HIS040005
-    Created on : May 29, 2017, 12:14:58 PM
+    Document   : HIS040009
+    Created on : May 29, 2017, 7:23:53 PM
     Author     : Shammugam
 --%>
 
@@ -42,7 +42,7 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div class="thumbnail">
-                                <div id="contentReportMDCList" class="table-guling">
+                                <div id="contentReportATCList" class="table-guling">
                                 </div>
                             </div>
                         </div>
@@ -61,7 +61,7 @@
 
             $(document).ready(function () {
                 $('<div class="loading">Loading</div>').appendTo('body');
-                $("#contentReportMDCList").load("manageReportMDCListTable.jsp");
+                $("#contentReportATCList").load("manageReportATCListTable.jsp");
             });
 
         </script>

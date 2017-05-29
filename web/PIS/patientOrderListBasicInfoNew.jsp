@@ -769,8 +769,8 @@
         var updateOrderDrugOrdered = parseInt(arrayData[11]);
         var updateOrderDrugSupplied = arrayData[12];
         var updateOrderDrugStockQty = arrayData[18];
-        var updateOrderDrugDispensed = row.find('td').eq(10).text();
-        var updateOrderDrugStatus = row.find('td').eq(13).text();
+        var updateOrderDrugDispensed = row.find('td').eq(11).text();
+        var updateOrderDrugStatus = row.find('td').eq(14).text();
 
         $("#updateOrderNo").val(updateOrderNo);
         $("#updateStockQuantity").val(updateOrderDrugStockQty);
@@ -800,7 +800,7 @@
         var updateSuppliedQty = $("#updateSuppliedDrugQuantity").val();
         var updateDispensedQuantity = $("#updateDispensedDrugQuantity").val();
         var updateOrderStatusStatic = $("#updatestatus").val();
-        var updateOrderPrice = row.find('td').eq(11).text();
+        var updateOrderPrice = row.find('td').eq(12).text();
 
         var orderTotal = parseFloat(updateOrderPrice) * parseFloat(updateDispensedQuantity);
         var orderTotalFloat = parseFloat(orderTotal).toFixed(2);
@@ -825,9 +825,9 @@
             $("#updateDispensedDrugQuantity").val("");
         } else {
 
-            var updateOrderDrugDispensed = row.find('td').eq(10).text(updateDispensedQuantity);
-            var updateOrderTotalPrice = row.find('td').eq(12).text(orderTotalFloat);
-            var updateOrderDrugStatus = row.find('td').eq(13).text(updateOrderStatusStatic);
+            var updateOrderDrugDispensed = row.find('td').eq(11).text(updateDispensedQuantity);
+            var updateOrderTotalPrice = row.find('td').eq(13).text(orderTotalFloat);
+            var updateOrderDrugStatus = row.find('td').eq(14).text(updateOrderStatusStatic);
 
 
             $('#updateOrder').modal('hide');
@@ -962,21 +962,21 @@
             var $tds = $(this).find('td');
 
             // Get The Data
-            orderNo = $tds.eq(0).text();
-            drugCode = $tds.eq(1).text();
-            drugDesc = $tds.eq(2).text();
-            drugStrength = $tds.eq(3).text();
-            drugFrequency = $tds.eq(4).text();
-            drugDuration = $tds.eq(5).text();
-            drugDose = $tds.eq(6).text();
-            drugStockQty = $tds.eq(7).text();
-            drugOrderedQty = $tds.eq(8).text();
-            drugSuppliedQty = $tds.eq(9).text();
-            drugDispensedQty = $tds.eq(10).text();
-            drugPrice = $tds.eq(11).text();
-            drugTotalPrice = $tds.eq(12).text();
-            drugStatus = $tds.eq(13).text();
             drugChecked = $(this).find("#drugDispenseChecked").is(':checked');
+            orderNo = $tds.eq(1).text();
+            drugCode = $tds.eq(2).text();
+            drugDesc = $tds.eq(3).text();
+            drugStrength = $tds.eq(4).text();
+            drugFrequency = $tds.eq(5).text();
+            drugDuration = $tds.eq(6).text();
+            drugDose = $tds.eq(7).text();
+            drugStockQty = $tds.eq(8).text();
+            drugOrderedQty = $tds.eq(9).text();
+            drugSuppliedQty = $tds.eq(10).text();
+            drugDispensedQty = $tds.eq(11).text();
+            drugPrice = $tds.eq(12).text();
+            drugTotalPrice = $tds.eq(13).text();
+            drugStatus = $tds.eq(14).text();
 
             cars.push(drugChecked);
 
@@ -1079,40 +1079,40 @@
             var $tds = $(this).find('td');
 
             // Get The Data
-            orderNo = $tds.eq(0).text();
-            drugCode = $tds.eq(1).text();
-            drugDesc = $tds.eq(2).text();
-            drugStrength = $tds.eq(3).text();
-            drugFrequency = $tds.eq(4).text();
-            drugDuration = $tds.eq(5).text();
-            drugDose = $tds.eq(6).text();
-            drugStockQty = $tds.eq(7).text();
-            drugOrderedQty = $tds.eq(8).text();
-            drugSuppliedQty = $tds.eq(9).text();
-            drugDispensedQty = $tds.eq(10).text();
-            drugPrice = $tds.eq(11).text();
-            drugTotalPrice = $tds.eq(12).text();
-            drugStatus = $tds.eq(13).text();
             drugChecked = $(this).find("#drugDispenseChecked").is(':checked');
+            orderNo = $tds.eq(1).text();
+            drugCode = $tds.eq(2).text();
+            drugDesc = $tds.eq(3).text();
+            drugStrength = $tds.eq(4).text();
+            drugFrequency = $tds.eq(5).text();
+            drugDuration = $tds.eq(6).text();
+            drugDose = $tds.eq(7).text();
+            drugStockQty = $tds.eq(8).text();
+            drugOrderedQty = $tds.eq(9).text();
+            drugSuppliedQty = $tds.eq(10).text();
+            drugDispensedQty = $tds.eq(11).text();
+            drugPrice = $tds.eq(12).text();
+            drugTotalPrice = $tds.eq(13).text();
+            drugStatus = $tds.eq(14).text();
 
 
-            drugATCCode = $tds.eq(14).text();
-            drugATCDesc = $tds.eq(15).text();
-            drugMDCDesc = $tds.eq(16).text();
-            drugMDCStrength = $tds.eq(17).text();
-            drugMDCFromMCode = $tds.eq(18).text();
-            drugMDCFromRCode = $tds.eq(19).text();
-            drugMDCFromDesc = $tds.eq(20).text();
-            drugMDCRouteMCode = $tds.eq(21).text();
-            drugMDCRouteRCode = $tds.eq(22).text();
-            drugMDCRouteDesc = $tds.eq(23).text();
-            drugMDCFrequencyMCode = $tds.eq(24).text();
-            drugMDCFrequencyRCode = $tds.eq(25).text();
-            drugMDCFrequencyDesc = $tds.eq(26).text();
+            drugATCCode = $tds.eq(15).text();
+            drugATCDesc = $tds.eq(16).text();
+            drugMDCDesc = $tds.eq(17).text();
+            drugMDCStrength = $tds.eq(18).text();
+            drugMDCFromMCode = $tds.eq(19).text();
+            drugMDCFromRCode = $tds.eq(20).text();
+            drugMDCFromDesc = $tds.eq(21).text();
+            drugMDCRouteMCode = $tds.eq(22).text();
+            drugMDCRouteRCode = $tds.eq(23).text();
+            drugMDCRouteDesc = $tds.eq(24).text();
+            drugMDCFrequencyMCode = $tds.eq(25).text();
+            drugMDCFrequencyRCode = $tds.eq(26).text();
+            drugMDCFrequencyDesc = $tds.eq(27).text();
             drugMDCFrequencyUnitCode = "-";
-            drugMDCDosage = $tds.eq(27).text();
+            drugMDCDosage = $tds.eq(28).text();
             drugMDCOUM = "-";
-            drugMDCDuration = $tds.eq(28).text();
+            drugMDCDuration = $tds.eq(29).text();
             drugMDCDispenseLocation = "-";
             drugMDCDispenseNotes = "-";
             drugMDCDispenseProvider = "-";
@@ -1131,7 +1131,7 @@
 
                 ehrCentralBillBLI = ehrCentralBillBLI + dataOneRowBLI;
                 ehrCentralBillDDR = ehrCentralBillDDR + dataOneRowDDR;
-                
+
 
                 console.log("Ok : " + drugCode);
 
@@ -1279,8 +1279,8 @@
 
             var $tds = $(this).find('td');
             drugTotalOrder = drugTotalOrder + 1;
-            drugPrice = parseFloat($tds.eq(11).text());
-            drugDispensedQty = parseFloat($tds.eq(10).text());
+            drugPrice = parseFloat($tds.eq(12).text());
+            drugDispensedQty = parseFloat($tds.eq(11).text());
             product = drugDispensedQty * drugPrice;
 
             if (isNaN(drugTotalOrder) === true || isNaN(drugPrice) === true || isNaN(drugDispensedQty) === true || isNaN(product) === true) {
@@ -1300,8 +1300,8 @@
 
                 var $tds = $(this).find('td');
                 drugTotalOrderChecked = drugTotalOrderChecked + 1;
-                drugPriceChecked = parseFloat($tds.eq(11).text());
-                drugDispensedQtyChecked = parseFloat($tds.eq(10).text());
+                drugPriceChecked = parseFloat($tds.eq(12).text());
+                drugDispensedQtyChecked = parseFloat($tds.eq(11).text());
                 productChecked = drugDispensedQtyChecked * drugPriceChecked;
 
                 if (isNaN(drugTotalOrderChecked) === true || isNaN(drugPriceChecked) === true || isNaN(drugDispensedQtyChecked) === true || isNaN(productChecked) === true) {
@@ -1359,18 +1359,19 @@
             var $tds = $(this).find('td');
 
             drugChecked = $(this).find("#drugDispenseChecked").is(':checked');
-            drugStock = $tds.eq(7).text();
+            drugStock = $tds.eq(8).text();
 
 
             if (drugChecked === true) {
-                drugOrderNo = $tds.eq(0).text();
-                drugCode = $tds.eq(1).text();
+                drugOrderNo = $tds.eq(1).text();
+                drugCode = $tds.eq(2).text();
 
                 prescribeLongString = prescribeLongString + drugOrderNo + "|" + drugCode + "#";
+                stock.push(drugStock);
+                
             }
 
             checked.push(drugChecked);
-            stock.push(drugStock);
 
 
         });
@@ -1432,6 +1433,7 @@
                                         success: function (datas) {
                                             console.log(datas.trim());
                                             document.getElementById("btnOrderDispense").disabled = false;
+                                            $("#patientOrderDetailsListTable").find("input,button,textarea,select").attr("disabled", "disabled");
                                             $('#myModal').modal('hide');
                                             var orderNoMain = $("#patientOrderNo").val();
                                             window.open("patientOrderListDetailsPrescribePDF.jsp?orderNo=" + orderNoMain + " ");

@@ -1,8 +1,9 @@
 <%-- 
-    Document   : HIS040005
-    Created on : May 29, 2017, 12:14:58 PM
+    Document   : HIS040007
+    Created on : May 29, 2017, 12:36:59 PM
     Author     : Shammugam
 --%>
+
 
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.sql.*"%>
@@ -42,7 +43,7 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div class="thumbnail">
-                                <div id="contentReportMDCList" class="table-guling">
+                                <div id="contentReportPenddingOrderList">
                                 </div>
                             </div>
                         </div>
@@ -60,8 +61,11 @@
         <script>
 
             $(document).ready(function () {
+
                 $('<div class="loading">Loading</div>').appendTo('body');
-                $("#contentReportMDCList").load("manageReportMDCListTable.jsp");
+                $("#contentReportPenddingOrderList").load("manageReportPendingOrderListTable.jsp");
+
+
             });
 
         </script>

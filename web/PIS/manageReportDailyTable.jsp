@@ -20,15 +20,15 @@
 
 
 <h4>
-    DAILY DISPENSE DATA
+    DAILY DISPENSED DATA
 </h4>
 
 
 <table  id="reportDailyTable"  class="table table-striped table-bordered" cellspacing="0" width="100%">
     <thead>
     <th style="text-align: center;">DATE</th>
-    <th style="text-align: center;">TOTAL PRODUCT DISPENSED</th>
-    <th style="text-align: center;">TOTAL QUANTITY DISPENSED</th>
+    <th style="text-align: center;">TOTAL DRUG DISPENSED</th>
+    <th style="text-align: center;">TOTAL DRUG QUANTITY DISPENSED</th>
     <th style="text-align: center;">TOTAL PRICE (RM)</th>
 </thead>
 <tbody>
@@ -70,16 +70,38 @@
             initComplete: function (settings, json) {
                 $('.loading').hide();
             },
+            pageLength: 15,
             dom: 'Bfrtip',
             buttons: [
                 {
                     extend: 'excelHtml5',
                     text: 'Export To Excel',
-                    title: 'Pharmacy Daily Report'
+                    title: 'Pharmacy Daily Dispensed Drug List',
+                    className: 'btn btn-primary',
+                    exportOptions: {
+                        columns: ':visible'
+                    }
                 }, {
                     extend: 'csvHtml5',
                     text: 'Export To Excel CSV',
-                    title: 'Pharmacy Daily Report'
+                    title: 'Pharmacy Daily Dispensed Drug List',
+                    className: 'btn btn-primary',
+                    exportOptions: {
+                        columns: ':visible'
+                    }
+                }, {
+                    extend: 'print',
+                    text: 'Print MDC List',
+                    title: 'Pharmacy Daily Dispensed Drug List',
+                    message: 'List of Daily Dispensed Drug In The Pharmacy',
+                    className: 'btn btn-primary',
+                    exportOptions: {
+                        columns: ':visible'
+                    }
+                }, {
+                    extend: 'colvis',
+                    text: 'Filter Table Column',
+                    className: 'btn btn-success'
                 }
             ]
         });

@@ -21,15 +21,15 @@
 
 
 <h4>
-    YEARLY DISPENSE DATA
+    YEARLY DISPENSED DATA
 </h4>
 
 
 <table  id="reportYearlyTable"  class="table table-striped table-bordered" cellspacing="0" width="100%">
     <thead>
     <th style="text-align: center;">YEAR</th>
-    <th style="text-align: center;">TOTAL PRODUCT DISPENSED</th>
-    <th style="text-align: center;">TOTAL QUANTITY DISPENSED</th>
+    <th style="text-align: center;">TOTAL DRUG PRODUCT DISPENSED</th>
+    <th style="text-align: center;">TOTAL DRUG QUANTITY DISPENSED</th>
     <th style="text-align: center;">TOTAL PRICE (RM)</th>
 </thead>
 <tbody>
@@ -75,20 +75,32 @@
                 {
                     extend: 'excelHtml5',
                     text: 'Export To Excel',
-                    title: 'Pharmacy Yearly Report'
+                    title: 'Pharmacy Yearly Dispensed Drug List',
+                    className: 'btn btn-primary',
+                    exportOptions: {
+                        columns: ':visible'
+                    }
                 }, {
                     extend: 'csvHtml5',
                     text: 'Export To Excel CSV',
-                    title: 'Pharmacy Yearly Report'
-//                }, {
-//                    extend: 'pdfHtml5',
-//                    text: 'Export To PDF',
-//                    title: 'Pharmacy Yearly Report'
-//                }, {
-//                    text: 'Export To PDF My button',
-//                    action: function (e, dt, node, config) {
-//                        window.open("ShowPDF.jsp");
-//                    }
+                    title: 'Pharmacy Yearly Dispensed Drug List',
+                    className: 'btn btn-primary',
+                    exportOptions: {
+                        columns: ':visible'
+                    }
+                }, {
+                    extend: 'print',
+                    text: 'Print MDC List',
+                    title: 'Pharmacy Yearly Dispensed Drug List',
+                    message: 'List of Yearly Dispensed Drug In The Pharmacy',
+                    className: 'btn btn-primary',
+                    exportOptions: {
+                        columns: ':visible'
+                    }
+                }, {
+                    extend: 'colvis',
+                    text: 'Filter Table Column',
+                    className: 'btn btn-success'
                 }
             ]
         });

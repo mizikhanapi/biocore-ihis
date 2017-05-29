@@ -21,15 +21,15 @@
 
 
 <h4>
-    MONTHLY DISPENSE DATA
+    MONTHLY DISPENSED DATA
 </h4>
 
 
 <table  id="reportMonthlyTable"  class="table table-striped table-bordered" cellspacing="0" width="100%">
     <thead >
     <th style="text-align: center;">MONTH/YEAR</th>
-    <th style="text-align: center;">TOTAL PRODUCT DISPENSED</th>
-    <th style="text-align: center;">TOTAL QUANTITY DISPENSED</th>
+    <th style="text-align: center;">TOTAL DRUG PRODUCT DISPENSED</th>
+    <th style="text-align: center;">TOTAL DRUG QUANTITY DISPENSED</th>
     <th style="text-align: center;">TOTAL PRICE (RM)</th>
 </thead>
 <tbody>
@@ -43,7 +43,7 @@
                 + " JOIN pis_mdc2 ON (pis_dispense_detail.DRUG_ITEM_CODE =  pis_mdc2.UD_MDC_CODE) "
                 + " WHERE pis_dispense_master.LOCATION_CODE  = '04010101' AND pis_dispense_master.DISCIPLINE_CODE  = '001'  "
                 + " AND pis_mdc2.hfc_cd  = '04010101' AND pis_mdc2.discipline_cd  = '001' GROUP BY DATE; ";
-        
+
         ArrayList<ArrayList<String>> dataReportMonthly = conn.getData(sql);
 
         int size = dataReportMonthly.size();
@@ -74,11 +74,32 @@
                 {
                     extend: 'excelHtml5',
                     text: 'Export To Excel',
-                    title: 'Pharmacy Monthly Report'
+                    title: 'Pharmacy Monthly Dispensed Drug List',
+                    className: 'btn btn-primary',
+                    exportOptions: {
+                        columns: ':visible'
+                    }
                 }, {
                     extend: 'csvHtml5',
                     text: 'Export To Excel CSV',
-                    title: 'Pharmacy Monthly Report'
+                    title: 'Pharmacy Monthly Dispensed Drug List',
+                    className: 'btn btn-primary',
+                    exportOptions: {
+                        columns: ':visible'
+                    }
+                }, {
+                    extend: 'print',
+                    text: 'Print MDC List',
+                    title: 'Pharmacy Monthly Dispensed Drug List',
+                    message: 'List of Monthly Dispensed Drug In The Pharmacy',
+                    className: 'btn btn-primary',
+                    exportOptions: {
+                        columns: ':visible'
+                    }
+                }, {
+                    extend: 'colvis',
+                    text: 'Filter Table Column',
+                    className: 'btn btn-success'
                 }
             ]
         });
