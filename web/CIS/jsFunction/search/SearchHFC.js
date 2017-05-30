@@ -34,6 +34,40 @@ function searchHFCcode() {
     });
 }
 
+function searchHFCcode1() {
+    var id = $('#hfc').val();
+    $.ajax({
+        type: 'post',
+        url: 'search/searchHFC_cd.jsp',
+        data: {'id': id},
+        success: function (reply_data) {
+            console.log(reply_data);
+            var arryDetail = reply_data.trim().split("[#-#]");
+            
+            var array_data = String(arryDetail[0]).split("|");
+            var hfcCode = array_data[0];
+            
+           // $("#hfcOrderDetail").val(arryDetail[1]);
+            //$("#hfcProviderDetail").val(arryDetail[2]);
+
+            console.log(hfcCode);
+
+            $('#hfc1').val(hfcCode);
+            // alert(reply_data);
+            //var id = $('#hfc1').val();
+            $.ajax({
+                type: 'post',
+                url: 'search/SearchDiscipline.jsp',
+                data: {id: hfcCode},
+                success: function (reply_data) {
+                    $('#hfcDiscipline').html(reply_data);
+                    //console.log(reply_data);
+                }
+            });
+        }
+    });
+}
+
 function searchHFCcode(hfc_name, order_field_id, provider_field_id) {
     var id = hfc_name;
     $.ajax({
@@ -69,7 +103,7 @@ $(function () {
                     $('#matchList li').on('click', function () { // When click on an element in the list
                         $('#hfc').val($(this).text()); // Update the field with the new element
                         $('#matchHFC').text(''); // Clear the <div id="match"></div>
-                        searchHFCcode();
+                        searchHFCcode1();
                     });
                 },
                 error: function () { // if error

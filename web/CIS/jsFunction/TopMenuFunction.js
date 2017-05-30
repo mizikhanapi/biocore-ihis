@@ -292,11 +292,18 @@ $(document).ready(function (e) {
           var orderNotesMON = "";
             var orderNotesADW = "";
             var NotesDCG = "";
+            var NotesDCGVTS = "";
+            var orcNotesDCGVTS = "";
             for(var x in data){
                 if(data[x].Acode === "DCG"){
                      getDCGVTS(data[x].index);
                 }
+              
             }
+             var NotesDCGVTS_old = convertVTS(dcgVtsObj);
+             NotesDCGVTS = NotesDCGVTS_old.replace("<cr>","");
+             
+             
             
         for (var key in data) {
             if (data[key].Acode === "ROS") {
@@ -403,58 +410,33 @@ $(document).ready(function (e) {
           
             }else if (data[key].Acode === "DCG") {
                 
+                var lenVTSDCG = NotesDCGVTS.length;
+                console.log(lenVTSDCG);
+                
                 var dataDCG = getDGCItem(data[key].index);
                 var dcgVtsNotes = "";
+                
                console.log(dcgVtsObj);
                 console.log(dataDCG);
                 var message_type = "";
                  var vtsLen = getSizeObj(dcgVtsObj);
-                 if(vtsLen > 0){
-                     
-                     dcgVtsNotes = convertVTS(dcgVtsObj);
-                      console.log(dcgVtsNotes);
-                      
-                       dischargeSummary = dcgVtsNotes.trim();
-                        dischargeSummary = dcgVtsNotes.replace("<cr>","");
-                        message_type = dcgVtsNotes.substr(0,3);
-                        if (NotesDCG === "") {
-                        var hfcOFDetail = data[key].hfcOrderDetail.split("|");
-                        var hfcPFDetail = data[key].hfcProviderDetail.split("|");
 
-                        var orc = getORC("T12115", "", "", "NO", "-", getDate(), episodeDate, episodeDate, doctor_id, doctor_id, "", hfc_cd, discipline, subdis, "02", hfcOFDetail[1],
-                                hfcOFDetail[2], hfcOFDetail[3], hfcOFDetail[10], hfcOFDetail[12], hfcOFDetail[14], hfcOFDetail[13], hfcOFDetail[8], hfcOFDetail[9], hfcPFDetail[0], "-", "", "07", hfcPFDetail[1],
-                                hfcPFDetail[2], hfcPFDetail[3], hfcPFDetail[10], hfcPFDetail[12], hfcPFDetail[14], hfcPFDetail[13], hfcPFDetail[8], hfcPFDetail[9], "-");
-
-                        NotesDCG = orc + "DCG|" + episodeDate + "|" + episodeDate + "^" + hfc_cd + "^" + patientCategory + "^" + doctor_id + "^" + doctor_name + "^" + doctor_id + "^" + doctor_name + "^" + data[key].date + " " + data[key].time + "^" + data[key].disposition + "^" + data[key].comment + "^" + message_type + "|" + dischargeSummary + "|<cr>\n";
-                    } else {
-                        NotesDCG += "DCG|" + episodeDate + "|" + episodeDate + "^" + hfc_cd + "^" + patientCategory + "^" + doctor_id + "^" + doctor_name + "^" + doctor_id + "^" + doctor_name + "^" + data[key].date + " " + data[key].time + "^" + data[key].disposition + "^" + data[key].comment + "^" + message_type + "|" + dischargeSummary + "|<cr>\n";
-                    }
-                 }
-                 
-                
-                
                 for(var i in dataDCG){
                     var dischargeSummary = "";
                     var currentData = [dataDCG[i]];
                      
                    var dcgGeneralNotes = getGeneralNotesDCG(currentData);
                     var dcgOrderNotes = getOrderNotesDCG(currentData);
-                    
                     if(dcgGeneralNotes === ""){
                         var orderData = dcgOrderNotes.split("<cr>");
-                        
                         dischargeSummary = orderData[1].trim();
                         //dischargeSummary = dischargeSummary.replace("<cr>","");
                         message_type = dischargeSummary.substr(0,3);
- 
                     } else if(dcgOrderNotes === ""){
-                        
                         dischargeSummary = dcgGeneralNotes.trim();
                         dischargeSummary = dischargeSummary.replace("<cr>","");
                         message_type = dischargeSummary.substr(0,3);
-
                     }
-  
                     if (NotesDCG === "") {
                         var hfcOFDetail = data[key].hfcOrderDetail.split("|");
                         var hfcPFDetail = data[key].hfcProviderDetail.split("|");
@@ -464,21 +446,19 @@ $(document).ready(function (e) {
                                 hfcPFDetail[2], hfcPFDetail[3], hfcPFDetail[10], hfcPFDetail[12], hfcPFDetail[14], hfcPFDetail[13], hfcPFDetail[8], hfcPFDetail[9], "-");
 
                         NotesDCG = orc + "DCG|" + episodeDate + "|" + episodeDate + "^" + hfc_cd + "^" + patientCategory + "^" + doctor_id + "^" + doctor_name + "^" + doctor_id + "^" + doctor_name + "^" + data[key].date + " " + data[key].time + "^" + data[key].disposition + "^" + data[key].comment + "^" + message_type + "|" + dischargeSummary + "|<cr>\n";
+                        orcNotesDCGVTS = "DCG|" + episodeDate + "|" + episodeDate + "^" + hfc_cd + "^" + patientCategory + "^" + doctor_id + "^" + doctor_name + "^" + doctor_id + "^" + doctor_name + "^" + data[key].date + " " + data[key].time + "^" + data[key].disposition + "^" + data[key].comment + "^VTS|";
                     } else {
                         NotesDCG += "DCG|" + episodeDate + "|" + episodeDate + "^" + hfc_cd + "^" + patientCategory + "^" + doctor_id + "^" + doctor_name + "^" + doctor_id + "^" + doctor_name + "^" + data[key].date + " " + data[key].time + "^" + data[key].disposition + "^" + data[key].comment + "^" + message_type + "|" +dischargeSummary + "|<cr>\n";
                     }
-                    
+                   
                 }
-
-
-      
             }
-            
         }
        
         
+        var vtsDCG =  orcNotesDCGVTS + NotesDCGVTS + "|<cr>\n";
+        var orderNotes = orderNotesROS + orderNotesDTO + orderNotesLIO + orderNotesPOS + orderNotesMON + orderNotesADW + NotesDCG+vtsDCG;
         
-        var orderNotes = orderNotesROS + orderNotesDTO + orderNotesLIO + orderNotesPOS + orderNotesMON + orderNotesADW + NotesDCG;
         orderNotesROS="";
         orderNotesDTO="";
         orderNotesLIO="";
@@ -486,6 +466,7 @@ $(document).ready(function (e) {
         orderNotesMON="";
         orderNotesADW = "";
         NotesDCG = "";
+        orcNotesDCGVTS = "";
         return orderNotes;
     }
     
@@ -606,7 +587,7 @@ $(document).ready(function (e) {
             statusDesc = "Missing";
         }
 
-        var msh = "MSH|^~|CIS|" + hfc_cd + "^" + discipline + "^" + subdis + "||" + getDate() + "|||||||||||||<cr>\n";
+        var msh = "MSH|^~|02|" + hfc_cd + "^" + discipline + "^" + subdis + "||" + getDate() + "|||||||||||||<cr>\n";
         var pdi = PDIInfo + "\n";
        
         countVTS(_data);
@@ -839,13 +820,7 @@ function dataToCCN(episodeDate, ccnCode, problem, Mild, duration, sdur, site, La
             }
         }
         
-        if(vtsCounter === 0){
-            VTSNotes = '';
-        }else {
-            var VTSNotes = convertVTS(VTSObjDCG);
-        }
-        dcgNotes += VTSNotes;
-        //console.log(HCSContent);
+
         return dcgNotes;
     }
     
@@ -992,6 +967,7 @@ function dataToCCN(episodeDate, ccnCode, problem, Mild, duration, sdur, site, La
                      $.extend(dcgVtsObj,_data[index[x]]);
                 }
           }
+           
     }
     
     function getSizeObj(Obj){

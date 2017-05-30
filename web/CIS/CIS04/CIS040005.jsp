@@ -27,7 +27,7 @@
                 
                 <div class="form-group">
                     <div class="form-group">
-                        <input class="form-control input-lg" type="hidden" name="problem"  id="hfc1" tabindex="4">
+                        <input class="form-control input-lg" type="text" name="problem"  id="hfc1" tabindex="4">
                     </div>   
                 </div>
                 
@@ -39,14 +39,14 @@
                 
                 <div class="form-group">
                     <div class="form-group">
-                        <input class="form-control input-lg" type="hidden" name="problem"  id="disciplin_cd" tabindex="4">
+                        <input class="form-control input-lg" type="text" name="problem"  id="disciplin_cd" tabindex="4">
                     </div>   
                 </div>
 
                  <div class="form-group">
                     <div class="form-group">
                         <input class="form-control input-lg" type="text" name="problem"  id="Searchdoctor" placeholder="Search Doctor & Specialist & Consultant..." tabindex="4">
-                        <input class="form-control input-lg" type="hidden" name="problem"  id="user_id" tabindex="4">
+                        <input class="form-control input-lg" type="text" name="problem"  id="user_id" tabindex="4">
 
                         <div id="match101"></div>
                     </div>   

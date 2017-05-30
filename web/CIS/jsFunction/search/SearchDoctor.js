@@ -1,12 +1,15 @@
 function searchDoctorcode(){
     var name = $('#Searchdoctor').val();
+    console.log(name);
     $.ajax({
         type: 'post',
         url: 'search/searchDoctor_cd.jsp',
         data: {'id': name},
         success: function (reply_data) {
+            console.log(reply_data);
             var array_data = String(reply_data).split("|");
             var docCode = array_data[0];
+            $('#user_id').val(docCode);
             console.log(docCode);
         }
     });

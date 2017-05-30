@@ -13,7 +13,8 @@
     String hfc_cd = request.getParameter("hfc_cd");
     //String key1 = request.getParameter("input2");
 
-    String searchProblem = "select d.discipline_name from adm_discipline d,adm_hfc_discipline hfcd where d.discipline_cd = hfcd.discipline_cd and hfcd.hfc_cd='"+hfc_cd+"' and d.discipline_name like '%"+key+"%'";
+    String searchProblem = "select d.discipline_name from adm_discipline d,adm_hfc_discipline hfcd where d.discipline_cd = hfcd.discipline_cd and d.discipline_hfc_cd = hfcd.hfc_cd and  hfcd.hfc_cd='"+hfc_cd+"' and d.discipline_name like '%"+key+"%'";
+    //out.print(searchProblem);
     ArrayList<ArrayList<String>> search = Conn.getData(searchProblem);
     if (search.size() > 0) {
 %>
