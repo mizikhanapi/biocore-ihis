@@ -2,7 +2,7 @@ $(document).ready(function () {
     $(function () {
 
         $('#PMIbday').datepicker({
-            dateFormat: 'yy-mm-dd',
+            dateFormat: 'dd/mm/yy',
             changeMonth: true,
             changeYear: true,
             maxDate: 0,
@@ -52,7 +52,8 @@ $(document).ready(function () {
                 pemail = $("#PMIemail").val();
         //console.log("title code: "+ptitle);
 
-
+        
+        
         if (pminotemp === "") {
             pminotemp = "-";
         } else {
@@ -206,8 +207,11 @@ $(document).ready(function () {
         }
 
         //pbday = $("#PMIbday").val();
-        var splitBday = String(pbday).split("-");
-        var convertedBday = splitBday[0] + "/" + splitBday[1] + "/" + splitBday[2];
+        //var splitBday = String(pbday).split("-");
+        //var convertedBday = splitBday[0] + "/" + splitBday[1] + "/" + splitBday[2];
+        
+        //var array_date = pbday.split("/");
+        //var new_date = array_date[2] + "-" + array_date[1] + "-" + array_date[0];
 
         var data = {'pmino': pmino,
             'pminotemp': pminotemp,
@@ -219,7 +223,7 @@ $(document).ready(function () {
             'pino': pino,
             'pelicat': pelicat,
             'pelity': pelity,
-            'pbday': convertedBday,
+            'pbday': pbday,
             'psex': psex,
             'pmarital': pmarital,
             'prace': prace,

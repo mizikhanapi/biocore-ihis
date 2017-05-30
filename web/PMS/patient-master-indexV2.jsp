@@ -4,7 +4,6 @@
 <%@page import="org.apache.commons.lang3.StringUtils"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
-    //Conn conn = new Conn();
 
     //for select box items
     String eliCat4 = "select * from adm_lookup_detail where master_reference_code = '0063' AND hfc_cd = '" + hfc + "'";
@@ -12,20 +11,13 @@
     String gender4 = "select * from adm_lookup_detail where master_reference_code = '0041' AND hfc_cd = '" + hfc + "'";
     String marital4 = "select * from adm_lookup_detail where master_reference_code = '0006' AND hfc_cd = '" + hfc + "'";
     String race4 = "select * from adm_lookup_detail where master_reference_code = '0004' AND hfc_cd = '" + hfc + "'";
-    //String nationality4 = "select * from adm_lookup_detail where master_reference_code = '0011'";
     String religion4 = "select * from adm_lookup_detail where master_reference_code = '0005' AND hfc_cd = '" + hfc + "'";
     String idType4 = "select * from adm_lookup_detail where master_reference_code = '0012' AND hfc_cd = '" + hfc + "'";
-    //String title4 = "select * from adm_lookup_detail where master_reference_code = '0026' ";
     String bloodty4 = "select * from adm_lookup_detail where master_reference_code = '0074' AND hfc_cd = '" + hfc + "'   ";
     String rhesus4 = "select * from adm_lookup_detail where master_reference_code = '0017' AND hfc_cd = '" + hfc + "'   ";
     String allergy4 = "select * from adm_lookup_detail where master_reference_code = '0075' AND hfc_cd = '" + hfc + "'   ";
     String chronicDesease4 = "select * from adm_lookup_detail where master_reference_code = '0076' AND hfc_cd = '" + hfc + "'  ";
     String organDonor4 = "select * from adm_lookup_detail where master_reference_code = '0077' AND hfc_cd = '" + hfc + "'";
-//    String district4 = "select * from adm_lookup_detail where master_reference_code = '0078'   ";
-//    String postcode4 = "select * from adm_lookup_detail where master_reference_code = '0079'   ";
-//    String country4 = "select * from adm_lookup_detail where master_reference_code = '0001'   ";
-//    String town4 = "select * from adm_lookup_detail where master_reference_code = '0003'   ";
-//    String state4 = "select * from adm_lookup_detail where master_reference_code = '0002'   ";
 
     ArrayList<ArrayList<String>> dataEliCat4, dataEliType4, dataIdType4, dataGender4, dataMarital4, dataRace4, dataNationality4, dataReligion4, dataTitle4,
             dataBloodty4, dataRhesus4, dataAllergy4, dataChronicDesease4, dataOrganDonor4, dataDistrict4, dataPostcode4, dataCountry4, dataTown4, dataState4;
@@ -35,46 +27,14 @@
     dataGender4 = conn.getData(gender4);
     dataMarital4 = conn.getData(marital4);
     dataRace4 = conn.getData(race4);
-    //dataNationality4 = conn.getData(nationality4);
     dataReligion4 = conn.getData(religion4);
     dataIdType4 = conn.getData(idType4);
-    //dataTitle4 = conn.getData(title4);
     dataBloodty4 = conn.getData(bloodty4);
     dataRhesus4 = conn.getData(rhesus4);
     dataAllergy4 = conn.getData(allergy4);
     dataChronicDesease4 = conn.getData(chronicDesease4);
     dataOrganDonor4 = conn.getData(organDonor4);
-//    dataDistrict4 = conn.getData(district4);
-//    dataPostcode4 = conn.getData(postcode4);
-//    dataCountry4 = conn.getData(country4);
-//    dataTown4 = conn.getData(town4);
-//    dataState4 = conn.getData(state4);
 
-    //  ArrayList<String> dataDistrictSingular= new ArrayList<String>(),dataPostcodeSingular = new ArrayList<String>(),dataCountrySingular = new ArrayList<String>(),dataTownSingular = new ArrayList<String>(),dataStateSingular = new ArrayList<String>();
-//   for(int i = 0;i<dataDistrict.size();i++){
-//       dataDistrictSingular.add(dataDistrict.get(i).get(2));
-//   }
-//   String newVal = StringUtils.join(dataDistrictSingular,"|");
-//   
-//   for(int i = 0;i<dataPostcode.size();i++){
-//       dataPostcodeSingular.add(dataPostcode.get(i).get(2));
-//   }
-//   String newVal2 = String.join("|",dataPostcodeSingular);
-//   
-//   for(int i = 0;i<dataCountry.size();i++){
-//       dataCountrySingular.add(dataCountry.get(i).get(2));
-//   }
-//   String newVal3 = String.join("|",dataCountrySingular);
-//   
-//for(int i = 0;i<dataTown.size();i++){
-//       dataTownSingular.add(dataTown.get(i).get(2));
-//   }
-//   String newVal4 = String.join("|",dataTownSingular);
-//   
-//for(int i = 0;i<dataState.size();i++){
-//       dataStateSingular.add(dataState.get(i).get(2));
-//   }
-//   String newVal5 = String.join("|",dataStateSingular);
 
 %>
 
@@ -333,13 +293,17 @@
                         <label class="col-md-4 control-label" for="selectbasic">Allergy</label>
                         <div class="col-md-6">
                             <select id="PMIallergy" name="selectbasic" class="form-control">
-                                <option value="null" selected="" disabled="">Select Allergy</option>
+                                <option value="null"  disabled="">Select Allergy</option>
                                 <option value="-">-</option>
                                 <%
-                                    for (int i = 0;
-                                            i < dataAllergy4.size();
-                                            i++) {%>
+                                    for (int i = 0; i < dataAllergy4.size(); i++) {
+                                        if (dataAllergy4.get(i).get(2).equalsIgnoreCase("no")) {%>
+                                <option value="<%=dataAllergy4.get(i).get(1)%>" selected=""><%=dataAllergy4.get(i).get(2)%></option>
+                                <%         } else {%>
                                 <option value="<%=dataAllergy4.get(i).get(1)%>"><%=dataAllergy4.get(i).get(2)%></option>
+                                <%                }
+                                %>
+
                                 <%  }
                                 %>
                             </select>
@@ -355,10 +319,15 @@
                                 <option value="null" selected="" disabled="">Select Chronic Disease</option>
                                 <option value="-">-</option>
                                 <%
-                                    for (int i = 0;
-                                            i < dataChronicDesease4.size();
-                                            i++) {%>
-                                <option value="<%=dataChronicDesease4.get(i).get(1)%>"><%=dataChronicDesease4.get(i).get(2)%></option>
+                                    for (int i = 0; i < dataChronicDesease4.size(); i++) {
+                                        if (dataChronicDesease4.get(i).get(2).equalsIgnoreCase("no")) {%>
+                                <option value="<%=dataChronicDesease4.get(i).get(1)%>" selected=""><%=dataChronicDesease4.get(i).get(2)%></option>
+                                <%       } else {%>
+                                <option value="<%=dataChronicDesease4.get(i).get(1)%>" ><%=dataChronicDesease4.get(i).get(2)%></option>
+
+                                <%  }
+                                %> 
+
                                 <%  }
                                 %>
                             </select>
@@ -373,10 +342,17 @@
                                 <option value="null" selected="" disabled="">Select Organ Donor Status</option>
                                 <option value="-">-</option>
                                 <%
-                                    for (int i = 0;
-                                            i < dataOrganDonor4.size();
-                                            i++) {%>
+                                    for (int i = 0; i < dataOrganDonor4.size(); i++) {
+                                        if (dataOrganDonor4.get(i).get(2).equalsIgnoreCase("cancelled")) {%>
+                                <option value="<%=dataOrganDonor4.get(i).get(1)%>" selected=""><%=dataOrganDonor4.get(i).get(2)%></option>
+
+                                <% } else {%>
                                 <option value="<%=dataOrganDonor4.get(i).get(1)%>"><%=dataOrganDonor4.get(i).get(2)%></option>
+
+                                <%   }
+
+
+                                %>
                                 <%  }
                                 %>
                             </select>
@@ -384,7 +360,7 @@
                     </div>
                 </div>
             </div>
-                            
+
             <hr/>
             <h4>Patient Contact</h4>
 
@@ -556,8 +532,3 @@
         </form>
     </div>
 </div>
-<script>
-
-
-
-</script>

@@ -15,14 +15,15 @@
     String visType = "select * from adm_lookup_detail where master_reference_code = '0022' AND hfc_cd = '" + hfc + "'   ";
     String eliCat = "select * from adm_lookup_detail where master_reference_code = '0063' AND hfc_cd = '" + hfc + "'   ";
     String eliType = "select * from adm_lookup_detail where master_reference_code = '0034' AND hfc_cd = '" + hfc + "'   ";
-    //String discip = "select * from adm_lookup_detail where master_reference_code = '0072'   ";
+    String emergencyType = "select * from adm_lookup_detail where master_reference_code = '0070' AND hfc_cd = '" + hfc + "'   ";
     String prio = "select * from adm_lookup_detail where master_reference_code = '0036' AND hfc_cd = '" + hfc + "'   ";
     String idTYpe = "select * from adm_lookup_detail where master_reference_code = '0012' AND hfc_cd = '" + hfc + "'   ";
     String Commonqueue = "select * from pms_queue_list where queue_type='CM' and hfc_cd='" + hfc + "' and status ='Active' and discipline_cd = '" + dis + "'";
     String Consultationqueue = "select * from pms_queue_list where queue_type='FY' and hfc_cd='" + hfc + "' and status ='Active' and discipline_cd = '" + dis + "'";
     String Doctorqueue = "select * from pms_queue_list where queue_type='PN' and hfc_cd='" + hfc + "' and status ='Active' and discipline_cd = '" + dis + "'";
+    String sql = "select a.discipline_name,a.discipline_cd,b.subdiscipline_cd,c.subdiscipline_name from adm_discipline a inner join adm_hfc_discipline b on a.discipline_cd = b.discipline_cd and b.hfc_cd = '" + hfc + "' left join adm_subdiscipline c on b.subdiscipline_cd = c.subdiscipline_cd and b.discipline_cd = c.discipline_cd and c.subdiscipline_hfc_cd = a.discipline_hfc_cd where a.discipline_cd = '"+dis+"' AND a.discipline_hfc_cd = '" + hfc + "' and c.subdiscipline_cd='"+sub+"';";
 
-    ArrayList<ArrayList<String>> dataQueue2, dataQueue3, dataPatCat, dataVisType, dataEliCat, dataEliType, dataDiscip, dataPrio, dataIdType, dataQueue;
+    ArrayList<ArrayList<String>> dataQueue2, dataQueue3, dataPatCat, dataVisType, dataEliCat, dataEliType, dataDiscip, dataPrio, dataIdType, dataQueue, dataEmergencyTy;
 
     //Conn conn = new Conn();
     dataPatCat = conn.getData(patCat);
@@ -35,6 +36,10 @@
     dataQueue = conn.getData(Commonqueue);
     dataQueue2 = conn.getData(Consultationqueue);
     dataQueue3 = conn.getData(Doctorqueue);
+    dataEmergencyTy = conn.getData(emergencyType);
+    dataDiscip = conn.getData(sql);
+    
+    String disVal = dataDiscip.get(0).get(1)+"|"+dataDiscip.get(0).get(0)+"|"+dataDiscip.get(0).get(3);
 
     // status 0 = public
     // status 1 = universiti
@@ -161,7 +166,12 @@
                         <div class="col-md-6">
                             <select id="EmTy" name="EmTy" class="form-control">
                                 <option  selected="" disabled="">Select Emergency Type</option>
-                                <option value="-">-</option>       
+                                <option value="-">-</option>
+                                <%
+                                    for (int i = 0; i < dataEmergencyTy.size(); i++) {%>
+                                <option value="<%=dataEmergencyTy.get(i).get(1)%>"><%=dataEmergencyTy.get(i).get(2)%></option>
+                                <%  }
+                                %>
                             </select>
                         </div>
                     </div>
@@ -250,7 +260,7 @@
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="selectbasic">Discipline *</label>
                         <div class="col-md-6">
-                            <input id="Dis" name="Dis" type="text"  class="form-control input-md" placeholder="Please select discipline..">
+                            <input id="Dis" name="Dis" type="text"  class="form-control input-md" placeholder="Please select discipline.." value="<%=disVal%>">
                             <div id="disList" class="search-drop"></div>
                         </div>
 
