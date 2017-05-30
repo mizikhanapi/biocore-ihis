@@ -43,10 +43,7 @@
     <th style="width: 20%">Requestor Instruction</th>
     <th style="width: 5%">Exam Date</th>
     <th style="width: 5%">Status</th>
-    <th style="width: 5%">Set Exam Date</th>
-    <th style="width: 5%">Perform Exam</th>
-    <th style="width: 5%">Prepare Report</th>
-    <th style="width: 5%">Cancel Order</th>
+    <th>Actions</th>
 
 </thead>
 <tbody>
@@ -83,10 +80,11 @@
         <td><%= dataOrderList.get(i).get(6)%></td> <!-- Instruction -->
         <td><%= dataOrderList.get(i).get(10)%></td><!-- exam date -->
         <td><%= status%></td> <!-- status -->
-        <td> <button id="MOD_btnModalDate" class="btn btn-default" <%out.print(performDisabled);%> ><i class="fa fa-calendar" aria-hidden="true" style="display: inline-block;color: #2DA3FB;" ></i></button></td><!-- set date -->
-        <td> <button id="MOD_btnPerform" class="btn btn-default" <%out.print(performDisabled);%> ><i class="fa fa-film" aria-hidden="true" style="display: inline-block;color: #2DA3FB;" ></i></button></td><!-- perform -->
-        <td> <button id="MOD_btnPrepare" class="btn btn-default" <%out.print(prepareDisabled);%> ><i class="fa fa-file-text" aria-hidden="true" style="display: inline-block;color: #2DA3FB;" ></i></button></td><!-- prepare -->
-        <td> <button id ="MOD_btnDelete" class="btn btn-default" <%out.print(cancelDisabled);%>><i class="fa fa-times" aria-hidden="true" style="display: inline-block;color: #d9534f;" ></i></button></td> <!-- cancel order -->
+        <td> 
+        <button id="MOD_btnModalDate" class="btn btn-default" <%out.print(performDisabled);%> ><i class="fa fa-calendar fa-lg" aria-hidden="true" style="display: inline-block;color: #2DA3FB;" ></i>&nbsp;&nbsp;&nbsp;Set Exam Date</button><!-- set date -->
+        <button id="MOD_btnPerform" class="btn btn-default" <%out.print(performDisabled);%> ><i class="fa fa-user-md fa-lg" aria-hidden="true" style="display: inline-block;color: #2DA3FB;" ></i>&nbsp;&nbsp;&nbsp;Perform Exam</button><!-- perform -->
+        <button id="MOD_btnPrepare" class="btn btn-default" <%out.print(prepareDisabled);%> ><i class="fa fa-file-text fa-lg" aria-hidden="true" style="display: inline-block;color: #2DA3FB;" ></i>&nbsp;&nbsp;&nbsp;Prepare Report</button><!-- prepare -->
+        <button id ="MOD_btnDelete" class="btn btn-default" <%out.print(cancelDisabled);%>><i class="fa fa-times fa-lg" aria-hidden="true" style="display: inline-block;color: #d9534f;" ></i>&nbsp;&nbsp;&nbsp;Cancel Order</button></td> <!-- cancel order -->
 
         <!--<td align="center"><input type="checkbox" id="risRequestChecked" checked></td>  Status -->
     </tr>

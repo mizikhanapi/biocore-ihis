@@ -18,8 +18,6 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">   
         <title>Main Page</title>
-
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <script src="assets/js/jquery.min.js"></script>
         <%@include file="../assets/header.html"%>
         <link rel="stylesheet" href="assets/css/loading.css">
@@ -63,7 +61,6 @@
         <script src="assets/datepicker/jquery-ui.js"></script>
         <script src="assets/js/form-validator.min.js"></script>
         <script src="assets/js/bootstrap.min.js"></script> 
-        <script src="assets/js/w3data.js"></script>
         <script src="assets/js/bootbox.min.js"></script>  
         <script src="bootstrap-3.3.6-dist/js/jquery.dataTables.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/4.4.0/bootbox.min.js"></script>
@@ -86,18 +83,10 @@
             }
         </script>
         <script>
-            w3IncludeHTML();
 
             $(document).ready(function () {
                 //$("#WardOccupancy").load("WardOccupancy.jsp");
                 $("#viewMTS").load("viewMTS.jsp");
-
-
-                $("#headerindex").load("libraries/header.html");
-                $("#topmenuindex").load("libraries/topMenus.html");
-                $("#sidemenus").load("libraries/sideMenus.jsp");
-//                $("#WardOccupancyTable").load("WardOccupancy-Table.jsp");
-
             });
 
         </script>
