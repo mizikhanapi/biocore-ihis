@@ -54,13 +54,13 @@
                 String sql = "";
 
                 if ((!ic.equals(""))) {
-                    sql = "SELECT lis_order_master.pmi_no,lis_order_master.order_no,lis_order_master.hfc_cd,lis_order_master.episode_date,lis_order_master.encounter_date,lis_order_master.order_date,lis_order_master.order_by,lis_order_master.hfc_from,lis_order_master.hfc_to,lis_order_master.order_status,lis_order_master.diagnosis_cd,lis_order_master.created_by,lis_order_master.created_date,pms_patient_biodata.PATIENT_NAME,pms_patient_biodata.NEW_IC_NO,pms_patient_biodata.BIRTH_DATE,pms_patient_biodata.SEX_CODE,pms_patient_biodata.BLOOD_TYPE,lis_order_master.order_status FROM lis_order_master JOIN pms_patient_biodata ON (lis_order_master.pmi_no = pms_patient_biodata.PMI_NO) WHERE lis_order_master.order_status>='3' AND pms_patient_biodata.NEW_IC_NO = '" + ic + "'";
+                    sql = "SELECT lis_order_master.pmi_no,lis_order_master.order_no,lis_order_master.hfc_cd,lis_order_master.episode_date,lis_order_master.encounter_date,lis_order_master.order_date,lis_order_master.order_by,lis_order_master.hfc_from,lis_order_master.hfc_to,lis_order_master.order_status,lis_order_master.diagnosis_cd,lis_order_master.created_by,lis_order_master.created_date,pms_patient_biodata.PATIENT_NAME,pms_patient_biodata.NEW_IC_NO,pms_patient_biodata.BIRTH_DATE,pms_patient_biodata.SEX_CODE,pms_patient_biodata.BLOOD_TYPE,lis_order_master.order_status FROM lis_order_master JOIN pms_patient_biodata ON (lis_order_master.pmi_no = pms_patient_biodata.PMI_NO) WHERE lis_order_master.order_status>='3' AND pms_patient_biodata.NEW_IC_NO = '" + ic + "' ORDER BY lis_order_master.order_status ASC,lis_order_master.order_no ASC";
                 }
                 if (!order_no.equals("")) {
-                    sql = "SELECT lis_order_master.pmi_no,lis_order_master.order_no,lis_order_master.hfc_cd,lis_order_master.episode_date,lis_order_master.encounter_date,lis_order_master.order_date,lis_order_master.order_by,lis_order_master.hfc_from,lis_order_master.hfc_to,lis_order_master.order_status,lis_order_master.diagnosis_cd,lis_order_master.created_by,lis_order_master.created_date,pms_patient_biodata.PATIENT_NAME,pms_patient_biodata.NEW_IC_NO,pms_patient_biodata.BIRTH_DATE,pms_patient_biodata.SEX_CODE,pms_patient_biodata.BLOOD_TYPE,lis_order_master.order_status FROM lis_order_master JOIN pms_patient_biodata ON (lis_order_master.pmi_no = pms_patient_biodata.PMI_NO) WHERE lis_order_master.order_status>='3' AND lis_order_master.order_no = '" + order_no + "'";
+                    sql = "SELECT lis_order_master.pmi_no,lis_order_master.order_no,lis_order_master.hfc_cd,lis_order_master.episode_date,lis_order_master.encounter_date,lis_order_master.order_date,lis_order_master.order_by,lis_order_master.hfc_from,lis_order_master.hfc_to,lis_order_master.order_status,lis_order_master.diagnosis_cd,lis_order_master.created_by,lis_order_master.created_date,pms_patient_biodata.PATIENT_NAME,pms_patient_biodata.NEW_IC_NO,pms_patient_biodata.BIRTH_DATE,pms_patient_biodata.SEX_CODE,pms_patient_biodata.BLOOD_TYPE,lis_order_master.order_status FROM lis_order_master JOIN pms_patient_biodata ON (lis_order_master.pmi_no = pms_patient_biodata.PMI_NO) WHERE lis_order_master.order_status>='3' AND lis_order_master.order_no = '" + order_no + "' ORDER BY lis_order_master.order_status ASC,lis_order_master.order_no ASC";
                 }
                 if ((!DateFrom.equals("")) && (!DateTo.equals(""))) {
-                    sql = "SELECT lis_order_master.pmi_no,lis_order_master.order_no,lis_order_master.hfc_cd,lis_order_master.episode_date,lis_order_master.encounter_date,lis_order_master.order_date,lis_order_master.order_by,lis_order_master.hfc_from,lis_order_master.hfc_to,lis_order_master.order_status,lis_order_master.diagnosis_cd,lis_order_master.created_by,lis_order_master.created_date,pms_patient_biodata.PATIENT_NAME,pms_patient_biodata.NEW_IC_NO,pms_patient_biodata.BIRTH_DATE,pms_patient_biodata.SEX_CODE,pms_patient_biodata.BLOOD_TYPE,lis_order_master.order_status FROM lis_order_master JOIN pms_patient_biodata ON (lis_order_master.pmi_no = pms_patient_biodata.PMI_NO) WHERE lis_order_master.order_status>='3' AND lis_order_master.created_date BETWEEN '" + DateFrom + "' AND '" + DateTo + "'";
+                    sql = "SELECT lis_order_master.pmi_no,lis_order_master.order_no,lis_order_master.hfc_cd,lis_order_master.episode_date,lis_order_master.encounter_date,lis_order_master.order_date,lis_order_master.order_by,lis_order_master.hfc_from,lis_order_master.hfc_to,lis_order_master.order_status,lis_order_master.diagnosis_cd,lis_order_master.created_by,lis_order_master.created_date,pms_patient_biodata.PATIENT_NAME,pms_patient_biodata.NEW_IC_NO,pms_patient_biodata.BIRTH_DATE,pms_patient_biodata.SEX_CODE,pms_patient_biodata.BLOOD_TYPE,lis_order_master.order_status FROM lis_order_master JOIN pms_patient_biodata ON (lis_order_master.pmi_no = pms_patient_biodata.PMI_NO) WHERE lis_order_master.order_status>='3' AND lis_order_master.created_date BETWEEN '" + DateFrom + "' AND '" + DateTo + "' ORDER BY lis_order_master.order_status ASC,lis_order_master.order_no ASC";
                 }
 
                 ArrayList<ArrayList<String>> dataPatientOrderList = conn.getData(sql);
@@ -85,13 +85,13 @@
                 }
             %>
         </td>
-        <td><%= dataPatientOrderList.get(i).get(1)%></td> <!-- Order No -->
-        <td><%= dataPatientOrderList.get(i).get(0)%></td> <!-- PMI No -->
-        <td><%= dataPatientOrderList.get(i).get(14)%></td> <!-- IC No -->
-        <td style="font-weight: 500;"><%= dataPatientOrderList.get(i).get(13)%></td> <!-- Name -->
-        <td><%= dataPatientOrderList.get(i).get(5)%></td> <!-- Order Date -->
-        <td><%= dataPatientOrderList.get(i).get(2)%></td> <!-- Health Facility Code -->
-        <td><%= dataPatientOrderList.get(i).get(6)%></td> <!-- Doctor's Name -->
+        <td><%= dataPatientOrderList.get(i).get(1)%></td> 
+        <td><%= dataPatientOrderList.get(i).get(0)%></td>
+        <td><%= dataPatientOrderList.get(i).get(14)%></td> 
+        <td style="font-weight: 500;"><%= dataPatientOrderList.get(i).get(13)%></td> 
+        <td><%= dataPatientOrderList.get(i).get(5)%></td> 
+        <td><%= dataPatientOrderList.get(i).get(2)%></td> 
+        <td><%= dataPatientOrderList.get(i).get(6)%></td> 
         <td><%
             //out.print(dataPatientOrderList.get(i).get(9));
             if (dataPatientOrderList.get(i).get(9).equals("4")) {
@@ -104,7 +104,19 @@
             <%
                 }
             %></td>
-        <td><button class="btn btn-success btn-block " type="button" id="btnOrderDispense_<%=i%>" name="btnOrderDispense" > <i class="fa fa-shopping-cart fa-lg"></i>&nbsp;&nbsp;&nbsp;Send Billing</button>
+        <td>
+            <%
+                //out.print(dataPatientOrderList.get(i).get(9));
+                if (dataPatientOrderList.get(i).get(9).equals("4")) {
+            %>
+            <button class="btn btn-success btn-block " type="button" disabled="disabled" id="btnOrderDispense_<%=i%>" name="btnOrderDispense" > <i class="fa fa-shopping-cart fa-lg"></i>&nbsp;&nbsp;&nbsp;Send Billing</button>
+            <%
+            } else {
+            %>
+            <button class="btn btn-success btn-block " type="button" id="btnOrderDispense_<%=i%>" name="btnOrderDispense" > <i class="fa fa-shopping-cart fa-lg"></i>&nbsp;&nbsp;&nbsp;Send Billing</button>
+            <%
+                }
+            %>
             <script>
                 $("#btnOrderDispense_<%=i%>").click(function () {
 
