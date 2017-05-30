@@ -18,6 +18,7 @@ public class SeperateMethod {
         return aal;
     };
     public void separatePipe(String row){
+        //String columns[] = StringUtils.split(row, "\\|",-1);
         String columns[] = row.split("\\|",-1);
         //System.out.println(row);
         for(int i =0;i < columns.length;i++){
@@ -30,6 +31,7 @@ public class SeperateMethod {
                 //System.out.println(columns[i]);
                 ArrayList<String> al2 = new ArrayList();
                String subColumns[] = columns[i].split("\\^",-1);
+               //String subColumns[] = StringUtils.split(columns[i],"\\^",-1);
                 for (String subColumn : subColumns) {
                     //System.out.println(subColumn);
                     if(subColumn.isEmpty()){
