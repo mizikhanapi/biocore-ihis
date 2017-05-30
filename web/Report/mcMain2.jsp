@@ -21,7 +21,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> 
-        <title>Medical Leave</title>
+        <title>Sick Leave</title>
 
 
         <script src="../assets/js/jquery.min.js"></script>

@@ -25,7 +25,7 @@
 
     <thead>
 
-    <th> Name </th>
+    <th> Nama </th>
     <th> Episode date </th>
     <th> PMI No </th>
     <th> Reprint </th>

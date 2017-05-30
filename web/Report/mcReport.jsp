@@ -104,7 +104,7 @@
         <br>
         <br>
         <br>
-        <label for="">...............................................</label><br>
+        <label for="">................................................</label><br>
         <p style="text-align: center;"><%=my_1_hfcName%></p>
     </div>
 </div>
