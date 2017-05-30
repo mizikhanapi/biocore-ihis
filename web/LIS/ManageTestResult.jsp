@@ -27,7 +27,7 @@
                 <!-- menu side -->		
                 <%@include file = "libraries/sideMenus.jsp" %>
                 <!-- menu side -->
-                <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main" style="background: #f2f4f8;">
+                <div class="main" style="background: #f2f4f8;">
                     <!-- menu top -->
                     <%@include file = "libraries/topMenus.html" %>
                     <!-- menu top -->
@@ -35,20 +35,11 @@
 
                         <div class="col-md-12">
                             <div class="thumbnail">
-
-
-                                <!-- Tab Menu -->
-
-                                <div class="tabbable-panel">
-                                    <div class="tabbable-line">
-                                        <ul class="nav nav-tabs ">
-                                            <li class="active">
-                                                <a href="#tab_default_1" data-toggle="tab">
-                                                    Assign Test Result </a>
-                                            </li>
-
-                                        </ul>
-                                        <h3>
+                                <h3 style="margin: 0px;">Assign Test Result</h3>
+                                <hr class="pemisah" />
+                                <div class="row margin-bottom-30px">
+                                    <div class="col-md-6">
+                                        <h3 style="margin-top: 0px;">
                                             <%  String item_cd = request.getParameter("item_cd");
                                                 session.setAttribute("item_cd", item_cd);
 
@@ -64,130 +55,126 @@
                                                 String query4 = "SELECT ls.order_no, lod.item_name FROM lis_order_detail lod,lis_specimen ls WHERE lod.item_cd = ls.item_cd AND ls.item_cd='" + item_cd + "' AND ls.specimen_no = '" + specimen_no1 + "'";
                                                 ArrayList<ArrayList<String>> q4 = conn.getData(query4);
 
-                                                out.println("Test Name: " + q4.get(0).get(1));
+                                                out.println("Test Name: <span style='font-weight: 300;'>" + q4.get(0).get(1)+ "</span>");
 
                                                 session.setAttribute("order_no", q4.get(0).get(0));
                                                 session.setAttribute("item_name", q4.get(0).get(1));
-                                                out.println("<span class='pull-right'>Item Code:" + item_cd + "</span>");
+                                                
                                             %>
                                         </h3>
-                                        
+                                            <h3 style="margin-top: 0px;">Item Code: <span style="font-weight: 300;"><%=item_cd%></span></h3>
+                                    </div>
+                                    <div class="col-md-6">
                                         <span class="pull-right">
                                             <button id="MLM_btnAddNew" class="btn btn-success" data-status="pagado" data-toggle="modal" data-id="1" data-target="#TestCategory" style=" padding-right: 10px;padding-left: 10px;color: white;"><a data-toggle="tooltip" data-placement="top" title="Add Items" id="test"><i class=" fa fa-plus" style=" padding-right: 10px;padding-left: 10px;color: white;"></i></a>ADD Test Result</button>
                                         </span>
-                                        <br>
-                                        <hr>
-                                        <div class="modal fade" id="TestCategory" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
-                                            <div class="modal-dialog" style="width: 950px !important; ">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <button type="button" class="close" data-dismiss="modal"><i class="fa fa-times fa-lg"></i></button>
-                                                        <h3 class="modal-title" id="lineModalLabel">Add  Test Result</h3>
+                                    </div>
+                                </div>
 
-                                                    </div>
-                                                    <div class="modal-body">
+                                <div class="modal fade" id="TestCategory" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+                                    <div class="modal-dialog" style="width: 950px !important; ">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal"><i class="fa fa-times fa-lg"></i></button>
+                                                <h3 class="modal-title" id="lineModalLabel">Add  Test Result</h3>
 
-                                                        <!-- content goes here -->
+                                            </div>
+                                            <div class="modal-body">
 
-                                                        <div class="row">
-                                                            <div class="col-md-6">
-                                                                <!-- Text input-->
-                                                                <div class="form-group">
-                                                                    <label class="col-md-4 control-label" for="textinput">Test Name</label>
-                                                                    <div class="col-md-8">
-                                                                        <input type="text" name="testName" id="testName" class="form-control" value="<%=q4.get(0).get(1)%>" disabled="disabled"/>
-                                                                    </div>
-                                                                </div>
+                                                <!-- content goes here -->
 
-                                                                <!-- Text input-->
-                                                                <div class="form-group">
-                                                                    <label class="col-md-4 control-label" for="textinput">Result</label>
-                                                                    <div class="col-md-8">
-                                                                        <input type="text" name="testCatName" id="testCatName" class="form-control" style="display: none;"/>
-                                                                        <textarea name="career[message]" class="form-control" id="Result" placeholder="Write your result" required="required"></textarea>
-                                                                    </div>
-                                                                </div>
-
-                                                                <!-- Text input-->
-                                                                <div class="form-group">
-                                                                    <label class="col-md-4 control-label" for="textinput">Remark</label>
-                                                                    <div class="col-md-8">
-                                                                        <input type="text" name="testCatName" id="testCatName" class="form-control" style="display: none;"/>
-                                                                        <textarea name="career[message]" class="form-control" id="Remark" placeholder="Write your Remark" required="required"></textarea>
-                                                                    </div>
-                                                                </div>
-
-                                                            </div>
-                                                            <div class="col-md-6">
-                                                                <div class="form-group">
-                                                                    <label class="col-md-4 control-label" for="textinput">Test Date</label>
-                                                                    <div class="col-md-8">
-                                                                        <input type="text" id="testDate" class="form-control input-md" placeholder="DD-MM-YYYY">
-                                                                    </div>
-                                                                </div>
-
-                                                            </div>
-                                                            <div class="col-md-6">
-                                                                <div class="form-group">
-                                                                    <label class="col-md-4 control-label" for="textinput">Test Time</label>
-                                                                    <div class="col-md-8">
-                                                                        <input type="time" id="testTime" class="form-control input-md">
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-md-6">
-                                                                <div class="form-group">
-                                                                    <label class="col-md-4 control-label" for="textinput">Test Perform By</label>
-                                                                    <div class="col-md-8">
-                                                                        <input type="text" name="performBy" id="performBy" class="form-control" />
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-md-6">
-                                                                <label class="col-md-4 control-label" for="textinput">Upload Result</label>
-                                                                <div class="col-md-8">
-                                                                    <input class="form-control" id="inputFileToLoad" type="file" accept=".jpg, .png, .gif" >
-                                                                </div>
-
-                                                            </div>
-                                                            <hr/>
-                                                            <div class="row">
-                                                                <div class="col-md-12" style="width: 100%; margin: 0 auto">
-                                                                    <div id="dym" style="text-align: center;">
-                                                                    </div>
-                                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <!-- Text input-->
+                                                        <div class="form-group">
+                                                            <label class="col-md-4 control-label" for="textinput">Test Name</label>
+                                                            <div class="col-md-8">
+                                                                <input type="text" name="testName" id="testName" class="form-control" value="<%=q4.get(0).get(1)%>" disabled="disabled"/>
                                                             </div>
                                                         </div>
 
-
-                                                        <!-- content goes here -->
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                        <div class="btn-group btn-group-justified" role="group" aria-label="group button">
-                                                            <div class="btn-group" role="group">
-                                                                <button type="button" class="btn btn-success btn-block btn-lg" role="button" id="btn_add">Add</button>
+                                                        <!-- Text input-->
+                                                        <div class="form-group">
+                                                            <label class="col-md-4 control-label" for="textinput">Result</label>
+                                                            <div class="col-md-8">
+                                                                <input type="text" name="testCatName" id="testCatName" class="form-control" style="display: none;"/>
+                                                                <textarea name="career[message]" class="form-control" id="Result" placeholder="Write your result" required="required"></textarea>
                                                             </div>
+                                                        </div>
 
+                                                        <!-- Text input-->
+                                                        <div class="form-group">
+                                                            <label class="col-md-4 control-label" for="textinput">Remark</label>
+                                                            <div class="col-md-8">
+                                                                <input type="text" name="testCatName" id="testCatName" class="form-control" style="display: none;"/>
+                                                                <textarea name="career[message]" class="form-control" id="Remark" placeholder="Write your Remark" required="required"></textarea>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label class="col-md-4 control-label" for="textinput">Test Date</label>
+                                                            <div class="col-md-8">
+                                                                <input type="text" id="testDate" class="form-control input-md" placeholder="DD-MM-YYYY">
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label class="col-md-4 control-label" for="textinput">Test Time</label>
+                                                            <div class="col-md-8">
+                                                                <input type="time" id="testTime" class="form-control input-md">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label class="col-md-4 control-label" for="textinput">Test Perform By</label>
+                                                            <div class="col-md-8">
+                                                                <input type="text" name="performBy" id="performBy" class="form-control" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <label class="col-md-4 control-label" for="textinput">Upload Result</label>
+                                                        <div class="col-md-8">
+                                                            <input class="form-control" id="inputFileToLoad" type="file" accept=".jpg, .png, .gif" >
+                                                        </div>
+
+                                                    </div>
+                                                    <hr/>
+                                                    <div class="row">
+                                                        <div class="col-md-12" style="width: 100%; margin: 0 auto">
+                                                            <div id="dym" style="text-align: center;">
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
+
+
+                                                <!-- content goes here -->
                                             </div>
-                                        </div>
-                                        <div id="viewTA">
+                                            <div class="modal-footer">
+                                                <div class="btn-group btn-group-justified" role="group" aria-label="group button">
+                                                    <div class="btn-group" role="group">
+                                                        <button type="button" class="btn btn-success btn-block btn-lg" role="button" id="btn_add">Add</button>
+                                                    </div>
 
-                                        </div>
-                                        <!-- tab content -->
-                                        <div class="tab-content">
-
-
-                                            <div class="col-xs-12 col-md-12">
-
-                                                <div class=" pull-right">
-                                                    <button type="button" name="back" id="back1" class="btn btn-default" data-dismiss="modal" onclick="openPage('VerifySpecimen.jsp?pmi=<%=pmi1%> &specimen_no=<%=specimen_no1%>')">Back</button>
                                                 </div>
                                             </div>
-
                                         </div>
+                                    </div>
+                                </div>
+                                <div id="viewTA">
+
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <hr/>
+                                        <button type="button" name="back" id="back1" class="btn btn-default" data-dismiss="modal" onclick="openPage('VerifySpecimen.jsp?pmi=<%=pmi1%> &specimen_no=<%=specimen_no1%>')">Back</button>
                                     </div>
                                 </div>
                             </div>

@@ -32,16 +32,16 @@
 <div class="table-guling" id="updateBill">
     <table  id="BillTo"  class="table table-filter table-striped table-bordered table-hover" style="background: #fff; border: 1px solid #ccc; width: 100%">
         <thead>
-        <th style="text-align: center; width: 8%;">Order No.</th>
-        <th style="text-align: center; width: 10%;">PMI No.</th>
-        <th style="text-align: center; width: 10%;">IC No.</th>
-        <th style="text-align: center; width: 40%;">Name</th>
-        <th style="text-align: center; width: 12%;">Order Date</th>
-        <th style="text-align: center;">Health Facility Code</th>
-        <th style="text-align: center;">Doctor's Name</th>
-        <th style="text-align: center;">Sent to Bill</th>
-        <th style="text-align: center;">Action</th>
-        <th style="text-align: center;">Send the bill</th>
+        <th style="text-align: left;">&nbsp;</th>
+        <th style="text-align: left; width: 8%;">Order No.</th>
+        <th style="text-align: left; width: 10%;">PMI No.</th>
+        <th style="text-align: left; width: 10%;">IC No.</th>
+        <th style="text-align: left; width: 40%;">Name</th>
+        <th style="text-align: left; width: 12%;">Order Date</th>
+        <th style="text-align: left;">Health Facility Code</th>
+        <th style="text-align: left;">Doctor's Name</th>
+        <th style="text-align: left;">Sent to Bill</th>
+        <th style="text-align: left;">Action</th>
         </thead>
         <tbody>
 
@@ -69,12 +69,26 @@
                 for (int i = 0; i < size; i++) {
             %>
 
-            <tr id="moveToRISOrderDetailsTButton" style="text-align: center;">
+            <tr id="moveToRISOrderDetailsTButton" style="text-align: left;">
         <input id="dataPatientOrderListhidden" type="hidden" value="<%=String.join("|", dataPatientOrderList.get(i))%>">
+        <td>
+            <%
+                //out.print(dataPatientOrderList.get(i).get(9));
+                if (dataPatientOrderList.get(i).get(9).equals("4")) {
+            %>
+            <input type="checkbox" id="checky" name="order" disabled="disabled" value="<%= dataPatientOrderList.get(i).get(1)%>|<%= dataPatientOrderList.get(i).get(0)%>|<%= dataPatientOrderList.get(i).get(5)%>|<%=dataPatientOrderList.get(i).get(14)%>|<%=dataPatientOrderList.get(i).get(13)%>">
+            <%
+            } else {
+            %>
+            <input type="checkbox" id="checky" name="order" value="<%= dataPatientOrderList.get(i).get(1)%>|<%= dataPatientOrderList.get(i).get(0)%>|<%= dataPatientOrderList.get(i).get(5)%>|<%=dataPatientOrderList.get(i).get(14)%>|<%=dataPatientOrderList.get(i).get(13)%>">
+            <%
+                }
+            %>
+        </td>
         <td><%= dataPatientOrderList.get(i).get(1)%></td> <!-- Order No -->
         <td><%= dataPatientOrderList.get(i).get(0)%></td> <!-- PMI No -->
         <td><%= dataPatientOrderList.get(i).get(14)%></td> <!-- IC No -->
-        <td><%= dataPatientOrderList.get(i).get(13)%></td> <!-- Name -->
+        <td style="font-weight: 500;"><%= dataPatientOrderList.get(i).get(13)%></td> <!-- Name -->
         <td><%= dataPatientOrderList.get(i).get(5)%></td> <!-- Order Date -->
         <td><%= dataPatientOrderList.get(i).get(2)%></td> <!-- Health Facility Code -->
         <td><%= dataPatientOrderList.get(i).get(6)%></td> <!-- Doctor's Name -->
@@ -90,7 +104,7 @@
             <%
                 }
             %></td>
-        <td><button class="btn btn-success " type="button" id="btnOrderDispense_<%=i%>" name="btnOrderDispense" > <i class="fa fa-shopping-cart fa-lg"></i></button>
+        <td><button class="btn btn-success btn-block " type="button" id="btnOrderDispense_<%=i%>" name="btnOrderDispense" > <i class="fa fa-shopping-cart fa-lg"></i>&nbsp;&nbsp;&nbsp;Send Billing</button>
             <script>
                 $("#btnOrderDispense_<%=i%>").click(function () {
 
@@ -239,21 +253,6 @@
 
             </script>
         </td>
-        <td>
-            <%
-                //out.print(dataPatientOrderList.get(i).get(9));
-                if (dataPatientOrderList.get(i).get(9).equals("4")) {
-            %>
-            <input type="checkbox" id="checky" name="order" disabled="disabled" value="<%= dataPatientOrderList.get(i).get(1)%>|<%= dataPatientOrderList.get(i).get(0)%>|<%= dataPatientOrderList.get(i).get(5)%>|<%=dataPatientOrderList.get(i).get(14)%>|<%=dataPatientOrderList.get(i).get(13)%>">
-            <%
-            } else {
-            %>
-            <input type="checkbox" id="checky" name="order" value="<%= dataPatientOrderList.get(i).get(1)%>|<%= dataPatientOrderList.get(i).get(0)%>|<%= dataPatientOrderList.get(i).get(5)%>|<%=dataPatientOrderList.get(i).get(14)%>|<%=dataPatientOrderList.get(i).get(13)%>">
-            <%
-                }
-            %>
-
-        </td><!-- Doctor's Name -->
         </tr>
         <%
             }
@@ -264,9 +263,9 @@
 
 
 
+<hr />
+<button class="btn btn-success pull-right" type="button" id="btnSendToBill" name="btnSendToBill"> <i class="fa fa-shopping-cart fa-lg" ></i>&nbsp;&nbsp;&nbsp;Send Selected to Billing</button>
 
-<button class="btn btn-primary " type="button" id="btnSendToBill" name="btnSendToBill"> <i class="fa fa-print fa-lg" ></i>&nbsp; Send to Bill &nbsp;</button>
-<hr class="pemisah">
 <textarea rows="4" cols="50" id="dataMSHPDIORC" style=" display: none">
 </textarea>
 
@@ -320,42 +319,42 @@
                 var patientName = arrayData1[4];
 
                 sentToBill(patientpmino, patientorderNo, patientOrderDate);
-                
+
             }
 
         }
-        
+
         function refresh()
         {
             var dataBill1 = {
-                    ic: "<%=ic%>",
-                    order_no: "<%=order_no%>",
-                    DateFrom: "<%=DateFrom%>",
-                    DateTo: "<%=DateTo%>"
-                };
+                ic: "<%=ic%>",
+                order_no: "<%=order_no%>",
+                DateFrom: "<%=DateFrom%>",
+                DateTo: "<%=DateTo%>"
+            };
 
-                $.ajax({
-                    url: "BillTo.jsp",
-                    type: "post",
-                    data: dataBill1,
-                    timeout: 3000,
-                    success: function (orderDetail) {
-                        $("#viewBill").val(orderDetail.trim());
-                        //$('#dataItem').html(returnDataItem);
-                        //$('#dataItem').trigger('contentchanged');
-                        //console.log(orderDetail.trim());
-                        //console.log($("#viewBill").val());
-                        $('#viewBill').html(orderDetail);
-                        $('#viewBill').trigger('contentchanged');
-                        
+            $.ajax({
+                url: "BillTo.jsp",
+                type: "post",
+                data: dataBill1,
+                timeout: 3000,
+                success: function (orderDetail) {
+                    $("#viewBill").val(orderDetail.trim());
+                    //$('#dataItem').html(returnDataItem);
+                    //$('#dataItem').trigger('contentchanged');
+                    //console.log(orderDetail.trim());
+                    //console.log($("#viewBill").val());
+                    $('#viewBill').html(orderDetail);
+                    $('#viewBill').trigger('contentchanged');
 
-                    },
-                    error: function (err) {
-                        alert("Error update!");
-                    }
-                });
+
+                },
+                error: function (err) {
+                    alert("Error update!");
+                }
+            });
         }
-       
+
         function sentToBill(patientpmino, patientorderNo, patientOrderDate) {
             var data = {
                 pmiNo: patientpmino,
@@ -420,8 +419,8 @@
                                                 data: data1,
                                                 timeout: 3000,
                                                 success: function (returnEHR) {
-                                                
-                                                refresh();
+
+                                                    refresh();
 
 
                                                 }

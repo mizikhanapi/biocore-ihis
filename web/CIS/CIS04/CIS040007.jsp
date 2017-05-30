@@ -15,8 +15,8 @@
             <div class="modal-body">
                 <div class="row">
                     <h4 class="modal-title" style="font-weight: bold">Admit to discipline :</h4>
-                    <input class="form-control input-lg" type="text"  id="hfcOrderDetailADW" placeholder="">
-                    <input class="form-control input-lg" type="text"  id="hfcProviderDetailADW" placeholder="">
+                    <input class="form-control input-lg" type="hidden"  id="hfcOrderDetailADW" placeholder="">
+                    <input class="form-control input-lg" type="hidden"  id="hfcProviderDetailADW" placeholder="">
                     <input class="form-control input-lg" type="hidden"  id="hfcIdADW">
                 </div>
 

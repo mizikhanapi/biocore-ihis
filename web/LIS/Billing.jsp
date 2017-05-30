@@ -13,11 +13,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>View Order</title>
-
-
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">   
-        <title>Main Page</title>
+        <title>LIS | Billing</title>
         <%@include file="../assets/header.html"%>
 
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -26,7 +22,7 @@
         <link rel="stylesheet" href="assets/css/loading.css">
         <link href="assets/datepicker/jquery-ui.css" rel="stylesheet">    
         <link href="bootstrap-3.3.6-dist/css/dataTables.bootstrap.min.css" rel="stylesheet" type="text/css"/>
-     
+
 
         <script src="assets/js/jquery.min.js"></script>
         <script src="assets/datepicker/jquery-ui.js"></script>
@@ -54,7 +50,7 @@
 
                             <div class="col-md-12">
                                 <div class="thumbnail">
-                                    <h3 style="margin: 0px;">Assign Test Result</h3>
+                                    <h3 style="margin: 0px;">Post to Bill</h3>
                                     <hr class="pemisah" />
 
                                     <div class="form-horizontal">
@@ -86,7 +82,7 @@
                                         <div class="form-group" id="ic" style="display: none;">
 
                                             <label class="col-md-4 control-label" for="textinput">IC No. / ID No.</label>
-                                            <div class="col-md-3">
+                                            <div class="col-md-4">
                                                 <input type="text" class="form-control input-md" id="idIC" name="idIC" placeholder="ID" >
                                             </div>
 
@@ -95,23 +91,25 @@
                                         <div class="form-group" id="order_noText" style="display: none;">
 
                                             <label class="col-md-4 control-label" for="textinput">Order No.</label>
-                                            <div class="col-md-3">
+                                            <div class="col-md-4">
                                                 <input type="text" class="form-control input-md" id="order_no" name="order_no" placeholder="Order No.">
                                             </div>
 
                                         </div>
 
-                                        <div class="form-group" id="date" style="display: none;">
+                                        <div class="form-group form-inline" id="date" style="display: none;">
                                             <label class="col-md-4 control-label" for="textinput">From</label>
-                                            <div class="col-md-2">
-                                                <input type="text" id="DateFrom" class="form-control input-md Datepicker" placeholder="YYYY-MM-DD">
+                                            <div class="form-group">
+                                                <div class="col-md-2">
+                                                    <input type="text" id="DateFrom" class="form-control input-md Datepicker" placeholder="YYYY-MM-DD">
+                                                </div>
                                             </div>
-
-                                            <label class="col-md-1 control-label" for="textinput">To</label>
-                                            <div class="col-md-2">
-                                                <input type="text" id="DateTo" class="form-control input-md Datepicker" placeholder="YYYY-MM-DD">
+                                            <div class="form-group">
+                                                <label class="col-md-1 control-label" for="textinput">To</label>
+                                                <div class="col-md-2">
+                                                    <input type="text" id="DateTo" class="form-control input-md Datepicker" placeholder="YYYY-MM-DD">
+                                                </div>
                                             </div>
-
                                         </div>
 
                                         <div class="text-center">
