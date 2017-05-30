@@ -67,11 +67,11 @@
             {
 
 //                    ICbday = "20" + tahun + "-" + bulan + "-" + hari;
-                ICbday = hari + "-" + bulan + "-" + "20" + tahun;
+                ICbday = hari + "/" + bulan + "/" + "20" + tahun;
             } else
             {
 //                    ICbday = "19" + tahun + "-" + bulan + "-" + hari;
-                ICbday = hari + "-" + bulan + "-" + "19" + tahun;
+                ICbday = hari + "/" + bulan + "/" + "19" + tahun;
             }
         }
 
@@ -122,6 +122,7 @@
         HHmmss = hours + ":" + ZeroMinutes + ":" + ZeroSeconds;
         yyyyMMdd = year + "-" + ZeroMonth + "-" + ZeroDay;
         ddMMyyyy = ZeroDay + "-" + ZeroMonth + "-" + year;
+        ddMMyyyyDua = ZeroDay + "/" + ZeroMonth + "/" + year;
     }
 
     //event when radio button is change

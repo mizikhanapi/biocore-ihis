@@ -16,12 +16,14 @@
     Conn conn = new Conn();
     String pmino = request.getParameter("pmino");
     String now = request.getParameter("today");
+    String hfc = session.getAttribute("HEALTH_FACILITY_CODE").toString();
     
     String delSql ="DELETE FROM PMS_EPISODE WHERE PMI_NO ='"+pmino+"' AND EPISODE_DATE = '"+now+"'";
+    String delPMSqueue = "DELETE FROM pms_patient_queue WHERE PMI_NO ='"+pmino+"' AND EPISODE_DATE = '"+now+"' AND HFC_CD='"+hfc+"';";
     Boolean delSuccess = rmic.setQuerySQL(conn.HOST, conn.PORT, delSql);
-    if(delSuccess == true){
+    Boolean delSuccessDua = rmic.setQuerySQL(conn.HOST, conn.PORT, delPMSqueue);
+    if(delSuccess == true && delSuccessDua == true){
 out.print("success");
-//out.print(delSql);
 //out.print(delSql); 
     }else{
 out.print("fail");        

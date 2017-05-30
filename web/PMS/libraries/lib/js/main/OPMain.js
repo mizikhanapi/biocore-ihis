@@ -57,14 +57,14 @@ function Main(array_data) {
                             $('input[id=pnic]').val($.trim(idInput));
                             //employment
                             $('input[id=EMPpmino]').val($.trim(list));
-                            $('#EMPcredate').val(ddMMyyyy);
+                            $('#EMPcredate').val(ddMMyyyyDua);
                             // set value in next of kin page
                             $('input[id=KINpmino]').val($.trim(list));
                             // set value in family page
                             $('input[id=FAMpmi]').val($.trim(list));
                             // set value in MEDICAL page
                             $('input[id=MEDpmino]').val($.trim(list));
-                            console.log(ddMMyyyy);
+                            console.log(ddMMyyyyDua);
                             $body.removeClass("loading");
                             $('.nav-tabs a[href="#tab_default_2"]').tab('show');
                         }
@@ -145,14 +145,14 @@ function Main(array_data) {
                             $('input[id=pnic]').val($.trim(newic));
                             //employment
                             $('input[id=EMPpmino]').val($.trim(list));
-                            $('#EMPcredate').val(ddMMyyyy);
+                            $('#EMPcredate').val(ddMMyyyyDua);
                             // set value in next of kin page
                             $('input[id=KINpmino]').val($.trim(list));
                             // set value in family page
                             $('input[id=FAMpmi]').val($.trim(list));
                             // set value in MEDICAL page
                             $('input[id=MEDpmino]').val($.trim(list));
-                            console.log(ddMMyyyy);
+                            console.log(ddMMyyyyDua);
                             $body.removeClass("loading");
                             $('.nav-tabs a[href="#tab_default_2"]').tab('show');
                         }
@@ -213,7 +213,7 @@ function Main(array_data) {
                             $('input[id=pnic]').val($.trim(idInput));
                             //employment
                             $('input[id=EMPpmino]').val($.trim(list));
-                            $('#EMPcredate').val(ddMMyyyy);
+                            $('#EMPcredate').val(ddMMyyyyDua);
                             // set value in next of kin page
                             $('input[id=KINpmino]').val($.trim(list));
                             // set value in family page
@@ -221,7 +221,7 @@ function Main(array_data) {
                             // set value in MEDICAL page
                             $('input[id=MEDpmino]').val($.trim(list));
 
-                            console.log(ddMMyyyy);
+                            console.log(ddMMyyyyDua);
                             $body.removeClass("loading");
                             $('.nav-tabs a[href="#tab_default_2"]').tab('show');
                         }
@@ -362,7 +362,7 @@ function Main(array_data) {
         
         // set value in employment page
         $('input[id=EMPpmino]').val($.trim(pmino));
-        $('#EMPcredate').val(ddMMyyyy);
+        $('#EMPcredate').val(ddMMyyyyDua);
         var data = {'PMINO': $.trim(pmino)};
         $.ajax({
             async: true,

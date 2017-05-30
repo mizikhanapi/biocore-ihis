@@ -154,11 +154,11 @@
 
 
         $(function () {
-            $('#EMPcredate').datepicker({dateFormat: 'dd-mm-yy', changeMonth: true, changeYear: true});
+            $('#EMPcredate').datepicker({dateFormat: 'dd/mm/yy', changeMonth: true, changeYear: true});
         });
 
         $(function () {
-            $('#EMPjdate').datepicker({dateFormat: 'dd-mm-yy', changeMonth: true, changeYear: true});
+            $('#EMPjdate').datepicker({dateFormat: 'dd/mm/yy', changeMonth: true, changeYear: true});
         });
 
     });
@@ -205,8 +205,8 @@
     var yyyyMMddHHmmss = year + "-" + ZeroMonth + "-" + ZeroDay + " " + hours + ":" + ZeroMinutes + ":" + ZeroSeconds;
     var HHmmss = hours + ":" + ZeroMinutes + ":" + ZeroSeconds;
     var yyyyMMdd = year + "-" + ZeroMonth + "-" + ZeroDay;
-    var ddMMyyyy = ZeroDay + "-" + ZeroMonth + "-" + year;
-    $('#EMPcredate').val(ddMMyyyy);
+    var ddMMyyyy2 = ZeroDay + "/" + ZeroMonth + "/" + year;
+    $('#EMPcredate').val(ddMMyyyy2);
 
 
 
@@ -236,10 +236,10 @@
             EMPcd: EMPcd,
             EMPname: EMPname,
             EMPoccu: EMPoccu,
-            EMPjdate: convertedJDate,
+            EMPjdate: EMPjdate,
             EMPinrange: EMPinrange,
             EMPhfc: EMPhfc,
-            EMPcredate: convertedCreDate,
+            EMPcredate: EMPcredate,
             EMPstatus: EMPstatus
         };
         //console.log(datas);

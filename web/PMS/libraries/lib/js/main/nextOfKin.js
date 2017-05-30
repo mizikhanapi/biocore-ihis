@@ -1,6 +1,6 @@
     $(document).ready(function () {
         $(function () {
-            $('#KINdob').datepicker({dateFormat: 'dd-mm-yy', changeMonth: true, changeYear: true});
+            $('#KINdob').datepicker({dateFormat: 'dd/mm/yy', changeMonth: true, changeYear: true});
         });
     });
     //function get birth date
@@ -17,11 +17,11 @@
             {
 
                 //ICbdayw = "20" + tahun + "-" + bulan + "-" + hari;
-                ICbdayw = hari + "-" + bulan + "-" + "20" + tahun;
+                ICbdayw = hari + "/" + bulan + "/" + "20" + tahun;
             } else
             {
                 //ICbdayw = "19" + tahun + "-" + bulan + "-" + hari;
-                ICbdayw = hari + "-" + bulan + "-" + "19" + tahun;
+                ICbdayw = hari + "/" + bulan + "/" + "19" + tahun;
             }
         }
         //console.log(ICbdayw);
@@ -119,7 +119,7 @@
         var datas = {
             KINpmino: KINpmino,
             KINidtype: KINidtype,
-            KINdob: convertedKINdob,
+            KINdob: KINdob,
             KINphone: KINphone,
             KINemail: KINemail,
             KINname: KINname,
@@ -243,7 +243,7 @@
 
         $('#KINpmino').val(pmino);
         $('#KINidtype').val(idtype);
-        $('#KINdob').val(convertedbirthdate);
+        $('#KINdob').val(birthdate);
         $('#KINphone').val(mobilephone);
         $('#KINemail').val(email);
         $('#KINname').val(kinname);

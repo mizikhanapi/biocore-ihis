@@ -69,7 +69,15 @@
         <td><%=dataQueue.get(i).get(7)%></td>
         <td><%=dataQueue.get(i).get(9)%></td>
         <td><%=dataQueue.get(i).get(6)%></td>        
-        <td><button class="btn btn-danger" id="delQueue" data-dismiss="modal" role="button">Delete</button></td>
+        <td>
+            <% 
+                if(!dataQueue.get(i).get(6).equalsIgnoreCase("waiting")){ %>
+                <button class="btn btn-danger" id="delQueue" data-dismiss="modal" role="button" disabled="">Delete</button>
+             <%   }else{
+            %>
+            <button class="btn btn-danger" id="delQueue" data-dismiss="modal" role="button">Delete</button>
+            <% } %>
+        </td>
  </tr>    
     <%    }
     %>

@@ -84,10 +84,10 @@
         $('#EMPempcode').val(empcode);
         $('#EMPempname').val(empname);
         $('#EMPoccu').val(empoccuName);
-        $('#EMPjdate').val(convertedJDate);
+        $('#EMPjdate').val(jdate);
         $('#EMPinrange').val(incomerange);
         $('#EMPhfc').val(emphfcName);
-        $('#EMPcredate').val(convertedCreDate);
+        $('#EMPcredate').val(credate);
         $('#EMPstatus').val(empstatus);
         $('#EMPseq').val(seqno);
 
