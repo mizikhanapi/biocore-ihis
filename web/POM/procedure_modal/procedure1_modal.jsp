@@ -25,7 +25,7 @@
                             <input id="PRO1_level1_name"  type="text" placeholder="Search level 1 procedure code" class="form-control input-md" maxlength="30">
                             <input type="hidden" id="PRO1_level1_code">
                             <div id="PRO1_match" class="search-drop">
-                                
+
                             </div>
 
                         </div>
@@ -41,7 +41,7 @@
 
                         </div>
                     </div>
-                    
+
                     <div class="form-group" id="PRO1_div_update">
                         <label class="col-md-4 control-label">Level 2 Code*</label>
                         <div class="col-md-8 input-group">
@@ -89,51 +89,49 @@
 <!-- Add Modal End -->  
 <!-- Modal -->
 <script type="text/javascript">
-    
+
+    //---------------- procededure code validation ------------------------------
+    $('#PRO1_level2_code_ins').keypress(function (e) {
+
+        var chr = String.fromCharCode(e.which);
+        if ("\\\\\"\'|\\/\?><.!@$%^&*()_-+=:;,#[]{}".indexOf(chr) >= 0){
+            console.log('Haram');
+            return false;
+        }    
+    });
     //---------------- search level 1 procedure -----------------------------------
-    
-    $('#PRO1_level1_name').on('keyup', function(){
+
+    $('#PRO1_level1_name').on('keyup', function () {
         var input = $(this).val();
-        
         $('#PRO1_level2_code_front').val('');
-        
-        if(input.length > 0){
+        if (input.length > 0) {
             var data = {
                 key: input,
                 process: 'level1'
             };
             $('#PRO1_match').html('<img src="img/ajax-loader.gif">');
-            
-            
             $.ajax({
                 type: 'POST',
                 url: "procedure_controller/search_porcedure.jsp",
                 data: data,
                 success: function (data, textStatus, jqXHR) {
-                    
-                        $('#PRO1_match').html(data);
-                        $('#PRO_match_list li').on('click', function(){
-                            $('#PRO1_level1_name').val($(this).text());
-                            $('#PRO1_level2_code_front').val($(this).data('code'));
-                           
-                            $('#PRO1_match').html('');      
-                            
-                        });
-                        
-                    },
+
+                    $('#PRO1_match').html(data);
+                    $('#PRO_match_list li').on('click', function () {
+                        $('#PRO1_level1_name').val($(this).text());
+                        $('#PRO1_level2_code_front').val($(this).data('code'));
+                        $('#PRO1_match').html('');
+                    });
+                },
                 error: function (jqXHR, textStatus, errorThrown) {
-                        $('#PRO1_match').html(errorThrown);
-                    }
+                    $('#PRO1_match').html(errorThrown);
+                }
             });
-            
+        } else {
+            $('#PRO1_match').html('');
         }
-        else{
-            $('#PRO1_match').html('');            
-            
-        }
-        
+
     });
-    
     //=========================================================================
 </script>
 

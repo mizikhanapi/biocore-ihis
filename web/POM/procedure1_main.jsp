@@ -25,11 +25,11 @@
         $('#PRO1_modal_title').text("Add New Procedure");
         $('#PRO1_Code').prop('disabled', false);
         $('#PRO1_div_btnAdd_or_update').html('<button type="submit" class="btn btn-success btn-block btn-lg" role="button" id="PRO1_btnAdd">Add</button>');
-        
+
         $('#PRO1_div_level1').show();
         $("#PRO1_div_insert").show();
         $("#PRO1_div_update").hide();
-        
+
 
         $('#PRO1_addForm')[0].reset();
 
@@ -55,7 +55,11 @@
         } else if (code_2 === "") {
             bootbox.alert("Please complete the level 2 code");
 
-        }else if (name === "") {
+        } else if (!/^[a-zA-Z0-9]+$/.test(code_2)) {
+            bootbox.alert("Please enter alphabets and numbers only.", function(){
+                $('#PRO1_level2_code_ins').focus();
+            });
+        } else if (name === "") {
             bootbox.alert("Please insert the level 2 name");
 
         } else {
@@ -125,12 +129,12 @@
         $('#PRO1_status').val(status);
 
         $('#PRO1_modal_title').text("Update Procedure");
-         $('#PRO1_div_level1').hide();
+        $('#PRO1_div_level1').hide();
         $("#PRO1_div_insert").hide();
         $("#PRO1_div_update").show();
-        
+
         $('#PRO1_div_btnAdd_or_update').html('<button type="submit" class="btn btn-success btn-block btn-lg" role="button" id="PRO1_btnUpdate">Update</button>');
-        
+
         //console.log( $('#PRO1_level1_code').val());
 
 
@@ -143,13 +147,13 @@
     //------------------------------- update upon button click ----------------------------------------------------------------
 
     $('#PRO1_div_btnAdd_or_update').on('click', '#PRO1_btnUpdate', function () {
-        
+
         var code_1 = $("#PRO1_level1_code").val();
         var code = $('#PRO1_level2_code_upd').val();
         var name = $('#PRO1_Name').val();
         var status = $('#PRO1_status').val();
-        
-        
+
+
         if (code === "") {
             bootbox.alert("Procedure code can't be empty");
 
@@ -257,7 +261,7 @@
 
                             } else if (data.trim() === 'look') {
 
-                                bootbox.alert('You can\'t delete this code. The code '+code+', is referred by procedure 1.');
+                                bootbox.alert('You can\'t delete this code. The code ' + code + ', is referred by procedure 1.');
 
                             }
 
