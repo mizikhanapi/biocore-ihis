@@ -21,22 +21,22 @@
                 <div class="form-horizontal">
                     <h4 class="modal-title" style="font-weight: bold">Service Provider</h4>
                     <div class="row">
-                        <div class="col-md-6">
+                        <div class="col-md-12">
                             <div class="form-group">
-                                <label class="col-md-4 control-label" for="textinput">Health Facility</label>
-                                <div class="col-md-6">
+                                <label class="col-md-2 control-label" for="textinput">Health Facility</label>
+                                <div class="col-md-9">
                                     <input class="form-control input-lg" type="text"  id="hfcROS" placeholder="">
                                     <input class="form-control input-lg" type="hidden"  id="hfcOrderDetail" placeholder="">
                                     <input class="form-control input-lg" type="hidden"  id="hfcProviderDetail" placeholder="">
                                     <input class="form-control input-lg" type="hidden"  id="hfcIdROS">
-                                    <div id="matchHFCROS" ></div>
+                                    <div id="matchHFCROS" style="width: 100% !important;" ></div>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-12">
                             <div class="form-group">
-                                <label class="col-md-4 control-label" for="textinput">Location</label>
-                                <div class="col-md-6">
+                                <label class="col-md-2 control-label" for="textinput">Location</label>
+                                <div class="col-md-9">
                                     <textarea type="text" name="display_name" id="locationROS" class="form-control input-lg" tabindex="3"></textarea>
                                 </div>
                             </div>
@@ -47,7 +47,7 @@
                         <div class="col-md-12">
                             <!-- content goes here -->
                             <div class="form-group">
-                                <input type="text" name="POS" id="codeROS_2" class="form-control input-lg"  tabindex="4">
+                                <input type="hidden" name="POS" id="codeROS_2" class="form-control input-lg"  tabindex="4">
                             </div>
                             <div class="form-group">
                                 <label class="col-md-2 control-label" for="textinput">Search Radiology Procedure</label>
