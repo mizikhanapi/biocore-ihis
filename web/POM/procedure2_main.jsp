@@ -58,7 +58,11 @@
         }else if (name === "") {
             bootbox.alert("Please insert the level 2 name");
 
-        } else {
+        } else if (!/^[a-zA-Z0-9]+$/.test(code_2)) {
+            bootbox.alert("Please enter alphabets and numbers only.", function(){
+                $('#PRO2_level2_code_ins').focus();
+            });
+        }  else {
 
             name = name.replace(/'/g, "\\\'").replace(/"/g, "\\\"");
             var code = code_1.trim() + '.' + code_2.trim();
