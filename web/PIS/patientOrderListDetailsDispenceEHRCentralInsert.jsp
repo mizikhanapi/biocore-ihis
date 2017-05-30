@@ -42,6 +42,7 @@
     String C_TxnDataBLI = FullEHRHeaderBLI;            // Date 4
     String C_TxnDataDDR = FullEHRHeaderDDR;            // Date 4
     String STATUS = "0";                            // Date 5
+    String STATUSshay = "1";                            // Date 5
     String STATUS_1 = "0";                          // Date 6
     String STATUS_2 = "0";                          // Date 7
     String STATUS_3 = "0";                          // Date 8
@@ -56,7 +57,7 @@
 
     // Insert Into EHR Central DDR
     String sqlInsertDDR = "INSERT INTO ehr_central (CENTRAL_CODE,PMI_NO,C_TXNDATE,C_TxnData,STATUS,STATUS_1,STATUS_2,STATUS_3,STATUS_4,STATUS_5)"
-            + " SELECT (MAX(CENTRAL_CODE)+1),'" + PMI_NO + "','" + C_TXNDATE + "','" + C_TxnDataDDR + "','" + STATUS + "','" + STATUS_1 + "','" + STATUS_2 + "','" + STATUS_3 + "', "
+            + " SELECT (MAX(CENTRAL_CODE)+1),'" + PMI_NO + "','" + C_TXNDATE + "','" + C_TxnDataDDR + "','" + STATUSshay + "','" + STATUS_1 + "','" + STATUS_2 + "','" + STATUS_3 + "', "
             + "'" + STATUS_4 + "','" + STATUS_5 + "' FROM ehr_central ";
     boolean isInsertDDR = rmic.setQuerySQL(conn.HOST, conn.PORT, sqlInsertDDR);
 

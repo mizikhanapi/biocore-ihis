@@ -1111,23 +1111,31 @@
             drugMDCFrequencyDesc = $tds.eq(27).text();
             drugMDCFrequencyUnitCode = "-";
             drugMDCDosage = $tds.eq(28).text();
-            drugMDCOUM = "-";
+            drugMDCOUM = "-^-^-";
             drugMDCDuration = $tds.eq(29).text();
-            drugMDCDispenseLocation = "-";
+            drugMDCDispenseLocation = "-^-^-";
             drugMDCDispenseNotes = "-";
-            drugMDCDispenseProvider = "-";
+            drugMDCDispenseProvider = "-^-^-";
             drugMDCIndicator = "-";
 
 
             if (drugChecked === true && drugDispensedQty !== "0") {
 
-                //                              0        1     2     3     4          5            6            7              8                    9                       10               11
+                //                              0           1       2                3               4                  5                   6                    7                   8     
                 var dataOneRowBLI = "BLI|T^" + dateBill + "|CH|" + pmino + "|" + drugCode + "|" + drugDesc + "|" + drugPrice + "|" + drugDispensedQty + "|" + userIDBill + "|" + dateBill + "<cr>\n";
+           
+            
+                //                    0                         1                                       2                               3                                                       4    
                 var dataOneRowDDR = "DDR|" + drugATCCode + "^" + drugATCDesc + "^ATC|" + drugCode + "^" + drugMDCDesc + "^MDC|" + drugMDCStrength + "|" + drugMDCFromMCode + "^" + drugMDCFromRCode + "^" + drugMDCFromDesc +
+                        //                                  5                                                                                   6
                         "|" + drugMDCRouteMCode + "^" + drugMDCRouteRCode + "^" + drugMDCRouteDesc + "|" + drugMDCFrequencyMCode + "^" + drugMDCFrequencyRCode + "^" + drugMDCFrequencyDesc + "|" +
+                        //          7                          8                 9                   10        
                         drugMDCFrequencyUnitCode + "|" + drugMDCDosage + "|" + drugMDCOUM + "|" + drugMDCDuration +
+                        //          11                          12                              13                      14                      15        
                         "|" + drugDispensedQty + "|" + drugMDCDispenseLocation + "|" + drugMDCDispenseNotes + "|" + getDate() + "|" + drugMDCDispenseProvider + "|" +
+                        //  16                  17
                         orderDate + "|" + drugMDCIndicator + "<cr>\n";
+
 
                 ehrCentralBillBLI = ehrCentralBillBLI + dataOneRowBLI;
                 ehrCentralBillDDR = ehrCentralBillDDR + dataOneRowDDR;
