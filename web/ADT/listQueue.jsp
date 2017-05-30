@@ -58,9 +58,6 @@
 
         <th>Doctor </th>
         <th>Consultation Room </th>
-
-        
-        <th>Add</th>
         <th>Action </th>
 
         </thead>
@@ -85,18 +82,11 @@
 
         <td><%=dataQ.get(i).get(5)%></td>
         <td><%=dataQ.get(i).get(3)%></td>
-
-
-
-       
-
         <td>
             <!-- Update Part Start -->
-            <a id="addQueue"><i class="fa fa-pencil-square-o" aria-hidden="true" style="display: inline-block;color: #337ab7;"></i></a>
-
+            <a id="addQueue" class="btn btn-success">Add</a>
             <!-- Update Part End -->
-        </td>
-        <td><button class="btn btn-danger" id="delQueue" data-dismiss="modal" role="button">Delete</button></td>
+            <button class="btn btn-danger" id="delQueue" data-dismiss="modal" role="button">Delete</button></td>
         </tr>    
         <%    }
         %>
@@ -127,8 +117,8 @@
         var wname = arrayData[16];
         var BedIDReg = arrayData[17];
         var orderNo = arrayData[4];
-        
-         var orderS = "YesOrder";
+
+        var orderS = "YesOrder";
 
 
         $("#OrderStatus").val(orderS);
@@ -191,7 +181,6 @@
 
                     var data = {
                         pmino: pmino,
-
                     };
                     $.ajax({
                         type: "post",
