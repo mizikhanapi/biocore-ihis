@@ -95,7 +95,7 @@
                                                         <%@include file = "DischargeList.jsp" %>
                                                     </div>
                                                     </br>
-                                                    
+
                                                 </div>
                                             </div>
 
@@ -124,6 +124,9 @@
             <!-- main -->		
 
         </div>
+                                                    <script src="libraries/js/searchPatient.js" type="text/javascript"></script>
+                                                    
+
         <script>
 
             $(document).ready(function () {

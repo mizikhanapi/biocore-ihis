@@ -35,6 +35,10 @@
     String dis = session.getAttribute("DISCIPLINE_CODE").toString();
     String sub = session.getAttribute("SUB_DISCIPLINE_CODE").toString();
 
+    String eliCat = "select * from adm_lookup_detail where master_reference_code = '0063' and hfc_cd ='" + hfc + "'  ";
+    ArrayList<ArrayList<String>> dataRole2, dataEliCat, dataAdmit, dataEliType, dataDocumentType, dataIdType, dataPayerGroup;
+    dataEliCat = conn.getData(eliCat);
+
 
 %>
 <input type="hidden" value="<%=hfc%>" id="Rhfc">
@@ -87,29 +91,64 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label class="col-md-6 control-label" for="textinput">Eligibility Sources *</label>
-                                <div class="col-md-6">
-                                    <input id="eliSrc" name="eliSrc" type="text" placeholder="Insert Eligibility Sources" class="form-control input-md">
-                                    <input type="hidden" id="eliSrc_cd">
-                                    <div id="eliSrcList" class="search-drop"></div>
-                                </div>
-                            </div>
+                        <!--                        <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label class="col-md-6 control-label" for="textinput">Eligibility Sources *</label>
+                                                        <div class="col-md-6">
+                                                            <input id="eliSrc" name="eliSrc" type="text" placeholder="Insert Eligibility Sources" class="form-control input-md">
+                                                            <input type="hidden" id="eliSrc_cd">
+                                                            <div id="eliSrcList" class="search-drop"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>-->
+
+ <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="col-md-6 control-label" for="selectbasic">Eligibility Source*</label>
+                            <div class="col-md-6">
+                                <input type="hidden" id="eliSrc_cd">
+
+                                <select id="eliSrc" name="eliSrc" class="form-control">
+                                    <option value="-">-</option>
+                                    <option value="null" selected="" >Select Eligibility Source</option>
+
+
+                                    <%                                        for (int i = 0; i < dataEliCat.size(); i++) {%>
+                                    <option value="<%=dataEliCat.get(i).get(1)%>"><%=dataEliCat.get(i).get(2)%></option>
+                                    <%  }
+                                    %>
+                                </select>
+                            </div> 
+                                                            </div> 
+
                         </div>
 
 
+
+                        <!--                        <div class="form-group">
+                                                    <div class="col-md-6">
+                                                        <label class="col-md-6 control-label" for="selectbasic">Eligibility Type*</label>
+                                                        <div class="col-md-6" id="EligibilityTypeDropdown">
+                                                            <select id="EliTy" name="selectbasic" class="form-control" disabled="">
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                        -->
 
 
                         <div class="form-group">
                             <div class="col-md-6">
-                                <label class="col-md-6 control-label" for="selectbasic">Eligibility Type*</label>
-                                <div class="col-md-6" id="EligibilityTypeDropdown">
-                                    <select id="EliTy" name="selectbasic" class="form-control" disabled="">
-                                    </select>
-                                </div>
+                            <label class="col-md-6 control-label" for="selectbasic">Eligibility Type*</label>
+                            <div class="col-md-6" id="EligibilityTypeDropdown">
+                                <select id="EliTy" name="selectbasic" class="form-control" disabled="">
+
+
+                                </select>
                             </div>
+</div>
                         </div>
+
                     </div>
 
                     <div class="row">
@@ -221,51 +260,6 @@
 <script>
     w3IncludeHTML();
     $(document).ready(function () {
-
-
-//        $("#wclass").on('change', function () {
-//            var wclass = $(this).val();
-//            var hfc = $("#Rhfc").val();
-//            $.ajax({
-//                type: "post",
-//                url: "listWardName2.jsp",
-//                data: {'wclass': wclass, 'hfc': hfc},
-//                timeout: 10000,
-//                success: function (list) {
-//                    //remove the loading 
-//                    //$body.removeClass("loading");
-//                    console.log(list);
-//                    $('#WardNameDropdown').html(list);
-//
-//                },
-//                error: function (xhr, status, error) {
-//                    var err = eval("(" + xhr.responseText + ")");
-//                    //bootbox.alert(err.Message);
-//                }
-//            });
-//        });
-
-//        $("#eliSrc").on('change', function () {
-//        var EliSrc = $(this).val();
-//        $.ajax({
-//            type: "post",
-//            url: "PMS/listEliTy.jsp",
-//            data: {'EliSrc': EliSrc},
-//            timeout: 10000,
-//            success: function (list) {
-//                //remove the loading 
-//                //$body.removeClass("loading");
-//                console.log(list);
-//                $('#EligibilityTypeDropdown').html(list);
-//
-//            },
-//            error: function (xhr, status, error) {
-//                var err = eval("(" + xhr.responseText + ")");
-//                //bootbox.alert(err.Message);
-//            }
-//        });
-//    });
-//        
 
 
         $("#wclass").on('keyup', function () { // everytime keyup event
@@ -398,94 +392,88 @@
 
         });
 
-        $("#eliSrc").on('keyup', function () { // everytime keyup event
-            var input = $(this).val(); // We take the input value
-            var hfc = $("#Rhfc").val();
-            var EliSrc = $("#eliSrc").val();
+//        $("#eliSrc").on('keyup', function () { // everytime keyup event
+//            var input = $(this).val(); // We take the input value
+//            var hfc = $("#Rhfc").val();
+//            var EliSrc = $("#eliSrc").val();
+//
+//
+//
+//            if (input.length >= 1) { // Minimum characters = 2 (you can change)
+//                $('#eliSrcList').html('<img src="libraries/LoaderIcon.gif" />'); // Loader icon apprears in the <div id="match"></div>
+//                var dataFields = {input: input, hfc: hfc}; // We pass input argument in Ajax
+//                $.ajax({
+//                    type: "POST",
+//                    url: "searchEligibilitySource.jsp", // call the php file ajax/tuto-autocomplete.php
+//                    data: dataFields, // Send dataFields var
+//                    timeout: 3000,
+//                    success: function (dataBack) { // If success
+//                        $('#eliSrcList').html(dataBack); // Return data (UL list) and insert it in the <div id="match"></div>
+//                        $('#matchListDis li').on('click', function () { // When click on an element in the list
+//                            //$('#masterCode2').text($(this).text()); // Update the field with the new element
+//                            $('#eliSrc').val($(this).text());
+//                            $('#eliSrcList').text(''); // Clear the <div id="match"></div>
+//                            var arrayData = $('#eliSrc').val().split("|");
+//                            //console.log(arrayData);
+//                            //console.log(arrayData[0].trim());
+//                            //console.log(arrayData[1].trim());
+//                            $.ajax({
+//                                type: "post",
+//                                url: "PMS/listEliTy.jsp",
+//                                data: {'EliSrc': EliSrc, 'hfc': hfc},
+//                                timeout: 10000,
+//                                success: function (list) {
+//                                    //remove the loading 
+//                                    //$body.removeClass("loading");
+//                                    console.log(list);
+//                                    $('#EligibilityTypeDropdown').html(list);
+//
+//                                },
+//                                error: function (xhr, status, error) {
+//                                    var err = eval("(" + xhr.responseText + ")");
+//                                    //bootbox.alert(err.Message);
+//                                }
+//                            });
+//                        });
+//                    },
+//                    error: function () { // if error
+//                        $('#eliSrcList').text('Problem!');
+//                    }
+//                });
+//            } else {
+//                $('#eliSrcList').text(''); // If less than 2 characters, clear the <div id="match"></div>
+//            }
+//
+//        });
+        
+        
+         $("#eliSrc").on('change', function () {
+        var EliSrc = $(this).val();
+        $.ajax({
+            type: "post",
+            url: "PMS/listEliTy.jsp",
+            data: {'EliSrc': EliSrc},
+            timeout: 10000,
+            success: function (list) {
+                //remove the loading 
+                //$body.removeClass("loading");
+                console.log(list);
+                $('#EligibilityTypeDropdown').html(list);
 
-
-
-            if (input.length >= 1) { // Minimum characters = 2 (you can change)
-                $('#eliSrcList').html('<img src="libraries/LoaderIcon.gif" />'); // Loader icon apprears in the <div id="match"></div>
-                var dataFields = {input: input, hfc: hfc}; // We pass input argument in Ajax
-                $.ajax({
-                    type: "POST",
-                    url: "searchEligibilitySource.jsp", // call the php file ajax/tuto-autocomplete.php
-                    data: dataFields, // Send dataFields var
-                    timeout: 3000,
-                    success: function (dataBack) { // If success
-                        $('#eliSrcList').html(dataBack); // Return data (UL list) and insert it in the <div id="match"></div>
-                        $('#matchListDis li').on('click', function () { // When click on an element in the list
-                            //$('#masterCode2').text($(this).text()); // Update the field with the new element
-                            $('#eliSrc').val($(this).text());
-                            $('#eliSrcList').text(''); // Clear the <div id="match"></div>
-                            var arrayData = $('#eliSrc').val().split("|");
-                            //console.log(arrayData);
-                            //console.log(arrayData[0].trim());
-                            //console.log(arrayData[1].trim());
-                            $.ajax({
-                                type: "post",
-                                url: "PMS/listEliTy.jsp",
-                                data: {'EliSrc': EliSrc, 'hfc': hfc},
-                                timeout: 10000,
-                                success: function (list) {
-                                    //remove the loading 
-                                    //$body.removeClass("loading");
-                                    console.log(list);
-                                    $('#EligibilityTypeDropdown').html(list);
-
-                                },
-                                error: function (xhr, status, error) {
-                                    var err = eval("(" + xhr.responseText + ")");
-                                    //bootbox.alert(err.Message);
-                                }
-                            });
-                        });
-                    },
-                    error: function () { // if error
-                        $('#eliSrcList').text('Problem!');
-                    }
-                });
-            } else {
-                $('#eliSrcList').text(''); // If less than 2 characters, clear the <div id="match"></div>
+            },
+            error: function (xhr, status, error) {
+                var err = eval("(" + xhr.responseText + ")");
+                //bootbox.alert(err.Message);
             }
-
         });
-        $("#eliTy").on('keyup', function () { // everytime keyup event
-            var input = $(this).val(); // We take the input value
-            var hfc = $("#Rhfc").val();
-
-
-
-            if (input.length >= 1) { // Minimum characters = 2 (you can change)
-                $('#eliTyList').html('<img src="libraries/LoaderIcon.gif" />'); // Loader icon apprears in the <div id="match"></div>
-                var dataFields = {input: input, hfc: hfc}; // We pass input argument in Ajax
-                $.ajax({
-                    type: "POST",
-                    url: "searchEligibilityType.jsp", // call the php file ajax/tuto-autocomplete.php
-                    data: dataFields, // Send dataFields var
-                    timeout: 3000,
-                    success: function (dataBack) { // If success
-                        $('#eliTyList').html(dataBack); // Return data (UL list) and insert it in the <div id="match"></div>
-                        $('#matchListDis li').on('click', function () { // When click on an element in the list
-                            //$('#masterCode2').text($(this).text()); // Update the field with the new element
-                            $('#eliTy').val($(this).text());
-                            $('#eliTyList').text(''); // Clear the <div id="match"></div>
-                            var arrayData = $('#eliTy').val().split("|");
-                            //console.log(arrayData);
-                            //console.log(arrayData[0].trim());
-                            //console.log(arrayData[1].trim());
-                        });
-                    },
-                    error: function () { // if error
-                        $('#eliTyList').text('Problem!');
-                    }
-                });
-            } else {
-                $('#eliTyList').text(''); // If less than 2 characters, clear the <div id="match"></div>
-            }
-
-        });
+    });
+        
+        
+        
+        
+        
+        
+        
         $("#sub").on('keyup', function () { // everytime keyup event
             var input = $(this).val(); // We take the input value
             var hfc = $("#Rhfc").val();
@@ -747,6 +735,88 @@
 
 
     });
+
+
+//        $("#wclass").on('change', function () {
+//            var wclass = $(this).val();
+//            var hfc = $("#Rhfc").val();
+//            $.ajax({
+//                type: "post",
+//                url: "listWardName2.jsp",
+//                data: {'wclass': wclass, 'hfc': hfc},
+//                timeout: 10000,
+//                success: function (list) {
+//                    //remove the loading 
+//                    //$body.removeClass("loading");
+//                    console.log(list);
+//                    $('#WardNameDropdown').html(list);
+//
+//                },
+//                error: function (xhr, status, error) {
+//                    var err = eval("(" + xhr.responseText + ")");
+//                    //bootbox.alert(err.Message);
+//                }
+//            });
+//        });
+
+//        $("#eliSrc").on('change', function () {
+//        var EliSrc = $(this).val();
+//        $.ajax({
+//            type: "post",
+//            url: "PMS/listEliTy.jsp",
+//            data: {'EliSrc': EliSrc},
+//            timeout: 10000,
+//            success: function (list) {
+//                //remove the loading 
+//                //$body.removeClass("loading");
+//                console.log(list);
+//                $('#EligibilityTypeDropdown').html(list);
+//
+//            },
+//            error: function (xhr, status, error) {
+//                var err = eval("(" + xhr.responseText + ")");
+//                //bootbox.alert(err.Message);
+//            }
+//        });
+//    });
+//        
+
+
+//        $("#eliTy").on('keyup', function () { // everytime keyup event
+//            var input = $(this).val(); // We take the input value
+//            var hfc = $("#Rhfc").val();
+//
+//
+//
+//            if (input.length >= 1) { // Minimum characters = 2 (you can change)
+//                $('#eliTyList').html('<img src="libraries/LoaderIcon.gif" />'); // Loader icon apprears in the <div id="match"></div>
+//                var dataFields = {input: input, hfc: hfc}; // We pass input argument in Ajax
+//                $.ajax({
+//                    type: "POST",
+//                    url: "searchEligibilityType.jsp", // call the php file ajax/tuto-autocomplete.php
+//                    data: dataFields, // Send dataFields var
+//                    timeout: 3000,
+//                    success: function (dataBack) { // If success
+//                        $('#eliTyList').html(dataBack); // Return data (UL list) and insert it in the <div id="match"></div>
+//                        $('#matchListDis li').on('click', function () { // When click on an element in the list
+//                            //$('#masterCode2').text($(this).text()); // Update the field with the new element
+//                            $('#eliTy').val($(this).text());
+//                            $('#eliTyList').text(''); // Clear the <div id="match"></div>
+//                            var arrayData = $('#eliTy').val().split("|");
+//                            //console.log(arrayData);
+//                            //console.log(arrayData[0].trim());
+//                            //console.log(arrayData[1].trim());
+//                        });
+//                    },
+//                    error: function () { // if error
+//                        $('#eliTyList').text('Problem!');
+//                    }
+//                });
+//            } else {
+//                $('#eliTyList').text(''); // If less than 2 characters, clear the <div id="match"></div>
+//            }
+//
+//        });
 
 
 </script> 

@@ -61,6 +61,8 @@
 
 <input type="hidden" id="hfc_cd"   class="form-control input-md">
 
+
+
 <!--
 <div style="color: #999; top: 30px; right: 30px; font-weight: 500; text-transform: uppercase">Total Room: </div>
 <input name="EliSrc" id="EliSrc">
@@ -373,15 +375,15 @@
                 </div>
 
                 <div class="col-md-4"> 
-                    <!-- Select Basic -->
+                    
+                    <!-- Text input-->
                     <div class="form-group">
-                        <label class="col-md-4 control-label" for="selectbasic">Discharge Reason</label>
+                        <label class="col-md-4 control-label" for="textinput">Total Days Admit</label>
                         <div class="col-md-6">
-                            <input id="DisReason"  name="textinput" type="text"   class="form-control input-md">
-
+                            <input id="day" name="day" type="text" placeholder=" " readonly class="form-control input-md">                        
                         </div>
                     </div>
-                    <!-- Text input-->
+
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="textinput">Total Discharge</label>
                         <div class="col-md-6">

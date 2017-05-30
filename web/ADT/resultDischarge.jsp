@@ -34,19 +34,24 @@
     String WardTypeb = request.getParameter("WardType");
     String EliSource = request.getParameter("EliSrc");
     String EliTy = request.getParameter("EliTy");
-        String AdmTy = request.getParameter("AdmTy");
-                String DocTy = request.getParameter("DocTy");
-
+    String AdmTy = request.getParameter("AdmTy");
+    String DocTy = request.getParameter("DocTy");
 
     String admissionDate = request.getParameter("admissionDate");
+    String totaldays = "";
+
+    String getDate = "SELECT DATEDIFF(now(),episode_date) AS days from wis_inpatient_episode";
+    ArrayList<ArrayList<String>> datediff = conn.getData(getDate);
+    for (int i = 0; i < datediff.size(); i++) {
+        String days = datediff.get(i).get(0);
+        totaldays = days;
+%>  
+<input   type="hidden" id="totalday"   value="<%=datediff.get(i).get(0)%>"  class="form-control input-md">   
+<%
+    }
     String totalelisource = "";
 
-    String getDate = "SELECT DATEDIFF(day,'now()',episode_date) AS DiffDate from wis_inpatient_episode";
-    ArrayList<ArrayList<String>> deposit3 = conn.getData(getDate);
-    for (int i = 0; i < deposit3.size(); i++) {
-    }
-
-    String eliCat = "select Description from adm_lookup_detail where master_reference_code = '0063' and Detail_Reference_code ='" + EliSource + "'  ";
+    String eliCat = "select Description from adm_lookup_detail where master_reference_code = '0063' and Detail_Reference_code ='" + EliSource + "' and hfc_cd ='" + hfc + "' ";
     ArrayList<ArrayList<String>> dataEliCat;
 
     dataEliCat = conn.getData(eliCat);
@@ -59,7 +64,7 @@
 <%
     }
     String totaleliTy = "";
-    String eliTy = "select Description from adm_lookup_detail where master_reference_code = '0034' and Detail_Reference_code ='" + EliTy + "'  ";
+    String eliTy = "select Description from adm_lookup_detail where master_reference_code = '0034' and Detail_Reference_code ='" + EliTy + "' and hfc_cd ='" + hfc + "' ";
     ArrayList<ArrayList<String>> dataeliTy;
 
     dataeliTy = conn.getData(eliTy);
@@ -72,7 +77,7 @@
 <%
     }
     String totalDis = "";
-    String diss = "select discipline_name from adm_discipline where  discipline_cd ='" + disb + "'  ";
+    String diss = "select discipline_name from adm_discipline where  discipline_cd ='" + disb + "'  and discipline_hfc_cd ='" + hfc + "'";
     ArrayList<ArrayList<String>> datadiss;
 
     datadiss = conn.getData(diss);
@@ -85,7 +90,7 @@
 <%
     }
     String wt = "";
-    String wty = "select ward_class_name from wis_ward_class where  ward_class_code ='" + WardTypeb + "'  ";
+    String wty = "select ward_class_name from wis_ward_class where  ward_class_code ='" + WardTypeb + "' and hfc_cd ='" + hfc + "' ";
     ArrayList<ArrayList<String>> datawty;
 
     datawty = conn.getData(wty);
@@ -97,8 +102,8 @@
 <input  type="hidden" id="totaldatawty"   value="<%=datawty.get(i).get(0)%>"  class="form-control input-md">   
 <%
     }
- String wn = "";
-    String wnme = "select ward_name from wis_ward_name where  ward_id ='" + wnameb + "'  ";
+    String wn = "";
+    String wnme = "select ward_name from wis_ward_name where  ward_id ='" + wnameb + "' and hfc_cd ='" + hfc + "' ";
     ArrayList<ArrayList<String>> datawnme;
 
     datawnme = conn.getData(wnme);
@@ -110,8 +115,8 @@
 <input  type="hidden" id="totaldatawnme"   value="<%=datawnme.get(i).get(0)%>"  class="form-control input-md">   
 <%
     }
-String dctyp = "";
-    String dctype = "select Description from adm_lookup_detail where master_reference_code = '0023' and Detail_Reference_code ='" + DocTy + "'  ";
+    String dctyp = "";
+    String dctype = "select Description from adm_lookup_detail where master_reference_code = '0023' and Detail_Reference_code ='" + DocTy + "' and hfc_cd ='" + hfc + "' ";
     ArrayList<ArrayList<String>> datadctype;
 
     datadctype = conn.getData(dctype);
@@ -123,8 +128,8 @@ String dctyp = "";
 <input  type="hidden" id="datadctype"   value="<%=datadctype.get(i).get(0)%>"  class="form-control input-md">   
 <%
     }
-String amt = "";
-    String amty = "select Description from adm_lookup_detail where master_reference_code = '0023' and Detail_Reference_code ='" + DocTy + "'  ";
+    String amt = "";
+    String amty = "select Description from adm_lookup_detail where master_reference_code = '0023' and Detail_Reference_code ='" + DocTy + "' and hfc_cd ='" + hfc + "' ";
     ArrayList<ArrayList<String>> dataamty;
 
     dataamty = conn.getData(amty);
@@ -145,7 +150,7 @@ String amt = "";
 
 <input type="hidden" id="admitDate"   value="<%=admissionDate%>"  class="form-control input-md">
 <input type="hidden" id="dateBill"   value="<%=dateBill%>"  class="form-control input-md">
-<input type="hidden" id="getDate"   value="<%=deposit3%>"  class="form-control input-md">
+
 
 
 
@@ -172,7 +177,7 @@ String amt = "";
 //                int sizepnc = datapnc.size();
 //
 //                for (int i = 0; i < sizepnc; i++) {
-%>
+    %>
 
     <input  type="hidden" id="dDeposit"  value="<%=deposit.get(i).get(0)%>"  class="form-control input-md">
     <input  type="hidden" id="dCost"  value="<%=deposit.get(i).get(1)%>"  class="form-control input-md">
@@ -264,10 +269,11 @@ String amt = "";
         var totaldis = $('#totaldis').val();
         var totaldatawty = $('#totaldatawty').val();
         var datadctype = $('#datadctype').val();
-                var totaldatawnme = $('#totaldatawnme').val();
-       var amtye = $('#amtye').val();
+        var totaldatawnme = $('#totaldatawnme').val();
+        var amtye = $('#amtye').val();
 
 
+        var totalday = $('#totalday').val();
 
 
 
@@ -281,7 +287,15 @@ String amt = "";
 
         var TotalDiscount = (Discount / 100) * Rate;
 
-        var TotalDischarge = Rate - TotalDiscount - Deposit;
+
+
+
+//        var TotalDischarge = (Rate - TotalDiscount - Deposit) * (totalday);
+
+        var TotalDischarge = (Rate * totalday) - TotalDiscount - Deposit;
+
+
+
         var TotalDate = admitDate - dateBill;
 
         var TotalDate = new Date(newBegin + dateBill - admitDate);
@@ -290,14 +304,14 @@ String amt = "";
 
 
 
-
+        $("#day").val(totalday);
         $("#EliSrc").val(ttlelisource);
         $("#EliTy").val(ttleliTy);
         $("#Dis").val(totaldis);
         $("#WardType").val(totaldatawty);
 
         $("#wname").val(totaldatawnme);
-                $("#DocTy").val(datadctype);
+        $("#DocTy").val(datadctype);
         $("#AdmTy").val(amtye);
 
 

@@ -4,116 +4,173 @@
     Author     : shay
 --%>
 
-<%@page import="dBConn.Conn"%>
 <%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
-
+    String idTYpe2 = "select * from adm_lookup_detail where master_reference_code = '0012' AND hfc_cd = '"+hfc+"' ";
+    ArrayList<ArrayList<String>> dataIdType2;
+    ArrayList<ArrayList<String>> data2 = new ArrayList();
+    //String hfc = session.getAttribute("HEALTH_FACILITY_CODE").toString();
     //Conn conn = new Conn();
-    String idTYpe11 = "select * from adm_lookup_detail where master_reference_code = '0012' and hfc_cd='" + hfc + "' ";
-    ArrayList<ArrayList<String>> dataIdType12;
-    dataIdType12 = conn.getData(idTYpe11);
-    String dataSystemStatus155 = session.getAttribute("SYSTEMSTAT").toString();
+    dataIdType2 = conn.getData(idTYpe2);
+    //out.print(dataIdType);
+    //String dataSystemStatus2 = session.getAttribute("SYSTEM_PARAMETER").toString();
+    //out.print(dataSystemStatus2);
 %>
-    <form class="form-horizontal" name="myForm" id="myForm">
-        <!-- Select Basic -->
-        <div class="form-group">
-            <label class="col-md-4 control-label" for="selectbasic">ID Type</label>
-            <div class="col-md-4">
-                <select id="idType" name="idType" class="form-control" required="">
-                    <option selected="" disabled="" value="-"> Please select ID type</option>
+<h4>Search Patient
+    <button id="button2id" name="button2id" class="btn btn-success pull-right"><i class="fa fa-user fa-lg"></i>&nbsp; Read MyKad Info</button>
+</h4>
+<form class="form-horizontal" name="myForm" id="myForm">
+    <!-- Select Basic -->
+    <div class="form-group">
+        <label class="col-md-4 control-label" for="selectbasic">ID Type</label>
+        <div class="col-md-4">
+            <select id="idType" name="idType" class="form-control" required="">
+                <option selected="" disabled="" value="-"> Please select ID type</option>
+                <!--                    <option value="pmino">PMI No</option>
+                                    <option value="icnew">IC No (NEW)</option>
+                                    <option value="icold">IC No (OLD)</option>-->
+                <!--<option value="matricno">Matric No</option>
+                <option value="staffno">Staff No</option>-->
+                <%  if (dataSystemStatus2.equals("0")) {
 
-                    <%                                if (dataSystemStatus155.equals("0")) {
-
-                        } else if (dataSystemStatus155.equals("1")) {
-                            for (int i = 0; i < dataIdType12.size(); i++) {%>
-                    <option value="<%=dataIdType12.get(i).get(1)%>"><%=dataIdType12.get(i).get(2)%></option>
-                    <%  }
-                        }
-
-                    %>
-                </select>
-            </div>
+                    } else if (dataSystemStatus2.equals("1")) {
+                        data2 = dataIdType2;
+                    }
+                    for (int i = 0; i < data2.size(); i++) {%>
+                <option value="<%=data2.get(i).get(1)%>"><%=data2.get(i).get(2)%></option>
+                <%  }
+                %>
+            </select>
         </div>
+    </div>
 
-        <!-- Text input-->
-        <div class="form-group">
-            <label class="col-md-4 control-label" for="textinput">IC No. / ID No.</label>
-            <div class="col-md-4">
-                <input type="text" class="form-control input-md" id="idInput" name="idInput" placeholder="ID" maxlength="0"/>
-            </div>
-            <button class="btn btn-primary" type="button" id="searchPatientOccu" name="searchPatientOccu"><i class="fa fa-search fa-lg"></i>&nbsp; Search</button>
-
+    <!-- Text input-->
+    <div class="form-group">
+        <label class="col-md-4 control-label" for="textinput">IC No. / ID No.</label>
+        <div class="col-md-4">
+            <input type="text" class="form-control input-md" id="idInput" name="idInput" placeholder="ID" maxlength="0"/>
         </div>
+    </div>
+    <div class="text-center">
+        <button class="btn btn-primary" type="button" id="searchPatientOccu" name="searchPatientOccu"><i class="fa fa-search"></i>&nbsp; Search</button>
 
-    </form>
+        <button id="clearSearch" name="clearSearch" type="button" class="btn btn-default"><i class="fa fa-times"></i>&nbsp; Clear</button>
+    </div>
+</form>
+
 
 <script>
-
-    function searchPatientInWard() {
-        var idType = $('#idType').val();
-        var idInput = $('#idInput').val();
-        var methodSearch = "1";
-
-        $.ajax({
-            type: "post",
-            url: "resultWardDischarge.jsp",
-            data: {idType: idType, idInput: idInput, methodSearch: methodSearch},
-            timeout: 10000,
-            success: function (databack) {
-
-                $("#WardOccuTable").html(databack);
-            }, error: function () {
-
-            }
-        });
-    }
-
-    $('#searchPatientOccu').on('click', function () {
-        searchPatientInWard();
-    });
-    //validate max length of input
-    $('#idType').on('change', function (e) {
-        var id = $('#idType').val();
-        console.log(id);
-        if (id === "pmino") {
-            $('#idInput').attr('maxlength', '13');
-            $('#idInput').on('keydown', function (evt) {
-                isNumberKey(evt);
-            });
-        } else if (id === "icnew") {
-            $('#idInput').attr('maxlength', '12');
-            $('#idInput').keypress(function (evt) {
-                isNumberKey(evt);
-            });
-        } else if (id === "icold") {
-            $('#idInput').attr('maxlength', '8');
-        } else if (id === "004") {
-            $('#idInput').attr('maxlength', '10');
-        } else if (id === "005") {
-            $('#idInput').attr('maxlength', '10');
-        }
-    });
-
-    //event when press ENTER after inserting the ID
-    $("#idInput").on("keydown", function (e) {
-        var code = e.keyCode;
-
-        if (code === 13) {
-            e.preventDefault();
-            searchPatientInWard();
-
-        }
-    });
-
-    //event on click clear buton
-    $('#clearSearch').click(function () {
-        document.getElementById("ward").value = "";
-        document.getElementById("bed").value = "";
-        document.getElementById("pname").value = "";
-        document.getElementById("pidno").value = "";
-        document.getElementById("spn").value = "";
-//        $('#myForm2')[0].reset();
-        $("table tbody").remove();
-    });
+//$('#idType').on('change', function (e) {
+//        var id = $('#idType').val();
+//        console.log(id);
+//        if (id === "001") {
+//            $('#idInput').attr('maxlength', '13');
+//            $('#idInput').on('keydown', function (evt) {
+//                isNumberKey(evt);
+//            });
+//        } else if (id === "icnew") {
+//            $('#idInput').attr('maxlength', '12');
+//            $('#idInput').keypress(function (evt) {
+//                isNumberKey(evt);
+//            });
+//        } else if (id === "icold") {
+//            $('#idInput').attr('maxlength', '8');
+//        } else if (id === "004") {
+//            $('#idInput').attr('maxlength', '10');
+//        } else if (id === "005") {
+//            $('#idInput').attr('maxlength', '10');
+//        }
+//    });
+//     $('#idType').on('change', function (e) {
+//        var id = $('#idType').val();
+//        console.log(id);
+//        if (id === "001") {
+//            $('#idInput').attr('maxlength', '13');
+//            
+//            $("#idInput").on('keydown',function (e) {
+//                //if the letter is not digit then display error and don't type anything
+//                if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+//                    //display error message
+//                    $("#errmsg").html("Digits Only").show().fadeOut("slow");
+//                    return false;
+//                }
+//            });
+//        } else if (id === "002") {
+//            $('#idInput').attr('maxlength', '12');
+//            
+//            $("#idInput").on('keydown',function (e) {
+//                //if the letter is not digit then display error and don't type anything
+//                if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+//                    //display error message
+//                    return false;
+//                }
+//            });
+//        } else if (id === "003") {
+//            $('#idInput').attr('maxlength', '8');
+//            $("#idInput").on('keydown',function (e) {
+//                if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57) &&(e.which <97 || e.which > 122)) {
+//                    //display error message
+//                    $("#errmsg").html("Digits Only").show().fadeOut("slow");
+//                    return false;
+//                }
+//            });
+                
+//        } else {
+//            $('#idInput').attr('maxlength', '10');
+//            $("#idInput").on('keydown',function (e) {
+//                if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57) && (e.which <97 || e.which > 122)) {
+//                    //display error message
+//                    $("#errmsg").html("Digits Only").show().fadeOut("slow");
+//                    return false;
+//                }
+//            });
+//        }
+//    });
+//    function searchPatientInWard() {
+//        var idType = $('#idType').val();
+//        var idInput = $('#idInput').val();
+//        var methodSearch = "1";
+//
+//        $.ajax({
+//            type: "post",
+//            url: "resultWardDischarge.jsp",
+//            data: {idType: idType, idInput: idInput, methodSearch: methodSearch},
+//            timeout: 10000,
+//            success: function (databack) {
+//
+//                $("#WardOccuTable").html(databack);
+//            }, error: function () {
+//
+//            }
+//        });
+//    }
+//
+//    $('#searchPatientOccu').on('click', function () {
+//        searchPatientInWard();
+//    });
+//    //validate max length of input
+//    
+//
+//    //event when press ENTER after inserting the ID
+//    $("#idInput").on("keydown", function (e) {
+//        var code = e.keyCode;
+//
+//        if (code === 13) {
+//            e.preventDefault();
+//            searchPatientInWard();
+//
+//        }
+//    });
+//
+//    //event on click clear buton
+//    $('#clearSearch').click(function () {
+//        document.getElementById("ward").value = "";
+//        document.getElementById("bed").value = "";
+//        document.getElementById("pname").value = "";
+//        document.getElementById("pidno").value = "";
+//        document.getElementById("spn").value = "";
+////        $('#myForm2')[0].reset();
+//        $("table tbody").remove();
+//    });
 </script>
