@@ -110,7 +110,7 @@
 <script>
     $(document).ready(function () {
         $(function () {
-            $('#MEDdate').datepicker({dateFormat: 'dd-mm-yy', changeMonth: true, changeYear: true});
+            $('#MEDdate').datepicker({dateFormat: 'dd/mm/yy', changeMonth: true, changeYear: true});
         });
     });
     $('#MEDsave').on('click', function (e) {
@@ -138,8 +138,8 @@
         if (maturityDate === null) {
             maturityDate = "-";
         } else {
-            var splitmaturitydate = String(maturityDate).split("-");
-            var convertedmaturitydate = splitmaturitydate[2] + "/" + splitmaturitydate[1] + "/" + splitmaturitydate[0];
+            var splitmaturitydate = String(maturityDate).split("/");
+            var convertedmaturitydate = splitmaturitydate[2] + "-" + splitmaturitydate[1] + "-" + splitmaturitydate[0];
         }
 
 

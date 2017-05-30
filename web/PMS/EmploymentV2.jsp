@@ -72,11 +72,11 @@
         //assign into seprated val
         var pmino = arrayData[0], seqno = arrayData[1], empcode = arrayData[2], empname = arrayData[3], occu = arrayData[4], jdate = arrayData[5], incomerange = arrayData[6], hfc = arrayData[7], credate = arrayData[8], empstatus = arrayData[9], empoccuName = arrayData[10], emphfcName = arrayData[11];
         //convert date
-        var splitCreDate = String(credate).split("/");
-        var convertedCreDate = splitCreDate[0] + "-" + splitCreDate[1] + "-" + splitCreDate[2];
+        var splitCreDate = String(credate).split("-");
+        var convertedCreDate = splitCreDate[2] + "/" + splitCreDate[1] + "/" + splitCreDate[0];
 
-        var splitJDate = String(jdate).split("/");
-        var convertedJDate = splitJDate[0] + "-" + splitJDate[1] + "-" + splitJDate[2];
+        var splitJDate = String(jdate).split("-");
+        var convertedJDate = splitJDate[2] + "/" + splitJDate[1] + "/" + splitJDate[0];
 //        console.log(convertedCreDate);
 //        console.log(convertedJDate);
 
@@ -84,10 +84,10 @@
         $('#EMPempcode').val(empcode);
         $('#EMPempname').val(empname);
         $('#EMPoccu').val(empoccuName);
-        $('#EMPjdate').val(jdate);
+        $('#EMPjdate').val(convertedJDate);
         $('#EMPinrange').val(incomerange);
         $('#EMPhfc').val(emphfcName);
-        $('#EMPcredate').val(credate);
+        $('#EMPcredate').val(convertedCreDate);
         $('#EMPstatus').val(empstatus);
         $('#EMPseq').val(seqno);
 

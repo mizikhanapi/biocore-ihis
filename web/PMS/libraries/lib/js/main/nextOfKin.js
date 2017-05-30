@@ -113,13 +113,13 @@
 
 
 
-        var splitKINdob = String(KINdob).split("-");
-        var convertedKINdob = splitKINdob[0] + "/" + splitKINdob[1] + "/" + splitKINdob[2];
+        var splitKINdob = String(KINdob).split("/");
+        var convertedKINdob = splitKINdob[2] + "-" + splitKINdob[1] + "-" + splitKINdob[0];
         //console.log(convertedKINdob);
         var datas = {
             KINpmino: KINpmino,
             KINidtype: KINidtype,
-            KINdob: KINdob,
+            KINdob: convertedKINdob,
             KINphone: KINphone,
             KINemail: KINemail,
             KINname: KINname,
@@ -238,12 +238,12 @@
         var pmino = arrayData[0], seqno = arrayData[1], relationship = arrayData[2], kinname = arrayData[3], newic = arrayData[4], oldic = arrayData[5], idtype = arrayData[6], idno = arrayData[7], birthdate = arrayData[8], occu = arrayData[9], address = arrayData[10], district = arrayData[11], town = arrayData[12], postcode = arrayData[13], state = arrayData[14], country = arrayData[15], mobilephone = arrayData[16], homephone = arrayData[17], email = arrayData[18],
             disName = arrayData[19],townName=arrayData[20],postcodeName=arrayData[21],stateName=arrayData[22],countryName=arrayData[23],occuName=arrayData[24];
         //convert date
-        var splitbirthdate = String(birthdate).split("/");
-        var convertedbirthdate = splitbirthdate[0] + "-" + splitbirthdate[1] + "-" + splitbirthdate[2];
+        var splitbirthdate = String(birthdate).split("-");
+        var convertedbirthdate = splitbirthdate[2] + "/" + splitbirthdate[1] + "/" + splitbirthdate[0];
 
         $('#KINpmino').val(pmino);
         $('#KINidtype').val(idtype);
-        $('#KINdob').val(birthdate);
+        $('#KINdob').val(convertedbirthdate);
         $('#KINphone').val(mobilephone);
         $('#KINemail').val(email);
         $('#KINname').val(kinname);

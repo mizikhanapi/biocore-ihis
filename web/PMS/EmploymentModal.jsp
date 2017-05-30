@@ -224,11 +224,11 @@
                 EMPcredate = $('#EMPcredate').val(),
                 EMPstatus = $('#EMPstatus').val();
 
-        var splitCreDate = String(EMPcredate).split("-");
-        var convertedCreDate = splitCreDate[0] + "/" + splitCreDate[1] + "/" + splitCreDate[2];
+        var splitCreDate2 = String(EMPcredate).split("/");
+        var convertedCreDate2 = splitCreDate2[2] + "-" + splitCreDate2[1] + "-" + splitCreDate2[0];
 
-        var splitJDate = String(EMPjdate).split("-");
-        var convertedJDate = splitJDate[0] + "/" + splitJDate[1] + "/" + splitJDate[2];
+        var splitJDate2 = String(EMPjdate).split("/");
+        var convertedJDate2 = splitJDate2[2] + "-" + splitJDate2[1] + "-" + splitJDate2[0];
 
         var datas = {
             EMPpmino: EMPpmino,
@@ -236,10 +236,10 @@
             EMPcd: EMPcd,
             EMPname: EMPname,
             EMPoccu: EMPoccu,
-            EMPjdate: EMPjdate,
+            EMPjdate: convertedJDate2,
             EMPinrange: EMPinrange,
             EMPhfc: EMPhfc,
-            EMPcredate: EMPcredate,
+            EMPcredate: convertedCreDate2,
             EMPstatus: EMPstatus
         };
         //console.log(datas);

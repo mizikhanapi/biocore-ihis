@@ -60,7 +60,12 @@
         <td id="pmiNumber"><%=dataKinList.get(i).get(3)%></td>
 <input id="kinval" type="hidden" value="<%=StringUtils.join(dataKinList.get(i), "|")%>">
 <td><%=dataKinList.get(i).get(4)%></td>
-<td><%=dataKinList.get(i).get(8)%></td>
+<td><%
+    String bda  = dataKinList.get(i).get(8);
+    String[] bdas = StringUtils.split(bda,"-");
+    String newBday = bdas[2]+"/"+bdas[1]+"/"+bdas[0];
+    out.print(newBday);
+%></td>
 <td><%=relay%></td>
 <td><%=occu%></td>
 <td><button id="KINedit" name="KINedit" class="btn btn-default" data-toggle="modal" data-target="#KINModal"><i class="fa fa-pencil-square-o" aria-hidden="true" style="display: inline-block;color: #337ab7;"></i></button></td>

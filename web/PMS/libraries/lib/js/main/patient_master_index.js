@@ -210,8 +210,8 @@ $(document).ready(function () {
         //var splitBday = String(pbday).split("-");
         //var convertedBday = splitBday[0] + "/" + splitBday[1] + "/" + splitBday[2];
         
-        //var array_date = pbday.split("/");
-        //var new_date = array_date[2] + "-" + array_date[1] + "-" + array_date[0];
+        var array_date = pbday.split("/");
+        var new_date = array_date[2] + "-" + array_date[1] + "-" + array_date[0];
 
         var data = {'pmino': pmino,
             'pminotemp': pminotemp,
@@ -223,7 +223,7 @@ $(document).ready(function () {
             'pino': pino,
             'pelicat': pelicat,
             'pelity': pelity,
-            'pbday': pbday,
+            'pbday': new_date,
             'psex': psex,
             'pmarital': pmarital,
             'prace': prace,

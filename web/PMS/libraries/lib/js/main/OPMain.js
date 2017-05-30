@@ -279,10 +279,10 @@ function Main(array_data) {
                 ppcountryname= array_data[45],
                 ptitlename= array_data[46],
                 pnationalityname= array_data[47];
-        //var splitBday = String(pbday).split("/");
-        //var daysplitted = splitBday[0];
-        //var monthsplitted = splitBday[1];
-        //var yearsplitted = splitBday[2];
+        var splitBday = String(pbday).split("-");
+        var daysplitted = splitBday[2];
+        var monthsplitted = splitBday[1];
+        var yearsplitted = splitBday[0];
         var idtype;
         //console.log(splitBday);
         //console.log(daysplitted);
@@ -295,7 +295,7 @@ function Main(array_data) {
         }
 
         //var newbday = yearsplitted + "-" + monthsplitted + "-" + daysplitted;
-        //var newbday = daysplitted + "-" + monthsplitted + "-" + yearsplitted;
+        var newbday = daysplitted + "/" + monthsplitted + "/" + yearsplitted;
 
         //console.log(newbday);
 
@@ -314,7 +314,7 @@ function Main(array_data) {
         $('#PMInic').prop('readonly', true);
         $('#PMIoic').val($.trim(poic));
         $('#PMIino').val($.trim(pino));
-        $('#PMIbday').val($.trim(pbday));
+        $('#PMIbday').val($.trim(newbday));
         $('#PMIhadd').val($.trim(phomeadd));
         $('#PMIpadd').val($.trim(ppostaladd));
         $('#PMIhphone').val($.trim(phomephone));
