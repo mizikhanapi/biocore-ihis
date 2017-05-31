@@ -1,3 +1,4 @@
+<%@page import="main.RMIConnector"%>
 <%@page import="dBConn.Conn"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.util.Date"%>
@@ -73,58 +74,52 @@
                 <span style="    
                       font-weight: 500;
                       color: #333; font-size: 26px;" id="qname_<%=i%>"><%=d.get(i).get(3)%></span>
-                      <%
-                        String myString = d.get(i).get(2);
-                        %>
-                        <div id="view_VS">
-                            
-                        </div>
-                <script>
-                    <% if (cs_callingtime > 0) {%>
-                    $(document).ready(function () {
-                        var name = $("#name_<%=i%>").html();
-                        name = name.toLowerCase().replace(/\b[a-z]/g, function (letter) {
-                            return letter.toUpperCase();
-                        });
+                <%
+                    String myString = d.get(i).get(2);
+                %>
+                <div id="view_VS">
 
-                        var qno = $("#qno_<%=i%>").html();
-                        var qname = $("#qname_<%=i%>").html();
-                        qname = qname.toLowerCase().replace(/\b[a-z]/g, function (letter) {
-                            return letter.toUpperCase();
-                        });
-                        //var ayat = name + ", Number " + qno + ", " + qname;
-                        var ayat1 = ", Number,"+qno+", "+ name + ", " + qname; 
-                        //var ayat2 = ", ,";
-                        //var ayat3 = ", ," + qname;
-                        
-                     //var ayat = "Number " + qno + ", queue " + qname;
-                        //$("#view_VS").load("newjsp1.jsp?idResult="+<%=myString%>);
-                        
-                        
-                        var msg1 = new SpeechSynthesisUtterance(ayat1);
-                        window.speechSynthesis.speak(msg1);
-                        
-                        
-//                        var msg2 = new SpeechSynthesisUtterance(ayat2);
-//                        window.speechSynthesis.speak(msg2);
-//                        
-//                        
-//                        var msg3 = new SpeechSynthesisUtterance(ayat3);
-//                        window.speechSynthesis.speak(msg3);
-                        
-                        //var ayat = "Number " + qno + ", queue " + qname;
-                        //var msg = new SpeechSynthesisUtterance(ayat);
-                        //window.speechSynthesis.speak(msg);
+                </div>
+                <% if (cs_callingtime > 0) {
+                %>
+                <script>
+                    //alert("tak habis");
+                    var name = $("#name_<%=i%>").html();
+                    name = name.toLowerCase().replace(/\b[a-z]/g, function (letter) {
+                    return letter.toUpperCase();
                     });
-                    <%
-                            Query q2 = new Query();
-                            cs_callingtime -= 1;
-                            String sql2 = "UPDATE qcs_calling_system_queue SET cs_callingtime = '" + cs_callingtime + "' WHERE Id = '" + cs_id + "' ";
-                            q2.setQuery(sql2);
-                        } else {
-                        } %>
+
+                    var qno = $("#qno_<%=i%>").html();
+                    var qname = $("#qname_<%=i%>").html();
+                    qname = qname.toLowerCase().replace(/\b[a-z]/g, function (letter) {
+                        return letter.toUpperCase();
+                    });
+                    //var ayat = name + ", Number " + qno + ", " + qname;
+                    var ayat1 = ", Number," + qno + ", " + qname;
+                    //var ayat2 = ", ,";
+                    //var ayat3 = ", ," + qname;
+
+
+                    var msg1 = new SpeechSynthesisUtterance(ayat1);
+                    window.speechSynthesis.speak(msg1);
                 </script>
-                
+                <%
+                    RMIConnector rmic = new RMIConnector();
+                    //Query q2 = new Query();
+                    cs_callingtime -= 1;
+                    String sql2 = "UPDATE qcs_calling_system_queue SET cs_callingtime = '" + cs_callingtime + "' WHERE Id = '" + cs_id + "' ";
+                    //q2.setQuery(sql2);
+                    rmic.setQuerySQL(conn.HOST, conn.PORT, sql2);
+                } else {
+                %>
+                <script>
+                    //alert("habis");
+                </script>
+                <%
+                    }
+                %>
+
+
             </td>
         </tr>
         <%
@@ -133,4 +128,3 @@
         %>
     </tbody>
 </table>
-   
