@@ -223,6 +223,10 @@
                         <div class="tab-pane fade" id="orthopedic">
                             <%//@include file = "specialistTemplate/Observation-Orthopedic/orthopedic.jsp" %>
                         </div> 
+                        
+                       <div class="tab-pane fade" id="mcSlip">
+                            
+                        </div> 
                     </div>
                 </div>
                 <!-- main -->		

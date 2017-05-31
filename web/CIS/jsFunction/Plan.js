@@ -1339,6 +1339,37 @@ $('#acceptADW').click(function(){
             
     });
     
+       $('#btnCIS_GenerateMC').click(function () {
+console.log("here");
+                $.ajax({
+                    async: true,
+                    type: "POST",
+                    url: "mcReport.jsp",
+                    data: {'name':$("#pName").text(),
+                        'episode': episodeDate,
+                        'pmi': $("#UDateFromMEC").val(),
+                        'start_date': $("UDateFromMEC").val(),
+                        'end_date': $("#DateToMEC").val(),
+                        'comment': "",
+                        'ic':$("#pIC").text()
+                    },
+                    timeout: 10000,
+                    success: function (list) {
+                        console.log(list);
+                        $("#mCIS_MC_Slip").val(list.trim());
+                        $('#mCIS_MC_Slip').html(list);
+                        $('#mCIS_MC_Slip').trigger('contentchanged');
+                        $("#basicModal").show();
+                        //printReport();
+                    },
+                    error: function (xhr, status, error) {
+                        var err = eval("(" + xhr.responseText + ")");
+                        bootbox.alert(err.Message);
+                    }
+                });
+
+            });
+    
     
     
     });

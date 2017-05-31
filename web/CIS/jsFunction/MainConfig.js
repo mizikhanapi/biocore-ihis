@@ -41,13 +41,13 @@ var HCSContent = [];
 console.log(reloadStat);
             if(reloadStat === 1){
             window.onbeforeunload = function () {
-                updateStatus(pmiNo, episodeDate, statusNow);
+                updateStatus(pmiNo, episodeDate, statusNow); 
                 return "You work will be lost";
             };
             }
             
 $(document).ready(function(){
-    
+   // $("#mcSlip").load("mcMain2.jsp ");
 
     loadSetting(doctor_id);
     
@@ -108,7 +108,7 @@ $(document).ready(function(){
         {
             setDCG = true;
             var param_code = "DCG";
-            var param_name = "Diagnosis";
+            var param_name = "Discharge Summary";
             var enable = "1";
             var create_by = doctor_id;
             var created_date = getDate();
@@ -117,7 +117,7 @@ $(document).ready(function(){
         } else {
             setDCG = true;
             var param_code = "DCG";
-            var param_name = "Diagnosis";
+            var param_name = "Discharge Summary";
             var enable = "0";
             var create_by = doctor_id;
             var created_date = getDate();
