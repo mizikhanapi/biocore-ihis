@@ -14,9 +14,12 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
         <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-        <link rel="stylesheet" href="/resources/demos/style.css">
+        
         <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
         <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+        
+        <link href="https://cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css"/>
+        <link href="https://cdn.datatables.net/buttons/1.3.1/css/buttons.dataTables.min.css" rel="stylesheet" type="text/css"/>
         <%@include file = "../assets/header.html" %>
 
         <title>Drug Order List and Total Amount</title>
@@ -59,39 +62,85 @@
                             </div>
                         </div>
                     </div>
+
                 </div>
+                <div id="cost">
+
+                </div>
+
             </div>
+
         </div>
 
 
+
+        <script src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js" type="text/javascript"></script>
+        <script src="https://cdn.datatables.net/buttons/1.3.1/js/dataTables.buttons.min.js"></script>
+        <script src="https://cdn.datatables.net/buttons/1.3.1/js/buttons.flash.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+        <script src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.27/build/pdfmake.min.js"></script>
+        <script src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.27/build/vfs_fonts.js"></script>
+        <script src="https://cdn.datatables.net/buttons/1.3.1/js/buttons.html5.min.js"></script>
+        <script src="https://cdn.datatables.net/buttons/1.3.1/js/buttons.print.min.js" type="text/javascript" language="javascript"></script>
+        
+        <script>
+
+            $(document).ready(function () {
+
+                $("#startDate").datepicker({
+                    changeMonth: true,
+                    changeYear: true,
+                    dateFormat: 'yy-mm-dd',
+                });
+                $("#endDate").datepicker({
+                    changeMonth: true,
+                    changeYear: true,
+                    dateFormat: 'yy-mm-dd',
+                });
+                $('#printLaporanKosPerubatan').on('click', function () {
+
+
+
+                    //            console.log(startDate);
+                    //            console.log(endDate);
+                    //            alert("test");
+                    //window.open("laporanKosPerubatanReport.jsp?startDate=" + startDate + "&endDate=" + endDate);
+                    if ($('#startDate').val() === "" || $('#endDate').val() === " ") {
+                        //if the id/ic input is empty
+                        alert('Please choose date to prooceed');
+                    } else {
+
+                        var startDate = document.getElementById("startDate").value;
+                        var endDate = document.getElementById("endDate").value;
+                        //alert(startDate+" / "+startDate);
+                        $.ajax({
+                            async: true,
+                            type: "POST",
+                            url: "laporanKosPerubatanReport.jsp",
+                            data: {'startDate': startDate, 'endDate': endDate},
+                            timeout: 10000,
+                            success: function (list) {
+
+
+                                $('#cost').html(list);
+                            },
+                            error: function (xhr, status, error) {
+                                var err = eval("(" + xhr.responseText + ")");
+                                bootbox.alert(err.Message);
+                            }
+                        });
+                        //            var disiplinType = document.getElementByID("disiplinType").value;
+
+                        //                console.log(startDate);
+                        //                console.log(endDate);
+                        ////            console.log(disiplinType);
+                        //
+                        //                window.open("ICD10Report.jsp?startDate=" + startDate + "&endDate=" + endDate);
+
+                    }
+                });
+            });
+
+        </script>
     </body>
 </html>
-
-<script>
-
-    $(document).ready(function () {
-
-        $("#startDate").datepicker({
-            changeMonth: true,
-            changeYear: true,
-            dateFormat: 'yy-mm-dd',
-        });
-        $("#endDate").datepicker({
-            changeMonth: true,
-            changeYear: true,
-            dateFormat: 'yy-mm-dd',
-        });
-        $('#printLaporanKosPerubatan').on('click', function () {
-
-            var startDate = document.getElementById("startDate").value;
-            var endDate = document.getElementById("endDate").value;
-
-            console.log(startDate);
-            console.log(endDate);
-
-            window.open("laporanKosPerubatanReport.jsp?startDate=" + startDate + "&endDate=" + endDate);
-
-        });
-    });
-
-</script>
