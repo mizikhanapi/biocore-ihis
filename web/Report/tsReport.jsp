@@ -18,7 +18,7 @@
 
 
 <%
-    
+
     Conn conn = new Conn();
     String my_1_gamba = "";
     String my_1_nama = "";
@@ -51,26 +51,22 @@
     String name = request.getParameter("name");
     String episode = request.getParameter("episode");
     String pmi = request.getParameter("pmi");
-    String start_date = request.getParameter("start_date");
-    String end_date = request.getParameter("end_date");
+    String start_time = request.getParameter("start_time");
+    String end_time = request.getParameter("end_time");
     String comment = request.getParameter("comment");
     String ic = request.getParameter("ic");
-    
+
     //out.print(start_date+" "+end_date);
-
-    
     //27-04-2017 23-05-2017
-    
-    String dateStart = start_date;
-    String dateStop = end_date;
-
-    SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy");
-    
-    Date d1 = format.parse(dateStart);
-    Date d2 = format.parse(dateStop);
-    long diff = d2.getTime() - d1.getTime();
-    long diffDays = diff/(24 * 60 * 60 * 1000) + 1;
-
+//    String dateStart = start_date;
+//    String dateStop = end_date;
+//
+//    SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy");
+//    
+//    Date d1 = format.parse(dateStart);
+//    Date d2 = format.parse(dateStop);
+//    long diff = d2.getTime() - d1.getTime();
+//    long diffDays = diff/(24 * 60 * 60 * 1000) + 1;
     //out.print("      /"+diffDays);
 %>
 <div style="text-align: center; margin-bottom: 30px;">
@@ -78,30 +74,20 @@
     <h4 style="padding: 0px;"><%=add.get(0).get(0)%></h4>
 </div>
 
-<div class="row">
-    <div class="col-md-12" style="text-align: right;">
-        <p>Tarikh: <strong><%=episode%></strong></p>
-    </div>
-</div>
 <br/>
 <div class="row">
     <div class="col-md-12">
-        <p>Dengan ini saya mengesahkan bahawa saya telah memriksa: 
-            <strong><%=name%></strong>
-        </p>
-        <p> No. K/P: <strong><%=ic%></strong> dan mendapati yang beliau:</p>
+        <p>Kepada:&nbsp;<strong>....................................................................................................................<%%></strong></p>
+        <p> Saya sahkan bahawa yang bernama Dato'/Datin/Tuan/Puan/Encik/Cik: <strong><%=name%></strong></p>
+        <p>No. STAFF/MATRIKS:&nbsp;<strong><%=pmi%></strong>&nbsp;&nbsp;&nbsp;&nbsp; No. KP:&nbsp;<strong><%=ic%></strong></p>
     </div>
 </div>
 
 <div class="row">
     <div class="col-md-12">
-        <ol type="a">
-            <li>Tidak sihat untuk menjalankan tugasanya dengan sempurna selama <strong><%=diffDays%> hari</strong>
-                <br/>daripada <strong><%=start_date%></strong> hingga <strong><%=end_date%></strong>
-            </li>
-            <li>Boleh bertugas semula pada </li>
-            <li>Komen: <strong><%=comment%></strong></li>
-        </ol>
+        <p>Mendapat rawatan di Pusat Kesihatan daripada jam:&nbsp;<strong><%=start_time%> </strong>&nbsp;&nbsp;&nbsp;hingga:&nbsp;<strong><%=end_time%></strong></p>
+        <p>Diagnosa:&nbsp;</p>
+        <p>Tarikh:&nbsp;<strong><%=episode%></strong></p>
     </div>
 </div>
 

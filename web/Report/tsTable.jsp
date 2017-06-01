@@ -33,13 +33,13 @@
 </thead>
 <%  String sql = "";
     if (tsType.equals("001")) {
-        sql = "SELECT A.PATIENT_NAME , B.EPISODE_DATE, A.`PMI_NO`,B.start_date,B.end_date,B.comment,A.`NEW_IC_NO` FROM PMS_PATIENT_BIODATA A JOIN LHR_MED_LEAVE B ON A.`PMI_NO` = B.pmi_no WHERE A.PMI_NO = '" + tsInput + "'";
+        sql = "SELECT A.PATIENT_NAME , B.EPISODE_DATE, A.`PMI_NO`,B.start_time,B.end_time,B.comment,A.`NEW_IC_NO` FROM PMS_PATIENT_BIODATA A JOIN LHR_MED_LEAVE B ON A.`PMI_NO` = B.pmi_no WHERE A.PMI_NO = '" + tsInput + "'";
     } else if (tsType.equals("002")) {
-        sql = "SELECT A.PATIENT_NAME , B.EPISODE_DATE, A.`PMI_NO`,B.start_date,B.end_date,B.comment,A.`NEW_IC_NO` FROM PMS_PATIENT_BIODATA A JOIN LHR_MED_LEAVE B ON A.`PMI_NO` = B.pmi_no WHERE A.PMI_NO = '" + tsInput + "'";
+        sql = "SELECT A.PATIENT_NAME , B.EPISODE_DATE, A.`PMI_NO`,B.start_time,B.end_time,B.comment,A.`NEW_IC_NO` FROM PMS_PATIENT_BIODATA A JOIN LHR_MED_LEAVE B ON A.`PMI_NO` = B.pmi_no WHERE A.PMI_NO = '" + tsInput + "'";
     } else if (tsType.equals("003")) {
-        sql = "SELECT A.PATIENT_NAME , B.EPISODE_DATE, A.`PMI_NO`,B.start_date,B.end_date,B.comment,A.`NEW_IC_NO` FROM PMS_PATIENT_BIODATA A JOIN LHR_MED_LEAVE B ON A.`PMI_NO` = B.pmi_no WHERE A.PMI_NO = '" + tsInput + "'";
+        sql = "SELECT A.PATIENT_NAME , B.EPISODE_DATE, A.`PMI_NO`,B.start_time,B.end_time,B.comment,A.`NEW_IC_NO` FROM PMS_PATIENT_BIODATA A JOIN LHR_MED_LEAVE B ON A.`PMI_NO` = B.pmi_no WHERE A.PMI_NO = '" + tsInput + "'";
     } else {
-        sql = "SELECT A.PATIENT_NAME , B.EPISODE_DATE, A.`PMI_NO`,B.start_date,B.end_date,B.comment,A.`NEW_IC_NO` FROM PMS_PATIENT_BIODATA A JOIN LHR_MED_LEAVE B ON A.`PMI_NO` = B.pmi_no WHERE A.ID_NO = '" + tsInput + "'";
+        sql = "SELECT A.PATIENT_NAME , B.EPISODE_DATE, A.`PMI_NO`,B.start_time,B.end_time,B.comment,A.`NEW_IC_NO` FROM PMS_PATIENT_BIODATA A JOIN LHR_MED_LEAVE B ON A.`PMI_NO` = B.pmi_no WHERE A.ID_NO = '" + tsInput + "'";
     }
     ArrayList<ArrayList<String>> ts = conn.getData(sql);
 
@@ -66,8 +66,8 @@
                     data: {'name': "<%=ts.get(i).get(0)%>",
                            'episode': "<%=ts.get(i).get(1)%>", 
                            'pmi': "<%=ts.get(i).get(2)%>", 
-                           'start_date': "<%=ts.get(i).get(3)%>",
-                           'end_date': "<%=ts.get(i).get(4)%>",
+                           'start_time': "<%=ts.get(i).get(3)%>",
+                           'end_time': "<%=ts.get(i).get(4)%>",
                            'comment': "<%=ts.get(i).get(5)%>",
                            'ic': "<%=ts.get(i).get(6)%>"},
                            
