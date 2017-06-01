@@ -15,7 +15,7 @@
     <div class="row">
         <%
 
-            String sqlbedRemarks = "SELECT  a.ward_class_name, b.ward_name,  a.hfc_cd, a.ward_class_code,b.ward_class_code,  b.ward_id  FROM wis_ward_class a LEFT JOIN wis_ward_name b ON a.ward_class_code = b.ward_class_code  where a.hfc_cd = '" + hfc + "'";
+            String sqlbedRemarks = "SELECT  a.ward_class_name, b.ward_name,  a.hfc_cd, a.ward_class_code,b.ward_class_code,  b.ward_id  FROM wis_ward_class a LEFT JOIN wis_ward_name b ON a.ward_class_code = b.ward_class_code  where a.hfc_cd = '" +hfc+ "' AND b.hfc_cd = '" +hfc+ "'";
 
             ArrayList<ArrayList<String>> databedRemarks = conn.getData(sqlbedRemarks);
 
@@ -35,7 +35,7 @@
 
                         String a = "Available";
 
-                        String totalAV = "SELECT COUNT(bed_status) FROM wis_bed_id where bed_status = '" + a + "' AND ward_id = '" + wardid + "' AND ward_class_code = '" + wardclass + "'";
+                        String totalAV = "SELECT COUNT(bed_status) FROM wis_bed_id where bed_status = '" + a + "' AND ward_id = '" + wardid + "' AND ward_class_code = '" + wardclass + "' AND hfc_cd = '" + hfc + "' ";
                         ArrayList<ArrayList<String>> dataTotalAV = conn.getData(totalAV);
 
                         int sizetotalAV = dataTotalAV.size();
@@ -46,7 +46,7 @@
 
                         String totalP = "";
                         String p = "Pending";
-                        String totalPN = "SELECT COUNT(bed_status) FROM wis_bed_id where bed_status = '" + p + "' AND ward_id = '" + wardid + "' AND ward_class_code = '" + wardclass + "' ";
+                        String totalPN = "SELECT COUNT(bed_status) FROM wis_bed_id where bed_status = '" + p + "' AND ward_id = '" + wardid + "' AND ward_class_code = '" + wardclass + "' AND hfc_cd = '" + hfc + "' ";
                         ArrayList<ArrayList<String>> dataTotalP = conn.getData(totalPN);
 
                         int sizetotalP = dataTotalP.size();
@@ -57,7 +57,7 @@
 
                         String totalO = "";
                         String red = "Occupied";
-                        String totalOC = "SELECT COUNT(bed_status) FROM wis_bed_id where bed_status = '" + red + "' AND ward_id = '" + wardid + "' AND ward_class_code = '" + wardclass + "' ";
+                        String totalOC = "SELECT COUNT(bed_status) FROM wis_bed_id where bed_status = '" + red + "' AND ward_id = '" + wardid + "' AND ward_class_code = '" + wardclass + "' AND hfc_cd = '" + hfc + "' ";
                         ArrayList<ArrayList<String>> dataTotalOC = conn.getData(totalOC);
 
                         int sizetotalOC = dataTotalOC.size();
@@ -68,7 +68,7 @@
 
                         String totalS = "";
 
-                        String totalSum = "SELECT COUNT(bed_status) FROM wis_bed_id where ward_id = '" + wardid + "' AND ward_class_code = '" + wardclass + "' ";
+                        String totalSum = "SELECT COUNT(bed_status) FROM wis_bed_id where ward_id = '" + wardid + "' AND ward_class_code = '" + wardclass + "' AND hfc_cd = '" + hfc + "' ";
                         ArrayList<ArrayList<String>> dataTotalSum = conn.getData(totalSum);
                         // out.print(totalOC);
                         int sizetotalSum = dataTotalSum.size();

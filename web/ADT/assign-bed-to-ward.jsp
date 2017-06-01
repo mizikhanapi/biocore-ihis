@@ -347,7 +347,7 @@
 
                         } else if (data.trim() === 'Duplicate') {
                             bootbox.alert({
-                                message: "Bed ID Duplication Detected. Please Coose A Different Bed ID",
+                                message: "Sorry, the Bed ID already exist. Would you mind choosing a different Bed ID.",
                                 title: "Process Result",
                                 backdrop: true
                             });

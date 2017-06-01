@@ -27,14 +27,14 @@
 
     <body>
         <div class="loading"></div>
-        
+
         <!--    <input type="text" id="test">-->
 
         <%    Config.getBase_url(request);
             Config.getFile_url(session);
             Conn conn = new Conn();
             String hfc = session.getAttribute("HEALTH_FACILITY_CODE").toString();
-                String dis = session.getAttribute("DISCIPLINE_CODE").toString();
+            String dis = session.getAttribute("DISCIPLINE_CODE").toString();
 
 
         %>

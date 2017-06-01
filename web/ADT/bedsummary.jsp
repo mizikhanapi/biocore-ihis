@@ -23,7 +23,7 @@
     <div class="row">
         <%//                Conn conn44 = new Conn();
 //                String hfc = session.getAttribute("HEALTH_FACILITY_CODE").toString();
-            String sqlbedSum2 = "SELECT  a.ward_class_name, b.ward_name,  a.hfc_cd, a.ward_class_code,b.ward_class_code,  b.ward_id  FROM wis_ward_class a LEFT JOIN wis_ward_name b ON a.ward_class_code = b.ward_class_code  where a.discipline_cd ="+dis+" AND a.hfc_cd = '" + hfc + "'";
+            String sqlbedSum2 = "SELECT  a.ward_class_name, b.ward_name,  a.hfc_cd, a.ward_class_code,b.ward_class_code,  b.ward_id  FROM wis_ward_class a LEFT JOIN wis_ward_name b ON a.ward_class_code = b.ward_class_code  where a.discipline_cd ='" + dis + "' AND a.hfc_cd = '" + hfc + "' AND b.discipline_cd ='" + dis + "' AND b.hfc_cd = '" + hfc + "'";
             ArrayList<ArrayList<String>> databedSum2 = conn.getData(sqlbedSum2);
 
             int size292 = databedSum2.size();
@@ -47,7 +47,7 @@
                                     String wardid = databedSum2.get(i).get(5);
                                     String wardclass = databedSum2.get(i).get(4);
 
-                                    String total = "SELECT COUNT(bed_id) FROM wis_bed_id where discipline_cd ="+dis+" AND ward_id = '" + wardid + "' and ward_class_code = '" + wardclass + "' ";
+                                    String total = "SELECT COUNT(bed_id) FROM wis_bed_id where discipline_cd = '"+dis+"' AND ward_id = '" + wardid + "' and ward_class_code = '" + wardclass + "' ";
                                     ArrayList<ArrayList<String>> dataTotal = conn.getData(total);
 
                                     int size2922 = dataTotal.size();
@@ -56,7 +56,7 @@
                                         totalNew = t;
                                     }
 
-                                    String sqlBedId = "SELECT  bed_id, bed_status from wis_bed_id where discipline_cd ="+dis+" AND ward_id = '" + wardid + "' and ward_class_code = '" + wardclass + "'  ";
+                                    String sqlBedId = "SELECT  bed_id, bed_status from wis_bed_id where discipline_cd = '" +dis+ "' AND ward_id = '" + wardid + "' and ward_class_code = '" + wardclass + "'  ";
                                     ArrayList<ArrayList<String>> databedId = conn.getData(sqlBedId);
 
                                     int BedID = databedId.size();
