@@ -229,7 +229,7 @@
                                                                                                             success: function (returnEHR) {
 
                                                                                                                 alert("Success approve the result");
-
+                                                                                                                window.location.href = "VerifySpecimen.jsp?pmi=<%=pmi_no%> &specimen_no=<%=specimen_no%>";
 
                                                                                                             }
                                                                                                         });

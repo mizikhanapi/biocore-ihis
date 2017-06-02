@@ -55,14 +55,14 @@
                                                 String query4 = "SELECT ls.order_no, lod.item_name FROM lis_order_detail lod,lis_specimen ls WHERE lod.item_cd = ls.item_cd AND ls.item_cd='" + item_cd + "' AND ls.specimen_no = '" + specimen_no1 + "'";
                                                 ArrayList<ArrayList<String>> q4 = conn.getData(query4);
 
-                                                out.println("Test Name: <span style='font-weight: 300;'>" + q4.get(0).get(1)+ "</span>");
+                                                out.println("Test Name: <span style='font-weight: 300;'>" + q4.get(0).get(1) + "</span>");
 
                                                 session.setAttribute("order_no", q4.get(0).get(0));
                                                 session.setAttribute("item_name", q4.get(0).get(1));
-                                                
+
                                             %>
                                         </h3>
-                                            <h3 style="margin-top: 0px;">Item Code: <span style="font-weight: 300;"><%=item_cd%></span></h3>
+                                        <h3 style="margin-top: 0px;">Item Code: <span style="font-weight: 300;"><%=item_cd%></span></h3>
                                     </div>
                                     <div class="col-md-6">
                                         <span class="pull-right">
@@ -334,6 +334,8 @@
                 alert("Specimen Accept succesfully");
                 $("#viewTA").load("viewTA.jsp");
 
+                $("#TestCategory").hide();
+                $(".modal-backdrop").hide();
             },
         });
 
