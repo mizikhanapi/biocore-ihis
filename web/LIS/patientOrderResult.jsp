@@ -57,7 +57,7 @@
         String performBy = dataLISOrderList.get(i).get(8);
         String verifyBy = dataLISOrderList.get(i).get(10);
 
-        String dataOneRow = "LIR|" + item_cd + "^" + item_name + "^ICD10-PCS|" + id_result + "^" + result + "^UD|^" + performBy + "^UD|" + DisplayDate + " " + testTime + "|^^UD||^" + verifyBy + "^UD|" + dateverify + "||" + episode + "|";
+        String dataOneRow = "LIR|" + item_cd + "^" + item_name + "^ICD10-PCS|" + id_result + "^" + result + "^UD|^" + performBy + "^UD|" + DisplayDate + " " + testTime + "|^^UD||^" + verifyBy + "^UD|" + dateverify + "||" + episode + "|<cr>";
 
         //String dataOneRow = "LIR|T^" + orderDate + "|CH|" + pmiNo + "|" + result + "|" + remark + "|" + test_date + "|" + testTime +"|" + test_name +"|" + performBy + "|" + "|" + Verification + "|" + userIDBill + "|" + dateBill + "<cr>";
         out.print(dataOneRow);
