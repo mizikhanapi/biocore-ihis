@@ -99,12 +99,6 @@
                 });
                 $('#printLaporanKosPerubatan').on('click', function () {
 
-
-
-                    //            console.log(startDate);
-                    //            console.log(endDate);
-                    //            alert("test");
-                    //window.open("laporanKosPerubatanReport.jsp?startDate=" + startDate + "&endDate=" + endDate);
                     if ($('#startDate').val() === "" || $('#endDate').val() === " ") {
                         //if the id/ic input is empty
                         alert('Please choose date to prooceed');
@@ -129,14 +123,6 @@
                                 bootbox.alert(err.Message);
                             }
                         });
-                        //            var disiplinType = document.getElementByID("disiplinType").value;
-
-                        //                console.log(startDate);
-                        //                console.log(endDate);
-                        ////            console.log(disiplinType);
-                        //
-                        //                window.open("ICD10Report.jsp?startDate=" + startDate + "&endDate=" + endDate);
-
                     }
                 });
             });

@@ -35,15 +35,14 @@
             <table id="costTable">
                 <thead>
                 <th style="width: 5%;">No.</th>
-                <th style="width: 15%;">Date and Time</th>
-                <th style="width: 25%;">Name</th>			 
-                <th >Pmi No.</th>
+                <th style="width: 15%;">Date Visit</th>
                 <th >IC No.</th>
+                <th style="width: 25%;">Name</th>	
                 <th style="">Cost (RM)</th>                
                 </thead>
                 <tfoot>
                     <tr>
-                        <th colspan="5" style="text-align:right"></th>
+                        <th colspan="4" style="text-align:right"></th>
                         <th></th>
                     </tr>
                 </tfoot>
@@ -55,9 +54,8 @@
                     <tr>
                         <td id="No"><%= i + 1%></td>
                         <td id="DateTime"><%= cost.get(i).get(5)%></td>
-                        <td id="Name"><%= cost.get(i).get(7)%></td>
-                        <td id="pmino"><%= cost.get(i).get(0)%></td>
                         <td id="icNo"><%= cost.get(i).get(1)%></td>
+                        <td id="Name"><%= cost.get(i).get(7)%></td>
                         <td id="cost"><%= cost.get(i).get(6)%></td>
 
 
@@ -94,7 +92,7 @@
 
                 // Total over all pages
                 total = api
-                        .column(5)
+                        .column(4)
                         .data()
                         .reduce(function (a, b) {
                             return intVal(a) + intVal(b);
@@ -102,14 +100,14 @@
 
                 // Total over this page
                 pageTotal = api
-                        .column(5, {page: 'current'})
+                        .column(4, {page: 'current'})
                         .data()
                         .reduce(function (a, b) {
                             return intVal(a) + intVal(b);
                         }, 0);
 
                 // Update footer
-                $(api.column(5).footer()).html(
+                $(api.column(4).footer()).html(
                         'Total Page: ' + parseFloat(Math.round(pageTotal * 100) / 100).toFixed(2) + '<br>Total: ' + parseFloat(Math.round(total * 100) / 100).toFixed(2)
                         );
             }
