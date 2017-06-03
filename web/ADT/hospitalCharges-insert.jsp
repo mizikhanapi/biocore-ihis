@@ -24,7 +24,7 @@
     String createdBy = request.getParameter("createdBy");
 
     eliSrc = request.getParameter("eliSrc");
-    eliTy = request.getParameter("eliTy");
+    eliTy = request.getParameter("EliTy");
     ChargeType = request.getParameter("ChargeType");
     ChargeFees = request.getParameter("ChargeFees");
     DateFormat df = new SimpleDateFormat("dd/MM/yy HH:mm:ss");

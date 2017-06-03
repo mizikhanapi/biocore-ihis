@@ -108,7 +108,7 @@ $('#registerBed').click(function () {
         var pmino, poic, pid, MRN, pname, pnic, pidno,
                 EliSource, AdmissionType, Refer, DocType, GL, EliTy, AdmissionReason, PoliceCase, DocNo, payer,
                 Dis, wname, Deposit, WardType, BedID,
-                guardInd, referNo, referHfc, referDis, gruGuard, epiTime, epiDate, stat, hfc, RefDR, orderNo, OrderStatus;
+                guardInd, referNo, referHfc, referDis, gruGuard, epiTime, epiDate, stat, hfc, RefDR, orderNo, OrderStatus,order;
         pmino = $('#pmino').val();
         epiDate = yyyyMMddHHmmss;
         poic = $('input[id=poic]').val();
@@ -142,13 +142,21 @@ $('#registerBed').click(function () {
         Dis = $('#DisWard').val();
         var array_dis = Dis.split("|");
         var Dis = array_dis[0];
+
+
+        var wnamequeue = $('#wname').val();
+        var array_dis = wnamequeue.split("|");
+        var wnamequeue = array_dis[1];
+
+order = $('#HFCBY').val();
+
         wname = $('#wname').val();
         RefDR = $('#RefDR').val();
         Deposit = $('#Deposit').val();
         WardType = $('#WardType').val();
         BedID = $('#BedIDReg').val();
         guardInd = "-";
-        referHfc = "-";
+        referHfc = $('#HFCFROM').val();
         referDis = "-";
         referNo = "-";
         gruGuard = "-";
@@ -194,7 +202,8 @@ $('#registerBed').click(function () {
             'RefDR': RefDR,
             'sub': sub,
             'orderNo': orderNo,
-            'OrderStatus': OrderStatus
+            'OrderStatus': OrderStatus,
+            'order':order
 
         };
         //console.log(datas);
@@ -218,7 +227,7 @@ $('#registerBed').click(function () {
                     $.ajax({
                         type: "POST",
                         url: "PMS/checkQueue.jsp",
-                        data: {'wname': wname, 'createdBy': createdBy, 'hfc': hfc, 'Dis': Dis, 'sub': sub, 'pmino': pmino}, // Send input
+                        data: {'wnamequeue': wnamequeue, 'createdBy': createdBy, 'hfc': hfc, 'Dis': Dis, 'sub': sub, 'pmino': pmino}, // Send input
                         timeout: 3000,
                         success: function (l) {
                             console.log(l);
@@ -235,19 +244,7 @@ $('#registerBed').click(function () {
                                         console.log(list);
                                         $body.removeClass("loading");
                                         if ($.trim(list) === "Success") {
-                                            bootbox.alert("Patient has been register successfully");
-                                        } else if ($.trim(list) === "already") {
-                                            bootbox.alert("Patient is already registered");
-                                        } else if ($.trim(list) === "false") {
-                                            bootbox.alert("There something error with the query of register the inpatient");
-                                        }
-
-                                        var wname = $('#wname').val();
-                                        var hfc = $("#Rhfc").val();
-                                        var createdBy = $("#Rid").val();
-                                        var sub = $("#Rsub").val();
-                                        var Dis = $('#DisWard').val();
-                                        $.ajax({
+                                            $.ajax({
                                             type: "POST",
                                             url: "PMS/addQueue.jsp",
                                             data: {'wname': wname, 'createdBy': createdBy, 'hfc': hfc, 'Dis': Dis, 'sub': sub, 'pmino': pmino}, // Send input
@@ -264,6 +261,19 @@ $('#registerBed').click(function () {
                                                 bootbox.alert("There is an error!");
                                             }
                                         });
+                                            bootbox.alert("Patient has been register successfully");
+                                        } else if ($.trim(list) === "already") {
+                                            bootbox.alert("Patient is already registered");
+                                        } else if ($.trim(list) === "false") {
+                                            bootbox.alert("There something error with the query of register the inpatient");
+                                        }
+
+                                        var wname = $('#wname').val();
+                                        var hfc = $("#Rhfc").val();
+                                        var createdBy = $("#Rid").val();
+                                        var sub = $("#Rsub").val();
+                                        var Dis = $('#DisWard').val();
+                                        
                                     }, error: function () {
                                         bootbox.alert("There is an error!");
                                     }

@@ -37,25 +37,10 @@
     String DocNo = request.getParameter("DocNo");
     String payer = request.getParameter("payer");
     String Dis = request.getParameter("Dis");
-    String wname = request.getParameter("wname");
-    String Deposit = request.getParameter("Deposit");
-    String WardType = request.getParameter("WardType");
-    String BedID = request.getParameter("BedID");
-    String guardInd = request.getParameter("guardInd");
-    String referNo = request.getParameter("referNo");
-    String gruGuard = request.getParameter("gruGuard");
-    String glExpDate = request.getParameter("glExpDate");
-    String epiTime = request.getParameter("epiTime");
-    String stat = request.getParameter("stat");
+    String wname = request.getParameter("wnamequeue");
+  
     String hfc = request.getParameter("hfc");
-    String referHfc = "referHfc";
-    String referDis = "referDis";
-    String orderNo = request.getParameter("orderNo");
-    String queueSql = "";
-    String updateBed = "";
-    String updateMaster = "";
-    String updateDetail = "";
-    String OrderStatus = request.getParameter("OrderStatus");
+   
 
     String subDis = "sub Discipline";
     String patCat = "003";
@@ -75,7 +60,7 @@
 
     String insertEpisode = "";
     String insertEpisode2 = "";
-    String isAlreadyRegister = "select a.queue_name from pms_queue_name a left join wis_inpatient_episode b on( a.queue_name = b.ward_id) where (a.hfc_cd = '" + hfc + "' and b.ward_id = '" + wname + "');";
+    String isAlreadyRegister = "select a.queue_name from pms_queue_name a left join wis_ward_name b on( a.queue_name = b.ward_name) where (a.hfc_cd = '" + hfc + "' and b.ward_name = '" + wname + "');";
     ArrayList<ArrayList<String>> alreadyRegis = conn.getData(isAlreadyRegister);
 
     if (alreadyRegis.size() > 0) {

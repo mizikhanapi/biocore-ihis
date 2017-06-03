@@ -126,6 +126,8 @@
             <!-- main -->		
 
         </div>
+                                                               <script src="PMS/libraries/lib/js/onKeyPress.js" type="text/javascript"></script>
+                    <script src="old/assets/js/onKeyPress.js" type="text/javascript"></script>
         <script>
 
             $(document).ready(function () {

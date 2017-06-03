@@ -35,6 +35,7 @@
         <script src="old/assets/js/onKeyPress.js" type="text/javascript"></script>
         <script src="old/assets/js/IPMain.js" type="text/javascript"></script>
         <script src="old/assets/js/onKeyPress.js" type="text/javascript"></script>
+    
 
         <!-- header -->
         <%@include file = "../assets/header.html" %>
@@ -124,8 +125,11 @@
             <!-- main -->		
 
         </div>
-                                                    <script src="libraries/js/searchPatient.js" type="text/javascript"></script>
-                                                    
+      
+            <script src="PMS/libraries/lib/js/onKeyPress.js" type="text/javascript"></script>
+                    <script src="old/assets/js/onKeyPress.js" type="text/javascript"></script>
+
+
 
         <script>
 

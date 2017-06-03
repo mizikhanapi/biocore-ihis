@@ -40,10 +40,9 @@
 
         String sql = " SELECT DATE_FORMAT(wis_inpatient_episode.episode_date, '%d %M %Y') AS DATE, "
                 + " wis_inpatient_episode.NEW_IC_NO, wis_inpatient_episode.PATIENT_NAME, wis_inpatient_episode.admission_description, adm_lookup_detail.Description "
-                + " FROM wis_inpatient_episode JOIN wis_order_master ON (wis_inpatient_episode.pmi_no =  wis_order_master.pmi_no) "
-                + " JOIN wis_order_detail ON (wis_order_master.order_no =  wis_order_detail.order_no) "
+                + " FROM wis_inpatient_episode "
                 + " JOIN adm_lookup_detail ON (adm_lookup_detail.Detail_Reference_Code =  wis_inpatient_episode.eligibility_category_cd) "
-                + " WHERE wis_inpatient_episode.hfc_cd  = '" + hfc + "' AND wis_order_detail.order_status  = '1' AND wis_order_master.order_status  = '1' AND adm_lookup_detail.master_reference_code = '0063' group by  wis_order_master.pmi_no ";
+                + " WHERE wis_inpatient_episode.hfc_cd  = '" + hfc + "'  AND adm_lookup_detail.master_reference_code = '0063' group by  wis_inpatient_episode.pmi_no ";
 
         ArrayList<ArrayList<String>> dataReportDaily = conn.getData(sql);
 

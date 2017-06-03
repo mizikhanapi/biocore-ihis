@@ -26,6 +26,7 @@
                         for (int i = 0; i < size2; i++) {
                     %>
                     <option value="<%= dataWardType.get(i).get(0)%>"><%= dataWardType.get(i).get(1)%> </option>
+             
                     <%
                         }
                     %>

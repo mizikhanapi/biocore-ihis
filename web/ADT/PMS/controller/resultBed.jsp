@@ -20,7 +20,7 @@
 %>
 <%
     String disb = request.getParameter("Dis");
-    String wnameb = request.getParameter("wname");
+    String wnameb = request.getParameter("wnamecode");
     String WardTypeb = request.getParameter("WardType");
     String EliSource = request.getParameter("EliSource");
     String EliTy = request.getParameter("EliTy");

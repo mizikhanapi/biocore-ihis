@@ -48,7 +48,12 @@
     String epiTime = request.getParameter("epiTime");
     String stat = request.getParameter("stat");
     String hfc = request.getParameter("hfc");
-    String referHfc = "referHfc";
+  
+        String order = request.getParameter("order");
+
+        String referHfc = request.getParameter("referHfc");
+    
+    
     String referDis = "referDis";
     String orderNo = request.getParameter("orderNo");
     String queueSql = "";
@@ -61,7 +66,7 @@
     String patCat = "003";
     String visTy = "Visit Type";
     String emTy = "Emergency Type";
-    String order = "Order By";
+    
     String sub = request.getParameter("sub");
 
     String createdBy = request.getParameter("createdBy");

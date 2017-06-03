@@ -49,6 +49,7 @@ $(function () {
     //seaching patient function   
     function searchPatient() {
 
+        var opt = $('#idType option[disabled]:selected').val();
 
 
         //check if the input text or the select box is empty.

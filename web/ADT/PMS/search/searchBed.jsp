@@ -76,7 +76,7 @@
         <div class="form-group">
             <label class="col-md-4 control-label" for="textinput">Deposit (RM)</label>
             <div class="col-md-6" id="depositResult">
-<!--                <input id="Deposit" name="textinput" type="text" placeholder="RM :" class="form-control input-md">-->
+                <!--                <input id="Deposit" name="textinput" type="text" placeholder="RM :" class="form-control input-md">-->
             </div>
         </div>
 
@@ -89,9 +89,9 @@
                 </br>
             </div>
         </div>
-      
 
-       
+
+
 
 
 
@@ -193,23 +193,32 @@
                 //var Dis = $('#Dis').val();
                 var Diso = $('#dis_cd').val();
                 var Dis = Diso;
-                var wname = $('#wname').val();
                 var WardType = $('#WardType').val();
-
                 var EliSource = $('#EliSource').val();
                 var EliTy = $('#EliTy').val();
 
 
-                console.log(Dis);
-                console.log(wname);
-                console.log(WardType);
+
+
+                var wnamecode = $('#wname').val();
+                var array_dis = wnamecode.split("|");
+                var wnamecode = array_dis[0];
+
+
+                console.log(wnamecode);
+            
+
+
+                // console.log(Dis);
+                // console.log(wname);
+                // console.log(WardType);
 
                 //run the MAIN ajax function
                 $.ajax({
                     async: true,
                     type: "POST",
                     url: "PMS/controller/resultBed.jsp",
-                    data: {'Dis': Dis, 'wname': wname, 'WardType': WardType},
+                    data: {'Dis': Dis, 'wnamecode': wnamecode, 'WardType': WardType},
                     timeout: 10000,
                     success: function (list) {
                         //remove the loading 
@@ -239,10 +248,10 @@
                     async: true,
                     type: "POST",
                     url: "PMS/controller/chargesDeposit.jsp",
-                    data: {'Dis': Dis, 'wname': wname, 'WardType': WardType, 'EliSource': EliSource, 'EliTy': EliTy},
+                    data: {'Dis': Dis, 'wnamecode': wnamecode, 'WardType': WardType, 'EliSource': EliSource, 'EliTy': EliTy},
                     timeout: 10000,
                     success: function (list) {
-                        console.log(list);
+                        // console.log(list);
                         $('#depositResult').html(list);
 
                     },

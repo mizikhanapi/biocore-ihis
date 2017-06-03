@@ -574,13 +574,9 @@
 
         $('#MWID_add').on('click', function () {
 
-            var eliSrc = $('#eliSrc').val();
-            var array_eliSrc = eliSrc.split("|");
-            var eliSrc = array_eliSrc[0];
+           var eliSrc = $('#eliSrc').val();
+ var EliTy = $('#EliTy').val();
 
-            var eliTy = $('#eliTy').val();
-            var array_eliTy = eliTy.split("|");
-            var eliTy = array_eliTy[0];
 
             var wclass = $('#wclass').val();
             var array_wclass = wclass.split("|");
@@ -636,13 +632,13 @@
                 bootbox.alert("Complete The Fields of Ward Name");
                 return false;
             }
-            if (eliTy === "") {
+            if (EliTy === "") {
                 bootbox.alert("Complete The Fields of Citizen Rates");
                 return false;
             } else {
                 var data = {
                     eliSrc: eliSrc,
-                    eliTy: eliTy,
+                    EliTy: EliTy,
                     ChargeType: ChargeType,
                     ChargeFees: ChargeFees,
                     Dis: Dis,
@@ -702,26 +698,26 @@
 
 
         function reset() {
-            document.getElementById("WardClass").value = "";
-            document.getElementById("WardID").value = "";
-            document.getElementById("Dis").value = "";
-            document.getElementById("WardName").value = "";
-            document.getElementById("CitizenRates").value = "";
-            document.getElementById("CitizenDeposit").value = "";
-            document.getElementById("CitizenDiscount").value = "";
-            document.getElementById("NonCitizenRates").value = "";
-            document.getElementById("NonCitizenDeposit").value = "";
-            document.getElementById("NonCitizenDiscount").value = "";
-            document.getElementById("PensionerDeposit").value = "";
-            document.getElementById("PensionerDiscount").value = "";
-            document.getElementById("PensionerRates").value = "";
-            document.getElementById("NoOfBed").value = "";
+//            document.getElementById("WardClass").value = "";
+//            document.getElementById("WardID").value = "";
+//            document.getElementById("Dis").value = "";
+//            document.getElementById("WardName").value = "";
+//            document.getElementById("CitizenRates").value = "";
+//            document.getElementById("CitizenDeposit").value = "";
+//            document.getElementById("CitizenDiscount").value = "";
+//            document.getElementById("NonCitizenRates").value = "";
+//            document.getElementById("NonCitizenDeposit").value = "";
+//            document.getElementById("NonCitizenDiscount").value = "";
+//            document.getElementById("PensionerDeposit").value = "";
+//            document.getElementById("PensionerDiscount").value = "";
+//            document.getElementById("PensionerRates").value = "";
+//            document.getElementById("NoOfBed").value = "";
 //            document.getElementById("bathroom").checked = false;
 //            document.getElementById("toilet").checked = false;
 //            document.getElementById("televison").checked = false;
 //            document.getElementById("telephone").checked = false;
-            document.getElementById("status1").checked = false;
-            document.getElementById("status2").checked = false;
+//            document.getElementById("status1").checked = false;
+//            document.getElementById("status2").checked = false;
 
         }
         $('#MWID_clear').on('click', function (e) {
