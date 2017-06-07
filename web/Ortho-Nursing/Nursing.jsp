@@ -30,7 +30,7 @@
                                     </li>
                                     <li class="">
                                         <a href="#tab_default_2" data-toggle="tab" aria-expanded="false">
-                                            <i class="fa fa-check fa-lg"></i> Form-Nursing Assessment on Admission  </a>
+                                            <i class="fa fa-check fa-lg"></i> Form-Nursing Assessment on Admission*(HOLD)  </a>
                                     </li>
                                     <li>
                                         <a href="#tab_default_3" data-toggle="tab" aria-expanded="true">
@@ -46,10 +46,10 @@
                                     <!-- content -->
                                     <div class="tab-pane active fade in" id="tab_default_1">
                                         <ul class="soap-content nav">
-                                            <li><a data-toggle="modal" data-target="#ong-pDetails1" href="" class="soap-select"><i class="fa fa-comments  fa-li"></i> New Assessment</a></li>
+                                            <li><a data-toggle="modal" data-target="#morse1" href="" class="soap-select"><i class="fa fa-comments  fa-li"></i> New Assessment</a></li>
                                         </ul>
                                         <hr class="pemisah" />
-                                        <%//@include file="neuAssessment.jsp"%>
+                                        <%@include file="morsefallScale.jsp"%>
                                     </div>
                                     <!-- content -->
 
@@ -63,31 +63,27 @@
                                             <li><a data-toggle="modal" data-target="#ong-pDetails3" href=""  class="soap-select"><i class="fa fa-medkit  fa-li"></i> Limb Movement</a></li>
                                         </ul>
                                         <hr class="pemisah" />
-                                        <%//@include file="neuObservation.jsp"%>
+                                        <%//@include file="morsefallScale.jsp"%>
                                     </div>
                                     <!-- content -->
 
                                     <!-- content -->
                                     <div class="tab-pane fade" id="tab_default_3">
                                         <ul class="soap-content nav">
-                                            <li><a data-toggle="modal" data-target="#ong-pDetails1" href="" class="soap-select"><i class="fa fa-comments  fa-li"></i> Rawatan / Perawatan</a></li>
-                                            <li><a data-toggle="modal" data-target="#ong-pDetails1" href="" class="soap-select"><i class="fa fa-comments  fa-li"></i> Aliran Vena</a></li>
-                                            <li><a data-toggle="modal" data-target="#ong-pDetails1" href="" class="soap-select"><i class="fa fa-comments  fa-li"></i> Makanan</a></li>
-                                            <li><a data-toggle="modal" data-target="#ong-pDetails1" href="" class="soap-select"><i class="fa fa-comments  fa-li"></i> Pembebatan / STO / Drainage</a></li>
-                                            <li><a data-toggle="modal" data-target="#ong-pDetails1" href="" class="soap-select"><i class="fa fa-comments  fa-li"></i> Peringatan / Temujanji</a></li>
+                                            <li><a data-toggle="modal" data-target="#perawatan" href="" class="soap-select"><i class="fa fa-comments  fa-li"></i> Rawatan / Perawatan</a></li>
                                         </ul>
                                         <hr class="pemisah" />
-                                        <%//@include file="PIRAssessment.jsp"%>
+                                        <%@include file="perawatan.jsp"%>
                                     </div>
                                     <!-- content -->
                                     
                                     <!-- content -->
                                     <div class="tab-pane fade" id="tab_default_4">
                                         <ul class="soap-content nav">
-                                            <li><a data-toggle="modal" data-target="#ong-pDetails1" href="" class="soap-select"><i class="fa fa-comments  fa-li"></i> Add Continuation Sheet</a></li>
+                                            <li><a data-toggle="modal" data-target="#continuation" href="" class="soap-select"><i class="fa fa-comments  fa-li"></i> Add Continuation Sheet</a></li>
                                         </ul>
                                         <hr class="pemisah" />
-                                        <%//@include file="PIRAssessment.jsp"%>
+                                        <%@include file="continuation.jsp"%>
                                     </div>
                                     <!-- content -->
 
@@ -114,7 +110,9 @@
         </div>
 
 
-        <%//@include file="modal/addNeurosurgical.jsp"%>
+        <%@include file="modal/morsefall.jsp"%>
+        <%@include file="modal/perawatan.jsp"%>
+        <%@include file="modal/continuation.jsp"%>
         <script src="../assets/js/jquery.min.js" type="text/javascript"></script>
         <script src="../assets/js/bootstrap.min.js" type="text/javascript"></script>
 
