@@ -38,7 +38,7 @@
                 <div class="row">      
                     <div class="col-md-12">
                         <div class="thumbnail">
-                            <h3 style="margin: 0px;"> test </h3>
+                            <h3 style="margin: 0px;"> ICD10 Report </h3>
                             <hr class="pemisah" />
 
                             <!--                        <div class="form-group">
