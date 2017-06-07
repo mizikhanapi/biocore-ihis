@@ -20,9 +20,7 @@
     String dataSystemStatus2 = session.getAttribute("SYSTEM_PARAMETER").toString();
     //out.print(dataSystemStatus2);
 %>
-<h4>Search Patient
-    <button id="button2id" name="button2id" class="btn btn-success pull-right"><i class="fa fa-user fa-lg"></i>&nbsp; Read MyKad Info</button>
-</h4>
+
 <form class="form-horizontal" name="myForm" id="myForm">
     <!-- Select Basic -->
     <div class="form-group">
