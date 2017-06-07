@@ -78,7 +78,7 @@
     </div>
 
 
-    <div id="viewBill">
+    <div id="viewBill" class="table-guling">
     </div>
 
 </div>

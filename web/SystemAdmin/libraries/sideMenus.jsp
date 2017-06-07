@@ -35,6 +35,7 @@
 				<li><a href="HIS010002.jsp"><i class="fa fa-users fa-lg" ></i>Users Administration</a></li>
 				<li><a href="HIS010003.jsp"><i class="fa fa-files-o fa-lg"></i>Queue Maintenance</a></li>
                                 <li><a href="HIS010004.jsp"><i class="fa fa-hospital-o fa-lg"></i>Health Facility Maintenance</a></li>
+                                <li><a href="HIS010006.jsp"><i class="fa fa-cog fa-lg"></i>Settings</a></li>
                                 <%
                                     if(last_9.equals("9") && hfc_99.equals("99_iHIS_99")){
                                 %>
