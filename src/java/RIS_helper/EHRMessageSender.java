@@ -525,7 +525,7 @@ public class EHRMessageSender {
 //        CENTRAL_CODE = String.valueOf(tempCENTRAL_CODE + 1);
         // Insert Into EHR Central
         String sqlInsert = "INSERT INTO ehr_central (CENTRAL_CODE,PMI_NO,C_TXNDATE,C_TxnData,STATUS,STATUS_1,STATUS_2,STATUS_3,STATUS_4,STATUS_5) "
-                + "Select (max(CENTRAL_CODE)+1), '" + PMI_NO + "', now(), '" + C_TxnData + "', '1', '0', '0', '0', '0', '0' "
+                + "Select (max(CENTRAL_CODE)+1), '" + PMI_NO + "', now(), '" + C_TxnData + "', '0', '0', '0', '0', '0', '0' "
                 + "from ehr_central;";
 
         rmic.setQuerySQL(conn.HOST, conn.PORT, sqlInsert);
@@ -605,7 +605,7 @@ public class EHRMessageSender {
 
         // Insert Into EHR Central
         String sqlInsert = "INSERT INTO ehr_central (CENTRAL_CODE,PMI_NO,C_TXNDATE,C_TxnData,STATUS,STATUS_1,STATUS_2,STATUS_3,STATUS_4,STATUS_5) "
-                + "Select (max(CENTRAL_CODE)+1), '" + PMI_NO + "', now(), '" + C_TxnData + "', '1', '0', '0', '0', '0', '0' "
+                + "Select (max(CENTRAL_CODE)+1), '" + PMI_NO + "', now(), '" + C_TxnData + "', '0', '0', '0', '0', '0', '0' "
                 + "from ehr_central;";
 
         rmic.setQuerySQL(conn.HOST, conn.PORT, sqlInsert);
