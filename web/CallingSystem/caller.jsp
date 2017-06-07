@@ -11,11 +11,13 @@
     String hfccd = "-";
     String discp = "-";
     String subdi = "-";
+    String lang = "-";
     Conn conn = new Conn();
     try {
         hfccd = request.getParameter("hfccd");
         discp = request.getParameter("discp");
         subdi = request.getParameter("subdi");
+        lang = request.getParameter("lang");
     } catch (Exception e) {
     }
 
@@ -42,7 +44,7 @@
     SimpleDateFormat tarikh = new SimpleDateFormat("dd/MM/YYYY");
     SimpleDateFormat masa = new SimpleDateFormat("HH:mm");
     SimpleDateFormat formate = new SimpleDateFormat("a");
-    //out.print(sdf.format(datenow));
+
 
     %></p>
 <p style="text-align: right; position: absolute; top: 37px; left: 30px; color: #666; display: block; font-weight: 500; font-size: 40px; ">
@@ -80,13 +82,15 @@
                 <div id="view_VS">
 
                 </div>
-                <% if (cs_callingtime > 0) {
+                <% //String LNG = request.getParameter("LNG");
+
+                    if (cs_callingtime > 0) {
+                        if (lang.equals("1")) {
                 %>
                 <script>
-                    //alert("tak habis");
                     var name = $("#name_<%=i%>").html();
                     name = name.toLowerCase().replace(/\b[a-z]/g, function (letter) {
-                    return letter.toUpperCase();
+                        return letter.toUpperCase();
                     });
 
                     var qno = $("#qno_<%=i%>").html();
@@ -94,15 +98,51 @@
                     qname = qname.toLowerCase().replace(/\b[a-z]/g, function (letter) {
                         return letter.toUpperCase();
                     });
-                    //var ayat = name + ", Number " + qno + ", " + qname;
-                    var ayat1 = ", Number," + qno + ", " + qname;
-                    //var ayat2 = ", ,";
-                    //var ayat3 = ", ," + qname;
+                    //$("#view_VS").load("libraries/header.html");
+                    //alert(qno);
+                    $("#view_VS").load("newjsp1.jsp?idResult=" + qno);
+                </script>   
+                <%
+                } else if (lang.equals("2")) {
+                %>
+                <script>
+                    var name = $("#name_<%=i%>").html();
+                    name = name.toLowerCase().replace(/\b[a-z]/g, function (letter) {
+                        return letter.toUpperCase();
+                    });
 
+                    var qno = $("#qno_<%=i%>").html();
+                    var qname = $("#qname_<%=i%>").html();
+                    qname = qname.toLowerCase().replace(/\b[a-z]/g, function (letter) {
+                        return letter.toUpperCase();
+                    });
+                    var ayat = name;
 
-                    var msg1 = new SpeechSynthesisUtterance(ayat1);
+                    var msg1 = new SpeechSynthesisUtterance(ayat);
                     window.speechSynthesis.speak(msg1);
                 </script>
+                <%
+                } else if (lang.equals("3")) {
+                %>
+                <script>
+                    var name = $("#name_<%=i%>").html();
+                    name = name.toLowerCase().replace(/\b[a-z]/g, function (letter) {
+                        return letter.toUpperCase();
+                    });
+
+                    var qno = $("#qno_<%=i%>").html();
+                    var qname = $("#qname_<%=i%>").html();
+                    qname = qname.toLowerCase().replace(/\b[a-z]/g, function (letter) {
+                        return letter.toUpperCase();
+                    });
+                    var ayat = name + ", Number " + qno + ", " + qname;
+                    var msg1 = new SpeechSynthesisUtterance(ayat);
+                    window.speechSynthesis.speak(msg1);
+                </script>
+                <%
+                    }
+                %>
+
                 <%
                     RMIConnector rmic = new RMIConnector();
                     //Query q2 = new Query();

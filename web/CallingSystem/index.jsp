@@ -1,6 +1,6 @@
 
 <%@page import="java.util.ArrayList"%>
-<%@page import="models.Query"%>
+<%//@page import="models.Query"%>
 <%@page import="main.RMIConnector"%>
 <%@page import="dBConn.Conn"%>
 <%//@include file="../Entrance/validateSession.jsp"%>
@@ -39,6 +39,7 @@
     String hfccd1 = "";
     String discp1 = "";
     String subdi1 = "";
+    String lang1 = "";
     try {
 
         hfccd1 = dataHFC.get(0).get(0);
@@ -97,7 +98,10 @@
                                 </li>
                             </ul>
                         </h2>
-                        <input type="text" id="hfccd" name="hfccd" value="<%=hfccd1%>" style=" display: none;">  
+
+
+                        <input type="text" id="hfccd" name="hfccd" value="<%=hfccd1%>" style=" display: none;"> 
+                        <input type="text" id="lng" name="lng" value="test" style=" display: none;"> 
                         <hr class="pemisah" />
                         <ul class="collapse" id="filter" aria-expanded="false" style="height: 0px; padding-left: 0px;">
                             <div class="form-horizontal">
@@ -144,9 +148,9 @@
 
                         <div id="papar">
                             <p>.. Preparing ...</p>
-                           
+
                         </div>
-                        
+
                     </div>
 
                 </div>
@@ -156,27 +160,117 @@
 
     </div>
 </div>
+<div class="modal fade" id="callingSetting" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+                <h3 class="modal-title" id="lineModalLabel">Setting</h3>
+            </div>
+            <div class="modal-body">
+                <!-- content goes here -->
+                <form>
+                    <div class="form-group">
+                        <h4>Before Filter</h4>
+                    </div>
 
+                    <div class="row">
+                        <div class="col-xs-1 col-sm-1 col-md-1">
+                            <div class="form-group">
+
+                            </div>
+                        </div>
+                        <div class="col-xs-10 col-sm-10 col-md-10">
+                            <div class="form-group">
+                                <p style=" align-content: center">
+                                <center><input type="radio" id="BM" class="setting" name="lang" value="BM" onclick="my_function(this)" checked="checked">
+                                    <label >Bahasa Malaysia</label>
+
+                                    <input type="radio" id="BI" class="setting" name="lang" value="BI" onclick="my_function(this)">
+                                    <label >Bahasa English</label></center>
+
+                                </p>
+                            </div>
+                            <div class="form-group" id="hideshow">
+                                <p>
+                                    <input type="radio" id="1" class="setting" value="1" name="pilih" checked="chacked">
+                                    <label for="test6" id="L1">Queue No. / No. Giliran</label>
+                                </p>
+                                <p>
+                                    <input type="radio" id="2" class="setting" value="2" name="pilih" style=" display: none">
+                                    <label for="test6" id="L2" style=" display: none">Name of patient</label>
+                                </p>
+                                <p>
+                                    <input type="radio" id="3" class="setting" value="3" name="pilih" style=" display: none">
+                                    <label for="test6" id="L3" style=" display: none">Queue No & Name of patient</label>
+                                </p>
+
+                            </div>
+                        </div>
+
+                        <div class="col-xs-1 col-sm-1 col-md-1">
+                            <div class="form-group">
+
+                            </div>
+                        </div>
+
+                    </div>
+
+                </form></div>     
+
+            <div class="modal-footer">
+                <div class="btn-group btn-group-justified" role="group" aria-label="group button">
+                    <div class="btn-group" role="group">
+                        <button type="button" class="btn btn-success btn-block btn-lg" id="acceptSettingBtn" role="button">Save</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    function my_function(elm)
+    {
+        if (elm == document.getElementById('BM'))
+        {
+            //document.getElementById('my_div').style.visibility = "hidden";
+            document.getElementById('2').style.display = "none";
+            document.getElementById('L2').style.display = "none";
+            document.getElementById('3').style.display = "none";
+            document.getElementById('L3').style.display = "none";
+        } else if (elm == document.getElementById('BI'))
+        {
+            //document.getElementById('my_div').style.visibility = "visible";
+            //document.getElementById('hideshow').style.display = "block";
+            document.getElementById('2').style.display = "block";
+            document.getElementById('L2').style.display = "block";
+            document.getElementById('3').style.display = "block";
+            document.getElementById('L3').style.display = "block";
+        }
+    }
+</script>
 <script src="assets/js/jquery-3.1.1.js" type="text/javascript"></script>
 <script src="assets/js/bootstrap.js" type="text/javascript"></script>
 <script>
-    function ulangPanggil(hfccd, discp, subdi) {
+    function ulangPanggil(hfccd, discp, subdi, lang) {
         $.ajax({
             url: "caller.jsp",
             type: 'POST',
             data: {
                 hfccd: hfccd,
                 discp: discp,
-                subdi: subdi
+                subdi: subdi,
+                lang: lang
             },
             timeout: 60000,
             success: function (data) {
                 $("#papar").html(data);
-                var t = setTimeout("ulangPanggil('" + hfccd + "', '" + discp + "', '" + subdi + "')", 8000);
+                var t = setTimeout("ulangPanggil('" + hfccd + "', '" + discp + "', '" + subdi + "', '" + lang + "')", 8000);
             },
             error: function (err) {
                 $("#papar").html("Error viewing data!");
-                var t = setTimeout("ulangPanggil('" + hfccd + "', '" + discp + "', '" + subdi + "')", 8000);
+                var t = setTimeout("ulangPanggil('" + hfccd + "', '" + discp + "', '" + subdi + "', '" + lang + "')", 8000);
             }
         });
     }
@@ -187,8 +281,9 @@
             hfccd1 = request.getParameter("hfccd");
             discp1 = request.getParameter("discp");
             subdi1 = request.getParameter("subdi");
+            lang1 = request.getParameter("lang");
     %>
-        ulangPanggil('<%=hfccd1%>', '<%=discp1%>', '<%=subdi1%>');
+        ulangPanggil('<%=hfccd1%>', '<%=discp1%>', '<%=subdi1%>', '<%=lang1%>');
     <%
         } catch (Exception e2) {
         }
@@ -199,12 +294,15 @@
             var hfccd = $("#hfccd").val();
             var discp = $("#discp").val();
             var subdi = $("#subdi").val();
+            var lang = document.querySelector('input[name="pilih"]:checked').value;
 
-            location.href = 'index.jsp?hfccd=' + hfccd + '&discp=' + discp + '&subdi=' + subdi;
+            location.href = 'index.jsp?hfccd=' + hfccd + '&discp=' + discp + '&lang=' + lang + '&subdi=' + subdi;
+
         });
 
-        $("#clear").click(function () {
-            location.href = 'index.jsp';
+        $("#acceptSettingBtn").click(function () {
+            $("#callingSetting").hide();
+            $(".modal-backdrop").hide();
         });
     });
 </script>
