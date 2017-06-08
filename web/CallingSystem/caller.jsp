@@ -12,12 +12,14 @@
     String discp = "-";
     String subdi = "-";
     String lang = "-";
+    String initial = "-";
     Conn conn = new Conn();
     try {
         hfccd = request.getParameter("hfccd");
         discp = request.getParameter("discp");
         subdi = request.getParameter("subdi");
         lang = request.getParameter("lang");
+        initial = request.getParameter("initial");
     } catch (Exception e) {
     }
 
@@ -51,7 +53,6 @@
     <span style="display: block; font-size: 26px; letter-spacing: .14em; margin-bottom: -10px; font-weight: 300;"><%out.print(tarikh.format(datenow));%></span>
     <%out.print(masa.format(datenow));%>&nbsp;<%out.print(formate.format(datenow));%>
 </p>
-
 <table class="table table-hover" style="text-transform: uppercase; font-weight: 500; margin-top:-30px;">
 
     <tbody>
@@ -88,6 +89,7 @@
                         if (lang.equals("1")) {
                 %>
                 <script>
+                    var initial = <%=initial%>;
                     var name = $("#name_<%=i%>").html();
                     name = name.toLowerCase().replace(/\b[a-z]/g, function (letter) {
                         return letter.toUpperCase();
@@ -100,6 +102,7 @@
                     });
                     //$("#view_VS").load("libraries/header.html");
                     //alert(qno);
+                    qno = Number(qno)+Number(initial);
                     $("#view_VS").load("newjsp1.jsp?idResult=" + qno);
                 </script>   
                 <%

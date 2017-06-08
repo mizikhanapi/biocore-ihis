@@ -40,6 +40,7 @@
     String discp1 = "";
     String subdi1 = "";
     String lang1 = "";
+    String initial1 = "";
     try {
 
         hfccd1 = dataHFC.get(0).get(0);
@@ -177,13 +178,15 @@
                     <div class="row">
                         <div class="col-xs-1 col-sm-1 col-md-1">
                             <div class="form-group">
-
+                                
                             </div>
                         </div>
                         <div class="col-xs-10 col-sm-10 col-md-10">
                             <div class="form-group">
                                 <p style=" align-content: center">
-                                <center><input type="radio" id="BM" class="setting" name="lang" value="BM" onclick="my_function(this)" checked="checked">
+                                <center>
+                                    Initial Counter:<input type="text" id="initial" name="initial" value="0"><br>
+                                    <input type="radio" id="BM" class="setting" name="lang" value="BM" onclick="my_function(this)" checked="checked">
                                     <label >Bahasa Malaysia</label>
 
                                     <input type="radio" id="BI" class="setting" name="lang" value="BI" onclick="my_function(this)">
@@ -253,7 +256,7 @@
 <script src="assets/js/jquery-3.1.1.js" type="text/javascript"></script>
 <script src="assets/js/bootstrap.js" type="text/javascript"></script>
 <script>
-    function ulangPanggil(hfccd, discp, subdi, lang) {
+    function ulangPanggil(hfccd, discp, subdi, lang, initial) {
         $.ajax({
             url: "caller.jsp",
             type: 'POST',
@@ -261,16 +264,17 @@
                 hfccd: hfccd,
                 discp: discp,
                 subdi: subdi,
-                lang: lang
+                lang: lang,
+                initial: initial
             },
             timeout: 60000,
             success: function (data) {
                 $("#papar").html(data);
-                var t = setTimeout("ulangPanggil('" + hfccd + "', '" + discp + "', '" + subdi + "', '" + lang + "')", 8000);
+                var t = setTimeout("ulangPanggil('" + hfccd + "', '" + discp + "', '" + subdi + "', '" + lang + "', '" + initial + "')", 8000);
             },
             error: function (err) {
                 $("#papar").html("Error viewing data!");
-                var t = setTimeout("ulangPanggil('" + hfccd + "', '" + discp + "', '" + subdi + "', '" + lang + "')", 8000);
+                var t = setTimeout("ulangPanggil('" + hfccd + "', '" + discp + "', '" + subdi + "', '" + lang + "', '" + initial + "')", 8000);
             }
         });
     }
@@ -282,8 +286,9 @@
             discp1 = request.getParameter("discp");
             subdi1 = request.getParameter("subdi");
             lang1 = request.getParameter("lang");
+            initial1 = request.getParameter("initial");
     %>
-        ulangPanggil('<%=hfccd1%>', '<%=discp1%>', '<%=subdi1%>', '<%=lang1%>');
+        ulangPanggil('<%=hfccd1%>', '<%=discp1%>', '<%=subdi1%>', '<%=lang1%>', '<%=initial1%>');
     <%
         } catch (Exception e2) {
         }
@@ -295,8 +300,9 @@
             var discp = $("#discp").val();
             var subdi = $("#subdi").val();
             var lang = document.querySelector('input[name="pilih"]:checked').value;
+            var initial = $("#initial").val();
 
-            location.href = 'index.jsp?hfccd=' + hfccd + '&discp=' + discp + '&lang=' + lang + '&subdi=' + subdi;
+            location.href = 'index.jsp?hfccd=' + hfccd + '&discp=' + discp + '&lang=' + lang + '&subdi=' + subdi+'&initial='+initial;
 
         });
 
