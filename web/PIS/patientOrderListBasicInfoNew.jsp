@@ -212,6 +212,7 @@
             <input id="dataMSHPDIORCDDR" name="dataMSHPDIORCDDR" type="hidden" placeholder="" readonly class="form-control input-md">  
             <input id="dataBILBLI" name="dataBILBLI" type="hidden" placeholder="" readonly class="form-control input-md">  
             <input id="dataBILDDR" name="dataBILDDR" type="hidden" placeholder="" readonly class="form-control input-md">  
+            <input id="dataCallingID" name="dataCallingID" type="hidden" placeholder="" readonly class="form-control input-md">  
         </div>
 
         <div class="col-md-3">
@@ -266,6 +267,7 @@
 <div class="text-right" id="patientOrderDispenseButtonDiv" > 
     <button class="btn btn-primary " type="button" id="btnOrderDispensePrescribe" name="btnOrderDispensePrescribe" > <i class="fa fa-print fa-lg" ></i>&nbsp; Generate Label &nbsp;</button>
     <button class="btn btn-success " type="button" id="btnOrderDispense" name="btnOrderDispense" > <i class="fa fa-shopping-cart fa-lg"></i>&nbsp; Dispense &nbsp;</button>
+    <button class="btn btn-warning " type="button" id="btnOrderDispenseCallPatient" name="btnOrderDispenseCallPatient" > <i class="fa fa-phone fa-lg" ></i>&nbsp; Call Patient &nbsp;</button>
 </div>
 
 
@@ -283,6 +285,7 @@
 
         // Disable Dispense Button
         document.getElementById("btnOrderDispense").disabled = true;
+        document.getElementById("btnOrderDispenseCallPatient").disabled = true;
 
         e.preventDefault();
 
@@ -1123,8 +1126,8 @@
 
                 //                              0           1       2                3               4                  5                   6                    7                   8     
                 var dataOneRowBLI = "BLI|T^" + dateBill + "|CH|" + pmino + "|" + drugCode + "|" + drugDesc + "|" + drugPrice + "|" + drugDispensedQty + "|" + userIDBill + "|" + dateBill + "<cr>\n";
-           
-            
+
+
                 //                    0                         1                                       2                               3                                                       4    
                 var dataOneRowDDR = "DDR|" + drugATCCode + "^" + drugATCDesc + "^ATC|" + drugCode + "^" + drugMDCDesc + "^MDC|" + drugMDCStrength + "|" + drugMDCFromMCode + "^" + drugMDCFromRCode + "^" + drugMDCFromDesc +
                         //                                  5                                                                                   6
@@ -1234,16 +1237,19 @@
         var EHRFirstHeaderDDR = $("#dataMSHPDIORCDDR").val();
         var EHRSecondHeaderDDR = $("#dataBILDDR").val();
 
+        var callingNo = $("#dataCallingID").val();
+
         var dataEHRcentralFull = {
             pmino: pmino,
             EHRFirstHeaderBLI: EHRFirstHeaderBLI,
             EHRFirstHeaderDDR: EHRFirstHeaderDDR,
             EHRSecondHeaderBLI: EHRSecondHeaderBLI,
-            EHRSecondHeaderDDR: EHRSecondHeaderDDR
+            EHRSecondHeaderDDR: EHRSecondHeaderDDR,
+            callingNo: callingNo
         };
 
         $.ajax({
-            url: "patientOrderListDetailsDispenceEHRCentralInsert.jsp",
+            url: "patientOrderListDetailsDispenceEHRCentralInsertCallingDelete.jsp",
             type: "post",
             data: dataEHRcentralFull,
             timeout: 3000,
@@ -1376,7 +1382,7 @@
 
                 prescribeLongString = prescribeLongString + drugOrderNo + "|" + drugCode + "#";
                 stock.push(drugStock);
-                
+
             }
 
             checked.push(drugChecked);
@@ -1441,6 +1447,7 @@
                                         success: function (datas) {
                                             console.log(datas.trim());
                                             document.getElementById("btnOrderDispense").disabled = false;
+                                            document.getElementById("btnOrderDispenseCallPatient").disabled = false;
                                             $("#patientOrderDetailsListTable").find("input,button,textarea,select").attr("disabled", "disabled");
                                             $('#myModal').modal('hide');
                                             var orderNoMain = $("#patientOrderNo").val();
@@ -1473,6 +1480,104 @@
 
     //==============================================================================  Prescribe Part End  ================================================================================//
 
+
+
+
+    //------------------------------------------------------------------------------  Call patient Part Start  -------------------------------------------------------------------------------//
+
+
+    // Priscribe Part Start
+    // Priscribe Button Start
+    $('#patientOrderDetailContent').off('click', '#patientOrderDispenseButtonDiv #btnOrderDispenseCallPatient').on('click', '#patientOrderDispenseButtonDiv #btnOrderDispenseCallPatient', function (e) {
+
+
+        var patientOrderNo = $("#patientOrderNo").val();
+
+
+        if (patientOrderNo === "" || patientOrderNo === null) {
+
+            $('.nav-tabs a[href="#tab_default_1"]').tab('show');
+            bootbox.alert("Please Select A Order First");
+
+        } else {
+
+            var patientOrderLocationCodeFull = $("#patientOrderLocationCodeFull").val();
+            var patientpmino = $("#patientpmino").val();
+            var patientName = $("#patientName").val();
+            var dataCallPatientFull = patientOrderLocationCodeFull + "|" + patientpmino + "|" + patientName + "|" + patientOrderNo;
+
+
+            bootbox.confirm({
+                message: "Are You Sure ?",
+                title: "Call Patient ?",
+                buttons: {
+                    confirm: {
+                        label: 'Yes',
+                        className: 'btn-success'
+                    },
+                    cancel: {
+                        label: 'No',
+                        className: 'btn-danger'
+                    }
+                },
+                callback: function (result) {
+
+                    if (result === true) {
+
+
+                        var data = {
+                            dataCallPatientFull: dataCallPatientFull
+                        };
+
+                        $.ajax({
+                            url: "patientOrderListDetailsDispenseCallPatientInsert.jsp",
+                            type: "post",
+                            data: data,
+                            timeout: 3000,
+                            success: function (result) {
+
+                                var insertResult = result.trim();
+
+                                console.log(insertResult);
+
+                                var arrayData = insertResult.split("|");
+
+                                var message = arrayData[0];
+                                var callingNo = arrayData[1];
+
+                                $("#dataCallingID").val(callingNo);
+
+                                if (message === 'Success') {
+
+                                    bootbox.alert({
+                                        message: "Patient Call Successful",
+                                        title: "Process Result",
+                                        backdrop: true
+                                    });
+
+                                }
+
+                            }
+                        });
+
+
+                    } else {
+                        console.log("Process Is Canceled");
+                    }
+
+                }
+            });
+
+
+        }
+
+
+    });
+    // Priscribe Button End
+    // Prescibe Part End
+
+
+    //==============================================================================  Call Patient Part End  ================================================================================//
 
 
 

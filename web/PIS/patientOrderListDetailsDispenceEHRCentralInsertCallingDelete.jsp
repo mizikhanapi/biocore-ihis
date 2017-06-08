@@ -1,5 +1,5 @@
 <%-- 
-    Document   : patientOrderListDetailsDispenceEHRCentralInsert
+    Document   : patientOrderListDetailsDispenceEHRCentralInsertCallingDelete
     Created on : Apr 22, 2017, 1:17:05 AM
     Author     : Shammugam
 --%>
@@ -32,6 +32,7 @@
     String EHRSecondHeaderBLI = request.getParameter("EHRSecondHeaderBLI");
     String EHRFirstHeaderDDR = request.getParameter("EHRFirstHeaderDDR");
     String EHRSecondHeaderDDR = request.getParameter("EHRSecondHeaderDDR");
+    String callingNo = request.getParameter("callingNo");
     
     FullEHRHeaderBLI = EHRFirstHeaderBLI + EHRSecondHeaderBLI;
     FullEHRHeaderDDR = EHRFirstHeaderDDR + EHRSecondHeaderDDR;
@@ -60,9 +61,15 @@
             + " SELECT (MAX(CENTRAL_CODE)+1),'" + PMI_NO + "','" + C_TXNDATE + "','" + C_TxnDataDDR + "','" + STATUSshay + "','" + STATUS_1 + "','" + STATUS_2 + "','" + STATUS_3 + "', "
             + "'" + STATUS_4 + "','" + STATUS_5 + "' FROM ehr_central ";
     boolean isInsertDDR = rmic.setQuerySQL(conn.HOST, conn.PORT, sqlInsertDDR);
+    
+    
+    
+    // Delete From Calling System
+    String sql = "DELETE FROM qcs_calling_system_queue WHERE Id = '" + callingNo + "'  ";
+    boolean isDeleteCalling = rmic.setQuerySQL(conn.HOST, conn.PORT, sql);
 
     
-    if (isInsertBLI == true && isInsertDDR == true) {
+    if (isInsertBLI == true && isInsertDDR == true && isDeleteCalling == true) {
         out.print("Success");
     } else {
         out.print("Failed");
