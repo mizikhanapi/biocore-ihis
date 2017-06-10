@@ -6,18 +6,6 @@
 
 
 
-//------------------on document ready to create datepicker --------------------------------
-$(function () {
-    //console.log('hai');
-    //creating datepicker.........
-    $('#SED_date').datepicker({
-        changeMonth: true,
-        changeYear: true,
-        minDate: 0,
-        dateFormat: 'dd/mm/yy'
-    });
-});
-//==========================================================================================
 
 //global variable for procedure search
 var selectedPro = "";
@@ -120,31 +108,6 @@ function loadAllergyDiagnosisOrder(orderNo, pmino) {
     });
 
 }
-// Move to Order Details And Load All Table Data End
-
-
-// Load Datatable To Tables Start
-//    $(document).on('contentchanged', '#risManageOrderDetailsListTableDiv', function () {
-//
-//        $('#risManageOrderDetailsListTable').DataTable().destroy();
-//
-//        // do something after the div content has changed
-//        $('#risManageOrderDetailsListTable').DataTable({
-//            "paging": false,
-//            "searching": false,
-//            "info": false,
-//            "language": {
-//                "emptyTable": "No Request Available To Display"
-//            }
-//        });
-//
-//        console.log('Table is changed');
-//
-//    });
-// Load Datatable To Tables End 
-
-
-//======================================================================================================================================================================================//
 
 //------------------- refresh order detail ------------------------------------------
 $('#risOrderDetailRefreshBtn').on('click', function () {
@@ -346,91 +309,6 @@ function loadOrderDetailList(orderNo) {
 }
 //===============================================================================
 
-//------------------- set exam date -------------------------------------------------
-$('#risManageOrderDetailsListTableDiv').on('click', '#risManageOrderDetailsListTable #MOD_btnModalDate', function () {
-
-    var row = $(this).closest("tr");
-    var arrData = row.find('td').eq(0).text().split('|');
-    //var button = row.find('#MOD_btnModalDate');
-
-    var status = arrData[8].trim();
-
-    //creating modal..........
-
-    if (status === "0") {
-        var bsCode = arrData[2], bsName = arrData[11], modCode = arrData[1], modName = arrData[12], proCode = arrData[3], proName = arrData[9], exDate = arrData[10];
-
-        $('#SED_bodySystem').val(bsName);
-        $('#SED_bodySystem_cd').val(bsCode);
-        $('#SED_modality').val(modName);
-        $('#SED_modality_cd').val(modCode);
-        $('#SED_proName').val(proName);
-        $('#SED_pro_cd').val(proCode);
-        $('#SED_date').val(exDate);
-
-
-        $('#modal_setExamDate').modal('show');
-
-    } else {
-        $(this).prop('disabled', true);
-    }
-    //console.log(data);
-});
-
-
-//---------- confirm exam date-------------------
-$('#SED_btnAdd').on('click', function () {
-
-    var exDate = $('#SED_date').val();
-    var orderNo = $('#risOrderNo').val();
-    var bsCode = $('#SED_bodySystem_cd').val();
-    var modCode = $('#SED_modality_cd').val();
-    var proCode = $('#SED_pro_cd').val();
-
-    if (exDate === '') {
-        bootbox.alert('Please pick a date first.', function () {
-            $('#SED_date').focus();
-        });
-
-    } else {
-        $('#modal_setExamDate').modal('hide');
-
-        var data = {
-            process: 'setDate',
-            orderNo: orderNo,
-            bsCode: bsCode,
-            modCode: modCode,
-            proCode: proCode,
-            exDate: exDate
-        };
-
-        createScreenLoading();
-
-        $.ajax({
-            type: 'POST',
-            url: "order_control/order_update.jsp",
-            data: data,
-            success: function (data, textStatus, jqXHR) {
-                if (data.trim() === 'success') {
-                    loadOrderDetailList(orderNo);
-
-                } else if (data.trim() === 'fail') {
-                    bootbox.alert('Failed to set exam date. Try again.');
-                    destroyScreenLoading();
-                }
-
-            },
-            error: function (jqXHR, textStatus, errorThrown) {
-                bootbox.alert('Opps! ' + errorThrown);
-                destroyScreenLoading();
-            }
-
-        });
-    }
-
-});
-
-//===================================== exam date ===================================================
 
 
 
@@ -439,7 +317,8 @@ $('#risManageOrderDetailsListTableDiv').on('click', '#risManageOrderDetailsListT
 
     var row = $(this).closest("tr");
     var arrData = row.find('td').eq(0).text().split('|');
-    var bsCode = arrData[2], modCode = arrData[1], proCode = arrData[3], proName = arrData[8], orderNo = arrData[0];
+    console.log(arrData);
+    var bsCode = arrData[2], modCode = arrData[1], proCode = arrData[1], proName = arrData[8], orderNo = arrData[0];
 
     bootbox.confirm({
         message: "Are you sure want to perform this exam? " + proCode + "-" + proName,
@@ -510,7 +389,7 @@ $('#risManageOrderDetailsListTableDiv').on('click', '#risManageOrderDetailsListT
 
     var row = $(this).closest("tr");
     var arrData = row.find('td').eq(0).text().split('|');
-    var bsCode = arrData[2], modCode = arrData[1], proCode = arrData[3], proName = arrData[9], orderNo = arrData[0];
+    var proCode = arrData[1], proName = arrData[8], orderNo = arrData[0];
 
     bootbox.confirm({
         message: "Are you sure want to delete(cancel) this order? " + proCode + "-" + proName,
@@ -532,8 +411,6 @@ $('#risManageOrderDetailsListTableDiv').on('click', '#risManageOrderDetailsListT
                 var data = {
                     process: 'cancel',
                     orderNo: orderNo,
-                    bsCode: bsCode,
-                    modCode: modCode,
                     proCode: proCode
                 };
 
@@ -600,91 +477,7 @@ $('#risManageOrderDetailsListTableDiv').on('click', '#risManageOrderDetailsListT
     $('#modal_prepareResult').modal('show');
 });
 
-//$('#PR_fileToLoad').checkFileType({
-//    allowedExtensions: ['jpg', 'jpeg', 'png', 'gif'],
-//    success: function () {
-//        loadImageFileAsURL();
-//    },
-//    error: function () {
-//        bootbox.alert('Incompatible file type');
-//        $('#PR_fileToLoad').val("");
-//        //$('#dym').html("");
-//        RIS_gambarURI = "";
-//    }
-//});
-//
-//function loadImageFileAsURL()
-//{
-//
-//    var iSize = 0;
-//
-//    iSize = ($("#PR_fileToLoad")[0].files[0].size / 1024);
-//
-//    var sizeSmall = false;
-//
-//    if (iSize / 1024 > 1) {
-//        if (((iSize / 1024) / 1024) > 1)
-//
-//        {
-//            //iSize = (Math.round(((iSize / 1024) / 1024) * 100) / 100);
-//            //$("#lblSize").html(iSize + "Gb");
-//            sizeSmall = false;
-//
-//        } else
-//
-//        {
-//
-//            iSize = (Math.round((iSize / 1024) * 100) / 100);
-//            sizeSmall = iSize <= 0.7;
-//            //$("#lblSize").html(iSize + "Mb");
-//
-//        }
-//
-//
-//    } else {
-//
-//        iSize = (Math.round(iSize * 100) / 100);
-//
-//        sizeSmall = iSize <= 700;
-//
-//    }
-//
-//
-//    if (sizeSmall) {
-//        //document.getElementById("dym").innerHTML = '<div class="loader"></div>';
-//        var filesSelected = document.getElementById("PR_fileToLoad").files;
-//        if (filesSelected.length > 0)
-//        {
-//            var fileToLoad = filesSelected[0];
-//
-//            var fileReader = new FileReader();
-//
-//            fileReader.onload = function (fileLoadedEvent)
-//            {
-//
-//                RIS_gambarURI = fileLoadedEvent.target.result;
-//
-//
-//                //document.getElementById("dym").innerHTML = '<img id="myImage">';
-//
-//                //document.getElementById("myImage").src = RIS_gambarURI;
-//                $('#PR_gamba').attr('src', RIS_gambarURI);
-//            };
-//
-//            fileReader.readAsDataURL(fileToLoad);
-//        }
-//
-//    } else {
-//
-//        bootbox.alert("File size must not exceed 650Kb");
-//        $('#PR_fileToLoad').val("");
-//        RIS_gambarURI = "";
-//        $('#PR_gamba').attr('src', RIS_gambarURI);
-//        //$('#dym').html("");
-//    }
 
-
-//}
 
 //...... submit exam result ............
 $('#PR_btnSubmit').on('click', function () {

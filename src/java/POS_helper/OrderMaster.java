@@ -80,7 +80,7 @@ public class OrderMaster {
     }
 
     public String[] getProcedureDetail(String leProcedure_cd, String hfc_cd) {
-        String[] name_price = new String[2];// to be return; index 0: procedure name, index 1: price
+        String[] name_price = new String[]{"Unknown", "0.00"};// to be return; index 0: procedure name, index 1: price
         
         int procedureLength = 0;
         
