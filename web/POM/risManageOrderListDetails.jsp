@@ -4,6 +4,7 @@
     Author     : Shammugam
 --%>
 
+<%@page import="POS_helper.OrderMaster"%>
 <%@page import="java.text.DecimalFormat"%>
 <%@page import="java.text.NumberFormat"%>
 <%@page import="org.apache.commons.lang3.StringUtils"%>
@@ -19,11 +20,11 @@
 
     NumberFormat formatter = new DecimalFormat("#0.00");
     NumberFormat formatterInt = new DecimalFormat("#0");
-//                                  0           1               2                           3               4               5                                                      6              7                                 
-    String orderList = "select order_no, pod.PROCEDURE_CD, cp1.`PROCEDURE_1_NAME`, cp.`PROCEDURE_NAME`, episode_date, ifnull(DATE_FORMAT(pod.`ENCOUNTER_DATE`,'%d/%m/%Y'), ''), comment, order_status "
+//                                  0           1               2                           3               4               5                                                      6              7       8 procedure_name                              
+    String orderList = "select order_no, pod.PROCEDURE_CD, 'cp1.`PROCEDURE_1_NAME`', 'cp.`PROCEDURE_NAME`', episode_date, ifnull(DATE_FORMAT(pod.`ENCOUNTER_DATE`,'%d/%m/%Y'), ''), comment, order_status "
             + "FROM pos_order_detail pod "
-            + "left join cis_procedure_1 cp1 on pod.`PROCEDURE_CD` = cp1.`PROCEDURE_1_CD` "
-            + "left join cis_procedure cp on cp.`PROCEDURE_CD` = cp1.`PROCEDURE_CD` "
+            //+ "left join cis_procedure_1 cp1 on pod.`PROCEDURE_CD` = cp1.`PROCEDURE_1_CD` "
+            //+ "left join cis_procedure cp on cp.`PROCEDURE_CD` = cp1.`PROCEDURE_CD` "
             + "where order_status in ('0', '1', '5', '3') AND order_no = '" + orderNo + "'; ";
            
 
@@ -36,9 +37,9 @@
 <table class="table table-filter table-striped table-bordered dt-head-right" style="background: #fff; border: 1px solid #ccc; width: 100%; text-align: left" id="risManageOrderDetailsListTable">
     <thead>
     <th style="display: none">Hidden</th>    
-    <th style="width: 15%">Procedure Name</th>
     <th style="width: 5%">Procedure Code</th>
-    <th style="width: 15%">Procedure Type</th>
+    <th style="width: 20%">Procedure Name</th>
+    <th style="width: 5%">Price (RM)</th>
     <th style="width: 20%">Comment</th>
     <th style="width: 5%">Encounter Date</th>
     <th style="width: 5%">Status</th>
@@ -50,32 +51,38 @@
     <%        for (int i = 0; i < dataOrderList.size(); i++) {
             String status = dataOrderList.get(i).get(7);
             String performDisabled = "";
-            String prepareDisabled = "";
+           // String prepareDisabled = "";
             String cancelDisabled = "";
             if (status.equalsIgnoreCase("0")) {
                 status = "New";
-                prepareDisabled = "disabled";
+               // prepareDisabled = "disabled";
             } else if (status.equalsIgnoreCase("1")) {
                 status = "In progress";
                 performDisabled = "disabled";
             }else if (status.equalsIgnoreCase("5")) {
                 status = "Submitted for verification";
                 performDisabled = "disabled";
-                prepareDisabled = "disabled";
+                //prepareDisabled = "disabled";
                 cancelDisabled = "disabled";
             
             }else if(status.equalsIgnoreCase("3")){
                 status = "Result Rejected. Please redo.";
-                prepareDisabled = "disabled";
+               // prepareDisabled = "disabled";
             }
+            
+            String procedure_cd = dataOrderList.get(i).get(1);
+            OrderMaster om = new OrderMaster();
+            String[] name_price = om.getProcedureDetail(procedure_cd, hfc_cd);
+            
+            dataOrderList.get(i).add(name_price[0]);
 
     %>
     <tr>
 
         <td style="display: none"><%= String.join("|", dataOrderList.get(i))%></td> <!-- hidden -->
-        <td><%= dataOrderList.get(i).get(3)%></td> <!-- name -->
-        <td><%= dataOrderList.get(i).get(1)%></td> <!-- code -->
-        <td><%= dataOrderList.get(i).get(2)%></td> <!-- type -->
+        <td><%= procedure_cd%></td> <!-- code -->
+        <td><%= name_price[0]%></td> <!-- name -->
+        <td><%= name_price[1]%></td> <!-- price -->
         <td><%= dataOrderList.get(i).get(6)%></td> <!-- comment -->
         <td><%= dataOrderList.get(i).get(5)%></td><!-- date -->
         <td><%= status%></td> <!-- status -->

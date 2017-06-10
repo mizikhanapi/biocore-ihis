@@ -439,7 +439,7 @@ $('#risManageOrderDetailsListTableDiv').on('click', '#risManageOrderDetailsListT
 
     var row = $(this).closest("tr");
     var arrData = row.find('td').eq(0).text().split('|');
-    var bsCode = arrData[2], modCode = arrData[1], proCode = arrData[3], proName = arrData[9], orderNo = arrData[0];
+    var bsCode = arrData[2], modCode = arrData[1], proCode = arrData[3], proName = arrData[8], orderNo = arrData[0];
 
     bootbox.confirm({
         message: "Are you sure want to perform this exam? " + proCode + "-" + proName,
