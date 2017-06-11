@@ -69,6 +69,7 @@
 
                                                 </div>
                                                 <%@include file="order_modal/requestNewOrder_modal.jsp" %>
+                                                <%@include file="order_modal/prepareResult_modal.jsp" %>
                                                 
                                             </div>
 

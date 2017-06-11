@@ -147,6 +147,7 @@
                 <label class="col-md-3 control-label" for="textinput">Order Date</label>
                 <div class="col-md-7">
                     <input id="risOrderDate" name="risOrderDate" type="text" readonly placeholder="" class="form-control input-md">
+                    <input id="posEpDate" type="hidden">
                 </div>
             </div>
 

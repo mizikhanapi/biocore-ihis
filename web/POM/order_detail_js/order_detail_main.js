@@ -37,6 +37,7 @@ $('#risOrderListContent').off('click', '#risManageOrderListTable #moveToRISOrder
     var risOrderNo = arrayData[1];
     var risOrderDate = arrayData[5];
     var risOrderLocationCode = arrayData[2];
+    var posEpDate = arrayData[3];
 
 
     //Set value to the Second Tab 
@@ -49,6 +50,7 @@ $('#risOrderListContent').off('click', '#risManageOrderListTable #moveToRISOrder
     $("#risOrderNo").val(risOrderNo);
     $("#risOrderDate").val(risOrderDate);
     $("#risOrderLocationCode").val(risOrderLocationCode);
+    $('#posEpDate').val(posEpDate);
 
     loadAllergyDiagnosisOrder(risOrderNo, rispmino);
 
@@ -311,79 +313,6 @@ function loadOrderDetailList(orderNo) {
 
 
 
-
-//------------------- perform exam on click --------------------------------------
-$('#risManageOrderDetailsListTableDiv').on('click', '#risManageOrderDetailsListTable #MOD_btnPerform', function () {
-
-    var row = $(this).closest("tr");
-    var arrData = row.find('td').eq(0).text().split('|');
-    console.log(arrData);
-    var bsCode = arrData[2], modCode = arrData[1], proCode = arrData[1], proName = arrData[8], orderNo = arrData[0];
-
-    bootbox.confirm({
-        message: "Are you sure want to perform this exam? " + proCode + "-" + proName,
-        title: "Perform Exam?",
-        buttons: {
-            confirm: {
-                label: 'Yes',
-                className: 'btn-success'
-            },
-            cancel: {
-                label: 'No',
-                className: 'btn-danger'
-            }
-        },
-        callback: function (result) {
-
-            if (result === true) {
-
-                var data = {
-                    process: 'perform',
-                    orderNo: orderNo,
-                    bsCode: bsCode,
-                    modCode: modCode,
-                    proCode: proCode
-                };
-
-                createScreenLoading();
-
-                $.ajax({
-                    url: "order_control/order_update.jsp",
-                    type: "post",
-                    data: data,
-                    success: function (datas) {
-
-                        if (datas.trim() === 'success') {
-                            bootbox.alert('Exam is performed.');
-                            loadOrderDetailList(orderNo);
-
-
-                        } else if (datas.trim() === 'fail') {
-                            bootbox.alert("Fail to perform exam!");
-                            destroyScreenLoading();
-
-                        }
-                    },
-                    error: function (jqXHR, textStatus, errorThrown) {
-                        bootbox.alert("Opps! " + errorThrown);
-                        destroyScreenLoading();
-                    }
-
-                });
-
-            } else {
-                console.log("Process Is Canceled");
-            }
-
-        }
-    });
-
-});
-//=========================== perform the exam ============================================
-
-//-------------------------- prepare exam report --------------------------------------------
-
-
 //------------------------------- cancel order --------------------------------------------
 $('#risManageOrderDetailsListTableDiv').on('click', '#risManageOrderDetailsListTable #MOD_btnDelete', function () {
 
@@ -451,26 +380,21 @@ $('#risManageOrderDetailsListTableDiv').on('click', '#risManageOrderDetailsListT
 
 //=========================== cancel order ==========================================
 
-//-------------------------prepare exam result --------------------------------------
+//-------------------------perform procedure and write result --------------------------------------
 
-//creating modal
-$('#risManageOrderDetailsListTableDiv').on('click', '#risManageOrderDetailsListTable #MOD_btnPrepare', function () {
+//.....creating modal......
+$('#risManageOrderDetailsListTableDiv').on('click', '#risManageOrderDetailsListTable #MOD_btnPerform', function () {
     RIS_gambarURI = "";
     $('#PR_gamba').attr('src', RIS_gambarURI);
 
     var row = $(this).closest("tr");
     var arrData = row.find('td').eq(0).text().split('|');
-    var bsCode = arrData[2], modCode = arrData[1], proCode = arrData[3], proName = arrData[9], orderNo = arrData[0], bsName = arrData[11], modName = arrData[12], proName = arrData[9];
+    var proCode = arrData[1], proName = arrData[8], comment = arrData[6];
 
-    $('#PR_bodySystem').val(bsName);
-    $('#PR_bodySystem_cd').val(bsCode);
-    $('#PR_modality').val(modName);
-    $('#PR_modality_cd').val(modCode);
-    $('#PR_proName').val(proName);
-    $('#PR_pro_cd').val(proCode);
+    $('#PR_procedureCode').val(proCode);
+    $('#PR_procedureName').val(proName);
 
-    $('#PR_fileToLoad').val('');
-    $('#PR_comment').val('');
+    $('#PR_comment').val(comment);
 
     $('#modal_prepareResult').css('overflow', 'auto');
 
@@ -483,10 +407,10 @@ $('#risManageOrderDetailsListTableDiv').on('click', '#risManageOrderDetailsListT
 $('#PR_btnSubmit').on('click', function () {
 
     var orderNo = $('#risOrderNo').val();
-    var bsCode = $('#PR_bodySystem_cd').val();
-    var modCode = $('#PR_modality_cd').val();
-    var proCode = $('#PR_pro_cd').val();
+    var proCode = $('#PR_procedureCode').val();
+    var proName = $('#PR_procedureName').val();
     var comment = $('#PR_comment').val();
+    var epDate = $('#posEpDate').val();
 
     if (comment === '') {
         bootbox.alert('Please write a meaningful comment.',
@@ -500,11 +424,10 @@ $('#PR_btnSubmit').on('click', function () {
         var data = {
             process: 'report',
             orderNo: orderNo,
-            bsCode: bsCode,
-            modCode: modCode,
             proCode: proCode,
+            proName: proName,
             comment: comment,
-            gambar: RIS_gambarURI
+            epDate: epDate
         };
         
         $('#modal_prepareResult').modal('hide');
@@ -539,18 +462,7 @@ $('#PR_btnSubmit').on('click', function () {
 
 //======================== prepare exam result ====================================
 
-// Save Button Function Start
-$('#patientOrderDispenseButtonDiv').on('click', '#btnRISOrderSave', function (e) {
-    alert("In Save");
-});
-// Save Button Function End
 
-
-// Send Button Function Start
-$('#patientOrderDispenseButtonDiv').on('click', '#btnRISOrderSendResults', function (e) {
-    alert("In Send");
-});
-// Send Button Function End
 
 
 
