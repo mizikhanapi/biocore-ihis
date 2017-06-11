@@ -18,13 +18,13 @@ import main.RMIConnector;
 public class EHRMessageSender {
 
     private String userID;
-    private String hfc;
+    protected String hfc;
     private String dis;
     private String subdis;
-    private String pmiNo;
-    private String orderNo;
+    protected String pmiNo;
+    protected String orderNo;
     private String orderDate;
-    private Conn conn;
+    protected Conn conn;
 
     public EHRMessageSender(String userID, String hfc, String dis, String subdis, String pmiNo, String orderNo, String orderDate) {
 
