@@ -4,6 +4,8 @@
     Author     : user
 --%>
 
+<%@page import="dBConn.Conn"%>
+<%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@include file="../Entrance/validateSession.jsp" %>
 <%@include file="validateModuleAccess.jsp" %>
@@ -76,13 +78,27 @@
                                     <div class="form-group">
                                         <label class="col-md-3 control-label" for="textinput">Diagnosis list by discipline: </label>
                                         <div class="col-md-3">
-                                            <select class="form-control" name="test" id="RMOM_oderTime">
-                                                <option value="1">All</option>
-                                                <option value="2">...</option>
+
+                                            <select class="form-control" name="disp" id="disp">
+                                                <option value="All">All</option>
+                                                <%  Conn conn = new Conn();
+                                                    String my_1_hfc_cd = (String) session.getAttribute("HEALTH_FACILITY_CODE");
+                                                    String sql = "SELECT DISTINCT Centre_Code FROM lhr_diagnosis WHERE HFC_Cd = '"+my_1_hfc_cd+"' ";
+                                                    ArrayList<ArrayList<String>> ICD10 = conn.getData(sql);
+
+                                                    int size = ICD10.size();
+                                                    for (int i = 0; i < size; i++) {
+                                                %>
+                                                <option value="<%= ICD10.get(i).get(0)%>"><%= ICD10.get(i).get(0)%></option>
+
+                                                <%
+                                                    }
+                                                %>
                                             </select>
                                         </div>
                                         <div class="col-md-2">
                                             <button id="RMOM_btnRefresh" class="btn btn-default" style=" padding-right: 10px;padding-left: 10px;color: black;"><i class=" fa fa-refresh" style=" padding-right: 10px;padding-left: 10px;color: black;"></i>Refresh</button>
+                                            <button type="submit" class="btn btn-success" role="button" id="printICD10" >Generate Report</button>
                                         </div>
                                     </div>
                                 </div>
@@ -116,11 +132,7 @@
                                 });
 
                             </script>
-                            <div class="text-right">
-                                <button type="clear" id="PrintReset" class="btn btn-link " data-dismiss="modal" role="button" >Cancel</button>
-                                <button type="submit" class="btn btn-success" role="button" id="printICD10">Generate Report</button>
-                            </div>
-                            <br>
+                            
                             <div id="ICD10">
 
                             </div>
@@ -129,14 +141,14 @@
                 </div>
             </div>
         </div>
-            <script src="../assets/js/jquery.dataTables.min.js" type="text/javascript"></script>
-            <script src="../assets/js/dataTables.buttons.min.js" type="text/javascript"></script>
-            <script src="../assets/js/jszip.min.js" type="text/javascript"></script>
-            <script src="../assets/js/buttons.flash.min.js" type="text/javascript"></script>
-        <script src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.27/build/pdfmake.min.js"></script>
-        <script src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.27/build/vfs_fonts.js"></script>
-        <script src="https://cdn.datatables.net/buttons/1.3.1/js/buttons.html5.min.js"></script>
-        <script src="https://cdn.datatables.net/buttons/1.3.1/js/buttons.print.min.js" type="text/javascript" language="javascript"></script>
+        <script src="../assets/js/jquery.dataTables.min.js" type="text/javascript"></script>
+        <script src="../assets/js/dataTables.buttons.min.js" type="text/javascript"></script>
+        <script src="../assets/js/jszip.min.js" type="text/javascript"></script>
+        <script src="../assets/js/buttons.flash.min.js" type="text/javascript"></script>
+        <script src="../assets/js/pdfmake.min.js" type="text/javascript"></script>
+        <script src="../assets/js/vfs_fonts.js" type="text/javascript"></script>
+        <script src="../assets/js/buttons.html5.min.js" type="text/javascript"></script>
+        <script src="../assets/js/buttons.print.min.js" type="text/javascript"></script>
         <script>
 
                                 $(document).ready(function () {
@@ -159,12 +171,13 @@
 
                                             var startDate = document.getElementById("startDate").value;
                                             var endDate = document.getElementById("endDate").value;
-                                            //alert(startDate+" / "+startDate);
+                                            var disp = document.getElementById("disp").value;
+                                            //alert(disc+" / "+startDate+" / "+startDate);
                                             $.ajax({
                                                 async: true,
                                                 type: "POST",
                                                 url: "ICD10Report.jsp",
-                                                data: {'startDate': startDate, 'endDate': endDate},
+                                                data: {'startDate': startDate, 'endDate': endDate, 'disp':disp},
                                                 timeout: 10000,
                                                 success: function (list) {
 
