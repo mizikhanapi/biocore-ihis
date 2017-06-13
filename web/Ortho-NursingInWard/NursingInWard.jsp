@@ -74,7 +74,7 @@
                                     <!-- content -->
                                     <div class="tab-pane active fade in" id="tab_default_1">
                                         <ul class="soap-content nav">
-                                            <li><a data-toggle="modal" data-target="#ong-pDetails1" href="" class="soap-select"><i class="fa fa-comments  fa-li"></i> Date & Time</a></li>
+                                            <li><a data-toggle="modal" data-target="#cobserved1" href="" class="soap-select"><i class="fa fa-comments  fa-li"></i> Date & Time</a></li>
                                             <li><a data-toggle="modal" data-target="#ong-pDetails1" href="" class="soap-select"><i class="fa fa-comments  fa-li"></i> Blood Presure</a></li>
                                             <li><a data-toggle="modal" data-target="#ong-pDetails1" href="" class="soap-select"><i class="fa fa-comments  fa-li"></i> Respiratory Rate</a></li>
                                             <li><a data-toggle="modal" data-target="#ong-pDetails1" href="" class="soap-select"><i class="fa fa-comments  fa-li"></i> Oxygen Saturation</a></li>
@@ -82,96 +82,90 @@
                                             <li><a data-toggle="modal" data-target="#ong-pDetails1" href="" class="soap-select"><i class="fa fa-comments  fa-li"></i> Comments</a></li>
                                         </ul>
                                         <hr class="pemisah" />
-                                        <%//@include file="neuAssessment.jsp"%>
+                                        <%@include file="chartObservation.jsp"%>
                                     </div>
                                     <!-- content -->
 
                                     <!-- content -->
                                     <div class="tab-pane fade" id="tab_default_2">
                                         <ul class="soap-content nav">
-                                            <li><a data-toggle="modal" data-target="#ong-pDetails1" href="" class="soap-select"><i class="fa fa-comments  fa-li"></i> Date & Time</a></li>
-                                            <li><a data-toggle="modal" data-target="#ong-pDetails2" href=""  class="soap-select"><i class="fa fa-history  fa-li"></i> Site of IV Canulation</a></li>
-                                            <li><a data-toggle="modal" data-target="#ong-pDetails3" href=""  class="soap-select"><i class="fa fa-medkit  fa-li"></i> Pain Score</a></li>
-                                            <li><a data-toggle="modal" data-target="#ong-pDetails3" href=""  class="soap-select"><i class="fa fa-medkit  fa-li"></i> Yes | No</a></li>
-                                            <li><a data-toggle="modal" data-target="#ong-pDetails3" href=""  class="soap-select"><i class="fa fa-medkit  fa-li"></i> Additive</a></li>
-                                            <li><a data-toggle="modal" data-target="#ong-pDetails3" href=""  class="soap-select"><i class="fa fa-medkit  fa-li"></i> Thrombo phlebitis</a></li>
-                                            <li><a data-toggle="modal" data-target="#ong-pDetails3" href=""  class="soap-select"><i class="fa fa-medkit  fa-li"></i> V.I.P. Score</a></li>
+                                            <li><a data-toggle="modal" data-target="#4hly" href="" class="soap-select"><i class="fa fa-comments  fa-li"></i>New Assessment</a></li>
                                         </ul>
                                         <hr class="pemisah" />
-                                        <%//@include file="neuObservation.jsp"%>
+                                        <%@include file="4hly.jsp"%>
                                     </div>
                                     <!-- content -->
 
                                     <!-- content -->
                                     <div class="tab-pane fade" id="tab_default_3">
                                         <ul class="soap-content nav">
-                                            <li><a data-toggle="modal" data-target="#ong-pDetails1" href="" class="soap-select"><i class="fa fa-comments  fa-li"></i> Add Perawatan Records</a></li>
+                                            <li><a data-toggle="modal" data-target="#perawatan-ortho" href="" class="soap-select"><i class="fa fa-comments  fa-li"></i> Add Perawatan Records</a></li>
                                         </ul>
                                         <hr class="pemisah" />
-                                        <%//@include file="PIRAssessment.jsp"%>
+                                        <%@include file="perawatan-ortho.jsp"%>
                                     </div>
                                     <!-- content -->
                                     
                                     <!-- content -->
                                     <div class="tab-pane fade" id="tab_default_4">
                                         <ul class="soap-content nav">
-                                            <li><a data-toggle="modal" data-target="#ong-pDetails1" href="" class="soap-select"><i class="fa fa-comments  fa-li"></i> Add Circulation Chart</a></li>
+                                            <li><a data-toggle="modal" data-target="#circulationChart" href="" class="soap-select"><i class="fa fa-comments  fa-li"></i> Add Circulation Chart</a></li>
                                         </ul>
                                         <hr class="pemisah" />
-                                        <%//@include file="PIRAssessment.jsp"%>
+                                        <%@include file="chartCirculation.jsp"%>
                                     </div>
                                     <!-- content -->
 
                                     <!-- content -->
                                     <div class="tab-pane fade" id="tab_default_5">
                                         <ul class="soap-content nav">
-                                            <li><a data-toggle="modal" data-target="#ong-pDetails1" href="" class="soap-select"><i class="fa fa-comments  fa-li"></i> Daily Skin Assessment Tool</a></li>
-                                            <li><a data-toggle="modal" data-target="#ong-pDetails2" href=""  class="soap-select"><i class="fa fa-history  fa-li"></i> Positioning Chart</a></li>
+                                            <li><a data-toggle="modal" data-target="#chartDailySkin1" href="" class="soap-select"><i class="fa fa-comments  fa-li"></i> Daily Skin Assessment Tool</a></li>
+                                            <li><a data-toggle="modal" data-target="#chartDailySkin2" href=""  class="soap-select"><i class="fa fa-history  fa-li"></i> Positioning Chart</a></li>
                                         </ul>
                                         <hr class="pemisah" />
-                                        <%//@include file="PIRAssessment.jsp"%>
+                                        <%@include file="chartDailySkin.jsp"%>
                                     </div>
                                     <!-- content -->
                                     
                                     <!-- content -->
                                     <div class="tab-pane fade" id="tab_default_6">
                                         <ul class="soap-content nav">
-                                            <li><a data-toggle="modal" data-target="#ong-pDetails1" href="" class="soap-select"><i class="fa fa-comments  fa-li"></i> Add New Diabetic Chart</a></li>
+                                            <li><a data-toggle="modal" data-target="#DiabeticChart" href="" class="soap-select"><i class="fa fa-comments  fa-li"></i> Add New Diabetic Chart</a></li>
                                         </ul>
                                         <hr class="pemisah" />
-                                        <%//@include file="PIRAssessment.jsp"%>
+                                        <%@include file="DiabeticChart.jsp"%>
                                     </div>
                                     <!-- content -->
                                     
                                     <!-- content -->
                                     <div class="tab-pane fade" id="tab_default_7">
                                         <ul class="soap-content nav">
-                                            <li><a data-toggle="modal" data-target="#ong-pDetails1" href="" class="soap-select"><i class="fa fa-comments  fa-li"></i> Add New Fits Chart</a></li>
+                                            <li><a data-toggle="modal" data-target="#FitsChart" href="" class="soap-select"><i class="fa fa-comments  fa-li"></i> Add New Fits Chart</a></li>
                                         </ul>
                                         <hr class="pemisah" />
-                                        <%//@include file="PIRAssessment.jsp"%>
+                                        <%@include file="FitsChart.jsp"%>
                                     </div>
                                     <!-- content -->
                                     
                                     <!-- content -->
                                     <div class="tab-pane fade" id="tab_default_8">
                                         <ul class="soap-content nav">
-                                            <li><a data-toggle="modal" data-target="#ong-pDetails1" href="" class="soap-select"><i class="fa fa-comments  fa-li"></i> 7am - 2pm</a></li>
-                                            <li><a data-toggle="modal" data-target="#ong-pDetails2" href=""  class="soap-select"><i class="fa fa-history  fa-li"></i> 2pm - 9pm</a></li>
-                                            <li><a data-toggle="modal" data-target="#ong-pDetails3" href=""  class="soap-select"><i class="fa fa-medkit  fa-li"></i> 9pm - 7am</a></li>
+                                            <li><a data-toggle="modal" data-target="#redivacDrainChart1" href="" class="soap-select"><i class="fa fa-comments  fa-li"></i> 7am - 2pm</a></li>
+                                            <li><a data-toggle="modal" data-target="#redivacDrainChart2" href=""  class="soap-select"><i class="fa fa-history  fa-li"></i> 2pm - 9pm</a></li>
+                                            <li><a data-toggle="modal" data-target="#redivacDrainChart3" href=""  class="soap-select"><i class="fa fa-medkit  fa-li"></i> 9pm - 7am</a></li>
                                         </ul>
                                         <hr class="pemisah" />
-                                        <%//@include file="PIRAssessment.jsp"%>
+                                        <%@include file="redivacDrainChart.jsp"%>
                                     </div>
                                     <!-- content -->
                                     
                                     <!-- content -->
                                     <div class="tab-pane fade" id="tab_default_9">
                                         <ul class="soap-content nav">
-                                            <li><a data-toggle="modal" data-target="#ong-pDetails1" href="" class="soap-select"><i class="fa fa-comments  fa-li"></i> Add New Urine Info</a></li>
+                                            <li><a data-toggle="modal" data-target="#chartUrine" href="" class="soap-select"><i class="fa fa-comments  fa-li"></i> Add New Urine Info</a></li>
                                         </ul>
                                         <hr class="pemisah" />
-                                        <%//@include file="PIRAssessment.jsp"%>
+                                        <%@include file="chartUrine.jsp"%>
                                     </div>
                                     <!-- content -->
                                     
@@ -181,18 +175,18 @@
                                             <li><a data-toggle="modal" data-target="#ong-pDetails1" href="" class="soap-select"><i class="fa fa-comments  fa-li"></i> Add New Wound Assessment</a></li>
                                         </ul>
                                         <hr class="pemisah" />
-                                        <%//@include file="PIRAssessment.jsp"%>
+                                        <%//@include file="fluidBalance.jsp"%>
                                     </div>
                                     <!-- content -->
                                     
                                     <!-- content -->
                                     <div class="tab-pane fade" id="tab_default_11">
                                         <ul class="soap-content nav">
-                                            <li><a data-toggle="modal" data-target="#ong-pDetails1" href="" class="soap-select"><i class="fa fa-comments  fa-li"></i> Intake (ml)</a></li>
-                                            <li><a data-toggle="modal" data-target="#ong-pDetails2" href=""  class="soap-select"><i class="fa fa-history  fa-li"></i> Output (ml)</a></li>
+                                            <li><a data-toggle="modal" data-target="#fluidBalance1" href="" class="soap-select"><i class="fa fa-comments  fa-li"></i> Intake (ml)</a></li>
+                                            <li><a data-toggle="modal" data-target="#fluidBalance2" href=""  class="soap-select"><i class="fa fa-history  fa-li"></i> Output (ml)</a></li>
                                         </ul>
                                         <hr class="pemisah" />
-                                        <%//@include file="PIRAssessment.jsp"%>
+                                        <%@include file="fluidBalance.jsp"%>
                                     </div>
                                     <!-- content -->
                                 </div>
@@ -206,7 +200,16 @@
         </div>
 
 
-        <%@include file="modal/addNeurosurgical.jsp"%>
+        <%@include file="modal/chartObservation.jsp"%>
+        <%@include file="modal/4hly.jsp"%>
+        <%@include file="modal/perawatan-ortho.jsp"%>
+        <%@include file="modal/chartCirculation.jsp"%>
+        <%@include file="modal/chartDailySkin.jsp"%>
+        <%@include file="modal/DiabeticChart.jsp"%>
+        <%@include file="modal/FitsChart.jsp"%>
+        <%@include file="modal/redivacDrainChart.jsp"%>
+        <%@include file="modal/chartUrine.jsp"%>
+        <%@include file="modal/fluidBalance.jsp"%>
         <script src="../assets/js/jquery.min.js" type="text/javascript"></script>
         <script src="../assets/js/bootstrap.min.js" type="text/javascript"></script>
 

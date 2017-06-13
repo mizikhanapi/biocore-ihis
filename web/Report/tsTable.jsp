@@ -149,7 +149,7 @@
 
     function printReport() {
         var divElements = $('#test1').html();
-        var popupWin = window.open('', '_blank', 'width=1200,height=500');
+        var popupWin = window.open('', '_blank', 'width=1080,height=768');
         popupWin.document.open();
         popupWin.document.write('<html><body onload="window.print()">' + divElements + '</html>');
         popupWin.document.close();

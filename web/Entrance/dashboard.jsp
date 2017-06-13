@@ -326,6 +326,15 @@
                             </a>
                         </div>
                         
+                        <div class="col-sm-6 col-md-3">
+                            <a href="../OperationTheater/index.jsp" class="thumbnail">
+                                <div class="kotak text-center">
+                                    <i class="fa fa-user-md" aria-hidden="true" style="color: orange;font-size: 4em;"></i>
+                                    <h3>Operation Theater</h3>
+                                </div>
+                            </a>
+                        </div>
+                        
                     </div>
 
                 </div>

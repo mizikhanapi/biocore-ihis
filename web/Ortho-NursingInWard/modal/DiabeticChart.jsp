@@ -1,20 +1,20 @@
 <%-- 
-    Document   : addNeurosurgical
-    Created on : Apr 18, 2017, 10:54:23 AM
-    Author     : user
+    Document   : DiabeticChart
+    Created on : Jun 9, 2017, 12:41:20 PM
+    Author     : Mizi K (UI)
 --%>
 
-<div class="modal fade" id="NeurosurgicalOC" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<div class="modal fade" id="DiabeticChart" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><i class="fa fa-times fa-lg"></i></span></button>
-                <h4 class="modal-title" id="myModalLabel">Neurosurgical Observation Chart</h4>
+                <h4 class="modal-title" id="myModalLabel">Diabetic Chart</h4>
             </div>
             <div class="modal-body">
                 <form>
                     <div class="row">
-                        <div class="col-md-4">
+                        <div class="col-md-6">
                             <!-- Text input-->
                             <div class="form-group">
                                 <label class="col-md-12 control-label" for="textinput">Date</label>
@@ -23,7 +23,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-6">
                             <!-- Text input-->
                             <div class="form-group">
                                 <label class="col-md-12 control-label" for="textinput">Time</label>
@@ -33,6 +33,28 @@
                             </div>
                         </div>
                     </div>
+                    <hr/>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <!-- Text input-->
+                            <div class="form-group">
+                                <label class="col-md-12 control-label" for="textinput">Dextrostix</label>
+                                <div class="col-md-12">
+                                    <input type="text" class="form-control input-md" placeholder="Type to search...">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <!-- Text input-->
+                            <div class="form-group">
+                                <label class="col-md-12 control-label" for="textinput">Doctor Name</label>
+                                <div class="col-md-12">
+                                    <input type="text" class="form-control input-md" placeholder="Type to search...">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                 </form>
             </div>
             <div class="modal-footer">

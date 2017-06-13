@@ -50,10 +50,10 @@
                                     <!-- content -->
                                     <div class="tab-pane active fade in" id="tab_default_1">
                                         <ul class="soap-content nav">
-                                            <li><a data-toggle="modal" data-target="#ong-pDetails1" href="" class="soap-select"><i class="fa fa-comments  fa-li"></i> Add new Record</a></li>
+                                            <li><a data-toggle="modal" data-target="#operationRecord1" href="" class="soap-select"><i class="fa fa-comments  fa-li"></i> Add new Record</a></li>
                                         </ul>
                                         <hr class="pemisah" />
-                                        <%//@include file="neuAssessment.jsp"%>
+                                        <%@include file="operationRecord.jsp"%>
                                     </div>
                                     <!-- content -->
 
@@ -80,10 +80,10 @@
                                     <!-- content -->
                                     <div class="tab-pane fade" id="tab_default_4">
                                         <ul class="soap-content nav">
-                                            <li><a data-toggle="modal" data-target="#ong-pDetails1" href="" class="soap-select"><i class="fa fa-comments  fa-li"></i> Add Procedure Incision</a></li>
+                                            <li><a data-toggle="modal" data-target="#procedureIncision1" href="" class="soap-select"><i class="fa fa-comments  fa-li"></i> Add Procedure Incision</a></li>
                                         </ul>
                                         <hr class="pemisah" />
-                                        <%//@include file="PIRAssessment.jsp"%>
+                                        <%//@include file="procedureIncision.jsp"%>
                                     </div>
                                     <!-- content -->
 
@@ -105,7 +105,8 @@
         </div>
 
 
-        <%@include file="modal/addNeurosurgical.jsp"%>
+        <%@include file="modal/operationRecord.jsp"%>
+        <%@include file="modal/procedureIncision.jsp"%>
         <script src="../assets/js/jquery.min.js" type="text/javascript"></script>
         <script src="../assets/js/bootstrap.min.js" type="text/javascript"></script>
 
