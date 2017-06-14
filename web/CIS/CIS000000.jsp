@@ -32,7 +32,7 @@
         <%@ include file="../assets/header.html" %> 
         <!-- header -->
 
-        
+
 
         <script type="text/javascript">
             window.location.hash = "no-back-button";
@@ -141,7 +141,7 @@
                     </div>
 
                     <div class="tab-content" style="padding: 0px;">
-                        <div class="tab-pane fade in active" id="generic">
+                        <div class="tab-pane fade in active" id="generic-soap">
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="thumbnail">
@@ -212,7 +212,7 @@
                                             <tbody id="PRINotes"   class="P ConsultationNotes"> </tbody>
                                             <tbody id="MONNotes"   class="P ConsultationNotes"> </tbody>
                                             <tbody id="ADWNotes"   class="P ConsultationNotes"> </tbody>
-                                             <tbody id="DCGNotes"   class="P ConsultationNotes"> </tbody>
+                                            <tbody id="DCGNotes"   class="P ConsultationNotes"> </tbody>
                                         </table>
 
                                     </div>
@@ -220,13 +220,23 @@
 
                             </div>
                         </div>
-                        <div class="tab-pane fade" id="orthopedic">
-                            <%//@include file = "specialistTemplate/Observation-Orthopedic/orthopedic.jsp" %>
+                        <div class="tab-pane fade" id="orthopedic-con">
+                            <jsp:include page="../Ortho-Consultation/orthopedic.jsp"/>
+                        </div>
+
+                        <div class="tab-pane fade" id="orthopedic-nur">
+                            <jsp:include page="../Ortho-Nursing/Nursing.jsp"/>
                         </div> 
-                        
-                       <div class="tab-pane fade" id="mcSlip">
-                            
+
+                        <div class="tab-pane fade" id="orthopedic-niw">
+                            <jsp:include page="../Ortho-NursingInWard/NursingInWard.jsp"/>
                         </div> 
+
+                        <div class="tab-pane fade" id="orthopedic-ot">
+                            <jsp:include page="../Ortho-operationTheater/OperationTheater.jsp"/>
+                        </div> 
+
+
                     </div>
                 </div>
                 <!-- main -->		
@@ -280,9 +290,6 @@
             <script src="assets/ie10-viewport-bug-workaround.js.download"></script>
         -->
 
-
-        <script src="specialistTemplate/Observation-Orthopedic/lib/number.js" type="text/javascript"></script>
-        <script src="specialistTemplate/Observation-Orthopedic/lib/specialist-panel.js" type="text/javascript"></script>
         <script>
 
             (function ($) {

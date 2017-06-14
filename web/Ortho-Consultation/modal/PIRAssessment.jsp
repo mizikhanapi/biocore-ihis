@@ -9,7 +9,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><i class="fa fa-times fa-lg"></i></span></button>
-                <h4 class="modal-title" id="myModalLabel">Date & Time</h4>
+                <h4 class="modal-title" id="myModalLabel">Pressure Injury Risk Assessment</h4>
             </div>
             <div class="modal-body">
                 <form class="form-horizontal" name="myForm2" id="myForm2">
@@ -100,37 +100,37 @@
                             <div class="form-group soalan">
                                 <div class="col-md-12">
                                     <div class="ckbox"><input type="checkbox" id="Obesity"><label for="Obesity"></label></div>
-                                    1. Obesity
+                                    3.1. Obesity
                                 </div>
                             </div>
                             <div class="form-group soalan">
                                 <div class="col-md-12">
                                     <div class="ckbox"><input type="checkbox" id="Cachexic"><label for="Cachexic"></label></div>
-                                    2. Cachexic / Malnourished
+                                    3.2. Cachexic / Malnourished
                                 </div>
                             </div>
                             <div class="form-group soalan">
                                 <div class="col-md-12">
                                     <div class="ckbox"><input type="checkbox" id="ventilatory"><label for="ventilatory"></label></div>
-                                    3. On high ventilatory support 
+                                    3.3. On high ventilatory support 
                                 </div>
                             </div>
                             <div class="form-group soalan">
                                 <div class="col-md-12">
                                     <div class="ckbox"><input type="checkbox" id="sedation"><label for="sedation"></label></div>
-                                    4. On deep sedation
+                                    3.4. On deep sedation
                                 </div>
                             </div>
                             <div class="form-group soalan">
                                 <div class="col-md-12">
                                     <div class="ckbox"><input type="checkbox" id="inotropic"><label for="inotropic"></label></div>
-                                    5. On high inotropic support
+                                    3.5. On high inotropic support
                                 </div>
                             </div>
                             <div class="form-group soalan">
                                 <div class="col-md-12">
                                     <div class="ckbox"><input type="checkbox" id="Limb"><label for="Limb"></label></div>
-                                    6. Limb traction
+                                    3.6. Limb traction
                                 </div>
                             </div>
                         </div>
@@ -139,31 +139,31 @@
                             <div class="form-group soalan">
                                 <div class="col-md-12">
                                     <div class="ckbox"><input type="checkbox" id="Spinal"><label for="Spinal"></label></div>
-                                    7. Spinal injury
+                                    3.7. Spinal injury
                                 </div>
                             </div>
                             <div class="form-group soalan">
                                 <div class="col-md-12">
                                     <div class="ckbox"><input type="checkbox" id="glassgow"><label for="glassgow"></label></div>
-                                    8. Poor glassgow coma score
+                                    3.8. Poor glassgow coma score
                                 </div>
                             </div>
                             <div class="form-group soalan">
                                 <div class="col-md-12">
                                     <div class="ckbox"><input type="checkbox" id="Paralysed"><label for="Paralysed"></label></div>
-                                    9. Paralysed 
+                                    3.9. Paralysed 
                                 </div>
                             </div>
                             <div class="form-group soalan">
                                 <div class="col-md-12">
                                     <div class="ckbox"><input type="checkbox" id="Neurogicaldeficit"><label for="Neurogicaldeficit"></label></div>
-                                    10. Neurogical deficit
+                                    3.10. Neurogical deficit
                                 </div>
                             </div>
                             <div class="form-group soalan">
                                 <div class="col-md-12">
                                     <div class="ckbox"><input type="checkbox" id="Others"><label for="Others"></label></div>
-                                    11. Others
+                                    3.11. Others
                                     <input id="rnNo" name="rnNo" type="text" placeholder="Specify..." class="form-control input-md" style="margin-top: 8px!important;">
                                 </div>
                             </div>
@@ -178,7 +178,7 @@
                         <div class="col-md-6">
 
                             <!-- Surface -->
-                            <h5>1. SURFACE</h5>
+                            <h5>4.1. SURFACE</h5>
                             <div class="golongan-soalan margin-bottom-30px">
                                 <div class="form-group soalan">
                                     <div class="col-md-12">
@@ -208,7 +208,7 @@
                             </div>
 
                             <!-- Mobility -->
-                            <h5>2. MOBILITY</h5>
+                            <h5>4.2. MOBILITY</h5>
                             <div class="golongan-soalan margin-bottom-30px">
                                 <div class="form-group soalan">
                                     <div class="col-md-12">
@@ -250,7 +250,7 @@
                             </div>
 
                             <!-- Nutrition -->
-                            <h5>3. NUTRITION</h5>
+                            <h5>4.3. NUTRITION</h5>
                             <div class="golongan-soalan">
                                 <div class="form-group soalan">
                                     <div class="col-md-12">
@@ -270,7 +270,7 @@
 
                         <div class="col-md-6 kedua">
                             <!-- Skin Care -->
-                            <h5>4. SKIN CARE</h5>
+                            <h5>4.4. SKIN CARE</h5>
                             <div class="golongan-soalan margin-bottom-30px">
                                 <p>Barrier product</p>
                                 <div class="form-group soalan">
@@ -370,6 +370,18 @@
                     </div>
                 </form>
                 <br/>
+<hr/>
+                <div class="row margin-bottom-10px">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <dd class="col-md-11 control-label" for="textinput">Assessment by <strong>Name of Assessor</strong></dd>
+                            <div class="col-md-1">
+                                <div class="ckbox"><input type="checkbox" id="approvedAssessor"><label for="approvedAssessor"></label></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
             </div>
             <div class="modal-footer">
                 <div class="btn-group btn-group-justified" role="group" aria-label="group button">

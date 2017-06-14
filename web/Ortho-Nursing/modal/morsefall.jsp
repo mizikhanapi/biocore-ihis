@@ -29,20 +29,20 @@
                                 <label class="col-md-12 control-label" for="textinput">Time</label>
                                 <div class="col-md-12 form-inline">
                                     <div class="radio radio-primary">
-                                        <input type="radio" name="radio1" id="radio1" value="option1">
-                                        <label for="radio1">
+                                        <input type="radio" name="morseTime" id="morseTime1" value="option1">
+                                        <label for="morseTime1">
                                             AM
                                         </label>
                                     </div>
                                     <div class="radio radio-primary">
-                                        <input type="radio" name="radio1" id="radio2" value="option2">
-                                        <label for="radio2">
+                                        <input type="radio" name="morseTime" id="morseTime2" value="option2">
+                                        <label for="morseTime2">
                                             PM
                                         </label>
                                     </div>
                                     <div class="radio radio-primary">
-                                        <input type="radio" name="radio1" id="radio3" value="option3">
-                                        <label for="radio3">
+                                        <input type="radio" name="morseTime" id="morseTime3" value="option3">
+                                        <label for="morseTime3">
                                             Noon
                                         </label>
                                     </div>

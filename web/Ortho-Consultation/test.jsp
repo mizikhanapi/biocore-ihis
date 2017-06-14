@@ -3,6 +3,7 @@
     Created on : Apr 17, 2017, 9:32:58 AM
     Author     : user
 --%>
+
 <div class="thumbnail">
 
     <!-- Tab Menu -->
@@ -35,7 +36,7 @@
                 <!-- content -->
                 <div class="tab-pane active fade in" id="Ortho-Consultation_1">
                     <ul class="soap-content nav">
-                        <li><a data-toggle="modal" data-target="#neuAssessment1" href="" class="soap-select"><i class="fa fa-comments  fa-li"></i>Assessment Date & Time</a></li>
+                        <li><a data-toggle="modal" data-target="#neuAssessment1" href="" class="soap-select"><i class="fa fa-comments  fa-li"></i> Date & Time</a></li>
                         <li><a data-toggle="modal" data-target="#neuAssessment2" href=""  class="soap-select"><i class="fa fa-history  fa-li"></i> Muscle Power</a></li>
                         <li><a data-toggle="modal" data-target="#neuAssessment3" href=""  class="soap-select"><i class="fa fa-medkit  fa-li"></i> Sensory</a></li>
                     </ul>
@@ -49,7 +50,7 @@
                 <!-- content -->
                 <div class="tab-pane fade" id="Ortho-Consultation_2">
                     <ul class="soap-content nav">
-                        <li><a data-toggle="modal" data-target="#Neurosurgical0" href="" class="soap-select"><i class="fa fa-comments  fa-li"></i>Observation Date & Time</a></li>
+                        <li><a data-toggle="modal" data-target="#Neurosurgical0" href="" class="soap-select"><i class="fa fa-comments  fa-li"></i> Date & Time</a></li>
                         <li><a data-toggle="modal" data-target="#ong-pDetails2" href=""  class="soap-select"><i class="fa fa-history  fa-li"></i> Glosgow Coma Scale</a></li>
                         <li><a data-toggle="modal" data-target="#ong-pDetails3" href=""  class="soap-select"><i class="fa fa-medkit  fa-li"></i> Blood Pressure</a></li>
                         <li><a data-toggle="modal" data-target="#Neurosurgical1" href=""  class="soap-select"><i class="fa fa-medkit  fa-li"></i> Pupils</a></li>
@@ -73,7 +74,7 @@
                 <!-- content -->
                 <div class="tab-pane fade" id="Ortho-Consultation_4">
                     <ul class="soap-content nav">
-                        <li><a data-toggle="modal" data-target="#ong-pDetails1" href="" class="soap-select"><i class="fa fa-comments  fa-li"></i>New Examination</a></li>
+                        <li><a data-toggle="modal" data-target="#ong-pDetails1" href="" class="soap-select"><i class="fa fa-comments  fa-li"></i> Physical Exam</a></li>
                     </ul>
                     <hr class="pemisah" />
                     <%@include file="physicalExam.jsp"%>

@@ -205,7 +205,7 @@
 }
 
 .sub-menu {
-    background: #f5f5f5;
+    background: #fbfbfb;
 }
 
 .sub-menu>li {
@@ -1016,5 +1016,5 @@ tr#moveToOrderDetailsTButton {
 
 .profile-usertitle-job {
     color:#999;
-    font-size: 12px;
+    font-size: 13px;
 }

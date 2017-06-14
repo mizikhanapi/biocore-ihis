@@ -64,32 +64,32 @@
                                 <label class="col-md-12 control-label" for="textinput">Choose one</label>
                                 <div class="col-md-12">
                                     <div class="radio radio-primary">
-                                        <input type="radio" name="radio1" id="radio1" value="option1">
-                                        <label for="radio1">
+                                        <input type="radio" name="hourlychoose" id="hourlychoose1" value="option1">
+                                        <label for="hourlychoose1">
                                             Slight Redness
                                         </label>
                                     </div>
                                     <div class="radio radio-primary">
-                                        <input type="radio" name="radio1" id="radio2" value="option2">
-                                        <label for="radio2">
+                                        <input type="radio" name="hourlychoose" id="hourlychoose2" value="option2">
+                                        <label for="hourlychoose2">
                                             Redness
                                         </label>
                                     </div>
                                     <div class="radio radio-primary">
-                                        <input type="radio" name="radio1" id="radio3" value="option3">
-                                        <label for="radio3">
+                                        <input type="radio" name="hourlychoose" id="hourlychoose3" value="option3">
+                                        <label for="hourlychoose3">
                                             Swelling
                                         </label>
                                     </div>
                                     <div class="radio radio-primary">
-                                        <input type="radio" name="radio1" id="radio4" value="option4">
-                                        <label for="radio4">
+                                        <input type="radio" name="hourlychoose" id="hourlychoose4" value="option4">
+                                        <label for="hourlychoose4">
                                             Palpable Venous cord
                                         </label>
                                     </div>
                                     <div class="radio radio-primary">
-                                        <input type="radio" name="radio1" id="radio5" value="option5">
-                                        <label for="radio5">
+                                        <input type="radio" name="hourlychoose" id="hourlychoose5" value="option5">
+                                        <label for="hourlychoose5">
                                             Unconscious Pt
                                         </label>
                                     </div>
