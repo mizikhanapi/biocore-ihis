@@ -40,10 +40,10 @@
             + "where user_id = '" + user_id + "' AND status = '0' "
             + "and now() between start_date AND end_date "
             + "limit 1";
-    String sql4 = "select status from adm_system_parameter where system_code = 'IT' and parameter_code ='1';";
+    
 
     ArrayList<ArrayList<String>> dataStaff = conn.getData(sql);
-    ArrayList<ArrayList<String>> dataSysPara = conn.getData(sql4);
+    
 
 //    out.print(dataPatient.size());
 //    out.print(dataStaff.size());
@@ -143,6 +143,15 @@
 
                 //===================================================
                 
+                //-------------- getting PMS param -----------------
+                String sql4 = "select status from adm_system_parameter where system_code = 'IT' and parameter_code ='1' and hfc_cd='"+hfc_cd+"';";
+                ArrayList<ArrayList<String>> dataSysPara = conn.getData(sql4);
+                String sysParaIT = "1";
+                if(dataSysPara.size()>0){
+                    sysParaIT = dataSysPara.get(0).get(0);
+                }
+                //==================================================
+                
                 //setting the session;
                 session.setAttribute("USER_ID", user_id);
                 session.setAttribute("USER_NAME", user_name);
@@ -162,12 +171,12 @@
 
                 session.setAttribute("SUB_DISCIPLINE_CODE", subdiscipline_code);
                 
-                //--- setting parameters fro PMS and CIS
+                //--- setting parameters for PMS and CIS
                 String dataSystemStatus = "1";
                 //session.setAttribute("HFC", hfc);
                 session.setAttribute("SYSTEMSTAT", dataSystemStatus);
 
-                String sysParaIT = dataSysPara.get(0).get(0);
+                
                 session.setAttribute("SYSTEM_PARAMETER", sysParaIT);
                 
                 session.setAttribute("CIS_PARAM", CISLongString);
