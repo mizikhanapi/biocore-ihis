@@ -45,7 +45,7 @@
         </div>
         <div class="profile-usertitle-job">
             <%= my_1_role%>&nbsp;
-            <li data-toggle="collapse" data-target="#viewExtraProfile" class="collapsed" style="list-style: none; display: inline;">
+            <li data-toggle="collapse" data-target="#viewExtraProfile" class="collapsed" style="list-style: none; display: inline; cursor: pointer;">
                 <i class="fa fa-caret-down"></i>
             </li>
         </div>
