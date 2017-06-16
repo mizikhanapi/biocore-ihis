@@ -95,3 +95,4 @@
 <%@include file="modal/continuation.jsp"%>
 
 <script src="../assets/js/btn.number.js" type="text/javascript"></script>
+<script src="../assets/js/jquery.flexdatalist.min.js" type="text/javascript"></script>

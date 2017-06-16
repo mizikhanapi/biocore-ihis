@@ -37,62 +37,66 @@
     </div>
 </div>
 
-<div class="well well-sm well-primary">
-    <div class="row">
-        <div class="col-xs-3">
-            <dt style="font-size: 18px;">Operation on 13/06/2017</dt>
-            <dd>Time started: <strong>10:43AM</strong> | Time ended: <strong>10:43PM</strong></dd>
-            <dd>Surgeon: <strong>Mizi K</strong></dd>
-            <dd>Assistants: <strong>Elizabeth Tan</strong></dd>
-            <dd>Anaesthetist: <strong>Mira Filzah</strong></dd>
-            <dd>Scrub Nurses: <strong>Rozita Che Wan</strong></dd>
+<div class="panel panel-default">
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-xs-3">
+                <dt style="font-size: 18px;">Operation on 13/06/2017</dt>
+                <dd>Time started: <strong>10:43AM</strong> | Time ended: <strong>10:43PM</strong></dd>
+                <dd>Surgeon: <strong>Mizi K</strong></dd>
+                <dd>Assistants: <strong>Elizabeth Tan</strong></dd>
+                <dd>Anaesthetist: <strong>Mira Filzah</strong></dd>
+                <dd>Scrub Nurses: <strong>Rozita Che Wan</strong></dd>
 
-        </div>
-        <div class="col-xs-3">
-            <dt style="font-size: 18px;">Diagnoses</dt>
-            <dd>Pre-operative: <strong>Heart Broken</strong></dd>
+            </div>
+            <div class="col-xs-3">
+                <dt style="font-size: 18px;">Diagnoses</dt>
+                <dd>Pre-operative: <strong>Heart Broken</strong></dd>
 
-            <dd>Post-operative: <strong>Mental Disordered</strong></dd>
-            <dd>Anaesthesia: <strong>General</strong></dd><dd>Emergency: <strong>Yes</strong></dd>
-        </div>
-        <div class="col-xs-3">
-            <dt style="font-size: 18px;">Material sent to Pathologist</dt>
-            <dd>Documents: <strong>Broken.pdf</strong></dd>
-            <dd>Images: <strong>Heart-Broken.jpg</strong></dd>
-        </div>
-        <div class="col-xs-3">
-            <dt style="font-size: 18px;">Findings</dt>
-            <dd>An indirect method of content reuse occurs when a tag file is used to define a custom tag that is used by many web applications. Tag files are discussed in the section Encapsulating Reusable Content Using Tag Files in Chapter 8, Custom Tags in JSP Pages.</dd>
-        </div>
-    </div>  
+                <dd>Post-operative: <strong>Mental Disordered</strong></dd>
+                <dd>Anaesthesia: <strong>General</strong></dd><dd>Emergency: <strong>Yes</strong></dd>
+            </div>
+            <div class="col-xs-3">
+                <dt style="font-size: 18px;">Material sent to Pathologist</dt>
+                <dd>Documents: <strong>Broken.pdf</strong></dd>
+                <dd>Images: <strong>Heart-Broken.jpg</strong></dd>
+            </div>
+            <div class="col-xs-3">
+                <dt style="font-size: 18px;">Findings</dt>
+                <dd>An indirect method of content reuse occurs when a tag file is used to define a custom tag that is used by many web applications. Tag files are discussed in the section Encapsulating Reusable Content Using Tag Files in Chapter 8, Custom Tags in JSP Pages.</dd>
+            </div>
+        </div>  
+    </div>
 </div>
 
-<div class="well well-sm well-primary">
-    <div class="row">
-        <div class="col-xs-3">
-            <dt style="font-size: 18px;">Operation on 13/06/2017</dt>
-            <dd>Time started: <strong>10:43AM</strong> | Time ended: <strong>10:43PM</strong></dd>
-            <dd>Surgeon: <strong>Mizi K</strong></dd>
-            <dd>Assistants: <strong>Elizabeth Tan</strong></dd>
-            <dd>Anaesthetist: <strong>Mira Filzah</strong></dd>
-            <dd>Scrub Nurses: <strong>Rozita Che Wan</strong></dd>
+<div class="panel panel-default">
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-xs-3">
+                <dt style="font-size: 18px;">Operation on 13/06/2017</dt>
+                <dd>Time started: <strong>10:43AM</strong> | Time ended: <strong>10:43PM</strong></dd>
+                <dd>Surgeon: <strong>Mizi K</strong></dd>
+                <dd>Assistants: <strong>Elizabeth Tan</strong></dd>
+                <dd>Anaesthetist: <strong>Mira Filzah</strong></dd>
+                <dd>Scrub Nurses: <strong>Rozita Che Wan</strong></dd>
 
-        </div>
-        <div class="col-xs-3">
-            <dt style="font-size: 18px;">Diagnoses</dt>
-            <dd>Pre-operative: <strong>Heart Broken</strong></dd>
+            </div>
+            <div class="col-xs-3">
+                <dt style="font-size: 18px;">Diagnoses</dt>
+                <dd>Pre-operative: <strong>Heart Broken</strong></dd>
 
-            <dd>Post-operative: <strong>Mental Disordered</strong></dd>
-            <dd>Anaesthesia: <strong>General</strong></dd><dd>Emergency: <strong>Yes</strong></dd>
-        </div>
-        <div class="col-xs-3">
-            <dt style="font-size: 18px;">Material sent to Pathologist</dt>
-            <dd>Documents: <strong>Broken.pdf</strong></dd>
-            <dd>Images: <strong>Heart-Broken.jpg</strong></dd>
-        </div>
-        <div class="col-xs-3">
-            <dt style="font-size: 18px;">Findings</dt>
-            <dd>An indirect method of content reuse occurs when a tag file is used to define a custom tag that is used by many web applications. Tag files are discussed in the section Encapsulating Reusable Content Using Tag Files in Chapter 8, Custom Tags in JSP Pages.</dd>
-        </div>
-    </div>  
+                <dd>Post-operative: <strong>Mental Disordered</strong></dd>
+                <dd>Anaesthesia: <strong>General</strong></dd><dd>Emergency: <strong>Yes</strong></dd>
+            </div>
+            <div class="col-xs-3">
+                <dt style="font-size: 18px;">Material sent to Pathologist</dt>
+                <dd>Documents: <strong>Broken.pdf</strong></dd>
+                <dd>Images: <strong>Heart-Broken.jpg</strong></dd>
+            </div>
+            <div class="col-xs-3">
+                <dt style="font-size: 18px;">Findings</dt>
+                <dd>An indirect method of content reuse occurs when a tag file is used to define a custom tag that is used by many web applications. Tag files are discussed in the section Encapsulating Reusable Content Using Tag Files in Chapter 8, Custom Tags in JSP Pages.</dd>
+            </div>
+        </div>  
+    </div>
 </div>
