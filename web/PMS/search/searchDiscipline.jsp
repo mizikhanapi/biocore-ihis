@@ -18,7 +18,7 @@
 %>
 <ul id="matchListDis" style="width: auto; height: 200px; overflow: auto">
     <% for (int i = 0; i < search.size(); i++) {%>
-    <li><%=search.get(i).get(1)+"|"+search.get(i).get(0)+"|"+search.get(i).get(3)%></li>
+    <li><%=search.get(i).get(1)+"|"+search.get(i).get(0)+"|"+search.get(i).get(2)+"|"+search.get(i).get(3)%></li>
         <%}%>
 </ul>
 <%} else {%>

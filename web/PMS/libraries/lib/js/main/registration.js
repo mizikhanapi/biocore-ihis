@@ -216,7 +216,8 @@
             disCode = $('#Dis').val();
             var array_dis = disCode.split("|");
             var disCD = array_dis[0];
-            subDiscode = "-";
+            var subDisCD = array_dis[2];
+            subDiscode = array_dis[2];
 
             console.log(docID);
             prioGruCode = $('#prioGru').find(":selected").val();
@@ -269,7 +270,8 @@
                 'comTy': comTy,
                 'createdBy': createdBy,
                 'queue': queue,
-                docID: docID};
+                docID: docID,
+                subDisCD:subDisCD};
             //console.log(datas);
             bootbox.confirm({
                 message: "Are you sure want to REGISTER PATIENT?",

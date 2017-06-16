@@ -39,7 +39,7 @@
     dataEmergencyTy = conn.getData(emergencyType);
     dataDiscip = conn.getData(sql);
     
-    String disVal = dataDiscip.get(0).get(1)+"|"+dataDiscip.get(0).get(0)+"|"+dataDiscip.get(0).get(3);
+    String disVal = dataDiscip.get(0).get(1)+"|"+dataDiscip.get(0).get(0)+"|"+dataDiscip.get(0).get(2)+"|"+dataDiscip.get(0).get(3);
 
     // status 0 = public
     // status 1 = universiti
