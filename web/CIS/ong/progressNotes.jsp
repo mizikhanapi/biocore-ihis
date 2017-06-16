@@ -1,8 +1,9 @@
 <%-- 
-    Document   : continuation
-    Created on : Jun 7, 2017, 12:11:16 PM
+    Document   : anteNatal
+    Created on : Jun 14, 2017, 4:32:59 PM
     Author     : user
 --%>
+
 <div class="row">
     <div class="col-md-8">
         <h4>Consultation Notes</h4>
@@ -35,6 +36,7 @@
         </div>
     </div>
 </div>
+
 <div class="panel panel-default">
     <div class="panel-body">
         <div class="row">
@@ -46,6 +48,7 @@
                     <div class="media-body">
                         <dt class="media-heading">07/06/2017</dt>
                         <p class="summary">Harini dia rasa sakit bahagian hati. patah hati mungkin. As a leading student accommodation booking platform, we strive to provide top class service to you in finding a place you can call home. In order to help you quick and efficiently, we've helped create an account for you. You can change your password anytime in your account settings.</p>
+                        <dd>Dr Ahmed</dd>
                     </div>
                     <div style="position: absolute; bottom: 0px; right: 15px;">
                         <a style="vertical-align: middle;" href="#"><i class="fa fa-pencil-square-o fa-lg" aria-hidden="true" style=" color: #337ab7;"></i></a>
@@ -57,6 +60,7 @@
         </div>   
     </div>
 </div>
+
 <div class="panel panel-default">
     <div class="panel-body">
         <div class="row">
@@ -68,6 +72,7 @@
                     <div class="media-body">
                         <dt class="media-heading">07/06/2017</dt>
                         <p class="summary">Harini dia rasa sakit bahagian hati. patah hati mungkin. As a leading student accommodation booking platform, we strive to provide top class service to you in finding a place you can call home. In order to help you quick and efficiently, we've helped create an account for you. You can change your password anytime in your account settings.</p>
+                        <dd>Dr Ahmed</dd>
                     </div>
                     <div style="position: absolute; bottom: 0px; right: 15px;">
                         <a style="vertical-align: middle;" href="#"><i class="fa fa-pencil-square-o fa-lg" aria-hidden="true" style=" color: #337ab7;"></i></a>

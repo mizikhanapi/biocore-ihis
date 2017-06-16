@@ -54,12 +54,12 @@
                         <!-- content -->
                         <div class="tab-pane active fade in" id="ONG_1">
                             <ul class="soap-content nav">
-                                <li><a data-toggle="modal" data-target="#ong-pDetails1" href="" class="soap-select"><i class="fa fa-comments  fa-li"></i> Gravity</a></li>
+                                <li><a data-toggle="modal" data-target="#ong-pDetails1" href="" class="soap-select"><i class="fa fa-comments  fa-li"></i> Gravida</a></li>
                                 <li><a data-toggle="modal" data-target="#ong-pDetails2" href=""  class="soap-select"><i class="fa fa-history  fa-li"></i> Past History</a></li>
                                 <li><a data-toggle="modal" data-target="#ong-pDetails3" href=""  class="soap-select"><i class="fa fa-medkit  fa-li"></i> Previous Pregnancy</a></li>
                             </ul>
-
-                            <%//@include file="neuAssessment.jsp"%>
+                            <hr class="pemisah" />
+                            <%@include file="ong/personalDetails.jsp"%>
                         </div>
                         <!-- content -->
 
@@ -69,8 +69,8 @@
                                 <li><a data-toggle="modal" data-target="#ong-anteNatal1" href="" class="soap-select"><i class="fa fa-comments  fa-li"></i> Blood Profile</a></li>
                                 <li><a data-toggle="modal" data-target="#ong-anteNatal2" href=""  class="soap-select"><i class="fa fa-history  fa-li"></i> Care Plan</a></li>
                             </ul>
-
-                            <%//@include file="neuObservation.jsp"%>
+                            <hr class="pemisah" />
+                            <%@include file="ong/anteNatal.jsp"%>
                         </div>
                         <!-- content -->
 
@@ -79,7 +79,8 @@
                             <ul class="soap-content nav">
                                 <li><a data-toggle="modal" data-target="#ong-progressNotes1" href="" class="soap-select"><i class="fa fa-comments  fa-li"></i> Add New Clinical Notes</a></li>
                             </ul>
-                            <%//@include file="PIRAssessment.jsp"%>
+                            <hr class="pemisah" />
+                            <%@include file="ong/progressNotes.jsp"%>
                         </div>
                         <!-- content -->
 
@@ -91,7 +92,8 @@
                                 <li><a data-toggle="modal" data-target="#ong-fObservationChart3" href="" class="soap-select"><i class="fa fa-comments  fa-li"></i>Conscious State & Remarks</a></li>
                                 <li><a data-toggle="modal" data-target="#ong-fObservationChart4" href="" class="soap-select"><i class="fa fa-comments  fa-li"></i>Drugs Given</a></li>
                             </ul>
-                            <%//@include file="PIRAssessment.jsp"%>
+                            <hr class="pemisah" />
+                            <%@include file="ong/frequentObservation.jsp"%>
                         </div>
                         <!-- content -->
 
@@ -100,7 +102,8 @@
                             <ul class="soap-content nav">
                                 <li><a data-toggle="modal" data-target="#CIS01000001" href="" class="soap-select"><i class="fa fa-comments  fa-li"></i>Forms</a></li>
                             </ul>
-                            <%//@include file="PIRAssessment.jsp"%>
+                            <hr class="pemisah" />
+                            <%@include file="ong/nurseUse.jsp"%>
                         </div>
                         <!-- content -->
 
@@ -115,7 +118,8 @@
                                 <li><a data-toggle="modal" data-target="#ong-nurseryFeeding5" href="" class="soap-select"><i class="fa fa-comments  fa-li"></i>PU</a></li>
                                 <li><a data-toggle="modal" data-target="#ong-nurseryFeeding6" href="" class="soap-select"><i class="fa fa-comments  fa-li"></i>BO</a></li>
                             </ul>
-                            <%//@include file="PIRAssessment.jsp"%>
+                            <hr class="pemisah" />
+                            <%@include file="ong/nurseryFeeding.jsp"%>
                         </div>
                         <!-- content -->
 
@@ -125,7 +129,8 @@
                                 <li><a data-toggle="modal" data-target="#ong-maternityUnit1" href="" class="soap-select"><i class="fa fa-comments  fa-li"></i>Intravenous Therapy</a></li>
                                 <li><a data-toggle="modal" data-target="#ong-maternityUnit2" href="" class="soap-select"><i class="fa fa-comments  fa-li"></i>Investigation</a></li>
                             </ul>
-                            <%//@include file="PIRAssessment.jsp"%>
+                            <hr class="pemisah" />
+                            <%@include file="ong/maternityUnit.jsp"%>
                         </div>
                         <!-- content -->
 
@@ -140,7 +145,8 @@
                                 <li><a data-toggle="modal" data-target="#CIS01000001" href="" class="soap-select"><i class="fa fa-comments  fa-li"></i>Mother - Transfer Observations</a></li>
                                 <li><a data-toggle="modal" data-target="#CIS01000001" href="" class="soap-select"><i class="fa fa-comments  fa-li"></i>Puerperium</a></li>
                             </ul>
-                            <%//@include file="PIRAssessment.jsp"%>
+                            <hr class="pemisah" />
+                            <%@include file="ong/labourSummary.jsp"%>
                         </div>
                         <!-- content -->
 
@@ -157,7 +163,7 @@
 
                 </div>
             </div>
-            <hr class="pemisah" />
+
             <!-- Tab Menu -->
         </div>
     </div>

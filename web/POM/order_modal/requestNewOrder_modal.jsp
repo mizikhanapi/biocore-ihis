@@ -5,19 +5,7 @@
 --%>
 
 <%@page import="java.util.ArrayList"%>
-<%@page import="dBConn.Conn"%>
-<%
-    String RNO_hfc_cd = (String) session.getAttribute("HEALTH_FACILITY_CODE");
-    Conn RNO_conn = new Conn();
 
-    String RNO_sql = "SELECT body_system_cd, body_system_name from ris_body_system where status = '0' AND hfc_cd = '" + RNO_hfc_cd + "'";
-    ArrayList<ArrayList<String>> RNO_dataBS = RNO_conn.getData(RNO_sql);
-
-    RNO_sql = "SELECT modality_cd, modality_name from ris_modality where status = '0' AND hfc_cd = '" + RNO_hfc_cd + "' ";
-    ArrayList<ArrayList<String>> RNO_dataMod = RNO_conn.getData(RNO_sql);
-
-
-%>
 <!-- Modal Detail -->
 <!-- Add Modal Start -->
 <div class="modal fade" id="modal_requestNewOrder" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
@@ -32,50 +20,18 @@
                 <!-- content goes here -->
                 <form class="form-horizontal" id="RNO_addForm" autocomplete="off">
 
-                    <!-- Text input-->
-                    <div class="form-group">
-                        <label class="col-md-4 control-label" for="textinput">Body System*</label>
-                        <div class="col-md-8">
-                            <select class="form-control"  id="RNO_bodySystem">
-                                <option  value="" >-- Select Body System --</option>
-                                <%                                    for (int i = 0; i < RNO_dataBS.size(); i++) {
-
-                                %>
-                                <option value="<%= RNO_dataBS.get(i).get(0)%>"><%= RNO_dataBS.get(i).get(1)%></option>
-                                <%
-
-                                    }//end for loop
-                                %>
-                            </select>
-
-                        </div>
-                    </div>
-
-                    <!-- Text input-->
-                    <div class="form-group">
-                        <label class="col-md-4 control-label" for="textinput">Modality*</label>
-                        <div class="col-md-8">
-                            <select class="form-control"  id="RNO_modality">
-                                <option  value="" >-- Select Modality --</option>
-                                <%
-                                    for (int i = 0; i < RNO_dataMod.size(); i++) {
-
-                                %>
-                                <option value="<%= RNO_dataMod.get(i).get(0)%>"><%= RNO_dataMod.get(i).get(1)%></option>
-                                <%
-
-                                    }//end for loop
-%>
-                            </select>
-
-                        </div>
-                    </div>
-
+                    
                     <!-- Text input-->
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="textinput">Procedure*</label>
                         <div class="col-md-8">
-                            <input type="text" placeholder="Search radiology procedure name" class="form-control" maxlength="330" id="RNO_proName">
+                            <div class="input-group">
+                                <input type="text" placeholder="Search and select procedure " class="form-control" maxlength="330" id="RNO_proName">
+                                <div class="input-group-btn">
+                                    <button class="btn btn-default btn-sm" title="Redo" id="RNO_btnRedo"><i class="fa fa-times"></i></button>
+                                </div>
+                            </div>
+                            
                             <div id="RNO_pro_match" class="search-drop">
                                 <!--search result-->
                             </div>

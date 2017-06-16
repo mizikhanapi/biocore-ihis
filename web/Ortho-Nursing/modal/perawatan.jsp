@@ -40,7 +40,27 @@
                             <div class="form-group">
                                 <label class="col-md-12 control-label" for="textinput">Diagnosis</label>
                                 <div class="col-md-12">
-                                    <input type="text" class="form-control input-md" >
+                                    <input type='text'
+                                           placeholder='Type to search...'
+                                           class='flexdatalist form-control input-md'
+                                           data-min-length='1'
+                                           list='languages'
+                                           data-search-by-word='true'
+                                           name='language'
+                                           >
+
+                                    <datalist id="languages">
+                                        <option value="PHP">PHP</option>
+                                        <option value="JavaScript">JavaScript</option>
+                                        <option value="Cobol">Cobol</option>
+                                        <option value="C#">C#</option>
+                                        <option value="C++">C++</option>
+                                        <option value="Java">Java</option>
+                                        <option value="Pascal">Pascal</option>
+                                        <option value="FORTRAN">FORTRAN</option>
+                                        <option value="Lisp">Lisp</option>
+                                        <option value="Swift">Swift</option>
+                                    </datalist>
                                 </div>
                             </div>
                         </div>
@@ -100,7 +120,7 @@
                             </div>
                         </div>
                     </div>
-                    
+
 
                 </form>
             </div>

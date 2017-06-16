@@ -53,6 +53,18 @@
         sql = "Delete from ris_procedure_master where hfc_cd = '"+id+"'";
         rmic.setQuerySQL(conn.HOST, conn.PORT, sql);
         
+        //clear cis procedure
+        sql="Delete from cis_procedure where hfc_cd='"+id+"'";
+        rmic.setQuerySQL(conn.HOST, conn.PORT, sql);
+        
+        //clear cis procedure 1
+        sql="Delete from cis_procedure_1 where hfc_cd='"+id+"'";
+        rmic.setQuerySQL(conn.HOST, conn.PORT, sql);
+        
+        //clear cis procedure 2
+        sql="Delete from cis_procedure_2 where hfc_cd='"+id+"'";
+        rmic.setQuerySQL(conn.HOST, conn.PORT, sql);
+        
     } else {
         out.print("Failed");
     }

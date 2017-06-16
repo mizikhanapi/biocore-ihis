@@ -101,6 +101,18 @@
         String copyRIS_procedure = "insert into ris_procedure_master(hfc_cd, clinical_discipline_cd, body_system_cd, modality_cd, ris_procedure_cd, ris_procedure_name, discipline_cd, subdiscipline_cd, selling_price, buying_price, quantity, created_by, created_date, status) "
                 + "select '"+hfcCode+"', clinical_discipline_cd, body_system_cd, modality_cd, ris_procedure_cd, ris_procedure_name, '001', '001', selling_price, buying_price, quantity, '"+creator+"', now(), '0' "
                 + "from ris_procedure_master WHERE hfc_cd = '99_iHIS_99';";
+        
+        String copyCISPro = "insert into cis_procedure(`PROCEDURE_CD`, `PROCEDURE_NAME`, `STATUS`, hfc_cd, selling_price, buying_price) "
+                + "select `PROCEDURE_CD`, `PROCEDURE_NAME`, `STATUS`, '"+hfcCode+"', selling_price, buying_price "
+                + "from cis_procedure where hfc_cd='99_iHIS_99' ";
+        
+        String copyCISPro1 = "insert into cis_procedure_1(`PROCEDURE_1_CD`, `PROCEDURE_1_NAME`, `PROCEDURE_CD`, status, hfc_cd) "
+                + "select `PROCEDURE_1_CD`, `PROCEDURE_1_NAME`, `PROCEDURE_CD`, `STATUS`, '"+hfcCode+"' "
+                + "from cis_procedure_1 where hfc_cd='99_iHIS_99'";
+        
+        String copyCISPro2 ="INSERT INTO cis_procedure_2(`PROCEDURE_2_CD`, `PROCEDURE_2_NAME`, `PROCEDURE_1_CD`, `STATUS`, hfc_cd) "
+                + "select `PROCEDURE_2_CD`, `PROCEDURE_2_NAME`, `PROCEDURE_1_CD`, `STATUS`, '"+hfcCode+"' "
+                + "from cis_procedure_2 where hfc_cd='99_iHIS_99'";
 
         rmic.setQuerySQL(conn.HOST, conn.PORT, copyLookup);
         rmic.setQuerySQL(conn.HOST, conn.PORT, copyRole);
@@ -108,6 +120,9 @@
         rmic.setQuerySQL(conn.HOST, conn.PORT, copyRIS_BS);
         rmic.setQuerySQL(conn.HOST, conn.PORT, copyRIS_modality);
         rmic.setQuerySQL(conn.HOST, conn.PORT, copyRIS_procedure);
+        rmic.setQuerySQL(conn.HOST, conn.PORT, copyCISPro);
+        rmic.setQuerySQL(conn.HOST, conn.PORT, copyCISPro1);
+        rmic.setQuerySQL(conn.HOST, conn.PORT, copyCISPro2);
 
     }
 %>

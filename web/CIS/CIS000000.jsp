@@ -235,6 +235,10 @@
                         <div class="tab-pane fade" id="orthopedic-ot">
                             <jsp:include page="../Ortho-operationTheater/OperationTheater.jsp"/>
                         </div> 
+                        
+                        <div class="tab-pane fade" id="ong">
+                            <jsp:include page="ong.jsp"/>
+                        </div> 
 
 
                     </div>

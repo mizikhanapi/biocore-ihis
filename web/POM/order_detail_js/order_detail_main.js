@@ -7,12 +7,6 @@
 
 
 
-//global variable for procedure search
-var selectedPro = "";
-var isProSelected = false;
-
-//global variable for picture
-var RIS_gambarURI = "";
 
 //--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------//
 
@@ -142,6 +136,11 @@ $('#risOrderNewRequestButton').on('click', function () {
     $('#RNO_modalTitle').text('Request New Order');
 
     $('#RNO_addForm')[0].reset(); //reset the form
+    
+    $('#RNO_pro_match').html('');
+    $('#RNO_btnRedo').hide();
+    
+    $('#RNO_proName').prop('disabled', false);
 
     $('#RNO_div_btnAdd_or_update').html('<button type="submit" class="btn btn-success btn-block btn-lg" role="button" id="RNO_btnAdd">Add</button>');
 });
@@ -151,69 +150,55 @@ $('#risOrderNewRequestButton').on('click', function () {
 
 
 $('#RNO_proName').on('keyup', function () {
-    var BScode = $('#RNO_bodySystem').val();
-    var MODcode = $('#RNO_modality').val();
-
+   
     var input = $(this).val();
 
     if (input.length > 0) {
 
-        if (BScode === "" || MODcode === "") {
-            bootbox.alert('Please select body system and modality first.');
-            $(this).val('');
+       
+        $('#RNO_pro_match').html('<img src="img/ajax-loader.gif">');
+        var data = {
+           key: input
+        };
 
-        } else {
-            $('#RNO_pro_match').html('<img src="img/ajax-loader.gif">');
-            var data = {
-                BScode: BScode,
-                MODcode: MODcode,
-                key: input
-            };
+        $.ajax({
+            type: 'POST',
+            url: "order_control/search_procedure.jsp",
+            data: data,
+            success: function (data, textStatus, jqXHR) {
+                $('#RNO_pro_match').html(data);
+                $('#matchlist li').on('click', function () {
 
-            $.ajax({
-                type: 'POST',
-                url: "order_control/searchProcedure.jsp",
-                data: data,
-                success: function (data, textStatus, jqXHR) {
-                    $('#RNO_pro_match').html(data);
-                    $('#RNO_pro_matchlist li').on('click', function () {
+                    $('#RNO_proName').val($(this).text());
+                    $('#RNO_pro_match').html('');
+                    
+                     $('#RNO_proName').prop('disabled', true);
+                    $('#RNO_btnRedo').show();
+                    
 
-                        $('#RNO_proName').val($(this).text());
-                        $('#RNO_pro_match').html('');
-                        isProSelected = true;
-                        selectedPro = $('#RNO_proName').val();
+                });
 
-                    });
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                $('#RNO_pro_match').text("Opps! " + errorThrown);
 
-                },
-                error: function (jqXHR, textStatus, errorThrown) {
-                    $('#RNO_pro_match').text("Opps! " + errorThrown);
-
-                }
+            }
 
 
-            });//end ajax
-        }
+        });//end ajax
+        
 
     } else {
         $('#RNO_pro_match').html('');
     }
 });
 
-//--------------------------- reset procedure name on bs and mod change ----------------------------------------
+//--------------------------- reset procedure name on btnRedo click ----------------------------------------
 
-function resetProcedureName() {
-    $('#RNO_proName').val('');
-    isProSelected = false;
-    selectedPro = '';
-}
-
-$('#RNO_bodySystem').on('change', function () {
-    resetProcedureName();
-});
-
-$('#RNO_modality').on('change', function () {
-    resetProcedureName();
+$('#RNO_btnRedo').on('click', function(e){
+    e.preventDefault();
+    $('#RNO_proName').val('').prop('disabled', false);
+    $('#RNO_btnRedo').hide();
 });
 
 //==============================================================================
@@ -222,23 +207,10 @@ $('#RNO_modality').on('change', function () {
 $('#RNO_div_btnAdd_or_update').on('click', '#RNO_btnAdd', function () {
 
     var orderNo = $('#risOrderNo').val();
-
-    var bsCode = $('#RNO_bodySystem').val();
-    var modCode = $('#RNO_modality').val();
     var procedure = $('#RNO_proName').val();
     var instruction = $('#RNO_instruction').val();
 
-    if (bsCode === "") {
-        bootbox.alert('Select body system.', function () {
-            $('#RNO_bodySystem').focus();
-        });
-
-    } else if (modCode === "") {
-        bootbox.alert('Select body system.', function () {
-            $('#RNO_modality').focus();
-        });
-
-    } else if (isProSelected === false || selectedPro !== procedure || procedure === "") {
+    if (procedure === "") {
         bootbox.alert('Please choose existing procedure.', function () {
             $('#RNO_proName').focus();
         });
@@ -247,17 +219,18 @@ $('#RNO_div_btnAdd_or_update').on('click', '#RNO_btnAdd', function () {
         instruction = instruction.replace(/'/g, "\\\'").replace(/"/g, "\\\"");
         var arrData = procedure.split('|');
         procedure = arrData[0].trim();
-
-
+        
+        var epDate = $('#posEpDate').val();
+        
 
         var data = {
             orderNo: orderNo,
-            modCode: modCode,
-            bsCode: bsCode,
             proCode: procedure,
+            epDate: epDate,
             instruction: instruction
         };
-        $('#risManageOrderDetailsListTableDiv').append('<div class="loading">Loading</div>');
+        //$('#risManageOrderDetailsListTableDiv').append('<div class="loading">Loading</div>');
+        createScreenLoading();
         $.ajax({
             type: 'POST',
             url: "order_control/requestNewOrder_insert.jsp",
