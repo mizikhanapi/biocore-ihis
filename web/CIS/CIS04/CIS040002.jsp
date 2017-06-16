@@ -11,20 +11,24 @@
                 <button type="button" class="close" data-dismiss="modal"><i class="fa fa-times fa-lg"></i><span class="sr-only">Close</span></button>
                 <h3 class="modal-title" id="lineModalLabel">Drug Order Form</h3>
             </div>
+            <div class="modal-header" style="padding: 0px;">
+                <div class="tabbable-line">
+                    <ul class="nav nav-tabs ">
+                        <li class="active">
+                            <a href="#drugOrder1" data-toggle="tab">
+                                New Drug Order</a>
+                        </li>
+                        <li>
+                            <a href="#drugOrder2" data-toggle="tab">
+                                Drug Order History</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
             <div class="modal-body">
 
                 <div class="tabbable-panel">
                     <div class="tabbable-line">
-                        <ul class="nav nav-tabs ">
-                            <li class="active">
-                                <a href="#drugOrder1" data-toggle="tab">
-                                    Search Drug Order</a>
-                            </li>
-                            <li>
-                                <a href="#drugOrder2" data-toggle="tab">
-                                    Drug Order History</a>
-                            </li>
-                        </ul>
                         <!-- tab content -->
                         <div class="tab-content">
                             <div class="tab-pane active" id="drugOrder1">
@@ -254,22 +258,69 @@
                                 </div>
                             </div>
                             <div class="tab-pane" id="drugOrder2">
-                                2
+                                <form class="form-horizontal" name="myForm" id="myForm">
+                                    <!-- Select Basic -->
+                                    <div class="form-group">
+                                        <label class="col-md-4 control-label" for="selectbasic">Search drug by</label>
+                                        <div class="col-md-4">
+                                            <select id="idType" name="idType" class="form-control" required="">
+                                                <option selected="" disabled="" value="-">View by</option>
+                                                <option>Today</option>
+                                                <option>Previous Episode</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <!-- Text input-->
+                                    <div class="form-group">
+                                        <label class="col-md-4 control-label" for="textinput">Order</label>
+                                        <div class="col-md-4">
+                                            <input type="text" class="form-control input-md" id="idInput" name="idInput" placeholder="ID" maxlength="0">
+                                        </div>
+                                    </div>
+
+                                    <div class="text-center">
+                                        <button class="btn btn-primary" type="button" id="searchPatient" name="searchPatient"><i class="fa fa-search"></i>&nbsp; Search</button>
+                                        <button id="clearSearch" name="clearSearch" type="button" class="btn btn-default"><i class="fa fa-times"></i>&nbsp; Clear</button>
+                                    </div>
+                                </form>
                             </div>
 
                         </div>
                     </div>
                 </div>
+                <hr/>
 
-
-
-
+                <table class="table table-bordered table-striped">
+                    <thead>
+                        <tr>
+                            <td>Episode Date</td>
+                            <td>Order No.</td>
+                            <td>Drug Name</td>
+                            <td>Drug Details</td>
+                            <td>Action</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>16/06/2017 | 3:52 PM</td>
+                            <td>000001</td>
+                            <td>Paracetamol</td>
+                            <td>Put details here</td>
+                            <td>
+                                <a data-toggle="tooltip" data-placement="top" title="Add Order" class="" style="cursor: pointer"><i class="fa fa-plus fa-lg" aria-hidden="true" style="display: inline-block;color: #58C102;"></i></a>
+                                &nbsp;
+                                <a class="" style="cursor: pointer" data-toggle="tooltip" data-placement="top" title="Cancel Order"><i class="fa fa-times fa-lg" aria-hidden="true" style="display: inline-block;color: #d9534f;"></i></a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
 
             <div class="modal-footer">
                 <div class="btn-group btn-group-justified" role="group" aria-label="group button">
                     <div class="btn-group" role="group">
-                        <button type="button" class="btn btn-success btn-block btn-lg" id="acceptBtnDTO" role="button">Accept</button>
+                        <button type="button" class="btn btn-success btn-block btn-lg" id="acceptBtnDTO" role="button">Send Order</button>
                     </div>
                     <div class="btn-group btn-delete hidden" role="group">
                         <button type="button" id="delImage" class="btn btn-default btn-block btn-lg" data-dismiss="modal"  role="button">Clear</button>
