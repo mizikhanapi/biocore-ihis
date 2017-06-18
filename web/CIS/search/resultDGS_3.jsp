@@ -6,19 +6,18 @@
     Conn Conn = new Conn();
                                String key = request.getParameter("input");
                                //String key ="fever";
-                                String searchProblem = "select icd10_desc from icd10_codes where CONCAT(UPPER(icd10_desc),LOWER(icd10_desc)) like '%" +  key + "'";
+                                String searchProblem = "select icd10_desc from icd10_codes where CONCAT(UPPER(icd10_desc),LOWER(icd10_desc)) like '%" +  key + "%'";
                                 ArrayList<ArrayList<String>> search = Conn.getData(searchProblem); 
-                                //out.print(searchProblem);
                                  if (search.size() > 0) 
                                         {
 %>
 
-<ul id="matchList" style="width: 100%; height: 200px; overflow: auto">
+<datalist id="diagnosis3">
     <% for (int i = 0; i < search.size(); i++) 
     {%>
-    <li onClick= "selectCountry('<%=search.get(i).get(0)%>');"><%=search.get(i).get(0)%></li>
+    <option value="<%=search.get(i).get(0)%>"><%=search.get(i).get(0)%></option>
 <%}%>
-</ul>
+</datalist>
 <%}else{%>
 <span>No Record Found!</span>
 <%}%>

@@ -47,8 +47,9 @@
             doctor_name = '<%out.print(username);%>';
             discipline = '<%out.print(discipline);%>';
             subdis = '<%out.print(subdicipline);%>';
-            console.log(discipline);
-            console.log(subdis);
+
+            //console.log();
+            
 
 
             $.ajax({

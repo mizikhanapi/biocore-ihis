@@ -3,6 +3,10 @@
     Created on : Feb 18, 2017, 3:09:35 PM
     Author     : -D-
 --%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="dBConn.Conn"%>
+<%@page import="main.RMIConnector"%>
+
 
 <div class="modal fade" id="CIS030001" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
             <div class="modal-dialog">
@@ -19,6 +23,32 @@
                                 <input class="form-control input-lg" type="text" name="problem"  id="searchDiag" placeholder="Search..." tabindex="4">
                                 <div id="matchDiag"></div>
                             </div>   
+                        </div>
+                         <input class="form-control input-lg" type="text" name="problem"  id="searchDiag" placeholder="ajax1..." tabindex="4">
+                        <input type='text'
+                               id="diagnosisSearch"
+       placeholder='diagnosis'
+       class='flexdatalist'
+       data-min-length='1'
+       name='country_name_suggestion'>
+                        
+
+                        
+                       <div class="form-group">
+                            <div class="form-group">
+                                
+
+                            </div>   
+                           
+                           <input type='text' id="diagnosis3Search"
+                                placeholder='Programming language name'
+                                class='flexdatalist'
+                                data-min-length='1'
+                                list='diagnosis3'
+                                name='language'>
+                        </div>
+                        <div id="divDiag">
+                            
                         </div>
                           <div class="form-group">
                               <input type="hidden" name="DGS" id="dgsCode" class="form-control input-lg"  tabindex="4">
@@ -176,3 +206,72 @@
         </div>
         <!--End ADD Diagnosis-->
         <!--End Update Diagnosis-->
+        
+        <script type="text/javascript">
+            var arrayDGSData = JSON.parse(localStorage.dgsData);
+            console.log(arrayDGSData);
+            var inputdgsSearch = $('#ajax').val();
+              $('#diagnosisSearch').flexdatalist({
+                    minLength: 2,
+                    searchIn: 'name',
+                    data:arrayDGSData,
+                    cache:true
+              });
+
+              $("#diagnosisSearch").on('before:flexdatalist.data',function(){
+                   $('#matchDiag').html('<img src="img/LoaderIcon.gif" />');
+
+              });
+              $("#diagnosisSearch").on('after:flexdatalist.data',function(){
+                  $('#matchDiag').html('');
+
+              });
+
+
+//            // Get the <datalist> and <input> elements.
+//var dataList = document.getElementById('json-datalist');
+//var input = document.getElementById('ajax');
+//
+//// Create a new XMLHttpRequest.
+//var request = new XMLHttpRequest();
+//
+//// Handle state changes for the request.
+//request.onreadystatechange = function (response) {
+//    if (request.readyState === 4) {
+//        if (request.status === 200) {
+//            // Parse the JSON
+//            var jsonOptions = JSON.parse(request.responseText);
+//            console.log(jsonOptions);
+//
+//            // Loop over the JSON array.
+//            jsonOptions.forEach(function (item) {
+//                // Create a new <option> element.
+//                var option = document.createElement('option');
+//                // Set the value using the item in the JSON array.
+//                option.value = item;
+//                // Add the <option> element to the <datalist>.
+//                dataList.appendChild(option);
+//                
+//                $('#ajax').flexdatalist({
+//                    minLength: 1
+//               });
+//            });
+//
+//            // Update the placeholder text.
+//            input.placeholder = "e.g. datalist";
+//        } else {
+//            // An error occured :(
+//            input.placeholder = "Couldn't load datalist options :(";
+//        }
+//    }
+//};
+//
+//// Update the placeholder text.
+//input.placeholder = "Loading options...";
+//
+//// Set up and make the request.
+//request.open('GET', 'countries.json', true);
+//request.send();
+
+            </script>
+         
