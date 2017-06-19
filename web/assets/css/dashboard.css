@@ -273,13 +273,18 @@
     margin: 0 auto;
     overflow: hidden;
     margin-bottom: 15px;
+    position: relative;
 }
 
 .profile-userpic>img {
+    position: absolute;
+    top: -9999px;
+    bottom: -9999px;
+    left: -9999px;
+    right: -9999px;
+    margin: auto;
     height: 100%;
     max-width: none;
-    position: relative;
-    width: 100%;
 }
 
 .profile {
