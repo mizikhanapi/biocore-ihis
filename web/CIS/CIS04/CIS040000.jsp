@@ -17,134 +17,218 @@
                 <button type="button" class="close" data-dismiss="modal"><i class="fa fa-times fa-lg"></i><span class="sr-only">Close</span></button>
                 <h3 class="modal-title" id="lineModalLabel">Radiology Request Form</h3>
             </div>
+            <div class="modal-header" style="padding: 0px;">
+                <div class="tabbable-line">
+                    <ul class="nav nav-tabs ">
+                        <li class="active">
+                            <a href="#radiologyRequest1" data-toggle="tab">
+                                New Radiology Request</a>
+                        </li>
+                        <li>
+                            <a href="#radiologyRequest2" data-toggle="tab">
+                                Radiology Request History</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
             <div class="modal-body">
-                <div class="form-horizontal">
-                    <h4 class="modal-title" style="font-weight: bold">Service Provider</h4>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="form-group">
-                                <label class="col-md-2 control-label" for="textinput">Health Facility</label>
-                                <div class="col-md-9">
-                                    <input class="form-control input-lg" type="text"  id="hfcROS" placeholder="">
-                                    <input class="form-control input-lg" type="hidden"  id="hfcOrderDetail" placeholder="">
-                                    <input class="form-control input-lg" type="hidden"  id="hfcProviderDetail" placeholder="">
-                                    <input class="form-control input-lg" type="hidden"  id="hfcIdROS">
-                                    <div id="matchHFCROS" style="width: 100% !important;" ></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-12">
-                            <div class="form-group">
-                                <label class="col-md-2 control-label" for="textinput">Location</label>
-                                <div class="col-md-9">
-                                    <textarea type="text" name="display_name" id="locationROS" class="form-control input-lg" tabindex="3"></textarea>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <hr/>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <!-- content goes here -->
-                            <div class="form-group">
-                                <input type="hidden" name="POS" id="codeROS_2" class="form-control input-lg"  tabindex="4">
-                            </div>
-                            <div class="form-group">
-                                <label class="col-md-2 control-label" for="textinput">Search Radiology Procedure</label>
-                                <div class="col-md-9">
-                                    <input class="form-control input-lg" type="text" name="problem"  id="ROS" placeholder="Search Radiology Procedure..." tabindex="4">
-                                    <div id="matchROS" class="search-drop"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                <div class="tabbable-panel">
+                    <div class="tabbable-line">
+                        <!-- tab content -->
+                        <div class="tab-content">
+                            <!-- Tab 1 -->
+                            <div class="tab-pane active" id="radiologyRequest1">
 
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label class="col-md-4 control-label" for="textinput">Modality</label>
-                                <div class="col-md-6">
-                                    <input class="form-control input-lg" type="text" name="pro" id="modalityROS" readonly="">
-                                    <input class="form-control input-lg" type="hidden" name="pro" id="modalityROSCode" readonly="">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label class="col-md-4 control-label" for="textinput">Body System</label>
-                                <div class="col-md-6">
-                                    <input class="form-control input-lg" type="text" name="pro" id="bodySystemROS" readonly="">
-                                    <input class="form-control input-lg" type="hidden" name="pro" id="bodySystemROSCode" readonly="">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <hr/>
-                    <h4 class="modal-title" style="font-weight: bold">Appointment </h4>
+                                <div class="form-horizontal">
+                                    <h4 class="modal-title" style="font-weight: bold">Service Provider</h4>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label class="col-md-2 control-label" for="textinput">Health Facility</label>
+                                                <div class="col-md-9">
+                                                    <input class="form-control input-lg" type="text"  id="hfcROS" placeholder="">
+                                                    <input class="form-control input-lg" type="hidden"  id="hfcOrderDetail" placeholder="">
+                                                    <input class="form-control input-lg" type="hidden"  id="hfcProviderDetail" placeholder="">
+                                                    <input class="form-control input-lg" type="hidden"  id="hfcIdROS">
+                                                    <div id="matchHFCROS" style="width: 100% !important;" ></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label class="col-md-2 control-label" for="textinput">Location</label>
+                                                <div class="col-md-9">
+                                                    <textarea type="text" name="display_name" id="locationROS" class="form-control input-lg" tabindex="3"></textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <hr/>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <!-- content goes here -->
+                                            <div class="form-group">
+                                                <input type="hidden" name="POS" id="codeROS_2" class="form-control input-lg"  tabindex="4">
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-md-2 control-label" for="textinput">Search Radiology Procedure</label>
+                                                <div class="col-md-9">
+                                                    <input class="form-control input-lg" type="text" name="problem"  id="ROS" placeholder="Search Radiology Procedure..." tabindex="4">
+                                                    <div id="matchROS" class="search-drop"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
 
-                    <div class="row">                    
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label class="col-md-4 control-label" for="textinput">Appointment</label>
-                                <div class="col-md-6">
-                                    <input class="form-control input-lg" type="text" id="appointmentROS" placeholder="">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label class="col-md-4 control-label" for="textinput">Patient Condition</label>
-                                <div class="col-md-6">
-                                    <select id="patientConditionROSCd" class="form-control input-lg">
-                                        <option disabled="" >Please select Priority...</option>
-                                        <%
-                                            if (dataPatientCondition.size() > 0) {
-                                                for (int i = 0; i < dataPatientCondition.size(); i++) {
-                                        %>
-                                        <option value="<%out.print(dataPatientCondition.get(i).get(0));%>"><%out.print(dataPatientCondition.get(i).get(1));%></option>
-                                        <%
-                                                }
-                                            }%>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="col-md-4 control-label" for="textinput">Modality</label>
+                                                <div class="col-md-6">
+                                                    <input class="form-control input-lg" type="text" name="pro" id="modalityROS" readonly="">
+                                                    <input class="form-control input-lg" type="hidden" name="pro" id="modalityROSCode" readonly="">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="col-md-4 control-label" for="textinput">Body System</label>
+                                                <div class="col-md-6">
+                                                    <input class="form-control input-lg" type="text" name="pro" id="bodySystemROS" readonly="">
+                                                    <input class="form-control input-lg" type="hidden" name="pro" id="bodySystemROSCode" readonly="">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <hr/>
+                                    <h4 class="modal-title" style="font-weight: bold">Appointment </h4>
 
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                                    <div class="row">                    
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="col-md-4 control-label" for="textinput">Appointment</label>
+                                                <div class="col-md-6">
+                                                    <input class="form-control input-lg" type="text" id="appointmentROS" placeholder="">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="col-md-4 control-label" for="textinput">Patient Condition</label>
+                                                <div class="col-md-6">
+                                                    <select id="patientConditionROSCd" class="form-control input-lg">
+                                                        <option disabled="" >Please select Priority...</option>
+                                                        <%
+                                                            if (dataPatientCondition.size() > 0) {
+                                                                for (int i = 0; i < dataPatientCondition.size(); i++) {
+                                                        %>
+                                                        <option value="<%out.print(dataPatientCondition.get(i).get(0));%>"><%out.print(dataPatientCondition.get(i).get(1));%></option>
+                                                        <%
+                                                                }
+                                                            }%>
 
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label class="col-md-4 control-label" for="textinput">Priority</label>
-                                <div class="col-md-6">
-                                    <select id="priorityROScd" class="form-control input-lg">
-                                        <option disabled="">Please select condition..</option>
-                                        <%
-                                            if (dataPriority.size() > 0) {
-                                                for (int i = 0; i < dataPriority.size(); i++) {
-                                        %>
-                                        <option value="<%out.print(dataPriority.get(i).get(0));%>"><%out.print(dataPriority.get(i).get(1));%></option>
-                                        <%
-                                                }
-                                            }%>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
 
-                                    </select>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="col-md-4 control-label" for="textinput">Priority</label>
+                                                <div class="col-md-6">
+                                                    <select id="priorityROScd" class="form-control input-lg">
+                                                        <option disabled="">Please select condition..</option>
+                                                        <%
+                                                            if (dataPriority.size() > 0) {
+                                                                for (int i = 0; i < dataPriority.size(); i++) {
+                                                        %>
+                                                        <option value="<%out.print(dataPriority.get(i).get(0));%>"><%out.print(dataPriority.get(i).get(1));%></option>
+                                                        <%
+                                                                }
+                                                            }%>
+
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <hr/>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label class="col-md-12" for="textinput">Comments</label>
+                                                <div class="col-md-12">
+                                                    <textarea type="text" name="display_name" id="commentROS" class="form-control input-lg" placeholder="comments.." tabindex="3"></textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                    <hr/>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="form-group">
-                                <label class="col-md-12" for="textinput">Comments</label>
-                                <div class="col-md-12">
-                                    <textarea type="text" name="display_name" id="commentROS" class="form-control input-lg" placeholder="comments.." tabindex="3"></textarea>
-                                </div>
+                            <!-- Tab 1 -->
+
+                            <!-- Tab 2 -->
+                            <div class="tab-pane" id="radiologyRequest2">
+                                <form class="form-horizontal" name="myForm" id="myForm">
+                                    <!-- Select Basic -->
+                                    <div class="form-group">
+                                        <label class="col-md-4 control-label" for="selectbasic">Search drug by</label>
+                                        <div class="col-md-4">
+                                            <select id="idType" name="idType" class="form-control" required="">
+                                                <option selected="" disabled="" value="-">View by</option>
+                                                <option>Today</option>
+                                                <option>Previous Episode</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <!-- Text input-->
+                                    <div class="form-group">
+                                        <label class="col-md-4 control-label" for="textinput">Order</label>
+                                        <div class="col-md-4">
+                                            <input type="text" class="form-control input-md" id="idInput" name="idInput" placeholder="ID" maxlength="0">
+                                        </div>
+                                    </div>
+
+                                    <div class="text-center">
+                                        <button class="btn btn-primary" type="button" id="searchPatient" name="searchPatient"><i class="fa fa-search"></i>&nbsp; Search</button>
+                                        <button id="clearSearch" name="clearSearch" type="button" class="btn btn-default"><i class="fa fa-times"></i>&nbsp; Clear</button>
+                                    </div>
+                                </form>
                             </div>
+                            <!-- Tab 2 -->
+
                         </div>
                     </div>
                 </div>
+
+                <hr/>
+                <table class="table table-bordered table-striped">
+                    <thead>
+                        <tr>
+                            <td>Episode Date</td>
+                            <td>Order No.</td>
+                            <td>Radiology Name</td>
+                            <td>Radiology Details</td>
+                            <td>Action</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>16/06/2017 | 3:52 PM</td>
+                            <td>000001</td>
+                            <td>Put Name</td>
+                            <td>Put details here</td>
+                            <td>
+                                <a data-toggle="tooltip" data-placement="top" title="Add Order" class="" style="cursor: pointer"><i class="fa fa-plus fa-lg" aria-hidden="true" style="display: inline-block;color: #58C102;"></i></a>
+                                &nbsp;
+                                <a class="" style="cursor: pointer" data-toggle="tooltip" data-placement="top" title="Cancel Order"><i class="fa fa-times fa-lg" aria-hidden="true" style="display: inline-block;color: #d9534f;"></i></a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
 
             </div>   
             <div class="modal-footer">
