@@ -4,7 +4,7 @@
 <%@page import="main.RMIConnector"%>
 <%
     Conn Conn = new Conn();
-                               String key = request.getParameter("input");
+                               String key = request.getParameter("keyword");
                                //String key ="fever";
                                 String searchProblem = "select icd10_desc from icd10_codes where CONCAT(UPPER(icd10_desc),LOWER(icd10_desc)) like '%" +  key + "%'";
                                 ArrayList<ArrayList<String>> search = Conn.getData(searchProblem); 

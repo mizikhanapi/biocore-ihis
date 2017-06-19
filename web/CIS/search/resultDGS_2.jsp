@@ -6,7 +6,7 @@
     Conn Conn = new Conn();
                                //String key = request.getParameter("input");
                                //String key ="fever";
-                                String searchProblem = "select icd10_desc from icd10_codes LIMIT 50";
+                                String searchProblem = "select icd10_desc from icd10_codes";
                                 ArrayList<ArrayList<String>> search = Conn.getData(searchProblem); 
                                 String data = "[";
                                  if (search.size() > 0) 

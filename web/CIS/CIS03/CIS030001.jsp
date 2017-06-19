@@ -24,13 +24,22 @@
                                 <div id="matchDiag"></div>
                             </div>   
                         </div>
-                         <input class="form-control input-lg" type="text" name="problem"  id="searchDiag" placeholder="ajax1..." tabindex="4">
-                        <input type='text'
-                               id="diagnosisSearch"
-       placeholder='diagnosis'
-       class='flexdatalist'
-       data-min-length='1'
-       name='country_name_suggestion'>
+<!--                         <input class="form-control input-lg" type="text" name="tCIS_DiagnosisSearch"  id="tCIS_DiagnosisSearch" placeholder="tCIS_DiagnosisSearch" tabindex="4">-->
+                        <input type='text' id="diagnosisSearch" placeholder='diagnosis Local' class='flexdatalist' data-min-length='1' name='country_name_suggestion'>
+                        <input type='text' id="diagnosisSearchAjax" placeholder='diagnosis Ajax' class='flexdatalist' data-min-length='1' name='country_name_suggestion'>
+                        <div id="diagnosisSearchAjaxLoading"></div>
+                        
+                        
+<!--                        <input type='text' placeholder='DataListDiagnosis' id="DataListSearch" class='flexdatalist' data-min-length='1' list='DataListDiagnosis' name='DataListDiagnosis'>
+                        <datalist id="DataListDiagnosis">
+                            <option value="PHP">PHP</option>
+                        </datalist>-->
+                        
+
+<!--                        <div id="diagnosisDataList">
+
+                        </div>-->
+
                         
 
                         
@@ -40,12 +49,7 @@
 
                             </div>   
                            
-                           <input type='text' id="diagnosis3Search"
-                                placeholder='Programming language name'
-                                class='flexdatalist'
-                                data-min-length='1'
-                                list='diagnosis3'
-                                name='language'>
+
                         </div>
                         <div id="divDiag">
                             
@@ -209,69 +213,58 @@
         
         <script type="text/javascript">
             var arrayDGSData = JSON.parse(localStorage.dgsData);
+            var arrayDGSDataAjax = [];
+            //var arrayDGSData = [];
             console.log(arrayDGSData);
             var inputdgsSearch = $('#ajax').val();
               $('#diagnosisSearch').flexdatalist({
-                    minLength: 2,
+                    minLength: 3,
                     searchIn: 'name',
                     data:arrayDGSData,
                     cache:true
               });
+  
+              $(document).ready(function(){
+                  
+                searching("diagnosisSearchAjax","diagnosisSearchAjaxLoading","search/resultDGS_5.jsp");
+                  
+//              $('#diagnosisSearchAjax').flexdatalist({
+//                    minLength: 2,
+//                    searchIn: 'name',
+//                    //data:arrayDGSDataAjax,
+//                    url:"search/resultDGS_5.jsp",
+//                    cache:true
+//              });
+//                  
+//                $("#diagnosisSearchAjax").on('before:flexdatalist.data',function(response){
+//                    $('#diagnosisSearchAjaxLoading').html('<img src="img/LoaderIcon.gif" />');
+//                });
+//                $("#diagnosisSearchAjax").on('after:flexdatalist.data',function(response){
+//                    $('#diagnosisSearchAjaxLoading').html('');
+//                });
+                
+                
+                
+                //function searching Diagnosis Ajax
+                function searching(fieldId,loadingDivId,urlData){
+                    $('#'+fieldId).flexdatalist({
+                        minLength: 2,
+                        searchIn: 'name',
+                        //data:arrayDGSDataAjax,
+                        url:urlData,
+                        cache:true
+                     });
 
-              $("#diagnosisSearch").on('before:flexdatalist.data',function(){
-                   $('#matchDiag').html('<img src="img/LoaderIcon.gif" />');
+                    $("#"+fieldId).on('before:flexdatalist.data',function(response){
+                        $('#'+loadingDivId).html('<img src="img/LoaderIcon.gif" />');
+                    });
+                    $("#"+fieldId).on('after:flexdatalist.data',function(response){
+                        $('#'+loadingDivId).html('');
+                    });
+                }
+                
+              })
 
-              });
-              $("#diagnosisSearch").on('after:flexdatalist.data',function(){
-                  $('#matchDiag').html('');
-
-              });
-
-
-//            // Get the <datalist> and <input> elements.
-//var dataList = document.getElementById('json-datalist');
-//var input = document.getElementById('ajax');
-//
-//// Create a new XMLHttpRequest.
-//var request = new XMLHttpRequest();
-//
-//// Handle state changes for the request.
-//request.onreadystatechange = function (response) {
-//    if (request.readyState === 4) {
-//        if (request.status === 200) {
-//            // Parse the JSON
-//            var jsonOptions = JSON.parse(request.responseText);
-//            console.log(jsonOptions);
-//
-//            // Loop over the JSON array.
-//            jsonOptions.forEach(function (item) {
-//                // Create a new <option> element.
-//                var option = document.createElement('option');
-//                // Set the value using the item in the JSON array.
-//                option.value = item;
-//                // Add the <option> element to the <datalist>.
-//                dataList.appendChild(option);
-//                
-//                $('#ajax').flexdatalist({
-//                    minLength: 1
-//               });
-//            });
-//
-//            // Update the placeholder text.
-//            input.placeholder = "e.g. datalist";
-//        } else {
-//            // An error occured :(
-//            input.placeholder = "Couldn't load datalist options :(";
-//        }
-//    }
-//};
-//
-//// Update the placeholder text.
-//input.placeholder = "Loading options...";
-//
-//// Set up and make the request.
-//request.open('GET', 'countries.json', true);
-//request.send();
 
             </script>
          
