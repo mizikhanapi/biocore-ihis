@@ -51,6 +51,7 @@ function Main(array_data) {
                             $('input[id=PMIpmino]').val($.trim(list));
                             //$('#PMInic').val($.trim(idInput));
                             $('#PMIbday').val($.trim(ICbday));
+                            $('input[id=PMIpmino]').prop('readonly', false);
                             //console.log(ICbday);
                             //registration
                             $('input[id=pmino]').val($.trim(list));
@@ -139,6 +140,7 @@ function Main(array_data) {
                             $('input[id=PMIpmino]').val($.trim(list));
                             $('#PMInic').val($.trim(newic));
                             $('#PMIbday').val($.trim(ICbday));
+                            $('input[id=PMIpmino]').prop('readonly', false);
                             console.log(ICbday);
                             //registration
                             $('input[id=pmino]').val($.trim(list));
@@ -211,6 +213,7 @@ function Main(array_data) {
                             //registration
                             $('input[id=pmino]').val($.trim(list));
                             $('input[id=pnic]').val($.trim(idInput));
+                            $('input[id=PMIpmino]').prop('readonly', false);
                             //employment
                             $('input[id=EMPpmino]').val($.trim(list));
                             $('#EMPcredate').val(ddMMyyyyDua);
