@@ -45,6 +45,8 @@
     // status 1 = universiti
     // status bole dapat kat session
     String dataSystemStatus = session.getAttribute("SYSTEMSTAT").toString();
+    String systemParam = session.getAttribute("SYSTEM_PARAMETER").toString();
+    //out.print(systemParam);
 
     //out.println(conn.getIpCall()+ " ");
     //out.println("  Health facility code :"+hfc);
