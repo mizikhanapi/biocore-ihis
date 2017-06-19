@@ -21,7 +21,7 @@
     // status 0 = public
     // status 1 = universiti
     // status bole dapat kat session
-    String status = session.getAttribute("SYSTEMSTAT").toString();
+    String status = session.getAttribute("SYSTEM_PARAMETER").toString();
     String searchPatient = "";
 
     if (status.equals("1")) {

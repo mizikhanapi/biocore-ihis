@@ -10,11 +10,16 @@
     String idTYpe2 = "select * from adm_lookup_detail where master_reference_code = '0012' AND hfc_cd = '"+hfc+"' ";
     ArrayList<ArrayList<String>> dataIdType2;
     ArrayList<ArrayList<String>> data2 = new ArrayList();
+    ArrayList<ArrayList<String>> data3 = new ArrayList();
     //String hfc = session.getAttribute("HEALTH_FACILITY_CODE").toString();
     //Conn conn = new Conn();
     dataIdType2 = conn.getData(idTYpe2);
     //out.print(dataIdType);
     String dataSystemStatus2 = session.getAttribute("SYSTEM_PARAMETER").toString();
+    //out.print(dataIdType2.indexOf("004"));
+    //out.print(dataIdType2.get(-1));
+    //String dataSystemStatus2 = "0";
+
     //out.print(dataSystemStatus2);
 %>
 <h4>Search Patient
@@ -27,13 +32,18 @@
         <div class="col-md-4">
             <select id="idType" name="idType" class="form-control" required="">
                 <option selected="" disabled="" value="-"> Please select ID type</option>
-<!--                <option value="pmino">PMI No</option>
-                <option value="icnew">IC No (NEW)</option>
-                <option value="icold">IC No (OLD)</option>
-                <option value="matricno">Matric No</option>
-                <option value="staffno">Staff No</option>-->
                 <%  if (dataSystemStatus2.equals("0")) {
-
+                        for(int j = 0; j < dataIdType2.size(); j++){
+                            if(dataIdType2.get(j).get(1).equalsIgnoreCase("004")){
+                                dataIdType2.remove(j);
+                            }
+                            
+                            if(dataIdType2.get(j).get(1).equalsIgnoreCase("005")){
+                                dataIdType2.remove(j);
+                            }
+                        }
+                        data2 = dataIdType2;
+                        
                     } else if (dataSystemStatus2.equals("1")) {
                         data2 = dataIdType2;
                     }
