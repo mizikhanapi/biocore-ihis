@@ -36,7 +36,7 @@
         subdi_str = " AND cs_sub_discipline = '" + subdi + "'";
     }
 
-    String sql = "SELECT Id,cs_patient_name,cs_queue_no,cs_queue_name,cs_callingtime FROM qcs_calling_system_queue WHERE " + hfccd_str + discp_str + subdi_str;
+    String sql = "SELECT Id,cs_patient_name,cs_queue_no,cs_queue_name,cs_callingtime,cs_room_no FROM qcs_calling_system_queue WHERE " + hfccd_str + discp_str + subdi_str;
 
     Query q = new Query();
     //ArrayList<Calling_system_bean> d = q.getQueryCallingSystem(sql);
@@ -76,7 +76,7 @@
                 <p style="margin-bottom: 3px; font-weight: 400;">Room No</p>
                 <span style="    
                       font-weight: 500;
-                      color: #333; font-size: 26px;" id="qname_<%=i%>"><%=d.get(i).get(3)%></span>
+                      color: #333; font-size: 26px;" id="qname_<%=i%>"><%=d.get(i).get(5)%></span>
                 <%
                     String myString = d.get(i).get(2);
                 %>
@@ -103,7 +103,7 @@
                     //$("#view_VS").load("libraries/header.html");
                     //alert(qno);
                     qno = Number(qno)+Number(initial);
-                    $("#view_VS").load("newjsp1.jsp?idResult=" + qno);
+                    $("#view_VS").load("newjsp1.jsp?idResult=" + qno+"&room="+qname);
                 </script>   
                 <%
                 } else if (lang.equals("2")) {
@@ -138,7 +138,7 @@
                     qname = qname.toLowerCase().replace(/\b[a-z]/g, function (letter) {
                         return letter.toUpperCase();
                     });
-                    var ayat = name + ", Number " + qno + ", " + qname;
+                    var ayat = name + ", Number " + qno + ", Room " + qname;
                     var msg1 = new SpeechSynthesisUtterance(ayat);
                     window.speechSynthesis.speak(msg1);
                 </script>

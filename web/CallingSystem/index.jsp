@@ -302,7 +302,7 @@
             var lang = document.querySelector('input[name="pilih"]:checked').value;
             var initial = $("#initial").val();
 
-            location.href = 'index.jsp?hfccd=' + hfccd + '&discp=' + discp + '&lang=' + lang + '&subdi=' + subdi+'&initial='+initial;
+            location.href = 'index.jsp?hfccd=' + hfccd + '&discp=' + discp + '&subdi=' + subdi+'&lang=' + lang +'&initial='+initial;
 
         });
 
