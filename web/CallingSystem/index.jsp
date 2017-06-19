@@ -105,6 +105,7 @@
                         <input type="text" id="lng" name="lng" value="test" style=" display: none;"> 
                         <hr class="pemisah" />
                         <ul class="collapse" id="filter" aria-expanded="false" style="height: 0px; padding-left: 0px;">
+                            <a class="pull-right settingCalling" data-toggle="modal" data-target="#callingSetting" title="Settings" style="padding-right: 30px;color: #999;"><i class="fa fa-cog fa-lg"></i></a>
                             <div class="form-horizontal">
 
                                 <div class="form-group">
@@ -165,68 +166,84 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+                <button type="button" class="close" data-dismiss="modal"><i class="fa fa-times fa-lg"></i></button>
                 <h3 class="modal-title" id="lineModalLabel">Setting</h3>
             </div>
             <div class="modal-body">
                 <!-- content goes here -->
                 <form>
-                    <div class="form-group">
-                        <h4>Before Filter</h4>
-                    </div>
 
                     <div class="row">
-                        <div class="col-xs-1 col-sm-1 col-md-1">
+                        <div class="col-md-12">
                             <div class="form-group">
-                                
+                                <label class="col-md-4 control-label text-right" for="textinput">Initial Counter:</label>
+                                <div class="col-md-8">
+                                    <input type="text" id="initial" name="initial" value="0" class="form-control">
+                                </div>
                             </div>
                         </div>
-                        <div class="col-xs-10 col-sm-10 col-md-10">
-                            <div class="form-group">
-                                <p style=" align-content: center">
-                                <center>
-                                    Initial Counter:<input type="text" id="initial" name="initial" value="0"><br>
+                    </div>
+                    <hr/>
+                    <h4 style="padding: 0px;">Select Language: </h4>
+                    <div class="row text-center">
+                        <div class="col-md-12">
+                            <div class="form-group form-inline">
+                                <div class="radio radio-primary" style="padding-left: 0px;">
                                     <input type="radio" id="BM" class="setting" name="lang" value="BM" onclick="my_function(this)" checked="checked">
-                                    <label >Bahasa Malaysia</label>
+                                    <label for="BM">
+                                        Bahasa Malaysia
+                                    </label>
+                                </div>
 
+                                <div class="radio radio-primary">
                                     <input type="radio" id="BI" class="setting" name="lang" value="BI" onclick="my_function(this)">
-                                    <label >Bahasa English</label></center>
-
-                                </p>
-                            </div>
-                            <div class="form-group" id="hideshow">
-                                <p>
-                                    <input type="radio" id="1" class="setting" value="1" name="pilih" checked="chacked">
-                                    <label for="test6" id="L1">Queue No. / No. Giliran</label>
-                                </p>
-                                <p>
-                                    <input type="radio" id="2" class="setting" value="2" name="pilih" style=" display: none">
-                                    <label for="test6" id="L2" style=" display: none">Name of patient</label>
-                                </p>
-                                <p>
-                                    <input type="radio" id="3" class="setting" value="3" name="pilih" style=" display: none">
-                                    <label for="test6" id="L3" style=" display: none">Queue No & Name of patient</label>
-                                </p>
-
+                                    <label for="BI">
+                                        English
+                                    </label>
+                                </div>
                             </div>
                         </div>
-
-                        <div class="col-xs-1 col-sm-1 col-md-1">
-                            <div class="form-group">
-
-                            </div>
-                        </div>
-
                     </div>
 
-                </form></div>     
+                    <h4 style="padding: 0px;">Select Sound: </h4>
+                    <div class="row"  id="hideshow">
+                        <div class="col-md-12">
+                            <div class="form-group form-inline">
+
+                                <div class="radio radio-primary" id="L1">
+                                    <input type="radio" id="1" class="setting" value="1" name="pilih" checked="chacked">
+                                    <label for="1">
+                                        Queue No. / No. Giliran
+                                    </label>
+                                </div>&nbsp;
+                                <div class="radio radio-primary" id="L2" style=" display: none">
+                                    <input type="radio" id="2" class="setting" value="2" name="pilih" >
+                                    <label for="2">
+                                        Name of patient
+                                    </label>
+                                </div>&nbsp;
+                                <div class="radio radio-primary" id="L3" style=" display: none">
+                                    <input type="radio" id="3" class="setting" value="3" name="pilih" >
+                                    <label for="3">
+                                        Queue No & Name of patient
+                                    </label>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </form>
+            </div>
 
             <div class="modal-footer">
                 <div class="btn-group btn-group-justified" role="group" aria-label="group button">
                     <div class="btn-group" role="group">
                         <button type="button" class="btn btn-success btn-block btn-lg" id="acceptSettingBtn" role="button">Save</button>
                     </div>
-
+                    <div class="btn-group" role="group">
+                        <button type="button" class="btn btn-default btn-block btn-lg" data-dismiss="modal">Close</button>
+                    </div>
                 </div>
             </div>
         </div>
