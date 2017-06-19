@@ -275,6 +275,12 @@
     margin-bottom: 15px;
 }
 
+.profile-userpic>img {
+    height: 100%;
+    max-width: none;
+    position: relative;
+}
+
 .profile {
     text-align: center;
     margin: 15px 0;
@@ -601,7 +607,7 @@ tr#moveToOrderDetailsTButton {
 }
 
 .filter:hover {
-    color: #333 !important;
+    color: #666 !important;
     transition: .35s ease-in-out;
 }
 
@@ -1017,4 +1023,15 @@ tr#moveToOrderDetailsTButton {
 .profile-usertitle-job {
     color:#999;
     font-size: 13px;
+}
+
+.settingCalling {
+    padding-right: 30px;
+    color: #ccc;
+    cursor: pointer;
+}
+
+.settingCalling i:hover {
+    color: #666;
+    transition: .35s ease-in-out;
 }
