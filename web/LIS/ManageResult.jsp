@@ -3,6 +3,7 @@
     Created on : Nov 4, 2016, 4:07:05 PM
     Author     : Ahmed
 --%>
+<%@page import="java.text.DateFormat"%>
 <%@page import="dBConn.Conn"%>
 <%@page import="java.util.Date"%>
 <%@page import="java.util.*"%>
@@ -91,9 +92,8 @@
                                     });
 
                                 </script>
-                                <%
-                                    String timeStamp = new SimpleDateFormat("dd/MM/yyyy").format(new Date());
-                                out.print(timeStamp);
+                                <%                                    String timeStamp = new SimpleDateFormat("dd/MM/yyyy").format(new Date());
+                                    out.print(timeStamp);
                                 %>
                                 <div class="table-responsive" id='viewMTS'>
                                     <table id="MTC"  class="table table-striped table-bordered" cellspacing="0" width="100%">
@@ -116,7 +116,7 @@
                                         <tbody>
 
                                             <%if (dataPatientApp.size() > 0) {
-                for (int i = 0; i < dataPatientApp.size(); i++) {%>
+                                                    for (int i = 0; i < dataPatientApp.size(); i++) {%>
                                             <tr>
                                                 <td><%=dataPatientApp.get(i).get(12)%></td>
                                                 <td><%=dataPatientApp.get(i).get(13)%></td>
@@ -160,14 +160,23 @@
                                                                             <div class="form-group">
                                                                                 <label for="exampleInputEmail1"> Age: <%
                                                                                     String birth = dataPatientApp.get(i).get(8);
-                                                                                    String[] parts = birth.split("/");
-                                                                                    int years = Integer.parseInt(parts[2]);
-                                                                                    Calendar now = Calendar.getInstance();   // Gets the current date and time
-                                                                                    int year = now.get(Calendar.YEAR);
-                                                                                    int age = year - years;
-                                                                                    out.println(age);
+                                                                                    boolean retval = birth.contains("-");
+                                                                                    if (birth.contains("-")) {
+                                                                                        String[] parts = birth.split("-");
+                                                                                        int years = Integer.parseInt(parts[0]);
+                                                                                        Calendar now = Calendar.getInstance();   // Gets the current date and time
+                                                                                        int year = now.get(Calendar.YEAR);
+                                                                                        int age = year - years;
+                                                                                        out.println(age);
 
-                                                                                    %></label>
+                                                                                    } else {
+                                                                                        String[] parts = birth.split("/");
+                                                                                        int years = Integer.parseInt(parts[2]);
+                                                                                        Calendar now = Calendar.getInstance();   // Gets the current date and time
+                                                                                        int year = now.get(Calendar.YEAR);
+                                                                                        int age = year - years;
+                                                                                        out.println(age);
+                                                                                    }%></label>
                                                                             </div>
                                                                             <br>
                                                                             <div class="form-group">
@@ -251,20 +260,20 @@
         <script src="bootstrap-3.3.6-dist/js/jquery.dataTables.min.js"></script>
         <script src="bootstrap-3.3.6-dist/js/dataTables.bootstrap.min.js" type="text/javascript"></script>
         <script>
-                                                    function a()
-                                                    {
+                                    function a()
+                                    {
             <%                try {
                     String error = request.getParameter("error");
                     if (error != null) {
             %>
-                                                        alert('<%=error%>');
-                                                        location.href = 'MainPage.jsp';
+                                        alert('<%=error%>');
+                                        location.href = 'MainPage.jsp';
             <%
                     }
                 } catch (Exception e) {
                 }
             %>
-                                                    }
+                                    }
         </script>
         <script>
 
