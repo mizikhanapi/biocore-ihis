@@ -127,6 +127,19 @@ $(document).ready(function(){
         
     });
     
+         $.get( "search/resultDGS_2.jsp", function( data ) {
+       
+         localStorage.setItem("dgsData",data);
+         //console.log(localStorage.dgsData);
+         
+});
+
+
+    
+//    $.ajax({
+//        url:"search/resultDGS_2.jsp"
+//    })
+    
 });
 
 

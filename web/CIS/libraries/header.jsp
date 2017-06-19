@@ -29,6 +29,8 @@
 <script src="assets/jquery.timepicker.min.js" type="text/javascript"></script>
 <script src="assets/jquery.dataTables.min.js" type="text/javascript"></script>
 <script src="assets/dataTables.bootstrap.min.js" type="text/javascript"></script>
+<script src="../assets/js/jquery.flexdatalist.min.js" type="text/javascript"></script>
+
 <script src="jsFunction/MainConfig.js"></script>
 <script src="jsFunction/Objective.js"></script>
 <script src="jsFunction/Subjective.js"></script>
