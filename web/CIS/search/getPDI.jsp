@@ -18,6 +18,7 @@
     String pmiNo = request.getParameter("pmiNo");
     String episodeDate = request.getParameter("episodeDate");
     SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+    String my_1_user_id = (String) session.getAttribute("USER_ID");
 //    String pmiNo = "9504050251851";
     String PDI = "";
     String IdType = "-";
@@ -188,13 +189,15 @@
 
 ////Insert PMS data to table calling System
     
-    String sqlPMS = "SELECT ppq.hfc_cd,pql.discipline_cd,pql.sub_discipline_cd,ppq.pmi_no,pe.`NAME`,ppq.queue_no,ppq.queue_name,ppq.episode_date FROM pms_queue_list pql, pms_patient_queue ppq, pms_episode pe WHERE pql.hfc_cd = ppq.hfc_cd AND ppq.pmi_no = pe.`PMI_NO` AND ppq.pmi_no = '"+pmiNo+"' AND ppq.episode_date = '"+episodeDate+"' GROUP BY ppq.episode_date";
+    String sqlPMS = "SELECT pe.`HEALTH_FACILITY_CODE`,pe.`DISCIPLINE_CODE`,pe.`SUBDISCIPLINE_CODE`,pe.`PMI_NO`,pe.`NAME`,ppq.queue_no,ppq.queue_name,pe.`EPISODE_DATE` FROM pms_episode pe,pms_patient_queue ppq WHERE pe.`EPISODE_DATE`=ppq.episode_date AND ppq.pmi_no = '"+pmiNo+"' AND ppq.episode_date = '"+episodeDate+"' GROUP BY ppq.episode_date";
     ArrayList<ArrayList<String>> dataPMS = conn.getData(sqlPMS);
     RMIConnector rmic = new RMIConnector();
     
+    String room = "SELECT ROOM_NO FROM adm_users WHERE USER_ID = '"+my_1_user_id+"'";
+    ArrayList<ArrayList<String>> room1 = conn.getData(room);
     try
     {
-     String sqlInsert = "INSERT INTO qcs_calling_system_queue(cs_hfc_cd,cs_discipline,cs_sub_discipline,cs_pmi_no,cs_patient_name,cs_queue_no,cs_queue_name,cs_datetime,cs_callingtime) VALUES ('"+dataPMS.get(0).get(0)+"','"+dataPMS.get(0).get(1)+"','"+dataPMS.get(0).get(2)+"','"+dataPMS.get(0).get(3)+"','"+dataPMS.get(0).get(4)+"','"+dataPMS.get(0).get(5)+"','"+dataPMS.get(0).get(6)+"','"+dataPMS.get(0).get(7)+"','2')";
+     String sqlInsert = "INSERT INTO qcs_calling_system_queue(cs_hfc_cd,cs_discipline,cs_sub_discipline,cs_pmi_no,cs_patient_name,cs_queue_no,cs_queue_name,cs_datetime,cs_callingtime,cs_room_no) VALUES ('"+dataPMS.get(0).get(0)+"','"+dataPMS.get(0).get(1)+"','"+dataPMS.get(0).get(2)+"','"+dataPMS.get(0).get(3)+"','"+dataPMS.get(0).get(4)+"','"+dataPMS.get(0).get(5)+"','"+dataPMS.get(0).get(6)+"','"+dataPMS.get(0).get(7)+"','2','"+room1.get(0).get(0)+"')";
      rmic.setQuerySQL(conn.HOST, conn.PORT, sqlInsert);
     }
     catch(Exception e)
