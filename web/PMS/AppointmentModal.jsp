@@ -13,13 +13,17 @@
     //out.println(dateFormat.format(date));
     //String sql = "select a.pmi_no,a.appointment_date,a.start_time,a.appointment_type,b.PATIENT_NAME,b.NEW_IC_NO,b.OLD_IC_NO,b.ID_TYPE,b.ID_NO from pms_appointment a inner join pms_patient_biodata b on a.pmi_no = b.`PMI_NO` where appointment_date like '%" + dateFormat.format(date) + "%' and status ='active' and hfc_cd='" + session.getAttribute("HFC") + "'";
     //out.println(sql);
-    String idTYpe3 = "select * from adm_lookup_detail where master_reference_code = '0012' AND hfc_cd = '"+hfc+"' ";
+    String idTYpe3 = "select * from adm_lookup_detail where master_reference_code = '0012' AND hfc_cd = '" + hfc + "' ";
 
     ArrayList<ArrayList<String>> dataAppointment, dataIdType3;
     //dataAppointment = conn.getData(sql);
-    String dataSystemStatus3 = session.getAttribute("SYSTEMSTAT").toString();
+    String dataSystemStatus3 = session.getAttribute("SYSTEM_PARAMETER").toString();
+    
+    //testing->>
+    //String dataSystemStatus3 = "0";
+    // end of testing->>
     dataIdType3 = conn.getData(idTYpe3);
-
+    ArrayList<ArrayList<String>> data3 = new ArrayList();
     //out.println(dataAppointment);
 %>
 
@@ -40,15 +44,24 @@
                             <div class="col-md-4">
                                 <select id="idTypeApp" name="idTypeApp" class="form-control" required="">
                                     <option selected="" disabled="" value="-"> Please select ID type</option>
+                                    <%  if (dataSystemStatus3.equals("0")) {
+                                            for (int j = 0; j < dataIdType3.size(); j++) {
+                                                if (dataIdType3.get(j).get(1).equalsIgnoreCase("004")) {
+                                                    dataIdType3.remove(j);
+                                                }
 
-                                    <%                                if (dataSystemStatus3.equals("0")) {
+                                                if (dataIdType3.get(j).get(1).equalsIgnoreCase("005")) {
+                                                    dataIdType3.remove(j);
+                                                }
+                                            }
+                                            data3 = dataIdType3;
 
                                         } else if (dataSystemStatus3.equals("1")) {
-                                            for (int i = 0; i < dataIdType3.size(); i++) {%>
-                                    <option value="<%=dataIdType3.get(i).get(1)%>"><%=dataIdType3.get(i).get(2)%></option>
-                                    <%  }
+                                            data3 = dataIdType3;
                                         }
-
+                                        for (int i = 0; i < data3.size(); i++) {%>
+                                    <option value="<%=data3.get(i).get(1)%>"><%=data3.get(i).get(2)%></option>
+                                    <%  }
                                     %>
                                 </select>
                             </div>
@@ -69,7 +82,7 @@
                     </form>
                 </div>
             </div>
-<hr/>
+            <hr/>
             <div class="modal-table"><div class="row"id="modalBodyAppointment" >
                     <!-- content goes here -->
                     <form role="form" id="formAppointmentSaya" method="post">
