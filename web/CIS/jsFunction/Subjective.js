@@ -198,8 +198,9 @@ $(document).ready(function () {
             obj1[this.id] = $(this).val();
         });
         _data.push(obj1);
-        displayHPI(details);
+        displayHPI(obj1.details);
         $("#details").val("");
+        console.log(_data);
         $("#CIS01000002").modal('toggle');
     });
 
@@ -628,6 +629,7 @@ function displayCCN(problem,Mild,Site,duration,sdur,Laterality,Comment){
     i = i + 1;
 }
  function displayHPI(details){
+     console.log(details);
     var _tr = '<tr data-status="pagado" ><td><div class="ckbox"><input type="checkbox" id="checkbox|'+i+'" name="CIS_consult_notes"><label for="checkbox|'+i+'"></label></div></td><td><div class="media"><div class="media-body">History of Present Illness  :<p class="summary" id="sum' + i + '">' + details + '</p></div></div></td><td><a data-toggle="modal"   href="" class="updateBtnHPI" id="row|' + i + '"><i class="fa fa-pencil-square-o" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #337ab7;" ></i></a></a></td><td><a href="javascript:;" class="star"><a href="#" class="deleteBtn" id="row|' + i + '"><i class="fa fa-times" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #d9534f;"></i></a></a></td></tr>';
     $('#HPINotes').append(_tr);
     i = i + 1;

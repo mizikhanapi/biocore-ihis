@@ -24,24 +24,18 @@
                                 <div id="matchDiag"></div>
                             </div>   
                         </div>
-<!--                         <input class="form-control input-lg" type="text" name="tCIS_DiagnosisSearch"  id="tCIS_DiagnosisSearch" placeholder="tCIS_DiagnosisSearch" tabindex="4">-->
-                        <input type='text' id="diagnosisSearch" placeholder='diagnosis Local' class='flexdatalist' data-min-length='1' name='country_name_suggestion'>
-                        <input type='text' id="diagnosisSearchAjax" placeholder='diagnosis Ajax' class='flexdatalist' data-min-length='1' name='country_name_suggestion'>
-                        <div id="diagnosisSearchAjaxLoading"></div>
-                        
-                        
-<!--                        <input type='text' placeholder='DataListDiagnosis' id="DataListSearch" class='flexdatalist' data-min-length='1' list='DataListDiagnosis' name='DataListDiagnosis'>
-                        <datalist id="DataListDiagnosis">
-                            <option value="PHP">PHP</option>
-                        </datalist>-->
-                        
-
-<!--                        <div id="diagnosisDataList">
-
-                        </div>-->
-
-                        
-
+                        <div class="form-group">
+                            <div class="form-group">
+                                <input type='text' id="diagnosisSearch" placeholder='diagnosis Local' class='form-control input-lg flexdatalist' data-min-length='1' name='country_name_suggestion'>
+                                <div id="diagnosisSearchLoading"></div>
+                            </div>   
+                        </div>
+                        <div class="form-group">
+                            <div class="form-group">
+                                <input type='text' id="diagnosisSearchAjax" placeholder='diagnosis Ajax' class='form-control input-lg flexdatalist' data-min-length='1' name='country_name_suggestion'>
+                                <div id="diagnosisSearchAjaxLoading"></div>
+                            </div>   
+                        </div>
                         
                        <div class="form-group">
                             <div class="form-group">
@@ -213,6 +207,7 @@
         
         <script type="text/javascript">
             var arrayDGSData = JSON.parse(localStorage.dgsData);
+            //var arrayDGSData = [];
             var arrayDGSDataAjax = [];
             //var arrayDGSData = [];
             console.log(arrayDGSData);
@@ -221,8 +216,16 @@
                     minLength: 3,
                     searchIn: 'name',
                     data:arrayDGSData,
-                    cache:true
+                    cache:true,
+                    searchDelay:3000
               });
+               $("#diagnosisSearch").on('before:flexdatalist.data',function(response){
+                        $('#diagnosisSearchLoading').html('<img src="img/LoaderIcon.gif" />');
+                    });
+              $("#diagnosisSearch").on('after:flexdatalist.data',function(response){
+                        $('#diagnosisSearchLoading').html('');
+                        //console.log(urlData);
+                    });
   
               $(document).ready(function(){
                   
@@ -248,17 +251,29 @@
                 //function searching Diagnosis Ajax
                 function searching(fieldId,loadingDivId,urlData){
                     $('#'+fieldId).flexdatalist({
-                        minLength: 2,
+                        minLength: 3,
                         searchIn: 'name',
+                        searchDelay:2000,
                         //data:arrayDGSDataAjax,
                         url:urlData,
-                        cache:true
+                        cache:true,
+                        params:{
+                            timeout:3000,
+                            success:function(result){
+                                console.log(result);
+                                if(result === undefined){
+                                    $('#'+loadingDivId).html('No Record');
+                                }
+                            }
+                        }
                      });
 
                     $("#"+fieldId).on('before:flexdatalist.data',function(response){
+                        console.log("Start - "+getDate());
                         $('#'+loadingDivId).html('<img src="img/LoaderIcon.gif" />');
                     });
                     $("#"+fieldId).on('after:flexdatalist.data',function(response){
+                        console.log("End - "+getDate());
                         $('#'+loadingDivId).html('');
                     });
                 }
