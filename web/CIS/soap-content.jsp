@@ -45,7 +45,7 @@
                       <li><a data-toggle="modal" data-target="#CIS020004" href="" ><i class="flaticon flaticon-medical fa-li" style="display: inline"></i> Respiratory Rate</a></li>
                       <li><a data-toggle="modal" data-target="#CIS020005" href=""><i class="flaticon flaticon-science fa-li" style="display: block"></i> Oxygen Saturation</a></li>
                       <li><a data-toggle="modal" data-target="#CIS020006" href="" ><i class="fa fa-thermometer-half fa-li" style="display: block"></i> Body Temperature</a></li>
-                      <li><a data-toggle="modal" data-target="#CIS020007" href="" ><i class="fa fa-line-chart fa-li" style="display: block"></i> Pan Scale</a></li>
+                      <li><a data-toggle="modal" data-target="#CIS020007" href="" id="soapCtnPanScale"><i class="fa fa-line-chart fa-li" style="display: block"></i> Pan Scale</a></li>
                       <li><a data-toggle="modal" data-target="#CIS020008" href="" ><i class="fa fa-bars fa-li" style="display: block"></i> Other</a></li>
                 </ul>
             </div>    
@@ -82,3 +82,10 @@
             
             
 </div>
+<script>
+    $('#soapCtnPanScale').on('click',function(){
+        $('#CIS020007 #updatePS').hide();
+        $('#CIS020007 #actionPS #btnNIWps').hide();
+        $('#CIS020007 #actionPS #acceptPSBtn').show();
+    });
+</script>

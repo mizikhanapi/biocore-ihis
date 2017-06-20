@@ -457,6 +457,7 @@ $('#queueBtn').click(function(e){
         $('#CIS020007').modal('toggle');
         $('#actionPS').hide();
         $('#updatePS').show();
+        $('#actionPS #btnNIWps').hide();
 
         var idName = $(this).get(0).id;
         var id = idName.split('|');
