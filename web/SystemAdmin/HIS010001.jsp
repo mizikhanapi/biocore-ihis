@@ -3,6 +3,11 @@
     Created on : Jan 23, 2017, 9:30:40 AM
     Author     : Shammugam
 --%>
+<%
+   response.setHeader( "Pragma", "no-cache" );
+   response.setHeader( "Cache-Control", "no-cache" );
+   response.setDateHeader( "Expires", 0 );
+%>
 
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.sql.*"%>
