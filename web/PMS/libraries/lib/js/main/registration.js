@@ -362,7 +362,7 @@
             $('#EliTy').val('005');
         }
 
-        $('#Dis').val('001');
+        //$('#Dis').val('001');
         $('#prioGru').val('003');
         $('#select-1').val('Normal Queue');
     });
