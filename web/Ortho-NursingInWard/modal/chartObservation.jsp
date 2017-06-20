@@ -19,7 +19,7 @@
                             <div class="form-group">
                                 <label class="col-md-12 control-label" for="textinput">Date</label>
                                 <div class="col-md-12">
-                                    <input type="text" class="form-control input-md" id="NIWObsDate">
+                                    <input type="date" class="form-control input-md" >
                                 </div>
                             </div>
                         </div>
@@ -28,95 +28,67 @@
                             <div class="form-group">
                                 <label class="col-md-12 control-label" for="textinput">Time</label>
                                 <div class="col-md-12">
-                                    <input type="time" class="form-control input-md" id="NIWObsTime">
+                                    <input type="time" class="form-control input-md" >
                                 </div>
                             </div>
                         </div>
                     </div>
-
-                    <div class="row margin-bottom-10px">
+                    
+                    <div class="row">
                         <div class="col-md-12">
                             <!-- Text input-->
                             <div class="form-group">
                                 <label class="col-md-12 control-label" for="textinput">Blood Pressure</label>
+                                <div class="col-md-12">
+                                    <button class="btn btn-default btn-block margin-bottom-10px">Add Pain Score</button>
+                                </div>
                             </div>
                         </div>
                     </div>
-
-                        <div class="row">
-                            <div class="col-md-4">
-                                <!-- Text input-->
-                                <div class="form-group">
-                                    <label class="col-md-12 control-label" for="textinput">Systolic</label>
-                                    <div class="col-md-12">
-                                        <input type="text" class="form-control input-md" placeholder="mmHg"id="NIWOBsystolic">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <!-- Text input-->
-                                <div class="form-group">
-                                    <label class="col-md-12 control-label" for="textinput">Diatolic</label>
-                                    <div class="col-md-12">
-                                        <input type="text" class="form-control input-md" placeholder="mmHg" id="NIWOBdiatolic">
-                                    </div>
-
-                                </div>
-
-                            </div><div class="col-md-4">
-                                <!-- Text input-->
-                                <div class="form-group">
-                                    <label class="col-md-12 control-label" for="textinput">Pulse</label>
-                                    <div class="col-md-12">
-                                        <input type="text" class="form-control input-md" placeholder="/min" id="NIWOBpulse">
-                                    </div>
-                                </div>
-                            </div></div>
-
+                    
                     <div class="row">
                         <div class="col-md-12">
                             <!-- Text input-->
                             <div class="form-group">
                                 <label class="col-md-12 control-label" for="textinput">Respiratory Rate</label>
                                 <div class="col-md-12">
-                                    <input type="text" class="form-control input-md" placeholder="breath/min" id="NIWOBrr">
+                                    <button class="btn btn-default btn-block margin-bottom-10px">Add Pain Score</button>
                                 </div>
                             </div>
                         </div>
                     </div>
-
+                    
                     <div class="row">
                         <div class="col-md-12">
                             <!-- Text input-->
                             <div class="form-group">
                                 <label class="col-md-12 control-label" for="textinput">Oxygen Saturation</label>
                                 <div class="col-md-12">
-                                    <input type="text" class="form-control input-md" placeholder="oxygen saturation" id="NIWOBos">
+                                    <button class="btn btn-default btn-block margin-bottom-10px">Add Pain Score</button>
                                 </div>
                             </div>
                         </div>
                     </div>
-
+                    
                     <div class="row">
                         <div class="col-md-12">
                             <!-- Text input-->
                             <div class="form-group">
                                 <label class="col-md-12 control-label" for="textinput">Pain Score</label>
                                 <div class="col-md-12">
-                                    <input type="text" class="form-control input-md" placeholder="pain scale" id="NIWOBps" readonly="">
-                                    <button class="btn btn-default btn-block margin-bottom-10px" id="btnNIWaddps" data-toggle="modal" data-target="#CIS020007">Add Pain Score</button>
+                                    <button class="btn btn-default btn-block margin-bottom-10px">Add Pain Score</button>
                                 </div>
                             </div>
                         </div>
                     </div>
-
+                    
                     <div class="row">
                         <div class="col-md-12">
                             <!-- Text input-->
                             <div class="form-group">
                                 <label class="col-md-12 control-label" for="textinput">Comments</label>
                                 <div class="col-md-12">
-                                    <textarea class="form-control input-md" id="NIWOBcomment"></textarea>
+                                    <textarea class="form-control input-md" ></textarea>
                                 </div>
                             </div>
                         </div>
@@ -127,7 +99,7 @@
             <div class="modal-footer">
                 <div class="btn-group btn-group-justified" role="group" aria-label="group button">
                     <div class="btn-group" role="group">
-                        <button type="button" class="btn btn-success btn-block btn-lg" id="btnNIWOBADD" role="button">Add Items</button>
+                        <button type="button" class="btn btn-success btn-block btn-lg" id="acceptBloodPBtn" role="button">Add Items</button>
                     </div>
                     <div class="btn-group btn-delete hidden" role="group">
                         <button type="button" id="delImage" class="btn btn-default btn-block btn-lg" data-dismiss="modal" role="button">Clear</button>
@@ -140,35 +112,3 @@
         </div>
     </div>
 </div>
-<script>
-    $(document).ready(function () {
-        $('#NIWObsDate').datepicker();
-    });
-
-
-    $('#btnNIWaddps').on('click', function (e) {
-        e.preventDefault();
-        $('#actionPS #btnNIWps').show();
-        $('#actionPS #acceptPSBtn').hide();
-    });
-    
-    $('#btnNIWOBADD').on('click',function(e){
-        e.preventDefault();
-        var date = $('#NIWObsDate').val();
-        var time = $('#NIWObsTime').val();
-        var systolic = $('#NIWOBsystolic').val();
-        var dialotic = $('#NIWOBdiatolic').val();
-        var pulse = $('#NIWOBpulse').val();
-        var respiratoryRate = $('#NIWOBrr').val();
-        var oxygenSatu = $('#NIWOBos').val();
-        var painScore = $('#NIWOBps').val();
-        var comment = $('#NIWOBcomment').val();
-        
-        var pmi_no = $('#pmiNumber').text();
-        var hfc_cd1 = hfc_cd;
-        var epDate = episodeDate;
-        console.log(pmi_no+" "+hfc_cd1+" "+epDate);
-        
-       
-    });
-</script>
