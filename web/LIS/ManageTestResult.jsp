@@ -308,10 +308,10 @@
         var testTime = $("#testTime").val();
         var performBy = $("#performBy").val();
 
-        if (gambarURI === "") {
-            bootbox.alert("Choose a picture");
-            return;
-        }
+//        if (gambarURI === "") {
+//            bootbox.alert("Choose a picture");
+//            return;
+//        }
         //alert(specimen_no + "  " + pmi + " " + item_cd + " " + testName + " " + Result + " " + Remark);
         $.ajax({
             url: "tAssignResult.jsp",
@@ -345,6 +345,7 @@
     $(function () {
         $("#testDate").datepicker({
             yearRange: '1999:c+1',
+            dateFormat: 'yy-mm-dd',
             changeMonth: true,
             changeYear: true,
             minDate: new Date(1999, 10 - 1, 25),
