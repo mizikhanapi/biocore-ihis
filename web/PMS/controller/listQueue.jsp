@@ -70,13 +70,7 @@
         <td><%=dataQueue.get(i).get(9)%></td>
         <td><%=dataQueue.get(i).get(6)%></td>        
         <td>
-            <% 
-                if(!dataQueue.get(i).get(6).equalsIgnoreCase("waiting") || !dataQueue.get(i).get(9).equalsIgnoreCase("outpatient")){ %>
-                <button class="btn btn-danger" id="delQueue" data-dismiss="modal" role="button" disabled="">Delete</button>
-             <%   }else{
-            %>
-            <button class="btn btn-danger" id="delQueue" data-dismiss="modal" role="button">Delete</button>
-            <% } %>
+           <button class="btn btn-danger" id="delQueue" data-dismiss="modal" role="button">Delete</button>
         </td>
  </tr>    
     <%    }
