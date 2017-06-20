@@ -152,10 +152,10 @@
                 <!-- content -->
                 <div class="tab-pane fade" id="Ortho-NursingInWard_10">
                     <ul class="soap-content nav">
-                        <li><a data-toggle="modal" data-target="#ong-pDetails1" href="" class="soap-select"><i class="fa fa-comments  fa-li"></i> Add New Wound Assessment</a></li>
+                        <li><a data-toggle="modal" data-target="#woundAssessment1" href="" class="soap-select"><i class="fa fa-comments  fa-li"></i> Add New Wound Assessment</a></li>
                     </ul>
                     <hr class="pemisah" />
-                    <%//@include file="fluidBalance.jsp"%>
+                    <%@include file="woundAssessment.jsp"%>
                 </div>
                 <!-- content -->
 
@@ -187,4 +187,5 @@
 <%@include file="modal/redivacDrainChart.jsp"%>
 <%@include file="modal/chartUrine.jsp"%>
 <%@include file="modal/fluidBalance.jsp"%>
+<%@include file="modal/woundAssessment.jsp"%>
 <script src="../assets/js/btn.number.js" type="text/javascript"></script>
