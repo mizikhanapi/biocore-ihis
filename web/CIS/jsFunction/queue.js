@@ -1477,7 +1477,8 @@ function lexerDCG(data){
    var time = dateTimeA[1];
    var disposition = dischargeInfo[8];
    var comment = dischargeInfo[9];
-   console.log(dischargeInfo);
+   //console.log(dischargeInfo);
+   indexArry.pop();
    
    var objDCG = {
        Acode:"DCG",
@@ -1493,7 +1494,7 @@ function lexerDCG(data){
     var id = _data.length - 1;
     displayDCGId(date, time, disposition,comment,id);
     
-    console.log(_data);
+    //console.log(_data);
   
 }
 

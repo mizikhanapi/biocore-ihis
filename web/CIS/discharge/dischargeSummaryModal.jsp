@@ -210,6 +210,7 @@
             yearRange: "-100:+0",
             dateFormat: "dd-mm-yy"
         });
+        $("#tCIS_DCGDate").datepicker("setDate", new Date());
 
         $('#tCIS_DCGTime').timepicker({
             timeFormat: 'H:mm ',
