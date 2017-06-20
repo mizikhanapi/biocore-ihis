@@ -9,7 +9,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><i class="fa fa-times fa-lg"></i></span></button>
-                <h4 class="modal-title" id="myModalLabel">Morse Fall Scale Assessment Chart</h4>
+                <h4 class="modal-title" id="myModalLabel">Chart Observation</h4>
             </div>
             <div class="modal-body">
                 <form>
@@ -29,6 +29,66 @@
                                 <label class="col-md-12 control-label" for="textinput">Time</label>
                                 <div class="col-md-12">
                                     <input type="time" class="form-control input-md" >
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-md-12">
+                            <!-- Text input-->
+                            <div class="form-group">
+                                <label class="col-md-12 control-label" for="textinput">Blood Pressure</label>
+                                <div class="col-md-12">
+                                    <button class="btn btn-default btn-block margin-bottom-10px">Add Pain Score</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-md-12">
+                            <!-- Text input-->
+                            <div class="form-group">
+                                <label class="col-md-12 control-label" for="textinput">Respiratory Rate</label>
+                                <div class="col-md-12">
+                                    <button class="btn btn-default btn-block margin-bottom-10px">Add Pain Score</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-md-12">
+                            <!-- Text input-->
+                            <div class="form-group">
+                                <label class="col-md-12 control-label" for="textinput">Oxygen Saturation</label>
+                                <div class="col-md-12">
+                                    <button class="btn btn-default btn-block margin-bottom-10px">Add Pain Score</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-md-12">
+                            <!-- Text input-->
+                            <div class="form-group">
+                                <label class="col-md-12 control-label" for="textinput">Pain Score</label>
+                                <div class="col-md-12">
+                                    <button class="btn btn-default btn-block margin-bottom-10px">Add Pain Score</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-md-12">
+                            <!-- Text input-->
+                            <div class="form-group">
+                                <label class="col-md-12 control-label" for="textinput">Comments</label>
+                                <div class="col-md-12">
+                                    <textarea class="form-control input-md" ></textarea>
                                 </div>
                             </div>
                         </div>

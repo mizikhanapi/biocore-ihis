@@ -59,12 +59,7 @@
                 <!-- content -->
                 <div class="tab-pane active fade in" id="Ortho-NursingInWard_1">
                     <ul class="soap-content nav">
-                        <li><a data-toggle="modal" data-target="#cobserved1" href="" class="soap-select"><i class="fa fa-comments  fa-li"></i>Observation Date & Time</a></li>
-                        <li><a data-toggle="modal" data-target="#ong-pDetails1" href="" class="soap-select"><i class="fa fa-comments  fa-li"></i> Blood Presure</a></li>
-                        <li><a data-toggle="modal" data-target="#ong-pDetails1" href="" class="soap-select"><i class="fa fa-comments  fa-li"></i> Respiratory Rate</a></li>
-                        <li><a data-toggle="modal" data-target="#ong-pDetails1" href="" class="soap-select"><i class="fa fa-comments  fa-li"></i> Oxygen Saturation</a></li>
-                        <li><a data-toggle="modal" data-target="#ong-pDetails1" href="" class="soap-select"><i class="fa fa-comments  fa-li"></i> Pan Scale</a></li>
-                        <li><a data-toggle="modal" data-target="#ong-pDetails1" href="" class="soap-select"><i class="fa fa-comments  fa-li"></i> Comments</a></li>
+                        <li><a data-toggle="modal" data-target="#cobserved1" href="" class="soap-select"><i class="fa fa-comments  fa-li"></i>New Assessment</a></li>
                     </ul>
                     <hr class="pemisah" />
                     <%@include file="chartObservation.jsp"%>

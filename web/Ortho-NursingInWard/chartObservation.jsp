@@ -46,7 +46,6 @@
         <th>SpO2</th>
         <th>Pain Scale</th>
         <th style="width: 30%;">Notes</th>
-        <th>Progress</th>
         <th>Approval</th>
         <th>Action</th>
     </tr>
@@ -59,13 +58,6 @@
         <td>35</td>
         <td>8</td>
         <td>Dia ni asik sakit je. mungkin perlu jagaan emosi.</td>
-        <td>
-            Progress...<span class="pull-right bold">3/7</span>
-            <div class="progress progress-striped active" style="height: 8px">
-                <div class="progress-bar"  role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 45%">
-                </div>
-            </div>
-        </td>
         <td>
             <button class="btn btn-success btn-block disabled"><i class="fa fa-check-square-o"></i> Approved</button>
         </td>
