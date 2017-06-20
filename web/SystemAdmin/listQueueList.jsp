@@ -82,3 +82,13 @@
     %>
 </tbody>
 </table>
+<script>
+    $(document).ready(function () {
+        $('#QLtable').DataTable({
+            
+            "language": {
+                "emptyTable": "No Queue List Available To Display"
+            }
+        });
+    });
+</script>

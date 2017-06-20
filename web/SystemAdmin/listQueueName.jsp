@@ -74,8 +74,13 @@
     %>
 </tbody>
 </table>
-<!--<script>
+<script>
     $(document).ready(function () {
-        $('#QNtable').DataTable();
+        $('#QNtable').DataTable({
+            
+            "language": {
+                "emptyTable": "No Queue Name Available To Display"
+            }
+        });
     });
-</script>-->
+</script>

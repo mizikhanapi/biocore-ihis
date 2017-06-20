@@ -13,7 +13,7 @@
     String dis = session.getAttribute("DISCIPLINE_CODE").toString();
     String sub = session.getAttribute("SUB_DISCIPLINE_CODE").toString();
 
-    String queueSql = "select queue_type,queue_name from pms_queue_name where hfc_cd = '" + hfc + "' and discipline_code='"+dis+"';";
+    String queueSql = "select queue_type,queue_name from pms_queue_name where hfc_cd = '" + hfc + "' and discipline_code='"+dis+"' and queue_type in ('FY', 'CM', 'PN');";
     ArrayList<ArrayList<String>> dataQueue = conn.getData(queueSql);
 
 //    String sqlDoctorAvailable = "SELECT doc.*,DATE(pdr.start_date),DATE(pdr.end_date) "
@@ -153,11 +153,15 @@
                 data: data,
                 timeout: 3000,
                 success: function (dataBack, textStatus, jqXHR) {
-                    var msg = 'successfully been saved';
-                    if(!dataBack){
-                        msg = 'failed to save';
+                    
+                    var isSuccess = (dataBack.trim() == 'true');
+                    var msg = 'Queue is saved.';
+                    
+                    if(!isSuccess){
+                        msg = 'Failed to save queue list!';
                     }
-                    bootbox.alert("Queue List "+msg,function(){
+                   
+                    bootbox.alert(msg, function(){
                         $('#modal1 #type').remove();
                         $('#modal2 #names').remove();
                         $('#modal3 #list').remove();
@@ -166,8 +170,8 @@
                         $('#modal3').load('queueListModal.jsp');
                     });
                     
-                    if(!dataBack){
-                        return;
+                    if(!isSuccess){
+                        return false;
                     }
                     $.ajax({
                         type: "post",
@@ -182,11 +186,12 @@
 
                             console.log("ERROR: " + errorThrown);
                         }
-                    });
+                    });// end of inner ajax
+                    
                 }, error: function (jqXHR, textStatus, errorThrown) {
                         console.log('Error: '+errorThrown);
                 }
-            });
+            });// end of outer ajax
         }
 
 
@@ -214,8 +219,15 @@
             data: {"cd": ty, "name": nm, "hfc": hfc, "staff" : staff},
             timeout: 3000,
             success: function (data, textStatus, jqXHR) {
+                
+                 var isSuccess = (data.trim() == 'true');
+                    var msg = 'Queue is deleted.';
+                    
+                    if(!isSuccess){
+                        msg = 'Failed to delete queue list!';
+                    }
                 console.log(data);
-                bootbox.alert("Queue List successfully been deleted",function(){
+                bootbox.alert(msg, function(){
                         $('#modal1 #type').remove();
                         $('#modal2 #names').remove();
                         $('#modal3 #list').remove();
@@ -223,6 +235,11 @@
                         $('#modal2').load('queueNameModal.jsp');
                         $('#modal3').load('queueListModal.jsp');
                     });
+                    
+                    if(!isSuccess){
+                        return false;
+                    }
+                    
                 $.ajax({
                     type: "post",
                     url: "listQueueList.jsp",

@@ -18,5 +18,5 @@
     String sql = "delete from pms_queue_list where queue_type='"+type+"' and queue_name='"+name+"' and hfc_cd = '"+hfc+"' and user_id='"+staff+"'";
     Boolean operation = false;
     operation = rmic.setQuerySQL(conn.HOST, conn.PORT, sql);
-    out.print(operation);
+    out.print(operation.toString());
 %>

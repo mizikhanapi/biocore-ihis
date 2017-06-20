@@ -40,9 +40,9 @@
            success: function (returnHtml) {
                //console.log(returnHtml);
                $('#QLdiv').html(returnHtml);
-                $('#QLtable').DataTable({
-                    deferRender: true
-                });
+//                $('#QLtable').DataTable({
+//                    deferRender: true
+//                });
                         
                     },error: function (jqXHR, textStatus, errorThrown) {
                         

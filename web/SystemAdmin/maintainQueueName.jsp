@@ -30,9 +30,9 @@
             success: function (returnHtml) {
                 //console.log(returnHtml);
                 $('#QNdiv').html(returnHtml);
-                $('#QNtable').DataTable({
-                    deferRender: true
-                });
+//                $('#QNtable').DataTable({
+//                    deferRender: true
+//                });
 
 
             }, error: function (jqXHR, textStatus, errorThrown) {
