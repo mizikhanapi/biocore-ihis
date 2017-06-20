@@ -1,5 +1,13 @@
 //js search in add HFC
 
+$(document).ready(function () {
+
+    //searching("diagnosisSearchAjax", "diagnosisSearchAjaxLoading", "search/resultDGS_5.jsp");
+
+    //function searching Diagnosis Ajax
+
+})
+
 function searchHFCcode() {
     var id = $('#hfc').val();
     $.ajax({

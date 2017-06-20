@@ -18,6 +18,7 @@ var disciplineName = "001";
 var subdis = "26";
 var subdisName = "26";
 var userSetting;
+var cisParam = "";
 
 var pmiNo = "";
 var episodeDate = "";

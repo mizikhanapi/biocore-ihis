@@ -1,8 +1,4 @@
-<%-- 
-    Document   : CIS040003
-    Created on : 21-Mar-2017, 10:49:39
-    Author     : ahmed
---%>
+
 
 <!--Modal ADD Monitoring-->
 <div class="modal fade" id="CIS040007" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
@@ -14,18 +10,63 @@
             </div>
             <div class="modal-body">
                 <div class="row">
-                    <h4 class="modal-title" style="font-weight: bold">Admit to discipline :</h4>
-                    <input class="form-control input-lg" type="hidden"  id="hfcOrderDetailADW" placeholder="">
-                    <input class="form-control input-lg" type="hidden"  id="hfcProviderDetailADW" placeholder="">
-                    <input class="form-control input-lg" type="hidden"  id="hfcIdADW">
+                    <h4 class="modal-title" style="font-weight: bold">Patient is referred from :</h4>
                 </div>
-
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label class="col-md-6 control-label" for="textinput">Search Health Facility</label>
+                            <div class="col-md-12">
+                                <input class="form-control input-lg " type="hidden" name="DateTo" id="tCIS_ADWHFCreferFromCd" placeholder="Code" readonly="">
+                                <input class="form-control input-lg " type="text" name="DateTo" id="tCIS_ADWHFCreferFrom" placeholder="Type to search..." >
+                                <div id="tCIS_ADWHFCreferFromLoading" ></div>
+                                <br>
+                                <div id="matchCIS_ADWreferFrom" class="search-drop"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
                 <div class="row">
                     <div class="col-md-12">
                         <div class="form-group">
                             <label class="col-md-6 control-label" for="textinput">Search Discipline</label>
                             <div class="col-md-12">
-                                <input class="form-control input-lg " type="hidden" name="DateTo" id="tCIS_ADWsearchDisCd" placeholder="Code">
+                                <input class="form-control input-lg " type="text" name="DateTo" id="tCIS_ADWreferFromCd" placeholder="Code" readonly="">
+                                <input class="form-control input-lg " type="text" name="DateTo" id="tCIS_ADWreferFrom" placeholder="Type to search...">
+                                <div id="matchCIS_ADWreferFrom" class="search-drop"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                  <br>
+                <div class="row">
+                    <h4 class="modal-title" style="font-weight: bold">Admit to discipline :</h4>
+                    <input class="form-control input-lg" type="hidden"  id="hfcOrderDetailADW" placeholder="">
+                    <input class="form-control input-lg" type="hidden"  id="hfcProviderDetailADW" placeholder="">
+                    <input class="form-control input-lg" type="hidden"  id="hfcIdADW">
+                </div>
+                  <div class="row">
+                      <div class="col-md-12">
+                          <div class="form-group">
+                              <label class="col-md-6 control-label" for="textinput">Search Health Facility</label>
+                              <div class="col-md-12">
+                                  <input class="form-control input-lg " type="hidden" name="DateTo" id="tCIS_ADWsearchHFCCd" placeholder="Code" readonly="">
+                                  <input class="form-control input-lg " type="text" name="DateTo" id="tCIS_ADWsearchHFC" placeholder="Type to search...">
+                                  <div id="tCIS_ADWsearchHFCLoading" ></div>
+                                  <br>
+                                  <div id="matchCIS_ADWreferFrom" class="search-drop"></div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+                
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label class="col-md-6 control-label" for="textinput">Search Discipline</label>
+                            <div class="col-md-12">
+                                <input class="form-control input-lg " type="text" name="DateTo" id="tCIS_ADWsearchDisCd" placeholder="Code" readonly="">
                                 <input class="form-control input-lg " type="text" name="DateTo" id="tCIS_ADWsearchDis" placeholder="Type to search...">
                                 <div id="matchCIS_ADWsearchDis" class="search-drop"></div>
                             </div>
@@ -33,42 +74,7 @@
                     </div>
                 </div>
 
-                <br/>
-                <div class="row">
-                    <h4 class="modal-title" style="font-weight: bold">Patient is referred from :</h4>
-                </div>
-
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="form-group">
-                            <label class="col-md-6 control-label" for="textinput">Search Discipline</label>
-                            <div class="col-md-12">
-                                <input class="form-control input-lg " type="hidden" name="DateTo" id="tCIS_ADWreferFromCd" placeholder="Code">
-                                <input class="form-control input-lg " type="text" name="DateTo" id="tCIS_ADWreferFrom" placeholder="Type to search...">
-                                <div id="matchCIS_ADWreferFrom" class="search-drop"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <br/>
-                <div class="row">
-                    <h4 class="modal-title" style="font-weight: bold">Reason :</h4>
-                </div>
-
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="form-group">
-                            <div class="col-md-12">
-                                <textarea type="text" name="display_name" id="tCIS_ADWreason" class="form-control input-lg" placeholder="Type your reason..." tabindex="3"></textarea>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <hr/>
-
-
+                <br>
                 <div class="row">
                     <div class="col-md-12">
                         <div class="form-group">
@@ -103,9 +109,22 @@
                         <div class="form-group">
                             <label class="col-md-6 control-label" for="textinput">Ward Name</label>
                             <div class="col-md-12">
-                                <input class="form-control input-lg " type="hidden" name="DateTo" id="tCIS_ADWwardNameCd" placeholder="Search Ward Name">
+                                <input class="form-control input-lg " type="text" name="DateTo" id="tCIS_ADWwardNameCd" placeholder="Ward Code" readonly="">
                                 <input class="form-control input-lg " type="text" name="DateTo" id="tCIS_ADWwardName" placeholder="Search Ward Name">
                                 <div id="matchCIS_ADTwardSearch"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <h4 class="modal-title" style="font-weight: bold">Admission Reason :</h4>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <div class="col-md-12">
+                                <textarea type="text" name="display_name" id="tCIS_ADWreason" class="form-control input-lg" placeholder="Type your reason..." tabindex="3"></textarea>
                             </div>
                         </div>
                     </div>
@@ -239,9 +258,82 @@
 
 
 <script type="text/javascript">
-    $('.rCIS_ADTAB').change(function () {
+              $(document).ready(function(){
+                  
+                searchingHFC("tCIS_ADWsearchHFC", "tCIS_ADWsearchHFCLoading", "search/SearchHFC_2.jsp","search/getHFC_cd.jsp","tCIS_ADWsearchHFCCd");
+                searchingHFC("tCIS_ADWHFCreferFrom", "tCIS_ADWHFCreferFromLoading", "search/SearchHFC_2.jsp","search/getHFC_cd.jsp","tCIS_ADWHFCreferFromCd");
+                
+                //searchingDiscipline(fieldId, loadingDivId, urlData,urlCode,"search/getHFC_cd.jsp",$("#tCIS_ADWsearchHFCCd").val());
+                //searchingDiscipline(fieldId, loadingDivId, urlData,urlCode,"search/getHFC_cd.jsp",$("#tCIS_ADWHFCreferFromCd").val());
+                //searching("tCIS_ADWHFCreferFrom", "tCIS_ADWHFCreferFromLoading", "search/SearchHFC_2.jsp");
 
-    });
+                //function Searching Health Facility code and Health Facility name
+                function searchingHFC(fieldId, loadingDivId, urlData,urlCode,codeFieldId) {
+                    $('#' + fieldId).flexdatalist({
+                        minLength: 3,
+                        searchIn: 'name',
+                        searchDelay: 2000,
+                        url: urlData,
+                        cache: true,
+                        params: {
+                            timeout: 3000,
+                            success: function (result) {
+                                console.log(result);
+                                if (result === undefined) {
+                                    $('#' + loadingDivId).html('No Record');
+                                }
+                            }
+                        }
+                    });
 
+                    $("#" + fieldId).on('before:flexdatalist.data', function (response) {
+                        console.log("Start - " + getDate());
+                        $('#' + loadingDivId).html('<img src="img/LoaderIcon.gif" />');
+                    });
+                    $("#" + fieldId).on('after:flexdatalist.data', function (response) {
+                        console.log("End - " + getDate());
+                        $('#' + loadingDivId).html('');
+                    });
+                    $("#" + fieldId).on('select:flexdatalist', function (response) {
+                        var hfc_name = $("#" + fieldId).val();
+                        $.ajax({
+                            type:"post",
+                            url:urlCode,
+                            timeout:3000,
+                            data:{input:hfc_name},
+                            success:function(response){
+                                $("#" + codeFieldId).val(response.trim());
+                            }
+                        });
+                        
+                    });
+                }
+                
+                function searchingDiscipline(fieldId, loadingDivId, urlData,urlCode,codeFieldId,hfcCode){
+                    $('#' + fieldId).flexdatalist({
+                        minLength: 3,
+                        searchIn: 'name',
+                        searchDelay: 2000,
+                        url: urlData,
+                        cache: true,
+                        params: {
+                            timeout: 3000,
+                            data:{hfc_code:hfcCode},
+                            success: function (result) {
+                                console.log(result);
+                            }
+                        }
+                    });
 
+                    $("#" + fieldId).on('before:flexdatalist.data', function (response) {
+                        console.log("Start - " + getDate());
+                        $('#' + loadingDivId).html('<img src="img/LoaderIcon.gif" />');
+                    });
+                    $("#" + fieldId).on('after:flexdatalist.data', function (response) {
+                        console.log("End - " + getDate());
+                        $('#' + loadingDivId).html('');
+                    });
+                }
+                
+              });
 </script>

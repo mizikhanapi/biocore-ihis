@@ -658,90 +658,157 @@ $(document).ready(function (e) {
             }
         })
     }
+    
+    function spliceSetting(settingParam) {
+        var arrySetting = [];
+        if (settingParam.length > 3) {
+            arrySetting = settingParam.split("|");
+        } else {
+            arrySetting.push(settingParam);
+        }
+        return arrySetting;
+    }
 
 
     function getSettingConsult(user_id) {
         var checkCCN = false;
         var checkDGS = false;
         var checkDCG = false;
-
-        $.ajax({
-            url: 'setting/LoadSetting.jsp',
-            method: "POST",
-            timeout: 5000,
-            data: {
-                userId: user_id
-            },
-            success: function (result) {
-                if (result.trim() === "|O|") {
-                    alert("You not set up your consultation yet. You need set up before consult the patient");
-                    $("#settingModal").modal("toggle");
-                } else {
-                    var Dsetting = result.trim().split("^");
-
-                    for (var i = 0; i < Dsetting.length; i++) {
-                        var set = Dsetting[i].split("|");
-                        if (set[0] === "CCN") {
-                            if (set[1] === "1") {
-                                checkCCN = true;
-                            }
-                        } else if (set[0] === "DGS") {
-                            if (set[1] === "1") {
-                                checkDGS = true;
-                            }
-                        }else if (set[0] === "DCG") {
-                            if (set[1] === "1") {
-                                checkDCG = true;
-                            }
-                        }
-                    }
-                    
-                    var dataDischarge = getStatusData(_data);
-
-                    if (checkCCN === true && checkDGS === true && checkDCG === true) {
-                        
-                        if (dataDischarge[0] === true && dataDischarge[1] === true && dataDischarge[2] === true) {
-                            var c = confirm("Are you sure you want DISCHARGE this patient?");
-                            if (c === true) {
-                                storeData(1);
-                            } else {
-                                alert('Discharge Cancel');
-                            }
-                        } else if (dataDischarge[0] === false ) {
-                            alert("Need to add Chief Complain");
-                        } else if (dataDischarge[1] === false ) {
-                            alert("Need to add Diagnosis");
-                        } else if (dataDischarge[2] === false ) {
-                            alert("Need to add Discharge Summary");
-                        }
-                        
-                    } else if (checkCCN === false && checkDGS === true) {
-                        if (dataDischarge[1] === true) {
-                            var c = confirm("Are you sure you want DISCHARGE this patient?");
-                            if (c === true) {
-                                storeData(1);
-                            } else {
-                                alert('Discharge Cancel');
-                            }
-                        } else if (dataDischarge[1] === false) {
-                            alert("Need to add DGS");
-                        }
-
-                    } else if (checkCCN === true && checkDGS === false) {
-                        if (dataDischarge[0] === true) {
-                            var c = confirm("Are you sure you want DISCHARGE this patient?");
-                            if (c === true) {
-                                storeData(1);
-                            } else {
-                                alert('Discharge Cancel');
-                            }
-                        } else if (dataDischarge[0] === false) {
-                            alert("Need to add CCN");
-                        }
-                    }
-                }
+        
+        console.log(cisParam);
+        var cisSetting = spliceSetting(cisParam);
+        console.log (cisSetting);
+        
+        for (i in cisSetting){
+            if(cisSetting[i] === "CCN"){
+                checkCCN = true;
+            } else if(cisSetting[i] === "DGS"){
+                checkDGS = true;
+            } else if(cisSetting[i] === "DCG"){
+                checkDCG = true;
             }
-        });
+        }
+        
+       console.log(checkCCN);
+       console.log(checkDGS);
+       console.log(checkDCG);
+        
+        var dataDischarge = getStatusData(_data);
+        console.log(dataDischarge);
+        
+        
+        //111
+        if (checkCCN === true && checkDGS === true && checkDCG === true) {
+
+            if (dataDischarge[0] === true && dataDischarge[1] === true && dataDischarge[2] === true) {
+                var c = confirm("Are you sure you want DISCHARGE this patient?");
+                if (c === true) {
+                    storeData(1);
+                } else {
+                    alert('Discharge Cancel');
+                }
+            } else if (dataDischarge[0] === false ) {
+                alert("Need to add Chief Complain");
+            } else if (dataDischarge[1] === false ) {
+                alert("Need to add Diagnosis");
+            } else if (dataDischarge[2] === false ) {
+                alert("Need to add Discharge Summary");
+            }
+            //011
+        } else if (checkCCN === false && checkDGS === true && checkDCG === true) {
+            
+            if (dataDischarge[1] === true && dataDischarge[2] === true) {
+                var c = confirm("Are you sure you want DISCHARGE this patient?");
+                if (c === true) {
+                    storeData(1);
+                } else {
+                    alert('Discharge Cancel');
+                }
+            } else if (dataDischarge[1] === false) {
+                alert("Need to add Diagnosis");
+            } else if (dataDischarge[2] === false) {
+                alert("Need to add Discharge Summary");
+            }
+            //001
+        } else if (checkCCN === false && checkDGS === false && checkDCG === true) {
+            
+            if (dataDischarge[2] === true) {
+                var c = confirm("Are you sure you want DISCHARGE this patient?");
+                if (c === true) {
+                    storeData(1);
+                } else {
+                    alert('Discharge Cancel');
+                }
+            }  else if (dataDischarge[2] === false) {
+                alert("Need to add Discharge Summary");
+            }
+            //010
+        }else if (checkCCN === false && checkDGS === true && checkDCG === false) {
+
+            if (dataDischarge[1] === true ) {
+                var c = confirm("Are you sure you want DISCHARGE this patient?");
+                if (c === true) {
+                    storeData(1);
+                } else {
+                    alert('Discharge Cancel');
+                }
+            }  else if (dataDischarge[1] === false ) {
+                alert("Need to add Diagnosis");
+            } 
+            //000
+        } else if (checkCCN === true && checkDGS === false && checkDCG === false) {
+
+            if (dataDischarge[0] === true ) {
+                var c = confirm("Are you sure you want DISCHARGE this patient?");
+                if (c === true) {
+                    storeData(1);
+                } else {
+                    alert('Discharge Cancel');
+                }
+            } else if (dataDischarge[0] === false ) {
+                alert("Need to add Chief Complain");
+            } 
+            //100
+        } else if (checkCCN === true && checkDGS === false && checkDCG === true) {
+
+            if (dataDischarge[0] === true && dataDischarge[2] === true) {
+                var c = confirm("Are you sure you want DISCHARGE this patient?");
+                if (c === true) {
+                    storeData(1);
+                } else {
+                    alert('Discharge Cancel');
+                }
+            } else if (dataDischarge[0] === false ) {
+                alert("Need to add Chief Complain");
+            } else if (dataDischarge[2] === false ) {
+                alert("Need to add Discharge Summary");
+            }
+            //101
+        } else if (checkCCN === true && checkDGS === true && checkDCG === false) {
+
+            if (dataDischarge[0] === true && dataDischarge[1] === true ) {
+                var c = confirm("Are you sure you want DISCHARGE this patient?");
+                if (c === true) {
+                    storeData(1);
+                } else {
+                    alert('Discharge Cancel');
+                }
+            } else if (dataDischarge[0] === false ) {
+                alert("Need to add Chief Complain");
+            } else if (dataDischarge[1] === false ) {
+                alert("Need to add Diagnosis");
+            } 
+            //110
+        }  else if (checkCCN === false && checkDGS === false && checkDCG === false) {
+            
+                var c = confirm("Are you sure you want DISCHARGE this patient?");
+                if (c === true) {
+                    storeData(1);
+                } else {
+                    alert('Discharge Cancel');
+                }
+        }
+
     }
 
 

@@ -18,6 +18,7 @@
     String username = session.getAttribute("USER_NAME").toString();
     String discipline = session.getAttribute("DISCIPLINE_CODE").toString();
     String subdicipline = session.getAttribute("SUB_DISCIPLINE_CODE").toString();
+    String cisSystemParam = session.getAttribute("CIS_PARAM").toString();
 
 
 %>
@@ -47,8 +48,15 @@
             doctor_name = '<%out.print(username);%>';
             discipline = '<%out.print(discipline);%>';
             subdis = '<%out.print(subdicipline);%>';
+            cisParam = '<%out.print(cisSystemParam);%>';
 
-            //console.log();
+            console.log(cisParam);
+            
+//            var settingArry = spliceSetting(cisParam);
+//            console.log(settingArry);
+            
+            
+
             
 
 
@@ -94,7 +102,7 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div class="thumbnail">
-                                <h4>Patient Details</h4>
+                                <h4>Patient Details </h4>
                                 <table class="p-table" style="width: 100%; color: #999;">
                                     <tr>
                                         <td>

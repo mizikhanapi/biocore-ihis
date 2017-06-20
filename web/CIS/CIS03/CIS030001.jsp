@@ -230,24 +230,7 @@
               $(document).ready(function(){
                   
                 searching("diagnosisSearchAjax","diagnosisSearchAjaxLoading","search/resultDGS_5.jsp");
-                  
-//              $('#diagnosisSearchAjax').flexdatalist({
-//                    minLength: 2,
-//                    searchIn: 'name',
-//                    //data:arrayDGSDataAjax,
-//                    url:"search/resultDGS_5.jsp",
-//                    cache:true
-//              });
-//                  
-//                $("#diagnosisSearchAjax").on('before:flexdatalist.data',function(response){
-//                    $('#diagnosisSearchAjaxLoading').html('<img src="img/LoaderIcon.gif" />');
-//                });
-//                $("#diagnosisSearchAjax").on('after:flexdatalist.data',function(response){
-//                    $('#diagnosisSearchAjaxLoading').html('');
-//                });
-                
-                
-                
+
                 //function searching Diagnosis Ajax
                 function searching(fieldId,loadingDivId,urlData){
                     $('#'+fieldId).flexdatalist({
@@ -277,8 +260,7 @@
                         $('#'+loadingDivId).html('');
                     });
                 }
-                
-              })
+              });
 
 
             </script>
