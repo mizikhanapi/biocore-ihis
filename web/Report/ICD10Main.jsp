@@ -12,20 +12,12 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <script src="../assets/js/jquery.min.js" type="text/javascript"></script>
         <script src="../assets/js/bootstrap.min.js" type="text/javascript"></script>
-        <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-        <link rel="stylesheet" href="/resources/demos/style.css">
-        <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-        <script src="../assets/js/jquery-ui.js" type="text/javascript"></script>
 
-        <link href="../assets/css/dataTables.bootstrap.min.css" rel="stylesheet" type="text/css"/>
-        <link href="https://cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css"/>
-        <link href="https://cdn.datatables.net/buttons/1.3.1/css/buttons.dataTables.min.css" rel="stylesheet" type="text/css"/>
-        <link href="../assets/css/buttons.dataTables.min.css" rel="stylesheet" type="text/css"/>
-        <title>ICD10</title>
         <%@include file = "../assets/header.html" %>
+        <link href="../assets/css/dataTables.bootstrap.min.css" rel="stylesheet" type="text/css"/>
+        <link href="../assets/css/buttons.dataTables.min.css" rel="stylesheet" type="text/css"/>
     </head>
     <body>
         <!-- side bar -->
@@ -41,6 +33,7 @@
                     <div class="col-md-12">
                         <div class="thumbnail">
                             <h3 style="margin: 0px;"> ICD10 Report </h3>
+
                             <hr class="pemisah" />
 
                             <!--                        <div class="form-group">
@@ -61,18 +54,16 @@
                                                     </br></br></br>-->
                             <div class="form-inline" style="text-align: center;">
                                 <div class="form-group">
-                                    <label class="col-md-4 control-label" for="textinput">Start Date:</label>
-                                    <div class="col-md-4">
-                                        <input id="startDate" name="startDate" type="text" class="form-control datepicker" placeholder="YYYY/MM/DD" readonly>
-                                    </div>
+                                    <label for="exampleInputName2">Start Date</label>
+                                    <input id="startDate" name="startDate" type="text" class="form-control datepicker" placeholder="YYYY/MM/DD" readonly >
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-md-4 control-label" for="textinput">To</label>
-                                    <div class="col-md-4">
-                                        <input id="endDate" name="endDate" type="text" class="form-control datepicker" placeholder="YYYY/MM/DD" readonly>
-                                    </div>
+                                    <label for="exampleInputEmail2">to</label>
+                                   <input id="endDate" name="endDate" type="text" class="form-control datepicker" placeholder="YYYY/MM/DD" readonly >
                                 </div>
+                                <button type="submit" class="btn btn-success" role="button" id="printICD10" style="margin-bottom: 15px;" >Generate Report</button>
                             </div>
+                            <br/>
                             <div style="width:50%; margin: auto; text-align: center;">
                                 <div class="form-horizontal">
                                     <div class="form-group">
@@ -83,9 +74,8 @@
                                                 <option value="All">All</option>
                                                 <%  Conn conn = new Conn();
                                                     String my_1_hfc_cd = (String) session.getAttribute("HEALTH_FACILITY_CODE");
-                                                    String sql = "SELECT DISTINCT Centre_Code FROM lhr_diagnosis WHERE HFC_Cd = '"+my_1_hfc_cd+"' ";
+                                                    String sql = "SELECT DISTINCT Centre_Code FROM lhr_diagnosis WHERE HFC_Cd = '" + my_1_hfc_cd + "' ";
                                                     ArrayList<ArrayList<String>> ICD10 = conn.getData(sql);
-
                                                     int size = ICD10.size();
                                                     for (int i = 0; i < size; i++) {
                                                 %>
@@ -98,24 +88,20 @@
                                         </div>
                                         <div class="col-md-2">
                                             <button id="RMOM_btnRefresh" class="btn btn-default" style=" padding-right: 10px;padding-left: 10px;color: black;"><i class=" fa fa-refresh" style=" padding-right: 10px;padding-left: 10px;color: black;"></i>Refresh</button>
-                                            <button type="submit" class="btn btn-success" role="button" id="printICD10" >Generate Report</button>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <script>
                                 $(function () {
-
                                     //-------------------------refresh the order table ---------------------------------------
                                     $('#RMOM_btnRefresh').on('click', function () {
                                         //$('#risOrderListContent').html('<div class="loading">Loading</div>');
-
                                         var process = $('#RMOM_oderTime').val();
                                         //alert(process);
                                         var data = {
                                             process: process
                                         };
-
 //                                        $.ajax({
 //                                            type: 'POST',
 //                                            url: "OrderMaster1.jsp",
@@ -127,12 +113,10 @@
 //                                            }
 //
 //                                        });
-
                                     });
                                 });
-
                             </script>
-                            
+
                             <div id="ICD10">
 
                             </div>
@@ -141,18 +125,21 @@
                 </div>
             </div>
         </div>
+        <script src="../assets/js/jquery-ui.js" type="text/javascript"></script>
         <script src="../assets/js/jquery.dataTables.min.js" type="text/javascript"></script>
+        <script src="../assets/js/dataTables.bootstrap.min.js" type="text/javascript"></script>
         <script src="../assets/js/dataTables.buttons.min.js" type="text/javascript"></script>
-        <script src="../assets/js/jszip.min.js" type="text/javascript"></script>
         <script src="../assets/js/buttons.flash.min.js" type="text/javascript"></script>
+        <script src="../assets/js/jszip.min.js" type="text/javascript"></script>
         <script src="../assets/js/pdfmake.min.js" type="text/javascript"></script>
         <script src="../assets/js/vfs_fonts.js" type="text/javascript"></script>
         <script src="../assets/js/buttons.html5.min.js" type="text/javascript"></script>
         <script src="../assets/js/buttons.print.min.js" type="text/javascript"></script>
+
+        <!--        <script src="https://code.jquery.com/jquery-1.12.4.js"></script>-->
+
         <script>
-
                                 $(document).ready(function () {
-
                                     $("#startDate").datepicker({
                                         changeMonth: true,
                                         changeYear: true,
@@ -168,7 +155,6 @@
                                             //if the id/ic input is empty
                                             alert('Please choose date to prooceed');
                                         } else {
-
                                             var startDate = document.getElementById("startDate").value;
                                             var endDate = document.getElementById("endDate").value;
                                             var disp = document.getElementById("disp").value;
@@ -177,11 +163,9 @@
                                                 async: true,
                                                 type: "POST",
                                                 url: "ICD10Report.jsp",
-                                                data: {'startDate': startDate, 'endDate': endDate, 'disp':disp},
+                                                data: {'startDate': startDate, 'endDate': endDate, 'disp': disp},
                                                 timeout: 10000,
                                                 success: function (list) {
-
-
                                                     $('#ICD10').html(list);
                                                 },
                                                 error: function (xhr, status, error) {
@@ -190,21 +174,14 @@
                                                 }
                                             });
                                             //            var disiplinType = document.getElementByID("disiplinType").value;
-
                                             //                console.log(startDate);
                                             //                console.log(endDate);
                                             ////            console.log(disiplinType);
                                             //
                                             //                window.open("ICD10Report.jsp?startDate=" + startDate + "&endDate=" + endDate);
-
                                         }
-
                                     });
                                 });
         </script>
     </body>
 </html>
-
-
-
-

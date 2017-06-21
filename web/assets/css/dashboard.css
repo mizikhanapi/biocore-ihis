@@ -1018,3 +1018,21 @@ tr#moveToOrderDetailsTButton {
     color:#999;
     font-size: 13px;
 }
+
+.asset-print-img {
+    z-index: 0; top: 0px; opacity: 1.0; height: 85px;
+}
+
+.mesej {
+    margin-top: 90px;
+    text-align: center;
+    font-weight: 500;
+    font-size: 24px;
+}
+
+.info_kecik {
+    position: absolute;
+    top: 30px;
+    right: 0px;
+    font-size: 16px;
+}
