@@ -26,7 +26,7 @@
                                 <div id="match50"></div>
                             </div>
                             <div class="form-group">
-                                <input class="form-control input-lg" type="text" name="ccnCode"  id="ccnCode"  tabindex="4">
+                                <input class="form-control input-lg" type="hidden" name="ccnCode"  id="ccnCode"  tabindex="4">
                             </div>
                             <div class="row">
                                 <div class="col-xs-6 col-sm-6 col-md-6">
@@ -117,7 +117,7 @@
                             <div id="match1"></div>
                         </div>
                         <div class="form-group">
-                                <input class="form-control input-lg" type="text" name="uccnCode"  id="uccnCode"  tabindex="4">
+                                <input class="form-control input-lg" type="hidden" name="uccnCode"  id="uccnCode"  tabindex="4">
                         </div>
                         <div class="row">
                             <div class="col-xs-6 col-sm-6 col-md-6">
@@ -440,7 +440,7 @@
                             <div id="match16"></div>-->
                         </div>
                          <div class="form-group">
-                                <input class="form-control input-lg" type="text" name="ufmhCode"  id="ufmhCode" tabindex="4">
+                                <input class="form-control input-lg" type="hidden" name="ufmhCode"  id="ufmhCode" tabindex="4">
                         </div>
                         <div class="form-group">
                             <select name="mild" id="ff_relationship" class="form-control input-lg">
@@ -717,8 +717,8 @@
                         <div class="form-group">
                             <input class="form-control input-lg" type="text"  id="tCISSubALGSearch" placeholder="Please Type Allergy..." tabindex="4">
                             <div id="tCISSubALGSearchLoading" ></div>
-                            <input class="form-control input-lg" type="text" name="problem"  id="Problem5" placeholder="Please Type Allergy" tabindex="4">
-                            <div id="match22"></div>
+<!--                            <input class="form-control input-lg" type="text" name="problem"  id="Problem5" placeholder="Please Type Allergy" tabindex="4">
+                            <div id="match22"></div>-->
                         </div>
 
                         <div class="form-group">
@@ -759,8 +759,8 @@
                         <div class="form-group">
                             <input class="form-control input-lg" type="text"  id="tCISSubALGSearch_update" placeholder="Please Type Allergy..." tabindex="4">
                             <div id="tCISSubALGSearchLoading_update" ></div>
-                            <input class="form-control input-lg" type="text" name="problem"  id="PProblem5" placeholder="Please Type Allergy" tabindex="4">
-                            <div id="match23"></div>
+<!--                            <input class="form-control input-lg" type="text" name="problem"  id="PProblem5" placeholder="Please Type Allergy" tabindex="4">
+                            <div id="match23"></div>-->
                         </div>
                         <div class="form-group">
                               <input class="form-control input-lg" type="hidden" name="uALG_cd"  id="uALG_cd" tabindex="4">
@@ -807,8 +807,8 @@
                         <div class="form-group">
                             <input class="form-control input-lg" type="text"  id="tCISSubIMUSearch" placeholder="Please Type Immunization..." tabindex="4">
                             <div id="tCISSubIMUSearchLoading" ></div>
-                            <input class="form-control input-lg" type="text" name="problem"  id="Problem6" placeholder="Please Type Immunization" tabindex="4">
-                            <div id="match6"></div>
+<!--                            <input class="form-control input-lg" type="text" name="problem"  id="Problem6" placeholder="Please Type Immunization" tabindex="4">
+                            <div id="match6"></div>-->
                         </div>
                        
                         <div class="form-group">
@@ -849,8 +849,8 @@
                         <div class="form-group">
                             <input class="form-control input-lg" type="text"  id="tCISSubIMUSearch_update" placeholder="Please Type Immunization..." tabindex="4">
                             <div id="tCISSubIMUSearchLoading_update" ></div>
-                            <input class="form-control input-lg" type="text" name="problem"  id="PProblem6" placeholder="Please Type Immunization" tabindex="4">
-                            <div id="match25"></div>
+<!--                            <input class="form-control input-lg" type="text" name="problem"  id="PProblem6" placeholder="Please Type Immunization" tabindex="4">
+                            <div id="match25"></div>-->
                         </div>
                         <div class="form-group">
                               <input class="form-control input-lg" type="hidden" name="uIMU_cd"  id="uIMU_cd" tabindex="4">
@@ -892,13 +892,13 @@
                     <div class="modal-body">
                         <!-- content goes here -->
                           <div class="form-group">
-                            <input type="text" name="DAB" id="codeDAB" class="form-control input-lg"  tabindex="4">
+                            <input type="hidden" name="DAB" id="codeDAB" class="form-control input-lg"  tabindex="4">
                         </div>
                         <div class="form-group">
                             <input class="form-control input-lg" type="text"  id="tCISSubDABSearch" placeholder="Please Type Disability Name..." tabindex="4">
                             <div id="tCISSubDABSearchLoading" ></div>
-                            <input class="form-control input-lg" type="text" name="problem"  id="Problem32" placeholder="Please Type Disability Name" tabindex="4">
-                            <div id="match32"></div>
+<!--                            <input class="form-control input-lg" type="text" name="problem"  id="Problem32" placeholder="Please Type Disability Name" tabindex="4">
+                            <div id="match32"></div>-->
                         </div>
                         <div class="form-group">
                               <input class="form-control input-lg" type="hidden" name="DAS_cd"  id="DAS_cd" tabindex="4">
@@ -941,8 +941,8 @@
                         <div class="form-group">
                             <input class="form-control input-lg" type="text"  id="tCISSubDABSearch_update" placeholder="Please Type Disability Name..." tabindex="4">
                             <div id="tCISSubDABSearchLoading_update" ></div>
-                            <input class="form-control input-lg" type="text" name="problem"  id="PProblem32" placeholder="Please Type Disability Name" tabindex="4">
-                            <div id="mmatch32"></div>
+<!--                            <input class="form-control input-lg" type="text" name="problem"  id="PProblem32" placeholder="Please Type Disability Name" tabindex="4">
+                            <div id="mmatch32"></div>-->
                         </div>
                         <div class="form-group">
                               <input class="form-control input-lg" type="hidden" name="uDAB_cd"  id="uDAS_cd" tabindex="4">
