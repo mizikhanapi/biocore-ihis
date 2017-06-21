@@ -21,7 +21,7 @@
 
     String diagnosisList = "select lhr_diagnosis.PMI_no,lhr_diagnosis.HFC_Cd,lhr_diagnosis.Episode_Date,lhr_diagnosis.Encounter_Date,lhr_diagnosis.Diagnosis_Cd,icd10_codes.icd10_desc,lhr_diagnosis.Comment,adm_health_facility.hfc_name "
             + " FROM lhr_diagnosis JOIN icd10_codes ON (lhr_diagnosis.Diagnosis_Cd = icd10_codes.icd10_code ) JOIN adm_health_facility ON (lhr_diagnosis.HFC_Cd = adm_health_facility.hfc_cd) "
-            + " where lhr_diagnosis.PMI_no = '" + pmino + "' ";
+            + " where lhr_diagnosis.PMI_no = '" + pmino + "' ORDER BY lhr_diagnosis.Episode_Date DESC LIMIT 3";
 
     ArrayList<ArrayList<String>> dataDiagnosisList;
     dataDiagnosisList = conn.getData(diagnosisList);
