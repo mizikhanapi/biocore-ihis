@@ -229,6 +229,9 @@
 
                             </div>
                         </div>
+                        <div class="tab-pane fade" id="order-entry">
+                            <%@ include file="order/orderEntry.jsp" %> 
+                        </div>
                         <div class="tab-pane fade" id="orthopedic-con">
                             <jsp:include page="../Ortho-Consultation/orthopedic.jsp"/>
                         </div>

@@ -19,11 +19,14 @@
                                 <input type="hidden" name="ccn" id="codeCCN" class="form-control input-lg" value="CCN" tabindex="4">
                             </div>
                             <div class="form-group">
+                               
+                                <input class="form-control input-lg" type="text"  id="tCISSubCCNHFCSearch" placeholder="Type to search...">
+                                <div id="tCISSubCCNHFCSearchLoading" ></div>
                                 <input class="form-control input-lg" type="text" name="problem"  id="problem" placeholder="Please Type Chief Complain" tabindex="4">
                                 <div id="match50"></div>
                             </div>
                             <div class="form-group">
-                                <input class="form-control input-lg" type="hidden" name="ccnCode"  id="ccnCode"  tabindex="4">
+                                <input class="form-control input-lg" type="text" name="ccnCode"  id="ccnCode"  tabindex="4">
                             </div>
                             <div class="row">
                                 <div class="col-xs-6 col-sm-6 col-md-6">
@@ -108,11 +111,13 @@
                     <div class="modal-body">
                         <!-- content goes here -->
                         <div class="form-group">
+                            <input class="form-control input-lg" type="text"  id="tCISSubCCNHFCSearch_update" placeholder="Type to search...">
+                            <div id="tCISSubCCNHFCSearchLoading_update" ></div>
                             <input class="form-control input-lg" type="text" name="uproblem"  id="uproblem" placeholder="Search CCN Problem..." tabindex="4">
                             <div id="match1"></div>
                         </div>
                         <div class="form-group">
-                                <input class="form-control input-lg" type="hidden" name="uccnCode"  id="uccnCode"  tabindex="4">
+                                <input class="form-control input-lg" type="text" name="uccnCode"  id="uccnCode"  tabindex="4">
                         </div>
                         <div class="row">
                             <div class="col-xs-6 col-sm-6 col-md-6">
@@ -268,7 +273,9 @@
                             <input type="hidden" name="pmh" id="codePMH" class="form-control input-lg"tabindex="4">
                         </div>
                         <div class="form-group">
-                            <input class="form-control input-lg" type="text" name="problem"  id="Problem1" placeholder="Please Type Past Medical History" tabindex="4">
+                            <input class="form-control input-lg" type="text"  id="tCISSubPMHSearch" placeholder="Please Type Past Medical History" tabindex="4">
+                            <div id="tCISSubPMHSearchLoading" ></div>
+<!--                            <input class="form-control input-lg" type="text" name="problem"  id="Problem1" placeholder="Please Type Past Medical History" tabindex="4">-->
                             <div id="match2"></div>
                         </div>
 
@@ -312,8 +319,10 @@
                     <div class="modal-body">
                         <!-- content goes here -->
                         <div class="form-group">
-                            <input class="form-control input-lg" type="text" name="problem"  id="PProblem2"  placeholder="Please Type Past Medical History." tabindex="4">
-                            <div id="match3"></div>
+                            <input class="form-control input-lg" type="text"  id="tCISSubPMHSearch_update" placeholder="Please Type Past Medical History..." tabindex="4">
+                            <div id="tCISSubPMHSearchLoading_update" ></div>
+<!--                            <input class="form-control input-lg" type="text" name="problem"  id="PProblem2"  placeholder="Please Type Past Medical History." tabindex="4">
+                            <div id="match3"></div>-->
                         </div>
                          <div class="form-group">
                                  <input type="hidden" name="pmh" id="ucodePMH" class="form-control input-lg"tabindex="4">
@@ -362,11 +371,13 @@
                             <input type="hidden" name="FMH" id="codeFMH" class="form-control input-lg" tabindex="4">
                         </div>
                         <div class="form-group">
-                            <input class="form-control input-lg" type="text" name="problem3"  id="Problem3" placeholder="Search FMH Problem..." tabindex="4">
-                            <div id="match17"></div>
+                            <input class="form-control input-lg" type="text"  id="tCISSubFMHSearch" placeholder="Please Type Family Medical History..." tabindex="4">
+                            <div id="tCISSubFMHSearchLoading" ></div>
+<!--                            <input class="form-control input-lg" type="text" name="problem3"  id="Problem3" placeholder="Search FMH Problem..." tabindex="4">-->
+<!--                            <div id="match17"></div>-->
                         </div>
                          <div class="form-group">
-                                <input class="form-control input-lg" type="hidden" name="fmhCode"  id="fmhCode" tabindex="4">
+                                <input class="form-control input-lg" type="text" name="fmhCode"  id="fmhCode" tabindex="4">
                         </div>
                         <div class="form-group">
                             <select name="mild" id="f_relationship" class="form-control input-lg">
@@ -423,11 +434,13 @@
                     <div class="modal-body">
                         <!-- content goes here -->
                         <div class="form-group">
-                            <input class="form-control input-lg" type="text" name="problem"  id="PProblem3" placeholder="Search FMH Problem..." tabindex="4">
-                            <div id="match16"></div>
+                            <input class="form-control input-lg" type="text"  id="tCISSubFMHSearch_update" placeholder="Please Type Family Medical History..." tabindex="4">
+                            <div id="tCISSubFMHSearchLoading_update" ></div>
+<!--                            <input class="form-control input-lg" type="text" name="problem"  id="PProblem3" placeholder="Search FMH Problem..." tabindex="4">
+                            <div id="match16"></div>-->
                         </div>
                          <div class="form-group">
-                                <input class="form-control input-lg" type="hidden" name="ufmhCode"  id="ufmhCode" tabindex="4">
+                                <input class="form-control input-lg" type="text" name="ufmhCode"  id="ufmhCode" tabindex="4">
                         </div>
                         <div class="form-group">
                             <select name="mild" id="ff_relationship" class="form-control input-lg">
@@ -485,11 +498,13 @@
                     <div class="modal-body">
                         <!-- content goes here -->
                          <div class="form-group">
-                            <input type="hidden" name="SOH" id="codeSOH" class="form-control input-lg" tabindex="4">
+                            <input type="text" name="SOH" id="codeSOH" class="form-control input-lg" tabindex="4">
                         </div>
                         <div class="form-group">
-                            <input class="form-control input-lg" type="text" name="problem"  id="Problem4" placeholder="Please Type Social History" tabindex="4">
-                            <div id="match4"></div>
+                            <input class="form-control input-lg" type="text"  id="tCISSubSOHSearch" placeholder="Please Type Social History..." tabindex="4">
+                            <div id="tCISSubSOHSearchLoading" ></div>
+<!--                            <input class="form-control input-lg" type="text" name="problem"  id="Problem4" placeholder="Please Type Social History" tabindex="4">
+                            <div id="match4"></div>-->
                         </div>
                         <div class="form-group">
                                 <input class="form-control input-lg" type="hidden" name="sohCode"  id="sohCode" tabindex="4">
@@ -530,8 +545,10 @@
                     <div class="modal-body">
                         <!-- content goes here -->
                         <div class="form-group">
-                            <input class="form-control input-lg" type="text" name="problem"  id="PProblem4" placeholder="Social History" tabindex="4">
-                            <div id="match5"></div>
+                            <input class="form-control input-lg" type="text"  id="tCISSubSOHSearch_update" placeholder="Please Type Social History..." tabindex="4">
+                            <div id="tCISSubSOHSearchLoading_update" ></div>
+<!--                            <input class="form-control input-lg" type="text" name="problem"  id="PProblem4" placeholder="Social History" tabindex="4">
+                            <div id="match5"></div>-->
                         </div>
                          <div class="form-group">
                                 <input class="form-control input-lg" type="hidden" name="usohCode"  id="usohCode" tabindex="4">
@@ -698,6 +715,8 @@
                             <input type="hidden" name="Allergy" id="codeALG" class="form-control input-lg" tabindex="4">
                         </div>
                         <div class="form-group">
+                            <input class="form-control input-lg" type="text"  id="tCISSubALGSearch" placeholder="Please Type Allergy..." tabindex="4">
+                            <div id="tCISSubALGSearchLoading" ></div>
                             <input class="form-control input-lg" type="text" name="problem"  id="Problem5" placeholder="Please Type Allergy" tabindex="4">
                             <div id="match22"></div>
                         </div>
@@ -738,6 +757,8 @@
                     <div class="modal-body">
                         <!-- content goes here -->
                         <div class="form-group">
+                            <input class="form-control input-lg" type="text"  id="tCISSubALGSearch_update" placeholder="Please Type Allergy..." tabindex="4">
+                            <div id="tCISSubALGSearchLoading_update" ></div>
                             <input class="form-control input-lg" type="text" name="problem"  id="PProblem5" placeholder="Please Type Allergy" tabindex="4">
                             <div id="match23"></div>
                         </div>
@@ -784,6 +805,8 @@
                             <input type="hidden" name="IMU" id="codeIMU" class="form-control input-lg" tabindex="4">
                         </div>
                         <div class="form-group">
+                            <input class="form-control input-lg" type="text"  id="tCISSubIMUSearch" placeholder="Please Type Immunization..." tabindex="4">
+                            <div id="tCISSubIMUSearchLoading" ></div>
                             <input class="form-control input-lg" type="text" name="problem"  id="Problem6" placeholder="Please Type Immunization" tabindex="4">
                             <div id="match6"></div>
                         </div>
@@ -824,6 +847,8 @@
                     <div class="modal-body">
                         <!-- content goes here -->
                         <div class="form-group">
+                            <input class="form-control input-lg" type="text"  id="tCISSubIMUSearch_update" placeholder="Please Type Immunization..." tabindex="4">
+                            <div id="tCISSubIMUSearchLoading_update" ></div>
                             <input class="form-control input-lg" type="text" name="problem"  id="PProblem6" placeholder="Please Type Immunization" tabindex="4">
                             <div id="match25"></div>
                         </div>
@@ -867,9 +892,11 @@
                     <div class="modal-body">
                         <!-- content goes here -->
                           <div class="form-group">
-                            <input type="hidden" name="DAB" id="codeDAB" class="form-control input-lg"  tabindex="4">
+                            <input type="text" name="DAB" id="codeDAB" class="form-control input-lg"  tabindex="4">
                         </div>
                         <div class="form-group">
+                            <input class="form-control input-lg" type="text"  id="tCISSubDABSearch" placeholder="Please Type Disability Name..." tabindex="4">
+                            <div id="tCISSubDABSearchLoading" ></div>
                             <input class="form-control input-lg" type="text" name="problem"  id="Problem32" placeholder="Please Type Disability Name" tabindex="4">
                             <div id="match32"></div>
                         </div>
@@ -912,11 +939,13 @@
                     <div class="modal-body">
                         <!-- content goes here -->
                         <div class="form-group">
+                            <input class="form-control input-lg" type="text"  id="tCISSubDABSearch_update" placeholder="Please Type Disability Name..." tabindex="4">
+                            <div id="tCISSubDABSearchLoading_update" ></div>
                             <input class="form-control input-lg" type="text" name="problem"  id="PProblem32" placeholder="Please Type Disability Name" tabindex="4">
                             <div id="mmatch32"></div>
                         </div>
                         <div class="form-group">
-                              <input class="form-control input-lg" type="hidden" name="uDAS_cd"  id="uDAS_cd" tabindex="4">
+                              <input class="form-control input-lg" type="hidden" name="uDAB_cd"  id="uDAS_cd" tabindex="4">
                         </div>
                         <div class="form-group">
                            <input class="form-control input-lg" type="text" name="ddate3" id="ddate3" placeholder="On Set Date">
@@ -944,7 +973,63 @@
         </div>
         <!--End Update Disability-->
         
-        
+        <script type="text/javascript">
+            $(document).ready(function(){
+                
+                searching("tCISSubCCNHFCSearch","tCISSubCCNHFCSearchLoading","search/ResultCCNSearch.jsp","ccnCode","search/ResultCCNSearchCode.jsp");
+                searching("tCISSubPMHSearch","tCISSubPMHSearchLoading","search/ResultPMHSearch.jsp","codePMH","search/ResultPMHSearchCode.jsp");
+                searching("tCISSubFMHSearch","tCISSubFMHSearchLoading","search/ResultPMHSearch.jsp","fmhCode","search/ResultPMHSearchCode.jsp");
+                searching("tCISSubSOHSearch","tCISSubSOHSearchLoading","search/ResultSOHSearch.jsp","codeSOH","search/ResultSOHSearchCode.jsp");
+                searching("tCISSubALGSearch","tCISSubALGSearchLoading","search/ResultALGSearch.jsp","codeALG","search/ResultALGSearchCode.jsp");
+                searching("tCISSubIMUSearch","tCISSubIMUSearchLoading","search/ResultIMUSearch.jsp","codeIMU","search/ResultIMUSearchCode.jsp");
+                searching("tCISSubDABSearch","tCISSubDABSearchLoading","search/ResultDABSearch.jsp","codeDAB","search/ResultDABSearchCode.jsp");
+                //function searching Chief complaint
+                function searching(fieldId,loadingDivId,urlData,codeFieldId,urlCode){
+                    $('#'+fieldId).flexdatalist({
+                        minLength: 1,
+                        searchIn: 'name',
+                        searchDelay:2000,
+                        //data:arrayDGSDataAjax,
+                        url:urlData,
+                        cache:true,
+                        params:{
+                            timeout:3000,
+                            success:function(result){
+                                //console.log(result);
+                                if(result === undefined){
+                                    $('#'+loadingDivId).html('No Record');
+                                }
+                            }
+                        }
+                     });
+
+                    $("#"+fieldId).on('before:flexdatalist.data',function(response){
+                        console.log("Start - "+getDate());
+                        $('#'+loadingDivId).html('<img src="img/LoaderIcon.gif" />');
+                    });
+                    $("#"+fieldId).on('after:flexdatalist.data',function(response){
+                        console.log("End - "+getDate());
+                        $('#'+loadingDivId).html('');
+                    });
+                    $("#" + fieldId).on('select:flexdatalist', function (response) {
+                        var searchName = $("#" + fieldId).val();
+                        console.log(searchName);
+                        $.ajax({
+                            type:"post",
+                            url:urlCode,
+                            timeout:3000,
+                            data:{id:searchName},
+                            success:function(response){
+                            console.log(response);
+                               $("#" + codeFieldId).val(response.trim());
+                                
+                            }
+                        });
+                        
+                    });
+                }
+            });
+        </script>
 
 
 

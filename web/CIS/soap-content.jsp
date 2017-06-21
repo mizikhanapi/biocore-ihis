@@ -12,9 +12,9 @@
             <div class="tab-pane active fade in" id="tab_default_1">
                 <ul class="soap-content nav">
                     <li><a data-toggle="modal" data-target="#CIS01000001" href="" class="soap-select"><i class="fa fa-comments  fa-li"></i> Complaints</a></li>
-                <li><a data-toggle="modal" data-target="#CIS01000002" href=""  class="soap-select"><i class="fa fa-history  fa-li"></i> History of Present Illness(HPI)</a></li>
-                <li><a data-toggle="modal" data-target="#CIS01000003" href=""  class="soap-select"><i class="fa fa-medkit  fa-li"></i> Past Medical History (PMH)</a></li>
-                <li><a data-toggle="modal" data-target="#CIS01000004" href=""  class="soap-select"><i class="fa fa-group  fa-li"></i> Family History</a></li>
+                <li><a data-toggle="modal" data-target="#CIS01000002" href=""  class="soap-select"><i class="fa fa-history  fa-li"></i> History of Present Illness</a></li>
+                <li><a data-toggle="modal" data-target="#CIS01000003" href=""  class="soap-select"><i class="fa fa-medkit  fa-li"></i> Past Medical History</a></li>
+                <li><a data-toggle="modal" data-target="#CIS01000004" href=""  class="soap-select"><i class="fa fa-group  fa-li"></i> Family Medical History</a></li>
                 <li><a data-toggle="modal" data-target="#CIS01000005" href=""  class="soap-select"><i class="fa fa-share-square  fa-li"></i> Social History</a></li>
                 <li><a data-toggle="modal" data-target="#CIS01000006" href=""  class="soap-select"><i class="fa fa-tint  fa-li"></i> Blood Group/G6PD</a></li>
                 <li><a data-toggle="modal" data-target="#CIS01000007" href=""  class="soap-select"><i class="fa fa-exclamation-circle  fa-li"></i> Allergy</a></li>

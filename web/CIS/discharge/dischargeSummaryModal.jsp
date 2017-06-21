@@ -176,9 +176,6 @@
                     </div>
                 </div>
 
-
-
-
                 <div class="modal-footer" id="actionGSC">
                     <div class="btn-group btn-group-justified" role="group" aria-label="group button">
                         <div class="btn-group" role="group">

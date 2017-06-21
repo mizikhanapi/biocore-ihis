@@ -110,7 +110,7 @@ $(document).ready(function () {
     /// ----------------------------------------------------------------------------------------------------------------------------------------------/////;
     $('#acceptBtn').click(function (e) {
         e.preventDefault();
-        var problem = $('#problem').val();
+        var problem = $('#tCISSubCCNHFCSearch').val();
         var Mild = $('#Mild').val();
         var Site = $('#Site').val();
         var duration = $('#duration').val();
@@ -119,15 +119,18 @@ $(document).ready(function () {
         var Comment = $('#Comment').val();
         var ccnCode = $('#ccnCode').val();
         notes += "CCN|" + getDate() + "|^" + ccnCode + "^" + problem + "^^" + Mild + "|<cr>\n";
-        var $items = $('#codeCCN,#problem, #Mild, #Site, #duration, #sdur, #Laterality, #Comment,#ccnCode');
-        var obj1 = {Acode:"CCN"};
+        var $items = $('#codeCCN, #Mild, #Site, #duration, #sdur, #Laterality, #Comment,#ccnCode');
+        var obj1 = {
+            Acode:"CCN",
+            problem:problem
+        };
         $items.each(function () {
             obj1[this.id] = $(this).val();
         });
 
         _data.push(obj1);
         displayCCN(problem,Mild,Site,duration,sdur,Laterality,Comment);
-
+        console.log(_data);
         $("#problem").val("");
         $("#duration").val("");
         $("#Comment").val("");
@@ -143,8 +146,9 @@ $(document).ready(function () {
         var idName = $(this).get(0).id;
         var id = idName.split("|");
         var updateObj = _data[id[1]];
+        
+        retriveDataSearching("tCISSubCCNHFCSearch_update", "tCISSubCCNHFCSearchLoading_update", "search/ResultCCNSearch.jsp", "search/ResultCCNSearchCode.jsp", "uccnCode", updateObj.problem);
 
-        $('#uproblem').val(updateObj.problem);
         $('#uMild').val(updateObj.Mild);
         $('#uSite').val(updateObj.Site);
         $('#uduration').val(updateObj.duration);
@@ -161,7 +165,7 @@ $(document).ready(function () {
         e.preventDefault();
         var upObject = _data[$('#jsonId').val()];
         var rowId = $('#jsonId').val();
-        var _uproblem = $('#uproblem').val();
+        var _uproblem = $('#tCISSubCCNHFCSearch_update').val();
         var _uMild = $('#uMild').val();
         var _uSite = $('#uSite').val();
         var _uduration = $('#uduration').val();
@@ -180,7 +184,7 @@ $(document).ready(function () {
         var sum = _uproblem + '| ' + _uMild + '| ' + _uSite + '| ' + _uduration + '| ' + _ssdur + '| ' + _uLaterality + '| ' + _uComment
         $('#sum' + rowId).html(sum);
         $("#update_CIS01000001").modal('toggle');
-        //$(".modal-backdrop").hide();
+        console.log(_data);
     });
 
 
@@ -231,12 +235,15 @@ $(document).ready(function () {
 
     $('#acceptBtnPMH').click(function (e) {
         e.preventDefault();
-        var Problem1 = $('#Problem1').val();
+        var Problem1 = $('#tCISSubPMHSearch').val();
         var Status = $('#Status').val();
         var comment1 = $('#comment1').val();
         var pmhCode = $('#pmhCode').val();
-        var $items = $('#Problem1, #Status, #comment1,#codePMH');
-        var obj1 = {Acode:"PMH"};
+        var $items = $(' #Status, #comment1,#codePMH');
+        var obj1 = {
+            Acode:"PMH",
+            Problem1:Problem1
+        };
         $items.each(function () {
             obj1[this.id] = $(this).val();
         });
@@ -255,8 +262,8 @@ $(document).ready(function () {
         var idName = $(this).get(0).id;
         var id = idName.split("|");
         var updateObj = _data[id[1]];
-       
-        $('#PProblem2').val(updateObj.Problem1);
+        retriveDataSearching("tCISSubPMHSearch_update", "tCISSubPMHSearchLoading_update", "search/ResultPMHSearch.jsp", "search/ResultPMHSearchCode.jsp", "ucodePMH", updateObj.Problem1);
+        //$('#PProblem2').val(updateObj.Problem1);
         $('#PStatus').val(updateObj.Status);
         $('#Pcomment1').val(updateObj.comment1);
         $("#ucodePMH").val(updateObj.codePMH);
@@ -266,7 +273,7 @@ $(document).ready(function () {
     $('#updateBtnPMH').click(function () {
         var upObject = _data[$('#jsonId').val()];
         var rowId = $('#jsonId').val();
-        var _PProblem2 = $('#PProblem2').val();
+        var _PProblem2 = $('#tCISSubPMHSearch_update').val();
         var _PStatus = $('#PStatus').val();
         var _Pcomment1 = $('#Pcomment1').val();
         var _Pcode = $("#ucodePMH").val();
@@ -277,6 +284,7 @@ $(document).ready(function () {
         var sum = _PProblem2 + '| ' + _PStatus + '| ' + _Pcomment1
         $('#sum' + rowId).html(sum);
         $("#update_CIS01000003").modal('toggle');
+        //console.log(_data);
     });
 
 /// -----------------------------------------------------------------------------------------------------------------------------------------------/////;
@@ -284,12 +292,16 @@ $(document).ready(function () {
 /// ----------------------------------------------------------------------------------------------------------------------------------------------/////;
     $('#acceptBtnFMH').click(function () {
 
-        var Problem3 = $('#Problem3').val();
+        var Problem3 = $('#tCISSubFMHSearch').val();
         var f_relationship = $('#f_relationship').val();
         var comment2 = $('#comment2').val();
-        var code4 = $('#codeFMH').val();
-        var $items = $('#codeFMH,#Problem3, #f_relationship, #comment2');
-        var obj1 = {Acode:"FMH"};
+        var code4 = $('#fmhCode').val();
+        var $items = $('#f_relationship, #comment2');
+        var obj1 = {
+            Acode:"FMH",
+            Problem3:Problem3,
+            codeFMH:code4
+        };
         $items.each(function () {
             obj1[this.id] = $(this).val();
         });
@@ -310,8 +322,9 @@ $(document).ready(function () {
         var idName = $(this).get(0).id;
         var id = idName.split("|");
         var updateObj = _data[id[1]];
-        console.log(_data);
-        $('#PProblem3').val(updateObj.Problem3);
+        //console.log(_data);
+        retriveDataSearching("tCISSubFMHSearch_update", "tCISSubFMHSearchLoading_update", "search/ResultPMHSearch.jsp", "search/ResultPMHSearchCode.jsp", "ufmhCode", updateObj.Problem3);
+        //$('#PProblem3').val(updateObj.Problem3);
         $('#ff_relationship').val(updateObj.f_relationship);
         $('#Pcomment2').val(updateObj.comment2);
         $("#ufmhCode").val(updateObj.codeFMH);
@@ -322,7 +335,7 @@ $(document).ready(function () {
     $('#updateBtnFMH').click(function () {
         var upObject = _data[$('#jsonId').val()];
         var rowId = $('#jsonId').val();
-        var _PProblem3 = $('#PProblem3').val();
+        var _PProblem3 = $('#tCISSubFMHSearch_update').val();
         var _ff_relationship = $('#ff_relationship').val();
         var _Pcomment2 = $('#Pcomment2').val();
         var codeFMH = $('#ufmhCode').val();
@@ -340,12 +353,16 @@ $(document).ready(function () {
 /// ----------------------------------------------------------------------------------------------------------------------------------------------/////;
     $('#acceptBtnSOH').click(function () {
 
-        var Problem4 = $('#Problem4').val();
+        var Problem4 = $('#tCISSubSOHSearch').val();
         var date = $('#date').val();
         var comment3 = $('#comment3').val();
         var code5 = $('#codeSOH').val();
-        var $items = $('#codeSOH,#Problem4, #date, #comment3');
-        var obj1 = {Acode:"SOH"};
+        var $items = $('#date, #comment3');
+        var obj1 = {
+            Acode:"SOH",
+            Problem4:Problem4,
+            codeSOH:code5
+        };
         $items.each(function () {
             obj1[this.id] = $(this).val();
         });
@@ -369,8 +386,8 @@ $(document).ready(function () {
         var idName = $(this).get(0).id;
         var id = idName.split("|");
         var updateObj = _data[id[1]];
-        console.log(_data);
-        $('#PProblem4').val(updateObj.Problem4);
+        retriveDataSearching("tCISSubSOHSearch_update", "tCISSubSOHSearchLoading_update", "search/ResultSOHSearch.jsp", "search/ResultSOHSearchCode.jsp", "usohCode", updateObj.Problem4);
+        //$('#PProblem4').val(updateObj.Problem4);
         $('#ddate').val(updateObj.date);
         $('#Pcomment3').val(updateObj.comment3);
         $('#usohCode').val(updateObj.codeSOH);
@@ -382,7 +399,7 @@ $(document).ready(function () {
     $('#updateBtn4').click(function () {
         var upObject = _data[$('#jsonId').val()];
         var rowId = $('#jsonId').val();
-        var _PProblem4 = $('#PProblem4').val();
+        var _PProblem4 = $('#tCISSubSOHSearch_update').val();
         var _ddate = $('#ddate').val();
         var _Pcomment3 = $('#Pcomment3').val();
         upObject.Problem4 = _PProblem4;
@@ -458,12 +475,15 @@ $(document).ready(function () {
     //js ADD for Allergy
     $('#acceptBtnALG').click(function () {
 
-        var Problem5 = $('#Problem5').val();
+        var Problem5 = $('#tCISSubALGSearch').val();
         var date1 = $('#date1').val();
         var comment5 = $('#comment5').val();
         var code7 = $('#codeALG').val();
-       var $items = $('#codeALG,#Problem5, #date1, #comment5');
-        var obj1 = {Acode:"ALG"};
+        var $items = $('#codeALG, #date1, #comment5');
+        var obj1 = {
+            Acode:"ALG",
+            Problem5:Problem5
+        };
         $items.each(function () {
             obj1[this.id] = $(this).val();
         });
@@ -482,7 +502,8 @@ $(document).ready(function () {
         var id = idName.split("|");
         var updateObj = _data[id[1]];
         console.log(_data);
-        $('#PProblem5').val(updateObj.Problem5);
+        retriveDataSearching("tCISSubALGSearch_update", "tCISSubALGSearchLoading_update", "search/ResultALGSearch.jsp", "search/ResultALGSearchCode.jsp", "uALG_cd", updateObj.Problem5);
+        //$('#PProblem5').val(updateObj.Problem5);
         $('#ddate1').val(updateObj.date1);
         $('#Pcomment5').val(updateObj.comment5)
         $('#uALG_cd').val(updateObj.codeALG);;
@@ -494,7 +515,7 @@ $(document).ready(function () {
     $('#updateBtnALG').click(function () {
         var upObject = _data[$('#jsonId').val()];
         var rowId = $('#jsonId').val();
-        var _PProblem5 = $('#PProblem5').val();
+        var _PProblem5 = $('#tCISSubALGSearch_update').val();
         var _ddate1 = $('#ddate1').val();
         var _Pcomment5 = $('#Pcomment5').val();
         var _algCode = $('#uALG_cd').val();
@@ -513,13 +534,16 @@ $(document).ready(function () {
 
     $('#acceptBtnIMU').click(function () {
         var probcode = "";
-        var Problem6 = $('#Problem6').val();
+        var Problem6 = $('#tCISSubIMUSearch').val();
         var date2 = $('#date2').val();
         var comment6 = $('#comment6').val();
         var code8 = $('#codeIMU').val();
         notes += "IMU|" + getDate() + "^|" + probcode + "^" + Problem6 + "^" + date2 + "^" + comment6 + "|<cr>\n";
-        var $items = $('#codeIMU,#Problem6, #date2, #comment6');
-        var obj1 = {Acode:"IMU"};
+        var $items = $('#codeIMU, #date2, #comment6');
+        var obj1 = {
+            Acode:"IMU",
+            Problem6:Problem6
+        };
         $items.each(function () {
             obj1[this.id] = $(this).val();
         });
@@ -536,6 +560,7 @@ $(document).ready(function () {
         var idName = $(this).get(0).id;
         var id = idName.split("|");
         var updateObj = _data[id[1]];
+         retriveDataSearching("tCISSubIMUSearch_update", "tCISSubIMUSearchLoading_update", "search/ResultIMUSearch.jsp", "search/ResultIMUSearchCode.jsp", "uIMU_cd", updateObj.Problem6);
         $('#PProblem6').val(updateObj.Problem6);
         $('#ddate2').val(updateObj.date2);
         $('#Pcomment6').val(updateObj.comment6);
@@ -547,7 +572,7 @@ $(document).ready(function () {
     $('#updateBtnIMU').click(function () {
         var upObject = _data[$('#jsonId').val()];
         var rowId = $('#jsonId').val();
-        var _PProblem6 = $('#PProblem6').val();
+        var _PProblem6 = $('#tCISSubIMUSearch_update').val();
         var _ddate2 = $('#ddate2').val();
         var _Pcomment6 = $('#Pcomment6').val();
         var _IMUCode = $('#uIMU_cd').val();
@@ -570,12 +595,16 @@ $(document).ready(function () {
         var termtype = "Term";
         var icd10code = "25256";
         var icd10desc = "Fever";
-        var Problem32 = $('#Problem32').val();
+        var Problem32 = $('#tCISSubDABSearch').val();
         var date3 = $('#date3').val();
         var comment7 = $('#comment7').val();
         var code9 = $('#codeDAB').val();
-        var $items = $('#codeDAB,#Problem32, #date3, #comment7');
-        var obj1 = {Acode:"DAB"};
+        var $items = $('#date3, #comment7');
+        var obj1 = {
+            Acode:"DAB",
+            Problem32:Problem32,
+            codeDAB:code9
+        };
         $items.each(function () {
             obj1[this.id] = $(this).val();
         });
@@ -594,7 +623,8 @@ $(document).ready(function () {
         var id = idName.split("|");
         var updateObj = _data[id[1]];
         console.log(_data);
-        $('#PProblem32').val(updateObj.Problem32);
+        retriveDataSearching("tCISSubDABSearch_update", "tCISSubDABSearchLoading_update", "search/ResultDABSearch.jsp", "search/ResultDABSearchCode.jsp", "uDAB_cd", updateObj.Problem32);
+        //$('#PProblem32').val(updateObj.Problem32);
         $('#uDAS_cd').val(updateObj.codeDAB);
         $('#ddate3').val(updateObj.date3);
         $('#Pcomment7').val(updateObj.comment7);
@@ -606,7 +636,7 @@ $(document).ready(function () {
     $('#updateBtnDAB').click(function () {
         var upObject = _data[$('#jsonId').val()];
         var rowId = $('#jsonId').val();
-        var _PProblem32 = $('#PProblem32').val();
+        var _PProblem32 = $('#tCISSubDABSearch_update').val();
         var _ddate3 = $('#ddate3').val();
         var _Pcomment7 = $('#Pcomment7').val();
         var _codeDAB = $('#uDAS_cd').val();
@@ -619,6 +649,50 @@ $(document).ready(function () {
         $("#update_CIS01000009").modal('toggle');
       
     });
+    
+    function retriveDataSearching(fieldId, loadingDivId, urlData, urlCode, codeFieldId, retriveValue) {
+        $('#' + fieldId).val(retriveValue).flexdatalist({
+            minLength: 1,
+            searchIn: 'name',
+            searchDelay: 2000,
+            //data:arrayDGSDataAjax,
+            url: urlData,
+            cache: true,
+            params: {
+                timeout: 3000,
+                success: function (result) {
+                    console.log(result);
+                    if (result === undefined) {
+                        $('#'+loadingDivId).html('No Record');
+                    }
+                }
+            }
+        });
+        $("#" + fieldId).on('before:flexdatalist.data', function (response) {
+            console.log("Start - " + getDate());
+            $('#' + loadingDivId).html('<img src="img/LoaderIcon.gif" />');
+        });
+        $("#" + fieldId).on('after:flexdatalist.data', function (response) {
+            console.log("End - " + getDate());
+            $('#' + loadingDivId).html('');
+        });
+        $("#" + fieldId).on('select:flexdatalist', function (response) {
+            var searchName = $("#" + fieldId).val();
+            console.log(searchName);
+            $.ajax({
+                type: "post",
+                url: urlCode,
+                timeout: 3000,
+                data: {id: searchName},
+                success: function (response) {
+                    console.log(response);
+                    $("#" + codeFieldId).val(response.trim());
+
+                }
+            });
+
+        });
+    }
 
 
 });
