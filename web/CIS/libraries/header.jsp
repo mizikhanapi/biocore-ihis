@@ -31,6 +31,7 @@
 <script src="assets/dataTables.bootstrap.min.js" type="text/javascript"></script>
 <script src="assets/jquery.autocomplete.min.js" type="text/javascript"></script>
 <script src="../assets/js/jquery.flexdatalist.min.js" type="text/javascript"></script>
+<script src="../assets/js/bootbox.min.js"></script>
 
 <script src="jsFunction/MainConfig.js"></script>
 <script src="jsFunction/Objective.js"></script>
@@ -41,7 +42,6 @@
 <script src="jsFunction/Converter.js" type="text/javascript"></script>
 <script src="jsFunction/TopMenuFunction.js"></script>
 <script src="jsFunction/searchTopMenu.js"></script>
-<script src="jsFunction/NurseInWard.js"></script>
 
 
 <script src="jsFunction/search/SeaarchuCCN_cd.js" type="text/javascript"></script>

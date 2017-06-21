@@ -140,3 +140,66 @@
         </div>
     </div>
 </div>
+<script>
+    $(document).ready(function () {
+        $('#NIWObsDate').datepicker();
+    });
+
+    $('#cobserved1 #btnNIWaddps').on('click', function (e) {
+        e.preventDefault();
+        $('#actionPS #btnNIWps').show();
+        $('#actionPS #acceptPSBtn').hide();
+    });
+
+    $('#cobserved1 #btnNIWOBADD').on('click', function (e) {
+        e.preventDefault();
+        
+        var enDate = new Date();
+        var dd = ("0" + enDate.getDate()).slice(-2);
+        var mm = ("0" + (enDate.getMonth() + 1)).slice(-2);
+        var yy = enDate.getFullYear();        
+        var hh = enDate.getHours();
+        var m = enDate.getMinutes();
+        var ss = enDate.getSeconds();
+        var ms = enDate.getMilliseconds();
+        
+        var encounterDate = yy+"-"+mm+"-"+dd+" "+hh+":"+m+":"+ss+"."+ms;
+        var date = $('#NIWObsDate').val();
+        var sDate = date.split('/');
+        var newDate = sDate[2]+"-"+sDate[0]+"-"+sDate[1];
+        var time = $('#NIWObsTime').val();
+        var systolic = $('#NIWOBsystolic').val();
+        var dialotic = $('#NIWOBdiatolic').val();
+        var pulse = $('#NIWOBpulse').val();
+        var respiratoryRate = $('#NIWOBrr').val();
+        var oxygenSatu = $('#NIWOBos').val();
+        var painScore = $('#NIWOBps').val();
+        var comment = $('#NIWOBcomment').val();
+
+        var pmi_no = $('#pmiNumber').text();
+        var hfc_cd1 = hfc_cd;
+        var epDate = episodeDate;
+        
+        var datas = pmi_no+"|"+hfc_cd1+"|"+epDate+"|"+encounterDate+"| | |"+newDate+" "+time+":00.0|"+pulse+"|"+systolic+"|"+dialotic+"|"+respiratoryRate+"|"+oxygenSatu+"|"+painScore+"|"+comment;
+        console.log(datas);
+        
+        $.ajax({
+           type:"post",
+           url:"../Ortho-NursingInWard/controller/ObservationFunction.jsp",
+           data: {datas: datas,methodName : "add"},
+           timeout:10000,
+           success:function(result){
+               console.log(result);
+               if(result.trim()==='true'){                   
+                   bootbox.alert("successfully added!");
+               }else if(result.trim()==='false'){
+                   bootbox.alert("fail to add");
+               }               
+           },
+           error:function(err){
+               bootbox.alert("something wrong,error: "+err);
+           }
+        });
+        $("#cobserved1").modal('toggle');
+    });
+</script>
