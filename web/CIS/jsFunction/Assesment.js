@@ -46,15 +46,18 @@ $(document).ready(function(){
         //---------------------------
         var Type = $('#TypeDGS').val();
         var date4 = $('#dateDGS').val();
-        var Problem8 = $('#searchDiag').val();
+        var Problem8 = $('#tCISSubDGSSearch').val();
         var Severity1 = $('#SeverityDGS').val();
         var Site1 = $('#SiteDGS').val();
         var Laterality1 = $('#LateralityDGS').val();
         var comment8 = $('#commentDGS').val();
        // var code10 = $('#codeDGS').val();
         //notes += "DGS|" + getDate() + "^|" + Type + "^" + Problem8 + "^" + "^-^" + "^" + date4 + "^" + "^-^" + "^" + "^-^" + diacode + "^" + Problem8 + "^" + "^-^" + "^" + Severity1 + "^" + "^-^" + "^" + Site1 + "^" + "^-^" + "^" + "^-^" + "^" + Laterality1 + "^" + "^-^" + "^" + "^-^" + comment8 + "^" + getDate() + "^" + status + "^" + getDate + "^" + hfc + "^" + doctorid + "^" + doctorname + "^" + termtype + "^" + icd10code + "^" + icd10desc + "|<cr>\n";
-        var $items = $('#searchDiag,#dgsCode, #TypeDGS, #dateDGS, #SeverityDGS, #SiteDGS, #LateralityDGS, #commentDGS');
-        var obj1 = {Acode:'DGS'};
+        var $items = $('#dgsCode, #TypeDGS, #dateDGS, #SeverityDGS, #SiteDGS, #LateralityDGS, #commentDGS');
+        var obj1 = {
+            Acode:'DGS',
+            searchDiag:Problem8
+        };
         $items.each(function () {
             obj1[this.id] = $(this).val();
           
@@ -76,10 +79,10 @@ $(document).ready(function(){
         var id = idName.split("|");
         var updateObj = _data[id[1]];
         console.log(idName);
-        //console.log(_data);
+        retriveDataSearchingAssessment("tCISSubDGSSearch_update", "tCISSubDGSSearchLoading_update", "search/ResultDGSSearch.jsp", "search/ResultDGSSearchCode.jsp", "update_dgsCode", updateObj.searchDiag);
         $('#update_TypeDGS').val(updateObj.TypeDGS);
         $('#update_dateDGS').val(updateObj.dateDGS);
-        $('#update_searchDiag').val(updateObj.searchDiag);
+        //$('#update_searchDiag').val(updateObj.searchDiag);
         $('#update_SeverityDGS').val(updateObj.SeverityDGS);
         $('#update_SiteDGS').val(updateObj.SiteDGS);
         $('#update_LateralityDGS').val(updateObj.LateralityDGS);
@@ -96,7 +99,7 @@ $(document).ready(function(){
         var rowId = $('#jsonIdDGS').val();
         var _TType = $('#update_TypeDGS').val();
         var _ddate4 = $('#update_dateDGS').val();
-        var _PProblem8 = $('#update_searchDiag').val();
+        var _PProblem8 = $('#tCISSubDGSSearch_update').val();
         var _SSeverity1 = $('#update_SeverityDGS').val();
         var _SSite1 = $('#update_SiteDGS').val();
         var _LLaterality1 = $('#update_LateralityDGS').val();
@@ -114,6 +117,7 @@ $(document).ready(function(){
 
         $('#sum' + rowId).html(sum);
         $("#update_CIS030001").modal('toggle');
+        console.log(_data);
         
         //$(".modal-backdrop").hide();
     });
@@ -179,9 +183,52 @@ $(document).ready(function(){
         $("#update_CIS030002").modal('toggle');
 
     });
+    
+    function retriveDataSearchingAssessment(fieldId, loadingDivId, urlData, urlCode, codeFieldId, retriveValue) {
+        $('#' + fieldId).val(retriveValue).flexdatalist({
+            minLength: 1,
+            searchIn: 'name',
+            searchDelay: 2000,
+            //data:arrayDGSDataAjax,
+            url: urlData,
+            cache: true,
+            params: {
+                timeout: 3000,
+                success: function (result) {
+                    console.log(result);
+                    if (result === undefined) {
+                        $('#'+loadingDivId).html('No Record');
+                    }
+                }
+            }
+        });
+        $("#" + fieldId).on('before:flexdatalist.data', function (response) {
+            console.log("Start - " + getDate());
+            $('#' + loadingDivId).html('<img src="img/LoaderIcon.gif" />');
+        });
+        $("#" + fieldId).on('after:flexdatalist.data', function (response) {
+            console.log("End - " + getDate());
+            $('#' + loadingDivId).html('');
+        });
+        $("#" + fieldId).on('select:flexdatalist', function (response) {
+            var searchName = $("#" + fieldId).val();
+            console.log(searchName);
+            $.ajax({
+                type: "post",
+                url: urlCode,
+                timeout: 3000,
+                data: {id: searchName},
+                success: function (response) {
+                    console.log(response);
+                    $("#" + codeFieldId).val(response.trim());
 
+                }
+            });
 
-})
+        });
+    }
+
+});
 
 function displayDGS(Type,date4,Problem8,Severity1,Site1,Laterality1,comment8){
     var _tr = '<tr data-status="pagado" ><td><div class="ckbox"><input type="checkbox" id="checkbox|'+i+'" name="CIS_consult_notes"><label for="checkbox|'+i+'"></label></div></td><td><div class="media"><div class="media-body">Diagnosis :<p class="summary" id="sum' + i + '">' + Type + '| ' + date4 + '| ' + Problem8 + '| ' + Severity1 + '| ' + Site1 + '| ' + Laterality1 + '| ' + comment8 + '</p></div></div></td><td><a data-toggle="modal"  href="" class="updateBtnDGS" id="row|' + i + '"><i class="fa fa-pencil-square-o" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #337ab7;" ></i></a></a></td><td><a href="javascript:;" class="star"><a href="#" class="deleteBtn" id="row|' + i + '"><i class="fa fa-times" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #d9534f;"></i></a></a></td></tr>';

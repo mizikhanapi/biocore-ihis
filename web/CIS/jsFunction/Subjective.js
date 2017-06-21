@@ -147,7 +147,7 @@ $(document).ready(function () {
         var id = idName.split("|");
         var updateObj = _data[id[1]];
         
-        retriveDataSearching("tCISSubCCNHFCSearch_update", "tCISSubCCNHFCSearchLoading_update", "search/ResultCCNSearch.jsp", "search/ResultCCNSearchCode.jsp", "uccnCode", updateObj.problem);
+        retriveDataSearchingSubjective("tCISSubCCNHFCSearch_update", "tCISSubCCNHFCSearchLoading_update", "search/ResultCCNSearch.jsp", "search/ResultCCNSearchCode.jsp", "uccnCode", updateObj.problem);
 
         $('#uMild').val(updateObj.Mild);
         $('#uSite').val(updateObj.Site);
@@ -262,7 +262,7 @@ $(document).ready(function () {
         var idName = $(this).get(0).id;
         var id = idName.split("|");
         var updateObj = _data[id[1]];
-        retriveDataSearching("tCISSubPMHSearch_update", "tCISSubPMHSearchLoading_update", "search/ResultPMHSearch.jsp", "search/ResultPMHSearchCode.jsp", "ucodePMH", updateObj.Problem1);
+        retriveDataSearchingSubjective("tCISSubPMHSearch_update", "tCISSubPMHSearchLoading_update", "search/ResultPMHSearch.jsp", "search/ResultPMHSearchCode.jsp", "ucodePMH", updateObj.Problem1);
         //$('#PProblem2').val(updateObj.Problem1);
         $('#PStatus').val(updateObj.Status);
         $('#Pcomment1').val(updateObj.comment1);
@@ -323,7 +323,7 @@ $(document).ready(function () {
         var id = idName.split("|");
         var updateObj = _data[id[1]];
         //console.log(_data);
-        retriveDataSearching("tCISSubFMHSearch_update", "tCISSubFMHSearchLoading_update", "search/ResultPMHSearch.jsp", "search/ResultPMHSearchCode.jsp", "ufmhCode", updateObj.Problem3);
+        retriveDataSearchingSubjective("tCISSubFMHSearch_update", "tCISSubFMHSearchLoading_update", "search/ResultPMHSearch.jsp", "search/ResultPMHSearchCode.jsp", "ufmhCode", updateObj.Problem3);
         //$('#PProblem3').val(updateObj.Problem3);
         $('#ff_relationship').val(updateObj.f_relationship);
         $('#Pcomment2').val(updateObj.comment2);
@@ -386,7 +386,7 @@ $(document).ready(function () {
         var idName = $(this).get(0).id;
         var id = idName.split("|");
         var updateObj = _data[id[1]];
-        retriveDataSearching("tCISSubSOHSearch_update", "tCISSubSOHSearchLoading_update", "search/ResultSOHSearch.jsp", "search/ResultSOHSearchCode.jsp", "usohCode", updateObj.Problem4);
+        retriveDataSearchingSubjective("tCISSubSOHSearch_update", "tCISSubSOHSearchLoading_update", "search/ResultSOHSearch.jsp", "search/ResultSOHSearchCode.jsp", "usohCode", updateObj.Problem4);
         //$('#PProblem4').val(updateObj.Problem4);
         $('#ddate').val(updateObj.date);
         $('#Pcomment3').val(updateObj.comment3);
@@ -502,7 +502,7 @@ $(document).ready(function () {
         var id = idName.split("|");
         var updateObj = _data[id[1]];
         console.log(_data);
-        retriveDataSearching("tCISSubALGSearch_update", "tCISSubALGSearchLoading_update", "search/ResultALGSearch.jsp", "search/ResultALGSearchCode.jsp", "uALG_cd", updateObj.Problem5);
+        retriveDataSearchingSubjective("tCISSubALGSearch_update", "tCISSubALGSearchLoading_update", "search/ResultALGSearch.jsp", "search/ResultALGSearchCode.jsp", "uALG_cd", updateObj.Problem5);
         //$('#PProblem5').val(updateObj.Problem5);
         $('#ddate1').val(updateObj.date1);
         $('#Pcomment5').val(updateObj.comment5)
@@ -560,7 +560,7 @@ $(document).ready(function () {
         var idName = $(this).get(0).id;
         var id = idName.split("|");
         var updateObj = _data[id[1]];
-         retriveDataSearching("tCISSubIMUSearch_update", "tCISSubIMUSearchLoading_update", "search/ResultIMUSearch.jsp", "search/ResultIMUSearchCode.jsp", "uIMU_cd", updateObj.Problem6);
+         retriveDataSearchingSubjective("tCISSubIMUSearch_update", "tCISSubIMUSearchLoading_update", "search/ResultIMUSearch.jsp", "search/ResultIMUSearchCode.jsp", "uIMU_cd", updateObj.Problem6);
         $('#PProblem6').val(updateObj.Problem6);
         $('#ddate2').val(updateObj.date2);
         $('#Pcomment6').val(updateObj.comment6);
@@ -623,7 +623,7 @@ $(document).ready(function () {
         var id = idName.split("|");
         var updateObj = _data[id[1]];
         console.log(_data);
-        retriveDataSearching("tCISSubDABSearch_update", "tCISSubDABSearchLoading_update", "search/ResultDABSearch.jsp", "search/ResultDABSearchCode.jsp", "uDAB_cd", updateObj.Problem32);
+        retriveDataSearchingSubjective("tCISSubDABSearch_update", "tCISSubDABSearchLoading_update", "search/ResultDABSearch.jsp", "search/ResultDABSearchCode.jsp", "uDAB_cd", updateObj.Problem32);
         //$('#PProblem32').val(updateObj.Problem32);
         $('#uDAS_cd').val(updateObj.codeDAB);
         $('#ddate3').val(updateObj.date3);
@@ -650,7 +650,7 @@ $(document).ready(function () {
       
     });
     
-    function retriveDataSearching(fieldId, loadingDivId, urlData, urlCode, codeFieldId, retriveValue) {
+    function retriveDataSearchingSubjective(fieldId, loadingDivId, urlData, urlCode, codeFieldId, retriveValue) {
         $('#' + fieldId).val(retriveValue).flexdatalist({
             minLength: 1,
             searchIn: 'name',

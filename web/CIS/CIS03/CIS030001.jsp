@@ -18,22 +18,17 @@
                     <div class="modal-body">
                         <!-- content goes here -->
                         
-                        <div class="form-group">
+<!--                        <div class="form-group">
                             <div class="form-group">
                                 <input class="form-control input-lg" type="text" name="problem"  id="searchDiag" placeholder="Search..." tabindex="4">
                                 <div id="matchDiag"></div>
                             </div>   
-                        </div>
+                        </div>-->
+
                         <div class="form-group">
                             <div class="form-group">
-                                <input type='text' id="diagnosisSearch" placeholder='diagnosis Local' class='form-control input-lg flexdatalist' data-min-length='1' name='country_name_suggestion'>
-                                <div id="diagnosisSearchLoading"></div>
-                            </div>   
-                        </div>
-                        <div class="form-group">
-                            <div class="form-group">
-                                <input type='text' id="diagnosisSearchAjax" placeholder='diagnosis Ajax' class='form-control input-lg flexdatalist' data-min-length='1' name='country_name_suggestion'>
-                                <div id="diagnosisSearchAjaxLoading"></div>
+                                <input type='text' id="tCISSubDGSSearch" placeholder='Type to Search Diagnosis...' class='form-control input-lg flexdatalist' data-min-length='1' name='country_name_suggestion'>
+                                <div id="tCISSubDGSSearchLoading"></div>
                             </div>   
                         </div>
                         
@@ -130,13 +125,15 @@
                         
                         <div class="form-group">
                             <div class="form-group">
-                                <input class="form-control input-lg" type="text" name="problem"  id="update_searchDiag" placeholder="Search..." tabindex="4">
-                                <div id="update_matchDiag"></div>
+                                <input type='text' id="tCISSubDGSSearch_update" placeholder='Type to Search Diagnosis...' class='form-control input-lg'>
+                                <div id="tCISSubDGSSearchLoading_update"></div>
+<!--                                <input class="form-control input-lg" type="text" name="problem"  id="update_searchDiag" placeholder="Search..." tabindex="4">
+                                <div id="update_matchDiag"></div>-->
                             </div>   
                         </div>
                           <div class="form-group">
-                              <input type="hidden" name="DGS" id="update_dgsCode" class="form-control input-lg"  tabindex="4">
-                            <input type="text" name="DGS" id="jsonIdDGS" class="form-control input-lg" tabindex="4">
+                              <input type="text" name="DGS" id="update_dgsCode" class="form-control input-lg"  tabindex="4">
+                            <input type="hidden" name="DGS" id="jsonIdDGS" class="form-control input-lg" tabindex="4">
                         </div>
                         <div class="form-group">
                             <select name="mild" id="update_TypeDGS" class="form-control input-lg">
@@ -229,10 +226,10 @@
   
               $(document).ready(function(){
                   
-                searching("diagnosisSearchAjax","diagnosisSearchAjaxLoading","search/resultDGS_5.jsp");
-
+                searching("tCISSubDGSSearch","tCISSubDGSSearchLoading","search/ResultDGSSearch.jsp","search/ResultDGSSearchCode.jsp","dgsCode");
+                
                 //function searching Diagnosis Ajax
-                function searching(fieldId,loadingDivId,urlData){
+                function searching(fieldId,loadingDivId,urlData,urlCode,codeFieldId){
                     $('#'+fieldId).flexdatalist({
                         minLength: 3,
                         searchIn: 'name',
@@ -258,6 +255,22 @@
                     $("#"+fieldId).on('after:flexdatalist.data',function(response){
                         console.log("End - "+getDate());
                         $('#'+loadingDivId).html('');
+                    });
+                    $("#" + fieldId).on('select:flexdatalist', function (response) {
+                        var searchName = $("#" + fieldId).val();
+                        console.log(searchName);
+                        $.ajax({
+                            type:"post",
+                            url:urlCode,
+                            timeout:3000,
+                            data:{id:searchName},
+                            success:function(response){
+                            console.log(response);
+                               $("#" + codeFieldId).val(response.trim());
+                                
+                            }
+                        });
+                        
                     });
                 }
               });
