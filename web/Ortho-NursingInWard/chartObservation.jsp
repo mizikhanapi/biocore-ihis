@@ -36,6 +36,7 @@
         </div>
     </div>
 </div>
+<div id="divBIWOB">
 <table class="table table-bordered table-striped" id="tblNIW_observation_chart" width="100%">
     <thead>
     <th>Date</th>
@@ -83,6 +84,7 @@
         </td>
     </tr>-->
 </table>
+</div>
 <script>
     //datatable
     $(document).ready(function () {
@@ -144,20 +146,7 @@
         }
         console.log(datas);
         ajaxObservation(datas);
-//        $.ajax({
-//            type: "post",
-//            url: "../Ortho-NursingInWard/controller/ObservationFunction.jsp",
-//            data: {datas: datas, methodName: "view"},
-//            timeout: 10000,
-//            success: function (result) {
-//                console.log(result);
-//                $('#tblNIW_observation_chart tbody').html(result);
-//                $('#tblNIW_observation_chart').dataTable();
-//            },
-//            error: function (err) {
-//                bootbox.alert("something wrong,error: " + err);
-//            }
-//        });
+
     });
 
     $("#btnCustomDateOB").on('click', function () {
@@ -175,20 +164,7 @@
         var data2 = pmiOB + "|" + SnewDate + "^" + EnewDate + "|custom";
         console.log(data2);
         ajaxObservation(data2);
-//        $.ajax({
-//            type: "post",
-//            url: "../Ortho-NursingInWard/controller/ObservationFunction.jsp",
-//            data: {datas: data2, methodName: "view"},
-//            timeout: 10000,
-//            success: function (result) {
-//                console.log(result);
-//                $('#tblNIW_observation_chart tbody').html(result);
-//                $('#tblNIW_observation_chart').dataTable();
-//            },
-//            error: function (err) {
-//                bootbox.alert("something wrong,error: " + err);
-//            }
-//        });
+
     });
     
     function ajaxObservation(datas){
@@ -199,8 +175,8 @@
             timeout: 10000,
             success: function (result) {
                 console.log(result);
-                $('#tblNIW_observation_chart tbody').html(result);
-                $('#tblNIW_observation_chart').dataTable();
+                $('#divBIWOB').html(result);
+                
             },
             error: function (err) {
                 bootbox.alert("something wrong,error: " + err);

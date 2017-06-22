@@ -79,7 +79,7 @@ public class ObservationUtils {
             String dateSplit[] = dateTime.split("\\^",-1);
             startDate = dateSplit[0];
             endDate = dateSplit[1];
-            sql = "SELECT pmi_no,hfc_cd,episode_date,encounter_date,ward,date_entry,datetime,standing_pulse,systolic_supine,diastolic_supine,respiratory_rate,spo2,pain_scale,comment,status FROM lhr_ort_niw_observation_chart where pmi_no ='" + pmino + "' and DATE(datetime) between '"+startDate+"' and '"+endDate+"';";
+            sql = "SELECT pmi_no,hfc_cd,episode_date,encounter_date,ward,date_entry,TIME_FORMAT(TIME(datetime),'%r'),DATE_FORMAT(DATE(datetime),'%d/%m/%Y'),standing_pulse,systolic_supine,diastolic_supine,respiratory_rate,spo2,pain_scale,comment,status FROM lhr_ort_niw_observation_chart where pmi_no ='" + pmino + "' and DATE(datetime) between '"+startDate+"' and '"+endDate+"';";
 
         }
 
