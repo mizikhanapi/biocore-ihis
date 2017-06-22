@@ -53,7 +53,7 @@ $(document).ready(function () {
     loadSetting(doctor_id);
 
     $('.soap-select').click(function () {
-        alert("You need to select the patient");
+        bootbox.alert("You need to select the patient");
         return false;
     });
 

@@ -37,53 +37,53 @@
     </div>
 </div>
 <div id="divBIWOB">
-<table class="table table-bordered table-striped" id="tblNIW_observation_chart" width="100%">
-    <thead>
-    <th>Date</th>
-    <th>Time</th>
-    <th>B/P</th>
-    <th>PR</th>
-    <th>RR</th>
-    <th>SpO2</th>
-    <th>Pain Scale</th>
-    <th style="width: 30%;">Notes</th>
-    <th>Approval</th>
-    <th>Action</th>
-</thead>
-<tbody>
-    <tr>
-        <td colspan="10" align="center"> Please choose view history assessment to view the data </td>
-        <td hidden=""></td>
-        <td hidden=""></td>
-        <td hidden=""></td>
-        <td hidden=""></td>
-        <td hidden=""></td>
-        <td hidden=""></td>
-        <td hidden=""></td>
-        <td hidden=""></td>
-        <td hidden=""></td>
-    </tr>
-</tbody>
-<!--    <tr>
-        <td>07/06/2017</td>
-        <td>5:36 PM</td>
-        <td>144</td>
-        <td>43</td>
-        <td>43</td>
-        <td>35</td>
-        <td>8</td>
-        <td>Dia ni asik sakit je. mungkin perlu jagaan emosi.</td>
-        <td>
-            <button class="btn btn-success btn-block disabled"><i class="fa fa-check-square-o"></i> Approved</button>
-        </td>
-        <td>
-            <a id="" data-toggle="modal" data-target="#edit"><i class="fa fa-pencil-square-o fa-lg" aria-hidden="true" style="display: inline-block;color: #337ab7;"></i></a>
-            &nbsp;
-            <a id="MW_delete" class="testing"><i class="fa fa-times fa-lg" aria-hidden="true" style="display: inline-block;color: #d9534f;"></i></a>
-
-        </td>
-    </tr>-->
-</table>
+    <table class="table table-bordered table-striped" id="tblNIW_observation_chart" width="100%">
+        <thead>
+        <th>Date</th>
+        <th>Time</th>
+        <th>B/P</th>
+        <th>PR</th>
+        <th>RR</th>
+        <th>SpO2</th>
+        <th>Pain Scale</th>
+        <th style="width: 30%;">Notes</th>
+        <th>Approval</th>
+        <th>Action</th>
+        </thead>
+        <tbody>
+            <tr>
+                <td colspan="10" align="center"> Please choose view history assessment to view the data </td>
+                <td hidden=""></td>
+                <td hidden=""></td>
+                <td hidden=""></td>
+                <td hidden=""></td>
+                <td hidden=""></td>
+                <td hidden=""></td>
+                <td hidden=""></td>
+                <td hidden=""></td>
+                <td hidden=""></td>
+            </tr>
+        </tbody>
+        <!--    <tr>
+                <td>07/06/2017</td>
+                <td>5:36 PM</td>
+                <td>144</td>
+                <td>43</td>
+                <td>43</td>
+                <td>35</td>
+                <td>8</td>
+                <td>Dia ni asik sakit je. mungkin perlu jagaan emosi.</td>
+                <td>
+                    <button class="btn btn-success btn-block disabled"><i class="fa fa-check-square-o"></i> Approved</button>
+                </td>
+                <td>
+                    <a id="" data-toggle="modal" data-target="#edit"><i class="fa fa-pencil-square-o fa-lg" aria-hidden="true" style="display: inline-block;color: #337ab7;"></i></a>
+                    &nbsp;
+                    <a id="MW_delete" class="testing"><i class="fa fa-times fa-lg" aria-hidden="true" style="display: inline-block;color: #d9534f;"></i></a>
+        
+                </td>
+            </tr>-->
+    </table>
 </div>
 <script>
     //datatable
@@ -97,9 +97,6 @@
         $('#endDateOB').datepicker({dateFormat: "dd/mm/yy"});
 
     });
-
-
-
 
     //function view by date on change
     $('#selectOBdate').on('change', function () {
@@ -142,9 +139,9 @@
 
         } else if (viewBy === "Viewcustomday") {
             $('#customDateOB').show();
-            datas="null";
+            datas = "null";
         }
-        console.log(datas);
+        //console.log(datas);
         ajaxObservation(datas);
 
     });
@@ -152,9 +149,9 @@
     $("#btnCustomDateOB").on('click', function () {
         var strtDate = $('#startDateOB').val();
         var endDate = $('#endDateOB').val();
-        
+
         var pmiOB = "<%=session.getAttribute("patientPMINo")%>";
-        
+
         var sDate = strtDate.split('/');
         var SnewDate = sDate[2] + "-" + sDate[1] + "-" + sDate[0];
 
@@ -162,25 +159,71 @@
         var EnewDate = eDate[2] + "-" + eDate[1] + "-" + eDate[0];
 
         var data2 = pmiOB + "|" + SnewDate + "^" + EnewDate + "|custom";
-        console.log(data2);
+        //console.log(data2);
         ajaxObservation(data2);
 
     });
-    
-    function ajaxObservation(datas){
+
+    function ajaxObservation(datas) {
         $.ajax({
             type: "post",
             url: "../Ortho-NursingInWard/controller/ObservationFunction.jsp",
             data: {datas: datas, methodName: "view"},
             timeout: 10000,
             success: function (result) {
-                console.log(result);
+                //console.log(result);
                 $('#divBIWOB').html(result);
-                
+
             },
             error: function (err) {
                 bootbox.alert("something wrong,error: " + err);
             }
         });
-    };
+    }
+    ;
+
+    $('#divBIWOB').on('click', '#tblNIW_observation_chart #pendingNIWOB', function (e) {
+        e.preventDefault();
+        var row = $(this).closest("tr");
+        var dataX = row.find('#priNIWOB').html();
+        var sel = $('#selectOBdate').val();
+        //console.log(dataX);
+
+
+        bootbox.confirm({
+            message: "Are you sure want to approve?",
+            buttons: {
+                confirm: {
+                    label: 'Yes',
+                    className: 'btn-success'
+                },
+                cancel: {
+                    label: 'No',
+                    className: 'btn-danger'
+                }
+            },
+            callback: function (result) {
+                if (result === true) {
+                    $.ajax({
+                        type: "post",
+                        url: "../Ortho-NursingInWard/controller/ObservationFunction.jsp",
+                        timeout: 10000,
+                        data: {datas: dataX, methodName: 'approving'},
+                        success: function (result) {
+                            console.log(result);
+                            if (result.trim() === 'true') {
+                                $('#selectOBdate').val(sel).change();
+                            } else {
+
+                            }
+                        },
+                        error: function (err) {
+
+                        }
+                    });
+                }
+            }
+        });
+
+    });
 </script>
