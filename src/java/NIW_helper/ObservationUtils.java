@@ -20,7 +20,7 @@ public class ObservationUtils {
 
     /*
     * add new data to the DB
-    */
+     */
     public Boolean addObservation(String datas) {
         Boolean sql = false;
         String splittedData[] = datas.split("\\|", -1);
@@ -46,24 +46,43 @@ public class ObservationUtils {
 
         return sql;
     }
-    
+
     /*
     * get data from DB
-    */
-    public ArrayList<ArrayList<String>> getObservationToday(String datas) {
+     */
+    public ArrayList<ArrayList<String>> getObservation(String datas) {
         ArrayList<ArrayList<String>> data = new ArrayList<>();
         String splittedData[] = datas.split("\\|", -1);
-        String pmino, dateTime, viewBy;
+        String pmino, dateTime, viewBy,startDate,endDate;
         String sql = "";
         pmino = splittedData[0];
         dateTime = splittedData[1];
         viewBy = splittedData[2];
 
         if (viewBy.equalsIgnoreCase("today")) {
-            sql = "SELECT pmi_no,hfc_cd,episode_date,encounter_date,ward_date_entry,datetime,standing_pulse,systolic_supine,diastolic_supine,respiratory_rate,spo2,pain_scale,comment FROM lhr_ort_niw_observation_chart where pmi_no ='" + pmino + "' and datetime ='" + dateTime + "';";
+            //              0       1       2           3              4    5           6                                   7                                   8               9              10              11               12      13    14        15
+            sql = "SELECT pmi_no,hfc_cd,episode_date,encounter_date,ward,date_entry,TIME_FORMAT(TIME(datetime),'%r'),DATE_FORMAT(DATE(datetime),'%d/%m/%Y'),standing_pulse,systolic_supine,diastolic_supine,respiratory_rate,spo2,pain_scale,comment,status FROM lhr_ort_niw_observation_chart where pmi_no ='" + pmino + "' and DATE(datetime) ='" + dateTime + "';";
+            
+        } else if (viewBy.equalsIgnoreCase("yesterday")) {
+            sql = "SELECT pmi_no,hfc_cd,episode_date,encounter_date,ward,date_entry,TIME_FORMAT(TIME(datetime),'%r'),DATE_FORMAT(DATE(datetime),'%d/%m/%Y'),standing_pulse,systolic_supine,diastolic_supine,respiratory_rate,spo2,pain_scale,comment,status FROM lhr_ort_niw_observation_chart where pmi_no ='" + pmino + "' and  DATE(datetime) = SUBDATE('" + dateTime + "',1);";
+
+        } else if (viewBy.equalsIgnoreCase("7day")) {
+            sql = "SELECT pmi_no,hfc_cd,episode_date,encounter_date,ward,date_entry,TIME_FORMAT(TIME(datetime),'%r'),DATE_FORMAT(DATE(datetime),'%d/%m/%Y'),standing_pulse,systolic_supine,diastolic_supine,respiratory_rate,spo2,pain_scale,comment,status FROM lhr_ort_niw_observation_chart where pmi_no ='" + pmino + "' and DATE(datetime) between SUBDATE('" + dateTime + "',7) and '" + dateTime + "' ;";
+
+        } else if (viewBy.equalsIgnoreCase("30day")) {
+            sql = "SELECT pmi_no,hfc_cd,episode_date,encounter_date,ward,date_entry,TIME_FORMAT(TIME(datetime),'%r'),DATE_FORMAT(DATE(datetime),'%d/%m/%Y'),standing_pulse,systolic_supine,diastolic_supine,respiratory_rate,spo2,pain_scale,comment,status FROM lhr_ort_niw_observation_chart where pmi_no ='" + pmino + "' and DATE(datetime) between SUBDATE('" + dateTime + "',30) and '" + dateTime + "';";
+
+        } else if (viewBy.equalsIgnoreCase("60day")) {
+            sql = "SELECT pmi_no,hfc_cd,episode_date,encounter_date,ward,date_entry,TIME_FORMAT(TIME(datetime),'%r'),DATE_FORMAT(DATE(datetime),'%d/%m/%Y'),standing_pulse,systolic_supine,diastolic_supine,respiratory_rate,spo2,pain_scale,comment,status FROM lhr_ort_niw_observation_chart where pmi_no ='" + pmino + "' and DATE(datetime) between SUBDATE('" + dateTime + "',60) and '" + dateTime + "' ;";
+
+        } else if (viewBy.equalsIgnoreCase("custom")) {
+            String dateSplit[] = dateTime.split("\\^",-1);
+            startDate = dateSplit[0];
+            endDate = dateSplit[1];
+            sql = "SELECT pmi_no,hfc_cd,episode_date,encounter_date,ward,date_entry,datetime,standing_pulse,systolic_supine,diastolic_supine,respiratory_rate,spo2,pain_scale,comment,status FROM lhr_ort_niw_observation_chart where pmi_no ='" + pmino + "' and DATE(datetime) between '"+startDate+"' and '"+endDate+"';";
+
         }
-        
-        
+
         data = conn.getData(sql);
         return data;
     }

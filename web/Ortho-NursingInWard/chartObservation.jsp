@@ -26,31 +26,31 @@
         <div class="col-sm-12 form-inline" style="padding-right: 0px;">
             <div class="form-group">
                 <label for="exampleInputName2">Start</label>
-                <input type="text" class="form-control" id="exampleInputName2" placeholder="14/06/2017" style="margin-bottom: 0px !important;">
+                <input type="text" class="form-control"   style="margin-bottom: 0px !important;" id="startDateOB">
             </div>
             <div class="form-group">
                 <label for="exampleInputEmail2">to</label>
-                <input type="email" class="form-control" id="exampleInputEmail2" placeholder="15/06/2017" style="margin-bottom: 0px !important;">
+                <input type="email" class="form-control"   style="margin-bottom: 0px !important;" id="endDateOB">
             </div>
-            <button type="submit" class="btn btn-default"><i class="fa fa-search fa-lg"></i></button>
+            <button type="submit" class="btn btn-default" id="btnCustomDateOB"><i class="fa fa-search fa-lg"></i></button>
         </div>
     </div>
 </div>
-<table class="table table-bordered" id="tblNIW_observation_chart" width="100%">
+<table class="table table-bordered table-striped" id="tblNIW_observation_chart" width="100%">
     <thead>
-        <th>Date</th>
-        <th>Time</th>
-        <th>B/P</th>
-        <th>PR</th>
-        <th>RR</th>
-        <th>SpO2</th>
-        <th>Pain Scale</th>
-        <th style="width: 30%;">Notes</th>
-        <th>Approval</th>
-        <th>Action</th>
-    </thead>
-    <tbody>
-        <tr>
+    <th>Date</th>
+    <th>Time</th>
+    <th>B/P</th>
+    <th>PR</th>
+    <th>RR</th>
+    <th>SpO2</th>
+    <th>Pain Scale</th>
+    <th style="width: 30%;">Notes</th>
+    <th>Approval</th>
+    <th>Action</th>
+</thead>
+<tbody>
+    <tr>
         <td colspan="10" align="center"> Please choose view history assessment to view the data </td>
         <td hidden=""></td>
         <td hidden=""></td>
@@ -61,8 +61,8 @@
         <td hidden=""></td>
         <td hidden=""></td>
         <td hidden=""></td>
-        </tr>
-    </tbody>
+    </tr>
+</tbody>
 <!--    <tr>
         <td>07/06/2017</td>
         <td>5:36 PM</td>
@@ -85,44 +85,126 @@
 </table>
 <script>
     //datatable
-    $(document).ready(function(){
-       $('#tblNIW_observation_chart').dataTable(); 
+    $(document).ready(function () {
+        //$('#tblNIW_observation_chart').dataTable();
+
+        //set the custom date default hidden
+        $('#customDateOB').hide();
+
+        $('#startDateOB').datepicker({dateFormat: "dd/mm/yy"});
+        $('#endDateOB').datepicker({dateFormat: "dd/mm/yy"});
+
     });
-    
-    //set the custom date default hidden
-    $('#customDateOB').hide();
-    
+
+
+
+
     //function view by date on change
-    $('#selectOBdate').on('change',function(){
+    $('#selectOBdate').on('change', function () {
         var viewBy = $(this).val();
         var datas;
-        if(viewBy==="Viewtoday"){
+        var todayDate;
+
+        var pmiOB = "<%=session.getAttribute("patientPMINo")%>";
+        var enDate = new Date();
+        var dd = ("0" + enDate.getDate()).slice(-2);
+        var mm = ("0" + (enDate.getMonth() + 1)).slice(-2);
+        var yy = enDate.getFullYear();
+        var hh = enDate.getHours();
+        var m = enDate.getMinutes();
+        var ss = enDate.getSeconds();
+        var ms = enDate.getMilliseconds();
+
+        todayDate = yy + "-" + mm + "-" + dd;
+
+
+        if (viewBy === "Viewtoday") {
             $('#customDateOB').hide();
-        }else if(viewBy==="Viewtoday"){
+            datas = pmiOB + "|" + todayDate + "|today";
+
+        } else if (viewBy === "Viewyesterday") {
             $('#customDateOB').hide();
-        }else if(viewBy==="Viewyesterday"){
+            datas = pmiOB + "|" + todayDate + "|yesterday";
+
+        } else if (viewBy === "View7day") {
             $('#customDateOB').hide();
-        }else if(viewBy==="View7day"){
+            datas = pmiOB + "|" + todayDate + "|7day";
+
+        } else if (viewBy === "View30day") {
             $('#customDateOB').hide();
-        }else if(viewBy==="View30day"){
+            datas = pmiOB + "|" + todayDate + "|30day";
+
+        } else if (viewBy === "View60day") {
             $('#customDateOB').hide();
-        }else if(viewBy==="View60day"){
-            $('#customDateOB').hide();
-        }else if(viewBy==="Viewcustomday"){
+            datas = pmiOB + "|" + todayDate + "|60day";
+
+        } else if (viewBy === "Viewcustomday") {
             $('#customDateOB').show();
+            datas="null";
         }
-        
-        $.ajax({
-           type:"post",
-           url:"../Ortho-NursingInWard/controller/ObservationFunction.jsp",
-           data:{datas : datas,methodName : "view"},
-           timeout:10000,
-           success:function(result){
-               
-           },
-           error:function(err){
-               bootbox.alert("something wrong,error: "+err);
-           }
-        });
+        console.log(datas);
+        ajaxObservation(datas);
+//        $.ajax({
+//            type: "post",
+//            url: "../Ortho-NursingInWard/controller/ObservationFunction.jsp",
+//            data: {datas: datas, methodName: "view"},
+//            timeout: 10000,
+//            success: function (result) {
+//                console.log(result);
+//                $('#tblNIW_observation_chart tbody').html(result);
+//                $('#tblNIW_observation_chart').dataTable();
+//            },
+//            error: function (err) {
+//                bootbox.alert("something wrong,error: " + err);
+//            }
+//        });
     });
+
+    $("#btnCustomDateOB").on('click', function () {
+        var strtDate = $('#startDateOB').val();
+        var endDate = $('#endDateOB').val();
+        
+        var pmiOB = "<%=session.getAttribute("patientPMINo")%>";
+        
+        var sDate = strtDate.split('/');
+        var SnewDate = sDate[2] + "-" + sDate[1] + "-" + sDate[0];
+
+        var eDate = endDate.split('/');
+        var EnewDate = eDate[2] + "-" + eDate[1] + "-" + eDate[0];
+
+        var data2 = pmiOB + "|" + SnewDate + "^" + EnewDate + "|custom";
+        console.log(data2);
+        ajaxObservation(data2);
+//        $.ajax({
+//            type: "post",
+//            url: "../Ortho-NursingInWard/controller/ObservationFunction.jsp",
+//            data: {datas: data2, methodName: "view"},
+//            timeout: 10000,
+//            success: function (result) {
+//                console.log(result);
+//                $('#tblNIW_observation_chart tbody').html(result);
+//                $('#tblNIW_observation_chart').dataTable();
+//            },
+//            error: function (err) {
+//                bootbox.alert("something wrong,error: " + err);
+//            }
+//        });
+    });
+    
+    function ajaxObservation(datas){
+        $.ajax({
+            type: "post",
+            url: "../Ortho-NursingInWard/controller/ObservationFunction.jsp",
+            data: {datas: datas, methodName: "view"},
+            timeout: 10000,
+            success: function (result) {
+                console.log(result);
+                $('#tblNIW_observation_chart tbody').html(result);
+                $('#tblNIW_observation_chart').dataTable();
+            },
+            error: function (err) {
+                bootbox.alert("something wrong,error: " + err);
+            }
+        });
+    };
 </script>

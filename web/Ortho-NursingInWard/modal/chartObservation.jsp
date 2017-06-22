@@ -142,7 +142,7 @@
 </div>
 <script>
     $(document).ready(function () {
-        $('#NIWObsDate').datepicker();
+        $('#NIWObsDate').datepicker({dateFormat:"dd/mm/yy"});
     });
     
     //btn add pain scale
@@ -169,7 +169,8 @@
         var encounterDate = yy+"-"+mm+"-"+dd+" "+hh+":"+m+":"+ss+"."+ms;
         var date = $('#NIWObsDate').val();
         var sDate = date.split('/');
-        var newDate = sDate[2]+"-"+sDate[0]+"-"+sDate[1];
+        var newDate = sDate[2]+"-"+sDate[1]+"-"+sDate[0];
+        console.log(newDate);
         var time = $('#NIWObsTime').val();
         var systolic = $('#NIWOBsystolic').val();
         var dialotic = $('#NIWOBdiatolic').val();
@@ -179,7 +180,7 @@
         var painScore = $('#NIWOBps').val();
         var comment = $('#NIWOBcomment').val();
 
-        var pmi_no = $('#pmiNumber').text();
+        var pmi_no = "<%=session.getAttribute("patientPMINo")%>";
         var hfc_cd1 = hfc_cd;
         var epDate = episodeDate;
         
