@@ -11,18 +11,18 @@
     <div class="col-md-4" style="padding-top: 20px">
         <label class="col-sm-6 control-label text-right" for="formGroupInputLarge">View history assessment:</label>
         <div class="col-sm-6" style="padding-right: 0px;">
-            <select class="form-control">
-                <option>View by</option>
-                <option>Today</option>
-                <option>Yesterday</option>
-                <option>7 Days</option>
-                <option>30 Days</option>
-                <option>60 Days</option>
-                <option>Select date</option>
+            <select class="form-control" id="selectOBdate">
+                <option selected="" disabled="">View by</option>
+                <option value="Viewtoday">Today</option>
+                <option value="Viewyesterday">Yesterday</option>
+                <option value="View7day">7 Days</option>
+                <option value="View30day">30 Days</option>
+                <option value="View60day">60 Days</option>
+                <option value="Viewcustomday">Select date</option>
             </select>
         </div>
     </div>
-    <div class="col-md-6 col-md-offset-6 text-right margin-bottom-30px">
+    <div class="col-md-6 col-md-offset-6 text-right margin-bottom-30px" id="customDateOB">
         <div class="col-sm-12 form-inline" style="padding-right: 0px;">
             <div class="form-group">
                 <label for="exampleInputName2">Start</label>
@@ -36,8 +36,8 @@
         </div>
     </div>
 </div>
-<table class="table table-bordered">
-    <tr>
+<table class="table table-bordered" id="tblNIW_observation_chart" width="100%">
+    <thead>
         <th>Date</th>
         <th>Time</th>
         <th>B/P</th>
@@ -48,8 +48,22 @@
         <th style="width: 30%;">Notes</th>
         <th>Approval</th>
         <th>Action</th>
-    </tr>
-    <tr>
+    </thead>
+    <tbody>
+        <tr>
+        <td colspan="10" align="center"> Please choose view history assessment to view the data </td>
+        <td hidden=""></td>
+        <td hidden=""></td>
+        <td hidden=""></td>
+        <td hidden=""></td>
+        <td hidden=""></td>
+        <td hidden=""></td>
+        <td hidden=""></td>
+        <td hidden=""></td>
+        <td hidden=""></td>
+        </tr>
+    </tbody>
+<!--    <tr>
         <td>07/06/2017</td>
         <td>5:36 PM</td>
         <td>144</td>
@@ -67,5 +81,48 @@
             <a id="MW_delete" class="testing"><i class="fa fa-times fa-lg" aria-hidden="true" style="display: inline-block;color: #d9534f;"></i></a>
 
         </td>
-    </tr>
+    </tr>-->
 </table>
+<script>
+    //datatable
+    $(document).ready(function(){
+       $('#tblNIW_observation_chart').dataTable(); 
+    });
+    
+    //set the custom date default hidden
+    $('#customDateOB').hide();
+    
+    //function view by date on change
+    $('#selectOBdate').on('change',function(){
+        var viewBy = $(this).val();
+        var datas;
+        if(viewBy==="Viewtoday"){
+            $('#customDateOB').hide();
+        }else if(viewBy==="Viewtoday"){
+            $('#customDateOB').hide();
+        }else if(viewBy==="Viewyesterday"){
+            $('#customDateOB').hide();
+        }else if(viewBy==="View7day"){
+            $('#customDateOB').hide();
+        }else if(viewBy==="View30day"){
+            $('#customDateOB').hide();
+        }else if(viewBy==="View60day"){
+            $('#customDateOB').hide();
+        }else if(viewBy==="Viewcustomday"){
+            $('#customDateOB').show();
+        }
+        
+        $.ajax({
+           type:"post",
+           url:"../Ortho-NursingInWard/controller/ObservationFunction.jsp",
+           data:{datas : datas,methodName : "view"},
+           timeout:10000,
+           success:function(result){
+               
+           },
+           error:function(err){
+               bootbox.alert("something wrong,error: "+err);
+           }
+        });
+    });
+</script>

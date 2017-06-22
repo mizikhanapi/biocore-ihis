@@ -144,13 +144,16 @@
     $(document).ready(function () {
         $('#NIWObsDate').datepicker();
     });
-
+    
+    //btn add pain scale
     $('#cobserved1 #btnNIWaddps').on('click', function (e) {
         e.preventDefault();
         $('#actionPS #btnNIWps').show();
         $('#actionPS #acceptPSBtn').hide();
     });
-
+    
+    
+    //btn add observation chart
     $('#cobserved1 #btnNIWOBADD').on('click', function (e) {
         e.preventDefault();
         
