@@ -19,7 +19,7 @@
                             <div class="form-group">
                                 <label class="col-md-12 control-label" for="textinput">Date</label>
                                 <div class="col-md-12">
-                                    <input type="date" class="form-control input-md" >
+                                    <input type="text" class="form-control input-md" placeholder="Pick a date(dd/mm/yyyy)" id="morseDate">
                                 </div>
                             </div>
                         </div>
@@ -57,10 +57,13 @@
                             <table class="table table-bordered">
                                 <tbody>
                                     <tr>
-                                        <td>History of falling</td>
+                                        <td>
+                                            <b>History of falling</b>
+                                            <p>Tiada sejarah jatuh</p>
+                                        </td>
                                         <td>
                                             <div class="radio radio-primary">
-                                                <input type="radio" name="radio2" id="falling" value="option1">
+                                                <input type="radio" name="rad_fall" id="falling" value="0">
                                                 <label for="falling">
                                                     0
                                                 </label>
@@ -71,7 +74,7 @@
                                         <td>Baru jatuh / jatuh dalam masa 3 bulan</td>
                                         <td>
                                             <div class="radio radio-primary">
-                                                <input type="radio" name="radio2" id="jatuh" value="option1">
+                                                <input type="radio" name="rad_fall" id="jatuh" value="25">
                                                 <label for="jatuh">
                                                     25
                                                 </label>
@@ -80,145 +83,156 @@
                                     </tr>
                                 </tbody>
                                 <tbody>
-                                <tr>
-                                    <td>Primary Diagnosis</td>
-                                    <td>
-                                        <div class="radio radio-primary">
-                                            <input type="radio" name="radio3" id="Primary" value="option1">
-                                            <label for="Primary">
-                                                0
-                                            </label>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Secondary Diagnosis</td>
-                                    <td>
-                                        <div class="radio radio-primary">
-                                            <input type="radio" name="radio3" id="Secondary" value="option1">
-                                            <label for="Secondary">
-                                                15
-                                            </label>
-                                        </div>
-                                    </td>
-                                </tr>
+                                    <tr>
+                                        <td>
+                                            <b>Diagnosis</b>
+                                            <p>Primary Diagnosis</p>
+                                        </td>
+                                        <td>
+                                            <div class="radio radio-primary">
+                                                <input type="radio" name="rad_diagnos" id="Primary" value="0">
+                                                <label for="Primary">
+                                                    0
+                                                </label>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Secondary Diagnosis</td>
+                                        <td>
+                                            <div class="radio radio-primary">
+                                                <input type="radio" name="rad_diagnos" id="Secondary" value="15">
+                                                <label for="Secondary">
+                                                    15
+                                                </label>
+                                            </div>
+                                        </td>
+                                    </tr>
                                 </tbody>
                                 <tbody>
-                                <tr>
-                                    <td>Bantuan Pergerakan</td>
-                                    <td>
-                                        <div class="radio radio-primary">
-                                            <input type="radio" name="radio4" id="Pergerakan" value="option1">
-                                            <label for="Pergerakan">
-                                                0
-                                            </label>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Walking frame / tongkat</td>
-                                    <td>
-                                        <div class="radio radio-primary">
-                                            <input type="radio" name="radio4" id="tongkat" value="option1">
-                                            <label for="tongkat">
-                                                15
-                                            </label>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Memegang katil / kerusi semasa berjalan.<br>Pesakit di atas troli / kerusi roda</td>
-                                    <td>
-                                        <div class="radio radio-primary">
-                                            <input type="radio" name="radio4" id="troli" value="option1">
-                                            <label for="troli">
-                                                30
-                                            </label>
-                                        </div>
-                                    </td>
-                                </tr>
+                                    <tr>
+                                        <td>
+                                            <b>Bantuan Pergerakan</b>
+                                            <p>Rehat di katil atau dibantu</p>
+                                        </td>
+                                        <td>
+                                            <div class="radio radio-primary">
+                                                <input type="radio" name="rad_pergerakan" id="Pergerakan" value="0">
+                                                <label for="Pergerakan">
+                                                    0
+                                                </label>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Walking frame / tongkat</td>
+                                        <td>
+                                            <div class="radio radio-primary">
+                                                <input type="radio" name="rad_pergerakan" id="tongkat" value="15">
+                                                <label for="tongkat">
+                                                    15
+                                                </label>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Memegang katil / kerusi semasa berjalan.<br>Pesakit di atas troli / kerusi roda</td>
+                                        <td>
+                                            <div class="radio radio-primary">
+                                                <input type="radio" name="rad_pergerakan" id="troli" value="30">
+                                                <label for="troli">
+                                                    30
+                                                </label>
+                                            </div>
+                                        </td>
+                                    </tr>
                                 </tbody>
                                 <tbody>
-                                <tr>
-                                    <td rowspan="2">IV Venofix / Syringe Pump</td>
-                                    <td>
-                                        <div class="radio radio-primary">
-                                            <input type="radio" name="radio5" id="Venofix" value="option1">
-                                            <label for="Venofix">
-                                                0
-                                            </label>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <div class="radio radio-primary">
-                                            <input type="radio" name="radio5" id="Venofix2" value="option1">
-                                            <label for="Venofix2">
-                                                20
-                                            </label>
-                                        </div>
-                                    </td>
-                                </tr>
+                                    <tr>
+                                        <td rowspan="2"><b>IV Venofix / Syringe Pump</b></td>
+                                        <td>
+                                            <div class="radio radio-primary">
+                                                <input type="radio" name="rad_venofix" id="Venofix" value="0">
+                                                <label for="Venofix">
+                                                    0
+                                                </label>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div class="radio radio-primary">
+                                                <input type="radio" name="rad_venofix" id="Venofix2" value="20">
+                                                <label for="Venofix2">
+                                                    20
+                                                </label>
+                                            </div>
+                                        </td>
+                                    </tr>
                                 </tbody>
                                 <tbody>
-                                <tr>
-                                    <td>Rangka Badan / Pergerakan<br>Normal / rehat di katil / tidak boleh bergerak</td>
-                                    <td>
-                                        <div class="radio radio-primary">
-                                            <input type="radio" name="radio6" id="Badan" value="option1">
-                                            <label for="Badan">
-                                                0
-                                            </label>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Lemah</td>
-                                    <td>
-                                        <div class="radio radio-primary">
-                                            <input type="radio" name="radio6" id="Lemah" value="option1">
-                                            <label for="Lemah">
-                                                10
-                                            </label>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Kurang upaya / OKU / Post-Amputation</td>
-                                    <td>
-                                        <div class="radio radio-primary">
-                                            <input type="radio" name="radio6" id="Amputation" value="option1">
-                                            <label for="Amputation">
-                                                20
-                                            </label>
-                                        </div>
-                                    </td>
-                                </tr>
+                                    <tr>
+                                        <td><b>Rangka Badan / Pergerakan</b>
+                                            <br>Normal / rehat di katil / tidak boleh bergerak
+                                        </td>
+                                        <td>
+                                            <div class="radio radio-primary">
+                                                <input type="radio" name="rad_badan" id="Badan" value="0">
+                                                <label for="Badan">
+                                                    0
+                                                </label>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Lemah</td>
+                                        <td>
+                                            <div class="radio radio-primary">
+                                                <input type="radio" name="rad_badan" id="Lemah" value="10">
+                                                <label for="Lemah">
+                                                    10
+                                                </label>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Kurang upaya / OKU / Post-Amputation</td>
+                                        <td>
+                                            <div class="radio radio-primary">
+                                                <input type="radio" name="rad_badan" id="Amputation" value="20">
+                                                <label for="Amputation">
+                                                    20
+                                                </label>
+                                            </div>
+                                        </td>
+                                    </tr>
                                 </tbody>
                                 <tbody>
-                                <tr>
-                                    <td>Status Mental </td>
-                                    <td>
-                                        <div class="radio radio-primary">
-                                            <input type="radio" name="radio7" id="Mental" value="option1">
-                                            <label for="Mental">
-                                                0
-                                            </label>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Ingatan terhad / pelupa / Delirium / Psychiatic Patient</td>
-                                    <td>
-                                        <div class="radio radio-primary">
-                                            <input type="radio" name="radio7" id="Delirium" value="option1">
-                                            <label for="Delirium">
-                                                15
-                                            </label>
-                                        </div>
-                                    </td>
-                                </tr>
+                                    <tr>
+                                        <td>
+                                            <b>Status Mental</b>
+                                            <p>Sedar dan waras</p>
+                                        </td>
+                                        <td>
+                                            <div class="radio radio-primary">
+                                                <input type="radio" name="rad_mental" id="Mental" value="0">
+                                                <label for="Mental">
+                                                    0
+                                                </label>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Ingatan terhad / pelupa / Delirium / Psychiatic Patient</td>
+                                        <td>
+                                            <div class="radio radio-primary">
+                                                <input type="radio" name="rad_mental" id="Delirium" value="15">
+                                                <label for="Delirium">
+                                                    15
+                                                </label>
+                                            </div>
+                                        </td>
+                                    </tr>
                                 </tbody>
                             </table>
                         </div>
@@ -229,11 +243,11 @@
             <div class="modal-footer">
                 <div class="btn-group btn-group-justified" role="group" aria-label="group button">
                     <div class="btn-group" role="group">
-                        <button type="button" class="btn btn-success btn-block btn-lg" id="acceptBloodPBtn" role="button">Add Items</button>
+                        <button type="button" class="btn btn-success btn-block btn-lg" id="morse_btnAdd" role="button">Add Assessment</button>
                     </div>
-                    <div class="btn-group btn-delete hidden" role="group">
-                        <button type="button" id="delImage" class="btn btn-default btn-block btn-lg" data-dismiss="modal" role="button">Clear</button>
-                    </div>
+                    <!--                    <div class="btn-group btn-delete hidden" role="group">
+                                            <button type="button" id="delImage" class="btn btn-default btn-block btn-lg" data-dismiss="modal" role="button">Clear</button>
+                                        </div>-->
                     <div class="btn-group" role="group">
                         <button type="button" id="saveImage" class="btn btn-default btn-block btn-lg" data-dismiss="modal" role="button">Close</button>
                     </div>
@@ -242,3 +256,14 @@
         </div>
     </div>
 </div>
+
+<script type="text/javascript">
+    $('#morseDate').datepicker({
+        changeMonth: true,
+        changeYear: true,
+        dateFormat: 'dd/mm/yy',
+        yearRange: '1990:+5'
+    });
+    
+
+</script>

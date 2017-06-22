@@ -31,7 +31,7 @@
                 <!-- content -->
                 <div class="tab-pane active fade in" id="Ortho-Nursing_1">
                     <ul class="soap-content nav">
-                        <li><a data-toggle="modal" data-target="#morse1" href="" class="soap-select"><i class="fa fa-comments  fa-li"></i> New Assessment</a></li>
+                        <li><a data-toggle="modal" data-target="#morse1" href="" class="soap-select" id="morse_assessment_modal"><i class="fa fa-comments  fa-li"></i> New Assessment</a></li>
                     </ul>
                     <hr class="pemisah" />
                     <%@include file="morsefallScale.jsp"%>
@@ -95,4 +95,7 @@
 <%@include file="modal/continuation.jsp"%>
 
 <script src="../assets/js/btn.number.js" type="text/javascript"></script>
+<script type="text/javascript" src="../Ortho-Nursing/js/create_destroy_loading.js"></script>
+<script type="text/javascript" src="../Ortho-Nursing/js/morsefallScale.js"></script>
+
 

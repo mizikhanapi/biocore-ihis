@@ -138,7 +138,7 @@ $('#risOrderNewRequestButton').on('click', function () {
     $('#RNO_addForm')[0].reset(); //reset the form
     
     $('#RNO_pro_match').html('');
-    $('#RNO_btnRedo').hide();
+    $('#RNO_div_redo').hide();
     
     $('#RNO_proName').prop('disabled', false);
 
@@ -173,7 +173,7 @@ $('#RNO_proName').on('keyup', function () {
                     $('#RNO_pro_match').html('');
                     
                      $('#RNO_proName').prop('disabled', true);
-                    $('#RNO_btnRedo').show();
+                    $('#RNO_div_redo').show();
                     
 
                 });
@@ -198,7 +198,7 @@ $('#RNO_proName').on('keyup', function () {
 $('#RNO_btnRedo').on('click', function(e){
     e.preventDefault();
     $('#RNO_proName').val('').prop('disabled', false);
-    $('#RNO_btnRedo').hide();
+    $('#RNO_div_redo').hide();
 });
 
 //==============================================================================

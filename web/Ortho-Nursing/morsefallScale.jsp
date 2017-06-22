@@ -36,15 +36,15 @@
         </div>
     </div>
 </div>
-<table class="table table-bordered">
+<table class="table table-bordered" id="morse_assessment_table">
     <tr>
         <th>Date</th>
         <th>Time</th>
         <th>History of falling</th>
-        <th>Secondary Diagnosis</th>
+        <th>Diagnosis</th>
         <th>Ambulatory Aid</th>
         <th>IV Venofix / Syringe Pump</th>
-        <th>Gait / Transferring</th>
+        <th>Body structure/Movement</th>
         <th>Mental Status</th>
         <th>Total Score</th>
         <th>Approval</th>
@@ -85,7 +85,8 @@
     </tr>
 </table>
 
-<script type="text/javascript" src="../Ortho-Nursing/js/morsefallScale.js"></script>
+<!--<script type="text/javascript" src="../Ortho-Nursing/js/create_destroy_loading.js"></script>
+<script type="text/javascript" src="../Ortho-Nursing/js/morsefallScale.js"></script>-->
 
 <script type="text/javascript">
 

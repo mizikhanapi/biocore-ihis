@@ -26,8 +26,8 @@
                         <label class="col-md-4 control-label" for="textinput">Procedure*</label>
                         <div class="col-md-8">
                             <div class="input-group">
-                                <input type="text" placeholder="Search and select procedure " class="form-control" maxlength="330" id="RNO_proName">
-                                <div class="input-group-btn">
+                                <input type="text" placeholder="Search procedure " class="form-control" maxlength="330" id="RNO_proName">
+                                <div class="input-group-btn" id="RNO_div_redo">
                                     <button class="btn btn-default btn-sm" title="Redo" id="RNO_btnRedo"><i class="fa fa-times"></i></button>
                                 </div>
                             </div>
