@@ -102,4 +102,21 @@ public class ObservationUtils {
         data = rmic.setQuerySQL(conn.HOST, conn.PORT, sql);
         return data;
     }
+    
+    /*
+    * delete data
+    */
+    public Boolean delObservation(String datas){
+        Boolean data = false;
+        String splitted[] = datas.split("\\|",-1);
+        String pmi = splitted[0];
+        String hfc = splitted[1];
+        String epDate = splitted[2];
+        String enDate = splitted[3];
+        
+        String sql = "DELETE FROM lhr_ort_niw_observation_chart WHERE pmi_no='"+pmi+"' and hfc_cd='"+hfc+"' and episode_date ='"+epDate+"' and encounter_date='"+enDate+"'";
+        data = rmic.setQuerySQL(conn.HOST, conn.PORT, sql);
+        
+        return data;
+    }
 }

@@ -226,4 +226,46 @@
         });
 
     });
+    
+    $('#divBIWOB').on('click','#tblNIW_observation_chart #delNIWOB',function(e){
+        e.preventDefault();
+        var row = $(this).closest("tr");
+        var dataX = row.find('#priNIWOB').html();
+        var sel = $('#selectOBdate').val();
+        
+        bootbox.confirm({
+            message: "Are you sure want to delete?",
+            buttons: {
+                confirm: {
+                    label: 'Yes',
+                    className: 'btn-danger'
+                },
+                cancel: {
+                    label: 'No',
+                    className: 'btn-success'
+                }
+            },
+            callback: function (result) {
+                if (result === true) {
+                    $.ajax({
+                        type: "post",
+                        url: "../Ortho-NursingInWard/controller/ObservationFunction.jsp",
+                        timeout: 10000,
+                        data: {datas: dataX, methodName: 'delete'},
+                        success: function (result) {
+                            console.log(result);
+                            if (result.trim() === 'true') {
+                                $('#selectOBdate').val(sel).change();
+                            } else {
+
+                            }
+                        },
+                        error: function (err) {
+
+                        }
+                    });
+                }
+            }
+        });
+    });
 </script>

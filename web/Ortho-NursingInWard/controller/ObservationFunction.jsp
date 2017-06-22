@@ -72,5 +72,8 @@
     } else if (methodName.equalsIgnoreCase("approving")) {
         result = obU.approving(data);
         out.print(result);
+    } else if (methodName.equalsIgnoreCase("delete")) {
+        result = obU.delObservation(data);
+        out.print(result);
     }
 %>
