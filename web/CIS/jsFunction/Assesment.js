@@ -9,7 +9,7 @@ $(document).ready(function(){
       $('#Problemlist').on('click',function(){
      //alert("Works");
         $.get("CIS03/CIS030003_1.jsp", function (data) {
-            console.log(data);
+            //console.log(data);
                $('#CIS030003_modal').html(data);
                //$('#outpatient').html(data);
 
