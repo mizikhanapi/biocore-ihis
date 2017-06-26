@@ -5,6 +5,10 @@
 --%>
 
 
+<%@page import="java.time.LocalDate"%>
+<%@page import="java.time.format.DateTimeFormatter"%>
+<%@page import="java.text.DateFormat"%>
+<%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.text.DecimalFormat"%>
 <%@page import="java.text.NumberFormat"%>
 <%@page import="java.util.ArrayList"%>
@@ -60,6 +64,15 @@
 </tbody>
 </table>
 
+
+
+<%
+    String hfc_cd = "SELECT logo FROM adm_health_facility WHERE hfc_cd='" + hfc + "'";
+    ArrayList<ArrayList<String>> mysqlhfc_cd = conn.getData(hfc_cd);
+    LocalDate localDate = LocalDate.now();
+    String newdate = DateTimeFormatter.ofPattern("dd/MM/yyyy").format(localDate);
+%>
+
 <script type="text/javascript" charset="utf-8">
 
     $(document).ready(function () {
@@ -89,10 +102,27 @@
                     }
                 }, {
                     extend: 'print',
-                    text: 'Print MDC List',
-                    title: 'Pharmacy ATC Drug List',
-                    message: 'List of Available ATC Drug In Pharmacy',
+                    text: 'Print ATC List',
+                    title: $('h1').text(),
+                    message: '<br><br>',
                     className: 'btn btn-primary',
+                    customize: function (win) {
+                        $(win.document.body)
+                                .css('font-size', '10pt')
+                                .prepend(
+                                        '<div class="logo-hfc asset-print-img" style="z-index: 0; top: 0px; opacity: 1.0;">\n\
+                                        <img src="<%=mysqlhfc_cd.get(0).get(0)%>" style="text-align: center; height: 100%; " /></div> <div class="mesej">Pharmacy ATC Drug List</div>\n\
+                                        <div class="info_kecik">\n\
+                                        <dd>Date: <strong><%=newdate%></strong></dd>\n\
+                                        <dd>Report No: <strong><%=newdate%></strong></dd>\n\
+                                        </div> '
+                                        );
+                        $(win.document.body).find('table')
+                                .addClass('compact')
+                                .css('font-size', 'inherit');
+//                        $(win.document.body).find('table')
+//                                .append("<tfoot styles='border-top: none;'><tr><td>asdasd</td><td>asdasd</td></tr></tfoot>");
+                    },
                     exportOptions: {
                         columns: ':visible'
                     }
