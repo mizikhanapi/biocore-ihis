@@ -40,7 +40,7 @@
         NumberFormat formatter = new DecimalFormat("#0.00");
 
         String sql = " SELECT DATE_FORMAT(pis_dispense_master.DISPENSED_DATE, '%d %M %Y') AS DATE,COUNT(pis_dispense_detail.DRUG_ITEM_CODE), "
-                + " SUM(pis_dispense_detail.DISPENSED_QTY),SUM(pis_dispense_detail.DISPENSED_QTY * pis_mdc2.D_SELL_PRICE)  "
+                + " SUM(pis_dispense_detail.DISPENSED_QTY),SUM(pis_dispense_detail.DISPENSED_QTY * pis_mdc2.D_SELL_PRICE),DATE(pis_dispense_master.DISPENSED_DATE)  "
                 + " FROM pis_dispense_master JOIN pis_dispense_detail ON (pis_dispense_master.ORDER_NO =  pis_dispense_detail.ORDER_NO) "
                 + " JOIN pis_mdc2 ON (pis_dispense_detail.DRUG_ITEM_CODE =  pis_mdc2.UD_MDC_CODE) "
                 + " WHERE pis_dispense_master.LOCATION_CODE  = '04010101' AND pis_dispense_master.DISCIPLINE_CODE  = '001'  "
@@ -51,7 +51,8 @@
         for (int i = 0; i < size; i++) {
     %>
 
-    <tr style="text-align: center;">
+    <tr style="text-align: center;" id="moveToDailySalesDetailsTButton">
+        <input id="dataDailySalesListhidden" type="hidden" value="<%=String.join("|", dataReportDaily.get(i))%>">
         <td><%= dataReportDaily.get(i).get(0)%></td>
         <td><%= dataReportDaily.get(i).get(1)%></td>
         <td><%= formatterInt.format(Double.parseDouble(dataReportDaily.get(i).get(2)))%></td>
@@ -80,8 +81,7 @@
             initComplete: function (settings, json) {
                 $('.loading').hide();
             },
-            pageLength: 15,
-                    dom: 'Bfrtip',
+            dom: 'Bfrtip',
             buttons: [
                 {
                     extend: 'excelHtml5',
