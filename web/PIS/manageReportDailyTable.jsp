@@ -4,6 +4,8 @@
     Author     : Shammugam
 --%>
 
+<%@page import="java.time.format.DateTimeFormatter"%>
+<%@page import="java.time.LocalDate"%>
 <%@page import="java.text.DecimalFormat"%>
 <%@page import="java.text.NumberFormat"%>
 <%@page import="java.util.ArrayList"%>
@@ -61,6 +63,14 @@
 </tbody>
 </table>
 
+<%
+    String hfc_cd = "SELECT logo FROM adm_health_facility WHERE hfc_cd='" + hfc + "'";
+    ArrayList<ArrayList<String>> mysqlhfc_cd = conn.getData(hfc_cd);
+    LocalDate localDate = LocalDate.now();
+    String newdate = DateTimeFormatter.ofPattern("dd/MM/yyyy").format(localDate);
+%>
+
+
 <script type="text/javascript" charset="utf-8">
     $(document).ready(function () {
 
@@ -71,7 +81,7 @@
                 $('.loading').hide();
             },
             pageLength: 15,
-            dom: 'Bfrtip',
+                    dom: 'Bfrtip',
             buttons: [
                 {
                     extend: 'excelHtml5',
@@ -91,10 +101,25 @@
                     }
                 }, {
                     extend: 'print',
-                    text: 'Print MDC List',
-                    title: 'Pharmacy Daily Dispensed Drug List',
-                    message: 'List of Daily Dispensed Drug In The Pharmacy',
+                    text: 'Print Daily Sales List',
+                    title: $('h1').text(),
+                    message: '<br><br>',
                     className: 'btn btn-primary',
+                    customize: function (win) {
+                        $(win.document.body)
+                                .css('font-size', '10pt')
+                                .prepend(
+                                        '<div class="logo-hfc asset-print-img" style="z-index: 0; top: 0px; opacity: 1.0;">\n\
+                                        <img src="<%=mysqlhfc_cd.get(0).get(0)%>" style="text-align: center; height: 100%; " /></div> <div class="mesej">Pharmacy Daily Dispensed Drug List</div>\n\
+                                        <div class="info_kecik">\n\
+                                        <dd>Date: <strong><%=newdate%></strong></dd>\n\
+                                        <dd>Report No: <strong><%=newdate%></strong></dd>\n\
+                                        </div> '
+                                        );
+                        $(win.document.body).find('table')
+                                .addClass('compact')
+                                .css('font-size', 'inherit');
+                    },
                     exportOptions: {
                         columns: ':visible'
                     }
