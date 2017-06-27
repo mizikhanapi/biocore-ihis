@@ -70,8 +70,7 @@
 
                                                     <div id="contentReportDailyTable">
                                                     </div>
-                                                    <div id="contentReportDailyButton">
-                                                    </div>
+                                                    <%@include file="manageReportDailyModal.jsp" %>
 
                                                 </div>
 
@@ -82,6 +81,7 @@
 
                                                     <div id="contentReportMonthlyTable">
                                                     </div>
+                                                    <%@include file="manageReportMonthlyModal.jsp" %>
 
                                                 </div>
 
@@ -92,6 +92,7 @@
 
                                                     <div id="contentReportYearlyTable">
                                                     </div>
+                                                    <%@include file="manageReportYearlyModal.jsp" %>
 
                                                 </div>
 
