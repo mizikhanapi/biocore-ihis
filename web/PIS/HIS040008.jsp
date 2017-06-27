@@ -5,6 +5,8 @@
 --%>
 
 
+<%@page import="java.time.format.DateTimeFormatter"%>
+<%@page import="java.time.LocalDate"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.sql.*"%>
 <%@page import="dBConn.Conn"%>
@@ -120,6 +122,15 @@
         <%@include file = "libraries/pharmacyFootLibrary.jsp" %>
         <!-- Placed at the end of the document so the pages load faster -->
 
+        <%            Conn conn = new Conn();
+            String hfc = session.getAttribute("HEALTH_FACILITY_CODE").toString();
+            String hfc_cd = "SELECT logo FROM adm_health_facility WHERE hfc_cd='" + hfc + "'";
+            ArrayList<ArrayList<String>> mysqlhfc_cd = conn.getData(hfc_cd);
+            LocalDate localDate = LocalDate.now();
+            String newdate = DateTimeFormatter.ofPattern("dd/MM/yyyy").format(localDate);
+        %>
+
+
         <script>
 
             $('<div class="loading">Loading</div>').appendTo('body');
@@ -129,6 +140,103 @@
                 $("#contentReportMonthlyTable").load("manageReportMonthlyTable.jsp");
                 $("#contentReportYearlyTable").load("manageReportYearlyTable.jsp");
             });
+
+
+            // Move to Order Details Fetch Details Start
+            $('#contentRDaily').off('click', '#reportDailyTable #moveToDailySalesDetailsTButton').on('click', '#reportDailyTable #moveToDailySalesDetailsTButton', function (e) {
+
+                // $('<div class="loading">Loading</div>').appendTo('body');
+
+                e.preventDefault();
+
+                $('#manageReportDailySalesDetailsTable').DataTable().destroy();
+
+
+                var row = $(this).closest("tr");
+                var rowData = row.find("#dataDailySalesListhidden").val();
+                var arrayData = rowData.split("|");
+                console.log(arrayData);
+
+                var rdate = arrayData[0];
+                var date = arrayData[4];
+
+                var data = {
+                    date: date
+                };
+
+                $.ajax({
+                    url: "manageReportDailyDetailTable.jsp",
+                    type: "post",
+                    data: data,
+                    timeout: 3000,
+                    success: function (returnReportDetailsTableHTML) {
+                        console.log(returnReportDetailsTableHTML);
+                        $('#manageReportDailySalesDetailsTable').html(returnReportDetailsTableHTML);
+
+                        $('#manageReportDailySalesDetailsTable').DataTable({
+                            pageLength: 15,
+                            initComplete: function (settings, json) {
+                                $('.loading').hide();
+                            },
+                            dom: 'Bfrtip',
+                            buttons: [
+                                {
+                                    extend: 'excelHtml5',
+                                    text: 'Export To Excel',
+                                    title: 'Pharmacy Daily Dispensed Drug List For '+rdate,
+                                    className: 'btn btn-primary',
+                                    exportOptions: {
+                                        columns: ':visible'
+                                    }
+                                }, {
+                                    extend: 'csvHtml5',
+                                    text: 'Export To Excel CSV',
+                                    title: 'Pharmacy Daily Dispensed Drug List For '+rdate,
+                                    className: 'btn btn-primary',
+                                    exportOptions: {
+                                        columns: ':visible'
+                                    }
+                                }, {
+                                    extend: 'print',
+                                    text: 'Print Daily Sales List',
+                                    title: $('h1').text(),
+                                    message: '<br><br>',
+                                    className: 'btn btn-primary',
+                                    customize: function (win) {
+                                        $(win.document.body)
+                                                .css('font-size', '10pt')
+                                                .prepend(
+                                                        '<div class="logo-hfc asset-print-img" style="z-index: 0; top: 0px; opacity: 1.0;">\n\
+                                        <img src="<%=mysqlhfc_cd.get(0).get(0)%>" style="text-align: center; height: 100%; " /></div> <div class="mesej">Pharmacy Daily Dispensed Drug List For '+rdate+'</div>\n\
+                                        <div class="info_kecik">\n\
+                                        <dd>Date: <strong><%=newdate%></strong></dd>\n\
+                                        <dd>Report No: <strong><%=newdate%></strong></dd>\n\
+                                        </div> '
+                                                        );
+                                        $(win.document.body).find('table')
+                                                .addClass('compact')
+                                                .css('font-size', 'inherit');
+                                    },
+                                    exportOptions: {
+                                        columns: ':visible'
+                                    }
+                                }, {
+                                    extend: 'colvis',
+                                    text: 'Filter Table Column',
+                                    className: 'btn btn-success'
+                                }
+                            ]
+                        });
+
+                        $('#DailySalesDetaileModal').modal('show');
+
+                    }
+                });
+
+
+
+            });
+            // Move to Order Details Fetch Details End
 
         </script>
 
