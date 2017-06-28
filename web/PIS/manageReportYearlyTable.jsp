@@ -53,8 +53,8 @@
         for (int i = 0; i < size; i++) {
     %>
 
-    <tr style="text-align: center;" id="moveToMonthlySalesDetailsTButton">
-<input id="dataMonthlySalesListhidden" type="hidden" value="<%=String.join("|", dataReportYearly.get(i))%>">
+    <tr style="text-align: center;" id="moveToYearlySalesDetailsTButton">
+<input id="dataYearlySalesListhidden" type="hidden" value="<%=String.join("|", dataReportYearly.get(i))%>">
 <td><%= dataReportYearly.get(i).get(0)%></td>
 <td><%= dataReportYearly.get(i).get(1)%></td>
 <td><%= formatterInt.format(Double.parseDouble(dataReportYearly.get(i).get(2)))%></td>
