@@ -60,7 +60,7 @@
 
                                                     <div id="bodySystemMain">
                                                     </div>
-                                                    <div id="bodySystemTable">
+                                                    <div id="bodySystemTable" class="table-guling">
                                                     </div>
                                                     <%@include file="modal/bodySystem_modal.jsp" %>
 
@@ -73,7 +73,7 @@
                                                 <div id="modality">
                                                     <div id="modalityMain">
                                                     </div>
-                                                    <div id="modalityTable">
+                                                    <div id="modalityTable" class="table-guling">
                                                     </div>
                                                     <%@include file="modal/modality_modal.jsp" %>
 
@@ -86,7 +86,7 @@
                                                 <div id="procedure">
                                                     <div id="procedureMain">
                                                     </div>
-                                                    <div id="procedureTable">
+                                                    <div id="procedureTable" class="table-guling">
                                                     </div>
                                                     <%@include file="modal/procedure_modal.jsp" %>
                                                 </div>

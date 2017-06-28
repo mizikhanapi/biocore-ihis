@@ -30,7 +30,18 @@
                         <label class="col-md-4 control-label" for="textinput">Procedure Name*</label>
                         <div class="col-md-8">
                             <input class="form-control" type="text" readonly id="PR_procedureName">
+                            
                            
+                        </div>
+                    </div>
+                    
+                    <!-- Text input-->
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="textinput">Duration (In whole minutes)*</label>
+                        <div class="col-md-8">
+                            <input class="form-control" type="number" min="0" step="1" placeholder="Key in the duration to complete the procedure (minutes)" id="PR_duration">
+                            <p id="PR_duration_err" style="color: red"></p>
+                            
                         </div>
                     </div>
 

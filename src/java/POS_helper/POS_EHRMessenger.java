@@ -21,9 +21,74 @@ public class POS_EHRMessenger extends EHRMessageSender {
         super(userID, hfc, dis, subdis, pmiNo, orderNo, orderDate);
     }
 
-    @Override
-    public void insertIntoEHR_LHR(String senderApp, String bodySystemCode, String modalityCode, String procedureCode) {
-        super.insertIntoEHR_LHR(senderApp, bodySystemCode, modalityCode, procedureCode); //To change body of generated methods, choose Tools | Templates.
+    public void insertIntoEHR_LHR(String senderApp, String procedureCode, String procedureName, String userName, String hfcName, String episodeDate, String durationMin, String comments) {
+        RMIConnector rmic = new RMIConnector();
+
+        DateTimeFormatter timeFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        LocalDateTime now = LocalDateTime.now();
+        String timeStamp = timeFormat.format(now);
+
+        /*================================================================
+        Sender app varies from 04-PIS, 05-LIS, 06-RIS , 18-POS
+        but receiver App is here is remain the same: 14-LHR(data warehouse)  
+        Transaction code is T12202 for RIS response report
+        ==================================================================*/
+        String MSH_PDI_ORC = getMSH(senderApp, "14") + getPDI() + getORC("T12203", senderApp, "14");
+
+        String FullEHRHeader = "";
+
+        String EHRSecondHeader = "";
+
+        /*==============RSS format========================
+        ARP|
+        1<procedure code>^<procedure name>^<coding standard(iHIS)>|
+        2<actual date/time dd/mm/yyyy hh:mm:ss>|  
+        3<Procedure duration in whole minutes>|
+        4<diagnosis code>| -- let empty first
+        5<doctor ID/ user id>|
+        6<doctor name / user name>|
+        7<location code>|
+        8<location name>|
+        9<doctor notes/ comment>|
+        10<receiving hfc code>|
+        11<episode date>|
+        <cr>
+        =================================================*/
+        String eachDetail = "ARP||||||||||||<cr>\n";
+
+              
+            
+        eachDetail = "ARP"
+                + "| "+procedureCode+" ^ "+procedureName+" ^ iHIS "
+                + "| "+timeStamp +" "
+                + "| "+durationMin +" "
+                + "| unknown "
+                + "| "+userID +" "
+                + "| "+userName + " "
+                + "| "+hfc + " "
+                + "| "+ hfcName +" "
+                + "| "+comments +" "
+                + "| "+hfc +" "
+                + "| "+ episodeDate +" "
+                + "|<cr>\n";
+
+        EHRSecondHeader = eachDetail;
+        
+
+        FullEHRHeader = MSH_PDI_ORC + EHRSecondHeader;
+
+//        String CENTRAL_CODE = "";                       // Date 1
+        String PMI_NO = pmiNo;                          // Date 2
+//        String C_TXNDATE = format.format(now);          // Date 3
+        String C_TxnData = FullEHRHeader;               // Date 4
+
+        // Insert Into EHR Central
+        String sqlInsert = "INSERT INTO ehr_central (CENTRAL_CODE,PMI_NO,C_TXNDATE,C_TxnData,STATUS,STATUS_1,STATUS_2,STATUS_3,STATUS_4,STATUS_5) "
+                + "Select (max(CENTRAL_CODE)+1), '" + PMI_NO + "', now(), '" + C_TxnData + "', '1', '0', '0', '0', '0', '0' "
+                + "from ehr_central;";
+
+        rmic.setQuerySQL(conn.HOST, conn.PORT, sqlInsert);
+
     }
 
     @Override

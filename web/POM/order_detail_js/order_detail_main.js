@@ -384,11 +384,24 @@ $('#PR_btnSubmit').on('click', function () {
     var proName = $('#PR_procedureName').val();
     var comment = $('#PR_comment').val();
     var epDate = $('#posEpDate').val();
+    
+    //added on 29/6/2017
+    var pmiNo = $('#rispatientpmino').val() ;
+    var orderDate = $('#risOrderDate').val();
+    var duration = $('#PR_duration').val();
+    
 
     if (comment === '') {
         bootbox.alert('Please write a meaningful comment.',
                 function () {
                     $('#PR_comment').focus();
+                }
+        );
+    }
+    else if(duration === ''){
+         bootbox.alert('Please key in the time taken to complete the procedure in minutes.',
+                function () {
+                    $('#PR_duration').focus();
                 }
         );
     }
@@ -400,7 +413,10 @@ $('#PR_btnSubmit').on('click', function () {
             proCode: proCode,
             proName: proName,
             comment: comment,
-            epDate: epDate
+            epDate: epDate,
+            pmiNo: pmiNo,
+            orderDate: orderDate,
+            duration: duration
         };
         
         $('#modal_prepareResult').modal('hide');
@@ -449,6 +465,18 @@ $('#patientOrderDispenseButtonDiv').on('click', '#btnRISClearOrderDetail', funct
     $('.nav-tabs a[href="#tab_default_1"]').tab('show');
 });
 // Clear Button Function End
+
+//------------ validation on keypress for duratio ----------
+
+$('#PR_duration').on('keypress', function (e) {
+
+        //if the letter is not digit then display error and don't type anything
+        if (e.which !== 8 && e.which !== 0 && (e.which < 48 || e.which > 57)) {
+            //display error message
+            $("#PR_duration_err").html("Whole Number Only!!!").show().fadeOut("slow");
+            return false;
+        }
+    });
 
 
 

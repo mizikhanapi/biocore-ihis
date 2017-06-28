@@ -4,6 +4,7 @@
     Author     : user
 --%>
 
+<%@page import="POS_helper.POS_EHRMessenger"%>
 <%@page import="main.RMIConnector"%>
 <%@page import="dBConn.Conn"%>
 <%@page import="POS_helper.OrderMaster"%>
@@ -58,6 +59,20 @@
             out.print("success");
             OrderMaster om = new OrderMaster(orderNo);
             om.updateOrderMasterStatus();
+            
+            
+            //... sending data to LHR
+            String dis = (String) session.getAttribute("DISCIPLINE_CODE");
+            String subdis = (String) session.getAttribute("SUB_DISCIPLINE_CODE");
+            String hfcName = (String) session.getAttribute("HFC_NAME");
+            String userName = (String) session.getAttribute("USER_NAME");
+            
+            String pmiNo = request.getParameter("pmiNo");
+            String orderDate = request.getParameter("orderDate");
+            String durationMin = request.getParameter("duration");
+            
+            POS_EHRMessenger pom = new POS_EHRMessenger(creator, hfc_cd, dis, subdis, pmiNo, orderNo, orderDate);
+            pom.insertIntoEHR_LHR("18", proCode, proName, userName, hfcName, ep_date, durationMin, comment);
         } else {
             out.print("fail");
         }

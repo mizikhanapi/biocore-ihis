@@ -17,7 +17,7 @@ import main.RMIConnector;
  */
 public class EHRMessageSender {
 
-    private String userID;
+    protected String userID;
     protected String hfc;
     private String dis;
     private String subdis;
