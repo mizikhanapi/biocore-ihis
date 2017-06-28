@@ -240,101 +240,108 @@
 
 
 
+
+
+
+
             // Move to Order Details Fetch Details Start
-            $('#contentRMonthly').off('click', '#reportMonthlyTable #moveToMonthlySalesDetailsTButton').on('click', '#reportMonthlyTable #moveToMonthlySalesDetailsTButton', function (e) {
+            $('#contentRYearly').off('click', '#reportYearlyTable #moveToYearlySalesDetailsTButton').on('click', '#reportYearlyTable #moveToYearlySalesDetailsTButton', function (e) {
 
                 // $('<div class="loading">Loading</div>').appendTo('body');
 
                 e.preventDefault();
 
-                $('#manageReportMonthlySalesDetailsTable').DataTable().destroy();
+                $('#manageReportYearlySalesDetailsTable').DataTable().destroy();
 
 
                 var row = $(this).closest("tr");
-                var rowData = row.find("#dataMonthlySalesListhidden").val();
+                var rowData = row.find("#dataYearlySalesListhidden").val();
                 var arrayData = rowData.split("|");
                 console.log(arrayData);
 
-                var rdate = arrayData[0];
-                var date = arrayData[4];
-
-                var data = {
-                    date: date
-                };
-
-                $.ajax({
-                    url: "manageReportMonthlyDetailsTable.jsp",
-                    type: "post",
-                    data: data,
-                    timeout: 3000,
-                    success: function (returnReportDetailsTableHTML) {
-                        console.log(returnReportDetailsTableHTML);
-                        $('#manageReportMonthlySalesDetailsTable').html(returnReportDetailsTableHTML);
-
-                        $('#manageReportMonthlySalesDetailsTable').DataTable({
-                            pageLength: 15,
-                            initComplete: function (settings, json) {
-                                $('.loading').hide();
-                            },
-                            dom: 'Bfrtip',
-                            buttons: [
-                                {
-                                    extend: 'excelHtml5',
-                                    text: 'Export To Excel',
-                                    title: 'Pharmacy Monthly Dispensed Drug List For ' + rdate,
-                                    className: 'btn btn-primary',
-                                    exportOptions: {
-                                        columns: ':visible'
-                                    }
-                                }, {
-                                    extend: 'csvHtml5',
-                                    text: 'Export To Excel CSV',
-                                    title: 'Pharmacy Monthly Dispensed Drug List For ' + rdate,
-                                    className: 'btn btn-primary',
-                                    exportOptions: {
-                                        columns: ':visible'
-                                    }
-                                }, {
-                                    extend: 'print',
-                                    text: 'Print Monthly Sales List',
-                                    title: $('h1').text(),
-                                    message: '<br><br>',
-                                    className: 'btn btn-primary',
-                                    customize: function (win) {
-                                        $(win.document.body)
-                                                .css('font-size', '10pt')
-                                                .prepend(
-                                                        '<div class="logo-hfc asset-print-img" style="z-index: 0; top: 0px; opacity: 1.0;">\n\
-                                        <img src="<%=mysqlhfc_cd.get(0).get(0)%>" style="text-align: center; height: 100%; " /></div> <div class="mesej">Pharmacy Monthly Dispensed Drug List For ' + rdate + '</div>\n\
-                                        <div class="info_kecik">\n\
-                                        <dd>Date: <strong><%=newdate%></strong></dd>\n\
-                                        <dd>Report No: <strong><%=newdate%></strong></dd>\n\
-                                        </div> '
-                                                        );
-                                        $(win.document.body).find('table')
-                                                .addClass('compact')
-                                                .css('font-size', 'inherit');
-                                    },
-                                    exportOptions: {
-                                        columns: ':visible'
-                                    }
-                                }, {
-                                    extend: 'colvis',
-                                    text: 'Filter Table Column',
-                                    className: 'btn btn-success'
-                                }
-                            ]
-                        });
-
-                        $('#MonthlySalesDetaileModal').modal('show');
-
-                    }
-                });
+//                var rdate = arrayData[0];
+//                var date = arrayData[4];
+//
+//                var data = {
+//                    date: date
+//                };
+//
+//                $.ajax({
+//                    url: "manageReportMonthlyDetailsTable.jsp",
+//                    type: "post",
+//                    data: data,
+//                    timeout: 3000,
+//                    success: function (returnReportDetailsTableHTML) {
+//                        console.log(returnReportDetailsTableHTML);
+//                        $('#manageReportMonthlySalesDetailsTable').html(returnReportDetailsTableHTML);
+//
+//                        $('#manageReportMonthlySalesDetailsTable').DataTable({
+//                            pageLength: 15,
+//                            initComplete: function (settings, json) {
+//                                $('.loading').hide();
+//                            },
+//                            dom: 'Bfrtip',
+//                            buttons: [
+//                                {
+//                                    extend: 'excelHtml5',
+//                                    text: 'Export To Excel',
+//                                    title: 'Pharmacy Monthly Dispensed Drug List For ' + rdate,
+//                                    className: 'btn btn-primary',
+//                                    exportOptions: {
+//                                        columns: ':visible'
+//                                    }
+//                                }, {
+//                                    extend: 'csvHtml5',
+//                                    text: 'Export To Excel CSV',
+//                                    title: 'Pharmacy Monthly Dispensed Drug List For ' + rdate,
+//                                    className: 'btn btn-primary',
+//                                    exportOptions: {
+//                                        columns: ':visible'
+//                                    }
+//                                }, {
+//                                    extend: 'print',
+//                                    text: 'Print Monthly Sales List',
+//                                    title: $('h1').text(),
+//                                    message: '<br><br>',
+//                                    className: 'btn btn-primary',
+//                                    customize: function (win) {
+//                                        $(win.document.body)
+//                                                .css('font-size', '10pt')
+//                                                .prepend(
+//                                                        '<div class="logo-hfc asset-print-img" style="z-index: 0; top: 0px; opacity: 1.0;">\n\
+//                                        <img src="<%=mysqlhfc_cd.get(0).get(0)%>" style="text-align: center; height: 100%; " /></div> <div class="mesej">Pharmacy Monthly Dispensed Drug List For ' + rdate + '</div>\n\
+//                                        <div class="info_kecik">\n\
+//                                        <dd>Date: <strong><%=newdate%></strong></dd>\n\
+//                                        <dd>Report No: <strong><%=newdate%></strong></dd>\n\
+//                                        </div> '
+//                                                        );
+//                                        $(win.document.body).find('table')
+//                                                .addClass('compact')
+//                                                .css('font-size', 'inherit');
+//                                    },
+//                                    exportOptions: {
+//                                        columns: ':visible'
+//                                    }
+//                                }, {
+//                                    extend: 'colvis',
+//                                    text: 'Filter Table Column',
+//                                    className: 'btn btn-success'
+//                                }
+//                            ]
+//                        });
+//
+//                        $('#MonthlySalesDetaileModal').modal('show');
+//
+//                    }
+//                });
 
 
 
             });
             // Move to Order Details Fetch Details End
+
+
+
         </script>
 
     </body>
