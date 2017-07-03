@@ -105,6 +105,10 @@ public class MainExtractor {
             //DCG
             lhr_DCG lhr_dcg = new lhr_DCG();
             lhr_dcg.M_DCG(spv2.getVdcg(),t);
+            
+            //ARP
+            lhr_ARP lhr_arp = new lhr_ARP();
+            lhr_arp.M_ARP(spv2.getVarp(), t, spv2.getVorc());
 
             update_ehr_central u = new update_ehr_central();
             u.update_status(t.getCentral_Code());
