@@ -141,7 +141,7 @@
             $('#customDateOB').show();
             datas = "null";
         }
-        console.log(datas);
+        //console.log(datas);
         ajaxObservation(datas);
 
     });

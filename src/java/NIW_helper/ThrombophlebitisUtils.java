@@ -51,7 +51,7 @@ public class ThrombophlebitisUtils {
     /*
     * get data from DB
      */
-    public ArrayList<ArrayList<String>> getObservation(String datas) {
+    public ArrayList<ArrayList<String>> get4hly(String datas) {
         ArrayList<ArrayList<String>> data = new ArrayList<>();
         String splittedData[] = datas.split("\\|", -1);
         String pmino, dateTime, viewBy,startDate,endDate;
