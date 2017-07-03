@@ -10,31 +10,32 @@
     <div class="col-md-4" style="padding-top: 20px">
         <label class="col-sm-6 control-label text-right" for="formGroupInputLarge">View history assessment:</label>
         <div class="col-sm-6" style="padding-right: 0px;">
-            <select class="form-control">
-                <option>View by</option>
-                <option>Today</option>
-                <option>Yesterday</option>
-                <option>7 Days</option>
-                <option>30 Days</option>
-                <option>60 Days</option>
-                <option>Select date</option>
+            <select class="form-control" id="select4hlydate">
+                <option selected="" disabled="">View by</option>
+                <option value="Viewtoday">Today</option>
+                <option value="Viewyesterday">Yesterday</option>
+                <option value="View7day">7 Days</option>
+                <option value="View30day">30 Days</option>
+                <option value="View60day">60 Days</option>
+                <option value="Viewcustomday">Select date</option>
             </select>
         </div>
     </div>
-    <div class="col-md-6 col-md-offset-6 text-right margin-bottom-30px">
+        <div class="col-md-6 col-md-offset-6 text-right margin-bottom-30px" id="customDate4hly">
         <div class="col-sm-12 form-inline" style="padding-right: 0px;">
             <div class="form-group">
                 <label for="exampleInputName2">Start</label>
-                <input type="text" class="form-control" id="exampleInputName2" placeholder="14/06/2017" style="margin-bottom: 0px !important;">
+                <input type="text" class="form-control"   style="margin-bottom: 0px !important;" id="startDate4hly">
             </div>
             <div class="form-group">
                 <label for="exampleInputEmail2">to</label>
-                <input type="email" class="form-control" id="exampleInputEmail2" placeholder="15/06/2017" style="margin-bottom: 0px !important;">
+                <input type="email" class="form-control"   style="margin-bottom: 0px !important;" id="endDate4hly">
             </div>
-            <button type="submit" class="btn btn-default"><i class="fa fa-search fa-lg"></i></button>
+            <button type="submit" class="btn btn-default" id="btnCustomDate4hly"><i class="fa fa-search fa-lg"></i></button>
         </div>
     </div>
 </div>
+<div id="divBIW4hly">
 <table class="table table-bordered table-striped" id="tblNIW_4hly">
     <thead>
         <th>Date</th>
@@ -61,3 +62,101 @@
             </tr>
         </tbody>
 </table>
+</div>
+<script>
+        //datatable
+    $(document).ready(function () {
+        //$('#tblNIW_observation_chart').dataTable();
+
+        //set the custom date default hidden
+        $('#customDate4hly').hide();
+
+        $('#startDate4hly').datepicker({dateFormat: "dd/mm/yy"});
+        $('#endDate4hly').datepicker({dateFormat: "dd/mm/yy"});
+
+    });
+
+    //function view by date on change
+    $('#select4hlydate').on('change', function () {
+        var viewBy = $(this).val();
+        var datas;
+        var todayDate;
+
+        var pmiOB = "<%=session.getAttribute("patientPMINo")%>";
+        var enDate = new Date();
+        var dd = ("0" + enDate.getDate()).slice(-2);
+        var mm = ("0" + (enDate.getMonth() + 1)).slice(-2);
+        var yy = enDate.getFullYear();
+        var hh = enDate.getHours();
+        var m = enDate.getMinutes();
+        var ss = enDate.getSeconds();
+        var ms = enDate.getMilliseconds();
+
+        todayDate = yy + "-" + mm + "-" + dd;
+
+
+        if (viewBy === "Viewtoday") {
+            $('#customDate4hly').hide();
+            datas = pmiOB + "|" + todayDate + "|today";
+
+        } else if (viewBy === "Viewyesterday") {
+            $('#customDate4hly').hide();
+            datas = pmiOB + "|" + todayDate + "|yesterday";
+
+        } else if (viewBy === "View7day") {
+            $('#customDate4hly').hide();
+            datas = pmiOB + "|" + todayDate + "|7day";
+
+        } else if (viewBy === "View30day") {
+            $('#customDate4hly').hide();
+            datas = pmiOB + "|" + todayDate + "|30day";
+
+        } else if (viewBy === "View60day") {
+            $('#customDate4hly').hide();
+            datas = pmiOB + "|" + todayDate + "|60day";
+
+        } else if (viewBy === "Viewcustomday") {
+            $('#customDate4hly').show();
+            datas = "null";
+        }
+        console.log(datas);
+        ajaxObservation(datas);
+
+    });
+
+    $("#btnCustomDate4hly").on('click', function () {
+        var strtDate = $('#startDate4hly').val();
+        var endDate = $('#endDate4hly').val();
+
+        var pmiOB = "<%=session.getAttribute("patientPMINo")%>";
+
+        var sDate = strtDate.split('/');
+        var SnewDate = sDate[2] + "-" + sDate[1] + "-" + sDate[0];
+
+        var eDate = endDate.split('/');
+        var EnewDate = eDate[2] + "-" + eDate[1] + "-" + eDate[0];
+
+        var data2 = pmiOB + "|" + SnewDate + "^" + EnewDate + "|custom";
+        //console.log(data2);
+        ajaxObservation(data2);
+
+    });
+
+    function ajaxObservation(datas) {
+        $.ajax({
+            type: "post",
+            url: "../Ortho-NursingInWard/controller/4hlyFunction.jsp",
+            data: {datas: datas, methodName: "view"},
+            timeout: 10000,
+            success: function (result) {
+                //console.log(result);
+                $('#divBIW4hly').html(result);
+
+            },
+            error: function (err) {
+                bootbox.alert("something wrong,error: " + err);
+            }
+        });
+    }
+    ;
+    </script>
