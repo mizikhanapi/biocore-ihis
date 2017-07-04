@@ -45,8 +45,21 @@
                                             <label class="col-md-6 control-label" for="textinput">Search Laboratory Request</label>
                                             <div class="col-md-12">
                                                 <input type="hidden" name="LOS" id="jsonId" class="form-control input-lg"  tabindex="4">
+                                                <input type='text'
+                                                       placeholder='Write your country name'
+                                                       class='form-control input-lg flexdatalist'
+                                                       id='tCISOELIOSearch' 
+                                                      
+                                                       data-search-in='name'
+                                                       data-visible-properties='["name","source"]'
+                                                       data-selection-required='true'
+                                                       data-min-length='1'
+                                                       name='country_name_capital_continent'>
+                                                
+<!--                                                <input class="form-control input-lg" type="text"  id="tCISOELIOSearch" data-visible-properties='["name","source"]' placeholder="Type to search..." data-relatives='#chained_relative' data-chained-relatives='true'>-->
+                                                <div id="tCISOELIOSearchLoading" ></div>
                                                 <input class="form-control input-lg" type="text" name="problem"  id="searchLOS" placeholder="Search Laboratory request..." tabindex="4">
-                                                <input class="form-control input-lg" type="hidden" name="dtoCode"  id="codeLOS" placeholder="Drug Code..." tabindex="4" readonly="">
+                                                <input class="form-control input-lg" type="text" name="dtoCode"  id="codeLOS" placeholder="Drug Code..." tabindex="4" readonly="">
                                                 <div id="matchLOS" ></div>
                                             </div>
                                         </div>
@@ -193,6 +206,13 @@
                                     </div>
                                 </div>
                             </div>
+                                                        <div class="btn-group btn-group-justified" role="group" aria-label="group button">
+                                                            <div class="btn-group btn-primary" role="group">
+                                                                <button type="button" id="btnCIS_OE_LIO_UPDATE" class="btn btn-primary btn-block btn-lg" role="button">Update</button>
+                                                                <button type="button" id="btnCIS_OE_LIO_CANCEL" class="btn btn-delete btn-block btn-lg" role="button">Cancel</button>
+                                                                <button type="button" id="btnCIS_OE_LIO_ADD" class="btn btn-primary btn-block btn-lg" role="button">Add</button>
+                                                            </div>
+                                                        </div>   
                             <!-- Tab 1 -->    
 
                             <!-- Tab 2 -->
@@ -234,18 +254,22 @@
                 <table class="table table-bordered table-striped">
                     <thead>
                         <tr>
-                            <td>Episode Date</td>
-                            <td>Order No.</td>
-                            <td>Radiology Name</td>
-                            <td>Radiology Details</td>
+                            <td>Test Name</td>
+                            <td>S.Source</td>
+                            <td>S.Container</td>
+                            <td>Volume</td>
+                            <td>Comment</td>
+                            <td>A.Date</td>
                             <td>Action</td>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody id="tableOrderLIO">
                         <tr>
                             <td>16/06/2017 | 3:52 PM</td>
                             <td>000001</td>
                             <td>Put Name</td>
+                            <td>Put details here</td>
+                            <td>Put details here</td>
                             <td>Put details here</td>
                             <td>
                                 <a data-toggle="tooltip" data-placement="top" title="Add Order" class="" style="cursor: pointer"><i class="fa fa-plus fa-lg" aria-hidden="true" style="display: inline-block;color: #58C102;"></i></a>
@@ -466,10 +490,4 @@
         </div>
     </div>
 </div>
-<script>
-    $(document).ready(function () {
-        $(function () {
-            $('#appointmentLOS').datepicker({dateFormat: 'dd-mm-yy', changeMonth: true, changeYear: true});
-        });
-    });
-</script>
+                                        <script src="jsFunction/CIS040001.js" type="text/javascript"></script>

@@ -18,7 +18,7 @@
             minLength: 1,
             searchIn: 'name',
             searchDelay:2000,
-            //data:arrayDGSDataAjax,
+
             url:urlData,
             cache:true,
             params:{
@@ -158,6 +158,64 @@ function searchingHFC(fieldId, loadingDivId, urlData, urlCode, codeFieldId, loca
                 }
 
 
+            }
+        });
+
+    });
+}
+
+function retrieveDataSearchingHFC(fieldId, loadingDivId, urlData, urlCode, codeFieldId, locationField, hfcOrderDetail, hfcProviderDetail, currentHfc, currentRISProcedure) {
+    $('#' + fieldId).val(currentHfc).flexdatalist({
+        minLength: 3,
+        searchIn: 'name',
+        searchDelay: 2000,
+        url: urlData,
+        cache: true,
+        params: {
+            timeout: 3000,
+            success: function (result) {
+                console.log(result);
+                if (result === undefined) {
+                    $('#' + loadingDivId).html('No Record');
+                }
+            }
+        }
+    });
+
+    $("#" + fieldId).on('before:flexdatalist.data', function (response) {
+        console.log("Start - " + getDate());
+        $('#' + loadingDivId).html('<img src="img/LoaderIcon.gif" />');
+    });
+    $("#" + fieldId).on('after:flexdatalist.data', function (response) {
+        console.log("End - " + getDate());
+        $('#' + loadingDivId).html('');
+    });
+    $("#" + fieldId).on('select:flexdatalist', function (response) {
+        var hfc_name = $("#" + fieldId).val();
+        $.ajax({
+            type: "post",
+            url: urlCode,
+            timeout: 3000,
+            data: {
+                id: hfc_name,
+                orderCode: "ROS"
+            },
+            success: function (response) {
+
+                var hfc_detail_array = response.split("[#-#]");
+                var hfc_location = hfc_detail_array[0].split("|");
+                $('#' + codeFieldId).val(hfc_location[0].trim());
+
+                if (hfcOrderDetail !== "-") {
+                    $('#' + hfcOrderDetail).val(hfc_detail_array[1].trim());
+                }
+                if (hfcProviderDetail !== "-") {
+                    $('#' + hfcProviderDetail).val(hfc_detail_array[2].trim());
+                }
+                if (locationField !== "-") {
+                    $('#' + locationField).val(hfc_location[1].trim());
+                }
+               
             }
         });
 
