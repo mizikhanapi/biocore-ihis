@@ -46,11 +46,11 @@
     <th>Name </th>
     <th>Episode Date/Time </th>
     <!--                                <th>Episode Time </th>-->
-    <th>Queue Name </th>
+    <th class="hidden-xs">Queue Name </th>
     <th>Queue no.</th>
-    <th>Doctor </th>
+    <th class="hidden-xs">Doctor </th>
     <th>Consultation Room </th>
-    <th>Patient Category</th>
+    <th class="hidden-xs">Patient Category</th>
     <th>Status</th>
     <th>Action </th>
 
@@ -63,11 +63,11 @@
         <td><%=dataQueue.get(i).get(1)%></td>
         <td id="epiDate"><%=dataQueue.get(i).get(2)%></td>
 <!--        <td id="epiTime" hidden="hidden"><% //dataQueue.get(i).get(3)%></td>-->
-        <td ><%=dataQueue.get(i).get(3)%></td>
-        <td><%=dataQueue.get(i).get(4)%></td>
-        <td><%=dataQueue.get(i).get(5)%></td>
+        <td class="hidden-xs"><%=dataQueue.get(i).get(3)%></td>
+        <td ><%=dataQueue.get(i).get(4)%></td>
+        <td class="hidden-xs"><%=dataQueue.get(i).get(5)%></td>
         <td><%=dataQueue.get(i).get(7)%></td>
-        <td><%=dataQueue.get(i).get(9)%></td>
+        <td class="hidden-xs"><%=dataQueue.get(i).get(9)%></td>
         <td id="status"><%=dataQueue.get(i).get(6)%></td>
         <% if (dataQueue.get(i).get(6).equals("Consult")) { %>
         <td><button class="btn btn-primary changePatientBtn" id="consultBtn" disabled="">Consult</button> </td>

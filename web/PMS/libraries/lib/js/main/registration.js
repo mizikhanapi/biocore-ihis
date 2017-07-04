@@ -1,15 +1,15 @@
 
 //set modal width to dynamic
-$('#modalSaya').on('shown.bs.modal', function () {
-    $(this).find('.modal-dialog').css({width: '70%',
-        height: 'auto',
-        'max-height': '100%'});
-});
-$('#modalSaya2').on('shown.bs.modal', function () {
-    $(this).find('.modal-dialog').css({width: '70%',
-        height: 'auto',
-        'max-height': '100%'});
-});
+//$('#modalSaya').on('shown.bs.modal', function () {
+//    $(this).find('.modal-dialog').css({width: '70%',
+//        height: 'auto',
+//        'max-height': '100%'});
+//});
+//$('#modalSaya2').on('shown.bs.modal', function () {
+//    $(this).find('.modal-dialog').css({width: '70%',
+//        height: 'auto',
+//        'max-height': '100%'});
+//});
 
 $('#appointment').on('click', function () {
     $.ajax({

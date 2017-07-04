@@ -7,8 +7,8 @@
 <%@page import="org.apache.commons.lang3.StringUtils"%>
 
 <!-- Modal -->
-<div class="modal fade" id="queueModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
-    <div class="modal-dialog" style="width: 65%">
+<div class="modal fade" id="queueModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true" style="z-index: 20000000;">
+    <div class="modal-dialog modal-lg" >
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal"><i class="fa fa-times fa-lg"></i><span class="sr-only">Close</span></button>
@@ -17,15 +17,15 @@
             <div class="modal-body" >
                     <div class="row"id="modalBodyQueue" >
                         <!-- content goes here -->
-                        <form role="form" id="formQueueSaya">
+                        <form role="form" id="formQueueSaya" style="overflow-x: auto;">
                             <table class="table table-filter table-striped table-responsive" style="width: 100% " id="listQueue">
                                 <thead>
                                 <th>PMI no. </th>
                                 <th>Name </th>
                                 <th>Episode Time </th>
-                                <th>Queue Name </th>
+                                <th class="hidden-xs">Queue Name </th>
                                 <th>Queue no.</th>
-                                <th>Doctor </th>
+                                <th class="hidden-xs">Doctor </th>
                                 <th>Status</th>
                                 <th>Action </th>
 
