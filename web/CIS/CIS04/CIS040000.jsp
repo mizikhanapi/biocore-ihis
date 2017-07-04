@@ -233,13 +233,9 @@
                         <tr>
                             <td>Body-System</td>
                             <td>Modality</td>
-                            
                             <td>Procedure Name</td>
                             <td>Comment</td>
-                           
                             <td>A.Date</td>
-                       
-                            
                             <td>Action</td>
                         </tr>
                     </thead>

@@ -52,7 +52,9 @@ $(document).ready(function () {
                     status: "1"
                 },
                 success:function(response){
-                    console.log(response);
+                    if (response.trim() === "|-SUCCESS-|"){
+                        $("#tableOrderROS").html('');
+                    }
                 }
             })
             
@@ -60,11 +62,7 @@ $(document).ready(function () {
         } else {
             return false;
         }
-        
-//        console.log(msh);
-//        console.log(pdi);
-//        console.log(orc);
-//        console.log(msg);
+
      });
     
     $("#btnCIS_OE_ROS_ADD").click(function(e){
