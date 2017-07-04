@@ -484,8 +484,9 @@ $('#queueBtn').click(function(e){
     $('#btnNIWps').on('click',function(){ 
         var painScale = $('#painScale').val();
         $('#NIWOBps').val(painScale);
+        $('#NIW4hlyps').val(painScale);
         $("#CIS020007").modal('toggle');
-        console.log(painScale);
+        //console.log(painScale);
     });
     
 /// -----------------------------------------------------------------------------------------------------------------------------------------------/////;
