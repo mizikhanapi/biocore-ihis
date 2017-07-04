@@ -39,8 +39,7 @@ public class SeparatorV2 {
     private Vector<BLI2> vbli;
     private Vector<MSH2> vmsh;
     private Vector<PDI2> vpdi;
-    private Vector<POS2> vpos;
-    
+    private Vector<POS2> vpos;    
     private Vector<PEM2> vpem;
     private Vector<SPR2> vspr;
     private Vector<RRS2> vrrs;
@@ -54,10 +53,9 @@ public class SeparatorV2 {
     private Vector<VLR2> vvlr;
     private Vector<VDD2> vvdd;
     private Vector<MOP2> vmop;
-    private Vector<PHP2> vphp;
-    
+    private Vector<PHP2> vphp;    
     private Vector<DCG2> vdcg;
-    
+    private Vector<ARP2> varp;
     
     
     
@@ -104,6 +102,7 @@ public class SeparatorV2 {
         this.vphp = new Vector<>();
         
         this.vdcg = new Vector<>();
+        this.varp = new Vector<>();
     }
 
     
@@ -254,6 +253,10 @@ public class SeparatorV2 {
     }
     public Vector<POS2> getVpos() {
         return vpos;
+    }
+    
+    public Vector<ARP2> getVarp(){
+        return varp;
     }
     
     
@@ -532,6 +535,13 @@ public class SeparatorV2 {
                 //sm.showAAL();
                 dcg.setValue(sm.getAal());
                 vdcg.addElement(dcg);
+                //System.out.println("---------------------------------------------------------------------------------");
+            }else if(cols[0].contains("ARP")){
+                ARP2 arp = new ARP2();
+                sm.separatePipe(rows[i]);
+                //sm.showAAL();
+                arp.setValue(sm.getAal());
+                varp.addElement(arp);
                 //System.out.println("---------------------------------------------------------------------------------");
             }else if(cols[0].isEmpty()){
                 System.out.println("some data is not correct!");

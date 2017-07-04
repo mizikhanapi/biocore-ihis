@@ -19,7 +19,7 @@
                             <div class="form-group">
                                 <label class="col-md-12 control-label" for="textinput">Date</label>
                                 <div class="col-md-12">
-                                    <input type="date" class="form-control input-md" >
+                                    <input type="date" class="form-control input-md" id="dateNIW4hly">
                                 </div>
                             </div>
                         </div>
@@ -28,7 +28,7 @@
                             <div class="form-group">
                                 <label class="col-md-12 control-label" for="textinput">Time 4hly Observation</label>
                                 <div class="col-md-12 form-inline">
-                                    <input type="time" class="form-control input-md" >
+                                    <input type="time" class="form-control input-md" id="timeNIW4hly">
                                 </div>
                             </div>
                         </div>

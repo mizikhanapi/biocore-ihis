@@ -31,6 +31,7 @@
         <!-- header -->
         <%@ include file="libraries/header.jsp" %> 
         <%@ include file="../assets/header.html" %> 
+        <link href="../assets/css/toggleButton.css" rel="stylesheet" type="text/css"/>
         <!-- header -->
 
 
@@ -49,7 +50,7 @@
             discipline = '<%out.print(discipline);%>';
             subdis = '<%out.print(subdicipline);%>';
             cisParam = '<%out.print(cisSystemParam);%>';
-            
+
             $.ajax({
                 url: "search/searchRRI.jsp",
                 type: "post",
@@ -92,7 +93,8 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div class="thumbnail">
-                                <h4>Patient Details </h4>
+                                <h4 style="margin: 0px; padding: 0px;">Patient Details </h4>
+                                <hr class="pemisah"/>
                                 <table class="p-table" style="width: 100%; color: #999;">
                                     <tr>
                                         <td>
@@ -237,7 +239,7 @@
                         <div class="tab-pane fade" id="orthopedic-ot">
                             <jsp:include page="../Ortho-operationTheater/OperationTheater.jsp"/>
                         </div> 
-                        
+
                         <div class="tab-pane fade" id="ong">
                             <jsp:include page="ong.jsp"/>
                         </div> 
@@ -248,6 +250,32 @@
                 <!-- main -->		
 
             </div>
+        </div>
+
+        <div class="material-button-anim toggle-draggable">
+            <ul class="list-inline" id="options">
+                <li class="option">
+                    <button class="material-button option1" type="button" data-toggle="tooltip" data-placement="top" title="Order Entry">
+                        <a href="#order-entry" role="presentation" data-toggle="tab" class="panelito" style="color: #fff;"><span class="fa fa-medkit"></span></a>
+                    </button>
+
+                </li>
+                <li class="option">
+                    <button class="material-button option2" type="button" data-toggle="tooltip" data-placement="top" title="Print MC">
+                        <a href="./../Report/mcMain2.jsp"class="panelito" style="color: #fff;"><i class="fa fa-print"></i></a>
+                    </button>
+
+                </li>
+                <li class="option">
+                    <button class="material-button option3" type="button" data-toggle="tooltip" data-placement="top" title="Print Time Slip">
+                        <a href="./../Report/timeSlipMain2.jsp" class="panelito"  style="color: #fff;"><i class="fa fa-print"></i></a>
+                    </button>
+
+                </li>
+            </ul>
+            <button class="material-button material-button-toggle gerakan" type="button">
+                <span class="fa fa-plus" aria-hidden="true"></span>
+            </button>
         </div>
 
         <%@ include file="queue/QueueModal.jsp" %> 
@@ -295,7 +323,7 @@
              IE10 viewport hack for Surface/desktop Windows 8 bug 
             <script src="assets/ie10-viewport-bug-workaround.js.download"></script>
         -->
-
+        <script src="../assets/js/toggleButton.js" type="text/javascript"></script>
         <script>
 
             (function ($) {

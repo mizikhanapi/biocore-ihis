@@ -1,6 +1,6 @@
 
 
-<div class="col-sm-3 col-md-2 sidebar">
+<div class="col-sm-3 col-md-2 sidebar" id="style-3">
     <!-- logo -->
     <div class="logo">
         Welcome to <span>iHIS</span>
@@ -17,10 +17,10 @@
         <!-- // menu tanpa dropdown -->
         <li><a id="queueBtn"><i class="fa fa-users fa-lg"></i> Queue</a></li>
         <li><a id="searchBtn"><i class="fa fa-search fa-lg"></i> Search</a></li>
-        <li><a href="#order-entry" role="presentation" data-toggle="tab" class="panelito"><i class="fa fa-medkit fa-lg"></i>Order Entry</a></li>
-<!--        <li><a id="settingBtn"><i class="fa fa-gear fa-lg"></i> Setting</a></li>-->
+<!--        <li><a href="#order-entry" role="presentation" data-toggle="tab" class="panelito"><i class="fa fa-medkit fa-lg"></i>Order Entry</a></li>
+        <li><a id="settingBtn"><i class="fa fa-gear fa-lg"></i> Setting</a></li>
         <li><a href="./../Report/mcMain2.jsp"class="panelito"><i class="fa fa-print fa-lg"></i> Print MC</a></li>
-        <li><a href="./../Report/timeSlipMain2.jsp" class="panelito"><i class="fa fa-print fa-lg"></i> Print Time Slip</a></li>
+        <li><a href="./../Report/timeSlipMain2.jsp" class="panelito"><i class="fa fa-print fa-lg"></i> Print Time Slip</a></li>-->
         
         <!-- // menu tanpa dropdown -->
         <hr/>
@@ -28,8 +28,8 @@
         <!-- Menu Specialist Panel -->
 
 
+        <li><a href="#generic-soap" role="presentation" data-toggle="tab" class="panelito"><i class="fa fa-angle-right fa-lg"></i> Primary Care</a></li>
 
-        <li class="active"><a href="#generic-soap" role="tab" data-toggle="tab" class="panelito"><i class="fa fa-angle-right fa-lg"></i> Primary Care</a></li>
         <li role="presentation" class="dropdown">
             <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
                 <i class="fa fa-angle-right fa-lg"></i> Orthopedic <span class="caret"></span>
