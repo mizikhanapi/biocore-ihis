@@ -1,6 +1,6 @@
 
 
-<div class="col-sm-3 col-md-2 sidebar">
+<div class="col-sm-3 col-md-2 sidebar" id="style-3">
     <!-- logo -->
     <div class="logo">
         Welcome to <span>iHIS</span>
