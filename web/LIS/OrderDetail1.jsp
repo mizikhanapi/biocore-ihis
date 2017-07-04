@@ -108,7 +108,7 @@
 <hr/>
 <h4>Order Detail
     <span class="pull-right">
-       
+
         <button id="risOrderNewRequestButton" class="btn btn-primary" data-toggle="modal" data-id="1" data-target="#NewRequest">
             <i class="fa fa-plus fa-lg"></i>&nbsp; New Request
         </button>
@@ -140,7 +140,7 @@
                                         for (int i = 0; i < q1.size(); i++) {
 
                                 %>
-                                <option value="<%=q1.get(i).get(0)%>"><%=q1.get(i).get(0)+" | "+q1.get(i).get(1)+" | "+q1.get(i).get(2)%></option>
+                                <option value="<%=q1.get(i).get(0)%>"><%=q1.get(i).get(0) + " | " + q1.get(i).get(1) + " | " + q1.get(i).get(2)%></option>
 
 
                                 <%        }
@@ -274,6 +274,7 @@
 <div id="ManageOrderDetailsListTable" class="form-group" style="margin-bottom: 40px;">
     <table class="table table-filter table-striped table-bordered" style="background: #fff; border: 1px solid #ccc; width: 100%" id="patientOrderDetailsListTable">
         <thead>
+        <th class="col-sm-1">Assign Specimen</th>
         <th class="col-sm-1">Item Code</th>
         <th class="col-sm-1">Item Name</th>			 
         <th class="col-sm-1">S. Source</th>
@@ -286,7 +287,6 @@
         <th class="col-sm-1">Comments</th>
         <th class="col-sm-1">Set Collection Date</th>
         <th class="col-sm-1">Requestor Comments</th>
-        <th class="col-sm-1">Assign Specimen</th>
         </thead>
         <tbody>
 

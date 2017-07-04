@@ -118,8 +118,9 @@
                                 <hr>
 
                                 <h4 class="headerTitle">Order Item</h4>
-                                <div id='viewVODpage'>
-                                    <table id="MTC"  class="table table-striped table-bordered" cellspacing="0" width="100%">
+                                <div id='viewVODpage' >
+                                    <div class="table-guling margin-bottom-10px" style="overflow-x: auto;">
+                                    <table id="MTC"  class="table table-striped table-bordered" cellspacing="0" width="100%" style="margin-bottom: 5px;">
                                         <%
                                             String pmi2 = request.getParameter("pmi");
                                             String specimen_no = request.getParameter("specimen_no");
@@ -160,6 +161,7 @@
 
                                         </tbody>
                                     </table>
+                                    </div>
                                     <div class="row">
                                         <div class=" pull-left col-md-6">
                                             <button type="button" class="btn btn-default" id="back">Back</button>

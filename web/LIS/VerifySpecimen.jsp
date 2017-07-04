@@ -133,7 +133,7 @@
                                         %>
                                     </div>         
                                     <hr class="pemisah" />
-                                    <div class="table-responsive" id='viewVODpage'>
+                                    <div class="table-guling" id='viewVODpage'>
                                         <div id="view_VS"></div>
                                     </div>
 

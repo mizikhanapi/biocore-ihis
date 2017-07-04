@@ -101,7 +101,7 @@
                                                     });
 
                                                 </script>
-                                                <div id="OrderMaster">
+                                                <div id="OrderMaster" class="table-guling">
                                                     <%        Conn conn = new Conn();
                                                         String current_user = (String) session.getAttribute("USER_ID");
                                                         String hfc_cd = session.getAttribute("HEALTH_FACILITY_CODE").toString();

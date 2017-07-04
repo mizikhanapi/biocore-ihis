@@ -18,7 +18,7 @@
 </h4>
 
 <!-- Table -->
-<div class="table-responsive" id='viewMTCpage'></div>
+<div id='viewMTCpage'></div>
 <!-- Table -->
 
 <div class="modal fade" id="TestCategory" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">

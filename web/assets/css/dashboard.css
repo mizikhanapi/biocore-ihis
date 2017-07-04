@@ -1045,3 +1045,10 @@ tr#moveToOrderDetailsTButton {
     font-size: 80%;
     color: rgba(0, 0, 0, 0.50);
 }
+
+@media only screen and (max-width: 767px) {
+    /* For mobile phones: */
+    .kotak i {
+        font-size: 22px !important;
+    }
+}

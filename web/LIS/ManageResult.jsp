@@ -95,7 +95,7 @@
 
                                 
 
-                                <div class="table-responsive" id='viewMTS'>
+                                <div class="table-guling" id='viewMTS'>
                                     <table id="MTC"  class="table table-striped table-bordered" cellspacing="0" width="100%">
                                         <%  Conn conn = new Conn();
                                             String hfc_cd = session.getAttribute("HEALTH_FACILITY_CODE").toString();

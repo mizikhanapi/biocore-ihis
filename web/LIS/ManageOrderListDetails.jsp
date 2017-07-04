@@ -27,9 +27,10 @@
         dataOrderList = conn.getData(orderList);
 
     %>
-    <div class="table-guling">
-        <table class="table table-filter table-striped table-bordered dt-head-right" style="background: #fff; border: 1px solid #ccc; width: 100%; text-align: center" id="ManageOrderDetailsListTable">
+    <div class="table-guling" style="overflow-x: auto;">
+        <table class="table table-filter table-striped table-bordered dt-head-right" style="margin-bottom: 5px; background: #fff; border: 1px solid #ccc; width: 100%; text-align: center" id="ManageOrderDetailsListTable">
             <thead>
+            <th class="col-sm-1">&nbsp;</th>
             <th class="col-sm-1">Item Code</th>
             <th class="col-sm-1">Item Name</th>			 
             <th class="col-sm-1">S. Source</th>
@@ -42,12 +43,26 @@
             <th class="col-sm-1">Comments</th>
             <th class="col-sm-1">Set Collection Date</th>
             <th class="col-sm-1">Requestor Comments</th>
-            <th class="col-sm-1">Assign Specimen</th>
             </thead>
             <tbody>
                 <%if (dataOrderList.size() > 0) {
-                    for (int i = 0; i < dataOrderList.size(); i++) {%> 
+                        for (int i = 0; i < dataOrderList.size(); i++) {%> 
                 <tr>
+                    <td>
+                        <%
+                            if (dataOrderList.get(i).get(7).equals("Waiting For Approval") || dataOrderList.get(i).get(7).equals("Already Verified")) {
+                        %>
+                        <input class="chk" type="checkbox" name="chkSpecimen" value="<%=dataOrderList.get(i).get(0)%>" id="checky" disabled="disabled"/>
+                        <%
+                        } else {
+                        %>
+                        <input class="chk" type="checkbox" name="chkSpecimen" value="<%=dataOrderList.get(i).get(0)%>" id="checky"/>
+                        <%
+                            }
+                        %>
+
+                        <input type="text" name="itemCD" value="<%=dataOrderList.get(i).get(0)%>" style="display:none;">
+                    </td>
                     <td><%=dataOrderList.get(i).get(0)%></td>
                     <td><%=dataOrderList.get(i).get(1)%></td>
                     <td><%=dataOrderList.get(i).get(2)%></td>
@@ -199,21 +214,7 @@
 
                     </td>
                     <td><%=dataOrderList.get(i).get(10)%></td>
-                    <td>
-                        <%
-                            if (dataOrderList.get(i).get(7).equals("Waiting For Approval") || dataOrderList.get(i).get(7).equals("Already Verified")) {
-                        %>
-                        <input class="chk" type="checkbox" name="chkSpecimen" value="<%=dataOrderList.get(i).get(0)%>" id="checky" disabled="disabled"/>
-                        <%
-                        } else {
-                        %>
-                        <input class="chk" type="checkbox" name="chkSpecimen" value="<%=dataOrderList.get(i).get(0)%>" id="checky"/>
-                        <%
-                            }
-                        %>
 
-                        <input type="text" name="itemCD" value="<%=dataOrderList.get(i).get(0)%>" style="display:none;">
-                    </td>
 
                     <%
                             }
@@ -226,7 +227,7 @@
             </tbody>
         </table>
     </div>
-
+<br/>
     <div style = "clear: right; float: right; text-align: right;">
         <input type="text" value="<%=pmino%>" name="pmino" style=" display: none;">
         <input type="text" value="<%=orderNo%>" name="order_no" style="display:none;">
