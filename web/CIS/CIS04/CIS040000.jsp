@@ -46,7 +46,9 @@
                                             <div class="form-group">
                                                 <label class="col-md-2 control-label" for="textinput">Health Facility</label>
                                                 <div class="col-md-9">
-                                                    <input class="form-control input-lg" type="text"  id="hfcROS" placeholder="">
+                                                    <input class="form-control input-lg" type="text"  id="tCISOEROSHFC" placeholder="Type to search..." data-relatives='#chained_relative' data-chained-relatives='true'>
+                                                    <div id="tCISOEROSHFCSearchLoading" ></div>
+                                                    <input class="form-control input-lg" type="hidden"  id="hfcROS" placeholder="">
                                                     <input class="form-control input-lg" type="hidden"  id="hfcOrderDetail" placeholder="">
                                                     <input class="form-control input-lg" type="hidden"  id="hfcProviderDetail" placeholder="">
                                                     <input class="form-control input-lg" type="hidden"  id="hfcIdROS">
@@ -69,12 +71,24 @@
                                             <!-- content goes here -->
                                             <div class="form-group">
                                                 <input type="hidden" name="POS" id="codeROS_2" class="form-control input-lg"  tabindex="4">
+                                                <input type="hidden" name="POS" id="problemCode" class="form-control input-lg"  tabindex="4">
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-md-2 control-label" for="textinput">Search Problem Name</label>
+                                                <div class="col-md-9">
+                                                    <input class="form-control input-lg" type="text" name="problem"  id="tCISOEROSProblemName" placeholder="Search Problem Name..." tabindex="4">
+                                                    <div id="tCISOEROSProblemNameLoading" ></div>
+                                                    <!--                                                    <input class="form-control input-lg" type="text" name="problem"  id="ROS" placeholder="Search Radiology Procedure..." tabindex="4">
+                                                                                                        <div id="matchROS" class="search-drop"></div>-->
+                                                </div>
                                             </div>
                                             <div class="form-group">
                                                 <label class="col-md-2 control-label" for="textinput">Search Radiology Procedure</label>
                                                 <div class="col-md-9">
-                                                    <input class="form-control input-lg" type="text" name="problem"  id="ROS" placeholder="Search Radiology Procedure..." tabindex="4">
-                                                    <div id="matchROS" class="search-drop"></div>
+                                                    <input class="form-control input-lg" type="text" name="problem"  id="tCISOEROSProcedureSearch" placeholder="Search Radiology Procedure..." tabindex="4">
+                                                    <div id="tCISOEROSProcedureSearchLoading" ></div>
+<!--                                                    <input class="form-control input-lg" type="text" name="problem"  id="ROS" placeholder="Search Radiology Procedure..." tabindex="4">
+                                                    <div id="matchROS" class="search-drop"></div>-->
                                                 </div>
                                             </div>
                                         </div>
@@ -166,6 +180,13 @@
                                         </div>
                                     </div>
                                 </div>
+                                                            <div class="btn-group btn-group-justified" role="group" aria-label="group button">
+                                                                <div class="btn-group btn-primary" role="group">
+                                                                    <button type="button" id="btnCIS_OE_ROS_UPDATE" class="btn btn-primary btn-block btn-lg" role="button">Update</button>
+                                                                    <button type="button" id="btnCIS_OE_ROS_CANCEL" class="btn btn-delete btn-block btn-lg" role="button">Cancel</button>
+                                                                    <button type="button" id="btnCIS_OE_ROS_ADD" class="btn btn-primary btn-block btn-lg" role="button">Add</button>
+                                                                </div>
+                                                            </div>                            
                             </div>
                             <!-- Tab 1 -->
 
@@ -205,36 +226,34 @@
                 </div>
 
                 <hr/>
+
+                <div style="overflow: auto">
                 <table class="table table-bordered table-striped">
                     <thead>
                         <tr>
-                            <td>Episode Date</td>
-                            <td>Order No.</td>
-                            <td>Radiology Name</td>
-                            <td>Radiology Details</td>
+                            <td>Body-System</td>
+                            <td>Modality</td>
+                            
+                            <td>Procedure Name</td>
+                            <td>Comment</td>
+                           
+                            <td>A.Date</td>
+                       
+                            
                             <td>Action</td>
                         </tr>
                     </thead>
-                    <tbody>
-                        <tr>
-                            <td>16/06/2017 | 3:52 PM</td>
-                            <td>000001</td>
-                            <td>Put Name</td>
-                            <td>Put details here</td>
-                            <td>
-                                <a data-toggle="tooltip" data-placement="top" title="Add Order" class="" style="cursor: pointer"><i class="fa fa-plus fa-lg" aria-hidden="true" style="display: inline-block;color: #58C102;"></i></a>
-                                &nbsp;
-                                <a class="" style="cursor: pointer" data-toggle="tooltip" data-placement="top" title="Cancel Order"><i class="fa fa-times fa-lg" aria-hidden="true" style="display: inline-block;color: #d9534f;"></i></a>
-                            </td>
-                        </tr>
+                    <tbody id="tableOrderROS">
+
                     </tbody>
                 </table>
-
-            </div>   
+            </div>
+            </div>
+                                                                           
             <div class="modal-footer">
                 <div class="btn-group btn-group-justified" role="group" aria-label="group button">
                     <div class="btn-group" role="group">
-                        <button type="button" class="btn btn-success btn-block btn-lg" id="acceptROS" role="button">Accept</button>
+                        <button type="button" class="btn btn-success btn-block btn-lg" id="btnCIS_OE_ROS_SUBMIT" role="button">Submit</button>
                     </div>
                     <div class="btn-group btn-delete hidden" role="group">
                         <button type="button" id="delImage" class="btn btn-default btn-block btn-lg" data-dismiss="modal"  role="button">Clear</button>
@@ -275,10 +294,12 @@
                     </div>
                     <div class="col-xs-8 col-sm-8 col-md-8">
                         <div class="form-group">
+                            <input class="form-control input-lg" type="text"  id="tCISOEROSHFCSearch_update" placeholder="Type to search..." data-relatives='#chained_relative' data-chained-relatives='true'>
+                            <div id="tCISOEROSHFCSearchLoading_update" ></div>
                             <input class="form-control input-lg" type="text"  id="UhfcROS" placeholder="">
-                            <input class="form-control input-lg" type="hidden"  id="UhfcOrderDetail" placeholder="">
-                            <input class="form-control input-lg" type="hidden"  id="UhfcProviderDetail" placeholder="">
-                            <input class="form-control input-lg" type="hidden"  id="UhfcIdROS">
+                            <input class="form-control input-lg" type="text"  id="UhfcOrderDetail" placeholder="">
+                            <input class="form-control input-lg" type="text"  id="UhfcProviderDetail" placeholder="">
+                            <input class="form-control input-lg" type="text"  id="UhfcIdROS">
                             <div id="UmatchHFCROS" ></div>
                         </div>
 
@@ -288,6 +309,8 @@
                         <input type="hidden" name="jsonId" id="jsonId" class="form-control input-lg" placeholder="Comments" tabindex="4">
                     </div>
                     <div class="form-group">
+                        <input class="form-control input-lg" type="text" name="problem"  id="tCISOEROSProcedureSearch_update" placeholder="Search Radiology Procedure..." tabindex="4">
+                        <div id="tCISOEROSProcedureSearchLoading_update" ></div>
                         <input class="form-control input-lg" type="text" name="problem"  id="UROS" placeholder="Search Procedure..." tabindex="4">
                         <div id="UmatchROS"></div>
                     </div>
@@ -437,3 +460,4 @@
         </div>
     </div>
 </div>
+                                    <script src="jsFunction/CIS040000.js" type="text/javascript"></script>

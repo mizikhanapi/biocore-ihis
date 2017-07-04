@@ -564,14 +564,14 @@ $('#tCIS_DTODrugName_update').val(updateObj.drugName);
     //js add for Radiology request
     $('#acceptROS').click(function (e) {
         e.preventDefault();
-        var ROS = $('#ROS').val();
+        var ROS = $('#tCISOEROSProcedureSearch').val();
         var codeROS = $('#codeROS_2').val();
         var commentROS = $('#commentROS').val();
         var modalityROS = $('#modalityROS').val();
         var modalityROScode = $('#modalityROSCode').val();
         var bodysysROS = $('#bodySystemROS').val();
         var bodysysROScode = $('#bodySystemROSCode').val();
-        var hfcROS = $('#hfcROS').val();
+        var hfcROS = $('#tCISOEROSHFCSearch').val();
         var hfcROScode = $('#hfcIdROS').val();
         var locationHFCROS = $('#locationROS').val();
         var appointmentROS = $('#appointmentROS').val();
@@ -582,12 +582,15 @@ $('#tCIS_DTODrugName_update').val(updateObj.drugName);
         
         console.log(codeROS);
 
-        var $items = $('#ROS, #commentROS,#modalityROS,#modalityROSCode,#bodySystemROS,#bodySystemROSCode,#hfcROS,#hfcIdROS,#locationROS,#appointmentROS,#patientConditionROSCd,#priorityROScd,#hfcOrderDetail,#hfcProviderDetail');
-        var obj1 = {Acode: 'ROS',
-                          patientConditionROS:   patientCondition,
-                          priorityROS: priority,
-                          codeROS:codeROS
-                      };
+        var $items = $(' #commentROS,#modalityROS,#modalityROSCode,#bodySystemROS,#bodySystemROSCode,#hfcIdROS,#locationROS,#appointmentROS,#patientConditionROSCd,#priorityROScd,#hfcOrderDetail,#hfcProviderDetail');
+        var obj1 = {
+            Acode: 'ROS',
+            ROS:ROS,
+            patientConditionROS:   patientCondition,
+            priorityROS: priority,
+            codeROS:codeROS,
+            hfcROS:hfcROS
+           };
       //getObjectORCHFCDetail(hfc_cd, hfcROScode,obj1);
         $items.each(function () {
             obj1[this.id] = $(this).val();
@@ -624,7 +627,7 @@ $('#tCIS_DTODrugName_update').val(updateObj.drugName);
         var idName = $(this).get(0).id;
         var id = idName.split("|");
         var updateObj = _data[id[1]];
-        console.log(_data);
+        retrieveDataSearchingHFC("tCISOEROSHFCSearch_update", "tCISOEROSHFCSearchLoading_update", "search/ResultHFCSearch.jsp", "search/ResultHFCSearchCode.jsp", "UhfcIdROS", "UlocationROS", "UhfcOrderDetail", "UhfcProviderDetail",updateObj.hfcROS,updateObj.ROS);
         $('#UcodeROS').val(updateObj.codeROS);
         $('#UROS').val(updateObj.ROS);
         $('#UcommentROS').val(updateObj.commentROS);
@@ -641,7 +644,6 @@ $('#tCIS_DTODrugName_update').val(updateObj.drugName);
         $('#UappointmentROS').val(updateObj.appointmentROS);
         $('#UpatientConditionROScd').val(updateObj.patientConditionROSCd);
         $('#UpriorityROScd').val(updateObj.priorityROScd);
-        //$(this).closest('tr').remove();
         console.log($('#UROS').val());
 
     });
@@ -1340,7 +1342,6 @@ $('#acceptADW').click(function(){
     });
     
        $('#btnCIS_GenerateMC').click(function () {
-console.log("here");
                 $.ajax({
                     async: true,
                     type: "POST",
@@ -1369,8 +1370,118 @@ console.log("here");
                 });
 
             });
-    
-    
+            
+    function retrieveDataSearchingHFC(fieldId, loadingDivId, urlData, urlCode, codeFieldId, locationField, hfcOrderDetail, hfcProviderDetail,currentHfc,currentRISProcedure) {
+        $('#' + fieldId).val(currentHfc).flexdatalist({
+            minLength: 3,
+            searchIn: 'name',
+            searchDelay: 2000,
+            url: urlData,
+            cache: true,
+            params: {
+                timeout: 3000,
+                success: function (result) {
+                    console.log(result);
+                    if (result === undefined) {
+                        $('#' + loadingDivId).html('No Record');
+                    }
+                }
+            }
+        });
+
+        $("#" + fieldId).on('before:flexdatalist.data', function (response) {
+            console.log("Start - " + getDate());
+            $('#' + loadingDivId).html('<img src="img/LoaderIcon.gif" />');
+        });
+        $("#" + fieldId).on('after:flexdatalist.data', function (response) {
+            console.log("End - " + getDate());
+            $('#' + loadingDivId).html('');
+        });
+        $("#" + fieldId).on('select:flexdatalist', function (response) {
+            var hfc_name = $("#" + fieldId).val();
+            $.ajax({
+                type: "post",
+                url: urlCode,
+                timeout: 3000,
+                data: {
+                    id: hfc_name,
+                    orderCode: "ROS"
+                },
+                success: function (response) {
+
+                    var hfc_detail_array = response.split("[#-#]");
+                    var hfc_location = hfc_detail_array[0].split("|");
+                    $('#' + codeFieldId).val(hfc_location[0].trim());
+                    $('#' + locationField).val(hfc_location[1].trim());
+                    $('#' + hfcOrderDetail).val(hfc_detail_array[1].trim());
+                    $('#' + hfcProviderDetail).val(hfc_detail_array[2].trim());
+                    $("#tCISOEROSProcedureSearch").prop("disabled", false);
+                    retrieveDataSearchingRISPRO("tCISOEROSProcedureSearch_update", "tCISOEROSProcedureSearchLoading_update", "search/ResultRISProcedureSearch.jsp", "search/ResultRISProcedureSearchCode.jsp", "UcodeROS", "UmodalityROSCode", "UmodalityROS", "UbodySystemROSCode", "UbodySystemROS",currentRISProcedure);
+                }
+            });
+            // console.log(hfcRISCode);
+        });
+    }
+    function retrieveDataSearchingRISPRO(fieldId, loadingDivId, urlData, urlCode, codeFieldId, modalityCode, modality, bodySystemCode, bodySystem,currentRISProcedure,currentRISProcedure) {
+        
+       var keywordSearch = $("#" + fieldId).val();
+        console.log(currentRISProcedure);
+        $('#' + fieldId).val(currentRISProcedure).flexdatalist({
+            minLength: 1,
+            searchIn: 'name',
+            searchDelay: 2000,
+            url: urlData,
+            cache: true,
+            params: {
+                timeout: 3000,
+                success: function (result) {
+                    console.log(result);
+                    if (result === undefined) {
+                        $('#' + loadingDivId).html('No Record');
+                    }
+                }
+            }
+        });
+
+        $("#" + fieldId).on('before:flexdatalist.data', function (response) {
+            console.log("Start - " + getDate());
+
+            $('#' + loadingDivId).html('<img src="img/LoaderIcon.gif" />');
+        });
+        $("#" + fieldId).on('after:flexdatalist.data', function (response) {
+            console.log("End - " + getDate());
+            $('#' + loadingDivId).html('');
+        });
+        $("#" + fieldId).on('select:flexdatalist', function (response) {
+
+            var hfc_name = $("#" + fieldId).val();
+            $.ajax({
+                type: "post",
+                url: urlCode,
+                timeout: 3000,
+                data: {id: hfc_name},
+                success: function (response) {
+                    var array_data = String(response).split("|");
+                    var urosCode = array_data[0];
+                    var modalityCODE = array_data[1];
+                    var bodySystem1 = array_data[2];
+                    var modalityName = array_data[3];
+                    var bodySystemName = array_data[4];
+
+                    $('#codeROS_2').val(urosCode.trim());
+
+                    $('#' + modality).val(modalityName.trim());
+                    $('#' + bodySystem).val(bodySystemName.trim());
+                    $('#' + modalityCode).val(modalityCODE.trim());
+                    $('#' + bodySystemCode).val(bodySystem1.trim());
+
+                    $('#' + codeFieldId).val(urosCode.trim());
+
+                }
+            });
+
+        });
+    }
     
     });
 

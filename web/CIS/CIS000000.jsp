@@ -49,17 +49,7 @@
             discipline = '<%out.print(discipline);%>';
             subdis = '<%out.print(subdicipline);%>';
             cisParam = '<%out.print(cisSystemParam);%>';
-
-            console.log(cisParam);
             
-//            var settingArry = spliceSetting(cisParam);
-//            console.log(settingArry);
-            
-            
-
-            
-
-
             $.ajax({
                 url: "search/searchRRI.jsp",
                 type: "post",

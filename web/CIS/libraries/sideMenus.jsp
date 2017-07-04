@@ -29,7 +29,7 @@
 
 
 
-        <li class="active"><a href="#generic-soap" role="tab" data-toggle="tab" class="panelito"><i class="fa fa-angle-right fa-lg"></i> Generic</a></li>
+        <li class="active"><a href="#generic-soap" role="tab" data-toggle="tab" class="panelito"><i class="fa fa-angle-right fa-lg"></i> Primary Care</a></li>
         <li role="presentation" class="dropdown">
             <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
                 <i class="fa fa-angle-right fa-lg"></i> Orthopedic <span class="caret"></span>
