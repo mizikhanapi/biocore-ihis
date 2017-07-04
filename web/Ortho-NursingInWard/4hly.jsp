@@ -47,6 +47,7 @@
         <th>Thrombo Phlebitis</th>
         <th>V.I.P. Score</th>
         <th>Approval</th>
+        
     </thead>
     <tbody>
             <tr>
@@ -120,7 +121,7 @@
             datas = "null";
         }
         console.log(datas);
-        ajaxObservation(datas);
+        ajax4hly(datas);
 
     });
 
@@ -138,11 +139,11 @@
 
         var data2 = pmiOB + "|" + SnewDate + "^" + EnewDate + "|custom";
         //console.log(data2);
-        ajaxObservation(data2);
+        ajax4hly(data2);
 
     });
 
-    function ajaxObservation(datas) {
+    function ajax4hly(datas) {
         $.ajax({
             type: "post",
             url: "../Ortho-NursingInWard/controller/4hlyFunction.jsp",
