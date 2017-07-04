@@ -480,6 +480,7 @@ ul.nav.navbar-nav.navbar-left.back {
         z-index: 9999999!important;
         height: 100%;
         width: 230px;
+        overflow-y: auto;
         transform-style: preserve-3d;
         transition-delay: .1s;
         transition-duration: .2s;
@@ -1036,4 +1037,11 @@ tr#moveToOrderDetailsTButton {
     top: 30px;
     right: 0px;
     font-size: 16px;
+}
+
+.item-source {
+    padding-left: 10px;
+    display: inline-block;
+    font-size: 80%;
+    color: rgba(0, 0, 0, 0.50);
 }
