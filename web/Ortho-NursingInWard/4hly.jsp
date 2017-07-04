@@ -160,4 +160,47 @@
         });
     }
     ;
+    
+    $('#divBIW4hly').on('click','#tblNIW_4hly #delNIW4hly',function(e){
+        e.preventDefault();
+        var row = $(this).closest("tr");
+        var dataX = row.find('#priNIW4hly').html();
+        var sel = $('#select4hlydate').val();
+        
+        bootbox.confirm({
+            message: "Are you sure want to delete?",
+            buttons: {
+                confirm: {
+                    label: 'Yes',
+                    className: 'btn-danger'
+                },
+                cancel: {
+                    label: 'No',
+                    className: 'btn-success'
+                }
+            },
+            callback: function (result) {
+                if (result === true) {
+                    $.ajax({
+                        type: "post",
+                        url: "../Ortho-NursingInWard/controller/4hlyFunction.jsp",
+                        timeout: 10000,
+                        data: {datas: dataX, methodName: 'delete'},
+                        success: function (result) {
+                            console.log(result);
+                            if (result.trim() === 'true') {
+                                $('#select4hlydate').val(sel).change();
+                            } else {
+
+                            }
+                        },
+                        error: function (err) {
+
+                        }
+                    });
+                }
+            }
+        });
+    });
+    
     </script>
