@@ -236,6 +236,7 @@
     bottom: 5px;
     display: block;
     font-size: 50px !important;
+    z-index: -2;
 }
 
 .kotak i.fa-users {
@@ -878,7 +879,7 @@ tr#moveToOrderDetailsTButton {
 }
 
 .table-guling>.dataTables_wrapper>.row>.col-sm-12 {
-    overflow-x: hidden;
+    overflow-x: auto;
 }
 
 .table-guling>.dataTables_wrapper>.row>.col-sm-12:hover {
