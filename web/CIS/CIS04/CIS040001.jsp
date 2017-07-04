@@ -46,17 +46,15 @@
                                             <div class="col-md-12">
                                                 <input type="hidden" name="LOS" id="jsonId" class="form-control input-lg"  tabindex="4">
                                                 <input type='text'
-                                                       placeholder='Write your country name'
+                                                       placeholder='Search Laboratory request...'
                                                        class='form-control input-lg flexdatalist'
                                                        id='tCISOELIOSearch' 
-                                                      
                                                        data-search-in='name'
                                                        data-visible-properties='["name","source"]'
                                                        data-selection-required='true'
                                                        data-min-length='1'
                                                        name='country_name_capital_continent'>
-                                                
-<!--                                                <input class="form-control input-lg" type="text"  id="tCISOELIOSearch" data-visible-properties='["name","source"]' placeholder="Type to search..." data-relatives='#chained_relative' data-chained-relatives='true'>-->
+
                                                 <div id="tCISOELIOSearchLoading" ></div>
                                                 <input class="form-control input-lg" type="text" name="problem"  id="searchLOS" placeholder="Search Laboratory request..." tabindex="4">
                                                 <input class="form-control input-lg" type="text" name="dtoCode"  id="codeLOS" placeholder="Drug Code..." tabindex="4" readonly="">
@@ -185,7 +183,9 @@
                                         <div class="form-group">
                                             <label class="col-md-6" for="textinput">Health Facility</label>
                                             <div class="col-md-12">
-                                                <input class="form-control input-lg" type="text"  id="hfcLOS" placeholder="">
+                                                <input class="form-control input-lg" type="text"  id="tCISOELIOHFC" placeholder="Type to search..." data-relatives='#chained_relative' data-chained-relatives='true'>
+                                                <div id="tCISOELIOHFCSearchLoading" ></div>
+<!--                                                <input class="form-control input-lg" type="text"  id="hfcLOS" placeholder="">-->
                                                 <input class="form-control input-lg" type="hidden"  id="hfcOrderDetailLIO" placeholder="">
                                                 <input class="form-control input-lg" type="hidden"  id="hfcProviderDetailLIO" placeholder="">
                                                 <input class="form-control input-lg" type="hidden"  id="hfcIdLOS">
@@ -264,19 +264,7 @@
                         </tr>
                     </thead>
                     <tbody id="tableOrderLIO">
-                        <tr>
-                            <td>16/06/2017 | 3:52 PM</td>
-                            <td>000001</td>
-                            <td>Put Name</td>
-                            <td>Put details here</td>
-                            <td>Put details here</td>
-                            <td>Put details here</td>
-                            <td>
-                                <a data-toggle="tooltip" data-placement="top" title="Add Order" class="" style="cursor: pointer"><i class="fa fa-plus fa-lg" aria-hidden="true" style="display: inline-block;color: #58C102;"></i></a>
-                                &nbsp;
-                                <a class="" style="cursor: pointer" data-toggle="tooltip" data-placement="top" title="Cancel Order"><i class="fa fa-times fa-lg" aria-hidden="true" style="display: inline-block;color: #d9534f;"></i></a>
-                            </td>
-                        </tr>
+
                     </tbody>
                 </table>
             </div>

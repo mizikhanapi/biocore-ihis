@@ -10,12 +10,12 @@
 <%
      Conn Conn = new Conn();
     //String key = request.getParameter("input");
-    String id = request.getParameter("id");
+    String id = request.getParameter("code");
     
     id.toLowerCase();
     String searchProblem = "select item_cd,item_name,test_cat,spe_source,spe_container,volume,special_inst from lis_item_detail where CONCAT(UPPER(item_cd),LOWER(item_cd)) like '%" + id + "%' ";
     ArrayList<ArrayList<String>> search = Conn.getData(searchProblem);
-    out.print(searchProblem);
+   
     if (search.size() > 0) {
 
         for (int i = 0; i < search.size(); i++) {

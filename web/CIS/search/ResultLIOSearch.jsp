@@ -7,7 +7,7 @@
     Conn Conn = new Conn();
     String key = request.getParameter("keyword");
     //String key ="Alb";
-    String searchProblem = "select item_name,spe_source from lis_item_detail where CONCAT(UPPER(item_name),LOWER(item_name)) like '%" +  key + "%' ";
+    String searchProblem = "select item_name,spe_source,item_cd,test_cat,spe_container,volume,special_inst from lis_item_detail where CONCAT(UPPER(item_name),LOWER(item_name)) like '%" +  key + "%' ";
     ArrayList<ArrayList<String>> search = Conn.getData(searchProblem);
 
     if (search.size() > 0) {
@@ -17,14 +17,24 @@
             if (i == search.size() - 1) {
                
                 out.print(
-                        "{ \"name\" : \"" + search.get(i).get(0)+ "\","
-                                + "\"source\" : \"" + search.get(i).get(1)+"\"}"
+                        "{ \"name\" : \"" + search.get(i).get(0)+ "\", "
+                                + "\"source\" : \"" + search.get(i).get(1)+ "\","
+                                + "\"code\" : \"" + search.get(i).get(2)+ "\","
+                                + "\"category\" : \"" + search.get(i).get(3)+ "\","
+                                + "\"container\" : \"" + search.get(i).get(4)+ "\","
+                                + "\"volume\" : \"" + search.get(i).get(5)+ "\","
+                                + "\"instruction\" : \"" + search.get(i).get(6)+"\"}"
                 );
             } else {
                 
                 out.print(
-                        "{ \"name\" : \"" + search.get(i).get(0)+  "\","
-                         + "\"source\" : \"" + search.get(i).get(1)+"\"},"
+                        "{ \"name\" : \"" + search.get(i).get(0)+ "\", "
+                                + "\"source\" : \"" + search.get(i).get(1)+ "\","
+                                + "\"code\" : \"" + search.get(i).get(2)+ "\","
+                                + "\"category\" : \"" + search.get(i).get(3)+ "\","
+                                + "\"container\" : \"" + search.get(i).get(4)+ "\","
+                                + "\"volume\" : \"" + search.get(i).get(5)+ "\","
+                                + "\"instruction\" : \"" + search.get(i).get(6)+"\"},"
                 );
             }
         }
