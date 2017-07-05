@@ -243,6 +243,25 @@ function searchLIO(searchFieldId, url, loadingId, currentValue) {
         }
     });
 }
+function searchDTO(searchFieldId, loadingId, currentValue) {
+    $('#' + searchFieldId).val(currentValue).flexdatalist({
+        minLength: 1,
+        searchIn: 'name',
+        searchDelay: 2000,
+        selectionRequired: true,
+        url: "search/ResultDTOSearch.jsp",
+        cache: true,
+        params: {
+            timeout: 3000,
+            success: function (result) {
+                //console.log(result);
+                if (result === undefined) {
+                    $('#' + loadingId).html('No Record');
+                }
+            }
+        }
+    });
+}
 
 function sendOrder(data,tableId){
     $.ajax({

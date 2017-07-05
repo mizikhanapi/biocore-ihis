@@ -18,6 +18,23 @@ function convertLIO(obj){
     var msg = "LIO|"  + obj.problemCode +"^"+obj.problemName+"^CTV3|"+ obj.codeLOS + "^" + obj.searchLOS + "^ICD10-PCS|" + obj.appointmentLOS + "|038^" + obj.priority + "^" + obj.priorityLOScd + "|096^" + obj.patientConditionLOScd + "^" + obj.patientCondition + "|" + obj.hfcIdLOS + "^" + obj.hfcLOS + "^PSDD|" + obj.commentLOS + "|" + hfc_cd + "^" + hfc_name + "^" + discipline + "^"+disciplineName+"^" + subdis + "^"+subdisName+"^" + "|<cr>\n";
     return msg;
 }
+function convertDTO(obj){
+    var problemDTO = "DTO|"  + obj.problemCode +"^"+obj.problemName+"^CTV3|";
+    var drug = obj.drugCode + "^ " + obj.drugName + "^MDC|";
+    var drugForm = obj.drugForm + "^" + obj.drugForm + "^MDC|";
+    var drugRoute = "0066^" + obj.drugRoute + "^" + obj.drugRoute + "|";
+    var drugFrequency = "^" + obj.drugFrequencyDetail + "^SG|";
+    var drugFrequecyUnit = obj.drugFrequency + "|";
+    var drugDosage = obj.drugDose + " " + obj.drugDoseUnit + "|";
+    var drugStrength = obj.drugStrength + " " + obj.drugStrengthUnit + "|";
+    var drugUOM = "0025^" + obj.drugStrengthUnit + "^" + obj.uomCode + "|";
+    var drugDuration = obj.drugDuration + "^" + obj.drugDurationUnit + "|";
+    var quantity = obj.drugQuantity + "|";
+    var theRest = hfc_cd + "^" + hfc_name + "^PSDD|" + obj.remark + "|" + hfc_cd + "^" + hfc_name + "^" + discipline + "^" + disciplineName + "^" + subdis + "^" + subdisName + "^" + "|" + obj.comment + "|<cr>\n";
+   
+    var msg = problemDTO + drug + drugForm+drugRoute+drugFrequency+drugFrequecyUnit+drugDosage+drugStrength+drugUOM+drugDuration+quantity+theRest;  
+    return msg;
+}
 
 function convertORC(obj,moduleFrom,moduleTo){
     var hfcOFDetail = obj.hfcOrderDetail.split("|");
@@ -34,7 +51,7 @@ function getORC(transectionCode,orderNo,fillerOrderNo,orderStatus, orderPriority
     orderHFCAdd2, orderHFCAdd3, orderHFCtown, orderHFCDistrict, orderHFCState, orderHFCCountry,orderHFCPostcode, orderHFCPhoneNo, providerHFC, providerDis,providerSub,providerApp, providerAdd1, 
     providerAdd2,providerAdd3, providerTown,providerDistrict,providerState,providerCountry,providerPostcode,providerPhoneNo, comment){
         var orc = "";
-        var  orc1 = "ORC|"+transectionCode+"|"+orderNo+"|"+fillerOrderNo+"|"+orderStatus+"|"+orderPriority+"|"+orderDateTime+"|"+episodeDate+"|"+encounterDateTime+"|"+enterBy+"|"+verifiedBy+"|"+OPD+"|"+orderHFC+"|"+orderDis;
+        var  orc1 = "\n ORC|"+transectionCode+"|"+orderNo+"|"+fillerOrderNo+"|"+orderStatus+"|"+orderPriority+"|"+orderDateTime+"|"+episodeDate+"|"+encounterDateTime+"|"+enterBy+"|"+verifiedBy+"|"+OPD+"|"+orderHFC+"|"+orderDis;
         var orc2  =   "|"+orderSub+"|"+orderSub+"|"+orderApp+"|"+orderHFCAdd1+"|"+orderHFCAdd2+"|"+orderHFCAdd3+"|"+orderHFCtown+"|"+orderHFCDistrict+"|"+orderHFCState+"|"+orderHFCCountry+"|"+orderHFCPostcode;
         var orc3 = "|"+orderHFCPhoneNo+"|"+providerHFC+"|"+providerDis+"|"+providerSub+"|"+providerApp+"|"+providerAdd1+"|"+providerAdd2+"|"+providerAdd3+"|"+providerTown+ "|"+providerDistrict+"|"+providerState+ "|"+providerCountry+ "|"+providerPostcode+ "|"+providerPhoneNo+ "|"+comment+ "|"+"<cr>\n";
         orc = orc1+orc2+orc3;
