@@ -50,13 +50,21 @@
                 <div class="tab-pane fade" id="Ortho-Consultation_2">
                     <ul class="soap-content nav">
                         <li><a data-toggle="modal" data-target="#Neurosurgical0" href="" class="soap-select"><i class="fa fa-comments  fa-li"></i>Observation Date & Time</a></li>
-                        <li><a data-toggle="modal" data-target="#ong-pDetails2" href=""  class="soap-select"><i class="fa fa-history  fa-li"></i> Glosgow Coma Scale</a></li>
-                        <li><a data-toggle="modal" data-target="#ong-pDetails3" href=""  class="soap-select"><i class="fa fa-medkit  fa-li"></i> Blood Pressure</a></li>
+                        <li><a data-toggle="modal" data-target="#CIS020002" href=""  class="soap-select"><i class="fa fa-history  fa-li"></i> Glosgow Coma Scale</a></li>
+                        <li id="blood_pressure"><a data-toggle="modal" data-target="#CIS020003" href=""  class="blood_pressure"><i class="fa fa-medkit  fa-li"></i> Blood Pressure</a></li>
                         <li><a data-toggle="modal" data-target="#Neurosurgical1" href=""  class="soap-select"><i class="fa fa-medkit  fa-li"></i> Pupils</a></li>
                         <li><a data-toggle="modal" data-target="#Neurosurgical2" href=""  class="soap-select"><i class="fa fa-medkit  fa-li"></i> Limb Movement</a></li>
                     </ul>
                     <hr class="pemisah" />
                     <%@include file="neuObservation.jsp"%>
+                    
+                    <script>
+                        $('#blood_pressure').on('click', '.blood_pressure', function () {
+                            //$('#actionPE').hide();
+                            //$('#updatePE').hide();
+                            //$('#ortho_physical_exam').show();
+                        });
+                    </script>
                 </div>
                 <!-- content -->
 
@@ -73,10 +81,18 @@
                 <!-- content -->
                 <div class="tab-pane fade" id="Ortho-Consultation_4">
                     <ul class="soap-content nav">
-                        <li><a data-toggle="modal" data-target="#ong-pDetails1" href="" class="soap-select"><i class="fa fa-comments  fa-li"></i>New Examination</a></li>
+                        <li id="physical"><a data-toggle="modal" data-target="#CIS020009" href="" class="physical_exam"><i class="fa fa-comments  fa-li"></i>New Examination</a></li>
                     </ul>
                     <hr class="pemisah" />
                     <%@include file="physicalExam.jsp"%>
+
+                    <script>
+                        $('#physical').on('click', '.physical_exam', function () {
+                            $('#actionPE').hide();
+                            $('#updatePE').hide();
+                            $('#ortho_physical_exam').show();
+                        });
+                    </script>
                 </div>
                 <!-- content -->
 
