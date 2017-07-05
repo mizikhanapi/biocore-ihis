@@ -40,23 +40,29 @@ $(document).ready(function () {
                 msg += convertROS(_dataROS[i]);
             }
             fullmsg = msh + pdi + orc + msg;
-            
-            $.ajax({
-                type:"POST",
-                timeout:3000,
-                url:"topMenuFunction/SendOrder.jsp",
-                data:{
+            var data = {
                     msg: fullmsg,
                     pmino: pmiNo,
                     episodedate: episodeDate,
                     status: "1"
-                },
-                success:function(response){
-                    if (response.trim() === "|-SUCCESS-|"){
-                        $("#tableOrderROS").html('');
-                    }
                 }
-            })
+            sendOrder(data,"tableOrderROS");
+//            $.ajax({
+//                type:"POST",
+//                timeout:3000,
+//                url:"topMenuFunction/SendOrder.jsp",
+//                data:{
+//                    msg: fullmsg,
+//                    pmino: pmiNo,
+//                    episodedate: episodeDate,
+//                    status: "1"
+//                },
+//                success:function(response){
+//                    if (response.trim() === "|-SUCCESS-|"){
+//                        $("#tableOrderROS").html('');
+//                    }
+//                }
+//            })
             
 
         } else {
@@ -127,27 +133,30 @@ $(document).ready(function () {
     
     $("#tableOrderROS").on("click",".btnUpdate",function(e){
         e.preventDefault();
+        //hide and show button 
         $("#btnCIS_OE_ROS_UPDATE").show();
         $("#btnCIS_OE_ROS_CANCEL").show();
         $("#btnCIS_OE_ROS_ADD").hide();
+        
+        //get id, object and row stuff
         rowDataTr = $(this).closest("tr");
-       rowId = $(this).get(0).id;
-       var index = rowId.split('|');
-       index = parseInt(index[1]);
-       updateIndex = index;
-       updateObj = _dataROS[index];
-       console.log(updateObj);
-       retrieveDataSearchingHFC("tCISOEROSHFC", "tCISOEROSHFCSearchLoading", "search/ResultHFCSearch.jsp", "search/ResultHFCSearchCode.jsp", "hfcIdROS", "locationROS", "hfcOrderDetail", "hfcProviderDetail",updateObj.hfcROS,updateObj.ROS);
-        searchingRetrieve("tCISOEROSProblemName", "tCISOEROSProblemNameLoading", "search/ResultCCNSearch.jsp", "problemCode", "search/ResultCCNSearchCode.jsp",updateObj.problemName);
-        searchingRISPRO("tCISOEROSProcedureSearch", "tCISOEROSProcedureSearchLoading", "search/ResultRISProcedureSearch.jsp", "search/ResultRISProcedureSearchCode.jsp", "codeROS_2", "modalityROSCode", "modalityROS", "bodySystemROSCode", "bodySystemROS",updateObj.ROS);
-        $("#locationROS").val(updateObj.locationROS);
-       $("#hfcProviderDetail").val(updateObj.hfcProviderDetail);
-       $("#hfcOrderDetail").val(updateObj.hfcOrderDetail);
-       $('#hfcIdROS').val(updateObj.hfcIdROS);
+        rowId = $(this).get(0).id;
+        var index = rowId.split('|');
+        index = parseInt(index[1]);
+        updateIndex = index;
+        updateObj = _dataROS[index];
        
-       $('#commentROS').val(updateObj.commentROS);
-       $('#hfcProviderDetail').val(updateObj.hfcProviderDetail);
-       $('#hfcOrderDetail').val(updateObj.hfcOrderDetail);
+        //retrieve and show back the data from object
+        retrieveDataSearchingHFC("tCISOEROSHFC", "tCISOEROSHFCSearchLoading", "search/ResultHFCSearch.jsp", "search/ResultHFCSearchCode.jsp", "hfcIdROS", "locationROS", "hfcOrderDetail", "hfcProviderDetail", updateObj.hfcROS, updateObj.ROS);
+        searchingRetrieve("tCISOEROSProblemName", "tCISOEROSProblemNameLoading", "search/ResultCCNSearch.jsp", "problemCode", "search/ResultCCNSearchCode.jsp", updateObj.problemName);
+        searchingRISPRO("tCISOEROSProcedureSearch", "tCISOEROSProcedureSearchLoading", "search/ResultRISProcedureSearch.jsp", "search/ResultRISProcedureSearchCode.jsp", "codeROS_2", "modalityROSCode", "modalityROS", "bodySystemROSCode", "bodySystemROS", updateObj.ROS);
+        $("#locationROS").val(updateObj.locationROS);
+        $("#hfcProviderDetail").val(updateObj.hfcProviderDetail);
+        $("#hfcOrderDetail").val(updateObj.hfcOrderDetail);
+        $('#hfcIdROS').val(updateObj.hfcIdROS);
+        $('#commentROS').val(updateObj.commentROS);
+        $('#hfcProviderDetail').val(updateObj.hfcProviderDetail);
+        $('#hfcOrderDetail').val(updateObj.hfcOrderDetail);
         $('#problemCode').val(updateObj.problemCode);
         $('#modalityROS').val(updateObj.modalityROS);
         $('#modalityROSCode').val(updateObj.modalityROSCode);
@@ -159,8 +168,6 @@ $(document).ready(function () {
         $('#appointmentROS').val(updateObj.appointmentROS);
         $('#patientConditionROSCd').val(updateObj.patientConditionROSCd);
         $('#priorityROScd').val(updateObj.priorityROScd);
-       
-        console.log(rowDataTr)
     })
     $("#btnCIS_OE_ROS_CANCEL").click(function(e){
         e.preventDefault();
@@ -171,10 +178,7 @@ $(document).ready(function () {
     });
     $("#btnCIS_OE_ROS_UPDATE").click(function(e){
         e.preventDefault();
-       console.log(updateIndex);
-       console.log(updateObj);
-       console.log(rowDataTr);
-       
+       //update the object with current value
        updateObj.ROS = $("#tCISOEROSProcedureSearch").val();
        updateObj.appointmentROS = $("#appointmentROS").val();
        updateObj.bodySystemROS = $("#bodySystemROS").val();
@@ -195,6 +199,10 @@ $(document).ready(function () {
        updateObj.problemCode = $('#problemCode').val();
        console.log(rowId);
        updateOrderROSTable(updateObj,updateIndex);
+        $("#btnCIS_OE_ROS_UPDATE").hide();
+        $("#btnCIS_OE_ROS_CANCEL").hide();
+        $("#btnCIS_OE_ROS_ADD").show();
+        clearROSField();
     })
     
     //function searching Radiology Procedure
@@ -255,14 +263,12 @@ $(document).ready(function () {
 
     
     function updateOrderROSTable(obj,index){
-        console.log(rowId);
         var redcolor = '';
         if (obj.priorityROScd === 'P02') {
             redcolor = 'style="background-color:#ff9999"';
         }
         var _tr ='<td>'+obj.bodySystemROS+' </td><td>'+obj.modalityROS+'</td><<td>'+obj.ROS+'</td><td>'+obj.commentROS+'</td><td>'+obj.appointmentROS+'</td><td><a id="row|'+index+'" data-toggle="tooltip" data-placement="top" title="Update Order" class="btnUpdate" style="cursor: pointer" id=""><i class="fa fa-plus fa-lg" aria-hidden="true" style="display: inline-block;color: #58C102;"></i></a>&nbsp;<a id="delRow|'+index+'" data-toggle="tooltip" data-placement="top" title="Update Order" class="btnUpdate" style="cursor: pointer" id=""><i class="fa fa-times fa-lg" aria-hidden="true" style="display: inline-block;color: #d9534f;"></i></a></td>';
         $(rowDataTr).html(_tr);
-
     }
     
     function appendOrderROS(obj,index){

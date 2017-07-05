@@ -14,6 +14,11 @@ function convertROS(obj){
    return msg;
 }
 
+function convertLIO(obj){
+    var msg = "LIO|"  + obj.problemCode +"^"+obj.problemName+"^CTV3|"+ obj.codeLOS + "^" + obj.searchLOS + "^ICD10-PCS|" + obj.appointmentLOS + "|038^" + obj.priority + "^" + obj.priorityLOScd + "|096^" + obj.patientConditionLOScd + "^" + obj.patientCondition + "|" + obj.hfcIdLOS + "^" + obj.hfcLOS + "^PSDD|" + obj.commentLOS + "|" + hfc_cd + "^" + hfc_name + "^" + discipline + "^"+disciplineName+"^" + subdis + "^"+subdisName+"^" + "|<cr>\n";
+    return msg;
+}
+
 function convertORC(obj,moduleFrom,moduleTo){
     var hfcOFDetail = obj.hfcOrderDetail.split("|");
     var hfcPFDetail = obj.hfcProviderDetail.split("|");

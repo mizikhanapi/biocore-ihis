@@ -42,8 +42,15 @@
                                             <input type="hidden" name="POS" id="codeROS" class="form-control input-lg"  tabindex="4">
                                         </div>
                                         <div class="form-group">
+                                             <label class="col-md-6 control-label" for="textinput">Search Problem</label>
+                                             <input class="form-control input-lg" type="text" name="problem"  id="tCISOELIOProblemName" placeholder="Search Problem Name..." tabindex="4">
+                                                    <div id="tCISOELIOProblemNameLoading" ></div>
+                                             <div class="col-md-12">
+                                                 
+                                             </div>
                                             <label class="col-md-6 control-label" for="textinput">Search Laboratory Request</label>
                                             <div class="col-md-12">
+                                                <input type="hidden" name="problemCodeLIO" id="problemCodeLIO" class="form-control input-lg"  tabindex="4">
                                                 <input type="hidden" name="LOS" id="jsonId" class="form-control input-lg"  tabindex="4">
                                                 <input type='text'
                                                        placeholder='Search Laboratory request...'
@@ -56,8 +63,8 @@
                                                        name='country_name_capital_continent'>
 
                                                 <div id="tCISOELIOSearchLoading" ></div>
-                                                <input class="form-control input-lg" type="text" name="problem"  id="searchLOS" placeholder="Search Laboratory request..." tabindex="4">
-                                                <input class="form-control input-lg" type="text" name="dtoCode"  id="codeLOS" placeholder="Drug Code..." tabindex="4" readonly="">
+                                                <input class="form-control input-lg" type="hidden" name="problem"  id="searchLOS" placeholder="Search Laboratory request..." tabindex="4">
+                                                <input class="form-control input-lg" type="hidden" name="dtoCode"  id="codeLOS" placeholder="Drug Code..." tabindex="4" readonly="">
                                                 <div id="matchLOS" ></div>
                                             </div>
                                         </div>
@@ -272,7 +279,7 @@
             <div class="modal-footer">
                 <div class="btn-group btn-group-justified" role="group" aria-label="group button">
                     <div class="btn-group" role="group">
-                        <button type="button" class="btn btn-success btn-block btn-lg" id="acceptBtnLOS" role="button">Accept</button>
+                        <button type="button" class="btn btn-success btn-block btn-lg" id="btnCIS_OE_LIO_SUBMIT" role="button">Accept</button>
                     </div>
                     <div class="btn-group btn-delete hidden" role="group">
                         <button type="button" id="delImage" class="btn btn-default btn-block btn-lg" data-dismiss="modal"  role="button">Clear</button>

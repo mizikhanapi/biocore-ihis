@@ -221,4 +221,40 @@ function retrieveDataSearchingHFC(fieldId, loadingDivId, urlData, urlCode, codeF
 
     });
 }
+
+function searchLIO(searchFieldId, url, loadingId, currentValue) {
+    $('#' + searchFieldId).val(currentValue).flexdatalist({
+        minLength: 1,
+        searchIn: 'name',
+        searchDelay: 2000,
+        selectionRequired: true,
+        valueProperty: 'code',
+        visibleProperties: ["name", "source"],
+        url: url,
+        cache: true,
+        params: {
+            timeout: 3000,
+            success: function (result) {
+                //console.log(result);
+                if (result === undefined) {
+                    $('#' + loadingId).html('No Record');
+                }
+            }
+        }
+    });
+}
+
+function sendOrder(data,tableId){
+    $.ajax({
+        type: "POST",
+        timeout: 3000,
+        url: "topMenuFunction/SendOrder.jsp",
+        data:data ,
+        success: function (response) {
+            if (response.trim() === "|-SUCCESS-|") {
+                $("#"+tableId).html('');
+            }
+        }
+    })
+}
 //});
