@@ -25,6 +25,8 @@ $('#MS_viewBy').on('change', function () {
 function morseValueCheck() {
     var status = true;
 
+    var morseDate = $('#morseDate').val();
+    var morseTime = $('input[name=morseTime]:checked').val();
     var fall = $('input[name=rad_fall]:checked').val();
     var diagnosis = $('input[name=rad_diagnos]:checked').val();
     var movement = $('input[name=rad_pergerakan]:checked').val();
@@ -34,7 +36,15 @@ function morseValueCheck() {
 
     var msg = "";
 
-    if (fall == null) {
+    if(morseDate === '' || morseDate == null){
+        status = false;
+        msg = "Please pick a date.";
+    }
+    else if(morseTime == null){
+        status = false;
+        msg = "Please pick a time.";
+    }
+    else if (fall == null) {
         status = false;
         msg = "Please tick a score for fall history.";
     } else if (diagnosis == null) {
@@ -72,6 +82,8 @@ $('#morse_btnAdd').on('click', function () {
 
     //get all value from the checked radio button
     if (morseValueCheck()) {
+        var morseDate = $('#morseDate').val();
+        var morseTime = $('input[name=morseTime]:checked').val();
         var fall = $('input[name=rad_fall]:checked').val();
         var diagnosis = $('input[name=rad_diagnos]:checked').val();
         var movement = $('input[name=rad_pergerakan]:checked').val();
@@ -85,7 +97,11 @@ $('#morse_btnAdd').on('click', function () {
             movement: movement,
             venofix: venofix,
             badan: badan,
-            mental: mental
+            mental: mental,
+            morseTime: morseTime,
+            pmiNo: pmiNo,
+            epDate: episodeDate,
+            enDate: morseDate
         };
         
         var msg="";
@@ -98,6 +114,8 @@ $('#morse_btnAdd').on('click', function () {
             success: function (data, textStatus, jqXHR) {
                 if(data.trim()=== 'success'){
                     msg="Assessment is added.";
+                    $('#morse1').modal('hide');
+                    $('#morseForm')[0].reset();
                 }
                 else if(data.trim()=== 'fail'){
                     msg="Failed to add assessment.";

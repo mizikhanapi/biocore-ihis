@@ -12,7 +12,7 @@
                 <h4 class="modal-title" id="myModalLabel">Morse Fall Scale Assessment Chart</h4>
             </div>
             <div class="modal-body">
-                <form>
+                <form id="morseForm">
                     <div class="row">
                         <div class="col-md-6">
                             <!-- Text input-->
@@ -29,19 +29,19 @@
                                 <label class="col-md-12 control-label" for="textinput">Time</label>
                                 <div class="col-md-12 form-inline">
                                     <div class="radio radio-primary">
-                                        <input type="radio" name="morseTime" id="morseTime1" value="option1">
+                                        <input type="radio" name="morseTime" id="morseTime1" value="AM">
                                         <label for="morseTime1">
                                             AM
                                         </label>
                                     </div>
                                     <div class="radio radio-primary">
-                                        <input type="radio" name="morseTime" id="morseTime2" value="option2">
+                                        <input type="radio" name="morseTime" id="morseTime2" value="PM">
                                         <label for="morseTime2">
                                             PM
                                         </label>
                                     </div>
                                     <div class="radio radio-primary">
-                                        <input type="radio" name="morseTime" id="morseTime3" value="option3">
+                                        <input type="radio" name="morseTime" id="morseTime3" value="Noon">
                                         <label for="morseTime3">
                                             Noon
                                         </label>
