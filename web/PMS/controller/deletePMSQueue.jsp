@@ -9,7 +9,7 @@
 <%@page import="java.sql.*"%>
 <%@page import="java.util.List"%>
 <%@page import="java.util.ArrayList"%>
-<%@page import="Config.connect"%>
+<%--<%@page import="Config.connect"%>--%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
     RMIConnector rmic = new RMIConnector();

@@ -1,6 +1,8 @@
 <%@page import="dBConn.Conn"%>
 <%@page import="Config.Config"%>
-<%@ page session="true" %>
+<%@page import="java.util.ArrayList"%>
+<%@page import="org.apache.commons.lang3.StringUtils"%>
+<%--<%@ page session="true" %>--%>
 
 <%@include file="../Entrance/validateSession.jsp" %>
 <%@include file="validateModuleAccess.jsp" %>
@@ -46,9 +48,7 @@
                 <div class="main" style="background: #f2f4f8;" >
                     <div><%@include file = "libraries/topMenus.html" %></div>
                     <div class="row" >
-                        <div class="col-md-12" >
-
-                        </div>
+                        <div class="col-md-12" ></div>
                     </div>
 
                     <div class="row">

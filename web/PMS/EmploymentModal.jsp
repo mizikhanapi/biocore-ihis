@@ -1,6 +1,6 @@
 <%@page import="java.util.ArrayList"%>
 <%@page import="Config.Config"%>
-<%@page import="Config.connect"%>
+<%--<%@page import="Config.connect"%>--%>
 <%@page import="dBConn.Conn"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%

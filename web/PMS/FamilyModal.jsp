@@ -1,6 +1,6 @@
 <%@page import="dBConn.Conn"%>
 <%@page import="java.util.ArrayList"%>
-<%@page import="Config.connect"%>
+<%--<%@page import="Config.connect"%>--%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
     String relation71 = "select * from adm_lookup_detail where master_reference_code = '0007' AND hfc_cd = '"+hfc+"'   ";

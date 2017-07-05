@@ -1,6 +1,6 @@
-<%@page import="dBConn.Conn"%>
-<%@page import="java.util.ArrayList"%>
-<%@page import="Config.connect"%>
+<%--<%@page import="dBConn.Conn"%>--%>
+<%--<%@page import="java.util.ArrayList"%>--%>
+<%--<%@page import="Config.connect"%>--%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
     //Conn conn = new Conn();

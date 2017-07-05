@@ -1,6 +1,6 @@
 <%@page import="dBConn.Conn"%>
 <%@page import="java.util.ArrayList"%>
-<%@page import="Config.connect"%>
+<%--<%@page import="Config.connect"%>--%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
     //String relation = "select * from lookup_detail where master_ref_code = '0007' order by Description";
