@@ -193,6 +193,24 @@ $(document).ready(function(){
         
     });
     
+    $("#tableOrderDTO").on("click", ".btnDelete", function (e) {
+        
+        e.preventDefault();
+        rowDTODataTR = $(this).closest("tr");
+        var delId = $(this).get(0).id;
+        var delIdA = delId.split("|");
+        var delIndex = parseInt(delIdA[1]);
+        var delConfirm = confirm('Are you want to delete this Order? ');
+        if (delConfirm === true) {
+            delete _dataDTO[delIndex];
+            $(this).closest('tr').remove();
+            console.log(_dataDTO);
+        } else {
+            return false;
+        }
+        
+    });
+    
     
     $('#tCISOEDTODrugName').on('change:flexdatalist', function (value) {
         
@@ -238,13 +256,13 @@ $(document).ready(function(){
     
     function appendOrderDTO(obj, index) {
 
-        var _tr = '<tr id="trDTO_row|' + index + '" ><td>'+obj.drugName+'</td><td>'+ obj.drugStrength+' '+ obj.drugStrengthUnit+'</td><td>'+ obj.drugFrequency+'</td><td>'+ obj.drugDuration+' '+ obj.drugDurationUnit+ '</td><td>'+obj.drugQuantity+'</td><td>'+obj.remark+'</td><td>'+obj.comment+'</td><td><a id="row|' + index + '" data-toggle="tooltip" data-placement="top" title="Update Order" class="btnUpdate" style="cursor: pointer" id=""><i class="fa fa-plus fa-lg" aria-hidden="true" style="display: inline-block;color: #58C102;"></i></a>&nbsp;<a id="delRow|' + index + '" data-toggle="tooltip" data-placement="top" title="Update Order" class="btnDelete" style="cursor: pointer" id=""><i class="fa fa-times fa-lg" aria-hidden="true" style="display: inline-block;color: #d9534f;"></i></a></td></tr>';
+        var _tr = '<tr id="trDTO_row|' + index + '" ><td>'+obj.drugName+'</td><td>'+ obj.drugStrength+' '+ obj.drugStrengthUnit+'</td><td>'+ obj.drugFrequency+'</td><td>'+ obj.drugDuration+' '+ obj.drugDurationUnit+ '</td><td>'+obj.drugQuantity+'</td><td>'+obj.remark+'</td><td>'+obj.comment+'</td><td><a id="row|' + index + '" data-toggle="tooltip" data-placement="top" title="Update Order" class="btnUpdate" style="cursor: pointer" id=""><i class="fa fa-plus fa-lg" aria-hidden="true" style="display: inline-block;color: #58C102;"></i></a>&nbsp;<a id="delRow|' + index + '" data-toggle="tooltip" data-placement="top" title="Delete Order" class="btnDelete" style="cursor: pointer" id=""><i class="fa fa-times fa-lg" aria-hidden="true" style="display: inline-block;color: #d9534f;"></i></a></td></tr>';
         $("#tableOrderDTO").append(_tr);
         
     }
     function updateOrderDTOTable(obj, index) {
 
-         var _tr = '<td>'+obj.drugName+'</td><td>'+ obj.drugStrength+' '+ obj.drugStrengthUnit+'</td><td>'+ obj.drugFrequency+'</td><td>'+ obj.drugDuration+' '+ obj.drugDurationUnit+ '</td><td>'+obj.drugQuantity+'</td><td>'+obj.remark+'</td><td>'+obj.comment+'</td><td><a id="row|' + index + '" data-toggle="tooltip" data-placement="top" title="Update Order" class="btnUpdate" style="cursor: pointer" id=""><i class="fa fa-plus fa-lg" aria-hidden="true" style="display: inline-block;color: #58C102;"></i></a>&nbsp;<a id="delRow|' + index + '" data-toggle="tooltip" data-placement="top" title="Update Order" class="btnDelete" style="cursor: pointer" id=""><i class="fa fa-times fa-lg" aria-hidden="true" style="display: inline-block;color: #d9534f;"></i></a></td>';
+         var _tr = '<td>'+obj.drugName+'</td><td>'+ obj.drugStrength+' '+ obj.drugStrengthUnit+'</td><td>'+ obj.drugFrequency+'</td><td>'+ obj.drugDuration+' '+ obj.drugDurationUnit+ '</td><td>'+obj.drugQuantity+'</td><td>'+obj.remark+'</td><td>'+obj.comment+'</td><td><a id="row|' + index + '" data-toggle="tooltip" data-placement="top" title="Update Order" class="btnUpdate" style="cursor: pointer" id=""><i class="fa fa-plus fa-lg" aria-hidden="true" style="display: inline-block;color: #58C102;"></i></a>&nbsp;<a id="delRow|' + index + '" data-toggle="tooltip" data-placement="top" title="Delete Order" class="btnDelete" style="cursor: pointer" id=""><i class="fa fa-times fa-lg" aria-hidden="true" style="display: inline-block;color: #d9534f;"></i></a></td>';
        $(rowDTODataTR).html(_tr);
     }
     

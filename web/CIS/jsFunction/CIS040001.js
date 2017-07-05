@@ -203,6 +203,23 @@ $(document).ready(function () {
         $("#btnCIS_OE_LIO_ADD").show();
         clearFieldLIO();
     });
+    $("#tableOrderLIO").on("click", ".btnDelete", function (e) {
+        
+        e.preventDefault();
+        rowLIODataTR = $(this).closest("tr");
+        var delId = $(this).get(0).id;
+        var delIdA = delId.split("|");
+        var delIndex = parseInt(delIdA[1]);
+        var delConfirm = confirm('Are you want to delete this Order? ');
+        if (delConfirm === true) {
+            delete _dataLIO[delIndex];
+            $(this).closest('tr').remove();
+            console.log(_dataLIO);
+        } else {
+            return false;
+        }
+        
+    });
     
     function clearFieldLIO(){
         retrieveDataSearchingHFC("tCISOELIOHFC", "tCISOELIOHFCSearchLoading", "search/ResultHFCSearch.jsp", "search/ResultHFCSearchCode.jsp", "UhfcIdROS", "-", "hfcOrderDetailLIO", "hfcProviderDetailLIO",'','');
@@ -236,7 +253,7 @@ $(document).ready(function () {
         if (obj.priorityLOScd === 'P02') {
             redcolor = 'style="background-color:#ff9999"';
         }
-        var _tr = '<tr ' + redcolor + '  id="trLIO_row|' + index + '" ><td>'+obj.searchLOS+'</td><td>'+obj.sourceLOS+'</td><td>'+obj.containerLOS+'</td><td>'+obj.volumeLOS+'</td><td>'+obj.commentLOS+'</td><td>'+obj.appointmentLOS+'</td><td><a id="row|' + index + '" data-toggle="tooltip" data-placement="top" title="Update Order" class="btnUpdate" style="cursor: pointer" id=""><i class="fa fa-plus fa-lg" aria-hidden="true" style="display: inline-block;color: #58C102;"></i></a>&nbsp;<a id="delRow|' + index + '" data-toggle="tooltip" data-placement="top" title="Update Order" class="btnDelete" style="cursor: pointer" id=""><i class="fa fa-times fa-lg" aria-hidden="true" style="display: inline-block;color: #d9534f;"></i></a></td></tr>';
+        var _tr = '<tr ' + redcolor + '  id="trLIO_row|' + index + '" ><td>'+obj.searchLOS+'</td><td>'+obj.sourceLOS+'</td><td>'+obj.containerLOS+'</td><td>'+obj.volumeLOS+'</td><td>'+obj.commentLOS+'</td><td>'+obj.appointmentLOS+'</td><td><a id="row|' + index + '" data-toggle="tooltip" data-placement="top" title="Update Order" class="btnUpdate" style="cursor: pointer" id=""><i class="fa fa-plus fa-lg" aria-hidden="true" style="display: inline-block;color: #58C102;"></i></a>&nbsp;<a id="delRow|' + index + '" data-toggle="tooltip" data-placement="top" title="Delete Order" class="btnDelete" style="cursor: pointer" id=""><i class="fa fa-times fa-lg" aria-hidden="true" style="display: inline-block;color: #d9534f;"></i></a></td></tr>';
         //var _tr = '<tr ' + redcolor + '  id="tr_row|' + index + '" ><td>' + obj.bodySystemROS + ' </td><td>' + obj.modalityROS + '</td><<td>' + obj.ROS + '</td><td>' + obj.commentROS + '</td><td>' + obj.appointmentROS + '</td><td><a id="row|' + index + '" data-toggle="tooltip" data-placement="top" title="Update Order" class="btnUpdate" style="cursor: pointer" id=""><i class="fa fa-plus fa-lg" aria-hidden="true" style="display: inline-block;color: #58C102;"></i></a>&nbsp;<a id="delRow|' + index + '" data-toggle="tooltip" data-placement="top" title="Update Order" class="btnDelete" style="cursor: pointer" id=""><i class="fa fa-times fa-lg" aria-hidden="true" style="display: inline-block;color: #d9534f;"></i></a></td></tr>';
         $("#tableOrderLIO").append(_tr);
     }
