@@ -48,9 +48,10 @@
     
     }else if(process.equalsIgnoreCase("subdiscipline")){
 
-        String query = "Select a.subdiscipline_cd, a.subdiscipline_name from adm_subdiscipline a "
-                + "join adm_hfc_discipline b on a.subdiscipline_cd = b.subdiscipline_cd AND a.subdiscipline_status = b.hfc_discipline_status "
-                + "WHERE a.subdiscipline_status = '0' AND b.hfc_cd = '"+hfc+"' AND b.discipline_cd = '"+dis+"' AND concat(a.subdiscipline_cd, ' | ', a.subdiscipline_name) like '%"+key+"%'";
+        String query = "Select a.subdiscipline_cd, a.subdiscipline_name "
+                + "from adm_subdiscipline a "
+                + "join adm_hfc_discipline b on a.subdiscipline_cd = b.subdiscipline_cd AND a.subdiscipline_status = b.hfc_discipline_status AND a.subdiscipline_hfc_cd = b.hfc_cd "
+                + "WHERE a.subdiscipline_status = '0' AND b.hfc_discipline_status = '0' AND b.hfc_cd = '"+hfc+"' AND b.discipline_cd = '"+dis+"' AND concat(a.subdiscipline_cd, ' | ', a.subdiscipline_name) like '%"+key+"%'";
         
         ArrayList<ArrayList<String>> dataDis = conn.getData(query);
         
