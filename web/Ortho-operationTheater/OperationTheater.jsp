@@ -45,11 +45,14 @@
                 <!-- content -->
                 <div class="tab-pane fade" id="Ortho-OperationTheater_2">
                     <ul class="soap-content nav">
-                        <li><a data-toggle="modal" data-target="#ong-pDetails1" href="" class="soap-select"><i class="fa fa-comments  fa-li"></i> Add Consent</a></li>
+                        <li><a data-toggle="modal" data-target="#addConsentToOpration" href="" class="soap-select"><i class="fa fa-comments  fa-li"></i> Add Consent</a>
+<!--                            <a id="Print" class="soap-select" data-toggle="modal" data-target="#opreationConsentForm">Print</a></li>-->
                     </ul>
                     <hr class="pemisah" />
                     <%//@include file="neuObservation.jsp"%>
+                    <div id="test2" display="hidden"></div>
                 </div>
+                
                 <!-- content -->
 
                 <!-- content -->
@@ -86,8 +89,62 @@
     <!-- Tab Menu -->
 </div>
 
-
 <%@include file="modal/operationRecord.jsp"%>
 <%@include file="modal/procedureIncision.jsp"%>
+<%@include file="modal/AddConsentOperation.jsp"%>
 
 <script src="../assets/js/btn.number.js" type="text/javascript"></script>
+<script>
+  
+    $('#addNextOfKinInfo').click(function () {
+        var name, ic, relWithPatient, relWithNext,patientName;
+        name = $("#nextOfKinName").val();
+        ic = $("#nextOfKinIC").val();
+        relWithPatient = $("#relaitonWithPatient").val();
+        relWithNext = $("#relationWitNextOfKin").val();
+        patientName = $("#pName").text();
+        sendDate(name, ic, relWithPatient, relWithNext,patientName);
+    });
+    
+   
+  
+    function sendDate(name, ic, relWithPatient, relWithNext,patientName) {
+        var datas = {
+               'name':name,
+               'ic':ic,
+               'relWithPatient':relWithPatient,
+               'relWithNext':relWithNext,
+               'patientName':patientName
+           };
+           console.log(datas);
+        $.ajax({
+           type:'POST',
+           url:'../Ortho-operationTheater/report-ConsentForOperation.jsp',
+           data: datas,
+           timeout:10000,
+           success: function(form){
+               console.log("succ: "+form.trim());
+               $("#test2").val(form.trim());
+               $("#test2").html(form.trim());
+               $('#test2').trigger('contentchanged');
+               $('#addConsentToOpration').hide();
+               $('.modal-backdrop').hide();
+               $('#opreationConsentForm').modal();
+//               printReport();
+           },
+           error: function(err){
+               console.log("ERROR: "+err);
+           }
+           
+        });
+    };
+    function printReport()
+    {
+        var divElements = $('#test2').html();
+        var popupWin = window.open('', '_blank', 'width=1080,height=768');
+        popupWin.document.open();
+        popupWin.document.write('<html><body onload="window.print()">' + divElements + '</html>');
+        popupWin.document.close();
+    }
+
+</script>

@@ -18,7 +18,7 @@
       <h3 style="text-align: center; clear: right">HOSPITAL KUALA LUMPUR<br>
           PHYSIOTHERAPY REFERRAL FORM</h3>
       
-      <div style="height:140px;">
+      <div style="height:110px;">
         <div class="" style="width: 30%; float: left;">
             <p><strong  style="white-space:pre">Name   : ...................................................</strong></p>
             <p><strong  style="white-space:pre">Age      : ..........</strong></p>
@@ -42,12 +42,13 @@
               </tr>
           </table>
       </div>
-      <div style="margin-top: 30px;">
+      <div style="margin-top: 20px;">
           <p><strong style="float: left;">Doctor's Signature & Stamp :<br><br> 
                   ........................................................</strong></p><br><br>
           <p><strong style="float: right;">Date: ...................................................</strong></p>
           <p style="clear: both; margin-top: 40px;"><strong><u>Reminder / peringatan:</u><br>
               Patients who are referred for physiotherapy must obtain the data for their first appointment within 2 weeks from the date of referral.<br>
           Pesakit yang telag dirujuk mesti mendapatikan tarikh temujanji pertame dalam tempoh 2 minggu dari tarikh rujukan doktor.</strong></p>
+          <p style="float: right; margin-top: 10px;"> <strong>Physio Dept, HKL 2001 . Revision no.2:2001</strong></p>
       </div>
   </div>
