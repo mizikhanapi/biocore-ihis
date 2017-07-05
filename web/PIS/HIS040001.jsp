@@ -66,10 +66,15 @@
                                         <!-- tab content -->
                                         <div class="tab-content">
                                             <div class="tab-pane active" id="tab_default_1">
+
+                                                <div id="patientOrderListMain">
+
+                                                </div>
                                                 <div id="patientOrderListContent">
 
                                                 </div>
                                             </div>
+
                                             <div class="tab-pane" id="tab_default_2">
                                                 <div id="patientOrderDetailContent">
 
@@ -316,7 +321,7 @@
                                             <select id="orderDrugInputDoseT" name="orderDrugInputDoseT" class="form-control">
                                                 <option value="No Dose">Select Dose</option>
                                                 <%  String sql4 = "SELECT Master_Reference_code,Detail_Reference_code, Description FROM adm_lookup_detail "
-                                                        + " where Master_Reference_code = '0025' AND hfc_cd = '" + hfc + "' ";
+                                                            + " where Master_Reference_code = '0025' AND hfc_cd = '" + hfc + "' ";
                                                     ArrayList<ArrayList<String>> listOfDUOM = conn.getData(sql4);
 
                                                     int size4 = listOfDUOM.size();
@@ -339,7 +344,7 @@
                                             <select id="orderDrugInputFrequency" name="orderDrugInputFrequency" class="form-control">
                                                 <option value="No Frequency">Select Frequency</option>
                                                 <%  String sql5 = "SELECT Master_Reference_code,Detail_Reference_code, Description FROM adm_lookup_detail "
-                                                        + " where Master_Reference_code = '0088' AND hfc_cd = '"+hfc+"' ";
+                                                            + " where Master_Reference_code = '0088' AND hfc_cd = '" + hfc + "' ";
                                                     ArrayList<ArrayList<String>> listOfDFreq = conn.getData(sql5);
 
                                                     int size5 = listOfDFreq.size();
@@ -365,7 +370,7 @@
                                                 <option value="No Duration">Select Duration</option>
                                                 <%
                                                     String sql6 = "SELECT Master_Reference_code,Detail_Reference_code, Description FROM adm_lookup_detail "
-                                                            + " where Master_Reference_code = '0089' AND hfc_cd = '"+hfc+"'  ";
+                                                            + " where Master_Reference_code = '0089' AND hfc_cd = '" + hfc + "'  ";
                                                     ArrayList<ArrayList<String>> listOfDDura = conn.getData(sql6);
 
                                                     int size6 = listOfDDura.size();
@@ -485,6 +490,7 @@
 
             $('<div class="loading">Loading</div>').appendTo('body');
 
+            $("#patientOrderListMain").load("patientOrderListMain.jsp");
             $("#patientOrderListContent").load("patientOrderListTable.jsp");
             $("#patientOrderDetailContent").load("patientOrderListBasicInfoNew.jsp");
 

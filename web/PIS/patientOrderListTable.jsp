@@ -15,7 +15,6 @@
     String userID = session.getAttribute("USER_ID").toString();
 %>
 <input id="dataPatientOrderListUserIDhidden" type="hidden" value="<%= userID%>">
-<h4 style="padding-top: 2%;padding-bottom: 1%;">Drug Order List</h4>
 
 <table  id="patientOrderListTable"  class="table table-filter table-striped table-bordered" style="background: #fff; border: 1px solid #ccc; width: 100%">
     <thead>
@@ -31,6 +30,29 @@
     <%
         String hfc = session.getAttribute("HEALTH_FACILITY_CODE").toString();
         String dis = (String) session.getAttribute("DISCIPLINE_CODE");
+        String current_user = (String) session.getAttribute("USER_ID");
+        String last_nine = current_user.substring(current_user.length() - 1);
+
+        String whereClause = "";
+        String orderWhereClause = " ";
+
+        //-------------------------- to refresh order table based on request--------------------------------
+        String process = "1";
+
+        if (request.getParameter("process") != null) {
+
+            process = request.getParameter("process");
+        }
+
+        if (process.equalsIgnoreCase("1")) {
+
+            orderWhereClause = " AND date(pis_order_master.ORDER_DATE) = date(now()) ";
+        }
+
+        //=============================================================================================
+        if (!hfc.equals("99_iHIS_99") || !last_nine.equals("9")) {
+            whereClause = " AND pis_order_master.HEALTH_FACILITY_CODE = '" + hfc + "' AND pis_order_master.DISCIPLINE_CODE = '" + dis + "' ";
+        }
 
         String sql = "SELECT pis_order_master.ORDER_NO,pis_order_master.PMI_NO,pis_order_master.HEALTH_FACILITY_CODE,pis_order_master.EPISODE_CODE,pis_order_master.ENCOUNTER_DATE, "
                 + " pis_order_master.ORDER_DATE,pis_order_master.ORDER_BY,pis_order_master.ORDER_FROM,pis_order_master.ORDER_TO,pis_order_master.HFC_FROM,pis_order_master.HFC_TO, "
@@ -40,7 +62,9 @@
                 + " JOIN adm_health_facility adm ON (pis_order_master.HEALTH_FACILITY_CODE = adm.hfc_cd) "
                 + " JOIN adm_lookup_detail s on pms_patient_biodata.SEX_CODE = s.detail_reference_code AND s.master_reference_code = '0041' AND s.hfc_cd = pis_order_master.HEALTH_FACILITY_CODE "
                 + " LEFT JOIN adm_lookup_detail b on pms_patient_biodata.BLOOD_TYPE = b.detail_reference_code AND b.master_reference_code = '0074' AND b.hfc_cd = pis_order_master.HEALTH_FACILITY_CODE "
-                + " WHERE pis_order_master.ORDER_STATUS = '0' AND pis_order_master.HEALTH_FACILITY_CODE = '" + hfc + "' AND pis_order_master.DISCIPLINE_CODE = '" + dis + "'  ";
+                + " WHERE pis_order_master.ORDER_STATUS = '0'   "
+                + orderWhereClause
+                + whereClause + " ;";
 
         ArrayList<ArrayList<String>> dataPatientOrderList = conn.getData(sql);
 
@@ -66,9 +90,8 @@
 
 <script type="text/javascript" charset="utf-8">
     $(document).ready(function () {
+        
         $('#patientOrderListTable').DataTable({
-            pageLength: 15,
-            lengthMenu: [[15, 25, 50, -1], [15, 25, 50, "All"]],
             "language": {
                 "emptyTable": "No Order Available To Display"
             }, initComplete: function (settings, json) {
