@@ -3,6 +3,41 @@
     Created on : Apr 18, 2017, 12:20:37 PM
     Author     : user
 --%>
+<%@page import="java.util.Date"%>
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="java.text.DateFormat"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="dBConn.Conn"%>
+<%@page import="main.RMIConnector"%>
+<div id="getNeuObservation">
+    <%
+
+    if (session.getAttribute("patientPMINo") == null|| session.getAttribute("patientPMINo").equals(" ")) {
+        out.print("<br>No patient selected.");
+    } else {
+        try {
+
+            String hfc = session.getAttribute("HEALTH_FACILITY_CODE").toString();
+            String pmino = session.getAttribute("patientPMINo").toString();
+            String user_id = session.getAttribute("USER_ID").toString();
+            String episodeDate = session.getAttribute("episodeDate").toString();
+
+            //out.print(hfc + " ----- " + pmino + " ----- " + episodeDate + " ------ " + user_id);
+
+            Conn conn = new Conn();
+            String sql = "SELECT o.encounter_date,o.eye_opening,o.verbal_response,o.motor_response,o.systolic,o.diastolic,o.pulse,o.on_left,o.on_right,o.arm,o.legs FROM lhr_ort_neu_observation_chart o WHERE o.pmi_no='" + pmino + "'";
+            ArrayList<ArrayList<String>> q2 = conn.getData(sql);
+
+            String dateTime = q2.get(0).get(0);
+            
+            DateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            DateFormat outputFormat = new SimpleDateFormat("dd-MM-yyyy");
+            DateFormat outputFormat1 = new SimpleDateFormat("KK:mm a");
+
+            if (q2.size() > 0) {
+
+
+%>
 <div class="row">
     <div class="col-md-8">
         <h4>Consultation Notes</h4>
@@ -58,50 +93,16 @@
     </thead>
     <tbody>
         <tr>
-            <td>2017/12/21</td>
-            <td>12:00:00</td>
+            <td><%=outputFormat.format(inputFormat.parse(dateTime))%></td>
+            <td><%=outputFormat1.format(inputFormat.parse(dateTime))%></td>
             <td>4</td>
             <td>3</td>
             <td>6</td>
-            <td>321</td>
-            <td>8</td>
-            <td>7</td>
-            <td>Normal Power</td>
-            <td>Extension</td>
-            <td>
-                <a data-toggle="modal" href="" class="updateBtnCCN" id=""><i class="fa fa-pencil-square-o fa-lg" aria-hidden="true" style="display: inline-block; color: #337ab7;"></i></a> 
-                &nbsp;&nbsp; 
-                <a href="#" class="deleteBtn" id=""><i class="fa fa-times fa-lg" aria-hidden="true" style="display: inline-block; color: #d9534f;"></i></a>
-            </td>
-        </tr>
-        <tr>
-            <td>2017/12/21</td>
-            <td>12:00:00</td>
-            <td>4</td>
-            <td>3</td>
-            <td>6</td>
-            <td>321</td>
-            <td>8</td>
-            <td>7</td>
-            <td>Normal Power</td>
-            <td>Extension</td>
-            <td>
-                <a data-toggle="modal" href="" class="updateBtnCCN" id=""><i class="fa fa-pencil-square-o fa-lg" aria-hidden="true" style="display: inline-block; color: #337ab7;"></i></a> 
-                &nbsp;&nbsp; 
-                <a href="#" class="deleteBtn" id=""><i class="fa fa-times fa-lg" aria-hidden="true" style="display: inline-block; color: #d9534f;"></i></a>
-            </td>
-        </tr>
-        <tr>
-            <td>2017/12/21</td>
-            <td>12:00:00</td>
-            <td>4</td>
-            <td>3</td>
-            <td>6</td>
-            <td>321</td>
-            <td>8</td>
-            <td>7</td>
-            <td>Normal Power</td>
-            <td>Extension</td>
+            <td>Systolic:34 Diastolic:186 Pulse:60</td>
+            <td><%=q2.get(0).get(7)%></td>
+            <td><%=q2.get(0).get(8)%></td>
+            <td><%=q2.get(0).get(9)%></td>
+            <td><%=q2.get(0).get(10)%></td>
             <td>
                 <a data-toggle="modal" href="" class="updateBtnCCN" id=""><i class="fa fa-pencil-square-o fa-lg" aria-hidden="true" style="display: inline-block; color: #337ab7;"></i></a> 
                 &nbsp;&nbsp; 
@@ -110,3 +111,12 @@
         </tr>
     </tbody>
 </table>
+<%             } else {
+                    out.print("<br>No data recorded.");
+                }
+            } catch (Exception e) {
+            }
+
+        }
+%>
+</div>
