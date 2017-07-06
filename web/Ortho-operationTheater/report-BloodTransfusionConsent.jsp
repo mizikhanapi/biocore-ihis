@@ -7,30 +7,6 @@
 <%@page import="java.util.Calendar"%>
 <%@page import="java.util.ArrayList"%>
 
-<%
-    
-//    String patientBioDate = session.getAttribute("patientBio").toString();
-//    out.print(patientBioDate);
-//    String[] patientBioList = patientBioDate.split("#");
-////    out.print("<br>");
-////    int x = 0, y = 0;
-////    for (String data : patientBioList) {
-////        out.print(data + " " + x + " " + "<br>");
-////        x++;
-////    }
-//    String temp = patientBioList[0].replace("|", "!");
-//    String[] patientBioList1 = temp.split("!");
-////    for (String data : patientBioList1) {
-////        out.print(data + " " + y + " " + "<br>");
-////        y++;
-////    }
-//    String address = patientBioList[22] + "," + patientBioList[29] + "" + patientBioList[25] + "," + patientBioList[27];
-//    DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
-//    Calendar c = Calendar.getInstance();
-//    String currDate = df.format(c.getTime());
-//    out.print("Today Date:"+currDate);
-%>
-
 <div class="modal fade" id="bloodTransfusionConsentForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
         <div class="modal-content modal-lg">
