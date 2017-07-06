@@ -58,7 +58,7 @@
                 <!-- content -->
                 <div class="tab-pane fade" id="Ortho-OperationTheater_3">
                     <ul class="soap-content nav">
-                        <li><a data-toggle="modal" data-target="#bloodTransfusionConsentForm" href="" class="soap-select"><i class="fa fa-comments  fa-li"></i> Add Consent</a></li>
+                        <li><a id="BTCF" data-toggle="modal" data-target="#bloodTransfusionConsentForm" href="" class="soap-select"><i class="fa fa-comments  fa-li"></i> Add Consent</a></li>
                     </ul>
                     <hr class="pemisah" />
                     <%//@include file="PIRAssessment.jsp"%>
@@ -111,6 +111,14 @@
         printReport(divID);
     });
   
+    $("#Ortho-OperationTheater_3").on('click','#BTCF',function (){
+        var patientBio = "<%=session.getAttribute("patientBio").toString()%>";
+//        console.log(patientBio);
+        var patientBioList = patientBio.split("#");
+//        console.log(patientBioList);
+        var patientBioList1 = patientBioList[0].split("|");   
+//        console.log(patientBioList1);
+    });
   
   
     function sendDate(name, ic, relWithPatient, relWithNext,patientName) {
