@@ -35,7 +35,7 @@
             + " join adm_lookup_detail l on l.`Master_Reference_code` ='0069' and l.`Detail_Reference_code` = q.status and l.`hfc_cd` = '" + hfc + "'"
             + " left join adm_lookup_detail x on x.`Master_Reference_code` ='0033' and x.`Detail_Reference_code` = q.patient_category and x.`hfc_cd` = '" + hfc + "'"
             + " join adm_users u on u.user_id = q.user_id and u.health_facility_code = '"+hfc+"'"
-            + " where q.episode_date like '%" + now + "%' and q.status !='1' and q.hfc_cd='" + hfc + "' LIMIT 5";
+            + " where q.episode_date like '%" + now + "%' and q.status !='1' and q.hfc_cd='" + hfc + "' and ((queue_type='PN' and queue_name='"+doctor+"') OR queue_type!='PN') LIMIT 5";
     ArrayList<ArrayList<String>> dataQueue;
     dataQueue = conn.getData(sqlV3);
     //out.print(sql);

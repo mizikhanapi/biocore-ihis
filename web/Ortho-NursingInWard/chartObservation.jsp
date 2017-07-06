@@ -92,7 +92,7 @@
 
         //set the custom date default hidden
         $('#customDateOB').hide();
-
+        //$('#cobserved1 #btnNIWOBUP').hide();
         $('#startDateOB').datepicker({dateFormat: "dd/mm/yy"});
         $('#endDateOB').datepicker({dateFormat: "dd/mm/yy"});
 
@@ -104,7 +104,7 @@
         var datas;
         var todayDate;
 
-        var pmiOB = "<%=session.getAttribute("patientPMINo")%>";
+        var pmiOB = pmiNo;
         var enDate = new Date();
         var dd = ("0" + enDate.getDate()).slice(-2);
         var mm = ("0" + (enDate.getMonth() + 1)).slice(-2);
@@ -141,7 +141,7 @@
             $('#customDateOB').show();
             datas = "null";
         }
-        //console.log(datas);
+        console.log(datas);
         ajaxObservation(datas);
 
     });
@@ -150,7 +150,7 @@
         var strtDate = $('#startDateOB').val();
         var endDate = $('#endDateOB').val();
 
-        var pmiOB = "<%=session.getAttribute("patientPMINo")%>";
+        var pmiOB = pmiNo;
 
         var sDate = strtDate.split('/');
         var SnewDate = sDate[2] + "-" + sDate[1] + "-" + sDate[0];
@@ -226,13 +226,13 @@
         });
 
     });
-    
-    $('#divBIWOB').on('click','#tblNIW_observation_chart #delNIWOB',function(e){
+
+    $('#divBIWOB').on('click', '#tblNIW_observation_chart #delNIWOB', function (e) {
         e.preventDefault();
         var row = $(this).closest("tr");
         var dataX = row.find('#priNIWOB').html();
         var sel = $('#selectOBdate').val();
-        
+
         bootbox.confirm({
             message: "Are you sure want to delete?",
             buttons: {
@@ -267,5 +267,31 @@
                 }
             }
         });
+    });
+
+
+    $('#divBIWOB').on('click', '#tblNIW_observation_chart #editNIWOB', function (e) {
+        e.preventDefault();
+        $('#cobserved1 #btnNIWOBUPDATE').show();
+        $('#cobserved1 #btnNIWOBADD').hide();
+
+        var row = $(this).closest("tr");
+        var dataX = row.find('#priNIWOB').html();
+        var sel = $('#selectOBdate').val();
+        console.log(dataX);
+        var sdataX = dataX.split("|");
+        $('#NIWObsDate').val(sdataX[7]);
+        $('#NIWObsTime').val(sdataX[16]);
+        $('#NIWOBsystolic').val(sdataX[9]);
+        $('#NIWOBdiatolic').val(sdataX[10]);
+        $('#NIWOBpulse').val(sdataX[8]);
+        $('#NIWOBrr').val(sdataX[11]);
+        $('#NIWOBos').val(sdataX[12]);
+        $('#NIWOBps').val(sdataX[13]);
+        $('#NIWOBcomment').val(sdataX[14]);
+        $('#NIWObsEpisodeDate').val(sdataX[2]);
+        $('#NIWObsEncounterDate').val(sdataX[3]);
+        $('#NIWObsPmi').val(sdataX[0]);
+        $('#NIWObsHfc').val(sdataX[1]);
     });
 </script>

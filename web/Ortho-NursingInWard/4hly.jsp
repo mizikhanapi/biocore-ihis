@@ -83,7 +83,7 @@
         var datas;
         var todayDate;
 
-        var pmiOB = "<%=session.getAttribute("patientPMINo")%>";
+        var pmiOB = pmiNo;
         var enDate = new Date();
         var dd = ("0" + enDate.getDate()).slice(-2);
         var mm = ("0" + (enDate.getMonth() + 1)).slice(-2);
@@ -120,7 +120,7 @@
             $('#customDate4hly').show();
             datas = "null";
         }
-        console.log(datas);
+        //console.log(datas);
         ajax4hly(datas);
 
     });
@@ -129,7 +129,7 @@
         var strtDate = $('#startDate4hly').val();
         var endDate = $('#endDate4hly').val();
 
-        var pmiOB = "<%=session.getAttribute("patientPMINo")%>";
+        var pmiOB = pmiNo;
 
         var sDate = strtDate.split('/');
         var SnewDate = sDate[2] + "-" + sDate[1] + "-" + sDate[0];

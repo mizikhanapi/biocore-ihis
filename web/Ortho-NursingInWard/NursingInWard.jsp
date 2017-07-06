@@ -10,7 +10,7 @@
         <div class="tabbable-line">
             <ul class="nav nav-tabs ">
                 <li class="active">
-                    <a href="#Ortho-NursingInWard_1" data-toggle="tab" aria-expanded="false">
+                    <a href="#Ortho-NursingInWard_1" data-toggle="tab" aria-expanded="false" >
                         <i class="fa fa-info-circle fa-lg"></i> Chart Observation </a>
                 </li>
                 <li class="">
@@ -59,7 +59,7 @@
                 <!-- content -->
                 <div class="tab-pane active fade in" id="Ortho-NursingInWard_1">
                     <ul class="soap-content nav">
-                        <li><a data-toggle="modal" data-target="#cobserved1" href="" class="soap-select"><i class="fa fa-comments  fa-li"></i>New Assessment</a></li>
+                        <li><a data-toggle="modal" data-target="#cobserved1" href="" class="soap-select" id="observationnewassessment"><i class="fa fa-comments  fa-li"></i>New Assessment</a></li>
                     </ul>
                     <hr class="pemisah" />
                     <%@include file="chartObservation.jsp"%>
@@ -189,3 +189,11 @@
 <%@include file="modal/fluidBalance.jsp"%>
 <%@include file="modal/woundAssessment.jsp"%>
 <script src="../assets/js/btn.number.js" type="text/javascript"></script>
+<script>
+    $('#Ortho-NursingInWard_1').on('click','#observationnewassessment',function(e){
+        e.preventDefault();
+        $('#cobserved1 #btnNIWOBUPDATE').hide();
+        $('#cobserved1 #btnNIWOBADD').show();
+    });
+    
+</script>
