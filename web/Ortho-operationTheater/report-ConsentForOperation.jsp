@@ -155,8 +155,7 @@
         ddMMyyyyHHmmss = ZeroDay + "/" + ZeroMonth + "/" + year + " " + hours + ":" + ZeroMinutes + ":" + ZeroSeconds;
         HHmmss = hours + ":" + ZeroMinutes + ":" + ZeroSeconds;
         ddMMyyyy = ZeroDay + "/" + ZeroMonth + "/" + year;
-    }
-    ;
+    };
     getDateNow();
     console.log(ddMMyyyy);
     $("[name='date']").html(ddMMyyyy);

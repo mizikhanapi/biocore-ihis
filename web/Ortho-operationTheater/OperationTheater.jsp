@@ -46,13 +46,13 @@
                 <div class="tab-pane fade" id="Ortho-OperationTheater_2">
                     <ul class="soap-content nav">
                         <li><a data-toggle="modal" data-target="#addConsentToOpration" href="" class="soap-select"><i class="fa fa-comments  fa-li"></i> Add Consent</a>
-<!--                            <a id="Print" class="soap-select" data-toggle="modal" data-target="#opreationConsentForm">Print</a></li>-->
+                            <!--                            <a id="Print" class="soap-select" data-toggle="modal" data-target="#opreationConsentForm">Print</a></li>-->
                     </ul>
                     <hr class="pemisah" />
                     <%//@include file="neuObservation.jsp"%>
                     <div id="test2" display="hidden"></div>
                 </div>
-                
+
                 <!-- content -->
 
                 <!-- content -->
@@ -95,65 +95,136 @@
 
 <script src="../assets/js/btn.number.js" type="text/javascript"></script>
 <script>
-  
+
+    var ddMMyyyyHHmmss, HHmmss, ddMMyyyy, timeStamp;
+
+    function getDateNow() {
+        //yyyy-MM-dd HH:mm:ss
+        var nowDate = new Date();
+        timeStamp = nowDate;
+        var ZeroMinutes, ZeroSeconds, ZeroDay, ZeroMonth;
+        //months
+        var month = (nowDate.getMonth() + 1);
+        if (month < 10) {
+            ZeroMonth = "0" + month;
+        } else {
+            ZeroMonth = month;
+        }
+        //days
+        var day = (nowDate.getDate());
+        if (day < 10) {
+            ZeroDay = "0" + day;
+        } else {
+            ZeroDay = day;
+        }
+        //years
+        var year = (nowDate.getFullYear());
+        //hours
+        var hours = nowDate.getHours();
+        //minutes
+        var minutes = nowDate.getMinutes();
+        if (minutes < 10) {
+            ZeroMinutes = "0" + minutes;
+        } else {
+            ZeroMinutes = minutes;
+        }
+        //seconds
+        var seconds = nowDate.getSeconds();
+        if (seconds < 10) {
+            ZeroSeconds = "0" + seconds;
+        } else {
+            ZeroSeconds = seconds;
+        }
+        //complete day
+        ddMMyyyyHHmmss = ZeroDay + "/" + ZeroMonth + "/" + year + " " + hours + ":" + ZeroMinutes + ":" + ZeroSeconds;
+        HHmmss = hours + ":" + ZeroMinutes + ":" + ZeroSeconds;
+        ddMMyyyy = ZeroDay + "/" + ZeroMonth + "/" + year;
+    }
+    ;
+
     $('#addNextOfKinInfo').click(function () {
-        var name, ic, relWithPatient, relWithNext,patientName;
+        var name, ic, relWithPatient, relWithNext, patientName;
         name = $("#nextOfKinName").val();
         ic = $("#nextOfKinIC").val();
         relWithPatient = $("#relaitonWithPatient").val();
         relWithNext = $("#relationWitNextOfKin").val();
         patientName = $("#pName").text();
-        sendDate(name, ic, relWithPatient, relWithNext,patientName);
+        sendDate(name, ic, relWithPatient, relWithNext, patientName);
     });
-    
+
     $('#printBloodTransfusionForm').click(function () {
-       var divID = 'bloodTransfusionForm';
+        var divID = 'bloodTransfusionForm';
         printReport(divID);
+        $('#addConsentToOpration').hide();
+        $('.modal-backdrop').hide();
     });
-  
-    $("#Ortho-OperationTheater_3").on('click','#BTCF',function (){
-        var patientBio = "<%=session.getAttribute("patientBio").toString()%>";
-//        console.log(patientBio);
-        var patientBioList = patientBio.split("#");
-//        console.log(patientBioList);
-        var patientBioList1 = patientBioList[0].split("|");   
-//        console.log(patientBioList1);
-    });
-  
-  
-    function sendDate(name, ic, relWithPatient, relWithNext,patientName) {
+
+    $("#Ortho-OperationTheater_3").on('click', '#BTCF', function () {
+
         var datas = {
-               'name':name,
-               'ic':ic,
-               'relWithPatient':relWithPatient,
-               'relWithNext':relWithNext,
-               'patientName':patientName
-           };
-           console.log(datas);
+            'pmiNo':pmiNo,
+            'episodeDate':episodeDate
+        };
         $.ajax({
-           type:'POST',
-           url:'../Ortho-operationTheater/report-ConsentForOperation.jsp',
-           data: datas,
-           timeout:10000,
-           success: function(form){
-               console.log("succ: "+form.trim());
-               $("#test2").val(form.trim());
-               $("#test2").html(form.trim());
-               $('#test2').trigger('contentchanged');
-               $('#addConsentToOpration').hide();
-               $('.modal-backdrop').hide();
-               $('#opreationConsentForm').modal();
-//               printReport();
-           },
-           error: function(err){
-               console.log("ERROR: "+err);
-           }
-           
+            type: 'POST',
+            url: '../CIS/search/searchPatient.jsp',
+            data: datas,
+            timeout: 10000,
+            success: function (patientBio) {
+                console.log(patientBio);
+                var patientBioList = patientBio.split("#");
+                var patientBioList1 = patientBioList[0].split("|");
+                getDateNow();
+                $("#BTCF-currDate").html(ddMMyyyy);
+                $("#BTCF-patientName").html(patientBioList1[1]);
+                $("#BTCF-sex").html(patientBioList1[4]);
+                $("#BTCF-age").html(patientBioList1[6]);
+                $("#BTCF-IC").html(patientBioList1[2]);
+                $("#BTCF-address").html(patientBioList[22] + "," + patientBioList[29] + "" + patientBioList[25] + "," + patientBioList[27]);
+            },
+            error: function (err) {
+                console.log("ERROR: " + err);
+            }
+
         });
-    };
+
+    });
+
+
+    function sendDate(name, ic, relWithPatient, relWithNext, patientName) {
+        var datas = {
+            'name': name,
+            'ic': ic,
+            'relWithPatient': relWithPatient,
+            'relWithNext': relWithNext,
+            'patientName': patientName
+        };
+        console.log(datas);
+        $.ajax({
+            type: 'POST',
+            url: '../Ortho-operationTheater/report-ConsentForOperation.jsp',
+            data: datas,
+            timeout: 10000,
+            success: function (form) {
+                console.log("succ: " + form.trim());
+                $("#test2").val(form.trim());
+                $("#test2").html(form.trim());
+                $('#test2').trigger('contentchanged');
+                $('#addConsentToOpration').hide();
+                $('.modal-backdrop').hide();
+                $('#opreationConsentForm').modal();
+//               printReport();
+            },
+            error: function (err) {
+                console.log("ERROR: " + err);
+            }
+
+        });
+    }
+    ;
     function printReport(divIDs)
     {
-        var divElements = $('#'+divIDs).html();
+        var divElements = $('#' + divIDs).html();
         var popupWin = window.open('', '_blank', 'width=1080,height=768');
         popupWin.document.open();
         popupWin.document.write('<html><body onload="window.print()">' + divElements + '</html>');

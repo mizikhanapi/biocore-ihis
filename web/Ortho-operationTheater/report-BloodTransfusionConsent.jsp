@@ -7,30 +7,6 @@
 <%@page import="java.util.Calendar"%>
 <%@page import="java.util.ArrayList"%>
 
-<%
-    
-//    String patientBioDate = session.getAttribute("patientBio").toString();
-//    out.print(patientBioDate);
-//    String[] patientBioList = patientBioDate.split("#");
-////    out.print("<br>");
-////    int x = 0, y = 0;
-////    for (String data : patientBioList) {
-////        out.print(data + " " + x + " " + "<br>");
-////        x++;
-////    }
-//    String temp = patientBioList[0].replace("|", "!");
-//    String[] patientBioList1 = temp.split("!");
-////    for (String data : patientBioList1) {
-////        out.print(data + " " + y + " " + "<br>");
-////        y++;
-////    }
-//    String address = patientBioList[22] + "," + patientBioList[29] + "" + patientBioList[25] + "," + patientBioList[27];
-//    DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
-//    Calendar c = Calendar.getInstance();
-//    String currDate = df.format(c.getTime());
-//    out.print("Today Date:"+currDate);
-%>
-
 <div class="modal fade" id="bloodTransfusionConsentForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
         <div class="modal-content modal-lg">
@@ -50,14 +26,14 @@
                     </div>
                     <div style="height:140px;">
                         <div class="" style="width: 34%; float: right;">
-                            <P  style="white-space:pre">Date        :   <strong><%//=currDate%></strong></p>
-                            <p  style="white-space:pre">Age         :   <strong><%//=patientBioList1[6]%></strong></p>
-                            <p  style="white-space:pre">Sex         :   <strong><%//=patientBioList1[4]%></strong></p>
+                            <P  style="white-space:pre">Date        :   <strong id="BTCF-currDate"></strong></p>
+                            <p  style="white-space:pre">Age         :   <strong id="BTCF-age"></strong></p>
+                            <p  style="white-space:pre">Sex         :   <strong id="BTCF-sex"></strong></p>
                         </div>
                         <div class="" style="width: 60%; float: left; margin-top: 30px;">
-                            <P  style="white-space:pre">Patient's Name        :   <strong><%//=patientBioList1[1]%></strong></p>
-                            <p  style="white-space:pre">Identity Card No      :   <strong><%//=patientBioList1[2]%></strong></p>
-                            <p  style="white-space:pre">Address                   :   <strong><%//=address%></strong></p>
+                            <P  style="white-space:pre">Patient's Name        :   <strong id="BTCF-patientName"></strong></p>
+                            <p  style="white-space:pre">Identity Card No      :   <strong id="BTCF-IC"></strong></p>
+                            <p  style="white-space:pre">Address                   :   <strong id="BTCF-address"></strong></p>
                         </div>  
                     </div>
                     <div class="" >
