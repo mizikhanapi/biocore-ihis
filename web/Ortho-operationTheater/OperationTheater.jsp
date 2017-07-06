@@ -58,7 +58,7 @@
                 <!-- content -->
                 <div class="tab-pane fade" id="Ortho-OperationTheater_3">
                     <ul class="soap-content nav">
-                        <li><a data-toggle="modal" data-target="#ong-pDetails1" href="" class="soap-select"><i class="fa fa-comments  fa-li"></i> Add Consent</a></li>
+                        <li><a data-toggle="modal" data-target="#bloodTransfusionConsentForm" href="" class="soap-select"><i class="fa fa-comments  fa-li"></i> Add Consent</a></li>
                     </ul>
                     <hr class="pemisah" />
                     <%//@include file="PIRAssessment.jsp"%>
@@ -88,10 +88,10 @@
     </div>
     <!-- Tab Menu -->
 </div>
-
 <%@include file="modal/operationRecord.jsp"%>
 <%@include file="modal/procedureIncision.jsp"%>
 <%@include file="modal/AddConsentOperation.jsp"%>
+<%@include file="report-BloodTransfusionConsent.jsp"%>
 
 <script src="../assets/js/btn.number.js" type="text/javascript"></script>
 <script>
@@ -106,7 +106,12 @@
         sendDate(name, ic, relWithPatient, relWithNext,patientName);
     });
     
-   
+    $('#printBloodTransfusionForm').click(function () {
+       var divID = 'bloodTransfusionForm';
+        printReport(divID);
+    });
+  
+  
   
     function sendDate(name, ic, relWithPatient, relWithNext,patientName) {
         var datas = {
@@ -138,9 +143,9 @@
            
         });
     };
-    function printReport()
+    function printReport(divIDs)
     {
-        var divElements = $('#test2').html();
+        var divElements = $('#'+divIDs).html();
         var popupWin = window.open('', '_blank', 'width=1080,height=768');
         popupWin.document.open();
         popupWin.document.write('<html><body onload="window.print()">' + divElements + '</html>');
