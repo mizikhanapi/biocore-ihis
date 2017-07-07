@@ -22,6 +22,7 @@ var cisParam = "";
 
 var pmiNo = "";
 var episodeDate = "";
+var encounterDate = "";
 var HFCOrderDetail = [];
 var HFCProviderDetail = [];
 var dcgIndex = [];

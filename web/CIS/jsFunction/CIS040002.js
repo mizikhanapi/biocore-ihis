@@ -28,7 +28,7 @@ $(document).ready(function(){
             var fullmsg;
             var msh = getMSH();
             var pdi = PDIInfo;
-            var orc = convertORC(_dataDTO[0], "02", "04");
+            var orc = convertORC(_dataDTO[0], "02", "04","T12100");
             for (var i in _dataDTO) {
                 msg += convertDTO(_dataDTO[i]);
             }
@@ -40,7 +40,7 @@ $(document).ready(function(){
                 episodedate: episodeDate,
                 status: "1"
             }
-            //sendOrder(data, "tableOrderLIO");
+            sendOrder(data, "tableOrderDTO");
         } else {
             return false;
         }
@@ -96,7 +96,8 @@ $(document).ready(function(){
             comment: comment,
             drugQuantity: drugQuantity,
             problemName:problemName,
-            problemCode:problemCode
+            problemCode:problemCode,
+            priority:"Normal"
 
         };
         

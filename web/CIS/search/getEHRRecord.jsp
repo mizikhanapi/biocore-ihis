@@ -16,7 +16,7 @@
 
 
     Conn conn = new Conn();
-String sqlPatient = "select C_TXNData  from  ehr_central where pmi_no = '"+pmino+"' AND c_txndate = '"+episodedate+"' ";
+String sqlPatient = "select C_TXNData  from  ehr_central where pmi_no = '"+pmino+"' AND c_txndate = '"+episodedate+"' AND (status = 2 OR status = 4) ";
 ArrayList<ArrayList<String>> EHRRecord = conn.getData(sqlPatient);
 
 out.print(EHRRecord);

@@ -263,6 +263,92 @@ function searchDTO(searchFieldId, loadingId, currentValue) {
     });
 }
 
+function searchPOS(searchFieldId, loadingId, currentValue, level) {
+    var urlSearch;
+    if (level === "0") {
+        urlSearch = "search/ResultPOSSearch.jsp"
+    } else if (level === "1") {
+        urlSearch = "search/ResultPOS1Search.jsp"
+    } else if (level === "2") {
+        urlSearch = "search/ResultPOS2Search.jsp"
+    }
+    $('#' + searchFieldId).val(currentValue).flexdatalist({
+        minLength: 1,
+        searchIn: 'name',
+        searchDelay: 2000,
+        selectionRequired: true,
+        url: urlSearch,
+        cache: true,
+        params: {
+            timeout: 3000,
+            success: function (result) {
+                //console.log(result);
+                if (result === undefined) {
+                    $('#' + loadingId).html('No Record');
+                }
+            }
+        }
+    });
+}
+function searchPOSCode(searchField,loadingField,codeField,level){
+    var currentlevel = level;
+    var nextLevel = parseInt(level)+1;
+    nextLevel.toString();
+     $("#"+searchField).on('before:flexdatalist.data', function (response) {
+
+        $('#'+loadingField).html('<img src="img/LoaderIcon.gif" />');
+        
+    });
+    $("#"+searchField).on('after:flexdatalist.data', function (response) {
+
+        $('#'+loadingField).html('');
+        
+    });
+    $("#"+searchField).on('select:flexdatalist', function (response) {
+        
+        var procedureName = $("#"+searchField).val();
+        $.ajax({
+            type: "post",
+            url: "search/ResultPOSSearchCode.jsp",
+            timeout: 3000,
+            data: {
+                keyword: procedureName,
+                level:level
+            },
+            success: function (response) {
+                console.log(response);
+                checkPOSLevel(response.trim(),nextLevel);
+                $("#"+codeField).val(response.trim());
+            
+            }
+        });
+    });
+}
+
+function checkPOSLevel(code,level){
+        var pos_0_cd = code;
+        console.log(level);
+        $.ajax({
+            url:"search/ResultPOSCheckProcedureLevel.jsp",
+            type:"POST",
+            timeout:3000,
+            data:{
+                keyword:pos_0_cd,
+                level:level.toString()
+            },
+            success:function(response){
+                console.log(response);
+                if (response.trim() === "true"){
+                    $("#div_CIS_OE_POS_LVL"+level).show();
+                }else{
+                     $("#div_CIS_OE_POS_LVL"+level).hide();
+                     
+                }
+            }
+            
+        });
+}
+
 function sendOrder(data,tableId){
     $.ajax({
         type: "POST",

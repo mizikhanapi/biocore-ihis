@@ -36,11 +36,11 @@ function convertDTO(obj){
     return msg;
 }
 
-function convertORC(obj,moduleFrom,moduleTo){
+function convertORC(obj,moduleFrom,moduleTo,transectionCode){
     var hfcOFDetail = obj.hfcOrderDetail.split("|");
     var hfcPFDetail = obj.hfcProviderDetail.split("|");
 
-    var orc = getORC("T12102", "", "", "NO", obj.priorityROS, getDate(), episodeDate, episodeDate, doctor_id, doctor_id, "", hfc_cd, discipline, subdis, moduleFrom, hfcOFDetail[1],
+    var orc = getORC(transectionCode, "", "", "NO", obj.priority, getDate(), episodeDate, encounterDate, doctor_id, doctor_id, "", hfc_cd, discipline, subdis, moduleFrom, hfcOFDetail[1],
             hfcOFDetail[2], hfcOFDetail[3], hfcOFDetail[10], hfcOFDetail[12], hfcOFDetail[14], hfcOFDetail[13], hfcOFDetail[8], hfcOFDetail[9], hfcPFDetail[0], "-", "", moduleTo, hfcPFDetail[1],
             hfcPFDetail[2], hfcPFDetail[3], hfcPFDetail[10], hfcPFDetail[12], hfcPFDetail[14], hfcPFDetail[13], hfcPFDetail[8], hfcPFDetail[9], "-");
             
