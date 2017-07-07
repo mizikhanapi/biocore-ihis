@@ -34,8 +34,7 @@ public class DCG_ord {
 
         try {
             System.out.println("record (ORC for DCG) #" + t.getCentral_Code());
-            SeparatorV2 sv = new SeparatorV2();
-            sv.startProcess(t.getTxndata());
+
             //Vector<ORC2> orc = sv.getVorc();
             //Vector<DCG2> dcg1 = sv.getVdcg();
             for (int orc_i = 0; orc_i < orc.size(); orc_i++) {

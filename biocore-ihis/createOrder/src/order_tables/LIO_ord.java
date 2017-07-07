@@ -44,8 +44,6 @@ public class LIO_ord {
         try {
 
             System.out.println("record (ORC for LIO) #" + t.getCentral_Code()); 
-        SeparatorV2 sv = new SeparatorV2();
-        sv.startProcess(t.getTxndata());
         //Vector<ORC2> orc = sv.getVorc();
 
                    for (int orc_i = 0; orc_i < orc.size(); orc_i++) {
@@ -54,7 +52,7 @@ public class LIO_ord {
                 if (orcs.get(1).get(0).equals("T12101")) {
                         LIO_seq lis = new LIO_seq();
                         lis.settLIO_seq();
-                        String sql_lis_master = "INSERT INTO lis_order_master (pmi_no, order_no, txn_type, hfc_cd, episode_date, ENCOUNTER_DATE, order_date, order_by, order_from_discipline, order_from_subdiscipline, order_to_discipline, order_to_subdiscipline, hfc_from, hfc_to, order_status, diagnosis_cd, created_by, created_date, patient_name) values ('" + t.getPmi_no() + "','" + lis.getLIO_orderno() + "','" + orcs.get(1).get(0) + "','" + orcs.get(12).get(0) + "','" + orcs.get(7).get(0) + "','" + orcs.get(8).get(0) + "','" + orcs.get(6).get(0) + "','" + orcs.get(9).get(0) + "','" + orcs.get(13).get(0) + "','" + orcs.get(14).get(0) + "','" + orcs.get(13).get(0) + "','" + orcs.get(14).get(0) + "','" + orcs.get(15).get(0) + "','" + orcs.get(29).get(0) + "','0','-','Ahmed Abdullah','" + orcs.get(6).get(0) + "','" + orcs.get(10).get(0) + "')";
+                        String sql_lis_master = "INSERT INTO lis_order_master (pmi_no, order_no, txn_type, hfc_cd, episode_date, ENCOUNTER_DATE, order_date, order_by, order_from_discipline, order_from_subdiscipline, order_to_discipline, order_to_subdiscipline, hfc_from, hfc_to, order_status, diagnosis_cd, created_by, created_date, patient_name) values ('" + t.getPmi_no() + "','" + lis.getLIO_orderno() + "','" + orcs.get(1).get(0) + "','" + orcs.get(12).get(0) + "','" + orcs.get(7).get(0) + "','" + orcs.get(8).get(0) + "','" + orcs.get(6).get(0) + "','" + orcs.get(9).get(0) + "','" + orcs.get(13).get(0) + "','" + orcs.get(14).get(0) + "','" + orcs.get(13).get(0) + "','" + orcs.get(14).get(0) + "','" + orcs.get(15).get(0) + "','" + orcs.get(29).get(0) + "','0','-','" + orcs.get(9).get(0) + "','" + orcs.get(6).get(0) + "','" + orcs.get(10).get(0) + "')";
                         try {
                             status_lio_order_master = rc.setQuerySQL(Config.ipAddressServer, Config.portServer, sql_lis_master);
                             if (status_lio_order_master == true) {

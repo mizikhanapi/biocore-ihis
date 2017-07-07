@@ -33,8 +33,7 @@ public class ADW_ord {
         try {
 
             System.out.println("record (ORC for ADW) #" + t.getCentral_Code());
-            SeparatorV2 sv = new SeparatorV2();
-            sv.startProcess(t.getTxndata());
+
           
 
             for (int orc_i = 0; orc_i < orc.size(); orc_i++) {
