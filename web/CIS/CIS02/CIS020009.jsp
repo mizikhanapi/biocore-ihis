@@ -148,6 +148,20 @@
                 </div>
                 </form>
             </div>
+            <div class="modal-footer" id="ortho_physical_exam">
+                <div class="btn-group btn-group-justified" role="group" aria-label="group button">
+                    <div class="btn-group" role="group">
+                        <button type="button" class="btn btn-success btn-block btn-lg"  id="ortho_accpetPEBtn" role="button">Accept</button>
+                    </div>
+                    <div class="btn-group btn-delete hidden" role="group">
+                        <button type="button" id="delImage" class="btn btn-default btn-block btn-lg" data-dismiss="modal"  role="button">Clear</button>
+                    </div>
+                    <div class="btn-group" role="group">
+                        <button type="button" id="saveImage" class="btn btn-default btn-block btn-lg" data-dismiss="modal" role="button">Close</button>
+                    </div>
+                </div>
+                </form>
+            </div>
         </div>
     </div>
 </div>
@@ -188,8 +202,8 @@
                         $('#pe6').hide();
                         $('#pe7').hide();
                         $('#pe8').hide();
-                        
-                      $('#pe2').val('');
+
+                        $('#pe2').val('');
                         $('#pe3').val('');
                         $('#pe4').val('');
                         $('#pe5').val('');
@@ -228,8 +242,8 @@
                         $('#pe6').hide();
                         $('#pe7').hide();
                         $('#pe8').hide();
-                        
-                                                $('#pe3').val('');
+
+                        $('#pe3').val('');
                         $('#pe4').val('');
                         $('#pe5').val('');
                         $('#pe6').val('');
@@ -270,8 +284,8 @@
                         $('#pe6').hide();
                         $('#pe7').hide();
                         $('#pe8').hide();
-                        
-                                                $('#pe3').val('');
+
+                        $('#pe3').val('');
                         $('#pe4').val('');
                         $('#pe5').val('');
                         $('#pe6').val('');
@@ -308,8 +322,8 @@
                         $('#pe6').hide();
                         $('#pe7').hide();
                         $('#pe8').hide();
-                        
-         
+
+
                         $('#pe4').val('');
                         $('#pe5').val('');
                         $('#pe6').val('');
@@ -347,8 +361,8 @@
                         $('#pe6').hide();
                         $('#pe7').hide();
                         $('#pe8').hide();
-                        
-                              
+
+
                         $('#pe4').val('');
                         $('#pe5').val('');
                         $('#pe6').val('');
@@ -380,7 +394,7 @@
                         $('#pe6').hide();
                         $('#pe7').hide();
                         $('#pe8').hide();
-                        
+
 
                         $('#pe5').val('');
                         $('#pe6').val('');
@@ -443,7 +457,7 @@
                         $('#pe6').hide();
                         $('#pe7').hide();
                         $('#pe8').hide();
-                        
+
 
                         $('#pe6').val('');
                         $('#pe7').val('');
@@ -472,7 +486,7 @@
                         $('#pe6').hide();
                         $('#pe7').hide();
                         $('#pe8').hide();
-                        
+
 
                         $('#pe6').val('');
                         $('#pe7').val('');
@@ -497,7 +511,7 @@
 
                         $('#divpe7').hide();
                         $('#divpe8').hide();
-                        
+
 
                         $('#pe7').val('');
                         $('#pe8').hide('');
@@ -524,7 +538,7 @@
 
                         $('#pe7').hide();
                         $('#pe8').hide();
-                        
+
 
                         $('#pe7').val('');
                         $('#pe8').hide('');
@@ -684,7 +698,7 @@
         });
         $('#pe8').on('change keydown', function (e) {
             pe8();
-            
+
         });
         $('#pe7').on('change keydown', function (e) {
             pe7();
@@ -705,7 +719,7 @@
 
         $('#pe2').on('change keydown', function (e) {
             pe2();
-            
+
 
         });
 
