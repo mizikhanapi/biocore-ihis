@@ -44,7 +44,8 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <input class="form-control input-lg" type="text"  id="tCISOEPOS_0_ID">
+                                    <label class="col-md-6 control-label" for="textinput">Search Procedure</label>
+                                    <input class="form-control input-lg" type="hidden"  id="tCISOEPOS_0_ID">
                                     <input class="form-control input-lg" type="text" name="tCISOEPOSSearch"  id="tCISOEPOSSearch" placeholder="Search Procedure Name..." tabindex="4">
                                     <div id="tCISOEPOSSearchLoading" ></div>
 <!--                                    <input class="form-control input-lg" type="text" name="problem"  id="Problem18" placeholder="Search Procedure..." tabindex="4">-->
@@ -54,14 +55,63 @@
                                     <div id="match18"></div>
                                 </div>
                                 <div class="form-group" id="div_CIS_OE_POS_LVL1">
-                                    <input class="form-control input-lg" type="text"  id="tCISOEPOS_1_ID">
+                                    <input class="form-control input-lg" type="hidden"  id="tCISOEPOS_1_ID">
                                     <input class="form-control input-lg" type="text" name="tCISOEPOSSearch"  id="tCISOEPOS1Search" placeholder="Search Procedure Name..." tabindex="4">
                                     <div id="tCISOEPOS1SearchLoading" ></div>
                                 </div>
                                 <div class="form-group"  id="div_CIS_OE_POS_LVL2">
-                                    <input class="form-control input-lg" type="text"  id="tCISOEPOS_2_ID">
+                                    <input class="form-control input-lg" type="hidden"  id="tCISOEPOS_2_ID">
                                     <input class="form-control input-lg" type="text" name="tCISOEPOSSearch"  id="tCISOEPOS2Search" placeholder="Search Procedure Name..." tabindex="4">
                                     <div id="tCISOEPOS2SearchLoading" ></div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="col-md-6" for="textinput">Appointment</label>
+                                            <div class="col-md-12">
+                                                <input class="form-control input-lg" type="text"  id="appointmentPOS" placeholder="">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="col-md-6" for="textinput">Patient Condition</label>
+                                            <div class="col-md-12">
+                                                <select id="patientConditionPOScd" class="form-control input-lg">
+                                                    <option>Please select condition..</option>
+                                                    <%
+                                                        if (dataPatientCondition.size() > 0) {
+                                                            for (int i = 0; i < dataPatientCondition.size(); i++) {
+                                                    %>
+                                                    <option value="<%out.print(dataPatientCondition.get(i).get(0));%>"><%out.print(dataPatientCondition.get(i).get(1));%></option>
+                                                    <%
+                                                            }
+                                                        }%>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="col-md-6" for="textinput">Priority</label>
+                                            <div class="col-md-12">
+                                                <select id="priorityPOScd" class="form-control input-lg">
+                                                    <option >Please select condition..</option>
+                                                    <%
+                                                        if (dataPriority.size() > 0) {
+                                                            for (int i = 0; i < dataPriority.size(); i++) {
+                                                    %>
+                                                    <option value="<%out.print(dataPriority.get(i).get(0));%>"><%out.print(dataPriority.get(i).get(1));%></option>
+                                                    <%
+                                                            }
+                                                        }%>
+
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                                 
                                 <div class="row">
@@ -73,13 +123,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div id="proType1">
-                                    <div class="form-group">
-                                        <select name="inst" id="proType" class="form-control input-lg">
-                                            <option value="1" selected="" disabled="">Procedure Types</option>
-                                        </select>
-                                    </div>
-                                </div>
+
                                 <div class="form-group">
                                     <input class="form-control input-lg" type="hidden" name="procedure_cd" id="procedure_cd">
                                 </div>
@@ -146,7 +190,7 @@
             <div class="modal-footer">
                 <div class="btn-group btn-group-justified" role="group" aria-label="group button">
                     <div class="btn-group" role="group">
-                        <button type="button" class="btn btn-success btn-block btn-lg" id="acceptProcedure" role="button">Accept</button>
+                        <button type="button" class="btn btn-success btn-block btn-lg" id="btnCIS_OE_POS_SUBMIT" role="button">Submit</button>
                     </div>
                     <div class="btn-group btn-delete hidden" role="group">
                         <button type="button" id="delImage" class="btn btn-default btn-block btn-lg" data-dismiss="modal"  role="button">Clear</button>

@@ -20,18 +20,40 @@ $(document).ready(function(){
     $("#div_CIS_OE_POS_LVL2").hide();
     
     searching("tCISOEPOSProblemName","tCISOEPOSProblemNameLoading","search/ResultCCNSearch.jsp","problemCodePOS","search/ResultCCNSearchCode.jsp");
-
     
     searchPOS("tCISOEPOSSearch", "tCISOEPOSSearchLoading", "","0");
     searchPOSCode("tCISOEPOSSearch","tCISOEPOSSearchLoading","tCISOEPOS_0_ID","0");
     
-    searchPOS("tCISOEPOS1Search", "tCISOEPOS1SearchLoading", "","1");
-    searchPOSCode("tCISOEPOS1Search","tCISOEPOS1SearchLoading","tCISOEPOS_1_ID","1");
+    $("#btnCIS_OE_POS_SUBMIT").click(function (e) {
+
+        e.preventDefault();
+        console.log(_dataPOS);
+        var submitConfirm = confirm('Confirm All Order');
+        if (submitConfirm === true) {
+            var msg = '';
+            var fullmsg;
+            var msh = getMSH();
+            var pdi = PDIInfo;
+            var orc = convertORC(_dataPOS[0], "02", "18", "T12114");
+            for (var i in _dataPOS) {
+                msg += convertPOS(_dataPOS[i]);
+            }
+            fullmsg = msh + pdi + orc + msg;
+            var data = {
+                msg: fullmsg,
+                pmino: pmiNo,
+                episodedate: episodeDate,
+                status: "1"
+            }
+            sendOrder(data, "tableOrderPOS");
+        } else {
+            return false;
+        }
+
+    });
+     
     
-    searchPOS("tCISOEPOS2Search", "tCISOEPOSS2earchLoading", "","2");
-    searchPOSCode("tCISOEPOS2Search","tCISOEPOS2SearchLoading","tCISOEPOS_2_ID","2");
-    
-    
+
   $("#btnCIS_OE_POS_ADD").click(function(){
       
       var pc2 = $("#tCISOEPOS_2_ID").val();
@@ -45,10 +67,11 @@ $(document).ready(function(){
       var problemCode = $('#problemCodePOS').val();
       var problemName = $("#tCISOEPOSProblemName").val();
       var commentArea = $("#tCIS_POSCommentArea").val();
-      
-        console.log("pc2" + pc2);
-        console.log("pc1" + pc1);
-        console.log("pc0" + pc0);
+      var priority = $("#priorityPOScd  option:selected").text();
+      var priorityCode = $("#priorityPOScd").val();
+      var patientCondition = $("#patientConditionPOScd option:selected").text();
+      var patientConditionCd = $("#patientConditionPOScd").val();
+      var date = $("#appointmentPOS").val();
       
      
       if($("#tCISOEPOS_2_ID").val() === ""){
@@ -60,8 +83,7 @@ $(document).ready(function(){
       } else{
           procedureCode = $("#tCISOEPOS_2_ID").val();
       }
-     
-      
+
       var obj = {
           procedure:procedure,
           procedureCode:procedureCode,
@@ -69,7 +91,11 @@ $(document).ready(function(){
           hfcProviderDetail:hfcProviderDetail,
           problemCode:problemCode,
           problemName:problemName,
-          priority:"Normal",
+          priority:priority,
+          priorityCode:priorityCode,
+          patientCondition:patientCondition,
+          patientConditionCode:patientConditionCd,
+          date:date,
           comment:commentArea
       }
       _dataPOS.push(obj);
@@ -93,11 +119,12 @@ $(document).ready(function(){
       var problemCode = $('#problemCodePOS').val();
       var problemName = $("#tCISOEPOSProblemName").val();
       var commentArea = $("#tCIS_POSCommentArea").val();
-      
-      console.log("pc2" + pc2);
-      console.log("pc1" + pc1);
-      console.log("pc0" + pc0);
-      
+      var priority = $("#priorityPOScd  option:selected").text();
+      var priorityCode = $("#priorityPOScd").val();
+      var patientCondition = $("#patientConditionPOScd option:selected").text();
+      var patientConditionCd = $("#patientConditionPOScd").val();
+      var date = $("#appointmentPOS").val();
+
         if (pc2 === "") {
             procedure = $("#tCISOEPOSSearch").val() + "[$-$]" + $("#tCISOEPOS1Search").val()
             procedureCode = pc1;
@@ -113,6 +140,12 @@ $(document).ready(function(){
           updatePOSObj.problemCode = problemCode;
           updatePOSObj.problemName = problemName;
           updatePOSObj.comment = commentArea;
+          updatePOSObj.priority = priority;
+          updatePOSObj.priorityCode = priorityCode;
+          updatePOSObj.patientCondition = patientCondition;
+          updatePOSObj.patientConditionCode = patientConditionCd;
+          updatePOSObj.date = date;
+          updatePOSObj.comment = commentArea;
           
         updateOrderPOSTable(updatePOSObj, updatePOSIndex);
         $("#btnCIS_OE_POS_UPDATE").hide();
@@ -122,6 +155,16 @@ $(document).ready(function(){
       
       
   });
+  
+    $("#btnCIS_OE_POS_CANCEL").click(function (e) {
+
+        e.preventDefault();
+        $("#btnCIS_OE_POS_UPDATE").hide();
+        $("#btnCIS_OE_POS_CANCEL").hide();
+        $("#btnCIS_OE_POS_ADD").show();
+        clearFieldPOS();
+
+    });
   
   
   $("#tableOrderPOS").on("click",".btnUpdate",function(){
@@ -170,13 +213,30 @@ $(document).ready(function(){
         
         $("#problemCodePOS").val(updatePOSObj.problemCode);
         $("#tCIS_POSCommentArea").val(updatePOSObj.comment);
+        $("#priorityPOScd").val(updatePOSObj.priorityCode);
+        $("#patientConditionPOScd").val(updatePOSObj.patientConditionCode);
+        $("#appointmentPOS").val(updatePOSObj.date);
         
         
-        
-        
+    });
+  
+    $("#tableOrderPOS").on("click", ".btnDelete", function (e) {
 
-        
-  });
+        e.preventDefault();
+        rowPOSDataTR = $(this).closest("tr");
+        var delId = $(this).get(0).id;
+        var delIdA = delId.split("|");
+        var delIndex = parseInt(delIdA[1]);
+        var delConfirm = confirm('Are you want to delete this Order? ');
+        if (delConfirm === true) {
+            delete _dataPOS[delIndex];
+            $(this).closest('tr').remove();
+            console.log(_dataPOS);
+        } else {
+            return false;
+        }
+
+    });
   
   function getProcedurePOS(procedureName,level){
       $.ajax({
@@ -212,12 +272,18 @@ $(document).ready(function(){
       });
   }
   
+    $(function () {
+        $('#appointmentPOS').datepicker({dateFormat: 'dd-mm-yy', changeMonth: true, changeYear: true});
+    });
+  
   function clearFieldPOS(){
       
         $("#tCISOEPOS_2_ID").val('');
         $("#tCISOEPOS_1_ID").val('');
         $("#tCISOEPOS_0_ID").val('');
         $("#tCIS_POSCommentArea").val('');
+        $("#patientConditionPOScd").val('PC01');
+        $("#priorityPOScd").val('P01');
         
         searchingRetrieve("tCISOEPOSProblemName", "tCISOEPOSProblemNameLoading", "search/ResultCCNSearch.jsp", "problemCodePOS", "search/ResultCCNSearchCode.jsp", "");
         
@@ -246,17 +312,6 @@ $(document).ready(function(){
         $(rowPOSDataTR).html(_tr);
     }
     
-    function getProcedureDisplay(procedure){
-        var procedureArray = procedure.split("[$-$]");
-        var displayProcedure;
-        if(procedureArray.length === 3){
-            displayProcedure = procedureArray[0]+","+procedureArray[1]+","+procedureArray[2];
-        } else if(procedureArray.length === 2){
-            displayProcedure = procedureArray[0]+","+procedureArray[1];
-        } else{
-             displayProcedure = procedureArray[0];
-        }
-        return displayProcedure;
-    }
+
 
 });

@@ -22,9 +22,9 @@
 <link href="assets/stylev1.css" rel="stylesheet">
 
 <script src="assets/jquery-3.1.1.js" type="text/javascript"></script>
-<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-<!-- <script src="assets/jquery-ui-1.12.1/jquery-ui.js" type="text/javascript"></script>-->
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<!--<script src="https://code.jquery.com/jquery-1.12.4.js"></script>-->
+ <script src="assets/jquery-ui-1.12.1/jquery-ui.js" type="text/javascript"></script>
+<!--<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>-->
 <script src="assets/bootstrap-3.3.7-dist/js/bootstrap.js" type="text/javascript"></script>
 <script src="assets/jquery.timepicker.min.js" type="text/javascript"></script>
 <script src="assets/jquery.dataTables.min.js" type="text/javascript"></script>
@@ -51,8 +51,8 @@
 <script src="jsFunction/search/SearchCCN_cd1.js" type="text/javascript"></script>
 <script src="jsFunction/search/SearchCNN.js" type="text/javascript"></script>
 <script src="jsFunction/search/SearchDAS_cd.js" type="text/javascript"></script>
-<script src="jsFunction/search/SearchDTO.js" type="text/javascript"></script>
-<script src="jsFunction/search/SearchDTO_cd.js" type="text/javascript"></script>
+<!--<script src="jsFunction/search/SearchDTO.js" type="text/javascript"></script>
+<script src="jsFunction/search/SearchDTO_cd.js" type="text/javascript"></script>-->
 <script src="jsFunction/search/SearchDisability1.js" type="text/javascript"></script>
 <script src="jsFunction/search/SearchFMH.js" type="text/javascript"></script>
 <script src="jsFunction/search/SearchFMH_cd1.js" type="text/javascript"></script>
@@ -60,7 +60,7 @@
 <script src="jsFunction/search/SearchImmunization.js" type="text/javascript"></script>
 <script src="jsFunction/search/SearchPMH.js" type="text/javascript"></script>
 <script src="jsFunction/search/SearchPMH_cd1.js" type="text/javascript"></script>
-<script src="jsFunction/search/SearchPOS_type.js" type="text/javascript"></script>
+<!--<script src="jsFunction/search/SearchPOS_type.js" type="text/javascript"></script>-->
 <script src="jsFunction/search/SearchProcedure.js" type="text/javascript"></script>
 <script src="jsFunction/search/SearchProcedureCode.js" type="text/javascript"></script>
 <script src="jsFunction/search/SearchSOH.js" type="text/javascript"></script>
@@ -68,7 +68,7 @@
 <script src="jsFunction/search/SearchSOP.js" type="text/javascript"></script>
 <script src="jsFunction/search/SearchuALG_cd.js" type="text/javascript"></script>
 <script src="jsFunction/search/SearchuDAS_cd.js" type="text/javascript"></script>
-<script src="jsFunction/search/SearchuDTO_cd.js" type="text/javascript"></script>
+<!--<script src="jsFunction/search/SearchuDTO_cd.js" type="text/javascript"></script>-->
 <script src="jsFunction/search/SearchuFMH_cd.js" type="text/javascript"></script>
 <script src="jsFunction/search/SearchuIMU_cd.js" type="text/javascript"></script>
 <script src="jsFunction/search/SearchuPMH_cd.js" type="text/javascript"></script>
@@ -88,7 +88,7 @@
 <script src="jsFunction/search/searchDoc_FLU.js" type="text/javascript"></script>
 <script src="jsFunction/search/searchDisipline.js" type="text/javascript"></script>
 <script src="jsFunction/search/SearchMON.js" type="text/javascript"></script>
-<script src="jsFunction/search/searchDisiplineADW.js" type="text/javascript"></script>
+<!--<script src="jsFunction/search/searchDisiplineADW.js" type="text/javascript"></script>-->
 
 
 <style>

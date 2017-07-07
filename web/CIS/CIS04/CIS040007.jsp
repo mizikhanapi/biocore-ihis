@@ -17,6 +17,8 @@
                         <div class="form-group">
                             <label class="col-md-6 control-label" for="textinput">Search Health Facility</label>
                             <div class="col-md-12">
+                                <input class="form-control input-lg " type="text" name="DateTo" id="hfcOrderDetailADW" placeholder="Hfc Order Detail" readonly="">
+                                <input class="form-control input-lg " type="text" name="DateTo" id="hfcProviderDetailADW" placeholder="Hfc Provider Detail" >
                                 <input class="form-control input-lg " type="hidden" name="DateTo" id="tCIS_ADWHFCreferFromCd" placeholder="Code" readonly="">
                                 <input class="form-control input-lg " type="text" name="DateTo" id="tCIS_ADWHFCreferFrom" placeholder="Type to search..." >
                                 <div id="tCIS_ADWHFCreferFromLoading" ></div>
@@ -35,6 +37,7 @@
                                 <input class="form-control input-lg " type="text" name="DateTo" id="tCIS_ADWreferFromCd" placeholder="Code" readonly="">
                                 <input class="form-control input-lg " type="text" name="DateTo" id="tCIS_ADWreferFrom" placeholder="Type to search...">
                                 <div id="matchCIS_ADWreferFrom" class="search-drop"></div>
+                                <div id="tCIS_ADWreferFromLoading" ></div>
                             </div>
                         </div>
                     </div>
@@ -51,7 +54,7 @@
                           <div class="form-group">
                               <label class="col-md-6 control-label" for="textinput">Search Health Facility</label>
                               <div class="col-md-12">
-                                  <input class="form-control input-lg " type="hidden" name="DateTo" id="tCIS_ADWsearchHFCCd" placeholder="Code" readonly="">
+                                  <input class="form-control input-lg " type="text" name="DateTo" id="tCIS_ADWsearchHFCCd" placeholder="Code" readonly="">
                                   <input class="form-control input-lg " type="text" name="DateTo" id="tCIS_ADWsearchHFC" placeholder="Type to search...">
                                   <div id="tCIS_ADWsearchHFCLoading" ></div>
                                   <br>
@@ -68,6 +71,7 @@
                             <div class="col-md-12">
                                 <input class="form-control input-lg " type="text" name="DateTo" id="tCIS_ADWsearchDisCd" placeholder="Code" readonly="">
                                 <input class="form-control input-lg " type="text" name="DateTo" id="tCIS_ADWsearchDis" placeholder="Type to search...">
+                                <div id="tCIS_ADWsearchDisLoading" ></div>
                                 <div id="matchCIS_ADWsearchDis" class="search-drop"></div>
                             </div>
                         </div>
@@ -110,8 +114,9 @@
                             <label class="col-md-6 control-label" for="textinput">Ward Name</label>
                             <div class="col-md-12">
                                 <input class="form-control input-lg " type="text" name="DateTo" id="tCIS_ADWwardNameCd" placeholder="Ward Code" readonly="">
+                                <input class="form-control input-lg " type="text" name="DateTo" id="tCIS_ADWwardClassCd" placeholder="Ward Code" readonly="">
                                 <input class="form-control input-lg " type="text" name="DateTo" id="tCIS_ADWwardName" placeholder="Search Ward Name">
-                                <div id="matchCIS_ADTwardSearch"></div>
+                                <div id="tCIS_ADWwardNameLoading"></div>
                             </div>
                         </div>
                     </div>
@@ -257,83 +262,4 @@
 <!--End Update Monitoring-->
 
 
-<script type="text/javascript">
-              $(document).ready(function(){
-                  
-                searchingHFC("tCIS_ADWsearchHFC", "tCIS_ADWsearchHFCLoading", "search/SearchHFC_2.jsp","search/getHFC_cd.jsp","tCIS_ADWsearchHFCCd");
-                searchingHFC("tCIS_ADWHFCreferFrom", "tCIS_ADWHFCreferFromLoading", "search/SearchHFC_2.jsp","search/getHFC_cd.jsp","tCIS_ADWHFCreferFromCd");
-                
-                //searchingDiscipline(fieldId, loadingDivId, urlData,urlCode,"search/getHFC_cd.jsp",$("#tCIS_ADWsearchHFCCd").val());
-                //searchingDiscipline(fieldId, loadingDivId, urlData,urlCode,"search/getHFC_cd.jsp",$("#tCIS_ADWHFCreferFromCd").val());
-                //searching("tCIS_ADWHFCreferFrom", "tCIS_ADWHFCreferFromLoading", "search/SearchHFC_2.jsp");
-
-                //function Searching Health Facility code and Health Facility name
-                function searchingHFC(fieldId, loadingDivId, urlData,urlCode,codeFieldId) {
-                    $('#' + fieldId).flexdatalist({
-                        minLength: 3,
-                        searchIn: 'name',
-                        searchDelay: 2000,
-                        url: urlData,
-                        cache: true,
-                        params: {
-                            timeout: 3000,
-                            success: function (result) {
-                                console.log(result);
-                                if (result === undefined) {
-                                    $('#' + loadingDivId).html('No Record');
-                                }
-                            }
-                        }
-                    });
-
-                    $("#" + fieldId).on('before:flexdatalist.data', function (response) {
-                        console.log("Start - " + getDate());
-                        $('#' + loadingDivId).html('<img src="img/LoaderIcon.gif" />');
-                    });
-                    $("#" + fieldId).on('after:flexdatalist.data', function (response) {
-                        console.log("End - " + getDate());
-                        $('#' + loadingDivId).html('');
-                    });
-                    $("#" + fieldId).on('select:flexdatalist', function (response) {
-                        var hfc_name = $("#" + fieldId).val();
-                        $.ajax({
-                            type:"post",
-                            url:urlCode,
-                            timeout:3000,
-                            data:{input:hfc_name},
-                            success:function(response){
-                                $("#" + codeFieldId).val(response.trim());
-                            }
-                        });
-                        
-                    });
-                }
-                
-                function searchingDiscipline(fieldId, loadingDivId, urlData,urlCode,codeFieldId,hfcCode){
-                    $('#' + fieldId).flexdatalist({
-                        minLength: 3,
-                        searchIn: 'name',
-                        searchDelay: 2000,
-                        url: urlData,
-                        cache: true,
-                        params: {
-                            timeout: 3000,
-                            data:{hfc_code:hfcCode},
-                            success: function (result) {
-                                console.log(result);
-                            }
-                        }
-                    });
-
-                    $("#" + fieldId).on('before:flexdatalist.data', function (response) {
-                        console.log("Start - " + getDate());
-                        $('#' + loadingDivId).html('<img src="img/LoaderIcon.gif" />');
-                    });
-                    $("#" + fieldId).on('after:flexdatalist.data', function (response) {
-                        console.log("End - " + getDate());
-                        $('#' + loadingDivId).html('');
-                    });
-                }
-                
-              });
-</script>
+ <script src="jsFunction/CIS040007.js" type="text/javascript"></script>

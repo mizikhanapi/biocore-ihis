@@ -125,11 +125,11 @@ function searchingHFC(fieldId, loadingDivId, urlData, urlCode, codeFieldId, loca
     });
 
     $("#" + fieldId).on('before:flexdatalist.data', function (response) {
-        console.log("Start - " + getDate());
+      
         $('#' + loadingDivId).html('<img src="img/LoaderIcon.gif" />');
     });
     $("#" + fieldId).on('after:flexdatalist.data', function (response) {
-        console.log("End - " + getDate());
+      
         $('#' + loadingDivId).html('');
     });
     $("#" + fieldId).on('select:flexdatalist', function (response) {
@@ -143,6 +143,7 @@ function searchingHFC(fieldId, loadingDivId, urlData, urlCode, codeFieldId, loca
                 orderCode: "ROS"
             },
             success: function (response) {
+                console.log(response);
                 var hfc_detail_array = response.split("[#-#]");
                 var hfc_location = hfc_detail_array[0].split("|");
                 $('#' + codeFieldId).val(hfc_location[0].trim());
@@ -161,6 +162,102 @@ function searchingHFC(fieldId, loadingDivId, urlData, urlCode, codeFieldId, loca
             }
         });
 
+    });
+}
+
+function searchHFCOnly(fieldId,loadingDivId){
+    
+        $('#' + fieldId).flexdatalist({
+        minLength: 3,
+        searchIn: 'name',
+        searchDelay: 2000,
+        url: "search/ResultHFCSearch.jsp",
+        cache: true,
+        params: {
+            timeout: 3000,
+            success: function (result) {
+                console.log(result);
+                if (result === undefined) {
+                    $('#' + loadingDivId).html('No Record');
+                }
+            }
+        }
+    });
+}
+
+function searchDisciplineOnly(fieldId, loadingDivId,hfc_code) {
+
+    $('#' + fieldId).flexdatalist({
+        minLength: 3,
+        searchIn: 'name',
+        searchDelay: 2000,
+        url: "search/ResultDISCIPLINESearch.jsp?hfc_code="+hfc_code,
+        cache: true,
+        params: {
+            timeout: 3000,
+            success: function (result) {
+                console.log(result);
+                if (result === undefined) {
+                    $('#' + loadingDivId).html('No Record');
+                }
+            }
+        }
+    });
+}
+
+function getHFCCode(hfc_name,codeFieldId,detailField,discplineField,disciplineCode){
+    
+     $.ajax({
+            type: "post",
+            url: "search/ResultHFCSearchCodeOnly.jsp",
+            timeout: 3000,
+            data: {
+                id: hfc_name
+            },
+            success: function (response) {
+                //console.log(response);
+                $("#"+codeFieldId).val(response.trim());
+                getHFCOrderProviderDetail(response.trim(),detailField);
+                searchDisciplineOnly(discplineField, disciplineCode,response.trim());
+
+            }
+        });
+}
+function getHFCOrderProviderDetail(orderHfc,detailField){
+    
+    $.ajax({
+        type:"POST",
+        url:"search/ResultHFCDetailSearch.jsp",
+        timeout:3000,
+        data:{
+            OrderHfc:orderHfc,
+            
+        },
+        success:function(response){
+            //console.log(response);
+            $("#"+detailField).val(response.trim());
+        }
+    })
+    
+}
+
+function searchWard(fieldId,loadingDivId,hfc_cd,discipline_cd,currentValue){
+    
+        $('#' + fieldId).val(currentValue).flexdatalist({
+        minLength: 1,
+        searchIn: 'name',
+        searchDelay: 2000,
+        url: "search/ResultWARDSearch.jsp?hfc_code="+hfc_cd+"&discipline_cd="+discipline_cd,
+        cache: true,
+        params: {
+            timeout: 3000,
+            success: function (result) {
+                console.log(result);
+                if (result === undefined) {
+                    $('#' + loadingDivId).html('No Record');
+                }
+            }
+        }
     });
 }
 
@@ -290,6 +387,60 @@ function searchPOS(searchFieldId, loadingId, currentValue, level) {
         }
     });
 }
+function searchPOS1(searchFieldId, loadingId, currentValue, level) {
+    var urlSearch;
+    if (level === "0") {
+        urlSearch = "search/ResultPOSSearch.jsp"
+    } else if (level === "1") {
+        urlSearch = "search/ResultPOS1Search.jsp"
+    } else if (level === "2") {
+        urlSearch = "search/ResultPOS2Search.jsp"
+    }
+    $('#' + searchFieldId).val(currentValue).flexdatalist({
+        minLength: 1,
+        searchIn: 'name',
+        searchDelay: 2000,
+        selectionRequired: true,
+        url: urlSearch,
+        cache: true,
+        params: {
+            timeout: 3000,
+            success: function (result) {
+                //console.log(result);
+                if (result === undefined) {
+                    $('#' + loadingId).html('No Record');
+                }
+            }
+        }
+    });
+}
+function searchPOS2(searchFieldId, loadingId, currentValue, level) {
+    var urlSearch;
+    if (level === "0") {
+        urlSearch = "search/ResultPOSSearch.jsp"
+    } else if (level === "1") {
+        urlSearch = "search/ResultPOS1Search.jsp"
+    } else if (level === "2") {
+        urlSearch = "search/ResultPOS2Search.jsp"
+    }
+    $('#' + searchFieldId).val(currentValue).flexdatalist({
+        minLength: 1,
+        searchIn: 'name',
+        searchDelay: 2000,
+        selectionRequired: true,
+        url: urlSearch,
+        cache: true,
+        params: {
+            timeout: 3000,
+            success: function (result) {
+                //console.log(result);
+                if (result === undefined) {
+                    $('#' + loadingId).html('No Record');
+                }
+            }
+        }
+    });
+}
 function searchPOSCode(searchField,loadingField,codeField,level){
     var currentlevel = level;
     var nextLevel = parseInt(level)+1;
@@ -319,12 +470,85 @@ function searchPOSCode(searchField,loadingField,codeField,level){
                 console.log(response);
                 checkPOSLevel(response.trim(),nextLevel);
                 $("#"+codeField).val(response.trim());
+                searchPOS1("tCISOEPOS1Search", "tCISOEPOS1SearchLoading", "", "1");
+                searchPOSCode1("tCISOEPOS1Search", "tCISOEPOS1SearchLoading", "tCISOEPOS_1_ID", "1");
             
             }
         });
     });
 }
+function searchPOSCode1(searchField, loadingField, codeField, level) {
+    var currentlevel = level;
+    var nextLevel = parseInt(level) + 1;
+    nextLevel.toString();
+    $("#" + searchField).on('before:flexdatalist.data', function (response) {
 
+        $('#' + loadingField).html('<img src="img/LoaderIcon.gif" />');
+
+    });
+    $("#" + searchField).on('after:flexdatalist.data', function (response) {
+
+        $('#' + loadingField).html('');
+
+    });
+    $("#" + searchField).on('select:flexdatalist', function (response) {
+
+        var procedureName = $("#" + searchField).val();
+        $.ajax({
+            type: "post",
+            url: "search/ResultPOSSearchCode.jsp",
+            timeout: 3000,
+            data: {
+                keyword: procedureName,
+                level: level
+            },
+            success: function (response) {
+                console.log(response);
+                checkPOSLevel(response.trim(), nextLevel);
+                $("#" + codeField).val(response.trim());
+                searchPOS2("tCISOEPOS2Search", "tCISOEPOSS2earchLoading", "","2");
+                searchPOSCode2("tCISOEPOS2Search","tCISOEPOS2SearchLoading","tCISOEPOS_2_ID","2");
+
+            }
+        });
+    });
+}
+function searchPOSCode2(searchField, loadingField, codeField, level) {
+    var currentlevel = level;
+    var nextLevel = parseInt(level) + 1;
+    nextLevel.toString();
+    $("#" + searchField).on('before:flexdatalist.data', function (response) {
+
+        $('#' + loadingField).html('<img src="img/LoaderIcon.gif" />');
+
+    });
+    $("#" + searchField).on('after:flexdatalist.data', function (response) {
+
+        $('#' + loadingField).html('');
+
+    });
+    $("#" + searchField).on('select:flexdatalist', function (response) {
+
+        var procedureName = $("#" + searchField).val();
+        $.ajax({
+            type: "post",
+            url: "search/ResultPOSSearchCode.jsp",
+            timeout: 3000,
+            data: {
+                keyword: procedureName,
+                level: level
+            },
+            success: function (response) {
+                console.log(response);
+                checkPOSLevel(response.trim(), nextLevel);
+                $("#" + codeField).val(response.trim());
+//                searchPOS2("tCISOEPOS2Search", "tCISOEPOSS2earchLoading", "", "2");
+//                searchPOSCode2("tCISOEPOS2Search", "tCISOEPOS2SearchLoading", "tCISOEPOS_2_ID", "2");
+
+            }
+        });
+    });
+}
 function checkPOSLevel(code,level){
         var pos_0_cd = code;
         console.log(level);

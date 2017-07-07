@@ -18,6 +18,13 @@ function convertLIO(obj){
     var msg = "LIO|"  + obj.problemCode +"^"+obj.problemName+"^CTV3|"+ obj.codeLOS + "^" + obj.searchLOS + "^ICD10-PCS|" + obj.appointmentLOS + "|038^" + obj.priority + "^" + obj.priorityLOScd + "|096^" + obj.patientConditionLOScd + "^" + obj.patientCondition + "|" + obj.hfcIdLOS + "^" + obj.hfcLOS + "^PSDD|" + obj.commentLOS + "|" + hfc_cd + "^" + hfc_name + "^" + discipline + "^"+disciplineName+"^" + subdis + "^"+subdisName+"^" + "|<cr>\n";
     return msg;
 }
+
+function convertPOS(obj){
+    var procedureDisplay = getProcedureDisplay(obj.procedure)
+    var msg ="POS|"  + obj.problemCode +"^"+obj.problemName+"^CTV3|"+ obj.procedureCode + "^"+procedureDisplay +"^ICD1-PCS|" + obj.date + "|038^" + obj.priority + "^" + obj.priorityCode + "|096^" + obj.patientConditionCode + "^" + obj.patientCondition + "||||" + hfc_cd + "|" + hfc_name + "|" + obj.comment + "|" + hfc_cd;
+    return msg;
+}
+
 function convertDTO(obj){
     var problemDTO = "DTO|"  + obj.problemCode +"^"+obj.problemName+"^CTV3|";
     var drug = obj.drugCode + "^ " + obj.drugName + "^MDC|";
@@ -56,4 +63,17 @@ function getORC(transectionCode,orderNo,fillerOrderNo,orderStatus, orderPriority
         var orc3 = "|"+orderHFCPhoneNo+"|"+providerHFC+"|"+providerDis+"|"+providerSub+"|"+providerApp+"|"+providerAdd1+"|"+providerAdd2+"|"+providerAdd3+"|"+providerTown+ "|"+providerDistrict+"|"+providerState+ "|"+providerCountry+ "|"+providerPostcode+ "|"+providerPhoneNo+ "|"+comment+ "|"+"<cr>\n";
         orc = orc1+orc2+orc3;
         return orc;
+}
+
+function getProcedureDisplay(procedure) {
+    var procedureArray = procedure.split("[$-$]");
+    var displayProcedure;
+    if (procedureArray.length === 3) {
+        displayProcedure = procedureArray[0] + "," + procedureArray[1] + "," + procedureArray[2];
+    } else if (procedureArray.length === 2) {
+        displayProcedure = procedureArray[0] + "," + procedureArray[1];
+    } else {
+        displayProcedure = procedureArray[0];
+    }
+    return displayProcedure;
 }
