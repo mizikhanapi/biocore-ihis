@@ -188,7 +188,7 @@
         var painScore = $('#NIWOBps').val();
         var comment = $('#NIWOBcomment').val();
         var sel = $('#selectOBdate').val();
-        var pmi_no = "<%=session.getAttribute("patientPMINo")%>";
+        var pmi_no = pmiNo;
         var hfc_cd1 = hfc_cd;
         var epDate = episodeDate;
         

@@ -69,7 +69,7 @@
                 <!-- content -->
                 <div class="tab-pane fade" id="Ortho-NursingInWard_2">
                     <ul class="soap-content nav">
-                        <li><a data-toggle="modal" data-target="#4hly" href="" class="soap-select"><i class="fa fa-comments  fa-li"></i>New Assessment</a></li>
+                        <li><a data-toggle="modal" data-target="#4hly" href="" class="soap-select" id="4hlynewassessment"><i class="fa fa-comments  fa-li" ></i>New Assessment</a></li>
                     </ul>
                     <hr class="pemisah" />
                     <%@include file="4hly.jsp"%>
@@ -194,6 +194,12 @@
         e.preventDefault();
         $('#cobserved1 #btnNIWOBUPDATE').hide();
         $('#cobserved1 #btnNIWOBADD').show();
+    });
+    
+    $('#Ortho-NursingInWard_2').on('click','#4hlynewassessment',function(e){
+        e.preventDefault();
+        $('#4hly #btnNIW4hlyUPDATE').hide();
+        $('#4hly #btnNIW4hlyADD').show();
     });
     
 </script>
