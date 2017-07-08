@@ -152,7 +152,7 @@
                 data: data,
                 timeout: 10000,
                 success: function (datas) {
-                    //$('#tableChartCirculationDiv').html(datas);
+                    $('#tableChartCirculationDiv').html(datas);
                 },
                 error: function (err) {
                     bootbox.alert("something wrong,error: " + err);
