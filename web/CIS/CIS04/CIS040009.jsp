@@ -5,9 +5,26 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%
+            String referralPriority = "select Detail_Reference_code,Description from adm_lookup_detail where Master_Reference_code = '0101' AND hfc_cd = '" + hfc_cd + "' order by priority_indicator ASC";
+            ArrayList<ArrayList<String>> dataRPriority = Conn.getData(referralPriority);
+            
+            String referralType = "select Detail_Reference_code,Description from adm_lookup_detail where Master_Reference_code = '0102' AND hfc_cd = '" + hfc_cd + "' order by priority_indicator ASC";
+            ArrayList<ArrayList<String>> dataRType = Conn.getData(referralType);
+
+            String referralDisposition = "select Detail_Reference_code,Description from adm_lookup_detail where Master_Reference_code = '0103' AND hfc_cd = '" + hfc_cd + "' order by priority_indicator ASC";
+            ArrayList<ArrayList<String>> dataRDisposition = Conn.getData(referralDisposition);
+            
+            String referralCategory = "select Detail_Reference_code,Description from adm_lookup_detail where Master_Reference_code = '0104' AND hfc_cd = '" + hfc_cd + "' order by priority_indicator ASC";
+            ArrayList<ArrayList<String>> dataRCategory = Conn.getData(referralCategory);
+            
+            String referralReason = "select Detail_Reference_code,Description from adm_lookup_detail where Master_Reference_code = '0105' AND hfc_cd = '" + hfc_cd + "' order by priority_indicator ASC";
+            ArrayList<ArrayList<String>> dataRReason = Conn.getData(referralReason);
+            
+%>
 <!--Modal ADD Referral-->
 <div class="modal fade" id="CIS040009" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal"><i class="fa fa-times fa-lg"></i><span class="sr-only">Close</span></button>
@@ -46,13 +63,106 @@
                         <div id="docREFLoading" class="search-drop"></div>
                     </div>
                 </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <label class="col-md-6 control-label" for="textinput">Priority :</label>
+                        <div class="col-md-12">
+                                                                             
+                            <select id="tCIS_PRIPriority" class="form-control input-lg">
+                                <option disabled="" >Please select Priority...</option>
+                                <%   if (dataRPriority.size() > 0) {
+                                        for (int i = 0; i < dataRPriority.size(); i++) {
+                                %>
+                                <option value="<%out.print(dataRPriority.get(i).get(0));%>"><%out.print(dataRPriority.get(i).get(1));%></option>
+                                <%
+                                        }
+                                    }%>
 
-                <div class="form-group">
-                    <label class="col-md-6 control-label" for="textinput">Appointment :</label>
-                    <div class="col-md-12">
-                        <input class="form-control input-lg" type="text" name="pro" id="appREF" >
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="col-md-6 control-label" for="textinput">Type :</label>
+                        <div class="col-md-12">
+                            <select id="tCIS_PRIType" class="form-control input-lg">
+                                <option disabled="" >Please select Type...</option>
+                                <%   if (dataRType.size() > 0) {
+                                        for (int i = 0; i < dataRType.size(); i++) {
+                                %>
+                                <option value="<%out.print(dataRType.get(i).get(0));%>"><%out.print(dataRType.get(i).get(1));%></option>
+                                <%
+                                        }
+                                    }%>
+
+                            </select>
+                        </div>
                     </div>
                 </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <label class="col-md-6 control-label" for="textinput">Disposition :</label>
+                        <div class="col-md-12">
+                            <select id="tCIS_PRIDisposition" class="form-control input-lg">
+                                <option disabled="" >Please select Disposition...</option>
+                                <%   if (dataRDisposition.size() > 0) {
+                                        for (int i = 0; i < dataRDisposition.size(); i++) {
+                                %>
+                                <option value="<%out.print(dataRDisposition.get(i).get(0));%>"><%out.print(dataRDisposition.get(i).get(1));%></option>
+                                <%
+                                        }
+                                    }%>
+
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="col-md-6 control-label" for="textinput">Category :</label>
+                        <div class="col-md-12">
+                            <select id="tCIS_PRICategory" class="form-control input-lg">
+                                <option disabled="" >Please select Category...</option>
+                                <%   if (dataRCategory.size() > 0) {
+                                        for (int i = 0; i < dataRCategory.size(); i++) {
+                                %>
+                                <option value="<%out.print(dataRCategory.get(i).get(0));%>"><%out.print(dataRCategory.get(i).get(1));%></option>
+                                <%
+                                        }
+                                    }%>
+
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+
+                    <div class="col-md-6">
+                        <label class="col-md-6 control-label" for="textinput">Reason :</label>
+                        <div class="col-md-12">
+                           <select id="tCIS_PRIReason" class="form-control input-lg">
+                                <option disabled="" >Please select Reason...</option>
+                                <%   if (dataRReason.size() > 0) {
+                                        for (int i = 0; i < dataRReason.size(); i++) {
+                                %>
+                                <option value="<%out.print(dataRReason.get(i).get(0));%>"><%out.print(dataRReason.get(i).get(1));%></option>
+                                <%
+                                        }
+                                    }%>
+
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="col-md-6 control-label" for="textinput">Appointment :</label>
+                            <div class="col-md-12">
+                                <input class="form-control input-lg" type="text" name="pro" id="appREF" >
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+
 
                 <div class="form-group">
                     <label class="col-md-6 control-label" for="textinput">Medical History Notes :</label>
@@ -62,25 +172,29 @@
                 </div>
 
 
-
             </div>
 
-            <div class="modal-footer">
-                <div class="btn-group btn-group-justified" role="group" aria-label="group button">
-                    <div class="btn-group" role="group">
-                        <button type="button" class="btn btn-success btn-block btn-lg" id="btnCIS_OE_PRI_SUBMIT" role="button">Submit</button>
-                    </div>
-                    <div class="btn-group btn-delete hidden" role="group">
-                        <button type="button" id="delImage" class="btn btn-default btn-block btn-lg" data-dismiss="modal"  role="button">Clear</button>
-                    </div>
-                    <div class="btn-group" role="group">
-                        <button type="button" id="saveImage" class="btn btn-default btn-block btn-lg" data-dismiss="modal" role="button">Close</button>
-                    </div>
-                </div>
-            </div>
+
+
 
         </div>
+
+        <div class="modal-footer">
+            <div class="btn-group btn-group-justified" role="group" aria-label="group button">
+                <div class="btn-group" role="group">
+                    <button type="button" class="btn btn-success btn-block btn-lg" id="btnCIS_OE_PRI_SUBMIT" role="button">Submit</button>
+                </div>
+                <div class="btn-group btn-delete hidden" role="group">
+                    <button type="button" id="delImage" class="btn btn-default btn-block btn-lg" data-dismiss="modal"  role="button">Clear</button>
+                </div>
+                <div class="btn-group" role="group">
+                    <button type="button" id="saveImage" class="btn btn-default btn-block btn-lg" data-dismiss="modal" role="button">Close</button>
+                </div>
+            </div>
+        </div>
+
     </div>
+</div>
 </div>
 <!--End ADD Referral-->
 

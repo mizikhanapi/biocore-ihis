@@ -31,7 +31,8 @@ function convertADW(obj){
 }
 
 function convertPRI(obj){
-    var msg = "PRI|" + getDate() + "|^^" + obj.appREF + "^"+obj.hfcREFcode+"^"+obj.REF+"^"+obj.disREFcode+"^"+obj.disREF+"^^^^^"+obj.medicalHisREF+"^^" + getDate() +  "^" + obj.docREFcode + "^" + obj.docREF+"|<cr>\n";
+    //var msg = "PRI|" + getDate() + "|^^" + obj.appREF + "^"+obj.hfcREFcode+"^"+obj.REF+"^"+obj.disREFcode+"^"+obj.disREF+"^^^^^"+obj.medicalHisREF+"^^" + getDate() +  "^" + obj.docREFcode + "^" + obj.docREF+"|<cr>\n";
+    var msg = "PRI|T12105|||"+episodeDate+"|"+encounterDate+"|"+"N|"+obj.priority+"|"+obj.type+"|"+obj.disposition+"|"+obj.category+"|"+obj.reason+"|"+obj.appREF+"||"+obj.medicalHisREF+"|"+obj.hfcREFcode+"^"+obj.REF+"^"+obj.disREFcode+"^"+obj.disREF+"^^^"+"|<cr>\n";
     return msg;
 }
 

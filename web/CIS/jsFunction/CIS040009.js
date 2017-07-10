@@ -63,6 +63,11 @@ $(document).ready(function(){
         var medhistoryREF = $('#medicalHisREF').val();
         var hfcProviderDetail = $("#hfcProviderDetailPRI").val();
         var hfcOrderDetail = $("#hfcOrderDetailPRI").val();
+        var priority = $("#tCIS_PRIPriority option:selected").val();
+        var type = $("#tCIS_PRIType option:selected").val();
+        var disposition = $("#tCIS_PRIDisposition option:selected").val();
+        var category = $("#tCIS_PRICategory option:selected").val();
+        var reason = $("#tCIS_PRIReason option:Selected").val();
        
         var obj1 = {
             Acode: 'PRI',
@@ -74,7 +79,12 @@ $(document).ready(function(){
             appREF:appREF,
             medicalHisREF:medhistoryREF,
             hfcOrderDetail:hfcOrderDetail,
-            hfcProviderDetail:hfcProviderDetail
+            hfcProviderDetail:hfcProviderDetail,
+            priority:priority,
+            type:type,
+            disposition:disposition,
+            category:category,
+            reason:reason
         };
         var submitConfirm = confirm('Confirm Admission');
         if (submitConfirm === true) {
@@ -104,11 +114,11 @@ $(document).ready(function(){
     })
     
     function clearFieldPRI(){
-        $("#tCIS_PRIHFCreferFrom").val("");
+        
         $("#hfcREFcode").val("");
-        $("#disREF").val("");
+        
         $("#disREFcode").val("");
-        $("#docREF").val("");
+        
         $("#appREF").val("");
         $("#medicalHisREF").val("");       
     }

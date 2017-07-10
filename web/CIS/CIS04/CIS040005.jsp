@@ -19,6 +19,7 @@
                 </div>
 
                 <div class="form-group">
+                     <label class="col-md-6 control-label" for="textinput">Health Facility :</label>
                     <div class="form-group">
                         <input class="form-control input-lg" type="text" name="problem"  id="hfc" placeholder="Search Health Facility..." tabindex="4">
                         <div id="matchHFC"></div>
@@ -32,6 +33,7 @@
                 </div>
                 
                         <div class="form-group">
+                             <label class="col-md-6 control-label" for="textinput">Doctor to be referred :</label>
                             <select name="site" id="hfcDiscipline" class="form-control input-lg">
                                 <option value="1" selected="" disabled="">Health Facility Discipline [Select]</option>
                             </select>
