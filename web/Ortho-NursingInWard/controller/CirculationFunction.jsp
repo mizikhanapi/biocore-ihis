@@ -4,10 +4,17 @@
     Author     : Shammugam
 --%>
 
+<%@page import="java.util.ArrayList"%>
+<%@page import="NIW_helper.CirculationUtils"%>
 <%
-    String patientPMI = request.getParameter("dataString");
-    String filterBy = request.getParameter("methodName");
+    CirculationUtils cirUt = new CirculationUtils();
 
-    out.print(patientPMI+filterBy);
+    String data = request.getParameter("dataString");
+    String methodName = request.getParameter("methodName");
+
+    Boolean result;
+
+    if (methodName.equalsIgnoreCase("view") && !data.equalsIgnoreCase("null")) {
+        ArrayList<ArrayList<String>> datas = cirUt.getCirculation(data);
 
 %>
