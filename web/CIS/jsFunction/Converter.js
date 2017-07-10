@@ -25,6 +25,16 @@ function convertPOS(obj){
     return msg;
 }
 
+function convertADW(obj){
+   var msg = "ADW|"+episodeDate+"|"+obj.AdmitDate+" "+obj.AdmitTime+"^" +obj.AdmitToDisciplineCd+"^"+obj.AdmitToDiscipline+"^"+"ST-UD"+"^"+obj.WardNameCd+"^"+obj.WardName+"^"+"ST-UD"+"^"+obj.Reason+"^"+obj.PatientReferFromCd+"^active^"+obj.AdmittedBefore+"^"+getDate()+"^"+ hfc_cd + "^" + doctor_id + "^" + doctor_name + "|<cr>\n";
+   return msg;
+}
+
+function convertPRI(obj){
+    var msg = "PRI|" + getDate() + "|^^" + obj.appREF + "^"+obj.hfcREFcode+"^"+obj.REF+"^"+obj.disREFcode+"^"+obj.disREF+"^^^^^"+obj.medicalHisREF+"^^" + getDate() +  "^" + obj.docREFcode + "^" + obj.docREF+"|<cr>\n";
+    return msg;
+}
+
 function convertDTO(obj){
     var problemDTO = "DTO|"  + obj.problemCode +"^"+obj.problemName+"^CTV3|";
     var drug = obj.drugCode + "^ " + obj.drugName + "^MDC|";

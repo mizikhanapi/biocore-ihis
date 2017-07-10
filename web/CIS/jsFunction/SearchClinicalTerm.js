@@ -168,7 +168,7 @@ function searchingHFC(fieldId, loadingDivId, urlData, urlCode, codeFieldId, loca
 function searchHFCOnly(fieldId,loadingDivId){
     
         $('#' + fieldId).flexdatalist({
-        minLength: 3,
+        minLength: 1,
         searchIn: 'name',
         searchDelay: 2000,
         url: "search/ResultHFCSearch.jsp",
@@ -188,7 +188,7 @@ function searchHFCOnly(fieldId,loadingDivId){
 function searchDisciplineOnly(fieldId, loadingDivId,hfc_code) {
 
     $('#' + fieldId).flexdatalist({
-        minLength: 3,
+        minLength: 1,
         searchIn: 'name',
         searchDelay: 2000,
         url: "search/ResultDISCIPLINESearch.jsp?hfc_code="+hfc_code,
@@ -217,7 +217,10 @@ function getHFCCode(hfc_name,codeFieldId,detailField,discplineField,disciplineCo
             success: function (response) {
                 //console.log(response);
                 $("#"+codeFieldId).val(response.trim());
+            if (detailField !== "-") {
                 getHFCOrderProviderDetail(response.trim(),detailField);
+            }
+                
                 searchDisciplineOnly(discplineField, disciplineCode,response.trim());
 
             }
@@ -573,7 +576,28 @@ function checkPOSLevel(code,level){
         });
 }
 
+function searchDOCTOROnly(fieldId, loadingDivId, hfc_code) {
+
+    $('#' + fieldId).flexdatalist({
+        minLength: 1,
+        searchIn: 'name',
+        searchDelay: 2000,
+        url: "search/ResultDOCTORSearch.jsp?hfc_code=" + hfc_code,
+        cache: true,
+        params: {
+            timeout: 3000,
+            success: function (result) {
+                console.log(result);
+                if (result === undefined) {
+                    $('#' + loadingDivId).html('No Record');
+                }
+            }
+        }
+    });
+}
+
 function sendOrder(data,tableId){
+    
     $.ajax({
         type: "POST",
         timeout: 3000,
@@ -581,7 +605,12 @@ function sendOrder(data,tableId){
         data:data ,
         success: function (response) {
             if (response.trim() === "|-SUCCESS-|") {
-                $("#"+tableId).html('');
+                if(tableId === "-"){
+                    
+                }else{
+                    $("#"+tableId).html('');
+                }
+                
             }
         }
     })

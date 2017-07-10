@@ -17,8 +17,8 @@
                         <div class="form-group">
                             <label class="col-md-6 control-label" for="textinput">Search Health Facility</label>
                             <div class="col-md-12">
-                                <input class="form-control input-lg " type="text" name="DateTo" id="hfcOrderDetailADW" placeholder="Hfc Order Detail" readonly="">
-                                <input class="form-control input-lg " type="text" name="DateTo" id="hfcProviderDetailADW" placeholder="Hfc Provider Detail" >
+                                <input class="form-control input-lg " type="hidden" name="DateTo" id="hfcOrderDetailADW" placeholder="Hfc Order Detail" readonly="">
+                                <input class="form-control input-lg " type="hidden" name="DateTo" id="hfcProviderDetailADW" placeholder="Hfc Provider Detail" >
                                 <input class="form-control input-lg " type="hidden" name="DateTo" id="tCIS_ADWHFCreferFromCd" placeholder="Code" readonly="">
                                 <input class="form-control input-lg " type="text" name="DateTo" id="tCIS_ADWHFCreferFrom" placeholder="Type to search..." >
                                 <div id="tCIS_ADWHFCreferFromLoading" ></div>
@@ -34,7 +34,7 @@
                         <div class="form-group">
                             <label class="col-md-6 control-label" for="textinput">Search Discipline</label>
                             <div class="col-md-12">
-                                <input class="form-control input-lg " type="text" name="DateTo" id="tCIS_ADWreferFromCd" placeholder="Code" readonly="">
+                                <input class="form-control input-lg " type="hidden" name="DateTo" id="tCIS_ADWreferFromCd" placeholder="Code" readonly="">
                                 <input class="form-control input-lg " type="text" name="DateTo" id="tCIS_ADWreferFrom" placeholder="Type to search...">
                                 <div id="matchCIS_ADWreferFrom" class="search-drop"></div>
                                 <div id="tCIS_ADWreferFromLoading" ></div>
@@ -54,7 +54,7 @@
                           <div class="form-group">
                               <label class="col-md-6 control-label" for="textinput">Search Health Facility</label>
                               <div class="col-md-12">
-                                  <input class="form-control input-lg " type="text" name="DateTo" id="tCIS_ADWsearchHFCCd" placeholder="Code" readonly="">
+                                  <input class="form-control input-lg " type="hidden" name="DateTo" id="tCIS_ADWsearchHFCCd" placeholder="Code" readonly="">
                                   <input class="form-control input-lg " type="text" name="DateTo" id="tCIS_ADWsearchHFC" placeholder="Type to search...">
                                   <div id="tCIS_ADWsearchHFCLoading" ></div>
                                   <br>
@@ -69,7 +69,7 @@
                         <div class="form-group">
                             <label class="col-md-6 control-label" for="textinput">Search Discipline</label>
                             <div class="col-md-12">
-                                <input class="form-control input-lg " type="text" name="DateTo" id="tCIS_ADWsearchDisCd" placeholder="Code" readonly="">
+                                <input class="form-control input-lg " type="hidden" name="DateTo" id="tCIS_ADWsearchDisCd" placeholder="Code" readonly="">
                                 <input class="form-control input-lg " type="text" name="DateTo" id="tCIS_ADWsearchDis" placeholder="Type to search...">
                                 <div id="tCIS_ADWsearchDisLoading" ></div>
                                 <div id="matchCIS_ADWsearchDis" class="search-drop"></div>
@@ -113,8 +113,8 @@
                         <div class="form-group">
                             <label class="col-md-6 control-label" for="textinput">Ward Name</label>
                             <div class="col-md-12">
-                                <input class="form-control input-lg " type="text" name="DateTo" id="tCIS_ADWwardNameCd" placeholder="Ward Code" readonly="">
-                                <input class="form-control input-lg " type="text" name="DateTo" id="tCIS_ADWwardClassCd" placeholder="Ward Code" readonly="">
+                                <input class="form-control input-lg " type="hidden" name="DateTo" id="tCIS_ADWwardNameCd" placeholder="Ward Code" readonly="">
+                                <input class="form-control input-lg " type="hidden" name="DateTo" id="tCIS_ADWwardClassCd" placeholder="Ward Code" readonly="">
                                 <input class="form-control input-lg " type="text" name="DateTo" id="tCIS_ADWwardName" placeholder="Search Ward Name">
                                 <div id="tCIS_ADWwardNameLoading"></div>
                             </div>
@@ -139,7 +139,7 @@
             <div class="modal-footer">
                 <div class="btn-group btn-group-justified" role="group" aria-label="group button">
                     <div class="btn-group" role="group">
-                        <button type="button" class="btn btn-success btn-block btn-lg" id="acceptADW" role="button">Accept</button>
+                        <button type="button" class="btn btn-success btn-block btn-lg" id="btnCIS_OE_ADW_SUBMIT" role="button">Submit</button>
                     </div>
                     <div class="btn-group btn-delete hidden" role="group">
                         <button type="button" id="delImage" class="btn btn-danger btn-block btn-lg" data-dismiss="modal"  role="button">Clear</button>

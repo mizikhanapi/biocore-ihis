@@ -79,6 +79,79 @@ $(document).ready(function () {
         }) 
     })
     
+    $("#btnCIS_OE_ADW_SUBMIT").click(function(){
+        var _admitToDis = $('#tCIS_ADWsearchDis').val();
+        var _admitToDisCd = $('#tCIS_ADWsearchDisCd').val();
+        var _patientReferFrom = $('#tCIS_ADWreferFrom').val();
+        var _patientReferCd = $('#tCIS_ADWreferFromCd').val();
+        var _reason = $('#tCIS_ADWreason').val();
+
+        var _admitB4 = $('input[name="rCIS_ADWAB"]:checked').val();
+        var _admitDate = $('#tCIS_ADWdate').val();
+        var _admitTime = $('#tCIS_ADWtime').val();
+        var _wardName = $('#tCIS_ADWwardName').val();
+        var _wardNameCd = $('#tCIS_ADWwardNameCd').val();
+        var _hfcOrderDetail = $('#hfcOrderDetailADW').val();
+        var _hfcProviderDetail = $('#hfcProviderDetailADW').val();
+
+        var obj1 = {
+            Acode: 'ADW',
+            AdmitToDiscipline: _admitToDis,
+            AdmitToDisciplineCd: _admitToDisCd,
+            PatientReferFrom: _patientReferFrom,
+            PatientReferFromCd: _patientReferCd,
+            Reason: _reason,
+            AdmittedBefore: _admitB4,
+            AdmitDate: _admitDate,
+            AdmitTime: _admitTime,
+            WardName: _wardName,
+            WardNameCd: _wardNameCd,
+            hfcOrderDetail: _hfcOrderDetail,
+            hfcProviderDetail: _hfcProviderDetail
+        };
+        
+        console.log(obj1);
+        
+        var submitConfirm = confirm('Confirm Admission');
+        if (submitConfirm === true) {
+            var msg = '';
+            var fullmsg;
+            var msh = getMSH();
+            var pdi = PDIInfo;
+            var orc = convertORC(obj1, "02", "07", "T12111");
+            msg = convertADW(obj1);
+
+            fullmsg = msh + pdi + orc + msg;
+            console.log(fullmsg);
+            var data = {
+                msg: fullmsg,
+                pmino: pmiNo,
+                episodedate: episodeDate,
+                status: "1"
+            }
+            sendOrder(data, "-");
+            clearFieldADW();
+            
+        } else {
+            return false;
+        }
+    })
+    
+    function clearFieldADW(){
+      $('#tCIS_ADWsearchDis').val('');
+       $('#tCIS_ADWsearchDisCd').val('');
+         $('#tCIS_ADWreferFrom').val('');
+       $('#tCIS_ADWreferFromCd').val('');
+      $('#tCIS_ADWreason').val('');
+
+    $('#tCIS_ADWdate').val('');
+       $('#tCIS_ADWtime').val('');
+      $('#tCIS_ADWwardName').val('');
+       $('#tCIS_ADWwardNameCd').val('');
+       $('#hfcOrderDetailADW').val('');
+      $('#hfcProviderDetailADW').val('');
+    }
+    
 
 
 });
