@@ -51,14 +51,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="btn-group btn-group-justified" role="group" aria-label="group button">
-                    <div class="btn-group" role="group">
-                        <button type="button" class="btn btn-primary btn-block btn-lg" id="btnCIS_GenerateMC">Generate MC</button>
-                    </div>
-                    <div class="btn-group" role="group">
-                        <button type="button" class="btn btn-primary btn-block btn-lg" id="btnCIS_GenerateTimeSlip">Generate Time Slip</button>
-                    </div>
-                </div>
+
             </div>
 
             <div class="modal-footer">
