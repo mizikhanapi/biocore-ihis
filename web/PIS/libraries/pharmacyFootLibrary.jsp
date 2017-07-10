@@ -4,7 +4,8 @@
     Author     : Shammugam
 --%>
 
-<script src="libraries/js/jquery-ui.js" type="text/javascript"></script>
+<!--<script src="libraries/js/jquery-ui.js" type="text/javascript"></script>-->
+<script src="../assets/js/jquery-ui.js" type="text/javascript"></script>
 <script src="libraries/js/bootstrap.min.js" type="text/javascript"></script>
 <script src="libraries/js/bootbox.min.js" type="text/javascript"></script>
 <script src="libraries/js/jquery.dataTables.min.js"></script>
