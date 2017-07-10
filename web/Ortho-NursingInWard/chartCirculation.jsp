@@ -44,12 +44,10 @@
                 <label for="exampleInputEmail2">to</label>
                 <input type="email" class="form-control" id="chartCirculationSelectAssessmentEnd" placeholder="15/06/2017" style="margin-bottom: 0px !important;">
             </div>
-            <button type="submit" class="btn btn-default"><i class="fa fa-search fa-lg"></i></button>
+            <button type="submit" class="btn btn-default" id="chartCirculationSelectAssessmentStartEndBtn"><i class="fa fa-search fa-lg"></i></button>
         </div>
     </div>
 </div>
-
-<hr/>
 
 <div id="tableChartCirculationDiv">
     <table class="table table-bordered" id="tableChartCirculationTable" style="width: 100%">
@@ -128,9 +126,29 @@
                     datas = patientPMI + "|" + todayDate + "|60day";
                 }
 
+                ChartCircuTableFiter(datas);
+
             }
 
-            ChartCircuTableFiter(datas);
+        });
+
+
+        $("#chartCirculationSelectAssessmentStartEndBtn").on('click', function () {
+
+            var patientPMI = $('#pIC').text();
+            var strtDate = $('#chartCirculationSelectAssessmentStart').val();
+            var endDate = $('#chartCirculationSelectAssessmentEnd').val();
+
+            var sDate = strtDate.split('/');
+            var SnewDate = sDate[2] + "-" + sDate[1] + "-" + sDate[0];
+
+            var eDate = endDate.split('/');
+            var EnewDate = eDate[2] + "-" + eDate[1] + "-" + eDate[0];
+
+            var data2 = patientPMI + "|" + SnewDate + "^" + EnewDate + "|custom";
+
+            ChartCircuTableFiter(data2);
+
         });
         // Function For View Assement Select End
 
@@ -152,7 +170,9 @@
                 data: data,
                 timeout: 10000,
                 success: function (datas) {
+
                     $('#tableChartCirculationDiv').html(datas);
+
                 },
                 error: function (err) {
                     bootbox.alert("something wrong,error: " + err);
@@ -161,7 +181,6 @@
 
         }
         // Function for Table End
-
 
 
         // Date Functions Start
