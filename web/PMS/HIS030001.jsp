@@ -13,7 +13,8 @@
         <link href="libraries/lib/datepicker/jquery-ui.css" rel="stylesheet">
         <script src="libraries/lib/js/jquery.min.js"></script>
         <script src="libraries/lib/js/bootstrap.min.js"></script>
-        <script src="libraries/lib/datepicker/jquery-ui.js"></script>
+<!--        <script src="libraries/lib/datepicker/jquery-ui.js"></script>-->
+        <script src="../assets/js/jquery-ui.js" type="text/javascript"></script>
         <script src="libraries/lib/js/form-validator.min.js"></script>    
         <script src="libraries/lib/js/bootbox.min.js"></script>
         <script src="libraries/lib/js/search/searchPatient.js" type="text/javascript"></script>
