@@ -50,6 +50,11 @@ public class CirculationUtils {
                     + " where pmi_no ='" + pmino + "' and DATE(datetime) between SUBDATE('" + dateTime + "',7) and '" + dateTime + "' ; ";
 
         } else if (viewBy.equalsIgnoreCase("30day")) {
+            //              0       1       2               3        4      5               6                               7                             8
+            sql = "SELECT pmi_no,hfc_cd,episode_date,encounter_date,ward,bed_no,TIME_FORMAT(TIME(datetime),'%r'),DATE_FORMAT(DATE(datetime),'%d/%m/%Y'),color, "
+                    //      9       10       11       12                13                          
+                    + " sensation,hot_cold,movement,others,TIME_FORMAT(TIME(datetime),'%T') FROM lhr_ort_niw_chart_circulation "
+                    + " where pmi_no ='" + pmino + "' and DATE(datetime) between SUBDATE('" + dateTime + "',30) and '" + dateTime + "'; ";
 
         } else if (viewBy.equalsIgnoreCase("60day")) {
 
