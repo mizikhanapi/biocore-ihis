@@ -1052,3 +1052,7 @@ tr#moveToOrderDetailsTButton {
         font-size: 22px !important;
     }
 }
+
+.main-dashboard>.row>.col-xs-6.col-sm-6.col-md-3 {
+    z-index: 2;
+}
