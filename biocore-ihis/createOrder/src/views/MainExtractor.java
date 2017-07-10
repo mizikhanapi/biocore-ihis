@@ -57,7 +57,11 @@ public class MainExtractor {
             //DCG
             DCG_ord dcg_ord = new DCG_ord();
             dcg_ord.M_DCG(spv2.getVorc(), spv2.getVdcg(), t);
-
+            
+            //DCG
+            PRI_ord pri_ord = new PRI_ord();
+            pri_ord.M_PRI(spv2.getVorc(), spv2.getVpri(), t);
+            
             //update ehr_central status_1
             update_ehr_central upd_sts = new update_ehr_central();
             upd_sts.update_status_1();
