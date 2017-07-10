@@ -22,7 +22,17 @@
     String fall = request.getParameter("fall");
     
     //epDate = DateFormatter.formatDate(epDate, "dd/MM/yyyy", "yyyy-MM-dd HH:mm:ss.ms");
-    enDate = DateFormatter.formatDate(enDate, "dd/MM/yyyy", "yyyy-MM-dd HH:mm:ss.ms");
+    enDate = DateFormatter.formatDate(enDate, "dd/MM/yyyy", "yyyy-MM-dd");
+    
+    if(time.equalsIgnoreCase("AM")){
+        enDate = enDate + " 04:00:00.0";
+    }
+    else if(time.equalsIgnoreCase("PM")){
+        enDate = enDate + " 20:00:00.0";
+    }
+    else{
+         enDate = enDate + " 12:00:00.0";
+    }
     
     
     int score = 0;

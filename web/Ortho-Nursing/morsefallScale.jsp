@@ -12,7 +12,7 @@
         <label class="col-sm-6 control-label text-right" for="formGroupInputLarge">View history assessment:</label>
         <div class="col-sm-6" style="padding-right: 0px;">
             <select class="form-control" id="MS_viewBy">
-                <option value="">View by</option>
+                <option value="all">View by</option>
                 <option value="0">Today</option>
                 <option value="1">Yesterday</option>
                 <option value="7">7 Days</option>
@@ -36,54 +36,7 @@
         </div>
     </div>
 </div>
-<table class="table table-bordered" id="morse_assessment_table">
-    <tr>
-        <th>Date</th>
-        <th>Time</th>
-        <th>History of falling</th>
-        <th>Diagnosis</th>
-        <th>Ambulatory Aid</th>
-        <th>IV Venofix / Syringe Pump</th>
-        <th>Body structure/Movement</th>
-        <th>Mental Status</th>
-        <th>Total Score</th>
-        <th>Approval</th>
-    </tr>
-    <tr>
-        <td rowspan="3">06/06/2017</td>
-        <td>AM</td>
-        <td>25</td>
-        <td>15</td>
-        <td>30</td>
-        <td>20</td>
-        <td>10</td>
-        <td>15</td>
-        <td></td>
-        <td></td>
-    </tr>
-    <tr>
-        <td>PM</td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-    </tr>
-    <tr>
-        <td>Noon</td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-    </tr>
-</table>
+<div id="div_morseAss_table"></div>
 
 <!--<script type="text/javascript" src="../Ortho-Nursing/js/create_destroy_loading.js"></script>
 <script type="text/javascript" src="../Ortho-Nursing/js/morsefallScale.js"></script>-->
