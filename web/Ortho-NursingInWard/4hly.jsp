@@ -21,7 +21,7 @@
             </select>
         </div>
     </div>
-        <div class="col-md-6 col-md-offset-6 text-right margin-bottom-30px" id="customDate4hly">
+    <div class="col-md-6 col-md-offset-6 text-right margin-bottom-30px" id="customDate4hly">
         <div class="col-sm-12 form-inline" style="padding-right: 0px;">
             <div class="form-group">
                 <label for="exampleInputName2">Start</label>
@@ -36,8 +36,8 @@
     </div>
 </div>
 <div id="divBIW4hly">
-<table class="table table-bordered table-striped" id="tblNIW_4hly">
-    <thead>
+    <table class="table table-bordered table-striped" id="tblNIW_4hly">
+        <thead>
         <th>Date</th>
         <th>Time 4hly obs.</th>
         <th>Site of IV Canulation</th>
@@ -47,9 +47,9 @@
         <th>Thrombo Phlebitis</th>
         <th>V.I.P. Score</th>
         <th>Approval</th>
-        
-    </thead>
-    <tbody>
+
+        </thead>
+        <tbody>
             <tr>
                 <td colspan="9" align="center"> Please choose view history assessment to view the data </td>
                 <td hidden=""></td>
@@ -62,10 +62,10 @@
                 <td hidden=""></td>
             </tr>
         </tbody>
-</table>
+    </table>
 </div>
 <script>
-        //datatable
+    //datatable
     $(document).ready(function () {
         //$('#tblNIW_observation_chart').dataTable();
 
@@ -83,7 +83,7 @@
         var datas;
         var todayDate;
 
-        var pmiOB = "<%=session.getAttribute("patientPMINo")%>";
+        var pmiOB = pmiNo;
         var enDate = new Date();
         var dd = ("0" + enDate.getDate()).slice(-2);
         var mm = ("0" + (enDate.getMonth() + 1)).slice(-2);
@@ -120,7 +120,7 @@
             $('#customDate4hly').show();
             datas = "null";
         }
-        console.log(datas);
+        //console.log(datas);
         ajax4hly(datas);
 
     });
@@ -129,7 +129,7 @@
         var strtDate = $('#startDate4hly').val();
         var endDate = $('#endDate4hly').val();
 
-        var pmiOB = "<%=session.getAttribute("patientPMINo")%>";
+        var pmiOB = pmiNo;
 
         var sDate = strtDate.split('/');
         var SnewDate = sDate[2] + "-" + sDate[1] + "-" + sDate[0];
@@ -160,13 +160,13 @@
         });
     }
     ;
-    
-    $('#divBIW4hly').on('click','#tblNIW_4hly #delNIW4hly',function(e){
+
+    $('#divBIW4hly').on('click', '#tblNIW_4hly #delNIW4hly', function (e) {
         e.preventDefault();
         var row = $(this).closest("tr");
         var dataX = row.find('#priNIW4hly').html();
         var sel = $('#select4hlydate').val();
-        
+
         bootbox.confirm({
             message: "Are you sure want to delete?",
             buttons: {
@@ -202,5 +202,38 @@
             }
         });
     });
-    
-    </script>
+
+    $('#divBIW4hly').on('click', '#tblNIW_4hly #editNIW4hly', function (e) {
+        e.preventDefault();
+        $('#4hly #btnNIW4hlyUPDATE').show();
+        $('#4hly #btnNIW4hlyADD').hide();
+
+        var row = $(this).closest("tr");
+        var dataX = row.find('#priNIW4hly').html();
+        var sel = $('#select4hlydate').val();
+        console.log(dataX);
+        var sdataX = dataX.split("|");
+        $('input[name="radio3"][value="' + sdataX[13] + '"]').prop('checked', true);
+        $('input[name="radio4"][value="' + sdataX[14] + '"]').prop('checked', true);
+        
+        $('input[id="hourlychoose1"][value="' + sdataX[8] + '"]').prop('checked', true);
+        $('input[id="hourlychoose2"][value="' + sdataX[9] + '"]').prop('checked', true);
+        $('input[id="hourlychoose3"][value="' + sdataX[10] + '"]').prop('checked', true);
+        $('input[id="hourlychoose4"][value="' + sdataX[11] + '"]').prop('checked', true);
+        $('input[id="hourlychoose5"][value="' + sdataX[12] + '"]').prop('checked', true);
+        
+        $('input[id="Additive1"][value="' + sdataX[15] + '"]').prop('checked', true);
+        $('input[id="Additive2"][value="' + sdataX[16] + '"]').prop('checked', true);
+        $('input[id="Additive3"][value="' + sdataX[17] + '"]').prop('checked', true);
+        
+        $('#timeNIW4hly').val(sdataX[19]);
+        $('#NIW4hlyps').val(sdataX[7]);
+        $('#dateNIW4hly').val(sdataX[4]);
+        $('#site4canulation4hly').val(sdataX[6]);
+        $('#NIW4hlyEpisodeDate').val(sdataX[2]);
+        $('#NIW4hlyEncounterDate').val(sdataX[3]);
+        $('#NIW4hlyPmi').val(sdataX[0]);
+        $('#NIW4hlyHfc').val(sdataX[1]);
+    });
+
+</script>

@@ -36,7 +36,7 @@ $(document).ready(function () {
             var fullmsg;
             var msh = getMSH();
             var pdi = PDIInfo;
-            var orc = convertORC(_dataLIO[0], "02", "05");
+            var orc = convertORC(_dataLIO[0], "02", "05","T12101");
             for (var i in _dataLIO) {
                 msg += convertLIO(_dataLIO[i]);
             }

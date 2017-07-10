@@ -40,8 +40,7 @@ public class POS_ord {
         //t.getQuery();
         try{
         System.out.println("record (ORC for POS) #" + t.getCentral_Code());
-        SeparatorV2 sv = new SeparatorV2();
-        sv.startProcess(t.getTxndata());
+
        // Vector<ORC2> orc = sv.getVorc();
         //Vector<LIO2> orc = sv.getVlio();
         for (int orc_i = 0; orc_i < orc.size(); orc_i++) {
@@ -52,7 +51,7 @@ public class POS_ord {
                pos.setPOS_seq();
 
           
-                  String sql_pos_master = "INSERT INTO pos_order_master (pmi_no, order_no, txn_type, HFC_CD, HFC_NAME, order_date, order_by, order_priority, episode_date, ENCOUNTER_DATE, comment, created_by, created_date, order_from_dicipline, order_to_dicipline, order_from_subdicipline, order_to_subdicipline, hfc_from, hfc_to, doctor_id, national_id_no, person_id_no, person_status, centre_code) values ('" + t.getPmi_no() + "','" + pos.getPOS_orderno() + "','" + orcs.get(1).get(0) + "','" + orcs.get(12).get(0) + "','" + orcs.get(12).get(0) + "','"+orcs.get(6).get(0)+"','-','-','" + orcs.get(7).get(0) + "','" + orcs.get(7).get(0) + "','no comment','KLINNK UTEM','" + orcs.get(7).get(0) + "','" + orcs.get(16).get(0) + "','" + orcs.get(29).get(0) + "','001','001','" + orcs.get(12).get(0) + "','" + orcs.get(12).get(0) + "','" + orcs.get(9).get(0) + "','"+t.getPERSON_ID_NO()+"','"+t.getPERSON_ID_NO()+"','"+t.getPERSON_STATUS()+"','"+t.getCentre_Code()+"')";
+                  String sql_pos_master = "INSERT INTO pos_order_master (pmi_no, order_no, txn_type, HFC_CD, HFC_NAME, order_date, order_by, order_priority, episode_date, ENCOUNTER_DATE, comment, created_by, created_date, order_from_dicipline, order_to_dicipline, order_from_subdicipline, order_to_subdicipline, hfc_from, hfc_to, doctor_id, national_id_no, person_id_no, person_status, centre_code) values ('" + t.getPmi_no() + "','" + pos.getPOS_orderno() + "','" + orcs.get(1).get(0) + "','" + orcs.get(12).get(0) + "','" + orcs.get(12).get(0) + "','"+orcs.get(6).get(0)+"','-','-','" + orcs.get(7).get(0) + "','" + orcs.get(7).get(0) + "','no comment','" + orcs.get(9).get(0) + "','" + orcs.get(7).get(0) + "','" + orcs.get(16).get(0) + "','" + orcs.get(29).get(0) + "','001','001','" + orcs.get(12).get(0) + "','" + orcs.get(12).get(0) + "','" + orcs.get(9).get(0) + "','"+t.getPERSON_ID_NO()+"','"+t.getPERSON_ID_NO()+"','"+t.getPERSON_STATUS()+"','"+t.getCentre_Code()+"')";
 
                    try {
                         status_pos_order_master = rc.setQuerySQL(Config.ipAddressServer, Config.portServer, sql_pos_master);

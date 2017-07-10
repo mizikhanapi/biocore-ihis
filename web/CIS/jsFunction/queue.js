@@ -39,6 +39,7 @@ $(document).ready(function () {
             var patient = findPatient(pmiNo, episodeDate);
             var getPDIInfo = getPDI(pmiNo, episodeDate);
             console.log(PDIInfo);
+            encounterDate = getDate();
 
             if (status === 'On Hold') {
                 getEHRPatient(pmiNo, episodeDate);

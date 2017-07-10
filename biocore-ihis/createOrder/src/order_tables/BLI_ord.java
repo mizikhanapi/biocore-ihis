@@ -41,8 +41,7 @@ public class BLI_ord {
         try {
 
             System.out.println("record (ORC for BLI) #" + t.getCentral_Code()); 
-        SeparatorV2 sv = new SeparatorV2();
-        sv.startProcess(t.getTxndata());
+
        // Vector<ORC2> orc = sv.getVorc();
 
                    for (int orc_i = 0; orc_i < orc.size(); orc_i++) {

@@ -18,30 +18,32 @@
                     <input type="hidden" name="POS" id="codeREF" class="form-control input-lg"  tabindex="4">
                 </div>
                 <div class="form-group">
-                    <label class="col-md-6 control-label" for="textinput">Health Facility Name :</label>
+                    <label class="col-md-6 control-label" for="textinput">Refer to Health Facility :</label>
                     <div class="col-md-12">
-                        <input class="form-control input-lg" type="text" name="problem"  id="REF" tabindex="4" placeholder="Start typing to search...">
+                        <input class="form-control input-lg" type="text" name="problem"  id="tCIS_PRIHFCreferFrom" tabindex="4" placeholder="Start typing to search...">
                         <input type="hidden" id="hfcREFcode"></input>
-                        <div id="matchREF"></div> 
+                        <input type="hidden" id="hfcOrderDetailPRI"></input>
+                        <input type="hidden" id="hfcProviderDetailPRI"></input>
+                        <div id="tCIS_PRIHFCreferFromLoading"></div> 
                     </div>
                 </div>
 
 
                 <div class="form-group">
-                    <label class="col-md-6 control-label" for="textinput">Discipline :</label>
+                    <label class="col-md-6 control-label" for="textinput">Refer to Discipline :</label>
                     <div class="col-md-12">
                         <input class="form-control input-lg" type="text" name="pro" id="disREF" placeholder="Start typing to search...">
                         <input type="hidden" id="disREFcode"></input>
-                        <div id="matchREFD" class="search-drop"></div>
+                        <div id="disREFcodeLoading" class="search-drop"></div>
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label class="col-md-6 control-label" for="textinput">Doctor referred to :</label>
+                    <label class="col-md-6 control-label" for="textinput">Doctor to be referred :</label>
                     <div class="col-md-12">
                         <input class="form-control input-lg" type="text" name="pro" id="docREF" placeholder="Start typing to search...">
                         <input type="hidden" id="docREFcode"></input>
-                        <div id="matchREFDOC" class="search-drop"></div>
+                        <div id="docREFLoading" class="search-drop"></div>
                     </div>
                 </div>
 
@@ -66,7 +68,7 @@
             <div class="modal-footer">
                 <div class="btn-group btn-group-justified" role="group" aria-label="group button">
                     <div class="btn-group" role="group">
-                        <button type="button" class="btn btn-success btn-block btn-lg" id="acceptREF" role="button">Accept</button>
+                        <button type="button" class="btn btn-success btn-block btn-lg" id="btnCIS_OE_PRI_SUBMIT" role="button">Submit</button>
                     </div>
                     <div class="btn-group btn-delete hidden" role="group">
                         <button type="button" id="delImage" class="btn btn-default btn-block btn-lg" data-dismiss="modal"  role="button">Clear</button>
@@ -148,3 +150,5 @@
         </div>
     </div>
 </div>
+
+<script src="jsFunction/CIS040009.js" type="text/javascript"></script>

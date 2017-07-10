@@ -10,11 +10,11 @@
 
     hospitalName = session.getAttribute("HFC_NAME").toString();
     //       }
-            nextOfKinName = request.getParameter("name");
-            nextOfKinIC = request.getParameter("ic");
-            relWithPatient = request.getParameter("relWithPatient"); 
-            relWithNext = request.getParameter("relWithNext"); 
-            patientName = request.getParameter("patientName");
+    nextOfKinName = request.getParameter("name");
+    nextOfKinIC = request.getParameter("ic");
+    relWithPatient = request.getParameter("relWithPatient");
+    relWithNext = request.getParameter("relWithNext");
+    patientName = request.getParameter("patientName");
 
 %>
 
@@ -26,7 +26,7 @@
                 <h4 class="modal-title" id="myModalLabel">Report - Consent for Operation</h4>
             </div>
             <div class="modal-body">
-                <div>
+                <div id="consentOperation">
 
 
                     <div style=" float: right; margin: 20px 20px 20px 0 ;">
@@ -39,11 +39,11 @@
 
                         <div class="">
                             <p><strong><%=hospitalName%></strong> Hospital
-                            I,<strong><%=relWithPatient%></strong> of <strong><%=patientName%></strong>  hereby consent
-                            *to undergo the operation of <strong>Operation Name</strong>
-                            *the submission of my child/ward <strong><%=relWithNext%></strong> to undergo
-                            the operation of <strong>Operation Name</strong></p>
-                            <p>the name and the purpose of which have been explained to by Dr. <strong>Doctor Name</strong></p>
+                                I,<strong><%=relWithPatient%></strong> of <strong><%=patientName%></strong>  hereby consent
+                                *to undergo the operation of <strong>Operation Name</strong>
+                                *the submission of my child/ward <strong><%=relWithNext%></strong> to undergo
+                                the operation of <strong>Operation Name</strong>
+                                the name and the purpose of which have been explained to by Dr. <strong>Doctor Name</strong></p>
                             <p>I also consent to such further or alternative operative measurement as may be found necessary during 
                                 the course of the abovementioned operation and to the administration of general, local or other
                                 anaesthetic for any of these purposes.</p>
@@ -155,14 +155,14 @@
         ddMMyyyyHHmmss = ZeroDay + "/" + ZeroMonth + "/" + year + " " + hours + ":" + ZeroMinutes + ":" + ZeroSeconds;
         HHmmss = hours + ":" + ZeroMinutes + ":" + ZeroSeconds;
         ddMMyyyy = ZeroDay + "/" + ZeroMonth + "/" + year;
-    }
-    ;
+    };
     getDateNow();
     console.log(ddMMyyyy);
     $("[name='date']").html(ddMMyyyy);
-    
-      $('#printConsentOperationForm').click(function () {
-        printReport();
+
+    $('#printConsentOperationForm').click(function () {
+        var divID = 'consentOperation';
+        printReport(divID);
     });
-    
+
 </script>

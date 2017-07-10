@@ -16,6 +16,10 @@
                     <div class="row">
                         <div class="col-md-6">
                             <!-- Text input-->
+                            <input type="hidden" id="NIW4hlyEpisodeDate" >
+                            <input type="hidden" id="NIW4hlyEncounterDate">
+                            <input type="hidden" id="NIW4hlyPmi" >
+                            <input type="hidden" id="NIW4hlyHfc" >
                             <div class="form-group">
                                 <label class="col-md-12 control-label" for="textinput">Date</label>
                                 <div class="col-md-12">
@@ -71,31 +75,31 @@
                                 <label class="col-md-12 control-label" for="textinput">Choose..</label>
                                 <div class="col-md-12">
                                     <div class="checkbox">
-                                        <input type="checkbox" name="hourlychoose" id="hourlychoose1" value="option1">
+                                        <input type="checkbox" name="hourlychoose" id="hourlychoose1" value="Yes">
                                         <label for="hourlychoose1">
                                             Slight Redness
                                         </label>
                                     </div>
                                     <div class="checkbox">
-                                        <input type="checkbox" name="hourlychoose" id="hourlychoose2" value="option2">
+                                        <input type="checkbox" name="hourlychoose" id="hourlychoose2" value="Yes">
                                         <label for="hourlychoose2">
                                             Redness
                                         </label>
                                     </div>
                                     <div class="checkbox">
-                                        <input type="checkbox" name="hourlychoose" id="hourlychoose3" value="option3">
+                                        <input type="checkbox" name="hourlychoose" id="hourlychoose3" value="Yes">
                                         <label for="hourlychoose3">
                                             Swelling
                                         </label>
                                     </div>
                                     <div class="checkbox">
-                                        <input type="checkbox" name="hourlychoose" id="hourlychoose4" value="option4">
+                                        <input type="checkbox" name="hourlychoose" id="hourlychoose4" value="Yes">
                                         <label for="hourlychoose4">
                                             Palpable Venous cord
                                         </label>
                                     </div>
                                     <div class="checkbox">
-                                        <input type="checkbox" name="hourlychoose" id="hourlychoose5" value="option5">
+                                        <input type="checkbox" name="hourlychoose" id="hourlychoose5" value="Yes">
                                         <label for="hourlychoose5">
                                             Unconscious Pt
                                         </label>
@@ -110,19 +114,19 @@
                                 <label class="col-md-12 control-label" for="textinput">Additive</label>
                                 <div class="col-md-12">
                                     <div class="checkbox">
-                                        <input type="checkbox" name="radio2" id="Additive1" value="option1">
+                                        <input type="checkbox" name="radio2" id="Additive1" value="Yes">
                                         <label for="Additive1">
                                             Medication
                                         </label>
                                     </div>
                                     <div class="checkbox">
-                                        <input type="checkbox" name="radio2" id="Additive2" value="option2">
+                                        <input type="checkbox" name="radio2" id="Additive2" value="Yes">
                                         <label for="Additive2">
                                             Blood Tx
                                         </label>
                                     </div>
                                     <div class="checkbox">
-                                        <input type="checkbox" name="radio2" id="Additive3" value="option3">
+                                        <input type="checkbox" name="radio2" id="Additive3" value="Yes">
                                         <label for="Additive3">
                                             Plain I/V drip
                                         </label>
@@ -202,6 +206,7 @@
                 <div class="btn-group btn-group-justified" role="group" aria-label="group button">
                     <div class="btn-group" role="group">
                         <button type="button" class="btn btn-success btn-block btn-lg" id="btnNIW4hlyADD" role="button">Add Items</button>
+                        <button type="button" class="btn btn-success btn-block btn-lg" id="btnNIW4hlyUPDATE" role="button">Update Items</button>
                     </div>
                     <div class="btn-group btn-delete hidden" role="group">
                         <button type="button" id="delImage" class="btn btn-default btn-block btn-lg" data-dismiss="modal" role="button">Clear</button>
@@ -228,7 +233,7 @@
     
     $('#4hly #btnNIW4hlyADD').on('click',function(e){
         e.preventDefault();
-        var pmi_no = "<%=session.getAttribute("patientPMINo")%>";
+        var pmi_no = pmiNo;
         var hfc_cd1 = hfc_cd;
         var epDate = episodeDate;
         
@@ -240,6 +245,7 @@
         var m = enDate.getMinutes();
         var ss = enDate.getSeconds();
         var ms = enDate.getMilliseconds();
+        var sel = $('#select4hlydate').val();
         
         var encounterDate = yy+"-"+mm+"-"+dd+" "+hh+":"+m+":"+ss+"."+ms;
         
@@ -318,8 +324,115 @@
                console.log(result);
                if(result.trim()==='true'){                   
                    bootbox.alert("successfully added!");
+                   $('#select4hlydate').val(sel).change();
                }else if(result.trim()==='false'){
                    bootbox.alert("fail to add");
+               }               
+           },
+           error:function(err){
+               bootbox.alert("something wrong,error: "+err);
+           }
+        });
+        $("#4hly").modal('toggle');
+    });
+    
+    
+    $('#4hly #btnNIW4hlyUPDATE').on('click',function(e){
+        e.preventDefault();
+        var pmi_no = $('#NIW4hlyPmi').val();;
+        var hfc_cd1 = $('#NIW4hlyHfc').val();
+        var epDate = $('#NIW4hlyEpisodeDate').val();
+        var sel = $('#select4hlydate').val();
+        
+        var enDate = new Date();
+        var dd = ("0" + enDate.getDate()).slice(-2);
+        var mm = ("0" + (enDate.getMonth() + 1)).slice(-2);
+        var yy = enDate.getFullYear();        
+        var hh = enDate.getHours();
+        var m = enDate.getMinutes();
+        var ss = enDate.getSeconds();
+        var ms = enDate.getMilliseconds();
+        
+        var encounterDate = $('#NIW4hlyEncounterDate').val();
+        
+        var date = $('#dateNIW4hly').val();
+        var sDate = date.split('/');
+        var newDate = sDate[2]+"-"+sDate[1]+"-"+sDate[0];
+        
+        var time4h = $('#timeNIW4hly').val();
+        var siteOfCanulation = $('#site4canulation4hly').find(":selected").val();
+        
+        var painScore = $('#NIW4hlyps').val();
+        var slightRedness,redness,swelling,palpable,unconscious,medication,blood_tx,plain_iv_drip;
+        
+        if($('#hourlychoose1').prop('checked')){
+            slightRedness = "Yes";
+        }else{
+            slightRedness = "No";
+        }
+        
+        if($('#hourlychoose2').prop('checked')){
+            redness = "Yes";
+        }else{
+            redness = "No";
+        }
+        
+        if($('#hourlychoose3').prop('checked')){
+            swelling = "Yes";
+        }else{
+            swelling = "No";
+        }
+        
+        if($('#hourlychoose4').prop('checked')){
+            palpable = "Yes";
+        }else{
+            palpable = "No";
+        }
+        
+        if($('#hourlychoose5').prop('checked')){
+            unconscious = "Yes";
+        }else{
+            unconscious = "No";
+        }
+        
+        if($('#Additive1').prop('checked')){
+            medication = "Yes";
+        }else{
+            medication = "No";
+        }
+        
+        if($('#Additive2').prop('checked')){
+            blood_tx = "Yes";
+        }else{
+            blood_tx = "No";
+        }
+        
+        if($('#Additive3').prop('checked')){
+            plain_iv_drip = "Yes";
+        }else{
+            plain_iv_drip = "No";
+        }
+        
+        var thrombophlebitis = $("input[name='radio3']:checked").val();
+        var vip_pain = $("input[name='radio4']:checked").val();
+        
+        var assignBy = doctor_id;
+        
+        var datas = pmi_no+"|"+hfc_cd1+"|"+epDate+"|"+encounterDate+"|"+newDate+" "+time4h+"|"+time4h+"|"+siteOfCanulation+"|"+painScore+"|"+slightRedness+"|"+redness+"|"+swelling+"|"+palpable+"|"+unconscious+"|"+thrombophlebitis+"|"+vip_pain+"|"+medication+"|"+blood_tx+"|"+plain_iv_drip+"|"+assignBy;
+        console.log(datas);
+        
+        $.ajax({
+           type:"post",
+           url:"../Ortho-NursingInWard/controller/4hlyFunction.jsp",
+           data: {datas: datas,methodName : "update"},
+           timeout:10000,
+           success:function(result){
+               console.log(result);
+               if(result.trim()==='true'){                   
+                   bootbox.alert("successfully update!");
+                   $('#select4hlydate').val(sel).change();
+               }else if(result.trim()==='false'){
+                   bootbox.alert("fail to update");
                }               
            },
            error:function(err){

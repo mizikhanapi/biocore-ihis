@@ -83,6 +83,7 @@ public class Conn
         try {
             host_port = Integer.parseInt(getIpCall().getProperty(STR_PORT));
         } catch (Exception e) {
+            e.getMessage();
         }
         
         ArrayList<ArrayList<String>> data = rmic.getQuerySQL(host_server, host_port, query);
@@ -100,6 +101,7 @@ public class Conn
             try {
                 host_port = Integer.parseInt(getIpCall().getProperty(STR_PORT));
             } catch (Exception e) {
+                e.getMessage();
             }
 
             status = rmic.setQuerySQL(host_server, host_port, query);

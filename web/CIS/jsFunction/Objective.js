@@ -616,6 +616,60 @@ $('#queueBtn').click(function(e){
         $("#CIS020009").modal('toggle');
     });
 
+    $("#ortho_accpetPEBtn").click(function () {
+
+        var pe0 = $('#pe0 option:selected').text();
+        var pe1 = $('#pe1').val();
+        var pe2 = $('#pe2').val();
+        var pe3 = $('#pe3').val();
+        var pe4 = $('#pe4').val();
+        var pe5 = $('#pe5').val();
+        var pe6 = $('#pe6').val();
+        var pe7 = $('#pe7').val();
+        var pe8 = $('#pe8').val();
+        var PEComment = $('#PEComment').val();
+        
+        
+        if (pe1.length < 1) {
+            NotesPE = '';
+        } else if (pe2.length < 1) {
+            NotesPE = pe1;
+        } else if (pe3.length < 1) {
+            NotesPE = pe1 + ', ' + pe2;
+        } else if (pe4.length < 1) {
+            NotesPE = pe1 + ', ' + pe2 + ',' + pe3;
+        } else if (pe5.length < 1) {
+            NotesPE = pe1 + ', ' + pe2 + ',' + pe3 + ', ' + pe4;
+        } else if (pe6.length < 1) {
+            NotesPE = pe1 + ', ' + pe2 + ',' + pe3 + ', ' + pe4 + ', ' + pe5;
+        } else if (pe7.length < 1) {
+            NotesPE = pe1 + ', ' + pe2 + ',' + pe3 + ', ' + pe4 + ', ' + pe5 + ', ' + pe6;
+        } else if (pe8.length < 1) {
+            NotesPE = pe1 + ', ' + pe2 + ',' + pe3 + ', ' + pe4 + ', ' + pe5 + ', ' + pe6 + ', ' + pe7;
+        }
+        
+        $.ajax({
+            url: "../Ortho-Consultation/modal/action/save_physical_exam.jsp",
+            type: "post",
+            data: {
+                pe0: pe0,
+                NotesPE: NotesPE,
+                PEComment: PEComment
+            },
+            timeout: 10000,
+            success: function (data) {
+                $("#CIS020009").hide();
+                $(".modal-backdrop").hide();
+                alert("Physical Examination is saved.");
+                $("#get_physicalExam").load("../Ortho-Consultation/physicalExam.jsp");
+            },
+            error: function (err) {
+                alert("Error update!");
+            }
+        });
+
+    });
+    
     $('#tblCIS_Consultation_Table').on('click', '.updatePE', function () {
         $("#CIS020009").modal('toggle');
         $('#actionPE').hide();

@@ -344,8 +344,8 @@
 </div>
 
 <!--End add Drug Order-->
-
-<!--Modal update Drug Order-->
+<!--
+Modal update Drug Order
 <div class="modal fade" id="update_CIS040002" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
     <div class="modal-dialog" style="width: 65%; height: 100%">
         <div class="modal-content" >
@@ -354,7 +354,7 @@
                 <h3 class="modal-title" id="lineModalLabel">Update Drug Order</h3>
             </div>
             <div class="modal-body">
-                <!-- content goes here -->
+                 content goes here 
                 <div class="row">
                     <div class="col-xs-12 col-sm-12 col-md-12">
 
@@ -534,7 +534,7 @@
                 <div class="row">
 
 
-                    <!--                    <div class="col-xs-4 col-sm-4 col-md-4">
+                                        <div class="col-xs-4 col-sm-4 col-md-4">
                                             <div class="form-group">
                                                 <select name="inst" id="drugInstructionDTO" class="form-control input-lg">
                                                     <option value="1" selected="" disabled="">Select Here</option>
@@ -548,7 +548,7 @@
                                                     <option value="Other">Other</option> 
                                                 </select>
                                             </div>
-                                        </div>-->
+                                        </div>
 
                 </div>
                 <div class="row">
@@ -597,5 +597,5 @@
             </div>
         </div>
     </div>
-</div>
+</div>-->
  <script src="jsFunction/CIS040002.js" type="text/javascript"></script>

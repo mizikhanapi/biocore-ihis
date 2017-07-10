@@ -66,25 +66,25 @@ public class ThrombophlebitisUtils {
 
         if (viewBy.equalsIgnoreCase("today")) {
             //              0       1       2               3                        4                                                   5                                    6              7              8           9      10              11               12           13           14            15       16         17          18
-            sql = "SELECT pmi_no,hfc_cd,episode_date,encounter_date,DATE_FORMAT(DATE(thrombophlebitis_date),'%d/%m/%Y'),TIME_FORMAT(TIME(thrombophlebitis_date),'%r'),site_iv_canulation,pain_score,slight_redness,redness,swelling,palpable_venous_cord,unconscious_pl,thrombophlebitis,vlp_score,medication,blood_tx,plain_iv_drip,assign_by FROM lhr_ort_niw_chart_observation_thrombophlebitis where pmi_no ='" + pmino + "' and DATE(thrombophlebitis_date) ='" + dateTime + "';";
+            sql = "SELECT pmi_no,hfc_cd,episode_date,encounter_date,DATE_FORMAT(DATE(thrombophlebitis_date),'%d/%m/%Y'),TIME_FORMAT(TIME(thrombophlebitis_date),'%r'),site_iv_canulation,pain_score,slight_redness,redness,swelling,palpable_venous_cord,unconscious_pl,thrombophlebitis,vlp_score,medication,blood_tx,plain_iv_drip,assign_by,TIME_FORMAT(TIME(thrombophlebitis_date),'%T') FROM lhr_ort_niw_chart_observation_thrombophlebitis where pmi_no ='" + pmino + "' and DATE(thrombophlebitis_date) ='" + dateTime + "';";
 
         } else if (viewBy.equalsIgnoreCase("yesterday")) {
-            sql = "SELECT pmi_no,hfc_cd,episode_date,encounter_date,DATE_FORMAT(DATE(thrombophlebitis_date),'%d/%m/%Y'),TIME_FORMAT(TIME(thrombophlebitis_date),'%r'),site_iv_canulation,pain_score,slight_redness,redness,swelling,palpable_venous_cord,unconscious_pl,thrombophlebitis,vlp_score,medication,blood_tx,plain_iv_drip,assign_by FROM lhr_ort_niw_chart_observation_thrombophlebitis where pmi_no ='" + pmino + "' and  DATE(thrombophlebitis_date) = SUBDATE('" + dateTime + "',1);";
+            sql = "SELECT pmi_no,hfc_cd,episode_date,encounter_date,DATE_FORMAT(DATE(thrombophlebitis_date),'%d/%m/%Y'),TIME_FORMAT(TIME(thrombophlebitis_date),'%r'),site_iv_canulation,pain_score,slight_redness,redness,swelling,palpable_venous_cord,unconscious_pl,thrombophlebitis,vlp_score,medication,blood_tx,plain_iv_drip,assign_by,TIME_FORMAT(TIME(thrombophlebitis_date),'%T') FROM lhr_ort_niw_chart_observation_thrombophlebitis where pmi_no ='" + pmino + "' and  DATE(thrombophlebitis_date) = SUBDATE('" + dateTime + "',1);";
 
         } else if (viewBy.equalsIgnoreCase("7day")) {
-            sql = "SELECT pmi_no,hfc_cd,episode_date,encounter_date,DATE_FORMAT(DATE(thrombophlebitis_date),'%d/%m/%Y'),TIME_FORMAT(TIME(thrombophlebitis_date),'%r'),site_iv_canulation,pain_score,slight_redness,redness,swelling,palpable_venous_cord,unconscious_pl,thrombophlebitis,vlp_score,medication,blood_tx,plain_iv_drip,assign_by FROM lhr_ort_niw_chart_observation_thrombophlebitis where pmi_no ='" + pmino + "' and DATE(thrombophlebitis_date) between SUBDATE('" + dateTime + "',7) and '" + dateTime + "' ;";
+            sql = "SELECT pmi_no,hfc_cd,episode_date,encounter_date,DATE_FORMAT(DATE(thrombophlebitis_date),'%d/%m/%Y'),TIME_FORMAT(TIME(thrombophlebitis_date),'%r'),site_iv_canulation,pain_score,slight_redness,redness,swelling,palpable_venous_cord,unconscious_pl,thrombophlebitis,vlp_score,medication,blood_tx,plain_iv_drip,assign_by,TIME_FORMAT(TIME(thrombophlebitis_date),'%T') FROM lhr_ort_niw_chart_observation_thrombophlebitis where pmi_no ='" + pmino + "' and DATE(thrombophlebitis_date) between SUBDATE('" + dateTime + "',7) and '" + dateTime + "' ;";
 
         } else if (viewBy.equalsIgnoreCase("30day")) {
-            sql = "SELECT pmi_no,hfc_cd,episode_date,encounter_date,DATE_FORMAT(DATE(thrombophlebitis_date),'%d/%m/%Y'),TIME_FORMAT(TIME(thrombophlebitis_date),'%r'),site_iv_canulation,pain_score,slight_redness,redness,swelling,palpable_venous_cord,unconscious_pl,thrombophlebitis,vlp_score,medication,blood_tx,plain_iv_drip,assign_by FROM lhr_ort_niw_chart_observation_thrombophlebitis where pmi_no ='" + pmino + "' and DATE(thrombophlebitis_date) between SUBDATE('" + dateTime + "',30) and '" + dateTime + "';";
+            sql = "SELECT pmi_no,hfc_cd,episode_date,encounter_date,DATE_FORMAT(DATE(thrombophlebitis_date),'%d/%m/%Y'),TIME_FORMAT(TIME(thrombophlebitis_date),'%r'),site_iv_canulation,pain_score,slight_redness,redness,swelling,palpable_venous_cord,unconscious_pl,thrombophlebitis,vlp_score,medication,blood_tx,plain_iv_drip,assign_by,TIME_FORMAT(TIME(thrombophlebitis_date),'%T') FROM lhr_ort_niw_chart_observation_thrombophlebitis where pmi_no ='" + pmino + "' and DATE(thrombophlebitis_date) between SUBDATE('" + dateTime + "',30) and '" + dateTime + "';";
 
         } else if (viewBy.equalsIgnoreCase("60day")) {
-            sql = "SELECT pmi_no,hfc_cd,episode_date,encounter_date,DATE_FORMAT(DATE(thrombophlebitis_date),'%d/%m/%Y'),TIME_FORMAT(TIME(thrombophlebitis_date),'%r'),site_iv_canulation,pain_score,slight_redness,redness,swelling,palpable_venous_cord,unconscious_pl,thrombophlebitis,vlp_score,medication,blood_tx,plain_iv_drip,assign_by FROM lhr_ort_niw_chart_observation_thrombophlebitis where pmi_no ='" + pmino + "' and DATE(thrombophlebitis_date) between SUBDATE('" + dateTime + "',60) and '" + dateTime + "' ;";
+            sql = "SELECT pmi_no,hfc_cd,episode_date,encounter_date,DATE_FORMAT(DATE(thrombophlebitis_date),'%d/%m/%Y'),TIME_FORMAT(TIME(thrombophlebitis_date),'%r'),site_iv_canulation,pain_score,slight_redness,redness,swelling,palpable_venous_cord,unconscious_pl,thrombophlebitis,vlp_score,medication,blood_tx,plain_iv_drip,assign_by,TIME_FORMAT(TIME(thrombophlebitis_date),'%T') FROM lhr_ort_niw_chart_observation_thrombophlebitis where pmi_no ='" + pmino + "' and DATE(thrombophlebitis_date) between SUBDATE('" + dateTime + "',60) and '" + dateTime + "' ;";
 
         } else if (viewBy.equalsIgnoreCase("custom")) {
             String dateSplit[] = dateTime.split("\\^", -1);
             startDate = dateSplit[0];
             endDate = dateSplit[1];
-            sql = "SELECT pmi_no,hfc_cd,episode_date,encounter_date,DATE_FORMAT(DATE(thrombophlebitis_date),'%d/%m/%Y'),TIME_FORMAT(TIME(thrombophlebitis_date),'%r'),site_iv_canulation,pain_score,slight_redness,redness,swelling,palpable_venous_cord,unconscious_pl,thrombophlebitis,vlp_score,medication,blood_tx,plain_iv_drip,assign_by FROM lhr_ort_niw_chart_observation_thrombophlebitis where pmi_no ='" + pmino + "' and DATE(thrombophlebitis_date) between '" + startDate + "' and '" + endDate + "';";
+            sql = "SELECT pmi_no,hfc_cd,episode_date,encounter_date,DATE_FORMAT(DATE(thrombophlebitis_date),'%d/%m/%Y'),TIME_FORMAT(TIME(thrombophlebitis_date),'%r'),site_iv_canulation,pain_score,slight_redness,redness,swelling,palpable_venous_cord,unconscious_pl,thrombophlebitis,vlp_score,medication,blood_tx,plain_iv_drip,assign_by,TIME_FORMAT(TIME(thrombophlebitis_date),'%T') FROM lhr_ort_niw_chart_observation_thrombophlebitis where pmi_no ='" + pmino + "' and DATE(thrombophlebitis_date) between '" + startDate + "' and '" + endDate + "';";
 
         }
 
@@ -107,5 +107,39 @@ public class ThrombophlebitisUtils {
         data = rmic.setQuerySQL(conn.HOST, conn.PORT, sql);
 
         return data;
+    }
+    
+        /*
+    * add new entry
+     */
+    public Boolean update4hly(String datas) {
+        Boolean sql = false;
+        String splittedData[] = datas.split("\\|", -1);
+        String pmi, hfc, episodeDate, encounterDate, thrombophelibitis_date, time4h, site_iv_canulation, pain_score, slight_redness, redness, swelling, palpable_venous_cord, unconscious_pl, thrombophlebitis, vip_score, medication, blood_tx, plain_iv_drip, assign_by;
+
+        pmi = splittedData[0];
+        hfc = splittedData[1];
+        episodeDate = splittedData[2];
+        encounterDate = splittedData[3];
+        thrombophelibitis_date = splittedData[4];
+        time4h = splittedData[5];
+        site_iv_canulation = splittedData[6];
+        pain_score = splittedData[7];
+        slight_redness = splittedData[8];
+        redness = splittedData[9];
+        swelling = splittedData[10];
+        palpable_venous_cord = splittedData[11];
+        unconscious_pl = splittedData[12];
+        thrombophlebitis = splittedData[13];
+        vip_score = splittedData[14];
+        medication = splittedData[15];
+        blood_tx = splittedData[16];
+        plain_iv_drip = splittedData[17];
+        assign_by = splittedData[18];
+
+        String sqlUpdate = "UPDATE lhr_ort_niw_chart_observation_thrombophlebitis set thrombophlebitis_date='"+thrombophelibitis_date+"',time4h='"+time4h+"',site_iv_canulation='"+site_iv_canulation+"',pain_score='"+pain_score+"',slight_redness='"+slight_redness+"',redness='"+redness+"',swelling='"+swelling+"',palpable_venous_cord='"+palpable_venous_cord+"',unconscious_pl='"+unconscious_pl+"',thrombophlebitis='"+thrombophlebitis+"',vlp_score='"+vip_score+"',medication='"+medication+"',blood_tx='"+blood_tx+"',plain_iv_drip='"+plain_iv_drip+"',assign_by='"+assign_by+"' WHERE pmi_no='"+pmi+"' AND hfc_cd='"+hfc+"' AND episode_date='"+episodeDate+"' AND encounter_date='"+encounterDate+"';";
+        sql = rmic.setQuerySQL(conn.HOST, conn.PORT, sqlUpdate);
+
+        return sql;
     }
 }
