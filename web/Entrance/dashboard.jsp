@@ -13,20 +13,20 @@
 
         //setting discipline and subdiscipline name
         Conn conn = new Conn();
-        
+
         String dis_cd = (String) session.getAttribute("DISCIPLINE_CODE");
         String sub_cd = (String) session.getAttribute("SUB_DISCIPLINE_CODE");
-        
+
         String query = "select dis.discipline_name, sub.subdiscipline_name "
                 + "from adm_discipline dis "
                 + "join adm_subdiscipline sub on sub.discipline_cd = dis.discipline_cd and sub.subdiscipline_hfc_cd = dis.discipline_hfc_cd "
-                + "where dis.discipline_cd = '"+dis_cd+"' AND sub.subdiscipline_cd = '"+sub_cd+"' and dis.discipline_hfc_cd = '"+hfc_cd+"' LIMIT 1;";
-        
+                + "where dis.discipline_cd = '" + dis_cd + "' AND sub.subdiscipline_cd = '" + sub_cd + "' and dis.discipline_hfc_cd = '" + hfc_cd + "' LIMIT 1;";
+
         ArrayList<ArrayList<String>> dataDis = conn.getData(query);
-        
+
         session.setAttribute("DISCIPLINE_NAME", dataDis.get(0).get(0));
         session.setAttribute("SUB_DISCIPLINE_NAME", dataDis.get(0).get(1));
-        
+
     }
 
     String hfc_99 = (String) session.getAttribute("HFC_99");
@@ -117,7 +117,7 @@
 
                 mod17 = true;
 
-            }else if (arrayModule.get(i).equalsIgnoreCase("18")) {
+            } else if (arrayModule.get(i).equalsIgnoreCase("18")) {
 
                 mod18 = true;
 
@@ -143,6 +143,15 @@
 
     <body>
         <div class="loading"></div>
+        <div class="background-all" style="
+             position: fixed;
+             bottom: 20px;
+             right: 20px;
+             z-index: 1;
+             opacity: 0.08;
+             ">
+            <i class="fa fa-user-md" style="font-size: 500px;"></i>
+        </div>
         <!-- menu top -->
         <%@include file = "libraries/topMenus-dashboard.html" %>
         <!-- menu top -->
@@ -325,7 +334,7 @@
                                 </div>
                             </a>
                         </div>
-                        
+
                         <div class="col-xs-6 col-sm-6 col-md-3">
                             <a href="../OperationTheater/index.jsp" class="thumbnail">
                                 <div class="kotak text-center">
@@ -334,7 +343,7 @@
                                 </div>
                             </a>
                         </div>
-                        
+
                     </div>
 
                 </div>
@@ -343,32 +352,32 @@
             <!-- main -->		
 
         </div>
-  
-
-
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <%@include file="libraries/script.html"%>
-    <%@include file="../assets/script.html"%>
-    <script type="text/javascript" >
-
-
-        $(function () {
-            // Handler for .ready() called.
-
-            $.ajax({
-                type: 'POST',
-                url: "getUserName.jsp",
-                success: function (data, textStatus, jqXHR) {
-                    $('#welcome').text(data.trim());
-                    console.log(data);
-                }});
-
-        });
-    </script>
 
 
 
+        <!-- Bootstrap core JavaScript
+        ================================================== -->
+        <!-- Placed at the end of the document so the pages load faster -->
+        <%@include file="libraries/script.html"%>
+        <%@include file="../assets/script.html"%>
+        <script type="text/javascript" >
 
-</body></html>
+
+            $(function () {
+                // Handler for .ready() called.
+
+                $.ajax({
+                    type: 'POST',
+                    url: "getUserName.jsp",
+                    success: function (data, textStatus, jqXHR) {
+                        $('#welcome').text(data.trim());
+                        console.log(data);
+                    }});
+
+            });
+        </script>
+
+
+
+
+    </body></html>
