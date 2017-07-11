@@ -42,8 +42,8 @@
                 + " SUM(pis_dispense_detail.DISPENSED_QTY),SUM(pis_dispense_detail.DISPENSED_QTY * pis_mdc2.D_SELL_PRICE),DATE(pis_dispense_master.DISPENSED_DATE)  "
                 + " FROM pis_dispense_master JOIN pis_dispense_detail ON (pis_dispense_master.ORDER_NO =  pis_dispense_detail.ORDER_NO) "
                 + " JOIN pis_mdc2 ON (pis_dispense_detail.DRUG_ITEM_CODE =  pis_mdc2.UD_MDC_CODE) "
-                + " WHERE pis_dispense_master.LOCATION_CODE  = '04010101' AND pis_dispense_master.DISCIPLINE_CODE  = '001'  "
-                + " AND pis_mdc2.hfc_cd  = '04010101' AND pis_mdc2.discipline_cd  = '001' GROUP BY DATE; ";
+                + " WHERE pis_dispense_master.LOCATION_CODE  = '"+dis+"' AND pis_dispense_master.DISCIPLINE_CODE  = '"+dis+"'  "
+                + " AND pis_mdc2.hfc_cd  = '"+dis+"' AND pis_mdc2.discipline_cd  = '"+dis+"' GROUP BY DATE; ";
         ArrayList<ArrayList<String>> dataReportDaily = conn.getData(sql);
 
         int size = dataReportDaily.size();
