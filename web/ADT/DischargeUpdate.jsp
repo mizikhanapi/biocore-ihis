@@ -43,9 +43,9 @@
 //
 //
     if (updBed == true && upMaster == true && upDetail == true ) {
-        out.print("Success fuh");
+        out.print("Success");
     } else {
-        out.print("false laa");
+        out.print("False");
 
     }
 

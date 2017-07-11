@@ -28,6 +28,7 @@
         for (int i = 0; i < size1; i++) {
     %>
     <option value="<%= dataWardName.get(i).get(0)+'|'+dataWardName.get(i).get(1)%>"><%= dataWardName.get(i).get(1)%> </option>
+    
     <%
         }
     %>

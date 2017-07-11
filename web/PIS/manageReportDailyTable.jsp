@@ -29,7 +29,6 @@
 <table  id="reportDailyTable"  class="table table-striped table-bordered" cellspacing="0" width="100%">
     <thead>
     <th style="text-align: center;">DATE</th>
-    <th style="text-align: center;">TOTAL DRUG DISPENSED</th>
     <th style="text-align: center;">TOTAL DRUG QUANTITY DISPENSED</th>
     <th style="text-align: center;">TOTAL PRICE (RM)</th>
 </thead>
@@ -43,8 +42,8 @@
                 + " SUM(pis_dispense_detail.DISPENSED_QTY),SUM(pis_dispense_detail.DISPENSED_QTY * pis_mdc2.D_SELL_PRICE),DATE(pis_dispense_master.DISPENSED_DATE)  "
                 + " FROM pis_dispense_master JOIN pis_dispense_detail ON (pis_dispense_master.ORDER_NO =  pis_dispense_detail.ORDER_NO) "
                 + " JOIN pis_mdc2 ON (pis_dispense_detail.DRUG_ITEM_CODE =  pis_mdc2.UD_MDC_CODE) "
-                + " WHERE pis_dispense_master.LOCATION_CODE  = '04010101' AND pis_dispense_master.DISCIPLINE_CODE  = '001'  "
-                + " AND pis_mdc2.hfc_cd  = '04010101' AND pis_mdc2.discipline_cd  = '001' GROUP BY DATE; ";
+                + " WHERE pis_dispense_master.LOCATION_CODE  = '"+hfc+"' AND pis_dispense_master.DISCIPLINE_CODE  = '"+dis+"'  "
+                + " AND pis_mdc2.hfc_cd  = '"+hfc+"' AND pis_mdc2.discipline_cd  = '"+dis+"' GROUP BY DATE; ";
         ArrayList<ArrayList<String>> dataReportDaily = conn.getData(sql);
 
         int size = dataReportDaily.size();
@@ -54,7 +53,6 @@
     <tr style="text-align: center;" id="moveToDailySalesDetailsTButton">
         <input id="dataDailySalesListhidden" type="hidden" value="<%=String.join("|", dataReportDaily.get(i))%>">
         <td><%= dataReportDaily.get(i).get(0)%></td>
-        <td><%= dataReportDaily.get(i).get(1)%></td>
         <td><%= formatterInt.format(Double.parseDouble(dataReportDaily.get(i).get(2)))%></td>
         <td><%= formatter.format(Double.parseDouble(dataReportDaily.get(i).get(3)))%></td>
     </tr>

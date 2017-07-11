@@ -19,7 +19,7 @@
     <th>Patient Name</th>
     <th>Patient ID</th>
     <th>Episode Date</th>
-    
+
 
     <th>Discharge</th>
 </thead>
@@ -35,7 +35,6 @@
         String txntype = "T12115";
         String status = "0";
 
-
         Conn conn = new Conn();
         //1 --- search by patient
         //0 --- search by ward list
@@ -49,42 +48,47 @@
                         + "a.referred_reference_no,a.order_by,a.admission_reason,a.admission_description,a.guardian_ind,a.group_guardian,a.gl_expiry_date,a.inpatient_status,a.created_by,a.created_date,"
                         //          31            32                   33      34             35             36           37          38            39          40
                         + "a.deposit_inpatient,a.document_type,a.document_no,a.patient_name,c.PATIENT_NAME,c.SEX_CODE,c.BIRTH_DATE,c.BLOOD_TYPE,b.order_no,b.order_date"
-                        //41
-                        + ",b.hfc_cd,wwn.ward_name"
+                        //    41       42                 43                44        45
+                        + ",b.hfc_cd,wwn.ward_name,wieh.ward_class_code,wieh.hfc_cd, wieh.ward_id"
                         + " from wis_inpatient_episode a left join wis_order_master b on a.pmi_no = b.pmi_no "
                         + "left join pms_patient_biodata c on a.pmi_no = c.pmi_no "
-                      + "left join wis_ward_name wwn on wwn.ward_id = a.ward_id "
+                        + "left join wis_ward_name wwn on wwn.ward_id = a.ward_id"
+                        + "left join wis_inpatient_episode_history wieh on a.pmi_no = wieh.pmi_no "
                         + " where a.inpatient_status ='" + status + "' and a.pmi_no='" + idInput + "' and b.txn_type ='" + txntype + "' and a.hfc_cd='" + hfc + "' group by  a.pmi_no";
             } else if (idType.equals("icnew") || idType.equals("002")) {
                 searching = "select a.new_ic_no,a.old_ic_no,a.id_type,a.id_no,a.police_case,a.hfc_cd,a.pmi_no,a.episode_date,a.discipline_cd,a.subdiscipline_cd,a.ward_class_code,a.ward_id,a.bed_id,a.payer_group,a.patient_category_cd,a.visit_type_cd,a.emergency_type_cd,a.eligibility_type_cd,a.eligibility_category_cd,a.referred_from_hfc,a.referred_from_discipline,a.referred_reference_no,a.order_by,a.admission_reason,a.admission_description,a.guardian_ind,a.group_guardian,a.gl_expiry_date,a.inpatient_status,a.created_by,a.created_date,a.deposit_inpatient,a.document_type,a.document_no,a.patient_name,c.PATIENT_NAME,c.SEX_CODE,c.BIRTH_DATE,c.BLOOD_TYPE,b.order_no,b.order_date"
-                        + ",b.hfc_cd,wwn.ward_name"
+                        + ",b.hfc_cd,wwn.ward_name,wieh.ward_class_code,wieh.hfc_cd, wieh.ward_id"
                         + " from wis_inpatient_episode a left join wis_order_master b on a.pmi_no = b.pmi_no "
                         + "left join pms_patient_biodata c on a.pmi_no = c.pmi_no "
                         + "left join wis_ward_name wwn on wwn.ward_id = a.ward_id "
+                        + "left join wis_inpatient_episode_history wieh on a.pmi_no = wieh.pmi_no "
                         + " where a.inpatient_status ='" + status + "' and a.NEW_IC_NO='" + idInput + "' and b.txn_type ='" + txntype + "' and a.hfc_cd='" + hfc + "' group by  a.pmi_no";
 
             } else if (idType.equals("icold") || idType.equals("003")) {
                 searching = "select a.new_ic_no,a.old_ic_no,a.id_type,a.id_no, a.police_case,a.hfc_cd,a.pmi_no,a.episode_date,a.discipline_cd,a.subdiscipline_cd,a.ward_class_code,a.ward_id,a.bed_id,a.payer_group,a.patient_category_cd,a.visit_type_cd,a.emergency_type_cd,a.eligibility_type_cd,a.eligibility_category_cd,a.referred_from_hfc,a.referred_from_discipline,a.referred_reference_no,a.order_by,a.admission_reason,a.admission_description,a.guardian_ind,a.group_guardian,a.gl_expiry_date,a.inpatient_status,a.created_by,a.created_date,a.deposit_inpatient,a.document_type,a.document_no,a.patient_name,c.PATIENT_NAME,c.SEX_CODE,c.BIRTH_DATE,c.BLOOD_TYPE,b.order_no,b.order_date"
-                        + ",b.hfc_cd,wwn.ward_name"
+                        + ",b.hfc_cd,wwn.ward_name,wieh.ward_class_code,wieh.hfc_cd, wieh.ward_id"
                         + " from wis_inpatient_episode a left join wis_order_master b on a.pmi_no = b.pmi_no"
                         + "left join pms_patient_biodata c on a.pmi_no = c.pmi_no "
                         + "left join wis_ward_name wwn on wwn.ward_id = a.ward_id "
+                        + "left join wis_inpatient_episode_history wieh on a.pmi_no = wieh.pmi_no "
                         + " where a.inpatient_status ='" + status + "' and  a.OLD_IC_NO='" + idInput + "' and b.txn_type ='" + txntype + "' and a.hfc_cd='" + hfc + "' group by  a.pmi_no";
             } else {
                 searching = "select a.new_ic_no,a.old_ic_no,a.id_type,a.id_no,a.police_case,a.hfc_cd,a.pmi_no,a.episode_date,a.discipline_cd,a.subdiscipline_cd,a.ward_class_code,a.ward_id,a.bed_id,a.payer_group,a.patient_category_cd,a.visit_type_cd,a.emergency_type_cd,a.eligibility_type_cd,a.eligibility_category_cd,a.referred_from_hfc,a.referred_from_discipline,a.referred_reference_no,a.order_by,a.admission_reason,a.admission_description,a.guardian_ind,a.group_guardian,a.gl_expiry_date,a.inpatient_status,a.created_by,a.created_date,a.deposit_inpatient,a.document_type,a.document_no,a.patient_name,c.PATIENT_NAME,c.SEX_CODE,c.BIRTH_DATE,c.BLOOD_TYPE,b.order_no,b.order_date"
-                        + ",b.hfc_cd,wwn.ward_name"
+                        + ",b.hfc_cd,wwn.ward_name,wieh.ward_class_code,wieh.hfc_cd, wieh.ward_id"
                         + " from wis_inpatient_episode a left join wis_order_master b on a.pmi_no = b.pmi_no "
                         + "left join pms_patient_biodata c on a.pmi_no = c.pmi_no"
                         + "left join wis_ward_name wwn on wwn.ward_id = a.ward_id "
+                        + "left join wis_inpatient_episode_history wieh on a.pmi_no = wieh.pmi_no "
                         + " where a.inpatient_status ='" + status + "' and a.ID_NO='" + idInput + "' and b.txn_type ='" + txntype + "'AND a.ID_TYPE='" + idType + "' and a.hfc_cd='" + hfc + "' group by  a.pmi_no";
             }
 
         } else if (methodSearching.equalsIgnoreCase("0")) {
             searching = "select a.new_ic_no,a.old_ic_no,a.id_type,a.id_no,a.police_case,a.hfc_cd,a.pmi_no,a.episode_date,a.discipline_cd,a.subdiscipline_cd,a.ward_class_code,a.ward_id,a.bed_id,a.payer_group,a.patient_category_cd,a.visit_type_cd,a.emergency_type_cd,a.eligibility_type_cd,a.eligibility_category_cd,a.referred_from_hfc,a.referred_from_discipline,a.referred_reference_no,a.order_by,a.admission_reason,a.admission_description,a.guardian_ind,a.group_guardian,a.gl_expiry_date,a.inpatient_status,a.created_by,a.created_date,a.deposit_inpatient,a.document_type,a.document_no,a.patient_name,c.PATIENT_NAME,c.SEX_CODE,c.BIRTH_DATE,c.BLOOD_TYPE,b.order_no,b.order_date"
-                    + ",b.hfc_cd,wwn.ward_name"
+                    + ",b.hfc_cd,wwn.ward_name,wieh.ward_class_code,wieh.hfc_cd, wieh.ward_id"
                     + " from wis_inpatient_episode a left join wis_order_master b on a.pmi_no = b.pmi_no "
                     + "left join pms_patient_biodata c on a.pmi_no = c.pmi_no "
                     + "left join wis_ward_name wwn on wwn.ward_id = a.ward_id "
+                    + "left join wis_inpatient_episode_history wieh on a.pmi_no = wieh.pmi_no "
                     + "where a.inpatient_status ='" + status + "' and a.ward_id ='" + idWard + "'and b.txn_type ='" + txntype + "' and b.hfc_cd='" + hfc + "' group by  a.pmi_no ";
         }
 
@@ -212,6 +216,11 @@
             var order_no = arrayData[39];
             var order_date = arrayData[40];
             var hfc_cd = arrayData[41];
+            var tWWC = arrayData[43];
+            var tWI = arrayData[45];
+            var thfc_cd = arrayData[44];
+
+
 
 
 
@@ -222,8 +231,12 @@
                 WardType: WardType,
                 wname: wname,
                 admissionDate: admissionDate,
-                DocTy:DocTy,
-                AdmTy:AdmTy
+                DocTy: DocTy,
+                AdmTy: AdmTy,
+                pmino: pmino,
+                tWWC: tWWC,
+                tWI: tWI,
+                thfc_cd: thfc_cd
 
             };
             $.ajax({
@@ -236,20 +249,37 @@
                     //console.log(list);
                     $('#depositResult').html(list);
 
+
+
+
+///////total normal discharge/////
+                    var totalday = $('#totalday').val();
                     var Deposit = $('#dDeposit').val();
                     var Discount = $('#dDiscount').val();
                     var Rate = $('#dCost').val();
+
                     var TotalDiscount = (Discount / 100) * Rate;
+                    var TotalDischargeNORMAL = (Rate * totalday) - TotalDiscount - Deposit;
 
-                    var TotalDischarge = Rate - TotalDiscount - Deposit;
+///////total transfer discharge/////
+                    var totaltransferday = $('#totaltransferday').val();
+                    var DepositTRANSFER = $('#dDepositTRANSFER').val();
+                    var DiscountTRANSFER = $('#dDiscountTRANSFER').val();
+                    var RateTRANSFER = $('#dCostTRANSFER').val();
+
+                    var TotalDiscountTRANSFER = (DiscountTRANSFER / 100) * RateTRANSFER;
+                    var TotalDischargeTRANSFER = (RateTRANSFER * totaltransferday) - TotalDiscountTRANSFER - DepositTRANSFER;
+
+                    var TotalDischarge = TotalDischargeTRANSFER + TotalDischargeNORMAL;
 
 
 
 
+                    $("#totaltransferday").val(totaltransferday);
+                    $("#TotalDischargeNORMAL").val(TotalDischargeNORMAL);
+                    $("#TotalDischargeTRANSFER").val(TotalDischargeTRANSFER);
 
-
-
-                    $("#TotalDischarge").val(TotalDischarge);
+                  //  $("#TotalDischarge").val(TotalDischarge);
                 }
                 ,
                 error: function (xhr, status, error) {
@@ -291,7 +321,7 @@
             $("#BedIDReg").val(BedIDReg);
             $("#hfcTo").val(hfcTo);
             $("#DrAttain").val(DrAttain);
-                        $("#hfc_cd").val(hfc_cd);
+            $("#hfc_cd").val(hfc_cd);
 
 
 

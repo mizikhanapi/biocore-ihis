@@ -2,8 +2,20 @@
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
+ * created by Ardhi Surya Ibrahim
+ * email: rdsurya147@gmail.com 
+ * insta: @rdcfc
+ * github: rdsurya
  */
 
+
+$(function (){
+    var name = $('#pName').text().trim();
+    var ic = $('#pIC').text().trim();
+    
+    if(name.localeCompare('-') !== 0 && ic.localeCompare('-') !== 0)
+        loadMorsefallAssessment();
+});
 
 //---- selecting how to view the notes: today, yesterday or specific dates------------
 $('#MS_viewBy').on('change', function () {
@@ -17,6 +29,45 @@ $('#MS_viewBy').on('change', function () {
 });
 
 //======================= end select view date=========================================
+
+//---------------------- load assessment -------------------------------------
+function loadMorsefallAssessment(){
+    
+    var data = {
+        day: $('#MS_viewBy').val(),
+        from: $('#MS_dateFrom').val(),
+        to: $('#MS_dateTo').val()
+    };
+    
+    console.log("loading assessment");
+    
+    $.ajax({
+        type: 'POST',
+        data: data,
+        url: "../Ortho-Nursing/controller/morseAss_retrieve.jsp",
+        success: function (data, textStatus, jqXHR) {
+            $('#div_morseAss_table').html(data);
+            console.log(data);
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+             $('#div_morseAss_table').html("Oopps! "+errorThrown);
+        }
+    });
+}
+//============================================================================
+
+
+//----------------------- view previous assessment -----------------------------
+$('#MS_viewBy').on('change', function(){
+    var state = $('#MS_viewBy').val();
+    
+    if(state == 'x')
+        return false;
+    else
+        loadMorsefallAssessment();
+});
+
+//==============================================================================
 
 
 
@@ -99,8 +150,8 @@ $('#morse_btnAdd').on('click', function () {
             badan: badan,
             mental: mental,
             morseTime: morseTime,
-            pmiNo: pmiNo,
-            epDate: episodeDate,
+//            pmiNo: pmiNo,
+//            epDate: episodeDate,
             enDate: morseDate
         };
         

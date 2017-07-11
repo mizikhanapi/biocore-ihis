@@ -10,8 +10,9 @@
 <%
     String hfc_cd = (String) session.getAttribute("HEALTH_FACILITY_CODE");
     
-    String pmiNo = request.getParameter("pmiNo");
-    String epDate = request.getParameter("epDate");
+    String pmiNo = (String) session.getAttribute("patientPMINo");
+    String epDate = (String) session.getAttribute("episodeDate");
+    
     String enDate = request.getParameter("enDate");
     String time = request.getParameter("morseTime");
     String mental = request.getParameter("mental");

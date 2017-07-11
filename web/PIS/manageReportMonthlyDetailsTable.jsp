@@ -42,8 +42,8 @@
                 + " SUM(pis_dispense_detail.DISPENSED_QTY * pis_mdc2.D_SELL_PRICE) "
                 + " FROM pis_dispense_master JOIN pis_dispense_detail ON (pis_dispense_master.ORDER_NO =  pis_dispense_detail.ORDER_NO) "
                 + " JOIN pis_mdc2 ON (pis_dispense_detail.DRUG_ITEM_CODE =  pis_mdc2.UD_MDC_CODE) "
-                + " WHERE pis_dispense_master.LOCATION_CODE  = '04010101' AND pis_dispense_master.DISCIPLINE_CODE  = '001'  "
-                + " AND pis_mdc2.hfc_cd  = '04010101' AND pis_mdc2.discipline_cd  = '001' AND EXTRACT(YEAR_MONTH FROM pis_dispense_master.DISPENSED_DATE) = '"+date+"' GROUP BY pis_mdc2.UD_MDC_CODE ";
+                + " WHERE pis_dispense_master.LOCATION_CODE  = '"+hfc+"' AND pis_dispense_master.DISCIPLINE_CODE  = '"+dis+"'  "
+                + " AND pis_mdc2.hfc_cd  = '"+hfc+"' AND pis_mdc2.discipline_cd  = '"+dis+"' AND EXTRACT(YEAR_MONTH FROM pis_dispense_master.DISPENSED_DATE) = '"+date+"' GROUP BY pis_mdc2.UD_MDC_CODE ";
         ArrayList<ArrayList<String>> dataReportMonthly = conn.getData(sql);
 
         int size = dataReportMonthly.size();
@@ -53,7 +53,7 @@
     <tr style="text-align: center;" id="">
         <td><%= dataReportMonthly.get(i).get(0)%></td>
         <td><%= dataReportMonthly.get(i).get(1)%></td>
-        <td><%= dataReportMonthly.get(i).get(2)%></td>
+        <td><%= formatter.format(Double.parseDouble(dataReportMonthly.get(i).get(2)))%></td>
         <td><%= formatterInt.format(Double.parseDouble(dataReportMonthly.get(i).get(3)))%></td>
         <td><%= formatter.format(Double.parseDouble(dataReportMonthly.get(i).get(4)))%></td>
     </tr>
