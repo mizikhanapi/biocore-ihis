@@ -20,7 +20,7 @@
 
     String createdBy = request.getParameter("createdBy");
     
-    wclass = request.getParameter("WardClass");
+    wclass = request.getParameter("WardClassCode");
     wid = request.getParameter("WardID");
     wdiscipline = request.getParameter("dis");
     wwardname = request.getParameter("WardName");
