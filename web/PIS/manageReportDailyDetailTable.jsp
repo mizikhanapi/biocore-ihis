@@ -51,7 +51,7 @@
     <tr style="text-align: center;" id="">
         <td><%= dataReportDaily.get(i).get(0)%></td>
         <td><%= dataReportDaily.get(i).get(1)%></td>
-        <td><%= dataReportDaily.get(i).get(2)%></td>
+        <td><%= formatter.format(Double.parseDouble(dataReportDaily.get(i).get(2)))%></td>
         <td><%= formatterInt.format(Double.parseDouble(dataReportDaily.get(i).get(3)))%></td>
         <td><%= formatter.format(Double.parseDouble(dataReportDaily.get(i).get(4)))%></td>
     </tr>
