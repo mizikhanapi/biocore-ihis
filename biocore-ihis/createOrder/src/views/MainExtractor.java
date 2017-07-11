@@ -29,7 +29,6 @@ public class MainExtractor {
             //System.out.println(t.getTxndata());
 
             spv2.startProcess(t.getTxndata());
-            System.out.println("hai");
             //LIO
             LIO_ord lio_ord = new LIO_ord();
             lio_ord.M_LIO(spv2.getVorc(), spv2.getVlio(), t);
@@ -58,7 +57,7 @@ public class MainExtractor {
             DCG_ord dcg_ord = new DCG_ord();
             dcg_ord.M_DCG(spv2.getVorc(), spv2.getVdcg(), t);
             
-            //DCG
+            //PRI
             PRI_ord pri_ord = new PRI_ord();
             pri_ord.M_PRI(spv2.getVorc(), spv2.getVpri(), t);
             
