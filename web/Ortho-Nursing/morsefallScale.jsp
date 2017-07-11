@@ -36,7 +36,59 @@
         </div>
     </div>
 </div>
-<div id="div_morseAss_table"></div>
+<div id="div_morseAss_table">
+    
+    <div style="text-align:center;border:1px solid #2196f3"><h3>No record found!</h3></div>
+    
+<!--    <table class="table table-bordered" id="morse_assessment_table">
+    <tr>
+        <th>Date</th>
+        <th>Time</th>
+        <th>History of falling</th>
+        <th>Diagnosis</th>
+        <th>Ambulatory Aid</th>
+        <th>IV Venofix / Syringe Pump</th>
+        <th>Body structure/Movement</th>
+        <th>Mental Status</th>
+        <th>Total Score</th>
+        <th>Approval</th>
+    </tr>
+    <tr>
+        <td rowspan="3">06/06/2017</td>
+        <td>AM</td>
+        <td>25</td>
+        <td>15</td>
+        <td>30</td>
+        <td>20</td>
+        <td>10</td>
+        <td>15</td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>PM</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>Noon</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+</table>-->
+</div>
 
 <!--<script type="text/javascript" src="../Ortho-Nursing/js/create_destroy_loading.js"></script>
 <script type="text/javascript" src="../Ortho-Nursing/js/morsefallScale.js"></script>-->
