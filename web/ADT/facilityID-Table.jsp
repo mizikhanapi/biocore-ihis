@@ -41,7 +41,10 @@
         <tbody>
 
             <% //                Conn conn = new Conn();
-                String sqlFacilityID = "SELECT a.ward_class_code, a.ward_name, a.ward_id, b.discipline_name, a.no_of_bed, a.citizen_room_cost, a.citizen_deposit, a.citizen_discount, a.non_citizen_room_cost, a.non_citizen_deposit, a.non_citizen_discount, a.pensioner_room_cost,  a.pensioner_deposit, a.pensioner_discount,a.attach_toilet, a.include_television, a.attach_bathroom_tiolet, a.include_telephone, a.ward_status, a.hfc_cd , a.discipline_cd, b.discipline_cd FROM wis_ward_name a LEFT JOIN adm_discipline b ON a.discipline_cd = b.discipline_cd where a.discipline_cd = '"+disID+"' and a.hfc_cd ='"+hfcID+"' AND b.discipline_cd = '"+disID+"' and b.discipline_hfc_cd ='"+hfcID+"'" ;
+                String sqlFacilityID = "SELECT wwc.ward_class_name, a.ward_name, a.ward_id, b.discipline_name, a.no_of_bed, a.citizen_room_cost, a.citizen_deposit, a.citizen_discount, a.non_citizen_room_cost, a.non_citizen_deposit, a.non_citizen_discount, "
+                        + "a.pensioner_room_cost,  a.pensioner_deposit, a.pensioner_discount,a.attach_toilet, a.include_television, a.attach_bathroom_tiolet, a.include_telephone, a.ward_status, a.hfc_cd , a.discipline_cd, b.discipline_cd, wwc.ward_class_code"
+                        + " FROM wis_ward_name a LEFT JOIN adm_discipline b ON a.discipline_cd = b.discipline_cd "
+                        + "LEFT JOIN wis_ward_class wwc on wwc.ward_class_code = a.ward_class_code where a.discipline_cd = '" + disID + "' and a.hfc_cd ='" + hfcID + "' AND b.discipline_cd = '" + disID + "' and b.discipline_hfc_cd ='" + hfcID + "'";
                 ArrayList<ArrayList<String>> dataFacilityID = conn3.getData(sqlFacilityID);
 
                 int size11 = dataFacilityID.size();
@@ -114,7 +117,8 @@
                             <div class="form-group">
                                 <label class="col-md-4 control-label" for="textinput">Ward Class </label>
                                 <div class="col-md-4">
-                                    <input id="updateWC" name="updateWC"  readonly class="form-control input-md">
+                                    <input id="onlyWC" name="onlyWC"  readonly class="form-control input-md">
+                                    <input type="hidden" id="updateWC" name="updateWC"  readonly class="form-control input-md">
 
                                 </div>
                             </div>
@@ -257,7 +261,7 @@
                                 <label class="col-md-4 control-label" for="textinput">Attach bathroom and toilet</label>
                                 <div class="col-md-4">
                                     <input id="updatebathroom" name="updatebathroom"  type="checkbox"  class="form-control input-md">
-                                   
+
                                 </div>
                             </div>
 
@@ -322,7 +326,7 @@
             var arrayData = rowData.split("|");
             console.log(arrayData);
             //assign into seprated val
-
+            var WardClassCode = arrayData[22];
             var WardClass = arrayData[0];
             var WardName = arrayData[1];
             var WardID = arrayData[2];
@@ -343,12 +347,13 @@
             var telephone = arrayData[17];
             var status = arrayData[18];
             var disCode = arrayData[21];
-            
-            
-            
+
+
+
             $('#UdisCode').val(disCode);
-             $('#updateDis').val(Dis);
-            $('#updateWC').val(WardClass);
+            $('#updateDis').val(Dis);
+            $('#onlyWC').val(WardClass);
+            $('#updateWC').val(WardClassCode);
             $('#updateWardName').val(WardName);
             $('#updateWardID').val(WardID);
             var hfc = $("#Rhfc").val();
@@ -379,7 +384,7 @@
         $("#updateIDButton").off('click').on('click', function (e) {
 
             e.preventDefault();
-            var WardClass = $('#updateWC').val();
+            var WardClassCode = $('#updateWC').val();
             var WardName = $('#updateWardName').val();
             var WardID = $('#updateWardID').val();
             var Dis = $('#Dis').val();
@@ -402,9 +407,10 @@
             var createdBy = $("#Rid").val();
             var dis = $("#UdisCode").val();
             var sub = $("#Rsub").val();
-            
+
+
             console.log(dis);
-           if (WardName === "" || WardName === null) {
+            if (WardName === "" || WardName === null) {
                 bootbox.alert("Complete The Fields of Ward Name");
             } else if (CitizenRates === "" || CitizenRates === null) {
                 bootbox.alert("Complete The Fields of Citizen Rates");
@@ -431,7 +437,7 @@
             } else {
 
                 var data = {
-                    WardClass: WardClass,
+                    WardClassCode: WardClassCode,
                     WardName: WardName,
                     WardID: WardID,
                     Dis: Dis,
@@ -495,7 +501,7 @@
         var row = $(this).closest("tr");
         var rowData = row.find("#dataFacilityIDhidden").val();
         var arrayData = rowData.split("|");
-        
+
         //assign into seprated val
         var wcd = arrayData[0], wid = arrayData[2], hfc = arrayData[19];
         console.log(arrayData);
@@ -529,7 +535,7 @@
                         timeout: 10000,
                         success: function (result) {
                             console.log(result);
-                            if (result.trim() === 'Success') {                                
+                            if (result.trim() === 'Success') {
                                 row.remove();
 
 

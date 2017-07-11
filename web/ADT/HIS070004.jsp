@@ -17,7 +17,7 @@
     <head>
 
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <meta http-equiv="refresh" content="20; URL=HIS070004.jsp">
+        <!--        <meta http-equiv="refresh" content="20; URL=HIS070004.jsp">-->
 
         <!-- header -->
         <script src="old/assets/js/jquery.min.js"></script>
@@ -40,7 +40,7 @@
         %>
 
         <div class="container-fluid">
-            <div class="row">       
+            <div class="row" id="load_tweets">       
                 <!-- menu side -->
                 <%@include file = "libraries/sideMenus.jsp" %>
                 <!-- menu side --> 
@@ -85,3 +85,25 @@
         </div>
     </body>
 </html>
+
+
+
+<script type="text/javascript">
+//    $(document).ready(function () {
+//        var auto_refresh = setInterval(
+//                function ()
+//                {
+//                    $('#load_tweets').load('HIS070004.jsp').fadeIn("slow");
+//                }, 10000); // refresh every 10000 milliseconds
+//
+//
+//    });
+
+
+
+
+    setTimeout(function () { 
+      location.reload();
+    }, 60 * 1000);
+
+</script>
