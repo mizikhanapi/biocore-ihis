@@ -75,8 +75,11 @@
 
     $(document).ready(function () {
 
+
         // Disabling Start And End Date
         $("#chartCirculationSelectAssessmentStartEnd").hide();
+
+// ---------------------------------------------------------------------------- VIew ------------------------------------------------------------------------------------------- //
 
         // Function For View Assement Select Start
         $('#chartCirculationSelectAssessment').on('change', function () {
@@ -132,7 +135,6 @@
 
         });
 
-
         $("#chartCirculationSelectAssessmentStartEndBtn").on('click', function () {
 
             var patientPMI = $('#pIC').text();
@@ -152,8 +154,6 @@
         });
         // Function For View Assement Select End
 
-
-
         // Function for Table Start 
         function ChartCircuTableFiter(viewData) {
 
@@ -161,8 +161,6 @@
                 dataString: viewData,
                 methodName: "view"
             };
-
-            console.log(data);
 
             $.ajax({
                 url: "../Ortho-NursingInWard/controller/CirculationFunction.jsp",
@@ -182,10 +180,34 @@
         }
         // Function for Table End
 
+// ---------------------------------------------------------------------------- VIew ------------------------------------------------------------------------------------------- //
+
+
+
+
+
+// ---------------------------------------------------------------------------- Insert ------------------------------------------------------------------------------------------- //
+
+        // Function For Add Button Start
+        $("#chartCirculationSelectAssessmentStartEndBtn").on('click', function () {
+
+
+
+        });
+        // Function For Add Button End
+
+
+
+// ---------------------------------------------------------------------------- Insert ------------------------------------------------------------------------------------------- //
+
+
+
+
+
+// ---------------------------------------------------------------------------- Date ------------------------------------------------------------------------------------------- //
 
         // Date Functions Start
-
-        // Date Picker For Start
+        // Date Picker For Initial Start
         $("#chartCirculationSelectAssessmentStart").datepicker({
             changeMonth: true,
             changeYear: true,
@@ -193,8 +215,9 @@
             yearRange: '1990:+0',
             maxDate: '+0d'
         });
+        // Date Picker For Initial End
 
-        // Date Picker For End
+        // Date Picker For Final Start
         $('#chartCirculationSelectAssessmentStart').on('change', function () {
 
             $("#chartCirculationSelectAssessmentEnd").datepicker("destroy");
@@ -211,8 +234,10 @@
             });
 
         });
-
+        // Date Picker For Final Start
         // Date Functions End
+
+// ---------------------------------------------------------------------------- Date ------------------------------------------------------------------------------------------- //
 
 
     });
