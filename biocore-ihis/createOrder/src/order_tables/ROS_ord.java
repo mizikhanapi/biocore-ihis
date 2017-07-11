@@ -61,8 +61,8 @@ public class ROS_ord {
                          for (int ros_i = 0; ros_i < ros.size(); ros_i++) {
                          ArrayList<ArrayList<String>> ross = ros.get(ros_i).getValue();
 
-                                      
-                           String sql_ROS = "INSERT INTO ris_order_detail (order_no, modality_cd, body_system_cd, procedure_cd, EPISODE_DATE, ENCOUNTER_DATE, requestor_comments, filler_comments, order_status, verify_by, verify_date, created_by, created_date) values ('" + ris.getRIS_orderno() + "','1','2','"+ross.get(2).get(0)+"','" + orcs.get(7).get(0) + "','" + orcs.get(7).get(0) + "','no comments','tested','0','" + orcs.get(9).get(0) + "','" + orcs.get(7).get(0) + "','" + orcs.get(9).get(0) + "','" + orcs.get(7).get(0) + "')";
+                            char pcd[] = ross.get(2).get(0).toCharArray();
+                           String sql_ROS = "INSERT INTO ris_order_detail (order_no, modality_cd, body_system_cd, procedure_cd, EPISODE_DATE, ENCOUNTER_DATE, requestor_comments, order_status, verify_by, verify_date, created_by, created_date) values ('" + ris.getRIS_orderno() + "','"+pcd[1]+"','"+pcd[2]+"','"+ross.get(2).get(0)+"','" + orcs.get(7).get(0) + "','" + orcs.get(7).get(0) + "','"+ross.get(7).get(0)+"','tested','" + orcs.get(9).get(0) + "','" + orcs.get(7).get(0) + "','" + orcs.get(9).get(0) + "','" + orcs.get(7).get(0) + "')";
                            status_ris_order_detail = rc.setQuerySQL(Config.ipAddressServer, Config.portServer, sql_ROS);
 
                                         if (status_ris_order_detail == true) {
