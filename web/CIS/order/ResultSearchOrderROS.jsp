@@ -16,47 +16,63 @@
                                String searchProblem = "";
                                if(orderId.equals("-")){
                                 if (type.equals("today")) {
-                                        searchProblem = "SELECT od.procedure_cd, pm.ris_procedure_name,pm.body_system_name,modality_name "
+                                        searchProblem = "SELECT od.procedure_cd, pm.ris_procedure_name,bs.body_system_name,m.modality_name "
                                                 + "FROM ris_order_detail od "
-                                                + "INNER JOIN ris_order_master om "
-                                                + "INNER JOIN ris_procedure_master pm "
-                                                + "WHERE od.order_no = om.order_no "
-                                                + "AND od.procedure_cd = pm.ris_procedure_cd "
-                                                + "AND om.pmi_no = '" + pmiNo + "' "
-                                                + "AND DATE(om.episode_date) =  '" + todayDate + "' "
-                                                + "GROUP BY procedure_cd";
+                                                + " JOIN ris_order_master om "
+                                                + " JOIN ris_procedure_master pm "
+                                                + " JOIN ris_modality m "
+                                                + " JOIN ris_body_system bs"
+                                                + " WHERE od.order_no = om.order_no "
+                                                +" AND od.modality_cd = m.modality_cd "
+                                                +" AND od.body_system_cd = bs.body_system_cd "
+                                                + " AND od.procedure_cd = pm.ris_procedure_cd "
+                                                + " AND om.pmi_no = '" + pmiNo + "' "
+                                                + " AND DATE(om.episode_date) =  '" + todayDate + "' "
+                                                + " GROUP BY procedure_cd";
                                         
                                        //out.print(searchProblem);
                                     } else if (type.equals("previous")) {
-                                        searchProblem = "SELECT od.procedure_cd, pm.ris_procedure_name,pm.body_system_name,modality_name "
-                                                + "FROM ris_order_detail od "
-                                                + "INNER JOIN ris_order_master om "
-                                                + "INNER JOIN ris_procedure_master pm "
-                                                + "WHERE od.order_no = om.order_no "
-                                                + "AND od.procedure_cd = pm.ris_procedure_cd "
-                                                + "AND om.pmi_no = '" + pmiNo + "' "
-                                                + "GROUP BY procedure_cd";
+                                       searchProblem = "SELECT od.procedure_cd, pm.ris_procedure_name,bs.body_system_name,m.modality_name "
+                                                   + "FROM ris_order_detail od "
+                                                   + " JOIN ris_order_master om "
+                                                   + " JOIN ris_procedure_master pm "
+                                                   + " JOIN ris_modality m "
+                                                   + " JOIN ris_body_system bs"
+                                                   + " WHERE od.order_no = om.order_no "
+                                                   + " AND od.modality_cd = m.modality_cd "
+                                                   + " AND od.body_system_cd = bs.body_system_cd "
+                                                   + " AND od.procedure_cd = pm.ris_procedure_cd "
+                                                + " AND om.pmi_no = '" + pmiNo + "' "
+                                                + " GROUP BY procedure_cd";
                                     }
                                }else{
                                     if (type.equals("today")) {
-                                            searchProblem = "SELECT od.procedure_cd, pm.ris_procedure_name,pm.body_system_name,modality_name "
-                                                    + "FROM ris_order_detail od "
-                                                    + "INNER JOIN ris_order_master om "
-                                                    + "INNER JOIN ris_procedure_master pm "
-                                                    + "WHERE od.order_no = om.order_no "
-                                                    + "AND od.procedure_cd = pm.ris_procedure_cd "
-                                                    + "AND om.pmi_no = '" + pmiNo + "' "
-                                                    + "AND DATE(om.episode_date) = '" + todayDate + "' "
-                                                    + "AND om.order_no = '"+orderId+"' "
-                                                    + "GROUP BY procedure_cd";
+                                       searchProblem = "SELECT od.procedure_cd, pm.ris_procedure_name,bs.body_system_name,m.modality_name "
+                                                   + "FROM ris_order_detail od "
+                                                   + " JOIN ris_order_master om "
+                                                   + " JOIN ris_procedure_master pm "
+                                                   + " JOIN ris_modality m "
+                                                   + " JOIN ris_body_system bs"
+                                                   + " WHERE od.order_no = om.order_no "
+                                                   + " AND od.modality_cd = m.modality_cd "
+                                                   + " AND od.body_system_cd = bs.body_system_cd "
+                                                   + " AND od.procedure_cd = pm.ris_procedure_cd "
+                                                    + " AND om.pmi_no = '" + pmiNo + "' "
+                                                    + " AND DATE(om.episode_date) = '" + todayDate + "' "
+                                                    + " AND om.order_no = '"+orderId+"' "
+                                                    + " GROUP BY procedure_cd";
                                             
                                         } else if (type.equals("previous")) {
-                                            searchProblem = "SELECT od.procedure_cd, pm.ris_procedure_name,pm.body_system_name,modality_name "
-                                                    + "FROM ris_order_detail od "
-                                                    + "INNER JOIN ris_order_master om "
-                                                    + "INNER JOIN ris_procedure_master pm "
-                                                    + "WHERE od.order_no = om.order_no "
-                                                    + "AND od.procedure_cd = pm.ris_procedure_cd "
+                                       searchProblem = "SELECT od.procedure_cd, pm.ris_procedure_name,bs.body_system_name,m.modality_name "
+                                                   + "FROM ris_order_detail od "
+                                                   + " JOIN ris_order_master om "
+                                                   + " JOIN ris_procedure_master pm "
+                                                   + " JOIN ris_modality m "
+                                                   + " JOIN ris_body_system bs"
+                                                   + "WHERE od.order_no = om.order_no "
+                                                   + " AND od.modality_cd = m.modality_cd "
+                                                   + " AND od.body_system_cd = bs.body_system_cd "
+                                                   + "AND od.procedure_cd = pm.ris_procedure_cd "
                                                     + "AND om.pmi_no = '" + pmiNo + "' "
                                                     + "AND om.order_no = '"+orderId+"' "
                                                     + "GROUP BY procedure_cd";
