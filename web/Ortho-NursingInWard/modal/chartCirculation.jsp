@@ -9,17 +9,17 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><i class="fa fa-times fa-lg"></i></span></button>
-                <h4 class="modal-title" id="myModalLabel">Circulation Chart</h4>
+                <h2 class="modal-title" id="chartCirculationModalTitle"></h2>
             </div>
             <div class="modal-body">
-                <form>
+                <form autocomplete="off" id="chartCirculationForm">
                     <div class="row">
                         <div class="col-md-6">
                             <!-- Text input-->
                             <div class="form-group">
                                 <label class="col-md-12 control-label" for="textinput">Date</label>
                                 <div class="col-md-12">
-                                    <input type="date" class="form-control input-md" >
+                                    <input type="text" class="form-control input-md" id="chartCirculationModalDate">
                                 </div>
                             </div>
                         </div>
@@ -28,7 +28,7 @@
                             <div class="form-group">
                                 <label class="col-md-12 control-label" for="textinput">Time</label>
                                 <div class="col-md-12">
-                                    <input type="time" class="form-control input-md" >
+                                    <input type="time" class="form-control input-md" id="chartCirculationModalTime">
                                 </div>
                             </div>
                         </div>
@@ -40,7 +40,7 @@
                             <div class="form-group">
                                 <label class="col-md-12 control-label" for="textinput">Colour</label>
                                 <div class="col-md-12">
-                                    <input type="text" class="form-control input-md" >
+                                    <input type="text" class="form-control input-md" id="chartCirculationModalColour">
                                 </div>
                             </div>
                         </div>
@@ -49,7 +49,7 @@
                             <div class="form-group">
                                 <label class="col-md-12 control-label" for="textinput">Sensation</label>
                                 <div class="col-md-12">
-                                    <input type="text" class="form-control input-md" >
+                                    <input type="text" class="form-control input-md" id="chartCirculationModalSensation">
                                 </div>
                             </div>
                         </div>
@@ -62,13 +62,13 @@
                                 <label class="col-md-12 control-label" for="textinput">Hot / Cold</label>
                                 <div class="col-md-12 form-inline">
                                     <div class="radio radio-primary">
-                                        <input type="radio" name="HotCold" id="HotCold1" value="option1">
+                                        <input type="radio" name="HotCold" value="Hot" id="chartCirculationModalHot">
                                         <label for="HotCold1">
                                             Hot
                                         </label>
                                     </div>
                                     <div class="radio radio-primary">
-                                        <input type="radio" name="HotCold" id="HotCold2" value="option2">
+                                        <input type="radio" name="HotCold" value="Cold" id="chartCirculationModalCold">
                                         <label for="HotCold2">
                                             Cold
                                         </label>
@@ -81,7 +81,7 @@
                             <div class="form-group">
                                 <label class="col-md-12 control-label" for="textinput">Movement</label>
                                 <div class="col-md-12">
-                                    <input type="text" class="form-control input-md" >
+                                    <input type="text" class="form-control input-md" id="chartCirculationModalMovement">
                                 </div>
                             </div>
                         </div>
@@ -93,7 +93,7 @@
                             <div class="form-group">
                                 <label class="col-md-12 control-label" for="textinput">Others</label>
                                 <div class="col-md-12">
-                                    <textarea class="form-control input-md" ></textarea>
+                                    <textarea class="form-control input-md" id="chartCirculationModalOthers" ></textarea>
                                 </div>
                             </div>
                         </div>
@@ -103,14 +103,11 @@
             </div>
             <div class="modal-footer">
                 <div class="btn-group btn-group-justified" role="group" aria-label="group button">
-                    <div class="btn-group" role="group">
-                        <button type="button" class="btn btn-success btn-block btn-lg" id="acceptBloodPBtn" role="button">Add Items</button>
-                    </div>
-                    <div class="btn-group btn-delete hidden" role="group">
-                        <button type="button" id="delImage" class="btn btn-default btn-block btn-lg" data-dismiss="modal" role="button">Clear</button>
+                    <div class="btn-group" role="group" id="chartCirculationModal_btnAdd_or_btnUpdate_div">
+<!--                        <button type="button" class="btn btn-success btn-block btn-lg" id="acceptBloodPBtn" role="button">Add Items</button>-->
                     </div>
                     <div class="btn-group" role="group">
-                        <button type="button" id="saveImage" class="btn btn-default btn-block btn-lg" data-dismiss="modal" role="button">Close</button>
+                        <button type="button" id="chartCirculationModalReset" class="btn btn-default btn-block btn-lg" data-dismiss="modal" role="button">Close</button>
                     </div>
                 </div>
             </div>
