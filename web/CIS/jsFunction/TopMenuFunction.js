@@ -163,72 +163,7 @@ $(document).ready(function (e) {
     }
 
     
-    function convertVTS(VTSData) {
 
-        var d = VTSData;
-
-        if (d.BTemp === undefined) {
-            d.BTemp = "";
-        }
-        if (d.sitS === undefined) {
-            d.sitS = "";
-        }
-        if (d.sitD === undefined) {
-            d.sitD = "";
-        }
-        if (d.lyingS === undefined) {
-            d.lyingS = "";
-        }
-        if (d.lyingD === undefined) {
-            d.lyingD = "";
-        }
-        if (d.standS === undefined) {
-            d.standS = "";
-        }
-        if (d.standD === undefined) {
-            d.standD = "";
-        }
-        if (d.bmiWeight === undefined) {
-            d.bmiWeight = "";
-        }
-        if (d.bmiHeight === undefined) {
-            d.bmiHeight = "";
-        }
-        if (d.headCir === undefined) {
-            d.headCir = "";
-        }
-        if (d.rrate === undefined) {
-            d.rrate = "";
-        }
-        if (d.headCir === undefined) {
-            d.headCir = "";
-        }
-        if (d.pointMain === undefined) {
-            d.pointMain = "";
-        }
-        if (d.resultMain === undefined) {
-            d.resultMain = "";
-        }
-        if (d.pointpgcsMain === undefined) {
-            d.pointpgcsMain = "";
-        }
-        if (d.resultpgcsMain === undefined) {
-            d.resultpgcsMain = "";
-        }
-        if (d.OSat === undefined) {
-            d.OSat = "";
-        }
-        if (d.painScale === undefined) {
-            d.painScale = "";
-        }
-        if (d.bloodGlucose === undefined) {
-            d.bloodGlucose = "";
-        }
-
-        var vtsNotes = "";
-        vtsNotes += "VTS|" + getDate() + "|" + d.BTemp + "^" + d.sitS + "^" + d.sitD + "^" + d.lyingS + "^" + d.lyingD + "^" + d.standS + "^" + d.standD + "^" + d.bmiWeight + "^" + d.bmiHeight + "^" + d.headCir + "^" + d.rrRate + "^" + d.pointMain + "^" + "^^^^^^^^^^" + hfc_cd + "^" + doctor_id + "^" + doctor_name + "^" + d.pointMain + "^" + d.resultMain + "^" + d.pointpgcsMain + "^" + d.resultpgcsMain + "^" + d.OSat + "^" + d.painScale + "^" + d.bloodGlucose + "^" + d.sitP + "^" + d.lyingP + "^" + d.standP + "|<cr>\n";
-        return vtsNotes;
-    }
 
     function countVTS(data) {
         $.each(data, function (index, value) {

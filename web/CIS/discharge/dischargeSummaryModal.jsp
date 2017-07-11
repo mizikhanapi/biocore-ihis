@@ -24,7 +24,7 @@
                 <input class="form-control input-lg" type="hidden" name="tCIS_DCGHFCOrderDetail" id="tCIS_DCGHFCOrderDetail" placeholder="" >
                 <input class="form-control input-lg" type="hidden" name="tCIS_DCGHFCProviderDetail" id="tCIS_DCGHFCProviderDetail" placeholder="" >
                 <div class="row">
-                    <div class="col-md-4">
+                    <div class="col-md-6">
                         <div class="form-group">
                             <label class="col-md-6 control-label" for="textinput">Date</label>
                             <div class="col-md-12">
@@ -32,7 +32,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-6">
                         <div class="form-group">
                             <label class="col-md-6 control-label" for="textinput">Time</label>
                             <div class="col-md-12">
@@ -40,7 +40,10 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-4">
+
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
                         <div class="form-group">
                             <label class="col-md-6 control-label" for="textinput">Disposition</label>
                             <div class="col-md-12">
@@ -61,6 +64,7 @@
                 </div>
 
                 <div class="row">
+                    <label class="col-md-6 control-label" for="textinput">Please Choose Clinical Finding as Below</label>
                     <div class="col-md-12">
                         <div id="divCIS_Discharge_Summary" style="overflow:auto; height:400px; border: 1px solid #ddd; padding: 15px 0px;">
                         </div>
@@ -82,7 +86,7 @@
             <div class="modal-footer" id="actionGSC">
                 <div class="btn-group btn-group-justified" role="group" aria-label="group button">
                     <div class="btn-group" role="group">
-                        <a class="btn btn-success btn-block btn-lg gcsAccept " id="btnCIS_Discharge_Summary" >Insert</a>
+                        <a class="btn btn-success btn-block btn-lg gcsAccept " id="btnCIS_OE_DCG_SUBMIT" >Submit</a>
                     </div>
 
                     <div class="btn-group" role="group">
@@ -235,3 +239,4 @@
 
 
 </script>
+<script src="jsFunction/DischargeSummary.js" type="text/javascript"></script>

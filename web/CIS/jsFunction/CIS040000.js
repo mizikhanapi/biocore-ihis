@@ -25,6 +25,37 @@ $(document).ready(function () {
      $("#btnCIS_OE_ROS_UPDATE").hide();
      $("#btnCIS_OE_ROS_CANCEL").hide();
      
+     $("#btnCIS_OE_ROS_SEARCH_ORDER").click(function(e){
+        e.preventDefault();
+        var order_id = $("#tCIS_OE_ROS_SEARCH_ORDER_ID").val();
+        if(order_id === ""){
+            order_id = "-";
+        }
+        var todayDate = getDate();
+        todayDate = todayDate.split(" ");
+        todayDate = todayDate[0];
+        var type = $("#selectCIS_OE_ROS_SEARCH_TYPE option:selected").val();
+        
+        console.log(todayDate);
+        
+        $.ajax({
+            url:"order/ResultSearchOrderROS.jsp",
+            timeout:3000,
+            type:"POST",
+            data:{
+                pmiNo:pmiNo,
+                todayDate:todayDate,
+                type:type,
+                orderId:order_id
+            },
+            success:function(e){
+                //console.log(e);
+                $("#divCIS_OE_ROS_OrderSearchResult").html(e);
+            }
+        })
+        
+     });
+     
      $("#btnCIS_OE_ROS_SUBMIT").click(function(e){
         e.preventDefault();
         console.log(_dataROS);
@@ -35,7 +66,7 @@ $(document).ready(function () {
             var fullmsg;
             var msh = getMSH();
             var pdi = PDIInfo;
-            var orc = convertORC(_dataROS[0], "02", "06");
+            var orc = convertORC(_dataROS[0], "02", "06","T12102");
             for (var i in _dataROS) {
                 msg += convertROS(_dataROS[i]);
             }
@@ -98,7 +129,7 @@ $(document).ready(function () {
             Acode: 'ROS',
             ROS:ROS,
             patientConditionROS:patientCondition,
-            priorityROS: priority,
+            priority: priority,
             codeROS:codeROS,
             hfcROS:hfcROS,
             problemCode:problemCode,
@@ -168,7 +199,8 @@ $(document).ready(function () {
         $('#appointmentROS').val(updateObj.appointmentROS);
         $('#patientConditionROSCd').val(updateObj.patientConditionROSCd);
         $('#priorityROScd').val(updateObj.priorityROScd);
-    })
+    });
+    
     $("#btnCIS_OE_ROS_CANCEL").click(function(e){
         e.preventDefault();
         $("#btnCIS_OE_ROS_UPDATE").hide();
@@ -176,6 +208,7 @@ $(document).ready(function () {
         $("#btnCIS_OE_ROS_ADD").show();
         clearROSField();
     });
+    
     $("#btnCIS_OE_ROS_UPDATE").click(function(e){
         e.preventDefault();
        //update the object with current value
@@ -194,7 +227,7 @@ $(document).ready(function () {
        updateObj.modalityROSCode = $("#modalityROSCode").val();
        updateObj.patientConditionROS = $('#patientConditionROSCd  :selected').text().trim();
        updateObj.patientConditionROSCd = $("#patientConditionROSCd").val();
-       updateObj.priorityROS = $('#priorityROScd :selected').text().trim();
+       updateObj.priority = $('#priorityROScd :selected').text().trim();
        updateObj.priorityROScd = $("#priorityROScd").val();
        updateObj.problemCode = $('#problemCode').val();
        console.log(rowId);
@@ -357,4 +390,4 @@ $(document).ready(function () {
         });
     }
 
-})
+});
