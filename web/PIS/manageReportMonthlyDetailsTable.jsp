@@ -53,7 +53,7 @@
     <tr style="text-align: center;" id="">
         <td><%= dataReportMonthly.get(i).get(0)%></td>
         <td><%= dataReportMonthly.get(i).get(1)%></td>
-        <td><%= dataReportMonthly.get(i).get(2)%></td>
+        <td><%= formatter.format(Double.parseDouble(dataReportMonthly.get(i).get(2)))%></td>
         <td><%= formatterInt.format(Double.parseDouble(dataReportMonthly.get(i).get(3)))%></td>
         <td><%= formatter.format(Double.parseDouble(dataReportMonthly.get(i).get(4)))%></td>
     </tr>
