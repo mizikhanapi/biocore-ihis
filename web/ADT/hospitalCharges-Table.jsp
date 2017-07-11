@@ -49,7 +49,7 @@
                         + "left join wis_ward_class wwc on wwc.ward_class_code = a.ward_class_code  "
                         + "left join wis_ward_name wwn on wwn.ward_id = a.ward_id "
                         + "where "
-                        + " a.discipline_cd = '" + disID + "' and a.hfc_cd ='" + hfcID + "' and  wwn.discipline_cd = '" + disID + "' and wwn.hfc_cd ='" + hfcID + "' and es.`Master_Reference_code`='0063' and et.`Master_Reference_code`='0034' and ct.`Master_Reference_code`='0100'";
+                        + " a.discipline_cd = '" + disID + "' and a.hfc_cd ='" + hfcID + "' and  wwn.discipline_cd = '" + disID + "' and wwn.hfc_cd ='" + hfcID + "' and  wwc.discipline_cd = '002' and wwc.hfc_cd ='04010101'  and es.`Master_Reference_code`='0063' and et.`Master_Reference_code`='0034' and ct.`Master_Reference_code`='0100'";
                 ArrayList<ArrayList<String>> dataFacilityID = conn3.getData(sqlFacilityID);
 
                 int size11 = dataFacilityID.size();

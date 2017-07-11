@@ -375,7 +375,7 @@
                 </div>
 
                 <div class="col-md-4"> 
-                    
+
                     <!-- Text input-->
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="textinput">Total Days Admit</label>
@@ -385,16 +385,13 @@
                     </div>
 
                     <div class="form-group">
-                        <label class="col-md-4 control-label" for="textinput">Total Discharge</label>
+                        <label class="col-md-4 control-label" for="textinput">Total Discharge (RM) </label>
                         <div class="col-md-6">
                             <input id="TotalDischarge" name="TotalDischarge" type="text" placeholder=" " readonly class="form-control input-md">                        
                         </div>
                     </div>
 
                    
-
-                    
-
 
 
 
