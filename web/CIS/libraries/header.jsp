@@ -40,6 +40,7 @@
 <script src="jsFunction/Plan.js"></script>
 <script src="jsFunction/queue.js"></script>
 <script src="jsFunction/Converter.js" type="text/javascript"></script>
+<script src="jsFunction/MainFunction.js"></script>
 <script src="jsFunction/TopMenuFunction.js"></script>
 <script src="jsFunction/searchTopMenu.js"></script>
 

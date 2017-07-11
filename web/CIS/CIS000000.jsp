@@ -167,6 +167,10 @@
                                                         <a href="#tab_default_4" data-toggle="tab" aria-expanded="true">
                                                             <i class="fa fa-list-alt fa-lg"></i> Plan </a>
                                                     </li>
+                                                    <li>
+                                                       
+                                                        <i class="fa fa-list-alt fa-lg hide"></i><button id="btnCIS_TEST_BUTTON" class="hide">testbutton</button>
+                                                    </li>
 
 
                                                 </ul>

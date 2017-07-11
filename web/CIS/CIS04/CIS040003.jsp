@@ -55,7 +55,7 @@
                             <label class="col-md-6" for="textinput">Test To Be Perform</label>
                             <div class="col-md-12">
                                 <input type="text" name="testMON" id="testMON" class="form-control input-lg" placeholder="Test To Be Perform" tabindex="4" readonly="">
-                                <input type="text" name="testMON" id="testMONCode" class="form-control input-lg" placeholder="Test To Be Perform" tabindex="4" readonly=""> 
+                                <input type="hidden" name="testMON" id="testMONCode" class="form-control input-lg" placeholder="Test To Be Perform" tabindex="4" readonly=""> 
                             </div>
                         </div>  
                     </div>
@@ -125,7 +125,7 @@
             <div class="modal-footer">
                 <div class="btn-group btn-group-justified" role="group" aria-label="group button">
                     <div class="btn-group" role="group">
-                        <button type="button" class="btn btn-success btn-block btn-lg" id="acceptMON" role="button">Accept</button>
+                        <button type="button" class="btn btn-success btn-block btn-lg" id="btnCIS_OE_MON_SUBMIT" role="button">Submit</button>
                     </div>
                     <div class="btn-group btn-delete hidden" role="group">
                         <button type="button" id="delImage" class="btn btn-danger btn-block btn-lg" data-dismiss="modal"  role="button">Clear</button>

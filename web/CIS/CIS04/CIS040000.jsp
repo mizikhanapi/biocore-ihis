@@ -9,6 +9,7 @@
     ArrayList<ArrayList<String>> dataPatientCondition = Conn.getData(searchPatientCondition);
     String searchPriority = "select Detail_Reference_code,Description from adm_lookup_detail where Master_Reference_code = '0095' order by priority_indicator ASC";
     ArrayList<ArrayList<String>> dataPriority = Conn.getData(searchPriority);
+    
 %>
 <div class="modal fade" id="CIS040000" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
@@ -197,10 +198,10 @@
                                     <div class="form-group">
                                         <label class="col-md-4 control-label" for="selectbasic">Search drug by</label>
                                         <div class="col-md-4">
-                                            <select id="idType" name="idType" class="form-control" required="">
+                                            <select id="selectCIS_OE_ROS_SEARCH_TYPE" name="idType" class="form-control" required="">
                                                 <option selected="" disabled="" value="-">View by</option>
-                                                <option>Today</option>
-                                                <option>Previous Episode</option>
+                                                <option value="today">Today</option>
+                                                <option value="previous">Previous Episode</option>
                                             </select>
                                         </div>
                                     </div>
@@ -209,15 +210,16 @@
                                     <div class="form-group">
                                         <label class="col-md-4 control-label" for="textinput">Order</label>
                                         <div class="col-md-4">
-                                            <input type="text" class="form-control input-md" id="idInput" name="idInput" placeholder="ID" maxlength="0">
+                                            <input type="text" class="form-control input-md" id="tCIS_OE_ROS_SEARCH_ORDER_ID" name="idInput" placeholder="ID">
                                         </div>
                                     </div>
 
                                     <div class="text-center">
-                                        <button class="btn btn-primary" type="button" id="searchPatient" name="searchPatient"><i class="fa fa-search"></i>&nbsp; Search</button>
+                                        <button class="btn btn-primary" type="button" id="btnCIS_OE_ROS_SEARCH_ORDER" name="searchPatient"><i class="fa fa-search"></i>&nbsp; Search</button>
                                         <button id="clearSearch" name="clearSearch" type="button" class="btn btn-default"><i class="fa fa-times"></i>&nbsp; Clear</button>
                                     </div>
                                 </form>
+                                <div id="divCIS_OE_ROS_OrderSearchResult"></div>
                             </div>
                             <!-- Tab 2 -->
 

@@ -205,6 +205,26 @@ function searchDisciplineOnly(fieldId, loadingDivId,hfc_code) {
     });
 }
 
+function retrieveDisciplineOnly(fieldId, loadingDivId, hfc_code,currentValue) {
+
+    $('#' + fieldId).val(currentValue).flexdatalist({
+        minLength: 1,
+        searchIn: 'name',
+        searchDelay: 2000,
+        url: "search/ResultDISCIPLINESearch.jsp?hfc_code=" + hfc_code,
+        cache: true,
+        params: {
+            timeout: 3000,
+            success: function (result) {
+                console.log(result);
+                if (result === undefined) {
+                    $('#' + loadingDivId).html('No Record');
+                }
+            }
+        }
+    });
+}
+
 function getHFCCode(hfc_name,codeFieldId,detailField,discplineField,disciplineCode){
     
      $.ajax({
