@@ -56,7 +56,6 @@ public class PRI_seq {
 
             boolean isUpdateRISNoSequence = rc.setQuerySQL(Config.ipAddressServer, Config.portServer, updateRISNoSequence);
         }
-        System.out.println(PRIno);
     }
 
     //get the order no
