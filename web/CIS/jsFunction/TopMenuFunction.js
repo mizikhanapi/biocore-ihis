@@ -527,7 +527,7 @@ $(document).ready(function (e) {
        
         countVTS(_data);
         var SendNotes = convertToNotes(_data);
-        var ord = convertToOrderNotes(_data);
+        var ord = getNotesDCG(_data);
 
         console.log(vtsCounter);
         vtsCounter = 0;
