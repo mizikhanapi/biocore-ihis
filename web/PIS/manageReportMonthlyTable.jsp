@@ -38,17 +38,24 @@
     <%        NumberFormat formatterInt = new DecimalFormat("#0");
         NumberFormat formatter = new DecimalFormat("#0.00");
 
+        double quantity = 0.00;
+        double grandTotal = 0.00;
+
         String sql = " SELECT DATE_FORMAT(pis_dispense_master.DISPENSED_DATE, '%M %Y') AS DATE,COUNT(pis_dispense_detail.DRUG_ITEM_CODE), "
                 + " SUM(pis_dispense_detail.DISPENSED_QTY),SUM(pis_dispense_detail.DISPENSED_QTY * pis_mdc2.D_SELL_PRICE),EXTRACT(YEAR_MONTH FROM pis_dispense_master.DISPENSED_DATE)  "
                 + " FROM pis_dispense_master JOIN pis_dispense_detail ON (pis_dispense_master.ORDER_NO =  pis_dispense_detail.ORDER_NO) "
                 + " JOIN pis_mdc2 ON (pis_dispense_detail.DRUG_ITEM_CODE =  pis_mdc2.UD_MDC_CODE) "
-                + " WHERE pis_dispense_master.LOCATION_CODE  = '"+hfc+"' AND pis_dispense_master.DISCIPLINE_CODE  = '"+dis+"'  "
-                + " AND pis_mdc2.hfc_cd  = '"+hfc+"' AND pis_mdc2.discipline_cd  = '"+dis+"' GROUP BY DATE; ";
+                + " WHERE pis_dispense_master.LOCATION_CODE  = '" + hfc + "' AND pis_dispense_master.DISCIPLINE_CODE  = '" + dis + "'  "
+                + " AND pis_mdc2.hfc_cd  = '" + hfc + "' AND pis_mdc2.discipline_cd  = '" + dis + "' GROUP BY DATE; ";
 
         ArrayList<ArrayList<String>> dataReportMonthly = conn.getData(sql);
 
         int size = dataReportMonthly.size();
         for (int i = 0; i < size; i++) {
+
+            quantity = quantity + Double.parseDouble(dataReportMonthly.get(i).get(2));
+            grandTotal = grandTotal + Double.parseDouble(dataReportMonthly.get(i).get(3));
+
     %>
 
     <tr style="text-align: center;" id="moveToMonthlySalesDetailsTButton">
@@ -60,6 +67,19 @@
 <%
     }
 %>
+
+<tr style="text-align: center;vertical-align: bottom;">
+    <td></td>
+    <td>Total Quantity</td>
+    <td><%= formatterInt.format(quantity)%></td>
+</tr>
+
+<tr style="text-align: center;vertical-align: bottom;">
+    <td></td>
+    <td>Grand Total (RM)</td>
+    <td><%= formatter.format(grandTotal)%></td>
+</tr>
+
 </tbody>
 </table>
 
@@ -101,12 +121,14 @@
                     title: $('h1').text(),
                     message: '<br><br>',
                     className: 'btn btn-primary',
+                    "paging": true,
+                    "pagingType": "full_numbers",
                     customize: function (win) {
                         $(win.document.body)
                                 .css('font-size', '10pt')
                                 .prepend(
                                         '<div class="logo-hfc asset-print-img" style="z-index: 0; top: 0px; opacity: 1.0;">\n\
-                                        <img src="<%=mysqlhfc_cd.get(0).get(0)%>" style="text-align: center; height: 100%; " /></div> <div class="mesej">Pharmacy Monthly Dispensed Drug List</div>\n\
+                                        <img src="<%=mysqlhfc_cd.get(0).get(0)%>" style="text-align: center; height: 100%; " /></div> <div class="mesej"><br>Pharmacy Monthly Dispensed Drug List</div>\n\
                                         <div class="info_kecik">\n\
                                         <dd>Date: <strong><%=newdate%></strong></dd>\n\
                                         <dd>Report No: <strong><%=newdate%></strong></dd>\n\
@@ -115,6 +137,9 @@
                         $(win.document.body).find('table')
                                 .addClass('compact')
                                 .css('font-size', 'inherit');
+                        $(win.document.body)
+                                .css('font-size', '10pt')
+                                .append('<div style="text-align: center;padding-top:20px;"><br> ------------------------------------------------------------------  &nbsp;&nbsp;&nbsp;&nbsp;  End Of Pharmacy Sales Report  &nbsp;&nbsp;&nbsp;&nbsp;   ------------------------------------------------------------------ </div>');
                     },
                     exportOptions: {
                         columns: ':visible'
