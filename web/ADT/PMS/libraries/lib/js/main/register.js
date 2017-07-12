@@ -108,7 +108,7 @@ $('#registerBed').click(function () {
         var pmino, poic, pid, MRN, pname, pnic, pidno,
                 EliSource, AdmissionType, Refer, DocType, GL, EliTy, AdmissionReason, PoliceCase, DocNo, payer,
                 Dis, wname, Deposit, WardType, BedID,
-                guardInd, referNo, referHfc, referDis, gruGuard, epiTime, epiDate, stat, hfc, RefDR, orderNo, OrderStatus,order;
+                guardInd, referNo, referHfc, referDis, gruGuard, epiTime, epiDate, stat, hfc, RefDR, orderNo, OrderStatus, order;
         pmino = $('#pmino').val();
         epiDate = yyyyMMddHHmmss;
         poic = $('input[id=poic]').val();
@@ -148,9 +148,13 @@ $('#registerBed').click(function () {
         var array_dis = wnamequeue.split("|");
         var wnamequeue = array_dis[1];
 
-order = $('#HFCBY').val();
+        order = $('#HFCBY').val();
 
-        wname = $('#wname').val();
+
+        var wname = $('#wname').val();
+        var array_dis = wname.split("|");
+        var wname = array_dis[0];
+
         RefDR = $('#RefDR').val();
         Deposit = $('#Deposit').val();
         WardType = $('#WardType').val();
@@ -203,7 +207,7 @@ order = $('#HFCBY').val();
             'sub': sub,
             'orderNo': orderNo,
             'OrderStatus': OrderStatus,
-            'order':order
+            'order': order
 
         };
         //console.log(datas);
@@ -233,7 +237,7 @@ order = $('#HFCBY').val();
                             console.log(l);
                             $body.removeClass("loading");
                             if ($.trim(l) === "Success") {
-                                bootbox.alert("The queue is exists. you can register the patient");
+                                //bootbox.alert("The queue is exists. you can register the patient");
                                 $.ajax({
                                     type: "POST",
                                     url: "PMS/registration.jsp",
@@ -241,26 +245,27 @@ order = $('#HFCBY').val();
                                     timeout: 3000,
                                     success: function (list) {
                                         console.log(list);
-                                        console.log(list);
+
                                         $body.removeClass("loading");
                                         if ($.trim(list) === "Success") {
                                             $.ajax({
-                                            type: "POST",
-                                            url: "PMS/addQueue.jsp",
-                                            data: {'wname': wname, 'createdBy': createdBy, 'hfc': hfc, 'Dis': Dis, 'sub': sub, 'pmino': pmino}, // Send input
-                                            timeout: 3000,
-                                            success: function (l) {
-                                                console.log(l);
-                                                $body.removeClass("loading");
-                                                if ($.trim(l) === "Success") {
-                                                    bootbox.alert("Patient has been add to queue successfully");
-                                                } else if ($.trim(l) === "Failed") {
-                                                    bootbox.alert("There something error with the query of add patient to queue");
+                                                type: "POST",
+                                                url: "PMS/addQueue.jsp",
+                                                data: datas,
+                                                //data: {'wname': wname, 'createdBy': createdBy, 'hfc': hfc, 'Dis': Dis, 'sub': sub, 'pmino': pmino}, // Send input
+                                                timeout: 3000,
+                                                success: function (l) {
+                                                    console.log(l);
+                                                    $body.removeClass("loading");
+                                                    if ($.trim(l) === "Success") {
+                                                        bootbox.alert("Patient has been add to queue successfully");
+                                                    } else if ($.trim(l) === "Failed") {
+                                                        bootbox.alert("There something error with the query of add patient to queue");
+                                                    }
+                                                }, error: function () {
+                                                    bootbox.alert("There is an error!");
                                                 }
-                                            }, error: function () {
-                                                bootbox.alert("There is an error!");
-                                            }
-                                        });
+                                            });
                                             bootbox.alert("Patient has been register successfully");
                                         } else if ($.trim(list) === "already") {
                                             bootbox.alert("Patient is already registered");
@@ -273,7 +278,7 @@ order = $('#HFCBY').val();
                                         var createdBy = $("#Rid").val();
                                         var sub = $("#Rsub").val();
                                         var Dis = $('#DisWard').val();
-                                        
+
                                     }, error: function () {
                                         bootbox.alert("There is an error!");
                                     }
