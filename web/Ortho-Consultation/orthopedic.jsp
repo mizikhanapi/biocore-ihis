@@ -247,7 +247,7 @@
     $('#printSijilKerjaRinganForm').click(function () {
         var divID = 'SijilKerjaRinganFormBody';
         printReport(divID);
-        $('#PhysoitherpyReferralFormModel').hide();
+        $('#SijilKerjaRinganFormModel').hide();
         $('.modal-backdrop').hide();
     });
     function printReport(divIDs)
