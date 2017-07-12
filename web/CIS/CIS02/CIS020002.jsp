@@ -88,6 +88,20 @@
                 </div>
                 </form>
             </div>
+            <div class="modal-footer" id="ortho_actionPGSC">
+                <div class="btn-group btn-group-justified" role="group" aria-label="group button">
+                    <div class="btn-group" role="group">
+                        <a class="btn btn-success btn-block btn-lg gcsAccept " id="ortho_pgcsAccept" >Accept</a>
+                    </div>
+                    <div class="btn-group btn-delete hidden" role="group">
+                        <button type="button" id="ortho_delImage" class="btn btn-default btn-block btn-lg" data-dismiss="modal"  role="button">Clear</button>
+                    </div>
+                    <div class="btn-group" role="group">
+                        <button type="button" id="ortho_saveImage" class="btn btn-default btn-block btn-lg" data-dismiss="modal" role="button">Close</button>
+                    </div>
+                </div>
+                </form>
+            </div>
         </div>
     </div>
 
