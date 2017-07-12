@@ -220,7 +220,7 @@
                                                 .css('font-size', 'inherit');
                                         $(win.document.body)
                                                 .css('font-size', '10pt')
-                                                .append('<div style="text-align: center;padding-top:20px;"><br> ------------------------------------------------------------------  &nbsp;&nbsp;&nbsp;&nbsp;  End Of Pharmacy Sales Report  &nbsp;&nbsp;&nbsp;&nbsp;   ------------------------------------------------------------------ </div>');
+                                                .append('<div style="text-align: center;padding-top:20px;"><br> ***** &nbsp;&nbsp;  End Of Pharmacy Sales Report  &nbsp;&nbsp;  ***** </div>');
                                     },
                                     exportOptions: {
                                         columns: ':visible'
@@ -320,7 +320,7 @@
                                                 .css('font-size', 'inherit');
                                         $(win.document.body)
                                                 .css('font-size', '10pt')
-                                                .append('<div style="text-align: center;padding-top:20px;"><br> ------------------------------------------------------------------  &nbsp;&nbsp;&nbsp;&nbsp;  End Of Pharmacy Sales Report  &nbsp;&nbsp;&nbsp;&nbsp;   ------------------------------------------------------------------ </div>');
+                                                .append('<div style="text-align: center;padding-top:20px;"><br> ***** &nbsp;&nbsp;  End Of Pharmacy Sales Report  &nbsp;&nbsp;  ***** </div>');
                                     },
                                     exportOptions: {
                                         columns: ':visible'
@@ -422,7 +422,7 @@
                                                 .css('font-size', 'inherit');
                                         $(win.document.body)
                                                 .css('font-size', '10pt')
-                                                .append('<div style="text-align: center;padding-top:20px;"><br> ------------------------------------------------------------------  &nbsp;&nbsp;&nbsp;&nbsp;  End Of Pharmacy Sales Report  &nbsp;&nbsp;&nbsp;&nbsp;   ------------------------------------------------------------------ </div>');
+                                                .append('<div style="text-align: center;padding-top:20px;"><br> ***** &nbsp;&nbsp;  End Of Pharmacy Sales Report  &nbsp;&nbsp;  ***** </div>');
                                     },
                                     exportOptions: {
                                         columns: ':visible'
