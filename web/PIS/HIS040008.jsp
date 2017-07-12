@@ -173,7 +173,16 @@
                     timeout: 3000,
                     success: function (returnReportDetailsTableHTML) {
                         console.log(returnReportDetailsTableHTML);
-                        $('#manageReportDailySalesDetailsTable').html(returnReportDetailsTableHTML);
+
+                        var arrayData = returnReportDetailsTableHTML.split("<ShannugamRamasamySeperator></ShannugamRamasamySeperator>");
+
+                        var table = arrayData[0];
+                        var reportQuantity = arrayData[1];
+                        var reportGrandTotal = arrayData[2];
+
+                        $('#manageReportDailySalesDetailsTable').html(table);
+
+
 
                         $('#manageReportDailySalesDetailsTable').DataTable({
                             pageLength: 15,
@@ -220,7 +229,13 @@
                                                 .css('font-size', 'inherit');
                                         $(win.document.body)
                                                 .css('font-size', '10pt')
-                                                .append('<div style="text-align: center;padding-top:20px;"><br> ***** &nbsp;&nbsp;  End Of Pharmacy Sales Report  &nbsp;&nbsp;  ***** </div>');
+                                                .css('font-weight', 'bolder')
+                                                .append('<div style="text-align: right;padding-top:10px;"><br> Total Quantity : ' + reportQuantity + ' </div>')
+                                                .append('<div style="text-align: right;"><br> Grand Total (RM) : ' + reportGrandTotal + ' </div>');
+                                        $(win.document.body)
+                                                .css('font-size', '10pt')
+                                                .append('<div style="text-align: center;padding-top:30px;"><br> ***** &nbsp;&nbsp;  End Of Pharmacy Sales Report  &nbsp;&nbsp;  ***** </div>');
+
                                     },
                                     exportOptions: {
                                         columns: ':visible'
@@ -273,7 +288,16 @@
                     timeout: 3000,
                     success: function (returnReportDetailsTableHTML) {
                         console.log(returnReportDetailsTableHTML);
-                        $('#manageReportMonthlySalesDetailsTable').html(returnReportDetailsTableHTML);
+
+                        var arrayData = returnReportDetailsTableHTML.split("<ShannugamRamasamySeperator></ShannugamRamasamySeperator>");
+
+                        var table = arrayData[0];
+                        var reportQuantity = arrayData[1];
+                        var reportGrandTotal = arrayData[2];
+
+                        $('#manageReportMonthlySalesDetailsTable').html(table);
+
+
 
                         $('#manageReportMonthlySalesDetailsTable').DataTable({
                             pageLength: 15,
@@ -285,7 +309,7 @@
                                 {
                                     extend: 'excelHtml5',
                                     text: 'Export To Excel',
-                                    title: 'Pharmacy Yearly Dispensed Drug List For ' + rdate,
+                                    title: 'Pharmacy Monthly Dispensed Drug List For ' + rdate,
                                     className: 'btn btn-primary',
                                     exportOptions: {
                                         columns: ':visible'
@@ -293,14 +317,14 @@
                                 }, {
                                     extend: 'csvHtml5',
                                     text: 'Export To Excel CSV',
-                                    title: 'Pharmacy Yearly Dispensed Drug List For ' + rdate,
+                                    title: 'Pharmacy Monthly Dispensed Drug List For ' + rdate,
                                     className: 'btn btn-primary',
                                     exportOptions: {
                                         columns: ':visible'
                                     }
                                 }, {
                                     extend: 'print',
-                                    text: 'Print Yearly Sales List',
+                                    text: 'Print Monthly Sales List',
                                     title: $('h1').text(),
                                     message: '<br><br>',
                                     className: 'btn btn-primary',
@@ -320,7 +344,13 @@
                                                 .css('font-size', 'inherit');
                                         $(win.document.body)
                                                 .css('font-size', '10pt')
-                                                .append('<div style="text-align: center;padding-top:20px;"><br> ***** &nbsp;&nbsp;  End Of Pharmacy Sales Report  &nbsp;&nbsp;  ***** </div>');
+                                                .css('font-weight', 'bolder')
+                                                .append('<div style="text-align: right;padding-top:10px;"><br> Total Quantity : ' + reportQuantity + ' </div>')
+                                                .append('<div style="text-align: right;"><br> Grand Total (RM) : ' + reportGrandTotal + ' </div>');
+                                        $(win.document.body)
+                                                .css('font-size', '10pt')
+                                                .append('<div style="text-align: center;padding-top:30px;"><br> ***** &nbsp;&nbsp;  End Of Pharmacy Sales Report  &nbsp;&nbsp;  ***** </div>');
+
                                     },
                                     exportOptions: {
                                         columns: ':visible'
@@ -375,7 +405,16 @@
                     timeout: 3000,
                     success: function (returnReportDetailsTableHTML) {
                         console.log(returnReportDetailsTableHTML);
-                        $('#manageReportYearlySalesDetailsTable').html(returnReportDetailsTableHTML);
+
+
+                        var arrayData = returnReportDetailsTableHTML.split("<ShannugamRamasamySeperator></ShannugamRamasamySeperator>");
+
+                        var table = arrayData[0];
+                        var reportQuantity = arrayData[1];
+                        var reportGrandTotal = arrayData[2];
+
+
+                        $('#manageReportYearlySalesDetailsTable').html(table);
 
                         $('#manageReportYearlySalesDetailsTable').DataTable({
                             pageLength: 15,
@@ -422,7 +461,13 @@
                                                 .css('font-size', 'inherit');
                                         $(win.document.body)
                                                 .css('font-size', '10pt')
-                                                .append('<div style="text-align: center;padding-top:20px;"><br> ***** &nbsp;&nbsp;  End Of Pharmacy Sales Report  &nbsp;&nbsp;  ***** </div>');
+                                                .css('font-weight', 'bolder')
+                                                .append('<div style="text-align: right;padding-top:10px;"><br> Total Quantity : ' + reportQuantity + ' </div>')
+                                                .append('<div style="text-align: right;"><br> Grand Total (RM) : ' + reportGrandTotal + ' </div>');
+                                        $(win.document.body)
+                                                .css('font-size', '10pt')
+                                                .append('<div style="text-align: center;padding-top:30px;"><br> ***** &nbsp;&nbsp;  End Of Pharmacy Sales Report  &nbsp;&nbsp;  ***** </div>');
+
                                     },
                                     exportOptions: {
                                         columns: ':visible'
