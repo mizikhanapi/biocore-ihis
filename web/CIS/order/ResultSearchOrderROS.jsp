@@ -13,16 +13,19 @@
                                String todayDate = request.getParameter("todayDate");
                                String type = request.getParameter("type");
                                String orderId = request.getParameter("orderId");
+                               
                                String searchProblem = "";
                                if(orderId.equals("-")){
                                 if (type.equals("today")) {
-                                        searchProblem = "SELECT od.procedure_cd, pm.ris_procedure_name,bs.body_system_name,m.modality_name "
+                                        searchProblem = "SELECT od.order_no,od.procedure_cd, pm.ris_procedure_name,bs.body_system_name,m.modality_name,ahc.hfc_name,om.hfc_to "
                                                 + "FROM ris_order_detail od "
                                                 + " JOIN ris_order_master om "
                                                 + " JOIN ris_procedure_master pm "
                                                 + " JOIN ris_modality m "
                                                 + " JOIN ris_body_system bs"
+                                                + " JOIN adm_health_facility ahc "
                                                 + " WHERE od.order_no = om.order_no "
+                                                + " AND om.hfc_to = ahc.hfc_cd "
                                                 +" AND od.modality_cd = m.modality_cd "
                                                 +" AND od.body_system_cd = bs.body_system_cd "
                                                 + " AND od.procedure_cd = pm.ris_procedure_cd "
@@ -32,28 +35,33 @@
                                         
                                        //out.print(searchProblem);
                                     } else if (type.equals("previous")) {
-                                       searchProblem = "SELECT od.procedure_cd, pm.ris_procedure_name,bs.body_system_name,m.modality_name "
-                                                   + "FROM ris_order_detail od "
-                                                   + " JOIN ris_order_master om "
-                                                   + " JOIN ris_procedure_master pm "
-                                                   + " JOIN ris_modality m "
-                                                   + " JOIN ris_body_system bs"
-                                                   + " WHERE od.order_no = om.order_no "
+                                        searchProblem = "SELECT od.order_no,od.procedure_cd, pm.ris_procedure_name,bs.body_system_name,m.modality_name,ahc.hfc_name,om.hfc_to "
+                                                + "FROM ris_order_detail od "
+                                                + " JOIN ris_order_master om "
+                                                + " JOIN ris_procedure_master pm "
+                                                + " JOIN ris_modality m "
+                                                + " JOIN ris_body_system bs"
+                                                + " JOIN adm_health_facility ahc "
+                                                + " WHERE od.order_no = om.order_no "
+                                                + " AND om.hfc_to = ahc.hfc_cd "
                                                    + " AND od.modality_cd = m.modality_cd "
                                                    + " AND od.body_system_cd = bs.body_system_cd "
                                                    + " AND od.procedure_cd = pm.ris_procedure_cd "
                                                 + " AND om.pmi_no = '" + pmiNo + "' "
                                                 + " GROUP BY procedure_cd";
+                                     
                                     }
                                }else{
                                     if (type.equals("today")) {
-                                       searchProblem = "SELECT od.procedure_cd, pm.ris_procedure_name,bs.body_system_name,m.modality_name "
-                                                   + "FROM ris_order_detail od "
-                                                   + " JOIN ris_order_master om "
-                                                   + " JOIN ris_procedure_master pm "
-                                                   + " JOIN ris_modality m "
-                                                   + " JOIN ris_body_system bs"
-                                                   + " WHERE od.order_no = om.order_no "
+                                        searchProblem = "SELECT od.order_no,od.procedure_cd, pm.ris_procedure_name,bs.body_system_name,m.modality_name,ahc.hfc_name,om.hfc_to "
+                                                + "FROM ris_order_detail od "
+                                                + " JOIN ris_order_master om "
+                                                + " JOIN ris_procedure_master pm "
+                                                + " JOIN ris_modality m "
+                                                + " JOIN ris_body_system bs"
+                                                + " JOIN adm_health_facility ahc "
+                                                + " WHERE od.order_no = om.order_no "
+                                                + " AND om.hfc_to = ahc.hfc_cd "
                                                    + " AND od.modality_cd = m.modality_cd "
                                                    + " AND od.body_system_cd = bs.body_system_cd "
                                                    + " AND od.procedure_cd = pm.ris_procedure_cd "
@@ -63,13 +71,15 @@
                                                     + " GROUP BY procedure_cd";
                                             
                                         } else if (type.equals("previous")) {
-                                       searchProblem = "SELECT od.procedure_cd, pm.ris_procedure_name,bs.body_system_name,m.modality_name "
-                                                   + "FROM ris_order_detail od "
-                                                   + " JOIN ris_order_master om "
-                                                   + " JOIN ris_procedure_master pm "
-                                                   + " JOIN ris_modality m "
-                                                   + " JOIN ris_body_system bs"
-                                                   + "WHERE od.order_no = om.order_no "
+                                        searchProblem = "SELECT od.order_no,od.procedure_cd, pm.ris_procedure_name,bs.body_system_name,m.modality_name,ahc.hfc_name,om.hfc_to "
+                                                + "FROM ris_order_detail od "
+                                                + " JOIN ris_order_master om "
+                                                + " JOIN ris_procedure_master pm "
+                                                + " JOIN ris_modality m "
+                                                + " JOIN ris_body_system bs"
+                                                + " JOIN adm_health_facility ahc "
+                                                + " WHERE od.order_no = om.order_no "
+                                                + " AND om.hfc_to = ahc.hfc_cd "
                                                    + " AND od.modality_cd = m.modality_cd "
                                                    + " AND od.body_system_cd = bs.body_system_cd "
                                                    + "AND od.procedure_cd = pm.ris_procedure_cd "
@@ -85,18 +95,21 @@
 
                                 ArrayList<ArrayList<String>> search = Conn.getData(searchProblem); 
                      
+                                 if(search.size() > 0){
+                                     
                                  
                                         
                                                                         
 %>
 
 
-                <table class="table table-bordered table-striped">
+                <table class="table table-bordered table-striped" id="tblOROS">
                     <thead>
                         <tr>
                             <td>Body-System</td>
                             <td>Modality</td>
                             <td>Procedure Name</td>
+                            <td>Provider Facility</td>
                             <td>Action</td>
                         </tr>
                     </thead>
@@ -104,10 +117,13 @@
                         <% for(int i=0; i<search.size(); i++){
                             %>
                             <tr>
-                                <td><%out.print(search.get(i).get(2));%></td>
                                 <td><%out.print(search.get(i).get(3));%></td>
-                                <td><%out.print(search.get(i).get(1));%></td>
-                                <td><a id="row" data-toggle="tooltip" data-placement="top" title="Add Order" class="btnAdd" style="cursor: pointer" id=""><i class="fa fa-plus fa-lg" aria-hidden="true" style="display: inline-block;color: #58C102;"></i></a>&nbsp;</td>
+                                <td><%out.print(search.get(i).get(4));%></td>
+                                <td><%out.print(search.get(i).get(2));%></td>
+                                <td><%out.print(search.get(i).get(5));%></td>
+                                <td hidden id="orderId"><%out.print(search.get(i).get(0));%></td>
+                                <td hidden id="providerId"><%out.print(search.get(i).get(6));%></td>
+                                <td><a  data-toggle="tooltip" data-placement="top" title="Add Order" class="btnAdd" style="cursor: pointer" id="btnCIS_OE_ROS_SEARCH_ADD"><i class="fa fa-plus fa-lg" aria-hidden="true" style="display: inline-block;color: #58C102;"></i></a>&nbsp;</td>
                             </tr>
                         <%    
                         }
@@ -117,3 +133,9 @@
 
                     </tbody>
                 </table>
+                       
+                       <%}
+else{
+out.print("No Order");
+}%>
+                       

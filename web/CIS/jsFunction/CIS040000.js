@@ -25,6 +25,64 @@ $(document).ready(function () {
      $("#btnCIS_OE_ROS_UPDATE").hide();
      $("#btnCIS_OE_ROS_CANCEL").hide();
      
+     $("#divCIS_OE_ROS_OrderSearchResult").on("click","#tblOROS #btnCIS_OE_ROS_SEARCH_ADD",function(e){
+         e.preventDefault() ;
+         var rowOrder = $(this).closest("tr");
+         var orderId = rowOrder.find("#orderId").html();
+         console.log(orderId);
+         
+         $.ajax({
+             timeout:3000,
+             url:"order/RetrieveOrderDetail.jsp",
+             type:"POST",
+             data:{
+                 orderId:orderId
+             },
+             success:function(e){
+                 
+                 var orderDetailArray = e.trim();
+                 orderDetailArray = e.split("|");
+                 console.log(orderDetailArray);
+                 
+                  $.ajax({
+                    type: "post",
+                    url: "search/ResultHFCSearchCode.jsp",
+                    timeout: 3000,
+                    data: {
+                        id: orderDetailArray[2],
+                        orderCode: "ROS"
+                    },
+                    success: function (response) {
+                        console.log(response);
+                        var hfc_detail_array = response.split("[#-#]");
+                        var hfc_location = hfc_detail_array[0].split("|");
+
+                        $('#hfcIdROS' ).val(hfc_location[0].trim());
+                        $('#locationROS').val(hfc_location[1].trim());
+                        $('#hfcOrderDetail').val(hfc_detail_array[1].trim());
+                        $('#hfcProviderDetail').val(hfc_detail_array[2].trim());
+                        $("#tCISOEROSProcedureSearch").prop("disabled", false);
+                        retrieveDataSearchingHFC("tCISOEROSHFC", "tCISOEROSHFCSearchLoading", "search/ResultHFCSearch.jsp", "search/ResultHFCSearchCode.jsp", "UhfcIdROS", "UlocationROS", "UhfcOrderDetail", "UhfcProviderDetail",orderDetailArray[2],'');
+                        $('#hfcIdROS').val(orderDetailArray[1]);
+                        searchingRISPRO("tCISOEROSProcedureSearch", "tCISOEROSProcedureSearchLoading", "search/ResultRISProcedureSearch.jsp", "search/ResultRISProcedureSearchCode.jsp", "codeROS_2", "modalityROSCode", "modalityROS", "bodySystemROSCode", "bodySystemROS",orderDetailArray[8])
+                        $('#codeROS_2').val(orderDetailArray[7]);
+
+                        $('#modalityROS').val(orderDetailArray[4]);
+                        $('#modalityROSCode').val(orderDetailArray[3]);
+                        $('#bodySystemROS').val(orderDetailArray[6]);
+                        $('#bodySystemROSCode').val(orderDetailArray[5]);
+
+                       $('#ROS_NEW a[href="#radiologyRequest1"]').tab('show');
+                    }
+                });
+                 
+                 
+             }
+         })
+         
+         
+     })
+     
      $("#btnCIS_OE_ROS_SEARCH_ORDER").click(function(e){
         e.preventDefault();
         var order_id = $("#tCIS_OE_ROS_SEARCH_ORDER_ID").val();
@@ -56,6 +114,10 @@ $(document).ready(function () {
         
      });
      
+     $("#btnCIS_OE_ROS_SEARCH_CLEAR").click(function(e){
+          $("#divCIS_OE_ROS_OrderSearchResult").html('');
+     })
+     
      $("#btnCIS_OE_ROS_SUBMIT").click(function(e){
         e.preventDefault();
         console.log(_dataROS);
@@ -78,23 +140,6 @@ $(document).ready(function () {
                     status: "1"
                 }
             sendOrder(data,"tableOrderROS");
-//            $.ajax({
-//                type:"POST",
-//                timeout:3000,
-//                url:"topMenuFunction/SendOrder.jsp",
-//                data:{
-//                    msg: fullmsg,
-//                    pmino: pmiNo,
-//                    episodedate: episodeDate,
-//                    status: "1"
-//                },
-//                success:function(response){
-//                    if (response.trim() === "|-SUCCESS-|"){
-//                        $("#tableOrderROS").html('');
-//                    }
-//                }
-//            })
-            
 
         } else {
             return false;
@@ -123,6 +168,12 @@ $(document).ready(function () {
         var patientCondition =  $('#patientConditionROSCd  :selected').text().trim();
         var priority =  $('#priorityROScd :selected').text().trim();
         
+        if(problemCode === ''){
+            problemCode = "-";
+        }
+        if(problemName === ''){
+            problemName = "-";
+        }
 
         var $items = $('#commentROS,#modalityROS,#modalityROSCode,#bodySystemROS,#bodySystemROSCode,#hfcIdROS,#locationROS,#appointmentROS,#patientConditionROSCd,#priorityROScd,#hfcOrderDetail,#hfcProviderDetail');
         var obj1 = {

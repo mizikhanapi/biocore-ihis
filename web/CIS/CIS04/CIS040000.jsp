@@ -21,11 +21,11 @@
             <div class="modal-header" style="padding: 0px;">
                 <div class="tabbable-line">
                     <ul class="nav nav-tabs ">
-                        <li class="active">
+                        <li class="active" id="ROS_NEW">
                             <a href="#radiologyRequest1" data-toggle="tab">
                                 New Radiology Request</a>
                         </li>
-                        <li>
+                        <li id="ROS_History">
                             <a href="#radiologyRequest2" data-toggle="tab">
                                 Radiology Request History</a>
                         </li>
@@ -216,7 +216,7 @@
 
                                     <div class="text-center">
                                         <button class="btn btn-primary" type="button" id="btnCIS_OE_ROS_SEARCH_ORDER" name="searchPatient"><i class="fa fa-search"></i>&nbsp; Search</button>
-                                        <button id="clearSearch" name="clearSearch" type="button" class="btn btn-default"><i class="fa fa-times"></i>&nbsp; Clear</button>
+                                        <button id="btnCIS_OE_ROS_SEARCH_CLEAR" name="clearSearch" type="button" class="btn btn-default"><i class="fa fa-times"></i>&nbsp; Clear</button>
                                     </div>
                                 </form>
                                 <div id="divCIS_OE_ROS_OrderSearchResult"></div>
