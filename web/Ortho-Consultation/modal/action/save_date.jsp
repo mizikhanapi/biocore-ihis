@@ -1,3 +1,4 @@
+<%@page import="java.util.ArrayList"%>
 <%@page import="dBConn.Conn"%>
 <%@page import="Config.connect"%>
 <%@page import="main.RMIConnector"%>
@@ -19,3 +20,21 @@
     rmic.setQuerySQL(conn.HOST, conn.PORT, sqlInsert);
     
 %>
+
+<%
+    
+    String sql1 = "SELECT encounter_date FROM lhr_ort_neu_assessment_chart WHERE pmi_no = '" + pmino + "' AND hfc_cd = '" + hfc + "' AND episode_date = '" + episodeDate + "'";
+    ArrayList<ArrayList<String>> encounter_date = conn.getData(sql1);
+%>
+Date: <select name="pickup_date" id="pickup_date">
+    <option>--</option>
+    <%
+        if (encounter_date.size() > 0) {
+            for (int i = 0; i < encounter_date.size(); i++) {
+    %>
+    <option value="<%=encounter_date.get(i).get(0)%>"><%=encounter_date.get(i).get(0)%></option>
+    <%
+            }
+        }
+    %>
+</select>
