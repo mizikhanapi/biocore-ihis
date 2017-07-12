@@ -42,8 +42,8 @@
                 + " SUM(pis_dispense_detail.DISPENSED_QTY),SUM(pis_dispense_detail.DISPENSED_QTY * pis_mdc2.D_SELL_PRICE),DATE(pis_dispense_master.DISPENSED_DATE)  "
                 + " FROM pis_dispense_master JOIN pis_dispense_detail ON (pis_dispense_master.ORDER_NO =  pis_dispense_detail.ORDER_NO) "
                 + " JOIN pis_mdc2 ON (pis_dispense_detail.DRUG_ITEM_CODE =  pis_mdc2.UD_MDC_CODE) "
-                + " WHERE pis_dispense_master.LOCATION_CODE  = '"+hfc+"' AND pis_dispense_master.DISCIPLINE_CODE  = '"+dis+"'  "
-                + " AND pis_mdc2.hfc_cd  = '"+hfc+"' AND pis_mdc2.discipline_cd  = '"+dis+"' GROUP BY DATE; ";
+                + " WHERE pis_dispense_master.LOCATION_CODE  = '" + hfc + "' AND pis_dispense_master.DISCIPLINE_CODE  = '" + dis + "'  "
+                + " AND pis_mdc2.hfc_cd  = '" + hfc + "' AND pis_mdc2.discipline_cd  = '" + dis + "' GROUP BY DATE; ";
         ArrayList<ArrayList<String>> dataReportDaily = conn.getData(sql);
 
         int size = dataReportDaily.size();
@@ -51,14 +51,14 @@
     %>
 
     <tr style="text-align: center;" id="moveToDailySalesDetailsTButton">
-        <input id="dataDailySalesListhidden" type="hidden" value="<%=String.join("|", dataReportDaily.get(i))%>">
-        <td><%= dataReportDaily.get(i).get(0)%></td>
-        <td><%= formatterInt.format(Double.parseDouble(dataReportDaily.get(i).get(2)))%></td>
-        <td><%= formatter.format(Double.parseDouble(dataReportDaily.get(i).get(3)))%></td>
-    </tr>
-    <%
-        }
-    %>
+<input id="dataDailySalesListhidden" type="hidden" value="<%=String.join("|", dataReportDaily.get(i))%>">
+<td><%= dataReportDaily.get(i).get(0)%></td>
+<td><%= formatterInt.format(Double.parseDouble(dataReportDaily.get(i).get(2)))%></td>
+<td><%= formatter.format(Double.parseDouble(dataReportDaily.get(i).get(3)))%></td>
+</tr>
+<%
+    }
+%>
 </tbody>
 </table>
 
@@ -108,7 +108,7 @@
                                 .css('font-size', '10pt')
                                 .prepend(
                                         '<div class="logo-hfc asset-print-img" style="z-index: 0; top: 0px; opacity: 1.0;">\n\
-                                        <img src="<%=mysqlhfc_cd.get(0).get(0)%>" style="text-align: center; height: 100%; " /></div> <div class="mesej">Pharmacy Daily Dispensed Drug List</div>\n\
+                                        <img src="<%=mysqlhfc_cd.get(0).get(0)%>" style="text-align: center; height: 100%; " /></div> <div class="mesej"><br>Pharmacy Daily Dispensed Drug List</div>\n\
                                         <div class="info_kecik">\n\
                                         <dd>Date: <strong><%=newdate%></strong></dd>\n\
                                         <dd>Report No: <strong><%=newdate%></strong></dd>\n\
@@ -117,6 +117,9 @@
                         $(win.document.body).find('table')
                                 .addClass('compact')
                                 .css('font-size', 'inherit');
+                        $(win.document.body)
+                                .css('font-size', '10pt')
+                                .append('<div style="text-align: center;padding-top:20px;"><br> ------------------------------------------------------------------  &nbsp;&nbsp;&nbsp;&nbsp;  End Of Pharmacy Sales Report  &nbsp;&nbsp;&nbsp;&nbsp;   ------------------------------------------------------------------ </div>');
                     },
                     exportOptions: {
                         columns: ':visible'
