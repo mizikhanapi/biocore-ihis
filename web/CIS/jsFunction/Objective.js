@@ -177,7 +177,36 @@ $('#queueBtn').click(function(e){
 //        $('#pointMain').val('');
         $("#CIS020002").modal('toggle');
     });
+    
+     $('#ortho_actionPGSC').click(function (e) {
+        //alert("gcsAccept");
+        var pgcsResult = $('#resultpgcsMain').val();
+        var pgcsPoint = $('#pointpgcsMain').val();
 
+        $.ajax({
+            url: "../Ortho-Consultation/modal/action/save_pgcs.jsp",
+            type: "post",
+            data: {
+                pgcsResult: pgcsResult,
+                pgcsPoint: pgcsPoint
+            },
+            timeout: 10000,
+            success: function (data) {
+                $("#CIS020002").modal('toggle');
+
+                $('#resultpgcsMain').val("");
+                $('#pointpgcsMain').val("");
+                $("#CIS020002").hide();
+                $(".modal-backdrop").hide();
+                alert("Pediatric Glasgow Coma Scale is saved.");
+                $("#getNeuObservation").load("../Ortho-Consultation/neuObservation.jsp");
+            },
+            error: function (err) {
+                alert("Error update!");
+            }
+        });
+    });
+    
     $('#tblCIS_Consultation_Table').on('click', '.updatePgcs', function () {
         var idName = $(this).get(0).id;
         var id = idName.split('|');
@@ -247,6 +276,39 @@ $('#queueBtn').click(function(e){
 
     });
 
+    $('#ortho_acceptBloodPBtn').click(function (e) {
+
+        var _sitBPS = $('#sitS').val();
+        var _sitBPD = $('#sitD').val();
+        var _sitBPP = $('#sitP').val();
+
+        $.ajax({
+            url: "../Ortho-Consultation/modal/action/save_bloodPressure.jsp",
+            type: "post",
+            data: {
+                sitS: _sitBPS,
+                sitD: _sitBPD,
+                sitP: _sitBPP
+            },
+            timeout: 10000,
+            success: function (data) {
+                $("#CIS020003").modal('toggle');
+
+                $('#sitS').val("");
+                $('#sitD').val("");
+                $('#sitP').val("");
+                $("#CIS020003").hide();
+                $(".modal-backdrop").hide();
+                alert("Bllod pressure is saved.");
+                $("#getNeuObservation").load("../Ortho-Consultation/neuObservation.jsp");
+            },
+            error: function (err) {
+                alert("Error update!");
+            }
+        });
+
+    });
+    
     $('#tblCIS_Consultation_Table').on('click', '.updateBP', function (e) {
         $("#CIS020003").modal('toggle');
         $('#actionBloodP').hide();
