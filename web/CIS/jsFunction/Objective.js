@@ -210,9 +210,8 @@ $('#queueBtn').click(function(e){
 /// -------------------------------------------------------------BLOOD PRESSURE MODEL--------------------------------------------/////;
 /// ----------------------------------------------------------------------------------------------------------------------------------------------/////;
 
-    $('#acceptBloodPBtn').click(function (e) {
+    $('#btnCIS_PC_VTS_ACCEPT').click(function (e) {
         e.preventDefault();
-
         var _sitBPS = $('#sitS').val();
         var _sitBPD = $('#sitD').val();
         var _sitBPP = $('#sitP').val();
