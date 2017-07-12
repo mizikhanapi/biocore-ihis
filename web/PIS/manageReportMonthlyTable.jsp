@@ -68,20 +68,40 @@
     }
 %>
 
-<tr style="text-align: center;vertical-align: bottom;">
-    <td></td>
-    <td>Total Quantity</td>
-    <td><%= formatterInt.format(quantity)%></td>
-</tr>
-
-<tr style="text-align: center;vertical-align: bottom;">
-    <td></td>
-    <td>Grand Total (RM)</td>
-    <td><%= formatter.format(grandTotal)%></td>
-</tr>
-
 </tbody>
 </table>
+
+<div class="row" id="data">
+    <!-- content goes here -->
+    <form class="form-horizontal" id="addForm">
+
+        <div class="col-md-3">
+        </div>
+        <div class="col-md-3">
+
+            <!-- Text input-->
+            <div class="form-group">
+                <label class="col-md-5 control-label" for="textinput">Total Quantity</label>
+                <div class="col-md-4">
+                    <input id="reportMonthlyTotalQuantity" name="reportMonthlyTotalQuantity" type="text" placeholder="Total Order" class="form-control input-md" maxlength="50" value="<%= formatterInt.format(quantity)%>" readonly>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="col-md-4">
+
+            <!-- Text input-->
+            <div class="form-group">
+                <label class="col-md-5 control-label" for="textinput">Grand Total (RM)</label>
+                <div class="col-md-4">
+                    <input id="reportMonthlyGrandTotal" name="reportMonthlyGrandTotal" type="number" placeholder="Grand Total (RM)" class="form-control input-md" maxlength="50" value="<%= formatter.format(grandTotal)%>" readonly>
+                </div>
+            </div>
+
+        </div>
+    </form>
+</div>
 
 <%
     String hfc_cd = "SELECT logo FROM adm_health_facility WHERE hfc_cd='" + hfc + "'";
@@ -93,7 +113,8 @@
 <script type="text/javascript" charset="utf-8">
     $(document).ready(function () {
 
-
+        var reportQuantity = $("#reportMonthlyTotalQuantity").val();
+        var reportGrandTotal = $("#reportMonthlyGrandTotal").val();
 
         $('#reportMonthlyTable').DataTable({
             pageLength: 15,
@@ -136,10 +157,16 @@
                                         );
                         $(win.document.body).find('table')
                                 .addClass('compact')
+                                .css('font-size', '10pt')
                                 .css('font-size', 'inherit');
                         $(win.document.body)
                                 .css('font-size', '10pt')
-                                .append('<div style="text-align: center;padding-top:20px;"><br> ***** &nbsp;&nbsp;  End Of Pharmacy Sales Report  &nbsp;&nbsp;  ***** </div>');
+                                .css('font-weight', 'bolder')
+                                .append('<div style="text-align: right;padding-top:10px;"><br> Total Quantity : ' + reportQuantity + ' </div>')
+                                .append('<div style="text-align: right;"><br> Grand Total (RM) : ' + reportGrandTotal + ' </div>');
+                        $(win.document.body)
+                                .css('font-size', '10pt')
+                                .append('<div style="text-align: center;padding-top:30px;"><br> ***** &nbsp;&nbsp;  End Of Pharmacy Sales Report  &nbsp;&nbsp;  ***** </div>');
 
                     },
                     exportOptions: {
