@@ -55,7 +55,8 @@
 
         var dateEntry = $("#dateEntry").val();
         var timeEntry = $("#timeEntry").val();
-
+        
+        alert(dateEntry+" "+timeEntry);
 
         $.ajax({
             url: "../Ortho-Consultation/modal/action/save_date_observation.jsp",
@@ -77,6 +78,32 @@
         });
 
     });
+
+//    $("#delete_observation1").click(function () {
+//
+//        //alert("Are you sure to delete the data?");
+//        var r = confirm("Are you sure to delete the data?");
+//        if (r == true) {
+//            $.ajax({
+//                url: "../Ortho-Consultation/modal/action/delete_observation.jsp",
+//                type: "post",
+//                data: {
+//                },
+//                timeout: 10000,
+//                success: function () {
+//                    alert("Observation record is deleted.");
+//                    $("#getNeuObservation").load("../Ortho-Consultation/neuObservation.jsp");
+//                },
+//                error: function (err) {
+//                    alert("Error update!");
+//                }
+//            });
+//        } else {
+//            //txt = "You pressed Cancel!";
+//        }
+//
+//
+//    });
 
     $(document).ready(function () {
         $("#dateEntry").datepicker({

@@ -3,13 +3,17 @@
     Created on : Jun 5, 2017, 12:51:45 PM
     Author     : Mizi K (UI)
 --%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="dBConn.Conn"%>
+<%@page import="Config.connect"%>
+<%@page import="main.RMIConnector"%>
 
 <div class="modal fade" id="neuAssessment1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><i class="fa fa-times fa-lg"></i></span></button>
-                <h4 class="modal-title" id="myModalLabel">Date & Time1</h4>
+                <h4 class="modal-title" id="myModalLabel">Date & Time</h4>
             </div>
             <div class="modal-body">
                 <form>
@@ -67,6 +71,12 @@
             },
             timeout: 10000,
             success: function (data) {
+                $("#getNeuAssessment").load("../Ortho-Consultation/neuAssessment.jsp");
+                $("#encounter").load("encounter_date.jsp");
+                $('#encounter').html(data);
+                $('#encounter').trigger('contentchanged');
+                $('#encounter1').html(data);
+                $('#encounter1').trigger('contentchanged');
                 $("#neuAssessment1").hide();
                 $(".modal-backdrop").hide();
                 alert("Assessment date is saved.");
@@ -87,6 +97,8 @@
             minDate: new Date(1999, 10 - 1, 25),
             maxDate: '+30Y',
         });
+
+
     });
 </script>
 
@@ -102,6 +114,9 @@
                     <div class="row">
                         <div class="col-md-12">
                             <!-- Surface -->
+                            <div id="encounter">
+                                
+                            </div>
                             <h5>Hip</h5>
                             <hr/>
                             <div class="golongan-soalan margin-bottom-30px">
@@ -303,6 +318,10 @@
 <script>
     $("#addMusclePowerBtn").click(function () {
 
+        var pickup_date = document.getElementById("pickup_date");
+        var selected_date = pickup_date.options[pickup_date.selectedIndex].value;
+        //alert(selected_date);
+        //alert(pickup_date);
         var rnNo1 = $("#rnNo1").val();
         var rnNo2 = $("#rnNo2").val();
         var rnNo3 = $("#rnNo3").val();
@@ -355,20 +374,22 @@
                 rnNo22: rnNo22,
                 rnNo23: rnNo23,
                 rnNo24: rnNo24,
-                },
+                selected_date: selected_date
+            },
             timeout: 10000,
             success: function (data) {
+                $("#getNeuAssessment").load("../Ortho-Consultation/neuAssessment.jsp");
                 $("#neuAssessment2").hide();
                 $(".modal-backdrop").hide();
                 alert("Muscle Power Added");
-                $("#getNeuAssessment").load("../Ortho-Consultation/neuAssessment.jsp");
+
             },
             error: function (err) {
                 alert("Error update!");
             }
         });
 
-    });    
+    });
 </script>
 
 <div class="modal fade" id="neuAssessment3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -383,6 +404,9 @@
                     <div class="row">
                         <div class="col-md-12">
                             <!-- Surface -->
+                            <div id="encounter1">
+                                
+                            </div>
                             <div class="golongan-soalan margin-bottom-30px">
                                 <div class="form-group soalan">
                                     <div class="col-md-6">
@@ -564,7 +588,9 @@
 </div>
 <script>
     $("#addSensoryBtn").click(function () {
-
+        var pickup_date = document.getElementById("pickup_date");
+        var selected_date = pickup_date.options[pickup_date.selectedIndex].value;
+        alert(selected_date);
         var rnNo25 = $("#rnNo25").val();
         var rnNo26 = $("#rnNo26").val();
         var rnNo27 = $("#rnNo27").val();
@@ -589,6 +615,7 @@
         var rnNo46 = $("#rnNo46").val();
         var rnNo47 = $("#rnNo47").val();
         var rnNo48 = $("#rnNo48").val();
+        
         $.ajax({
             url: "../Ortho-Consultation/modal/action/save_sensory.jsp",
             type: "post",
@@ -617,18 +644,19 @@
                 rnNo46: rnNo46,
                 rnNo47: rnNo47,
                 rnNo48: rnNo48,
-                },
+                selected_date: selected_date
+            },
             timeout: 10000,
             success: function (data) {
+                $("#getNeuAssessment").load("../Ortho-Consultation/neuAssessment.jsp");
                 $("#neuAssessment3").hide();
                 $(".modal-backdrop").hide();
                 alert("Sensory Added");
-                $("#getNeuAssessment").load("../Ortho-Consultation/neuAssessment.jsp");
             },
             error: function (err) {
                 alert("Error update!");
             }
         });
 
-    });    
+    });
 </script>
