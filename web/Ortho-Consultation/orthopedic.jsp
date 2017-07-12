@@ -127,9 +127,9 @@
     $(document).ready(function () {
 
         searching("tCISSubDGSSearchReport", "tCISSubDGSSearchLoadingReport", "../CIS/search/ResultDGSSearch.jsp", "../CIS/search/ResultDGSSearchCode.jsp", "dgsCodeReport");
-        $('#SKRDM-startDate').datepicker({ dateFormat: 'dd/mm/yy' });
-        $('#SKRDM-endDate').datepicker({ dateFormat: 'dd/mm/yy' });
     });
+    $('#SKRDM-startDate').datepicker({dateFormat: 'dd/mm/yy'});
+    $('#SKRDM-endDate').datepicker({dateFormat: 'dd/mm/yy'});
 
     function getDateNow() {
         //yyyy-MM-dd HH:mm:ss
@@ -226,7 +226,7 @@
             }
         });
     });
-    $('#AddSijilKerjaRinganModel #generateSijilKerjaRinganModel').on('click', function () {
+    $('#AddSijilKerjaRinganModel').on('click', '#generateSijilKerjaRinganModel', function () {
         var diagnosis, startDate, endDate, extraComment;
         diagnosis = $("#tCISSubDGSSearchReport").val();
         startDate = $("#SKRDM-startDate").val();
@@ -237,18 +237,20 @@
         $("#SKRF-drComment").html(extraComment);
         $("#SKRF-startDate").html(startDate);
         $("#SKRF-endDate").html(endDate);
-        
-        $('#AddSijilKerjaRinganModel').hide();
-        $('.modal-backdrop').hide();
+        $('#AddSijilKerjaRinganModel').modal('toggle');
         $("#SijilKerjaRinganFormModel").modal();
-
-
     });
-    $('#printSijilKerjaRinganForm').click(function () {
+     $('#printSijilKerjaRinganForm').click(function () {
+//    $('#SijilKerjaRinganFormModel').on('click', '#printSijilKerjaRinganForm', function () {
         var divID = 'SijilKerjaRinganFormBody';
         printReport(divID);
-        $('#SijilKerjaRinganFormModel').hide();
-        $('.modal-backdrop').hide();
+        $('#SijilKerjaRinganFormModel').modal('toggle');
+    });
+
+    $('#printPhysoitherpyReferralForm').click(function () {
+        var divID = 'PhysoitherpyReferralFormBody';
+        printReport(divID);
+        $('#PhysoitherpyReferralFormModel').modal('toggle');
     });
     function printReport(divIDs)
     {
