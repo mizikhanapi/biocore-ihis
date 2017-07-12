@@ -154,7 +154,7 @@
                                         <img src="<%=mysqlhfc_cd.get(0).get(0)%>" style="text-align: center; height: 100%; " /></div> <div class="mesej"><br>Pharmacy Yearly Dispensed Drug List</div>\n\
                                         <div class="info_kecik">\n\
                                         <dd>Date: <strong><%=newdate%></strong></dd>\n\
-                                        <dd>Report No: <strong><%=newdate%></strong></dd>\n\
+                                        <dd>Report No: <strong>PIS-0006</strong></dd>\n\
                                         </div> '
                                         );
                         $(win.document.body).find('table')
@@ -163,11 +163,11 @@
                         $(win.document.body)
                                 .css('font-size', '10pt')
                                 .css('font-weight', 'bolder')
-                                .append('<div style="text-align: right;padding-top:10px;"><br> Total Quantity : ' + reportQuantity + ' </div>')
+                                .append('<div style="text-align: right;padding-top:10px;"><br> Grand Total Drug Dispensed : ' + reportQuantity + ' </div>')
                                 .append('<div style="text-align: right;"><br> Grand Total (RM) : ' + reportGrandTotal + ' </div>');
                         $(win.document.body)
                                 .css('font-size', '10pt')
-                                .append('<div style="text-align: center;padding-top:30px;"><br> ***** &nbsp;&nbsp;  End Of Pharmacy Sales Report  &nbsp;&nbsp;  ***** </div>');
+                                .append('<div style="text-align: center;padding-top:30px;"><br> ***** &nbsp;&nbsp;  End Of Report  &nbsp;&nbsp;  ***** </div>');
 
                     },
                     exportOptions: {
