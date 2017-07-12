@@ -15,6 +15,8 @@
     String sub = session.getAttribute("SUB_DISCIPLINE_CODE").toString();
     String wclassCode = request.getParameter("classCode");
 %>
+<input type="hidden" value="<%=hfc%>" id="Rhfc">
+
 <select id="wname" name="selectbasic" class="form-control">
     <option value="-">-</option>
     <option value="null" selected="" disabled="">Select Ward Name</option>
@@ -27,13 +29,12 @@
 
         for (int i = 0; i < size1; i++) {
     %>
-    <option value="<%= dataWardName.get(i).get(0)+'|'+dataWardName.get(i).get(1)%>"><%= dataWardName.get(i).get(1)%> </option>
-    
+    <option value="<%= dataWardName.get(i).get(0) + '|' + dataWardName.get(i).get(1)%>"><%= dataWardName.get(i).get(1)%> </option> 
+
     <%
         }
     %>
-    
-    
-   
+
+
+
 </select>
-     

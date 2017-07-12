@@ -73,12 +73,3 @@
         </div>
     </div>
 </div>
-<script>
-    
-       $('#printPhysoitherpyReferralForm').click(function (){
-       var divID = 'PhysoitherpyReferralFormBody';
-        printReport(divID);
-        $('#PhysoitherpyReferralFormModel').hide();
-        $('.modal-backdrop').hide();
-    });
-</script>

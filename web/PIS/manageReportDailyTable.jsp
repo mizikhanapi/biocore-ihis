@@ -38,29 +38,70 @@
         NumberFormat formatterInt = new DecimalFormat("#0");
         NumberFormat formatter = new DecimalFormat("#0.00");
 
+        double quantity = 0.00;
+        double grandTotal = 0.00;
+
         String sql = " SELECT DATE_FORMAT(pis_dispense_master.DISPENSED_DATE, '%d %M %Y') AS DATE,COUNT(pis_dispense_detail.DRUG_ITEM_CODE), "
                 + " SUM(pis_dispense_detail.DISPENSED_QTY),SUM(pis_dispense_detail.DISPENSED_QTY * pis_mdc2.D_SELL_PRICE),DATE(pis_dispense_master.DISPENSED_DATE)  "
                 + " FROM pis_dispense_master JOIN pis_dispense_detail ON (pis_dispense_master.ORDER_NO =  pis_dispense_detail.ORDER_NO) "
                 + " JOIN pis_mdc2 ON (pis_dispense_detail.DRUG_ITEM_CODE =  pis_mdc2.UD_MDC_CODE) "
-                + " WHERE pis_dispense_master.LOCATION_CODE  = '"+hfc+"' AND pis_dispense_master.DISCIPLINE_CODE  = '"+dis+"'  "
-                + " AND pis_mdc2.hfc_cd  = '"+hfc+"' AND pis_mdc2.discipline_cd  = '"+dis+"' GROUP BY DATE; ";
+                + " WHERE pis_dispense_master.LOCATION_CODE  = '" + hfc + "' AND pis_dispense_master.DISCIPLINE_CODE  = '" + dis + "'  "
+                + " AND pis_mdc2.hfc_cd  = '" + hfc + "' AND pis_mdc2.discipline_cd  = '" + dis + "' GROUP BY DATE; ";
         ArrayList<ArrayList<String>> dataReportDaily = conn.getData(sql);
 
         int size = dataReportDaily.size();
         for (int i = 0; i < size; i++) {
+
+            quantity = quantity + Double.parseDouble(dataReportDaily.get(i).get(2));
+            grandTotal = grandTotal + Double.parseDouble(dataReportDaily.get(i).get(3));
+
     %>
 
     <tr style="text-align: center;" id="moveToDailySalesDetailsTButton">
-        <input id="dataDailySalesListhidden" type="hidden" value="<%=String.join("|", dataReportDaily.get(i))%>">
-        <td><%= dataReportDaily.get(i).get(0)%></td>
-        <td><%= formatterInt.format(Double.parseDouble(dataReportDaily.get(i).get(2)))%></td>
-        <td><%= formatter.format(Double.parseDouble(dataReportDaily.get(i).get(3)))%></td>
-    </tr>
-    <%
-        }
-    %>
+<input id="dataDailySalesListhidden" type="hidden" value="<%=String.join("|", dataReportDaily.get(i))%>">
+<td><%= dataReportDaily.get(i).get(0)%></td>
+<td><%= formatterInt.format(Double.parseDouble(dataReportDaily.get(i).get(2)))%></td>
+<td><%= formatter.format(Double.parseDouble(dataReportDaily.get(i).get(3)))%></td>
+</tr>
+<%
+    }
+%>
 </tbody>
 </table>
+
+
+<div class="row" id="data">
+    <!-- content goes here -->
+    <form class="form-horizontal" id="addForm">
+
+        <div class="col-md-3">
+        </div>
+        <div class="col-md-3">
+
+            <!-- Text input-->
+            <div class="form-group">
+                <label class="col-md-5 control-label" for="textinput">Total Quantity</label>
+                <div class="col-md-4">
+                    <input id="reportDailyTotalQuantity" name="reportDailyTotalQuantity" type="text" placeholder="Total Order" class="form-control input-md" maxlength="50" value="<%= formatterInt.format(quantity)%>" readonly>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="col-md-4">
+
+            <!-- Text input-->
+            <div class="form-group">
+                <label class="col-md-5 control-label" for="textinput">Grand Total (RM)</label>
+                <div class="col-md-4">
+                    <input id="reportDailyGrandTotal" name="reportDailyGrandTotal" type="number" placeholder="Grand Total (RM)" class="form-control input-md" maxlength="50" value="<%= formatter.format(grandTotal)%>" readonly>
+                </div>
+            </div>
+
+        </div>
+    </form>
+</div>
+
 
 <%
     String hfc_cd = "SELECT logo FROM adm_health_facility WHERE hfc_cd='" + hfc + "'";
@@ -73,6 +114,8 @@
 <script type="text/javascript" charset="utf-8">
     $(document).ready(function () {
 
+        var reportQuantity = $("#reportDailyTotalQuantity").val();
+        var reportGrandTotal = $("#reportDailyGrandTotal").val();
 
         $('#reportDailyTable').DataTable({
             pageLength: 15,
@@ -108,7 +151,7 @@
                                 .css('font-size', '10pt')
                                 .prepend(
                                         '<div class="logo-hfc asset-print-img" style="z-index: 0; top: 0px; opacity: 1.0;">\n\
-                                        <img src="<%=mysqlhfc_cd.get(0).get(0)%>" style="text-align: center; height: 100%; " /></div> <div class="mesej">Pharmacy Daily Dispensed Drug List</div>\n\
+                                        <img src="<%=mysqlhfc_cd.get(0).get(0)%>" style="text-align: center; height: 100%; " /></div> <div class="mesej"><br>Pharmacy Daily Dispensed Drug List</div>\n\
                                         <div class="info_kecik">\n\
                                         <dd>Date: <strong><%=newdate%></strong></dd>\n\
                                         <dd>Report No: <strong><%=newdate%></strong></dd>\n\
@@ -117,6 +160,15 @@
                         $(win.document.body).find('table')
                                 .addClass('compact')
                                 .css('font-size', 'inherit');
+                        $(win.document.body)
+                                .css('font-size', '10pt')
+                                .css('font-weight', 'bolder')
+                                .append('<div style="text-align: right;padding-top:10px;"><br> Total Quantity : ' + reportQuantity + ' </div>')
+                                .append('<div style="text-align: right;"><br> Grand Total (RM) : ' + reportGrandTotal + ' </div>');
+                        $(win.document.body)
+                                .css('font-size', '10pt')
+                                .append('<div style="text-align: center;padding-top:30px;"><br> ***** &nbsp;&nbsp;  End Of Pharmacy Sales Report  &nbsp;&nbsp;  ***** </div>');
+
                     },
                     exportOptions: {
                         columns: ':visible'

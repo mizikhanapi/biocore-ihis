@@ -111,7 +111,7 @@
                                 .css('font-size', '10pt')
                                 .prepend(
                                         '<div class="logo-hfc asset-print-img" style="z-index: 0; top: 0px; opacity: 1.0;">\n\
-                                        <img src="<%=mysqlhfc_cd.get(0).get(0)%>" style="text-align: center; height: 100%; " /></div> <div class="mesej">Pharmacy ATC Drug List</div>\n\
+                                        <img src="<%=mysqlhfc_cd.get(0).get(0)%>" style="text-align: center; height: 100%; " /></div> <div class="mesej"><br>Pharmacy ATC Drug List</div>\n\
                                         <div class="info_kecik">\n\
                                         <dd>Date: <strong><%=newdate%></strong></dd>\n\
                                         <dd>Report No: <strong><%=newdate%></strong></dd>\n\
@@ -120,8 +120,9 @@
                         $(win.document.body).find('table')
                                 .addClass('compact')
                                 .css('font-size', 'inherit');
-//                        $(win.document.body).find('table')
-//                                .append("<tfoot styles='border-top: none;'><tr><td>asdasd</td><td>asdasd</td></tr></tfoot>");
+                        $(win.document.body)
+                                .css('font-size', '10pt')
+                                .append('<div style="text-align: center;padding-top:20px;"><br> ***** &nbsp;&nbsp;  End Of Pharmacy Sales Report  &nbsp;&nbsp;  ***** </div>');
                     },
                     exportOptions: {
                         columns: ':visible'

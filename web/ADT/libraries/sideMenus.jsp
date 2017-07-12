@@ -10,7 +10,7 @@
     <!-- logo -->
 
     <!-- profile Sidebar -->
-     <%@include file="../../assets/side_profile.jsp" %>
+    <%@include file="../../assets/side_profile.jsp" %>
     <hr/>
     <!-- profile Sidebar -->
 
@@ -28,30 +28,32 @@
                 <i class="fa fa-users fa-lg"></i> List Of Admission
             </a>
         </li>
-<li>
+          <hr/>
+        
+        <li>
             <a  href="HIS070002.jsp" >
                 <i class="fa fa-briefcase fa-lg"></i> Ward Occupancy
             </a>
         </li>
-        
+
         <li>
             <a  href="HIS070005.jsp" >
                 <i class="fa fa-users fa-lg"></i> List of Discharge Inpatient
             </a>
         </li>
-        
-  <hr/>
-        
-<!--        <li>
-            <a  href="HIS070007.jsp" >
-                <i class="fa fa-th-list fa-lg"></i> Eligibility Table
-            </a>
-        </li>-->
-        <li><a  href="HIS070003.jsp" ><i class="fa fa-wrench fa-lg"></i> Maintain Ward Code </a> </li>
-        
- <li><a  href="HIS070008.jsp" ><i class="fa fa-usd fa-lg"></i> Maintain Hospital Charges </a> </li>
 
- <li>
+        <hr/>
+
+        <!--        <li>
+                    <a  href="HIS070007.jsp" >
+                        <i class="fa fa-th-list fa-lg"></i> Eligibility Table
+                    </a>
+                </li>-->
+        <li><a  href="HIS070003.jsp" ><i class="fa fa-wrench fa-lg"></i> Maintain Ward Code </a> </li>
+
+        <li><a  href="HIS070008.jsp" ><i class="fa fa-usd fa-lg"></i> Maintain Hospital Charges </a> </li>
+
+        <li>
             <a  href="HIS070004.jsp" >
                 <i class="fa fa-bed fa-lg"></i> Bed Booking Master Summary
             </a>
@@ -60,10 +62,10 @@
         <li>
             <a href="HIS070006.jsp">
                 <i class="fa fa-bar-chart fa-lg" aria-hidden="true" >
-                    
+
                 </i>Report</a>
         </li>
-       
+
 
         <!-- // menu tanpa dropdown -->
 

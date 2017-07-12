@@ -242,8 +242,11 @@
             </div>
             <div class="modal-footer">
                 <div class="btn-group btn-group-justified" role="group" aria-label="group button">
-                    <div class="btn-group" role="group">
+                    <div class="btn-group" role="group" id="morse_btnAdd_div">
                         <button type="button" class="btn btn-success btn-block btn-lg" id="morse_btnAdd" role="button">Add Assessment</button>
+                    </div>
+                    <div class="btn-group" role="group" id="morse_btnUpdate_div">
+                        <button type="button" class="btn btn-success btn-block btn-lg" id="morse_btnUpdate" role="button">Update Assessment</button>
                     </div>
                     <!--                    <div class="btn-group btn-delete hidden" role="group">
                                             <button type="button" id="delImage" class="btn btn-default btn-block btn-lg" data-dismiss="modal" role="button">Clear</button>

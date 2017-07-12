@@ -57,7 +57,7 @@
                             <div class="row margin-bottom-30px">
                                 <div class="col-md-12">
                                     <%     Date datenow = new Date();
-                                        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/YYYY | HH:mm:ss");
+                                        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/YYYY | HH:mm");
                                         out.print("Date :");
                                         out.print(sdf.format(datenow));
                                     %>

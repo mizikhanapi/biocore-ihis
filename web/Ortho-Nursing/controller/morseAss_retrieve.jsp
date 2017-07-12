@@ -1,7 +1,7 @@
 <%-- 
     Document   : morseAss_retrieve
     Created on : Jul 6, 2017, 10:39:07 AM
-    Author     : user
+    Author     : Ardhi Surya Ibrahim; rdsurya147@gmail.com; @rdcfc 
 --%>
 
 <%@page import="Formatter.DateFormatter"%>
@@ -29,8 +29,8 @@
     String query = "select pmi_no, hfc_cd, date_format(episode_date, '%d/%m/%Y'), date_format(encounter_date, '%d/%m/%Y'), datetime, falling_status, diagnosis_status, type_movement, venofix_syringe_pump, body_structure, mental_status, total_score "
             + "from lhr_ort_nur_morse_fall_scale "
             + "where pmi_no = '" + pmiNo + "' " + whenCondition//and (date(episode_date) between curdate()- interval "+intervalDay+" day and curdate()) "
-            + " GROUP by episode_date, encounter_date, datetime "
-            + "order by episode_date desc, encounter_date asc;";
+            + " GROUP by date(encounter_date), datetime "
+            + "order by date(encounter_date) desc, encounter_date asc;";
 
     ArrayList<ArrayList<String>> dataMorseFall = con.getData(query);
 
@@ -46,7 +46,7 @@
         String am = "am";
         String pm = "pm";
         
-        boolean gotNoon = false, gotPM = false;
+        boolean gotNoon = false, gotPM = false, completeTimeSet = false;
 
 %>
 <table class="table table-bordered" id="morse_assessment_table">
@@ -240,7 +240,40 @@
             }//end else for PM. Let PM empty
         
         }//end for loop
-
+         if(!gotNoon){
+            gotNoon = false;
+                    
+        %>
+            <tr>
+            <td>Noon</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            </tr>        
+        <%
+                }// end check got noon
+                 
+                if(!gotPM){
+                gotPM = false;
+        %>
+            <tr>
+            <td>PM</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            </tr>       
+        <%
+                }//end check gotPM
 
     %>    
 

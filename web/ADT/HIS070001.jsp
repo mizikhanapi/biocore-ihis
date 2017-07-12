@@ -73,7 +73,7 @@
 
                                         <!--PMI master index  tab-->                                    
                                         <div class="tab-pane" id="tab_default_2">
-                                            <div id="patientMasterIndex"><%@include file = "PMS/patient-master-indexV2.jsp" %></div>
+                                            <div id="patientMasterIndex"><%@include file = "../PMS/patient-master-indexV2.jsp" %></div>
                                         </div>
                                         <!--
                                         <a href="PMS/patient-master-indexV2.jsp"></a>
@@ -82,28 +82,28 @@
                                             Employment tab
                                         -->
                                         <div class="tab-pane" id="tab_default_3">
-                                            <div id="employment"><%@include file = "PMS/EmploymentV2.jsp" %></div>
+                                            <div id="employment"><%@include file = "../PMS/EmploymentV2.jsp" %></div>
                                         </div><!--
     
                                         
                                             next of kin tab
                                         -->                                    
                                         <div class="tab-pane" id="tab_default_4">
-                                            <div id="nextOfKin"><%@include file = "PMS/kinV2.jsp" %></div>
+                                            <div id="nextOfKin"><%@include file = "../PMS/kinV2.jsp" %></div>
                                         </div><!--
     
                                         
                                             list of family tab tab
                                         
                                         -->                                    <div class="tab-pane" id="tab_default_5">
-                                            <div id="family"><%@include file = "PMS/familyV2.jsp" %></div>
+                                            <div id="family"><%@include file = "../PMS/familyV2.jsp" %></div>
                                         </div><!--
     
                                         
                                             medical insurance tab
                                         
                                         -->                                    <div class="tab-pane" id="tab_default_6">
-                                            <div id="medical"><%@include file = "PMS/medical-insuranceV2.jsp" %></div>
+                                            <div id="medical"><%@include file = "../PMS/medical-insuranceV2.jsp" %></div>
                                         </div><!--
                                         
                                         

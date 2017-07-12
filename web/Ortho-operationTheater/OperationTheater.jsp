@@ -155,8 +155,7 @@
     $('#printBloodTransfusionForm').click(function () {
         var divID = 'bloodTransfusionForm';
         printReport(divID);
-        $('#addConsentToOpration').hide();
-        $('.modal-backdrop').hide();
+        $('#addConsentToOpration').modal('toggle');
     });
 
     $("#Ortho-OperationTheater_3").on('click', '#BTCF', function () {
@@ -210,8 +209,7 @@
                 $("#test2").val(form.trim());
                 $("#test2").html(form.trim());
                 $('#test2').trigger('contentchanged');
-                $('#addConsentToOpration').hide();
-                $('.modal-backdrop').hide();
+                $('#addConsentToOpration').modal('toggle');
                 $('#opreationConsentForm').modal();
 //               printReport();
             },
