@@ -14,7 +14,7 @@
     <%
 
         if (session.getAttribute("patientPMINo") == null || session.getAttribute("patientPMINo").equals(" ")) {
-            out.print("<br>No patient selected.");
+            out.print("<br>No data recorded.");
         } else {
             try {
 

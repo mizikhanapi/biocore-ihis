@@ -36,12 +36,18 @@
                 <div class="tab-pane active fade in" id="Ortho-Consultation_1">
                     <ul class="soap-content nav">
                         <li><a data-toggle="modal" data-target="#neuAssessment1" href="" class="soap-select"><i class="fa fa-comments  fa-li"></i>Assessment Date & Time</a></li>
-                        <li><a data-toggle="modal" data-target="#neuAssessment2" href=""  class="soap-select"><i class="fa fa-history  fa-li"></i> Muscle Power</a></li>
+                        <li id="musclePower"><a data-toggle="modal" data-target="#neuAssessment2" href=""  class="musclePoser"><i class="fa fa-history  fa-li"></i> Muscle Power</a></li>
                         <li><a data-toggle="modal" data-target="#neuAssessment3" href=""  class="soap-select"><i class="fa fa-medkit  fa-li"></i> Sensory</a></li>
                     </ul>
                     <hr class="pemisah" />
                     <%@include file="neuAssessment.jsp"%>
-
+<!--                    <script>
+                        $('#musclePower').on('click', '.musclePoser', function () {
+                            //$('#actionPE').hide();
+                            //$('#updatePE').hide();
+                            //$('#ortho_physical_exam').show();
+                        });
+                    </script>-->
 
                 </div>
                 <!-- content -->
@@ -50,7 +56,7 @@
                 <div class="tab-pane fade" id="Ortho-Consultation_2">
                     <ul class="soap-content nav">
                         <li><a data-toggle="modal" data-target="#Neurosurgical0" href="" class="soap-select"><i class="fa fa-comments  fa-li"></i>Observation Date & Time</a></li>
-                        <li><a data-toggle="modal" data-target="#CIS020002" href=""  class="soap-select"><i class="fa fa-history  fa-li"></i> Glosgow Coma Scale</a></li>
+                        <li id="glosgow_coma_scale"><a data-toggle="modal" data-target="#CIS020002" href=""  class="gcs"><i class="fa fa-history  fa-li"></i> Glosgow Coma Scale</a></li>
                         <li id="blood_pressure"><a data-toggle="modal" data-target="#CIS020003" href=""  class="blood_pressure"><i class="fa fa-medkit  fa-li"></i> Blood Pressure</a></li>
                         <li><a data-toggle="modal" data-target="#Neurosurgical1" href=""  class="soap-select"><i class="fa fa-medkit  fa-li"></i> Pupils</a></li>
                         <li><a data-toggle="modal" data-target="#Neurosurgical2" href=""  class="soap-select"><i class="fa fa-medkit  fa-li"></i> Limb Movement</a></li>
@@ -58,8 +64,10 @@
                     <hr class="pemisah" />
                     <%@include file="neuObservation.jsp"%>
 
+
                     <script>
                         $('#blood_pressure').on('click', '.blood_pressure', function () {
+                            $("#neuAssessment2").load("../Ortho-Consultation/modal/neuAssessment.jsp");
                             //$('#actionPE').hide();
                             //$('#updatePE').hide();
                             //$('#ortho_physical_exam').show();
@@ -114,7 +122,21 @@
     </div>
     <!-- Tab Menu -->
 </div>
+<script>
+    $('#blood_pressure').on('click', '.blood_pressure', function () {
+        $('#bloodPressure').hide();
+        $('#updateBloodP').hide();
+        $('#actionBloodP').hide();
+        $('#BP_setting').hide();
+        $('#ortho_actionBloodP').show();
+    });
+    $('#glosgow_coma_scale').on('click', '.gcs', function () {
+        $('#updatePGSC').hide();
+        $('#actionPGSC').hide();
+        $('#ortho_actionPGSC').show();
+    });
 
+</script>
 <%@include file="report-PhysiotherapyReferral.jsp"%>
 <%@include file="report-SijilKerjaRingan.jsp"%>
 <%@include file="modal/AddSijilKerjaRingan.jsp"%>
