@@ -57,7 +57,7 @@
                     </ul>
                     <hr class="pemisah" />
                     <%@include file="neuObservation.jsp"%>
-                    
+
                     <script>
                         $('#blood_pressure').on('click', '.blood_pressure', function () {
                             //$('#actionPE').hide();
@@ -100,8 +100,8 @@
                 <div class="tab-pane fade" id="Ortho-Consultation_5">
                     <ul class="soap-content nav">
                         <li><a data-toggle="modal" data-target="#ong-pDetails1" href="" class="soap-select"><i class="fa fa-comments  fa-li"></i> Admit To Ward</a></li>
-                        <li><a data-toggle="modal" data-target="#ong-pDetails2" href=""  class="soap-select"><i class="fa fa-history  fa-li"></i> Form-Physiotherapy Referral</a></li>
-                        <li><a data-toggle="modal" data-target="#ong-pDetails3" href=""  class="soap-select"><i class="fa fa-medkit  fa-li"></i> Sijil Kerja Ringan</a></li>
+                        <li><a id="PhysoitherpyReferralForm" data-toggle="modal" data-target="#PhysoitherpyReferralFormModel" href=""  class="soap-select"><i class="fa fa-history  fa-li"></i> Form-Physiotherapy Referral</a></li>
+                        <li><a id="SijilKerjaRinganForm" data-toggle="modal" data-target="#AddSijilKerjaRinganModel" href=""  class="soap-select"><i class="fa fa-medkit  fa-li"></i> Sijil Kerja Ringan</a></li>
                         <li><a data-toggle="modal" data-target="#ong-pDetails3" href=""  class="soap-select"><i class="fa fa-medkit  fa-li"></i> Referral Letter</a></li>
                     </ul>
                     <hr class="pemisah" />
@@ -115,6 +115,151 @@
     <!-- Tab Menu -->
 </div>
 
+<%@include file="report-PhysiotherapyReferral.jsp"%>
+<%@include file="report-SijilKerjaRingan.jsp"%>
+<%@include file="modal/AddSijilKerjaRingan.jsp"%>
+
+
+<script>
+    var ddMMyyyyHHmmss, HHmmss, ddMMyyyy, timeStamp;
+
+
+    $(document).ready(function () {
+
+        searching("tCISSubDGSSearchReport", "tCISSubDGSSearchLoadingReport", "../CIS/search/ResultDGSSearch.jsp", "../CIS/search/ResultDGSSearchCode.jsp", "dgsCodeReport");
+        $('#SKRDM-startDate').datepicker({ dateFormat: 'dd/mm/yy' });
+        $('#SKRDM-endDate').datepicker({ dateFormat: 'dd/mm/yy' });
+    });
+
+    function getDateNow() {
+        //yyyy-MM-dd HH:mm:ss
+        var nowDate = new Date();
+        timeStamp = nowDate;
+        var ZeroMinutes, ZeroSeconds, ZeroDay, ZeroMonth;
+        //months
+        var month = (nowDate.getMonth() + 1);
+        if (month < 10) {
+            ZeroMonth = "0" + month;
+        } else {
+            ZeroMonth = month;
+        }
+        //days
+        var day = (nowDate.getDate());
+        if (day < 10) {
+            ZeroDay = "0" + day;
+        } else {
+            ZeroDay = day;
+        }
+        //years
+        var year = (nowDate.getFullYear());
+        //hours
+        var hours = nowDate.getHours();
+        //minutes
+        var minutes = nowDate.getMinutes();
+        if (minutes < 10) {
+            ZeroMinutes = "0" + minutes;
+        } else {
+            ZeroMinutes = minutes;
+        }
+        //seconds
+        var seconds = nowDate.getSeconds();
+        if (seconds < 10) {
+            ZeroSeconds = "0" + seconds;
+        } else {
+            ZeroSeconds = seconds;
+        }
+        //complete day
+        ddMMyyyyHHmmss = ZeroDay + "/" + ZeroMonth + "/" + year + " " + hours + ":" + ZeroMinutes + ":" + ZeroSeconds;
+        HHmmss = hours + ":" + ZeroMinutes + ":" + ZeroSeconds;
+        ddMMyyyy = ZeroDay + "/" + ZeroMonth + "/" + year;
+    }
+    ;
+    $("#Ortho-Consultation_5").on('click', '#PhysoitherpyReferralForm', function () {
+
+        var datas = {
+            'pmiNo': pmiNo,
+            'episodeDate': episodeDate
+        };
+        $.ajax({
+            type: 'POST',
+            url: '../CIS/search/searchPatient.jsp',
+            data: datas,
+            timeout: 10000,
+            success: function (patientBio) {
+                var patientBioList = patientBio.split("#");
+                var patientBioList1 = patientBioList[0].split("|");
+                $("#PRF-patientName").html(patientBioList1[1]);
+                $("#PRF-sex").html(patientBioList1[4]);
+                $("#PRF-age").html(patientBioList1[6]);
+                $("#PRF-hfc").html("<%=session.getAttribute("HFC_NAME")%>");
+                $("#PRF-doctor").html("<%=session.getAttribute("USER_NAME")%>");
+                getDateNow();
+                $("#PRF-currDate").html(ddMMyyyy);
+            }, error: function (err) {
+                console.log(err);
+            }
+        });
+    });
+
+    $("#Ortho-Consultation_5").on('click', '#SijilKerjaRinganForm', function () {
+
+        var datas = {
+            'pmiNo': pmiNo,
+            'episodeDate': episodeDate
+        };
+        $.ajax({
+            type: 'POST',
+            url: '../CIS/search/searchPatient.jsp',
+            data: datas,
+            timeout: 10000,
+            success: function (patientBio) {
+                var patientBioList = patientBio.split("#");
+                var patientBioList1 = patientBioList[0].split("|");
+                var hfcName = "<%=session.getAttribute("HFC_NAME")%>";
+                $("#SKRF-patientName").html(patientBioList1[1]);
+                getDateNow();
+                $("#SKRF-currDate").html(ddMMyyyy);
+                $("#SKRF-hfcName").html(hfcName);
+
+            }, error: function (err) {
+                console.log(err);
+            }
+        });
+    });
+    $('#AddSijilKerjaRinganModel #generateSijilKerjaRinganModel').on('click', function () {
+        var diagnosis, startDate, endDate, extraComment;
+        diagnosis = $("#tCISSubDGSSearchReport").val();
+        startDate = $("#SKRDM-startDate").val();
+        endDate = $("#SKRDM-endDate").val();
+        extraComment = $("#drComment").val();
+
+        $("#SKRF-diagnosis").html(diagnosis);
+        $("#SKRF-drComment").html(extraComment);
+        $("#SKRF-startDate").html(startDate);
+        $("#SKRF-endDate").html(endDate);
+        
+        $('#AddSijilKerjaRinganModel').hide();
+        $('.modal-backdrop').hide();
+        $("#SijilKerjaRinganFormModel").modal();
+
+
+    });
+    $('#printSijilKerjaRinganForm').click(function () {
+        var divID = 'SijilKerjaRinganFormBody';
+        printReport(divID);
+        $('#PhysoitherpyReferralFormModel').hide();
+        $('.modal-backdrop').hide();
+    });
+    function printReport(divIDs)
+    {
+        var divElements = $('#' + divIDs).html();
+        var popupWin = window.open('', '_blank', 'width=1080,height=768');
+        popupWin.document.open();
+        popupWin.document.write('<html><body onload="window.print()">' + divElements + '</html>');
+        popupWin.document.close();
+    }
+    ;
+</script>
 <%@include file="modal/addNeurosurgical.jsp"%>
 <%@include file="modal/neuAssessment.jsp"%>
 <%@include file="modal/PIRAssessment.jsp"%>

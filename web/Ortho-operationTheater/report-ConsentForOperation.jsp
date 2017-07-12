@@ -40,9 +40,9 @@
                         <div class="">
                             <p><strong><%=hospitalName%></strong> Hospital
                                 I,<strong><%=relWithPatient%></strong> of <strong><%=patientName%></strong>  hereby consent
-                                *to undergo the operation of <strong>Operation Name</strong>
+                                *to undergo the operation of <strong>....................................................................................</strong>
                                 *the submission of my child/ward <strong><%=relWithNext%></strong> to undergo
-                                the operation of <strong>Operation Name</strong>
+                                the operation of <strong>.........................................................................................</strong>
                                 the name and the purpose of which have been explained to by Dr. <strong>Doctor Name</strong></p>
                             <p>I also consent to such further or alternative operative measurement as may be found necessary during 
                                 the course of the abovementioned operation and to the administration of general, local or other
