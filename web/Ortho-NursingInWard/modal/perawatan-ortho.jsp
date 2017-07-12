@@ -15,6 +15,10 @@
                 <form>
                     <div class="row">
                         <div class="col-md-6">
+                            <input type="hidden" id="NIWtrEpisodeDate" >
+                            <input type="hidden" id="NIWtrEncounterDate">
+                            <input type="hidden" id="NIWtrPmi" >
+                            <input type="hidden" id="NIWtrHfc" >
                             <!-- Text input-->
                             <div class="form-group">
                                 <label class="col-md-12 control-label" for="textinput">Date</label>
@@ -437,6 +441,7 @@
                 <div class="btn-group btn-group-justified" role="group" aria-label="group button">
                     <div class="btn-group" role="group">
                         <button type="button" class="btn btn-success btn-block btn-lg" id="btnNIWtrADD" role="button">Add Items</button>
+                        <button type="button" class="btn btn-success btn-block btn-lg" id="btnNIWtruUPDATE" role="button">Update Items</button>
                     </div>
                     <div class="btn-group btn-delete hidden" role="group">
                         <button type="button" id="delImage" class="btn btn-default btn-block btn-lg" data-dismiss="modal" role="button">Clear</button>
@@ -510,6 +515,71 @@
                    $('#selecttrdate').val(sel).change();
                }else if(result.trim()==='false'){
                    bootbox.alert("fail to add");
+               }               
+           },
+           error:function(err){
+               bootbox.alert("something wrong,error: "+err);
+           }
+        });
+        $("#perawatan-ortho").modal('toggle');
+    });
+    
+    $('#perawatan-ortho #btnNIWtruUPDATE').on('click',function(e){
+        e.preventDefault();
+        var pmi_no = $('#NIWtrPmi').val();
+        var hfc_cd1 = $('#NIWtrHfc').val();
+        var epDate = $('#NIWtrEpisodeDate').val();
+        
+        var enDate = new Date();
+        var dd = ("0" + enDate.getDate()).slice(-2);
+        var mm = ("0" + (enDate.getMonth() + 1)).slice(-2);
+        var yy = enDate.getFullYear();        
+        var hh = enDate.getHours();
+        var m = enDate.getMinutes();
+        var ss = enDate.getSeconds();
+        var ms = enDate.getMilliseconds();
+        var sel = $('#selecttrdate').val();
+        
+        var encounterDate = $('#NIWtrEncounterDate').val();
+        
+        var date = $('#dateNIWtr').val();
+        var sDate = date.split('/');
+        var newDate = sDate[2]+"-"+sDate[1]+"-"+sDate[0];
+        
+       var treatmentDate = newDate;
+       var shift = $("input[name='NIWtrTIME']:checked").val();
+       var iv_branula_rul =$("input[name='RightUpperLimb']:checked").val();
+       var iv_branula_lul =$("input[name='LeftUpperLimb']:checked").val();
+       var iv_branula_rll =$("input[name='RightLowerLimb']:checked").val();
+       var iv_branula_lll =$("input[name='LeftLowerLimb']:checked").val();
+       var angiocatheter =$("input[name='AngioCathter']:checked").val();
+       var cvp =$("input[name='CVP']:checked").val();
+       var tracheostomy=$("input[name='Tracheostomy']:checked").val();
+       var urinary_catheter=$("input[name='UrinaryCatheter']:checked").val();
+       var drain1=$("input[name='Drain1']:checked").val();
+       var drain2=$("input[name='Drain2']:checked").val();
+       var vaccum_dressing=$("input[name='VaccumDressing']:checked").val();
+       var ryiestube=$("input[name='RyiesTube']:checked").val();
+       var chesttube=$("input[name='ChestTube']:checked").val();
+        
+        
+        var assignBy = doctor_id;
+        
+        var datas = pmi_no+"|"+hfc_cd1+"|"+epDate+"|"+encounterDate+"|"+treatmentDate+"|"+shift+"|"+iv_branula_rul+"|"+iv_branula_lul+"|"+iv_branula_rll+"|"+iv_branula_lll+"|"+angiocatheter+"|"+cvp+"|"+tracheostomy+"|"+urinary_catheter+"|"+drain1+"|"+drain2+"|"+vaccum_dressing+"|"+ryiestube+"|"+chesttube+"|"+assignBy;
+        console.log(datas);
+        
+        $.ajax({
+           type:"post",
+           url:"../Ortho-NursingInWard/controller/TreatmentFunction.jsp",
+           data: {datas: datas,methodName : "update"},
+           timeout:10000,
+           success:function(result){
+               console.log(result);
+               if(result.trim()==='true'){                   
+                   bootbox.alert("successfully updated!");
+                   $('#selecttrdate').val(sel).change();
+               }else if(result.trim()==='false'){
+                   bootbox.alert("fail to update");
                }               
            },
            error:function(err){

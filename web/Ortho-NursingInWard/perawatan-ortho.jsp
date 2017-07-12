@@ -37,48 +37,48 @@
     </div>
 </div>
 <div id="divBIWtr">
-<!--    <table class="" id="tblNIW_tr"> 
-        <thead>
-            <tr>
-                <th >Date</th>
-                <th >Shift</th>
-                <th >Right Upper Limb</th>
-                <th >Left Upper Limb</th>
-                <th >Right Lower Limb</th>
-                <th >Left Lower Limb</th>
-                <th >Angio Catheter</th>
-                <th>CVP</th>
-                <th >Tracheostomy</th>
-                <th >Urinary Catheter</th>
-                <th >Drain 1</th>
-                <th >Drain 2</th>
-                <th >Vaccum Dressing</th>
-                <th >Ryies Tube</th>
-                <th >Chest Tube</th>
-                <th >Assign By</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td colspan="16" align="center"> Please choose view history assessment to view the data </td>
-                <td hidden=""></td>
-                <td hidden=""></td>
-                <td hidden=""></td>
-                <td hidden=""></td>
-                <td hidden=""></td>
-                <td hidden=""></td>
-                <td hidden=""></td>
-                <td hidden=""></td>
-                <td hidden=""></td>
-                <td hidden=""></td>
-                <td hidden=""></td>
-                <td hidden=""></td>
-                <td hidden=""></td>
-                <td hidden=""></td>
-                <td hidden=""></td>
-            </tr>
-        </tbody>
-    </table>-->
+    <!--    <table class="" id="tblNIW_tr"> 
+            <thead>
+                <tr>
+                    <th >Date</th>
+                    <th >Shift</th>
+                    <th >Right Upper Limb</th>
+                    <th >Left Upper Limb</th>
+                    <th >Right Lower Limb</th>
+                    <th >Left Lower Limb</th>
+                    <th >Angio Catheter</th>
+                    <th>CVP</th>
+                    <th >Tracheostomy</th>
+                    <th >Urinary Catheter</th>
+                    <th >Drain 1</th>
+                    <th >Drain 2</th>
+                    <th >Vaccum Dressing</th>
+                    <th >Ryies Tube</th>
+                    <th >Chest Tube</th>
+                    <th >Assign By</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td colspan="16" align="center"> Please choose view history assessment to view the data </td>
+                    <td hidden=""></td>
+                    <td hidden=""></td>
+                    <td hidden=""></td>
+                    <td hidden=""></td>
+                    <td hidden=""></td>
+                    <td hidden=""></td>
+                    <td hidden=""></td>
+                    <td hidden=""></td>
+                    <td hidden=""></td>
+                    <td hidden=""></td>
+                    <td hidden=""></td>
+                    <td hidden=""></td>
+                    <td hidden=""></td>
+                    <td hidden=""></td>
+                    <td hidden=""></td>
+                </tr>
+            </tbody>
+        </table>-->
 </div>
 
 <style>
@@ -189,4 +189,80 @@
             }
         });
     }
+
+
+    $('#divBIWtr').on('click', '#tblNIW_tr #delNIWtr', function (e) {
+        e.preventDefault();
+        var row = $(this).closest("tr");
+        var dataX = row.find('#priNIWTR').val();
+        var sel = $('#selecttrdate').val();
+        console.log(dataX);
+
+        bootbox.confirm({
+            message: "Are you sure want to delete?",
+            buttons: {
+                confirm: {
+                    label: 'Yes',
+                    className: 'btn-danger'
+                },
+                cancel: {
+                    label: 'No',
+                    className: 'btn-success'
+                }
+            },
+            callback: function (result) {
+                if (result === true) {
+                    $.ajax({
+                        type: "post",
+                        url: "../Ortho-NursingInWard/controller/TreatmentFunction.jsp",
+                        timeout: 10000,
+                        data: {datas: dataX, methodName: 'delete'},
+                        success: function (result) {
+                            console.log(result);
+                            if (result.trim() === 'true') {
+                                $('#selecttrdate').val(sel).change();
+                            } else {
+
+                            }
+                        },
+                        error: function (err) {
+
+                        }
+                    });
+                }
+            }
+        });
+    });
+
+    $('#divBIWtr').on('click', '#tblNIW_tr #editNIWtr', function (e) {
+        e.preventDefault();
+        $('#perawatan-ortho #btnNIWtruUPDATE').show();
+        $('#perawatan-ortho #btnNIWtrADD').hide();
+
+        var row = $(this).closest("tr");
+        var dataX = row.find('#priNIWTR').val();
+        var sel = $('#selecttrdate').val();
+        console.log(dataX);
+        var sdataX = dataX.split("|");
+
+        $('#NIWtrEpisodeDate').val(sdataX[2]);
+        $('#NIWtrEncounterDate').val(sdataX[3]);
+        $('#NIWtrPmi').val(sdataX[0]);
+        $('#NIWtrHfc').val(sdataX[1]);
+        $('#dateNIWtr').val(sdataX[4]);
+        $("input[name='NIWtrTIME'][value='" + sdataX[5] + "']").prop('checked', true);
+        $("input[name='RightUpperLimb'][value='" + sdataX[6] + "']").prop('checked', true);
+        $("input[name='LeftUpperLimb'][value='" + sdataX[7] + "']").prop('checked', true);
+        $("input[name='RightLowerLimb'][value='" + sdataX[8] + "']").prop('checked', true);
+        $("input[name='LeftLowerLimb'][value='" + sdataX[9] + "']").prop('checked', true);
+        $("input[name='AngioCathter'][value='" + sdataX[10] + "']").prop('checked', true);
+        $("input[name='CVP'][value='" + sdataX[11] + "']").prop('checked', true);
+        $("input[name='Tracheostomy'][value='" + sdataX[12] + "']").prop('checked', true);
+        $("input[name='UrinaryCatheter'][value='" + sdataX[13] + "']").prop('checked', true);
+        $("input[name='Drain1'][value='" + sdataX[14] + "']").prop('checked', true);
+        $("input[name='Drain2'][value='" + sdataX[15] + "']").prop('checked', true);
+        $("input[name='VaccumDressing'][value='" + sdataX[16] + "']").prop('checked', true);
+        $("input[name='RyiesTube'][value='" + sdataX[17] + "']").prop('checked', true);
+        $("input[name='ChestTube'][value='" + sdataX[18] + "']").prop('checked', true);
+    });
 </script>

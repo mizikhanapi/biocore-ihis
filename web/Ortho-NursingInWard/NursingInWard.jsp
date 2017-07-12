@@ -79,7 +79,7 @@
                 <!-- content -->
                 <div class="tab-pane fade" id="Ortho-NursingInWard_3">
                     <ul class="soap-content nav">
-                        <li><a data-toggle="modal" data-target="#perawatan-ortho" href="" class="soap-select"><i class="fa fa-comments  fa-li"></i> Add Perawatan Records</a></li>
+                        <li><a data-toggle="modal" data-target="#perawatan-ortho" href="" class="soap-select" id="trnewassessment"><i class="fa fa-comments  fa-li"></i> Add Perawatan Records</a></li>
                     </ul>
                     <hr class="pemisah" />
                     <%@include file="perawatan-ortho.jsp"%>
@@ -200,6 +200,12 @@
         e.preventDefault();
         $('#4hly #btnNIW4hlyUPDATE').hide();
         $('#4hly #btnNIW4hlyADD').show();
+    });
+    
+    $('#Ortho-NursingInWard_3').on('click','#trnewassessment',function(e){
+        e.preventDefault();
+        $('#perawatan-ortho #btnNIWtruUPDATE').hide();
+        $('#perawatan-ortho #btnNIWtrADD').show();
     });
     
 </script>
