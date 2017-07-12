@@ -167,9 +167,13 @@ $('#morse_btnAdd').on('click', function () {
                     msg="Assessment is added.";
                     $('#morse1').modal('hide');
                     $('#morseForm')[0].reset();
+                    loadMorsefallAssessment();
                 }
                 else if(data.trim()=== 'fail'){
                     msg="Failed to add assessment.";
+                }
+                else if(data.trim()=== 'duplicate'){
+                    msg="Assessment record on date "+morseDate+ " at "+morseTime+" has already existed.\nPlease pick a different date or time.";
                 }
             },
             error: function (jqXHR, textStatus, errorThrown) {
@@ -178,6 +182,7 @@ $('#morse_btnAdd').on('click', function () {
             complete: function (jqXHR, textStatus) {
                 destroyScreenLoading();
                 bootbox.alert(msg);
+                $('#morse1').css('overflow', 'auto');
             }
             
         });
@@ -186,4 +191,11 @@ $('#morse_btnAdd').on('click', function () {
 });
 
 
+//===================================================================
+
+//---------------------- update assessment record -------------------
+$('#div_morseAss_table').on('click', '#MS_update_modal', function (){
+    var hidden = $(this).closest('td').find('#MS_hidden_value').val();
+    console.log(hidden);
+});
 //===================================================================

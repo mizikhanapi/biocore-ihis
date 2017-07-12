@@ -50,7 +50,7 @@
 
 %>
 <table class="table table-bordered" id="morse_assessment_table">
-    <tr>
+    <thead>
         <th>Date</th>
         <th>Time</th>
         <th>History of falling</th>
@@ -60,9 +60,11 @@
         <th>Body structure/Movement</th>
         <th>Mental Status</th>
         <th>Total Score</th>
+        <th>Actions</th>
         
-    </tr>
-
+        
+    </thead>
+    <tbody>
     <%        for (int i = 0; i < dataMorseFall.size(); i++) {
 
     %>
@@ -84,6 +86,7 @@
             <td></td>
             <td></td>
             <td></td>
+            <td></td>
             </tr>        
         <%
                 }// end check got noon
@@ -93,6 +96,7 @@
         %>
             <tr>
             <td>PM</td>
+            <td></td>
             <td></td>
             <td></td>
             <td></td>
@@ -122,6 +126,12 @@
         <td><%=dataMorseFall.get(i).get(9)%></td>
         <td><%=dataMorseFall.get(i).get(10)%></td>
         <td><%=dataMorseFall.get(i).get(11)%></td>
+        <td>
+            <input type="hidden" value="<%= String.join("|", dataMorseFall.get(i))%>" id="MS_hidden_value">
+            <a id="MS_update_modal" style="cursor: pointer" title="Update record"><i class="fa fa-pencil-square-o" aria-hidden="true" style="display: inline-block;color: #337ab7;"></i></a>
+                &nbsp;
+            <a id="MS_delete_modal" style="cursor: pointer" title="Delete record"><i class="fa fa-times" aria-hidden="true" style="display: inline-block;color: #d9534f;"></i></a>
+        </td>
         </tr>
         <%
             timeFlag = 1;
@@ -131,6 +141,7 @@
 
         %>
         <td>AM</td>
+        <td></td>
         <td></td>
         <td></td>
         <td></td>
@@ -155,6 +166,12 @@
         <td><%=dataMorseFall.get(i).get(9)%></td>
         <td><%=dataMorseFall.get(i).get(10)%></td>
         <td><%=dataMorseFall.get(i).get(11)%></td>
+        <td>
+            <input type="hidden" value="<%= String.join("|", dataMorseFall.get(i))%>" id="MS_hidden_value" >
+            <a id="MS_update_modal" style="cursor: pointer" title="Update record"><i class="fa fa-pencil-square-o" aria-hidden="true" style="display: inline-block;color: #337ab7;"></i></a>
+                &nbsp;
+            <a id="MS_delete_modal" style="cursor: pointer" title="Delete record"><i class="fa fa-times" aria-hidden="true" style="display: inline-block;color: #d9534f;"></i></a>
+        </td>
         </tr>
         <%
             timeFlag = 2;
@@ -166,6 +183,7 @@
         %>
         <tr>
         <td>Noon</td>
+        <td></td>
         <td></td>
         <td></td>
         <td></td>
@@ -190,6 +208,12 @@
         <td><%=dataMorseFall.get(i).get(9)%></td>
         <td><%=dataMorseFall.get(i).get(10)%></td>
         <td><%=dataMorseFall.get(i).get(11)%></td>
+        <td>
+            <input type="hidden" value="<%= String.join("|", dataMorseFall.get(i))%>" id="MS_hidden_value">
+            <a id="MS_update_modal" style="cursor: pointer" title="Update record"><i class="fa fa-pencil-square-o" aria-hidden="true" style="display: inline-block;color: #337ab7;"></i></a>
+                &nbsp;
+            <a id="MS_delete_modal" style="cursor: pointer" title="Delete record"><i class="fa fa-times" aria-hidden="true" style="display: inline-block;color: #d9534f;"></i></a>
+        </td>
         </tr> 
         <%
             timeFlag = 0;
@@ -208,6 +232,7 @@
         <td></td>
         <td></td>
         <td></td>
+        <td></td>
         </tr> 
      <%
             timeFlag = 0;
@@ -219,7 +244,7 @@
 
     %>    
 
-
+    </tbody>
 </table>
 <%    }//else end; outer most if checking
 %>
