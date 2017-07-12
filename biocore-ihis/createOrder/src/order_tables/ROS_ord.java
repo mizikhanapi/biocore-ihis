@@ -51,8 +51,46 @@ public class ROS_ord {
                 if (orcs.get(1).get(0).equals("T12102")) {
                         RIS_seq ris = new RIS_seq();
                         ris.getRIS_seq();
-                      String sql_RIS = "INSERT INTO ris_order_master (PMI_NO, order_no, txn_type, HFC_CD, EPISODE_DATE, ENCOUNTER_DATE, order_date, order_by, order_from_discipline, order_from_subdiscipline, order_to_discipline, order_to_subdiscipline, hfc_from, hfc_to, order_status, diagnosis_cd, created_by, created_date, patient_name) values ('" + t.getPmi_no() + "','" + ris.getRIS_orderno() + "','" + orcs.get(1).get(0) + "','" + orcs.get(12).get(0) + "','" + orcs.get(7).get(0) + "','" + orcs.get(7).get(0) + "','" + orcs.get(6).get(0) + "','" + orcs.get(9).get(0) + "','" + orcs.get(16).get(0) + "','" + orcs.get(14).get(0) + "','" + orcs.get(29).get(0) + "','" + orcs.get(13).get(0) + "','" + orcs.get(13).get(0) + "','" + orcs.get(14).get(0) + "','0','-','" + orcs.get(9).get(0) + "','" + orcs.get(7).get(0) + "','" + orcs.get(9).get(0) + "')";
+                      String sql_RIS = "INSERT INTO ris_order_master (PMI_NO, "
+                              + "order_no, "
+                              + "txn_type, "
+                              + "HFC_CD, "
+                              + "EPISODE_DATE, "
+                              + "ENCOUNTER_DATE, "
+                              + "order_date,"
+                              + " order_by,"
+                              + " order_from_discipline,"
+                              + " order_from_subdiscipline,"
+                              + " order_to_discipline,"
+                              + " order_to_subdiscipline,"
+                              + " hfc_from, "
+                              + "hfc_to, "
+                              + "order_status,"
+                              + "diagnosis_cd, "
+                              + "created_by,"
+                              + " created_date,"
+                              + " patient_name)"
+                              + " values ('" + t.getPmi_no() + "',"
+                              + "'" + ris.getRIS_orderno() + "',"
+                              + "'" + orcs.get(1).get(0) + "',"
+                              + "'" + orcs.get(12).get(0) + "',"
+                              + "'" + orcs.get(7).get(0) + "',"
+                              + "'" + orcs.get(8).get(0) + "',"
+                              + "'" + orcs.get(6).get(0) + "',"
+                              + "'" + orcs.get(9).get(0) + "',"
+                              + "'" + orcs.get(13).get(0) + "',"
+                              + "'" + orcs.get(14).get(0) + "',"
+                              + "'" + orcs.get(27).get(0) + "',"
+                              + "'" + orcs.get(28).get(0) + "',"
+                              + "'" + orcs.get(12).get(0) + "',"
+                              + "'" + orcs.get(26).get(0) + "',"
+                              + "'0',"
+                              + "'-',"
+                              + "'" + orcs.get(9).get(0) + "',"
+                              + "'" + orcs.get(7).get(0) + "',"
+                              + "'" + orcs.get(9).get(0) + "')";
                         try {
+                            
                              status_ris_order_master = rc.setQuerySQL(Config.ipAddressServer, Config.portServer, sql_RIS);
                              if (status_ris_order_master == true) {
                         System.out.println("-------------------------------------------");
