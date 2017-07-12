@@ -5,6 +5,7 @@ import sequence_numbers.RIS_seq;
 import Config_Pack.Config;
 import Process.MainRetrieval;
 import bean.ORC2;
+import bean.PDI2;
 import bean.ROS2;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -16,7 +17,7 @@ import sequence_numbers.orders_no;
 
 public class ROS_ord {
 
-    public void M_ROS(get_ehr_central_data t, Vector<ROS2> ros, Vector<ORC2> orc) {
+    public void M_ROS(get_ehr_central_data t, Vector<ROS2> ros, Vector<ORC2> orc,Vector<PDI2> pdi) {
              Date datenow = new Date();
         SimpleDateFormat sdf = new SimpleDateFormat("YYYY-MM-dd HH:mm:ss");
         boolean update_ehr_central_boolean = false;
@@ -48,6 +49,7 @@ public class ROS_ord {
                    for (int orc_i = 0; orc_i < orc.size(); orc_i++) {
 
                   ArrayList<ArrayList<String>> orcs = orc.get(orc_i).getValue();
+                  ArrayList<ArrayList<String>> pdis = pdi.get(0).getValue();
                 if (orcs.get(1).get(0).equals("T12102")) {
                         RIS_seq ris = new RIS_seq();
                         ris.getRIS_seq();
@@ -88,7 +90,7 @@ public class ROS_ord {
                               + "'-',"
                               + "'" + orcs.get(9).get(0) + "',"
                               + "'" + orcs.get(7).get(0) + "',"
-                              + "'" + orcs.get(9).get(0) + "')";
+                              + "'" + pdis.get(2).get(0) + "')";
                         try {
                             
                              status_ris_order_master = rc.setQuerySQL(Config.ipAddressServer, Config.portServer, sql_RIS);
@@ -100,7 +102,30 @@ public class ROS_ord {
                          ArrayList<ArrayList<String>> ross = ros.get(ros_i).getValue();
 
                             char pcd[] = ross.get(2).get(0).toCharArray();
-                           String sql_ROS = "INSERT INTO ris_order_detail (order_no, modality_cd, body_system_cd, procedure_cd, EPISODE_DATE, ENCOUNTER_DATE, requestor_comments, order_status, verify_by, verify_date, created_by, created_date) values ('" + ris.getRIS_orderno() + "','"+pcd[2]+"','"+pcd[1]+"','"+ross.get(2).get(0)+"','" + orcs.get(7).get(0) + "','" + orcs.get(7).get(0) + "','"+ross.get(7).get(0)+"','tested','" + orcs.get(9).get(0) + "','" + orcs.get(7).get(0) + "','" + orcs.get(9).get(0) + "','" + orcs.get(7).get(0) + "')";
+                           String sql_ROS = "INSERT INTO ris_order_detail (order_no,"
+                                   + " modality_cd,"
+                                   + " body_system_cd,"
+                                   + " procedure_cd, "
+                                   + "EPISODE_DATE,"
+                                   + " ENCOUNTER_DATE,"
+                                   + " requestor_comments, "
+                                   + "order_status, "
+                                   + "verify_by, "
+                                   + "verify_date,"
+                                   + " created_by, "
+                                   + "created_date) "
+                                   + "values ('" + ris.getRIS_orderno() + "',"
+                                   + "'"+pcd[2]+"',"
+                                   + "'"+pcd[1]+"',"
+                                   + "'"+ross.get(2).get(0)+"',"
+                                   + "'" + orcs.get(7).get(0) + "',"
+                                   + "'" + orcs.get(7).get(0) + "',"
+                                   + "'"+ross.get(7).get(0)+"',"
+                                   + "'0',"
+                                   + "'" + orcs.get(9).get(0) + "',"
+                                   + "'" + orcs.get(7).get(0) + "',"
+                                   + "'" + orcs.get(9).get(0) + "',"
+                                   + "now())";
                            status_ris_order_detail = rc.setQuerySQL(Config.ipAddressServer, Config.portServer, sql_ROS);
 
                                         if (status_ris_order_detail == true) {

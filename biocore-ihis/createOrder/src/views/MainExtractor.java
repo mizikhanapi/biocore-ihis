@@ -31,7 +31,7 @@ public class MainExtractor {
             spv2.startProcess(t.getTxndata());
             //LIO
             LIO_ord lio_ord = new LIO_ord();
-            lio_ord.M_LIO(spv2.getVorc(), spv2.getVlio(), t);
+            lio_ord.M_LIO(spv2.getVorc(), spv2.getVlio(), t,spv2.getVpdi());
 
             //POS
             POS_ord pos_ord = new POS_ord();
@@ -39,7 +39,7 @@ public class MainExtractor {
 
             //ROS
             ROS_ord ros_ord = new ROS_ord();
-            ros_ord.M_ROS(t, spv2.getVros(), spv2.getVorc());
+            ros_ord.M_ROS(t, spv2.getVros(), spv2.getVorc(),spv2.getVpdi());
 
             //PIS
             PIS_ord pis_ord = new PIS_ord();

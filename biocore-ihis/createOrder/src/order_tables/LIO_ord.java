@@ -6,6 +6,7 @@ import Config_Pack.Config;
 import Process.MainRetrieval;
 import bean.LIO2;
 import bean.ORC2;
+import bean.PDI2;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -17,7 +18,7 @@ import sequence_numbers.orders_no;
 
 public class LIO_ord {
 
-    public void M_LIO(Vector<ORC2> orc, Vector<LIO2> lio, get_ehr_central_data t ) {
+    public void M_LIO(Vector<ORC2> orc, Vector<LIO2> lio, get_ehr_central_data t,Vector<PDI2>pdi ) {
 
        Date datenow = new Date();
         SimpleDateFormat sdf = new SimpleDateFormat("YYYY-MM-dd HH:mm:ss");
@@ -49,10 +50,48 @@ public class LIO_ord {
                    for (int orc_i = 0; orc_i < orc.size(); orc_i++) {
 
                   ArrayList<ArrayList<String>> orcs = orc.get(orc_i).getValue();
+                  ArrayList<ArrayList<String>> pdis = pdi.get(0).getValue();
                 if (orcs.get(1).get(0).equals("T12101")) {
                         LIO_seq lis = new LIO_seq();
                         lis.settLIO_seq();
-                        String sql_lis_master = "INSERT INTO lis_order_master (pmi_no, order_no, txn_type, hfc_cd, episode_date, ENCOUNTER_DATE, order_date, order_by, order_from_discipline, order_from_subdiscipline, order_to_discipline, order_to_subdiscipline, hfc_from, hfc_to, order_status, diagnosis_cd, created_by, created_date, patient_name) values ('" + t.getPmi_no() + "','" + lis.getLIO_orderno() + "','" + orcs.get(1).get(0) + "','" + orcs.get(12).get(0) + "','" + orcs.get(7).get(0) + "','" + orcs.get(8).get(0) + "','" + orcs.get(6).get(0) + "','" + orcs.get(9).get(0) + "','" + orcs.get(13).get(0) + "','" + orcs.get(14).get(0) + "','" + orcs.get(13).get(0) + "','" + orcs.get(14).get(0) + "','" + orcs.get(15).get(0) + "','" + orcs.get(29).get(0) + "','0','-','" + orcs.get(9).get(0) + "','" + orcs.get(6).get(0) + "','" + orcs.get(10).get(0) + "')";
+                        String sql_lis_master = "INSERT INTO lis_order_master (pmi_no, "
+                                + "order_no,"
+                                + " txn_type,"
+                                + " hfc_cd, "
+                                + "episode_date,"
+                                + " ENCOUNTER_DATE, "
+                                + "order_date, "
+                                + "order_by, "
+                                + "order_from_discipline,"
+                                + " order_from_subdiscipline,"
+                                + " order_to_discipline,"
+                                + " order_to_subdiscipline,"
+                                + " hfc_from,"
+                                + " hfc_to, "
+                                + "order_status, "
+                                + "diagnosis_cd,"
+                                + " created_by, "
+                                + "created_date,"
+                                + " patient_name)"
+                                + " values ('" + t.getPmi_no() + "',"
+                                + "'" + lis.getLIO_orderno() + "',"
+                                + "'" + orcs.get(1).get(0) + "',"
+                                + "'" + orcs.get(12).get(0) + "',"
+                                + "'" + orcs.get(7).get(0) + "',"
+                                + "'" + orcs.get(8).get(0) + "',"
+                                + "'" + orcs.get(6).get(0) + "',"
+                                + "'" + orcs.get(9).get(0) + "',"
+                                + "'" + orcs.get(13).get(0) + "',"
+                                + "'" + orcs.get(14).get(0) + "',"
+                                + "'" + orcs.get(27).get(0) + "',"
+                                + "'" + orcs.get(28).get(0) + "',"
+                                + "'" + orcs.get(12).get(0) + "',"
+                                + "'" + orcs.get(26).get(0) + "',"
+                                + "'0',"
+                                + "'-',"
+                                + "'" + orcs.get(9).get(0) + "',"
+                                + "now(),"
+                                + "'" + pdis.get(2).get(0) + "')";
                         try {
                             status_lio_order_master = rc.setQuerySQL(Config.ipAddressServer, Config.portServer, sql_lis_master);
                             if (status_lio_order_master == true) {
@@ -61,15 +100,68 @@ public class LIO_ord {
                                  //Vector<LIO2> lio = sv.getVlio();
                                 for (int lio_i = 0; lio_i < orc.size(); lio_i++) {
                                 ArrayList<ArrayList<String>> lios = lio.get(lio_i).getValue();
-
-                                      
-                                         String sql_lis_detail = "INSERT INTO lis_order_detail (order_no, item_cd, episode_date, ENCOUNTER_DATE, requestor_comments, filler_comments, verify_by, verify_date, created_by, created_date, pmi_no, spe_source, item_name, volume, spe_container, comment, special_inst, order_date, specimen_status, verification, collectionDate) values ('" + lis.getLIO_orderno() + "','" + lios.get(2).get(0) + "','" + orcs.get(7).get(0) + "','" + orcs.get(7).get(0) + "','" + lios.get(2).get(2) + "','" + lios.get(4).get(1) + "','Ahmed abdullah','" + orcs.get(7).get(0) + "','Ahmed abdullah','" + orcs.get(7).get(0) + "','" + t.getPmi_no() + "','-','" + lios.get(2).get(1) + "','2','-','" + lios.get(5).get(2) + "','-','" + orcs.get(6).get(0) + "','-','-','" + lios.get(3).get(0) + "')";
+                                //                              0     1         2          3           4            5     6             7    8          9      10        11         12                 13         14
+                                 String selectTest = "SELECT item_cd,item_name,test_cat,spe_source,spe_container,volume,special_inst,status,buy_price,ser_price,hfc_cd,discipline_cd,subdiscipline_cd,created_by,created_date FROM lis_item_detail WHERE item_cd='"+lios.get(2).get(0)+"' and hfc_cd='"+orcs.get(12).get(0)+"'"; 
+                                try{
+                                    ArrayList<ArrayList<String>> lis_item = rc.getQuerySQL(Config.ipAddressServer, Config.portServer, selectTest);
+                                    if(lis_item.size() > 0){
+                                        
+                                        for(int lis_item_i = 0;lis_item_i < lis_item.size();lis_item_i++){
+                                            ArrayList<String> lisI = lis_item.get(lis_item_i);
+                                            
+                                            String sql_lis_detail = "INSERT INTO lis_order_detail ("
+                                                 + "order_no, "
+                                                 + "item_cd, "
+                                                 + "episode_date,"
+                                                 + " ENCOUNTER_DATE, "
+                                                 + "requestor_comments,"
+                                                 //+ " filler_comments, "
+                                                 + "verify_by,"
+                                                 + " verify_date, "
+                                                 + "created_by,"
+                                                 + " created_date,"
+                                                 + " pmi_no,"
+                                                 + " spe_source, "
+                                                 + "item_name,"
+                                                 + " volume,"
+                                                 + " spe_container, "
+                                                 + "comment, "
+                                                 + "special_inst, "
+                                                 + "order_date,"
+                                                 + " specimen_status,"
+                                                 + " verification,"
+                                                 + " collectionDate)"
+                                                 + " values ('" + lis.getLIO_orderno() + "',"
+                                                 + "'" + lisI.get(0) + "',"
+                                                 + "'" + orcs.get(7).get(0) + "',"
+                                                 + "'" + orcs.get(8).get(0) + "',"
+                                                 + "'" + lios.get(7).get(0) + "',"
+                                                 //+ "'" + lios.get(4).get(1) + "',"
+                                                 + "'" + orcs.get(10).get(0) + "',"
+                                                 + "'" + orcs.get(6).get(0) + "',"
+                                                 + "'" + orcs.get(9).get(0) + "',"
+                                                 + "now(),"
+                                                 + "'" + t.getPmi_no() + "',"
+                                                 + "'"+lisI.get(3)+"',"
+                                                 + "'" + lios.get(2).get(1) + "',"
+                                                 + "'"+lisI.get(5)+"',"
+                                                 + "'"+lisI.get(4)+"',"
+                                                 + "'" + lios.get(5).get(2) + "',"
+                                                 + "'"+lisI.get(6)+"',"
+                                                 + "'" + orcs.get(6).get(0) + "',"
+                                                 + "'"+lisI.get(7)+"',"
+                                                 + "'-',"
+                                                 + "'" + lios.get(3).get(0) + "')";
                                         status_lis_order_detail = rc.setQuerySQL(Config.ipAddressServer, Config.portServer, sql_lis_detail);
 
                                         if (status_lis_order_detail == true) {
                                             System.out.println("Done with lis MASTER and lis DETAIL");
                                         }
-                                    } 
+                                        }
+                                        
+                                    }
+                                }catch(Exception e){}
+                            } 
 
                             }else {
                                     System.out.println("False.");

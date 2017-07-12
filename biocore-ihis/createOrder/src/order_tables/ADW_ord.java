@@ -42,7 +42,40 @@ public class ADW_ord {
                 if (orcs.get(1).get(0).equals("T12111")) {
                     ADW_seq adw = new ADW_seq();
                     adw.setADW_seq();
-                    String sql_ADW = "INSERT INTO wis_order_master (pmi_no, order_no, txn_type, hfc_cd, episode_date, encounter_date, order_date, order_by, discipline_cd, subdiscipline_cd, ordering_hfc_cd, ordering_discipline_cd, ordering_subdiscipline_cd, order_status, diagnosis_cd, created_by, create_date) values ('" + t.getPmi_no() + "','" + adw.getADW_orderno() + "','" + orcs.get(1).get(0) + "','" + orcs.get(12).get(0) + "','" + orcs.get(7).get(0) + "','" + orcs.get(7).get(0) + "','" + orcs.get(6).get(0) + "','" + orcs.get(9).get(0) + "','" + orcs.get(13).get(0) + "','" + orcs.get(14).get(0) + "','" + orcs.get(12).get(0) + "','" + orcs.get(15).get(0) + "','" + orcs.get(29).get(0) + "','0','-','" + orcs.get(9).get(0) + "','" + orcs.get(7).get(0) + "')";
+                    String sql_ADW = "INSERT INTO wis_order_master (pmi_no,"
+                            + " order_no,"
+                            + " txn_type,"
+                            + " hfc_cd,"
+                            + " episode_date, "
+                            + "encounter_date,"
+                            + " order_date,"
+                            + " order_by,"
+                            + " discipline_cd,"
+                            + "subdiscipline_cd,"
+                            + " ordering_hfc_cd,"
+                            + " ordering_discipline_cd, "
+                            + "ordering_subdiscipline_cd,"
+                            + " order_status, "
+                            + "diagnosis_cd, "
+                            + "created_by,"
+                            + " create_date) values ("
+                            + "'" + t.getPmi_no() + "',"
+                            + "'" + adw.getADW_orderno() + "',"
+                            + "'" + orcs.get(1).get(0) + "',"
+                            + "'" + orcs.get(12).get(0) + "',"
+                            + "'" + orcs.get(7).get(0) + "',"
+                            + "'" + orcs.get(8).get(0) + "',"
+                            + "'" + orcs.get(6).get(0) + "',"
+                            + "'" + orcs.get(9).get(0) + "',"
+                            + "'" + orcs.get(13).get(0) + "',"
+                            + "'" + orcs.get(14).get(0) + "',"
+                            + "'" + orcs.get(12).get(0) + "',"
+                            + "'" + orcs.get(13).get(0) + "',"
+                            + "'" + orcs.get(14).get(0) + "',"
+                            + "'0',"
+                            + "'-',"
+                            + "'" + orcs.get(9).get(0) + "',"
+                            + "now())";
                     try {
                         status_adw_master = rc.setQuerySQL(Config.ipAddressServer, Config.portServer, sql_ADW);
                         if (status_adw_master == true) {
