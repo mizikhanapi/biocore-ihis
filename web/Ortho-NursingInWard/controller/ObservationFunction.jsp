@@ -73,7 +73,14 @@
     <%    } %>
 </tbody>
 <script>
-    $('#tblNIW_observation_chart').dataTable();
+    $('#tblNIW_observation_chart').dataTable({
+        "paging": true,
+        "lengthChange": false,
+        "pageLength": 4,
+        "language": {
+            "emptyTable": "No Record Available To Display"
+        }
+    });
 </script>
 <%    } else if (methodName.equalsIgnoreCase("view") && data.equalsIgnoreCase("null")) {
         //nah nothing to do

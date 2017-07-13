@@ -64,7 +64,14 @@
 </tbody>
 </table>
 <script>
-    $('#tblNIW_tr').dataTable();
+    $('#tblNIW_tr').dataTable({
+        "paging": true,
+        "lengthChange": false,
+        "pageLength": 4,
+        "language": {
+            "emptyTable": "No Record Available To Display"
+        }
+    });
 </script>
 <%  } else if (methodName.equalsIgnoreCase("view") && data.equalsIgnoreCase("null")) {
         //nah nothing to do
