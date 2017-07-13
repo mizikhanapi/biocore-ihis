@@ -189,12 +189,26 @@
 // ---------------------------------------------------------------------------- Insert ------------------------------------------------------------------------------------------- //
 
         // Function For Add Button Start
-        $("#chartCirculationSelectAssessmentStartEndBtn").on('click', function () {
+        $('#Ortho-NursingInWard_4').on('click', '#chartCirculationAddNewRecord', function (e) {
 
+            $('#chartCirculationModalTitle').text("Add Circulation Chart");
+            $('#chartCirculationModal_btnAdd_or_btnUpdate_div').html('<button type="button" class="btn btn-success btn-block btn-lg" id="chartCirculationAddModalBtn" role="button">Add Items</button>');
 
+            $('#chartCirculationForm')[0].reset();
+
+            $("#chartCirculationModalDate").datepicker({
+                changeMonth: true,
+                changeYear: true,
+                dateFormat: 'dd/mm/yy'
+            });
 
         });
         // Function For Add Button End
+
+        // Add Get Data And Send To Controller Function Start
+
+
+        // Add Get Data And Send To Controller Function End
 
 
 
