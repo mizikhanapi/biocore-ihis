@@ -60,7 +60,7 @@
 
         var dateEntry = $("#dateEntry1").val();
         var timeEntry = $("#timeEntry1").val();
-
+        
 
         $.ajax({
             url: "../Ortho-Consultation/modal/action/save_date.jsp",
@@ -73,10 +73,6 @@
             success: function (data) {
                 $("#getNeuAssessment").load("../Ortho-Consultation/neuAssessment.jsp");
                 $("#encounter").load("encounter_date.jsp");
-                $('#encounter').html(data);
-                $('#encounter').trigger('contentchanged');
-                $('#encounter1').html(data);
-                $('#encounter1').trigger('contentchanged');
                 $("#neuAssessment1").hide();
                 $(".modal-backdrop").hide();
                 alert("Assessment date is saved.");
@@ -114,9 +110,7 @@
                     <div class="row">
                         <div class="col-md-12">
                             <!-- Surface -->
-                            <div id="encounter">
-                                
-                            </div>
+                            
                             <h5>Hip</h5>
                             <hr/>
                             <div class="golongan-soalan margin-bottom-30px">
@@ -318,8 +312,9 @@
 <script>
     $("#addMusclePowerBtn").click(function () {
 
-        var pickup_date = document.getElementById("pickup_date");
-        var selected_date = pickup_date.options[pickup_date.selectedIndex].value;
+        //var pickup_date = document.getElementById("pickup_date");
+        //var selected_date = pickup_date.options[pickup_date.selectedIndex].value;
+        var assessment_date = $('input[name="selected_assessment"]:checked').val();
         //alert(selected_date);
         //alert(pickup_date);
         var rnNo1 = $("#rnNo1").val();
@@ -374,7 +369,7 @@
                 rnNo22: rnNo22,
                 rnNo23: rnNo23,
                 rnNo24: rnNo24,
-                selected_date: selected_date
+                assessment_date: assessment_date
             },
             timeout: 10000,
             success: function (data) {
@@ -404,9 +399,7 @@
                     <div class="row">
                         <div class="col-md-12">
                             <!-- Surface -->
-                            <div id="encounter1">
-                                
-                            </div>
+                            
                             <div class="golongan-soalan margin-bottom-30px">
                                 <div class="form-group soalan">
                                     <div class="col-md-6">
@@ -588,9 +581,10 @@
 </div>
 <script>
     $("#addSensoryBtn").click(function () {
-        var pickup_date = document.getElementById("pickup_date");
-        var selected_date = pickup_date.options[pickup_date.selectedIndex].value;
-        alert(selected_date);
+//        var pickup_date = document.getElementById("pickup_date");
+//        var selected_date = pickup_date.options[pickup_date.selectedIndex].value;
+        //alert(selected_date);
+        var assessment_date = $('input[name="selected_assessment"]:checked').val();
         var rnNo25 = $("#rnNo25").val();
         var rnNo26 = $("#rnNo26").val();
         var rnNo27 = $("#rnNo27").val();
@@ -644,7 +638,7 @@
                 rnNo46: rnNo46,
                 rnNo47: rnNo47,
                 rnNo48: rnNo48,
-                selected_date: selected_date
+                assessment_date: assessment_date
             },
             timeout: 10000,
             success: function (data) {

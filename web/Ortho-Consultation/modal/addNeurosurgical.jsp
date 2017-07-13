@@ -206,14 +206,16 @@
 
         var right_pupil = $("#right_pupil").val();
         var left_pupil = $("#left_pupil").val();
-
-
+        var checked = $('input[name="selected"]:checked').val();
+       
+       
         $.ajax({
             url: "../Ortho-Consultation/modal/action/save_pupil_size.jsp",
             type: "post",
             data: {
                 right_pupil: right_pupil,
-                left_pupil: left_pupil
+                left_pupil: left_pupil,
+                encounter_date: checked
             },
             timeout: 10000,
             success: function (data) {
@@ -306,6 +308,7 @@
         var Arm = e.options[e.selectedIndex].value;
         var f = document.getElementById('Legs');
         var Legs = f.options[f.selectedIndex].value;
+        var checked = $('input[name="selected"]:checked').val();
         //var Arm = $("#Arm").val();
         //var legs = $("#legs").val();
 
@@ -314,7 +317,8 @@
             type: "post",
             data: {
                 arm: Arm,
-                legs: Legs
+                legs: Legs,
+                encounter_date: checked
             },
             timeout: 10000,
             success: function (data) {
