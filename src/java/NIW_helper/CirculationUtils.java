@@ -115,4 +115,33 @@ public class CirculationUtils {
 
     }
 
+    public Boolean updateCirculation(String datas) {
+
+        Boolean data = false;
+        String splittedData[] = datas.split("\\|", -1);
+        String pmi_no, hfc_cd, episode_date, encounter_date, ward, bed_no, datetime, color, sensation, hot_cold, movement, others;
+
+        pmi_no = splittedData[0];
+        hfc_cd = splittedData[1];
+        episode_date = splittedData[2];
+        encounter_date = splittedData[3];
+        ward = splittedData[4];
+        bed_no = splittedData[5];
+        datetime = splittedData[6];
+        color = splittedData[7];
+        sensation = splittedData[8];
+        hot_cold = splittedData[9];
+        movement = splittedData[10];
+        others = splittedData[11];
+
+        String sql = " UPDATE lhr_ort_niw_chart_circulation SET ward='" + ward + "',bed_no='" + bed_no + "',datetime='" + datetime + "',color='" + color + "',"
+                + " sensation='" + sensation + "',hot_cold='" + hot_cold + "',movement='" + movement + "',others='" + others + "' "
+                + " WHERE pmi_no='" + pmi_no + "' and hfc_cd='" + hfc_cd + "' and episode_date ='" + episode_date + "' and encounter_date='" + encounter_date + "' ";
+
+        data = rmic.setQuerySQL(conn.HOST, conn.PORT, sql);
+
+        return data;
+
+    }
+
 }
