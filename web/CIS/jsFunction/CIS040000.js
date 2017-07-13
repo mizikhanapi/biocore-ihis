@@ -40,7 +40,25 @@ $(document).ready(function () {
          var orderId = rowOrder.find("#orderId").html();
          var modality_cd = rowOrder.find("#tM_SEARCH_CODE").html();
          var body_system_cd = rowOrder.find("#tBS_SEARCH_CODE").html();
-         
+         var procedure_cd = rowOrder.find("#tP_SEARCH_CODE").html();
+         $("#CIS040000_RESULT").modal('show');
+         $.ajax({
+             type:"POST",
+             url:"order/RISImageResult.jsp",
+             timeout:3000,
+             data:{
+                 orderNo:orderId,
+                 bsCode:body_system_cd,
+                 modCode:modality_cd,
+                 proCode:procedure_cd
+             },
+             success:function(e){
+               
+                 $("#CIS040000_RESULT_IMG").attr("src",e.trim());
+                 //$("CIS040000_RESULT_IMG").html(e);
+             }
+             
+         })
          console.log("order Id : " +orderId);
          console.log("modality Id : " +modality_cd);
          console.log("body system : " +body_system_cd);

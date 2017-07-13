@@ -16,24 +16,7 @@
 
     String searchProblem = "";
     String searchResult = "";
-                searchResult = "SELECT od.order_no, od.procedure_cd, pm.ris_procedure_name, bs.body_system_name, m.modality_name, ahc.hfc_name, om.hfc_to, om.episode_date, au.USER_NAME, rrd.filler_comments, rrd.result_status, od.body_system_cd, od.modality_cd "
-                            + "FROM ris_order_detail od  "
-                            + "JOIN ris_order_master om "
-                            + "JOIN ris_procedure_master pm "
-                            + "JOIN ris_modality m "
-                            + "JOIN ris_body_system bs "
-                            + "JOIN adm_health_facility ahc "
-                            + "JOIN adm_users au "
-                            + "JOIN ris_result_detail rrd "
-                            + "WHERE od.order_no = om.order_no "
-                            + "AND om.order_no = rrd.order_no "
-                            + "AND om.order_by = au.USER_ID "
-                            + "AND om.hfc_to = ahc.hfc_cd "
-                            + "AND od.modality_cd = m.modality_cd "
-                            + "AND od.body_system_cd = bs.body_system_cd "
-                            + "AND od.procedure_cd = pm.ris_procedure_cd "
-                            + "AND om.pmi_no = '" + pmiNo + "' "
-                            + "GROUP BY od.procedure_cd;";
+              
     if (orderId.equals("-")) {
         if (type.equals("today")) {
             searchProblem = "SELECT od.order_no,od.procedure_cd, pm.ris_procedure_name,bs.body_system_name,m.modality_name,ahc.hfc_name,om.hfc_to,om.episode_date,au.USER_NAME "
@@ -53,6 +36,26 @@
                     + " AND om.pmi_no = '" + pmiNo + "' "
                     + " AND DATE(om.episode_date) =  '" + todayDate + "' "
                     + " GROUP BY procedure_cd LIMIT 7";
+            
+//              searchResult = "SELECT od.order_no, od.procedure_cd, pm.ris_procedure_name, bs.body_system_name, m.modality_name, ahc.hfc_name, om.hfc_to, om.episode_date, au.USER_NAME, rrd.filler_comments, rrd.result_status, od.body_system_cd, od.modality_cd "
+//                          + "FROM ris_order_detail od  "
+//                          + "JOIN ris_order_master om "
+//                          + "JOIN ris_procedure_master pm "
+//                          + "JOIN ris_modality m "
+//                          + "JOIN ris_body_system bs "
+//                          + "JOIN adm_health_facility ahc "
+//                          + "JOIN adm_users au "
+//                          + "JOIN ris_result_detail rrd "
+//                          + "WHERE od.order_no = om.order_no "
+//                          + "AND om.order_no = rrd.order_no "
+//                          + "AND om.order_by = au.USER_ID "
+//                          + "AND om.hfc_to = ahc.hfc_cd "
+//                          + "AND od.modality_cd = m.modality_cd "
+//                          + "AND od.body_system_cd = bs.body_system_cd "
+//                          + "AND od.procedure_cd = pm.ris_procedure_cd "
+//                          + "AND om.pmi_no = '" + pmiNo + "' "
+//                          + " AND DATE(om.episode_date) =  '" + todayDate + "' "
+//                          + "GROUP BY od.procedure_cd;";
 
             //out.print(searchProblem);
         } else if (type.equals("previous")) {
@@ -75,6 +78,25 @@
                     + " AND od.procedure_cd = pm.ris_procedure_cd "
                     + " AND om.pmi_no = '" + pmiNo + "' "
                     + " GROUP BY procedure_cd LIMIT 7";
+            
+              searchResult = "SELECT od.order_no, od.procedure_cd, pm.ris_procedure_name, bs.body_system_name, m.modality_name, ahc.hfc_name, om.hfc_to, om.episode_date, au.USER_NAME, rrd.filler_comments, rrd.result_status, od.body_system_cd, od.modality_cd "
+                          + "FROM ris_order_detail od  "
+                          + "JOIN ris_order_master om "
+                          + "JOIN ris_procedure_master pm "
+                          + "JOIN ris_modality m "
+                          + "JOIN ris_body_system bs "
+                          + "JOIN adm_health_facility ahc "
+                          + "JOIN adm_users au "
+                          + "JOIN ris_result_detail rrd "
+                          + "WHERE od.order_no = om.order_no "
+                          + "AND om.order_no = rrd.order_no "
+                          + "AND om.order_by = au.USER_ID "
+                          + "AND om.hfc_to = ahc.hfc_cd "
+                          + "AND od.modality_cd = m.modality_cd "
+                          + "AND od.body_system_cd = bs.body_system_cd "
+                          + "AND od.procedure_cd = pm.ris_procedure_cd "
+                          + "AND om.pmi_no = '" + pmiNo + "' "
+                          + "GROUP BY od.procedure_cd;";
            
 
         }
@@ -98,6 +120,27 @@
                     + " AND DATE(om.episode_date) = '" + todayDate + "' "
                     + " AND om.order_no = '" + orderId + "' "
                     + " GROUP BY procedure_cd LIMIT 7";
+            
+//        searchResult = "SELECT od.order_no, od.procedure_cd, pm.ris_procedure_name, bs.body_system_name, m.modality_name, ahc.hfc_name, om.hfc_to, om.episode_date, au.USER_NAME, rrd.filler_comments, rrd.result_status, od.body_system_cd, od.modality_cd "
+//                    + "FROM ris_order_detail od  "
+//                    + "JOIN ris_order_master om "
+//                    + "JOIN ris_procedure_master pm "
+//                    + "JOIN ris_modality m "
+//                    + "JOIN ris_body_system bs "
+//                    + "JOIN adm_health_facility ahc "
+//                    + "JOIN adm_users au "
+//                    + "JOIN ris_result_detail rrd "
+//                    + "WHERE od.order_no = om.order_no "
+//                    + "AND om.order_no = rrd.order_no "
+//                    + "AND om.order_by = au.USER_ID "
+//                    + "AND om.hfc_to = ahc.hfc_cd "
+//                    + "AND od.modality_cd = m.modality_cd "
+//                    + "AND od.body_system_cd = bs.body_system_cd "
+//                    + "AND od.procedure_cd = pm.ris_procedure_cd "
+//                    + "AND om.pmi_no = '" + pmiNo + "' "
+//                    + " AND DATE(om.episode_date) = '" + todayDate + "' "
+//                    + " AND om.order_no = '" + orderId + "' "
+//                    + "GROUP BY od.procedure_cd;";
 
         } else if (type.equals("previous")) {
             searchProblem = "SELECT od.order_no,od.procedure_cd, pm.ris_procedure_name,bs.body_system_name,m.modality_name,ahc.hfc_name,om.hfc_to,om.episode_date,au.USER_NAME "
@@ -116,7 +159,28 @@
                     + "AND od.procedure_cd = pm.ris_procedure_cd "
                     + "AND om.pmi_no = '" + pmiNo + "' "
                     + "AND om.order_no = '" + orderId + "' "
-                    + "GROUP BY procedure_cd LIMIT 7";
+                    + "GROUP BY procedure_cd LIMIT 3";
+            
+        searchResult = "SELECT od.order_no, od.procedure_cd, pm.ris_procedure_name, bs.body_system_name, m.modality_name, ahc.hfc_name, om.hfc_to, om.episode_date, au.USER_NAME, rrd.filler_comments, rrd.result_status, od.body_system_cd, od.modality_cd "
+                    + "FROM ris_order_detail od  "
+                    + "JOIN ris_order_master om "
+                    + "JOIN ris_procedure_master pm "
+                    + "JOIN ris_modality m "
+                    + "JOIN ris_body_system bs "
+                    + "JOIN adm_health_facility ahc "
+                    + "JOIN adm_users au "
+                    + "JOIN ris_result_detail rrd "
+                    + "WHERE od.order_no = om.order_no "
+                    + "AND om.order_no = rrd.order_no "
+                    + "AND om.order_by = au.USER_ID "
+                    + "AND om.hfc_to = ahc.hfc_cd "
+                    + "AND od.modality_cd = m.modality_cd "
+                    + "AND od.body_system_cd = bs.body_system_cd "
+                    + "AND od.procedure_cd = pm.ris_procedure_cd "
+                    + "AND om.pmi_no = '" + pmiNo + "' "
+                   
+                    + " AND om.order_no = '" + orderId + "' "
+                    + "GROUP BY od.procedure_cd LIMIT 4;";
 
         }
 
@@ -155,6 +219,7 @@
             <td><%out.print(search.get(i).get(5));%></td>
             <td hidden id="tBS_SEARCH_CODE"><%out.print(result.get(i).get(11));%></td>
             <td hidden id="tM_SEARCH_CODE"><%out.print(result.get(i).get(12));%></td>
+            <td hidden id="tP_SEARCH_CODE"><%out.print(result.get(i).get(1));%></td>
             <td hidden id="orderId"><%out.print(result.get(i).get(0));%></td>
             <td hidden id="providerId"><%out.print(result.get(i).get(6));%></td>
             <td><a  data-toggle="tooltip" data-placement="top" title="Add Order" class="btnAdd" style="cursor: pointer" id="btnCIS_OE_ROS_SEARCH_ADD"><i class="fa fa-plus fa-lg" aria-hidden="true" style="display: inline-block;color: #58C102;"></i></a>&nbsp;</td>
