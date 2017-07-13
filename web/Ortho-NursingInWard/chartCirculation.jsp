@@ -205,8 +205,12 @@
         });
         // Function For Add Button End
 
-        // Add Get Data And Send To Controller Function Start
 
+        // Add Get Data And Send To Controller Function Start
+        $('#circulationChart #chartCirculationModal_btnAdd_or_btnUpdate_div').on('click', '#chartCirculationAddModalBtn', function (e) {
+            e.preventDefault();
+
+        });
 
         // Add Get Data And Send To Controller Function End
 
