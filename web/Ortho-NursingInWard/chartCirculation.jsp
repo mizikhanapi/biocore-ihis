@@ -25,12 +25,12 @@
         <div class="col-sm-6" style="padding-right: 0px;">
             <select class="form-control" id="chartCirculationSelectAssessment">
                 <option value="0">View by</option>
-                <option value="1">Today</option>
-                <option value="2">Yesterday</option>
-                <option value="3">7 Days</option>
-                <option value="4">30 Days</option>
-                <option value="5">60 Days</option>
-                <option value="6">Select date</option>
+                <option value="today">Today</option>
+                <option value="yesterday">Yesterday</option>
+                <option value="7day">7 Days</option>
+                <option value="30day">30 Days</option>
+                <option value="60day">60 Days</option>
+                <option value="custom">Select date</option>
             </select>
         </div>
     </div>
@@ -112,19 +112,19 @@
 
                 if (filterBy === "0") {
                     bootbox.alert("Please Choose Correct Assessment");
-                } else if (filterBy === "1") {
+                } else if (filterBy === "today") {
                     //  $('<div class="loading">Loading</div>').appendTo('body');
                     datas = patientPMI + "|" + todayDate + "|today";
-                } else if (filterBy === "2") {
+                } else if (filterBy === "yesterday") {
                     //  $('<div class="loading">Loading</div>').appendTo('body');
                     datas = patientPMI + "|" + todayDate + "|yesterday";
-                } else if (filterBy === "3") {
+                } else if (filterBy === "7day") {
                     // $('<div class="loading">Loading</div>').appendTo('body');
                     datas = patientPMI + "|" + todayDate + "|7day";
-                } else if (filterBy === "4") {
+                } else if (filterBy === "30day") {
                     //  $('<div class="loading">Loading</div>').appendTo('body');
                     datas = patientPMI + "|" + todayDate + "|30day";
-                } else if (filterBy === "5") {
+                } else if (filterBy === "60day") {
                     //  $('<div class="loading">Loading</div>').appendTo('body');
                     datas = patientPMI + "|" + todayDate + "|60day";
                 }
@@ -210,6 +210,62 @@
         $('#circulationChart #chartCirculationModal_btnAdd_or_btnUpdate_div').on('click', '#chartCirculationAddModalBtn', function (e) {
             e.preventDefault();
 
+
+            var enDate = new Date();
+            var dd = ("0" + enDate.getDate()).slice(-2);
+            var mm = ("0" + (enDate.getMonth() + 1)).slice(-2);
+            var yy = enDate.getFullYear();
+            var hh = enDate.getHours();
+            var m = enDate.getMinutes();
+            var ss = enDate.getSeconds();
+            var ms = enDate.getMilliseconds();
+
+            var encounterDate = yy + "-" + mm + "-" + dd + " " + hh + ":" + m + ":" + ss + "." + ms;
+            var date = $('#chartCirculationModalDate').val();
+            var sDate = date.split('/');
+            var newDate = sDate[2] + "-" + sDate[1] + "-" + sDate[0];
+
+            var time = $('#chartCirculationModalTime').val();
+            var colour = $('#chartCirculationModalColour').val();
+            var sensation = $('#chartCirculationModalSensation').val();
+            var hotcold = $("input[name='HotCold']:checked").val();
+            var movement = $('#chartCirculationModalMovement').val();
+            var others = $('#chartCirculationModalOthers').val();
+            var pmi_no = pmiNo;
+            var hfc_cd1 = hfc_cd;
+            var epDate = episodeDate;
+
+
+            if (date === null || date === "") {
+                bootbox.alert("Please Insert Assessment Date !!");
+            } else if (time === null || time === "") {
+                bootbox.alert("Please Insert Assessment Time !!");
+            } else {
+
+                var datas = pmi_no + "|" + hfc_cd1 + "|" + epDate + "|" + encounterDate + "| | |" + newDate + " " + time + ":00.0|" + colour + "|" + sensation + "|" + hotcold + "|" + movement + "|" + others;
+                console.log(datas);
+
+                $.ajax({
+                    type: "post",
+                    url: "../Ortho-NursingInWard/controller/CirculationFunction.jsp",
+                    data: {datas: datas, methodName: "add"},
+                    timeout: 10000,
+                    success: function (result) {
+                        console.log(result);
+//                        if (result.trim() === 'true') {
+//                            bootbox.alert("Successfully Added !!");
+//
+//                            $('#tableChartCirculationDiv').html('#tableChartCirculationDiv');
+//                            
+//                        } else if (result.trim() === 'false') {
+//                            bootbox.alert("fail to add");
+//                        }
+                    },
+                    error: function (err) {
+                        bootbox.alert("something wrong,error: " + err);
+                    }
+                });
+            }
         });
 
         // Add Get Data And Send To Controller Function End
