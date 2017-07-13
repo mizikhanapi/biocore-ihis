@@ -59,11 +59,9 @@ $(document).ready(function () {
              }
              
          })
-         console.log("order Id : " +orderId);
-         console.log("modality Id : " +modality_cd);
-         console.log("body system : " +body_system_cd);
+
          
-     })
+     });
      $("#divCIS_OE_ROS_OrderSearchResult").on("click","#tblOROS #btnCIS_OE_ROS_SEARCH_ADD",function(e){
          e.preventDefault() ;
          var rowOrder = $(this).closest("tr");
@@ -75,7 +73,8 @@ $(document).ready(function () {
              url:"order/RetrieveOrderDetail.jsp",
              type:"POST",
              data:{
-                 orderId:orderId
+                 orderId:orderId,
+                 module:"ROS"
              },
              success:function(e){
                  

@@ -3,6 +3,9 @@
     Created on : Feb 18, 2017, 12:06:44 PM
     Author     : -D-
 --%>
+<style>
+    #CIS040001 { overflow-y:scroll }
+</style>
 <!--Modal add Drug Order-->
 <div class="modal fade" id="CIS040001" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
@@ -14,11 +17,11 @@
             <div class="modal-header" style="padding: 0px;">
                 <div class="tabbable-line">
                     <ul class="nav nav-tabs ">
-                        <li class="active">
+                        <li class="active" id="LIO_NEW">
                             <a href="#laboratoryRequest1" data-toggle="tab">
                                 New Laboratory Request</a>
                         </li>
-                        <li>
+                        <li id="LIO_History" >
                             <a href="#laboratoryRequest2" data-toggle="tab">
                                 Laboratory Request History</a>
                         </li>
@@ -231,10 +234,10 @@
                                     <div class="form-group">
                                         <label class="col-md-4 control-label" for="selectbasic">Search drug by</label>
                                         <div class="col-md-4">
-                                            <select id="idType" name="idType" class="form-control" required="">
+                                            <select id="selectCIS_OE_LIO_SEARCH_TYPE" name="idType" class="form-control" required="">
                                                 <option selected="" disabled="" value="-">View by</option>
-                                                <option>Today</option>
-                                                <option>Previous Episode</option>
+                                                <option value="today">Today</option>
+                                                <option value="previous">Previous Episode</option>
                                             </select>
                                         </div>
                                     </div>
@@ -243,15 +246,16 @@
                                     <div class="form-group">
                                         <label class="col-md-4 control-label" for="textinput">Order</label>
                                         <div class="col-md-4">
-                                            <input type="text" class="form-control input-md" id="idInput" name="idInput" placeholder="ID" maxlength="0">
+                                            <input type="text" class="form-control input-md" id="tCIS_OE_LIO_SEARCH_ORDER_ID" name="idInput" placeholder="ID" >
                                         </div>
                                     </div>
 
                                     <div class="text-center">
-                                        <button class="btn btn-primary" type="button" id="divCIS_OE_ROS_OrderSearchResult" name="searchPatient"><i class="fa fa-search"></i>&nbsp; Search</button>
-                                        <button id="clearSearch" name="clearSearch" type="button" class="btn btn-default"><i class="fa fa-times"></i>&nbsp; Clear</button>
+                                        <button class="btn btn-primary" type="button" id="btnCIS_OE_LIO_SEARCH_ORDER" name="searchPatient"><i class="fa fa-search"></i>&nbsp; Search</button>
+                                        <button id="btnCIS_OE_LIO_SEARCH_CLEAR" name="clearSearch" type="button" class="btn btn-default"><i class="fa fa-times"></i>&nbsp; Clear</button>
                                     </div>
                                 </form>
+                                <div id="divCIS_OE_LIO_OrderSearchResult"></div>
                             </div>
                             <!-- Tab 2 -->
 
@@ -295,6 +299,25 @@
     </div>
 </div>
 
+<div class="modal fade" id="CIS040001_RESULT" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><i class="fa fa-times fa-lg"></i><span class="sr-only">Close</span></button>
+                <h3 class="modal-title" id="lineModalLabel">Result Image</h3>
+            </div>
+            <div class="modal-body">
+                <div class="form-group" id="">
+                    <img src="" id="CIS040001_RESULT_IMG" alt="Exam Result" class="img-responsive" style="height: 100%; width: 100%">
+                </div>
+
+            </div>   
+            <div class="modal-footer">
+
+            </div>
+        </div>
+    </div>
+</div>
 <!--End add Drug Order-->
 
                                         <script src="jsFunction/CIS040001.js" type="text/javascript"></script>

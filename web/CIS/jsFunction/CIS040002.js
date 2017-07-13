@@ -18,6 +18,79 @@ $(document).ready(function(){
     searching("tCISOEDTOProblemName","tCISOEDTOProblemNameLoading","search/ResultCCNSearch.jsp","problemCodeDTO","search/ResultCCNSearchCode.jsp");
     searchDTO("tCISOEDTODrugName", "tCISOEDTODrugNameLoading", "");
     
+    $("#btnCIS_OE_DTO_SEARCH_CLEAR").click(function (e) {
+        $("#divCIS_OE_DTO_OrderSearchResult").html('');
+    })
+    
+    $("#divCIS_OE_DTO_OrderSearchResult").on("click","#tblODTO #btnCIS_OE_DTO_SEARCH_ADD",function(e){
+         e.preventDefault();
+        var rowOrder = $(this).closest("tr");
+        var orderId = rowOrder.find("#orderId").html();
+        var drug_cd = rowOrder.find("#drug_cd").html();
+        var hfc_to = rowOrder.find("#providerId").html();
+
+        $.ajax({
+            timeout: 3000,
+            url: "order/RetrieveOrderDetailDTO.jsp",
+            type: "POST",
+            data: {
+                orderId: orderId,
+                drug_cd:drug_cd,
+                hfc_to:hfc_to
+            },
+            success: function (e) {
+           
+
+                var orderDetailArray = e.trim();
+                orderDetailArray = e.split("|");
+              
+                searchDTO("tCISOEDTODrugName", "tCISOEDTODrugNameLoading", orderDetailArray[4]);
+                searchDTOInfo(orderDetailArray[4]);
+
+                $('#DTO_NEW a[href="#drugOrder1"]').tab('show');
+
+
+
+
+            }
+        })
+     })
+    
+    
+    $("#btnCIS_OE_DTO_SEARCH_ORDER").click(function (e) {
+        e.preventDefault();
+        var order_id = $("#tCIS_OE_DTO_SEARCH_ORDER_ID").val();
+        if (order_id === "") {
+            order_id = "-";
+        }
+        var todayDate = getDate();
+        todayDate = todayDate.split(" ");
+        todayDate = todayDate[0];
+        var type = $("#selectCIS_OE_DTO_SEARCH_TYPE option:selected").val();
+
+        console.log(todayDate);
+        console.log(type);
+        var data = {
+            pmiNo: pmiNo,
+            todayDate: todayDate,
+            type: type,
+            orderId: order_id
+        }
+
+        console.log(data);
+        $.ajax({
+            url: "order/ResultSearchOrderDTO.jsp",
+            timeout: 3000,
+            type: "POST",
+            data: data,
+            success: function (e) {
+
+                $("#divCIS_OE_DTO_OrderSearchResult").html(e);
+            }
+        })
+
+    });
+    
     $("#btnCIS_OE_DTO_SUBMIT").click(function(e){
         
         e.preventDefault();
@@ -234,25 +307,8 @@ $(document).ready(function(){
     $("#tCISOEDTODrugName").on('select:flexdatalist', function (response) {
         
         var drugName = $("#codeLOS").val();
-        $.ajax({
-            type: "post",
-            url: "search/ResultDTOSearchCode.jsp",
-            timeout: 3000,
-            data: {
-                keyword: drugName
-            },
-            success: function (response) {
-                
-                var array_data = String(response).split("|");
-                $('#tCIS_DTODrugCode').val(array_data[0].trim());
-                $('#tCIS_DTODrugForm').val(array_data[7].trim());
-                $('#tCIS_DTODrugRoute').val(array_data[6].trim());
-                $('#tCIS_DTODrugCaution').val(array_data[8].trim());
-                $('#tCIS_DTODrugFrequencyDetail').val(array_data[9].trim());
-                console.log(response);
-            
-            }
-        });
+        searchDTOInfo(drugName);
+
     });
     
     function appendOrderDTO(obj, index) {
@@ -287,9 +343,31 @@ $(document).ready(function(){
         $("#tCIS_DTOQuantity").val('');
         $('#tCIS_DTORemark').val('');
         $('#tCIS_DTOCommentArea').val('');
-        $('#hfcOrderDetailDTO').val('');
-        $('#hfcProviderDetailDTO').val('');
+//        $('#hfcOrderDetailDTO').val('');
+//        $('#hfcProviderDetailDTO').val('');
         $("#problemCodeDTO").val('');
         
+    }
+    
+    function searchDTOInfo(drugName){
+                $.ajax({
+            type: "post",
+            url: "search/ResultDTOSearchCode.jsp",
+            timeout: 3000,
+            data: {
+                keyword: drugName
+            },
+            success: function (response) {
+                
+                var array_data = String(response).split("|");
+                $('#tCIS_DTODrugCode').val(array_data[0].trim());
+                $('#tCIS_DTODrugForm').val(array_data[7].trim());
+                $('#tCIS_DTODrugRoute').val(array_data[6].trim());
+                $('#tCIS_DTODrugCaution').val(array_data[8].trim());
+                $('#tCIS_DTODrugFrequencyDetail').val(array_data[9].trim());
+                console.log(response);
+            
+            }
+        });
     }
 });

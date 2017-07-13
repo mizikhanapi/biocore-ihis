@@ -29,8 +29,103 @@ $(document).ready(function () {
     $("#CIS040001").on("show.bs.modal",function(e){
         searchingHFCValue( "tCISOELIOHFC", "tCISOELIOHFCSearchLoading", "search/ResultHFCSearch.jsp", "search/ResultHFCSearchCode.jsp", "hfcIdLOS", "-", "hfcOrderDetailLIO", "hfcProviderDetailLIO",hfc_name);
         searchHFCDetailv2($("#tCISOELIOHFC").val(),"hfcIdLOS","hfcOrderDetailLIO","hfcProviderDetailLIO","-");
+    });
+    $("#btnCIS_OE_LIO_SEARCH_CLEAR").click(function (e) {
+        $("#divCIS_OE_LIO_OrderSearchResult").html('');
     })
     
+    $("#divCIS_OE_LIO_OrderSearchResult").on("click","#tblOLIO #btnCIS_OE_LIO_VIEW_RESULT",function(e){
+        alert("lol");
+        
+         var rowOrder = $(this).closest("tr");
+         var orderId = rowOrder.find("#id_result").html();
+
+         $("#CIS040001_RESULT").modal('show');
+         $.ajax({
+             type:"POST",
+             url:"order/LIOImageResult.jsp",
+             timeout:3000,
+             data:{
+                 id_result:orderId
+
+             },
+             success:function(e){
+               
+                 $("#CIS040001_RESULT_IMG").attr("src",e.trim());
+                 //$("CIS040000_RESULT_IMG").html(e);
+             }
+             
+         })
+
+         
+     });
+    
+     $("#divCIS_OE_LIO_OrderSearchResult").on("click","#tblOLIO #btnCIS_OE_LIO_SEARCH_ADD",function(e){
+         e.preventDefault();
+        var rowOrder = $(this).closest("tr");
+        var orderId = rowOrder.find("#orderId").html();
+        var item_cd = rowOrder.find("#item_cd").html();
+        var hfc_to = rowOrder.find("#providerId").html();
+        console.log(orderId);
+
+        $.ajax({
+            timeout: 3000,
+            url: "order/RetrieveOrderDetailLIO.jsp",
+            type: "POST",
+            data: {
+                orderId: orderId,
+                item_cd:item_cd,
+                hfc_to:hfc_to
+            },
+            success: function (e) {
+                console.log(e);
+
+                var orderDetailArray = e.trim();
+                orderDetailArray = e.split("|");
+                console.log(orderDetailArray);
+                var codeLIO = orderDetailArray[3];
+                searchLIO("tCISOELIOSearch","search/ResultLIOSearch.jsp","tCISOELIOSearchLoading",orderDetailArray[4]);
+                $('#LIO_NEW a[href="#laboratoryRequest1"]').tab('show');
+                searchLIOInfo(codeLIO);
+
+
+
+            }
+        })
+     })
+    $("#btnCIS_OE_LIO_SEARCH_ORDER").click(function (e) {
+        e.preventDefault();
+        var order_id = $("#tCIS_OE_LIO_SEARCH_ORDER_ID").val();
+        if (order_id === "") {
+            order_id = "-";
+        }
+        var todayDate = getDate();
+        todayDate = todayDate.split(" ");
+        todayDate = todayDate[0];
+        var type = $("#selectCIS_OE_LIO_SEARCH_TYPE option:selected").val();
+
+        console.log(todayDate);
+        console.log(type);
+        var data = {
+                pmiNo: pmiNo,
+                todayDate: todayDate,
+                type: type,
+                orderId: order_id
+            }
+           
+           console.log(data);
+        $.ajax({
+            url: "order/ResultSearchOrderLIO.jsp",
+            timeout: 3000,
+            type: "POST",
+            data: data,
+            success: function (e) {
+                
+                $("#divCIS_OE_LIO_OrderSearchResult").html(e);
+            }
+        })
+
+    });
     $("#btnCIS_OE_LIO_SUBMIT").click(function(e){
         
         e.preventDefault();
@@ -53,6 +148,7 @@ $(document).ready(function () {
                     status: "1"
                 }
             sendOrder(data,"tableOrderLIO");
+            _dataLIO = [];
         } else {
             return false;
         }
@@ -182,23 +278,7 @@ $(document).ready(function () {
     });
     $("#tCISOELIOSearch").on('select:flexdatalist', function (response) {
         var codeLIO = $("#codeLOS").val();
-        
-        $.ajax({
-            type: "post",
-            url: "search/ResultLIOSearchCode.jsp",
-            timeout: 3000,
-            data: {code: codeLIO},
-            success: function (response) {
-  
-                var arrayLIO = response.trim().split("|");
-                $('#searchLOS').val(arrayLIO[1]);
-                $('#catLOS').val(arrayLIO[2]);
-                $('#sourceLOS').val(arrayLIO[3]);
-                $('#containerLOS').val(arrayLIO[4]);
-                $('#volumeLOS').val(arrayLIO[5]);
-                $('#spclLOS').val(arrayLIO[6]);
-            }
-        });
+        searchLIOInfo(codeLIO);
     });
     
     $("#btnCIS_OE_LIO_CANCEL").click(function (e) {
@@ -289,6 +369,26 @@ $(document).ready(function () {
                         $('#' + loadingId).html('No Record');
                     }
                 }
+            }
+        });
+    }
+    
+    function searchLIOInfo(codeLIO){
+        $.ajax({
+            type: "post",
+            url: "search/ResultLIOSearchCode.jsp",
+            timeout: 3000,
+            data: {code: codeLIO},
+            success: function (response) {
+
+                var arrayLIO = response.trim().split("|");
+                $('#searchLOS').val(arrayLIO[1]);
+                $('#catLOS').val(arrayLIO[2]);
+                $('#sourceLOS').val(arrayLIO[3]);
+                $('#containerLOS').val(arrayLIO[4]);
+                $('#volumeLOS').val(arrayLIO[5]);
+                $('#spclLOS').val(arrayLIO[6]);
+
             }
         });
     }
