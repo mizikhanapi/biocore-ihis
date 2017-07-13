@@ -15,61 +15,61 @@
     String dis = session.getAttribute("DISCIPLINE_CODE").toString();
 %>
 
-
-<div class="row">
-    <div class="col-md-8">
-        <h4>Consultation Notes</h4>
-    </div>
-    <div class="col-md-4" style="padding-top: 20px">
-        <label class="col-sm-6 control-label text-right" for="formGroupInputLarge">View history assessment:</label>
-        <div class="col-sm-6" style="padding-right: 0px;">
-            <select class="form-control" id="chartCirculationSelectAssessment">
-                <option value="0">View by</option>
-                <option value="today">Today</option>
-                <option value="yesterday">Yesterday</option>
-                <option value="7day">7 Days</option>
-                <option value="30day">30 Days</option>
-                <option value="60day">60 Days</option>
-                <option value="custom">Select date</option>
-            </select>
+<div id="chartCirculationMain">
+    <div class="row">
+        <div class="col-md-8">
+            <h4>Consultation Notes</h4>
+        </div>
+        <div class="col-md-4" style="padding-top: 20px">
+            <label class="col-sm-6 control-label text-right" for="formGroupInputLarge">View history assessment:</label>
+            <div class="col-sm-6" style="padding-right: 0px;">
+                <select class="form-control" id="chartCirculationSelectAssessment">
+                    <option value="0">View by</option>
+                    <option value="today">Today</option>
+                    <option value="yesterday">Yesterday</option>
+                    <option value="7day">7 Days</option>
+                    <option value="30day">30 Days</option>
+                    <option value="60day">60 Days</option>
+                    <option value="custom">Select date</option>
+                </select>
+            </div>
+        </div>
+        <div class="col-md-6 col-md-offset-6 text-right margin-bottom-30px" id="chartCirculationSelectAssessmentStartEnd">
+            <div class="col-sm-12 form-inline" style="padding-right: 0px;">
+                <div class="form-group">
+                    <label for="exampleInputName2">Start</label>
+                    <input type="text" class="form-control" id="chartCirculationSelectAssessmentStart" placeholder="14/06/2017" style="margin-bottom: 0px !important;">
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputEmail2">to</label>
+                    <input type="email" class="form-control" id="chartCirculationSelectAssessmentEnd" placeholder="15/06/2017" style="margin-bottom: 0px !important;">
+                </div>
+                <button type="submit" class="btn btn-default" id="chartCirculationSelectAssessmentStartEndBtn"><i class="fa fa-search fa-lg"></i></button>
+            </div>
         </div>
     </div>
-    <div class="col-md-6 col-md-offset-6 text-right margin-bottom-30px" id="chartCirculationSelectAssessmentStartEnd">
-        <div class="col-sm-12 form-inline" style="padding-right: 0px;">
-            <div class="form-group">
-                <label for="exampleInputName2">Start</label>
-                <input type="text" class="form-control" id="chartCirculationSelectAssessmentStart" placeholder="14/06/2017" style="margin-bottom: 0px !important;">
-            </div>
-            <div class="form-group">
-                <label for="exampleInputEmail2">to</label>
-                <input type="email" class="form-control" id="chartCirculationSelectAssessmentEnd" placeholder="15/06/2017" style="margin-bottom: 0px !important;">
-            </div>
-            <button type="submit" class="btn btn-default" id="chartCirculationSelectAssessmentStartEndBtn"><i class="fa fa-search fa-lg"></i></button>
-        </div>
+
+    <div id="tableChartCirculationDiv">
+        <table class="table table-bordered" id="tableChartCirculationTable" style="width: 100%">
+            <thead>
+            <th>Date</th>
+            <th>Time</th>
+            <th>Colour</th>
+            <th>Sensation</th>
+            <th>Hot / Cold</th>
+            <th>Movement</th>
+            <th>Others</th>
+            <th>Action</th>
+            </thead>
+            <tbody>
+                <tr>
+                    <td colspan="8" align="center">No Record To Show<br>Please Select A History Assessment</td>
+                </tr> 
+            </tbody>
+
+        </table>
+
     </div>
-</div>
-
-<div id="tableChartCirculationDiv">
-    <table class="table table-bordered" id="tableChartCirculationTable" style="width: 100%">
-        <thead>
-        <th>Date</th>
-        <th>Time</th>
-        <th>Colour</th>
-        <th>Sensation</th>
-        <th>Hot / Cold</th>
-        <th>Movement</th>
-        <th>Others</th>
-        <th>Action</th>
-        </thead>
-        <tbody>
-            <tr>
-                <td colspan="8" align="center">No Record To Show<br>Please Select A History Assessment</td>
-            </tr> 
-        </tbody>
-
-    </table>
-
-
 </div>
 <script>
 
@@ -106,7 +106,7 @@
             if (patientName === "-") {
                 bootbox.alert("You need to select the patient !!!");
                 $('#chartCirculationSelectAssessment').prop('selectedIndex', 0);
-            } else if (filterBy === "6") {
+            } else if (filterBy === "custom") {
                 $("#chartCirculationSelectAssessmentStartEnd").show();
             } else {
 
@@ -248,18 +248,21 @@
                 $.ajax({
                     type: "post",
                     url: "../Ortho-NursingInWard/controller/CirculationFunction.jsp",
-                    data: {datas: datas, methodName: "add"},
+                    data: {dataString: datas, methodName: "add"},
                     timeout: 10000,
                     success: function (result) {
-                        console.log(result);
-//                        if (result.trim() === 'true') {
-//                            bootbox.alert("Successfully Added !!");
-//
-//                            $('#tableChartCirculationDiv').html('#tableChartCirculationDiv');
-//                            
-//                        } else if (result.trim() === 'false') {
-//                            bootbox.alert("fail to add");
-//                        }
+
+                        if (result.trim() === 'true') {
+
+                            bootbox.alert("Successfully Added !!");
+
+                            resetTableChartCirculation();
+
+                        } else if (result.trim() === 'false') {
+
+                            bootbox.alert("fail to add");
+
+                        }
                     },
                     error: function (err) {
                         bootbox.alert("something wrong,error: " + err);
@@ -274,8 +277,33 @@
 
 // ---------------------------------------------------------------------------- Insert ------------------------------------------------------------------------------------------- //
 
+        function resetTableChartCirculation() {
+
+            $("#tableChartCirculationDiv").html('<table class="table table-bordered" id="tableChartCirculationTable" style="width: 100%">\n\
+                                    <thead>\n\
+                                    <th>Date</th>\n\
+                                    <th>Time</th>\n\
+                                    <th>Colour</th>\n\
+                                    <th>Sensation</th>\n\
+                                    <th>Hot / Cold</th>\n\
+                                    <th>Movement</th>\n\
+                                    <th>Others</th>\n\
+                                    <th>Action</th>\n\
+                                    </thead>\n\
+                                    <tbody>\n\
+                                    <tr>\n\
+                                    <td colspan="8" align="center">No Record To Show<br>Please Select A History Assessment</td>\n\
+                                    </tr>\n\
+                                    </tbody>\n\
+                                    </table>');
+
+            $('#chartCirculationSelectAssessment').prop('selectedIndex', 0);
+
+        }
+// ---------------------------------------------------------------------------- Reset Table ------------------------------------------------------------------------------------------- //
 
 
+// ---------------------------------------------------------------------------- Reset Table ------------------------------------------------------------------------------------------- //
 
 
 // ---------------------------------------------------------------------------- Date ------------------------------------------------------------------------------------------- //
