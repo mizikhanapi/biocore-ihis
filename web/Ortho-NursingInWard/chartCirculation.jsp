@@ -260,17 +260,13 @@
                         if (result.trim() === 'true') {
 
                             bootbox.alert("Successfully Added !!");
-
                             $("#circulationChart").modal('hide');
-
                             resetTableChartCirculation();
 
                         } else if (result.trim() === 'false') {
 
-                            bootbox.alert("fail to add");
-
+                            bootbox.alert("Fail to Add");
                             $("#circulationChart").modal('hide');
-
 
                         }
                     },
@@ -280,7 +276,6 @@
                 });
             }
         });
-
         // Add Get Data And Send To Controller Function End
 
 
@@ -331,6 +326,64 @@
 
         });
         // Function For Update Button End
+
+
+        // Add Get Data And Send To Controller Function Start
+        $('#circulationChart #chartCirculationModal_btnAdd_or_btnUpdate_div').on('click', '#chartCirculationUpdateModalBtn', function (e) {
+            e.preventDefault();
+
+            var date = $('#chartCirculationModalDate').val();
+            var sDate = date.split('/');
+            var newDate = sDate[2] + "-" + sDate[1] + "-" + sDate[0];
+
+            var pmi_no = $('#NIWChartCirculationPmi').val();
+            var hfc_cd1 = $('#NIWChartCirculationHfc').val();
+            var epDate = $('#NIWChartCirculationEpisodeDate').val();
+            var encounterDate = $('#NIWChartCirculationEncounterDate').val();
+            var time = $('#chartCirculationModalTime').val();
+            var colour = $('#chartCirculationModalColour').val();
+            var sensation = $('#chartCirculationModalSensation').val();
+            var hotcold = $("input[name='HotCold']:checked").val();
+            var movement = $('#chartCirculationModalMovement').val();
+            var others = $('#chartCirculationModalOthers').val();
+
+
+            if (hotcold === undefined) {
+                hotcold = "";
+            }
+
+            var datas = pmi_no + "|" + hfc_cd1 + "|" + epDate + "|" + encounterDate + "| | |" + newDate + " " + time + ":00.0|" + colour + "|" + sensation + "|" + hotcold + "|" + movement + "|" + others;
+            console.log(datas);
+
+            $.ajax({
+                type: "post",
+                url: "../Ortho-NursingInWard/controller/CirculationFunction.jsp",
+                data: {dataString: datas, methodName: "update"},
+                timeout: 10000,
+                success: function (result) {
+
+                    if (result.trim() === 'true') {
+
+                        bootbox.alert("Successfully Updated !!");
+                        $("#circulationChart").modal('hide');
+                        resetTableChartCirculation();
+
+                    } else if (result.trim() === 'false') {
+
+                        bootbox.alert("Fail to Update");
+                        $("#circulationChart").modal('hide');
+
+                    }
+                },
+                error: function (err) {
+                    bootbox.alert("something wrong,error: " + err);
+                }
+            });
+
+        });
+
+        // Add Get Data And Send To Controller Function End
+
 
 // ---------------------------------------------------------------------------- Update ------------------------------------------------------------------------------------------- //
 
