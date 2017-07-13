@@ -63,13 +63,13 @@
                                 <div class="col-md-12 form-inline">
                                     <div class="radio radio-primary">
                                         <input type="radio" name="HotCold" value="Hot" id="chartCirculationModalHot">
-                                        <label for="HotCold1">
+                                        <label for="chartCirculationModalHot">
                                             Hot
                                         </label>
                                     </div>
                                     <div class="radio radio-primary">
                                         <input type="radio" name="HotCold" value="Cold" id="chartCirculationModalCold">
-                                        <label for="HotCold2">
+                                        <label for="chartCirculationModalCold">
                                             Cold
                                         </label>
                                     </div>
@@ -86,7 +86,7 @@
                             </div>
                         </div>
                     </div>
-                    
+
                     <div class="row">
                         <div class="col-md-12">
                             <!-- Text input-->
@@ -104,7 +104,6 @@
             <div class="modal-footer">
                 <div class="btn-group btn-group-justified" role="group" aria-label="group button">
                     <div class="btn-group" role="group" id="chartCirculationModal_btnAdd_or_btnUpdate_div">
-<!--                        <button type="button" class="btn btn-success btn-block btn-lg" id="acceptBloodPBtn" role="button">Add Items</button>-->
                     </div>
                     <div class="btn-group" role="group">
                         <button type="button" id="chartCirculationModalReset" class="btn btn-default btn-block btn-lg" data-dismiss="modal" role="button">Close</button>
