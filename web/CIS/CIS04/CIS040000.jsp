@@ -47,7 +47,7 @@
                                             <div class="form-group">
                                                 <label class="col-md-2 control-label" for="textinput">Health Facility</label>
                                                 <div class="col-md-9">
-                                                    <input class="form-control input-lg" type="text"  id="tCISOEROSHFC" placeholder="Type to search..." data-relatives='#chained_relative' data-chained-relatives='true'>
+                                                    <input class="form-control input-lg" type="text"  id="tCISOEROSHFC" placeholder="Type to search..." data-relatives='#chained_relative' data-chained-relatives='true' data-search-by-word="true">
                                                     <div id="tCISOEROSHFCSearchLoading" ></div>
                                                     <input class="form-control input-lg" type="hidden"  id="hfcROS" placeholder="">
                                                     <input class="form-control input-lg" type="hidden"  id="hfcOrderDetail" placeholder="">
@@ -77,7 +77,7 @@
                                             <div class="form-group">
                                                 <label class="col-md-2 control-label" for="textinput">Search Problem Name</label>
                                                 <div class="col-md-9">
-                                                    <input class="form-control input-lg" type="text" name="problem"  id="tCISOEROSProblemName" placeholder="Search Problem Name..." tabindex="4">
+                                                    <input class="form-control input-lg" type="text" name="problem"  id="tCISOEROSProblemName" placeholder="Search Problem Name..." tabindex="4" data-search-by-word="true">
                                                     <div id="tCISOEROSProblemNameLoading" ></div>
                                                     <!--                                                    <input class="form-control input-lg" type="text" name="problem"  id="ROS" placeholder="Search Radiology Procedure..." tabindex="4">
                                                                                                         <div id="matchROS" class="search-drop"></div>-->
@@ -86,7 +86,7 @@
                                             <div class="form-group">
                                                 <label class="col-md-2 control-label" for="textinput">Search Radiology Procedure</label>
                                                 <div class="col-md-9">
-                                                    <input class="form-control input-lg" type="text" name="problem"  id="tCISOEROSProcedureSearch" placeholder="Search Radiology Procedure..." tabindex="4">
+                                                    <input class="form-control input-lg" type="text" name="problem"  id="tCISOEROSProcedureSearch" placeholder="Search Radiology Procedure..." tabindex="4" data-search-by-word="true">
                                                     <div id="tCISOEROSProcedureSearchLoading" ></div>
 <!--                                                    <input class="form-control input-lg" type="text" name="problem"  id="ROS" placeholder="Search Radiology Procedure..." tabindex="4">
                                                     <div id="matchROS" class="search-drop"></div>-->

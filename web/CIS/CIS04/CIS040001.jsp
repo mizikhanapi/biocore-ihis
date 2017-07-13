@@ -43,7 +43,7 @@
                                         </div>
                                         <div class="form-group">
                                              <label class="col-md-6 control-label" for="textinput">Search Problem</label>
-                                             <input class="form-control input-lg" type="text" name="problem"  id="tCISOELIOProblemName" placeholder="Search Problem Name..." tabindex="4">
+                                             <input class="form-control input-lg" type="text" name="problem"  id="tCISOELIOProblemName" placeholder="Search Problem Name..." tabindex="4" data-search-by-word="true">
                                                     <div id="tCISOELIOProblemNameLoading" ></div>
                                              <div class="col-md-12">
                                                  
@@ -60,10 +60,10 @@
                                                        data-visible-properties='["name","source"]'
                                                        data-selection-required='true'
                                                        data-min-length='1'
-                                                       name='country_name_capital_continent'>
+                                                       name='country_name_capital_continent' data-search-by-word="true">
 
                                                 <div id="tCISOELIOSearchLoading" ></div>
-                                                <input class="form-control input-lg" type="hidden" name="problem"  id="searchLOS" placeholder="Search Laboratory request..." tabindex="4">
+                                                <input class="form-control input-lg" type="hidden" name="problem"  id="searchLOS" placeholder="Search Laboratory request..." tabindex="4" data-search-by-word="true">
                                                 <input class="form-control input-lg" type="hidden" name="dtoCode"  id="codeLOS" placeholder="Drug Code..." tabindex="4" readonly="">
                                                 <div id="matchLOS" ></div>
                                             </div>
@@ -190,7 +190,7 @@
                                         <div class="form-group">
                                             <label class="col-md-6" for="textinput">Health Facility</label>
                                             <div class="col-md-12">
-                                                <input class="form-control input-lg" type="text"  id="tCISOELIOHFC" placeholder="Type to search..." data-relatives='#chained_relative' data-chained-relatives='true'>
+                                                <input class="form-control input-lg" type="text"  id="tCISOELIOHFC" placeholder="Type to search..." data-relatives='#chained_relative' data-chained-relatives='true' data-search-by-word="true">
                                                 <div id="tCISOELIOHFCSearchLoading" ></div>
 <!--                                                <input class="form-control input-lg" type="text"  id="hfcLOS" placeholder="">-->
                                                 <input class="form-control input-lg" type="hidden"  id="hfcOrderDetailLIO" placeholder="">
@@ -212,14 +212,16 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            
                                                         <div class="btn-group btn-group-justified" role="group" aria-label="group button">
                                                             <div class="btn-group btn-primary" role="group">
                                                                 <button type="button" id="btnCIS_OE_LIO_UPDATE" class="btn btn-primary btn-block btn-lg" role="button">Update</button>
                                                                 <button type="button" id="btnCIS_OE_LIO_CANCEL" class="btn btn-delete btn-block btn-lg" role="button">Cancel</button>
                                                                 <button type="button" id="btnCIS_OE_LIO_ADD" class="btn btn-primary btn-block btn-lg" role="button">Add</button>
                                                             </div>
-                                                        </div>   
+                                                        </div>  
+                                
+                                </div>
                             <!-- Tab 1 -->    
 
                             <!-- Tab 2 -->
@@ -246,7 +248,7 @@
                                     </div>
 
                                     <div class="text-center">
-                                        <button class="btn btn-primary" type="button" id="searchPatient" name="searchPatient"><i class="fa fa-search"></i>&nbsp; Search</button>
+                                        <button class="btn btn-primary" type="button" id="divCIS_OE_ROS_OrderSearchResult" name="searchPatient"><i class="fa fa-search"></i>&nbsp; Search</button>
                                         <button id="clearSearch" name="clearSearch" type="button" class="btn btn-default"><i class="fa fa-times"></i>&nbsp; Clear</button>
                                     </div>
                                 </form>

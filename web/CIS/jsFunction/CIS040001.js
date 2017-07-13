@@ -26,6 +26,11 @@ $(document).ready(function () {
     searching("tCISOELIOProblemName","tCISOELIOProblemNameLoading","search/ResultCCNSearch.jsp","problemCodeLIO","search/ResultCCNSearchCode.jsp");
     searchLIO("tCISOELIOSearch","search/ResultLIOSearch.jsp","tCISOELIOSearchLoading","");
     
+    $("#CIS040001").on("show.bs.modal",function(e){
+        searchingHFCValue( "tCISOELIOHFC", "tCISOELIOHFCSearchLoading", "search/ResultHFCSearch.jsp", "search/ResultHFCSearchCode.jsp", "hfcIdLOS", "-", "hfcOrderDetailLIO", "hfcProviderDetailLIO",hfc_name);
+        searchHFCDetailv2($("#tCISOELIOHFC").val(),"hfcIdLOS","hfcOrderDetailLIO","hfcProviderDetailLIO","-");
+    })
+    
     $("#btnCIS_OE_LIO_SUBMIT").click(function(e){
         
         e.preventDefault();

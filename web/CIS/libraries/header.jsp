@@ -52,8 +52,8 @@
 <script src="jsFunction/search/SearchCCN_cd1.js" type="text/javascript"></script>
 <script src="jsFunction/search/SearchCNN.js" type="text/javascript"></script>
 <script src="jsFunction/search/SearchDAS_cd.js" type="text/javascript"></script>
-<!--<script src="jsFunction/search/SearchDTO.js" type="text/javascript"></script>
-<script src="jsFunction/search/SearchDTO_cd.js" type="text/javascript"></script>-->
+<script src="jsFunction/search/SearchDTO.js" type="text/javascript"></script>
+<script src="jsFunction/search/SearchDTO_cd.js" type="text/javascript"></script>
 <script src="jsFunction/search/SearchDisability1.js" type="text/javascript"></script>
 <script src="jsFunction/search/SearchFMH.js" type="text/javascript"></script>
 <script src="jsFunction/search/SearchFMH_cd1.js" type="text/javascript"></script>
@@ -69,7 +69,7 @@
 <script src="jsFunction/search/SearchSOP.js" type="text/javascript"></script>
 <script src="jsFunction/search/SearchuALG_cd.js" type="text/javascript"></script>
 <script src="jsFunction/search/SearchuDAS_cd.js" type="text/javascript"></script>
-<!--<script src="jsFunction/search/SearchuDTO_cd.js" type="text/javascript"></script>-->
+<script src="jsFunction/search/SearchuDTO_cd.js" type="text/javascript"></script>
 <script src="jsFunction/search/SearchuFMH_cd.js" type="text/javascript"></script>
 <script src="jsFunction/search/SearchuIMU_cd.js" type="text/javascript"></script>
 <script src="jsFunction/search/SearchuPMH_cd.js" type="text/javascript"></script>

@@ -39,17 +39,17 @@
                                             <label class="col-md-6 control-label" for="textinput">Search Problem</label>
                                             <div class="col-md-12">
                                                 <input class="form-control input-lg" type="hidden"  id="problemCodeDTO" placeholder="">
-                                                <input class="form-control input-lg" type="text" name="problem"  id="tCISOEDTOProblemName" placeholder="Search Problem Name..." tabindex="4">
+                                                <input class="form-control input-lg" type="text" name="problem"  id="tCISOEDTOProblemName" placeholder="Search Problem Name..." tabindex="4" data-search-by-word="true">
                                                 <div id="tCISOEDTOProblemNameLoading" ></div>
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <label class="col-md-6 control-label" for="textinput">Search Drug</label>
                                             <div class="col-md-12">
-                                                <input class="form-control input-lg" type="text" name="problem"  id="tCISOEDTODrugName" placeholder="Search Drug Name..." tabindex="4">
+                                                <input class="form-control input-lg" type="text" name="problem"  id="tCISOEDTODrugName" placeholder="Search Drug Name..." tabindex="4" data-search-by-word="true">
                                                 <div id="tCISOEDTODrugNameLoading" ></div>
                                                 <input type="hidden" name="DTO" id="jsonId" class="form-control input-lg"  tabindex="4">
-                                                <input class="form-control input-lg" type="hidden" name="problem"  id="tCIS_DTODrugName" placeholder="Type to search..." tabindex="4">
+<!--                                                <input class="form-control input-lg" type="text" name="problem"  id="tCIS_DTODrugName" placeholder="Type to search..." tabindex="4" data-search-by-word="true">-->
                                                 <input class="form-control input-lg" type="hidden" name="dtoCode"  id="tCIS_DTODrugCode" placeholder="Drug Code..." tabindex="4" readonly="">
                                                 <input class="form-control input-lg" type="hidden"  id="hfcDTO" placeholder="">
                                                 <input class="form-control input-lg" type="hidden"  id="hfcOrderDetailDTO" placeholder="s">
@@ -265,14 +265,15 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            
                             <div class="btn-group btn-group-justified" role="group" aria-label="group button">
                                 <div class="btn-group btn-primary" role="group">
                                     <button type="button" id="btnCIS_OE_DTO_UPDATE" class="btn btn-primary btn-block btn-lg" role="button">Update</button>
                                     <button type="button" id="btnCIS_OE_DTO_CANCEL" class="btn btn-delete btn-block btn-lg" role="button">Cancel</button>
                                     <button type="button" id="btnCIS_OE_DTO_ADD" class="btn btn-primary btn-block btn-lg" role="button">Add</button>
                                 </div>
-                            </div>   
+                            </div>
+                            </div>
                             <div class="tab-pane" id="drugOrder2">
                                 <form class="form-horizontal" name="myForm" id="myForm">
                                     <!-- Select Basic -->

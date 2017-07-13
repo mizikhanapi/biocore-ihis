@@ -3,16 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-//$(document).ready(function(){
 
-//    searching("tCISSubCCNHFCSearch","tCISSubCCNHFCSearchLoading","search/ResultCCNSearch.jsp","ccnCode","search/ResultCCNSearchCode.jsp");
-//    searching("tCISSubPMHSearch","tCISSubPMHSearchLoading","search/ResultPMHSearch.jsp","codePMH","search/ResultPMHSearchCode.jsp");
-//    searching("tCISSubFMHSearch","tCISSubFMHSearchLoading","search/ResultPMHSearch.jsp","fmhCode","search/ResultPMHSearchCode.jsp");
-//    searching("tCISSubSOHSearch","tCISSubSOHSearchLoading","search/ResultSOHSearch.jsp","codeSOH","search/ResultSOHSearchCode.jsp");
-//    searching("tCISSubALGSearch","tCISSubALGSearchLoading","search/ResultALGSearch.jsp","codeALG","search/ResultALGSearchCode.jsp");
-//    searching("tCISSubIMUSearch","tCISSubIMUSearchLoading","search/ResultIMUSearch.jsp","codeIMU","search/ResultIMUSearchCode.jsp");
-//    searching("tCISSubDABSearch","tCISSubDABSearchLoading","search/ResultDABSearch.jsp","codeDAB","search/ResultDABSearchCode.jsp");
-    //function searching Chief complaint
     function searching(fieldId,loadingDivId,urlData,codeFieldId,urlCode){
         $('#'+fieldId).flexdatalist({
             minLength: 1,
@@ -164,6 +155,99 @@ function searchingHFC(fieldId, loadingDivId, urlData, urlCode, codeFieldId, loca
 
     });
 }
+
+function searchingHFCValue(fieldId, loadingDivId, urlData, urlCode, codeFieldId, locationField, hfcOrderDetail, hfcProviderDetail,currentHFCName) {
+    console.log("searchHFCValue");
+
+    $('#' + fieldId).val(currentHFCName).flexdatalist({
+        minLength: 3,
+        searchIn: 'name',
+        searchDelay: 2000,
+        url: urlData,
+        cache: true,
+        params: {
+            timeout: 3000,
+            success: function (result) {
+                console.log(result);
+                if (result === undefined) {
+                    $('#' + loadingDivId).html('No Record');
+                }
+            }
+        }
+    });
+
+    $("#" + fieldId).on('before:flexdatalist.data', function (response) {
+
+        $('#' + loadingDivId).html('<img src="img/LoaderIcon.gif" />');
+    });
+    $("#" + fieldId).on('after:flexdatalist.data', function (response) {
+
+        $('#' + loadingDivId).html('');
+    });
+    $("#" + fieldId).on('select:flexdatalist', function (response) {
+        var hfc_name = $("#" + fieldId).val();
+        $.ajax({
+            type: "post",
+            url: urlCode,
+            timeout: 3000,
+            data: {
+                id: hfc_name,
+                orderCode: "ROS"
+            },
+            success: function (response) {
+                console.log(response);
+                var hfc_detail_array = response.split("[#-#]");
+                var hfc_location = hfc_detail_array[0].split("|");
+                $('#' + codeFieldId).val(hfc_location[0].trim());
+
+                if (hfcOrderDetail !== "-") {
+                    $('#' + hfcOrderDetail).val(hfc_detail_array[1].trim());
+                }
+                if (hfcProviderDetail !== "-") {
+                    $('#' + hfcProviderDetail).val(hfc_detail_array[2].trim());
+                }
+                if (locationField !== "-") {
+                    $('#' + locationField).val(hfc_location[1].trim());
+                }
+
+
+            }
+        });
+
+    });
+}
+
+function searchHFCDetailv2(hfcName,codeFieldId,hfcOrderDetail,hfcProviderDetail,locationField){
+            var hfc_name = hfcName
+        $.ajax({
+            type: "post",
+            url: "search/ResultHFCSearchCode.jsp",
+            timeout: 3000,
+            data: {
+                id: hfc_name,
+                orderCode: "ROS"
+            },
+            success: function (response) {
+                console.log(response);
+                var hfc_detail_array = response.split("[#-#]");
+                var hfc_location = hfc_detail_array[0].split("|");
+                $('#' + codeFieldId).val(hfc_location[0].trim());
+
+                if (hfcOrderDetail !== "-") {
+                    $('#' + hfcOrderDetail).val(hfc_detail_array[1].trim());
+                }
+                if (hfcProviderDetail !== "-") {
+                    $('#' + hfcProviderDetail).val(hfc_detail_array[2].trim());
+                }
+                if (locationField !== "-") {
+                    $('#' + locationField).val(hfc_location[1].trim());
+                }
+
+
+            }
+        });
+}
+
 
 function searchHFCOnly(fieldId,loadingDivId){
     
@@ -370,6 +454,7 @@ function searchDTO(searchFieldId, loadingId, currentValue) {
         searchDelay: 2000,
         selectionRequired: true,
         url: "search/ResultDTOSearch.jsp",
+        valueProperty:'value',
         cache: true,
         params: {
             timeout: 3000,

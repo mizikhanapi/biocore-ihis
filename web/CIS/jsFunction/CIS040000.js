@@ -12,6 +12,15 @@ $(document).ready(function () {
     var rowId;
     var hfcRISCode = "";
     var rowDataTr;
+    
+    $("#CIS040000").on('show.bs.modal',function(e){
+        searchingHFCValue( "tCISOEROSHFC", "tCISOEROSHFCSearchLoading", "search/ResultHFCSearch.jsp", "search/ResultHFCSearchCode.jsp", "hfcIdROS", "locationROS", "hfcOrderDetail", "hfcProviderDetail",hfc_name);
+        
+        searchHFCDetailv2($("#tCISOEROSHFC").val(),"hfcIdROS","hfcOrderDetail","hfcProviderDetail","locationROS");
+         $("#tCISOEROSProcedureSearch").prop("disabled", false);
+         searchingRISPRO("tCISOEROSProcedureSearch", "tCISOEROSProcedureSearchLoading", "search/ResultRISProcedureSearch.jsp", "search/ResultRISProcedureSearchCode.jsp", "codeROS_2", "modalityROSCode", "modalityROS", "bodySystemROSCode", "bodySystemROS",'')
+    });
+    
     $("#tCISOEROSProcedureSearch").prop("disabled", true);
     
     searchingHFC( "tCISOEROSHFC", "tCISOEROSHFCSearchLoading", "search/ResultHFCSearch.jsp", "search/ResultHFCSearchCode.jsp", "hfcIdROS", "locationROS", "hfcOrderDetail", "hfcProviderDetail");
@@ -231,7 +240,9 @@ $(document).ready(function () {
         //retrieve and show back the data from object
         retrieveDataSearchingHFC("tCISOEROSHFC", "tCISOEROSHFCSearchLoading", "search/ResultHFCSearch.jsp", "search/ResultHFCSearchCode.jsp", "hfcIdROS", "locationROS", "hfcOrderDetail", "hfcProviderDetail", updateObj.hfcROS, updateObj.ROS);
         searchingRetrieve("tCISOEROSProblemName", "tCISOEROSProblemNameLoading", "search/ResultCCNSearch.jsp", "problemCode", "search/ResultCCNSearchCode.jsp", updateObj.problemName);
+        $("#tCISOEROSProcedureSearch").prop("disabled", false);
         searchingRISPRO("tCISOEROSProcedureSearch", "tCISOEROSProcedureSearchLoading", "search/ResultRISProcedureSearch.jsp", "search/ResultRISProcedureSearchCode.jsp", "codeROS_2", "modalityROSCode", "modalityROS", "bodySystemROSCode", "bodySystemROS", updateObj.ROS);
+        
         $("#locationROS").val(updateObj.locationROS);
         $("#hfcProviderDetail").val(updateObj.hfcProviderDetail);
         $("#hfcOrderDetail").val(updateObj.hfcOrderDetail);
@@ -298,6 +309,7 @@ $(document).ready(function () {
             searchIn: 'name',
             searchDelay: 2000,
             url: urlData,
+            valueProperty:'value',
             cache: true,
             params: {
                 timeout: 3000,
@@ -324,6 +336,7 @@ $(document).ready(function () {
                 timeout: 3000,
                 data: {id: hfc_name},
                 success: function (response) {
+
                     var array_data = String(response).split("|");
                     var urosCode = array_data[0];
                     var modalityCODE = array_data[1];
