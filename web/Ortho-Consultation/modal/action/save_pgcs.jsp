@@ -16,11 +16,12 @@
     
     String pgcsResult = request.getParameter("pgcsResult");
     String pgcsPoint = request.getParameter("pgcsPoint");
+    String encounter_date = request.getParameter("encounter_date");
                               
     RMIConnector rmic = new RMIConnector();
 
     Conn conn = new Conn();
-    String sqlInsert = "UPDATE lhr_ort_neu_observation_chart SET result = '"+pgcsResult+"',points = '"+pgcsPoint+"' WHERE pmi_no = '" + pmino + "' AND hfc_cd = '"+hfc+"' AND episode_date = '"+episodeDate+"'";
+    String sqlInsert = "UPDATE lhr_ort_neu_observation_chart SET result = '"+pgcsResult+"',points = '"+pgcsPoint+"' WHERE pmi_no = '" + pmino + "' AND hfc_cd = '"+hfc+"' AND episode_date = '"+episodeDate+"' AND encounter_date = '"+encounter_date+"'";
     rmic.setQuerySQL(conn.HOST, conn.PORT, sqlInsert);
     
 %>
