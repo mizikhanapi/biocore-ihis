@@ -15,6 +15,10 @@
                 <form autocomplete="off" id="chartCirculationForm">
                     <div class="row">
                         <div class="col-md-6">
+                            <input type="hidden" id="NIWChartCirculationPmi" >
+                            <input type="hidden" id="NIWChartCirculationHfc" >
+                            <input type="hidden" id="NIWChartCirculationEpisodeDate" >
+                            <input type="hidden" id="NIWChartCirculationEncounterDate">
                             <!-- Text input-->
                             <div class="form-group">
                                 <label class="col-md-12 control-label" for="textinput">Date</label>
