@@ -24,7 +24,7 @@
             <label class="col-sm-6 control-label text-right" for="formGroupInputLarge">View history assessment:</label>
             <div class="col-sm-6" style="padding-right: 0px;">
                 <select class="form-control" id="chartCirculationSelectAssessment">
-                    <option value="0">View by</option>
+                    <option selected="" disabled="">View by</option>
                     <option value="today">Today</option>
                     <option value="yesterday">Yesterday</option>
                     <option value="7day">7 Days</option>
@@ -199,6 +199,7 @@
             $("#chartCirculationModalDate").datepicker({
                 changeMonth: true,
                 changeYear: true,
+                maxDate: '+0d',
                 dateFormat: 'dd/mm/yy'
             });
 
@@ -242,6 +243,10 @@
                 bootbox.alert("Please Insert Assessment Time !!");
             } else {
 
+                if (hotcold === undefined) {
+                    hotcold = "";
+                }
+
                 var datas = pmi_no + "|" + hfc_cd1 + "|" + epDate + "|" + encounterDate + "| | |" + newDate + " " + time + ":00.0|" + colour + "|" + sensation + "|" + hotcold + "|" + movement + "|" + others;
                 console.log(datas);
 
@@ -269,6 +274,7 @@
                     }
                 });
             }
+            $("#circulationChart").modal('hide');
         });
 
         // Add Get Data And Send To Controller Function End
