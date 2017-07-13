@@ -13,8 +13,10 @@
     String methodName = request.getParameter("methodName");
 
     Boolean result;
-
-    if (methodName.equalsIgnoreCase("view") && !data.equalsIgnoreCase("null")) {
+    if (methodName.equalsIgnoreCase("add")) {
+        result = cirUt.addCirculation(data);
+        out.print(result);
+    } else if (methodName.equalsIgnoreCase("view") && !data.equalsIgnoreCase("null")) {
         ArrayList<ArrayList<String>> datas = cirUt.getCirculation(data);
 
 %>
@@ -52,8 +54,6 @@
 
 </table>
 
-<%}%>
-
 <script>
     $('#tableChartCirculationTable').DataTable({
         "paging": true,
@@ -64,3 +64,5 @@
         }
     });
 </script>
+
+<%}%>
