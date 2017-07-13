@@ -19,6 +19,9 @@
     } else if (methodName.equalsIgnoreCase("update")) {
         result = cirUt.updateCirculation(data);
         out.print(result);
+    } else if (methodName.equalsIgnoreCase("delete")) {
+        result = cirUt.delCirculation(data);
+        out.print(result);
     } else if (methodName.equalsIgnoreCase("view") && data.equalsIgnoreCase("null")) {
         // Do Nothing
     } else if (methodName.equalsIgnoreCase("view") && !data.equalsIgnoreCase("null")) {
