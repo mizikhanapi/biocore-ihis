@@ -130,9 +130,10 @@
                 <!-- content -->
                 <div class="tab-pane fade" id="Ortho-NursingInWard_8">
                     <ul class="soap-content nav">
-                        <li><a data-toggle="modal" data-target="#redivacDrainChart1" href="" class="soap-select"><i class="fa fa-comments  fa-li"></i> 7am - 2pm</a></li>
-                        <li><a data-toggle="modal" data-target="#redivacDrainChart2" href=""  class="soap-select"><i class="fa fa-history  fa-li"></i> 2pm - 9pm</a></li>
-                        <li><a data-toggle="modal" data-target="#redivacDrainChart3" href=""  class="soap-select"><i class="fa fa-medkit  fa-li"></i> 9pm - 7am</a></li>
+                        <!--                        <li><a data-toggle="modal" data-target="#redivacDrainChart1" href="" class="soap-select"><i class="fa fa-comments  fa-li"></i> 7am - 2pm</a></li>
+                                                <li><a data-toggle="modal" data-target="#redivacDrainChart2" href=""  class="soap-select"><i class="fa fa-history  fa-li"></i> 2pm - 9pm</a></li>
+                                                <li><a data-toggle="modal" data-target="#redivacDrainChart3" href=""  class="soap-select"><i class="fa fa-medkit  fa-li"></i> 9pm - 7am</a></li>-->
+                        <li><a data-toggle="modal" data-target="#redivacDrainChart" href=""  class="soap-select" id="redivacnewassessment"><i class="fa fa-medkit  fa-li"></i>Add New Redivac Chart</a></li>
                     </ul>
                     <hr class="pemisah" />
                     <%@include file="redivacDrainChart.jsp"%>
@@ -190,22 +191,28 @@
 <%@include file="modal/woundAssessment.jsp"%>
 <script src="../assets/js/btn.number.js" type="text/javascript"></script>
 <script>
-    $('#Ortho-NursingInWard_1').on('click','#observationnewassessment',function(e){
+    $('#Ortho-NursingInWard_1').on('click', '#observationnewassessment', function (e) {
         e.preventDefault();
         $('#cobserved1 #btnNIWOBUPDATE').hide();
         $('#cobserved1 #btnNIWOBADD').show();
     });
-    
-    $('#Ortho-NursingInWard_2').on('click','#4hlynewassessment',function(e){
+
+    $('#Ortho-NursingInWard_2').on('click', '#4hlynewassessment', function (e) {
         e.preventDefault();
         $('#4hly #btnNIW4hlyUPDATE').hide();
         $('#4hly #btnNIW4hlyADD').show();
     });
-    
-    $('#Ortho-NursingInWard_3').on('click','#trnewassessment',function(e){
+
+    $('#Ortho-NursingInWard_3').on('click', '#trnewassessment', function (e) {
         e.preventDefault();
         $('#perawatan-ortho #btnNIWtruUPDATE').hide();
         $('#perawatan-ortho #btnNIWtrADD').show();
     });
-    
+
+    $('#Ortho-NursingInWard_8').on('click', '#redivacnewassessment', function (e) {
+        e.preventDefault();
+        $('#redivacDrainChart #btnNIWredivacUPDATE').hide();
+        $('#redivacDrainChart #btnNIWredivacADD').show();
+    });
+
 </script>

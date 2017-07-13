@@ -526,13 +526,13 @@ $(document).ready(function (e) {
         var pdi = PDIInfo + "\n";
        
         countVTS(_data);
-        var SendNotes = convertToNotes(_data);
-        var ord = getNotesDCG(_data);
+        var SendNotes = getNotesDCG(_data);
+        //var ord = getNotesDCG(_data);
 
         console.log(vtsCounter);
         vtsCounter = 0;
      
-        notes = msh + pdi + SendNotes + ord;
+        notes = msh + pdi + SendNotes;
         console.log(notes);
 
         $.ajax({

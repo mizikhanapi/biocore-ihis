@@ -34,6 +34,18 @@ $(document).ready(function () {
      $("#btnCIS_OE_ROS_UPDATE").hide();
      $("#btnCIS_OE_ROS_CANCEL").hide();
      
+     
+     $("#divCIS_OE_ROS_OrderSearchResult").on("click","#tblOROS #btnCIS_OE_ROS_VIEW_RESULT",function(e){
+         var rowOrder = $(this).closest("tr");
+         var orderId = rowOrder.find("#orderId").html();
+         var modality_cd = rowOrder.find("#tM_SEARCH_CODE").html();
+         var body_system_cd = rowOrder.find("#tBS_SEARCH_CODE").html();
+         
+         console.log("order Id : " +orderId);
+         console.log("modality Id : " +modality_cd);
+         console.log("body system : " +body_system_cd);
+         
+     })
      $("#divCIS_OE_ROS_OrderSearchResult").on("click","#tblOROS #btnCIS_OE_ROS_SEARCH_ADD",function(e){
          e.preventDefault() ;
          var rowOrder = $(this).closest("tr");
