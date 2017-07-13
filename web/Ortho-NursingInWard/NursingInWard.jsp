@@ -89,7 +89,7 @@
                 <!-- content -->
                 <div class="tab-pane fade" id="Ortho-NursingInWard_4">
                     <ul class="soap-content nav">
-                        <li><a data-toggle="modal" data-target="#circulationChart" href="" class="soap-select"><i class="fa fa-comments  fa-li"></i> Add Circulation Chart</a></li>
+                        <li><a data-toggle="modal" data-target="#circulationChart" href="" class="soap-select" id="chartCirculationAddNewRecord"><i class="fa fa-comments  fa-li"></i> Add Circulation Chart</a></li>
                     </ul>
                     <hr class="pemisah" />
                     <%@include file="chartCirculation.jsp"%>
