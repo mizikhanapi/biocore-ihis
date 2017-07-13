@@ -120,7 +120,7 @@
                 <!-- content -->
                 <div class="tab-pane fade" id="Ortho-NursingInWard_7">
                     <ul class="soap-content nav">
-                        <li><a data-toggle="modal" data-target="#FitsChart" href="" class="soap-select"><i class="fa fa-comments  fa-li"></i> Add New Fits Chart</a></li>
+                        <li><a data-toggle="modal" data-target="#FitsChart" href="" class="soap-select" id="newassessmentfit"><i class="fa fa-comments  fa-li"></i> Add New Fits Chart</a></li>
                     </ul>
                     <hr class="pemisah" />
                     <%@include file="FitsChart.jsp"%>
@@ -207,6 +207,12 @@
         e.preventDefault();
         $('#perawatan-ortho #btnNIWtruUPDATE').hide();
         $('#perawatan-ortho #btnNIWtrADD').show();
+    });
+    
+     $('#Ortho-NursingInWard_7').on('click', '#newassessmentfit', function (e) {
+        e.preventDefault();
+        $('#FitsChart #btnNIWFitsUPDATE').hide();
+        $('#FitsChart #btnNIWFitsADD').show();
     });
 
     $('#Ortho-NursingInWard_8').on('click', '#redivacnewassessment', function (e) {
