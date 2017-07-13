@@ -47,7 +47,7 @@
 <td><%=datas.get(i).get(12)%></td>
 <td>
     <a id="tableChartCirculationUpdateBtn" data-toggle="modal" data-target="#edit"><i class="fa fa-pencil-square-o fa-lg" aria-hidden="true" style="display: inline-block;color: #337ab7;"></i></a>
-    &nbsp;
+    &nbsp;&nbsp;
     <a id="tableChartCirculationDeleteBtn" class="testing"><i class="fa fa-times fa-lg" aria-hidden="true" style="display: inline-block;color: #d9534f;"></i></a>
 </td>
 </tr> 
