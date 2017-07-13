@@ -57,16 +57,16 @@ function populateList() {
     alert("Populate function");
 }
 
-function clearID(){
-     pitemIDpe0 = "";
- pitemIDpe1 = "";
- pitemIDpe2 = "";
- pitemIDpe3 = "";
- pitemIDpe4 = "";
- pitemIDpe5 = "";
- pitemIDpe6 = "";
- pitemIDpe7 = "";
- pitemIDpe8 = "";
+function clearID() {
+    pitemIDpe0 = "";
+    pitemIDpe1 = "";
+    pitemIDpe2 = "";
+    pitemIDpe3 = "";
+    pitemIDpe4 = "";
+    pitemIDpe5 = "";
+    pitemIDpe6 = "";
+    pitemIDpe7 = "";
+    pitemIDpe8 = "";
 }
 
 //var _data = [];
@@ -84,16 +84,16 @@ var pitemIDpe7 = "";
 var pitemIDpe8 = "";
 var updateObjCd;
 
- var NotesPE;
+var NotesPE;
 
 $(document).ready(function () {
 
 //-------------------------------QUEUE MODAL
 
-$('#queueBtn').click(function(e){
-    e.preventDefault();
-    $('#listQueue').load('queue/QueueModal.jsp');
-    $('#queueModal').modal('toggle');
+    $('#queueBtn').click(function (e) {
+        e.preventDefault();
+        $('#listQueue').load('queue/QueueModal.jsp');
+        $('#queueModal').modal('toggle');
 //    $.ajax({
 //        url:'queue/listQueue.jsp',
 //        timeout:10000,
@@ -102,7 +102,7 @@ $('#queueBtn').click(function(e){
 //            $('#formQueueSaya').html(result);
 //        }
 //    });
-});
+    });
 
 /// -----------------------------------------------------------------------------------------------------------------------------------------------/////;
 /// -------------------------------------------------------------GCS MODUL----------------------------------------------------------------/////;
@@ -116,13 +116,13 @@ $('#queueBtn').click(function(e){
         var gcsPoint = $('#pointMain').val();
 
         var items = $('#resultMain,#pointMain');
-        var obj1 = {Acode:"VTS"};
+        var obj1 = {Acode: "VTS"};
         items.each(function () {
             obj1[this.id] = $(this).val();
         });
         _data.push(obj1);
         //console.log(_data);
-        displayGCS(gcsResult,gcsPoint);
+        displayGCS(gcsResult, gcsPoint);
 
 //        $('#resultMain').val('');
 //        $('#pointMain').val('');
@@ -154,8 +154,8 @@ $('#queueBtn').click(function(e){
         $('#sum' + rowId).html(sum);
         $("#CIS020001").modal('toggle');
     });
-    
-    
+
+
 /// -----------------------------------------------------------------------------------------------------------------------------------------------/////;
 /// -------------------------------------------------------------PGCS MODUL---------------------------------------------------------------/////;
 /// ----------------------------------------------------------------------------------------------------------------------------------------------/////;
@@ -166,29 +166,31 @@ $('#queueBtn').click(function(e){
         var pgcsPoint = $('#pointpgcsMain').val();
 
         var items = $('#resultpgcsMain,#pointpgcsMain');
-        var obj1 = {Acode:"VTS"};
+        var obj1 = {Acode: "VTS"};
         items.each(function () {
             obj1[this.id] = $(this).val();
         });
         _data.push(obj1);
         //console.log(_data);
-    displayPGCS(pgcsResult,pgcsPoint);
+        displayPGCS(pgcsResult, pgcsPoint);
 //        $('#resultMain').val('');
 //        $('#pointMain').val('');
         $("#CIS020002").modal('toggle');
     });
     
-     $('#ortho_actionPGSC').click(function (e) {
+    $('#ortho_actionPGSC').click(function (e) {
         //alert("gcsAccept");
         var pgcsResult = $('#resultpgcsMain').val();
         var pgcsPoint = $('#pointpgcsMain').val();
-
+        var checked = $('input[name="selected"]:checked').val();
+        
         $.ajax({
             url: "../Ortho-Consultation/modal/action/save_pgcs.jsp",
             type: "post",
             data: {
                 pgcsResult: pgcsResult,
-                pgcsPoint: pgcsPoint
+                pgcsPoint: pgcsPoint,
+                encounter_date: checked
             },
             timeout: 10000,
             success: function (data) {
@@ -206,7 +208,7 @@ $('#queueBtn').click(function(e){
             }
         });
     });
-    
+
     $('#tblCIS_Consultation_Table').on('click', '.updatePgcs', function () {
         var idName = $(this).get(0).id;
         var id = idName.split('|');
@@ -239,8 +241,9 @@ $('#queueBtn').click(function(e){
 /// -------------------------------------------------------------BLOOD PRESSURE MODEL--------------------------------------------/////;
 /// ----------------------------------------------------------------------------------------------------------------------------------------------/////;
 
-    $('#btnCIS_PC_VTS_ACCEPT').click(function (e) {
+    $('#acceptBloodPBtn').click(function (e) {
         e.preventDefault();
+
         var _sitBPS = $('#sitS').val();
         var _sitBPD = $('#sitD').val();
         var _sitBPP = $('#sitP').val();
@@ -254,24 +257,24 @@ $('#queueBtn').click(function(e){
         var _lyingBPP = $('#lyingP').val();
 
         var items = $('#sitS,#sitD,#sitP,#standS,#standD,#standP,#lyingS,#lyingD,#lyingP');
-        var obj1 = {Acode:"VTS"};
+        var obj1 = {Acode: "VTS"};
         items.each(function () {
             obj1[this.id] = $(this).val();
         });
         _data.push(obj1);
         console.log(_data);
-        displayBP(_sitBPS,_sitBPD,_sitBPP,_standBPS,_standBPD,_standBPP,_lyingBPS,_lyingBPD,_lyingBPP);
+        displayBP(_sitBPS, _sitBPD, _sitBPP, _standBPS, _standBPD, _standBPP, _lyingBPS, _lyingBPD, _lyingBPP);
 
         $("#CIS020003").modal('toggle');
-        
+
         $('#sitS').val("");
-       $('#sitD').val("");
+        $('#sitD').val("");
         $('#sitP').val("");
-         $('#standS').val("");
-         $('#standD').val("");
+        $('#standS').val("");
+        $('#standD').val("");
         $('#standP').val("");
-       $('#lyingS').val("");
-       $('#lyingD').val("");
+        $('#lyingS').val("");
+        $('#lyingD').val("");
         $('#lyingP').val("");
 
     });
@@ -281,14 +284,16 @@ $('#queueBtn').click(function(e){
         var _sitBPS = $('#sitS').val();
         var _sitBPD = $('#sitD').val();
         var _sitBPP = $('#sitP').val();
-
+        var checked = $('input[name="selected"]:checked').val();
+        alert(checked);
         $.ajax({
             url: "../Ortho-Consultation/modal/action/save_bloodPressure.jsp",
             type: "post",
             data: {
                 sitS: _sitBPS,
                 sitD: _sitBPD,
-                sitP: _sitBPP
+                sitP: _sitBPP,
+                encounter_date: checked
             },
             timeout: 10000,
             success: function (data) {
@@ -308,7 +313,7 @@ $('#queueBtn').click(function(e){
         });
 
     });
-    
+
     $('#tblCIS_Consultation_Table').on('click', '.updateBP', function (e) {
         $("#CIS020003").modal('toggle');
         $('#actionBloodP').hide();
@@ -363,13 +368,13 @@ $('#queueBtn').click(function(e){
         var _rrRate = $('#rrRate').val();
 
         var items = $('#rrRate');
-        var obj1 = {Acode:"VTS"};
+        var obj1 = {Acode: "VTS"};
         items.each(function () {
             obj1[this.id] = $(this).val();
         });
         _data.push(obj1);
         displayrrRate(_rrRate);
-       
+
         $("#CIS020004").modal('toggle');
 
     });
@@ -410,7 +415,7 @@ $('#queueBtn').click(function(e){
         var _OSat = $('#OSat').val();
 
         var items = $('#OSat');
-        var obj1 ={Acode:"VTS"};
+        var obj1 = {Acode: "VTS"};
         items.each(function () {
             obj1[this.id] = $(this).val();
         });
@@ -456,7 +461,7 @@ $('#queueBtn').click(function(e){
         var _BTemp = $('#BTemp').val();
 
         var items = $('#BTemp');
-        var obj1 ={Acode:"VTS"};
+        var obj1 = {Acode: "VTS"};
         items.each(function () {
             var value = $(this).val().split(" ");
             obj1[this.id] = value[0];
@@ -504,13 +509,13 @@ $('#queueBtn').click(function(e){
         var resultpainScale = $('#resultPanScale').val();
 
         var items = $('#painScale,#resultPanScale');
-        var obj1 = {Acode:"VTS"};
+        var obj1 = {Acode: "VTS"};
         items.each(function () {
             obj1[this.id] = $(this).val();
         });
         _data.push(obj1);
-        displayPanScale(painScale,resultpainScale);
-       
+        displayPanScale(painScale, resultpainScale);
+
         $("#CIS020007").modal('toggle');
     });
 
@@ -541,15 +546,15 @@ $('#queueBtn').click(function(e){
         $('#sum' + rowId).html(sum);
         $("#CIS020007").modal('toggle');
     });
-    
-    $('#btnNIWps').on('click',function(){ 
+
+    $('#btnNIWps').on('click', function () {
         var painScale = $('#painScale').val();
         $('#NIWOBps').val(painScale);
         $('#NIW4hlyps').val(painScale);
         $("#CIS020007").modal('toggle');
         //console.log(painScale);
     });
-    
+
 /// -----------------------------------------------------------------------------------------------------------------------------------------------/////;
 /// -------------------------------------------------------------OTHER MODAL----------------------------------------------------------/////;
 /// ----------------------------------------------------------------------------------------------------------------------------------------------/////;
@@ -561,18 +566,18 @@ $('#queueBtn').click(function(e){
         var Obmi = $('#bmi').val();
         var OWeightStatus = $('#bmiStatus').val();
         var OheadCir = $('#headCir').val();
-        var OBloodGlucose = $('#bloodGlucose').val();   
+        var OBloodGlucose = $('#bloodGlucose').val();
 
         var items = $('#bmiHeight,#bmiWeight,#bmi,#bmiStatus,#headCir,#bloodGlucose');
 
-        var obj1 = {Acode:"VTS"};
+        var obj1 = {Acode: "VTS"};
         items.each(function () {
             obj1[this.id] = $(this).val();
         });
         _data.push(obj1);
         console.log(_data);
-        displayOther(Oheight,Oweight,Obmi,OWeightStatus,OheadCir,OBloodGlucose);
-     
+        displayOther(Oheight, Oweight, Obmi, OWeightStatus, OheadCir, OBloodGlucose);
+
         $("#CIS020008").modal('toggle');
     });
 
@@ -633,7 +638,7 @@ $('#queueBtn').click(function(e){
         var PEComment = $('#PEComment').val();
 
         //var NotesPE = pe0 + ', ' + pe1 + ', ' + pe2 + ',' + pe3 + ', ' + pe4 + ', ' + pe5 + ', ' + pe6 + ', ' + pe7 + ', ' + pe8;
-       
+
         if (pe1.length < 1) {
             NotesPE = pe0;
         } else if (pe2.length < 1) {
@@ -667,13 +672,13 @@ $('#queueBtn').click(function(e){
 
         var items = $('#pe1,#pe2,#pe3,#pe4,#pe5,#pe6,#pe7,#pe8,#PEComment');
 
-        var obj1 = {Acode:"PEM",pe0: pe0, id: itemIDpe};
+        var obj1 = {Acode: "PEM", pe0: pe0, id: itemIDpe};
         items.each(function () {
             obj1[this.id] = $(this).val();
         });
         _data.push(obj1);
         console.log(_data);
-         displayPEM(NotesPE,PEComment);
+        displayPEM(NotesPE, PEComment);
         $("#CIS020009").modal('toggle');
     });
 
@@ -689,8 +694,8 @@ $('#queueBtn').click(function(e){
         var pe7 = $('#pe7').val();
         var pe8 = $('#pe8').val();
         var PEComment = $('#PEComment').val();
-        
-        
+
+
         if (pe1.length < 1) {
             NotesPE = '';
         } else if (pe2.length < 1) {
@@ -708,7 +713,7 @@ $('#queueBtn').click(function(e){
         } else if (pe8.length < 1) {
             NotesPE = pe1 + ', ' + pe2 + ',' + pe3 + ', ' + pe4 + ', ' + pe5 + ', ' + pe6 + ', ' + pe7;
         }
-        
+
         $.ajax({
             url: "../Ortho-Consultation/modal/action/save_physical_exam.jsp",
             type: "post",
@@ -730,7 +735,7 @@ $('#queueBtn').click(function(e){
         });
 
     });
-    
+
     $('#tblCIS_Consultation_Table').on('click', '.updatePE', function () {
         $("#CIS020009").modal('toggle');
         $('#actionPE').hide();
@@ -814,7 +819,7 @@ $('#queueBtn').click(function(e){
         $('#pe6').val(updateObj.pe6);
         $('#pe7').val(updateObj.pe7);
         $('#pe8').val(updateObj.pe8);
-        
+
 
     });
 
@@ -834,10 +839,10 @@ $('#queueBtn').click(function(e){
         $('#pe8').hide();
 
     });
-    
+
     $('#updatePEBtn').click(function (e) {
         e.preventDefault();
-        
+
         var upObject = _data[$('#idPE').val()];
         var rowId = $('#idPE').val();
         console.log(upObject);
@@ -851,65 +856,65 @@ $('#queueBtn').click(function(e){
         upObject.pe7 = $('#pe7').val();
         upObject.pe8 = $('#pe8').val();
         upObject.PEComment = $('#PEComment').val();
-        
+
         var itemIDpe = [];
-        
+
         console.log(upObject);
-        
+
         var NotesPE;
         if (upObject.pe1.length < 1) {
             NotesPE = upObject.pe0;
         } else if (upObject.pe2.length < 1) {
             NotesPE = upObject.pe0 + ', ' + upObject.pe1;
-   
-            pitemIDpe2="";
-            pitemIDpe3="";
-            pitemIDpe4="";
-            pitemIDpe5="";
-            pitemIDpe6="";
-            pitemIDpe7="";
-            pitemIDpe8="";
+
+            pitemIDpe2 = "";
+            pitemIDpe3 = "";
+            pitemIDpe4 = "";
+            pitemIDpe5 = "";
+            pitemIDpe6 = "";
+            pitemIDpe7 = "";
+            pitemIDpe8 = "";
         } else if (upObject.pe3.length < 1) {
             NotesPE = upObject.pe0 + ', ' + upObject.pe1 + ', ' + upObject.pe2;
-       
-            pitemIDpe3="";
-            pitemIDpe4="";
-            pitemIDpe5="";
-            pitemIDpe6="";
-            pitemIDpe7="";
-            pitemIDpe8="";
+
+            pitemIDpe3 = "";
+            pitemIDpe4 = "";
+            pitemIDpe5 = "";
+            pitemIDpe6 = "";
+            pitemIDpe7 = "";
+            pitemIDpe8 = "";
         } else if (upObject.pe4.length < 1) {
-            NotesPE = upObject.pe0 + ', ' +upObject.pe1 + ', ' + upObject.pe2 + ',' + upObject.pe3;
-            
-            pitemIDpe4="";
-            pitemIDpe5="";
-            pitemIDpe6="";
-            pitemIDpe7="";
-            pitemIDpe8="";
+            NotesPE = upObject.pe0 + ', ' + upObject.pe1 + ', ' + upObject.pe2 + ',' + upObject.pe3;
+
+            pitemIDpe4 = "";
+            pitemIDpe5 = "";
+            pitemIDpe6 = "";
+            pitemIDpe7 = "";
+            pitemIDpe8 = "";
         } else if (upObject.pe5.length < 1) {
             NotesPE = upObject.pe0 + ', ' + upObject.pe1 + ', ' + upObject.pe2 + ',' + upObject.pe3 + ', ' + upObject.pe4;
 
-            pitemIDpe5="";
-            pitemIDpe6="";
-            pitemIDpe7="";
-            pitemIDpe8="";
+            pitemIDpe5 = "";
+            pitemIDpe6 = "";
+            pitemIDpe7 = "";
+            pitemIDpe8 = "";
         } else if (upObject.pe6.length < 1) {
-            NotesPE = upObject.pe0 + ', ' + upObject.pe1 + ', ' + upObject.pe2 + ',' + upObject.pe3 + ', ' +upObject.pe4 + ', ' + upObject.pe5;
-                      
-            pitemIDpe6="";
-            pitemIDpe7="";
-            pitemIDpe8="";
+            NotesPE = upObject.pe0 + ', ' + upObject.pe1 + ', ' + upObject.pe2 + ',' + upObject.pe3 + ', ' + upObject.pe4 + ', ' + upObject.pe5;
+
+            pitemIDpe6 = "";
+            pitemIDpe7 = "";
+            pitemIDpe8 = "";
         } else if (upObject.pe7.length < 1) {
             NotesPE = upObject.pe0 + ', ' + upObject.pe1 + ', ' + upObject.pe2 + ',' + upObject.pe3 + ', ' + upObject.pe4 + ', ' + upObject.pe5 + ', ' + upObject.pe6;
-               
-            pitemIDpe7="";
-            pitemIDpe8="";
+
+            pitemIDpe7 = "";
+            pitemIDpe8 = "";
         } else if (upObject.pe8.length < 1) {
             NotesPE = upObject.pe0 + ', ' + upObject.pe1 + ', ' + upObject.pe2 + ',' + upObject.pe3 + ', ' + upObject.pe4 + ', ' + upObject.pe5 + ', ' + upObject.pe6 + ', ' + upObject.pe7;
 
-            pitemIDpe8="";
+            pitemIDpe8 = "";
         }
-        
+
         itemIDpe.push(pitemIDpe0);
         itemIDpe.push(pitemIDpe1);
         itemIDpe.push(pitemIDpe2);
@@ -919,23 +924,23 @@ $('#queueBtn').click(function(e){
         itemIDpe.push(pitemIDpe6);
         itemIDpe.push(pitemIDpe7);
         itemIDpe.push(pitemIDpe8);
-        
+
         upObject.id = itemIDpe;
 
-        var sum =NotesPE + ' </br> Comment:' + upObject.PEComment;  
+        var sum = NotesPE + ' </br> Comment:' + upObject.PEComment;
         $('#sum' + rowId).html(sum);
         $("#CIS020009").modal('toggle');
     });
 
-    $('#RISResult').on('click',function(){
+    $('#RISResult').on('click', function () {
 
         $.get("CIS02/CIS020010_1.jsp", function (data) {
             //console.log(data);
-               $('#risTable').html(data);
+            $('#risTable').html(data);
 
         });
     });
-    
+
     $('#LISResult').on('click', function () {
 
         $.get("CIS02/CIS020011_1.jsp", function (data) {
@@ -944,8 +949,8 @@ $('#queueBtn').click(function(e){
 
         });
     });
-    
-      $('#OPResult').on('click', function () {
+
+    $('#OPResult').on('click', function () {
 
         $.get("CIS02/CIS020012_1.jsp", function (data) {
             //console.log(data);
@@ -958,16 +963,16 @@ $('#queueBtn').click(function(e){
 
 
 });
- 
- function convertPEMtoNotes(objPEM){
-     var PEMnotes;
-     
-       if (objPEM.pe1.length < 1) {
+
+function convertPEMtoNotes(objPEM) {
+    var PEMnotes;
+
+    if (objPEM.pe1.length < 1) {
         PEMnotes = objPEM.pe0;
     } else if (objPEM.pe2.length < 1) {
         PEMnotes = objPEM.pe0 + ', ' + objPEM.pe1;
     } else if (objPEM.pe3.length < 1) {
-        PEMnotes =objPEM.pe0 + ', ' + objPEM.pe1 + ', ' + objPEM.pe2;
+        PEMnotes = objPEM.pe0 + ', ' + objPEM.pe1 + ', ' + objPEM.pe2;
     } else if (objPEM.pe4.length < 1) {
         PEMnotes = objPEM.pe0 + ', ' + objPEM.pe1 + ', ' + objPEM.pe2 + ',' + objPEM.pe3;
     } else if (objPEM.pe5.length < 1) {
@@ -977,77 +982,77 @@ $('#queueBtn').click(function(e){
     } else if (objPEM.pe7.length < 1) {
         PEMnotes = objPEM.pe0 + ', ' + objPEM.pe1 + ', ' + objPEM.pe2 + ',' + objPEM.pe3 + ', ' + objPEM.pe4 + ', ' + objPEM.pe5 + ', ' + objPEM.pe6;
     } else if (objPEM.pe8.length < 1) {
-        PEMnotes = objPEM.pe0 + ', ' + objPEM.pe1 + ', ' + objPEM.pe2 + ',' +objPEM.pe3 + ', ' + objPEM.pe4 + ', ' + objPEM.pe5 + ', ' + objPEM.pe6 + ', ' + objPEM.pe7;
+        PEMnotes = objPEM.pe0 + ', ' + objPEM.pe1 + ', ' + objPEM.pe2 + ',' + objPEM.pe3 + ', ' + objPEM.pe4 + ', ' + objPEM.pe5 + ', ' + objPEM.pe6 + ', ' + objPEM.pe7;
     }
-     return PEMnotes;
- }
- 
- 
-function displayGCS(gcsResult,gcsPoint){
-         var _tr = '<tr data-status="pagado" ><td><div class="ckbox"><input type="checkbox" id="checkbox|'+i+'" name="CIS_consult_notes"><label for="checkbox|'+i+'"></label></div></td><td><div class="media"><div class="media-body">Vital Sign - Glasgow Coma Scale :<p class="summary" id="sum' + i + '">GCS Result:' + gcsResult + '</br> GCS Point:' + gcsPoint + '</p></div></div></td><td><a data-toggle="modal"  data-target="#updateModal" href="" class="updateGcs" id="row|' + i + '"><i class="fa fa-pencil-square-o" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #337ab7;" ></i></a></a></td><td><a href="javascript:;" class="star"><a href="#" class="deleteBtn" id="row|' + i + '"><i class="fa fa-times" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #d9534f;"></i></a></a></td></tr>';
-        $('#GCSNotes').append(_tr);
-        //console.log(i);
-        i = i + 1;
+    return PEMnotes;
 }
 
-function displayPGCS(pgcsResult,pgcsPoint){
-    
-        var _tr = '<tr data-status="pagado" ><td><div class="ckbox"><input type="checkbox" id="checkbox|'+i+'" name="CIS_consult_notes"><label for="checkbox|'+i+'"></label></div></td><td><div class="media"><div class="media-body">Vital Sign - Pediatric Glasgow Coma Scale :<p class="summary" id="sum' + i + '">PGCS Result:' + pgcsResult + '</br> PGCS Point:' + pgcsPoint + '</p></div></div></td><td><a data-toggle="modal"  data-target="#updateModal" href="" class="updatePgcs" id="row|' + i + '"><i class="fa fa-pencil-square-o" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #337ab7;" ></i></a></a></td><td><a href="javascript:;" class="star"><a href="#" class="deleteBtn" id="row|' + i + '"><i class="fa fa-times" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #d9534f;"></i></a></a></td></tr>';
-        $('#PGCSNotes').append(_tr);
-        //console.log(i);
-        i = i + 1;
+
+function displayGCS(gcsResult, gcsPoint) {
+    var _tr = '<tr data-status="pagado" ><td><div class="ckbox"><input type="checkbox" id="checkbox|' + i + '" name="CIS_consult_notes"><label for="checkbox|' + i + '"></label></div></td><td><div class="media"><div class="media-body">Vital Sign - Glasgow Coma Scale :<p class="summary" id="sum' + i + '">GCS Result:' + gcsResult + '</br> GCS Point:' + gcsPoint + '</p></div></div></td><td><a data-toggle="modal"  data-target="#updateModal" href="" class="updateGcs" id="row|' + i + '"><i class="fa fa-pencil-square-o" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #337ab7;" ></i></a></a></td><td><a href="javascript:;" class="star"><a href="#" class="deleteBtn" id="row|' + i + '"><i class="fa fa-times" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #d9534f;"></i></a></a></td></tr>';
+    $('#GCSNotes').append(_tr);
+    //console.log(i);
+    i = i + 1;
 }
 
-function displayBP(_sitBPS,_sitBPD,_sitBPP,_standBPS,_standBPD,_standBPP,_lyingBPS,_lyingBPD,_lyingBPP){
-    
-        var _tr = '<tr data-status="pagado" ><td><div class="ckbox"><input type="checkbox" id="checkbox|'+i+'" name="CIS_consult_notes"><label for="checkbox|'+i+'"></label></div></td><td><div class="media"><div class="media-body">Vital Sign - Blood Pressure :<p class="summary" id="sum' + i + '">Sitting: Systolic =' + _sitBPS + 'mmHg | Diatolic=' + _sitBPD + 'mmHg | Pulse =' + _sitBPP + 'mmHg  </br> Standing: Systolic =' + _standBPS + 'mmHg | Diatolic =' + _standBPD + 'mmHg | Pulse =' + _standBPP + 'mmHg </br>  Lying: Systolic =' + _lyingBPS + 'mmHg | Diatolic =' + _lyingBPD + ' mmHg | Pulse =' + _lyingBPP + 'mmHg</p></div></div></td><td><a data-toggle="modal"  data-target="#updateModal" href="" class="updateBP" id="row|' + i + '"><i class="fa fa-pencil-square-o" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #337ab7;" ></i></a></a></td><td><a href="javascript:;" class="star"><a href="#" class="deleteBtn" id="row|' + i + '"><i class="fa fa-times" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #d9534f;"></i></a></a></td></tr>';
+function displayPGCS(pgcsResult, pgcsPoint) {
 
-        $('#BPNotes').append(_tr);
-        //console.log(i);
-        i = i + 1;
-}
-function displayrrRate(_rrRate){
-     var _tr = '<tr data-status="pagado" ><td><div class="ckbox"><input type="checkbox" id="checkbox|'+i+'" name="CIS_consult_notes"><label for="checkbox|'+i+'"></label></div></td><td><div class="media"><div class="media-body">Vital Sign - Respiratory Rate :<p class="summary" id="sum' + i + '">' + _rrRate + ' breath/min</p></div></div></td><td><a data-toggle="modal"  data-target="#updateModal" href="" class="updateRR" id="row|' + i + '"><i class="fa fa-pencil-square-o" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #337ab7;" ></i></a></a></td><td><a href="javascript:;" class="star"><a href="#" class="deleteBtn" id="row|' + i + '"><i class="fa fa-times" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #d9534f;"></i></a></a></td></tr>';
-
-        $('#RRNotes').append(_tr);
-        //console.log(obj1);
-        i = i + 1;
+    var _tr = '<tr data-status="pagado" ><td><div class="ckbox"><input type="checkbox" id="checkbox|' + i + '" name="CIS_consult_notes"><label for="checkbox|' + i + '"></label></div></td><td><div class="media"><div class="media-body">Vital Sign - Pediatric Glasgow Coma Scale :<p class="summary" id="sum' + i + '">PGCS Result:' + pgcsResult + '</br> PGCS Point:' + pgcsPoint + '</p></div></div></td><td><a data-toggle="modal"  data-target="#updateModal" href="" class="updatePgcs" id="row|' + i + '"><i class="fa fa-pencil-square-o" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #337ab7;" ></i></a></a></td><td><a href="javascript:;" class="star"><a href="#" class="deleteBtn" id="row|' + i + '"><i class="fa fa-times" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #d9534f;"></i></a></a></td></tr>';
+    $('#PGCSNotes').append(_tr);
+    //console.log(i);
+    i = i + 1;
 }
 
-function displayOsat(_OSat){
-            var _tr = '<tr data-status="pagado" ><td><div class="ckbox"><input type="checkbox" id="checkbox|'+i+'" name="CIS_consult_notes"><label for="checkbox|'+i+'"></label></div></td><td><div class="media"><div class="media-body">Vital Sign - Oxygen Saturation :<p class="summary" id="sum' + i + '">' + _OSat + '</p></div></div></td><td><a data-toggle="modal"  data-target="#updateModal" href="" class="updateOS" id="row|' + i + '"><i class="fa fa-pencil-square-o" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #337ab7;" ></i></a></a></td><td><a href="javascript:;" class="star"><a href="#" class="deleteBtn" id="row|' + i + '"><i class="fa fa-times" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #d9534f;"></i></a></a></td></tr>';
+function displayBP(_sitBPS, _sitBPD, _sitBPP, _standBPS, _standBPD, _standBPP, _lyingBPS, _lyingBPD, _lyingBPP) {
 
-        $('#OSATNotes').append(_tr);
+    var _tr = '<tr data-status="pagado" ><td><div class="ckbox"><input type="checkbox" id="checkbox|' + i + '" name="CIS_consult_notes"><label for="checkbox|' + i + '"></label></div></td><td><div class="media"><div class="media-body">Vital Sign - Blood Pressure :<p class="summary" id="sum' + i + '">Sitting: Systolic =' + _sitBPS + 'mmHg | Diatolic=' + _sitBPD + 'mmHg | Pulse =' + _sitBPP + 'mmHg  </br> Standing: Systolic =' + _standBPS + 'mmHg | Diatolic =' + _standBPD + 'mmHg | Pulse =' + _standBPP + 'mmHg </br>  Lying: Systolic =' + _lyingBPS + 'mmHg | Diatolic =' + _lyingBPD + ' mmHg | Pulse =' + _lyingBPP + 'mmHg</p></div></div></td><td><a data-toggle="modal"  data-target="#updateModal" href="" class="updateBP" id="row|' + i + '"><i class="fa fa-pencil-square-o" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #337ab7;" ></i></a></a></td><td><a href="javascript:;" class="star"><a href="#" class="deleteBtn" id="row|' + i + '"><i class="fa fa-times" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #d9534f;"></i></a></a></td></tr>';
 
-        i = i + 1;
+    $('#BPNotes').append(_tr);
+    //console.log(i);
+    i = i + 1;
+}
+function displayrrRate(_rrRate) {
+    var _tr = '<tr data-status="pagado" ><td><div class="ckbox"><input type="checkbox" id="checkbox|' + i + '" name="CIS_consult_notes"><label for="checkbox|' + i + '"></label></div></td><td><div class="media"><div class="media-body">Vital Sign - Respiratory Rate :<p class="summary" id="sum' + i + '">' + _rrRate + ' breath/min</p></div></div></td><td><a data-toggle="modal"  data-target="#updateModal" href="" class="updateRR" id="row|' + i + '"><i class="fa fa-pencil-square-o" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #337ab7;" ></i></a></a></td><td><a href="javascript:;" class="star"><a href="#" class="deleteBtn" id="row|' + i + '"><i class="fa fa-times" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #d9534f;"></i></a></a></td></tr>';
+
+    $('#RRNotes').append(_tr);
+    //console.log(obj1);
+    i = i + 1;
 }
 
-function displayPanScale(painScale,resultpainScale){
-     var _tr = '<tr data-status="pagado" ><td><div class="ckbox"><input type="checkbox" id="checkbox|'+i+'" name="CIS_consult_notes"><label for="checkbox|'+i+'"></label></div></td><td><div class="media"><div class="media-body">Vital Sign - Pan Scale<p class="summary" id="sum' + i + '">Scale:' + painScale + '</br> Result:' + resultpainScale + '</p></div></div></td><td><a data-toggle="modal"  data-target="#updateModal" href="" class="updatePS" id="row|' + i + '"><i class="fa fa-pencil-square-o" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #337ab7;" ></i></a></a></td><td><a href="javascript:;" class="star"><a href="#" class="deleteBtn" id="row|' + i + '"><i class="fa fa-times" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #d9534f;"></i></a></a></td></tr>';
-        $('#PSCNotes').append(_tr);
+function displayOsat(_OSat) {
+    var _tr = '<tr data-status="pagado" ><td><div class="ckbox"><input type="checkbox" id="checkbox|' + i + '" name="CIS_consult_notes"><label for="checkbox|' + i + '"></label></div></td><td><div class="media"><div class="media-body">Vital Sign - Oxygen Saturation :<p class="summary" id="sum' + i + '">' + _OSat + '</p></div></div></td><td><a data-toggle="modal"  data-target="#updateModal" href="" class="updateOS" id="row|' + i + '"><i class="fa fa-pencil-square-o" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #337ab7;" ></i></a></a></td><td><a href="javascript:;" class="star"><a href="#" class="deleteBtn" id="row|' + i + '"><i class="fa fa-times" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #d9534f;"></i></a></a></td></tr>';
 
-        i = i + 1;
+    $('#OSATNotes').append(_tr);
+
+    i = i + 1;
 }
 
-function displayBTemp(_BTemp){
-    
-        var _tr = '<tr data-status="pagado" ><td><div class="ckbox"><input type="checkbox" id="checkbox|'+i+'" name="CIS_consult_notes"><label for="checkbox|'+i+'"></label></div></td><td><div class="media"><div class="media-body">Vital Sign - Body Temperature: :<p class="summary" id="sum' + i + '">' + _BTemp + '</p></div></div></td><td><a data-toggle="modal"  data-target="#updateModal" href="" class="updateBT" id="row|' + i + '"><i class="fa fa-pencil-square-o" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #337ab7;" ></i></a></a></td><td><a href="javascript:;" class="star"><a href="#" class="deleteBtn" id="row|' + i + '"><i class="fa fa-times" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #d9534f;"></i></a></a></td></tr>';
-        $('#BTEMPNotes').append(_tr);
+function displayPanScale(painScale, resultpainScale) {
+    var _tr = '<tr data-status="pagado" ><td><div class="ckbox"><input type="checkbox" id="checkbox|' + i + '" name="CIS_consult_notes"><label for="checkbox|' + i + '"></label></div></td><td><div class="media"><div class="media-body">Vital Sign - Pan Scale<p class="summary" id="sum' + i + '">Scale:' + painScale + '</br> Result:' + resultpainScale + '</p></div></div></td><td><a data-toggle="modal"  data-target="#updateModal" href="" class="updatePS" id="row|' + i + '"><i class="fa fa-pencil-square-o" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #337ab7;" ></i></a></a></td><td><a href="javascript:;" class="star"><a href="#" class="deleteBtn" id="row|' + i + '"><i class="fa fa-times" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #d9534f;"></i></a></a></td></tr>';
+    $('#PSCNotes').append(_tr);
 
-        i = i + 1;
+    i = i + 1;
 }
 
-function displayOther(Oheight,Oweight,Obmi,OWeightStatus,OheadCir,OBloodGlucose){
-       var _tr = '<tr data-status="pagado" ><td><div class="ckbox"><input type="checkbox" id="checkbox|'+i+'" name="CIS_consult_notes"><label for="checkbox|'+i+'"></label></div></td><td><div class="media"><div class="media-body">Vital Sign - Other :<p class="summary" id="sum' + i + '">Height:' + Oheight + ' cm </br> Weight:' + Oweight + ' kg </br> BMI:' + Obmi + ' kg/m2 </br> Weight Status:' + OWeightStatus + ' </br> Head Circumference:' + OheadCir + ' cm </br> Blood Glucose:' + OBloodGlucose + 'mmol/L</p></div></div></td><td><a data-toggle="modal"  data-target="#updateModal" href="" class="updateOther" id="row|' + i + '"><i class="fa fa-pencil-square-o" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #337ab7;" ></i></a></a></td><td><a href="javascript:;" class="star"><a href="#" class="deleteBtn" id="row|' + i + '"><i class="fa fa-times" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #d9534f;"></i></a></a></td></tr>';
-        $('#OTRNotes').append(_tr);
+function displayBTemp(_BTemp) {
 
-        i = i + 1;
+    var _tr = '<tr data-status="pagado" ><td><div class="ckbox"><input type="checkbox" id="checkbox|' + i + '" name="CIS_consult_notes"><label for="checkbox|' + i + '"></label></div></td><td><div class="media"><div class="media-body">Vital Sign - Body Temperature: :<p class="summary" id="sum' + i + '">' + _BTemp + '</p></div></div></td><td><a data-toggle="modal"  data-target="#updateModal" href="" class="updateBT" id="row|' + i + '"><i class="fa fa-pencil-square-o" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #337ab7;" ></i></a></a></td><td><a href="javascript:;" class="star"><a href="#" class="deleteBtn" id="row|' + i + '"><i class="fa fa-times" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #d9534f;"></i></a></a></td></tr>';
+    $('#BTEMPNotes').append(_tr);
+
+    i = i + 1;
 }
 
-function displayPEM(NotesPE,PEComment){
-    
-        var _tr = '<tr data-status="pagado" ><td><div class="ckbox"><input type="checkbox" id="checkbox|'+i+'" name="CIS_consult_notes"><label for="checkbox|'+i+'"></label></div></td><td><div class="media"><div class="media-body">Physical Examination:<p class="summary" id="sum' + i + '">' + NotesPE + ' </br>Comment:' + PEComment + '</p></div></div></td><td><a data-toggle="modal"  data-target="#updateModal" href="" class="updatePE" id="row|' + i + '"><i class="fa fa-pencil-square-o" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #337ab7;" ></i></a></a></td><td><a href="javascript:;" class="star"><a href="#" class="deleteBtn" id="row|' + i + '"><i class="fa fa-times" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #d9534f;"></i></a></a></td></tr>';
-        $('#PEMNotes').append(_tr);
- 
-        i = i + 1;
+function displayOther(Oheight, Oweight, Obmi, OWeightStatus, OheadCir, OBloodGlucose) {
+    var _tr = '<tr data-status="pagado" ><td><div class="ckbox"><input type="checkbox" id="checkbox|' + i + '" name="CIS_consult_notes"><label for="checkbox|' + i + '"></label></div></td><td><div class="media"><div class="media-body">Vital Sign - Other :<p class="summary" id="sum' + i + '">Height:' + Oheight + ' cm </br> Weight:' + Oweight + ' kg </br> BMI:' + Obmi + ' kg/m2 </br> Weight Status:' + OWeightStatus + ' </br> Head Circumference:' + OheadCir + ' cm </br> Blood Glucose:' + OBloodGlucose + 'mmol/L</p></div></div></td><td><a data-toggle="modal"  data-target="#updateModal" href="" class="updateOther" id="row|' + i + '"><i class="fa fa-pencil-square-o" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #337ab7;" ></i></a></a></td><td><a href="javascript:;" class="star"><a href="#" class="deleteBtn" id="row|' + i + '"><i class="fa fa-times" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #d9534f;"></i></a></a></td></tr>';
+    $('#OTRNotes').append(_tr);
+
+    i = i + 1;
+}
+
+function displayPEM(NotesPE, PEComment) {
+
+    var _tr = '<tr data-status="pagado" ><td><div class="ckbox"><input type="checkbox" id="checkbox|' + i + '" name="CIS_consult_notes"><label for="checkbox|' + i + '"></label></div></td><td><div class="media"><div class="media-body">Physical Examination:<p class="summary" id="sum' + i + '">' + NotesPE + ' </br>Comment:' + PEComment + '</p></div></div></td><td><a data-toggle="modal"  data-target="#updateModal" href="" class="updatePE" id="row|' + i + '"><i class="fa fa-pencil-square-o" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #337ab7;" ></i></a></a></td><td><a href="javascript:;" class="star"><a href="#" class="deleteBtn" id="row|' + i + '"><i class="fa fa-times" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #d9534f;"></i></a></a></td></tr>';
+    $('#PEMNotes').append(_tr);
+
+    i = i + 1;
 }

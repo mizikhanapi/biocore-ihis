@@ -10,7 +10,7 @@
 <%@page import="dBConn.Conn"%>
 <%@page import="main.RMIConnector"%>
 <div id="get_physicalExam">
-    
+
     <%
 
         if (session.getAttribute("patientPMINo") == null || session.getAttribute("patientPMINo").equals(" ")) {
@@ -26,12 +26,12 @@
                 //out.print(hfc + " ----- " + pmino + " ----- " + episodeDate + " ------ " + user_id);
                 Conn conn = new Conn();
                 String sql = "SELECT p.encounter_date,p.physical_exam,p.search_content,p.comment FROM lhr_ort_neu_physical_examination p WHERE p.pmi_no='" + pmino + "'";
-                ArrayList<ArrayList<String>> q3 = conn.getData(sql);
+                ArrayList<ArrayList<String>> q4 = conn.getData(sql);
 
                 DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd");
                 DateFormat timeFormat = new SimpleDateFormat("hh:mm:ss");
 
-                String dateTime = q3.get(0).get(0);
+                String dateTime = q4.get(0).get(0);
 
                 DateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
                 DateFormat outputFormat = new SimpleDateFormat("dd-MM-yyyy");
@@ -72,18 +72,50 @@
     <table class="table table-bordered table-striped">
         <tr>
             <th style="width: 10%">Physical Examination</th>
-            <td style="width: 70%">
+            <td style="width: 60%">
         <dd>Information</dd>
         </td>
         <td style="width: 20%">Comment</td>
+        <td style="width: 10%">Action</td>
         </tr>
         <%
-            if (q3.size() > 0) {
-                for (int i = 0; i < q3.size(); i++) {%>
+            if (q4.size() > 0) {
+                for (int i = 0; i < q4.size(); i++) {%>
         <tr>
-            <th><%=q3.get(i).get(1)%></th>
-            <td><%=q3.get(i).get(2)%></td>
-            <td><%=q3.get(i).get(3)%></td>
+            <th><%=q4.get(i).get(1)%></th>
+            <td><%=q4.get(i).get(2)%></td>
+            <td><%=q4.get(i).get(3)%></td>
+            <td>
+                <a href="#" class="deleteBtn" id="delete_PE_<%=i%>"><i class="fa fa-times fa-lg" aria-hidden="true" style="display: inline-block; color: #d9534f;"></i></a>
+                <script>
+        $("#delete_PE_<%=i%>").click(function () {
+
+            //alert("Are you sure to delete the data?");
+            var dateTime = "<%=q4.get(i).get(0)%>";
+            var r = confirm("Are you sure to delete the data?");
+            if (r == true) {
+                $.ajax({
+                    url: "../Ortho-Consultation/modal/action/delete_physical_exam.jsp",
+                    type: "post",
+                    data: {dateTime: dateTime
+                    },
+                    timeout: 10000,
+                    success: function () {
+                        alert("Data recorded is deleted.");
+                        $("#get_physicalExam").load("../Ortho-Consultation/physicalExam.jsp");
+                    },
+                    error: function (err) {
+                        alert("Error update!");
+                    }
+                });
+            } else {
+                //txt = "You pressed Cancel!";
+            }
+
+
+        });
+                </script>
+            </td>
         </tr>
         <%             }
                     } else {

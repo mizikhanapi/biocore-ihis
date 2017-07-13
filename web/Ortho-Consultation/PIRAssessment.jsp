@@ -72,6 +72,35 @@
     <% if (q3.size() > 0) {
             for (int i = 0; i < q3.size(); i++) {
     %>
+    <a href="#" class="deleteBtn" id="delete_PIR_<%=i%>"><i class="fa fa-times fa-lg" aria-hidden="true" style="display: inline-block; color: #d9534f;"></i></a>
+    <script>
+        $("#delete_PIR_<%=i%>").click(function () {
+
+            //alert("Are you sure to delete the data?");
+            var dateTime = "<%=q3.get(i).get(0)%>";
+            var r = confirm("Are you sure to delete the data?");
+            if (r == true) {
+                $.ajax({
+                    url: "../Ortho-Consultation/modal/action/delete_PIR.jsp",
+                    type: "post",
+                    data: {dateTime: dateTime
+                    },
+                    timeout: 10000,
+                    success: function () {
+                        alert("Data recorded is deleted.");
+                        $("#getPIRAssessment").load("../Ortho-Consultation/PIRAssessment.jsp");
+                    },
+                    error: function (err) {
+                        alert("Error update!");
+                    }
+                });
+            } else {
+                //txt = "You pressed Cancel!";
+            }
+
+
+        });
+    </script>
     <div class="panel panel-default">
         <div class="panel-body">
             <div class="row">

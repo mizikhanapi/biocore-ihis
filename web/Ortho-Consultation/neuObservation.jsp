@@ -70,6 +70,7 @@
     <table class="table table-striped">
         <thead style="text-transform: uppercase;" >
             <tr>
+                <th rowspan="2">Check</th>
                 <th rowspan="2">Date</th>
                 <th rowspan="2">Time</th>
                 <th colspan="2" style="text-align: center;">Coma Scale</th>
@@ -100,18 +101,20 @@
                 DateFormat outputFormat1 = new SimpleDateFormat("KK:mm a");
             %>
             <tr>
+                <td><input type="radio" name="selected" value="<%=dateTime_i%>" <%
+                           if(i==0)
+                           {%> checked="checked"<%}
+                           %>></td>
                 <td><%=outputFormat.format(inputFormat.parse(dateTime_i))%></td>
                 <td><%=outputFormat1.format(inputFormat.parse(dateTime_i))%></td>
                 <td><%=q2.get(i).get(1)%></td>
                 <td><%=q2.get(i).get(2)%></td>
-                <td>Systolic:&nbsp;<%=q2.get(0).get(4)%>&nbsp;&nbsp;&nbsp;&nbsp; Diastolic:&nbsp;<%=q2.get(0).get(5)%>&nbsp;&nbsp;&nbsp;&nbsp; Pulse:&nbsp;<%=q2.get(0).get(6)%></td>
+                <td>Systolic:&nbsp;<%=q2.get(i).get(4)%>&nbsp;&nbsp;&nbsp;&nbsp; Diastolic:&nbsp;<%=q2.get(i).get(5)%>&nbsp;&nbsp;&nbsp;&nbsp; Pulse:&nbsp;<%=q2.get(i).get(6)%></td>
                 <td><%=q2.get(i).get(7)%></td>
                 <td><%=q2.get(i).get(8)%></td>
                 <td><%=q2.get(i).get(9)%></td>
                 <td><%=q2.get(i).get(10)%></td>
                 <td>
-                    <a data-toggle="modal" href="" class="updateBtnCCN" id=""><i class="fa fa-pencil-square-o fa-lg" aria-hidden="true" style="display: inline-block; color: #337ab7;"></i></a> 
-                    &nbsp;&nbsp; 
                     <a href="#" class="deleteBtn" id="delete_observation_<%=i%>"><i class="fa fa-times fa-lg" aria-hidden="true" style="display: inline-block; color: #d9534f;"></i></a>
                     <script>
                         $("#delete_observation_<%=i%>").click(function () {

@@ -50,7 +50,7 @@
                                 <div class="col-md-12">
                                     <div class="checkbox-inline">
                                         <div class="radiobtn">
-                                            <input type="radio" id="radio4" name="pressure_ulcer" value="all" checked>
+                                            <input type="radio" id="radio4" name="pressure_ulcer" value="yes" checked>
                                             <label for="radio4"></label></div> Yes
                                     </div>
                                     <div class="checkbox-inline">
@@ -174,31 +174,30 @@
                                 <div class="form-group soalan">
                                     <div class="checkbox-inline">
                                         <div class="radiobtn">
-                                            <input type="radio" id="Matress" name="surface" value="Ripple Matress">
-                                            <label for="Matress"></label></div> Ripple Matress
+                                            <input type="radio" id="radio8" name="surface" value="Ripple Matress" checked="checked">
+                                            <label for="radio8"></label></div> Ripple Matress
                                     </div>
                                 </div>
                                 <div class="form-group soalan">
                                     <div class="checkbox-inline">
                                         <div class="radiobtn">
-                                            <input type="radio" id="Heel" name="surface" value="false">
-                                            <label for="Heel"></label></div> Heel protection devices/pillow
+                                            <input type="radio" id="radio9" name="surface" value="false">
+                                            <label for="radio9"></label></div> Heel protection devices/pillow
                                     </div>
                                 </div>
                                 <div class="form-group soalan">
                                     <div class="checkbox-inline">
                                         <div class="radiobtn">
-                                            <input type="radio" id="cushion" name="surface" value="Seat cushion on chair">
-                                            <label for="cushion"></label></div> Seat cushion on chair
+                                            <input type="radio" id="radio10" name="surface" value="Seat cushion on chair">
+                                            <label for="radio10"></label></div> Seat cushion on chair
                                     </div>
                                 </div>
                                 <div class="form-group soalan">
                                     <div class="checkbox-inline">
                                         <div class="radiobtn">
-                                            <input type="radio" id="Otherssurface" name="surface" value="Others">
-                                            <label for="Otherssurface"></label></div> Others
-                                        <input id="rnNo" name="rnNo" type="text" placeholder="Specify..." class="form-control input-md" style="margin-top: 8px!important;">
-                                    </div>
+                                            <input type="radio" id="radio11" name="surface" value="Others">
+                                            <label for="radio11"></label></div> Others
+                                        </div>
                                 </div>
                             </div>
 
@@ -240,7 +239,7 @@
                                 <div class="form-group soalan">
                                     <div class="checkbox-inline">
                                         <div class="radiobtn">
-                                            <input type="radio" id="chair" name="mobility" value=" Sit on chair">
+                                            <input type="radio" id="chair" name="mobility" value="Sit on chair">
                                             <label for="chair"></label></div>
                                         Sit on chair
                                     </div>
@@ -437,6 +436,19 @@
 <script>
     $("#addPIRbtn").click(function () {
 
+        //alert("test");
+        
+        var typeAssessment = $('input[name="typeAssessment"]:checked').val();
+        var pressure_ulcer = $('input[name="pressure_ulcer"]:checked').val();
+        var source = $('input[name="source"]:checked').val();
+        var surface = $('input[name=surface]:checked').val();
+        var mobility = $('input[name="mobility"]:checked').val();
+        var nutrition = $('input[name="nutrition"]:checked').val();
+        var barrier = $('input[name="Barrier"]:checked').val();
+        var moisture = $('input[name="moisture"]:checked').val();
+        var management = $('input[name="management"]:checked').val();
+        
+        //alert(surface);
         var chkArray = [];
 
         $(".mobAssess:checked").each(function () {
@@ -445,17 +457,7 @@
 
         var mobility_assessment;
         mobility_assessment = chkArray.join(',') + ",";
-
-        var typeAssessment = document.querySelector('input[name="typeAssessment"]:checked').value;
-        var pressure_ulcer = document.querySelector('input[name="pressure_ulcer"]:checked').value;
-        var source = document.querySelector('input[name="source"]:checked').value;
-        var surface = document.querySelector('input[name="surface"]:checked').value;
-        var mobility = document.querySelector('input[name="mobility"]:checked').value;
-        var nutrition = document.querySelector('input[name="nutrition"]:checked').value;
-        var Barrier = document.querySelector('input[name="Barrier"]:checked').value;
-        var moisture = document.querySelector('input[name="moisture"]:checked').value;
-        var management = document.querySelector('input[name="management"]:checked').value;
-        
+        //alert(mobility_assessment);
         $.ajax({
             url: "../Ortho-Consultation/modal/action/save_PIR.jsp",
             type: "post",
@@ -466,7 +468,7 @@
                 surface: surface,
                 mobility: mobility,
                 nutrition: nutrition,
-                Barrier: Barrier,
+                Barrier: barrier,
                 moisture: moisture,
                 management: management,
                 mobility_assessment: mobility_assessment
