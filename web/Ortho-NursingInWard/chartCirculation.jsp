@@ -327,8 +327,7 @@
         });
         // Function For Update Button End
 
-
-        // Add Get Data And Send To Controller Function Start
+        // Update Get Data And Send To Controller Function Start
         $('#circulationChart #chartCirculationModal_btnAdd_or_btnUpdate_div').on('click', '#chartCirculationUpdateModalBtn', function (e) {
             e.preventDefault();
 
@@ -381,12 +380,70 @@
             });
 
         });
-
-        // Add Get Data And Send To Controller Function End
+        // Update Get Data And Send To Controller Function End
 
 
 // ---------------------------------------------------------------------------- Update ------------------------------------------------------------------------------------------- //
 
+
+// ---------------------------------------------------------------------------- Delete ------------------------------------------------------------------------------------------- //
+
+        // Function For Update Button Start
+        $('#tableChartCirculationDiv').on('click', '#tableChartCirculationTable #tableChartCirculationDeleteBtn', function (e) {
+
+            //get the row value
+            var row = $(this).closest("tr");
+            var datas = row.find("#dataChartCirculationhidden").val();
+
+
+            bootbox.confirm({
+                message: "Are you sure want to delete this record ?",
+                buttons: {
+                    confirm: {
+                        label: 'Yes',
+                        className: 'btn-success'
+                    },
+                    cancel: {
+                        label: 'No',
+                        className: 'btn-danger'
+                    }
+                },
+                callback: function (result) {
+
+                    if (result === true) {
+
+                        $.ajax({
+                            type: "post",
+                            url: "../Ortho-NursingInWard/controller/CirculationFunction.jsp",
+                            timeout: 10000,
+                            data: {dataString: datas, methodName: 'delete'},
+                            success: function (result) {
+                                console.log(result);
+                                if (result.trim() === 'true') {
+
+                                    bootbox.alert("Successfully Deleted !!");
+                                    resetTableChartCirculation();
+
+                                } else {
+
+                                    bootbox.alert("Fail to Delete");
+
+                                }
+                            },
+                            error: function (err) {
+
+                            }
+                        });
+
+                    }
+                }
+            });
+
+
+        });
+        // Function For Update Button End
+        // 
+// ---------------------------------------------------------------------------- Delete ------------------------------------------------------------------------------------------- //
 
 
 // ---------------------------------------------------------------------------- Reset Table ------------------------------------------------------------------------------------------- //
