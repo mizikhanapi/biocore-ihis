@@ -98,6 +98,10 @@
 
                         });
                     </script>
+                    <input type="radio" name="selected_assessment" value="<%=q1.get(i).get(48)%>" <%
+                           if(i==0)
+                           {%> checked="checked"<%}
+                           %>>
     <div class="nota" id="table_assessment">
         <h5></h5>
         <table class="table table-bordered">
