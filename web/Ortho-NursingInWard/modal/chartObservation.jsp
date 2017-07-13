@@ -134,9 +134,9 @@
                         <button type="button" class="btn btn-success btn-block btn-lg" id="btnNIWOBADD" role="button">Add Items</button>
                         <button type="button" class="btn btn-success btn-block btn-lg" id="btnNIWOBUPDATE" role="button">Update Items</button>
                     </div>
-<!--                    <div class="btn-group" role="group">
-                        <button type="button" class="btn btn-success btn-block btn-lg" id="btnNIWOBUP" role="button">Update Items</button>
-                    </div>-->
+                    <!--                    <div class="btn-group" role="group">
+                                            <button type="button" class="btn btn-success btn-block btn-lg" id="btnNIWOBUP" role="button">Update Items</button>
+                                        </div>-->
                     <div class="btn-group btn-delete hidden" role="group">
                         <button type="button" id="delImage" class="btn btn-default btn-block btn-lg" data-dismiss="modal" role="button">Clear</button>
                     </div>
@@ -150,35 +150,34 @@
 </div>
 <script>
     $(document).ready(function () {
-        $('#NIWObsDate').datepicker({dateFormat:"dd/mm/yy"});
+        $('#NIWObsDate').datepicker({dateFormat: "dd/mm/yy"});
     });
-    
+
     //btn add pain scale
     $('#cobserved1 #btnNIWaddps').on('click', function (e) {
         e.preventDefault();
         $('#actionPS #btnNIWps').show();
         $('#actionPS #acceptPSBtn').hide();
     });
-    
-    
+
+
     //btn add observation chart
     $('#cobserved1 #btnNIWOBADD').on('click', function (e) {
         e.preventDefault();
-        
+
         var enDate = new Date();
         var dd = ("0" + enDate.getDate()).slice(-2);
         var mm = ("0" + (enDate.getMonth() + 1)).slice(-2);
-        var yy = enDate.getFullYear();        
+        var yy = enDate.getFullYear();
         var hh = enDate.getHours();
         var m = enDate.getMinutes();
         var ss = enDate.getSeconds();
         var ms = enDate.getMilliseconds();
-        
-        var encounterDate = yy+"-"+mm+"-"+dd+" "+hh+":"+m+":"+ss+"."+ms;
+
+        var encounterDate = yy + "-" + mm + "-" + dd + " " + hh + ":" + m + ":" + ss + "." + ms;
         var date = $('#NIWObsDate').val();
         var sDate = date.split('/');
-        var newDate = sDate[2]+"-"+sDate[1]+"-"+sDate[0];
-        console.log(newDate);
+        var newDate = sDate[2] + "-" + sDate[1] + "-" + sDate[0];
         var time = $('#NIWObsTime').val();
         var systolic = $('#NIWOBsystolic').val();
         var dialotic = $('#NIWOBdiatolic').val();
@@ -191,50 +190,50 @@
         var pmi_no = pmiNo;
         var hfc_cd1 = hfc_cd;
         var epDate = episodeDate;
-        
-        var datas = pmi_no+"|"+hfc_cd1+"|"+epDate+"|"+encounterDate+"| | |"+newDate+" "+time+":00.0|"+pulse+"|"+systolic+"|"+dialotic+"|"+respiratoryRate+"|"+oxygenSatu+"|"+painScore+"|"+comment;
-        console.log(datas);
-        
+
+        var datas = pmi_no + "|" + hfc_cd1 + "|" + epDate + "|" + encounterDate + "| | |" + newDate + " " + time + ":00.0|" + pulse + "|" + systolic + "|" + dialotic + "|" + respiratoryRate + "|" + oxygenSatu + "|" + painScore + "|" + comment;
+
         $.ajax({
-           type:"post",
-           url:"../Ortho-NursingInWard/controller/ObservationFunction.jsp",
-           data: {datas: datas,methodName : "add"},
-           timeout:10000,
-           success:function(result){
-               console.log(result);
-               if(result.trim()==='true'){                   
-                   bootbox.alert("successfully added!");
-                   $('#selectOBdate').val(sel).change();
-               }else if(result.trim()==='false'){
-                   bootbox.alert("fail to add");
-               }               
-           },
-           error:function(err){
-               bootbox.alert("something wrong,error: "+err);
-           }
+            type: "post",
+            url: "../Ortho-NursingInWard/controller/ObservationFunction.jsp",
+            data: {datas: datas, methodName: "add"},
+            timeout: 10000,
+            success: function (result) {
+                if (result.trim() === 'true') {
+                    bootbox.alert("successfully added!");
+                    if (sel !== null) {
+                        $('#selectOBdate').val(sel).change();
+                    }
+
+                } else if (result.trim() === 'false') {
+                    bootbox.alert("fail to add");
+                }
+            },
+            error: function (err) {
+                bootbox.alert("something wrong,error: " + err);
+            }
         });
         $("#cobserved1").modal('toggle');
     });
-    
+
     //btn update observation chart
     $('#cobserved1 #btnNIWOBUPDATE').on('click', function (e) {
         e.preventDefault();
-        
+
         var enDate = new Date();
         var dd = ("0" + enDate.getDate()).slice(-2);
         var mm = ("0" + (enDate.getMonth() + 1)).slice(-2);
-        var yy = enDate.getFullYear();        
+        var yy = enDate.getFullYear();
         var hh = enDate.getHours();
         var m = enDate.getMinutes();
         var ss = enDate.getSeconds();
         var ms = enDate.getMilliseconds();
-        
+
         //var encounterDate = yy+"-"+mm+"-"+dd+" "+hh+":"+m+":"+ss+"."+ms;
         var encounterDate = $('#NIWObsEncounterDate').val();
         var date = $('#NIWObsDate').val();
         var sDate = date.split('/');
-        var newDate = sDate[2]+"-"+sDate[1]+"-"+sDate[0];
-        console.log(newDate);
+        var newDate = sDate[2] + "-" + sDate[1] + "-" + sDate[0];
         var time = $('#NIWObsTime').val();
         var systolic = $('#NIWOBsystolic').val();
         var dialotic = $('#NIWOBdiatolic').val();
@@ -244,34 +243,34 @@
         var painScore = $('#NIWOBps').val();
         var comment = $('#NIWOBcomment').val();
         var sel = $('#selectOBdate').val();
-       
-        
-        
-        
+
+
+
+
         var pmi_no = $('#NIWObsPmi').val();
         var hfc_cd1 = $('#NIWObsHfc').val();
-        var epDate =  $('#NIWObsEpisodeDate').val();
-        
-        var datas = pmi_no+"|"+hfc_cd1+"|"+epDate+"|"+encounterDate+"| | |"+newDate+" "+time+"|"+pulse+"|"+systolic+"|"+dialotic+"|"+respiratoryRate+"|"+oxygenSatu+"|"+painScore+"|"+comment;
-        console.log(datas);
-        
+        var epDate = $('#NIWObsEpisodeDate').val();
+
+        var datas = pmi_no + "|" + hfc_cd1 + "|" + epDate + "|" + encounterDate + "| | |" + newDate + " " + time + "|" + pulse + "|" + systolic + "|" + dialotic + "|" + respiratoryRate + "|" + oxygenSatu + "|" + painScore + "|" + comment;
+
         $.ajax({
-           type:"post",
-           url:"../Ortho-NursingInWard/controller/ObservationFunction.jsp",
-           data: {datas: datas,methodName : "update"},
-           timeout:10000,
-           success:function(result){
-               console.log(result);
-               if(result.trim()==='true'){                   
-                   bootbox.alert("successfully update!");
-                   $('#selectOBdate').val(sel).change();
-               }else if(result.trim()==='false'){
-                   bootbox.alert("fail to update");
-               }               
-           },
-           error:function(err){
-               bootbox.alert("something wrong,error: "+err);
-           }
+            type: "post",
+            url: "../Ortho-NursingInWard/controller/ObservationFunction.jsp",
+            data: {datas: datas, methodName: "update"},
+            timeout: 10000,
+            success: function (result) {
+                if (result.trim() === 'true') {
+                    bootbox.alert("successfully update!");
+                    if (sel !== null) {
+                        $('#selectOBdate').val(sel).change();
+                    }
+                } else if (result.trim() === 'false') {
+                    bootbox.alert("fail to update");
+                }
+            },
+            error: function (err) {
+                bootbox.alert("something wrong,error: " + err);
+            }
         });
         $("#cobserved1").modal('toggle');
     });

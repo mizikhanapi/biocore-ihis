@@ -11,7 +11,7 @@
         <label class="col-sm-6 control-label text-right" for="formGroupInputLarge">View history assessment:</label>
         <div class="col-sm-6" style="padding-right: 0px;">
             <select class="form-control" id="select4hlydate">
-                <option selected="" disabled="">View by</option>
+                <option value="none" selected="" disabled="">View by</option>
                 <option value="Viewtoday">Today</option>
                 <option value="Viewyesterday">Yesterday</option>
                 <option value="View7day">7 Days</option>

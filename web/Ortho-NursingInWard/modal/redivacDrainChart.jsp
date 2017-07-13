@@ -123,120 +123,120 @@
     </div>
 </div>
 <script>
-     $(document).ready(function () {
+    $(document).ready(function () {
         $('#NIWRedivacDate').datepicker({dateFormat: "dd/mm/yy"});
     });
-    
-    $('#redivacDrainChart #btnNIWredivacADD').on('click',function(e){
+
+    $('#redivacDrainChart #btnNIWredivacADD').on('click', function (e) {
         e.preventDefault();
         var pmi_no = pmiNo;
         var hfc_cd1 = hfc_cd;
         var epDate = episodeDate;
-        
+
         var enDate = new Date();
         var dd = ("0" + enDate.getDate()).slice(-2);
         var mm = ("0" + (enDate.getMonth() + 1)).slice(-2);
-        var yy = enDate.getFullYear();        
+        var yy = enDate.getFullYear();
         var hh = enDate.getHours();
         var m = enDate.getMinutes();
         var ss = enDate.getSeconds();
         var ms = enDate.getMilliseconds();
         var sel = $('#selectredivacdate').val();
-        
-        var encounterDate = yy+"-"+mm+"-"+dd+" "+hh+":"+m+":"+ss+"."+ms;
-        
+
+        var encounterDate = yy + "-" + mm + "-" + dd + " " + hh + ":" + m + ":" + ss + "." + ms;
+
         var date = $('#NIWRedivacDate').val();
         var sDate = date.split('/');
-        var newDate = sDate[2]+"-"+sDate[1]+"-"+sDate[0];
-        
-       var treatmentDate = newDate;
-       
-       var shift = $("input[name='NIWredivacShift']:checked").val();
-       var TIB = $("#NIWredivacTIB").val();
-       var AIS = $("#NIWredivacAIS").val();
-       var TBES = $("#NIWredivacTBES").val();
-       var remark = $("#NIWredivacREMARK").val();
-        
-        
+        var newDate = sDate[2] + "-" + sDate[1] + "-" + sDate[0];
+
+        var treatmentDate = newDate;
+
+        var shift = $("input[name='NIWredivacShift']:checked").val();
+        var TIB = $("#NIWredivacTIB").val();
+        var AIS = $("#NIWredivacAIS").val();
+        var TBES = $("#NIWredivacTBES").val();
+        var remark = $("#NIWredivacREMARK").val();
+
+
         var assignBy = doctor_id;
-        
-        var datas = pmi_no+"|"+hfc_cd1+"|"+epDate+"|"+encounterDate+"|"+treatmentDate+"|"+shift+"|"+TIB+"|"+AIS+"|"+TBES+"|"+remark+"|"+assignBy;
-        console.log(datas);
-        
+
+        var datas = pmi_no + "|" + hfc_cd1 + "|" + epDate + "|" + encounterDate + "|" + treatmentDate + "|" + shift + "|" + TIB + "|" + AIS + "|" + TBES + "|" + remark + "|" + assignBy;
+
         $.ajax({
-           type:"post",
-           url:"../Ortho-NursingInWard/controller/redivacFunction.jsp",
-           data: {datas: datas,methodName : "add"},
-           timeout:10000,
-           success:function(result){
-               console.log(result);
-               if(result.trim()==='true'){                   
-                   bootbox.alert("successfully added!");
-                   $('#selectredivacdate').val(sel).change();
-               }else if(result.trim()==='false'){
-                   bootbox.alert("fail to add");
-               }               
-           },
-           error:function(err){
-               bootbox.alert("something wrong,error: "+err);
-           }
+            type: "post",
+            url: "../Ortho-NursingInWard/controller/redivacFunction.jsp",
+            data: {datas: datas, methodName: "add"},
+            timeout: 10000,
+            success: function (result) {
+                if (result.trim() === 'true') {
+                    bootbox.alert("successfully added!");
+                    if (sel !== null) {
+                        $('#selectredivacdate').val(sel).change();
+                    }
+                } else if (result.trim() === 'false') {
+                    bootbox.alert("fail to add");
+                }
+            },
+            error: function (err) {
+                bootbox.alert("something wrong,error: " + err);
+            }
         });
         $("#redivacDrainChart").modal('toggle');
     });
-    
-    $('#redivacDrainChart #btnNIWredivacUPDATE').on('click',function(e){
+
+    $('#redivacDrainChart #btnNIWredivacUPDATE').on('click', function (e) {
         e.preventDefault();
         var pmi_no = $('#NIWredivacPmi').val();
-        var hfc_cd1 =  $('#NIWredivacHfc').val();
+        var hfc_cd1 = $('#NIWredivacHfc').val();
         var epDate = $('#NIWredivacEpisodeDate').val();
-        
+
         var enDate = new Date();
         var dd = ("0" + enDate.getDate()).slice(-2);
         var mm = ("0" + (enDate.getMonth() + 1)).slice(-2);
-        var yy = enDate.getFullYear();        
+        var yy = enDate.getFullYear();
         var hh = enDate.getHours();
         var m = enDate.getMinutes();
         var ss = enDate.getSeconds();
         var ms = enDate.getMilliseconds();
         var sel = $('#selectredivacdate').val();
-        
+
         var encounterDate = $('#NIWredivacEncounterDate').val();
-        
+
         var date = $('#NIWRedivacDate').val();
         var sDate = date.split('/');
-        var newDate = sDate[2]+"-"+sDate[1]+"-"+sDate[0];
-        
-       var treatmentDate = newDate;
-       
-       var shift = $("input[name='NIWredivacShift']:checked").val();
-       var TIB = $("#NIWredivacTIB").val();
-       var AIS = $("#NIWredivacAIS").val();
-       var TBES = $("#NIWredivacTBES").val();
-       var remark = $("#NIWredivacREMARK").val();
-        
-        
+        var newDate = sDate[2] + "-" + sDate[1] + "-" + sDate[0];
+
+        var treatmentDate = newDate;
+
+        var shift = $("input[name='NIWredivacShift']:checked").val();
+        var TIB = $("#NIWredivacTIB").val();
+        var AIS = $("#NIWredivacAIS").val();
+        var TBES = $("#NIWredivacTBES").val();
+        var remark = $("#NIWredivacREMARK").val();
+
+
         var assignBy = doctor_id;
-        
-        var datas = pmi_no+"|"+hfc_cd1+"|"+epDate+"|"+encounterDate+"|"+treatmentDate+"|"+shift+"|"+TIB+"|"+AIS+"|"+TBES+"|"+remark+"|"+assignBy;
-        console.log(datas);
-        
+
+        var datas = pmi_no + "|" + hfc_cd1 + "|" + epDate + "|" + encounterDate + "|" + treatmentDate + "|" + shift + "|" + TIB + "|" + AIS + "|" + TBES + "|" + remark + "|" + assignBy;
+
         $.ajax({
-           type:"post",
-           url:"../Ortho-NursingInWard/controller/redivacFunction.jsp",
-           data: {datas: datas,methodName : "update"},
-           timeout:10000,
-           success:function(result){
-               console.log(result);
-               if(result.trim()==='true'){                   
-                   bootbox.alert("successfully updated!");
-                   $('#selectredivacdate').val(sel).change();
-               }else if(result.trim()==='false'){
-                   bootbox.alert("fail to update");
-               }               
-           },
-           error:function(err){
-               bootbox.alert("something wrong,error: "+err);
-           }
+            type: "post",
+            url: "../Ortho-NursingInWard/controller/redivacFunction.jsp",
+            data: {datas: datas, methodName: "update"},
+            timeout: 10000,
+            success: function (result) {
+                if (result.trim() === 'true') {
+                    bootbox.alert("successfully updated!");
+                    if (sel !== null) {
+                        $('#selectredivacdate').val(sel).change();
+                    }
+                } else if (result.trim() === 'false') {
+                    bootbox.alert("fail to update");
+                }
+            },
+            error: function (err) {
+                bootbox.alert("something wrong,error: " + err);
+            }
         });
         $("#redivacDrainChart").modal('toggle');
     });

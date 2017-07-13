@@ -119,7 +119,7 @@
                         </div>
 
                     </div>
-                    
+
                     <div class="row margin-bottom-10px">
                         <div class="col-md-6">
                             <!-- Text input-->
@@ -233,7 +233,7 @@
                         </div>
 
                     </div>
-                    
+
                     <div class="row margin-bottom-10px">
                         <div class="col-md-6">
                             <!-- Text input-->
@@ -290,7 +290,7 @@
                         </div>
 
                     </div>
-                    
+
                     <div class="row margin-bottom-10px">
                         <div class="col-md-6">
                             <!-- Text input-->
@@ -347,7 +347,7 @@
                         </div>
 
                     </div>
-                    
+
                     <div class="row margin-bottom-10px">
                         <div class="col-md-6">
                             <!-- Text input-->
@@ -404,7 +404,7 @@
                         </div>
 
                     </div>
-                    
+
                     <div class="row margin-bottom-10px">
                         <div class="col-md-6">
                             <!-- Text input-->
@@ -434,7 +434,7 @@
                         </div>
 
                     </div>
-                    
+
                 </form>
             </div>
             <div class="modal-footer">
@@ -456,135 +456,135 @@
 </div>
 <script>
     $(document).ready(function () {
-        $('#dateNIWtr').datepicker({dateFormat:"dd/mm/yy"});
+        $('#dateNIWtr').datepicker({dateFormat: "dd/mm/yy"});
     });
-    
-     $('#perawatan-ortho #btnNIWtrADD').on('click',function(e){
+
+    $('#perawatan-ortho #btnNIWtrADD').on('click', function (e) {
         e.preventDefault();
         var pmi_no = pmiNo;
         var hfc_cd1 = hfc_cd;
         var epDate = episodeDate;
-        
+
         var enDate = new Date();
         var dd = ("0" + enDate.getDate()).slice(-2);
         var mm = ("0" + (enDate.getMonth() + 1)).slice(-2);
-        var yy = enDate.getFullYear();        
+        var yy = enDate.getFullYear();
         var hh = enDate.getHours();
         var m = enDate.getMinutes();
         var ss = enDate.getSeconds();
         var ms = enDate.getMilliseconds();
         var sel = $('#selecttrdate').val();
-        
-        var encounterDate = yy+"-"+mm+"-"+dd+" "+hh+":"+m+":"+ss+"."+ms;
-        
+
+        var encounterDate = yy + "-" + mm + "-" + dd + " " + hh + ":" + m + ":" + ss + "." + ms;
+
         var date = $('#dateNIWtr').val();
         var sDate = date.split('/');
-        var newDate = sDate[2]+"-"+sDate[1]+"-"+sDate[0];
-        
-       var treatmentDate = newDate;
-       var shift = $("input[name='NIWtrTIME']:checked").val();
-       var iv_branula_rul =$("input[name='RightUpperLimb']:checked").val();
-       var iv_branula_lul =$("input[name='LeftUpperLimb']:checked").val();
-       var iv_branula_rll =$("input[name='RightLowerLimb']:checked").val();
-       var iv_branula_lll =$("input[name='LeftLowerLimb']:checked").val();
-       var angiocatheter =$("input[name='AngioCathter']:checked").val();
-       var cvp =$("input[name='CVP']:checked").val();
-       var tracheostomy=$("input[name='Tracheostomy']:checked").val();
-       var urinary_catheter=$("input[name='UrinaryCatheter']:checked").val();
-       var drain1=$("input[name='Drain1']:checked").val();
-       var drain2=$("input[name='Drain2']:checked").val();
-       var vaccum_dressing=$("input[name='VaccumDressing']:checked").val();
-       var ryiestube=$("input[name='RyiesTube']:checked").val();
-       var chesttube=$("input[name='ChestTube']:checked").val();
-        
-        
+        var newDate = sDate[2] + "-" + sDate[1] + "-" + sDate[0];
+
+        var treatmentDate = newDate;
+        var shift = $("input[name='NIWtrTIME']:checked").val();
+        var iv_branula_rul = $("input[name='RightUpperLimb']:checked").val();
+        var iv_branula_lul = $("input[name='LeftUpperLimb']:checked").val();
+        var iv_branula_rll = $("input[name='RightLowerLimb']:checked").val();
+        var iv_branula_lll = $("input[name='LeftLowerLimb']:checked").val();
+        var angiocatheter = $("input[name='AngioCathter']:checked").val();
+        var cvp = $("input[name='CVP']:checked").val();
+        var tracheostomy = $("input[name='Tracheostomy']:checked").val();
+        var urinary_catheter = $("input[name='UrinaryCatheter']:checked").val();
+        var drain1 = $("input[name='Drain1']:checked").val();
+        var drain2 = $("input[name='Drain2']:checked").val();
+        var vaccum_dressing = $("input[name='VaccumDressing']:checked").val();
+        var ryiestube = $("input[name='RyiesTube']:checked").val();
+        var chesttube = $("input[name='ChestTube']:checked").val();
+
+
         var assignBy = doctor_id;
-        
-        var datas = pmi_no+"|"+hfc_cd1+"|"+epDate+"|"+encounterDate+"|"+treatmentDate+"|"+shift+"|"+iv_branula_rul+"|"+iv_branula_lul+"|"+iv_branula_rll+"|"+iv_branula_lll+"|"+angiocatheter+"|"+cvp+"|"+tracheostomy+"|"+urinary_catheter+"|"+drain1+"|"+drain2+"|"+vaccum_dressing+"|"+ryiestube+"|"+chesttube+"|"+assignBy;
-        console.log(datas);
-        
+
+        var datas = pmi_no + "|" + hfc_cd1 + "|" + epDate + "|" + encounterDate + "|" + treatmentDate + "|" + shift + "|" + iv_branula_rul + "|" + iv_branula_lul + "|" + iv_branula_rll + "|" + iv_branula_lll + "|" + angiocatheter + "|" + cvp + "|" + tracheostomy + "|" + urinary_catheter + "|" + drain1 + "|" + drain2 + "|" + vaccum_dressing + "|" + ryiestube + "|" + chesttube + "|" + assignBy;
+
         $.ajax({
-           type:"post",
-           url:"../Ortho-NursingInWard/controller/TreatmentFunction.jsp",
-           data: {datas: datas,methodName : "add"},
-           timeout:10000,
-           success:function(result){
-               console.log(result);
-               if(result.trim()==='true'){                   
-                   bootbox.alert("successfully added!");
-                   $('#selecttrdate').val(sel).change();
-               }else if(result.trim()==='false'){
-                   bootbox.alert("fail to add");
-               }               
-           },
-           error:function(err){
-               bootbox.alert("something wrong,error: "+err);
-           }
+            type: "post",
+            url: "../Ortho-NursingInWard/controller/TreatmentFunction.jsp",
+            data: {datas: datas, methodName: "add"},
+            timeout: 10000,
+            success: function (result) {
+                if (result.trim() === 'true') {
+                    bootbox.alert("successfully added!");
+                    if (sel !== null) {
+                        $('#selecttrdate').val(sel).change();
+                    }
+                } else if (result.trim() === 'false') {
+                    bootbox.alert("fail to add");
+                }
+            },
+            error: function (err) {
+                bootbox.alert("something wrong,error: " + err);
+            }
         });
         $("#perawatan-ortho").modal('toggle');
     });
-    
-    $('#perawatan-ortho #btnNIWtruUPDATE').on('click',function(e){
+
+    $('#perawatan-ortho #btnNIWtruUPDATE').on('click', function (e) {
         e.preventDefault();
         var pmi_no = $('#NIWtrPmi').val();
         var hfc_cd1 = $('#NIWtrHfc').val();
         var epDate = $('#NIWtrEpisodeDate').val();
-        
+
         var enDate = new Date();
         var dd = ("0" + enDate.getDate()).slice(-2);
         var mm = ("0" + (enDate.getMonth() + 1)).slice(-2);
-        var yy = enDate.getFullYear();        
+        var yy = enDate.getFullYear();
         var hh = enDate.getHours();
         var m = enDate.getMinutes();
         var ss = enDate.getSeconds();
         var ms = enDate.getMilliseconds();
         var sel = $('#selecttrdate').val();
-        
+
         var encounterDate = $('#NIWtrEncounterDate').val();
-        
+
         var date = $('#dateNIWtr').val();
         var sDate = date.split('/');
-        var newDate = sDate[2]+"-"+sDate[1]+"-"+sDate[0];
-        
-       var treatmentDate = newDate;
-       var shift = $("input[name='NIWtrTIME']:checked").val();
-       var iv_branula_rul =$("input[name='RightUpperLimb']:checked").val();
-       var iv_branula_lul =$("input[name='LeftUpperLimb']:checked").val();
-       var iv_branula_rll =$("input[name='RightLowerLimb']:checked").val();
-       var iv_branula_lll =$("input[name='LeftLowerLimb']:checked").val();
-       var angiocatheter =$("input[name='AngioCathter']:checked").val();
-       var cvp =$("input[name='CVP']:checked").val();
-       var tracheostomy=$("input[name='Tracheostomy']:checked").val();
-       var urinary_catheter=$("input[name='UrinaryCatheter']:checked").val();
-       var drain1=$("input[name='Drain1']:checked").val();
-       var drain2=$("input[name='Drain2']:checked").val();
-       var vaccum_dressing=$("input[name='VaccumDressing']:checked").val();
-       var ryiestube=$("input[name='RyiesTube']:checked").val();
-       var chesttube=$("input[name='ChestTube']:checked").val();
-        
-        
+        var newDate = sDate[2] + "-" + sDate[1] + "-" + sDate[0];
+
+        var treatmentDate = newDate;
+        var shift = $("input[name='NIWtrTIME']:checked").val();
+        var iv_branula_rul = $("input[name='RightUpperLimb']:checked").val();
+        var iv_branula_lul = $("input[name='LeftUpperLimb']:checked").val();
+        var iv_branula_rll = $("input[name='RightLowerLimb']:checked").val();
+        var iv_branula_lll = $("input[name='LeftLowerLimb']:checked").val();
+        var angiocatheter = $("input[name='AngioCathter']:checked").val();
+        var cvp = $("input[name='CVP']:checked").val();
+        var tracheostomy = $("input[name='Tracheostomy']:checked").val();
+        var urinary_catheter = $("input[name='UrinaryCatheter']:checked").val();
+        var drain1 = $("input[name='Drain1']:checked").val();
+        var drain2 = $("input[name='Drain2']:checked").val();
+        var vaccum_dressing = $("input[name='VaccumDressing']:checked").val();
+        var ryiestube = $("input[name='RyiesTube']:checked").val();
+        var chesttube = $("input[name='ChestTube']:checked").val();
+
+
         var assignBy = doctor_id;
-        
-        var datas = pmi_no+"|"+hfc_cd1+"|"+epDate+"|"+encounterDate+"|"+treatmentDate+"|"+shift+"|"+iv_branula_rul+"|"+iv_branula_lul+"|"+iv_branula_rll+"|"+iv_branula_lll+"|"+angiocatheter+"|"+cvp+"|"+tracheostomy+"|"+urinary_catheter+"|"+drain1+"|"+drain2+"|"+vaccum_dressing+"|"+ryiestube+"|"+chesttube+"|"+assignBy;
-        console.log(datas);
-        
+
+        var datas = pmi_no + "|" + hfc_cd1 + "|" + epDate + "|" + encounterDate + "|" + treatmentDate + "|" + shift + "|" + iv_branula_rul + "|" + iv_branula_lul + "|" + iv_branula_rll + "|" + iv_branula_lll + "|" + angiocatheter + "|" + cvp + "|" + tracheostomy + "|" + urinary_catheter + "|" + drain1 + "|" + drain2 + "|" + vaccum_dressing + "|" + ryiestube + "|" + chesttube + "|" + assignBy;
+
         $.ajax({
-           type:"post",
-           url:"../Ortho-NursingInWard/controller/TreatmentFunction.jsp",
-           data: {datas: datas,methodName : "update"},
-           timeout:10000,
-           success:function(result){
-               console.log(result);
-               if(result.trim()==='true'){                   
-                   bootbox.alert("successfully updated!");
-                   $('#selecttrdate').val(sel).change();
-               }else if(result.trim()==='false'){
-                   bootbox.alert("fail to update");
-               }               
-           },
-           error:function(err){
-               bootbox.alert("something wrong,error: "+err);
-           }
+            type: "post",
+            url: "../Ortho-NursingInWard/controller/TreatmentFunction.jsp",
+            data: {datas: datas, methodName: "update"},
+            timeout: 10000,
+            success: function (result) {
+                if (result.trim() === 'true') {
+                    bootbox.alert("successfully updated!");
+                    if (sel !== null) {
+                        $('#selecttrdate').val(sel).change();
+                    }
+                } else if (result.trim() === 'false') {
+                    bootbox.alert("fail to update");
+                }
+            },
+            error: function (err) {
+                bootbox.alert("something wrong,error: " + err);
+            }
         });
         $("#perawatan-ortho").modal('toggle');
     });
