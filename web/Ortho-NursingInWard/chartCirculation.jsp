@@ -261,11 +261,16 @@
 
                             bootbox.alert("Successfully Added !!");
 
+                            $("#circulationChart").modal('hide');
+
                             resetTableChartCirculation();
 
                         } else if (result.trim() === 'false') {
 
                             bootbox.alert("fail to add");
+
+                            $("#circulationChart").modal('hide');
+
 
                         }
                     },
@@ -274,7 +279,6 @@
                     }
                 });
             }
-            $("#circulationChart").modal('hide');
         });
 
         // Add Get Data And Send To Controller Function End
@@ -282,6 +286,57 @@
 
 
 // ---------------------------------------------------------------------------- Insert ------------------------------------------------------------------------------------------- //
+
+
+// ---------------------------------------------------------------------------- Update ------------------------------------------------------------------------------------------- //
+
+        // Function For Update Button Start
+        $('#tableChartCirculationDiv').on('click', '#tableChartCirculationTable #tableChartCirculationUpdateBtn', function (e) {
+
+
+            $('#chartCirculationModalTitle').text("Update Circulation Chart");
+            $('#chartCirculationModal_btnAdd_or_btnUpdate_div').html('<button type="button" class="btn btn-success btn-block btn-lg" id="chartCirculationUpdateModalBtn" role="button">Update Items</button>');
+
+            $('#chartCirculationForm')[0].reset();
+
+            $("#chartCirculationModalDate").datepicker({
+                changeMonth: true,
+                changeYear: true,
+                maxDate: '+0d',
+                dateFormat: 'dd/mm/yy'
+            });
+
+            //get the row value
+            var row = $(this).closest("tr");
+            var rowData = row.find("#dataChartCirculationhidden").val();
+
+            var arrayData = rowData.split("|");
+
+            $('#NIWChartCirculationPmi').val(arrayData[0]);
+            $('#NIWChartCirculationHfc').val(arrayData[1]);
+            $('#NIWChartCirculationEpisodeDate').val(arrayData[2]);
+            $('#NIWChartCirculationEncounterDate').val(arrayData[3]);
+
+            $('#chartCirculationModalDate').val(arrayData[7]);
+            $('#chartCirculationModalTime').val(arrayData[13]);
+
+            $('#chartCirculationModalColour').val(arrayData[8]);
+            $('#chartCirculationModalSensation').val(arrayData[9]);
+            $("input[name='HotCold'][value='" + arrayData[10] + "']").prop('checked', true);
+            $('#chartCirculationModalMovement').val(arrayData[11]);
+            $('#chartCirculationModalOthers').val(arrayData[12]);
+
+            $("#circulationChart").modal('show');
+
+
+        });
+        // Function For Update Button End
+
+// ---------------------------------------------------------------------------- Update ------------------------------------------------------------------------------------------- //
+
+
+
+// ---------------------------------------------------------------------------- Reset Table ------------------------------------------------------------------------------------------- //
 
         function resetTableChartCirculation() {
 
@@ -306,10 +361,10 @@
             $('#chartCirculationSelectAssessment').prop('selectedIndex', 0);
 
         }
+
 // ---------------------------------------------------------------------------- Reset Table ------------------------------------------------------------------------------------------- //
 
 
-// ---------------------------------------------------------------------------- Reset Table ------------------------------------------------------------------------------------------- //
 
 
 // ---------------------------------------------------------------------------- Date ------------------------------------------------------------------------------------------- //
@@ -351,21 +406,3 @@
     });
 
 </script>
-
-
-<!--       
-
-<td>09/06/2017</td>
-<td>10:27 AM</td>
-<td>Blue</td>
-<td>good</td>
-<td>Hot</td>
-<td>Forward</td>
-<td>that guy~</td>
-<td>
-    <a id="" data-toggle="modal" data-target="#edit"><i class="fa fa-pencil-square-o fa-lg" aria-hidden="true" style="display: inline-block;color: #337ab7;"></i></a>
-    &nbsp;
-    <a id="" class="testing"><i class="fa fa-times fa-lg" aria-hidden="true" style="display: inline-block;color: #d9534f;"></i></a>
-</td>
-
--->
