@@ -32,7 +32,7 @@
                 <label for="exampleInputEmail2">to</label>
                 <input type="email" class="form-control" id="MS_dateTo" placeholder="dd/mm/yyyy" readonly style="margin-bottom: 0px !important;">
             </div>
-            <button type="submit" class="btn btn-default"><i class="fa fa-search fa-lg"></i></button>
+            <button type="submit" class="btn btn-default" id="MS_btnSearchByDate"><i class="fa fa-search fa-lg"></i></button>
         </div>
     </div>
 </div>

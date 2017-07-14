@@ -15,6 +15,9 @@ $(function () {
 
     if (name.localeCompare('-') !== 0 && ic.localeCompare('-') !== 0)
         loadMorsefallAssessment();
+    
+    var today = $.datepicker.formatDate('dd/mm/yy', new Date());
+    $('#morseDate').val(today);
 });
 
 //---- selecting how to view the notes: today, yesterday or specific dates------------
@@ -25,6 +28,7 @@ $('#MS_viewBy').on('change', function () {
         $('#MS_div_selectDate').show();
     } else {
         $('#MS_div_selectDate').hide();
+        loadMorsefallAssessment();// view previous assessment
     }
 });
 
@@ -61,12 +65,15 @@ function loadMorsefallAssessment() {
 //============================================================================
 
 
-//----------------------- view previous assessment -----------------------------
-$('#MS_viewBy').on('change', function () {
-    var state = $('#MS_viewBy').val();
-
-    if (state == 'x')
-        return false;
+//----------------------- view previous assessment based on selected date range -----------------------------
+$('#MS_btnSearchByDate').on('click', function () {
+    console.log('Search button click');
+    var dateFrom = $('#MS_dateFrom').val();
+    var dateTo = $('#MS_dateTo').val();
+    
+    if (dateFrom === '' || dateTo === ''){
+     bootbox.alert("Please pick the date range!");   
+    }        
     else
         loadMorsefallAssessment();
 });
@@ -229,6 +236,9 @@ $('#morse1').on('hidden.bs.modal', function () {
     $('#morse_btnAdd_div').show();
     $('#morse_btnUpdate_div').hide();
     $('#morseForm')[0].reset();
+    
+    var today = $.datepicker.formatDate('dd/mm/yy', new Date());
+    $('#morseDate').val(today);
 });
 
 //............. update on click button ....

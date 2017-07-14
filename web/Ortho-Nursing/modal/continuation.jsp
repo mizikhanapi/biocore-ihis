@@ -19,7 +19,7 @@
                             <div class="form-group">
                                 <label class="col-md-12 control-label" for="textinput">Date</label>
                                 <div class="col-md-12">
-                                    <input type="date" class="form-control input-md" >
+                                    <input type="text" class="form-control input-md" id="proNote_date" placeholder="Pick a date (dd/mm/yyyy)" readonly>
                                 </div>
                             </div>
                         </div>
@@ -28,7 +28,7 @@
                             <div class="form-group">
                                 <label class="col-md-12 control-label" for="textinput">Time</label>
                                 <div class="col-md-12">
-                                    <input type="time" class="form-control input-md" >
+                                    <input type="text" class="form-control input-md" id="proNote_time" placeholder="Pick a time (hh:mm:ss)" readonly>
                                 </div>
                             </div>
                         </div>
@@ -40,7 +40,7 @@
                             <div class="form-group">
                                 <label class="col-md-12 control-label" for="textinput">Notes</label>
                                 <div class="col-md-12">
-                                    <textarea class="form-control input-md"></textarea>
+                                    <textarea class="form-control input-md" id="proNote_notes" maxlength="650"></textarea>
                                 </div>
                             </div>
                         </div>
@@ -51,14 +51,14 @@
             </div>
             <div class="modal-footer">
                 <div class="btn-group btn-group-justified" role="group" aria-label="group button">
-                    <div class="btn-group" role="group">
-                        <button type="button" class="btn btn-success btn-block btn-lg" id="acceptBloodPBtn" role="button">Add Items</button>
+                    <div class="btn-group" role="group" id="div_proNote_btnAdd">
+                        <button type="button" class="btn btn-success btn-block btn-lg" role="button" id="proNote_btnAdd">Add Notes</button>
                     </div>
-                    <div class="btn-group btn-delete hidden" role="group">
-                        <button type="button" id="delImage" class="btn btn-default btn-block btn-lg" data-dismiss="modal" role="button">Clear</button>
+                    <div class="btn-group btn-delete hidden" role="group" id="div_proNote_btnUpdate">
+                        <button type="button" class="btn btn-success btn-block btn-lg" role="button" id="proNote_btnUpdate">Update Notes</button>
                     </div>
                     <div class="btn-group" role="group">
-                        <button type="button" id="saveImage" class="btn btn-default btn-block btn-lg" data-dismiss="modal" role="button">Close</button>
+                        <button type="button" class="btn btn-default btn-block btn-lg" data-dismiss="modal" role="button">Close</button>
                     </div>
                 </div>
             </div>
