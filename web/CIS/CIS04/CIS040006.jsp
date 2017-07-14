@@ -14,11 +14,11 @@
             <div class="modal-header" style="padding: 0px;">
                 <div class="tabbable-line">
                     <ul class="nav nav-tabs ">
-                        <li class="active">
+                        <li class="active" id="POS_NEW">
                             <a href="#procedureOrder1" data-toggle="tab">
                                 New Procedure Order</a>
                         </li>
-                        <li>
+                       <li id="POS_History" >
                             <a href="#procedureOrder2" data-toggle="tab">
                                 Drug Procedure History</a>
                         </li>
@@ -146,10 +146,10 @@
                                     <div class="form-group">
                                         <label class="col-md-4 control-label" for="selectbasic">Search drug by</label>
                                         <div class="col-md-4">
-                                            <select id="idType" name="idType" class="form-control" required="">
+                                             <select id="selectCIS_OE_POS_SEARCH_TYPE" name="idType" class="form-control" required="">
                                                 <option selected="" disabled="" value="-">View by</option>
-                                                <option>Today</option>
-                                                <option>Previous Episode</option>
+                                                <option value="today">Today</option>
+                                                <option value="previous">Previous Episode</option>
                                             </select>
                                         </div>
                                     </div>
@@ -158,15 +158,16 @@
                                     <div class="form-group">
                                         <label class="col-md-4 control-label" for="textinput">Order</label>
                                         <div class="col-md-4">
-                                            <input type="text" class="form-control input-md" id="idInput" name="idInput" placeholder="ID" maxlength="0">
+                                           <input type="text" class="form-control input-md" id="tCIS_OE_POS_SEARCH_ORDER_ID" name="idInput" placeholder="Order ID">
                                         </div>
                                     </div>
 
                                     <div class="text-center">
-                                        <button class="btn btn-primary" type="button" id="searchPatient" name="searchPatient"><i class="fa fa-search"></i>&nbsp; Search</button>
-                                        <button id="clearSearch" name="clearSearch" type="button" class="btn btn-default"><i class="fa fa-times"></i>&nbsp; Clear</button>
+                                        <button class="btn btn-primary" type="button" id="btnCIS_OE_POS_SEARCH_ORDER" name="searchPatient"><i class="fa fa-search"></i>&nbsp; Search</button>
+                                        <button id="btnCIS_OE_POS_SEARCH_CLEAR" name="clearSearch" type="button" class="btn btn-default"><i class="fa fa-times"></i>&nbsp; Clear</button>
                                     </div>
                                 </form>
+                                <div id="divCIS_OE_POS_OrderSearchResult"></div>
                             </div>
                         </div>
                     </div>

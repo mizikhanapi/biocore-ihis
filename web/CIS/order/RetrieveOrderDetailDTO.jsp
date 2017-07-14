@@ -11,23 +11,25 @@
     Conn Conn = new Conn();
 
                                String orderId = request.getParameter("orderId");
-                               String itemCode = request.getParameter("drug_cd");
+                               String itemCode = request.getParameter("item_cd");
                                String hfcTo = request.getParameter("hfc_to");
                                String searchProblem = "";
 
-                                   searchProblem = "SELECT om.`ORDER_NO`, om.`HFC_TO`, hf.hfc_name, od.`DRUG_ITEM_CODE`, mdc.`D_TRADE_NAME` "
-                                           + "FROM pis_order_master om "
-                                           + "JOIN pis_order_detail od  "
-                                           + "JOIN pis_mdc2 mdc "
+                                   searchProblem = "SELECT om.order_no,om.hfc_to,hf.hfc_name,od.item_cd,id.item_name  "
+                                           + "FROM lis_order_master om "
+                                           + "JOIN lis_order_detail od "
+                                           + "JOIN lis_item_detail id "
                                            + "JOIN adm_health_facility hf "
-                                           + "WHERE om.`ORDER_NO` = od.`ORDER_NO` "
-                                           + "AND od.`DRUG_ITEM_CODE` = mdc.`UD_MDC_CODE` "
-                                           + "AND om.`HFC_TO` = hf.hfc_cd "
-                                           + "AND om.`ORDER_NO` = '"+orderId+"' "
-                                           + "AND od.`DRUG_ITEM_CODE` = '"+itemCode+"' "
-                                           + "AND om.`HFC_TO` = '"+hfcTo+"' "
-                                           + "GROUP BY od.`DRUG_ITEM_CODE`;";
+                                           + "WHERE om.order_no = od.order_no "
+                                           + "AND od.item_cd = id.item_cd "
+                                           + "AND om.hfc_to = hf.hfc_cd "
+                                           + "AND om.order_no = '"+orderId+"'  "
+                                           + "AND od.item_cd = '"+itemCode+"' "
+                                           + "AND om.hfc_to = '"+hfcTo+"' "
+                                           + "GROUP BY od.order_no;";
                                    
+                                   //out.print(searchProblem);
+                             
 
 
                                 ArrayList<ArrayList<String>> search = Conn.getData(searchProblem); 

@@ -41,7 +41,7 @@
                                                 + "AND om.pmi_no = '"+pmiNo+"' "
                                                 + "GROUP BY od.item_cd LIMIT 3";
                                         
-                                        resultProblem = "SELECT om.order_no,om.hfc_to,hf.hfc_name,od.item_cd,id.item_name,r.`result`,om.episode_date,r.id_result, au.`USER_NAME`,od.spe_source "
+                                        resultProblem = "SELECT om.order_no, om.hfc_to ,hf.hfc_name, od.item_cd, id.item_name, r.`result`, om.episode_date, r.id_result, au.`USER_NAME`, od.spe_source "
                                                 + "FROM lis_order_master om "
                                                 + " JOIN lis_order_detail od  "
                                                 + "JOIN lis_item_detail id  "
@@ -118,7 +118,7 @@
                             <td>Order By</td>
                             <td>Test Name</td>
                             <td>S.Source</td>
-                            <td>S.Container</td>
+                            <td>Result</td>
                             <td>Provider Facility</td>
                             <td>Action</td>
                         </tr>
@@ -131,8 +131,9 @@
                             <td><%out.print(result.get(i).get(8));%></td>
                             <td><%out.print(result.get(i).get(4));%></td>
                             <td><%out.print(result.get(i).get(9));%></td>
-                            <td><button id="btnCIS_OE_LIO_VIEW_RESULT">Show Result Image</button></td>
-                            <td><%out.print(result.get(i).get(5));%></td>
+                            
+                            <td><%out.print(result.get(i).get(5));%><button id="btnCIS_OE_LIO_VIEW_RESULT">Show Result Image</button></td>
+                            <td><%out.print(result.get(i).get(2));%></td>
                             <td hidden id="item_cd"><%out.print(result.get(i).get(3));%></td>
                             <td hidden id="id_result"><%out.print(result.get(i).get(7));%></td>
                             <td hidden id="orderId"><%out.print(result.get(i).get(0));%></td>

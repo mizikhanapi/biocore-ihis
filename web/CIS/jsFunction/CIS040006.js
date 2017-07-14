@@ -24,6 +24,98 @@ $(document).ready(function(){
     searchPOS("tCISOEPOSSearch", "tCISOEPOSSearchLoading", "","0");
     searchPOSCode("tCISOEPOSSearch","tCISOEPOSSearchLoading","tCISOEPOS_0_ID","0");
     
+   $("#divCIS_OE_POS_OrderSearchResult").on("click","#tblOPOS #btnCIS_OE_POS_SEARCH_ADD",function(e){
+         e.preventDefault();
+        var rowOrder = $(this).closest("tr");
+        var orderId = rowOrder.find("#orderId").html();
+        var procedure_cd = rowOrder.find("#procedure_cd").html();
+        var lvlA = procedure_cd.split(".");
+        var hfc_to = rowOrder.find("#providerId").html();
+        var level = lvlA.length;
+        var data = {
+            orderId:orderId,
+            procedure_cd:procedure_cd,
+            hfc_to:hfc_to,
+            level:level-1
+        }
+        console.log(data);
+
+
+        $.ajax({
+            timeout: 3000,
+            url: "order/RetrieveOrderDetailPOS.jsp",
+            type: "POST",
+            data: data,
+            success: function (e) {
+           
+           var posDetail = e.trim();
+           posDetail = e.split("|");
+           console.log(posDetail);
+           if(level == 3){
+               $("#tCISOEPOS_2_ID").val(posDetail[6]);
+               $("#tCISOEPOS_1_ID").val(posDetail[4]);
+               $("#tCISOEPOS_0_ID").val(posDetail[2]);
+               searchPOS("tCISOEPOSSearch", "tCISOEPOSSearchLoading", posDetail[3],"0");
+               searchPOS1("tCISOEPOS1Search", "tCISOEPOS1SearchLoading", posDetail[5], "1",posDetail[2]);
+               searchPOS2("tCISOEPOS2Search", "tCISOEPOS2SearchLoading", posDetail[7], "2",posDetail[4]);
+               $("#div_CIS_OE_POS_LVL2").show();
+               $("#div_CIS_OE_POS_LVL1").show();
+           } else if(level == 2){
+                            
+               $("#tCISOEPOS_1_ID").val(posDetail[4]);
+               $("#tCISOEPOS_0_ID").val(posDetail[2]);
+               searchPOS("tCISOEPOSSearch", "tCISOEPOSSearchLoading", posDetail[3],"0");
+               searchPOS1("tCISOEPOS1Search", "tCISOEPOS1SearchLoading", posDetail[5], "1",posDetail[2]);
+               $("#div_CIS_OE_POS_LVL1").show();
+          
+           } else if(level == 1){
+
+               $("#tCISOEPOS_0_ID").val(posDetail[2]);
+               searchPOS("tCISOEPOSSearch", "tCISOEPOSSearchLoading", posDetail[3],"0");
+
+           }
+
+           $('#POS_NEW a[href="#procedureOrder1"]').tab('show');
+
+            }
+        })
+     })
+    
+    
+    $("#btnCIS_OE_POS_SEARCH_ORDER").click(function (e) {
+        e.preventDefault();
+        var order_id = $("#tCIS_OE_POS_SEARCH_ORDER_ID").val();
+        if (order_id === "") {
+            order_id = "-";
+        }
+        var todayDate = getDate();
+        todayDate = todayDate.split(" ");
+        todayDate = todayDate[0];
+        var type = $("#selectCIS_OE_POS_SEARCH_TYPE option:selected").val();
+
+        console.log(todayDate);
+        console.log(type);
+        var data = {
+            pmiNo: pmiNo,
+            todayDate: todayDate,
+            type: type,
+            orderId: order_id
+        }
+
+        console.log(data);
+        $.ajax({
+            url: "order/ResultSearchOrderPOS.jsp",
+            timeout: 3000,
+            type: "POST",
+            data: data,
+            success: function (e) {
+
+                $("#divCIS_OE_POS_OrderSearchResult").html(e);
+            }
+        })
+
+    });
+    
     $("#btnCIS_OE_POS_SUBMIT").click(function (e) {
 
         e.preventDefault();
@@ -60,7 +152,7 @@ $(document).ready(function(){
       var pc1 = $("#tCISOEPOS_1_ID").val();
       var pc0 = $("#tCISOEPOS_0_ID").val();
       
-      var procedureCode ;
+      var procedureCode = pc0;
       var procedure  =  $("#tCISOEPOSSearch").val() +"[$-$]"+ $("#tCISOEPOS1Search").val() +"[$-$]"+ $("#tCISOEPOS2Search").val();
       var hfcOrderDetail = $('#hfcOrderDetailPOS').val();
       var hfcProviderDetail = $('#hfcProviderDetailPOS').val();
@@ -73,16 +165,33 @@ $(document).ready(function(){
       var patientConditionCd = $("#patientConditionPOScd").val();
       var date = $("#appointmentPOS").val();
       
-     
-      if($("#tCISOEPOS_2_ID").val() === ""){
-          procedure = $("#tCISOEPOSSearch").val() +"[$-$]"+ $("#tCISOEPOS1Search").val() 
-          procedureCode = $("#tCISOEPOS_1_ID").val();
-      } else if($("#tCISOEPOS_1_ID").val()=== ""){
+      if(pc2 !== ""){
+          procedure  =  $("#tCISOEPOSSearch").val() +"[$-$]"+ $("#tCISOEPOS1Search").val() +"[$-$]"+ $("#tCISOEPOS2Search").val();
+          procedureCode = pc2;
+      } else if(pc1 !== ""){
+          procedure = $("#tCISOEPOSSearch").val() +"[$-$]"+ $("#tCISOEPOS1Search").val();
+          procedureCode = pc1;
+      }else if(pc0 !== ""){
           procedure = $("#tCISOEPOSSearch").val()+"[$-$]";
-          procedureCode = $("#tCISOEPOS_0_ID").val();
-      } else{
-          procedureCode = $("#tCISOEPOS_2_ID").val();
+          procedureCode = pc0;
       }
+      
+
+//      if($("#tCISOEPOS_2_ID").val() === ""){
+//          
+//          procedure = $("#tCISOEPOSSearch").val() +"[$-$]"+ $("#tCISOEPOS1Search").val();
+//          procedureCode = pc1;
+//          
+//      } else if($("#tCISOEPOS_1_ID").val()=== ""){
+//          
+//          procedure = $("#tCISOEPOSSearch").val()+"[$-$]";
+//          procedureCode = pc0;
+//          
+//      } else{
+//          
+//          procedureCode = pc2;
+//          
+//      }
 
       var obj = {
           procedure:procedure,
@@ -251,19 +360,19 @@ $(document).ready(function(){
              console.log(response);
              if(level === "2"){
                  
-                searchPOS("tCISOEPOS2Search", "tCISOEPOSS2earchLoading", procedureName, "2");
+                searchPOS("tCISOEPOS2Search", "tCISOEPOSS2earchLoading", procedureName, "2",$("#tCISOEPOS_1_ID").val());
                 $("#tCISOEPOS_2_ID").val(response.trim());
                 
                 
              } else if(level === "1"){
                  
-                searchPOS("tCISOEPOS1Search", "tCISOEPOS1SearchLoading", procedureName, "1");
+                searchPOS("tCISOEPOS1Search", "tCISOEPOS1SearchLoading", procedureName, "1",$("#tCISOEPOS_0_ID").val());
                 $("#tCISOEPOS_1_ID").val(response.trim());
                 
                 
              } else{
                  
-                searchPOS("tCISOEPOSSearch", "tCISOEPOSSearchLoading", procedureName, "0");
+                searchPOS("tCISOEPOSSearch", "tCISOEPOSSearchLoading", procedureName, "0","");
                 $("#tCISOEPOS_0_ID").val(response.trim());
                 
              }
@@ -287,9 +396,9 @@ $(document).ready(function(){
         
         searchingRetrieve("tCISOEPOSProblemName", "tCISOEPOSProblemNameLoading", "search/ResultCCNSearch.jsp", "problemCodePOS", "search/ResultCCNSearchCode.jsp", "");
         
-        searchPOS("tCISOEPOSSearch", "tCISOEPOSSearchLoading", "","0");
-        searchPOS("tCISOEPOS1Search", "tCISOEPOS1SearchLoading", "","1");
-        searchPOS("tCISOEPOS2Search", "tCISOEPOSS2earchLoading", "","2");
+        searchPOS("tCISOEPOSSearch", "tCISOEPOSSearchLoading", "","0","");
+        searchPOS("tCISOEPOS1Search", "tCISOEPOS1SearchLoading", "","1","");
+        searchPOS("tCISOEPOS2Search", "tCISOEPOSS2earchLoading", "","2","");
         
         $("#btnCIS_OE_POS_UPDATE").hide();
         $("#btnCIS_OE_POS_CANCEL").hide();

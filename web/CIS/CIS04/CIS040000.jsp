@@ -119,12 +119,12 @@
                                         </div>
                                     </div>
                                     <hr/>
-                                    <h4 class="modal-title" style="font-weight: bold">Appointment </h4>
+                                    
 
                                     <div class="row">                    
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label class="col-md-4 control-label" for="textinput">Appointment</label>
+                                                <label class="col-md-4 control-label" for="textinput">Appointment Date</label>
                                                 <div class="col-md-6">
                                                     <input class="form-control input-lg" type="text" id="appointmentROS" placeholder="">
                                                 </div>

@@ -468,14 +468,41 @@ function searchDTO(searchFieldId, loadingId, currentValue) {
     });
 }
 
-function searchPOS(searchFieldId, loadingId, currentValue, level) {
+function searchPOS(searchFieldId, loadingId, currentValue, level,parentCode) {
     var urlSearch;
     if (level === "0") {
         urlSearch = "search/ResultPOSSearch.jsp"
     } else if (level === "1") {
-        urlSearch = "search/ResultPOS1Search.jsp"
+        urlSearch = "search/ResultPOS1Search.jsp?p="+parentCode;
     } else if (level === "2") {
-        urlSearch = "search/ResultPOS2Search.jsp"
+        urlSearch = "search/ResultPOS2Search.jsp?p1="+parentCode;
+    }
+    $('#' + searchFieldId).val(currentValue).flexdatalist({
+        minLength: 1,
+        searchIn: 'name',
+        searchDelay: 2000,
+        selectionRequired: true,
+        url: urlSearch,
+        cache: true,
+        params: {
+            timeout: 3000,
+            success: function (result) {
+                console.log(result);
+                if (result === undefined) {
+                    $('#' + loadingId).html('No Record');
+                }
+            }
+        }
+    });
+}
+function searchPOS1(searchFieldId, loadingId, currentValue, level,parentCode) {
+    var urlSearch;
+    if (level === "0") {
+        urlSearch = "search/ResultPOSSearch.jsp"
+    } else if (level === "1") {
+        urlSearch = "search/ResultPOS1Search.jsp?p="+parentCode;
+    } else if (level === "2") {
+        urlSearch = "search/ResultPOS2Search.jsp?p1="+parentCode;
     }
     $('#' + searchFieldId).val(currentValue).flexdatalist({
         minLength: 1,
@@ -495,41 +522,14 @@ function searchPOS(searchFieldId, loadingId, currentValue, level) {
         }
     });
 }
-function searchPOS1(searchFieldId, loadingId, currentValue, level) {
+function searchPOS2(searchFieldId, loadingId, currentValue, level,parentCode) {
     var urlSearch;
     if (level === "0") {
         urlSearch = "search/ResultPOSSearch.jsp"
     } else if (level === "1") {
-        urlSearch = "search/ResultPOS1Search.jsp"
+        urlSearch = "search/ResultPOS1Search.jsp?p="+parentCode;
     } else if (level === "2") {
-        urlSearch = "search/ResultPOS2Search.jsp"
-    }
-    $('#' + searchFieldId).val(currentValue).flexdatalist({
-        minLength: 1,
-        searchIn: 'name',
-        searchDelay: 2000,
-        selectionRequired: true,
-        url: urlSearch,
-        cache: true,
-        params: {
-            timeout: 3000,
-            success: function (result) {
-                //console.log(result);
-                if (result === undefined) {
-                    $('#' + loadingId).html('No Record');
-                }
-            }
-        }
-    });
-}
-function searchPOS2(searchFieldId, loadingId, currentValue, level) {
-    var urlSearch;
-    if (level === "0") {
-        urlSearch = "search/ResultPOSSearch.jsp"
-    } else if (level === "1") {
-        urlSearch = "search/ResultPOS1Search.jsp"
-    } else if (level === "2") {
-        urlSearch = "search/ResultPOS2Search.jsp"
+        urlSearch = "search/ResultPOS2Search.jsp?p1="+parentCode;
     }
     $('#' + searchFieldId).val(currentValue).flexdatalist({
         minLength: 1,
@@ -578,7 +578,7 @@ function searchPOSCode(searchField,loadingField,codeField,level){
                 console.log(response);
                 checkPOSLevel(response.trim(),nextLevel);
                 $("#"+codeField).val(response.trim());
-                searchPOS1("tCISOEPOS1Search", "tCISOEPOS1SearchLoading", "", "1");
+                searchPOS1("tCISOEPOS1Search", "tCISOEPOS1SearchLoading", "", "1",response.trim());
                 searchPOSCode1("tCISOEPOS1Search", "tCISOEPOS1SearchLoading", "tCISOEPOS_1_ID", "1");
             
             }
@@ -614,7 +614,7 @@ function searchPOSCode1(searchField, loadingField, codeField, level) {
                 console.log(response);
                 checkPOSLevel(response.trim(), nextLevel);
                 $("#" + codeField).val(response.trim());
-                searchPOS2("tCISOEPOS2Search", "tCISOEPOSS2earchLoading", "","2");
+                searchPOS2("tCISOEPOS2Search", "tCISOEPOSS2earchLoading", "","2",response.trim());
                 searchPOSCode2("tCISOEPOS2Search","tCISOEPOS2SearchLoading","tCISOEPOS_2_ID","2");
 
             }
@@ -673,7 +673,15 @@ function checkPOSLevel(code,level){
                 if (response.trim() === "true"){
                     $("#div_CIS_OE_POS_LVL"+level).show();
                 }else{
+                    console.log(level);
+                    $("#tCISOEPOS_"+level.toString()+"_ID").val("");
+                    if(level !== 3){
+                        $("#tCISOEPOS_2_ID").val("");
+                        $("#div_CIS_OE_POS_LVL2").hide();
+                    }
+                    
                      $("#div_CIS_OE_POS_LVL"+level).hide();
+                     
                      
                 }
             }

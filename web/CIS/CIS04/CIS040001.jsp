@@ -129,7 +129,7 @@
 
                                 <hr/>
                                 <div class="row">
-                                    <h4 class="modal-title" style="font-weight: bold">Appointment</h4>
+                                  
                                 </div>
 
                                 <div class="row">

@@ -202,7 +202,7 @@
             <td>Order By</td>
             <td>Procedure Name</td>
             <td>Result</td>
-            <td>Result Image</td>
+            
             <td>Provider Facility</td>
             <td>Action</td>
         </tr>
@@ -214,8 +214,8 @@
             <td><%out.print(result.get(i).get(7));%></td>
             <td><%out.print(result.get(i).get(8));%></td>
             <td><%out.print(result.get(i).get(2));%></td>
-            <td><%out.print(result.get(i).get(2));%></td>
-            <td><button id="btnCIS_OE_ROS_VIEW_RESULT">Show Result Image</button></td>
+            <td><%out.print(result.get(i).get(2));%>
+            <button id="btnCIS_OE_ROS_VIEW_RESULT">Show Image</button></td>
             <td><%out.print(search.get(i).get(5));%></td>
             <td hidden id="tBS_SEARCH_CODE"><%out.print(result.get(i).get(11));%></td>
             <td hidden id="tM_SEARCH_CODE"><%out.print(result.get(i).get(12));%></td>
@@ -233,8 +233,8 @@
             <td><%out.print(search.get(i).get(7));%></td>
             <td><%out.print(search.get(i).get(8));%></td>
             <td><%out.print(search.get(i).get(2));%></td>
-            <td>-</td>
-            <td>-</td>
+            <td>No Result Yet</td>
+            
             <td><%out.print(search.get(i).get(5));%></td>
             <td hidden id="orderId"><%out.print(search.get(i).get(0));%></td>
             <td hidden id="providerId"><%out.print(search.get(i).get(6));%></td>
