@@ -3,55 +3,221 @@
     Created on : Jun 9, 2017, 12:36:38 PM
     Author     : user
 --%>
+<div id="diabeticChartMain">
+    <div class="row">
+        <div class="col-md-8">
+            <h4>Consultation Notes</h4>
+        </div>
+        <div class="col-md-4" style="padding-top: 20px">
+            <label class="col-sm-6 control-label text-right" for="formGroupInputLarge">View history assessment:</label>
+            <div class="col-sm-6" style="padding-right: 0px;">
+                <select class="form-control" id="diabeticChartSelectAssessment">
+                    <option selected="" disabled="">View by</option>
+                    <option value="today">Today</option>
+                    <option value="yesterday">Yesterday</option>
+                    <option value="7day">7 Days</option>
+                    <option value="30day">30 Days</option>
+                    <option value="60day">60 Days</option>
+                    <option value="custom">Select date</option>
+                </select>
+            </div>
+        </div>
+        <div class="col-md-6 col-md-offset-6 text-right margin-bottom-30px" id="diabeticChartSelectAssessmentStartEnd">
+            <div class="col-sm-12 form-inline" style="padding-right: 0px;">
+                <div class="form-group">
+                    <label for="exampleInputName2">Start</label>
+                    <input type="text" class="form-control" id="diabeticChartSelectAssessmentStart" placeholder="14/06/2017" style="margin-bottom: 0px !important;">
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputEmail2">to</label>
+                    <input type="text" class="form-control" id="diabeticChartSelectAssessmentEnd" placeholder="15/06/2017" style="margin-bottom: 0px !important;">
+                </div>
+                <button type="submit" class="btn btn-default" id="diabeticChartSelectAssessmentStartEndBtn"><i class="fa fa-search fa-lg"></i></button>
+            </div>
+        </div>
+    </div>
 
-<div class="row">
-    <div class="col-md-8">
-        <h4>Consultation Notes</h4>
-    </div>
-    <div class="col-md-4" style="padding-top: 20px">
-        <label class="col-sm-6 control-label text-right" for="formGroupInputLarge">View history assessment:</label>
-        <div class="col-sm-6" style="padding-right: 0px;">
-            <select class="form-control">
-                <option>View by</option>
-                <option>Today</option>
-                <option>Yesterday</option>
-                <option>7 Days</option>
-                <option>30 Days</option>
-                <option>60 Days</option>
-                <option>Select date</option>
-            </select>
-        </div>
-    </div>
-    <div class="col-md-6 col-md-offset-6 text-right margin-bottom-30px">
-        <div class="col-sm-12 form-inline" style="padding-right: 0px;">
-            <div class="form-group">
-                <label for="exampleInputName2">Start</label>
-                <input type="text" class="form-control" id="exampleInputName2" placeholder="14/06/2017" style="margin-bottom: 0px !important;">
-            </div>
-            <div class="form-group">
-                <label for="exampleInputEmail2">to</label>
-                <input type="email" class="form-control" id="exampleInputEmail2" placeholder="15/06/2017" style="margin-bottom: 0px !important;">
-            </div>
-            <button type="submit" class="btn btn-default"><i class="fa fa-search fa-lg"></i></button>
-        </div>
+
+    <div id="tableDiabeticChartDiv">
+        <table class="table table-bordered" id="tableDiabeticChartTable" style="width: 100%">
+            <thead>
+            <th>Date</th>
+            <th>Time</th>
+            <th>Dextrostix</th>
+            <th>Doctor Name</th>
+            <th>Approval</th>
+            <th>Action</th>
+            </thead>
+            <tbody>
+                <tr>
+                    <td colspan="6" align="center">No Record To Show<br>Please Select A History Assessment</td>
+                </tr> 
+            </tbody>
+        </table>
     </div>
 </div>
 
-<table class="table table-bordered">
-    <tr>
-        <th></th>
-        <th>Date</th>
-        <th>Time</th>
-        <th>Dextrostix</th>
-        <th>Doctor Name</th>
-        <th>Approval</th>
-    </tr>
-    <tr>
-        <td>1</td>
+
+<script>
+
+    $(document).ready(function () {
+
+        // Disabling Start And End Date
+        $("#diabeticChartSelectAssessmentStartEnd").hide();
+
+
+
+// ---------------------------------------------------------------------------- VIew ------------------------------------------------------------------------------------------- //
+
+        // Function For View Assement Select Start
+        $('#diabeticChartSelectAssessment').on('change', function () {
+
+            $("#diabeticChartSelectAssessmentStartEnd").hide();
+
+            var patientName = $('#pName').text();
+            var patientPMI = $('#pIC').text();
+            var filterBy = $('#diabeticChartSelectAssessment').val();
+            var datas;
+            var todayDate;
+
+            var enDate = new Date();
+            var dd = ("0" + enDate.getDate()).slice(-2);
+            var mm = ("0" + (enDate.getMonth() + 1)).slice(-2);
+            var yy = enDate.getFullYear();
+            var hh = enDate.getHours();
+            var m = enDate.getMinutes();
+            var ss = enDate.getSeconds();
+            var ms = enDate.getMilliseconds();
+
+            todayDate = yy + "-" + mm + "-" + dd;
+
+            if (patientName === "-") {
+                bootbox.alert("You need to select the patient !!!");
+                $('#diabeticChartSelectAssessment').prop('selectedIndex', 0);
+            } else if (filterBy === "custom") {
+                $("#diabeticChartSelectAssessmentStartEnd").show();
+            } else {
+
+                if (filterBy === "") {
+                    bootbox.alert("Please Choose Correct Assessment");
+                } else if (filterBy === "today") {
+                    //  $('<div class="loading">Loading</div>').appendTo('body');
+                    datas = patientPMI + "|" + todayDate + "|today";
+                } else if (filterBy === "yesterday") {
+                    //  $('<div class="loading">Loading</div>').appendTo('body');
+                    datas = patientPMI + "|" + todayDate + "|yesterday";
+                } else if (filterBy === "7day") {
+                    // $('<div class="loading">Loading</div>').appendTo('body');
+                    datas = patientPMI + "|" + todayDate + "|7day";
+                } else if (filterBy === "30day") {
+                    //  $('<div class="loading">Loading</div>').appendTo('body');
+                    datas = patientPMI + "|" + todayDate + "|30day";
+                } else if (filterBy === "60day") {
+                    //  $('<div class="loading">Loading</div>').appendTo('body');
+                    datas = patientPMI + "|" + todayDate + "|60day";
+                }
+
+                DiabeticChartTableFiter(datas);
+
+            }
+
+        });
+
+        $("#diabeticChartSelectAssessmentStartEndBtn").on('click', function () {
+
+            var patientPMI = $('#pIC').text();
+            var strtDate = $('#diabeticChartSelectAssessmentStart').val();
+            var endDate = $('#diabeticChartSelectAssessmentEnd').val();
+
+            var sDate = strtDate.split('/');
+            var SnewDate = sDate[2] + "-" + sDate[1] + "-" + sDate[0];
+
+            var eDate = endDate.split('/');
+            var EnewDate = eDate[2] + "-" + eDate[1] + "-" + eDate[0];
+
+            var data2 = patientPMI + "|" + SnewDate + "^" + EnewDate + "|custom";
+
+            DiabeticChartTableFiter(data2);
+
+        });
+        // Function For View Assement Select End
+
+        // Function for Table Start 
+        function DiabeticChartTableFiter(viewData) {
+
+            var data = {
+                dataString: viewData,
+                methodName: "view"
+            };
+
+            $.ajax({
+                url: "../Ortho-NursingInWard/controller/DiabeticChartFunction.jsp",
+                type: "post",
+                data: data,
+                timeout: 10000,
+                success: function (datas) {
+
+                    $('#tableDiabeticChartDiv').html(datas);
+
+                },
+                error: function (err) {
+                    bootbox.alert("something wrong,error: " + err);
+                }
+            });
+
+        }
+        // Function for Table End
+
+// ---------------------------------------------------------------------------- VIew ------------------------------------------------------------------------------------------- //
+
+
+
+
+// ---------------------------------------------------------------------------- Date ------------------------------------------------------------------------------------------- //
+
+        // Date Functions Start
+        // Date Picker For Initial Start
+        $("#diabeticChartSelectAssessmentStart").datepicker({
+            changeMonth: true,
+            changeYear: true,
+            dateFormat: 'dd/mm/yy',
+            yearRange: '1990:+0',
+            maxDate: '+0d'
+        });
+        // Date Picker For Initial End
+
+        // Date Picker For Final Start
+        $('#diabeticChartSelectAssessmentStart').on('change', function () {
+
+            $("#diabeticChartSelectAssessmentEnd").datepicker("destroy");
+            $('#diabeticChartSelectAssessmentEnd').val('');
+            var fromDate = $("#diabeticChartSelectAssessmentStart").datepicker("getDate");
+
+            $('#diabeticChartSelectAssessmentEnd').datepicker({
+                changeMonth: true,
+                changeYear: true,
+                dateFormat: 'dd/mm/yy',
+                yearRange: '1990:+0',
+                minDate: fromDate,
+                maxDate: '+0d'
+            });
+
+        });
+        // Date Picker For Final Start
+        // Date Functions End
+
+// ---------------------------------------------------------------------------- Date ------------------------------------------------------------------------------------------- //
+
+
+    });
+
+</script>
+
+<!--
+  <td>1</td>
         <td>09/06/2017</td>
         <td>12:39 PM</td>
         <td>Dextrostix Name</td>
         <td>Mizi K</td>
         <td><button class="btn btn-success btn-block"><i class="fa fa-check-square-o"></i>&nbsp; Approved</button></td>
-    </tr>
-</table>
+        <td><button class="btn btn-success btn-block"><i class="fa fa-check-square-o"></i>&nbsp; Approved</button></td>-->

@@ -38,11 +38,11 @@
             <div class="col-sm-12 form-inline" style="padding-right: 0px;">
                 <div class="form-group">
                     <label for="exampleInputName2">Start</label>
-                    <input type="text" class="form-control" id="chartCirculationSelectAssessmentStart" placeholder="14/06/2017" style="margin-bottom: 0px !important;">
+                    <input type="text" class="form-control" id="chartCirculationSelectAssessmentStart" placeholder="14/06/2017" style="margin-bottom: 0px !important;" readonly>
                 </div>
                 <div class="form-group">
                     <label for="exampleInputEmail2">to</label>
-                    <input type="email" class="form-control" id="chartCirculationSelectAssessmentEnd" placeholder="15/06/2017" style="margin-bottom: 0px !important;">
+                    <input type="email" class="form-control" id="chartCirculationSelectAssessmentEnd" placeholder="15/06/2017" style="margin-bottom: 0px !important;" readonly>
                 </div>
                 <button type="submit" class="btn btn-default" id="chartCirculationSelectAssessmentStartEndBtn"><i class="fa fa-search fa-lg"></i></button>
             </div>
