@@ -26,7 +26,7 @@
                         <li><a data-toggle="modal" data-target="#CIS040007" href="" class="soap-select" onClick="searchHFCDetail('ADW')"><i class="fa fa-bed fa-li"></i> Admit To Ward</a></li>
 <!--                        <li><a data-toggle="modal" data-target="#CIS040008" href="" class="soap-select"><i class="fa fa-clock-o fa-li"></i> MC & Time Slip</a></li>-->
                         <li><a data-toggle="modal" data-target="#CIS040009" href="" class="soap-select"><i class="fa fa-clock-o fa-li"></i> Referral</a></li>
-                        <li><a data-toggle="modal" data-target="#mCIS_Discharge_Summary" href="" class="soap-select" id=""><i class="fa fa-clock-o fa-li"></i> Discharge Summary</a></li>
+                        <li><a data-toggle="modal" data-target="#mCIS_Discharge_Summary" href="" class="soap-select" id=""><i class="fa fa-clock-o fa-li"></i> Order To Discharge</a></li>
                     </ul>
                     <hr class="pemisah" />
                     

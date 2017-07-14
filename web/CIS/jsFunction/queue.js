@@ -909,7 +909,7 @@ $.when(getLIODetail(labAry[1],objLIO)).done(function(){
        }
        
     }
-    console.log(_data);
+
 }
 
 
@@ -920,10 +920,13 @@ function lexerDCG(data){
     //for loop add object from ehr data
     for(var x in data){
         var dataArry = data[x].trim().split("|");
-        var message_type = dataArry[3]
+        var discharge_info = dataArry[2].split("^");
+        var message_type = discharge_info[10];
         var seperator = "^"+message_type+"|";
         var disSum =  data[x].trim().split(seperator);
         var disSumNote = disSum[1];
+        
+        
         var msg_code = disSumNote.substring(0, 3);
         var dataObj = {};
         
@@ -1469,7 +1472,7 @@ function lexerDCG(data){
         indexArry.push(index);
         
     }
-    console.log(_data);
+    
     
    var dcgDetail = data[0].split("|");
    var dischargeInfo = dcgDetail[2].split("^");

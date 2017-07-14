@@ -8,9 +8,8 @@
     String key = request.getParameter("keyword");
     String hfc_cd = request.getParameter("hfc_code");
     String discipline_cd = request.getParameter("discipline_cd");
-    String wardClass = request.getParameter("class");
     //String key ="fever";
-     String searchProblem = "SELECT ward_name FROM wis_ward_name WHERE hfc_cd = '"+hfc_cd+"' AND discipline_cd = '"+discipline_cd+"' AND ward_class_code = '"+wardClass+"' AND CONCAT(UPPER(ward_name),LOWER(ward_name)) like '%"+key+"%';";
+     String searchProblem = "SELECT ward_class_name FROM wis_ward_class WHERE hfc_cd = '"+hfc_cd+"' and discipline_cd = '"+discipline_cd+"'";
      ArrayList<ArrayList<String>> search = Conn.getData(searchProblem); 
      String data = "[";
       if (search.size() > 0) 

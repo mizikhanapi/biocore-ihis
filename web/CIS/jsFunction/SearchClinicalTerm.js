@@ -348,13 +348,33 @@ function getHFCOrderProviderDetail(orderHfc,detailField){
     
 }
 
-function searchWard(fieldId,loadingDivId,hfc_cd,discipline_cd,currentValue){
+function searchWard(fieldId,loadingDivId,hfc_cd,discipline_cd,currentValue,wardClass){
     
         $('#' + fieldId).val(currentValue).flexdatalist({
         minLength: 1,
         searchIn: 'name',
         searchDelay: 2000,
-        url: "search/ResultWARDSearch.jsp?hfc_code="+hfc_cd+"&discipline_cd="+discipline_cd,
+        url: "search/ResultWARDSearch.jsp?hfc_code="+hfc_cd+"&discipline_cd="+discipline_cd+"&class="+wardClass,
+        cache: true,
+        params: {
+            timeout: 3000,
+            success: function (result) {
+                console.log(result);
+                if (result === undefined) {
+                    $('#' + loadingDivId).html('No Record');
+                }
+            }
+        }
+    });
+}
+
+function searchWardClass(fieldId,loadingDivId,hfc_cd,discipline_cd,currentValue){
+    
+        $('#' + fieldId).val(currentValue).flexdatalist({
+        minLength: 1,
+        searchIn: 'name',
+        searchDelay: 2000,
+        url: "search/ResultWARDCLASSSearch.jsp?hfc_code="+hfc_cd+"&discipline_cd="+discipline_cd,
         cache: true,
         params: {
             timeout: 3000,

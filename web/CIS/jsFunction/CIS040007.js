@@ -51,7 +51,8 @@ $(document).ready(function () {
            success:function(response){
                //this ajax will response discipline Code for hfc patient admit to;
                $("#tCIS_ADWsearchDisCd").val(response.trim());
-               searchWard("tCIS_ADWwardName","tCIS_ADWwardNameLoading",hfc_cd,response.trim(),"");
+               searchWardClass("tCIS_ADWwardClass","tCIS_ADWwardClassLoading",hfc_cd,response.trim(),"");
+               //
            }
        }) 
     });
@@ -79,13 +80,38 @@ $(document).ready(function () {
         }) 
     })
     
+    $("#tCIS_ADWwardClass").on("select:flexdatalist", function (response) {
+
+        var hfc_cd = $("#tCIS_ADWsearchHFCCd").val();
+        var discipline_cd = $("#tCIS_ADWsearchDisCd").val();
+
+        $.ajax({
+            type: "POST",
+            timeout: 3000,
+            url: "search/ResultWARDCLASSSearchCode.jsp",
+            data: {
+                name: $(this).val(),
+                hfc_code: hfc_cd,
+                discipline_cd: discipline_cd
+            },
+            success: function (response) {
+                console.log(response)
+                //this ajax will response discipline Code for hfc patient admit to;
+                $("#tCIS_ADWwardClassCd").val(response.trim());
+                searchWard("tCIS_ADWwardName","tCIS_ADWwardNameLoading",hfc_cd,discipline_cd,"",response.trim());
+
+            }
+        })
+    })
+    
     $("#btnCIS_OE_ADW_SUBMIT").click(function(){
         var _admitToDis = $('#tCIS_ADWsearchDis').val();
         var _admitToDisCd = $('#tCIS_ADWsearchDisCd').val();
         var _patientReferFrom = $('#tCIS_ADWreferFrom').val();
         var _patientReferCd = $('#tCIS_ADWreferFromCd').val();
         var _reason = $('#tCIS_ADWreason').val();
-
+        var _wardClass = $("#tCIS_ADWwardClass").val();
+        var _wardClassCd = $("#tCIS_ADWwardClassCd").val();
         var _admitB4 = $('input[name="rCIS_ADWAB"]:checked').val();
         var _admitDate = $('#tCIS_ADWdate').val();
         var _admitTime = $('#tCIS_ADWtime').val();
@@ -106,6 +132,8 @@ $(document).ready(function () {
             AdmitTime: _admitTime,
             WardName: _wardName,
             WardNameCd: _wardNameCd,
+            WardClass:_wardClass,
+            WardClassCd:_wardClassCd,
             hfcOrderDetail: _hfcOrderDetail,
             hfcProviderDetail: _hfcProviderDetail
         };

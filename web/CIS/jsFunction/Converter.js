@@ -3,7 +3,309 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+//--------------------------------NOTES TO OBJECT
+function getObjectCCN(msg) {
+    var CNNData = convertNoteToData(msg);
+    var ccnsubData = CNNData[4].split(" ");
+    var objCCN = {
+        Acode: "CCN",
+        ccnCode: CNNData[0],
+        Laterality: CNNData[10],
+        Site: CNNData[8],
+        problem: CNNData[1],
+        Mild: CNNData[3],
+        duration: ccnsubData[0],
+        sdur: ccnsubData[1],
+        Comment: CNNData[11]
+    };
+    return objCCN;
+}
 
+function getObjectHPI(msg){
+    var HPIData = convertNoteToData(msg);
+    var objHPI = {
+        Acode: "HPI",
+        details: HPIData[0],
+        episodeDate: HPIData[1]
+    }
+    return objHPI;
+}
+
+function getObjectPMH(msg){
+  
+    var PMHData = convertNoteToData(msg);
+    var objPMH = {
+        Acode: "PMH",
+        codePMH: PMHData[0],
+        Problem1: PMHData[1],
+        Status: PMHData[8],
+        comment1: PMHData[5]
+    };
+    return objPMH;   
+}
+
+function getObjectFMH(msg){
+    var FMHData = convertNoteToData(msg);
+    var objFMH = {
+        Acode: "FMH",
+        Problem3: FMHData[2],
+        codeFMH: FMHData[1],
+        comment2: FMHData[6],
+        f_relationship: FMHData[0]
+    };
+    return objFMH;   
+}
+
+function getObjectSOH(msg){
+    var SOHData = convertNoteToData(msg);
+    var objSOH = {
+        Acode: "SOH",
+        Problem4: SOHData[1],
+        codeSOH: SOHData[0],
+        comment3: SOHData[11],
+        date: SOHData[7]
+    }
+    return objSOH;   
+    
+}
+
+function getObjectBLD(msg){
+    
+    var BLDData = convertNoteToData(msg);
+    var objBLD = {
+        Acode: "BLD",
+        G6PD_Status: BLDData[2],
+        Rhesus_Type: BLDData[1],
+        blood: BLDData[0],
+        comment4: BLDData[3],
+        codeBLD: "BLD"
+
+    };
+    return objBLD; 
+    
+}
+
+function getObjectALG(msg){
+ 
+    var ALGData = convertNoteToData(msg);
+    var objALG = {
+        Acode: "ALG",
+        Problem5: ALGData[1],
+        codeALG: ALGData[0],
+        comment5: ALGData[3],
+        date1: ALGData[2]
+    };
+    return objALG;   
+    
+}
+
+function getObjectIMU(msg){
+    
+    var IMUData = convertNoteToData(msg);
+    var objIMU = {
+        Acode: "IMU",
+        codeIMU: IMUData[0],
+        Problem6: IMUData[1],
+        date2: IMUData[2],
+        comment6: IMUData[3]
+    };
+    return objIMU;   
+    
+}
+
+function getObjectDAB(msg) {
+
+    var DABData = convertNoteToData(msg);
+    var objDAB = {
+        Acode: "DAB",
+        Problem32: DABData[1],
+        codeDAB: DABData[0],
+        comment7: DABData[5],
+        date3: DABData[2]
+    };
+    return objDAB;
+}
+
+
+function getObjectVTS(msg) {
+    VTS = disSumNote;
+    var VTSData = convertNoteToData(VTS);
+    console.log(VTSData);
+
+    var scalePC = parseInt(VTSData[30]);
+    var resultPC;
+    if (scalePC === 0) {
+        resultPC = "No Pain";
+    } else if (scalePC > 0 && scalePC <= 2) {
+        resultPC = "Mild";
+    } else if (resultPC > 2 && scalePC <= 6) {
+        resultPC = "Moderate";
+    } else if (scalePC > 6 && scalePC <= 10) {
+        resultPC = "Severe";
+    }
+
+    if (VTSData[25] !== "" || VTSData[26] !== "") {
+        var objGCS = {
+            Acode: "VTS",
+            pointMain: VTSData[25],
+            resultMain: VTSData[26]
+        };
+        console.log(objGCS);
+
+        dataObj = objGCS;
+        var index = getDCGItemIndex(_data, dataObj);
+        indexArry.push(index);
+    }
+
+
+    if (VTSData[27] !== "" || VTSData[27] !== "") {
+
+        var objPGCS = {
+            Acode: "VTS",
+            pointpgcsMain: VTSData[27],
+            resultpgcsMain: VTSData[28]
+        };
+        console.log(objPGCS);
+
+        dataObj = objPGCS;
+        var index = getDCGItemIndex(_data, dataObj);
+        indexArry.push(index);
+
+    }
+    if (VTSData[4] === "" && VTSData[33] === "undefined" && VTSData[3] === "" && VTSData[2] === "" && VTSData[32] === "undefined" && VTSData[1] === "" && VTSData[6] === "" && VTSData[34] === "undefined" && VTSData[5] === "") {
+        //console.log("no BP");
+    } else {
+
+        var objBP = {
+            Acode: "VTS",
+            lyingD: VTSData[4],
+            lyingP: VTSData[33],
+            lyingS: VTSData[3],
+            sitD: VTSData[2],
+            sitP: VTSData[32],
+            sitS: VTSData[1],
+            standD: VTSData[6],
+            standP: VTSData[34],
+            standS: VTSData[5]
+        };
+        console.log(objBP);
+
+        dataObj = objBP;
+        var index = getDCGItemIndex(_data, dataObj);
+        indexArry.push(index);
+    }
+    if (VTSData[10] === "" || VTSData[10] === "undefined") {
+        //("no rrrate");
+    } else {
+        var objRRate = {
+            Acode: "VTS",
+            rrRate: VTSData[10]
+        };
+        console.log(objRRate);
+
+        dataObj = objRRate;
+        var index = getDCGItemIndex(_data, dataObj);
+        indexArry.push(index);
+    }
+
+    if (VTSData[29] === "" || VTSData[29] === "undefined") {
+        //("no osat");
+    } else {
+        var objOsat = {
+            Acode: "VTS",
+            OSat: VTSData[29]
+        };
+        console.log(objOsat);
+
+        dataObj = objOsat;
+        var index = getDCGItemIndex(_data, dataObj);
+        indexArry.push(index);
+
+    }
+
+    if (VTSData[0] === "" || VTSData[0] === "undefined") {
+
+    } else {
+        var objBTemp = {
+            Acode: "VTS",
+            BTemp: VTSData[0]
+        };
+        console.log(objBTemp);
+
+        dataObj = objBTemp;
+        var index = getDCGItemIndex(_data, dataObj);
+        indexArry.push(index);
+    }
+
+    if (VTSData[30] === "" || VTSData[30] === "undefined") {
+
+    } else {
+        var objPainScale = {
+            Acode: "VTS",
+            painScale: VTSData[30],
+            resultPanScale: resultPC
+        };
+        console.log(objPainScale);
+
+        dataObj = objPainScale;
+        var index = getDCGItemIndex(_data, dataObj);
+        indexArry.push(index);
+    }
+
+    if (VTSData[8] === "" && VTSData[7] === "" && VTSData[31] === "") {
+
+    } else {
+        var heightO = VTSData[8].split(" ");
+        var weightO = VTSData[7].split(" ");
+        var heightN = parseFloat(heightO[0]) / 100;
+        heightN = heightN * heightN;
+        var weightN = parseFloat(weightO[0]);
+
+        var bmi = calcBMI(heightN, weightN);
+
+
+        var objOther = {
+            Acode: "VTS",
+            bloodGlucose: VTSData[31],
+            bmi: bmi[0],
+            bmiHeight: VTSData[8],
+            bmiStatus: bmi[1],
+            bmiWeight: VTSData[7],
+            headCir: VTSData[9]
+        };
+        console.log(objOther);
+
+        dataObj = objOther;
+
+    }
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//-------------------------------------------OBJECT TO NOTES 
 function getMSH(){
     var msh = "MSH|^~|02|" + hfc_cd + "^" + discipline + "^" + subdis + "||" + getDate() + "|||||||||||||<cr>\n";
     return msh;
@@ -92,7 +394,7 @@ function convertPOS(obj){
 }
 
 function convertADW(obj){
-   var msg = "ADW|"+episodeDate+"|"+obj.AdmitDate+" "+obj.AdmitTime+"^" +obj.AdmitToDisciplineCd+"^"+obj.AdmitToDiscipline+"^"+"ST-UD"+"^"+obj.WardNameCd+"^"+obj.WardName+"^"+"ST-UD"+"^"+obj.Reason+"^"+obj.PatientReferFromCd+"^active^"+obj.AdmittedBefore+"^"+getDate()+"^"+ hfc_cd + "^" + doctor_id + "^" + doctor_name + "|<cr>\n";
+   var msg = "ADW|"+episodeDate+"|"+obj.AdmitDate+" "+obj.AdmitTime+"^" +obj.AdmitToDisciplineCd+"^"+obj.AdmitToDiscipline+"^"+"ST-UD"+"^"+obj.WardNameCd+"^"+obj.WardClassCd+"^"+obj.WardClass+"^"+"ST-UD"+"^"+obj.Reason+"^"+obj.PatientReferFromCd+"^active^"+obj.AdmittedBefore+"^"+getDate()+"^"+ hfc_cd + "^" + doctor_id + "^" + doctor_name + "|<cr>\n";
    return msg;
 }
 
@@ -319,6 +621,19 @@ function getNotesDCG(data) {
         } else if(data[key].Acode === "VTS"){
             counterVTS += 1;
              $.extend(objVTS, data[key]);
+        } else if(data[key].Acode === "DCG"){
+            
+            var dataDCG = getDGCItem(data[key].index);
+            var msg = getNotesDCG(dataDCG);
+            var msgArray = msg.split("<cr>");
+            msgArray.pop();
+            var dcgMsg = "";
+            for (var i in msgArray) {
+                var dischargeSummary = msgArray[i].trim();
+                dcgMsg += convertDCG(data[key], dischargeSummary);
+
+            }
+            dcgNotes += dcgMsg;
         }
     }
     
