@@ -67,10 +67,21 @@
             },
             timeout: 10000,
             success: function (data) {
-                $("#Neurosurgical0").hide();
-                $(".modal-backdrop").hide();
-                alert("Observation date is saved.");
-                $("#getNeuObservation").load("../Ortho-Consultation/neuObservation.jsp");
+                
+                $.ajax({
+                    url: "../Ortho-Consultation/table/t_observation.jsp",
+                    type: "post",
+                    timeout: 3000,
+                    success: function (returnObservation) {
+                        $('#getNeuObservation').html(returnObservation);
+                        console.log(returnObservation);
+                        $('#getNeuObservation').trigger('contentchanged');
+                        $('#Neurosurgical0').modal('toggle');
+                        $("#Neurosurgical0").hide();
+                        $(".modal-backdrop").hide();
+                        alert("Observation date is saved.");
+                    }
+                });
             },
             error: function (err) {
                 alert("Error update!");
@@ -78,32 +89,6 @@
         });
 
     });
-
-//    $("#delete_observation1").click(function () {
-//
-//        //alert("Are you sure to delete the data?");
-//        var r = confirm("Are you sure to delete the data?");
-//        if (r == true) {
-//            $.ajax({
-//                url: "../Ortho-Consultation/modal/action/delete_observation.jsp",
-//                type: "post",
-//                data: {
-//                },
-//                timeout: 10000,
-//                success: function () {
-//                    alert("Observation record is deleted.");
-//                    $("#getNeuObservation").load("../Ortho-Consultation/neuObservation.jsp");
-//                },
-//                error: function (err) {
-//                    alert("Error update!");
-//                }
-//            });
-//        } else {
-//            //txt = "You pressed Cancel!";
-//        }
-//
-//
-//    });
 
     $(document).ready(function () {
         $("#dateEntry").datepicker({
@@ -219,10 +204,21 @@
             },
             timeout: 10000,
             success: function (data) {
-                $("#Neurosurgical1").hide();
-                $(".modal-backdrop").hide();
-                alert("Pupils size reaction is saved.");
-                $("#getNeuObservation").load("../Ortho-Consultation/neuObservation.jsp");
+                
+                $.ajax({
+                    url: "../Ortho-Consultation/table/t_observation.jsp",
+                    type: "post",
+                    timeout: 3000,
+                    success: function (returnObservation) {
+                        $('#getNeuObservation').html(returnObservation);
+                        console.log(returnObservation);
+                        $('#getNeuObservation').trigger('contentchanged');
+                        $('#Neurosurgical1').modal('toggle');
+                        $("#Neurosurgical1").hide();
+                        $(".modal-backdrop").hide();
+                        alert("Pupils size reaction is saved.");
+                    }
+                });
             },
             error: function (err) {
                 alert("Error update!");
@@ -322,10 +318,20 @@
             },
             timeout: 10000,
             success: function (data) {
-                $("#Neurosurgical2").hide();
-                $(".modal-backdrop").hide();
-                alert("Limb movement is saved.");
-                $("#getNeuObservation").load("../Ortho-Consultation/neuObservation.jsp");
+                 $.ajax({
+                    url: "../Ortho-Consultation/table/t_observation.jsp",
+                    type: "post",
+                    timeout: 3000,
+                    success: function (returnObservation) {
+                        $('#getNeuObservation').html(returnObservation);
+                        console.log(returnObservation);
+                        $('#getNeuObservation').trigger('contentchanged');
+                        $('#Neurosurgical2').modal('toggle');
+                        $("#Neurosurgical2").hide();
+                        $(".modal-backdrop").hide();
+                        alert("Limb movement is saved.");
+                    }
+                });
             },
             error: function (err) {
                 alert("Error update!");

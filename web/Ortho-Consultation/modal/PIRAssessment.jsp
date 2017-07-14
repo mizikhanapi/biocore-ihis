@@ -197,7 +197,7 @@
                                         <div class="radiobtn">
                                             <input type="radio" id="radio11" name="surface" value="Others">
                                             <label for="radio11"></label></div> Others
-                                        </div>
+                                    </div>
                                 </div>
                             </div>
 
@@ -437,7 +437,7 @@
     $("#addPIRbtn").click(function () {
 
         //alert("test");
-        
+
         var typeAssessment = $('input[name="typeAssessment"]:checked').val();
         var pressure_ulcer = $('input[name="pressure_ulcer"]:checked').val();
         var source = $('input[name="source"]:checked').val();
@@ -447,7 +447,7 @@
         var barrier = $('input[name="Barrier"]:checked').val();
         var moisture = $('input[name="moisture"]:checked').val();
         var management = $('input[name="management"]:checked').val();
-        
+
         //alert(surface);
         var chkArray = [];
 
@@ -476,10 +476,26 @@
             },
             timeout: 10000,
             success: function (data) {
-                $("#PIRAssessment1").hide();
-                $(".modal-backdrop").hide();
-                alert("Patient injury risk information is saved.");
-                $("#getPIRAssessment").load("../Ortho-Consultation/PIRAssessment.jsp");
+
+                $.ajax({
+                    url: "../Ortho-Consultation/table/t_PIR_assessment.jsp",
+                    type: "post",
+                    timeout: 3000,
+                    success: function (returnPIR) {
+                        $('#getPIRAssessment').html(returnPIR);
+                        console.log(returnPIR);
+                        $('#getPIRAssessment').trigger('contentchanged');
+                        $('#PIRAssessment1').modal('toggle');
+                        $("#PIRAssessment1").hide();
+                        $(".modal-backdrop").hide();
+                        alert("Patient injury risk information is saved.");
+                    }
+                });
+
+//                $("#PIRAssessment1").hide();
+//                $(".modal-backdrop").hide();
+//                alert("Patient injury risk information is saved.");
+//                $("#getPIRAssessment").load("../Ortho-Consultation/PIRAssessment.jsp");
             },
             error: function (err) {
                 alert("Error update!");

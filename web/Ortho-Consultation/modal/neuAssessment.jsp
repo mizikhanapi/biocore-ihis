@@ -60,7 +60,7 @@
 
         var dateEntry = $("#dateEntry1").val();
         var timeEntry = $("#timeEntry1").val();
-        
+
 
         $.ajax({
             url: "../Ortho-Consultation/modal/action/save_date.jsp",
@@ -71,11 +71,22 @@
             },
             timeout: 10000,
             success: function (data) {
-                $("#getNeuAssessment").load("../Ortho-Consultation/neuAssessment.jsp");
-                $("#encounter").load("encounter_date.jsp");
-                $("#neuAssessment1").hide();
-                $(".modal-backdrop").hide();
-                alert("Assessment date is saved.");
+
+                $.ajax({
+                    url: "../Ortho-Consultation/table/t_assessment.jsp",
+                    type: "post",
+                    timeout: 3000,
+                    success: function (returnAssessment) {
+                        $('#getNeuAssessment').html(returnAssessment);
+                        console.log(returnAssessment);
+                        $('#getNeuAssessment').trigger('contentchanged');
+                        $('#neuAssessment1').modal('toggle');
+                        $("#neuAssessment1").hide();
+                        $(".modal-backdrop").hide();
+                        alert("Assessment date is saved.");
+                    }
+                });
+                //$("#getNeuAssessment").load("../Ortho-Consultation/table/t_assessment.jsp");
             },
             error: function (err) {
                 alert("Error update!");
@@ -110,7 +121,7 @@
                     <div class="row">
                         <div class="col-md-12">
                             <!-- Surface -->
-                            
+
                             <h5>Hip</h5>
                             <hr/>
                             <div class="golongan-soalan margin-bottom-30px">
@@ -373,11 +384,20 @@
             },
             timeout: 10000,
             success: function (data) {
-                $("#getNeuAssessment").load("../Ortho-Consultation/neuAssessment.jsp");
-                $("#neuAssessment2").hide();
-                $(".modal-backdrop").hide();
-                alert("Muscle Power Added");
-
+                $.ajax({
+                    url: "../Ortho-Consultation/table/t_assessment.jsp",
+                    type: "post",
+                    timeout: 3000,
+                    success: function (returnAssessment) {
+                        $('#getNeuAssessment').html(returnAssessment);
+                        console.log(returnAssessment);
+                        $('#getNeuAssessment').trigger('contentchanged');
+                        $('#neuAssessment2').modal('toggle');
+                        $("#neuAssessment2").hide();
+                        $(".modal-backdrop").hide();
+                       alert("Muscle Power Added");
+                    }
+                });
             },
             error: function (err) {
                 alert("Error update!");
@@ -399,7 +419,7 @@
                     <div class="row">
                         <div class="col-md-12">
                             <!-- Surface -->
-                            
+
                             <div class="golongan-soalan margin-bottom-30px">
                                 <div class="form-group soalan">
                                     <div class="col-md-6">
@@ -609,7 +629,7 @@
         var rnNo46 = $("#rnNo46").val();
         var rnNo47 = $("#rnNo47").val();
         var rnNo48 = $("#rnNo48").val();
-        
+
         $.ajax({
             url: "../Ortho-Consultation/modal/action/save_sensory.jsp",
             type: "post",
@@ -642,10 +662,20 @@
             },
             timeout: 10000,
             success: function (data) {
-                $("#getNeuAssessment").load("../Ortho-Consultation/neuAssessment.jsp");
-                $("#neuAssessment3").hide();
-                $(".modal-backdrop").hide();
-                alert("Sensory Added");
+                $.ajax({
+                    url: "../Ortho-Consultation/table/t_assessment.jsp",
+                    type: "post",
+                    timeout: 3000,
+                    success: function (returnAssessment) {
+                        $('#getNeuAssessment').html(returnAssessment);
+                        console.log(returnAssessment);
+                        $('#getNeuAssessment').trigger('contentchanged');
+                        $('#neuAssessment3').modal('toggle');
+                        $("#neuAssessment3").hide();
+                        $(".modal-backdrop").hide();
+                       alert("Sensory Added");
+                    }
+                });               
             },
             error: function (err) {
                 alert("Error update!");
