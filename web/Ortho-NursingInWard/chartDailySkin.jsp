@@ -157,7 +157,7 @@
 
         });
 
-        $("#diabeticChartSelectAssessmentStartEndBtn").on('click', function () {
+        $("#chartDailySkinSelectAssessmentStartEndBtn").on('click', function () {
 
             var patientPMI = $('#pIC').text();
             var strtDate = $('#chartDailySkinSelectAssessmentStart').val();

@@ -160,7 +160,7 @@
 
         });
 
-        $("#diabeticChartSelectAssessmentStartEndBtn").on('click', function () {
+        $("#fluidBalanceSelectAssessmentStartEndBtn").on('click', function () {
 
             var patientPMI = $('#pIC').text();
             var strtDate = $('#fluidBalanceSelectAssessmentStart').val();
