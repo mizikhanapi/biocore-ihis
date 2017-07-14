@@ -18,13 +18,13 @@
         <label class="col-sm-6 control-label text-right" for="formGroupInputLarge">View history assessment:</label>
         <div class="col-sm-6" style="padding-right: 0px;">
             <select class="form-control" id="date_history">
-                <option>View by</option>
-                <option>Today</option>
-                <option>Yesterday</option>
-                <option>7 Days</option>
-                <option>30 Days</option>
-                <option>60 Days</option>
-                <option>Select date</option>
+                <option value="View by">View by</option>
+                <option value="Today">Today</option>
+                <option value="Yesterday">Yesterday</option>
+                <option value="Days_7">7 Days</option>
+                <option value="Days_30">30 Days</option>
+                <option value="Days_60">60 Days</option>
+                <option value="Select_date">Select date</option>
             </select>
         </div>
     </div>
@@ -55,25 +55,102 @@
         if (this.value == 'Today')
         {
             $("#date_FromTo").hide();
-            
-            alert("today");
+            var Today = "Today";
+            $.ajax({
+                url: "../Ortho-Consultation/table/t_assessment.jsp",
+                type: "post",
+                data: {time_history: Today
+                },
+                timeout: 10000,
+                success: function (returnAssessment) {
+                    $('#getNeuAssessment').html(returnAssessment);
+                    console.log(returnAssessment);
+                    $('#getNeuAssessment').trigger('contentchanged');
+                },
+                error: function (err) {
+                    alert("Error update!");
+                }
+            });
+            //alert("today");
         } else if (this.value == 'Yesterday')
         {
             $("#date_FromTo").hide();
-            alert("Yesterday");
-        } else if (this.value == '7 Days')
+            var Yesterday = "Yesterday";
+            $.ajax({
+                url: "../Ortho-Consultation/table/t_assessment.jsp",
+                type: "post",
+                data: {time_history: Yesterday
+                },
+                timeout: 10000,
+                success: function (returnAssessment) {
+                    $('#getNeuAssessment').html(returnAssessment);
+                    console.log(returnAssessment);
+                    $('#getNeuAssessment').trigger('contentchanged');
+                },
+                error: function (err) {
+                    alert("Error update!");
+                }
+            });
+            //alert("Yesterday");
+        } else if (this.value == 'Days_7')
         {
             $("#date_FromTo").hide();
-            alert("7 Days");
-        }else if (this.value == '30 Days')
+            var Days = "7 Days";
+            $.ajax({
+                url: "../Ortho-Consultation/table/t_assessment.jsp",
+                type: "post",
+                data: {time_history: Days
+                },
+                timeout: 10000,
+                success: function (returnAssessment) {
+                    $('#getNeuAssessment').html(returnAssessment);
+                    console.log(returnAssessment);
+                    $('#getNeuAssessment').trigger('contentchanged');
+                },
+                error: function (err) {
+                    alert("Error update!");
+                }
+            });
+            
+        } else if (this.value == 'Days_30')
         {
             $("#date_FromTo").hide();
-            alert("30 Days");
-        }else if (this.value == '60 Days')
+            var Days = "30 Days";
+            $.ajax({
+                url: "../Ortho-Consultation/table/t_assessment.jsp",
+                type: "post",
+                data: {time_history: Days
+                },
+                timeout: 10000,
+                success: function (returnAssessment) {
+                    $('#getNeuAssessment').html(returnAssessment);
+                    console.log(returnAssessment);
+                    $('#getNeuAssessment').trigger('contentchanged');
+                },
+                error: function (err) {
+                    alert("Error update!");
+                }
+            });
+        } else if (this.value == 'Days_60')
         {
             $("#date_FromTo").hide();
-            alert("60 Days");
-        }else if (this.value == 'Select date')
+            var Days = "60 Days";
+            $.ajax({
+                url: "../Ortho-Consultation/table/t_assessment.jsp",
+                type: "post",
+                data: {time_history: Days
+                },
+                timeout: 10000,
+                success: function (returnAssessment) {
+                    $('#getNeuAssessment').html(returnAssessment);
+                    console.log(returnAssessment);
+                    $('#getNeuAssessment').trigger('contentchanged');
+                },
+                error: function (err) {
+                    alert("Error update!");
+                }
+            });
+        } else if (this.value == 'Select date')
         {
             $("#date_FromTo").show();
         }
