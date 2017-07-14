@@ -39,7 +39,7 @@
     </div>
 
     <div class="row">
-        <div class="col-md-6" style="overflow: auto" >
+        <div class="col-md-7" style="overflow: auto" >
             <div id="tableChartDailySkinToolDiv">
                 <h5>Daily Skin Assessment Tool</h5>
                 <table class="table table-bordered" id="tableChartDailySkinToolTable" style="width: 100%">
@@ -64,19 +64,16 @@
                 </table>
             </div>
         </div>
-        <div class="col-md-6" style="overflow: auto">
+        <div class="col-md-5" style="overflow: auto">
             <div id="tableChartDailySkinPositionDiv">
                 <h5>Positioning Chart</h5>
                 <table class="table table-bordered" id="tableChartDailySkinPositionTable" style="width: 100%">
                     <thead>
                         <tr>
-                            <th rowspan="2">Date</th>
-                            <th rowspan="2">Time</th>
-                            <th style="width: 50%;">Position<br></th>
-                            <th rowspan="2">Action</th>
-                        </tr>
-                        <tr>
-                            <th>Activity</th>
+                            <th>Date</th>
+                            <th>Time</th>
+                            <th>Position / Activity</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -171,7 +168,7 @@
 
             var data2 = patientPMI + "|" + SnewDate + "^" + EnewDate + "|custom";
 
-            DiabeticChartTableFiter(data2);
+            ChartDailySkinTableFiter(data2);
 
         });
         // Function For View Assement Select End
@@ -191,8 +188,13 @@
                 timeout: 10000,
                 success: function (datas) {
 
-                    $('#tableChartDailySkinToolDiv').html(datas);
-                    $('#tableChartDailySkinPositionDiv').html(datas);
+                    var arrayData = datas.split("<ShammugamRamasamySeperator></ShammugamRamasamySeperator>");
+
+                    var tableSkinTool = arrayData[0];
+                    var tablePosition = arrayData[1];
+
+                    $('#tableChartDailySkinToolDiv').html(tableSkinTool);
+                    $('#tableChartDailySkinPositionDiv').html(tablePosition);
 
                 },
                 error: function (err) {
