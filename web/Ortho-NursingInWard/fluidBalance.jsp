@@ -39,8 +39,8 @@
 
     <div class="row">
         <div class="col-md-6">
-            <h5>Intake</h5>
             <div id="tableFluidBalanceIntakeDiv">
+                <h5>Intake</h5>
                 <table class="table table-bordered" id="tableFluidBalanceIntakeTable" style="width: 100%">
                     <thead>
                         <tr>
@@ -69,8 +69,8 @@
             </div>
         </div>
         <div class="col-md-6">
-            <h5>Output</h5>
             <div id="tableFluidBalanceOutputDiv">
+                <h5>Output</h5>
                 <table class="table table-bordered" id="tableFluidBalanceOutputTable" style="width: 100%">
                     <thead>
                         <tr>
@@ -174,7 +174,7 @@
 
             var data2 = patientPMI + "|" + SnewDate + "^" + EnewDate + "|custom";
 
-            DiabeticChartTableFiter(data2);
+            FluidBalanceTableFiter(data2);
 
         });
         // Function For View Assement Select End
@@ -194,8 +194,13 @@
                 timeout: 10000,
                 success: function (datas) {
 
-                    $('#tableFluidBalanceIntakeDiv').html(datas);
-                    $('#tableFluidBalanceOutputDiv').html(datas);
+                    var arrayData = datas.split("<ShammugamRamasamySeperator></ShammugamRamasamySeperator>");
+
+                    var tableIntake = arrayData[0];
+                    var tableOutput = arrayData[1];
+
+                    $('#tableFluidBalanceIntakeDiv').html(tableIntake);
+                    $('#tableFluidBalanceOutputDiv').html(tableOutput);
 
                 },
                 error: function (err) {
