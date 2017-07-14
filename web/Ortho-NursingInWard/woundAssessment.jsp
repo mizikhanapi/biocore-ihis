@@ -36,12 +36,12 @@
             </div>
         </div>
     </div>
-    <div id="tableWoundAssessmentDiv">
+    <div id="tableWoundAssessmentDiv" style="overflow-y: auto">
         <table class="table table-bordered" id="tableWoundAssessmentTable" style="width: 100%">
             <tr>
                 <th rowspan="2">Date</th>
                 <th rowspan="2">Date of next dressing change</th>
-                <th rowspan="2">Wound Dimensions in cm</th>
+                <th colspan="3">Wound Dimensions in cm</th>
                 <th rowspan="2">Exudate Level</th>
                 <th rowspan="2">Exudate Colour</th>
                 <th rowspan="2">Wound Bed in %</th>
@@ -50,15 +50,22 @@
                 <th rowspan="2">Signs of Clinical Infaction</th>
                 <th colspan="2">Patient Pain</th>
                 <th rowspan="2">Wound Progress</th>
-                <th rowspan="2">Dressing Plan</th>
+                <th colspan="4">Dressing Plan</th>
                 <th rowspan="2">Action</th>
             </tr>
             <tr>
+                <th>1</th>
+                <th>2</th>
+                <th>3</th>
                 <th>During Removal</th>
-                <th>While in place</td>
+                <th>While in place</th>
+                <th>Primary Dressing</th>
+                <th>Size & no. of pieces</th>
+                <th>Secondary Dressing</th>
+                <th>Size & no. of pieces</th>
             </tr>
             <tr>
-                <td colspan="14" align="center">No Record To Show<br>Please Select A History Assessment</td>
+                <td colspan="19" align="center">No Record To Show<br>Please Select A History Assessment</td>
             </tr>
         </table>
     </div>

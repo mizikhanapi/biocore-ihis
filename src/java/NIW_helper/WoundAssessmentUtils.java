@@ -30,54 +30,79 @@ public class WoundAssessmentUtils {
 
         if (viewBy.equalsIgnoreCase("today")) {
 
-            //              0       1       2               3        4      5               6                               7                             8
-            sql = "SELECT pmi_no,hfc_cd,episode_date,encounter_date,ward,bed_no,TIME_FORMAT(TIME(datetime),'%r'),DATE_FORMAT(DATE(datetime),'%d/%m/%Y'),color, "
-                    //      9       10       11       12                13                          
-                    + " sensation,hot_cold,movement,others,TIME_FORMAT(TIME(datetime),'%T') FROM lhr_ort_niw_chart_circulation "
-                    + " where pmi_no ='" + pmino + "' and DATE(datetime) ='" + dateTime + "'; ";
+            //              0       1       2               3                   4                                   5                                          
+            sql = "SELECT pmi_no,hfc_cd,episode_date,encounter_date,TIME_FORMAT(TIME(date_dressing),'%r'),DATE_FORMAT(DATE(date_dressing),'%d/%m/%Y'), "
+                    //                          6                                           7                                             8               9                 10                     
+                    + " TIME_FORMAT(TIME(date_next_dressing_change),'%r'),DATE_FORMAT(DATE(date_next_dressing_change),'%d/%m/%Y'),wound_dimension,wound_dimension_1,wound_dimension_2, "
+                    //      11              12          13        14            15                  16              17          18             19           20                  
+                    + " exu_datelevel,exu_datecolor,wound_bed,wound_edges,surrounding_skin,clinical_infection,patient_pain,patient_pain_1,wound_progress,dressing_plan, "
+                    //      21              22              23                      24                                              25                    
+                    + " dressing_plan_1,dressing_plan_2,dressing_plan_3,TIME_FORMAT(TIME(date_dressing),'%T'),TIME_FORMAT(TIME(date_next_dressing_change),'%T') FROM lhr_ort_niw_wound_assessment "
+                    + " where pmi_no ='" + pmino + "' and DATE(date_dressing) ='" + dateTime + "'; ";
 
         } else if (viewBy.equalsIgnoreCase("yesterday")) {
 
-            //              0       1       2               3        4      5               6                               7                             8
-            sql = "SELECT pmi_no,hfc_cd,episode_date,encounter_date,ward,bed_no,TIME_FORMAT(TIME(datetime),'%r'),DATE_FORMAT(DATE(datetime),'%d/%m/%Y'),color, "
-                    //      9       10       11       12                13                          
-                    + " sensation,hot_cold,movement,others,TIME_FORMAT(TIME(datetime),'%T') FROM lhr_ort_niw_chart_circulation "
-                    + " where pmi_no ='" + pmino + "' and DATE(datetime) = SUBDATE('" + dateTime + "',1); ";
+            //              0       1       2               3                   4                                   5                                          
+            sql = "SELECT pmi_no,hfc_cd,episode_date,encounter_date,TIME_FORMAT(TIME(date_dressing),'%r'),DATE_FORMAT(DATE(date_dressing),'%d/%m/%Y'), "
+                    //                          6                                           7                                             8               9                 10                     
+                    + " TIME_FORMAT(TIME(date_next_dressing_change),'%r'),DATE_FORMAT(DATE(date_next_dressing_change),'%d/%m/%Y'),wound_dimension,wound_dimension_1,wound_dimension_2, "
+                    //      11              12          13        14            15                  16              17          18             19           20                  
+                    + " exu_datelevel,exu_datecolor,wound_bed,wound_edges,surrounding_skin,clinical_infection,patient_pain,patient_pain_1,wound_progress,dressing_plan, "
+                    //      21              22              23                      24                                              25                    
+                    + " dressing_plan_1,dressing_plan_2,dressing_plan_3,TIME_FORMAT(TIME(date_dressing),'%T'),TIME_FORMAT(TIME(date_next_dressing_change),'%T') FROM lhr_ort_niw_wound_assessment "
+                    + " where pmi_no ='" + pmino + "' and DATE(date_dressing) = SUBDATE('" + dateTime + "',1); ";
 
         } else if (viewBy.equalsIgnoreCase("7day")) {
 
-            //              0       1       2               3        4      5               6                               7                             8
-            sql = "SELECT pmi_no,hfc_cd,episode_date,encounter_date,ward,bed_no,TIME_FORMAT(TIME(datetime),'%r'),DATE_FORMAT(DATE(datetime),'%d/%m/%Y'),color, "
-                    //      9       10       11       12                13                          
-                    + " sensation,hot_cold,movement,others,TIME_FORMAT(TIME(datetime),'%T') FROM lhr_ort_niw_chart_circulation "
-                    + " where pmi_no ='" + pmino + "' and DATE(datetime) between SUBDATE('" + dateTime + "',7) and '" + dateTime + "' ; ";
+            //              0       1       2               3                   4                                   5                                          
+            sql = "SELECT pmi_no,hfc_cd,episode_date,encounter_date,TIME_FORMAT(TIME(date_dressing),'%r'),DATE_FORMAT(DATE(date_dressing),'%d/%m/%Y'), "
+                    //                          6                                           7                                             8               9                 10                     
+                    + " TIME_FORMAT(TIME(date_next_dressing_change),'%r'),DATE_FORMAT(DATE(date_next_dressing_change),'%d/%m/%Y'),wound_dimension,wound_dimension_1,wound_dimension_2, "
+                    //      11              12          13        14            15                  16              17          18             19           20                  
+                    + " exu_datelevel,exu_datecolor,wound_bed,wound_edges,surrounding_skin,clinical_infection,patient_pain,patient_pain_1,wound_progress,dressing_plan, "
+                    //      21              22              23                      24                                              25                    
+                    + " dressing_plan_1,dressing_plan_2,dressing_plan_3,TIME_FORMAT(TIME(date_dressing),'%T'),TIME_FORMAT(TIME(date_next_dressing_change),'%T') FROM lhr_ort_niw_wound_assessment "
+                    + " where pmi_no ='" + pmino + "' and DATE(date_dressing) between SUBDATE('" + dateTime + "',7) and '" + dateTime + "' ; ";
 
         } else if (viewBy.equalsIgnoreCase("30day")) {
 
-            //              0       1       2               3        4      5               6                               7                             8
-            sql = "SELECT pmi_no,hfc_cd,episode_date,encounter_date,ward,bed_no,TIME_FORMAT(TIME(datetime),'%r'),DATE_FORMAT(DATE(datetime),'%d/%m/%Y'),color, "
-                    //      9       10       11       12                13                          
-                    + " sensation,hot_cold,movement,others,TIME_FORMAT(TIME(datetime),'%T') FROM lhr_ort_niw_chart_circulation "
-                    + " where pmi_no ='" + pmino + "' and DATE(datetime) between SUBDATE('" + dateTime + "',30) and '" + dateTime + "'; ";
+            //              0       1       2               3                   4                                   5                                          
+            sql = "SELECT pmi_no,hfc_cd,episode_date,encounter_date,TIME_FORMAT(TIME(date_dressing),'%r'),DATE_FORMAT(DATE(date_dressing),'%d/%m/%Y'), "
+                    //                          6                                           7                                             8               9                 10                     
+                    + " TIME_FORMAT(TIME(date_next_dressing_change),'%r'),DATE_FORMAT(DATE(date_next_dressing_change),'%d/%m/%Y'),wound_dimension,wound_dimension_1,wound_dimension_2, "
+                    //      11              12          13        14            15                  16              17          18             19           20                  
+                    + " exu_datelevel,exu_datecolor,wound_bed,wound_edges,surrounding_skin,clinical_infection,patient_pain,patient_pain_1,wound_progress,dressing_plan, "
+                    //      21              22              23                      24                                              25                    
+                    + " dressing_plan_1,dressing_plan_2,dressing_plan_3,TIME_FORMAT(TIME(date_dressing),'%T'),TIME_FORMAT(TIME(date_next_dressing_change),'%T') FROM lhr_ort_niw_wound_assessment "
+                    + " where pmi_no ='" + pmino + "' and DATE(date_dressing) between SUBDATE('" + dateTime + "',30) and '" + dateTime + "'; ";
 
         } else if (viewBy.equalsIgnoreCase("60day")) {
 
-            //              0       1       2               3        4      5               6                               7                             8
-            sql = "SELECT pmi_no,hfc_cd,episode_date,encounter_date,ward,bed_no,TIME_FORMAT(TIME(datetime),'%r'),DATE_FORMAT(DATE(datetime),'%d/%m/%Y'),color, "
-                    //      9       10       11       12                13                          
-                    + " sensation,hot_cold,movement,others,TIME_FORMAT(TIME(datetime),'%T') FROM lhr_ort_niw_chart_circulation "
-                    + " where pmi_no ='" + pmino + "' and DATE(datetime) between SUBDATE('" + dateTime + "',60) and '" + dateTime + "' ; ";
+            //              0       1       2               3                   4                                   5                                          
+            sql = "SELECT pmi_no,hfc_cd,episode_date,encounter_date,TIME_FORMAT(TIME(date_dressing),'%r'),DATE_FORMAT(DATE(date_dressing),'%d/%m/%Y'), "
+                    //                          6                                           7                                             8               9                 10                     
+                    + " TIME_FORMAT(TIME(date_next_dressing_change),'%r'),DATE_FORMAT(DATE(date_next_dressing_change),'%d/%m/%Y'),wound_dimension,wound_dimension_1,wound_dimension_2, "
+                    //      11              12          13        14            15                  16              17          18             19           20                  
+                    + " exu_datelevel,exu_datecolor,wound_bed,wound_edges,surrounding_skin,clinical_infection,patient_pain,patient_pain_1,wound_progress,dressing_plan, "
+                    //      21              22              23                      24                                              25                    
+                    + " dressing_plan_1,dressing_plan_2,dressing_plan_3,TIME_FORMAT(TIME(date_dressing),'%T'),TIME_FORMAT(TIME(date_next_dressing_change),'%T') FROM lhr_ort_niw_wound_assessment "
+                    + " where pmi_no ='" + pmino + "' and DATE(date_dressing) between SUBDATE('" + dateTime + "',60) and '" + dateTime + "' ; ";
 
         } else if (viewBy.equalsIgnoreCase("custom")) {
 
             String dateSplit[] = dateTime.split("\\^", -1);
             startDate = dateSplit[0];
             endDate = dateSplit[1];
-            //              0       1       2               3        4      5               6                               7                             8
-            sql = "SELECT pmi_no,hfc_cd,episode_date,encounter_date,ward,bed_no,TIME_FORMAT(TIME(datetime),'%r'),DATE_FORMAT(DATE(datetime),'%d/%m/%Y'),color, "
-                    //      9       10       11       12                13                          
-                    + " sensation,hot_cold,movement,others,TIME_FORMAT(TIME(datetime),'%T') FROM lhr_ort_niw_chart_circulation "
-                    + " where pmi_no ='" + pmino + "' and DATE(datetime) between '" + startDate + "' and '" + endDate + "'; ";
+
+            //              0       1       2               3                   4                                   5                                          
+            sql = "SELECT pmi_no,hfc_cd,episode_date,encounter_date,TIME_FORMAT(TIME(date_dressing),'%r'),DATE_FORMAT(DATE(date_dressing),'%d/%m/%Y'), "
+                    //                          6                                           7                                             8               9                 10                     
+                    + " TIME_FORMAT(TIME(date_next_dressing_change),'%r'),DATE_FORMAT(DATE(date_next_dressing_change),'%d/%m/%Y'),wound_dimension,wound_dimension_1,wound_dimension_2, "
+                    //      11              12          13        14            15                  16              17          18             19           20                  
+                    + " exu_datelevel,exu_datecolor,wound_bed,wound_edges,surrounding_skin,clinical_infection,patient_pain,patient_pain_1,wound_progress,dressing_plan, "
+                    //      21              22              23                      24                                              25                    
+                    + " dressing_plan_1,dressing_plan_2,dressing_plan_3,TIME_FORMAT(TIME(date_dressing),'%T'),TIME_FORMAT(TIME(date_next_dressing_change),'%T') FROM lhr_ort_niw_wound_assessment "
+                    + " where pmi_no ='" + pmino + "' and DATE(date_dressing) between '" + startDate + "' and '" + endDate + "'; ";
 
         }
 
