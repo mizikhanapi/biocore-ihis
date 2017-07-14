@@ -177,13 +177,13 @@ $(document).ready(function () {
 //        $('#pointMain').val('');
         $("#CIS020002").modal('toggle');
     });
-    
+
     $('#ortho_actionPGSC').click(function (e) {
         //alert("gcsAccept");
         var pgcsResult = $('#resultpgcsMain').val();
         var pgcsPoint = $('#pointpgcsMain').val();
         var checked = $('input[name="selected"]:checked').val();
-        
+
         $.ajax({
             url: "../Ortho-Consultation/modal/action/save_pgcs.jsp",
             type: "post",
@@ -194,14 +194,21 @@ $(document).ready(function () {
             },
             timeout: 10000,
             success: function (data) {
-                $("#CIS020002").modal('toggle');
 
-                $('#resultpgcsMain').val("");
-                $('#pointpgcsMain').val("");
-                $("#CIS020002").hide();
-                $(".modal-backdrop").hide();
-                alert("Pediatric Glasgow Coma Scale is saved.");
-                $("#getNeuObservation").load("../Ortho-Consultation/neuObservation.jsp");
+                $.ajax({
+                    url: "../Ortho-Consultation/table/t_observation.jsp",
+                    type: "post",
+                    timeout: 3000,
+                    success: function (returnObservation) {
+                        $('#getNeuObservation').html(returnObservation);
+                        console.log(returnObservation);
+                        $('#getNeuObservation').trigger('contentchanged');
+                        $('#CIS020002').modal('toggle');
+                        $("#CIS020002").hide();
+                        $(".modal-backdrop").hide();
+                        alert("Pediatric Glasgow Coma Scale is saved.");
+                    }
+                });
             },
             error: function (err) {
                 alert("Error update!");
@@ -285,7 +292,7 @@ $(document).ready(function () {
         var _sitBPD = $('#sitD').val();
         var _sitBPP = $('#sitP').val();
         var checked = $('input[name="selected"]:checked').val();
-        alert(checked);
+        //alert(checked);
         $.ajax({
             url: "../Ortho-Consultation/modal/action/save_bloodPressure.jsp",
             type: "post",
@@ -297,15 +304,24 @@ $(document).ready(function () {
             },
             timeout: 10000,
             success: function (data) {
-                $("#CIS020003").modal('toggle');
 
-                $('#sitS').val("");
-                $('#sitD').val("");
-                $('#sitP').val("");
-                $("#CIS020003").hide();
-                $(".modal-backdrop").hide();
-                alert("Bllod pressure is saved.");
-                $("#getNeuObservation").load("../Ortho-Consultation/neuObservation.jsp");
+                $.ajax({
+                    url: "../Ortho-Consultation/table/t_observation.jsp",
+                    type: "post",
+                    timeout: 3000,
+                    success: function (returnObservation) {
+                        $('#getNeuObservation').html(returnObservation);
+                        console.log(returnObservation);
+                        $('#getNeuObservation').trigger('contentchanged');
+                        $('#sitS').val("");
+                        $('#sitD').val("");
+                        $('#sitP').val("");
+                        $('#CIS020003').modal('toggle');
+                        $("#CIS020003").hide();
+                        $(".modal-backdrop").hide();
+                        alert("Bllod pressure is saved.");
+                    }
+                });
             },
             error: function (err) {
                 alert("Error update!");
@@ -724,10 +740,21 @@ $(document).ready(function () {
             },
             timeout: 10000,
             success: function (data) {
-                $("#CIS020009").hide();
-                $(".modal-backdrop").hide();
-                alert("Physical Examination is saved.");
-                $("#get_physicalExam").load("../Ortho-Consultation/physicalExam.jsp");
+                
+                $.ajax({
+                    url: "../Ortho-Consultation/table/t_physicalExam.jsp",
+                    type: "post",
+                    timeout: 3000,
+                    success: function (returnPhysicalExam) {
+                        $('#get_physicalExam').html(returnPhysicalExam);
+                        console.log(returnPhysicalExam);
+                        $('#get_physicalExam').trigger('contentchanged');
+                        $('#CIS020009').modal('toggle');
+                        $("#CIS020009").hide();
+                        $(".modal-backdrop").hide();
+                        alert("Physical Examination is saved.");
+                    }
+                });
             },
             error: function (err) {
                 alert("Error update!");
