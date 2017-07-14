@@ -86,7 +86,36 @@ public class ADW_ord {
                             for (int adw_i = 0; adw_i < adw1.size(); adw_i++) {
                                 ArrayList<ArrayList<String>> adws = adw1.get(adw_i).getValue();
 
-                                String sql_adw_det = "INSERT INTO wis_order_detail (order_no, item_cd, episode_date, encounter_date, requestor_comments, admission_reason, order_by, order_date, ward_class_code, ward_id, bed_id, order_status, created_by, created_date) values ('" + adw.getADW_orderno() + "','-','" + adws.get(1).get(0) + "','" + adws.get(1).get(0) + "','" + adws.get(2).get(7) + "','-','" + adws.get(2).get(13) + "','" + adws.get(1).get(0) + "','-','" + adws.get(2).get(4) + "','-','0','" + adws.get(2).get(14) + "','" + adws.get(1).get(0) + "')";
+                                String sql_adw_det = "INSERT INTO wis_order_detail ("
+                                        + "order_no,"
+                                        //+ " item_cd, "
+                                        + "episode_date,"
+                                        + " encounter_date,"
+                                        + " requestor_comments,"
+                                        + " admission_reason,"
+                                        + " order_by,"
+                                        + " order_date,"
+                                        + " ward_class_code,"
+                                        + " ward_id,"
+                                        //+ " bed_id,"
+                                        + " order_status,"
+                                        + " created_by,"
+                                        + " created_date"
+                                        + ") values ("
+                                        + "'" + adw.getADW_orderno() + "',"
+                                        //+ "'-',"
+                                        + "'" + adws.get(1).get(0) + "',"
+                                        + "'" + orcs.get(8).get(0) + "',"
+                                        + "'" + adws.get(2).get(7) + "',"
+                                        + "'" + adws.get(2).get(8) + "',"
+                                        + "'" + orcs.get(9).get(0) + "',"
+                                        + "'" + orcs.get(6).get(0) + "',"
+                                        + "'" + adws.get(2).get(5) + "',"
+                                        + "'" + adws.get(2).get(4) + "',"
+                                        //+ "'-',"
+                                        + "'0',"
+                                        + "'" + adws.get(2).get(14) + "',"
+                                        + "now())";
                                 status_adw_detail = rc.setQuerySQL(Config.ipAddressServer, Config.portServer, sql_adw_det);
                                 if (status_adw_detail == true) {
                                     System.out.println("Done with wis MASTER and wis DETAIL");
