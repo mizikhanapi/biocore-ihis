@@ -17,6 +17,8 @@
     if (methodName.equalsIgnoreCase("add")) {
     } else if (methodName.equalsIgnoreCase("update")) {
     } else if (methodName.equalsIgnoreCase("delete")) {
+        result = diab.delDiabetic(data);
+        out.print(result);
     } else if (methodName.equalsIgnoreCase("approve")) {
         result = diab.approveDiabetis(data);
         out.print(result);

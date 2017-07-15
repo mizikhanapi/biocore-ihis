@@ -307,6 +307,69 @@
 
 
 
+// ---------------------------------------------------------------------------- Delete ------------------------------------------------------------------------------------------- //
+
+
+        // Function For Delete Button Start
+        $('#tableDiabeticChartDiv').on('click', '#tableDiabeticChartTable #tableDiabeticChartDeleteBtn', function (e) {
+
+            //get the row value
+            var row = $(this).closest("tr");
+            var datas = row.find("#dataDiabeticCharthidden").val();
+
+
+            bootbox.confirm({
+                message: "Are you sure want to delete this record ?",
+                buttons: {
+                    confirm: {
+                        label: 'Yes',
+                        className: 'btn-success'
+                    },
+                    cancel: {
+                        label: 'No',
+                        className: 'btn-danger'
+                    }
+                },
+                callback: function (result) {
+
+                    if (result === true) {
+
+                        $.ajax({
+                            type: "post",
+                            url: "../Ortho-NursingInWard/controller/DiabeticChartFunction.jsp",
+                            timeout: 10000,
+                            data: {dataString: datas, methodName: 'delete'},
+                            success: function (result) {
+
+                                if (result.trim() === 'true') {
+
+                                    bootbox.alert("Successfully Deleted !!");
+                                    DiabeticChartTableFiterAUD();
+
+                                } else {
+
+                                    bootbox.alert("Fail to Delete");
+
+                                }
+
+                            },
+                            error: function (err) {
+
+                            }
+                        });
+
+                    }
+                }
+            });
+
+
+        });
+        // Function For Delete Button End
+
+
+// ---------------------------------------------------------------------------- Delete ------------------------------------------------------------------------------------------- //
+
+
 
 // ---------------------------------------------------------------------------- Date ------------------------------------------------------------------------------------------- //
 
