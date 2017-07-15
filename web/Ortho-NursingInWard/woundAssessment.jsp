@@ -155,6 +155,53 @@
         });
         // Function For View Assement Select End
 
+
+        // Function For View Assement Select For Add Update Delete Start
+        function WoundAssementTableFiterAUD() {
+
+            var patientPMI = $('#pIC').text();
+            var filterBy = $('#woodAssessmentSelectAssessment').val();
+            var selected = $("#woodAssessmentSelectAssessment option:selected").text();
+            var datas;
+            var todayDate;
+
+            var enDate = new Date();
+            var dd = ("0" + enDate.getDate()).slice(-2);
+            var mm = ("0" + (enDate.getMonth() + 1)).slice(-2);
+            var yy = enDate.getFullYear();
+
+            todayDate = yy + "-" + mm + "-" + dd;
+
+
+            if (selected === "View by") {
+
+                resetTableWoundAssement();
+
+            } else if (selected === "Select date") {
+
+                var strtDate = $('#woodAssessmentSelectAssessmentStart').val();
+                var endDate = $('#woodAssessmentSelectAssessmentEnd').val();
+
+                var sDate = strtDate.split('/');
+                var SnewDate = sDate[2] + "-" + sDate[1] + "-" + sDate[0];
+
+                var eDate = endDate.split('/');
+                var EnewDate = eDate[2] + "-" + eDate[1] + "-" + eDate[0];
+
+                datas = patientPMI + "|" + SnewDate + "^" + EnewDate + "|" + filterBy;
+                WoundAssementTableFiter(datas);
+
+            } else {
+
+                datas = patientPMI + "|" + todayDate + "|" + filterBy;
+                WoundAssementTableFiter(datas);
+
+            }
+
+        }
+        // Function For View Assement Select For Add Update Delete End
+
+
         // Function for Table Start 
         function WoundAssementTableFiter(viewData) {
 
@@ -181,7 +228,116 @@
         }
         // Function for Table End
 
+
+        // Reset Function for Table Start
+        function resetTableWoundAssement() {
+
+            $("#tableWoundAssessmentDiv").html('<table class="table table-bordered" id="tableWoundAssessmentTable" style="width: 100%">\n\
+                                        <tr>\n\
+                                            <th rowspan="2">Date</th>\n\
+                                            <th rowspan="2">Date of next dressing change</th>\n\
+                                            <th colspan="3">Wound Dimensions in cm</th>\n\
+                                            <th rowspan="2">Exudate Level</th>\n\
+                                            <th rowspan="2">Exudate Colour</th>\n\
+                                            <th rowspan="2">Wound Bed in %</th>\n\
+                                            <th rowspan="2">Wound Edges</th>\n\
+                                            <th rowspan="2">Surrounding Skin</th>\n\
+                                            <th rowspan="2">Signs of Clinical Infaction</th>\n\
+                                            <th colspan="2">Patient Pain</th>\n\
+                                            <th rowspan="2">Wound Progress</th>\n\
+                                            <th colspan="4">Dressing Plan</th>\n\
+                                            <th rowspan="2">Action</th>\n\
+                                        </tr>\n\
+                                        <tr>\n\
+                                            <th>1</th>\n\
+                                            <th>2</th>\n\
+                                            <th>3</th>\n\
+                                            <th>During Removal</th>\n\
+                                            <th>While in place</th>\n\
+                                            <th>Primary Dressing</th>\n\
+                                            <th>Size & no. of pieces</th>\n\
+                                            <th>Secondary Dressing</th>\n\
+                                            <th>Size & no. of pieces</th>\n\
+                                        </tr>\n\
+                                        <tr>\n\
+                                            <td colspan="19" align="center">No Record To Show<br>Please Select A History Assessment</td>\n\
+                                        </tr>\n\
+                                    </table>');
+
+            $('#woodAssessmentSelectAssessment').prop('selectedIndex', 0);
+
+        }
+        // Reset Function for Table End
+
 // ---------------------------------------------------------------------------- VIew ------------------------------------------------------------------------------------------- //
+
+
+
+
+
+// ---------------------------------------------------------------------------- Delete ------------------------------------------------------------------------------------------- //
+
+
+        // Function For Delete Button Start
+        $('#tableWoundAssessmentDiv').on('click', '#tableWoundAssessmentTable #tableWoundAssessmentDeleteBtn', function (e) {
+
+            //get the row value
+            var row = $(this).closest("tr");
+            var datas = row.find("#dataWoundAssessmenthidden").val();
+
+
+            bootbox.confirm({
+                message: "Are you sure want to delete this record ?",
+                buttons: {
+                    confirm: {
+                        label: 'Yes',
+                        className: 'btn-success'
+                    },
+                    cancel: {
+                        label: 'No',
+                        className: 'btn-danger'
+                    }
+                },
+                callback: function (result) {
+
+                    if (result === true) {
+
+                        $.ajax({
+                            type: "post",
+                            url: "../Ortho-NursingInWard/controller/WoundAssementFunction.jsp",
+                            timeout: 10000,
+                            data: {dataString: datas, methodName: 'delete'},
+                            success: function (result) {
+
+                                if (result.trim() === 'true') {
+
+                                    bootbox.alert("Successfully Deleted !!");
+                                    WoundAssementTableFiterAUD();
+
+                                } else {
+
+                                    bootbox.alert("Fail to Delete");
+
+                                }
+
+                            },
+                            error: function (err) {
+
+                            }
+                        });
+
+                    }
+                }
+            });
+
+
+        });
+        // Function For Delete Button End
+
+
+// ---------------------------------------------------------------------------- Delete ------------------------------------------------------------------------------------------- //
+
+
 
 
 

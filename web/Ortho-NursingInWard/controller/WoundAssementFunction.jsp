@@ -17,6 +17,8 @@
     if (methodName.equalsIgnoreCase("add")) {
     } else if (methodName.equalsIgnoreCase("update")) {
     } else if (methodName.equalsIgnoreCase("delete")) {
+        result = wound.delWoundAssessment(data);
+        out.print(result);
     } else if (methodName.equalsIgnoreCase("view") && data.equalsIgnoreCase("null")) {
         // Do Nothing
     } else if (methodName.equalsIgnoreCase("view") && !data.equalsIgnoreCase("null")) {
