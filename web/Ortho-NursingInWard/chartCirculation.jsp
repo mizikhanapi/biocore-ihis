@@ -154,6 +154,55 @@
         });
         // Function For View Assement Select End
 
+
+
+
+        // Function For View Assement Select For Add Update Delete Start
+        function ChartCircuTableFiterAUD() {
+
+            var patientPMI = $('#pIC').text();
+            var filterBy = $('#chartCirculationSelectAssessment').val();
+            var selected = $("#chartCirculationSelectAssessment option:selected").text();
+            var datas;
+            var todayDate;
+
+            var enDate = new Date();
+            var dd = ("0" + enDate.getDate()).slice(-2);
+            var mm = ("0" + (enDate.getMonth() + 1)).slice(-2);
+            var yy = enDate.getFullYear();
+
+            todayDate = yy + "-" + mm + "-" + dd;
+
+
+            if (selected === "View by") {
+
+                resetTableChartCirculation();
+
+            } else if (selected === "Select date") {
+
+                var strtDate = $('#chartCirculationSelectAssessmentStart').val();
+                var endDate = $('#chartCirculationSelectAssessmentEnd').val();
+
+                var sDate = strtDate.split('/');
+                var SnewDate = sDate[2] + "-" + sDate[1] + "-" + sDate[0];
+
+                var eDate = endDate.split('/');
+                var EnewDate = eDate[2] + "-" + eDate[1] + "-" + eDate[0];
+
+                datas = patientPMI + "|" + SnewDate + "^" + EnewDate + "|" + filterBy;
+                ChartCircuTableFiter(datas);
+
+            } else {
+
+                datas = patientPMI + "|" + todayDate + "|" + filterBy;
+                ChartCircuTableFiter(datas);
+
+            }
+
+        }
+        // Function For View Assement Select For Add Update Delete End
+
+
         // Function for Table Start 
         function ChartCircuTableFiter(viewData) {
 
@@ -180,6 +229,36 @@
         }
         // Function for Table End
 
+
+
+
+        // Reset Function for Table Start
+        function resetTableChartCirculation() {
+
+            $("#tableChartCirculationDiv").html('<table class="table table-bordered" id="tableChartCirculationTable" style="width: 100%">\n\
+                                    <thead>\n\
+                                    <th>Date</th>\n\
+                                    <th>Time</th>\n\
+                                    <th>Colour</th>\n\
+                                    <th>Sensation</th>\n\
+                                    <th>Hot / Cold</th>\n\
+                                    <th>Movement</th>\n\
+                                    <th>Others</th>\n\
+                                    <th>Action</th>\n\
+                                    </thead>\n\
+                                    <tbody>\n\
+                                    <tr>\n\
+                                    <td colspan="8" align="center">No Record To Show<br>Please Select A History Assessment</td>\n\
+                                    </tr>\n\
+                                    </tbody>\n\
+                                    </table>');
+
+            $('#chartCirculationSelectAssessment').prop('selectedIndex', 0);
+
+        }
+        // Reset Function for Table End
+
+
 // ---------------------------------------------------------------------------- VIew ------------------------------------------------------------------------------------------- //
 
 
@@ -187,6 +266,7 @@
 
 
 // ---------------------------------------------------------------------------- Insert ------------------------------------------------------------------------------------------- //
+
 
         // Function For Add Button Start
         $('#Ortho-NursingInWard_4').on('click', '#chartCirculationAddNewRecord', function (e) {
@@ -261,7 +341,7 @@
 
                             bootbox.alert("Successfully Added !!");
                             $("#circulationChart").modal('hide');
-                            resetTableChartCirculation();
+                            ChartCircuTableFiterAUD();
 
                         } else if (result.trim() === 'false') {
 
@@ -284,6 +364,7 @@
 
 
 // ---------------------------------------------------------------------------- Update ------------------------------------------------------------------------------------------- //
+
 
         // Function For Update Button Start
         $('#tableChartCirculationDiv').on('click', '#tableChartCirculationTable #tableChartCirculationUpdateBtn', function (e) {
@@ -365,7 +446,7 @@
 
                         bootbox.alert("Successfully Updated !!");
                         $("#circulationChart").modal('hide');
-                        resetTableChartCirculation();
+                        ChartCircuTableFiterAUD();
 
                     } else if (result.trim() === 'false') {
 
@@ -387,6 +468,7 @@
 
 
 // ---------------------------------------------------------------------------- Delete ------------------------------------------------------------------------------------------- //
+
 
         // Function For Update Button Start
         $('#tableChartCirculationDiv').on('click', '#tableChartCirculationTable #tableChartCirculationDeleteBtn', function (e) {
@@ -418,17 +500,18 @@
                             timeout: 10000,
                             data: {dataString: datas, methodName: 'delete'},
                             success: function (result) {
-                                console.log(result);
+
                                 if (result.trim() === 'true') {
 
                                     bootbox.alert("Successfully Deleted !!");
-                                    resetTableChartCirculation();
+                                    ChartCircuTableFiterAUD();
 
                                 } else {
 
                                     bootbox.alert("Fail to Delete");
 
                                 }
+
                             },
                             error: function (err) {
 
@@ -442,42 +525,15 @@
 
         });
         // Function For Update Button End
-        // 
+
+
 // ---------------------------------------------------------------------------- Delete ------------------------------------------------------------------------------------------- //
-
-
-// ---------------------------------------------------------------------------- Reset Table ------------------------------------------------------------------------------------------- //
-
-        function resetTableChartCirculation() {
-
-            $("#tableChartCirculationDiv").html('<table class="table table-bordered" id="tableChartCirculationTable" style="width: 100%">\n\
-                                    <thead>\n\
-                                    <th>Date</th>\n\
-                                    <th>Time</th>\n\
-                                    <th>Colour</th>\n\
-                                    <th>Sensation</th>\n\
-                                    <th>Hot / Cold</th>\n\
-                                    <th>Movement</th>\n\
-                                    <th>Others</th>\n\
-                                    <th>Action</th>\n\
-                                    </thead>\n\
-                                    <tbody>\n\
-                                    <tr>\n\
-                                    <td colspan="8" align="center">No Record To Show<br>Please Select A History Assessment</td>\n\
-                                    </tr>\n\
-                                    </tbody>\n\
-                                    </table>');
-
-            $('#chartCirculationSelectAssessment').prop('selectedIndex', 0);
-
-        }
-
-// ---------------------------------------------------------------------------- Reset Table ------------------------------------------------------------------------------------------- //
 
 
 
 
 // ---------------------------------------------------------------------------- Date ------------------------------------------------------------------------------------------- //
+
 
         // Date Functions Start
         // Date Picker For Initial Start
@@ -509,6 +565,7 @@
         });
         // Date Picker For Final Start
         // Date Functions End
+
 
 // ---------------------------------------------------------------------------- Date ------------------------------------------------------------------------------------------- //
 
