@@ -99,8 +99,8 @@
                 <!-- content -->
                 <div class="tab-pane fade" id="Ortho-NursingInWard_5">
                     <ul class="soap-content nav">
-                        <li><a data-toggle="modal" data-target="#chartDailySkin1" href="" class="soap-select"><i class="fa fa-comments  fa-li"></i> Daily Skin Assessment Tool</a></li>
-                        <li><a data-toggle="modal" data-target="#chartDailySkin2" href=""  class="soap-select"><i class="fa fa-history  fa-li"></i> Positioning Chart</a></li>
+                        <li><a data-toggle="modal" data-target="#dailySkinTool" href="" class="soap-select" id="chartDailySkinToolAddNewRecord"><i class="fa fa-comments  fa-li"></i> Daily Skin Assessment Tool</a></li>
+                        <li><a data-toggle="modal" data-target="#dailySkinPosition" href=""  class="soap-select" id="chartDailySkinPositionAddNewRecord"><i class="fa fa-history  fa-li"></i> Positioning Chart</a></li>
                     </ul>
                     <hr class="pemisah" />
                     <%@include file="chartDailySkin.jsp"%>
@@ -208,8 +208,8 @@
         $('#perawatan-ortho #btnNIWtruUPDATE').hide();
         $('#perawatan-ortho #btnNIWtrADD').show();
     });
-    
-     $('#Ortho-NursingInWard_7').on('click', '#newassessmentfit', function (e) {
+
+    $('#Ortho-NursingInWard_7').on('click', '#newassessmentfit', function (e) {
         e.preventDefault();
         $('#FitsChart #btnNIWFitsUPDATE').hide();
         $('#FitsChart #btnNIWFitsADD').show();

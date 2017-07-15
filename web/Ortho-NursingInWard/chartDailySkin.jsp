@@ -95,17 +95,20 @@
 
         // Disabling Start And End Date
         $("#chartDailySkinSelectAssessmentStartEnd").hide();
+
 // ---------------------------------------------------------------------------- VIew ------------------------------------------------------------------------------------------- //
 
         // Function For View Assement Select Start
         $('#chartDailySkinSelectAssessment').on('change', function () {
 
             $("#chartDailySkinSelectAssessmentStartEnd").hide();
+
             var patientName = $('#pName').text();
             var patientPMI = $('#pIC').text();
             var filterBy = $('#chartDailySkinSelectAssessment').val();
             var datas;
             var todayDate;
+
             var enDate = new Date();
             var dd = ("0" + enDate.getDate()).slice(-2);
             var mm = ("0" + (enDate.getMonth() + 1)).slice(-2);
@@ -114,7 +117,9 @@
             var m = enDate.getMinutes();
             var ss = enDate.getSeconds();
             var ms = enDate.getMilliseconds();
+
             todayDate = yy + "-" + mm + "-" + dd;
+
             if (patientName === "-") {
                 bootbox.alert("You need to select the patient !!!");
                 $('#chartDailySkinSelectAssessment').prop('selectedIndex', 0);
@@ -235,26 +240,26 @@
         function resetTableChartDailySkin() {
 
             $("#tableChartDailySkinToolDiv").html('<h5>Daily Skin Assessment Tool</h5>\n\
-                <table class="table table-bordered" id="tableChartDailySkinToolTable" style="width: 100%">\n\
-                    < thead >\n\
-                    < tr >\n\
-                    < th > Date < /th>\n\
-                    < th > Time < /th>\n\
-                    < th > Temperature < /th>\n\
-                    < th > Color < /th>\n\
-                    < th > Moisture < /th>\n\
-                    < th > Skin Turgor < /th>\n\
-                    < th > Integrity < /th>\n\
-                    < th > Assesor < /th>\n\
-                    < th > Action < /th>\n\
-                    < /tr>\n\
-                    < /thead>\n\
-                    < tbody >\n\
-                    < tr >\n\
-                    < td colspan = "9" align = "center" > No Record To Show < br > Please Select A History Assessment < /td>\n\
-                    < /tr>\n\
-                    < /tbody>\n\
-                    < /table>');
+                                    <table class="table table-bordered" id="tableChartDailySkinToolTable" style="width: 100%">\n\
+                                        <thead>\n\
+                                            <tr>\n\
+                                                <th>Date</th>\n\
+                                                <th>Time</th>\n\
+                                                <th>Temperature</th>\n\
+                                                <th>Color</th>\n\
+                                                <th>Moisture</th>\n\
+                                                <th>Skin Turgor</th>\n\
+                                                <th>Integrity</th>\n\
+                                                <th>Assesor</th>\n\
+                                                <th>Action</th>\n\
+                                            </tr>\n\
+                                        </thead>\n\
+                                        <tbody>\n\
+                                            <tr>\n\
+                                                <td colspan="9" align="center">No Record To Show<br>Please Select A History Assessment</td>\n\
+                                            </tr>\n\
+                                        </tbody>\n\
+                                        </table>');
 
 
             $("#tableChartDailySkinPositionDiv").html('<h5>Positioning Chart</h5>\n\
@@ -272,7 +277,7 @@
                             <td colspan="4" align="center">No Record To Show<br>Please Select A History Assessment</td>\n\
                         </tr>\n\
                     </tbody>\n\
-                    < /table>');
+                </table>');
 
             $('#chartDailySkinSelectAssessment').prop('selectedIndex', 0);
 
@@ -280,6 +285,208 @@
         // Reset Function for Table End
 
 // ---------------------------------------------------------------------------- VIew ------------------------------------------------------------------------------------------- //
+
+
+
+// ---------------------------------------------------------------------------- Insert Skin Tool ------------------------------------------------------------------------------------------- //
+
+
+        // Function For Add Button Start
+        $('#Ortho-NursingInWard_5').on('click', '#chartDailySkinToolAddNewRecord', function (e) {
+
+            $('#dailySkinToolModalTitle').text("Daily Skin Assessment Tool");
+            $('#dailySkinToolModal_btnAdd_or_btnUpdate_div').html('<button type="button" class="btn btn-success btn-block btn-lg" id="dailySkinToolAddModalBtn" role="button">Add Items</button>');
+
+            $('#dailySkinToolModalForm')[0].reset();
+
+            $("#dailySkinToolModalDate").datepicker({
+                changeMonth: true,
+                changeYear: true,
+                maxDate: '+0d',
+                dateFormat: 'dd/mm/yy'
+            });
+
+        });
+        // Function For Add Button End
+
+
+        // Add Get Data And Send To Controller Function Start
+        $('#dailySkinTool #dailySkinToolModal_btnAdd_or_btnUpdate_div').on('click', '#dailySkinToolAddModalBtn', function (e) {
+            e.preventDefault();
+
+
+            var enDate = new Date();
+            var dd = ("0" + enDate.getDate()).slice(-2);
+            var mm = ("0" + (enDate.getMonth() + 1)).slice(-2);
+            var yy = enDate.getFullYear();
+            var hh = enDate.getHours();
+            var m = enDate.getMinutes();
+            var ss = enDate.getSeconds();
+            var ms = enDate.getMilliseconds();
+
+            var encounterDate = yy + "-" + mm + "-" + dd + " " + hh + ":" + m + ":" + ss + "." + ms;
+            var date = $('#dailySkinToolModalDate').val();
+            var sDate = date.split('/');
+            var newDate = sDate[2] + "-" + sDate[1] + "-" + sDate[0];
+
+            var time = $('#dailySkinToolModalTime').val();
+            var Temperature = $("input[name='Temperature']:checked").val();
+            var Color = $("input[name='Color']:checked").val();
+            var Moisture = $("input[name='Moisture']:checked").val();
+            var SkinTurgor = $("input[name='SkinTurgor']:checked").val();
+            var Integrity = $("input[name='Integrity']:checked").val();
+            var ReferToTeam = $("input[name='ReferToTeam']:checked").val();
+
+            var pmi_no = pmiNo;
+            var hfc_cd1 = hfc_cd;
+            var epDate = episodeDate;
+
+
+            if (date === null || date === "") {
+                bootbox.alert("Please Insert Assessment Date !!");
+            } else if (time === null || time === "") {
+                bootbox.alert("Please Insert Assessment Time !!");
+            } else {
+
+                if (Temperature === undefined) {
+                    Temperature = "";
+                } else if (Color === undefined) {
+                    Color = "";
+                } else if (Moisture === undefined) {
+                    Moisture = "";
+                } else if (SkinTurgor === undefined) {
+                    SkinTurgor = "";
+                } else if (Integrity === undefined) {
+                    Integrity = "";
+                } else if (ReferToTeam === undefined) {
+                    ReferToTeam = "";
+                }
+
+                var datas = pmi_no + "|" + hfc_cd1 + "|" + epDate + "|" + encounterDate + "|" + newDate + " " + time + ":00.0|" + Temperature + "|" + Color + "|" + Moisture + "|" + SkinTurgor + "|" + Integrity + "|" + ReferToTeam;
+                console.log(datas);
+
+                $.ajax({
+                    type: "post",
+                    url: "../Ortho-NursingInWard/controller/ChartDailySkinFunction.jsp",
+                    data: {dataString: datas, methodName: "addSkinTool"},
+                    timeout: 10000,
+                    success: function (result) {
+
+                        if (result.trim() === 'true') {
+
+                            bootbox.alert("Successfully Added !!");
+                            $("#dailySkinTool").modal('hide');
+                            ChartDailySkinTableFiterAUD();
+
+                        } else if (result.trim() === 'false') {
+
+                            bootbox.alert("Fail to Add");
+                            $("#dailySkinTool").modal('hide');
+
+                        }
+                    },
+                    error: function (err) {
+                        bootbox.alert("something wrong,error: " + err);
+                    }
+                });
+            }
+        });
+        // Add Get Data And Send To Controller Function End
+
+
+
+// ---------------------------------------------------------------------------- Insert ------------------------------------------------------------------------------------------- //
+
+
+// ---------------------------------------------------------------------------- Insert Skin Position ------------------------------------------------------------------------------------------- //
+
+
+        // Function For Add Button Start
+        $('#Ortho-NursingInWard_5').on('click', '#chartDailySkinPositionAddNewRecord', function (e) {
+
+            $('#dailySkinPositionModalTitle').text("Positioning Chart");
+            $('#dailySkinPositionModal_btnAdd_or_btnUpdate_div').html('<button type="button" class="btn btn-success btn-block btn-lg" id="dailySkinPositionAddModalBtn" role="button">Add Items</button>');
+
+            $('#dailySkinPositionForm')[0].reset();
+
+            $("#dailySkinPositionModalDate").datepicker({
+                changeMonth: true,
+                changeYear: true,
+                maxDate: '+0d',
+                dateFormat: 'dd/mm/yy'
+            });
+
+        });
+        // Function For Add Button End
+
+
+        // Add Get Data And Send To Controller Function Start
+        $('#dailySkinPosition #dailySkinPositionModal_btnAdd_or_btnUpdate_div').on('click', '#dailySkinPositionAddModalBtn', function (e) {
+            e.preventDefault();
+
+
+            var enDate = new Date();
+            var dd = ("0" + enDate.getDate()).slice(-2);
+            var mm = ("0" + (enDate.getMonth() + 1)).slice(-2);
+            var yy = enDate.getFullYear();
+            var hh = enDate.getHours();
+            var m = enDate.getMinutes();
+            var ss = enDate.getSeconds();
+            var ms = enDate.getMilliseconds();
+
+            var encounterDate = yy + "-" + mm + "-" + dd + " " + hh + ":" + m + ":" + ss + "." + ms;
+            var date = $('#dailySkinPositionModalDate').val();
+            var sDate = date.split('/');
+            var newDate = sDate[2] + "-" + sDate[1] + "-" + sDate[0];
+
+            var time = $('#dailySkinPositionModalTime').val();
+            var activity = $('#dailySkinPositionModalActivity').val();
+
+            var pmi_no = pmiNo;
+            var hfc_cd1 = hfc_cd;
+            var epDate = episodeDate;
+
+
+            if (date === null || date === "") {
+                bootbox.alert("Please Insert Assessment Date !!");
+            } else if (time === null || time === "") {
+                bootbox.alert("Please Insert Assessment Time !!");
+            } else {
+
+                var datas = pmi_no + "|" + hfc_cd1 + "|" + epDate + "|" + encounterDate + "|" + newDate + " " + time + ":00.0|" + activity;
+                console.log(datas);
+
+                $.ajax({
+                    type: "post",
+                    url: "../Ortho-NursingInWard/controller/ChartDailySkinFunction.jsp",
+                    data: {dataString: datas, methodName: "addPosition"},
+                    timeout: 10000,
+                    success: function (result) {
+
+                        if (result.trim() === 'true') {
+
+                            bootbox.alert("Successfully Added !!");
+                            $("#dailySkinPosition").modal('hide');
+                            ChartDailySkinTableFiterAUD();
+
+                        } else if (result.trim() === 'false') {
+
+                            bootbox.alert("Fail to Add");
+                            $("#dailySkinPosition").modal('hide');
+
+                        }
+                    },
+                    error: function (err) {
+                        bootbox.alert("something wrong,error: " + err);
+                    }
+                });
+            }
+        });
+        // Add Get Data And Send To Controller Function End
+
+
+
+// ---------------------------------------------------------------------------- Insert ------------------------------------------------------------------------------------------- //
 
 
 

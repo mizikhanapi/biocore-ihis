@@ -150,6 +150,58 @@ public class DailySkinUtils {
 
     }
 
+    public Boolean addSkinTool(String datas) {
+
+        Boolean sql = false;
+        String splittedData[] = datas.split("\\|", -1);
+        String pmi_no, hfc_cd, episode_date, encounter_date, datetime, temperature, color, moisture, skin_tugor, integrity, assesor_name, referal_wc;
+
+        pmi_no = splittedData[0];
+        hfc_cd = splittedData[1];
+        episode_date = splittedData[2];
+        encounter_date = splittedData[3];
+        datetime = splittedData[4];
+        temperature = splittedData[5];
+        color = splittedData[6];
+        moisture = splittedData[7];
+        skin_tugor = splittedData[8];
+        integrity = splittedData[9];
+        referal_wc = splittedData[10];
+        assesor_name = splittedData[11];
+
+        String sqlInsert = "INSERT INTO lhr_ort_niw_daily_skin_assess_tool "
+                + " (pmi_no, hfc_cd, episode_date, encounter_date,datetime, temperature,color, moisture,skin_tugor ,integrity ,assesor_name,referal_wc )  "
+                + " VALUES('" + pmi_no + "','" + hfc_cd + "','" + episode_date + "','" + encounter_date + "','" + datetime + "','" + temperature + "','" + color + "','" + moisture + "','" + skin_tugor + "','" + integrity + "','" + assesor_name + "','" + referal_wc + "') ";
+
+        sql = rmic.setQuerySQL(conn.HOST, conn.PORT, sqlInsert);
+
+        return sql;
+
+    }
+
+    public Boolean addPosition(String datas) {
+
+        Boolean sql = false;
+        String splittedData[] = datas.split("\\|", -1);
+        String pmi_no, hfc_cd, episode_date, encounter_date, datetime, activity;
+
+        pmi_no = splittedData[0];
+        hfc_cd = splittedData[1];
+        episode_date = splittedData[2];
+        encounter_date = splittedData[3];
+        datetime = splittedData[4];
+        activity = splittedData[5];
+
+        String sqlInsert = "INSERT INTO lhr_ort_niw_positioning "
+                + " (pmi_no, hfc_cd, episode_date, encounter_date,datetime ,activity)  "
+                + " VALUES('" + pmi_no + "','" + hfc_cd + "','" + episode_date + "','" + encounter_date + "','" + datetime + "','" + activity + "') ";
+
+        sql = rmic.setQuerySQL(conn.HOST, conn.PORT, sqlInsert);
+
+        return sql;
+
+    }
+
     public Boolean delSkinTool(String datas) {
 
         Boolean data = false;
