@@ -17,7 +17,12 @@
     Boolean result;
     if (methodName.equalsIgnoreCase("add")) {
     } else if (methodName.equalsIgnoreCase("update")) {
-    } else if (methodName.equalsIgnoreCase("delete")) {
+    } else if (methodName.equalsIgnoreCase("deleteFluidIntake")) {
+        result = fluid.delFluidIntake(data);
+        out.print(result);
+    } else if (methodName.equalsIgnoreCase("deleteFluidOutput")) {
+        result = fluid.delFluidOutput(data);
+        out.print(result);
     } else if (methodName.equalsIgnoreCase("view") && data.equalsIgnoreCase("null")) {
         // Do Nothing
     } else if (methodName.equalsIgnoreCase("view") && !data.equalsIgnoreCase("null")) {

@@ -179,6 +179,52 @@
         });
         // Function For View Assement Select End
 
+
+
+        // Function For View Assement Select For Add Update Delete Start
+        function FluidBalanceTableFiterAUD() {
+
+            var patientPMI = $('#pIC').text();
+            var filterBy = $('#fluidBalanceSelectAssessment').val();
+            var selected = $("#fluidBalanceSelectAssessment option:selected").text();
+            var datas;
+            var todayDate;
+
+            var enDate = new Date();
+            var dd = ("0" + enDate.getDate()).slice(-2);
+            var mm = ("0" + (enDate.getMonth() + 1)).slice(-2);
+            var yy = enDate.getFullYear();
+
+            todayDate = yy + "-" + mm + "-" + dd;
+
+            if (selected === "View by") {
+
+                resetTableFluidBalance();
+
+            } else if (selected === "Select date") {
+
+                var strtDate = $('#fluidBalanceSelectAssessmentStart').val();
+                var endDate = $('#fluidBalanceSelectAssessmentEnd').val();
+                var sDate = strtDate.split('/');
+                var SnewDate = sDate[2] + "-" + sDate[1] + "-" + sDate[0];
+                var eDate = endDate.split('/');
+                var EnewDate = eDate[2] + "-" + eDate[1] + "-" + eDate[0];
+                datas = patientPMI + "|" + SnewDate + "^" + EnewDate + "|" + filterBy;
+
+                FluidBalanceTableFiter(datas);
+
+            } else {
+
+                datas = patientPMI + "|" + todayDate + "|" + filterBy;
+                FluidBalanceTableFiter(datas);
+
+            }
+
+        }
+        // Function For View Assement Select For Add Update Delete End
+
+
+
         // Function for Table Start 
         function FluidBalanceTableFiter(viewData) {
 
@@ -211,7 +257,177 @@
         }
         // Function for Table End
 
+
+        // Reset Function for Table Start
+        function resetTableFluidBalance() {
+
+            $("#tableFluidBalanceIntakeDiv").html('<h5>Intake</h5>\n\
+                            <table class="table table-bordered" id="tableFluidBalanceIntakeTable" style="width: 100%">\n\
+                                <thead>\n\
+                                    <tr>\n\
+                                        <th rowspan="2">Date</th>\n\
+                                        <th rowspan="2">Time</th>\n\
+                                        <th colspan="2">Oral</th>\n\
+                                        <th colspan="2">Intravenous</th>\n\
+                                        <th colspan="2">Other (Specify)</th>\n\
+                                        <th rowspan="2">Action</th>\n\
+                                    </tr>\n\
+                                    <tr>\n\
+                                        <th>Type</th>\n\
+                                        <th>Amount</th>\n\
+                                        <th>Type</th>\n\
+                                        <th>Amount</th>\n\
+                                        <th>Type</th>\n\
+                                        <th>Amount</th>\n\
+                                    </tr>\n\
+                                </thead>\n\
+                                <tbody>\n\
+                                    <tr>\n\
+                                        <td colspan="9" align="center">No Record To Show<br>Please Select A History Assessment</td>\n\
+                                    </tr>\n\
+                                </tbody>\n\
+                                < /table>');
+
+
+            $("#tableFluidBalanceOutputDiv").html('<h5>Output</h5>\n\
+                                <table class="table table-bordered" id="tableFluidBalanceOutputTable" style="width: 100%">\n\
+                                    <thead>\n\
+                                        <tr>\n\
+                                            <th>Date</th>\n\
+                                            <th>Time</th>\n\
+                                            <th>Urine</th>\n\
+                                            <th>Vomitus</th>\n\
+                                            <th>Gastric Suction</th>\n\
+                                            <th>Other (Specify)</th>\n\
+                                            <th>Action</th>\n\
+                                        </tr>\n\
+                                    </thead>\n\
+                                    <tbody>\n\
+                                        <tr>\n\
+                                            <td colspan="7" align="center">No Record To Show<br>Please Select A History Assessment</td>\n\
+                                        </tr>\n\
+                                    </tbody>\n\
+                                    < /table>');
+
+            $('#fluidBalanceSelectAssessment').prop('selectedIndex', 0);
+
+        }
+        // Reset Function for Table End
+
+
 // ---------------------------------------------------------------------------- VIew ------------------------------------------------------------------------------------------- //
+
+
+
+// ---------------------------------------------------------------------------- Delete ------------------------------------------------------------------------------------------- //
+
+
+        // Function For Delete Button Start
+        $('#tableFluidBalanceIntakeDiv').on('click', '#tableFluidBalanceIntakeTable #tableFluidBalanceIntakeDeleteBtn', function (e) {
+
+            //get the row value
+            var row = $(this).closest("tr");
+            var datas = row.find("#dataFluidBalanceIntakehidden").val();
+
+            bootbox.confirm({
+                message: "Are you sure want to delete this record ?",
+                buttons: {
+                    confirm: {
+                        label: 'Yes',
+                        className: 'btn-success'
+                    },
+                    cancel: {
+                        label: 'No',
+                        className: 'btn-danger'
+                    }
+                },
+                callback: function (result) {
+
+                    if (result === true) {
+
+                        $.ajax({
+                            type: "post",
+                            url: "../Ortho-NursingInWard/controller/FluidBalanceFunction.jsp",
+                            timeout: 10000,
+                            data: {dataString: datas, methodName: 'deleteFluidIntake'},
+                            success: function (result) {
+
+                                if (result.trim() === 'true') {
+
+                                    bootbox.alert("Successfully Deleted !!");
+                                    FluidBalanceTableFiterAUD();
+
+                                } else {
+
+                                    bootbox.alert("Fail to Delete");
+                                }
+
+                            },
+                            error: function (err) {
+
+                            }
+                        });
+                    }
+                }
+            });
+        });
+        // Function For Delete Skin Button End
+
+
+        // Function For Delete Position Button Start
+        $('#tableFluidBalanceOutputDiv').on('click', '#tableFluidBalanceOutputTable #tableFluidBalanceOutputDeleteBtn', function (e) {
+
+            //get the row value
+            var row = $(this).closest("tr");
+            var datas = row.find("#dataFluidBalanceOutputhidden").val();
+
+            bootbox.confirm({
+                message: "Are you sure want to delete this record ?",
+                buttons: {
+                    confirm: {
+                        label: 'Yes',
+                        className: 'btn-success'
+                    },
+                    cancel: {
+                        label: 'No',
+                        className: 'btn-danger'
+                    }
+                },
+                callback: function (result) {
+
+                    if (result === true) {
+
+                        $.ajax({
+                            type: "post",
+                            url: "../Ortho-NursingInWard/controller/FluidBalanceFunction.jsp",
+                            timeout: 10000,
+                            data: {dataString: datas, methodName: 'deleteFluidOutput'},
+                            success: function (result) {
+
+                                if (result.trim() === 'true') {
+
+                                    bootbox.alert("Successfully Deleted !!");
+                                    FluidBalanceTableFiterAUD();
+
+                                } else {
+
+                                    bootbox.alert("Fail to Delete");
+                                }
+
+                            },
+                            error: function (err) {
+
+                            }
+                        });
+                    }
+                }
+            });
+        });
+        // Function For Delete Button End
+
+
+// ---------------------------------------------------------------------------- Delete ------------------------------------------------------------------------------------------- //
+
 
 
 
