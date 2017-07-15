@@ -600,6 +600,9 @@ $(document).ready(function () {
         var comment7 = $('#comment7').val();
         var code9 = $('#codeDAB').val();
         var $items = $('#date3, #comment7');
+        var strCom = Problem32.replace(/'/g, '\\\'');
+        Problem32 = strCom;
+        
         var obj1 = {
             Acode:"DAB",
             Problem32:Problem32,
@@ -640,6 +643,7 @@ $(document).ready(function () {
         var _ddate3 = $('#ddate3').val();
         var _Pcomment7 = $('#Pcomment7').val();
         var _codeDAB = $('#uDAS_cd').val();
+        _PProblem32.replace(/'/g, '\\\'');
         upObject.Problem32 = _PProblem32;
         upObject.date3 = _ddate3;
         upObject.comment7 = _Pcomment7;

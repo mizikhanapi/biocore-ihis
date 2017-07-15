@@ -4,16 +4,16 @@
  * and open the template in the editor.
  */
 
-$(document).ready(function(){
+$(document).ready(function () {
     
-    $("#btnCIS_OE_DCG_SUBMIT").click(function(e){
-        e.preventDefault
+    $("#btnCIS_OE_DCG_SUBMIT").unbind('click').bind('click', function (e){
+        e.preventDefault();
         var index = "";
+        var dcgIndex2 = [];
         $('input[name="CIS_consult_notes"]:checked').each(function () {
             index = this.id.split("|");
-            dcgIndex.push(index[1]);
+            dcgIndex2.push(index[1]);
 
-            console.log(dcgIndex);
         });
 
         var dateDCG = $('#tCIS_DCGDate').val();
@@ -32,17 +32,23 @@ $(document).ready(function(){
             comment: commentDCG,
             hfcOrderDetail: hfcOrderDetail,
             hfcProviderDetail: hfcProviderDetail,
-            index: dcgIndex
+            index: dcgIndex2
         }
 
-        var dataDCG = getDGCItem(obj1.index);
+      submitDCG(obj1);
+      $("#mCIS_Discharge_Summary").modal('hide');
+
+    });
+    
+    function submitDCG(obj){
+          var dataDCG = getDGCItem(obj.index);
         var msg = getNotesDCG(dataDCG);
         var msgArray = msg.split("<cr>");
         msgArray.pop();
         var dcgMsg = "";
         for (var i in msgArray){
            var  dischargeSummary = msgArray[i].trim();
-           dcgMsg += convertDCG(obj1,dischargeSummary);
+           dcgMsg += convertDCG(obj,dischargeSummary);
 
         }
   
@@ -52,21 +58,21 @@ $(document).ready(function(){
             var fullmsg;
             var msh = getMSH();
             var pdi = PDIInfo;
-            var orc = convertORC(obj1, "02", "07", "T12115");
+            var orc = convertORC(obj, "02", "07", "T12115");
 
-            fullmsg = msh + pdi + orc + msg;
+            fullmsg = msh + pdi + orc + dcgMsg;
             var data = {
                 msg: fullmsg,
                 pmino: pmiNo,
                 episodedate: episodeDate,
                 status: "1"
             }
-            sendOrder(data, "tableOrderLIO");
+            console.log(fullmsg);
+            //sendOrder(data, "-");
         } else {
             return false;
         }
-
-    });
+    }
     
 });
     function getDGCItem(index){
