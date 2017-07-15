@@ -86,4 +86,29 @@ public class DiabeticChartUtils {
 
     }
 
+    public Boolean approveDiabetis(String datas) {
+
+        Boolean data = false;
+        String splittedData[] = datas.split("\\|", -1);
+        String pmi_no, hfc_cd, episode_date, encounter_date, ward, bed_no, datetime, dextrostix, dr_name, status;
+
+        pmi_no = splittedData[0];
+        hfc_cd = splittedData[1];
+        episode_date = splittedData[2];
+        encounter_date = splittedData[3];
+        ward = splittedData[4];
+        bed_no = splittedData[5];
+        datetime = splittedData[6];
+        dextrostix = splittedData[7];
+        dr_name = splittedData[8];
+        status = splittedData[9];
+
+        String sql = "UPDATE lhr_ort_niw_diabetic_chart SET status = 'Approved' WHERE pmi_no='" + pmi_no + "' and hfc_cd='" + hfc_cd + "' and episode_date ='" + episode_date + "' and encounter_date='" + encounter_date + "'";
+
+        data = rmic.setQuerySQL(conn.HOST, conn.PORT, sql);
+
+        return data;
+
+    }
+
 }

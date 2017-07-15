@@ -17,6 +17,9 @@
     if (methodName.equalsIgnoreCase("add")) {
     } else if (methodName.equalsIgnoreCase("update")) {
     } else if (methodName.equalsIgnoreCase("delete")) {
+    } else if (methodName.equalsIgnoreCase("approve")) {
+        result = diab.approveDiabetis(data);
+        out.print(result);
     } else if (methodName.equalsIgnoreCase("view") && data.equalsIgnoreCase("null")) {
         // Do Nothing
     } else if (methodName.equalsIgnoreCase("view") && !data.equalsIgnoreCase("null")) {
@@ -36,7 +39,7 @@
 <tbody>
     <% for (int i = 0; i < datas.size(); i++) {%>
     <tr>
-<input id="dataChartCirculationhidden" type="hidden" value="<%=String.join("|", datas.get(i))%>">
+<input id="dataDiabeticCharthidden" type="hidden" value="<%=String.join("|", datas.get(i))%>">
 <td><%=datas.get(i).get(7)%></td>
 <td><%=datas.get(i).get(6)%></td>
 <td><%=datas.get(i).get(8)%></td>

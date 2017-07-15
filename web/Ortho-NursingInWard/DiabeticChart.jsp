@@ -142,6 +142,53 @@
         });
         // Function For View Assement Select End
 
+
+        // Function For View Assement Select For Add Update Delete Start
+        function DiabeticChartTableFiterAUD() {
+
+            var patientPMI = $('#pIC').text();
+            var filterBy = $('#diabeticChartSelectAssessment').val();
+            var selected = $("#diabeticChartSelectAssessment option:selected").text();
+            var datas;
+            var todayDate;
+
+            var enDate = new Date();
+            var dd = ("0" + enDate.getDate()).slice(-2);
+            var mm = ("0" + (enDate.getMonth() + 1)).slice(-2);
+            var yy = enDate.getFullYear();
+
+            todayDate = yy + "-" + mm + "-" + dd;
+
+
+            if (selected === "View by") {
+
+                resetTableDiabeticChart();
+
+            } else if (selected === "Select date") {
+
+                var strtDate = $('#diabeticChartSelectAssessmentStart').val();
+                var endDate = $('#diabeticChartSelectAssessmentEnd').val();
+
+                var sDate = strtDate.split('/');
+                var SnewDate = sDate[2] + "-" + sDate[1] + "-" + sDate[0];
+
+                var eDate = endDate.split('/');
+                var EnewDate = eDate[2] + "-" + eDate[1] + "-" + eDate[0];
+
+                datas = patientPMI + "|" + SnewDate + "^" + EnewDate + "|" + filterBy;
+                DiabeticChartTableFiter(datas);
+
+            } else {
+
+                datas = patientPMI + "|" + todayDate + "|" + filterBy;
+                DiabeticChartTableFiter(datas);
+
+            }
+
+        }
+        // Function For View Assement Select For Add Update Delete End
+
+
         // Function for Table Start 
         function DiabeticChartTableFiter(viewData) {
 
@@ -168,7 +215,95 @@
         }
         // Function for Table End
 
+
+        // Reset Function for Table Start
+        function resetTableDiabeticChart() {
+
+            $("#tableDiabeticChartDiv").html('<table class="table table-bordered" id="tableDiabeticChartTable" style="width: 100%">\n\
+                                        <thead>\n\
+                                         <th>Date</th>\n\
+                                         <th>Time</th>\n\\n\
+                                         <th>Dextrostix</th>\n\
+                                         <th>Doctor Name</th>\n\
+                                         <th>Approval</th>\n\
+                                         <th>Action</th>\n\
+                                         </thead>\n\
+                                         <tbody>\n\
+                                             <tr>\n\
+                                                 <td colspan="6" align="center">No Record To Show<br>Please Select A History Assessment</td>\n\
+                                             </tr> \n\
+                                         </tbody>\n\
+                                    </table>');
+
+            $('#chartCirculationSelectAssessment').prop('selectedIndex', 0);
+
+        }
+        // Reset Function for Table End
+
 // ---------------------------------------------------------------------------- VIew ------------------------------------------------------------------------------------------- //
+
+
+// ---------------------------------------------------------------------------- Approve ------------------------------------------------------------------------------------------- //
+
+
+
+        // Function For Update Button Start
+        $('#tableDiabeticChartDiv').on('click', '#tableDiabeticChartTable #tableDiabeticChartPendingBtn', function (e) {
+
+            //get the row value
+            var row = $(this).closest("tr");
+            var datas = row.find("#dataDiabeticCharthidden").val();
+
+
+            bootbox.confirm({
+                message: "Are you sure want to approve this record ?",
+                buttons: {
+                    confirm: {
+                        label: 'Yes',
+                        className: 'btn-success'
+                    },
+                    cancel: {
+                        label: 'No',
+                        className: 'btn-danger'
+                    }
+                },
+                callback: function (result) {
+
+                    if (result === true) {
+
+                        $.ajax({
+                            type: "post",
+                            url: "../Ortho-NursingInWard/controller/DiabeticChartFunction.jsp",
+                            timeout: 10000,
+                            data: {dataString: datas, methodName: 'approve'},
+                            success: function (result) {
+
+                                if (result.trim() === 'true') {
+
+                                    bootbox.alert("Successfully Approve !!");
+                                    DiabeticChartTableFiterAUD();
+
+                                } else {
+
+                                    bootbox.alert("Fail to Approve");
+
+                                }
+
+                            },
+                            error: function (err) {
+
+                            }
+                        });
+
+                    }
+                }
+            });
+
+
+        });
+        // Function For Update Button End
+
+// ---------------------------------------------------------------------------- Approve ------------------------------------------------------------------------------------------- //
 
 
 
@@ -209,15 +344,8 @@
 // ---------------------------------------------------------------------------- Date ------------------------------------------------------------------------------------------- //
 
 
+
+
     });
 
 </script>
-
-<!--
-  <td>1</td>
-        <td>09/06/2017</td>
-        <td>12:39 PM</td>
-        <td>Dextrostix Name</td>
-        <td>Mizi K</td>
-        <td><button class="btn btn-success btn-block"><i class="fa fa-check-square-o"></i>&nbsp; Approved</button></td>
-        <td><button class="btn btn-success btn-block"><i class="fa fa-check-square-o"></i>&nbsp; Approved</button></td>-->
