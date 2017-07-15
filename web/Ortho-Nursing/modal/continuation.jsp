@@ -12,7 +12,7 @@
                 <h4 class="modal-title" id="myModalLabel">Continuation Sheet</h4>
             </div>
             <div class="modal-body">
-                <form>
+                <form id="continuation_form">
                     <div class="row">
                         <div class="col-md-6">
                             <!-- Text input-->
@@ -54,7 +54,7 @@
                     <div class="btn-group" role="group" id="div_proNote_btnAdd">
                         <button type="button" class="btn btn-success btn-block btn-lg" role="button" id="proNote_btnAdd">Add Notes</button>
                     </div>
-                    <div class="btn-group btn-delete hidden" role="group" id="div_proNote_btnUpdate">
+                    <div class="btn-group btn-delete" role="group" id="div_proNote_btnUpdate">
                         <button type="button" class="btn btn-success btn-block btn-lg" role="button" id="proNote_btnUpdate">Update Notes</button>
                     </div>
                     <div class="btn-group" role="group">
