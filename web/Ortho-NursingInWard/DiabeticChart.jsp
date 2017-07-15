@@ -235,7 +235,7 @@
                                          </tbody>\n\
                                     </table>');
 
-            $('#chartCirculationSelectAssessment').prop('selectedIndex', 0);
+            $('#diabeticChartSelectAssessment').prop('selectedIndex', 0);
 
         }
         // Reset Function for Table End

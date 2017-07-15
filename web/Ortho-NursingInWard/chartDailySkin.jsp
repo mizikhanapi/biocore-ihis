@@ -95,22 +95,17 @@
 
         // Disabling Start And End Date
         $("#chartDailySkinSelectAssessmentStartEnd").hide();
-
-
-
 // ---------------------------------------------------------------------------- VIew ------------------------------------------------------------------------------------------- //
 
         // Function For View Assement Select Start
         $('#chartDailySkinSelectAssessment').on('change', function () {
 
             $("#chartDailySkinSelectAssessmentStartEnd").hide();
-
             var patientName = $('#pName').text();
             var patientPMI = $('#pIC').text();
             var filterBy = $('#chartDailySkinSelectAssessment').val();
             var datas;
             var todayDate;
-
             var enDate = new Date();
             var dd = ("0" + enDate.getDate()).slice(-2);
             var mm = ("0" + (enDate.getMonth() + 1)).slice(-2);
@@ -119,9 +114,7 @@
             var m = enDate.getMinutes();
             var ss = enDate.getSeconds();
             var ms = enDate.getMilliseconds();
-
             todayDate = yy + "-" + mm + "-" + dd;
-
             if (patientName === "-") {
                 bootbox.alert("You need to select the patient !!!");
                 $('#chartDailySkinSelectAssessment').prop('selectedIndex', 0);
@@ -149,7 +142,6 @@
                 }
 
                 ChartDailySkinTableFiter(datas);
-
             }
 
         });
@@ -159,19 +151,56 @@
             var patientPMI = $('#pIC').text();
             var strtDate = $('#chartDailySkinSelectAssessmentStart').val();
             var endDate = $('#chartDailySkinSelectAssessmentEnd').val();
-
             var sDate = strtDate.split('/');
             var SnewDate = sDate[2] + "-" + sDate[1] + "-" + sDate[0];
-
             var eDate = endDate.split('/');
             var EnewDate = eDate[2] + "-" + eDate[1] + "-" + eDate[0];
-
             var data2 = patientPMI + "|" + SnewDate + "^" + EnewDate + "|custom";
 
             ChartDailySkinTableFiter(data2);
 
         });
         // Function For View Assement Select End
+
+        // Function For View Assement Select For Add Update Delete Start
+        function ChartDailySkinTableFiterAUD() {
+
+            var patientPMI = $('#pIC').text();
+            var filterBy = $('#chartDailySkinSelectAssessment').val();
+            var selected = $("#chartDailySkinSelectAssessment option:selected").text();
+            var datas;
+            var todayDate;
+            var enDate = new Date();
+            var dd = ("0" + enDate.getDate()).slice(-2);
+            var mm = ("0" + (enDate.getMonth() + 1)).slice(-2);
+            var yy = enDate.getFullYear();
+            todayDate = yy + "-" + mm + "-" + dd;
+            if (selected === "View by") {
+
+                resetTableChartDailySkin();
+
+            } else if (selected === "Select date") {
+
+                var strtDate = $('#chartDailySkinSelectAssessmentStart').val();
+                var endDate = $('#chartDailySkinSelectAssessmentEnd').val();
+                var sDate = strtDate.split('/');
+                var SnewDate = sDate[2] + "-" + sDate[1] + "-" + sDate[0];
+                var eDate = endDate.split('/');
+                var EnewDate = eDate[2] + "-" + eDate[1] + "-" + eDate[0];
+                datas = patientPMI + "|" + SnewDate + "^" + EnewDate + "|" + filterBy;
+
+                ChartDailySkinTableFiter(datas);
+
+            } else {
+
+                datas = patientPMI + "|" + todayDate + "|" + filterBy;
+                ChartDailySkinTableFiter(datas);
+
+            }
+
+        }
+        // Function For View Assement Select For Add Update Delete End
+
 
         // Function for Table Start 
         function ChartDailySkinTableFiter(viewData) {
@@ -180,7 +209,6 @@
                 dataString: viewData,
                 methodName: "view"
             };
-
             $.ajax({
                 url: "../Ortho-NursingInWard/controller/ChartDailySkinFunction.jsp",
                 type: "post",
@@ -189,23 +217,183 @@
                 success: function (datas) {
 
                     var arrayData = datas.split("<ShammugamRamasamySeperator></ShammugamRamasamySeperator>");
-
                     var tableSkinTool = arrayData[0];
                     var tablePosition = arrayData[1];
-
                     $('#tableChartDailySkinToolDiv').html(tableSkinTool);
                     $('#tableChartDailySkinPositionDiv').html(tablePosition);
-
                 },
                 error: function (err) {
                     bootbox.alert("something wrong,error: " + err);
                 }
             });
-
         }
         // Function for Table End
 
+
+
+        // Reset Function for Table Start
+        function resetTableChartDailySkin() {
+
+            $("#tableChartDailySkinToolDiv").html('<h5>Daily Skin Assessment Tool</h5>\n\
+                <table class="table table-bordered" id="tableChartDailySkinToolTable" style="width: 100%">\n\
+                    < thead >\n\
+                    < tr >\n\
+                    < th > Date < /th>\n\
+                    < th > Time < /th>\n\
+                    < th > Temperature < /th>\n\
+                    < th > Color < /th>\n\
+                    < th > Moisture < /th>\n\
+                    < th > Skin Turgor < /th>\n\
+                    < th > Integrity < /th>\n\
+                    < th > Assesor < /th>\n\
+                    < th > Action < /th>\n\
+                    < /tr>\n\
+                    < /thead>\n\
+                    < tbody >\n\
+                    < tr >\n\
+                    < td colspan = "9" align = "center" > No Record To Show < br > Please Select A History Assessment < /td>\n\
+                    < /tr>\n\
+                    < /tbody>\n\
+                    < /table>');
+
+
+            $("#tableChartDailySkinPositionDiv").html('<h5>Positioning Chart</h5>\n\
+                <table class="table table-bordered" id="tableChartDailySkinPositionTable" style="width: 100%">\n\
+                    <thead>\n\
+                        <tr>\n\
+                            <th>Date</th>\n\
+                            <th>Time</th>\n\
+                            <th>Position / Activity</th>\n\
+                            <th>Action</th>\n\
+                        </tr>\n\
+                    </thead>\n\
+                    <tbody>\n\
+                        <tr>\n\
+                            <td colspan="4" align="center">No Record To Show<br>Please Select A History Assessment</td>\n\
+                        </tr>\n\
+                    </tbody>\n\
+                    < /table>');
+
+            $('#chartDailySkinSelectAssessment').prop('selectedIndex', 0);
+
+        }
+        // Reset Function for Table End
+
 // ---------------------------------------------------------------------------- VIew ------------------------------------------------------------------------------------------- //
+
+
+
+
+// ---------------------------------------------------------------------------- Delete ------------------------------------------------------------------------------------------- //
+
+
+        // Function For Delete Button Start
+        $('#tableChartDailySkinToolDiv').on('click', '#tableChartDailySkinToolTable #tableChartDailySkinToolDeleteBtn', function (e) {
+
+            //get the row value
+            var row = $(this).closest("tr");
+            var datas = row.find("#dataChartDailySkinToolhidden").val();
+
+            bootbox.confirm({
+                message: "Are you sure want to delete this record ?",
+                buttons: {
+                    confirm: {
+                        label: 'Yes',
+                        className: 'btn-success'
+                    },
+                    cancel: {
+                        label: 'No',
+                        className: 'btn-danger'
+                    }
+                },
+                callback: function (result) {
+
+                    if (result === true) {
+
+                        $.ajax({
+                            type: "post",
+                            url: "../Ortho-NursingInWard/controller/ChartDailySkinFunction.jsp",
+                            timeout: 10000,
+                            data: {dataString: datas, methodName: 'deleteSkinTool'},
+                            success: function (result) {
+
+                                if (result.trim() === 'true') {
+
+                                    bootbox.alert("Successfully Deleted !!");
+                                    ChartDailySkinTableFiterAUD();
+
+                                } else {
+
+                                    bootbox.alert("Fail to Delete");
+                                }
+
+                            },
+                            error: function (err) {
+
+                            }
+                        });
+                    }
+                }
+            });
+        });
+        // Function For Delete Skin Button End
+
+
+        // Function For Delete Position Button Start
+        $('#tableChartDailySkinPositionDiv').on('click', '#tableChartDailySkinPositionTable #tableChartDailySkinPositionDeleteBtn', function (e) {
+
+            //get the row value
+            var row = $(this).closest("tr");
+            var datas = row.find("#dataChartDailySkinPositionhidden").val();
+
+            bootbox.confirm({
+                message: "Are you sure want to delete this record ?",
+                buttons: {
+                    confirm: {
+                        label: 'Yes',
+                        className: 'btn-success'
+                    },
+                    cancel: {
+                        label: 'No',
+                        className: 'btn-danger'
+                    }
+                },
+                callback: function (result) {
+
+                    if (result === true) {
+
+                        $.ajax({
+                            type: "post",
+                            url: "../Ortho-NursingInWard/controller/ChartDailySkinFunction.jsp",
+                            timeout: 10000,
+                            data: {dataString: datas, methodName: 'deletePosition'},
+                            success: function (result) {
+
+                                if (result.trim() === 'true') {
+
+                                    bootbox.alert("Successfully Deleted !!");
+                                    ChartDailySkinTableFiterAUD();
+
+                                } else {
+
+                                    bootbox.alert("Fail to Delete");
+                                }
+
+                            },
+                            error: function (err) {
+
+                            }
+                        });
+                    }
+                }
+            });
+        });
+        // Function For Delete Button End
+
+
+// ---------------------------------------------------------------------------- Delete ------------------------------------------------------------------------------------------- //
+
+
 
 
 
@@ -229,7 +417,6 @@
             $("#chartDailySkinSelectAssessmentEnd").datepicker("destroy");
             $('#chartDailySkinSelectAssessmentEnd').val('');
             var fromDate = $("#chartDailySkinSelectAssessmentStart").datepicker("getDate");
-
             $('#chartDailySkinSelectAssessmentEnd').datepicker({
                 changeMonth: true,
                 changeYear: true,
@@ -238,7 +425,6 @@
                 minDate: fromDate,
                 maxDate: '+0d'
             });
-
         });
         // Date Picker For Final Start
         // Date Functions End

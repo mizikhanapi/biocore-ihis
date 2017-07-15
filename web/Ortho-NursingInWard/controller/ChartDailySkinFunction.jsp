@@ -15,7 +15,12 @@
     Boolean result;
     if (methodName.equalsIgnoreCase("add")) {
     } else if (methodName.equalsIgnoreCase("update")) {
-    } else if (methodName.equalsIgnoreCase("delete")) {
+    } else if (methodName.equalsIgnoreCase("deleteSkinTool")) {
+        result = dailySkin.delSkinTool(data);
+        out.print(result);
+    } else if (methodName.equalsIgnoreCase("deletePosition")) {
+        result = dailySkin.delPosition(data);
+        out.print(result);
     } else if (methodName.equalsIgnoreCase("view") && data.equalsIgnoreCase("null")) {
         // Do Nothing
     } else if (methodName.equalsIgnoreCase("view") && !data.equalsIgnoreCase("null")) {
