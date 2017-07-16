@@ -18,6 +18,8 @@
         result = wound.addWoundAssessment(data);
         out.print(result);
     } else if (methodName.equalsIgnoreCase("update")) {
+        result = wound.updateWoundAssessment(data);
+        out.print(result);
     } else if (methodName.equalsIgnoreCase("delete")) {
         result = wound.delWoundAssessment(data);
         out.print(result);
