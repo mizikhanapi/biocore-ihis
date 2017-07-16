@@ -220,5 +220,11 @@
         $('#redivacDrainChart #btnNIWredivacUPDATE').hide();
         $('#redivacDrainChart #btnNIWredivacADD').show();
     });
+    
+        $('#Ortho-NursingInWard_9').on('click', '#urinenewassessment', function (e) {
+        e.preventDefault();
+        $('#chartUrine #btnNIWurUPDATE').hide();
+        $('#chartUrine #btnNIWurADD').show();
+    });
 
 </script>
