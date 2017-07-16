@@ -19,7 +19,7 @@
                             <div class="form-group">
                                 <label class="col-md-12 control-label" for="textinput">Date</label>
                                 <div class="col-md-12">
-                                    <input type="text" class="form-control input-md" placeholder="Pick a date(dd/mm/yyyy)" id="morseDate">
+                                    <input type="text" class="form-control input-md" placeholder="Pick a date(dd/mm/yyyy)" id="morseDate" readonly>
                                 </div>
                             </div>
                         </div>

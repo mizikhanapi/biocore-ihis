@@ -25,9 +25,10 @@
         whenCondition = " and (date(encounter_date) between date('" + dateFrom + "') and date('" + dateTo + "')) ";
     }
 
-    //                        0       1                   2                                         3                         4           5               6                   7               8                   9               10          11              
-    String query = "select pmi_no, hfc_cd, date_format(episode_date, '%d/%m/%Y'), date_format(encounter_date, '%d/%m/%Y'), datetime, falling_status, diagnosis_status, type_movement, venofix_syringe_pump, body_structure, mental_status, total_score "
-            + "from lhr_ort_nur_morse_fall_scale "
+    //                        0       1                    2                                         3                         4           5               6                   7               8                     9               10           11             12 
+    String query = "select pmi_no, mfs.hfc_cd, date_format(episode_date, '%d/%m/%Y'), date_format(encounter_date, '%d/%m/%Y'), datetime, falling_status, diagnosis_status, type_movement, venofix_syringe_pump, body_structure, mental_status, total_score, ifnull(u.user_name, '-') "
+            + "from lhr_ort_nur_morse_fall_scale mfs "
+            + "left join adm_users u on mfs.approved_by = u.user_id "
             + "where pmi_no = '" + pmiNo + "' " + whenCondition//and (date(episode_date) between curdate()- interval "+intervalDay+" day and curdate()) "
             + " GROUP by date(encounter_date), datetime "
             + "order by date(encounter_date) desc, encounter_date asc;";
@@ -60,12 +61,15 @@
         <th>Body structure/Movement</th>
         <th>Mental Status</th>
         <th>Total Score</th>
+        <th>Approved By</th>
         <th>Actions</th>
         
         
     </thead>
     <tbody>
     <%        for (int i = 0; i < dataMorseFall.size(); i++) {
+        
+                    boolean isApproved = !dataMorseFall.get(i).get(12).equalsIgnoreCase("-");// check wheter record has been approved or not...
 
     %>
 
@@ -87,6 +91,7 @@
             <td></td>
             <td></td>
             <td></td>
+            <td></td>
             </tr>        
         <%
                 }// end check got noon
@@ -96,6 +101,7 @@
         %>
             <tr>
             <td>PM</td>
+            <td></td>
             <td></td>
             <td></td>
             <td></td>
@@ -126,10 +132,15 @@
         <td><%=dataMorseFall.get(i).get(9)%></td>
         <td><%=dataMorseFall.get(i).get(10)%></td>
         <td><%=dataMorseFall.get(i).get(11)%></td>
+        <td><%=dataMorseFall.get(i).get(12)%></td>
         <td>
             <input type="hidden" value="<%= String.join("|", dataMorseFall.get(i))%>" id="MS_hidden_value">
-            <a id="MS_update_modal" style="cursor: pointer" title="Update record"><i class="fa fa-pencil-square-o" aria-hidden="true" style="display: inline-block;color: #337ab7;"></i></a>
+            <%if(!isApproved){%>
+            <a id="MS_approve_modal" style="cursor: pointer" title="Approve record" ><i class="fa fa-check-circle-o" aria-hidden="true" style="display: inline-block;color: #0c0;"></i></a>
                 &nbsp;
+            <a id="MS_update_modal" style="cursor: pointer" title="Update record" ><i class="fa fa-pencil-square-o" aria-hidden="true" style="display: inline-block;color: #337ab7;"></i></a>
+                &nbsp;
+            <%}%>
             <a id="MS_delete_modal" style="cursor: pointer" title="Delete record"><i class="fa fa-times" aria-hidden="true" style="display: inline-block;color: #d9534f;"></i></a>
         </td>
         </tr>
@@ -141,6 +152,7 @@
 
         %>
         <td>AM</td>
+        <td></td>
         <td></td>
         <td></td>
         <td></td>
@@ -166,10 +178,15 @@
         <td><%=dataMorseFall.get(i).get(9)%></td>
         <td><%=dataMorseFall.get(i).get(10)%></td>
         <td><%=dataMorseFall.get(i).get(11)%></td>
+        <td><%=dataMorseFall.get(i).get(12)%></td>
         <td>
             <input type="hidden" value="<%= String.join("|", dataMorseFall.get(i))%>" id="MS_hidden_value" >
-            <a id="MS_update_modal" style="cursor: pointer" title="Update record"><i class="fa fa-pencil-square-o" aria-hidden="true" style="display: inline-block;color: #337ab7;"></i></a>
+            <%if(!isApproved){%>
+            <a id="MS_approve_modal" style="cursor: pointer" title="Approve record" ><i class="fa fa-check-circle-o" aria-hidden="true" style="display: inline-block;color: #0c0;"></i></a>
                 &nbsp;
+            <a id="MS_update_modal" style="cursor: pointer" title="Update record" ><i class="fa fa-pencil-square-o" aria-hidden="true" style="display: inline-block;color: #337ab7;"></i></a>
+                &nbsp;
+            <%}%>
             <a id="MS_delete_modal" style="cursor: pointer" title="Delete record"><i class="fa fa-times" aria-hidden="true" style="display: inline-block;color: #d9534f;"></i></a>
         </td>
         </tr>
@@ -183,6 +200,7 @@
         %>
         <tr>
         <td>Noon</td>
+        <td></td>
         <td></td>
         <td></td>
         <td></td>
@@ -208,10 +226,15 @@
         <td><%=dataMorseFall.get(i).get(9)%></td>
         <td><%=dataMorseFall.get(i).get(10)%></td>
         <td><%=dataMorseFall.get(i).get(11)%></td>
+        <td><%=dataMorseFall.get(i).get(12)%></td>
         <td>
             <input type="hidden" value="<%= String.join("|", dataMorseFall.get(i))%>" id="MS_hidden_value">
-            <a id="MS_update_modal" style="cursor: pointer" title="Update record"><i class="fa fa-pencil-square-o" aria-hidden="true" style="display: inline-block;color: #337ab7;"></i></a>
+            <%if(!isApproved){%>
+            <a id="MS_approve_modal" style="cursor: pointer" title="Approve record" ><i class="fa fa-check-circle-o" aria-hidden="true" style="display: inline-block;color: #0c0;"></i></a>
                 &nbsp;
+            <a id="MS_update_modal" style="cursor: pointer" title="Update record" ><i class="fa fa-pencil-square-o" aria-hidden="true" style="display: inline-block;color: #337ab7;"></i></a>
+                &nbsp;
+            <%}%>
             <a id="MS_delete_modal" style="cursor: pointer" title="Delete record"><i class="fa fa-times" aria-hidden="true" style="display: inline-block;color: #d9534f;"></i></a>
         </td>
         </tr> 
@@ -225,6 +248,7 @@
         %>
         <tr>
         <td>PM</td>
+        <td></td>
         <td></td>
         <td></td>
         <td></td>
@@ -254,6 +278,7 @@
             <td></td>
             <td></td>
             <td></td>
+            <td></td>
             </tr>        
         <%
                 }// end check got noon
@@ -263,6 +288,7 @@
         %>
             <tr>
             <td>PM</td>
+            <td></td>
             <td></td>
             <td></td>
             <td></td>

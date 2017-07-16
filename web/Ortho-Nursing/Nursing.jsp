@@ -13,14 +13,14 @@
                     <a href="#Ortho-Nursing_1" data-toggle="tab" aria-expanded="false">
                         <i class="fa fa-info-circle fa-lg"></i> Chart-Morse Scale Assessment </a>
                 </li>
-                <li class="">
+<!--                <li class="">
                     <a href="#Ortho-Nursing_2" data-toggle="tab" aria-expanded="false">
                         <i class="fa fa-check fa-lg"></i> Form-Nursing Assessment on Admission*(HOLD)  </a>
                 </li>
                 <li>
                     <a href="#Ortho-Nursing_3" data-toggle="tab" aria-expanded="true">
                         <i class="fa fa-th-list fa-lg"></i> Form-Tindakan Perawatan Pesakit </a>
-                </li>
+                </li>-->
                 <li>
                     <a href="#Ortho-Nursing_4" data-toggle="tab" aria-expanded="true">
                         <i class="fa fa-th-list fa-lg"></i> Progress Note </a>

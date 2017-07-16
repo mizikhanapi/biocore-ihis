@@ -20,6 +20,30 @@ $(function () {
     $('#morseDate').val(today);
 });
 
+//---------- bind function to add new assessment button-----------
+$('#pName').on('DOMSubtreeModified', function () {
+    
+    console.log('Name has change!');
+    var name = $(this).text().trim();
+
+    if (name.localeCompare('-') !== 0) {
+        $('#morse_assessment_modal').on('click', function () {
+            var today = $.datepicker.formatDate('dd/mm/yy', new Date());
+            $('#morseDate').val(today);
+                                  
+             $('#morse_btnAdd_div').show();
+             $('#morse_btnUpdate_div').hide();
+            
+            $('#morseDate').prop('disabled', false);
+            $('input[name="morseTime"]').prop('disabled', false);
+            
+        });
+        
+        console.log('Function is binded!');
+    }
+});
+//========== end binding ==========================
+
 //---- selecting how to view the notes: today, yesterday or specific dates------------
 $('#MS_viewBy').on('change', function () {
     var howTo = $(this).val();
@@ -364,3 +388,67 @@ $('#div_morseAss_table').on('click', '#MS_delete_modal', function () {
 
 });
 //=========================end delete ==============================
+
+//----------------------- approve record ---------------------------
+$('#div_morseAss_table').on('click', '#MS_approve_modal', function () {
+    var hidden = $(this).closest('td').find('#MS_hidden_value').val();
+    var arrData = hidden.split("|");
+
+    var morseDate = arrData[3];
+    var morseTime = arrData[4];
+
+    bootbox.confirm({
+        title: "Approve record?",
+        message: "Are you sure you want to approve assessment on " + morseDate + " at " + morseTime + "?\nOnce you approved it, you cannot edit it anymore.",
+        buttons: {
+            confirm: {
+                label: "Yes",
+                className: "btn-success"
+            },
+            cancel: {
+                label: "No",
+                className: "btn-danger"
+            }
+        },
+        callback: function (result) {
+
+            if (result) {
+                var data = {
+                    morseTime: morseTime,
+                    enDate: morseDate
+                };
+
+                var msg = "";
+
+                createScreenLoading();
+                $.ajax({
+                    type: 'POST',
+                    url: "../Ortho-Nursing/controller/morseAss_approve.jsp",
+                    timeout: 60000,
+                    data: data,
+                    success: function (data, textStatus, jqXHR) {
+                        if (data.trim() === 'success') {
+                            msg = "Assessment on " + morseDate + " at " + morseTime + " is approved.";
+                            loadMorsefallAssessment();
+                        } else if (data.trim() === 'fail') {
+                            msg = "Failed to approve assessment on " + morseDate + " at " + morseTime + ".";
+                        }
+
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                        msg = "Oopps! " + errorThrown;
+                    },
+                    complete: function (jqXHR, textStatus) {
+                        destroyScreenLoading();
+                        bootbox.alert(msg);
+                        
+                    }
+
+                });
+
+            }
+        }
+    });
+
+});
+//======================= end approval =============================
