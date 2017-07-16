@@ -470,7 +470,7 @@
 // ---------------------------------------------------------------------------- Delete ------------------------------------------------------------------------------------------- //
 
 
-        // Function For Delete Button Start
+        // Function For Update Button Start
         $('#tableChartCirculationDiv').on('click', '#tableChartCirculationTable #tableChartCirculationDeleteBtn', function (e) {
 
             //get the row value

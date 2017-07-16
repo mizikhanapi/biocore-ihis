@@ -252,38 +252,6 @@ public class DailySkinUtils {
         return data;
     }
     
-    
-    
-    
-    public String updateTest(String datas) {
-
-        String data =  datas;
-//        Boolean data = false;
-//        String splittedData[] = datas.split("\\|", -1);
-//        String pmi_no, hfc_cd, episode_date, encounter_date, datetime, temperature, color, moisture, skin_tugor, integrity, assesor_name, referal_wc;
-//
-//        pmi_no = splittedData[0];
-//        hfc_cd = splittedData[1];
-//        episode_date = splittedData[2];
-//        encounter_date = splittedData[3];
-//        datetime = splittedData[4];
-//        temperature = splittedData[5];
-//        color = splittedData[6];
-//        moisture = splittedData[7];
-//        skin_tugor = splittedData[8];
-//        integrity = splittedData[9];
-//        referal_wc = splittedData[10];
-//        assesor_name = splittedData[11];
-//
-//        String sql = " UPDATE lhr_ort_niw_daily_skin_assess_tool SET datetime='" + datetime + "',temperature='" + temperature + "',color='" + color + "',moisture='" + moisture + "',"
-//                + " skin_tugor='" + skin_tugor + "',integrity='" + integrity + "',referal_wc='" + referal_wc + "',assesor_name='" + assesor_name + "' "
-//                + " WHERE pmi_no='" + pmi_no + "' and hfc_cd='" + hfc_cd + "' and episode_date ='" + episode_date + "' and encounter_date='" + encounter_date + "' ";
-//
-//        data = rmic.setQuerySQL(conn.HOST, conn.PORT, sql);
-
-        return data;
-
-    }
 
     public Boolean delSkinTool(String datas) {
 

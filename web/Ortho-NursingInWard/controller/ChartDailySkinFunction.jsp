@@ -24,8 +24,8 @@
         result = dailySkin.updateSkinTool(data + "|" + created_by);
         out.print(result);
     } else if (methodName.equalsIgnoreCase("updatePosition")) {
-        String test = dailySkin.updateTest(data);
-        out.print(test);
+        result = dailySkin.updatePosition(data);
+        out.print(result);
     } else if (methodName.equalsIgnoreCase("deleteSkinTool")) {
         result = dailySkin.delSkinTool(data);
         out.print(result);

@@ -539,7 +539,64 @@
         $('#dailySkinTool #dailySkinToolModal_btnAdd_or_btnUpdate_div').on('click', '#dailySkinToolUpdateModalBtn', function (e) {
             e.preventDefault();
 
-            alert("Skin Ok");
+
+            var date = $('#dailySkinToolModalDate').val();
+            var sDate = date.split('/');
+            var newDate = sDate[2] + "-" + sDate[1] + "-" + sDate[0];
+
+            var pmi_no = $('#NIWDailySkinToolPmi').val();
+            var hfc_cd1 = $('#NIWDailySkinToolHfc').val();
+            var epDate = $('#NIWDailySkinToolEpisodeDate').val();
+            var encounterDate = $('#NIWDailySkinToolEncounterDate').val();
+
+            var time = $('#dailySkinToolModalTime').val();
+            var Temperature = $("input[name='Temperature']:checked").val();
+            var Color = $("input[name='Color']:checked").val();
+            var Moisture = $("input[name='Moisture']:checked").val();
+            var SkinTurgor = $("input[name='SkinTurgor']:checked").val();
+            var Integrity = $("input[name='Integrity']:checked").val();
+            var ReferToTeam = $("input[name='ReferToTeam']:checked").val();
+
+            if (Temperature === undefined) {
+                Temperature = "";
+            } else if (Color === undefined) {
+                Color = "";
+            } else if (Moisture === undefined) {
+                Moisture = "";
+            } else if (SkinTurgor === undefined) {
+                SkinTurgor = "";
+            } else if (Integrity === undefined) {
+                Integrity = "";
+            } else if (ReferToTeam === undefined) {
+                ReferToTeam = "";
+            }
+
+            var datas = pmi_no + "|" + hfc_cd1 + "|" + epDate + "|" + encounterDate + "|" + newDate + " " + time + ":00.0|" + Temperature + "|" + Color + "|" + Moisture + "|" + SkinTurgor + "|" + Integrity + "|" + ReferToTeam;
+
+            $.ajax({
+                type: "post",
+                url: "../Ortho-NursingInWard/controller/ChartDailySkinFunction.jsp",
+                data: {dataString: datas, methodName: "updateSkinTool"},
+                timeout: 10000,
+                success: function (result) {
+                    if (result.trim() === 'true') {
+
+                        bootbox.alert("Successfully Updated !!");
+                        $("#dailySkinTool").modal('hide');
+                        ChartDailySkinTableFiterAUD();
+
+                    } else if (result.trim() === 'false') {
+
+                        bootbox.alert("Fail to Updated");
+                        $("#dailySkinTool").modal('hide');
+
+                    }
+                },
+                error: function (err) {
+                    bootbox.alert("something wrong,error: " + err);
+                }
+            });
+
         });
         // Update Get Data And Send To Controller Function End
 
@@ -594,8 +651,47 @@
         // Update Get Data And Send To Controller Function Start
         $('#dailySkinPosition #dailySkinPositionModal_btnAdd_or_btnUpdate_div').on('click', '#dailySkinPositionUpdateModalBtn', function (e) {
             e.preventDefault();
+            
+            var date = $('#dailySkinPositionModalDate').val();
+            var sDate = date.split('/');
+            var newDate = sDate[2] + "-" + sDate[1] + "-" + sDate[0];
 
-            alert("Position Ok");
+            var pmi_no = $('#NIWDailySkinPositionPmi').val();
+            var hfc_cd1 = $('#NIWDailySkinPositionHfc').val();
+            var epDate = $('#NIWDailySkinPositionEpisodeDate').val();
+            var encounterDate = $('#NIWDailySkinPositionEncounterDate').val();
+
+            var time = $('#dailySkinPositionModalTime').val();
+            var activity = $('#dailySkinPositionModalActivity').val();
+
+
+            var datas = pmi_no + "|" + hfc_cd1 + "|" + epDate + "|" + encounterDate + "|" + newDate + " " + time + ":00.0|" + activity;
+            console.log(datas);
+
+            $.ajax({
+                type: "post",
+                url: "../Ortho-NursingInWard/controller/ChartDailySkinFunction.jsp",
+                data: {dataString: datas, methodName: "updatePosition"},
+                timeout: 10000,
+                success: function (result) {
+
+                    if (result.trim() === 'true') {
+
+                        bootbox.alert("Successfully Updated !!");
+                        $("#dailySkinPosition").modal('hide');
+                        ChartDailySkinTableFiterAUD();
+
+                    } else if (result.trim() === 'false') {
+
+                        bootbox.alert("Fail to Update");
+                        $("#dailySkinPosition").modal('hide');
+
+                    }
+                },
+                error: function (err) {
+                    bootbox.alert("something wrong,error: " + err);
+                }
+            });
         });
         // Update Get Data And Send To Controller Function End
 
