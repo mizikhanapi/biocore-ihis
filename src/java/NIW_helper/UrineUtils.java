@@ -81,4 +81,46 @@ public class UrineUtils {
         data = conn.getData(sql);
         return data;
     }
+    
+        /*
+    * delete data
+    */
+    public Boolean delUrine(String datas){
+        Boolean data = false;
+        String splitted[] = datas.split("\\|",-1);
+        String pmi = splitted[0];
+        String hfc = splitted[1];
+        String epDate = splitted[2];
+        String enDate = splitted[3];
+        
+        String sql = "DELETE FROM lhr_ort_niw_urine_chart WHERE pmi_no='"+pmi+"' and hfc_cd='"+hfc+"' and episode_date ='"+epDate+"' and encounter_date='"+enDate+"'";
+        data = rmic.setQuerySQL(conn.HOST, conn.PORT, sql);
+        
+        return data;
+    }
+    
+    /*
+    * update the data
+    */
+    
+        public Boolean updateUrine(String datas) {
+        Boolean sql = false;
+        String splittedData[] = datas.split("\\|", -1);
+        String pmi, hfc, episodeDate, encounterDate, time_map, result_timebowelsurinetemp, result_pulse, result_date;
+
+        pmi = splittedData[0];
+        hfc = splittedData[1];
+        episodeDate = splittedData[2];
+        encounterDate = splittedData[3];
+        time_map = splittedData[4];
+        result_timebowelsurinetemp = splittedData[5];
+        result_pulse = splittedData[6];
+        result_date = splittedData[7];
+      
+
+        String sqlInsert = "UPDATE lhr_ort_niw_urine_chart SET time_map='"+time_map+"',result_timebowelsurinetemp='"+result_timebowelsurinetemp+"',result_pulse='"+result_pulse+"',result_date='"+result_date+"' WHERE pmi_no='"+pmi+"' and hfc_cd='"+hfc+"' and episode_date ='"+episodeDate+"' and encounter_date='"+encounterDate+"'";
+        sql = rmic.setQuerySQL(conn.HOST, conn.PORT, sqlInsert);
+
+        return sql;
+    }
 }

@@ -134,79 +134,70 @@
         });
     }
 
-//
-//    $('#divBIWtr').on('click', '#tblNIW_tr #delNIWtr', function (e) {
-//        e.preventDefault();
-//        var row = $(this).closest("tr");
-//        var dataX = row.find('#priNIWTR').val();
-//        var sel = $('#selecttrdate').val();
+
+    $('#divBIWur').on('click', '#tblNIW_ur #delNIWur', function (e) {
+        e.preventDefault();
+        var row = $(this).closest("tr");
+        var dataX = row.find('#priNIWur').html();
+        var sel = $('#selecturdate').val();
 //        console.log(dataX);
-//
-//        bootbox.confirm({
-//            message: "Are you sure want to delete?",
-//            buttons: {
-//                confirm: {
-//                    label: 'Yes',
-//                    className: 'btn-danger'
-//                },
-//                cancel: {
-//                    label: 'No',
-//                    className: 'btn-success'
-//                }
-//            },
-//            callback: function (result) {
-//                if (result === true) {
-//                    $.ajax({
-//                        type: "post",
-//                        url: "../Ortho-NursingInWard/controller/TreatmentFunction.jsp",
-//                        timeout: 10000,
-//                        data: {datas: dataX, methodName: 'delete'},
-//                        success: function (result) {
-//                            console.log(result);
-//                            if (result.trim() === 'true') {
-//                                $('#selecttrdate').val(sel).change();
-//                            } else {
-//
-//                            }
-//                        },
-//                        error: function (err) {
-//
-//                        }
-//                    });
-//                }
-//            }
-//        });
-//    });
-//
-//    $('#divBIWtr').on('click', '#tblNIW_tr #editNIWtr', function (e) {
-//        e.preventDefault();
-//        $('#perawatan-ortho #btnNIWtruUPDATE').show();
-//        $('#perawatan-ortho #btnNIWtrADD').hide();
-//
-//        var row = $(this).closest("tr");
-//        var dataX = row.find('#priNIWTR').val();
-//        var sel = $('#selecttrdate').val();
-//        console.log(dataX);
-//        var sdataX = dataX.split("|");
-//
-//        $('#NIWtrEpisodeDate').val(sdataX[2]);
-//        $('#NIWtrEncounterDate').val(sdataX[3]);
-//        $('#NIWtrPmi').val(sdataX[0]);
-//        $('#NIWtrHfc').val(sdataX[1]);
-//        $('#dateNIWtr').val(sdataX[4]);
-//        $("input[name='NIWtrTIME'][value='" + sdataX[5] + "']").prop('checked', true);
-//        $("input[name='RightUpperLimb'][value='" + sdataX[6] + "']").prop('checked', true);
-//        $("input[name='LeftUpperLimb'][value='" + sdataX[7] + "']").prop('checked', true);
-//        $("input[name='RightLowerLimb'][value='" + sdataX[8] + "']").prop('checked', true);
-//        $("input[name='LeftLowerLimb'][value='" + sdataX[9] + "']").prop('checked', true);
-//        $("input[name='AngioCathter'][value='" + sdataX[10] + "']").prop('checked', true);
-//        $("input[name='CVP'][value='" + sdataX[11] + "']").prop('checked', true);
-//        $("input[name='Tracheostomy'][value='" + sdataX[12] + "']").prop('checked', true);
-//        $("input[name='UrinaryCatheter'][value='" + sdataX[13] + "']").prop('checked', true);
-//        $("input[name='Drain1'][value='" + sdataX[14] + "']").prop('checked', true);
-//        $("input[name='Drain2'][value='" + sdataX[15] + "']").prop('checked', true);
-//        $("input[name='VaccumDressing'][value='" + sdataX[16] + "']").prop('checked', true);
-//        $("input[name='RyiesTube'][value='" + sdataX[17] + "']").prop('checked', true);
-//        $("input[name='ChestTube'][value='" + sdataX[18] + "']").prop('checked', true);
-//    });
+
+        bootbox.confirm({
+            message: "Are you sure want to delete?",
+            buttons: {
+                confirm: {
+                    label: 'Yes',
+                    className: 'btn-danger'
+                },
+                cancel: {
+                    label: 'No',
+                    className: 'btn-success'
+                }
+            },
+            callback: function (result) {
+                if (result === true) {
+                    $.ajax({
+                        type: "post",
+                        url: "../Ortho-NursingInWard/controller/UrineFunction.jsp",
+                        timeout: 10000,
+                        data: {datas: dataX, methodName: 'delete'},
+                        success: function (result) {
+                            console.log(result);
+                            if (result.trim() === 'true') {
+                                $('#selecturdate').val(sel).change();
+                            } else {
+
+                            }
+                        },
+                        error: function (err) {
+
+                        }
+                    });
+                }
+            }
+        });
+    });
+
+    $('#divBIWur').on('click', '#tblNIW_ur #editNIWur', function (e) {
+        e.preventDefault();
+        $('#chartUrine #btnNIWurUPDATE').show();
+        $('#chartUrine #btnNIWurADD').hide();
+
+        var row = $(this).closest("tr");
+        var dataX = row.find('#priNIWur').html();
+        var sel = $('#selecturdate').val();
+        var sdataX = dataX.split("|");
+
+        $('#NIWurEpisodeDate').val(sdataX[2]);
+        $('#NIWurEncounterDate').val(sdataX[3]);
+        $('#NIWurPmi').val(sdataX[0]);
+        $('#NIWurHfc').val(sdataX[1]);
+        $('#NIWDateurine').val(sdataX[7]);
+        console.log(dataX);
+        var splt = sdataX[4].split(":");
+        $("input[name='urinechrt'][value='" + splt[0] + "']").prop('checked', true);
+        $("#NIWam-pm").val(splt[1]);
+        $("#NIWTemperature").val(sdataX[5]);
+        $("#NIWpulseurine").val(sdataX[6]);
+    });
 </script>

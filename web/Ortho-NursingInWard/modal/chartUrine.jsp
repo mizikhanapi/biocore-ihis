@@ -166,5 +166,75 @@
         });
         $("#chartUrine").modal('toggle');
     });
+    
+    $('#chartUrine #btnNIWurUPDATE').on('click', function (e) {
+        e.preventDefault();
+        var pmi_no = $('#NIWurPmi').val();
+        var hfc_cd1 = $('#NIWurHfc').val();
+        var epDate = $('#NIWurEpisodeDate').val();
+
+        var enDate = new Date();
+        var dd = ("0" + enDate.getDate()).slice(-2);
+        var mm = ("0" + (enDate.getMonth() + 1)).slice(-2);
+        var yy = enDate.getFullYear();
+        var hh = enDate.getHours();
+        var m = enDate.getMinutes();
+        var ss = enDate.getSeconds();
+        var ms = enDate.getMilliseconds();
+        var sel = $('#selecturdate').val();
+
+        var encounterDate = $('#NIWurEncounterDate').val();
+
+        var date = $('#NIWDateurine').val();
+        var sDate = date.split('/');
+        var newDate = sDate[2] + "-" + sDate[1] + "-" + sDate[0];
+
+        var urDate = newDate;
+
+        var TMUR = $("input[name='urinechrt']:checked").val();
+        var RPUR = $("#NIWpulseurine").val();
+        var RTEMPUR = $("#NIWTemperature").val();
+        var AMPMUR = $("#NIWam-pm").val();
+        var masaUR;
+
+        if (AMPMUR === "AM") {
+            if (TMUR !== "12") {
+                masaUR = TMUR;
+            } else if (TMUR === "12") {
+                masaUR = "00";
+            }
+        } else if (AMPMUR === "PM") {
+            if (TMUR !== "12") {
+                masaUR = parseInt(TMUR) + 12;
+            } else if (TMUR === "12") {
+                masaUR = TMUR;
+            }
+        }
+
+        var assignBy = doctor_id;
+
+        var datas = pmi_no + "|" + hfc_cd1 + "|" + epDate + "|" + encounterDate + "|" + TMUR + ":" + AMPMUR + "|" + RTEMPUR + "|" + RPUR + "|" + urDate + " " + masaUR + ":00";
+
+        $.ajax({
+            type: "post",
+            url: "../Ortho-NursingInWard/controller/UrineFunction.jsp",
+            data: {datas: datas, methodName: "update"},
+            timeout: 10000,
+            success: function (result) {
+                if (result.trim() === 'true') {
+                    bootbox.alert("successfully updated!");
+                    if (sel !== null) {
+                        $('#selecturdate').val(sel).change();
+                    }
+                } else if (result.trim() === 'false') {
+                    bootbox.alert("fail to update");
+                }
+            },
+            error: function (err) {
+                bootbox.alert("something wrong call the technician,error: " + err);
+            }
+        });
+        $("#chartUrine").modal('toggle');
+    });
 
 </script>

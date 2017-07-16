@@ -35,13 +35,13 @@
 </thead>
 <tbody>
     <%
-            for (int i = 0; i < datas.size(); i++) {
-                Listlabels.add(datas.get(i).get(7) + " " + datas.get(i).get(9));
-                ListDatas.add(datas.get(i).get(5));
-                ListDatasPulse.add(datas.get(i).get(6));
+        for (int i = 0; i < datas.size(); i++) {
+            Listlabels.add(datas.get(i).get(7) + " " + datas.get(i).get(9));
+            ListDatas.add(datas.get(i).get(5));
+            ListDatasPulse.add(datas.get(i).get(6));
     %>
     <tr>
-        <td hidden="" id="priNIWur"><%=datas.get(i).get(0) + "|" + datas.get(i).get(1) + "|" + datas.get(i).get(2) + "|" + datas.get(i).get(3) + "|" + datas.get(i).get(4) + "|" + datas.get(i).get(5) + "|" + datas.get(i).get(6) + "|" + datas.get(i).get(7) + "|" + datas.get(i).get(8)+ "|" + datas.get(i).get(9)%></td>
+        <td hidden="" id="priNIWur"><%=datas.get(i).get(0) + "|" + datas.get(i).get(1) + "|" + datas.get(i).get(2) + "|" + datas.get(i).get(3) + "|" + datas.get(i).get(4) + "|" + datas.get(i).get(5) + "|" + datas.get(i).get(6) + "|" + datas.get(i).get(7) + "|" + datas.get(i).get(8) + "|" + datas.get(i).get(9)%></td>
         <td><%=datas.get(i).get(7)%></td>
         <td><%=datas.get(i).get(9)%></td>
         <td><%=datas.get(i).get(5)%></td>
@@ -56,7 +56,7 @@
     %>
 </tbody>
 </table>
-    <script>
+<script>
     $('#tblNIW_ur').dataTable({
         "paging": true,
         "lengthChange": false,
@@ -64,33 +64,70 @@
         "language": {
             "emptyTable": "No Record Available To Display"
         }
-    });
-</script>
+    });</script>
 <canvas id="line" height="500" width="670" style="width: 470px; height: 300px;"></canvas>
 <script>
-    var jsArraylabel = [<% for (int i = 0; i < Listlabels.size(); i++) { %>"<%= Listlabels.get(i) %>"<%= i + 1 < Listlabels.size() ? ",":"" %><% } %>];
-    var jsArraydata = [<% for (int i = 0; i < ListDatas.size(); i++) { %>"<%= ListDatas.get(i) %>"<%= i + 1 < ListDatas.size() ? ",":"" %><% } %>];
-    var jsArraydataPulse = [<% for (int i = 0; i < ListDatasPulse.size(); i++) { %>"<%= ListDatasPulse.get(i) %>"<%= i + 1 < ListDatasPulse.size() ? ",":"" %><% } %>];
-    new Chart(document.getElementById("line"),{
-        type:'line',
-        data:{
-            labels : jsArraylabel,
-            datasets: [{
-                    label: "Temperature",
-                    data: jsArraydata,
-                    borderColor: '#ff6384',
-                    fill: false,
-            },{
-                    label: "Pulse",
-                    data: jsArraydataPulse,
-                    borderColor: '#cc65fe',
-                    fill: false,
-            }]            
-        }
+            var jsArraylabel = [<% for (int i = 0; i < Listlabels.size(); i++) {%>"<%= Listlabels.get(i)%>"<%= i + 1 < Listlabels.size() ? "," : ""%><% } %>];
+            var jsArraydata = [<% for (int i = 0; i < ListDatas.size(); i++) {%>"<%= ListDatas.get(i)%>"<%= i + 1 < ListDatas.size() ? "," : ""%><% } %>];
+            var jsArraydataPulse = [<% for (int i = 0; i < ListDatasPulse.size(); i++) {%>"<%= ListDatasPulse.get(i)%>"<%= i + 1 < ListDatasPulse.size() ? "," : ""%><% } %>];
+            
+            new Chart(document.getElementById("line").getContext("2d"), {
+                type: 'line',
+                data: {
+                    labels: jsArraylabel,
+                    datasets: [{
+                            label: "Temperature",
+                            data: jsArraydata,
+                            borderColor: '#ff6384',
+                            fill: false,
+                        }, {
+                            label: "Pulse",
+                            data: jsArraydataPulse,
+                            borderColor: '#cc65fe',
+                            fill: false,
+                        }]
+                },
+                options: {
+                    responsive: true,
+                    title: {
+                        display: true,
+                        text: 'Urine Chart'
+                    },
+                    tooltips: {
+                        mode: 'index',
+                        intersect: false,
+                    },
+                    hover: {
+                        mode: 'nearest',
+                        intersect: true
+                    },
+                    scales: {
+                        xAxes: [{
+                                display: true,
+                                scaleLabel: {
+                                    display: true,
+                                    labelString: 'Date Time'
+                                }
+                            }],
+                        yAxes: [{
+                                display: true,
+                                scaleLabel: {
+                                    display: true,
+                                    labelString: 'Value'
+                                }
+                            }]
+                    }
+                }
 
-    });
+            });
 </script>
 <%  } else if (methodName.equalsIgnoreCase("view") && data.equalsIgnoreCase("null")) {
         //nah nothing to do
+    } else if (methodName.equalsIgnoreCase("delete")) {
+        result = urU.delUrine(data);
+        out.print(result);
+    } else if (methodName.equalsIgnoreCase("update")) {
+        result = urU.updateUrine(data);
+        out.print(result);
     }
 %>
