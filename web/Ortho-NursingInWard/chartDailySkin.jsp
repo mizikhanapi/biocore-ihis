@@ -490,6 +490,117 @@
 
 
 
+// ---------------------------------------------------------------------------- Update Skin Tool ------------------------------------------------------------------------------------------- //
+
+
+        // Function For Update Button Start
+        $('#tableChartDailySkinToolDiv').on('click', '#tableChartDailySkinToolTable #tableChartDailySkinToolUpdateBtn', function (e) {
+
+
+            $('#dailySkinToolModalTitle').text("Daily Skin Assessment Tool");
+            $('#dailySkinToolModal_btnAdd_or_btnUpdate_div').html('<button type="button" class="btn btn-success btn-block btn-lg" id="dailySkinToolUpdateModalBtn" role="button">Update Items</button>');
+
+            $('#dailySkinToolModalForm')[0].reset();
+
+            $("#dailySkinToolModalDate").datepicker({
+                changeMonth: true,
+                changeYear: true,
+                maxDate: '+0d',
+                dateFormat: 'dd/mm/yy'
+            });
+
+            //get the row value
+            var row = $(this).closest("tr");
+            var rowData = row.find("#dataChartDailySkinToolhidden").val();
+
+            var arrayData = rowData.split("|");
+
+            $('#NIWDailySkinToolPmi').val(arrayData[0]);
+            $('#NIWDailySkinToolHfc').val(arrayData[1]);
+            $('#NIWDailySkinToolEpisodeDate').val(arrayData[2]);
+            $('#NIWDailySkinToolEncounterDate').val(arrayData[3]);
+
+            $('#dailySkinToolModalDate').val(arrayData[5]);
+            $('#dailySkinToolModalTime').val(arrayData[13]);
+
+            $("input[name='Temperature'][value='" + arrayData[6] + "']").prop('checked', true);
+            $("input[name='Color'][value='" + arrayData[7] + "']").prop('checked', true);
+            $("input[name='Moisture'][value='" + arrayData[8] + "']").prop('checked', true);
+            $("input[name='SkinTurgor'][value='" + arrayData[9] + "']").prop('checked', true);
+            $("input[name='Integrity'][value='" + arrayData[10] + "']").prop('checked', true);
+            $("input[name='ReferToTeam'][value='" + arrayData[12] + "']").prop('checked', true);
+
+            $("#dailySkinTool").modal('show');
+
+        });
+        // Function For Update Button End
+
+        // Update Get Data And Send To Controller Function Start
+        $('#dailySkinTool #dailySkinToolModal_btnAdd_or_btnUpdate_div').on('click', '#dailySkinToolUpdateModalBtn', function (e) {
+            e.preventDefault();
+
+            alert("Skin Ok");
+        });
+        // Update Get Data And Send To Controller Function End
+
+// ---------------------------------------------------------------------------- Update Skin Tool ------------------------------------------------------------------------------------------- //
+
+
+
+
+
+// ---------------------------------------------------------------------------- Update Position ------------------------------------------------------------------------------------------- //
+
+
+        // Function For Update Button Start
+        $('#tableChartDailySkinPositionDiv').on('click', '#tableChartDailySkinPositionTable #tableChartDailySkinPositionUpdateBtn', function (e) {
+
+
+            $('#dailySkinPositionModalTitle').text("Positioning Chart");
+            $('#dailySkinPositionModal_btnAdd_or_btnUpdate_div').html('<button type="button" class="btn btn-success btn-block btn-lg" id="dailySkinPositionUpdateModalBtn" role="button">Update Items</button>');
+
+            $('#dailySkinPositionForm')[0].reset();
+
+            $("#dailySkinPositionModalDate").datepicker({
+                changeMonth: true,
+                changeYear: true,
+                maxDate: '+0d',
+                dateFormat: 'dd/mm/yy'
+            });
+
+            //get the row value
+            var row = $(this).closest("tr");
+            var rowData = row.find("#dataChartDailySkinPositionhidden").val();
+
+            var arrayData = rowData.split("|");
+
+            $('#NIWDailySkinPositionPmi').val(arrayData[0]);
+            $('#NIWDailySkinPositionHfc').val(arrayData[1]);
+            $('#NIWDailySkinPositionEpisodeDate').val(arrayData[2]);
+            $('#NIWDailySkinPositionEncounterDate').val(arrayData[3]);
+
+            $('#dailySkinPositionModalDate').val(arrayData[5]);
+            $('#dailySkinPositionModalTime').val(arrayData[7]);
+
+            $('#dailySkinPositionModalActivity').val(arrayData[6]);
+
+            $("#dailySkinPosition").modal('show');
+
+
+        });
+        // Function For Update Button End
+
+
+        // Update Get Data And Send To Controller Function Start
+        $('#dailySkinPosition #dailySkinPositionModal_btnAdd_or_btnUpdate_div').on('click', '#dailySkinPositionUpdateModalBtn', function (e) {
+            e.preventDefault();
+
+            alert("Position Ok");
+        });
+        // Update Get Data And Send To Controller Function End
+
+// ---------------------------------------------------------------------------- Update ------------------------------------------------------------------------------------------- //
+
 
 // ---------------------------------------------------------------------------- Delete ------------------------------------------------------------------------------------------- //
 

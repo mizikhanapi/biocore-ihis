@@ -11,10 +11,21 @@
 
     String data = request.getParameter("dataString");
     String methodName = request.getParameter("methodName");
+    String created_by = session.getAttribute("USER_NAME").toString();
 
     Boolean result;
-    if (methodName.equalsIgnoreCase("add")) {
-    } else if (methodName.equalsIgnoreCase("update")) {
+    if (methodName.equalsIgnoreCase("addSkinTool")) {
+        result = dailySkin.addSkinTool(data + "|" + created_by);
+        out.print(result);
+    } else if (methodName.equalsIgnoreCase("addPosition")) {
+        result = dailySkin.addPosition(data);
+        out.print(result);
+    } else if (methodName.equalsIgnoreCase("updateSkinTool")) {
+        result = dailySkin.updateSkinTool(data + "|" + created_by);
+        out.print(result);
+    } else if (methodName.equalsIgnoreCase("updatePosition")) {
+        String test = dailySkin.updateTest(data);
+        out.print(test);
     } else if (methodName.equalsIgnoreCase("deleteSkinTool")) {
         result = dailySkin.delSkinTool(data);
         out.print(result);
