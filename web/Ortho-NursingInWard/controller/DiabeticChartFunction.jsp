@@ -19,6 +19,8 @@
         result = diab.addDiabetic(data + "|" + created_by);
         out.print(result);
     } else if (methodName.equalsIgnoreCase("update")) {
+        result = diab.updateDiabetic(data + "|" + created_by);
+        out.print(result);
     } else if (methodName.equalsIgnoreCase("delete")) {
         result = diab.delDiabetic(data);
         out.print(result);
@@ -66,7 +68,7 @@
     <%
         if (datas.get(i).get(10).equalsIgnoreCase("pending")) { %>
 
-    <a data-toggle="modal" data-target="#" id="tableDiabeticChartUpdateBtn"><i class="fa fa-pencil-square-o fa-lg" aria-hidden="true" style="display: inline-block;color: #337ab7;"></i></a>
+    <a data-toggle="modal" data-target="#edit" id="tableDiabeticChartUpdateBtn"><i class="fa fa-pencil-square-o fa-lg" aria-hidden="true" style="display: inline-block;color: #337ab7;"></i></a>
 
     <%  } %>
     &nbsp;

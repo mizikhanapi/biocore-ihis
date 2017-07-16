@@ -404,8 +404,100 @@
 
 
 
+// ---------------------------------------------------------------------------- Update ------------------------------------------------------------------------------------------- //
 
 
+        // Function For Update Button Start
+        $('#tableDiabeticChartDiv').on('click', '#tableDiabeticChartTable #tableDiabeticChartUpdateBtn', function (e) {
+
+
+            $('#diabeticChartModalTitle').text("Update Diabetic Chart");
+            $('#diabeticChartModal_btnAdd_or_btnUpdate_div').html('<button type="button" class="btn btn-success btn-block btn-lg" id="diabeticChartUpdateModalBtn" role="button">Update Items</button>');
+
+            $('#diabeticChartForm')[0].reset();
+
+            $("#diabeticChartModalDate").datepicker({
+                changeMonth: true,
+                changeYear: true,
+                maxDate: '+0d',
+                dateFormat: 'dd/mm/yy'
+            });
+
+
+            //get the row value
+            var row = $(this).closest("tr");
+            var rowData = row.find("#dataDiabeticCharthidden").val();
+
+            var arrayData = rowData.split("|");
+
+            $('#NIWDiabeticChartPmi').val(arrayData[0]);
+            $('#NIWDiabeticChartHfc').val(arrayData[1]);
+            $('#NIWDiabeticChartDate').val(arrayData[2]);
+            $('#NIWDiabeticChartEncounterDate').val(arrayData[3]);
+
+            $('#diabeticChartModalDate').val(arrayData[7]);
+            $('#diabeticChartModalTime').val(arrayData[11]);
+
+            $('#diabeticChartModalDextrostix').val(arrayData[8]);
+
+            $("#DiabeticChart").modal('show');
+
+        });
+        // Function For Add Button End
+
+
+        // Update Get Data And Send To Controller Function Start
+        $('#DiabeticChart #diabeticChartModal_btnAdd_or_btnUpdate_div').on('click', '#diabeticChartUpdateModalBtn', function (e) {
+            e.preventDefault();
+
+            var date = $('#diabeticChartModalDate').val();
+            var sDate = date.split('/');
+            var newDate = sDate[2] + "-" + sDate[1] + "-" + sDate[0];
+
+
+            var pmi_no = $('#NIWDiabeticChartPmi').val();
+            var hfc_cd1 = $('#NIWDiabeticChartHfc').val();
+            var epDate = $('#NIWDiabeticChartDate').val();
+            var encounterDate = $('#NIWDiabeticChartEncounterDate').val();
+
+            var time = $('#diabeticChartModalTime').val();
+            var dextrostix = $('#diabeticChartModalDextrostix').val();
+
+            if (dextrostix === null) {
+                dextrostix = "";
+            }
+
+            var datas = pmi_no + "|" + hfc_cd1 + "|" + epDate + "|" + encounterDate + "| | |" + newDate + " " + time + ":00.0|" + dextrostix + " |Pending";
+
+            $.ajax({
+                type: "post",
+                url: "../Ortho-NursingInWard/controller/DiabeticChartFunction.jsp",
+                data: {dataString: datas, methodName: "update"},
+                timeout: 10000,
+                success: function (result) {
+
+                    if (result.trim() === 'true') {
+
+                        bootbox.alert("Successfully Updated !!");
+                        $("#DiabeticChart").modal('hide');
+                        DiabeticChartTableFiterAUD();
+
+                    } else if (result.trim() === 'false') {
+
+                        bootbox.alert("Fail to Update");
+                        $("#DiabeticChart").modal('hide');
+
+                    }
+                },
+                error: function (err) {
+                    bootbox.alert("something wrong,error: " + err);
+                }
+            });
+
+        });
+        // Update Get Data And Send To Controller Function End
+
+// ---------------------------------------------------------------------------- Update ------------------------------------------------------------------------------------------- //
 
 
 

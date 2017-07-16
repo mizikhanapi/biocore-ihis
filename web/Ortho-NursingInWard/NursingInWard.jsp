@@ -110,7 +110,7 @@
                 <!-- content -->
                 <div class="tab-pane fade" id="Ortho-NursingInWard_6">
                     <ul class="soap-content nav">
-                        <li><a data-toggle="modal" data-target="#DiabeticChart" href="" class="soap-select"><i class="fa fa-comments  fa-li"></i> Add New Diabetic Chart</a></li>
+                        <li><a data-toggle="modal" data-target="#DiabeticChart" href="" class="soap-select" id="diabeticChartAddNewRecord"><i class="fa fa-comments  fa-li"></i> Add New Diabetic Chart</a></li>
                     </ul>
                     <hr class="pemisah" />
                     <%@include file="DiabeticChart.jsp"%>

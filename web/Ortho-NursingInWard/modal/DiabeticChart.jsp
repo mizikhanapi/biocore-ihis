@@ -45,7 +45,7 @@
                                 <label class="col-md-12 control-label" for="textinput">Dextrostix</label>
                                 <div class="col-md-12">
                                     <select class="form-control input-md" id="diabeticChartModalDextrostix">
-                                        <option selected="" disabled="" >Please Select Dextrostix</option>
+                                        <option selected="" disabled="" value=" ">Please Select Dextrostix</option>
                                         <option value="Dextrostix 1">Dextrostix 1</option>
                                         <option value="Dextrostix 2">Dextrostix 2</option>
                                         <option value="Dextrostix 3">Dextrostix 3</option>
