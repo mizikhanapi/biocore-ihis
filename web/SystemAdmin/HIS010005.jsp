@@ -27,11 +27,11 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>iHIS | System Code Maintenance</title>
         <!-- header -->
-
+        <%@include file="libraries/headLibrary.jsp" %>
         <%@include file="../assets/header.html" %>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<!--        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
         <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-        <link rel="stylesheet" href="bootstrap-3.3.6-dist/css/dataTables.bootstrap.min.css">
+        <link rel="stylesheet" href="bootstrap-3.3.6-dist/css/dataTables.bootstrap.min.css">-->
         <link rel="stylesheet" href="css/table.css">
         <link rel="stylesheet" href="css/loading_sham.css">
 
@@ -41,12 +41,12 @@
         <!-- Bootstrap core JavaScript
         ================================================== -->
         <!-- Placed at the end of the document so the pages load faster -->
-        <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<!--        <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
         <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/4.4.0/bootbox.min.js"></script>
         <script src="bootstrap-3.3.6-dist/js/jquery.dataTables.min.js"></script>
-        <script src="bootstrap-3.3.6-dist/js/dataTables.bootstrap.min.js" type="text/javascript"></script>
+        <script src="bootstrap-3.3.6-dist/js/dataTables.bootstrap.min.js" type="text/javascript"></script>-->
 
 
 
@@ -181,7 +181,7 @@
             <!-- main -->		
 
         </div>
-
+                    <%@include file="libraries/footLibrary.jsp" %>
 
         <script>
 
