@@ -153,7 +153,7 @@
                 <!-- content -->
                 <div class="tab-pane fade" id="Ortho-NursingInWard_10">
                     <ul class="soap-content nav">
-                        <li><a data-toggle="modal" data-target="#woundAssessment1" href="" class="soap-select"><i class="fa fa-comments  fa-li"></i> Add New Wound Assessment</a></li>
+                        <li><a data-toggle="modal" data-target="#woundAssessment" href="" class="soap-select" id="woundAssessmentAddNewRecord"><i class="fa fa-comments  fa-li"></i> Add New Wound Assessment</a></li>
                     </ul>
                     <hr class="pemisah" />
                     <%@include file="woundAssessment.jsp"%>

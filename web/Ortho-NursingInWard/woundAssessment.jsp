@@ -273,6 +273,138 @@
 
 
 
+// ---------------------------------------------------------------------------- Insert ------------------------------------------------------------------------------------------- //
+
+
+        // Function For Add Button Start
+        $('#Ortho-NursingInWard_10').on('click', '#woundAssessmentAddNewRecord', function (e) {
+
+            $('#woundAssessmentModalTitle').text("Add Wound Assessment");
+            $('#woundAssessmentModal_btnAdd_or_btnUpdate_div').html('<button type="button" class="btn btn-success btn-block btn-lg" id="woundAssessmentAddModalBtn" role="button">Add Items</button>');
+
+            $('#woundAssessmentForm')[0].reset();
+
+            $("#woundAssessmentModalDate").datepicker({
+                changeMonth: true,
+                changeYear: true,
+                maxDate: '+0d',
+                dateFormat: 'dd/mm/yy'
+            });
+
+            $("#woundAssessmentModalDateFuture").datepicker({
+                changeMonth: true,
+                changeYear: true,
+                minDate: '+0d',
+                dateFormat: 'dd/mm/yy'
+            });
+
+        });
+        // Function For Add Button End
+
+
+        // Add Get Data And Send To Controller Function Start
+        $('#woundAssessment #woundAssessmentModal_btnAdd_or_btnUpdate_div').on('click', '#woundAssessmentAddModalBtn', function (e) {
+            e.preventDefault();
+
+
+            var enDate = new Date();
+            var dd = ("0" + enDate.getDate()).slice(-2);
+            var mm = ("0" + (enDate.getMonth() + 1)).slice(-2);
+            var yy = enDate.getFullYear();
+            var hh = enDate.getHours();
+            var m = enDate.getMinutes();
+            var ss = enDate.getSeconds();
+            var ms = enDate.getMilliseconds();
+
+            var encounterDate = yy + "-" + mm + "-" + dd + " " + hh + ":" + m + ":" + ss + "." + ms;
+
+            var date = $('#woundAssessmentModalDate').val();
+            var sDate = date.split('/');
+            var newDate = sDate[2] + "-" + sDate[1] + "-" + sDate[0];
+            var dateFuture = $('#woundAssessmentModalDateFuture').val();
+            var fDate = dateFuture.split('/');
+            var newDate2 = fDate[2] + "-" + fDate[1] + "-" + fDate[0];
+            var dimension1 = $('#woundAssessmentModalDimension1').val();
+            var dimension2 = $('#woundAssessmentModalDimension2').val();
+            var dimension3 = $('#woundAssessmentModalDimension3').val();
+
+            var ExudateLevel = $("input[name='ExudateLevel']:checked").val();
+            var ExudateColour = $("input[name='ExudateColour']:checked").val();
+            var WoundBed = $("input[name='WoundBed']:checked").val();
+            var WoundEdges = $("input[name='WoundEdges']:checked").val();
+            var SurroundingSkin = $("input[name='SurroundingSkin']:checked").val();
+            var UrinaryCatheter = $("input[name='UrinaryCatheter']:checked").val();
+            var VaccumDressing = $("input[name='VaccumDressing']:checked").val();
+
+            var pain1 = $('#woundAssessmentModalPain1').val();
+            var pain2 = $('#woundAssessmentModalPain2').val();
+            var plan1 = $('#woundAssessmentModalPlan1').val();
+            var plan2 = $('#woundAssessmentModalPlan2').val();
+            var plan3 = $('#woundAssessmentModalPlan3').val();
+            var plan4 = $('#woundAssessmentModalPlan4').val();
+
+
+            var pmi_no = pmiNo;
+            var hfc_cd1 = hfc_cd;
+            var epDate = episodeDate;
+
+
+            if (date === null || date === "") {
+                bootbox.alert("Please Insert Assessment Date !!");
+            } else {
+
+                if (ExudateLevel === undefined) {
+                    ExudateLevel = "";
+                } else if (ExudateColour === undefined) {
+                    ExudateColour = "";
+                } else if (WoundBed === undefined) {
+                    WoundBed = "";
+                } else if (WoundEdges === undefined) {
+                    WoundEdges = "";
+                } else if (SurroundingSkin === undefined) {
+                    SurroundingSkin = "";
+                } else if (UrinaryCatheter === undefined) {
+                    UrinaryCatheter = "";
+                } else if (VaccumDressing === undefined) {
+                    VaccumDressing = "";
+                }
+
+                var datas = pmi_no + "|" + hfc_cd1 + "|" + epDate + "|" + encounterDate + "|" + newDate + " 00:00:00:0|" + newDate2 + " 00:00:00:0|" + dimension1 + "|" + dimension2 + "|"
+                        + dimension3 + "|" + ExudateLevel + "|" + ExudateColour + "|" + WoundBed + "|" + WoundEdges + "|" + SurroundingSkin + "|" + UrinaryCatheter
+                        + "|" + pain1 + "|" + pain2 + "|" + VaccumDressing + "|" + plan1 + "|" + plan2 + "|" + plan3 + "|" + plan4;
+
+                $.ajax({
+                    type: "post",
+                    url: "../Ortho-NursingInWard/controller/WoundAssementFunction.jsp",
+                    data: {dataString: datas, methodName: "add"},
+                    timeout: 10000,
+                    success: function (result) {
+
+                        if (result.trim() === 'true') {
+
+                            bootbox.alert("Successfully Added !!");
+                            $("#woundAssessment").modal('hide');
+                            WoundAssementTableFiterAUD();
+
+                        } else if (result.trim() === 'false') {
+
+                            bootbox.alert("Fail to Add");
+                            $("#woundAssessment").modal('hide');
+
+                        }
+                    },
+                    error: function (err) {
+                        bootbox.alert("something wrong,error: " + err);
+                    }
+                });
+            }
+        });
+        // Add Get Data And Send To Controller Function End
+
+
+
+// ---------------------------------------------------------------------------- Insert ------------------------------------------------------------------------------------------- //
+
 
 
 // ---------------------------------------------------------------------------- Delete ------------------------------------------------------------------------------------------- //

@@ -15,6 +15,8 @@
 
     Boolean result;
     if (methodName.equalsIgnoreCase("add")) {
+        result = wound.addWoundAssessment(data);
+        out.print(result);
     } else if (methodName.equalsIgnoreCase("update")) {
     } else if (methodName.equalsIgnoreCase("delete")) {
         result = wound.delWoundAssessment(data);

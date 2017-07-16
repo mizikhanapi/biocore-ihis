@@ -23,7 +23,7 @@
                             <div class="form-group">
                                 <label class="col-md-12 control-label" for="textinput">Date</label>
                                 <div class="col-md-12">
-                                    <input type="text" class="form-control input-md" id="chartCirculationModalDate">
+                                    <input type="text" class="form-control input-md" id="chartCirculationModalDate" readonly>
                                 </div>
                             </div>
                         </div>
