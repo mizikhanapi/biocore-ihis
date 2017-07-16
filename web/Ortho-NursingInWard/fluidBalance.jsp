@@ -318,6 +318,451 @@
 // ---------------------------------------------------------------------------- VIew ------------------------------------------------------------------------------------------- //
 
 
+// ---------------------------------------------------------------------------- Insert Intake ------------------------------------------------------------------------------------------- //
+
+
+        // Function For Add Button Start
+        $('#Ortho-NursingInWard_11').on('click', '#fluidBalanceIntakeAddNewRecord', function (e) {
+
+            $('#fluidBalanceIntakeModalTitle').text("Add Intake");
+            $('#fluidBalanceIntakeModal_btnAdd_or_btnUpdate_div').html('<button type="button" class="btn btn-success btn-block btn-lg" id="fluidBalanceIntakeAddModalBtn" role="button">Add Items</button>');
+
+            $('#fluidBalanceIntakeModalForm')[0].reset();
+
+            $("#fluidBalanceIntakeModalDate").datepicker({
+                changeMonth: true,
+                changeYear: true,
+                maxDate: '+0d',
+                dateFormat: 'dd/mm/yy'
+            });
+
+        });
+        // Function For Add Button End
+
+
+        // Add Get Data And Send To Controller Function Start
+        $('#fluidBalanceIntake #fluidBalanceIntakeModal_btnAdd_or_btnUpdate_div').on('click', '#fluidBalanceIntakeAddModalBtn', function (e) {
+            e.preventDefault();
+
+
+            var enDate = new Date();
+            var dd = ("0" + enDate.getDate()).slice(-2);
+            var mm = ("0" + (enDate.getMonth() + 1)).slice(-2);
+            var yy = enDate.getFullYear();
+            var hh = enDate.getHours();
+            var m = enDate.getMinutes();
+            var ss = enDate.getSeconds();
+            var ms = enDate.getMilliseconds();
+
+            var encounterDate = yy + "-" + mm + "-" + dd + " " + hh + ":" + m + ":" + ss + "." + ms;
+            var date = $('#fluidBalanceIntakeModalDate').val();
+            var sDate = date.split('/');
+            var newDate = sDate[2] + "-" + sDate[1] + "-" + sDate[0];
+
+            var time = $('#fluidBalanceIntakeModalTime').val();
+
+            var OralType = $('#fluidBalanceIntakeModalOralType').val();
+            var OralAmount = $('#fluidBalanceIntakeModalOralAmount').val();
+            var IntravenousType = $('#fluidBalanceIntakeModalIntravenousType').val();
+            var IntravenousAmount = $('#fluidBalanceIntakeModalIntravenousAmount').val();
+            var OtherType = $('#fluidBalanceIntakeModalOtherType').val();
+            var OtherAmount = $('#fluidBalanceIntakeModalOtherAmount').val();
+
+            var pmi_no = pmiNo;
+            var hfc_cd1 = hfc_cd;
+            var epDate = episodeDate;
+
+            if (OralType === null) {
+                OralType = "";
+            }
+
+            if (IntravenousType === null) {
+                IntravenousType = "";
+            }
+
+            if (OtherType === null) {
+                OtherType = "";
+            }
+
+            if (date === null || date === "") {
+                bootbox.alert("Please Insert Assessment Date !!");
+            } else if (time === null || time === "") {
+                bootbox.alert("Please Insert Assessment Time !!");
+            } else {
+
+                var datas = pmi_no + "|" + hfc_cd1 + "|" + epDate + "|" + encounterDate + "|" + newDate + " " + time + ":00.0|" + OralType + "|" + OralAmount + "|" + IntravenousType + "|" + IntravenousAmount + "|" + OtherType + "|" + OtherAmount;
+
+                $.ajax({
+                    type: "post",
+                    url: "../Ortho-NursingInWard/controller/FluidBalanceFunction.jsp",
+                    data: {dataString: datas, methodName: "addIntake"},
+                    timeout: 10000,
+                    success: function (result) {
+
+                        if (result.trim() === 'true') {
+
+                            bootbox.alert("Successfully Added !!");
+                            $("#fluidBalanceIntake").modal('hide');
+                            FluidBalanceTableFiterAUD();
+
+                        } else if (result.trim() === 'false') {
+
+                            bootbox.alert("Fail to Add");
+                            $("#fluidBalanceIntake").modal('hide');
+
+                        }
+                    },
+                    error: function (err) {
+                        bootbox.alert("something wrong,error: " + err);
+                    }
+                });
+            }
+        });
+        // Add Get Data And Send To Controller Function End
+
+
+
+// ---------------------------------------------------------------------------- Insert Intake ------------------------------------------------------------------------------------------- //
+
+
+
+// ---------------------------------------------------------------------------- Insert Output ------------------------------------------------------------------------------------------- //
+
+
+        // Function For Add Button Start
+        $('#Ortho-NursingInWard_11').on('click', '#fluidBalanceOutputAddNewRecord', function (e) {
+
+            $('#fluidBalanceOutputModalTitle').text("Add Output");
+            $('#fluidBalanceOutputModal_btnAdd_or_btnUpdate_div').html('<button type="button" class="btn btn-success btn-block btn-lg" id="fluidBalanceOutputAddModalBtn" role="button">Add Items</button>');
+
+            $('#fluidBalanceOutputModalForm')[0].reset();
+
+            $("#fluidBalanceOutputModalDate").datepicker({
+                changeMonth: true,
+                changeYear: true,
+                maxDate: '+0d',
+                dateFormat: 'dd/mm/yy'
+            });
+
+        });
+        // Function For Add Button End
+
+
+        // Add Get Data And Send To Controller Function Start
+        $('#fluidBalanceOutput #fluidBalanceOutputModal_btnAdd_or_btnUpdate_div').on('click', '#fluidBalanceOutputAddModalBtn', function (e) {
+            e.preventDefault();
+
+
+            var enDate = new Date();
+            var dd = ("0" + enDate.getDate()).slice(-2);
+            var mm = ("0" + (enDate.getMonth() + 1)).slice(-2);
+            var yy = enDate.getFullYear();
+            var hh = enDate.getHours();
+            var m = enDate.getMinutes();
+            var ss = enDate.getSeconds();
+            var ms = enDate.getMilliseconds();
+
+            var encounterDate = yy + "-" + mm + "-" + dd + " " + hh + ":" + m + ":" + ss + "." + ms;
+            var date = $('#fluidBalanceOutputModalDate').val();
+            var sDate = date.split('/');
+            var newDate = sDate[2] + "-" + sDate[1] + "-" + sDate[0];
+
+            var time = $('#fluidBalanceOutputModalTime').val();
+
+            var urineAdd = $('#fluidBalanceOutputModalUrine').val();
+            var vomitusAdd = $('#fluidBalanceOutputModalVomitus').val();
+            var gastricSuctionAdd = $('#fluidBalanceOutputModalGastricSuction').val();
+            var Others = $('#fluidBalanceOutputModalOthers').val();
+
+
+
+            var pmi_no = pmiNo;
+            var hfc_cd1 = hfc_cd;
+            var epDate = episodeDate;
+
+            if (urineAdd === null) {
+                urineAdd = " ";
+            }
+
+            if (vomitusAdd === null) {
+                vomitusAdd = " ";
+            }
+
+            if (gastricSuctionAdd === null) {
+                gastricSuctionAdd = " ";
+            }
+
+            if (date === null || date === "") {
+                bootbox.alert("Please Insert Assessment Date !!");
+            } else if (time === null || time === "") {
+                bootbox.alert("Please Insert Assessment Time !!");
+            } else {
+
+
+                var datas = pmi_no + "|" + hfc_cd1 + "|" + epDate + "|" + encounterDate + "|" + newDate + " " + time + ":00.0|" + urineAdd + "|" + vomitusAdd + "|" + gastricSuctionAdd + "|" + Others;
+
+                $.ajax({
+                    type: "post",
+                    url: "../Ortho-NursingInWard/controller/FluidBalanceFunction.jsp",
+                    data: {dataString: datas, methodName: "addOutput"},
+                    timeout: 10000,
+                    success: function (result) {
+
+                        if (result.trim() === 'true') {
+
+                            bootbox.alert("Successfully Added !!");
+                            $("#fluidBalanceOutput").modal('hide');
+                            FluidBalanceTableFiterAUD();
+
+                        } else if (result.trim() === 'false') {
+
+                            bootbox.alert("Fail to Add");
+                            $("#fluidBalanceOutput").modal('hide');
+
+                        }
+                    },
+                    error: function (err) {
+                        bootbox.alert("something wrong,error: " + err);
+                    }
+                });
+            }
+        });
+        // Add Get Data And Send To Controller Function End
+
+
+
+// ---------------------------------------------------------------------------- Insert Output ------------------------------------------------------------------------------------------- //
+
+
+// ---------------------------------------------------------------------------- Update Intake ------------------------------------------------------------------------------------------- //
+
+
+        // Function For Update Button Start
+        $('#tableFluidBalanceIntakeDiv').on('click', '#tableFluidBalanceIntakeTable #tableFluidBalanceIntakeUpdateBtn', function (e) {
+
+
+            $('#fluidBalanceIntakeModalTitle').text("Update Intake");
+            $('#fluidBalanceIntakeModal_btnAdd_or_btnUpdate_div').html('<button type="button" class="btn btn-success btn-block btn-lg" id="fluidBalanceIntakeUpdateModalBtn" role="button">Update Items</button>');
+
+            $('#fluidBalanceIntakeModalForm')[0].reset();
+
+            $("#fluidBalanceIntakeModalDate").datepicker({
+                changeMonth: true,
+                changeYear: true,
+                maxDate: '+0d',
+                dateFormat: 'dd/mm/yy'
+            });
+
+            //get the row value
+            var row = $(this).closest("tr");
+            var rowData = row.find("#dataFluidBalanceIntakehidden").val();
+
+            var arrayData = rowData.split("|");
+
+            $('#NIWFluidBalanceIntakePmi').val(arrayData[0]);
+            $('#NIWFluidBalanceIntakeHfc').val(arrayData[1]);
+            $('#NIWFluidBalanceIntakeEpisodeDate').val(arrayData[2]);
+            $('#NIWFluidBalanceIntakeEncounterDate').val(arrayData[3]);
+
+            $('#fluidBalanceIntakeModalDate').val(arrayData[5]);
+            $('#fluidBalanceIntakeModalTime').val(arrayData[12]);
+
+            $('#fluidBalanceIntakeModalOralType').val(arrayData[6]);
+            $('#fluidBalanceIntakeModalOralAmount').val(arrayData[7]);
+            $('#fluidBalanceIntakeModalIntravenousType').val(arrayData[8]);
+            $('#fluidBalanceIntakeModalIntravenousAmount').val(arrayData[9]);
+            $('#fluidBalanceIntakeModalOtherType').val(arrayData[10]);
+            $('#fluidBalanceIntakeModalOtherAmount').val(arrayData[11]);
+
+
+            $("#fluidBalanceIntake").modal('show');
+
+
+        });
+        // Function For Update Button End
+
+        // Update Get Data And Send To Controller Function Start
+        $('#fluidBalanceIntake #fluidBalanceIntakeModal_btnAdd_or_btnUpdate_div').on('click', '#fluidBalanceIntakeUpdateModalBtn', function (e) {
+            e.preventDefault();
+
+            var date = $('#fluidBalanceIntakeModalDate').val();
+            var sDate = date.split('/');
+            var newDate = sDate[2] + "-" + sDate[1] + "-" + sDate[0];
+
+            var time = $('#fluidBalanceIntakeModalTime').val();
+
+            var OralType = $('#fluidBalanceIntakeModalOralType').val();
+            var OralAmount = $('#fluidBalanceIntakeModalOralAmount').val();
+            var IntravenousType = $('#fluidBalanceIntakeModalIntravenousType').val();
+            var IntravenousAmount = $('#fluidBalanceIntakeModalIntravenousAmount').val();
+            var OtherType = $('#fluidBalanceIntakeModalOtherType').val();
+            var OtherAmount = $('#fluidBalanceIntakeModalOtherAmount').val();
+
+            var pmi_no = $('#NIWFluidBalanceIntakePmi').val();
+            var hfc_cd1 = $('#NIWFluidBalanceIntakeHfc').val();
+            var epDate = $('#NIWFluidBalanceIntakeEpisodeDate').val();
+            var encounterDate = $('#NIWFluidBalanceIntakeEncounterDate').val();
+
+            if (OralType === null) {
+                OralType = "";
+            }
+
+            if (IntravenousType === null) {
+                IntravenousType = "";
+            }
+
+            if (OtherType === null) {
+                OtherType = "";
+            }
+
+
+            var datas = pmi_no + "|" + hfc_cd1 + "|" + epDate + "|" + encounterDate + "|" + newDate + " " + time + ":00.0|" + OralType + "|" + OralAmount + "|" + IntravenousType + "|" + IntravenousAmount + "|" + OtherType + "|" + OtherAmount;
+
+            $.ajax({
+                type: "post",
+                url: "../Ortho-NursingInWard/controller/FluidBalanceFunction.jsp",
+                data: {dataString: datas, methodName: "updateIntake"},
+                timeout: 10000,
+                success: function (result) {
+
+                    if (result.trim() === 'true') {
+
+                        bootbox.alert("Successfully Updated !!");
+                        $("#fluidBalanceIntake").modal('hide');
+                        FluidBalanceTableFiterAUD();
+
+                    } else if (result.trim() === 'false') {
+
+                        bootbox.alert("Fail to Update");
+                        $("#fluidBalanceIntake").modal('hide');
+
+                    }
+                },
+                error: function (err) {
+                    bootbox.alert("something wrong,error: " + err);
+                }
+            });
+
+        });
+        // Update Get Data And Send To Controller Function End
+
+
+// ---------------------------------------------------------------------------- Update Intake ------------------------------------------------------------------------------------------- //
+
+
+
+
+// ---------------------------------------------------------------------------- Update Output ------------------------------------------------------------------------------------------- //
+
+
+        // Function For Update Button Start
+        $('#tableFluidBalanceOutputDiv').on('click', '#tableFluidBalanceOutputTable #tableFluidBalanceOutputUpdateBtn', function (e) {
+
+
+            $('#fluidBalanceOutputModalTitle').text("Update Output");
+            $('#fluidBalanceOutputModal_btnAdd_or_btnUpdate_div').html('<button type="button" class="btn btn-success btn-block btn-lg" id="fluidBalanceOutputUpdateModalBtn" role="button">Update Items</button>');
+
+            $('#fluidBalanceOutputModalForm')[0].reset();
+
+            $("#fluidBalanceOutputModalDate").datepicker({
+                changeMonth: true,
+                changeYear: true,
+                maxDate: '+0d',
+                dateFormat: 'dd/mm/yy'
+            });
+
+            //get the row value
+            var row = $(this).closest("tr");
+            var rowData = row.find("#dataFluidBalanceOutputhidden").val();
+
+            var arrayData = rowData.split("|");
+
+            $('#NIWFluidBalanceOutputPmi').val(arrayData[0]);
+            $('#NIWFluidBalanceOutputHfc').val(arrayData[1]);
+            $('#NIWFluidBalanceOutputEpisodeDate').val(arrayData[2]);
+            $('#NIWFluidBalanceOutputEncounterDate').val(arrayData[3]);
+
+            $('#fluidBalanceOutputModalDate').val(arrayData[5]);
+            $('#fluidBalanceOutputModalTime').val(arrayData[10]);
+
+            $('#fluidBalanceOutputModalUrine').val(arrayData[6]);
+            $('#fluidBalanceOutputModalVomitus').val(arrayData[7]);
+            $('#fluidBalanceOutputModalGastricSuction').val(arrayData[8]);
+            $('#fluidBalanceOutputModalOthers').val(arrayData[9]);
+
+            $("#fluidBalanceOutput").modal('show');
+
+
+        });
+        // Function For Update Button End
+
+        // Update Get Data And Send To Controller Function Start
+        $('#fluidBalanceOutput #fluidBalanceOutputModal_btnAdd_or_btnUpdate_div').on('click', '#fluidBalanceOutputUpdateModalBtn', function (e) {
+            e.preventDefault();
+
+            var date = $('#fluidBalanceOutputModalDate').val();
+            var sDate = date.split('/');
+            var newDate = sDate[2] + "-" + sDate[1] + "-" + sDate[0];
+
+            var time = $('#fluidBalanceOutputModalTime').val();
+
+            var urineAdd = $('#fluidBalanceOutputModalUrine').val();
+            var vomitusAdd = $('#fluidBalanceOutputModalVomitus').val();
+            var gastricSuctionAdd = $('#fluidBalanceOutputModalGastricSuction').val();
+            var Others = $('#fluidBalanceOutputModalOthers').val();
+
+            var pmi_no = $('#NIWFluidBalanceOutputPmi').val();
+            var hfc_cd1 = $('#NIWFluidBalanceOutputHfc').val();
+            var epDate = $('#NIWFluidBalanceOutputEpisodeDate').val();
+            var encounterDate = $('#NIWFluidBalanceOutputEncounterDate').val();
+
+            if (urineAdd === null) {
+                urineAdd = " ";
+            }
+
+            if (vomitusAdd === null) {
+                vomitusAdd = " ";
+            }
+
+            if (gastricSuctionAdd === null) {
+                gastricSuctionAdd = " ";
+            }
+
+
+
+            var datas = pmi_no + "|" + hfc_cd1 + "|" + epDate + "|" + encounterDate + "|" + newDate + " " + time + ":00.0|" + urineAdd + "|" + vomitusAdd + "|" + gastricSuctionAdd + "|" + Others;
+
+            $.ajax({
+                type: "post",
+                url: "../Ortho-NursingInWard/controller/FluidBalanceFunction.jsp",
+                data: {dataString: datas, methodName: "updateOutput"},
+                timeout: 10000,
+                success: function (result) {
+
+                    if (result.trim() === 'true') {
+
+                        bootbox.alert("Successfully Added !!");
+                        $("#fluidBalanceOutput").modal('hide');
+                        FluidBalanceTableFiterAUD();
+
+                    } else if (result.trim() === 'false') {
+
+                        bootbox.alert("Fail to Add");
+                        $("#fluidBalanceOutput").modal('hide');
+
+                    }
+                },
+                error: function (err) {
+                    bootbox.alert("something wrong,error: " + err);
+                }
+            });
+
+        });
+        // Update Get Data And Send To Controller Function End
+
+
+// ---------------------------------------------------------------------------- Update Output ------------------------------------------------------------------------------------------- //
+
 
 // ---------------------------------------------------------------------------- Delete ------------------------------------------------------------------------------------------- //
 

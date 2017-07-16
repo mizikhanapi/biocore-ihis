@@ -163,8 +163,8 @@
                 <!-- content -->
                 <div class="tab-pane fade" id="Ortho-NursingInWard_11">
                     <ul class="soap-content nav">
-                        <li><a data-toggle="modal" data-target="#fluidBalance1" href="" class="soap-select"><i class="fa fa-comments  fa-li"></i> Intake (ml)</a></li>
-                        <li><a data-toggle="modal" data-target="#fluidBalance2" href=""  class="soap-select"><i class="fa fa-history  fa-li"></i> Output (ml)</a></li>
+                        <li><a data-toggle="modal" data-target="#fluidBalanceIntake" href="" class="soap-select" id="fluidBalanceIntakeAddNewRecord"><i class="fa fa-comments  fa-li"></i> Intake (ml)</a></li>
+                        <li><a data-toggle="modal" data-target="#fluidBalanceOutput" href=""  class="soap-select" id="fluidBalanceOutputAddNewRecord"><i class="fa fa-history  fa-li"></i> Output (ml)</a></li>
                     </ul>
                     <hr class="pemisah" />
                     <%@include file="fluidBalance.jsp"%>

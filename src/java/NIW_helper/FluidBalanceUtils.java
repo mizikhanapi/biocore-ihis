@@ -156,6 +156,114 @@ public class FluidBalanceUtils {
 
     }
 
+    public Boolean addFluidIntake(String datas) {
+
+        Boolean sql = false;
+        String splittedData[] = datas.split("\\|", -1);
+        String pmi_no, hfc_cd, episode_date, encounter_date, datetime, oral_type, oral_amount, intravenous_type, intravenous_amount, other_type, other_amount;
+
+        pmi_no = splittedData[0];
+        hfc_cd = splittedData[1];
+        episode_date = splittedData[2];
+        encounter_date = splittedData[3];
+        datetime = splittedData[4];
+        oral_type = splittedData[5];
+        oral_amount = splittedData[6];
+        intravenous_type = splittedData[7];
+        intravenous_amount = splittedData[8];
+        other_type = splittedData[9];
+        other_amount = splittedData[10];
+
+        String sqlInsert = "INSERT INTO lhr_ort_niw_intake_fluid_balance "
+                + " (pmi_no, hfc_cd, episode_date, encounter_date,datetime, oral_type,oral_amount,intravenous_type ,intravenous_amount ,other_type ,other_amount )  "
+                + " VALUES('" + pmi_no + "','" + hfc_cd + "','" + episode_date + "','" + encounter_date + "','" + datetime + "','" + oral_type + "','" + oral_amount + "','" + intravenous_type + "','" + intravenous_amount + "','" + other_type + "','" + other_amount + "') ";
+
+        sql = rmic.setQuerySQL(conn.HOST, conn.PORT, sqlInsert);
+
+        return sql;
+
+    }
+
+    public Boolean addFluidOutput(String datas) {
+
+        Boolean sql = false;
+        String splittedData[] = datas.split("\\|", -1);
+        String pmi_no, hfc_cd, episode_date, encounter_date, datetime, urine, vomitus, gastric_suction, other;
+
+        pmi_no = splittedData[0];
+        hfc_cd = splittedData[1];
+        episode_date = splittedData[2];
+        encounter_date = splittedData[3];
+        datetime = splittedData[4];
+        urine = splittedData[5];
+        vomitus = splittedData[6];
+        gastric_suction = splittedData[7];
+        other = splittedData[8];
+
+        String sqlInsert = "INSERT INTO lhr_ort_niw_output_fluid_balance "
+                + " (pmi_no, hfc_cd, episode_date, encounter_date,datetime, urine,vomitus,gastric_suction,other )  "
+                + " VALUES('" + pmi_no + "','" + hfc_cd + "','" + episode_date + "','" + encounter_date + "','" + datetime + "','" + urine + "','" + vomitus + "','" + gastric_suction + "','" + other + "') ";
+
+        sql = rmic.setQuerySQL(conn.HOST, conn.PORT, sqlInsert);
+
+        return sql;
+
+    }
+
+    public Boolean updateFluidIntake(String datas) {
+
+        Boolean data = false;
+        String splittedData[] = datas.split("\\|", -1);
+        String pmi_no, hfc_cd, episode_date, encounter_date, datetime, oral_type, oral_amount, intravenous_type, intravenous_amount, other_type, other_amount;
+
+        pmi_no = splittedData[0];
+        hfc_cd = splittedData[1];
+        episode_date = splittedData[2];
+        encounter_date = splittedData[3];
+        datetime = splittedData[4];
+        oral_type = splittedData[5];
+        oral_amount = splittedData[6];
+        intravenous_type = splittedData[7];
+        intravenous_amount = splittedData[8];
+        other_type = splittedData[9];
+        other_amount = splittedData[10];
+
+        String sql = " UPDATE lhr_ort_niw_intake_fluid_balance SET datetime='" + datetime + "',oral_type='" + oral_type + "',oral_amount='" + oral_amount + "',"
+                + " intravenous_type='" + intravenous_type + "',intravenous_amount='" + intravenous_amount + "',other_type='" + other_type + "',other_amount='" + other_amount + "' "
+                + " WHERE pmi_no='" + pmi_no + "' and hfc_cd='" + hfc_cd + "' and episode_date ='" + episode_date + "' and encounter_date='" + encounter_date + "' ";
+
+        data = rmic.setQuerySQL(conn.HOST, conn.PORT, sql);
+
+        return data;
+
+    }
+
+    public Boolean updateFluidOutput(String datas) {
+
+        Boolean data = false;
+        String splittedData[] = datas.split("\\|", -1);
+        String pmi_no, hfc_cd, episode_date, encounter_date, datetime, urine, vomitus, gastric_suction, other;
+
+        pmi_no = splittedData[0];
+        hfc_cd = splittedData[1];
+        episode_date = splittedData[2];
+        encounter_date = splittedData[3];
+        datetime = splittedData[4];
+        urine = splittedData[5];
+        vomitus = splittedData[6];
+        gastric_suction = splittedData[7];
+        other = splittedData[8];
+
+        String sql = " UPDATE lhr_ort_niw_output_fluid_balance SET datetime='" + datetime + "',urine='" + urine + "',vomitus='" + vomitus + "',"
+                + " gastric_suction='" + gastric_suction + "',other='" + other + "' "
+                + " WHERE pmi_no='" + pmi_no + "' and hfc_cd='" + hfc_cd + "' and episode_date ='" + episode_date + "' and encounter_date='" + encounter_date + "' ";
+
+        data = rmic.setQuerySQL(conn.HOST, conn.PORT, sql);
+
+        return data;
+
+    }
+
     public Boolean delFluidIntake(String datas) {
 
         Boolean data = false;

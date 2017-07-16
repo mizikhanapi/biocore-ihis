@@ -15,8 +15,18 @@
     String methodName = request.getParameter("methodName");
 
     Boolean result;
-    if (methodName.equalsIgnoreCase("add")) {
-    } else if (methodName.equalsIgnoreCase("update")) {
+    if (methodName.equalsIgnoreCase("addIntake")) {
+        result = fluid.addFluidIntake(data);
+        out.print(result);
+    } else if (methodName.equalsIgnoreCase("addOutput")) {
+        result = fluid.addFluidOutput(data);
+        out.print(result);
+    } else if (methodName.equalsIgnoreCase("updateIntake")) {
+        result = fluid.updateFluidIntake(data);
+        out.print(result);
+    } else if (methodName.equalsIgnoreCase("updateOutput")) {
+        result = fluid.updateFluidOutput(data);
+        out.print(result);
     } else if (methodName.equalsIgnoreCase("deleteFluidIntake")) {
         result = fluid.delFluidIntake(data);
         out.print(result);
