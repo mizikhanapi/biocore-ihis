@@ -138,6 +138,8 @@
                 } else if (status !== "1" && status !== "0") {
                     alert("Select Any Status");
                 } else {
+                    
+                    masterName = masterName.replace(/'/g, "\\\'").replace(/"/g, "\\\"");
 
                     var data = {
                         masterCode : masterCode,
@@ -150,7 +152,7 @@
                         url: "master_lookup_insert.jsp",
                         type: "post",
                         data: data,
-                        timeout: 10000,
+                        timeout: 60000,
                         success: function (datas) {
 
                             if (datas.trim() === 'Success') {
@@ -187,14 +189,14 @@
                 $.ajax({
                     url : 'master_lookup_getMasterCode.jsp',
                     type: 'POST',
-                    timeout: 5000,
+                    timeout: 60000,
                     success: function (data) {
                         
                         $('#masterCode').val(data.trim());
                     },
-                    error: function (err) {
+                    error: function (err, jqhr, errThrown) {
                         
-                        console.log("Ajax Is Not Success");
+                        console.log("Ajax Is Not Success: "+errThrown);
                     }
                 });
             });

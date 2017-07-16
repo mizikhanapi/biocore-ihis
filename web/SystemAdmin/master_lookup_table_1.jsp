@@ -220,6 +220,9 @@
         } else if (status !== '1' && status !== '0') {
             bootbox.alert("Select the status");
         } else {
+            
+            masterDesc = masterDesc.replace(/'/g, "\\\'").replace(/"/g, "\\\"");
+            masterSource = masterSource.replace(/'/g, "\\\'").replace(/"/g, "\\\"");
             var data = {
                 masterCode: masterCode,
                 masterDesc: masterDesc,
@@ -232,7 +235,7 @@
                 url: "master_lookup_update.jsp",
                 type: "post",
                 data: data,
-                timeout: 10000, // 10 seconds
+                timeout: 60000, // 60 seconds
                 success: function (datas) {
 
                     if (datas.trim() === 'Success') {
@@ -278,7 +281,7 @@
                     url: "master_lookup_delete.jsp",
                     type: "post",
                     data: data,
-                    timeout: 10000, // 10 seconds
+                    timeout: 60000, // 10 seconds
                     success: function (datas) {
 
                         if (datas.trim() === 'Success') {
@@ -322,12 +325,14 @@
         $('#THE_detailTable').DataTable().destroy();
         
         $('#DLT_detailOf').text("Details of "+masterName);
+        $('#DLT_hidden_id_name').val(masterCode +" | "+masterName);
         $('.nav-tabs a[href="#tab_default_2"]').tab('show');
         $('#detailTable_body').html('<div class="loader"></div>');
 
         $.ajax({
             type: 'POST',
             url: "detail_lookup_table_loader.jsp",
+            timeout: 60000,
             data: data,
             success: function (data) {
                 $('#detailTable_body').html(data);
@@ -335,13 +340,6 @@
                 
             }
         });
-
-
-
-
-
-
-
 
     });
 

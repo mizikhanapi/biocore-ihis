@@ -162,7 +162,31 @@
                 <!-- main -->		
                 <div class="col-md-12 main-dashboard">
                     <div class="row">
-                        <%if (mod03) {%>
+                        <%    
+                            if (mod01) {
+                        %>
+                        <div class="col-xs-6 col-sm-6 col-md-3">
+                            <a href="../SystemAdmin/HIS010001.jsp" class="thumbnail">
+                                <div class="kotak text-center">
+                                    <i class="fa fa-desktop" aria-hidden="true" style="color: #FDC671;font-size: 4em;"></i>
+                                    <h3>System Administration</h3>
+                                </div>
+                            </a>
+                        </div>
+
+                        <div class="col-xs-6 col-sm-6 col-md-3">
+                            <a href="../Registration/" class="thumbnail">
+                                <div class="kotak text-center">
+                                    <i class="fa fa-users" aria-hidden="true" style="color: #c0a16b;font-size: 4em;"></i>
+                                    <h3>Medical Kiosk</h3>
+                                </div>
+                            </a>
+                        </div>
+                        <%
+                            }
+
+                            if (mod03) {
+                        %>
                         <div class="col-xs-6 col-sm-6 col-md-3">
                             <a href="../PMS/index.jsp" class="thumbnail">
                                 <div class="kotak text-center">
@@ -270,31 +294,7 @@
                             </a>
                         </div>
                         <%
-                            }
-
-                            if (mod01) {
-                        %>
-
-
-                        <div class="col-xs-6 col-sm-6 col-md-3">
-                            <a href="../SystemAdmin/HIS010001.jsp" class="thumbnail">
-                                <div class="kotak text-center">
-                                    <i class="fa fa-desktop" aria-hidden="true" style="color: #FDC671;font-size: 4em;"></i>
-                                    <h3>System Administration</h3>
-                                </div>
-                            </a>
-                        </div>
-
-                        <div class="col-xs-6 col-sm-6 col-md-3">
-                            <a href="../Registration/" class="thumbnail">
-                                <div class="kotak text-center">
-                                    <i class="fa fa-users" aria-hidden="true" style="color: #c0a16b;font-size: 4em;"></i>
-                                    <h3>Medical Kiosk</h3>
-                                </div>
-                            </a>
-                        </div>
-                        <%
-                            }
+                            }                        
 
                             if (mod11) {
                         %>

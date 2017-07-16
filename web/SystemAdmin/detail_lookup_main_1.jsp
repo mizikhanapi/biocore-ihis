@@ -64,7 +64,7 @@
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="textinput">Priority</label>
                         <div class="col-md-8">
-                            <input id="DLM_priority"  type="number" maxlength="10" placeholder="Prority indicator" class="form-control input-md">
+                            <input id="DLM_priority"  type="number" max="999999" min="0" step="1" placeholder="Prority indicator" class="form-control input-md">
                         </div>
                     </div>
 
@@ -72,7 +72,7 @@
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="textinput">Start Date</label>
                         <div class="col-md-8">
-                            <input id="DLM_startDate" type="text" placeholder="Date(dd/mm/yyyy)" class="form-control input-md" readonly="true">
+                            <input id="DLM_startDate" type="text" placeholder="Date(dd/mm/yyyy)" class="form-control input-md" readonly>
                         </div>
                     </div>
 
@@ -80,7 +80,7 @@
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="textinput">End Date</label>
                         <div class="col-md-8">
-                            <input id="DLM_endDate" type="text" placeholder="Date(dd/mm/yyyy)" class="form-control input-md" readonly="true">
+                            <input id="DLM_endDate" type="text" placeholder="Date(dd/mm/yyyy)" class="form-control input-md" readonly>
                         </div>
                     </div>
 
@@ -124,6 +124,34 @@
 
 <script>
    
+   //------------------load lookup detail data -----------------
+   function loadLookupDetailData( masterCode, masterName){
+        console.log("Loading detail of "+masterCode +" and "+masterName);
+        var data = {masterCode: masterCode};
+        $('#THE_detailTable').DataTable().destroy();
+
+        $('#DLT_detailOf').text("Details of "+masterName);
+        $('#DLT_hidden_id_name').val(masterCode +" | "+masterName);
+        //$('.nav-tabs a[href="#tab_default_2"]').tab('show');
+        $('#detailTable_body').html('<div class="loader"></div>');
+        
+        console.log("Text: "+ $('#DLT_detailOf').text());
+        console.log("Hidden: "+ $('#DLT_hidden_id_name').val());
+        
+
+        $.ajax({
+            type: 'POST',
+            url: "detail_lookup_table_loader.jsp",
+            timeout: 60000,
+            data: data,
+            success: function (data) {
+                $('#detailTable_body').html(data);
+
+
+            }
+        });
+   }
+   //==================end load detail lookup===================
 
     $(document).ready(function () {
 
@@ -162,6 +190,13 @@
             reset();
             isMasterCodeExist = false;
             $('#DLM_endDate').datepicker('option', 'minDate', null);
+            
+            var masterCodeName = $('#DLT_hidden_id_name').val();
+            
+            if(masterCodeName !==""){
+                isMasterCodeExist = true;
+                $('#masterCode2').val(masterCodeName);
+            }
 
         });
 
@@ -218,6 +253,8 @@
                 var arrayData = $('#masterCode2').val().split("|");
                 masterCode = arrayData[0].trim();
                 console.log(startDate + " " + endDate);
+                
+                detailName = detailName.replace(/'/g, "\\\'").replace(/"/g, "\\\"");
 
                 var data = {
                     masterCode: masterCode,
@@ -233,15 +270,16 @@
                     url: "detail_lookup_insert.jsp",
                     type: "post",
                     data: data,
-                    timeout: 5000,
+                    timeout: 60000,
                     success: function (datas) {
 
                         if (datas.trim() === 'Success') {
 
-                            $('#detailTable').load('detail_lookup_table_1.jsp');
+                            //$('#detailTable').load('detail_lookup_table_1.jsp');
                             $('#detail2').modal('hide');
                             bootbox.alert("Insertion Success");
                             reset();
+                            loadLookupDetailData(arrayData[0].trim(), arrayData[1].trim());
 
                         } else if (datas.trim() === 'Failed') {
 
@@ -281,7 +319,7 @@
                     type: "POST",
                     url: "result.jsp", // call the php file ajax/tuto-autocomplete.php
                     data: dataFields, // Send dataFields var
-                    timeout: 3000,
+                    timeout: 60000,
                     success: function (dataBack) { // If success
                         $('#match').html(dataBack); // Return data (UL list) and insert it in the <div id="match"></div>
                         $('#matchList li').on('click', function () { // When click on an element in the list
