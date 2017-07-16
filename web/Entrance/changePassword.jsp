@@ -90,6 +90,7 @@
             $.ajax({
                 type: 'POST',
                 data: data,
+                timeout: 60000,
                 url: "changePassword_process.jsp",
                 success: function (data, textStatus, jqXHR) {
 
@@ -116,7 +117,7 @@
 
                 },
                 error: function (jqXHR, textStatus, errorThrown) {
-                    bootbox.alert("Something went wrong. Try again later");
+                    bootbox.alert("Something went wrong. Try again later. "+errorThrown);
                 }
             });
 

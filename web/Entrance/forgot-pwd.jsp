@@ -125,6 +125,7 @@
                     $.ajax({
                         type: 'POST',
                         url: "reset_password_process.jsp",
+                        timeout: 60000,
                         data: data,
                         success: function (data, textStatus, jqXHR) {
 
@@ -198,6 +199,7 @@
                 $.ajax({
                     type: 'POST',
                     url: "reset_password_process.jsp",
+                    timeout: 60000,
                     data: data,
                     success: function (data, textStatus, jqXHR) {
 
@@ -239,6 +241,7 @@
                 $.ajax({
                     type: 'POST',
                     url: "reset_password_process.jsp",
+                    timeout: 60000,
                     data: data,
                     success: function (data, textStatus, jqXHR) {
 
@@ -278,6 +281,7 @@
                 $.ajax({
                     type: 'GET',
                     url: "http://tuffah.info/biocore/",
+                    timeout: 60000,
                     data: data,
                     success: function (data, textStatus, jqXHR) {
 

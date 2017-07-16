@@ -118,7 +118,7 @@
                         data: {userIC: userID,
                             password: password
                         },
-                        timeout: 3000,
+                        timeout: 60000,
                         success: function (data) {
                             var num = parseInt(data);
 

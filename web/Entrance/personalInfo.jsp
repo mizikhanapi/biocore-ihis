@@ -350,6 +350,7 @@
             $.ajax({
                 type: 'POST',
                 url: "profile_update.jsp",
+                timeout: 60000,
                 data: data,
                 success: function (data) {
 
@@ -363,6 +364,9 @@
                         setTextField();
                     }
 
+                },
+                error: function (e, ee, err){
+                    bootbox.alert("Oopps! "+ err);
                 }
             });
 

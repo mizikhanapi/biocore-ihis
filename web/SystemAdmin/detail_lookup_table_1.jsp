@@ -221,6 +221,7 @@
                     if (datas.trim() === 'Success') {
                         //$('#detailTable').load('detail_lookup_table_1.jsp');
                         $(".modal-backdrop").hide();
+                        $('.modal').modal('hide');
                         bootbox.alert("A lookup detail code is updated");
                         //backToMasterTab();
                         var codeName = $('#DLT_hidden_id_name').val();

@@ -191,6 +191,7 @@
         $.ajax({
             type: 'POST',
             url: "changePicture_process.jsp",
+            timeout: 60000,
             data: data,
             success: function (data, textStatus, jqXHR) {
                 if (data.trim() === 'success') {
@@ -205,6 +206,9 @@
                 } else {
                     bootbox.alert("Fail");
                 }
+            },
+            error: function (e, ee, err){
+                bootbox.alert("Oopps! "+err);
             }
         });
 

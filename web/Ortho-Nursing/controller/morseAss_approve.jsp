@@ -1,7 +1,7 @@
 <%-- 
     Document   : morseAss_approve
     Created on : Jul 16, 2017, 10:24:20 PM
-    Author     : user
+    Author     : Ardhi Surya; rdsurya147@gmail.com; insta: @rdcfc
 --%>
 
 <%@page import="Formatter.DateFormatter"%>
