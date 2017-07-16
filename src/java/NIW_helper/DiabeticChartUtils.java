@@ -111,6 +111,33 @@ public class DiabeticChartUtils {
 
     }
 
+    public Boolean addDiabetic(String datas) {
+
+        Boolean sql = false;
+        String splittedData[] = datas.split("\\|", -1);
+        String pmi_no, hfc_cd, episode_date, encounter_date, ward, bed_no, datetime, dextrostix, dr_name, status;
+
+        pmi_no = splittedData[0];
+        hfc_cd = splittedData[1];
+        episode_date = splittedData[2];
+        encounter_date = splittedData[3];
+        ward = splittedData[4];
+        bed_no = splittedData[5];
+        datetime = splittedData[6];
+        dextrostix = splittedData[7];
+        status = splittedData[8];
+        dr_name = splittedData[9];
+
+        String sqlInsert = "INSERT INTO lhr_ort_niw_diabetic_chart "
+                + " (pmi_no, hfc_cd, episode_date, encounter_date,ward,bed_no,datetime,dextrostix,dr_name,status)  "
+                + " VALUES('" + pmi_no + "','" + hfc_cd + "','" + episode_date + "','" + encounter_date + "','" + ward + "','" + bed_no + "','" + datetime + "','" + dextrostix + "','" + dr_name + "','" + status + "') ";
+
+        sql = rmic.setQuerySQL(conn.HOST, conn.PORT, sqlInsert);
+
+        return sql;
+
+    }
+
     public Boolean delDiabetic(String datas) {
 
         Boolean data = false;

@@ -12,9 +12,12 @@
 
     String data = request.getParameter("dataString");
     String methodName = request.getParameter("methodName");
+    String created_by = session.getAttribute("USER_NAME").toString();
 
     Boolean result;
     if (methodName.equalsIgnoreCase("add")) {
+        result = diab.addDiabetic(data + "|" + created_by);
+        out.print(result);
     } else if (methodName.equalsIgnoreCase("update")) {
     } else if (methodName.equalsIgnoreCase("delete")) {
         result = diab.delDiabetic(data);

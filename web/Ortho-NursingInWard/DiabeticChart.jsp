@@ -307,6 +307,108 @@
 
 
 
+// ---------------------------------------------------------------------------- Insert ------------------------------------------------------------------------------------------- //
+
+
+        // Function For Add Button Start
+        $('#Ortho-NursingInWard_6').on('click', '#diabeticChartAddNewRecord', function (e) {
+
+            $('#diabeticChartModalTitle').text("Add Diabetic Chart");
+            $('#diabeticChartModal_btnAdd_or_btnUpdate_div').html('<button type="button" class="btn btn-success btn-block btn-lg" id="diabeticChartAddModalBtn" role="button">Add Items</button>');
+
+            $('#diabeticChartForm')[0].reset();
+
+            $("#diabeticChartModalDate").datepicker({
+                changeMonth: true,
+                changeYear: true,
+                maxDate: '+0d',
+                dateFormat: 'dd/mm/yy'
+            });
+
+        });
+        // Function For Add Button End
+
+
+        // Add Get Data And Send To Controller Function Start
+        $('#DiabeticChart #diabeticChartModal_btnAdd_or_btnUpdate_div').on('click', '#diabeticChartAddModalBtn', function (e) {
+            e.preventDefault();
+
+
+            var enDate = new Date();
+            var dd = ("0" + enDate.getDate()).slice(-2);
+            var mm = ("0" + (enDate.getMonth() + 1)).slice(-2);
+            var yy = enDate.getFullYear();
+            var hh = enDate.getHours();
+            var m = enDate.getMinutes();
+            var ss = enDate.getSeconds();
+            var ms = enDate.getMilliseconds();
+
+            var encounterDate = yy + "-" + mm + "-" + dd + " " + hh + ":" + m + ":" + ss + "." + ms;
+            var date = $('#diabeticChartModalDate').val();
+            var sDate = date.split('/');
+            var newDate = sDate[2] + "-" + sDate[1] + "-" + sDate[0];
+
+            var time = $('#diabeticChartModalTime').val();
+            var dextrostix = $('#diabeticChartModalDextrostix').val();
+
+            if (dextrostix === null) {
+                dextrostix = "";
+            }
+
+            var pmi_no = pmiNo;
+            var hfc_cd1 = hfc_cd;
+            var epDate = episodeDate;
+
+
+            if (date === null || date === "") {
+                bootbox.alert("Please Insert Assessment Date !!");
+            } else if (time === null || time === "") {
+                bootbox.alert("Please Insert Assessment Time !!");
+            } else {
+
+                var datas = pmi_no + "|" + hfc_cd1 + "|" + epDate + "|" + encounterDate + "| | |" + newDate + " " + time + ":00.0|" + dextrostix + " |Pending";
+
+                $.ajax({
+                    type: "post",
+                    url: "../Ortho-NursingInWard/controller/DiabeticChartFunction.jsp",
+                    data: {dataString: datas, methodName: "add"},
+                    timeout: 10000,
+                    success: function (result) {
+
+                        if (result.trim() === 'true') {
+
+                            bootbox.alert("Successfully Added !!");
+                            $("#DiabeticChart").modal('hide');
+                            DiabeticChartTableFiterAUD();
+
+                        } else if (result.trim() === 'false') {
+
+                            bootbox.alert("Fail to Add");
+                            $("#DiabeticChart").modal('hide');
+
+                        }
+                    },
+                    error: function (err) {
+                        bootbox.alert("something wrong,error: " + err);
+                    }
+                });
+
+            }
+
+        });
+        // Add Get Data And Send To Controller Function End
+
+
+
+// ---------------------------------------------------------------------------- Insert ------------------------------------------------------------------------------------------- //
+
+
+
+
+
+
+
+
 // ---------------------------------------------------------------------------- Delete ------------------------------------------------------------------------------------------- //
 
 
