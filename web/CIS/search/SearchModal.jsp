@@ -150,7 +150,7 @@
                                         $.ajax({
                                             type: "POST",
                                             data: {pmi_no: pmi_no, episodeDate: episodeDate, disiplineName: disiplineName},
-                                            url: "search/episodeDetail1.jsp", // call the jsp file ajax/tuto-autocomplete.php
+                                            url: "search/episodeDetail.jsp", // call the jsp file ajax/tuto-autocomplete.php
                                             timeout: 10000,
                                             success: function (list) {
                                                 console.log(list);
