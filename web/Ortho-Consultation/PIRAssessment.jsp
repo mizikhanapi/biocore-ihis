@@ -28,16 +28,16 @@
         </div>
     </div>
     <div class="col-md-6 col-md-offset-6 text-right margin-bottom-30px">
-        <div class="col-sm-12 form-inline" style="padding-right: 0px;" id="date_FromTo2">
+        <div class="col-sm-12 form-inline" style="padding-right: 0px; display: none;" id="date_FromTo2">
             <div class="form-group">
                 <label for="exampleInputName2">Start</label>
-                <input type="text" class="form-control" id="exampleInputName2" placeholder="14/06/2017" style="margin-bottom: 0px !important;">
+                <input type="text" class="form-control" id="startDate_PIR" placeholder="yyy-mm-dd" style="margin-bottom: 0px !important;">
             </div>
             <div class="form-group">
                 <label for="exampleInputEmail2">to</label>
-                <input type="email" class="form-control" id="exampleInputEmail2" placeholder="15/06/2017" style="margin-bottom: 0px !important;">
+                <input type="text" class="form-control" id="toDate_PIR" placeholder="yyy-mm-dd" style="margin-bottom: 0px !important;">
             </div>
-            <button type="submit" class="btn btn-default"><i class="fa fa-search fa-lg"></i></button>
+            <button type="button" class="btn btn-default" id="viewDate2"><i class="fa fa-search fa-lg"></i></button>
         </div>
     </div>
 </div>
@@ -48,6 +48,23 @@
     $(document).ready(function () {
 
         $("#getPIRAssessment").load("../Ortho-Consultation/table/t_PIR_assessment.jsp");
+        
+         $("#startDate_PIR").datepicker({
+            dateFormat: 'yy-mm-dd',
+            yearRange: '1999:c+1',
+            changeMonth: true,
+            changeYear: true,
+            minDate: new Date(1999, 10 - 1, 25),
+            maxDate: '+30Y',
+        });
+        $("#toDate_PIR").datepicker({
+            dateFormat: 'yy-mm-dd',
+            yearRange: '1999:c+1',
+            changeMonth: true,
+            changeYear: true,
+            minDate: new Date(1999, 10 - 1, 25),
+            maxDate: '+30Y',
+        });
 
         $('#date_history2').on('change', function () {
             if (this.value == 'Today')
@@ -152,6 +169,31 @@
             {
                 $("#date_FromTo2").show();
             }
+        });
+        $('#viewDate2').on('click', function () {
+
+
+            var Days = "Select_date";
+            var startDate = $("#startDate_PIR").val();
+            var toDate = $("#toDate_PIR").val();
+
+            $.ajax({
+                url: "../Ortho-Consultation/table/t_PIR_assessment.jsp",
+                type: "post",
+                data: {time_history: Days,
+                    startDate: startDate,
+                    toDate: toDate
+                },
+                timeout: 10000,
+                success: function (returnPIR) {
+                    $('#getPIRAssessment').html(returnPIR);
+                    console.log(returnPIR);
+                    $('#getPIRAssessment').trigger('contentchanged');
+                },
+                error: function (err) {
+                    alert("Error update!");
+                }
+            });
         });
     });
 </script>

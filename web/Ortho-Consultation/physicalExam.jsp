@@ -28,16 +28,16 @@
         </div>
     </div>
     <div class="col-md-6 col-md-offset-6 text-right margin-bottom-30px">
-        <div class="col-sm-12 form-inline" style="padding-right: 0px;" id="date_history3">
+        <div class="col-sm-12 form-inline" style="padding-right: 0px; display: none;" id="date_FromTo3">
             <div class="form-group">
-                <label for="exampleInputName2">Start</label>
-                <input type="text" class="form-control" id="exampleInputName2" placeholder="14/06/2017" style="margin-bottom: 0px !important;">
+                <label for="start">Start</label>
+                <input type="text" class="form-control" id="startDate_physical" placeholder="yyy-mm-dd" style="margin-bottom: 0px !important;">
             </div>
             <div class="form-group">
-                <label for="exampleInputEmail2">to</label>
-                <input type="email" class="form-control" id="exampleInputEmail2" placeholder="15/06/2017" style="margin-bottom: 0px !important;">
+                <label for="to">to</label>
+                <input type="text" class="form-control" id="toDate_physical" placeholder="yyy-mm-dd" style="margin-bottom: 0px !important;">
             </div>
-            <button type="submit" class="btn btn-default"><i class="fa fa-search fa-lg"></i></button>
+            <button type="button" class="btn btn-default" id="viewDate3"><i class="fa fa-search fa-lg"></i></button>
         </div>
     </div>
 </div>
@@ -49,6 +49,24 @@
     $(document).ready(function () {
 
         $("#get_physicalExam").load("../Ortho-Consultation/table/t_physicalExam.jsp");
+
+        $("#startDate_physical").datepicker({
+            dateFormat: 'yy-mm-dd',
+            yearRange: '1999:c+1',
+            changeMonth: true,
+            changeYear: true,
+            minDate: new Date(1999, 10 - 1, 25),
+            maxDate: '+30Y',
+        });
+        $("#toDate_physical").datepicker({
+            dateFormat: 'yy-mm-dd',
+            yearRange: '1999:c+1',
+            changeMonth: true,
+            changeYear: true,
+            minDate: new Date(1999, 10 - 1, 25),
+            maxDate: '+30Y',
+        });
+
         $('#date_history3').on('change', function () {
             if (this.value == 'Today')
             {
@@ -60,9 +78,9 @@
                     data: {time_history: Today
                     },
                     timeout: 10000,
-                    success: function (returnAssessment) {
-                        $('#get_physicalExam').html(returnAssessment);
-                        console.log(returnAssessment);
+                    success: function (returnPhysical) {
+                        $('#get_physicalExam').html(returnPhysical);
+                        console.log(returnPhysical);
                         $('#get_physicalExam').trigger('contentchanged');
                     },
                     error: function (err) {
@@ -80,9 +98,9 @@
                     data: {time_history: Yesterday
                     },
                     timeout: 10000,
-                    success: function (returnAssessment) {
-                        $('#get_physicalExam').html(returnAssessment);
-                        console.log(returnAssessment);
+                    success: function (returnPhysical) {
+                        $('#get_physicalExam').html(returnPhysical);
+                        console.log(returnPhysical);
                         $('#get_physicalExam').trigger('contentchanged');
                     },
                     error: function (err) {
@@ -90,7 +108,7 @@
                     }
                 });
                 //alert("Yesterday");
-            }else if (this.value == 'Yesterday')
+            } else if (this.value == 'Yesterday')
             {
                 $("#date_FromTo3").hide();
                 var Yesterday = "Yesterday";
@@ -100,9 +118,9 @@
                     data: {time_history: Yesterday
                     },
                     timeout: 10000,
-                    success: function (returnAssessment) {
-                        $('#get_physicalExam').html(returnAssessment);
-                        console.log(returnAssessment);
+                    success: function (returnPhysical) {
+                        $('#get_physicalExam').html(returnPhysical);
+                        console.log(returnPhysical);
                         $('#get_physicalExam').trigger('contentchanged');
                     },
                     error: function (err) {
@@ -120,9 +138,9 @@
                     data: {time_history: Days
                     },
                     timeout: 10000,
-                    success: function (returnAssessment) {
-                        $('#get_physicalExam').html(returnAssessment);
-                        console.log(returnAssessment);
+                    success: function (returnPhysical) {
+                        $('#get_physicalExam').html(returnPhysical);
+                        console.log(returnPhysical);
                         $('#get_physicalExam').trigger('contentchanged');
                     },
                     error: function (err) {
@@ -140,9 +158,9 @@
                     data: {time_history: Days
                     },
                     timeout: 10000,
-                    success: function (returnAssessment) {
-                        $('#get_physicalExam').html(returnAssessment);
-                        console.log(returnAssessment);
+                    success: function (returnPhysical) {
+                        $('#get_physicalExam').html(returnPhysical);
+                        console.log(returnPhysical);
                         $('#get_physicalExam').trigger('contentchanged');
                     },
                     error: function (err) {
@@ -159,9 +177,9 @@
                     data: {time_history: Days
                     },
                     timeout: 10000,
-                    success: function (returnAssessment) {
-                        $('#get_physicalExam').html(returnAssessment);
-                        console.log(returnAssessment);
+                    success: function (returnPhysical) {
+                        $('#get_physicalExam').html(returnPhysical);
+                        console.log(returnPhysical);
                         $('#get_physicalExam').trigger('contentchanged');
                     },
                     error: function (err) {
@@ -172,6 +190,30 @@
             {
                 $("#date_FromTo3").show();
             }
+        });
+
+        $('#viewDate3').on('click', function () {
+            var Days = "Select_date";
+            var startDate = $("#startDate_physical").val();
+            var toDate = $("#toDate_physical").val();
+
+            $.ajax({
+                url: "../Ortho-Consultation/table/t_physicalExam.jsp",
+                type: "post",
+                data: {time_history: Days,
+                    startDate: startDate,
+                    toDate: toDate
+                },
+                timeout: 10000,
+                success: function (returnPhysical) {
+                    $('#get_physicalExam').html(returnPhysical);
+                    console.log(returnPhysical);
+                    $('#get_physicalExam').trigger('contentchanged');
+                },
+                error: function (err) {
+                    alert("Error update!");
+                }
+            });
         });
     });
 </script>

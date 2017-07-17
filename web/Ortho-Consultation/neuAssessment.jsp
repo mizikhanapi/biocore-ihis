@@ -32,13 +32,13 @@
         <div class="col-sm-12 form-inline" style="padding-right: 0px; display: none;" id="date_FromTo">
             <div class="form-group">
                 <label for="exampleInputName2">Start</label>
-                <input type="text" class="form-control" id="startDate_Assess" placeholder="14/06/2017" style="margin-bottom: 0px !important;">
+                <input type="text" class="form-control" id="startDate_Assess" placeholder="yyy-mm-dd" style="margin-bottom: 0px !important;">
             </div>
             <div class="form-group">
                 <label for="exampleInputEmail2">to</label>
-                <input type="email" class="form-control" id="toDate_Assess" placeholder="15/06/2017" style="margin-bottom: 0px !important;">
+                <input type="text" class="form-control" id="toDate_Assess" placeholder="yyy-mm-dd" style="margin-bottom: 0px !important;">
             </div>
-            <button type="submit" class="btn btn-default"><i class="fa fa-search fa-lg"></i></button>
+            <button type="button" class="btn btn-default" id="viewDate"><i class="fa fa-search fa-lg"></i></button>
         </div>
     </div>
 </div>
@@ -50,6 +50,24 @@
     $(document).ready(function () {
 
         $("#getNeuAssessment").load("../Ortho-Consultation/table/t_assessment.jsp");
+
+        $("#startDate_Assess").datepicker({
+            dateFormat: 'yy-mm-dd',
+            yearRange: '1999:c+1',
+            changeMonth: true,
+            changeYear: true,
+            minDate: new Date(1999, 10 - 1, 25),
+            maxDate: '+30Y',
+        });
+        $("#toDate_Assess").datepicker({
+            dateFormat: 'yy-mm-dd',
+            yearRange: '1999:c+1',
+            changeMonth: true,
+            changeYear: true,
+            minDate: new Date(1999, 10 - 1, 25),
+            maxDate: '+30Y',
+        });
+
     });
     $('#date_history').on('change', function () {
         if (this.value == 'Today')
@@ -150,7 +168,35 @@
                     alert("Error update!");
                 }
             });
-        } 
+        } else if (this.value == 'Select_date')
+        {
+            $("#date_FromTo").show();
+        }
+    });
+    $('#viewDate').on('click', function () {
+
+
+        var Days = "Select_date";
+        var startDate = $("#startDate_Assess").val();
+        var toDate = $("#toDate_Assess").val();
+
+        $.ajax({
+            url: "../Ortho-Consultation/table/t_assessment.jsp",
+            type: "post",
+            data: {time_history: Days,
+                startDate: startDate,
+                toDate: toDate
+            },
+            timeout: 10000,
+            success: function (returnAssessment) {
+                $('#getNeuAssessment').html(returnAssessment);
+                console.log(returnAssessment);
+                $('#getNeuAssessment').trigger('contentchanged');
+            },
+            error: function (err) {
+                alert("Error update!");
+            }
+        });
     });
 
 </script>

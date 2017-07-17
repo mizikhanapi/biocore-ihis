@@ -23,17 +23,17 @@
             </select>
         </div>
     </div>
-    <div class="col-md-6 col-md-offset-6 text-right margin-bottom-30px" id="date_FromTo1">
-        <div class="col-sm-12 form-inline" style="padding-right: 0px;">
+    <div class="col-md-6 col-md-offset-6 text-right margin-bottom-30px">
+        <div class="col-sm-12 form-inline" style="padding-right: 0px; display: none;" id="date_FromTo1">
             <div class="form-group">
-                <label for="exampleInputName2">Start</label>
-                <input type="text" class="form-control" id="exampleInputName2" placeholder="14/06/2017" style="margin-bottom: 0px !important;">
+                <label for="start">Start</label>
+                <input type="text" class="form-control" id="startDate_Observe" placeholder="yyy-mm-dd" style="margin-bottom: 0px !important;">
             </div>
             <div class="form-group">
-                <label for="exampleInputEmail2">to</label>
-                <input type="email" class="form-control" id="exampleInputEmail2" placeholder="15/06/2017" style="margin-bottom: 0px !important;">
+                <label for="to">to</label>
+                <input type="text" class="form-control" id="toDate_Observe" placeholder="yyy-mm-dd" style="margin-bottom: 0px !important;">
             </div>
-            <button type="submit" class="btn btn-default"><i class="fa fa-search fa-lg"></i></button>
+            <button type="button" class="btn btn-default" id="viewDate1"><i class="fa fa-search fa-lg"></i></button>
         </div>
     </div>
 </div>
@@ -44,7 +44,24 @@
     $(document).ready(function () {
 
         $("#getNeuObservation").load("../Ortho-Consultation/table/t_observation.jsp");
-
+        
+        $("#startDate_Observe").datepicker({
+            dateFormat: 'yy-mm-dd',
+            yearRange: '1999:c+1',
+            changeMonth: true,
+            changeYear: true,
+            minDate: new Date(1999, 10 - 1, 25),
+            maxDate: '+30Y',
+        });
+        $("#toDate_Observe").datepicker({
+            dateFormat: 'yy-mm-dd',
+            yearRange: '1999:c+1',
+            changeMonth: true,
+            changeYear: true,
+            minDate: new Date(1999, 10 - 1, 25),
+            maxDate: '+30Y',
+        });
+        
         $('#date_history1').on('change', function () {
             if (this.value == 'Today')
             {
@@ -66,7 +83,7 @@
                     }
                 });
                 //alert("today");
-            }else if (this.value == 'View by')
+            } else if (this.value == 'View by')
             {
                 $("#date_FromTo1").hide();
                 var Yesterday = "Viewby";
@@ -86,7 +103,7 @@
                     }
                 });
                 //alert("Yesterday");
-            }else if (this.value == 'Yesterday')
+            } else if (this.value == 'Yesterday')
             {
                 $("#date_FromTo1").hide();
                 var Yesterday = "Yesterday";
@@ -169,5 +186,30 @@
                 $("#date_FromTo1").show();
             }
         });
+
+        $('#viewDate1').on('click', function () {
+            var Days = "Select_date";
+            var startDate = $("#startDate_Observe").val();
+            var toDate = $("#toDate_Observe").val();
+
+            $.ajax({
+                url: "../Ortho-Consultation/table/t_observation.jsp",
+                type: "post",
+                data: {time_history: Days,
+                    startDate: startDate,
+                    toDate: toDate
+                },
+                timeout: 10000,
+                success: function (returnObservation) {
+                    $('#getNeuObservation').html(returnObservation);
+                    console.log(returnObservation);
+                    $('#getNeuObservation').trigger('contentchanged');
+                },
+                error: function (err) {
+                    alert("Error update!");
+                }
+            });
+        });
+
     });
 </script>
