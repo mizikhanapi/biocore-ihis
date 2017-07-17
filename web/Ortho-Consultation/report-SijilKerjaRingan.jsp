@@ -4,14 +4,23 @@
     Author     : user
 --%>
 
-<%-- 
-    Document   : report-PhysiotherapyReferral
-    Created on : Jun 23, 2017, 9:34:41 AM
-    Author     : user
---%>
+<%@page import="dBConn.Conn"%>
+<%@page import="java.util.ArrayList"%>
+<%--<%@page import="java.sql.Connection"%> 
+<%@page import="java.sql.DriverManager"%>
+<%@page import="java.util.HashMap"%>
+<%@page import="java.util.Map"%>
+<%@page import="main.RMIConnector"%>--%>
 
+<%
+    Conn conn = new Conn();
+    
+    String hfc = session.getAttribute("HEALTH_FACILITY_CODE").toString();
+    String hfc_cd = "SELECT logo FROM adm_health_facility WHERE hfc_cd='" + hfc + "'";
+    ArrayList<ArrayList<String>> mysqlhfc_cd = conn.getData(hfc_cd);
 
-<div class="modal fade" id="SijilKerjaRinganFormModel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+%>
+<div class="modal fade" id="SijilKerjaRinganFormModel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="overflow-y:scroll;">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -25,7 +34,9 @@
                     <div style="margin-top: 50px;">
                         <div style="height:120px;">
                             <div style="width: 80px; float: left; margin-right: 20px;"> 
-                                <img style="width:80px;height:80px;" src="../Ortho-Consultation/asset/images/MalaysianHockeyFederationLogo.jpg" alt=""/>
+                                <img style="width:80px;height:80px;" src="<%=mysqlhfc_cd.get(0).get(0)%>" alt=""/>
+                                <!--<img style="width:80px;height:80px;" src="../Ortho-Consultation/asset/images/MalaysianHockeyFederationLogo.jpg" alt=""/>-->
+                            
                             </div>
                             <div style="width: 40%; float: left;">
                                 <strong>JABATAN ORTOPEDIK & TRAUMATOLOGI<br>
@@ -51,7 +62,7 @@
                                 sehingga rawatan selanjutnya.</p>
 
                             <p style="white-space:pre; margin-top: 30px;">Tarikh: <strong id="SKRF-currDate"></strong>                                                                           ................................................
-                                                                                                                          (Pakar/Mo)</p>
+                                (Pakar/Mo)</p>
                         </div>
                     </div>
 

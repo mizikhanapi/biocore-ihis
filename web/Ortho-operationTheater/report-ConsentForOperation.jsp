@@ -4,11 +4,12 @@
 
 
 <%
-    String hospitalName, patientName, operationName, surgentName;
+    String hospitalName, patientName, operationName, surgentName,doctorName;
     String nextOfKinName, nextOfKinIC, relWithPatient, relWithNext;
     //       if (session.getAttribute("USER_NAME") != null) {
 
     hospitalName = session.getAttribute("HFC_NAME").toString();
+    doctorName = session.getAttribute("USER_NAME").toString();
     //       }
     nextOfKinName = request.getParameter("name");
     nextOfKinIC = request.getParameter("ic");
@@ -18,7 +19,7 @@
 
 %>
 
-<div class="modal fade" id="opreationConsentForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<div class="modal fade" id="opreationConsentForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="overflow-y:scroll;">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -43,7 +44,7 @@
                                 *to undergo the operation of <strong>....................................................................................</strong>
                                 *the submission of my child/ward <strong><%=relWithNext%></strong> to undergo
                                 the operation of <strong>.........................................................................................</strong>
-                                the name and the purpose of which have been explained to by Dr. <strong>Doctor Name</strong></p>
+                                the name and the purpose of which have been explained to by Dr. <strong><%=doctorName%></strong></p>
                             <p>I also consent to such further or alternative operative measurement as may be found necessary during 
                                 the course of the abovementioned operation and to the administration of general, local or other
                                 anaesthetic for any of these purposes.</p>

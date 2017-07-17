@@ -340,7 +340,7 @@
                     bootbox.alert("Fill in the User Name !");
                     $("#inputUserName").focus();
                 } else if (containsNumber(username)) {
-                    bootbox.alert("UnValic Name, Contain Numbers !");
+                    bootbox.alert("Unvalid Name, Contain Numbers !");
                     $("#inputUserName").focus();
                 } else if (!$("input[name='gender']:checked").val()) {
                     bootbox.alert("Select Gender !");

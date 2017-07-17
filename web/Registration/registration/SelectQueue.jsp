@@ -14,14 +14,20 @@ Author     : user
 
     Conn conn = new Conn();
 
-    String Consultationqueue = "select * from pms_queue_name where queue_type='FY' and hfc_cd = '" + session.getAttribute("HEALTH_FACILITY_CODE") + "' ";
-    String Doctorqueue = "select * from pms_queue_name where queue_type='PN' and hfc_cd = '" + session.getAttribute("HEALTH_FACILITY_CODE") + "' ";
+    String hfc = session.getAttribute("HEALTH_FACILITY_CODE").toString();
+    String dis = session.getAttribute("DISCIPLINE_CODE").toString();
 
-    ArrayList<ArrayList<String>> dataQueue;
-    ArrayList<ArrayList<String>> dataQueue2;
+    String Commonqueue = "select * from pms_queue_list where queue_type='CM' and hfc_cd='" + hfc + "' and status ='Active' and discipline_cd = '" + dis + "'";
+    String Consultationqueue = "select * from pms_queue_list where queue_type='FY' and hfc_cd='" + hfc + "' and status ='Active' and discipline_cd = '" + dis + "'";
+    String Doctorqueue = "select * from pms_queue_list where queue_type='PN' and hfc_cd='" + hfc + "' and status ='Active' and discipline_cd = '" + dis + "'";
 
-    dataQueue = conn.getData(Doctorqueue);
-    dataQueue2 = conn.getData(Consultationqueue);
+//    String Consultationqueue = "select * from pms_queue_name where queue_type='FY' and hfc_cd = '" + session.getAttribute("HEALTH_FACILITY_CODE") + "' ";
+//    String Doctorqueue = "select * from pms_queue_name where queue_type='PN' and hfc_cd = '" + session.getAttribute("HEALTH_FACILITY_CODE") + "' ";
+    ArrayList<ArrayList<String>> dataQueueCommon, dataQueue2Cons, dataQueue2Doc;
+
+    dataQueueCommon = conn.getData(Commonqueue);
+    dataQueue2Cons = conn.getData(Consultationqueue);
+    dataQueue2Doc = conn.getData(Doctorqueue);
 %>
 
 <!DOCTYPE html>
@@ -94,14 +100,14 @@ Author     : user
 
                                         <%
                                             String add = null, text = null;
-                                            for (int i = 0; i < dataQueue2.size(); i++) {
-                                                if (dataQueue2.get(i).get(1) != "" || dataQueue2.get(i).get(1) != null) {
+                                            for (int i = 0; i < dataQueue2Cons.size(); i++) {
+                                                if (dataQueue2Cons.get(i).get(1) != "" || dataQueue2Cons.get(i).get(1) != null) {
 
-                                                    if (!dataQueue2.get(i).get(1).contains("Room")) {
+                                                    if (!dataQueue2Cons.get(i).get(1).contains("Room")) {
 
                                         %>
 
-                                        <option value="<%=dataQueue2.get(i).get(1)%>"><%="(" + dataQueue2.get(i).get(0) + ") " + dataQueue2.get(i).get(1)%></option>
+                                        <option value="<%=dataQueue2Cons.get(i).get(1) + "|" + dataQueue2Cons.get(i).get(2)%>"><%="(" + dataQueue2Cons.get(i).get(0) + ") " + dataQueue2Cons.get(i).get(1)%></option>
                                         <%                  }
                                                 }
                                             }
@@ -113,11 +119,26 @@ Author     : user
                                         <option value="null" selected="" disabled="">Please Select Queue</option>
 
                                         <%
-                                            for (int i = 0; i < dataQueue.size(); i++) {
-                                                if (dataQueue.get(i).get(1) != "" || dataQueue.get(i).get(1) != null) {
+                                            for (int i = 0; i < dataQueue2Doc.size(); i++) {
+                                                if (dataQueue2Doc.get(i).get(1) != "" || dataQueue2Doc.get(i).get(1) != null) {
                                         %>
 
-                                        <option value="<%=dataQueue.get(i).get(1)%>"><%="(" + dataQueue.get(i).get(0) + ") " + dataQueue.get(i).get(1)%></option>
+                                        <option value="<%=dataQueue2Doc.get(i).get(1) + "|" + dataQueue2Doc.get(i).get(2)%>"><%="(" + dataQueue2Doc.get(i).get(0) + ") " + dataQueue2Doc.get(i).get(1)%></option>
+                                        <%                  }
+                                            }
+                                        %>
+
+                                    </select>
+
+                                    <select  id="selectedCommonQueue"  class="form-control select-full">
+                                        <option value="null" selected="" disabled="">Please Select Queue</option>
+
+                                        <%
+                                            for (int i = 0; i < dataQueueCommon.size(); i++) {
+                                                if (dataQueueCommon.get(i).get(1) != "" || dataQueueCommon.get(i).get(1) != null) {
+                                        %>
+
+                                        <option value="<%=dataQueueCommon.get(i).get(1) + "|" + dataQueueCommon.get(i).get(2)%>"><%="(" + dataQueueCommon.get(i).get(0) + ") " + dataQueueCommon.get(i).get(1)%></option>
                                         <%                  }
                                             }
                                         %>
@@ -148,6 +169,10 @@ Author     : user
 
             $('#selectedDoctorQueue').hide();
             $('#selectedServiceQueue').hide();
+            $('#selectedCommonQueue').hide();
+
+            var temp = "<%=dataQueueCommon%>";
+            console.log(temp);
 
             var $body = $('body');
             var yyyyMMddHHmmss;
@@ -201,18 +226,22 @@ Author     : user
                 HHmmss = hours + ":" + ZeroMinutes + ":" + ZeroSeconds;
                 yyyyMMdd = year + "-" + ZeroMonth + "-" + ZeroDay;
                 ddMMyyyy = ZeroDay + "-" + ZeroMonth + "-" + year;
+//                ddMMyyyyHHmmss = ZeroDay + "/" + ZeroMonth + "/" + year + " " + hours + ":" + ZeroMinutes + ":" + ZeroSeconds;
+//                HHmmss = hours + ":" + ZeroMinutes + ":" + ZeroSeconds;
+//                ddMMyyyy = ZeroDay + "/" + ZeroMonth + "/" + year;
             }
 
             //event when radio consolate is change
             document.getElementById("commonQueue").onchange = function () {
-                changesConsClicked();
+                changesComonClicked();
             };
-
-            function changesConsClicked() {
+            function changesComonClicked() {
 //                console.log("click 2");
-                $('#selectedDoctorQueue').hide();
+                $('#selectedCommonQueue').show();
                 $('#selectedServiceQueue').hide();
+                $('#selectedDoctorQueue').hide();
                 $("#selectedDoctorQueue").val("null");
+                $("#selectedCommonQueue").val("null");
                 $("#selectedServiceQueue").val("null");
             }
             ;
@@ -224,11 +253,13 @@ Author     : user
 
             function changesDocClicked() {
 //                console.log("click 1");
-                $('#selectedDoctorQueue').show();
-                $('#selectedServiceQueue').hide();
-                $("#selectedDoctorQueue").val("null");
-                $("#selectedServiceQueue").val("null");
 
+                $('#selectedCommonQueue').hide();
+                $('#selectedServiceQueue').hide();
+                $('#selectedDoctorQueue').show();
+                $("#selectedDoctorQueue").val("null");
+                $("#selectedCommonQueue").val("null");
+                $("#selectedServiceQueue").val("null");
             }
             ;
 
@@ -239,11 +270,13 @@ Author     : user
 
             function changesSerClicked() {
 //                console.log("click 1");
+
+                $('#selectedCommonQueue').hide();
                 $('#selectedServiceQueue').show();
                 $('#selectedDoctorQueue').hide();
                 $("#selectedDoctorQueue").val("null");
+                $("#selectedCommonQueue").val("null");
                 $("#selectedServiceQueue").val("null");
-
             }
             ;
 
@@ -313,14 +346,15 @@ Author     : user
             });//on clcik submitSignup
             $("#registerSignup").click(function () {
                 getDateNow();
-                var useric, username, queuetype, selectedqueue;
+                var useric, username, queuetype, selectedqueue, queueuserid, selectedqueuename;
                 useric = $("#inputUserIC").val();
                 username = $("#inputUserName").val();
                 queuetype = $("input[name='queuetype']:checked").val();
-
+                queueuserid = "";
+                selectedqueuename = "";
                 if (queuetype === "CM")
                 {
-                    selectedqueue = "Normal Queue";
+                    selectedqueue = $('#selectedCommonQueue').val();
                 } else if (queuetype === "PN")
                 {
                     selectedqueue = $('#selectedDoctorQueue').val();
@@ -328,9 +362,12 @@ Author     : user
                 {
                     selectedqueue = $('#selectedServiceQueue').val();
                 }
-
-
-//                console.log(useric+" "+username+" "+queuetype+" "+selectedqueue);
+                
+                var tempsplit = selectedqueue.split("|");
+                selectedqueuename = tempsplit[0];
+                queueuserid = tempsplit[1];
+                
+                console.log(useric + "-" + username + "-" + queuetype + "-" + selectedqueue + "-" + selectedqueuename + "-" + queueuserid);
                 if (useric === "")
                 {
                     bootbox.alert("Fill in the user IC");
@@ -346,6 +383,8 @@ Author     : user
                     $("#selectedQueue").focus();
                 } else {
 
+
+                    console.log(selectedqueue + "+" + queueuserid);
 
                     //hfc amik kat session
                     hfc = $("#Rhfc").val();
@@ -382,9 +421,9 @@ Author     : user
                         'now': yyyyMMdd,
                         'comTy': queuetype,
                         'createdBy': user_id,
-                        'queue': selectedqueue,
-                        'docID': '-'};
-                    //console.log(datas);
+                        'queue': selectedqueuename,
+                        'docID': queueuserid};
+                    console.log(datas);
 
                     $.ajax({
                         type: "POST",
@@ -394,9 +433,8 @@ Author     : user
                         success: function (list) {
                             console.log(list);
                             if ($.trim(list) === "Success") {
-
                                 bootbox.alert("Patient has been register successfully");
-                                window.history.back();
+//                                window.history.back();
                                 PrintLable(selectedqueue);
 
                             } else if ($.trim(list) === "already") {

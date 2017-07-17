@@ -149,7 +149,34 @@
         relWithPatient = $("#relaitonWithPatient").val();
         relWithNext = $("#relationWitNextOfKin").val();
         patientName = $("#pName").text();
-        sendDate(name, ic, relWithPatient, relWithNext, patientName);
+
+        if (name === "") {
+            bootbox.alert("Fill in the Nent of Kin Name !");
+            $("#nextOfKinName").focus()();
+        } else if (containsNumber(name)) {
+            bootbox.alert("Unvalid Name, Contain Numbers !");
+            $("#nextOfKinName").focus();
+        } else if (ic === "") {
+            bootbox.alert("Fill in the Next of Kin IC");
+            $('#nextOfKinIC').focus();
+        } else if (relWithPatient === "") {
+            bootbox.alert("Fill in the Relation with Patient");
+            $("#relaitonWithPatient").focus();
+        } else if (containsNumber(relWithPatient)) {
+            bootbox.alert("Unvalid Relation, Contain Numbers !");
+            $("#relaitonWithPatient").focus();
+        } else if (relWithNext === "") {
+            bootbox.alert("Fill in the Relation with Next of Kin");
+            $("#relationWitNextOfKin").focus();
+        } else if (containsNumber(relWithNext)) {
+            bootbox.alert("Unvalid Relation, Contain Numbers !");
+            $("#relationWitNextOfKin").focus();
+        } else {
+
+            sendDate(name, ic, relWithPatient, relWithNext, patientName);
+        }
+
+
     });
 
     $('#printBloodTransfusionForm').click(function () {
@@ -161,8 +188,8 @@
     $("#Ortho-OperationTheater_3").on('click', '#BTCF', function () {
 
         var datas = {
-            'pmiNo':pmiNo,
-            'episodeDate':episodeDate
+            'pmiNo': pmiNo,
+            'episodeDate': episodeDate
         };
         $.ajax({
             type: 'POST',
@@ -228,5 +255,14 @@
         popupWin.document.write('<html><body onload="window.print()">' + divElements + '</html>');
         popupWin.document.close();
     }
+    function containsNumber(any) {
+        var alpha = /^[a-zA-Z-,]+(\s{0,1}[a-zA-Z-, ])*$/; //for sentence allow space
+        //var re = /^[A-Za-z]+$/; for one word only don't allow space
+        if (alpha.test(any))//contain no number
+            return false;
+        else               //comtain number
+            return true;
+    }
+    ;
 
 </script>

@@ -41,13 +41,13 @@
                     </ul>
                     <hr class="pemisah" />
                     <%@include file="neuAssessment.jsp"%>
-<!--                    <script>
-                        $('#musclePower').on('click', '.musclePoser', function () {
-                            //$('#actionPE').hide();
-                            //$('#updatePE').hide();
-                            //$('#ortho_physical_exam').show();
-                        });
-                    </script>-->
+                    <!--                    <script>
+                                            $('#musclePower').on('click', '.musclePoser', function () {
+                                                //$('#actionPE').hide();
+                                                //$('#updatePE').hide();
+                                                //$('#ortho_physical_exam').show();
+                                            });
+                                        </script>-->
 
                 </div>
                 <!-- content -->
@@ -255,14 +255,26 @@
         endDate = $("#SKRDM-endDate").val();
         extraComment = $("#drComment").val();
 
-        $("#SKRF-diagnosis").html(diagnosis);
-        $("#SKRF-drComment").html(extraComment);
-        $("#SKRF-startDate").html(startDate);
-        $("#SKRF-endDate").html(endDate);
-        $('#AddSijilKerjaRinganModel').modal('toggle');
-        $("#SijilKerjaRinganFormModel").modal();
+
+        if (diagnosis === "") {
+            bootbox.alert("Search the Diagnosis.");
+            $('#tCISSubDGSSearchReport').focus();
+        } else if (startDate === "") {
+            bootbox.alert("Plese Select the Start Date.");
+            $('#SKRDM-startDate').focus();
+        } else if (endDate === "") {
+            bootbox.alert("Please Select the End Date.");
+            $("#SKRDM-endDate").focus();
+        } else {
+            $("#SKRF-diagnosis").html(diagnosis);
+            $("#SKRF-drComment").html(extraComment);
+            $("#SKRF-startDate").html(startDate);
+            $("#SKRF-endDate").html(endDate);
+            $('#AddSijilKerjaRinganModel').modal('toggle');
+            $("#SijilKerjaRinganFormModel").modal();
+        }
     });
-     $('#printSijilKerjaRinganForm').click(function () {
+    $('#printSijilKerjaRinganForm').click(function () {
 //    $('#SijilKerjaRinganFormModel').on('click', '#printSijilKerjaRinganForm', function () {
         var divID = 'SijilKerjaRinganFormBody';
         printReport(divID);
