@@ -49,16 +49,55 @@
 
     //search based on ID Type
     if (idType.equals("001")) { //PMI No
-        sql = "select w.pmi_no, w.episode_date,h.hfc_name,d.discipline_name,w.new_ic_no,w.old_ic_no, from wis_inpatient_episode w inner join adm_health_facility h on w.hfc_cd = h.hfc_cd inner join  adm_discipline d on w.discipline_cd = d.discipline_cd where w.pmi_no = '" + idInput + "'";
-        sql2 = "select p.pmi_no,p.episode_date,h.hfc_name,d.discipline_name,p.new_ic_no,p.old_ic_no from pms_episode p inner join adm_health_facility h on p.`HEALTH_FACILITY_CODE` = h.hfc_cd inner join  adm_discipline d on p.DISCIPLINE_CODE = d.discipline_cd where p.pmi_no = '" + idInput + "';";
+        sql = "select w.pmi_no, w.episode_date,h.hfc_name,d.discipline_name,w.new_ic_no,w.old_ic_no "
+                + "from wis_inpatient_episode w "
+                + "inner join adm_health_facility h on w.hfc_cd = h.hfc_cd "
+                + "inner join  adm_discipline d on w.discipline_cd = d.discipline_cd "
+                + "where w.pmi_no = '" + idInput + "' AND w.inpatient_status = '1' "
+                + "GROUP BY w.`EPISODE_DATE` "
+                + "ORDER BY w.`EPISODE_DATE` DESC;";
+        
+        sql2 = "select p.pmi_no,p.episode_date,h.hfc_name,d.discipline_name,p.new_ic_no,p.old_ic_no "
+                + "from pms_episode p "
+                + "inner join adm_health_facility h on p.`HEALTH_FACILITY_CODE` = h.hfc_cd "
+                + "inner join  adm_discipline d on p.DISCIPLINE_CODE = d.discipline_cd "
+                + "where p.pmi_no = '" + idInput + "' AND p.status = '1'"
+                + "GROUP BY p.`EPISODE_DATE` "
+                + "ORDER BY p.`EPISODE_DATE` "
+                + "DESC;;;";
 
     } else if (idType.equals("002")) { // IC No (New)
-        sql = "select w.pmi_no,w.episode_date,h.hfc_name,d.discipline_name,w.new_ic_no,w.old_ic_no from wis_inpatient_episode w inner join adm_health_facility h on w.hfc_cd = h.hfc_cd inner join  adm_discipline d on w.discipline_cd = d.discipline_cd where w.new_ic_no = '" + idInput + "'";
-        sql2 = "select p.pmi_no,p.episode_date,h.hfc_name,d.discipline_name,p.new_ic_no,p.old_ic_no from pms_episode p inner join adm_health_facility h on p.`HEALTH_FACILITY_CODE` = h.hfc_cd inner join  adm_discipline d on p.DISCIPLINE_CODE = d.discipline_cd where p.new_ic_no = '" + idInput + "';";
+        sql = "select w.pmi_no,w.episode_date,h.hfc_name,d.discipline_name,w.new_ic_no,w.old_ic_no "
+                + "from wis_inpatient_episode w "
+                + "inner join adm_health_facility h on w.hfc_cd = h.hfc_cd "
+                + "inner join  adm_discipline d on w.discipline_cd = d.discipline_cd "
+                 + "where w.pmi_no = '" + idInput + "' AND w.inpatient_status = '1' "
+                + "GROUP BY w.`EPISODE_DATE` "
+                + "ORDER BY w.`EPISODE_DATE` "
+                + "DESC;;";
+        sql2 = "select p.pmi_no,p.episode_date,h.hfc_name,d.discipline_name,p.new_ic_no,p.old_ic_no from pms_episode p "
+                + "inner join adm_health_facility h on p.`HEALTH_FACILITY_CODE` = h.hfc_cd "
+                + "inner join  adm_discipline d on p.DISCIPLINE_CODE = d.discipline_cd "
+                + "where p.pmi_no = '" + idInput + "' AND p.status = '1'"
+                + "GROUP BY p.`EPISODE_DATE` "
+                + "ORDER BY p.`EPISODE_DATE` DESC;;;";
 
     } else if (idType.equals("003")) { // IC No (Old)
-        sql = "select w.pmi_no,w.episode_date,h.hfc_name,d.discipline_name,w.new_ic_no,w.old_ic_no from wis_inpatient_episode w inner join adm_health_facility h on w.hfc_cd = h.hfc_cd inner join  adm_discipline d on w.discipline_cd = d.discipline_cd where w.old_ic_no = '" + idInput + "'";
-        sql2 = "select p.pmi_no,p.episode_date,h.hfc_name,d.discipline_name,p.new_ic_no,p.old_ic_no from pms_episode p inner join adm_health_facility h on p.`HEALTH_FACILITY_CODE` = h.hfc_cd inner join  adm_discipline d on p.DISCIPLINE_CODE = d.discipline_cd where p.old_ic_no = '" + idInput + "';";
+        sql = "select w.pmi_no,w.episode_date,h.hfc_name,d.discipline_name,w.new_ic_no,w.old_ic_no "
+                + "from wis_inpatient_episode w "
+                + "inner join adm_health_facility h on w.hfc_cd = h.hfc_cd "
+                + "inner join  adm_discipline d on w.discipline_cd = d.discipline_cd "
+                 + "where w.pmi_no = '" + idInput + "' AND w.inpatient_status = '1' "
+                + "GROUP BY w.`EPISODE_DATE` "
+                + "ORDER BY w.`EPISODE_DATE` DESC;;";
+        
+        sql2 = "select p.pmi_no,p.episode_date,h.hfc_name,d.discipline_name,p.new_ic_no,p.old_ic_no "
+                + "from pms_episode p "
+                + "inner join adm_health_facility h on p.`HEALTH_FACILITY_CODE` = h.hfc_cd "
+                + "inner join  adm_discipline d on p.DISCIPLINE_CODE = d.discipline_cd "
+                + "where p.pmi_no = '" + idInput + "' AND p.status = '1'"
+                + "GROUP BY p.`EPISODE_DATE` "
+                + "ORDER BY p.`EPISODE_DATE` DESC;;;";
     }
 
     ArrayList<ArrayList<String>> searchID;
