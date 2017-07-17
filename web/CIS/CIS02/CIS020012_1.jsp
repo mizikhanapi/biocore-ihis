@@ -20,10 +20,18 @@
     
     
    
-    
-String sqlRIS = "SELECT cis_pos_master.ORDER_NO,cis_pos_detail.PROCEDURE_NAME,cis_pos_detail.COMMENTS,cis_pos_detail.COMMENTS_DOCTOR,cis_pos_master.ORDER_DATE,cis_pos_master.ARRIVAL_DATE FROM cis_pos_detail INNER JOIN cis_pos_master ON cis_pos_master.ORDER_NO = cis_pos_detail.ORDER_NO WHERE cis_pos_master.PMI_NO = '"+pmiNo+"' AND cis_pos_master.LOCATION_CODE = '"+hfc_cd+"'";
+        //                  0           1           2           3                   4               5                       6           7               8
+String sqlRIS = "SELECT om.order_no, om.hfc_to, hf.hfc_name, om.`EPISODE_DATE`, od.`PROCEDURE_CD`, od.`PROCEDURE_NAME`, au.`USER_NAME`,om.order_by, rd.comments,od.`COMMENT`  "
+                                                + " FROM pos_order_master om   "
+                                                + "JOIN pos_order_detail od ON om.order_no = od.order_no    "
+                                                + "JOIN adm_health_facility hf  ON hf.hfc_cd = om.hfc_to "
+                                                + "JOIN adm_users au ON au.`USER_ID` = om.order_by   "
+                                                + "LEFT JOIN pos_result_detail rd ON om.order_no = rd.order_no "
+                                                + "WHERE  om.`PMI_NO` = '"+pmiNo+"'  "
+                                                + "ORDER BY om.order_no DESC;";
+
 ArrayList<ArrayList<String>> dataRIS = conn.getData(sqlRIS);
-//out.print(sqlRIS);
+
 %>
 <table class="table table-striped table-filter table-bordered" id="opTable">
     <%
@@ -31,12 +39,12 @@ ArrayList<ArrayList<String>> dataRIS = conn.getData(sqlRIS);
             %>
             <thead>
                 <tr>
-                    <th>Order No</th>
+                    <th>Episode Date</th>
                     <th>Procedure Name</th>
                     <th>Comments</th>
                     <th>Comments Doctor</th>
-                    <th>Order Date</th>
-                    <th>Arrival Date</th>
+                    <th>Order By</th>
+                    
                 </tr>
             </thead>
             <tbody>
@@ -44,12 +52,12 @@ ArrayList<ArrayList<String>> dataRIS = conn.getData(sqlRIS);
                     for (int i = 0; i < dataRIS.size(); i++) {
                 %>
                 <tr>
-                    <td><%out.print(dataRIS.get(i).get(0));%></td>
-                    <td><%out.print(dataRIS.get(i).get(1));%></td>
-                    <td><%out.print(dataRIS.get(i).get(2));%></td>
                     <td><%out.print(dataRIS.get(i).get(3));%></td>
-                    <td><%out.print(dataRIS.get(i).get(4));%></td>
                     <td><%out.print(dataRIS.get(i).get(5));%></td>
+                    <td><%out.print(dataRIS.get(i).get(9));%></td>
+                    <td><%out.print(dataRIS.get(i).get(8));%></td>
+                    <td><%out.print(dataRIS.get(i).get(6));%></td>
+                    
 
 
                 </tr>
