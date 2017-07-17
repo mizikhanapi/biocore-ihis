@@ -377,7 +377,7 @@
 <!--                            <div id="match17"></div>-->
                         </div>
                          <div class="form-group">
-                                <input class="form-control input-lg" type="text" name="fmhCode"  id="fmhCode" tabindex="4">
+                                <input class="form-control input-lg" type="hidden" name="fmhCode"  id="fmhCode" tabindex="4">
                         </div>
                         <div class="form-group">
                             <select name="mild" id="f_relationship" class="form-control input-lg">
@@ -498,7 +498,7 @@
                     <div class="modal-body">
                         <!-- content goes here -->
                          <div class="form-group">
-                            <input type="text" name="SOH" id="codeSOH" class="form-control input-lg" tabindex="4">
+                            <input type="hidden" name="SOH" id="codeSOH" class="form-control input-lg" tabindex="4">
                         </div>
                         <div class="form-group">
                             <input class="form-control input-lg" type="text"  id="tCISSubSOHSearch" placeholder="Please Type Social History..." tabindex="4">
