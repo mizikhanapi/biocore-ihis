@@ -32,11 +32,11 @@
         <div class="col-sm-12 form-inline" style="padding-right: 0px; display: none;" id="date_FromTo">
             <div class="form-group">
                 <label for="exampleInputName2">Start</label>
-                <input type="text" class="form-control" id="exampleInputName2" placeholder="14/06/2017" style="margin-bottom: 0px !important;">
+                <input type="text" class="form-control" id="startDate_Assess" placeholder="14/06/2017" style="margin-bottom: 0px !important;">
             </div>
             <div class="form-group">
                 <label for="exampleInputEmail2">to</label>
-                <input type="email" class="form-control" id="exampleInputEmail2" placeholder="15/06/2017" style="margin-bottom: 0px !important;">
+                <input type="email" class="form-control" id="toDate_Assess" placeholder="15/06/2017" style="margin-bottom: 0px !important;">
             </div>
             <button type="submit" class="btn btn-default"><i class="fa fa-search fa-lg"></i></button>
         </div>
@@ -111,7 +111,7 @@
                     alert("Error update!");
                 }
             });
-            
+
         } else if (this.value == 'Days_30')
         {
             $("#date_FromTo").hide();
@@ -150,10 +150,7 @@
                     alert("Error update!");
                 }
             });
-        } else if (this.value == 'Select date')
-        {
-            $("#date_FromTo").show();
-        }
+        } 
     });
 
 </script>
