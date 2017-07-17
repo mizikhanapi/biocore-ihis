@@ -97,15 +97,16 @@ public class PIS_ord {
                                     + " duration, "
                                     + "order_status,"
                                     + " qty_ordered,"
-                                    + " qty_supplied,"
+                                    //+ " qty_supplied,"
                                    // + " supplied_oum,"
                                     //+ " qty_dispensed,"
                                     //+ " dispense_oum, "
-                                    + "status,"
+                                    + "status"
                                     //+ " drug_dosage_order_uom,"
                                     //+ " drug_selling_price"
                                     + ")"
-                                    + " values ('" + pis_seq.getPIS_orderno() + "',"
+                                    + " values ("
+                                    + "'" + pis_seq.getPIS_orderno() + "',"
                                     + "'" + piss.get(2).get(0) + "',"
                                     + "'" + piss.get(2).get(1) + "',"
                                     + "'" + piss.get(5).get(1) + "',"
@@ -120,7 +121,7 @@ public class PIS_ord {
                                    // + "'0',"
                                     //+ "'-',"
                                    // + "'0',"
-                                    + "'0',"
+                                    + "'0'"
                                     //+ "'-',"
                                     //+ "'1'"
                                     + ")";
@@ -128,6 +129,8 @@ public class PIS_ord {
                                 status_pis_order_detail = rc.setQuerySQL(Config.ipAddressServer, Config.portServer, sql_pis_detail);
                                 if (status_pis_order_detail == true) {
                                     System.out.println("Done with pis MASTER and pis DETAIL");
+                                }else{
+                                    System.out.println(sql_pis_detail);
                                 }
                             } catch (Exception e) {
 
