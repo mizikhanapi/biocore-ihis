@@ -20,6 +20,7 @@
 
                 <div class="form-group">
                     <div class="form-group">
+                        <label class="col-md-6 control-label" for="textinput">Follow Up Doctor</label>
                         <input class="form-control input-lg" type="text" name="problem"  id="searchFLU" placeholder="Search Doctor" tabindex="4">
                         <div id="matchFLU"></div>
                         <input id="docFLUCode" type="hidden">
@@ -28,6 +29,7 @@
                 
                 <div class="form-group">
                     <div class="form-group">
+                        <label class="col-md-6 control-label" for="textinput">Follow Up Date</label>
                             <input class="form-control input-lg" type="text" name="DateFollowUp" id="DateFollowUp" placeholder="Date">
                     </div>
                 </div>
@@ -75,6 +77,7 @@
 
                 <div class="form-group">
                     <div class="form-group">
+                        <label class="col-md-6 control-label" for="textinput">Follow Up Doctor</label>
                         <input class="form-control input-lg" type="text" name="problem"  id="usearchFLU" placeholder="Search Doctor" tabindex="4">
                         <div id="umatchFLU"></div>
                         <input id="UdocFLUCode" type="hidden">
@@ -83,6 +86,7 @@
                 
                 <div class="form-group">
                     <div class="form-group">
+                        <label class="col-md-6 control-label" for="textinput">Follow Up Date</label>
                             <input class="form-control input-lg" type="text" name="DateFollowUp" id="uDateFollowUp" placeholder="Date">
                     </div>
                 </div>

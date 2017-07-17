@@ -88,21 +88,6 @@ var NotesPE;
 
 $(document).ready(function () {
 
-//-------------------------------QUEUE MODAL
-
-    $('#queueBtn').click(function (e) {
-        e.preventDefault();
-        $('#listQueue').load('queue/QueueModal.jsp');
-        $('#queueModal').modal('toggle');
-//    $.ajax({
-//        url:'queue/listQueue.jsp',
-//        timeout:10000,
-//        method:'POST',
-//        success:function(result){
-//            $('#formQueueSaya').html(result);
-//        }
-//    });
-    });
 
 /// -----------------------------------------------------------------------------------------------------------------------------------------------/////;
 /// -------------------------------------------------------------GCS MODUL----------------------------------------------------------------/////;
@@ -967,6 +952,33 @@ $(document).ready(function () {
 
         });
     });
+    
+    $("#divCIS_O_RIS_RadiologyResult").on("click","#risTable #btnCIS_O_ROS_VIEW_RESULT",function(e){
+        e.preventDefault();
+        var rowOrder = $(this).closest("tr");
+        var orderId = rowOrder.find("#orderId").html();
+        var modality_cd = rowOrder.find("#tM_SEARCH_CODE").html();
+        var body_system_cd = rowOrder.find("#tBS_SEARCH_CODE").html();
+        var procedure_cd = rowOrder.find("#tP_SEARCH_CODE").html();
+        $("#CIS040000_RESULT").modal('show');
+        $.ajax({
+            type: "POST",
+            url: "order/RISImageResult.jsp",
+            timeout: 3000,
+            data: {
+                orderNo: orderId,
+                bsCode: body_system_cd,
+                modCode: modality_cd,
+                proCode: procedure_cd
+            },
+            success: function (e) {
+
+                $("#CIS040000_RESULT_IMG").attr("src", e.trim());
+                //$("CIS040000_RESULT_IMG").html(e);
+            }
+
+        })
+    })
 
     $('#LISResult').on('click', function () {
 
@@ -975,6 +987,32 @@ $(document).ready(function () {
             $('#lisTable').html(data);
 
         });
+    });
+    
+    $("#divCIS_O_LIS_LaboratoryResult").on("click", "#lisTable #btnCIS_O_LIO_VIEW_RESULT", function (e) {
+  
+        e.preventDefault();
+        var rowOrder = $(this).closest("tr");
+        var orderId = rowOrder.find("#id_result").html();
+
+        $("#CIS040001_RESULT").modal('show');
+        $.ajax({
+            type: "POST",
+            url: "order/LIOImageResult.jsp",
+            timeout: 3000,
+            data: {
+                id_result: orderId
+
+            },
+            success: function (e) {
+
+                $("#CIS040001_RESULT_IMG").attr("src", e.trim());
+                //$("CIS040000_RESULT_IMG").html(e);
+            }
+
+        })
+
+
     });
 
     $('#OPResult').on('click', function () {

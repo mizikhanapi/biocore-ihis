@@ -4,7 +4,9 @@
     Author     : -D-
 --%>
 
-
+<style>
+    #CIS020011 #CIS020010 #CIS020012 { overflow-y:scroll }
+</style>
     <!-- Modal -->
     <div class="modal fade" id="CIS020011" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
         <div class="modal-dialog" style="width: 70%;">
@@ -20,7 +22,7 @@
 
 
                         <div class="row">
-                            <div class="col-xs-12 col-sm-12 col-md-12">
+                            <div class="col-xs-12 col-sm-12 col-md-12" id="divCIS_O_LIS_LaboratoryResult">
                                 <table class="table table-striped table-filter table-bordered" id="lisTable">
                                    
                                 </table>

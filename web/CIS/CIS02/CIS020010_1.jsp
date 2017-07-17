@@ -20,14 +20,32 @@
     
    
     
-String sqlRIS = "SELECT ris_order_master.order_no,ris_detail_order.procedure_cd, ris_detail_order.ris_procedure_name, ris_detail_order.modality_name, ris_detail_order.body_system_name, ris_detail_order.remarks,ris_detail_order.requestor_instruction FROM  ris_detail_order INNER JOIN ris_order_master ON ris_detail_order.order_no = ris_order_master.order_no WHERE ris_order_master.pmi_no ='"+pmiNo+"' AND ris_order_master.hfc_cd = '" +hfc_cd+"'";
-ArrayList<ArrayList<String>> dataRIS = conn.getData(sqlRIS);
-//out.print(sqlRIS);
+//String sqlRIS = "SELECT ris_order_master.order_no,ris_detail_order.procedure_cd, ris_detail_order.ris_procedure_name, ris_detail_order.modality_name, ris_detail_order.body_system_name, ris_detail_order.remarks,ris_detail_order.requestor_instruction FROM  ris_detail_order INNER JOIN ris_order_master ON ris_detail_order.order_no = ris_order_master.order_no WHERE ris_order_master.pmi_no ='"+pmiNo+"' AND ris_order_master.hfc_cd = '" +hfc_cd+"'";
+String  searchResult2 = "SELECT od.order_no, od.procedure_cd, pm.ris_procedure_name, bs.body_system_name, m.modality_name, ahc.hfc_name, om.hfc_to, om.episode_date, au.USER_NAME, rrd.filler_comments, rrd.result_status, od.body_system_cd, od.modality_cd "
+                          + "FROM ris_order_detail od  "
+                          + "JOIN ris_order_master om "
+                          + "JOIN ris_procedure_master pm "
+                          + "JOIN ris_modality m "
+                          + "JOIN ris_body_system bs "
+                          + "JOIN adm_health_facility ahc "
+                          + "JOIN adm_users au "
+                          + "JOIN ris_result_detail rrd "
+                          + "WHERE od.order_no = om.order_no "
+                          + "AND om.order_no = rrd.order_no "
+                          + "AND om.order_by = au.USER_ID "
+                          + "AND om.hfc_to = ahc.hfc_cd "
+                          + "AND od.modality_cd = m.modality_cd "
+                          + "AND od.body_system_cd = bs.body_system_cd "
+                          + "AND od.procedure_cd = pm.ris_procedure_cd "
+                          + "AND om.pmi_no = '" + pmiNo + "' GROUP by od.procedure_cd ORDER BY om.episode_date DESC LIMIT 10";
+                         
+ArrayList<ArrayList<String>> result = conn.getData(searchResult2);
+
 %>
 
 <table class="table table-striped table-filter table-bordered" id="risTable">
     <%
-        if(dataRIS.size() >0){%>
+        if(result.size() >0){%>
         <thead>
             <tr>
                 <th>Order No</th>
@@ -39,16 +57,24 @@ ArrayList<ArrayList<String>> dataRIS = conn.getData(sqlRIS);
             </tr>
         </thead>
         <tbody>
+
             <%
-                for (int i = 0; i < dataRIS.size(); i++) {
+                for (int i = 0; i < result.size(); i++) {
             %>
             <tr>
-                <td><%out.print(dataRIS.get(i).get(0));%></td>
-                <td><%out.print(dataRIS.get(i).get(3));%></td>
-                <td><%out.print(dataRIS.get(i).get(4));%></td>
-                <td><%out.print(dataRIS.get(i).get(2));%></td>
-                <td><%out.print(dataRIS.get(i).get(6));%></td>
-                <td><%out.print(dataRIS.get(i).get(5));%></td>
+                <td><%out.print(result.get(i).get(7));%></td>
+                <td><%out.print(result.get(i).get(3));%></td>
+                <td><%out.print(result.get(i).get(4));%></td>
+                <td><%out.print(result.get(i).get(2));%></td>
+                <td><%out.print(result.get(i).get(9));%></td>
+                <td hidden id="tBS_SEARCH_CODE"><%out.print(result.get(i).get(11));%></td>
+                <td hidden id="tM_SEARCH_CODE"><%out.print(result.get(i).get(12));%></td>
+                <td hidden id="tP_SEARCH_CODE"><%out.print(result.get(i).get(1));%></td>
+                <td hidden id="orderId"><%out.print(result.get(i).get(0));%></td>
+                <td hidden id="providerId"><%out.print(result.get(i).get(6));%></td>
+                <td>
+                    <button id="btnCIS_O_ROS_VIEW_RESULT">Show Image</button>
+                </td>
             </tr>
             <%
                 }

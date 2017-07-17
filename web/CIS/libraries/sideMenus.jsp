@@ -15,7 +15,7 @@
 
     <ul id="menu-content" class="nav nav-sidebar">
         <!-- // menu tanpa dropdown -->
-        <li><a id="queueBtn"><i class="fa fa-users fa-lg"></i> Queue</a></li>
+        <li><a id="btnCIS_MAIN_QUEUE"><i class="fa fa-users fa-lg"></i> Queue</a></li>
         <li><a id="searchBtn"><i class="fa fa-search fa-lg"></i> Search</a></li>
 <!--        <li><a href="#order-entry" role="presentation" data-toggle="tab" class="panelito"><i class="fa fa-medkit fa-lg"></i>Order Entry</a></li>
         <li><a id="settingBtn"><i class="fa fa-gear fa-lg"></i> Setting</a></li>

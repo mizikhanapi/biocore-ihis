@@ -203,26 +203,26 @@
         <!--End Update Diagnosis-->
         
         <script type="text/javascript">
-            var arrayDGSData = JSON.parse(localStorage.dgsData);
-            //var arrayDGSData = [];
-            var arrayDGSDataAjax = [];
-            //var arrayDGSData = [];
-            console.log(arrayDGSData);
-            var inputdgsSearch = $('#ajax').val();
-              $('#diagnosisSearch').flexdatalist({
-                    minLength: 3,
-                    searchIn: 'name',
-                    data:arrayDGSData,
-                    cache:true,
-                    searchDelay:3000
-              });
-               $("#diagnosisSearch").on('before:flexdatalist.data',function(response){
-                        $('#diagnosisSearchLoading').html('<img src="img/LoaderIcon.gif" />');
-                    });
-              $("#diagnosisSearch").on('after:flexdatalist.data',function(response){
-                        $('#diagnosisSearchLoading').html('');
-                        //console.log(urlData);
-                    });
+//            var arrayDGSData = JSON.parse(localStorage.dgsData);
+//            //var arrayDGSData = [];
+//            var arrayDGSDataAjax = [];
+//            //var arrayDGSData = [];
+//            console.log(arrayDGSData);
+//            var inputdgsSearch = $('#ajax').val();
+//              $('#diagnosisSearch').flexdatalist({
+//                    minLength: 3,
+//                    searchIn: 'name',
+//                    data:arrayDGSData,
+//                    cache:true,
+//                    searchDelay:3000
+//              });
+//               $("#diagnosisSearch").on('before:flexdatalist.data',function(response){
+//                        $('#diagnosisSearchLoading').html('<img src="img/LoaderIcon.gif" />');
+//                    });
+//              $("#diagnosisSearch").on('after:flexdatalist.data',function(response){
+//                        $('#diagnosisSearchLoading').html('');
+//                        //console.log(urlData);
+//                    });
   
               $(document).ready(function(){
                   

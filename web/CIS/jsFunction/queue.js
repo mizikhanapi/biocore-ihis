@@ -7,6 +7,15 @@ var EHRrecord = "";
  var DGCArryData = [];
  var DCGhfcDetail;
 $(document).ready(function () {
+    
+    //-------------------------------QUEUE MODAL
+
+    $('#btnCIS_MAIN_QUEUE').click(function (e) {
+        e.preventDefault();
+        $('#listQueue').load('queue/QueueModal.jsp');
+        $('#queueModal').modal('toggle');
+    });
+
 
     var fullPatientData = "";
     var PDIInfo = "";

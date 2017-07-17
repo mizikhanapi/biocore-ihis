@@ -48,10 +48,17 @@ if (reloadStat === 1) {
     };
 }
 
+function disableMainBtn(){
+
+}
+
 $(document).ready(function () {
     // $("#mcSlip").load("mcMain2.jsp ");
 
+    $('#holdBtn').bind('click', false);
     loadSetting(doctor_id);
+    
+
 
     $('.soap-select').click(function () {
         bootbox.alert("You need to select the patient");
