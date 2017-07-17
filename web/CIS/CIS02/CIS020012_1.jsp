@@ -72,7 +72,12 @@ ArrayList<ArrayList<String>> dataRIS = conn.getData(sqlRIS);
 out.print("No record for this moment");
 }
         %>
-
+            <script type="text/javascript">
+                $(document).ready(function () {
+                    $('#opTable').DataTable();
+                  
+                });
+            </script>
 <%
 
 

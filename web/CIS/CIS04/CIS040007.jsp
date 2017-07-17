@@ -116,7 +116,7 @@
                             <label class="col-md-6 control-label" for="textinput">Ward Class</label>
                             <div class="col-md-12">
                                 <input class="form-control input-lg " type="text" name="DateTo" id="tCIS_ADWwardClass" placeholder="Ward Code" >
-                                <input class="form-control input-lg " type="text" name="DateTo" id="tCIS_ADWwardClassCd" placeholder="Ward Code" readonly="">
+                                <input class="form-control input-lg " type="hidden" name="DateTo" id="tCIS_ADWwardClassCd" placeholder="Ward Code" readonly="">
                                
                                 <div id="tCIS_ADWwardClassLoading"></div>
                             </div>
