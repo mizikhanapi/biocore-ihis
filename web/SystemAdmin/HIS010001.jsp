@@ -32,6 +32,7 @@
         <link rel="stylesheet" href="bootstrap-3.3.6-dist/css/dataTables.bootstrap.min.css">-->
         <link rel="stylesheet" href="css/table.css">
         <link href="libraries/loader_animation.css" rel="stylesheet" type="text/css"/>
+        <link href="css/multi-select.css" rel="stylesheet" type="text/css">
         
         <%@include file="libraries/headLibrary.jsp" %>
         <!-- Bootstrap core JavaScript
@@ -142,6 +143,7 @@
         </div>
 
                     <%@include file="libraries/footLibrary.jsp" %>
+                    <script src="js/jquery.multi-select.js"></script>
 
 
 

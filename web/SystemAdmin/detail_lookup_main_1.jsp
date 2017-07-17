@@ -13,9 +13,14 @@
     LOOKUP DETAIL MANAGEMENT
     <span class="pull-right">
         <button id="btnAddNewTest" class="btn btn-success" data-status="pagado" data-toggle="modal" data-id="1" data-target="#detail2" style=" padding-right: 10px;padding-left: 10px;color: white;"><a data-toggle="tooltip" data-placement="top" title="Add Items" id="test"><i class=" fa fa-plus" style=" padding-right: 10px;padding-left: 10px;color: white;"></i></a>ADD Lookup Detail</button>
+        <button id="DLT_btnCloneModal" class="btn btn-primary" style=" padding-right: 10px;padding-left: 10px;color: white;" title="Clone item"><a><i class=" fa fa-copy" style=" padding-right: 10px;padding-left: 10px;color: white;"></i></a>CLONE Lookup Detail</button>
     </span>
 </h4>
 <!-- Add Button End -->
+
+<!--clone modal start-->
+<%@include file="modal/modal_cloneDetailLookup.jsp" %>
+<!--clone modal end-->
 
 
 <!-- Add Modal Start -->
@@ -123,6 +128,12 @@
 
 
 <script>
+   
+   //------------- redirect user to master lookup
+        function backToMasterTab(){
+            $('.nav-tabs a[href="#tab_default_1"]').tab('show');
+        }
+
    
    //------------------load lookup detail data -----------------
    function loadLookupDetailData( masterCode, masterName){
@@ -345,6 +356,125 @@
 
 
     });
+    
+    
+    //------------------ clone lookup detail ----------------------------------
+    
+    //.... create cloaneable list
+    function DLT_loadClone(masterCode, masterName){
+        createScreenLoading();
+        $('#DLT_clone_select_list').multiSelect('destroy');
+        var data = {
+            masterCode: masterCode,
+            masterName: masterName
+        };
+        $.ajax({
+            type: 'POST',
+            url: "controller/DLT_getClone.jsp",
+            data: data,
+            timeout: 60000,
+            success: function (data, textStatus, jqXHR) {
+                        $('#DLT_clone_select_list').html(data);
+                        $('#DLT_clone_select_list').multiSelect({
+                            selectableHeader: "<div style='display:block; color:white; background-color:#2196f3; '>Available Lookup Detail</div>",
+                            selectionHeader: "<div style='display:block; color:white; background-color:#2196f3'>Selected Lookup Detail</div>",
+                            keepOrder: true
+                        });
+                    },
+            error: function (jqXHR, textStatus, errorThrown) {
+                        $('#DLT_clone_modal').modal('hide');
+                        bootbox.alert("Oopps! "+errorThrown);
+                    },
+            complete: function (jqXHR, textStatus ) {
+                        destroyScreenLoading();
+                }
+        });
+    }
+    
+    //....create modal
+    $('#DLT_btnCloneModal').on('click', function(e){
+        e.preventDefault();
+        
+        var tempCode = $('#DLT_hidden_id_name').val();
+        
+        if(tempCode === ""){
+            bootbox.alert("Please select a master code fisrt!");
+            backToMasterTab();
+        }
+        else{
+            var tempArr = tempCode.split("|");
+            
+            $('#DLT_clone_modal').modal('show');
+            DLT_loadClone(tempArr[0].trim(), tempArr[1].trim());
+        }
+        
+    });
+    //... select all
+    $('#DLT_clone_select_all').on('click', function(e){
+        e.preventDefault();
+        $('#DLT_clone_select_list').multiSelect('select_all');
+    });
+    
+    //... deselect all
+     $('#DLT_clone_deselect_all').on('click', function(e){
+        e.preventDefault();
+        $('#DLT_clone_select_list').multiSelect('deselect_all');
+    });
+    
+    //... clone on button click
+    $('#DLT_btnClone').on('click', function(){
+        
+        var arraySelect = [];
+        $('#DLT_clone_select_list option:selected').each(function(){
+            arraySelect.push($(this));
+        });
+        
+        var strCode = arraySelect.map(function (elem) {
+                return elem.val();
+            }).join("|");
+            
+        if(strCode === "" || strCode === null){
+            bootbox.alert("Please select at least one lookup detail.");
+        }
+        else{
+            createScreenLoading();
+            var tempArr = $('#DLT_hidden_id_name').val().split("|");
+            var data = {
+                strCode: strCode,
+                masterCode: tempArr[0].trim()
+            };
+            
+            var msg = "";
+            
+            $.ajax({
+                type: 'POST',
+                url: "controller/DLT_insertClone.jsp",
+                timeout: 60000,
+                data: data,
+                success: function (data, textStatus, jqXHR) {
+                        if(data.trim() === "success"){
+                            msg="Lookup detail is cloned sucessfully.";
+                            $('#DLT_clone_modal').modal('hide');
+                            loadLookupDetailData(tempArr[0].trim(), tempArr[1].trim());
+                        }
+                        else if(data.trim() === "fail"){
+                            msg="Failed to clone lookup detail";
+                            DLT_loadClone(tempArr[0].trim(), tempArr[1].trim());
+                        }
+                    },
+                error: function (jqXHR, textStatus, errorThrown) {
+                        msg="Oopps! "+ errorThrown;
+                    },
+                complete: function (jqXHR, textStatus ) {
+                        destroyScreenLoading();
+                        bootbox.alert(msg);
+                }
+            });
+        }
+
+    });
+    
+    //==================== end clone lookup detail ============================
 
 
 

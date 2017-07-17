@@ -301,11 +301,7 @@
         
     });
     
-     //------------- redirect user to master lookup
-        function backToMasterTab(){
-            $('.nav-tabs a[href="#tab_default_1"]').tab('show');
-        }
-
+     
 
 
 </script>  
