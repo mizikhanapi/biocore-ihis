@@ -89,7 +89,7 @@
                         if (lang.equals("1")) {
                 %>
                 <script>
-                    var initial = <%=initial%>;
+                    var initial = "<%=initial%>";
                     var name = $("#name_<%=i%>").html();
                     name = name.toLowerCase().replace(/\b[a-z]/g, function (letter) {
                         return letter.toUpperCase();
@@ -103,6 +103,7 @@
                     //$("#view_VS").load("libraries/header.html");
                     //alert(qno);
                     qno = Number(qno)+Number(initial);
+                    //alert(qno);
                     $("#view_VS").load("voice_call.jsp?idResult=" + qno+"&room="+qname);
                 </script>   
                 <%
