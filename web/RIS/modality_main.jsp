@@ -10,9 +10,13 @@
     MODALITY CODE MANAGEMENT
     <span class="pull-right">
         <button id="MOD_btnAddNew" class="btn btn-success" data-status="pagado" data-toggle="modal" data-id="1" data-target="#MOD_detail" style=" padding-right: 10px;padding-left: 10px;color: white;"><a data-toggle="tooltip" data-placement="top" title="Add Items" id="test"><i class=" fa fa-plus" style=" padding-right: 10px;padding-left: 10px;color: white;"></i></a>ADD Modality</button>
+        <button id="MOD_btnCloneModal" class="btn btn-primary" style=" padding-right: 10px;padding-left: 10px;color: white;" title="Clone item"><a><i class=" fa fa-copy" style=" padding-right: 10px;padding-left: 10px;color: white;"></i></a>CLONE Modality</button>
     </span>
 </h4>
 <!-- Add Button End -->
+
+<!--clone modal-->
+<jsp:include page="modal/modality_clone_modal.jsp"/>
 
 <script>
 
@@ -247,6 +251,106 @@
     });
 
     //------------------------------- delete upon button click end -------------------------------------------------------
+    
+    
+    //---------------- clone modality ---------------------------------
+    //.... laod cloneable modality
+    function MOD_loadClone(){
+        createScreenLoading();
+        $('#MOD_clone_select_list').multiSelect('destroy');
+        $.ajax({
+            type: 'POST',
+            timeout: 60000,
+            url: "controller/modality_getClone.jsp",
+            success: function (data, textStatus, jqXHR) {
+                        $('#MOD_clone_select_list').html(data);
+                        $('#MOD_clone_select_list').multiSelect({
+                            selectableHeader: "<div style='display:block; color:white; background-color:#2196f3; '>Available Body System</div>",
+                            selectionHeader: "<div style='display:block; color:white; background-color:#2196f3'>Selected Body System</div>",
+                            keepOrder: true
+                        });
+                        $('#MOD_clone_modal').modal('show');
+                    },
+            error: function (jqXHR, textStatus, errorThrown) {
+                        bootbox.alert("Oops! "+errorThrown );
+                        $('#MOD_clone_modal').modal('hide');
+                    },
+            complete: function (jqXHR, textStatus ) {
+                        destroyScreenLoading();
+                }
+        });
+    }
+    
+    //.... creating modal
+    $('#MOD_btnCloneModal').on('click', function(){
+        MOD_loadClone();
+        
+    });
+    
+    //... select all
+    $('#MOD_clone_select_all').on('click', function(e){
+        e.preventDefault();
+        $('#MOD_clone_select_list').multiSelect('select_all');
+    });
+    
+    //... deselect all
+     $('#MOD_clone_deselect_all').on('click', function(e){
+        e.preventDefault();
+        $('#MOD_clone_select_list').multiSelect('deselect_all');
+    });
+    
+    //... clone on button click
+     $('#MOD_btnClone').on('click', function(){
+        
+        var arraySelect = [];
+        $('#MOD_clone_select_list option:selected').each(function(){
+            arraySelect.push($(this));
+        });
+        
+        var strCode = arraySelect.map(function (elem) {
+                return elem.val();
+            }).join("|");
+            
+        if(strCode === "" || strCode === null){
+            bootbox.alert("Please select at least one modality.");
+        }
+        else{
+            createScreenLoading();
+            
+            var data = {
+                strCode: strCode
+            };
+            
+            var msg = "";
+            
+            $.ajax({
+                type: 'POST',
+                url: "controller/modality_insertClone.jsp",
+                timeout: 60000,
+                data: data,
+                success: function (data, textStatus, jqXHR) {
+                        if(data.trim() === "success"){
+                            msg="Modality is cloned sucessfully.";
+                            $('#MOD_clone_modal').modal('hide');
+                            $('#modalityTable').load('modality_table.jsp');
+                        }
+                        else if(data.trim() === "fail"){
+                            msg="Failed to clone modality.";
+                            MOD_loadClone();
+                        }
+                    },
+                error: function (jqXHR, textStatus, errorThrown) {
+                        msg="Oopps! "+ errorThrown;
+                    },
+                complete: function (jqXHR, textStatus ) {
+                        destroyScreenLoading();
+                        bootbox.alert(msg);
+                }
+            });
+        }
+
+    });
+    //=================== end clone modality ==========================
 
 
 

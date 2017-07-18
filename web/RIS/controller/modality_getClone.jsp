@@ -1,7 +1,7 @@
 <%-- 
-    Document   : bodySystem_getClone
-    Created on : Jul 18, 2017, 5:50:22 PM
-    Author     : Ardhi Surya; rdsurya147@gmail.com; insta: @rdcfc
+    Document   : modality_getClone
+    Created on : Jul 18, 2017, 7:19:03 PM
+   Author     : Ardhi Surya; rdsurya147@gmail.com; insta: @rdcfc
 --%>
 
 <%@page import="java.util.ArrayList"%>
@@ -13,10 +13,10 @@
     
     try{
         //                          0                1
-        String query ="SELECT body_system_cd, body_system_name "
-                + "FROM ris_body_system "
-                + "where hfc_cd = '99_iHIS_99' and body_system_cd not in "
-                + "(Select body_system_cd from ris_body_system where hfc_cd = '"+hfc_cd+"');";
+        String query ="SELECT modality_cd, modality_name "
+                + "FROM ris_modality "
+                + "where hfc_cd='99_iHIS_99' and modality_cd not in "
+                + "(select modality_cd from ris_modality where hfc_cd = '"+hfc_cd+"');";
         
         ArrayList<ArrayList<String>> clone = con.getData(query);
         
@@ -31,12 +31,12 @@
         
         }
         else{
-            out.print("<option disabled>Your body system is up to date with our central data.</option>");
+            out.print("<option disabled>Your modality is up to date with our central data.</option>");
         }
     
     }
     catch(Exception e){
-        System.out.println("Clone body system: " +e.toString());
+        System.out.println("Clone modality: " +e.toString());
         e.printStackTrace();
         out.print("Oops!");
     }
