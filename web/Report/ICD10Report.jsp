@@ -4,6 +4,8 @@
     Author     : user
 --%>
 
+<%@page import="java.time.format.DateTimeFormatter"%>
+<%@page import="java.time.LocalDate"%>
 <%@page import="dBConn.Conn"%>
 <%@page import="java.io.*"%> 
 <%@page import="java.sql.Connection"%> 
@@ -125,6 +127,8 @@
 <%
     String hfc_cd = "SELECT logo FROM adm_health_facility WHERE hfc_cd='" + my_1_hfc_cd + "'";
     ArrayList<ArrayList<String>> mysqlhfc_cd = conn.getData(hfc_cd);
+    LocalDate localDate = LocalDate.now();
+    String newdate = DateTimeFormatter.ofPattern("dd/MM/yyyy").format(localDate);
 %>
 
 <script>
@@ -143,14 +147,14 @@
                                         '<div class="logo-hfc asset-print-img" style="z-index: 0; top: 0px; opacity: 1.0;">\n\
                                         <img src="<%=mysqlhfc_cd.get(0).get(0)%>" style="text-align: center; height: 100%; " /></div> <div class="mesej">ICD10</div>\n\
                                         <div class="info_kecik">\n\
-                                        <dd>Date: <strong>12/06/2017</strong></dd>\n\
-                                        <dd>Report No: <strong>12/06/2017</strong></dd>\n\
+                                        <dd>Date: <strong><%=newdate%></strong></dd>\n\
+                                        <dd>Report No: <strong><%=newdate%></strong></dd>\n\
                                         </div> '
                                         );
                         $(win.document.body).find('table')
                                 .addClass('compact')
                                 .css('font-size', 'inherit');
-                    },
+                    }
                 }
 
 //            {
@@ -177,7 +181,7 @@
 //                    extend: 'print'
 //            }
 
-            ],
+            ]
         });
         table.buttons().container()
                 .appendTo('#ICD10Table_wrapper .col-sm-6:eq(0)');
