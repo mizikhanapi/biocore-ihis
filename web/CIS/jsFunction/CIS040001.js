@@ -336,18 +336,18 @@ $(document).ready(function () {
 
         var redcolor = '';
         if (obj.priorityLOScd === 'P02') {
-            redcolor = 'style="background-color:#ff9999"';
+            redcolor = 'style="color:#f5707a; font-weight: 500;"';
         }
-        var _tr = '<tr ' + redcolor + '  id="trLIO_row|' + index + '" ><td>'+obj.searchLOS+'</td><td>'+obj.sourceLOS+'</td><td>'+obj.containerLOS+'</td><td>'+obj.volumeLOS+'</td><td>'+obj.commentLOS+'</td><td>'+obj.appointmentLOS+'</td><td><a id="row|' + index + '" data-toggle="tooltip" data-placement="top" title="Update Order" class="btnUpdate" style="cursor: pointer" id=""><i class="fa fa-plus fa-lg" aria-hidden="true" style="display: inline-block;color: #58C102;"></i></a>&nbsp;<a id="delRow|' + index + '" data-toggle="tooltip" data-placement="top" title="Delete Order" class="btnDelete" style="cursor: pointer" id=""><i class="fa fa-times fa-lg" aria-hidden="true" style="display: inline-block;color: #d9534f;"></i></a></td></tr>';
+        var _tr = '<tr ' + redcolor + '  id="trLIO_row|' + index + '" ><td>'+obj.searchLOS+'</td><td>'+obj.sourceLOS+'</td><td>'+obj.containerLOS+'</td><td>'+obj.volumeLOS+'</td><td>'+obj.commentLOS+'</td><td>'+obj.appointmentLOS+'</td><td><a id="row|' + index + '" data-toggle="tooltip" data-placement="top" title="Update Order" class="btnUpdate" style="cursor: pointer" id=""><i class="fa fa-pencil-square-o fa-lg" aria-hidden="true" style="display: inline-block;color: #337ab7;"></i></a>&nbsp;<a id="delRow|' + index + '" data-toggle="tooltip" data-placement="top" title="Delete Order" class="btnDelete" style="cursor: pointer" id=""><i class="fa fa-times fa-lg" aria-hidden="true" style="display: inline-block;color: #d9534f;"></i></a></td></tr>';
         //var _tr = '<tr ' + redcolor + '  id="tr_row|' + index + '" ><td>' + obj.bodySystemROS + ' </td><td>' + obj.modalityROS + '</td><<td>' + obj.ROS + '</td><td>' + obj.commentROS + '</td><td>' + obj.appointmentROS + '</td><td><a id="row|' + index + '" data-toggle="tooltip" data-placement="top" title="Update Order" class="btnUpdate" style="cursor: pointer" id=""><i class="fa fa-plus fa-lg" aria-hidden="true" style="display: inline-block;color: #58C102;"></i></a>&nbsp;<a id="delRow|' + index + '" data-toggle="tooltip" data-placement="top" title="Update Order" class="btnDelete" style="cursor: pointer" id=""><i class="fa fa-times fa-lg" aria-hidden="true" style="display: inline-block;color: #d9534f;"></i></a></td></tr>';
         $("#tableOrderLIO").append(_tr);
     }
     function updateOrderLIOTable(obj,index){
         var redcolor = '';
         if (obj.priorityROScd === 'P02') {
-            redcolor = 'style="background-color:#ff9999"';
+            redcolor = 'style="color:#f5707a; font-weight: 500;"';
         }
-        var _tr = '<td>'+obj.searchLOS+'</td><td>'+obj.sourceLOS+'</td><td>'+obj.containerLOS+'</td><td>'+obj.volumeLOS+'</td><td>'+obj.commentLOS+'</td><td>'+obj.appointmentLOS+'</td><td><a id="row|' + index + '" data-toggle="tooltip" data-placement="top" title="Update Order" class="btnUpdate" style="cursor: pointer" id=""><i class="fa fa-plus fa-lg" aria-hidden="true" style="display: inline-block;color: #58C102;"></i></a>&nbsp;<a id="delRow|' + index + '" data-toggle="tooltip" data-placement="top" title="Update Order" class="btnDelete" style="cursor: pointer" id=""><i class="fa fa-times fa-lg" aria-hidden="true" style="display: inline-block;color: #d9534f;"></i></a></td>';
+        var _tr = '<td>'+obj.searchLOS+'</td><td>'+obj.sourceLOS+'</td><td>'+obj.containerLOS+'</td><td>'+obj.volumeLOS+'</td><td>'+obj.commentLOS+'</td><td>'+obj.appointmentLOS+'</td><td><a id="row|' + index + '" data-toggle="tooltip" data-placement="top" title="Update Order" class="btnUpdate" style="cursor: pointer" id=""><i class="fa fa-pencil-square-o fa-lg" aria-hidden="true" style="display: inline-block;color: #337ab7;"></i></a>&nbsp;<a id="delRow|' + index + '" data-toggle="tooltip" data-placement="top" title="Update Order" class="btnDelete" style="cursor: pointer" id=""><i class="fa fa-times fa-lg" aria-hidden="true" style="display: inline-block;color: #d9534f;"></i></a></td>';
         $(rowLIODataTR).html(_tr);
     }
 

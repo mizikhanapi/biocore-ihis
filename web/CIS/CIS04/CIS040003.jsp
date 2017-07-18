@@ -20,12 +20,13 @@
 
                 <div class="row">
                     <div class="col-md-12">
-                        
                         <div class="form-group">
                             <label class="col-md-6 control-label" for="textinput">Search Problem</label>
-                            <input class="form-control input-lg" type="text" name="problem"  id="tCISOEMONProblemName" placeholder="Search Problem Name..." tabindex="4">
-                            <input type="hidden" id="tCISOEMONProblemNameCode"/>
-                            <div id="tCISOEMONProblemNameLoading" ></div>
+                            <div class="col-md-12">
+                                <input class="form-control input-lg" type="text" name="problem"  id="tCISOEMONProblemName" placeholder="Search Problem Name..." tabindex="4">
+                                <input type="hidden" id="tCISOEMONProblemNameCode"/>
+                                <div id="tCISOEMONProblemNameLoading" ></div>
+                            </div>
                         </div>
                         <div class="form-group">
                             <label class="col-md-6" for="textinput">Search Request Category</label>
@@ -95,15 +96,14 @@
                         </div>  
                     </div>
                 </div>
-                <div class="btn-group btn-group-justified" role="group" aria-label="group button">
-                    <div class="btn-group btn-primary" role="group">
-                        <button type="button" id="btnCIS_OE_MON_UPDATE" class="btn btn-primary btn-block btn-lg" role="button">Update</button>
-                        <button type="button" id="btnCIS_OE_MON_CANCEL" class="btn btn-delete btn-block btn-lg" role="button">Cancel</button>
-                        <button type="button" id="btnCIS_OE_MON_ADD" class="btn btn-primary btn-block btn-lg" role="button">Add</button>
-                    </div>
+                <br/>
+                <div class="text-right" role="group">
+                    <button type="button" id="btnCIS_OE_MON_CANCEL" class="btn btn-info" role="button">Cancel</button>
+                    <button type="button" id="btnCIS_OE_MON_UPDATE" class="btn btn-default" role="button">Update</button>
+                    <button type="button" id="btnCIS_OE_MON_ADD" class="btn btn-primary" role="button">Add</button>
                 </div>
                 <hr/>
-                
+
 
                 <table class="table table-bordered table-striped">
                     <thead>
@@ -118,14 +118,14 @@
 
                     </tbody>
                 </table>
-                
+
 
 
             </div>     
             <div class="modal-footer">
                 <div class="btn-group btn-group-justified" role="group" aria-label="group button">
                     <div class="btn-group" role="group">
-                        <button type="button" class="btn btn-success btn-block btn-lg" id="btnCIS_OE_MON_SUBMIT" role="button">Submit</button>
+                        <button type="button" class="btn btn-success btn-block btn-lg" id="btnCIS_OE_MON_SUBMIT" role="button">Submit Orders</button>
                     </div>
                     <div class="btn-group btn-delete hidden" role="group">
                         <button type="button" id="delImage" class="btn btn-danger btn-block btn-lg" data-dismiss="modal"  role="button">Clear</button>

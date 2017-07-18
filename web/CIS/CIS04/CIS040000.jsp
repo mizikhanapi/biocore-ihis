@@ -71,28 +71,30 @@
                                     </div>
                                     <hr/>
                                     <div class="row">
-                                        <div class="col-md-12">
+                                        <div class="col-md-6">
                                             <!-- content goes here -->
                                             <div class="form-group">
                                                 <input type="hidden" name="POS" id="codeROS_2" class="form-control input-lg"  tabindex="4">
                                                 <input type="hidden" name="POS" id="problemCode" class="form-control input-lg"  tabindex="4">
-                                            </div>
-                                            <div class="form-group">
-                                                <label class="col-md-2 control-label" for="textinput">Search Problem Name</label>
-                                                <div class="col-md-9">
+                                                <label class="col-md-12" for="textinput">Search Problem Name</label>
+                                                <div class="col-md-12">
                                                     <input class="form-control input-lg" type="text" name="problem"  id="tCISOEROSProblemName" placeholder="Search Problem Name..." tabindex="4" data-search-by-word="true">
                                                     <div id="tCISOEROSProblemNameLoading" ></div>
                                                     <!--                                                    <input class="form-control input-lg" type="text" name="problem"  id="ROS" placeholder="Search Radiology Procedure..." tabindex="4">
                                                                                                         <div id="matchROS" class="search-drop"></div>-->
                                                 </div>
                                             </div>
+                                        </div>
+                                        <div class="col-md-6">
                                             <div class="form-group">
-                                                <label class="col-md-2 control-label" for="textinput">Search Radiology Procedure</label>
-                                                <div class="col-md-9">
+                                                <label class="col-md-12" for="textinput">Search Radiology Procedure</label>
+                                                <div class="col-md-12">
                                                     <input class="form-control input-lg" type="text" name="problem"  id="tCISOEROSProcedureSearch" placeholder="Search Radiology Procedure..." tabindex="4" data-search-by-word="true">
                                                     <div id="tCISOEROSProcedureSearchLoading" ></div>
-                                                    <!--                                                    <input class="form-control input-lg" type="text" name="problem"  id="ROS" placeholder="Search Radiology Procedure..." tabindex="4">
-                                                                                                        <div id="matchROS" class="search-drop"></div>-->
+                                                    <!--                                                    
+                                                    <input class="form-control input-lg" type="text" name="problem"  id="ROS" placeholder="Search Radiology Procedure..." tabindex="4">
+                                                                                                        <div id="matchROS" class="search-drop"></div>
+                                                    -->
                                                 </div>
                                             </div>
                                         </div>
@@ -101,8 +103,8 @@
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label class="col-md-4 control-label" for="textinput">Modality</label>
-                                                <div class="col-md-6">
+                                                <label class="col-md-12 " for="textinput">Modality</label>
+                                                <div class="col-md-12">
                                                     <input class="form-control input-lg" type="text" name="pro" id="modalityROS" readonly="">
                                                     <input class="form-control input-lg" type="hidden" name="pro" id="modalityROSCode" readonly="">
                                                 </div>
@@ -110,8 +112,8 @@
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label class="col-md-4 control-label" for="textinput">Body System</label>
-                                                <div class="col-md-6">
+                                                <label class="col-md-12 " for="textinput">Body System</label>
+                                                <div class="col-md-12">
                                                     <input class="form-control input-lg" type="text" name="pro" id="bodySystemROS" readonly="">
                                                     <input class="form-control input-lg" type="hidden" name="pro" id="bodySystemROSCode" readonly="">
                                                 </div>

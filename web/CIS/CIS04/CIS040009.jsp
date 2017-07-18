@@ -6,21 +6,21 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
-            String referralPriority = "select Detail_Reference_code,Description from adm_lookup_detail where Master_Reference_code = '0101' AND hfc_cd = '" + hfc_cd + "' order by priority_indicator ASC";
-            ArrayList<ArrayList<String>> dataRPriority = Conn.getData(referralPriority);
-            
-            String referralType = "select Detail_Reference_code,Description from adm_lookup_detail where Master_Reference_code = '0102' AND hfc_cd = '" + hfc_cd + "' order by priority_indicator ASC";
-            ArrayList<ArrayList<String>> dataRType = Conn.getData(referralType);
+    String referralPriority = "select Detail_Reference_code,Description from adm_lookup_detail where Master_Reference_code = '0101' AND hfc_cd = '" + hfc_cd + "' order by priority_indicator ASC";
+    ArrayList<ArrayList<String>> dataRPriority = Conn.getData(referralPriority);
 
-            String referralDisposition = "select Detail_Reference_code,Description from adm_lookup_detail where Master_Reference_code = '0103' AND hfc_cd = '" + hfc_cd + "' order by priority_indicator ASC";
-            ArrayList<ArrayList<String>> dataRDisposition = Conn.getData(referralDisposition);
-            
-            String referralCategory = "select Detail_Reference_code,Description from adm_lookup_detail where Master_Reference_code = '0104' AND hfc_cd = '" + hfc_cd + "' order by priority_indicator ASC";
-            ArrayList<ArrayList<String>> dataRCategory = Conn.getData(referralCategory);
-            
-            String referralReason = "select Detail_Reference_code,Description from adm_lookup_detail where Master_Reference_code = '0105' AND hfc_cd = '" + hfc_cd + "' order by priority_indicator ASC";
-            ArrayList<ArrayList<String>> dataRReason = Conn.getData(referralReason);
-            
+    String referralType = "select Detail_Reference_code,Description from adm_lookup_detail where Master_Reference_code = '0102' AND hfc_cd = '" + hfc_cd + "' order by priority_indicator ASC";
+    ArrayList<ArrayList<String>> dataRType = Conn.getData(referralType);
+
+    String referralDisposition = "select Detail_Reference_code,Description from adm_lookup_detail where Master_Reference_code = '0103' AND hfc_cd = '" + hfc_cd + "' order by priority_indicator ASC";
+    ArrayList<ArrayList<String>> dataRDisposition = Conn.getData(referralDisposition);
+
+    String referralCategory = "select Detail_Reference_code,Description from adm_lookup_detail where Master_Reference_code = '0104' AND hfc_cd = '" + hfc_cd + "' order by priority_indicator ASC";
+    ArrayList<ArrayList<String>> dataRCategory = Conn.getData(referralCategory);
+
+    String referralReason = "select Detail_Reference_code,Description from adm_lookup_detail where Master_Reference_code = '0105' AND hfc_cd = '" + hfc_cd + "' order by priority_indicator ASC";
+    ArrayList<ArrayList<String>> dataRReason = Conn.getData(referralReason);
+
 %>
 <!--Modal ADD Referral-->
 <div class="modal fade" id="CIS040009" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
@@ -67,7 +67,7 @@
                     <div class="col-md-6">
                         <label class="col-md-6 control-label" for="textinput">Priority :</label>
                         <div class="col-md-12">
-                                                                             
+
                             <select id="tCIS_PRIPriority" class="form-control input-lg">
                                 <option disabled="" >Please select Priority...</option>
                                 <%   if (dataRPriority.size() > 0) {
@@ -137,7 +137,7 @@
                     <div class="col-md-6">
                         <label class="col-md-6 control-label" for="textinput">Reason :</label>
                         <div class="col-md-12">
-                           <select id="tCIS_PRIReason" class="form-control input-lg">
+                            <select id="tCIS_PRIReason" class="form-control input-lg">
                                 <option disabled="" >Please select Reason...</option>
                                 <%   if (dataRReason.size() > 0) {
                                         for (int i = 0; i < dataRReason.size(); i++) {
@@ -174,27 +174,21 @@
 
             </div>
 
-
-
-
-        </div>
-
-        <div class="modal-footer">
-            <div class="btn-group btn-group-justified" role="group" aria-label="group button">
-                <div class="btn-group" role="group">
-                    <button type="button" class="btn btn-success btn-block btn-lg" id="btnCIS_OE_PRI_SUBMIT" role="button">Submit</button>
-                </div>
-                <div class="btn-group btn-delete hidden" role="group">
-                    <button type="button" id="delImage" class="btn btn-default btn-block btn-lg" data-dismiss="modal"  role="button">Clear</button>
-                </div>
-                <div class="btn-group" role="group">
-                    <button type="button" id="saveImage" class="btn btn-default btn-block btn-lg" data-dismiss="modal" role="button">Close</button>
+            <div class="modal-footer">
+                <div class="btn-group btn-group-justified" role="group" aria-label="group button">
+                    <div class="btn-group" role="group">
+                        <button type="button" class="btn btn-success btn-block btn-lg" id="btnCIS_OE_PRI_SUBMIT" role="button">Submit</button>
+                    </div>
+                    <div class="btn-group btn-delete hidden" role="group">
+                        <button type="button" id="delImage" class="btn btn-default btn-block btn-lg" data-dismiss="modal"  role="button">Clear</button>
+                    </div>
+                    <div class="btn-group" role="group">
+                        <button type="button" id="saveImage" class="btn btn-default btn-block btn-lg" data-dismiss="modal" role="button">Close</button>
+                    </div>
                 </div>
             </div>
         </div>
-
     </div>
-</div>
 </div>
 <!--End ADD Referral-->
 

@@ -34,7 +34,7 @@
                             <div class="tab-pane active" id="drugOrder1">
                                 <!-- content goes here -->
                                 <div class="row">
-                                    <div class="col-xs-12 col-sm-12 col-md-12">
+                                    <div class="col-xs-6 col-sm-6 col-md-6">
                                         <div class="form-group">
                                             <label class="col-md-6 control-label" for="textinput">Search Problem</label>
                                             <div class="col-md-12">
@@ -43,13 +43,15 @@
                                                 <div id="tCISOEDTOProblemNameLoading" ></div>
                                             </div>
                                         </div>
+                                    </div>
+                                    <div class="col-xs-6 col-sm-6 col-md-6">
                                         <div class="form-group">
                                             <label class="col-md-6 control-label" for="textinput">Search Drug</label>
                                             <div class="col-md-12">
                                                 <input class="form-control input-lg" type="text" name="problem"  id="tCISOEDTODrugName" placeholder="Search Drug Name..." tabindex="4" data-search-by-word="true">
                                                 <div id="tCISOEDTODrugNameLoading" ></div>
                                                 <input type="hidden" name="DTO" id="jsonId" class="form-control input-lg"  tabindex="4">
-<!--                                                <input class="form-control input-lg" type="text" name="problem"  id="tCIS_DTODrugName" placeholder="Type to search..." tabindex="4" data-search-by-word="true">-->
+                                                <!--                                                <input class="form-control input-lg" type="text" name="problem"  id="tCIS_DTODrugName" placeholder="Type to search..." tabindex="4" data-search-by-word="true">-->
                                                 <input class="form-control input-lg" type="hidden" name="dtoCode"  id="tCIS_DTODrugCode" placeholder="Drug Code..." tabindex="4" readonly="">
                                                 <input class="form-control input-lg" type="hidden"  id="hfcDTO" placeholder="">
                                                 <input class="form-control input-lg" type="hidden"  id="hfcOrderDetailDTO" placeholder="s">
@@ -248,9 +250,13 @@
                                             <input class="form-control input-lg" type="number" name="dose" id="tCIS_DTOQuantity" placeholder="" >
                                         </div>
                                     </div>
-                                    <div class="col-xs-6 col-sm-6 col-md-6">
+                                    <div class="col-xs-2 col-sm-2 col-md-2">
                                         <div class="form-group">
                                             <h4 class="modal-title modalTextLabel">Remarks</h4>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-4 col-sm-4 col-md-4">
+                                        <div class="form-group">
                                             <input class="form-control input-lg" type="text" name="tCIS_DTORemark" id="tCIS_DTORemark" placeholder="" >
                                         </div>
                                     </div>
@@ -258,21 +264,19 @@
 
                                 <div class="row">
                                     <div class="col-xs-12 col-sm-12 col-md-12">
-
                                         <div class="form-group">
                                             <h4 class="modal-title modalTextLabel">Comments</h4>
                                             <textarea type="text" name="display_name" id="tCIS_DTOCommentArea" class="form-control input-lg" placeholder="" tabindex="3"></textarea>
                                         </div>
                                     </div>
                                 </div>
-                            
-                            <div class="btn-group btn-group-justified" role="group" aria-label="group button">
-                                <div class="btn-group btn-primary" role="group">
-                                    <button type="button" id="btnCIS_OE_DTO_UPDATE" class="btn btn-primary btn-block btn-lg" role="button">Update</button>
-                                    <button type="button" id="btnCIS_OE_DTO_CANCEL" class="btn btn-delete btn-block btn-lg" role="button">Cancel</button>
-                                    <button type="button" id="btnCIS_OE_DTO_ADD" class="btn btn-primary btn-block btn-lg" role="button">Add</button>
+
+                                <div class="text-right" role="group">
+                                    <button type="button" id="btnCIS_OE_DTO_CANCEL" class="btn btn-link " role="button">Cancel</button>
+                                    <button type="button" id="btnCIS_OE_DTO_UPDATE" class="btn btn-default" role="button">Update</button>
+                                    <button type="button" id="btnCIS_OE_DTO_ADD" class="btn btn-primary" role="button">Add</button>
                                 </div>
-                            </div>
+
                             </div>
                             <div class="tab-pane" id="drugOrder2">
                                 <form class="form-horizontal" name="myForm" id="myForm">
@@ -280,7 +284,7 @@
                                     <div class="form-group">
                                         <label class="col-md-4 control-label" for="selectbasic">Search drug by</label>
                                         <div class="col-md-4">
-                                             <select id="selectCIS_OE_DTO_SEARCH_TYPE" name="idType" class="form-control" required="">
+                                            <select id="selectCIS_OE_DTO_SEARCH_TYPE" name="idType" class="form-control" required="">
                                                 <option selected="" disabled="" value="-">View by</option>
                                                 <option value="today">Today</option>
                                                 <option value="previous">Previous Episode</option>
@@ -292,7 +296,7 @@
                                     <div class="form-group">
                                         <label class="col-md-4 control-label" for="textinput">Order</label>
                                         <div class="col-md-4">
-                                             <input type="text" class="form-control input-md" id="tCIS_OE_DTO_SEARCH_ORDER_ID" name="idInput" placeholder="ID">
+                                            <input type="text" class="form-control input-md" id="tCIS_OE_DTO_SEARCH_ORDER_ID" name="idInput" placeholder="ID">
                                         </div>
                                     </div>
 
@@ -600,4 +604,4 @@ Modal update Drug Order
         </div>
     </div>
 </div>-->
- <script src="jsFunction/CIS040002.js" type="text/javascript"></script>
+<script src="jsFunction/CIS040002.js" type="text/javascript"></script>

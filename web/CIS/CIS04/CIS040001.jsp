@@ -39,18 +39,19 @@
 
                                 <!-- content goes here -->
                                 <div class="row">
-                                    <div class="col-md-12">
+                                    <div class="col-md-6">
                                         <!-- content goes here -->
                                         <div class="form-group">
                                             <input type="hidden" name="POS" id="codeROS" class="form-control input-lg"  tabindex="4">
+                                            <label class="col-md-6 control-label" for="textinput">Search Problem</label>
+                                            <div class="col-md-12">
+                                                <input class="form-control input-lg" type="text" name="problem"  id="tCISOELIOProblemName" placeholder="Search Problem Name..." tabindex="4" data-search-by-word="true">
+                                                <div id="tCISOELIOProblemNameLoading" ></div>
+                                            </div>
                                         </div>
+                                    </div>
+                                    <div class="col-md-6">
                                         <div class="form-group">
-                                             <label class="col-md-6 control-label" for="textinput">Search Problem</label>
-                                             <input class="form-control input-lg" type="text" name="problem"  id="tCISOELIOProblemName" placeholder="Search Problem Name..." tabindex="4" data-search-by-word="true">
-                                                    <div id="tCISOELIOProblemNameLoading" ></div>
-                                             <div class="col-md-12">
-                                                 
-                                             </div>
                                             <label class="col-md-6 control-label" for="textinput">Search Laboratory Request</label>
                                             <div class="col-md-12">
                                                 <input type="hidden" name="problemCodeLIO" id="problemCodeLIO" class="form-control input-lg"  tabindex="4">
@@ -129,7 +130,7 @@
 
                                 <hr/>
                                 <div class="row">
-                                  
+
                                 </div>
 
                                 <div class="row">
@@ -137,7 +138,7 @@
                                         <div class="form-group">
                                             <label class="col-md-6" for="textinput">Appointment</label>
                                             <div class="col-md-12">
-                                                <input class="form-control input-lg" type="text"  id="appointmentLOS" placeholder="">
+                                                <input class="form-control input-lg" type="text"  id="appointmentLOS" placeholder="DD-MM-YYYY">
                                             </div>
                                         </div>
                                     </div>
@@ -195,7 +196,7 @@
                                             <div class="col-md-12">
                                                 <input class="form-control input-lg" type="text"  id="tCISOELIOHFC" placeholder="Type to search..." data-relatives='#chained_relative' data-chained-relatives='true' data-search-by-word="true">
                                                 <div id="tCISOELIOHFCSearchLoading" ></div>
-<!--                                                <input class="form-control input-lg" type="text"  id="hfcLOS" placeholder="">-->
+                                                <!--                                                <input class="form-control input-lg" type="text"  id="hfcLOS" placeholder="">-->
                                                 <input class="form-control input-lg" type="hidden"  id="hfcOrderDetailLIO" placeholder="">
                                                 <input class="form-control input-lg" type="hidden"  id="hfcProviderDetailLIO" placeholder="">
                                                 <input class="form-control input-lg" type="hidden"  id="hfcIdLOS">
@@ -215,16 +216,14 @@
                                         </div>
                                     </div>
                                 </div>
-                            
-                                                        <div class="btn-group btn-group-justified" role="group" aria-label="group button">
-                                                            <div class="btn-group btn-primary" role="group">
-                                                                <button type="button" id="btnCIS_OE_LIO_UPDATE" class="btn btn-primary btn-block btn-lg" role="button">Update</button>
-                                                                <button type="button" id="btnCIS_OE_LIO_CANCEL" class="btn btn-delete btn-block btn-lg" role="button">Cancel</button>
-                                                                <button type="button" id="btnCIS_OE_LIO_ADD" class="btn btn-primary btn-block btn-lg" role="button">Add</button>
-                                                            </div>
-                                                        </div>  
-                                
+
+                                <div class="text-right" role="group">
+                                    <button type="button" id="btnCIS_OE_LIO_CANCEL" class="btn btn-info" role="button">Cancel</button>
+                                    <button type="button" id="btnCIS_OE_LIO_UPDATE" class="btn btn-default " role="button">Update</button>
+                                    <button type="button" id="btnCIS_OE_LIO_ADD" class="btn btn-primary" role="button">Add</button>
                                 </div>
+
+                            </div>
                             <!-- Tab 1 -->    
 
                             <!-- Tab 2 -->
@@ -255,6 +254,7 @@
                                         <button id="btnCIS_OE_LIO_SEARCH_CLEAR" name="clearSearch" type="button" class="btn btn-default"><i class="fa fa-times"></i>&nbsp; Clear</button>
                                     </div>
                                 </form>
+                                <br/>
                                 <div id="divCIS_OE_LIO_OrderSearchResult"></div>
                             </div>
                             <!-- Tab 2 -->
@@ -262,7 +262,7 @@
                         </div>
                     </div>
                 </div>
-                                                        
+
                 <hr/>
                 <table class="table table-bordered table-striped">
                     <thead>
@@ -285,7 +285,7 @@
             <div class="modal-footer">
                 <div class="btn-group btn-group-justified" role="group" aria-label="group button">
                     <div class="btn-group" role="group">
-                        <button type="button" class="btn btn-success btn-block btn-lg" id="btnCIS_OE_LIO_SUBMIT" role="button">Accept</button>
+                        <button type="button" class="btn btn-success btn-block btn-lg" id="btnCIS_OE_LIO_SUBMIT" role="button">Submit Orders</button>
                     </div>
                     <div class="btn-group btn-delete hidden" role="group">
                         <button type="button" id="delImage" class="btn btn-default btn-block btn-lg" data-dismiss="modal"  role="button">Clear</button>
@@ -320,4 +320,4 @@
 </div>
 <!--End add Drug Order-->
 
-                                        <script src="jsFunction/CIS040001.js" type="text/javascript"></script>
+<script src="jsFunction/CIS040001.js" type="text/javascript"></script>

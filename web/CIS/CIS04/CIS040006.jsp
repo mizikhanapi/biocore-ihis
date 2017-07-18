@@ -18,7 +18,7 @@
                             <a href="#procedureOrder1" data-toggle="tab">
                                 New Procedure Order</a>
                         </li>
-                       <li id="POS_History" >
+                        <li id="POS_History" >
                             <a href="#procedureOrder2" data-toggle="tab">
                                 Drug Procedure History</a>
                         </li>
@@ -35,35 +35,42 @@
                                 <div class="form-group">
                                     <input type="hidden" name="POS" id="codePOS" class="form-control input-lg" tabindex="4">
                                 </div>
-                                <div class="form-group">
-                                    <label class="col-md-6 control-label" for="textinput">Search Problem</label>
-                                    <div class="col-md-12">
-                                        <input class="form-control input-lg" type="hidden"  id="problemCodePOS" placeholder="">
-                                        <input class="form-control input-lg" type="text" name="problem"  id="tCISOEPOSProblemName" placeholder="Search Problem Name..." tabindex="4">
-                                        <div id="tCISOEPOSProblemNameLoading" ></div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="col-md-6 control-label" for="textinput">Search Problem</label>
+                                            <div class="col-md-12">
+                                                <input class="form-control input-lg" type="hidden"  id="problemCodePOS" placeholder="">
+                                                <input class="form-control input-lg" type="text" name="problem"  id="tCISOEPOSProblemName" placeholder="Search Problem Name..." tabindex="4">
+                                                <div id="tCISOEPOSProblemNameLoading" ></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="col-md-6 control-label" for="textinput">Search Procedure</label>
+                                            <input class="form-control input-lg" type="hidden"  id="tCISOEPOS_0_ID">
+                                            <input class="form-control input-lg" type="text" name="tCISOEPOSSearch"  id="tCISOEPOSSearch" placeholder="Search Procedure Name..." tabindex="4">
+                                            <div id="tCISOEPOSSearchLoading" ></div>
+                                            <!--                                    <input class="form-control input-lg" type="text" name="problem"  id="Problem18" placeholder="Search Procedure..." tabindex="4">-->
+                                            <input class="form-control input-lg" type="hidden"  id="hfcOrderDetailPOS" placeholder="">
+                                            <input class="form-control input-lg" type="hidden"  id="hfcProviderDetailPOS" placeholder="">
+                                            <input class="form-control input-lg" type="hidden"  id="hfcIdPOS">
+                                            <div id="match18"></div>
+                                        </div>
+                                        <div class="form-group" id="div_CIS_OE_POS_LVL1">
+                                            <input class="form-control input-lg" type="hidden"  id="tCISOEPOS_1_ID">
+                                            <input class="form-control input-lg" type="text" name="tCISOEPOSSearch"  id="tCISOEPOS1Search" placeholder="Search Procedure Name..." tabindex="4">
+                                            <div id="tCISOEPOS1SearchLoading" ></div>
+                                        </div>
+                                        <div class="form-group"  id="div_CIS_OE_POS_LVL2">
+                                            <input class="form-control input-lg" type="hidden"  id="tCISOEPOS_2_ID">
+                                            <input class="form-control input-lg" type="text" name="tCISOEPOSSearch"  id="tCISOEPOS2Search" placeholder="Search Procedure Name..." tabindex="4">
+                                            <div id="tCISOEPOS2SearchLoading" ></div>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="form-group">
-                                    <label class="col-md-6 control-label" for="textinput">Search Procedure</label>
-                                    <input class="form-control input-lg" type="hidden"  id="tCISOEPOS_0_ID">
-                                    <input class="form-control input-lg" type="text" name="tCISOEPOSSearch"  id="tCISOEPOSSearch" placeholder="Search Procedure Name..." tabindex="4">
-                                    <div id="tCISOEPOSSearchLoading" ></div>
-<!--                                    <input class="form-control input-lg" type="text" name="problem"  id="Problem18" placeholder="Search Procedure..." tabindex="4">-->
-                                    <input class="form-control input-lg" type="hidden"  id="hfcOrderDetailPOS" placeholder="">
-                                    <input class="form-control input-lg" type="hidden"  id="hfcProviderDetailPOS" placeholder="">
-                                    <input class="form-control input-lg" type="hidden"  id="hfcIdPOS">
-                                    <div id="match18"></div>
-                                </div>
-                                <div class="form-group" id="div_CIS_OE_POS_LVL1">
-                                    <input class="form-control input-lg" type="hidden"  id="tCISOEPOS_1_ID">
-                                    <input class="form-control input-lg" type="text" name="tCISOEPOSSearch"  id="tCISOEPOS1Search" placeholder="Search Procedure Name..." tabindex="4">
-                                    <div id="tCISOEPOS1SearchLoading" ></div>
-                                </div>
-                                <div class="form-group"  id="div_CIS_OE_POS_LVL2">
-                                    <input class="form-control input-lg" type="hidden"  id="tCISOEPOS_2_ID">
-                                    <input class="form-control input-lg" type="text" name="tCISOEPOSSearch"  id="tCISOEPOS2Search" placeholder="Search Procedure Name..." tabindex="4">
-                                    <div id="tCISOEPOS2SearchLoading" ></div>
-                                </div>
+
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
@@ -113,7 +120,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                
+
                                 <div class="row">
                                     <div class="col-xs-12 col-sm-12 col-md-12">
 
@@ -130,14 +137,13 @@
                                 <div class="form-group">
                                     <input  type="hidden" name="ProCode" id="ProCode">
                                 </div>
-                            
-                                <div class="btn-group btn-group-justified" role="group" aria-label="group button">
-                                    <div class="btn-group btn-primary" role="group">
-                                        <button type="button" id="btnCIS_OE_POS_UPDATE" class="btn btn-primary btn-block btn-lg" role="button">Update</button>
-                                        <button type="button" id="btnCIS_OE_POS_CANCEL" class="btn btn-delete btn-block btn-lg" role="button">Cancel</button>
-                                        <button type="button" id="btnCIS_OE_POS_ADD" class="btn btn-primary btn-block btn-lg" role="button">Add</button>
-                                    </div>
-                                </div> 
+
+                                <div class="text-right" role="group">
+                                    <button type="button" id="btnCIS_OE_POS_CANCEL" class="btn btn-link" role="button">Cancel</button>
+                                    <button type="button" id="btnCIS_OE_POS_UPDATE" class="btn btn-default" role="button">Update</button>
+                                    <button type="button" id="btnCIS_OE_POS_ADD" class="btn btn-primary " role="button">Add</button>
+                                </div>
+                                                        
                             </div>
                             <hr>
                             <div class="tab-pane" id="procedureOrder2">
@@ -146,7 +152,7 @@
                                     <div class="form-group">
                                         <label class="col-md-4 control-label" for="selectbasic">Search drug by</label>
                                         <div class="col-md-4">
-                                             <select id="selectCIS_OE_POS_SEARCH_TYPE" name="idType" class="form-control" required="">
+                                            <select id="selectCIS_OE_POS_SEARCH_TYPE" name="idType" class="form-control" required="">
                                                 <option selected="" disabled="" value="-">View by</option>
                                                 <option value="today">Today</option>
                                                 <option value="previous">Previous Episode</option>
@@ -158,7 +164,7 @@
                                     <div class="form-group">
                                         <label class="col-md-4 control-label" for="textinput">Order</label>
                                         <div class="col-md-4">
-                                           <input type="text" class="form-control input-md" id="tCIS_OE_POS_SEARCH_ORDER_ID" name="idInput" placeholder="Order ID">
+                                            <input type="text" class="form-control input-md" id="tCIS_OE_POS_SEARCH_ORDER_ID" name="idInput" placeholder="Order ID">
                                         </div>
                                     </div>
 
@@ -167,6 +173,7 @@
                                         <button id="btnCIS_OE_POS_SEARCH_CLEAR" name="clearSearch" type="button" class="btn btn-default"><i class="fa fa-times"></i>&nbsp; Clear</button>
                                     </div>
                                 </form>
+                                <br/>
                                 <div id="divCIS_OE_POS_OrderSearchResult"></div>
                             </div>
                         </div>
@@ -191,7 +198,7 @@
             <div class="modal-footer">
                 <div class="btn-group btn-group-justified" role="group" aria-label="group button">
                     <div class="btn-group" role="group">
-                        <button type="button" class="btn btn-success btn-block btn-lg" id="btnCIS_OE_POS_SUBMIT" role="button">Submit</button>
+                        <button type="button" class="btn btn-success btn-block btn-lg" id="btnCIS_OE_POS_SUBMIT" role="button">Submit Orders</button>
                     </div>
                     <div class="btn-group btn-delete hidden" role="group">
                         <button type="button" id="delImage" class="btn btn-default btn-block btn-lg" data-dismiss="modal"  role="button">Clear</button>
