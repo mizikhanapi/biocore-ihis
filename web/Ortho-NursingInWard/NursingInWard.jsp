@@ -62,7 +62,8 @@
                         <li><a data-toggle="modal" data-target="#cobserved1" href="" class="soap-select" id="observationnewassessment"><i class="fa fa-comments  fa-li"></i>New Assessment</a></li>
                     </ul>
                     <hr class="pemisah" />
-                    <%@include file="chartObservation.jsp"%>
+                    <jsp:include page="chartObservation.jsp"/>
+                    
                 </div>
                 <!-- content -->
 
@@ -72,7 +73,7 @@
                         <li><a data-toggle="modal" data-target="#4hly" href="" class="soap-select" id="4hlynewassessment"><i class="fa fa-comments  fa-li" ></i>New Assessment</a></li>
                     </ul>
                     <hr class="pemisah" />
-                    <%@include file="4hly.jsp"%>
+                    <jsp:include page="4hly.jsp"/>
                 </div>
                 <!-- content -->
 
@@ -82,7 +83,8 @@
                         <li><a data-toggle="modal" data-target="#perawatan-ortho" href="" class="soap-select" id="trnewassessment"><i class="fa fa-comments  fa-li"></i> Add Perawatan Records</a></li>
                     </ul>
                     <hr class="pemisah" />
-                    <%@include file="perawatan-ortho.jsp"%>
+                   
+                    <jsp:include page="perawatan-ortho.jsp"/>
                 </div>
                 <!-- content -->
 
@@ -92,7 +94,7 @@
                         <li><a data-toggle="modal" data-target="#circulationChart" href="" class="soap-select" id="chartCirculationAddNewRecord"><i class="fa fa-comments  fa-li"></i> Add Circulation Chart</a></li>
                     </ul>
                     <hr class="pemisah" />
-                    <%@include file="chartCirculation.jsp"%>
+                     <jsp:include page="chartCirculation.jsp"/>
                 </div>
                 <!-- content -->
 
@@ -103,7 +105,7 @@
                         <li><a data-toggle="modal" data-target="#dailySkinPosition" href=""  class="soap-select" id="chartDailySkinPositionAddNewRecord"><i class="fa fa-history  fa-li"></i> Positioning Chart</a></li>
                     </ul>
                     <hr class="pemisah" />
-                    <%@include file="chartDailySkin.jsp"%>
+                    <jsp:include page="chartDailySkin.jsp"/>
                 </div>
                 <!-- content -->
 
@@ -113,7 +115,7 @@
                         <li><a data-toggle="modal" data-target="#DiabeticChart" href="" class="soap-select" id="diabeticChartAddNewRecord"><i class="fa fa-comments  fa-li"></i> Add New Diabetic Chart</a></li>
                     </ul>
                     <hr class="pemisah" />
-                    <%@include file="DiabeticChart.jsp"%>
+                    <jsp:include page="DiabeticChart.jsp"/>
                 </div>
                 <!-- content -->
 
@@ -123,7 +125,7 @@
                         <li><a data-toggle="modal" data-target="#FitsChart" href="" class="soap-select" id="newassessmentfit"><i class="fa fa-comments  fa-li"></i> Add New Fits Chart</a></li>
                     </ul>
                     <hr class="pemisah" />
-                    <%@include file="FitsChart.jsp"%>
+                    <jsp:include page="FitsChart.jsp"/>
                 </div>
                 <!-- content -->
 
@@ -136,7 +138,7 @@
                         <li><a data-toggle="modal" data-target="#redivacDrainChart" href=""  class="soap-select" id="redivacnewassessment"><i class="fa fa-medkit  fa-li"></i>Add New Redivac Chart</a></li>
                     </ul>
                     <hr class="pemisah" />
-                    <%@include file="redivacDrainChart.jsp"%>
+                    <jsp:include page="redivacDrainChart.jsp"/>
                 </div>
                 <!-- content -->
 
@@ -146,7 +148,7 @@
                         <li><a data-toggle="modal" data-target="#chartUrine" href="" class="soap-select"><i class="fa fa-comments  fa-li"></i> Add New Urine Info</a></li>
                     </ul>
                     <hr class="pemisah" />
-                    <%@include file="chartUrine.jsp"%>
+                    <jsp:include page="chartUrine.jsp"/>
                 </div>
                 <!-- content -->
 
@@ -156,7 +158,7 @@
                         <li><a data-toggle="modal" data-target="#woundAssessment" href="" class="soap-select" id="woundAssessmentAddNewRecord"><i class="fa fa-comments  fa-li"></i> Add New Wound Assessment</a></li>
                     </ul>
                     <hr class="pemisah" />
-                    <%@include file="woundAssessment.jsp"%>
+                    <jsp:include page="woundAssessment.jsp"/>
                 </div>
                 <!-- content -->
 
@@ -167,7 +169,7 @@
                         <li><a data-toggle="modal" data-target="#fluidBalanceOutput" href=""  class="soap-select" id="fluidBalanceOutputAddNewRecord"><i class="fa fa-history  fa-li"></i> Output (ml)</a></li>
                     </ul>
                     <hr class="pemisah" />
-                    <%@include file="fluidBalance.jsp"%>
+                    <jsp:include page="fluidBalance.jsp"/>
                 </div>
                 <!-- content -->
             </div>
@@ -189,6 +191,13 @@
 <%@include file="modal/chartUrine.jsp"%>
 <%@include file="modal/fluidBalance.jsp"%>
 <%@include file="modal/woundAssessment.jsp"%>
+
+
+
+
+
+
+
 <script src="../assets/js/btn.number.js" type="text/javascript"></script>
 <script>
     $('#Ortho-NursingInWard_1').on('click', '#observationnewassessment', function (e) {
