@@ -10,7 +10,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal"><i class="fa fa-times fa-lg"></i></button>
-                <h2 class="modal-title" id="lineModalLabel" align="center">Clone Body System</h2>
+                <h2 class="modal-title" id="lineModalLabel" align="center">Clone Procedure Level 1</h2>
             </div>
             <div class="modal-body">
 
@@ -23,7 +23,7 @@
 
                         <div style="align-items: center; text-align: center">
                             <br>
-                            <label>Select body system to be cloned</label>
+                            <label>Select procedure level 1 to be cloned</label>
                             <br><br>
                             <span>
                                 <a href="#" class="btn btn-default" id="PRO_clone_select_all">&nbsp; Select all &nbsp;</a>
