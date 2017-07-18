@@ -22,6 +22,7 @@
         <!-- header -->
         <%@include file="libraries/headLibrary.jsp" %>
         <%@include file = "../assets/header.html" %>
+        <link href="libraries/css/multi-select.css" rel="stylesheet"/>
         <!-- header -->
     </head>
 
@@ -110,6 +111,7 @@
 
         <!-- Placed at the end of the document so the pages load faster -->
         <%@include file = "libraries/footLibrary.jsp" %>
+        <script src="libraries/js/jquery.multi-select.js"></script>
         <!-- Placed at the end of the document so the pages load faster -->
         
 
