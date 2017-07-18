@@ -10,9 +10,12 @@
     BODY SYSTEM CODE MANAGEMENT
     <span class="pull-right">
         <button id="BS_btnAddNew" class="btn btn-success" data-status="pagado" data-toggle="modal" data-id="1" data-target="#BS_detail" style=" padding-right: 10px;padding-left: 10px;color: white;"><a data-toggle="tooltip" data-placement="top" title="Add Items" id="test"><i class=" fa fa-plus" style=" padding-right: 10px;padding-left: 10px;color: white;"></i></a>ADD Body System</button>
+        <button id="BS_btnCloneModal" class="btn btn-primary" style=" padding-right: 10px;padding-left: 10px;color: white;" title="Clone item"><a><i class=" fa fa-copy" style=" padding-right: 10px;padding-left: 10px;color: white;"></i></a>CLONE Body System</button>
     </span>
 </h4>
 <!-- Add Button End -->
+
+<jsp:include page="modal/bodySystem_clone_modal.jsp"/>
 
 <script>
 
@@ -247,6 +250,106 @@
     });
 
     //------------------------------- delete upon button click end -------------------------------------------------------
+    
+    //----------------- clone body system ---------------------------
+    
+    //.... laod cloneable body system 
+    function BS_loadClone(){
+        createScreenLoading();
+        $('#BS_clone_select_list').multiSelect('destroy');
+        $.ajax({
+            type: 'POST',
+            timeout: 60000,
+            url: "controller/bodySystem_getClone.jsp",
+            success: function (data, textStatus, jqXHR) {
+                        $('#BS_clone_select_list').html(data);
+                        $('#BS_clone_select_list').multiSelect({
+                            selectableHeader: "<div style='display:block; color:white; background-color:#2196f3; '>Available Body System</div>",
+                            selectionHeader: "<div style='display:block; color:white; background-color:#2196f3'>Selected Body System</div>",
+                            keepOrder: true
+                        });
+                        $('#BS_clone_modal').modal('show');
+                    },
+            error: function (jqXHR, textStatus, errorThrown) {
+                        bootbox.alert("Oops! "+errorThrown );
+                        $('#BS_clone_modal').modal('hide');
+                    },
+            complete: function (jqXHR, textStatus ) {
+                        destroyScreenLoading();
+                }
+        });
+    }
+    
+    //.... creating modal
+    $('#BS_btnCloneModal').on('click', function(){
+        BS_loadClone();
+        
+    });
+    
+    //... select all
+    $('#BS_clone_select_all').on('click', function(e){
+        e.preventDefault();
+        $('#BS_clone_select_list').multiSelect('select_all');
+    });
+    
+    //... deselect all
+     $('#BS_clone_deselect_all').on('click', function(e){
+        e.preventDefault();
+        $('#BS_clone_select_list').multiSelect('deselect_all');
+    });
+    
+    //... clone on button click
+     $('#BS_btnClone').on('click', function(){
+        
+        var arraySelect = [];
+        $('#BS_clone_select_list option:selected').each(function(){
+            arraySelect.push($(this));
+        });
+        
+        var strCode = arraySelect.map(function (elem) {
+                return elem.val();
+            }).join("|");
+            
+        if(strCode === "" || strCode === null){
+            bootbox.alert("Please select at least one body system.");
+        }
+        else{
+            createScreenLoading();
+            
+            var data = {
+                strCode: strCode
+            };
+            
+            var msg = "";
+            
+            $.ajax({
+                type: 'POST',
+                url: "controller/bodySystem_insertClone.jsp",
+                timeout: 60000,
+                data: data,
+                success: function (data, textStatus, jqXHR) {
+                        if(data.trim() === "success"){
+                            msg="Body system is cloned sucessfully.";
+                            $('#BS_clone_modal').modal('hide');
+                            $('#bodySystemTable').load('bodySystem_table.jsp');
+                        }
+                        else if(data.trim() === "fail"){
+                            msg="Failed to clone body system.";
+                            BS_loadClone();
+                        }
+                    },
+                error: function (jqXHR, textStatus, errorThrown) {
+                        msg="Oopps! "+ errorThrown;
+                    },
+                complete: function (jqXHR, textStatus ) {
+                        destroyScreenLoading();
+                        bootbox.alert(msg);
+                }
+            });
+        }
+
+    });
+    //================= end clone =================================
 
 
 

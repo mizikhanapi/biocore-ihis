@@ -8,7 +8,10 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>iHIS | Radiology Code Maintenance</title>
         <!-- header -->
+        <link href="libraries/css/table.css">
+        <link href="libraries/css/multi-select.css" rel="stylesheet" type="text/css"/>
         <%@include file = "libraries/radiologyHeadLibrary.jsp" %>
+        
         <%@include file="../assets/header.html"%>
 
         <!-- header -->
@@ -117,6 +120,7 @@
 
         <!-- Placed at the end of the document so the pages load faster -->
         <%@include file = "libraries/radiologyFootLibrary.jsp" %>
+        <script src="libraries/js/jquery.multi-select.js"></script>
         <!-- Placed at the end of the document so the pages load faster -->
 
 
