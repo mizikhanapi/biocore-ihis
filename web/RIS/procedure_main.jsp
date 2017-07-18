@@ -14,9 +14,17 @@
                 <i class=" fa fa-plus" style=" padding-right: 10px;padding-left: 10px;color: white;"></i>
             </a>ADD Procedure
         </button>
+        <button id="PRO_btnCloneModal" class="btn btn-primary" style=" padding-right: 10px;padding-left: 10px;color: white;" title="Clone item">
+            <a>
+                <i class=" fa fa-copy" style=" padding-right: 10px;padding-left: 10px;color: white;"></i>
+            </a>CLONE Procedure
+        </button>
     </span>
 </h4>
 <!-- Add Button End -->
+
+<!--clone modal-->
+<jsp:include page="modal/procedure_clone_modal.jsp"/>
 
 <script>
 
@@ -489,7 +497,105 @@
 
     //------------------------------ controlling number input end --------------------------------------------------------------
 
+    //----------------- clone procedure ---------------------------
+    
+    //.... load cloneable procedure 
+    function PRO_loadClone(){
+        createScreenLoading();
+        $('#PRO_clone_select_list').multiSelect('destroy');
+        $.ajax({
+            type: 'POST',
+            timeout: 60000,
+            url: "controller/procedure_getClone.jsp",
+            success: function (data, textStatus, jqXHR) {
+                        $('#PRO_clone_select_list').html(data);
+                        $('#PRO_clone_select_list').multiSelect({
+                            selectableHeader: "<div style='display:block; color:white; background-color:#2196f3; '>Available Procedure</div>",
+                            selectionHeader: "<div style='display:block; color:white; background-color:#2196f3'>Selected Procedure</div>",
+                            keepOrder: true
+                        });
+                        $('#PRO_clone_modal').modal('show');
+                    },
+            error: function (jqXHR, textStatus, errorThrown) {
+                        bootbox.alert("Oops! "+errorThrown );
+                        $('#PRO_clone_modal').modal('hide');
+                    },
+            complete: function (jqXHR, textStatus ) {
+                        destroyScreenLoading();
+                }
+        });
+    }
+    
+    //.... creating modal
+    $('#PRO_btnCloneModal').on('click', function(){
+        PRO_loadClone();
+        
+    });
+    
+    //... select all
+    $('#PRO_clone_select_all').on('click', function(e){
+        e.preventDefault();
+        $('#PRO_clone_select_list').multiSelect('select_all');
+    });
+    
+    //... deselect all
+     $('#PRO_clone_deselect_all').on('click', function(e){
+        e.preventDefault();
+        $('#PRO_clone_select_list').multiSelect('deselect_all');
+    });
+    
+    //... clone on button click
+     $('#PRO_btnClone').on('click', function(){
+        
+        var arraySelect = [];
+        $('#PRO_clone_select_list option:selected').each(function(){
+            arraySelect.push($(this));
+        });
+        
+        var strCode = arraySelect.map(function (elem) {
+                return elem.val();
+            }).join("|");
+            
+        if(strCode === "" || strCode === null){
+            bootbox.alert("Please select at least one procedure.");
+        }
+        else{
+            createScreenLoading();
+            
+            var data = {
+                strCode: strCode
+            };
+            
+            var msg = "";
+            
+            $.ajax({
+                type: 'POST',
+                url: "controller/procedure_insertClone.jsp",
+                timeout: 60000,
+                data: data,
+                success: function (data, textStatus, jqXHR) {
+                        if(data.trim() === "success"){
+                            msg="Procedure is cloned sucessfully.";
+                            $('#PRO_clone_modal').modal('hide');
+                            $('#procedureTable').load('procedure_table.jsp');
+                        }
+                        else if(data.trim() === "fail"){
+                            msg="Failed to clone procedure.";
+                            PRO_loadClone();
+                        }
+                    },
+                error: function (jqXHR, textStatus, errorThrown) {
+                        msg="Oopps! "+ errorThrown;
+                    },
+                complete: function (jqXHR, textStatus ) {
+                        destroyScreenLoading();
+                        bootbox.alert(msg);
+                }
+            });
+        }
 
+    });
+    //================= end clone =================================
 
 
     $(function () {
