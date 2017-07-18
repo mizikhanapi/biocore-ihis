@@ -31,6 +31,7 @@
 
     String headORC = "ORC";                           // Data 0
     String transactionORC = "T12113";                 // Data 1
+    String transactionORCDDR = "-";                 // Data 1
     String orderNoORC = orderNo;                      // Data 2
     String fillerOrderNoORC = "";                     // Data 3
     String orderStatusORC = "NO";                     // Data 4
@@ -207,7 +208,7 @@
 
     
     //             0                1                      2                     3                      4                       5                       6     
-    ORCFinalDDR = headORC + "|" + transactionORC + "|" + orderNoORC + "|" + fillerOrderNoORC + "|" + orderStatusORC + "|" + orderPriorityORC + "|" + orderDateORC + "|" + 
+    ORCFinalDDR = headORC + "|" + transactionORCDDR + "|" + orderNoORC + "|" + fillerOrderNoORC + "|" + orderStatusORC + "|" + orderPriorityORC + "|" + orderDateORC + "|" + 
     //              7                      8                    9                     10                    11                    12                    13                  14          
             episodeDateORC + "|" + encounterDateORC + "|" + enteredByORC + "|" + verifiedByORC + "|" + designationORC + "|" + orderHFCORC + "|" + orderDispORC + "|" + orderSubDispORC + "|" +
     //              15                          16                           17                         18                          19                        20                        21                          22  
