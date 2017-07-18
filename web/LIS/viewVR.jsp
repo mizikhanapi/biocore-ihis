@@ -147,11 +147,8 @@
                                                 $(document).ready(function () {
 
                                                     $("#btn_saveChange<%=i%>").click(function () {
-
                                                         var verify = $("#verify1<%=i%>").val();
                                                         var idresult = $("#idresult<%=i%>").val();
-
-
                                                         $.ajax({
                                                             url: "tSentApproval.jsp",
                                                             type: "post",

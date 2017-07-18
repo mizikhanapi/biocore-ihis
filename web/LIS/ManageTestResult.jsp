@@ -48,7 +48,8 @@
 
                                                 String specimen_no1 = request.getParameter("specimen_no");
                                                 session.setAttribute("specimen_no1", specimen_no1);
-
+                                                String user_name = session.getAttribute("USER_NAME").toString();
+                                                
                                                 //out.print(item_cd + " " + pmi1 + " " + specimen_no1);
                                                 Conn conn = new Conn();
 
@@ -133,7 +134,7 @@
                                                         <div class="form-group">
                                                             <label class="col-md-4 control-label" for="textinput">Test Perform By</label>
                                                             <div class="col-md-8">
-                                                                <input type="text" name="performBy" id="performBy" class="form-control" />
+                                                                <input type="text" name="performBy" id="performBy" class="form-control" value="<%=user_name%>"/>
                                                             </div>
                                                         </div>
                                                     </div>

@@ -99,20 +99,28 @@
                 + "from ris_modality where hfc_cd = '99_iHIS_99';";
 
         String copyRIS_procedure = "insert into ris_procedure_master(hfc_cd, clinical_discipline_cd, body_system_cd, modality_cd, ris_procedure_cd, ris_procedure_name, discipline_cd, subdiscipline_cd, selling_price, buying_price, quantity, created_by, created_date, status) "
-                + "select '"+hfcCode+"', clinical_discipline_cd, body_system_cd, modality_cd, ris_procedure_cd, ris_procedure_name, '001', '001', selling_price, buying_price, quantity, '"+creator+"', now(), '0' "
+                + "select '" + hfcCode + "', clinical_discipline_cd, body_system_cd, modality_cd, ris_procedure_cd, ris_procedure_name, '001', '001', selling_price, buying_price, quantity, '" + creator + "', now(), '0' "
                 + "from ris_procedure_master WHERE hfc_cd = '99_iHIS_99';";
-        
+
         String copyCISPro = "insert into cis_procedure(`PROCEDURE_CD`, `PROCEDURE_NAME`, `STATUS`, hfc_cd, selling_price, buying_price) "
-                + "select `PROCEDURE_CD`, `PROCEDURE_NAME`, `STATUS`, '"+hfcCode+"', selling_price, buying_price "
+                + "select `PROCEDURE_CD`, `PROCEDURE_NAME`, `STATUS`, '" + hfcCode + "', selling_price, buying_price "
                 + "from cis_procedure where hfc_cd='99_iHIS_99' ";
-        
+
         String copyCISPro1 = "insert into cis_procedure_1(`PROCEDURE_1_CD`, `PROCEDURE_1_NAME`, `PROCEDURE_CD`, status, hfc_cd) "
-                + "select `PROCEDURE_1_CD`, `PROCEDURE_1_NAME`, `PROCEDURE_CD`, `STATUS`, '"+hfcCode+"' "
+                + "select `PROCEDURE_1_CD`, `PROCEDURE_1_NAME`, `PROCEDURE_CD`, `STATUS`, '" + hfcCode + "' "
                 + "from cis_procedure_1 where hfc_cd='99_iHIS_99'";
-        
-        String copyCISPro2 ="INSERT INTO cis_procedure_2(`PROCEDURE_2_CD`, `PROCEDURE_2_NAME`, `PROCEDURE_1_CD`, `STATUS`, hfc_cd) "
-                + "select `PROCEDURE_2_CD`, `PROCEDURE_2_NAME`, `PROCEDURE_1_CD`, `STATUS`, '"+hfcCode+"' "
+
+        String copyCISPro2 = "INSERT INTO cis_procedure_2(`PROCEDURE_2_CD`, `PROCEDURE_2_NAME`, `PROCEDURE_1_CD`, `STATUS`, hfc_cd) "
+                + "select `PROCEDURE_2_CD`, `PROCEDURE_2_NAME`, `PROCEDURE_1_CD`, `STATUS`, '" + hfcCode + "' "
                 + "from cis_procedure_2 where hfc_cd='99_iHIS_99'";
+
+        String lis_item_category1 = "INSERT INTO lis_item_category(`category_code`, `category_name`, `status`, hfc_cd)"
+                + "select `category_code`, `category_name`, `status`, '" + hfcCode + "' "
+                + "from lis_item_category where hfc_cd='99_iHIS_99'";
+
+        String lis_item_category2 = "INSERT INTO lis_item_detail(`item_cd`, `item_name`, `test_cat`, spe_source, spe_container, volume, special_inst, status, buy_price, ser_price, hfc_cd) "
+                + "select `item_cd`, `item_name`, `test_cat`, spe_source, spe_container, volume, special_inst, status, buy_price, ser_price, '" + hfcCode + "'"
+                + "from lis_item_detail where hfc_cd='99_iHIS_99'";
 
         rmic.setQuerySQL(conn.HOST, conn.PORT, copyLookup);
         rmic.setQuerySQL(conn.HOST, conn.PORT, copyRole);
@@ -123,6 +131,8 @@
         rmic.setQuerySQL(conn.HOST, conn.PORT, copyCISPro);
         rmic.setQuerySQL(conn.HOST, conn.PORT, copyCISPro1);
         rmic.setQuerySQL(conn.HOST, conn.PORT, copyCISPro2);
+        rmic.setQuerySQL(conn.HOST, conn.PORT, lis_item_category1);
+        rmic.setQuerySQL(conn.HOST, conn.PORT, lis_item_category2);
 
     }
 %>
