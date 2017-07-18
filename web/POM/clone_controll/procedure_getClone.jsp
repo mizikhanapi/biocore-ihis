@@ -31,12 +31,12 @@
         
         }
         else{
-            out.print("<option disabled>Your body system is up to date with our central data.</option>");
+            out.print("<option disabled>Your procedure level 1 is up to date with our central data.</option>");
         }
     
     }
     catch(Exception e){
-        System.out.println("Clone body system: " +e.toString());
+        System.out.println("Clone POM level 1: " +e.toString());
         e.printStackTrace();
         out.print("Oops!");
     }
