@@ -7,6 +7,8 @@
 
 <%@include file="../Entrance/validateSession.jsp" %>
 <%@include file="validateModuleAccess.jsp" %>
+<script src="../assets/js/Chart.bundle.js" type="text/javascript"></script>
+
 
 <%    Config.getBase_url(request);
     Config.getFile_url(session);

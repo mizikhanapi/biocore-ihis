@@ -65,7 +65,7 @@
             "emptyTable": "No Record Available To Display"
         }
     });</script>
-<canvas id="line" height="500" width="670" style="width: 470px; height: 300px;"></canvas>
+<canvas id="line" height="300" width="470" style="width: 470px; height: 300px;"></canvas>
 <script>
             var jsArraylabel = [<% for (int i = 0; i < Listlabels.size(); i++) {%>"<%= Listlabels.get(i)%>"<%= i + 1 < Listlabels.size() ? "," : ""%><% } %>];
             var jsArraydata = [<% for (int i = 0; i < ListDatas.size(); i++) {%>"<%= ListDatas.get(i)%>"<%= i + 1 < ListDatas.size() ? "," : ""%><% } %>];

@@ -4,7 +4,6 @@
     Author     : Mizi K (UI)
 --%>
 <!--<link href="../assets/css/chart.css" rel="stylesheet" type="text/css"/>-->
-<script src="../assets/js/Chart.bundle.js" type="text/javascript"></script>
 <!--<script src="../assets/js/Chart.js" type="text/javascript"></script>-->
 <div class="row">
     <div class="col-md-8">
