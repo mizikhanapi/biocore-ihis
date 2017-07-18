@@ -265,8 +265,8 @@
             success: function (data, textStatus, jqXHR) {
                         $('#MOD_clone_select_list').html(data);
                         $('#MOD_clone_select_list').multiSelect({
-                            selectableHeader: "<div style='display:block; color:white; background-color:#2196f3; '>Available Body System</div>",
-                            selectionHeader: "<div style='display:block; color:white; background-color:#2196f3'>Selected Body System</div>",
+                            selectableHeader: "<div style='display:block; color:white; background-color:#2196f3; '>Available Modality</div>",
+                            selectionHeader: "<div style='display:block; color:white; background-color:#2196f3'>Selected Modality</div>",
                             keepOrder: true
                         });
                         $('#MOD_clone_modal').modal('show');
