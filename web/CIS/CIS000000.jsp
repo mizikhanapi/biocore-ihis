@@ -235,10 +235,10 @@
                         <div class="tab-pane fade" id="orthopedic-nur">
                             <jsp:include page="../Ortho-Nursing/Nursing.jsp"/>
                         </div> 
- <!--
+ 
                         <div class="tab-pane fade" id="orthopedic-niw">
-                            <//jsp:include page="../Ortho-NursingInWard/NursingInWard.jsp"/>
-                        </div> -->
+                            <jsp:include page="../Ortho-NursingInWard/NursingInWard.jsp"/>
+                        </div> 
 
                         <div class="tab-pane fade" id="orthopedic-ot">
                             <jsp:include page="../Ortho-operationTheater/OperationTheater.jsp"/>
