@@ -103,7 +103,7 @@
                     //$("#view_VS").load("libraries/header.html");
                     //alert(qno);
                     qno = Number(qno)+Number(initial);
-                    $("#view_VS").load("newjsp1.jsp?idResult=" + qno+"&room="+qname);
+                    $("#view_VS").load("voice_call.jsp?idResult=" + qno+"&room="+qname);
                 </script>   
                 <%
                 } else if (lang.equals("2")) {
