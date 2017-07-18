@@ -216,12 +216,12 @@
                         $('#Neurosurgical1').modal('toggle');
                         $("#Neurosurgical1").hide();
                         $(".modal-backdrop").hide();
-                        alert("Pupils size reaction is saved.");
+                        bootbox.alert("Pupils size reaction is saved.");
                     }
                 });
             },
             error: function (err) {
-                alert("Error update!");
+                bootbox.alert("Error update!");
             }
         });
 
@@ -329,12 +329,12 @@
                         $('#Neurosurgical2').modal('toggle');
                         $("#Neurosurgical2").hide();
                         $(".modal-backdrop").hide();
-                        alert("Limb movement is saved.");
+                        bootbox.alert("Limb movement is saved.");
                     }
                 });
             },
             error: function (err) {
-                alert("Error update!");
+                bootbox.alert("Error update!");
             }
         });
 

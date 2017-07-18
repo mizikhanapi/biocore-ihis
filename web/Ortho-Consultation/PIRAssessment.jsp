@@ -83,7 +83,7 @@
                         $('#getPIRAssessment').trigger('contentchanged');
                     },
                     error: function (err) {
-                        alert("Error update!");
+                        bootbox.alert("Error update!");
                     }
                 });
                 //alert("today");
@@ -103,7 +103,7 @@
                         $('#getPIRAssessment').trigger('contentchanged');
                     },
                     error: function (err) {
-                        alert("Error update!");
+                        bootbox.alert("Error update!");
                     }
                 });
                 //alert("Yesterday");
@@ -123,7 +123,7 @@
                         $('#getPIRAssessment').trigger('contentchanged');
                     },
                     error: function (err) {
-                        alert("Error update!");
+                        bootbox.alert("Error update!");
                     }
                 });
 
@@ -143,7 +143,7 @@
                         $('#getPIRAssessment').trigger('contentchanged');
                     },
                     error: function (err) {
-                        alert("Error update!");
+                        bootbox.alert("Error update!");
                     }
                 });
             } else if (this.value == 'Days_60')
@@ -162,7 +162,7 @@
                         $('#getPIRAssessment').trigger('contentchanged');
                     },
                     error: function (err) {
-                        alert("Error update!");
+                        bootbox.alert("Error update!");
                     }
                 });
             } else if (this.value == 'Select_date')
@@ -191,7 +191,7 @@
                     $('#getPIRAssessment').trigger('contentchanged');
                 },
                 error: function (err) {
-                    alert("Error update!");
+                    bootbox.alert("Error update!");
                 }
             });
         });

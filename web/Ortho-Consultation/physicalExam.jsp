@@ -84,7 +84,7 @@
                         $('#get_physicalExam').trigger('contentchanged');
                     },
                     error: function (err) {
-                        alert("Error update!");
+                        bootbox.alert("Error update!");
                     }
                 });
                 //alert("today");
@@ -104,7 +104,7 @@
                         $('#get_physicalExam').trigger('contentchanged');
                     },
                     error: function (err) {
-                        alert("Error update!");
+                        bootbox.alert("Error update!");
                     }
                 });
                 //alert("Yesterday");
@@ -124,7 +124,7 @@
                         $('#get_physicalExam').trigger('contentchanged');
                     },
                     error: function (err) {
-                        alert("Error update!");
+                        bootbox.alert("Error update!");
                     }
                 });
                 //alert("Yesterday");
@@ -144,7 +144,7 @@
                         $('#get_physicalExam').trigger('contentchanged');
                     },
                     error: function (err) {
-                        alert("Error update!");
+                        bootbox.alert("Error update!");
                     }
                 });
 
@@ -164,7 +164,7 @@
                         $('#get_physicalExam').trigger('contentchanged');
                     },
                     error: function (err) {
-                        alert("Error update!");
+                        bootbox.alert("Error update!");
                     }
                 });
             } else if (this.value == 'Days_60')
@@ -183,7 +183,7 @@
                         $('#get_physicalExam').trigger('contentchanged');
                     },
                     error: function (err) {
-                        alert("Error update!");
+                        bootbox.alert("Error update!");
                     }
                 });
             } else if (this.value == 'Select_date')
@@ -211,7 +211,7 @@
                     $('#get_physicalExam').trigger('contentchanged');
                 },
                 error: function (err) {
-                    alert("Error update!");
+                    bootbox.alert("Error update!");
                 }
             });
         });

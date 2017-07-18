@@ -86,7 +86,7 @@
                     $('#getNeuAssessment').trigger('contentchanged');
                 },
                 error: function (err) {
-                    alert("Error update!");
+                    bootbox.alert("Error update!");
                 }
             });
             //alert("today");
@@ -106,7 +106,7 @@
                     $('#getNeuAssessment').trigger('contentchanged');
                 },
                 error: function (err) {
-                    alert("Error update!");
+                    bootbox.alert("Error update!");
                 }
             });
             //alert("Yesterday");
@@ -126,7 +126,7 @@
                     $('#getNeuAssessment').trigger('contentchanged');
                 },
                 error: function (err) {
-                    alert("Error update!");
+                    bootbox.alert("Error update!");
                 }
             });
 
@@ -165,7 +165,7 @@
                     $('#getNeuAssessment').trigger('contentchanged');
                 },
                 error: function (err) {
-                    alert("Error update!");
+                    bootbox.alert("Error update!");
                 }
             });
         } else if (this.value == 'Select_date')
@@ -194,7 +194,7 @@
                 $('#getNeuAssessment').trigger('contentchanged');
             },
             error: function (err) {
-                alert("Error update!");
+                bootbox.alert("Error update!");
             }
         });
     });

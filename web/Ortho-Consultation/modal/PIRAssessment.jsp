@@ -488,7 +488,7 @@
                         $('#PIRAssessment1').modal('toggle');
                         $("#PIRAssessment1").hide();
                         $(".modal-backdrop").hide();
-                        alert("Patient injury risk information is saved.");
+                        bootbox.alert("Patient injury risk information is saved.");
                     }
                 });
 
@@ -498,7 +498,7 @@
 //                $("#getPIRAssessment").load("../Ortho-Consultation/PIRAssessment.jsp");
             },
             error: function (err) {
-                alert("Error update!");
+                bootbox.alert("Error update!");
             }
         });
 

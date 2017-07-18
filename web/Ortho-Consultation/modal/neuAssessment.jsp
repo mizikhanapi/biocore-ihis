@@ -83,13 +83,13 @@
                         $('#neuAssessment1').modal('toggle');
                         $("#neuAssessment1").hide();
                         $(".modal-backdrop").hide();
-                        alert("Assessment date is saved.");
+                        bootbox.alert("Assessment date is saved.");
                     }
                 });
                 //$("#getNeuAssessment").load("../Ortho-Consultation/table/t_assessment.jsp");
             },
             error: function (err) {
-                alert("Error update!");
+                bootbox.alert("Error update!");
             }
         });
 
@@ -395,12 +395,12 @@
                         $('#neuAssessment2').modal('toggle');
                         $("#neuAssessment2").hide();
                         $(".modal-backdrop").hide();
-                       alert("Muscle Power Added");
+                       bootbox.alert("Muscle Power Added");
                     }
                 });
             },
             error: function (err) {
-                alert("Error update!");
+                bootbox.alert("Error update!");
             }
         });
 
@@ -673,12 +673,12 @@
                         $('#neuAssessment3').modal('toggle');
                         $("#neuAssessment3").hide();
                         $(".modal-backdrop").hide();
-                       alert("Sensory Added");
+                       bootbox.alert("Sensory Added");
                     }
                 });               
             },
             error: function (err) {
-                alert("Error update!");
+                bootbox.alert("Error update!");
             }
         });
 

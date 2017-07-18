@@ -79,7 +79,7 @@
                         $('#getNeuObservation').trigger('contentchanged');
                     },
                     error: function (err) {
-                        alert("Error update!");
+                        bootbox.alert("Error update!");
                     }
                 });
                 //alert("today");
@@ -99,7 +99,7 @@
                         $('#getNeuObservation').trigger('contentchanged');
                     },
                     error: function (err) {
-                        alert("Error update!");
+                        bootbox.alert("Error update!");
                     }
                 });
                 //alert("Yesterday");
@@ -119,7 +119,7 @@
                         $('#getNeuObservation').trigger('contentchanged');
                     },
                     error: function (err) {
-                        alert("Error update!");
+                        bootbox.alert("Error update!");
                     }
                 });
                 //alert("Yesterday");
@@ -139,7 +139,7 @@
                         $('#getNeuObservation').trigger('contentchanged');
                     },
                     error: function (err) {
-                        alert("Error update!");
+                        bootbox.alert("Error update!");
                     }
                 });
 
@@ -159,7 +159,7 @@
                         $('#getNeuObservation').trigger('contentchanged');
                     },
                     error: function (err) {
-                        alert("Error update!");
+                        bootbox.alert("Error update!");
                     }
                 });
             } else if (this.value == 'Days_60')
@@ -178,7 +178,7 @@
                         $('#getNeuObservation').trigger('contentchanged');
                     },
                     error: function (err) {
-                        alert("Error update!");
+                        bootbox.alert("Error update!");
                     }
                 });
             } else if (this.value == 'Select_date')
@@ -206,7 +206,7 @@
                     $('#getNeuObservation').trigger('contentchanged');
                 },
                 error: function (err) {
-                    alert("Error update!");
+                    bootbox.alert("Error update!");
                 }
             });
         });
