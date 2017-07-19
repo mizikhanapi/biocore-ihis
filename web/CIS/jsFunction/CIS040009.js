@@ -92,6 +92,8 @@ $(document).ready(function(){
             var fullmsg;
             var msh = getMSH();
             var pdi = PDIInfo;
+            var providerDetail = obj1.hfcProviderDetail.split("|");
+            var msh = getMSH("03", providerDetail[0]);
             var orc = convertORC(obj1, "02", "03", "T12105");
             msg = convertPRI(obj1);
 

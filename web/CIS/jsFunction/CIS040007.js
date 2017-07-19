@@ -144,7 +144,8 @@ $(document).ready(function () {
         if (submitConfirm === true) {
             var msg = '';
             var fullmsg;
-            var msh = getMSH();
+            var providerDetail = obj1.hfcProviderDetail.split("|");
+            var msh = getMSH("07", providerDetail[0]);
             var pdi = PDIInfo;
             var orc = convertORC(obj1, "02", "07", "T12111");
             msg = convertADW(obj1);

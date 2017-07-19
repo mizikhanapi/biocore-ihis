@@ -164,7 +164,8 @@ $(document).ready(function () {
         if (submitConfirm === true) {
             var msg = '';
             var fullmsg;
-            var msh = getMSH();
+            
+            var msh = getMSH("06",_dataROS[0].hfcIdROS);
             var pdi = PDIInfo;
             var orc = convertORC(_dataROS[0], "02", "06","T12102");
             for (var i in _dataROS) {

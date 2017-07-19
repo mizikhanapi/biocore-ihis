@@ -306,8 +306,8 @@ function getObjectVTS(msg) {
 
 
 //-------------------------------------------OBJECT TO NOTES 
-function getMSH(){
-    var msh = "MSH|^~|02|" + hfc_cd + "^" + discipline + "^" + subdis + "||" + getDate() + "|||||||||||||<cr>\n";
+function getMSH(receiveApp,receiveHF){
+    var msh = "MSH|^~|02|" + hfc_cd + "^" + discipline + "^" + subdis + "|"+receiveApp+"|"+ hfc_cd + "^" + discipline + "^" + subdis +"|" + getDate() + "||||||||||||<cr>\n";
     return msh;
 }
 

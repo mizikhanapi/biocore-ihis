@@ -56,7 +56,8 @@ $(document).ready(function () {
         if (submitConfirm === true) {
        
             var fullmsg;
-            var msh = getMSH();
+            var providerDetail = obj.hfcProviderDetail.split("|");
+            var msh = getMSH("07", providerDetail[0]);
             var pdi = PDIInfo;
             var orc = convertORC(obj, "02", "07", "T12115");
 

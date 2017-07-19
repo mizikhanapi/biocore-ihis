@@ -124,7 +124,9 @@ $(document).ready(function(){
         if (submitConfirm === true) {
             var msg = '';
             var fullmsg;
-            var msh = getMSH();
+            var providerDetail = _dataPOS[0].hfcProviderDetail.split("|");
+            var msh = getMSH("18", providerDetail[0]);
+            
             var pdi = PDIInfo;
             var orc = convertORC(_dataPOS[0], "02", "18", "T12114");
             for (var i in _dataPOS) {

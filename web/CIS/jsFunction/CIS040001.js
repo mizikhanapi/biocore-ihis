@@ -134,7 +134,7 @@ $(document).ready(function () {
         if (submitConfirm === true) {
             var msg = '';
             var fullmsg;
-            var msh = getMSH();
+            var msh = getMSH("05",_dataLIO[0].hfcIdLOS);
             var pdi = PDIInfo;
             var orc = convertORC(_dataLIO[0], "02", "05","T12101");
             for (var i in _dataLIO) {

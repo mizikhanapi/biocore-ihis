@@ -99,7 +99,9 @@ $(document).ready(function(){
         if (submitConfirm === true) {
             var msg = '';
             var fullmsg;
-            var msh = getMSH();
+            var providerDetail = _dataDTO[0].hfcProviderDetail.split("|");
+            
+            var msh = getMSH("04",providerDetail[0]);
             var pdi = PDIInfo;
             var orc = convertORC(_dataDTO[0], "02", "04","T12100");
             for (var i in _dataDTO) {

@@ -537,7 +537,7 @@ $(document).ready(function (e) {
             statusDesc = "Missing";
         }
 
-        var msh = "MSH|^~|02|" + hfc_cd + "^" + discipline + "^" + subdis + "||" + getDate() + "|||||||||||||<cr>\n";
+        var msh = getMSH("02", hfc_cd);
         var pdi = PDIInfo + "\n";
 
         countVTS(_data);

@@ -60,6 +60,8 @@ $(document).ready(function () {
             var msg = '';
             var fullmsg;
             var msh = getMSH();
+            var providerDetail = _dataMON[0].hfcProviderDetail.split("|");
+            var msh = getMSH("05", providerDetail[0]);
             var pdi = PDIInfo;
             var orc = convertORC(_dataMON[0], "02", "05", "T12107");
             for (var i in _dataMON) {
