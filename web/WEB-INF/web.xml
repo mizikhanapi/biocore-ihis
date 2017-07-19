@@ -16,6 +16,56 @@
         <servlet-name>PdfServlet</servlet-name>
         <url-pattern>/PdfServlet</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>Login</servlet-name>
+        <jsp-file>/Entrance/login.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Login</servlet-name>
+        <url-pattern>/Entrance/Sign-in</url-pattern>
+    </servlet-mapping>
+<!--    <servlet-mapping>
+        <servlet-name>Login</servlet-name>
+        <url-pattern>/Entrance/*</url-pattern>
+    </servlet-mapping>-->
+    <!--log in IC-->
+    <servlet>
+        <servlet-name>Login_IC</servlet-name>
+        <jsp-file>/Entrance/login_ic.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Login_IC</servlet-name>
+        <url-pattern>/Entrance/ReSign-in</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>Forgot_pwd</servlet-name>
+        <jsp-file>/Entrance/forgot-pwd.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Forgot_pwd</servlet-name>
+        <url-pattern>/Entrance/Forgot_Password</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>Dashboard</servlet-name>
+        <jsp-file>/Entrance/dashboard.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Dashboard</servlet-name>
+        <url-pattern>/Entrance/Home</url-pattern>
+    </servlet-mapping>
+    
+    <!--mapping for system admin start-->
+    <servlet>
+        <servlet-name>adm_lookup</servlet-name>
+        <jsp-file>/SystemAdmin/HIS010001.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>adm_lookup</servlet-name>
+        <url-pattern>/SystemAdmin/Lookup</url-pattern>
+    </servlet-mapping>
+    
+    <!--mapping for system admin end-->
+    
     <session-config>
         <session-timeout>
             -1

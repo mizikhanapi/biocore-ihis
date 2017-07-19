@@ -300,7 +300,7 @@ $(document).ready(function () {
                     $('#prioGru').val('003');
                     $('.nav-tabs a[href="#tab_default_1"]').tab('show');
                 } else if ($.trim(array[0]) === "false") {
-                    alert("Saving Patient Biodata Failed");
+                    //alert("Saving Patient Biodata Failed");
                     bootbox.alert("Saving Patient Biodata Failed");
                 }
 

@@ -166,7 +166,7 @@
                             if (mod01) {
                         %>
                         <div class="col-xs-6 col-sm-6 col-md-3">
-                            <a href="../SystemAdmin/HIS010001.jsp" class="thumbnail">
+                            <a href="../SystemAdmin/Lookup" class="thumbnail">
                                 <div class="kotak text-center">
                                     <i class="fa fa-desktop" aria-hidden="true" style="color: #FDC671;font-size: 4em;"></i>
                                     <h3>System Administration</h3>

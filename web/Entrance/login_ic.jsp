@@ -60,8 +60,12 @@
 
                 </form><!-- /form -->
                 <button class="btn btn-lg btn-primary btn-block btn-signin" id="btnSign">Sign in</button>
-                <a href="forgot-pwd.jsp" class="forgot-password">
+                <a href="Forgot_Password" class="forgot-password">
                     Forgot the password?
+                </a>
+                <br>
+                <a href="Sign-in" class="forgot-password">
+                    Sign-in with different account.
                 </a>
             </div><!-- /card-container -->
         </div><!-- /container -->
@@ -77,7 +81,7 @@
 
 
         <script>
-
+          
             $(document).ready(function () {
 
                 $(document).bind('keypress', pressed);
@@ -123,7 +127,7 @@
                             var num = parseInt(data);
 
                             if (num === 2)
-                                window.location = "dashboard.jsp";
+                                window.location = "Home";
                             else if (num === 1)
                                 alert("Wrong password");
                             else if (num === 0)

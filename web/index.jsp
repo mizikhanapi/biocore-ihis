@@ -10,7 +10,7 @@
     Config.getBase_url(request);
     Config.getFile_url(session);
     
-    response.sendRedirect("Entrance/login.jsp"); 
+    response.sendRedirect("./Entrance/Sign-in"); 
 
 
 
