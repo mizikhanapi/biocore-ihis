@@ -1,7 +1,7 @@
 <%-- 
     Document   : HIS180001
     Created on : May 10, 2017, 7:38:38 AM
-    Author     : user
+    Author     : Ardhi Surya; rdsurya147@gmail.com; insta: @rdcfc
 --%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.sql.*"%>
