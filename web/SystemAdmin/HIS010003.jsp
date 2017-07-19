@@ -1,7 +1,7 @@
 <%-- 
     Document   : queue
     Created on : Mar 16, 2017, 10:14:31 PM
-    Author     : user
+    Author     : Ardhi Surya; rdsurya147@gmail.com; insta: @rdcfc
 --%>
 <%@include file="validateSession.jsp" %>
 <%@include file="validateModuleAccess.jsp" %>
