@@ -191,12 +191,12 @@ $(document).ready(function () {
                         $('#CIS020002').modal('toggle');
                         $("#CIS020002").hide();
                         $(".modal-backdrop").hide();
-                        alert("Pediatric Glasgow Coma Scale is saved.");
+                        bootbox.alert("Pediatric Glasgow Coma Scale is saved.");
                     }
                 });
             },
             error: function (err) {
-                alert("Error update!");
+                bootbox.alert("Error update!");
             }
         });
     });
@@ -304,15 +304,15 @@ $(document).ready(function () {
                         $('#CIS020003').modal('toggle');
                         $("#CIS020003").hide();
                         $(".modal-backdrop").hide();
-                        alert("Bllod pressure is saved.");
+                        bootbox.alert("Bllod pressure is saved.");
                     }
                 });
             },
             error: function (err) {
-                alert("Error update!");
+                bootbox.alert("Error update!");
             }
         });
-
+        
     });
 
     $('#tblCIS_Consultation_Table').on('click', '.updateBP', function (e) {
@@ -737,12 +737,12 @@ $(document).ready(function () {
                         $('#CIS020009').modal('toggle');
                         $("#CIS020009").hide();
                         $(".modal-backdrop").hide();
-                        alert("Physical Examination is saved.");
+                        bootbox.alert("Physical Examination is saved.");
                     }
                 });
             },
             error: function (err) {
-                alert("Error update!");
+                bootbox.alert("Error update!");
             }
         });
 
