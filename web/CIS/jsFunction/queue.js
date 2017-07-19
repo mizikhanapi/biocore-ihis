@@ -23,6 +23,7 @@ $(document).ready(function () {
 
 
 
+
     $('#listQueue').on('click', '#consultBtn', function (e) {
         if(pmiNo === "" && episodeDate === ""){
             reloadStat = "1";
@@ -87,7 +88,7 @@ function findPatient(pmiNo,episodeDate) {
             $('#pRace').html(DataArry[7]);
             patientCategory = DataArry[9];
             fullPatientData = DataArry[10];
-            console.log(patientCategory);
+           
 
         }
     });
@@ -150,13 +151,6 @@ function getEHRPatient(pmiNo, episodeDate) {
 
             } 
 
-            
-//            $.when( convertEHR(EHRrecord)).done(function(){
-//                    if(DGCArryData.length > 0){
-//                            lexerDCG(DGCArryData);
-//
-//            } 
-//            })
             
         },
         error: function (err) {

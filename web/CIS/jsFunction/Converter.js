@@ -429,7 +429,7 @@ function convertDTO(obj){
 
 function convertDCG(obj,dischargeSummary){
     var messageType = dischargeSummary.substring(0, 3);
-    var msg = "DCG|" + episodeDate + "|" + episodeDate + "^" + hfc_cd + "^" + patientCategory + "^" + doctor_id + "^" + doctor_name + "^" + doctor_id + "^" + doctor_name + "^" + obj.date + " " + obj.time + "^" + obj.disposition + "^" + obj.comment + "^" +messageType+"|"+ dischargeSummary + "|<cr>\n";
+    var msg = "DCG|" + episodeDate + "|" + encounterDate + "^" + hfc_cd + "^" + hfc_name + "^" + patientCategory + "^" + doctor_id + "^" + doctor_name + "^" + doctor_id + "^" + doctor_name + "^" + obj.date + " " + obj.time + "^" + obj.disposition + "^" + obj.comment + "^" +messageType+"|"+ dischargeSummary + "|<cr>\n";
     return msg;
 }
 

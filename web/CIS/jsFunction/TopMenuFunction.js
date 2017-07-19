@@ -27,14 +27,14 @@ function goToHome() {
 $(document).ready(function (e) {
 
 
-    $(window).on('beforeunload', function (e) {
-        if (reloadStat === "1") {
-            updateStatus(pmiNo, episodeDate, statusNow);
-            return "Sure U are?";
-        } else {
-            console.log("no patient");
-        }
-    });
+//    $(window).on('beforeunload', function (e) {
+//        if (reloadStat === "1") {
+//            updateStatus(pmiNo, episodeDate, statusNow);
+//            return "Sure U are?";
+//        } else {
+//            console.log("no patient");
+//        }
+//    });
 
     $('.changePatientBtn').unbind('click');
 
@@ -120,12 +120,13 @@ $(document).ready(function (e) {
     });
 
     $("#missingBtn").click(function () {
-        reloadStat = 0;
+        
         alert("Missing Button");
         var pmiNo = $('#pmiNumber').text();
         var c = confirm("Are you sure you want declare this patient are MISSING?");
 
         if (c === true) {
+            reloadStat = 0;
             storeData(4);
             updateStatus(pmiNo, episodeDate, "4");
         } else {
@@ -134,15 +135,13 @@ $(document).ready(function (e) {
     });
 
     $("#nextBtn").click(function () {
-        reloadStat = "1";
-        console.log(reloadStat);
         var currentDate = getDateNext();
         var date = currentDate[0];
-        console.log(currentDate);
-        //console.log(date);
+
         console.log(hfc_cd);
         if (pmiNo === "") {
             nextPatient(currentDate, hfc_cd);
+            reloadStat = "1";
         } else {
             alert('You need complete the consultation on patient before first');
         }
@@ -581,8 +580,6 @@ $(document).ready(function (e) {
     }
 
 
-
-
     function nextPatient(currentDate, hfc) {
         $.ajax({
             url: "topMenuFunction/searchNextPatient.jsp",
@@ -605,6 +602,7 @@ $(document).ready(function (e) {
                     $('.soap-select').unbind('click');
                     getPDI(pmiNo);
                     updateStatus(pmiNo, episodeDate, 5);
+                    
                 }
             }
         })

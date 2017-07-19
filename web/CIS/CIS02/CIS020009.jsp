@@ -168,7 +168,7 @@
 
 <script type="text/javascript">
     $(document).ready(function () {
-
+        $("#ortho_physical_exam").hide();
 
         function pe1() {
             $('#pe2').val("");

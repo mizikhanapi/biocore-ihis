@@ -40,12 +40,21 @@ var i = 0;
 var ConsultationNotes = [];
 
 var HCSContent = [];
-console.log(reloadStat);
-if (reloadStat === 1) {
-    window.onbeforeunload = function () {
+
+//if (reloadStat === 1) {
+//    window.onbeforeunload = function () {
+//        updateStatus(pmiNo, episodeDate, statusNow);
+//        return "You work will be lost";
+//    };
+//}
+
+window.onbeforeunload = function () {
+    if (reloadStat === "1") {
         updateStatus(pmiNo, episodeDate, statusNow);
-        return "You work will be lost";
-    };
+        return "Sure U are?";
+    } else {
+        console.log("no patient");
+    }
 }
 
 function disableMainBtn(){
@@ -53,7 +62,15 @@ function disableMainBtn(){
 }
 
 $(document).ready(function () {
-    // $("#mcSlip").load("mcMain2.jsp ");
+
+//    $(window).on('beforeunload', function (e) {
+//        if (reloadStat === "1") {
+//            updateStatus(pmiNo, episodeDate, statusNow);
+//            return "Sure U are?";
+//        } else {
+//            console.log("no patient");
+//        }
+//    });
 
     $('#holdBtn').bind('click', false);
     loadSetting(doctor_id);

@@ -343,6 +343,14 @@
                                 </div>
                             </a>
                         </div>
+                        <div class="col-xs-6 col-sm-6 col-md-3">
+                            <a href="../OperationTheater/index.jsp" class="thumbnail">
+                                <div class="kotak text-center">
+                                    <i class="fa fa-users" aria-hidden="true" style="color:#de58e8;font-size: 4em;"></i>
+                                    <h3>Queue Management</h3>
+                                </div>
+                            </a>
+                        </div>
 
                     </div>
 
