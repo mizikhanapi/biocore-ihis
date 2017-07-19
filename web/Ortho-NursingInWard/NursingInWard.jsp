@@ -63,7 +63,7 @@
                     </ul>
                     <hr class="pemisah" />
                     <jsp:include page="chartObservation.jsp"/>
-                    
+
                 </div>
                 <!-- content -->
 
@@ -83,7 +83,7 @@
                         <li><a data-toggle="modal" data-target="#perawatan-ortho" href="" class="soap-select" id="trnewassessment"><i class="fa fa-comments  fa-li"></i> Add Perawatan Records</a></li>
                     </ul>
                     <hr class="pemisah" />
-                   
+
                     <jsp:include page="perawatan-ortho.jsp"/>
                 </div>
                 <!-- content -->
@@ -94,7 +94,7 @@
                         <li><a data-toggle="modal" data-target="#circulationChart" href="" class="soap-select" id="chartCirculationAddNewRecord"><i class="fa fa-comments  fa-li"></i> Add Circulation Chart</a></li>
                     </ul>
                     <hr class="pemisah" />
-                     <jsp:include page="chartCirculation.jsp"/>
+                    <jsp:include page="chartCirculation.jsp"/>
                 </div>
                 <!-- content -->
 
@@ -145,7 +145,7 @@
                 <!-- content -->
                 <div class="tab-pane fade" id="Ortho-NursingInWard_9">
                     <ul class="soap-content nav">
-                        <li><a data-toggle="modal" data-target="#chartUrine" href="" class="soap-select"><i class="fa fa-comments  fa-li"></i> Add New Urine Info</a></li>
+                        <li><a data-toggle="modal" data-target="#chartUrine" href="" class="soap-select" id="urinenewassessment"><i class="fa fa-comments  fa-li"></i> Add New Urine Info</a></li>
                     </ul>
                     <hr class="pemisah" />
                     <jsp:include page="chartUrine.jsp"/>
@@ -229,11 +229,16 @@
         $('#redivacDrainChart #btnNIWredivacUPDATE').hide();
         $('#redivacDrainChart #btnNIWredivacADD').show();
     });
-    
-        $('#Ortho-NursingInWard_9').on('click', '#urinenewassessment', function (e) {
+
+    $('#Ortho-NursingInWard_9').on('click', '#urinenewassessment', function (e) {
         e.preventDefault();
         $('#chartUrine #btnNIWurUPDATE').hide();
         $('#chartUrine #btnNIWurADD').show();
     });
 
+    $('.numbersOnly').keyup(function () {
+        if (this.value !== this.value.replace(/[^0-9\.]/g, '')) {
+            this.value = this.value.replace(/[^0-9\.]/g, '');
+        }
+    });
 </script>
