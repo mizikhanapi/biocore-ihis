@@ -53,7 +53,7 @@
                             <div class="form-group">
                                 <label class="col-md-12 control-label" for="textinput">Systolic</label>
                                 <div class="col-md-12">
-                                    <input type="text" class="form-control input-md" placeholder="mmHg"id="NIWOBsystolic">
+                                    <input type="text" class="form-control input-md numbersOnly" placeholder="mmHg"id="NIWOBsystolic" pattern= "[0-9]">
                                 </div>
                             </div>
                         </div>
@@ -62,7 +62,7 @@
                             <div class="form-group">
                                 <label class="col-md-12 control-label" for="textinput">Diatolic</label>
                                 <div class="col-md-12">
-                                    <input type="text" class="form-control input-md" placeholder="mmHg" id="NIWOBdiatolic">
+                                    <input type="text" class="form-control input-md numbersOnly" placeholder="mmHg" id="NIWOBdiatolic" pattern= "[0-9]">
                                 </div>
 
                             </div>
@@ -72,7 +72,7 @@
                             <div class="form-group">
                                 <label class="col-md-12 control-label" for="textinput">Pulse</label>
                                 <div class="col-md-12">
-                                    <input type="text" class="form-control input-md" placeholder="/min" id="NIWOBpulse">
+                                    <input type="text" class="form-control input-md numbersOnly" placeholder="/min" id="NIWOBpulse" pattern= "[0-9]">
                                 </div>
                             </div>
                         </div></div>
@@ -83,7 +83,7 @@
                             <div class="form-group">
                                 <label class="col-md-12 control-label" for="textinput">Respiratory Rate</label>
                                 <div class="col-md-12">
-                                    <input type="text" class="form-control input-md" placeholder="breath/min" id="NIWOBrr">
+                                    <input type="text" class="form-control input-md numbersOnly" placeholder="breath/min" id="NIWOBrr" pattern= "[0-9]">
                                 </div>
                             </div>
                         </div>
@@ -95,7 +95,7 @@
                             <div class="form-group">
                                 <label class="col-md-12 control-label" for="textinput">Oxygen Saturation</label>
                                 <div class="col-md-12">
-                                    <input type="text" class="form-control input-md" placeholder="oxygen saturation" id="NIWOBos">
+                                    <input type="text" class="form-control input-md numbersOnly" placeholder="oxygen saturation" id="NIWOBos" pattern= "[0-9]">
                                 </div>
                             </div>
                         </div>
