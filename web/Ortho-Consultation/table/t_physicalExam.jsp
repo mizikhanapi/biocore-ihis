@@ -45,7 +45,7 @@
             ArrayList<ArrayList<String>> q4 = conn.getData(sql);
 %>
 
-<table class="table table-bordered table-striped">
+<table class="table table-bordered table-striped" id="table_physical_exam">
     <tr>
         <th style="width: 10%">Physical Examination</th>
         <td style="width: 60%">
@@ -110,3 +110,14 @@
     }
 %>
 </table>
+<script>
+    $(document).ready(function () {
+        $('#table_physical_exam').DataTable({
+            language: {
+                emptyTable: "No Data Available To Display"
+            }, initComplete: function (settings, json) {
+                $('.loading').hide();
+            }
+        });
+    });
+</script>

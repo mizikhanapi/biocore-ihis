@@ -281,7 +281,8 @@ function Main(array_data) {
                 ppstatename= array_data[44],
                 ppcountryname= array_data[45],
                 ptitlename= array_data[46],
-                pnationalityname= array_data[47];
+                pnationalityname= array_data[47],
+                pidtypename = array_data[48];
         var splitBday = String(pbday).split("-");
         var daysplitted = splitBday[2];
         var monthsplitted = splitBday[1];
@@ -306,7 +307,7 @@ function Main(array_data) {
         $('input[id=pname]').val($.trim(pname));
         $('input[id=pnic]').val($.trim(pnic));
         $('input[id=poic]').val($.trim(poic));
-        $('input[id=pit]').val($.trim(idtype));
+        $('input[id=pit]').val($.trim(pidtypename));
         $('input[id=pino]').val($.trim(pino));
         // set value in PMI page
         $('input[id=PMIpmino]').val($.trim(pmino));

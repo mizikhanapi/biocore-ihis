@@ -65,11 +65,11 @@
 
                         <div class="col-md-6">
                             <!--                            <button class="btn btn-default btn-block">Add Urine Temperature</button>-->
-                            <input type="text" class="form-control input-md" id="NIWTemperature" placeholder="Urine Temperature">
+                            <input type="text" class="form-control input-md numbersOnly" id="NIWTemperature" placeholder="Urine Temperature">
                         </div>
                         <div class="col-md-6">
                             <!--                            <button class="btn btn-default btn-block">Add Pulse</button>-->
-                            <input type="text" class="form-control input-md" id="NIWpulseurine" placeholder="Pulse">
+                            <input type="text" class="form-control input-md numbersOnly" id="NIWpulseurine" placeholder="Pulse">
                         </div>
                     </div>
 
@@ -166,7 +166,7 @@
         });
         $("#chartUrine").modal('toggle');
     });
-    
+
     $('#chartUrine #btnNIWurUPDATE').on('click', function (e) {
         e.preventDefault();
         var pmi_no = $('#NIWurPmi').val();

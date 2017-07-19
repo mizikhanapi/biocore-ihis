@@ -63,11 +63,11 @@
                 },
                 timeout: 10000,
                 success: function () {
-                    alert("Observation record is deleted.");
+                    bootbox.alert("Observation record is deleted.");
                     $("#getNeuAssessment").load("../Ortho-Consultation/neuAssessment.jsp");
                 },
                 error: function (err) {
-                    alert("Error update!");
+                    bootbox.alert("Error update!");
                 }
             });
         } else {
@@ -80,7 +80,7 @@
        %>>
 <div class="nota" id="table_assessment">
     <h5></h5>
-    <table class="table table-bordered">
+    <table class="table table-bordered" id="table_assessment">
         <tr>
             <th colspan="24">Muscle Power</th>
         </tr>

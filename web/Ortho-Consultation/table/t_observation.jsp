@@ -4,7 +4,7 @@
 <%@page import="java.util.ArrayList"%>
 <%@page import="dBConn.Conn"%>
 
-<table class="table table-striped">
+<table class="table table-striped" id="table_observe">
     <thead style="text-transform: uppercase;" >
         <tr>
             <th rowspan="2">Check</th>
@@ -119,20 +119,18 @@
                                             $('#getNeuObservation').html(returnObservation);
                                             console.log(returnObservation);
                                             $('#getNeuObservation').trigger('contentchanged');
-                                            alert("Observation record is deleted.");
+                                            bootbox.alert("Observation record is deleted.");
                                         }
                                     });
 
                                 },
                                 error: function (err) {
-                                    alert("Error update!");
+                                    bootbox.alert("Error update!");
                                 }
                             });
                         } else {
                             //txt = "You pressed Cancel!";
                         }
-
-
                     });
                 </script>
             </td>
@@ -150,3 +148,14 @@
 
     }
 %>
+<script>
+    $(document).ready(function () {
+        $('#table_observe').DataTable({
+            language: {
+                emptyTable: "No Data Available To Display"
+            }, initComplete: function (settings, json) {
+                $('.loading').hide();
+            }
+        });
+    });
+</script>
