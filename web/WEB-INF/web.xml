@@ -64,6 +64,50 @@
         <url-pattern>/SystemAdmin/Lookup</url-pattern>
     </servlet-mapping>
     
+    <servlet>
+        <servlet-name>adm_users</servlet-name>
+        <jsp-file>/SystemAdmin/HIS010002.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>adm_users</servlet-name>
+        <url-pattern>/SystemAdmin/UserManagement</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>adm_queue</servlet-name>
+        <jsp-file>/SystemAdmin/HIS010003.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>adm_queue</servlet-name>
+        <url-pattern>/SystemAdmin/QueueManagement</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>adm_hfc</servlet-name>
+        <jsp-file>/SystemAdmin/HIS010004.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>adm_hfc</servlet-name>
+        <url-pattern>/SystemAdmin/HealthFacilityManagement</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>adm_setting</servlet-name>
+        <jsp-file>/SystemAdmin/HIS010006.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>adm_setting</servlet-name>
+        <url-pattern>/SystemAdmin/Setting</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>adm_system</servlet-name>
+        <jsp-file>/SystemAdmin/HIS010005.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>adm_system</servlet-name>
+        <url-pattern>/SystemAdmin/System</url-pattern>
+    </servlet-mapping>
     <!--mapping for system admin end-->
     
     <session-config>
