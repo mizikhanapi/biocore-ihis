@@ -5,5 +5,5 @@
 --%>
 
 <%
-    response.sendRedirect("HIS010001.jsp");
+    response.sendRedirect("Lookup");
 %>

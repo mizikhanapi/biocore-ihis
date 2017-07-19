@@ -110,6 +110,17 @@
     </servlet-mapping>
     <!--mapping for system admin end-->
     
+    <!--mapping for profile start-->
+    <servlet>
+        <servlet-name>adm_profile</servlet-name>
+        <jsp-file>/Entrance/profile.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>adm_profile</servlet-name>
+        <url-pattern>/Entrance/Profile</url-pattern>
+    </servlet-mapping>
+    <!--mapping for profile end-->
+    
     <session-config>
         <session-timeout>
             -1
