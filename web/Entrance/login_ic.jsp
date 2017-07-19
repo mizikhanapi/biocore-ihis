@@ -60,11 +60,11 @@
 
                 </form><!-- /form -->
                 <button class="btn btn-lg btn-primary btn-block btn-signin" id="btnSign">Sign in</button>
-                <a href="forgot-pwd.jsp" class="forgot-password">
+                <a href="Forgot_Password" class="forgot-password">
                     Forgot the password?
                 </a>
                 <br>
-                <a href="login.jsp" class="forgot-password">
+                <a href="Sign-in" class="forgot-password">
                     Sign-in with different account.
                 </a>
             </div><!-- /card-container -->

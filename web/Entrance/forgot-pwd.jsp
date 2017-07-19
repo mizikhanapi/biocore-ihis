@@ -85,7 +85,7 @@
 
                 </form><!-- /form -->
                 <button class="btn btn-lg btn-primary btn-block btn-signin" id="F_btnResetPassword" style="margin: auto; width: 40%; margin-bottom: 10px;">OK</button>
-                <a href="login.jsp" class="forgot-password">
+                <a href="Sign-in" class="forgot-password">
                     <i class="fa fa-arrow-left" aria-hidden="true" style="color: #666; font-size: 15px; padding: 5px"></i> Back to login
                 </a>
             </div><!-- /card-container -->
@@ -205,7 +205,7 @@
 
                         if (data.trim() === 'success') {
                             bootbox.alert("Your password has been reset to abc123", function () {
-                                window.location = "login.jsp";
+                                window.location = "Sign-in";
                             });
 
                         } else if (data.trim() === 'fail') {
@@ -288,7 +288,7 @@
                         var arrData = data.split("|");
                         if(arrData[0].trim() === '0'){
                             bootbox.alert('An email is sent to '+to, function(){
-                                window.location = "login.jsp";
+                                window.location = "Sign-in";
                             });
                             
                         }else{

@@ -37,6 +37,14 @@
         <servlet-name>Login_IC</servlet-name>
         <url-pattern>/Entrance/ReSign-in</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>Forgot_pwd</servlet-name>
+        <jsp-file>/Entrance/forgot-pwd.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Forgot_pwd</servlet-name>
+        <url-pattern>/Entrance/Forgot_Password</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             -1

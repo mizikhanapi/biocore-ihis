@@ -57,7 +57,7 @@
 
                 </form><!-- /form -->
                 <button class="btn btn-lg btn-primary btn-block btn-signin" id="btnSign">Sign in</button>
-                <a href="forgot-pwd.jsp" class="forgot-password">
+                <a href="Forgot_Password" class="forgot-password">
                     Forgot the password?
                 </a>
             </div><!-- /card-container -->
@@ -131,7 +131,7 @@
                                 alert("You don't have proper user access. Contact your admin to configure your user access");
                             else if (num === 4) {
                                 alert("You have logged in to another PC or you did not log out properly");
-                                window.location = "login_ic.jsp";
+                                window.location = "ReSign-in";
                             } else
                                 alert("Error");
                         },
