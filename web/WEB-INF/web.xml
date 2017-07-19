@@ -45,6 +45,19 @@
         <servlet-name>Forgot_pwd</servlet-name>
         <url-pattern>/Entrance/Forgot_Password</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>Dashboard</servlet-name>
+        <jsp-file>/Entrance/dashboard.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Dashboard</servlet-name>
+        <url-pattern>/Entrance/Home</url-pattern>
+    </servlet-mapping>
+    
+    <!--mapping for system admin start-->
+    
+    <!--mapping for system admin end-->
+    
     <session-config>
         <session-timeout>
             -1

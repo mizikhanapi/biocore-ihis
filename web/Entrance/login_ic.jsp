@@ -127,7 +127,7 @@
                             var num = parseInt(data);
 
                             if (num === 2)
-                                window.location = "dashboard.jsp";
+                                window.location = "Home";
                             else if (num === 1)
                                 alert("Wrong password");
                             else if (num === 0)
