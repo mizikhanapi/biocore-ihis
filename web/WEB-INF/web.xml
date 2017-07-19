@@ -16,6 +16,27 @@
         <servlet-name>PdfServlet</servlet-name>
         <url-pattern>/PdfServlet</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>Login</servlet-name>
+        <jsp-file>/Entrance/login.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Login</servlet-name>
+        <url-pattern>/Entrance/Sign-in</url-pattern>
+    </servlet-mapping>
+<!--    <servlet-mapping>
+        <servlet-name>Login</servlet-name>
+        <url-pattern>/Entrance/*</url-pattern>
+    </servlet-mapping>-->
+    <!--log in IC-->
+    <servlet>
+        <servlet-name>Login_IC</servlet-name>
+        <jsp-file>/Entrance/login_ic.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Login_IC</servlet-name>
+        <url-pattern>/Entrance/ReSign-in</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             -1
