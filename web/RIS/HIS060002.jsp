@@ -1,3 +1,9 @@
+<%-- 
+    Document   : HIS060001
+    Created on : Mar 28, 2017, 12:18:51 PM
+    Author     : Ardhi Surya; rdsurya147@gmail.com; insta: @rdcfc
+--%>
+
 <%@include file="../Entrance/validateSession.jsp" %>
 <%@include file="validateModuleAccess.jsp" %>
 
