@@ -63,6 +63,10 @@
                 <a href="forgot-pwd.jsp" class="forgot-password">
                     Forgot the password?
                 </a>
+                <br>
+                <a href="login.jsp" class="forgot-password">
+                    Sign-in with different account.
+                </a>
             </div><!-- /card-container -->
         </div><!-- /container -->
 
@@ -77,7 +81,7 @@
 
 
         <script>
-
+          
             $(document).ready(function () {
 
                 $(document).bind('keypress', pressed);
