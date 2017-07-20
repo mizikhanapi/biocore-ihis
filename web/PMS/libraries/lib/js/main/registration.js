@@ -27,7 +27,7 @@ $('#appointment').on('click', function () {
     });
 });
 
-$('#queue').on('click', function () {
+$('#queueModal').on('show.bs.modal', function () {
     $.ajax({
         type: "POST",
         data: {idType: "", idInput: ""},
