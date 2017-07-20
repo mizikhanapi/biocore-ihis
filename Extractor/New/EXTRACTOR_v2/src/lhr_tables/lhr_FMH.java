@@ -69,7 +69,27 @@ public class lhr_FMH {
                         
                         fmh_Obj.setStatus(alFmh.get(2).get(10));
                         
+                                                        String a,b,c,d;
+                a= t.getNational_id_no();
+                b = t.getPERSON_STATUS();
+                c = t.getPERSON_ID_NO();
+                d =t.getCentre_Code();
+                
+                if (a == null || a.isEmpty() || a.equals(" ")) {
+                   a =  "PUBLIC HOSPITAL";
+                }
 
+                if (b == null || b.isEmpty() || b.equals(" ")) {
+                    b ="PUBLIC HOSPITAL";
+                }
+
+                if (c == null || c.isEmpty() || c.equals(" ")) {
+                    c = "PUBLIC HOSPITAL";
+                }
+
+                if (d == null || d.isEmpty() || d.equals(" ")) {
+                    d = "PUBLIC HOSPITAL";
+                }
 //                        // increase time 5 sec to prevent duplicate during insert.
 //                        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 //                        Date date_time = null;
@@ -103,7 +123,8 @@ public class lhr_FMH {
                         //System.out.println("da lalu sini");
                         fmh_Obj.setTerm_Code("CTV3"); //Modified By Ahmed (16/3/2017)
 
-                        query_fmh_lhr_fh = "insert into lhr_family_history (PMI_no, "
+                        query_fmh_lhr_fh = "insert into lhr_family_history ("
+                                + "PMI_no, "
                                 + "hfc_cd, "
                                 + "episode_date, "
                                 + "encounter_date, "
@@ -129,19 +150,19 @@ public class lhr_FMH {
                                 + "'" + fmh_Obj.getEpisode_Date() + "',"
                                 + "" + fmh_Obj.getEncounter_Date() + ","
                                 + "'" + fmh_Obj.getICD10_Code() + "'," //Modified By Ahmed (13/3/2017)
-                                + "" + fmh_Obj.getDate_Onset() + ","
-                                + "'" + fmh_Obj.getTerm_Type() + "',"
+                                + "now(),"
+                                + "'CTV3',"
                                 + "'" + fmh_Obj.getICD10_Code() + "'," //Modified By Ahmed (13/3/2017)
                                 + "'" + fmh_Obj.getICD10_Description() + "',"
                                 + "'" + fmh_Obj.getTerm_Code() + "',"
                                 + "'" + fmh_Obj.getComments() + "',"
-                                + "'" + fmh_Obj.getStatus() + "',"
+                                + "'0',"
                                 + "'" + fmh_Obj.getDoctor_Id() + "',"
                                 + "'" + fmh_Obj.getDoctor_Name() + "'," //temp
-                                + "'" + t.getNational_id_no() + "',"
-                                + "'" + t.getPERSON_ID_NO() + "',"
-                                + "'" + t.getPERSON_STATUS() + "',"
-                                + "'" + t.getCentre_Code() + "')";
+                                + "'" + a + "',"
+                                + "'" + b + "',"
+                                + "'" + c + "',"
+                                + "'" + d + "')";
                         //System.out.println(dgsB.getICD10_Code());
                         //System.out.println(fmh_Obj.getICD10_Description());
                        

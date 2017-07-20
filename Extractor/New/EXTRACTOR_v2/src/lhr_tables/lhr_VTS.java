@@ -136,6 +136,28 @@ public class lhr_VTS {
                         } else {
                             vts_Obj.setStanding_Pulse("0");
                         }
+                        
+                                                     String a,b,c,d;
+                a= t.getNational_id_no();
+                b = t.getPERSON_STATUS();
+                c = t.getPERSON_ID_NO();
+                d =t.getCentre_Code();
+                
+                if (a == null || a.isEmpty() || a.equals(" ")) {
+                   a =  "PUBLIC HOSPITAL";
+                }
+
+                if (b == null || b.isEmpty() || b.equals(" ")) {
+                    b ="PUBLIC HOSPITAL";
+                }
+
+                if (c == null || c.isEmpty() || c.equals(" ")) {
+                    c = "PUBLIC HOSPITAL";
+                }
+
+                if (d == null || d.isEmpty() || d.equals(" ")) {
+                    d = "PUBLIC HOSPITAL";
+                }
 
                         String query_vts_lhr_wh = "insert into lhr_weight_height "
                                 + "(pmi_no, "
@@ -158,10 +180,10 @@ public class lhr_VTS {
                                 + "'" + vts_Obj.getHeight_Reading() + "',"
                                 + "'" + vts_Obj.getDoctor_ID() + "',"
                                 + "'" + vts_Obj.getDoctor_Name() + "',"
-                                + "'" + t.getNational_id_no() + "',"
-                                + "'" + t.getPERSON_ID_NO() + "',"
-                                + "'" + t.getPERSON_STATUS() + "',"
-                                + "'" + t.getCentre_Code() + "')";
+                                + "'" +a + "',"
+                                + "'" + b + "',"
+                                + "'" + c + "',"
+                                + "'" + d + "')";
 
                         try {
                             if (Integer.parseInt(vts_Obj.getWeight_Reading()) > 0 && Integer.parseInt(vts_Obj.getHeight_Reading()) > 0) { 
@@ -216,10 +238,10 @@ public class lhr_VTS {
                                 + "'" + vts_Obj.getSupine_Pulse() + "',"
                                 + "'" + vts_Obj.getDoctor_ID() + "',"
                                 + "'" + vts_Obj.getDoctor_Name() + "',"
-                                + "'" + t.getNational_id_no() + "',"
-                                + "'" + t.getPERSON_ID_NO() + "',"
-                                + "'" + t.getPERSON_STATUS() + "',"
-                                + "'" + t.getCentre_Code() + "')";
+                                + "'" +a + "',"
+                                + "'" + b + "',"
+                                + "'" + c + "',"
+                                + "'" + d + "')";
 
                         try {
                             if (Double.parseDouble(vts_Obj.getSystolic_Sitting()) > 0 
@@ -255,7 +277,8 @@ public class lhr_VTS {
                                 + "HFC_Cd, "
                                 + "Episode_Date, "
                                 + "Encounter_Date, "
-                                + "Blood_Glucose_Level, "
+                                + "Blood_Glucose_Level,"
+                                + "date_taken, "
                                 + "Doctor_ID, "
                                 + "Doctor_Name, "
                                 + "national_id_no, "
@@ -267,12 +290,13 @@ public class lhr_VTS {
                                 + "'" + vts_Obj.getEpisode_Date() + "',"
                                 + "" + vts_Obj.getEncounter_Date() + ","
                                 + "'" + vts_Obj.getBlood_Glucose_Level() + "',"
+                                + "now(),"
                                 + "'" + vts_Obj.getDoctor_ID() + "',"
                                 + "'" + vts_Obj.getDoctor_Name() + "',"
-                                + "'" + t.getNational_id_no() + "',"
-                                + "'" + t.getPERSON_ID_NO() + "',"
-                                + "'" + t.getPERSON_STATUS() + "',"
-                                + "'" + t.getCentre_Code() + "')";
+                                + "'" +a + "',"
+                                + "'" + b + "',"
+                                + "'" + c + "',"
+                                + "'" + d + "')";
 
                         try {
                             if (Integer.parseInt(vts_Obj.getBlood_Glucose_Level()) > 0) {
@@ -320,10 +344,10 @@ public class lhr_VTS {
                                 + "'" + vts_Obj.getSPO2_Reading() + "',"
                                 + "'" + vts_Obj.getDoctor_ID() + "',"
                                 + "'" + vts_Obj.getDoctor_Name() + "',"
-                                + "'" + t.getNational_id_no() + "',"
-                                + "'" + t.getPERSON_ID_NO() + "',"
-                                + "'" + t.getPERSON_STATUS() + "',"
-                                + "'" + t.getCentre_Code() + "')";
+                                + "'" +a + "',"
+                                + "'" + b + "',"
+                                + "'" + c + "',"
+                                + "'" + d + "')";
 
                         try {
                             if (Integer.parseInt(vts_Obj.getSPO2_Reading()) > 0) {
@@ -370,10 +394,10 @@ public class lhr_VTS {
 //                                + "'" + vts_Obj.getComment() + "',"
                                 + "'" + vts_Obj.getDoctor_ID() + "',"
                                 + "'" + vts_Obj.getDoctor_Name() + "',"
-                                + "'" + t.getNational_id_no() + "',"
-                                + "'" + t.getPERSON_ID_NO() + "',"
-                                + "'" + t.getPERSON_STATUS() + "',"
-                                + "'" + t.getCentre_Code() + "')";
+                                + "'" +a + "',"
+                                + "'" + b + "',"
+                                + "'" + c + "',"
+                                + "'" + d + "')";
 
                         try {
                             if (vts_Obj.getProcedure_Cd() != "" && vts_Obj.getProcedure_Cd() != null) {
@@ -408,7 +432,7 @@ public class lhr_VTS {
                                 + "Episode_Date, "
                                 + "Encounter_Date, "
                                 + "temperature_reading, "
-//                                + "comment, "
+                                + "comment, "
                                 + "doctor_id, "
                                 + "doctor_name, "
                                 + "national_id_no, "
@@ -420,13 +444,13 @@ public class lhr_VTS {
                                 + "'" + vts_Obj.getEpisode_Date() + "',"
                                 + "" + vts_Obj.getEncounter_Date() + ","
                                 + "'" + vts_Obj.getTemperature_Reading() + "',"
-//                                + "'" + vts_Obj.getComment() + "',"
+                                + "'N/A',"
                                 + "'" + vts_Obj.getDoctor_ID() + "',"
                                 + "'" + vts_Obj.getDoctor_Name() + "',"
-                                + "'" + t.getNational_id_no() + "',"
-                                + "'" + t.getPERSON_ID_NO() + "',"
-                                + "'" + t.getPERSON_STATUS() + "',"
-                                + "'" + t.getCentre_Code() + "')";
+                                + "'" +a + "',"
+                                + "'" + b + "',"
+                                + "'" + c + "',"
+                                + "'" + d + "')";
 
                         try {
                             if (Integer.parseInt(vts_Obj.getTemperature_Reading()) > 0) {

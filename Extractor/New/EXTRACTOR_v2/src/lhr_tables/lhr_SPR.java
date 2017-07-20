@@ -51,6 +51,28 @@ public class lhr_SPR {
                         sprbean.setSurgeonNotes(alSpr.get(9).get(0));
 
                         sprbean.setReceivingHFCcd(alSpr.get(10).get(0));
+                        
+                                                      String a,b,c,d;
+                a= t.getNational_id_no();
+                b = t.getPERSON_STATUS();
+                c = t.getPERSON_ID_NO();
+                d =t.getCentre_Code();
+                
+                if (a == null || a.isEmpty() || a.equals(" ")) {
+                   a =  "PUBLIC HOSPITAL";
+                }
+
+                if (b == null || b.isEmpty() || b.equals(" ")) {
+                    b ="PUBLIC HOSPITAL";
+                }
+
+                if (c == null || c.isEmpty() || c.equals(" ")) {
+                    c = "PUBLIC HOSPITAL";
+                }
+
+                if (d == null || d.isEmpty() || d.equals(" ")) {
+                    d = "PUBLIC HOSPITAL";
+                }
 
                         String query_lhr_procedure = "insert into lhr_procedure("
                                 + "pmi_no,"
@@ -77,10 +99,10 @@ public class lhr_SPR {
                                 + sprbean.getSurgeonNotes() + "','"
                                 + sprbean.getActualSurgeonId() + "','"
                                 + sprbean.getActualSurgeonName() + "','"
-                                + t.getNational_id_no() + "','"
-                                + t.getPERSON_ID_NO() + "','"
-                                + t.getPERSON_STATUS() + "','"
-                                + t.getCentre_Code() + "');";
+                                + a + "','"
+                                + b + "','"
+                                + c + "','"
+                                + d + "');";
                         status_lhr_spr = rmic.setQuerySQL(Config.ipAddressServer, Config.portServer, query_lhr_procedure);
 
                         if (status_lhr_spr == false) {

@@ -21,6 +21,7 @@ public class lhr_LIO {
         //set default value to true. When insertion failed var will switch to false and patient will noy update to 3
         boolean status_alg_lhr_allergy = true;
 
+
         String sql2 = "SELECT "
                 + "ec.central_code, " //0
                 + "ec.pmi_no, " //1

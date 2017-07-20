@@ -14,6 +14,7 @@ public class get_ehr_central_data {
     private String Centre_Code;
     private String national_id_no;
     private String txndata;
+    private String txnDate;
     private Boolean result;
     RMIConnector rmic = new RMIConnector();
     
@@ -59,6 +60,7 @@ public class get_ehr_central_data {
                     this.Centre_Code = data.get(j).get(8);
                     this.Central_Code = data.get(j).get(0);
                     this.txndata = data.get(j).get(3);
+                    this.txnDate = data.get(j).get(2);
 
                 } catch (Exception e) {
                     System.out.println(e.getStackTrace());
@@ -103,6 +105,38 @@ public class get_ehr_central_data {
 
     public String getTxndata() {
         return txndata;
+    }
+    
+     public String getTxndate() {
+        return txnDate;
+    }
+
+    public void setPERSON_ID_NO(String PERSON_ID_NO) {
+        this.PERSON_ID_NO = PERSON_ID_NO;
+    }
+
+    public void setPERSON_STATUS(String PERSON_STATUS) {
+        this.PERSON_STATUS = PERSON_STATUS;
+    }
+
+    public void setLOCATION_CODE(String LOCATION_CODE) {
+        this.LOCATION_CODE = LOCATION_CODE;
+    }
+
+    public void setCentral_Code(String Central_Code) {
+        this.Central_Code = Central_Code;
+    }
+
+    public void setCentre_Code(String Centre_Code) {
+        this.Centre_Code = Centre_Code;
+    }
+
+    public void setNational_id_no(String national_id_no) {
+        this.national_id_no = national_id_no;
+    }
+
+    public void setResult(Boolean result) {
+        this.result = result;
     }
 
 }

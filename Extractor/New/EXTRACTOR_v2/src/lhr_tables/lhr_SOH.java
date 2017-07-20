@@ -54,6 +54,28 @@ public class lhr_SOH {
                             sohB.setHfc_cd(alSoh.get(2).get(15));
                             sohB.setDoctor_ID(alSoh.get(2).get(16));
                             sohB.setDoctor_Name(alSoh.get(2).get(17));
+                            
+                                           String a,b,c,d;
+                a= t.getNational_id_no();
+                b = t.getPERSON_STATUS();
+                c = t.getPERSON_ID_NO();
+                d =t.getCentre_Code();
+                
+                if (a == null || a.isEmpty() || a.equals(" ")) {
+                   a =  "PUBLIC HOSPITAL";
+                }
+
+                if (b == null || b.isEmpty() || b.equals(" ")) {
+                    b ="PUBLIC HOSPITAL";
+                }
+
+                if (c == null || c.isEmpty() || c.equals(" ")) {
+                    c = "PUBLIC HOSPITAL";
+                }
+
+                if (d == null || d.isEmpty() || d.equals(" ")) {
+                    d = "PUBLIC HOSPITAL";
+                }
 
 //                            // increase time 5 sec to prevent duplicate during insert.
 //                            SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -107,10 +129,10 @@ public class lhr_SOH {
                                     + "'" + sohB.getSOH_comment() + "',"
                                     + "'" + sohB.getDoctor_ID() + "',"
                                     + "'" + sohB.getDoctor_Name() + "',"
-                                    + "'" + t.getNational_id_no() + "',"
-                                    + "'" + t.getPERSON_ID_NO() + "',"
-                                    + "'" + t.getPERSON_STATUS() + "',"
-                                    + "'" + t.getCentre_Code() + "')";
+                                    + "'" + a + "',"
+                                    + "'" + b + "',"
+                                    + "'" + c + "',"
+                                    + "'" + d + "')";
 //                            System.out.println(sohB.getPMI_no());
 //                            System.out.println(sohB.getSOH_code());
 //                            System.out.println(sohB.getSOH_name());

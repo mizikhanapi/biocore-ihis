@@ -35,7 +35,31 @@ public class lhr_ALG {
                     try {
 
                         ArrayList<ArrayList<String>> alAlg = alg2.get(n).getValue();
+                        
+                        String a,b,c,d;
+                a= t.getNational_id_no();
+                b = t.getPERSON_STATUS();
+                c = t.getPERSON_ID_NO();
+                d =t.getCentre_Code();
+                
+                if (a == null || a.isEmpty() || a.equals(" ")) {
+                   a =  "PUBLIC HOSPITAL";
+                }
 
+                if (b == null || b.isEmpty() || b.equals(" ")) {
+                    b ="PUBLIC HOSPITAL";
+                }
+
+                if (c == null || c.isEmpty() || c.equals(" ")) {
+                    c = "PUBLIC HOSPITAL";
+                }
+
+                if (d == null || d.isEmpty() || d.equals(" ")) {
+                    d = "PUBLIC HOSPITAL";
+                }
+                        
+                        
+                        
                         algB.setPMI_no(t.getPmi_no());
                         algB.setEpisode_date(alAlg.get(1).get(0));
                         algB.setAllergy_cd(alAlg.get(2).get(0));
@@ -47,7 +71,7 @@ public class lhr_ALG {
                         }
 
                         algB.setComment(alAlg.get(2).get(3));
-                        algB.setStatus(alAlg.get(2).get(7));
+                        algB.setStatus("0");
                         algB.setEncounter_Date(alAlg.get(2).get(8));
                         algB.setHfc_cd(alAlg.get(2).get(9));
                         algB.setDoctor_ID(alAlg.get(2).get(10));
@@ -60,12 +84,14 @@ public class lhr_ALG {
                             algB.setIcd10_cd(alAlg.get(2).get(13));
                         }
 
-                        if (alAlg.get(2).get(13).equals("-")) {
+                        if (alAlg.get(2).get(14).equals("-")) {
                             algB.setIcd10_description(alAlg.get(2).get(1));
                         } else {
                             algB.setIcd10_description(alAlg.get(2).get(14));
                         }
-
+                        
+                        algB.setTerm_description("CTV3");
+                        algB.setTerm_cd("CTV3");
                         query_alg_lhr_alg = "insert into lhr_allergy (PMI_no,"
                                 + "hfc_cd,"
                                 + "episode_date,"
@@ -90,8 +116,8 @@ public class lhr_ALG {
                                 + "'" + algB.getEpisode_date() + "',"
                                 + "'" + algB.getEncounter_Date() + "',"
                                 + "'" + algB.getAllergy_cd() + "',"
-                                + "" + algB.getOnset_date() + ","
-                                + "'" + algB.getTerm_type() + "',"
+                                + "now(),"
+                                + "'CTV3',"
                                 + "'" + algB.getIcd10_cd() + "',"
                                 + "'" + algB.getIcd10_description() + "',"
                                 + "'" + algB.getTerm_cd() + "',"
@@ -100,10 +126,10 @@ public class lhr_ALG {
                                 + "'" + algB.getStatus() + "',"
                                 + "'" + algB.getDoctor_ID() + "',"
                                 + "'" + algB.getDoctor_Name() + "'," //temp
-                                + "'" + t.getNational_id_no() + "',"
-                                + "'" + t.getPERSON_ID_NO() + "',"
-                                + "'" + t.getPERSON_STATUS() + "',"
-                                + "'" + t.getCentre_Code() + "');";
+                                + "'" + a + "',"
+                                + "'" + b + "',"
+                                + "'" + c + "',"
+                                + "'" + d + "');";
 
                         status_alg_lhr_allergy = rc.setQuerySQL(Config.ipAddressServer, Config.portServer, query_alg_lhr_alg);
 

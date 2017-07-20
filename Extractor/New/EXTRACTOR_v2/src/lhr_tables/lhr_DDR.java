@@ -19,7 +19,7 @@ import main.RMIConnector;
  */
 public class lhr_DDR {
 
-    public boolean M_DDR(Vector<DDR2> ddr, get_ehr_central_data t,MSH msh) {
+    public boolean M_DDR(Vector<DDR2> ddr, get_ehr_central_data t, MSH msh) {
         boolean status_lhr_ddr = false;
         RMIConnector rmic = new RMIConnector();
         try {
@@ -33,7 +33,7 @@ public class lhr_DDR {
                         ddrbean.setPMI_no(t.getPmi_no());
                         ddrbean.setEncounter_Date(alDdr.get(16).get(0));
                         ddrbean.setHFC_Cd(msh.getSendingFacilityCode());
-                        
+
                         ddrbean.setReqDrugCod(alDdr.get(1).get(0));
                         ddrbean.setReqDruoDesc(alDdr.get(1).get(1));
                         ddrbean.setCodingStandardReqDrug(alDdr.get(1).get(2));
@@ -84,6 +84,28 @@ public class lhr_DDR {
 
                         ddrbean.setTransactionIndicator(alDdr.get(17).get(0));
 
+                                                        String a,b,c,d;
+                a= t.getNational_id_no();
+                b = t.getPERSON_STATUS();
+                c = t.getPERSON_ID_NO();
+                d =t.getCentre_Code();
+                
+                if (a == null || a.isEmpty() || a.equals(" ")) {
+                   a =  "PUBLIC HOSPITAL";
+                }
+
+                if (b == null || b.isEmpty() || b.equals(" ")) {
+                    b ="PUBLIC HOSPITAL";
+                }
+
+                if (c == null || c.isEmpty() || c.equals(" ")) {
+                    c = "PUBLIC HOSPITAL";
+                }
+
+                if (d == null || d.isEmpty() || d.equals(" ")) {
+                    d = "PUBLIC HOSPITAL";
+                }
+
                         String query_lhr_medication = "insert into lhr_medication("
                                 + "pmi_no,"
                                 + "hfc_cd,"
@@ -117,9 +139,9 @@ public class lhr_DDR {
                                 + ddrbean.getHFC_Cd() + "','"
                                 + ddrbean.getEpisode_Date() + "','"
                                 + ddrbean.getEncounter_Date() + "','"
-                                + ddrbean.getDisDrugCod()+ "','"
+                                + ddrbean.getDisDrugCod() + "','"
                                 //+ ddrbean.getPMI_no()+"',"
-                                + ddrbean.getDisDrugDesc()+ "','"
+                                + ddrbean.getDisDrugDesc() + "','"
                                 + ddrbean.getDisDrugDesc() + "','"
                                 + ddrbean.getActDrugFormCod() + "','"
                                 + ddrbean.getActDrugFormDesc() + "','"
@@ -137,10 +159,10 @@ public class lhr_DDR {
                                 //                                    + ddrbean.getEpisode_Date()+"','"
                                 + ddrbean.getDoctor_Id() + "','"
                                 + ddrbean.getDoctor_Name() + "','"
-                                + t.getNational_id_no() + "','"
-                                + t.getPERSON_ID_NO() + "','"
-                                + t.getPERSON_STATUS() + "','"
-                                + t.getCentre_Code() + "');";
+                                + a + "','"
+                                + b + "','"
+                                + c + "','"
+                                + d + "');";
                         status_lhr_ddr = rmic.setQuerySQL(Config.ipAddressServer, Config.portServer, query_lhr_medication);
 
                         if (status_lhr_ddr == false) {

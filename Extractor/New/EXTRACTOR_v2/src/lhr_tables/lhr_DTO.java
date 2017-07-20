@@ -73,6 +73,22 @@ public class lhr_DTO {
                         dtoC.setRequested_Duration("0");
                     }
                     dtoC.setRequested_Quantity(alDto.get(11).get(0));
+                    
+                    if (t.getNational_id_no().isEmpty() || t.getNational_id_no().equals("")) {
+                            t.setNational_id_no("PUBLIC HOSPITAL");
+                        }
+
+                        if (t.getPERSON_STATUS().isEmpty() || t.getPERSON_STATUS().equals("")) {
+                            t.setPERSON_STATUS("PUBLIC HOSPITAL");
+                        }
+
+                        if (t.getPERSON_ID_NO().isEmpty() || t.getPERSON_ID_NO().equals("")) {
+                            t.setPERSON_ID_NO("PUBLIC HOSPITAL");
+                        }
+
+                        if (t.getCentre_Code().isEmpty() || t.getCentre_Code().equals("")) {
+                            t.setCentre_Code("PUBLIC HOSPITAL");
+                        }
 //                    dtoC.setStart_Date(dataDTO[m][0]);
 //                    dtoC.setEnd_Date(dataDTO[m][0]);
                     // dtoC.setDoctor_ID(dataDTO[m][23]);

@@ -10,7 +10,7 @@ import separatorv2.SeparatorV2;
 
 public class lhr_DGS {
 
-    public void M_DGS(Vector<DGS2> dgs2,get_ehr_central_data t) {
+    public void M_DGS(Vector<DGS2> dgs2, get_ehr_central_data t) {
 
         RMIConnector rc = new RMIConnector();
         int total_fail_insert = 0; //total of failed insert
@@ -21,26 +21,48 @@ public class lhr_DGS {
 
             int rowsDGS = dgs2.size();
 
-             //declare outside so can display data outside bracket
+            //declare outside so can display data outside bracket
             if (rowsDGS > 0) {
-
+                
                 ArrayList<DGS> dgsBr = new ArrayList<DGS>();
                 for (int n = 0; n < rowsDGS; n++) {
                     DGS dgsB = new DGS();
+
                     try {
+                        
+                                                        String a,b,c,d;
+                a= t.getNational_id_no();
+                b = t.getPERSON_STATUS();
+                c = t.getPERSON_ID_NO();
+                d =t.getCentre_Code();
+                
+                if (a == null || a.isEmpty() || a.equals(" ")) {
+                   a =  "PUBLIC HOSPITAL";
+                }
+
+                if (b == null || b.isEmpty() || b.equals(" ")) {
+                    b ="PUBLIC HOSPITAL";
+                }
+
+                if (c == null || c.isEmpty() || c.equals(" ")) {
+                    c = "PUBLIC HOSPITAL";
+                }
+
+                if (d == null || d.isEmpty() || d.equals(" ")) {
+                    d = "PUBLIC HOSPITAL";
+                }
                         ArrayList<ArrayList<String>> alDgs = dgs2.get(n).getValue();
-                       
 
                         dgsB.setPMI_no(t.getPmi_no());
                         dgsB.setEpisode_Date(alDgs.get(1).get(0));
-                        
+
                         dgsB.setDiagnosis_Type(alDgs.get(2).get(0));
                         dgsB.setDiagnosis_Type_Desc(alDgs.get(2).get(1));
                         dgsB.setDiagnosis_Status(alDgs.get(2).get(2));
-                        if(alDgs.get(2).get(3).isEmpty() || alDgs.get(2).get(3).equalsIgnoreCase("-") || alDgs.get(2).get(3).equalsIgnoreCase(" ")){
+                        if (alDgs.get(2).get(3).isEmpty() || alDgs.get(2).get(3).equalsIgnoreCase("-") || alDgs.get(2).get(3).equalsIgnoreCase(" ")) {
                             dgsB.setDiagnosis_Date(null);
-                        }else{
-                            dgsB.setDiagnosis_Date("'"+alDgs.get(2).get(3)+"'");
+                        } else {
+                            dgsB.setDiagnosis_Date("'" + alDgs.get(2).get(3) + "'");
                         }
                         dgsB.setRead_Code(alDgs.get(2).get(4));
                         dgsB.setRead_Description(alDgs.get(2).get(5));
@@ -57,12 +79,12 @@ public class lhr_DGS {
                         dgsB.setCausative_Cd(alDgs.get(2).get(16));
                         dgsB.setCausative_Desc(alDgs.get(2).get(17));
                         dgsB.setComment(alDgs.get(2).get(18));
-                        if(alDgs.get(2).get(19).isEmpty() || alDgs.get(2).get(19).equalsIgnoreCase("-") || alDgs.get(2).get(19).equalsIgnoreCase(" ")){
+                        if (alDgs.get(2).get(19).isEmpty() || alDgs.get(2).get(19).equalsIgnoreCase("-") || alDgs.get(2).get(19).equalsIgnoreCase(" ")) {
                             dgsB.setTxn_Date(null);
-                        }else{
-                            dgsB.setTxn_Date("'"+alDgs.get(2).get(19)+"'");
+                        } else {
+                            dgsB.setTxn_Date("'" + alDgs.get(2).get(19) + "'");
                         }
-                        
+
                         dgsB.setStatus(alDgs.get(2).get(20));
 
 //                            // increase time 5 sec to prevent duplicate during insert.
@@ -91,12 +113,11 @@ public class lhr_DGS {
 //                            }
 //                            //
                         // encounter date must get from ecss client.
-                        if(alDgs.get(2).get(21).isEmpty()|| alDgs.get(2).get(21).equalsIgnoreCase("-") || alDgs.get(2).get(21).equalsIgnoreCase(" ")){
+                        if (alDgs.get(2).get(21).isEmpty() || alDgs.get(2).get(21).equalsIgnoreCase("-") || alDgs.get(2).get(21).equalsIgnoreCase(" ")) {
                             dgsB.setEncounter_Date(null);
-                        }else{
-                            dgsB.setEncounter_Date("'"+alDgs.get(2).get(21)+"'");
+                        } else {
+                            dgsB.setEncounter_Date("'" + alDgs.get(2).get(21) + "'");
                         }
-                        
 
                         dgsB.setHFC(alDgs.get(2).get(22));
                         dgsB.setDoctor_ID(alDgs.get(2).get(23));
@@ -104,8 +125,6 @@ public class lhr_DGS {
                         dgsB.setTerm_Type(alDgs.get(2).get(25));
                         dgsB.setICD10_Code(alDgs.get(2).get(6)); //Modified By Ahmed (13/3/2017)
                         dgsB.setICD10_Desc(alDgs.get(2).get(7)); //Modified By Ahmed (13/3/2017)
-                        
-                        
 
                         String query2 = "insert into lhr_diagnosis (PMI_no, "
                                 + "hfc_cd, "
@@ -128,7 +147,8 @@ public class lhr_DGS {
                                 + "NATIONAL_ID_NO, "
                                 + "PERSON_ID_NO, "
                                 + "PERSON_STATUS, "
-                                + "centre_code )"
+                                + "centre_code,"
+                                + "txnDate )"
                                 + "values ('" + dgsB.getPMI_no() + "',"
                                 + "'" + dgsB.getHFC() + "',"
                                 + "'" + dgsB.getEpisode_Date() + "',"
@@ -137,26 +157,26 @@ public class lhr_DGS {
                                 + "'" + dgsB.getTerm_Type() + "',"
                                 + "'" + dgsB.getDiagnosis_Status() + "',"
                                 + "" + dgsB.getDiagnosis_Date() + ","
-                                + "'" + dgsB.getICD10_Code() + "',"
-                                + "'" + dgsB.getICD10_Desc() + "',"
-                                + "'" + dgsB.getTerm_Type() + "'," //temp
-                                + "'" + dgsB.getTerm_Type() + "'," //temp
+                                + "'" + dgsB.getDiagnosis_Cd() + "',"
+                                + "'" + dgsB.getDiagnosis_Desc() + "',"
+                                + "'ICD10'," //temp
+                                + "'ICD10'," //temp
                                 + "'" + dgsB.getSeverity_Desc() + "',"
                                 + "'" + dgsB.getSite_Desc() + "',"
                                 + "'" + dgsB.getComment() + "',"
-                                + "'" + dgsB.getStatus() + "',"
+                                + "'0',"
                                 + "'" + dgsB.getDoctor_ID() + "',"
                                 + "'" + dgsB.getDoctor_Name() + "',"
-                                + "'" + t.getNational_id_no() + "',"
-                                + "'" + t.getPERSON_ID_NO() + "',"
-                                + "'" + t.getPERSON_STATUS() + "',"
-                                + "'" + t.getCentre_Code() + "')";
+                                + "'" + a + "',"
+                                + "'" + b + "',"
+                                + "'" + c + "',"
+                                + "'" + d + "',"
+                                + "'" + t.getTxndate() + "')";
 //                        //System.out.println(dgsB.getICD10_Code());
 //                        //System.out.println(dgsB.getICD10_Desc());
                         status_dgs_lhr_diagnosis = rc.setQuerySQL(Config.ipAddressServer, Config.portServer, query2);
 
                         //System.out.println("status_dgs_lhr_diagnosis:" + status_dgs_lhr_diagnosis);
-
                         ////System.out.println("stat:" + stat);
                         ////System.out.println("query:" + query2);
                         if (status_dgs_lhr_diagnosis == true) {
@@ -178,7 +198,6 @@ public class lhr_DGS {
 
 //                update_ehr_central u = new update_ehr_central();
 //                u.update_status();
-
             }
 
         } catch (Exception e) {

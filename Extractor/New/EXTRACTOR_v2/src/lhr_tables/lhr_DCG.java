@@ -42,13 +42,13 @@ public class lhr_DCG {
                         
                         dcgbean.setEncounterDate(alDcg.get(2).get(0));
                         dcgbean.setHfcCd(alDcg.get(2).get(1));
-                        //dcgbean.setHfcName(alDcg.get(2).get(2));
-                        dcgbean.setPatientCategory(alDcg.get(2).get(2));
-                        dcgbean.setConsultingDoctorID(alDcg.get(2).get(3));
-                        dcgbean.setConsultingDoctorName(alDcg.get(2).get(4));
-                        dcgbean.setAttainDoctorID(alDcg.get(2).get(5));
-                        dcgbean.setAttainDoctorName(alDcg.get(2).get(6));
-                        String dischargeDtae = alDcg.get(2).get(7);
+                        dcgbean.setHfcName(alDcg.get(2).get(2));
+                        dcgbean.setPatientCategory(alDcg.get(2).get(3));
+                        dcgbean.setConsultingDoctorID(alDcg.get(2).get(4));
+                        dcgbean.setConsultingDoctorName(alDcg.get(2).get(5));
+                        dcgbean.setAttainDoctorID(alDcg.get(2).get(6));
+                        dcgbean.setAttainDoctorName(alDcg.get(2).get(7));
+                        String dischargeDtae = alDcg.get(2).get(8);
                         String splitDDATE[] = dischargeDtae.split(" ");
                         String dateD = splitDDATE[0];
                         String splitdate[] = dateD.split("-");
@@ -60,20 +60,22 @@ public class lhr_DCG {
                         
                         
                         
-                        dcgbean.setDischargeDisposition(alDcg.get(2).get(8));
-                        dcgbean.setComment(alDcg.get(2).get(9));
-                        dcgbean.setMessageType(alDcg.get(2).get(10)); 
+                        dcgbean.setDischargeDisposition(alDcg.get(2).get(9));
+                        dcgbean.setComment(alDcg.get(2).get(10));
+                        dcgbean.setMessageType(alDcg.get(2).get(11)); 
                         
                         dcgbean.setDischargeSummary(alDcg.get(5).toString());
-                       
-
-                        String query_lhr_discharge_summary = "insert into lhr_discharge_summary("
+                        String sqlGetdiscip = "SELECT discipline_code,subdicipline_code from adm_user_access_role where user_id='"+ dcgbean.getConsultingDoctorID()+"'";
+                        try{
+                            ArrayList<ArrayList<String>> ALALdissub =rmic.getQuerySQL(Config.ipAddressServer, Config.portServer, sqlGetdiscip);
+                            if(ALALdissub.size() > 0){
+                                 String query_lhr_discharge_summary = "insert into lhr_discharge_summary("
                                 + "pmi_no,"
                                 + "hfc_cd,"
                                 + "episode_date,"
                                 + "encounter_date,"
-                                //+ "discipline_cd,"
-                                //+ "subdiscipline_cd,"
+                                + "discipline_cd,"
+                                + "subdiscipline_cd,"
                                 + "discharge_type,"
                                 + "discharge_date,"
                                 + "discharge_disposition,"
@@ -87,8 +89,8 @@ public class lhr_DCG {
                                 + dcgbean.getHfcCd()+ "','"
                                 + dcgbean.getEpisodeDate()+ "','"
                                 + dcgbean.getEncounterDate()+ "','"
-                                //+ dcgbean.getReqDrugCod() + "','"
-                                //+ dcgbean.getPMI_no()+"',"
+                                + ALALdissub.get(0).get(0) + "','"
+                                + ALALdissub.get(0).get(1)+"',"
                                 + dcgbean.getMessageType()+ "','"
                                 + dcgbean.getDischargeDateTime()+ "','"
                                 + dcgbean.getDischargeDisposition()+ "','"
@@ -106,6 +108,12 @@ public class lhr_DCG {
                         } else {
                             System.out.println("true extracting dcg");
                         }
+                            }
+                        }catch(Exception e){
+                            
+                        }
+
+                       
 
                     } catch (Exception e) {
                         e.printStackTrace();

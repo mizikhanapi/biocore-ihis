@@ -67,6 +67,29 @@ public class lhr_HPI {
 //                            }
 //                            //
                     // encounter date must get from ecss client.
+                    
+                                                   String a,b,c,d;
+                a= t.getNational_id_no();
+                b = t.getPERSON_STATUS();
+                c = t.getPERSON_ID_NO();
+                d =t.getCentre_Code();
+                
+                if (a == null || a.isEmpty() || a.equals(" ")) {
+                   a =  "PUBLIC HOSPITAL";
+                }
+
+                if (b == null || b.isEmpty() || b.equals(" ")) {
+                    b ="PUBLIC HOSPITAL";
+                }
+
+                if (c == null || c.isEmpty() || c.equals(" ")) {
+                    c = "PUBLIC HOSPITAL";
+                }
+
+                if (d == null || d.isEmpty() || d.equals(" ")) {
+                    d = "PUBLIC HOSPITAL";
+                }
+                    
                     String query2 = "insert into lhr_health_of_present_illness (PMI_no, "
                             + "hfc_cd, "
                             + "episode_date, "
@@ -85,10 +108,10 @@ public class lhr_HPI {
                             + "'" + hpiB.getNotes() + "',"
                             + "'" + hpiB.getDoctor_ID() + "',"
                             + "'" + hpiB.getDoctor_Name() + "',"
-                            + "'" + t.getNational_id_no() + "',"
-                            + "'" + t.getPERSON_ID_NO() + "',"
-                            + "'" + t.getPERSON_STATUS() + "',"
-                            + "'" + t.getCentre_Code() + "')";
+                            + "'" + a + "',"
+                            + "'" + b + "',"
+                            + "'" + c + "',"
+                            + "'" + d + "')";
                     
                     status_hpi_lhr_health_of_present_illness = rc.setQuerySQL(Config.ipAddressServer, Config.portServer, query2);
 

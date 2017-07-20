@@ -13,7 +13,7 @@ import separatorv2.SeparatorV2;
 
 public class lhr_CCN {
 
-    public void M_CCN(Vector<CCN2> ccn2,get_ehr_central_data t) {
+    public void M_CCN(Vector<CCN2> ccn2, get_ehr_central_data t) {
 
         RMIConnector rc = new RMIConnector();
 
@@ -27,7 +27,28 @@ public class lhr_CCN {
 
             if (rowsCCN > 0) {
                 ArrayList<CCN> ccnBeans = new ArrayList<CCN>();
+                String a,b,c,d;
+                a= t.getNational_id_no();
+                b = t.getPERSON_STATUS();
+                c = t.getPERSON_ID_NO();
+                d =t.getCentre_Code();
                 
+                if (a == null || a.isEmpty() || a.equals(" ")) {
+                   a =  "PUBLIC HOSPITAL";
+                }
+
+                if (b == null || b.isEmpty() || b.equals(" ")) {
+                    b ="PUBLIC HOSPITAL";
+                }
+
+                if (c == null || c.isEmpty() || c.equals(" ")) {
+                    c = "PUBLIC HOSPITAL";
+                }
+
+                if (d == null || d.isEmpty() || d.equals(" ")) {
+                    d = "PUBLIC HOSPITAL";
+                }
+
                 for (int k = 0; k < rowsCCN; k++) {
                     CCN ccnBean = new CCN();
                     ArrayList<ArrayList<String>> alCcn = ccn2.get(k).getValue();
@@ -35,7 +56,6 @@ public class lhr_CCN {
 
                         System.out.println("ccn #" + (k + 1));
 
-                        
                         ccnBean.setEpisode_date(alCcn.get(1).get(0));
                         ccnBean.setPMI_no(t.getPmi_no());
 
@@ -73,14 +93,20 @@ public class lhr_CCN {
                             Calendar cal = Calendar.getInstance();
                             ccnBean.setTxnDate(df.format(cal.getTime()));
                         }
-                        //                            
+                        //
 
                         ccnBean.setSymptom_Code(alCcn.get(2).get(0));
                         ccnBean.setSymptom_Name(alCcn.get(2).get(1));
-                        ccnBean.setTerm_Type(alCcn.get(2).get(18));
+
+                        if (alCcn.get(2).get(18).equals(" ") || alCcn.get(2).get(18).equals("-")) {
+                            ccnBean.setTerm_Type("CTV3");
+                        } else {
+                            ccnBean.setTerm_Type(alCcn.get(2).get(18));
+                        }
+
                         ccnBean.setSeverity_Desc(alCcn.get(2).get(3));
                         ccnBean.setComment(alCcn.get(2).get(11));
-                        ccnBean.setStatus(alCcn.get(2).get(13));
+                        ccnBean.setStatus("0");
                         ccnBean.setDoctor_ID(alCcn.get(2).get(16));
                         ccnBean.setDoctor_Name(alCcn.get(2).get(17));
 
@@ -114,10 +140,10 @@ public class lhr_CCN {
                                 + "'" + ccnBean.getStatus() + "',"
                                 + "'" + ccnBean.getDoctor_ID() + "',"
                                 + "'" + ccnBean.getDoctor_Name() + "',"
-                                + "'" + t.getNational_id_no() + "',"
-                                + "'" + t.getPERSON_ID_NO() + "',"
-                                + "'" + t.getPERSON_STATUS() + "',"
-                                + "'" + t.getCentre_Code() + "')";
+                                + "'" + a + "',"
+                                + "'" + b + "',"
+                                + "'" + c + "',"
+                                + "'" + d + "')";
 
                         status_ccn_lhr_signs = rc.setQuerySQL(Config.ipAddressServer, Config.portServer, query1);
                         ////System.out.println("query CCN: " + query1);
@@ -141,12 +167,11 @@ public class lhr_CCN {
 
 //                update_ehr_central u = new update_ehr_central();
 //                u.update_status();
-
             }
 
         } catch (Exception e) {
             e.printStackTrace();
         }
-        
+
     }
 }

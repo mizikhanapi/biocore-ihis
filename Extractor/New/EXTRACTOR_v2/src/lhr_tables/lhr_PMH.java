@@ -93,7 +93,30 @@ public class lhr_PMH {
                             pmh_Obj.setICD10_Desc(alPmh.get(2).get(1));
                         }else{
                             pmh_Obj.setICD10_Desc(alPmh.get(2).get(15));
+                            
                         }
+                        
+                                            String a,b,c,d;
+                a= t.getNational_id_no();
+                b = t.getPERSON_STATUS();
+                c = t.getPERSON_ID_NO();
+                d =t.getCentre_Code();
+                
+                if (a == null || a.isEmpty() || a.equals(" ")) {
+                   a =  "PUBLIC HOSPITAL";
+                }
+
+                if (b == null || b.isEmpty() || b.equals(" ")) {
+                    b ="PUBLIC HOSPITAL";
+                }
+
+                if (c == null || c.isEmpty() || c.equals(" ")) {
+                    c = "PUBLIC HOSPITAL";
+                }
+
+                if (d == null || d.isEmpty() || d.equals(" ")) {
+                    d = "PUBLIC HOSPITAL";
+                }
                         //Modified By Ahmed (13/3/2017)
                          //Modified By Ahmed (13/3/2017)
 
@@ -121,18 +144,18 @@ public class lhr_PMH {
                                 + "" + pmh_Obj.getEncounter_Date() + "," //Modified By Ahmed (13/3/2017)
                                 + "" + pmh_Obj.getEncounter_Date() + ","
                                 + "'" + pmh_Obj.getRead_Code()+ "'," //diagnosis_cd
-                                + "" + pmh_Obj.getDiagnosis_Date() + "," //Modified By Ahmed (13/3/2017)
-                                + "'" + pmh_Obj.getTerm_Type() + "',"
-                                + "'" + pmh_Obj.getICD10_Code() + "'," 
-                                + "'" + pmh_Obj.getICD10_Desc() + "',"
+                                + "now()," //Modified By Ahmed (13/3/2017)
+                                + "'CTV3',"
+                                + "'CTV3'," 
+                                + "'CTV3',"
                                 + "'" + pmh_Obj.getComments() + "',"
                                 + "'" + pmh_Obj.getStatus() + "',"
                                 + "'" + pmh_Obj.getDoctor_Id() + "',"
                                 + "'" + pmh_Obj.getDoctor_Name() + "',"
-                                + "'" + t.getNational_id_no() + "',"
-                                + "'" + t.getPERSON_ID_NO() + "',"
-                                + "'" + t.getPERSON_STATUS() + "',"
-                                + "'" + t.getCentre_Code()+ "')";
+                                + "'" + a + "',"
+                                + "'" + b+ "',"
+                                + "'" + c + "',"
+                                + "'" + d+ "')";
 //                        System.out.println(pmh_Obj.getICD10_Code());
 //                        System.out.println(pmh_Obj.getICD10_Desc());
 //                        System.out.println(pmh_Obj.getEncounter_Date());

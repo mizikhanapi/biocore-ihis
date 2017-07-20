@@ -57,6 +57,28 @@ public class lhr_ARP {
 
                                 ArrayList<ArrayList<String>> alArp = arp2.get(n).getValue();
 
+                                String a,b,c,d;
+                a= t.getNational_id_no();
+                b = t.getPERSON_STATUS();
+                c = t.getPERSON_ID_NO();
+                d =t.getCentre_Code();
+                
+                if (a == null || a.isEmpty() || a.equals(" ")) {
+                   a =  "PUBLIC HOSPITAL";
+                }
+
+                if (b == null || b.isEmpty() || b.equals(" ")) {
+                    b ="PUBLIC HOSPITAL";
+                }
+
+                if (c == null || c.isEmpty() || c.equals(" ")) {
+                    c = "PUBLIC HOSPITAL";
+                }
+
+                if (d == null || d.isEmpty() || d.equals(" ")) {
+                    d = "PUBLIC HOSPITAL";
+                }
+
                                 arpB.setPMI_no(t.getPmi_no());
                                 arpB.setDateTime(alArp.get(2).get(0));
                                 arpB.setPrCode(alArp.get(1).get(0));
@@ -88,20 +110,20 @@ public class lhr_ARP {
                                         + "person_id_no,"
                                         + "person_status,"
                                         + "centre_code) VALUES("
-                                        + "'"+arpB.getPMI_no().trim()+"',"
-                                        + "'"+arpB.getRecHFCcode().trim()+"',"
-                                        + "'"+arpB.getEpisodeDate().trim()+"',"
-                                        + "'"+arpB.getEncounter_Date().trim()+"',"
-                                        + "'"+arpB.getPrCode().trim()+"',"
-                                        + "'"+arpB.getPrName().trim()+"',"
+                                        + "'" + arpB.getPMI_no().trim() + "',"
+                                        + "'" + arpB.getRecHFCcode().trim() + "',"
+                                        + "'" + arpB.getEpisodeDate().trim() + "',"
+                                        + "'" + arpB.getEncounter_Date().trim() + "',"
+                                        + "'" + arpB.getPrCode().trim() + "',"
+                                        + "'" + arpB.getPrName().trim() + "',"
                                         //+ "'',"
-                                        + "'"+arpB.getComment().trim()+"',"
-                                        + "'"+arpB.getDocId().trim()+"',"
-                                        + "'"+arpB.getDocName().trim()+"',"
-                                        + "'"+t.getNational_id_no().trim()+"',"
-                                        + "'"+t.getPERSON_ID_NO().trim()+"',"
-                                        + "'"+t.getPERSON_STATUS().trim()+"',"
-                                        + "'"+t.getCentre_Code().trim()+"'"
+                                        + "'" + arpB.getComment().trim() + "',"
+                                        + "'" + arpB.getDocId().trim() + "',"
+                                        + "'" + arpB.getDocName().trim() + "',"
+                                        + "'" + a.trim() + "',"
+                                        + "'" + b.trim() + "',"
+                                        + "'" + c.trim() + "',"
+                                        + "'" + d.trim() + "'"
                                         + ")";
 
                                 status_alg_lhr_arp = rc.setQuerySQL(Config.ipAddressServer, Config.portServer, query_alg_lhr_arp);
@@ -110,7 +132,7 @@ public class lhr_ARP {
                                     System.out.println("Done extract arp");
                                 } else {
                                     System.out.println("False extract arp");
-                                    System.out.println("query arp: "+query_alg_lhr_arp);
+                                    System.out.println("query arp: " + query_alg_lhr_arp);
                                 }
                                 arpBr.add(arpB);
 

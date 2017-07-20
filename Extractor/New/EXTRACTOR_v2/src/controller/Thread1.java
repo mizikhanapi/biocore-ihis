@@ -33,7 +33,7 @@ public class Thread1 implements Runnable {
         while (status) {
             
             try {
-                
+                System.out.println("*************************");
                 Date date1 = new Date();
                 SimpleDateFormat sdf1 = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
                 System.out.println("["+sdf1.format(date1)+"] Extracting ...");
@@ -45,7 +45,8 @@ public class Thread1 implements Runnable {
                 Date date2 = new Date();
                 SimpleDateFormat sdf2 = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
                 System.out.println("["+sdf2.format(date2)+"] Done.");
-                
+                System.out.println("*************************");
+                System.out.println(" ");
                 Thread.sleep(sleep);
                 
             } catch (Exception ex) {

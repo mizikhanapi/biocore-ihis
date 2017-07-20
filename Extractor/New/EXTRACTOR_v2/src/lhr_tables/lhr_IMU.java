@@ -66,6 +66,28 @@ public class lhr_IMU {
                             imuB.setIcd10_description(alImu.get(2).get(14));
 
                         }
+                        
+                                                    String a,b,c,d;
+                a= t.getNational_id_no();
+                b = t.getPERSON_STATUS();
+                c = t.getPERSON_ID_NO();
+                d =t.getCentre_Code();
+                
+                if (a == null || a.isEmpty() || a.equals(" ")) {
+                   a =  "PUBLIC HOSPITAL";
+                }
+
+                if (b == null || b.isEmpty() || b.equals(" ")) {
+                    b ="PUBLIC HOSPITAL";
+                }
+
+                if (c == null || c.isEmpty() || c.equals(" ")) {
+                    c = "PUBLIC HOSPITAL";
+                }
+
+                if (d == null || d.isEmpty() || d.equals(" ")) {
+                    d = "PUBLIC HOSPITAL";
+                }
 
 //                            // increase time 5 sec to prevent duplicate during insert.
 //                            SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -119,20 +141,20 @@ public class lhr_IMU {
                                 + "'" + imuB.getEpisode_date() + "',"
                                 + "'" + imuB.getEncounter_Date() + "',"
                                 + "'" + imuB.getimmunization_cd() + "',"
-                                + "'" + imuB.getOnset_date() + "',"
-                                + "'" + imuB.getTerm_type() + "',"
+                                + "now(),"
+                                + "'CTV3',"
                                 + "'" + imuB.getIcd10_cd() + "',"
                                 + "'" + imuB.getIcd10_description() + "',"
-                                + "'" + imuB.getTerm_cd() + "',"
-                                + "'" + imuB.getTerm_description() + "',"
+                                + "'CTV3',"
+                                + "'CTV3',"
                                 + "'" + imuB.getComment() + "',"
-                                + "'" + imuB.getStatus() + "',"
+                                + "'0',"
                                 + "'" + imuB.getDoctor_ID() + "',"
                                 + "'" + imuB.getDoctor_Name() + "'," //temp
-                                + "'" + t.getNational_id_no() + "',"
-                                + "'" + t.getPERSON_ID_NO() + "',"
-                                + "'" + t.getPERSON_STATUS() + "',"
-                                + "'" + t.getCentre_Code() + "')";
+                                + "'" + a + "',"
+                                + "'" + b + "',"
+                                + "'" + c + "',"
+                                + "'" + d + "')";
 
                         status_imu_lhr_immunisation = rc.setQuerySQL(Config.ipAddressServer, Config.portServer, query_imu_lhr_imu);
 

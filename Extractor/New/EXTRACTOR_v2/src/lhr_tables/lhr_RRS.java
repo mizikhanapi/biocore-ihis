@@ -61,6 +61,27 @@ public class lhr_RRS {
                         rrsbean.setReportProvideDateTime(alRrr.get(6).get(0));
                         
                         rrsbean.setReportNotes(alRrr.get(7).get(0));
+                                        String a,b,c,d;
+                a= t.getNational_id_no();
+                b = t.getPERSON_STATUS();
+                c = t.getPERSON_ID_NO();
+                d =t.getCentre_Code();
+                
+                if (a == null || a.isEmpty() || a.equals(" ")) {
+                   a =  "PUBLIC HOSPITAL";
+                }
+
+                if (b == null || b.isEmpty() || b.equals(" ")) {
+                    b ="PUBLIC HOSPITAL";
+                }
+
+                if (c == null || c.isEmpty() || c.equals(" ")) {
+                    c = "PUBLIC HOSPITAL";
+                }
+
+                if (d == null || d.isEmpty() || d.equals(" ")) {
+                    d = "PUBLIC HOSPITAL";
+                }
 
                         String query_lhr_radiology_result = "insert into lhr_radiology_result("
                                 + "pmi_no,"
@@ -97,10 +118,10 @@ public class lhr_RRS {
                                 + rrsbean.getReportProvideByName()+ "','"
                                 + rrsbean.getReportProvideDateTime()+ "','"
                                 + rrsbean.getReportNotes()+ "','"
-                                + t.getNational_id_no() + "','"
-                                + t.getPERSON_ID_NO() + "','"
-                                + t.getPERSON_STATUS() + "','"
-                                + t.getCentre_Code() + "');";
+                                + a + "','"
+                                + b + "','"
+                                + c + "','"
+                                + d + "');";
                         status_lhr_ddr = rmic.setQuerySQL(Config.ipAddressServer, Config.portServer, query_lhr_radiology_result);
 
                         if (status_lhr_ddr == false) {

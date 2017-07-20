@@ -25,6 +25,7 @@ public class PEM {
     private String signCondition;
     private String comment;
     private String answerCode;
+    private String awnswerDesc;
     private String txnDate;
     private String status;
 
@@ -146,6 +147,14 @@ public class PEM {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public String getAwnswerDesc() {
+        return awnswerDesc;
+    }
+
+    public void setAwnswerDesc(String awnswerDesc) {
+        this.awnswerDesc = awnswerDesc;
     }
     
 }

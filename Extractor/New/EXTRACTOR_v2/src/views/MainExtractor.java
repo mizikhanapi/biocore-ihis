@@ -109,6 +109,10 @@ public class MainExtractor {
             //ARP
             lhr_ARP lhr_arp = new lhr_ARP();
             lhr_arp.M_ARP(spv2.getVarp(), t, spv2.getVorc());
+            
+            //PEM
+            lhr_PEM lhr_pem = new lhr_PEM();
+            lhr_pem.M_PEM(spv2.getVpem(), t);
 
             update_ehr_central u = new update_ehr_central();
             u.update_status(t.getCentral_Code());
