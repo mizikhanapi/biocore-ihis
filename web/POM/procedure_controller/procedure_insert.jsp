@@ -1,7 +1,7 @@
 <%-- 
     Document   : procedure_insert
     Created on : May 10, 2017, 6:54:58 PM
-    Author     : user
+    Author     : Ardhi Surya Ibrahim; rdsurya147@gmail.com; insta:@rdcfc
 --%>
 
 <%@page import="main.RMIConnector"%>
