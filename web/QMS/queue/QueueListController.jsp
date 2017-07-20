@@ -34,8 +34,8 @@
             + " join pms_patient_biodata b on b.pmi_no = q.pmi_no"
             + " join adm_lookup_detail l on l.`Master_Reference_code` ='0069' and l.`Detail_Reference_code` = q.status and l.`hfc_cd` = '" + hfc + "'"
             + " left join adm_lookup_detail x on x.`Master_Reference_code` ='0033' and x.`Detail_Reference_code` = q.patient_category and x.`hfc_cd` = '" + hfc + "'"
-            + " join adm_users u on u.user_id = q.user_id and u.health_facility_code = '"+hfc+"'"
-            + " where q.episode_date like '%" + now + "%' and q.status !='1' and q.hfc_cd='" + hfc + "' and ((queue_type='PN' and queue_name='"+doctor+"') OR queue_type!='PN') LIMIT 5";
+            + " join adm_users u on u.user_id = q.user_id and u.health_facility_code = '" + hfc + "'"
+            + " where q.episode_date like '%" + now + "%' and q.status !='1' and q.hfc_cd='" + hfc + "' and ((queue_type='PN' and queue_name='" + doctor + "') OR queue_type!='PN') LIMIT 5";
     ArrayList<ArrayList<String>> dataQueue;
     dataQueue = conn.getData(sqlV3);
     //out.print(sql);
@@ -57,7 +57,7 @@
 </thead>
 <tbody>
     <%
-                                        for (int i = 0; i < dataQueue.size(); i++) {%>
+        for (int i = 0; i < dataQueue.size(); i++) {%>
     <tr>
         <td id="pmiNumber"><%=dataQueue.get(i).get(0)%></td>
         <td><%=dataQueue.get(i).get(1)%></td>
@@ -70,9 +70,9 @@
         <td class="hidden-xs"><%=dataQueue.get(i).get(9)%></td>
         <td id="status"><%=dataQueue.get(i).get(6)%></td>
         <% if (dataQueue.get(i).get(6).equals("Consult")) { %>
-        <td><button class="btn btn-primary changePatientBtn"  disabled="">Consult</button> </td>
+        <td><button class="btn btn-primary changePatientBtn" disabled="">Assign</button> </td>
         <% } else {%>
-        <td><button class="btn btn-primary changePatientBtn" id="consultBtn" >Consult</button> </td>
+        <td><button class="btn btn-primary changePatientBtn" id="btnQMS_ATQ_Assign" >Assign</button> </td>
         <%}%>
 
     </tr>    
