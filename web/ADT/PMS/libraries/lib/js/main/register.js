@@ -160,7 +160,7 @@ $('#registerBed').click(function () {
         WardType = $('#WardType').val();
         BedID = $('#BedIDReg').val();
         guardInd = "-";
-        referHfc = $('#HFCFROM').val();
+        referHfc = $('#HF_cd').val();
         referDis = "-";
         referNo = "-";
         gruGuard = "-";
@@ -168,7 +168,7 @@ $('#registerBed').click(function () {
         stat = "0";
         var hfc = $("#Rhfc").val();
         var createdBy = $("#Rid").val();
-        var sub = $("#Rsub").val();
+        var sub = $("#sub_cd").val();
         hfc = $('#Rhfc').val();
         var datas = {'pmino': pmino,
             'epiDate': epiDate,
@@ -207,7 +207,8 @@ $('#registerBed').click(function () {
             'sub': sub,
             'orderNo': orderNo,
             'OrderStatus': OrderStatus,
-            'order': order
+            'order': order,
+            'wnamequeue': wnamequeue
 
         };
         //console.log(datas);

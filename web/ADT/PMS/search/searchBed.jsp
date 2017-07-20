@@ -35,6 +35,9 @@
             <div class="col-md-6">
                 <input id="DisWard" name="Dis" placeholder="Insert Discipline Code" maxlength="30" type="text"  class="form-control input-md">
                 <input type="hidden" id="dis_cd">
+                                <input  type="hidden" id="sub_cd">
+
+                
                 <div id="disListWard" class="search-drop"></div>
             </div>
 
@@ -128,6 +131,9 @@
                             var arrayData = $('#DisWard').val().split("|");
                             var discode = arrayData[0];
                             $('#dis_cd').val(discode);
+
+                            var subcode = arrayData[2];
+                            $('#sub_cd').val(subcode);
                             //console.log(arrayData);
 
                             $.ajax({
@@ -206,7 +212,7 @@
 
 
                 console.log(wnamecode);
-            
+
 
 
                 // console.log(Dis);

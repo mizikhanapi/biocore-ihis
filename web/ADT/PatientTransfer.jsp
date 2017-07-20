@@ -36,7 +36,7 @@
                             <input type="hidden" id="oldDis">
                             <!-- Text input-->
                             <div class="form-group">
-                                <label class="col-md-4 control-label" for="textinput">PMI No. *</label>
+                                <label class="col-md-4 control-label" for="textinput">PMI No. </label>
                                 <div class="col-md-4">
 
                                     <input id="pmino" name="pmino" type="text" placeholder=" " readonly class="form-control input-md" readonly="">                        </div>
@@ -70,7 +70,7 @@
 
                             <!-- Text input-->
                             <div class="form-group">
-                                <label class="col-md-4 control-label" for="textinput">Ward Class *</label>
+                                <label class="col-md-4 control-label" for="textinput">Ward Class </label>
                                 <div class="col-md-4">
                                     <input id="WardClassf" name="age" type="text" readonly placeholder="" class="form-control input-md">
                                 </div>
@@ -78,7 +78,7 @@
 
                             <!-- Text input-->
                             <div class="form-group">
-                                <label class="col-md-4 control-label" for="textinput">Bed no *</label>
+                                <label class="col-md-4 control-label" for="textinput">Bed no </label>
                                 <div class="col-md-4">
                                     <input id="Bedf" name="Bed" type="text" readonly placeholder="" class="form-control input-md">
                                 </div>
@@ -97,19 +97,11 @@
                                 </div>
                             </div>
 
-                            <!-- Text input-->
-                            <div class="form-group">
-                                <label class="col-md-4 control-label" for="textinput">MRN Number</label>
-                                <div class="col-md-4">
-                                    <input id="MRN" name="MRN" type="text" readonly placeholder="" class="form-control input-md">
-                                </div>
-                            </div>
-
-
+                          
 
                             <!-- Text input-->
                             <div class="form-group">
-                                <label class="col-md-4 control-label" for="textinput">Admission Date *</label>
+                                <label class="col-md-4 control-label" for="textinput">Admission Date </label>
                                 <div class="col-md-4">
                                     <input id="AdmissionDatef" name="AdmissionDate" type="text" readonly placeholder="AdmissionDate" class="form-control input-md">
                                 </div>
@@ -125,7 +117,7 @@
 
                             <!-- Text input-->
                             <div class="form-group">
-                                <label class="col-md-4 control-label" for="textinput">Ward Name *</label>
+                                <label class="col-md-4 control-label" for="textinput">Ward Name </label>
                                 <div class="col-md-4">
                                     <input id="WardNamef" name="WardName" type="text" readonly placeholder="" class="form-control input-md">
                                 </div>
@@ -133,7 +125,7 @@
 
                             <!-- Text input-->
                             <div class="form-group">
-                                <label class="col-md-4 control-label" for="textinput">Rate *</label>
+                                <label class="col-md-4 control-label" for="textinput">Rate </label>
                                 <div class="col-md-4">
                                     <input id="Ratef" name="Rate" type="text" readonly placeholder="" class="form-control input-md">
                                 </div>
@@ -171,6 +163,9 @@
         </div>
 
     </div>
+
+<input  type="hidden" id="wardName_CD"     class="form-control input-md">
+<input  type="hidden" id="wardClass_CD"     class="form-control input-md">
 
 
 
@@ -271,8 +266,8 @@
                 var WardName = $('#wardnew').val();
                 //var Rate = $('#Rate').val();
                 var BedO = $('#Bedf').val();
-                var WardNameO = $('#WardNamef').val();
-                var WardClassO = $('#WardClassf').val();
+                var WardNameO = $('#wardName_CD').val();
+                var WardClassO = $('#wardClass_CD').val();
                 var Dis = $('#dis_cd').val();
                 var TransferReason = $('#TransferReason').val();
                 var Deposit = $('#Deposit').val();
@@ -290,15 +285,15 @@
 
                 if (Dis === "" || Dis === null) {
                     bootbox.alert("Complete The Fields of Discipline ");
-                } else if (WardClassO === "" || WardClassO === null) {
+                } else if (WardClass === "" || WardClass === null) {
                     bootbox.alert("Complete The Fields of Ward ID");
                 } else if (TransferReason === "" || TransferReason === null) {
                     bootbox.alert("Complete The Fields of TransferReason");
-                } else if (WardNameO === "" || WardNameO === null) {
+                } else if (WardName === "" || WardName === null) {
                     bootbox.alert("Complete The Fields of Ward Name");
                 } else if (Deposit === "" || Deposit === null) {
                     bootbox.alert("Complete The Fields of Citizen Rates");
-                } else if (BedO === "" || BedO === null) {
+                } else if (Bed === "" || Bed === null) {
                     bootbox.alert("Select Bed first");
 
                 } else {

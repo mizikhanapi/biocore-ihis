@@ -77,7 +77,7 @@ $(function () {
             var dataFields = {'input': input}; // We pass input argument in Ajax
             $.ajax({
                 type: "POST",
-                url: "search/searchOcupation.jsp", // call the php file ajax/tuto-autocomplete.php
+                url: "PMS/search/searchOcupation.jsp", // call the php file ajax/tuto-autocomplete.php
                 data: dataFields, // Send dataFields var
                 timeout: 3000,
                 success: function (dataBack) { // If success
@@ -129,7 +129,7 @@ $(function () {
             var dataFields = {'input': input}; // We pass input argument in Ajax
             $.ajax({
                 type: "POST",
-                url: "search/searchOcupation.jsp", // call the php file ajax/tuto-autocomplete.php
+                url: "PMS/search/searchOcupation.jsp", // call the php file ajax/tuto-autocomplete.php
                 data: dataFields, // Send dataFields var
                 timeout: 3000,
                 success: function (dataBack) { // If success

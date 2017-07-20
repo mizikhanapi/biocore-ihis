@@ -1,9 +1,11 @@
+<%@page import="java.util.Calendar"%>
 <%@page import="org.apache.commons.lang3.StringUtils"%>
 <%@page import="dBConn.Conn"%>
 <%@page import="Config.Config"%>
 <%@page import="java.sql.*"%>
 <%@page import="java.util.List"%>
 <%@page import="java.util.ArrayList"%>
+<%@page import="Formatter.CheckDateFormat"%>
 
 
 
@@ -17,52 +19,139 @@
     <th>Ward Name</th>
     <th>Bed</th>
     <th>Patient Name</th>
-    <th>Patient ID</th>
+    <th>Patient PMI NO</th>
     <th>Date</th>
     <th>Transfer</th>
 </thead>
 <tbody>
 
     <%
-    String hfc = session.getAttribute("HEALTH_FACILITY_CODE").toString();
-    String idWard = request.getParameter("idWard");
-    String idType = request.getParameter("idType");
-    String idInput = request.getParameter("idInput");
-    String methodSearching = request.getParameter("methodSearch"); 
-    String searching = "";
-    Conn conn = new Conn();
-    //1 --- search by patient
-    //0 --- search by ward list
-    if(methodSearching.equalsIgnoreCase("1")){
-        if (idType.equals("pmino") || idType.equals("001")) {
-            searching = "select new_ic_no,old_ic_no,id_type,id_no,police_case,hfc_cd,pmi_no,episode_date,discipline_cd,subdiscipline_cd,ward_class_code,ward_id,bed_id,payer_group,patient_category_cd,visit_type_cd,emergency_type_cd,eligibility_type_cd,eligibility_category_cd,referred_from_hfc,referred_from_discipline,referred_reference_no,order_by,admission_reason,admission_description,guardian_ind,group_guardian,gl_expiry_date,inpatient_status,created_by,created_date,deposit_inpatient,document_type,document_no,patient_name"
-                    + " from wis_inpatient_episode "
-                    + " where pmi_no='" + idInput + "' and hfc_cd='"+hfc+"'";
-        } else if (idType.equals("icnew") || idType.equals("002")) {
-            searching = "select new_ic_no,old_ic_no,id_type,id_no,police_case,hfc_cd,pmi_no,episode_date,discipline_cd,subdiscipline_cd,ward_class_code,ward_id,bed_id,payer_group,patient_category_cd,visit_type_cd,emergency_type_cd,eligibility_type_cd,eligibility_category_cd,referred_from_hfc,referred_from_discipline,referred_reference_no,order_by,admission_reason,admission_description,guardian_ind,group_guardian,gl_expiry_date,inpatient_status,created_by,created_date,deposit_inpatient,document_type,document_no,patient_name"
-                    + " from wis_inpatient_episode"
-                    + " where NEW_IC_NO='" + idInput + "' and hfc_cd='"+hfc+"'";
+        String hfc = session.getAttribute("HEALTH_FACILITY_CODE").toString();
+        String idWard = request.getParameter("idWard");
+        String idType = request.getParameter("idType");
+        String idInput = request.getParameter("idInput");
+        String methodSearching = request.getParameter("methodSearch");
+        String searching = "";
+        Conn conn = new Conn();
+        CheckDateFormat cdf = new CheckDateFormat();
 
-        } else if (idType.equals("icold") || idType.equals("003")) {
-            searching = "select new_ic_no,old_ic_no,id_type,id_no,police_case,hfc_cd,pmi_no,episode_date,discipline_cd,subdiscipline_cd,ward_class_code,ward_id,bed_id,payer_group,patient_category_cd,visit_type_cd,emergency_type_cd,eligibility_type_cd,eligibility_category_cd,referred_from_hfc,referred_from_discipline,referred_reference_no,order_by,admission_reason,admission_description,guardian_ind,group_guardian,gl_expiry_date,inpatient_status,created_by,created_date,deposit_inpatient,document_type,document_no,patient_name"
-                    + " from wis_inpatient_episode"
-                    + " where OLD_IC_NO='" + idInput + "' and hfc_cd='"+hfc+"'";
-        } else {
-            searching = "select new_ic_no,old_ic_no,id_type,id_no,police_case,hfc_cd,pmi_no,episode_date,discipline_cd,subdiscipline_cd,ward_class_code,ward_id,bed_id,payer_group,patient_category_cd,visit_type_cd,emergency_type_cd,eligibility_type_cd,eligibility_category_cd,referred_from_hfc,referred_from_discipline,referred_reference_no,order_by,admission_reason,admission_description,guardian_ind,group_guardian,gl_expiry_date,inpatient_status,created_by,created_date,deposit_inpatient,document_type,document_no,patient_name"
-                    + " from wis_inpatient_episode"
-                    + " where ID_NO='" + idInput + "' AND ID_TYPE='" + idType + "' and hfc_cd='"+hfc+"'";
+        int age = 0;
+
+        String dob = "";
+        String dataFull = "";
+        String ageS = "";
+        boolean check;
+
+        Calendar now = Calendar.getInstance();
+        int year = now.get(Calendar.YEAR);
+        int month = now.get(Calendar.MONTH);
+
+        //1 --- search by patient
+        //0 --- search by ward list
+        if (methodSearching.equalsIgnoreCase("1")) {
+            if (idType.equals("pmino") || idType.equals("001")) {
+                searching = "select a.new_ic_no,a.old_ic_no,a.id_type,a.id_no,a.police_case,a.hfc_cd,a.pmi_no,a.episode_date,a.discipline_cd,a.subdiscipline_cd, a.ward_class_code,"
+                        //    11       12        13           14                    15              16                    17                    18                       19                       20        
+                        + "a.ward_id,a.bed_id,a.payer_group,a.patient_category_cd,a.visit_type_cd,a.emergency_type_cd,a.eligibility_type_cd,a.eligibility_category_cd,a.referred_from_hfc,a.referred_from_discipline,"
+                        //   21                     22       23              24                    25             26            27            28               29          30
+                        + "a.referred_reference_no,a.order_by,a.admission_reason,a.admission_description,a.guardian_ind,a.group_guardian,a.gl_expiry_date,a.inpatient_status,a.created_by,a.created_date,"
+                        // 31                          32         33             34                 35       36             37               
+                        + "a.deposit_inpatient,a.document_type,a.document_no,a.patient_name,b.ward_name,d.ward_class_name, c.SEX_CODE, c.BIRTH_DATE"
+                        + " from wis_inpatient_episode a left join wis_ward_name b on a.ward_id = b.ward_id "
+                        + " left join pms_patient_biodata c on a.pmi_no = c.PMI_NO  "
+                        + " left join wis_ward_class d on d.ward_class_code = a.ward_class_code "
+                        + " left join adm_lookup_detail e on e.hfc_cd = a.hfc_cd  "
+                        + " where e.Master_Reference_code = '0041' and a.pmi_no='" + idInput + "' and a.hfc_cd='" + hfc + "'";
+            } else if (idType.equals("icnew") || idType.equals("002")) {
+                searching = "select a.new_ic_no,a.old_ic_no,a.id_type,a.id_no,a.police_case,a.hfc_cd,a.pmi_no,a.episode_date,a.discipline_cd,a.subdiscipline_cd, a.ward_class_code,"
+                        //    11       12        13           14                    15              16                    17                    18                       19                       20        
+                        + "a.ward_id,a.bed_id,a.payer_group,a.patient_category_cd,a.visit_type_cd,a.emergency_type_cd,a.eligibility_type_cd,a.eligibility_category_cd,a.referred_from_hfc,a.referred_from_discipline,"
+                        //   21                     22       23              24                    25             26            27            28               29          30
+                        + "a.referred_reference_no,a.order_by,a.admission_reason,a.admission_description,a.guardian_ind,a.group_guardian,a.gl_expiry_date,a.inpatient_status,a.created_by,a.created_date,"
+                        // 31                          32         33             34                 35       36             37               
+                        + "a.deposit_inpatient,a.document_type,a.document_no,a.patient_name,b.ward_name,d.ward_class_name, c.SEX_CODE, c.BIRTH_DATE"
+                        + " from wis_inpatient_episode a left join wis_ward_name b on a.ward_id = b.ward_id "
+                        + " left join pms_patient_biodata c on a.pmi_no = c.PMI_NO  "
+                        + " left join wis_ward_class d on d.ward_class_code = a.ward_class_code  "
+                        + " where a.NEW_IC_NO='" + idInput + "' and a.hfc_cd='" + hfc + "'";
+
+            } else if (idType.equals("icold") || idType.equals("003")) {
+                searching = "select a.new_ic_no,a.old_ic_no,a.id_type,a.id_no,a.police_case,a.hfc_cd,a.pmi_no,a.episode_date,a.discipline_cd,a.subdiscipline_cd, a.ward_class_code,"
+                        //    11       12        13           14                    15              16                    17                    18                       19                       20        
+                        + "a.ward_id,a.bed_id,a.payer_group,a.patient_category_cd,a.visit_type_cd,a.emergency_type_cd,a.eligibility_type_cd,a.eligibility_category_cd,a.referred_from_hfc,a.referred_from_discipline,"
+                        //   21                     22       23              24                    25             26            27            28               29          30
+                        + "a.referred_reference_no,a.order_by,a.admission_reason,a.admission_description,a.guardian_ind,a.group_guardian,a.gl_expiry_date,a.inpatient_status,a.created_by,a.created_date,"
+                        // 31                          32         33             34                 35       36             37               
+                        + "a.deposit_inpatient,a.document_type,a.document_no,a.patient_name,b.ward_name,d.ward_class_name, c.SEX_CODE, c.BIRTH_DATE"
+                        + " from wis_inpatient_episode a left join wis_ward_name b on a.ward_id = b.ward_id "
+                        + " left join pms_patient_biodata c on a.pmi_no = c.PMI_NO  "
+                        + " left join wis_ward_class d on d.ward_class_code = a.ward_class_code  "
+                        + " where a.OLD_IC_NO='" + idInput + "' and a.hfc_cd='" + hfc + "'";
+            } else {
+                searching = "select a.new_ic_no,a.old_ic_no,a.id_type,a.id_no,a.police_case,a.hfc_cd,a.pmi_no,a.episode_date,a.discipline_cd,a.subdiscipline_cd, a.ward_class_code,"
+                        //    11       12        13           14                    15              16                    17                    18                       19                       20        
+                        + "a.ward_id,a.bed_id,a.payer_group,a.patient_category_cd,a.visit_type_cd,a.emergency_type_cd,a.eligibility_type_cd,a.eligibility_category_cd,a.referred_from_hfc,a.referred_from_discipline,"
+                        //   21                     22       23              24                    25             26            27            28               29          30
+                        + "a.referred_reference_no,a.order_by,a.admission_reason,a.admission_description,a.guardian_ind,a.group_guardian,a.gl_expiry_date,a.inpatient_status,a.created_by,a.created_date,"
+                        // 31                          32         33             34                 35       36             37               
+                        + "a.deposit_inpatient,a.document_type,a.document_no,a.patient_name,b.ward_name,d.ward_class_name, c.SEX_CODE, c.BIRTH_DATE"
+                        + " from wis_inpatient_episode a left join wis_ward_name b on a.ward_id = b.ward_id "
+                        + " left join pms_patient_biodata c on a.pmi_no = c.PMI_NO  "
+                        + " left join wis_ward_class d on d.ward_class_code = a.ward_class_code  "
+                        + " where a.ID_NO='" + idInput + "' AND a.ID_TYPE='" + idType + "' and a.hfc_cd='" + hfc + "'";
+            }
+
+        } else if (methodSearching.equalsIgnoreCase("0")) {
+            searching = "select a.new_ic_no,a.old_ic_no,a.id_type,a.id_no,a.police_case,a.hfc_cd,a.pmi_no,a.episode_date,a.discipline_cd,a.subdiscipline_cd, a.ward_class_code,"
+                    //    11       12        13           14                    15              16                    17                    18                       19                       20        
+                    + "a.ward_id,a.bed_id,a.payer_group,a.patient_category_cd,a.visit_type_cd,a.emergency_type_cd,a.eligibility_type_cd,a.eligibility_category_cd,a.referred_from_hfc,a.referred_from_discipline,"
+                    //   21                     22       23              24                    25             26            27            28               29          30
+                    + "a.referred_reference_no,a.order_by,a.admission_reason,a.admission_description,a.guardian_ind,a.group_guardian,a.gl_expiry_date,a.inpatient_status,a.created_by,a.created_date,"
+                    // 31                          32         33             34                 35       36             37               
+                    + "a.deposit_inpatient,a.document_type,a.document_no,a.patient_name,b.ward_name,d.ward_class_name, c.SEX_CODE,  e.Description, c.BIRTH_DATE"
+                    + " from wis_inpatient_episode a left join wis_ward_name b on a.ward_id = b.ward_id "
+                    + " left join pms_patient_biodata c on a.pmi_no = c.PMI_NO  "
+                    + " left join wis_ward_class d on d.ward_class_code = a.ward_class_code  "
+                    + " left join adm_lookup_detail e on e.Detail_Reference_Code = c.SEX_CODE  "
+                    + " where e.Master_Reference_code = '0041' and a.ward_id ='" + idWard + "' and e.hfc_cd='" + hfc + "' and a.hfc_cd='" + hfc + "'";
+        }
+
+        ArrayList<ArrayList<String>> dataList = conn.getData(searching);
+        // Get Age from Date of Birth
+        dob = dataList.get(0).get(38).toString();
+        if (dob.contains("/")) {
+            check = cdf.isValidFormat("dd/MM/yyyy", dob);
+            if (check) {
+                String[] dobAr = StringUtils.split(dob, "/");
+                int dobYear = Integer.parseInt(dobAr[2]);
+                int dobMonth = Integer.parseInt(dobAr[1]);
+                age = year - dobYear;
+                ageS = Integer.toString(age);
+            } else {
+                ageS = "undefined";
+            }
+        } else if (dob.contains("-")) {
+            check = cdf.isValidFormat("yyyy-MM-dd", dob);
+            if (check) {
+                String[] dobAr = StringUtils.split(dob, "-");
+                int dobYear = Integer.parseInt(dobAr[0]);
+                int dobMonth = Integer.parseInt(dobAr[1]);
+                age = year - dobYear;
+                ageS = Integer.toString(age);
+            } else {
+                ageS = "undefined";
+            }
         }
         
-    }else if(methodSearching.equalsIgnoreCase("0")){
-        searching = "select new_ic_no,old_ic_no,id_type,id_no,police_case,hfc_cd,pmi_no,episode_date,discipline_cd,subdiscipline_cd,ward_class_code,ward_id,bed_id,payer_group,patient_category_cd,visit_type_cd,emergency_type_cd,eligibility_type_cd,eligibility_category_cd,referred_from_hfc,referred_from_discipline,referred_reference_no,order_by,admission_reason,admission_description,guardian_ind,group_guardian,gl_expiry_date,inpatient_status,created_by,created_date,deposit_inpatient,document_type,document_no,patient_name from wis_inpatient_episode where ward_id ='"+idWard+"' and hfc_cd='"+hfc+"'";
-    }
-    
-    ArrayList<ArrayList<String>> dataList = conn.getData(searching);
+        
+    String patientBio =  ageS ;
+    session.setAttribute("patientCategory", patientBio);
+       out.print(patientBio);
 
         int size1141 = dataList.size();
-        if(size1141 > 0 ){
-        
-        for (int i = 0; i < size1141; i++) {
+        if (size1141 > 0) {
+
+            for (int i = 0; i < size1141; i++) {
 
 
     %>
@@ -71,7 +160,7 @@
     <tr id="moveToPatientTransferButton">
 
 <input id="dataWardhidden" type="hidden" value="<%=String.join("|", dataList.get(i))%>">
-<td><%= dataList.get(i).get(10)%></td>
+<td><%= dataList.get(i).get(35)%></td>
 <td><%= dataList.get(i).get(12)%></td>
 <td><%= dataList.get(i).get(34)%></td>
 <td><%= dataList.get(i).get(6)%></td>
@@ -87,34 +176,40 @@
 </tr>
 <%
     }
-}else if(size1141 < 1){ %>
+} else if (size1141 < 1) { %>
 <td colspan="7"> No row selected! </td>
 <% }
 %>
 
 </tbody>
 </table>
+                        <input id="patientCategory">
+
 <script>
-    $("#WardOccuTable").on('click',"#OccuTableTT #Occu_transfer",function(){
+    $("#WardOccuTable").on('click', "#OccuTableTT #Occu_transfer", function () {
         //get the row value
         var row = $(this).closest("tr");
         var rowData = row.find("#dataWardhidden").val();
         var arrayData = rowData.split("|");
         //console.log("hai");
         $('.nav-tabs a[href="#tab_default_2"]').tab('show');
-        
+
         var pmi = arrayData[6];
         var icno = arrayData[0];
         //var gender = arrayData[];
         var name = arrayData[34];
-        var wardClass = arrayData[10];
-        var wardName = arrayData[11];
+        var wardClass = arrayData[36];
+        var wardName = arrayData[35];
         var bedId = arrayData[12];
         var rate = arrayData[31];
         var admissionDate = arrayData[7];
         var inStat = arrayData[28];
         var oldDis = arrayData[8];
-        
+        var SEX_CODE = arrayData[38];
+        var wardClass_CD = arrayData[10];
+        var wardName_CD = arrayData[11];
+
+
         $("#pmino").val(pmi);
         $("#pinof").val(icno);
         $("#WardClassf").val(wardClass);
@@ -125,5 +220,13 @@
         $("#AdmissionDatef").val(admissionDate);
         $("#inStat").val(inStat);
         $("#oldDis").val(oldDis);
+        $("#gender").val(SEX_CODE);
+        $("#wardClass_CD").val(wardClass_CD);
+        $("#wardName_CD").val(wardName_CD);
+
+
+
+
+
     });
 </script>

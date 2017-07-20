@@ -30,7 +30,7 @@
     String deposit = request.getParameter("Deposit");
     
     
-    String updateBedOld = "update wis_bed_id set bed_status ='Pending' where hfc_cd='"+hfc+"' and discipline_cd ='"+OldDiscipline+"' and ward_class_code='"+OldClass+"' and ward_id='"+OldName+"' and bed_id='"+OldBed+"';";
+    String updateBedOld = "update wis_bed_id set bed_status ='Available' where hfc_cd='"+hfc+"' and discipline_cd ='"+OldDiscipline+"' and ward_class_code='"+OldClass+"' and ward_id='"+OldName+"' and bed_id='"+OldBed+"';";
     String updateBedNew = "update wis_bed_id set bed_status ='Occupied' where hfc_cd='"+hfc+"' and discipline_cd ='"+NewDiscipline+"' and ward_class_code='"+NewClass+"' and ward_id='"+NewName+"' and bed_id='"+NewBed+"';";
     String insertHistory = "insert into wis_inpatient_episode_history(pmi_no,episode_date,encounter_date,hfc_cd,ward_class_code,ward_id,bed_id,transfer_reason,inpatient_status,created_by,created_date) values('"+pmino+"','"+episode_date+"',NOW(),'"+hfc+"','"+OldClass+"','"+OldName+"','"+OldBed+"','"+transfer_reason+"','"+status+"','"+id+"',NOW());";
     String updateEpisode = "update wis_inpatient_episode set ward_class_code='"+NewClass+"',ward_id='"+NewName+"',bed_id='"+NewBed+"',deposit_inpatient='"+deposit+"' where hfc_cd='"+hfc+"' and pmi_no='"+pmino+"' and episode_date='"+episode_date+"';";

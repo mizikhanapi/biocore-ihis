@@ -14,8 +14,11 @@
 
     <div class="row">
         <%
-
-            String sqlbedRemarks = "SELECT  a.ward_class_name, b.ward_name,  a.hfc_cd, a.ward_class_code,b.ward_class_code,  b.ward_id  FROM wis_ward_class a LEFT JOIN wis_ward_name b ON a.ward_class_code = b.ward_class_code  where a.hfc_cd = '" +hfc+ "' AND b.hfc_cd = '" +hfc+ "'";
+            String totalA = "";
+            String totalP = "";
+            String totalO = "";
+            String totalS = "";
+            String sqlbedRemarks = "SELECT  a.ward_class_name, b.ward_name,  a.hfc_cd, a.ward_class_code,b.ward_class_code,  b.ward_id  FROM wis_ward_class a LEFT JOIN wis_ward_name b ON a.ward_class_code = b.ward_class_code  where a.hfc_cd = '" + hfc + "' AND b.hfc_cd = '" + hfc + "'";
 
             ArrayList<ArrayList<String>> databedRemarks = conn.getData(sqlbedRemarks);
 
@@ -31,8 +34,6 @@
                         String wardid = databedRemarks.get(i).get(5);
                         String wardclass = databedRemarks.get(i).get(4);
 
-                        String totalA = "";
-
                         String a = "Available";
 
                         String totalAV = "SELECT COUNT(bed_status) FROM wis_bed_id where bed_status = '" + a + "' AND ward_id = '" + wardid + "' AND ward_class_code = '" + wardclass + "' AND hfc_cd = '" + hfc + "' ";
@@ -44,7 +45,6 @@
                             totalA = tA;
                         }
 
-                        String totalP = "";
                         String p = "Pending";
                         String totalPN = "SELECT COUNT(bed_status) FROM wis_bed_id where bed_status = '" + p + "' AND ward_id = '" + wardid + "' AND ward_class_code = '" + wardclass + "' AND hfc_cd = '" + hfc + "' ";
                         ArrayList<ArrayList<String>> dataTotalP = conn.getData(totalPN);
@@ -55,7 +55,6 @@
                             totalP = tP;
                         }
 
-                        String totalO = "";
                         String red = "Occupied";
                         String totalOC = "SELECT COUNT(bed_status) FROM wis_bed_id where bed_status = '" + red + "' AND ward_id = '" + wardid + "' AND ward_class_code = '" + wardclass + "' AND hfc_cd = '" + hfc + "' ";
                         ArrayList<ArrayList<String>> dataTotalOC = conn.getData(totalOC);
@@ -65,8 +64,6 @@
                             String tOC = dataTotalOC.get(iOC).get(0);
                             totalO = tOC;
                         }
-
-                        String totalS = "";
 
                         String totalSum = "SELECT COUNT(bed_status) FROM wis_bed_id where ward_id = '" + wardid + "' AND ward_class_code = '" + wardclass + "' AND hfc_cd = '" + hfc + "' ";
                         ArrayList<ArrayList<String>> dataTotalSum = conn.getData(totalSum);
@@ -114,3 +111,49 @@
         </tr>
     </table>
 </div>
+<div id="papar">
+                            <p>.. Preparing ...</p>
+
+                        </div>
+
+
+
+<script>
+    function ulangPanggil(totalA, totalS, totalO,totalP) {
+        $.ajax({
+            url: "BedRemarks.jsp",
+            type: 'POST',
+            data: {
+                totalA: totalA,
+                totalS: totalS,
+                totalO: totalO,
+                totalP: totalP
+            },
+            timeout: 60000,
+            success: function (data) {
+                $("#papar").html(data);
+                var t = setTimeout("ulangPanggil('" + totalA + "', '" + totalS + "', '" + totalO + "', '" + totalP + "')", 8000);
+            },
+            error: function (err) {
+                $("#papar").html("Error viewing data!");
+                var t = setTimeout("ulangPanggil('" + totalA + "', '" + totalS + "', '" + totalO + "', '" + totalP + "')", 8000);
+            }
+        });
+    }
+    $(document).ready(function () {
+
+    <%        try {
+            totalA = request.getParameter("totalA");
+            totalS = request.getParameter("totalS");
+            totalO = request.getParameter("totalO");
+            totalP = request.getParameter("totalP");
+    %>
+        ulangPanggil('<%=totalA%>', '<%=totalS%>', '<%=totalO%>', '<%=totalP%>');
+    <%
+        } catch (Exception e2) {
+        }
+    %>
+
+
+    });
+</script>

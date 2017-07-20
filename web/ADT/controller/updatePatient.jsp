@@ -10,7 +10,7 @@
 <%@page import="java.sql.*"%>
 <%@page import="java.util.List"%>
 <%@page import="java.util.ArrayList"%>
-<%@page import="Config.connect"%>
+<%--<%@page import="Config.connect"%>--%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
     RMIConnector rmic = new RMIConnector();
@@ -102,7 +102,9 @@
        
     //out.print(patientRow.toString());
     String sql1="";
+    String sql2="";
     Boolean SQL=false;
+    Boolean SQL2 =false;
     if (patientRow.size() > 0) {
          sql1 = "UPDATE PMS_PATIENT_BIODATA SET PMI_NO = '"+pmino+"',PMI_NO_TEMP = '"+pminotemp+"',PATIENT_NAME ='"+pname+"',TITLE_CODE = '"+ptitle+"',NEW_IC_NO = '" +pnic+ "',OLD_IC_NO = '" + poic + "',ID_TYPE = '" + pit + "',ID_NO = '" + pino + "',ELIGIBILITY_CATEGORY_CODE = '" + pelicat + "',ELIGIBILITY_TYPE_CODE = '" + pelity + "',BIRTH_DATE = '" + pbday + "',SEX_CODE = '" + psex + "',MARITAL_STATUS_CODE = '" + pmarital + "',RACE_CODE = '" + prace + "',NATIONALITY = '" + pnational + "',RELIGION_CODE = '" + preligional + "',BLOOD_TYPE = '" + pbloodty + "',BLOOD_RHESUS_CODE = '" + prhesus + "',ALLERGY_IND = '" + pallergy + "',CHRONIC_DISEASE_IND = '" + pchronic + "',ORGAN_DONOR_IND = '" + porgandonor + "',HOME_ADDRESS = '" + phomeadd + "',HOME_DISTRICT_CODE = '" + phomedistrict + "',HOME_TOWN_CODE = '" + phometown + "',HOME_POSTCODE = '" + ppostcode + "',HOME_STATE_CODE = '" + pstate + "',HOME_COUNTRY_CODE = '" + pcountry + "',HOME_PHONE = '" + phomephone + "',POSTAL_ADDRESS = '" + ppostaladd + "',POSTAL_DISTRICT_CODE = '" + ppostaldistrict + "',POSTAL_TOWN_CODE = '" + ppostaltown + "',POSTAL_POSTCODE = '" + ppostalpostcode + "',POSTAL_STATE_CODE = '" + ppostalstate + "',POSTAL_COUNTRY_CODE = '" + ppostalcountry + "',MOBILE_PHONE = '" + pmobilephone + "',EMAIL_ADDRESS='"+email+"' WHERE PMI_NO = '"+pmino+"'";
          
@@ -119,9 +121,11 @@
                 + "HOME_PHONE,POSTAL_ADDRESS,POSTAL_DISTRICT_CODE,"
                 + "POSTAL_TOWN_CODE,POSTAL_POSTCODE,POSTAL_STATE_CODE,"
                 + "POSTAL_COUNTRY_CODE,MOBILE_PHONE,EMAIL_ADDRESS)values('" + pmino + "', '" + pminotemp + "', '" + pname + "', '" + ptitle + "', '" + pnic + "', '" + poic + "', '" + pit + "', '" + pino + "', '" + pelicat + "', '" + pelity + "', '" + pbday + "', '" + psex + "', '" + pmarital + "', '" + prace + "', '" + pnational + "', '" + preligional + "', '" + pbloodty + "', '" + prhesus + "', '" + pallergy + "', '" + pchronic + "', '" + porgandonor + "', '" + phomeadd + "', '" + phomedistrict + "', '" + phometown + "', '" + ppostcode + "', '" + pstate + "', '" + pcountry + "', '" + phomephone + "', '" + ppostaladd + "', '" + ppostaldistrict + "', '" + ppostaltown + "', '" + ppostalpostcode + "', '" + ppostalstate + "', '" + ppostalcountry + "', '" + pmobilephone + "','"+email+"')";
+         sql2 ="insert into autogenerate_pmi(pmi_no) values('"+pmino+"')";
 }
     SQL = rmic.setQuerySQL(conn.HOST, conn.PORT, sql1);
-    out.print(SQL+"|"+sql1);
+    SQL2 = rmic.setQuerySQL(conn.HOST, conn.PORT, sql2);
+    out.print(SQL+"|"+sql1+"<-->"+SQL2+"|"+sql2);
     
 
 %>

@@ -22,7 +22,7 @@
 
     //String name = "wname";
     String code = "FY";
-    String name = request.getParameter("wname");
+    String name = request.getParameter("wnamequeue");
     String desc = "1";
     String userid = request.getParameter("createdBy");
     String category = "003";

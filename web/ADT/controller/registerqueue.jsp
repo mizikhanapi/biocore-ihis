@@ -5,11 +5,10 @@
 --%>
 <%@page import="dBConn.Conn"%>
 <%@page import="main.RMIConnector"%>
-<%@page import="org.json.JSONArray"%>
 <%@page import="java.sql.*"%>
 <%@page import="java.util.List"%>
 <%@page import="java.util.ArrayList"%>
-<%@page import="Config.connect"%>
+<%--<%@page import="Config.connect"%>--%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
     RMIConnector rmic = new RMIConnector();
@@ -51,8 +50,10 @@
     String insertPatientQueue = "";
     String queue_name1 = request.getParameter("queue");
     String docID = request.getParameter("docID");
+    String subDis = request.getParameter("subDisCD");
     int queue_now = 0;
     int newQueueNo = 0;
+    String roomNo="";
 
     String insertEpisode="";
 
@@ -62,7 +63,12 @@
     
     String sqlRoom = "select room_no from adm_users where user_id='"+docID+"'";
     ArrayList<ArrayList<String>> dataRoom = conn.getData(sqlRoom);
-    String roomNo = dataRoom.get(0).get(0);
+    if(dataRoom.size()>0){
+        roomNo = dataRoom.get(0).get(0);
+    }else{
+        roomNo = "";
+    }
+    
     
     if (alreadyRegis.size() > 0) {
         out.print("already");
@@ -78,9 +84,9 @@
             newQueueNo = queue_now + 1;
             queueSql = "update pms_last_queue_no set last_queue_no='" + newQueueNo + "' where hfc_cd='" + hfc + "' and queue_name ='" + queue_name1 + "' and episode_date like '%" + now + "%' ;";
         }
-        insertPatientQueue = "insert into pms_patient_queue(hfc_cd,queue_name,episode_date,user_id,pmi_no,queue_no,queue_type,status,created_by,created_date)values('" + hfc + "','" + queue_name1 + "','" + epiDate + "','" + docID + "','" + pmi + "','" + newQueueNo + "','" + comTy + "','0','"+createdBy+"',NOW());";
+        insertPatientQueue = "insert into pms_patient_queue(hfc_cd,queue_name,episode_date,user_id,pmi_no,queue_no,queue_type,status,patient_category,created_by,created_date)values('" + hfc + "','" + queue_name1 + "','" + epiDate + "','" + docID + "','" + pmi + "','" + newQueueNo + "','" + comTy + "','0','001','"+createdBy+"',NOW());";
         insertEpisode = "INSERT INTO pms_episode(PMI_NO,EPISODE_DATE,NAME,NEW_IC_NO,OLD_IC_NO,ID_TYPE,ID_NO,RN_NO,PATIENT_CATEGORY_CODE,VISIT_TYPE_CODE,EMERGENCY_TYPE_CODE," + "ELIGIBILITY_CATEGORY_CODE,ELIGIBILITY_TYPE_CODE,DISCIPLINE_CODE,SUBDISCIPLINE_CODE,CONSULTATION_ROOM,COMMON_QUEUE,DOCTOR,PRIORITY_GROUP_CODE,POLICE_CASE,COMMUNICABLE_DISEASE_CODE,NATURAL_DISASTER_CODE,DOC_TYPE,GUARDIAN_IND,REFERENCE_NO,GROUP_GUARDIAN,GL_EXPIRY_DATE,EPISODE_TIME,STATUS,HEALTH_FACILITY_CODE,queue_type,queue_name,queue_no)"
-            + "VALUES ('" + pmi + "','" + epiDate + "','" + name + "','" + newic + "','" + oldic + "','" + typeId + "','" + idNo + "','" + rnNo + "','" + patCatCode + "','" + visTyCode + "','" + emTy + "','" + eliCatCode + "','" + eliTyCode + "','" + disCode + "','" + subDiscode + "','" + roomNo + "','" + queue_name1 + "','" + docID + "','" + prioGruCode + "','" + polCase + "','" + commDis + "','" + natuDisasCode + "','" + docTy + "','" + guardInd + "','" + referNo + "','" + gruGuard + "','" + glExpDate + "','" + epiTime + "','" + stat + "','" + hfc + "','"+comTy+"','"+comQueue+"','"+newQueueNo+"');";
+            + "VALUES ('" + pmi + "','" + epiDate + "','" + name + "','" + newic + "','" + oldic + "','" + typeId + "','" + idNo + "','" + rnNo + "','" + patCatCode + "','" + visTyCode + "','" + emTy + "','" + eliCatCode + "','" + eliTyCode + "','" + disCode + "','" + subDis + "','" + roomNo + "','" + queue_name1 + "','" + docID + "','" + prioGruCode + "','" + polCase + "','" + commDis + "','" + natuDisasCode + "','" + docTy + "','" + guardInd + "','" + referNo + "','" + gruGuard + "','" + glExpDate + "','" + epiTime + "','" + stat + "','" + hfc + "','"+comTy+"','"+comQueue+"','"+newQueueNo+"');";
 
         rmic.setQuerySQL(conn.HOST, conn.PORT, insertEpisode);
         rmic.setQuerySQL(conn.HOST, conn.PORT, insertPatientQueue);

@@ -1,6 +1,6 @@
 <%-- 
-    Document   : searchTitle
-    Created on : Mar 13, 2017, 5:17:12 PM
+    Document   : searchCountry
+    Created on : Mar 13, 2017, 5:31:33 PM
     Author     : shay
 --%>
 
@@ -9,11 +9,14 @@
 <%@page import="main.RMIConnector"%>
 <%
     Conn Conn = new Conn();
-    String searchProblem = "select description from adm_lookup_detail where master_reference_code = '0026' ";
+    String input = request.getParameter("input");
+    String hfc = request.getParameter("hfc");
+    
+    String searchProblem = "select user_name from adm_users where CONCAT(UPPER(user_name),LOWER(user_name)) like '%" + input + "%' and health_facility_code ='"+hfc+"' ;";
     ArrayList<ArrayList<String>> search = Conn.getData(searchProblem);
     if (search.size() > 0) {
 %>
-<ul id="matchListTitle" style="width: auto; height: 200px; overflow: auto">
+<ul id="matchListDoctor" style="width: auto; height: 200px; overflow: auto">
     <% for (int i = 0; i < search.size(); i++) {%>
     <li><%=search.get(i).get(0)%></li>
         <%}%>

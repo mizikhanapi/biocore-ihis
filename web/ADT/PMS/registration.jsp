@@ -63,7 +63,7 @@
 
     String subDis = "sub Discipline";
     String patCat = "003";
-    String visTy = "Visit Type";
+    String visTy = "001";
     String emTy = "Emergency Type";
 
     String sub = request.getParameter("sub");

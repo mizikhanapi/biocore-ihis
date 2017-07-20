@@ -1,5 +1,5 @@
 <%-- 
-    Document   : searchTown_cd
+    Document   : searchPostcode_cd
     Created on : Mar 13, 2017, 9:08:25 PM
     Author     : shay
 --%>
@@ -13,7 +13,7 @@
     String id = request.getParameter("id");
     String hfc = session.getAttribute("HEALTH_FACILITY_CODE").toString();
     id.toLowerCase();
-    String searchProblem = "select detail_reference_code from adm_lookup_detail where master_reference_code = '0078' and CONCAT(UPPER(description),LOWER(description)) like '%" + id + "%'AND hfc_cd = '"+hfc+"';";
+    String searchProblem = "select detail_reference_code from adm_lookup_detail where master_reference_code = '0050' and CONCAT(UPPER(description),LOWER(description)) like '%" + id + "%'AND hfc_cd = '"+hfc+"';";
     ArrayList<ArrayList<String>> search = Conn.getData(searchProblem);
     if (search.size() > 0) {
 

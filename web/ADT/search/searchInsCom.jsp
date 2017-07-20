@@ -1,5 +1,5 @@
 <%-- 
-    Document   : searchTitle
+    Document   : searchTown
     Created on : Mar 13, 2017, 5:17:12 PM
     Author     : shay
 --%>
@@ -9,11 +9,13 @@
 <%@page import="main.RMIConnector"%>
 <%
     Conn Conn = new Conn();
-    String searchProblem = "select description from adm_lookup_detail where master_reference_code = '0026' ";
+    String input = request.getParameter("input");
+    String hfc = session.getAttribute("HEALTH_FACILITY_CODE").toString();
+    String searchProblem = "select description from adm_lookup_detail where master_reference_code = '0083' and CONCAT(UPPER(description),LOWER(description)) like '%" + input + "%'AND hfc_cd = '"+hfc+"';";
     ArrayList<ArrayList<String>> search = Conn.getData(searchProblem);
     if (search.size() > 0) {
 %>
-<ul id="matchListTitle" style="width: auto; height: 200px; overflow: auto">
+<ul id="matchListInsCom" style="width: auto; height: 200px; overflow: auto">
     <% for (int i = 0; i < search.size(); i++) {%>
     <li><%=search.get(i).get(0)%></li>
         <%}%>

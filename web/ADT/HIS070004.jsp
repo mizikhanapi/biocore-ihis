@@ -102,8 +102,8 @@
 
 
 
-    setTimeout(function () { 
-      location.reload();
-    }, 60 * 1000);
+//    setTimeout(function () { 
+//      location.reload();
+//    }, 60 * 1000);
 
 </script>

@@ -42,7 +42,7 @@
     dataPayerGroup = conn.getData(payerGroup);
     dataRole2 = conn.getData(role2);
 
-    String dataSystemStatus2 = session.getAttribute("SYSTEMSTAT").toString();
+   // String dataSystemStatus2 = session.getAttribute("SYSTEMSTAT").toString();
 
 %>
 
@@ -58,7 +58,7 @@
 <div class="row" id="register">
     <div class="col-md-12 ">
         <div class="searchPatientModule">
-            <%@include file = "search/searchPatient.jsp" %>
+            <%@include file = "../../PMS/search/searchPatient.jsp" %>
         </div>
         <hr class="pemisah"/>
     </div>
@@ -93,6 +93,8 @@
                             <input id="pit" name="pit" type="text" placeholder=""  readonly class="form-control input-md">
                         </div>
                     </div>
+                    
+                    
                 </div>
 
                 <div class="col-md-6">
@@ -225,7 +227,7 @@
                         <label class="col-md-4 control-label" for="selectbasic">Referring From *</label>
                         <div class="col-md-6">
                             <input id="HFCFROM" name="HF" placeholder="Insert Health Facility Name" maxlength="30" type="text"  class="form-control input-md">
-                            <input type="hidden" id="HF_cd">
+                            <input  type="hidden"  id="HF_cd">
                             <div id="HF_List" class="search-drop"></div>
                         </div>
 
