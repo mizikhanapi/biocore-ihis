@@ -1068,3 +1068,11 @@ tr#moveToOrderDetailsTButton {
 .main-dashboard>.row>.col-xs-6.col-sm-6.col-md-3 {
     z-index: 2;
 }
+
+ui-datepicker-month {
+    z-index: 100000; 
+}
+
+.tarikh-neu {
+    font-weight: 500;
+}
