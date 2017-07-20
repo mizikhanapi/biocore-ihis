@@ -196,7 +196,7 @@
                                 <ul class="list-group">
                                     <li class="list-group-item"><a href="dataAnalysisMain.jsp">Data Analysis</a></li>
                                     <li class="list-group-item"><a href="ICD10Main.jsp">ICD10 </a></li>
-                                    <li class="list-group-item"><a href="laporanKosPerubatan.jsp">Report Health Cost </a></li>
+                                    <li class="list-group-item"><a href="../PIS/HIS040008.jsp">Report Health Cost </a></li>
                                     <li class="list-group-item"><a href="drugOrderList.jsp">Total Drug Cost </a></li>
 
                                 </ul>
