@@ -99,3 +99,48 @@
         %>
     </div>
 </div>
+    
+    
+    
+<script>
+   
+    
+    
+    function ulangPanggil(totalA, totalS, totalO,totalP) {
+        $.ajax({
+            url: "BedRemarks.jsp",
+            type: 'POST',
+            data: {
+                totalA: totalA,
+                totalS: totalS,
+                totalO: totalO,
+                totalP: totalP
+            },
+            timeout: 60000,
+            success: function (data) {
+                $("#papar").html(data);
+                var t = setTimeout("ulangPanggil('" + totalA + "', '" + totalS + "', '" + totalO + "', '" + totalP + "')", 8000);
+            },
+            error: function (err) {
+                $("#papar").html("Error viewing data!");
+                var t = setTimeout("ulangPanggil('" + totalA + "', '" + totalS + "', '" + totalO + "', '" + totalP + "')", 8000);
+            }
+        });
+    }
+    $(document).ready(function () {
+
+    <%        try {
+            totalA = request.getParameter("totalA");
+            totalS = request.getParameter("totalS");
+            totalO = request.getParameter("totalO");
+            totalP = request.getParameter("totalP");
+    %>
+        ulangPanggil('<%=totalA%>', '<%=totalS%>', '<%=totalO%>', '<%=totalP%>');
+    <%
+        } catch (Exception e2) {
+        }
+    %>
+
+
+    });
+</script>

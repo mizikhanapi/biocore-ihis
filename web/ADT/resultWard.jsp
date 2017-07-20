@@ -183,7 +183,7 @@
 
 </tbody>
 </table>
-                        <input id="patientCategory">
+                       
 
 <script>
     $("#WardOccuTable").on('click', "#OccuTableTT #Occu_transfer", function () {
