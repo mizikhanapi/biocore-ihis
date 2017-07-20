@@ -158,6 +158,15 @@
         <servlet-name>Manage_Test</servlet-name>
         <url-pattern>/LIS/Manage_Test</url-pattern>
     </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>Post_To_Bill</servlet-name>
+        <jsp-file>/LIS/Billing.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Post_To_Bill</servlet-name>
+        <url-pattern>/LIS/Post_To_Bill</url-pattern>
+    </servlet-mapping>
     <!--mapping for LIS end-->
     
     <session-config>

@@ -30,7 +30,7 @@
             </a>
         </li>
         <li>
-            <a  href="Billing.jsp" >
+            <a  href="Post_To_Bill" >
                 <i class="fa fa-file-text fa-lg"></i> Post To Bill
             </a>
         </li>
