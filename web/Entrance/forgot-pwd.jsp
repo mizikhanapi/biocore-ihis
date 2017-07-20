@@ -47,7 +47,7 @@
     </head> 
     <body>
         <div class="container" style="width: 800px; ">
-            <div class="card card-container"  style="width: 60%; max-width: inherit;" >
+            <div class="card card-container"  style="width: 60%; max-width: inherit; max-height: 525px;" >
                 <!-- <img class="profile-img-card" src="//lh3.googleusercontent.com/-6V8xOA6M7BA/AAAAAAAAAAI/AAAAAAAAAAA/rzlHcD0KYwo/photo.jpg?sz=120" alt="" /> -->
                 <div class="profile-img-card">
                     <i class="fa fa-question-circle" aria-hidden="true" style="color: #666; font-size: 100px;"></i>

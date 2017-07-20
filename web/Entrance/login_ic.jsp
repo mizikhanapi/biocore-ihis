@@ -37,7 +37,7 @@
     </head> 
     <body>
         <div class="container">
-            <div class="card card-container">
+            <div class="card card-container" style="max-height: 470px;">
                 <!-- <img class="profile-img-card" src="//lh3.googleusercontent.com/-6V8xOA6M7BA/AAAAAAAAAAI/AAAAAAAAAAA/rzlHcD0KYwo/photo.jpg?sz=120" alt="" /> -->
                 <div class="profile-img-card">
                     <i class="fa fa-user-md" aria-hidden="true" style="color: #666; font-size: 100px;"></i>

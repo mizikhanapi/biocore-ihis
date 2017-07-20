@@ -3,6 +3,7 @@
     Created on : Apr 17, 2017, 9:32:58 AM
     Author     : user
 --%>
+<script src="../assets/js/Chart.bundle.js" type="text/javascript"></script>
 <div class="thumbnail">
 
     <!-- Tab Menu -->
