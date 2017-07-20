@@ -10,7 +10,7 @@
     </div>
 
     <div class="col-md-4" style="padding-top: 20px">
-        <label class="col-sm-6 control-label text-right" for="formGroupInputLarge">View history assessment:</label>
+        <label class="col-sm-6 control-label text-right" for="formGroupInputLarge">View history assessment by:</label>
         <div class="col-sm-6" style="padding-right: 0px;">
             <select class="form-control" id="date_history1">
                 <option value="View by">View by</option>

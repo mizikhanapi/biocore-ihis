@@ -14,18 +14,18 @@
             String user_id = session.getAttribute("USER_ID").toString();
             String episodeDate = session.getAttribute("episodeDate").toString();
             String time_history = request.getParameter("time_history");
-            
+
             SimpleDateFormat sdfDate = new SimpleDateFormat("yyyy-MM-dd");//dd/MM/yyyy
             Date now = new Date();
             String datetime = sdfDate.format(now);
 
             String sql = "";
-            
+
             if (time_history == null) {
                 sql = "SELECT r.encounter_date,r.assessment_type,r.si_pressure_ulcer,r.si_source,r.mobility_assessment,r.int_surface,r.int_mobility,r.int_nutrition,r.int_sc_barrier_product,r.int_sc_maintain_moisture,r.int_sc_incontinence_management,r.assessmen_by FROM lhr_ort_neu_press_injury_risk r  WHERE r.pmi_no='" + pmino + "' AND r.episode_date='" + episodeDate + "' AND r.hfc_cd='" + hfc + "' AND DATE(r.encounter_date) = CURDATE()";
             } else if (time_history.equals("Viewby")) {
                 sql = "SELECT r.encounter_date,r.assessment_type,r.si_pressure_ulcer,r.si_source,r.mobility_assessment,r.int_surface,r.int_mobility,r.int_nutrition,r.int_sc_barrier_product,r.int_sc_maintain_moisture,r.int_sc_incontinence_management,r.assessmen_by FROM lhr_ort_neu_press_injury_risk r  WHERE r.pmi_no='" + pmino + "' AND r.episode_date='" + episodeDate + "' AND r.hfc_cd='" + hfc + "' AND DATE(r.encounter_date) = CURDATE()";
-            }else if (time_history.equals("Today")) {
+            } else if (time_history.equals("Today")) {
                 sql = "SELECT r.encounter_date,r.assessment_type,r.si_pressure_ulcer,r.si_source,r.mobility_assessment,r.int_surface,r.int_mobility,r.int_nutrition,r.int_sc_barrier_product,r.int_sc_maintain_moisture,r.int_sc_incontinence_management,r.assessmen_by FROM lhr_ort_neu_press_injury_risk r  WHERE r.pmi_no='" + pmino + "' AND r.episode_date='" + episodeDate + "' AND r.hfc_cd='" + hfc + "' AND DATE(r.encounter_date) = CURDATE()";
             } else if (time_history.equals("Yesterday")) {
                 sql = "SELECT r.encounter_date,r.assessment_type,r.si_pressure_ulcer,r.si_source,r.mobility_assessment,r.int_surface,r.int_mobility,r.int_nutrition,r.int_sc_barrier_product,r.int_sc_maintain_moisture,r.int_sc_incontinence_management,r.assessmen_by FROM lhr_ort_neu_press_injury_risk r  WHERE r.pmi_no='" + pmino + "' AND r.episode_date='" + episodeDate + "' AND r.hfc_cd='" + hfc + "' AND DATE(r.encounter_date) = SUBDATE('" + datetime + "',1)";
@@ -35,12 +35,11 @@
                 sql = "SELECT r.encounter_date,r.assessment_type,r.si_pressure_ulcer,r.si_source,r.mobility_assessment,r.int_surface,r.int_mobility,r.int_nutrition,r.int_sc_barrier_product,r.int_sc_maintain_moisture,r.int_sc_incontinence_management,r.assessmen_by FROM lhr_ort_neu_press_injury_risk r  WHERE r.pmi_no='" + pmino + "' AND r.episode_date='" + episodeDate + "' AND r.hfc_cd='" + hfc + "' AND DATE(r.encounter_date) between SUBDATE('" + datetime + "',30) and '" + datetime + "'";
             } else if (time_history.equals("60 Days")) {
                 sql = "SELECT r.encounter_date,r.assessment_type,r.si_pressure_ulcer,r.si_source,r.mobility_assessment,r.int_surface,r.int_mobility,r.int_nutrition,r.int_sc_barrier_product,r.int_sc_maintain_moisture,r.int_sc_incontinence_management,r.assessmen_by FROM lhr_ort_neu_press_injury_risk r  WHERE r.pmi_no='" + pmino + "' AND r.episode_date='" + episodeDate + "' AND r.hfc_cd='" + hfc + "' AND DATE(r.encounter_date) between SUBDATE('" + datetime + "',90) and '" + datetime + "'";
-            }else if (time_history.equals("Select_date")) {
+            } else if (time_history.equals("Select_date")) {
                 String startDate = request.getParameter("startDate");
                 String toDate = request.getParameter("toDate");
-                sql = "SELECT r.encounter_date,r.assessment_type,r.si_pressure_ulcer,r.si_source,r.mobility_assessment,r.int_surface,r.int_mobility,r.int_nutrition,r.int_sc_barrier_product,r.int_sc_maintain_moisture,r.int_sc_incontinence_management,r.assessmen_by FROM lhr_ort_neu_press_injury_risk r  WHERE r.pmi_no='" + pmino + "' AND r.episode_date='" + episodeDate + "' AND r.hfc_cd='" + hfc + "' AND DATE(r.encounter_date) BETWEEN '"+startDate+"' AND '"+toDate+"'";
+                sql = "SELECT r.encounter_date,r.assessment_type,r.si_pressure_ulcer,r.si_source,r.mobility_assessment,r.int_surface,r.int_mobility,r.int_nutrition,r.int_sc_barrier_product,r.int_sc_maintain_moisture,r.int_sc_incontinence_management,r.assessmen_by FROM lhr_ort_neu_press_injury_risk r  WHERE r.pmi_no='" + pmino + "' AND r.episode_date='" + episodeDate + "' AND r.hfc_cd='" + hfc + "' AND DATE(r.encounter_date) BETWEEN '" + startDate + "' AND '" + toDate + "'";
             }
-            
 
             //out.print(hfc + " ----- " + pmino + " ----- " + episodeDate + " ------ " + user_id);
             Conn conn = new Conn();
@@ -55,7 +54,7 @@
             if (q3.size() > 0) {
                 for (int i = 0; i < q3.size(); i++) {
 %>
-<a href="#" class="deleteBtn" id="delete_PIR_<%=i%>"><i class="fa fa-times fa-lg" aria-hidden="true" style="display: inline-block; color: #d9534f;"></i></a>
+
 <script>
     $("#delete_PIR_<%=i%>").click(function () {
 
@@ -97,6 +96,9 @@
     });
 </script>
 <div class="panel panel-default">
+    <div class="panel-heading text-right">
+        <a href="#" class="deleteBtn" id="delete_PIR_<%=i%>"><i class="fa fa-times fa-lg" aria-hidden="true" style="display: inline-block; color: #d9534f;"></i></a>
+    </div>
     <div class="panel-body">
         <div class="row">
             <div class="col-xs-3">
