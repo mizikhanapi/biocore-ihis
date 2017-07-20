@@ -114,9 +114,6 @@
 
 
 </tr>
-
-
-
 <%
     }
 %>
@@ -145,7 +142,7 @@
                                 .css('font-size', '10pt')
                                 .prepend(
                                         '<div class="logo-hfc asset-print-img" style="z-index: 0; top: 0px; opacity: 1.0;">\n\
-                                        <img src="<%=mysqlhfc_cd.get(0).get(0)%>" style="text-align: center; height: 100%; " /></div> <div class="mesej">ICD10</div>\n\
+                                        <img src="<%=mysqlhfc_cd.get(0).get(0)%>" style="text-align: center; height: 100%; " /></div> <div class="mesej">Laporan ICD10</div>\n\
                                         <div class="info_kecik">\n\
                                         <dd>Date: <strong><%=newdate%></strong></dd>\n\
                                         <dd>Report No: <strong><%=newdate%></strong></dd>\n\
@@ -154,6 +151,9 @@
                         $(win.document.body).find('table')
                                 .addClass('compact')
                                 .css('font-size', 'inherit');
+                        $(win.document.body)
+                                .css('font-size', '10pt')
+                                .append('<div style="text-align: center;padding-top:30px;"><br> ***** &nbsp;&nbsp;  End Of Report  &nbsp;&nbsp;  ***** </div>');
                     }
                 }
 

@@ -126,8 +126,9 @@
                 <!-- content goes here -->
                 <form class="form-horizontal" id="RNO_addForm" autocomplete="off">
                     <%
+                        String my_1_hfc_cd = (String) session.getAttribute("HEALTH_FACILITY_CODE");
                         Conn conn = new Conn();
-                        String itemName = "SELECT item_cd,item_name,spe_source FROM lis_item_detail ORDER BY item_name";
+                        String itemName = "SELECT item_cd,item_name,spe_source FROM lis_item_detail WHERE hfc_cd = '"+my_1_hfc_cd+"' ORDER BY item_name";
                         ArrayList<ArrayList<String>> q1 = conn.getData(itemName);
                     %>
                     <!-- Text input-->

@@ -59,9 +59,9 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputEmail2">to</label>
-                                   <input id="endDate" name="endDate" type="text" class="form-control datepicker" placeholder="YYYY/MM/DD" readonly >
+                                    <input id="endDate" name="endDate" type="text" class="form-control datepicker" placeholder="YYYY/MM/DD" readonly >
                                 </div>
-                                <button type="submit" class="btn btn-success" role="button" id="printICD10" style="margin-bottom: 15px;" >Generate Report</button>
+
                             </div>
                             <br/>
                             <div style="width:50%; margin: auto; text-align: center;">
@@ -87,35 +87,11 @@
                                             </select>
                                         </div>
                                         <div class="col-md-2">
-                                            <button id="RMOM_btnRefresh" class="btn btn-default" style=" padding-right: 10px;padding-left: 10px;color: black;"><i class=" fa fa-refresh" style=" padding-right: 10px;padding-left: 10px;color: black;"></i>Refresh</button>
+                                            <button type="submit" class="btn btn-success" role="button" id="printICD10" style="margin-bottom: 15px;" >Generate Report</button>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <script>
-                                $(function () {
-                                    //-------------------------refresh the order table ---------------------------------------
-                                    $('#RMOM_btnRefresh').on('click', function () {
-                                        //$('#risOrderListContent').html('<div class="loading">Loading</div>');
-                                        var process = $('#RMOM_oderTime').val();
-                                        //alert(process);
-                                        var data = {
-                                            process: process
-                                        };
-//                                        $.ajax({
-//                                            type: 'POST',
-//                                            url: "OrderMaster1.jsp",
-//                                            data: data,
-//                                            success: function (data) {
-//                                                $("#OrderMaster").val(data.trim());
-//                                                $('#OrderMaster').html(data);
-//                                                $('#OrderMaster').trigger('contentchanged');
-//                                            }
-//
-//                                        });
-                                    });
-                                });
-                            </script>
 
                             <div id="ICD10">
 
@@ -139,49 +115,49 @@
         <!--        <script src="https://code.jquery.com/jquery-1.12.4.js"></script>-->
 
         <script>
-                                $(document).ready(function () {
-                                    $("#startDate").datepicker({
-                                        changeMonth: true,
-                                        changeYear: true,
-                                        dateFormat: 'yy-mm-dd',
-                                    });
-                                    $("#endDate").datepicker({
-                                        changeMonth: true,
-                                        changeYear: true,
-                                        dateFormat: 'yy-mm-dd',
-                                    });
-                                    $('#printICD10').on('click', function () {
-                                        if ($('#startDate').val() === "" || $('#endDate').val() === " ") {
-                                            //if the id/ic input is empty
-                                            alert('Please choose date to prooceed');
-                                        } else {
-                                            var startDate = document.getElementById("startDate").value;
-                                            var endDate = document.getElementById("endDate").value;
-                                            var disp = document.getElementById("disp").value;
-                                            //alert(disc+" / "+startDate+" / "+startDate);
-                                            $.ajax({
-                                                async: true,
-                                                type: "POST",
-                                                url: "ICD10Report.jsp",
-                                                data: {'startDate': startDate, 'endDate': endDate, 'disp': disp},
-                                                timeout: 10000,
-                                                success: function (list) {
-                                                    $('#ICD10').html(list);
-                                                },
-                                                error: function (xhr, status, error) {
-                                                    var err = eval("(" + xhr.responseText + ")");
-                                                    bootbox.alert(err.Message);
-                                                }
-                                            });
-                                            //            var disiplinType = document.getElementByID("disiplinType").value;
-                                            //                console.log(startDate);
-                                            //                console.log(endDate);
-                                            ////            console.log(disiplinType);
-                                            //
-                                            //                window.open("ICD10Report.jsp?startDate=" + startDate + "&endDate=" + endDate);
-                                        }
-                                    });
-                                });
+            $(document).ready(function () {
+                $("#startDate").datepicker({
+                    changeMonth: true,
+                    changeYear: true,
+                    dateFormat: 'yy-mm-dd',
+                });
+                $("#endDate").datepicker({
+                    changeMonth: true,
+                    changeYear: true,
+                    dateFormat: 'yy-mm-dd',
+                });
+                $('#printICD10').on('click', function () {
+                    if ($('#startDate').val() === "" || $('#endDate').val() === " ") {
+                        //if the id/ic input is empty
+                        alert('Please choose date to prooceed');
+                    } else {
+                        var startDate = document.getElementById("startDate").value;
+                        var endDate = document.getElementById("endDate").value;
+                        var disp = document.getElementById("disp").value;
+                        //alert(disc+" / "+startDate+" / "+startDate);
+                        $.ajax({
+                            async: true,
+                            type: "POST",
+                            url: "ICD10Report.jsp",
+                            data: {'startDate': startDate, 'endDate': endDate, 'disp': disp},
+                            timeout: 10000,
+                            success: function (list) {
+                                $('#ICD10').html(list);
+                            },
+                            error: function (xhr, status, error) {
+                                var err = eval("(" + xhr.responseText + ")");
+                                bootbox.alert(err.Message);
+                            }
+                        });
+                        //            var disiplinType = document.getElementByID("disiplinType").value;
+                        //                console.log(startDate);
+                        //                console.log(endDate);
+                        ////            console.log(disiplinType);
+                        //
+                        //                window.open("ICD10Report.jsp?startDate=" + startDate + "&endDate=" + endDate);
+                    }
+                });
+            });
         </script>
     </body>
 </html>
