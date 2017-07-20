@@ -225,7 +225,7 @@
         w3IncludeHTML();
         $(document).ready(function () {
             $("#back").click(function () {
-                window.location.replace("ManageResult.jsp");
+                window.location.replace("Receive_Specimen");
             });
 
             $("#sub_reject").click(function () {
@@ -248,7 +248,7 @@
                     timeout: 10000,
                     success: function (data) {
                         alert("Specimen reject succesfully");
-                        window.location.replace("ManageResult.jsp");
+                        window.location.replace("Receive_Specimen");
                         $("#basicModal").hide();
                         $(".modal-backdrop").hide();
 
@@ -277,7 +277,7 @@
                         timeout: 10000,
                         success: function (data) {
                             alert("Cancel Receive succesfully");
-                            window.location.replace("ManageResult.jsp");
+                            window.location.replace("Receive_Specimen");
                             $("#basicModal").hide();
                             $(".modal-backdrop").hide();
 
@@ -309,7 +309,7 @@
                         timeout: 10000,
                         success: function (data) {
                             alert("Specimen Accept succesfully");
-                            window.location.replace("ManageResult.jsp");
+                            window.location.replace("Receive_Specimen");
                             $("#basicModal").hide();
                             $(".modal-backdrop").hide();
 

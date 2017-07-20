@@ -189,7 +189,7 @@
                     if (error != null) {
             %>
                 alert('<%=error%>');
-                location.href = 'MainPage.jsp';
+                location.href = 'Order_list';
             <%
                     }
                 } catch (Exception e) {

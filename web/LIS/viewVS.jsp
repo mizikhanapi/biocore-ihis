@@ -282,7 +282,7 @@
 <script>
 
     $("#back").click(function () {
-        window.location.replace("ManageTest.jsp");
+        window.location.replace("Manage_Test");
     });
 
     $("#AssignResult").click(function () {

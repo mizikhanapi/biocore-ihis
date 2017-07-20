@@ -226,9 +226,10 @@
                                                 <td><%=dataPatientApp.get(i).get(23)%></td>
                                                 <td>
                                                     <%
-
+                                                        String pmi = dataPatientApp.get(i).get(15);
+                                                        String specimen_no = dataPatientApp.get(i).get(12);
                                                     %>
-                                                    <a href='ReceiveSpecimen.jsp?pmi=<%=dataPatientApp.get(i).get(15)%> &specimen_no=<%=dataPatientApp.get(i).get(12)%>' class='btn btn-primary btn-block' >Identify Specimen</a>
+                                                    <a href='Sent_Receive_Specimen?pmi=<%=pmi%> &specimen_no=<%=specimen_no%>' class='btn btn-primary btn-block' >Identify Specimen</a>
                                                 </td>
 
                                             </tr>
@@ -267,7 +268,7 @@
                     if (error != null) {
             %>
                                         alert('<%=error%>');
-                                        location.href = 'MainPage.jsp';
+                                        location.href = 'Order_list';
             <%
                     }
                 } catch (Exception e) {

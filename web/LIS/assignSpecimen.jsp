@@ -204,7 +204,7 @@
 
                     });
                     //alert(specimen[0] + " " + pmi + " " + order_no + " " + C_date + " " + C_time + " " + TotalOptions + " " + patient_name);
-                    window.location.replace("MainPage.jsp");
+                    window.location.replace("Order_List");
                 }
             });
         </script>

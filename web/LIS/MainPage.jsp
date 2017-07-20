@@ -183,8 +183,6 @@
                                                         $('#risManageOrderListTable').DataTable({
                                                             language: {
                                                                 emptyTable: "No order available to display for today"
-                                                            }, initComplete: function (settings, json) {
-                                                                $('.loading').hide();
                                                             }
                                                         });
                                                     });

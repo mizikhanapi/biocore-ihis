@@ -15,17 +15,17 @@
     <ul id="menu-content" class="nav nav-sidebar">
         <!-- // menu tanpa dropdown -->
         <li>
-            <a  href="MainPage.jsp" >
+            <a  href="Order_list" >
                 <i class="fa fa-shopping-cart fa-lg"></i> Lab Patient List Order
             </a>
         </li>
         <li>
-            <a  href="ManageResult.jsp" >
+            <a  href="Receive_Specimen" >
                 <i class="fa fa-flask fa-lg"></i> Receive Specimen
             </a>
         </li> 
         <li>
-            <a  href="ManageTest.jsp" >
+            <a  href="Manage_Test" >
                 <i class="fa fa-file-text fa-lg"></i> Verify Specimen for Test
             </a>
         </li>

@@ -422,7 +422,7 @@
         w3IncludeHTML();
         $(document).ready(function () { 
                      $("#cancelAss").click(function () {
-                            window.location.replace("MainPage.jsp");
+                            window.location.replace("Order_list");
                         });
                     });
         $(document).ready(function () {

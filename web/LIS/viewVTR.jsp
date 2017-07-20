@@ -149,7 +149,7 @@
 
                                      });
                                      //alert("The specimen have been assigned. Thank you.");
-                                      window.location.replace("MainPage.jsp");
+                                      window.location.replace("Order_list");
                                      }  
                     });
     </script>
