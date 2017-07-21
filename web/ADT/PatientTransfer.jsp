@@ -97,7 +97,7 @@
                                 </div>
                             </div>
 
-                          
+
 
                             <!-- Text input-->
                             <div class="form-group">
@@ -164,8 +164,8 @@
 
     </div>
 
-<input  type="hidden" id="wardName_CD"     class="form-control input-md">
-<input  type="hidden" id="wardClass_CD"     class="form-control input-md">
+    <input  type="hidden" id="wardName_CD"     class="form-control input-md">
+    <input  type="hidden" id="wardClass_CD"     class="form-control input-md">
 
 
 
@@ -277,6 +277,8 @@
                 var status = $('#inStat').val();
                 var oldDis = $("#oldDis").val();
                 var episode_date = $("#AdmissionDatef").val();
+                var subO = $("#sub_cd").val();
+
 
 
                 //var hfc = $('#hfc').val();
@@ -312,7 +314,8 @@
                         hfc: hfc,
                         status: status,
                         oldDis: oldDis,
-                        episode_date: episode_date
+                        episode_date: episode_date,
+                        subO : subO
                     };
                     console.log(data);
 
