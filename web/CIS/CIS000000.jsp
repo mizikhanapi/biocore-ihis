@@ -7,7 +7,7 @@
 
 <%@include file="../Entrance/validateSession.jsp" %>
 <%@include file="validateModuleAccess.jsp" %>
-<script src="../assets/js/Chart.bundle.js" type="text/javascript"></script>
+
 
 
 <%    Config.getBase_url(request);
@@ -230,7 +230,7 @@
                         <div class="tab-pane fade" id="order-entry">
                             <jsp:include page="order/orderEntry.jsp"/> 
                         </div>
-                       <div class="tab-pane fade" id="orthopedic-con">
+                        <div class="" id="orthopedic-con" style="display: none;">
                             <jsp:include page="../Ortho-Consultation/orthopedic.jsp"/>
                         </div>
 
@@ -355,5 +355,19 @@
             $('#accordion').on('hidden.bs.collapse', toggleChevron);
             $('#accordion').on('shown.bs.collapse', toggleChevron);
         </script>
+        
+        <script>
+            $(document).ready(function () {
+                $(".ortho-notes").click(function () {
+                    $("#orthopedic-con").show(400);
+                    $("#generic-soap").hide();
+                });
+                $(".general-exam").click(function () {
+                    $("#orthopedic-con").hide();
+                    $("#generic-soap").show(400);
+                });
+            });
+        </script>
+        
     </body>
 </html>

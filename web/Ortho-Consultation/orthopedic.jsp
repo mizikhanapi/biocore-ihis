@@ -29,6 +29,10 @@
                     <a href="#Ortho-Consultation_5" data-toggle="tab" aria-expanded="true">
                         <i class="fa fa-th-list fa-lg"></i> Reports </a>
                 </li>
+                <li class="pull-right">
+                    <a href="#generic-soap" class="panelito general-exam">
+                        <i class="fa fa-chevron-left"></i> Back to General Examination </a>
+                </li>
             </ul>
 
             <div class="tab-content">

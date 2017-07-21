@@ -35,6 +35,7 @@
                 <li><a data-toggle="modal" data-target="#CIS020010" href="" id="RISResult"> <i class="fa fa-bolt fa-li"></i> Radiology Result</a></li>
                 <li><a data-toggle="modal" data-target="#CIS020011" href=""  id="LISResult"> <i class="fa fa-thermometer-empty fa-li"></i> Laboratory Result</a></li>
                 <li><a data-toggle="modal" data-target="#CIS020012" href=""id="OPResult"> <i class="fa fa-eye fa-li"></i> Observation Procedure</a></li>
+                <li><a href="#ortho-notes" class="panelito ortho-notes"> <i class="fa fa-eye fa-li"></i> Orthopedic Notes</a></li>
             </ul>
                 
             <div class="row">
