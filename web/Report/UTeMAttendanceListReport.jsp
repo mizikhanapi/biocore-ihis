@@ -12,7 +12,12 @@
     Conn conn = new Conn();
     String hfc = session.getAttribute("HEALTH_FACILITY_CODE").toString();
     String dis = (String) session.getAttribute("DISCIPLINE_CODE");
-
+    String sub = session.getAttribute("SUB_DISCIPLINE_CODE").toString();
+    String hfc_name = session.getAttribute("HFC_NAME").toString();
+//    
+//     String dis_name_query = "SELECT discipline_name FROM adm_discipline WHERE discipline_hfc_cd='" + hfc + "' AND discipline_cd='" + dis + "'";
+//    ArrayList<ArrayList<String>> mysqldis_name = conn.getData(dis_name_query);
+//    String dis_name = mysqldis_name.get(0).get(0);
 %>
 
 <%    String hfc_cd = "SELECT logo FROM adm_health_facility WHERE hfc_cd='" + hfc + "'";
@@ -156,9 +161,9 @@
                     var data = {
                         "patientType": patientType,
                         "startDate": startDate,
-                        "endDate": endDate
+                        "endDate": endDate,
+                        "hfc":"<%=hfc%>"
                     };
-                    console.log(data);
                     $.ajax({
                         type: "POST",
                         url: "UTeMAttendanceListReportControler.jsp",
@@ -168,8 +173,6 @@
                             if (reply.trim() !== "No Data")
                             {
                                 var dataRow = reply.trim().split("^");
-
-                                console.log(reply);
 
                                 var trHTML = '';
                                 var i;
@@ -228,6 +231,10 @@
                                         <div class="info_kecik">\n\
                                         <dd>Date: <strong><%=newdate%></strong></dd>\n\
                                         <dd>Report No: <strong>PMS-001</strong></dd>\n\
+                                        </div> \n\
+                                        <div style="margin: 30px 0 0 0; font-size: 15px;"> \n\
+                                        <p>Facility: <strong><%=hfc_name%></strong></p>\n\
+                                        <p>Discipline: <strong>'+patientType+'</strong></p>\n\
                                         </div> '
                                                                 );
                                                 $(win.document.body).find('table')

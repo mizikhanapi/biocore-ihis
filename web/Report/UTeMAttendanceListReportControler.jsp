@@ -11,12 +11,16 @@
     Config.getFile_url(session);
     Conn conn = new Conn();
 
-    String patientType, endDate, startDate, query="";
-    String epsTableName, hfcColName;
+    String patientType, endDate, startDate, query="", hfc;
 
     patientType = request.getParameter("patientType");
     startDate = request.getParameter("startDate");
     endDate = request.getParameter("endDate");
+    hfc = request.getParameter("hfc");
+//    patientType = "Outpatient";
+//    startDate = "2017-07-01";
+//    endDate = "2017-07-20";
+//    hfc = session.getAttribute("HEALTH_FACILITY_CODE").toString();
      if (patientType.equals("Outpatient")){
      
      query = "Select  e.NEW_IC_NO, b.`PATIENT_NAME`,"
@@ -39,7 +43,8 @@
             +" AND adm_users.`USER_ID` =  e.`DOCTOR`"
             
             
-            + " WHERE e.EPISODE_DATE BETWEEN '"+startDate + "' AND '" + endDate + "' ;";
+            + " WHERE e.EPISODE_DATE BETWEEN '"+startDate + "' AND '" + endDate + "'"
+            + " AND e.`HEALTH_FACILITY_CODE`='"+hfc+"' ;";
      } else if (patientType.equals("Inpatient")){
       query = "Select  we.NEW_IC_NO, b.`PATIENT_NAME`,"
             +" b.SEX_CODE ,IFNULL(adm_lookup_det.`Description`, 'No Record') AS Patient_Gender ,"
@@ -54,7 +59,8 @@
             +" ON adm_lookup_det.`Master_Reference_code` = adm_lookup_mas.`Master_Reference_code`"
             +" AND adm_lookup_mas.`Master_Reference_code` like '0041'"
            
-            + " WHERE we.episode_date BETWEEN '"+startDate + "' AND '" + endDate + "' ;";
+            + " WHERE we.episode_date BETWEEN '"+startDate + "' AND '" + endDate + "' "
+            + " AND we.hfc_cd='"+hfc+"' ;";
      }
     ArrayList<ArrayList<String>> medicalInfo = conn.getData(query);
     
@@ -69,7 +75,7 @@
         }
     } else {
         
-        out.print("No Data");
+        out.print(query);
     }
 
 %>
