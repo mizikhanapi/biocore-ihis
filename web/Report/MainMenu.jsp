@@ -121,7 +121,7 @@
                                 <!-- List group -->
                                 <ul class="list-group">
                                     <li class="list-group-item"><a href="">Insert Report Menu</a></li>
-                                    <li class="list-group-item"><a href="">Attendance Patient List</a></li>
+                                    <li class="list-group-item"><a href="UTeMAttendanceListReport.jsp">Patient Attendance List</a></li>
                                 </ul>
                             </div>
                         </div>
