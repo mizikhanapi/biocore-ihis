@@ -13,6 +13,9 @@
 <%@include file="validateModuleAccess.jsp" %>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%
+   
+%>
 <html lang="en">
     <head>
 
@@ -30,14 +33,7 @@
 
         <!--    <input type="text" id="test">-->
 
-        <%    Config.getBase_url(request);
-            Config.getFile_url(session);
-            Conn conn = new Conn();
-            String hfc = session.getAttribute("HEALTH_FACILITY_CODE").toString();
-            String dis = session.getAttribute("DISCIPLINE_CODE").toString();
 
-
-        %>
 
         <div class="container-fluid">
             <div class="row" id="load_tweets">       
@@ -56,11 +52,7 @@
                             <h4>Bed Booking Master Summary</h4>
                             <div class="row margin-bottom-30px">
                                 <div class="col-md-12">
-                                    <%     Date datenow = new Date();
-                                        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/YYYY | HH:mm");
-                                        out.print("Date :");
-                                        out.print(sdf.format(datenow));
-                                    %>
+
                                     <div class="pull-right">
                                         <span class="bed-booking-a"><i class="fa fa-square"></i>&nbsp;Available</span> 
                                         <span class="bed-booking-p"><i class="fa fa-square"></i>&nbsp;Pending</span>
@@ -69,11 +61,11 @@
                                 </div>
                             </div>
                             <div id="BedRemarks">
-                                <%@include file = "BedRemarks.jsp" %>
+                                <%//@include file = "BedRemarks.jsp" %>
                             </div>
                             <hr />
-                            <div id="bed">
-                                <%@include file = "bedsummary.jsp" %>
+                            <div id="bedsummary">
+                                <%//@include file = "bedsum.jsp" %>
                             </div>
                         </div>
                     </div>
@@ -89,21 +81,62 @@
 
 
 <script type="text/javascript">
-//    $(document).ready(function () {
+    $(document).ready(function () {
 //        var auto_refresh = setInterval(
 //                function ()
 //                {
 //                    $('#load_tweets').load('HIS070004.jsp').fadeIn("slow");
 //                }, 10000); // refresh every 10000 milliseconds
 //
+        //      $.ajax({
+//            url: "BedRemarks.jsp",
+//            type: 'GET',
+//            timeout: 60000,
+//            success: function (data) {
+//                $('#wardTable').html($(data).find('#wardTable').html());
+//            }
+//        });
 //
-//    });
-
-
-
+//        $.ajax({
+//            url: "bedsummary.jsp",
+//            type: 'GET',
+//            timeout: 60000,
+//            success: function (data) {
+//                $('#wardTable').html($(data).find('#wardTable').html());
+//            }
+//        });
 
 //    setTimeout(function () { 
 //      location.reload();
 //    }, 60 * 1000);
+$('#BedRemarks').load('BedRemarks.jsp');
+$('#bedsummary').load('bedsummary.jsp');
 
+
+
+        function loadlink() {
+            $('#wardTable').load('BedRemarks.jsp', function () {
+                //$(this).unwrap();
+            });
+        }
+
+        loadlink(); // This will run on page load
+        setInterval(function () {
+            loadlink() // this will run after every 5 seconds
+        }, 5000);
+
+        function loadlink2() {
+            $('#wardTable2').load('bedsummary.jsp', function () {
+                //$(this).unwrap();
+            });
+        }
+
+        loadlink2(); // This will run on page load
+        setInterval(function () {
+            loadlink2() // this will run after every 5 seconds
+        }, 5000);
+
+
+
+    });
 </script>

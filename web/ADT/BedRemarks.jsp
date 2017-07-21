@@ -7,12 +7,22 @@
 <%@page import="java.util.Date"%>
 <%@page import="java.util.*"%>
 <%@page import="java.text.SimpleDateFormat"%>
-
-
+<%    Config.getBase_url(request);
+    Config.getFile_url(session);
+    Conn conn = new Conn();
+    String hfc = session.getAttribute("HEALTH_FACILITY_CODE").toString();
+    String dis = session.getAttribute("DISCIPLINE_CODE").toString();
+%>
 
 <div id="wardTable">
-
+  <%     Date datenow = new Date();
+                                        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/YYYY | HH:mm");
+                                        out.print("Date :");
+                                        out.print(sdf.format(datenow));
+                                    %>
+                                    
     <div class="row">
+        
         <%
             String totalA = "";
             String totalP = "";
@@ -111,49 +121,7 @@
         </tr>
     </table>
 </div>
-<div id="papar">
-                            <p>.. Preparing ...</p>
-
-                        </div>
 
 
 
-<script>
-    function ulangPanggil(totalA, totalS, totalO,totalP) {
-        $.ajax({
-            url: "BedRemarks.jsp",
-            type: 'POST',
-            data: {
-                totalA: totalA,
-                totalS: totalS,
-                totalO: totalO,
-                totalP: totalP
-            },
-            timeout: 60000,
-            success: function (data) {
-                $("#papar").html(data);
-                var t = setTimeout("ulangPanggil('" + totalA + "', '" + totalS + "', '" + totalO + "', '" + totalP + "')", 8000);
-            },
-            error: function (err) {
-                $("#papar").html("Error viewing data!");
-                var t = setTimeout("ulangPanggil('" + totalA + "', '" + totalS + "', '" + totalO + "', '" + totalP + "')", 8000);
-            }
-        });
-    }
-    $(document).ready(function () {
 
-    <%        try {
-            totalA = request.getParameter("totalA");
-            totalS = request.getParameter("totalS");
-            totalO = request.getParameter("totalO");
-            totalP = request.getParameter("totalP");
-    %>
-        ulangPanggil('<%=totalA%>', '<%=totalS%>', '<%=totalO%>', '<%=totalP%>');
-    <%
-        } catch (Exception e2) {
-        }
-    %>
-
-
-    });
-</script>
