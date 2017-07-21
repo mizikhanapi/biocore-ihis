@@ -17,10 +17,6 @@
     startDate = request.getParameter("startDate");
     endDate = request.getParameter("endDate");
     hfc = request.getParameter("hfc");
-//    patientType = "Outpatient";
-//    startDate = "2017-07-01";
-//    endDate = "2017-07-20";
-//    hfc = session.getAttribute("HEALTH_FACILITY_CODE").toString();
      if (patientType.equals("Outpatient")){
      
      query = "Select  e.NEW_IC_NO, b.`PATIENT_NAME`,"
@@ -75,7 +71,7 @@
         }
     } else {
         
-        out.print(query);
+        out.print("No Data");
     }
 
 %>
