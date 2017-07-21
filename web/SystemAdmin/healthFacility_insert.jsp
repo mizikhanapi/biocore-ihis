@@ -121,6 +121,14 @@
         String lis_item_category2 = "INSERT INTO lis_item_detail(`item_cd`, `item_name`, `test_cat`, spe_source, spe_container, volume, special_inst, status, buy_price, ser_price, hfc_cd) "
                 + "select `item_cd`, `item_name`, `test_cat`, spe_source, spe_container, volume, special_inst, status, buy_price, ser_price, '" + hfcCode + "'"
                 + "from lis_item_detail where hfc_cd='99_iHIS_99'";
+        
+        String copyOT_category="INSERT INTO ot_procedure_category(hfc_cd, category_cd, category_name, created_by, created_date, status) "
+                + "Select '"+hfcCode+"', category_cd, category_name, '"+creator+"', now(), '0' from ot_procedure_category "
+                + "where hfc_cd='99_iHIS_99';";
+        
+        String copyOT_procedure="INSERT INTO ot_procedure(hfc_cd, category_cd, procedure_cd, `procedure_shortName`, `procedure_longName`, quantity, buying_price, selling_price, status, created_by, created_date) "
+                + "Select '"+hfcCode+"', category_cd, procedure_cd, `procedure_shortName`, `procedure_longName`, quantity, buying_price, selling_price, '0', '"+creator+"', now()  from ot_procedure "
+                + "where hfc_cd='99_iHIS_99';";
 
         rmic.setQuerySQL(conn.HOST, conn.PORT, copyLookup);
         rmic.setQuerySQL(conn.HOST, conn.PORT, copyRole);
@@ -133,6 +141,9 @@
         rmic.setQuerySQL(conn.HOST, conn.PORT, copyCISPro2);
         rmic.setQuerySQL(conn.HOST, conn.PORT, lis_item_category1);
         rmic.setQuerySQL(conn.HOST, conn.PORT, lis_item_category2);
+        rmic.setQuerySQL(conn.HOST, conn.PORT, copyOT_category);
+        rmic.setQuerySQL(conn.HOST, conn.PORT, copyOT_procedure);
+        
 
     }
 %>

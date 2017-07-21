@@ -73,6 +73,14 @@
         sql="Delete from lis_item_detail where hfc_cd='"+id+"'";
         rmic.setQuerySQL(conn.HOST, conn.PORT, sql);
         
+        //clear OT category 
+        sql="Delete from ot_procedure_category where hfc_cd='"+id+"'";
+        rmic.setQuerySQL(conn.HOST, conn.PORT, sql);
+        
+        //clear OT procedure
+        sql="Delete from ot_procedure where hfc_cd='"+id+"'";
+        rmic.setQuerySQL(conn.HOST, conn.PORT, sql);
+        
     } else {
         out.print("Failed");
     }
