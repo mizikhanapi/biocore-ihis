@@ -10,16 +10,19 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
-//    Config.getBase_url(request);
-//    Config.getFile_url(session);
-    // Conn conn = new Conn();
-    // String hfc = session.getAttribute("HEALTH_FACILITY_CODE").toString();
-
+  
+               
+   //   Config.getBase_url(request);
+    //        Config.getFile_url(session);
+            Conn conn = new Conn();
+   String hfc = session.getAttribute("HEALTH_FACILITY_CODE").toString();
+            String dis = session.getAttribute("DISCIPLINE_CODE").toString();
     String totalNew = "";
 
 %>
-<h4 class="margin-bottom-30px">Bed Details</h4>
-<div id="wardTable" class="form-group">
+
+<div id="wardTable2" class="form-group">
+    <h4 class="margin-bottom-30px">Bed Details</h4>
     <div class="row">
         <%//                Conn conn44 = new Conn();
 //                String hfc = session.getAttribute("HEALTH_FACILITY_CODE").toString();
@@ -47,7 +50,7 @@
                                     String wardid = databedSum2.get(i).get(5);
                                     String wardclass = databedSum2.get(i).get(4);
 
-                                    String total = "SELECT COUNT(bed_id) FROM wis_bed_id where discipline_cd = '"+dis+"' AND ward_id = '" + wardid + "' and ward_class_code = '" + wardclass + "' ";
+                                    String total = "SELECT COUNT(bed_id) FROM wis_bed_id where discipline_cd = '" + dis + "' AND ward_id = '" + wardid + "' and ward_class_code = '" + wardclass + "' ";
                                     ArrayList<ArrayList<String>> dataTotal = conn.getData(total);
 
                                     int size2922 = dataTotal.size();
@@ -56,7 +59,7 @@
                                         totalNew = t;
                                     }
 
-                                    String sqlBedId = "SELECT  bed_id, bed_status from wis_bed_id where discipline_cd = '" +dis+ "' AND ward_id = '" + wardid + "' and ward_class_code = '" + wardclass + "'  ";
+                                    String sqlBedId = "SELECT  bed_id, bed_status from wis_bed_id where discipline_cd = '" + dis + "' AND ward_id = '" + wardid + "' and ward_class_code = '" + wardclass + "'  ";
                                     ArrayList<ArrayList<String>> databedId = conn.getData(sqlBedId);
 
                                     int BedID = databedId.size();
@@ -99,48 +102,5 @@
         %>
     </div>
 </div>
-    
-    
-    
-<script>
-   
-    
-    
-    function ulangPanggil(totalA, totalS, totalO,totalP) {
-        $.ajax({
-            url: "BedRemarks.jsp",
-            type: 'POST',
-            data: {
-                totalA: totalA,
-                totalS: totalS,
-                totalO: totalO,
-                totalP: totalP
-            },
-            timeout: 60000,
-            success: function (data) {
-                $("#papar").html(data);
-                var t = setTimeout("ulangPanggil('" + totalA + "', '" + totalS + "', '" + totalO + "', '" + totalP + "')", 8000);
-            },
-            error: function (err) {
-                $("#papar").html("Error viewing data!");
-                var t = setTimeout("ulangPanggil('" + totalA + "', '" + totalS + "', '" + totalO + "', '" + totalP + "')", 8000);
-            }
-        });
-    }
-    $(document).ready(function () {
-
-    <%        try {
-            totalA = request.getParameter("totalA");
-            totalS = request.getParameter("totalS");
-            totalO = request.getParameter("totalO");
-            totalP = request.getParameter("totalP");
-    %>
-        ulangPanggil('<%=totalA%>', '<%=totalS%>', '<%=totalO%>', '<%=totalP%>');
-    <%
-        } catch (Exception e2) {
-        }
-    %>
 
 
-    });
-</script>

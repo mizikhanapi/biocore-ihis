@@ -42,7 +42,7 @@
     dataPayerGroup = conn.getData(payerGroup);
     dataRole2 = conn.getData(role2);
 
-   // String dataSystemStatus2 = session.getAttribute("SYSTEMSTAT").toString();
+    // String dataSystemStatus2 = session.getAttribute("SYSTEMSTAT").toString();
 
 %>
 
@@ -93,8 +93,8 @@
                             <input id="pit" name="pit" type="text" placeholder=""  readonly class="form-control input-md">
                         </div>
                     </div>
-                    
-                    
+
+
                 </div>
 
                 <div class="col-md-6">
@@ -232,8 +232,8 @@
                         </div>
 
                     </div>
-                    
-<!-- Select Basic -->
+
+                    <!-- Select Basic -->
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="selectbasic">Referring By *</label>
                         <div class="col-md-6">
@@ -243,7 +243,7 @@
                         </div>
 
                     </div>
-   
+
                 </div>
 
 
@@ -365,7 +365,7 @@
                         $('#HF_cd').val(discode);
                         //console.log(arrayData);
 
-                
+
                     });
                 },
                 error: function () { // if error
@@ -379,7 +379,7 @@
     });
 
 
-$("#HFCBY").on('keyup', function () { // everytime keyup event
+    $("#HFCBY").on('keyup', function () { // everytime keyup event
         var input = $(this).val(); // We take the input value
         var hfc = $("#Rhfc").val();
         var createdBy = $("#Rid").val();
@@ -405,7 +405,7 @@ $("#HFCBY").on('keyup', function () { // everytime keyup event
                         $('#HB_cd').val(discode);
                         //console.log(arrayData);
 
-                
+
                     });
                 },
                 error: function () { // if error
