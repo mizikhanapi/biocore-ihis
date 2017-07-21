@@ -154,7 +154,7 @@
                                             cditem: "<%=q1.get(i).get(0)%>",
                                             idcat: "<%=q1.get(i).get(1)%>"
                                         },
-                                        timeout: 10000, // 10 seconds
+                                        timeout: 1000, // 10 seconds
                                         success: function (data) {
                                             var d = data.split("|");
                                             if (d[1] == '1') {

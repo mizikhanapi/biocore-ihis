@@ -167,6 +167,15 @@
         <servlet-name>Post_To_Bill</servlet-name>
         <url-pattern>/LIS/Post_To_Bill</url-pattern>
     </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>Maintain_Test_Code</servlet-name>
+        <jsp-file>/LIS/ManageTestCode.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Maintain_Test_Code</servlet-name>
+        <url-pattern>/LIS/Maintain_Test_Code</url-pattern>
+    </servlet-mapping>
     <!--mapping for LIS end-->
     
     <session-config>

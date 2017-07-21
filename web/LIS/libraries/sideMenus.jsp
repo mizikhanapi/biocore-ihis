@@ -35,7 +35,7 @@
             </a>
         </li>
         <li>
-            <a  href="ManageTestCode.jsp" >
+            <a  href="Maintain_Test_Code" >
                 <i class="fa fa-code fa-lg"></i> Manage Test Code
             </a>
         </li>
