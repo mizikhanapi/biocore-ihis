@@ -7,14 +7,14 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!-- Add Button Start -->
 <h4 style="padding-top: 30px;padding-bottom: 35px; font-weight: bold">
-    PROCEDURE CATEGORY MANAGEMENT
-    <span class="pull-right">
-        <button id="CAT_btnAddModal" class="btn btn-success" style=" padding-right: 10px;padding-left: 10px;color: white;" title="Add item">
+    PROCEDURE MANAGEMENT
+    <span class="pull-right" id="PRO_span_buttons" style="display: none">
+        <button id="PRO_btnAddModal" class="btn btn-success" style=" padding-right: 10px;padding-left: 10px;color: white;" title="Add item">
             <a>
                 <i class=" fa fa-plus" style=" padding-right: 10px;padding-left: 10px;color: white;"></i>
-            </a>ADD Category
+            </a>ADD Procedure
         </button>
-        <button id="CAT_btnCloneModal" class="btn btn-primary" style=" padding-right: 10px;padding-left: 10px;color: white;" title="Clone item">
+        <button id="PRO_btnCloneModal" class="btn btn-primary" style=" padding-right: 10px;padding-left: 10px;color: white;" title="Clone item">
             <a>
                 <i class=" fa fa-copy" style=" padding-right: 10px;padding-left: 10px;color: white;"></i>
             </a>CLONE Procedure
@@ -23,35 +23,65 @@
 </h4>
 <!-- Add Button End -->
 
+<!--hidden leaf village-->
+<input type="hidden" id="PRO_hidden_name">
+<input type="hidden" id="PRO_hidden_code">
+
+<h4 id="PRO_h3_name">Please select a category first.</h4>
+
 <!--modal-->
 <jsp:include page="modal.jsp"/>
 <!--modal-->
 
 <script type="text/javascript">
     
-    //...... load category table
-    function OT_loadCategoryTable(){
-        createScreenLoading();
-        $('#OT_categoryTable').load('category/table.jsp');
-        destroyScreenLoading();
-    }
     
     //....... check all field are insert
-    function OT_checkFields(){
+    function PRO_checkFields(){
         var msg="";
         var isComplete = true;
         
-        var code = $('#CAT_Code').val();
-        var name = $('#CAT_Name').val();
-        var status = $('#CAT_status').val();
+        var category_name = $('#PRO_category_name').val();
+        var category_code = $('#PRO_proCode1').val();
+        var proCode = $('#PRO_proCode2').val();
+        var proNameS = $('#PRO_proNameShort').val();
+        var proNameL = $('#PRO_proNameLong').val();
+        var buy =$('#PRO_buyPrice').val();
+        var sell =$('#PRO_sellPrice').val();
+        var quantity =$('#PRO_quantity').val();
+        var status = $('#PRO_status').val();
         
-        if(code === ''){
+        if(category_name === ''){
             isComplete=false;
-            msg="Please fill in the code.";
+            msg="Something went wrong. Please try again later.";
         }
-        else if(name===""){
+        else if(category_code===""){
             isComplete=false;
-            msg="Please fill in the name.";
+            msg="Something went wrong. Please try again later.";
+        }
+        else if(proCode===""){
+            isComplete=false;
+            msg="Please fill in the procedure code.";
+        }
+        else if(proNameS===""){
+            isComplete=false;
+            msg="Please write the abbreviation of the procedure.";
+        }
+        else if(proNameL===""){
+            isComplete=false;
+            msg="Please write the complete procedure name.";
+        }
+        else if(buy===""){
+            isComplete=false;
+            msg="Please fill in the buying price.";
+        }
+        else if(sell===""){
+            isComplete=false;
+            msg="Please fill in the selling price.";
+        }
+        else if(quantity===""){
+            isComplete=false;
+            msg="Please fill in the quantity.";
         }
         else if(status===""){
             isComplete=false;
@@ -60,59 +90,77 @@
         
         if(!isComplete){
             bootbox.alert(msg);
+            $('#PRO_modal').css('overflow', 'auto');
         }
         
         return isComplete;
     }
     
-    //--------------- add new category ---------------------------------------
+    //--------------- add new procedure ---------------------------------------
     
     //... create modal
-    $('#CAT_btnAddModal').on('click', function(){
-        $('#CAT_modal_title').text("Add Category");
-        $('#div_CAT_btnAdd').show();
-        $('#div_CAT_btnUpdate').hide();
+    $('#PRO_btnAddModal').on('click', function(){
+        $('#PRO_modal_title').text("Add Procedure");
+        $('#div_PRO_btnAdd').show();
+        $('#div_PRO_btnUpdate').hide();
         
-        $('#CAT_Code').prop('disabled', false);
+        $('#PRO_proCode2').prop('disabled', false);
         
-        $('#CAT_modal').modal('show');
+        $('#PRO_modal').modal('show');
         
-        $('#CAT_addForm')[0].reset();
+        $('#PRO_addForm')[0].reset();
+        
+        $('#PRO_category_name').val($('#PRO_hidden_name').val().trim());
+        $('#PRO_proCode1').val($('#PRO_hidden_code').val().trim());
     });
     
     //... add on button click
-    $('#CAT_btnAdd').on('click', function(){
-        if(OT_checkFields()){
+    $('#PRO_btnAdd').on('click', function(){
+        if(PRO_checkFields()){
             
-            var code = $('#CAT_Code').val();
-            var name = $('#CAT_Name').val();
-            var status = $('#CAT_status').val();
+            var category_name = $('#PRO_category_name').val();
+            var category_code = $('#PRO_proCode1').val();
+            var proCode = $('#PRO_proCode2').val();
+            var proNameS = $('#PRO_proNameShort').val();
+            var proNameL = $('#PRO_proNameLong').val();
+            var buy =$('#PRO_buyPrice').val();
+            var sell =$('#PRO_sellPrice').val();
+            var quantity =$('#PRO_quantity').val();
+            var status = $('#PRO_status').val();
             
-            name = name.replace(/'/g, "\\\'").replace(/"/g, "\\\"");
+            var completeCode = category_code.trim() + proCode.trim();
+            
+            proNameS = proNameS.replace(/'/g, "\\\'").replace(/"/g, "\\\"");
+            proNameL = proNameL.replace(/'/g, "\\\'").replace(/"/g, "\\\"");
             var data ={
-                code: code,
-                name: name,
+                category_code: category_code,
+                proCode: completeCode,
+                nameS: proNameS,
+                nameL: proNameL,
+                buy: buy,
+                sell: sell,
+                quantity: quantity,
                 status: status
             };
             var msg="-";
             createScreenLoading();
             $.ajax({
                 type: 'POST',
-                url: "category/insert.jsp",
+                url: "procedure/insert.jsp",
                 timeout: 60000,
                 data: data,
                 success: function (data, textStatus, jqXHR) {
                         if(data.trim()==='success'){
-                            msg="Category inserted successfully.";
-                            $('#CAT_modal').modal('hide');
-                            OT_loadCategoryTable();
+                            msg="Procedure inserted successfully.";
+                            $('#PRO_modal').modal('hide');
+                            OT_loadProcedureDetail(category_code, category_name);
                         }
                         else if(data.trim()==='fail'){
-                            msg="Failed to add category.";
+                            msg="Failed to add Procedure.";
                         }
                         else if(data.trim()==='duplicate'){
-                            msg="The code "+code+" is already in used.\nPlease insert different code.";
-                            $('#CAT_Code').val();
+                            msg="The code "+completeCode+" is already in used.\nPlease insert different code.";
+                            $('#PRO_proCode2').val();
                         }
                         else{
                             msg=data.trim();
@@ -135,55 +183,74 @@
     //------------------ update category ---------------------------------------
     
     //.... create the update modal
-    $('#OT_categoryTable').on('click', '#CAT_btnModalUpdate', function(){
-        var hidden = $(this).closest('tr').find('#CAT_hidden_column').text();
+    $('#OT_procedureTable').on('click', '#PRO_btnModalUpdate', function(){
+        var hidden = $(this).closest('tr').find('#PRO_hidden_column').text();
         //console.log(hidden);
         
         var tempArr = hidden.split("|");
         
-        $('#CAT_Code').val(tempArr[0]);
-        $('#CAT_Name').val(tempArr[1]);
-        $('#CAT_status').val(tempArr[2]);
+        var proCode1 = tempArr[0].substring(0,3), proCode2 = tempArr[0].substring(3);
         
-        $('#CAT_modal_title').text("Update Category");
-        $('#CAT_Code').prop('disabled', true);
-        $('#div_CAT_btnAdd').hide();
-        $('#div_CAT_btnUpdate').show();
+        $('#PRO_category_name').val($('#PRO_hidden_name').val());
+        $('#PRO_proCode1').val(proCode1);
+        $('#PRO_proCode2').val(proCode2);
+        $('#PRO_proNameShort').val(tempArr[1]);
+        $('#PRO_proNameLong').val(tempArr[2]);
+        $('#PRO_buyPrice').val(tempArr[4]);
+        $('#PRO_sellPrice').val(tempArr[5]);
+        $('#PRO_quantity').val(tempArr[3]);
+        $('#PRO_status').val(tempArr[6]);
         
-        $('#CAT_modal').modal('show');
+        $('#PRO_modal_title').text("Update Procedure");
+        $('#PRO_proCode2').prop('disabled', true);
+        $('#div_PRO_btnAdd').hide();
+        $('#div_PRO_btnUpdate').show();
+        
+        $('#PRO_modal').modal('show');
     });
     
     //... on bnt update click
-    $('#CAT_btnUpdate').on('click', function(){
-        if(OT_checkFields()){
-            var code = $('#CAT_Code').val();
-            var name = $('#CAT_Name').val();
-            var status = $('#CAT_status').val();
+    $('#PRO_btnUpdate').on('click', function(){
+        if(PRO_checkFields()){
+            var category_name = $('#PRO_category_name').val();
+            var category_code = $('#PRO_proCode1').val();
+            var proCode = $('#PRO_proCode2').val();
+            var proNameS = $('#PRO_proNameShort').val();
+            var proNameL = $('#PRO_proNameLong').val();
+            var buy =$('#PRO_buyPrice').val();
+            var sell =$('#PRO_sellPrice').val();
+            var quantity =$('#PRO_quantity').val();
+            var status = $('#PRO_status').val();
             
-            name = name.replace(/'/g, "\\\'").replace(/"/g, "\\\"");
+            var completeCode = category_code.trim() + proCode.trim();
+            
+            proNameS = proNameS.replace(/'/g, "\\\'").replace(/"/g, "\\\"");
+            proNameL = proNameL.replace(/'/g, "\\\'").replace(/"/g, "\\\"");
             var data ={
-                code: code,
-                name: name,
+                category_code: category_code,
+                proCode: completeCode,
+                nameS: proNameS,
+                nameL: proNameL,
+                buy: buy,
+                sell: sell,
+                quantity: quantity,
                 status: status
             };
             var msg="-";
             createScreenLoading();
             $.ajax({
                 type: 'POST',
-                url: "category/update.jsp",
+                url: "procedure/update.jsp",
                 timeout: 60000,
                 data: data,
                 success: function (data, textStatus, jqXHR) {
                         if(data.trim()==='success'){
-                            msg="Category updated successfully.";
-                            $('#CAT_modal').modal('hide');
-                            OT_loadCategoryTable();
+                            msg="Procedure updated successfully.";
+                            $('#PRO_modal').modal('hide');
+                            OT_loadProcedureDetail(category_code, category_name);
                         }
                         else if(data.trim()==='fail'){
-                            msg="Failed to update category.";
-                        }
-                        else{
-                            msg=data.trim();
+                            msg="Failed to update procedure.";
                         }
                     },
                 error: function (jqXHR, textStatus, errorThrown) {
@@ -197,21 +264,22 @@
             });
         }
     });
-    //============= update categor end ===========================
+    //============= update procedure end ===========================
     
     //---------- delete category --------------------
-    $('#OT_categoryTable').on('click', '#CAT_btnDelete', function(){
+    $('#OT_procedureTable').on('click', '#PRO_btnDelete', function(){
         
-        var hidden = $(this).closest('tr').find('#CAT_hidden_column').text();
+        var hidden = $(this).closest('tr').find('#PRO_hidden_column').text();
        
         var tempArr = hidden.split("|");
         
-        var code = tempArr[0].trim();
-        var name = tempArr[1].trim();
+         var proCode = tempArr[0], proName= tempArr[1];
+         var catCode = $('#PRO_hidden_code').val();
+         var catName = $('#PRO_hidden_name').val();
         
         bootbox.confirm({
             title: "Delete item?",
-            message: "Are you sure you want to delete " + code + " - " + name,
+            message: "Are you sure you want to delete " + proCode + " - " + proName+"?",
             buttons: {
                 confirm: {
                     label: "Yes",
@@ -226,31 +294,27 @@
 
                 if (result) {
                     var data = {
-                        code: code
+                        proCode: proCode,
+                        catCode: catCode
                     };
 
                     var msg="-";
                     createScreenLoading();
                     $.ajax({
                         type: 'POST',
-                        url: "category/delete.jsp",
+                        url: "procedure/delete.jsp",
                         timeout: 60000,
                         data: data,
                         success: function (data, textStatus, jqXHR) {
                                 if(data.trim()==='success'){
-                                    msg="Category deleted successfully.";
-                                    $('#CAT_modal').modal('hide');
-                                    OT_loadCategoryTable();
+                                    msg="Procedure deleted successfully.";
+                                    $('#PRO_modal').modal('hide');
+                                    OT_loadProcedureDetail(catCode, catName);
                                 }
                                 else if(data.trim()==='fail'){
-                                    msg="Failed to delete category.";
+                                    msg="Failed to delete ptrocedure.";
                                 }
-                                else if(data.trim() === 'no'){
-                                    msg="Cannot delete category "+name+" because it is referred by procedure.";
-                                }
-                                else{
-                                    msg=data.trim();
-                                }
+                                
                             },
                         error: function (jqXHR, textStatus, errorThrown) {
                                 msg="Oopps! "+errorThrown;
@@ -270,4 +334,44 @@
     
     
     //============== delete category end ===========================
+    
+    //------------------------------ controlling number input ------------------------------------------------------------------
+
+    $('#PRO_buyPrice').on('keypress', function (event) {
+        if (((event.which !== 46 || $(this).val().indexOf('.') !== -1)
+                && (event.which < 48 || event.which > 57)
+                || ($(this).val().length > 8))
+                && event.which !== 8) {
+            event.preventDefault();
+            $("#PRO_buyPrice_err").html("Decimal Number Only!!!").show().fadeOut("slow");
+
+        }
+
+
+    });
+
+    $('#PRO_sellPrice').on('keypress', function (event) {
+        if (((event.which !== 46 || $(this).val().indexOf('.') !== -1)
+                && (event.which < 48 || event.which > 57)
+                || ($(this).val().length > 8))
+                && event.which !== 8) {
+            event.preventDefault();
+            $("#PRO_sellPrice_err").html("Decimal Number Only!!!").show().fadeOut("slow");
+
+        }
+
+    });
+
+    $('#PRO_quantity').on('keypress', function (e) {
+
+        //if the letter is not digit then display error and don't type anything
+        if (e.which !== 8 && e.which !== 0 && (e.which < 48 || e.which > 57)) {
+            //display error message
+            $("#PRO_quantity_err").html("Whole Number Only!!!").show().fadeOut("slow");
+            return false;
+        }
+    });
+
+    //------------------------------ controlling number input end --------------------------------------------------------------
+    
 </script>
