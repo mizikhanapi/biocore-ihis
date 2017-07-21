@@ -48,7 +48,7 @@
 
                             <div class="col-md-12">
                                 <div class="thumbnail">
-                                    <h3 style="margin: 0px;">Perform Test1</h3>
+                                    <h3 style="margin: 0px;">Perform Test</h3>
                                     <hr class="pemisah" />
                                     <%                                                    session.setAttribute("item_cd", null);
                                         session.setAttribute("item_name", null);
