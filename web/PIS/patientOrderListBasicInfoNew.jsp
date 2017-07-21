@@ -284,6 +284,7 @@
         $('<div class="loading">Loading</div>').appendTo('body');
 
         // Disable Dispense Button
+        document.getElementById("btnOrderDispensePrescribe").disabled = false;
         document.getElementById("btnOrderDispense").disabled = true;
         document.getElementById("btnOrderDispenseCallPatient").disabled = true;
 
@@ -1024,25 +1025,6 @@
     // Dispense Order Data End
 
 
-    // Dispense Order Check Function Start
-    function checkAll(ele) {
-        var checkboxes = document.getElementsByTagName('input');
-        if (ele.checked) {
-            for (var i = 0; i < checkboxes.length; i++) {
-                if (checkboxes[i].type === 'checkbox') {
-                    checkboxes[i].checked = true;
-                }
-            }
-        } else {
-            for (var i = 0; i < checkboxes.length; i++) {
-                if (checkboxes[i].type === 'checkbox') {
-                    checkboxes[i].checked = false;
-                }
-            }
-        }
-    }
-    // Dispense Order Check Function End
-
     var ehrCentralBillBLI;
     var ehrCentralBillDDR;
 
@@ -1360,11 +1342,13 @@
 
         var table = $("#patientOrderDetailsListTable tbody");
 
+        var orderNo = $("#patientOrderNo").val();
+        var patientPMI = $("#patientpmino").val();
+        var patientName = $("#patientName").val();
+
         var drugChecked;
         var drugStock;
-        var drugOrderNo, drugCode, prescribeLongString, prescibeShortString = "";
-        var prescribeLongString = "";
-        var prescibeShortString = "";
+        var drugOrderNo, drugCode, prescribeLongString = "";
         var checked = [];
         var stock = [];
 
@@ -1375,8 +1359,8 @@
             drugChecked = $(this).find("#drugDispenseChecked").is(':checked');
             drugStock = $tds.eq(8).text();
 
-
             if (drugChecked === true) {
+
                 drugOrderNo = $tds.eq(1).text();
                 drugCode = $tds.eq(2).text();
 
@@ -1387,16 +1371,15 @@
 
             checked.push(drugChecked);
 
-
         });
 
         var checkedDispense = checked.indexOf(true);
         var stockDispense = stock.indexOf("0");
+
         console.log(checked);
         console.log(checkedDispense);
         console.log(stock);
         console.log(stockDispense);
-
         console.log(prescribeLongString);
 
         if (checkedDispense === -1) {
@@ -1427,48 +1410,77 @@
                             $('#myModal').modal('show');
 
                             var data = {
-                                orderNo: drugOrderNo,
-                                longString: prescribeLongString
+                                orderNo: orderNo,
+                                longString: prescribeLongString,
+                                patientPMI: patientPMI,
+                                patientName: patientName
                             };
 
                             $.ajax({
                                 url: "patientOrderListDetailsPrescribeResetStatus.jsp",
                                 type: "post",
                                 data: data,
-                                timeout: 3000,
+                                timeout: 5000,
                                 success: function (datas) {
+
                                     console.log(datas.trim());
 
                                     $.ajax({
                                         url: "patientOrderListDetailsPrescribeUpdateStatus.jsp",
                                         type: "post",
                                         data: data,
-                                        timeout: 5000,
+                                        timeout: 6000,
                                         success: function (datas) {
-                                            console.log(datas.trim());
-                                            document.getElementById("btnOrderDispense").disabled = false;
-                                            document.getElementById("btnOrderDispenseCallPatient").disabled = false;
-                                            $("#patientOrderDetailsListTable").find("input,button,textarea,select").attr("disabled", "disabled");
-                                            $('#myModal').modal('hide');
-                                            var orderNoMain = $("#patientOrderNo").val();
-                                            window.open("patientOrderListDetailsPrescribePDF.jsp?orderNo=" + orderNoMain + " ");
+
+                                            $.ajax({
+                                                type: "post",
+                                                url: "patientOrderListDetailsPrescribePDF.jsp",
+                                                timeout: 5000,
+                                                data: data,
+                                                success: function (result) {
+
+                                                    var labelStringDetails = result.trim();
+
+                                                    $("#patientOrderDetailsListTable").find("input,button,textarea,select").attr("disabled", "disabled");
+                                                    document.getElementById("btnOrderDispenseCallPatient").disabled = false;
+                                                    document.getElementById("btnOrderDispensePrescribe").disabled = true;
+
+                                                    $('#myModal').modal('hide');
+
+                                                    var contextPath = '<%=request.getContextPath()%>';
+
+                                                    var url = contextPath + "/generatePharmacyLabel?";
+                                                    url += "&labelData=" + labelStringDetails;
+
+                                                    var win = window.open(url, '_blank');
+                                                    win.focus();
+
+                                                },
+                                                error: function (err) {
+
+                                                }
+                                            });
 
                                         }
                                     });
+
                                 }
                             });
 
-                            //updateResetPrescribe();
 
                         } else {
+
                             console.log("Process Is Canceled");
+
                         }
 
                     }
                 });
 
             } else {
+
                 bootbox.alert("Please check the stock quantity of drug that is going to be dispensed! Some of the drug are not available.");
+
             }
 
         }
@@ -1556,6 +1568,8 @@
                                     });
 
                                 }
+
+                                document.getElementById("btnOrderDispense").disabled = false;
 
                             }
                         });
