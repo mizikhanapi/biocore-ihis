@@ -32,7 +32,7 @@
     dataQL = conn.getData(sql);
     //out.print(dataQL);
 %>
-<table class="table table-filter table-striped table-bordered table-hover" style="background: #fff; border: 1px solid #ccc;" id="QLtable">
+<table class="table table-filter table-striped table-bordered table-hover" style="background: #fff; border: 1px solid #ccc; width: 100%;" id="QLtable">
     <thead>
     <th>Queue Name</th>
     <th hidden="true"></th>
@@ -85,10 +85,9 @@
 <script>
     $(document).ready(function () {
         $('#QLtable').DataTable({
-            
-            "language": {
-                "emptyTable": "No Queue List Available To Display"
-            }
+//            "language": {
+//                "emptyTable": "No Queue List Available To Display"
+//            }
         });
     });
 </script>

@@ -26,19 +26,19 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <!-- header -->
-<!--        <link href="datepicker/jquery-ui.css" rel="stylesheet" type="text/css"/>
-        <link rel="stylesheet" href="bootstrap-3.3.6-dist/css/dataTables.bootstrap.min.css">
-        <link href="../assets/css/dataTables.bootstrap.min.css" rel="stylesheet" type="text/css"/>-->
-<script src="libraries/jquery-3.1.1.min.js"></script>
-<!--        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-        <script src="bootstrap-3.3.6-dist/js/bootbox.min.js" type="text/javascript"></script>
-        <script src="bootstrap-3.3.6-dist/js/onKeyPress.js" type="text/javascript"></script>
-        <script src="datepicker/jquery-ui.js" type="text/javascript"></script>
-        
-        <script src="bootstrap-3.3.6-dist/js/jquery.dataTables.min.js"></script>
-        <script src="bootstrap-3.3.6-dist/js/dataTables.bootstrap.min.js" type="text/javascript"></script>
-        <script src="../assets/js/jquery.dataTables.min.js" type="text/javascript"></script>
-        <script src="../assets/js/dataTables.bootstrap.min.js" type="text/javascript"></script>-->
+        <!--        <link href="datepicker/jquery-ui.css" rel="stylesheet" type="text/css"/>
+                <link rel="stylesheet" href="bootstrap-3.3.6-dist/css/dataTables.bootstrap.min.css">
+                <link href="../assets/css/dataTables.bootstrap.min.css" rel="stylesheet" type="text/css"/>-->
+        <script src="libraries/jquery-3.1.1.min.js"></script>
+        <!--        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+                <script src="bootstrap-3.3.6-dist/js/bootbox.min.js" type="text/javascript"></script>
+                <script src="bootstrap-3.3.6-dist/js/onKeyPress.js" type="text/javascript"></script>
+                <script src="datepicker/jquery-ui.js" type="text/javascript"></script>
+                
+                <script src="bootstrap-3.3.6-dist/js/jquery.dataTables.min.js"></script>
+                <script src="bootstrap-3.3.6-dist/js/dataTables.bootstrap.min.js" type="text/javascript"></script>
+                <script src="../assets/js/jquery.dataTables.min.js" type="text/javascript"></script>
+                <script src="../assets/js/dataTables.bootstrap.min.js" type="text/javascript"></script>-->
         <%@include file="../assets/header.html" %>
         <%@include file="libraries/headLibrary.jsp" %>
 

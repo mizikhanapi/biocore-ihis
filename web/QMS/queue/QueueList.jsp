@@ -12,12 +12,12 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h3 class="" id="lineModalLabel">Queue List</h3>
+        <h4 class="" id="lineModalLabel" style="font-weight: bold;">Queue List</h4>
         
-        <div class="row"id="modalBodyQueue" style="overflow-x: auto;" >
+        <div class="" id="modalBodyQueue" style="overflow-x: auto;" >
             <!-- content goes here -->
             <form role="form" id="formQueueSaya" >
-                <table class="table table-filter table-striped table-responsive" style="background: #fff;" id="listQueue">
+                <table class="table table-filter table-striped table-responsive table-bordered" style="background: #fff;" id="listQueue">
                     <thead>
                     <th>PMI no. </th>
                     <th>Name </th>
