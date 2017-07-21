@@ -106,8 +106,8 @@
             $('#OT_categoryMain').load('category/main.jsp');
             $('#OT_categoryTable').load('category/table.jsp');
             
-            $('#OT_procedureMain').load('procedure_main.jsp');
-            $('#OT_procedureTable').load('procedure_table.jsp');
+            $('#OT_procedureMain').load('procedure/main.jsp');
+            $('#OT_procedureTable').load('procedure/table.jsp');
         </script>
 
     </body>

@@ -13,6 +13,25 @@
     String hfc_cd = (String) session.getAttribute("HEALTH_FACILITY_CODE");
     
     try{
+        String sqlCheck = "Select procedure_cd from ot_procedure where category_cd='"+code+"' and hfc_cd='"+hfc_cd+"' limit 1;";
+        ArrayList<ArrayList<String>> looked = conn.getData(sqlCheck);
+
+        if(looked.size() > 0){
+            out.print("no");
+
+        }else{
+            RMIConnector rmi = new RMIConnector(); 
+            String query = "Delete from ot_procedure_category where category_cd = '"+code+"' AND hfc_cd = '"+hfc_cd+"'";
+            boolean isDelete = rmi.setQuerySQL(conn.HOST, conn.PORT, query);
+
+            if(isDelete){
+                out.print("success");
+            }else{
+                out.print("fail");
+            }
+
+
+        }
     
     }
     catch(Exception e){
@@ -21,24 +40,6 @@
         out.print("Oopps!");
     }
     
-    String sqlCheck = "Select procedure_cd from ot_procedure where category_cd='"+code+"' and hfc_cd='"+hfc_cd+"' limit 1;";
-    ArrayList<ArrayList<String>> looked = conn.getData(sqlCheck);
     
-    if(looked.size() > 0){
-        out.print("no");
-    
-    }else{
-        RMIConnector rmi = new RMIConnector(); 
-        String query = "Delete from ot_procedure_category where category_cd = '"+code+"' AND hfc_cd = '"+hfc_cd+"'";
-        boolean isDelete = rmi.setQuerySQL(conn.HOST, conn.PORT, query);
-        
-        if(isDelete){
-            out.print("success");
-        }else{
-            out.print("fail");
-        }
-        
-    
-    }
 %>
 

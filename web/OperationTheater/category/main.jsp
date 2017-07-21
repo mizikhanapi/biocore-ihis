@@ -17,7 +17,7 @@
         <button id="CAT_btnCloneModal" class="btn btn-primary" style=" padding-right: 10px;padding-left: 10px;color: white;" title="Clone item">
             <a>
                 <i class=" fa fa-copy" style=" padding-right: 10px;padding-left: 10px;color: white;"></i>
-            </a>CLONE Procedure
+            </a>CLONE Category
         </button>
     </span>
 </h4>
@@ -270,4 +270,54 @@
     
     
     //============== delete category end ===========================
+    
+    //-------------- view procedure tab --------------------
+    
+    //... load procedure table
+    function OT_loadProcedureDetail(code, name){
+        createScreenLoading();
+        var data ={
+                code: code,
+                name: name
+            };
+            var msg="";
+        $.ajax({
+            type: 'POST',
+            url: "procedure/table.jsp",
+            timeout: 60000,
+            data: data,
+            success: function (data, textStatus, jqXHR) {
+                    $('#OT_procedureTable').html(data);
+                    msg="Procedure loaded...";
+                    $('#PRO_hidden_name').val(name);
+                    $('#PRO_hidden_code').val(code);
+                    $('#PRO_h3_name').text("Procedure of "+name+" Category");
+                    $('#PRO_span_buttons').show();
+                },
+            error: function (jqXHR, textStatus, errorThrown) {
+                    msg="Oopps! "+errorThrown;
+                },
+            complete: function (jqXHR, textStatus ) {
+                    destroyScreenLoading();
+                    //bootbox.alert(msg);
+
+            }
+        });
+
+    }
+    
+    $('#OT_categoryTable').on('click', '#CAT_btnView', function(){
+         
+        var hidden = $(this).closest('tr').find('#CAT_hidden_column').text();
+       
+        var tempArr = hidden.split("|");
+        
+        var code = tempArr[0].trim();
+        var name = tempArr[1].trim();
+        
+        OT_loadProcedureDetail(code, name);
+        
+        $('.nav-tabs a[href="#tab_default_2"]').tab('show');
+    });
+   //=============== view procedure tab end ================
 </script>

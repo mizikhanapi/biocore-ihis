@@ -22,6 +22,7 @@
     <th>Category Code</th>
     <th>Category Name</th>
     <th style="width: 5%">Status</th>
+    <th style="width: 5%">View Procedure</th>
     <th style="width: 5%">Update</th>
     <th style="width: 5%">Delete</th>
 </thead>
@@ -43,6 +44,9 @@
 <td><%= dataCAT.get(i).get(0)%></td>
 <td><%= dataCAT.get(i).get(1)%></td>
 <td><%= status%>
+</td>
+<td>
+    <a id="CAT_btnView" style="cursor: pointer"><i class="fa fa-arrow-circle-right" aria-hidden="true" style="display: inline-block;color: #4d90fe;"></i></a>
 </td>
 <td>
     <a id="CAT_btnModalUpdate" style="cursor: pointer"><i class="fa fa-pencil-square-o" aria-hidden="true" style="display: inline-block;color: #337ab7;"></i></a>
