@@ -4,6 +4,10 @@
     Author     : Shammugam
 --%>
 
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="java.util.Calendar"%>
+<%@page import="java.util.Date"%>
+<%@page import="java.text.DateFormat"%>
 <%@page import="Config.Config"%>
 <%@page import="dBConn.Conn"%>
 <%@page import="java.io.*"%> 
@@ -15,43 +19,23 @@
 <%@page import="main.RMIConnector"%>
 <%@page import="java.util.ArrayList"%>
 
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
-</head>
-    <body>
-        <%
-            
-            String orderNo = request.getParameter("orderNo");
-            
 
-            try {
-                Class.forName("com.mysql.jdbc.Driver").newInstance();
-                Connection conn = DriverManager.getConnection("jdbc:mysql://10.73.32.200:3306/emedica?zeroDateTimeBehavior=convertToNull", "root", "qwerty");
+<%
 
-                File reportFile = new File(application.getRealPath("//PIS//report//pharmacyLabel.jasper"));
+    String orderNo = request.getParameter("orderNo");
+    String patientPMI = request.getParameter("patientPMI");
+    String patientName = request.getParameter("patientName");
+    String hfc_cd = session.getAttribute("HEALTH_FACILITY_CODE").toString();
+    String hfcName = session.getAttribute("HFC_NAME").toString();
+    String discipline = session.getAttribute("DISCIPLINE_CODE").toString();
+    String sub_discipline = session.getAttribute("SUB_DISCIPLINE_CODE").toString();
 
-                Map parameters = new HashMap();
-                parameters.put("orderNo",orderNo); 
-                byte[] bytes = JasperRunManager.runReportToPdf(reportFile.getPath(), parameters, conn);
+    Date date = Calendar.getInstance().getTime();
+    DateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+    String dateToday = formatter.format(date);
 
-                response.setContentType("application/pdf");
-                response.setContentLength(bytes.length);
-                ServletOutputStream outStream = response.getOutputStream();
-                outStream.write(bytes, 0, bytes.length);
-                outStream.flush();
-                outStream.close();
-            } catch (Exception ex) {
-                out.println("Error: " + ex.getMessage());
-            }
+    String fullString = orderNo + "|" + patientPMI + "|" + patientName + "|" + hfc_cd + "|" + hfcName + "|" + discipline + "|" + sub_discipline + "|" + dateToday;
 
+    out.print(fullString);
 
-        %>
-
-
-
-    </body>
-</html>
+%>

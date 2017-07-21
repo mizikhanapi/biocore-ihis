@@ -12,7 +12,12 @@
     Conn conn = new Conn();
     String hfc = session.getAttribute("HEALTH_FACILITY_CODE").toString();
     String dis = (String) session.getAttribute("DISCIPLINE_CODE");
-
+    String sub = session.getAttribute("SUB_DISCIPLINE_CODE").toString();
+    String hfc_name = session.getAttribute("HFC_NAME").toString();
+//    
+//     String dis_name_query = "SELECT discipline_name FROM adm_discipline WHERE discipline_hfc_cd='" + hfc + "' AND discipline_cd='" + dis + "'";
+//    ArrayList<ArrayList<String>> mysqldis_name = conn.getData(dis_name_query);
+//    String dis_name = mysqldis_name.get(0).get(0);
 %>
 
 <%    String hfc_cd = "SELECT logo FROM adm_health_facility WHERE hfc_cd='" + hfc + "'";
@@ -77,7 +82,7 @@
                                 </div>
                             </div>
                             <div class="text-center">
-                                <button class="btn btn-primary" type="button" id="searchPatientAttendance" name="searchPatientAttendance"><i class="fa fa-search fa-lg"></i>&nbsp; Search</button>
+                                <button class="btn btn-primary" type="button" id="searchPatientAttendance" name="searchPatientAttendance"><i class="fa fa-search fa-lg" ></i>&nbsp; Search</button>
 
                                 <button id="clearSearch" name="clearSearch" type="clear" class="btn btn-default"><i class="fa fa-ban fa-lg"></i>&nbsp; Clear</button>
                             </div>
@@ -134,31 +139,54 @@
         <script src="https://cdn.datatables.net/buttons/1.0.3/js/buttons.colVis.js"></script>
 
         <script>
-            $("#dateFrom").datepicker({dateFormat: 'dd/mm/yy'});
-            $("#dateTo").datepicker({dateFormat: 'dd/mm/yy'});
+//            $("#dateFrom").datepicker({dateFormat: 'dd/mm/yy'});
+//            $("#dateTo").datepicker({dateFormat: 'dd/mm/yy'});
+                $("#dateFrom").datepicker({
+                    dateFormat: 'dd/mm/yy',
+                    onSelect: function (selected) {
 
+                        $("#dateTo").datepicker("option", "minDate", selected);
+
+                    }
+
+                });
+
+                $("#dateTo").datepicker({
+                    dateFormat: 'dd/mm/yy',
+                    onSelect: function (selected) {
+
+                        $("#dateFrom").datepicker("option", "maxDate", selected);
+
+                    }
+
+                });
             $("#searchPatientAttendance").click(function () {
                 var patientType, startDate, endDate;
 
                 patientType = $("#patientType").val();
                 startDate = $("#dateFrom").val();
                 endDate = $("#dateTo").val();
-                var temp = startDate.split("/");
-                startDate = temp[2] + "-" + temp[1] + "-" + temp[0];
 
-                var temp = endDate.split("/");
-                endDate = temp[2] + "-" + temp[1] + "-" + temp[0];
-                if ((new Date(startDate).getTime() > new Date(endDate).getTime()))
-                {
+                if (startDate === "") {
+                    alert("Select Start Date.");
+                } else if (endDate === "") {
+                    alert("Select End Date.");
+                } else if (startDate > endDate) {
                     alert("Incorrect date range, Start-Date Should be before End-Date.");
                 } else {
+
+                    var temp = startDate.split("/");
+                    startDate = temp[2] + "-" + temp[1] + "-" + temp[0];
+
+                    var temp = endDate.split("/");
+                    endDate = temp[2] + "-" + temp[1] + "-" + temp[0];
 
                     var data = {
                         "patientType": patientType,
                         "startDate": startDate,
-                        "endDate": endDate
+                        "endDate": endDate,
+                        "hfc": "<%=hfc%>"
                     };
-                    console.log(data);
                     $.ajax({
                         type: "POST",
                         url: "UTeMAttendanceListReportControler.jsp",
@@ -168,8 +196,6 @@
                             if (reply.trim() !== "No Data")
                             {
                                 var dataRow = reply.trim().split("^");
-
-                                console.log(reply);
 
                                 var trHTML = '';
                                 var i;
@@ -228,6 +254,10 @@
                                         <div class="info_kecik">\n\
                                         <dd>Date: <strong><%=newdate%></strong></dd>\n\
                                         <dd>Report No: <strong>PMS-001</strong></dd>\n\
+                                        </div> \n\
+                                        <div style="margin: 30px 0 0 0; font-size: 15px;"> \n\
+                                        <p>Facility: <strong><%=hfc_name%></strong></p>\n\
+                                        <p>Discipline: <strong>' + patientType + '</strong></p>\n\
                                         </div> '
                                                                 );
                                                 $(win.document.body).find('table')
@@ -255,6 +285,7 @@
                                 });
                                 $('#reportTotalPatientDiv').css("display", "block");
                                 $("#reportAttendanceTotalPatient").val(dataRow.length);
+                                $("#searchPatientAttendance").prop("disabled", true);
                             } else if (reply.trim() === "No Data") {
                                 alert("There is no patient in this time range !!");
                             }
