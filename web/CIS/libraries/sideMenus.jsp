@@ -35,7 +35,7 @@
                 <i class="fa fa-angle-right fa-lg"></i> Orthopedic <span class="caret"></span>
             </a>
             <ul class="dropdown-menu">
-                <li><a href="#orthopedic-con" role="presentation" data-toggle="tab" class="panelito">Consultation</a></li>
+<!--                <li><a href="#orthopedic-con" role="presentation" data-toggle="tab" class="panelito">Consultation</a></li>-->
                 <li><a href="#orthopedic-nur" role="presentation" data-toggle="tab" class="panelito">Nursing</a></li>
                 <li><a href="#orthopedic-niw" role="presentation" data-toggle="tab" class="panelito">Nursing in Ward</a></li>
                 <li><a href="#orthopedic-ot" role="presentation" data-toggle="tab" class="panelito">Operation Theater</a></li>
