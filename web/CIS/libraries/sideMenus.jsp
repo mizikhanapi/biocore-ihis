@@ -17,11 +17,10 @@
         <!-- // menu tanpa dropdown -->
         <li><a id="btnCIS_MAIN_QUEUE"><i class="fa fa-users fa-lg"></i> Queue</a></li>
         <li><a id="searchBtn"><i class="fa fa-search fa-lg"></i> Search</a></li>
-<!--        <li><a href="#order-entry" role="presentation" data-toggle="tab" class="panelito"><i class="fa fa-medkit fa-lg"></i>Order Entry</a></li>
         <li><a id="settingBtn"><i class="fa fa-gear fa-lg"></i> Setting</a></li>
-        <li><a href="./../Report/mcMain2.jsp"class="panelito"><i class="fa fa-print fa-lg"></i> Print MC</a></li>
-        <li><a href="./../Report/timeSlipMain2.jsp" class="panelito"><i class="fa fa-print fa-lg"></i> Print Time Slip</a></li>-->
-        
+        <li><a href="./../Report/mcMain2.jsp"class="panelito"><i class="fa fa-calendar fa-lg"></i> Print MC</a></li>
+        <li><a href="./../Report/timeSlipMain2.jsp" class="panelito"><i class="fa fa-clock-o fa-lg"></i> Print Time Slip</a></li>
+
         <!-- // menu tanpa dropdown -->
         <hr/>
 
@@ -35,7 +34,7 @@
                 <i class="fa fa-angle-right fa-lg"></i> Orthopedic <span class="caret"></span>
             </a>
             <ul class="dropdown-menu">
-<!--                <li><a href="#orthopedic-con" role="presentation" data-toggle="tab" class="panelito">Consultation</a></li>-->
+                <!--                <li><a href="#orthopedic-con" role="presentation" data-toggle="tab" class="panelito">Consultation</a></li>-->
                 <li><a href="#orthopedic-nur" role="presentation" data-toggle="tab" class="panelito">Nursing</a></li>
                 <li><a href="#orthopedic-niw" role="presentation" data-toggle="tab" class="panelito">Nursing in Ward</a></li>
                 <li><a href="#orthopedic-ot" role="presentation" data-toggle="tab" class="panelito">Operation Theater</a></li>

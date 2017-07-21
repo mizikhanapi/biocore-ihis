@@ -11,13 +11,13 @@ and open the template in the editor.
 .material-button-anim {
     position: fixed;
     bottom: 30px;
-    right: 0px;
+    right: 30px;
     text-align: center;
     -webkit-animation: buttonFadeInUp 1s ease;
     animation: buttonFadeInUp 1s ease;
     z-index: 99999;
-    width: 166px;
-    height: 135px;
+    height: 44px;
+    width: 44px;
 }
 .material-button {
     position: relative;
@@ -27,7 +27,7 @@ and open the template in the editor.
     height: 44px;
     font-size: 1.5em;
     color: #fff;
-    background: #2C98DE;
+    background: #2196F3;
     border: none;
     border-radius: 50%;
     box-shadow: 0 3px 6px rgba(0,0,0,.275);

@@ -37,10 +37,10 @@
             <div class="card card-container">
                 <!-- <img class="profile-img-card" src="//lh3.googleusercontent.com/-6V8xOA6M7BA/AAAAAAAAAAI/AAAAAAAAAAA/rzlHcD0KYwo/photo.jpg?sz=120" alt="" /> -->
                 <div class="profile-img-card">
-                    <i class="fa fa-user-md" aria-hidden="true" style="color: #666; font-size: 100px;"></i>
+                    <img src="../assets/i-his.logo.svg" class="logo-login">
                 </div>
                 <div class="logo" style="font-size: 32px;">
-                    Welcome to <span>iHIS</span>
+                    Welcome to <span>i-HIS</span>
                 </div>
                 <p id="profile-name" class="profile-name-card" style="font-weight: 400;">Integrated Health Information System</p>
                 <form class="form-signin" id="leForm" >

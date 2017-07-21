@@ -170,7 +170,7 @@
                                                             <i class="fa fa-list-alt fa-lg"></i> Plan </a>
                                                     </li>
                                                     <li>
-                                                       
+
                                                         <i class="fa fa-list-alt fa-lg hide"></i><button id="btnCIS_TEST_BUTTON" class="hide">testbutton</button>
                                                     </li>
 
@@ -237,7 +237,7 @@
                         <div class="tab-pane fade" id="orthopedic-nur">
                             <jsp:include page="../Ortho-Nursing/Nursing.jsp"/>
                         </div> 
- 
+
                         <div class="tab-pane fade" id="orthopedic-niw">
                             <jsp:include page="../Ortho-NursingInWard/NursingInWard.jsp"/>
                         </div> 
@@ -259,28 +259,8 @@
         </div>
 
         <div class="material-button-anim toggle-draggable">
-            <ul class="list-inline" id="options">
-                <li class="option">
-                    <button class="material-button option1" type="button" data-toggle="tooltip" data-placement="top" title="Order Entry">
-                        <a href="#order-entry" role="presentation" data-toggle="tab" class="panelito" style="color: #fff;"><span class="fa fa-medkit"></span></a>
-                    </button>
-
-                </li>
-                <li class="option">
-                    <button class="material-button option2" type="button" data-toggle="tooltip" data-placement="top" title="Print MC">
-                        <a href="./../Report/mcMain2.jsp"class="panelito" style="color: #fff;"><i class="fa fa-print"></i></a>
-                    </button>
-
-                </li>
-                <li class="option">
-                    <button class="material-button option3" type="button" data-toggle="tooltip" data-placement="top" title="Print Time Slip">
-                        <a href="./../Report/timeSlipMain2.jsp" class="panelito"  style="color: #fff;"><i class="fa fa-print"></i></a>
-                    </button>
-
-                </li>
-            </ul>
-            <button class="material-button material-button-toggle gerakan" type="button">
-                <span class="fa fa-plus" aria-hidden="true"></span>
+            <button class="material-button option1" type="button" data-toggle="tooltip" data-placement="top" title="Order Entry">
+                <a href="#order-entry" role="presentation" data-toggle="tab" class="panelito" style="color: #fff;"><span class="fa fa-medkit"></span></a>
             </button>
         </div>
 
@@ -355,7 +335,7 @@
             $('#accordion').on('hidden.bs.collapse', toggleChevron);
             $('#accordion').on('shown.bs.collapse', toggleChevron);
         </script>
-        
+
         <script>
             $(document).ready(function () {
                 $(".ortho-notes").click(function () {
@@ -368,6 +348,6 @@
                 });
             });
         </script>
-        
+
     </body>
 </html>

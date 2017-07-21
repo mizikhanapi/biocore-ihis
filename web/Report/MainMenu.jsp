@@ -99,11 +99,13 @@
 
         <!--header -->
         <%@include file = "../assets/header.html" %>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <script src="../assets/js/Chart.bundle.js" type="text/javascript"></script>
         <!--header -->
         <title>Report</title>
     </head>
     <body>
-
 
         <div class="container-fluid">
             <div class="row">      
@@ -113,126 +115,249 @@
                     <!-- menu top -->
 
                     <div class="row">
+                        <div class="col-md-12">
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <div class="thumbnail">
+                                        <div class="text-center">
+                                            <div class="bed-booking-title">Total InPatient</div>
 
-                        <div class="col-md-3">
-                            <div class="panel panel-default panel-report">
-                                <!-- Default panel contents -->
-                                <div class="panel-heading">Outpatient Registration</div>
-                                <!-- List group -->
-                                <ul class="list-group">
-                                    <li class="list-group-item"><a href="">Insert Report Menu</a></li>
-                                    <li class="list-group-item"><a href="UTeMAttendanceListReport.jsp">Patient Attendance List</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="panel panel-default panel-report">
-                                <!-- Default panel contents -->
-                                <div class="panel-heading">Patient Consultation</div>
-                                <!-- List group -->
-                                <ul class="list-group">
-                                    <li class="list-group-item"><a href="mcMain2.jsp">Reprint MC</a></li>
-                                    <li class="list-group-item"><a href="timeSlipMain2.jsp">Reprint Time Slip</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="panel panel-default panel-report">
-                                <!-- Default panel contents -->
-                                <div class="panel-heading">Pharmacy Info System</div>
-                                <!-- List group -->
-                                <ul class="list-group">
-                                    <li class="list-group-item"><a href="psMain.jsp">Prescription Slip</a></li>
-                                    <li class="list-group-item"><a href="dsMain.jsp">Dispensing Sheet</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="panel panel-default panel-report">
-                                <!-- Default panel contents -->
-                                <div class="panel-heading">Laboratory Info System</div>
-                                <!-- List group -->
-                                <ul class="list-group">
-                                    <li class="list-group-item"><a href="">Insert Report Menu</a></li>
-                                </ul>
+                                            <span class="bed-booking-total">500</span>
+                                            <div>
+                                                <span class="bed-booking-a"><i class="fa fa-square"></i>&nbsp;0</span> 
+                                                <span class="bed-booking-p"><i class="fa fa-square"></i>&nbsp;0</span>
+                                                <span class="bed-booking-o"><i class="fa fa-square"></i>&nbsp;0</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="thumbnail">
+                                        <div class="text-center">
+                                            <div class="bed-booking-title">Total OutPatient</div>
+
+                                            <span class="bed-booking-total">1123</span>
+                                            <div>
+                                                <span class="bed-booking-a"><i class="fa fa-square"></i>&nbsp;0</span> 
+                                                <span class="bed-booking-p"><i class="fa fa-square"></i>&nbsp;0</span>
+                                                <span class="bed-booking-o"><i class="fa fa-square"></i>&nbsp;0</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="thumbnail">
+                                        <div class="text-center">
+                                            <div class="bed-booking-title">Total Drug Cost</div>
+
+                                            <span class="bed-booking-total">RM50M</span>
+                                            <div>
+                                                <span class="bed-booking-a"><i class="fa fa-square"></i>&nbsp;0</span> 
+                                                <span class="bed-booking-p"><i class="fa fa-square"></i>&nbsp;0</span>
+                                                <span class="bed-booking-o"><i class="fa fa-square"></i>&nbsp;0</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="thumbnail">
+                                        <div class="text-center">
+                                            <div class="bed-booking-title">Total ICD 10</div>
+
+                                            <span class="bed-booking-total">0</span>
+                                            <div>
+                                                <span class="bed-booking-a"><i class="fa fa-square"></i>&nbsp;0</span> 
+                                                <span class="bed-booking-p"><i class="fa fa-square"></i>&nbsp;0</span>
+                                                <span class="bed-booking-o"><i class="fa fa-square"></i>&nbsp;0</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
+
                     <div class="row">
-                        <div class="col-md-3">
-                            <div class="panel panel-default panel-report">
-                                <!-- Default panel contents -->
-                                <div class="panel-heading">Inpatient Management</div>
-                                <!-- List group -->
-                                <ul class="list-group">
-                                    <li class="list-group-item"><a href="">Insert Report Menu</a></li>
-                                </ul>
+                        <div class="col-md-10">
+                            <div class="thumbnail">
+                                <%@ include file ="chart/chart1.jsp" %>
                             </div>
                         </div>
-                        <div class="col-md-3">
-                            <div class="panel panel-default panel-report">
-                                <!-- Default panel contents -->
-                                <div class="panel-heading">Billing System</div>
-                                <!-- List group -->
-                                <ul class="list-group">
-                                    <li class="list-group-item"><a href="">Insert Report Menu</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="panel panel-default panel-report">
-                                <!-- Default panel contents -->
-                                <div class="panel-heading">Patient Appointment</div>
-                                <!-- List group -->
-                                <ul class="list-group">
-                                    <li class="list-group-item"><a href="">Insert Report Menu</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="panel panel-default panel-report">
-                                <!-- Default panel contents -->
-                                <div class="panel-heading">System Administrator</div>
-                                <!-- List group -->
-                                <ul class="list-group">
-                                    <li class="list-group-item"><a href="dataAnalysisMain.jsp">Data Analysis</a></li>
-                                    <li class="list-group-item"><a href="ICD10Main.jsp">ICD10 </a></li>
-                                    <li class="list-group-item"><a href="../PIS/HIS040008.jsp">Report Health Cost </a></li>
-                                    <li class="list-group-item"><a href="drugOrderList.jsp">Total Drug Cost </a></li>
+                        <div class="col-md-2">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="panel panel-default panel-report">
+                                        <div class="panel-heading">
+                                            Module Reports
+                                        </div>
+                                        <!-- Default panel contents -->
+                                        <div class="panel-heading">
+                                            <a data-toggle="collapse" data-parent="#accordion" href="#filterPane0">OUTPATIENT REGISTRATION</a>
+                                            <span class="pull-right panel-collapse-clickable" data-toggle="collapse" data-parent="#accordion" href="#filterPane0">
+                                                <i class="glyphicon glyphicon-chevron-down"></i>
+                                            </span>
+                                        </div>
+                                        <!-- List group -->
+                                        <div id="filterPane0" class="panel-collapse panel-collapse collapse">
+                                            <ul class="list-group">
+                                                <li class="list-group-item"><a href="">Insert Report Menu</a></li>
+                                                <li class="list-group-item"><a href="">Insert Report Menu</a></li>
+                                                <li class="list-group-item"><a href="">Insert Report Menu</a></li>
+                                                <li class="list-group-item"><a href="">Insert Report Menu</a></li>
+                                            </ul>
+                                        </div>
+                                        <!-- Default panel contents -->
 
-                                </ul>
+                                        <!-- Default panel contents -->
+                                        <div class="panel-heading">
+                                            <a data-toggle="collapse" data-parent="#accordion" href="#filterPanel">PATIENT CONSULTATION</a>
+                                            <span class="pull-right panel-collapse-clickable" data-toggle="collapse" data-parent="#accordion" href="#filterPanel">
+                                                <i class="glyphicon glyphicon-chevron-down"></i>
+                                            </span>
+                                        </div>
+                                        <!-- List group -->
+                                        <div id="filterPanel" class="panel-collapse panel-collapse collapse">
+                                            <ul class="list-group">
+                                                <li class="list-group-item"><a href="mcMain2.jsp">Reprint MC</a></li>
+                                                <li class="list-group-item"><a href="timeSlipMain.jsp">Reprint Time Slip</a></li>
+                                            </ul>
+                                        </div>
+                                        <!-- Default panel contents -->
+
+                                        <!-- Default panel contents -->
+                                        <div class="panel-heading">
+                                            <a data-toggle="collapse" data-parent="#accordion" href="#filterPane2">PHARMACY INFO SYSTEM</a>
+                                            <span class="pull-right panel-collapse-clickable" data-toggle="collapse" data-parent="#accordion" href="#filterPane2">
+                                                <i class="glyphicon glyphicon-chevron-down"></i>
+                                            </span>
+                                        </div>
+                                        <!-- List group -->
+                                        <div id="filterPane2" class="panel-collapse panel-collapse collapse">
+                                            <ul class="list-group">
+                                                <li class="list-group-item"><a href="psMain.jsp">Prescription Slip</a></li>
+                                                <li class="list-group-item"><a href="dsMain.jsp">Dispensing Sheet</a></li>
+                                            </ul>
+                                        </div>
+                                        <!-- Default panel contents -->
+
+                                        <!-- Default panel contents -->
+                                        <div class="panel-heading">
+                                            <a data-toggle="collapse" data-parent="#accordion" href="#filterPane2">LABORATORY INFO SYSTEM</a>
+                                            <span class="pull-right panel-collapse-clickable" data-toggle="collapse" data-parent="#accordion" href="#filterPane2">
+                                                <i class="glyphicon glyphicon-chevron-down"></i>
+                                            </span>
+                                        </div>
+                                        <!-- List group -->
+                                        <div id="filterPane2" class="panel-collapse panel-collapse collapse">
+                                            <ul class="list-group">
+                                                <li class="list-group-item"><a href="">Insert Report Menu</a></li>
+                                            </ul>
+                                        </div>
+                                        <!-- Default panel contents -->
+
+                                        <!-- Default panel contents -->
+                                        <div class="panel-heading">
+                                            <a data-toggle="collapse" data-parent="#accordion" href="#filterPane2">INPATIENT MANAGEMENT</a>
+                                            <span class="pull-right panel-collapse-clickable" data-toggle="collapse" data-parent="#accordion" href="#filterPane2">
+                                                <i class="glyphicon glyphicon-chevron-down"></i>
+                                            </span>
+                                        </div>
+                                        <!-- List group -->
+                                        <div id="filterPane2" class="panel-collapse panel-collapse collapse">
+                                            <ul class="list-group">
+                                                <li class="list-group-item"><a href="">Insert Report Menu</a></li>
+                                            </ul>
+                                        </div>
+                                        <!-- Default panel contents -->
+
+                                        <!-- Default panel contents -->
+                                        <div class="panel-heading">
+                                            <a data-toggle="collapse" data-parent="#accordion" href="#filterPane2">BILLING SYSTEM</a>
+                                            <span class="pull-right panel-collapse-clickable" data-toggle="collapse" data-parent="#accordion" href="#filterPane2">
+                                                <i class="glyphicon glyphicon-chevron-down"></i>
+                                            </span>
+                                        </div>
+                                        <!-- List group -->
+                                        <div id="filterPane2" class="panel-collapse panel-collapse collapse">
+                                            <ul class="list-group">
+                                                <li class="list-group-item"><a href="">Insert Report Menu</a></li>
+                                            </ul>
+                                        </div>
+                                        <!-- Default panel contents -->
+
+                                        <!-- Default panel contents -->
+                                        <div class="panel-heading">
+                                            <a data-toggle="collapse" data-parent="#accordion" href="#filterPane2">PATIENT APPOINTMENT</a>
+                                            <span class="pull-right panel-collapse-clickable" data-toggle="collapse" data-parent="#accordion" href="#filterPane2">
+                                                <i class="glyphicon glyphicon-chevron-down"></i>
+                                            </span>
+                                        </div>
+                                        <!-- List group -->
+                                        <div id="filterPane2" class="panel-collapse panel-collapse collapse">
+                                            <ul class="list-group">
+                                                <li class="list-group-item"><a href="">Insert Report Menu</a></li>
+                                            </ul>
+                                        </div>
+                                        <!-- Default panel contents -->
+
+                                        <!-- Default panel contents -->
+                                        <div class="panel-heading">
+                                            <a data-toggle="collapse" data-parent="#accordion" href="#filterPane2">SYSTEM ADMINISTRATOR</a>
+                                            <span class="pull-right panel-collapse-clickable" data-toggle="collapse" data-parent="#accordion" href="#filterPane2">
+                                                <i class="glyphicon glyphicon-chevron-down"></i>
+                                            </span>
+                                        </div>
+                                        <!-- List group -->
+                                        <div id="filterPane2" class="panel-collapse panel-collapse collapse">
+                                            <ul class="list-group">
+                                                <li class="list-group-item"><a href="dataAnalysisMain.jsp">Data Analysis</a></li>
+                                                <li class="list-group-item"><a href="ICD10Main.jsp">ICD10 </a></li>
+                                                <li class="list-group-item"><a href="laporanKosPerubatan.jsp">Report Health Cost </a></li>
+                                                <li class="list-group-item"><a href="drugOrderList.jsp">Total Drug Cost </a></li>
+
+                                            </ul>
+                                        </div>
+                                        <!-- Default panel contents -->
+
+                                        <!-- Default panel contents -->
+                                        <div class="panel-heading">
+                                            <a data-toggle="collapse" data-parent="#accordion" href="#filterPane2">KIOSK</a>
+                                            <span class="pull-right panel-collapse-clickable" data-toggle="collapse" data-parent="#accordion" href="#filterPane2">
+                                                <i class="glyphicon glyphicon-chevron-down"></i>
+                                            </span>
+                                        </div>
+                                        <!-- List group -->
+                                        <div id="filterPane2" class="panel-collapse panel-collapse collapse">
+                                            <ul class="list-group">
+                                                <li class="list-group-item"><a href="">Insert Report Menu</a></li>
+                                            </ul>
+                                        </div>
+                                        <!-- Default panel contents -->
+
+                                        <!-- Default panel contents -->
+                                        <div class="panel-heading">
+                                            <a data-toggle="collapse" data-parent="#accordion" href="#filterPane2">RADIOLOGY INFO SYSTEM</a>
+                                            <span class="pull-right panel-collapse-clickable" data-toggle="collapse" data-parent="#accordion" href="#filterPane2">
+                                                <i class="glyphicon glyphicon-chevron-down"></i>
+                                            </span>
+                                        </div>
+                                        <!-- List group -->
+                                        <div id="filterPane2" class="panel-collapse panel-collapse collapse">
+                                            <ul class="list-group">
+                                                <li class="list-group-item"><a href="">Insert Report Menu</a></li>
+                                            </ul>
+                                        </div>
+                                        <!-- Default panel contents -->
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-md-3">
-                            <div class="panel panel-default panel-report">
-                                <!-- Default panel contents -->
-                                <div class="panel-heading">Kiosk</div>
-                                <!-- List group -->
-                                <ul class="list-group">
-                                    <li class="list-group-item"><a href="">Insert Report Menu</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="panel panel-default panel-report">
-                                <!-- Default panel contents -->
-                                <div class="panel-heading">Radiology Info System</div>
-                                <!-- List group -->
-                                <ul class="list-group">
-                                    <li class="list-group-item"><a href="">Insert Report Menu</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-
                 </div>
             </div>
         </div>
 
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        
         <script>
 
             //    $("#test").load("libraries/reportSideMenus.jsp");
@@ -240,5 +365,7 @@
             //    $("#top").load("libraries/reportTopMenus.jsp");
 
         </script>
+        
+      
     </body>
 </html>

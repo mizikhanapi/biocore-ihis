@@ -1076,3 +1076,12 @@ ui-datepicker-month {
 .tarikh-neu {
     font-weight: 500;
 }
+
+.logo-login{
+    height: 100px;
+    width: 100px;
+}
+
+td>.btn-default {
+    margin-bottom: 5px;
+}
