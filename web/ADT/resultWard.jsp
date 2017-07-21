@@ -61,7 +61,7 @@
                         + " left join pms_patient_biodata c on a.pmi_no = c.PMI_NO  "
                         + " left join wis_ward_class d on d.ward_class_code = a.ward_class_code "
                         + " left join adm_lookup_detail e on e.hfc_cd = a.hfc_cd  "
-                        + " where e.Master_Reference_code = '0041' and a.pmi_no='" + idInput + "' and a.hfc_cd='" + hfc + "'";
+                        + " where e.Master_Reference_code = '0041' and a.pmi_no='" + idInput + "' and e.hfc_cd='" + hfc + "' and a.hfc_cd='" + hfc + "' group by a.pmi_no";
             } else if (idType.equals("icnew") || idType.equals("002")) {
                 searching = "select a.new_ic_no,a.old_ic_no,a.id_type,a.id_no,a.police_case,a.hfc_cd,a.pmi_no,a.episode_date,a.discipline_cd,a.subdiscipline_cd, a.ward_class_code,"
                         //    11       12        13           14                    15              16                    17                    18                       19                       20        
@@ -73,7 +73,8 @@
                         + " from wis_inpatient_episode a left join wis_ward_name b on a.ward_id = b.ward_id "
                         + " left join pms_patient_biodata c on a.pmi_no = c.PMI_NO  "
                         + " left join wis_ward_class d on d.ward_class_code = a.ward_class_code  "
-                        + " where a.NEW_IC_NO='" + idInput + "' and a.hfc_cd='" + hfc + "'";
+                        + " left join adm_lookup_detail e on e.Detail_Reference_Code = c.SEX_CODE  "
+                        + " where a.NEW_IC_NO='" + idInput + "' and e.hfc_cd='" + hfc + "' and a.hfc_cd='" + hfc + "' group by a.pmi_no";
 
             } else if (idType.equals("icold") || idType.equals("003")) {
                 searching = "select a.new_ic_no,a.old_ic_no,a.id_type,a.id_no,a.police_case,a.hfc_cd,a.pmi_no,a.episode_date,a.discipline_cd,a.subdiscipline_cd, a.ward_class_code,"
@@ -86,7 +87,8 @@
                         + " from wis_inpatient_episode a left join wis_ward_name b on a.ward_id = b.ward_id "
                         + " left join pms_patient_biodata c on a.pmi_no = c.PMI_NO  "
                         + " left join wis_ward_class d on d.ward_class_code = a.ward_class_code  "
-                        + " where a.OLD_IC_NO='" + idInput + "' and a.hfc_cd='" + hfc + "'";
+                        + " left join adm_lookup_detail e on e.Detail_Reference_Code = c.SEX_CODE  "
+                        + " where a.OLD_IC_NO='" + idInput + "' and e.hfc_cd='" + hfc + "' and a.hfc_cd='" + hfc + "' group by a.pmi_no";
             } else {
                 searching = "select a.new_ic_no,a.old_ic_no,a.id_type,a.id_no,a.police_case,a.hfc_cd,a.pmi_no,a.episode_date,a.discipline_cd,a.subdiscipline_cd, a.ward_class_code,"
                         //    11       12        13           14                    15              16                    17                    18                       19                       20        
@@ -98,7 +100,8 @@
                         + " from wis_inpatient_episode a left join wis_ward_name b on a.ward_id = b.ward_id "
                         + " left join pms_patient_biodata c on a.pmi_no = c.PMI_NO  "
                         + " left join wis_ward_class d on d.ward_class_code = a.ward_class_code  "
-                        + " where a.ID_NO='" + idInput + "' AND a.ID_TYPE='" + idType + "' and a.hfc_cd='" + hfc + "'";
+                        + " left join adm_lookup_detail e on e.Detail_Reference_Code = c.SEX_CODE  "
+                        + " where a.ID_NO='" + idInput + "' AND a.ID_TYPE='" + idType + "' and e.hfc_cd='" + hfc + "' and a.hfc_cd='" + hfc + "' group by a.pmi_no";
             }
 
         } else if (methodSearching.equalsIgnoreCase("0")) {
@@ -113,7 +116,7 @@
                     + " left join pms_patient_biodata c on a.pmi_no = c.PMI_NO  "
                     + " left join wis_ward_class d on d.ward_class_code = a.ward_class_code  "
                     + " left join adm_lookup_detail e on e.Detail_Reference_Code = c.SEX_CODE  "
-                    + " where e.Master_Reference_code = '0041' and a.ward_id ='" + idWard + "' and e.hfc_cd='" + hfc + "' and a.hfc_cd='" + hfc + "'";
+                    + " where e.Master_Reference_code = '0041' and a.ward_id ='" + idWard + "' and e.hfc_cd='" + hfc + "' and a.hfc_cd='" + hfc + "' group by a.pmi_no";
         }
 
         ArrayList<ArrayList<String>> dataList = conn.getData(searching);
@@ -142,11 +145,10 @@
                 ageS = "undefined";
             }
         }
-        
-        
-    String patientBio =  ageS ;
-    session.setAttribute("patientCategory", patientBio);
-       out.print(patientBio);
+
+        String patientBio = ageS;
+        session.setAttribute("patientCategory", patientBio);
+      //  out.print(patientBio);
 
         int size1141 = dataList.size();
         if (size1141 > 0) {
@@ -183,7 +185,7 @@
 
 </tbody>
 </table>
-                       
+
 
 <script>
     $("#WardOccuTable").on('click', "#OccuTableTT #Occu_transfer", function () {

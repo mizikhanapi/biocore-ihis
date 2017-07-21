@@ -35,9 +35,9 @@
             <div class="col-md-6">
                 <input id="DisWard" name="Dis" placeholder="Insert Discipline Code" maxlength="30" type="text"  class="form-control input-md">
                 <input type="hidden" id="dis_cd">
-                                <input  type="hidden" id="sub_cd">
+                <input  type="hidden" id="sub_cd">
 
-                
+
                 <div id="disListWard" class="search-drop"></div>
             </div>
 
@@ -197,6 +197,7 @@
 
                 //get value from text box and select box
                 //var Dis = $('#Dis').val();
+                var subO = $("#sub_cd").val();
                 var Diso = $('#dis_cd').val();
                 var Dis = Diso;
                 var WardType = $('#WardType').val();
@@ -232,8 +233,12 @@
                         //console.log(list);
                         var pageNow = $('#pageNow').val();
                         if (pageNow === "PT") {
+                            var subO = $("#sub_cd").val();
+
                             var Diso = $('#dis_cd').val();
                             var wname = $('#wname').val();
+                            var array_dis = wname.split("|");
+                            var wname = array_dis[0];
                             var WardType = $('#WardType').val();
 
                             $('#wardnew').val(wname);
