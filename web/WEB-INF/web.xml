@@ -179,7 +179,13 @@
     <!--mapping for LIS end-->
     
     
-    <!-- mapping for PIS start -->
+    
+    
+    
+    
+    
+    <!-- Mapping For PIS Hidding URL Start -->
+    
     
     <!-- mapping for PIS HIS040001 -->
     <servlet>
@@ -224,7 +230,6 @@
         <url-pattern>/PIS/Manage_Vendor</url-pattern>
     </servlet-mapping>
     <!-- mapping for PIS HIS040004 -->
-    
     
     <!-- mapping for PIS HIS040005 -->
     <servlet>
@@ -282,7 +287,9 @@
     <!-- mapping for PIS HIS040009 -->
     
     
-    <!-- mapping for PIS end -->
+    <!-- Mapping For PIS Hidding URL End -->
+
+
 
 
     
