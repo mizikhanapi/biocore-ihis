@@ -23,6 +23,7 @@
         <!-- header -->
         <%@include file = "libraries/headLibrary.jsp" %>
         <%@include file = "../assets/header.html" %>
+        <link href="libraries/css/jquery.datetimepicker.css" rel="stylesheet">
         <!-- header -->
     </head>
 
@@ -94,7 +95,7 @@
         <!-- Placed at the end of the document so the pages load faster -->
         <%@include file = "libraries/footLibrary.jsp" %>
         <!-- Placed at the end of the document so the pages load faster -->
-       
+        <script src="libraries/js/jquery.datetimepicker.full.min.js"></script>
 
         <script>
 
