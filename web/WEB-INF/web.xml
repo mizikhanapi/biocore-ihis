@@ -237,6 +237,16 @@
     </servlet-mapping>
     <!-- mapping for PIS HIS040005 -->
     
+    <!-- mapping for PIS HIS040006 -->
+    <servlet>
+        <servlet-name>Supplier_List</servlet-name>
+        <jsp-file>/PIS/HIS040006.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Supplier_List</servlet-name>
+        <url-pattern>/PIS/Supplier_List</url-pattern>
+    </servlet-mapping>
+    <!-- mapping for PIS HIS040006 -->
     
     <!-- mapping for PIS HIS040009 -->
     <servlet>
