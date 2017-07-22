@@ -225,6 +225,18 @@
     </servlet-mapping>
     <!-- mapping for PIS HIS040004 -->
     
+    
+    <!-- mapping for PIS HIS040005 -->
+    <servlet>
+        <servlet-name>MDC_Drug_List</servlet-name>
+        <jsp-file>/PIS/HIS040005.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>MDC_Drug_List</servlet-name>
+        <url-pattern>/PIS/MDC_Drug_List</url-pattern>
+    </servlet-mapping>
+    <!-- mapping for PIS HIS040005 -->
+    
     <!-- mapping for PIS end -->
 
 
