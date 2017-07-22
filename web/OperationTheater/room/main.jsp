@@ -106,7 +106,7 @@
                         }
                         else if(data.trim()==='duplicate'){
                             msg="The number "+code+" is already in used.\nPlease insert different number.";
-                            $('#ROOM_Code').val();
+                            $('#ROOM_Code').val('');
                         }
                         else{
                             msg=data.trim();
