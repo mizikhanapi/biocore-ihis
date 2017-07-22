@@ -203,6 +203,19 @@
     </servlet-mapping>
     <!-- mapping for PIS HIS040002 -->
     
+    <!-- mapping for PIS HIS040003 -->
+    <servlet>
+        <servlet-name>Manage_Drug_Stock</servlet-name>
+        <jsp-file>/PIS/HIS040003.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Manage_Drug_Stock</servlet-name>
+        <url-pattern>/PIS/Manage_Drug_Stock</url-pattern>
+    </servlet-mapping>
+    <!-- mapping for PIS HIS040003 -->
+    
+
+    
     <!-- mapping for PIS end -->
 
 

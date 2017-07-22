@@ -17,7 +17,7 @@
         <!-- Menu without dropdown -->
         <li><a href="Dispense_Drug_Order"><i class="fa fa-shopping-cart fa-lg" aria-hidden="true" ></i>Dispense Drug Order</a></li>
         <li><a href="Manage_Drug_Code"><i class="fa fa-table fa-lg" aria-hidden="true" ></i>Manage Drug Code </a></li>
-        <li><a href="HIS040003.jsp"><i class="fa fa-recycle fa-lg" aria-hidden="true" ></i>Manage Drug Stock </a></li>
+        <li><a href="Manage_Drug_Stock"><i class="fa fa-recycle fa-lg" aria-hidden="true" ></i>Manage Drug Stock </a></li>
         <li><a href="HIS040004.jsp"><i class="fa fa-book fa-lg" aria-hidden="true" ></i>Manage Vendor</a></li>
         <!-- Menu without dropdown -->
 
