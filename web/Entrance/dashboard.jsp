@@ -216,7 +216,7 @@
                         %>
 
                         <div class="col-xs-6 col-sm-6 col-md-3">
-                            <a href="../PIS/HIS040001.jsp" class="thumbnail">
+                            <a href="../PIS/Dispense_Drug_Order" class="thumbnail">
                                 <div class="kotak text-center">
                                     <i class="fa fa-medkit" aria-hidden="true" style="color: #9A67A0;font-size: 4em;"></i>
                                     <h3>Pharmacy Info System</h3>

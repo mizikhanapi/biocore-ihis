@@ -24,7 +24,7 @@
         <servlet-name>Login</servlet-name>
         <url-pattern>/Entrance/Sign-in</url-pattern>
     </servlet-mapping>
-<!--    <servlet-mapping>
+    <!--    <servlet-mapping>
         <servlet-name>Login</servlet-name>
         <url-pattern>/Entrance/*</url-pattern>
     </servlet-mapping>-->
@@ -177,6 +177,22 @@
         <url-pattern>/LIS/Maintain_Test_Code</url-pattern>
     </servlet-mapping>
     <!--mapping for LIS end-->
+    
+    
+    <!--mapping for PIS start-->
+    
+    <servlet>
+        <servlet-name>Dispense_Drug_Order</servlet-name>
+        <jsp-file>/PIS/HIS040001.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Dispense_Drug_Order</servlet-name>
+        <url-pattern>/PIS/Dispense_Drug_Order</url-pattern>
+    </servlet-mapping>
+    
+    <!--mapping for PIS end-->
+
+
     
     <session-config>
         <session-timeout>
