@@ -179,8 +179,9 @@
     <!--mapping for LIS end-->
     
     
-    <!--mapping for PIS start-->
+    <!-- mapping for PIS start -->
     
+    <!-- mapping for PIS HIS040001 -->
     <servlet>
         <servlet-name>Dispense_Drug_Order</servlet-name>
         <jsp-file>/PIS/HIS040001.jsp</jsp-file>
@@ -189,8 +190,20 @@
         <servlet-name>Dispense_Drug_Order</servlet-name>
         <url-pattern>/PIS/Dispense_Drug_Order</url-pattern>
     </servlet-mapping>
+    <!-- mapping for PIS HIS040001 -->
+
+    <!-- mapping for PIS HIS040002 -->
+    <servlet>
+        <servlet-name>Manage_Drug_Code</servlet-name>
+        <jsp-file>/PIS/HIS040002.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Manage_Drug_Code</servlet-name>
+        <url-pattern>/PIS/Manage_Drug_Code</url-pattern>
+    </servlet-mapping>
+    <!-- mapping for PIS HIS040002 -->
     
-    <!--mapping for PIS end-->
+    <!-- mapping for PIS end -->
 
 
     
