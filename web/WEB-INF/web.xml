@@ -237,6 +237,19 @@
     </servlet-mapping>
     <!-- mapping for PIS HIS040005 -->
     
+    
+    <!-- mapping for PIS HIS040009 -->
+    <servlet>
+        <servlet-name>ATC_Drug_List</servlet-name>
+        <jsp-file>/PIS/HIS040009.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ATC_Drug_List</servlet-name>
+        <url-pattern>/PIS/ATC_Drug_List</url-pattern>
+    </servlet-mapping>
+    <!-- mapping for PIS HIS040009 -->
+    
+    
     <!-- mapping for PIS end -->
 
 

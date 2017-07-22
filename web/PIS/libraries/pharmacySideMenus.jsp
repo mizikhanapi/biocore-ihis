@@ -26,7 +26,7 @@
             <a href="#"><i class="fa fa-bar-chart fa-lg"></i> Report <span class="arrow"></span></a>
         </li>
         <ul class="sub-menu collapse" id="Report">
-            <li><a data-toggle="modal" data-target="#" href="HIS040009.jsp">List Of ATC Drugs</a></li>
+            <li><a data-toggle="modal" data-target="#" href="ATC_Drug_List">List Of ATC Drugs</a></li>
             <li><a data-toggle="modal" data-target="#" href="MDC_Drug_List">List Of MDC Drugs</a></li>
             <li><a data-toggle="modal" data-target="#" href="HIS040006.jsp">List Of Supplier</a></li>
             <li><a data-toggle="modal" data-target="#" href="HIS040007.jsp">List Of Pending Order</a></li>
