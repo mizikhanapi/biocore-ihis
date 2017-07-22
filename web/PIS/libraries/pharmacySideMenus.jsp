@@ -30,7 +30,7 @@
             <li><a data-toggle="modal" data-target="#" href="MDC_Drug_List">List Of MDC Drugs</a></li>
             <li><a data-toggle="modal" data-target="#" href="Supplier_List">List Of Supplier</a></li>
             <li><a data-toggle="modal" data-target="#" href="Pendding_Order_List">List Of Pending Order</a></li>
-            <li><a data-toggle="modal" data-target="#" href="HIS040008.jsp">Sales For Pharmacy</a></li>
+            <li><a data-toggle="modal" data-target="#" href="Pharmacy_Sales_List">Sales For Pharmacy</a></li>
         </ul> 
         <!-- Menu with dropdown -->
     </ul>  
