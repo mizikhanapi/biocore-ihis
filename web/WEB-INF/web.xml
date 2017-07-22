@@ -248,6 +248,17 @@
     </servlet-mapping>
     <!-- mapping for PIS HIS040006 -->
     
+        <!-- mapping for PIS HIS040007 -->
+    <servlet>
+        <servlet-name>Pendding_Order_List</servlet-name>
+        <jsp-file>/PIS/HIS040007.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Pendding_Order_List</servlet-name>
+        <url-pattern>/PIS/Pendding_Order_List</url-pattern>
+    </servlet-mapping>
+    <!-- mapping for PIS HIS040007 -->
+    
     <!-- mapping for PIS HIS040009 -->
     <servlet>
         <servlet-name>ATC_Drug_List</servlet-name>

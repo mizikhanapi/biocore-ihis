@@ -29,7 +29,7 @@
             <li><a data-toggle="modal" data-target="#" href="ATC_Drug_List">List Of ATC Drugs</a></li>
             <li><a data-toggle="modal" data-target="#" href="MDC_Drug_List">List Of MDC Drugs</a></li>
             <li><a data-toggle="modal" data-target="#" href="Supplier_List">List Of Supplier</a></li>
-            <li><a data-toggle="modal" data-target="#" href="HIS040007.jsp">List Of Pending Order</a></li>
+            <li><a data-toggle="modal" data-target="#" href="Pendding_Order_List">List Of Pending Order</a></li>
             <li><a data-toggle="modal" data-target="#" href="HIS040008.jsp">Sales For Pharmacy</a></li>
         </ul> 
         <!-- Menu with dropdown -->
