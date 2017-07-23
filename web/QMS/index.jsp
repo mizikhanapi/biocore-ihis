@@ -52,6 +52,10 @@
                     <%@include file="libraries/topMenus.jsp" %>
                     <!-- menu top -->
                     <input id="hfcCODE" name="hfcCODE" type="hidden" value="<%=session.getAttribute("HEALTH_FACILITY_CODE").toString()%>">
+                    <input id="tQMS_GLOBAL_HFC_CODE" name="hfcCODE" type="hidden" value="<%=session.getAttribute("HEALTH_FACILITY_CODE").toString()%>">
+                    <input id="tQMS_GLOBAL_DISCIPLINE_CODE" name="hfcCODE" type="hidden" value="<%=session.getAttribute("DISCIPLINE_CODE").toString()%>">
+                    <input id="tQMS_GLOBAL_SUB_DISCIPLINE_CODE" name="hfcCODE" type="hidden" value="<%=session.getAttribute("SUB_DISCIPLINE_CODE").toString()%>">
+                   
                     <div class="row">
                         <div class="col-md-12">
                             <div class="thumbnail">

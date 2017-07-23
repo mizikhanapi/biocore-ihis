@@ -4,7 +4,7 @@
     Author     : -D-
 --%>
 <!--Modal add Procedure-->
-<div class="modal fade" id="CIS040006" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+<div class="modal fade" id="CIS040011" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
@@ -15,11 +15,11 @@
                 <div class="tabbable-line">
                     <ul class="nav nav-tabs ">
                         <li class="active" id="POS_NEW">
-                            <a href="#procedureOrder1" data-toggle="tab">
+                            <a href="#surgicalProcedure1" data-toggle="tab">
                                 New Procedure Order</a>
                         </li>
                         <li id="POS_History" >
-                            <a href="#procedureOrder2" data-toggle="tab">
+                            <a href="#surgicalProcedure2" data-toggle="tab">
                                 Drug Procedure History</a>
                         </li>
                     </ul>
@@ -31,92 +31,80 @@
                     <div class="tabbable-line">
                         <!-- tab content -->
                         <div class="tab-content">
-                            <div class="tab-pane active" id="procedureOrder1">
+                            <div class="tab-pane active" id="surgicalProcedure1">
                                 <div class="form-group">
                                     <input type="hidden" name="POS" id="codePOS" class="form-control input-lg" tabindex="4">
                                 </div>
-                                <div class="row">
-                                    <div class="col-md-6">
+                                <div class="row">                 
+                                    <div class="col-md-12">
                                         <div class="form-group">
-                                            <label class="col-md-6 control-label" for="textinput">Search Problem</label>
+                                            <label class="col-md-6 control-label" for="textinput">Search Category</label>
                                             <div class="col-md-12">
-                                                <input class="form-control input-lg" type="hidden"  id="problemCodePOS" placeholder="">
-                                                <input class="form-control input-lg" type="text" name="problem"  id="tCISOEPOSProblemName" placeholder="Search Problem Name..." tabindex="4">
-                                                <div id="tCISOEPOSProblemNameLoading" ></div>
+                                                <input class="form-control input-lg" type="hidden"  id="tCISOESPOCategoryCode" placeholder="">
+                                                <input class="form-control input-lg" type="text" name="problem"  id="tCISOESPOCategoryName" placeholder="Search Surgical Category..." tabindex="4" data-search-by-word="true">
+                                                <div id="tCISOESPOCategoryNameLoading" ></div>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-md-6">
+                                </div>
+                                <div class="row">
+
+                                    <div class="col-md-12">
                                         <div class="form-group">
                                             <label class="col-md-6 control-label" for="textinput">Search Procedure</label>
-                                            <input class="form-control input-lg" type="hidden"  id="tCISOEPOS_0_ID">
-                                            <input class="form-control input-lg" type="text" name="tCISOEPOSSearch"  id="tCISOEPOSSearch" placeholder="Search Procedure Name..." tabindex="4">
-                                            <div id="tCISOEPOSSearchLoading" ></div>
+                                            <input class="form-control input-lg" type="hidden"  id="tCISOESPOSearch_Code">
+                                            <input class="form-control input-lg" type="text" name="tCISOESPOSearch"  id="tCISOESPOSearch" placeholder="Search Surgical Procedure..." tabindex="4" data-search-by-word="true">
+                                            <div id="tCISOESPOSearchLoading" ></div>
                                             <!--                                    <input class="form-control input-lg" type="text" name="problem"  id="Problem18" placeholder="Search Procedure..." tabindex="4">-->
                                             <input class="form-control input-lg" type="hidden"  id="hfcOrderDetailSPO" placeholder="">
                                             <input class="form-control input-lg" type="hidden"  id="hfcProviderDetailSPO" placeholder="">
-                                            <input class="form-control input-lg" type="hidden"  id="hfcIdPOS">
-                                            <div id="match18"></div>
                                         </div>
-                                        <div class="form-group" id="div_CIS_OE_POS_LVL1">
-                                            <input class="form-control input-lg" type="hidden"  id="tCISOEPOS_1_ID">
-                                            <input class="form-control input-lg" type="text" name="tCISOEPOSSearch"  id="tCISOEPOS1Search" placeholder="Search Procedure Name..." tabindex="4">
-                                            <div id="tCISOEPOS1SearchLoading" ></div>
-                                        </div>
-                                        <div class="form-group"  id="div_CIS_OE_POS_LVL2">
-                                            <input class="form-control input-lg" type="hidden"  id="tCISOEPOS_2_ID">
-                                            <input class="form-control input-lg" type="text" name="tCISOEPOSSearch"  id="tCISOEPOS2Search" placeholder="Search Procedure Name..." tabindex="4">
-                                            <div id="tCISOEPOS2SearchLoading" ></div>
-                                        </div>
-                                    </div>
-                                </div>
 
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label class="col-md-6" for="textinput">Appointment</label>
-                                            <div class="col-md-12">
-                                                <input class="form-control input-lg" type="text"  id="appointmentPOS" placeholder="">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label class="col-md-6" for="textinput">Patient Condition</label>
-                                            <div class="col-md-12">
-                                                <select id="patientConditionPOScd" class="form-control input-lg">
-                                                    <option>Please select condition..</option>
-                                                    <%
-                                                        if (dataPatientCondition.size() > 0) {
-                                                            for (int i = 0; i < dataPatientCondition.size(); i++) {
-                                                    %>
-                                                    <option value="<%out.print(dataPatientCondition.get(i).get(0));%>"><%out.print(dataPatientCondition.get(i).get(1));%></option>
-                                                    <%
-                                                            }
-                                                        }%>
-                                                </select>
-                                            </div>
-                                        </div>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label class="col-md-6" for="textinput">Priority</label>
                                             <div class="col-md-12">
-                                                <select id="priorityPOScd" class="form-control input-lg">
-                                                    <option >Please select condition..</option>
-                                                    <%
-                                                        if (dataPriority.size() > 0) {
-                                                            for (int i = 0; i < dataPriority.size(); i++) {
-                                                    %>
-                                                    <option value="<%out.print(dataPriority.get(i).get(0));%>"><%out.print(dataPriority.get(i).get(1));%></option>
-                                                    <%
-                                                            }
-                                                        }%>
-
-                                                </select>
+                                                <label class="col-md-6 control-label" for="textinput">Start Date</label>
+                                                <label class="col-md-6 control-label" for="textinput">Start Time</label>
                                             </div>
+                                            <div class="col-md-12">
+                                                <div class="col-md-6">
+
+                                                    <input class="form-control input-lg CIS-OE-SPO-DATE" type="text" name="problem"  id="tCISOESPOStartDate" placeholder="Date" tabindex="4" >
+
+                                                </div>
+                                                <div class="col-md-6">
+
+                                                    <input class="form-control input-lg CIS-OE-SPO-TIME" type="text" name="problem"  id="tCISOESPOStartTime" placeholder="Time" tabindex="4" >
+
+                                                </div>
+                                            </div>
+                                            
+
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <div class="col-md-12">
+                                                <label class="col-md-6 control-label" for="textinput">Expected End Date</label>
+                                                <label class="col-md-6 control-label" for="textinput">End Time</label>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="col-md-6">
+
+                                                    <input class="form-control input-lg CIS-OE-SPO-DATE" type="text" name="problem"  id="tCISOESPOENDDate" placeholder="Date" tabindex="4" data-search-by-word="true">
+
+                                                </div>
+                                                <div class="col-md-6">
+
+                                                    <input class="form-control input-lg CIS-OE-SPO-TIME" type="text" name="problem"  id="tCISOESPOEndTime" placeholder="Time" tabindex="4" data-search-by-word="true">
+
+                                                </div>
+                                            </div>
+
+
                                         </div>
                                     </div>
                                 </div>
@@ -126,7 +114,7 @@
 
                                         <div class="form-group">
                                             <h4 class="modal-title modalTextLabel">Comments</h4>
-                                            <textarea type="text" name="display_name" id="tCIS_POSCommentArea" class="form-control input-lg" placeholder="" tabindex="3"></textarea>
+                                            <textarea type="text" name="display_name" id="tCIS_POSSurgicalCommentArea" class="form-control input-lg" placeholder="" tabindex="3"></textarea>
                                         </div>
                                     </div>
                                 </div>
@@ -139,20 +127,20 @@
                                 </div>
 
                                 <div class="text-right" role="group">
-                                    <button type="button" id="btnCIS_OE_POS_CANCEL" class="btn btn-link" role="button">Cancel</button>
-                                    <button type="button" id="btnCIS_OE_POS_UPDATE" class="btn btn-default" role="button">Update</button>
-                                    <button type="button" id="btnCIS_OE_POS_ADD" class="btn btn-primary " role="button">Add</button>
+                                    <button type="button" id="btnCIS_OE_POSSurgical_CANCEL" class="btn btn-link" role="button">Cancel</button>
+                                    <button type="button" id="btnCIS_OE_POSSurgical_UPDATE" class="btn btn-default" role="button">Update</button>
+                                    <button type="button" id="btnCIS_OE_POSSurgical_ADD" class="btn btn-primary " role="button">Add</button>
                                 </div>
                                                         
                             </div>
                             <hr>
-                            <div class="tab-pane" id="procedureOrder2">
+                            <div class="tab-pane" id="surgicalProcedure2">
                                 <form class="form-horizontal" name="myForm" id="myForm">
                                     <!-- Select Basic -->
                                     <div class="form-group">
                                         <label class="col-md-4 control-label" for="selectbasic">Search drug by</label>
                                         <div class="col-md-4">
-                                            <select id="selectCIS_OE_POS_SEARCH_TYPE" name="idType" class="form-control" required="">
+                                            <select id="selectCIS_OE_POSSurgical_SEARCH_TYPE" name="idType" class="form-control" required="">
                                                 <option selected="" disabled="" value="-">View by</option>
                                                 <option value="today">Today</option>
                                                 <option value="previous">Previous Episode</option>
@@ -164,23 +152,23 @@
                                     <div class="form-group">
                                         <label class="col-md-4 control-label" for="textinput">Order</label>
                                         <div class="col-md-4">
-                                            <input type="text" class="form-control input-md" id="tCIS_OE_POS_SEARCH_ORDER_ID" name="idInput" placeholder="Order ID">
+                                            <input type="text" class="form-control input-md" id="tCIS_OE_POSSurgical_SEARCH_ORDER_ID" name="idInput" placeholder="Order ID">
                                         </div>
                                     </div>
 
                                     <div class="text-center">
-                                        <button class="btn btn-primary" type="button" id="btnCIS_OE_POS_SEARCH_ORDER" name="searchPatient"><i class="fa fa-search"></i>&nbsp; Search</button>
+                                        <button class="btn btn-primary" type="button" id="btnCIS_OE_POSSurgical_SEARCH_ORDER" name="searchPatient"><i class="fa fa-search"></i>&nbsp; Search</button>
                                         <button id="btnCIS_OE_POS_SEARCH_CLEAR" name="clearSearch" type="button" class="btn btn-default"><i class="fa fa-times"></i>&nbsp; Clear</button>
                                     </div>
                                 </form>
                                 <br/>
-                                <div id="divCIS_OE_POS_OrderSearchResult"></div>
+                                <div id="divCIS_OE_POSSurgical_OrderSearchResult"></div>
                             </div>
                         </div>
                     </div>
                 </div>
                 <table class="table table-bordered table-striped">
-                    <thead id="tableOrderPOS">
+                    <thead id="tableOrderPOSSurgical">
                         <tr>
                             <td>Problem Name</td>
                             <td>Procedure Name</td>
@@ -189,7 +177,7 @@
                             <td>Action</td>
                         </tr>
                     </thead>
-                    <tbody id="tableOrderDTO">
+                    <tbody id="tableOrderPOSSurgical">
 
                     </tbody>
                 </table>
@@ -198,7 +186,7 @@
             <div class="modal-footer">
                 <div class="btn-group btn-group-justified" role="group" aria-label="group button">
                     <div class="btn-group" role="group">
-                        <button type="button" class="btn btn-success btn-block btn-lg" id="btnCIS_OE_POS_SUBMIT" role="button">Submit Orders</button>
+                        <button type="button" class="btn btn-success btn-block btn-lg" id="btnCIS_OE_POSSurgical_SUBMIT" role="button">Submit Orders</button>
                     </div>
                     <div class="btn-group btn-delete hidden" role="group">
                         <button type="button" id="delImage" class="btn btn-default btn-block btn-lg" data-dismiss="modal"  role="button">Clear</button>
@@ -213,4 +201,4 @@
 </div>
 <!--End add Procedure-->
 
-<!--<script src="jsFunction/CIS040006.js" type="text/javascript"></script>-->
+<script src="jsFunction/CIS040011.js" type="text/javascript"></script>

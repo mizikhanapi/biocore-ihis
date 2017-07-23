@@ -179,7 +179,39 @@ function searchHFCOnly(fieldId, loadingDivId) {
             }
         }
     });
+    $("#" + fieldId).on('before:flexdatalist.data', function (response) {
+        $('#' + loadingDivId).html('<img src="img/LoaderIcon.gif" />');
+    });
+    $("#" + fieldId).on('after:flexdatalist.data', function (response) {
+        $('#' + loadingDivId).html('');
+    });
 }
+function searchHFCDefault(fieldId, loadingDivId,value) {
+
+    $('#' + fieldId).val(value).flexdatalist({
+        minLength: 1,
+        searchIn: 'name',
+        searchDelay: 2000,
+        url: directory+"Result/ResultHFCSearch.jsp",
+        cache: true,
+        params: {
+            timeout: 3000,
+            success: function (result) {
+                console.log(result);
+                if (result === undefined) {
+                    $('#' + loadingDivId).html('No Record');
+                }
+            }
+        }
+    });
+    $("#" + fieldId).on('before:flexdatalist.data', function (response) {
+        $('#' + loadingDivId).html('<img src="img/LoaderIcon.gif" />');
+    });
+    $("#" + fieldId).on('after:flexdatalist.data', function (response) {
+        $('#' + loadingDivId).html('');
+    });
+}
+
 
 
 function searchDisciplineOnly(fieldId, loadingDivId, hfc_code) {
@@ -200,6 +232,12 @@ function searchDisciplineOnly(fieldId, loadingDivId, hfc_code) {
             }
         }
     });
+    $("#" + fieldId).on('before:flexdatalist.data', function (response) {
+        $('#' + loadingDivId).html('<img src="img/LoaderIcon.gif" />');
+    });
+    $("#" + fieldId).on('after:flexdatalist.data', function (response) {
+        $('#' + loadingDivId).html('');
+    });
 }
 
 function retrieveDisciplineOnly(fieldId, loadingDivId, hfc_code, currentValue) {
@@ -219,6 +257,12 @@ function retrieveDisciplineOnly(fieldId, loadingDivId, hfc_code, currentValue) {
                 }
             }
         }
+    });
+    $("#" + fieldId).on('before:flexdatalist.data', function (response) {
+        $('#' + loadingDivId).html('<img src="img/LoaderIcon.gif" />');
+    });
+    $("#" + fieldId).on('after:flexdatalist.data', function (response) {
+        $('#' + loadingDivId).html('');
     });
 }
 
@@ -258,6 +302,8 @@ function getHFCOrderProviderDetail(orderHfc, detailField) {
             $("#" + detailField).val(response.trim());
         }
     })
+    
+    
 
 }
 
@@ -279,6 +325,12 @@ function searchWard(fieldId, loadingDivId, hfc_cd, discipline_cd, currentValue, 
             }
         }
     });
+    $("#" + fieldId).on('before:flexdatalist.data', function (response) {
+        $('#' + loadingDivId).html('<img src="img/LoaderIcon.gif" />');
+    });
+    $("#" + fieldId).on('after:flexdatalist.data', function (response) {
+        $('#' + loadingDivId).html('');
+    });
 }
 
 function searchWardClass(fieldId, loadingDivId, hfc_cd, discipline_cd, currentValue) {
@@ -298,6 +350,13 @@ function searchWardClass(fieldId, loadingDivId, hfc_cd, discipline_cd, currentVa
                 }
             }
         }
+    });
+    
+    $("#" + fieldId).on('before:flexdatalist.data', function (response) {
+        $('#' + loadingDivId).html('<img src="img/LoaderIcon.gif" />');
+    });
+    $("#" + fieldId).on('after:flexdatalist.data', function (response) {
+        $('#' + loadingDivId).html('');
     });
 }
 
@@ -400,6 +459,12 @@ function searchSubdiscipline(hfc_cd,discipline_cd,subdiscipline_name_id, subdisc
             }
         }
     });
+    $("#" + subdiscipline_name_id).on('before:flexdatalist.data', function (response) {
+        $('#' + subdiscipline_loading_id).html('<img src="img/LoaderIcon.gif" />');
+    });
+    $("#" + subdiscipline_name_id).on('after:flexdatalist.data', function (response) {
+        $('#' + subdiscipline_loading_id).html('');
+    });
 }
 
 function getSubDisciplineCode(hfc_cd,discipline_code, subdiscipline_name, subdiscipline_code_id){
@@ -422,4 +487,58 @@ function getSubDisciplineCode(hfc_cd,discipline_code, subdiscipline_name, subdis
                 
             }
         })
+}
+
+
+function searchDisciplineValue(fieldId, loadingDivId, hfc_code, value) {
+
+    $('#' + fieldId).val(value).flexdatalist({
+        minLength: 1,
+        searchIn: 'name',
+        searchDelay: 2000,
+        url: directory+"Result/ResultDISCIPLINESearch.jsp?hfc_code=" + hfc_code,
+        cache: true,
+        params: {
+            timeout: 3000,
+            success: function (result) {
+                console.log(result);
+                if (result === undefined) {
+                    $('#' + loadingDivId).html('No Record');
+                }
+            }
+        }
+    });
+    
+    $("#" + fieldId).on('before:flexdatalist.data', function (response) {
+        $('#' + loadingDivId).html('<img src="img/LoaderIcon.gif" />');
+    });
+    $("#" + fieldId).on('after:flexdatalist.data', function (response) {
+        $('#' + loadingDivId).html('');
+    });
+}
+
+function searchSubdisciplineValue(hfc_cd,discipline_cd,subdiscipline_name_id, subdiscipline_loading_id, value){
+    
+    $('#' + subdiscipline_name_id).val(value).flexdatalist({
+        minLength: 1,
+        searchIn: 'name',
+        searchDelay: 2000,
+        url: directory + "Result/ResultSUBDISCIPLINESearch.jsp?hfc_code=" + hfc_cd + "&dis_code=" + discipline_cd,
+        cache: true,
+        params: {
+            timeout: 3000,
+            success: function (result) {
+
+                if (result === undefined) {
+                    $('#' + subdiscipline_loading_id).html('No Record');
+                }
+            }
+        }
+    });
+    $("#" + subdiscipline_name_id).on('before:flexdatalist.data', function (response) {
+        
+    });
+    $("#" + subdiscipline_name_id).on('after:flexdatalist.data', function (response) {
+        $('#' + subdiscipline_loading_id).html('');
+    });
 }

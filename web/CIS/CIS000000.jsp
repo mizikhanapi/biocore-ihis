@@ -288,8 +288,10 @@
 
         <%@ include file="CIS04/CIS0104.jsp" %> 
         <%@ include file="discharge/dischargeSummaryModal.jsp" %> 
+  
+        
 
-
+    
         <!--<div w3-include-html=""></div>
         <div w3-include-html="CIS02/CIS020002.jsp"></div>
         <div w3-include-html="CIS02/CIS020003.jsp"></div>

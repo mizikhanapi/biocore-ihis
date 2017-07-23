@@ -50,7 +50,7 @@
                                     <label class="col-md-6 control-label" for="textinput" style="padding: 0px">Health Facility :</label>
                                      <div class="form-group">
                                         <input class="form-control input-lg" type="text" name="tQMS_ATQ_HFC"  id="tQMS_ATQ_HFC" placeholder="Search Health Facility..." tabindex="4">
-                                        <input class="form-control input-lg" type="hidden" name="tQMS_ATQ_HFC_Code"  id="tQMS_ATQ_HFC_Code" placeholder="Search Health Facility..." tabindex="4" readonly="">
+                                        <input class="form-control input-lg" type="text" name="tQMS_ATQ_HFC_Code"  id="tQMS_ATQ_HFC_Code" placeholder="Search Health Facility..." tabindex="4" readonly="">
                                         <div id="tQMS_ATQ_HFC_Loading"></div>
                                     </div>
                                 </div>
@@ -59,7 +59,7 @@
                                     <label class="col-md-6 control-label" for="textinput" style="padding: 0px">Discipline :</label>
                                      <div class="form-group">
                                         <input class="form-control input-lg" type="text" name="tQMS_ATQ_Discipline"  id="tQMS_ATQ_Discipline" placeholder="Search Discipline..." tabindex="4">
-                                        <input class="form-control input-lg" type="hidden" name="tQMS_ATQ_Discipline_Code"  id="tQMS_ATQ_Discipline_Code" placeholder="Discipline Code..." tabindex="4" readonly="">
+                                        <input class="form-control input-lg" type="text" name="tQMS_ATQ_Discipline_Code"  id="tQMS_ATQ_Discipline_Code" placeholder="Discipline Code..." tabindex="4" readonly="">
                                         <div id="tQMS_ATQ_Discipline_Loading"></div>
                                     </div>
                                 </div>
@@ -68,7 +68,7 @@
                                     <label class="col-md-6 control-label" for="textinput" style="padding: 0px">Sub Discipline :</label>
                                      <div class="form-group">
                                         <input class="form-control input-lg" type="text" name="tQMS_ATQ_SubDiscipline"  id="tQMS_ATQ_SubDiscipline" placeholder="Search Discipline..." tabindex="4">
-                                        <input class="form-control input-lg" type="hidden" name="tQMS_ATQ_SubDiscipline_Code"  id="tQMS_ATQ_SubDiscipline_Code" placeholder="Search Discipline..." tabindex="4" readonly="">
+                                        <input class="form-control input-lg" type="text" name="tQMS_ATQ_SubDiscipline_Code"  id="tQMS_ATQ_SubDiscipline_Code" placeholder="Search Discipline..." tabindex="4" readonly="">
                                         <div id="tQMS_ATQ_SubDiscipline_Loading"></div>
                                     </div>
                                 </div>

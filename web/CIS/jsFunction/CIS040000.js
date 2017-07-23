@@ -80,7 +80,7 @@ $(document).ready(function () {
                  
                  var orderDetailArray = e.trim();
                  orderDetailArray = e.split("|");
-                 console.log(orderDetailArray);
+       
                  
                   $.ajax({
                     type: "post",

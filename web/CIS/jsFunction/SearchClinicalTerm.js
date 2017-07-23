@@ -267,6 +267,40 @@ function searchHFCOnly(fieldId,loadingDivId){
             }
         }
     });
+    
+    $("#" + fieldId).on('before:flexdatalist.data', function (response) {
+        $('#' + loadingDivId).html('<img src="img/LoaderIcon.gif" />');
+    });
+    $("#" + fieldId).on('after:flexdatalist.data', function (response) {
+        $('#' + loadingDivId).html('');
+    });
+}
+
+function searchHFCDefault(fieldId, loadingDivId,value) {
+
+    $('#' + fieldId).val(value).flexdatalist({
+        minLength: 1,
+        searchIn: 'name',
+        searchDelay: 2000,
+        url: "search/ResultHFCSearch.jsp",
+        cache: true,
+        params: {
+            timeout: 3000,
+            success: function (result) {
+                console.log(result);
+                if (result === undefined) {
+                    $('#' + loadingDivId).html('No Record');
+                }
+            }
+        }
+    });
+    
+    $("#" + fieldId).on('before:flexdatalist.data', function (response) {
+        $('#' + loadingDivId).html('<img src="img/LoaderIcon.gif" />');
+    });
+    $("#" + fieldId).on('after:flexdatalist.data', function (response) {
+        $('#' + loadingDivId).html('');
+    });
 }
 
 function searchDisciplineOnly(fieldId, loadingDivId,hfc_code) {
@@ -287,6 +321,12 @@ function searchDisciplineOnly(fieldId, loadingDivId,hfc_code) {
             }
         }
     });
+    $("#" + fieldId).on('before:flexdatalist.data', function (response) {
+        $('#' + loadingDivId).html('<img src="img/LoaderIcon.gif" />');
+    });
+    $("#" + fieldId).on('after:flexdatalist.data', function (response) {
+        $('#' + loadingDivId).html('');
+    });
 }
 
 function retrieveDisciplineOnly(fieldId, loadingDivId, hfc_code,currentValue) {
@@ -306,6 +346,12 @@ function retrieveDisciplineOnly(fieldId, loadingDivId, hfc_code,currentValue) {
                 }
             }
         }
+    });
+    $("#" + fieldId).on('before:flexdatalist.data', function (response) {
+        $('#' + loadingDivId).html('<img src="img/LoaderIcon.gif" />');
+    });
+    $("#" + fieldId).on('after:flexdatalist.data', function (response) {
+        $('#' + loadingDivId).html('');
     });
 }
 
@@ -747,5 +793,59 @@ function sendOrder(data,tableId){
             }
         }
     })
+}
+function searchPOSSurgicalCategory(searchFieldId, loadingId, currentValue) {
+
+    $('#' + searchFieldId).val(currentValue).flexdatalist({
+        minLength: 1,
+        searchIn: 'name',
+        searchDelay: 2000,
+        selectionRequired: true,
+        url: "search/ResultPOSSurgicalCategorySearch.jsp",
+        cache: true,
+        valueProperty: 'value',
+        params: {
+            timeout: 3000,
+            success: function (result) {
+                console.log(result);
+                if (result === undefined) {
+                    $('#' + loadingId).html('No Record');
+                }
+            }
+        }
+    });
+    
+    $("#" + searchFieldId).on('before:flexdatalist.data', function (response) {
+        $('#' + loadingId).html('<img src="img/LoaderIcon.gif" />');
+    });
+    $("#" + searchFieldId).on('after:flexdatalist.data', function (response) {
+        $('#' + loadingId).html('');
+    });
+}
+function searchPOSSurgicalProcedure(searchFieldId, loadingId, currentValue,catCode) {
+
+    $('#' + searchFieldId).val(currentValue).flexdatalist({
+        minLength: 1,
+        searchIn: 'name',
+        searchDelay: 2000,
+        selectionRequired: true,
+        url: "search/ResultPOSSurgicalSearch.jsp?cat_cd="+catCode,
+        cache: true,
+        params: {
+            timeout: 3000,
+            success: function (result) {
+                console.log(result);
+                if (result === undefined) {
+                    $('#' + loadingId).html('No Record');
+                }
+            }
+        }
+    });
+    $("#" + searchFieldId).on('before:flexdatalist.data', function (response) {
+        $('#' + loadingId).html('<img src="img/LoaderIcon.gif" />');
+    });
+    $("#" + searchFieldId).on('after:flexdatalist.data', function (response) {
+        $('#' + loadingId).html('');
+    });
 }
 //});
