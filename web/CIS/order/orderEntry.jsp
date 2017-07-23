@@ -23,6 +23,7 @@
 <!--                        <li><a data-toggle="modal" data-target="#CIS040004" href="" class="soap-select"> <i class="fa fa-bar-chart fa-li"></i> Follow Up</a></li>-->
                         <li><a data-toggle="modal" data-target="#CIS040005" href="" class="soap-select hide"><i class="fa fa-user-md fa-li"></i> Second Opinion</a></li>
                         <li><a data-toggle="modal" data-target="#CIS040006" href="" class="soap-select" onClick="searchHFCDetail('POS')" ><i class="fa fa-list-ol fa-li"></i> Procedure</a></li>
+                        <li><a data-toggle="modal" data-target="#CIS040011" href="" class="soap-select" onClick="searchHFCDetail('SPO')" ><i class="fa fa-list-ol fa-li"></i> Surgical Procedure</a></li>
                         <li><a data-toggle="modal" data-target="#CIS040007" href="" class="soap-select" onClick="searchHFCDetail('ADW')"><i class="fa fa-bed fa-li"></i> Admit To Ward</a></li>
 <!--                        <li><a data-toggle="modal" data-target="#CIS040008" href="" class="soap-select"><i class="fa fa-clock-o fa-li"></i> MC & Time Slip</a></li>-->
                         <li><a data-toggle="modal" data-target="#CIS040009" href="" class="soap-select"><i class="fa fa-clock-o fa-li"></i> Referral</a></li>

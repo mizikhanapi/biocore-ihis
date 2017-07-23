@@ -24,6 +24,7 @@
 <script src="../assets/js/jquery.dataTables.min.js"></script>
 <script src="../assets/js/dataTables.bootstrap.min.js" type="text/javascript"></script>
 <script src="../assets/js/dataTables.buttons.min.js" type="text/javascript"></script>
+<script src="../assets/js/jquery.flexdatalist.min.js" type="text/javascript"></script>
 <script src="../assets/js/buttons.flash.min.js" type="text/javascript"></script>
 <script src="../assets/js/jszip.min.js" type="text/javascript"></script>
 <script src="../assets/js/pdfmake.min.js" type="text/javascript"></script>
@@ -31,3 +32,4 @@
 <script src="../assets/js/buttons.html5.min.js" type="text/javascript"></script>
 <script src="../assets/js/papaparse.min.js"></script>
 <script src="js/create_destroy_loading.js" type="text/javascript"></script>
+<script src="libraries/SearchFacility/SearchFacility.js" type="text/javascript"></script>

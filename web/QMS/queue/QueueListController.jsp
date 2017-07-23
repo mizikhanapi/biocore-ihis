@@ -28,8 +28,8 @@
     //String thesqlCIS ="select e.pmi_no,e.name,e.episode_date,e.episode_time,e.common_queue,q.queue_no,e.doctor,e.status,e.consultation_room from pms_episode e inner join pms_patient_queue q on q.pmi_no = e.pmi_no and q.episode_date = e.episode_date where e.status !='1' and e.EPISODE_DATE like '%" + now + "%' and e.HEALTH_FACILITY_CODE='" + hfc + "' and e.doctor = '"+ doctor +"'";
     String sql = "select q.pmi_no,e.name,q.episode_date,e.episode_time,q.queue_name,q.queue_no,e.doctor,l.description,e.consultation_room from pms_patient_queue q , pms_episode e,adm_lookup_detail l where l.`Master_Reference_code` ='0069' and l.`Detail_Reference_code` = q.status and e.pmi_no = q.pmi_no and e.episode_date = q.episode_date and e.`HEALTH_FACILITY_CODE` = q.hfc_cd and l.`hfc_cd` = '" + hfc + "' and q.episode_date like '%" + now + "%' and q.status !='1' and q.hfc_cd='" + hfc + "' AND (q.queue_type = 'CM' OR q.queue_name = '" + doctor + "') LIMIT 5";
 
-    //0    //1            //2                //3        //4         //5      //6           //7       //8
-    String sqlV3 = "SELECT q.pmi_no,b.patient_name,q.episode_date,q.queue_name,q.queue_no,q.user_id,l.description,u.room_no,q.patient_category,x.description"
+                             //0    //1            //2                //3        //4         //5      //6           //7       //8
+    String sqlV3 = "SELECT q.pmi_no, b.patient_name, q.episode_date, q.queue_name, q.queue_no, q.user_id, l.description, u.room_no, q.patient_category, x.description"
             + " from pms_patient_queue q"
             + " join pms_patient_biodata b on b.pmi_no = q.pmi_no"
             + " join adm_lookup_detail l on l.`Master_Reference_code` ='0069' and l.`Detail_Reference_code` = q.status and l.`hfc_cd` = '" + hfc + "'"
@@ -59,16 +59,16 @@
     <%
         for (int i = 0; i < dataQueue.size(); i++) {%>
     <tr>
-        <td id="pmiNumber"><%=dataQueue.get(i).get(0)%></td>
-        <td><%=dataQueue.get(i).get(1)%></td>
-        <td id="epiDate"><%=dataQueue.get(i).get(2)%></td>
+        <td id="tdQMS_ATQ_PMI_NO"><%=dataQueue.get(i).get(0)%></td>
+        <td id="tdQMS_ATQ_PATIENT_NAME"><%=dataQueue.get(i).get(1)%></td>
+        <td id="tdQMS_ATQ_EPISODE_DATE"><%=dataQueue.get(i).get(2)%></td>
 <!--        <td id="epiTime" hidden="hidden"><% //dataQueue.get(i).get(3)%></td>-->
-        <td class="hidden-xs"><%=dataQueue.get(i).get(3)%></td>
-        <td ><%=dataQueue.get(i).get(4)%></td>
+        <td class="hidden-xs" id="tdQMS_ATQ_QUEUE_NAME"><%=dataQueue.get(i).get(3)%></td>
+        <td id="tdQMS_ATQ_QUEUE_NO"><%=dataQueue.get(i).get(4)%></td>
         <td class="hidden-xs"><%=dataQueue.get(i).get(5)%></td>
-        <td><%=dataQueue.get(i).get(7)%></td>
-        <td class="hidden-xs"><%=dataQueue.get(i).get(9)%></td>
-        <td id="status"><%=dataQueue.get(i).get(6)%></td>
+        <td id=""><%=dataQueue.get(i).get(7)%></td>
+        <td class="hidden-xs" id="tdQMS_ATQ_PATIENT_CATEGORY"><%=dataQueue.get(i).get(9)%></td>
+        <td id="tdQMS_ATQ_STATUS"><%=dataQueue.get(i).get(6)%></td>
         <% if (dataQueue.get(i).get(6).equals("Consult")) { %>
         <td><button class="btn btn-primary changePatientBtn" disabled="">Assign</button> </td>
         <% } else {%>
