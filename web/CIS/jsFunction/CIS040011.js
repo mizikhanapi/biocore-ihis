@@ -39,7 +39,7 @@ $(document).ready(function () {
     
     $("#tCISOESPOSearch").prop("disabled", true);
     
-    searching("tCISOESPOProblemName", "tCISOESPOProblemNameLoading", "search/ResultCCNSearch.jsp", "problemCodeSPO", "search/ResultCCNSearchCode.jsp");
+    //searching("tCISOESPOProblemName", "tCISOESPOProblemNameLoading", "search/ResultCCNSearch.jsp", "problemCodeSPO", "search/ResultCCNSearchCode.jsp");
     searchPOSSurgicalCategory("tCISOESPOCategoryName", "tCISOESPOCategoryNameLoading", "");
     searchDOCTOROnlySurgical("tCISOESPOConsultantName", "tCISOESPOConsultantNameLoading", hfc_cd, "");
     searchOTRoomSurgical("tCISOESPOOTRoomName", "tCISOESPOOTRoomNameLoading", "");
@@ -145,7 +145,7 @@ $(document).ready(function () {
         e.preventDefault();
         var cat_cd = $("#tCISOESPOCategoryCode").val();
         var cat_name = $("#tCISOESPOCategoryName").val();
-        var procedure_cd = $("#tCISOESPOSearchCode").val();
+        var procedure_cd = $("#tCISOESPOSearch_Code").val();
         var procedure = $("#tCISOESPOSearch").val();
         var hfcOrderDetail = $("#hfcOrderDetailSPO").val();
         var hfcProviderDetail = $("#hfcProviderDetailSPO").val();
@@ -232,6 +232,24 @@ $(document).ready(function () {
         $("#tCISOESPOEndTime").val(updatePOSSurgicalObj.endTime);
 
     });
+    
+    $("#tableOrderPOSSurgical").on("click", ".btnDelete", function (e) {
+
+        e.preventDefault();
+        rowPOSSurgicalDataTR = $(this).closest("tr");
+        var delId = $(this).get(0).id;
+        var delIdA = delId.split("|");
+        var delIndex = parseInt(delIdA[1]);
+        var delConfirm = confirm('Are you want to delete this Order? ');
+        if (delConfirm === true) {
+            delete _dataPOSSurgical[delIndex];
+            $(this).closest('tr').remove();
+            
+        } else {
+            return false;
+        }
+
+    });
 
     $("#btnCIS_OE_POSSurgical_UPDATE").click(function (e) {
         e.preventDefault();
@@ -297,12 +315,39 @@ $(document).ready(function () {
             type: "POST",
             data: data,
             success: function (e) {
-
                 $("#divCIS_OE_POSSurgical_OrderSearchResult").html(e);
             }
         })
 
-    })
+    });
+    
+    $("#divCIS_OE_POSSurgical_OrderSearchResult").on("click","#tblOPOSSurgical #btnCIS_OE_POSSurgical_SEARCH_ADD",function(e){
+        e.preventDefault();
+        var rowOrder = $(this).closest("tr");
+        var cat_cd = rowOrder.find("#cat_cd").html();
+        var categoryName = rowOrder.find("#categoryName").html();
+        var procedure_cd = rowOrder.find("#procedure_cd").html();
+        var procedureName = rowOrder.find("#procedureName").html();
+        var ot_room_no = rowOrder.find("#ot_room_no").html();
+        var ot_roomName = rowOrder.find("#ot_roomName").html();
+        var consultant_id = rowOrder.find("#consultant_id").html();
+        var consultantName = rowOrder.find("#consultantName").html();
+        
+        $("#tCISOESPOSearch").prop("disabled", false);
+        
+        searchPOSSurgicalCategory("tCISOESPOCategoryName", "tCISOESPOCategoryNameLoading", categoryName);
+        searchDOCTOROnlySurgical("tCISOESPOConsultantName", "tCISOESPOConsultantNameLoading", hfc_cd, consultantName);
+        searchOTRoomSurgical("tCISOESPOOTRoomName", "tCISOESPOOTRoomNameLoading", ot_roomName);
+        searchPOSSurgicalProcedure("tCISOESPOSearch", "tCISOESPOSearchLoading", procedureName, cat_cd);
+        
+        $("#tCISOESPOCategoryCode").val(cat_cd);
+        $("#tCISOESPOSearch_Code").val(procedure_cd);
+        $("#tCISOESPOConsultantCode").val(consultant_id);
+        $("#tCISOESPOOTRoomCode").val(ot_room_no);
+        $('#POSSurgical_NEW a[href="#surgicalProcedure1"]').tab('show');
+        
+       
+    });
 
     function clearFieldPOSSurgical() {
         $("#tCISOESPOSearch").val("");

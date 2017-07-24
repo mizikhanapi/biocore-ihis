@@ -19,53 +19,74 @@
                                String searchProblem = "";
                                if(orderId.equals("-")){
                                 if (type.equals("today")) {
-                                        searchProblem = "SELECT om.order_no, om.hfc_to, hf.hfc_name, om.`EPISODE_DATE`, od.`PROCEDURE_CD`, od.`PROCEDURE_NAME`, au.`USER_NAME`,om.order_by, rd.comments "
-                                                + " FROM pos_order_master om   "
-                                                + "JOIN pos_order_detail od ON om.order_no = od.order_no    "
-                                                + "JOIN adm_health_facility hf  ON hf.hfc_cd = om.hfc_to "
-                                                + "JOIN adm_users au ON au.`USER_ID` = om.order_by   "
-                                                + "LEFT JOIN pos_result_detail rd ON om.order_no = rd.order_no "
-                                                + "WHERE  om.`PMI_NO` = '"+pmiNo+"'  "
-                                                + "AND DATE(om.episode_date) = '" + todayDate + "'  "
-                                                + "ORDER BY om.order_no DESC;";
+                                        searchProblem = "SELECT om.order_no, om.episode_date, od.category_cd, pc.category_name, od.procedure_cd, p.`procedure_longName`, "
+                                                    //      6               7           8               9               10
+                                                    + "od.ot_room_no, r.room_name, od.consultant_id, au.`USER_NAME`, od.comments "
+                                                    + "FROM ot_order_master om "
+                                                    + "INNER JOIN ot_order_detail od ON om.order_no = od.order_no "
+                                                    + "INNER JOIN ot_procedure_category pc ON od.category_cd = pc.category_cd  "
+                                                    + "INNER JOIN ot_procedure p ON od.procedure_cd = p.procedure_cd  "
+                                                    + "INNER JOIN ot_room r ON od.ot_room_no = r.room_no  "
+                                                    + "INNER JOIN adm_users au ON od.consultant_id = au.`USER_ID`  "
+                                                    + "WHERE om.pmi_no = '" + pmiNo + "' "
+                                                    + "AND DATE(om.episode_date) = '" + todayDate + "'  "
+                                                    + "GROUP BY om.order_no "
+                                                    + "ORDER BY om.order_no ";
+                                                                           
+
                                         
                                        //out.print(searchProblem);
                                     } else if (type.equals("previous")) {
-                                       searchProblem = "SELECT om.order_no, om.hfc_to, hf.hfc_name, om.`EPISODE_DATE`, od.`PROCEDURE_CD`, od.`PROCEDURE_NAME`, au.`USER_NAME`,om.order_by, rd.comments "
-                                                + " FROM pos_order_master om   "
-                                                + "JOIN pos_order_detail od ON om.order_no = od.order_no    "
-                                                + "JOIN adm_health_facility hf  ON hf.hfc_cd = om.hfc_to "
-                                                + "JOIN adm_users au ON au.`USER_ID` = om.order_by   "
-                                                + "LEFT JOIN pos_result_detail rd ON om.order_no = rd.order_no "
-                                                + "WHERE  om.`PMI_NO` = '"+pmiNo+"'  "
-                                                
-                                                + "ORDER BY om.order_no DESC;";
+                                                        //          0                1               2              3               4               5               
+                                       searchProblem = "SELECT om.order_no, om.episode_date, od.category_cd, pc.category_name, od.procedure_cd, p.`procedure_longName`, "
+                                                //      6               7           8               9               10
+                                               + "od.ot_room_no, r.room_name, od.consultant_id, au.`USER_NAME`, od.comments "
+                                               + "FROM ot_order_master om "
+                                               + "INNER JOIN ot_order_detail od ON om.order_no = od.order_no "
+                                               + "INNER JOIN ot_procedure_category pc ON od.category_cd = pc.category_cd  "
+                                               + "INNER JOIN ot_procedure p ON od.procedure_cd = p.procedure_cd  "
+                                               + "INNER JOIN ot_room r ON od.ot_room_no = r.room_no  "
+                                               + "INNER JOIN adm_users au ON od.consultant_id = au.`USER_ID`  "
+                                               + "WHERE om.pmi_no = '"+pmiNo+"' "
+                                               + "GROUP BY om.order_no "
+                                               + "ORDER BY om.order_no ";
                                      
                                     }
                                }else{
                                     if (type.equals("today")) {
-                                        searchProblem = "SELECT om.order_no, om.hfc_to, hf.hfc_name, om.`EPISODE_DATE`, od.`PROCEDURE_CD`, od.`PROCEDURE_NAME`, au.`USER_NAME`,om.order_by, rd.comments "
-                                                + " FROM pos_order_master om   "
-                                                + "JOIN pos_order_detail od ON om.order_no = od.order_no    "
-                                                + "JOIN adm_health_facility hf  ON hf.hfc_cd = om.hfc_to "
-                                                + "JOIN adm_users au ON au.`USER_ID` = om.order_by   "
-                                                + "LEFT JOIN pos_result_detail rd ON om.order_no = rd.order_no "
-                                                + "WHERE  om.`PMI_NO` = '"+pmiNo+"'  "
-                                                + "AND DATE(om.episode_date) = '" + todayDate + "'  "
-                                                 + " AND om.order_no = '"+orderId+"' "
-                                                + "ORDER BY om.order_no DESC;";
+                                        searchProblem = "SELECT om.order_no, om.episode_date, od.category_cd, pc.category_name, od.procedure_cd, p.`procedure_longName`, "
+                                                    //      6               7           8               9               10
+                                                    + "od.ot_room_no, r.room_name, od.consultant_id, au.`USER_NAME`, od.comments "
+                                                    + "FROM ot_order_master om "
+                                                    + "INNER JOIN ot_order_detail od ON om.order_no = od.order_no "
+                                                    + "INNER JOIN ot_procedure_category pc ON od.category_cd = pc.category_cd  "
+                                                    + "INNER JOIN ot_procedure p ON od.procedure_cd = p.procedure_cd  "
+                                                    + "INNER JOIN ot_room r ON od.ot_room_no = r.room_no  "
+                                                    + "INNER JOIN adm_users au ON od.consultant_id = au.`USER_ID`  "
+                                                    + "WHERE om.pmi_no = '" + pmiNo + "' "
+                                                    + "AND DATE(om.episode_date) = '" + todayDate + "'  "
+                                                    + " AND om.order_no = '" + orderId + "' "
+                                                    + "GROUP BY om.order_no "
+                                                    + "ORDER BY om.order_no ";
+
+  
                                             
                                         } else if (type.equals("previous")) {
-                                        searchProblem = "SELECT om.order_no, om.hfc_to, hf.hfc_name, om.`EPISODE_DATE`, od.`PROCEDURE_CD`, od.`PROCEDURE_NAME`, au.`USER_NAME`,om.order_by, rd.comments "
-                                                + " FROM pos_order_master om   "
-                                                + "JOIN pos_order_detail od ON om.order_no = od.order_no    "
-                                                + "JOIN adm_health_facility hf  ON hf.hfc_cd = om.hfc_to "
-                                                + "JOIN adm_users au ON au.`USER_ID` = om.order_by   "
-                                                + "LEFT JOIN pos_result_detail rd ON om.order_no = rd.order_no "
-                                                + "WHERE  om.`PMI_NO` = '"+pmiNo+"'  "
-                                              
-                                                 + " AND om.order_no = '"+orderId+"' "
-                                                + "ORDER BY om.order_no DESC;";
+                                        searchProblem = "SELECT om.order_no, om.episode_date, od.category_cd, pc.category_name, od.procedure_cd, p.`procedure_longName`, "
+                                                    //      6               7           8               9               10
+                                                    + "od.ot_room_no, r.room_name, od.consultant_id, au.`USER_NAME`, od.comments "
+                                                    + "FROM ot_order_master om "
+                                                    + "INNER JOIN ot_order_detail od ON om.order_no = od.order_no "
+                                                    + "INNER JOIN ot_procedure_category pc ON od.category_cd = pc.category_cd  "
+                                                    + "INNER JOIN ot_procedure p ON od.procedure_cd = p.procedure_cd  "
+                                                    + "INNER JOIN ot_room r ON od.ot_room_no = r.room_no  "
+                                                    + "INNER JOIN adm_users au ON od.consultant_id = au.`USER_ID`  "
+                                                    + "WHERE om.pmi_no = '" + pmiNo + "' "
+                                                 
+                                                    + " AND om.order_no = '" + orderId + "' "
+                                                    + "GROUP BY om.order_no "
+                                                    + "ORDER BY om.order_no ";
+
  
                                     
                                }
@@ -81,37 +102,40 @@
                                         
                                                                         
 %>
-       <table class="table table-bordered table-striped" id="tblOPOS">
+       <table class="table table-bordered table-striped" id="tblOPOSSurgical">
                     <thead>
                         <tr>
                             <td>Episode Date</td>
-                            <td>Order By</td>
-                            <td>Procedure Name</td>
-                            <td>Result</td>
-                            <td>Provider Facility</td>
+                            <td>Category</td>
+                            <td>Procedure</td>
+                            <td>OT Room</td>
+                            <td>Consultant</td>
+                            <td>Comment</td>
                             <td>Action</td>
                         </tr>
                     </thead>
-                    <tbody id="tableSearchOrderPOS">
+                    <tbody id="tableSearchOrderPOSSurgical">
 
                         <% for(int i=0; i<search.size(); i++){
                             %>
                             <tr>
-                                <td><%out.print(search.get(i).get(3));%></td>
-                                <td><%out.print(search.get(i).get(6));%></td>
-                                <td><%out.print(search.get(i).get(5));%></td>
-                                <td><%out.print(search.get(i).get(8));%></td>
-                                <td><%out.print(search.get(i).get(2));%></td>
+                                <td><%out.print(search.get(i).get(1));%></td>
+                                <td hidden id="cat_cd"><%out.print(search.get(i).get(2));%></td>
+                                <td id="categoryName"><%out.print(search.get(i).get(3));%></td>
+                                <td hidden id="procedure_cd"><%out.print(search.get(i).get(4));%></td>
+                                <td id="procedureName"><%out.print(search.get(i).get(5));%></td>
+                                <td hidden id="ot_room_no"><%out.print(search.get(i).get(6));%></td>
+                                <td id="ot_roomName"><%out.print(search.get(i).get(7));%></td>
+                                <td hidden id="consultant_id"><%out.print(search.get(i).get(8));%></td>
+                                <td id="consultantName"><%out.print(search.get(i).get(9));%></td>
+                                <td><%out.print(search.get(i).get(10));%></td>
                                 <td hidden id="orderId"><%out.print(search.get(i).get(0));%></td>
                                 <td hidden id="providerId"><%out.print(search.get(i).get(1));%></td>
-                                <td hidden id="procedure_cd"><%out.print(search.get(i).get(4));%></td>
-                                <td><a  data-toggle="tooltip" data-placement="top" title="Add Order" class="btnAdd" style="cursor: pointer" id="btnCIS_OE_POS_SEARCH_ADD"><i class="fa fa-plus fa-lg" aria-hidden="true" style="display: inline-block;color: #58C102;"></i></a>&nbsp;</td>
+                                <td><a  data-toggle="tooltip" data-placement="top" title="Add Order" class="btnAdd" style="cursor: pointer" id="btnCIS_OE_POSSurgical_SEARCH_ADD"><i class="fa fa-plus fa-lg" aria-hidden="true" style="display: inline-block;color: #58C102;"></i></a>&nbsp;</td>
                             </tr>
                         <%    
                         }
                        %>
-                        
-                            
 
                     </tbody>
                 </table>

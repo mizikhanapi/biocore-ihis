@@ -14,11 +14,11 @@
             <div class="modal-header" style="padding: 0px;">
                 <div class="tabbable-line">
                     <ul class="nav nav-tabs ">
-                        <li class="active" id="POS_NEW">
+                        <li class="active" id="POSSurgical_NEW">
                             <a href="#surgicalProcedure1" data-toggle="tab">
                                 New Procedure Order</a>
                         </li>
-                        <li id="POS_History" >
+                        <li id="POSSurgical_History" >
                             <a href="#surgicalProcedure2" data-toggle="tab">
                                 Drug Procedure History</a>
                         </li>
