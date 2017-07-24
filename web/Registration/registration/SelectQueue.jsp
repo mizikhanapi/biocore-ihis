@@ -59,100 +59,92 @@ Author     : user
     <body>
         <input type="text" id="Rhfc" name="hiddeninput_HFC" hidden="" value='<%=session.getAttribute("HEALTH_FACILITY_CODE").toString()%>'>
         <div class="container-fluid m-scene">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="row">
-                        <div class="col-md-4 col-md-offset-4" style="margin-top: 2%;">
-                            <div class="thumbnail">
-                                <a href="../mainMenu.jsp" title="Back to Dashboard"><i class="fa fa-arrow-left fa-lg pull-left" style="color: #ccc;"></i></a>
-                                <div class="profile-img-card" style="text-align: center;" >
-                                    <i class="fa fa-user-md" aria-hidden="true" style="color: #666; font-size: 100px;"></i>
-                                </div>
-                                <div class="logo" style="font-size: 32px; text-align: center;">
-                                    Please Enter your IC Number
-                                </div>
-                                <br/>
-                                <form class="form-signin" action="dashboard.jsp">
-                                    <span id="reauth-email" class="reauth-email"></span>
-                                    <input type="text" id="inputUserIC" class="form-control" placeholder="Enter Your IC" name="useric">
-                                    <input type="text" id="inputUserName" class="form-control" placeholder="Your Name" name="username" disabled="">
+            <div class="kiosk thumbnail" style="max-height: 635px; max-width: 485px;">
+                <a href="../mainMenu.jsp" title="Back to Dashboard"><i class="fa fa-arrow-left fa-lg pull-left" style="color: #ccc;"></i></a>
+                <div class="profile-img-card" style="text-align: center;" >
+                    <i class="fa fa-user-md" aria-hidden="true" style="color: #666; font-size: 100px;"></i>
+                </div>
+                <div class="logo" style="font-size: 32px; text-align: center;">
+                    Please Enter your IC Number
+                </div>
+                <br/>
+                <form class="form-signin" action="dashboard.jsp">
+                    <span id="reauth-email" class="reauth-email"></span>
+                    <input type="text" id="inputUserIC" class="form-control" placeholder="Enter Your IC" name="useric">
+                    <input type="text" id="inputUserName" class="form-control" placeholder="Your Name" name="username" disabled="">
 
 
-                                    <div class="form-group">
-                                        <label class="control-label" for="selectbasic">Please Select Queue</label>
-                                        <!--<div class="col-md-8">-->
-                                        <br>      
-                                        <div class="btn-group" data-toggle="buttons">
-                                            <label class="btn active marglft" for="commonQueue">
-                                                <input type="radio" id ="commonQueue" name='queuetype' value="CM"><i class="fa fa-circle-o fa-2x"></i><i class="fa fa-dot-circle-o fa-2x "></i> <span>Consultation</span>
-                                            </label>
-                                            <label class="btn marglft" for="consultantQueue">
-                                                <input type="radio" id ="consultantQueue" name='queuetype' value="FY"><i class="fa fa-circle-o fa-2x"></i><i class="fa fa-dot-circle-o fa-2x "></i><span>Services</span>
-                                            </label>
-                                            <label class="btn marglft" for="doctorQueue">
-                                                <input type="radio" id ="doctorQueue" name='queuetype' value="PN"><i class="fa fa-circle-o fa-2x"></i><i class="fa fa-dot-circle-o fa-2x "></i><span>Doctors</span>
-                                            </label>
-                                        </div>
-                                        <!--</div>-->
-                                    </div>
-                                    <select  id="selectedServiceQueue"  class="form-control select-full" hidden>
-                                        <option value="null" selected="" disabled="">Please Select Queue</option>
-
-                                        <%
-                                            String add = null, text = null;
-                                            for (int i = 0; i < dataQueue2Cons.size(); i++) {
-                                                if (dataQueue2Cons.get(i).get(1) != "" || dataQueue2Cons.get(i).get(1) != null) {
-
-                                                    if (!dataQueue2Cons.get(i).get(1).contains("Room")) {
-
-                                        %>
-
-                                        <option value="<%=dataQueue2Cons.get(i).get(1) + "|" + dataQueue2Cons.get(i).get(2)%>"><%="(" + dataQueue2Cons.get(i).get(0) + ") " + dataQueue2Cons.get(i).get(1)%></option>
-                                        <%                  }
-                                                }
-                                            }
-                                        %>
-
-                                    </select>
-
-                                    <select  id="selectedDoctorQueue"  class="form-control select-full">
-                                        <option value="null" selected="" disabled="">Please Select Queue</option>
-
-                                        <%
-                                            for (int i = 0; i < dataQueue2Doc.size(); i++) {
-                                                if (dataQueue2Doc.get(i).get(1) != "" || dataQueue2Doc.get(i).get(1) != null) {
-                                        %>
-
-                                        <option value="<%=dataQueue2Doc.get(i).get(1) + "|" + dataQueue2Doc.get(i).get(2)%>"><%="(" + dataQueue2Doc.get(i).get(0) + ") " + dataQueue2Doc.get(i).get(1)%></option>
-                                        <%                  }
-                                            }
-                                        %>
-
-                                    </select>
-
-                                    <select  id="selectedCommonQueue"  class="form-control select-full">
-                                        <option value="null" selected="" disabled="">Please Select Queue</option>
-
-                                        <%
-                                            for (int i = 0; i < dataQueueCommon.size(); i++) {
-                                                if (dataQueueCommon.get(i).get(1) != "" || dataQueueCommon.get(i).get(1) != null) {
-                                        %>
-
-                                        <option value="<%=dataQueueCommon.get(i).get(1) + "|" + dataQueueCommon.get(i).get(2)%>"><%="(" + dataQueueCommon.get(i).get(0) + ") " + dataQueueCommon.get(i).get(1)%></option>
-                                        <%                  }
-                                            }
-                                        %>
-
-                                    </select>
-
-                                </form>
-                                <div class="text-center">
-                                    <button id="registerSignup" class="btn btn-lg btn-primary">Register</button>
-                                    <button id="cancelSignup" class="btn btn-lg btn-default">Cancel</button>
-                                </div>
-                            </div>
+                    <div class="form-group">
+                        <label class="control-label" for="selectbasic">Please Select Queue</label>
+                        <!--<div class="col-md-8">-->
+                        <br>      
+                        <div class="btn-group" data-toggle="buttons">
+                            <label class="btn active marglft" for="commonQueue">
+                                <input type="radio" id ="commonQueue" name='queuetype' value="CM"><i class="fa fa-circle-o fa-2x"></i><i class="fa fa-dot-circle-o fa-2x "></i> <span>Consultation</span>
+                            </label>
+                            <label class="btn marglft" for="consultantQueue">
+                                <input type="radio" id ="consultantQueue" name='queuetype' value="FY"><i class="fa fa-circle-o fa-2x"></i><i class="fa fa-dot-circle-o fa-2x "></i><span>Services</span>
+                            </label>
+                            <label class="btn marglft" for="doctorQueue">
+                                <input type="radio" id ="doctorQueue" name='queuetype' value="PN"><i class="fa fa-circle-o fa-2x"></i><i class="fa fa-dot-circle-o fa-2x "></i><span>Doctors</span>
+                            </label>
                         </div>
+                        <!--</div>-->
                     </div>
+                    <select  id="selectedServiceQueue"  class="form-control select-full" hidden>
+                        <option value="null" selected="" disabled="">Please Select Queue</option>
+
+                        <%
+                            String add = null, text = null;
+                            for (int i = 0; i < dataQueue2Cons.size(); i++) {
+                                if (dataQueue2Cons.get(i).get(1) != "" || dataQueue2Cons.get(i).get(1) != null) {
+
+                                    if (!dataQueue2Cons.get(i).get(1).contains("Room")) {
+
+                        %>
+
+                        <option value="<%=dataQueue2Cons.get(i).get(1) + "|" + dataQueue2Cons.get(i).get(2)%>"><%="(" + dataQueue2Cons.get(i).get(0) + ") " + dataQueue2Cons.get(i).get(1)%></option>
+                        <%                  }
+                                }
+                            }
+                        %>
+
+                    </select>
+
+                    <select  id="selectedDoctorQueue"  class="form-control select-full">
+                        <option value="null" selected="" disabled="">Please Select Queue</option>
+
+                        <%
+                            for (int i = 0; i < dataQueue2Doc.size(); i++) {
+                                if (dataQueue2Doc.get(i).get(1) != "" || dataQueue2Doc.get(i).get(1) != null) {
+                        %>
+
+                        <option value="<%=dataQueue2Doc.get(i).get(1) + "|" + dataQueue2Doc.get(i).get(2)%>"><%="(" + dataQueue2Doc.get(i).get(0) + ") " + dataQueue2Doc.get(i).get(1)%></option>
+                        <%                  }
+                            }
+                        %>
+
+                    </select>
+
+                    <select  id="selectedCommonQueue"  class="form-control select-full">
+                        <option value="null" selected="" disabled="">Please Select Queue</option>
+
+                        <%
+                            for (int i = 0; i < dataQueueCommon.size(); i++) {
+                                if (dataQueueCommon.get(i).get(1) != "" || dataQueueCommon.get(i).get(1) != null) {
+                        %>
+
+                        <option value="<%=dataQueueCommon.get(i).get(1) + "|" + dataQueueCommon.get(i).get(2)%>"><%="(" + dataQueueCommon.get(i).get(0) + ") " + dataQueueCommon.get(i).get(1)%></option>
+                        <%                  }
+                            }
+                        %>
+
+                    </select>
+
+                </form>
+                        <div class="text-center" style=" bottom: 30px; margin: auto; position: absolute; left: 30%;">
+                    <button id="registerSignup" class="btn btn-lg btn-primary">Register</button>
+                    <button id="cancelSignup" class="btn btn-lg btn-default">Cancel</button>
                 </div>
             </div>
         </div>
@@ -362,11 +354,11 @@ Author     : user
                 {
                     selectedqueue = $('#selectedServiceQueue').val();
                 }
-                
+
                 var tempsplit = selectedqueue.split("|");
                 selectedqueuename = tempsplit[0];
                 queueuserid = tempsplit[1];
-                
+
                 console.log(useric + "-" + username + "-" + queuetype + "-" + selectedqueue + "-" + selectedqueuename + "-" + queueuserid);
                 if (useric === "")
                 {

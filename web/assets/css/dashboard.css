@@ -1051,7 +1051,7 @@ tr#moveToOrderDetailsTButton {
     font-size: 16px;
 }
 
-.item-source{
+.item-source {
     padding-left: 10px;
     display: inline-block;
     font-size: 80%;
@@ -1103,4 +1103,16 @@ ui-datepicker-month {
 
 td>.btn-default {
     margin-bottom: 5px;
+}
+
+.kiosk {
+    max-width: 350px;
+    padding: 40px 40px;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    max-height: 445px;
 }

@@ -21,31 +21,24 @@
         <title>JSP Page</title>
         <!--header-->
         <%@include file="../assets/header.html"%>
+
         <!--header-->
 
     </head>
     <body>
         <div class="container-fluid m-scene">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="row">
-                        <div class="col-md-4 col-md-offset-4" style="margin-top: 2%;">
-                            <div class="thumbnail" style="text-align: center;">
-                                <a href="../Entrance/dashboard.jsp" title="Back to Dashboard"><i class="fa fa-arrow-left fa-lg pull-left" style="color: #ccc;"></i></a>
-                                <div class="profile-img-card" >
-                                    <i class="fa fa-user-md" aria-hidden="true" style="color: #666; font-size: 100px;"></i>
-                                </div>
-                                <div class="logo" style="font-size: 32px;">
-                                    Welcome to <span>iHIS</span>
-                                </div>
-                                <p id="profile-name" class="profile-name-card" >PLEASE SELECT LANGUAGE</p>
-                                <div class="text-center">
-                                    <a href="mainMenu.jsp" class="btn btn-default btn-lg" >English</a>
-                                    <a href="#" class="btn btn-default btn-lg" >Bahasa Malaysia</a> 
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+            <div class="kiosk thumbnail" style="text-align: center; max-height: 322px; ">
+                <a href="../Entrance/dashboard.jsp" title="Back to Dashboard"><i class="fa fa-arrow-left fa-lg pull-left" style="color: #ccc;"></i></a>
+                <div class="profile-img-card" >
+                    <i class="fa fa-user-md" aria-hidden="true" style="color: #666; font-size: 100px;"></i>
+                </div>
+                <div class="logo" style="font-size: 32px;">
+                    Welcome to <span>iHIS</span>
+                </div>
+                <p id="profile-name" class="profile-name-card" >PLEASE SELECT LANGUAGE</p>
+                <div class="text-center">
+                    <a href="mainMenu.jsp" class="btn btn-default btn-lg" >English</a>
+                    <a href="#" class="btn btn-default btn-lg" >Bahasa Malaysia</a> 
                 </div>
             </div>
         </div>

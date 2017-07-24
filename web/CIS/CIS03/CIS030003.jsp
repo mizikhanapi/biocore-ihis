@@ -8,7 +8,7 @@
     <div class="modal-dialog" style="width: 65%">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">X</span><span class="sr-only">Close</span></button>
+                <button type="button" class="close" data-dismiss="modal"><i class="fa fa-times fa-lg"></i></button>
                 <h3 class="modal-title" id="lineModalLabel">Problem List</h3>
             </div>
             <div class="modal-body" id="CIS030003_modal">
