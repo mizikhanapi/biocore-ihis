@@ -56,8 +56,11 @@
                                     labelString: 'Value'
                                 }
                             }]
-                    }
+                    },
                 }
 
             });
+            
+            chart1.canvas.parentNode.style.height = '128px';
+            
 </script>

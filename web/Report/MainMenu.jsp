@@ -192,13 +192,13 @@
                                         </div>
                                         <!-- Default panel contents -->
                                         <div class="panel-heading">
-                                            <a data-toggle="collapse" data-parent="#accordion" href="#filterPane0">OUTPATIENT REGISTRATION</a>
-                                            <span class="pull-right panel-collapse-clickable" data-toggle="collapse" data-parent="#accordion" href="#filterPane0">
+                                            <a data-toggle="collapse" data-parent="#accordion" href="#OUTPATIENT">OUTPATIENT REGISTRATION</a>
+                                            <span class="pull-right panel-collapse-clickable" data-toggle="collapse" data-parent="#accordion" href="#OUTPATIENT">
                                                 <i class="glyphicon glyphicon-chevron-down"></i>
                                             </span>
                                         </div>
                                         <!-- List group -->
-                                        <div id="filterPane0" class="panel-collapse panel-collapse collapse">
+                                        <div id="OUTPATIENT" class="panel-collapse panel-collapse collapse">
                                             <ul class="list-group">
                                                 <li class="list-group-item"><a href="UTeMAttendanceListReport.jsp">Patient Attendance List</a></li>
                                                 <li class="list-group-item"><a href="">Insert Report Menu</a></li>
@@ -210,13 +210,13 @@
 
                                         <!-- Default panel contents -->
                                         <div class="panel-heading">
-                                            <a data-toggle="collapse" data-parent="#accordion" href="#filterPanel">PATIENT CONSULTATION</a>
-                                            <span class="pull-right panel-collapse-clickable" data-toggle="collapse" data-parent="#accordion" href="#filterPanel">
+                                            <a data-toggle="collapse" data-parent="#accordion" href="#CONSULTATION">PATIENT CONSULTATION</a>
+                                            <span class="pull-right panel-collapse-clickable" data-toggle="collapse" data-parent="#accordion" href="#CONSULTATION">
                                                 <i class="glyphicon glyphicon-chevron-down"></i>
                                             </span>
                                         </div>
                                         <!-- List group -->
-                                        <div id="filterPanel" class="panel-collapse panel-collapse collapse">
+                                        <div id="CONSULTATION" class="panel-collapse panel-collapse collapse">
                                             <ul class="list-group">
                                                 <li class="list-group-item"><a href="mcMain2.jsp">Reprint MC</a></li>
                                                 <li class="list-group-item"><a href="timeSlipMain.jsp">Reprint Time Slip</a></li>
@@ -226,13 +226,13 @@
 
                                         <!-- Default panel contents -->
                                         <div class="panel-heading">
-                                            <a data-toggle="collapse" data-parent="#accordion" href="#filterPane2">PHARMACY INFO SYSTEM</a>
-                                            <span class="pull-right panel-collapse-clickable" data-toggle="collapse" data-parent="#accordion" href="#filterPane2">
+                                            <a data-toggle="collapse" data-parent="#accordion" href="#PHARMACY">PHARMACY INFO SYSTEM</a>
+                                            <span class="pull-right panel-collapse-clickable" data-toggle="collapse" data-parent="#accordion" href="#PHARMACY">
                                                 <i class="glyphicon glyphicon-chevron-down"></i>
                                             </span>
                                         </div>
                                         <!-- List group -->
-                                        <div id="filterPane2" class="panel-collapse panel-collapse collapse">
+                                        <div id="PHARMACY" class="panel-collapse panel-collapse collapse">
                                             <ul class="list-group">
                                                 <li class="list-group-item"><a href="psMain.jsp">Prescription Slip</a></li>
                                                 <li class="list-group-item"><a href="dsMain.jsp">Dispensing Sheet</a></li>
@@ -242,13 +242,13 @@
 
                                         <!-- Default panel contents -->
                                         <div class="panel-heading">
-                                            <a data-toggle="collapse" data-parent="#accordion" href="#filterPane2">LABORATORY INFO SYSTEM</a>
-                                            <span class="pull-right panel-collapse-clickable" data-toggle="collapse" data-parent="#accordion" href="#filterPane2">
+                                            <a data-toggle="collapse" data-parent="#accordion" href="#LABORATORY">LABORATORY INFO SYSTEM</a>
+                                            <span class="pull-right panel-collapse-clickable" data-toggle="collapse" data-parent="#accordion" href="#LABORATORY">
                                                 <i class="glyphicon glyphicon-chevron-down"></i>
                                             </span>
                                         </div>
                                         <!-- List group -->
-                                        <div id="filterPane2" class="panel-collapse panel-collapse collapse">
+                                        <div id="LABORATORY" class="panel-collapse panel-collapse collapse">
                                             <ul class="list-group">
                                                 <li class="list-group-item"><a href="">Insert Report Menu</a></li>
                                             </ul>
@@ -257,13 +257,13 @@
 
                                         <!-- Default panel contents -->
                                         <div class="panel-heading">
-                                            <a data-toggle="collapse" data-parent="#accordion" href="#filterPane2">INPATIENT MANAGEMENT</a>
-                                            <span class="pull-right panel-collapse-clickable" data-toggle="collapse" data-parent="#accordion" href="#filterPane2">
+                                            <a data-toggle="collapse" data-parent="#accordion" href="#INPATIENT">INPATIENT MANAGEMENT</a>
+                                            <span class="pull-right panel-collapse-clickable" data-toggle="collapse" data-parent="#accordion" href="#INPATIENT">
                                                 <i class="glyphicon glyphicon-chevron-down"></i>
                                             </span>
                                         </div>
                                         <!-- List group -->
-                                        <div id="filterPane2" class="panel-collapse panel-collapse collapse">
+                                        <div id="INPATIENT" class="panel-collapse panel-collapse collapse">
                                             <ul class="list-group">
                                                 <li class="list-group-item"><a href="">Insert Report Menu</a></li>
                                             </ul>
@@ -272,13 +272,13 @@
 
                                         <!-- Default panel contents -->
                                         <div class="panel-heading">
-                                            <a data-toggle="collapse" data-parent="#accordion" href="#filterPane2">BILLING SYSTEM</a>
-                                            <span class="pull-right panel-collapse-clickable" data-toggle="collapse" data-parent="#accordion" href="#filterPane2">
+                                            <a data-toggle="collapse" data-parent="#accordion" href="#BILLING">BILLING SYSTEM</a>
+                                            <span class="pull-right panel-collapse-clickable" data-toggle="collapse" data-parent="#accordion" href="#BILLING">
                                                 <i class="glyphicon glyphicon-chevron-down"></i>
                                             </span>
                                         </div>
                                         <!-- List group -->
-                                        <div id="filterPane2" class="panel-collapse panel-collapse collapse">
+                                        <div id="BILLING" class="panel-collapse panel-collapse collapse">
                                             <ul class="list-group">
                                                 <li class="list-group-item"><a href="">Insert Report Menu</a></li>
                                             </ul>
@@ -287,13 +287,13 @@
 
                                         <!-- Default panel contents -->
                                         <div class="panel-heading">
-                                            <a data-toggle="collapse" data-parent="#accordion" href="#filterPane2">PATIENT APPOINTMENT</a>
-                                            <span class="pull-right panel-collapse-clickable" data-toggle="collapse" data-parent="#accordion" href="#filterPane2">
+                                            <a data-toggle="collapse" data-parent="#accordion" href="#APPOINTMENT">PATIENT APPOINTMENT</a>
+                                            <span class="pull-right panel-collapse-clickable" data-toggle="collapse" data-parent="#accordion" href="#APPOINTMENT">
                                                 <i class="glyphicon glyphicon-chevron-down"></i>
                                             </span>
                                         </div>
                                         <!-- List group -->
-                                        <div id="filterPane2" class="panel-collapse panel-collapse collapse">
+                                        <div id="APPOINTMENT" class="panel-collapse panel-collapse collapse">
                                             <ul class="list-group">
                                                 <li class="list-group-item"><a href="">Insert Report Menu</a></li>
                                             </ul>
@@ -302,13 +302,13 @@
 
                                         <!-- Default panel contents -->
                                         <div class="panel-heading">
-                                            <a data-toggle="collapse" data-parent="#accordion" href="#filterPane2">SYSTEM ADMINISTRATOR</a>
-                                            <span class="pull-right panel-collapse-clickable" data-toggle="collapse" data-parent="#accordion" href="#filterPane2">
+                                            <a data-toggle="collapse" data-parent="#accordion" href="#ADMINISTRATOR">SYSTEM ADMINISTRATOR</a>
+                                            <span class="pull-right panel-collapse-clickable" data-toggle="collapse" data-parent="#accordion" href="#ADMINISTRATOR">
                                                 <i class="glyphicon glyphicon-chevron-down"></i>
                                             </span>
                                         </div>
                                         <!-- List group -->
-                                        <div id="filterPane2" class="panel-collapse panel-collapse collapse">
+                                        <div id="ADMINISTRATOR" class="panel-collapse panel-collapse collapse">
                                             <ul class="list-group">
                                                 <li class="list-group-item"><a href="dataAnalysisMain.jsp">Data Analysis</a></li>
                                                 <li class="list-group-item"><a href="ICD10Main.jsp">ICD10 </a></li>
@@ -321,13 +321,13 @@
 
                                         <!-- Default panel contents -->
                                         <div class="panel-heading">
-                                            <a data-toggle="collapse" data-parent="#accordion" href="#filterPane2">KIOSK</a>
-                                            <span class="pull-right panel-collapse-clickable" data-toggle="collapse" data-parent="#accordion" href="#filterPane2">
+                                            <a data-toggle="collapse" data-parent="#accordion" href="#KIOSK">KIOSK</a>
+                                            <span class="pull-right panel-collapse-clickable" data-toggle="collapse" data-parent="#accordion" href="#KIOSK">
                                                 <i class="glyphicon glyphicon-chevron-down"></i>
                                             </span>
                                         </div>
                                         <!-- List group -->
-                                        <div id="filterPane2" class="panel-collapse panel-collapse collapse">
+                                        <div id="KIOSK" class="panel-collapse panel-collapse collapse">
                                             <ul class="list-group">
                                                 <li class="list-group-item"><a href="">Insert Report Menu</a></li>
                                             </ul>
@@ -336,13 +336,13 @@
 
                                         <!-- Default panel contents -->
                                         <div class="panel-heading">
-                                            <a data-toggle="collapse" data-parent="#accordion" href="#filterPane2">RADIOLOGY INFO SYSTEM</a>
-                                            <span class="pull-right panel-collapse-clickable" data-toggle="collapse" data-parent="#accordion" href="#filterPane2">
+                                            <a data-toggle="collapse" data-parent="#accordion" href="#RADIOLOGY">RADIOLOGY INFO SYSTEM</a>
+                                            <span class="pull-right panel-collapse-clickable" data-toggle="collapse" data-parent="#accordion" href="#RADIOLOGY">
                                                 <i class="glyphicon glyphicon-chevron-down"></i>
                                             </span>
                                         </div>
                                         <!-- List group -->
-                                        <div id="filterPane2" class="panel-collapse panel-collapse collapse">
+                                        <div id="RADIOLOGY" class="panel-collapse panel-collapse collapse">
                                             <ul class="list-group">
                                                 <li class="list-group-item"><a href="">Insert Report Menu</a></li>
                                             </ul>
