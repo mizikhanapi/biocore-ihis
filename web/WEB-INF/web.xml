@@ -24,7 +24,7 @@
         <servlet-name>Login</servlet-name>
         <url-pattern>/Entrance/Sign-in</url-pattern>
     </servlet-mapping>
-    <!--    <servlet-mapping>
+<!--    <servlet-mapping>
         <servlet-name>Login</servlet-name>
         <url-pattern>/Entrance/*</url-pattern>
     </servlet-mapping>-->
@@ -176,122 +176,16 @@
         <servlet-name>Maintain_Test_Code</servlet-name>
         <url-pattern>/LIS/Maintain_Test_Code</url-pattern>
     </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>Assign_Specimen</servlet-name>
+        <jsp-file>/LIS/assignSpecimen.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Assign_Specimen</servlet-name>
+        <url-pattern>/LIS/Assign_Specimen</url-pattern>
+    </servlet-mapping>
     <!--mapping for LIS end-->
-    
-    
-    
-    
-    
-    
-    
-    <!-- Mapping For PIS Hidding URL Start -->
-    
-    
-    <!-- mapping for PIS HIS040001 -->
-    <servlet>
-        <servlet-name>Dispense_Drug_Order</servlet-name>
-        <jsp-file>/PIS/HIS040001.jsp</jsp-file>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>Dispense_Drug_Order</servlet-name>
-        <url-pattern>/PIS/Dispense_Drug_Order</url-pattern>
-    </servlet-mapping>
-    <!-- mapping for PIS HIS040001 -->
-
-    <!-- mapping for PIS HIS040002 -->
-    <servlet>
-        <servlet-name>Manage_Drug_Code</servlet-name>
-        <jsp-file>/PIS/HIS040002.jsp</jsp-file>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>Manage_Drug_Code</servlet-name>
-        <url-pattern>/PIS/Manage_Drug_Code</url-pattern>
-    </servlet-mapping>
-    <!-- mapping for PIS HIS040002 -->
-    
-    <!-- mapping for PIS HIS040003 -->
-    <servlet>
-        <servlet-name>Manage_Drug_Stock</servlet-name>
-        <jsp-file>/PIS/HIS040003.jsp</jsp-file>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>Manage_Drug_Stock</servlet-name>
-        <url-pattern>/PIS/Manage_Drug_Stock</url-pattern>
-    </servlet-mapping>
-    <!-- mapping for PIS HIS040003 -->
-    
-    <!-- mapping for PIS HIS040004 -->
-    <servlet>
-        <servlet-name>Manage_Vendor</servlet-name>
-        <jsp-file>/PIS/HIS040004.jsp</jsp-file>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>Manage_Vendor</servlet-name>
-        <url-pattern>/PIS/Manage_Vendor</url-pattern>
-    </servlet-mapping>
-    <!-- mapping for PIS HIS040004 -->
-    
-    <!-- mapping for PIS HIS040005 -->
-    <servlet>
-        <servlet-name>MDC_Drug_List</servlet-name>
-        <jsp-file>/PIS/HIS040005.jsp</jsp-file>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>MDC_Drug_List</servlet-name>
-        <url-pattern>/PIS/MDC_Drug_List</url-pattern>
-    </servlet-mapping>
-    <!-- mapping for PIS HIS040005 -->
-    
-    <!-- mapping for PIS HIS040006 -->
-    <servlet>
-        <servlet-name>Supplier_List</servlet-name>
-        <jsp-file>/PIS/HIS040006.jsp</jsp-file>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>Supplier_List</servlet-name>
-        <url-pattern>/PIS/Supplier_List</url-pattern>
-    </servlet-mapping>
-    <!-- mapping for PIS HIS040006 -->
-    
-    <!-- mapping for PIS HIS040007 -->
-    <servlet>
-        <servlet-name>Pendding_Order_List</servlet-name>
-        <jsp-file>/PIS/HIS040007.jsp</jsp-file>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>Pendding_Order_List</servlet-name>
-        <url-pattern>/PIS/Pendding_Order_List</url-pattern>
-    </servlet-mapping>
-    <!-- mapping for PIS HIS040007 -->
-    
-    <!-- mapping for PIS HIS040008 -->
-    <servlet>
-        <servlet-name>Pharmacy_Sales_List</servlet-name>
-        <jsp-file>/PIS/HIS040008.jsp</jsp-file>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>Pharmacy_Sales_List</servlet-name>
-        <url-pattern>/PIS/Pharmacy_Sales_List</url-pattern>
-    </servlet-mapping>
-    <!-- mapping for PIS HIS040008 -->
-    
-    <!-- mapping for PIS HIS040009 -->
-    <servlet>
-        <servlet-name>ATC_Drug_List</servlet-name>
-        <jsp-file>/PIS/HIS040009.jsp</jsp-file>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>ATC_Drug_List</servlet-name>
-        <url-pattern>/PIS/ATC_Drug_List</url-pattern>
-    </servlet-mapping>
-    <!-- mapping for PIS HIS040009 -->
-    
-    
-    <!-- Mapping For PIS Hidding URL End -->
-
-
-
-
     
     <session-config>
         <session-timeout>
