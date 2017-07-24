@@ -28,7 +28,7 @@
         
     </head>
     <body>
-        <form method="post" action="assignSpecimen.jsp" id="specimenOder">
+        <form method="post" action="Assign_Specimen" id="specimenOder">
       
       <div class="container-fluid">
           <div class="row"> 

@@ -119,7 +119,7 @@
                                         </thead>
                                         <tbody>
                                             <%
-
+                                                String hfc_cd = (String) session.getAttribute("HEALTH_FACILITY_CODE");
                                                 itemCD = request.getParameterValues("chkSpecimen");
                                                 out.println("<input type='text' name='pmi' value='" + pmi2 + "' id='pmi' style='display:none;'>");
                                                 out.println("<input type='text' name='order_no' value='" + orderno1 + "' id='order_no'  style='display:none;'>");
@@ -129,7 +129,7 @@
                                                         out.println("<input type='text' name='specimen" + j + "' value='" + itemCD[j] + "' id='specimen" + j + "' style='display:none;'>");
 
                                                         count++;
-                                                        String sqlPatientApp = "SELECT LID.item_cd,LID.item_name,LID.spe_container,LOD.created_date,LOM.hfc_cd,LOM.pmi_no,LOM.patient_name FROM lis_order_detail LOD, lis_item_detail LID, lis_order_master LOM WHERE LOD.item_cd = LID.item_cd AND LOD.order_no = LOM.order_no AND LOD.item_cd = '" + itemCD[j] + "' AND LOD.order_no = '" + orderno1 + "'";
+                                                        String sqlPatientApp = "SELECT LID.item_cd,LID.item_name,LID.spe_container,LOD.created_date,LOM.hfc_cd,LOM.pmi_no,LOM.patient_name FROM lis_order_detail LOD, lis_item_detail LID, lis_order_master LOM WHERE LOD.item_cd = LID.item_cd AND LOD.order_no = LOM.order_no AND LOD.item_cd = '" + itemCD[j] + "' AND LOD.order_no = '" + orderno1 + "' AND LID.hfc_cd = '"+hfc_cd+"'";
                                                         ArrayList<ArrayList<String>> dataPatientApp = conn.getData(sqlPatientApp);
 
                                                         if (dataPatientApp.size() > 0) {
@@ -204,7 +204,7 @@
 
                     });
                     //alert(specimen[0] + " " + pmi + " " + order_no + " " + C_date + " " + C_time + " " + TotalOptions + " " + patient_name);
-                    window.location.replace("Order_List");
+                    window.location.replace("Order_list");
                 }
             });
         </script>

@@ -11,7 +11,7 @@
 <%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
-<form method="post" action="assignSpecimen.jsp" id="specimenOder">
+<form method="post" action="Assign_Specimen" id="specimenOder">
     <%
         Conn conn = new Conn();
         String orderNo = request.getParameter("orderNo");
