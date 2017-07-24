@@ -775,6 +775,59 @@ function searchDOCTOROnly(fieldId, loadingDivId, hfc_code) {
     });
 }
 
+function searchDOCTOROnlySurgical(fieldId, loadingDivId, hfc_code,value) {
+
+    $('#' + fieldId).val(value).flexdatalist({
+        minLength: 1,
+        searchIn: 'name',
+        searchDelay: 2000,
+        url: "search/ResultDOCTORSurgicalSearch.jsp?hfc_code=" + hfc_code,
+        valueProperty: 'name',
+        visibleProperties: ['name',"role", "discipline","subdiscipline"],
+        cache: true,
+        params: {
+            timeout: 3000,
+            success: function (result) {
+                console.log(result);
+                if (result === undefined) {
+                    $('#' + loadingDivId).html('No Record');
+                }
+            }
+        }
+    });
+        $("#" + fieldId).on('before:flexdatalist.data', function (response) {
+        $('#' + loadingDivId).html('<img src="img/LoaderIcon.gif" />');
+    });
+    $("#" + fieldId).on('after:flexdatalist.data', function (response) {
+        $('#' + loadingDivId).html('');
+    });
+}
+function searchOTRoomSurgical(fieldId, loadingDivId,value) {
+
+    $('#' + fieldId).val(value).flexdatalist({
+        minLength: 1,
+        searchIn: 'name',
+        searchDelay: 2000,
+        url: "search/ResultOTRoomSearch.jsp",
+        valueProperty: 'value',
+        cache: true,
+        params: {
+            timeout: 3000,
+            success: function (result) {
+                console.log(result);
+                if (result === undefined) {
+                    $('#' + loadingDivId).html('No Record');
+                }
+            }
+        }
+    });
+        $("#" + fieldId).on('before:flexdatalist.data', function (response) {
+        $('#' + loadingDivId).html('<img src="img/LoaderIcon.gif" />');
+    });
+    $("#" + fieldId).on('after:flexdatalist.data', function (response) {
+        $('#' + loadingDivId).html('');
+    });
+}
 function sendOrder(data,tableId){
     
     $.ajax({
@@ -803,7 +856,7 @@ function searchPOSSurgicalCategory(searchFieldId, loadingId, currentValue) {
         selectionRequired: true,
         url: "search/ResultPOSSurgicalCategorySearch.jsp",
         cache: true,
-        valueProperty: 'value',
+        valueProperty: 'name',
         params: {
             timeout: 3000,
             success: function (result) {

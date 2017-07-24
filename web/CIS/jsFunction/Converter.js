@@ -392,6 +392,11 @@ function convertPOS(obj){
     var msg ="POS|"  + obj.problemCode +"^"+obj.problemName+"^CTV3|"+ obj.procedureCode + "^"+procedureDisplay +"^ICD1-PCS|" + obj.date + "|038^" + obj.priority + "^" + obj.priorityCode + "|096^" + obj.patientConditionCode + "^" + obj.patientCondition + "||||" + hfc_cd + "|" + hfc_name + "|" + obj.comment + "|" + hfc_cd;
     return msg;
 }
+function convertPOSSurgical(obj){
+
+    var msg ="POS|"  + obj.problemCode +"^"+obj.problemName+"^CTV3|" + obj.cat_Code+"^" +"^" + obj.cat_name +"^"+ obj.procedureCode + "^"+obj.procedure +"^ICD1-PCS|" + obj.startDate + "^"+ obj.startTime +"^"+ obj.endDate +"^"+ obj.endTime + "|038^" + obj.priority + "^" + obj.priorityCode + "|096^" + obj.patientConditionCode + "^" + obj.patientCondition + "||||" + hfc_cd + "|" + hfc_name + "|" + obj.comment + "|" + hfc_cd + "|" + obj.consultantCode+"^"+obj.consultantName+"|"+obj.otRoomCode+"^"+obj.otRoom;
+    return msg;
+}
 
 function convertADW(obj){
    var msg = "ADW|"+episodeDate+"|"+obj.AdmitDate+" "+obj.AdmitTime+"^" +obj.AdmitToDisciplineCd+"^"+obj.AdmitToDiscipline+"^"+"ST-UD"+"^"+obj.WardNameCd+"^"+obj.WardClassCd+"^"+obj.WardClass+"^"+"ST-UD"+"^"+obj.Reason+"^"+obj.PatientReferFromCd+"^active^"+obj.AdmittedBefore+"^"+getDate()+"^"+ hfc_cd + "^" + doctor_id + "^" + doctor_name + "|<cr>\n";

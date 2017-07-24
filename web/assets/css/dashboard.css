@@ -1051,7 +1051,26 @@ tr#moveToOrderDetailsTButton {
     font-size: 16px;
 }
 
-.item-source {
+.item-source{
+    padding-left: 10px;
+    display: inline-block;
+    font-size: 80%;
+    color: rgba(0, 0, 0, 0.50);
+}
+
+.item-role{
+    padding-left: 10px;
+    display: inline-block;
+    font-size: 80%;
+    color: rgba(0, 0, 0, 0.50);
+}
+ .item-discipline{
+    padding-left: 10px;
+    display: inline-block;
+    font-size: 80%;
+    color: rgba(0, 0, 0, 0.50);
+}
+ .item-subdiscipline{
     padding-left: 10px;
     display: inline-block;
     font-size: 80%;

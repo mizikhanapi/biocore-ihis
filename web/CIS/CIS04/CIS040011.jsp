@@ -42,6 +42,7 @@
                                             <div class="col-md-12">
                                                 <input class="form-control input-lg" type="hidden"  id="tCISOESPOCategoryCode" placeholder="">
                                                 <input class="form-control input-lg" type="text" name="problem"  id="tCISOESPOCategoryName" placeholder="Search Surgical Category..." tabindex="4" data-search-by-word="true">
+                                                
                                                 <div id="tCISOESPOCategoryNameLoading" ></div>
                                             </div>
                                         </div>
@@ -60,6 +61,30 @@
                                             <input class="form-control input-lg" type="hidden"  id="hfcProviderDetailSPO" placeholder="">
                                         </div>
 
+                                    </div>
+                                </div>
+                                <div class="row">                 
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="col-md-6 control-label" for="textinput">Consultant Name</label>
+                                            <div class="col-md-12">
+                                                <input class="form-control input-lg" type="hidden"  id="tCISOESPOConsultantCode" placeholder="">
+                                                <input class="form-control input-lg" type="text" name="problem"  id="tCISOESPOConsultantName" placeholder="Search Surgical Category..." tabindex="4" data-search-by-word="true">
+
+                                                <div id="tCISOESPOConsultantNameLoading" ></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="col-md-6 control-label" for="textinput">OT Room</label>
+                                            <div class="col-md-12">
+                                                <input class="form-control input-lg" type="hidden"  id="tCISOESPOOTRoomCode" placeholder="">
+                                                <input class="form-control input-lg" type="text" name="problem"  id="tCISOESPOOTRoomName" placeholder="Search Surgical Category..." tabindex="4" data-search-by-word="true">
+
+                                                <div id="tCISOESPOOTRoomNameLoading" ></div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="row">
@@ -167,14 +192,19 @@
                         </div>
                     </div>
                 </div>
-                <table class="table table-bordered table-striped">
+                <table class="table table-bordered table-striped table-guling col-md-12" style="overflow-x: auto">
                     <thead id="tableOrderPOSSurgical">
                         <tr>
-                            <td>Problem Name</td>
-                            <td>Procedure Name</td>
-
-                            <td>Comment</td>
-                            <td>Action</td>
+                           
+                            <td class="col-md-2">Category</td>
+                            <td class="col-md-2">Procedure</td>
+                            <td class="col-md-2">OT Room</td>
+                          
+                            <td class="col-md-2">Start Date Time</td>
+                            <td class="col-md-2">End Date Time</td>
+                            <td class="col-md-2">Consultant</td>
+                            <td class="col-md-2">Comment</td>
+                            <td class="col-md-2">Action</td>
                         </tr>
                     </thead>
                     <tbody id="tableOrderPOSSurgical">

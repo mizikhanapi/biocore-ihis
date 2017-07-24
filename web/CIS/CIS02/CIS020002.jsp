@@ -237,6 +237,7 @@
         console.log('loading...');
         $('#subModalPGCS').hide();
         $('#updatePGSC').hide();
+        $("#ortho_actionPGSC").hide();
 
         $('input[type=radio][name=pgcs_eo]').change(function () {
             eor = this.value.split(" ");
