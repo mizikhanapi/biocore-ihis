@@ -47,7 +47,7 @@
                             <div class="modal-content">
                                 <div class="modal-header">
                                     <button type="button" class="close" data-dismiss="modal"><i class="fa fa-times fa-lg"></i></button>
-                                    <h3 class="modal-title" id="lineModalLabel">Add  Test Result</h3>
+                                    <h3 class="modal-title" id="lineModalLabel">Edit  Test Result</h3>
 
                                 </div>
                                 <div class="modal-body">
