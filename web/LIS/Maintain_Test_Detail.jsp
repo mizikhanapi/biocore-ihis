@@ -16,6 +16,7 @@
 
 <h4>Maintain Test Detail
     <span class="pull-right">
+        <button id="Clone" class="btn btn-success" style=" padding-right: 10px;padding-left: 10px;"><a data-toggle="tooltip" data-placement="top" title="Add Items" id="test"></a><i class=" fa fa-plus" style=" padding-right: 10px;padding-left: 10px;"></i>&nbsp;Clone</button>
         <button id="MLM_btnAddNew" class="btn btn-success" data-status="pagado" data-toggle="modal" data-id="1" data-target="#TestDetail" style=" padding-right: 10px;padding-left: 10px;"><a data-toggle="tooltip" data-placement="top" title="Add Items" id="test"></a><i class=" fa fa-plus" style=" padding-right: 10px;padding-left: 10px;"></i>&nbsp;ADD Test Detail</button>
     </span>
 </h4>
@@ -32,8 +33,9 @@
             </div>
             <div class="modal-body">
                 <%
+                    String my_1_hfc_cd = (String) session.getAttribute("HEALTH_FACILITY_CODE");
                     Conn conn = new Conn();
-                    String query = "SELECT category_code, category_name from lis_item_category";
+                    String query = "SELECT category_code, category_name from lis_item_category where hfc_cd = '" + my_1_hfc_cd + "'";
                     ArrayList<ArrayList<String>> q2 = conn.getData(query);
                 %>
                 <div class="form-horizontal">
@@ -48,7 +50,7 @@
                                 %>
                                 <option value="<%=q2.get(i).get(0)%>"><%=q2.get(i).get(0)%></option>
                                 <%}
-                                }%>
+                                    }%>
                             </select>
 
 
@@ -149,6 +151,30 @@
 <script>
     $(document).ready(function () {
         $("#viewMTDpage").load("viewMTD.jsp");
+
+        $("#Clone").click(function () {
+            var clone = confirm("Are you sure to clone the data?");
+            if (clone == true)
+            {
+                $.ajax({
+                    url: "clone_item_detail.jsp",
+                    type: "post",
+
+                    timeout: 10000,
+                    success: function (data) {
+
+                        $("#viewMTDpage").load("viewMTD.jsp");
+                        alert("Data are clone successfully!");
+
+                    },
+                    error: function (err) {
+                        alert("error cloning");
+                    }
+
+                });
+            }
+
+        });
 
         $("#btn_add1").click(function () {
             var icd10 = $("#icd10").val();
