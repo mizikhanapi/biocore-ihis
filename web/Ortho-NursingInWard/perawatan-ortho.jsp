@@ -249,6 +249,8 @@
         $('#NIWtrEncounterDate').val(sdataX[3]);
         $('#NIWtrPmi').val(sdataX[0]);
         $('#NIWtrHfc').val(sdataX[1]);
+        $('#NIWtrdis').val(sdataX[20]);
+        $('#NIWtrsubdis').val(sdataX[21]);
         $('#dateNIWtr').val(sdataX[4]);
         $("input[name='NIWtrTIME'][value='" + sdataX[5] + "']").prop('checked', true);
         $("input[name='RightUpperLimb'][value='" + sdataX[6] + "']").prop('checked', true);

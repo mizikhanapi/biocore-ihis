@@ -234,6 +234,8 @@
         $('#NIW4hlyEncounterDate').val(sdataX[3]);
         $('#NIW4hlyPmi').val(sdataX[0]);
         $('#NIW4hlyHfc').val(sdataX[1]);
+        $('#NIW4hlydis').val(sdataX[20]);
+        $('#NIW4hlysubdis').val(sdataX[21]);
     });
 
 </script>

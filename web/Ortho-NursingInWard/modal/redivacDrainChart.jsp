@@ -20,6 +20,8 @@
                             <input type="hidden" id="NIWredivacEncounterDate">
                             <input type="hidden" id="NIWredivacPmi" >
                             <input type="hidden" id="NIWredivacHfc" >
+                            <input type="hidden" id="NIWredivacdis" >
+                            <input type="hidden" id="NIWredivacsubdis" >
                             <!-- Text input-->
                             <div class="form-group">
                                 <label class="col-md-12 control-label" for="textinput">Date</label>
@@ -132,6 +134,8 @@
         var pmi_no = pmiNo;
         var hfc_cd1 = hfc_cd;
         var epDate = episodeDate;
+        var dis = "<%=session.getAttribute("SUB_DISCIPLINE_CODE").toString()%>";
+        var subdis = "<%=session.getAttribute("DISCIPLINE_CODE").toString()%>";
 
         var enDate = new Date();
         var dd = ("0" + enDate.getDate()).slice(-2);
@@ -160,7 +164,7 @@
 
         var assignBy = doctor_id;
 
-        var datas = pmi_no + "|" + hfc_cd1 + "|" + epDate + "|" + encounterDate + "|" + treatmentDate + "|" + shift + "|" + TIB + "|" + AIS + "|" + TBES + "|" + remark + "|" + assignBy;
+        var datas = pmi_no + "|" + hfc_cd1 + "|" + epDate + "|" + encounterDate + "|" + treatmentDate + "|" + shift + "|" + TIB + "|" + AIS + "|" + TBES + "|" + remark + "|" + assignBy+"|"+dis+"|"+subdis;
 
         $.ajax({
             type: "post",
@@ -189,6 +193,8 @@
         var pmi_no = $('#NIWredivacPmi').val();
         var hfc_cd1 = $('#NIWredivacHfc').val();
         var epDate = $('#NIWredivacEpisodeDate').val();
+        var dis = $('#NIWredivacdis').val();
+        var subdis = $('#NIWredivacsubdis').val();
 
         var enDate = new Date();
         var dd = ("0" + enDate.getDate()).slice(-2);
@@ -217,7 +223,7 @@
 
         var assignBy = doctor_id;
 
-        var datas = pmi_no + "|" + hfc_cd1 + "|" + epDate + "|" + encounterDate + "|" + treatmentDate + "|" + shift + "|" + TIB + "|" + AIS + "|" + TBES + "|" + remark + "|" + assignBy;
+        var datas = pmi_no + "|" + hfc_cd1 + "|" + epDate + "|" + encounterDate + "|" + treatmentDate + "|" + shift + "|" + TIB + "|" + AIS + "|" + TBES + "|" + remark + "|" + assignBy+"|"+dis+"|"+subdis;
 
         $.ajax({
             type: "post",

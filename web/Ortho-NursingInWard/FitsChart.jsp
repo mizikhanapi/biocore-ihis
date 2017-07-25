@@ -210,5 +210,7 @@
         $("#NIWFitsNOF").val(sdataX[7]);
         $("#NIWFitsDuration").val(sdataX[8]);
         $("#NIWFitsRemark").val(sdataX[9]);
+        $("#NIWFitsdis").val(sdataX[10]);
+        $("#NIWFitssubdis").val(sdataX[11]);
     });
 </script>

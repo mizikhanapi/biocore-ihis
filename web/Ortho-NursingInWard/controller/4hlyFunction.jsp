@@ -10,6 +10,8 @@
     ThrombophlebitisUtils tbU = new ThrombophlebitisUtils();
     String methodName = request.getParameter("methodName");
     String data = request.getParameter("datas");
+//    session.getAttribute("SUB_DISCIPLINE_CODE").toString();
+//    session.getAttribute("DISCIPLINE_CODE").toString();
     Boolean result;
 
     if (methodName.equalsIgnoreCase("add")) {
@@ -36,7 +38,7 @@
     <%
         for (int i = 0; i < datas.size(); i++) {%>
     <tr>
-        <td hidden="" id="priNIW4hly"><%=datas.get(i).get(0) + "|" + datas.get(i).get(1) + "|" + datas.get(i).get(2) + "|" + datas.get(i).get(3)+ "|" + datas.get(i).get(4)+ "|" + datas.get(i).get(5)+ "|" + datas.get(i).get(6)+ "|" + datas.get(i).get(7)+ "|" + datas.get(i).get(8)+ "|" + datas.get(i).get(9)+ "|" + datas.get(i).get(10)+ "|" + datas.get(i).get(11)+ "|" + datas.get(i).get(12)+ "|" + datas.get(i).get(13)+ "|" + datas.get(i).get(14)+ "|" + datas.get(i).get(15)+ "|" + datas.get(i).get(16)+ "|" + datas.get(i).get(17)+ "|" + datas.get(i).get(18)+ "|" + datas.get(i).get(19)%></td>
+        <td hidden="" id="priNIW4hly"><%=datas.get(i).get(0) + "|" + datas.get(i).get(1) + "|" + datas.get(i).get(2) + "|" + datas.get(i).get(3)+ "|" + datas.get(i).get(4)+ "|" + datas.get(i).get(5)+ "|" + datas.get(i).get(6)+ "|" + datas.get(i).get(7)+ "|" + datas.get(i).get(8)+ "|" + datas.get(i).get(9)+ "|" + datas.get(i).get(10)+ "|" + datas.get(i).get(11)+ "|" + datas.get(i).get(12)+ "|" + datas.get(i).get(13)+ "|" + datas.get(i).get(14)+ "|" + datas.get(i).get(15)+ "|" + datas.get(i).get(16)+ "|" + datas.get(i).get(17)+ "|" + datas.get(i).get(18)+ "|" + datas.get(i).get(19)+ "|" + datas.get(i).get(20)+ "|" + datas.get(i).get(21)%></td>
         <td><%=datas.get(i).get(4)%></td>
         <td><%=datas.get(i).get(5)%></td>
         <td><%=datas.get(i).get(6)%></td>

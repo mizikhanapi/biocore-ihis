@@ -19,6 +19,8 @@
                             <input type="hidden" id="NIWfitEncounterDate">
                             <input type="hidden" id="NIWfitPmi" >
                             <input type="hidden" id="NIWfitHfc" >
+                            <input type="hidden" id="NIWfitdis" >
+                            <input type="hidden" id="NIWfitsubdis" >
                             <!-- Text input-->
                             <div class="form-group">
                                 <label class="col-md-12 control-label" for="textinput">Date</label>
@@ -100,6 +102,8 @@
         var pmi_no = pmiNo;
         var hfc_cd1 = hfc_cd;
         var epDate = episodeDate;
+        var dis = "<%=session.getAttribute("SUB_DISCIPLINE_CODE").toString()%>";
+        var subdis = "<%=session.getAttribute("DISCIPLINE_CODE").toString()%>";
 
         var enDate = new Date();
         var dd = ("0" + enDate.getDate()).slice(-2);
@@ -127,7 +131,7 @@
 
         var assignBy = doctor_id;
 
-        var datas = pmi_no + "|" + hfc_cd1 + "|" + epDate + "|" + encounterDate + "|" + treatmentDate +" "+time+":00.0|" + NOF + "|" + DU + "|" + REMARK;
+        var datas = pmi_no + "|" + hfc_cd1 + "|" + epDate + "|" + encounterDate + "|" + treatmentDate +" "+time+":00.0|" + NOF + "|" + DU + "|" + REMARK+"|"+dis+"|"+subdis;
 
         $.ajax({
             type: "post",
@@ -156,6 +160,8 @@
         var pmi_no = $('#NIWfitPmi').val();
         var hfc_cd1 = $('#NIWfitHfc').val();
         var epDate = $('#NIWfitEpisodeDate').val();
+        var dis = $('#NIWfitdis').val();
+        var subdis = $('#NIWfitsubdis').val();
 
         var enDate = new Date();
         var dd = ("0" + enDate.getDate()).slice(-2);
@@ -183,7 +189,7 @@
 
         var assignBy = doctor_id;
 
-        var datas = pmi_no + "|" + hfc_cd1 + "|" + epDate + "|" + encounterDate + "|" + treatmentDate +" "+time+"|" + NOF + "|" + DU + "|" + REMARK;
+        var datas = pmi_no + "|" + hfc_cd1 + "|" + epDate + "|" + encounterDate + "|" + treatmentDate +" "+time+"|" + NOF + "|" + DU + "|" + REMARK+"|"+dis+"|"+subdis;
         $.ajax({
             type: "post",
             url: "../Ortho-NursingInWard/controller/FitFunction.jsp",

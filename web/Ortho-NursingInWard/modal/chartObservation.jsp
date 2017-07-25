@@ -20,6 +20,8 @@
                             <input type="hidden" id="NIWObsEncounterDate">
                             <input type="hidden" id="NIWObsPmi" >
                             <input type="hidden" id="NIWObsHfc" >
+                            <input type="hidden" id="NIWObsdis" >
+                            <input type="hidden" id="NIWObssubdis" >
                             <div class="form-group">
                                 <label class="col-md-12 control-label" for="textinput">Date</label>
                                 <div class="col-md-12">
@@ -190,8 +192,10 @@
         var pmi_no = pmiNo;
         var hfc_cd1 = hfc_cd;
         var epDate = episodeDate;
+        var dis = "<%=session.getAttribute("SUB_DISCIPLINE_CODE").toString()%>";
+        var subdis = "<%=session.getAttribute("DISCIPLINE_CODE").toString()%>";
 
-        var datas = pmi_no + "|" + hfc_cd1 + "|" + epDate + "|" + encounterDate + "| | |" + newDate + " " + time + ":00.0|" + pulse + "|" + systolic + "|" + dialotic + "|" + respiratoryRate + "|" + oxygenSatu + "|" + painScore + "|" + comment;
+        var datas = pmi_no + "|" + hfc_cd1 + "|" + epDate + "|" + encounterDate + "| | |" + newDate + " " + time + ":00.0|" + pulse + "|" + systolic + "|" + dialotic + "|" + respiratoryRate + "|" + oxygenSatu + "|" + painScore + "|" + comment+"|"+dis+"|"+subdis;
 
         $.ajax({
             type: "post",
@@ -250,8 +254,10 @@
         var pmi_no = $('#NIWObsPmi').val();
         var hfc_cd1 = $('#NIWObsHfc').val();
         var epDate = $('#NIWObsEpisodeDate').val();
+        var dis = $('#NIWObsdis').val();
+        var subdis = $('#NIWObssubdis').val();
 
-        var datas = pmi_no + "|" + hfc_cd1 + "|" + epDate + "|" + encounterDate + "| | |" + newDate + " " + time + "|" + pulse + "|" + systolic + "|" + dialotic + "|" + respiratoryRate + "|" + oxygenSatu + "|" + painScore + "|" + comment;
+        var datas = pmi_no + "|" + hfc_cd1 + "|" + epDate + "|" + encounterDate + "| | |" + newDate + " " + time + "|" + pulse + "|" + systolic + "|" + dialotic + "|" + respiratoryRate + "|" + oxygenSatu + "|" + painScore + "|" + comment+"|"+dis+"|"+subdis;
 
         $.ajax({
             type: "post",

@@ -33,7 +33,7 @@
     <%
         for (int i = 0; i < datas.size(); i++) {%>
     <tr>
-        <td hidden="" id="priNIWfits"><%=datas.get(i).get(0) + "|" + datas.get(i).get(1) + "|" + datas.get(i).get(2) + "|" + datas.get(i).get(3) + "|" + datas.get(i).get(4) + "|" + datas.get(i).get(5) + "|" + datas.get(i).get(6) + "|" + datas.get(i).get(7) + "|" + datas.get(i).get(8) + "|" + datas.get(i).get(9)%></td>
+        <td hidden="" id="priNIWfits"><%=datas.get(i).get(0) + "|" + datas.get(i).get(1) + "|" + datas.get(i).get(2) + "|" + datas.get(i).get(3) + "|" + datas.get(i).get(4) + "|" + datas.get(i).get(5) + "|" + datas.get(i).get(6) + "|" + datas.get(i).get(7) + "|" + datas.get(i).get(8) + "|" + datas.get(i).get(9)+ "|" + datas.get(i).get(10)+ "|" + datas.get(i).get(11)%></td>
         <td><%=datas.get(i).get(4)%></td>
         <td><%=datas.get(i).get(5)%></td>
         <td><%=datas.get(i).get(7)%></td>

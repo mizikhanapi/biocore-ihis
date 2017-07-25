@@ -36,7 +36,7 @@
 <tbody>
     <% for (int i = 0; i < datas.size(); i++) {%>
     <tr>
-        <td hidden="" id="priNIWOB"><%=datas.get(i).get(0) + "|" + datas.get(i).get(1) + "|" + datas.get(i).get(2) + "|" + datas.get(i).get(3) + "|" + datas.get(i).get(4) + "|" + datas.get(i).get(5) + "|" + datas.get(i).get(6) + "|" + datas.get(i).get(7) + "|" + datas.get(i).get(8) + "|" + datas.get(i).get(9) + "|" + datas.get(i).get(10) + "|" + datas.get(i).get(11) + "|" + datas.get(i).get(12) + "|" + datas.get(i).get(13) + "|" + datas.get(i).get(14) + "|" + datas.get(i).get(15) + "|" + datas.get(i).get(16)%></td>
+        <td hidden="" id="priNIWOB"><%=datas.get(i).get(0) + "|" + datas.get(i).get(1) + "|" + datas.get(i).get(2) + "|" + datas.get(i).get(3) + "|" + datas.get(i).get(4) + "|" + datas.get(i).get(5) + "|" + datas.get(i).get(6) + "|" + datas.get(i).get(7) + "|" + datas.get(i).get(8) + "|" + datas.get(i).get(9) + "|" + datas.get(i).get(10) + "|" + datas.get(i).get(11) + "|" + datas.get(i).get(12) + "|" + datas.get(i).get(13) + "|" + datas.get(i).get(14) + "|" + datas.get(i).get(15) + "|" + datas.get(i).get(16)+ "|" + datas.get(i).get(17)+ "|" + datas.get(i).get(18)%></td>
         <td><%=datas.get(i).get(7)%></td>
         <td><%=datas.get(i).get(6)%></td>
         <td><strong>Systolic:</strong> <%=datas.get(i).get(9)%> <br/><strong>Diastolic:</strong> <%=datas.get(i).get(10)%></td>

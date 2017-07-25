@@ -19,6 +19,8 @@
                             <input type="hidden" id="NIWtrEncounterDate">
                             <input type="hidden" id="NIWtrPmi" >
                             <input type="hidden" id="NIWtrHfc" >
+                            <input type="hidden" id="NIWtrdis" >
+                            <input type="hidden" id="NIWtrsubdis" >
                             <!-- Text input-->
                             <div class="form-group">
                                 <label class="col-md-12 control-label" for="textinput">Date</label>
@@ -464,6 +466,8 @@
         var pmi_no = pmiNo;
         var hfc_cd1 = hfc_cd;
         var epDate = episodeDate;
+        var dis = "<%=session.getAttribute("SUB_DISCIPLINE_CODE").toString()%>";
+        var subdis = "<%=session.getAttribute("DISCIPLINE_CODE").toString()%>";
 
         var enDate = new Date();
         var dd = ("0" + enDate.getDate()).slice(-2);
@@ -500,7 +504,7 @@
 
         var assignBy = doctor_id;
 
-        var datas = pmi_no + "|" + hfc_cd1 + "|" + epDate + "|" + encounterDate + "|" + treatmentDate + "|" + shift + "|" + iv_branula_rul + "|" + iv_branula_lul + "|" + iv_branula_rll + "|" + iv_branula_lll + "|" + angiocatheter + "|" + cvp + "|" + tracheostomy + "|" + urinary_catheter + "|" + drain1 + "|" + drain2 + "|" + vaccum_dressing + "|" + ryiestube + "|" + chesttube + "|" + assignBy;
+        var datas = pmi_no + "|" + hfc_cd1 + "|" + epDate + "|" + encounterDate + "|" + treatmentDate + "|" + shift + "|" + iv_branula_rul + "|" + iv_branula_lul + "|" + iv_branula_rll + "|" + iv_branula_lll + "|" + angiocatheter + "|" + cvp + "|" + tracheostomy + "|" + urinary_catheter + "|" + drain1 + "|" + drain2 + "|" + vaccum_dressing + "|" + ryiestube + "|" + chesttube + "|" + assignBy+"|"+dis+"|"+subdis;
 
         $.ajax({
             type: "post",
@@ -529,6 +533,8 @@
         var pmi_no = $('#NIWtrPmi').val();
         var hfc_cd1 = $('#NIWtrHfc').val();
         var epDate = $('#NIWtrEpisodeDate').val();
+        var dis = $('#NIWtrdis').val();
+        var subdis = $('#NIWtrsubdis').val();
 
         var enDate = new Date();
         var dd = ("0" + enDate.getDate()).slice(-2);
@@ -565,7 +571,7 @@
 
         var assignBy = doctor_id;
 
-        var datas = pmi_no + "|" + hfc_cd1 + "|" + epDate + "|" + encounterDate + "|" + treatmentDate + "|" + shift + "|" + iv_branula_rul + "|" + iv_branula_lul + "|" + iv_branula_rll + "|" + iv_branula_lll + "|" + angiocatheter + "|" + cvp + "|" + tracheostomy + "|" + urinary_catheter + "|" + drain1 + "|" + drain2 + "|" + vaccum_dressing + "|" + ryiestube + "|" + chesttube + "|" + assignBy;
+        var datas = pmi_no + "|" + hfc_cd1 + "|" + epDate + "|" + encounterDate + "|" + treatmentDate + "|" + shift + "|" + iv_branula_rul + "|" + iv_branula_lul + "|" + iv_branula_rll + "|" + iv_branula_lll + "|" + angiocatheter + "|" + cvp + "|" + tracheostomy + "|" + urinary_catheter + "|" + drain1 + "|" + drain2 + "|" + vaccum_dressing + "|" + ryiestube + "|" + chesttube + "|" + assignBy+"|"+dis+"|"+subdis;
 
         $.ajax({
             type: "post",

@@ -20,6 +20,8 @@
                             <input type="hidden" id="NIW4hlyEncounterDate">
                             <input type="hidden" id="NIW4hlyPmi" >
                             <input type="hidden" id="NIW4hlyHfc" >
+                            <input type="hidden" id="NIW4hlydis" >
+                            <input type="hidden" id="NIW4hlysubdis" >
                             <div class="form-group">
                                 <label class="col-md-12 control-label" for="textinput">Date</label>
                                 <div class="col-md-12">
@@ -236,6 +238,8 @@
         var pmi_no = pmiNo;
         var hfc_cd1 = hfc_cd;
         var epDate = episodeDate;
+        var dis = "<%=session.getAttribute("SUB_DISCIPLINE_CODE").toString()%>";
+        var subdis = "<%=session.getAttribute("DISCIPLINE_CODE").toString()%>";
 
         var enDate = new Date();
         var dd = ("0" + enDate.getDate()).slice(-2);
@@ -312,7 +316,7 @@
 
         var assignBy = doctor_id;
 
-        var datas = pmi_no + "|" + hfc_cd1 + "|" + epDate + "|" + encounterDate + "|" + newDate + " " + time4h + ":00.0|" + time4h + "|" + siteOfCanulation + "|" + painScore + "|" + slightRedness + "|" + redness + "|" + swelling + "|" + palpable + "|" + unconscious + "|" + thrombophlebitis + "|" + vip_pain + "|" + medication + "|" + blood_tx + "|" + plain_iv_drip + "|" + assignBy;
+        var datas = pmi_no + "|" + hfc_cd1 + "|" + epDate + "|" + encounterDate + "|" + newDate + " " + time4h + ":00.0|" + time4h + "|" + siteOfCanulation + "|" + painScore + "|" + slightRedness + "|" + redness + "|" + swelling + "|" + palpable + "|" + unconscious + "|" + thrombophlebitis + "|" + vip_pain + "|" + medication + "|" + blood_tx + "|" + plain_iv_drip + "|" + assignBy+"|"+dis+"|"+subdis;
 
         $.ajax({
             type: "post",
@@ -345,6 +349,8 @@
         var hfc_cd1 = $('#NIW4hlyHfc').val();
         var epDate = $('#NIW4hlyEpisodeDate').val();
         var sel = $('#select4hlydate').val();
+        var dis = $('#NIW4hlydis').val();
+        var subdis = $('#NIW4hlysubdis').val();
 
         var enDate = new Date();
         var dd = ("0" + enDate.getDate()).slice(-2);
@@ -420,7 +426,7 @@
 
         var assignBy = doctor_id;
 
-        var datas = pmi_no + "|" + hfc_cd1 + "|" + epDate + "|" + encounterDate + "|" + newDate + " " + time4h + "|" + time4h + "|" + siteOfCanulation + "|" + painScore + "|" + slightRedness + "|" + redness + "|" + swelling + "|" + palpable + "|" + unconscious + "|" + thrombophlebitis + "|" + vip_pain + "|" + medication + "|" + blood_tx + "|" + plain_iv_drip + "|" + assignBy;
+        var datas = pmi_no + "|" + hfc_cd1 + "|" + epDate + "|" + encounterDate + "|" + newDate + " " + time4h + "|" + time4h + "|" + siteOfCanulation + "|" + painScore + "|" + slightRedness + "|" + redness + "|" + swelling + "|" + palpable + "|" + unconscious + "|" + thrombophlebitis + "|" + vip_pain + "|" + medication + "|" + blood_tx + "|" + plain_iv_drip + "|" + assignBy+"|"+dis+"|"+subdis;
 
         $.ajax({
             type: "post",
