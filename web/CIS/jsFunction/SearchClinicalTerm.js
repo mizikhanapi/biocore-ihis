@@ -775,6 +775,35 @@ function searchDOCTOROnly(fieldId, loadingDivId, hfc_code) {
     });
 }
 
+function searchDOCTORValue(fieldId, loadingDivId, hfc_code,value) {
+
+    $('#' + fieldId).val(value).flexdatalist({
+        minLength: 1,
+        searchIn: 'name',
+        searchDelay: 2000,
+        url: "search/ResultDOCTORSearch.jsp?hfc_code=" + hfc_code,
+        cache: true,
+        valueProperty: 'name',
+        visibleProperties: ['name', "role", "discipline", "subdiscipline"],
+        params: {
+            timeout: 3000,
+            success: function (result) {
+                console.log(result);
+                if (result === undefined) {
+                    $('#' + loadingDivId).html('No Record');
+                }
+            }
+        }
+    });
+    
+    $("#" + fieldId).on('before:flexdatalist.data', function (response) {
+        $('#' + loadingDivId).html('<img src="img/LoaderIcon.gif" />');
+    });
+    $("#" + fieldId).on('after:flexdatalist.data', function (response) {
+        $('#' + loadingDivId).html('');
+    });
+}
+
 function searchDOCTOROnlySurgical(fieldId, loadingDivId, hfc_code,value) {
 
     $('#' + fieldId).val(value).flexdatalist({

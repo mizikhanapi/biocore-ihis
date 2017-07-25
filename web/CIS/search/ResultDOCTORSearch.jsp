@@ -21,14 +21,14 @@
                                             for(int i =0; i < search.size(); i++){
                                                 
                                                if(i == search.size() -1){
-                                                   data += "{ \"name\" : \""+search.get(i).get(0)+ " - "+search.get(i).get(1)+ " - "+search.get(i).get(2)+  " - "+search.get(i).get(3)+ "\"}"  ;
+                                                   data += "{ \"name\" : \""+search.get(i).get(0)+ "\"}"  ;
                                                  out.print(
-                                                        "{ \"name\" : \""+search.get(i).get(0)+ " - "+search.get(i).get(1)+ " - "+search.get(i).get(2)+ " - "+search.get(i).get(3)+  "\"}"  
+                                                        "{ \"name\" : \""+search.get(i).get(0)+ "\"}"  
                                                 );
                                                }else{
-                                                      data +=  "{ \"name\" : \""+search.get(i).get(0)+ " - "+search.get(i).get(1)+" - "+search.get(i).get(2)+ " - "+search.get(i).get(3)+   "\"}," ;
+                                                      data +=  "{ \"name\" : \""+search.get(i).get(0)+  "\"}," ;
                                                 out.print(
-                                                        "{ \"name\" : \""+search.get(i).get(0)+ " - "+search.get(i).get(1)+ " - "+search.get(i).get(2)+ " - "+search.get(i).get(3)+  "\"},"  
+                                                        "{ \"name\" : \""+search.get(i).get(0)+  "\"},"  
                                                 );
                                                }
                                             }

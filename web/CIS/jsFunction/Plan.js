@@ -867,14 +867,14 @@ $(document).ready(function () {
     //------------------------------------------------------------------------------------------------------------------------------- Follow Up
     $('#acceptFLU').click(function (e) {
         e.preventDefault();
-        var searchFLU = $('#searchFLU').val();
+        var searchFLU = $('#tCISPlanFLUDOCSearch').val();
         var DateFollowUp = $('#DateFollowUp').val();
         var commentFLU = $('#commentFLU').val();
 
         //console.log(codeFLU);
 
-        var $items = $('#searchFLU, #DateFollowUp, #commentFLU,#docFLUCode');
-        var obj1 = {Acode: 'FLU'};
+        var $items = $(' #DateFollowUp, #commentFLU,#docFLUCode');
+        var obj1 = {Acode: 'FLU',searchFLU:searchFLU};
         $items.each(function () {
             obj1[this.id] = $(this).val();
         });
@@ -901,13 +901,12 @@ $(document).ready(function () {
         var id = idName.split("|");
         var updateObj = _data[id[1]];
         console.log(_data);
-        $('#usearchFLU').val(updateObj.searchFLU);
+      
         $('#uDateFollowUp').val(updateObj.DateFollowUp);
         $('#ucommentFLU').val(updateObj.commentFLU);
         $('#UdocFLUCode').val(updateObj.docFLUCode);
         $('#jsonId').val(id[1]);
-        //$(this).closest('tr').remove();
-        //console.log($('#UROS').val());
+        searchDOCTORValue("tCISPlanFLUDOCSearch_Update", "tCISPlanFLUDOCSearchLoading_Update", hfc_cd, updateObj.searchFLU);
 
     });
 

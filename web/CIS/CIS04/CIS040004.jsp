@@ -21,8 +21,10 @@
                 <div class="form-group">
                     <div class="form-group">
                         <label class="col-md-6 control-label" for="textinput">Follow Up Doctor</label>
-                        <input class="form-control input-lg" type="text" name="problem"  id="searchFLU" placeholder="Search Doctor" tabindex="4">
+                        <input class="form-control input-lg" type="hidden" name="problem"  id="searchFLU" placeholder="Search Doctor" tabindex="4">
+                        <input class="form-control input-lg" type="text" name="problem"  id="tCISPlanFLUDOCSearch" placeholder="Search Doctor" tabindex="4">
                         <div id="matchFLU"></div>
+                        <div id="tCISPlanFLUDOCSearchLoading"></div>
                         <input id="docFLUCode" type="hidden">
                     </div>   
                 </div>
@@ -78,8 +80,10 @@
                 <div class="form-group">
                     <div class="form-group">
                         <label class="col-md-6 control-label" for="textinput">Follow Up Doctor</label>
-                        <input class="form-control input-lg" type="text" name="problem"  id="usearchFLU" placeholder="Search Doctor" tabindex="4">
+                        <input class="form-control input-lg" type="hidden" name="problem"  id="usearchFLU" placeholder="Search Doctor" tabindex="4">
                         <div id="umatchFLU"></div>
+                        <input class="form-control input-lg" type="text" name="problem"  id="tCISPlanFLUDOCSearch_Update" placeholder="Search Doctor" tabindex="4">
+                        <div id="tCISPlanFLUDOCSearchLoading_Update"></div>
                         <input id="UdocFLUCode" type="hidden">
                     </div>   
                 </div>
@@ -117,3 +121,5 @@
     </div>
 </div>
 <!--End Update Follow Up-->
+
+<script src="jsFunction/CIS040004.js" type="text/javascript"></script>
