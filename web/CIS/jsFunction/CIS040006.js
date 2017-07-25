@@ -187,14 +187,33 @@ $(document).ready(function(){
           date:date,
           comment:commentArea
       }
-      _dataPOS.push(obj);
+      
+      if(procedureCode === "" && date === "" && commentArea === ""){
+          alert("You not enter the procedure, date and comment");
+      } else if(procedureCode === "" && date === ""){
+          alert("You not enter the procedure and date");
+      } else if(date === "" && commentArea === ""){
+          alert("You not enter date and comment area");
+      } else if(procedureCode === "" && commentArea === ""){
+          alert("You not enter procedure and comment area");
+      }else if(procedureCode === ""){
+          alert("You not enter the procedure")
+      }else if( date === "" ){
+          alert("You not enter the date")
+      }else if( commentArea === ""){
+          alert("You not enter the comment");
+      } else{
+        _dataPOS.push(obj);
         indexPOS = _dataPOS.lastIndexOf(obj);
-        
-      appendOrderPOS(obj, indexPOS);
-      clearFieldPOS();
-      console.log(_dataPOS);
+
+        appendOrderPOS(obj, indexPOS);
+        clearFieldPOS();
+      }
+
+     
       
   });
+  
   $("#btnCIS_OE_POS_UPDATE").click(function(e){
       
       e.preventDefault();
@@ -236,11 +255,30 @@ $(document).ready(function(){
           updatePOSObj.date = date;
           updatePOSObj.comment = commentArea;
           
-        updateOrderPOSTable(updatePOSObj, updatePOSIndex);
-        $("#btnCIS_OE_POS_UPDATE").hide();
-        $("#btnCIS_OE_POS_CANCEL").hide();
-        $("#btnCIS_OE_POS_ADD").show();
-        clearFieldPOS();
+        if (procedureCode === "" && date === "" && commentArea === "") {
+            alert("You not enter the procedure, date and comment");
+        } else if (procedureCode === "" && date === "") {
+            alert("You not enter the procedure and date");
+        } else if (date === "" && commentArea === "") {
+            alert("You not enter date and comment area");
+        } else if (procedureCode === "" && commentArea === "") {
+            alert("You not enter procedure and comment area");
+        } else if (procedureCode === "") {
+            alert("You not enter the procedure")
+        } else if (date === "") {
+            alert("You not enter the date")
+        } else if (commentArea === "") {
+            alert("You not enter the comment");
+        } else {
+            updateOrderPOSTable(updatePOSObj, updatePOSIndex);
+            $("#btnCIS_OE_POS_UPDATE").hide();
+            $("#btnCIS_OE_POS_CANCEL").hide();
+            $("#btnCIS_OE_POS_ADD").show();
+            clearFieldPOS();
+        }
+
+          
+ 
       
       
   });

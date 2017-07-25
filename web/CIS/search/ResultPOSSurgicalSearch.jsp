@@ -10,7 +10,7 @@
                                String cat_cd = request.getParameter("cat_cd");
 
                                //String key ="bypass";
-                                String searchProblem = "SELECT `procedure_longName` FROM ot_procedure WHERE hfc_cd = '"+hfc_cd+"' AND category_cd = '"+cat_cd+"' AND procedure_longName LIKE '%"+key+"%'";
+                                String searchProblem = "SELECT `procedure_longName` FROM opt_procedure WHERE hfc_cd = '"+hfc_cd+"' AND category_cd = '"+cat_cd+"' AND procedure_longName LIKE '%"+key+"%'";
                                 
                                 ArrayList<ArrayList<String>> search = Conn.getData(searchProblem); 
                                

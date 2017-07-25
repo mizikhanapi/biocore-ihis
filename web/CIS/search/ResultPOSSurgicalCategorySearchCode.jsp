@@ -9,7 +9,7 @@
 
     String hfc_cd = session.getAttribute("HEALTH_FACILITY_CODE").toString();
 
-    String searchProblem = "SELECT category_cd FROM ot_procedure_category WHERE hfc_cd = '"+hfc_cd+"' AND category_name = '"+name+"' ";
+    String searchProblem = "SELECT category_cd FROM opt_procedure_category WHERE hfc_cd = '"+hfc_cd+"' AND category_name = '"+name+"' ";
     ArrayList<ArrayList<String>> search = Conn.getData(searchProblem);
     if (search.size() > 0) {
         for (int i = 0; i < search.size(); i++) {

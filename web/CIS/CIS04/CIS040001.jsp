@@ -147,7 +147,7 @@
                                             <label class="col-md-6" for="textinput">Patient Condition</label>
                                             <div class="col-md-12">
                                                 <select id="patientConditionLOScd" class="form-control input-lg">
-                                                    <option>Please select condition..</option>
+                                                    <option disabled="">Please select condition..</option>
                                                     <%
                                                         if (dataPatientCondition.size() > 0) {
                                                             for (int i = 0; i < dataPatientCondition.size(); i++) {
@@ -168,7 +168,7 @@
                                             <label class="col-md-6" for="textinput">Priority</label>
                                             <div class="col-md-12">
                                                 <select id="priorityLOScd" class="form-control input-lg">
-                                                    <option >Please select condition..</option>
+                                                    <option disabled="">Please select condition..</option>
                                                     <%
                                                         if (dataPriority.size() > 0) {
                                                             for (int i = 0; i < dataPriority.size(); i++) {

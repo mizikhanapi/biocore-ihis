@@ -207,33 +207,51 @@ $(document).ready(function () {
         var patientCondition =  $('#patientConditionROSCd  :selected').text().trim();
         var priority =  $('#priorityROScd :selected').text().trim();
         
-        if(problemCode === ''){
-            problemCode = "-";
-        }
-        if(problemName === ''){
-            problemName = "-";
-        }
+        if(ROS === '' && appointmentROS === '' && commentROS === ''){
+            alert("You not enter the Radiology Procedure, Comment and Appointment Date");
+        }else if(ROS === '' && appointmentROS === ''){
+             alert("You not enter the Radiology Procedure and Appointment date");
+        }else if(ROS === '' && commentROS === ''){
+             alert("You not enter the Radiology Procedure and Comment");
+        }else if(appointmentROS === '' && commentROS === ''){
+             alert("You not enter the Appointment Date and Comment");
+        }else if(commentROS === ''){
+             alert("You not enter the Comment");
+        }else if(ROS === ''){
+             alert("You not enter the Radiology Procedure");
+        }else if(appointmentROS === ''){
+             alert("You not enter the Appointment Date");
+        }else{
+            if (problemCode === '') {
+                problemCode = "-";
+            }
+            if (problemName === '') {
+                problemName = "-";
+            }
 
-        var $items = $('#commentROS,#modalityROS,#modalityROSCode,#bodySystemROS,#bodySystemROSCode,#hfcIdROS,#locationROS,#appointmentROS,#patientConditionROSCd,#priorityROScd,#hfcOrderDetail,#hfcProviderDetail');
-        var obj1 = {
-            Acode: 'ROS',
-            ROS:ROS,
-            patientConditionROS:patientCondition,
-            priority: priority,
-            codeROS:codeROS,
-            hfcROS:hfcROS,
-            problemCode:problemCode,
-            problemName:problemName
-           };
-           
-        $items.each(function () {
-            obj1[this.id] = $(this).val();
-        });
-        _dataROS.push(obj1);
-        index = _dataROS.lastIndexOf(obj1);
-        console.log(index);
-        appendOrderROS(obj1,index);
-        clearROSField();
+            var $items = $('#commentROS,#modalityROS,#modalityROSCode,#bodySystemROS,#bodySystemROSCode,#hfcIdROS,#locationROS,#appointmentROS,#patientConditionROSCd,#priorityROScd,#hfcOrderDetail,#hfcProviderDetail');
+            var obj1 = {
+                Acode: 'ROS',
+                ROS: ROS,
+                patientConditionROS: patientCondition,
+                priority: priority,
+                codeROS: codeROS,
+                hfcROS: hfcROS,
+                problemCode: problemCode,
+                problemName: problemName
+            };
+
+            $items.each(function () {
+                obj1[this.id] = $(this).val();
+            });
+            _dataROS.push(obj1);
+            index = _dataROS.lastIndexOf(obj1);
+            console.log(index);
+            appendOrderROS(obj1, index);
+            clearROSField();
+        }
+        
+
     });
     
     $("#tableOrderROS").on("click",".btnDelete",function(e){

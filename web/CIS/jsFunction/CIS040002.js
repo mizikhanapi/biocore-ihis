@@ -175,13 +175,50 @@ $(document).ready(function(){
             priority:"Normal"
 
         };
+        if (drugName === '' && drugStrength === '' && drugDose === '' && drugDuration === ''&& drugQuantity === '') {
+            alert("You not enter the Drug name, drug strength, drug duration and drug quantity");
+        } else if (drugName === '' && drugStrength === '' && drugDose === '' && drugDuration === '') {
+            alert("You not enter the Drug name, drug strength and drug duration");
+        } else if (drugName === '' && drugStrength === '' && drugDose === '' && drugQuantity === '') {
+            alert("You not enter the Drug name, drug strength and drug quantity");
+        } else if (drugName === '' && drugStrength === '' && drugDuration === ''&& drugQuantity === '') {
+            alert("You not enter the Drug name, drug strength, drug duration and drug quantity");
+        } else if (drugName === ''  && drugDose === '' && drugDuration === ''&& drugQuantity === '') {
+            alert("You not enter the Drug name, drug strength, drug duration and drug quantity");
+        } else if ( drugStrength === '' && drugDose === '' && drugDuration === ''&& drugQuantity === '') {
+            alert("You not enter the drug strength, drug duration, drug dose and drug quantity");
+        } else if (drugName === '' && drugStrength === '' && drugDose === '' ) {
+            alert("You not enter the drug name, drug strength and durg dose");
+        }else if (drugName === ''  && drugDuration === ''&& drugQuantity === '') {
+            alert("You not enter the drug name, drug duration and drug quantity");
+        }else if (  drugDose === '' && drugDuration === ''&& drugQuantity === '') {
+            alert("You not enter the drug dose, durg duration and drug quantity");
+        }else if (drugName === '' && drugStrength === '' ) {
+            alert("You not enter the drug name and drug strength");
+        }else if (drugName === '' && drugQuantity === '') {
+            alert("You not enter the drug name and drug quantity");
+        } else if (drugDuration === ''&& drugQuantity === '') {
+            alert("You not enter the duration");
+        }else if (drugName === '' ) {
+            alert("You not enter the drug name");
+        }else if (drugQuantity === '') {
+            alert("You not enter the drug quantity");
+        }else if ( drugDose === '') {
+            alert("You not enter the drug dose");
+        }else if (drugDuration === '') {
+            alert("You not enter the drug duration");
+        }else if (drugStrength === '') {
+            alert("You not enter the drug strength");
+        }else{
+            
+            _dataDTO.push(obj1);
+            indexDTO = _dataDTO.lastIndexOf(obj1);
+            appendOrderDTO(obj1, indexDTO);
+            clearFieldDTO();
         
-        _dataDTO.push(obj1);
-        indexDTO = _dataDTO.lastIndexOf(obj1);
-        appendOrderDTO(obj1, indexDTO);
-        clearFieldDTO();
-        
-        console.log(_dataDTO);
+        }
+
+  
 
     });
     
