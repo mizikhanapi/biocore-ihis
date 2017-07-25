@@ -50,9 +50,6 @@
                         }
                     }],
                 yAxes: [{
-                        gridLines: {
-                            color: "black",
-                        },
                         scaleLabel: {
                             display: true,
                             labelString: "Speed in Miles per Hour",

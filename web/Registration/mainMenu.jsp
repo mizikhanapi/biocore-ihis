@@ -19,7 +19,7 @@
     </head>
     <body>
         <div class="container-fluid m-scene">
-            <div class="kiosk thumbnail" style="text-align: center; max-height: 390px; max-width: 420px; ">
+            <div class="kiosk thumbnail" style="text-align: center; max-height: 345px; max-width: 420px; ">
                 <a href="." title="Back to Dashboard"><i class="fa fa-arrow-left fa-lg pull-left" style="color: #ccc;"></i></a>
                 <a id = "logoutBtn" href="destroySession.jsp" title="Log Out"><i class="fa fa-power-off fa-lg pull-right" style="color: #ccc;"></i></a>
                 <div class="profile-img-card" >
@@ -33,8 +33,8 @@
                     <a href="registration/SelectQueue.jsp" class="btn btn-default btn-lg" >Registration</a> 
                 </div>
 
-                <div class="text-center" style="margin-top: 5px;">
-                    <a href="medicalHistory/printReport.jsp" class="btn btn-info btn-lg" >View Medical History</a>
+                <div class="text-center" style="margin-top: 15px;">
+                    <a href="medicalHistory/printReport.jsp" class="btn btn-link btn-lg" >View Medical History</a>
                 </div>
             </div>
         </div>

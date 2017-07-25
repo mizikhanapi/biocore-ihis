@@ -15,6 +15,26 @@
     <head>
         <title>Kiosk | Login Page</title>
         <%@include file="../assets/header.html"%>
+        
+        <script src="../assets/js/jquery.min.js" type="text/javascript"></script>
+        <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+        
+        
+        <!-- keyboard widget css & script (required) -->
+        <link href="assets/css/keyboard.css" rel="stylesheet">
+        <link href="assets/css/jquery-ui.min.css" rel="stylesheet">
+        <script src="assets/js/jquery.keyboard.js"></script>
+        
+         <script>
+            $(function () {
+                $('#inputUserIC').keyboard();
+                $('#inputPassword').keyboard();
+            });
+        </script>
+        
     </head>
     <body>
 
@@ -54,11 +74,11 @@
         <!-- Placed at the end of the document so the pages load faster -->
 
         <div w3-include-html="libraries/script.html"></div>
-
+<!--
         <script src="http://www.w3schools.com/lib/w3data.js"></script>
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-        <script src="assets/js/bootbox.min.js"></script>
+        <script src="assets/js/bootbox.min.js"></script>-->
         <script>
             w3IncludeHTML();
             $(document).ready(function () {

@@ -32,7 +32,7 @@
             <ul id="menu-content" class="nav nav-sidebar">
                 <!-- // menu tanpa dropdown -->
 				
-				<li><a href="QueueManagement"><i class="fa fa-files-o fa-lg"></i>Queue Maintenance</a></li>
+				<li><a href="index.jsp"><i class="fa fa-files-o fa-lg"></i>Queue Maintenance</a></li>
                                 
 				<!-- // menu tanpa dropdown -->
 

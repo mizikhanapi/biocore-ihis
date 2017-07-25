@@ -9,7 +9,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+                <button type="button" class="close" data-dismiss="modal"><i class="fa fa-times fa-lg"></i></button>
                 <h3 class="modal-title" id="lineModalLabel">Follow Up</h3>
             </div>
             <div class="modal-body">
@@ -21,28 +21,34 @@
                 <div class="form-group">
                     <div class="form-group">
                         <label class="col-md-6 control-label" for="textinput">Follow Up Doctor</label>
-                        <input class="form-control input-lg" type="hidden" name="problem"  id="searchFLU" placeholder="Search Doctor" tabindex="4">
-                        <input class="form-control input-lg" type="text" name="problem"  id="tCISPlanFLUDOCSearch" placeholder="Search Doctor" tabindex="4">
-                        <div id="matchFLU"></div>
-                        <div id="tCISPlanFLUDOCSearchLoading"></div>
-                        <input id="docFLUCode" type="hidden">
+                        <div class="col-md-12">
+                            <input class="form-control input-lg" type="hidden" name="problem"  id="searchFLU" placeholder="Search Doctor" tabindex="4">
+                            <input class="form-control input-lg" type="text" name="problem"  id="tCISPlanFLUDOCSearch" placeholder="Search Doctor" tabindex="4">
+                            <div id="matchFLU"></div>
+                            <div id="tCISPlanFLUDOCSearchLoading"></div>
+                            <input id="docFLUCode" type="hidden">
+                        </div>
                     </div>   
                 </div>
-                
+
                 <div class="form-group">
                     <div class="form-group">
                         <label class="col-md-6 control-label" for="textinput">Follow Up Date</label>
+                        <div class="col-md-12">
                             <input class="form-control input-lg" type="text" name="DateFollowUp" id="DateFollowUp" placeholder="Date">
+                        </div>
                     </div>
                 </div>
-                
-<!--                        <div class="form-group">
-                            <select name="site" id="hfcDiscipline" class="form-control input-lg">
-                                <option value="1" selected="" disabled="">Health Facility Discipline [Select]</option>
-                            </select>
-                        </div>-->        
+
+                <!--                        <div class="form-group">
+                                            <select name="site" id="hfcDiscipline" class="form-control input-lg">
+                                                <option value="1" selected="" disabled="">Health Facility Discipline [Select]</option>
+                                            </select>
+                                        </div>-->        
                 <div class="form-group">
-                    <textarea  name="display_name" id="commentFLU" class="form-control input-lg" placeholder="comment.." tabindex="3"></textarea>
+                    <div class="col-md-12">
+                        <textarea  name="display_name" id="commentFLU" class="form-control input-lg" placeholder="comment.." tabindex="3"></textarea>
+                    </div>
                 </div>
             </div>     
             <div class="modal-footer">
@@ -54,7 +60,7 @@
                         <button type="button" id="delImage" class="btn btn-danger btn-block btn-lg" data-dismiss="modal"  role="button">Clear</button>
                     </div>
                     <div class="btn-group" role="group">
-                        <button type="button" id="saveImage" class="btn btn-danger btn-block btn-lg" data-dismiss="modal" role="button">Close</button>
+                        <button type="button" id="saveImage" class="btn btn-default btn-block btn-lg" data-dismiss="modal" role="button">Close</button>
                     </div>
                 </div>
             </div>
@@ -87,19 +93,19 @@
                         <input id="UdocFLUCode" type="hidden">
                     </div>   
                 </div>
-                
+
                 <div class="form-group">
                     <div class="form-group">
                         <label class="col-md-6 control-label" for="textinput">Follow Up Date</label>
-                            <input class="form-control input-lg" type="text" name="DateFollowUp" id="uDateFollowUp" placeholder="Date">
+                        <input class="form-control input-lg" type="text" name="DateFollowUp" id="uDateFollowUp" placeholder="Date">
                     </div>
                 </div>
-                
-<!--                        <div class="form-group">
-                            <select name="site" id="hfcDiscipline" class="form-control input-lg">
-                                <option value="1" selected="" disabled="">Health Facility Discipline [Select]</option>
-                            </select>
-                        </div>-->        
+
+                <!--                        <div class="form-group">
+                                            <select name="site" id="hfcDiscipline" class="form-control input-lg">
+                                                <option value="1" selected="" disabled="">Health Facility Discipline [Select]</option>
+                                            </select>
+                                        </div>-->        
                 <div class="form-group">
                     <textarea  name="display_name" id="ucommentFLU" class="form-control input-lg" placeholder="comment.." tabindex="3"></textarea>
                 </div>
