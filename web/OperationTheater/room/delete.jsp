@@ -13,11 +13,11 @@
     String hfc_cd = (String) session.getAttribute("HEALTH_FACILITY_CODE");
     
     try{
-        String sqlCheck = "SELECT room_no from ot_room "
+        String sqlCheck = "SELECT room_no from opt_room "
                 + "where hfc_cd='"+hfc_cd+"' and room_no = "
                 + "( "
-                + "select room_no from ot_order_detail d "
-                + "join ot_order_master m on m.hfc_to='"+hfc_cd+"' and d.order_no=m.order_no and m.order_status not in ('3', '2') "
+                + "select room_no from opt_order_detail d "
+                + "join opt_order_master m on m.hfc_to='"+hfc_cd+"' and d.order_no=m.order_no and m.order_status not in ('3', '2') "
                 + "where d.order_status not in ('2', '3') and now() <= d.`endDateTime` and d.ot_room_no='"+code+"' "
                 + ") limit 1 ;";
         ArrayList<ArrayList<String>> looked = conn.getData(sqlCheck);
@@ -27,7 +27,7 @@
 
         }else{
             RMIConnector rmi = new RMIConnector(); 
-            String query = "Delete from ot_room where room_no = '"+code+"' AND hfc_cd = '"+hfc_cd+"'";
+            String query = "Delete from opt_room where room_no = '"+code+"' AND hfc_cd = '"+hfc_cd+"'";
             boolean isDelete = rmi.setQuerySQL(conn.HOST, conn.PORT, query);
 
             if(isDelete){

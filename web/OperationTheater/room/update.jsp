@@ -18,7 +18,7 @@
 
     try {
        
-        String query = "UPDATE ot_room set room_name='"+name+"' , status='"+status+"' WHERE room_no='"+code+"' and hfc_cd='"+hfc_cd+"';";
+        String query = "UPDATE opt_room set room_name='"+name+"' , status='"+status+"' WHERE room_no='"+code+"' and hfc_cd='"+hfc_cd+"';";
         RMIConnector rmi = new RMIConnector();
         boolean isInsert = rmi.setQuerySQL(conn.HOST, conn.PORT, query);
 

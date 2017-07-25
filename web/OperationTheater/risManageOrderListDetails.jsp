@@ -18,14 +18,15 @@
     Conn conn = new Conn();
     String orderNo = request.getParameter("orderNo");
 
-    NumberFormat formatter = new DecimalFormat("#0.00");
-    NumberFormat formatterInt = new DecimalFormat("#0");
-//                                  0           1               2                           3               4               5                                                          6              7       8 procedure_name                              
-    String orderList = "select order_no, pod.PROCEDURE_CD, 'cp1.`PROCEDURE_1_NAME`', 'cp.`PROCEDURE_NAME`', episode_date, ifnull(DATE_FORMAT(pod.`ENCOUNTER_DATE`,'%d/%m/%Y'), ''), comment, order_status "
-            + "FROM pos_order_detail pod "
-            //+ "left join cis_procedure_1 cp1 on pod.`PROCEDURE_CD` = cp1.`PROCEDURE_1_CD` "
-            //+ "left join cis_procedure cp on cp.`PROCEDURE_CD` = cp1.`PROCEDURE_CD` "
-            + "where order_status in ('0', '1', '2', '3') AND order_no = '" + orderNo + "'; ";
+  
+//                                                   0                                              1                                   2                        3                  4               5        6              7               8             9
+    String orderList = "select date_format(d.`startDateTime`, '%d/%m/%Y %H:%i'), date_format(d.`endDateTime`, '%d/%m/%Y %H:%i'), pro.procedure_cd, pro.`procedure_shortName`, d.ot_room_no, rm.room_name, u.`USER_ID`, u.`USER_NAME`, d.order_status, d.comments "
+            + "FROM ot_order_detail d "
+            + "left join ot_room rm on rm.hfc_cd ='"+hfc_cd+"' and rm.room_no=d.ot_room_no "
+            + "left join ot_procedure pro on pro.hfc_cd='"+hfc_cd+"' and pro.category_cd=d.category_cd and pro.procedure_cd = d.procedure_cd "
+            + "left join adm_users u on u.`USER_ID` = d.consultant_id "
+            + "where d.order_status in ('0', '1', '2', '3') AND d.order_no = '" + orderNo + "' "
+            + "order by d.`startDateTime`, d.`endDateTime`;";
            
 
     ArrayList<ArrayList<String>> dataOrderList;
@@ -37,18 +38,19 @@
 <table class="table table-filter table-striped table-bordered dt-head-right" style="background: #fff; border: 1px solid #ccc; width: 100%; text-align: left" id="risManageOrderDetailsListTable">
     <thead>
     <th style="display: none">Hidden</th>    
-    <th style="width: 5%">Procedure Code</th>
-    <th style="width: 20%">Procedure Name</th>
-    <th style="width: 5%">Price (RM)</th>
-    <th style="width: 20%">Comment</th>
-    <th style="width: 5%">Encounter Date</th>
-    <th style="width: 5%">Status</th>
+    <th>Start</th>
+    <th>End</th>
+    <th>Procedure</th>
+    <th>OT-Room</th>
+    <th>Consultant</th>
+    <th>Comment</th>
+    <th>Status</th>
     <th>Actions</th>
 
 </thead>
 <tbody>
     <%        for (int i = 0; i < dataOrderList.size(); i++) {
-            String status = dataOrderList.get(i).get(7);
+            String status = dataOrderList.get(i).get(8);
             String performDisabled = "";
            // String prepareDisabled = "";
             String cancelDisabled = "";
@@ -69,12 +71,7 @@
                // prepareDisabled = "disabled";
             }
             
-            String procedure_cd = dataOrderList.get(i).get(1);
-            OrderMaster om = new OrderMaster();
-            String[] name_price = om.getProcedureDetail(procedure_cd, hfc_cd);
-            
-            dataOrderList.get(i).add(name_price[0]);
-            
+                       
 //            String test = String.join("|", dataOrderList.get(i));
             
 //            out.print(dataOrderList.get(i).toString());
@@ -84,11 +81,12 @@
     <tr>
 
         <td style="display: none"><%= String.join("|", dataOrderList.get(i))%></td> <!-- hidden -->
-        <td><%= procedure_cd%></td> <!-- code -->
-        <td><%= name_price[0]%></td> <!-- name -->
-        <td><%= name_price[1]%></td> <!-- price -->
-        <td><%= dataOrderList.get(i).get(6)%></td> <!-- comment -->
-        <td><%= dataOrderList.get(i).get(5)%></td><!-- date -->
+        <td><%= dataOrderList.get(i).get(0)%></td> <!-- start -->
+        <td><%= dataOrderList.get(i).get(1)%></td> <!-- End -->
+        <td>(<%= dataOrderList.get(i).get(2)%>) <%= dataOrderList.get(i).get(3)%></td> <!-- Procedure -->
+        <td>(<%= dataOrderList.get(i).get(4)%>) <%= dataOrderList.get(i).get(5)%></td> <!-- OT-Room -->
+        <td>(<%= dataOrderList.get(i).get(6)%>) <%= dataOrderList.get(i).get(7)%></td><!-- Consultant -->
+        <td><%= dataOrderList.get(i).get(9)%></td> <!-- comment -->
         <td><%= status%></td> <!-- status -->
         <td> 
         <button id="MOD_btnPerform" class="btn btn-default" <%out.print(performDisabled);%> ><i class="fa fa-user-md fa-lg" aria-hidden="true" style="display: inline-block;color: #2DA3FB;" ></i>&nbsp;&nbsp;&nbsp;Perform Procedure</button><!-- perform -->

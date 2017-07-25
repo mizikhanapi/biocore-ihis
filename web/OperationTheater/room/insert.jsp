@@ -19,7 +19,7 @@
     Conn conn = new Conn();
 
     try {
-        String sqlCheck = "SELECT room_no FROM ot_room where hfc_cd='"+hfc_cd+"' and room_no='"+code+"' limit 1;";
+        String sqlCheck = "SELECT room_no FROM opt_room where hfc_cd='"+hfc_cd+"' and room_no='"+code+"' limit 1;";
         ArrayList<ArrayList<String>> duplicate = conn.getData(sqlCheck);
 
         if (duplicate.size() > 0) {
@@ -27,7 +27,7 @@
             out.print("duplicate");
 
         } else {
-            String query = "INSERT INTO ot_room(hfc_cd, dis_cd, `subDis_cd`, room_no, room_name, status) "
+            String query = "INSERT INTO opt_room(hfc_cd, dis_cd, `subDis_cd`, room_no, room_name, status) "
                     + "VALUES('"+hfc_cd+"', '"+dis_cd+"', '"+subDis_cd+"', '"+code+"', '"+name+"', '"+status+"');";
             RMIConnector rmi = new RMIConnector();
             boolean isInsert = rmi.setQuerySQL(conn.HOST, conn.PORT, query);

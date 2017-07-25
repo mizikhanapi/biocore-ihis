@@ -22,8 +22,8 @@
     String sqlBS = "SELECT user_id, user_name from adm_users "
             + "where health_facility_code='"+hfc_cd+"' and status='0' and user_name is not null and user_id not in "
             + "( "
-            + "select consultant_id from ot_order_detail d "
-            + "join ot_order_master m on m.hfc_to='"+hfc_cd+"' and d.order_no=m.order_no and (m.order_status not in ('3', '2')) "
+            + "select consultant_id from opt_order_detail d "
+            + "join opt_order_master m on m.hfc_to='"+hfc_cd+"' and d.order_no=m.order_no and (m.order_status not in ('3', '2')) "
             + "where (d.order_status not in ('2', '3')) and (('"+dateFrom+"' between d.startDateTime and d.endDateTime) or ('"+dateTo+"' between d.startDateTime and d.endDateTime) "
             + "or (d.`startDateTime` between '"+dateFrom+"' and '"+dateTo+"') or (d.`endDateTime` between '"+dateFrom+"' and '"+dateTo+"') ) "
             + ");";
