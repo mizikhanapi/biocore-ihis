@@ -27,7 +27,7 @@
             out.print("duplicate");
 
         } else {
-            String query = "INSERT INTO opt_room(hfc_cd, dis_cd, `subDis_cd`, room_no, room_name, status) "
+            String query = "INSERT INTO opt_room(hfc_cd, discipline_cd, `subdiscipline_cd`, room_no, room_name, status) "
                     + "VALUES('"+hfc_cd+"', '"+dis_cd+"', '"+subDis_cd+"', '"+code+"', '"+name+"', '"+status+"');";
             RMIConnector rmi = new RMIConnector();
             boolean isInsert = rmi.setQuerySQL(conn.HOST, conn.PORT, query);

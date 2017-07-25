@@ -19,7 +19,7 @@
 
     try {
        
-        String query = "UPDATE ot_procedure_category set category_name='"+name+"' , status='"+status+"' WHERE category_cd='"+code+"' and hfc_cd='"+hfc_cd+"';";
+        String query = "UPDATE opt_procedure_category set category_name='"+name+"' , status='"+status+"' WHERE category_cd='"+code+"' and hfc_cd='"+hfc_cd+"';";
         RMIConnector rmi = new RMIConnector();
         boolean isInsert = rmi.setQuerySQL(conn.HOST, conn.PORT, query);
 

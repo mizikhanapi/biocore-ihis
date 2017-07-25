@@ -10,7 +10,7 @@
     Conn conn = new Conn();
     String hfc_cd = session.getAttribute("HEALTH_FACILITY_CODE").toString();
     //                          0               1         2
-    String sqlBS = "SELECT category_cd, category_name, status FROM ot_procedure_category where hfc_cd='"+hfc_cd+"' order by category_cd asc;";
+    String sqlBS = "SELECT category_cd, category_name, status FROM opt_procedure_category where hfc_cd='"+hfc_cd+"' order by category_cd asc;";
 
     ArrayList<ArrayList<String>> dataCAT = conn.getData(sqlBS);
 
