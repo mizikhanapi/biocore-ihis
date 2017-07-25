@@ -393,8 +393,9 @@ function convertPOS(obj){
     return msg;
 }
 function convertPOSSurgical(obj){
-
-    var msg ="POS|"  + obj.problemCode +"^"+obj.problemName+"^CTV3|" + obj.cat_Code+"^" +"^" + obj.cat_name +"^"+ obj.procedureCode + "^"+obj.procedure +"^ICD1-PCS|" + obj.startDate + "^"+ obj.startTime +"^"+ obj.endDate +"^"+ obj.endTime + "|038^" + obj.priority + "^" + obj.priorityCode + "|096^" + obj.patientConditionCode + "^" + obj.patientCondition + "||||" + hfc_cd + "|" + hfc_name + "|" + obj.comment + "|" + hfc_cd + "|" + obj.consultantCode+"^"+obj.consultantName+"|"+obj.otRoomCode+"^"+obj.otRoom;
+    var startDate = convertDateToDBFormat(obj.startDate);
+    var endDate = convertDateToDBFormat(obj.endDate);
+    var msg ="POS|"  + obj.problemCode +"^"+obj.problemName+"^CTV3|" + obj.cat_Code+"^" +"^" + obj.cat_name +"^"+ obj.procedureCode + "^"+obj.procedure +"^ICD1-PCS|" + startDate+ "^"+ obj.startTime +"^"+ endDate +"^"+ obj.endTime + "|038^" + obj.priority + "^" + obj.priorityCode + "|096^" + obj.patientConditionCode + "^" + obj.patientCondition + "||||" + hfc_cd + "|" + hfc_name + "|" + obj.comment + "|" + hfc_cd + "|" + obj.consultantCode+"^"+obj.consultantName+"|"+obj.otRoomCode+"^"+obj.otRoom;
     return msg;
 }
 
@@ -705,4 +706,10 @@ function convertDCGMsgData(data){
     }
     
     return NotesDCG;
+}
+
+function convertDateToDBFormat(date){
+    var dateArray = date.split("-");
+    var newDate = dateArray[2]+"-"+dateArray[1]+"-"+dateArray[0];
+    return newDate;
 }

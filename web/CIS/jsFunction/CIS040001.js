@@ -178,27 +178,45 @@ $(document).ready(function () {
         var hfcLOS = $('#tCISOELIOHFC').val();
         var problemCode = $("#problemCodeLIO").val();
         var problemName = $("#tCISOELIOProblemName").val();
+        
+        if (searchLOS === '' && appointmentLOS === '' && commentLOS === '') {
+            alert("You not enter the Laboratory Procedure, Comment and Appointment Date");
+        } else if (searchLOS === '' && appointmentLOS === '') {
+            alert("You not enter the Laboratory Procedure and Appointment date");
+        } else if (searchLOS === '' && commentLOS === '') {
+            alert("You not enter the Laboratory Procedure and Comment");
+        } else if (appointmentLOS === '' && commentLOS === '') {
+            alert("You not enter the Appointment Date and Comment");
+        } else if (commentLOS === '') {
+            alert("You not enter the Comment");
+        } else if (searchLOS === '') {
+            alert("You not enter the Laboratory Procedure");
+        } else if (appointmentLOS === '') {
+            alert("You not enter the Appointment Date");
+        } else{
+            var $items = $('#codeLOS, #catLOS,#sourceLOS,#containerLOS,#volumeLOS,#spclLOS,#commentLOS,#appointmentLOS,#priorityLOS,#hfcIdLOS,#patientConditionLOScd,#priorityLOScd');
+            var obj1 = {
+                Acode: 'LOS',
+                searchLOS: searchLOS,
+                patientCondition: patientCondition,
+                priority: priority,
+                hfcOrderDetail: hfcOrderDetail,
+                hfcProviderDetail: hfcProviderDetail,
+                hfcLOS: hfcLOS,
+                problemCode: problemCode,
+                problemName: problemName
+            };
+            $items.each(function () {
+                obj1[this.id] = $(this).val();
+            });
+            _dataLIO.push(obj1);
+            indexLIO = _dataLIO.lastIndexOf(obj1);
+            appendOrderLIO(obj1, indexLIO)
+            clearFieldLIO();
+        }
 
-        var $items = $('#codeLOS, #catLOS,#sourceLOS,#containerLOS,#volumeLOS,#spclLOS,#commentLOS,#appointmentLOS,#priorityLOS,#hfcIdLOS,#patientConditionLOScd,#priorityLOScd');
-        var obj1 = {
-            Acode: 'LOS',
-            searchLOS:searchLOS,
-            patientCondition: patientCondition,
-            priority: priority,
-            hfcOrderDetail: hfcOrderDetail,
-            hfcProviderDetail: hfcProviderDetail,
-            hfcLOS:hfcLOS,
-            problemCode:problemCode,
-            problemName:problemName
-        };
-       $items.each(function () {
-            obj1[this.id] = $(this).val();
-        });
-        _dataLIO.push(obj1);
-        indexLIO = _dataLIO.lastIndexOf(obj1);
-        appendOrderLIO(obj1, indexLIO)
-        clearFieldLIO();
-        console.log(_dataLIO);
+
+ 
     });
     
     $("#btnCIS_OE_LIO_UPDATE").click(function(e){
