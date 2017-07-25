@@ -28,7 +28,7 @@ public class PRI_ord {
         String query_pri_master;
         String query_pri_detail;
         int rowPRI;
-
+        System.out.println("record (ORC for PRI) #" + t.getCentral_Code());
         try {
             rowPRI = pri.size();
             System.out.println("number pri : " + rowPRI);

@@ -105,7 +105,7 @@ public class LIO_ord {
                                 try{
                                     ArrayList<ArrayList<String>> lis_item = rc.getQuerySQL(Config.ipAddressServer, Config.portServer, selectTest);
                                     if(lis_item.size() > 0){
-                                        
+                                        System.out.println("hai bitch");
                                         for(int lis_item_i = 0;lis_item_i < lis_item.size();lis_item_i++){
                                             ArrayList<String> lisI = lis_item.get(lis_item_i);
                                             

@@ -29,7 +29,7 @@ public class PIS_ord {
         //set default value to true. When insertion failed var will switch to false and patient will noy update to 3
         boolean status_pis_order_master = true;
         boolean status_pis_order_detail = true;
-
+        System.out.println("record (ORC for PIS) #" + t.getCentral_Code());
         for (int orc_i = 0; orc_i < orc.size(); orc_i++) {
             ArrayList<ArrayList<String>> orcs = orc.get(orc_i).getValue();
             if (orcs.get(1).get(0).equals("T12100")) {
