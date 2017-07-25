@@ -60,7 +60,8 @@
                                                 <div id="risOrderDetailContent">
 
                                                 </div>
-                                                                                                
+                                                <jsp:include page="order_modal/prepareResult_modal.jsp"/>
+                                                <jsp:include page="order_modal/requestNewOrder_modal.jsp"/>
                                             </div>
 
                                         </div>

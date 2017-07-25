@@ -72,7 +72,7 @@
     ALLERGY LIST
 </h5>
 
-<div id="risManageAllergyListTableDiv" class="form-group">
+<div id="risManageAllergyListTableDiv" class="form-group table-guling">
     <table class="table table-filter table-striped table-bordered" style="background: #fff; border: 1px solid #ccc; width: 100%" id="risManageAllergyListTable">
         <thead>
         <th style="display: none">PMI NO</th>
@@ -93,7 +93,7 @@
 
 <h4>Diagnosis Info</h4>
 <!--<hr/>-->
-<div id="risManageDiagnosisListTableDiv" class="form-group">
+<div id="risManageDiagnosisListTableDiv" class="form-group table-guling">
     <table class="table table-filter table-striped table-bordered" style="background: #fff; border: 1px solid #ccc; width: 100%" id="risManageDiagnosisListTable">
         <thead>
         <th style="display: none">PMI NO</th>
@@ -177,16 +177,16 @@
 
 <div id="risManageOrderDetailsListTableDiv" class="form-group table-guling">
     <table class="table table-filter table-striped table-bordered" style="background: #fff; border: 1px solid #ccc; width: 100%" id="risManageOrderDetailsListTable">
-        <thead>
-        <th style="display: none">Hidden</th>    
-        <th style="width: 5%">Procedure Code</th>
-        <th style="width: 20%">Procedure Name</th>
-        <th style="width: 5%">Price (RM)</th>
-        <th style="width: 20%">Comment</th>
-        <th style="width: 5%">Encounter Date</th>
-        <th style="width: 5%">Status</th>
-        <th style="width: 5%">Perform Procedure</th>
-        <th style="width: 5%">Cancel Order</th>
+         <thead>
+            <th style="display: none">Hidden</th>    
+            <th>Start</th>
+            <th>End</th>
+            <th>Procedure</th>
+            <th>OT-Room</th>
+            <th>Consultant</th>
+            <th>Comment</th>
+            <th>Status</th>
+            <th>Actions</th>
 
         </thead>
         <tbody>

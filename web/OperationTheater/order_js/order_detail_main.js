@@ -265,7 +265,7 @@ $('#RNO_div_btnAdd_or_update').on('click', '#RNO_btnAdd', function () {
 });
 
 function loadOrderDetailList(orderNo) {
-
+    createScreenLoading();
     var dataOrder = {orderNo: orderNo};
 
     $.ajax({
@@ -291,7 +291,7 @@ $('#risManageOrderDetailsListTableDiv').on('click', '#risManageOrderDetailsListT
 
     var row = $(this).closest("tr");
     var arrData = row.find('td').eq(0).text().split('|');
-    var proCode = arrData[1], proName = arrData[8], orderNo = arrData[0];
+    var proCode = arrData[2], proName = arrData[3], orderNo = arrData[10];
 
     bootbox.confirm({
         message: "Are you sure want to delete(cancel) this order? " + proCode + "-" + proName,
@@ -330,7 +330,7 @@ $('#risManageOrderDetailsListTableDiv').on('click', '#risManageOrderDetailsListT
 
 
                         } else if (datas.trim() === 'fail') {
-                            bootbox.alert("Fail to cancel order!");
+                            bootbox.alert("Failed to cancel order!");
                             destroyScreenLoading();
 
                         }
@@ -353,13 +353,76 @@ $('#risManageOrderDetailsListTableDiv').on('click', '#risManageOrderDetailsListT
 
 //=========================== cancel order ==========================================
 
-//-------------------------perform procedure and write result --------------------------------------
+//--------------- perform procedure -------------------------------------
+$('#risManageOrderDetailsListTableDiv').on('click', '#risManageOrderDetailsListTable #MOD_btnPerform', function () {
+    
+    var row = $(this).closest("tr");
+    var arrData = row.find('td').eq(0).text().split('|');
+    var proCode = arrData[2], proName = arrData[3], orderNo = arrData[10];
+    
+     bootbox.confirm({
+        message: "Confirm perform this order? " + proCode + "-" + proName,
+        title: "Perform Order?",
+        buttons: {
+            confirm: {
+                label: 'Yes',
+                className: 'btn-success'
+            },
+            cancel: {
+                label: 'No',
+                className: 'btn-danger'
+            }
+        },
+        callback: function (result) {
+
+            if (result === true) {
+
+                var data = {
+                    process: 'perform',
+                    orderNo: orderNo,
+                    proCode: proCode
+                };
+
+                createScreenLoading();
+
+                $.ajax({
+                    url: "order_control/order_update.jsp",
+                    type: "post",
+                    data: data,
+                    success: function (datas) {
+
+                        if (datas.trim() === 'success') {
+                            bootbox.alert('Order is performed.');
+                            loadOrderDetailList(orderNo);
+
+
+                        } else if (datas.trim() === 'fail') {
+                            bootbox.alert("Failed to perform order!");
+                            destroyScreenLoading();
+
+                        }
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                        bootbox.alert("Opps! " + errorThrown);
+                        destroyScreenLoading();
+                    }
+
+                });
+
+            } else {
+                console.log("Process Is Canceled");
+            }
+
+        }
+    });
+});
+//=============== perform procedure end ================================
+
+//------------------------- write result --------------------------------------
 
 //.....creating modal......
-$('#risManageOrderDetailsListTableDiv').on('click', '#risManageOrderDetailsListTable #MOD_btnPerform', function () {
-    RIS_gambarURI = "";
-    $('#PR_gamba').attr('src', RIS_gambarURI);
-
+$('#risManageOrderDetailsListTableDiv').on('click', '#risManageOrderDetailsListTable #MOD_btnReport', function () {
+ 
     var row = $(this).closest("tr");
     var arrData = row.find('td').eq(0).text().split('|');
     var proCode = arrData[1], proName = arrData[8], comment = arrData[6];
@@ -372,6 +435,8 @@ $('#risManageOrderDetailsListTableDiv').on('click', '#risManageOrderDetailsListT
     $('#modal_prepareResult').css('overflow', 'auto');
 
     $('#modal_prepareResult').modal('show');
+    
+    console.log("Button perform is pressed.");
 });
 
 
@@ -466,7 +531,7 @@ $('#patientOrderDispenseButtonDiv').on('click', '#btnRISClearOrderDetail', funct
 });
 // Clear Button Function End
 
-//------------ validation on keypress for duratio ----------
+//------------ validation on keypress for duration ----------
 
 $('#PR_duration').on('keypress', function (e) {
 

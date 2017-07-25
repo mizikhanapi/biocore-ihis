@@ -65,7 +65,7 @@
                 + "LEFT JOIN adm_lookup_detail blot on pms_patient_biodata.BLOOD_TYPE = blot.detail_reference_code AND blot.master_reference_code = '0074' AND blot.hfc_cd = opt_order_master.hfc_cd "
                 + "Left JOIN adm_health_facility hfc on hfc.hfc_cd = opt_order_master.hfc_cd "
                 //+ "LEFT JOIN adm_users au on au.user_id = opt_order_master.doctor_id "
-                + "WHERE opt_order_master.order_no in (select distinct(order_no) from ot_order_detail ) AND opt_order_master.order_status = '0' "
+                + "WHERE opt_order_master.order_no in (select distinct(order_no) from opt_order_detail ) AND opt_order_master.order_status = '0' "
                 + orderWhereClause
                 + whereClause + " order by opt_order_master.encounter_date DESC;";
 
