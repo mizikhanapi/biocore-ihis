@@ -42,7 +42,7 @@
         ArrayList<ArrayList<String>> dataSche = con.getData(query);
         
         if(dataSche.size() < 1){
-            out.print("<h3>Sorry, we can't find the schedule you're searching for. Please try different search word.</h3>");
+            out.print("<h3>Sorry, we can't find the schedule you're searching for. Please try search different word.</h3>");
         }
         else{
         
