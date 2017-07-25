@@ -1,6 +1,6 @@
 <%-- 
-    Document   : searchAvailableRoom
-    Created on : Jul 22, 2017, 10:46:23 AM
+    Document   : searchAvailableConsultant
+    Created on : Jul 25, 2017, 1:54:07 PM
     Author     : Ardhi Surya Ibrahim; rdsurya147@gmail.com; insta:@rdcfc
 --%>
 
@@ -19,10 +19,10 @@
     dateTo = DateFormatter.formatDate(dateTo, "dd/MM/yyyy HH:mm", "yyyy-MM-dd HH:mm:ss.ms");
     
     //                          0        1  
-    String sqlBS = "SELECT room_no, room_name from ot_room "
-            + "where hfc_cd='"+hfc_cd+"' and status='0' and room_no not in "
+    String sqlBS = "SELECT user_id, user_name from adm_users "
+            + "where health_facility_code='"+hfc_cd+"' and status='0' and user_name is not null and user_id not in "
             + "( "
-            + "select room_no from ot_order_detail d "
+            + "select consultant_id from ot_order_detail d "
             + "join ot_order_master m on m.hfc_to='"+hfc_cd+"' and d.order_no=m.order_no and (m.order_status not in ('3', '2')) "
             + "where (d.order_status not in ('2', '3')) and (('"+dateFrom+"' between d.startDateTime and d.endDateTime) or ('"+dateTo+"' between d.startDateTime and d.endDateTime) "
             + "or (d.`startDateTime` between '"+dateFrom+"' and '"+dateTo+"') or (d.`endDateTime` between '"+dateFrom+"' and '"+dateTo+"') ) "
@@ -34,24 +34,24 @@
     ArrayList<ArrayList<String>> dataCAT = conn.getData(sqlBS);
     
     if(dataCAT.size()<1){
-        out.print("<h3>Sorry, no room available. Try picking different time.</h3>");
+        out.print("<h3>Sorry, no consultant available. Try picking different time.</h3>");
     }
     else{
 
 %>
 
-<table id="THE_availableRoomTable"  class="table table-striped table-bordered" cellspacing="0" width="100%">
+<table id="THE_availableConsultantTable"  class="table table-striped table-bordered" cellspacing="0" width="100%">
     <thead>
     <th style="display: none">Hidden</th>    
-    <th>Room Number</th>
-    <th>Room Name</th>
+    <th>User ID</th>
+    <th>Name</th>
 <!--    <th style="width: 5%">Update</th>
     <th style="width: 5%">Delete</th>-->
 </thead>
 
 <tbody>
     <%  
-        String status ="";
+        
         for (int i = 0; i < dataCAT.size(); i++) {
            
         
@@ -84,7 +84,7 @@
 <script type="text/javascript" charset="utf-8">
 
     $(function () {
-        $('#THE_availableRoomTable').DataTable();
+        $('#THE_availableConsultantTable').DataTable();
     });
 
 
