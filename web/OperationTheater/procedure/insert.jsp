@@ -23,7 +23,7 @@
     Conn conn = new Conn();
 
     try {
-        String sqlCheck = "SELECT procedure_cd FROM ot_procedure where hfc_cd='"+hfc_cd+"' and category_cd='"+category_code+"' and procedure_cd='"+proCode+"' limit 1;";
+        String sqlCheck = "SELECT procedure_cd FROM opt_procedure where hfc_cd='"+hfc_cd+"' and category_cd='"+category_code+"' and procedure_cd='"+proCode+"' limit 1;";
         ArrayList<ArrayList<String>> duplicate = conn.getData(sqlCheck);
 
         if (duplicate.size() > 0) {
@@ -31,7 +31,7 @@
             out.print("duplicate");
 
         } else {
-            String query = "INSERT INTO ot_procedure(hfc_cd, category_cd, procedure_cd, `procedure_shortName`, `procedure_longName`, quantity, buying_price, selling_price, created_by, created_date, status) "
+            String query = "INSERT INTO opt_procedure(hfc_cd, category_cd, procedure_cd, `procedure_shortName`, `procedure_longName`, quantity, buying_price, selling_price, created_by, created_date, status) "
                     + "VALUES('"+hfc_cd+"', '"+category_code+"', '"+proCode+"', '"+nameS+"', '"+nameL+"', '"+quantity+"', '"+buy+"', '"+sell+"', '"+creator+"', now(), '"+status+"');";
             RMIConnector rmi = new RMIConnector();
             boolean isInsert = rmi.setQuerySQL(conn.HOST, conn.PORT, query);

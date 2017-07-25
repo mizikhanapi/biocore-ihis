@@ -23,7 +23,7 @@
 
     try {
         
-        String query = "Update ot_procedure set `procedure_shortName`='"+nameS+"', `procedure_longName`='"+nameL+"', quantity='"+quantity+"', "
+        String query = "Update opt_procedure set `procedure_shortName`='"+nameS+"', `procedure_longName`='"+nameL+"', quantity='"+quantity+"', "
                 + "buying_price='"+buy+"', selling_price='"+sell+"', status='"+status+"' "
                 + "WHERE hfc_cd='"+hfc_cd+"' and category_cd='"+category_code+"' and procedure_cd='"+proCode+"';";
                 

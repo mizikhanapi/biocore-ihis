@@ -16,8 +16,8 @@
     try{
         //                          0                   1                            2              3           4               5               6
     String sqlBS = "SELECT p.procedure_cd, p.`procedure_shortName`, p.`procedure_longName`, p.quantity, p.buying_price, p.selling_price, p.status " 
-            +"FROM ot_procedure p "
-            +"join ot_procedure_category c on c.category_cd=p.category_cd and c.hfc_cd=p.hfc_cd "
+            +"FROM opt_procedure p "
+            +"join opt_procedure_category c on c.category_cd=p.category_cd and c.hfc_cd=p.hfc_cd "
             + "where p.category_cd='"+category_cd+"' and p.hfc_cd='"+hfc_cd+"';";
 
     ArrayList<ArrayList<String>> dataPRO = conn.getData(sqlBS);

@@ -16,7 +16,7 @@
     
     try{
         RMIConnector rmi = new RMIConnector(); 
-        String query = "Delete from ot_procedure where category_cd = '"+catCode+"' AND hfc_cd = '"+hfc_cd+"' and procedure_cd='"+proCode+"';";
+        String query = "Delete from opt_procedure where category_cd = '"+catCode+"' AND hfc_cd = '"+hfc_cd+"' and procedure_cd='"+proCode+"';";
         boolean isDelete = rmi.setQuerySQL(conn.HOST, conn.PORT, query);
         
         if(isDelete){
