@@ -252,7 +252,7 @@
     <div class=" pull-right">
         <input type="button" name="verify" id="verify" value="Verify Specimen" class="btn btn-primary" disabled="disabled" style=" display: none"/>
         <input type="button" name="reject" id="reject" value="Reject Specimen" class="btn btn-primary" disabled="disabled" style=" display: none"/>
-        <input type="button" name="AssignResult" id="AssignResult" value="Assign Result" data-status="pagado" data-toggle="modal" data-id="1"  class="btn btn-primary" disabled="disabled"/>
+        <input type="button" name="AssignResult" id="AssignResult" value="Enter Result" data-status="pagado" data-toggle="modal" data-id="1"  class="btn btn-primary" disabled="disabled"/>
         <input type="button" name="VerifyResult" id="VerifyResult" value="Verify Result" data-status="pagado" data-toggle="modal" data-id="1"  class="btn btn-primary" disabled="disabled"/>
 
         <script>
