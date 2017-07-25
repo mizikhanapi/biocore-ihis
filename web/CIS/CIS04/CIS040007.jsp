@@ -20,7 +20,7 @@
                                 <input class="form-control input-lg " type="hidden" name="DateTo" id="hfcOrderDetailADW" placeholder="Hfc Order Detail" readonly="">
                                 <input class="form-control input-lg " type="hidden" name="DateTo" id="hfcProviderDetailADW" placeholder="Hfc Provider Detail" >
                                 <input class="form-control input-lg " type="hidden" name="DateTo" id="tCIS_ADWHFCreferFromCd" placeholder="Code" readonly="">
-                                <input class="form-control input-lg " type="text" name="DateTo" id="tCIS_ADWHFCreferFrom" placeholder="Type to search..." >
+                                <input class="form-control input-lg " type="text" name="DateTo" id="tCIS_ADWHFCreferFrom" placeholder="Type to search..." required="">
                                 <div id="tCIS_ADWHFCreferFromLoading" ></div>
                                 <br>
                                 <div id="matchCIS_ADWreferFrom" class="search-drop"></div>
@@ -35,7 +35,7 @@
                             <label class="col-md-6 control-label" for="textinput">Search Discipline</label>
                             <div class="col-md-12">
                                 <input class="form-control input-lg " type="hidden" name="DateTo" id="tCIS_ADWreferFromCd" placeholder="Code" readonly="">
-                                <input class="form-control input-lg " type="text" name="DateTo" id="tCIS_ADWreferFrom" placeholder="Type to search...">
+                                <input class="form-control input-lg " type="text" name="DateTo" id="tCIS_ADWreferFrom" placeholder="Type to search..." required="">
                                 <div id="matchCIS_ADWreferFrom" class="search-drop"></div>
                                 <div id="tCIS_ADWreferFromLoading" ></div>
                             </div>
@@ -55,7 +55,7 @@
                               <label class="col-md-6 control-label" for="textinput">Search Health Facility</label>
                               <div class="col-md-12">
                                   <input class="form-control input-lg " type="hidden" name="DateTo" id="tCIS_ADWsearchHFCCd" placeholder="Code" readonly="">
-                                  <input class="form-control input-lg " type="text" name="DateTo" id="tCIS_ADWsearchHFC" placeholder="Type to search...">
+                                  <input class="form-control input-lg " type="text" name="DateTo" id="tCIS_ADWsearchHFC" placeholder="Type to search..." required="">
                                   <div id="tCIS_ADWsearchHFCLoading" ></div>
                                   <br>
                                   <div id="matchCIS_ADWreferFrom" class="search-drop"></div>
@@ -70,7 +70,7 @@
                             <label class="col-md-6 control-label" for="textinput">Search Discipline</label>
                             <div class="col-md-12">
                                 <input class="form-control input-lg " type="hidden" name="DateTo" id="tCIS_ADWsearchDisCd" placeholder="Code" readonly="">
-                                <input class="form-control input-lg " type="text" name="DateTo" id="tCIS_ADWsearchDis" placeholder="Type to search...">
+                                <input class="form-control input-lg " type="text" name="DateTo" id="tCIS_ADWsearchDis" placeholder="Type to search..." required="">
                                 <div id="tCIS_ADWsearchDisLoading" ></div>
                                 <div id="matchCIS_ADWsearchDis" class="search-drop"></div>
                             </div>
@@ -115,8 +115,8 @@
                         <div class="form-group">
                             <label class="col-md-6 control-label" for="textinput">Ward Class</label>
                             <div class="col-md-12">
-                                <input class="form-control input-lg " type="text" name="DateTo" id="tCIS_ADWwardClass" placeholder="Ward Code" >
-                                <input class="form-control input-lg " type="hidden" name="DateTo" id="tCIS_ADWwardClassCd" placeholder="Ward Code" readonly="">
+                                <input class="form-control input-lg " type="text" name="DateTo" id="tCIS_ADWwardClass" placeholder="Ward Code" required="">
+                                <input class="form-control input-lg " type="hidden" name="DateTo" id="tCIS_ADWwardClassCd" placeholder="Ward Code" readonly="" >
                                
                                 <div id="tCIS_ADWwardClassLoading"></div>
                             </div>
@@ -126,7 +126,7 @@
                             <div class="col-md-12">
                                 <input class="form-control input-lg " type="hidden" name="DateTo" id="tCIS_ADWwardNameCd" placeholder="Ward Code" readonly="">
 
-                                <input class="form-control input-lg " type="text" name="DateTo" id="tCIS_ADWwardName" placeholder="Search Ward Name">
+                                <input class="form-control input-lg " type="text" name="DateTo" id="tCIS_ADWwardName" placeholder="Search Ward Name" required="">
                                 <div id="tCIS_ADWwardNameLoading"></div>
                             </div>
                         </div>

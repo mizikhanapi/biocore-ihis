@@ -69,7 +69,7 @@
                                             <label class="col-md-6 control-label" for="textinput">Consultant Name</label>
                                             <div class="col-md-12">
                                                 <input class="form-control input-lg" type="hidden"  id="tCISOESPOConsultantCode" placeholder="">
-                                                <input class="form-control input-lg" type="text" name="problem"  id="tCISOESPOConsultantName" placeholder="Search Surgical Category..." tabindex="4" data-search-by-word="true">
+                                                <input class="form-control input-lg" type="text" name="problem"  id="tCISOESPOConsultantName" placeholder="Search Consultant..." tabindex="4" data-search-by-word="true">
 
                                                 <div id="tCISOESPOConsultantNameLoading" ></div>
                                             </div>
@@ -80,7 +80,7 @@
                                             <label class="col-md-6 control-label" for="textinput">OT Room</label>
                                             <div class="col-md-12">
                                                 <input class="form-control input-lg" type="hidden"  id="tCISOESPOOTRoomCode" placeholder="">
-                                                <input class="form-control input-lg" type="text" name="problem"  id="tCISOESPOOTRoomName" placeholder="Search Surgical Category..." tabindex="4" data-search-by-word="true">
+                                                <input class="form-control input-lg" type="text" name="problem"  id="tCISOESPOOTRoomName" placeholder="Search OT Room..." tabindex="4" data-search-by-word="true">
 
                                                 <div id="tCISOESPOOTRoomNameLoading" ></div>
                                             </div>

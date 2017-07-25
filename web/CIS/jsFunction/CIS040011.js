@@ -162,15 +162,11 @@ $(document).ready(function () {
         var patientConditionCd = "";
 
         var startDate = $("#tCISOESPOStartDate").val();
-        ;
         var startTime = $("#tCISOESPOStartTime").val();
-        ;
         var endDate = $("#tCISOESPOENDDate").val();
-        ;
         var endTime = $("#tCISOESPOEndTime").val();
-        ;
         var commentArea = $("#tCIS_POSSurgicalCommentArea").val();
-        ;
+        
 
 
         var obj = {
@@ -196,11 +192,39 @@ $(document).ready(function () {
             otRoom: otRoom,
             otRoomCode: otRoom_cd
         }
+        
+        if (procedure_cd === ""  && commentArea === "" && consultantName === "" && otRoom === "" ) {
+            alert("You not enter procedure, comment, consultant and OT Room");
+        } else if (procedure_cd === ""  && commentArea === "" && consultantName === "" ) {
+            alert("You not enter procedure, comment and consultant name");
+        } else if (procedure_cd === ""  && commentArea === ""  && otRoom === "") {
+            alert("You not enter the procedure comment, and OT Room");
+        } else if (procedure_cd === ""   && consultantName === "" && otRoom === "") {
+            alert("You not enter procedure consultant and OT Room");
+        } else if ( commentArea === "" && consultantName === "" && otRoom === "") {
+            alert("You not enter the comment, consultant and OT Room")
+        } else if (procedure_cd === ""  && commentArea === "" ) {
+            alert("You not enter procedure and comment")
+        } else if (procedure_cd === ""  && otRoom === "") {
+            alert("You not enter the procedure and OT Room");
+        }else if (consultantName === "" && otRoom === "") {
+            alert("You not enter the consultant name and OT Room");
+        }else if (procedure_cd === "" ) {
+            alert("You not enter the procedure");
+        }else if ( commentArea === "" ) {
+            alert("You not enter the comment");
+        }else if (consultantName === "" ) {
+            alert("You not enter the consultant");
+        }else if (otRoom === "") {
+            alert("You not enter the OT Room");
+        } else {
+            _dataPOSSurgical.push(obj);
+            indexPOSSurgical = _dataPOSSurgical.lastIndexOf(obj);
+            appendOrderPOSSurgical(obj, indexPOSSurgical);
+            clearFieldPOSSurgical();
+        }
 
-        _dataPOSSurgical.push(obj);
-        indexPOSSurgical = _dataPOSSurgical.lastIndexOf(obj);
-        appendOrderPOSSurgical(obj, indexPOSSurgical);
-        clearFieldPOSSurgical();
+        
 
     });
 

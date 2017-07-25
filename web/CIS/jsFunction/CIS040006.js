@@ -276,11 +276,7 @@ $(document).ready(function(){
             $("#btnCIS_OE_POS_ADD").show();
             clearFieldPOS();
         }
-
-          
  
-      
-      
   });
   
     $("#btnCIS_OE_POS_CANCEL").click(function (e) {
