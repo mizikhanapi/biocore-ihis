@@ -6,6 +6,8 @@
     String pmino = session.getAttribute("patientPMINo").toString();
     //String user_id = session.getAttribute("USER_ID").toString();
     String episodeDate = session.getAttribute("episodeDate").toString();
+    String my_1_dis_cd = (String) session.getAttribute("DISCIPLINE_CODE");
+    String my_1_sub_cd = (String) session.getAttribute("SUB_DISCIPLINE_CODE");
     //String datetime = session.getAttribute("datetime").toString();
     
     String rnNo25 = request.getParameter("rnNo25");
@@ -37,7 +39,7 @@
     RMIConnector rmic = new RMIConnector();
 
     Conn conn = new Conn();
-    String sqlInsert = "UPDATE lhr_ort_neu_assessment_chart SET sensory_L1_1 = '" + rnNo25 + "',sensory_L1_2 = '" + rnNo26 + "', sensory_l2_1='"+rnNo27+"', sensory_l2_2='"+rnNo28+"', sensory_l3_1 = '" + rnNo29 + "', sensory_l3_2 = '" + rnNo30 + "', sensory_l4_1='"+rnNo31+"', sensory_l4_2 = '"+rnNo32+"',sensory_l5_1 = '"+rnNo33+"',sensory_l5_2 = '"+rnNo34+"',sensory_s1_1 = '"+rnNo35+"',sensory_s1_2 = '"+rnNo36+"', sensory_s2_1 = '"+rnNo37+"',sensory_s2_2 = '"+rnNo38+"',sensory_sacral_1 = '"+rnNo39+"',sensory_sacral_2 = '"+rnNo40+"',sensory_abdominal_1 = '"+rnNo41+"',sensory_abdominal_2 = '"+rnNo42+"',sensory_crematenic_1 = '"+rnNo43+"',sensory_crematenic_2 = '"+rnNo44+"',sensory_anal_1 = '"+rnNo45+"',sensory_anal_2 = '"+rnNo46+"',sensory_bo_1 = '"+rnNo47+"',sensory_bo_2 = '"+rnNo48+"' WHERE pmi_no = '" + pmino + "' AND hfc_cd = '"+hfc+"' AND episode_date = '"+episodeDate+"' AND encounter_date='"+assessment_date+"'";
+    String sqlInsert = "UPDATE lhr_ort_neu_assessment_chart SET sensory_L1_1 = '" + rnNo25 + "',sensory_L1_2 = '" + rnNo26 + "', sensory_l2_1='"+rnNo27+"', sensory_l2_2='"+rnNo28+"', sensory_l3_1 = '" + rnNo29 + "', sensory_l3_2 = '" + rnNo30 + "', sensory_l4_1='"+rnNo31+"', sensory_l4_2 = '"+rnNo32+"',sensory_l5_1 = '"+rnNo33+"',sensory_l5_2 = '"+rnNo34+"',sensory_s1_1 = '"+rnNo35+"',sensory_s1_2 = '"+rnNo36+"', sensory_s2_1 = '"+rnNo37+"',sensory_s2_2 = '"+rnNo38+"',sensory_sacral_1 = '"+rnNo39+"',sensory_sacral_2 = '"+rnNo40+"',sensory_abdominal_1 = '"+rnNo41+"',sensory_abdominal_2 = '"+rnNo42+"',sensory_crematenic_1 = '"+rnNo43+"',sensory_crematenic_2 = '"+rnNo44+"',sensory_anal_1 = '"+rnNo45+"',sensory_anal_2 = '"+rnNo46+"',sensory_bo_1 = '"+rnNo47+"',sensory_bo_2 = '"+rnNo48+"' WHERE pmi_no = '" + pmino + "' AND hfc_cd = '"+hfc+"' AND episode_date = '"+episodeDate+"' AND encounter_date='"+assessment_date+"' AND discipline_cd='"+my_1_dis_cd+"' AND subdiscipline_cd = '"+my_1_sub_cd+"'";
     rmic.setQuerySQL(conn.HOST, conn.PORT, sqlInsert);
 %>
 

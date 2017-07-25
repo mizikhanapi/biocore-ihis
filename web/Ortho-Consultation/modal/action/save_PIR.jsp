@@ -9,6 +9,8 @@
     String pmino = session.getAttribute("patientPMINo").toString();
     String user_name = session.getAttribute("USER_NAME").toString();
     String episodeDate = session.getAttribute("episodeDate").toString();
+    String my_1_dis_cd = (String) session.getAttribute("DISCIPLINE_CODE");
+    String my_1_sub_cd = (String) session.getAttribute("SUB_DISCIPLINE_CODE");
     
     DateFormat date_now = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
     Date current_date = new Date(); 
@@ -28,7 +30,7 @@
     RMIConnector rmic = new RMIConnector();
 
     Conn conn = new Conn();
-    String sqlInsert = "INSERT INTO lhr_ort_neu_press_injury_risk (pmi_no,hfc_cd,episode_date,encounter_date,assessment_type,si_pressure_ulcer,si_source,mobility_assessment,int_surface,int_mobility,int_nutrition,int_sc_barrier_product,int_sc_maintain_moisture,int_sc_incontinence_management,assessmen_by) VALUES ('"+pmino+"','"+hfc+"','"+episodeDate+"','"+now+"','"+typeAssessment+"','"+pressure_ulcer+"','"+source+"','"+mobility_assessment+"','"+surface+"','"+mobility+"','"+nutrition+"','"+Barrier+"','"+moisture+"','"+management+"','"+user_name+"')";
+    String sqlInsert = "INSERT INTO lhr_ort_neu_press_injury_risk (pmi_no,hfc_cd,episode_date,encounter_date,discipline_cd,subdiscipline_cd,assessment_type,si_pressure_ulcer,si_source,mobility_assessment,int_surface,int_mobility,int_nutrition,int_sc_barrier_product,int_sc_maintain_moisture,int_sc_incontinence_management,assessmen_by) VALUES ('"+pmino+"','"+hfc+"','"+episodeDate+"','"+now+"','"+my_1_dis_cd+"','"+my_1_sub_cd+"','"+typeAssessment+"','"+pressure_ulcer+"','"+source+"','"+mobility_assessment+"','"+surface+"','"+mobility+"','"+nutrition+"','"+Barrier+"','"+moisture+"','"+management+"','"+user_name+"')";
     rmic.setQuerySQL(conn.HOST, conn.PORT, sqlInsert);
     
 %>
