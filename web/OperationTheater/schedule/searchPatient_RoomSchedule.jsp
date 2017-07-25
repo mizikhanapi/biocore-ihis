@@ -29,12 +29,12 @@
         }
         //                                        0                                                 1                                   2                       3                 4             5               6       7                       8               9
         String query ="select date_format(d.`startDateTime`, '%d/%m/%Y %H:%i'), date_format(d.`endDateTime`, '%d/%m/%Y %H:%i'), pro.procedure_cd, pro.`procedure_shortName`, d.ot_room_no, rm.room_name, bio.`PMI_NO`, bio.`PATIENT_NAME`, u.`USER_ID`, u.`USER_NAME` "
-                + "from ot_order_detail d "
-                + "join ot_order_master m on m.hfc_to='"+hfc_cd+"' and d.order_no=m.order_no and (m.order_status not in ('3', '2')) "
-                + "join ot_room rm on rm.hfc_cd =m.hfc_to and rm.room_no=d.ot_room_no "
+                + "from opt_order_detail d "
+                + "join opt_order_master m on m.hfc_to='"+hfc_cd+"' and d.order_no=m.order_no and (m.order_status not in ('3', '2')) "
+                + "join opt_room rm on rm.hfc_cd =m.hfc_to and rm.room_no=d.ot_room_no "
                 + "join pms_patient_biodata bio on bio.`PMI_NO` = m.pmi_no "
                 + "join adm_users u on u.`USER_ID` = d.consultant_id "
-                + "join ot_procedure pro on pro.hfc_cd=m.hfc_to and pro.category_cd=d.category_cd and pro.procedure_cd = d.procedure_cd "
+                + "join opt_procedure pro on pro.hfc_cd=m.hfc_to and pro.category_cd=d.category_cd and pro.procedure_cd = d.procedure_cd "
                 + "where (d.order_status not in ('2', '3')) "
                 + condition
                 + "order by d.`startDateTime`, d.`endDateTime`; ";

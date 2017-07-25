@@ -22,8 +22,8 @@
     String sqlBS = "SELECT room_no, room_name from ot_room "
             + "where hfc_cd='"+hfc_cd+"' and status='0' and room_no not in "
             + "( "
-            + "select room_no from ot_order_detail d "
-            + "join ot_order_master m on m.hfc_to='"+hfc_cd+"' and d.order_no=m.order_no and (m.order_status not in ('3', '2')) "
+            + "select room_no from opt_order_detail d "
+            + "join opt_order_master m on m.hfc_to='"+hfc_cd+"' and d.order_no=m.order_no and (m.order_status not in ('3', '2')) "
             + "where (d.order_status not in ('2', '3')) and (('"+dateFrom+"' between d.startDateTime and d.endDateTime) or ('"+dateTo+"' between d.startDateTime and d.endDateTime) "
             + "or (d.`startDateTime` between '"+dateFrom+"' and '"+dateTo+"') or (d.`endDateTime` between '"+dateFrom+"' and '"+dateTo+"') ) "
             + ");";
