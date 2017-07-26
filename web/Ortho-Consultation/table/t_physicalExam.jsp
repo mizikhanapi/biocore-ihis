@@ -22,23 +22,23 @@
 
             String sql = "";
             if (time_history == null) {
-                sql = "SELECT p.encounter_date,p.physical_exam,p.search_content,p.comment FROM lhr_ort_neu_physical_examination p WHERE p.pmi_no='" + pmino + "' AND p.episode_date='" + episodeDate + "' AND p.hfc_cd='" + hfc + "' AND DATE(p.encounter_date) = CURDATE()";
+                sql = "SELECT p.encounter_date,p.physical_exam,p.search_content,p.comment FROM lhr_ort_neu_physical_examination p WHERE p.pmi_no='" + pmino + "' AND p.hfc_cd='" + hfc + "' AND DATE(p.encounter_date) = CURDATE()";
             } else if (time_history.equals("Viewby")) {
-                sql = "SELECT p.encounter_date,p.physical_exam,p.search_content,p.comment FROM lhr_ort_neu_physical_examination p WHERE p.pmi_no='" + pmino + "' AND p.episode_date='" + episodeDate + "' AND p.hfc_cd='" + hfc + "' AND DATE(p.encounter_date) = CURDATE()";
+                sql = "SELECT p.encounter_date,p.physical_exam,p.search_content,p.comment FROM lhr_ort_neu_physical_examination p WHERE p.pmi_no='" + pmino + "' AND p.hfc_cd='" + hfc + "' AND DATE(p.encounter_date) = CURDATE()";
             } else if (time_history.equals("Today")) {
-                sql = "SELECT p.encounter_date,p.physical_exam,p.search_content,p.comment FROM lhr_ort_neu_physical_examination p WHERE p.pmi_no='" + pmino + "' AND p.episode_date='" + episodeDate + "' AND p.hfc_cd='" + hfc + "' AND DATE(p.encounter_date) = CURDATE()";
+                sql = "SELECT p.encounter_date,p.physical_exam,p.search_content,p.comment FROM lhr_ort_neu_physical_examination p WHERE p.pmi_no='" + pmino + "' AND p.hfc_cd='" + hfc + "' AND DATE(p.encounter_date) = CURDATE()";
             } else if (time_history.equals("Yesterday")) {
-                sql = "SELECT p.encounter_date,p.physical_exam,p.search_content,p.comment FROM lhr_ort_neu_physical_examination p WHERE p.pmi_no='" + pmino + "' AND p.episode_date='" + episodeDate + "' AND p.hfc_cd='" + hfc + "' AND DATE(p.encounter_date) = SUBDATE('" + datetime + "',1)";
+                sql = "SELECT p.encounter_date,p.physical_exam,p.search_content,p.comment FROM lhr_ort_neu_physical_examination p WHERE p.pmi_no='" + pmino + "' AND p.hfc_cd='" + hfc + "' AND DATE(p.encounter_date) = SUBDATE('" + datetime + "',1)";
             } else if (time_history.equals("7 Days")) {
-                sql = "SELECT p.encounter_date,p.physical_exam,p.search_content,p.comment FROM lhr_ort_neu_physical_examination p WHERE p.pmi_no='" + pmino + "' AND p.episode_date='" + episodeDate + "' AND p.hfc_cd='" + hfc + "' AND DATE(p.encounter_date) between SUBDATE('" + datetime + "',7) and '" + datetime + "'";
+                sql = "SELECT p.encounter_date,p.physical_exam,p.search_content,p.comment FROM lhr_ort_neu_physical_examination p WHERE p.pmi_no='" + pmino + "' AND p.hfc_cd='" + hfc + "' AND DATE(p.encounter_date) between SUBDATE('" + datetime + "',7) and '" + datetime + "'";
             } else if (time_history.equals("30 Days")) {
-                sql = "SELECT p.encounter_date,p.physical_exam,p.search_content,p.comment FROM lhr_ort_neu_physical_examination p WHERE p.pmi_no='" + pmino + "' AND p.episode_date='" + episodeDate + "' AND p.hfc_cd='" + hfc + "' AND DATE(p.encounter_date) between SUBDATE('" + datetime + "',30) and '" + datetime + "'";
+                sql = "SELECT p.encounter_date,p.physical_exam,p.search_content,p.comment FROM lhr_ort_neu_physical_examination p WHERE p.pmi_no='" + pmino + "' AND p.hfc_cd='" + hfc + "' AND DATE(p.encounter_date) between SUBDATE('" + datetime + "',30) and '" + datetime + "'";
             } else if (time_history.equals("60 Days")) {
-                sql = "SELECT p.encounter_date,p.physical_exam,p.search_content,p.comment FROM lhr_ort_neu_physical_examination p WHERE p.pmi_no='" + pmino + "' AND p.episode_date='" + episodeDate + "' AND p.hfc_cd='" + hfc + "' AND DATE(p.encounter_date) between SUBDATE('" + datetime + "',90) and '" + datetime + "'";
+                sql = "SELECT p.encounter_date,p.physical_exam,p.search_content,p.comment FROM lhr_ort_neu_physical_examination p WHERE p.pmi_no='" + pmino + "' AND p.hfc_cd='" + hfc + "' AND DATE(p.encounter_date) between SUBDATE('" + datetime + "',90) and '" + datetime + "'";
             } else if (time_history.equals("Select_date")) {
                 String startDate = request.getParameter("startDate");
                 String toDate = request.getParameter("toDate");
-                sql = "SELECT p.encounter_date,p.physical_exam,p.search_content,p.comment FROM lhr_ort_neu_physical_examination p WHERE p.pmi_no='" + pmino + "' AND p.episode_date='" + episodeDate + "' AND p.hfc_cd='" + hfc + "' AND DATE(p.encounter_date) BETWEEN '"+startDate+"' AND '"+toDate+"'";
+                sql = "SELECT p.encounter_date,p.physical_exam,p.search_content,p.comment FROM lhr_ort_neu_physical_examination p WHERE p.pmi_no='" + pmino + "' AND p.hfc_cd='" + hfc + "' AND DATE(p.encounter_date) BETWEEN '"+startDate+"' AND '"+toDate+"'";
             }
             //out.print(hfc + " ----- " + pmino + " ----- " + episodeDate + " ------ " + user_id);
             Conn conn = new Conn();

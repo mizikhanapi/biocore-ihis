@@ -46,23 +46,23 @@
                     String sql = "";
 
                     if (time_history == null) {
-                        sql = "SELECT o.encounter_date,o.result,o.points,o.motor_response,o.systolic,o.diastolic,o.pulse,o.on_left,o.on_right,o.arm,o.legs FROM lhr_ort_neu_observation_chart o WHERE o.pmi_no='" + pmino + "' AND o.episode_date='" + episodeDate + "' AND o.hfc_cd='" + hfc + "' AND DATE(o.encounter_date) = CURDATE()";
+                        sql = "SELECT o.encounter_date,o.result,o.points,o.motor_response,o.systolic,o.diastolic,o.pulse,o.on_left,o.on_right,o.arm,o.legs FROM lhr_ort_neu_observation_chart o WHERE o.pmi_no='" + pmino + "' AND o.hfc_cd='" + hfc + "' AND DATE(o.encounter_date) = CURDATE()";
                     } else if (time_history.equals("Viewby")) {
-                        sql = "SELECT o.encounter_date,o.result,o.points,o.motor_response,o.systolic,o.diastolic,o.pulse,o.on_left,o.on_right,o.arm,o.legs FROM lhr_ort_neu_observation_chart o WHERE o.pmi_no='" + pmino + "' AND o.episode_date='" + episodeDate + "' AND o.hfc_cd='" + hfc + "' AND DATE(o.encounter_date) = CURDATE()";
+                        sql = "SELECT o.encounter_date,o.result,o.points,o.motor_response,o.systolic,o.diastolic,o.pulse,o.on_left,o.on_right,o.arm,o.legs FROM lhr_ort_neu_observation_chart o WHERE o.pmi_no='" + pmino + "' AND o.hfc_cd='" + hfc + "' AND DATE(o.encounter_date) = CURDATE()";
                     } else if (time_history.equals("Today")) {
-                        sql = "SELECT o.encounter_date,o.result,o.points,o.motor_response,o.systolic,o.diastolic,o.pulse,o.on_left,o.on_right,o.arm,o.legs FROM lhr_ort_neu_observation_chart o WHERE o.pmi_no='" + pmino + "' AND o.episode_date='" + episodeDate + "' AND o.hfc_cd='" + hfc + "' AND DATE(o.encounter_date) = CURDATE()";
+                        sql = "SELECT o.encounter_date,o.result,o.points,o.motor_response,o.systolic,o.diastolic,o.pulse,o.on_left,o.on_right,o.arm,o.legs FROM lhr_ort_neu_observation_chart o WHERE o.pmi_no='" + pmino + "' AND o.hfc_cd='" + hfc + "' AND DATE(o.encounter_date) = CURDATE()";
                     } else if (time_history.equals("Yesterday")) {
-                        sql = "SELECT o.encounter_date,o.result,o.points,o.motor_response,o.systolic,o.diastolic,o.pulse,o.on_left,o.on_right,o.arm,o.legs FROM lhr_ort_neu_observation_chart o WHERE o.pmi_no='" + pmino + "' AND o.episode_date='" + episodeDate + "' AND o.hfc_cd='" + hfc + "' AND DATE(o.encounter_date) = SUBDATE('" + dateTime + "',1)";
+                        sql = "SELECT o.encounter_date,o.result,o.points,o.motor_response,o.systolic,o.diastolic,o.pulse,o.on_left,o.on_right,o.arm,o.legs FROM lhr_ort_neu_observation_chart o WHERE o.pmi_no='" + pmino + "' AND o.hfc_cd='" + hfc + "' AND DATE(o.encounter_date) = SUBDATE('" + dateTime + "',1)";
                     } else if (time_history.equals("7 Days")) {
-                        sql = "SELECT o.encounter_date,o.result,o.points,o.motor_response,o.systolic,o.diastolic,o.pulse,o.on_left,o.on_right,o.arm,o.legs FROM lhr_ort_neu_observation_chart o WHERE o.pmi_no='" + pmino + "' AND o.episode_date='" + episodeDate + "' AND o.hfc_cd='" + hfc + "' AND DATE(o.encounter_date) between SUBDATE('" + dateTime + "',7) and '" + dateTime + "'";
+                        sql = "SELECT o.encounter_date,o.result,o.points,o.motor_response,o.systolic,o.diastolic,o.pulse,o.on_left,o.on_right,o.arm,o.legs FROM lhr_ort_neu_observation_chart o WHERE o.pmi_no='" + pmino + "' AND o.hfc_cd='" + hfc + "' AND DATE(o.encounter_date) between SUBDATE('" + dateTime + "',7) and '" + dateTime + "'";
                     } else if (time_history.equals("30 Days")) {
-                        sql = "SELECT o.encounter_date,o.result,o.points,o.motor_response,o.systolic,o.diastolic,o.pulse,o.on_left,o.on_right,o.arm,o.legs FROM lhr_ort_neu_observation_chart o WHERE o.pmi_no='" + pmino + "' AND o.episode_date='" + episodeDate + "' AND o.hfc_cd='" + hfc + "' AND DATE(o.encounter_date) between SUBDATE('" + dateTime + "',30) and '" + dateTime + "'";
+                        sql = "SELECT o.encounter_date,o.result,o.points,o.motor_response,o.systolic,o.diastolic,o.pulse,o.on_left,o.on_right,o.arm,o.legs FROM lhr_ort_neu_observation_chart o WHERE o.pmi_no='" + pmino + "' AND o.hfc_cd='" + hfc + "' AND DATE(o.encounter_date) between SUBDATE('" + dateTime + "',30) and '" + dateTime + "'";
                     } else if (time_history.equals("60 Days")) {
-                        sql = "SELECT o.encounter_date,o.result,o.points,o.motor_response,o.systolic,o.diastolic,o.pulse,o.on_left,o.on_right,o.arm,o.legs FROM lhr_ort_neu_observation_chart o WHERE o.pmi_no='" + pmino + "' AND o.episode_date='" + episodeDate + "' AND o.hfc_cd='" + hfc + "' AND DATE(o.encounter_date) between SUBDATE('" + dateTime + "',60) and '" + dateTime + "'";
+                        sql = "SELECT o.encounter_date,o.result,o.points,o.motor_response,o.systolic,o.diastolic,o.pulse,o.on_left,o.on_right,o.arm,o.legs FROM lhr_ort_neu_observation_chart o WHERE o.pmi_no='" + pmino + "' AND o.hfc_cd='" + hfc + "' AND DATE(o.encounter_date) between SUBDATE('" + dateTime + "',60) and '" + dateTime + "'";
                     } else if (time_history.equals("Select_date")) {
                         String startDate = request.getParameter("startDate");
                         String toDate = request.getParameter("toDate");
-                        sql = "SELECT o.encounter_date,o.result,o.points,o.motor_response,o.systolic,o.diastolic,o.pulse,o.on_left,o.on_right,o.arm,o.legs FROM lhr_ort_neu_observation_chart o WHERE o.pmi_no='" + pmino + "' AND o.episode_date='" + episodeDate + "' AND o.hfc_cd='" + hfc + "' AND DATE(o.encounter_date) BETWEEN '" + startDate + "' AND '" + toDate + "'";
+                        sql = "SELECT o.encounter_date,o.result,o.points,o.motor_response,o.systolic,o.diastolic,o.pulse,o.on_left,o.on_right,o.arm,o.legs FROM lhr_ort_neu_observation_chart o WHERE o.pmi_no='" + pmino + "' AND o.hfc_cd='" + hfc + "' AND DATE(o.encounter_date) BETWEEN '" + startDate + "' AND '" + toDate + "'";
                     }
                     //out.print(hfc + " ----- " + pmino + " ----- " + episodeDate + " ------ " + user_id);
                     Conn conn = new Conn();
