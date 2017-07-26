@@ -90,7 +90,7 @@ public class CirculationUtils {
 
         Boolean sql = false;
         String splittedData[] = datas.split("\\|", -1);
-        String pmi_no, hfc_cd, episode_date, encounter_date, ward, bed_no, datetime, color, sensation, hot_cold, movement, others;
+        String pmi_no, hfc_cd, episode_date, encounter_date, ward, bed_no, datetime, color, sensation, hot_cold, movement, others, discipline_cd, subdiscipline_cd, created_by, created_date;
 
         pmi_no = splittedData[0];
         hfc_cd = splittedData[1];
@@ -104,10 +104,15 @@ public class CirculationUtils {
         hot_cold = splittedData[9];
         movement = splittedData[10];
         others = splittedData[11];
+        discipline_cd = splittedData[12];
+        subdiscipline_cd = splittedData[13];
+        created_by = splittedData[14];
+        created_date = splittedData[15];
 
         String sqlInsert = "INSERT INTO lhr_ort_niw_chart_circulation "
-                + " (pmi_no, hfc_cd, episode_date, encounter_date, ward, bed_no, datetime, color, sensation, hot_cold, movement, others)  "
-                + " VALUES('" + pmi_no + "','" + hfc_cd + "','" + episode_date + "','" + encounter_date + "','" + ward + "','" + bed_no + "','" + datetime + "','" + color + "','" + sensation + "','" + hot_cold + "','" + movement + "','" + others + "') ";
+                + " (pmi_no, hfc_cd, episode_date, encounter_date, ward, bed_no, datetime, color, sensation, hot_cold, movement, others,discipline_cd,subdiscipline_cd,created_by,created_date)  "
+                + " VALUES('" + pmi_no + "','" + hfc_cd + "','" + episode_date + "','" + encounter_date + "','" + ward + "','" + bed_no + "','" + datetime + "','" + color + "','" + sensation + "',"
+                + "'" + hot_cold + "','" + movement + "','" + others + "','" + discipline_cd + "','" + subdiscipline_cd + "','" + created_by + "','" + created_date + "') ";
 
         sql = rmic.setQuerySQL(conn.HOST, conn.PORT, sqlInsert);
 
