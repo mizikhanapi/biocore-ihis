@@ -160,7 +160,7 @@ public class FluidBalanceUtils {
 
         Boolean sql = false;
         String splittedData[] = datas.split("\\|", -1);
-        String pmi_no, hfc_cd, episode_date, encounter_date, datetime, oral_type, oral_amount, intravenous_type, intravenous_amount, other_type, other_amount;
+        String pmi_no, hfc_cd, episode_date, encounter_date, datetime, oral_type, oral_amount, intravenous_type, intravenous_amount, other_type, other_amount, discipline_cd, subdiscipline_cd, created_by, created_date;
 
         pmi_no = splittedData[0];
         hfc_cd = splittedData[1];
@@ -173,10 +173,15 @@ public class FluidBalanceUtils {
         intravenous_amount = splittedData[8];
         other_type = splittedData[9];
         other_amount = splittedData[10];
+        discipline_cd = splittedData[11];
+        subdiscipline_cd = splittedData[12];
+        created_by = splittedData[13];
+        created_date = splittedData[14];
 
         String sqlInsert = "INSERT INTO lhr_ort_niw_intake_fluid_balance "
-                + " (pmi_no, hfc_cd, episode_date, encounter_date,datetime, oral_type,oral_amount,intravenous_type ,intravenous_amount ,other_type ,other_amount )  "
-                + " VALUES('" + pmi_no + "','" + hfc_cd + "','" + episode_date + "','" + encounter_date + "','" + datetime + "','" + oral_type + "','" + oral_amount + "','" + intravenous_type + "','" + intravenous_amount + "','" + other_type + "','" + other_amount + "') ";
+                + " (pmi_no, hfc_cd, episode_date, encounter_date,datetime, oral_type,oral_amount,intravenous_type ,intravenous_amount ,other_type,other_amount,discipline_cd,subdiscipline_cd,created_by,created_date)  "
+                + " VALUES('" + pmi_no + "','" + hfc_cd + "','" + episode_date + "','" + encounter_date + "','" + datetime + "','" + oral_type + "','" + oral_amount + "','" + intravenous_type + "',"
+                + "'" + intravenous_amount + "','" + other_type + "','" + other_amount + "','" + discipline_cd + "','" + subdiscipline_cd + "','" + created_by + "','" + created_date + "') ";
 
         sql = rmic.setQuerySQL(conn.HOST, conn.PORT, sqlInsert);
 
