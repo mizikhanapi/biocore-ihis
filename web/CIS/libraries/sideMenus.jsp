@@ -27,7 +27,7 @@
         <!-- Menu Specialist Panel -->
 
 
-        <li><a href="" role="presentation" data-toggle="tab" class="panelito general-exam"><i class="fa fa-angle-right fa-lg"></i> Primary Care</a></li>
+        <li><a href="" role="presentation" data-toggle="tab" class="panelito general-exam"><i class="fa fa-angle-right fa-lg"></i> General Examination</a></li>
 
         <li role="presentation" class="dropdown">
             <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">

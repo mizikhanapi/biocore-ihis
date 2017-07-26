@@ -259,7 +259,7 @@
         </div>
 
         <div class="material-button-anim toggle-draggable">
-            <button class="material-button option1" type="button" data-toggle="tooltip" data-placement="top" title="Physician Order Entry">
+            <button class="material-button option1 order-ety" type="button" data-toggle="tooltip" data-placement="top" title="Physician Order Entry">
                 <a href="#order-entry" class="panelito order-ety" style="color: #fff;"><span class="fa fa-medkit"></span></a>
             </button>
         </div>
