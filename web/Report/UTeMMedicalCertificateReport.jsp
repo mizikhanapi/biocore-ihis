@@ -228,7 +228,7 @@
                                         {
                                             extend: 'excelHtml5',
                                             text: 'Export To Excel',
-                                            title: 'Patient Attendance List',
+                                            title: 'Medical Certificates List',
                                             className: 'btn btn-primary',
                                             exportOptions: {
                                                 columns: ':visible'
@@ -236,7 +236,7 @@
                                         }, {
                                             extend: 'csvHtml5',
                                             text: 'Export To Excel CSV',
-                                            title: 'Patient Attendance List',
+                                            title: 'Medical Certificates List',
                                             className: 'btn btn-primary',
                                             exportOptions: {
                                                 columns: ':visible'
