@@ -27,7 +27,7 @@
         <!-- Menu Specialist Panel -->
 
 
-        <li><a href="#generic-soap" role="presentation" data-toggle="tab" class="panelito"><i class="fa fa-angle-right fa-lg"></i> Primary Care</a></li>
+        <li><a href="" role="presentation" data-toggle="tab" class="panelito general-exam"><i class="fa fa-angle-right fa-lg"></i> Primary Care</a></li>
 
         <li role="presentation" class="dropdown">
             <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
@@ -36,7 +36,7 @@
             <ul class="dropdown-menu">
                 <!--                <li><a href="#orthopedic-con" role="presentation" data-toggle="tab" class="panelito">Consultation</a></li>-->
                 <li><a href="#orthopedic-nur" role="presentation" data-toggle="tab" class="panelito">Nursing</a></li>
-                <li><a href="#orthopedic-niw" role="presentation" data-toggle="tab" class="panelito">Nursing in Ward</a></li>
+                <li><a href="#" class="panelito ortho-niward">Nursing in Ward</a></li>
                 <li><a href="#orthopedic-ot" role="presentation" data-toggle="tab" class="panelito">Operation Theater</a></li>
             </ul>
         </li>
