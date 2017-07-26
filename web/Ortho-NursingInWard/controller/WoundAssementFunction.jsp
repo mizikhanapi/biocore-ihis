@@ -5,17 +5,28 @@
 --%>
 
 
+<%@page import="java.time.LocalDateTime"%>
+<%@page import="java.time.format.DateTimeFormatter"%>
 <%@page import="NIW_helper.WoundAssessmentUtils"%>
 <%@page import="java.util.ArrayList"%>
 <%
     WoundAssessmentUtils wound = new WoundAssessmentUtils();
+    DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+    LocalDateTime now = LocalDateTime.now();
 
     String data = request.getParameter("dataString");
     String methodName = request.getParameter("methodName");
 
+    String discipline = session.getAttribute("DISCIPLINE_CODE").toString();
+    String subdiscipline = session.getAttribute("SUB_DISCIPLINE_CODE").toString();
+    String created_by = session.getAttribute("USER_ID").toString();
+    String created_date = format.format(now);
+
+    String longString = "|" + discipline + "|" + subdiscipline + "|" + created_by + "|" + created_date;
+
     Boolean result;
     if (methodName.equalsIgnoreCase("add")) {
-        result = wound.addWoundAssessment(data);
+        result = wound.addWoundAssessment(data + longString);
         out.print(result);
     } else if (methodName.equalsIgnoreCase("update")) {
         result = wound.updateWoundAssessment(data);

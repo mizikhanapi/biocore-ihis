@@ -15,6 +15,7 @@
 
     String data = request.getParameter("dataString");
     String methodName = request.getParameter("methodName");
+
     String discipline = session.getAttribute("DISCIPLINE_CODE").toString();
     String subdiscipline = session.getAttribute("SUB_DISCIPLINE_CODE").toString();
     String created_by = session.getAttribute("USER_ID").toString();

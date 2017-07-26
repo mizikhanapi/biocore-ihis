@@ -116,7 +116,8 @@ public class WoundAssessmentUtils {
         Boolean sql = false;
         String splittedData[] = datas.split("\\|", -1);
         String pmi_no, hfc_cd, episode_date, encounter_date, date_dressing, date_next_dressing_change, wound_dimension, wound_dimension_1, wound_dimension_2, exu_datelevel, exu_datecolor,
-                wound_bed, wound_edges, surrounding_skin, clinical_infection, patient_pain, patient_pain_1, wound_progress, dressing_plan, dressing_plan_1, dressing_plan_2, dressing_plan_3;
+                wound_bed, wound_edges, surrounding_skin, clinical_infection, patient_pain, patient_pain_1, wound_progress, dressing_plan, dressing_plan_1, dressing_plan_2, dressing_plan_3,
+                discipline_cd, subdiscipline_cd, created_by, created_date;
 
         pmi_no = splittedData[0];
         hfc_cd = splittedData[1];
@@ -140,13 +141,19 @@ public class WoundAssessmentUtils {
         dressing_plan_1 = splittedData[19];
         dressing_plan_2 = splittedData[20];
         dressing_plan_3 = splittedData[21];
+        discipline_cd = splittedData[22];
+        subdiscipline_cd = splittedData[23];
+        created_by = splittedData[24];
+        created_date = splittedData[25];
 
         String sqlInsert = "INSERT INTO lhr_ort_niw_wound_assessment "
                 + " (pmi_no, hfc_cd, episode_date, encounter_date,date_dressing ,date_next_dressing_change, wound_dimension, wound_dimension_1,wound_dimension_2 ,exu_datelevel,"
-                + " exu_datecolor,wound_bed,wound_edges,surrounding_skin,clinical_infection,patient_pain,patient_pain_1,wound_progress,dressing_plan,dressing_plan_1,dressing_plan_2,dressing_plan_3)  "
+                + " exu_datecolor,wound_bed,wound_edges,surrounding_skin,clinical_infection,patient_pain,patient_pain_1,wound_progress,dressing_plan,dressing_plan_1,dressing_plan_2,"
+                + " dressing_plan_3,discipline_cd,subdiscipline_cd,created_by,created_date)  "
                 + " VALUES('" + pmi_no + "','" + hfc_cd + "','" + episode_date + "','" + encounter_date + "','" + date_dressing + "','" + date_next_dressing_change + "','" + wound_dimension + "','" + wound_dimension_1 + "','" + wound_dimension_2 + "',"
                 + " '" + exu_datelevel + "','" + exu_datecolor + "','" + wound_bed + "','" + wound_edges + "','" + surrounding_skin + "','" + clinical_infection + "','" + patient_pain + "',"
-                + "'" + patient_pain_1 + "','" + wound_progress + "','" + dressing_plan + "','" + dressing_plan_1 + "','" + dressing_plan_2 + "','" + dressing_plan_3 + "') ";
+                + "'" + patient_pain_1 + "','" + wound_progress + "','" + dressing_plan + "','" + dressing_plan_1 + "','" + dressing_plan_2 + "','" + dressing_plan_3 + "','" + discipline_cd + "',"
+                + "'" + subdiscipline_cd + "','" + created_by + "','" + created_date + "') ";
 
         sql = rmic.setQuerySQL(conn.HOST, conn.PORT, sqlInsert);
 
