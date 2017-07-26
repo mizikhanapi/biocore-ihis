@@ -154,7 +154,7 @@ public class DailySkinUtils {
 
         Boolean sql = false;
         String splittedData[] = datas.split("\\|", -1);
-        String pmi_no, hfc_cd, episode_date, encounter_date, datetime, temperature, color, moisture, skin_tugor, integrity, assesor_name, referal_wc;
+        String pmi_no, hfc_cd, episode_date, encounter_date, datetime, temperature, color, moisture, skin_tugor, integrity, assesor_name, referal_wc, discipline_cd, subdiscipline_cd, created_by, created_date;
 
         pmi_no = splittedData[0];
         hfc_cd = splittedData[1];
@@ -168,10 +168,15 @@ public class DailySkinUtils {
         integrity = splittedData[9];
         referal_wc = splittedData[10];
         assesor_name = splittedData[11];
+        discipline_cd = splittedData[12];
+        subdiscipline_cd = splittedData[13];
+        created_by = splittedData[14];
+        created_date = splittedData[15];
 
         String sqlInsert = "INSERT INTO lhr_ort_niw_daily_skin_assess_tool "
-                + " (pmi_no, hfc_cd, episode_date, encounter_date,datetime, temperature,color, moisture,skin_tugor ,integrity ,assesor_name,referal_wc )  "
-                + " VALUES('" + pmi_no + "','" + hfc_cd + "','" + episode_date + "','" + encounter_date + "','" + datetime + "','" + temperature + "','" + color + "','" + moisture + "','" + skin_tugor + "','" + integrity + "','" + assesor_name + "','" + referal_wc + "') ";
+                + " (pmi_no, hfc_cd, episode_date, encounter_date,datetime, temperature,color, moisture,skin_tugor ,integrity ,assesor_name,referal_wc,discipline_cd,subdiscipline_cd,created_by,created_date)  "
+                + " VALUES('" + pmi_no + "','" + hfc_cd + "','" + episode_date + "','" + encounter_date + "','" + datetime + "','" + temperature + "','" + color + "','" + moisture + "',"
+                + "'" + skin_tugor + "','" + integrity + "','" + assesor_name + "','" + referal_wc + "','" + discipline_cd + "','" + subdiscipline_cd + "','" + created_by + "','" + created_date + "') ";
 
         sql = rmic.setQuerySQL(conn.HOST, conn.PORT, sqlInsert);
 
@@ -251,7 +256,6 @@ public class DailySkinUtils {
 
         return data;
     }
-    
 
     public Boolean delSkinTool(String datas) {
 

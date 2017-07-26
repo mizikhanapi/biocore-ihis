@@ -4,24 +4,34 @@
     Author     : Shammugam
 --%>
 
+<%@page import="java.time.LocalDateTime"%>
+<%@page import="java.time.format.DateTimeFormatter"%>
 <%@page import="NIW_helper.DailySkinUtils"%>
 <%@page import="java.util.ArrayList"%>
 <%
     DailySkinUtils dailySkin = new DailySkinUtils();
+    DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+    LocalDateTime now = LocalDateTime.now();
 
     String data = request.getParameter("dataString");
     String methodName = request.getParameter("methodName");
-    String created_by = session.getAttribute("USER_NAME").toString();
+    String created_by_name = session.getAttribute("USER_NAME").toString();
+    String discipline = session.getAttribute("DISCIPLINE_CODE").toString();
+    String subdiscipline = session.getAttribute("SUB_DISCIPLINE_CODE").toString();
+    String created_by = session.getAttribute("USER_ID").toString();
+    String created_date = format.format(now);
+
+    String longString = "|" + created_by_name + "|" + discipline + "|" + subdiscipline + "|" + created_by + "|" + created_date;
 
     Boolean result;
     if (methodName.equalsIgnoreCase("addSkinTool")) {
-        result = dailySkin.addSkinTool(data + "|" + created_by);
+        result = dailySkin.addSkinTool(data + longString);
         out.print(result);
     } else if (methodName.equalsIgnoreCase("addPosition")) {
         result = dailySkin.addPosition(data);
         out.print(result);
     } else if (methodName.equalsIgnoreCase("updateSkinTool")) {
-        result = dailySkin.updateSkinTool(data + "|" + created_by);
+        result = dailySkin.updateSkinTool(data + longString);
         out.print(result);
     } else if (methodName.equalsIgnoreCase("updatePosition")) {
         result = dailySkin.updatePosition(data);
