@@ -46,27 +46,31 @@
                     String sql = "";
 
                     if (time_history == null) {
-                        sql = "SELECT o.encounter_date,o.result,o.points,o.motor_response,o.systolic,o.diastolic,o.pulse,o.on_left,o.on_right,o.arm,o.legs FROM lhr_ort_neu_observation_chart o WHERE o.pmi_no='" + pmino + "' AND o.episode_date='" + episodeDate + "' AND o.hfc_cd='" + hfc + "' AND DATE(o.encounter_date) = CURDATE()";
+                        sql = "SELECT o.encounter_date,o.result,o.points,o.motor_response,o.systolic,o.diastolic,o.pulse,o.on_left,o.on_right,o.arm,o.legs FROM lhr_ort_neu_observation_chart o WHERE o.pmi_no='" + pmino + "' AND o.hfc_cd='" + hfc + "' AND DATE(o.encounter_date) = CURDATE()";
                     } else if (time_history.equals("Viewby")) {
-                        sql = "SELECT o.encounter_date,o.result,o.points,o.motor_response,o.systolic,o.diastolic,o.pulse,o.on_left,o.on_right,o.arm,o.legs FROM lhr_ort_neu_observation_chart o WHERE o.pmi_no='" + pmino + "' AND o.episode_date='" + episodeDate + "' AND o.hfc_cd='" + hfc + "' AND DATE(o.encounter_date) = CURDATE()";
+                        sql = "SELECT o.encounter_date,o.result,o.points,o.motor_response,o.systolic,o.diastolic,o.pulse,o.on_left,o.on_right,o.arm,o.legs FROM lhr_ort_neu_observation_chart o WHERE o.pmi_no='" + pmino + "' AND o.hfc_cd='" + hfc + "' AND DATE(o.encounter_date) = CURDATE()";
                     } else if (time_history.equals("Today")) {
-                        sql = "SELECT o.encounter_date,o.result,o.points,o.motor_response,o.systolic,o.diastolic,o.pulse,o.on_left,o.on_right,o.arm,o.legs FROM lhr_ort_neu_observation_chart o WHERE o.pmi_no='" + pmino + "' AND o.episode_date='" + episodeDate + "' AND o.hfc_cd='" + hfc + "' AND DATE(o.encounter_date) = CURDATE()";
+                        sql = "SELECT o.encounter_date,o.result,o.points,o.motor_response,o.systolic,o.diastolic,o.pulse,o.on_left,o.on_right,o.arm,o.legs FROM lhr_ort_neu_observation_chart o WHERE o.pmi_no='" + pmino + "' AND o.hfc_cd='" + hfc + "' AND DATE(o.encounter_date) = CURDATE()";
                     } else if (time_history.equals("Yesterday")) {
-                        sql = "SELECT o.encounter_date,o.result,o.points,o.motor_response,o.systolic,o.diastolic,o.pulse,o.on_left,o.on_right,o.arm,o.legs FROM lhr_ort_neu_observation_chart o WHERE o.pmi_no='" + pmino + "' AND o.episode_date='" + episodeDate + "' AND o.hfc_cd='" + hfc + "' AND DATE(o.encounter_date) = SUBDATE('" + dateTime + "',1)";
+                        sql = "SELECT o.encounter_date,o.result,o.points,o.motor_response,o.systolic,o.diastolic,o.pulse,o.on_left,o.on_right,o.arm,o.legs FROM lhr_ort_neu_observation_chart o WHERE o.pmi_no='" + pmino + "' AND o.hfc_cd='" + hfc + "' AND DATE(o.encounter_date) = SUBDATE('" + dateTime + "',1)";
                     } else if (time_history.equals("7 Days")) {
-                        sql = "SELECT o.encounter_date,o.result,o.points,o.motor_response,o.systolic,o.diastolic,o.pulse,o.on_left,o.on_right,o.arm,o.legs FROM lhr_ort_neu_observation_chart o WHERE o.pmi_no='" + pmino + "' AND o.episode_date='" + episodeDate + "' AND o.hfc_cd='" + hfc + "' AND DATE(o.encounter_date) between SUBDATE('" + dateTime + "',7) and '" + dateTime + "'";
+                        sql = "SELECT o.encounter_date,o.result,o.points,o.motor_response,o.systolic,o.diastolic,o.pulse,o.on_left,o.on_right,o.arm,o.legs FROM lhr_ort_neu_observation_chart o WHERE o.pmi_no='" + pmino + "' AND o.hfc_cd='" + hfc + "' AND DATE(o.encounter_date) between SUBDATE('" + dateTime + "',7) and '" + dateTime + "'";
                     } else if (time_history.equals("30 Days")) {
-                        sql = "SELECT o.encounter_date,o.result,o.points,o.motor_response,o.systolic,o.diastolic,o.pulse,o.on_left,o.on_right,o.arm,o.legs FROM lhr_ort_neu_observation_chart o WHERE o.pmi_no='" + pmino + "' AND o.episode_date='" + episodeDate + "' AND o.hfc_cd='" + hfc + "' AND DATE(o.encounter_date) between SUBDATE('" + dateTime + "',30) and '" + dateTime + "'";
+                        sql = "SELECT o.encounter_date,o.result,o.points,o.motor_response,o.systolic,o.diastolic,o.pulse,o.on_left,o.on_right,o.arm,o.legs FROM lhr_ort_neu_observation_chart o WHERE o.pmi_no='" + pmino + "' AND o.hfc_cd='" + hfc + "' AND DATE(o.encounter_date) between SUBDATE('" + dateTime + "',30) and '" + dateTime + "'";
                     } else if (time_history.equals("60 Days")) {
-                        sql = "SELECT o.encounter_date,o.result,o.points,o.motor_response,o.systolic,o.diastolic,o.pulse,o.on_left,o.on_right,o.arm,o.legs FROM lhr_ort_neu_observation_chart o WHERE o.pmi_no='" + pmino + "' AND o.episode_date='" + episodeDate + "' AND o.hfc_cd='" + hfc + "' AND DATE(o.encounter_date) between SUBDATE('" + dateTime + "',60) and '" + dateTime + "'";
+                        sql = "SELECT o.encounter_date,o.result,o.points,o.motor_response,o.systolic,o.diastolic,o.pulse,o.on_left,o.on_right,o.arm,o.legs FROM lhr_ort_neu_observation_chart o WHERE o.pmi_no='" + pmino + "' AND o.hfc_cd='" + hfc + "' AND DATE(o.encounter_date) between SUBDATE('" + dateTime + "',60) and '" + dateTime + "'";
                     } else if (time_history.equals("Select_date")) {
                         String startDate = request.getParameter("startDate");
                         String toDate = request.getParameter("toDate");
-                        sql = "SELECT o.encounter_date,o.result,o.points,o.motor_response,o.systolic,o.diastolic,o.pulse,o.on_left,o.on_right,o.arm,o.legs FROM lhr_ort_neu_observation_chart o WHERE o.pmi_no='" + pmino + "' AND o.episode_date='" + episodeDate + "' AND o.hfc_cd='" + hfc + "' AND DATE(o.encounter_date) BETWEEN '" + startDate + "' AND '" + toDate + "'";
+                        sql = "SELECT o.encounter_date,o.result,o.points,o.motor_response,o.systolic,o.diastolic,o.pulse,o.on_left,o.on_right,o.arm,o.legs FROM lhr_ort_neu_observation_chart o WHERE o.pmi_no='" + pmino + "' AND o.hfc_cd='" + hfc + "' AND DATE(o.encounter_date) BETWEEN '" + startDate + "' AND '" + toDate + "'";
                     }
                     //out.print(hfc + " ----- " + pmino + " ----- " + episodeDate + " ------ " + user_id);
                     Conn conn = new Conn();
 
+                    //out.print(datetime1);
+                    DateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                    DateFormat outputFormat = new SimpleDateFormat("dd-MM-yyyy");
+                    DateFormat outputFormat1 = new SimpleDateFormat("KK:mm a");
                     ArrayList<ArrayList<String>> q2 = conn.getData(sql);
 
                     if (q2.size() > 0) {
@@ -76,37 +80,69 @@
                             session.setAttribute("datetime", dateTime_i);
                             //String datetime1 = session.getAttribute("datetime").toString();
 
-                            //out.print(datetime1);
-                            DateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-                            DateFormat outputFormat = new SimpleDateFormat("dd-MM-yyyy");
-                            DateFormat outputFormat1 = new SimpleDateFormat("KK:mm a");
         %>
         <tr>
             <td style="text-align: center;">
                 <div class="radio radio-primary" style="display: inline;">
-                    <input type="radio" name="selected" value="<%=dateTime_i%>" <%
-                    if (i == 0) {%> checked="checked"<%}%> id="t-observe-0<%=i+1%>">
-                    <label for="t-observe-0<%=i+1%>">
+                       <input type="radio" name="selected" value="<%=dateTime_i%>" <%
+                        if (i == 0) {%> checked="checked"<%}%> id="t-observe-0<%=i + 1%>">
+                    <label for="t-observe-0<%=i + 1%>">
                         &nbsp;
                     </label>
                 </div>
 
 
-                       
+
             </td>
             <td><%=outputFormat.format(inputFormat.parse(dateTime_i))%></td>
             <td><%=outputFormat1.format(inputFormat.parse(dateTime_i))%></td>
-            <td><%=q2.get(i).get(1)%></td>
-            <td><%=q2.get(i).get(2)%></td>
+            <td><%if (q2.get(i).get(1) == null) {
+                    out.print("");
+                } else {
+                    out.print(q2.get(i).get(1));
+                }%></td>
+            <td><%if (q2.get(i).get(2) == null) {
+                    out.print("");
+                } else {
+                    out.print(q2.get(i).get(2));
+                }%></td>
             <td>
-                <span style="font-weight: 500; padding-right: 5px;">Systolic:</span><%=q2.get(i).get(4)%>
-                <span style="font-weight: 500; padding-left: 15px; padding-right: 5px;">Diastolic:</span><%=q2.get(i).get(5)%>
-                <span style="font-weight: 500; padding-left: 15px; padding-right: 5px;">Pulse:</span><%=q2.get(i).get(6)%>
+                <span style="font-weight: 500; padding-right: 5px;">Systolic:</span><%if (q2.get(i).get(4) == null) {
+                        out.print("");
+                    } else {
+                        out.print(q2.get(i).get(4));
+                    }%>
+                <span style="font-weight: 500; padding-left: 15px; padding-right: 5px;">Diastolic:</span><%if (q2.get(i).get(5) == null) {
+                        out.print("");
+                    } else {
+                        out.print(q2.get(i).get(5));
+                    }%>
+                <span style="font-weight: 500; padding-left: 15px; padding-right: 5px;">Pulse:</span><%if (q2.get(i).get(6) == null) {
+                        out.print("");
+                    } else {
+                        out.print(q2.get(i).get(6));
+                    }%>
             </td>
-            <td><%=q2.get(i).get(7)%></td>
-            <td><%=q2.get(i).get(8)%></td>
-            <td><%=q2.get(i).get(9)%></td>
-            <td><%=q2.get(i).get(10)%></td>
+            <td><%if (q2.get(i).get(7) == null) {
+                    out.print("");
+                } else {
+                    out.print(q2.get(i).get(7));
+                }%></td>
+            <td><%if (q2.get(i).get(8) == null) {
+                    out.print("");
+                } else {
+                    out.print(q2.get(i).get(8));
+                }%></td>
+            <td><%if (q2.get(i).get(9) == null) {
+                    out.print("");
+                } else {
+                    out.print(q2.get(i).get(9));
+                }%></td>
+            <td><%if (q2.get(i).get(10) == null) {
+                    out.print("");
+                } else {
+                    out.print(q2.get(i).get(10));
+                }%></td>
             <td>
                 <a href="#" class="deleteBtn" id="delete_observation_<%=i%>"><i class="fa fa-times fa-lg" aria-hidden="true" style="display: inline-block; color: #d9534f;"></i></a>
                 <script>

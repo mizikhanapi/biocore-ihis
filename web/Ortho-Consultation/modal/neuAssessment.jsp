@@ -396,6 +396,30 @@
                         $("#neuAssessment2").hide();
                         $(".modal-backdrop").hide();
                        bootbox.alert("Muscle Power Added");
+                        $('#rnNo1').val("");
+                        $('#rnNo2').val("");
+                        $('#rnNo3').val("");
+                        $('#rnNo4').val("");
+                        $('#rnNo5').val("");
+                        $('#rnNo6').val("");
+                        $('#rnNo7').val("");
+                        $('#rnNo8').val("");
+                        $('#rnNo9').val("");
+                        $('#rnNo10').val("");
+                        $('#rnNo11').val("");
+                        $('#rnNo12').val("");
+                        $('#rnNo13').val("");
+                        $('#rnNo14').val("");
+                        $('#rnNo15').val("");
+                        $('#rnNo16').val("");
+                        $('#rnNo17').val("");
+                        $('#rnNo18').val("");
+                        $('#rnNo19').val("");
+                        $('#rnNo20').val("");
+                        $('#rnNo21').val("");
+                        $('#rnNo22').val("");
+                        $('#rnNo23').val("");
+                        $('#rnNo24').val("");
                     }
                 });
             },
@@ -674,6 +698,30 @@
                         $("#neuAssessment3").hide();
                         $(".modal-backdrop").hide();
                        bootbox.alert("Sensory Added");
+                       $('#rnNo25').val("");
+                        $('#rnNo26').val("");
+                        $('#rnNo27').val("");
+                        $('#rnNo28').val("");
+                        $('#rnNo29').val("");
+                        $('#rnNo30').val("");
+                        $('#rnNo31').val("");
+                        $('#rnNo32').val("");
+                        $('#rnNo33').val("");
+                        $('#rnNo34').val("");
+                        $('#rnNo35').val("");
+                        $('#rnNo36').val("");
+                        $('#rnNo37').val("");
+                        $('#rnNo38').val("");
+                        $('#rnNo39').val("");
+                        $('#rnNo40').val("");
+                        $('#rnNo41').val("");
+                        $('#rnNo42').val("");
+                        $('#rnNo43').val("");
+                        $('#rnNo44').val("");
+                        $('#rnNo45').val("");
+                        $('#rnNo46').val("");
+                        $('#rnNo47').val("");
+                        $('#rnNo48').val("");
                     }
                 });               
             },

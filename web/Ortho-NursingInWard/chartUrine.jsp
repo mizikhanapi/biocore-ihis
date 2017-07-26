@@ -191,6 +191,8 @@
         $('#NIWurEncounterDate').val(sdataX[3]);
         $('#NIWurPmi').val(sdataX[0]);
         $('#NIWurHfc').val(sdataX[1]);
+        $('#NIWurdis').val(sdataX[10]);
+        $('#NIWursubdis').val(sdataX[11]);
         $('#NIWDateurine').val(sdataX[7]);
         console.log(dataX);
         var splt = sdataX[4].split(":");

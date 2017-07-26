@@ -14,6 +14,7 @@
     String status = request.getParameter("status");
 
     String patientCategory = session.getAttribute("patientCategory").toString();
+    String doctor_id = session.getAttribute("USER_ID").toString();
 
 //    String pmino = "9504050251851";
 //    String episodedate ="2017-03-14 00:07:36.0";
@@ -28,7 +29,7 @@
                     + "VALUES('" + pmino + "','" + episodedate + "','" + notes + "','" + status + "','0','0','0','0','0') ");
 
             boolean updatePatientQueue = conn.setData("UPDATE pms_patient_queue SET status = '" + status + "' WHERE pmi_no = '" + pmino + "' AND episode_date = '" + episodedate + "';");
-            boolean updatePMSEpisode = conn.setData("UPDATE pms_episode SET status = '" + status + "' WHERE pmi_no = '" + pmino + "' AND episode_date = '" + episodedate + "';");
+            boolean updatePMSEpisode = conn.setData("UPDATE pms_episode SET status = '" + status + "', doctor = '"+doctor_id+"'  WHERE pmi_no = '" + pmino + "' AND episode_date = '" + episodedate + "';");
 
             if (stats) {
                 if (updatePatientQueue) {
@@ -47,7 +48,7 @@
         } else {
             if(dataEHR.get(0).get(4).toString().equals("2")||dataEHR.get(0).get(4).toString().equals("4")){
                             boolean updatePatientQueueElse = conn.setData("UPDATE pms_patient_queue SET status = '" + status + "' WHERE pmi_no = '" + pmino + "' AND episode_date = '" + episodedate + "';");
-                                boolean updatePMSEpisodeElse = conn.setData("UPDATE pms_episode SET status = '" + status + "' WHERE pmi_no = '" + pmino + "' AND episode_date = '" + episodedate + "';");
+                                boolean updatePMSEpisodeElse = conn.setData("UPDATE pms_episode SET status = '" + status + "', doctor = '"+doctor_id+"' WHERE pmi_no = '" + pmino + "' AND episode_date = '" + episodedate + "';");
                                 boolean updateEHR = conn.setData("UPDATE ehr_central SET status = '" + status + "', c_txndata = '" + notes + "' WHERE pmi_no = '" + pmino + "' AND c_txndate = '" + episodedate + "' AND (status =  2 OR status = 4); ");
 
                                 if (updatePatientQueueElse) {

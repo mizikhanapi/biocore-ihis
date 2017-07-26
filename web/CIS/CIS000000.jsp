@@ -65,8 +65,7 @@
                     var dataA = data.trim().split("|");
                     disciplineName = dataA[0];
                     subdisName = dataA[1];
-                    console.log(disciplineName);
-                    console.log(subdisName);
+
                 },
                 error: function (err) {
                     console.log(err);

@@ -291,42 +291,42 @@ function getMSH(receiveApp,receiveHF){
 }
 
 function convertCCN(obj){
-    var msg = "CCN|" + episodeDate + "|" + obj.ccnCode + "^" + obj.problem + "^^" + obj.Mild + "^" + obj.duration +" "+ obj.sdur + "^^^^" + obj.Site + "^^" + obj.Laterality + "^" + obj.Comment + "^^^" + getDate() + "^" + hfc_cd + "^"+ doctor_id +"^" + doctor_name + "^^^|<cr>\n";
+    var msg = "CCN|" + episodeDate + "|" + obj.ccnCode + "^" + obj.problem + "^^" + obj.Mild + "^" + obj.duration +" "+ obj.sdur + "^^^^" + obj.Site + "^^" + obj.Laterality + "^" + obj.Comment + "^^^" + encounterDate + "^" + hfc_cd + "^"+ doctor_id +"^" + doctor_name + "^^^|<cr>\n";
     return msg;
 }
 
 function convertHPI(obj){
-    var msg = "HPI|" + episodeDate + "|" + obj.details + "^" + getDate() + "^" + hfc_cd + "^" + doctor_id + "^" + doctor_name + "|<cr>\n";
+    var msg = "HPI|" + episodeDate + "|" + obj.details + "^" + encounterDate + "^" + hfc_cd + "^" + doctor_id + "^" + doctor_name + "|<cr>\n";
     return msg;
 }
 
 function convertPMH(obj){
-    var msg = "PMH|" + episodeDate + "|" + obj.codePMH + "^" + obj.Problem1 + "^^^^" + obj.comment1 + "^^^" + obj.Status + "^" + getDate() + "^" + hfc_cd + "^" + doctor_id + "^" + doctor_name + "^^^|<cr>\n";
+    var msg = "PMH|" + episodeDate + "|" + obj.codePMH + "^" + obj.Problem1 + "^^^^" + obj.comment1 + "^^^" + obj.Status + "^" + encounterDate + "^" + hfc_cd + "^" + doctor_id + "^" + doctor_name + "^^^|<cr>\n";
     return msg;
 }
 
 function convertFMH(obj){
-    var msg = "FMH|" + episodeDate + "|" + obj.f_relationship + "^" + obj.codeFMH + "^" + obj.Problem3 + "^^^^" + obj.comment2 + "^^^^^" + getDate() + "^" + hfc_cd + "^" + doctor_id + "^" + doctor_name + "^|<cr>\n";
+    var msg = "FMH|" + episodeDate + "|" + obj.f_relationship + "^" + obj.codeFMH + "^" + obj.Problem3 + "^^^^" + obj.comment2 + "^^^^^" + encounterDate + "^" + hfc_cd + "^" + doctor_id + "^" + doctor_name + "^|<cr>\n";
     return msg;
 }
 
 function convertSOH(obj){
-  var msg = "SOH|" + episodeDate + "|" + obj.codeSOH + "^" + obj.Problem4 + "^^^^^^" + obj.date + "^^^^" + obj.comment3 + "^^^" + getDate() + "^" + hfc_cd + "^" + doctor_id + "^" + doctor_name + "|<cr>\n";
+  var msg = "SOH|" + episodeDate + "|" + obj.codeSOH + "^" + obj.Problem4 + "^^^^^^" + obj.date + "^^^^" + obj.comment3 + "^^^" + encounterDate + "^" + hfc_cd + "^" + doctor_id + "^" + doctor_name + "|<cr>\n";
   return msg;
 }
 
 function convertBLD(obj){
-    var msg = "BLD|" + episodeDate + "|" + obj.blood + "^" + obj.Rhesus_Type + "^" + obj.G6PD_Status + "^" + obj.comment4 + "|<cr>\n";
+    var msg = "BLD|" + episodeDate + "|" + obj.blood + "^" + obj.Rhesus_Type + "^" + obj.G6PD_Status + "^" + obj.comment4 + "^"+encounterDate+"|<cr>\n";
     return msg;
 }
 
 function convertALG(obj){
-    var msg = "ALG|" + episodeDate + "|" + obj.codeALG + "^" + obj.Problem5 + "^" + obj.date1 + "^" + obj.comment5 + "^^^^^" + getDate() + "^" + hfc_cd + "^" + doctor_id + "^" + doctor_name + "^^^|<cr>\n";
+    var msg = "ALG|" + episodeDate + "|" + obj.codeALG + "^" + obj.Problem5 + "^" + obj.date1 + "^" + obj.comment5 + "^^^^^" + encounterDate + "^" + hfc_cd + "^" + doctor_id + "^" + doctor_name + "^^^|<cr>\n";
     return msg;
 }
 
 function convertIMU(obj){
-   var msg =  "IMU|" + episodeDate + "|" + obj.codeIMU + "^" + obj.Problem6 + "^" + obj.date2 + "^" + obj.comment6 + "^^^^^" + getDate() + "^" + hfc_cd + "^" + doctor_id + "^" + doctor_name + "^^^|<cr>\n";
+   var msg =  "IMU|" + episodeDate + "|" + obj.codeIMU + "^" + obj.Problem6 + "^" + obj.date2 + "^" + obj.comment6 + "^^^^^" + encounterDate+ "^" + hfc_cd + "^" + doctor_id + "^" + doctor_name + "^^^|<cr>\n";
    return msg;
 }
 
@@ -336,12 +336,12 @@ function convertDAB(obj){
 }
 
 function convertDGS(obj){
-    var msg = "DGS|" + episodeDate + "|" + obj.TypeDGS + "^^^" + obj.dateDGS + "^^^" + obj.dgsCode + "^" + obj.searchDiag + "^^" + obj.SeverityDGS + "^^" + obj.SiteDGS + "^^^^" + obj.LateralityDGS + "^^^" + obj.commentDGS + "^^^" + getDate() + "^" + hfc_cd + "^" + doctor_id + "^" + doctor_name + "^^^|<cr>\n";
+    var msg = "DGS|" + episodeDate + "|" + obj.TypeDGS + "^^^" + obj.dateDGS + "^^^" + obj.dgsCode + "^" + obj.searchDiag + "^^" + obj.SeverityDGS + "^^" + obj.SiteDGS + "^^^^" + obj.LateralityDGS + "^^^" + obj.commentDGS + "^^^" + encounterDate + "^" + hfc_cd + "^" + doctor_id + "^" + doctor_name + "^^^|<cr>\n";
     return msg;
 }
 
 function convertPNT(obj){
-   var msg =  "PNT|" + episodeDate + "|" + obj.PNT + "^^^^" + getDate() + "^" + hfc_cd + "^" + doctor_id + "^" + doctor_name + "|<cr>\n";
+   var msg =  "PNT|" + episodeDate + "|" + obj.PNT + "^^^^" + encounterDate + "^" + hfc_cd + "^" + doctor_id + "^" + doctor_name + "|<cr>\n";
    return msg;
 }
 
@@ -352,7 +352,7 @@ function convertMEC(obj,ccnProblem,dgsProblem){
 }
 
 function convertARQ(obj){
-    var msg = "ARQ|" + episodeDate + "|^^" + obj.DateFollowUp + "^"+hfc_cd+"^"+hfc_name+"^"+discipline+"^"+disciplineName+"^^^^^"+obj.commentFLU+"^^" + getDate() +  "^" + obj.docFLUCode + "^" + obj.searchFLU+"|<cr>\n";
+    var msg = "ARQ|" + episodeDate + "|^^" + obj.DateFollowUp + "^"+hfc_cd+"^"+hfc_name+"^"+discipline+"^"+disciplineName+"^^^^^"+obj.commentFLU+"^^" + encounterDate +  "^" + obj.docFLUCode + "^" + obj.searchFLU+"|<cr>\n";
     return msg;
 }
 
@@ -390,7 +390,7 @@ function convertPRI(obj){
 }
 
 function convertMON(obj){
-   var msg =  "MOR|" +  + obj.problemCode +"^"+obj.problemName+"^CTV3|"+  obj.codeMON + "^" + obj.searchMON + " | " + getDate() + " |  |  | " + doctor_id + "| " + doctor_name + " | | " + discipline + " | " + disciplineName + " | | " + data[key].MONHFC_cd + "|<cr>\n";
+   var msg =  "MOR|" +  + obj.problemCode +"^"+obj.problemName+"^CTV3|"+  obj.codeMON + "^" + obj.searchMON + " | " + encounterDate + " |  |  | " + doctor_id + "| " + doctor_name + " | | " + discipline + " | " + disciplineName + " | | " + data[key].MONHFC_cd + "|<cr>\n";
    return msg;
 }
 

@@ -1,3 +1,8 @@
+<%-- 
+    Document   : UTeMMedicalCertificateReport
+    Created on : Jul 22, 2017, 1:25:17 AM
+    Author     : user
+--%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.sql.*"%>
 <%@page import="dBConn.Conn"%>
@@ -32,7 +37,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> 
-        <title>Attendance List Report</title>
+        <title>Medical Certificate List</title>
 
 
         <script src="../assets/js/jquery.min.js"></script>
@@ -59,17 +64,8 @@
 
                     <div class="thumbnail">
                         <form>
-                            <h3 style="margin: 0px;">Attendance List</h3>
+                            <h3 style="margin: 0px;">Medical Certificate List</h3>
                             <hr class="pemisah"/>
-                            <div class="form-group col-md-12" id="ReportFilturediv">
-                                <lebal class="col-md-4 control-label">Patient Type:</lebal>
-                                <div class="col-md-4">
-                                    <select id="patientType" class="form-control">
-                                        <option>Inpatient</option>
-                                        <option>Outpatient</option>
-                                    </select>
-                                </div>
-                            </div>
 
                             <div class="form-group col-md-12">
                                 <label class="col-md-1 control-label" for="textinput">Date:</label>
@@ -83,7 +79,7 @@
                                 </div>
                             </div>
                             <div class="text-center">
-                                <button class="btn btn-primary" type="button" id="searchPatientAttendance" name="searchPatientAttendance"><i class="fa fa-search fa-lg" ></i>&nbsp; Search</button>
+                                <button class="btn btn-primary" type="button" id="searchMedicalCertificate" name="searchMedicalCertificate"><i class="fa fa-search fa-lg" ></i>&nbsp; Search</button>
 
                                 <button id="clearSearch" name="clearSearch" type="clear" class="btn btn-default"><i class="fa fa-ban fa-lg"></i>&nbsp; Clear</button>
                             </div>
@@ -93,11 +89,17 @@
                     <div class="thumbnail">
                         <div id="UTeMAttendanceListReportTable">
 
-                            <table  id="UTemPAReport"  class="table table-striped table-bordered" cellspacing="0" width="100%">
+                            <table  id="UTemMCReport"  class="table table-striped table-bordered" cellspacing="0" width="100%">
                                 <thead >
                                 <th style="text-align: center;">Patient Name</th>
                                 <th style="text-align: center;">Patient IC No.</th>
                                 <th style="text-align: center;">Patient Gander</th>
+                                <th style="text-align: center;">Start Date</th>
+                                <th style="text-align: center;">End Date</th>
+                                <th style="text-align: center;">Duration</th>
+                                <th style="text-align: center;">Center Code</th>
+                                <th style="text-align: center;">Nationality</th>
+                                <th style="text-align: center;">Reason</th>
                                 <th style="text-align: center;">Consulting Doctor</th>
                                 <th style="text-align: center;">Episode Date</th>
                                 </thead>
@@ -112,10 +114,10 @@
                             <form class="form-horizontal" id="addForm">
 
                                 <!-- Text input-->
-                                <div class="form-group" id="reportTotalPatientDiv" style="display: none; margin: 20px 20px 0 0;">
+                                <div class="form-group" id="reportTotalMCDiv" style="display: none; margin: 20px 20px 0 0;">
                                     <label class="col-md-5 control-label" for="textinput">Total Patients</label>
                                     <div class="col-md-4">
-                                        <input id="reportAttendanceTotalPatient" name="reportAttendanceTotalPatient" type="number" placeholder="Total Patients" class="form-control input-md" maxlength="50" value="" readonly>
+                                        <input id="reportMedicalCertificateTotal" name="reportMedicalCertificateTotal" type="number" placeholder="Total Patients" class="form-control input-md" maxlength="50" value="" readonly>
                                     </div>
                                 </div>
 
@@ -161,10 +163,9 @@
                 }
 
             });
-            $("#searchPatientAttendance").click(function () {
-                var patientType, startDate, endDate;
+            $("#searchMedicalCertificate").click(function () {
+                var startDate, endDate;
 
-                patientType = $("#patientType").val();
                 startDate = $("#dateFrom").val();
                 endDate = $("#dateTo").val();
 
@@ -173,6 +174,7 @@
 
                 var temp = endDate.split("/");
                 endDate = temp[2] + "-" + temp[1] + "-" + temp[0];
+
 
                 var dateStartTemp = new Date(startDate);
                 var dateEndTemp = new Date(endDate);
@@ -187,19 +189,20 @@
 
 
                     var data = {
-                        "patientType": patientType,
                         "startDate": startDate,
                         "endDate": endDate,
                         "hfc": "<%=hfc%>"
                     };
+                    console.log(data);
                     $.ajax({
                         type: "POST",
-                        url: "UTeMAttendanceListReportControler.jsp",
+                        url: "UTeMMedicalCertificateReportController.jsp",
                         data: data,
                         timeout: 10000,
                         success: function (reply) {
-                            if (reply.trim() !== "No Data")
-                            {
+                            if (reply.trim() !== "No Data") {
+                                console.log(reply);
+
                                 var dataRow = reply.trim().split("^");
 
                                 var trHTML = '';
@@ -207,31 +210,25 @@
                                 for (i = 0; i < dataRow.length; i++)
                                 {
                                     var datas = dataRow[i].split("|");
-                                    if (patientType === "Outpatient") {
-                                        trHTML += '<tr><td>' + datas[0] + '</td><td>' + datas[1] + '</td>\n\
-                                    <td>' + datas[3] + '</td><td>' + datas[5] + '</td><td>' + datas[6] + '</td></tr>';
-                                    } else if (patientType === "Inpatient") {
 
-                                        trHTML += '<tr><td>' + datas[1] + '</td><td>' + datas[0] + '</td>\n\
-                                    <td>' + datas[3] + '</td><td>' + datas[4] + '</td><td>' + datas[5] + '</td></tr>';
-
-                                    }
-
-
+                                    trHTML += '<tr><td>' + datas[1] + '</td><td>' + datas[0] + '</td>' + datas[5] +
+                                            '<td>' + datas[3] + '</td><td>' + datas[4] + '</td><td>' + datas[5] +
+                                            '</td><td>' + "Duration" + '</td><td>' + datas[6] + '</td><td>' + datas[8] +
+                                            '</td><td>' + datas[9] + '</td><td>' + datas[10] + '</td><td>' + datas[11] + '</td></tr>';
                                 }
-                                $('#UTemPAReport').append(trHTML);
-                                $('#UTemPAReport').DataTable({
+                                $('#UTemMCReport').append(trHTML);
+                                $('#UTemMCReport').DataTable({
                                     pageLength: 15,
                                     initComplete: function (settings, json) {
                                         $('.loading').hide();
                                     },
-                                    "order": [[4, "asc"]],
+                                    "order": [[10, "asc"]],
                                     dom: 'Bfrtip',
                                     buttons: [
                                         {
                                             extend: 'excelHtml5',
                                             text: 'Export To Excel',
-                                            title: 'Patient Attendance List',
+                                            title: 'Medical Certificates List',
                                             className: 'btn btn-primary',
                                             exportOptions: {
                                                 columns: ':visible'
@@ -239,14 +236,14 @@
                                         }, {
                                             extend: 'csvHtml5',
                                             text: 'Export To Excel CSV',
-                                            title: 'Patient Attendance List',
+                                            title: 'Medical Certificates List',
                                             className: 'btn btn-primary',
                                             exportOptions: {
                                                 columns: ':visible'
                                             }
                                         }, {
                                             extend: 'print',
-                                            text: 'Print Attendance List',
+                                            text: 'Print MC List',
                                             title: '',
                                             message: '<br><br>',
                                             className: 'btn btn-primary',
@@ -255,14 +252,13 @@
                                                         .css('font-size', '10pt')
                                                         .prepend(
                                                                 '<div class="logo-hfc asset-print-img" style="z-index: 0; top: 0px; opacity: 1.0;">\n\
-                                        <img src="<%=mysqlhfc_cd.get(0).get(0)%>" style="text-align: center; height: 100%; " /></div> <div class="mesej"><br>Patient Attendance List</div>\n\
+                                        <img src="<%=mysqlhfc_cd.get(0).get(0)%>" style="text-align: center; height: 100%; " /></div> <div class="mesej"><br>Medical Certificates List</div>\n\
                                         <div class="info_kecik">\n\
                                         <dd>Date: <strong><%=newdate%></strong></dd>\n\
-                                        <dd>Report No: <strong>PMS-001</strong></dd>\n\
+                                        <dd>Report No: <strong>PMS-002</strong></dd>\n\
                                         </div> \n\
                                         <div style="margin: 30px 0 0 0; font-size: 15px;"> \n\
                                         <p>Facility: <strong><%=hfc_name%></strong></p>\n\
-                                        <p>Discipline: <strong>' + patientType + '</strong></p>\n\
                                         </div> '
                                                                 );
                                                 $(win.document.body).find('table')
@@ -271,7 +267,7 @@
                                                 $(win.document.body)
                                                         .css('font-size', '10pt')
                                                         .css('font-weight', 'bolder')
-                                                        .append('<div style="text-align: right;padding-top:10px;"><br> Patient Total = ' + dataRow.length + ' </div>');
+                                                        .append('<div style="text-align: right;padding-top:10px;"><br> Medical MC Issued Total = ' + dataRow.length + ' </div>');
                                                 $(win.document.body)
                                                         .css('font-size', '10pt')
                                                         .append('<div style="text-align: center;padding-top:30px;"><br> ***** &nbsp;&nbsp;  End Of Report  &nbsp;&nbsp;  ***** </div>');
@@ -288,11 +284,11 @@
                                         }
                                     ]
                                 });
-                                $('#reportTotalPatientDiv').css("display", "block");
-                                $("#reportAttendanceTotalPatient").val(dataRow.length);
-                                $("#searchPatientAttendance").prop("disabled", true);
+                                $('#reportTotalMCDiv').css("display", "block");
+                                $("#reportMedicalCertificateTotal").val(dataRow.length);
+                                $("#searchMedicalCertificate").prop("disabled", true);
                             } else if (reply.trim() === "No Data") {
-                                alert("There is no patient in this time range !!");
+                                alert("There is no Medical Certificates Issued in this time range !!");
                             }
                         },
                         error: function (err) {

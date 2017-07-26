@@ -15,6 +15,7 @@
     Conn conn = new Conn();
     SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
     String now = sdf.format(new Date());
+    int row ;
 
     //amik kt session
     String hfc = session.getAttribute("HEALTH_FACILITY_CODE").toString();
@@ -34,13 +35,21 @@
             + " join pms_patient_biodata b on b.pmi_no = q.pmi_no"
             + " join adm_lookup_detail l on l.`Master_Reference_code` ='0069' and l.`Detail_Reference_code` = q.status and l.`hfc_cd` = '" + hfc + "'"
             + " left join adm_lookup_detail x on x.`Master_Reference_code` ='0033' and x.`Detail_Reference_code` = q.patient_category and x.`hfc_cd` = '" + hfc + "'"
-            + " join adm_users u on u.user_id = q.user_id and u.health_facility_code = '"+hfc+"'"
-            + " where q.episode_date like '%" + now + "%' and q.status !='1' and q.hfc_cd='" + hfc + "' and ((queue_type='PN' and queue_name='"+doctor+"') OR queue_type!='PN') LIMIT 5";
+            + " join adm_users u on u.user_id = q.user_id and u.health_facility_code = '" + hfc + "'"
+            + " where q.episode_date like '%" + now + "%'   and q.status !='1' OR (q.patient_category = '003' AND q.status != '1' AND q.status != '6') and q.hfc_cd='" + hfc + "' and ((queue_type='PN' and queue_name='" + doctor + "') OR queue_type!='PN') ORDER BY q.episode_date";
     ArrayList<ArrayList<String>> dataQueue;
     dataQueue = conn.getData(sqlV3);
-    //out.print(sql);
+    row =  dataQueue.size();
 %>
-<table class="table table-filter table-striped" style="background: #fff; border: 1px solid #ccc; " id="listQueue">
+<script type="text/javascript">
+    $(document).ready(function(){
+        var row = <%out.print(row);%>;
+        if(parseInt(row) > 10){
+            $("#formQueueSaya").css("height","500px");
+        }
+    })
+    </script>
+<table class="table table-filter table-striped" style="background: #fff; border: 1px solid #ccc;  " id="listQueue">
     <thead>
     <th>PMI no. <%//out.print(sqlV3);%></th>
     <th>Name </th>
@@ -57,7 +66,7 @@
 </thead>
 <tbody>
     <%
-                                        for (int i = 0; i < dataQueue.size(); i++) {%>
+        for (int i = 0; i < dataQueue.size(); i++) {%>
     <tr>
         <td id="pmiNumber"><%=dataQueue.get(i).get(0)%></td>
         <td><%=dataQueue.get(i).get(1)%></td>

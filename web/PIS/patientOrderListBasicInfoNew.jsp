@@ -266,8 +266,8 @@
 
 <div class="text-right" id="patientOrderDispenseButtonDiv" > 
     <button class="btn btn-primary " type="button" id="btnOrderDispensePrescribe" name="btnOrderDispensePrescribe" > <i class="fa fa-print fa-lg" ></i>&nbsp; Generate Label &nbsp;</button>
-    <button class="btn btn-success " type="button" id="btnOrderDispense" name="btnOrderDispense" > <i class="fa fa-shopping-cart fa-lg"></i>&nbsp; Dispense &nbsp;</button>
     <button class="btn btn-warning " type="button" id="btnOrderDispenseCallPatient" name="btnOrderDispenseCallPatient" > <i class="fa fa-phone fa-lg" ></i>&nbsp; Call Patient &nbsp;</button>
+    <button class="btn btn-success " type="button" id="btnOrderDispense" name="btnOrderDispense" > <i class="fa fa-shopping-cart fa-lg"></i>&nbsp; Dispense &nbsp;</button>
 </div>
 
 
@@ -283,7 +283,7 @@
 
         $('<div class="loading">Loading</div>').appendTo('body');
 
-        // Disable Dispense Button
+        // Disable And Enable Button
         document.getElementById("btnOrderDispensePrescribe").disabled = false;
         document.getElementById("btnOrderDispense").disabled = true;
         document.getElementById("btnOrderDispenseCallPatient").disabled = true;
@@ -697,6 +697,8 @@
                                 $('#patientOrderDetailsListTable').html(returnOrderDetailsTableHTML);
                                 $('#patientOrderDetailsListTable').trigger('contentchanged');
 
+                                resetButton();
+
                             }
                         });
 
@@ -708,6 +710,8 @@
                             backdrop: true
                         });
 
+                        resetButton();
+
                     } else if (datas.trim() === 'Failed') {
 
                         bootbox.alert({
@@ -715,8 +719,11 @@
                             title: "Process Result",
                             backdrop: true
                         });
+
                         $('#addOrderDrug').modal('hide');
                         resetAddOrder();
+                        resetButton();
+
                     }
 
                 },
@@ -842,6 +849,8 @@
                 backdrop: true
             });
 
+            resetButton();
+
         }
     });
     // Update Order Data End
@@ -904,15 +913,21 @@
 
                                         $('#patientOrderDetailsListTable').trigger('contentchanged');
 
+                                        resetButton();
+
                                     }
                                 });
 
                             } else if (datas.trim() === 'Failed') {
+
                                 bootbox.alert({
                                     message: "Drug Order Delete Failed",
                                     title: "Process Result",
                                     backdrop: true
                                 });
+
+                                resetButton();
+
                             }
 
                         },
@@ -1455,6 +1470,12 @@
                                                     var win = window.open(url, '_blank');
                                                     win.focus();
 
+                                                    bootbox.alert({
+                                                        message: "Please Call The Patient Before Dispensing The Drug !!!",
+                                                        title: "Information",
+                                                        backdrop: true
+                                                    });
+
                                                 },
                                                 error: function (err) {
 
@@ -1665,6 +1686,15 @@
     });
     // Clear Button Function End
 
+    function resetButton() {
+
+        // Disable And Enable Button
+        $("#patientOrderDetailsListTable").find("input,button,textarea,select").attr("disabled", false);
+        document.getElementById("btnOrderDispensePrescribe").disabled = false;
+        document.getElementById("btnOrderDispense").disabled = true;
+        document.getElementById("btnOrderDispenseCallPatient").disabled = true;
+
+    }
 
 //=================================================================================  Reset Part End  ==================================================================================//
 

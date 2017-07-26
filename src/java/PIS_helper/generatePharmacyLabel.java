@@ -82,30 +82,36 @@ public class generatePharmacyLabel extends HttpServlet {
 
                 String arrayOrderNo = data.get(i).get(0);
                 String arrayItemCode = data.get(i).get(1);
-                String arrayItemDesc = data.get(i).get(2);
-                String arrayItemFreq = data.get(i).get(3);
-                String arrayItemStrength = data.get(i).get(4);
-                String arrayItemCaution = data.get(i).get(5);
+                String arrayItemDesc = data.get(i).get(2).trim();
+                String arrayItemFreq = data.get(i).get(3).trim();
+                String arrayItemStrength = data.get(i).get(4).trim();
+                String arrayItemCaution = data.get(i).get(5).trim();
 
                 // Checking For Null Or Empty Spaces
-                if (arrayOrderNo == null && arrayOrderNo.isEmpty()) {
+                if (arrayOrderNo == null) {
                     arrayOrderNo = "-";
                 }
-                if (arrayItemCode == null && arrayItemCode.isEmpty()) {
+
+                if (arrayItemCode == null) {
                     arrayItemCode = "-";
                 }
-                if (arrayItemDesc == null && arrayItemDesc.isEmpty()) {
+
+                if (arrayItemDesc == null || arrayItemDesc.equals("")) {
                     arrayItemDesc = "-";
                 }
-                if (arrayItemFreq == null && arrayItemFreq.isEmpty()) {
+
+                if (arrayItemFreq == null || arrayItemFreq.equals("")) {
                     arrayItemFreq = "-";
                 }
-                if (arrayItemStrength == null && arrayItemStrength.isEmpty()) {
+
+                if (arrayItemStrength == null || arrayItemStrength.equals("")) {
                     arrayItemStrength = "-";
                 }
-                if (arrayItemCaution == null && arrayItemCaution.isEmpty()) {
-                    arrayItemCaution = "-";
+
+                if (arrayItemCaution == null || arrayItemCaution.equals("")) {
+                    arrayItemCaution = "No Caution";
                 }
+                // Checking For Null Or Empty Spaces
 
                 // Initializing New Page
                 document.newPage();
@@ -138,12 +144,12 @@ public class generatePharmacyLabel extends HttpServlet {
                 // Font For Frequency
                 Font labelFrequencyFont = new Font();
                 labelFrequencyFont.setStyle(Font.BOLD);
-                labelFrequencyFont.setSize(15);
+                labelFrequencyFont.setSize(13);
                 // Paragraph For Frequency
                 Paragraph labelFrequency = new Paragraph(arrayItemFreq, labelFrequencyFont);
                 labelFrequency.setAlignment(Element.ALIGN_CENTER);
-                labelFrequency.setSpacingBefore(15);
-                labelFrequency.setSpacingAfter(15);
+                labelFrequency.setSpacingBefore(14);
+                labelFrequency.setSpacingAfter(14);
                 document.add(labelFrequency);
                 // Frequency Declaration
 
@@ -166,10 +172,10 @@ public class generatePharmacyLabel extends HttpServlet {
                 Font labelMediNameFont = new Font();
                 labelMediNameFont.setSize(9);
                 // Paragraph For Medi Name
-                Paragraph labelMediName = new Paragraph(arrayItemDesc + "(" + arrayItemStrength + ")", labelMediNameFont);
+                Paragraph labelMediName = new Paragraph(arrayItemDesc + " (" + arrayItemStrength + ")", labelMediNameFont);
                 labelMediName.setAlignment(Element.ALIGN_CENTER);
-                labelMediName.setSpacingBefore(15);
-                labelMediName.setSpacingAfter(14);
+                labelMediName.setSpacingBefore(13);
+                labelMediName.setSpacingAfter(13);
                 document.add(labelMediName);
                 // Medi Name Declaration
 

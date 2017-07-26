@@ -17,7 +17,7 @@
             <div class="modal-body" >
                     <div class="row"id="modalBodyQueue" >
                         <!-- content goes here -->
-                        <form role="form" id="formQueueSaya" style="overflow-x: auto;">
+                        <form role="form" id="formQueueSaya" style=" height: 100%; overflow: auto;">
                             <table class="table table-filter table-striped table-responsive" style="width: 100% " id="listQueue">
                                 <thead>
                                 <th>PMI no. </th>

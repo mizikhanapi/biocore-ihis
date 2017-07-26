@@ -212,6 +212,9 @@
         $('#NIWredivacEncounterDate').val(sdataX[3]);
         $('#NIWredivacPmi').val(sdataX[0]);
         $('#NIWredivacHfc').val(sdataX[1]);
+        $('#NIWredivacdis').val(sdataX[11]);
+        $('#NIWredivacsubdis').val(sdataX[12]);
+        
         $('#NIWRedivacDate').val(sdataX[4]);
         $("input[name='NIWredivacShift'][value='" + sdataX[5] + "']").prop('checked', true);
         $("#NIWredivacTIB").val(sdataX[6]);
