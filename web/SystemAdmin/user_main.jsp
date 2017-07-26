@@ -704,6 +704,8 @@
             var userIDStatus = $('#UM_userIDStatus').val();
             var mother = $('#UM_mother').val();
             var roomNo = $('#UM_roomNo').val();
+            
+            var gotSpecialChar = /[!@#$%^&*()+=,?\/\\:;\"\' ]/.test(userID);          
 
             //$('#UM_detail').css('overflow', 'auto');
 
@@ -760,7 +762,11 @@
             } else if (roomNo === "") {
                 bootbox.alert("Insert the staff room number");
 
-            } else if (ValidateEmail(email) === false) {
+            }
+            else if(gotSpecialChar){
+                bootbox.alert("User ID cannot contain special characters!");
+            }            
+            else if (ValidateEmail(email) === false) {
                 bootbox.alert("Invalid email address");
                 $('#UM_email').val("");
 
