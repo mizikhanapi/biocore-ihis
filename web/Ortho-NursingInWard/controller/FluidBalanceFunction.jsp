@@ -30,7 +30,7 @@
         result = fluid.addFluidIntake(data + longString);
         out.print(result);
     } else if (methodName.equalsIgnoreCase("addOutput")) {
-        result = fluid.addFluidOutput(data);
+        result = fluid.addFluidOutput(data + longString);
         out.print(result);
     } else if (methodName.equalsIgnoreCase("updateIntake")) {
         result = fluid.updateFluidIntake(data);

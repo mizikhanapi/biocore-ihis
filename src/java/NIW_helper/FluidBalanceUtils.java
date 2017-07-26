@@ -193,7 +193,7 @@ public class FluidBalanceUtils {
 
         Boolean sql = false;
         String splittedData[] = datas.split("\\|", -1);
-        String pmi_no, hfc_cd, episode_date, encounter_date, datetime, urine, vomitus, gastric_suction, other;
+        String pmi_no, hfc_cd, episode_date, encounter_date, datetime, urine, vomitus, gastric_suction, other, discipline_cd, subdiscipline_cd, created_by, created_date;
 
         pmi_no = splittedData[0];
         hfc_cd = splittedData[1];
@@ -204,10 +204,15 @@ public class FluidBalanceUtils {
         vomitus = splittedData[6];
         gastric_suction = splittedData[7];
         other = splittedData[8];
+        discipline_cd = splittedData[9];
+        subdiscipline_cd = splittedData[10];
+        created_by = splittedData[11];
+        created_date = splittedData[12];
 
         String sqlInsert = "INSERT INTO lhr_ort_niw_output_fluid_balance "
-                + " (pmi_no, hfc_cd, episode_date, encounter_date,datetime, urine,vomitus,gastric_suction,other )  "
-                + " VALUES('" + pmi_no + "','" + hfc_cd + "','" + episode_date + "','" + encounter_date + "','" + datetime + "','" + urine + "','" + vomitus + "','" + gastric_suction + "','" + other + "') ";
+                + " (pmi_no, hfc_cd, episode_date, encounter_date,datetime, urine,vomitus,gastric_suction,other,discipline_cd,subdiscipline_cd,created_by,created_date)  "
+                + " VALUES('" + pmi_no + "','" + hfc_cd + "','" + episode_date + "','" + encounter_date + "','" + datetime + "','" + urine + "','" + vomitus + "',"
+                + "'" + gastric_suction + "','" + other + "','" + discipline_cd + "','" + subdiscipline_cd + "','" + created_by + "','" + created_date + "') ";
 
         sql = rmic.setQuerySQL(conn.HOST, conn.PORT, sqlInsert);
 
