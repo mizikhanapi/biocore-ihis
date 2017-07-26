@@ -241,7 +241,7 @@
                             <div class="form-group">
                                 <label class="col-md-12 control-label" for="textinput">Position/Activity</label>
                                 <div class="col-md-12 ">
-                                    <textarea class="form-control input-md" id="dailySkinPositionModalActivity"></textarea>
+                                    <textarea class="form-control input-md" id="dailySkinPositionModalActivity" maxlength="100"></textarea>
                                 </div>
                             </div>
                         </div>
