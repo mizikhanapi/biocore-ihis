@@ -44,7 +44,7 @@
                             <div class="form-group">
                                 <label class="col-md-12 control-label" for="textinput">Colour</label>
                                 <div class="col-md-12">
-                                    <input type="text" class="form-control input-md" id="chartCirculationModalColour">
+                                    <input type="text" class="form-control input-md" id="chartCirculationModalColour" maxlength="100">
                                 </div>
                             </div>
                         </div>
@@ -53,7 +53,7 @@
                             <div class="form-group">
                                 <label class="col-md-12 control-label" for="textinput">Sensation</label>
                                 <div class="col-md-12">
-                                    <input type="text" class="form-control input-md" id="chartCirculationModalSensation">
+                                    <input type="text" class="form-control input-md" id="chartCirculationModalSensation" maxlength="100">
                                 </div>
                             </div>
                         </div>
@@ -66,7 +66,7 @@
                                 <label class="col-md-12 control-label" for="textinput">Hot / Cold</label>
                                 <div class="col-md-12 form-inline">
                                     <div class="radio radio-primary">
-                                        <input type="radio" name="HotCold" value="Hot" id="chartCirculationModalHot">
+                                        <input type="radio" name="HotCold" value="Hot" id="chartCirculationModalHot" maxlength="100">
                                         <label for="chartCirculationModalHot">
                                             Hot
                                         </label>
@@ -85,7 +85,7 @@
                             <div class="form-group">
                                 <label class="col-md-12 control-label" for="textinput">Movement</label>
                                 <div class="col-md-12">
-                                    <input type="text" class="form-control input-md" id="chartCirculationModalMovement">
+                                    <input type="text" class="form-control input-md" id="chartCirculationModalMovement" maxlength="100">
                                 </div>
                             </div>
                         </div>
@@ -97,7 +97,7 @@
                             <div class="form-group">
                                 <label class="col-md-12 control-label" for="textinput">Others</label>
                                 <div class="col-md-12">
-                                    <textarea class="form-control input-md" id="chartCirculationModalOthers" ></textarea>
+                                    <textarea class="form-control input-md" id="chartCirculationModalOthers" maxlength="100" ></textarea>
                                 </div>
                             </div>
                         </div>
