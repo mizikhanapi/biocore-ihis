@@ -284,27 +284,6 @@ function getObjectVTS(msg) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 //-------------------------------------------OBJECT TO NOTES 
 function getMSH(receiveApp,receiveHF){
     var msh = "MSH|^~|02|" + hfc_cd + "^" + discipline + "^" + subdis + "|"+receiveApp+"|"+ hfc_cd + "^" + discipline + "^" + subdis +"|" + getDate() + "||||||||||||<cr>\n";
@@ -702,7 +681,7 @@ function convertDCGMsgData(data){
             dischargeSummary = dcgGeneralNotes.trim();
             dischargeSummary = dischargeSummary.replace("<cr>", "");
             var message_type = dischargeSummary.substr(0, 3);
-            NotesDCG += "DCG|" + episodeDate + "|" + episodeDate + "^" + hfc_cd + "^" + patientCategory + "^" + doctor_id + "^" + doctor_name + "^" + doctor_id + "^" + doctor_name + "^" + data[key].date + " " + data[key].time + "^" + data[key].disposition + "^" + data[key].comment + "^" + message_type + "|" + dischargeSummary + "|<cr>\n";
+            NotesDCG += "DCG|" + episodeDate + "|" + encounterDate + "^" + hfc_cd + "^" + patientCategory + "^" + doctor_id + "^" + doctor_name + "^" + doctor_id + "^" + doctor_name + "^" + data[key].date + " " + data[key].time + "^" + data[key].disposition + "^" + data[key].comment + "^" + message_type + "|" + dischargeSummary + "|<cr>\n";
     }
     
     return NotesDCG;
