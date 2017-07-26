@@ -98,13 +98,11 @@
 
                     var inputApp = $('#idInputApp').val();
                     var typeApp = $('#idType').find(":selected").val();
-                    if (inputApp === "") {
-                        alert("Please Make Sure The Fields Is Filled!")
-                    }
+
                     if (typeApp === "") {
-                        alert("Please Make Sure The Fields Is Filled!")
+                        alert("Please Make Sure The Fields Is Filled!");
                     } else {
-                        console.log(inputApp + " " + typeApp);
+             
                         $.ajax({
                             type: "POST",
                             data: {idType: typeApp, idInput: inputApp},
