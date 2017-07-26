@@ -62,7 +62,7 @@
                             <div class="form-group">
                                 <label class="col-md-12 control-label" for="textinput">Amount</label>
                                 <div class="col-md-12">
-                                    <input type="number" class="form-control input-md" id="fluidBalanceIntakeModalOralAmount" >
+                                    <input type="text" class="form-control input-md" id="fluidBalanceIntakeModalOralAmount" maxlength="4" >
                                 </div>
                             </div>
                         </div>
@@ -92,7 +92,7 @@
                             <div class="form-group">
                                 <label class="col-md-12 control-label" for="textinput">Amount</label>
                                 <div class="col-md-12">
-                                    <input type="number" class="form-control input-md" id="fluidBalanceIntakeModalIntravenousAmount">
+                                    <input type="text" class="form-control input-md" id="fluidBalanceIntakeModalIntravenousAmount" maxlength="4">
                                 </div>
                             </div>
                         </div>
@@ -122,7 +122,7 @@
                             <div class="form-group">
                                 <label class="col-md-12 control-label" for="textinput">Amount</label>
                                 <div class="col-md-12">
-                                    <input type="number" class="form-control input-md" id="fluidBalanceIntakeModalOtherAmount">
+                                    <input type="text" class="form-control input-md" id="fluidBalanceIntakeModalOtherAmount" maxlength="4">
                                 </div>
                             </div>
                         </div>
@@ -234,7 +234,7 @@
                             <div class="form-group">
                                 <label class="col-md-12 control-label" for="textinput">Other (Specify)</label>
                                 <div class="col-md-12">
-                                    <textarea class="form-control input-md" id="fluidBalanceOutputModalOthers"></textarea>
+                                    <textarea class="form-control input-md" id="fluidBalanceOutputModalOthers" maxlength="100"></textarea>
                                 </div>
                             </div>
                         </div>
