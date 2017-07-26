@@ -96,17 +96,62 @@
             </td>
             <td><%=outputFormat.format(inputFormat.parse(dateTime_i))%></td>
             <td><%=outputFormat1.format(inputFormat.parse(dateTime_i))%></td>
-            <td><%=q2.get(i).get(1)%></td>
-            <td><%=q2.get(i).get(2)%></td>
+            <td><%if(q2.get(i).get(1)==null)
+                {
+                    out.print("");
+                }else{
+                    out.print(q2.get(i).get(1));
+                }%></td>
+            <td><%if(q2.get(i).get(2)==null)
+                {
+                    out.print("");
+                }else{
+                    out.print(q2.get(i).get(2));
+                }%></td>
             <td>
-                <span style="font-weight: 500; padding-right: 5px;">Systolic:</span><%=q2.get(i).get(4)%>
-                <span style="font-weight: 500; padding-left: 15px; padding-right: 5px;">Diastolic:</span><%=q2.get(i).get(5)%>
-                <span style="font-weight: 500; padding-left: 15px; padding-right: 5px;">Pulse:</span><%=q2.get(i).get(6)%>
+                <span style="font-weight: 500; padding-right: 5px;">Systolic:</span><%if(q2.get(i).get(4)==null)
+                {
+                    out.print("");
+                }else{
+                    out.print(q2.get(i).get(4));
+                }%>
+                <span style="font-weight: 500; padding-left: 15px; padding-right: 5px;">Diastolic:</span><%if(q2.get(i).get(5)==null)
+                {
+                    out.print("");
+                }else{
+                    out.print(q2.get(i).get(5));
+                }%>
+                <span style="font-weight: 500; padding-left: 15px; padding-right: 5px;">Pulse:</span><%if(q2.get(i).get(6)==null)
+                {
+                    out.print("");
+                }else{
+                    out.print(q2.get(i).get(6));
+                }%>
             </td>
-            <td><%=q2.get(i).get(7)%></td>
-            <td><%=q2.get(i).get(8)%></td>
-            <td><%=q2.get(i).get(9)%></td>
-            <td><%=q2.get(i).get(10)%></td>
+            <td><%if(q2.get(i).get(7)==null)
+                {
+                    out.print("");
+                }else{
+                    out.print(q2.get(i).get(7));
+                }%></td>
+            <td><%if(q2.get(i).get(8)==null)
+                {
+                    out.print("");
+                }else{
+                    out.print(q2.get(i).get(8));
+                }%></td>
+            <td><%if(q2.get(i).get(9)==null)
+                {
+                    out.print("");
+                }else{
+                    out.print(q2.get(i).get(9));
+                }%></td>
+            <td><%if(q2.get(i).get(10)==null)
+                {
+                    out.print("");
+                }else{
+                    out.print(q2.get(i).get(10));
+                }%></td>
             <td>
                 <a href="#" class="deleteBtn" id="delete_observation_<%=i%>"><i class="fa fa-times fa-lg" aria-hidden="true" style="display: inline-block; color: #d9534f;"></i></a>
                 <script>
