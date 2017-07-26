@@ -227,26 +227,26 @@
 
                             </div>
                         </div>
-                        <div class="tab-pane fade" id="order-entry">
+                        <div class="none" id="order-entry">
                             <jsp:include page="order/orderEntry.jsp"/> 
                         </div>
-                        <div class="" id="orthopedic-con" style="display: none;">
+                        <div class="none" id="orthopedic-con" style="display: none;">
                             <jsp:include page="../Ortho-Consultation/orthopedic.jsp"/>
                         </div>
 
-                        <div class="tab-pane fade" id="orthopedic-nur">
+                        <div class="none" id="orthopedic-nur">
                             <jsp:include page="../Ortho-Nursing/Nursing.jsp"/>
                         </div> 
 
-                        <div class="tab-pane fade" id="orthopedic-niw">
+                        <div class="none" id="orthopedic-niw">
                             <jsp:include page="../Ortho-NursingInWard/NursingInWard.jsp"/>
                         </div> 
 
-                        <div class="tab-pane fade" id="orthopedic-ot">
+                        <div class="none" id="orthopedic-ot">
                             <jsp:include page="../Ortho-operationTheater/OperationTheater.jsp"/>
                         </div> 
 
-                        <div class="tab-pane fade" id="ong">
+                        <div class="none" id="ong">
                             <jsp:include page="ong.jsp"/>
                         </div> 
 
@@ -259,8 +259,8 @@
         </div>
 
         <div class="material-button-anim toggle-draggable">
-            <button class="material-button option1" type="button" data-toggle="tooltip" data-placement="top" title="Order Entry">
-                <a href="#order-entry" role="presentation" data-toggle="tab" class="panelito" style="color: #fff;"><span class="fa fa-medkit"></span></a>
+            <button class="material-button option1" type="button" data-toggle="tooltip" data-placement="top" title="Physician Order Entry">
+                <a href="#order-entry" class="panelito order-ety" style="color: #fff;"><span class="fa fa-medkit"></span></a>
             </button>
         </div>
 
@@ -288,10 +288,10 @@
 
         <%@ include file="CIS04/CIS0104.jsp" %> 
         <%@ include file="discharge/dischargeSummaryModal.jsp" %> 
-  
-        
 
-    
+
+
+
         <!--<div w3-include-html=""></div>
         <div w3-include-html="CIS02/CIS020002.jsp"></div>
         <div w3-include-html="CIS02/CIS020003.jsp"></div>
@@ -312,6 +312,7 @@
             <script src="assets/ie10-viewport-bug-workaround.js.download"></script>
         -->
         <script src="../assets/js/toggleButton.js" type="text/javascript"></script>
+        <script src="../assets/js/swapping-tab.js" type="text/javascript"></script>
         <script>
 
             (function ($) {
@@ -336,19 +337,6 @@
             }
             $('#accordion').on('hidden.bs.collapse', toggleChevron);
             $('#accordion').on('shown.bs.collapse', toggleChevron);
-        </script>
-
-        <script>
-            $(document).ready(function () {
-                $(".ortho-notes").click(function () {
-                    $("#orthopedic-con").show(400);
-                    $("#generic-soap").hide();
-                });
-                $(".general-exam").click(function () {
-                    $("#orthopedic-con").hide();
-                    $("#generic-soap").show(400);
-                });
-            });
         </script>
 
     </body>
