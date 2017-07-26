@@ -22,6 +22,6 @@
         <!--<li><a href="HIS060003.jsp"><i class="fa fa-check-square sideIcon" aria-hidden="true" ></i>Verify Result</a></li>-->   
         <li><a href="HIS190002.jsp"><i class="fa fa-code-fork " aria-hidden="true" ></i>Procedure Maintenance</a></li>
         <li><a href="HIS190003.jsp"><i class="fa fa-bed " aria-hidden="true" ></i>Operation Theater Maintenance</a></li>
-        <li><a href="HIS060004.jsp"><i class="fa fa-usd " aria-hidden="true" ></i>Billing</a></li>
+        <li><a href="HIS190004.jsp"><i class="fa fa-usd " aria-hidden="true" ></i>Billing</a></li>
     </ul>  
 </div>
