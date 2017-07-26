@@ -188,7 +188,7 @@ public class DailySkinUtils {
 
         Boolean sql = false;
         String splittedData[] = datas.split("\\|", -1);
-        String pmi_no, hfc_cd, episode_date, encounter_date, datetime, activity;
+        String pmi_no, hfc_cd, episode_date, encounter_date, datetime, activity, discipline_cd, subdiscipline_cd, created_by, created_date;
 
         pmi_no = splittedData[0];
         hfc_cd = splittedData[1];
@@ -196,10 +196,15 @@ public class DailySkinUtils {
         encounter_date = splittedData[3];
         datetime = splittedData[4];
         activity = splittedData[5];
+        discipline_cd = splittedData[7];
+        subdiscipline_cd = splittedData[8];
+        created_by = splittedData[9];
+        created_date = splittedData[10];
 
         String sqlInsert = "INSERT INTO lhr_ort_niw_positioning "
-                + " (pmi_no, hfc_cd, episode_date, encounter_date,datetime ,activity)  "
-                + " VALUES('" + pmi_no + "','" + hfc_cd + "','" + episode_date + "','" + encounter_date + "','" + datetime + "','" + activity + "') ";
+                + " (pmi_no, hfc_cd, episode_date, encounter_date,datetime ,activity,discipline_cd,subdiscipline_cd,created_by,created_date)  "
+                + " VALUES('" + pmi_no + "','" + hfc_cd + "','" + episode_date + "','" + encounter_date + "','" + datetime + "',"
+                + "'" + activity + "','" + discipline_cd + "','" + subdiscipline_cd + "','" + created_by + "','" + created_date + "') ";
 
         sql = rmic.setQuerySQL(conn.HOST, conn.PORT, sqlInsert);
 

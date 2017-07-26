@@ -28,13 +28,13 @@
         result = dailySkin.addSkinTool(data + longString);
         out.print(result);
     } else if (methodName.equalsIgnoreCase("addPosition")) {
-        result = dailySkin.addPosition(data);
+        result = dailySkin.addPosition(data + longString);
         out.print(result);
     } else if (methodName.equalsIgnoreCase("updateSkinTool")) {
         result = dailySkin.updateSkinTool(data + longString);
         out.print(result);
     } else if (methodName.equalsIgnoreCase("updatePosition")) {
-        result = dailySkin.updatePosition(data);
+        result = dailySkin.updatePosition(data + longString);
         out.print(result);
     } else if (methodName.equalsIgnoreCase("deleteSkinTool")) {
         result = dailySkin.delSkinTool(data);
