@@ -43,17 +43,20 @@
             Conn conn = new Conn();
 
             ArrayList<ArrayList<String>> q1 = conn.getData(sql);
+            DateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            DateFormat outputFormat = new SimpleDateFormat("dd-MM-yyyy");
+            DateFormat outputFormat1 = new SimpleDateFormat("KK:mm a");
             if (q1.size() > 0) {
                 for (int i = 0; i < q1.size(); i++) {
-
+                    String dateTime_i = q1.get(i).get(48);
                     //out.print(i + 1 + "  " + q1.get(i).get(48));
 %>
 <div class="panel panel-default">
     <div class="panel-heading">
 
         <div class="radio radio-primary" style="display: inline;">
-            <input type="radio" name="selected_assessment" value="<%=q1.get(i).get(48)%>" <%
-                   if (i == 0) {%> checked="checked"<%}%> id="neu-0<%=i + 1%>">
+               <input type="radio" name="selected_assessment" value="<%=q1.get(i).get(48)%>" <%
+                if (i == 0) {%> checked="checked"<%}%> id="neu-0<%=i + 1%>">
             <label for="neu-0<%=i + 1%>">
                 &nbsp;
             </label>
@@ -61,7 +64,7 @@
 
 
 
-        <span class="tarikh-neu"><%=q1.get(i).get(48)%></span>
+        <span class="tarikh-neu">Date:<%=outputFormat.format(inputFormat.parse(dateTime_i))%> Time:<%=outputFormat1.format(inputFormat.parse(dateTime_i))%></span>
 
         <a href="#" class="deleteBtn pull-right" id="delete_Assessment_<%=i%>"><i class="fa fa-times fa-lg" aria-hidden="true" style="display: inline-block; color: #d9534f;"></i></a>
         <script>
@@ -91,7 +94,7 @@
             });
         </script>
     </div>
-                <div class="nota" id="table_assessment" style="overflow-x: auto;">
+    <div class="nota" id="table_assessment" style="overflow-x: auto;">
         <table class="table table-bordered" id="table_assessment">
             <tr>
                 <th colspan="24">Muscle Power</th>
@@ -117,150 +120,126 @@
                 <td colspan="2">Plantaflex</td>
             </tr>
             <tr>
-                <td><%if(q1.get(i).get(0)==null)
-                {
-                    out.print("");
-                }else{
-                    out.print(q1.get(i).get(0));
-                }%></td>
-                <td><%if(q1.get(i).get(1)==null)
-                {
-                    out.print("");
-                }else{
-                    out.print(q1.get(i).get(1));
-                }%></td>
-                <td><%if(q1.get(i).get(2)==null)
-                {
-                    out.print("");
-                }else{
-                    out.print(q1.get(i).get(2));
-                }%></td>
-                <td><%if(q1.get(i).get(3)==null)
-                {
-                    out.print("");
-                }else{
-                    out.print(q1.get(i).get(3));
-                }%></td>
-                <td><%if(q1.get(i).get(4)==null)
-                {
-                    out.print("");
-                }else{
-                    out.print(q1.get(i).get(4));
-                }%></td>
-                <td><%if(q1.get(i).get(5)==null)
-                {
-                    out.print("");
-                }else{
-                    out.print(q1.get(i).get(5));
-                }%></td>
-                <td><%if(q1.get(i).get(6)==null)
-                {
-                    out.print("");
-                }else{
-                    out.print(q1.get(i).get(6));
-                }%></td>
-                <td><%if(q1.get(i).get(7)==null)
-                {
-                    out.print("");
-                }else{
-                    out.print(q1.get(i).get(7));
-                }%></td>
-                <td><%if(q1.get(i).get(8)==null)
-                {
-                    out.print("");
-                }else{
-                    out.print(q1.get(i).get(8));
-                }%></td>
-                <td><%if(q1.get(i).get(9)==null)
-                {
-                    out.print("");
-                }else{
-                    out.print(q1.get(i).get(9));
-                }%></td>
-                <td><%if(q1.get(i).get(10)==null)
-                {
-                    out.print("");
-                }else{
-                    out.print(q1.get(i).get(10));
-                }%></td>
-                <td><%if(q1.get(i).get(11)==null)
-                {
-                    out.print("");
-                }else{
-                    out.print(q1.get(i).get(11));
-                }%></td>
-                <td><%if(q1.get(i).get(12)==null)
-                {
-                    out.print("");
-                }else{
-                    out.print(q1.get(i).get(12));
-                }%></td>
-                <td><%if(q1.get(i).get(13)==null)
-                {
-                    out.print("");
-                }else{
-                    out.print(q1.get(i).get(13));
-                }%></td>
-                <td><%if(q1.get(i).get(14)==null)
-                {
-                    out.print("");
-                }else{
-                    out.print(q1.get(i).get(14));
-                }%></td>
-                <td><%if(q1.get(i).get(15)==null)
-                {
-                    out.print("");
-                }else{
-                    out.print(q1.get(i).get(15));
-                }%></td>
-                <td><%if(q1.get(i).get(16)==null)
-                {
-                    out.print("");
-                }else{
-                    out.print(q1.get(i).get(16));
-                }%></td>
-                <td><%if(q1.get(i).get(17)==null)
-                {
-                    out.print("");
-                }else{
-                    out.print(q1.get(i).get(17));
-                }%></td>
-                <td><%if(q1.get(i).get(18)==null)
-                {
-                    out.print("");
-                }else{
-                    out.print(q1.get(i).get(18));
-                }%></td>
-                <td><%if(q1.get(i).get(19)==null)
-                {
-                    out.print("");
-                }else{
-                    out.print(q1.get(i).get(19));
-                }%></td>
-                <td><%if(q1.get(i).get(20)==null)
-                {
-                    out.print("");
-                }else{
-                    out.print(q1.get(i).get(20));
-                }%></td>
-                <td><%if(q1.get(i).get(21)==null)
-                {
-                    out.print("");
-                }else{
-                    out.print(q1.get(i).get(21));
-                }%></td>
-                <td><%if(q1.get(i).get(22)==null)
-                {
-                    out.print("");
-                }else{
-                    out.print(q1.get(i).get(22));
-                }%></td>
-                <td><%if(q1.get(i).get(23)==null)
-                {
-                    out.print("");
-                }else{
-                    out.print(q1.get(i).get(23));
-                }%></td>
+                <td><%if (q1.get(i).get(0) == null) {
+                        out.print("");
+                    } else {
+                        out.print(q1.get(i).get(0));
+                    }%></td>
+                <td><%if (q1.get(i).get(1) == null) {
+                        out.print("");
+                    } else {
+                        out.print(q1.get(i).get(1));
+                    }%></td>
+                <td><%if (q1.get(i).get(2) == null) {
+                        out.print("");
+                    } else {
+                        out.print(q1.get(i).get(2));
+                    }%></td>
+                <td><%if (q1.get(i).get(3) == null) {
+                        out.print("");
+                    } else {
+                        out.print(q1.get(i).get(3));
+                    }%></td>
+                <td><%if (q1.get(i).get(4) == null) {
+                        out.print("");
+                    } else {
+                        out.print(q1.get(i).get(4));
+                    }%></td>
+                <td><%if (q1.get(i).get(5) == null) {
+                        out.print("");
+                    } else {
+                        out.print(q1.get(i).get(5));
+                    }%></td>
+                <td><%if (q1.get(i).get(6) == null) {
+                        out.print("");
+                    } else {
+                        out.print(q1.get(i).get(6));
+                    }%></td>
+                <td><%if (q1.get(i).get(7) == null) {
+                        out.print("");
+                    } else {
+                        out.print(q1.get(i).get(7));
+                    }%></td>
+                <td><%if (q1.get(i).get(8) == null) {
+                        out.print("");
+                    } else {
+                        out.print(q1.get(i).get(8));
+                    }%></td>
+                <td><%if (q1.get(i).get(9) == null) {
+                        out.print("");
+                    } else {
+                        out.print(q1.get(i).get(9));
+                    }%></td>
+                <td><%if (q1.get(i).get(10) == null) {
+                        out.print("");
+                    } else {
+                        out.print(q1.get(i).get(10));
+                    }%></td>
+                <td><%if (q1.get(i).get(11) == null) {
+                        out.print("");
+                    } else {
+                        out.print(q1.get(i).get(11));
+                    }%></td>
+                <td><%if (q1.get(i).get(12) == null) {
+                        out.print("");
+                    } else {
+                        out.print(q1.get(i).get(12));
+                    }%></td>
+                <td><%if (q1.get(i).get(13) == null) {
+                        out.print("");
+                    } else {
+                        out.print(q1.get(i).get(13));
+                    }%></td>
+                <td><%if (q1.get(i).get(14) == null) {
+                        out.print("");
+                    } else {
+                        out.print(q1.get(i).get(14));
+                    }%></td>
+                <td><%if (q1.get(i).get(15) == null) {
+                        out.print("");
+                    } else {
+                        out.print(q1.get(i).get(15));
+                    }%></td>
+                <td><%if (q1.get(i).get(16) == null) {
+                        out.print("");
+                    } else {
+                        out.print(q1.get(i).get(16));
+                    }%></td>
+                <td><%if (q1.get(i).get(17) == null) {
+                        out.print("");
+                    } else {
+                        out.print(q1.get(i).get(17));
+                    }%></td>
+                <td><%if (q1.get(i).get(18) == null) {
+                        out.print("");
+                    } else {
+                        out.print(q1.get(i).get(18));
+                    }%></td>
+                <td><%if (q1.get(i).get(19) == null) {
+                        out.print("");
+                    } else {
+                        out.print(q1.get(i).get(19));
+                    }%></td>
+                <td><%if (q1.get(i).get(20) == null) {
+                        out.print("");
+                    } else {
+                        out.print(q1.get(i).get(20));
+                    }%></td>
+                <td><%if (q1.get(i).get(21) == null) {
+                        out.print("");
+                    } else {
+                        out.print(q1.get(i).get(21));
+                    }%></td>
+                <td><%if (q1.get(i).get(22) == null) {
+                        out.print("");
+                    } else {
+                        out.print(q1.get(i).get(22));
+                    }%></td>
+                <td><%if (q1.get(i).get(23) == null) {
+                        out.print("");
+                    } else {
+                        out.print(q1.get(i).get(23));
+                    }%></td>
             </tr>
             <tr>
                 <th colspan="24">Sensory</th>
@@ -280,150 +259,126 @@
                 <td colspan="2">BO</td>
             </tr>
             <tr>
-                <td><%if(q1.get(i).get(24)==null)
-                {
-                    out.print("");
-                }else{
-                    out.print(q1.get(i).get(24));
-                }%></td>
-                <td><%if(q1.get(i).get(25)==null)
-                {
-                    out.print("");
-                }else{
-                    out.print(q1.get(i).get(25));
-                }%></td>
-                <td><%if(q1.get(i).get(26)==null)
-                {
-                    out.print("");
-                }else{
-                    out.print(q1.get(i).get(26));
-                }%></td>
-                <td><%if(q1.get(i).get(27)==null)
-                {
-                    out.print("");
-                }else{
-                    out.print(q1.get(i).get(27));
-                }%></td>
-                <td><%if(q1.get(i).get(28)==null)
-                {
-                    out.print("");
-                }else{
-                    out.print(q1.get(i).get(28));
-                }%></td>
-                <td><%if(q1.get(i).get(29)==null)
-                {
-                    out.print("");
-                }else{
-                    out.print(q1.get(i).get(29));
-                }%></td>
-                <td><%if(q1.get(i).get(30)==null)
-                {
-                    out.print("");
-                }else{
-                    out.print(q1.get(i).get(30));
-                }%></td>
-                <td><%if(q1.get(i).get(31)==null)
-                {
-                    out.print("");
-                }else{
-                    out.print(q1.get(i).get(31));
-                }%></td>
-                <td><%if(q1.get(i).get(32)==null)
-                {
-                    out.print("");
-                }else{
-                    out.print(q1.get(i).get(32));
-                }%></td>
-                <td><%if(q1.get(i).get(33)==null)
-                {
-                    out.print("");
-                }else{
-                    out.print(q1.get(i).get(33));
-                }%></td>
-                <td><%if(q1.get(i).get(34)==null)
-                {
-                    out.print("");
-                }else{
-                    out.print(q1.get(i).get(34));
-                }%></td>
-                <td><%if(q1.get(i).get(35)==null)
-                {
-                    out.print("");
-                }else{
-                    out.print(q1.get(i).get(35));
-                }%></td>
-                <td><%if(q1.get(i).get(36)==null)
-                {
-                    out.print("");
-                }else{
-                    out.print(q1.get(i).get(36));
-                }%></td>
-                <td><%if(q1.get(i).get(37)==null)
-                {
-                    out.print("");
-                }else{
-                    out.print(q1.get(i).get(37));
-                }%></td>
-                <td><%if(q1.get(i).get(38)==null)
-                {
-                    out.print("");
-                }else{
-                    out.print(q1.get(i).get(38));
-                }%></td>
-                <td><%if(q1.get(i).get(39)==null)
-                {
-                    out.print("");
-                }else{
-                    out.print(q1.get(i).get(39));
-                }%></td>
-                <td><%if(q1.get(i).get(40)==null)
-                {
-                    out.print("");
-                }else{
-                    out.print(q1.get(i).get(40));
-                }%></td>
-                <td><%if(q1.get(i).get(41)==null)
-                {
-                    out.print("");
-                }else{
-                    out.print(q1.get(i).get(41));
-                }%></td>
-                <td><%if(q1.get(i).get(42)==null)
-                {
-                    out.print("");
-                }else{
-                    out.print(q1.get(i).get(42));
-                }%></td>
-                <td><%if(q1.get(i).get(43)==null)
-                {
-                    out.print("");
-                }else{
-                    out.print(q1.get(i).get(43));
-                }%></td>
-                <td><%if(q1.get(i).get(44)==null)
-                {
-                    out.print("");
-                }else{
-                    out.print(q1.get(i).get(44));
-                }%></td>
-                <td><%if(q1.get(i).get(45)==null)
-                {
-                    out.print("");
-                }else{
-                    out.print(q1.get(i).get(45));
-                }%></td>
-                <td><%if(q1.get(i).get(46)==null)
-                {
-                    out.print("");
-                }else{
-                    out.print(q1.get(i).get(46));
-                }%></td>
-                <td><%if(q1.get(i).get(47)==null)
-                {
-                    out.print("");
-                }else{
-                    out.print(q1.get(i).get(47));
-                }%></td>
+                <td><%if (q1.get(i).get(24) == null) {
+                        out.print("");
+                    } else {
+                        out.print(q1.get(i).get(24));
+                    }%></td>
+                <td><%if (q1.get(i).get(25) == null) {
+                        out.print("");
+                    } else {
+                        out.print(q1.get(i).get(25));
+                    }%></td>
+                <td><%if (q1.get(i).get(26) == null) {
+                        out.print("");
+                    } else {
+                        out.print(q1.get(i).get(26));
+                    }%></td>
+                <td><%if (q1.get(i).get(27) == null) {
+                        out.print("");
+                    } else {
+                        out.print(q1.get(i).get(27));
+                    }%></td>
+                <td><%if (q1.get(i).get(28) == null) {
+                        out.print("");
+                    } else {
+                        out.print(q1.get(i).get(28));
+                    }%></td>
+                <td><%if (q1.get(i).get(29) == null) {
+                        out.print("");
+                    } else {
+                        out.print(q1.get(i).get(29));
+                    }%></td>
+                <td><%if (q1.get(i).get(30) == null) {
+                        out.print("");
+                    } else {
+                        out.print(q1.get(i).get(30));
+                    }%></td>
+                <td><%if (q1.get(i).get(31) == null) {
+                        out.print("");
+                    } else {
+                        out.print(q1.get(i).get(31));
+                    }%></td>
+                <td><%if (q1.get(i).get(32) == null) {
+                        out.print("");
+                    } else {
+                        out.print(q1.get(i).get(32));
+                    }%></td>
+                <td><%if (q1.get(i).get(33) == null) {
+                        out.print("");
+                    } else {
+                        out.print(q1.get(i).get(33));
+                    }%></td>
+                <td><%if (q1.get(i).get(34) == null) {
+                        out.print("");
+                    } else {
+                        out.print(q1.get(i).get(34));
+                    }%></td>
+                <td><%if (q1.get(i).get(35) == null) {
+                        out.print("");
+                    } else {
+                        out.print(q1.get(i).get(35));
+                    }%></td>
+                <td><%if (q1.get(i).get(36) == null) {
+                        out.print("");
+                    } else {
+                        out.print(q1.get(i).get(36));
+                    }%></td>
+                <td><%if (q1.get(i).get(37) == null) {
+                        out.print("");
+                    } else {
+                        out.print(q1.get(i).get(37));
+                    }%></td>
+                <td><%if (q1.get(i).get(38) == null) {
+                        out.print("");
+                    } else {
+                        out.print(q1.get(i).get(38));
+                    }%></td>
+                <td><%if (q1.get(i).get(39) == null) {
+                        out.print("");
+                    } else {
+                        out.print(q1.get(i).get(39));
+                    }%></td>
+                <td><%if (q1.get(i).get(40) == null) {
+                        out.print("");
+                    } else {
+                        out.print(q1.get(i).get(40));
+                    }%></td>
+                <td><%if (q1.get(i).get(41) == null) {
+                        out.print("");
+                    } else {
+                        out.print(q1.get(i).get(41));
+                    }%></td>
+                <td><%if (q1.get(i).get(42) == null) {
+                        out.print("");
+                    } else {
+                        out.print(q1.get(i).get(42));
+                    }%></td>
+                <td><%if (q1.get(i).get(43) == null) {
+                        out.print("");
+                    } else {
+                        out.print(q1.get(i).get(43));
+                    }%></td>
+                <td><%if (q1.get(i).get(44) == null) {
+                        out.print("");
+                    } else {
+                        out.print(q1.get(i).get(44));
+                    }%></td>
+                <td><%if (q1.get(i).get(45) == null) {
+                        out.print("");
+                    } else {
+                        out.print(q1.get(i).get(45));
+                    }%></td>
+                <td><%if (q1.get(i).get(46) == null) {
+                        out.print("");
+                    } else {
+                        out.print(q1.get(i).get(46));
+                    }%></td>
+                <td><%if (q1.get(i).get(47) == null) {
+                        out.print("");
+                    } else {
+                        out.print(q1.get(i).get(47));
+                    }%></td>
             </tr>
         </table>
     </div>

@@ -67,6 +67,10 @@
                     //out.print(hfc + " ----- " + pmino + " ----- " + episodeDate + " ------ " + user_id);
                     Conn conn = new Conn();
 
+                    //out.print(datetime1);
+                    DateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                    DateFormat outputFormat = new SimpleDateFormat("dd-MM-yyyy");
+                    DateFormat outputFormat1 = new SimpleDateFormat("KK:mm a");
                     ArrayList<ArrayList<String>> q2 = conn.getData(sql);
 
                     if (q2.size() > 0) {
@@ -76,80 +80,67 @@
                             session.setAttribute("datetime", dateTime_i);
                             //String datetime1 = session.getAttribute("datetime").toString();
 
-                            //out.print(datetime1);
-                            DateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-                            DateFormat outputFormat = new SimpleDateFormat("dd-MM-yyyy");
-                            DateFormat outputFormat1 = new SimpleDateFormat("KK:mm a");
         %>
         <tr>
             <td style="text-align: center;">
                 <div class="radio radio-primary" style="display: inline;">
-                    <input type="radio" name="selected" value="<%=dateTime_i%>" <%
-                    if (i == 0) {%> checked="checked"<%}%> id="t-observe-0<%=i+1%>">
-                    <label for="t-observe-0<%=i+1%>">
+                       <input type="radio" name="selected" value="<%=dateTime_i%>" <%
+                        if (i == 0) {%> checked="checked"<%}%> id="t-observe-0<%=i + 1%>">
+                    <label for="t-observe-0<%=i + 1%>">
                         &nbsp;
                     </label>
                 </div>
 
 
-                       
+
             </td>
             <td><%=outputFormat.format(inputFormat.parse(dateTime_i))%></td>
             <td><%=outputFormat1.format(inputFormat.parse(dateTime_i))%></td>
-            <td><%if(q2.get(i).get(1)==null)
-                {
+            <td><%if (q2.get(i).get(1) == null) {
                     out.print("");
-                }else{
+                } else {
                     out.print(q2.get(i).get(1));
                 }%></td>
-            <td><%if(q2.get(i).get(2)==null)
-                {
+            <td><%if (q2.get(i).get(2) == null) {
                     out.print("");
-                }else{
+                } else {
                     out.print(q2.get(i).get(2));
                 }%></td>
             <td>
-                <span style="font-weight: 500; padding-right: 5px;">Systolic:</span><%if(q2.get(i).get(4)==null)
-                {
-                    out.print("");
-                }else{
-                    out.print(q2.get(i).get(4));
-                }%>
-                <span style="font-weight: 500; padding-left: 15px; padding-right: 5px;">Diastolic:</span><%if(q2.get(i).get(5)==null)
-                {
-                    out.print("");
-                }else{
-                    out.print(q2.get(i).get(5));
-                }%>
-                <span style="font-weight: 500; padding-left: 15px; padding-right: 5px;">Pulse:</span><%if(q2.get(i).get(6)==null)
-                {
-                    out.print("");
-                }else{
-                    out.print(q2.get(i).get(6));
-                }%>
+                <span style="font-weight: 500; padding-right: 5px;">Systolic:</span><%if (q2.get(i).get(4) == null) {
+                        out.print("");
+                    } else {
+                        out.print(q2.get(i).get(4));
+                    }%>
+                <span style="font-weight: 500; padding-left: 15px; padding-right: 5px;">Diastolic:</span><%if (q2.get(i).get(5) == null) {
+                        out.print("");
+                    } else {
+                        out.print(q2.get(i).get(5));
+                    }%>
+                <span style="font-weight: 500; padding-left: 15px; padding-right: 5px;">Pulse:</span><%if (q2.get(i).get(6) == null) {
+                        out.print("");
+                    } else {
+                        out.print(q2.get(i).get(6));
+                    }%>
             </td>
-            <td><%if(q2.get(i).get(7)==null)
-                {
+            <td><%if (q2.get(i).get(7) == null) {
                     out.print("");
-                }else{
+                } else {
                     out.print(q2.get(i).get(7));
                 }%></td>
-            <td><%if(q2.get(i).get(8)==null)
-                {
+            <td><%if (q2.get(i).get(8) == null) {
                     out.print("");
-                }else{
+                } else {
                     out.print(q2.get(i).get(8));
                 }%></td>
-            <td><%if(q2.get(i).get(9)==null)
-                {
+            <td><%if (q2.get(i).get(9) == null) {
                     out.print("");
-                }else{
+                } else {
                     out.print(q2.get(i).get(9));
                 }%></td>
-            <td><%if(q2.get(i).get(10)==null)
-                {
+            <td><%if (q2.get(i).get(10) == null) {
                     out.print("");
-                }else{
+                } else {
                     out.print(q2.get(i).get(10));
                 }%></td>
             <td>
