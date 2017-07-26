@@ -33,9 +33,10 @@
     String cs_pmi_no = "";                                  // Date 4
     String cs_patient_name = "";                            // Date 5
     String cs_queue_no = "";                                // Date 5
-    String cs_queue_name = "Normal Queue 2";                              // Date 6
+    String cs_queue_name = "Normal Queue 2";                // Date 6
     String cs_datetime = format.format(now);                // Date 7
-    String cs_callingtime = "2";                             // Date 8
+    String cs_callingtime = "5";                             // Date 8
+    String cs_room_no = "Pharmacy";                             // Date 8
 
     String data[] = dataCallPatientFull.split("\\|");
 
@@ -47,9 +48,9 @@
     cs_queue_no = data[5];
 
     // Insert Into EHR Central BLI
-    String sqlInsertCalling = "INSERT INTO qcs_calling_system_queue (cs_hfc_cd,cs_discipline,cs_sub_discipline,cs_pmi_no,cs_patient_name,cs_queue_no,cs_queue_name,cs_datetime,cs_callingtime) "
+    String sqlInsertCalling = "INSERT INTO qcs_calling_system_queue (cs_hfc_cd,cs_discipline,cs_sub_discipline,cs_pmi_no,cs_patient_name,cs_queue_no,cs_queue_name,cs_datetime,cs_callingtime,cs_room_no) "
             + " VALUES ('" + cs_hfc_cd + "','" + cs_discipline + "','" + cs_sub_discipline + "','" + cs_pmi_no + "','" + cs_patient_name + "','" + cs_queue_no + "','" + cs_queue_name + "', "
-            + " '" + cs_datetime + "','" + cs_callingtime + "') ";
+            + " '" + cs_datetime + "','" + cs_callingtime + "','" + cs_room_no + "') ";
     boolean isInsertCalling = rmic.setQuerySQL(conn.HOST, conn.PORT, sqlInsertCalling);
 
     // Get Order No Start
