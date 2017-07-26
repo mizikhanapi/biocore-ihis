@@ -59,7 +59,7 @@
                                 <div class="form-group">
                                     <label class="col-md-4 control-label" for="textinput">Name *</label>
                                     <div class="col-md-8">
-                                        <input id="UM_name" type="text" placeholder="Insert Staff Name" class="form-control input-md" maxlength="30">
+                                        <input id="UM_name" type="text" placeholder="Insert Staff Name" class="form-control input-md" maxlength="100">
                                     </div>
                                 </div>
                             </div>
