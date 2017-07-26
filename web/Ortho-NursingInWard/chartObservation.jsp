@@ -293,5 +293,7 @@
         $('#NIWObsEncounterDate').val(sdataX[3]);
         $('#NIWObsPmi').val(sdataX[0]);
         $('#NIWObsHfc').val(sdataX[1]);
+        $('#NIWObsdis').val(sdataX[17]);
+        $('#NIWObssubdis').val(sdataX[18]);
     });
 </script>

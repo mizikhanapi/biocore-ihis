@@ -24,7 +24,7 @@ public class ObservationUtils {
     public Boolean addObservation(String datas) {
         Boolean sql = false;
         String splittedData[] = datas.split("\\|", -1);
-        String pmi, hfc, episodeDate, encounterDate, ward, dateEntry, dateTime, pain_scale, standingPulse, systolic, diastolic, pulseRate, respiratoryRate, spo2, comment;
+        String pmi, hfc, episodeDate, encounterDate, ward, dateEntry, dateTime, pain_scale, standingPulse, systolic, diastolic, pulseRate, respiratoryRate, spo2, comment,dis,subdis;
 
         pmi = splittedData[0];
         hfc = splittedData[1];
@@ -40,8 +40,10 @@ public class ObservationUtils {
         spo2 = splittedData[11];
         pain_scale = splittedData[12];
         comment = splittedData[13];
+        dis = splittedData[14];
+        subdis = splittedData[15];
 
-        String sqlInsert = "INSERT INTO lhr_ort_niw_observation_chart(pmi_no,hfc_cd,episode_date,encounter_date,ward,date_entry,datetime,standing_pulse,systolic_supine,diastolic_supine,respiratory_rate,spo2,pain_scale,comment,status) VALUES('" + pmi + "','" + hfc + "','" + episodeDate + "','" + encounterDate + "','" + ward + "','" + dateEntry + "','" + dateTime + "','" + standingPulse + "','" + systolic + "','" + diastolic + "','" + respiratoryRate + "','" + spo2 + "','" + pain_scale + "','" + comment + "','Pending')";
+        String sqlInsert = "INSERT INTO lhr_ort_niw_observation_chart(pmi_no,hfc_cd,episode_date,encounter_date,ward,date_entry,datetime,standing_pulse,systolic_supine,diastolic_supine,respiratory_rate,spo2,pain_scale,comment,status,discipline_cd,subdiscipline_cd) VALUES('" + pmi + "','" + hfc + "','" + episodeDate + "','" + encounterDate + "','" + ward + "','" + dateEntry + "','" + dateTime + "','" + standingPulse + "','" + systolic + "','" + diastolic + "','" + respiratoryRate + "','" + spo2 + "','" + pain_scale + "','" + comment + "','Pending','"+dis+"','"+subdis+"')";
         sql = rmic.setQuerySQL(conn.HOST, conn.PORT, sqlInsert);
 
         return sql;
@@ -60,26 +62,26 @@ public class ObservationUtils {
         viewBy = splittedData[2];
 
         if (viewBy.equalsIgnoreCase("today")) {
-            //              0       1       2           3              4    5           6                                   7                                   8               9              10              11               12      13    14        15          16
-            sql = "SELECT pmi_no,hfc_cd,episode_date,encounter_date,ward,date_entry,TIME_FORMAT(TIME(datetime),'%r'),DATE_FORMAT(DATE(datetime),'%d/%m/%Y'),standing_pulse,systolic_supine,diastolic_supine,respiratory_rate,spo2,pain_scale,comment,status,TIME_FORMAT(TIME(datetime),'%T') FROM lhr_ort_niw_observation_chart where pmi_no ='" + pmino + "' and DATE(datetime) ='" + dateTime + "';";
+            //              0       1       2           3              4    5           6                                   7                                   8               9              10              11               12      13    14        15          16                          17              18
+            sql = "SELECT pmi_no,hfc_cd,episode_date,encounter_date,ward,date_entry,TIME_FORMAT(TIME(datetime),'%r'),DATE_FORMAT(DATE(datetime),'%d/%m/%Y'),standing_pulse,systolic_supine,diastolic_supine,respiratory_rate,spo2,pain_scale,comment,status,TIME_FORMAT(TIME(datetime),'%T'),discipline_cd,subdiscipline_cd FROM lhr_ort_niw_observation_chart where pmi_no ='" + pmino + "' and DATE(datetime) ='" + dateTime + "';";
             
         } else if (viewBy.equalsIgnoreCase("yesterday")) {
-            sql = "SELECT pmi_no,hfc_cd,episode_date,encounter_date,ward,date_entry,TIME_FORMAT(TIME(datetime),'%r'),DATE_FORMAT(DATE(datetime),'%d/%m/%Y'),standing_pulse,systolic_supine,diastolic_supine,respiratory_rate,spo2,pain_scale,comment,status,TIME_FORMAT(TIME(datetime),'%T') FROM lhr_ort_niw_observation_chart where pmi_no ='" + pmino + "' and  DATE(datetime) = SUBDATE('" + dateTime + "',1);";
+            sql = "SELECT pmi_no,hfc_cd,episode_date,encounter_date,ward,date_entry,TIME_FORMAT(TIME(datetime),'%r'),DATE_FORMAT(DATE(datetime),'%d/%m/%Y'),standing_pulse,systolic_supine,diastolic_supine,respiratory_rate,spo2,pain_scale,comment,status,TIME_FORMAT(TIME(datetime),'%T'),discipline_cd,subdiscipline_cd FROM lhr_ort_niw_observation_chart where pmi_no ='" + pmino + "' and  DATE(datetime) = SUBDATE('" + dateTime + "',1);";
 
         } else if (viewBy.equalsIgnoreCase("7day")) {
-            sql = "SELECT pmi_no,hfc_cd,episode_date,encounter_date,ward,date_entry,TIME_FORMAT(TIME(datetime),'%r'),DATE_FORMAT(DATE(datetime),'%d/%m/%Y'),standing_pulse,systolic_supine,diastolic_supine,respiratory_rate,spo2,pain_scale,comment,status,TIME_FORMAT(TIME(datetime),'%T') FROM lhr_ort_niw_observation_chart where pmi_no ='" + pmino + "' and DATE(datetime) between SUBDATE('" + dateTime + "',7) and '" + dateTime + "' ;";
+            sql = "SELECT pmi_no,hfc_cd,episode_date,encounter_date,ward,date_entry,TIME_FORMAT(TIME(datetime),'%r'),DATE_FORMAT(DATE(datetime),'%d/%m/%Y'),standing_pulse,systolic_supine,diastolic_supine,respiratory_rate,spo2,pain_scale,comment,status,TIME_FORMAT(TIME(datetime),'%T'),discipline_cd,subdiscipline_cd FROM lhr_ort_niw_observation_chart where pmi_no ='" + pmino + "' and DATE(datetime) between SUBDATE('" + dateTime + "',7) and '" + dateTime + "' ;";
 
         } else if (viewBy.equalsIgnoreCase("30day")) {
-            sql = "SELECT pmi_no,hfc_cd,episode_date,encounter_date,ward,date_entry,TIME_FORMAT(TIME(datetime),'%r'),DATE_FORMAT(DATE(datetime),'%d/%m/%Y'),standing_pulse,systolic_supine,diastolic_supine,respiratory_rate,spo2,pain_scale,comment,status,TIME_FORMAT(TIME(datetime),'%T') FROM lhr_ort_niw_observation_chart where pmi_no ='" + pmino + "' and DATE(datetime) between SUBDATE('" + dateTime + "',30) and '" + dateTime + "';";
+            sql = "SELECT pmi_no,hfc_cd,episode_date,encounter_date,ward,date_entry,TIME_FORMAT(TIME(datetime),'%r'),DATE_FORMAT(DATE(datetime),'%d/%m/%Y'),standing_pulse,systolic_supine,diastolic_supine,respiratory_rate,spo2,pain_scale,comment,status,TIME_FORMAT(TIME(datetime),'%T'),discipline_cd,subdiscipline_cd FROM lhr_ort_niw_observation_chart where pmi_no ='" + pmino + "' and DATE(datetime) between SUBDATE('" + dateTime + "',30) and '" + dateTime + "';";
 
         } else if (viewBy.equalsIgnoreCase("60day")) {
-            sql = "SELECT pmi_no,hfc_cd,episode_date,encounter_date,ward,date_entry,TIME_FORMAT(TIME(datetime),'%r'),DATE_FORMAT(DATE(datetime),'%d/%m/%Y'),standing_pulse,systolic_supine,diastolic_supine,respiratory_rate,spo2,pain_scale,comment,status,TIME_FORMAT(TIME(datetime),'%T') FROM lhr_ort_niw_observation_chart where pmi_no ='" + pmino + "' and DATE(datetime) between SUBDATE('" + dateTime + "',60) and '" + dateTime + "' ;";
+            sql = "SELECT pmi_no,hfc_cd,episode_date,encounter_date,ward,date_entry,TIME_FORMAT(TIME(datetime),'%r'),DATE_FORMAT(DATE(datetime),'%d/%m/%Y'),standing_pulse,systolic_supine,diastolic_supine,respiratory_rate,spo2,pain_scale,comment,status,TIME_FORMAT(TIME(datetime),'%T'),discipline_cd,subdiscipline_cd FROM lhr_ort_niw_observation_chart where pmi_no ='" + pmino + "' and DATE(datetime) between SUBDATE('" + dateTime + "',60) and '" + dateTime + "' ;";
 
         } else if (viewBy.equalsIgnoreCase("custom")) {
             String dateSplit[] = dateTime.split("\\^",-1);
             startDate = dateSplit[0];
             endDate = dateSplit[1];
-            sql = "SELECT pmi_no,hfc_cd,episode_date,encounter_date,ward,date_entry,TIME_FORMAT(TIME(datetime),'%r'),DATE_FORMAT(DATE(datetime),'%d/%m/%Y'),standing_pulse,systolic_supine,diastolic_supine,respiratory_rate,spo2,pain_scale,comment,status,TIME_FORMAT(TIME(datetime),'%T') FROM lhr_ort_niw_observation_chart where pmi_no ='" + pmino + "' and DATE(datetime) between '"+startDate+"' and '"+endDate+"';";
+            sql = "SELECT pmi_no,hfc_cd,episode_date,encounter_date,ward,date_entry,TIME_FORMAT(TIME(datetime),'%r'),DATE_FORMAT(DATE(datetime),'%d/%m/%Y'),standing_pulse,systolic_supine,diastolic_supine,respiratory_rate,spo2,pain_scale,comment,status,TIME_FORMAT(TIME(datetime),'%T'),discipline_cd,subdiscipline_cd FROM lhr_ort_niw_observation_chart where pmi_no ='" + pmino + "' and DATE(datetime) between '"+startDate+"' and '"+endDate+"';";
 
         }
 
@@ -139,7 +141,7 @@ public class ObservationUtils {
     public Boolean update(String datas){
         Boolean data = false;
         String splittedData[] = datas.split("\\|",-1);
-        String pmi, hfc, episodeDate, encounterDate, ward, dateEntry, dateTime, pain_scale, standingPulse, systolic, diastolic, respiratoryRate, spo2, comment;
+        String pmi, hfc, episodeDate, encounterDate, ward, dateEntry, dateTime, pain_scale, standingPulse, systolic, diastolic, respiratoryRate, spo2, comment,dis,subdis;
 
         pmi = splittedData[0];
         hfc = splittedData[1];
@@ -155,8 +157,10 @@ public class ObservationUtils {
         spo2 = splittedData[11];
         pain_scale = splittedData[12];
         comment = splittedData[13];
+        dis = splittedData[14];
+        subdis = splittedData[15];
         
-        String sql = "UPDATE lhr_ort_niw_observation_chart SET datetime='"+dateTime+"',standing_pulse='"+standingPulse+"',systolic_supine='"+systolic+"',diastolic_supine='"+diastolic+"',respiratory_rate='"+respiratoryRate+"',spo2='"+spo2+"',pain_scale='"+pain_scale+"',comment='"+comment+"' WHERE pmi_no='"+pmi+"' and hfc_cd='"+hfc+"' and episode_date ='"+episodeDate+"' and encounter_date='"+encounterDate+"'";
+        String sql = "UPDATE lhr_ort_niw_observation_chart SET datetime='"+dateTime+"',standing_pulse='"+standingPulse+"',systolic_supine='"+systolic+"',diastolic_supine='"+diastolic+"',respiratory_rate='"+respiratoryRate+"',spo2='"+spo2+"',pain_scale='"+pain_scale+"',comment='"+comment+"' WHERE pmi_no='"+pmi+"' and hfc_cd='"+hfc+"' and episode_date ='"+episodeDate+"' and encounter_date='"+encounterDate+"' and discipline_cd='"+dis+"' and subdiscipline_cd='"+subdis+"'";
         data = rmic.setQuerySQL(conn.HOST, conn.PORT, sql);
         return data;
     }

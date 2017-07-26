@@ -46,7 +46,7 @@ public class TreatmentUtils {
         dis = splittedData[20];
         subdis = splittedData[21];
 
-        String sqlInsert = "INSERT INTO lhr_ort_niw_ortho_treatment (pmi_no,hfc_cd,episode_date,encounter_date,treatment_date,shift,iv_branula_rul,iv_branula_lul,iv_branula_rll,iv_branula_lll,angiocatheter,cvp,tracheostomy,urinary_catheter,drain1,drain2,vaccum_dressing,ryiestube,chesttube,assign_by,discipline_cd,subdicipline_cd) values('" + pmi + "','" + hfc + "','" + episodeDate + "','" + encounterDate + "','" + treatmentDate + "','" + shift + "','" + iv_branula_rul + "','" + iv_branula_lul + "','" + iv_branula_rll + "','" + iv_branula_lll + "','" + angiocatheter + "','" + cvp + "','" + tracheostomy + "','" + urinary_catheter + "','" + drain1 + "','" + drain2 + "','" + vaccum_dressing + "','" + ryiestube + "','" + chesttube + "','" + assignBy + "','"+dis+"','"+subdis+"');";
+        String sqlInsert = "INSERT INTO lhr_ort_niw_ortho_treatment (pmi_no,hfc_cd,episode_date,encounter_date,treatment_date,shift,iv_branula_rul,iv_branula_lul,iv_branula_rll,iv_branula_lll,angiocatheter,cvp,tracheostomy,urinary_catheter,drain1,drain2,vaccum_dressing,ryiestube,chesttube,assign_by,discipline_cd,subdiscipline_cd) values('" + pmi + "','" + hfc + "','" + episodeDate + "','" + encounterDate + "','" + treatmentDate + "','" + shift + "','" + iv_branula_rul + "','" + iv_branula_lul + "','" + iv_branula_rll + "','" + iv_branula_lll + "','" + angiocatheter + "','" + cvp + "','" + tracheostomy + "','" + urinary_catheter + "','" + drain1 + "','" + drain2 + "','" + vaccum_dressing + "','" + ryiestube + "','" + chesttube + "','" + assignBy + "','"+dis+"','"+subdis+"');";
         sql = rmic.setQuerySQL(conn.HOST, conn.PORT, sqlInsert);
 
         return sql;
@@ -66,25 +66,25 @@ public class TreatmentUtils {
 
         if (viewBy.equalsIgnoreCase("today")) {
             //              0       1       2               3                        4                              5          6              7              8           9           10           11        12          13           14      15       16          17          18       19          20               21
-            sql = "SELECT pmi_no,hfc_cd,episode_date,encounter_date,DATE_FORMAT(DATE(treatment_date),'%d/%m/%Y'),shift,iv_branula_rul,iv_branula_lul,iv_branula_rll,iv_branula_lll,angiocatheter,cvp,tracheostomy,urinary_catheter,drain1,drain2,vaccum_dressing,ryiestube,chesttube,assign_by,discipline_cd,subdicipline_cd FROM lhr_ort_niw_ortho_treatment where pmi_no ='" + pmino + "' and DATE(treatment_date) ='" + dateTime + "' order by treatment_date;";
+            sql = "SELECT pmi_no,hfc_cd,episode_date,encounter_date,DATE_FORMAT(DATE(treatment_date),'%d/%m/%Y'),shift,iv_branula_rul,iv_branula_lul,iv_branula_rll,iv_branula_lll,angiocatheter,cvp,tracheostomy,urinary_catheter,drain1,drain2,vaccum_dressing,ryiestube,chesttube,assign_by,discipline_cd,subdiscipline_cd FROM lhr_ort_niw_ortho_treatment where pmi_no ='" + pmino + "' and DATE(treatment_date) ='" + dateTime + "' order by treatment_date;";
 
         } else if (viewBy.equalsIgnoreCase("yesterday")) {
-            sql = "SELECT pmi_no,hfc_cd,episode_date,encounter_date,DATE_FORMAT(DATE(treatment_date),'%d/%m/%Y'),shift,iv_branula_rul,iv_branula_lul,iv_branula_rll,iv_branula_lll,angiocatheter,cvp,tracheostomy,urinary_catheter,drain1,drain2,vaccum_dressing,ryiestube,chesttube,assign_by,discipline_cd,subdicipline_cd FROM lhr_ort_niw_ortho_treatment where pmi_no ='" + pmino + "' and  DATE(treatment_date) = SUBDATE('" + dateTime + "',1) order by treatment_date;";
+            sql = "SELECT pmi_no,hfc_cd,episode_date,encounter_date,DATE_FORMAT(DATE(treatment_date),'%d/%m/%Y'),shift,iv_branula_rul,iv_branula_lul,iv_branula_rll,iv_branula_lll,angiocatheter,cvp,tracheostomy,urinary_catheter,drain1,drain2,vaccum_dressing,ryiestube,chesttube,assign_by,discipline_cd,subdiscipline_cd FROM lhr_ort_niw_ortho_treatment where pmi_no ='" + pmino + "' and  DATE(treatment_date) = SUBDATE('" + dateTime + "',1) order by treatment_date;";
 
         } else if (viewBy.equalsIgnoreCase("7day")) {
-            sql = "SELECT pmi_no,hfc_cd,episode_date,encounter_date,DATE_FORMAT(DATE(treatment_date),'%d/%m/%Y'),shift,iv_branula_rul,iv_branula_lul,iv_branula_rll,iv_branula_lll,angiocatheter,cvp,tracheostomy,urinary_catheter,drain1,drain2,vaccum_dressing,ryiestube,chesttube,assign_by,discipline_cd,subdicipline_cd FROM lhr_ort_niw_ortho_treatment where pmi_no ='" + pmino + "' and DATE(treatment_date) between SUBDATE('" + dateTime + "',7) and '" + dateTime + "' order by treatment_date ;";
+            sql = "SELECT pmi_no,hfc_cd,episode_date,encounter_date,DATE_FORMAT(DATE(treatment_date),'%d/%m/%Y'),shift,iv_branula_rul,iv_branula_lul,iv_branula_rll,iv_branula_lll,angiocatheter,cvp,tracheostomy,urinary_catheter,drain1,drain2,vaccum_dressing,ryiestube,chesttube,assign_by,discipline_cd,subdiscipline_cd FROM lhr_ort_niw_ortho_treatment where pmi_no ='" + pmino + "' and DATE(treatment_date) between SUBDATE('" + dateTime + "',7) and '" + dateTime + "' order by treatment_date ;";
 
         } else if (viewBy.equalsIgnoreCase("30day")) {
-            sql = "SELECT pmi_no,hfc_cd,episode_date,encounter_date,DATE_FORMAT(DATE(treatment_date),'%d/%m/%Y'),shift,iv_branula_rul,iv_branula_lul,iv_branula_rll,iv_branula_lll,angiocatheter,cvp,tracheostomy,urinary_catheter,drain1,drain2,vaccum_dressing,ryiestube,chesttube,assign_by,discipline_cd,subdicipline_cd FROM lhr_ort_niw_ortho_treatment where pmi_no ='" + pmino + "' and DATE(treatment_date) between SUBDATE('" + dateTime + "',30) and '" + dateTime + "' order by treatment_date;";
+            sql = "SELECT pmi_no,hfc_cd,episode_date,encounter_date,DATE_FORMAT(DATE(treatment_date),'%d/%m/%Y'),shift,iv_branula_rul,iv_branula_lul,iv_branula_rll,iv_branula_lll,angiocatheter,cvp,tracheostomy,urinary_catheter,drain1,drain2,vaccum_dressing,ryiestube,chesttube,assign_by,discipline_cd,subdiscipline_cd FROM lhr_ort_niw_ortho_treatment where pmi_no ='" + pmino + "' and DATE(treatment_date) between SUBDATE('" + dateTime + "',30) and '" + dateTime + "' order by treatment_date;";
 
         } else if (viewBy.equalsIgnoreCase("60day")) {
-            sql = "SELECT pmi_no,hfc_cd,episode_date,encounter_date,DATE_FORMAT(DATE(treatment_date),'%d/%m/%Y'),shift,iv_branula_rul,iv_branula_lul,iv_branula_rll,iv_branula_lll,angiocatheter,cvp,tracheostomy,urinary_catheter,drain1,drain2,vaccum_dressing,ryiestube,chesttube,assign_by,discipline_cd,subdicipline_cd FROM lhr_ort_niw_ortho_treatment where pmi_no ='" + pmino + "' and DATE(treatment_date) between SUBDATE('" + dateTime + "',60) and '" + dateTime + "' order by treatment_date ;";
+            sql = "SELECT pmi_no,hfc_cd,episode_date,encounter_date,DATE_FORMAT(DATE(treatment_date),'%d/%m/%Y'),shift,iv_branula_rul,iv_branula_lul,iv_branula_rll,iv_branula_lll,angiocatheter,cvp,tracheostomy,urinary_catheter,drain1,drain2,vaccum_dressing,ryiestube,chesttube,assign_by,discipline_cd,subdiscipline_cd FROM lhr_ort_niw_ortho_treatment where pmi_no ='" + pmino + "' and DATE(treatment_date) between SUBDATE('" + dateTime + "',60) and '" + dateTime + "' order by treatment_date ;";
 
         } else if (viewBy.equalsIgnoreCase("custom")) {
             String dateSplit[] = dateTime.split("\\^", -1);
             startDate = dateSplit[0];
             endDate = dateSplit[1];
-            sql = "SELECT pmi_no,hfc_cd,episode_date,encounter_date,DATE_FORMAT(DATE(treatment_date),'%d/%m/%Y'),shift,iv_branula_rul,iv_branula_lul,iv_branula_rll,iv_branula_lll,angiocatheter,cvp,tracheostomy,urinary_catheter,drain1,drain2,vaccum_dressing,ryiestube,chesttube,assign_by,discipline_cd,subdicipline_cd FROM lhr_ort_niw_ortho_treatment where pmi_no ='" + pmino + "' and DATE(treatment_date) between '" + startDate + "' and '" + endDate + "' order by treatment_date;";
+            sql = "SELECT pmi_no,hfc_cd,episode_date,encounter_date,DATE_FORMAT(DATE(treatment_date),'%d/%m/%Y'),shift,iv_branula_rul,iv_branula_lul,iv_branula_rll,iv_branula_lll,angiocatheter,cvp,tracheostomy,urinary_catheter,drain1,drain2,vaccum_dressing,ryiestube,chesttube,assign_by,discipline_cd,subdiscipline_cd FROM lhr_ort_niw_ortho_treatment where pmi_no ='" + pmino + "' and DATE(treatment_date) between '" + startDate + "' and '" + endDate + "' order by treatment_date;";
 
         }
 
@@ -107,7 +107,7 @@ public class TreatmentUtils {
         String dis = splitted[20];
         String subdis = splitted[21];
 
-        String sql = "DELETE FROM lhr_ort_niw_ortho_treatment WHERE pmi_no='" + pmi + "' and hfc_cd='" + hfc + "' and episode_date ='" + epDate + "' and encounter_date='" + enDate + "' and DATE_FORMAT(DATE(treatment_date),'%d/%m/%Y')='" + trDate + "' and shift='" + shift + "' and discipline_cd='"+dis+"' and subdicipline_cd ='"+subdis+"'";
+        String sql = "DELETE FROM lhr_ort_niw_ortho_treatment WHERE pmi_no='" + pmi + "' and hfc_cd='" + hfc + "' and episode_date ='" + epDate + "' and encounter_date='" + enDate + "' and DATE_FORMAT(DATE(treatment_date),'%d/%m/%Y')='" + trDate + "' and shift='" + shift + "' and discipline_cd='"+dis+"' and subdiscipline_cd ='"+subdis+"'";
         data = rmic.setQuerySQL(conn.HOST, conn.PORT, sql);
 
         return data;

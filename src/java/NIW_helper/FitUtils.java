@@ -60,25 +60,25 @@ public class FitUtils {
 
         if (viewBy.equalsIgnoreCase("today")) {
             //              0       1       2               3                        4                                 5                                   6                                    7         8        9             10      11      
-            sql = "SELECT pmi_no,hfc_cd,episode_date,encounter_date,DATE_FORMAT(DATE(fits_datetime),'%d/%m/%Y'),TIME_FORMAT(DATE(fits_datetime),'%r'),TIME_FORMAT(DATE(fits_datetime),'%T'),nature_fits,duration,remarks,discipline_cd,subdicipline_cd FROM lhr_ort_niw_fits_chart where pmi_no ='" + pmino + "' and DATE(fits_datetime) ='" + dateTime + "' order by fits_datetimeand ;";
+            sql = "SELECT pmi_no,hfc_cd,episode_date,encounter_date,DATE_FORMAT(DATE(fits_datetime),'%d/%m/%Y'),TIME_FORMAT(DATE(fits_datetime),'%r'),TIME_FORMAT(DATE(fits_datetime),'%T'),nature_fits,duration,remarks,discipline_cd,subdiscipline_cd FROM lhr_ort_niw_fits_chart where pmi_no ='" + pmino + "' and DATE(fits_datetime) ='" + dateTime + "' order by fits_datetimeand ;";
 
         } else if (viewBy.equalsIgnoreCase("yesterday")) {
-            sql = "SELECT pmi_no,hfc_cd,episode_date,encounter_date,DATE_FORMAT(DATE(fits_datetime),'%d/%m/%Y'),TIME_FORMAT(DATE(fits_datetime),'%r'),TIME_FORMAT(DATE(fits_datetime),'%T'),nature_fits,duration,remarks FROM lhr_ort_niw_fits_chartwhere pmi_no ='" + pmino + "' and  DATE(fits_datetime) = SUBDATE('" + dateTime + "',1) order by fits_datetime ;";
+            sql = "SELECT pmi_no,hfc_cd,episode_date,encounter_date,DATE_FORMAT(DATE(fits_datetime),'%d/%m/%Y'),TIME_FORMAT(DATE(fits_datetime),'%r'),TIME_FORMAT(DATE(fits_datetime),'%T'),nature_fits,duration,remarks,discipline_cd,subdiscipline_cd FROM lhr_ort_niw_fits_chartwhere pmi_no ='" + pmino + "' and  DATE(fits_datetime) = SUBDATE('" + dateTime + "',1) order by fits_datetime ;";
 
         } else if (viewBy.equalsIgnoreCase("7day")) {
-            sql = "SELECT pmi_no,hfc_cd,episode_date,encounter_date,DATE_FORMAT(DATE(fits_datetime),'%d/%m/%Y'),TIME_FORMAT(DATE(fits_datetime),'%r'),TIME_FORMAT(DATE(fits_datetime),'%T'),nature_fits,duration,remarks FROM lhr_ort_niw_fits_chart where pmi_no ='" + pmino + "' and DATE(fits_datetime) between SUBDATE('" + dateTime + "',7) and '" + dateTime + "' order by fits_datetime ;";
+            sql = "SELECT pmi_no,hfc_cd,episode_date,encounter_date,DATE_FORMAT(DATE(fits_datetime),'%d/%m/%Y'),TIME_FORMAT(DATE(fits_datetime),'%r'),TIME_FORMAT(DATE(fits_datetime),'%T'),nature_fits,duration,remarks,discipline_cd,subdiscipline_cd FROM lhr_ort_niw_fits_chart where pmi_no ='" + pmino + "' and DATE(fits_datetime) between SUBDATE('" + dateTime + "',7) and '" + dateTime + "' order by fits_datetime ;";
 
         } else if (viewBy.equalsIgnoreCase("30day")) {
-            sql = "SELECT pmi_no,hfc_cd,episode_date,encounter_date,DATE_FORMAT(DATE(fits_datetime),'%d/%m/%Y'),TIME_FORMAT(DATE(fits_datetime),'%r'),TIME_FORMAT(DATE(fits_datetime),'%T'),nature_fits,duration,remarks FROM lhr_ort_niw_fits_chart where pmi_no ='" + pmino + "' and DATE(fits_datetime) between SUBDATE('" + dateTime + "',30) and '" + dateTime + "' order by fits_datetime ;";
+            sql = "SELECT pmi_no,hfc_cd,episode_date,encounter_date,DATE_FORMAT(DATE(fits_datetime),'%d/%m/%Y'),TIME_FORMAT(DATE(fits_datetime),'%r'),TIME_FORMAT(DATE(fits_datetime),'%T'),nature_fits,duration,remarks,discipline_cd,subdiscipline_cd FROM lhr_ort_niw_fits_chart where pmi_no ='" + pmino + "' and DATE(fits_datetime) between SUBDATE('" + dateTime + "',30) and '" + dateTime + "' order by fits_datetime ;";
 
         } else if (viewBy.equalsIgnoreCase("60day")) {
-            sql = "SELECT pmi_no,hfc_cd,episode_date,encounter_date,DATE_FORMAT(DATE(fits_datetime),'%d/%m/%Y'),TIME_FORMAT(DATE(fits_datetime),'%r'),TIME_FORMAT(DATE(fits_datetime),'%T'),nature_fits,duration,remarks FROM lhr_ort_niw_fits_chart where pmi_no ='" + pmino + "' and DATE(fits_datetime) between SUBDATE('" + dateTime + "',60) and '" + dateTime + "' order by fits_datetime  ;";
+            sql = "SELECT pmi_no,hfc_cd,episode_date,encounter_date,DATE_FORMAT(DATE(fits_datetime),'%d/%m/%Y'),TIME_FORMAT(DATE(fits_datetime),'%r'),TIME_FORMAT(DATE(fits_datetime),'%T'),nature_fits,duration,remarks,discipline_cd,subdiscipline_cd FROM lhr_ort_niw_fits_chart where pmi_no ='" + pmino + "' and DATE(fits_datetime) between SUBDATE('" + dateTime + "',60) and '" + dateTime + "' order by fits_datetime  ;";
 
         } else if (viewBy.equalsIgnoreCase("custom")) {
             String dateSplit[] = dateTime.split("\\^", -1);
             startDate = dateSplit[0];
             endDate = dateSplit[1];
-            sql = "SELECT pmi_no,hfc_cd,episode_date,encounter_date,DATE_FORMAT(DATE(fits_datetime),'%d/%m/%Y'),TIME_FORMAT(DATE(fits_datetime),'%r'),TIME_FORMAT(DATE(fits_datetime),'%T'),nature_fits,duration,remarks FROM lhr_ort_niw_fits_chart where pmi_no ='" + pmino + "' and DATE(fits_datetime) between '" + startDate + "' and '" + endDate + "' order by fits_datetime;";
+            sql = "SELECT pmi_no,hfc_cd,episode_date,encounter_date,DATE_FORMAT(DATE(fits_datetime),'%d/%m/%Y'),TIME_FORMAT(DATE(fits_datetime),'%r'),TIME_FORMAT(DATE(fits_datetime),'%T'),nature_fits,duration,remarks,discipline_cd,subdiscipline_cd FROM lhr_ort_niw_fits_chart where pmi_no ='" + pmino + "' and DATE(fits_datetime) between '" + startDate + "' and '" + endDate + "' order by fits_datetime;";
 
         }
 

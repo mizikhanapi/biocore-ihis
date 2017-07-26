@@ -76,7 +76,6 @@
         $('#endDate4hly').datepicker({dateFormat: "dd/mm/yy"});
 
     });
-
     //function view by date on change
     $('#select4hlydate').on('change', function () {
         var viewBy = $(this).val();
@@ -120,7 +119,7 @@
             $('#customDate4hly').show();
             datas = "null";
         }
-        //console.log(datas);
+        console.log(datas);
         ajax4hly(datas);
 
     });
@@ -150,7 +149,7 @@
             data: {datas: datas, methodName: "view"},
             timeout: 10000,
             success: function (result) {
-                //console.log(result);
+                console.log(result);
                 $('#divBIW4hly').html(result);
 
             },
@@ -215,17 +214,17 @@
         var sdataX = dataX.split("|");
         $('input[name="radio3"][value="' + sdataX[13] + '"]').prop('checked', true);
         $('input[name="radio4"][value="' + sdataX[14] + '"]').prop('checked', true);
-        
+
         $('input[id="hourlychoose1"][value="' + sdataX[8] + '"]').prop('checked', true);
         $('input[id="hourlychoose2"][value="' + sdataX[9] + '"]').prop('checked', true);
         $('input[id="hourlychoose3"][value="' + sdataX[10] + '"]').prop('checked', true);
         $('input[id="hourlychoose4"][value="' + sdataX[11] + '"]').prop('checked', true);
         $('input[id="hourlychoose5"][value="' + sdataX[12] + '"]').prop('checked', true);
-        
+
         $('input[id="Additive1"][value="' + sdataX[15] + '"]').prop('checked', true);
         $('input[id="Additive2"][value="' + sdataX[16] + '"]').prop('checked', true);
         $('input[id="Additive3"][value="' + sdataX[17] + '"]').prop('checked', true);
-        
+
         $('#timeNIW4hly').val(sdataX[19]);
         $('#NIW4hlyps').val(sdataX[7]);
         $('#dateNIW4hly').val(sdataX[4]);
