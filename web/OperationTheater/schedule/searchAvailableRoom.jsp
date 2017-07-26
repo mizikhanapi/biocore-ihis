@@ -19,7 +19,7 @@
     dateTo = DateFormatter.formatDate(dateTo, "dd/MM/yyyy HH:mm", "yyyy-MM-dd HH:mm:ss.ms");
     
     //                          0        1  
-    String sqlBS = "SELECT room_no, room_name from ot_room "
+    String sqlBS = "SELECT room_no, room_name from opt_room "
             + "where hfc_cd='"+hfc_cd+"' and status='0' and room_no not in "
             + "( "
             + "select room_no from opt_order_detail d "

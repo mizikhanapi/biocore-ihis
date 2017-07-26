@@ -180,7 +180,7 @@
                                 <div class="form-group">
                                     <label class="col-md-4 control-label" for="textinput">Password *</label>
                                     <div class="col-md-8">
-                                        <input id="UM_password"  type="password" placeholder=" Type your Password" class="form-control input-md" maxlength="10">
+                                        <input id="UM_password"  type="password" placeholder=" Type your Password" class="form-control input-md" maxlength="30">
                                     </div>
                                 </div>
                             </div>
@@ -190,7 +190,7 @@
                                 <div class="form-group">
                                     <label class="col-md-4 control-label" for="textinput">Retype Password *</label>
                                     <div class="col-md-8">
-                                        <input id="UM_password2"  type="password" placeholder="Confirm the Password" class="form-control input-md" maxlength="10">
+                                        <input id="UM_password2"  type="password" placeholder="Confirm the Password" class="form-control input-md" maxlength="30">
                                     </div>
                                 </div>
                             </div>

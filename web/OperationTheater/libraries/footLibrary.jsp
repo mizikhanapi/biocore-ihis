@@ -1,7 +1,7 @@
 <%-- 
     Document   : footLibrary
     Created on : Jun 20, 2017, 12:50:23 PM
-    Author     : user
+    Author     : Ardhi Surya; rdsurya147@gmail.com
 --%>
 
 <script src="libraries/js/jquery-ui.js" type="text/javascript"></script>
@@ -17,3 +17,4 @@
 <script src="libraries/js/buttons.html5.min.js" type="text/javascript"></script>
 <script src="libraries/js/papaparse.min.js"></script>
 <script src="libraries/js/create_destroy_loading.js" type="text/javascript"></script>
+<script src="libraries/js/jquery.check-file.js" type="text/javascript"></script>

@@ -2,10 +2,13 @@
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
+ * 
+ * Creator: Ardhi Surya; rdsurya147@gmail.com; insta:@rdcfc
  */
 
 
-
+//global variable for picture
+var OT_gambarURI = "";
 
 
 //--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------//
@@ -418,53 +421,153 @@ $('#risManageOrderDetailsListTableDiv').on('click', '#risManageOrderDetailsListT
 });
 //=============== perform procedure end ================================
 
-//------------------------- write result --------------------------------------
 
-//.....creating modal......
+
+
+//-------------------------prepare exam result --------------------------------------
+
+//creating modal
 $('#risManageOrderDetailsListTableDiv').on('click', '#risManageOrderDetailsListTable #MOD_btnReport', function () {
- 
+    $('#PR_form')[0].reset();
+    console.log("Btn report is clicked.");
+    OT_gambarURI = "";
+    $('#PR_gamba').attr('src', OT_gambarURI);
+
     var row = $(this).closest("tr");
     var arrData = row.find('td').eq(0).text().split('|');
-    var proCode = arrData[1], proName = arrData[8], comment = arrData[6];
+    var startTime = arrData[0], endTime = arrData[1], proCode=arrData[2], proName=arrData[3], roomNo=arrData[4], consulID=arrData[6], consulName=arrData[7], comment=arrData[9], orderNo=arrData[10];
 
+    $('#PR_procedureName').val("("+proCode+") "+proName);
     $('#PR_procedureCode').val(proCode);
-    $('#PR_procedureName').val(proName);
-
+    
+    $('#PR_startTime').val(startTime);
+    $('#PR_endTime').val(endTime);
+    
+    $('#PR_consulName').val("("+consulID+") "+consulName);
+    $('#PR_consulID').val(consulID);
+    
     $('#PR_comment').val(comment);
+    
+    $('#PR_roomNo').val(roomNo);
+    $('#PR_orderNo').val(orderNo);
+
+    $('#PR_fileToLoad').val('');
+    
 
     $('#modal_prepareResult').css('overflow', 'auto');
 
     $('#modal_prepareResult').modal('show');
-    
-    console.log("Button perform is pressed.");
 });
 
+$('#PR_fileToLoad').checkFileType({
+    allowedExtensions: ['jpg', 'jpeg', 'png', 'gif'],
+    success: function () {
+        loadImageFileAsURL();
+    },
+    error: function () {
+        bootbox.alert('Incompatible file type');
+        $('#PR_fileToLoad').val("");
+        //$('#dym').html("");
+        OT_gambarURI = "";
+    }
+});
 
+function loadImageFileAsURL()
+{
+
+    var iSize = 0;
+
+    iSize = ($("#PR_fileToLoad")[0].files[0].size / 1024);
+
+    var sizeSmall = false;
+
+    if (iSize / 1024 > 1) {
+        if (((iSize / 1024) / 1024) > 1)
+
+        {
+            //iSize = (Math.round(((iSize / 1024) / 1024) * 100) / 100);
+            //$("#lblSize").html(iSize + "Gb");
+            sizeSmall = false;
+
+        } else
+
+        {
+
+            iSize = (Math.round((iSize / 1024) * 100) / 100);
+            sizeSmall = iSize <= 0.7;
+            //$("#lblSize").html(iSize + "Mb");
+
+        }
+
+
+    } else {
+
+        iSize = (Math.round(iSize * 100) / 100);
+
+        sizeSmall = iSize <= 700;
+
+    }
+
+
+    if (sizeSmall) {
+        //document.getElementById("dym").innerHTML = '<div class="loader"></div>';
+        var filesSelected = document.getElementById("PR_fileToLoad").files;
+        if (filesSelected.length > 0)
+        {
+            var fileToLoad = filesSelected[0];
+
+            var fileReader = new FileReader();
+
+            fileReader.onload = function (fileLoadedEvent)
+            {
+
+                OT_gambarURI = fileLoadedEvent.target.result;
+
+
+                //document.getElementById("dym").innerHTML = '<img id="myImage">';
+
+                //document.getElementById("myImage").src = OT_gambarURI;
+                $('#PR_gamba').attr('src', OT_gambarURI);
+            };
+
+            fileReader.readAsDataURL(fileToLoad);
+        }
+
+    } else {
+
+        bootbox.alert("File size must not exceed 650Kb");
+        $('#PR_fileToLoad').val("");
+        OT_gambarURI = "";
+        $('#PR_gamba').attr('src', OT_gambarURI);
+        //$('#dym').html("");
+    }
+
+
+}
 
 //...... submit exam result ............
 $('#PR_btnSubmit').on('click', function () {
 
-    var orderNo = $('#risOrderNo').val();
     var proCode = $('#PR_procedureCode').val();
-    var proName = $('#PR_procedureName').val();
+    var startTime = $('#PR_startTime').val();
+    var endTime = $('#PR_endTime').val();
+    var consulID = $('#PR_consulID').val();
     var comment = $('#PR_comment').val();
-    var epDate = $('#posEpDate').val();
-    
-    //added on 29/6/2017
-    var pmiNo = $('#rispatientpmino').val() ;
-    var orderDate = $('#risOrderDate').val();
+    var roomNo = $('#PR_roomNo').val();
+    var orderNo = $('#PR_orderNo').val();
     var duration = $('#PR_duration').val();
-    
+    var epDate = $('#posEpDate').val();
+    var pmiNo = $('#rispatientpmino').val();
 
     if (comment === '') {
-        bootbox.alert('Please write a meaningful comment.',
+        bootbox.alert('Please write some meaningful comment.',
                 function () {
                     $('#PR_comment').focus();
                 }
         );
     }
-    else if(duration === ''){
-         bootbox.alert('Please key in the time taken to complete the procedure in minutes.',
+    else if(duration === ""){
+         bootbox.alert('Please fill in the duration in minutes.',
                 function () {
                     $('#PR_duration').focus();
                 }
@@ -476,13 +579,17 @@ $('#PR_btnSubmit').on('click', function () {
             process: 'report',
             orderNo: orderNo,
             proCode: proCode,
-            proName: proName,
-            comment: comment,
             epDate: epDate,
             pmiNo: pmiNo,
-            orderDate: orderDate,
-            duration: duration
+            comment: comment,
+            start: startTime,
+            end: endTime,
+            duration: duration,
+            consulID: consulID,
+            roomNo: roomNo,
+            gambar: OT_gambarURI
         };
+        console.log(data);
         
         $('#modal_prepareResult').modal('hide');
         createScreenLoading();
