@@ -201,7 +201,7 @@
                                         <div id="OUTPATIENT" class="panel-collapse panel-collapse collapse">
                                             <ul class="list-group">
                                                 <li class="list-group-item"><a href="UTeMAttendanceListReport.jsp">Patient Attendance List</a></li>
-                                                <li class="list-group-item"><a href="">Insert Report Menu</a></li>
+                                                <li class="list-group-item"><a href="UTeMMedicalCertificateReport.jsp">Medical Certificate List</a></li>
                                                 <li class="list-group-item"><a href="">Insert Report Menu</a></li>
                                                 <li class="list-group-item"><a href="">Insert Report Menu</a></li>
                                             </ul>
