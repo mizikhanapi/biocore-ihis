@@ -5,21 +5,31 @@
 --%>
 
 
+<%@page import="java.time.LocalDateTime"%>
+<%@page import="java.time.format.DateTimeFormatter"%>
 <%@page import="NIW_helper.DiabeticChartUtils"%>
 <%@page import="java.util.ArrayList"%>
 <%
     DiabeticChartUtils diab = new DiabeticChartUtils();
+    DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+    LocalDateTime now = LocalDateTime.now();
 
     String data = request.getParameter("dataString");
     String methodName = request.getParameter("methodName");
-    String created_by = session.getAttribute("USER_NAME").toString();
+    String created_by_name = session.getAttribute("USER_NAME").toString();
+    String discipline = session.getAttribute("DISCIPLINE_CODE").toString();
+    String subdiscipline = session.getAttribute("SUB_DISCIPLINE_CODE").toString();
+    String created_by = session.getAttribute("USER_ID").toString();
+    String created_date = format.format(now);
+
+    String longString = "|" + created_by_name + "|" + discipline + "|" + subdiscipline + "|" + created_by + "|" + created_date;
 
     Boolean result;
     if (methodName.equalsIgnoreCase("add")) {
-        result = diab.addDiabetic(data + "|" + created_by);
+        result = diab.addDiabetic(data + longString);
         out.print(result);
     } else if (methodName.equalsIgnoreCase("update")) {
-        result = diab.updateDiabetic(data + "|" + created_by);
+        result = diab.updateDiabetic(data + longString);
         out.print(result);
     } else if (methodName.equalsIgnoreCase("delete")) {
         result = diab.delDiabetic(data);

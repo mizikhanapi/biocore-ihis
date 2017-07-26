@@ -366,7 +366,7 @@
                 bootbox.alert("Please Insert Assessment Time !!");
             } else {
 
-                var datas = pmi_no + "|" + hfc_cd1 + "|" + epDate + "|" + encounterDate + "| | |" + newDate + " " + time + ":00.0|" + dextrostix + " |Pending";
+                var datas = pmi_no + "|" + hfc_cd1 + "|" + epDate + "|" + encounterDate + "| | |" + newDate + " " + time + ":00.0|" + dextrostix + "|Pending";
 
                 $.ajax({
                     type: "post",
@@ -467,7 +467,7 @@
                 dextrostix = "";
             }
 
-            var datas = pmi_no + "|" + hfc_cd1 + "|" + epDate + "|" + encounterDate + "| | |" + newDate + " " + time + ":00.0|" + dextrostix + " |Pending";
+            var datas = pmi_no + "|" + hfc_cd1 + "|" + epDate + "|" + encounterDate + "| | |" + newDate + " " + time + ":00.0|" + dextrostix + "|Pending";
 
             $.ajax({
                 type: "post",

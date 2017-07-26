@@ -115,7 +115,7 @@ public class DiabeticChartUtils {
 
         Boolean sql = false;
         String splittedData[] = datas.split("\\|", -1);
-        String pmi_no, hfc_cd, episode_date, encounter_date, ward, bed_no, datetime, dextrostix, dr_name, status;
+        String pmi_no, hfc_cd, episode_date, encounter_date, ward, bed_no, datetime, dextrostix, dr_name, status, discipline_cd, subdiscipline_cd, created_by, created_date;
 
         pmi_no = splittedData[0];
         hfc_cd = splittedData[1];
@@ -127,10 +127,15 @@ public class DiabeticChartUtils {
         dextrostix = splittedData[7];
         status = splittedData[8];
         dr_name = splittedData[9];
+        discipline_cd = splittedData[10];
+        subdiscipline_cd = splittedData[11];
+        created_by = splittedData[12];
+        created_date = splittedData[13];
 
         String sqlInsert = "INSERT INTO lhr_ort_niw_diabetic_chart "
-                + " (pmi_no, hfc_cd, episode_date, encounter_date,ward,bed_no,datetime,dextrostix,dr_name,status)  "
-                + " VALUES('" + pmi_no + "','" + hfc_cd + "','" + episode_date + "','" + encounter_date + "','" + ward + "','" + bed_no + "','" + datetime + "','" + dextrostix + "','" + dr_name + "','" + status + "') ";
+                + " (pmi_no, hfc_cd, episode_date, encounter_date,ward,bed_no,datetime,dextrostix,dr_name,status,discipline_cd,subdiscipline_cd,created_by,created_date)  "
+                + " VALUES('" + pmi_no + "','" + hfc_cd + "','" + episode_date + "','" + encounter_date + "','" + ward + "','" + bed_no + "','" + datetime + "','" + dextrostix + "',"
+                + "'" + dr_name + "','" + status + "','" + discipline_cd + "','" + subdiscipline_cd + "','" + created_by + "','" + created_date + "') ";
 
         sql = rmic.setQuerySQL(conn.HOST, conn.PORT, sqlInsert);
 
