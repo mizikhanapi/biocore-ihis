@@ -16,7 +16,7 @@
     String room_name = request.getParameter("room_name");
   
 
-    String searchProblem = "select room_no,room_name from opt_room WHERE hfc_cd = '"+hfc_cd+"' AND dis_cd = '"+discipline+"' AND `subDis_cd` = '"+subdicipline+"' and room_name='"+room_name+"';;";
+    String searchProblem = "select room_no,room_name from opt_room WHERE hfc_cd = '"+hfc_cd+"' AND discipline_cd = '"+discipline+"' AND `subdiscipline_cd` = '"+subdicipline+"' and room_name='"+room_name+"';;";
     ArrayList<ArrayList<String>> search = Conn.getData(searchProblem);
    // out.print(searchProblem);
 
