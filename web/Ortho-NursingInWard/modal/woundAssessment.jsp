@@ -51,7 +51,7 @@
                             <div class="form-group">
                                 <label class="col-md-12 control-label" for="textinput">Length x Height x Depth</label>
                                 <div class="col-md-12">
-                                    <input type="text" class="form-control input-md" id="woundAssessmentModalDimension1">
+                                    <input type="text" class="form-control input-md decimalNumbersOnly" id="woundAssessmentModalDimension1" maxlength="5">
                                 </div>
                             </div>
                         </div>
@@ -61,7 +61,7 @@
                             <div class="form-group">
                                 <label class="col-md-12 control-label" for="textinput">Length x Height x Depth</label>
                                 <div class="col-md-12">
-                                    <input type="text" class="form-control input-md" id="woundAssessmentModalDimension2">
+                                    <input type="text" class="form-control input-md decimalNumbersOnly" id="woundAssessmentModalDimension2" maxlength="5">
                                 </div>
                             </div>
                         </div>
@@ -71,7 +71,7 @@
                             <div class="form-group">
                                 <label class="col-md-12 control-label" for="textinput">Length x Height x Depth</label>
                                 <div class="col-md-12">
-                                    <input type="text" class="form-control input-md" id="woundAssessmentModalDimension3">
+                                    <input type="text" class="form-control input-md decimalNumbersOnly" id="woundAssessmentModalDimension3" maxlength="5">
                                 </div>
                             </div>
                         </div>
@@ -288,7 +288,7 @@
                             <div class="form-group">
                                 <label class="col-md-12 control-label" for="textinput">During Removal</label>
                                 <div class="col-md-12">
-                                    <input type="text" class="form-control input-md" id="woundAssessmentModalPain1">
+                                    <input type="text" class="form-control input-md singleNumbersOnly" id="woundAssessmentModalPain1" maxlength="1">
                                 </div>
                             </div>
                         </div>
@@ -297,7 +297,7 @@
                             <div class="form-group">
                                 <label class="col-md-12 control-label" for="textinput">While in place</label>
                                 <div class="col-md-12">
-                                    <input type="text" class="form-control input-md" id="woundAssessmentModalPain2">
+                                    <input type="text" class="form-control input-md singleNumbersOnly" id="woundAssessmentModalPain2" maxlength="1">
                                 </div>
                             </div>
                         </div>
@@ -347,7 +347,7 @@
                             <div class="form-group">
                                 <label class="col-md-12 control-label" for="textinput">Primary Dressing</label>
                                 <div class="col-md-12">
-                                    <input type="text" class="form-control input-md" id="woundAssessmentModalPlan1">
+                                    <input type="text" class="form-control input-md" id="woundAssessmentModalPlan1" maxlength="10">
                                 </div>
                             </div>
                         </div>
@@ -356,7 +356,7 @@
                             <div class="form-group">
                                 <label class="col-md-12 control-label" for="textinput">Size & no. of pieces</label>
                                 <div class="col-md-12">
-                                    <input type="text" class="form-control input-md" id="woundAssessmentModalPlan2">
+                                    <input type="text" class="form-control input-md" id="woundAssessmentModalPlan2" maxlength="10">
                                 </div>
                             </div>
                         </div>
@@ -365,7 +365,7 @@
                             <div class="form-group">
                                 <label class="col-md-12 control-label" for="textinput">Secondary Dressing</label>
                                 <div class="col-md-12">
-                                    <input type="text" class="form-control input-md" id="woundAssessmentModalPlan3">
+                                    <input type="text" class="form-control input-md" id="woundAssessmentModalPlan3" maxlength="10">
                                 </div>
                             </div>
                         </div>
@@ -374,7 +374,7 @@
                             <div class="form-group">
                                 <label class="col-md-12 control-label" for="textinput">Size & no of pieces</label>
                                 <div class="col-md-12">
-                                    <input type="text" class="form-control input-md" id="woundAssessmentModalPlan4">
+                                    <input type="text" class="form-control input-md" id="woundAssessmentModalPlan4" maxlength="10">
                                 </div>
                             </div>
                         </div>

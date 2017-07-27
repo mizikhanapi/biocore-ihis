@@ -62,7 +62,7 @@
                             <div class="form-group">
                                 <label class="col-md-12 control-label" for="textinput">Amount</label>
                                 <div class="col-md-12">
-                                    <input type="text" class="form-control input-md" id="fluidBalanceIntakeModalOralAmount" maxlength="4" >
+                                    <input type="text" class="form-control input-md decimalNumbersOnly" id="fluidBalanceIntakeModalOralAmount" maxlength="6" >
                                 </div>
                             </div>
                         </div>
@@ -92,7 +92,7 @@
                             <div class="form-group">
                                 <label class="col-md-12 control-label" for="textinput">Amount</label>
                                 <div class="col-md-12">
-                                    <input type="text" class="form-control input-md" id="fluidBalanceIntakeModalIntravenousAmount" maxlength="4">
+                                    <input type="text" class="form-control input-md decimalNumbersOnly" id="fluidBalanceIntakeModalIntravenousAmount" maxlength="6">
                                 </div>
                             </div>
                         </div>
@@ -122,7 +122,7 @@
                             <div class="form-group">
                                 <label class="col-md-12 control-label" for="textinput">Amount</label>
                                 <div class="col-md-12">
-                                    <input type="text" class="form-control input-md" id="fluidBalanceIntakeModalOtherAmount" maxlength="4">
+                                    <input type="text" class="form-control input-md decimalNumbersOnly" id="fluidBalanceIntakeModalOtherAmount" maxlength="6">
                                 </div>
                             </div>
                         </div>
