@@ -144,6 +144,8 @@ $('#risOrderNewRequestButton').on('click', function () {
     $('#RNO_cat_match').html('');
     $('#RNO_consul_match').html('');
     $('#RNO_room_match').html('');
+    $('#RNO_div_schedule').html('');
+    init_procedure_flex_search();
     
     $('#RNO_proName').prop('disabled', false);
 
@@ -373,29 +375,60 @@ $('#RNO_btnRoom').on('click', function(){
     });
 
 $('#RNO_div_btnAdd_or_update').on('click', '#RNO_btnAdd', function () {
-
+    $('#modal_requestNewOrder').css('overflow', 'auto');
+    
     var orderNo = $('#risOrderNo').val();
-    var procedure = $('#RNO_proName').val();
-    var instruction = $('#RNO_instruction').val();
+    var proCode = $('#RNO_proName').val();
+    var start = $('#RNO_start').val();
+    var end = $('#RNO_end').val();
+    var consul = $('#RNO_consultant').val();
+    var roomNo = $('#RNO_room').val();
+    var comment = $('#RNO_comment').val();
+    
+    var objStart = $('#RNO_start').datetimepicker('getValue');
+    var objEnd = $('#RNO_end').datetimepicker('getValue');
+    
 
-    if (procedure === "") {
-        bootbox.alert('Please choose existing procedure.', function () {
-            $('#RNO_proName').focus();
-        });
+    if (proCode.trim() === "") {
+        bootbox.alert('Please choose existing procedure.');
 
-    } else {
-        instruction = instruction.replace(/'/g, "\\\'").replace(/"/g, "\\\"");
-        var arrData = procedure.split('|');
-        procedure = arrData[0].trim();
+    }
+    else if(start.trim()===""){
+        bootbox.alert("Please pick a start date and time");
+    }
+    else if(end.trim()===""){
+        bootbox.alert("Please pick an end date and time");
+    }
+    else if(consul.trim()===""){
+        bootbox.alert("Please choose existing consultant.");
+    }
+    else if(roomNo.trim()===""){
+        bootbox.alert("Please choose existing operation theater.");
+    }
+    else if(comment.trim()===""){
+        bootbox.alert("Please write some meaningful comment.");
+    }
+    else if(objStart >= objEnd){
+        bootbox.alert("End time must be later than start time.");
+        $('#RNO_end').val('');
+    }
+    else {
+        
+        comment = comment.replace(/'/g, "\\\'").replace(/"/g, "\\\"");
+        
         
         var epDate = $('#posEpDate').val();
         
 
         var data = {
             orderNo: orderNo,
-            proCode: procedure,
+            proCode: proCode,
             epDate: epDate,
-            instruction: instruction
+            consul: consul,
+            roomNo: roomNo,
+            start: start,
+            end: end,
+            comment: comment
         };
         //$('#risManageOrderDetailsListTableDiv').append('<div class="loading">Loading</div>');
         createScreenLoading();
@@ -407,26 +440,30 @@ $('#RNO_div_btnAdd_or_update').on('click', '#RNO_btnAdd', function () {
                 if (data.trim() === 'success') {
                     bootbox.alert('New order is added.');
                     loadOrderDetailList(orderNo);
+                    $('#modal_requestNewOrder').modal('hide');
 
                 } else if (data.trim() === 'duplicate') {
                     bootbox.alert('Duplicate order. Please order different item');
-                    $('.loading').hide();
+                    
 
                 } else if (data.trim() === 'fail') {
 
                     bootbox.alert('Fail to add new order.');
-                    $('.loading').hide();
+                    
+                }
+                else{
+                    bootbox.alert(data.trim());
                 }
 
             },
             error: function (jqXHR, textStatus, errorThrown) {
                 bootbox.alert('Opps! ' + errorThrown);
-                $('.loading').hide();
+               
             },
             complete: function (jqXHR, textStatus) {
-                //$('.loading').hide();
-                $('.modal-backdrop').hide();
-                $('#modal_requestNewOrder').modal('hide');
+                destroyScreenLoading();
+               
+                //$('#modal_requestNewOrder').modal('hide');
             }
         });
     }

@@ -79,7 +79,9 @@
                             <div class="form-group form-horizontal">
                                 <label class="col-md-2 control-label" for="textinput">Consultant*</label>
                                 <div class="col-md-10">
-                                    <input id="RNO_consultant" class="form-control flexdatalist" type="text" placeholder="Search consultant..." data-search-by-word="true">
+                                    <input id="RNO_consultant" class="form-control flexdatalist" type="text" placeholder="Search consultant..." 
+                                           data-search-by-word="true"
+                                           data-selection-required="true">
 
                                     <div id="RNO_consul_match" class="search-drop"></div>
                                 </div>
@@ -94,7 +96,9 @@
                             <div class="form-group form-horizontal">
                                 <label class="col-md-2 control-label" for="textinput">Operation Theater*</label>
                                 <div class="col-md-10">
-                                    <input id="RNO_room" class="form-control flexdatalist" type="text" placeholder="Search operation room..." data-search-by-word="true">
+                                    <input id="RNO_room" class="form-control flexdatalist" type="text" placeholder="Search operation room..." 
+                                           data-search-by-word="true"
+                                           data-selection-required="true">
 
                                     <div id="RNO_room_match" class="search-drop"></div>
                                 </div>
@@ -108,7 +112,7 @@
                         <div class="form-group form-horizontal">
                             <label class="col-md-2 control-label" for="textinput">Comment*</label>
                            <div class="col-md-10">
-                               <textarea id="RNO_comment" placeholder="Write your comments here (Optional)" class="form-control input-md" maxlength="500" rows="4"></textarea>
+                               <textarea id="RNO_comment" placeholder="Write your comments here (Optional)" class="form-control input-md" maxlength="480" rows="4"></textarea>
                             </div>
                         </div>
                     </div>

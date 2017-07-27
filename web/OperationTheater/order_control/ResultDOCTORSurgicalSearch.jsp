@@ -11,7 +11,7 @@
        //String key ="fever";
        String searchProblem = "Select user_id, user_name "
                + "from adm_users "
-               + "where health_facility_code='"+hfc_cd+"' and (user_id like '%"+key+"%' OR user_name like '%"+key+"%') and user_id in "
+               + "where health_facility_code='"+hfc_cd+"' and status='0' and (user_id like '%"+key+"%' OR user_name like '%"+key+"%') and user_id in "
                + "(select user_id from adm_user_access_role where health_facility_code='"+hfc_cd+"');";
         ArrayList<ArrayList<String>> search = Conn.getData(searchProblem); 
        

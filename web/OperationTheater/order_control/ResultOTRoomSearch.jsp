@@ -12,7 +12,7 @@
     
 
     //String key ="bypass";
-    String searchProblem = "select room_no,room_name from opt_room WHERE hfc_cd = '"+hfc_cd+"' AND discipline_cd = '"+discipline+"' AND `subdiscipline_cd` = '"+subdicipline+"';";
+    String searchProblem = "select room_no,room_name from opt_room WHERE status='0' and hfc_cd = '"+hfc_cd+"' and (room_name like '%"+key+"%' OR room_no like '%"+key+"%') ;";
 
     ArrayList<ArrayList<String>> search = Conn.getData(searchProblem);
 
