@@ -33,7 +33,7 @@ public class DailySkinUtils {
             //              0       1       2               3               4                                   5                                6
             sql = "SELECT pmi_no,hfc_cd,episode_date,encounter_date,TIME_FORMAT(TIME(datetime),'%r'),DATE_FORMAT(DATE(datetime),'%d/%m/%Y'),temperature, "
                     //    7       8         9       10          11          12                  13                          
-                    + " color,moisture,skin_tugor,integrity,assesor_name,referal_wc,TIME_FORMAT(TIME(datetime),'%T') FROM lhr_ort_niw_daily_skin_assess_tool "
+                    + " color,moisture,skin_tugor,integrity,assesor_name,referal_wc,TIME_FORMAT(TIME(datetime),'%H:%i') FROM lhr_ort_niw_daily_skin_assess_tool "
                     + " where pmi_no ='" + pmino + "' and DATE(datetime) ='" + dateTime + "'; ";
 
         } else if (viewBy.equalsIgnoreCase("yesterday")) {
@@ -41,7 +41,7 @@ public class DailySkinUtils {
             //              0       1       2               3               4                                   5                                6
             sql = "SELECT pmi_no,hfc_cd,episode_date,encounter_date,TIME_FORMAT(TIME(datetime),'%r'),DATE_FORMAT(DATE(datetime),'%d/%m/%Y'),temperature, "
                     //    7       8         9       10          11          12                  13                          
-                    + " color,moisture,skin_tugor,integrity,assesor_name,referal_wc,TIME_FORMAT(TIME(datetime),'%T') FROM lhr_ort_niw_daily_skin_assess_tool "
+                    + " color,moisture,skin_tugor,integrity,assesor_name,referal_wc,TIME_FORMAT(TIME(datetime),'%H:%i') FROM lhr_ort_niw_daily_skin_assess_tool "
                     + " where pmi_no ='" + pmino + "' and DATE(datetime) = SUBDATE('" + dateTime + "',1); ";
 
         } else if (viewBy.equalsIgnoreCase("7day")) {
@@ -49,7 +49,7 @@ public class DailySkinUtils {
             //              0       1       2               3               4                                   5                                6
             sql = "SELECT pmi_no,hfc_cd,episode_date,encounter_date,TIME_FORMAT(TIME(datetime),'%r'),DATE_FORMAT(DATE(datetime),'%d/%m/%Y'),temperature, "
                     //    7       8         9       10          11          12                  13                          
-                    + " color,moisture,skin_tugor,integrity,assesor_name,referal_wc,TIME_FORMAT(TIME(datetime),'%T') FROM lhr_ort_niw_daily_skin_assess_tool "
+                    + " color,moisture,skin_tugor,integrity,assesor_name,referal_wc,TIME_FORMAT(TIME(datetime),'%H:%i') FROM lhr_ort_niw_daily_skin_assess_tool "
                     + " where pmi_no ='" + pmino + "' and DATE(datetime) between SUBDATE('" + dateTime + "',7) and '" + dateTime + "' ; ";
 
         } else if (viewBy.equalsIgnoreCase("30day")) {
@@ -57,7 +57,7 @@ public class DailySkinUtils {
             //              0       1       2               3               4                                   5                                6
             sql = "SELECT pmi_no,hfc_cd,episode_date,encounter_date,TIME_FORMAT(TIME(datetime),'%r'),DATE_FORMAT(DATE(datetime),'%d/%m/%Y'),temperature, "
                     //    7       8         9       10          11          12                  13                          
-                    + " color,moisture,skin_tugor,integrity,assesor_name,referal_wc,TIME_FORMAT(TIME(datetime),'%T') FROM lhr_ort_niw_daily_skin_assess_tool "
+                    + " color,moisture,skin_tugor,integrity,assesor_name,referal_wc,TIME_FORMAT(TIME(datetime),'%H:%i') FROM lhr_ort_niw_daily_skin_assess_tool "
                     + " where pmi_no ='" + pmino + "' and DATE(datetime) between SUBDATE('" + dateTime + "',30) and '" + dateTime + "'; ";
 
         } else if (viewBy.equalsIgnoreCase("60day")) {
@@ -65,7 +65,7 @@ public class DailySkinUtils {
             //              0       1       2               3               4                                   5                                6
             sql = "SELECT pmi_no,hfc_cd,episode_date,encounter_date,TIME_FORMAT(TIME(datetime),'%r'),DATE_FORMAT(DATE(datetime),'%d/%m/%Y'),temperature, "
                     //    7       8         9       10          11          12                  13                          
-                    + " color,moisture,skin_tugor,integrity,assesor_name,referal_wc,TIME_FORMAT(TIME(datetime),'%T') FROM lhr_ort_niw_daily_skin_assess_tool "
+                    + " color,moisture,skin_tugor,integrity,assesor_name,referal_wc,TIME_FORMAT(TIME(datetime),'%H:%i') FROM lhr_ort_niw_daily_skin_assess_tool "
                     + " where pmi_no ='" + pmino + "' and DATE(datetime) between SUBDATE('" + dateTime + "',60) and '" + dateTime + "' ; ";
 
         } else if (viewBy.equalsIgnoreCase("custom")) {
@@ -77,7 +77,7 @@ public class DailySkinUtils {
             //              0       1       2               3               4                                   5                                6
             sql = "SELECT pmi_no,hfc_cd,episode_date,encounter_date,TIME_FORMAT(TIME(datetime),'%r'),DATE_FORMAT(DATE(datetime),'%d/%m/%Y'),temperature, "
                     //    7       8         9       10          11          12                  13                          
-                    + " color,moisture,skin_tugor,integrity,assesor_name,referal_wc,TIME_FORMAT(TIME(datetime),'%T') FROM lhr_ort_niw_daily_skin_assess_tool "
+                    + " color,moisture,skin_tugor,integrity,assesor_name,referal_wc,TIME_FORMAT(TIME(datetime),'%H:%i') FROM lhr_ort_niw_daily_skin_assess_tool "
                     + " where pmi_no ='" + pmino + "' and DATE(datetime) between '" + startDate + "' and '" + endDate + "'; ";
 
         }

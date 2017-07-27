@@ -306,6 +306,14 @@
                 dateFormat: 'dd/mm/yy'
             });
 
+            $('#dailySkinToolModalTime').timepicker({
+                'timeFormat': 'HH:mm',
+                'scrollbar': 'true',
+                'minTime': '00:00',
+                'maxTime': '23:59',
+                'interval': 1
+            });
+
         });
         // Function For Add Button End
 
@@ -509,6 +517,14 @@
                 dateFormat: 'dd/mm/yy'
             });
 
+            $('#dailySkinToolModalTime').timepicker({
+                'timeFormat': 'HH:mm',
+                'scrollbar': 'true',
+                'minTime': '00:00',
+                'maxTime': '23:59',
+                'interval': 1
+            });
+
             //get the row value
             var row = $(this).closest("tr");
             var rowData = row.find("#dataChartDailySkinToolhidden").val();
@@ -651,7 +667,7 @@
         // Update Get Data And Send To Controller Function Start
         $('#dailySkinPosition #dailySkinPositionModal_btnAdd_or_btnUpdate_div').on('click', '#dailySkinPositionUpdateModalBtn', function (e) {
             e.preventDefault();
-            
+
             var date = $('#dailySkinPositionModalDate').val();
             var sDate = date.split('/');
             var newDate = sDate[2] + "-" + sDate[1] + "-" + sDate[0];
