@@ -125,6 +125,7 @@
                     <div class="text-center">
                         <button id="RNO_btnConsul" class="btn btn-default" title="View doctor's schedule"><i class="fa fa-user-md fa-lg" style="color: #2B82C9"></i>&nbsp;</button>
                         <button id="RNO_btnRoom" class="btn btn-default" title="View room's schedule"><i class="fa fa-bed fa-lg" style="color: #F26797"></i>&nbsp;</button>
+                        <button id="RNO_btnPatient" class="btn btn-default" title="View patient's schedule"><i class="fa fa-user fa-lg" style="color: #00dd1c"></i>&nbsp;</button>
                         <p id="RNO_err" style="color: red"></p>
                     </div>
                 </div>

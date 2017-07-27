@@ -35,6 +35,10 @@
             String roomNo = request.getParameter("roomNo");
             condition=" and rm.room_no='"+roomNo+"' ";
         }
+         else if(type.equalsIgnoreCase("8")){
+            String pmiNo = request.getParameter("pmiNo");
+            condition=" and bio.pmi_no='"+pmiNo+"' ";
+        }
         //                                        0                                                 1                                   2                       3                 4             5               6       7                       8               9
         String query ="select date_format(d.`startDateTime`, '%d/%m/%Y %H:%i'), date_format(d.`endDateTime`, '%d/%m/%Y %H:%i'), pro.procedure_cd, pro.`procedure_shortName`, d.ot_room_no, rm.room_name, bio.`PMI_NO`, bio.`PATIENT_NAME`, u.`USER_ID`, u.`USER_NAME` "
                 + "from opt_order_detail d "
@@ -56,6 +60,8 @@
                 html = "<h4>The doctor is 100% available.</h4>";
             else if(type.equalsIgnoreCase("7"))
                 html = "<h4>The room is 100% available.</h4>";
+            else if(type.equalsIgnoreCase("8"))
+                html = "<h4>The patient has no other surgical procedure order.</h4>";
             
             out.print(html);
         }
@@ -105,7 +111,7 @@
 </table>
 
 <%
-        if(!type.equalsIgnoreCase("6") && !type.equalsIgnoreCase("7")){
+        if(!type.equalsIgnoreCase("6") && !type.equalsIgnoreCase("7") && !type.equalsIgnoreCase("8")){
 %>
 <script type="text/javascript" charset="utf-8">
 

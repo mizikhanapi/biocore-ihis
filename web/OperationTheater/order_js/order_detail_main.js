@@ -361,6 +361,37 @@ $('#RNO_btnRoom').on('click', function(){
 });
 //========== view room schedule end ============
 
+//------------ view patient schedule -------------
+$('#RNO_btnPatient').on('click', function(){
+    var pmiNo = $('#rispatientpmino').val();
+    
+     var data ={
+            type : '8',
+            pmiNo: pmiNo
+          };
+        
+        $('#RNO_div_schedule').html('<img src="img/LoaderIcon.gif" />');
+        
+        $.ajax({
+            type: 'POST',
+            url: "schedule/searchPatient_RoomSchedule.jsp",
+            data: data,
+            timeout: 60000,
+            success: function (data, textStatus, jqXHR) {
+                        $('#RNO_div_schedule').html(data);
+                    },
+            error: function (jqXHR, textStatus, errorThrown) {
+                        $("#RNO_err").html("Oopps! "+errorThrown).show().fadeOut("slow");
+                    },
+            complete: function (jqXHR, textStatus ) {
+                        destroyScreenLoading();
+                }        
+                    
+        });
+    
+});
+//============ view patient schedule end ==============
+
 //------------------------- add new order start --------------------------------
 
 //set up date picker
