@@ -97,7 +97,7 @@ public class UrineUtils {
         String dis = splitted[10];
         String subdis = splitted[11];
         
-        String sql = "DELETE FROM lhr_ort_niw_urine_chart WHERE pmi_no='"+pmi+"' and hfc_cd='"+hfc+"' and episode_date ='"+epDate+"' and encounter_date='"+enDate+"' and discipline_cd='"+dis+"' and subdiscipilne_cd='"+subdis+"'";
+        String sql = "DELETE FROM lhr_ort_niw_urine_chart WHERE pmi_no='"+pmi+"' and hfc_cd='"+hfc+"' and episode_date ='"+epDate+"' and encounter_date='"+enDate+"' and discipline_cd='"+dis+"' and subdiscipline_cd='"+subdis+"'";
         data = rmic.setQuerySQL(conn.HOST, conn.PORT, sql);
         
         return data;
@@ -124,7 +124,7 @@ public class UrineUtils {
         subdis = splittedData[9];
       
 
-        String sqlInsert = "UPDATE lhr_ort_niw_urine_chart SET time_map='"+time_map+"',result_timebowelsurinetemp='"+result_timebowelsurinetemp+"',result_pulse='"+result_pulse+"',result_date='"+result_date+"',discipline = '"+dis+"',subdiscipline_cd='"+subdis+"' WHERE pmi_no='"+pmi+"' and hfc_cd='"+hfc+"' and episode_date ='"+episodeDate+"' and encounter_date='"+encounterDate+"'";
+        String sqlInsert = "UPDATE lhr_ort_niw_urine_chart SET time_map='"+time_map+"',result_timebowelsurinetemp='"+result_timebowelsurinetemp+"',result_pulse='"+result_pulse+"',result_date='"+result_date+"',discipline_cd = '"+dis+"',subdiscipline_cd='"+subdis+"' WHERE pmi_no='"+pmi+"' and hfc_cd='"+hfc+"' and episode_date ='"+episodeDate+"' and encounter_date='"+encounterDate+"'";
         sql = rmic.setQuerySQL(conn.HOST, conn.PORT, sqlInsert);
 
         return sql;

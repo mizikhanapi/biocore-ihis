@@ -38,7 +38,7 @@ public class FitUtils {
         subdis = splittedData[9];
         
 
-        String sqlInsert = "INSERT INTO lhr_ort_niw_fits_chart (pmi_no,hfc_cd,episode_date,encounter_date,fits_datetime,nature_fits,duration,remarks,discipline_cd,subdicipline_cd) values('" + pmi + "','" + hfc + "','" + episodeDate + "','" + encounterDate + "','" + fits_datetime + "','" + nature_fits + "','" + duration + "','" + remarks + "','"+dis+"','"+subdis+"');";
+        String sqlInsert = "INSERT INTO lhr_ort_niw_fits_chart (pmi_no,hfc_cd,episode_date,encounter_date,fits_datetime,nature_fits,duration,remarks,discipline_cd,subdiscipline_cd) values('" + pmi + "','" + hfc + "','" + episodeDate + "','" + encounterDate + "','" + fits_datetime + "','" + nature_fits + "','" + duration + "','" + remarks + "','"+dis+"','"+subdis+"');";
         sql = rmic.setQuerySQL(conn.HOST, conn.PORT, sqlInsert);
 
         return sql;
@@ -60,7 +60,7 @@ public class FitUtils {
 
         if (viewBy.equalsIgnoreCase("today")) {
             //              0       1       2               3                        4                                 5                                   6                                    7         8        9             10      11      
-            sql = "SELECT pmi_no,hfc_cd,episode_date,encounter_date,DATE_FORMAT(DATE(fits_datetime),'%d/%m/%Y'),TIME_FORMAT(DATE(fits_datetime),'%r'),TIME_FORMAT(DATE(fits_datetime),'%T'),nature_fits,duration,remarks,discipline_cd,subdiscipline_cd FROM lhr_ort_niw_fits_chart where pmi_no ='" + pmino + "' and DATE(fits_datetime) ='" + dateTime + "' order by fits_datetimeand ;";
+            sql = "SELECT pmi_no,hfc_cd,episode_date,encounter_date,DATE_FORMAT(DATE(fits_datetime),'%d/%m/%Y'),TIME_FORMAT(DATE(fits_datetime),'%r'),TIME_FORMAT(DATE(fits_datetime),'%T'),nature_fits,duration,remarks,discipline_cd,subdiscipline_cd FROM lhr_ort_niw_fits_chart where pmi_no ='" + pmino + "' and DATE(fits_datetime) ='" + dateTime + "' order by fits_datetime;";
 
         } else if (viewBy.equalsIgnoreCase("yesterday")) {
             sql = "SELECT pmi_no,hfc_cd,episode_date,encounter_date,DATE_FORMAT(DATE(fits_datetime),'%d/%m/%Y'),TIME_FORMAT(DATE(fits_datetime),'%r'),TIME_FORMAT(DATE(fits_datetime),'%T'),nature_fits,duration,remarks,discipline_cd,subdiscipline_cd FROM lhr_ort_niw_fits_chartwhere pmi_no ='" + pmino + "' and  DATE(fits_datetime) = SUBDATE('" + dateTime + "',1) order by fits_datetime ;";
