@@ -133,6 +133,15 @@
     </servlet-mapping>
     
     <servlet>
+        <servlet-name>Assign_Specimen</servlet-name>
+        <jsp-file>/LIS/assignSpecimen.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Assign_Specimen</servlet-name>
+        <url-pattern>/LIS/Assign_Specimen</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
         <servlet-name>Receive_Specimen</servlet-name>
         <jsp-file>/LIS/ManageResult.jsp</jsp-file>
     </servlet>
@@ -291,87 +300,7 @@
 
 
 
- 
-    <!-- Mapping For ADT Hidding URL Start -->
-    
-    
-    <!-- mapping for ADT HIS070001 -->
-    <servlet>
-        <servlet-name>Manage_In_Patient</servlet-name>
-        <jsp-file>/ADT/HIS070001.jsp</jsp-file>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>Manage_In_Patient</servlet-name>
-        <url-pattern>/ADT/Manage_In_Patient</url-pattern>
-    </servlet-mapping>
-    <!-- mapping for ADT HIS070001 -->
-    
-     <!-- mapping for ADT HIS070002 -->
-    <servlet>
-        <servlet-name> Ward_Occupancy</servlet-name>
-        <jsp-file>/ADT/HIS070002.jsp</jsp-file>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name> Ward_Occupancy</servlet-name>
-        <url-pattern>/ADT/Ward_Occupancy</url-pattern>
-    </servlet-mapping>
-    <!-- mapping for ADT HIS070002 -->
-    
-    <!-- mapping for ADT HIS070003 -->
-    <servlet>
-        <servlet-name>Maintain_Ward_Code</servlet-name>
-        <jsp-file>/ADT/HIS070003.jsp</jsp-file>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>Maintain_Ward_Code</servlet-name>
-        <url-pattern>/ADT/Maintain_Ward_Code</url-pattern>
-    </servlet-mapping>
-    <!-- mapping for ADT HIS070003 -->
-    
-     <!-- mapping for ADT HIS070004 -->
-    <servlet>
-        <servlet-name>Bed_Booking_Master_Summary</servlet-name>
-        <jsp-file>/ADT/HIS070004.jsp</jsp-file>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>Bed_Booking_Master_Summary</servlet-name>
-        <url-pattern>/ADT/Bed_Booking_Master_Summary</url-pattern>
-    </servlet-mapping>
-    <!-- mapping for ADT HIS070004 -->
-    
-     <!-- mapping for ADT HIS070005 -->
-    <servlet>
-        <servlet-name>List_of_Discharge_Inpatient</servlet-name>
-        <jsp-file>/ADT/HIS070005.jsp</jsp-file>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>List_of_Discharge_Inpatient</servlet-name>
-        <url-pattern>/ADT/List_of_Discharge_Inpatient</url-pattern>
-    </servlet-mapping>
-    <!-- mapping for ADT HIS070005 -->
-    
-         <!-- mapping for ADT HIS070006 -->
-    <servlet>
-        <servlet-name>Report</servlet-name>
-        <jsp-file>/ADT/HIS070006.jsp</jsp-file>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>Report</servlet-name>
-        <url-pattern>/ADT/Report</url-pattern>
-    </servlet-mapping>
-    <!-- mapping for ADT HIS070006 -->
-    
-         <!-- mapping for ADT HIS070008 -->
-    <servlet>
-        <servlet-name>Maintain_Hospital_Charges</servlet-name>
-        <jsp-file>/ADT/HIS070008.jsp</jsp-file>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>Maintain_Hospital_Charges</servlet-name>
-        <url-pattern>/ADT/Maintain_Hospital_Charges</url-pattern>
-    </servlet-mapping>
-    <!-- mapping for ADT HIS070008 -->
-    <!-- Mapping For ADT Hidding URL End -->
+
     
     <session-config>
         <session-timeout>
