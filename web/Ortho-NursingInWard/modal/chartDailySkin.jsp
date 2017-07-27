@@ -229,7 +229,7 @@
                             <div class="form-group">
                                 <label class="col-md-12 control-label" for="textinput">Time</label>
                                 <div class="col-md-12">
-                                    <input type="time" class="form-control input-md" id="dailySkinPositionModalTime">
+                                    <input type="text" class="form-control input-md" id="dailySkinPositionModalTime" readonly>
                                 </div>
                             </div>
                         </div>

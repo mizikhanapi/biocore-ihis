@@ -100,35 +100,35 @@ public class DailySkinUtils {
         if (viewBy.equalsIgnoreCase("today")) {
 
             //              0       1       2               3               4                                   5                                6                  7
-            sql = "SELECT pmi_no,hfc_cd,episode_date,encounter_date,TIME_FORMAT(TIME(datetime),'%r'),DATE_FORMAT(DATE(datetime),'%d/%m/%Y'),activity,TIME_FORMAT(TIME(datetime),'%T') "
+            sql = "SELECT pmi_no,hfc_cd,episode_date,encounter_date,TIME_FORMAT(TIME(datetime),'%r'),DATE_FORMAT(DATE(datetime),'%d/%m/%Y'),activity,TIME_FORMAT(TIME(datetime),'%H:%i') "
                     + " FROM lhr_ort_niw_positioning "
                     + " where pmi_no ='" + pmino + "' and DATE(datetime) ='" + dateTime + "'; ";
 
         } else if (viewBy.equalsIgnoreCase("yesterday")) {
 
             //              0       1       2               3               4                                   5                                6                  7
-            sql = "SELECT pmi_no,hfc_cd,episode_date,encounter_date,TIME_FORMAT(TIME(datetime),'%r'),DATE_FORMAT(DATE(datetime),'%d/%m/%Y'),activity,TIME_FORMAT(TIME(datetime),'%T') "
+            sql = "SELECT pmi_no,hfc_cd,episode_date,encounter_date,TIME_FORMAT(TIME(datetime),'%r'),DATE_FORMAT(DATE(datetime),'%d/%m/%Y'),activity,TIME_FORMAT(TIME(datetime),'%H:%i') "
                     + " FROM lhr_ort_niw_positioning "
                     + " where pmi_no ='" + pmino + "' and DATE(datetime) = SUBDATE('" + dateTime + "',1); ";
 
         } else if (viewBy.equalsIgnoreCase("7day")) {
 
             //              0       1       2               3               4                                   5                                6                  7
-            sql = "SELECT pmi_no,hfc_cd,episode_date,encounter_date,TIME_FORMAT(TIME(datetime),'%r'),DATE_FORMAT(DATE(datetime),'%d/%m/%Y'),activity,TIME_FORMAT(TIME(datetime),'%T') "
+            sql = "SELECT pmi_no,hfc_cd,episode_date,encounter_date,TIME_FORMAT(TIME(datetime),'%r'),DATE_FORMAT(DATE(datetime),'%d/%m/%Y'),activity,TIME_FORMAT(TIME(datetime),'%H:%i') "
                     + " FROM lhr_ort_niw_positioning "
                     + " where pmi_no ='" + pmino + "' and DATE(datetime) between SUBDATE('" + dateTime + "',7) and '" + dateTime + "' ; ";
 
         } else if (viewBy.equalsIgnoreCase("30day")) {
 
             //              0       1       2               3               4                                   5                                6                  7
-            sql = "SELECT pmi_no,hfc_cd,episode_date,encounter_date,TIME_FORMAT(TIME(datetime),'%r'),DATE_FORMAT(DATE(datetime),'%d/%m/%Y'),activity,TIME_FORMAT(TIME(datetime),'%T') "
+            sql = "SELECT pmi_no,hfc_cd,episode_date,encounter_date,TIME_FORMAT(TIME(datetime),'%r'),DATE_FORMAT(DATE(datetime),'%d/%m/%Y'),activity,TIME_FORMAT(TIME(datetime),'%H:%i') "
                     + " FROM lhr_ort_niw_positioning "
                     + " where pmi_no ='" + pmino + "' and DATE(datetime) between SUBDATE('" + dateTime + "',30) and '" + dateTime + "'; ";
 
         } else if (viewBy.equalsIgnoreCase("60day")) {
 
             //              0       1       2               3               4                                   5                                6                  7
-            sql = "SELECT pmi_no,hfc_cd,episode_date,encounter_date,TIME_FORMAT(TIME(datetime),'%r'),DATE_FORMAT(DATE(datetime),'%d/%m/%Y'),activity,TIME_FORMAT(TIME(datetime),'%T') "
+            sql = "SELECT pmi_no,hfc_cd,episode_date,encounter_date,TIME_FORMAT(TIME(datetime),'%r'),DATE_FORMAT(DATE(datetime),'%d/%m/%Y'),activity,TIME_FORMAT(TIME(datetime),'%H:%i') "
                     + " FROM lhr_ort_niw_positioning "
                     + " where pmi_no ='" + pmino + "' and DATE(datetime) between SUBDATE('" + dateTime + "',60) and '" + dateTime + "' ; ";
 
@@ -139,7 +139,7 @@ public class DailySkinUtils {
             endDate = dateSplit[1];
 
             //              0       1       2               3               4                                   5                                6                  7
-            sql = "SELECT pmi_no,hfc_cd,episode_date,encounter_date,TIME_FORMAT(TIME(datetime),'%r'),DATE_FORMAT(DATE(datetime),'%d/%m/%Y'),activity,TIME_FORMAT(TIME(datetime),'%T') "
+            sql = "SELECT pmi_no,hfc_cd,episode_date,encounter_date,TIME_FORMAT(TIME(datetime),'%r'),DATE_FORMAT(DATE(datetime),'%d/%m/%Y'),activity,TIME_FORMAT(TIME(datetime),'%H:%i') "
                     + " FROM lhr_ort_niw_positioning "
                     + " where pmi_no ='" + pmino + "' and DATE(datetime) between '" + startDate + "' and '" + endDate + "'; ";
 
