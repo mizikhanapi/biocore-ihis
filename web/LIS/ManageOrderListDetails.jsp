@@ -23,7 +23,7 @@
         String my_1_hfc_cd = (String) session.getAttribute("HEALTH_FACILITY_CODE");
         //out.print(orderNo);
         //String orderList = "SELECT item_cd,item_name,spe_source,volume,requestor_comments,filler_comments,specimen_status,Verification,collectionDate FROM lis_order_detail WHERE order_no = '" + orderNo + "'";
-        String orderList = "SELECT LID.item_cd,LID.item_name,LID.spe_source,LID.spe_container,LID.volume,LID.special_inst,LID.status,LOD.`Verification`,LOD.created_date,LOD.comment,LOD.requestor_comments,LOD.pmi_no FROM lis_order_detail LOD, lis_item_detail LID WHERE LOD.item_cd = LID.item_cd AND LOD.order_no = '" + orderNo + "' AND LID.hfc_cd = '"+my_1_hfc_cd+"'";
+        String orderList = "SELECT LID.item_cd,LID.item_name,LID.spe_source,LID.spe_container,LID.volume,LID.special_inst,LID.status,LOD.`Verification`,LOD.created_date,LOD.comment,LOD.requestor_comments,LOD.pmi_no FROM lis_order_detail LOD, lis_item_detail LID WHERE LOD.item_cd = LID.item_cd AND LOD.order_no = '" + orderNo + "' AND LID.hfc_cd = '" + my_1_hfc_cd + "'";
         ArrayList<ArrayList<String>> dataOrderList;
         dataOrderList = conn.getData(orderList);
 
@@ -138,11 +138,12 @@
                         <script>
                             $(document).ready(function () {
                                 $("#btn_submit<%=i%>").click(function () {
+
                                     var tcode = $("#tcode_<%=i%>").val();
                                     var fcomment = $("#fcomment_<%=i%>").val();
                                     var order_no = "<%=orderNo%>";
                                     var collectionDate = $("#collection<%=i%>").val();
-                                    alert(tcode + " " + fcomment + " " + order_no + " " + collectionDate);
+                                    //alert(tcode + " " + fcomment + " " + order_no + " " + collectionDate);
                                     $.ajax({
                                         url: "odUpdate.jsp",
                                         type: "post",
@@ -154,18 +155,21 @@
                                         },
                                         timeout: 10000,
                                         success: function () {
-                                            $("#basicModal_<%=i%>").hide();
-                                            $(".modal-backdrop").hide();
-                                            alert("test");
+
                                             $.ajax({
                                                 url: "ManageOrderListDetails.jsp",
                                                 type: "post",
                                                 data: {orderNo: "<%=orderNo%>"},
                                                 timeout: 3000,
                                                 success: function (returnOrderDetailsTableHTML) {
-                                                    $('#ManageOrderDetailsListTable').html(returnOrderDetailsTableHTML);
-                                                    $('#ManageOrderDetailsListTable').trigger('contentchanged');
                                                     $('.nav-tabs a[href="#tab_default_2"]').tab('show');
+                                                    $('#ManageOrderDetailsListTable').html(returnOrderDetailsTableHTML);
+                                                    console.log(returnOrderDetailsTableHTML);
+                                                    $('#ManageOrderDetailsListTable').trigger('contentchanged');
+                                                    $('#basicModal_<%=i%>').modal('toggle');
+                                                    $("#basicModal_<%=i%>").hide();
+                                                    $(".modal-backdrop").hide();
+                                                    bootbox.alert("Collection Date is changed.");
                                                 }
                                             });
 
@@ -178,35 +182,20 @@
                                 });
 
                                 $("#btn_cancel<%=i%>").click(function () {
-                                    var tcode = $("#tcode_<%=i%>").val();
-                                    var fcomment = $("#fcomment_<%=i%>").val();
-                                    var order_no = "<%=orderNo%>";
-                                    var collectionDate = $("#collection<%=i%>").val();
-
                                     $.ajax({
-                                        url: "odcancel.jsp",
+                                        url: "ManageOrderListDetails.jsp",
                                         type: "post",
-                                        data: {
-                                            tcode: tcode,
-                                            order_no: order_no,
-                                            collectionDate: collectionDate,
-                                            fcomment: fcomment
-                                        },
-                                        timeout: 10000,
-                                        success: function (data) {
-                                            var d = data.split("|");
-                                            if (d[1] == '1') {
-                                                alert("Collection date is cancel.");
-                                                $("#ManageOrderDetailsListTable").load("ManageOrderListDetails.jsp");
-                                                //window.location.reload();
-                                                $("#basicModal_<%=i%>").hide();
-                                                $(".modal-backdrop").hide();
-                                            } else {
-                                                alert("Update failed!");
-                                            }
-                                        },
-                                        error: function (err) {
-                                            alert("Error update!");
+                                        data: {orderNo: "<%=orderNo%>"},
+                                        timeout: 3000,
+                                        success: function (returnOrderDetailsTableHTML) {
+                                            $('.nav-tabs a[href="#tab_default_2"]').tab('show');
+                                            $('#ManageOrderDetailsListTable').html(returnOrderDetailsTableHTML);
+                                            console.log(returnOrderDetailsTableHTML);
+                                            $('#ManageOrderDetailsListTable').trigger('contentchanged');
+                                            $('#basicModal_<%=i%>').modal('toggle');
+                                            $("#basicModal_<%=i%>").hide();
+                                            $(".modal-backdrop").hide();
+                                            bootbox.alert("Collection Date is cancel.");
                                         }
                                     });
                                 });
@@ -228,7 +217,7 @@
             </tbody>
         </table>
     </div>
-<br/>
+    <br/>
     <div style = "clear: right; float: right; text-align: right;">
         <input type="text" value="<%=pmino%>" name="pmino" style=" display: none;">
         <input type="text" value="<%=orderNo%>" name="order_no" style="display:none;">
