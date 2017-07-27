@@ -22,6 +22,7 @@
     CheckDateFormat cdf = new CheckDateFormat();
     String idType = request.getParameter("idType");
     String idInput = request.getParameter("idInput");
+
     String sql = "";
     String sql2 = "";
 
@@ -46,7 +47,7 @@
     Config.getFile_url(session);
 
     String hfc = session.getAttribute("HEALTH_FACILITY_CODE").toString();
-
+    out.print(idType);
     //search based on ID Type
     if (idType.equals("001")) { //PMI No
         sql = "select w.pmi_no, w.episode_date,h.hfc_name,d.discipline_name,w.new_ic_no,w.old_ic_no "
@@ -71,14 +72,14 @@
                 + "from wis_inpatient_episode w "
                 + "inner join adm_health_facility h on w.hfc_cd = h.hfc_cd "
                 + "inner join  adm_discipline d on w.discipline_cd = d.discipline_cd "
-                 + "where w.pmi_no = '" + idInput + "' AND w.inpatient_status = '1' "
+                 + "where w.`NEW_IC_NO` = '" + idInput + "' AND w.inpatient_status = '1' "
                 + "GROUP BY w.`EPISODE_DATE` "
                 + "ORDER BY w.`EPISODE_DATE` "
                 + "DESC;;";
         sql2 = "select p.pmi_no,p.episode_date,h.hfc_name,d.discipline_name,p.new_ic_no,p.old_ic_no from pms_episode p "
                 + "inner join adm_health_facility h on p.`HEALTH_FACILITY_CODE` = h.hfc_cd "
                 + "inner join  adm_discipline d on p.DISCIPLINE_CODE = d.discipline_cd "
-                + "where p.pmi_no = '" + idInput + "' AND p.status = '1'"
+                + "where p.`NEW_IC_NO` = '" + idInput + "' AND p.status = '1'"
                 + "GROUP BY p.`EPISODE_DATE` "
                 + "ORDER BY p.`EPISODE_DATE` DESC;;;";
 
@@ -87,7 +88,7 @@
                 + "from wis_inpatient_episode w "
                 + "inner join adm_health_facility h on w.hfc_cd = h.hfc_cd "
                 + "inner join  adm_discipline d on w.discipline_cd = d.discipline_cd "
-                 + "where w.pmi_no = '" + idInput + "' AND w.inpatient_status = '1' "
+                 + "where w.`OLD_IC_NO` = '" + idInput + "' AND w.inpatient_status = '1' "
                 + "GROUP BY w.`EPISODE_DATE` "
                 + "ORDER BY w.`EPISODE_DATE` DESC;;";
         
@@ -95,22 +96,55 @@
                 + "from pms_episode p "
                 + "inner join adm_health_facility h on p.`HEALTH_FACILITY_CODE` = h.hfc_cd "
                 + "inner join  adm_discipline d on p.DISCIPLINE_CODE = d.discipline_cd "
-                + "where p.pmi_no = '" + idInput + "' AND p.status = '1'"
+                + "where p.`OLD_IC_NO` = '" + idInput + "' AND p.status = '1'"
+                + "GROUP BY p.`EPISODE_DATE` "
+                + "ORDER BY p.`EPISODE_DATE` DESC;;;";
+    }else if (idType.equals("004")) { // Matric No
+        sql = "select w.pmi_no,w.episode_date,h.hfc_name,d.discipline_name,w.new_ic_no,w.old_ic_no "
+                + "from wis_inpatient_episode w "
+                + "inner join adm_health_facility h on w.hfc_cd = h.hfc_cd "
+                + "inner join  adm_discipline d on w.discipline_cd = d.discipline_cd "
+                 + "where w.`ID_NO` = '" + idInput + "' AND w.inpatient_status = '1' "
+                + "GROUP BY w.`EPISODE_DATE` "
+                + "ORDER BY w.`EPISODE_DATE` DESC;;";
+        
+        sql2 = "select p.pmi_no,p.episode_date,h.hfc_name,d.discipline_name,p.new_ic_no,p.old_ic_no "
+                + "from pms_episode p "
+                + "inner join adm_health_facility h on p.`HEALTH_FACILITY_CODE` = h.hfc_cd "
+                + "inner join  adm_discipline d on p.DISCIPLINE_CODE = d.discipline_cd "
+                + "where p.id_no = '" + idInput + "' AND p.status = '1'"
+                + "GROUP BY p.`EPISODE_DATE` "
+                + "ORDER BY p.`EPISODE_DATE` "
+                + "DESC;;;";
+    }else if (idType.equals("005")) { // Staff No
+        sql = "select w.pmi_no,w.episode_date,h.hfc_name,d.discipline_name,w.new_ic_no,w.old_ic_no "
+                + "from wis_inpatient_episode w "
+                + "inner join adm_health_facility h on w.hfc_cd = h.hfc_cd "
+                + "inner join  adm_discipline d on w.discipline_cd = d.discipline_cd "
+                 + "where w.`ID_NO` = '" + idInput + "' AND w.inpatient_status = '1' "
+                + "GROUP BY w.`EPISODE_DATE` "
+                + "ORDER BY w.`EPISODE_DATE` DESC;;";
+        
+        sql2 = "select p.pmi_no,p.episode_date,h.hfc_name,d.discipline_name,p.new_ic_no,p.old_ic_no "
+                + "from pms_episode p "
+                + "inner join adm_health_facility h on p.`HEALTH_FACILITY_CODE` = h.hfc_cd "
+                + "inner join  adm_discipline d on p.DISCIPLINE_CODE = d.discipline_cd "
+                + "where p.`ID_NO` = '" + idInput + "' AND p.status = '1'"
                 + "GROUP BY p.`EPISODE_DATE` "
                 + "ORDER BY p.`EPISODE_DATE` DESC;;;";
     }
-
+    
     ArrayList<ArrayList<String>> searchID;
     searchID = conn.getData(sql);
 
     ArrayList<ArrayList<String>> searchID1;
     searchID1 = conn.getData(sql2);
 
-    //out.println(searchID);
+  
     if (searchID.size() > 0 || searchID1.size() > 0) {
 
         //Convert Code to Description
-        String sqlPatient = "select pmi_no,patient_name,new_ic_no,blood_type,sex_code,id_type,birth_date,race_code,allergy_ind,old_ic_no from pms_patient_biodata where pmi_no = '" + idInput + "' or new_ic_no = '" + idInput + "' or old_ic_no = '" + idInput + "'";
+        String sqlPatient = "select pmi_no,patient_name,new_ic_no,blood_type,sex_code,id_type,birth_date,race_code,allergy_ind,old_ic_no from pms_patient_biodata where pmi_no = '" + idInput + "' or new_ic_no = '" + idInput + "' or old_ic_no = '" + idInput + "' or id_no =  '"+idInput+"' ";
         ArrayList<ArrayList<String>> dataQueue = conn.getData(sqlPatient);
 
         String pmino = dataQueue.get(0).get(0);
@@ -118,7 +152,7 @@
         String icnew = dataQueue.get(0).get(2);
         String icold = dataQueue.get(0).get(9);
 
-        String sqlFullPatient = "select * from emedica.pms_patient_biodata where pmi_no = '" + pmino + "' or new_ic_no = '" + icnew + "' or old_ic_no = '" + icold + "'";
+        String sqlFullPatient = "select * from emedica.pms_patient_biodata where pmi_no = '" + pmino + "' or new_ic_no = '" + icnew + "' or old_ic_no = '" + icold + "' or id_no =  '"+idInput+"'";
         ArrayList<ArrayList<String>> dataPatientFull = conn.getData(sqlFullPatient);
 
         if (dataQueue.get(0).get(3).equals("-")) {
@@ -321,6 +355,7 @@
 <%
     } else {
         out.print("1");
+        out.print(sql2);
     }
 %>
 

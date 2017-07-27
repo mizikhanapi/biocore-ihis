@@ -192,7 +192,8 @@
                         </div>
                     </div>
                 </div>
-                <table class="table table-bordered table-striped table-guling col-md-12" style="overflow-x: auto">
+                <div class="table-responsive">
+                <table class="table table-bordered table-striped table-guling col-md-12" >
                     <thead id="tableOrderPOSSurgical">
                         <tr>
                            
@@ -212,7 +213,8 @@
                     </tbody>
                 </table>
 
-            </div>   
+            </div> 
+                </div>
             <div class="modal-footer">
                 <div class="btn-group btn-group-justified" role="group" aria-label="group button">
                     <div class="btn-group" role="group">

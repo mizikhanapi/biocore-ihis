@@ -7,6 +7,8 @@
     //String key = request.getParameter("input");
     String name = request.getParameter("name");
     String cat_cd = request.getParameter("cat_cd");
+//    String name = "Destruction of Brain, Percutaneous Endoscopic Approach";
+//    String cat_cd = "005";
     String hfc_cd = session.getAttribute("HEALTH_FACILITY_CODE").toString();
 
     String searchProblem = "SELECT procedure_cd  FROM opt_procedure   WHERE `procedure_longName` = '"+name+"'  AND category_cd = '"+cat_cd+"' AND hfc_cd = '"+hfc_cd+"'  ";

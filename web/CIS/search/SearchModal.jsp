@@ -37,11 +37,7 @@
                             <div class="col-md-4">
                                 <select id="idType" name="idType" class="form-control" required="">
                                     <option selected="" disabled="" value="-"> Please select ID type</option>
-                                    <!--                <option value="pmino">PMI No</option>
-                                                    <option value="icnew">IC No (NEW)</option>
-                                                    <option value="icold">IC No (OLD)</option>
-                                                    <option value="matricno">Matric No</option>
-                                                    <option value="staffno">Staff No</option>-->
+
                                     <%  if (dataSystemStatus2.equals("0")) {
 
                                         } else if (dataSystemStatus2.equals("1")) {
@@ -102,10 +98,11 @@
                     if (typeApp === "") {
                         alert("Please Make Sure The Fields Is Filled!");
                     } else {
-             
+                       var data = {idType: typeApp, idInput: inputApp};
+                       console.log(data);
                         $.ajax({
                             type: "POST",
-                            data: {idType: typeApp, idInput: inputApp},
+                            data: data,
                             url: "search/searchID.jsp", // call the jsp file ajax/tuto-autocomplete.php
                             timeout: 10000,
                             success: function (list) {

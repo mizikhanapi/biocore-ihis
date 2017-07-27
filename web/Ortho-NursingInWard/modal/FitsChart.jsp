@@ -131,7 +131,7 @@
 
         var assignBy = doctor_id;
 
-        var datas = pmi_no + "|" + hfc_cd1 + "|" + epDate + "|" + encounterDate + "|" + treatmentDate +" "+time+":00.0|" + NOF + "|" + DU + "|" + REMARK+"|"+dis+"|"+subdis;
+        var datas = pmi_no + "|" + hfc_cd1 + "|" + epDate + "|" + encounterDate + "|" + treatmentDate +" "+time+":00.0|" + NOF + "|" + DU + "|" + REMARK+"|"+dis+"|"+subdis+"|"+assignBy;
 
         $.ajax({
             type: "post",

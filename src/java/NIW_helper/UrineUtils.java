@@ -23,7 +23,7 @@ public class UrineUtils {
     public Boolean addUrine(String datas) {
         Boolean sql = false;
         String splittedData[] = datas.split("\\|", -1);
-        String pmi, hfc, episodeDate, encounterDate, time_map, result_timebowelsurinetemp, result_pulse, result_date,dis,subdis;
+        String pmi, hfc, episodeDate, encounterDate, time_map, result_timebowelsurinetemp, result_pulse, result_date,dis,subdis,assignby;
 
         pmi = splittedData[0];
         hfc = splittedData[1];
@@ -35,9 +35,10 @@ public class UrineUtils {
         result_date = splittedData[7];
         dis = splittedData[8];
         subdis = splittedData[9];
+        assignby = splittedData[10];
       
 
-        String sqlInsert = "INSERT INTO lhr_ort_niw_urine_chart(pmi_no,hfc_cd,episode_date,encounter_date,time_map,result_timebowelsurinetemp,result_pulse,result_date,discipline_cd,subdiscipline_cd) VALUES('" + pmi + "','" + hfc + "','" + episodeDate + "','" + encounterDate + "','" + time_map + "','" + result_timebowelsurinetemp + "','" + result_pulse + "','" + result_date+"','"+dis+"','"+subdis+"')";
+        String sqlInsert = "INSERT INTO lhr_ort_niw_urine_chart(pmi_no,hfc_cd,episode_date,encounter_date,time_map,result_timebowelsurinetemp,result_pulse,result_date,discipline_cd,subdiscipline_cd,created_by,created_date) VALUES('" + pmi + "','" + hfc + "','" + episodeDate + "','" + encounterDate + "','" + time_map + "','" + result_timebowelsurinetemp + "','" + result_pulse + "','" + result_date+"','"+dis+"','"+subdis+"','"+assignby+"',now())";
         sql = rmic.setQuerySQL(conn.HOST, conn.PORT, sqlInsert);
 
         return sql;
