@@ -65,7 +65,7 @@
                             <div class="form-group">
                                 <label class="col-md-12 control-label" for="textinput">Total in Bottle</label>
                                 <div class="col-md-12">
-                                    <input type="text" class="form-control input-md" id="NIWredivacTIB">
+                                    <input type="text" class="form-control input-md numbersOnly" id="NIWredivacTIB">
                                 </div>
                             </div>
                         </div>
@@ -74,7 +74,7 @@
                             <div class="form-group">
                                 <label class="col-md-12 control-label" for="textinput">Amount increased / shift</label>
                                 <div class="col-md-12">
-                                    <input type="text" class="form-control input-md" id="NIWredivacAIS">
+                                    <input type="text" class="form-control input-md numbersOnly" id="NIWredivacAIS">
                                 </div>
                             </div>
                         </div>
@@ -86,7 +86,7 @@
                             <div class="form-group">
                                 <label class="col-md-12 control-label" for="textinput">Total in Bottle end of shift</label>
                                 <div class="col-md-12">
-                                    <input type="text" class="form-control input-md" id="NIWredivacTBES">
+                                    <input type="text" class="form-control input-md numbersOnly" id="NIWredivacTBES">
                                 </div>
                             </div>
                         </div>

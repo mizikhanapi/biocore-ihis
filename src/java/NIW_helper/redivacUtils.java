@@ -40,7 +40,7 @@ public class redivacUtils {
         dis  = splittedData[11];
         subdis = splittedData[12];
 
-        String sqlInsert = "INSERT INTO lhr_ort_niw_redivac_drain_chart (pmi_no,hfc_cd,episode_date,encounter_date,radivac_drain_date,shift,total_in_bottle,amount_increase_shift,total_in_bottle_es,remarks,assign_by,discipline_cd,subdiscipline_cd) values('" + pmi + "','" + hfc + "','" + episodeDate + "','" + encounterDate + "','" + radivac_drain_date + "','" + shift + "','" + total_in_bottle + "','" + amount_increase_shift + "','" + total_in_bottle_es + "','" + remarks + "','" + assignBy + "','"+dis+"','"+subdis+"');";
+        String sqlInsert = "INSERT INTO lhr_ort_niw_redivac_drain_chart (pmi_no,hfc_cd,episode_date,encounter_date,radivac_drain_date,shift,total_in_bottle,amount_increase_shift,total_in_bottle_es,remarks,assign_by,discipline_cd,subdiscipline_cd,created_by,created_date) values('" + pmi + "','" + hfc + "','" + episodeDate + "','" + encounterDate + "','" + radivac_drain_date + "','" + shift + "','" + total_in_bottle + "','" + amount_increase_shift + "','" + total_in_bottle_es + "','" + remarks + "','" + assignBy + "','"+dis+"','"+subdis+"','"+assignBy+"',now());";
         sql = rmic.setQuerySQL(conn.HOST, conn.PORT, sqlInsert);
 
         return sql;

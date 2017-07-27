@@ -194,8 +194,9 @@
         var epDate = episodeDate;
         var dis = "<%=session.getAttribute("SUB_DISCIPLINE_CODE").toString()%>";
         var subdis = "<%=session.getAttribute("DISCIPLINE_CODE").toString()%>";
+        var assignBy = doctor_id;
 
-        var datas = pmi_no + "|" + hfc_cd1 + "|" + epDate + "|" + encounterDate + "| | |" + newDate + " " + time + ":00.0|" + pulse + "|" + systolic + "|" + dialotic + "|" + respiratoryRate + "|" + oxygenSatu + "|" + painScore + "|" + comment+"|"+dis+"|"+subdis;
+        var datas = pmi_no + "|" + hfc_cd1 + "|" + epDate + "|" + encounterDate + "| | |" + newDate + " " + time + ":00.0|" + pulse + "|" + systolic + "|" + dialotic + "|" + respiratoryRate + "|" + oxygenSatu + "|" + painScore + "|" + comment+"|"+dis+"|"+subdis+"|"+assignBy;
 
         $.ajax({
             type: "post",
