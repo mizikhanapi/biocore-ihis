@@ -180,11 +180,11 @@
                                                         $("#OrderMaster").load("OrderMaster1.jsp");
                                                         $("#OrderDetail").load("OrderDetail1.jsp");
 
-                                                        $('#risManageOrderListTable').DataTable({
+                                                        $('#risManageOrderListTable').dataTable({
+                                                            "order": [[0, 'desc']],
                                                             language: {
-                                                                "order": [[ 0, "desc" ]],
                                                                 "emptyTable": "No order available to display for today"
-                                                                
+
                                                             }
                                                         });
                                                     });

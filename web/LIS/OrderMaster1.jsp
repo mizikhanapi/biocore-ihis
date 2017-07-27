@@ -58,9 +58,7 @@
 </tbody>
 </table>
 <%
-    }
-else
-{
+} else {
 %>
 <table  id="risManageOrderListTable"  class="table table-filter table-striped table-bordered table-hover" style="background: #fff; border: 1px solid #ccc; width: 100%">
     <thead>
@@ -74,7 +72,6 @@ else
 
 
     <%
-        
         String sql = "SELECT lis_order_master.ORDER_NO,lis_order_master.PMI_NO,ahf.hfc_name,lis_order_master.episode_date,lis_order_master.encounter_date,lis_order_master.order_date,a.`USER_NAME`,lis_order_master.order_from_discipline,lis_order_master.order_to_discipline,lis_order_master.HFC_FROM,lis_order_master.HFC_TO,lis_order_master.created_by,lis_order_master.order_status,pms_patient_biodata.`PATIENT_NAME`,pms_patient_biodata.NEW_IC_NO,pms_patient_biodata.BIRTH_DATE,pms_patient_biodata.SEX_CODE,pms_patient_biodata.BLOOD_TYPE,lis_order_master.order_status,s.description,b.description  FROM lis_order_master JOIN pms_patient_biodata ON (lis_order_master.PMI_NO = pms_patient_biodata.PMI_NO) LEFT JOIN adm_lookup_detail s on pms_patient_biodata.SEX_CODE = s.detail_reference_code AND s.master_reference_code = '0041' AND s.hfc_cd = lis_order_master.hfc_cd LEFT JOIN adm_lookup_detail b on pms_patient_biodata.BLOOD_TYPE = b.detail_reference_code AND b.master_reference_code = '0074' AND b.hfc_cd = lis_order_master.hfc_cd LEFT JOIN adm_users a on lis_order_master.order_by = a.`USER_ID` LEFT JOIN adm_health_facility ahf on lis_order_master.hfc_cd = ahf.hfc_cd WHERE lis_order_master.order_status <= '2' AND lis_order_master.hfc_cd = '" + hfc_cd + "' GROUP BY lis_order_master.ORDER_NO DESC";
 
         ArrayList<ArrayList<String>> dataRISOrderList = conn.getData(sql);
@@ -97,7 +94,7 @@ else
 </tbody>
 </table>
 <%
-}
+    }
 %>
 
 
@@ -106,11 +103,11 @@ else
 <script type="text/javascript" charset="utf-8">
 
     $(document).ready(function () {
-        $('#risManageOrderListTable').DataTable({
+        $('#risManageOrderListTable').dataTable({
+            "order": [[0, 'desc']],
             language: {
-                emptyTable: "No Order Available To Display"
-            }, initComplete: function (settings, json) {
-                $('.loading').hide();
+                "emptyTable": "No order available to display for today"
+
             }
         });
     });
