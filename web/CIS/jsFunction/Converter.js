@@ -379,7 +379,7 @@ function convertPOSSurgical(obj){
 }
 
 function convertADW(obj){
-   var msg = "ADW|"+episodeDate+"|"+obj.AdmitDate+" "+obj.AdmitTime+"^" +obj.AdmitToDisciplineCd+"^"+obj.AdmitToDiscipline+"^"+"ST-UD"+"^"+obj.WardNameCd+"^"+obj.WardClassCd+"^"+obj.WardClass+"^"+"ST-UD"+"^"+obj.Reason+"^"+obj.PatientReferFromCd+"^active^"+obj.AdmittedBefore+"^"+getDate()+"^"+ hfc_cd + "^" + doctor_id + "^" + doctor_name + "|<cr>\n";
+   var msg = "ADW|"+episodeDate+"|"+obj.AdmitDate+" "+obj.AdmitTime+"^" +obj.AdmitToDisciplineCd+"^"+obj.AdmitToDiscipline+"^"+"ST-UD"+"^"+obj.WardNameCd+"^"+obj.WardClassCd+"^"+obj.WardClass+"^"+"ST-UD"+"^"+obj.Reason+"^"+obj.PatientReferFromCd+"^active^"+obj.AdmittedBefore+"^"+encounterDate+"^"+ hfc_cd + "^" + doctor_id + "^" + doctor_name + "|<cr>\n";
    return msg;
 }
 
