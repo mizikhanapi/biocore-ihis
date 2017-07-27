@@ -7,6 +7,7 @@
 
 
 <%
+        Conn conns = new Conn();
     String hfcTYT = session.getAttribute("HEALTH_FACILITY_CODE").toString();
     String idTYT = session.getAttribute("USER_ID").toString();
     String disTYT = session.getAttribute("DISCIPLINE_CODE").toString();
@@ -35,7 +36,7 @@
         <tbody>
 
             <%
-                Conn conns = new Conn();
+            
                 String sqlFacilityType = "SELECT ward_class_name,ward_class_code,ward_class_status, hfc_cd  FROM wis_ward_class where discipline_cd ='"+disTYT+"' AND hfc_cd ='" + hfcTYT + "'";
                 ArrayList<ArrayList<String>> dataFacilityType = conns.getData(sqlFacilityType);
 
@@ -129,7 +130,7 @@
     </div>
 </div>
 
-
+<!--      <script src="old/assets/js/dataTables.bootstrap.min.js"></script>-->
 <!--<script src="bootstrap-3.3.6-dist/js/jquery.dataTables.min.js"></script>-->
 
 <script type="text/javascript" charset="utf-8">
@@ -208,14 +209,14 @@
                                 title: "Process Result",
                                 backdrop: true
                             });
-                            $.ajax({
-                                url: "listWard.jsp",
-                                type: "post",
-                                timeout: 10000,
-                                success: function (result2) {
-                                    $("#selectID").html(result2);
-                                }
-                            });
+//                            $.ajax({
+//                                url: "listWard.jsp",
+//                                type: "post",
+//                                timeout: 10000,
+//                                success: function (result2) {
+//                                    $("#selectID").html(result2);
+//                                }
+//                            });
                         } else if (data.trim() === 'Failed') {
                             bootbox.alert({
                                 message: "Update Failed",
@@ -280,14 +281,14 @@
                                     title: "Process Result",
                                     backdrop: true
                                 });
-                                $.ajax({
-                                    url: "listWard.jsp",
-                                    type: "post",
-                                    timeout: 10000,
-                                    success: function (result2) {
-                                        $("#selectID").html(result2);
-                                    }
-                                });
+//                                $.ajax({
+//                                    url: "listWard.jsp",
+//                                    type: "post",
+//                                    timeout: 10000,
+//                                    success: function (result2) {
+//                                        $("#selectID").html(result2);
+//                                    }
+//                                });
                             } else if (datas.trim() === 'Failed') {
                                 bootbox.alert({
                                     message: "Delete Failed",

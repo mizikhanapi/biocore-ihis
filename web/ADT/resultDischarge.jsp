@@ -413,10 +413,10 @@
         var TotalDiscountTRANSFER = (DiscountTRANSFER / 100) * RateTRANSFER;
         var TotalDischargeTRANSFER = (RateTRANSFER * totaltransferday) - TotalDiscountTRANSFER - DepositTRANSFER;
 
+        //    var TotalDischarge = TotalDischargeTRANSFER + TotalDischargeNORMAL;
+
+
         var TotalDischarge = TotalDischargeTRANSFER + TotalDischargeNORMAL;
-
-
-
 
         // var TotalDate = admitDate - dateBill;
 
@@ -442,7 +442,7 @@
         $("#TotalDischarge").val(TotalDischarge);
         $("#TotalDischargeNORMAL").val(TotalDischargeNORMAL);
         $("#TotalDischargeTRANSFER").val(TotalDischargeTRANSFER);
-    
+
 
         //$("#TotalDate").val(TotalDate);
 

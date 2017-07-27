@@ -42,14 +42,18 @@
     function searchPatientInWardS() {
         var idWard = $('#idWard').val();
         var methodSearch = "0";
-
         $.ajax({
             type: "post",
             url: "resultWard.jsp",
             data: {idWard: idWard, methodSearch: methodSearch},
             timeout: 10000,
             success: function (databack) {
-                $("#WardOccuTable").html(databack);
+             //  if ($.trim(databack) === "Success") {
+                    $("#WardOccuTable").html(databack);
+                    bootbox.alert("Success");
+               // } else if ($.trim(databack) === "Failed") {
+               //     bootbox.alert("There is no patient occupied in this ward");
+               // }
             }, error: function () {
 
             }
@@ -58,7 +62,6 @@
     $("#search_ward").on('click', function () {
         searchPatientInWardS();
     });
-
     //event on click clear buton
     $('#clearSearch').click(function () {
         $('#myForm2')[0].reset();

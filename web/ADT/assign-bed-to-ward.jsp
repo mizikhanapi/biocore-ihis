@@ -29,6 +29,7 @@
     <!-- header -->
 </head>
 <%
+            //Conn conn = new Conn();
     String hfcAS = session.getAttribute("HEALTH_FACILITY_CODE").toString();
     String idAS = session.getAttribute("USER_ID").toString();
     String disAS = session.getAttribute("DISCIPLINE_CODE").toString();
@@ -173,10 +174,11 @@
         </div>
     </div>
 </div>
-<!--<script src="bootstrap-3.3.6-dist/js/jquery.dataTables.min.js"></script>
+<!--<script src="bootstrap-3.3.6-dist/js/jquery.dataTables.min.js"></script>-->
+<!--
 <script src="searchDiscipline.jsp"></script>
 <script src="old/assets/js/searchDisipline.js" type="text/javascript"></script>-->
-
+<!--      <script src="old/assets/js/dataTables.bootstrap.min.js"></script>-->
 <script>
 
 //        $('#Ward_Class').on('change', function () {
@@ -189,7 +191,7 @@
 //        $('#Discipline').on('change',function(){
 //           console.log(this.val());
 //        });
-
+    
         $("#DisAss").on('keyup', function () { // everytime keyup event
             var input = $(this).val(); // We take the input value
             var hfc = $("#Rhfc").val();

@@ -30,6 +30,7 @@
 </head>
 
 <%
+    // Conn conn = new Conn();
     String hfc = session.getAttribute("HEALTH_FACILITY_CODE").toString();
     String id = session.getAttribute("USER_ID").toString();
     String dis = session.getAttribute("DISCIPLINE_CODE").toString();
@@ -70,26 +71,8 @@
                             <div class="form-group">
                                 <label class="col-md-3 control-label" for="selectbasic">Ward Class *</label>
                                 <div class="col-md-7" id="selectID">
-                                    <select id="WardClass" name="selectbasic" class="form-control">
-                                        <option value="null" selected="" disabled="">Select Ward Class</option>
-                                        <option value="-">-</option>
-
-
-                                        <%
-                                            String sql1 = "SELECT ward_class_code,ward_class_name FROM wis_ward_class WHERE hfc_cd ='" + hfc + "' ";
-                                            ArrayList<ArrayList<String>> dataClass1 = conn.getData(sql1);
-
-                                            int size4 = dataClass1.size();
-
-                                            for (int i = 0; i < size4; i++) {
-                                        %>
-                                        <option value="<%= dataClass1.get(i).get(0)%>"><%= dataClass1.get(i).get(1)%> </option>
-                                        <%
-                                            }
-                                        %>
-
-
-                                    </select>
+                                    <input id="WardClass1" name="WardClass1" placeholder="Insert Ward Class Code" maxlength="30" type="text"  class="form-control input-md">
+                                    <div id="WardClassList" class="search-drop"></div>
                                 </div>
                             </div>
                         </div>
@@ -313,14 +296,52 @@
 <script src="bootstrap-3.3.6-dist/js/bootstrap.min.js" type="text/javascript"></script>
 
 <script src="http://www.w3schools.com/lib/w3data.js"></script>-->
-<script src="bootstrap-3.3.6-dist/js/jquery.dataTables.min.js"></script>
+<!--<script src="bootstrap-3.3.6-dist/js/jquery.dataTables.min.js"></script>-->
 <!--<script src="searchDiscipline.jsp"></script>
 <script src="old/assets/js/searchDisipline.js" type="text/javascript"></script>-->
 
-
+<!--      <script src="old/assets/js/dataTables.bootstrap.min.js"></script>-->
 <script>
     w3IncludeHTML();
     $(document).ready(function () {
+
+
+        $("#WardClass1").on('keyup', function () { // everytime keyup event
+            var input = $(this).val(); // We take the input value
+            var hfc = $("#Rhfc").val();
+
+
+
+            if (input.length >= 1) { // Minimum characters = 2 (you can change)
+                $('#WardClassList').html('<img src="libraries/LoaderIcon.gif" />'); // Loader icon apprears in the <div id="match"></div>
+                var dataFields = {input: input, hfc: hfc}; // We pass input argument in Ajax
+                $.ajax({
+                    type: "POST",
+                    url: "facility-id-ward-class.jsp", // call the php file ajax/tuto-autocomplete.php
+                    data: dataFields, // Send dataFields var
+                    timeout: 3000,
+                    success: function (dataBack) { // If success
+                        $('#WardClassList').html(dataBack); // Return data (UL list) and insert it in the <div id="match"></div>
+                        $('#matchListWard li').on('click', function () { // When click on an element in the list
+                            //$('#masterCode2').text($(this).text()); // Update the field with the new element
+                            $('#WardClass1').val($(this).text());
+                            $('#WardClassList').text(''); // Clear the <div id="match"></div>
+                            var arrayData = $('#WardClass1').val().split("|");
+                            //console.log(arrayData);
+                            //console.log(arrayData[0].trim());
+                            //console.log(arrayData[1].trim());
+                        });
+                    },
+                    error: function () { // if error
+                        $('#WardClassList').text('Problem!');
+                    }
+                });
+            } else {
+                $('#WardClassList').text(''); // If less than 2 characters, clear the <div id="match"></div>
+            }
+
+        });
+
 
         $("#Dis").on('keyup', function () { // everytime keyup event
             var input = $(this).val(); // We take the input value
@@ -361,7 +382,9 @@
 
         $('#MWID_add').on('click', function () {
 
-            var WardClass = $('#WardClass').val();
+            var WardClass = $('#WardClass1').val();
+            var array_WardClass = WardClass.split("|");
+            var WardClass = array_WardClass[0];
             var WardID = $('#WardID').val();
             var Dis = $('#Dis').val();
             var array_dis = Dis.split("|");
@@ -546,7 +569,7 @@
 
 
         function reset() {
-            document.getElementById("WardClass").value = "";
+            document.getElementById("WardClass1").value = "";
             document.getElementById("WardID").value = "";
             document.getElementById("Dis").value = "";
             document.getElementById("WardName").value = "";

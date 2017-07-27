@@ -24,7 +24,7 @@
     String q = "select m.pmi_no,p.PATIENT_NAME,d.episode_date,d.ward_id,d.order_no,u.USER_NAME,m.order_status, m.order_no, m.order_by ,u.USER_ID, p.OLD_IC_NO, p.NEW_IC_NO, p.ID_TYPE, p.ID_NO, d.admission_reason,d.ward_class_code,d.ward_id, d.bed_id, d.order_status"
             + " from wis_order_master m left join wis_order_detail d on d.order_no = m.order_no "
             + "left join  adm_users u on  u.`USER_ID`= m.order_by "
-            + "left join pms_patient_biodata p on m.pmi_no = p.`PMI_NO` where m.order_status ='0' and d.order_status ='0' group by m.pmi_no ";
+            + "left join pms_patient_biodata p on m.pmi_no = p.`PMI_NO` where m.order_status ='0' and d.order_status ='0' and m.hfc_cd = '"+hfc+"'  group by m.pmi_no ";
 
 
     ArrayList<ArrayList<String>> dataQueue, dataQ;

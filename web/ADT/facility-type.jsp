@@ -11,6 +11,7 @@
 
 
 <%
+           // Conn conn = new Conn();
     String hfcTY = session.getAttribute("HEALTH_FACILITY_CODE").toString();
     String idTY = session.getAttribute("USER_ID").toString();
     String disTY = session.getAttribute("DISCIPLINE_CODE").toString();
@@ -99,7 +100,7 @@
         </div>
     </div>
 </div>
-
+<!--      <script src="old/assets/js/dataTables.bootstrap.min.js"></script>-->
 <!--        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
         <script src="bootstrap-3.3.6-dist/js/bootstrap.js" type="text/javascript"></script>
