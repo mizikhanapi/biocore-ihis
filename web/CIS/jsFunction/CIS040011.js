@@ -96,11 +96,11 @@ $(document).ready(function () {
 
     $("#tCISOESPOSearch").on("select:flexdatalist", function (value) {
         var name = $(this).val();
-        var cat_cd = $("#tCISOESPOCategoryName").val();
+        var cat_cd = $("#tCISOESPOCategoryCode").val();
         var data = {
             name: name,
             cat_cd: cat_cd
-        }
+        };
 
         $.ajax({
             type: "POST",
@@ -108,7 +108,8 @@ $(document).ready(function () {
             timeout: 3000,
             data: data,
             success: function (e) {
-                $("#tCISOESPOSearchCode").val(e.trim());
+                console.log(e);
+                $("#tCISOESPOSearch_Code").val(e.trim());
             }
         })
     });
