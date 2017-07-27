@@ -336,6 +336,14 @@
                 dateFormat: 'dd/mm/yy'
             });
 
+            $('#fluidBalanceIntakeModalTime').timepicker({
+                'timeFormat': 'HH:mm',
+                'scrollbar': 'true',
+                'minTime': '00:00',
+                'maxTime': '23:59',
+                'interval': 1
+            });
+
         });
         // Function For Add Button End
 
@@ -551,6 +559,14 @@
                 changeYear: true,
                 maxDate: '+0d',
                 dateFormat: 'dd/mm/yy'
+            });
+
+            $('#fluidBalanceIntakeModalTime').timepicker({
+                'timeFormat': 'HH:mm',
+                'scrollbar': 'true',
+                'minTime': '00:00',
+                'maxTime': '23:59',
+                'interval': 1
             });
 
             //get the row value

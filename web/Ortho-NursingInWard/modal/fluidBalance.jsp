@@ -32,7 +32,7 @@
                             <div class="form-group">
                                 <label class="col-md-12 control-label" for="textinput">Time</label>
                                 <div class="col-md-12">
-                                    <input type="time" class="form-control input-md" id="fluidBalanceIntakeModalTime">
+                                    <input type="text" class="form-control input-md" id="fluidBalanceIntakeModalTime" readonly>
                                 </div>
                             </div>
                         </div>
