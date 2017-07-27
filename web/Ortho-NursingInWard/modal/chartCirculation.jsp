@@ -32,7 +32,7 @@
                             <div class="form-group">
                                 <label class="col-md-12 control-label" for="textinput">Time</label>
                                 <div class="col-md-12">
-                                    <input type="time" class="form-control input-md" id="chartCirculationModalTime">
+                                    <input type="text" class="form-control input-md" id="chartCirculationModalTime" readonly>
                                 </div>
                             </div>
                         </div>

@@ -33,7 +33,7 @@ public class CirculationUtils {
             //              0       1       2               3        4      5               6                               7                             8
             sql = "SELECT pmi_no,hfc_cd,episode_date,encounter_date,ward,bed_no,TIME_FORMAT(TIME(datetime),'%r'),DATE_FORMAT(DATE(datetime),'%d/%m/%Y'),color, "
                     //      9       10       11       12                13                          
-                    + " sensation,hot_cold,movement,others,TIME_FORMAT(TIME(datetime),'%T') FROM lhr_ort_niw_chart_circulation "
+                    + " sensation,hot_cold,movement,others,TIME_FORMAT(TIME(datetime),'%H:%i') FROM lhr_ort_niw_chart_circulation "
                     + " where pmi_no ='" + pmino + "' and DATE(datetime) ='" + dateTime + "'; ";
 
         } else if (viewBy.equalsIgnoreCase("yesterday")) {
@@ -41,7 +41,7 @@ public class CirculationUtils {
             //              0       1       2               3        4      5               6                               7                             8
             sql = "SELECT pmi_no,hfc_cd,episode_date,encounter_date,ward,bed_no,TIME_FORMAT(TIME(datetime),'%r'),DATE_FORMAT(DATE(datetime),'%d/%m/%Y'),color, "
                     //      9       10       11       12                13                          
-                    + " sensation,hot_cold,movement,others,TIME_FORMAT(TIME(datetime),'%T') FROM lhr_ort_niw_chart_circulation "
+                    + " sensation,hot_cold,movement,others,TIME_FORMAT(TIME(datetime),'%H:%i') FROM lhr_ort_niw_chart_circulation "
                     + " where pmi_no ='" + pmino + "' and DATE(datetime) = SUBDATE('" + dateTime + "',1); ";
 
         } else if (viewBy.equalsIgnoreCase("7day")) {
@@ -49,7 +49,7 @@ public class CirculationUtils {
             //              0       1       2               3        4      5               6                               7                             8
             sql = "SELECT pmi_no,hfc_cd,episode_date,encounter_date,ward,bed_no,TIME_FORMAT(TIME(datetime),'%r'),DATE_FORMAT(DATE(datetime),'%d/%m/%Y'),color, "
                     //      9       10       11       12                13                          
-                    + " sensation,hot_cold,movement,others,TIME_FORMAT(TIME(datetime),'%T') FROM lhr_ort_niw_chart_circulation "
+                    + " sensation,hot_cold,movement,others,TIME_FORMAT(TIME(datetime),'%H:%i') FROM lhr_ort_niw_chart_circulation "
                     + " where pmi_no ='" + pmino + "' and DATE(datetime) between SUBDATE('" + dateTime + "',7) and '" + dateTime + "' ; ";
 
         } else if (viewBy.equalsIgnoreCase("30day")) {
@@ -57,7 +57,7 @@ public class CirculationUtils {
             //              0       1       2               3        4      5               6                               7                             8
             sql = "SELECT pmi_no,hfc_cd,episode_date,encounter_date,ward,bed_no,TIME_FORMAT(TIME(datetime),'%r'),DATE_FORMAT(DATE(datetime),'%d/%m/%Y'),color, "
                     //      9       10       11       12                13                          
-                    + " sensation,hot_cold,movement,others,TIME_FORMAT(TIME(datetime),'%T') FROM lhr_ort_niw_chart_circulation "
+                    + " sensation,hot_cold,movement,others,TIME_FORMAT(TIME(datetime),'%H:%i') FROM lhr_ort_niw_chart_circulation "
                     + " where pmi_no ='" + pmino + "' and DATE(datetime) between SUBDATE('" + dateTime + "',30) and '" + dateTime + "'; ";
 
         } else if (viewBy.equalsIgnoreCase("60day")) {
@@ -65,7 +65,7 @@ public class CirculationUtils {
             //              0       1       2               3        4      5               6                               7                             8
             sql = "SELECT pmi_no,hfc_cd,episode_date,encounter_date,ward,bed_no,TIME_FORMAT(TIME(datetime),'%r'),DATE_FORMAT(DATE(datetime),'%d/%m/%Y'),color, "
                     //      9       10       11       12                13                          
-                    + " sensation,hot_cold,movement,others,TIME_FORMAT(TIME(datetime),'%T') FROM lhr_ort_niw_chart_circulation "
+                    + " sensation,hot_cold,movement,others,TIME_FORMAT(TIME(datetime),'%H:%i') FROM lhr_ort_niw_chart_circulation "
                     + " where pmi_no ='" + pmino + "' and DATE(datetime) between SUBDATE('" + dateTime + "',60) and '" + dateTime + "' ; ";
 
         } else if (viewBy.equalsIgnoreCase("custom")) {
@@ -76,7 +76,7 @@ public class CirculationUtils {
             //              0       1       2               3        4      5               6                               7                             8
             sql = "SELECT pmi_no,hfc_cd,episode_date,encounter_date,ward,bed_no,TIME_FORMAT(TIME(datetime),'%r'),DATE_FORMAT(DATE(datetime),'%d/%m/%Y'),color, "
                     //      9       10       11       12                13                          
-                    + " sensation,hot_cold,movement,others,TIME_FORMAT(TIME(datetime),'%T') FROM lhr_ort_niw_chart_circulation "
+                    + " sensation,hot_cold,movement,others,TIME_FORMAT(TIME(datetime),'%H:%i') FROM lhr_ort_niw_chart_circulation "
                     + " where pmi_no ='" + pmino + "' and DATE(datetime) between '" + startDate + "' and '" + endDate + "'; ";
 
         }

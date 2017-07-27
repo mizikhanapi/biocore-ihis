@@ -283,6 +283,15 @@
                 dateFormat: 'dd/mm/yy'
             });
 
+
+            $('#chartCirculationModalTime').timepicker({
+                'timeFormat': 'HH:mm',
+                'scrollbar': 'true',
+                'minTime': '00:00',
+                'maxTime': '23:59',
+                'interval': 1
+            });
+
         });
         // Function For Add Button End
 
@@ -382,6 +391,15 @@
                 dateFormat: 'dd/mm/yy'
             });
 
+
+            $('#chartCirculationModalTime').timepicker({
+                'timeFormat': 'HH:mm',
+                'scrollbar': 'true',
+                'minTime': '00:00',
+                'maxTime': '23:59',
+                'interval': 1
+            });
+
             //get the row value
             var row = $(this).closest("tr");
             var rowData = row.find("#dataChartCirculationhidden").val();
@@ -407,6 +425,7 @@
 
         });
         // Function For Update Button End
+
 
         // Update Get Data And Send To Controller Function Start
         $('#circulationChart #chartCirculationModal_btnAdd_or_btnUpdate_div').on('click', '#chartCirculationUpdateModalBtn', function (e) {
@@ -470,7 +489,7 @@
 // ---------------------------------------------------------------------------- Delete ------------------------------------------------------------------------------------------- //
 
 
-        // Function For Update Button Start
+        // Function For Delete Button Start
         $('#tableChartCirculationDiv').on('click', '#tableChartCirculationTable #tableChartCirculationDeleteBtn', function (e) {
 
             //get the row value
@@ -545,6 +564,7 @@
             maxDate: '+0d'
         });
         // Date Picker For Initial End
+
 
         // Date Picker For Final Start
         $('#chartCirculationSelectAssessmentStart').on('change', function () {
