@@ -7,8 +7,8 @@
 <!-- the Compile on Save feature is turned off for the project. -->
 <!-- You can turn off the Compile on Save (or Deploy on Save) setting -->
 <!-- in the project's Project Properties dialog box.-->
-<project name="IHIS" default="default" basedir=".">
-    <description>Builds, tests, and runs the project IHIS.</description>
+<project name="i-HIS.com" default="default" basedir=".">
+    <description>Builds, tests, and runs the project i-HIS.com.</description>
     <import file="nbproject/build-impl.xml"/>
     <!--
 
