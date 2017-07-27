@@ -289,7 +289,7 @@ public class EHRMessageSender {
         String orderDateORC = format.format(now);         // Data 6
 
         String episodeDateORC = orderDate;                 // Data 7
-        String encounterDateORC = orderDate;               // Data 8
+        String encounterDateORC = format.format(now);               // Data 8
         String enteredByORC = userID;                      // Data 9
         String verifiedByORC = userID;                     // Data 10
         String designationORC = "";                        // Data 11

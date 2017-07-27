@@ -27,6 +27,14 @@
             String pat = request.getParameter("pmiNo");
             condition =" and (bio.pmi_no like '%"+pat+"%' or bio.patient_name like '%"+pat+"%') ";
         }
+        else if(type.equalsIgnoreCase("6")){
+            String consul = request.getParameter("consul");
+            condition=" and u.user_id='"+consul+"' ";
+        }
+         else if(type.equalsIgnoreCase("7")){
+            String roomNo = request.getParameter("roomNo");
+            condition=" and rm.room_no='"+roomNo+"' ";
+        }
         //                                        0                                                 1                                   2                       3                 4             5               6       7                       8               9
         String query ="select date_format(d.`startDateTime`, '%d/%m/%Y %H:%i'), date_format(d.`endDateTime`, '%d/%m/%Y %H:%i'), pro.procedure_cd, pro.`procedure_shortName`, d.ot_room_no, rm.room_name, bio.`PMI_NO`, bio.`PATIENT_NAME`, u.`USER_ID`, u.`USER_NAME` "
                 + "from opt_order_detail d "
@@ -42,7 +50,14 @@
         ArrayList<ArrayList<String>> dataSche = con.getData(query);
         
         if(dataSche.size() < 1){
-            out.print("<h3>Sorry, we can't find the schedule you're searching for. Please try search different word.</h3>");
+            String html = "<h3>Sorry, we can't find the schedule you're searching for. Please try search different word.</h3>";
+            
+            if(type.equalsIgnoreCase("6") )
+                html = "<h4>The doctor is 100% available.</h4>";
+            else if(type.equalsIgnoreCase("7"))
+                html = "<h4>The room is 100% available.</h4>";
+            
+            out.print(html);
         }
         else{
         
@@ -89,7 +104,9 @@
 
 </table>
 
-
+<%
+        if(!type.equalsIgnoreCase("6") && !type.equalsIgnoreCase("7")){
+%>
 <script type="text/javascript" charset="utf-8">
 
     $(function () {
@@ -101,6 +118,7 @@
 </script>
 
 <%
+            }// end if type 6 and 7
         
         }// end else. Got data
         

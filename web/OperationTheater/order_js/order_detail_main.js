@@ -141,72 +141,237 @@ $('#risOrderNewRequestButton').on('click', function () {
     $('#RNO_addForm')[0].reset(); //reset the form
     
     $('#RNO_pro_match').html('');
-    $('#RNO_div_redo').hide();
+    $('#RNO_cat_match').html('');
+    $('#RNO_consul_match').html('');
+    $('#RNO_room_match').html('');
     
     $('#RNO_proName').prop('disabled', false);
 
-    $('#RNO_div_btnAdd_or_update').html('<button type="submit" class="btn btn-success btn-block btn-lg" role="button" id="RNO_btnAdd">Add</button>');
+    $('#RNO_div_btnAdd_or_update').html('<button type="submit" class="btn btn-success btn-block btn-lg" role="button" id="RNO_btnAdd">Add Order</button>');
 });
 //=============================================================================
 
+//-------------- search procedure category ----------------------------
+$('#RNO_categoryName').flexdatalist({
+        minLength: 1,
+        searchIn: 'name', 
+        searchDelay: 2000,
+        selectionRequired: true,
+        url: "order_control/ResultPOSSurgicalCategorySearch.jsp",
+        visibleProperties: 'name',
+        cache: true,
+        valueProperty: 'value',
+        params: {
+            timeout: 3000,
+            success: function (result) {
+                console.log(result);
+                if (result == null) {
+                    $('#RNO_cat_match').html('No Record');
+                }
+            }
+        }
+    });
+    
+    $("#RNO_categoryName").on('before:flexdatalist.data', function (response) {
+        $('#RNO_cat_match').html('<img src="img/LoaderIcon.gif" />');
+    });
+    $("#RNO_categoryName").on('after:flexdatalist.data', function (response) {
+        $('#RNO_cat_match').html('');
+    });
+    $("#RNO_categoryName").on('select:flexdatalist', function (response) {
+        $('#RNO_cat_match').html('');
+        init_procedure_flex_search();
+    });
+
+//=========== end category search =================================
+
 //-------------------search procedure of new order --------------------------------------------------------
-
-
-$('#RNO_proName').on('keyup', function () {
+function init_procedure_flex_search(){
+    $('#RNO_proName').flexdatalist({
+        minLength: 1,
+        searchIn: 'name', 
+        searchDelay: 2000,
+        selectionRequired: true,
+        url: "order_control/ResultPOSSurgicalSearch.jsp?cat_cd="+$('#RNO_categoryName').val(),
+        visibleProperties: 'name',
+        cache: true,
+        valueProperty: 'value',
+        params: {
+            timeout: 3000,
+            success: function (result) {
+                console.log(result);
+                if (result == null) {
+                    $('#RNO_pro_match').html('No Record');
+                }
+            }
+        }
+    });
+    
+    $("#RNO_proName").on('before:flexdatalist.data', function (response) {
+        $('#RNO_pro_match').html('<img src="img/LoaderIcon.gif" />');
+    });
+    $("#RNO_proName").on('after:flexdatalist.data', function (response) {
+        $('#RNO_pro_match').html('');
+    });
    
-    var input = $(this).val();
+}
 
-    if (input.length > 0) {
+init_procedure_flex_search();
 
-       
-        $('#RNO_pro_match').html('<img src="img/ajax-loader.gif">');
-        var data = {
-           key: input
-        };
+//================= search procedure end =================================================
 
+//------------- search consultant ----------------------------
+$('#RNO_consultant').flexdatalist({
+        minLength: 1,
+        searchIn: 'name', 
+        searchDelay: 2000,
+        selectionRequired: true,
+        url: "order_control/ResultDOCTORSurgicalSearch.jsp",
+        visibleProperties: 'name',
+        cache: true,
+        valueProperty: 'value',
+        params: {
+            timeout: 3000,
+            success: function (result) {
+                console.log(result);
+                if (result == null) {
+                    $('#RNO_consul_match').html('No Record');
+                }
+            }
+        }
+    });
+    
+    $("#RNO_consultant").on('before:flexdatalist.data', function (response) {
+        $('#RNO_consul_match').html('<img src="img/LoaderIcon.gif" />');
+    });
+    $("#RNO_consultant").on('after:flexdatalist.data', function (response) {
+        $('#RNO_consul_match').html('');
+    });
+    $("#RNO_consultant").on('select:flexdatalist', function (response) {
+        $('#RNO_consul_match').html('');
+    });
+
+//============= end search consultant ===============================================
+
+//---------- search room ----------------------
+$('#RNO_room').flexdatalist({
+        minLength: 1,
+        searchIn: 'name', 
+        searchDelay: 2000,
+        selectionRequired: true,
+        url: "order_control/ResultOTRoomSearch.jsp",
+        visibleProperties: 'name',
+        cache: true,
+        valueProperty: 'value',
+        params: {
+            timeout: 3000,
+            success: function (result) {
+                console.log(result);
+                if (result == null) {
+                    $('#RNO_room_match').html('No Record');
+                }
+            }
+        }
+    });
+    
+    $("#RNO_room").on('before:flexdatalist.data', function (response) {
+        $('#RNO_room_match').html('<img src="img/LoaderIcon.gif" />');
+    });
+    $("#RNO_room").on('after:flexdatalist.data', function (response) {
+        $('#RNO_room_match').html('');
+    });
+    $("#RNO_room").on('select:flexdatalist', function (response) {
+        $('#RNO_room_match').html('');
+    });
+//========== end search room =====================
+
+//--------- view doctor schedule ---------------
+$('#RNO_btnConsul').on('click', function(){
+    var consulID = $('#RNO_consultant').val();
+    
+    if(consulID.trim() === ""){
+        $("#RNO_err").html("Select a consultant first!!!").show().fadeOut("slow");
+        $('#RNO_consultant').focus();
+        return false;
+    }
+    
+     var data ={
+            type : '6',
+            consul: consulID
+          };
+        
+        $('#RNO_div_schedule').html('<img src="img/LoaderIcon.gif" />');
+        
         $.ajax({
             type: 'POST',
-            url: "order_control/search_procedure.jsp",
+            url: "schedule/searchPatient_RoomSchedule.jsp",
             data: data,
+            timeout: 60000,
             success: function (data, textStatus, jqXHR) {
-                $('#RNO_pro_match').html(data);
-                $('#matchlist li').on('click', function () {
-
-                    $('#RNO_proName').val($(this).text());
-                    $('#RNO_pro_match').html('');
-                    
-                     $('#RNO_proName').prop('disabled', true);
-                    $('#RNO_div_redo').show();
-                    
-
-                });
-
-            },
+                        $('#RNO_div_schedule').html(data);
+                    },
             error: function (jqXHR, textStatus, errorThrown) {
-                $('#RNO_pro_match').text("Opps! " + errorThrown);
+                        $("#RNO_err").html("Oopps! "+errorThrown).show().fadeOut("slow");
+                    },
+            complete: function (jqXHR, textStatus ) {
+                        destroyScreenLoading();
+                }        
+                    
+        });
+    
+});
+//======== view doctor schedule end ===========
 
-            }
-
-
-        });//end ajax
-        
-
-    } else {
-        $('#RNO_pro_match').html('');
+//--------- view room schedule ---------------
+$('#RNO_btnRoom').on('click', function(){
+    var roomNo = $('#RNO_room').val();
+    
+    if(roomNo.trim() === ""){
+        $("#RNO_err").html("Select a room first!!!").show().fadeOut("slow");
+        $('#RNO_room').focus();
+        return false;
     }
+    
+     var data ={
+            type : '7',
+            roomNo: roomNo
+          };
+        
+        $('#RNO_div_schedule').html('<img src="img/LoaderIcon.gif" />');
+        
+        $.ajax({
+            type: 'POST',
+            url: "schedule/searchPatient_RoomSchedule.jsp",
+            data: data,
+            timeout: 60000,
+            success: function (data, textStatus, jqXHR) {
+                        $('#RNO_div_schedule').html(data);
+                    },
+            error: function (jqXHR, textStatus, errorThrown) {
+                        $("#RNO_err").html("Oopps! "+errorThrown).show().fadeOut("slow");
+                    },
+            complete: function (jqXHR, textStatus ) {
+                        destroyScreenLoading();
+                }        
+                    
+        });
+    
 });
-
-//--------------------------- reset procedure name on btnRedo click ----------------------------------------
-
-$('#RNO_btnRedo').on('click', function(e){
-    e.preventDefault();
-    $('#RNO_proName').val('').prop('disabled', false);
-    $('#RNO_div_redo').hide();
-});
-
-//==============================================================================
+//========== view room schedule end ============
 
 //------------------------- add new order start --------------------------------
+
+//set up date picker
+    $('#RNO_start').datetimepicker({
+        format: 'd/m/Y H:i',
+        step: 5
+    });
+    
+    $('#RNO_end').datetimepicker({
+        format: 'd/m/Y H:i',
+        step: 5
+    });
+
 $('#RNO_div_btnAdd_or_update').on('click', '#RNO_btnAdd', function () {
 
     var orderNo = $('#risOrderNo').val();

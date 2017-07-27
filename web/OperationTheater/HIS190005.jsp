@@ -1,20 +1,29 @@
 <%-- 
-    Document   : HIS190001
-    Created on : Jul 20, 2017, 2:51:51 PM
-    Author     : user
+    Document   : HIS190002
+    Created on : Jul 20, 2017, 2:52:16 PM
+    Author     : Ardhi Surya; rdsurya147@gmail.com; insta: @rdcfc
 --%>
+
+<%@page import="java.util.ArrayList"%>
+<%@page import="java.sql.*"%>
+<%@page import="dBConn.Conn"%>
+<%@page import="main.RMIConnector"%>
+<%@page import="Config.Config"%>
+
 <%@include file="../Entrance/validateSession.jsp" %>
+<%--<%@include file="validateModuleAccess.jsp" %>--%>
+
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>iHIS | Order Management</title>
+        <title>iHIS | OT Procedure</title>
         <!-- header -->
-        <%@include file="libraries/headLibrary.jsp" %>
+        <%@include file = "libraries/headLibrary.jsp" %>
+        <link href="../assets/css/jquery.flexdatalist.min.css" rel="stylesheet" type="text/css">
         <%@include file = "../assets/header.html" %>
-        <!--<link href="../assets/css/jquery.flexdatalist.min.css" rel="stylesheet" type="text/css">-->
-        <link href="libraries/css/jquery.datetimepicker.css" rel="stylesheet">
         <!-- header -->
     </head>
 
@@ -41,31 +50,21 @@
                                         <ul class="nav nav-tabs ">
                                             <li class="active">
                                                 <a href="#tab_default_1" data-toggle="tab">
-                                                    ORDER LIST</a>
+                                                    CATEGORY</a>
                                             </li>
-                                            <li>
-                                                <a href="#tab_default_2" data-toggle="tab">
-                                                    ORDER DETAIL</a>
-                                            </li>
+                                            
                                         </ul>
                                         <!-- tab content -->
                                         <div class="tab-content">
                                             <div class="tab-pane active" id="tab_default_1">
-                                                <div id="risOrderMain">
+                                                <div id="OT_categoryMain">
 
                                                 </div>
-                                                <div id="risOrderListContent">
+                                                <div id="OT_categoryTable" class="table-guling">
 
                                                 </div>
                                             </div>
-                                            <div class="tab-pane" id="tab_default_2">
-                                                <div id="risOrderDetailContent">
-
-                                                </div>
-                                                <jsp:include page="order_modal/prepareResult_modal.jsp"/>
-                                                <jsp:include page="order_modal/requestNewOrder_modal.jsp"/>
-                                            </div>
-
+                                            
                                         </div>
                                     </div>
                                 </div>
@@ -83,22 +82,19 @@
 
         <!-- Placed at the end of the document so the pages load faster -->
         <%@include file = "libraries/footLibrary.jsp" %>
-        <script src="../assets/js/jquery.flexdatalist.min.js" type="text/javascript"></script>
-        <script src="libraries/js/jquery.datetimepicker.full.min.js"></script>
         <!-- Placed at the end of the document so the pages load faster -->
+        <script src="libraries/js/jquery.check-file.js" type="text/javascript"></script>
+        <script src="../assets/js/jquery.flexdatalist.min.js" type="text/javascript"></script>
         
 
         <script>
 
-           // createScreenLoading();
+            $('<div class="loading">&nbsp;</div>').appendTo('body');
 
 
-            $("#risOrderMain").load("risManageOrderMaster_main.jsp");
-            $("#risOrderListContent").load("risManageOrderListTable.jsp");
-            $("#risOrderDetailContent").load("risManageOrderListBasicInfoNew.jsp");
+            $('#OT_categoryMain').load('searchTest/main.jsp');
+            //$('#OT_categoryTable').load('category/table.jsp');
             
-           // destroyScreenLoading();
-
         </script>
 
     </body>
