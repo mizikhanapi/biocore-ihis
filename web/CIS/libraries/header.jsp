@@ -9,16 +9,12 @@
 <link href="assets/Autocomplete.css" rel="stylesheet">
 
 <link href="assets/myicons/font/flaticon.css" rel="stylesheet" type="text/css"/>
-<link href="assets/jquery-ui-1.12.1/jquery-ui.css" rel="stylesheet" type="text/css"/>
-
+<link href="../assets/css/jquery-ui.css" rel="stylesheet" type="text/css"/>
 <!--<link href="assets/style.css" rel="stylesheet">-->
 <link href="assets/jquery.timepicker.min.css" rel="stylesheet" type="text/css"/>
 <!-- Custom styles for this template -->
-
 <link href="assets/dataTables.bootstrap.min.css" rel="stylesheet" type="text/css"/>
-
 <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-
 <link href="assets/stylev1.css" rel="stylesheet">
 
 <script src="assets/jquery-3.1.1.js" type="text/javascript"></script>

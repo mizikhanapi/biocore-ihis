@@ -12,8 +12,8 @@
 <h4 style="padding-top: 30px;padding-bottom: 35px; font-weight: bold">
     LOOKUP DETAIL MANAGEMENT
     <span class="pull-right">
-        <button id="btnAddNewTest" class="btn btn-success" data-status="pagado" data-toggle="modal" data-id="1" data-target="#detail2" style=" padding-right: 10px;padding-left: 10px;color: white;"><a data-toggle="tooltip" data-placement="top" title="Add Items" id="test"><i class=" fa fa-plus" style=" padding-right: 10px;padding-left: 10px;color: white;"></i></a>ADD Lookup Detail</button>
-        <button id="DLT_btnCloneModal" class="btn btn-primary" style=" padding-right: 10px;padding-left: 10px;color: white;" title="Clone item"><a><i class=" fa fa-copy" style=" padding-right: 10px;padding-left: 10px;color: white;"></i></a>CLONE Lookup Detail</button>
+        <button id="DLT_btnCloneModal" class="btn btn-link" title="Clone item">Clone Lookup Detail</button>
+        <button id="btnAddNewTest" class="btn btn-success" data-status="pagado" data-toggle="modal" data-id="1" data-target="#detail2"><i class=" fa fa-plus"></i>&nbsp;&nbsp;Add Lookup Detail</button>
     </span>
 </h4>
 <!-- Add Button End -->

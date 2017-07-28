@@ -16,8 +16,8 @@
 
 <h4>Maintain Test Detail
     <span class="pull-right">
-        <button id="Clone" class="btn btn-success" style=" padding-right: 10px;padding-left: 10px;"><a data-toggle="tooltip" data-placement="top" title="Add Items" id="test"></a><i class=" fa fa-plus" style=" padding-right: 10px;padding-left: 10px;"></i>&nbsp;Clone</button>
-        <button id="MLM_btnAddNew" class="btn btn-success" data-status="pagado" data-toggle="modal" data-id="1" data-target="#TestDetail" style=" padding-right: 10px;padding-left: 10px;"><a data-toggle="tooltip" data-placement="top" title="Add Items" id="test"></a><i class=" fa fa-plus" style=" padding-right: 10px;padding-left: 10px;"></i>&nbsp;ADD Test Detail</button>
+        <button id="Clone" class="btn btn-link">Clone Test Detail</button>
+        <button id="MLM_btnAddNew" class="btn btn-success" data-status="pagado" data-toggle="modal" data-id="1" data-target="#TestDetail"><i class=" fa fa-plus"></i>&nbsp;&nbsp;Add Test Detail</button>
     </span>
 </h4>
 <!-- table -->

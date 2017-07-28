@@ -9,15 +9,11 @@
 <h4 style="padding-top: 30px;padding-bottom: 35px; font-weight: bold">
     PROCEDURE CODE MANAGEMENT
     <span class="pull-right">
-        <button id="PRO_btnAddNew" class="btn btn-success" data-status="pagado" data-toggle="modal" data-id="1" data-target="#PRO_detail" style=" padding-right: 10px;padding-left: 10px;color: white;">
-            <a data-toggle="tooltip" data-placement="top" title="Add Items" id="test">
-                <i class=" fa fa-plus" style=" padding-right: 10px;padding-left: 10px;color: white;"></i>
-            </a>ADD Procedure
+        <button id="PRO_btnCloneModal" class="btn btn-link" title="Clone item">
+                Clone Procedure
         </button>
-        <button id="PRO_btnCloneModal" class="btn btn-primary" style=" padding-right: 10px;padding-left: 10px;color: white;" title="Clone item">
-            <a>
-                <i class=" fa fa-copy" style=" padding-right: 10px;padding-left: 10px;color: white;"></i>
-            </a>CLONE Procedure
+        <button id="PRO_btnAddNew" class="btn btn-success" data-status="pagado" data-toggle="modal" data-id="1" data-target="#PRO_detail" >
+                <i class=" fa fa-plus"></i>&nbsp;&nbsp;Add Procedure
         </button>
     </span>
 </h4>
