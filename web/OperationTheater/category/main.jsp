@@ -14,11 +14,11 @@
                 <i class=" fa fa-plus" style=" padding-right: 10px;padding-left: 10px;color: white;"></i>
             </a>ADD Category
         </button>
-        <button id="CAT_btnCloneModal" class="btn btn-primary" style=" padding-right: 10px;padding-left: 10px;color: white;" title="Clone item">
+<!--        <button id="CAT_btnCloneModal" class="btn btn-primary" style=" padding-right: 10px;padding-left: 10px;color: white;" title="Clone item">
             <a>
                 <i class=" fa fa-copy" style=" padding-right: 10px;padding-left: 10px;color: white;"></i>
             </a>CLONE Category
-        </button>
+        </button>-->
     </span>
 </h4>
 <!-- Add Button End -->
