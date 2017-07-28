@@ -38,7 +38,7 @@ $(document).ready(function () {
         $("#generic-soap").hide();
         $("#order-entry").hide();
         $("#orthopedic-niw").show(400);
-        $("#orthopedic-con").hide;
+        $("#orthopedic-con").hide();
 
     });
 });

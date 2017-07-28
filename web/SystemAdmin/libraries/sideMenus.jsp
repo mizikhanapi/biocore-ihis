@@ -33,7 +33,7 @@
                 <!-- // menu tanpa dropdown -->
 				<li><a href="Lookup"><i class="fa fa-search fa-lg"></i>Lookup Code Maintenance</a></li>
 				<li><a href="UserManagement"><i class="fa fa-users fa-lg" ></i>Users Administration</a></li>
-				<li><a href="QueueManagement"><i class="fa fa-files-o fa-lg"></i>Queue Maintenance</a></li>
+<!--				<li><a href="QueueManagement"><i class="fa fa-files-o fa-lg"></i>Queue Maintenance</a></li>-->
                                 <li><a href="HealthFacilityManagement"><i class="fa fa-hospital-o fa-lg"></i>Health Facility Maintenance</a></li>
                                 <li><a href="Setting"><i class="fa fa-cog fa-lg"></i>Settings</a></li>
                                 <%
