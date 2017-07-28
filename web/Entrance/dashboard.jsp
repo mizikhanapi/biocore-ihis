@@ -6,6 +6,7 @@
 
 <%@include file="validateSession.jsp" %>
 <%
+    try{
     //------------------- Checking whether super user or not ------------------------------
     if (session.getAttribute("HFC_99") == null) {
         String hfc_cd = (String) session.getAttribute("HEALTH_FACILITY_CODE");
@@ -23,9 +24,17 @@
                 + "where dis.discipline_cd = '" + dis_cd + "' AND sub.subdiscipline_cd = '" + sub_cd + "' and dis.discipline_hfc_cd = '" + hfc_cd + "' LIMIT 1;";
 
         ArrayList<ArrayList<String>> dataDis = conn.getData(query);
+        
+        if(dataDis.size()>0){
+            session.setAttribute("DISCIPLINE_NAME", dataDis.get(0).get(0));
+            session.setAttribute("SUB_DISCIPLINE_NAME", dataDis.get(0).get(1));
+        }
+        else{
+            session.setAttribute("DISCIPLINE_NAME", "Unknown discipline code("+dis_cd+"). Contact your admin.");
+            session.setAttribute("SUB_DISCIPLINE_NAME", "Unknown subdiscipline code("+sub_cd+"). Contact your admin.");
+        }
 
-        session.setAttribute("DISCIPLINE_NAME", dataDis.get(0).get(0));
-        session.setAttribute("SUB_DISCIPLINE_NAME", dataDis.get(0).get(1));
+        
 
     }
 
@@ -389,3 +398,11 @@
 
 
     </body></html>
+<%
+    }//end try
+    catch(Exception e){
+        System.out.println("Entering dashboard");
+        e.printStackTrace();
+        out.print("<h1>Oopps! Something went wrong. Try again later.</h1>");
+    }
+%>
