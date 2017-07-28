@@ -23,18 +23,18 @@
                             <input type="hidden" id="NIW4hlydis" >
                             <input type="hidden" id="NIW4hlysubdis" >
                             <div class="form-group">
-                                <label class="col-md-12 control-label" for="textinput">Date</label>
+                                <label class="col-md-12 control-label" for="textinput">Date *</label>
                                 <div class="col-md-12">
-                                    <input type="text" class="form-control input-md" id="dateNIW4hly">
+                                    <input type="text" class="form-control input-md" id="dateNIW4hly" required="">
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <!-- Text input-->
                             <div class="form-group">
-                                <label class="col-md-12 control-label" for="textinput">Time 4hly Observation</label>
+                                <label class="col-md-12 control-label" for="textinput">Time 4hly Observation *</label>
                                 <div class="col-md-12 form-inline">
-                                    <input type="time" class="form-control input-md" id="timeNIW4hly">
+                                    <input type="time" class="form-control input-md" id="timeNIW4hly" required="">
                                 </div>
                             </div>
                         </div>
@@ -43,9 +43,9 @@
                         <div class="col-md-12">
                             <!-- Text input-->
                             <div class="form-group">
-                                <label class="col-md-12 control-label" for="textinput">Site of IV Canulation</label>
+                                <label class="col-md-12 control-label" for="textinput">Site of IV Canulation *</label>
                                 <div class="col-md-12">
-                                    <select class="form-control input-md" id="site4canulation4hly">
+                                    <select class="form-control input-md" id="site4canulation4hly" required="">
                                         <option selected="" disabled="">please select site of canulation</option>
                                         <option value="Vein of the dorsal hand">Vein of the dorsal hand</option>
                                         <option value="Vein of the foot">Vein of the foot</option>
@@ -61,9 +61,9 @@
                         <div class="col-md-12">
                             <!-- Text input-->
                             <div class="form-group">
-                                <label class="col-md-12 control-label" for="textinput">Pain Score</label>
+                                <label class="col-md-12 control-label" for="textinput">Pain Score *</label>
                                 <div class="col-md-12">
-                                    <input type="text" class="form-control input-md" placeholder="pain scale" id="NIW4hlyps" readonly="">
+                                    <input type="text" class="form-control input-md" placeholder="pain scale" id="NIW4hlyps" readonly="" required="">
                                     <button class="btn btn-default btn-block margin-bottom-10px" id="btnNIWaddps" data-toggle="modal" data-target="#CIS020007">Add Pain Score</button>
                                 </div>
                             </div>
@@ -143,7 +143,7 @@
                         <div class="col-md-6">
                             <!-- Text input-->
                             <div class="form-group">
-                                <label class="col-md-12 control-label" for="textinput">Thrombophlebitis</label>
+                                <label class="col-md-12 control-label" for="textinput">Thrombophlebitis *</label>
                                 <div class="col-md-12 form-inline">
                                     <div class="radio radio-primary">
                                         <input type="radio" name="radio3" id="Thrombo1" value="Yes">
@@ -164,7 +164,7 @@
                         <div class="col-md-6">
                             <!-- Text input-->
                             <div class="form-group">
-                                <label class="col-md-12 control-label" for="textinput">V.I.P. Score</label>
+                                <label class="col-md-12 control-label" for="textinput">V.I.P. Score *</label>
                                 <div class="col-md-12 form-inline">
                                     <div class="radio radio-primary">
                                         <input type="radio" name="radio4" id="vip1" value="1">
@@ -224,6 +224,16 @@
 <script>
     $(document).ready(function () {
         $('#dateNIW4hly').datepicker({dateFormat: "dd/mm/yy"});
+    });
+
+    $('#4hly').on('hidden.bs.modal', function (e) {
+        $(this)
+                .find("input,textarea,select")
+                .val('')
+                .end()
+                .find("input[type=checkbox], input[type=radio]")
+                .prop("checked", "")
+                .end();
     });
 
     //btn add pain scale
@@ -316,29 +326,45 @@
 
         var assignBy = doctor_id;
 
-        var datas = pmi_no + "|" + hfc_cd1 + "|" + epDate + "|" + encounterDate + "|" + newDate + " " + time4h + ":00.0|" + time4h + "|" + siteOfCanulation + "|" + painScore + "|" + slightRedness + "|" + redness + "|" + swelling + "|" + palpable + "|" + unconscious + "|" + thrombophlebitis + "|" + vip_pain + "|" + medication + "|" + blood_tx + "|" + plain_iv_drip + "|" + assignBy+"|"+dis+"|"+subdis;
+        var datas = pmi_no + "|" + hfc_cd1 + "|" + epDate + "|" + encounterDate + "|" + newDate + " " + time4h + ":00.0|" + time4h + "|" + siteOfCanulation + "|" + painScore + "|" + slightRedness + "|" + redness + "|" + swelling + "|" + palpable + "|" + unconscious + "|" + thrombophlebitis + "|" + vip_pain + "|" + medication + "|" + blood_tx + "|" + plain_iv_drip + "|" + assignBy + "|" + dis + "|" + subdis;
 
-        $.ajax({
-            type: "post",
-            url: "../Ortho-NursingInWard/controller/4hlyFunction.jsp",
-            data: {datas: datas, methodName: "add"},
-            timeout: 10000,
-            success: function (result) {
-                if (result.trim() === 'true') {
-                    bootbox.alert("successfully added!");
-                    if (sel !== null) {
-                        $('#select4hlydate').val(sel).change();
+        var resulta = $("#4hly input[required]").filter(function () {
+            return $.trim($(this).val()).length === 0;
+        }).length === 0;
+
+        var resultb = $("#4hly select[required]").filter(function () {
+            return $.trim($(this).val()).length === 0;
+        }).length === 0;
+
+        if (resulta === false || resultb === false || !$("#4hly input:radio[name='radio3']").is(":checked") || !$("#4hly input:radio[name='radio4']").is(":checked")) {
+            bootbox.alert("Please make sure all field is inserted.");
+        } else {
+            $.ajax({
+                type: "post",
+                url: "../Ortho-NursingInWard/controller/4hlyFunction.jsp",
+                data: {datas: datas, methodName: "add"},
+                timeout: 10000,
+                success: function (result) {
+                    if (result.trim() === 'true') {
+                        bootbox.alert("successfully added!");
+                        if (sel !== null) {
+                            $('#select4hlydate').val(sel).change();
+                        }
+                        //$('#select4hlydate').val(sel).change();
+                    } else if (result.trim() === 'false') {
+                        bootbox.alert("fail to add");
                     }
-                    //$('#select4hlydate').val(sel).change();
-                } else if (result.trim() === 'false') {
-                    bootbox.alert("fail to add");
+                },
+                error: function (err) {
+                    bootbox.alert("something wrong,error: " + err);
                 }
-            },
-            error: function (err) {
-                bootbox.alert("something wrong,error: " + err);
-            }
-        });
-        $("#4hly").modal('toggle');
+            });
+            $("#4hly").modal('toggle');
+        }
+
+
+
+
     });
 
 
@@ -426,7 +452,7 @@
 
         var assignBy = doctor_id;
 
-        var datas = pmi_no + "|" + hfc_cd1 + "|" + epDate + "|" + encounterDate + "|" + newDate + " " + time4h + "|" + time4h + "|" + siteOfCanulation + "|" + painScore + "|" + slightRedness + "|" + redness + "|" + swelling + "|" + palpable + "|" + unconscious + "|" + thrombophlebitis + "|" + vip_pain + "|" + medication + "|" + blood_tx + "|" + plain_iv_drip + "|" + assignBy+"|"+dis+"|"+subdis;
+        var datas = pmi_no + "|" + hfc_cd1 + "|" + epDate + "|" + encounterDate + "|" + newDate + " " + time4h + "|" + time4h + "|" + siteOfCanulation + "|" + painScore + "|" + slightRedness + "|" + redness + "|" + swelling + "|" + palpable + "|" + unconscious + "|" + thrombophlebitis + "|" + vip_pain + "|" + medication + "|" + blood_tx + "|" + plain_iv_drip + "|" + assignBy + "|" + dis + "|" + subdis;
 
         $.ajax({
             type: "post",

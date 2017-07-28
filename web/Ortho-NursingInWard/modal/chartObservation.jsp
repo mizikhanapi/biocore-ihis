@@ -23,18 +23,18 @@
                             <input type="hidden" id="NIWObsdis" >
                             <input type="hidden" id="NIWObssubdis" >
                             <div class="form-group">
-                                <label class="col-md-12 control-label" for="textinput">Date</label>
+                                <label class="col-md-12 control-label" for="textinput">Date *</label>
                                 <div class="col-md-12">
-                                    <input type="text" class="form-control input-md" id="NIWObsDate">
+                                    <input type="text" class="form-control input-md" id="NIWObsDate" required="">
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <!-- Text input-->
                             <div class="form-group">
-                                <label class="col-md-12 control-label" for="textinput">Time</label>
+                                <label class="col-md-12 control-label" for="textinput">Time *</label>
                                 <div class="col-md-12">
-                                    <input type="time" class="form-control input-md" id="NIWObsTime">
+                                    <input type="time" class="form-control input-md" id="NIWObsTime" required=""e>
                                 </div>
                             </div>
                         </div>
@@ -44,7 +44,7 @@
                         <div class="col-md-12">
                             <!-- Text input-->
                             <div class="form-group">
-                                <label class="col-md-12 control-label" for="textinput">Blood Pressure</label>
+                                <label class="col-md-12 control-label" for="textinput">Blood Pressure *</label>
                             </div>
                         </div>
                     </div>
@@ -53,18 +53,18 @@
                         <div class="col-md-4">
                             <!-- Text input-->
                             <div class="form-group">
-                                <label class="col-md-12 control-label" for="textinput">Systolic</label>
+                                <label class="col-md-12 control-label" for="textinput">Systolic *</label>
                                 <div class="col-md-12">
-                                    <input type="text" class="form-control input-md numbersOnly" placeholder="mmHg"id="NIWOBsystolic" pattern= "[0-9]">
+                                    <input type="text" class="form-control input-md numbersOnly" placeholder="mmHg"id="NIWOBsystolic" pattern= "[0-9]" required="" maxlength="3">
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <!-- Text input-->
                             <div class="form-group">
-                                <label class="col-md-12 control-label" for="textinput">Diatolic</label>
+                                <label class="col-md-12 control-label" for="textinput">Diatolic *</label>
                                 <div class="col-md-12">
-                                    <input type="text" class="form-control input-md numbersOnly" placeholder="mmHg" id="NIWOBdiatolic" pattern= "[0-9]">
+                                    <input type="text" class="form-control input-md numbersOnly" placeholder="mmHg" id="NIWOBdiatolic" pattern= "[0-9]" required="" maxlength="3">
                                 </div>
 
                             </div>
@@ -72,9 +72,9 @@
                         </div><div class="col-md-4">
                             <!-- Text input-->
                             <div class="form-group">
-                                <label class="col-md-12 control-label" for="textinput">Pulse</label>
+                                <label class="col-md-12 control-label" for="textinput">Pulse *</label>
                                 <div class="col-md-12">
-                                    <input type="text" class="form-control input-md numbersOnly" placeholder="/min" id="NIWOBpulse" pattern= "[0-9]">
+                                    <input type="text" class="form-control input-md numbersOnly" placeholder="/min" id="NIWOBpulse" pattern= "[0-9]" required="" maxlength="3">
                                 </div>
                             </div>
                         </div></div>
@@ -83,9 +83,9 @@
                         <div class="col-md-12">
                             <!-- Text input-->
                             <div class="form-group">
-                                <label class="col-md-12 control-label" for="textinput">Respiratory Rate</label>
+                                <label class="col-md-12 control-label" for="textinput">Respiratory Rate *</label>
                                 <div class="col-md-12">
-                                    <input type="text" class="form-control input-md numbersOnly" placeholder="breath/min" id="NIWOBrr" pattern= "[0-9]">
+                                    <input type="text" class="form-control input-md numbersOnly" placeholder="breath/min" id="NIWOBrr" pattern= "[0-9]" required="" maxlength="3">
                                 </div>
                             </div>
                         </div>
@@ -95,9 +95,9 @@
                         <div class="col-md-12">
                             <!-- Text input-->
                             <div class="form-group">
-                                <label class="col-md-12 control-label" for="textinput">Oxygen Saturation</label>
+                                <label class="col-md-12 control-label" for="textinput">Oxygen Saturation *</label>
                                 <div class="col-md-12">
-                                    <input type="text" class="form-control input-md numbersOnly" placeholder="oxygen saturation" id="NIWOBos" pattern= "[0-9]">
+                                    <input type="text" class="form-control input-md numbersOnly" placeholder="oxygen saturation" id="NIWOBos" pattern= "[0-9]" required="" maxlength="5">
                                 </div>
                             </div>
                         </div>
@@ -107,9 +107,9 @@
                         <div class="col-md-12">
                             <!-- Text input-->
                             <div class="form-group">
-                                <label class="col-md-12 control-label" for="textinput">Pain Score</label>
+                                <label class="col-md-12 control-label" for="textinput">Pain Score *</label>
                                 <div class="col-md-12">
-                                    <input type="text" class="form-control input-md" placeholder="pain scale" id="NIWOBps" readonly="">
+                                    <input type="text" class="form-control input-md" placeholder="pain scale" id="NIWOBps" readonly="" required="">
                                     <button class="btn btn-default btn-block margin-bottom-10px" id="btnNIWaddps" data-toggle="modal" data-target="#CIS020007">Add Pain Score</button>
                                 </div>
                             </div>
@@ -161,7 +161,15 @@
         $('#actionPS #btnNIWps').show();
         $('#actionPS #acceptPSBtn').hide();
     });
-
+    $('#cobserved1').on('hidden.bs.modal', function (e) {
+        $(this)
+                .find("input,textarea,select")
+                .val('')
+                .end()
+                .find("input[type=checkbox], input[type=radio]")
+                .prop("checked", "")
+                .end();
+    });
 
     //btn add observation chart
     $('#cobserved1 #btnNIWOBADD').on('click', function (e) {
@@ -196,29 +204,44 @@
         var subdis = "<%=session.getAttribute("DISCIPLINE_CODE").toString()%>";
         var assignBy = doctor_id;
 
-        var datas = pmi_no + "|" + hfc_cd1 + "|" + epDate + "|" + encounterDate + "| | |" + newDate + " " + time + ":00.0|" + pulse + "|" + systolic + "|" + dialotic + "|" + respiratoryRate + "|" + oxygenSatu + "|" + painScore + "|" + comment+"|"+dis+"|"+subdis+"|"+assignBy;
+        var datas = pmi_no + "|" + hfc_cd1 + "|" + epDate + "|" + encounterDate + "| | |" + newDate + " " + time + ":00.0|" + pulse + "|" + systolic + "|" + dialotic + "|" + respiratoryRate + "|" + oxygenSatu + "|" + painScore + "|" + comment + "|" + dis + "|" + subdis + "|" + assignBy;
+        var resulta = $("#cobserved1 input[required]").filter(function () {
+            return $.trim($(this).val()).length === 0;
+        }).length === 0;
 
-        $.ajax({
-            type: "post",
-            url: "../Ortho-NursingInWard/controller/ObservationFunction.jsp",
-            data: {datas: datas, methodName: "add"},
-            timeout: 10000,
-            success: function (result) {
-                if (result.trim() === 'true') {
-                    bootbox.alert("successfully added!");
-                    if (sel !== null) {
-                        $('#selectOBdate').val(sel).change();
+        var resultb = $("#cobserved1 select[required]").filter(function () {
+            return $.trim($(this).val()).length === 0;
+        }).length === 0;
+        if (resulta === false || resultb === false || !$("#cobserved1 input:radio[name='radio3']").is(":checked") || !$("#cobserved1 input:radio[name='radio4']").is(":checked")) {
+            bootbox.alert("Please make sure all field is inserted.");
+        } else {
+            $.ajax({
+                type: "post",
+                url: "../Ortho-NursingInWard/controller/ObservationFunction.jsp",
+                data: {datas: datas, methodName: "add"},
+                timeout: 10000,
+                success: function (result) {
+                    if (result.trim() === 'true') {
+                        bootbox.alert("successfully added!");
+                        if (sel !== null) {
+                            $('#selectOBdate').val(sel).change();
+                        }
+
+                    } else if (result.trim() === 'false') {
+                        bootbox.alert("fail to add");
                     }
-
-                } else if (result.trim() === 'false') {
-                    bootbox.alert("fail to add");
+                },
+                error: function (err) {
+                    bootbox.alert("something wrong,error: " + err);
                 }
-            },
-            error: function (err) {
-                bootbox.alert("something wrong,error: " + err);
-            }
-        });
-        $("#cobserved1").modal('toggle');
+            });
+            $("#cobserved1").modal('toggle');
+        }
+
+
+
+
+
     });
 
     //btn update observation chart
@@ -258,7 +281,7 @@
         var dis = $('#NIWObsdis').val();
         var subdis = $('#NIWObssubdis').val();
 
-        var datas = pmi_no + "|" + hfc_cd1 + "|" + epDate + "|" + encounterDate + "| | |" + newDate + " " + time + "|" + pulse + "|" + systolic + "|" + dialotic + "|" + respiratoryRate + "|" + oxygenSatu + "|" + painScore + "|" + comment+"|"+dis+"|"+subdis;
+        var datas = pmi_no + "|" + hfc_cd1 + "|" + epDate + "|" + encounterDate + "| | |" + newDate + " " + time + "|" + pulse + "|" + systolic + "|" + dialotic + "|" + respiratoryRate + "|" + oxygenSatu + "|" + painScore + "|" + comment + "|" + dis + "|" + subdis;
 
         $.ajax({
             type: "post",

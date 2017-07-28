@@ -23,16 +23,16 @@
                             <input type="hidden" id="NIWtrsubdis" >
                             <!-- Text input-->
                             <div class="form-group">
-                                <label class="col-md-12 control-label" for="textinput">Date</label>
+                                <label class="col-md-12 control-label" for="textinput">Date *</label>
                                 <div class="col-md-12">
-                                    <input type="text" class="form-control input-md" id="dateNIWtr">
+                                    <input type="text" class="form-control input-md" id="dateNIWtr" required="">
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <!-- Text input-->
                             <div class="form-group">
-                                <label class="col-md-12 control-label" for="textinput">Time</label>
+                                <label class="col-md-12 control-label" for="textinput">Time *</label>
                                 <div class="col-md-12 form-inline">
                                     <div class="radio radio-primary">
                                         <input type="radio" name="NIWtrTIME" id="OrthopedicCarePlan1" value="AM">
@@ -69,7 +69,7 @@
                         <div class="col-md-6">
                             <!-- Text input-->
                             <div class="form-group">
-                                <label class="col-md-12 control-label" for="textinput">Right Upper Limb</label>
+                                <label class="col-md-12 control-label" for="textinput">Right Upper Limb *</label>
                                 <div class="col-md-12">
                                     <div class="radio radio-primary">
                                         <input type="radio" name="RightUpperLimb" id="RightUpperLimb1" value="Inserted">
@@ -96,7 +96,7 @@
                         <div class="col-md-6">
                             <!-- Text input-->
                             <div class="form-group">
-                                <label class="col-md-12 control-label" for="textinput">Left Upper Limb</label>
+                                <label class="col-md-12 control-label" for="textinput">Left Upper Limb *</label>
                                 <div class="col-md-12">
                                     <div class="radio radio-primary">
                                         <input type="radio" name="LeftUpperLimb" id="LeftUpperLimb1" value="Inserted">
@@ -126,7 +126,7 @@
                         <div class="col-md-6">
                             <!-- Text input-->
                             <div class="form-group">
-                                <label class="col-md-12 control-label" for="textinput">Right Lower Limb</label>
+                                <label class="col-md-12 control-label" for="textinput">Right Lower Limb *</label>
                                 <div class="col-md-12">
                                     <div class="radio radio-primary">
                                         <input type="radio" name="RightLowerLimb" id="RightLowerLimb1" value="Inserted">
@@ -153,7 +153,7 @@
                         <div class="col-md-6">
                             <!-- Text input-->
                             <div class="form-group">
-                                <label class="col-md-12 control-label" for="textinput">Left Lower Limb</label>
+                                <label class="col-md-12 control-label" for="textinput">Left Lower Limb *</label>
                                 <div class="col-md-12">
                                     <div class="radio radio-primary">
                                         <input type="radio" name="LeftLowerLimb" id="LeftLowerLimb1" value="Inserted">
@@ -183,7 +183,7 @@
                         <div class="col-md-6">
                             <!-- Text input-->
                             <div class="form-group">
-                                <label class="col-md-12 control-label" for="textinput">Angio Cathter</label>
+                                <label class="col-md-12 control-label" for="textinput">Angio Cathter *</label>
                                 <div class="col-md-12">
                                     <div class="radio radio-primary">
                                         <input type="radio" name="AngioCathter" id="AngioCathter1" value="Inserted">
@@ -210,7 +210,7 @@
                         <div class="col-md-6">
                             <!-- Text input-->
                             <div class="form-group">
-                                <label class="col-md-12 control-label" for="textinput">CVP</label>
+                                <label class="col-md-12 control-label" for="textinput">CVP *</label>
                                 <div class="col-md-12">
                                     <div class="radio radio-primary">
                                         <input type="radio" name="CVP" id="CVP1" value="Inserted">
@@ -240,7 +240,7 @@
                         <div class="col-md-6">
                             <!-- Text input-->
                             <div class="form-group">
-                                <label class="col-md-12 control-label" for="textinput">Tracheostomy</label>
+                                <label class="col-md-12 control-label" for="textinput">Tracheostomy *</label>
                                 <div class="col-md-12">
                                     <div class="radio radio-primary">
                                         <input type="radio" name="Tracheostomy" id="Tracheostomy1" value="Inserted">
@@ -267,7 +267,7 @@
                         <div class="col-md-6">
                             <!-- Text input-->
                             <div class="form-group">
-                                <label class="col-md-12 control-label" for="textinput">Urinary Catheter</label>
+                                <label class="col-md-12 control-label" for="textinput">Urinary Catheter *</label>
                                 <div class="col-md-12">
                                     <div class="radio radio-primary">
                                         <input type="radio" name="UrinaryCatheter" id="UrinaryCatheter1" value="Inserted">
@@ -297,7 +297,7 @@
                         <div class="col-md-6">
                             <!-- Text input-->
                             <div class="form-group">
-                                <label class="col-md-12 control-label" for="textinput">Drain 1</label>
+                                <label class="col-md-12 control-label" for="textinput">Drain 1 *</label>
                                 <div class="col-md-12">
                                     <div class="radio radio-primary">
                                         <input type="radio" name="Drain1" id="Drain11" value="Inserted">
@@ -324,7 +324,7 @@
                         <div class="col-md-6">
                             <!-- Text input-->
                             <div class="form-group">
-                                <label class="col-md-12 control-label" for="textinput">Drain 2</label>
+                                <label class="col-md-12 control-label" for="textinput">Drain 2 *</label>
                                 <div class="col-md-12">
                                     <div class="radio radio-primary">
                                         <input type="radio" name="Drain2" id="Drain21" value="Inserted">
@@ -354,7 +354,7 @@
                         <div class="col-md-6">
                             <!-- Text input-->
                             <div class="form-group">
-                                <label class="col-md-12 control-label" for="textinput">Vaccum Dressing</label>
+                                <label class="col-md-12 control-label" for="textinput">Vaccum Dressing *</label>
                                 <div class="col-md-12">
                                     <div class="radio radio-primary">
                                         <input type="radio" name="VaccumDressing" id="VaccumDressing1" value="Inserted">
@@ -381,7 +381,7 @@
                         <div class="col-md-6">
                             <!-- Text input-->
                             <div class="form-group">
-                                <label class="col-md-12 control-label" for="textinput">Ryies Tube</label>
+                                <label class="col-md-12 control-label" for="textinput">Ryies Tube *</label>
                                 <div class="col-md-12">
                                     <div class="radio radio-primary">
                                         <input type="radio" name="RyiesTube" id="RyiesTube1" value="Inserted">
@@ -411,7 +411,7 @@
                         <div class="col-md-6">
                             <!-- Text input-->
                             <div class="form-group">
-                                <label class="col-md-12 control-label" for="textinput">Chest Tube</label>
+                                <label class="col-md-12 control-label" for="textinput">Chest Tube *</label>
                                 <div class="col-md-12">
                                     <div class="radio radio-primary">
                                         <input type="radio" name="ChestTube" id="ChestTube1" value="Inserted">
@@ -460,7 +460,15 @@
     $(document).ready(function () {
         $('#dateNIWtr').datepicker({dateFormat: "dd/mm/yy"});
     });
-
+    $('#perawatan-ortho').on('hidden.bs.modal', function (e) {
+        $(this)
+                .find("input,textarea,select")
+                .val('')
+                .end()
+                .find("input[type=checkbox], input[type=radio]")
+                .prop("checked", "")
+                .end();
+    });
     $('#perawatan-ortho #btnNIWtrADD').on('click', function (e) {
         e.preventDefault();
         var pmi_no = pmiNo;
@@ -504,28 +512,54 @@
 
         var assignBy = doctor_id;
 
-        var datas = pmi_no + "|" + hfc_cd1 + "|" + epDate + "|" + encounterDate + "|" + treatmentDate + "|" + shift + "|" + iv_branula_rul + "|" + iv_branula_lul + "|" + iv_branula_rll + "|" + iv_branula_lll + "|" + angiocatheter + "|" + cvp + "|" + tracheostomy + "|" + urinary_catheter + "|" + drain1 + "|" + drain2 + "|" + vaccum_dressing + "|" + ryiestube + "|" + chesttube + "|" + assignBy+"|"+dis+"|"+subdis;
+        var datas = pmi_no + "|" + hfc_cd1 + "|" + epDate + "|" + encounterDate + "|" + treatmentDate + "|" + shift + "|" + iv_branula_rul + "|" + iv_branula_lul + "|" + iv_branula_rll + "|" + iv_branula_lll + "|" + angiocatheter + "|" + cvp + "|" + tracheostomy + "|" + urinary_catheter + "|" + drain1 + "|" + drain2 + "|" + vaccum_dressing + "|" + ryiestube + "|" + chesttube + "|" + assignBy + "|" + dis + "|" + subdis;
 
-        $.ajax({
-            type: "post",
-            url: "../Ortho-NursingInWard/controller/TreatmentFunction.jsp",
-            data: {datas: datas, methodName: "add"},
-            timeout: 10000,
-            success: function (result) {
-                if (result.trim() === 'true') {
-                    bootbox.alert("successfully added!");
-                    if (sel !== null) {
-                        $('#selecttrdate').val(sel).change();
+        var resulta = $("#perawatan-ortho input[required]").filter(function () {
+            return $.trim($(this).val()).length === 0;
+        }).length === 0;
+
+        var resultb = $("#perawatan-ortho select[required]").filter(function () {
+            return $.trim($(this).val()).length === 0;
+        }).length === 0;
+
+        if (resulta === false || resultb === false || !$("#perawatan-ortho input:radio[name='NIWtrTIME']").is(":checked") ||
+                !$("#perawatan-ortho input:radio[name='RightUpperLimb']").is(":checked") ||
+                !$("#perawatan-ortho input:radio[name='LeftUpperLimb']").is(":checked") ||
+                !$("#perawatan-ortho input:radio[name='RightLowerLimb']").is(":checked") ||
+                !$("#perawatan-ortho input:radio[name='LeftLowerLimb']").is(":checked") ||
+                !$("#perawatan-ortho input:radio[name='AngioCathter']").is(":checked") ||
+                !$("#perawatan-ortho input:radio[name='CVP']").is(":checked") ||
+                !$("#perawatan-ortho input:radio[name='UrinaryCatheter']").is(":checked") ||
+                !$("#perawatan-ortho input:radio[name='Drain1']").is(":checked") ||
+                !$("#perawatan-ortho input:radio[name='Drain2']").is(":checked") ||
+                !$("#perawatan-ortho input:radio[name='VaccumDressing']").is(":checked") ||
+                !$("#perawatan-ortho input:radio[name='RyiesTube']").is(":checked") ||
+                !$("#perawatan-ortho input:radio[name='ChestTube']").is(":checked")) {
+            bootbox.alert("Please make sure all field is inserted.");
+        } else {
+            $.ajax({
+                type: "post",
+                url: "../Ortho-NursingInWard/controller/TreatmentFunction.jsp",
+                data: {datas: datas, methodName: "add"},
+                timeout: 10000,
+                success: function (result) {
+                    if (result.trim() === 'true') {
+                        bootbox.alert("successfully added!");
+                        if (sel !== null) {
+                            $('#selecttrdate').val(sel).change();
+                        }
+                    } else if (result.trim() === 'false') {
+                        bootbox.alert("fail to add");
                     }
-                } else if (result.trim() === 'false') {
-                    bootbox.alert("fail to add");
+                },
+                error: function (err) {
+                    bootbox.alert("something wrong,error: " + err);
                 }
-            },
-            error: function (err) {
-                bootbox.alert("something wrong,error: " + err);
-            }
-        });
-        $("#perawatan-ortho").modal('toggle');
+            });
+            $("#perawatan-ortho").modal('toggle');
+        }
+
+
     });
 
     $('#perawatan-ortho #btnNIWtruUPDATE').on('click', function (e) {
@@ -571,7 +605,7 @@
 
         var assignBy = doctor_id;
 
-        var datas = pmi_no + "|" + hfc_cd1 + "|" + epDate + "|" + encounterDate + "|" + treatmentDate + "|" + shift + "|" + iv_branula_rul + "|" + iv_branula_lul + "|" + iv_branula_rll + "|" + iv_branula_lll + "|" + angiocatheter + "|" + cvp + "|" + tracheostomy + "|" + urinary_catheter + "|" + drain1 + "|" + drain2 + "|" + vaccum_dressing + "|" + ryiestube + "|" + chesttube + "|" + assignBy+"|"+dis+"|"+subdis;
+        var datas = pmi_no + "|" + hfc_cd1 + "|" + epDate + "|" + encounterDate + "|" + treatmentDate + "|" + shift + "|" + iv_branula_rul + "|" + iv_branula_lul + "|" + iv_branula_rll + "|" + iv_branula_lll + "|" + angiocatheter + "|" + cvp + "|" + tracheostomy + "|" + urinary_catheter + "|" + drain1 + "|" + drain2 + "|" + vaccum_dressing + "|" + ryiestube + "|" + chesttube + "|" + assignBy + "|" + dis + "|" + subdis;
 
         $.ajax({
             type: "post",

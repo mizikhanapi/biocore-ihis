@@ -24,16 +24,16 @@
                             <input type="hidden" id="NIWredivacsubdis" >
                             <!-- Text input-->
                             <div class="form-group">
-                                <label class="col-md-12 control-label" for="textinput">Date</label>
+                                <label class="col-md-12 control-label" for="textinput">Date *</label>
                                 <div class="col-md-12">
-                                    <input type="text" class="form-control input-md" id="NIWRedivacDate">
+                                    <input type="text" class="form-control input-md" id="NIWRedivacDate" required="">
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <!-- Text input-->
                             <div class="form-group">
-                                <label class="col-md-12 control-label" for="textinput">Shift</label>
+                                <label class="col-md-12 control-label" for="textinput">Shift *</label>
                                 <div class="col-md-12 form-inline">
                                     <div class="radio radio-primary">
                                         <input type="radio" name="NIWredivacShift" id="redivacShift1" value="7am-2pm">
@@ -63,18 +63,18 @@
                         <div class="col-md-6">
                             <!-- Text input-->
                             <div class="form-group">
-                                <label class="col-md-12 control-label" for="textinput">Total in Bottle</label>
+                                <label class="col-md-12 control-label" for="textinput">Total in Bottle *</label>
                                 <div class="col-md-12">
-                                    <input type="text" class="form-control input-md numbersOnly" id="NIWredivacTIB">
+                                    <input type="text" class="form-control input-md numbersOnly" id="NIWredivacTIB" required="" maxlength="5">
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <!-- Text input-->
                             <div class="form-group">
-                                <label class="col-md-12 control-label" for="textinput">Amount increased / shift</label>
+                                <label class="col-md-12 control-label" for="textinput">Amount increased / shift *</label>
                                 <div class="col-md-12">
-                                    <input type="text" class="form-control input-md numbersOnly" id="NIWredivacAIS">
+                                    <input type="text" class="form-control input-md numbersOnly" id="NIWredivacAIS" required="" maxlength="5">
                                 </div>
                             </div>
                         </div>
@@ -84,9 +84,9 @@
                         <div class="col-md-6">
                             <!-- Text input-->
                             <div class="form-group">
-                                <label class="col-md-12 control-label" for="textinput">Total in Bottle end of shift</label>
+                                <label class="col-md-12 control-label" for="textinput">Total in Bottle end of shift *</label>
                                 <div class="col-md-12">
-                                    <input type="text" class="form-control input-md numbersOnly" id="NIWredivacTBES">
+                                    <input type="text" class="form-control input-md numbersOnly" id="NIWredivacTBES" required="" maxlength="5">
                                 </div>
                             </div>
                         </div>
@@ -128,6 +128,15 @@
     $(document).ready(function () {
         $('#NIWRedivacDate').datepicker({dateFormat: "dd/mm/yy"});
     });
+    $('#redivacDrainChart').on('hidden.bs.modal', function (e) {
+        $(this)
+                .find("input,textarea,select")
+                .val('')
+                .end()
+                .find("input[type=checkbox], input[type=radio]")
+                .prop("checked", "")
+                .end();
+    });
 
     $('#redivacDrainChart #btnNIWredivacADD').on('click', function (e) {
         e.preventDefault();
@@ -164,28 +173,43 @@
 
         var assignBy = doctor_id;
 
-        var datas = pmi_no + "|" + hfc_cd1 + "|" + epDate + "|" + encounterDate + "|" + treatmentDate + "|" + shift + "|" + TIB + "|" + AIS + "|" + TBES + "|" + remark + "|" + assignBy+"|"+dis+"|"+subdis;
+        var datas = pmi_no + "|" + hfc_cd1 + "|" + epDate + "|" + encounterDate + "|" + treatmentDate + "|" + shift + "|" + TIB + "|" + AIS + "|" + TBES + "|" + remark + "|" + assignBy + "|" + dis + "|" + subdis;
 
-        $.ajax({
-            type: "post",
-            url: "../Ortho-NursingInWard/controller/redivacFunction.jsp",
-            data: {datas: datas, methodName: "add"},
-            timeout: 10000,
-            success: function (result) {
-                if (result.trim() === 'true') {
-                    bootbox.alert("successfully added!");
-                    if (sel !== null) {
-                        $('#selectredivacdate').val(sel).change();
+        var resulta = $("#redivacDrainChart input[required]").filter(function () {
+            return $.trim($(this).val()).length === 0;
+        }).length === 0;
+
+        var resultb = $("#redivacDrainChart select[required]").filter(function () {
+            return $.trim($(this).val()).length === 0;
+        }).length === 0;
+
+        if (resulta === false || resultb === false || !$("#redivacDrainChart input:radio[name='NIWredivacShift']").is(":checked")) {
+            bootbox.alert("Please make sure all field is inserted.");
+        } else {
+            $.ajax({
+                type: "post",
+                url: "../Ortho-NursingInWard/controller/redivacFunction.jsp",
+                data: {datas: datas, methodName: "add"},
+                timeout: 10000,
+                success: function (result) {
+                    if (result.trim() === 'true') {
+                        bootbox.alert("successfully added!");
+                        if (sel !== null) {
+                            $('#selectredivacdate').val(sel).change();
+                        }
+                    } else if (result.trim() === 'false') {
+                        bootbox.alert("fail to add");
                     }
-                } else if (result.trim() === 'false') {
-                    bootbox.alert("fail to add");
+                },
+                error: function (err) {
+                    bootbox.alert("something wrong,error: " + err);
                 }
-            },
-            error: function (err) {
-                bootbox.alert("something wrong,error: " + err);
-            }
-        });
-        $("#redivacDrainChart").modal('toggle');
+            });
+            $("#redivacDrainChart").modal('toggle');
+        }
+
+
+
     });
 
     $('#redivacDrainChart #btnNIWredivacUPDATE').on('click', function (e) {
@@ -223,7 +247,7 @@
 
         var assignBy = doctor_id;
 
-        var datas = pmi_no + "|" + hfc_cd1 + "|" + epDate + "|" + encounterDate + "|" + treatmentDate + "|" + shift + "|" + TIB + "|" + AIS + "|" + TBES + "|" + remark + "|" + assignBy+"|"+dis+"|"+subdis;
+        var datas = pmi_no + "|" + hfc_cd1 + "|" + epDate + "|" + encounterDate + "|" + treatmentDate + "|" + shift + "|" + TIB + "|" + AIS + "|" + TBES + "|" + remark + "|" + assignBy + "|" + dis + "|" + subdis;
 
         $.ajax({
             type: "post",

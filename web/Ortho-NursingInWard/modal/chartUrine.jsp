@@ -23,16 +23,16 @@
                             <input type="hidden" id="NIWursubdis" >
                             <!-- Text input-->
                             <div class="form-group">
-                                <label class="col-md-12 control-label" for="textinput">Date</label>
+                                <label class="col-md-12 control-label" for="textinput">Date *</label>
                                 <div class="col-md-12">
-                                    <input type="text" class="form-control input-md" id="NIWDateurine" >
+                                    <input type="text" class="form-control input-md" id="NIWDateurine" required="">
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <!-- Text input-->
                             <div class="form-group">
-                                <label class="col-md-12 control-label" for="textinput">Time</label>
+                                <label class="col-md-12 control-label" for="textinput">Time *</label>
                                 <div class="col-md-8 form-inline">
                                     <div class="radio radio-primary">
                                         <input type="radio" name="urinechrt" id="urinechrt1" value="4">
@@ -54,7 +54,7 @@
                                     </div>
                                 </div>
                                 <div class="col-md-4 " style="padding-right: 0px;">
-                                    <select class="form-control input-md" id="NIWam-pm">
+                                    <select class="form-control input-md" id="NIWam-pm" required="">
                                         <option value="AM">AM</option>
                                         <option value="PM">PM</option>
                                     </select>
@@ -67,11 +67,11 @@
 
                         <div class="col-md-6">
                             <!--                            <button class="btn btn-default btn-block">Add Urine Temperature</button>-->
-                            <input type="text" class="form-control input-md numbersOnly" id="NIWTemperature" placeholder="Urine Temperature">
+                            <input type="text" class="form-control input-md numbersOnly" id="NIWTemperature" placeholder="Urine Temperature *" required="" maxlength="3">
                         </div>
                         <div class="col-md-6">
                             <!--                            <button class="btn btn-default btn-block">Add Pulse</button>-->
-                            <input type="text" class="form-control input-md numbersOnly" id="NIWpulseurine" placeholder="Pulse">
+                            <input type="text" class="form-control input-md numbersOnly" id="NIWpulseurine" placeholder="Pulse *" required="" maxlength="3">
                         </div>
                     </div>
 
@@ -98,6 +98,16 @@
     $(document).ready(function () {
         $('#NIWDateurine').datepicker({dateFormat: "dd/mm/yy"});
     });
+    $('#chartUrine').on('hidden.bs.modal', function (e) {
+        $(this)
+                .find("input,textarea,select")
+                .val('')
+                .end()
+                .find("input[type=checkbox], input[type=radio]")
+                .prop("checked", "")
+                .end();
+    });
+
 
     $('#chartUrine #btnNIWurADD').on('click', function (e) {
         e.preventDefault();
@@ -147,28 +157,42 @@
 
         var assignBy = doctor_id;
 
-        var datas = pmi_no + "|" + hfc_cd1 + "|" + epDate + "|" + encounterDate + "|" + TMUR + ":" + AMPMUR + "|" + RTEMPUR + "|" + RPUR + "|" + urDate + " " + masaUR + ":00"+"|"+dis+"|"+subdis+"|"+assignBy;
+        var datas = pmi_no + "|" + hfc_cd1 + "|" + epDate + "|" + encounterDate + "|" + TMUR + ":" + AMPMUR + "|" + RTEMPUR + "|" + RPUR + "|" + urDate + " " + masaUR + ":00" + "|" + dis + "|" + subdis + "|" + assignBy;
 
-        $.ajax({
-            type: "post",
-            url: "../Ortho-NursingInWard/controller/UrineFunction.jsp",
-            data: {datas: datas, methodName: "add"},
-            timeout: 10000,
-            success: function (result) {
-                if (result.trim() === 'true') {
-                    bootbox.alert("successfully added!");
-                    if (sel !== null) {
-                        $('#selecturdate').val(sel).change();
+        var resulta = $("#chartUrine input[required]").filter(function () {
+            return $.trim($(this).val()).length === 0;
+        }).length === 0;
+
+        var resultb = $("#chartUrine select[required]").filter(function () {
+            return $.trim($(this).val()).length === 0;
+        }).length === 0;
+
+        if (resulta === false || resultb === false || !$("#chartUrine input:radio[name='urinechrt']").is(":checked")) {
+            bootbox.alert("Please make sure all field is inserted.");
+        } else {
+            $.ajax({
+                type: "post",
+                url: "../Ortho-NursingInWard/controller/UrineFunction.jsp",
+                data: {datas: datas, methodName: "add"},
+                timeout: 10000,
+                success: function (result) {
+                    if (result.trim() === 'true') {
+                        bootbox.alert("successfully added!");
+                        if (sel !== null) {
+                            $('#selecturdate').val(sel).change();
+                        }
+                    } else if (result.trim() === 'false') {
+                        bootbox.alert("fail to add");
                     }
-                } else if (result.trim() === 'false') {
-                    bootbox.alert("fail to add");
+                },
+                error: function (err) {
+                    bootbox.alert("something wrong,error: " + err);
                 }
-            },
-            error: function (err) {
-                bootbox.alert("something wrong,error: " + err);
-            }
-        });
-        $("#chartUrine").modal('toggle');
+            });
+            $("#chartUrine").modal('toggle');
+        }
+
+
     });
 
     $('#chartUrine #btnNIWurUPDATE').on('click', function (e) {
@@ -219,7 +243,7 @@
 
         var assignBy = doctor_id;
 
-        var datas = pmi_no + "|" + hfc_cd1 + "|" + epDate + "|" + encounterDate + "|" + TMUR + ":" + AMPMUR + "|" + RTEMPUR + "|" + RPUR + "|" + urDate + " " + masaUR + ":00"+"|"+dis+"|"+subdis;
+        var datas = pmi_no + "|" + hfc_cd1 + "|" + epDate + "|" + encounterDate + "|" + TMUR + ":" + AMPMUR + "|" + RTEMPUR + "|" + RPUR + "|" + urDate + " " + masaUR + ":00" + "|" + dis + "|" + subdis;
 
         $.ajax({
             type: "post",

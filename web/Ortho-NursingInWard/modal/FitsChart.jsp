@@ -23,18 +23,18 @@
                             <input type="hidden" id="NIWfitsubdis" >
                             <!-- Text input-->
                             <div class="form-group">
-                                <label class="col-md-12 control-label" for="textinput">Date</label>
+                                <label class="col-md-12 control-label" for="textinput">Date *</label>
                                 <div class="col-md-12">
-                                    <input type="text" class="form-control input-md" id="NIWFitsDate">
+                                    <input type="text" class="form-control input-md" id="NIWFitsDate" required="">
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <!-- Text input-->
                             <div class="form-group">
-                                <label class="col-md-12 control-label" for="textinput">Time</label>
+                                <label class="col-md-12 control-label" for="textinput">Time *</label>
                                 <div class="col-md-12">
-                                    <input type="time" class="form-control input-md" id="NIWFitsTime">
+                                    <input type="time" class="form-control input-md" id="NIWFitsTime" required="">
                                 </div>
                             </div>
                         </div>
@@ -44,23 +44,23 @@
                         <div class="col-md-6">
                             <!-- Text input-->
                             <div class="form-group">
-                                <label class="col-md-12 control-label" for="textinput">Nature of Fits</label>
+                                <label class="col-md-12 control-label" for="textinput">Nature of Fits *</label>
                                 <div class="col-md-12">
-                                    <input type="text" class="form-control input-md" placeholder="" id="NIWFitsNOF">
+                                    <input type="text" class="form-control input-md" placeholder="" id="NIWFitsNOF" required="" maxlength="90">
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <!-- Text input-->
                             <div class="form-group">
-                                <label class="col-md-12 control-label" for="textinput">Duration</label>
+                                <label class="col-md-12 control-label" for="textinput">Duration *</label>
                                 <div class="col-md-12">
-                                    <input type="text" class="form-control input-md" id="NIWFitsDuration">
+                                    <input type="text" class="form-control input-md" id="NIWFitsDuration" required="" maxlength="30">
                                 </div>
                             </div>
                         </div>
                     </div>
-                    
+
                     <div class="row">
                         <div class="col-md-12">
                             <!-- Text input-->
@@ -97,6 +97,15 @@
         $('#NIWFitsDate').datepicker({dateFormat: "dd/mm/yy"});
     });
 
+    $('#FitsChart').on('hidden.bs.modal', function (e) {
+        $(this)
+                .find("input,textarea,select")
+                .val('')
+                .end()
+                .find("input[type=checkbox], input[type=radio]")
+                .prop("checked", "")
+                .end();
+    });
     $('#FitsChart #btnNIWFitsADD').on('click', function (e) {
         e.preventDefault();
         var pmi_no = pmiNo;
@@ -131,28 +140,42 @@
 
         var assignBy = doctor_id;
 
-        var datas = pmi_no + "|" + hfc_cd1 + "|" + epDate + "|" + encounterDate + "|" + treatmentDate +" "+time+":00.0|" + NOF + "|" + DU + "|" + REMARK+"|"+dis+"|"+subdis+"|"+assignBy;
+        var datas = pmi_no + "|" + hfc_cd1 + "|" + epDate + "|" + encounterDate + "|" + treatmentDate + " " + time + ":00.0|" + NOF + "|" + DU + "|" + REMARK + "|" + dis + "|" + subdis + "|" + assignBy;
 
-        $.ajax({
-            type: "post",
-            url: "../Ortho-NursingInWard/controller/FitFunction.jsp",
-            data: {datas: datas, methodName: "add"},
-            timeout: 10000,
-            success: function (result) {
-                if (result.trim() === 'true') {
-                    bootbox.alert("successfully added!");
-                    if (sel !== null) {
-                        $('#selectfitsdate').val(sel).change();
+        var resulta = $("#FitsChart input[required]").filter(function () {
+            return $.trim($(this).val()).length === 0;
+        }).length === 0;
+
+        var resultb = $("#FitsChart select[required]").filter(function () {
+            return $.trim($(this).val()).length === 0;
+        }).length === 0;
+
+        if (resulta === false || resultb === false) {
+            bootbox.alert("Please make sure all field is inserted.");
+        } else {
+            $.ajax({
+                type: "post",
+                url: "../Ortho-NursingInWard/controller/FitFunction.jsp",
+                data: {datas: datas, methodName: "add"},
+                timeout: 10000,
+                success: function (result) {
+                    if (result.trim() === 'true') {
+                        bootbox.alert("successfully added!");
+                        if (sel !== null) {
+                            $('#selectfitsdate').val(sel).change();
+                        }
+                    } else if (result.trim() === 'false') {
+                        bootbox.alert("fail to add");
                     }
-                } else if (result.trim() === 'false') {
-                    bootbox.alert("fail to add");
+                },
+                error: function (err) {
+                    bootbox.alert("something wrong,error: " + err);
                 }
-            },
-            error: function (err) {
-                bootbox.alert("something wrong,error: " + err);
-            }
-        });
-        $("#FitsChart").modal('toggle');
+            });
+            $("#FitsChart").modal('toggle');
+        }
+
+
     });
 
     $('#FitsChart #btnNIWFitsUPDATE').on('click', function (e) {
@@ -189,7 +212,7 @@
 
         var assignBy = doctor_id;
 
-        var datas = pmi_no + "|" + hfc_cd1 + "|" + epDate + "|" + encounterDate + "|" + treatmentDate +" "+time+"|" + NOF + "|" + DU + "|" + REMARK+"|"+dis+"|"+subdis;
+        var datas = pmi_no + "|" + hfc_cd1 + "|" + epDate + "|" + encounterDate + "|" + treatmentDate + " " + time + "|" + NOF + "|" + DU + "|" + REMARK + "|" + dis + "|" + subdis;
         $.ajax({
             type: "post",
             url: "../Ortho-NursingInWard/controller/FitFunction.jsp",
