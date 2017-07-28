@@ -544,11 +544,10 @@ $(document).ready(function (e) {
         var SendNotes = getNotesDCG(_data);
         //var ord = getNotesDCG(_data);
 
-        console.log(vtsCounter);
         vtsCounter = 0;
 
         notes = msh + pdi + SendNotes;
-        console.log(notes);
+        createScreenLoading();
 
         $.ajax({
             url: "topMenuFunction/discharge.jsp",
@@ -560,9 +559,9 @@ $(document).ready(function (e) {
                 status: status,
             },
             success: function (data) {
-
+                //destroyScreenLoading()
                 var d = data.trim();
-                console.log(data);
+               
                 if (d === '|1|') {
                     clearCIS();
                     alert('Patient has been ' + statusDesc);

@@ -40,6 +40,7 @@
 <script src="jsFunction/TopMenuFunction.js"></script>
 <script src="jsFunction/searchTopMenu.js"></script>
 
+<script src="jsFunction/create_destroy_loading.js"></script>
 
 <script src="jsFunction/search/SeaarchuCCN_cd.js" type="text/javascript"></script>
 
