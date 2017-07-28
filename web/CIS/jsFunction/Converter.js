@@ -291,7 +291,7 @@ function getMSH(receiveApp,receiveHF){
 }
 
 function convertCCN(obj){
-    var msg = "CCN|" + episodeDate + "|" + obj.ccnCode + "^" + obj.problem + "^^" + obj.Mild + "^" + obj.duration +" "+ obj.sdur + "^^^^" + obj.Site + "^^" + obj.Laterality + "^" + obj.Comment + "^^^" + encounterDate + "^" + hfc_cd + "^"+ doctor_id +"^" + doctor_name + "^^^|<cr>\n";
+    var msg = "CCN|" + episodeDate + "|" + obj.ccnCode + "^" + obj.problem + "^^" + obj.Mild + "^" + obj.duration +" "+ obj.sdur + "^^^^" + obj.Site + "^^" + obj.Laterality + "^" + obj.Comment + "^"+getDate()+"^^" + encounterDate + "^" + hfc_cd + "^"+ doctor_id +"^" + doctor_name + "^^^|<cr>\n";
     return msg;
 }
 
@@ -368,13 +368,13 @@ function convertLIO(obj){
 
 function convertPOS(obj){
     var procedureDisplay = getProcedureDisplay(obj.procedure)
-    var msg ="POS|"  + obj.problemCode +"^"+obj.problemName+"^CTV3|"+ obj.procedureCode + "^"+procedureDisplay +"^ICD1-PCS|" + obj.date + "|038^" + obj.priority + "^" + obj.priorityCode + "|096^" + obj.patientConditionCode + "^" + obj.patientCondition + "||||" + hfc_cd + "|" + hfc_name + "|" + obj.comment + "|" + hfc_cd;
+    var msg ="POS|"  + obj.problemCode +"^"+obj.problemName+"^CTV3|"+ obj.procedureCode + "^"+procedureDisplay +"^ICD1-PCS|" + obj.date + "|038^" + obj.priority + "^" + obj.priorityCode + "|096^" + obj.patientConditionCode + "^" + obj.patientCondition + "||||" + hfc_cd + "|" + hfc_name + "|" + obj.comment + "|" + hfc_cd+ "|<cr>\n";;
     return msg;
 }
 function convertPOSSurgical(obj){
     var startDate = convertDateToDBFormat(obj.startDate);
     var endDate = convertDateToDBFormat(obj.endDate);
-    var msg ="POS|"  + obj.problemCode +"^"+obj.problemName+"^CTV3|" + obj.cat_Code+"^" +"^" + obj.cat_name +"^"+ obj.procedureCode + "^"+obj.procedure +"^ICD1-PCS|" + startDate+ "^"+ obj.startTime +"^"+ endDate +"^"+ obj.endTime + "|038^" + obj.priority + "^" + obj.priorityCode + "|096^" + obj.patientConditionCode + "^" + obj.patientCondition + "||||" + hfc_cd + "|" + hfc_name + "|" + obj.comment + "|" + hfc_cd + "|" + obj.consultantCode+"^"+obj.consultantName+"|"+obj.otRoomCode+"^"+obj.otRoom;
+    var msg ="POS|"  + obj.problemCode +"^"+obj.problemName+"^CTV3|" + obj.cat_Code+"^" +"^" + obj.cat_name +"^"+ obj.procedureCode + "^"+obj.procedure +"^ICD1-PCS|" + startDate+ "^"+ obj.startTime +"^"+ endDate +"^"+ obj.endTime + "|038^" + obj.priority + "^" + obj.priorityCode + "|096^" + obj.patientConditionCode + "^" + obj.patientCondition + "||||" + hfc_cd + "|" + hfc_name + "|" + obj.comment + "|" + hfc_cd + "|" + obj.consultantCode+"^"+obj.consultantName+"|"+obj.otRoomCode+"^"+obj.otRoom + "|<cr>\n";;;
     return msg;
 }
 
