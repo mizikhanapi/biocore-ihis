@@ -211,10 +211,15 @@ $(document).ready(function(){
             alert("You not enter the drug strength");
         }else{
             
-            _dataDTO.push(obj1);
-            indexDTO = _dataDTO.lastIndexOf(obj1);
-            appendOrderDTO(obj1, indexDTO);
-            clearFieldDTO();
+            if (checkOrderCode(_dataDTO, obj1.drugCode)) {
+                alert("This order already been added");
+            } else{
+                _dataDTO.push(obj1);
+                indexDTO = _dataDTO.lastIndexOf(obj1);
+                appendOrderDTO(obj1, indexDTO);
+                clearFieldDTO();
+            }
+
         
         }
 
@@ -408,5 +413,15 @@ $(document).ready(function(){
             
             }
         });
+    }
+    
+    function checkOrderCode(data, code) {
+        var already = false;
+        for (var i in data) {
+            if (data[i].drugCode === code) {
+                already = true;
+            }
+        }
+        return already;
     }
 });

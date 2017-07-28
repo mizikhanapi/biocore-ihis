@@ -219,10 +219,15 @@ $(document).ready(function () {
         }else if (otRoom === "") {
             alert("You not enter the OT Room");
         } else {
-            _dataPOSSurgical.push(obj);
-            indexPOSSurgical = _dataPOSSurgical.lastIndexOf(obj);
-            appendOrderPOSSurgical(obj, indexPOSSurgical);
-            clearFieldPOSSurgical();
+             if (checkOrderCode(_dataPOSSurgical, obj.procedureCode)) {
+                alert("This order already been added");
+            } else{
+                _dataPOSSurgical.push(obj);
+                indexPOSSurgical = _dataPOSSurgical.lastIndexOf(obj);
+                appendOrderPOSSurgical(obj, indexPOSSurgical);
+                clearFieldPOSSurgical();
+            }
+
         }
 
         
@@ -397,6 +402,16 @@ $(document).ready(function () {
 
         var _tr = '<td class="col-md-2">' + obj.cat_name + '</td><td class="col-md-2">' + obj.procedure + '</td><td class="col-md-2">' + obj.otRoom + '</td><td class="col-md-2">' + obj.consultantName + '</td><td class="col-md-2">' + obj.startDate + ' ' + obj.startTime + '</td><td class="col-md-2">' + obj.endDate + ' ' + obj.endTime + '</td><td class="col-md-2">' + obj.comment + '</td><td class="col-md-2"><a id="row|' + index + '" data-toggle="tooltip" data-placement="top" title="Update Order" class="btnUpdate" style="cursor: pointer" id=""><i class="fa fa-pencil-square-o fa-lg" aria-hidden="true" style="display: inline-block;color: #337ab7;"></i></a>&nbsp;<a id="delRow|' + index + '" data-toggle="tooltip" data-placement="top" title="Delete Order" class="btnDelete" style="cursor: pointer" id=""><i class="fa fa-times fa-lg" aria-hidden="true" style="display: inline-block;color: #d9534f;"></i></a></td>';
         $(rowPOSSurgicalDataTR).html(_tr);
+    }
+    
+    function checkOrderCode(data, code) {
+        var already = false;
+        for (var i in data) {
+            if (data[i].procedureCode === code) {
+                already = true;
+            }
+        }
+        return already;
     }
 
 });

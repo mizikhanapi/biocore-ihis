@@ -209,10 +209,16 @@ $(document).ready(function () {
             $items.each(function () {
                 obj1[this.id] = $(this).val();
             });
-            _dataLIO.push(obj1);
-            indexLIO = _dataLIO.lastIndexOf(obj1);
-            appendOrderLIO(obj1, indexLIO)
-            clearFieldLIO();
+            
+            if (checkOrderCode(_dataLIO, obj1.codeLOS)) {
+                alert("This order already been added");
+            } else{
+                _dataLIO.push(obj1);
+                indexLIO = _dataLIO.lastIndexOf(obj1);
+                appendOrderLIO(obj1, indexLIO)
+                clearFieldLIO();
+            }
+
         }
 
 
@@ -409,6 +415,16 @@ $(document).ready(function () {
 
             }
         });
+    }
+    
+    function checkOrderCode(data, code) {
+        var already = false;
+        for (var i in data) {
+            if (data[i].codeLOS === code) {
+                already = true;
+            }
+        }
+        return already;
     }
 
 });

@@ -203,11 +203,15 @@ $(document).ready(function(){
       }else if( commentArea === ""){
           alert("You not enter the comment");
       } else{
-        _dataPOS.push(obj);
-        indexPOS = _dataPOS.lastIndexOf(obj);
+            if (checkOrderCode(_dataPOS, obj.procedureCode)) {
+                alert("This order already been added");
+            } else{
+                _dataPOS.push(obj);
+                indexPOS = _dataPOS.lastIndexOf(obj);
+                appendOrderPOS(obj, indexPOS);
+                clearFieldPOS();
+            }
 
-        appendOrderPOS(obj, indexPOS);
-        clearFieldPOS();
       }
 
      
@@ -433,6 +437,16 @@ $(document).ready(function(){
         var displayProcedure = getProcedureDisplay(obj.procedure);
         var _tr = '<td>' + obj.problemName + '</td><td>' + displayProcedure + '</td><td>' + obj.comment + '</td><td><a id="row|' + index + '" data-toggle="tooltip" data-placement="top" title="Update Order" class="btnUpdate" style="cursor: pointer" id=""><i class="fa fa-pencil-square-o fa-lg" aria-hidden="true" style="display: inline-block;color: #337ab7;"></i></a>&nbsp;<a id="delRow|' + index + '" data-toggle="tooltip" data-placement="top" title="Delete Order" class="btnDelete" style="cursor: pointer" id=""><i class="fa fa-times fa-lg" aria-hidden="true" style="display: inline-block;color: #d9534f;"></i></a></td>';
         $(rowPOSDataTR).html(_tr);
+    }
+    
+    function checkOrderCode(data, code) {
+        var already = false;
+        for (var i in data) {
+            if (data[i].procedureCode === code) {
+                already = true;
+            }
+        }
+        return already;
     }
     
 
