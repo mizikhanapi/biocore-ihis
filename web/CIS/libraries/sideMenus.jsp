@@ -34,10 +34,8 @@
                 <i class="fa fa-angle-right fa-lg"></i> Orthopedic <span class="caret"></span>
             </a>
             <ul class="dropdown-menu">
-                <!--                <li><a href="#orthopedic-con" role="presentation" data-toggle="tab" class="panelito">Consultation</a></li>-->
-                <!--<li><a href="#orthopedic-nur" role="presentation" data-toggle="tab" class="panelito">Nursing</a></li>-->
-                <li><a href="#" class="panelito ortho-niward">Nursing in Ward</a></li>
-                <li><a href="#orthopedic-ot" role="presentation" data-toggle="tab" class="panelito">Operation Theater</a></li>
+                <li><a class="panelito ortho-niward">Nursing</a></li>
+                <li><a class="panelito ortho-opthe">Operation Theater</a></li>
             </ul>
         </li>
         <li><a href="#ong" role="tab" data-toggle="tab" class="panelito"><i class="fa fa-angle-right fa-lg"></i> Obstetrics & Gynaecology</a></li>

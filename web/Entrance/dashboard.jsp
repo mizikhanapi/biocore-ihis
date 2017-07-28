@@ -181,7 +181,7 @@
                         <div class="col-xs-6 col-sm-6 col-md-3">
                             <a href="../SystemAdmin/Lookup" class="thumbnail">
                                 <div class="kotak text-center">
-                                    <i class="fa fa-desktop" aria-hidden="true" style="color: #FDC671;font-size: 4em;"></i>
+                                    <i class="fa fa-gears" aria-hidden="true" style="color: #FDC671;font-size: 4em;"></i>
                                     <h3>System Administration</h3>
                                 </div>
                             </a>
@@ -190,7 +190,7 @@
                         <div class="col-xs-6 col-sm-6 col-md-3">
                             <a href="../Registration/" class="thumbnail">
                                 <div class="kotak text-center">
-                                    <i class="fa fa-users" aria-hidden="true" style="color: #c0a16b;font-size: 4em;"></i>
+                                    <i class="fa fa-desktop" aria-hidden="true" style="color: #c0a16b;font-size: 4em;"></i>
                                     <h3>Medical Kiosk</h3>
                                 </div>
                             </a>
@@ -203,7 +203,7 @@
                         <div class="col-xs-6 col-sm-6 col-md-3">
                             <a href="../PMS/index.jsp" class="thumbnail">
                                 <div class="kotak text-center">
-                                    <i class="fa fa-user" aria-hidden="true" style="color: #17A086;font-size: 4em;"></i>
+                                    <i class="fa fa-user-plus" aria-hidden="true" style="color: #17A086;font-size: 4em;"></i>
                                     <h3>Outpatient Management</h3>
                                 </div>
                             </a>
@@ -245,7 +245,7 @@
                         <div class="col-xs-6 col-sm-6 col-md-3">
                             <a href="../LIS/Order_list" class="thumbnail">
                                 <div class="kotak text-center">
-                                    <i class="fa fa-database" aria-hidden="true" style="color: #F26353;font-size: 4em;"></i>
+                                    <i class="fa fa-flask" aria-hidden="true" style="color: #F26353;font-size: 4em;"></i>
                                     <h3>Laboratory Info System</h3>
                                 </div>
                             </a>
@@ -259,7 +259,7 @@
                         <div class="col-xs-6 col-sm-6 col-md-3">
                             <a href="../RIS/HIS060001.jsp" class="thumbnail">
                                 <div class="kotak text-center">
-                                    <i class="fa fa-cogs" aria-hidden="true" style="color: #2A80B9;font-size: 4em;"></i>
+                                    <i class="fa fa-fire" aria-hidden="true" style="color: #2A80B9;font-size: 4em;"></i>
                                     <h3>Radiology Information System</h3>
                                 </div>
                             </a>
@@ -287,7 +287,7 @@
                         <div class="col-xs-6 col-sm-6 col-md-3">
                             <a href="../Billing/HIS080001.jsp" class="thumbnail">
                                 <div class="kotak text-center">
-                                    <i class="fa fa-credit-card" aria-hidden="true" style="color: #34A8DA;font-size: 4em;"></i>
+                                    <i class="fa fa-money" aria-hidden="true" style="color: #34A8DA;font-size: 4em;"></i>
                                     <h3>Billing System</h3>
                                 </div>
                             </a>
@@ -315,7 +315,7 @@
                         <div class="col-xs-6 col-sm-6 col-md-3">
                             <a href="../Report/MainMenu.jsp" class="thumbnail">
                                 <div class="kotak text-center">
-                                    <i class="fa fa-file-text" aria-hidden="true" style="color: #17A086;font-size: 4em;"></i>
+                                    <i class="fa fa-bar-chart" aria-hidden="true" style="color: #17A086;font-size: 4em;"></i>
                                     <h3>Reports</h3>
                                 </div>
                             </a>
@@ -330,7 +330,7 @@
                         <div class="col-xs-6 col-sm-6 col-md-3">
                             <a href="../CallingSystem" class="thumbnail">
                                 <div class="kotak text-center">
-                                    <i class="fa fa-phone" aria-hidden="true" style="color: #FFB74D;font-size: 4em;"></i>
+                                    <i class="fa fa-phone-square" aria-hidden="true" style="color: #FFB74D;font-size: 4em;"></i>
                                     <h3>Calling System</h3>
                                 </div>
                             </a>
@@ -368,7 +368,7 @@
                         <div class="col-xs-6 col-sm-6 col-md-3">
                             <a href="../QMS/" class="thumbnail">
                                 <div class="kotak text-center">
-                                    <i class="fa fa-users" aria-hidden="true" style="color:#de58e8;font-size: 4em;"></i>
+                                    <i class="fa fa-users" aria-hidden="true" style="color:#ab47bc;font-size: 4em;"></i>
                                     <h3>Queue Management</h3>
                                 </div>
                             </a>
@@ -382,7 +382,6 @@
             <!-- main -->		
 
         </div>
-
 
 
         <!-- Bootstrap core JavaScript
