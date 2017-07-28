@@ -23,7 +23,7 @@
         String my_1_hfc_cd = (String) session.getAttribute("HEALTH_FACILITY_CODE");
         //out.print(orderNo);
         //String orderList = "SELECT item_cd,item_name,spe_source,volume,requestor_comments,filler_comments,specimen_status,Verification,collectionDate FROM lis_order_detail WHERE order_no = '" + orderNo + "'";
-        String orderList = "SELECT LID.item_cd,LID.item_name,LID.spe_source,LID.spe_container,LID.volume,LID.special_inst,LID.status,LOD.`Verification`,LOD.created_date,LOD.comment,LOD.requestor_comments,LOD.pmi_no FROM lis_order_detail LOD, lis_item_detail LID WHERE LOD.item_cd = LID.item_cd AND LOD.order_no = '" + orderNo + "' AND LID.hfc_cd = '" + my_1_hfc_cd + "'";
+        String orderList = "SELECT LID.item_cd,LID.item_name,LID.spe_source,LID.spe_container,LID.volume,LID.special_inst,LID.status,LOD.`Verification`,LOD.created_date,LOD.comment,LOD.requestor_comments,LOD.pmi_no,LOD.detail_status FROM lis_order_detail LOD, lis_item_detail LID WHERE LOD.item_cd = LID.item_cd AND LOD.order_no = '" + orderNo + "' AND LID.hfc_cd = '" + my_1_hfc_cd + "'";
         ArrayList<ArrayList<String>> dataOrderList;
         dataOrderList = conn.getData(orderList);
 
