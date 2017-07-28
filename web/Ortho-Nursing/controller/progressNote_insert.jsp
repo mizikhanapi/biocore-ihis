@@ -11,7 +11,11 @@
 <%
     String pmiNo = (String) session.getAttribute("patientPMINo");
     String hfc_cd = (String) session.getAttribute("HEALTH_FACILITY_CODE");
+    String dis_cd = (String) session.getAttribute("DISCIPLINE_CODE");
+    String sub_cd = (String) session.getAttribute("SUB_DISCIPLINE_CODE");
+    String creator = (String) session.getAttribute("USER_ID");
     String epDate = (String) session.getAttribute("episodeDate");
+    
     
     String enDate = request.getParameter("enDate");
     String enTime = request.getParameter("enTime");
@@ -29,8 +33,8 @@
         ArrayList<ArrayList<String>> dataDup = con.getData(duplicate);
         
         if(dataDup.size() <= 0 ){
-            String query = "INSERT INTO lhr_ort_nur_progressnote(pmi_no, hfc_cd, episode_date, encounter_date, datetime, note) "
-                        + "VALUES('" + pmiNo + "', '" + hfc_cd + "', '" + epDate + "', '" + enDate + "', '" + enDate + "', '" + notes + "');";
+            String query = "INSERT INTO lhr_ort_nur_progressnote(pmi_no, hfc_cd, episode_date, encounter_date, datetime, note, discipline_cd, subdiscipline_cd, created_by, created_date) "
+                        + "VALUES('" + pmiNo + "', '" + hfc_cd + "', '" + epDate + "', '" + enDate + "', '" + enDate + "', '" + notes + "', '"+dis_cd+"', '"+sub_cd+"', '"+creator+"', now() );";
 
             boolean isSuccess = rmi.setQuerySQL(con.HOST, con.PORT, query);
 

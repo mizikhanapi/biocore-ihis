@@ -10,6 +10,9 @@
 <%@page import="dBConn.Conn"%>
 <%
     String hfc_cd = (String) session.getAttribute("HEALTH_FACILITY_CODE");
+    String dis_cd = (String) session.getAttribute("DISCIPLINE_CODE");
+    String sub_cd = (String) session.getAttribute("SUB_DISCIPLINE_CODE");
+    String creator = (String) session.getAttribute("USER_ID");
 
     String pmiNo = (String) session.getAttribute("patientPMINo");
     String epDate = (String) session.getAttribute("episodeDate");
@@ -50,8 +53,8 @@
 
         RMIConnector rmi = new RMIConnector();
 
-        String query = "Insert into lhr_ort_nur_morse_fall_scale(pmi_no, hfc_cd, episode_date, encounter_date, datetime, falling_status, diagnosis_status, type_movement, venofix_syringe_pump, body_structure, mental_status, total_score) "
-                + "values('" + pmiNo + "', '" + hfc_cd + "', '" + epDate + "', '" + enDate + "', '" + time + "', '" + fall + "', '" + diagnosis + "', '" + movement + "', '" + venofix + "', '" + badan + "', '" + mental + "', " + score + " )";
+        String query = "Insert into lhr_ort_nur_morse_fall_scale(pmi_no, hfc_cd, episode_date, encounter_date, datetime, falling_status, diagnosis_status, type_movement, venofix_syringe_pump, body_structure, mental_status, total_score, discipline_cd, subdiscipline_cd, created_by, created_date) "
+                + "values('" + pmiNo + "', '" + hfc_cd + "', '" + epDate + "', '" + enDate + "', '" + time + "', '" + fall + "', '" + diagnosis + "', '" + movement + "', '" + venofix + "', '" + badan + "', '" + mental + "', " + score + ", '"+dis_cd+"', '"+sub_cd+"', '"+creator+"', now() )";
 
         boolean isSuccess = rmi.setQuerySQL(con.HOST, con.PORT, query);
 
