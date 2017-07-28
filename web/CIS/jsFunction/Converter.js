@@ -316,7 +316,7 @@ function convertSOH(obj){
 }
 
 function convertBLD(obj){
-    var msg = "BLD|" + episodeDate + "|" + obj.blood + "^" + obj.Rhesus_Type + "^" + obj.G6PD_Status + "^" + obj.comment4 + "^"+encounterDate+"|<cr>\n";
+    var msg = "BLD|" + episodeDate + "|" + obj.blood + "^" + obj.Rhesus_Type + "^" + obj.G6PD_Status + "^" + obj.comment4 + "^"+encounterDate+"^"+doctor_id+"|<cr>\n";
     return msg;
 }
 
@@ -331,7 +331,7 @@ function convertIMU(obj){
 }
 
 function convertDAB(obj){
-   var msg =  "DAB|" + episodeDate + "|" + obj.codeDAB + "^" + obj.Problem32 + "^" + obj.date3 + "^" + obj.comment7 + "^^|<cr>\n";
+   var msg =  "DAB|" + episodeDate + "|" + obj.codeDAB + "^" + obj.Problem32 + "^" + obj.date3 + "^" + obj.comment7 + "^^"+"^"+encounterDate+"^"+doctor_id+"|<cr>\n";
    return msg;
 }
 
