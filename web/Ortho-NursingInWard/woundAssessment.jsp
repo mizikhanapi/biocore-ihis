@@ -36,7 +36,7 @@
             </div>
         </div>
     </div>
-    <div id="tableWoundAssessmentDiv" style="overflow-y: auto">
+    <div id="tableWoundAssessmentDiv" class="table-guling">
         <table class="table table-bordered" id="tableWoundAssessmentTable" style="width: 100%">
             <tr>
                 <th rowspan="2">Date</th>

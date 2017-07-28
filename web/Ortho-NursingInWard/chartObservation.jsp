@@ -36,7 +36,7 @@
         </div>
     </div>
 </div>
-<div id="divBIWOB">
+<div id="divBIWOB" class="table-guling">
     <table class="table table-bordered table-striped" id="tblNIW_observation_chart" width="100%">
         <thead>
         <th>Date</th>

@@ -35,7 +35,7 @@
         </div>
     </div>
 </div>
-<div id="divBIW4hly">
+<div id="divBIW4hly" class="table-guling">
     <table class="table table-bordered table-striped" id="tblNIW_4hly">
         <thead>
         <th>Date</th>

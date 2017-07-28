@@ -49,7 +49,7 @@
         </div>
     </div>
 
-    <div id="tableChartCirculationDiv">
+    <div id="tableChartCirculationDiv" class="table-guling">
         <table class="table table-bordered" id="tableChartCirculationTable" style="width: 100%">
             <thead>
             <th>Date</th>

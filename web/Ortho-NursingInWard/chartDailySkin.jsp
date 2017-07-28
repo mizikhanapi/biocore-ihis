@@ -39,49 +39,53 @@
     </div>
 
     <div class="row">
-        <div class="col-md-7" style="overflow: auto" >
+        <div class="col-md-7" >
             <div id="tableChartDailySkinToolDiv">
                 <h5>Daily Skin Assessment Tool</h5>
-                <table class="table table-bordered" id="tableChartDailySkinToolTable" style="width: 100%">
-                    <thead>
-                        <tr>
-                            <th>Date</th>
-                            <th>Time</th>
-                            <th>Temperature</th>
-                            <th>Color</th>
-                            <th>Moisture</th>
-                            <th>Skin Turgor</th>
-                            <th>Integrity</th>
-                            <th>Assesor</th>
-                            <th>Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td colspan="9" align="center">No Record To Show<br>Please Select A History Assessment</td>
-                        </tr>
-                    </tbody>
-                </table>
+                <div class="table-guling">
+                    <table class="table table-bordered" id="tableChartDailySkinToolTable" style="width: 100%">
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Time</th>
+                                <th>Temperature</th>
+                                <th>Color</th>
+                                <th>Moisture</th>
+                                <th>Skin Turgor</th>
+                                <th>Integrity</th>
+                                <th>Assesor</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td colspan="9" align="center">No Record To Show<br>Please Select A History Assessment</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
-        <div class="col-md-5" style="overflow: auto">
+        <div class="col-md-5">
             <div id="tableChartDailySkinPositionDiv">
                 <h5>Positioning Chart</h5>
-                <table class="table table-bordered" id="tableChartDailySkinPositionTable" style="width: 100%">
-                    <thead>
-                        <tr>
-                            <th>Date</th>
-                            <th>Time</th>
-                            <th>Position / Activity</th>
-                            <th>Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td colspan="4" align="center">No Record To Show<br>Please Select A History Assessment</td>
-                        </tr>
-                    </tbody>
-                </table>
+                <div class="table-responsive">
+                    <table class="table table-bordered" id="tableChartDailySkinPositionTable" style="width: 100%">
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Time</th>
+                                <th>Position / Activity</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td colspan="4" align="center">No Record To Show<br>Please Select A History Assessment</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>

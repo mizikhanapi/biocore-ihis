@@ -38,7 +38,7 @@
     </div>
 
 
-    <div id="tableDiabeticChartDiv">
+    <div id="tableDiabeticChartDiv" class="table-guling">
         <table class="table table-bordered" id="tableDiabeticChartTable" style="width: 100%">
             <thead>
             <th>Date</th>

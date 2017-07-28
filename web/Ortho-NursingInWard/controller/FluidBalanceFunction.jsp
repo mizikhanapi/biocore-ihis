@@ -51,6 +51,7 @@
 
 %>
 <h5>Intake</h5>
+<div class="table-guling">
 <table class="table table-bordered" id="tableFluidBalanceIntakeTable" style="width: 100%">
     <thead>
         <tr>
@@ -92,6 +93,7 @@
 </tbody>
 
 </table>
+</div>
 
 <script>
     $('#tableFluidBalanceIntakeTable').DataTable({
@@ -113,6 +115,7 @@
 %>
 
 <h5>Output</h5>
+<div class="table-guling">
 <table class="table table-bordered" id="tableFluidBalanceOutputTable" style="width: 100%">
     <thead>
         <tr>
@@ -145,7 +148,7 @@
 </tbody>
 
 </table>
-
+</div>
 <script>
     $('#tableFluidBalanceOutputTable').DataTable({
         "paging": true,

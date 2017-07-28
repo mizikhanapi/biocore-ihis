@@ -36,7 +36,7 @@
         </div>
     </div>
 </div>
-<div id="divBIWfits">
+<div id="divBIWfits" class="table-guling">
     <table class="table table-bordered" id="tblNIW_fits">
         <thead>
             <th hidden=""></th>

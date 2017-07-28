@@ -35,7 +35,7 @@
         </div>
     </div>
 </div>
-<div id="divBIWredivac"><table class="table table-bordered" id="tblNIW_redivac">
+<div id="divBIWredivac" class="table-guling"><table class="table table-bordered" id="tblNIW_redivac">
         <tr>
             <th>Date</th>
             <th>Shift</th>

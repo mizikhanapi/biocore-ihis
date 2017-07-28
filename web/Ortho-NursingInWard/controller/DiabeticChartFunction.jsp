@@ -44,54 +44,54 @@
         ArrayList<ArrayList<String>> datas = diab.getDiabetic(data);
 
 %>
-
-<table class="table table-bordered" id="tableDiabeticChartTable" style="width: 100%">
-    <thead>
-    <th>Date</th>
-    <th>Time</th>
-    <th>Dextrostix</th>
-    <th>Doctor Name</th>
-    <th>Approval</th>
-    <th>Action</th>
-</thead>
-<tbody>
-    <% for (int i = 0; i < datas.size(); i++) {%>
-    <tr>
-<input id="dataDiabeticCharthidden" type="hidden" value="<%=String.join("|", datas.get(i))%>">
-<td><%=datas.get(i).get(7)%></td>
-<td><%=datas.get(i).get(6)%></td>
-<td><%=datas.get(i).get(8)%></td>
-<td><%=datas.get(i).get(9)%></td>
-<td>
-    <%
+<div class="table-guling">
+    <table class="table table-bordered" id="tableDiabeticChartTable" style="width: 100%">
+        <thead>
+        <th>Date</th>
+        <th>Time</th>
+        <th>Dextrostix</th>
+        <th>Doctor Name</th>
+        <th>Approval</th>
+        <th>Action</th>
+        </thead>
+        <tbody>
+            <% for (int i = 0; i < datas.size(); i++) {%>
+            <tr>
+        <input id="dataDiabeticCharthidden" type="hidden" value="<%=String.join("|", datas.get(i))%>">
+        <td><%=datas.get(i).get(7)%></td>
+        <td><%=datas.get(i).get(6)%></td>
+        <td><%=datas.get(i).get(8)%></td>
+        <td><%=datas.get(i).get(9)%></td>
+        <td>
+            <%
         if (datas.get(i).get(10).equalsIgnoreCase("pending")) { %>
 
 
-    <button class="btn btn-warning btn-block" id="tableDiabeticChartPendingBtn"><i class="fa fa-check-square-o"></i> Pending</button>
+            <button class="btn btn-warning btn-block" id="tableDiabeticChartPendingBtn"><i class="fa fa-check-square-o"></i> Pending</button>
 
-    <%          } else if (datas.get(i).get(10).equalsIgnoreCase("approved")) { %>
+            <%          } else if (datas.get(i).get(10).equalsIgnoreCase("approved")) { %>
 
-    <button class="btn btn-success btn-block disabled"><i class="fa fa-check-square-o"></i> Approved</button>
-    <%    }
-    %>
-</td>
-<td>
-    <%
+            <button class="btn btn-success btn-block disabled"><i class="fa fa-check-square-o"></i> Approved</button>
+            <%    }
+            %>
+        </td>
+        <td>
+            <%
         if (datas.get(i).get(10).equalsIgnoreCase("pending")) { %>
 
-    <a data-toggle="modal" data-target="#edit" id="tableDiabeticChartUpdateBtn"><i class="fa fa-pencil-square-o fa-lg" aria-hidden="true" style="display: inline-block;color: #337ab7;"></i></a>
+            <a data-toggle="modal" data-target="#edit" id="tableDiabeticChartUpdateBtn"><i class="fa fa-pencil-square-o fa-lg" aria-hidden="true" style="display: inline-block;color: #337ab7;"></i></a>
 
-    <%  } %>
-    &nbsp;
-    <a id="tableDiabeticChartDeleteBtn" class="testing"><i class="fa fa-times fa-lg" aria-hidden="true" style="display: inline-block;color: #d9534f;"></i></a>
+            <%  } %>
+            &nbsp;
+            <a id="tableDiabeticChartDeleteBtn" class="testing"><i class="fa fa-times fa-lg" aria-hidden="true" style="display: inline-block;color: #d9534f;"></i></a>
 
-</td>
-</tr> 
-<%    } %>
-</tbody>
+        </td>
+        </tr> 
+        <%    } %>
+        </tbody>
 
-</table>
-
+    </table>
+</div>
 <script>
     $('#tableDiabeticChartTable').DataTable({
         "paging": true,

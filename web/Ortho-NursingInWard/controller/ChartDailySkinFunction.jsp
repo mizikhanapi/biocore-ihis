@@ -51,43 +51,44 @@
 %>
 
 <h5>Daily Skin Assessment Tool</h5>
-<table class="table table-bordered" id="tableChartDailySkinToolTable" style="width: 100%">
-    <thead>
-        <tr>
-            <th>Date</th>
-            <th>Time</th>
-            <th>Temperature</th>
-            <th>Color</th>
-            <th>Moisture</th>
-            <th>Skin Turgor</th>
-            <th>Integrity</th>
-            <th>Assesor</th>
-            <th>Action</th>
-        </tr>
-    </thead>
-    <tbody>
-        <% for (int i = 0; i < datas.size(); i++) {%>
-        <tr>
-    <input id="dataChartDailySkinToolhidden" type="hidden" value="<%=String.join("|", datas.get(i))%>">
-    <td><%=datas.get(i).get(5)%></td>
-    <td><%=datas.get(i).get(4)%></td>
-    <td><%=datas.get(i).get(6)%></td>
-    <td><%=datas.get(i).get(7)%></td>
-    <td><%=datas.get(i).get(8)%></td>
-    <td><%=datas.get(i).get(9)%></td>
-    <td><%=datas.get(i).get(10)%></td>
-    <td><%=datas.get(i).get(11)%></td>
-    <td>
-        <a id="tableChartDailySkinToolUpdateBtn" data-toggle="modal" data-target="#edit"><i class="fa fa-pencil-square-o fa-lg" aria-hidden="true" style="display: inline-block;color: #337ab7;"></i></a>
-        &nbsp;&nbsp;
-        <a id="tableChartDailySkinToolDeleteBtn" class="testing"><i class="fa fa-times fa-lg" aria-hidden="true" style="display: inline-block;color: #d9534f;"></i></a>
-    </td>
-</tr> 
-<%    } %>
-</tbody>
+<div class="table-guling">
+    <table class="table table-bordered" id="tableChartDailySkinToolTable" style="width: 100%">
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Time</th>
+                <th>Temperature</th>
+                <th>Color</th>
+                <th>Moisture</th>
+                <th>Skin Turgor</th>
+                <th>Integrity</th>
+                <th>Assesor</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% for (int i = 0; i < datas.size(); i++) {%>
+            <tr>
+        <input id="dataChartDailySkinToolhidden" type="hidden" value="<%=String.join("|", datas.get(i))%>">
+        <td><%=datas.get(i).get(5)%></td>
+        <td><%=datas.get(i).get(4)%></td>
+        <td><%=datas.get(i).get(6)%></td>
+        <td><%=datas.get(i).get(7)%></td>
+        <td><%=datas.get(i).get(8)%></td>
+        <td><%=datas.get(i).get(9)%></td>
+        <td><%=datas.get(i).get(10)%></td>
+        <td><%=datas.get(i).get(11)%></td>
+        <td>
+            <a id="tableChartDailySkinToolUpdateBtn" data-toggle="modal" data-target="#edit"><i class="fa fa-pencil-square-o fa-lg" aria-hidden="true" style="display: inline-block;color: #337ab7;"></i></a>
+            &nbsp;&nbsp;
+            <a id="tableChartDailySkinToolDeleteBtn" class="testing"><i class="fa fa-times fa-lg" aria-hidden="true" style="display: inline-block;color: #d9534f;"></i></a>
+        </td>
+        </tr> 
+        <%    } %>
+        </tbody>
 
-</table>
-
+    </table>
+</div>
 <script>
     $('#tableChartDailySkinToolTable').DataTable({
         "paging": true,
@@ -108,6 +109,7 @@
 %>
 
 <h5>Positioning Chart</h5>
+<div class="table-guling">
 <table class="table table-bordered" id="tableChartDailySkinPositionTable" style="width: 100%">
     <thead>
         <tr>
@@ -134,7 +136,7 @@
 </tbody>
 
 </table>
-
+</div>
 <script>
     $('#tableChartDailySkinPositionTable').DataTable({
         "paging": true,

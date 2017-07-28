@@ -41,54 +41,58 @@
         <div class="col-md-6">
             <div id="tableFluidBalanceIntakeDiv">
                 <h5>Intake</h5>
-                <table class="table table-bordered" id="tableFluidBalanceIntakeTable" style="width: 100%">
-                    <thead>
-                        <tr>
-                            <th rowspan="2">Date</th>
-                            <th rowspan="2">Time</th>
-                            <th colspan="2">Oral</th>
-                            <th colspan="2">Intravenous</th>
-                            <th colspan="2">Other (Specify)</th>
-                            <th rowspan="2">Action</th>
-                        </tr>
-                        <tr>
-                            <th>Type</th>
-                            <th>Amount</th>
-                            <th>Type</th>
-                            <th>Amount</th>
-                            <th>Type</th>
-                            <th>Amount</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td colspan="9" align="center">No Record To Show<br>Please Select A History Assessment</td>
-                        </tr>
-                    </tbody>
-                </table>
+                <div class="table-guling">
+                    <table class="table table-bordered" id="tableFluidBalanceIntakeTable" style="width: 100%">
+                        <thead>
+                            <tr>
+                                <th rowspan="2">Date</th>
+                                <th rowspan="2">Time</th>
+                                <th colspan="2">Oral</th>
+                                <th colspan="2">Intravenous</th>
+                                <th colspan="2">Other (Specify)</th>
+                                <th rowspan="2">Action</th>
+                            </tr>
+                            <tr>
+                                <th>Type</th>
+                                <th>Amount</th>
+                                <th>Type</th>
+                                <th>Amount</th>
+                                <th>Type</th>
+                                <th>Amount</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td colspan="9" align="center">No Record To Show<br>Please Select A History Assessment</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
         <div class="col-md-6">
             <div id="tableFluidBalanceOutputDiv">
                 <h5>Output</h5>
-                <table class="table table-bordered" id="tableFluidBalanceOutputTable" style="width: 100%">
-                    <thead>
-                        <tr>
-                            <th>Date</th>
-                            <th>Time</th>
-                            <th>Urine</th>
-                            <th>Vomitus</th>
-                            <th>Gastric Suction</th>
-                            <th>Other (Specify)</th>
-                            <th>Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td colspan="7" align="center">No Record To Show<br>Please Select A History Assessment</td>
-                        </tr>
-                    </tbody>
-                </table>
+                <div class="table-responsive">
+                    <table class="table table-bordered" id="tableFluidBalanceOutputTable" style="width: 100%">
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Time</th>
+                                <th>Urine</th>
+                                <th>Vomitus</th>
+                                <th>Gastric Suction</th>
+                                <th>Other (Specify)</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td colspan="7" align="center">No Record To Show<br>Please Select A History Assessment</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>

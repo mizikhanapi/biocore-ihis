@@ -894,7 +894,7 @@ tr#moveToOrderDetailsTButton {
     border-radius: 0px;
 }
 
-.table-guling>.dataTables_wrapper>.row>.col-sm-12 {
+.table-guling>.dataTables_wrapper>.row>.col-sm-12  {
     overflow-x: auto;
 }
 
