@@ -98,14 +98,13 @@ public class LIO_ord {
                                 System.out.println("-------------------------------------------");
                                 System.out.println("record (LIO): #" + " " + t.getCentral_Code());
                                  //Vector<LIO2> lio = sv.getVlio();
-                                for (int lio_i = 0; lio_i < orc.size(); lio_i++) {
+                                for (int lio_i = 0; lio_i < lio.size(); lio_i++) {
                                 ArrayList<ArrayList<String>> lios = lio.get(lio_i).getValue();
                                 //                              0     1         2          3           4            5     6             7    8          9      10        11         12                 13         14
                                  String selectTest = "SELECT item_cd,item_name,test_cat,spe_source,spe_container,volume,special_inst,status,buy_price,ser_price,hfc_cd,discipline_cd,subdiscipline_cd,created_by,created_date FROM lis_item_detail WHERE item_cd='"+lios.get(2).get(0)+"' and hfc_cd='"+orcs.get(12).get(0)+"'"; 
                                 try{
                                     ArrayList<ArrayList<String>> lis_item = rc.getQuerySQL(Config.ipAddressServer, Config.portServer, selectTest);
                                     if(lis_item.size() > 0){
-                                        System.out.println("hai bitch");
                                         for(int lis_item_i = 0;lis_item_i < lis_item.size();lis_item_i++){
                                             ArrayList<String> lisI = lis_item.get(lis_item_i);
                                             
@@ -130,7 +129,8 @@ public class LIO_ord {
                                                  + "order_date,"
                                                  + " specimen_status,"
                                                  + " verification,"
-                                                 + " collectionDate)"
+                                                 + " collectionDate,"
+                                                    + "detail_status)"
                                                  + " values ('" + lis.getLIO_orderno() + "',"
                                                  + "'" + lisI.get(0) + "',"
                                                  + "'" + orcs.get(7).get(0) + "',"
@@ -150,8 +150,9 @@ public class LIO_ord {
                                                  + "'"+lisI.get(6)+"',"
                                                  + "'" + orcs.get(6).get(0) + "',"
                                                  + "'"+lisI.get(7)+"',"
-                                                 + "'-',"
-                                                 + "'" + lios.get(3).get(0) + "')";
+                                                 + "'Pending',"
+                                                 + "'" + lios.get(3).get(0) + "',"
+                                                    + "'0')";
                                         status_lis_order_detail = rc.setQuerySQL(Config.ipAddressServer, Config.portServer, sql_lis_detail);
 
                                         if (status_lis_order_detail == true) {
