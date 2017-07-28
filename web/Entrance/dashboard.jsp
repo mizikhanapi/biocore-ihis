@@ -47,12 +47,12 @@
 
     ArrayList<String> arrayModule = new ArrayList<String>(Arrays.asList(modules.split("\\|")));
 
-    boolean mod01, mod02, mod03, mod04, mod05, mod06, mod07, mod08, mod09, mod10, mod11, mod12, mod13, mod14, mod15, mod16, mod17, mod18;
+    boolean mod01, mod02, mod03, mod04, mod05, mod06, mod07, mod08, mod09, mod10, mod11, mod12, mod13, mod14, mod15, mod16, mod17, mod18, mod19;
 
-    mod01 = mod02 = mod03 = mod04 = mod05 = mod06 = mod07 = mod08 = mod09 = mod10 = mod11 = mod12 = mod13 = mod14 = mod15 = mod16 = mod17 = mod18 = false;
+    mod01 = mod02 = mod03 = mod04 = mod05 = mod06 = mod07 = mod08 = mod09 = mod10 = mod11 = mod12 = mod13 = mod14 = mod15 = mod16 = mod17 = mod18 = mod19 = false;
 
     if (last_9.equalsIgnoreCase("9") && hfc_99.equalsIgnoreCase("99_iHIS_99")) {
-        mod01 = mod02 = mod03 = mod04 = mod05 = mod06 = mod07 = mod08 = mod09 = mod10 = mod11 = mod12 = mod13 = mod14 = mod15 = mod16 = mod17 = mod18 = true;
+        mod01 = mod02 = mod03 = mod04 = mod05 = mod06 = mod07 = mod08 = mod09 = mod10 = mod11 = mod12 = mod13 = mod14 = mod15 = mod16 = mod17 = mod18 = mod19 = true;
 
     } else {
 
@@ -129,6 +129,10 @@
             } else if (arrayModule.get(i).equalsIgnoreCase("18")) {
 
                 mod18 = true;
+
+            }else if (arrayModule.get(i).equalsIgnoreCase("19")) {
+
+                mod19 = true;
 
             }
         }//end for loop
@@ -334,6 +338,8 @@
 
                         <%
                             }
+                            
+                            if(mod18){
                         %>
                         <div class="col-xs-6 col-sm-6 col-md-3">
                             <a href="../POM/" class="thumbnail">
@@ -343,7 +349,11 @@
                                 </div>
                             </a>
                         </div>
+<%
+                            }//end if mod18
 
+                            if(mod19){
+%>
                         <div class="col-xs-6 col-sm-6 col-md-3">
                             <a href="../OperationTheater/index.jsp" class="thumbnail">
                                 <div class="kotak text-center">
@@ -352,6 +362,9 @@
                                 </div>
                             </a>
                         </div>
+<%
+                            }//end if mod19
+%>                        
                         <div class="col-xs-6 col-sm-6 col-md-3">
                             <a href="../QMS/" class="thumbnail">
                                 <div class="kotak text-center">
