@@ -2,6 +2,7 @@ package lhr_tables;
 
 import Bean.DGS;
 import Bean.FMH;
+import Bean.MSH;
 import Config_Pack.Config;
 import Process.MainRetrieval;
 import bean.FMH2;
@@ -17,7 +18,7 @@ import main.RMIConnector;
 
 public class lhr_FMH {
     
-    public void M_FMH(Vector<FMH2> fmh2,get_ehr_central_data t){
+    public void M_FMH(Vector<FMH2> fmh2,get_ehr_central_data t,MSH msh){
         String query_fmh_lhr_fh;
         RMIConnector rc = new RMIConnector();
         int total_fail_insert = 0; //total of failed insert
@@ -90,22 +91,6 @@ public class lhr_FMH {
                 if (d == null || d.isEmpty() || d.equals(" ")) {
                     d = "PUBLIC HOSPITAL";
                 }
-//                        // increase time 5 sec to prevent duplicate during insert.
-//                        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-//                        Date date_time = null;
-//                        date_time = df.parse(dataFMH[fmh_i][12]);
-//
-//                        Calendar gc = new GregorianCalendar();
-//                        gc.setTime(date_time);
-//                        int min = 0;
-//                        int max = 1000000000;
-//                        Random r = new Random();
-//                        int rand_num = r.nextInt(max - min + 1) + min;
-//                        gc.add(Calendar.SECOND, rand_num);
-//                        Date d2 = gc.getTime();
-//
-//                        fmh_Obj.setEncounter_Date(df.format(d2));
-//                        //
                         if(alFmh.get(2).get(11).isEmpty() || alFmh.get(2).get(11).equalsIgnoreCase("-")||alFmh.get(2).get(11).equalsIgnoreCase(" ")){
                             fmh_Obj.setEncounter_Date(null);
                         }else{
@@ -120,7 +105,6 @@ public class lhr_FMH {
                         fmh_Obj.setDoctor_Name(alFmh.get(2).get(14));
                         
                         fmh_Obj.setTerm_Type(alFmh.get(2).get(15));
-                        //System.out.println("da lalu sini");
                         fmh_Obj.setTerm_Code("CTV3"); //Modified By Ahmed (16/3/2017)
 
                         query_fmh_lhr_fh = "insert into lhr_family_history ("
@@ -131,12 +115,9 @@ public class lhr_FMH {
                                 + "diagnosis_cd, " //insert icd10 code
                                 + "onset_date, "                                     
                                 + "term_type, "
-                                //  + "diagnosis_status, "                                    
-                                //  + "diagnosis_date, "
                                 + "icd10_cd, "
                                 + "icd10_description, "
                                 + "term_cd, "
-                                //  + "term_description, "                               
                                 + "comment, "
                                 + "status, "
                                 + "doctor_id, "
@@ -144,13 +125,17 @@ public class lhr_FMH {
                                 + "NATIONAL_ID_NO, "
                                 + "PERSON_ID_NO, "
                                 + "PERSON_STATUS, "
-                                + "centre_code )"
+                                + "centre_code,"
+                                + "discipline_cd,"
+                                + "subdiscipline_cd,"
+                                + "created_by,"
+                                + "created_date)"
                                 + "values ('" + fmh_Obj.getPMI_No() + "',"
                                 + "'" + fmh_Obj.getHFC() + "',"
                                 + "'" + fmh_Obj.getEpisode_Date() + "',"
                                 + "" + fmh_Obj.getEncounter_Date() + ","
                                 + "'" + fmh_Obj.getICD10_Code() + "'," //Modified By Ahmed (13/3/2017)
-                                + "now(),"
+                                + "'"+msh.getDateTime()+"',"
                                 + "'CTV3',"
                                 + "'" + fmh_Obj.getICD10_Code() + "'," //Modified By Ahmed (13/3/2017)
                                 + "'" + fmh_Obj.getICD10_Description() + "',"
@@ -162,23 +147,19 @@ public class lhr_FMH {
                                 + "'" + a + "',"
                                 + "'" + b + "',"
                                 + "'" + c + "',"
-                                + "'" + d + "')";
-                        //System.out.println(dgsB.getICD10_Code());
-                        //System.out.println(fmh_Obj.getICD10_Description());
-                       
-
+                                + "'" + d + "',"
+                                + "'"+msh.getSendingFacilityDis()+"',"
+                                + "'"+msh.getSendingFacilitySubDis()+"',"
+                                + "'"+fmh_Obj.getDoctor_Id()+"',"
+                                + "'"+msh.getDateTime()+"')";
 
                         try {
                             status_fmh_lhr_fh = rc.setQuerySQL(Config.ipAddressServer, Config.portServer, query_fmh_lhr_fh);
-                    ////System.out.println("status fmh : " + status_fmh_lhr_fh);
                             
                             if (status_fmh_lhr_fh == false) {
-                        //System.out.println("Failed to insert data into lhr_family_history (FMH) where PMI No : " + PMI_no + " & National ID No : " + NATIONAL_ID_NO + " & Person ID No : " + PERSON_ID_NO);   
-                                //System.out.println("Query for FMH: " + query_fmh_lhr_fh);
                                 total_fail_insert++;
                                 System.out.println("false insert fmh");
-                                //System.out.println("query fmh : " + query_fmh_lhr_fh);
-                                //System.out.println("query fmh : " + query_fmh_lhr_fh);
+                                System.out.println(query_fmh_lhr_fh);
                             }else{
                                 System.out.println("done insert fmh");
                             }

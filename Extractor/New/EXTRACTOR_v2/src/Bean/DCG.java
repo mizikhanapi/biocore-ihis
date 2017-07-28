@@ -10,8 +10,9 @@ package Bean;
  * @author shay
  */
 public class DCG {
-    private String episodeDate; 
-    
+
+    private String episodeDate;
+
     //mesage details..
     private String encounterDate;
     private String hfcCd;
@@ -25,14 +26,28 @@ public class DCG {
     private String dischargeDisposition;
     private String comment;
     private String messageType;
-    
+
     //message type such as DTO,LIR,VTS and so on..
     private String dischargeSummary;
-    
-    
-    
-    
-    
+    private String discipline;
+    private String subdiscipline;
+
+    public String getDiscipline() {
+        return discipline;
+    }
+
+    public void setDiscipline(String discipline) {
+        this.discipline = discipline;
+    }
+
+    public String getSubdiscipline() {
+        return subdiscipline;
+    }
+
+    public void setSubdiscipline(String subdiscipline) {
+        this.subdiscipline = subdiscipline;
+    }
+
     public String getEpisodeDate() {
         return episodeDate;
     }
@@ -56,8 +71,8 @@ public class DCG {
     public void setDischargeSummary(String dischargeSummary) {
         this.dischargeSummary = dischargeSummary;
     }
-    
-     public String getHfcCd() {
+
+    public String getHfcCd() {
         return hfcCd;
     }
 
@@ -144,5 +159,5 @@ public class DCG {
     public void setMessageType(String messageType) {
         this.messageType = messageType;
     }
-    
+
 }

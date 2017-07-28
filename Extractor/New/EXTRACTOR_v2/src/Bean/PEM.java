@@ -17,7 +17,7 @@ public class PEM {
     private String Encounter_Date;
     private String Doctor_Id;
     private String Doctor_Name;
-    
+
     private String signSystem;
     private String signSystemDescription;
     private String signCd;
@@ -28,6 +28,24 @@ public class PEM {
     private String awnswerDesc;
     private String txnDate;
     private String status;
+    private String discipline;
+    private String subdiscipline;
+
+    public String getDiscipline() {
+        return discipline;
+    }
+
+    public void setDiscipline(String discipline) {
+        this.discipline = discipline;
+    }
+
+    public String getSubdiscipline() {
+        return subdiscipline;
+    }
+
+    public void setSubdiscipline(String subdiscipline) {
+        this.subdiscipline = subdiscipline;
+    }
 
     public String getPMI_no() {
         return PMI_no;
@@ -156,5 +174,5 @@ public class PEM {
     public void setAwnswerDesc(String awnswerDesc) {
         this.awnswerDesc = awnswerDesc;
     }
-    
+
 }

@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package Bean;
 
 /**
@@ -11,7 +10,7 @@ package Bean;
  * @author ASUS
  */
 public class CCN {
-    
+
     private String PMI_no;
     private String Episode_date;
     private String Symptom_Code;
@@ -36,6 +35,24 @@ public class CCN {
     private String ICD10code;
     private String ICD10desc;
     private String Term_Type;
+    private String discipline;
+    private String subdiscipline;
+
+    public String getDiscipline() {
+        return discipline;
+    }
+
+    public void setDiscipline(String discipline) {
+        this.discipline = discipline;
+    }
+
+    public String getSubdiscipline() {
+        return subdiscipline;
+    }
+
+    public void setSubdiscipline(String subdiscipline) {
+        this.subdiscipline = subdiscipline;
+    }
 
     /**
      * @return the PMI_no
@@ -366,6 +383,5 @@ public class CCN {
     public void setEncounter_Date(String Encounter_Date) {
         this.Encounter_Date = Encounter_Date;
     }
-
 
 }

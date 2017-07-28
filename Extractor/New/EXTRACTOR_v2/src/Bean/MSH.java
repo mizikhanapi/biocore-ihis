@@ -10,27 +10,46 @@ package Bean;
  * @author shay
  */
 public class MSH {
+
     private String fieldSeparator,
             encodingCharacter,
             sendingApplication,
-            sendingFacilityCode,sendingFacilityDis,
+            sendingFacilityCode, sendingFacilityDis,
             sendingFacilitySubDis,
             recievingApplication,
-            receivingFacilityCode,receivingFacilityDis,receivingFacilitySubDis,
+            receivingFacilityCode, receivingFacilityDis, receivingFacilitySubDis,
             dateTime,
             security,
-            messageType,eventTransaction,
+            messageType, eventTransaction,
             messageCtrlId,
             processingId,
             versionId,
             sequenceId,
             continuationPointer,
-            acceptAcknowledgeTypeValue,acceptAcknowledgeTypeDesc,acceptAcknowledgeTypeCodingStand,
-            appAcknowledgeTypeValue,appAcknowledgeTypeDesc,
+            acceptAcknowledgeTypeValue, acceptAcknowledgeTypeDesc, acceptAcknowledgeTypeCodingStand,
+            appAcknowledgeTypeValue, appAcknowledgeTypeDesc,
             appAcknowledgeTypeCodingStand,
-            countryCode,countryCodeDetailRef,countryCodeDesc,
+            countryCode, countryCodeDetailRef, countryCodeDesc,
             characterSet,
             principalLang;
+    private String discipline;
+    private String subdiscipline;
+
+    public String getDiscipline() {
+        return discipline;
+    }
+
+    public void setDiscipline(String discipline) {
+        this.discipline = discipline;
+    }
+
+    public String getSubdiscipline() {
+        return subdiscipline;
+    }
+
+    public void setSubdiscipline(String subdiscipline) {
+        this.subdiscipline = subdiscipline;
+    }
 
     public String getFieldSeparator() {
         return fieldSeparator;
@@ -272,5 +291,4 @@ public class MSH {
         this.principalLang = principalLang;
     }
 
-   
 }

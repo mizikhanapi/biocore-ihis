@@ -3,14 +3,8 @@ package lhr_tables;
 import Bean.DAB;
 import Bean.MSH;
 import Config_Pack.Config;
-import Process.MainRetrieval;
 import bean.DAB2;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.GregorianCalendar;
-import java.util.Random;
 import java.util.Vector;
 import main.RMIConnector;
 
@@ -59,59 +53,38 @@ public class lhr_DAB {
                         }else{
                             dabB.setIcd10_desc(alDab.get(2).get(5));
                         }
-                        
-
-//                            // increase time 5 sec to prevent duplicate during insert.
-//                            SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-//                            Date date_time = null;
-//
-//                            // if null insert current date time
-//                            if (dataDGS[n][22] == null) {
-//                                Calendar cal = Calendar.getInstance();
-//                                dgsB.setEncounter_Date(df.format(cal.getTime()));
-//                            } else { // insert random date time
-//                                date_time = df.parse(dataDGS[n][22]);
-//
-//                                Calendar gc = new GregorianCalendar();
-//                                gc.setTime(date_time);
-//
-//                                //create rand number by range http://stackoverflow.com/a/6029518/894470
-//                                int min = 0;
-//                                int max = 1000000000;
-//                                Random r = new Random();
-//                                int rand_num = r.nextInt(max - min + 1) + min;
-//                                gc.add(Calendar.SECOND, rand_num);
-//                                Date d2 = gc.getTime();
-//
-//                                dgsB.setEncounter_Date(df.format(d2));
-//                            }
-//                            //
                         // encounter date must get from ecss client.
-                        String query_dab_lhr_dab = "insert into lhr_disability (pmi_no,hfc_cd,episode_date, "
+                        String query_dab_lhr_dab = "insert into lhr_disability ("
+                                + "pmi_no,"
+                                + "hfc_cd,"
+                                + "episode_date, "
                                 + "DAB_type, "
                                 + "DAB_code, "
                                 + "DAB_date, "
                                 + "DAB_comment, "
                                 + "icd10_code, "
-                                + "icd10_description) "
+                                + "icd10_description,"
+                                + "encounter_date,"
+                                + "discipline_cd,"
+                                + "subdiscipline_cd,"
+                                + "created_by,"
+                                + "created_date) "
                                 + "values ('"+t.getPmi_no()+"','"+msh.getSendingFacilityCode()+"','" + dabB.getEpisode_date() + "',"
                                 + "'" + dabB.getDAB_type() + "',"
                                 + "'" + dabB.getDAB_code() + "',"
                                 + "'" + dabB.getDAB_date() + "',"
                                 + "'" + dabB.getDAB_comment() + "',"
                                 + "'" + dabB.getIcd10_cd() + "',"
-                                + "'" + dabB.getIcd10_desc() + "');";
-//                        System.err.println(dabB.getEpisode_date());
-//                        System.err.println(dabB.getDAB_type());
-//                        System.err.println(dabB.getDAB_code());
+                                + "'" + dabB.getIcd10_desc() + "',"
+                                + "'"+alDab.get(2).get(6)+"',"
+                                + "'"+msh.getSendingFacilityDis()+"',"
+                                + "'"+msh.getSendingFacilitySubDis()+"',"
+                                + "'"+alDab.get(2).get(7)+"',"
+                                + "'"+msh.getDateTime()+"');";
+
                         status_dab_lhr_disability = rc.setQuerySQL(Config.ipAddressServer, Config.portServer, query_dab_lhr_dab);
 
-                        //System.out.println("status_dab_lhr_disability:" + status_dab_lhr_disability);
-
-                        ////System.out.println("stat:" + stat);
-                        ////System.out.println("query:" + query2);
                         if (status_dab_lhr_disability == false) {
-                            //System.out.println("Failed to insert data into lhr_diagnosis (DGS) where PMI No : " + PMI_no + " & National ID No : " + NATIONAL_ID_NO + " & Person ID No : " + PERSON_ID_NO);   
                             System.out.println("Query for DAB: " + query_dab_lhr_dab);
                             total_fail_insert++;
                             System.out.println("False extract DAB");
@@ -125,10 +98,6 @@ public class lhr_DAB {
                         e.printStackTrace();
                     }
                 }
-                
-//                update_ehr_central u = new update_ehr_central();
-//                u.update_status();
-
             }
 
         } catch (Exception e) {

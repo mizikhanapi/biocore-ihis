@@ -1,8 +1,7 @@
 package Bean;
 
-
 public class IMU {
-    
+
     private String Episode_date;
     private String PMI_no;
     private String icd10_description;
@@ -18,6 +17,24 @@ public class IMU {
     private String term_description;
     private String Encounter_Date;
     private String term_type;
+    private String discipline;
+    private String subdiscipline;
+
+    public String getDiscipline() {
+        return discipline;
+    }
+
+    public void setDiscipline(String discipline) {
+        this.discipline = discipline;
+    }
+
+    public String getSubdiscipline() {
+        return subdiscipline;
+    }
+
+    public void setSubdiscipline(String subdiscipline) {
+        this.subdiscipline = subdiscipline;
+    }
 
     public String getEpisode_date() {
         return Episode_date;
@@ -139,8 +156,4 @@ public class IMU {
         this.term_type = term_type;
     }
 
-    
-    
-    
-    
 }

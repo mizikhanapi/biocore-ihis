@@ -1,6 +1,6 @@
 /*
  * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
+ * To change this template file, choose Tools | Tem plates
  * and open the template in the editor.
  */
 package views;
@@ -21,7 +21,7 @@ public class MainView {
     public static void main(String[] args) throws IOException {
         
 //        String host = "ecss.utem.edu.my";
-        File file = new File("c:/extractorIpcall.txt");
+        File file = new File("c:/ipcall.txt");
         FileReader fileReader = new FileReader(file);
         BufferedReader  bufferReader = new BufferedReader(fileReader);
         

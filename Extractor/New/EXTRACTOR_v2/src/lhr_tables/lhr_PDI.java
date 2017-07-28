@@ -6,6 +6,7 @@
 package lhr_tables;
 
 import Bean.PDI;
+import bean.MSH2;
 import bean.PDI2;
 import java.util.ArrayList;
 import java.util.Vector;
@@ -17,20 +18,16 @@ import separatorv2.SeparatorV2;
  */
 public class lhr_PDI {
     
-    public void lhr_PDI(){
-        
+    public PDI lhr_PDI(Vector<PDI2> pdi2, get_ehr_central_data t){
+        PDI pdi = new PDI();
         try{
-        get_ehr_central_data t = new get_ehr_central_data();
-        t.getQuery();
-        SeparatorV2 spv2 = new SeparatorV2();
-        spv2.startProcess(t.getTxndata());
-        Vector<PDI2> pdi2 = spv2.getVpdi();
+        
         
         int rowsPDI = pdi2.size();
          
         if(rowsPDI > 0){
             
-                PDI pdi = new PDI();
+                
                 
                 String idTy[] = new String[3];
                 String race[] = new String[3];
@@ -124,5 +121,6 @@ public class lhr_PDI {
         }catch(Exception e){
               e.getStackTrace();
          }
+        return pdi;
     }
 }

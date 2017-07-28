@@ -1,6 +1,7 @@
 package lhr_tables;
 
 import Bean.HPI;
+import Bean.MSH;
 import Config_Pack.Config;
 import Process.MainRetrieval;
 import bean.HPI2;
@@ -15,7 +16,7 @@ import main.RMIConnector;
 
 public class lhr_HPI {
 
-    public void M_HPI(Vector<HPI2> hpi2,get_ehr_central_data t) {
+    public void M_HPI(Vector<HPI2> hpi2,get_ehr_central_data t,MSH msh) {
 
         RMIConnector rc = new RMIConnector();
         int total_fail_insert = 0; //total of failed insert
@@ -41,34 +42,7 @@ public class lhr_HPI {
                     hpiB.setDoctor_ID(alHpi.get(2).get(3));
                     hpiB.setDoctor_Name(alHpi.get(2).get(4));
 
-//                            // increase time 5 sec to prevent duplicate during insert.
-//                            SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-//                            Date date_time = null;
-//
-//                            // if null insert current date time
-//                            if (dataDGS[n][22] == null) {
-//                                Calendar cal = Calendar.getInstance();
-//                                dgsB.setEncounter_Date(df.format(cal.getTime()));
-//                            } else { // insert random date time
-//                                date_time = df.parse(dataDGS[n][22]);
-//
-//                                Calendar gc = new GregorianCalendar();
-//                                gc.setTime(date_time);
-//
-//                                //create rand number by range http://stackoverflow.com/a/6029518/894470
-//                                int min = 0;
-//                                int max = 1000000000;
-//                                Random r = new Random();
-//                                int rand_num = r.nextInt(max - min + 1) + min;
-//                                gc.add(Calendar.SECOND, rand_num);
-//                                Date d2 = gc.getTime();
-//
-//                                dgsB.setEncounter_Date(df.format(d2));
-//                            }
-//                            //
-                    // encounter date must get from ecss client.
-                    
-                                                   String a,b,c,d;
+                String a,b,c,d;
                 a= t.getNational_id_no();
                 b = t.getPERSON_STATUS();
                 c = t.getPERSON_ID_NO();
@@ -100,7 +74,11 @@ public class lhr_HPI {
                             + "NATIONAL_ID_NO, "
                             + "PERSON_ID_NO, "
                             + "PERSON_STATUS, "
-                            + "center_code )"
+                            + "center_code,"
+                            + "discipline_cd,"
+                            + "subdiscipline_cd,"
+                            + "created_by,"
+                            + "created_date)"
                             + "values ('" + hpiB.getPMI_no() + "',"
                             + "'" + hpiB.getHfc_cd() + "',"
                             + "'" + hpiB.getEpisode_date() + "',"
@@ -111,18 +89,17 @@ public class lhr_HPI {
                             + "'" + a + "',"
                             + "'" + b + "',"
                             + "'" + c + "',"
-                            + "'" + d + "')";
+                            + "'" + d + "',"
+                            + "'"+msh.getSendingFacilityDis()+"',"
+                            + "'"+msh.getSendingFacilitySubDis()+"',"
+                            + "'"+hpiB.getDoctor_ID()+"',"
+                            + "'"+msh.getDateTime()+"')";
                     
                     status_hpi_lhr_health_of_present_illness = rc.setQuerySQL(Config.ipAddressServer, Config.portServer, query2);
-
-
-                    ////System.out.println("stat:" + stat);
-                    ////System.out.println("query:" + query2);
                     if (status_hpi_lhr_health_of_present_illness == false) {
-                        //System.out.println("Failed to insert data into lhr_diagnosis (DGS) where PMI No : " + PMI_no + " & National ID No : " + NATIONAL_ID_NO + " & Person ID No : " + PERSON_ID_NO);   
-                        //System.out.println("Query for HPI: " + query2);
                         total_fail_insert++;
                         System.out.println("false extract hpi");
+                        System.out.println(query2);
                     }else{
                         System.out.println("done extract hpi");
                     }

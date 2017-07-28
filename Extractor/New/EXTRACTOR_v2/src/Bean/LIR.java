@@ -11,30 +11,48 @@ package Bean;
  */
 public class LIR {
 
-        private String PMI_No;
-        private String Episode_Date;
-        private String Encounter_Date;        
-        private String Lab_Test_Item_Code;
-        private String Lab_Test_Item_Lab_Test_Item_Name;
-        private String Lab_Test_Item_Coding_Standard; 
-        private String Lab_Test_Result_Code;
-        private String Lab_Test_Result_Name;
-        private String Lab_Test_Result_Coding_Standard;
-        private String Test_Perform_By_ID;
-        private String Test_Perform_By_Name;
-        private String Test_Perform_Coding_Standard;
-        private String Test_Date;
-        private String Result_Provided_By_ID;
-        private String Result_Provided_By_Name;
-        private String Result_Provided_By_Coding_Standard;
-        private String Result_Date;
-        private String Verify_By_ID;
-        private String Verify_By_Name;
-        private String Verify_By_Coding_Standard;
-        private String Verify_Date; 
-        private String Verification_Notes; 
-        private String Episode_Date_Time;
-        private String Transaction_Indicator;
+    private String PMI_No;
+    private String Episode_Date;
+    private String Encounter_Date;
+    private String Lab_Test_Item_Code;
+    private String Lab_Test_Item_Lab_Test_Item_Name;
+    private String Lab_Test_Item_Coding_Standard;
+    private String Lab_Test_Result_Code;
+    private String Lab_Test_Result_Name;
+    private String Lab_Test_Result_Coding_Standard;
+    private String Test_Perform_By_ID;
+    private String Test_Perform_By_Name;
+    private String Test_Perform_Coding_Standard;
+    private String Test_Date;
+    private String Result_Provided_By_ID;
+    private String Result_Provided_By_Name;
+    private String Result_Provided_By_Coding_Standard;
+    private String Result_Date;
+    private String Verify_By_ID;
+    private String Verify_By_Name;
+    private String Verify_By_Coding_Standard;
+    private String Verify_Date;
+    private String Verification_Notes;
+    private String Episode_Date_Time;
+    private String Transaction_Indicator;
+    private String discipline;
+    private String subdiscipline;
+
+    public String getDiscipline() {
+        return discipline;
+    }
+
+    public void setDiscipline(String discipline) {
+        this.discipline = discipline;
+    }
+
+    public String getSubdiscipline() {
+        return subdiscipline;
+    }
+
+    public void setSubdiscipline(String subdiscipline) {
+        this.subdiscipline = subdiscipline;
+    }
 
     /**
      * @return the PMI_No
@@ -62,7 +80,7 @@ public class LIR {
      */
     public void setEpisode_Date(String Episode_Date) {
         this.Episode_Date = Episode_Date;
-    }   
+    }
 
     /**
      * @return the Lab_Test_Item_Code
@@ -86,7 +104,8 @@ public class LIR {
     }
 
     /**
-     * @param Lab_Test_Item_Lab_Test_Item_Name the Lab_Test_Item_Lab_Test_Item_Name to set
+     * @param Lab_Test_Item_Lab_Test_Item_Name the
+     * Lab_Test_Item_Lab_Test_Item_Name to set
      */
     public void setLab_Test_Item_Lab_Test_Item_Name(String Lab_Test_Item_Lab_Test_Item_Name) {
         this.Lab_Test_Item_Lab_Test_Item_Name = Lab_Test_Item_Lab_Test_Item_Name;
@@ -100,7 +119,8 @@ public class LIR {
     }
 
     /**
-     * @param Lab_Test_Item_Coding_Standard the Lab_Test_Item_Coding_Standard to set
+     * @param Lab_Test_Item_Coding_Standard the Lab_Test_Item_Coding_Standard to
+     * set
      */
     public void setLab_Test_Item_Coding_Standard(String Lab_Test_Item_Coding_Standard) {
         this.Lab_Test_Item_Coding_Standard = Lab_Test_Item_Coding_Standard;
@@ -142,7 +162,8 @@ public class LIR {
     }
 
     /**
-     * @param Lab_Test_Result_Coding_Standard the Lab_Test_Result_Coding_Standard to set
+     * @param Lab_Test_Result_Coding_Standard the
+     * Lab_Test_Result_Coding_Standard to set
      */
     public void setLab_Test_Result_Coding_Standard(String Lab_Test_Result_Coding_Standard) {
         this.Lab_Test_Result_Coding_Standard = Lab_Test_Result_Coding_Standard;
@@ -184,7 +205,8 @@ public class LIR {
     }
 
     /**
-     * @param Test_Perform_Coding_Standard the Test_Perform_Coding_Standard to set
+     * @param Test_Perform_Coding_Standard the Test_Perform_Coding_Standard to
+     * set
      */
     public void setTest_Perform_Coding_Standard(String Test_Perform_Coding_Standard) {
         this.Test_Perform_Coding_Standard = Test_Perform_Coding_Standard;
@@ -240,7 +262,8 @@ public class LIR {
     }
 
     /**
-     * @param Result_Provided_By_Coding_Standard the Result_Provided_By_Coding_Standard to set
+     * @param Result_Provided_By_Coding_Standard the
+     * Result_Provided_By_Coding_Standard to set
      */
     public void setResult_Provided_By_Coding_Standard(String Result_Provided_By_Coding_Standard) {
         this.Result_Provided_By_Coding_Standard = Result_Provided_By_Coding_Standard;

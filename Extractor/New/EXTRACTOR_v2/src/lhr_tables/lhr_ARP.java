@@ -16,6 +16,8 @@
 package lhr_tables;
 
 import Bean.ARP;
+import Bean.MSH;
+import Bean.PDI;
 import Config_Pack.Config;
 import bean.ARP2;
 import bean.ORC2;
@@ -34,7 +36,7 @@ public class lhr_ARP {
     //private Vector<ALG2> alg2;
     private int rowsARP;
 
-    public void M_ARP(Vector<ARP2> arp2, get_ehr_central_data t, Vector<ORC2> orc) {
+    public void M_ARP(Vector<ARP2> arp2, get_ehr_central_data t, Vector<ORC2> orc, MSH msh,PDI pdi) {
 
         int total_fail_insert = 0; //total of failed insert
         //set default value to true. When insertion failed var will switch to false and patient will noy update to 3
@@ -57,27 +59,27 @@ public class lhr_ARP {
 
                                 ArrayList<ArrayList<String>> alArp = arp2.get(n).getValue();
 
-                                String a,b,c,d;
-                a= t.getNational_id_no();
-                b = t.getPERSON_STATUS();
-                c = t.getPERSON_ID_NO();
-                d =t.getCentre_Code();
-                
-                if (a == null || a.isEmpty() || a.equals(" ")) {
-                   a =  "PUBLIC HOSPITAL";
-                }
+                                String a, b, c, d;
+                                a = t.getNational_id_no();
+                                b = t.getPERSON_STATUS();
+                                c = t.getPERSON_ID_NO();
+                                d = t.getCentre_Code();
 
-                if (b == null || b.isEmpty() || b.equals(" ")) {
-                    b ="PUBLIC HOSPITAL";
-                }
+                                if (a == null || a.isEmpty() || a.equals(" ")) {
+                                    a = "PUBLIC HOSPITAL";
+                                }
 
-                if (c == null || c.isEmpty() || c.equals(" ")) {
-                    c = "PUBLIC HOSPITAL";
-                }
+                                if (b == null || b.isEmpty() || b.equals(" ")) {
+                                    b = "PUBLIC HOSPITAL";
+                                }
 
-                if (d == null || d.isEmpty() || d.equals(" ")) {
-                    d = "PUBLIC HOSPITAL";
-                }
+                                if (c == null || c.isEmpty() || c.equals(" ")) {
+                                    c = "PUBLIC HOSPITAL";
+                                }
+
+                                if (d == null || d.isEmpty() || d.equals(" ")) {
+                                    d = "PUBLIC HOSPITAL";
+                                }
 
                                 arpB.setPMI_no(t.getPmi_no());
                                 arpB.setDateTime(alArp.get(2).get(0));
@@ -109,7 +111,11 @@ public class lhr_ARP {
                                         + "national_id_no,"
                                         + "person_id_no,"
                                         + "person_status,"
-                                        + "centre_code) VALUES("
+                                        + "centre_code,"
+                                        + "discipline_cd,"
+                                        + "subdiscipline_cd,"
+                                        + "created_by,"
+                                        + "created_date) VALUES("
                                         + "'" + arpB.getPMI_no().trim() + "',"
                                         + "'" + arpB.getRecHFCcode().trim() + "',"
                                         + "'" + arpB.getEpisodeDate().trim() + "',"
@@ -123,8 +129,11 @@ public class lhr_ARP {
                                         + "'" + a.trim() + "',"
                                         + "'" + b.trim() + "',"
                                         + "'" + c.trim() + "',"
-                                        + "'" + d.trim() + "'"
-                                        + ")";
+                                        + "'" + d.trim() + "',"
+                                        + "'"+msh.getSendingFacilityDis()+"',"
+                                        + "'"+msh.getSendingFacilitySubDis()+"',"
+                                        + "'"+arpB.getDocId()+"',"
+                                        + "'"+msh.getDateTime()+"')";
 
                                 status_alg_lhr_arp = rc.setQuerySQL(Config.ipAddressServer, Config.portServer, query_alg_lhr_arp);
 

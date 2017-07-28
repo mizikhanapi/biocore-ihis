@@ -1,6 +1,8 @@
 package lhr_tables;
 
 import Bean.CCN;
+import Bean.MSH;
+import Bean.PDI;
 import Config_Pack.Config;
 import bean.CCN2;
 import java.text.SimpleDateFormat;
@@ -13,7 +15,7 @@ import separatorv2.SeparatorV2;
 
 public class lhr_CCN {
 
-    public void M_CCN(Vector<CCN2> ccn2, get_ehr_central_data t) {
+    public void M_CCN(Vector<CCN2> ccn2, get_ehr_central_data t,MSH msh,PDI pdi) {
 
         RMIConnector rc = new RMIConnector();
 
@@ -54,7 +56,7 @@ public class lhr_CCN {
                     ArrayList<ArrayList<String>> alCcn = ccn2.get(k).getValue();
                     try {
 
-                        System.out.println("ccn #" + (k + 1));
+                        //System.out.println("ccn #" + (k + 1));
 
                         ccnBean.setEpisode_date(alCcn.get(1).get(0));
                         ccnBean.setPMI_no(t.getPmi_no());
@@ -91,7 +93,7 @@ public class lhr_CCN {
                         // check if array data is null. if null insert current date time
                         if (alCcn.get(2).get(12).equalsIgnoreCase("-") || alCcn.get(2).get(12).isEmpty() || alCcn.get(2).get(12).equalsIgnoreCase(" ")) {
                             Calendar cal = Calendar.getInstance();
-                            ccnBean.setTxnDate(df.format(cal.getTime()));
+                            ccnBean.setTxnDate(t.getTxndate());
                         }
                         //
 
@@ -126,7 +128,11 @@ public class lhr_CCN {
                                 + "national_id_no, "
                                 + "person_id_no, "
                                 + "person_status, "
-                                + "centre_code)"
+                                + "centre_code,"
+                                + "discipline_cd,"
+                                + "subdiscipline_cd,"
+                                + "created_by,"
+                                + "created_date)"
                                 + "values ('" + ccnBean.getPMI_no() + "',"
                                 + "'" + ccnBean.getHfc_cd() + "',"
                                 + "'" + ccnBean.getEpisode_date() + "',"
@@ -143,7 +149,11 @@ public class lhr_CCN {
                                 + "'" + a + "',"
                                 + "'" + b + "',"
                                 + "'" + c + "',"
-                                + "'" + d + "')";
+                                + "'" + d + "',"
+                                + "'"+msh.getSendingFacilityDis()+"',"
+                                + "'"+msh.getSendingFacilitySubDis()+"',"
+                                + "'"+ ccnBean.getDoctor_ID()+"',"
+                                + "'"+msh.getDateTime()+"')";
 
                         status_ccn_lhr_signs = rc.setQuerySQL(Config.ipAddressServer, Config.portServer, query1);
                         ////System.out.println("query CCN: " + query1);
@@ -155,7 +165,7 @@ public class lhr_CCN {
                             System.out.println("Done extract ccn");
                         } else {
                             System.out.println("False extract ccn");
-                            //System.out.println("query ccn: "+query1);
+                            System.out.println("query ccn: "+query1);
                         }
 
                         ccnBeans.add(ccnBean);

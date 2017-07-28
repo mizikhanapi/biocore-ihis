@@ -1,6 +1,7 @@
 package lhr_tables;
 
 import Bean.DTO;
+import Bean.MSH;
 import Config_Pack.Config;
 import Process.MainRetrieval;
 import bean.DTO2;
@@ -15,7 +16,7 @@ import main.RMIConnector;
 
 public class lhr_DTO {
 
-    public void M_DTO(Vector<DTO2> dto2,get_ehr_central_data t) {
+    public void M_DTO(Vector<DTO2> dto2,get_ehr_central_data t,MSH msh) {
 
         RMIConnector rc = new RMIConnector();
         int total_fail_insert = 0; //total of failed insert
@@ -161,7 +162,7 @@ public class lhr_DTO {
                         System.out.println("Done extract dto");
                     }else{
                            System.out.println("false extract dto");
-                           //System.out.println("query dto: "+query3);
+                           System.out.println("query dto: "+query3);
                     }
 
                     dtoBrs.add(dtoC);

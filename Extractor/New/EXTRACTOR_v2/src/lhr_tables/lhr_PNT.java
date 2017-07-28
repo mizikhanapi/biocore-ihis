@@ -1,5 +1,7 @@
 package lhr_tables;
 
+import Bean.MSH;
+import Bean.PDI;
 import Bean.PNT;
 import Config_Pack.Config;
 import Process.MainRetrieval;
@@ -10,7 +12,7 @@ import main.RMIConnector;
 
 public class lhr_PNT {
     
-    public boolean M_PNT(Vector<PNT2> pnt2,get_ehr_central_data t){
+    public boolean M_PNT(Vector<PNT2> pnt2,get_ehr_central_data t,MSH msh,PDI pdi){
         
          RMIConnector rc = new RMIConnector();
         int total_fail_insert = 0; //total of failed insert
@@ -35,9 +37,14 @@ public class lhr_PNT {
 
       
 
-                            
+                            pntB.setPmi_no(pdi.getPmiNo());
+                            pntB.setHfc_cd(msh.getSendingFacilityCode());
+                            pntB.setDiscipline(msh.getSendingFacilityDis());
+                            pntB.setSubdiscipline(msh.getSendingFacilitySubDis());
                             pntB.setEpisode_Date(alPnt.get(1).get(0));
                             pntB.setProgress_Notes(alPnt.get(2).get(0));
+                            pntB.setEncounter_date(alPnt.get(2).get(4));
+                            
 
 //                            // increase time 5 sec to prevent duplicate during insert.
 //                            SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -67,10 +74,25 @@ public class lhr_PNT {
                             // encounter date must get from ecss client.
                             
                             
-                            String query_pnt_lhr_pnt = "insert into lhr_progress_notes (episode_date, "
-                                    + "progress_notes) "
+                            String query_pnt_lhr_pnt = "insert into lhr_progress_notes ("
+                                    + "episode_date, "
+                                    + "progress_notes,"
+                                    + "pmi_no,"
+                                    + "hfc_cd,"
+                                    + "encounter_date,"
+                                    + "discipline_cd,"
+                                    + "subdiscipline_cd,"
+                                    + "created_by,"
+                                    + "created_date) "
                                     + "values ('" + pntB.getEpisode_Date() + "',"
-                                    + "'" + pntB.getProgress_Notes() + "');";
+                                    + "'" + pntB.getProgress_Notes() + "',"
+                                    + "'"+pntB.getPmi_no()+"',"
+                                    + "'"+pntB.getHfc_cd()+"',"
+                                    + "'"+pntB.getEncounter_date()+"',"
+                                    + "'"+pntB.getDiscipline()+"',"
+                                    + "'"+pntB.getSubdiscipline()+"',"
+                                    + "'"+alPnt.get(2).get(6)+"',"
+                                    + "'"+msh.getDateTime()+"');";
                             
                             status_pnt_lhr_progress_notes = rc.setQuerySQL(Config.ipAddressServer, Config.portServer, query_pnt_lhr_pnt);
 
@@ -82,6 +104,7 @@ public class lhr_PNT {
                                 //System.out.println("Query for PNT: " + query_pnt_lhr_pnt);
                                 total_fail_insert++;
                                 System.out.println("false extract PNT");
+                                System.out.println(query_pnt_lhr_pnt);
                             }else{
                                 System.out.println("done extract PNT");
                             }

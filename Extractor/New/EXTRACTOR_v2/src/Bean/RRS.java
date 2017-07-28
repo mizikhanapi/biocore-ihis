@@ -10,13 +10,14 @@ package Bean;
  * @author shay
  */
 public class RRS {
+
     private String PMI_no;
     private String HFC_Cd;
     private String Episode_Date;
     private String Encounter_Date;
     private String Doctor_Id;
     private String Doctor_Name;
-    
+
     private String investigationTestCode;
     private String investigationTestName;
     private String codingStandardInvestigation;
@@ -32,6 +33,24 @@ public class RRS {
     private String codingStandardReportProvide;
     private String reportProvideDateTime;
     private String reportNotes;
+    private String discipline;
+    private String subdiscipline;
+
+    public String getDiscipline() {
+        return discipline;
+    }
+
+    public void setDiscipline(String discipline) {
+        this.discipline = discipline;
+    }
+
+    public String getSubdiscipline() {
+        return subdiscipline;
+    }
+
+    public void setSubdiscipline(String subdiscipline) {
+        this.subdiscipline = subdiscipline;
+    }
 
     public String getPMI_no() {
         return PMI_no;

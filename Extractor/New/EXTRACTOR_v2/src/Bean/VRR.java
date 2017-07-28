@@ -10,13 +10,14 @@ package Bean;
  * @author shay
  */
 public class VRR {
+
     private String PMI_no;
     private String HFCFrom_Cd;
     private String Episode_Date;
     private String Encounter_Date;
     private String Doctor_Id;
     private String Doctor_Name;
-    
+
     private String orderDate;
     private String hfcProvider;
     private String hfcProviderDesc;
@@ -32,6 +33,24 @@ public class VRR {
     private String reportByCode;
     private String reportByDesc;
     private String reportNotes;
+    private String discipline;
+    private String subdiscipline;
+
+    public String getDiscipline() {
+        return discipline;
+    }
+
+    public void setDiscipline(String discipline) {
+        this.discipline = discipline;
+    }
+
+    public String getSubdiscipline() {
+        return subdiscipline;
+    }
+
+    public void setSubdiscipline(String subdiscipline) {
+        this.subdiscipline = subdiscipline;
+    }
 
     public String getPMI_no() {
         return PMI_no;
@@ -200,5 +219,5 @@ public class VRR {
     public void setReportNotes(String reportNotes) {
         this.reportNotes = reportNotes;
     }
-    
+
 }

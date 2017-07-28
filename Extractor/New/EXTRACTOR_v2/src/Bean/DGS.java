@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package Bean;
 
 /**
@@ -13,8 +12,8 @@ package Bean;
 public class DGS {
 
     private String PMI_no;
-    private String Episode_Date;   
-    private String Diagnosis_Type;     
+    private String Episode_Date;
+    private String Diagnosis_Type;
     private String Diagnosis_Type_Desc;
     private String Diagnosis_Status;
     private String Diagnosis_Date;
@@ -42,6 +41,25 @@ public class DGS {
     private String Term_Type;
     private String ICD10_Code;
     private String ICD10_Desc;
+
+    private String discipline;
+    private String subdiscipline;
+
+    public String getDiscipline() {
+        return discipline;
+    }
+
+    public void setDiscipline(String discipline) {
+        this.discipline = discipline;
+    }
+
+    public String getSubdiscipline() {
+        return subdiscipline;
+    }
+
+    public void setSubdiscipline(String subdiscipline) {
+        this.subdiscipline = subdiscipline;
+    }
 
     /**
      * @return the PMI_no
@@ -463,5 +481,4 @@ public class DGS {
         this.ICD10_Desc = ICD10_Desc;
     }
 
-    
 }

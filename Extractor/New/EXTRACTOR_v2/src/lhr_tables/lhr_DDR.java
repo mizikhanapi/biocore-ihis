@@ -31,7 +31,7 @@ public class lhr_DDR {
                         ArrayList<ArrayList<String>> alDdr = ddr.get(i).getValue();
                         DDR ddrbean = new DDR();
                         ddrbean.setPMI_no(t.getPmi_no());
-                        ddrbean.setEncounter_Date(alDdr.get(16).get(0));
+                        ddrbean.setEncounter_Date(alDdr.get(14).get(0));
                         ddrbean.setHFC_Cd(msh.getSendingFacilityCode());
 
                         ddrbean.setReqDrugCod(alDdr.get(1).get(0));
@@ -112,7 +112,6 @@ public class lhr_DDR {
                                 + "episode_date,"
                                 + "encounter_date,"
                                 + "drug_cd,"
-                                //+ "problem_name,"
                                 + "drug_name,"
                                 + "product_name,"
                                 + "drug_form,"
@@ -127,20 +126,21 @@ public class lhr_DDR {
                                 + "drug_uom,"
                                 + "duration,"
                                 + "quantity,"
-                                //+ "start_date,"
-                                //+ "end_date,"
                                 + "doctor_id,"
                                 + "doctor_name,"
                                 + "national_id_no,"
                                 + "person_id_no,"
                                 + "person_status,"
-                                + "centre_code) values('"
+                                + "centre_code,"
+                                + "discipline_cd,"
+                                + "subdiscipline_cd,"
+                                + "created_by,"
+                                + "created_date) values('"
                                 + ddrbean.getPMI_no() + "','"
                                 + ddrbean.getHFC_Cd() + "','"
                                 + ddrbean.getEpisode_Date() + "','"
                                 + ddrbean.getEncounter_Date() + "','"
                                 + ddrbean.getDisDrugCod() + "','"
-                                //+ ddrbean.getPMI_no()+"',"
                                 + ddrbean.getDisDrugDesc() + "','"
                                 + ddrbean.getDisDrugDesc() + "','"
                                 + ddrbean.getActDrugFormCod() + "','"
@@ -155,14 +155,16 @@ public class lhr_DDR {
                                 + ddrbean.getActUOMDetailRefCod() + "','"
                                 + ddrbean.getActDuration() + "','"
                                 + ddrbean.getActDispenseQuantity() + "','"
-                                //                                    + ddrbean.getEpisode_Date()+"','"
-                                //                                    + ddrbean.getEpisode_Date()+"','"
                                 + ddrbean.getDoctor_Id() + "','"
                                 + ddrbean.getDoctor_Name() + "','"
                                 + a + "','"
                                 + b + "','"
                                 + c + "','"
-                                + d + "');";
+                                + d + "',"
+                                + "'"+msh.getSendingFacilityDis()+"',"
+                                + "'"+msh.getSendingFacilitySubDis()+"',"
+                                + "'"+ddrbean.getDoctor_Id()+"',"
+                                + "'"+msh.getDateTime()+"');";
                         status_lhr_ddr = rmic.setQuerySQL(Config.ipAddressServer, Config.portServer, query_lhr_medication);
 
                         if (status_lhr_ddr == false) {

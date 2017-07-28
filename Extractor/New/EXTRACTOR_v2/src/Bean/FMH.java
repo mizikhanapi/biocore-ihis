@@ -10,30 +10,45 @@ package Bean;
  * @author Hadi Akmal
  */
 public class FMH {
-        
-        private String PMI_No;
-        private String Episode_Date;
-        private String Family_Relationship_Cd;
-        private String ICD10_Code;
-        private String ICD10_Description;
-        private String Read_Code;
-        private String Read_Description;
-        private String Date_Onset;
-        private String Comments;
-        private String Answer_Code;
-        private String Answer_Desc;
-        private String Txn_Date;
-        private String Status;
-        private String Encounter_Date;
-        private String HFC;
-        private String Doctor_Id;
-        private String Doctor_Name;
-        private String Term_Type;
-        private String Term_Code;        
 
-        
-        
-        
+    private String PMI_No;
+    private String Episode_Date;
+    private String Family_Relationship_Cd;
+    private String ICD10_Code;
+    private String ICD10_Description;
+    private String Read_Code;
+    private String Read_Description;
+    private String Date_Onset;
+    private String Comments;
+    private String Answer_Code;
+    private String Answer_Desc;
+    private String Txn_Date;
+    private String Status;
+    private String Encounter_Date;
+    private String HFC;
+    private String Doctor_Id;
+    private String Doctor_Name;
+    private String Term_Type;
+    private String Term_Code;
+    private String discipline;
+    private String subdiscipline;
+
+    public String getDiscipline() {
+        return discipline;
+    }
+
+    public void setDiscipline(String discipline) {
+        this.discipline = discipline;
+    }
+
+    public String getSubdiscipline() {
+        return subdiscipline;
+    }
+
+    public void setSubdiscipline(String subdiscipline) {
+        this.subdiscipline = subdiscipline;
+    }
+
     /**
      * @return the PMI_No
      */
@@ -300,6 +315,4 @@ public class FMH {
         this.Term_Code = Term_Code;
     }
 
-
-    
 }

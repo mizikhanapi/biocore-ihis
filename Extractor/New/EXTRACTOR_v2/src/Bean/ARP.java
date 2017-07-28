@@ -20,10 +20,10 @@ package Bean;
  * @author Shay
  */
 public class ARP {
-    
+
     private String PMI_no;
     private String Encounter_Date;
-    
+
     private String prCode;
     private String prName;
     private String prCodeStd;
@@ -37,6 +37,24 @@ public class ARP {
     private String comment;
     private String recHFCcode;
     private String episodeDate;
+    private String discipline;
+    private String subdiscipline;
+
+    public String getDiscipline() {
+        return discipline;
+    }
+
+    public void setDiscipline(String discipline) {
+        this.discipline = discipline;
+    }
+
+    public String getSubdiscipline() {
+        return subdiscipline;
+    }
+
+    public void setSubdiscipline(String subdiscipline) {
+        this.subdiscipline = subdiscipline;
+    }
 
     public String getPrCode() {
         return prCode;

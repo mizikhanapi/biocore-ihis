@@ -1,5 +1,6 @@
 package lhr_tables;
 
+import Bean.MSH;
 import Bean.SOH;
 import Config_Pack.Config;
 import Process.MainRetrieval;
@@ -15,7 +16,7 @@ import main.RMIConnector;
 
 public class lhr_SOH {
     
-    public boolean M_SOH(Vector<SOH2> soh2,get_ehr_central_data t){
+    public boolean M_SOH(Vector<SOH2> soh2,get_ehr_central_data t,MSH msh){
         
         RMIConnector rc = new RMIConnector();
         int total_fail_insert = 0; //total of failed insert
@@ -76,35 +77,6 @@ public class lhr_SOH {
                 if (d == null || d.isEmpty() || d.equals(" ")) {
                     d = "PUBLIC HOSPITAL";
                 }
-
-//                            // increase time 5 sec to prevent duplicate during insert.
-//                            SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-//                            Date date_time = null;
-//
-//                            // if null insert current date time
-//                            if (dataDGS[n][22] == null) {
-//                                Calendar cal = Calendar.getInstance();
-//                                dgsB.setEncounter_Date(df.format(cal.getTime()));
-//                            } else { // insert random date time
-//                                date_time = df.parse(dataDGS[n][22]);
-//
-//                                Calendar gc = new GregorianCalendar();
-//                                gc.setTime(date_time);
-//
-//                                //create rand number by range http://stackoverflow.com/a/6029518/894470
-//                                int min = 0;
-//                                int max = 1000000000;
-//                                Random r = new Random();
-//                                int rand_num = r.nextInt(max - min + 1) + min;
-//                                gc.add(Calendar.SECOND, rand_num);
-//                                Date d2 = gc.getTime();
-//
-//                                dgsB.setEncounter_Date(df.format(d2));
-//                            }
-//                            //
-                            // encounter date must get from ecss client.
-                            
-                            
                             String query_soh_lhr_soh = "insert into lhr_social_history (PMI_no, "
                                     + "hfc_cd, "
                                     + "episode_date, "
@@ -118,7 +90,11 @@ public class lhr_SOH {
                                     + "NATIONAL_ID_NO, "
                                     + "PERSON_ID_NO, "
                                     + "PERSON_STATUS, "
-                                    + "center_code )"
+                                    + "center_code,"
+                                    + "discipline_cd,"
+                                    + "subdiscipline_cd,"
+                                    + "created_by,"
+                                    + "created_date)"
                                     + "values ('" + sohB.getPMI_no() + "',"
                                     + "'" + sohB.getHfc_cd() + "',"
                                     + "'" + sohB.getEpisode_date() + "',"
@@ -132,17 +108,15 @@ public class lhr_SOH {
                                     + "'" + a + "',"
                                     + "'" + b + "',"
                                     + "'" + c + "',"
-                                    + "'" + d + "')";
-//                            System.out.println(sohB.getPMI_no());
-//                            System.out.println(sohB.getSOH_code());
-//                            System.out.println(sohB.getSOH_name());
+                                    + "'" + d + "',"
+                                    + "'"+msh.getSendingFacilityDis()+"',"
+                                    + "'"+msh.getSendingFacilitySubDis()+"',"
+                                    + "'"+sohB.getDoctor_ID()+"',"
+                                    + "'"+msh.getDateTime()+"')";
+
                             status_hpi_lhr_health_of_present_illness = rc.setQuerySQL(Config.ipAddressServer, Config.portServer, query_soh_lhr_soh);
 
-
-                            ////System.out.println("stat:" + stat);
-                            ////System.out.println("query:" + query2);
                             if (status_hpi_lhr_health_of_present_illness == false) {
-                                //System.out.println("Failed to insert data into lhr_diagnosis (DGS) where PMI No : " + PMI_no + " & National ID No : " + NATIONAL_ID_NO + " & Person ID No : " + PERSON_ID_NO);   
                                 System.out.println("Query for SOH: " + query_soh_lhr_soh);
                                 total_fail_insert++;
                                 System.out.println("false extract SOH");

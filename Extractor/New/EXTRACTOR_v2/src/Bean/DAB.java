@@ -1,16 +1,33 @@
 package Bean;
 
 public class DAB {
-    
-    private String Episode_date;    
+
+    private String Episode_date;
     private String DAB_type;
     private String DAB_code;
     private String DAB_date;
     private String DAB_comment;
     private String icd10_cd;
     private String icd10_desc;
-  
-    
+    private String discipline;
+    private String subdiscipline;
+
+    public String getDiscipline() {
+        return discipline;
+    }
+
+    public void setDiscipline(String discipline) {
+        this.discipline = discipline;
+    }
+
+    public String getSubdiscipline() {
+        return subdiscipline;
+    }
+
+    public void setSubdiscipline(String subdiscipline) {
+        this.subdiscipline = subdiscipline;
+    }
+
     public String getDAB_type() {
         return DAB_type;
     }
@@ -43,7 +60,6 @@ public class DAB {
         this.DAB_comment = DAB_comment;
     }
 
-
     public String getEpisode_date() {
         return Episode_date;
     }
@@ -68,10 +84,4 @@ public class DAB {
         this.icd10_desc = icd10_desc;
     }
 
-    
-    
-    
-    
-    
-    
 }

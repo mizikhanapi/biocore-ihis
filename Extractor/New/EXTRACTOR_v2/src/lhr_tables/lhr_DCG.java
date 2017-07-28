@@ -15,6 +15,7 @@
  */
 package lhr_tables;
 import Bean.DCG;
+import Bean.MSH;
 import Config_Pack.Config;
 import bean.DCG2;
 import java.util.ArrayList;
@@ -27,7 +28,7 @@ import main.RMIConnector;
 
 public class lhr_DCG {
     
-    public boolean M_DCG(Vector<DCG2> dcg, get_ehr_central_data t) {
+    public boolean M_DCG(Vector<DCG2> dcg, get_ehr_central_data t,MSH msh) {
         boolean status_lhr_dcg = false;
         RMIConnector rmic = new RMIConnector();
         try {
@@ -65,10 +66,7 @@ public class lhr_DCG {
                         dcgbean.setMessageType(alDcg.get(2).get(11)); 
                         
                         dcgbean.setDischargeSummary(alDcg.get(5).toString());
-                        String sqlGetdiscip = "SELECT discipline_code,subdicipline_code from adm_user_access_role where user_id='"+ dcgbean.getConsultingDoctorID()+"'";
                         try{
-                            ArrayList<ArrayList<String>> ALALdissub =rmic.getQuerySQL(Config.ipAddressServer, Config.portServer, sqlGetdiscip);
-                            if(ALALdissub.size() > 0){
                                  String query_lhr_discharge_summary = "insert into lhr_discharge_summary("
                                 + "pmi_no,"
                                 + "hfc_cd,"
@@ -89,8 +87,8 @@ public class lhr_DCG {
                                 + dcgbean.getHfcCd()+ "','"
                                 + dcgbean.getEpisodeDate()+ "','"
                                 + dcgbean.getEncounterDate()+ "','"
-                                + ALALdissub.get(0).get(0) + "','"
-                                + ALALdissub.get(0).get(1)+"',"
+                                + msh.getSendingFacilityDis()+ "','"
+                                + msh.getSendingFacilitySubDis()+"','"
                                 + dcgbean.getMessageType()+ "','"
                                 + dcgbean.getDischargeDateTime()+ "','"
                                 + dcgbean.getDischargeDisposition()+ "','"
@@ -98,7 +96,7 @@ public class lhr_DCG {
                                 + dcgbean.getMessageType()+ "','"
                                 + dcgbean.getComment()+ "','"
                                 + dcgbean.getAttainDoctorID()+ "','"
-                                + dcgbean.getEncounterDate()+ "','"
+                                + msh.getDateTime()+ "','"
                                 + dcgbean.getDischargeSummary()+ "');";
                         status_lhr_dcg = rmic.setQuerySQL(Config.ipAddressServer, Config.portServer, query_lhr_discharge_summary);
 
@@ -108,7 +106,7 @@ public class lhr_DCG {
                         } else {
                             System.out.println("true extracting dcg");
                         }
-                            }
+                            
                         }catch(Exception e){
                             
                         }

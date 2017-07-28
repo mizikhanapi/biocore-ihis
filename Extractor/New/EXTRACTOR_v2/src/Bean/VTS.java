@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package Bean;
 
 /**
@@ -11,7 +10,7 @@ package Bean;
  * @author Hadi-PC
  */
 public class VTS {
-    
+
     private String PMI_no;
     private String HFC_Cd;
     private String Episode_Date;
@@ -35,10 +34,28 @@ public class VTS {
     private String SPO2_Reading;
     private String ECG_Reading;
     private String ECG_Comments;
-    private String Procedure_Cd;    
-    private String Procedure_Name;      
-    private String Procedure_Outcome;    
-    
+    private String Procedure_Cd;
+    private String Procedure_Name;
+    private String Procedure_Outcome;
+    private String discipline;
+    private String subdiscipline;
+
+    public String getDiscipline() {
+        return discipline;
+    }
+
+    public void setDiscipline(String discipline) {
+        this.discipline = discipline;
+    }
+
+    public String getSubdiscipline() {
+        return subdiscipline;
+    }
+
+    public void setSubdiscipline(String subdiscipline) {
+        this.subdiscipline = subdiscipline;
+    }
+
     /**
      * @return the PMI_no
      */
@@ -403,5 +420,4 @@ public class VTS {
         this.Procedure_Outcome = Procedure_Outcome;
     }
 
- 
 }

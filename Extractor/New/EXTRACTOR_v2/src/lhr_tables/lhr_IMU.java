@@ -1,21 +1,16 @@
 package lhr_tables;
 
 import Bean.IMU;
+import Bean.MSH;
 import Config_Pack.Config;
-import Process.MainRetrieval;
 import bean.IMU2;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.GregorianCalendar;
-import java.util.Random;
 import java.util.Vector;
 import main.RMIConnector;
 
 public class lhr_IMU {
 
-    public boolean M_IMU(Vector<IMU2> imu2, get_ehr_central_data t) {
+    public boolean M_IMU(Vector<IMU2> imu2, get_ehr_central_data t,MSH msh) {
 
         RMIConnector rc = new RMIConnector();
         int total_fail_insert = 0; //total of failed insert
@@ -89,41 +84,14 @@ public class lhr_IMU {
                     d = "PUBLIC HOSPITAL";
                 }
 
-//                            // increase time 5 sec to prevent duplicate during insert.
-//                            SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-//                            Date date_time = null;
-//
-//                            // if null insert current date time
-//                            if (dataDGS[n][22] == null) {
-//                                Calendar cal = Calendar.getInstance();
-//                                dgsB.setEncounter_Date(df.format(cal.getTime()));
-//                            } else { // insert random date time
-//                                date_time = df.parse(dataDGS[n][22]);
-//
-//                                Calendar gc = new GregorianCalendar();
-//                                gc.setTime(date_time);
-//
-//                                //create rand number by range http://stackoverflow.com/a/6029518/894470
-//                                int min = 0;
-//                                int max = 1000000000;
-//                                Random r = new Random();
-//                                int rand_num = r.nextInt(max - min + 1) + min;
-//                                gc.add(Calendar.SECOND, rand_num);
-//                                Date d2 = gc.getTime();
-//
-//                                dgsB.setEncounter_Date(df.format(d2));
-//                            }
-//                            //
                         // encounter date must get from ecss client.
                         String query_imu_lhr_imu = "insert into lhr_immunisation (PMI_no, "
                                 + "hfc_cd, "
                                 + "episode_date, "
-                                + "encounter_cd, "
+                                + "encounter_date, "
                                 + "immunisation_cd, " //insert icd10 code
                                 + "onset_date, "
                                 + "term_type, "
-                                //  + "diagnosis_status, "                                    
-                                //  + "diagnosis_date, "
                                 + "icd10_cd, "
                                 + "icd10_description, "
                                 + "term_cd, "
@@ -135,13 +103,17 @@ public class lhr_IMU {
                                 + "NATIONAL_ID_NO, "
                                 + "PERSON_ID_NO, "
                                 + "PERSON_STATUS, "
-                                + "centre_code )"
+                                + "centre_code,"
+                                + "discipline_cd,"
+                                + "subdiscipline_cd,"
+                                + "created_by,"
+                                + "created_date)"
                                 + "values ('" + imuB.getPMI_no() + "',"
                                 + "'" + imuB.getHfc_cd() + "',"
                                 + "'" + imuB.getEpisode_date() + "',"
                                 + "'" + imuB.getEncounter_Date() + "',"
                                 + "'" + imuB.getimmunization_cd() + "',"
-                                + "now(),"
+                                + "'"+msh.getDateTime()+"',"
                                 + "'CTV3',"
                                 + "'" + imuB.getIcd10_cd() + "',"
                                 + "'" + imuB.getIcd10_description() + "',"
@@ -154,16 +126,16 @@ public class lhr_IMU {
                                 + "'" + a + "',"
                                 + "'" + b + "',"
                                 + "'" + c + "',"
-                                + "'" + d + "')";
+                                + "'" + d + "',"
+                                + "'"+msh.getSendingFacilityDis()+"',"
+                                + "'"+msh.getSendingFacilitySubDis()+"',"
+                                + "'"+imuB.getDoctor_ID()+"',"
+                                + "'"+msh.getDateTime()+"')";
 
                         status_imu_lhr_immunisation = rc.setQuerySQL(Config.ipAddressServer, Config.portServer, query_imu_lhr_imu);
-
-                        ////System.out.println("stat:" + stat);
-                        ////System.out.println("query:" + query2);
                         if (status_imu_lhr_immunisation == false) {
-                            //System.out.println("Failed to insert data into lhr_diagnosis (DGS) where PMI No : " + PMI_no + " & National ID No : " + NATIONAL_ID_NO + " & Person ID No : " + PERSON_ID_NO);   
-                            //System.out.println("Query for IMU: " + query_imu_lhr_imu);
                             System.out.println("false extract IMU");
+                            System.out.println(query_imu_lhr_imu);
                             total_fail_insert++;
                         } else {
                             System.out.println("done extract IMU");

@@ -1,6 +1,8 @@
 package lhr_tables;
 
 import Bean.BLD;
+import Bean.MSH;
+import Bean.PDI;
 import Config_Pack.Config;
 import Process.MainRetrieval;
 import bean.BLD2;
@@ -15,7 +17,7 @@ import main.RMIConnector;
 
 public class lhr_BLD {
 
-    public void M_BLD(Vector<BLD2> bld2,get_ehr_central_data t) {
+    public void M_BLD(Vector<BLD2> bld2,get_ehr_central_data t,MSH msh,PDI pdi) {
 
         RMIConnector rc = new RMIConnector();
         int total_fail_insert = 0; //total of failed insert
@@ -40,34 +42,44 @@ public class lhr_BLD {
                     bldB.setRhesus_type(alBld.get(2).get(2));
                     //bldB.setG6PD_status(alBld.get(2).get(3));
                     bldB.setG6PD_comment(alBld.get(2).get(3));
+                    
 
 
-                    String query_bld_lhr_bld = "insert into lhr_blood_type_g6pd (episode_date, "
+                    String query_bld_lhr_bld = "insert into lhr_blood_type_g6pd ("
+                            + "episode_date, "
                             + "bld_type, "
                             + "rhesus_type, "
-                            //+ "bld_status, "
-                            + "bld_comment) values( "
+                            + "bld_comment,"
+                            + "pmi_no,"
+                            + "hfc_cd,"
+                            + "encounter_date,"
+                            + "discipline_cd,"
+                            + "subdiscipline_cd,"
+                            + "created_by,"
+                            + "created_date) values( "
                             + "'" + bldB.getEpisode_date() + "',"
                             + "'" + bldB.getBlood_type() + "',"
                             + "'" + bldB.getRhesus_type() + "',"
-                            //+ "'" + bldB.getG6PD_status() + "',"
-                            + "'" + bldB.getG6PD_comment() + "');";
-//                            System.out.println(bldB.getEpisode_date());
-//                            System.out.println(bldB.getBlood_type());
-//                            System.out.println(bldB.getRhesus_type());
+                            + "'" + bldB.getG6PD_comment() + "',"
+                            + "'"+pdi.getPmiNo()+"',"
+                            + "'"+msh.getSendingFacilityCode()+"',"
+                            + "'"+alBld.get(2).get(4)+"',"
+                            + "'"+msh.getSendingFacilityDis()+"',"
+                            + "'"+msh.getSendingFacilitySubDis()+"',"
+                            + "'"+alBld.get(2).get(5)+"',"
+                            + "'"+msh.getDateTime()+"');";
+
                     status_bld_lhr_blood_group_g6pd = rc.setQuerySQL(Config.ipAddressServer, Config.portServer, query_bld_lhr_bld);
 
                    
 
                    
                     if (status_bld_lhr_blood_group_g6pd == true) {
-                        //System.out.println("Failed to insert data into lhr_diagnosis (DGS) where PMI No : " + PMI_no + " & National ID No : " + NATIONAL_ID_NO + " & Person ID No : " + PERSON_ID_NO);   
-                        //System.out.println("Query for DGS: " + query2);
-                        //total_fail_insert++;
+
                         System.out.println("Done extract BLD");
                     }else{
                           System.out.println("False extract BLD");
-                           //System.out.println("BLD query:" + query_bld_lhr_bld);
+                          System.out.println(query_bld_lhr_bld);
                     }
 
                     bldBr.add(bldB);

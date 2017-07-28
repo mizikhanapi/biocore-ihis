@@ -1,6 +1,7 @@
 package lhr_tables;
 
 import Bean.ALG;
+import Bean.MSH;
 import Config_Pack.Config;
 import bean.ALG2;
 import java.util.ArrayList;
@@ -15,7 +16,7 @@ public class lhr_ALG {
     //private Vector<ALG2> alg2;
     private int rowsALG;
 
-    public void M_ALG(Vector<ALG2> alg2, get_ehr_central_data t) {
+    public void M_ALG(Vector<ALG2> alg2, get_ehr_central_data t, MSH msh) {
 
         int total_fail_insert = 0; //total of failed insert
         //set default value to true. When insertion failed var will switch to false and patient will noy update to 3
@@ -35,31 +36,29 @@ public class lhr_ALG {
                     try {
 
                         ArrayList<ArrayList<String>> alAlg = alg2.get(n).getValue();
-                        
-                        String a,b,c,d;
-                a= t.getNational_id_no();
-                b = t.getPERSON_STATUS();
-                c = t.getPERSON_ID_NO();
-                d =t.getCentre_Code();
-                
-                if (a == null || a.isEmpty() || a.equals(" ")) {
-                   a =  "PUBLIC HOSPITAL";
-                }
 
-                if (b == null || b.isEmpty() || b.equals(" ")) {
-                    b ="PUBLIC HOSPITAL";
-                }
+                        String a, b, c, d;
+                        a = t.getNational_id_no();
+                        b = t.getPERSON_STATUS();
+                        c = t.getPERSON_ID_NO();
+                        d = t.getCentre_Code();
 
-                if (c == null || c.isEmpty() || c.equals(" ")) {
-                    c = "PUBLIC HOSPITAL";
-                }
+                        if (a == null || a.isEmpty() || a.equals(" ")) {
+                            a = "PUBLIC HOSPITAL";
+                        }
 
-                if (d == null || d.isEmpty() || d.equals(" ")) {
-                    d = "PUBLIC HOSPITAL";
-                }
-                        
-                        
-                        
+                        if (b == null || b.isEmpty() || b.equals(" ")) {
+                            b = "PUBLIC HOSPITAL";
+                        }
+
+                        if (c == null || c.isEmpty() || c.equals(" ")) {
+                            c = "PUBLIC HOSPITAL";
+                        }
+
+                        if (d == null || d.isEmpty() || d.equals(" ")) {
+                            d = "PUBLIC HOSPITAL";
+                        }
+
                         algB.setPMI_no(t.getPmi_no());
                         algB.setEpisode_date(alAlg.get(1).get(0));
                         algB.setAllergy_cd(alAlg.get(2).get(0));
@@ -89,7 +88,7 @@ public class lhr_ALG {
                         } else {
                             algB.setIcd10_description(alAlg.get(2).get(14));
                         }
-                        
+
                         algB.setTerm_description("CTV3");
                         algB.setTerm_cd("CTV3");
                         query_alg_lhr_alg = "insert into lhr_allergy (PMI_no,"
@@ -110,7 +109,11 @@ public class lhr_ALG {
                                 + "NATIONAL_ID_NO,"
                                 + "PERSON_ID_NO,"
                                 + "PERSON_STATUS,"
-                                + "centre_code)"
+                                + "centre_code,"
+                                + "discipline_cd,"
+                                + "subdiscipline_cd,"
+                                + "created_by,"
+                                + "created_date)"
                                 + "values ('" + algB.getPMI_no() + "',"
                                 + "'" + algB.getHfc_cd() + "',"
                                 + "'" + algB.getEpisode_date() + "',"
@@ -129,7 +132,11 @@ public class lhr_ALG {
                                 + "'" + a + "',"
                                 + "'" + b + "',"
                                 + "'" + c + "',"
-                                + "'" + d + "');";
+                                + "'" + d + "',"
+                                + "'" + msh.getSendingFacilityDis() + "',"
+                                + "'" + msh.getSendingFacilitySubDis() + "',"
+                                + "'" + algB.getDoctor_ID() + "',"
+                                + "'" + msh.getDateTime() + "');";
 
                         status_alg_lhr_allergy = rc.setQuerySQL(Config.ipAddressServer, Config.portServer, query_alg_lhr_alg);
 
@@ -137,19 +144,15 @@ public class lhr_ALG {
                             System.out.println("Done extract alg");
                         } else {
                             System.out.println("False extract alg");
-                            //System.out.println("query alg: "+query_alg_lhr_alg);
+                            System.out.println(query_alg_lhr_alg);
                         }
                         algBr.add(algB);
 
-                        //System.out.println(query_alg_lhr_alg);
                     } catch (Exception e) {
                         e.printStackTrace();
-                        //System.out.println("Not a numbetr!");
                     }
                 }
 
-//            update_ehr_central u = new update_ehr_central();
-//            u.update_status();
             }
         } catch (Exception e) {
             e.getStackTrace();

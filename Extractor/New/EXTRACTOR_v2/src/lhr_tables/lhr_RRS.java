@@ -5,6 +5,7 @@
  */
 package lhr_tables;
 
+import Bean.MSH;
 import Bean.RRS;
 import Config_Pack.Config;
 import bean.ORC2;
@@ -19,7 +20,7 @@ import main.RMIConnector;
  * @author shay
  */
 public class lhr_RRS {
-    public boolean M_RRS(Vector<RRS2> rrs, get_ehr_central_data t,Vector<ORC2> orc) {
+    public boolean M_RRS(Vector<RRS2> rrs, get_ehr_central_data t,Vector<ORC2> orc,MSH msh) {
         boolean status_lhr_ddr = false;
         RMIConnector rmic = new RMIConnector();
         try {

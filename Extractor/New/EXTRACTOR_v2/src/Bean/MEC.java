@@ -11,27 +11,45 @@ package Bean;
  */
 public class MEC {
 
-        private String PMI_No;
-        private String Episode_Date;    
-        private String Diagnosis_Code_Read_Code;
-        private String Diagnosis_Desc_Read_Code;
-        private String Diagnosis_Code_ICD10;
-        private String Diagnosis_Desc_ICD10;
-        private String Complaint_Code_Read_Code;
-        private String Complaint_Desc_Read_Code;
-        private String Complaint_Code_ICD10;
-        private String Complaint_Desc_ICD10;
-        private String Comments;
-        private String Time_From;
-        private String Time_To;
-        private String Date_From;
-        private String Date_To;
-        private String Txn_Date;
-        private String Status;
-        private String Encounter_Date;
-        private String HFC;
-        private String Doctor_ID;
-        private String Doctor_Name;
+    private String PMI_No;
+    private String Episode_Date;
+    private String Diagnosis_Code_Read_Code;
+    private String Diagnosis_Desc_Read_Code;
+    private String Diagnosis_Code_ICD10;
+    private String Diagnosis_Desc_ICD10;
+    private String Complaint_Code_Read_Code;
+    private String Complaint_Desc_Read_Code;
+    private String Complaint_Code_ICD10;
+    private String Complaint_Desc_ICD10;
+    private String Comments;
+    private String Time_From;
+    private String Time_To;
+    private String Date_From;
+    private String Date_To;
+    private String Txn_Date;
+    private String Status;
+    private String Encounter_Date;
+    private String HFC;
+    private String Doctor_ID;
+    private String Doctor_Name;
+    private String discipline;
+    private String subdiscipline;
+
+    public String getDiscipline() {
+        return discipline;
+    }
+
+    public void setDiscipline(String discipline) {
+        this.discipline = discipline;
+    }
+
+    public String getSubdiscipline() {
+        return subdiscipline;
+    }
+
+    public void setSubdiscipline(String subdiscipline) {
+        this.subdiscipline = subdiscipline;
+    }
 
     /**
      * @return the PMI_no
@@ -46,7 +64,7 @@ public class MEC {
     public void setPMI_No(String PMI_No) {
         this.PMI_No = PMI_No;
     }
-    
+
     /**
      * @return the Episode_Date
      */
@@ -326,5 +344,5 @@ public class MEC {
     public void setDoctor_Name(String Doctor_Name) {
         this.Doctor_Name = Doctor_Name;
     }
-    
+
 }

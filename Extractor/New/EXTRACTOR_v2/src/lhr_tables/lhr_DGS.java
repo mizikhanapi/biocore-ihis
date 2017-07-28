@@ -1,6 +1,7 @@
 package lhr_tables;
 
 import Bean.DGS;
+import Bean.MSH;
 import Config_Pack.Config;
 import bean.DGS2;
 import java.util.ArrayList;
@@ -10,7 +11,7 @@ import separatorv2.SeparatorV2;
 
 public class lhr_DGS {
 
-    public void M_DGS(Vector<DGS2> dgs2, get_ehr_central_data t) {
+    public void M_DGS(Vector<DGS2> dgs2, get_ehr_central_data t, MSH msh) {
 
         RMIConnector rc = new RMIConnector();
         int total_fail_insert = 0; //total of failed insert
@@ -23,34 +24,33 @@ public class lhr_DGS {
 
             //declare outside so can display data outside bracket
             if (rowsDGS > 0) {
-                
+
                 ArrayList<DGS> dgsBr = new ArrayList<DGS>();
                 for (int n = 0; n < rowsDGS; n++) {
                     DGS dgsB = new DGS();
 
                     try {
-                        
-                                                        String a,b,c,d;
-                a= t.getNational_id_no();
-                b = t.getPERSON_STATUS();
-                c = t.getPERSON_ID_NO();
-                d =t.getCentre_Code();
-                
-                if (a == null || a.isEmpty() || a.equals(" ")) {
-                   a =  "PUBLIC HOSPITAL";
-                }
+                        String a, b, c, d;
+                        a = t.getNational_id_no();
+                        b = t.getPERSON_STATUS();
+                        c = t.getPERSON_ID_NO();
+                        d = t.getCentre_Code();
 
-                if (b == null || b.isEmpty() || b.equals(" ")) {
-                    b ="PUBLIC HOSPITAL";
-                }
+                        if (a == null || a.isEmpty() || a.equals(" ")) {
+                            a = "PUBLIC HOSPITAL";
+                        }
 
-                if (c == null || c.isEmpty() || c.equals(" ")) {
-                    c = "PUBLIC HOSPITAL";
-                }
+                        if (b == null || b.isEmpty() || b.equals(" ")) {
+                            b = "PUBLIC HOSPITAL";
+                        }
 
-                if (d == null || d.isEmpty() || d.equals(" ")) {
-                    d = "PUBLIC HOSPITAL";
-                }
+                        if (c == null || c.isEmpty() || c.equals(" ")) {
+                            c = "PUBLIC HOSPITAL";
+                        }
+
+                        if (d == null || d.isEmpty() || d.equals(" ")) {
+                            d = "PUBLIC HOSPITAL";
+                        }
                         ArrayList<ArrayList<String>> alDgs = dgs2.get(n).getValue();
 
                         dgsB.setPMI_no(t.getPmi_no());
@@ -87,31 +87,6 @@ public class lhr_DGS {
 
                         dgsB.setStatus(alDgs.get(2).get(20));
 
-//                            // increase time 5 sec to prevent duplicate during insert.
-//                            SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-//                            Date date_time = null;
-//
-//                            // if null insert current date time
-//                            if (dataDGS[n][22] == null) {
-//                                Calendar cal = Calendar.getInstance();
-//                                dgsB.setEncounter_Date(df.format(cal.getTime()));
-//                            } else { // insert random date time
-//                                date_time = df.parse(dataDGS[n][22]);
-//
-//                                Calendar gc = new GregorianCalendar();
-//                                gc.setTime(date_time);
-//
-//                                //create rand number by range http://stackoverflow.com/a/6029518/894470
-//                                int min = 0;
-//                                int max = 1000000000;
-//                                Random r = new Random();
-//                                int rand_num = r.nextInt(max - min + 1) + min;
-//                                gc.add(Calendar.SECOND, rand_num);
-//                                Date d2 = gc.getTime();
-//
-//                                dgsB.setEncounter_Date(df.format(d2));
-//                            }
-//                            //
                         // encounter date must get from ecss client.
                         if (alDgs.get(2).get(21).isEmpty() || alDgs.get(2).get(21).equalsIgnoreCase("-") || alDgs.get(2).get(21).equalsIgnoreCase(" ")) {
                             dgsB.setEncounter_Date(null);
@@ -148,7 +123,11 @@ public class lhr_DGS {
                                 + "PERSON_ID_NO, "
                                 + "PERSON_STATUS, "
                                 + "centre_code,"
-                                + "txnDate )"
+                                + "txnDate,"
+                                + "discipline_cd,"
+                                + "subdiscipline_cd,"
+                                + "created_by,"
+                                + "created_date)"
                                 + "values ('" + dgsB.getPMI_no() + "',"
                                 + "'" + dgsB.getHFC() + "',"
                                 + "'" + dgsB.getEpisode_Date() + "',"
@@ -171,33 +150,23 @@ public class lhr_DGS {
                                 + "'" + b + "',"
                                 + "'" + c + "',"
                                 + "'" + d + "',"
-                                + "'" + t.getTxndate() + "')";
-//                        //System.out.println(dgsB.getICD10_Code());
-//                        //System.out.println(dgsB.getICD10_Desc());
+                                + "'" + t.getTxndate() + "',"
+                                + "'"+msh.getSendingFacilityDis()+"',"
+                                + "'"+msh.getSendingFacilitySubDis()+"',"
+                                + "'"+dgsB.getDoctor_ID()+"',"
+                                + "'"+msh.getDateTime()+"')";
                         status_dgs_lhr_diagnosis = rc.setQuerySQL(Config.ipAddressServer, Config.portServer, query2);
-
-                        //System.out.println("status_dgs_lhr_diagnosis:" + status_dgs_lhr_diagnosis);
-                        ////System.out.println("stat:" + stat);
-                        ////System.out.println("query:" + query2);
                         if (status_dgs_lhr_diagnosis == true) {
-                            //System.out.println("Failed to insert data into lhr_diagnosis (DGS) where PMI No : " + PMI_no + " & National ID No : " + NATIONAL_ID_NO + " & Person ID No : " + PERSON_ID_NO);   
-                            //System.out.println("Query for DGS: " + query2);
-                            //total_fail_insert++;
                             System.out.println("Done extract DGS");
                         } else {
                             System.out.println("False extract DGS");
-                            //System.out.println("query dgs : " + query2);
+                            System.out.println(query2);
                         }
-
                         dgsBr.add(dgsB);
-
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
                 }
-
-//                update_ehr_central u = new update_ehr_central();
-//                u.update_status();
             }
 
         } catch (Exception e) {

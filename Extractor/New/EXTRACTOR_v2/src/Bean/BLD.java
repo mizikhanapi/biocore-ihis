@@ -1,13 +1,30 @@
 package Bean;
 
 public class BLD {
-    
+
     private String Episode_date;
     private String blood_type;
     private String rhesus_type;
     private String G6PD_status;
     private String G6PD_comment;
-    
+    private String discipline;
+    private String subdiscipline;
+
+    public String getDiscipline() {
+        return discipline;
+    }
+
+    public void setDiscipline(String discipline) {
+        this.discipline = discipline;
+    }
+
+    public String getSubdiscipline() {
+        return subdiscipline;
+    }
+
+    public void setSubdiscipline(String subdiscipline) {
+        this.subdiscipline = subdiscipline;
+    }
 
     public String getBlood_type() {
         return blood_type;
@@ -48,6 +65,5 @@ public class BLD {
     public void setEpisode_date(String Episode_date) {
         this.Episode_date = Episode_date;
     }
-    
 
 }

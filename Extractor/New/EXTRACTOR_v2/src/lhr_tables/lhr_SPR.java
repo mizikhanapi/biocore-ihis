@@ -5,6 +5,7 @@
  */
 package lhr_tables;
 
+import Bean.MSH;
 import Bean.SPR;
 import Config_Pack.Config;
 import bean.SPR2;
@@ -18,7 +19,7 @@ import main.RMIConnector;
  */
 public class lhr_SPR {
 
-    public boolean M_SPR(Vector<SPR2> rrs, get_ehr_central_data t) {
+    public boolean M_SPR(Vector<SPR2> rrs, get_ehr_central_data t,MSH msh) {
         boolean status_lhr_spr = false;
         RMIConnector rmic = new RMIConnector();
         try {
@@ -107,6 +108,7 @@ public class lhr_SPR {
 
                         if (status_lhr_spr == false) {
                             System.out.println("false extracting spr");
+                            System.out.println(query_lhr_procedure);
                         } else {
                             System.out.println("true extracting spr");
                         }

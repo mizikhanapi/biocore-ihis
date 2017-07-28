@@ -1,5 +1,6 @@
           package lhr_tables;
 
+import Bean.MSH;
 import Bean.PMH;
 import Config_Pack.Config;
 import bean.PMH2;
@@ -10,7 +11,7 @@ import main.RMIConnector;
 
 public class lhr_PMH {
     
-    public boolean M_PMH(Vector<PMH2> pmh2,get_ehr_central_data t){
+    public boolean M_PMH(Vector<PMH2> pmh2,get_ehr_central_data t,MSH msh){
         
         RMIConnector rc = new RMIConnector();
         int total_fail_insert = 0; //total of failed insert
@@ -55,22 +56,6 @@ public class lhr_PMH {
                         
                         pmh_Obj.setStatus(alPmh.get(2).get(8));
 
-//                        // increase time 5 sec to prevent duplicate during insert.
-//                        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-//                        Date date_time = null;
-//                        date_time = df.parse(dataPMH[pmh_i][11]);
-//
-//                        Calendar gc = new GregorianCalendar();
-//                        gc.setTime(date_time);
-//                        int min = 0;
-//                        int max = 1000000000;
-//                        Random r = new Random();
-//                        int rand_num = r.nextInt(max - min + 1) + min;
-//                        gc.add(Calendar.SECOND, rand_num);
-//                        Date d2 = gc.getTime();
-//
-//                        pmh_Obj.setEncounter_Date(df.format(d2));
-//                        //
                         if(alPmh.get(2).get(9).isEmpty() || alPmh.get(2).get(9).equalsIgnoreCase("-") || alPmh.get(2).get(9).equalsIgnoreCase(" ")){
                             pmh_Obj.setEncounter_Date(null);
                         }else{
@@ -96,7 +81,7 @@ public class lhr_PMH {
                             
                         }
                         
-                                            String a,b,c,d;
+                String a,b,c,d;
                 a= t.getNational_id_no();
                 b = t.getPERSON_STATUS();
                 c = t.getPERSON_ID_NO();
@@ -122,15 +107,13 @@ public class lhr_PMH {
 
                         String query_lhr_pmh = "insert into lhr_past_medical_history (PMI_no, "
                                 + "hfc_cd, "
-                                + "onset_data, "  //Modified By Ahmed (13/3/2017)                                  
+                                + "onset_date, "  //Modified By Ahmed (13/3/2017)                                  
                                 + "encounter_date, "
                                 + "diagnosis_cd, " //insert icd10_code
                                 + "diagnosis_date, " //Modified By Ahmed (13/3/2017)                                  
                                 + "term_type, "
                                 + "icd10_cd, "
                                 + "icd10_description, "
-                                //  + "term_cd, "
-                                //  + "term_description, "                               
                                 + "comment, "
                                 + "status, "
                                 + "doctor_id, "
@@ -138,7 +121,12 @@ public class lhr_PMH {
                                 + "NATIONAL_ID_NO, "
                                 + "PERSON_ID_NO, "
                                 + "PERSON_STATUS, "
-                                + "centre_code )"
+                                + "centre_code,"
+                                + "discipline_cd,"
+                                + "subdiscipline_cd,"
+                                + "created_by,"
+                                + "created_date,"
+                                + "episode_date)"
                                 + "values ('" + pmh_Obj.getPMI_No() + "',"
                                 + "'" + pmh_Obj.getHFC() + "',"
                                 + "" + pmh_Obj.getEncounter_Date() + "," //Modified By Ahmed (13/3/2017)
@@ -155,7 +143,12 @@ public class lhr_PMH {
                                 + "'" + a + "',"
                                 + "'" + b+ "',"
                                 + "'" + c + "',"
-                                + "'" + d+ "')";
+                                + "'" + d+ "',"
+                                + "'"+msh.getSendingFacilityDis()+"',"
+                                + "'"+msh.getSendingFacilitySubDis()+"',"
+                                + "'"+pmh_Obj.getDoctor_Id()+"',"
+                                + "'"+msh.getDateTime()+"',"
+                                + "'"+pmh_Obj.getEpisode_Date()+"')";
 //                        System.out.println(pmh_Obj.getICD10_Code());
 //                        System.out.println(pmh_Obj.getICD10_Desc());
 //                        System.out.println(pmh_Obj.getEncounter_Date());
@@ -169,7 +162,7 @@ public class lhr_PMH {
                                 //System.out.println("Query for PMH: " + query_lhr_pmh);
                                 total_fail_insert++;
                                 System.out.println("false extract pmh");
-                                //System.out.println("query : " + query_lhr_pmh);
+                                System.out.println("query : " + query_lhr_pmh);
                             }else{
                                 System.out.println("done extract pmh");
                             }
