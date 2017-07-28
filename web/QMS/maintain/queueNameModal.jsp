@@ -196,7 +196,7 @@
             };
             $.ajax({
                 type: "post",
-                url: "saveQueueName.jsp",
+                url: "maintain/saveQueueName.jsp",
                 data: data,
                 timeout: 3000,
                 success: function (data, textStatus, jqXHR) {
@@ -205,14 +205,14 @@
                         $('#modal1 #type').remove();
                         $('#modal2 #names').remove();
                         $('#modal3 #list').remove();
-                        $('#modal1').load('queueTypeModal.jsp');
-                        $('#modal2').load('queueNameModal.jsp');
-                        $('#modal3').load('queueListModal.jsp');
+                        $('#modal1').load('maintain/queueTypeModal.jsp');
+                        $('#modal2').load('maintain/queueNameModal.jsp');
+                        $('#modal3').load('maintain/queueListModal.jsp');
                     });
                     //load new table
                     $.ajax({
                         type: "post",
-                        url: "listQueueName.jsp",
+                        url: "maintain/listQueueName.jsp",
                         timeout: 3000,
                         success: function (returnHtml) {
                             //console.log(returnHtml);
@@ -226,7 +226,7 @@
                     //refresh new list queue table
                     $.ajax({
                         type: "post",
-                        url: "listQueueList.jsp",
+                        url: "maintain/listQueueList.jsp",
                         data: {hfc : hfc},
                         timeout: 3000,
                         success: function (returnHtml) {
@@ -256,7 +256,7 @@
         var hfc = "<%=session.getAttribute("HEALTH_FACILITY_CODE").toString()%>";
         $.ajax({
             type: "post",
-            url: "delQueueName.jsp",
+            url: "maintain/delQueueName.jsp",
             data: {"cd": code, "name": name,"hfc" : hfc},
             timeout: 3000,
             success: function (data, textStatus, jqXHR) {
@@ -265,13 +265,13 @@
                         $('#modal1 #type').remove();
                         $('#modal2 #names').remove();
                         $('#modal3 #list').remove();
-                        $('#modal1').load('queueTypeModal.jsp');
-                        $('#modal2').load('queueNameModal.jsp');
-                        $('#modal3').load('queueListModal.jsp');
+                        $('#modal1').load('maintain/queueTypeModal.jsp');
+                        $('#modal2').load('maintain/queueNameModal.jsp');
+                        $('#modal3').load('maintain/queueListModal.jsp');
                     });
                 $.ajax({
                     type: "post",
-                    url: "listQueueName.jsp",
+                    url: "maintain/listQueueName.jsp",
                     timeout: 3000,
                     success: function (returnHtml) {
                         //console.log(returnHtml);

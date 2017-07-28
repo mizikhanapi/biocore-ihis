@@ -149,7 +149,7 @@
             //console.log(data);
             $.ajax({
                 type: "post",
-                url: "saveQueueList.jsp",
+                url: "maintain/saveQueueList.jsp",
                 data: data,
                 timeout: 3000,
                 success: function (dataBack, textStatus, jqXHR) {
@@ -165,9 +165,9 @@
                         $('#modal1 #type').remove();
                         $('#modal2 #names').remove();
                         $('#modal3 #list').remove();
-                        $('#modal1').load('queueTypeModal.jsp');
-                        $('#modal2').load('queueNameModal.jsp');
-                        $('#modal3').load('queueListModal.jsp');
+                        $('#modal1').load('maintain/queueTypeModal.jsp');
+                        $('#modal2').load('maintain/queueNameModal.jsp');
+                        $('#modal3').load('maintain/queueListModal.jsp');
                     });
                     
                     if(!isSuccess){
@@ -175,7 +175,7 @@
                     }
                     $.ajax({
                         type: "post",
-                        url: "listQueueList.jsp",
+                        url: "maintain/listQueueList.jsp",
                         data: {hfc : hfc},
                         timeout: 3000,
                         success: function (returnHtml) {
@@ -215,7 +215,7 @@
             console.log(data);
         $.ajax({
             type: "post",
-            url: "delQueueList.jsp",
+            url: "maintain/delQueueList.jsp",
             data: {"cd": ty, "name": nm, "hfc": hfc, "staff" : staff},
             timeout: 3000,
             success: function (data, textStatus, jqXHR) {
@@ -231,9 +231,9 @@
                         $('#modal1 #type').remove();
                         $('#modal2 #names').remove();
                         $('#modal3 #list').remove();
-                        $('#modal1').load('queueTypeModal.jsp');
-                        $('#modal2').load('queueNameModal.jsp');
-                        $('#modal3').load('queueListModal.jsp');
+                        $('#modal1').load('maintain/queueTypeModal.jsp');
+                        $('#modal2').load('maintain/queueNameModal.jsp');
+                        $('#modal3').load('maintain/queueListModal.jsp');
                     });
                     
                     if(!isSuccess){
@@ -242,7 +242,7 @@
                     
                 $.ajax({
                     type: "post",
-                    url: "listQueueList.jsp",
+                    url: "maintain/listQueueList.jsp",
                     timeout: 3000,
                     data: {hfc : hfc},
                     success: function (returnHtml) {

@@ -14,9 +14,10 @@
     String searchProblem = "SELECT procedure_cd  FROM opt_procedure   WHERE `procedure_longName` = '"+name+"'  AND category_cd = '"+cat_cd+"' AND hfc_cd = '"+hfc_cd+"'  ";
     ArrayList<ArrayList<String>> search = Conn.getData(searchProblem);
     if (search.size() > 0) {
-        for (int i = 0; i < search.size(); i++) {
-            out.print(String.join("|", search.get(i)));
-        }
+         out.print(search.get(0).get(0));
+//        for (int i = 0; i < search.size(); i++) {
+//            out.print(String.join("|", search.get(i)));
+//        }
     }
     
 

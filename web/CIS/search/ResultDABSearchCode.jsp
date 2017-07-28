@@ -16,11 +16,12 @@
     ArrayList<ArrayList<String>> search = Conn.getData(searchProblem);
 
     if (search.size() > 0) {
+         out.print(search.get(0).get(0));
 
-        for (int i = 0; i < search.size(); i++) {
-
-            out.print(String.join("|", search.get(i)));
-            
-        }
+//        for (int i = 0; i < search.size(); i++) {
+//
+//            out.print(String.join("|", search.get(i)));
+//            
+//        }
     }
 %>                

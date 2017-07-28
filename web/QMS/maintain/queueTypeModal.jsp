@@ -104,7 +104,7 @@
         } else {
             $.ajax({
                 type: "post",
-                url: "saveQueueType.jsp",
+                url: "maintain/saveQueueType.jsp",
                 data: data,
                 timeout: 3000,
                 success: function (data, textStatus, jqXHR) {
@@ -113,15 +113,15 @@
                         $('#modal1 #type').remove();
                         $('#modal2 #names').remove();
                         $('#modal3 #list').remove();
-                        $('#modal1').load('queueTypeModal.jsp');
-                        $('#modal2').load('queueNameModal.jsp');
-                        $('#modal3').load('queueListModal.jsp');
+                        $('#modal1').load('maintain/queueTypeModal.jsp');
+                        $('#modal2').load('maintain/queueNameModal.jsp');
+                        $('#modal3').load('maintain/queueListModal.jsp');
                     });
                     
                     //load new table
                     $.ajax({
                         type: "post",
-                        url: "listQueueType.jsp",
+                        url: "maintain/listQueueType.jsp",
                         timeout: 3000,
                         success: function (returnHtml) {
                             //console.log(returnHtml);
@@ -135,7 +135,7 @@
                     //refresh new queue name table
                     $.ajax({
                         type: "post",
-                        url: "listQueueName.jsp",
+                        url: "maintain/listQueueName.jsp",
                         timeout: 3000,
                         success: function (returnHtml) {
                             //console.log(returnHtml);
@@ -149,7 +149,7 @@
                     //refresh new list queue table
                     $.ajax({
                         type: "post",
-                        url: "listQueueList.jsp",
+                        url: "maintain/listQueueList.jsp",
                         data: {hfc : hfc},
                         timeout: 3000,
                         success: function (returnHtml) {
@@ -176,7 +176,7 @@
         var code = $('#typeCode').val();
         $.ajax({
             type: "post",
-            url: "delQueueType.jsp",
+            url: "maintain/delQueueType.jsp",
             data: {"cd": code},
             timeout: 3000,
             success: function (data, textStatus, jqXHR) {
@@ -185,9 +185,9 @@
                         $('#modal1 #type').remove();
                         $('#modal2 #names').remove();
                         $('#modal3 #list').remove();
-                        $('#modal1').load('queueTypeModal.jsp');
-                        $('#modal2').load('queueNameModal.jsp');
-                        $('#modal3').load('queueListModal.jsp');
+                        $('#modal1').load('maintain/queueTypeModal.jsp');
+                        $('#modal2').load('maintain/queueNameModal.jsp');
+                        $('#modal3').load('maintain/queueListModal.jsp');
                     });
                 $.ajax({
                     type: "post",
