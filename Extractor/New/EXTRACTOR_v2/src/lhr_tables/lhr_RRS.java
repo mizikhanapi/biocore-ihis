@@ -103,7 +103,11 @@ public class lhr_RRS {
                                 + "national_id_no,"
                                 + "person_id_no,"
                                 + "person_status,"
-                                + "centre_code) values('"
+                                + "centre_code,"
+                                + "discipline_cd,"
+                                + "subdiscipline_cd,"
+                                + "created_by,"
+                                + "created_date) values('"
                                 + rrsbean.getPMI_no() + "','"
                                 + rrsbean.getHFC_Cd() + "','"
                                 + rrsbean.getEpisode_Date() + "','"
@@ -122,7 +126,11 @@ public class lhr_RRS {
                                 + a + "','"
                                 + b + "','"
                                 + c + "','"
-                                + d + "');";
+                                + d + "',"
+                                + "'"+msh.getSendingFacilityDis()+"',"
+                                + "'"+msh.getSendingFacilitySubDis()+"',"
+                                + "'"+rrsbean.getDoctor_Id()+"',"
+                                + "'"+msh.getDateTime()+"');";
                         status_lhr_ddr = rmic.setQuerySQL(Config.ipAddressServer, Config.portServer, query_lhr_radiology_result);
 
                         if (status_lhr_ddr == false) {

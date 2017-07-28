@@ -90,11 +90,7 @@ public class MainExtractor {
             //RRS
             lhr_RRS lhr_rrs = new lhr_RRS();
             lhr_rrs.M_RRS(spv2.getVrrs(), t,spv2.getVorc(),msh);
-
-            //SPR
-            lhr_SPR lhr_spr = new lhr_SPR();
-            lhr_spr.M_SPR(spv2.getVspr(), t,msh);
-            
+     
             //DCG
             lhr_DCG lhr_dcg = new lhr_DCG();
             lhr_dcg.M_DCG(spv2.getVdcg(),t,msh);
