@@ -54,6 +54,15 @@
                     <a href="#Ortho-NursingInWard_11" data-toggle="tab" aria-expanded="true">
                         <i class="fa fa-th-list fa-lg"></i> Record Fluid Balance </a>
                 </li>
+                <!--nursing merge into nursing in ward-->
+                <li>
+                    <a href="#Ortho-Nursing_1" data-toggle="tab" aria-expanded="true">
+                        <i class="fa fa-info-circle fa-lg"></i> Chart-Morse Scale Assessment </a>
+                </li>
+                <li>
+                    <a href="#Ortho-Nursing_4" data-toggle="tab" aria-expanded="true">
+                        <i class="fa fa-th-list fa-lg"></i> Progress Note </a>
+                </li>
             </ul>
 
             <div class="tab-content">
@@ -173,6 +182,27 @@
                     <jsp:include page="fluidBalance.jsp"/>
                 </div>
                 <!-- content -->
+                
+                <!--content dari nursing nak merge dengan nursing in ward-->
+                <!-- content -->
+                <div class="tab-pane fade" id="Ortho-Nursing_1">
+                    <ul class="soap-content nav">
+                        <li><a data-toggle="modal" data-target="#morse1" href="" class="soap-select" id="morse_assessment_modal"><i class="fa fa-comments  fa-li"></i> New Assessment</a></li>
+                    </ul>
+                    <hr class="pemisah" />
+                    <jsp:include page="../Ortho-Nursing/morsefallScale.jsp"/>
+                </div>
+                <!-- content -->
+                
+                <!-- content -->
+                <div class="tab-pane fade" id="Ortho-Nursing_4">
+                    <ul class="soap-content nav">
+                        <li><a data-toggle="modal" data-target="#continuation" href="" class="soap-select" id="proNote_modal_add"><i class="fa fa-comments  fa-li"></i> Add Continuation Sheet</a></li>
+                    </ul>
+                    <hr class="pemisah" />
+                    <jsp:include page="../Ortho-Nursing/continuation.jsp"/>
+                </div>
+                <!-- content -->
             </div>
 
         </div>
@@ -193,6 +223,9 @@
 <%@include file="modal/fluidBalance.jsp"%>
 <%@include file="modal/woundAssessment.jsp"%>
 
+<!--modal dari nursing nak merge dgn nursing in ward-->
+<jsp:include page="../Ortho-Nursing/modal/morsefall.jsp"/>
+<jsp:include page="../Ortho-Nursing/modal/continuation.jsp"/>
 
 
 
@@ -200,6 +233,12 @@
 
 
 <script src="../assets/js/btn.number.js" type="text/javascript"></script>
+
+<!--script dari nursing nak merge dengan nursing in ward-->
+<script type="text/javascript" src="../Ortho-Nursing/js/create_destroy_loading.js"></script>
+<script type="text/javascript" src="../Ortho-Nursing/js/morsefallScale.js"></script>
+<script type="text/javascript" src="../Ortho-Nursing/js/progressNote.js"></script>
+
 <script>
     $('#Ortho-NursingInWard_1').on('click', '#observationnewassessment', function (e) {
         e.preventDefault();

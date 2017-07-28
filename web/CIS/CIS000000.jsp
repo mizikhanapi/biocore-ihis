@@ -233,9 +233,9 @@
                             <jsp:include page="../Ortho-Consultation/orthopedic.jsp"/>
                         </div>
 
-                        <div class="none" id="orthopedic-nur">
-                            <jsp:include page="../Ortho-Nursing/Nursing.jsp"/>
-                        </div> 
+<!--                        <div class="none" id="orthopedic-nur">
+                            <%--<jsp:include page="../Ortho-Nursing/Nursing.jsp"/>--%>
+                        </div> -->
 
                         <div class="none" id="orthopedic-niw">
                             <jsp:include page="../Ortho-NursingInWard/NursingInWard.jsp"/>

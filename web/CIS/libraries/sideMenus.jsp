@@ -35,7 +35,7 @@
             </a>
             <ul class="dropdown-menu">
                 <!--                <li><a href="#orthopedic-con" role="presentation" data-toggle="tab" class="panelito">Consultation</a></li>-->
-                <li><a href="#orthopedic-nur" role="presentation" data-toggle="tab" class="panelito">Nursing</a></li>
+                <!--<li><a href="#orthopedic-nur" role="presentation" data-toggle="tab" class="panelito">Nursing</a></li>-->
                 <li><a href="#" class="panelito ortho-niward">Nursing in Ward</a></li>
                 <li><a href="#orthopedic-ot" role="presentation" data-toggle="tab" class="panelito">Operation Theater</a></li>
             </ul>
