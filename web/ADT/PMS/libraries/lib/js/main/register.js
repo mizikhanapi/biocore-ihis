@@ -92,16 +92,42 @@ $('#registerBed').click(function () {
     setInterval(getDateNow, 1000);
     if ($('#pmino').val() === " " || $('#pmino').val() === "") {
         bootbox.alert('Please use a proper PMI no.');
-    } else if ($('input[name="PoliceCase"]').val() === null) {
-        bootbox.alert('Please choose the police case');
-    } else if ($('#GL').val() === " ") {
-        bootbox.alert('Please choose the GL expiry date');
+    } else if ($('#EliTy').val() === null) {
+        bootbox.alert('Please choose Eligibility Type');
+    } else if ($('#EliSource').val() === null) {
+        bootbox.alert('Please choose Eligibility Source');
+    } else if ($('#AdmissionType').val() === null) {
+        bootbox.alert('Please choose the admission type');
+    } else if ($('#AdmissionReason').val() === " ") {
+        bootbox.alert('Please insert Admission Reason');
+
     } else if ($('#DocType').val() === null) {
         bootbox.alert('Please choose Document Type');
-    } else if ($('#AdmissionType').val() === " ") {
-        bootbox.alert('Please choose the admission type');
-    } else if ($('#Refer').val() === " ") {
-        bootbox.alert('Please choose the reffering from');
+    } else if ($('#DocNo').val() === " ") {
+        bootbox.alert('Please insert Document No');
+
+
+    } else if ($('#RefDR').val() === " ") {
+        bootbox.alert('Please choose the Reffering By');
+    } else if ($('#HF_cd').val() === " ") {
+        bootbox.alert('Please choose the Reffering From');
+
+    } else if ($('#GL').val() === null) {
+        bootbox.alert('Please choose GL Expiry Date');
+    } else if ($('#payer').val() === null) {
+        bootbox.alert('Please choose Payer Group');
+
+    } else if ($('input[name="PoliceCase"]').val() === null) {
+        bootbox.alert('Please choose the police case');
+
+
+
+
+
+
+
+
+
     } else {
 
 
