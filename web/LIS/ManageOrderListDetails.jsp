@@ -51,17 +51,17 @@
                 <tr>
                     <td>
                         <%
-                            if (dataOrderList.get(i).get(7).equals("Waiting For Approval") || dataOrderList.get(i).get(7).equals("Already Verified")) {
+                            if (dataOrderList.get(i).get(12).equals("0")) {
                         %>
-                        <input class="chk" type="checkbox" name="chkSpecimen" value="<%=dataOrderList.get(i).get(0)%>" id="checky" disabled="disabled"/>
+                        <input class="chk" type="checkbox" name="chkSpecimen" value="<%=dataOrderList.get(i).get(0)%>" id="checky" />
                         <%
                         } else {
                         %>
-                        <input class="chk" type="checkbox" name="chkSpecimen" value="<%=dataOrderList.get(i).get(0)%>" id="checky"/>
+                        <input class="chk" type="checkbox" name="chkSpecimen" value="<%=dataOrderList.get(i).get(0)%>" id="checky" disabled="disabled"/>
                         <%
                             }
                         %>
-
+                        
                         <input type="text" name="itemCD" value="<%=dataOrderList.get(i).get(0)%>" style="display:none;">
                     </td>
                     <td><%=dataOrderList.get(i).get(0)%></td>
