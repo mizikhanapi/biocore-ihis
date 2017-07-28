@@ -24,7 +24,7 @@
     String[] modules = strModule.split("\\|");
     String[] pages = strPage.split("\\|");
     
-    String sqlDelete = "DELETE from adm_responsibility where role_code = '"+roleCode+"'";
+    String sqlDelete = "DELETE from adm_responsibility where role_code = '"+roleCode+"' and health_facility_code='"+hfc_cd+"';";
     rmic.setQuerySQL(conn.HOST, conn.PORT, sqlDelete);
     
      String sqlInsert = "";
