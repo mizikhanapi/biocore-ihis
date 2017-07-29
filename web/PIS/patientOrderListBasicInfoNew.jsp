@@ -267,6 +267,7 @@
 <div class="text-right" id="patientOrderDispenseButtonDiv" > 
     <button class="btn btn-primary " type="button" id="btnOrderDispensePrescribe" name="btnOrderDispensePrescribe" > <i class="fa fa-print fa-lg" ></i>&nbsp; Generate Label &nbsp;</button>
     <button class="btn btn-warning " type="button" id="btnOrderDispenseCallPatient" name="btnOrderDispenseCallPatient" > <i class="fa fa-phone fa-lg" ></i>&nbsp; Call Patient &nbsp;</button>
+    <button class="btn btn-danger " type="button" id="btnOrderDispenseDeclineCallPatient" name="btnOrderDispenseDeclineCallPatient" > <i class="fa fa-phone fa-lg" ></i>&nbsp; Decline Call Patient &nbsp;</button>
     <button class="btn btn-success " type="button" id="btnOrderDispense" name="btnOrderDispense" > <i class="fa fa-shopping-cart fa-lg"></i>&nbsp; Dispense &nbsp;</button>
 </div>
 
@@ -287,6 +288,7 @@
         document.getElementById("btnOrderDispensePrescribe").disabled = false;
         document.getElementById("btnOrderDispense").disabled = true;
         document.getElementById("btnOrderDispenseCallPatient").disabled = true;
+        document.getElementById("btnOrderDispenseDeclineCallPatient").disabled = true;
 
         e.preventDefault();
 
@@ -1519,8 +1521,8 @@
     //------------------------------------------------------------------------------  Call patient Part Start  -------------------------------------------------------------------------------//
 
 
-    // Priscribe Part Start
-    // Priscribe Button Start
+    // Call or Decline Part Start
+    // Call Button Start
     $('#patientOrderDetailContent').off('click', '#patientOrderDispenseButtonDiv #btnOrderDispenseCallPatient').on('click', '#patientOrderDispenseButtonDiv #btnOrderDispenseCallPatient', function (e) {
 
 
@@ -1591,6 +1593,8 @@
                                 }
 
                                 document.getElementById("btnOrderDispense").disabled = false;
+                                document.getElementById("btnOrderDispenseDeclineCallPatient").disabled = false;
+                                document.getElementById("btnOrderDispenseCallPatient").disabled = true;
 
                             }
                         });
@@ -1608,8 +1612,94 @@
 
 
     });
-    // Priscribe Button End
-    // Prescibe Part End
+    // Call Button End
+    
+    
+    
+    
+    // Call Button Start
+    $('#patientOrderDetailContent').off('click', '#patientOrderDispenseButtonDiv #btnOrderDispenseDeclineCallPatient').on('click', '#patientOrderDispenseButtonDiv #btnOrderDispenseDeclineCallPatient', function (e) {
+
+
+        var patientOrderNo = $("#patientOrderNo").val();
+
+
+        if (patientOrderNo === "" || patientOrderNo === null) {
+
+            $('.nav-tabs a[href="#tab_default_1"]').tab('show');
+            bootbox.alert("Please Select A Order First");
+
+        } else {
+
+            var callDeclineNo = $("#dataCallingID").val();
+            
+
+            bootbox.confirm({
+                message: "Are You Sure ?",
+                title: "Decline Call Patient ?",
+                buttons: {
+                    confirm: {
+                        label: 'Yes',
+                        className: 'btn-success'
+                    },
+                    cancel: {
+                        label: 'No',
+                        className: 'btn-danger'
+                    }
+                },
+                callback: function (result) {
+
+                    if (result === true) {
+
+
+                        var data = {
+                            callDeclineNo: callDeclineNo
+                        };
+
+                        $.ajax({
+                            url: "patientOrderListDetailsDispenseCallPatientDelete.jsp",
+                            type: "post",
+                            data: data,
+                            timeout: 3000,
+                            success: function (result) {
+
+                                var insertResult = result.trim();
+
+                                console.log(insertResult);
+
+                                if (insertResult === 'Success') {
+
+                                    bootbox.alert({
+                                        message: "Decline Call Patient Successful",
+                                        title: "Process Result",
+                                        backdrop: true
+                                    });
+
+                                }
+
+                                document.getElementById("btnOrderDispense").disabled = true;
+                                document.getElementById("btnOrderDispenseDeclineCallPatient").disabled = true;
+                                document.getElementById("btnOrderDispenseCallPatient").disabled = false;
+
+                            }
+                        });
+
+
+                    } else {
+                        console.log("Process Is Canceled");
+                    }
+
+                }
+            });
+
+
+        }
+
+
+    });
+    // Call Button End
+    // 
+    // Call or Decline Part End
 
 
     //==============================================================================  Call Patient Part End  ================================================================================//
@@ -1693,6 +1783,7 @@
         document.getElementById("btnOrderDispensePrescribe").disabled = false;
         document.getElementById("btnOrderDispense").disabled = true;
         document.getElementById("btnOrderDispenseCallPatient").disabled = true;
+        document.getElementById("btnOrderDispenseDeclineCallPatient").disabled = true;
 
     }
 

@@ -327,7 +327,7 @@
                         hfc: hfc,
                         dis: dis,
                         subdis: subdis
-                    };                
+                    };
 
                     $.ajax({
                         url: "atcDelete.jsp",
@@ -386,18 +386,10 @@
 
         $('#atcTable').DataTable({
             pageLength: 15,
-            dom: 'Bfrtip',
-            buttons: [
-                {
-                    extend: 'excelHtml5',
-                    text: 'Export To Excel',
-                    title: 'ATC Data Export'
-                }, {
-                    extend: 'csvHtml5',
-                    text: 'Export To Excel CSV',
-                    title: 'ATC Data Export'
-                }
-            ]
+            lengthMenu: [[15, 25, 50, -1], [15, 25, 50, "All"]],
+            "language": {
+                "emptyTable": "No ATC Drug Available To Display"
+            }
         });
 
     });

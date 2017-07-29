@@ -836,27 +836,13 @@
 
         $('#mdcTable').DataTable({
             pageLength: 15,
+            lengthMenu: [[15, 25, 50, -1], [15, 25, 50, "All"]],
+            "language": {
+                "emptyTable": "No MDC Drug Available To Display"
+            },
             initComplete: function (settings, json) {
                 $('.loading').hide();
-            },
-            dom: 'Bfrtip',
-            buttons: [
-                {
-                    extend: 'excelHtml5',
-                    text: 'Export To Excel',
-                    title: 'MDC Data Export',
-                    exportOptions: {
-                        columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23]
-                    }
-                }, {
-                    extend: 'csvHtml5',
-                    text: 'Export To Excel CSV',
-                    title: 'MDC Data Export',
-                    exportOptions: {
-                        columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23]
-                    }
-                }
-            ]
+            }
         });
 
 
