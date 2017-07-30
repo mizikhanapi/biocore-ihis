@@ -17,21 +17,28 @@
 
 
     Conn conn = new Conn();
-
-   boolean updatePatientQueue = conn.setData("UPDATE pms_patient_queue SET status = '"+status+"' WHERE pmi_no = '"+pmino+"' AND episode_date = '"+episodedate+"';");
-    boolean updatePMSEpisode = conn.setData("UPDATE pms_episode SET status = '"+status+"' WHERE pmi_no = '"+pmino+"' AND episode_date = '"+episodedate+"';");
-
+    RMIConnector rmic = new RMIConnector();
     
+   String sqlPQ = "UPDATE pms_patient_queue SET status = '"+status+"' WHERE pmi_no = '"+pmino+"' AND episode_date = '"+episodedate+"';";
+   String sqlPE ="UPDATE pms_episode SET status = '"+status+"' WHERE pmi_no = '"+pmino+"' AND episode_date = '"+episodedate+"';";
+  rmic.setQuerySQL(conn.HOST, conn.PORT, sqlPQ);
+  rmic.setQuerySQL(conn.HOST, conn.PORT, sqlPE);
+   out.print("|1|");
 
-            if (updatePatientQueue) {
-                if (updatePMSEpisode) {
-                    out.print("|1|");
-                } else {
-                    out.print("updatePMSEpisode not run");
-                }
-            } else {
-                out.print("updatePatientQueue not run");
-            }
+//   boolean updatePatientQueue = conn.setData("UPDATE pms_patient_queue SET status = '"+status+"' WHERE pmi_no = '"+pmino+"' AND episode_date = '"+episodedate+"';");
+//    boolean updatePMSEpisode = conn.setData("UPDATE pms_episode SET status = '"+status+"' WHERE pmi_no = '"+pmino+"' AND episode_date = '"+episodedate+"';");
+//
+//    
+//
+//            if (updatePatientQueue) {
+//                if (updatePMSEpisode) {
+//                    out.print("|1|");
+//                } else {
+//                    out.print("updatePMSEpisode not run");
+//                }
+//            } else {
+//                out.print("updatePatientQueue not run");
+//            }
       
 
             
