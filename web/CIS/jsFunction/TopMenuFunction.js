@@ -149,7 +149,7 @@ $(document).ready(function (e) {
 
     });
 
-    function sendOrder(data) {
+    function sendOrder1(data) {
         for (var k in data) {
             if (data[k].Acode === "DTO") {
              
