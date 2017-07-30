@@ -20,7 +20,7 @@ public class DiabeticChartUtils {
 
     public ArrayList<ArrayList<String>> getDiabetic(String datas) {
 
-        ArrayList<ArrayList<String>> data = new ArrayList<>();
+        ArrayList<ArrayList<String>> data = new ArrayList<ArrayList<String>>();
         String splittedData[] = datas.split("\\|", -1);
         String pmino, dateTime, viewBy, startDate, endDate;
         String sql = "";

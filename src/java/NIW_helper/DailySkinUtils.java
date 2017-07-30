@@ -20,7 +20,7 @@ public class DailySkinUtils {
 
     public ArrayList<ArrayList<String>> getSkinTool(String datas) {
 
-        ArrayList<ArrayList<String>> data = new ArrayList<>();
+        ArrayList<ArrayList<String>> data = new ArrayList<ArrayList<String>>();
         String splittedData[] = datas.split("\\|", -1);
         String pmino, dateTime, viewBy, startDate, endDate;
         String sql = "";
@@ -89,7 +89,7 @@ public class DailySkinUtils {
 
     public ArrayList<ArrayList<String>> getPosition(String datas) {
 
-        ArrayList<ArrayList<String>> data = new ArrayList<>();
+        ArrayList<ArrayList<String>> data = new ArrayList<ArrayList<String>>();
         String splittedData[] = datas.split("\\|", -1);
         String pmino, dateTime, viewBy, startDate, endDate;
         String sql = "";

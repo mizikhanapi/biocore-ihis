@@ -20,7 +20,7 @@ public class WoundAssessmentUtils {
 
     public ArrayList<ArrayList<String>> getWoundAssessment(String datas) {
 
-        ArrayList<ArrayList<String>> data = new ArrayList<>();
+        ArrayList<ArrayList<String>> data = new ArrayList<ArrayList<String>>();
         String splittedData[] = datas.split("\\|", -1);
         String pmino, dateTime, viewBy, startDate, endDate;
         String sql = "";

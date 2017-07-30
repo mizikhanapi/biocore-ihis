@@ -56,7 +56,7 @@ public class TreatmentUtils {
     * get data from DB
      */
     public ArrayList<ArrayList<String>> getTreatment(String datas) {
-        ArrayList<ArrayList<String>> data = new ArrayList<>();
+        ArrayList<ArrayList<String>> data = new ArrayList<ArrayList<String>>();
         String splittedData[] = datas.split("\\|", -1);
         String pmino, dateTime, viewBy, startDate, endDate;
         String sql = "";
