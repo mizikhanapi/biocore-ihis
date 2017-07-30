@@ -15,9 +15,9 @@
     String data = request.getParameter("datas");
     Boolean result;
     String A;
-    List<String> Listlabels = new ArrayList<>();
-    List<String> ListDatas = new ArrayList<>();
-    List<String> ListDatasPulse = new ArrayList<>();
+    List<String> Listlabels = new ArrayList<String>();
+    List<String> ListDatas = new ArrayList<String>();
+    List<String> ListDatasPulse = new ArrayList<String>();
 
     if (methodName.equalsIgnoreCase("add")) {
         result = urU.addUrine(data);
