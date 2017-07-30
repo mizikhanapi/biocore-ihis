@@ -81,7 +81,7 @@
 
         $("#BTemp").change(function () {
             var value = this.value.substring(1);
-            console.log(value);
+            
             $("#slider").slider("value", parseInt(value));
         });
         

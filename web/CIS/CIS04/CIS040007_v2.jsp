@@ -278,7 +278,7 @@
                         params: {
                             timeout: 3000,
                             success: function (result) {
-                                console.log(result);
+                                
                                 if (result === undefined) {
                                     $('#' + loadingDivId).html('No Record');
                                 }
@@ -287,11 +287,11 @@
                     });
 
                     $("#" + fieldId).on('before:flexdatalist.data', function (response) {
-                        console.log("Start - " + getDate());
+                      
                         $('#' + loadingDivId).html('<img src="img/LoaderIcon.gif" />');
                     });
                     $("#" + fieldId).on('after:flexdatalist.data', function (response) {
-                        console.log("End - " + getDate());
+                        
                         $('#' + loadingDivId).html('');
                     });
                     $("#" + fieldId).on('select:flexdatalist', function (response) {
@@ -320,17 +320,17 @@
                             timeout: 3000,
                             data:{hfc_code:hfcCode},
                             success: function (result) {
-                                console.log(result);
+                                
                             }
                         }
                     });
 
                     $("#" + fieldId).on('before:flexdatalist.data', function (response) {
-                        console.log("Start - " + getDate());
+                      
                         $('#' + loadingDivId).html('<img src="img/LoaderIcon.gif" />');
                     });
                     $("#" + fieldId).on('after:flexdatalist.data', function (response) {
-                        console.log("End - " + getDate());
+                      
                         $('#' + loadingDivId).html('');
                     });
                 }

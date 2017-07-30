@@ -68,7 +68,7 @@ $(document).ready(function () {
                 episodedate: episodeDate,
                 status: "1"
             }
-            console.log(fullmsg);
+          
             //sendOrder(data, "-");
         } else {
             return false;

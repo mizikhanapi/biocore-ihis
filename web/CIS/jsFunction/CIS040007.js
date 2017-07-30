@@ -22,7 +22,7 @@ $(document).ready(function () {
 
     $("#tCIS_ADWreferFrom").on("select:flexdatalist", function (response) {
         var hfc_cd = $("#tCIS_ADWHFCreferFromCd").val();
-        console.log(hfc_cd);
+        
         $.ajax({
             type: "POST",
             timeout: 3000,
@@ -39,7 +39,7 @@ $(document).ready(function () {
 
     $("#tCIS_ADWsearchDis").on("select:flexdatalist", function (response) {
         var hfc_cd = $("#tCIS_ADWsearchHFCCd").val();
-        console.log(hfc_cd);
+    
         $.ajax({
             type: "POST",
             timeout: 3000,
@@ -70,7 +70,7 @@ $(document).ready(function () {
                 discipline_cd: discipline_cd
             },
             success: function (response) {
-                console.log(response)
+     
                 //this ajax will response discipline Code for hfc patient admit to;
                 $("#tCIS_ADWwardNameCd").val(response.trim());
             }
@@ -92,7 +92,7 @@ $(document).ready(function () {
                 discipline_cd: discipline_cd
             },
             success: function (response) {
-                console.log(response)
+              
                 //this ajax will response discipline Code for hfc patient admit to;
                 $("#tCIS_ADWwardClassCd").val(response.trim());
                 searchWard("tCIS_ADWwardName", "tCIS_ADWwardNameLoading", hfc_cd, discipline_cd, "", response.trim());

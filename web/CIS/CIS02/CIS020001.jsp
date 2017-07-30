@@ -178,8 +178,6 @@
             var result;
             
             $('#updateGSC').hide();
-
-            console.log('loading...');
             $('#subModal').hide();
             
             $('input[type=radio][name=gcs_eor]').change(function(){
@@ -188,7 +186,7 @@
                 var response =  $(this).closest('tr').children('td').text();
                 var point = this.value;
                 $('#rowEOR').replaceWith("<tr id='rowEOR'><td>"+response+"</td><td>"+point+"</td></tr>");
-                console.log(response);
+           
                var result =  calcPoint(eor,mr,vr);
                 $('#result').val(result[0]);
                 $('#tpoint').val(result[1]+" Points");

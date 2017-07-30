@@ -27,7 +27,7 @@ $(document).ready(function () {
     $('#listQueue').on('click', '#consultBtn', function (e) {
         if(pmiNo === "" && episodeDate === ""){
             reloadStat = "1";
-            console.log(reloadStat);
+          
             e.preventDefault();
             $('#mainConsultBar').show();
             var row = $(this).closest('tr');
@@ -48,7 +48,7 @@ $(document).ready(function () {
 
             var patient = findPatient(pmiNo, episodeDate);
             var getPDIInfo = getPDI(pmiNo, episodeDate);
-            console.log(PDIInfo);
+        
             encounterDate = getDate();
 
             if (status === 'On Hold') {
@@ -76,7 +76,7 @@ function findPatient(pmiNo,episodeDate) {
         },
         timeout: 10000,
         success: function (result) {
-            // console.log(result);
+       
             var DataArry = result.split("|");
             $('#pName').html(DataArry[1]);
             $('#pIC').html(DataArry[0].trim());
@@ -124,7 +124,7 @@ function updateStatus(pmiNo, episodeDate, status) {
             episodeDate: episodeDate
         },
         success: function (result) {
-            //console.log(result);
+    
         },
         error: function (err) {
             console.log(err);
@@ -144,7 +144,7 @@ function getEHRPatient(pmiNo, episodeDate) {
         },
         success: function (result) {
             EHRrecord = result.trim();
-            //console.log(EHRrecord);
+ 
            convertEHR(EHRrecord);
             if (DGCArryData.length > 0) {
                 lexerDCG(DGCArryData);
@@ -179,15 +179,14 @@ function convertPEMId(idAry){
         }
         newIdAry.push(id);  
     }
-    console.log(newIdAry);
+
     return newIdAry;
 }
 function getHFCDetail(orc){
     var orcArry = orc.split("|");
     var hfcOrderDetail = orcArry[12] +"|"+ orcArry[17] +"|"+ orcArry[18] +"|"+ orcArry[19] +"|"+ "-" +"|"+ "-" +"|"+ "-" +"|"+ "-" +"|"+ orcArry[24] +"|"+ orcArry[25]+"|"+ orcArry[20] +"|"+ "-" +"|"+ orcArry[21] +"|"+orcArry[23] +"|"+ orcArry[22];
     var hfcProviderDetail = orcArry[26] +"|"+ orcArry[30] +"|"+ orcArry[31] +"|"+ orcArry[32] +"|"+ "-" +"|"+ "-" +"|"+ "-" +"|"+ "-" +"|"+ orcArry[37] +"|"+ orcArry[38]+"|"+ orcArry[33] +"|"+ "-" +"|"+ orcArry[34] +"|"+orcArry[36] +"|"+ orcArry[35];
-                                               
-   // console.log(orcArry);
+
    return [hfcOrderDetail,hfcProviderDetail];
 }
 
@@ -236,11 +235,11 @@ function getLIODetail(id,objLIO){
              objLIO.volumeLOS= LIODetail[5],
      
 
-            //console.log(objLIO);
+         
             displayLOS(objLIO.searchLOS, objLIO.codeLOS, objLIO.catLOS, objLIO.sourceLOS, objLIO.containerLOS, objLIO.volumeLOS, objLIO.spclLOS, objLIO.commentLOS, objLIO.appointmentLOS, objLIO.priorityLOS, objLIO.hfcLOS, objLIO.hfcIdLOS)
         },
         error: function (err) {
-            //console.log(err);
+  
         }
     });
 }
@@ -257,12 +256,8 @@ function convertEHR(ehr) {
     var MONORC = 0;
     var ADWORC = 0;
     var DCGORC = 0;
-   
-    //console.log(EHRArry);
-  
 
-  
-    
+
         for (var i = 0; i < EHRArry.length; i++) {
         var EHRD = EHRArry[i].trim();
         var header = EHRD.substring(0, 3);
@@ -292,13 +287,13 @@ function convertEHR(ehr) {
     for (var i = 0; i < EHRArry.length; i++) {
         var EHRD = EHRArry[i].trim();
         var header = EHRD.substring(0, 3);
-       // console.log(header);
+       
         if (header === "CCN") {
             CCN = EHRArry[i];
-            //console.log(CCN);
+         
             var CNNData = convertNoteToData(CCN);
             var ccnsubData = CNNData[4].split(" ");
-           // console.log(CNNData);
+      
             var objCCN = {
                 Acode: "CCN",
                 ccnCode: CNNData[0],
@@ -313,7 +308,7 @@ function convertEHR(ehr) {
 
             _data.push(objCCN);
             displayCCN(objCCN.problem,objCCN.Mild,objCCN.Site,objCCN.duration,objCCN.sdur,objCCN.Laterality,objCCN.Comment);
-           //console.log(CNNData);
+      
 
         } else if (header === "HPI") {
             HPI = EHRArry[i];
@@ -325,7 +320,7 @@ function convertEHR(ehr) {
             }
             _data.push(objHPI);
             displayHPI(objHPI.details);
-            // console.log(_data);
+       
 
         } else if (header === "PMH") {
             PMH = EHRArry[i];
@@ -340,7 +335,7 @@ function convertEHR(ehr) {
             };
             _data.push(objPMH);
             displayPMH(objPMH.Problem1,objPMH.Status,objPMH.comment1);
-            ///  console.log(_data);
+    
 
         } else if (header === "FMH") {
             FMH = EHRArry[i];
@@ -355,7 +350,7 @@ function convertEHR(ehr) {
             };
             _data.push(objFMH);
             displayFMH(objFMH.Problem3,objFMH.f_relationship,objFMH.comment2);
-            // console.log(_data);
+            
 
         } else if (header === "SOH") {
             SOH = EHRArry[i];
@@ -369,8 +364,7 @@ function convertEHR(ehr) {
             }
             _data.push(objSOH);
             displaySOH(objSOH.Problem4,objSOH.date,objSOH.comment3);
-            // console.log(SOHData);
-            // console.log(_data);
+
 
         } else if (header === "BLD") {
             BLD = EHRArry[i];
@@ -428,12 +422,12 @@ function convertEHR(ehr) {
             };
             _data.push(objDAB);
             displayDAB(objDAB.Problem32,objDAB.date3,objDAB.comment7);
-            ///console.log(DABData);
+         
 
         } else if (header === "VTS") {
             VTS = EHRArry[i];
             var VTSData = convertNoteToData(VTS);
-            //console.log(VTSData);
+           
 
             var scalePC = parseInt(VTSData[30]);
             var resultPC;
@@ -470,7 +464,7 @@ function convertEHR(ehr) {
 
             } 
             if(VTSData[4] === "" && VTSData[33] === "undefined" && VTSData[3] === "" && VTSData[2] === ""&& VTSData[32] === "undefined" && VTSData[1] === ""&& VTSData[6] === "" && VTSData[34] === "undefined" && VTSData[5] === ""){
-                //console.log("no BP");
+           
             }else{
                 
                       var objBP = {
@@ -486,11 +480,11 @@ function convertEHR(ehr) {
                     standS: VTSData[5]
                 };
                 _data.push(objBP);
-                //console.log()
+         
                displayBP(objBP.sitS, objBP.sitD, objBP.sitP, objBP.standS, objBP.standD, objBP.standP, objBP.lyingS, objBP.lyingD, objBP.lyingP);
             }
                if(VTSData[10] === "" || VTSData[10]==="undefined"){
-                   //console.log("no rrrate");
+            
                }else{
                  var objRRate = {
                     Acode: "VTS",
@@ -501,7 +495,7 @@ function convertEHR(ehr) {
                }
 
                 if(VTSData[29]==="" || VTSData[29]==="undefined"){
-                    //console.log("no osat");
+                   
                 }else{
                    var objOsat = {
                     Acode: "VTS",
@@ -558,13 +552,13 @@ function convertEHR(ehr) {
                        };
                        // heightNew = 
                        _data.push(objOther);
-                       //console.log(objOther);
+                     
                        displayOther(heightO[0], weightO[0], objOther.bmi, objOther.bmiStatus, objOther.headCir, objOther.bloodGlucose);
                 }
 
         } else if (header === "PEM") {
             PEM = EHRArry[i];
-            //console.log(PEM);
+ 
             var PEMData = convertNoteToData(PEM);
             var idArr = PEMData[2].split(",");
             var pe0t8 = PEMData[3].split(',');
@@ -620,7 +614,7 @@ function convertEHR(ehr) {
             };
              var PEMNotes =    convertPEMtoNotes(objPEM);
            _data.push(objPEM);
-           //console.log(objPEM);
+     
            displayPEM(PEMNotes,objPEM.PEComment);
             
         }else if (header === "DGS") {
@@ -639,7 +633,7 @@ function convertEHR(ehr) {
             };
             _data.push(objDGS);
             displayDGS(objDGS.TypeDGS,objDGS.dateDGS,objDGS.searchDiag,objDGS.SeverityDGS,objDGS.SiteDGS,objDGS.LateralityDGS,objDGS.commentDGS)
-           //console.log(DGSData);
+       
         } else if (header === "PNT") {
             PNT = EHRArry[i];
             var PNTData = convertNoteToData(PNT);
@@ -653,7 +647,7 @@ function convertEHR(ehr) {
    
         } else if (header === "ROS") {
             ROS = EHRArry[i];
-            //console.log(ROSORC);
+    
         
             
             var ROSData1 = ROS.split("|");
@@ -663,12 +657,9 @@ function convertEHR(ehr) {
              var priorityAry = ROSData1[5].split("^");
             
             ORC = EHRArry[ROSORC];
-            //console.log(ORC);
+
             var hfcDetail = getHFCDetail(ORC);
             
-//            var ROSData = ROSData1[1].split("^");
-//            var ROSData = convertNoteToData(ROS);
-         //console.log(ROSData1);
          
             var objROS = {
                 Acode: "ROS",
@@ -703,8 +694,7 @@ function convertEHR(ehr) {
            var hfcDetail = getHFCDetail(ORC);
               
             var LIOData = LIO.split("|");
-            //console.log(LIOData);
-//            var LIOData = LIOData_2[1].split("^");
+
             var labAry = LIOData[2].split("^");
             var prioAry = LIOData[5].split("^");
             var hfcAry = LIOData[6].split("^");
@@ -739,8 +729,7 @@ $.when(getLIODetail(labAry[1],objLIO)).done(function(){
             var hfcDetail = getHFCDetail(ORC);
            
             var DTOData1 = DTO.split("|");
-            //console.log(DTOData1);
-            //var DTOData = DTOData1[1].split("^");
+
             var drugArry = DTOData1[2].split("^");
             var drugFormArry = DTOData1[3].split("^");
             var drugRouteArry = DTOData1[4].split("^");
@@ -773,7 +762,7 @@ $.when(getLIODetail(labAry[1],objLIO)).done(function(){
             hfcOrderDetail: hfcDetail[0],
             hfcProviderDetail: hfcDetail[1]
             };
-           //getObjectORCHFCDetail(hfc_cd, hfc_cd,objDTO);
+    
             _data.push(objDTO);
           displayDTO(objDTO.drugName, objDTO.drugForm,objDTO. drugStrength+" "+objDTO.drugStrengthUnit, objDTO.drugDose+" "+objDTO.drugDoseUnit ,objDTO.drugFrequency, objDTO.drugDuration+" "+objDTO.drugDurationUnit, objDTO.drugFrequency, objDTO.drugCaution, objDTO.remark, objDTO.comment);
         }else if (header === "POS") {
@@ -783,7 +772,7 @@ $.when(getLIODetail(labAry[1],objLIO)).done(function(){
             
             var POSData1 = POS.split("|");
             var POSData = POSData1[2].split("^");
-           //console.log(POSData1);
+        
             var objPOS = {
                 Acode:"POS",
                 Problem18:POSData[1],
@@ -792,7 +781,7 @@ $.when(getLIODetail(labAry[1],objLIO)).done(function(){
                 hfcOrderDetail: hfcDetail[0],
                 hfcProviderDetail: hfcDetail[1]
             };
-           // getObjectORCHFCDetail(hfc_cd, hfc_cd,objPOS);
+  
             _data.push(objPOS);
            displayPOS(objPOS.Problem18, objPOS.proType, objPOS.procedure_cd) ;
        }else if (header === "MEC") {
@@ -808,12 +797,12 @@ $.when(getLIODetail(labAry[1],objLIO)).done(function(){
                 num2MEC:MECData[4]
             };
             _data.push(objMEC);
-             //console.log(objMEC);
+     
           displayMCTS(objMEC.DateFromMEC, objMEC.DateToMEC, objMEC.num1MEC, objMEC.num2MEC);
        }else if (header === "PRI") {
             PRI = EHRArry[i];
             var PRIData = convertNoteToData(PRI);
-            //console.log(PRIData);
+         
             var objPRI = {
                 Acode:"PRI",
                 REF:PRIData[4],
@@ -826,12 +815,12 @@ $.when(getLIODetail(labAry[1],objLIO)).done(function(){
                 medicalHisRef:PRIData[11]
             };
             _data.push(objPRI);
-             //console.log(objPRI);
+
          displayPRI(objPRI.REF, objPRI.hfcREFcode, objPRI.disREF, objPRI.disREFcode, objPRI.docREF, objPRI.appREF, objPRI.medicalHisRef);
        } else if (header === "ARQ") {
             ARQ = EHRArry[i];
             var ARQData = convertNoteToData(ARQ);
-            //console.log(ARQData);
+  
             var objARQ = {
                 Acode:"FLU",
                 DateFollowUp:ARQData[2],
@@ -840,20 +829,18 @@ $.when(getLIODetail(labAry[1],objLIO)).done(function(){
                 searchFLU:ARQData[15]
             };
             _data.push(objARQ);
-           //  console.log(objPRI);
+         
          displayFLU(objARQ.searchFLU, objARQ.DateFollowUp, objARQ.commentFLU);
        }else if (header === "MOR") {
             MOR = EHRArry[i];
             ORC = EHRArry[MONORC];
             var hfcDetail = getHFCDetail(ORC);
-            //console.log(MOR);
+        
             var monArry = MOR.split("|");
             var monArryInfo = monArry[1].split("^");
             var monArryTest = monArry[2].split("^");
             var monArryHfc = monArry[3].split("^");
-            //console.log(monArryInfo);
-            //console.log(monArryTest);
-           // console.log(monArryHfc);
+
             var objMON = {
                 Acode:"MON",
                 codeMON:monArryInfo[0],
@@ -869,17 +856,17 @@ $.when(getLIODetail(labAry[1],objLIO)).done(function(){
             //getObjectORCHFCDetailMON(hfc_cd, objMON.MONHFC_cd,objMON);
 
            _data.push(objMON);
-           //  console.log(objPRI);
+           
         displayMON(objMON.searchMON,objMON.searchHFC_MON, objMON.searchDIS_MON);
        }else if (header === "ADW") {
             ADW = EHRArry[i];
             ORC = EHRArry[ADWORC];
             var hfcDetail = getHFCDetail(ORC);
-            //console.log(ADW);
+            
             var adwArry = ADW.split("|");
             var adwInfo = adwArry[2].split("^");
             var adwDateTime = adwInfo[11].split(" ");
-            //console.log(adwInfo);
+           
 
             var objADW = {
                 Acode:"ADW",
@@ -902,7 +889,7 @@ $.when(getLIODetail(labAry[1],objLIO)).done(function(){
             
             
            _data.push(objADW);
-           //  console.log(objPRI);
+  
        // displayMON(objMON.searchMON,objMON.searchHFC_MON, objMON.searchDIS_MON);
        }else if (header === "DCG") {
             DCG = EHRArry[i];
@@ -915,7 +902,7 @@ $.when(getLIODetail(labAry[1],objLIO)).done(function(){
        }
        
     }
-    console.log(_data);
+   
 }
 
 
@@ -1055,7 +1042,7 @@ function lexerDCG(data){
         }else if (msg_code === "VTS") {
             VTS = disSumNote;
             var VTSData = convertNoteToData(VTS);
-            console.log(VTSData);
+            
 
             var scalePC = parseInt(VTSData[30]);
             var resultPC;
@@ -1075,7 +1062,7 @@ function lexerDCG(data){
                     pointMain: VTSData[25],
                     resultMain: VTSData[26]
                 };
-                console.log(objGCS);
+        
    
                 dataObj = objGCS;   
                 var index = getDCGItemIndex(_data, dataObj);
@@ -1090,7 +1077,7 @@ function lexerDCG(data){
                     pointpgcsMain: VTSData[27],
                     resultpgcsMain: VTSData[28]
                 };
-                console.log(objPGCS);
+               
          
                 dataObj = objPGCS;  
                 var index = getDCGItemIndex(_data, dataObj);
@@ -1098,7 +1085,7 @@ function lexerDCG(data){
 
             }
             if (VTSData[4] === "" && VTSData[33] === "undefined" && VTSData[3] === "" && VTSData[2] === "" && VTSData[32] === "undefined" && VTSData[1] === "" && VTSData[6] === "" && VTSData[34] === "undefined" && VTSData[5] === "") {
-                //console.log("no BP");
+             
             } else {
 
                 var objBP = {
@@ -1113,7 +1100,7 @@ function lexerDCG(data){
                     standP: VTSData[34],
                     standS: VTSData[5]
                 };
-                 console.log(objBP);
+           
          
                 dataObj = objBP; 
                 var index = getDCGItemIndex(_data, dataObj);
@@ -1126,7 +1113,7 @@ function lexerDCG(data){
                     Acode: "VTS",
                     rrRate: VTSData[10]
                 };
-                console.log(objRRate);
+             
 
                 dataObj = objRRate;   
                 var index = getDCGItemIndex(_data, dataObj);
@@ -1140,7 +1127,7 @@ function lexerDCG(data){
                     Acode: "VTS",
                     OSat: VTSData[29]
                 };
-                 console.log(objOsat);
+  
 
                 dataObj = objOsat;   
                 var index = getDCGItemIndex(_data, dataObj);
@@ -1155,7 +1142,7 @@ function lexerDCG(data){
                     Acode: "VTS",
                     BTemp: VTSData[0]
                 };
-                console.log(objBTemp);
+        
 
                 dataObj = objBTemp;   
                 var index = getDCGItemIndex(_data, dataObj);
@@ -1170,7 +1157,7 @@ function lexerDCG(data){
                     painScale: VTSData[30],
                     resultPanScale: resultPC
                 };
-                 console.log(objPainScale);
+           
             
                 dataObj = objPainScale;
                 var index = getDCGItemIndex(_data, dataObj);
@@ -1198,7 +1185,7 @@ function lexerDCG(data){
                     bmiWeight: VTSData[7],
                     headCir: VTSData[9]
                 };
-                 console.log(objOther);
+   
       
                 dataObj = objOther;   
                 
@@ -1206,7 +1193,7 @@ function lexerDCG(data){
 
         }else if (msg_code === "PEM") {
             PEM = EHRArry[i];
-           // console.log(PEM);
+
             var PEMData = convertNoteToData(PEM);
             var idArr = PEMData[2].split(",");
             var pe0t8 = PEMData[3].split(',');
@@ -1339,7 +1326,7 @@ function lexerDCG(data){
         } else if (msg_code === "DTO") {
             DTO = disSumNote;
             var DTOData1 = DTO.split("|");
-            //console.log(DTOData1);
+          
             //var DTOData = DTOData1[1].split("^");
             var drugArry = DTOData1[2].split("^");
             var drugFormArry = DTOData1[3].split("^");
@@ -1377,7 +1364,7 @@ function lexerDCG(data){
 
             var POSData1 = POS.split("|");
             var POSData = POSData1[2].split("^");
-            console.log(POSData1);
+
             var objPOS = {
                 Acode: "POS",
                 Problem18: POSData[1],
@@ -1402,7 +1389,7 @@ function lexerDCG(data){
         } else if (msg_code === "PRI") {
             PRI = disSumNote;
             var PRIData = convertNoteToData(PRI);
-            //console.log(PRIData);
+        
             var dataObj = {
                 Acode: "PRI",
                 REF: PRIData[4],
@@ -1418,7 +1405,7 @@ function lexerDCG(data){
         } else if (msg_code === "ARQ") {
             ARQ = disSumNote;
             var ARQData = convertNoteToData(ARQ);
-          //  console.log(ARQData);
+         
             var objARQ = {
                 Acode: "FLU",
                 DateFollowUp: ARQData[2],
@@ -1453,7 +1440,6 @@ function lexerDCG(data){
             var adwArry = ADW.split("|");
             var adwInfo = adwArry[2].split("^");
             var adwDateTime = adwInfo[11].split(" ");
-           // console.log(adwInfo);
 
             var objADW = {
                 Acode: "ADW",
@@ -1475,7 +1461,7 @@ function lexerDCG(data){
         indexArry.push(index);
         
     }
-    console.log(_data);
+
     
    var dcgDetail = data[0].split("|");
    var dischargeInfo = dcgDetail[2].split("^");
@@ -1484,7 +1470,7 @@ function lexerDCG(data){
    var time = dateTimeA[1];
    var disposition = dischargeInfo[8];
    var comment = dischargeInfo[9];
-   //console.log(dischargeInfo);
+
    indexArry.pop();
    
    var objDCG = {
@@ -1501,7 +1487,7 @@ function lexerDCG(data){
     var id = _data.length - 1;
     displayDCGId(date, time, disposition,comment,id);
     
-    //console.log(_data);
+
   
 }
 
@@ -1509,8 +1495,7 @@ function getDCGItemIndex(data,dcgObj){
     var index;
 
     for(var k in data){
-            console.log(JSON.stringify(data[k]));
-//            console.log(JSON.stringify(dcgObj));
+
         if(data[k].Acode === "ROS"){
             if(data[k].codeROS === dcgObj.codeROS){
                  index = k;

@@ -14,7 +14,6 @@ function searchHFCDetail(modal) {
             var array_data = String(arryDetail[0]).split("|");
             var hfcCode = array_data[0];
 
-            console.log(hfcCode);
             $("#hfcOrderDetail" + modal).val(arryDetail[1]);
             $("#hfcProviderDetail" + modal).val(arryDetail[2]);
             $('#hfcId' + modal).val(hfcCode.trim());
@@ -116,10 +115,6 @@ $(document).ready(function () {
 
 
 
-    $('#CIS040002').on('shown', function () {
-        console.log("function doo");
-    });
-
 //---------------------------------------------------------------------------------------------Drug Order Modal.
     //js ADD for Drug Order
     $('#acceptBtnDTO').click(function () {
@@ -193,7 +188,7 @@ $(document).ready(function () {
         _data.push(obj1);
         var index = _data.length - 1;
         //etORCHFCDetail(hfc_cd, hfc_cd,index);
-        console.log(obj1);
+     
 
         displayDTO(drugName, drugForm, drugStrength + " " + drugStrengthUnit, drugDose + " " + drugDoseUnit, drugFrequency, drugDuration + " " + drugDurationUnit, drugFrequency, drugCaution, remark, comment);
 
@@ -219,7 +214,7 @@ $(document).ready(function () {
         var idName = $(this).get(0).id;
         var id = idName.split("|");
         var updateObj = _data[id[1]];
-        console.log(updateObj);
+    
         $('#tCIS_DTODrugName_update').val(updateObj.drugName);
         $('#tCIS_DTODrugCode_update').val(updateObj.drugCode);
         $('#tCIS_DTODrugForm_update').val(updateObj.drugForm);
@@ -251,7 +246,7 @@ $(document).ready(function () {
         var upObject = _data[$('#jsonId').val()];
 
         rowId = $('#jsonId').val();
-        // console.log(upObject);
+        
         var drugName = $('#tCIS_DTODrugName_update').val();
         var drugCode = $('#tCIS_DTODrugCode_update').val();
         var drugForm = $('#tCIS_DTODrugForm_update').val();
@@ -308,7 +303,7 @@ $(document).ready(function () {
     $('#acceptBtn11').click(function (e) {
         var btnName = $(this).text();
         if (btnName === "Accept") {
-            console.log(btnName);
+       
             e.preventDefault();
 
             var hfcName = $('#hfc').val();
@@ -327,7 +322,7 @@ $(document).ready(function () {
 
             _data.push(obj1);
 
-            console.log(_data);
+     
 
             displaySOP(hfcName, disName, doctorName, comment10);
 
@@ -388,8 +383,7 @@ $(document).ready(function () {
 //        $('#lineModalLabel1').hide();
         $('#acceptBtn11').text("Update");
         $('#lineModalLabel1').text("Update Second Opinion Form");
-        console.log("_data: ");
-        console.log(_data);
+
         $('#hfc').val(updateObj.hfc);
         $('#hfc1').val(updateObj.hfc1);
         $('#hfcDiscipline').val(updateObj.hfcDiscipline);
@@ -444,7 +438,7 @@ $(document).ready(function () {
         _data.push(obj1);
         var index = _data.length - 1;
         // getORCHFCDetail(hfc_cd,hfc_cd,index);
-        console.log(_data);
+ 
 
         displayPOS(Problem18, proType, procedure_cd);
 
@@ -461,7 +455,7 @@ $(document).ready(function () {
         var idName = $(this).get(0).id;
         var id = idName.split("|");
         var updateObj = _data[id[1]];
-        console.log(_data);
+
         $('#PProblem19').val(updateObj.Problem18);
         $('#pproType').val(updateObj.proType);
         $('#pprocedure_cd').val(updateObj.procedure_cd);
@@ -507,7 +501,7 @@ $(document).ready(function () {
         });
 
         _data.push(obj1);
-        console.log(_data);
+
 
         displayMCTS(DateFrom, DateTo, num1, num2);
 
@@ -526,7 +520,7 @@ $(document).ready(function () {
         var idName = $(this).get(0).id;
         var id = idName.split("|");
         var updateObj = _data[id[1]];
-        console.log(_data);
+     
         $('#UDateFromMEC').val(updateObj.DateFromMEC);
         $('#UDateToMEC').val(updateObj.DateToMEC);
         $('#Unum1MEC').val(updateObj.num1MEC);
@@ -580,7 +574,7 @@ $(document).ready(function () {
         var priority = $('#priorityROScd :selected').text().trim();
 
 
-        console.log(codeROS);
+
 
         var $items = $(' #commentROS,#modalityROS,#modalityROSCode,#bodySystemROS,#bodySystemROSCode,#hfcIdROS,#locationROS,#appointmentROS,#patientConditionROSCd,#priorityROScd,#hfcOrderDetail,#hfcProviderDetail');
         var obj1 = {
@@ -599,8 +593,7 @@ $(document).ready(function () {
         _data.push(obj1);
         var index = _data.length - 1;
         //getORCHFCDetail(hfc_cd, hfcROScode,index);
-        //  console.log(_data.length);
-        console.log(obj1);
+
 
         displayROS(codeROS, ROS, commentROS, modalityROS, modalityROScode, bodysysROS, bodysysROS, bodysysROScode, hfcROS, hfcROScode, locationHFCROS, appointmentROS, patientCondition);
 
@@ -644,7 +637,6 @@ $(document).ready(function () {
         $('#UappointmentROS').val(updateObj.appointmentROS);
         $('#UpatientConditionROScd').val(updateObj.patientConditionROSCd);
         $('#UpriorityROScd').val(updateObj.priorityROScd);
-        console.log($('#UROS').val());
 
     });
 
@@ -671,8 +663,7 @@ $(document).ready(function () {
         var _UhfcOrderDetail = $('#UhfcOrderDetail').val();
         var _UhfcProviderDetail = $('#UhfcProviderDetail').val();
 
-        //console.log($('#UROS').val());
-        console.log(rowId);
+
         upObject.ROS = _UROS;
         upObject.appointmentROS = _UappointmentROS;
         upObject.bodySystemROS = _UbodysysROS;
@@ -712,7 +703,7 @@ $(document).ready(function () {
             var id = idName.split("|");
             delete _data[id[1]];
             $(this).closest('tr').remove();
-            console.log(_data);
+           
         } else {
             return false;
         }
@@ -757,8 +748,7 @@ $(document).ready(function () {
 
         _data.push(obj1);
         var index = _data.length - 1;
-        // getORCHFCDetail(hfc_cd, hfcIdLOS,index);
-        console.log(obj1);
+
 
         displayLOS(searchLOS, codeLOS, catLOS, sourceLOS, containerLOS, volumeLOS, spclLOS, commentLOS, appointmentLOS, priority, hfcLOS, patientCondition);
 
@@ -786,7 +776,7 @@ $(document).ready(function () {
         var idName = $(this).get(0).id;
         var id = idName.split("|");
         var updateObj = _data[id[1]];
-        console.log(id);
+
         $("#UsearchLOS").val(updateObj.searchLOS);
         $("#UcodeLOS").val(updateObj.codeLOS);
         $("#UcatLOS").val(updateObj.catLOS);
@@ -806,8 +796,6 @@ $(document).ready(function () {
         $("#UhfcIdLOS").val(updateObj.hfcIdLOS);
 
         $('#jsonIdLOS').val(id[1]);
-        //$(this).closest('tr').remove();
-//        console.log($('#UROS').val());
 
     });
 
@@ -858,7 +846,7 @@ $(document).ready(function () {
 
 
         var sum = _UsearchLOS + '|' + _UcatLOS + '|' + _UsourceLOS + '|' + _UcontainerLOS + '|' + _UvolumeLOS + '|' + _UspclLOS + '|' + _UcommentLOS + '|' + _UappointmentLOS + '|' + _Upriority + "|" + _UpatientCondition + '|' + _UhfcLOS;
-        console.log(upObject);
+ 
         $('#sum' + rowId).html(sum);
         $("#update_CIS040001").modal('toggle');
         //$(".modal-backdrop").hide();
@@ -871,7 +859,7 @@ $(document).ready(function () {
         var DateFollowUp = $('#DateFollowUp').val();
         var commentFLU = $('#commentFLU').val();
 
-        //console.log(codeFLU);
+
 
         var $items = $(' #DateFollowUp, #commentFLU,#docFLUCode');
         var obj1 = {Acode: 'FLU',searchFLU:searchFLU};
@@ -881,7 +869,7 @@ $(document).ready(function () {
 
         _data.push(obj1);
 
-        console.log(obj1);
+
 
         displayFLU(searchFLU, DateFollowUp, commentFLU);
 
@@ -900,7 +888,7 @@ $(document).ready(function () {
         var idName = $(this).get(0).id;
         var id = idName.split("|");
         var updateObj = _data[id[1]];
-        console.log(_data);
+   
       
         $('#uDateFollowUp').val(updateObj.DateFollowUp);
         $('#ucommentFLU').val(updateObj.commentFLU);
@@ -919,8 +907,6 @@ $(document).ready(function () {
         var _ucommentFLU = $('#ucommentFLU').val();
         var _udocFLUCode = $('#UdocFLUCode').val();
 
-        //console.log($('#UROS').val());
-        //console.log(rowId);
 
         upObject.searchFLU = _usearchFLU;
         upObject.DateFollowUp = _uDateFollowUp;
@@ -942,7 +928,7 @@ $(document).ready(function () {
             var id = idName.split("|");
             delete _data[id[1]];
             $(this).closest('tr').remove();
-            console.log(_data);
+
         } else {
             return false;
         }
@@ -968,7 +954,6 @@ $(document).ready(function () {
 
         _data.push(obj1);
 
-        console.log(obj1);
 
         displayPRI(hfcREFname, hfcREFcode, disREFname, disREFcode, docREFname, appREF, medhistoryREF);
 
@@ -988,7 +973,7 @@ $(document).ready(function () {
         var idName = $(this).get(0).id;
         var id = idName.split("|");
         var updateObj = _data[id[1]];
-        console.log(updateObj);
+
         $("#UREF").val(updateObj.REF);
         $("#UhfcREFcode").val(updateObj.hfcREFcode);
         $("#UdisREF").val(updateObj.disREF);
@@ -1046,7 +1031,7 @@ $(document).ready(function () {
         var hfcOrderDetail = $('#hfcOrderDetailMON').val();
         var hfcProviderDetail = $("#hfcProviderDetailMON").val();
 
-        //console.log(codeFLU);
+ 
 
         var $items = $('#searchMON, #reqItem, #testMON, #searchHFC_MON, #searchDIS_MON,#MONHFC_cd,#codeMON');
         var obj1 = {
@@ -1060,7 +1045,7 @@ $(document).ready(function () {
 
         _data.push(obj1);
 
-        console.log(obj1);
+
 
         displayMON(searchMON, searchHFC_MON, searchDIS_MON);
 
@@ -1081,7 +1066,7 @@ $(document).ready(function () {
         var idName = $(this).get(0).id;
         var id = idName.split("|");
         var updateObj = _data[id[1]];
-        console.log(updateObj);
+
         $('#usearchMON').val(updateObj.searchMON);
         $('#ureqItem').val(updateObj.reqItem);
         $('#utestMON').val(updateObj.testMON);
@@ -1123,7 +1108,7 @@ $(document).ready(function () {
 
 
         var sum = _usearchMON + '| ' + _usearchHFC_MON + '| ' + _usearchDIS_MON;
-        console.log(upObject);
+
         $('#sum' + rowId).html(sum);
         $("#update_CIS040003").modal('toggle');
 
@@ -1137,7 +1122,7 @@ $(document).ready(function () {
             var id = idName.split("|");
             delete _data[id[1]];
             $(this).closest('tr').remove();
-            console.log(_data);
+           
         } else {
             return false;
         }
@@ -1176,7 +1161,7 @@ $(document).ready(function () {
             hfcOrderDetail: _hfcOrderDetail,
             hfcProviderDetail: _hfcProviderDetail
         };
-        console.log(obj1);
+     
         _data.push(obj1);
         displayADW(_admitToDis, _patientReferFrom, _reason, _admitDate, _admitTime, _wardName);
         $("#CIS040007").modal('toggle');
@@ -1188,7 +1173,7 @@ $(document).ready(function () {
         var id = idName.split("|");
         var updateObj = _data[id[1]];
         $('#jsonId').val(id[1]);
-        console.log(updateObj);
+    
         $('#tCIS_ADWsearchDis_Update').val(updateObj.AdmitToDiscipline);
         $('#tCIS_ADWsearchDisCd_Update').val(updateObj.AdmitToDisciplineCd);
         $('#tCIS_ADWreferFrom_Update').val(updateObj.PatientReferFrom);
@@ -1230,7 +1215,7 @@ $(document).ready(function () {
         upObject.WardNameCd = _wardNameCd;
 
         var sum = ' From' + _patientReferFrom + '<br> Admit to : ' + _admitToDis + '<br> Date / Time:' + _admitDate + ' /  ' + _admitTime + '<br> Ward :' + _wardName + '<br> Reason :' + _reason
-        console.log(upObject);
+     
         $('#sum' + rowId).html(sum);
         $("#update_CIS040007").modal('toggle');
 
@@ -1243,7 +1228,7 @@ $(document).ready(function () {
             index = this.id.split("|");
             dcgIndex.push(index[1]);
 
-            console.log(dcgIndex);
+          
         });
 
         var dateDCG = $('#tCIS_DCGDate_P').val();
@@ -1265,7 +1250,7 @@ $(document).ready(function () {
             index: dcgIndex
         }
         _data.push(obj1);
-        console.log(obj1);
+
         $('#CIS040010').modal("hide");
         displayDCG(dateDCG, timeDCG, disposition, commentDCG);
 
@@ -1293,12 +1278,11 @@ $(document).ready(function () {
         var id = idName.split("|");
         var updateObj = _data[id[1]];
         $('#jsonId').val(id[1]);
-        console.log(updateObj);
-
+ 
         var checkIndex = updateObj.index;
 
         for (var idx in checkIndex) {
-            console.log(checkIndex[idx]);
+      
             var checkbox_id = 'checkbox|' + checkIndex[idx];
             $('input[id="' + checkbox_id + '"]').prop("checked", true);
         }
@@ -1324,7 +1308,7 @@ $(document).ready(function () {
         $('input[name="CIS_consult_notes"]:checked').each(function () {
             index = this.id.split("|");
             dcgIndex.push(index[1]);
-            console.log(dcgIndex);
+
         });
 
         upObject.time = time;
@@ -1334,7 +1318,7 @@ $(document).ready(function () {
         upObject.index = dcgIndex;
 
         var sum = ' Discharge Date : ' + date + ' <br> Discharge Time: ' + time + ' <br> DIscharge Disposition : ' + disposition + ' <br> Comment: ' + comment;
-        console.log(upObject);
+   
         $('#sum' + rowId).html(sum);
         $("#update_mCIS_Discharge_Summary").modal('toggle');
 
@@ -1355,7 +1339,7 @@ $(document).ready(function () {
             },
             timeout: 10000,
             success: function (list) {
-                console.log(list);
+     
                 $("#mCIS_MC_Slip").val(list.trim());
                 $('#mCIS_MC_Slip').html(list);
                 $('#mCIS_MC_Slip').trigger('contentchanged');
@@ -1380,7 +1364,7 @@ $(document).ready(function () {
             params: {
                 timeout: 3000,
                 success: function (result) {
-                    console.log(result);
+                
                     if (result === undefined) {
                         $('#' + loadingDivId).html('No Record');
                     }
@@ -1389,11 +1373,11 @@ $(document).ready(function () {
         });
 
         $("#" + fieldId).on('before:flexdatalist.data', function (response) {
-            console.log("Start - " + getDate());
+         
             $('#' + loadingDivId).html('<img src="img/LoaderIcon.gif" />');
         });
         $("#" + fieldId).on('after:flexdatalist.data', function (response) {
-            console.log("End - " + getDate());
+         
             $('#' + loadingDivId).html('');
         });
         $("#" + fieldId).on('select:flexdatalist', function (response) {
@@ -1418,13 +1402,13 @@ $(document).ready(function () {
                     retrieveDataSearchingRISPRO("tCISOEROSProcedureSearch_update", "tCISOEROSProcedureSearchLoading_update", "search/ResultRISProcedureSearch.jsp", "search/ResultRISProcedureSearchCode.jsp", "UcodeROS", "UmodalityROSCode", "UmodalityROS", "UbodySystemROSCode", "UbodySystemROS", currentRISProcedure);
                 }
             });
-            // console.log(hfcRISCode);
+
         });
     }
     function retrieveDataSearchingRISPRO(fieldId, loadingDivId, urlData, urlCode, codeFieldId, modalityCode, modality, bodySystemCode, bodySystem, currentRISProcedure, currentRISProcedure) {
 
         var keywordSearch = $("#" + fieldId).val();
-        console.log(currentRISProcedure);
+
         $('#' + fieldId).val(currentRISProcedure).flexdatalist({
             minLength: 1,
             searchIn: 'name',
@@ -1434,7 +1418,7 @@ $(document).ready(function () {
             params: {
                 timeout: 3000,
                 success: function (result) {
-                    console.log(result);
+              
                     if (result === undefined) {
                         $('#' + loadingDivId).html('No Record');
                     }
@@ -1443,12 +1427,12 @@ $(document).ready(function () {
         });
 
         $("#" + fieldId).on('before:flexdatalist.data', function (response) {
-            console.log("Start - " + getDate());
+           
 
             $('#' + loadingDivId).html('<img src="img/LoaderIcon.gif" />');
         });
         $("#" + fieldId).on('after:flexdatalist.data', function (response) {
-            console.log("End - " + getDate());
+          
             $('#' + loadingDivId).html('');
         });
         $("#" + fieldId).on('select:flexdatalist', function (response) {
@@ -1561,7 +1545,7 @@ function getORCHFCDetail(OrderingHFC, ProviderHFC, index) {
         orderingHFC: OrderingHFC,
         providerHFC: ProviderHFC
     };
-    console.log(hfcCode);
+    
     $.ajax({
         url: "search/getORCHFC.jsp",
         method: "POST",
@@ -1569,7 +1553,7 @@ function getORCHFCDetail(OrderingHFC, ProviderHFC, index) {
         data: hfcCode,
 //            async: false,
         success: function (result) {
-            console.log(result);
+     
             var resultAry = result.split("[#-#]");
 
             order = resultAry[0].trim();
@@ -1601,7 +1585,7 @@ function getObjectORCHFCDetail(OrderingHFC, ProviderHFC, obj1) {
         orderingHFC: OrderingHFC,
         providerHFC: ProviderHFC
     };
-    console.log(hfcCode);
+  
     $.ajax({
         url: "search/getORCHFC.jsp",
         method: "POST",
@@ -1609,7 +1593,7 @@ function getObjectORCHFCDetail(OrderingHFC, ProviderHFC, obj1) {
         data: hfcCode,
 //            async: false,
         success: function (result) {
-            console.log(result);
+         
             var resultAry = result.split("[#-#]");
 
             order = resultAry[0].trim();
@@ -1639,7 +1623,7 @@ function getObjectORCHFCDetailMON(OrderingHFC, ProviderHFC, obj1) {
         orderingHFC: OrderingHFC,
         providerHFC: ProviderHFC
     };
-    console.log(hfcCode);
+
     $.ajax({
         url: "search/getORCHFC.jsp",
         method: "POST",
@@ -1647,7 +1631,7 @@ function getObjectORCHFCDetailMON(OrderingHFC, ProviderHFC, obj1) {
         data: hfcCode,
 //            async: false,
         success: function (result) {
-            console.log(result);
+     
             var resultAry = result.split("[#-#]");
 
             order = resultAry[0].trim();

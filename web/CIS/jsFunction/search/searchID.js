@@ -8,7 +8,7 @@ function searchApp() {
             url: "searchID.jsp", // call the jsp file ajax/tuto-autocomplete.php
             timeout: 10000,
             success: function (list) {
-                console.log(list);
+               
                 $('#modalSeacrhID').html(list);
             },
             error: function (xhr, status, error) {

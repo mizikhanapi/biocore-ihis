@@ -18,7 +18,7 @@ $(document).ready(function(e){
                 hfc_code: hfc_cd
             },
             success: function (e) {
-                console.log(e.trim());
+               
                 $("#docFLUCode").val(e.trim());
             }
         });
@@ -34,7 +34,7 @@ $(document).ready(function(e){
                 hfc_code: hfc_cd
             },
             success: function (e) {
-                console.log(e.trim());
+                
                 $("#UdocFLUCode").val(e.trim());
             }
         });

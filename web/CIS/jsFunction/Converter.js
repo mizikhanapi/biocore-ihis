@@ -130,7 +130,7 @@ function getObjectDAB(msg) {
 function getObjectVTS(msg) {
     VTS = disSumNote;
     var VTSData = convertNoteToData(VTS);
-    console.log(VTSData);
+  
 
     var scalePC = parseInt(VTSData[30]);
     var resultPC;
@@ -150,7 +150,7 @@ function getObjectVTS(msg) {
             pointMain: VTSData[25],
             resultMain: VTSData[26]
         };
-        console.log(objGCS);
+        
 
         dataObj = objGCS;
         var index = getDCGItemIndex(_data, dataObj);
@@ -165,7 +165,7 @@ function getObjectVTS(msg) {
             pointpgcsMain: VTSData[27],
             resultpgcsMain: VTSData[28]
         };
-        console.log(objPGCS);
+     
 
         dataObj = objPGCS;
         var index = getDCGItemIndex(_data, dataObj);
@@ -173,7 +173,7 @@ function getObjectVTS(msg) {
 
     }
     if (VTSData[4] === "" && VTSData[33] === "undefined" && VTSData[3] === "" && VTSData[2] === "" && VTSData[32] === "undefined" && VTSData[1] === "" && VTSData[6] === "" && VTSData[34] === "undefined" && VTSData[5] === "") {
-        //console.log("no BP");
+    
     } else {
 
         var objBP = {
@@ -188,7 +188,7 @@ function getObjectVTS(msg) {
             standP: VTSData[34],
             standS: VTSData[5]
         };
-        console.log(objBP);
+      
 
         dataObj = objBP;
         var index = getDCGItemIndex(_data, dataObj);
@@ -201,7 +201,7 @@ function getObjectVTS(msg) {
             Acode: "VTS",
             rrRate: VTSData[10]
         };
-        console.log(objRRate);
+      
 
         dataObj = objRRate;
         var index = getDCGItemIndex(_data, dataObj);
@@ -215,7 +215,7 @@ function getObjectVTS(msg) {
             Acode: "VTS",
             OSat: VTSData[29]
         };
-        console.log(objOsat);
+        
 
         dataObj = objOsat;
         var index = getDCGItemIndex(_data, dataObj);
@@ -230,7 +230,7 @@ function getObjectVTS(msg) {
             Acode: "VTS",
             BTemp: VTSData[0]
         };
-        console.log(objBTemp);
+      
 
         dataObj = objBTemp;
         var index = getDCGItemIndex(_data, dataObj);
@@ -245,7 +245,7 @@ function getObjectVTS(msg) {
             painScale: VTSData[30],
             resultPanScale: resultPC
         };
-        console.log(objPainScale);
+    
 
         dataObj = objPainScale;
         var index = getDCGItemIndex(_data, dataObj);
@@ -273,7 +273,7 @@ function getObjectVTS(msg) {
             bmiWeight: VTSData[7],
             headCir: VTSData[9]
         };
-        console.log(objOther);
+     
 
         dataObj = objOther;
 
@@ -559,7 +559,7 @@ function getProcedureDisplay(procedure) {
         if (PECodes[i] !== "") {
             PECd = PECodes[i];
         } else if (PECodes[i] === "") {
-            console.log(PECd);
+            
         }
     }
     var Comment = PEMData.PEComment;

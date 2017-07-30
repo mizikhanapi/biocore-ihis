@@ -32,7 +32,7 @@ $(document).ready(function (e) {
 //            updateStatus(pmiNo, episodeDate, statusNow);
 //            return "Sure U are?";
 //        } else {
-//            console.log("no patient");
+//            
 //        }
 //    });
 
@@ -138,7 +138,7 @@ $(document).ready(function (e) {
         var currentDate = getDateNext();
         var date = currentDate[0];
 
-        console.log(hfc_cd);
+       
         if (pmiNo === "") {
             nextPatient(currentDate, hfc_cd);
             reloadStat = "1";
@@ -152,25 +152,25 @@ $(document).ready(function (e) {
     function sendOrder(data) {
         for (var k in data) {
             if (data[k].Acode === "DTO") {
-                console.log(data[k]);
+             
                 $.ajax({
                     url: 'topMenuFunction/SendOrder.jsp',
                     method: 'POST',
                     timeout: 5000,
                     data: data[k],
                     success: function (result) {
-                        console.log(result);
+                       
                     }
                 });
             } else if (data[k].Acode === "LOS") {
-                console.log(data[k]);
+         
                 $.ajax({
                     url: 'topMenuFunction/SendOrderLIO.jsp',
                     method: 'POST',
                     timeout: 5000,
                     data: data[k],
                     success: function (result) {
-                        console.log(result);
+                       
                     }
                 });
             }
@@ -183,7 +183,7 @@ $(document).ready(function (e) {
     function countVTS(data) {
         $.each(data, function (index, value) {
             if (value === undefined) {
-                console.log("no object");
+                
             } else {
                 if (data[index].Acode === "VTS") {
                     vtsCounter += 1;
@@ -220,7 +220,7 @@ $(document).ready(function (e) {
             if (PECodes[i] !== "") {
                 PECd = PECodes[i];
             } else if (PECodes[i] === "") {
-                console.log(PECd);
+              
             }
         }
         var Comment = PEMData.PEComment;
@@ -233,8 +233,7 @@ $(document).ready(function (e) {
     function convertToOrderNotes(data) {
         var ccnProblem = getProblem(ccn_cd);
         var dgsProblem = getProblem(dgs_cd);
-//       console.log(ccn);
-//       console.log(dgs);
+
         var orderNotesROS = "";
         var orderNotesDTO = "";
         var orderNotesLIO = "";
@@ -361,13 +360,12 @@ $(document).ready(function (e) {
             } else if (data[key].Acode === "DCG") {
 
                 var lenVTSDCG = NotesDCGVTS.length;
-                console.log(lenVTSDCG);
+          
 
                 var dataDCG = getDGCItem(data[key].index);
                 var dcgVtsNotes = "";
 
-                console.log(dcgVtsObj);
-                console.log(dataDCG);
+
                 var message_type = "";
                 var vtsLen = getSizeObj(dcgVtsObj);
 
@@ -461,8 +459,7 @@ $(document).ready(function (e) {
 
     function convertToNotes(data) {
 
-        console.log(ccnProblem);
-        console.log(dgsProblem);
+  
         for (var key in data) {
             if (data[key].Acode === "CCN") {
                 //processNotes +=  dataToCCN(episodeDate, data[key].ccnCode,  data[key].problem,  data[key].Mild,  data[key].duration, data[key].sdur,  data[key].Site, data[key].Laterality, data[key].Comment,  getDate(), hfc_cd, doctor_id, doctor_name);
@@ -514,7 +511,7 @@ $(document).ready(function (e) {
             VTSNotes = convertVTS(VTSObj);
         }
         processNotes += VTSNotes;
-        console.log(HCSContent);
+   
         return processNotes;
     }
 
@@ -571,7 +568,7 @@ $(document).ready(function (e) {
                 }
             },
             error: function (err) {
-                console.log(err)
+        
                 $('#consultationNotes').html("Error: " + err);
                 notes = "";
             }
@@ -589,7 +586,7 @@ $(document).ready(function (e) {
                 hfc: hfc
             },
             success: function (result) {
-                //console.log(result);
+   
                 if (result.trim() === "|O|") {
                     alert("No patient in queue");
                 } else {
@@ -623,9 +620,9 @@ $(document).ready(function (e) {
         var checkDGS = false;
         var checkDCG = false;
 
-        console.log(cisParam);
+
         var cisSetting = spliceSetting(cisParam);
-        console.log(cisSetting);
+   
 
         for (i in cisSetting) {
             if (cisSetting[i] === "CCN") {
@@ -637,12 +634,9 @@ $(document).ready(function (e) {
             }
         }
 
-        console.log(checkCCN);
-        console.log(checkDGS);
-        console.log(checkDCG);
 
         var dataDischarge = getStatusData(_data);
-        console.log(dataDischarge);
+
 
 
         //111
@@ -845,8 +839,7 @@ $(document).ready(function (e) {
 
         var ccnProblem = getProblem(ccn_cd);
         var dgsProblem = getProblem(dgs_cd);
-//       console.log(ccn);
-//       console.log(dgs);
+
         var orderNotesROS = "";
         var orderNotesDTO = "";
         var orderNotesLIO = "";

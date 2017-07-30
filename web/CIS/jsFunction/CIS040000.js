@@ -66,7 +66,7 @@ $(document).ready(function () {
          e.preventDefault() ;
          var rowOrder = $(this).closest("tr");
          var orderId = rowOrder.find("#orderId").html();
-         console.log(orderId);
+        
          
          $.ajax({
              timeout:3000,
@@ -91,7 +91,7 @@ $(document).ready(function () {
                         orderCode: "ROS"
                     },
                     success: function (response) {
-                        console.log(response);
+                        
                         var hfc_detail_array = response.split("[#-#]");
                         var hfc_location = hfc_detail_array[0].split("|");
 
@@ -145,7 +145,7 @@ $(document).ready(function () {
                 orderId:order_id
             },
             success:function(e){
-                //console.log(e);
+                
                 $("#divCIS_OE_ROS_OrderSearchResult").html(e);
             }
         })
@@ -158,7 +158,7 @@ $(document).ready(function () {
      
      $("#btnCIS_OE_ROS_SUBMIT").click(function(e){
         e.preventDefault();
-        console.log(_dataROS);
+     
 
         var submitConfirm = confirm('Confirm All Order');
         if (submitConfirm === true) {
@@ -268,7 +268,7 @@ $(document).ready(function () {
         if (delConfirm === true) {
             delete _dataROS[delIndex];
             $(this).closest('tr').remove();
-            console.log(_dataROS);
+           
         } else {
             return false;
         }
@@ -344,7 +344,7 @@ $(document).ready(function () {
        updateObj.priority = $('#priorityROScd :selected').text().trim();
        updateObj.priorityROScd = $("#priorityROScd").val();
        updateObj.problemCode = $('#problemCode').val();
-       console.log(rowId);
+      
        updateOrderROSTable(updateObj,updateIndex);
         $("#btnCIS_OE_ROS_UPDATE").hide();
         $("#btnCIS_OE_ROS_CANCEL").hide();
@@ -366,7 +366,7 @@ $(document).ready(function () {
             params: {
                 timeout: 3000,
                 success: function (result) {
-                    console.log(result);
+                  
                     if (result === undefined) {
                         $('#' + loadingDivId).html('No Record');
                     }
@@ -467,7 +467,7 @@ $(document).ready(function () {
             params: {
                 timeout: 3000,
                 success: function (result) {
-                    console.log(result);
+                    
                     if (result === undefined) {
                         $('#' + loadingDivId).html('No Record');
                     }
@@ -476,11 +476,11 @@ $(document).ready(function () {
         });
 
         $("#" + fieldId).on('before:flexdatalist.data', function (response) {
-            console.log("Start - " + getDate());
+           
             $('#' + loadingDivId).html('<img src="img/LoaderIcon.gif" />');
         });
         $("#" + fieldId).on('after:flexdatalist.data', function (response) {
-            console.log("End - " + getDate());
+           
             $('#' + loadingDivId).html('');
         });
         $("#" + fieldId).on('select:flexdatalist', function (response) {
@@ -494,7 +494,7 @@ $(document).ready(function () {
                     orderCode: "ROS"
                 },
                 success: function (response) {
-                    console.log(response);
+                   
                     var hfc_detail_array = response.split("[#-#]");
                     var hfc_location = hfc_detail_array[0].split("|");
                     

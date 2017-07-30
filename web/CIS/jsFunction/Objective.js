@@ -106,7 +106,7 @@ $(document).ready(function () {
             obj1[this.id] = $(this).val();
         });
         _data.push(obj1);
-        //console.log(_data);
+    
         displayGCS(gcsResult, gcsPoint);
 
 //        $('#resultMain').val('');
@@ -117,7 +117,7 @@ $(document).ready(function () {
         var idName = $(this).get(0).id;
         var id = idName.split('|');
         var updateObj = _data[id[1]];
-        //console.log(updateObj);
+        
         $("#CIS020001").modal('toggle');
         $('#actionGSC').hide();
         $('#updateGSC').show();
@@ -133,7 +133,7 @@ $(document).ready(function () {
         var rowId = $('#Jsonid').val();
         upObject.resultMain = $('#resultMain').val();
         upObject.pointMain = $('#pointMain').val();
-        //console.log(upObject);
+      
 
         var sum = 'GCS Result:' + upObject.resultMain + '| GCS Point:' + upObject.pointMain;
         $('#sum' + rowId).html(sum);
@@ -156,7 +156,7 @@ $(document).ready(function () {
             obj1[this.id] = $(this).val();
         });
         _data.push(obj1);
-        //console.log(_data);
+    
         displayPGCS(pgcsResult, pgcsPoint);
 //        $('#resultMain').val('');
 //        $('#pointMain').val('');
@@ -186,7 +186,7 @@ $(document).ready(function () {
                     timeout: 3000,
                     success: function (returnObservation) {
                         $('#getNeuObservation').html(returnObservation);
-                        console.log(returnObservation);
+                       
                         $('#getNeuObservation').trigger('contentchanged');
                         $('#CIS020002').modal('toggle');
                         $("#CIS020002").hide();
@@ -205,7 +205,7 @@ $(document).ready(function () {
         var idName = $(this).get(0).id;
         var id = idName.split('|');
         var updateObj = _data[id[1]];
-        //console.log(updateObj);
+       
         $("#CIS020002").modal('toggle');
         $('#actionPGSC').hide();
         $('#updatePGSC').show();
@@ -222,7 +222,7 @@ $(document).ready(function () {
         var rowId = $('#pgcsid').val();
         upObject.resultpgcsMain = $('#resultpgcsMain').val();
         upObject.pointpgcsMain = $('#pointpgcsMain').val();
-        //console.log(upObject);
+
 
         var sum = 'PGCS Result:' + upObject.resultpgcsMain + '| PGCS Point:' + upObject.pointpgcsMain;
         $('#sum' + rowId).html(sum);
@@ -254,7 +254,7 @@ $(document).ready(function () {
             obj1[this.id] = $(this).val();
         });
         _data.push(obj1);
-        console.log(_data);
+      
         displayBP(_sitBPS, _sitBPD, _sitBPP, _standBPS, _standBPD, _standBPP, _lyingBPS, _lyingBPD, _lyingBPP);
 
         $("#CIS020003").modal('toggle');
@@ -296,7 +296,7 @@ $(document).ready(function () {
                     timeout: 3000,
                     success: function (returnObservation) {
                         $('#getNeuObservation').html(returnObservation);
-                        console.log(returnObservation);
+                       
                         $('#getNeuObservation').trigger('contentchanged');
                         $('#sitS').val("");
                         $('#sitD').val("");
@@ -391,7 +391,7 @@ $(document).ready(function () {
         var id = idName.split('|');
         var updateObj = _data[id[1]];
         $('#RRid').val(id[1]);
-        //console.log(updateObj);
+        
         $('#rrRate').val(updateObj.rrRate);
 
     });
@@ -435,7 +435,7 @@ $(document).ready(function () {
         var id = idName.split('|');
         var updateObj = _data[id[1]];
         $('#idOS').val(id[1]);
-        console.log(updateObj);
+        
 
     });
 
@@ -529,7 +529,7 @@ $(document).ready(function () {
         var idName = $(this).get(0).id;
         var id = idName.split('|');
         var updateObj = _data[id[1]];
-        console.log(updateObj);
+ 
 
         $('#resultPanScale').val(updateObj.resultPanScale);
         $('#painScale').val(updateObj.painScale);
@@ -553,7 +553,7 @@ $(document).ready(function () {
         $('#NIWOBps').val(painScale);
         $('#NIW4hlyps').val(painScale);
         $("#CIS020007").modal('toggle');
-        //console.log(painScale);
+
     });
 
 /// -----------------------------------------------------------------------------------------------------------------------------------------------/////;
@@ -576,7 +576,7 @@ $(document).ready(function () {
             obj1[this.id] = $(this).val();
         });
         _data.push(obj1);
-        console.log(_data);
+
         displayOther(Oheight, Oweight, Obmi, OWeightStatus, OheadCir, OBloodGlucose);
 
         $("#CIS020008").modal('toggle');
@@ -592,7 +592,7 @@ $(document).ready(function () {
         var idName = $(this).get(0).id;
         var id = idName.split('|');
         var updateObj = _data[id[1]];
-        console.log(updateObj);
+       
         $('#otherId').val(id[1]);
 
         $('#bmiHeight').val(updateObj.bmiHeight);
@@ -668,8 +668,7 @@ $(document).ready(function () {
         itemIDpe.push(pitemIDpe6);
         itemIDpe.push(pitemIDpe7);
         itemIDpe.push(pitemIDpe8);
-        console.log(pe8.length);
-        console.log(itemIDpe);
+
 
         var items = $('#pe1,#pe2,#pe3,#pe4,#pe5,#pe6,#pe7,#pe8,#PEComment');
 
@@ -678,7 +677,7 @@ $(document).ready(function () {
             obj1[this.id] = $(this).val();
         });
         _data.push(obj1);
-        console.log(_data);
+    
         displayPEM(NotesPE, PEComment);
         $("#CIS020009").modal('toggle');
     });
@@ -732,7 +731,7 @@ $(document).ready(function () {
                     timeout: 3000,
                     success: function (returnPhysicalExam) {
                         $('#get_physicalExam').html(returnPhysicalExam);
-                        console.log(returnPhysicalExam);
+                       
                         $('#get_physicalExam').trigger('contentchanged');
                         $('#CIS020009').modal('toggle');
                         $("#CIS020009").hide();
@@ -757,7 +756,7 @@ $(document).ready(function () {
         var idName = $(this).get(0).id;
         var id = idName.split('|');
         var updateObj = _data[id[1]];
-        console.log(updateObj);
+
 
         updateObjCd = updateObj.id;
 
@@ -857,7 +856,7 @@ $(document).ready(function () {
 
         var upObject = _data[$('#idPE').val()];
         var rowId = $('#idPE').val();
-        console.log(upObject);
+     
         upObject.pe0 = $('#pe0').val();
         upObject.pe1 = $('#pe1').val();
         upObject.pe2 = $('#pe2').val();
@@ -871,7 +870,7 @@ $(document).ready(function () {
 
         var itemIDpe = [];
 
-        console.log(upObject);
+      
 
         var NotesPE;
         if (upObject.pe1.length < 1) {
@@ -947,7 +946,7 @@ $(document).ready(function () {
     $('#RISResult').on('click', function () {
 
         $.get("CIS02/CIS020010_1.jsp", function (data) {
-            //console.log(data);
+         
             $('#risTable').html(data);
 
         });
@@ -983,7 +982,7 @@ $(document).ready(function () {
     $('#LISResult').on('click', function () {
 
         $.get("CIS02/CIS020011_1.jsp", function (data) {
-            //console.log(data);
+  
             $('#lisTable').html(data);
 
         });
@@ -1018,7 +1017,7 @@ $(document).ready(function () {
     $('#OPResult').on('click', function () {
 
         $.get("CIS02/CIS020012_1.jsp", function (data) {
-            //console.log(data);
+ 
             $('#opTable').html(data);
 
         });
@@ -1056,7 +1055,7 @@ function convertPEMtoNotes(objPEM) {
 function displayGCS(gcsResult, gcsPoint) {
     var _tr = '<tr data-status="pagado" ><td><div class="ckbox"><input type="checkbox" id="checkbox|' + i + '" name="CIS_consult_notes"><label for="checkbox|' + i + '"></label></div></td><td><div class="media"><div class="media-body">Vital Sign - Glasgow Coma Scale :<p class="summary" id="sum' + i + '">GCS Result:' + gcsResult + '</br> GCS Point:' + gcsPoint + '</p></div></div></td><td><a data-toggle="modal"  data-target="#updateModal" href="" class="updateGcs" id="row|' + i + '"><i class="fa fa-pencil-square-o" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #337ab7;" ></i></a></a></td><td><a href="javascript:;" class="star"><a href="#" class="deleteBtn" id="row|' + i + '"><i class="fa fa-times" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #d9534f;"></i></a></a></td></tr>';
     $('#GCSNotes').append(_tr);
-    //console.log(i);
+
     i = i + 1;
 }
 
@@ -1064,7 +1063,7 @@ function displayPGCS(pgcsResult, pgcsPoint) {
 
     var _tr = '<tr data-status="pagado" ><td><div class="ckbox"><input type="checkbox" id="checkbox|' + i + '" name="CIS_consult_notes"><label for="checkbox|' + i + '"></label></div></td><td><div class="media"><div class="media-body">Vital Sign - Pediatric Glasgow Coma Scale :<p class="summary" id="sum' + i + '">PGCS Result:' + pgcsResult + '</br> PGCS Point:' + pgcsPoint + '</p></div></div></td><td><a data-toggle="modal"  data-target="#updateModal" href="" class="updatePgcs" id="row|' + i + '"><i class="fa fa-pencil-square-o" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #337ab7;" ></i></a></a></td><td><a href="javascript:;" class="star"><a href="#" class="deleteBtn" id="row|' + i + '"><i class="fa fa-times" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #d9534f;"></i></a></a></td></tr>';
     $('#PGCSNotes').append(_tr);
-    //console.log(i);
+
     i = i + 1;
 }
 
@@ -1073,14 +1072,14 @@ function displayBP(_sitBPS, _sitBPD, _sitBPP, _standBPS, _standBPD, _standBPP, _
     var _tr = '<tr data-status="pagado" ><td><div class="ckbox"><input type="checkbox" id="checkbox|' + i + '" name="CIS_consult_notes"><label for="checkbox|' + i + '"></label></div></td><td><div class="media"><div class="media-body">Vital Sign - Blood Pressure :<p class="summary" id="sum' + i + '">Sitting: Systolic =' + _sitBPS + 'mmHg | Diatolic=' + _sitBPD + 'mmHg | Pulse =' + _sitBPP + 'mmHg  </br> Standing: Systolic =' + _standBPS + 'mmHg | Diatolic =' + _standBPD + 'mmHg | Pulse =' + _standBPP + 'mmHg </br>  Lying: Systolic =' + _lyingBPS + 'mmHg | Diatolic =' + _lyingBPD + ' mmHg | Pulse =' + _lyingBPP + 'mmHg</p></div></div></td><td><a data-toggle="modal"  data-target="#updateModal" href="" class="updateBP" id="row|' + i + '"><i class="fa fa-pencil-square-o" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #337ab7;" ></i></a></a></td><td><a href="javascript:;" class="star"><a href="#" class="deleteBtn" id="row|' + i + '"><i class="fa fa-times" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #d9534f;"></i></a></a></td></tr>';
 
     $('#BPNotes').append(_tr);
-    //console.log(i);
+ 
     i = i + 1;
 }
 function displayrrRate(_rrRate) {
     var _tr = '<tr data-status="pagado" ><td><div class="ckbox"><input type="checkbox" id="checkbox|' + i + '" name="CIS_consult_notes"><label for="checkbox|' + i + '"></label></div></td><td><div class="media"><div class="media-body">Vital Sign - Respiratory Rate :<p class="summary" id="sum' + i + '">' + _rrRate + ' breath/min</p></div></div></td><td><a data-toggle="modal"  data-target="#updateModal" href="" class="updateRR" id="row|' + i + '"><i class="fa fa-pencil-square-o" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #337ab7;" ></i></a></a></td><td><a href="javascript:;" class="star"><a href="#" class="deleteBtn" id="row|' + i + '"><i class="fa fa-times" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #d9534f;"></i></a></a></td></tr>';
 
     $('#RRNotes').append(_tr);
-    //console.log(obj1);
+  
     i = i + 1;
 }
 

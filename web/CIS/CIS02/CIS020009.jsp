@@ -177,7 +177,7 @@
                 timeout: 10000,
                 data: {input2: Pe2Cd[itemIDpe2]},
                 success: function (result) {
-                    console.log(result);
+                    
                     if (result.trim() === "none") {
 
                         Pe4Cd = [];
@@ -218,8 +218,7 @@
                         Pe3Cd = code.split('|');
                         var desc = result[0];
                         Pe3Desc = desc.split('|');
-                        console.log(Pe3Cd);
-                        console.log(Pe3Desc);
+
                         $("#pe2").autocomplete('option', 'source', Pe3Desc);
                         Pe4Cd = [];
                         Pe5Cd = [];
@@ -293,14 +292,13 @@
                         $('#pe8').hide('');
                     } else {
                         $('#pe3').show();
-                        console.log(result);
+  
                         result = result.split("!");
                         var code = result[1];
                         Pe4Cd = code.split('|');
                         var desc = result[0];
                         Pe4Desc = desc.split('|');
-                        console.log(Pe4Cd);
-                        console.log(Pe4Desc);
+
                         $("#pe3").autocomplete('option', 'source', Pe4Desc);
 
                         Pe5Cd = [];
@@ -369,16 +367,15 @@
                         $('#pe7').val('');
                         $('#pe8').hide('');
                     } else {
-                        console.log(result);
+                       
                         $('#pe4').show();
-                        console.log(result);
+          
                         result = result.split("!");
                         var code = result[1];
                         Pe5Cd = code.split('|');
                         var desc = result[0];
                         Pe5Desc = desc.split('|');
-                        console.log(Pe5Cd);
-                        console.log(Pe5Desc);
+
                         $("#pe4").autocomplete('option', 'source', Pe5Desc);
 
                         Pe6Cd = [];
@@ -436,14 +433,13 @@
                         $('#pe8').hide('');
                     } else {
                         $('#pe5').show();
-                        console.log(result);
+              
                         result = result.split("!");
                         var code = result[1];
                         Pe6Cd = code.split('|');
                         var desc = result[0];
                         Pe6Desc = desc.split('|');
-                        console.log(Pe6Cd);
-                        console.log(Pe6Desc);
+       
                         $("#pe5").autocomplete('option', 'source', Pe6Desc);
 
                         Pe7Cd = [];
@@ -493,14 +489,13 @@
                         $('#pe8').hide('');
                     } else {
                         $('#pe6').show();
-                        console.log(result);
+                        
                         result = result.split("!");
                         var code = result[1];
                         Pe7Cd = code.split('|');
                         var desc = result[0];
                         Pe7Desc = desc.split('|');
-                        console.log(Pe7Cd);
-                        console.log(Pe7Desc);
+        
                         $("#pe6").autocomplete('option', 'source', Pe7Desc);
 
                         Pe8Cd = [];
@@ -544,14 +539,13 @@
                         $('#pe8').hide('');
                     } else {
                         $('#pe7').show();
-                        console.log(result);
+                 
                         result = result.split("!");
                         var code = result[1];
                         Pe8Cd = code.split('|');
                         var desc = result[0];
                         Pe8Desc = desc.split('|');
-                        console.log(Pe8Cd);
-                        console.log(Pe8Desc);
+   
                         $("#pe7").autocomplete('option', 'source', Pe8Desc);
                         Pe9Cd = [];
                         Pe9Desc = [];
@@ -576,14 +570,13 @@
 
                     } else {
                         $('#pe8').show();
-                        console.log(result);
+                     
                         result = result.split("!");
                         var code = result[1];
                         Pe9Cd = code.split('|');
                         var desc = result[0];
                         Pe9Desc = desc.split('|');
-                        console.log(Pe9Cd);
-                        console.log(Pe9Desc);
+           
                         $("#pe8").autocomplete('option', 'source', Pe9Desc);
 
                         $('#divpe8').show();
@@ -658,43 +651,43 @@
         $('#pe1').on('autocompleteselect', function (e, ui) {
             itemIDpe2 = Pe2Desc.indexOf(ui.item.value);
             pitemIDpe1 = Pe2Cd[itemIDpe2];
-            console.log(Pe2Cd[itemIDpe2]);
+            
             $('#idPE').val();
         });
         $('#pe2').on('autocompleteselect', function (e, ui) {
             itemIDpe3 = Pe3Desc.indexOf(ui.item.value);
             pitemIDpe2 = Pe3Cd[itemIDpe3];
-            console.log(Pe3Cd[itemIDpe3]);
+          
         });
         $('#pe3').on('autocompleteselect', function (e, ui) {
             itemIDpe4 = Pe4Desc.indexOf(ui.item.value);
             pitemIDpe3 = Pe4Cd[itemIDpe4];
-            console.log(Pe4Cd[itemIDpe4]);
+           
         });
         $('#pe4').on('autocompleteselect', function (e, ui) {
             itemIDpe5 = Pe5Desc.indexOf(ui.item.value);
             pitemIDpe4 = Pe5Cd[itemIDpe5];
-            console.log(Pe5Cd[itemIDpe5]);
+          
         });
         $('#pe5').on('autocompleteselect', function (e, ui) {
             itemIDpe6 = Pe6Desc.indexOf(ui.item.value);
             pitemIDpe5 = Pe6Cd[itemIDpe6];
-            console.log(Pe6Cd[itemIDpe6]);
+           
         });
         $('#pe6').on('autocompleteselect', function (e, ui) {
             itemIDpe7 = Pe7Desc.indexOf(ui.item.value);
             pitemIDpe6 = Pe7Cd[itemIDpe7];
-            console.log(Pe7Cd[itemIDpe7]);
+            
         });
         $('#pe7').on('autocompleteselect', function (e, ui) {
             itemIDpe8 = Pe8Desc.indexOf(ui.item.value);
             pitemIDpe7 = Pe8Cd[itemIDpe8];
-            console.log(Pe8Cd[itemIDpe8]);
+            
         });
         $('#pe8').on('autocompleteselect', function (e, ui) {
             itemIDpe9 = Pe9Desc.indexOf(ui.item.value);
             pitemIDpe7 = Pe9Cd[itemIDpe9];
-            console.log(Pe9Cd[itemIDpe9]);
+            
         });
         $('#pe8').on('change keydown', function (e) {
             pe8();
@@ -736,7 +729,7 @@
                 timeout: 10000,
                 data: {input: $('#pe0 option:selected').val()},
                 success: function (result) {
-                    console.log(result);
+                    
                     if (result.trim() === "none") {
                         $('#divpe1').hide();
                         $('#divpe2').hide();
@@ -755,8 +748,7 @@
                         Pe2Cd = code.split('|');
                         var desc = result[0];
                         Pe2Desc = desc.split('|');
-                        console.log(Pe2Cd);
-                        console.log(Pe2Desc);
+               
                         $("#pe1").autocomplete('option', 'source', Pe2Desc);
 
                         $('#divpe2').hide();
@@ -779,7 +771,7 @@
                 timeout: 10000,
                 data: {input2: $('#pe1 option:selected').val()},
                 success: function (result) {
-                    console.log(result);
+                    
                     if (result.trim() === "none") {
                         $('#divpe1').hide();
                         $('#divpe2').hide();

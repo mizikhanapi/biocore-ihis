@@ -464,9 +464,9 @@
                                             
                                             //function searching Radiology Procedure
                                             function searchingRISPRO(fieldId,loadingDivId,urlData,urlCode,codeFieldId,hfc_codeField){
-                                                console.log("dlm searchRIS : " + hfcRISCode);
+                                                
                                                 var keywordSearch = $("#"+fieldId).val();
-                                                console.log(hfcRISCode);
+                                                
                                                 $('#'+fieldId).flexdatalist({
                                                     minLength: 3,
                                                     searchIn: 'name',
@@ -479,7 +479,7 @@
                                                               keyword:keywordSearch},
                                                         timeout:3000,
                                                         success:function(result){
-                                                            console.log(result);
+                                                            
                                                             if(result === undefined){
                                                                 $('#'+loadingDivId).html('No Record');
                                                             }
@@ -488,12 +488,11 @@
                                                  });
 
                                                 $("#"+fieldId).on('before:flexdatalist.data',function(response){
-                                                    console.log("Start - "+getDate());
-                                                    console.log(hfcRISCode);
+                                                    
                                                     $('#'+loadingDivId).html('<img src="img/LoaderIcon.gif" />');
                                                 });
                                                 $("#"+fieldId).on('after:flexdatalist.data',function(response){
-                                                    console.log("End - "+getDate());
+                                                   
                                                     $('#'+loadingDivId).html('');
                                                 });
                                                 $("#" + fieldId).on('select:flexdatalist', function (response) {
@@ -505,7 +504,7 @@
 //                                                        timeout:3000,
 //                                                        data:{id:hfc_name},
 //                                                        success:function(response){
-//                                                        console.log(response);
+//                                                     
 //                                                            
 //                                                            //$('#'+codeFieldId).val(hfcCode.trim());
 //                                                            
@@ -525,7 +524,7 @@
                                                     params: {
                                                         timeout: 3000,
                                                         success: function (result) {
-                                                            console.log(result);
+                                                            
                                                             if (result === undefined) {
                                                                 $('#' + loadingDivId).html('No Record');
                                                             }
@@ -534,11 +533,11 @@
                                                 });
 
                                                 $("#" + fieldId).on('before:flexdatalist.data', function (response) {
-                                                    console.log("Start - " + getDate());
+                                                    
                                                     $('#' + loadingDivId).html('<img src="img/LoaderIcon.gif" />');
                                                 });
                                                 $("#" + fieldId).on('after:flexdatalist.data', function (response) {
-                                                    console.log("End - " + getDate());
+                                                    
                                                     $('#' + loadingDivId).html('');
                                                 });
                                                 $("#" + fieldId).on('select:flexdatalist', function (response) {
@@ -549,17 +548,17 @@
                                                         timeout:3000,
                                                         data:{id:hfc_name},
                                                         success:function(response){
-                                                        console.log(response);
+                                                       
                                                             var array_data = String(response).split("|");
                                                             var hfcCode = array_data[0];
                                                             var hfcLocation = array_data[1].split("[#-#]");
-                                                           console.log(array_data);
+                                                          
                                                            hfcRISCode = hfcCode.trim();
                                                             $('#'+codeFieldId).val(hfcCode.trim());
                                                             $('#'+locationField).val(hfcLocation[0].trim());
                                                         }
                                                     });
-                                                    console.log(hfcRISCode);
+                                                    
                                                 });
                                             }
                                         })

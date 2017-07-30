@@ -197,14 +197,13 @@
                   
                   var weight = $('#bmiWeight').val().split(" ");
                   weight = parseFloat(weight[0]);
-                  console.log(height);
-                  console.log(weight);
+
                  // result = weight/height;
                   //result = parseInt(result)
                   var result = calcBMI(height,weight);
                   $('#bmi').val(result[0]);
                   $('#bmiStatus').val((result[1]));
-                  console.log(result);
+                 
                   
               });
         $('#headCirSlider').slider({

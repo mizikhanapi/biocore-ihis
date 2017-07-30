@@ -82,7 +82,7 @@ $(document).ready(function () {
                 id:$('#problem').val()
             },
             success:function(result){
-                console.log(result);
+           
                 $('#ccnCode').val(result.trim())
             }
         });
@@ -95,11 +95,11 @@ $(document).ready(function () {
         var delConfirm = confirm('Are you want to delete this notes? ');
         if (delConfirm === true) {
             var idName = $(this).get(0).id;
-            console.log(idName);
+          
             var id = idName.split("|");
             delete _data[id[1]];
             $(this).closest('tr').remove();
-            console.log(_data);
+           
         } else {
             return false;
         }
@@ -130,7 +130,7 @@ $(document).ready(function () {
 
         _data.push(obj1);
         displayCCN(problem,Mild,Site,duration,sdur,Laterality,Comment);
-        console.log(_data);
+     
         $("#problem").val("");
         $("#duration").val("");
         $("#Comment").val("");
@@ -184,7 +184,7 @@ $(document).ready(function () {
         var sum = _uproblem + '| ' + _uMild + '| ' + _uSite + '| ' + _uduration + '| ' + _ssdur + '| ' + _uLaterality + '| ' + _uComment
         $('#sum' + rowId).html(sum);
         $("#update_CIS01000001").modal('toggle');
-        console.log(_data);
+        
     });
 
 
@@ -204,7 +204,7 @@ $(document).ready(function () {
         _data.push(obj1);
         displayHPI(obj1.details);
         $("#details").val("");
-        console.log(_data);
+
         $("#CIS01000002").modal('toggle');
     });
 
@@ -284,7 +284,7 @@ $(document).ready(function () {
         var sum = _PProblem2 + '| ' + _PStatus + '| ' + _Pcomment1
         $('#sum' + rowId).html(sum);
         $("#update_CIS01000003").modal('toggle');
-        //console.log(_data);
+     
     });
 
 /// -----------------------------------------------------------------------------------------------------------------------------------------------/////;
@@ -307,7 +307,7 @@ $(document).ready(function () {
         });
         _data.push(obj1);
         displayFMH(Problem3,f_relationship,comment2);
-        console.log(_data);
+
         $("#Problem3").val("");
         $("#f_relationship").val("Select Family Relationship");
         $("#comment2").val("");
@@ -322,7 +322,7 @@ $(document).ready(function () {
         var idName = $(this).get(0).id;
         var id = idName.split("|");
         var updateObj = _data[id[1]];
-        //console.log(_data);
+
         retriveDataSearchingSubjective("tCISSubFMHSearch_update", "tCISSubFMHSearchLoading_update", "search/ResultPMHSearch.jsp", "search/ResultPMHSearchCode.jsp", "ufmhCode", updateObj.Problem3);
         //$('#PProblem3').val(updateObj.Problem3);
         $('#ff_relationship').val(updateObj.f_relationship);
@@ -369,8 +369,7 @@ $(document).ready(function () {
 
         _data.push(obj1);
         displaySOH(Problem4,date,comment3);
-        console.log(_data);
-
+   
 
         $("#Problem4").val("");
         $("#date").val("");
@@ -432,7 +431,7 @@ $(document).ready(function () {
         });
         _data.push(obj1);
          displayBLD(blood,Rhesus_Type,G6PD_Status,comment4);
-        console.log(_data);
+   
         $("#comment4").val("");
         $("#CIS01000006").modal('toggle');
     });
@@ -442,7 +441,7 @@ $(document).ready(function () {
         var idName = $(this).get(0).id;
         var id = idName.split("|");
         var updateObj = _data[id[1]];
-        console.log(_data);
+
         $('#b_blood').val(updateObj.blood);
         $('#RRhesus_Type').val(updateObj.Rhesus_Type);
         $('#GG6PD_Status').val(updateObj.G6PD_Status);
@@ -501,7 +500,7 @@ $(document).ready(function () {
         var idName = $(this).get(0).id;
         var id = idName.split("|");
         var updateObj = _data[id[1]];
-        console.log(_data);
+
         retriveDataSearchingSubjective("tCISSubALGSearch_update", "tCISSubALGSearchLoading_update", "search/ResultALGSearch.jsp", "search/ResultALGSearchCode.jsp", "uALG_cd", updateObj.Problem5);
         //$('#PProblem5').val(updateObj.Problem5);
         $('#ddate1').val(updateObj.date1);
@@ -625,7 +624,7 @@ $(document).ready(function () {
         var idName = $(this).get(0).id;
         var id = idName.split("|");
         var updateObj = _data[id[1]];
-        console.log(_data);
+   
         retriveDataSearchingSubjective("tCISSubDABSearch_update", "tCISSubDABSearchLoading_update", "search/ResultDABSearch.jsp", "search/ResultDABSearchCode.jsp", "uDAB_cd", updateObj.Problem32);
         //$('#PProblem32').val(updateObj.Problem32);
         $('#uDAS_cd').val(updateObj.codeDAB);
@@ -665,7 +664,7 @@ $(document).ready(function () {
             params: {
                 timeout: 3000,
                 success: function (result) {
-                    console.log(result);
+                 
                     if (result === undefined) {
                         $('#'+loadingDivId).html('No Record');
                     }
@@ -673,23 +672,23 @@ $(document).ready(function () {
             }
         });
         $("#" + fieldId).on('before:flexdatalist.data', function (response) {
-            console.log("Start - " + getDate());
+          
             $('#' + loadingDivId).html('<img src="img/LoaderIcon.gif" />');
         });
         $("#" + fieldId).on('after:flexdatalist.data', function (response) {
-            console.log("End - " + getDate());
+         
             $('#' + loadingDivId).html('');
         });
         $("#" + fieldId).on('select:flexdatalist', function (response) {
             var searchName = $("#" + fieldId).val();
-            console.log(searchName);
+            
             $.ajax({
                 type: "post",
                 url: urlCode,
                 timeout: 3000,
                 data: {id: searchName},
                 success: function (response) {
-                    console.log(response);
+                   
                     $("#" + codeFieldId).val(response.trim());
 
                 }
@@ -707,7 +706,7 @@ function displayCCN(problem,Mild,Site,duration,sdur,Laterality,Comment){
     i = i + 1;
 }
  function displayHPI(details){
-     console.log(details);
+ 
     var _tr = '<tr data-status="pagado" ><td><div class="ckbox"><input type="checkbox" id="checkbox|'+i+'" name="CIS_consult_notes"><label for="checkbox|'+i+'"></label></div></td><td><div class="media"><div class="media-body">History of Present Illness  :<p class="summary" id="sum' + i + '">' + details + '</p></div></div></td><td><a data-toggle="modal"   href="" class="updateBtnHPI" id="row|' + i + '"><i class="fa fa-pencil-square-o" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #337ab7;" ></i></a></a></td><td><a href="javascript:;" class="star"><a href="#" class="deleteBtn" id="row|' + i + '"><i class="fa fa-times" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #d9534f;"></i></a></a></td></tr>';
     $('#HPINotes').append(_tr);
     i = i + 1;
@@ -716,7 +715,7 @@ function displayCCN(problem,Mild,Site,duration,sdur,Laterality,Comment){
  function displayPMH(Problem1,Status,comment1){
              var _tr = '<tr data-status="pagado" ><td><div class="ckbox"><input type="checkbox" id="checkbox|'+i+'" name="CIS_consult_notes"><label for="checkbox|'+i+'"></label></div></td><td><div class="media"><div class="media-body">Past Medical History  :<p class="summary" id="sum' + i + '">' + Problem1 + '| ' + Status + '| ' + comment1 + '</p></div></div></td><td><a data-toggle="modal"  href="" class="updateBtnPMH" id="row|' + i + '"><i class="fa fa-pencil-square-o" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #337ab7;" ></i></a></a></td><td><a href="javascript:;" class="star"><a href="#" class="deleteBtn" id="row|' + i + '"><i class="fa fa-times" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #d9534f;"></i></a></a></td></tr>';
         $('#PMHNotes').append(_tr);
-        console.log(i);
+     
         i = i + 1;
  }
  
@@ -747,7 +746,7 @@ function displayBLD(blood,Rhesus_Type,G6PD_Status,comment4){
 function displayAllergy(Problem5,date1,comment5){
          var _tr = '<tr data-status="pagado" ><td><div class="ckbox"><input type="checkbox" id="checkbox|'+i+'" name="CIS_consult_notes"><label for="checkbox|'+i+'"></label></div></td><td><div class="media"><div class="media-body">Allergy  :<p class="summary" id="sum' + i + '">' + Problem5 + '| ' + date1 + '| ' + comment5 + '</p></div></div></td><td><a data-toggle="modal"  href="" class="updateBtnALG" id="row|' + i + '"><i class="fa fa-pencil-square-o" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #337ab7;" ></i></a></a></td><td><a href="javascript:;" class="star"><a href="#" class="deleteBtn" id="row|' + i + '"><i class="fa fa-times" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #d9534f;"></i></a></a></td></tr>';
         $('#ALGNotes').append(_tr);
-        console.log(i);
+      
         i = i + 1;
 }
 function displayIMU(Problem6,date2,comment6){
@@ -755,14 +754,14 @@ function displayIMU(Problem6,date2,comment6){
         var _tr = '<tr data-status="pagado" ><td><div class="ckbox"><input type="checkbox" id="checkbox|'+i+'" name="CIS_consult_notes"><label for="checkbox|'+i+'"></label></div></td><td><div class="media"><div class="media-body">Immunization :<p class="summary" id="sum' + i + '">' + Problem6 + '| ' + date2 + '| ' + comment6 + '</p></div></div></td><td><a data-toggle="modal"   href="" class="updateBtnIMU" id="row|' + i + '"><i class="fa fa-pencil-square-o" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #337ab7;" ></i></a></a></td><td><a href="javascript:;" class="star"><a href="#" class="deleteBtn" id="row|' + i + '"><i class="fa fa-times" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #d9534f;"></i></a></a></td></tr>';
 
         $('#IMUNotes').append(_tr);
-        console.log(i);
+     
         i = i + 1;
 }
 
 function displayDAB(Problem32,date3,comment7){
         var _tr = '<tr data-status="pagado" ><td><div class="ckbox"><input type="checkbox" id="checkbox|'+i+'" name="CIS_consult_notes"><label for="checkbox|'+i+'"></label></div></td><td><div class="media"><div class="media-body">Disablility :<p class="summary" id="sum' + i + '">'  + Problem32 + '| ' + date3 + '| ' + comment7 + '</p></div></div></td><td><a data-toggle="modal" href="" class="updateBtnDAB" id="row|' + i + '"><i class="fa fa-pencil-square-o" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #337ab7;" ></i></a></a></td><td><a href="javascript:;" class="star"><a href="#" class="deleteBtn" id="row|' + i + '"><i class="fa fa-times" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #d9534f;"></i></a></a></td></tr>';
         $('#DABNotes').append(_tr);
-        console.log(i);
+       
         i = i + 1;
 }
 

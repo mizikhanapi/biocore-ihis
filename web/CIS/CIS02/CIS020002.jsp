@@ -234,7 +234,7 @@
         var vr = 0;
         var tPoint = 0;
 
-        console.log('loading...');
+        
         $('#subModalPGCS').hide();
         $('#updatePGSC').hide();
         $("#ortho_actionPGSC").hide();
@@ -245,7 +245,7 @@
             var response = $(this).closest('tr').children('td').text();
             var point = this.value;
             $('#rowpEO').replaceWith("<tr id='rowpEO'><td>" + response + "</td><td>" + point + "</td></tr>");
-            console.log(response);
+            
                            var result =  calcPoint(eor,mr,vr);
                 $('#pgcsresult').val(result[0]);
                 $('#pgcstpoint').val(result[1]+" Points");

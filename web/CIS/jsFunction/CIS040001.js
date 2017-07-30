@@ -66,7 +66,7 @@ $(document).ready(function () {
         var orderId = rowOrder.find("#orderId").html();
         var item_cd = rowOrder.find("#item_cd").html();
         var hfc_to = rowOrder.find("#providerId").html();
-        console.log(orderId);
+       
 
         $.ajax({
             timeout: 3000,
@@ -78,11 +78,11 @@ $(document).ready(function () {
                 hfc_to:hfc_to
             },
             success: function (e) {
-                console.log(e);
+                
 
                 var orderDetailArray = e.trim();
                 orderDetailArray = e.split("|");
-                console.log(orderDetailArray);
+                
                 var codeLIO = orderDetailArray[3];
                 searchLIO("tCISOELIOSearch","search/ResultLIOSearch.jsp","tCISOELIOSearchLoading",orderDetailArray[4]);
                 $('#LIO_NEW a[href="#laboratoryRequest1"]').tab('show');
@@ -104,8 +104,6 @@ $(document).ready(function () {
         todayDate = todayDate[0];
         var type = $("#selectCIS_OE_LIO_SEARCH_TYPE option:selected").val();
 
-        console.log(todayDate);
-        console.log(type);
         var data = {
                 pmiNo: pmiNo,
                 todayDate: todayDate,
@@ -113,7 +111,7 @@ $(document).ready(function () {
                 orderId: order_id
             }
            
-           console.log(data);
+         
         $.ajax({
             url: "order/ResultSearchOrderLIO.jsp",
             timeout: 3000,
@@ -129,7 +127,7 @@ $(document).ready(function () {
     $("#btnCIS_OE_LIO_SUBMIT").click(function(e){
         
         e.preventDefault();
-        console.log(_dataLIO);
+   
         var submitConfirm = confirm('Confirm All Order');
         if (submitConfirm === true) {
             var msg = '';
@@ -251,7 +249,7 @@ $(document).ready(function () {
         $("#btnCIS_OE_LIO_CANCEL").hide();
         $("#btnCIS_OE_LIO_ADD").show();
         clearFieldLIO();
-        console.log(_dataLIO);
+       
     });
     
    
@@ -293,11 +291,11 @@ $(document).ready(function () {
         
     });
     $("#tCISOELIOSearch").on('before:flexdatalist.data', function (response) {
-        console.log("Start - " + getDate());
+     
         $('#tCISOELIOSearchLoading').html('<img src="img/LoaderIcon.gif" />');
     });
     $("#tCISOELIOSearch").on('after:flexdatalist.data', function (response) {
-        console.log("End - " + getDate());
+      
         $('#tCISOELIOSearchLoading').html('');
     });
     $("#tCISOELIOSearch").on('select:flexdatalist', function (response) {
@@ -323,7 +321,7 @@ $(document).ready(function () {
         if (delConfirm === true) {
             delete _dataLIO[delIndex];
             $(this).closest('tr').remove();
-            console.log(_dataLIO);
+            
         } else {
             return false;
         }
@@ -388,7 +386,7 @@ $(document).ready(function () {
             params: {
                 timeout: 3000,
                 success: function (result) {
-                    //console.log(result);
+                    
                     if (result === undefined) {
                         $('#' + loadingId).html('No Record');
                     }

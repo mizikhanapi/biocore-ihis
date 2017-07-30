@@ -15,7 +15,7 @@
             params:{
                 timeout:3000,
                 success:function(result){
-                    //console.log(result);
+                
                     if(result === undefined){
                         $('#'+loadingDivId).html('No Record');
                     }
@@ -24,23 +24,23 @@
          });
 
         $("#"+fieldId).on('before:flexdatalist.data',function(response){
-            console.log("Start - "+getDate());
+        
             $('#'+loadingDivId).html('<img src="img/LoaderIcon.gif" />');
         });
         $("#"+fieldId).on('after:flexdatalist.data',function(response){
-            console.log("End - "+getDate());
+          
             $('#'+loadingDivId).html('');
         });
         $("#" + fieldId).on('select:flexdatalist', function (response) {
             var searchName = $("#" + fieldId).val();
-            console.log(searchName);
+         
             $.ajax({
                 type:"post",
                 url:urlCode,
                 timeout:3000,
                 data:{id:searchName},
                 success:function(response){
-                console.log(response);
+           
                    $("#" + codeFieldId).val(response.trim());
 
                 }
@@ -60,7 +60,7 @@
         params: {
             timeout: 3000,
             success: function (result) {
-                //console.log(result);
+              
                 if (result === undefined) {
                     $('#' + loadingDivId).html('No Record');
                 }
@@ -69,23 +69,23 @@
     });
 
     $("#" + fieldId).on('before:flexdatalist.data', function (response) {
-        console.log("Start - " + getDate());
+      
         $('#' + loadingDivId).html('<img src="img/LoaderIcon.gif" />');
     });
     $("#" + fieldId).on('after:flexdatalist.data', function (response) {
-        console.log("End - " + getDate());
+       
         $('#' + loadingDivId).html('');
     });
     $("#" + fieldId).on('select:flexdatalist', function (response) {
         var searchName = $("#" + fieldId).val();
-        console.log(searchName);
+  
         $.ajax({
             type: "post",
             url: urlCode,
             timeout: 3000,
             data: {id: searchName},
             success: function (response) {
-                console.log(response);
+                
                 $("#" + codeFieldId).val(response.trim());
 
             }
@@ -107,7 +107,7 @@ function searchingHFC(fieldId, loadingDivId, urlData, urlCode, codeFieldId, loca
         params: {
             timeout: 3000,
             success: function (result) {
-                console.log(result);
+              
                 if (result === undefined) {
                     $('#' + loadingDivId).html('No Record');
                 }
@@ -134,7 +134,7 @@ function searchingHFC(fieldId, loadingDivId, urlData, urlCode, codeFieldId, loca
                 orderCode: "ROS"
             },
             success: function (response) {
-                console.log(response);
+        
                 var hfc_detail_array = response.split("[#-#]");
                 var hfc_location = hfc_detail_array[0].split("|");
                 $('#' + codeFieldId).val(hfc_location[0].trim());
@@ -157,7 +157,7 @@ function searchingHFC(fieldId, loadingDivId, urlData, urlCode, codeFieldId, loca
 }
 
 function searchingHFCValue(fieldId, loadingDivId, urlData, urlCode, codeFieldId, locationField, hfcOrderDetail, hfcProviderDetail,currentHFCName) {
-    console.log("searchHFCValue");
+
 
     $('#' + fieldId).val(currentHFCName).flexdatalist({
         minLength: 3,
@@ -168,7 +168,7 @@ function searchingHFCValue(fieldId, loadingDivId, urlData, urlCode, codeFieldId,
         params: {
             timeout: 3000,
             success: function (result) {
-                console.log(result);
+     
                 if (result === undefined) {
                     $('#' + loadingDivId).html('No Record');
                 }
@@ -195,7 +195,7 @@ function searchingHFCValue(fieldId, loadingDivId, urlData, urlCode, codeFieldId,
                 orderCode: "ROS"
             },
             success: function (response) {
-                console.log(response);
+                
                 var hfc_detail_array = response.split("[#-#]");
                 var hfc_location = hfc_detail_array[0].split("|");
                 $('#' + codeFieldId).val(hfc_location[0].trim());
@@ -228,7 +228,7 @@ function searchHFCDetailv2(hfcName,codeFieldId,hfcOrderDetail,hfcProviderDetail,
                 orderCode: "ROS"
             },
             success: function (response) {
-                console.log(response);
+           
                 var hfc_detail_array = response.split("[#-#]");
                 var hfc_location = hfc_detail_array[0].split("|");
                 $('#' + codeFieldId).val(hfc_location[0].trim());
@@ -260,7 +260,7 @@ function searchHFCOnly(fieldId,loadingDivId){
         params: {
             timeout: 3000,
             success: function (result) {
-                console.log(result);
+           
                 if (result === undefined) {
                     $('#' + loadingDivId).html('No Record');
                 }
@@ -287,7 +287,7 @@ function searchHFCDefault(fieldId, loadingDivId,value) {
         params: {
             timeout: 3000,
             success: function (result) {
-                console.log(result);
+              
                 if (result === undefined) {
                     $('#' + loadingDivId).html('No Record');
                 }
@@ -314,7 +314,7 @@ function searchDisciplineOnly(fieldId, loadingDivId,hfc_code) {
         params: {
             timeout: 3000,
             success: function (result) {
-                console.log(result);
+                
                 if (result === undefined) {
                     $('#' + loadingDivId).html('No Record');
                 }
@@ -340,7 +340,7 @@ function retrieveDisciplineOnly(fieldId, loadingDivId, hfc_code,currentValue) {
         params: {
             timeout: 3000,
             success: function (result) {
-                console.log(result);
+               
                 if (result === undefined) {
                     $('#' + loadingDivId).html('No Record');
                 }
@@ -365,7 +365,7 @@ function getHFCCode(hfc_name,codeFieldId,detailField,discplineField,disciplineCo
                 id: hfc_name
             },
             success: function (response) {
-                //console.log(response);
+                
                 $("#"+codeFieldId).val(response.trim());
             if (detailField !== "-") {
                 getHFCOrderProviderDetail(response.trim(),detailField);
@@ -387,7 +387,7 @@ function getHFCOrderProviderDetail(orderHfc,detailField){
             
         },
         success:function(response){
-            //console.log(response);
+           
             $("#"+detailField).val(response.trim());
         }
     })
@@ -405,7 +405,7 @@ function searchWard(fieldId,loadingDivId,hfc_cd,discipline_cd,currentValue,wardC
         params: {
             timeout: 3000,
             success: function (result) {
-                console.log(result);
+                
                 if (result === undefined) {
                     $('#' + loadingDivId).html('No Record');
                 }
@@ -425,7 +425,7 @@ function searchWardClass(fieldId,loadingDivId,hfc_cd,discipline_cd,currentValue)
         params: {
             timeout: 3000,
             success: function (result) {
-                console.log(result);
+           
                 if (result === undefined) {
                     $('#' + loadingDivId).html('No Record');
                 }
@@ -444,7 +444,7 @@ function retrieveDataSearchingHFC(fieldId, loadingDivId, urlData, urlCode, codeF
         params: {
             timeout: 3000,
             success: function (result) {
-                console.log(result);
+            
                 if (result === undefined) {
                     $('#' + loadingDivId).html('No Record');
                 }
@@ -453,11 +453,11 @@ function retrieveDataSearchingHFC(fieldId, loadingDivId, urlData, urlCode, codeF
     });
 
     $("#" + fieldId).on('before:flexdatalist.data', function (response) {
-        console.log("Start - " + getDate());
+     
         $('#' + loadingDivId).html('<img src="img/LoaderIcon.gif" />');
     });
     $("#" + fieldId).on('after:flexdatalist.data', function (response) {
-        console.log("End - " + getDate());
+    
         $('#' + loadingDivId).html('');
     });
     $("#" + fieldId).on('select:flexdatalist', function (response) {
@@ -505,7 +505,7 @@ function searchLIO(searchFieldId, url, loadingId, currentValue) {
         params: {
             timeout: 3000,
             success: function (result) {
-                //console.log(result);
+         
                 if (result === undefined) {
                     $('#' + loadingId).html('No Record');
                 }
@@ -525,7 +525,7 @@ function searchDTO(searchFieldId, loadingId, currentValue) {
         params: {
             timeout: 3000,
             success: function (result) {
-                //console.log(result);
+             
                 if (result === undefined) {
                     $('#' + loadingId).html('No Record');
                 }
@@ -553,7 +553,7 @@ function searchPOS(searchFieldId, loadingId, currentValue, level,parentCode) {
         params: {
             timeout: 3000,
             success: function (result) {
-                console.log(result);
+              
                 if (result === undefined) {
                     $('#' + loadingId).html('No Record');
                 }
@@ -580,7 +580,7 @@ function searchPOS1(searchFieldId, loadingId, currentValue, level,parentCode) {
         params: {
             timeout: 3000,
             success: function (result) {
-                //console.log(result);
+           
                 if (result === undefined) {
                     $('#' + loadingId).html('No Record');
                 }
@@ -607,7 +607,7 @@ function searchPOS2(searchFieldId, loadingId, currentValue, level,parentCode) {
         params: {
             timeout: 3000,
             success: function (result) {
-                //console.log(result);
+
                 if (result === undefined) {
                     $('#' + loadingId).html('No Record');
                 }
@@ -641,7 +641,7 @@ function searchPOSCode(searchField,loadingField,codeField,level){
                 level:level
             },
             success: function (response) {
-                console.log(response);
+                
                 checkPOSLevel(response.trim(),nextLevel);
                 $("#"+codeField).val(response.trim());
                 searchPOS1("tCISOEPOS1Search", "tCISOEPOS1SearchLoading", "", "1",response.trim());
@@ -677,7 +677,7 @@ function searchPOSCode1(searchField, loadingField, codeField, level) {
                 level: level
             },
             success: function (response) {
-                console.log(response);
+     
                 checkPOSLevel(response.trim(), nextLevel);
                 $("#" + codeField).val(response.trim());
                 searchPOS2("tCISOEPOS2Search", "tCISOEPOSS2earchLoading", "","2",response.trim());
@@ -713,7 +713,7 @@ function searchPOSCode2(searchField, loadingField, codeField, level) {
                 level: level
             },
             success: function (response) {
-                console.log(response);
+              
                 checkPOSLevel(response.trim(), nextLevel);
                 $("#" + codeField).val(response.trim());
 //                searchPOS2("tCISOEPOS2Search", "tCISOEPOSS2earchLoading", "", "2");
@@ -725,7 +725,7 @@ function searchPOSCode2(searchField, loadingField, codeField, level) {
 }
 function checkPOSLevel(code,level){
         var pos_0_cd = code;
-        console.log(level);
+
         $.ajax({
             url:"search/ResultPOSCheckProcedureLevel.jsp",
             type:"POST",
@@ -735,11 +735,11 @@ function checkPOSLevel(code,level){
                 level:level.toString()
             },
             success:function(response){
-                console.log(response);
+           
                 if (response.trim() === "true"){
                     $("#div_CIS_OE_POS_LVL"+level).show();
                 }else{
-                    console.log(level);
+          
                     $("#tCISOEPOS_"+level.toString()+"_ID").val("");
                     if(level !== 3){
                         $("#tCISOEPOS_2_ID").val("");
@@ -766,7 +766,7 @@ function searchDOCTOROnly(fieldId, loadingDivId, hfc_code) {
         params: {
             timeout: 3000,
             success: function (result) {
-                console.log(result);
+        
                 if (result === undefined) {
                     $('#' + loadingDivId).html('No Record');
                 }
@@ -788,7 +788,7 @@ function searchDOCTORValue(fieldId, loadingDivId, hfc_code,value) {
         params: {
             timeout: 3000,
             success: function (result) {
-                console.log(result);
+
                 if (result === undefined) {
                     $('#' + loadingDivId).html('No Record');
                 }
@@ -817,7 +817,7 @@ function searchDOCTOROnlySurgical(fieldId, loadingDivId, hfc_code,value) {
         params: {
             timeout: 3000,
             success: function (result) {
-                console.log(result);
+               
                 if (result === undefined) {
                     $('#' + loadingDivId).html('No Record');
                 }
@@ -843,7 +843,7 @@ function searchOTRoomSurgical(fieldId, loadingDivId,value) {
         params: {
             timeout: 3000,
             success: function (result) {
-                console.log(result);
+       
                 if (result === undefined) {
                     $('#' + loadingDivId).html('No Record');
                 }
@@ -889,7 +889,7 @@ function searchPOSSurgicalCategory(searchFieldId, loadingId, currentValue) {
         params: {
             timeout: 3000,
             success: function (result) {
-                console.log(result);
+   
                 if (result === undefined) {
                     $('#' + loadingId).html('No Record');
                 }
@@ -916,7 +916,7 @@ function searchPOSSurgicalProcedure(searchFieldId, loadingId, currentValue,catCo
         params: {
             timeout: 3000,
             success: function (result) {
-                console.log(result);
+               
                 if (result === undefined) {
                     $('#' + loadingId).html('No Record');
                 }

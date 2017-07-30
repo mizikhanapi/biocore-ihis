@@ -227,6 +227,6 @@
                          <%
                         }else{
                          out.println("1");
-out.println(sql);
+//out.println(sql);
 }
                         %>

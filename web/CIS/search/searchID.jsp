@@ -355,7 +355,7 @@
 <%
     } else {
         out.print("1");
-        out.print(sql2);
+       
     }
 %>
 

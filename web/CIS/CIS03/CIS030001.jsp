@@ -203,26 +203,7 @@
         <!--End Update Diagnosis-->
         
         <script type="text/javascript">
-//            var arrayDGSData = JSON.parse(localStorage.dgsData);
-//            //var arrayDGSData = [];
-//            var arrayDGSDataAjax = [];
-//            //var arrayDGSData = [];
-//            console.log(arrayDGSData);
-//            var inputdgsSearch = $('#ajax').val();
-//              $('#diagnosisSearch').flexdatalist({
-//                    minLength: 3,
-//                    searchIn: 'name',
-//                    data:arrayDGSData,
-//                    cache:true,
-//                    searchDelay:3000
-//              });
-//               $("#diagnosisSearch").on('before:flexdatalist.data',function(response){
-//                        $('#diagnosisSearchLoading').html('<img src="img/LoaderIcon.gif" />');
-//                    });
-//              $("#diagnosisSearch").on('after:flexdatalist.data',function(response){
-//                        $('#diagnosisSearchLoading').html('');
-//                        //console.log(urlData);
-//                    });
+
   
               $(document).ready(function(){
                   
@@ -240,7 +221,7 @@
                         params:{
                             timeout:3000,
                             success:function(result){
-                                console.log(result);
+                                
                                 if(result === undefined){
                                     $('#'+loadingDivId).html('No Record');
                                 }
@@ -249,23 +230,23 @@
                      });
 
                     $("#"+fieldId).on('before:flexdatalist.data',function(response){
-                        console.log("Start - "+getDate());
+                       
                         $('#'+loadingDivId).html('<img src="img/LoaderIcon.gif" />');
                     });
                     $("#"+fieldId).on('after:flexdatalist.data',function(response){
-                        console.log("End - "+getDate());
+                       
                         $('#'+loadingDivId).html('');
                     });
                     $("#" + fieldId).on('select:flexdatalist', function (response) {
                         var searchName = $("#" + fieldId).val();
-                        console.log(searchName);
+                      
                         $.ajax({
                             type:"post",
                             url:urlCode,
                             timeout:3000,
                             data:{id:searchName},
                             success:function(response){
-                            console.log(response);
+                            
                                $("#" + codeFieldId).val(response.trim());
                                 
                             }

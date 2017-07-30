@@ -53,7 +53,7 @@ $(document).ready(function () {
                 room_name: $(this).val()
             },
             success: function (e) {
-                console.log(e);
+         
                 $("#tCISOESPOOTRoomCode").val(e.trim());
             }
         })
@@ -69,7 +69,7 @@ $(document).ready(function () {
                 hfc_code: hfc_cd
             },
             success: function (e) {
-                console.log(e.trim());
+           ;
                 $("#tCISOESPOConsultantCode").val(e.trim());
             }
         })
@@ -108,7 +108,7 @@ $(document).ready(function () {
             timeout: 3000,
             data: data,
             success: function (e) {
-                console.log(e);
+  
                 $("#tCISOESPOSearch_Code").val(e.trim());
             }
         })
@@ -116,7 +116,7 @@ $(document).ready(function () {
 
     $("#btnCIS_OE_POSSurgical_SUBMIT").click(function (e) {
         e.preventDefault();
-        console.log(_dataPOSSurgical);
+    
         var submitConfirm = confirm('Confirm All Order');
         if (submitConfirm === true) {
             var msg = '';
@@ -260,7 +260,6 @@ $(document).ready(function () {
         $("#tCISOESPOStartTime").val(updatePOSSurgicalObj.startTime);
         $("#tCISOESPOENDDate").val(updatePOSSurgicalObj.endDate);
         $("#tCISOESPOEndTime").val(updatePOSSurgicalObj.endTime);
-
     });
     
     $("#tableOrderPOSSurgical").on("click", ".btnDelete", function (e) {
@@ -296,8 +295,6 @@ $(document).ready(function () {
         var endDate = $("#tCISOESPOENDDate").val();
         var endTime = $("#tCISOESPOEndTime").val();
         var commentArea = $("#tCIS_POSSurgicalCommentArea").val();
-
-
 
         updatePOSSurgicalObj.procedure = procedure;
         updatePOSSurgicalObj.procedureCode = procedure_cd;
@@ -348,7 +345,6 @@ $(document).ready(function () {
                 $("#divCIS_OE_POSSurgical_OrderSearchResult").html(e);
             }
         })
-
     });
     
     $("#divCIS_OE_POSSurgical_OrderSearchResult").on("click","#tblOPOSSurgical #btnCIS_OE_POSSurgical_SEARCH_ADD",function(e){
@@ -375,8 +371,7 @@ $(document).ready(function () {
         $("#tCISOESPOConsultantCode").val(consultant_id);
         $("#tCISOESPOOTRoomCode").val(ot_room_no);
         $('#POSSurgical_NEW a[href="#surgicalProcedure1"]').tab('show');
-        
-       
+
     });
 
     function clearFieldPOSSurgical() {
@@ -391,10 +386,8 @@ $(document).ready(function () {
 
 
     function appendOrderPOSSurgical(obj, index) {
-
         var _tr = '<tr id="trPOS_row|' + index + '" ><td class="col-md-2">' + obj.cat_name + '</td><td class="col-md-2">' + obj.procedure + '</td><td class="col-md-2">' + obj.otRoom + '</td><td class="col-md-2">' + obj.consultantName + '</td><td class="col-md-2">' + obj.startDate + ' ' + obj.startTime + '</td><td class="col-md-2">' + obj.endDate + ' ' + obj.endTime + '</td><td class="col-md-2">' + obj.comment + '</td><td class="col-md-2"><a id="row|' + index + '" data-toggle="tooltip" data-placement="top" title="Update Order" class="btnUpdate" style="cursor: pointer" id=""><i class="fa fa-pencil-square-o fa-lg" aria-hidden="true" style="display: inline-block;color: #337ab7;"></i></a>&nbsp;<a id="delRow|' + index + '" data-toggle="tooltip" data-placement="top" title="Delete Order" class="btnDelete" style="cursor: pointer" id=""><i class="fa fa-times fa-lg" aria-hidden="true" style="display: inline-block;color: #d9534f;"></i></a></td></tr>';
         $("#tableOrderPOSSurgical").append(_tr);
-
     }
 
 

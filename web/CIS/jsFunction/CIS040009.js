@@ -24,7 +24,7 @@ $(document).ready(function(){
                 name: $(this).val()
             },
             success: function (response) {
-                console.log(response);
+              
                 //this ajax will response discipline Code for hfc patient admit to;
                 $("#disREFcode").val(response.trim());
                 searchDOCTOROnly("docREF", "docREFLoading", hfc_cd) 
@@ -44,7 +44,7 @@ $(document).ready(function(){
                 hfc_code:hfc_cd
             },
             success:function(response){
-                console.log(response);
+             
                 $("#docREFcode").val(response.trim());
             }
         });

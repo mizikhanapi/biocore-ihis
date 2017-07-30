@@ -53,7 +53,7 @@ window.onbeforeunload = function () {
         updateStatus(pmiNo, episodeDate, statusNow);
         return "Sure U are?";
     } else {
-        console.log("no patient");
+       
     }
 }
 
@@ -68,7 +68,7 @@ $(document).ready(function () {
 //            updateStatus(pmiNo, episodeDate, statusNow);
 //            return "Sure U are?";
 //        } else {
-//            console.log("no patient");
+//          
 //        }
 //    });
 
@@ -152,16 +152,7 @@ $(document).ready(function () {
         $('#settingModal').modal('toggle');
 
     });
-    console.log("Start - "+getDate());
-    $.get("search/resultDGS_2.jsp", function (data) {
-
-
-        localStorage.setItem("dgsData", data);
-        //console.log(localStorage.dgsData);
-
-    });
-    console.log("End - "+getDate());
-
+   
 });
 
 
@@ -204,7 +195,7 @@ function setSetting(param_code, param_name, enable, create_by, created_date) {
             } else if (r === "|4|") {
                 alert("Setting not update");
             }
-            // console.log(result);
+           
         }
     });
 }

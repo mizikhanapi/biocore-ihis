@@ -88,8 +88,6 @@ $(document).ready(function(){
         todayDate = todayDate[0];
         var type = $("#selectCIS_OE_POS_SEARCH_TYPE option:selected").val();
 
-        console.log(todayDate);
-        console.log(type);
         var data = {
             pmiNo: pmiNo,
             todayDate: todayDate,
@@ -97,7 +95,7 @@ $(document).ready(function(){
             orderId: order_id
         }
 
-        console.log(data);
+ 
         $.ajax({
             url: "order/ResultSearchOrderPOS.jsp",
             timeout: 3000,
@@ -114,7 +112,7 @@ $(document).ready(function(){
     $("#btnCIS_OE_POS_SUBMIT").click(function (e) {
 
         e.preventDefault();
-        console.log(_dataPOS);
+     
         var submitConfirm = confirm('Confirm All Order');
         if (submitConfirm === true) {
             var msg = '';
@@ -307,7 +305,6 @@ $(document).ready(function(){
         updatePOSIndex = indexPOS;
         updatePOSObj = _dataPOS[index]; 
         
-        console.log(updatePOSObj);
         var levelProcedureCode = updatePOSObj.procedure.split("[$-$]");
         if(levelProcedureCode.length === 3){
             
@@ -358,7 +355,7 @@ $(document).ready(function(){
         if (delConfirm === true) {
             delete _dataPOS[delIndex];
             $(this).closest('tr').remove();
-            console.log(_dataPOS);
+       
         } else {
             return false;
         }
@@ -375,7 +372,7 @@ $(document).ready(function(){
              level:level
          },
          success: function(response){
-             console.log(response);
+         
              if(level === "2"){
                  
                 searchPOS("tCISOEPOS2Search", "tCISOEPOSS2earchLoading", procedureName, "2",$("#tCISOEPOS_1_ID").val());

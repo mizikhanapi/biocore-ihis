@@ -25,7 +25,7 @@ $(document).ready(function () {
 
     $("#searchDIS_MON").on("select:flexdatalist", function () {
         var hfc_cd = $("#hfcIdMON").val();
-        console.log(hfc_cd);
+  
         $.ajax({
             type: "POST",
             timeout: 3000,
@@ -34,7 +34,7 @@ $(document).ready(function () {
                 name: $(this).val()
             },
             success: function (response) {
-                console.log(response);
+             
                 //this ajax will response discipline Code for hfc patient admit to;
                 $("#searchDIS_MONCode").val(response.trim());
 
@@ -54,7 +54,7 @@ $(document).ready(function () {
     $("#btnCIS_OE_MON_SUBMIT").click(function(e){
        e.preventDefault();
         e.preventDefault();
-        console.log(_dataMON);
+  
         var submitConfirm = confirm('Confirm All Order');
         if (submitConfirm === true) {
             var msg = '';
@@ -120,7 +120,7 @@ $(document).ready(function () {
 
         _dataMON.push(obj1);
         index = _dataMON.lastIndexOf(obj1);
-        console.log(index);
+     
         appendOrderMON(obj1, index);
         clearMONField();
     });
@@ -179,7 +179,7 @@ $(document).ready(function () {
         if (delConfirm === true) {
             delete _dataMON[delIndex];
             $(this).closest('tr').remove();
-            console.log(_dataMON);
+      
         } else {
             return false;
         }

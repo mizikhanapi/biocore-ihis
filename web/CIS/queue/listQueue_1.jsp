@@ -65,5 +65,5 @@
                             </table>
 </table>
 <script>
-    console.log(<%=sql%>);
+
 </script>

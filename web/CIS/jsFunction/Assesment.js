@@ -9,7 +9,7 @@ $(document).ready(function(){
       $('#Problemlist').on('click',function(){
      //alert("Works");
         $.get("CIS03/CIS030003_1.jsp", function (data) {
-            //console.log(data);
+          
                $('#CIS030003_modal').html(data);
                //$('#outpatient').html(data);
 
@@ -78,7 +78,7 @@ $(document).ready(function(){
         var idName = $(this).get(0).id;
         var id = idName.split("|");
         var updateObj = _data[id[1]];
-        console.log(idName);
+       
         retriveDataSearchingAssessment("tCISSubDGSSearch_update", "tCISSubDGSSearchLoading_update", "search/ResultDGSSearch.jsp", "search/ResultDGSSearchCode.jsp", "update_dgsCode", updateObj.searchDiag);
         $('#update_TypeDGS').val(updateObj.TypeDGS);
         $('#update_dateDGS').val(updateObj.dateDGS);
@@ -117,7 +117,7 @@ $(document).ready(function(){
 
         $('#sum' + rowId).html(sum);
         $("#update_CIS030001").modal('toggle');
-        console.log(_data);
+      
         
         //$(".modal-backdrop").hide();
     });
@@ -130,7 +130,7 @@ $(document).ready(function(){
             var id = idName.split("|");
             delete _data[id[1]];
             $(this).closest('tr').remove();
-            console.log(_data);
+            
         } else {
             return false;
         }
@@ -154,7 +154,7 @@ $(document).ready(function(){
         });
         _data.push(obj1);
         displayPNT(pnt);
-        console.log(_data);
+        
 
         $("#comment9").val("");
         $("#CIS030002").modal('toggle');
@@ -166,7 +166,7 @@ $(document).ready(function(){
         var idName = $(this).get(0).id;
         var id = idName.split("|");
         var updateObj = _data[id[1]];
-        console.log(_data);
+    
         $('#update_PNT').val(updateObj.PNT);
         $('#jsonId').val(id[1]);
         $("#update_CIS030002").modal('toggle');
@@ -195,7 +195,7 @@ $(document).ready(function(){
             params: {
                 timeout: 3000,
                 success: function (result) {
-                    console.log(result);
+                   
                     if (result === undefined) {
                         $('#'+loadingDivId).html('No Record');
                     }
@@ -203,23 +203,23 @@ $(document).ready(function(){
             }
         });
         $("#" + fieldId).on('before:flexdatalist.data', function (response) {
-            console.log("Start - " + getDate());
+           
             $('#' + loadingDivId).html('<img src="img/LoaderIcon.gif" />');
         });
         $("#" + fieldId).on('after:flexdatalist.data', function (response) {
-            console.log("End - " + getDate());
+          
             $('#' + loadingDivId).html('');
         });
         $("#" + fieldId).on('select:flexdatalist', function (response) {
             var searchName = $("#" + fieldId).val();
-            console.log(searchName);
+          
             $.ajax({
                 type: "post",
                 url: urlCode,
                 timeout: 3000,
                 data: {id: searchName},
                 success: function (response) {
-                    console.log(response);
+               
                     $("#" + codeFieldId).val(response.trim());
 
                 }

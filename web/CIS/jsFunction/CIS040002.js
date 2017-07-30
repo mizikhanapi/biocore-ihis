@@ -68,8 +68,7 @@ $(document).ready(function(){
         todayDate = todayDate[0];
         var type = $("#selectCIS_OE_DTO_SEARCH_TYPE option:selected").val();
 
-        console.log(todayDate);
-        console.log(type);
+
         var data = {
             pmiNo: pmiNo,
             todayDate: todayDate,
@@ -77,7 +76,6 @@ $(document).ready(function(){
             orderId: order_id
         }
 
-        console.log(data);
         $.ajax({
             url: "order/ResultSearchOrderDTO.jsp",
             timeout: 3000,
@@ -94,7 +92,7 @@ $(document).ready(function(){
     $("#btnCIS_OE_DTO_SUBMIT").click(function(e){
         
         e.preventDefault();
-        console.log(_dataDTO);
+
         var submitConfirm = confirm('Confirm All Order');
         if (submitConfirm === true) {
             var msg = '';
@@ -108,7 +106,7 @@ $(document).ready(function(){
                 msg += convertDTO(_dataDTO[i]);
             }
             fullmsg = msh + pdi + orc + msg;
-            console.log(fullmsg);
+       
             var data = {
                 msg: fullmsg,
                 pmino: pmiNo,
@@ -297,7 +295,7 @@ $(document).ready(function(){
         $("#btnCIS_OE_DTO_CANCEL").hide();
         $("#btnCIS_OE_DTO_ADD").show();
         clearFieldDTO();
-        console.log(_dataDTO);
+  
        
     });
     
@@ -322,7 +320,7 @@ $(document).ready(function(){
         if (delConfirm === true) {
             delete _dataDTO[delIndex];
             $(this).closest('tr').remove();
-            console.log(_dataDTO);
+          
         } else {
             return false;
         }
@@ -338,13 +336,11 @@ $(document).ready(function(){
     });
     $("#tCISOEDTODrugName").on('before:flexdatalist.data', function (response) {
         
-        console.log("Start - " + getDate());
         $('#tCISOEDTODrugNameLoading').html('<img src="img/LoaderIcon.gif" />');
         
     });
     $("#tCISOEDTODrugName").on('after:flexdatalist.data', function (response) {
         
-        console.log("End - " + getDate());
         $('#tCISOEDTODrugNameLoading').html('');
         
     });
@@ -409,7 +405,6 @@ $(document).ready(function(){
                 $('#tCIS_DTODrugRoute').val(array_data[6].trim());
                 $('#tCIS_DTODrugCaution').val(array_data[8].trim());
                 $('#tCIS_DTODrugFrequencyDetail').val(array_data[9].trim());
-                console.log(response);
             
             }
         });

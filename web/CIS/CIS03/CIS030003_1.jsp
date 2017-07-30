@@ -161,7 +161,7 @@
             timeout: 10000,
             success: function (getData) {
                 if (getData.trim() === "1") {
-                    console.log(getData);
+                    
                     alert("No Problem!");
                     $('#outpatientProblem').html(getData);
                 } else {
