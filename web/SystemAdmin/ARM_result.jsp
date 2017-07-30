@@ -45,7 +45,7 @@
 
        }else{
     %>
-    <option disabled>No Record Found!</option>
+    <option disabled>No new user found!</option>
     <% 
         }
     
