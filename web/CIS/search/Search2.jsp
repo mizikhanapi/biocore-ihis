@@ -21,5 +21,5 @@
 <%}%>
 </ul>
 <%}else{%>
-<span>No Record Found!<%out.print(searchProblem);%></span>
+<span>No Record Found!</span>
 <%}%>

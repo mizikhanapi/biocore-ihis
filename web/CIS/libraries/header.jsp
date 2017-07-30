@@ -42,15 +42,15 @@
 
 <script src="jsFunction/create_destroy_loading.js"></script>
 
-<script src="jsFunction/search/SeaarchuCCN_cd.js" type="text/javascript"></script>
+<!--<script src="jsFunction/search/SeaarchuCCN_cd.js" type="text/javascript"></script>
 
 <script src="jsFunction/search/SearchALG_cd.js" type="text/javascript"></script>
 <script src="jsFunction/search/SearchAllergy.js" type="text/javascript"></script>
 <script src="jsFunction/search/SearchCCN_cd1.js" type="text/javascript"></script>
 <script src="jsFunction/search/SearchCNN.js" type="text/javascript"></script>
 <script src="jsFunction/search/SearchDAS_cd.js" type="text/javascript"></script>
-<!--<script src="jsFunction/search/SearchDTO.js" type="text/javascript"></script>
-<script src="jsFunction/search/SearchDTO_cd.js" type="text/javascript"></script>-->
+<script src="jsFunction/search/SearchDTO.js" type="text/javascript"></script>
+<script src="jsFunction/search/SearchDTO_cd.js" type="text/javascript"></script>
 <script src="jsFunction/search/SearchDisability1.js" type="text/javascript"></script>
 <script src="jsFunction/search/SearchFMH.js" type="text/javascript"></script>
 <script src="jsFunction/search/SearchFMH_cd1.js" type="text/javascript"></script>
@@ -58,7 +58,7 @@
 <script src="jsFunction/search/SearchImmunization.js" type="text/javascript"></script>
 <script src="jsFunction/search/SearchPMH.js" type="text/javascript"></script>
 <script src="jsFunction/search/SearchPMH_cd1.js" type="text/javascript"></script>
-<!--<script src="jsFunction/search/SearchPOS_type.js" type="text/javascript"></script>-->
+<script src="jsFunction/search/SearchPOS_type.js" type="text/javascript"></script>
 <script src="jsFunction/search/SearchProcedure.js" type="text/javascript"></script>
 <script src="jsFunction/search/SearchProcedureCode.js" type="text/javascript"></script>
 <script src="jsFunction/search/SearchSOH.js" type="text/javascript"></script>
@@ -85,7 +85,7 @@
 <script src="jsFunction/search/SearchLOS.js" type="text/javascript"></script>
 <script src="jsFunction/search/searchDoc_FLU.js" type="text/javascript"></script>
 <script src="jsFunction/search/searchDisipline.js" type="text/javascript"></script>
-<script src="jsFunction/search/SearchMON.js" type="text/javascript"></script>
+<script src="jsFunction/search/SearchMON.js" type="text/javascript"></script>-->
 <!--<script src="jsFunction/search/searchDisiplineADW.js" type="text/javascript"></script>-->
 
 
