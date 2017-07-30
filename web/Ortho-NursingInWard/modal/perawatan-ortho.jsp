@@ -461,13 +461,14 @@
         $('#dateNIWtr').datepicker({dateFormat: "dd/mm/yy"});
     });
     $('#perawatan-ortho').on('hidden.bs.modal', function (e) {
-        $(this)
-                .find("input,textarea,select")
-                .val('')
-                .end()
-                .find("input[type=checkbox], input[type=radio]")
-                .prop("checked", "")
-                .end();
+//        $(this)
+//                .find("input,textarea,select")
+//                .val('')
+//                .end()
+//                .find("input[type=checkbox], input[type=radio]")
+//                .prop("checked", "")
+//                .end();
+        $(this).find('form')[0].reset();
     });
     $('#perawatan-ortho #btnNIWtrADD').on('click', function (e) {
         e.preventDefault();

@@ -98,13 +98,14 @@
     });
 
     $('#FitsChart').on('hidden.bs.modal', function (e) {
-        $(this)
-                .find("input,textarea,select")
-                .val('')
-                .end()
-                .find("input[type=checkbox], input[type=radio]")
-                .prop("checked", "")
-                .end();
+//        $(this)
+//                .find("input,textarea,select")
+//                .val('')
+//                .end()
+//                .find("input[type=checkbox], input[type=radio]")
+//                .prop("checked", "")
+//                .end();
+        $(this).find('form')[0].reset();
     });
     $('#FitsChart #btnNIWFitsADD').on('click', function (e) {
         e.preventDefault();

@@ -161,7 +161,7 @@
                         timeout: 10000,
                         data: {datas: dataX, methodName: 'delete'},
                         success: function (result) {
-                            console.log(result);
+                            //console.log(result);
                             if (result.trim() === 'true') {
                                 $('#selecturdate').val(sel).change();
                             } else {
@@ -194,7 +194,7 @@
         $('#NIWurdis').val(sdataX[10]);
         $('#NIWursubdis').val(sdataX[11]);
         $('#NIWDateurine').val(sdataX[7]);
-        console.log(dataX);
+//        console.log(dataX);
         var splt = sdataX[4].split(":");
         $("input[name='urinechrt'][value='" + splt[0] + "']").prop('checked', true);
         $("#NIWam-pm").val(splt[1]);

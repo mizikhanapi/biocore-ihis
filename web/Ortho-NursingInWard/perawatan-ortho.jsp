@@ -196,7 +196,7 @@
         var row = $(this).closest("tr");
         var dataX = row.find('#priNIWTR').val();
         var sel = $('#selecttrdate').val();
-        console.log(dataX);
+//        console.log(dataX);
 
         bootbox.confirm({
             message: "Are you sure want to delete?",
@@ -218,7 +218,7 @@
                         timeout: 10000,
                         data: {datas: dataX, methodName: 'delete'},
                         success: function (result) {
-                            console.log(result);
+//                            console.log(result);
                             if (result.trim() === 'true') {
                                 $('#selecttrdate').val(sel).change();
                             } else {
@@ -242,7 +242,7 @@
         var row = $(this).closest("tr");
         var dataX = row.find('#priNIWTR').val();
         var sel = $('#selecttrdate').val();
-        console.log(dataX);
+//        console.log(dataX);
         var sdataX = dataX.split("|");
 
         $('#NIWtrEpisodeDate').val(sdataX[2]);

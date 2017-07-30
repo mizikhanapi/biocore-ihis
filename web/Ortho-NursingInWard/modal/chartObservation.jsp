@@ -162,13 +162,14 @@
         $('#actionPS #acceptPSBtn').hide();
     });
     $('#cobserved1').on('hidden.bs.modal', function (e) {
-        $(this)
-                .find("input,textarea,select")
-                .val('')
-                .end()
-                .find("input[type=checkbox], input[type=radio]")
-                .prop("checked", "")
-                .end();
+//        $(this)
+//                .find("input,textarea,select")
+//                .val('')
+//                .end()
+//                .find("input[type=checkbox], input[type=radio]")
+//                .prop("checked", "")
+//                .end();\
+        $(this).find('form')[0].reset();
     });
 
     //btn add observation chart
@@ -212,7 +213,7 @@
         var resultb = $("#cobserved1 select[required]").filter(function () {
             return $.trim($(this).val()).length === 0;
         }).length === 0;
-        if (resulta === false || resultb === false || !$("#cobserved1 input:radio[name='radio3']").is(":checked") || !$("#cobserved1 input:radio[name='radio4']").is(":checked")) {
+        if (resulta === false || resultb === false) {
             bootbox.alert("Please make sure all field is inserted.");
         } else {
             $.ajax({

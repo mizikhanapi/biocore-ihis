@@ -119,7 +119,7 @@
             $('#customDate4hly').show();
             datas = "null";
         }
-        console.log(datas);
+        //console.log(datas);
         ajax4hly(datas);
 
     });
@@ -149,7 +149,7 @@
             data: {datas: datas, methodName: "view"},
             timeout: 10000,
             success: function (result) {
-                console.log(result);
+                //console.log(result);
                 $('#divBIW4hly').html(result);
 
             },
@@ -186,7 +186,7 @@
                         timeout: 10000,
                         data: {datas: dataX, methodName: 'delete'},
                         success: function (result) {
-                            console.log(result);
+                            //console.log(result);
                             if (result.trim() === 'true') {
                                 $('#select4hlydate').val(sel).change();
                             } else {
@@ -210,7 +210,7 @@
         var row = $(this).closest("tr");
         var dataX = row.find('#priNIW4hly').html();
         var sel = $('#select4hlydate').val();
-        console.log(dataX);
+        //console.log(dataX);
         var sdataX = dataX.split("|");
         $('input[name="radio3"][value="' + sdataX[13] + '"]').prop('checked', true);
         $('input[name="radio4"][value="' + sdataX[14] + '"]').prop('checked', true);

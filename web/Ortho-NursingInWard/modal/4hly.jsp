@@ -227,13 +227,14 @@
     });
 
     $('#4hly').on('hidden.bs.modal', function (e) {
-        $(this)
-                .find("input,textarea,select")
-                .val('')
-                .end()
-                .find("input[type=checkbox], input[type=radio]")
-                .prop("checked", "")
-                .end();
+//        $(this)
+//                .find("input,textarea,select")
+//                .val('')
+//                .end()
+//                .find("input[type=checkbox], input[type=radio]")
+//                .prop("checked", "")
+//                .end();
+        $(this).find('form')[0].reset();
     });
 
     //btn add pain scale
@@ -245,7 +246,20 @@
 
     $('#4hly #btnNIW4hlyADD').on('click', function (e) {
         e.preventDefault();
-        var pmi_no = pmiNo;
+        
+
+        var resulta = $("#4hly input[required]").filter(function () {
+            return $.trim($(this).val()).length === 0;
+        }).length === 0;
+
+        var resultb = $("#4hly select[required]").filter(function () {
+            return $.trim($(this).val()).length === 0;
+        }).length === 0;
+
+        if (resulta === false || resultb === false || !$("#4hly input:radio[name='radio3']").is(":checked") || !$("#4hly input:radio[name='radio4']").is(":checked")) {
+            bootbox.alert("Please make sure all field is inserted.");
+        } else {
+            var pmi_no = pmiNo;
         var hfc_cd1 = hfc_cd;
         var epDate = episodeDate;
         var dis = "<%=session.getAttribute("SUB_DISCIPLINE_CODE").toString()%>";
@@ -327,18 +341,6 @@
         var assignBy = doctor_id;
 
         var datas = pmi_no + "|" + hfc_cd1 + "|" + epDate + "|" + encounterDate + "|" + newDate + " " + time4h + ":00.0|" + time4h + "|" + siteOfCanulation + "|" + painScore + "|" + slightRedness + "|" + redness + "|" + swelling + "|" + palpable + "|" + unconscious + "|" + thrombophlebitis + "|" + vip_pain + "|" + medication + "|" + blood_tx + "|" + plain_iv_drip + "|" + assignBy + "|" + dis + "|" + subdis;
-
-        var resulta = $("#4hly input[required]").filter(function () {
-            return $.trim($(this).val()).length === 0;
-        }).length === 0;
-
-        var resultb = $("#4hly select[required]").filter(function () {
-            return $.trim($(this).val()).length === 0;
-        }).length === 0;
-
-        if (resulta === false || resultb === false || !$("#4hly input:radio[name='radio3']").is(":checked") || !$("#4hly input:radio[name='radio4']").is(":checked")) {
-            bootbox.alert("Please make sure all field is inserted.");
-        } else {
             $.ajax({
                 type: "post",
                 url: "../Ortho-NursingInWard/controller/4hlyFunction.jsp",

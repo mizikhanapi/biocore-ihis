@@ -141,7 +141,7 @@
             $('#customDateOB').show();
             datas = "null";
         }
-        console.log(datas);
+        //console.log(datas);
         ajaxObservation(datas);
 
     });
@@ -210,7 +210,7 @@
                         timeout: 10000,
                         data: {datas: dataX, methodName: 'approving'},
                         success: function (result) {
-                            console.log(result);
+                            //console.log(result);
                             if (result.trim() === 'true') {
                                 $('#selectOBdate').val(sel).change();
                             } else {
@@ -253,7 +253,7 @@
                         timeout: 10000,
                         data: {datas: dataX, methodName: 'delete'},
                         success: function (result) {
-                            console.log(result);
+                            //console.log(result);
                             if (result.trim() === 'true') {
                                 $('#selectOBdate').val(sel).change();
                             } else {
@@ -278,7 +278,7 @@
         var row = $(this).closest("tr");
         var dataX = row.find('#priNIWOB').html();
         var sel = $('#selectOBdate').val();
-        console.log(dataX);
+        //console.log(dataX);
         var sdataX = dataX.split("|");
         $('#NIWObsDate').val(sdataX[7]);
         $('#NIWObsTime').val(sdataX[16]);
