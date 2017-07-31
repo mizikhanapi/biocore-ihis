@@ -179,7 +179,7 @@
                             $(".modal-backdrop").hide();
 
                             bootbox.alert({
-                                message: "Ward Class ID Successfully added",
+                                message: "Facility Type Information successfully added",
                                 title: "Process Result",
                                 backdrop: true
                             });
@@ -188,7 +188,7 @@
                         } else if (data.trim() === 'Duplicate') {
 
                             bootbox.alert({
-                                message: "Ward Class ID Duplication Detected. Please use diffrerent Ward Class ID",
+                                message: "Ward Class ID Duplication Detected. Please use different Ward Class ID",
                                 title: "Process Result",
                                 backdrop: true
                             });

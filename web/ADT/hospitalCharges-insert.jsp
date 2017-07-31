@@ -31,12 +31,13 @@
     Date dateobj = new Date();
     df.format(dateobj);
 
-//    String sqlCheck = "SELECT charges_type from wis_hospital_charges WHERE charges_type = '" + ChargeType + "' LIMIT 1 ";
-//    ArrayList<ArrayList<String>> duplicate = conn.getData(sqlCheck);
+  String sqlCheck = "SELECT charges_type,  eligibility_sources_cd, eligibility_type_cd, ward_class_code, ward_id from wis_hospital_charges WHERE charges_type = '" + ChargeType + "' and "
+          + "eligibility_sources_cd = '" + eliSrc + "'   and eligibility_type_cd = '" + eliTy + "' and  ward_class_code = '" + wclass + "' and ward_id = '" + wname + "' LIMIT 1 ";
+  ArrayList<ArrayList<String>> duplicate = conn.getData(sqlCheck);
 //
-//    if (duplicate.size() > 0) {
-//        out.print("Duplicate");
-//    } else {
+   if (duplicate.size() > 0) {
+       out.print("Duplicate");
+ } else {
 
         String sqlInsert = "INSERT INTO wis_hospital_charges (ward_class_code, ward_id, eligibility_sources_cd, hfc_cd, eligibility_type_cd, discipline_cd, charges_type, subdiscipline_cd, charges_fees,"
                 + " created_by, created_date) "
@@ -50,7 +51,7 @@
         } else {
             out.print("Failed");
         }
-   // }
+   }
 
 
 %>

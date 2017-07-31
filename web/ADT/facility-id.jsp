@@ -536,7 +536,7 @@
                         $(".modal-backdrop").hide();
 
                         bootbox.alert({
-                            message: "Successfully added",
+                            message: "Facility ID information successfully added",
                             title: "Process Result",
                             backdrop: true
                         });
@@ -544,7 +544,7 @@
                     } else if (data.trim() === 'Duplicate') {
 
                         bootbox.alert({
-                            message: "Facility ID Duplication Detected. Please use diffrerent Facility ID",
+                            message: "Facility ID Duplication Detected. Please use different Facility ID",
                             title: "Process Result",
                             backdrop: true
                         });

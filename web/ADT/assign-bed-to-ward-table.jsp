@@ -244,7 +244,7 @@
                             $('#AssignBedTable').load("assign-bed-to-ward-table.jsp");
                             $(".modal-backdrop").hide();
                             bootbox.alert({
-                                message: "Successfully updated",
+                                message: "Bed information successfully updated",
                                 title: "Process Result",
                                 backdrop: true
                             });
@@ -275,7 +275,7 @@
         //assign into seprated val
         var idbed = arrayData[3], hfc = arrayData[5];
         bootbox.confirm({
-            message: "Are you sure want to delete information?",
+            message: "Are you sure to delete bed information?",
             title: "Delete Item?",
             buttons: {
                 confirm: {

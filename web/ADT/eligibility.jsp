@@ -294,7 +294,7 @@
                         } else if (data.trim() === 'Duplicate') {
 
                             bootbox.alert({
-                                message: "Facility ID Duplication Detected. Please use diffrerent Facility ID",
+                                message: "Facility ID Duplication Detected. Please use different Facility ID",
                                 title: "Process Result",
                                 backdrop: true
                             });

@@ -311,7 +311,7 @@
                             $('#FacilityIDTable').load("hospitalCharges-Table.jsp");
                             $(".modal-backdrop").hide();
                             bootbox.alert({
-                                message: "Successfully updated",
+                                message: "Hospital charges information successfully updated",
                                 title: "Process Result",
                                 backdrop: true
                             });
@@ -346,7 +346,7 @@
 
         console.log(arrayData);
         bootbox.confirm({
-            message: "Are you sure want to delete facility ID information?",
+            message: "Are you sure to delete Hospital Charges information?",
             title: "Delete Item?",
             buttons: {
                 confirm: {

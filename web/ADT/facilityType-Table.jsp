@@ -205,7 +205,7 @@
                             $('#FacilityTypeTable').load("facilityType-Table.jsp");
                             $(".modal-backdrop").hide();
                             bootbox.alert({
-                                message: "Successfully updated",
+                                message: "Facility Type successfully updated",
                                 title: "Process Result",
                                 backdrop: true
                             });
@@ -244,7 +244,7 @@
         //assign into seprated val
         var idtype = arrayData[1], hfc = arrayData[3];
         bootbox.confirm({
-            message: "Are you sure want to delete facility type information?",
+            message: "Are you sure to delete the facility type information?",
             title: "Delete Item?",
             buttons: {
                 confirm: {

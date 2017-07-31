@@ -665,7 +665,7 @@
                             $(".modal-backdrop").hide();
 
                             bootbox.alert({
-                                message: "Successfully added",
+                                message: "Hospital Charges information successfully added",
                                 title: "Process Result",
                                 backdrop: true
                             });
@@ -673,7 +673,7 @@
                         } else if (data.trim() === 'Duplicate') {
 
                             bootbox.alert({
-                                message: "Facility ID Duplication Detected. Please use diffrerent Facility ID",
+                                message: "Duplication Detected. Please use different Facility ID",
                                 title: "Process Result",
                                 backdrop: true
                             });
@@ -698,14 +698,14 @@
 
 
         function reset() {
-//            document.getElementById("WardClass").value = "";
-//            document.getElementById("WardID").value = "";
-//            document.getElementById("Dis").value = "";
-//            document.getElementById("WardName").value = "";
-//            document.getElementById("CitizenRates").value = "";
-//            document.getElementById("CitizenDeposit").value = "";
-//            document.getElementById("CitizenDiscount").value = "";
-//            document.getElementById("NonCitizenRates").value = "";
+            document.getElementById("ChargeType").value = "";
+            document.getElementById("eliSrc").value = "";
+            document.getElementById("Dis").value = "";
+            document.getElementById("EliTy").value = "";
+            document.getElementById("ChargeFees").value = "";
+            document.getElementById("sub").value = "";
+            document.getElementById("wname").value = "";
+            document.getElementById("wclass").value = "";
 //            document.getElementById("NonCitizenDeposit").value = "";
 //            document.getElementById("NonCitizenDiscount").value = "";
 //            document.getElementById("PensionerDeposit").value = "";

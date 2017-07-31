@@ -332,7 +332,7 @@
                             $(".modal-backdrop").hide();
 
                             bootbox.alert({
-                                message: "Successfully added",
+                                message: "Bed information successfully added",
                                 title: "Process Result",
                                 backdrop: true
                             });

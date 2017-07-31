@@ -474,7 +474,7 @@
                             $('#FacilityIDTable').load("facilityID-Table.jsp");
                             $(".modal-backdrop").hide();
                             bootbox.alert({
-                                message: "Successfully updated",
+                                message: "Facility ID information successfully updated",
                                 title: "Process Result",
                                 backdrop: true
                             });
@@ -506,7 +506,7 @@
         var wcd = arrayData[0], wid = arrayData[2], hfc = arrayData[19];
         console.log(arrayData);
         bootbox.confirm({
-            message: "Are you sure want to delete facility ID information?",
+            message: "Are you sure to delete facility ID information?",
             title: "Delete Item?",
             buttons: {
                 confirm: {
