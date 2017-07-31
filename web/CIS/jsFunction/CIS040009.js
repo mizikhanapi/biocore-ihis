@@ -105,6 +105,7 @@ $(document).ready(function(){
                 }
                 sendOrder(data, "-");
                 clearFieldPRI();
+                alert("Referral has been send")
 
             } else {
                 return false;
@@ -118,7 +119,7 @@ $(document).ready(function(){
         $("#disREFcode").val("");
         $("#appREF").val("");
         $("#medicalHisREF").val("");    
-        
+        $("#CIS040009").modal("hide");
     }
     
 });

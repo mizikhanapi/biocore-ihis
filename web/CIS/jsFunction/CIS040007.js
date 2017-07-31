@@ -154,6 +154,8 @@ $(document).ready(function () {
                     status: "1"
                 }
                 sendOrder(data, "-");
+                alert("The admission success.");
+                $("#CIS040007").modal('hide');
                 clearFieldADW();
             } else {
                 return false;
