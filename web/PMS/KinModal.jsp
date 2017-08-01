@@ -3,9 +3,9 @@
 <%--<%@page import="Config.connect"%>--%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
-    String idType61 = "select master_reference_code,detail_reference_code,description,priority_indicator,start_date,end_date,status,created_by,created_date from adm_lookup_detail where master_reference_code = '0012' AND hfc_cd = '" + hfc + "'   ";
+    String idType61 = "select master_reference_code,detail_reference_code,description,priority_indicator,start_date,end_date,status,created_by,created_date from adm_lookup_detail where master_reference_code = '0012' AND hfc_cd = '" + hfc + "' and status ='0'  ";
 
-    String relation61 = "select master_reference_code,detail_reference_code,description,priority_indicator,start_date,end_date,status,created_by,created_date from adm_lookup_detail where master_reference_code = '0007' AND hfc_cd = '" + hfc + "'  ";
+    String relation61 = "select master_reference_code,detail_reference_code,description,priority_indicator,start_date,end_date,status,created_by,created_date from adm_lookup_detail where master_reference_code = '0007' AND hfc_cd = '" + hfc + "' and status ='0'  ";
 
     ArrayList<ArrayList<String>> dataIdType61, dataRelation61;
     dataIdType61 = conn.getData(idType61);
