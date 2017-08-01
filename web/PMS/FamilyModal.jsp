@@ -3,8 +3,8 @@
 <%--<%@page import="Config.connect"%>--%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
-    String relation71 = "select * from adm_lookup_detail where master_reference_code = '0007' AND hfc_cd = '"+hfc+"'   ";
-    String occupation71 = "select * from adm_lookup_detail where master_reference_code = '0050' AND hfc_cd = '"+hfc+"'";
+    String relation71 = "select master_reference_code,detail_reference_code,description,priority_indicator,start_date,end_date,status,created_by,created_date from adm_lookup_detail where master_reference_code = '0007' AND hfc_cd = '"+hfc+"'   ";
+    String occupation71 = "select master_reference_code,detail_reference_code,description,priority_indicator,start_date,end_date,status,created_by,created_date from adm_lookup_detail where master_reference_code = '0050' AND hfc_cd = '"+hfc+"'";
     ArrayList<ArrayList<String>> dataRelation71,dataOccu71;
     dataRelation71 = conn.getData(relation71);
     dataOccu71 = conn.getData(occupation71);

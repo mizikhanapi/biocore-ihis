@@ -5,10 +5,10 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
     //Conn conn = new Conn();
-    String incomeRange5 = "select * from adm_lookup_detail where master_reference_code = '0028' AND hfc_cd = '"+hfc+"' ";
-    String hcf5 = "select * from adm_lookup_detail where master_reference_code = '0081' AND hfc_cd = '"+hfc+"'   ";
-    String status5 = "select * from adm_lookup_detail where master_reference_code = '0014' AND hfc_cd = '"+hfc+"'   ";
-    String occupation5 = "select * from adm_lookup_detail where master_reference_code = '0050' AND hfc_cd = '"+hfc+"'";
+    String incomeRange5 = "select master_reference_code,detail_reference_code,description,priority_indicator,start_date,end_date,status,created_by,created_date from adm_lookup_detail where master_reference_code = '0028' AND hfc_cd = '"+hfc+"' ";
+    String hcf5 = "select master_reference_code,detail_reference_code,description,priority_indicator,start_date,end_date,status,created_by,created_date from adm_lookup_detail where master_reference_code = '0081' AND hfc_cd = '"+hfc+"'   ";
+    String status5 = "select master_reference_code,detail_reference_code,description,priority_indicator,start_date,end_date,status,created_by,created_date from adm_lookup_detail where master_reference_code = '0014' AND hfc_cd = '"+hfc+"'   ";
+    String occupation5 = "select master_reference_code,detail_reference_code,description,priority_indicator,start_date,end_date,status,created_by,created_date from adm_lookup_detail where master_reference_code = '0050' AND hfc_cd = '"+hfc+"'";
 
     //String empList = "select * from pms_employment where pmi_no = ''";
     ArrayList<ArrayList<String>> dataIncomeRange5, dataHfc5, dataStatus5, dataOccu5;

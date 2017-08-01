@@ -11,15 +11,15 @@
     String dis = session.getAttribute("DISCIPLINE_CODE").toString();
     String sub = session.getAttribute("SUB_DISCIPLINE_CODE").toString();
 
-    String patCat = "select * from adm_lookup_detail where master_reference_code = '0033' AND hfc_cd = '" + hfc + "'   ";
-    String visType = "select * from adm_lookup_detail where master_reference_code = '0022' AND hfc_cd = '" + hfc + "'   ";
-    String eliCat = "select * from adm_lookup_detail where master_reference_code = '0063' AND hfc_cd = '" + hfc + "'   ";
-    String eliType = "select * from adm_lookup_detail where master_reference_code = '0034' AND hfc_cd = '" + hfc + "'   ";
-    String emergencyType = "select * from adm_lookup_detail where master_reference_code = '0070' AND hfc_cd = '" + hfc + "'   ";
-    String prio = "select * from adm_lookup_detail where master_reference_code = '0036' AND hfc_cd = '" + hfc + "'   ";
-    String idTYpe = "select * from adm_lookup_detail where master_reference_code = '0012' AND hfc_cd = '" + hfc + "'   ";
-    String Commonqueue = "select * from pms_queue_list where queue_type='CM' and hfc_cd='" + hfc + "' and status ='Active' and discipline_cd = '" + dis + "'";
-    String Consultationqueue = "select * from pms_queue_list where queue_type='FY' and hfc_cd='" + hfc + "' and status ='Active' and discipline_cd = '" + dis + "'";
+    String patCat = "select master_reference_code,detail_reference_code,description,priority_indicator,start_date,end_date,status,created_by,created_date from adm_lookup_detail where master_reference_code = '0033' AND hfc_cd = '" + hfc + "'   ";
+    String visType = "select master_reference_code,detail_reference_code,description,priority_indicator,start_date,end_date,status,created_by,created_date from adm_lookup_detail where master_reference_code = '0022' AND hfc_cd = '" + hfc + "'   ";
+    String eliCat = "select master_reference_code,detail_reference_code,description,priority_indicator,start_date,end_date,status,created_by,created_date from adm_lookup_detail where master_reference_code = '0063' AND hfc_cd = '" + hfc + "'   ";
+    String eliType = "select master_reference_code,detail_reference_code,description,priority_indicator,start_date,end_date,status,created_by,created_date from adm_lookup_detail where master_reference_code = '0034' AND hfc_cd = '" + hfc + "'   ";
+    String emergencyType = "select master_reference_code,detail_reference_code,description,priority_indicator,start_date,end_date,status,created_by,created_date from adm_lookup_detail where master_reference_code = '0070' AND hfc_cd = '" + hfc + "'   ";
+    String prio = "select master_reference_code,detail_reference_code,description,priority_indicator,start_date,end_date,status,created_by,created_date from adm_lookup_detail where master_reference_code = '0036' AND hfc_cd = '" + hfc + "'   ";
+    String idTYpe = "select master_reference_code,detail_reference_code,description,priority_indicator,start_date,end_date,status,created_by,created_date from adm_lookup_detail where master_reference_code = '0012' AND hfc_cd = '" + hfc + "'   ";
+    String Commonqueue = "select queue_type,queue_name,user_id,hfc_cd,discipline_cd,start_date,end_date,sub_discipline_cd,status,created_by,created_date from pms_queue_list where queue_type='CM' and hfc_cd='" + hfc + "' and status ='Active' and discipline_cd = '" + dis + "'";
+    String Consultationqueue = "select queue_type,queue_name,user_id,hfc_cd,discipline_cd,start_date,end_date,sub_discipline_cd,status,created_by,created_date  from pms_queue_list where queue_type='FY' and hfc_cd='" + hfc + "' and status ='Active' and discipline_cd = '" + dis + "'";
     String Doctorqueue = "select * from pms_queue_list where queue_type='PN' and hfc_cd='" + hfc + "' and status ='Active' and discipline_cd = '" + dis + "'";
     String sql = "select a.discipline_name,a.discipline_cd,b.subdiscipline_cd,c.subdiscipline_name from adm_discipline a inner join adm_hfc_discipline b on a.discipline_cd = b.discipline_cd and b.hfc_cd = '" + hfc + "' left join adm_subdiscipline c on b.subdiscipline_cd = c.subdiscipline_cd and b.discipline_cd = c.discipline_cd and c.subdiscipline_hfc_cd = a.discipline_hfc_cd where a.discipline_cd = '"+dis+"' AND a.discipline_hfc_cd = '" + hfc + "' and c.subdiscipline_cd='"+sub+"';";
 
