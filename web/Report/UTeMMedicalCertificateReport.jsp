@@ -49,6 +49,13 @@
         <link href="https://cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css"/>
         <link href="https://cdn.datatables.net/buttons/1.3.1/css/buttons.dataTables.min.css" rel="stylesheet" type="text/css"/>
 
+        <script src="../assets/js/Chart.bundle.js" type="text/javascript"></script>
+        
+        
+
+        <script src="https://code.highcharts.com/highcharts.js"></script>
+        <script src="https://code.highcharts.com/modules/exporting.js"></script>
+
 
     </head>
     <body>
@@ -84,6 +91,12 @@
                                 <button id="clearSearch" name="clearSearch" type="clear" class="btn btn-default"><i class="fa fa-ban fa-lg"></i>&nbsp; Clear</button>
                             </div>
                         </form>
+                    </div>
+
+                    <div class="thumbnail">
+                        <div id="MCGraph">
+
+                        </div>
                     </div>
 
                     <div class="thumbnail">
@@ -144,6 +157,21 @@
         <script>
 //            $("#dateFrom").datepicker({dateFormat: 'dd/mm/yy'});
 //            $("#dateTo").datepicker({dateFormat: 'dd/mm/yy'});
+
+            $.ajax({
+                type:"POST",
+                url:"UTeMMedicalCertificateGraph.jsp",
+                data :"",
+                timeout:10000,
+                success: function (reply) {
+                $("#MCGraph").html(reply.trim());
+                },
+                error:  function (err) {
+                    console.log("ERROR: "+err);
+                }
+               
+            });
+
             $("#dateFrom").datepicker({
                 dateFormat: 'dd/mm/yy',
                 onSelect: function (selected) {
@@ -165,19 +193,23 @@
             });
             $("#searchMedicalCertificate").click(function () {
                 var startDate, endDate;
+                var dateStartTemp = "", dateEndTemp = "";
 
                 startDate = $("#dateFrom").val();
                 endDate = $("#dateTo").val();
 
-                var temp = startDate.split("/");
-                startDate = temp[2] + "-" + temp[1] + "-" + temp[0];
+                if (startDate !== "" && endDate !== "")
+                {
+                    var temp = startDate.split("/");
+                    startDate = temp[2] + "-" + temp[1] + "-" + temp[0];
 
-                var temp = endDate.split("/");
-                endDate = temp[2] + "-" + temp[1] + "-" + temp[0];
+                    var temp = endDate.split("/");
+                    endDate = temp[2] + "-" + temp[1] + "-" + temp[0];
 
 
-                var dateStartTemp = new Date(startDate);
-                var dateEndTemp = new Date(endDate);
+                    dateStartTemp = new Date(startDate);
+                    dateEndTemp = new Date(endDate);
+                }
 
                 if (startDate === "") {
                     alert("Select Start Date.");
@@ -193,15 +225,15 @@
                         "endDate": endDate,
                         "hfc": "<%=hfc%>"
                     };
-                    console.log(data);
+//                    console.log(data);
                     $.ajax({
                         type: "POST",
                         url: "UTeMMedicalCertificateReportController.jsp",
                         data: data,
                         timeout: 10000,
                         success: function (reply) {
-                            if (reply.trim() !== "No Data") {
-                                console.log(reply);
+                            if (reply.trim() !== "No Data" && reply.trim() !== "UnCorrect Massage") {
+//                                console.log(reply);
 
                                 var dataRow = reply.trim().split("^");
 
@@ -211,9 +243,22 @@
                                 {
                                     var datas = dataRow[i].split("|");
 
-                                    trHTML += '<tr><td>' + datas[1] + '</td><td>' + datas[0] + '</td>' + datas[5] +
+
+                                    var temp = datas[4].split("-");
+                                    startDate = temp[1] + "-" + temp[0] + "-" + temp[2];
+
+                                    var temp = datas[5].split("-");
+                                    endDate = temp[1]+ "-" + temp[0] + "-" + temp[2];
+
+                                    var date1 = new Date(startDate);
+                                    var date2 = new Date(endDate);
+                                    
+                                    var timeDiff = Math.abs(date2.getTime() - date1.getTime());
+                                    var duration = Math.ceil(timeDiff / (1000 * 3600 * 24))+1;
+
+                                    trHTML += '<tr><td>' + datas[1] + '</td><td>' + datas[0] + '</td>' +
                                             '<td>' + datas[3] + '</td><td>' + datas[4] + '</td><td>' + datas[5] +
-                                            '</td><td>' + "Duration" + '</td><td>' + datas[6] + '</td><td>' + datas[8] +
+                                            '</td><td>' + duration + '</td><td>' + datas[6] + '</td><td>' + datas[8] +
                                             '</td><td>' + datas[9] + '</td><td>' + datas[10] + '</td><td>' + datas[11] + '</td></tr>';
                                 }
                                 $('#UTemMCReport').append(trHTML);
@@ -299,5 +344,6 @@
 
             });
         </script>
+
     </body>
 </html>

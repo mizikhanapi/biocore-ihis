@@ -9,15 +9,18 @@
 <%@page import="org.apache.commons.lang3.StringUtils"%>
 
 <%
+    Config.getBase_url(request);
+    Config.getFile_url(session);
+    
     Conn conn = new Conn();
     String startDate, endDate, hfc, query = "";
 
-    startDate = request.getParameter("startDate").toString();
-    endDate = request.getParameter("endDate").toString();
-    hfc = request.getParameter("hfc").toString();
-//    startDate = "2017-07-26";
-//    endDate = "2017-07-28";
-//    hfc = "04010101";
+//    startDate = request.getParameter("startDate").toString();
+//    endDate = request.getParameter("endDate").toString();
+//    hfc = request.getParameter("hfc").toString();
+    startDate = "2017-08-01";
+    endDate = "2017-08-28";
+    hfc = "04010101";
 
     if (!startDate.equals("") && !endDate.equals("") && !hfc.equals("")) {
         query = "Select distinct b.`NEW_IC_NO`, b.`PATIENT_NAME`, b.SEX_CODE ,"

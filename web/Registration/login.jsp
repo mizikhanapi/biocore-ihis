@@ -50,7 +50,7 @@
                 <p id="profile-name" class="profile-name-card" style="font-weight: 400;">Integrated Health Information System</p>
                 <form class="form-signin" id="leForm" >
                     <span id="reauth-email" class="reauth-email"></span>
-                    <input type="text" id="inputUserIC" class="form-control" placeholder="User ID" name="username" required autofocus>
+                    <input type="text" id="inputUserIC" class="form-control" placeholder="User IC" name="useric" required autofocus>
                     <input type="password" id="inputPassword" class="form-control" placeholder="Password" name="password" required>
                 </form><!-- /form -->
                 <button  class="btn btn-lg btn-primary btn-block btn-signin" id="btnSign">Sign in</button>
@@ -78,9 +78,9 @@
         <script src="http://www.w3schools.com/lib/w3data.js"></script>
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-        <script src="assets/js/bootbox.min.js"></script>-->
+        --><script src="assets/js/bootbox.min.js"></script>
         <script>
-            w3IncludeHTML();
+//            w3IncludeHTML();
             $(document).ready(function () {
 
                 $(document).bind('keypress', pressed);

@@ -16,6 +16,7 @@ Author     : user
 
     String hfc = session.getAttribute("HEALTH_FACILITY_CODE").toString();
     String dis = session.getAttribute("DISCIPLINE_CODE").toString();
+    String subDis = session.getAttribute("SUB_DISCIPLINE_CODE").toString();
 
     String Commonqueue = "select * from pms_queue_list where queue_type='CM' and hfc_cd='" + hfc + "' and status ='Active' and discipline_cd = '" + dis + "'";
     String Consultationqueue = "select * from pms_queue_list where queue_type='FY' and hfc_cd='" + hfc + "' and status ='Active' and discipline_cd = '" + dis + "'";
@@ -393,8 +394,8 @@ Author     : user
                         'emTy': '-',
                         'eliCatCode': '-',
                         'eliTyCode': '-',
-                        'disCode': '-',
-                        'subDiscode': '-',
+                        'disCode': '<%=dis%>',
+                        'subDisCD': '<%=subDis%>',
                         'consultRoom': '-',
                         'comQueue': '-',
                         'doctor': '-',
@@ -426,7 +427,7 @@ Author     : user
                             console.log(list);
                             if ($.trim(list) === "Success") {
                                 bootbox.alert("Patient has been register successfully");
-//                                window.history.back();
+                                window.history.back();
                                 PrintLable(selectedqueue);
 
                             } else if ($.trim(list) === "already") {
