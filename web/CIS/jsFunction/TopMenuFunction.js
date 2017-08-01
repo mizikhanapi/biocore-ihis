@@ -44,11 +44,35 @@ $(document).ready(function (e) {
     var vtsCounter = 0;
     //------------------------------------------------------------ DISCHARGE BUTTON
     $('#dischargeBtn').click(function () {
-        getSettingConsult(doctor_id);
-        reloadStat = 0;
-        //clearCIS();
-        var pmiNo = $('#pmiNumber').text();
-        dischargeModalState = 1;
+
+        
+        bootbox.confirm({
+            message: "Are you sure you want DISCHARGE this patient?",
+            buttons: {
+                confirm: {
+                    label: 'Yes',
+                    className: 'btn-success'
+                },
+                cancel: {
+                    label: 'No',
+                    className: 'btn-danger'
+                }
+            },
+            callback: function (result) {
+                if (result === true) {
+                    //getSettingConsult(doctor_id);
+                    storeData(1);
+                    reloadStat = 0;
+                    statusNow = 1;
+                    var pmiNo = $('#pmiNumber').text();
+                    dischargeModalState = 1;
+                    window.onbeforeunload = null;
+                } else {
+                    bootbox.alert('DISCHARGE Cancel');
+                }
+            }
+        });
+        
 
     });
 
@@ -118,7 +142,9 @@ $(document).ready(function (e) {
                     getPDI(pmiNo);
                     storeData(2);
                     updateStatus(pmiNo, episodeDate, "2");
+                    statusNow = 2;
                     reloadStat = 0;
+                    window.onbeforeunload = null;
                 } else {
                     bootbox.alert('ON HOLD Cancel');
                 }
@@ -133,17 +159,34 @@ $(document).ready(function (e) {
 
     $("#missingBtn").click(function () {
         
-        alert("Missing Button");
         var pmiNo = $('#pmiNumber').text();
         var c = confirm("Are you sure you want declare this patient are MISSING?");
-
-        if (c === true) {
-            reloadStat = 0;
-            storeData(4);
-            updateStatus(pmiNo, episodeDate, "4");
-        } else {
-            bootbox.alert('Data not be saved');
-        }
+        
+        bootbox.confirm({
+            message: "Are you sure you want declare this patient are MISSING?",
+            buttons: {
+                confirm: {
+                    label: 'Yes',
+                    className: 'btn-success'
+                },
+                cancel: {
+                    label: 'No',
+                    className: 'btn-danger'
+                }
+            },
+            callback: function (result) {
+                if (result === true) {
+                     reloadStat = 0;
+                    storeData(4);
+                    statusNow = 4;
+                    updateStatus(pmiNo, episodeDate, "4");
+                    window.onbeforeunload = null;
+                } else {
+                    bootbox.alert('Data not be saved');
+                }
+            }
+        });
+        
     });
 
     $("#nextBtn").click(function () {
@@ -155,6 +198,7 @@ $(document).ready(function (e) {
             nextPatient(currentDate, hfc_cd);
             reloadStat = 1;
             statusNow = 0;
+          
         } else {
             bootbox.alert('You need complete the consultation on patient before first');
         }
