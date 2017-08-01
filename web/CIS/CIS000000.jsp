@@ -39,6 +39,7 @@
 
 
         <script type="text/javascript">
+            
             window.location.hash = "no-back-button";
             window.location.hash = "Again-No-back-button";//again because google chrome don't insert first hash into history
             window.onhashchange = function () {
@@ -71,6 +72,8 @@
                     console.log(err);
                 }
             });
+            
+            
         </script>
     </head>
 
@@ -336,6 +339,26 @@
             }
             $('#accordion').on('hidden.bs.collapse', toggleChevron);
             $('#accordion').on('shown.bs.collapse', toggleChevron);
+            
+            var repeater;
+
+            function doWork() {
+                var d = new Date();
+
+             console.log(d+" : "+statusNow);
+             repeater = setTimeout(doWork, 100);
+            }
+
+
+            
+            window.onbeforeunload = function () {
+                if (reloadStat === "1") {
+                    updateStatus(pmiNo, episodeDate, statusNow);
+                    return "Sure U are?";
+                } else {
+                     return "Sure U are?";
+                }
+            }
         </script>
 
     </body>

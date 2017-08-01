@@ -26,12 +26,12 @@
 //    String sqlPatient = "select pmi_no,patient_name,new_ic_no,blood_type,sex_code,id_type,birth_date,race_code,allergy_ind from emedica.pms_patient_biodata where pmi_no = '"+pmiNo+"'";
 //ArrayList<ArrayList<String>> dataQueue = conn.getData(sqlPatient);
 
-String sqlNextPatient = "select * from pms_patient_queue a,  pms_patient_biodata b where status = '0'  AND a.episode_date LIKE '%"+now+"%' and a.pmi_no = b.`PMI_NO` and a.hfc_cd = '"+hfc_cd+"' order by queue_no LIMIT 1 ";
+String sqlNextPatient = "select a.pmi_no, a.episode_date from pms_patient_queue a,  pms_patient_biodata b where status = '0'  AND a.episode_date LIKE '%"+now+"%' and a.pmi_no = b.`PMI_NO` and a.hfc_cd = '"+hfc_cd+"' order by queue_no LIMIT 1 ";
 ArrayList<ArrayList<String>> dataNextPatient = conn.getData(sqlNextPatient);
 if(dataNextPatient.size() < 1){
     out.print("|O|");
 }else{
-    out.print(dataNextPatient.get(0).get(4)+"|"+dataNextPatient.get(0).get(2));
+    out.print(dataNextPatient.get(0).get(0)+"|"+dataNextPatient.get(0).get(1));
 }
 
 ////Insert PMS data to table calling System

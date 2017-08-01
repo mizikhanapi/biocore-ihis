@@ -10,6 +10,7 @@
 var _data = [];
 var notes = "";
 var hfc_cd = "04010101";
+var testState = false;
 
 var doctor_id = "SITI";
 var doctor_name = "DR. SITI HALIJAH BINTI ABU BAKAR";
@@ -32,6 +33,7 @@ var reloadStat = 0;
 var PDIFULL;
 var HCS;
 var patientCategory = "";
+var statusNow = 0;
 
 //declare the consultation row counter
 var i = 0;
@@ -48,14 +50,7 @@ var HCSContent = [];
 //    };
 //}
 
-window.onbeforeunload = function () {
-    if (reloadStat === "1") {
-        updateStatus(pmiNo, episodeDate, statusNow);
-        return "Sure U are?";
-    } else {
-       
-    }
-}
+
 
 function disableMainBtn(){
 
@@ -71,6 +66,10 @@ $(document).ready(function () {
 //          
 //        }
 //    });
+
+$(window).bind('beforeunload', function(){
+    updateStatus(pmiNo, episodeDate, statusNow);
+});
 
     $('#holdBtn').bind('click', false);
     loadSetting(doctor_id);
@@ -235,3 +234,4 @@ function loadSetting(user_id) {
         }
     });
 }
+

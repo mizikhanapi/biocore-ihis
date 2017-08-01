@@ -27,14 +27,6 @@ function goToHome() {
 $(document).ready(function (e) {
 
 
-//    $(window).on('beforeunload', function (e) {
-//        if (reloadStat === "1") {
-//            updateStatus(pmiNo, episodeDate, statusNow);
-//            return "Sure U are?";
-//        } else {
-//            
-//        }
-//    });
 
     $('.changePatientBtn').unbind('click');
 
@@ -107,16 +99,36 @@ $(document).ready(function (e) {
 
     //------------------------------------------------------------ ON HOLD BUTTON
     $('#holdBtn').click(function () {
-        reloadStat = 0;
-        var c = confirm("Are you sure you want ON HOLD this patient?");
+        //var c = confirm("Are you sure you want ON HOLD this patient?");
         var pmiNo = $('#pmiNumber').text();
-        if (c === true) {
-            getPDI(pmiNo);
-            storeData(2);
-            updateStatus(pmiNo, episodeDate, "2");
-        } else {
-            alert('ON HOLD Cancel');
-        }
+        bootbox.confirm({
+            message: "Are you sure you want ON HOLD this patient?",
+            buttons: {
+                confirm: {
+                    label: 'Yes',
+                    className: 'btn-success'
+                },
+                cancel: {
+                    label: 'No',
+                    className: 'btn-danger'
+                }
+            },
+            callback: function (result) {
+                if (result === true) {
+                    getPDI(pmiNo);
+                    storeData(2);
+                    updateStatus(pmiNo, episodeDate, "2");
+                    reloadStat = 0;
+                } else {
+                    bootbox.alert('ON HOLD Cancel');
+                }
+            }
+        });
+        
+        
+       
+
+
     });
 
     $("#missingBtn").click(function () {
@@ -130,7 +142,7 @@ $(document).ready(function (e) {
             storeData(4);
             updateStatus(pmiNo, episodeDate, "4");
         } else {
-            alert('Data not be saved');
+            bootbox.alert('Data not be saved');
         }
     });
 
@@ -141,9 +153,10 @@ $(document).ready(function (e) {
        
         if (pmiNo === "") {
             nextPatient(currentDate, hfc_cd);
-            reloadStat = "1";
+            reloadStat = 1;
+            statusNow = 0;
         } else {
-            alert('You need complete the consultation on patient before first');
+            bootbox.alert('You need complete the consultation on patient before first');
         }
 
 
@@ -561,10 +574,10 @@ $(document).ready(function (e) {
                
                 if (d === '|1|') {
                     clearCIS();
-                    alert('Patient has been ' + statusDesc);
+                    //bootbox.alert('Patient has been ' + statusDesc);
                 } else if (d === '|3|') {
                     clearCIS();
-                    alert('Patient record has been ' + statusDesc);
+                    //bootbox.alert('Patient record has been ' + statusDesc);
                 }
             },
             error: function (err) {
@@ -588,14 +601,16 @@ $(document).ready(function (e) {
             success: function (result) {
    
                 if (result.trim() === "|O|") {
-                    alert("No patient in queue");
+                    bootbox.alert("No patient in queue");
                 } else {
+
                     var nextPArry = result.trim().split("|");
                     pmiNo = nextPArry[0];
                     episodeDate = nextPArry[1];
 
                     findPatient(pmiNo, episodeDate);
                     $('.soap-select').unbind('click');
+                    
                     getPDI(pmiNo);
                     updateStatus(pmiNo, episodeDate, 5);
                     
