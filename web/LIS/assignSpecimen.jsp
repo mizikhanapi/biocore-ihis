@@ -127,7 +127,7 @@
                                                         out.println("<input type='text' name='specimen" + j + "' value='" + itemCD[j] + "' id='specimen" + j + "' style='display:none;'>");
 
                                                         count++;
-                                                        String sqlPatientApp = "SELECT LID.item_cd,LID.item_name,LID.spe_container,LOD.created_date,LOM.hfc_cd,LOM.pmi_no,LOM.patient_name,LOD.spe_source FROM lis_order_detail LOD, lis_item_detail LID, lis_order_master LOM WHERE LOD.item_cd = LID.item_cd AND LOD.order_no = LOM.order_no AND LOD.item_cd = '" + itemCD[j] + "' AND LOD.order_no = '" + orderno1 + "' AND LID.hfc_cd = '"+hfc_cd+"'";
+                                                        String sqlPatientApp = "SELECT LID.item_cd,LID.item_name,LID.spe_container,LOD.created_date,LOM.hfc_cd,LOM.pmi_no,LOM.patient_name,LOD.spe_source FROM lis_order_detail LOD LEFT JOIN lis_item_detail LID ON LID.item_cd = LOD.item_cd LEFT JOIN lis_order_master LOM ON LOD.order_no = LOM.order_no WHERE LOD.item_cd = '" + itemCD[j] + "' AND LOD.order_no = '" + orderno1 + "' AND LID.hfc_cd = '"+hfc_cd+"' GROUP BY LOD.item_cd";
                                                         ArrayList<ArrayList<String>> dataPatientApp = conn.getData(sqlPatientApp);
 
                                                         if (dataPatientApp.size() > 0) {

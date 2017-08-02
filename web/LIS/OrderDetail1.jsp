@@ -128,7 +128,7 @@
                     <%
                         String my_1_hfc_cd = (String) session.getAttribute("HEALTH_FACILITY_CODE");
                         Conn conn = new Conn();
-                        String itemName = "SELECT item_cd,item_name,spe_source FROM lis_item_detail WHERE hfc_cd = '"+my_1_hfc_cd+"' ORDER BY item_name";
+                        String itemName = "SELECT item_cd,item_name,spe_source FROM lis_item_detail WHERE hfc_cd = '" + my_1_hfc_cd + "' ORDER BY item_name";
                         ArrayList<ArrayList<String>> q1 = conn.getData(itemName);
                     %>
                     <!-- Text input-->
@@ -317,49 +317,7 @@
         });
     }
 
-    $("#btnAdd").click(function () {
-        var order = $("#patientOrderNo").val();
-        var itemCD = $("#itemCode1").val();
-        var pmiNo = $("#patientpmino").val();
-        var Comment = $("#requestComment").val();
-        //alert(Comment);
-        $.ajax({
-            url: "addOrder.jsp",
-            type: "post",
-            data: {
-                order: order,
-                pmiNo: pmiNo,
-                itemCD: itemCD,
-                Comment: Comment
-            },
-            timeout: 10000,
-            success: function (returnOrderHTML) {
-                var dataOrder = {
-                    orderNo: order,
-                    pmino: pmiNo
-                };
-                $.ajax({
-                    url: "ManageOrderListDetails.jsp",
-                    type: "post",
-                    data: dataOrder,
-                    timeout: 3000,
-                    success: function (returnOrderDetailsTableHTML) {
-                        $('#ManageOrderDetailsListTable').html(returnOrderDetailsTableHTML);
-                        $('#ManageOrderDetailsListTable').trigger('contentchanged');
-                        $('.nav-tabs a[href="#tab_default_2"]').tab('show');
-                        $("#basicModal").hide();
-                        $(".modal-backdrop").hide();
-                        alert("Success");
-                    }
-                });
 
-
-            },
-            error: function (err) {
-                alert("Error update!");
-            }
-        });
-    });
 //--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------//
 
 
@@ -398,6 +356,52 @@
 
         loadAllergyDiagnosisOrder(OrderNo, pmino);
 
+        $("#btnAdd").click(function () {
+            var order = $("#patientOrderNo").val();
+            var itemCD = $("#itemCode1").val();
+            var pmiNo = $("#patientpmino").val();
+            var Comment = $("#requestComment").val();
+            var episodeDate = OrderDate;
+            //alert(episodeDate);
+            //alert(Comment);
+            $.ajax({
+                url: "addOrder.jsp",
+                type: "post",
+                data: {
+                    order: order,
+                    pmiNo: pmiNo,
+                    itemCD: itemCD,
+                    Comment: Comment,
+                    episodeDate: episodeDate
+                },
+                timeout: 10000,
+                success: function (returnOrderHTML) {
+                    var dataOrder = {
+                        orderNo: order,
+                        pmino: pmiNo
+                    };
+                    $.ajax({
+                        url: "ManageOrderListDetails.jsp",
+                        type: "post",
+                        data: dataOrder,
+                        timeout: 3000,
+                        success: function (returnOrderDetailsTableHTML) {
+                            $('#ManageOrderDetailsListTable').html(returnOrderDetailsTableHTML);
+                            $('#ManageOrderDetailsListTable').trigger('contentchanged');
+                            $('.nav-tabs a[href="#tab_default_2"]').tab('show');
+                            $("#basicModal").hide();
+                            $(".modal-backdrop").hide();
+                            alert("New item successfully Added.");
+                        }
+                    });
+
+
+                },
+                error: function (err) {
+                    alert("Error update!");
+                }
+            });
+        });
     });
     // Move to Order Details Fetch Details End
 

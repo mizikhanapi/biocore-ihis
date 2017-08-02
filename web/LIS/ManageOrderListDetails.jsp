@@ -23,7 +23,8 @@
         String my_1_hfc_cd = (String) session.getAttribute("HEALTH_FACILITY_CODE");
         //out.print(orderNo);
         //String orderList = "SELECT item_cd,item_name,spe_source,volume,requestor_comments,filler_comments,specimen_status,Verification,collectionDate FROM lis_order_detail WHERE order_no = '" + orderNo + "'";
-        String orderList = "SELECT LID.item_cd,LID.item_name,LID.spe_source,LID.spe_container,LID.volume,LID.special_inst,LID.status,LOD.`Verification`,LOD.created_date,LOD.comment,LOD.requestor_comments,LOD.pmi_no,LOD.detail_status FROM lis_order_detail LOD, lis_item_detail LID WHERE LOD.item_cd = LID.item_cd AND LOD.order_no = '" + orderNo + "' AND LID.hfc_cd = '" + my_1_hfc_cd + "'";
+        String orderList = "SELECT LID.item_cd,LID.item_name,LID.spe_source,LID.spe_container,LID.volume,LID.special_inst,LID.status,LOD.`Verification`,LOD.created_date,LOD.comment,LOD.requestor_comments,LOD.pmi_no,LOD.detail_status FROM lis_order_detail LOD LEFT JOIN lis_item_detail LID ON LID.item_cd = LOD.item_cd WHERE LOD.order_no = '" + orderNo + "' AND LID.hfc_cd = '" + my_1_hfc_cd + "' GROUP BY LOD.item_cd";
+        //String orderList = "SELECT LID.item_cd,LID.item_name,LID.spe_source,LID.spe_container,LID.volume,LID.special_inst,LID.status,LOD.`Verification`,LOD.created_date,LOD.comment,LOD.requestor_comments,LOD.pmi_no,LOD.detail_status FROM lis_order_detail LOD, lis_item_detail LID WHERE LOD.item_cd = LID.item_cd AND LOD.order_no = '" + orderNo + "' AND LID.hfc_cd = '" + my_1_hfc_cd + "'";
         ArrayList<ArrayList<String>> dataOrderList;
         dataOrderList = conn.getData(orderList);
 
@@ -61,7 +62,7 @@
                         <%
                             }
                         %>
-                        
+
                         <input type="text" name="itemCD" value="<%=dataOrderList.get(i).get(0)%>" style="display:none;">
                     </td>
                     <td><%=dataOrderList.get(i).get(0)%></td>
@@ -69,7 +70,12 @@
                     <td><%=dataOrderList.get(i).get(2)%></td>
                     <td><%=dataOrderList.get(i).get(3)%></td>
                     <td><%=dataOrderList.get(i).get(4)%></td>
-                    <td><%=dataOrderList.get(i).get(5)%></td>
+                    <td><%if (dataOrderList.get(i).get(5)==null) {
+                            out.print("");
+                        } else {
+                            out.print(dataOrderList.get(i).get(5));
+                        }
+                        %></td>
                     <td><%=dataOrderList.get(i).get(6)%></td>
                     <td><%=dataOrderList.get(i).get(7)%></td>
                     <td><%=dataOrderList.get(i).get(8)%></td>
