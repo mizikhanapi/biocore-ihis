@@ -62,13 +62,19 @@ $(document).ready(function(){
             obj1[this.id] = $(this).val();
           
         });
+        if (checkIMU(_data, obj1)) {
+            bootbox.alert("This Diagnosis already been inserted. Please choose at consultation note to update the record or add new Diagnosis");
+        }else{
+            _data.push(obj1);
+            displayDGS(Type, date4, Problem8, Severity1, Site1, Laterality1, comment8);
 
-        _data.push(obj1);
-         displayDGS(Type,date4,Problem8,Severity1,Site1,Laterality1,comment8);
+            $("#searchDiag").val("");
+            $("#commentDGS").val("");
+            $("#CIS030001").modal('toggle');
+        }
+ 
 
-        $("#searchDiag").val("");
-        $("#commentDGS").val("");
-        $("#CIS030001").modal('toggle');
+      
         //$(".modal-backdrop").hide();
 
     });
@@ -105,18 +111,40 @@ $(document).ready(function(){
         var _LLaterality1 = $('#update_LateralityDGS').val();
         var _Pcomment8 = $('#update_commentDGS').val();
         var _dgsCode = $('#update_dgsCode').val();
-        upObject.TypeDGS = _TType;
-        upObject.date4 = _ddate4;
-        upObject.Problem8 = _PProblem8;
-        upObject.Severity1 = _SSeverity1;
-        upObject.Site1 = _SSite1;
-        upObject.Laterality1 = _LLaterality1;
-        upObject.comment8 = _Pcomment8;
-        upObject.dgsCode=_dgsCode;
-        var sum = _TType + '| ' + _ddate4 + '| ' + _PProblem8 + '| ' + _SSeverity1 + '| ' + _SSite1 + '| ' + _LLaterality1 + '| ' + _Pcomment8
+        
+        if (upObject.dgsCode === _dgsCode) {
+            upObject.TypeDGS = _TType;
+            upObject.date4 = _ddate4;
+            upObject.Problem8 = _PProblem8;
+            upObject.Severity1 = _SSeverity1;
+            upObject.Site1 = _SSite1;
+            upObject.Laterality1 = _LLaterality1;
+            upObject.comment8 = _Pcomment8;
+            upObject.dgsCode = _dgsCode;
+            var sum = _TType + '| ' + _ddate4 + '| ' + _PProblem8 + '| ' + _SSeverity1 + '| ' + _SSite1 + '| ' + _LLaterality1 + '| ' + _Pcomment8
 
-        $('#sum' + rowId).html(sum);
-        $("#update_CIS030001").modal('toggle');
+            $('#sum' + rowId).html(sum);
+            $("#update_CIS030001").modal('toggle');
+        } else {
+            if (checkIMU(_data, upObject)) {
+                bootbox.alert("This Diagnosis already been inserted. Please choose at consultation note to update the record or add new Diagnosis");
+            }else{
+                upObject.TypeDGS = _TType;
+                upObject.date4 = _ddate4;
+                upObject.Problem8 = _PProblem8;
+                upObject.Severity1 = _SSeverity1;
+                upObject.Site1 = _SSite1;
+                upObject.Laterality1 = _LLaterality1;
+                upObject.comment8 = _Pcomment8;
+                upObject.dgsCode = _dgsCode;
+                var sum = _TType + '| ' + _ddate4 + '| ' + _PProblem8 + '| ' + _SSeverity1 + '| ' + _SSite1 + '| ' + _LLaterality1 + '| ' + _Pcomment8
+
+                $('#sum' + rowId).html(sum);
+                $("#update_CIS030001").modal('toggle');
+            }
+
+        }
+        
       
         
         //$(".modal-backdrop").hide();
@@ -240,4 +268,14 @@ function displayPNT(pnt){
         var _tr = '<tr data-status="pagado" ><td><div class="ckbox"><input type="checkbox" id="checkbox|'+i+'" name="CIS_consult_notes"><label for="checkbox|'+i+'"></label></div></td><td><div class="media"><div class="media-body">Progress Notes :<p class="summary" id="sum' + i + '">' +  pnt + '</p></div></div></td><td><a data-toggle="modal"  href="" class="updateBtnPNT" id="row|' + i + '"><i class="fa fa-pencil-square-o" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #337ab7;" ></i></a></a></td><td><a href="javascript:;" class="star"><a href="#" class="deleteBtn" id="row|' + i + '"><i class="fa fa-times" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #d9534f;"></i></a></a></td></tr>';
         $('#PNTNotes').append(_tr);
         i = i + 1;
+}
+
+function checkDGS(datas,obj){
+      var already = false;   
+        for(var i in datas){
+            if(datas[i].dgsCode === obj.dgsCode){
+                already = true;
+            }
+        }
+        return already;
 }

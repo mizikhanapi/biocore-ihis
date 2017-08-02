@@ -298,7 +298,14 @@
     
     <!-- Mapping For PIS Hidding URL End -->
 
-
+    <servlet>
+        <servlet-name>CIS</servlet-name>
+        <jsp-file>/CIS/CIS000000.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>CIS</servlet-name>
+        <url-pattern>/CIS/</url-pattern>
+    </servlet-mapping>
 
 
     

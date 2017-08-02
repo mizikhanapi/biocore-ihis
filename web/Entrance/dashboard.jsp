@@ -215,7 +215,7 @@
                         %>
 
                         <div class="col-xs-6 col-sm-6 col-md-3">
-                            <a href="../CIS/CIS000000.jsp" class="thumbnail">
+                            <a href="../CIS/" class="thumbnail">
                                 <div class="kotak text-center">
                                     <i class="fa fa-user-md" aria-hidden="true" style="color: #E84C3D;font-size: 4em;"></i>
                                     <h3>Patient Consultation</h3>
