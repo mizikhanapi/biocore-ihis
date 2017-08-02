@@ -10,15 +10,17 @@
     Config.getFile_url(session);
 
     Conn conn = new Conn();
-    String startDate, endDate, hfc, monthDuration, query = "";
+    String startDate, endDate, hfc, dis, monthDuration, query = "";
     String Reply = "";
 
-//    startDate = request.getParameter("startDate").toString();
-//    endDate = request.getParameter("endDate").toString();
-//    hfc = request.getParameter("hfc").toString();
-    startDate = "2017-01-26";
-    endDate = "2017-07-28";
-    hfc = "04010101";
+    startDate = request.getParameter("startDate").toString();
+    endDate = request.getParameter("endDate").toString();
+    hfc = request.getParameter("hfc").toString();
+    dis = request.getParameter("dis").toString();
+//    startDate = "2017-01-26";
+//    endDate = "2017-07-28";
+//    hfc = "04010101";
+//    dis = "001";
 
     if (!startDate.equals("") && !endDate.equals("") && !hfc.equals("")) {
 
@@ -44,10 +46,10 @@
                 + " MONTHNAME(e.`EPISODE_DATE`) as months"
                 + " FROM pms_episode e INNER JOIN pms_patient_biodata b"
                 + " ON e.`PMI_NO` = b.`PMI_NO`"
-                + " WHERE e.`HEALTH_FACILITY_CODE` = '04010101'  AND e.`DISCIPLINE_CODE` = '001'"
+                + " WHERE e.`HEALTH_FACILITY_CODE` = '"+hfc+"'  AND e.`DISCIPLINE_CODE` = '"+dis+"'"
                 + " AND DATE_FORMAT(NOW(), '%Y') - DATE_FORMAT(b.`BIRTH_DATE`, '%Y') - (DATE_FORMAT(NOW(),"
                 + " '00-%m-%d') < DATE_FORMAT(b.`BIRTH_DATE`, '00-%m-%d')) IS NOT NULL"
-                + " AND cast(e.`EPISODE_DATE` as date) BETWEEN '2017-01-26' AND '2017-08-28') as tbl"
+                + " AND cast(e.`EPISODE_DATE` as date) BETWEEN '"+startDate+"' AND '"+endDate+"') as tbl"
                 + " GROUP BY ageband , months;";
 
 //    out.print("Replay : " + hfc + " - " + startDate + " - " + endDate + " + " + query +"<br>");
@@ -74,7 +76,7 @@
 
 %>
 
-<div style="width: 100%; height: 800px">
+<div style="width: 100%; height: 400px">
     <div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
 
 </div>
@@ -82,8 +84,9 @@
 <script>
 
     var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+    var endMonth = new Date("<%=endDate%>").getMonth();
     var reply = "<%=Reply%>";
-    console.log(reply);
+//    console.log(reply);
     if (reply !== "No Data" && reply !== "UnCorrect Massage") {
         var dataRow = reply.trim().split("^");
 
@@ -98,23 +101,23 @@
                 return dataes.name;
             }).indexOf(name);
             var monthIndex = months.indexOf(dataes[1]);
-            console.log(nameIndex );
+//            console.log(nameIndex );
             if (nameIndex !== -1) {
-                console.log(seriesOfData[nameIndex]);
+//                console.log(seriesOfData[nameIndex]);
                 seriesOfData[nameIndex].data[monthIndex] = parseInt(dataes[2]);
             } else {
                 data[monthIndex] = parseInt(dataes[2]);
                 
                 var obj = {
                     name: name,
-                    data: data
+                    data: data.slice(0,endMonth+1)
                 };
-                console.log(obj);
+//                console.log(obj);
                 seriesOfData.push(obj);
                 }
 
         }
-        console.log(seriesOfData);
+//        console.log(seriesOfData);
     }
 
 
@@ -127,7 +130,7 @@
             text: 'Yearly Patient Attendance Rate'
         },
         subtitle: {
-            text: 'By Age Range'
+            text: 'By Age Range, From '+'<%=startDate%>'+' To '+'<%=endDate%>'
         },
         xAxis: {
             categories: months,

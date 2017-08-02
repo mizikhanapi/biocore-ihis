@@ -15,10 +15,17 @@
     String dis = (String) session.getAttribute("DISCIPLINE_CODE");
     String sub = session.getAttribute("SUB_DISCIPLINE_CODE").toString();
     String hfc_name = session.getAttribute("HFC_NAME").toString();
-//    
-//     String dis_name_query = "SELECT discipline_name FROM adm_discipline WHERE discipline_hfc_cd='" + hfc + "' AND discipline_cd='" + dis + "'";
-//    ArrayList<ArrayList<String>> mysqldis_name = conn.getData(dis_name_query);
-//    String dis_name = mysqldis_name.get(0).get(0);
+    String dis_names = "";
+    String dis_name_query = "SELECT discipline_cd, discipline_name FROM adm_discipline WHERE discipline_hfc_cd='" + hfc + "'"
+            + " and (discipline_name like '%Inpatient%' or discipline_name like '%Outpatient%')  ";
+    ArrayList<ArrayList<String>> mysqldis_name = conn.getData(dis_name_query);
+    for (int x = 0; x < mysqldis_name.size(); x++) {
+        dis_names += mysqldis_name.get(x).get(0) + "|" + mysqldis_name.get(x).get(1);
+        if (x < mysqldis_name.size() - 1) {
+            dis_names += "^";
+        }
+    }
+
 %>
 
 <%    String hfc_cd = "SELECT logo FROM adm_health_facility WHERE hfc_cd='" + hfc + "'";
@@ -93,9 +100,56 @@
                         </form>
                     </div>
 
+
+
                     <div class="thumbnail">
-
-
+                        <form>
+                            <div class="col-md-5">
+                                <label class="control-label">Discipline</label>
+                                <div class="form-inline"> 
+                                    <div class="radio radio-primary">
+                                        <input type="radio" name="radioDiscipline" id="RadioOutpatient" value="outpatient" checked>
+                                        <label for="RadioOutpatient">
+                                            Outpatient
+                                        </label>
+                                    </div>
+                                    <div class="radio radio-primary">
+                                        <input type="radio" name="radioDiscipline" id="RadioInpatient" value="inpatient">
+                                        <label for="RadioInpatient">
+                                            Inpatient
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-5">
+                                <label class="control-label">Sort By</label>
+                                <div class="form-inline">   
+                                    <div class="radio radio-primary">
+                                        <input type="radio" name="radioSortBY" id="radioSortBYGender" value="gender" checked>
+                                        <label for="radioSortBYGender">
+                                            Gender
+                                        </label>
+                                    </div>
+                                    <div class="radio radio-primary">
+                                        <input type="radio" name="radioSortBY" id="radioSortBYAge" value="ageRange">
+                                        <label for="radioSortBYAge">
+                                            Age Range
+                                        </label>
+                                    </div>
+                                    <div class="radio radio-primary">
+                                        <input type="radio" name="radioSortBY" id="radioSortBYCenterCode" value="centerCode">
+                                        <label for="radioSortBYCenterCode">
+                                            Center
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="text-center" style="margin: auto">
+                                    <button class="btn btn-primary btn-lg" type="button" id="patientAttandanceViewReportBtn" name="patientAttandanceViewReport"><i class="fa fa-search fa-lg" ></i>&nbsp; View</button>
+                                </div>
+                            </div>
+                        </form>
                         <div id="ALGraph">
 
                         </div>
@@ -156,19 +210,141 @@
 //            $("#dateFrom").datepicker({dateFormat: 'dd/mm/yy'});
 //            $("#dateTo").datepicker({dateFormat: 'dd/mm/yy'});
 
-            $.ajax({
-                type: "POST",
-                url: "UTeMAttendanceListGraphByGender.jsp",
-                data: "",
-                timeout: 10000,
-                success: function (reply) {
-                    $("#ALGraph").html(reply.trim());
-                },
-                error: function (err) {
-                    console.log("ERROR: " + err);
+            var disciplineData = [];
+            if ("<%=dis_names%>" !== "")
+            {
+                var temp = "<%=dis_names%>".split("^");
+
+                var z;
+                for (z = 0; z < temp.length; z++)
+                {
+                    var splitTemp = temp[z].split("|");
+                    newObj = {
+                        name: splitTemp[1],
+                        code: splitTemp[0]
+                    };
+
+//                    console.log(newObj);
+                    disciplineData.push(newObj);
+                }
+            }
+
+            var yyyyMMddHHmmss;
+            var HHmmss;
+            var yyyyMMdd;
+            var ddMMyyyy;
+            var timeStamp;
+            var pmi_no;
+            var user_id;
+            var user_name;
+            var curYear;
+            //function to get date 
+            function getDateNow() {
+                //yyyy-MM-dd HH:mm:ss
+                var nowDate = new Date();
+                timeStamp = nowDate;
+                var ZeroMinutes, ZeroSeconds, ZeroDay, ZeroMonth;
+                //months
+                var month = (nowDate.getMonth() + 1);
+                if (month < 10) {
+                    ZeroMonth = "0" + month;
+                } else {
+                    ZeroMonth = month;
+                }
+                //days
+                var day = (nowDate.getDate());
+                if (day < 10) {
+                    ZeroDay = "0" + day;
+                } else {
+                    ZeroDay = day;
+                }
+                //years
+                var year = (nowDate.getFullYear());
+                curYear = year;
+                //hours
+                var hours = nowDate.getHours();
+                //minutes
+                var minutes = nowDate.getMinutes();
+                if (minutes < 10) {
+                    ZeroMinutes = "0" + minutes;
+                } else {
+                    ZeroMinutes = minutes;
+                }
+                //seconds
+                var seconds = nowDate.getSeconds();
+                if (seconds < 10) {
+                    ZeroSeconds = "0" + seconds;
+                } else {
+                    ZeroSeconds = seconds;
+                }
+                //complete day
+                yyyyMMddHHmmss = year + "-" + ZeroMonth + "-" + ZeroDay + " " + hours + ":" + ZeroMinutes + ":" + ZeroSeconds;
+                HHmmss = hours + ":" + ZeroMinutes + ":" + ZeroSeconds;
+                yyyyMMdd = year + "-" + ZeroMonth + "-" + ZeroDay;
+                ddMMyyyy = ZeroDay + "-" + ZeroMonth + "-" + year;
+//                ddMMyyyyHHmmss = ZeroDay + "/" + ZeroMonth + "/" + year + " " + hours + ":" + ZeroMinutes + ":" + ZeroSeconds;
+//                HHmmss = hours + ":" + ZeroMinutes + ":" + ZeroSeconds;
+//                ddMMyyyy = ZeroDay + "/" + ZeroMonth + "/" + year;
+            }
+            viewPAGraph();
+
+            $("#patientAttandanceViewReportBtn").click(function () {
+                viewPAGraph();
+            });
+
+            function viewPAGraph() {
+
+                getDateNow();
+                var startDate, endDate, hfc, dis = "", sortBy = "", discipline = "", curMonth, url;
+                startDate = curYear + '-01-01';
+                endDate = yyyyMMdd;
+                hfc = "<%=hfc%>";
+                sortBy = $("input[name='radioSortBY']:checked").val();
+                discipline = $("input[name='radioDiscipline']:checked").val();
+
+                var result = [];
+                if (disciplineData.length > 0 && discipline !== "")
+                {
+                    result = disciplineData.filter(function (obj) {
+
+//                        console.log((obj.name.toLowerCase().search(discipline.toLowerCase())) > -1);
+                        return (obj.name.toLowerCase().search(discipline.toLowerCase())) > -1;
+                    });
+//                    console.log(result);
+                }
+                dis = result[0].code;
+
+                if (sortBy === "gender") {
+                    url = "UTeMAttendanceListGraphByGender.jsp";
+                } else if (sortBy === "ageRange") {
+                    url = "UTeMAttendanceListGraphByAgeRange.jsp";
+                } else if (sortBy === "centerCode") {
+                    url = "UTeMAttendanceListGraphByCenterCode.jsp";
+                } else {
+                    alert("Uncorrect Type of Sort");
                 }
 
-            });
+                var data = {
+                    startDate: startDate,
+                    endDate: endDate,
+                    hfc: hfc,
+                    dis: dis
+                };
+                $.ajax({
+                    type: "POST",
+                    url: url,
+                    data: data,
+                    timeout: 10000,
+                    success: function (reply) {
+                        $("#ALGraph").html(reply.trim());
+                    },
+                    error: function (err) {
+                        console.log("ERROR: " + err);
+                    }
+
+                });
+
+            }
 
             $("#dateFrom").datepicker({
                 dateFormat: 'dd/mm/yy',
@@ -199,7 +375,7 @@
             });
 
 
-           
+
             $("#searchPatientAttendance").click(function () {
                 var patientType, startDate, endDate;
 
@@ -302,6 +478,7 @@
                                         <div style="margin: 30px 0 0 0; font-size: 15px;"> \n\
                                         <p>Facility: <strong><%=hfc_name%></strong></p>\n\
                                         <p>Discipline: <strong>' + patientType + '</strong></p>\n\
+                                        <p>Date: From <strong>' + startDate + ' </strong>  To <strong>' + endDate + '</strong> </p>\n\
                                         </div> '
                                                                 );
                                                 $(win.document.body).find('table')

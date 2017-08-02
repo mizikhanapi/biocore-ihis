@@ -50,8 +50,8 @@
         <link href="https://cdn.datatables.net/buttons/1.3.1/css/buttons.dataTables.min.css" rel="stylesheet" type="text/css"/>
 
         <script src="../assets/js/Chart.bundle.js" type="text/javascript"></script>
-        
-        
+
+
 
         <script src="https://code.highcharts.com/highcharts.js"></script>
         <script src="https://code.highcharts.com/modules/exporting.js"></script>
@@ -157,40 +157,121 @@
         <script>
 //            $("#dateFrom").datepicker({dateFormat: 'dd/mm/yy'});
 //            $("#dateTo").datepicker({dateFormat: 'dd/mm/yy'});
-
-            $.ajax({
-                type:"POST",
-                url:"UTeMMedicalCertificateGraph.jsp",
-                data :"",
-                timeout:10000,
-                success: function (reply) {
-                $("#MCGraph").html(reply.trim());
-                },
-                error:  function (err) {
-                    console.log("ERROR: "+err);
+            var yyyyMMddHHmmss;
+            var HHmmss;
+            var yyyyMMdd;
+            var ddMMyyyy;
+            var timeStamp;
+            var pmi_no;
+            var user_id;
+            var user_name;
+            var curYear;
+            //function to get date 
+            function getDateNow() {
+                //yyyy-MM-dd HH:mm:ss
+                var nowDate = new Date();
+                timeStamp = nowDate;
+                var ZeroMinutes, ZeroSeconds, ZeroDay, ZeroMonth;
+                //months
+                var month = (nowDate.getMonth() + 1);
+                if (month < 10) {
+                    ZeroMonth = "0" + month;
+                } else {
+                    ZeroMonth = month;
                 }
-               
-            });
+                //days
+                var day = (nowDate.getDate());
+                if (day < 10) {
+                    ZeroDay = "0" + day;
+                } else {
+                    ZeroDay = day;
+                }
+                //years
+                var year = (nowDate.getFullYear());
+                curYear = year;
+                //hours
+                var hours = nowDate.getHours();
+                //minutes
+                var minutes = nowDate.getMinutes();
+                if (minutes < 10) {
+                    ZeroMinutes = "0" + minutes;
+                } else {
+                    ZeroMinutes = minutes;
+                }
+                //seconds
+                var seconds = nowDate.getSeconds();
+                if (seconds < 10) {
+                    ZeroSeconds = "0" + seconds;
+                } else {
+                    ZeroSeconds = seconds;
+                }
+                //complete day
+                yyyyMMddHHmmss = year + "-" + ZeroMonth + "-" + ZeroDay + " " + hours + ":" + ZeroMinutes + ":" + ZeroSeconds;
+                HHmmss = hours + ":" + ZeroMinutes + ":" + ZeroSeconds;
+                yyyyMMdd = year + "-" + ZeroMonth + "-" + ZeroDay;
+                ddMMyyyy = ZeroDay + "-" + ZeroMonth + "-" + year;
+//                ddMMyyyyHHmmss = ZeroDay + "/" + ZeroMonth + "/" + year + " " + hours + ":" + ZeroMinutes + ":" + ZeroSeconds;
+//                HHmmss = hours + ":" + ZeroMinutes + ":" + ZeroSeconds;
+//                ddMMyyyy = ZeroDay + "/" + ZeroMonth + "/" + year;
+            }
+            viewMCGraph();
+            function viewMCGraph() {
+                
+                getDateNow();
+                var startDate, endDate, hfc;
+                startDate = curYear + '-01-01';
+                endDate = yyyyMMdd;
+                hfc = "<%=hfc%>";
+                
+                var data = {
+                    startDate: startDate,
+                    endDate: endDate,
+                    hfc: hfc
+                };
+                $.ajax({
+                    type: "POST",
+                    url: "UTeMMedicalCertificateGraph.jsp",
+                    data: data,
+                    timeout: 10000,
+                    success: function (reply) {
+                        $("#MCGraph").html(reply.trim());
+                    },
+                    error: function (err) {
+                        console.log("ERROR: " + err);
+                    }
+
+                });
+
+            }
 
             $("#dateFrom").datepicker({
                 dateFormat: 'dd/mm/yy',
+                yearRange: '1999:c+1',
+                changeMonth: true,
+                changeYear: true,
+                minDate: new Date(1999, 10 - 1, 25),
+                maxDate: '+30Y',
                 onSelect: function (selected) {
 
                     $("#dateTo").datepicker("option", "minDate", selected);
 
                 }
-
             });
 
             $("#dateTo").datepicker({
                 dateFormat: 'dd/mm/yy',
+                yearRange: '1999:c+1',
+                changeMonth: true,
+                changeYear: true,
+                minDate: new Date(1999, 10 - 1, 25),
+                maxDate: '+30Y',
                 onSelect: function (selected) {
 
                     $("#dateFrom").datepicker("option", "maxDate", selected);
 
                 }
-
             });
+
             $("#searchMedicalCertificate").click(function () {
                 var startDate, endDate;
                 var dateStartTemp = "", dateEndTemp = "";
@@ -248,13 +329,13 @@
                                     startDate = temp[1] + "-" + temp[0] + "-" + temp[2];
 
                                     var temp = datas[5].split("-");
-                                    endDate = temp[1]+ "-" + temp[0] + "-" + temp[2];
+                                    endDate = temp[1] + "-" + temp[0] + "-" + temp[2];
 
                                     var date1 = new Date(startDate);
                                     var date2 = new Date(endDate);
-                                    
+
                                     var timeDiff = Math.abs(date2.getTime() - date1.getTime());
-                                    var duration = Math.ceil(timeDiff / (1000 * 3600 * 24))+1;
+                                    var duration = Math.ceil(timeDiff / (1000 * 3600 * 24)) + 1;
 
                                     trHTML += '<tr><td>' + datas[1] + '</td><td>' + datas[0] + '</td>' +
                                             '<td>' + datas[3] + '</td><td>' + datas[4] + '</td><td>' + datas[5] +
@@ -304,6 +385,7 @@
                                         </div> \n\
                                         <div style="margin: 30px 0 0 0; font-size: 15px;"> \n\
                                         <p>Facility: <strong><%=hfc_name%></strong></p>\n\
+\n\                                     <p>Date: From <strong>' + startDate + ' </strong>  To <strong>' + endDate + '</strong> </p>\n\
                                         </div> '
                                                                 );
                                                 $(win.document.body).find('table')

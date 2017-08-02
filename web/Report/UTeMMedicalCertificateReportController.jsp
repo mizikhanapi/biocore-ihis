@@ -15,12 +15,12 @@
     Conn conn = new Conn();
     String startDate, endDate, hfc, query = "";
 
-//    startDate = request.getParameter("startDate").toString();
-//    endDate = request.getParameter("endDate").toString();
-//    hfc = request.getParameter("hfc").toString();
-    startDate = "2017-08-01";
-    endDate = "2017-08-28";
-    hfc = "04010101";
+    startDate = request.getParameter("startDate").toString();
+    endDate = request.getParameter("endDate").toString();
+    hfc = request.getParameter("hfc").toString();
+//    startDate = "2017-08-01";
+//    endDate = "2017-08-28";
+//    hfc = "04010101";
 
     if (!startDate.equals("") && !endDate.equals("") && !hfc.equals("")) {
         query = "Select distinct b.`NEW_IC_NO`, b.`PATIENT_NAME`, b.SEX_CODE ,"

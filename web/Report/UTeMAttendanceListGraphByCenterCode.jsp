@@ -10,25 +10,30 @@
     Config.getFile_url(session);
 
     Conn conn = new Conn();
-    String startDate, endDate, hfc, monthDuration,endMonth, query = "";
+    String startDate, endDate, hfc, dis, monthDuration, query = "";
     String Reply = "";
 
     startDate = request.getParameter("startDate").toString();
     endDate = request.getParameter("endDate").toString();
     hfc = request.getParameter("hfc").toString();
+    dis = request.getParameter("dis").toString();
 //    startDate = "2017-01-26";
-//    endDate = "2017-06-28";
+//    endDate = "2017-08-28";
 //    hfc = "04010101";
-
+//    dis = "001";
+//    
     if (!startDate.equals("") && !endDate.equals("") && !hfc.equals("")) {
 
         query = "Select distinct"
-                + " ml.centre_code, ml.EPISODE_DATE,"
-                + " MONTHNAME(ml.EPISODE_DATE),COUNT(*)"
-                + " FROM lhr_med_leave ml"
-                + " WHERE ml.hfc_cd = '" + hfc + "'"
-                + " GROUP BY MONTH(ml.EPISODE_DATE) , ml.centre_code"
-                + " having cast(ml.EPISODE_DATE as date) BETWEEN '" + startDate + "' AND '" + endDate + "'";
+                + " s.centre_code,"
+                + " MONTHNAME(e.`EPISODE_DATE`),  COUNT(*), e.`EPISODE_DATE`"
+                + " FROM pms_episode e INNER JOIN lhr_signs s"
+                + " on e.`PMI_NO` = s.pmi_no"
+                + " AND e.`HEALTH_FACILITY_CODE` = s.hfc_cd"
+                + " AND e.`EPISODE_DATE` = s.episode_date"
+                + " WHERE e.`HEALTH_FACILITY_CODE` = '"+hfc+"'  AND e.`DISCIPLINE_CODE` = '"+dis+"'"
+                + " GROUP BY YEAR(e.`EPISODE_DATE`),  MONTH(e.`EPISODE_DATE`) , s.centre_code"
+                + " having cast(e.`EPISODE_DATE` as date) BETWEEN '"+startDate+"' AND '"+endDate+"'";
 
 //    out.print("Replay : " + hfc + " - " + startDate + " - " + endDate + " + " + query +"<br>");
         ArrayList<ArrayList<String>> medicalCertificateInfoGraph = conn.getData(query);
@@ -62,8 +67,7 @@
 <script>
 
     var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-     var endMonth = new Date("<%=endDate%>").getMonth();
-    
+    var endMonth = new Date("<%=endDate%>").getMonth();
     var reply = "<%=Reply%>";
 //    console.log(reply);
     if (reply !== "No Data" && reply !== "UnCorrect Massage") {
@@ -74,26 +78,26 @@
         for (j = 0; j < dataRow.length; j++) {
             var dataes = dataRow[j].split("|");
 
-            var data = [0,0,0,0,0,0,0,0,0,0,0,0];
+            var data = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
             var name = dataes[0];
             var nameIndex = seriesOfData.map(function (dataes) {
                 return dataes.name;
             }).indexOf(name);
-            var monthIndex = months.indexOf(dataes[2]);
+            var monthIndex = months.indexOf(dataes[1]);
 //            console.log(nameIndex );
             if (nameIndex !== -1) {
 //                console.log(seriesOfData[nameIndex]);
-                seriesOfData[nameIndex].data[monthIndex] = parseInt(dataes[3]);
+                seriesOfData[nameIndex].data[monthIndex] = parseInt(dataes[2]);
             } else {
-                data[monthIndex] = parseInt(dataes[3]);
-                
+                data[monthIndex] = parseInt(dataes[2]);
+
                 var obj = {
                     name: name,
-                    data: data.slice(0,endMonth+1)
+                    data: data.slice(0, endMonth + 1)
                 };
 //                console.log(obj);
                 seriesOfData.push(obj);
-                }
+            }
 
         }
 //        console.log(seriesOfData);
@@ -106,10 +110,10 @@
             type: 'column'
         },
         title: {
-            text: 'Yearly Medical Certificate Issues Rate'
+            text: 'Yearly Patient Attendance Rate'
         },
         subtitle: {
-            text: 'For Center Codes, From '+'<%=startDate%>'+' To '+'<%=endDate%>'
+            text: 'By Center, From ' + '<%=startDate%>' + ' To ' + '<%=endDate%>'
         },
         xAxis: {
             categories: months,

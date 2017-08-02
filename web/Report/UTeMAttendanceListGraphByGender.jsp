@@ -13,13 +13,14 @@
     String startDate, endDate, hfc, dis, monthDuration, query = "";
     String Reply = "";
 
-//    startDate = request.getParameter("startDate").toString();
-//    endDate = request.getParameter("endDate").toString();
-//    hfc = request.getParameter("hfc").toString();
-    startDate = "2017-01-26";
-    endDate = "2017-07-28";
-    hfc = "04010101";
-    dis = "001";
+    startDate = request.getParameter("startDate").toString();
+    endDate = request.getParameter("endDate").toString();
+    hfc = request.getParameter("hfc").toString();
+    dis = request.getParameter("dis").toString();
+//    startDate = "2017-01-26";
+//    endDate = "2017-07-28";
+//    hfc = "04010101";
+//    dis = "001";
 
     if (!startDate.equals("") && !endDate.equals("") && !hfc.equals("")) {
 
@@ -68,26 +69,12 @@
 <script>
 
     var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-    var centerCodes = [], genders = ["Male", "Female"], epcisodeDates = [];
+    var endMonth = new Date("<%=endDate%>").getMonth();
     var reply = "<%=Reply%>";
 //    console.log(reply);
     if (reply !== "No Data" && reply !== "UnCorrect Massage") {
         var dataRow = reply.trim().split("^");
 
-//        var i;
-//        for (i = 0; i < dataRow.length; i++)
-//        {
-//            var datas = dataRow[i].split("|");
-//            centerCodes.push(datas[0]);
-//            genders.push(datas[2]);
-//            epcisodeDates.push(datas[3]);
-//            console.log(datas);
-//        }
-
-//        
-//        console.log(centerCodes);
-//        console.log(genders);
-//        console.log(epcisodeDates);
         var j;
         var seriesOfData = [];
         var malesData = [0,0,0,0,0,0,0,0,0,0,0,0], femalesData = [0,0,0,0,0,0,0,0,0,0,0,0],othersData = [0,0,0,0,0,0,0,0,0,0,0,0];
@@ -108,15 +95,15 @@
         }
         var Maleobj = {
             name: "Male",
-            data: malesData
+            data: malesData.slice(0,endMonth+1)
         };
         var Fmaleobj = {
             name: "Famle",
-            data: femalesData
+            data: femalesData.slice(0,endMonth+1)
         };
         var Otherobj = {
             name: "Other",
-            data: othersData
+            data: othersData.slice(0,endMonth+1)
         };
 //        console.log(Maleobj);
 //        console.log(Fmaleobj);
@@ -138,7 +125,7 @@
             text: 'Yearly Patient Attendance Rate'
         },
         subtitle: {
-            text: 'By Gender'
+            text: 'By Gender, From '+'<%=startDate%>'+' To '+'<%=endDate%>'
         },
         xAxis: {
             categories: months,
