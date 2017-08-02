@@ -35,14 +35,15 @@
                         <div class="form-group">
                             <label class="col-md-4 control-label" for="selectbasic">ID Type</label>
                             <div class="col-md-4">
+                              
                                 <select id="idType" name="idType" class="form-control" required="">
                                     <option selected="" disabled="" value="-"> Please select ID type</option>
 
-                                    <%  if (dataSystemStatus2.equals("0")) {
+                                    <%  //if (dataSystemStatus2.equals("0")) {
 
-                                        } else if (dataSystemStatus2.equals("1")) {
+                                        //} else if (dataSystemStatus2.equals("1")) {
                                             data2 = dataIdType2;
-                                        }
+                                        //}
                                         for (int i = 0; i < data2.size(); i++) {%>
                                     <option value="<%=data2.get(i).get(1)%>"><%=data2.get(i).get(2)%></option>
                                     <%  }

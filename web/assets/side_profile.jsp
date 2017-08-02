@@ -67,6 +67,7 @@
 
 <!-- SIDEBAR BUTTONS -->
 <div class="profile-userbuttons">
-    <button type="button" class="btn btn-success btn-sm" onclick="window.location.href = '../Entrance/Profile'">Manage Account</button>
+<!--    <button type="button" class="btn btn-success btn-sm" onclick="window.location.href = '../Entrance/Profile'">Manage Account</button>-->
+    <button type="button" class="btn btn-success btn-sm" onclick="clickManageAccount()">Manage Account</button>
 </div>
 </div>

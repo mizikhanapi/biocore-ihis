@@ -23,8 +23,44 @@ var VTSObjDCG = {};
 function goToHome() {
     location.href = '../Entrance/dashboard.jsp';
 }
+function logOut(){
+    location.href = '../Entrance/destroySession.jsp';
+}
+
+function clickManageAccount() {
+    if (pmiNo === "") {
+        window.onbeforeunload = null;
+        location.href = '../Entrance/Profile'
+    } else {
+        bootbox.alert('You need complete the consultation on patient before first');
+    }
+}
+function checkClick(url) {
+    if (pmiNo === "") {
+        window.onbeforeunload = null;
+        location.href = url;
+    } else {
+        bootbox.alert('You need complete the consultation on patient before first');
+    }
+}
 
 $(document).ready(function (e) {
+    
+    $('.btnCIS_LOGOUT').click(function(e){
+        e.preventDefault();
+        
+        if(pmiNo === "" ){
+            window.onbeforeunload = null;
+            logOut();
+        }else{
+            bootbox.alert('You need complete the consultation on patient before first');
+        }
+
+        
+        
+    });
+    
+
 
 
 
@@ -36,7 +72,7 @@ $(document).ready(function (e) {
             window.onbeforeunload = null;
             goToHome();
         } else {
-            alert('You need complete the consultation on patient before first');
+            bootbox.alert('You need complete the consultation on patient before first');
         }
     });
 
