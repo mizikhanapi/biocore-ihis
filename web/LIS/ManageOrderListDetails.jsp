@@ -45,6 +45,7 @@
             <th class="col-sm-1">Comments</th>
             <th class="col-sm-1">Set Collection Date</th>
             <th class="col-sm-1">Requestor Comments</th>
+            <th class="col-sm-1">Action</th>
             </thead>
             <tbody>
                 <%if (dataOrderList.size() > 0) {
@@ -62,8 +63,7 @@
                         <%
                             }
                         %>
-                        <a href="#" class="deleteBtn pull-right" id="delete_order_<%=i%>"><i class="fa fa-times fa-lg" aria-hidden="true" style="display: inline-block; color: #d9534f;"></i></a>
-
+                        
                         <input type="text" name="itemCD" value="<%=dataOrderList.get(i).get(0)%>" style="display:none;">
                     </td>
                     <td><%=dataOrderList.get(i).get(0)%></td>
@@ -253,7 +253,7 @@
 
                     </td>
                     <td><%=dataOrderList.get(i).get(10)%></td>
-
+                    <td><a href="#" class="deleteBtn pull-right" id="delete_order_<%=i%>"><i class="fa fa-times fa-lg" aria-hidden="true" style="display: inline-block; color: #d9534f;"></i></a></td>
 
                     <%
                             }
