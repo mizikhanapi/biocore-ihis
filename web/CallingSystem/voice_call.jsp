@@ -61,6 +61,9 @@
         if (myStrArr[j].equals("9")) {
             out.println("<audio onloadeddata='var audioPlayer = this; setTimeout(function() { audioPlayer.play(); }, " + val + ")'><source src='sound/9.mp3'></audio>");
         }
+        if (myStrArr[j].equals("P")) {
+            out.println("<audio onloadeddata='var audioPlayer = this; setTimeout(function() { audioPlayer.play(); }, " + val + ")'><source src='sound/Farmasi.mp3'></audio>");
+        }
     }
     val = val + 800;
     out.println("<audio onloadeddata='var audioPlayer = this; setTimeout(function() { audioPlayer.play(); }, " + val + ")'><source src='sound/BilikTest.MP3'></audio>");
@@ -115,6 +118,9 @@
         }
         if (room1[i].equals("9")) {
             out.println("<audio onloadeddata='var audioPlayer = this; setTimeout(function() { audioPlayer.play(); }, " + val + ")'><source src='sound/9.mp3'></audio>");
+        }
+        if (room1[i].equals("P")) {
+            out.println("<audio onloadeddata='var audioPlayer = this; setTimeout(function() { audioPlayer.play(); }, " + val + ")'><source src='sound/Farmasi.mp3'></audio>");
         }
     }
     //out.println("<audio onloadeddata='var audioPlayer = this; setTimeout(function() { audioPlayer.play(); }, " + val + ")'><source src='sound/Bilik.MP3'></audio>");
