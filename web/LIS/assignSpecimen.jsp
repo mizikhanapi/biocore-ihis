@@ -82,10 +82,7 @@
                                                         %>
                                                     </span>
                                                 </p>
-                                                <p>Specimen Source:
-                                                    <span class="p-label">
-                                                        <% out.println(pmi2);%>
-                                                    </span>
+                                                <p>
                                                 </p>
                                             </address>
                                         </div>
@@ -114,6 +111,7 @@
                                             <tr>
                                                 <th class="col-sm-1">Item Name</th>
                                                 <th class="col-sm-1">Container Information</th>
+                                                <th class="col-sm-1">Specimen Source</th>
                                                 <th class="col-sm-1">Order Date</th>	
                                             </tr>
                                         </thead>
@@ -129,7 +127,7 @@
                                                         out.println("<input type='text' name='specimen" + j + "' value='" + itemCD[j] + "' id='specimen" + j + "' style='display:none;'>");
 
                                                         count++;
-                                                        String sqlPatientApp = "SELECT LID.item_cd,LID.item_name,LID.spe_container,LOD.created_date,LOM.hfc_cd,LOM.pmi_no,LOM.patient_name FROM lis_order_detail LOD, lis_item_detail LID, lis_order_master LOM WHERE LOD.item_cd = LID.item_cd AND LOD.order_no = LOM.order_no AND LOD.item_cd = '" + itemCD[j] + "' AND LOD.order_no = '" + orderno1 + "' AND LID.hfc_cd = '"+hfc_cd+"'";
+                                                        String sqlPatientApp = "SELECT LID.item_cd,LID.item_name,LID.spe_container,LOD.created_date,LOM.hfc_cd,LOM.pmi_no,LOM.patient_name,LOD.spe_source FROM lis_order_detail LOD, lis_item_detail LID, lis_order_master LOM WHERE LOD.item_cd = LID.item_cd AND LOD.order_no = LOM.order_no AND LOD.item_cd = '" + itemCD[j] + "' AND LOD.order_no = '" + orderno1 + "' AND LID.hfc_cd = '"+hfc_cd+"'";
                                                         ArrayList<ArrayList<String>> dataPatientApp = conn.getData(sqlPatientApp);
 
                                                         if (dataPatientApp.size() > 0) {
@@ -138,6 +136,7 @@
                                             <tr>
                                                 <td><%=dataPatientApp.get(i).get(1)%><input type="text" value="<%=dataPatientApp.get(i).get(0)%>" id="item_cd<%=i%>" name="item_cd<%=i%>" style=" display: none;"></td>
                                                 <td><%=dataPatientApp.get(i).get(2)%></td>
+                                                <td><%=dataPatientApp.get(i).get(7)%></td>
                                                 <td><%=dataPatientApp.get(i).get(3)%><input type="text" id="patient_name" name="patient_name" value="<%=dataPatientApp.get(i).get(6)%>" style=" display: none;"> </td>
 
                                             </tr>
