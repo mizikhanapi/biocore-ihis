@@ -1,6 +1,7 @@
 package lhr_tables;
 
 import Bean.BLD;
+import Bean.ERRCOUNT;
 import Bean.MSH;
 import Bean.PDI;
 import Config_Pack.Config;
@@ -80,6 +81,7 @@ public class lhr_BLD {
                     }else{
                           System.out.println("False extract BLD");
                           System.out.println(query_bld_lhr_bld);
+                          ERRCOUNT.plusOne();
                     }
 
                     bldBr.add(bldB);

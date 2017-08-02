@@ -1,6 +1,7 @@
 package lhr_tables;
 
 import Bean.CCN;
+import Bean.ERRCOUNT;
 import Bean.MSH;
 import Bean.PDI;
 import Config_Pack.Config;
@@ -63,28 +64,7 @@ public class lhr_CCN {
 
 //                            // change time to prevent duplicate during insert. http://stackoverflow.com/a/759056/894470
                         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-//                            Date date_time = null;
-//
-//                            if (dataCCN[k][15] == null) {
-//                                Calendar cal = Calendar.getInstance();
-//                                ccnBean.setEncounter_Date(df.format(cal.getTime()));
-//                            } else {
-//                                date_time = df.parse(dataCCN[k][15]);
-//
-//                                Calendar gc = new GregorianCalendar();
-//                                gc.setTime(date_time);
-//
-//                                //create rand number by range http://stackoverflow.com/a/6029518/894470
-//                                int min = 0;
-//                                int max = 1000000000;
-//                                Random r = new Random();
-//                                int rand_num = r.nextInt(max - min + 1) + min;
-//                                gc.add(Calendar.SECOND, rand_num);
-//                                Date d2 = gc.getTime();
-//
-//                                ccnBean.setEncounter_Date(df.format(d2));
-//                            }
-//                            //
+
 
                         ccnBean.setEncounter_Date(alCcn.get(2).get(14));
                         ccnBean.setHfc_cd(alCcn.get(2).get(15));
@@ -166,6 +146,7 @@ public class lhr_CCN {
                         } else {
                             System.out.println("False extract ccn");
                             System.out.println("query ccn: "+query1);
+                            ERRCOUNT.plusOne();
                         }
 
                         ccnBeans.add(ccnBean);

@@ -1,6 +1,7 @@
 package lhr_tables;
 
 import Bean.DAB;
+import Bean.ERRCOUNT;
 import Bean.MSH;
 import Config_Pack.Config;
 import bean.DAB2;
@@ -88,6 +89,7 @@ public class lhr_DAB {
                             System.out.println("Query for DAB: " + query_dab_lhr_dab);
                             total_fail_insert++;
                             System.out.println("False extract DAB");
+                            ERRCOUNT.plusOne();
                         }else{
                             System.out.println("Done extract DAB");
                         }

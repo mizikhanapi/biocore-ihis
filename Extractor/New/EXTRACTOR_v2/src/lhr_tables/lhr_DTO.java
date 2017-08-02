@@ -1,6 +1,7 @@
 package lhr_tables;
 
 import Bean.DTO;
+import Bean.ERRCOUNT;
 import Bean.MSH;
 import Config_Pack.Config;
 import Process.MainRetrieval;
@@ -163,6 +164,7 @@ public class lhr_DTO {
                     }else{
                            System.out.println("false extract dto");
                            System.out.println("query dto: "+query3);
+                           ERRCOUNT.plusOne();
                     }
 
                     dtoBrs.add(dtoC);

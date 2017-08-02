@@ -1,13 +1,13 @@
 package lhr_tables;
 
 import Bean.ALG;
+import Bean.ERRCOUNT;
 import Bean.MSH;
 import Config_Pack.Config;
 import bean.ALG2;
 import java.util.ArrayList;
 import java.util.Vector;
 import main.RMIConnector;
-import separatorv2.SeparatorV2;
 
 public class lhr_ALG {
 
@@ -145,6 +145,7 @@ public class lhr_ALG {
                         } else {
                             System.out.println("False extract alg");
                             System.out.println(query_alg_lhr_alg);
+                            ERRCOUNT.plusOne();
                         }
                         algBr.add(algB);
 

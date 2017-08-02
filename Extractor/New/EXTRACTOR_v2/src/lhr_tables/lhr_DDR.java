@@ -6,6 +6,7 @@
 package lhr_tables;
 
 import Bean.DDR;
+import Bean.ERRCOUNT;
 import Bean.MSH;
 import Config_Pack.Config;
 import bean.DDR2;
@@ -170,6 +171,7 @@ public class lhr_DDR {
                         if (status_lhr_ddr == false) {
                             System.out.println("false extracting ddr");
                             System.out.println(query_lhr_medication);
+                            ERRCOUNT.plusOne();
                         } else {
                             System.out.println("true extracting ddr");
                         }

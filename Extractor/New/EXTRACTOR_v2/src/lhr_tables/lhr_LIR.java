@@ -1,5 +1,6 @@
 package lhr_tables;
 
+import Bean.ERRCOUNT;
 import Bean.LIR;
 import Bean.MSH;
 import Config_Pack.Config;
@@ -112,6 +113,7 @@ public class lhr_LIR {
                             total_fail_insert++;
                             System.out.println("false extract lir");
                             System.out.println(query_lhr_test);
+                            ERRCOUNT.plusOne();
                         } else {
                             System.out.println("done extract lir");
                         }

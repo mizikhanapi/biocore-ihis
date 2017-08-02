@@ -1,5 +1,6 @@
           package lhr_tables;
 
+import Bean.ERRCOUNT;
 import Bean.MSH;
 import Bean.PMH;
 import Config_Pack.Config;
@@ -163,6 +164,7 @@ public class lhr_PMH {
                                 total_fail_insert++;
                                 System.out.println("false extract pmh");
                                 System.out.println("query : " + query_lhr_pmh);
+                                ERRCOUNT.plusOne();
                             }else{
                                 System.out.println("done extract pmh");
                             }

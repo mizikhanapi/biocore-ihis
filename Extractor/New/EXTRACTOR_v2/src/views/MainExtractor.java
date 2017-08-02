@@ -5,6 +5,7 @@
  */
 package views;
 
+import Bean.ERRCOUNT;
 import Bean.MSH;
 import Bean.PDI;
 import lhr_tables.*;
@@ -28,6 +29,7 @@ public class MainExtractor {
         if (query == true) {
 
             spv2.startProcess(t.getTxndata());
+            
             lhr_PDI lhr_pde = new lhr_PDI();
             PDI pdi = lhr_pde.lhr_PDI(spv2.getVpdi(), t);
             //MSH
@@ -102,9 +104,18 @@ public class MainExtractor {
             //PEM
             lhr_PEM lhr_pem = new lhr_PEM();
             lhr_pem.M_PEM(spv2.getVpem(), t,msh);
-
+            
+            
+            int nums = ERRCOUNT.getCounterError();
+            System.out.println("error: "+ nums);
             update_ehr_central u = new update_ehr_central();
-            u.update_status(t.getCentral_Code());
+            if(nums <= 0 ){
+                u.update_status(t.getCentral_Code());
+            }else if(nums > 1){
+                u.update_status(t.getCentral_Code());
+                u.update_status_5(t.getCentral_Code());
+            }
+            
         } else {
             System.out.println("No data");
         }

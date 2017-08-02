@@ -5,6 +5,7 @@
  */
 package lhr_tables;
 
+import Bean.ERRCOUNT;
 import Bean.MSH;
 import Bean.SPR;
 import Config_Pack.Config;
@@ -109,6 +110,7 @@ public class lhr_SPR {
                         if (status_lhr_spr == false) {
                             System.out.println("false extracting spr");
                             System.out.println(query_lhr_procedure);
+                            ERRCOUNT.plusOne();
                         } else {
                             System.out.println("true extracting spr");
                         }

@@ -5,6 +5,7 @@
  */
 package lhr_tables;
 
+import Bean.ERRCOUNT;
 import Bean.MSH;
 import Bean.RRS;
 import Config_Pack.Config;
@@ -136,6 +137,7 @@ public class lhr_RRS {
                         if (status_lhr_ddr == false) {
                             System.out.println("false extracting rrs");
                             System.out.println(query_lhr_radiology_result);
+                            ERRCOUNT.plusOne();
                         } else {
                             System.out.println("true extracting rrs");
                         }

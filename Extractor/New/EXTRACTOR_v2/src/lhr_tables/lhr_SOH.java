@@ -1,5 +1,6 @@
 package lhr_tables;
 
+import Bean.ERRCOUNT;
 import Bean.MSH;
 import Bean.SOH;
 import Config_Pack.Config;
@@ -120,6 +121,7 @@ public class lhr_SOH {
                                 System.out.println("Query for SOH: " + query_soh_lhr_soh);
                                 total_fail_insert++;
                                 System.out.println("false extract SOH");
+                                ERRCOUNT.plusOne();
                             }else{
                                 System.out.println("done extract SOH");
                             }

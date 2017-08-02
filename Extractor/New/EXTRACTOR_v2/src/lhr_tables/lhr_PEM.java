@@ -15,6 +15,7 @@
  */
 package lhr_tables;
 
+import Bean.ERRCOUNT;
 import Bean.MSH;
 import Bean.PEM;
 import Config_Pack.Config;
@@ -106,6 +107,7 @@ public class lhr_PEM {
                     System.out.println("Query for IMU: " + query_imu_lhr_pem);
                     System.out.println("false extract PEM");
                     total_fail_insert++;
+                    ERRCOUNT.plusOne();
                 } else {
                     System.out.println("done extract PEM");
                 }

@@ -16,6 +16,7 @@
 package lhr_tables;
 
 import Bean.ARP;
+import Bean.ERRCOUNT;
 import Bean.MSH;
 import Bean.PDI;
 import Config_Pack.Config;
@@ -142,6 +143,7 @@ public class lhr_ARP {
                                 } else {
                                     System.out.println("False extract arp");
                                     System.out.println("query arp: " + query_alg_lhr_arp);
+                                    ERRCOUNT.plusOne();
                                 }
                                 arpBr.add(arpB);
 

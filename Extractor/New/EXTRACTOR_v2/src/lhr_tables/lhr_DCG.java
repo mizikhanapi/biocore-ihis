@@ -15,6 +15,7 @@
  */
 package lhr_tables;
 import Bean.DCG;
+import Bean.ERRCOUNT;
 import Bean.MSH;
 import Config_Pack.Config;
 import bean.DCG2;
@@ -103,6 +104,7 @@ public class lhr_DCG {
                         if (status_lhr_dcg == false) {
                             System.out.println("false extracting dcg");
                             System.out.println(query_lhr_discharge_summary);
+                            ERRCOUNT.plusOne();
                         } else {
                             System.out.println("true extracting dcg");
                         }

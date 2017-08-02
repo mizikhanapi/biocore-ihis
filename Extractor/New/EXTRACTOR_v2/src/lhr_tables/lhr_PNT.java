@@ -1,5 +1,6 @@
 package lhr_tables;
 
+import Bean.ERRCOUNT;
 import Bean.MSH;
 import Bean.PDI;
 import Bean.PNT;
@@ -105,6 +106,7 @@ public class lhr_PNT {
                                 total_fail_insert++;
                                 System.out.println("false extract PNT");
                                 System.out.println(query_pnt_lhr_pnt);
+                                ERRCOUNT.plusOne();
                             }else{
                                 System.out.println("done extract PNT");
                             }

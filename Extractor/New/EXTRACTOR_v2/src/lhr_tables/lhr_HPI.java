@@ -1,5 +1,6 @@
 package lhr_tables;
 
+import Bean.ERRCOUNT;
 import Bean.HPI;
 import Bean.MSH;
 import Config_Pack.Config;
@@ -100,6 +101,7 @@ public class lhr_HPI {
                         total_fail_insert++;
                         System.out.println("false extract hpi");
                         System.out.println(query2);
+                        ERRCOUNT.plusOne();
                     }else{
                         System.out.println("done extract hpi");
                     }

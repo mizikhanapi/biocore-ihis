@@ -1,6 +1,7 @@
 package lhr_tables;
 
 import Bean.DGS;
+import Bean.ERRCOUNT;
 import Bean.FMH;
 import Bean.MSH;
 import Config_Pack.Config;
@@ -160,6 +161,7 @@ public class lhr_FMH {
                                 total_fail_insert++;
                                 System.out.println("false insert fmh");
                                 System.out.println(query_fmh_lhr_fh);
+                                ERRCOUNT.plusOne();
                             }else{
                                 System.out.println("done insert fmh");
                             }

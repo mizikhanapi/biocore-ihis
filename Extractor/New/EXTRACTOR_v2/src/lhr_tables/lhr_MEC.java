@@ -1,5 +1,6 @@
 package lhr_tables;
 
+import Bean.ERRCOUNT;
 import Bean.MEC;
 import Bean.MSH;
 import Config_Pack.Config;
@@ -128,6 +129,7 @@ public class lhr_MEC {
                             total_fail_insert++;
                             System.out.println("false extract MEC");
                             System.out.println(query_lhr_ml);
+                            ERRCOUNT.plusOne();
                         } else {
                             System.out.println("done extract MEC");
                         }

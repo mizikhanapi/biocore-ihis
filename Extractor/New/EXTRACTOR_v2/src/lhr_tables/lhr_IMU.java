@@ -1,5 +1,6 @@
 package lhr_tables;
 
+import Bean.ERRCOUNT;
 import Bean.IMU;
 import Bean.MSH;
 import Config_Pack.Config;
@@ -136,7 +137,7 @@ public class lhr_IMU {
                         if (status_imu_lhr_immunisation == false) {
                             System.out.println("false extract IMU");
                             System.out.println(query_imu_lhr_imu);
-                            total_fail_insert++;
+                            ERRCOUNT.plusOne();
                         } else {
                             System.out.println("done extract IMU");
                         }

@@ -1,6 +1,7 @@
 package lhr_tables;
 
 import Bean.DGS;
+import Bean.ERRCOUNT;
 import Bean.MSH;
 import Config_Pack.Config;
 import bean.DGS2;
@@ -161,6 +162,7 @@ public class lhr_DGS {
                         } else {
                             System.out.println("False extract DGS");
                             System.out.println(query2);
+                            ERRCOUNT.plusOne();
                         }
                         dgsBr.add(dgsB);
                     } catch (Exception e) {
