@@ -62,6 +62,7 @@
                         <%
                             }
                         %>
+                        <a href="#" class="deleteBtn pull-right" id="delete_order_<%=i%>"><i class="fa fa-times fa-lg" aria-hidden="true" style="display: inline-block; color: #d9534f;"></i></a>
 
                         <input type="text" name="itemCD" value="<%=dataOrderList.get(i).get(0)%>" style="display:none;">
                     </td>
@@ -70,7 +71,7 @@
                     <td><%=dataOrderList.get(i).get(2)%></td>
                     <td><%=dataOrderList.get(i).get(3)%></td>
                     <td><%=dataOrderList.get(i).get(4)%></td>
-                    <td><%if (dataOrderList.get(i).get(5)==null) {
+                    <td><%if (dataOrderList.get(i).get(5) == null) {
                             out.print("-");
                         } else {
                             out.print(dataOrderList.get(i).get(5));
@@ -187,6 +188,48 @@
                                     });
                                 });
 
+                                $("#delete_order_<%=i%>").click(function () {
+
+                                    var tcode = $("#tcode_<%=i%>").val();
+                                    var order_no = "<%=orderNo%>";
+                                    //alert(tcode + " " + order_no);
+                                    var get = confirm("Are sure to delete the order?");
+                                    if (get == true)
+                                    {
+                                        $.ajax({
+                                            url: "delete_order.jsp",
+                                            type: "post",
+                                            data: {
+                                                tcode: tcode,
+                                                order_no: order_no
+                                            },
+                                            timeout: 10000,
+                                            success: function () {
+
+                                                $.ajax({
+                                                    url: "ManageOrderListDetails.jsp",
+                                                    type: "post",
+                                                    data: {orderNo: "<%=orderNo%>"},
+                                                    timeout: 3000,
+                                                    success: function (returnOrderDetailsTableHTML) {
+                                                        $('.nav-tabs a[href="#tab_default_2"]').tab('show');
+                                                        $('#ManageOrderDetailsListTable').html(returnOrderDetailsTableHTML);
+                                                        console.log(returnOrderDetailsTableHTML);
+                                                        $('#ManageOrderDetailsListTable').trigger('contentchanged');
+                                                        $('#basicModal_<%=i%>').modal('toggle');
+                                                        $("#basicModal_<%=i%>").hide();
+                                                        $(".modal-backdrop").hide();
+                                                        bootbox.alert("Order have been delete.");
+                                                    }
+                                                });
+                                            },
+                                            error: function (err) {
+                                                alert("Error update!");
+                                            }
+                                        });
+                                    }
+                                });
+
                                 $("#btn_cancel<%=i%>").click(function () {
                                     $.ajax({
                                         url: "ManageOrderListDetails.jsp",
@@ -244,8 +287,6 @@
                 }
             }
         });
-
-
     </script>
 </form>
 

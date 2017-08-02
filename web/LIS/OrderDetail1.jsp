@@ -135,7 +135,8 @@
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="textinput">Item Name*</label>
                         <div class="col-md-8">
-                            <select class="form-control" id="RNO_bodySystem" onchange="leaveChange(this)">
+                            <select class="form-control" id="RNO_bodySystem" onchange="leaveChange(this)" name="itemName">
+                                <option value="NoItem">Please Select Item Name</option>
                                 <%
                                     if (q1.size() > 0) {
                                         for (int i = 0; i < q1.size(); i++) {
@@ -359,48 +360,64 @@
         $("#btnAdd").click(function () {
             var order = $("#patientOrderNo").val();
             var itemCD = $("#itemCode1").val();
-            var pmiNo = $("#patientpmino").val();
+            var pmiNo = $("#spe_source").val();
             var Comment = $("#requestComment").val();
             var episodeDate = OrderDate;
-            //alert(episodeDate);
+            var itemName = $("#RNO_bodySystem").val();
+            //alert(itemName);
             //alert(Comment);
-            $.ajax({
-                url: "addOrder.jsp",
-                type: "post",
-                data: {
-                    order: order,
-                    pmiNo: pmiNo,
-                    itemCD: itemCD,
-                    Comment: Comment,
-                    episodeDate: episodeDate
-                },
-                timeout: 10000,
-                success: function (returnOrderHTML) {
-                    var dataOrder = {
-                        orderNo: order,
-                        pmino: pmiNo
-                    };
-                    $.ajax({
-                        url: "ManageOrderListDetails.jsp",
-                        type: "post",
-                        data: dataOrder,
-                        timeout: 3000,
-                        success: function (returnOrderDetailsTableHTML) {
-                            $('#ManageOrderDetailsListTable').html(returnOrderDetailsTableHTML);
-                            $('#ManageOrderDetailsListTable').trigger('contentchanged');
-                            $('.nav-tabs a[href="#tab_default_2"]').tab('show');
-                            $("#basicModal").hide();
-                            $(".modal-backdrop").hide();
-                            alert("New item successfully Added.");
-                        }
-                    });
+            if (itemName == "NoItem")
+            {
+                alert("Please select Item Name");
+            } else
+            {
+                $.ajax({
+                    url: "addOrder.jsp",
+                    type: "post",
+                    data: {
+                        order: order,
+                        pmiNo: pmiNo,
+                        itemCD: itemCD,
+                        Comment: Comment,
+                        episodeDate: episodeDate
+                    },
+                    timeout: 10000,
+                    success: function (returnOrderHTML) {
+                        var dataOrder = {
+                            orderNo: order,
+                            pmino: pmiNo
+                        };
+                        $.ajax({
+                            url: "ManageOrderListDetails.jsp",
+                            type: "post",
+                            data: dataOrder,
+                            timeout: 3000,
+                            success: function (returnOrderDetailsTableHTML) {
+                                $('#ManageOrderDetailsListTable').html(returnOrderDetailsTableHTML);
+                                $('#ManageOrderDetailsListTable').trigger('contentchanged');
+                                $('.nav-tabs a[href="#tab_default_2"]').tab('show');
+                                $('#NewRequest').modal('toggle');
+                                $("#NewRequest").hide();
+                                $(".modal-backdrop").hide();
+                                alert("New item successfully Added.");
+                                
+                                $('#RNO_bodySystem').val("NoItem");
+                                $('#itemCode1').val("-");
+                                $('#spe_container').val("-");
+                                $('#volume').val("-");
+                                $('#special_inst').val("-");
+                                $('#spe_source').val("-");
+                                $('#requestComment').val("-");
+                            }
+                        });
 
 
-                },
-                error: function (err) {
-                    alert("Error update!");
-                }
-            });
+                    },
+                    error: function (err) {
+                        alert("Error update!");
+                    }
+                });
+            }
         });
     });
     // Move to Order Details Fetch Details End
