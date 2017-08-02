@@ -47,7 +47,7 @@
     Config.getFile_url(session);
 
     String hfc = session.getAttribute("HEALTH_FACILITY_CODE").toString();
-    out.print(idType);
+    
     //search based on ID Type
     if (idType.equals("001")) { //PMI No
         sql = "select w.pmi_no, w.episode_date,h.hfc_name,d.discipline_name,w.new_ic_no,w.old_ic_no "
@@ -97,8 +97,9 @@
                 + "inner join adm_health_facility h on p.`HEALTH_FACILITY_CODE` = h.hfc_cd "
                 + "inner join  adm_discipline d on p.DISCIPLINE_CODE = d.discipline_cd "
                 + "where p.`OLD_IC_NO` = '" + idInput + "' AND p.status = '1'"
-                + "GROUP BY p.`EPISODE_DATE` "
-                + "ORDER BY p.`EPISODE_DATE` DESC;;;";
+                + " GROUP BY p.`EPISODE_DATE` "
+                + " ORDER BY p.`EPISODE_DATE` DESC;;;";
+       
     }else if (idType.equals("004")) { // Matric No
         sql = "select w.pmi_no,w.episode_date,h.hfc_name,d.discipline_name,w.new_ic_no,w.old_ic_no "
                 + "from wis_inpatient_episode w "

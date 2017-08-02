@@ -33,6 +33,7 @@ $(document).ready(function (e) {
     $('#backBtn').click(function (e) {
         e.preventDefault();
         if (pmiNo === "") {
+            window.onbeforeunload = null;
             goToHome();
         } else {
             alert('You need complete the consultation on patient before first');
