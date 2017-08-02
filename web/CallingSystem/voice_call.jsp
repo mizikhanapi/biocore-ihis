@@ -32,34 +32,34 @@
         }
 
         if (myStrArr[j].equals("0")) {
-            out.println("<audio onloadeddata='var audioPlayer = this; setTimeout(function() { audioPlayer.play(); }, " + val + ")'><source src='sound/0.MP3'></audio>");
+            out.println("<audio onloadeddata='var audioPlayer = this; setTimeout(function() { audioPlayer.play(); }, " + val + ")'><source src='sound/0.mp3'></audio>");
         }
         if (myStrArr[j].equals("1")) {
-            out.println("<audio onloadeddata='var audioPlayer = this; setTimeout(function() { audioPlayer.play(); }, " + val + ")'><source src='sound/1.MP3'></audio>");
+            out.println("<audio onloadeddata='var audioPlayer = this; setTimeout(function() { audioPlayer.play(); }, " + val + ")'><source src='sound/1.mp3'></audio>");
         }
         if (myStrArr[j].equals("2")) {
             out.println("<audio onloadeddata='var audioPlayer = this; setTimeout(function() { audioPlayer.play(); }, " + val + ")'><source src='sound/2test.MP3'></audio>");
         }
         if (myStrArr[j].equals("3")) {
-            out.println("<audio onloadeddata='var audioPlayer = this; setTimeout(function() { audioPlayer.play(); }, " + val + ")'><source src='sound/3.MP3'></audio>");
+            out.println("<audio onloadeddata='var audioPlayer = this; setTimeout(function() { audioPlayer.play(); }, " + val + ")'><source src='sound/3.mp3'></audio>");
         }
         if (myStrArr[j].equals("4")) {
-            out.println("<audio onloadeddata='var audioPlayer = this; setTimeout(function() { audioPlayer.play(); }, " + val + ")'><source src='sound/4.MP3'></audio>");
+            out.println("<audio onloadeddata='var audioPlayer = this; setTimeout(function() { audioPlayer.play(); }, " + val + ")'><source src='sound/4.mp3'></audio>");
         }
         if (myStrArr[j].equals("5")) {
-            out.println("<audio onloadeddata='var audioPlayer = this; setTimeout(function() { audioPlayer.play(); }, " + val + ")'><source src='sound/5.MP3'></audio>");
+            out.println("<audio onloadeddata='var audioPlayer = this; setTimeout(function() { audioPlayer.play(); }, " + val + ")'><source src='sound/5.mp3'></audio>");
         }
         if (myStrArr[j].equals("6")) {
-            out.println("<audio onloadeddata='var audioPlayer = this; setTimeout(function() { audioPlayer.play(); }, " + val + ")'><source src='sound/6.MP3'></audio>");
+            out.println("<audio onloadeddata='var audioPlayer = this; setTimeout(function() { audioPlayer.play(); }, " + val + ")'><source src='sound/6.mp3'></audio>");
         }
         if (myStrArr[j].equals("7")) {
-            out.println("<audio onloadeddata='var audioPlayer = this; setTimeout(function() { audioPlayer.play(); }, " + val + ")'><source src='sound/7.MP3'></audio>");
+            out.println("<audio onloadeddata='var audioPlayer = this; setTimeout(function() { audioPlayer.play(); }, " + val + ")'><source src='sound/7.mp3'></audio>");
         }
         if (myStrArr[j].equals("8")) {
-            out.println("<audio onloadeddata='var audioPlayer = this; setTimeout(function() { audioPlayer.play(); }, " + val + ")'><source src='sound/8.MP3'></audio>");
+            out.println("<audio onloadeddata='var audioPlayer = this; setTimeout(function() { audioPlayer.play(); }, " + val + ")'><source src='sound/8.mp3'></audio>");
         }
         if (myStrArr[j].equals("9")) {
-            out.println("<audio onloadeddata='var audioPlayer = this; setTimeout(function() { audioPlayer.play(); }, " + val + ")'><source src='sound/9.MP3.MP3'></audio>");
+            out.println("<audio onloadeddata='var audioPlayer = this; setTimeout(function() { audioPlayer.play(); }, " + val + ")'><source src='sound/9.mp3'></audio>");
         }
     }
     val = val + 800;
@@ -87,34 +87,34 @@
         }
         
         if (room1[i].equals("0")) {
-            out.println("<audio onloadeddata='var audioPlayer = this; setTimeout(function() { audioPlayer.play(); }, " + val + ")'><source src='sound/0.MP3'></audio>");
+            out.println("<audio onloadeddata='var audioPlayer = this; setTimeout(function() { audioPlayer.play(); }, " + val + ")'><source src='sound/0.mp3'></audio>");
         }
         if (room1[i].equals("1")) {
-            out.println("<audio onloadeddata='var audioPlayer = this; setTimeout(function() { audioPlayer.play(); }, " + val + ")'><source src='sound/1.MP3'></audio>");
+            out.println("<audio onloadeddata='var audioPlayer = this; setTimeout(function() { audioPlayer.play(); }, " + val + ")'><source src='sound/1.mp3'></audio>");
         }
         if (room1[i].equals("2")) {
             out.println("<audio onloadeddata='var audioPlayer = this; setTimeout(function() { audioPlayer.play(); }, " + val + ")'><source src='sound/2test.MP3'></audio>");
         }
         if (room1[i].equals("3")) {
-            out.println("<audio onloadeddata='var audioPlayer = this; setTimeout(function() { audioPlayer.play(); }, " + val + ")'><source src='sound/3.MP3'></audio>");
+            out.println("<audio onloadeddata='var audioPlayer = this; setTimeout(function() { audioPlayer.play(); }, " + val + ")'><source src='sound/3.mp3'></audio>");
         }
         if (room1[i].equals("4")) {
-            out.println("<audio onloadeddata='var audioPlayer = this; setTimeout(function() { audioPlayer.play(); }, " + val + ")'><source src='sound/4.MP3'></audio>");
+            out.println("<audio onloadeddata='var audioPlayer = this; setTimeout(function() { audioPlayer.play(); }, " + val + ")'><source src='sound/4.mp3'></audio>");
         }
         if (room1[i].equals("5")) {
-            out.println("<audio onloadeddata='var audioPlayer = this; setTimeout(function() { audioPlayer.play(); }, " + val + ")'><source src='sound/5.MP3'></audio>");
+            out.println("<audio onloadeddata='var audioPlayer = this; setTimeout(function() { audioPlayer.play(); }, " + val + ")'><source src='sound/5.mp3'></audio>");
         }
         if (room1[i].equals("6")) {
-            out.println("<audio onloadeddata='var audioPlayer = this; setTimeout(function() { audioPlayer.play(); }, " + val + ")'><source src='sound/6.MP3'></audio>");
+            out.println("<audio onloadeddata='var audioPlayer = this; setTimeout(function() { audioPlayer.play(); }, " + val + ")'><source src='sound/6.mp3'></audio>");
         }
         if (room1[i].equals("7")) {
-            out.println("<audio onloadeddata='var audioPlayer = this; setTimeout(function() { audioPlayer.play(); }, " + val + ")'><source src='sound/7.MP3'></audio>");
+            out.println("<audio onloadeddata='var audioPlayer = this; setTimeout(function() { audioPlayer.play(); }, " + val + ")'><source src='sound/7.mp3'></audio>");
         }
         if (room1[i].equals("8")) {
-            out.println("<audio onloadeddata='var audioPlayer = this; setTimeout(function() { audioPlayer.play(); }, " + val + ")'><source src='sound/8.MP3'></audio>");
+            out.println("<audio onloadeddata='var audioPlayer = this; setTimeout(function() { audioPlayer.play(); }, " + val + ")'><source src='sound/8.mp3'></audio>");
         }
         if (room1[i].equals("9")) {
-            out.println("<audio onloadeddata='var audioPlayer = this; setTimeout(function() { audioPlayer.play(); }, " + val + ")'><source src='sound/9.MP3.MP3'></audio>");
+            out.println("<audio onloadeddata='var audioPlayer = this; setTimeout(function() { audioPlayer.play(); }, " + val + ")'><source src='sound/9.mp3'></audio>");
         }
     }
     //out.println("<audio onloadeddata='var audioPlayer = this; setTimeout(function() { audioPlayer.play(); }, " + val + ")'><source src='sound/Bilik.MP3'></audio>");
