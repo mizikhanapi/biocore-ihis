@@ -54,7 +54,7 @@
                 + "from wis_inpatient_episode w "
                 + "inner join adm_health_facility h on w.hfc_cd = h.hfc_cd "
                 + "inner join  adm_discipline d on w.discipline_cd = d.discipline_cd "
-                + "where w.pmi_no = '" + idInput + "' AND w.inpatient_status = '1' "
+                + "where w.pmi_no = '" + idInput + "' AND  "
                 + "GROUP BY w.`EPISODE_DATE` "
                 + "ORDER BY w.`EPISODE_DATE` DESC;";
         
@@ -62,7 +62,7 @@
                 + "from pms_episode p "
                 + "inner join adm_health_facility h on p.`HEALTH_FACILITY_CODE` = h.hfc_cd "
                 + "inner join  adm_discipline d on p.DISCIPLINE_CODE = d.discipline_cd "
-                + "where p.pmi_no = '" + idInput + "' AND p.status = '1'"
+                + "where p.pmi_no = '" + idInput + "' "
                 + "GROUP BY p.`EPISODE_DATE` "
                 + "ORDER BY p.`EPISODE_DATE` "
                 + "DESC;;;";
@@ -72,14 +72,14 @@
                 + "from wis_inpatient_episode w "
                 + "inner join adm_health_facility h on w.hfc_cd = h.hfc_cd "
                 + "inner join  adm_discipline d on w.discipline_cd = d.discipline_cd "
-                 + "where w.`NEW_IC_NO` = '" + idInput + "' AND w.inpatient_status = '1' "
+                 + "where w.`NEW_IC_NO` = '" + idInput + "'  "
                 + "GROUP BY w.`EPISODE_DATE` "
                 + "ORDER BY w.`EPISODE_DATE` "
                 + "DESC;;";
         sql2 = "select p.pmi_no,p.episode_date,h.hfc_name,d.discipline_name,p.new_ic_no,p.old_ic_no from pms_episode p "
                 + "inner join adm_health_facility h on p.`HEALTH_FACILITY_CODE` = h.hfc_cd "
                 + "inner join  adm_discipline d on p.DISCIPLINE_CODE = d.discipline_cd "
-                + "where p.`NEW_IC_NO` = '" + idInput + "' AND p.status = '1'"
+                + "where p.`NEW_IC_NO` = '" + idInput + "' "
                 + "GROUP BY p.`EPISODE_DATE` "
                 + "ORDER BY p.`EPISODE_DATE` DESC;;;";
 
@@ -88,7 +88,7 @@
                 + "from wis_inpatient_episode w "
                 + "inner join adm_health_facility h on w.hfc_cd = h.hfc_cd "
                 + "inner join  adm_discipline d on w.discipline_cd = d.discipline_cd "
-                 + "where w.`OLD_IC_NO` = '" + idInput + "' AND w.inpatient_status = '1' "
+                 + "where w.`OLD_IC_NO` = '" + idInput + "'  "
                 + "GROUP BY w.`EPISODE_DATE` "
                 + "ORDER BY w.`EPISODE_DATE` DESC;;";
         
@@ -96,7 +96,7 @@
                 + "from pms_episode p "
                 + "inner join adm_health_facility h on p.`HEALTH_FACILITY_CODE` = h.hfc_cd "
                 + "inner join  adm_discipline d on p.DISCIPLINE_CODE = d.discipline_cd "
-                + "where p.`OLD_IC_NO` = '" + idInput + "' AND p.status = '1'"
+                + "where p.`OLD_IC_NO` = '" + idInput + "' "
                 + " GROUP BY p.`EPISODE_DATE` "
                 + " ORDER BY p.`EPISODE_DATE` DESC;;;";
        
@@ -105,7 +105,7 @@
                 + "from wis_inpatient_episode w "
                 + "inner join adm_health_facility h on w.hfc_cd = h.hfc_cd "
                 + "inner join  adm_discipline d on w.discipline_cd = d.discipline_cd "
-                 + "where w.`ID_NO` = '" + idInput + "' AND w.inpatient_status = '1' "
+                 + "where w.`ID_NO` = '" + idInput + "'  "
                 + "GROUP BY w.`EPISODE_DATE` "
                 + "ORDER BY w.`EPISODE_DATE` DESC;;";
         
@@ -113,7 +113,7 @@
                 + "from pms_episode p "
                 + "inner join adm_health_facility h on p.`HEALTH_FACILITY_CODE` = h.hfc_cd "
                 + "inner join  adm_discipline d on p.DISCIPLINE_CODE = d.discipline_cd "
-                + "where p.id_no = '" + idInput + "' AND p.status = '1'"
+                + "where p.id_no = '" + idInput + "' "
                 + "GROUP BY p.`EPISODE_DATE` "
                 + "ORDER BY p.`EPISODE_DATE` "
                 + "DESC;;;";
@@ -122,7 +122,7 @@
                 + "from wis_inpatient_episode w "
                 + "inner join adm_health_facility h on w.hfc_cd = h.hfc_cd "
                 + "inner join  adm_discipline d on w.discipline_cd = d.discipline_cd "
-                 + "where w.`ID_NO` = '" + idInput + "' AND w.inpatient_status = '1' "
+                 + "where w.`ID_NO` = '" + idInput + "'  "
                 + "GROUP BY w.`EPISODE_DATE` "
                 + "ORDER BY w.`EPISODE_DATE` DESC;;";
         
@@ -130,7 +130,7 @@
                 + "from pms_episode p "
                 + "inner join adm_health_facility h on p.`HEALTH_FACILITY_CODE` = h.hfc_cd "
                 + "inner join  adm_discipline d on p.DISCIPLINE_CODE = d.discipline_cd "
-                + "where p.`ID_NO` = '" + idInput + "' AND p.status = '1'"
+                + "where p.`ID_NO` = '" + idInput + "' "
                 + "GROUP BY p.`EPISODE_DATE` "
                 + "ORDER BY p.`EPISODE_DATE` DESC;;;";
     }

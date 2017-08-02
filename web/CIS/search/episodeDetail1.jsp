@@ -56,6 +56,12 @@
     sql = "select temperature_reading from lhr_temperature where pmi_no = '" + pmi_no + "' and episode_date = '" + episodeDate + "'";
     ArrayList<ArrayList<String>> searchEpisode9 = conn.getData(sql);
 
+          if(searchEpisode.size() > 0 || searchEpisode1.size() > 0 || searchEpisode2.size() > 0 || searchEpisode3.size() > 0 || searchEpisode4.size() > 0 
+         || searchEpisode5.size() > 0 || searchEpisode6.size() > 0 || searchEpisode7.size() > 0 || searchEpisode8.size() > 0 || searchEpisode9.size() > 0){
+              
+              
+          
+    
 %>
 <table class="table table-filter table-striped" style="background: #fff; border: 1px solid #ccc;">
     <strong>
@@ -228,3 +234,6 @@
                                 }%>
     </tbody>
 </table>
+                                <%}else{
+out.print("1");
+}%>
