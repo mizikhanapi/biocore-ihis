@@ -71,7 +71,7 @@
                     <td><%=dataOrderList.get(i).get(3)%></td>
                     <td><%=dataOrderList.get(i).get(4)%></td>
                     <td><%if (dataOrderList.get(i).get(5)==null) {
-                            out.print("");
+                            out.print("-");
                         } else {
                             out.print(dataOrderList.get(i).get(5));
                         }
