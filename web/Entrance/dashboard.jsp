@@ -43,7 +43,12 @@
     String last_9 = user_99.substring(user_99.length() - 1);
 
     //====================================================================================
-    String modules = session.getAttribute("MODULE_CODE").toString();
+    //String modules = session.getAttribute("MODULE_CODE").toString();
+    
+    MySession mys = new MySession(user_99, hfc_99);
+    mys.initModulePageAccess();
+    
+    String modules = mys.getLongStringModule();
 
     ArrayList<String> arrayModule = new ArrayList<String>(Arrays.asList(modules.split("\\|")));
 
