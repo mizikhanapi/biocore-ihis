@@ -63,7 +63,7 @@
                         <%
                             }
                         %>
-                        
+
                         <input type="text" name="itemCD" value="<%=dataOrderList.get(i).get(0)%>" style="display:none;">
                     </td>
                     <td><%=dataOrderList.get(i).get(0)%></td>
@@ -193,41 +193,55 @@
                                     var tcode = $("#tcode_<%=i%>").val();
                                     var order_no = "<%=orderNo%>";
                                     //alert(tcode + " " + order_no);
-                                    var get = confirm("Are sure to delete the order?");
-                                    if (get == true)
-                                    {
-                                        $.ajax({
-                                            url: "delete_order.jsp",
-                                            type: "post",
-                                            data: {
-                                                tcode: tcode,
-                                                order_no: order_no
+                                    bootbox.confirm({
+                                        message: "Are sure to delete the order?",
+                                        buttons: {
+                                            confirm: {
+                                                label: 'Yes',
+                                                className: 'btn-success'
                                             },
-                                            timeout: 10000,
-                                            success: function () {
+                                            cancel: {
+                                                label: 'No',
+                                                className: 'btn-danger'
+                                            }
+                                        },
+                                        callback: function (result) {
 
+                                            if (result === true) {
                                                 $.ajax({
-                                                    url: "ManageOrderListDetails.jsp",
+                                                    url: "delete_order.jsp",
                                                     type: "post",
-                                                    data: {orderNo: "<%=orderNo%>"},
-                                                    timeout: 3000,
-                                                    success: function (returnOrderDetailsTableHTML) {
-                                                        $('.nav-tabs a[href="#tab_default_2"]').tab('show');
-                                                        $('#ManageOrderDetailsListTable').html(returnOrderDetailsTableHTML);
-                                                        console.log(returnOrderDetailsTableHTML);
-                                                        $('#ManageOrderDetailsListTable').trigger('contentchanged');
-                                                        $('#basicModal_<%=i%>').modal('toggle');
-                                                        $("#basicModal_<%=i%>").hide();
-                                                        $(".modal-backdrop").hide();
-                                                        bootbox.alert("Order have been delete.");
+                                                    data: {
+                                                        tcode: tcode,
+                                                        order_no: order_no
+                                                    },
+                                                    timeout: 10000,
+                                                    success: function () {
+
+                                                        $.ajax({
+                                                            url: "ManageOrderListDetails.jsp",
+                                                            type: "post",
+                                                            data: {orderNo: "<%=orderNo%>"},
+                                                            timeout: 3000,
+                                                            success: function (returnOrderDetailsTableHTML) {
+                                                                $('.nav-tabs a[href="#tab_default_2"]').tab('show');
+                                                                $('#ManageOrderDetailsListTable').html(returnOrderDetailsTableHTML);
+                                                                console.log(returnOrderDetailsTableHTML);
+                                                                $('#ManageOrderDetailsListTable').trigger('contentchanged');
+                                                                $('#basicModal_<%=i%>').modal('toggle');
+                                                                $("#basicModal_<%=i%>").hide();
+                                                                $(".modal-backdrop").hide();
+                                                                bootbox.alert("Order have been delete.");
+                                                            }
+                                                        });
+                                                    },
+                                                    error: function (err) {
+                                                        alert("Error update!");
                                                     }
                                                 });
-                                            },
-                                            error: function (err) {
-                                                alert("Error update!");
                                             }
-                                        });
-                                    }
+                                        }
+                                    });
                                 });
 
                                 $("#btn_cancel<%=i%>").click(function () {

@@ -368,7 +368,7 @@
             //alert(Comment);
             if (itemName == "NoItem")
             {
-                alert("Please select Item Name");
+                bootbox.alert("Please select the item name.");
             } else
             {
                 $.ajax({
@@ -399,7 +399,7 @@
                                 $('#NewRequest').modal('toggle');
                                 $("#NewRequest").hide();
                                 $(".modal-backdrop").hide();
-                                alert("New item successfully Added.");
+                                bootbox.alert("New item successfully added.");
                                 
                                 $('#RNO_bodySystem').val("NoItem");
                                 $('#itemCode1').val("-");
@@ -414,7 +414,7 @@
 
                     },
                     error: function (err) {
-                        alert("Error update!");
+                        bootbox.alert("Error update!");
                     }
                 });
             }
