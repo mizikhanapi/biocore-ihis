@@ -16,7 +16,7 @@
         
         String sql = "Select role_code, role_name from adm_role "
                 + "where role_code not in(Select role_code from adm_responsibility WHERE health_facility_code = '"+hfc_cd+"') "
-                + "AND hfc_cd = '"+hfc_cd+"'";
+                + "AND hfc_cd = '"+hfc_cd+"' and status='0'";
         
         ArrayList<ArrayList<String>> dataRole = conn.getData(sql);
         

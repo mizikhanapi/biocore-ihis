@@ -114,7 +114,7 @@
                             <select id="ART_role" class="form-control input-md">
                                             <option value="">-- Select role --</option>
                                             <%
-                                                String sqlRole = "Select role_code, role_name FROM adm_role where hfc_cd = '"+hfc+"'" ;
+                                                String sqlRole = "Select role_code, role_name FROM adm_role where hfc_cd = '"+hfc+"' and status='0'" ;
                                                 ArrayList<ArrayList<String>> dataRole = conn.getData(sqlRole);
 
                                                 for (int i = 0; i < dataRole.size(); i++) {

@@ -12,14 +12,14 @@ import main.RMIConnector;
 
 /**
  *
- * @author user
+ * @author Ardhi Surya; rdsurya147@gmail.com; insta: @rdcfc
  */
 public class MySession {
     
     private String userID; //the userID when login
     private String hfc_cd; //the user assigned hfc
-    private ArrayList<ArrayList<String>> dataModule;
-    private ArrayList<ArrayList<String>> dataPage;
+    private ArrayList<String> dataModule;
+    private ArrayList<String> dataPage;
     private Conn con;
     
     public MySession(){
@@ -42,16 +42,34 @@ public class MySession {
         if(dataRoleCode.size()>0)
             role_code= dataRoleCode.get(0).get(0);
         
-        //getTheModules
+        //............... getTheModules
         query="Select distinct(module_code) from adm_responsibility where role_code = '" + role_code + "' AND status = '0' "
             + "AND health_facility_code = '" + hfc_cd + "';";
-        dataModule = con.getData(query);
+        ArrayList<ArrayList<String>> tempModule = con.getData(query);
+        
+        dataModule = new ArrayList<String>();
+        
+        for(int i=0; i<tempModule.size(); i++){
+            dataModule.add(tempModule.get(i).get(0));
+        }
         
         
         //getThePages
         query="Select page_code from adm_responsibility where role_code = '" + role_code + "' AND status = '0' "
                         + "AND health_facility_code = '" + hfc_cd + "';";
-        dataPage = con.getData(query);
+        ArrayList<ArrayList<String>> tempPage = con.getData(query);
+        
+        dataPage = new ArrayList<String>();
+        
+        for(int i=0; i<tempPage.size(); i++){
+            dataPage.add(tempPage.get(i).get(0));
+        }
+    }
+    
+    public String getLongStringModule(){
+        String module = String.join("|", dataModule);
+        
+        return module;
     }
     
     public boolean isSessionValid(String sessionID){
