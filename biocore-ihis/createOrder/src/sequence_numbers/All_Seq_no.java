@@ -28,7 +28,7 @@ public class All_Seq_no {
     String dateForID = dateFormatID.format(date);
 
     public void genSeq(String hfc, String discipline, String subDiscipline,String module){
-        String sql2 = "SELECT module_name,last_seq_no,year_seq,hfc_cd FROM oms_last_seq_no where module_name = '"+module+"' and hfc_cd ='" + hfc + "' and year(year_seq)='" + dateForID + "' and discipline_cd='"+discipline+"' and subdiscipline_cd ='"+subDiscipline+"'";
+        String sql2 = "SELECT module_name,last_seq_no,year_seq,hfc_cd FROM oms_last_seq_no where module_name = '"+module+"' and hfc_cd ='" + hfc + "' and year(year_seq)='" + dateForID + "' and discipline_cd='"+discipline+"' and subdiscipline_cd ='"+subDiscipline+"' FOR UPDATE";
         ArrayList<ArrayList<String>> data2 = rc.getQuerySQL(Config.ipAddressServer, Config.portServer, sql2);
         if(data2.size() > 0){
             for(int i =0;i<data2.size();i++){
