@@ -50,6 +50,8 @@
         var name = $('#PRO_Name').val();
         var code = $('#PRO_Code').val();
         var status = $('#PRO_status').val();
+        var buy= $('#PRO_buyPrice').val();
+        var sell= $('#PRO_sellPrice').val();
 
         if (code === "") {
             bootbox.alert("Insert the procedure code");
@@ -57,13 +59,22 @@
         } else if (name === "") {
             bootbox.alert("Insert the procedure name");
 
-        } else {
+        } else if (buy===""){
+            bootbox.alert("Insert the buying price");
+            
+        } else if (sell===""){
+            bootbox.alert("Insert the selling price");
+            
+        }
+        else {
 
             name = name.replace(/'/g, "\\\'").replace(/"/g, "\\\"");
 
             var data = {
                 code: code,
                 name: name,
+                buy: buy,
+                sell: sell,
                 status: status
             };
 
@@ -113,11 +124,13 @@
         var rowData = row.find("#PRO_hidden").val();
         var arrayData = rowData.split("|");
 
-        var code = arrayData[0], name = arrayData[1], status = arrayData[2];
+        var code = arrayData[0], name = arrayData[1], status = arrayData[2], buy=arrayData[3], sell=arrayData[4];
 
         $('#PRO_Code').val(code);
         $('#PRO_Name').val(name);
         $('#PRO_status').val(status);
+        $('#PRO_sellPrice').val(sell);
+        $('#PRO_buyPrice').val(buy);
 
         $('#PRO_modal_title').text("Update Procedure");
         $('#PRO_Code').prop('disabled', true);
@@ -138,20 +151,31 @@
         var code = $('#PRO_Code').val();
         var name = $('#PRO_Name').val();
         var status = $('#PRO_status').val();
+        var buy= $('#PRO_buyPrice').val();
+        var sell= $('#PRO_sellPrice').val();
 
         if (code === "") {
-            bootbox.alert("Procedure code can't be empty");
+            bootbox.alert("Procedure code can't be empty!");
 
         } else if (name === "") {
-            bootbox.alert("Please fill in the procedure name");
+            bootbox.alert("Please fill in the procedure name.");
 
-        } else {
+        } else if (buy ===""){
+            bootbox.alert("Please fill in the buying price.");
+        
+        } else if (sell===""){
+            bootbox.alert("Please fill in the selling price.");
+            
+        }
+        else {
 
             name = name.replace(/'/g, "\\\'").replace(/"/g, "\\\"");
 
             var data = {
                 code: code,
                 name: name,
+                buy: buy,
+                sell:sell,
                 status: status
             };
 
@@ -364,6 +388,33 @@
 
     });
     //================= end clone =================================
+    
+     //------------------------------ controlling number input ------------------------------------------------------------------
+
+    $('#PRO_buyPrice').on('keypress', function (event) {
+        if (((event.which !== 46 || $(this).val().indexOf('.') !== -1)
+                && (event.which < 48 || event.which > 57)
+                || ($(this).val().length > 8))
+                && event.which !== 8) {
+            event.preventDefault();
+            $("#PRO_buyPrice_err").html("Decimal Number Only!!!").show().fadeOut("slow");
+
+        }
+
+
+    });
+
+    $('#PRO_sellPrice').on('keypress', function (event) {
+        if (((event.which !== 46 || $(this).val().indexOf('.') !== -1)
+                && (event.which < 48 || event.which > 57)
+                || ($(this).val().length > 8))
+                && event.which !== 8) {
+            event.preventDefault();
+            $("#PRO_sellPrice_err").html("Decimal Number Only!!!").show().fadeOut("slow");
+
+        }
+
+    });
 
 
 

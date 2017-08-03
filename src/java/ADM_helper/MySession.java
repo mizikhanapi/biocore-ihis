@@ -43,8 +43,18 @@ public class MySession {
             role_code= dataRoleCode.get(0).get(0);
         
         //............... getTheModules
-        query="Select distinct(module_code) from adm_responsibility where role_code = '" + role_code + "' AND status = '0' "
-            + "AND health_facility_code = '" + hfc_cd + "';";
+        /*
+            select distinct(ar.module_code)
+            from adm_responsibility ar
+            join adm_module m on m.module_code = ar.module_code and m.status = ar.status
+            where ar.health_facility_code='99_iHIS_99' and ar.status='0' and ar.role_code='002'; 
+        */
+        
+        query="select distinct(ar.module_code) "
+                + "from adm_responsibility ar "
+                + "join adm_module m on m.module_code = ar.module_code and m.status = ar.status "
+                + "join adm_system s on s.system_code=m.system_code and s.status=ar.status "
+                + "where ar.health_facility_code='"+hfc_cd+"' and ar.status='0' and ar.role_code='"+role_code+"';";
         ArrayList<ArrayList<String>> tempModule = con.getData(query);
         
         dataModule = new ArrayList<String>();
@@ -54,9 +64,20 @@ public class MySession {
         }
         
         
-        //getThePages
-        query="Select page_code from adm_responsibility where role_code = '" + role_code + "' AND status = '0' "
-                        + "AND health_facility_code = '" + hfc_cd + "';";
+        //..........getThePages
+        /*
+           SELECT ar.page_code
+        from adm_responsibility ar 
+        join adm_page p on p.page_code=ar.page_code and p.status=ar.status
+        where ar.health_facility_code='99_iHIS_99' and ar.status='0' and ar.role_code='002';
+        */
+        
+        query="SELECT ar.page_code "
+                + "from adm_responsibility ar "
+                + "join adm_page p on p.page_code=ar.page_code and p.status=ar.status "
+                + "join adm_module m on m.module_code=p.module_code and m.system_code=p.system_code and m.status=ar.status "
+                + "join adm_system s on s.system_code=p.system_code and s.status=ar.status "
+                + "where ar.health_facility_code='"+hfc_cd+"' and ar.status='0' and ar.role_code='"+role_code+"';";
         ArrayList<ArrayList<String>> tempPage = con.getData(query);
         
         dataPage = new ArrayList<String>();
@@ -96,9 +117,9 @@ public class MySession {
     }
     
     public String getRandomSessionID(){
-        int length = 10;
+        int length = 10; //length of the random string
         
-        String candidateChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
+        String candidateChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890"; //possible characters in the random string
         
         StringBuilder sb = new StringBuilder();
         Random random = new Random();
