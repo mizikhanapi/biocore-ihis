@@ -62,7 +62,7 @@ $(document).ready(function(){
             obj1[this.id] = $(this).val();
           
         });
-        if (checkIMU(_data, obj1)) {
+        if (checkDGS(_data, obj1)) {
             bootbox.alert("This Diagnosis already been inserted. Please choose at consultation note to update the record or add new Diagnosis");
         }else{
             _data.push(obj1);
@@ -126,7 +126,7 @@ $(document).ready(function(){
             $('#sum' + rowId).html(sum);
             $("#update_CIS030001").modal('toggle');
         } else {
-            if (checkIMU(_data, upObject)) {
+            if (checkDGS(_data, upObject)) {
                 bootbox.alert("This Diagnosis already been inserted. Please choose at consultation note to update the record or add new Diagnosis");
             }else{
                 upObject.TypeDGS = _TType;
