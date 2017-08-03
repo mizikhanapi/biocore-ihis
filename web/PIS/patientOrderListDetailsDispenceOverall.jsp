@@ -40,6 +40,7 @@
     String ASSIGNED_BY = (String) session.getAttribute("USER_ID"); // Data 16
     String HEALTH_FACILITY_CODE = (String) session.getAttribute("HEALTH_FACILITY_CODE");
     String DISCIPLINE_CODE = (String) session.getAttribute("DISCIPLINE_CODE");
+    String SUBDISCIPLINE_CD = (String) session.getAttribute("SUB_DISCIPLINE_CODE");
     String DISPENSED_UOM = "-";
     int STATUS = 1;
 
@@ -64,8 +65,8 @@
         if (checkDispenseMaster.size() == 0) {
 
             // Insert Master Dispense
-            String sqlInsertDispenseMaster = "INSERT INTO pis_dispense_master (ORDER_NO, ORDER_DATE, LOCATION_CODE, ARRIVAL_DATE, DISPENSED_DATE, DISPENSED_BY, FILLED_BY, SCREENED_BY, ASSIGNED_BY,STATUS,DISCIPLINE_CODE) "
-                    + " VALUES ('" + ORDER_NO + "','" + ORDER_DATE + "','" + HEALTH_FACILITY_CODE + "','" + ARRIVAL_DATE + "','" + DISPENSED_DATE + "','" + DISPENSED_BY + "','" + FILLED_BY + "','" + SCREENED_BY + "','" + ASSIGNED_BY + "'," + STATUS + ",'" + DISCIPLINE_CODE + "' )";
+            String sqlInsertDispenseMaster = "INSERT INTO pis_dispense_master (ORDER_NO, ORDER_DATE, LOCATION_CODE, ARRIVAL_DATE, DISPENSED_DATE, DISPENSED_BY, FILLED_BY, SCREENED_BY, ASSIGNED_BY,STATUS,DISCIPLINE_CODE,SUBDISCIPLINE_CD) "
+                    + " VALUES ('" + ORDER_NO + "','" + ORDER_DATE + "','" + HEALTH_FACILITY_CODE + "','" + ARRIVAL_DATE + "','" + DISPENSED_DATE + "','" + DISPENSED_BY + "','" + FILLED_BY + "','" + SCREENED_BY + "','" + ASSIGNED_BY + "'," + STATUS + ",'" + DISCIPLINE_CODE + "','" + SUBDISCIPLINE_CD + "' )";
 
             boolean isInsertDispenseMaster = rmic.setQuerySQL(conn.HOST, conn.PORT, sqlInsertDispenseMaster);
 

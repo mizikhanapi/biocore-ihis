@@ -1213,14 +1213,8 @@
                 });
 
             } else {
+
                 console.log("Not Ok : " + drugCode);
-
-                if (drugDispensedQty === "0") {
-                    bootbox.alert("The dispense quantity of the product that is going to be dispensed is 0. Please check the dispense or the stock quantity !");
-                } else {
-                    console.log("Not Ok : " + drugCode);
-                }
-
 
             }
 
@@ -1522,6 +1516,8 @@
 
 
     // Call or Decline Part Start
+    // 
+    // 
     // Call Button Start
     $('#patientOrderDetailContent').off('click', '#patientOrderDispenseButtonDiv #btnOrderDispenseCallPatient').on('click', '#patientOrderDispenseButtonDiv #btnOrderDispenseCallPatient', function (e) {
 
@@ -1613,10 +1609,10 @@
 
     });
     // Call Button End
-    
-    
-    
-    
+
+
+
+
     // Call Button Start
     $('#patientOrderDetailContent').off('click', '#patientOrderDispenseButtonDiv #btnOrderDispenseDeclineCallPatient').on('click', '#patientOrderDispenseButtonDiv #btnOrderDispenseDeclineCallPatient', function (e) {
 
@@ -1632,7 +1628,7 @@
         } else {
 
             var callDeclineNo = $("#dataCallingID").val();
-            
+
 
             bootbox.confirm({
                 message: "Are You Sure ?",
@@ -1699,6 +1695,7 @@
     });
     // Call Button End
     // 
+    // 
     // Call or Decline Part End
 
 
@@ -1716,10 +1713,12 @@
 
     // Dispense Loading Function Start
     function loading() {
+
         inProgess = true;
         $('#myModal').modal('show');
 
         setTimeout(function () {
+
             inProgess = false;
             $('#myModal').modal('hide');
 
@@ -1728,6 +1727,7 @@
                 title: "Dispense Result",
                 backdrop: true
             });
+
         }, 3000);
     }
     // Dispense Loading Part End
@@ -1748,17 +1748,15 @@
                         type: 'POST',
                         timeout: 3000,
                         success: function (data) {
+                            
                             console.log(data);
                             $("#patientOrderListContent").html(data);
+                            
                         }
                     });
 
-                    document.getElementById("patientOrderDetailContentBasicInfoForm").reset();
-                    document.getElementById("patientOrderDetailContentOrderInfoForm").reset();
-                    $("#patientOrderDetailContent #patientAllergyListTableDiv").load("patientOrderListBasicInfoNew.jsp #patientAllergyListTableDiv");
-                    $("#patientOrderDetailContent #patientDiagnosisListTableDiv").load("patientOrderListBasicInfoNew.jsp #patientDiagnosisListTableDiv");
-                    $("#patientOrderDetailContent #patientOrderDetailsListTableDiv").load("patientOrderListBasicInfoNew.jsp #patientOrderDetailsListTableDiv");
-                    $('.nav-tabs a[href="#tab_default_1"]').tab('show');
+                    resetPage();
+
                 }, 2000);
 
     }
@@ -1767,25 +1765,38 @@
 
     // Clear Button Function Start
     $('#patientOrderDetailContent').on('click', '#btnClearOrderDetailDispense', function (e) {
+        resetPage();
+    });
+    // Clear Button Function End
+
+
+    // Reset The Page Start
+    function resetPage() {
+
         document.getElementById("patientOrderDetailContentBasicInfoForm").reset();
         document.getElementById("patientOrderDetailContentOrderInfoForm").reset();
         $("#patientOrderDetailContent #patientAllergyListTableDiv").load("patientOrderListBasicInfoNew.jsp #patientAllergyListTableDiv");
         $("#patientOrderDetailContent #patientDiagnosisListTableDiv").load("patientOrderListBasicInfoNew.jsp #patientDiagnosisListTableDiv");
         $("#patientOrderDetailContent #patientOrderDetailsListTableDiv").load("patientOrderListBasicInfoNew.jsp #patientOrderDetailsListTableDiv");
         $('.nav-tabs a[href="#tab_default_1"]').tab('show');
-    });
-    // Clear Button Function End
 
+    }
+    // Reset The Page End
+
+
+    // Reset The Buttons Start
     function resetButton() {
 
-        // Disable And Enable Button
+        // Disable And Enable Button Start
         $("#patientOrderDetailsListTable").find("input,button,textarea,select").attr("disabled", false);
         document.getElementById("btnOrderDispensePrescribe").disabled = false;
         document.getElementById("btnOrderDispense").disabled = true;
         document.getElementById("btnOrderDispenseCallPatient").disabled = true;
         document.getElementById("btnOrderDispenseDeclineCallPatient").disabled = true;
+        // Disable And Enable Button End
 
     }
+    // Reset The Buttons End
 
 //=================================================================================  Reset Part End  ==================================================================================//
 
