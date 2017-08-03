@@ -114,6 +114,8 @@
             document.getElementById("PM_moduleName").value = "";
             document.getElementById("PM_pageName").value = "";
             document.getElementById("PM_pageCode").value = "";
+            $('#PM_match_system').html('');
+            $('#PM_match_module').html('');
                        
         }
 
@@ -137,6 +139,8 @@
             var pageName = $('#PM_pageName').val();
             var pageCode = $('#PM_pageCode').val();
             var status = $('#PM_status').val();
+            
+            var gotSpecialChar = /[!@#$%^&*()+=,?\/\\:;\"\' ]/.test(pageCode);  
 
             if (systemCode === "" || systemCode === null) {
                 bootbox.alert("Fill in the system name");
@@ -150,7 +154,11 @@
                 bootbox.alert("Fill in the page name");
                 $('#PM_pageName').focus();
 
-            }else if (pageCode === "") {
+            } else if (gotSpecialChar){
+                bootbox.alert("Page code must contain only alphanumeric characters!");
+                $('#PM_pageCode').val('');
+            }
+            else if (pageCode === "") {
                 bootbox.alert("Fill in the page code");
                 $('#PM_pageCode').focus();
 

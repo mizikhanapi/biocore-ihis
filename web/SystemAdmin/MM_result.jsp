@@ -10,7 +10,7 @@
 <%
     Conn conn = new Conn();
     String key = request.getParameter("input");
-    String searchProblem = "SELECT system_code, system_name FROM adm_system WHERE system_code like '%"+key+"%' OR system_name like '%"+key+"%'";
+    String searchProblem = "SELECT system_code, system_name FROM adm_system WHERE status='0' AND (system_code like '%"+key+"%' OR system_name like '%"+key+"%');";
     ArrayList<ArrayList<String>> search = conn.getData(searchProblem);
     if (search.size() > 0)
             {

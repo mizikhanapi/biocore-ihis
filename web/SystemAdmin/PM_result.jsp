@@ -17,7 +17,7 @@
     
     if(process.equalsIgnoreCase("system")){
         
-        String sql = "Select system_code, system_name FROM adm_system WHERE system_code like '%"+input+"%' OR system_name like '%"+input+"%'" ;
+        String sql = "Select system_code, system_name FROM adm_system WHERE status='0' AND (system_code like '%"+input+"%' OR system_name like '%"+input+"%');" ;
         ArrayList<ArrayList<String>> search = conn.getData(sql);
         
         if(search.size() > 0){
@@ -46,7 +46,7 @@
     
     }else{
         
-        String sql = "Select module_code, module_name FROM adm_module WHERE (module_code like '%"+input+"%' OR module_name like '%"+input+"%') AND system_code = '"+systemCode+"'";
+        String sql = "Select module_code, module_name FROM adm_module WHERE status='0' AND (module_code like '%"+input+"%' OR module_name like '%"+input+"%') AND system_code = '"+systemCode+"'";
         ArrayList<ArrayList<String>> search = conn.getData(sql);
         
         if(search.size() > 0){
