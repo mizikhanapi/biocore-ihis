@@ -43,9 +43,10 @@
          + "AND od.item_cd = id.item_cd  "
          + "AND om.hfc_to = hf.hfc_cd  "
          + "AND om.pmi_no = '"+pmiNo+"'" 
+         + " GROUP BY od.item_cd "
          + "ORDER BY om.order_no ;";
 ArrayList<ArrayList<String>> dataRIS = conn.getData(resultProblem);
-
+ out.print(resultProblem);
 %>
 <table class="table table-striped table-filter table-bordered" id="lisTable">
     <%
