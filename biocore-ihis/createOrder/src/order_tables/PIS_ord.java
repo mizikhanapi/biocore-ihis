@@ -1,25 +1,23 @@
 package order_tables;
 
-import Bean.LIO;
+import Bean.MSH;
 import Config_Pack.Config;
-import Process.MainRetrieval;
 import bean.DTO2;
 import bean.ORC2;
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Vector;
 import main.RMIConnector;
-import separatorv2.SeparatorV2;
-import sequence_numbers.LIO_seq;
+import sequence_numbers.All_Seq_no;
 import sequence_numbers.PIS_seq;
-import sequence_numbers.orders_no;
 
 public class PIS_ord {
 
-    public void M_PIS(Vector<ORC2> orc, Vector<DTO2> pis, get_ehr_central_data t) {
-        Date datenow = new Date();
-        SimpleDateFormat sdf = new SimpleDateFormat("YYYY-MM-dd HH:mm:ss");
+    public void M_PIS(Vector<ORC2> orc, Vector<DTO2> pis, get_ehr_central_data t,MSH msh) {
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
+
         boolean update_ehr_central_boolean = false;
         String Centre_Code = "";
         String Central_Code = "";
@@ -33,8 +31,9 @@ public class PIS_ord {
         for (int orc_i = 0; orc_i < orc.size(); orc_i++) {
             ArrayList<ArrayList<String>> orcs = orc.get(orc_i).getValue();
             if (orcs.get(1).get(0).equals("T12100")) {
-                PIS_seq pis_seq = new PIS_seq();
-                pis_seq.settPIS_seq();
+                All_Seq_no allSeq = new All_Seq_no();
+                        allSeq.genSeq(msh.getSendingFacilityCode(), msh.getSendingFacilityDis(), msh.getSendingFacilitySubDis(), "PIS");
+                Date date = new Date();
                 String sql_pis_master = "INSERT INTO pis_order_master ("
                         + "order_no, "
                         + "pmi_no,"
@@ -53,8 +52,9 @@ public class PIS_ord {
                         //+ " total_order,"
                         + " status,"
                         + " order_status,"
-                        + " discipline_code) values "
-                        + "('" + pis_seq.getPIS_orderno() + "',"
+                        + " discipline_code,"
+                        + "txn_date) values "
+                        + "('" + allSeq.getSeq() + "',"
                         + "'" + t.getPmi_no() + "',"
                         + "'" + orcs.get(1).get(0) + "',"
                         + "'" + orcs.get(12).get(0) + "',"
@@ -71,7 +71,8 @@ public class PIS_ord {
                         //+ "'2',"
                         + "'0',"
                         + "'0',"
-                        + "'" + orcs.get(13).get(0) + "')";
+                        + "'" + orcs.get(13).get(0) + "',"
+                        + "'" + dateFormat.format(date) + "')";
                 try {
 
                     status_pis_order_master = rc.setQuerySQL(Config.ipAddressServer, Config.portServer, sql_pis_master);
@@ -83,7 +84,7 @@ public class PIS_ord {
 
                         for (int pis_i = 0; pis_i < pis.size(); pis_i++) {
                             ArrayList<ArrayList<String>> piss = pis.get(pis_i).getValue();
-
+                            Date date2 = new Date();
                             String sql_pis_detail = "INSERT INTO pis_order_detail  ("
                                     + "order_no,"
                                     + " drug_item_code,"
@@ -98,15 +99,15 @@ public class PIS_ord {
                                     + "order_status,"
                                     + " qty_ordered,"
                                     //+ " qty_supplied,"
-                                   // + " supplied_oum,"
+                                    // + " supplied_oum,"
                                     //+ " qty_dispensed,"
                                     //+ " dispense_oum, "
                                     + "status"
                                     //+ " drug_dosage_order_uom,"
                                     //+ " drug_selling_price"
-                                    + ")"
+                                    + ",txn_date)"
                                     + " values ("
-                                    + "'" + pis_seq.getPIS_orderno() + "',"
+                                    + "'" + allSeq.getSeq() + "',"
                                     + "'" + piss.get(2).get(0) + "',"
                                     + "'" + piss.get(2).get(1) + "',"
                                     + "'" + piss.get(5).get(1) + "',"
@@ -118,18 +119,19 @@ public class PIS_ord {
                                     + "'" + piss.get(10).get(0) + "',"
                                     + "'0',"
                                     + "'" + piss.get(11).get(0) + "',"
-                                   // + "'0',"
+                                    // + "'0',"
                                     //+ "'-',"
-                                   // + "'0',"
+                                    // + "'0',"
                                     + "'0'"
                                     //+ "'-',"
                                     //+ "'1'"
-                                    + ")";
+                                    + ","
+                                    + "'" + dateFormat.format(date2) + "')";
                             try {
                                 status_pis_order_detail = rc.setQuerySQL(Config.ipAddressServer, Config.portServer, sql_pis_detail);
                                 if (status_pis_order_detail == true) {
                                     System.out.println("Done with pis MASTER and pis DETAIL");
-                                }else{
+                                } else {
                                     System.out.println(sql_pis_detail);
                                 }
                             } catch (Exception e) {

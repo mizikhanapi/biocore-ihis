@@ -1,5 +1,6 @@
 package order_tables;
 
+import Bean.MSH;
 import Bean.ROS;
 import sequence_numbers.RIS_seq;
 import Config_Pack.Config;
@@ -7,19 +8,20 @@ import Process.MainRetrieval;
 import bean.ORC2;
 import bean.PDI2;
 import bean.ROS2;
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Vector;
 import main.RMIConnector;
 import separatorv2.SeparatorV2;
+import sequence_numbers.All_Seq_no;
 import sequence_numbers.orders_no;
 
 public class ROS_ord {
 
-    public void M_ROS(get_ehr_central_data t, Vector<ROS2> ros, Vector<ORC2> orc,Vector<PDI2> pdi) {
-             Date datenow = new Date();
-        SimpleDateFormat sdf = new SimpleDateFormat("YYYY-MM-dd HH:mm:ss");
+    public void M_ROS(get_ehr_central_data t, Vector<ROS2> ros, Vector<ORC2> orc,Vector<PDI2> pdi,MSH msh) {
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
         boolean update_ehr_central_boolean = false;
         String Centre_Code = "";
         String Central_Code = "";
@@ -29,16 +31,7 @@ public class ROS_ord {
         //set default value to true. When insertion failed var will switch to false and patient will noy update to 3
         boolean status_ris_order_master = true;
         boolean status_ris_order_detail = true;
-        //import get_ehr_central_data class to get the records from ehr_central
-        //get_ehr_central_data t = new get_ehr_central_data();
-        //t.getQuery();
-        
-         
-        //import LIO_seq class to get the order number and max order_no
-//        LIO_seq lis = new LIO_seq();
-//        lis.settLIO_seq();
-         
-       // lis.setMax_orderno();
+
 
         try {
 
@@ -51,8 +44,9 @@ public class ROS_ord {
                   ArrayList<ArrayList<String>> orcs = orc.get(orc_i).getValue();
                   ArrayList<ArrayList<String>> pdis = pdi.get(0).getValue();
                 if (orcs.get(1).get(0).equals("T12102")) {
-                        RIS_seq ris = new RIS_seq();
-                        ris.getRIS_seq();
+                        All_Seq_no allSeq = new All_Seq_no();
+                        allSeq.genSeq(msh.getSendingFacilityCode(), msh.getSendingFacilityDis(), msh.getSendingFacilitySubDis(), "RIS");
+                        Date date = new Date();
                       String sql_RIS = "INSERT INTO ris_order_master (PMI_NO, "
                               + "order_no, "
                               + "txn_type, "
@@ -71,9 +65,10 @@ public class ROS_ord {
                               + "diagnosis_cd, "
                               + "created_by,"
                               + " created_date,"
-                              + " patient_name)"
+                              + " patient_name,"
+                              + "txn_date)"
                               + " values ('" + t.getPmi_no() + "',"
-                              + "'" + ris.getRIS_orderno() + "',"
+                              + "'" + allSeq.getSeq() + "',"
                               + "'" + orcs.get(1).get(0) + "',"
                               + "'" + orcs.get(12).get(0) + "',"
                               + "'" + orcs.get(7).get(0) + "',"
@@ -90,7 +85,8 @@ public class ROS_ord {
                               + "'-',"
                               + "'" + orcs.get(9).get(0) + "',"
                               + "'" + orcs.get(7).get(0) + "',"
-                              + "'" + pdis.get(2).get(0) + "')";
+                              + "'" + pdis.get(2).get(0) + "',"
+                              + "'" + dateFormat.format(date) + "')";
                         try {
                             
                              status_ris_order_master = rc.setQuerySQL(Config.ipAddressServer, Config.portServer, sql_RIS);
@@ -100,7 +96,7 @@ public class ROS_ord {
                         //Vector<ROS2> ros = sv.getVros();
                          for (int ros_i = 0; ros_i < ros.size(); ros_i++) {
                          ArrayList<ArrayList<String>> ross = ros.get(ros_i).getValue();
-
+                            Date date2 = new Date();
                             char pcd[] = ross.get(2).get(0).toCharArray();
                            String sql_ROS = "INSERT INTO ris_order_detail (order_no,"
                                    + " modality_cd,"
@@ -113,8 +109,9 @@ public class ROS_ord {
                                    + "verify_by, "
                                    + "verify_date,"
                                    + " created_by, "
-                                   + "created_date) "
-                                   + "values ('" + ris.getRIS_orderno() + "',"
+                                   + "created_date,"
+                                   + "txn_date) "
+                                   + "values ('" + allSeq.getSeq()  + "',"
                                    + "'"+pcd[2]+"',"
                                    + "'"+pcd[1]+"',"
                                    + "'"+ross.get(2).get(0)+"',"
@@ -125,7 +122,8 @@ public class ROS_ord {
                                    + "'" + orcs.get(9).get(0) + "',"
                                    + "'" + orcs.get(7).get(0) + "',"
                                    + "'" + orcs.get(9).get(0) + "',"
-                                   + "now())";
+                                   + "now(),"
+                                   + "'" + dateFormat.format(date2) + "')";
                            status_ris_order_detail = rc.setQuerySQL(Config.ipAddressServer, Config.portServer, sql_ROS);
 
                                         if (status_ris_order_detail == true) {

@@ -5,6 +5,7 @@
  */
 package views;
 
+import Bean.MSH;
 import order_tables.*;
 import order_tables.get_ehr_central_data;
 import order_tables.update_ehr_central;
@@ -29,37 +30,42 @@ public class MainExtractor {
             //System.out.println(t.getTxndata());
 
             spv2.startProcess(t.getTxndata());
+            
+            //MSH
+            lhr_MSH lhr_msh = new lhr_MSH();
+            MSH msh = lhr_msh.M_MSH(spv2.getVmsh(),t);
+            
             //LIO
             LIO_ord lio_ord = new LIO_ord();
-            lio_ord.M_LIO(spv2.getVorc(), spv2.getVlio(), t,spv2.getVpdi());
+            lio_ord.M_LIO(spv2.getVorc(), spv2.getVlio(), t,spv2.getVpdi(),msh);
 
             //POS
             POS_ord pos_ord = new POS_ord();
-            pos_ord.M_POS(t, spv2.getVpos(), spv2.getVorc());
+            pos_ord.M_POS(t, spv2.getVpos(), spv2.getVorc(),msh);
 
             //ROS
             ROS_ord ros_ord = new ROS_ord();
-            ros_ord.M_ROS(t, spv2.getVros(), spv2.getVorc(),spv2.getVpdi());
+            ros_ord.M_ROS(t, spv2.getVros(), spv2.getVorc(),spv2.getVpdi(),msh);
 
             //PIS
             PIS_ord pis_ord = new PIS_ord();
-            pis_ord.M_PIS(spv2.getVorc(), spv2.getVdto(), t);
+            pis_ord.M_PIS(spv2.getVorc(), spv2.getVdto(), t,msh);
 
             //BLI
             BLI_ord bli_ord = new BLI_ord();
-            bli_ord.M_BLI(spv2.getVorc(), spv2.getVbli(), t);
+            bli_ord.M_BLI(spv2.getVorc(), spv2.getVbli(), t,msh);
 
             //ADW
             ADW_ord adw_ord = new ADW_ord();
-            adw_ord.M_ADW(spv2.getVorc(), spv2.getVadw(), t);
+            adw_ord.M_ADW(spv2.getVorc(), spv2.getVadw(), t,msh);
 
             //DCG
             DCG_ord dcg_ord = new DCG_ord();
-            dcg_ord.M_DCG(spv2.getVorc(), spv2.getVdcg(), t);
+            dcg_ord.M_DCG(spv2.getVorc(), spv2.getVdcg(), t,msh);
             
             //PRI
             PRI_ord pri_ord = new PRI_ord();
-            pri_ord.M_PRI(spv2.getVorc(), spv2.getVpri(), t);
+            pri_ord.M_PRI(spv2.getVorc(), spv2.getVpri(), t,msh);
             
             //update ehr_central status_1
             update_ehr_central upd_sts = new update_ehr_central();

@@ -5,6 +5,7 @@
  */
 package order_tables;
 
+import Bean.MSH;
 import Bean.PRI;
 import Config_Pack.Config;
 import bean.ORC2;
@@ -12,6 +13,7 @@ import bean.PRI2;
 import java.util.ArrayList;
 import java.util.Vector;
 import main.RMIConnector;
+import sequence_numbers.All_Seq_no;
 import sequence_numbers.PRI_seq;
 
 /**
@@ -22,7 +24,7 @@ public class PRI_ord {
 
     RMIConnector rc = new RMIConnector();
 
-    public void M_PRI(Vector<ORC2> orc, Vector<PRI2> pri, get_ehr_central_data t) {
+    public void M_PRI(Vector<ORC2> orc, Vector<PRI2> pri, get_ehr_central_data t,MSH msh) {
         boolean status_pri_master = false;
         boolean status_pri_detail = false;
         String query_pri_master;
@@ -37,15 +39,15 @@ public class PRI_ord {
                 ArrayList<ArrayList<String>> orcs = orc.get(orc_i).getValue();
                 if (orcs.get(1).get(0).equals("T12105")) {
                     PRI priB = new PRI();
-                    PRI_seq pri_seq = new PRI_seq();
-                    pri_seq.setPRI_seq();
+                    All_Seq_no allSeq = new All_Seq_no();
+                        allSeq.genSeq(msh.getSendingFacilityCode(), msh.getSendingFacilityDis(), msh.getSendingFacilitySubDis(), "PRI");
                     if (rowPRI > 0) {
                         for (int n = 0; n < rowPRI; n++) {
 
                             ArrayList<ArrayList<String>> alPRI = pri.get(n).getValue();
                             priB.setTxnCode(alPRI.get(1).get(0));
-                            priB.setOrderNo(pri_seq.getPRI_orderno());
-                            priB.setFillerOrder(pri_seq.getPRI_orderno());
+                            priB.setOrderNo(allSeq.getSeq());
+                            priB.setFillerOrder(allSeq.getSeq());
                             priB.setEpisodeDate(orcs.get(7).get(0));
                             priB.setEncounterDate(orcs.get(8).get(0));
                             priB.setStatus(alPRI.get(6).get(0));

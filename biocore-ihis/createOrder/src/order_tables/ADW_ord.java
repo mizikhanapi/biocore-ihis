@@ -1,8 +1,10 @@
 package order_tables;
 
+import Bean.MSH;
 import Config_Pack.Config;
 import bean.ADW2;
 import bean.ORC2;
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -10,13 +12,12 @@ import java.util.Vector;
 import main.RMIConnector;
 import separatorv2.SeparatorV2;
 import sequence_numbers.ADW_seq;
+import sequence_numbers.All_Seq_no;
 
 public class ADW_ord {
 
-    public void M_ADW(Vector<ORC2> orc, Vector<ADW2> adw1, get_ehr_central_data t) {
+    public void M_ADW(Vector<ORC2> orc, Vector<ADW2> adw1, get_ehr_central_data t,MSH msh) {
 
-        Date datenow = new Date();
-        SimpleDateFormat sdf = new SimpleDateFormat("YYYY-MM-dd HH:mm:ss");
         boolean update_ehr_central_boolean = false;
         String Centre_Code = "";
         String Central_Code = "";
@@ -28,20 +29,20 @@ public class ADW_ord {
         boolean status_adw_detail = true;
         //import get_ehr_central_data class to get the records from ehr_central
         //get_ehr_central_data t = new get_ehr_central_data();
-       // t.getQuery();
+        // t.getQuery();
 
         try {
 
             System.out.println("record (ORC for ADW) #" + t.getCentral_Code());
 
-          
-
             for (int orc_i = 0; orc_i < orc.size(); orc_i++) {
 
                 ArrayList<ArrayList<String>> orcs = orc.get(orc_i).getValue();
                 if (orcs.get(1).get(0).equals("T12111")) {
-                    ADW_seq adw = new ADW_seq();
-                    adw.setADW_seq();
+                    All_Seq_no allSeq = new All_Seq_no();
+                        allSeq.genSeq(msh.getSendingFacilityCode(), msh.getSendingFacilityDis(), msh.getSendingFacilitySubDis(), "ADW");
+                    DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
+                    Date date = new Date();
                     String sql_ADW = "INSERT INTO wis_order_master (pmi_no,"
                             + " order_no,"
                             + " txn_type,"
@@ -58,9 +59,10 @@ public class ADW_ord {
                             + " order_status, "
                             + "diagnosis_cd, "
                             + "created_by,"
-                            + " create_date) values ("
+                            + " create_date,"
+                            + "txn_date) values ("
                             + "'" + t.getPmi_no() + "',"
-                            + "'" + adw.getADW_orderno() + "',"
+                            + "'" + allSeq.getSeq() + "',"
                             + "'" + orcs.get(1).get(0) + "',"
                             + "'" + orcs.get(12).get(0) + "',"
                             + "'" + orcs.get(7).get(0) + "',"
@@ -75,17 +77,19 @@ public class ADW_ord {
                             + "'0',"
                             + "'-',"
                             + "'" + orcs.get(9).get(0) + "',"
-                            + "now())";
+                            + "now(),"
+                            + "'" + dateFormat.format(date) + "')";
                     try {
                         status_adw_master = rc.setQuerySQL(Config.ipAddressServer, Config.portServer, sql_ADW);
                         if (status_adw_master == true) {
                             System.out.println("-------------------------------------------");
                             System.out.println("record (ADW): #" + " " + t.getCentral_Code());
-                           // Vector<ADW2> adw1 = sv.getVadw();
+                            // Vector<ADW2> adw1 = sv.getVadw();
 
                             for (int adw_i = 0; adw_i < adw1.size(); adw_i++) {
                                 ArrayList<ArrayList<String>> adws = adw1.get(adw_i).getValue();
-
+                                DateFormat dateFormat2 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
+                                Date date2 = new Date();
                                 String sql_adw_det = "INSERT INTO wis_order_detail ("
                                         + "order_no,"
                                         //+ " item_cd, "
@@ -100,9 +104,10 @@ public class ADW_ord {
                                         //+ " bed_id,"
                                         + " order_status,"
                                         + " created_by,"
-                                        + " created_date"
+                                        + " created_date,"
+                                        + "txn_date"
                                         + ") values ("
-                                        + "'" + adw.getADW_orderno() + "',"
+                                        + "'" + allSeq.getSeq() + "',"
                                         //+ "'-',"
                                         + "'" + adws.get(1).get(0) + "',"
                                         + "'" + orcs.get(8).get(0) + "',"
@@ -115,7 +120,8 @@ public class ADW_ord {
                                         //+ "'-',"
                                         + "'0',"
                                         + "'" + adws.get(2).get(14) + "',"
-                                        + "now())";
+                                        + "now(),"
+                                        + "'" + dateFormat2.format(date2) + "')";
                                 status_adw_detail = rc.setQuerySQL(Config.ipAddressServer, Config.portServer, sql_adw_det);
                                 if (status_adw_detail == true) {
                                     System.out.println("Done with wis MASTER and wis DETAIL");

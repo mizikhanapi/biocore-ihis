@@ -1,27 +1,30 @@
 package order_tables;
 
 import Bean.LIO;
+import Bean.MSH;
 import Bean.ROS;
 import Config_Pack.Config;
 import Process.MainRetrieval;
 import bean.LIO2;
 import bean.ORC2;
 import bean.PDI2;
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Vector;
 import main.RMIConnector;
 import separatorv2.SeparatorV2;
+import sequence_numbers.All_Seq_no;
 import sequence_numbers.LIO_seq;
 import sequence_numbers.orders_no;
 
 public class LIO_ord {
 
-    public void M_LIO(Vector<ORC2> orc, Vector<LIO2> lio, get_ehr_central_data t,Vector<PDI2>pdi ) {
+    public void M_LIO(Vector<ORC2> orc, Vector<LIO2> lio, get_ehr_central_data t,Vector<PDI2>pdi,MSH msh ) {
 
-       Date datenow = new Date();
-        SimpleDateFormat sdf = new SimpleDateFormat("YYYY-MM-dd HH:mm:ss");
+               DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
+
         boolean update_ehr_central_boolean = false;
         String Centre_Code = "";
         String Central_Code = "";
@@ -52,8 +55,10 @@ public class LIO_ord {
                   ArrayList<ArrayList<String>> orcs = orc.get(orc_i).getValue();
                   ArrayList<ArrayList<String>> pdis = pdi.get(0).getValue();
                 if (orcs.get(1).get(0).equals("T12101")) {
-                        LIO_seq lis = new LIO_seq();
-                        lis.settLIO_seq();
+                        All_Seq_no allSeq = new All_Seq_no();
+                        allSeq.genSeq(msh.getSendingFacilityCode(), msh.getSendingFacilityDis(), msh.getSendingFacilitySubDis(), "LIS");
+                                                Date date = new Date();
+
                         String sql_lis_master = "INSERT INTO lis_order_master (pmi_no, "
                                 + "order_no,"
                                 + " txn_type,"
@@ -72,9 +77,10 @@ public class LIO_ord {
                                 + "diagnosis_cd,"
                                 + " created_by, "
                                 + "created_date,"
-                                + " patient_name)"
+                                + " patient_name,"
+                                + "txn_date)"
                                 + " values ('" + t.getPmi_no() + "',"
-                                + "'" + lis.getLIO_orderno() + "',"
+                                + "'" + allSeq.getSeq() + "',"
                                 + "'" + orcs.get(1).get(0) + "',"
                                 + "'" + orcs.get(12).get(0) + "',"
                                 + "'" + orcs.get(7).get(0) + "',"
@@ -91,7 +97,8 @@ public class LIO_ord {
                                 + "'-',"
                                 + "'" + orcs.get(9).get(0) + "',"
                                 + "now(),"
-                                + "'" + pdis.get(2).get(0) + "')";
+                                + "'" + pdis.get(2).get(0) + "',"
+                                + "'" + dateFormat.format(date) + "')";
                         try {
                             status_lio_order_master = rc.setQuerySQL(Config.ipAddressServer, Config.portServer, sql_lis_master);
                             if (status_lio_order_master == true) {
@@ -100,6 +107,8 @@ public class LIO_ord {
                                  //Vector<LIO2> lio = sv.getVlio();
                                 for (int lio_i = 0; lio_i < lio.size(); lio_i++) {
                                 ArrayList<ArrayList<String>> lios = lio.get(lio_i).getValue();
+                                
+
                                 //                              0     1         2          3           4            5     6             7    8          9      10        11         12                 13         14
                                  String selectTest = "SELECT item_cd,item_name,test_cat,spe_source,spe_container,volume,special_inst,status,buy_price,ser_price,hfc_cd,discipline_cd,subdiscipline_cd,created_by,created_date FROM lis_item_detail WHERE item_cd='"+lios.get(2).get(0)+"' and hfc_cd='"+orcs.get(12).get(0)+"'"; 
                                 try{
@@ -107,7 +116,7 @@ public class LIO_ord {
                                     if(lis_item.size() > 0){
                                         for(int lis_item_i = 0;lis_item_i < lis_item.size();lis_item_i++){
                                             ArrayList<String> lisI = lis_item.get(lis_item_i);
-                                            
+                                            Date date2 = new Date();
                                             String sql_lis_detail = "INSERT INTO lis_order_detail ("
                                                  + "order_no, "
                                                  + "item_cd, "
@@ -130,8 +139,9 @@ public class LIO_ord {
                                                  + " specimen_status,"
                                                  + " verification,"
                                                  + " collectionDate,"
-                                                    + "detail_status)"
-                                                 + " values ('" + lis.getLIO_orderno() + "',"
+                                                    + "detail_status,"
+                                                    + "txn_date)"
+                                                 + " values ('" + allSeq.getSeq() + "',"
                                                  + "'" + lisI.get(0) + "',"
                                                  + "'" + orcs.get(7).get(0) + "',"
                                                  + "'" + orcs.get(8).get(0) + "',"
@@ -152,7 +162,8 @@ public class LIO_ord {
                                                  + "'"+lisI.get(7)+"',"
                                                  + "'Pending',"
                                                  + "'" + lios.get(3).get(0) + "',"
-                                                    + "'0')";
+                                                    + "'0',"
+                                                    + "'" + dateFormat.format(date2) + "')";
                                         status_lis_order_detail = rc.setQuerySQL(Config.ipAddressServer, Config.portServer, sql_lis_detail);
 
                                         if (status_lis_order_detail == true) {
