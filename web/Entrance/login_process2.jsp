@@ -5,6 +5,7 @@
 --%>
 
 
+<%@page import="ADM_helper.MySession"%>
 <%@page import="dBConn.Conn"%>
 <%@page import="com.sun.java.swing.plaf.windows.resources.windows"%>
 <%@page import="java.util.ArrayList"%>
@@ -34,8 +35,8 @@
     }
 
     //password = EncryptUtils.getEncryptText(password);
-    //                       0           1      2           3                   4                   5                               6                           7
-    String sql = "Select user_id, password, user_name, health_facility_code, hfc_name, ifnull(convert(picture using utf8), ''), ifnull(login_status, '0'), new_icno from adm_users "
+    //                       0           1      2           3                   4                   5                               6                           7               8
+    String sql = "Select user_id, password, user_name, health_facility_code, hfc_name, ifnull(convert(picture using utf8), ''), ifnull(login_status, '0'), new_icno, ifnull(user_status, '') from adm_users "
             + "Join adm_health_facility on health_facility_code = hfc_cd "
             + "where user_id = '" + user_id + "' AND status = '0' "
             + "and now() between start_date AND end_date "
@@ -184,12 +185,29 @@
                 //==========================================
 
                 status = LOGIN;
+                
+                /*Setting session id to check whether the same ID is used on other web browser. 
+                Session ID is randomize. Previous ID will not be the same with the next generated ID.*/
+                
+                String sessionID = dataStaff.get(0).get(8); //getting the previous ID.
+                String newSessionID="";
+                
+                MySession mys = new MySession();
+                
+                do{
+                    newSessionID = mys.getRandomSessionID();                    
+                
+                }while(sessionID.equalsIgnoreCase(newSessionID));
+               
+                
+                
+                session.setAttribute("SESSION_ID", newSessionID); // saving the session ID into session object
 
                 session.removeAttribute("TEMP_ID");
 
                 RMIConnector rmic = new RMIConnector();
 
-                String query = "Update adm_users set login_status = '1' where user_id = '" + user_id + "'";
+                String query = "Update adm_users set login_status = '1', user_status='"+newSessionID+"' where user_id = '" + user_id + "'"; //Update the session ID in user_status and update login_status.
 
                 rmic.setQuerySQL(conn.HOST, conn.PORT, query);
 
