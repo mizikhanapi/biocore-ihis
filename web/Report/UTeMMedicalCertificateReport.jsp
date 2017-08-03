@@ -69,9 +69,19 @@
             <div class="container-fluid">
                 <div class="row">
 
+
+                    <div class="thumbnail">
+
+                        <h3 style="margin: 0px;">Medical Certificate List</h3>
+                        <hr class="pemisah"/>
+                        <div id="MCGraph">
+
+                        </div>
+                    </div>
+
                     <div class="thumbnail">
                         <form>
-                            <h3 style="margin: 0px;">Medical Certificate List</h3>
+                            <h4 style="margin: 0px; padding: 0;">Search Patients</h4>
                             <hr class="pemisah"/>
 
                             <div class="form-group col-md-12">
@@ -93,11 +103,6 @@
                         </form>
                     </div>
 
-                    <div class="thumbnail">
-                        <div id="MCGraph">
-
-                        </div>
-                    </div>
 
                     <div class="thumbnail">
                         <div id="UTeMAttendanceListReportTable">
@@ -216,13 +221,13 @@
             }
             viewMCGraph();
             function viewMCGraph() {
-                
+
                 getDateNow();
                 var startDate, endDate, hfc;
                 startDate = curYear + '-01-01';
                 endDate = yyyyMMdd;
                 hfc = "<%=hfc%>";
-                
+
                 var data = {
                     startDate: startDate,
                     endDate: endDate,
@@ -274,32 +279,24 @@
 
             $("#searchMedicalCertificate").click(function () {
                 var startDate, endDate;
-                var dateStartTemp = "", dateEndTemp = "";
-
                 startDate = $("#dateFrom").val();
                 endDate = $("#dateTo").val();
 
-                if (startDate !== "" && endDate !== "")
-                {
-                    var temp = startDate.split("/");
-                    startDate = temp[2] + "-" + temp[1] + "-" + temp[0];
-
-                    var temp = endDate.split("/");
-                    endDate = temp[2] + "-" + temp[1] + "-" + temp[0];
-
-
-                    dateStartTemp = new Date(startDate);
-                    dateEndTemp = new Date(endDate);
-                }
+               
 
                 if (startDate === "") {
                     alert("Select Start Date.");
                 } else if (endDate === "") {
                     alert("Select End Date.");
-                } else if (dateStartTemp > dateEndTemp) {
+                } else if (convfertDate(startDate) > convfertDate(endDate)) {
                     alert("Incorrect date range, Start-Date Should be before End-Date.");
                 } else {
 
+                    var temp = startDate.split("/");
+                    startDate = temp[2] + "-" + temp[1] + "-" + temp[0];
+
+                    temp = endDate.split("/");
+                    endDate = temp[2] + "-" + temp[1] + "-" + temp[0];
 
                     var data = {
                         "startDate": startDate,
@@ -354,7 +351,7 @@
                                         {
                                             extend: 'excelHtml5',
                                             text: 'Export To Excel',
-                                            title: 'Medical Certificates List',
+                                            title: 'Medical Certificates List, From ' + startDate + ' To ' + endDate,
                                             className: 'btn btn-primary',
                                             exportOptions: {
                                                 columns: ':visible'
@@ -362,7 +359,7 @@
                                         }, {
                                             extend: 'csvHtml5',
                                             text: 'Export To Excel CSV',
-                                            title: 'Medical Certificates List',
+                                            title: 'Medical Certificates List, From ' + startDate + ' To ' + endDate,
                                             className: 'btn btn-primary',
                                             exportOptions: {
                                                 columns: ':visible'
@@ -425,6 +422,16 @@
                 }
 
             });
+            
+            function convfertDate(cDate) {
+
+                var temp = cDate.split("/");
+                cDate = temp[2] + "-" + temp[1] + "-" + temp[0];
+                console.log(new Date(cDate));
+                return new Date(cDate);
+
+            }
+            
         </script>
 
     </body>

@@ -67,43 +67,11 @@
             <div class="container-fluid">
                 <div class="row">
 
+
                     <div class="thumbnail">
                         <form>
-                            <h3 style="margin: 0px;">Attendance List</h3>
+                            <h3 style="margin: 0px;">Patient Attendance List</h3>
                             <hr class="pemisah"/>
-                            <div class="form-group col-md-12" id="ReportFilturediv">
-                                <lebal class="col-md-4 control-label">Patient Type:</lebal>
-                                <div class="col-md-4">
-                                    <select id="patientType" class="form-control">
-                                        <option>Inpatient</option>
-                                        <option>Outpatient</option>
-                                    </select>
-                                </div>
-                            </div>
-
-                            <div class="form-group col-md-12">
-                                <label class="col-md-1 control-label" for="textinput">Date:</label>
-                                <label class="col-md-1 control-label" style="text-align: right; padding-top: 10px;" for="textinput">From</label>
-                                <div class="col-md-3">
-                                    <input type="text" class="form-control input-md" id="dateFrom" name="dateFrom" placeholder="Select Start Date" maxlength=""/>
-                                </div>
-                                <label class="col-md-1 control-label" style="text-align: right; padding-top: 10px;" for="textinput">To</label>
-                                <div class="col-md-3">
-                                    <input type="text" class="form-control input-md" id="dateTo" name="dateTo" placeholder="Select End Date" maxlength=""/>
-                                </div>
-                            </div>
-                            <div class="text-center">
-                                <button class="btn btn-primary" type="button" id="searchPatientAttendance" name="searchPatientAttendance"><i class="fa fa-search fa-lg" ></i>&nbsp; Search</button>
-
-                                <button id="clearSearch" name="clearSearch" type="clear" class="btn btn-default"><i class="fa fa-ban fa-lg"></i>&nbsp; Clear</button>
-                            </div>
-                        </form>
-                    </div>
-
-
-
-                    <div class="thumbnail">
-                        <form>
                             <div class="col-md-5">
                                 <label class="control-label">Discipline</label>
                                 <div class="form-inline"> 
@@ -154,6 +122,41 @@
 
                         </div>
                     </div>
+
+
+                    <div class="thumbnail">
+                        <form>
+                            <h4 style="margin: 0px; padding: 0;">Search Patients</h4>
+                            <hr class="pemisah"/>
+                            <div class="form-group col-md-12" id="ReportFilturediv">
+                                <lebal class="col-md-4 control-label">Patient Type:</lebal>
+                                <div class="col-md-4">
+                                    <select id="patientType" class="form-control">
+                                        <option>Inpatient</option>
+                                        <option>Outpatient</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group col-md-12">
+                                <label class="col-md-1 control-label" for="textinput">Date:</label>
+                                <label class="col-md-1 control-label" style="text-align: right; padding-top: 10px;" for="textinput">From</label>
+                                <div class="col-md-3">
+                                    <input type="text" class="form-control input-md" id="dateFrom" name="dateFrom" placeholder="Select Start Date" maxlength=""/>
+                                </div>
+                                <label class="col-md-1 control-label" style="text-align: right; padding-top: 10px;" for="textinput">To</label>
+                                <div class="col-md-3">
+                                    <input type="text" class="form-control input-md" id="dateTo" name="dateTo" placeholder="Select End Date" maxlength=""/>
+                                </div>
+                            </div>
+                            <div class="text-center">
+                                <button class="btn btn-primary" type="button" id="searchPatientAttendance" name="searchPatientAttendance"><i class="fa fa-search fa-lg" ></i>&nbsp; Search</button>
+
+                                <button id="clearSearch" name="clearSearch" type="clear" class="btn btn-default"><i class="fa fa-ban fa-lg"></i>&nbsp; Clear</button>
+                            </div>
+                        </form>
+                    </div>
+
 
                     <div class="thumbnail">
                         <div id="UTeMAttendanceListReportTable">
@@ -383,22 +386,20 @@
                 startDate = $("#dateFrom").val();
                 endDate = $("#dateTo").val();
 
-                var temp = startDate.split("/");
-                startDate = temp[2] + "-" + temp[1] + "-" + temp[0];
-
-                var temp = endDate.split("/");
-                endDate = temp[2] + "-" + temp[1] + "-" + temp[0];
-
-                var dateStartTemp = new Date(startDate);
-                var dateEndTemp = new Date(endDate);
 
                 if (startDate === "") {
                     alert("Select Start Date.");
                 } else if (endDate === "") {
                     alert("Select End Date.");
-                } else if (dateStartTemp > dateEndTemp) {
+                } else if (convfertDate(startDate) > convfertDate(endDate)) {
                     alert("Incorrect date range, Start-Date Should be before End-Date.");
                 } else {
+
+                    var temp = startDate.split("/");
+                    startDate = temp[2] + "-" + temp[1] + "-" + temp[0];
+
+                    temp = endDate.split("/");
+                    endDate = temp[2] + "-" + temp[1] + "-" + temp[0];
 
 
                     var data = {
@@ -446,7 +447,7 @@
                                         {
                                             extend: 'excelHtml5',
                                             text: 'Export To Excel',
-                                            title: 'Patient Attendance List',
+                                            title: 'Patient Attendance List, From ' + startDate + ' To ' + endDate,
                                             className: 'btn btn-primary',
                                             exportOptions: {
                                                 columns: ':visible'
@@ -454,7 +455,7 @@
                                         }, {
                                             extend: 'csvHtml5',
                                             text: 'Export To Excel CSV',
-                                            title: 'Patient Attendance List',
+                                            title: 'Patient Attendance List, From ' + startDate + ' To ' + endDate,
                                             className: 'btn btn-primary',
                                             exportOptions: {
                                                 columns: ':visible'
@@ -518,6 +519,18 @@
                 }
 
             });
+
+            function convfertDate(cDate) {
+
+                var temp = cDate.split("/");
+                cDate = temp[2] + "-" + temp[1] + "-" + temp[0];
+                console.log(new Date(cDate));
+                return new Date(cDate);
+
+
+            }
+
+
         </script>
     </body>
 </html>
