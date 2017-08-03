@@ -46,7 +46,7 @@
          + " GROUP BY od.item_cd "
          + "ORDER BY om.order_no ;";
 ArrayList<ArrayList<String>> dataRIS = conn.getData(resultProblem);
- out.print(resultProblem);
+
 %>
 <table class="table table-striped table-filter table-bordered" id="lisTable">
     <%
