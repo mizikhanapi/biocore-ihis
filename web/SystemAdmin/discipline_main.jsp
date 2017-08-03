@@ -137,6 +137,7 @@
                 document.getElementById("disciplineName").value = "";
                 document.getElementById("disciplineCode").value = "";
                 document.getElementById("groupCode").value = "";
+                $('#D_match').html('');
                 
             }
 
@@ -226,6 +227,8 @@
                 var specialtyCode = $('#specialtyCode').val();
                 var status = $('#DM_status').val();
                 
+                var gotSpecialChar = /[!@#$%^&*()+=,?\/\\:;\"\' ]/.test(disciplineCode);  
+                
                 if(D_isHFCselected === false || D_selectedHFC !== hfc_name){
                     bootbox.alert('Please choose existing hfc!');
                 }
@@ -237,7 +240,11 @@
                     bootbox.alert("Fill in the discipline code");
                     $('#disciplineCode').focus();
                     
-                } else if (status !== "1" && status !== "0") {
+                } else if (gotSpecialChar){
+                    bootbox.alert("Discipline code can only contain alphanumeric characters!");
+                    $('#disciplineCode').val('');
+                }
+                else if (status !== "1" && status !== "0") {
                     bootbox.alert("Select Any Status");
                     $('#DM_status').focus();
                 } else {

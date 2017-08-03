@@ -185,6 +185,7 @@
             var type = $('#SDM_type').val();
             var status = $('#SDM_status').val();
             
+            var gotSpecialChar = /[!@#$%^&*()+=,?\/\\:;\"\' ]/.test(subdisciplineCode);  
             
             if (selectedHFC !== hfc || isHfcExist === false || hfc === '') {
                 bootbox.alert("Please choose existing helath facility");
@@ -202,7 +203,11 @@
                 bootbox.alert("Fill in the subdiscipline code");
                 $('#SDM_subdisciplineCode').focus();
 
-            } else if (status !== "1" && status !== "0") {
+            } else if (gotSpecialChar){
+                bootbox.alert("Subdiscipline code must only contain alphanumeric characters!");
+                $('#SDM_subdisciplineCode').val('');
+            }
+            else if (status !== "1" && status !== "0") {
                 bootbox.alert("Select Any Status");
 
             } else if (isDisCodeExist === false || selectedDis !== disciplineCode) {
