@@ -28,7 +28,7 @@ public class All_Seq_no {
     String dateForID = dateFormatID.format(date);
 
     public void genSeq(String hfc, String discipline, String subDiscipline,String module){
-        String sql2 = "SELECT module_name,last_seq_no,year_seq,hfc_cd FROM oms_last_seq_no where module_name = '"+module+"' and hfc_cd ='" + hfc + "' and year(year_seq)='" + dateForID + "' and discipline_cd='"+discipline+"' and subdiscipline_cd ='"+subDiscipline+"' FOR UPDATE";
+        String sql2 = "SELECT module_name,last_seq_no,year_seq,hfc_cd FROM oms_last_seq_no where module_name = '"+module+"' and hfc_cd ='" + hfc + "' and year(year_seq)='" + dateForID + "' and discipline_cd='"+discipline+"' and subdiscipline_cd ='"+subDiscipline+"' FOR UPDATE;";
         ArrayList<ArrayList<String>> data2 = rc.getQuerySQL(Config.ipAddressServer, Config.portServer, sql2);
         if(data2.size() > 0){
             for(int i =0;i<data2.size();i++){
@@ -48,14 +48,14 @@ public class All_Seq_no {
                     num = zero + num;
                 }
                 OMSNo = seqId + dateForID + num;
-                
                 //UPDATE SEQUENCE NUMBER
-                String updateRISNoSequence = "UPDATE oms_last_seq_no SET last_seq_no = '" + currentSeq + "' WHERE module_name = '"+module+"' and hfc_cd ='" + hfc + "' and year(year_seq)='" + dateForID + "' and discipline_cd='"+discipline+"' and subdiscipline_cd ='"+subDiscipline+"' ";
+                String updateRISNoSequence = "UPDATE oms_last_seq_no SET last_seq_no = '" + currentSeq + "' WHERE module_name = '"+module+"' and hfc_cd ='" + hfc + "' and year(year_seq)='" + dateForID + "' and discipline_cd='"+discipline+"' and subdiscipline_cd ='"+subDiscipline+"'; ";
 
                 boolean isUpdateRISNoSequence = rc.setQuerySQL(Config.ipAddressServer, Config.portServer, updateRISNoSequence);
+                
             }
         }else{
-            String sql3 = "INSERT INTO oms_last_seq_no(hfc_cd,discipline_cd,subdiscipline_cd,module_name,year_seq,last_seq_no,status,created_by,created_date) VALUES('"+hfc+"','"+discipline+"','"+subDiscipline+"','"+module+"','"+dateFormat.format(date)+"','1','1','CREATE ORDER APPS','"+dateFormat.format(date)+"')";
+            String sql3 = "INSERT INTO oms_last_seq_no(hfc_cd,discipline_cd,subdiscipline_cd,module_name,year_seq,last_seq_no,status,created_by,created_date) VALUES('"+hfc+"','"+discipline+"','"+subDiscipline+"','"+module+"','"+dateFormat.format(date)+"','1','1','CREATE ORDER APPS','"+dateFormat.format(date)+"');";
             boolean isInsertSequence = rc.setQuerySQL(Config.ipAddressServer, Config.portServer, sql3);
             if(isInsertSequence){
                 int currSeq=1;

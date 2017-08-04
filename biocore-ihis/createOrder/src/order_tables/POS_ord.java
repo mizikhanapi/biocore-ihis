@@ -64,6 +64,8 @@ public class POS_ord {
 
             ArrayList<ArrayList<String>> orcs = orc.get(orc_i).getValue();
             if (orcs.get(1).get(0).equals("T12114")) {
+                DateFormat dateFormat4 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
+                Date date4 = new Date();
                 allSeq.genSeq(msh.getSendingFacilityCode(), msh.getSendingFacilityDis(), msh.getSendingFacilitySubDis(), "POS");
                 sql_pos_master = "INSERT INTO pos_order_master ("
                         + "pmi_no,"
@@ -90,7 +92,8 @@ public class POS_ord {
                         + "person_status, "
                         + "centre_code,"
                         + "order_status,"
-                        + "billing_status) "
+                        + "billing_status,"
+                        + "txn_date) "
                         + "values ('" + t.getPmi_no() + "',"
                         + "'" + allSeq.getSeq() + "',"
                         + "'" + orcs.get(1).get(0) + "',"
@@ -115,7 +118,8 @@ public class POS_ord {
                         + "'" + c + "',"
                         + "'" + d + "',"
                         + "'0',"
-                        + "'0')";
+                        + "'0',"
+                        + "'" + dateFormat4.format(date4) + "')";
                 try {
                     status_pos_order_master = rc.setQuerySQL(Config.ipAddressServer, Config.portServer, sql_pos_master);
                     if (status_pos_order_master) {

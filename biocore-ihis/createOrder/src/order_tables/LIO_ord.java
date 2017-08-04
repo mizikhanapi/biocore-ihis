@@ -57,7 +57,7 @@ public class LIO_ord {
                 if (orcs.get(1).get(0).equals("T12101")) {
                         All_Seq_no allSeq = new All_Seq_no();
                         allSeq.genSeq(msh.getSendingFacilityCode(), msh.getSendingFacilityDis(), msh.getSendingFacilitySubDis(), "LIS");
-                                                Date date = new Date();
+                        Date date = new Date();
 
                         String sql_lis_master = "INSERT INTO lis_order_master (pmi_no, "
                                 + "order_no,"
