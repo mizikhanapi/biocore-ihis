@@ -369,6 +369,8 @@
                         </div>
 <%
                             }//end if mod19
+                            
+                            if(mod03){
 %>                        
                         <div class="col-xs-6 col-sm-6 col-md-3">
                             <a href="../QMS/" class="thumbnail">
@@ -377,7 +379,10 @@
                                     <h3>Queue Management</h3>
                                 </div>
                             </a>
-                        </div>
+                        </div>                        
+<%
+                        }// end if mod03
+%>
 
                     </div>
 
