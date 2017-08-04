@@ -20,7 +20,7 @@
 
 
                         <div class="row">
-                            <div class="col-xs-12 col-sm-12 col-md-12">
+                            <div class="col-xs-12 col-sm-12 col-md-12" id="divCIS_O_POS_ProcedureResult">
                                 <table class="table table-striped table-filter table-bordered" id="opTable">
                                    
                                 </table>

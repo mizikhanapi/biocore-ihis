@@ -48,7 +48,7 @@
 ArrayList<ArrayList<String>> dataRIS = conn.getData(resultProblem);
 
 %>
-<table class="table table-striped table-filter table-bordered" id="lisTable">
+<table class="table table-striped table-filter table-bordered" id="lisTable" style="width: 100%">
     <%
         if(dataRIS.size() >0){
             %>
@@ -61,6 +61,11 @@ ArrayList<ArrayList<String>> dataRIS = conn.getData(resultProblem);
                     <th>Remarks</th>
                     <th>Perform By</th>
                     <th>Verification</th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
@@ -85,6 +90,17 @@ ArrayList<ArrayList<String>> dataRIS = conn.getData(resultProblem);
                 %>
             </tbody>
 </table>
+                    <script type="text/javascript">
+        
+                $('#lisTable').DataTable({
+                    language: {
+                        emptyTable: "No result"
+                    }
+                });
+       
+            
+            </script>
+
             <%
         } else{
 out.print("No record for this moment");
