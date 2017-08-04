@@ -23,7 +23,7 @@
                         <li><a data-toggle="modal" data-target="#CIS040000" href="" class="soap-select"><i class="fa fa-bolt fa-li"></i>Radiology Request</a></li>
                         <li><a data-toggle="modal" data-target="#CIS040001" href="" class="soap-select"><i class="fa fa-thermometer-empty fa-li"></i> Laboratory Request</a></li>
                         <li><a data-toggle="modal" data-target="#CIS040002" href="" class="soap-select" onClick="searchHFCDetail('DTO')"> <i class="fa fa-medkit fa-li"></i> Drug Order</a></li>
-                        <li><a data-toggle="modal" data-target="#CIS040003" href="" class="soap-select" hide ><i class="fa fa-file-text-o fa-li"></i> Monitoring</a></li>
+<!--                        <li><a data-toggle="modal" data-target="#CIS040003" href="" class="soap-select" hide ><i class="fa fa-file-text-o fa-li"></i> Monitoring</a></li>-->
                         <!--                        <li><a data-toggle="modal" data-target="#CIS040004" href="" class="soap-select"> <i class="fa fa-bar-chart fa-li"></i> Follow Up</a></li>-->
                         <li><a data-toggle="modal" data-target="#CIS040005" href="" class="soap-select hide"><i class="fa fa-user-md fa-li"></i> Second Opinion</a></li>
                         <li><a data-toggle="modal" data-target="#CIS040006" href="" class="soap-select" onClick="searchHFCDetail('POS')" ><i class="fa fa-list-ol fa-li"></i> Procedure</a></li>
