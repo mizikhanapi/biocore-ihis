@@ -93,6 +93,12 @@ public class MySession {
         return module;
     }
     
+    public String getLongStringPage(){
+        String page = String.join("|", dataPage);
+    
+        return page;
+    }
+    
     public boolean isSessionValid(String sessionID){
         boolean isValid=true;
         

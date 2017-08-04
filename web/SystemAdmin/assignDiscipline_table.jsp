@@ -312,8 +312,13 @@
                                     backdrop: true
                                 });
                                 
-                            } else if (datas.trim() === 'Failed') {
-                                alert("Delete failed!");
+                            }
+                            else if (datas.trim() === 'Failed') {
+                                bootbox.alert("Delete failed!");
+                            
+                            }
+                            else{
+                                bootbox.alert(datas.trim());
                             }
 
                         },
