@@ -360,7 +360,7 @@
         $("#btnAdd").click(function () {
             var order = $("#patientOrderNo").val();
             var itemCD = $("#itemCode1").val();
-            var pmiNo = $("#spe_source").val();
+            var pmiNo = pmino;
             var Comment = $("#requestComment").val();
             var episodeDate = OrderDate;
             var itemName = $("#RNO_bodySystem").val();
@@ -423,7 +423,7 @@
     // Move to Order Details Fetch Details End
 
     // Move to Order Details And Load All Table Data Start
-    function loadAllergyDiagnosisOrder(orderNo, pmino) {
+    function loadAllergyDiagnosisOrder(orderNo, pmino, episodeDate) {
 
         var dataDiagnosis = {
             pmino: pmino
@@ -435,7 +435,8 @@
 
         var dataOrder = {
             orderNo: orderNo,
-            pmino: pmino
+            pmino: pmino,
+            episodeDate: episodeDate
         };
 
 
@@ -495,37 +496,4 @@
         });
 
     });
-    // Load Datatable To Tables End 
-
-
-//======================================================================================================================================================================================//
-
-
-    // Save Button Function Start
-    $('#patientOrderDispenseButtonDiv').on('click', '#btnRISOrderSave', function (e) {
-        alert("In Save");
-    });
-    // Save Button Function End
-
-
-    // Send Button Function Start
-    $('#patientOrderDispenseButtonDiv').on('click', '#btnRISOrderSendResults', function (e) {
-        alert("In Send");
-    });
-    // Send Button Function End
-
-
-
-    // Clear Button Function Start
-    $('#patientOrderDispenseButtonDiv').on('click', '#btnRISClearOrderDetail', function (e) {
-        document.getElementById("patientOrderDetailContentOrderInfoForm").reset();
-        document.getElementById("patientOrderDetailContentOrderInfoForm").reset();
-        $("#OrderDetail #ManageAllergyListTableDiv").load("ManageOrderListBasicInfoNew.jsp #ManageAllergyListTableDiv");
-        $("#OrderDetail #ManageDiagnosisListTableDiv").load("ManageOrderListBasicInfoNew.jsp #ManageDiagnosisListTableDiv");
-        $("#OrderDetail #ManageOrderDetailsListTable").load("ManageOrderListBasicInfoNew.jsp #ManageOrderDetailsListTableDiv");
-        $('.nav-tabs a[href="#tab_default_1"]').tab('show');
-    });
-    // Clear Button Function End
-
-
 </script>
