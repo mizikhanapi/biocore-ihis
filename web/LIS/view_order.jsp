@@ -321,7 +321,7 @@
                                 success: function(data) {
                                      var d = data.split("|");
                                      if (d[1] == '1') {
-                                         alert("Collection date updated.")
+                                         bootbox.alert("Collection date updated.")
                                          window.location.reload();
                                          $("#basicModal_<%=i %>").hide();
                                          $(".modal-backdrop").hide();

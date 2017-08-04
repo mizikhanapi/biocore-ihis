@@ -18,6 +18,7 @@
         session.setAttribute("orderNo", orderNo);
 
         String pmino = request.getParameter("pmino");
+        String episodeDate = request.getParameter("episodeDate");
         //NumberFormat formatter = new DecimalFormat("#0.00");
         //NumberFormat formatterInt = new DecimalFormat("#0");
         String my_1_hfc_cd = (String) session.getAttribute("HEALTH_FACILITY_CODE");
