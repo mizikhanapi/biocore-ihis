@@ -35,6 +35,23 @@
 
                         </div>
                     </div>
+                    
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="textinput">Buying Price (RM)*</label>
+                        <div class="col-md-8">
+                            <input type="text" placeholder="Insert the procedure buying price" class="form-control" maxlength="9" id="PRO_buyPrice">
+                            <p id="PRO_buyPrice_err" style="color: red"></p>
+                        </div>
+                    </div>
+                    
+                    <!-- Text input-->
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="textinput">Selling Price (RM)*</label>
+                        <div class="col-md-8">
+                            <input type="text" placeholder="Insert the procedure selling price" class="form-control" maxlength="9" id="PRO_sellPrice">
+                            <p id="PRO_sellPrice_err" style="color: red"></p>
+                        </div>
+                    </div>
 
 
                     <div class="form-group">

@@ -391,7 +391,7 @@
                             },
                             timeout: 10000,
                             success: function (data) {
-                                alert("Specimen Accept succesfully");
+                                bootbox.alert("Specimen Accept succesfully");
                                 $("#viewTA").load("viewTA.jsp");
 
                             },
@@ -416,7 +416,7 @@
                             },
                             timeout: 10000,
                             success: function (data) {
-                                alert("Specimen Accept succesfully");
+                                bootbox.alert("Specimen Accept succesfully");
                                 window.location.reload();
                                 $("#basicModal").hide();
                                 $(".modal-backdrop").hide();

@@ -33,7 +33,7 @@ String sqlRIS = "SELECT om.order_no, om.hfc_to, hf.hfc_name, om.`EPISODE_DATE`, 
 ArrayList<ArrayList<String>> dataRIS = conn.getData(sqlRIS);
 
 %>
-<table class="table table-striped table-filter table-bordered" id="opTable">
+<table class="table table-striped table-filter table-bordered" id="opTable" style="width: 100%">
     <%
         if(dataRIS.size()>0){
             %>
@@ -66,18 +66,20 @@ ArrayList<ArrayList<String>> dataRIS = conn.getData(sqlRIS);
                 %>
 
             </tbody>
+            
 </table>
-            <%
-        }else {
-out.print("No record for this moment");
-}
-        %>
-            <script type="text/javascript">
+                            <script type="text/javascript">
                 $(document).ready(function () {
                     $('#opTable').DataTable();
                   
                 });
             </script>
+            <%
+        }else {
+out.print("No record for this moment");
+}
+        %>
+
 <%
 
 

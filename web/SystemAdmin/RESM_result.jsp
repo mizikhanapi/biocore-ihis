@@ -44,9 +44,23 @@
     
     
     }else{ 
+
+/*
+select p.system_code, p.module_code, p.page_code, p.page_name
+from adm_page p
+join adm_module m on m.module_code=p.module_code and m.system_code=p.system_code and m.status=p.status
+join adm_system s on s.system_code=p.system_code and s.status=p.status
+where p.status='0';
+
+Select system_code, module_code, page_code, page_name from adm_page order by page_code
+*/
     
         //                           0      1               2           3
-        String sql = "Select system_code, module_code, page_code, page_name from adm_page order by page_code";
+        String sql = "select p.system_code, p.module_code, p.page_code, p.page_name "
+                    + "from adm_page p "
+                    + "join adm_module m on m.module_code=p.module_code and m.system_code=p.system_code and m.status=p.status "
+                    + "join adm_system s on s.system_code=p.system_code and s.status=p.status "
+                    + "where p.status='0' order by p.page_code;";
         
         ArrayList<ArrayList<String>> dataPage = conn.getData(sql);
         

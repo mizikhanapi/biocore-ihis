@@ -11,7 +11,7 @@
 
     Conn conn = new Conn();
 
-    String sql = "Select hfc_cd, hfc_name FROM adm_health_facility WHERE concat(hfc_cd, ' | ', hfc_name) like '%" + input + "%'";
+    String sql = "Select hfc_cd, hfc_name FROM adm_health_facility WHERE concat(hfc_cd, ' | ', hfc_name) like '%" + input + "%' AND hfc_status='0';";
     ArrayList<ArrayList<String>> search = conn.getData(sql);
 
     if (search.size() > 0) {

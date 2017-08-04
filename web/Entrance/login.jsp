@@ -31,6 +31,9 @@
         <link href="../assets/css/login.css" rel="stylesheet">
         <link href="libraries/loading_sham.css" rel="stylesheet">
         <!-- header -->
+        <script>
+            history.forward();
+        </script>
     </head> 
     <body>
         <div class="container m-scene">

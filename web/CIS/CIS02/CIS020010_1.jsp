@@ -43,18 +43,24 @@ ArrayList<ArrayList<String>> result = conn.getData(searchResult2);
 
 %>
 
-<table class="table table-striped table-filter table-bordered" id="risTable">
+<table class="table table-striped table-filter table-bordered" id="risTable" style="width: 100%">
     <%
         if(result.size() >0){%>
         <thead>
-            <tr>
+         
                 <th>Order No</th>
                 <th>Modality Name</th>
                 <th>Body System Name</th>
                 <th>Procedure Name</th>
                 <th>Filler Comment</th>
                 <th>Result</th>
-            </tr>
+                <th hidden>a</th>
+                <th hidden>a</th>
+                <th hidden>a</th>
+               <th hidden>a</th> 
+                <th hidden>a</th>
+      
+           
         </thead>
         <tbody>
 
@@ -81,7 +87,16 @@ ArrayList<ArrayList<String>> result = conn.getData(searchResult2);
             %>
         </tbody>
 </table>
-
+        <script type="text/javascript">
+        
+                $('#risTable').DataTable({
+                    language: {
+                        emptyTable: "No result"
+                    }
+                });
+       
+            
+            </script>
         <%}
 else{
 out.print("No Result for this moment");

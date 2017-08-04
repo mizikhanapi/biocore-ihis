@@ -21,7 +21,7 @@
      }
     
     String key = request.getParameter("input");
-    String searchProblem = "SELECT hfc_cd, hfc_name FROM adm_health_facility WHERE concat(hfc_cd, ' | ', hfc_name) like '%"+key+"%' "+whereClause;
+    String searchProblem = "SELECT hfc_cd, hfc_name FROM adm_health_facility WHERE concat(hfc_cd, ' | ', hfc_name) like '%"+key+"%' and hfc_status='0' "+whereClause;
     ArrayList<ArrayList<String>> search = conn.getData(searchProblem);
     if (search.size() > 0)
             {

@@ -14,7 +14,7 @@
         //out.print(order_no+" "+item_cd+" "+pmi_no);
         Conn conn = new Conn();
 
-        String query4 = "SELECT id_result,result,remark,test_date,test_time,Verification,performBy,picture FROM lis_result WHERE item_cd='" + item_cd + "' AND pmi_no='"+pmi_no+"' AND order_no = '"+order_no+"'";
+        String query4 = "SELECT id_result,result,remark,test_date,test_time,Verification,performBy,picture FROM lis_result WHERE item_cd='" + item_cd + "' AND pmi_no='" + pmi_no + "' AND order_no = '" + order_no + "'";
         ArrayList<ArrayList<String>> q4 = conn.getData(query4);
     %>
     <table id="MTC"  class="table table-striped table-bordered" cellspacing="0" width="100%">
@@ -149,6 +149,7 @@
                                                     $("#btn_saveChange<%=i%>").click(function () {
                                                         var verify = $("#verify1<%=i%>").val();
                                                         var idresult = $("#idresult<%=i%>").val();
+                                                        //alert(verify+" "+idresult);
                                                         $.ajax({
                                                             url: "tSentApproval.jsp",
                                                             type: "post",
@@ -168,11 +169,12 @@
                                                                     var data1 = {
                                                                         pmiNo: pmiNo,
                                                                         orderNo: orderNo,
-                                                                        orderDate: orderDate
+                                                                        orderDate: orderDate,
+                                                                        idresult: idresult
                                                                     };
                                                                     if (verify == 'Reject')
                                                                     {
-                                                                        alert("Success approve the result");
+                                                                        bootbox.alert("Success approve the result");
                                                                     } else
                                                                     {
                                                                         $.ajax({
@@ -181,14 +183,14 @@
                                                                             timeout: 3000,
                                                                             data: data1,
                                                                             success: function (returnDataMSHFull) {
-
+                                                                                //alert(returnDataMSHFull);
                                                                                 $.ajax({
                                                                                     url: "patientOrderListDetailDispenseEHRCentralGetPDIFinal.jsp",
                                                                                     type: "post",
                                                                                     timeout: 3000,
                                                                                     data: data1,
                                                                                     success: function (returnDataPDIFull) {
-
+                                                                                        //alert(returnDataPDIFull);
 
                                                                                         $.ajax({
                                                                                             url: "patientOrderListDetailDispenseEHRCentralGetORC.jsp",
@@ -196,23 +198,16 @@
                                                                                             data: data1,
                                                                                             timeout: 3000,
                                                                                             success: function (returnDataORCFull) {
-
+                                                                                                //alert(returnDataORCFull);
                                                                                                 $.ajax({
                                                                                                     url: "patientOrderResult.jsp",
                                                                                                     type: "post",
                                                                                                     data: data1,
                                                                                                     timeout: 3000,
                                                                                                     success: function (returnDataResult) {
-
+                                                                                                        //alert(returnDataResult);
                                                                                                         $("#dataMSHPDIORC").val(returnDataMSHFull.trim() + "\n" + returnDataPDIFull.trim() + "\n" + returnDataORCFull.trim() + "\n" + returnDataResult.trim());
-                                                                                                        //$('#dataItem').html(returnDataItem);
-                                                                                                        //$('#dataItem').trigger('contentchanged');
-                                                                                                        console.log(returnDataResult.trim());
-                                                                                                        console.log(returnDataMSHFull.trim());
-                                                                                                        console.log(returnDataPDIFull.trim());
-                                                                                                        console.log(returnDataORCFull.trim());
-                                                                                                        console.log($("#dataMSHPDIORC").val());
-
+                                                                                                        
                                                                                                         var ehr_central = $("#dataMSHPDIORC").val();
                                                                                                         var data2 = {
                                                                                                             pmiNo: pmiNo,
@@ -225,8 +220,8 @@
                                                                                                             timeout: 3000,
                                                                                                             success: function (returnEHR) {
 
-                                                                                                                alert("Success approve the result");
-                                                                                                                window.location.href = "VerifySpecimen.jsp?pmi=<%=pmi_no%> &specimen_no=<%=specimen_no%>";
+                                                                                                                bootbox.alert("Success approve the result");
+                                                                                                                
 
                                                                                                             }
                                                                                                         });
@@ -245,11 +240,11 @@
                                                                     }
 
                                                                 } else {
-                                                                    alert("Update failed!");
+                                                                    bootbox.alert("Update failed!");
                                                                 }
                                                             },
                                                             error: function (err) {
-                                                                alert("Error update!");
+                                                                bootbox.alert("Error update!");
                                                             }
                                                         });
 
@@ -271,6 +266,6 @@
 
         </tbody>
     </table>
-            <textarea rows="4" cols="50" id="dataMSHPDIORC" style="display: none">
+            <textarea rows="4" cols="50" id="dataMSHPDIORC" style=" display: none;">
     </textarea>
 </form>

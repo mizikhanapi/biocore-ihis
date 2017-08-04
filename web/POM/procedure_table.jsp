@@ -9,8 +9,8 @@
 <%
     Conn conn = new Conn();
     String hfc_cd = session.getAttribute("HEALTH_FACILITY_CODE").toString();
-    //                          0               1               2
-    String sqlBS = "Select procedure_cd, procedure_name, status from cis_procedure where hfc_cd = '"+hfc_cd+"' order by procedure_cd asc";
+    //                          0               1           2           3               4
+    String sqlBS = "Select procedure_cd, procedure_name, status, buying_price, selling_price from cis_procedure where hfc_cd = '"+hfc_cd+"' order by procedure_cd asc";
 
     ArrayList<ArrayList<String>> dataBS = conn.getData(sqlBS);
 
@@ -20,6 +20,8 @@
     <thead>
     <th>Procedure Code</th>
     <th>Procedure Name</th>
+    <th>Buying Price(RM)</th>
+    <th>Selling Price(RM)</th>
     <th style="width: 5%">Status</th>
     <th style="width: 5%">Update</th>
     <th style="width: 5%">Delete</th>
@@ -33,6 +35,8 @@
 <input id="PRO_hidden" type="hidden" value="<%= String.join("|", dataBS.get(i))%>">
 <td><%= dataBS.get(i).get(0)%></td>
 <td><%= dataBS.get(i).get(1)%></td>
+<td><%= dataBS.get(i).get(3)%></td>
+<td><%= dataBS.get(i).get(4)%></td>
 <td><%= dataBS.get(i).get(2)%>
 </td>
 <td>

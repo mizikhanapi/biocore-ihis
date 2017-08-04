@@ -76,6 +76,17 @@ $(document).ready(function () {
             }
         });
     });
+    
+    $("#tCIS_ADWwardName").on('before:flexdatalist.data', function (response) {
+
+        $('#tCIS_ADWwardNameLoading').html('<img src="img/LoaderIcon.gif" />');
+
+    });
+    $("#tCIS_ADWwardName").on('after:flexdatalist.data', function (response) {
+
+        $('#tCIS_ADWwardNameLoading').html('');
+
+    });
 
     $("#tCIS_ADWwardClass").on("select:flexdatalist", function (response) {
 
@@ -98,6 +109,17 @@ $(document).ready(function () {
                 searchWard("tCIS_ADWwardName", "tCIS_ADWwardNameLoading", hfc_cd, discipline_cd, "", response.trim());
             }
         });
+    });
+    
+    $("#tCIS_ADWwardClass").on('before:flexdatalist.data', function (response) {
+
+        $('#tCIS_ADWwardClass').html('<img src="img/LoaderIcon.gif" />');
+
+    });
+    $("#tCIS_ADWwardClass").on('after:flexdatalist.data', function (response) {
+
+        $('#tCIS_ADWwardClassLoading').html('');
+
     });
 
     $("#btnCIS_OE_ADW_SUBMIT").click(function () {

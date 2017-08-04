@@ -89,29 +89,44 @@
                     <script type="text/javascript" charset="utf-8">
                         $(document).ready(function () {
                             $("#btn<%=i%>").click(function () {
-                                var conf = confirm('Are you sure want to delete?');
-                                if (conf) {
-                                    $.ajax({
-                                        url: "tCategoryDelete.jsp",
-                                        type: "post",
-                                        data: {
-                                            iditem: "<%=q1.get(i).get(0)%>"
+                                bootbox.confirm({
+                                    message: "Are you sure want to delete?",
+                                    buttons: {
+                                        confirm: {
+                                            label: 'Yes',
+                                            className: 'btn-success'
                                         },
-                                        timeout: 10000, // 10 seconds
-                                        success: function (data) {
-                                            var d = data.split("|");
-                                            if (d[1] == '1') {
-                                                $("#viewMTCpage").load("viewMTC.jsp");
-                                                alert("Success");
-                                            } else {
-                                                alert("Deletion failed!");
-                                            }
-                                        },
-                                        error: function (err) {
-                                            alert("Error! Deletion failed!!");
+                                        cancel: {
+                                            label: 'No',
+                                            className: 'btn-danger'
                                         }
-                                    });
-                                }
+                                    },
+                                    callback: function (result) {
+
+                                        if (result === true) {
+                                            $.ajax({
+                                                url: "tCategoryDelete.jsp",
+                                                type: "post",
+                                                data: {
+                                                    iditem: "<%=q1.get(i).get(0)%>"
+                                                },
+                                                timeout: 10000, // 10 seconds
+                                                success: function (data) {
+                                                    var d = data.split("|");
+                                                    if (d[1] == '1') {
+                                                        $("#viewMTCpage").load("viewMTC.jsp");
+                                                        alert("Success");
+                                                    } else {
+                                                        alert("Deletion failed!");
+                                                    }
+                                                },
+                                                error: function (err) {
+                                                    alert("Error! Deletion failed!!");
+                                                }
+                                            });
+                                        }
+                                    }
+                                });
                             });
 
                             $("#btn_update<%=i%>").click(function () {
@@ -132,7 +147,7 @@
                                         var d = data.split("|");
                                         if (d[1] == '1') {
                                             $("#viewMTCpage").load("viewMTC.jsp");
-    //                                         $("#basicModal_<%=i%>").removeClass("in").css("display", "none");
+                                            //                                         $("#basicModal_<%=i%>").removeClass("in").css("display", "none");
                                             $(".modal-backdrop").hide();
                                             alert("Success");
                                         } else {

@@ -85,7 +85,11 @@ var pitemIDpe8 = "";
 var updateObjCd;
 
 var NotesPE;
-
+     
+        
+            
+       
+   
 $(document).ready(function () {
 
 
@@ -947,7 +951,7 @@ $(document).ready(function () {
 
         $.get("CIS02/CIS020010_1.jsp", function (data) {
          
-            $('#risTable').html(data);
+            $('#divCIS_O_RIS_RadiologyResult').html(data);
 
         });
     });
@@ -983,7 +987,7 @@ $(document).ready(function () {
 
         $.get("CIS02/CIS020011_1.jsp", function (data) {
   
-            $('#lisTable').html(data);
+            $('#divCIS_O_LIS_LaboratoryResult').html(data);
 
         });
     });
@@ -1018,7 +1022,7 @@ $(document).ready(function () {
 
         $.get("CIS02/CIS020012_1.jsp", function (data) {
  
-            $('#opTable').html(data);
+            $('#divCIS_O_POS_ProcedureResult').html(data);
 
         });
     });

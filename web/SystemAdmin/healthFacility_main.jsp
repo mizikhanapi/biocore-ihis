@@ -93,7 +93,7 @@
                                     <select class="form-control"  id="HFM_state" >
                                         <option  value="0" >Select the state</option>
                                         <%
-                                            String sql = "SELECT detail_reference_code, description FROM adm_lookup_detail WHERE master_reference_code = '0002' AND hfc_cd = '" + hfc_cd + "' AND detail_reference_code NOT IN ('00', '98') order by description ";
+                                            String sql = "SELECT detail_reference_code, description FROM adm_lookup_detail WHERE master_reference_code = '0002' AND status='0' AND hfc_cd = '" + hfc_cd + "' AND detail_reference_code NOT IN ('00', '98') order by description ";
                                             ArrayList<ArrayList<String>> stateList = conn.getData(sql);
                                             for (int i = 0; i < stateList.size(); i++) {
                                         %>
@@ -432,6 +432,7 @@
         function HFM_reset() {
             document.getElementById("HFM_form").reset();
             $('#dym').html("");
+            $('#HFM_match').html('');
 
         }
 
@@ -473,6 +474,8 @@
             var director = $('#HFM_director').val();
             var status = $('#HFM_status').val();
             var establishDate = $('#HFM_establishedDate').val();
+            
+            var gotSpecialChar = /[!@#$%^&*()+=,?\/\\:;\"\' ]/.test(hfcCode);  
 
             //$('#HFM_detail').css('overflow', 'auto');
 
@@ -484,7 +487,11 @@
                 bootbox.alert("Fill in the health facility code");
                 $('#HFM_hfcCode').focus();
 
-            } else if (state.trim() === "0") {
+            } else if (gotSpecialChar){
+                bootbox.alert("Health facility code must only contain alphanumeric characters!");
+                $('#HFM_hfcCode').val('');
+            }
+            else if (state.trim() === "0") {
                 bootbox.alert("Select the state");
                 $('#HFM_state').focus();
 

@@ -113,11 +113,10 @@
         //================================================================        
 
         function ADM_reset() {
-//               $('#ADM_select_HFC').val('0');
-//               $('#ADM_select_discipline').val('0');
-//               $('#ADM_select_subdiscipline').val('0');
-//               $('#ADM_status').val('0');
             document.getElementById("ADM_addForm").reset();
+            $('#ADM_discipline_match').html('');
+            $('#ADM_subdiscipline_match').html('');
+            $('#ADM_hfc_match').html('');
         }
 
         $('#ADM_btnReset').on('click', function () {

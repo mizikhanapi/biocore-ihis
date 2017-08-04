@@ -97,12 +97,18 @@
                 var transactionCode = $('#TM_transactionCode').val();
                 var transactionName = $('#TM_transactionName').val();
                 var status = $('#TM_status').val();
+                
+                var gotSpecialChar = /[!@#$%^&*()+=,?\/\\:;\"\' ]/.test(transactionCode);  
 
                 if (transactionCode === "") {
                     bootbox.alert("Fill in the transaction code");
                     
                     
-                } else if (transactionName === "") {
+                } else if (gotSpecialChar){
+                    bootbox.alert("Transaction code must contain only alphanumeric characters!");
+                    $('#TM_transactionCode').val('');
+                }
+                else if (transactionName === "") {
                     bootbox.alert("Fill in the  transaction name");
                     
                     

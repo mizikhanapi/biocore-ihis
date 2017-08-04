@@ -294,7 +294,7 @@
                 var itemCode = $("#itemCode").val();
                 if (healthCentre == "")
                 {
-                    alert("Make sure you select the Health Lab Centre.")
+                    bootbox.alert("Make sure you select the Health Lab Centre.")
                 } else {
                     $.ajax({
                         url: "tAcceptSpecimen.jsp",
@@ -308,7 +308,7 @@
                         },
                         timeout: 10000,
                         success: function (data) {
-                            alert("Specimen Accept succesfully");
+                            bootbox.alert("Specimen Accept succesfully");
                             window.location.replace("Receive_Specimen");
                             $("#basicModal").hide();
                             $(".modal-backdrop").hide();

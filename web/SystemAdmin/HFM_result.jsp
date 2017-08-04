@@ -22,7 +22,7 @@
         
         code = Integer.toString(intCode);
         
-        String sql = "Select detail_reference_code, description from adm_lookup_detail where master_reference_code = '0078' AND hfc_cd = '"+hfc_cd+"' AND detail_reference_code like '"+code+"__' order by description";
+        String sql = "Select detail_reference_code, description from adm_lookup_detail where master_reference_code = '0078' AND status='0' AND hfc_cd = '"+hfc_cd+"' AND detail_reference_code like '"+code+"__' order by description";
         
         ArrayList<ArrayList<String>> listDistrict = conn.getData(sql);
         
@@ -47,7 +47,7 @@
         
     }else if(process.equalsIgnoreCase("town")){
 
-        String sql = "Select detail_reference_code, description from adm_lookup_detail where master_reference_code = '0003' AND hfc_cd = '"+hfc_cd+"' AND detail_reference_code like '"+code+"%' order by description";
+        String sql = "Select detail_reference_code, description from adm_lookup_detail where master_reference_code = '0003' AND status='0' AND hfc_cd = '"+hfc_cd+"' AND detail_reference_code like '"+code+"%' order by description";
 
         ArrayList<ArrayList<String>> listDistrict = conn.getData(sql);
         
@@ -68,7 +68,7 @@
         }
     }else if(process.equalsIgnoreCase("postcode")){
     
-        String sql = "Select detail_reference_code, description from adm_lookup_detail where master_reference_code = '0079' AND hfc_cd = '"+hfc_cd+"' AND description like '"+code+"%' order by description";
+        String sql = "Select detail_reference_code, description from adm_lookup_detail where master_reference_code = '0079' AND status='0' AND hfc_cd = '"+hfc_cd+"' AND description like '"+code+"%' order by description";
             
         ArrayList<ArrayList<String>> listPostcode = conn.getData(sql); 
         

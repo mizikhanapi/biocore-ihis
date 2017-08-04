@@ -16,7 +16,7 @@
     String Remark = request.getParameter("Remark");
     String testDate = request.getParameter("testDate");
     String testTime = request.getParameter("testTime");
-    String performBy = request.getParameter("performBy");
+    String performBy = session.getAttribute("USER_ID").toString();
     String order_no = request.getParameter("order_no");
     String gambar = request.getParameter("pic");
     //String gambar = "";
