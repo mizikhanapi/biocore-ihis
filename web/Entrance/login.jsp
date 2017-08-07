@@ -4,6 +4,7 @@
     Author     : user
 --%>
 
+<%@page import="ADM_helper.MySession"%>
 <%@page import="dBConn.Conn"%>
 <%@page import="Config.Config"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -14,11 +15,22 @@
 
         return;
     }
+     
+    try{
+        Config.getBase_url(request);
+        Config.getFile_url(session);
+        
+        MySession.setPathToSuper(application.getRealPath("/"));
+    
+        
+    }
+    catch(Exception e){
+        e.printStackTrace();
+        out.print("Oopps! Try again later");
+    }
 
-    Config.getBase_url(request);
-    Config.getFile_url(session);
-    Conn conn = new Conn();
-    // out.print(conn.getIpCall());
+
+    //out.print(MySession.getSuperString());
 %>
 <!DOCTYPE html>
 <html lang="en">

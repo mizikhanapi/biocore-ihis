@@ -1,0 +1,15 @@
+99_iHIS_99 # hfc code
+9 # User ID
+2 # User ID comparison type; 1-match all, 2-match last character
+
+
+Jangan ubah kedudukan barisan ayat di atas!(Baris 1 hingga 3)
+Sebelah kiri '#' adalah data yang akan dibaca sementara sebelah kanan '#' adalah comment
+
+Sila rujuk database(adm_health_facility) untuk pilihan hfc code yang lebih banyak. 
+Sample: 99_iHIS_99 -i-HIS ; 04010101 -Klinik UTeM Induk ;
+
+Sila rujuk database(adm_users) untuk pilihan user ID yg lebih banyak jika ingin menggunakan comparison type 1-match all.
+Sample: iHIS_99 ; Super9 ; DR007 ;
+
+Pastikan hfc code dan user ID berhubung kait jika menggunakan comparison type 1-match all.

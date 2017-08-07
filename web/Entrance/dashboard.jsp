@@ -56,7 +56,7 @@
 
     mod01 = mod02 = mod03 = mod04 = mod05 = mod06 = mod07 = mod08 = mod09 = mod10 = mod11 = mod12 = mod13 = mod14 = mod15 = mod16 = mod17 = mod18 = mod19 = false;
 
-    if (last_9.equalsIgnoreCase("9") && hfc_99.equalsIgnoreCase("99_iHIS_99")) {
+    if (mys.isSuperUser()) {
         mod01 = mod02 = mod03 = mod04 = mod05 = mod06 = mod07 = mod08 = mod09 = mod10 = mod11 = mod12 = mod13 = mod14 = mod15 = mod16 = mod17 = mod18 = mod19 = true;
 
     } else {

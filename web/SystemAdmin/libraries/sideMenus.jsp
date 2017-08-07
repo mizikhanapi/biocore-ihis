@@ -1,4 +1,5 @@
 		
+<%@page import="ADM_helper.MySession"%>
 <%--<%@include file="../validateSession.jsp" %>--%>
 <%
    
@@ -15,6 +16,8 @@
         
         last_9 = user_id.substring(user_id.length() - 1);
     }
+    
+    MySession adm_sideMenus_mys = new MySession(user_id, hfc_99);
 
 %>
 <div class="col-sm-3 col-md-2 sidebar" id="style-3">
@@ -38,7 +41,7 @@
                                 <li><a href="Setting"><i class="fa fa-cog fa-lg"></i>Settings</a></li>
                                 <li><a href="Report"><i class="fa fa-bar-chart fa-lg"></i>Report</a></li>
                                 <%
-                                    if(last_9.equals("9") && hfc_99.equals("99_iHIS_99")){
+                                    if(adm_sideMenus_mys.isSuperUser()){
                                 %>
                                 <li><a href="System"><i class="fa fa-desktop fa-lg"></i>System Code Maintenance</a></li>
                                 <%

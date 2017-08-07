@@ -7,17 +7,21 @@
 <%@page import="ADM_helper.MySession"%>
 <%
     String adm_id= (String) session.getAttribute("USER_ID");
-    String adm_hfc= (String) session.getAttribute("HEALTH_FACILITY_CODE");
+    String adm_hfc= (String) session.getAttribute("HFC_99");
     
     MySession mys = new MySession(adm_id, adm_hfc);
-    mys.initModulePageAccess();
-    String pages = mys.getLongStringPage(); //session.getAttribute("PAGE_CODE").toString();
-    
-    if(!pages.contains("HIS01")){
+    if(!mys.isSuperUser()){
+        mys.initModulePageAccess();
+        String pages = mys.getLongStringPage(); //session.getAttribute("PAGE_CODE").toString();
+
+        if(!pages.contains("HIS01")){
+
+            response.sendRedirect("../Entrance/dashboard.jsp");
+
+            return;
+        }
         
-        response.sendRedirect("../Entrance/dashboard.jsp");
-        
-        return;
     }
+    
 
 %>
