@@ -232,6 +232,9 @@
             $('.fa-times').css("display", "inline-block");
 
         });
+        $('#btnCIS_Update_Cancel').click(function () {
+          $("#update_mCIS_Discharge_Summary").modal('hide');
+        });
 
 
 

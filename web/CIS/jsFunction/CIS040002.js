@@ -104,6 +104,7 @@ $(document).ready(function(){
             var orc = convertORC(_dataDTO[0], "02", "04","T12100");
             for (var i in _dataDTO) {
                 msg += convertDTO(_dataDTO[i]);
+                //displayDTO( _dataDTO[i].drugName, _dataDTO[i].drugStrength, _dataDTO[i].drugDose, _dataDTO[i].drugFrequency, _dataDTO[i].drugDuration, _dataDTO[i].uomCode,  _dataDTO[i].drugCaution, _dataDTO[i].comment);
             }
             fullmsg = msh + pdi + orc + msg;
        

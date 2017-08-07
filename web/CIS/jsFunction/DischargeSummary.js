@@ -34,7 +34,7 @@ $(document).ready(function () {
             hfcProviderDetail: hfcProviderDetail,
             index: dcgIndex2
         }
-
+        //console.log(obj1);
       submitDCG(obj1);
       $("#mCIS_Discharge_Summary").modal('hide');
 
@@ -69,7 +69,7 @@ $(document).ready(function () {
                 status: "1"
             }
           
-            //sendOrder(data, "-");
+            sendOrder(data, "-");
         } else {
             return false;
         }

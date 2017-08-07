@@ -225,14 +225,15 @@ function searchHFCDetailv2(hfcName,codeFieldId,hfcOrderDetail,hfcProviderDetail,
             timeout: 3000,
             data: {
                 id: hfc_name,
-                orderCode: "ROS"
+                
             },
             success: function (response) {
            
                 var hfc_detail_array = response.split("[#-#]");
                 var hfc_location = hfc_detail_array[0].split("|");
-                $('#' + codeFieldId).val(hfc_location[0].trim());
-
+                if (codeFieldId !== "-") {
+                    $('#' + codeFieldId).val(hfc_location[0].trim());
+                }
                 if (hfcOrderDetail !== "-") {
                     $('#' + hfcOrderDetail).val(hfc_detail_array[1].trim());
                 }

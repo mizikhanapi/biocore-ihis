@@ -112,6 +112,10 @@ $(document).ready(function(){
         var _Pcomment8 = $('#update_commentDGS').val();
         var _dgsCode = $('#update_dgsCode').val();
         
+        var checkObj = {
+            dgsCode:_dgsCode
+        }
+        
         if (upObject.dgsCode === _dgsCode) {
             upObject.TypeDGS = _TType;
             upObject.date4 = _ddate4;
@@ -126,7 +130,7 @@ $(document).ready(function(){
             $('#sum' + rowId).html(sum);
             $("#update_CIS030001").modal('toggle');
         } else {
-            if (checkDGS(_data, upObject)) {
+            if (checkDGS(_data, checkObj)) {
                 bootbox.alert("This Diagnosis already been inserted. Please choose at consultation note to update the record or add new Diagnosis");
             }else{
                 upObject.TypeDGS = _TType;

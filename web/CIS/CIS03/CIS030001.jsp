@@ -27,7 +27,7 @@
 
                         <div class="form-group">
                             <div class="form-group">
-                                <input type='text' id="tCISSubDGSSearch" placeholder='Type to Search Diagnosis...' class='form-control input-lg flexdatalist' data-min-length='1' name='country_name_suggestion'>
+                                <input type='text' id="tCISSubDGSSearch" placeholder='Type to Search Diagnosis...' class='form-control input-lg flexdatalist' data-min-length='1' name='country_name_suggestion' data-search-by-word="true">
                                 <div id="tCISSubDGSSearchLoading"></div>
                             </div>   
                         </div>
@@ -125,14 +125,14 @@
                         
                         <div class="form-group">
                             <div class="form-group">
-                                <input type='text' id="tCISSubDGSSearch_update" placeholder='Type to Search Diagnosis...' class='form-control input-lg'>
+                                <input type='text' id="tCISSubDGSSearch_update" placeholder='Type to Search Diagnosis...' class='form-control input-lg' data-search-by-word="true">
                                 <div id="tCISSubDGSSearchLoading_update"></div>
 <!--                                <input class="form-control input-lg" type="text" name="problem"  id="update_searchDiag" placeholder="Search..." tabindex="4">
                                 <div id="update_matchDiag"></div>-->
                             </div>   
                         </div>
                           <div class="form-group">
-                              <input type="text" name="DGS" id="update_dgsCode" class="form-control input-lg"  tabindex="4">
+                              <input type="hidden" name="DGS" id="update_dgsCode" class="form-control input-lg"  tabindex="4">
                             <input type="hidden" name="DGS" id="jsonIdDGS" class="form-control input-lg" tabindex="4">
                         </div>
                         <div class="form-group">
@@ -186,7 +186,7 @@
                     <div class="modal-footer">
                         <div class="btn-group btn-group-justified" role="group" aria-label="group button">
                             <div class="btn-group" role="group">
-                                <button type="button" class="btn btn-success btn-block btn-lg" id="updateBtnDGS" role="button">Accept</button>
+                                <button type="button" class="btn btn-success btn-block btn-lg" id="updateBtnDGS" role="button">Update</button>
                             </div>
                             <div class="btn-group btn-delete hidden" role="group">
                                 <button type="button" id="delImage" class="btn btn-default btn-block btn-lg" data-dismiss="modal"  role="button">Clear</button>

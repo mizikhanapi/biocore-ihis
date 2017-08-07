@@ -121,7 +121,8 @@ $(document).ready(function (e) {
         $('#tblCIS_Consultation_Table').html("");
         $('.fa-pencil-square-o').css("display", "none");
         $('.fa-times').css("display", "none");
-        searchHFCcode(hfc_name, "tCIS_DCGHFCOrderDetail", "tCIS_DCGHFCProviderDetail");
+        //searchHFCcode(hfc_name, "tCIS_DCGHFCOrderDetail", "tCIS_DCGHFCProviderDetail");
+        searchHFCDetailv2(hfc_name,"-","tCIS_DCGHFCOrderDetail","tCIS_DCGHFCProviderDetail","-")
     });
 
     $('#CIS040010').on('shown.bs.modal', function () {
@@ -131,7 +132,8 @@ $(document).ready(function (e) {
         $('#tblCIS_Consultation_Table').html("");
         $('.fa-pencil-square-o').css("display", "none");
         $('.fa-times').css("display", "none");
-        searchHFCcode(hfc_name, "tCIS_DCGHFCOrderDetail_P", "tCIS_DCGHFCProviderDetail_P");
+        //searchHFCcode(hfc_name, "tCIS_DCGHFCOrderDetail_P", "tCIS_DCGHFCProviderDetail_P");
+        searchHFCDetailv2(hfc_name,"-","tCIS_DCGHFCOrderDetail_P","tCIS_DCGHFCProviderDetail_P","-")
     });
     $('#CIS040010').on('hidden.bs.modal', function () {
 
@@ -153,6 +155,21 @@ $(document).ready(function (e) {
         $('.fa-pencil-square-o').css("display", "inline-block");
         $('.fa-times').css("display", "inline-block");
         searchHFCcode(hfc_name, "update_tCIS_DCGHFCOrderDetail", "update_tCIS_DCGHFCProviderDetail");
+        
+        $('.ConsultationNotes').on("click", ".deleteBtn", function (e) {
+            e.preventDefault();
+            var delConfirm = confirm('Are you want to delete this notes? ');
+            if (delConfirm === true) {
+                var idName = $(this).get(0).id;
+
+                var id = idName.split("|");
+                delete _data[id[1]];
+                $(this).closest('tr').remove();
+
+            } else {
+                return false;
+            }
+        });
     });
 
 

@@ -1,6 +1,6 @@
 //js search in add HFC
 
-function searchHFCcode() {
+function searchHFCcode1() {
     var id = $('#hfc').val();
     $.ajax({
         type: 'post',
@@ -42,7 +42,7 @@ $(function () {
                     $('#matchList li').on('click', function () { // When click on an element in the list
                         $('#hfc').val($(this).text()); // Update the field with the new element
                         $('#matchHFC').text(''); // Clear the <div id="match"></div>
-                        searchHFCcode();
+                        searchHFCcode1();
                     });
                 },
                 error: function () { // if error

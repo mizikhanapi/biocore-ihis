@@ -1192,8 +1192,10 @@ function lexerDCG(data){
             }
 
         }else if (msg_code === "PEM") {
-            PEM = EHRArry[i];
-
+            console.log(msg_code);
+            console.log(msg_code);
+            PEM = disSumNote;
+            console.log(PEM);
             var PEMData = convertNoteToData(PEM);
             var idArr = PEMData[2].split(",");
             var pe0t8 = PEMData[3].split(',');
