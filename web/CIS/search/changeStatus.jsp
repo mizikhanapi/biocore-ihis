@@ -13,14 +13,15 @@
     String pmino = request.getParameter("pmiNo");
     String episodedate = request.getParameter("episodeDate");
     String status = request.getParameter("status");
+    String user_id = (String)session.getAttribute("USER_ID");
 
 
 
     Conn conn = new Conn();
     RMIConnector rmic = new RMIConnector();
     
-   String sqlPQ = "UPDATE pms_patient_queue SET status = '"+status+"' WHERE pmi_no = '"+pmino+"' AND episode_date = '"+episodedate+"';";
-   String sqlPE ="UPDATE pms_episode SET status = '"+status+"' WHERE pmi_no = '"+pmino+"' AND episode_date = '"+episodedate+"';";
+   String sqlPQ = "UPDATE pms_patient_queue SET status = '"+status+"', user_id = '"+user_id+"' WHERE pmi_no = '"+pmino+"' AND episode_date = '"+episodedate+"';";
+   String sqlPE ="UPDATE pms_episode SET status = '"+status+"', user_id = '"+user_id+"'  WHERE pmi_no = '"+pmino+"' AND episode_date = '"+episodedate+"';";
   rmic.setQuerySQL(conn.HOST, conn.PORT, sqlPQ);
   rmic.setQuerySQL(conn.HOST, conn.PORT, sqlPE);
    out.print("|1|");
