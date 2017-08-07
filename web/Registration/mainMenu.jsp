@@ -20,7 +20,7 @@
     <body>
         <div class="container-fluid m-scene">
             <div class="kiosk thumbnail" style="text-align: center; max-height: 345px; max-width: 420px; ">
-                <a href="." title="Back to Dashboard"><i class="fa fa-arrow-left fa-lg pull-left" style="color: #ccc;"></i></a>
+                <a href="../Entrance/dashboard.jsp" title="Back to Dashboard"><i class="fa fa-arrow-left fa-lg pull-left" style="color: #ccc;"></i></a>
                 <a id = "logoutBtn" href="destroySession.jsp" title="Log Out"><i class="fa fa-power-off fa-lg pull-right" style="color: #ccc;"></i></a>
                 <div class="profile-img-card" >
                     <i class="fa fa-user-md" aria-hidden="true" style="color: #666; font-size: 100px;"></i>

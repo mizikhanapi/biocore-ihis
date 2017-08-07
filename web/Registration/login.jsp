@@ -22,8 +22,8 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>-->
 
 
-        <script src="../../assets/js/jquery-ui.js"></script>
-        <script src="../../assets/js/bootstrap.min.js"></script>        
+        <script src="../assets/js/jquery-ui.js"></script>
+        <script src="../assets/js/bootstrap.min.js"></script>        
         
         <!-- keyboard widget css & script (required) -->
         <link href="assets/css/keyboard.css" rel="stylesheet">
@@ -80,7 +80,8 @@
         <script src="http://www.w3schools.com/lib/w3data.js"></script>
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-        --><script src="assets/js/bootbox.min.js"></script>
+        -->
+        <script src="assets/js/bootbox.min.js"></script>
         <script>
 //            w3IncludeHTML();
 //            $(document).ready(function () {
