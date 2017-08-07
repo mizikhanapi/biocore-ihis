@@ -39,8 +39,14 @@
         <script src="../assets/js/jquery.keyboard.js"></script>
 
         <script>
+            var lang = sessionStorage.getItem('lang');
             $(function () {
-                $('#inputUserIC').keyboard();
+                if (lang === "en") {
+                    $("div[lang=ml]").css("display", 'none');
+                } else if (lang === "ml") {
+                    $("div[lang=en]").css("display", 'none');
+                }
+                $("div[lang=" + lang + "] #inputUserIC").keyboard();
             });
         </script>
         <!--header-->
@@ -50,7 +56,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="row">
-                        <div class="col-md-4 col-md-offset-4" style="margin-top: 2%;">
+                        <div class="col-md-4 col-md-offset-4" style="margin-top: 2%;"  lang="en">
                             <div class="thumbnail">
                                 <a href="../mainMenu.jsp" title="Back to Dashboard"><i class="fa fa-arrow-left fa-lg pull-left" style="color: #ccc;"></i></a>
                                 <a href="../destroySession.jsp" title="Log Out"><i class="fa fa-power-off fa-lg pull-right" style="color: #ccc;"></i></a>
@@ -73,6 +79,33 @@
                                 
                             </div>
                         </div>
+                        
+                        
+                          <div class="col-md-4 col-md-offset-4" style="margin-top: 2%;"  lang="ml">
+                            <div class="thumbnail">
+                                <a href="../mainMenu.jsp" title="Back to Dashboard"><i class="fa fa-arrow-left fa-lg pull-left" style="color: #ccc;"></i></a>
+                                <a href="../destroySession.jsp" title="Log Out"><i class="fa fa-power-off fa-lg pull-right" style="color: #ccc;"></i></a>
+                                <div class="profile-img-card" style="text-align: center;" >
+                                    <i class="fa fa-user-md" aria-hidden="true" style="color: #666; font-size: 100px;"></i>
+                                </div>
+                                <div class="logo" style="font-size: 32px; text-align: center;">
+                                    Sila masukkan Nombor IC anda kepada <br/>Lihat Laporan
+                                </div>
+                                <br/>
+                                <input type="text" id="inputUserIC" name="useric" class="form-control margin1" placeholder="Masukkan Nombor IC anda">
+                                <br/>
+                                <div style="width: 100%; display: none;" id="reportResult"></div>
+                                <br/>
+                                <div class="text-center">
+                                        <button id="viewMR" class="btn btn-lg btn-primary">Lihat Laporan</button>
+                                        <button id="printMR" class="btn btn-lg btn-success">Cetak Laporan</button>
+                                        <button id="cancelMR" class="btn btn-lg btn-default">Batalkan</button>
+                                </div>
+                                
+                            </div>
+                        </div>
+                        
+                        
                     </div>
                 </div>
             </div>
@@ -89,13 +122,13 @@
         
           var pmi_no = "", respond = "";
             
-            $('#printMR').hide();
+            $("div[lang=" + lang + "] #printMR").hide();
             
-           $("#cancelMR").on("click", function(){
+           $("div[lang=" + lang + "] #cancelMR").on("click", function(){
             window.history.back();
            });//on clcik submitSignup
            
-            $("#viewMR").on("click", function(){
+            $("div[lang=" + lang + "] #viewMR").on("click", function(){
                 search();
                 //window.history.back();       
            });//on clcik submitSignup
@@ -125,15 +158,15 @@
 //                               if (data.trim() === "No Records")
 //                                 bootbox.alert("You got no report");
 
-                        $('#reportResult').html(data.trim());
+                        $("div[lang=" + lang + "] #reportResult").html(data.trim());
                         
-                        if($('#checkReport').text() === "No Records")
+                        if($("div[lang=" + lang + "] #checkReport").text() === "No Records")
                         {
                             bootbox.alert("You got no report");
                         } else {
-                            $('#reportResult').css("display","block");
-                            $('#viewMR').hide();
-                            $('#printMR').show();
+                            $("div[lang=" + lang + "] #reportResult").css("display","block");
+                            $("div[lang=" + lang + "] #viewMR").hide();
+                            $("div[lang=" + lang + "] #printMR").show();
                         }
                         
                            },
@@ -152,7 +185,7 @@
            
             function search() {
                  var userIC;
-                   userIC = $("#inputUserIC").val();
+                   userIC = $("div[lang=" + lang + "] #inputUserIC").val();
                    
                    var data = {
                        userIC:userIC

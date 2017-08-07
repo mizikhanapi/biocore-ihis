@@ -6,7 +6,6 @@
 <%@page import="dBConn.Conn"%>
 <%@page import="Config.Config"%>
 <%
-    response.sendRedirect("mainMenu.jsp");
     if (!(session.getAttribute("USER_IC") == null || session.getAttribute("USER_IC").equals(""))) {
         response.sendRedirect("mainMenu.jsp");
         out.print(session.getAttribute("USER_IC"));
@@ -37,8 +36,8 @@
                 </div>
                 <p id="profile-name" class="profile-name-card" >PLEASE SELECT LANGUAGE</p>
                 <div class="text-center">
-                    <a href="mainMenu.jsp" class="btn btn-default btn-lg" >English</a>
-                    <a href="#" class="btn btn-default btn-lg" >Bahasa Malaysia</a> 
+                    <a id = "englishLan" href="mainMenu.jsp" class="btn btn-default btn-lg" >English</a>
+                    <a id = "malayLan" href="mainMenu.jsp" class="btn btn-default btn-lg" >Bahasa Malaysia</a> 
                 </div>
             </div>
         </div>
@@ -46,6 +45,13 @@
         <!--Script-->
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
         <%@include file="../assets/script.html"%>
-
+        <script>
+            $("#englishLan").click(function () {
+                sessionStorage.setItem('lang', 'en');
+            } );
+            $("#malayLan").click(function () {
+                sessionStorage.setItem('lang', 'ml');
+            } );
+        </script>
     </body>
 </html>

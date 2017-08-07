@@ -13,7 +13,6 @@ Author     : user
     Config.getFile_url(session);
 
     Conn conn = new Conn();
-
     String hfc = session.getAttribute("HEALTH_FACILITY_CODE").toString();
     String dis = session.getAttribute("DISCIPLINE_CODE").toString();
     String subDis = session.getAttribute("SUB_DISCIPLINE_CODE").toString();
@@ -29,6 +28,8 @@ Author     : user
     dataQueueCommon = conn.getData(Commonqueue);
     dataQueue2Cons = conn.getData(Consultationqueue);
     dataQueue2Doc = conn.getData(Doctorqueue);
+    
+    String add = null, text = null;
 %>
 
 <!DOCTYPE html>
@@ -41,9 +42,9 @@ Author     : user
         <link  rel="stylesheet" href="../assets/css/radiobtn.css">
 
         <script src="../../assets/js/jquery.min.js" type="text/javascript"></script>
-<!--        <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>-->
+        <!--        <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+                <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+                <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>-->
 
 
         <script src="../../assets/js/jquery-ui.js"></script>
@@ -54,15 +55,114 @@ Author     : user
         <script src="../assets/js/jquery.keyboard.js"></script>
 
         <script>
+
+            var lang = sessionStorage.getItem('lang');
             $(function () {
-                $('#inputUserIC').keyboard();
+                if (lang === "en") {
+                    $("div[lang=ml]").css("display", 'none');
+                } else if (lang === "ml") {
+                    $("div[lang=en]").css("display", 'none');
+                }
+                
+                    $("div[lang=" + lang + "] #inputUserIC").keyboard();
             });
         </script>
         <!--header-->
     </head>
     <body>
         <input type="text" id="Rhfc" name="hiddeninput_HFC" hidden="" value='<%=session.getAttribute("HEALTH_FACILITY_CODE").toString()%>'>
-        <div class="container-fluid m-scene">
+        <div class="container-fluid m-scene" lang="ml">
+            <div class="kiosk thumbnail" style="max-height: 690px; max-width: 485px;">
+                <a href="../mainMenu.jsp" title="Back to Dashboard"><i class="fa fa-arrow-left fa-lg pull-left" style="color: #ccc;"></i></a>
+                <div class="profile-img-card" style="text-align: center;" >
+                    <i class="fa fa-user-md" aria-hidden="true" style="color: #666; font-size: 100px;"></i>
+                </div>
+                <div class="logo" style="font-size: 32px; text-align: center;">
+                    Sila masukkan Nombor IC anda
+                </div>
+                <br/>
+                <form class="form-signin" action="dashboard.jsp">
+                    <span id="reauth-email" class="reauth-email"></span>
+                    <input type="text" id="inputUserIC" class="form-control" placeholder="Masukkan Nombor IC anda" name="useric">
+                    <input type="text" id="inputUserName" class="form-control" placeholder="Nama awak" name="username" disabled="">
+
+
+                    <div class="form-group">
+                        <label class="control-label" for="selectbasic">Sila Pilih Giliran</label>
+                        <!--<div class="col-md-8">-->
+                        <br>      
+                        <div class="btn-group" data-toggle="buttons">
+                            <label class="btn active marglft" for="commonQueue">
+                                <input type="radio" id ="commonQueue" name='queuetype' value="CM"><i class="fa fa-circle-o fa-2x"></i><i class="fa fa-dot-circle-o fa-2x "></i> <span>Perundingan</span>
+                            </label>
+                            <label class="btn marglft" for="consultantQueue">
+                                <input type="radio" id ="consultantQueue" name='queuetype' value="FY"><i class="fa fa-circle-o fa-2x"></i><i class="fa fa-dot-circle-o fa-2x "></i><span>Perkhidmatan</span>
+                            </label>
+                            <label class="btn marglft" for="doctorQueue">
+                                <input type="radio" id ="doctorQueue" name='queuetype' value="PN"><i class="fa fa-circle-o fa-2x"></i><i class="fa fa-dot-circle-o fa-2x "></i><span>Doktor</span>
+                            </label>
+                        </div>
+                        <!--</div>-->
+                    </div>
+                    <select  id="selectedServiceQueue"  class="form-control select-full" hidden>
+                        <option value="null" selected="" disabled="">Sila Pilih Giliran</option>
+
+                        <%
+                             add = null; text = null;
+                            for (int i = 0; i < dataQueue2Cons.size(); i++) {
+                                if (dataQueue2Cons.get(i).get(1) != "" || dataQueue2Cons.get(i).get(1) != null) {
+
+                                    if (!dataQueue2Cons.get(i).get(1).contains("Room")) {
+
+                        %>
+
+                        <option value="<%=dataQueue2Cons.get(i).get(1) + "|" + dataQueue2Cons.get(i).get(2)%>"><%="(" + dataQueue2Cons.get(i).get(0) + ") " + dataQueue2Cons.get(i).get(1)%></option>
+                        <%                  }
+                                }
+                            }
+                        %>
+
+                    </select>
+
+                    <select  id="selectedDoctorQueue"  class="form-control select-full">
+                        <option value="null" selected="" disabled="">Sila Pilih Giliran</option>
+
+                        <%
+                            for (int i = 0; i < dataQueue2Doc.size(); i++) {
+                                if (dataQueue2Doc.get(i).get(1) != "" || dataQueue2Doc.get(i).get(1) != null) {
+                        %>
+
+                        <option value="<%=dataQueue2Doc.get(i).get(1) + "|" + dataQueue2Doc.get(i).get(2)%>"><%="(" + dataQueue2Doc.get(i).get(0) + ") " + dataQueue2Doc.get(i).get(1)%></option>
+                        <%                  }
+                            }
+                        %>
+
+                    </select>
+
+                    <select  id="selectedCommonQueue"  class="form-control select-full">
+                        <option value="null" selected="" disabled="">Sila Pilih Giliran</option>
+
+                        <%
+                            for (int i = 0; i < dataQueueCommon.size(); i++) {
+                                if (dataQueueCommon.get(i).get(1) != "" || dataQueueCommon.get(i).get(1) != null) {
+                        %>
+
+                        <option value="<%=dataQueueCommon.get(i).get(1) + "|" + dataQueueCommon.get(i).get(2)%>"><%="(" + dataQueueCommon.get(i).get(0) + ") " + dataQueueCommon.get(i).get(1)%></option>
+                        <%                  }
+                            }
+                        %>
+
+                    </select>
+
+                </form>
+                <div class="text-center" style=" bottom: 30px; margin: auto; position: absolute; left: 30%;">
+                    <button id="registerSignup" class="btn btn-lg btn-primary">Daftar</button>
+                    <button id="cancelSignup" class="btn btn-lg btn-default">Batalkan</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="container-fluid m-scene" lang="en">
             <div class="kiosk thumbnail" style="max-height: 690px; max-width: 485px;">
                 <a href="../mainMenu.jsp" title="Back to Dashboard"><i class="fa fa-arrow-left fa-lg pull-left" style="color: #ccc;"></i></a>
                 <div class="profile-img-card" style="text-align: center;" >
@@ -99,7 +199,7 @@ Author     : user
                         <option value="null" selected="" disabled="">Please Select Queue</option>
 
                         <%
-                            String add = null, text = null;
+                             add = null; text = null;
                             for (int i = 0; i < dataQueue2Cons.size(); i++) {
                                 if (dataQueue2Cons.get(i).get(1) != "" || dataQueue2Cons.get(i).get(1) != null) {
 
@@ -153,6 +253,7 @@ Author     : user
             </div>
         </div>
 
+
         <!--Script-->
 
         <div w3-include-html="../libraries/script.html"></div>
@@ -163,10 +264,9 @@ Author     : user
 
         <script>
 
-            $('#selectedDoctorQueue').hide();
-            $('#selectedServiceQueue').hide();
-            $('#selectedCommonQueue').hide();
-
+            $("div[lang=" + lang + "] #selectedDoctorQueue").hide();
+            $("div[lang=" + lang + "] #selectedServiceQueue").hide();
+            $("div[lang=" + lang + "] #selectedCommonQueue").hide();
             var $body = $('body');
             var yyyyMMddHHmmss;
             var HHmmss;
@@ -225,64 +325,56 @@ Author     : user
             }
 
             //event when radio consolate is change
-            document.getElementById("commonQueue").onchange = function () {
+            $("div[lang=" + lang + "] #commonQueue").change( function () {
                 changesComonClicked();
-            };
+            });
             function changesComonClicked() {
 //                console.log("click 2");
-                $('#selectedCommonQueue').show();
-                $('#selectedServiceQueue').hide();
-                $('#selectedDoctorQueue').hide();
-                $("#selectedDoctorQueue").val("null");
-                $("#selectedCommonQueue").val("null");
-                $("#selectedServiceQueue").val("null");
+                $("div[lang=" + lang + "] #selectedCommonQueue").show();
+                $("div[lang=" + lang + "] #selectedServiceQueue").hide();
+                $("div[lang=" + lang + "] #selectedDoctorQueue").hide();
+                $("div[lang=" + lang + "] #selectedDoctorQueue").val("null");
+                $("div[lang=" + lang + "] #selectedCommonQueue").val("null");
+                $("div[lang=" + lang + "] #selectedServiceQueue").val("null");
             }
             ;
-
             //event when radio doctor is change
-            document.getElementById("doctorQueue").onchange = function () {
+            $("div[lang=" + lang + "] #doctorQueue").change( function () {
                 changesDocClicked();
-            };
-
+            });
             function changesDocClicked() {
 //                console.log("click 1");
 
-                $('#selectedCommonQueue').hide();
-                $('#selectedServiceQueue').hide();
-                $('#selectedDoctorQueue').show();
-                $("#selectedDoctorQueue").val("null");
-                $("#selectedCommonQueue").val("null");
-                $("#selectedServiceQueue").val("null");
+                $("div[lang=" + lang + "] #selectedCommonQueue").hide();
+                $("div[lang=" + lang + "] #selectedServiceQueue").hide();
+                $("div[lang=" + lang + "] #selectedDoctorQueue").show();
+                $("div[lang=" + lang + "] #selectedDoctorQueue").val("null");
+                $("div[lang=" + lang + "] #selectedCommonQueue").val("null");
+                $("div[lang=" + lang + "] #selectedServiceQueue").val("null");
             }
             ;
-
             //event when radio service is change
-            document.getElementById("consultantQueue").onchange = function () {
+            $("div[lang=" + lang + "] #consultantQueue").change (function () {
                 changesSerClicked();
-            };
-
+            });
             function changesSerClicked() {
 //                console.log("click 1");
 
-                $('#selectedCommonQueue').hide();
-                $('#selectedServiceQueue').show();
-                $('#selectedDoctorQueue').hide();
-                $("#selectedDoctorQueue").val("null");
-                $("#selectedCommonQueue").val("null");
-                $("#selectedServiceQueue").val("null");
+                $("div[lang=" + lang + "] #selectedCommonQueue").hide();
+                $("div[lang=" + lang + "] #selectedServiceQueue").show();
+                $("div[lang=" + lang + "] #selectedDoctorQueue").hide();
+                $("div[lang=" + lang + "] #selectedDoctorQueue").val("null");
+                $("div[lang=" + lang + "] #selectedCommonQueue").val("null");
+                $("div[lang=" + lang + "] #selectedServiceQueue").val("null");
             }
             ;
-
-
-
-
             //event when radio button1 is change
-            document.getElementById("inputUserIC").onchange = function () {
+            $("div[lang=" + lang + "] #inputUserIC").change( function () {
                 TextFiledchanges();
-            };
+            });
             function TextFiledchanges() {
                 var userIC;
-                userIC = $("#inputUserIC").val();
+                userIC = $("div[lang=" + lang + "] #inputUserIC").val();
                 var data = {
                     userIC: userIC
                 };
@@ -306,11 +398,11 @@ Author     : user
                             {
 //                                   console.log(data.trim());
                                 var splitData = String(data.trim()).split("|");
-                                    console.log(splitData);
+                                console.log(splitData);
                                 pmi_no = splitData[0];
                                 user_name = splitData[2];
                                 user_id = splitData[7];
-                                $("#inputUserName").val(user_name);
+                                $("div[lang=" + lang + "] #inputUserName").val(user_name);
 //                                   console.log(pmi_no +" " +user_name+" "+user_id);
                             }
                         },
@@ -335,28 +427,28 @@ Author     : user
 //                } 
 //            });
 //               
-            $("#cancelSignup").on("click", function () {
+            $("div[lang=" + lang + "] #cancelSignup").on("click", function () {
                 window.history.back();
-            });//on clcik submitSignup
-            $("#registerSignup").click(function () {
+            }); //on clcik submitSignup
+            $("div[lang=" + lang + "] #registerSignup").click(function () {
                 getDateNow();
                 var useric, username, queuetype, selectedqueue, queueuserid, selectedqueuename;
-                useric = $("#inputUserIC").val();
-                username = $("#inputUserName").val();
-                queuetype = $("input[name='queuetype']:checked").val();
-                console.log(useric+username+queuetype);
+                useric = $("div[lang=" + lang + "] #inputUserIC").val();
+                username = $("div[lang=" + lang + "] #inputUserName").val();
+                queuetype = $("div[lang=" + lang + "] input[name='queuetype']:checked").val();
+                console.log(useric + username + queuetype);
                 queueuserid = "";
                 selectedqueuename = "";
                 if (queuetype === "CM")
                 {
-                    selectedqueue = $('#selectedCommonQueue').val();
+                    selectedqueue = $("div[lang=" + lang + "] #selectedCommonQueue").val();
                 } else if (queuetype === "PN")
                 {
-                    selectedqueue = $('#selectedDoctorQueue').val();
+                    selectedqueue = $("div[lang=" + lang + "] #selectedDoctorQueue").val();
                 } else if (queuetype === "FY")
                 {
-                    selectedqueue = $('#selectedServiceQueue').val();
-                } 
+                    selectedqueue = $("div[lang=" + lang + "] #selectedServiceQueue").val();
+                }
 
 
 
@@ -364,20 +456,17 @@ Author     : user
                 if (useric === "")
                 {
                     bootbox.alert("Fill in the user IC");
-                }
-                 else if (selectedqueue == "" || selectedqueue == null) {
+                } else if (selectedqueue == "" || selectedqueue == null) {
                     bootbox.alert("Please Select Queue");
-                    $("#selectedQueue").focus();
+                    $("div[lang=" + lang + "] #selectedQueue").focus();
                 } else {
-                    
+
                     var tempsplit = selectedqueue.split("|");
                     selectedqueuename = tempsplit[0];
                     queueuserid = tempsplit[1];
-
                     console.log(selectedqueue + "+" + queueuserid);
-
                     //hfc amik kat session
-                    hfc = $("#Rhfc").val();
+                    hfc = $("div[lang=" + lang + "] #Rhfc").val();
                     var datas = {
                         'pmi': pmi_no,
                         'epiDate': yyyyMMdd + " " + HHmmss,
@@ -415,7 +504,6 @@ Author     : user
                         'queue': selectedqueuename,
                         'docID': queueuserid};
                     console.log(datas);
-
                     $.ajax({
                         type: "POST",
                         url: "../../PMS/controller/registerqueue.jsp",
@@ -435,11 +523,8 @@ Author     : user
                         }, error: function (err) {
                             console.log(err);
                             bootbox.alert("There is an error!");
-
-
                         }
                     });
-                    
 //                    var data = {
 //                        'userIC': useric,
 //                        'userName': username,
@@ -491,7 +576,6 @@ Author     : user
 //
 //            document.body.innerHTML = originalContents;
             });
-
 //            function PrintLable(queueName)
 //            {
 //
