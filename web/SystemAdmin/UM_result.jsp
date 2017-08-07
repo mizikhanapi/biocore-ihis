@@ -4,19 +4,21 @@
     Author     : user
 --%>
 
+<%@page import="ADM_helper.MySession"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="dBConn.Conn"%>
 <%@page import="main.RMIConnector"%>
 <%
     String hfc_cd = session.getAttribute("HEALTH_FACILITY_CODE").toString();
     String user_id = session.getAttribute("USER_ID").toString();
-    String last9 = user_id.substring(user_id.length() - 1);
+        
+    MySession mys = new MySession(user_id, hfc_cd);
 
     Conn conn = new Conn();
     
     String whereClause = " ";
     
-     if(!last9.equals("9") || !hfc_cd.equals("99_iHIS_99")){
+     if(!mys.isSuperUser()){
          whereClause = " AND hfc_cd <> '99_iHIS_99' ";
      }
     

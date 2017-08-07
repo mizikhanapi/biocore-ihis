@@ -4,6 +4,7 @@
     Author     : user
 --%>
 
+<%@page import="ADM_helper.MySession"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="dBConn.Conn"%>
 <%@page import="main.RMIConnector"%>
@@ -12,7 +13,7 @@
     String adminHFC = session.getAttribute("HEALTH_FACILITY_CODE").toString();
     String user_id = session.getAttribute("USER_ID").toString();
     
-    String last_nine = user_id.substring(user_id.length() - 1);
+    MySession mys = new MySession(user_id, adminHFC);
         
     String process = request.getParameter("process");
     //String user = request.getParameter("user");
@@ -23,7 +24,7 @@
     if(process.equalsIgnoreCase("user")){
         
         String whereClause = "";
-        if(!last_nine.equals("9") || !adminHFC.equals("99_iHIS_99")){
+        if(!mys.isSuperUser()){
         
             whereClause = " AND health_facility_code = '"+adminHFC+"' ";
         }

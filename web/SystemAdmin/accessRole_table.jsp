@@ -4,6 +4,7 @@
     Author     : user
 --%>
 
+<%@page import="ADM_helper.MySession"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.sql.*"%>
 <%@page import="dBConn.Conn"%>
@@ -29,11 +30,12 @@
     <%
         String hfc = session.getAttribute("HEALTH_FACILITY_CODE").toString();
         String user_id = session.getAttribute("USER_ID").toString();
-        String last_nine = user_id.substring(user_id.length() - 1);
+        
+        MySession mys = new MySession(user_id, hfc);
         
         String whereClause = "";
         
-        if(!last_nine.equals("9") || !hfc.equals("99_iHIS_99")){
+        if(!mys.isSuperUser()){
         
             whereClause = " AND u.health_facility_code = '"+hfc+"' ";
         }

@@ -4,6 +4,7 @@
     Author     : user
 --%>
 
+<%@page import="ADM_helper.MySession"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="dBConn.Conn"%>
 <!-- Add Part Start -->
@@ -13,12 +14,13 @@
 
     String hfc_cd = session.getAttribute("HEALTH_FACILITY_CODE").toString();
     String user_id = session.getAttribute("USER_ID").toString();
-    String last9 = user_id.substring(user_id.length() - 1);
+    
+    MySession mys = new MySession(user_id, hfc_cd);
 %>
 <h4 style="padding-top: 30px;padding-bottom: 35px; font-weight: bold">
     HEALTH FACILITY MANAGEMENT
     <%
-        if(last9.equals("9") && hfc_cd.equals("99_iHIS_99")){
+        if(mys.isSuperUser()){
     %>
     <span class="pull-right">
         <button id="HFM_btnAddNew" class="btn btn-success" data-status="pagado" data-toggle="modal" data-id="1" data-target="#HFM_detail" style=" padding-right: 10px;padding-left: 10px;color: white;"><a data-toggle="tooltip" data-placement="top" title="Add Items" id="test"><i class=" fa fa-plus" style=" padding-right: 10px;padding-left: 10px;color: white;"></i></a>ADD Health Facility</button>

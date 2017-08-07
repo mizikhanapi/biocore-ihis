@@ -4,6 +4,7 @@
     Author     : user
 --%>
 
+<%@page import="ADM_helper.MySession"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.sql.*"%>
 <%@page import="dBConn.Conn"%>
@@ -13,11 +14,12 @@
     Conn conn = new Conn();
     String hfc_cd = session.getAttribute("HEALTH_FACILITY_CODE").toString();
     String user_id = session.getAttribute("USER_ID").toString();
-    String last9 = user_id.substring(user_id.length() - 1);
+   
+    MySession mys = new MySession(user_id, hfc_cd);
     
     String whereClause = " ";
     
-    if(!last9.equals("9") || !hfc_cd.equals("99_iHIS_99")){
+    if(!mys.isSuperUser()){
         whereClause = "WHERE a.hfc_cd = '"+hfc_cd+"' ";
     }
 %>
@@ -32,7 +34,7 @@
     <th>Change Logo</th>
     <th>Update</th>
     <%
-        if(last9.equals("9") && hfc_cd.equals("99_iHIS_99")){
+        if(mys.isSuperUser()){
     %>
     <th>Delete</th>
     <%
@@ -51,7 +53,7 @@
         ArrayList<ArrayList<String>> dataHFC = conn.getData(sql);
 
         int size = dataHFC.size();
-        if(last9.equals("9") && hfc_cd.equals("99_iHIS_99")){
+        if(mys.isSuperUser()){
             for (int i = 0; i < size; i++) {
     %>
 
@@ -950,7 +952,7 @@
     $(document).ready(function () {
         
         <%
-            if(last9.equals("9") && hfc_cd.equals("99_iHIS_99")){
+            if(mys.isSuperUser()){
         %>
         $('#THE_healthFacilityTable').DataTable();
         <%

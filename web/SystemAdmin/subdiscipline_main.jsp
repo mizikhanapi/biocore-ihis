@@ -4,11 +4,13 @@
     Author     : user
 --%>
 
+<%@page import="ADM_helper.MySession"%>
 <%
     String hfc_cd = session.getAttribute("HEALTH_FACILITY_CODE").toString();
     String hfc_name = (String) session.getAttribute("HFC_NAME");
     String user_id = session.getAttribute("USER_ID").toString();
-    String last9 = user_id.substring(user_id.length() - 1);
+    
+    MySession mys = new MySession(user_id, hfc_cd);
 %>
 <!-- Add Part Start -->
 <!-- Add Button Start -->
@@ -159,7 +161,7 @@
             SDM_reset();
 
     <%
-                if (!last9.equals("9") || !hfc_cd.equals("99_iHIS_99")) {
+                if (!mys.isSuperUser()) {
                     String curHFC = hfc_cd + " | " + hfc_name;
     %>
 
@@ -335,7 +337,7 @@
 
         //------------------------- search health facility -----------------------------------------
 <%
-    if(last9.equalsIgnoreCase("9") && hfc_cd.equalsIgnoreCase("99_iHIS_99"))
+    if(mys.isSuperUser())
     {
 %>
         $('#SDM_hfc').on('keyup', function () {

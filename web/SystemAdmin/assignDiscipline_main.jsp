@@ -4,13 +4,15 @@
     Author     : user
 --%>
 
+<%@page import="ADM_helper.MySession"%>
 <!-- Add Part Start -->
 <!-- Add Button Start -->
 <%
     String hfc_cd = session.getAttribute("HEALTH_FACILITY_CODE").toString();
     String hfc_name = (String) session.getAttribute("HFC_NAME");
     String user_id = session.getAttribute("USER_ID").toString();
-    String last9 = user_id.substring(user_id.length() - 1);
+    
+    MySession mys = new MySession(user_id, hfc_cd);
 %>
 <h4 style="padding-top: 30px;padding-bottom: 35px; font-weight: bold">
     ASSIGN DISCIPLINE TO HEALTH FACILITY
@@ -132,7 +134,7 @@
             isSubdisciplineSelected = false;
             selectedSubdiscipline = "";
     <%
-                   if (!last9.equals("9") || !hfc_cd.equals("99_iHIS_99")) {
+                   if (!mys.isSuperUser()) {
                        String curHFC = hfc_cd + " | " + hfc_name;
     %>
 
@@ -245,7 +247,7 @@
 
 <%
     //make sure only super user can search other hfc
-    if (last9.equals("9") && hfc_cd.equals("99_iHIS_99")) {
+    if (mys.isSuperUser()) {
 %>
 
         $('#ADM_hfc').on('keyup', function () {

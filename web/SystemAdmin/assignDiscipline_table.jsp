@@ -3,6 +3,7 @@
     Created on : Feb 15, 2017, 10:18:58 AM
     Author     : user
 --%>
+<%@page import="ADM_helper.MySession"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.sql.*"%>
 <%@page import="dBConn.Conn"%>
@@ -12,7 +13,8 @@
     Conn conn = new Conn();
     String hfc_cd = session.getAttribute("HEALTH_FACILITY_CODE").toString();
     String user_id = session.getAttribute("USER_ID").toString();
-    String last9 = user_id.substring(user_id.length() - 1);
+    
+    MySession mys = new MySession(user_id, hfc_cd);
 %>
 
 <table  id="THE_assignDisciplineTable"  class="table table-striped table-bordered" cellspacing="0" width="100%">
@@ -31,7 +33,7 @@
 
     <%
         String whereClause = " ";
-        if(!last9.equals("9") || !hfc_cd.equals("99_iHIS_99")){
+        if(!mys.isSuperUser()){
             whereClause = " where hd.hfc_cd = '"+hfc_cd+"'";
         }
         

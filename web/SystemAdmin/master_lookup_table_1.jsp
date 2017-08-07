@@ -4,6 +4,7 @@
     Author     : user
 --%>
 
+<%@page import="ADM_helper.MySession"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.sql.*"%>
 <%@page import="dBConn.Conn"%>
@@ -12,8 +13,8 @@
     Conn conn = new Conn();
     String LT_user = session.getAttribute("USER_ID").toString();
     String LT_hfc = session.getAttribute("HEALTH_FACILITY_CODE").toString();
-    
-    String LT_last = LT_user.substring(LT_user.length() - 1);
+    MySession LT_mys = new MySession(LT_user, LT_hfc);
+   
 %>
 <table  id="THE_masterTable"  class="table table-striped table-bordered" cellspacing="0" width="100%">
     <thead>
@@ -23,7 +24,7 @@
     <th>Status</th>
     <th>View Detail</th>
     <%
-    if(LT_hfc.equals("99_iHIS_99") && LT_last.equals("9")){
+    if(LT_mys.isSuperUser()){
     %>
     <th>Update</th>
     <th>Delete</th>
@@ -39,7 +40,7 @@
 
         int size = dataMaster.size();
         
-        if(LT_hfc.equals("99_iHIS_99") && LT_last.equals("9")){
+        if(LT_mys.isSuperUser()){
             for (int i = 0; i < size; i++) {
     %>
 
