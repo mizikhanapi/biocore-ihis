@@ -149,7 +149,7 @@
                                 RM_reset();
                                 
                             } else{
-                                bootboxalert(datas.trim());
+                                bootbox.alert(datas.trim());
                                 $('#RM_roleCode').val("");
                                 $('#RM_roleCode').focus();
                             }
