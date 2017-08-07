@@ -157,7 +157,7 @@
                     <input type="text" id="inputUserPhoneNo" class="form-control" placeholder="Enter Your Phone Number" name="username" required>     
 
                     <label class="control-label margin1 " for="textinput">Account Information</label>
-                    <input type="text" id="inputUserLIC" class="form-control" placeholder="Enter YourIC" name="userid" required >
+                    <input type="text" id="inputUserLIC" class="form-control" placeholder="Enter Your IC" name="userid" required >
                     <input type="password" id="inputUserPassword" class="form-control" placeholder="Enter Your Password" name="password" required>     
 
                 </form>
@@ -346,24 +346,26 @@
                                                                 } else if (usernationality === null) {
                                                                     bootbox.alert("Select Nationality !");
                                                                     $("#Usernational").focus();
-                                                                } else if (useroccupation === "") {
-                                                                    bootbox.alert("Fill in user Occupation!");
-                                                                    $("#inpuOccupation").focus();
-                                                                } else if (useremail === "") {
-                                                                    bootbox.alert("Fill in user Email !");
-                                                                    $("#inputUserEmail").focus();
-                                                                    $("#inputUserEmail").css("color", "red");
-                                                                } else if (!validateEmail(useremail)) {
-                                                                    bootbox.alert("Uncorrect Email input !");
-                                                                    $("#inputUserEmail").focus();
-                                                                } else if (userphoneno.length < 10) {
-                                                                    bootbox.alert("Phone Number Is Not Complete at least 10 numbers !");
-                                                                } else if (!$.isNumeric(userphoneno)) {
-                                                                    bootbox.alert("Not A Phone Number!");
-                                                                    $("#inputUserPhoneNo").focus();
-                                                                } else if (userlic === "") {
-                                                                    bootbox.alert("Fill in the User ID !");
-                                                                    $("#inputUserID").focus();
+                                                                } 
+//                                                                else if (useroccupation === "") {
+//                                                                    bootbox.alert("Fill in user Occupation!");
+//                                                                    $("#inpuOccupation").focus();
+//                                                                } else if (useremail === "") {
+//                                                                    bootbox.alert("Fill in user Email !");
+//                                                                    $("#inputUserEmail").focus();
+//                                                                    $("#inputUserEmail").css("color", "red");
+//                                                                } else if (!validateEmail(useremail)) {
+//                                                                    bootbox.alert("Uncorrect Email input !");
+//                                                                    $("#inputUserEmail").focus();
+//                                                                } else if (userphoneno.length < 10) {
+//                                                                    bootbox.alert("Phone Number Is Not Complete at least 10 numbers !");
+//                                                                } else if (!$.isNumeric(userphoneno)) {
+//                                                                    bootbox.alert("Not A Phone Number!");
+//                                                                    $("#inputUserPhoneNo").focus();
+//                                                                }
+                                                                else if (userlic === "") {
+                                                                    bootbox.alert("Fill in the User IC !");
+                                                                    $("#inputUserLIC").focus();
                                                                 } else if (userpassword === "") {
                                                                     bootbox.alert("Fill in the User Password !");
                                                                     $("#inputUserPassword").focus();
@@ -398,7 +400,7 @@
                                                                         success: function (data) {
                                                                             //console.log(data.trim());
                                                                             $("#inputUserIC").val("");
-                                                                            $("#inputUserID").val("");
+                                                                            $("#inputUserLIC").val("");
                                                                             $("#inputUserName").val("");
                                                                             $("#UserGender").val("null");
                                                                             $("#Usernational").val("null");
