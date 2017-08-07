@@ -28,6 +28,9 @@
 <script src="../assets/js/jszip.min.js" type="text/javascript"></script>
 <script src="../assets/js/pdfmake.min.js" type="text/javascript"></script>
 <script src="../assets/js/vfs_fonts.js" type="text/javascript"></script>
-<script src="../assets/js/buttons.html5.min.js" type="text/javascript"></script>
+<!--<script src="../assets/js/buttons.html5.min.js" type="text/javascript"></script>-->
+<script src="js/buttons.html5.min.js" type="text/javascript"></script>
+<script src="js/buttons.colVis.min.js" type="text/javascript"></script>
+<script src="js/buttons.print.min.js" type="text/javascript"></script>
 <script src="../assets/js/papaparse.min.js"></script>
 <script src="js/create_destroy_loading.js" type="text/javascript"></script>

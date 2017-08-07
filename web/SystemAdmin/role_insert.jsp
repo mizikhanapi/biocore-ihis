@@ -27,7 +27,7 @@
     
     if(duplicate.size() > 0)
     {
-        out.print("Sorry, the role code is already used. Please enter different code.");
+        out.print("Sorry, the role code "+roleCode+" is already used. Please enter different code.");
     }
     else{
         RMIConnector rmic = new RMIConnector();

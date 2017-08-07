@@ -108,6 +108,15 @@
         <servlet-name>adm_system</servlet-name>
         <url-pattern>/SystemAdmin/System</url-pattern>
     </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>adm_report</servlet-name>
+        <jsp-file>/SystemAdmin/HIS010007.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>adm_report</servlet-name>
+        <url-pattern>/SystemAdmin/Report</url-pattern>
+    </servlet-mapping>
     <!--mapping for system admin end-->
     
     <!--mapping for profile start-->

@@ -36,6 +36,7 @@
 <!--				<li><a href="QueueManagement"><i class="fa fa-files-o fa-lg"></i>Queue Maintenance</a></li>-->
                                 <li><a href="HealthFacilityManagement"><i class="fa fa-hospital-o fa-lg"></i>Health Facility Maintenance</a></li>
                                 <li><a href="Setting"><i class="fa fa-cog fa-lg"></i>Settings</a></li>
+                                <li><a href="Report"><i class="fa fa-bar-chart fa-lg"></i>Report</a></li>
                                 <%
                                     if(last_9.equals("9") && hfc_99.equals("99_iHIS_99")){
                                 %>
