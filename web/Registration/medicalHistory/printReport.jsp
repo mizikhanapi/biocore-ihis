@@ -16,15 +16,22 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Kiosk | Medical History Page</title>
+        <title>Kiosk | Medical History</title>
         <!--header-->
         <%@include file="../assets/header.html"%>
         <link  rel="stylesheet" href="../assets/css/radiobtn.css">
 
         <script src="../../assets/js/jquery.min.js" type="text/javascript"></script>
+<!--        
         <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
         <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>-->
+
+        <!--<script src="../../assets/js/"></script>-->
+        <script src="../../assets/js/jquery-ui.js"></script>
+        <script src="../../assets/js/bootstrap.min.js"></script>
+
+
 
         <!-- keyboard widget css & script (required) -->
         <link href="../assets/css/keyboard.css" rel="stylesheet">
@@ -51,15 +58,19 @@
                                     <i class="fa fa-user-md" aria-hidden="true" style="color: #666; font-size: 100px;"></i>
                                 </div>
                                 <div class="logo" style="font-size: 32px; text-align: center;">
-                                    Please enter your IC Number to <br/>Print Report
+                                    Please enter your IC Number to <br/>View Report
                                 </div>
                                 <br/>
                                 <input type="text" id="inputUserIC" name="useric" class="form-control margin1" placeholder="Enter Your IC Number">
                                 <br/>
+                                <div style="width: 100%; display: none;" id="reportResult"></div>
+                                <br/>
                                 <div class="text-center">
-                                        <button id="printSignup" class="btn btn-lg btn-primary">Print Report</button>
-                                        <button id="cancelSignup" class="btn btn-lg btn-default">Cancel</button>
+                                        <button id="viewMR" class="btn btn-lg btn-primary">View Report</button>
+                                        <button id="printMR" class="btn btn-lg btn-success">Print Report</button>
+                                        <button id="cancelMR" class="btn btn-lg btn-default">Cancel</button>
                                 </div>
+                                
                             </div>
                         </div>
                     </div>
@@ -71,31 +82,28 @@
 
         <div w3-include-html="../libraries/script.html"></div>
 
-        <script src="http://www.w3schools.com/lib/w3data.js"></script>
         <script src="../assets/js/bootbox.min.js"></script>
         <%//@include file="../assets/script.html"%>
    
         <script>
-        w3IncludeHTML();
         
           var pmi_no = "", respond = "";
             
-           $("#cancelSignup").on("click", function(){
-               
-                   window.history.back();
-                              
+            $('#printMR').hide();
+            
+           $("#cancelMR").on("click", function(){
+            window.history.back();
            });//on clcik submitSignup
            
-            $("#printSignup").on("click", function(){
+            $("#viewMR").on("click", function(){
                 search();
-                //window.history.back();
-                              
+                //window.history.back();       
            });//on clcik submitSignup
            
-           function PrintReport(pmi_number)
+           function viewReport(pmi_number)
            {
                             
-                var printData = {
+                var viewData = {
                        pmiNo:pmi_number
                    };
                    
@@ -107,15 +115,27 @@
 //                       console.log("before ajax");
                        $.ajax({
                            type:"POST",
-                           url: "../Controller/PrintMedicalReport.jsp",
-                           data: printData,
+                           url: "MedicalReport.jsp",
+                           data: viewData,
                            timeout: 10000,
                            success: function (data){
-                               console.log("print sent " + data.trim());
-//                               console.log(data.trim());
-                               respond = data;
-                               if (data.trim() === "No Records")
-                                 bootbox.alert("You got no report");
+//                               console.log("print sent " + data.trim());
+////                               console.log(data.trim());
+//                               respond = data;
+//                               if (data.trim() === "No Records")
+//                                 bootbox.alert("You got no report");
+
+                        $('#reportResult').html(data.trim());
+                        
+                        if($('#checkReport').text() === "No Records")
+                        {
+                            bootbox.alert("You got no report");
+                        } else {
+                            $('#reportResult').css("display","block");
+                            $('#viewMR').hide();
+                            $('#printMR').show();
+                        }
+                        
                            },
                            error: function (err){
                                console.log(err);
@@ -165,7 +185,7 @@
                                     
                                     pmi_no = splitData[0];                                    
 //                                    console.log(pmi_no +" " +user_name+" "+user_id);
-                                    PrintReport(pmi_no);
+                                    viewReport(pmi_no);
                                }
                            },
                            error: function (err){

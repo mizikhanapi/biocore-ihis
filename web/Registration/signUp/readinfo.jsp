@@ -31,7 +31,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Kiosk | Signup Page</title>
+        <title>Kiosk | Signup</title>
         <!--header-->
         <%@include file="../assets/header.html"%>
         <link  rel="stylesheet" href="../assets/css/radiobtn.css">
@@ -71,7 +71,7 @@
                 $('#inpuOccupation').keyboard();
                 $('#inputUserEmail').keyboard();
                 $('#inputUserPhoneNo').keyboard();
-                $('#inputUserID').keyboard();
+                $('#inputUserLIC').keyboard();
                 $('#inputUserPassword').keyboard();
             });
         </script>
@@ -157,7 +157,7 @@
                     <input type="text" id="inputUserPhoneNo" class="form-control" placeholder="Enter Your Phone Number" name="username" required>     
 
                     <label class="control-label margin1 " for="textinput">Account Information</label>
-                    <input type="text" id="inputUserID" class="form-control" placeholder="Enter Your Login Username" name="userid" required >
+                    <input type="text" id="inputUserLIC" class="form-control" placeholder="Enter YourIC" name="userid" required >
                     <input type="password" id="inputUserPassword" class="form-control" placeholder="Enter Your Password" name="password" required>     
 
                 </form>
@@ -170,7 +170,7 @@
 
         <!--Script-->
 
-        <div w3-include-html="../libraries/script.html"></div>
+        <!--<div w3-include-html="../libraries/script.html"></div>-->
 
         <script src="../assets/js/bootbox.min.js"></script>
         <%//@include file="../assets/script.html"%>
@@ -258,7 +258,7 @@
                                                                                 userExist = true;
     //                                   console.log(data.trim());
                                                                                 var splitData = String(data.trim()).split("|");
-    //                                    console.log(splitData);
+                                        console.log(splitData);
 
                                                                                 gusername = splitData[2];
                                                                                 gusergender = splitData[11];
@@ -266,17 +266,19 @@
                                                                                 guseremail = splitData[35];
                                                                                 guserphoneno = splitData[34];
                                                                                 guserbirthday = splitData[10];
+                                                                                guseric = splitData[4];
     //                                guseroccupation=splitData[7];
                                                                                 $("#inputUserName").val(gusername);
                                                                                 $("input[name=gender][value=" + gusergender + "]").prop('checked', true);
                                                                                 $("#Usernational").val(gusernationality);
                                                                                 $("#inputUserEmail").val(guseremail);
                                                                                 $("#inputUserPhoneNo").val(guserphoneno);
-                                                                                var bdDate = guserbirthday.split("/");
-    //                            console.log(bdDate);
-                                                                                $("#txt_year").val(bdDate[2]);
-                                                                                $("#txt_month").val(bdDate[1]);
-                                                                                $("#txt_day").val(bdDate[0]);
+                                                                                $("#inputUserLIC").val(guseric);
+                                                                                var bdDate =  new Date (guserbirthday);
+                                console.log(bdDate);
+                                                                                $("#txt_year").val(bdDate.getFullYear());
+                                                                                $("#txt_month").val(bdDate.getMonth()+1);
+                                                                                $("#txt_day").val(bdDate.getDate());
     //                            $("#inpuOccupation").val("");
 
     //                                   console.log(pmi_no +" " +user_name+" "+user_id);
@@ -312,11 +314,11 @@
 
 
                                                             function signup() {
-                                                                var useric, userid, username, usergender, usernationality, useremail, userphoneno,
+                                                                var useric, userlic, username, usergender, usernationality, useremail, userphoneno,
                                                                         useroccupation, userpassword, userbirthday;
 
                                                                 useric = $("#inputUserIC").val();
-                                                                userid = $("#inputUserID").val();
+                                                                userlic = $("#inputUserLIC").val();
                                                                 username = $("#inputUserName").val();
                                                                 usergender = $("input[name='gender']:checked").val();
                                                                 usernationality = $("#Usernational").val();
@@ -359,7 +361,7 @@
                                                                 } else if (!$.isNumeric(userphoneno)) {
                                                                     bootbox.alert("Not A Phone Number!");
                                                                     $("#inputUserPhoneNo").focus();
-                                                                } else if (userid === "") {
+                                                                } else if (userlic === "") {
                                                                     bootbox.alert("Fill in the User ID !");
                                                                     $("#inputUserID").focus();
                                                                 } else if (userpassword === "") {
@@ -380,7 +382,7 @@
                                                                         'userbirthday': userbirthday};
 
                                                                     var loginData = {
-                                                                        'userIC': useric,
+                                                                        'userIC': userlic,
                                                                         'userName': username,
                                                                         'userPassword': userpassword,
                                                                         'userEmail': useremail,

@@ -17,11 +17,13 @@
         <%@include file="../assets/header.html"%>
         
         <script src="../assets/js/jquery.min.js" type="text/javascript"></script>
-        <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<!--        <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
         <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>-->
 
-        
+
+        <script src="../../assets/js/jquery-ui.js"></script>
+        <script src="../../assets/js/bootstrap.min.js"></script>        
         
         <!-- keyboard widget css & script (required) -->
         <link href="assets/css/keyboard.css" rel="stylesheet">
@@ -50,8 +52,8 @@
                 <p id="profile-name" class="profile-name-card" style="font-weight: 400;">Integrated Health Information System</p>
                 <form class="form-signin" id="leForm" >
                     <span id="reauth-email" class="reauth-email"></span>
-                    <input type="text" id="inputUserIC" class="form-control" placeholder="User IC" name="useric" required autofocus>
-                    <input type="password" id="inputPassword" class="form-control" placeholder="Password" name="password" required>
+                    <input type="text" id="inputUserIC" class="form-control" placeholder="User IC" name="useric"  >
+                    <input type="password" id="inputPassword" class="form-control" placeholder="Password" name="password" >
                 </form><!-- /form -->
                 <button  class="btn btn-lg btn-primary btn-block btn-signin" id="btnSign">Sign in</button>
                 <a href="forgot-pwd.html" class="forgot-password pull-left" style="margin-top: 10px;">
@@ -81,20 +83,20 @@
         --><script src="assets/js/bootbox.min.js"></script>
         <script>
 //            w3IncludeHTML();
-            $(document).ready(function () {
-
-                $(document).bind('keypress', pressed);
-            });
-
-            function pressed(e)
-            {
-                if (e.keyCode === 13)
-                {
-                    //bootbox.alert('enter pressed');
-                    login();
-                    //put button.click() here
-                }
-            }
+//            $(document).ready(function () {
+//
+//                $(document).bind('keypress', pressed);
+//            });
+//
+//            function pressed(e)
+//            {
+//                if (e.keyCode === 13)
+//                {
+//                    //bootbox.alert('enter pressed');
+//                    login();
+//                    //put button.click() here
+//                }
+//            }
 
             $('#btnSign').on('click', function () {
 

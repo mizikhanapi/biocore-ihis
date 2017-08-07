@@ -101,7 +101,7 @@
                 allerg = medicalInfo.get(0).get(4);
                 date = medicalInfo.get(0).get(5);
                 DirectPrint queueprint = new DirectPrint();
-                queueprint.printString("MedicalReport\n"+HelathFacility+"  "+"\nIC NO: "+ic +"\nNAME: "+name +"\nBLOOD TYPE: "+bloodtype +"\nDIAGNOSIS: "+diagnosis+"\nMEDICATION: "+medication+"\nALLERGY: "+allerg);
+//                queueprint.printString("MedicalReport\n"+HelathFacility+"  "+"\nIC NO: "+ic +"\nNAME: "+name +"\nBLOOD TYPE: "+bloodtype +"\nDIAGNOSIS: "+diagnosis+"\nMEDICATION: "+medication+"\nALLERGY: "+allerg);
                 
                 out.print("Report Printed");
 //            queueprint.printString("MedicalReport\n"+HelathFacility+"  "+"\nIC No: \n"+ic +"\nName: \n"+name +"\nBlood Type: \n"+bloodtype +"\nDiagnosis: \n"+diagnosis+"\nMedication: \n"+medication+"\nAllergy: \n"+allerg);

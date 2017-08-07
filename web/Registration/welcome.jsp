@@ -6,7 +6,7 @@
 <%@page import="dBConn.Conn"%>
 <%@page import="Config.Config"%>
 <%
-
+    response.sendRedirect("mainMenu.jsp");
     if (!(session.getAttribute("USER_IC") == null || session.getAttribute("USER_IC").equals(""))) {
         response.sendRedirect("mainMenu.jsp");
         out.print(session.getAttribute("USER_IC"));
@@ -18,7 +18,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>iHIS | Medical Kiosk </title>
         <!--header-->
         <%@include file="../assets/header.html"%>
 

@@ -35,17 +35,20 @@ Author     : user
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Kiosk | Signup Page</title>
+        <title>Kiosk | Registration</title>
         <!--header-->
         <%@include file="../assets/header.html"%>
         <link  rel="stylesheet" href="../assets/css/radiobtn.css">
 
         <script src="../../assets/js/jquery.min.js" type="text/javascript"></script>
-        <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<!--        <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
         <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>-->
 
-        <!-- keyboard widget css & script (required) -->
+
+        <script src="../../assets/js/jquery-ui.js"></script>
+        <script src="../../assets/js/bootstrap.min.js"></script>
+
         <link href="../assets/css/keyboard.css" rel="stylesheet">
         <link href="../assets/css/jquery-ui.min.css" rel="stylesheet">
         <script src="../assets/js/jquery.keyboard.js"></script>
@@ -60,7 +63,7 @@ Author     : user
     <body>
         <input type="text" id="Rhfc" name="hiddeninput_HFC" hidden="" value='<%=session.getAttribute("HEALTH_FACILITY_CODE").toString()%>'>
         <div class="container-fluid m-scene">
-            <div class="kiosk thumbnail" style="max-height: 635px; max-width: 485px;">
+            <div class="kiosk thumbnail" style="max-height: 690px; max-width: 485px;">
                 <a href="../mainMenu.jsp" title="Back to Dashboard"><i class="fa fa-arrow-left fa-lg pull-left" style="color: #ccc;"></i></a>
                 <div class="profile-img-card" style="text-align: center;" >
                     <i class="fa fa-user-md" aria-hidden="true" style="color: #666; font-size: 100px;"></i>
@@ -143,7 +146,7 @@ Author     : user
                     </select>
 
                 </form>
-                        <div class="text-center" style=" bottom: 30px; margin: auto; position: absolute; left: 30%;">
+                <div class="text-center" style=" bottom: 30px; margin: auto; position: absolute; left: 30%;">
                     <button id="registerSignup" class="btn btn-lg btn-primary">Register</button>
                     <button id="cancelSignup" class="btn btn-lg btn-default">Cancel</button>
                 </div>
@@ -163,9 +166,6 @@ Author     : user
             $('#selectedDoctorQueue').hide();
             $('#selectedServiceQueue').hide();
             $('#selectedCommonQueue').hide();
-
-            var temp = "<%=dataQueueCommon%>";
-            console.log(temp);
 
             var $body = $('body');
             var yyyyMMddHHmmss;
@@ -286,6 +286,7 @@ Author     : user
                 var data = {
                     userIC: userIC
                 };
+                console.log(data);
                 if (userIC === "")
                 {
                     bootbox.alert("please Fill in the user IC");
@@ -305,7 +306,7 @@ Author     : user
                             {
 //                                   console.log(data.trim());
                                 var splitData = String(data.trim()).split("|");
-//                                    console.log(splitData);
+                                    console.log(splitData);
                                 pmi_no = splitData[0];
                                 user_name = splitData[2];
                                 user_id = splitData[7];
@@ -343,6 +344,7 @@ Author     : user
                 useric = $("#inputUserIC").val();
                 username = $("#inputUserName").val();
                 queuetype = $("input[name='queuetype']:checked").val();
+                console.log(useric+username+queuetype);
                 queueuserid = "";
                 selectedqueuename = "";
                 if (queuetype === "CM")
@@ -354,34 +356,30 @@ Author     : user
                 } else if (queuetype === "FY")
                 {
                     selectedqueue = $('#selectedServiceQueue').val();
-                }
+                } 
 
-                var tempsplit = selectedqueue.split("|");
-                selectedqueuename = tempsplit[0];
-                queueuserid = tempsplit[1];
+
 
                 console.log(useric + "-" + username + "-" + queuetype + "-" + selectedqueue + "-" + selectedqueuename + "-" + queueuserid);
                 if (useric === "")
                 {
                     bootbox.alert("Fill in the user IC");
-                    $("#inputUserIC").focus();
-                } else if (username === "") {
-                    bootbox.alert("Fill in the user Name");
-                    $("#inputUserName").focus();
-                } else if (containsNumber(username)) {
-                    bootbox.alert("UnValic Name, Contain Numbers");
-                    $("#inputUserName").focus();
-                } else if (selectedqueue === "" || selectedqueue === null) {
+                }
+                 else if (selectedqueue == "" || selectedqueue == null) {
                     bootbox.alert("Please Select Queue");
                     $("#selectedQueue").focus();
                 } else {
-
+                    
+                    var tempsplit = selectedqueue.split("|");
+                    selectedqueuename = tempsplit[0];
+                    queueuserid = tempsplit[1];
 
                     console.log(selectedqueue + "+" + queueuserid);
 
                     //hfc amik kat session
                     hfc = $("#Rhfc").val();
-                    var datas = {'pmi': pmi_no,
+                    var datas = {
+                        'pmi': pmi_no,
                         'epiDate': yyyyMMdd + " " + HHmmss,
                         'name': username,
                         'newic': useric,
@@ -428,7 +426,7 @@ Author     : user
                             if ($.trim(list) === "Success") {
                                 bootbox.alert("Patient has been register successfully");
                                 window.history.back();
-                                PrintLable(selectedqueue);
+//                                PrintLable(selectedqueue);
 
                             } else if ($.trim(list) === "already") {
                                 bootbox.alert("Patient is already registered");
@@ -441,7 +439,7 @@ Author     : user
 
                         }
                     });
-//                    
+                    
 //                    var data = {
 //                        'userIC': useric,
 //                        'userName': username,
@@ -494,32 +492,32 @@ Author     : user
 //            document.body.innerHTML = originalContents;
             });
 
-            function PrintLable(queueName)
-            {
-
-                var data = {
-                    'queuename': queueName,
-                    'today': yyyyMMdd,
-                    'time': HHmmss
-
-                };
-
-
-//                console.log(data);
-
-                $.ajax({
-                    type: "POST",
-                    url: "../Controller/PrintQueueNo.jsp",
-                    data: data,
-                    timeout: 10000,
-                    success: function (data) {
-                        console.log(data.trim());
-                    },
-                    error: function (err) {
-                        console.log(err);
-                    }
-                });
-            }
+//            function PrintLable(queueName)
+//            {
+//
+//                var data = {
+//                    'queuename': queueName,
+//                    'today': yyyyMMdd,
+//                    'time': HHmmss
+//
+//                };
+//
+//
+////                console.log(data);
+//
+//                $.ajax({
+//                    type: "POST",
+//                    url: "../Controller/PrintQueueNo.jsp",
+//                    data: data,
+//                    timeout: 10000,
+//                    success: function (data) {
+//                        console.log(data.trim());
+//                    },
+//                    error: function (err) {
+//                        console.log(err);
+//                    }
+//                });
+//            }
 
 
             function containsNumber(any) {
