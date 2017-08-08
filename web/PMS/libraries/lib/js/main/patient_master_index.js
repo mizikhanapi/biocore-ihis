@@ -337,7 +337,7 @@ $(document).ready(function () {
             bootbox.alert("Please key in patient's title..");
         } else if (pnic === "") {
             bootbox.alert("Please key in patient's New IC Number..");
-        } else if (pbday === null) {
+        } else if (pbday === "") {
             bootbox.alert("Please key in patient's date of birth..");
         } else if (pelicat === null) {
             bootbox.alert("Please key in patient's eligibility category..");
@@ -353,7 +353,9 @@ $(document).ready(function () {
             bootbox.alert("Please key in patient's nationality..");
         } else if (phomeadd === "") {
             bootbox.alert("Please key in patient's home address..");
-        } else {
+        }else if(pit === null){
+            bootbox.alert("Please key in patient's Id Type..");
+        }else {
             bootbox.confirm({
                 message: "Are you sure want to Save patient's biodata?",
                 buttons: {
@@ -381,5 +383,11 @@ $(document).ready(function () {
         $('#formPMI')[0].reset();
         $('input[id=PMIpmino]').prop('readonly', false);
         $('#PMInic').prop('readonly', false);
+    });
+    
+    $('.numbersOnly').keyup(function () {
+        if (this.value !== this.value.replace(/[^0-9\.]/g, '')) {
+            this.value = this.value.replace(/[^0-9\.]/g, '');
+        }
     });
 });

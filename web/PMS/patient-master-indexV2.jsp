@@ -83,7 +83,7 @@
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="textinput">New IC No. *</label>
                         <div class="col-md-6">
-                            <input id="PMInic" name="PMInic" type="text" placeholder="" class="form-control input-md" maxlength="12">
+                            <input id="PMInic" name="PMInic" type="text" placeholder="" class="form-control input-md numbersOnly" maxlength="12">
                         </div>
                     </div>
 
