@@ -27,8 +27,51 @@ $(document).ready(function () {
     $('#listQueue').on('click', '#consultBtn', function (e) {
         var row = $(this).closest('tr');
         var user_idList = row.find('#user_idQueue_List').text();
-        if (user_idList !== doctor_id) {
-            alert("Patient has been consult by another doctor. Please select another waiting patient");
+        statusBe4 = row.find('#status').text();
+        
+        if (statusBe4 === 'On Hold') {
+            if (user_idList !== doctor_id) {
+                alert("Patient has been consult by another doctor. Please select another waiting patient");
+            } else {
+                if (pmiNo === "" && episodeDate === "") {
+                    reloadStat = "1";
+
+                    e.preventDefault();
+                    $('#mainConsultBar').show();
+
+                    pmiNo = row.find('#pmiNumber').text();
+                    episodeDate = row.find('#epiDate').text();
+                    status = row.find('#status').text();
+
+                    if (statusBe4 === 'On Hold') {
+                        statusNow = 2;
+                    } else if (statusBe4 === 'Waiting') {
+                        statusNow = 0;
+                    } else if (statusBe4 === 'Missing') {
+                        statusNow = 4;
+                    } else if (statusBe4 === 'Discharge') {
+                        statusNow = 1;
+                    }
+                    var updateConsult = updateStatus(pmiNo, episodeDate, 5);
+
+                    var patient = findPatient(pmiNo, episodeDate);
+                    var getPDIInfo = getPDI(pmiNo, episodeDate);
+
+                    encounterDate = getDate();
+
+                    if (status === 'On Hold') {
+                        getEHRPatient(pmiNo, episodeDate);
+                    }
+
+                    $('#queueModal').modal('toggle');
+                    $('.soap-select').unbind('click');
+
+
+                } else {
+                    alert('You need complete the consultation on patient before first');
+                }
+//
+            }
         } else {
             if (pmiNo === "" && episodeDate === "") {
                 reloadStat = "1";
@@ -39,9 +82,6 @@ $(document).ready(function () {
                 pmiNo = row.find('#pmiNumber').text();
                 episodeDate = row.find('#epiDate').text();
                 status = row.find('#status').text();
-                statusBe4 = row.find('#status').text();
-
-
 
                 if (statusBe4 === 'On Hold') {
                     statusNow = 2;
@@ -72,6 +112,7 @@ $(document).ready(function () {
             }
 //
         }
+
 
 
 
