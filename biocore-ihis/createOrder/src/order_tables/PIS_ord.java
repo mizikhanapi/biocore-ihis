@@ -53,7 +53,8 @@ public class PIS_ord {
                         + " status,"
                         + " order_status,"
                         + " discipline_code,"
-                        + "txn_date) values "
+                        + "txn_date,"
+                        + "subdiscipline_cd) values "
                         + "('" + allSeq.getSeq() + "',"
                         + "'" + t.getPmi_no() + "',"
                         + "'" + orcs.get(1).get(0) + "',"
@@ -72,7 +73,8 @@ public class PIS_ord {
                         + "'0',"
                         + "'0',"
                         + "'" + orcs.get(13).get(0) + "',"
-                        + "'" + dateFormat.format(date) + "')";
+                        + "'" + dateFormat.format(date) + "',"
+                        + "'"+msh.getSendingFacilitySubDis()+"')";
                 try {
 
                     status_pis_order_master = rc.setQuerySQL(Config.ipAddressServer, Config.portServer, sql_pis_master);

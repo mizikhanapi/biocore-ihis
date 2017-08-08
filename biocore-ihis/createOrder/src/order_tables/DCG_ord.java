@@ -43,7 +43,7 @@ public class DCG_ord {
                 for (int dcg_i = 0; dcg_i < dcg1.size(); dcg_i++) {
                     ArrayList<ArrayList<String>> orcs = orc.get(orc_i).getValue();
                     ArrayList<ArrayList<String>> dcgs = dcg1.get(dcg_i).getValue();
-                    if (orcs.get(1).get(0).equals("T12115") && dcgs.get(2).get(2).equals("003")) {
+                    if (orcs.get(1).get(0).equals("T12115")) {
                         All_Seq_no allSeq = new All_Seq_no();
                         allSeq.genSeq(msh.getSendingFacilityCode(), msh.getSendingFacilityDis(), msh.getSendingFacilitySubDis(), "DCG");
                         Date date = new Date();
