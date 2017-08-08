@@ -18,9 +18,9 @@
     String emergencyType = "select master_reference_code,detail_reference_code,description,priority_indicator,start_date,end_date,status,created_by,created_date from adm_lookup_detail where master_reference_code = '0070' AND hfc_cd = '" + hfc + "' and status ='0'  ";
     String prio = "select master_reference_code,detail_reference_code,description,priority_indicator,start_date,end_date,status,created_by,created_date from adm_lookup_detail where master_reference_code = '0036' AND hfc_cd = '" + hfc + "' and status ='0'  ";
     String idTYpe = "select master_reference_code,detail_reference_code,description,priority_indicator,start_date,end_date,status,created_by,created_date from adm_lookup_detail where master_reference_code = '0012' AND hfc_cd = '" + hfc + "'  and status ='0' ";
-    String Commonqueue = "select queue_type,queue_name,user_id,hfc_cd,discipline_cd,start_date,end_date,sub_discipline_cd,status,created_by,created_date from pms_queue_list where queue_type='CM' and hfc_cd='" + hfc + "' and status ='Active' and discipline_cd = '" + dis + "' ";
-    String Consultationqueue = "select queue_type,queue_name,user_id,hfc_cd,discipline_cd,start_date,end_date,sub_discipline_cd,status,created_by,created_date  from pms_queue_list where queue_type='FY' and hfc_cd='" + hfc + "' and status ='Active' and discipline_cd = '" + dis + "'";
-    String Doctorqueue = "select queue_type,queue_name,user_id,hfc_cd,discipline_cd,start_date,end_date,sub_discipline_cd,status,created_by,created_date from pms_queue_list where queue_type='PN' and hfc_cd='" + hfc + "' and status ='Active' and discipline_cd = '" + dis + "'";
+    String Commonqueue = "select distinct queue_type,queue_name,user_id,hfc_cd,discipline_cd,start_date,end_date,sub_discipline_cd,status,created_by,created_date from pms_queue_list where queue_type='CM' and hfc_cd='" + hfc + "' and status ='Active' and discipline_cd = '" + dis + "' AND sub_discipline_cd='"+sub+"' group by queue_name; ";
+    String Consultationqueue = "select distinct queue_type,queue_name,user_id,hfc_cd,discipline_cd,start_date,end_date,sub_discipline_cd,status,created_by,created_date  from pms_queue_list where queue_type='FY' and hfc_cd='" + hfc + "' and status ='Active' and discipline_cd = '" + dis + "' AND sub_discipline_cd='"+sub+"' group by queue_name;";
+    String Doctorqueue = "select distinct queue_type,queue_name,user_id,hfc_cd,discipline_cd,start_date,end_date,sub_discipline_cd,status,created_by,created_date from pms_queue_list where queue_type='PN' and hfc_cd='" + hfc + "' and status ='Active' and discipline_cd = '" + dis + "' AND sub_discipline_cd='"+sub+"' group by queue_name;";
     String sql = "select a.discipline_name,a.discipline_cd,b.subdiscipline_cd,c.subdiscipline_name from adm_discipline a inner join adm_hfc_discipline b on a.discipline_cd = b.discipline_cd and b.hfc_cd = '" + hfc + "' left join adm_subdiscipline c on b.subdiscipline_cd = c.subdiscipline_cd and b.discipline_cd = c.discipline_cd and c.subdiscipline_hfc_cd = a.discipline_hfc_cd where a.discipline_cd = '"+dis+"' AND a.discipline_hfc_cd = '" + hfc + "' and c.subdiscipline_cd='"+sub+"';";
 
     ArrayList<ArrayList<String>> dataQueue2, dataQueue3, dataPatCat, dataVisType, dataEliCat, dataEliType, dataDiscip, dataPrio, dataIdType, dataQueue, dataEmergencyTy;
@@ -123,7 +123,7 @@
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="textinput">Registration No.</label>
                         <div class="col-md-6">
-                            <input id="rnNo" name="rnNo" type="text" placeholder="" class="form-control input-md">
+                            <input id="rnNo" name="rnNo" type="text" placeholder="" class="form-control input-md" maxlength="30">
                         </div>
                     </div>
 
