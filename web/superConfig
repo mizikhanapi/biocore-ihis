@@ -13,3 +13,5 @@ Sila rujuk database(adm_users) untuk pilihan user ID yg lebih banyak jika ingin 
 Sample: iHIS_99 ; Super9 ; DR007 ;
 
 Pastikan hfc code dan user ID berhubung kait jika menggunakan comparison type 1-match all.
+
+Jika program gagal untuk membaca file ini, maka secara default, hfc 99_iHIS_99 , userID 9 , dan comparison type 2 yang akan diguna pakai.

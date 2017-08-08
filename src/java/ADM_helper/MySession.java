@@ -167,7 +167,7 @@ public class MySession {
        
         try {
             
-            String path = lePath+"superConfig";
+            String path = lePath;        //+"superConfig";
 
             File f = new File(path);
 
@@ -188,7 +188,13 @@ public class MySession {
             COMPARE_TYPE=theLines.get(2).split("#")[0].trim();
 
         } catch (IOException e) {
+            System.out.println("Failed to find the superConfig file.");
             e.printStackTrace();
+            
+            //If failed... this is the default value...
+            SUPER_HFC_CD="99_iHIS_99";
+            SUPER_UID="9";
+            COMPARE_TYPE="2";
         }
     }
     

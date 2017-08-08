@@ -15,14 +15,14 @@
 
         return;
     }
+    
+    Config.getBase_url(request);
+    Config.getFile_url(session);
      
     try{
-        Config.getBase_url(request);
-        Config.getFile_url(session);
         
-        MySession.setPathToSuper(application.getRealPath("/"));
+        MySession.setPathToSuper(application.getRealPath("/superConfig"));
     
-        
     }
     catch(Exception e){
         e.printStackTrace();
@@ -30,7 +30,7 @@
     }
 
 
-    //out.print(MySession.getSuperString());
+    out.print(MySession.getSuperString());
 %>
 <!DOCTYPE html>
 <html lang="en">

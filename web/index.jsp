@@ -8,18 +8,19 @@
 <%
     
     try{
-        Config.getBase_url(request);
-        Config.getFile_url(session);
-        
-        MySession.setPathToSuper(application.getRealPath("/"));
+                
+        MySession.setPathToSuper(application.getRealPath("/superConfig"));
     
-        response.sendRedirect("./Entrance/Sign-in"); 
     }
     catch(Exception e){
         e.printStackTrace();
         out.print("Oopps! Try again later");
     }
-
+    
+    Config.getBase_url(request);
+    Config.getFile_url(session);
+    
+    response.sendRedirect("./Entrance/Sign-in"); 
 
 
 
