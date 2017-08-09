@@ -77,7 +77,7 @@
     <th>PMI no. <%//out.print(sqlV3);%></th>
     <th>Name </th>
     <th>Episode Date/Time </th>
-    <!--                                <th>Episode Time </th>-->
+
     <th class="hidden-xs">Queue Name </th>
     <th>Queue no.</th>
     <th class="hidden">Doctor </th>
@@ -98,7 +98,7 @@
         <td class="hidden-xs"><%=dataQueue.get(i).get(3)%></td>
         <td ><%=dataQueue.get(i).get(4)%></td>
         <td id="user_idQueue_List" class="hidden"><%=dataQueue.get(i).get(5)%></td>
-        <td ><%=dataQueue.get(i).get(7)%></td>
+        <td ><%=dataQueue.get(i).get(9)%></td>
         <td  class="hidden"><%=dataQueue.get(i).get(9)%></td>
         <td id="status"><%=dataQueue.get(i).get(6)%></td>
         <% if (dataQueue.get(i).get(6).equals("Consult")) { %>
