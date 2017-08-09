@@ -111,13 +111,13 @@
                 <!-- content -->
                 <div class="tab-pane fade" id="Ortho-Consultation_5">
                     <ul class="soap-content nav">
-                        <li><a data-toggle="modal" data-target="#ong-pDetails1" href="" class="soap-select"><i class="fa fa-comments  fa-li"></i> Admit To Ward</a></li>
+<!--                        <li><a data-toggle="modal" data-target="#ong-pDetails1" href="" class="soap-select"><i class="fa fa-comments  fa-li"></i> Admit To Ward</a></li>-->
                         <li><a id="PhysoitherpyReferralForm" data-toggle="modal" data-target="#PhysoitherpyReferralFormModel" href=""  class="soap-select"><i class="fa fa-history  fa-li"></i> Form-Physiotherapy Referral</a></li>
                         <li><a id="SijilKerjaRinganForm" data-toggle="modal" data-target="#AddSijilKerjaRinganModel" href=""  class="soap-select"><i class="fa fa-medkit  fa-li"></i> Sijil Kerja Ringan</a></li>
-                        <li><a data-toggle="modal" data-target="#ong-pDetails3" href=""  class="soap-select"><i class="fa fa-medkit  fa-li"></i> Referral Letter</a></li>
+<!--                        <li><a data-toggle="modal" data-target="#ong-pDetails3" href=""  class="soap-select"><i class="fa fa-medkit  fa-li"></i> Referral Letter</a></li>-->
                     </ul>
                     <hr class="pemisah" />
-                    <%@include file="con-report.jsp"%>
+                    <%//@include file="con-report.jsp"%>
                 </div>
                 <!-- content -->
             </div>
