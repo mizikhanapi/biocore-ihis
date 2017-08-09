@@ -16,11 +16,11 @@
     <ul id="menu-content" class="nav nav-sidebar">
         <!-- // menu tanpa dropdown -->
         <li><a id="btnCIS_MAIN_QUEUE"><i class="fa fa-users fa-lg"></i> Queue</a></li>
-        <li><a id="searchBtn"><i class="fa fa-search fa-lg"></i> Search</a></li>
+        <li><a id="searchBtn"><i class="fa fa-search fa-lg"></i> Search Patient</a></li>
         <li class="hidden"><a id="settingBtn"><i class="fa fa-gear fa-lg"></i> Setting</a></li>
-<!--        <li><a href="./../Report/mcMain2.jsp"class="panelito"><i class="fa fa-calendar fa-lg"></i> Print MC</a></li>
-        <li><a href="./../Report/timeSlipMain2.jsp" class="panelito"><i class="fa fa-clock-o fa-lg"></i> Print Time Slip</a></li>-->
-<li><a class="panelito" onclick="checkClick('./../Report/mcMain2.jsp')"><i class="fa fa-calendar fa-lg"></i> Print MC</a></li>
+        <!--        <li><a href="./../Report/mcMain2.jsp"class="panelito"><i class="fa fa-calendar fa-lg"></i> Print MC</a></li>
+                <li><a href="./../Report/timeSlipMain2.jsp" class="panelito"><i class="fa fa-clock-o fa-lg"></i> Print Time Slip</a></li>-->
+        <li><a class="panelito" onclick="checkClick('./../Report/mcMain2.jsp')"><i class="fa fa-calendar fa-lg"></i> Print MC</a></li>
         <li><a  class="panelito"  onclick="checkClick('./../Report/timeSlipMain2.jsp')"><i class="fa fa-clock-o fa-lg"></i> Print Time Slip</a></li>
         <!-- // menu tanpa dropdown -->
         <hr/>
@@ -39,7 +39,7 @@
                 <li><a class="panelito ortho-opthe">Report</a></li>
             </ul>
         </li>
-<!--        <li><a href="#ong" role="tab" data-toggle="tab" class="panelito"><i class="fa fa-angle-right fa-lg"></i> Obstetrics & Gynaecology</a></li>-->
+        <!--        <li><a href="#ong" role="tab" data-toggle="tab" class="panelito"><i class="fa fa-angle-right fa-lg"></i> Obstetrics & Gynaecology</a></li>-->
 
         <!-- Menu Specialist Panel -->
 

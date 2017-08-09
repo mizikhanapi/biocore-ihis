@@ -155,7 +155,7 @@
                         </ul>
 
                         <div id="papar">
-                            <p>.. Preparing ...</p>
+                            <p>... Preparing ...</p>
 
                         </div>
 
