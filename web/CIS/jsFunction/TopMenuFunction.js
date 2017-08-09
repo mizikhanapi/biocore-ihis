@@ -20,6 +20,8 @@ var providerDetail1 = "";
 var dischargeModalState = 0;
 var VTSObjDCG = {};
 
+var order_data = [];
+
 function goToHome() {
     location.href = '../Entrance/dashboard.jsp';
 }
@@ -122,11 +124,12 @@ $(document).ready(function (e) {
         $('.fa-pencil-square-o').css("display", "none");
         $('.fa-times').css("display", "none");
         //searchHFCcode(hfc_name, "tCIS_DCGHFCOrderDetail", "tCIS_DCGHFCProviderDetail");
-        searchHFCDetailv2(hfc_name,"-","tCIS_DCGHFCOrderDetail","tCIS_DCGHFCProviderDetail","-")
+        searchHFCDetailv2(hfc_name,"-","tCIS_DCGHFCOrderDetail","tCIS_DCGHFCProviderDetail","-");
+        
     });
 
     $('#CIS040010').on('shown.bs.modal', function () {
-
+        load_DCG_DTO();
         //$('#mCIS_Discharge_Summary').modal("show");
         $('#divCIS_Discharge_P_Summary_P').html($('#tblCIS_Consultation_Table').html());
         $('#tblCIS_Consultation_Table').html("");
@@ -140,6 +143,8 @@ $(document).ready(function (e) {
         $('#tblCIS_Consultation_Table').html($('#divCIS_Discharge_P_Summary_P').html());
         $('.fa-pencil-square-o').css("display", "inline-block");
         $('.fa-times').css("display", "inline-block");
+        
+
     });
 
     $('#mCIS_Discharge_Summary').on('hidden.bs.modal', function () {
@@ -1102,3 +1107,22 @@ $(document).ready(function (e) {
 
 
 });
+
+function load_DCG_DTO(){
+            $.ajax({
+            url: "search/ResultORDERDETAILDTOSearch.jsp",
+            data: {
+                pmi_no: pmiNo,
+                episode_date: episodeDate
+            },
+            timeout: 3000,
+            method: "POST",
+            success: function (response) {
+                var allDetail = response.trim().split("[#-#]");
+                allDetail.pop();
+                
+                console.log(allDetail);
+                
+            }
+        })
+}
