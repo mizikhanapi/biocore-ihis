@@ -33,9 +33,9 @@
             </div>
             <div class="modal-body">
                 <%
-                    String my_1_hfc_cd = (String) session.getAttribute("HEALTH_FACILITY_CODE");
+                    //String my_1_hfc_cd = (String) session.getAttribute("HEALTH_FACILITY_CODE");
                     Conn conn = new Conn();
-                    String query = "SELECT category_code, category_name from lis_item_category where hfc_cd = '" + my_1_hfc_cd + "'";
+                    String query = "SELECT category_code, category_name from lis_item_category";
                     ArrayList<ArrayList<String>> q2 = conn.getData(query);
                 %>
                 <div class="form-horizontal">
@@ -150,30 +150,45 @@
 
 <script>
     $(document).ready(function () {
+        createScreenLoading();
         $("#viewMTDpage").load("viewMTD.jsp");
 
         $("#Clone").click(function () {
-            var clone = confirm("Are you sure to clone the data?");
-            if (clone == true)
-            {
-                $.ajax({
-                    url: "clone_item_detail.jsp",
-                    type: "post",
 
-                    timeout: 10000,
-                    success: function (data) {
-
-                        $("#viewMTDpage").load("viewMTD.jsp");
-                        alert("Data are clone successfully!");
-
+            bootbox.confirm({
+                message: "Are you sure to clone the data?",
+                buttons: {
+                    confirm: {
+                        label: 'Yes',
+                        className: 'btn-success'
                     },
-                    error: function (err) {
-                        alert("error cloning");
+                    cancel: {
+                        label: 'No',
+                        className: 'btn-danger'
                     }
+                },
+                callback: function (result) {
 
-                });
-            }
+                    if (result === true) {
+                        $.ajax({
+                            url: "clone_item_detail.jsp",
+                            type: "post",
 
+                            timeout: 10000,
+                            success: function (data) {
+
+                                $("#viewMTDpage").load("viewMTD.jsp");
+                                bootbox.alert("Data are clone successfully!");
+
+                            },
+                            error: function (err) {
+                                bootbox.alert("error cloning");
+                            }
+
+                        });
+                    }
+                }
+            });
         });
 
         $("#btn_add1").click(function () {
@@ -213,7 +228,7 @@
                 alert("Complete The Fields");
                 return false;
             } else {
-
+                createScreenLoading();
                 $.ajax({
                     url: "tDetailInsert.jsp",
                     type: "post",
@@ -239,6 +254,7 @@
                         } else {
                             alert("Insertion failed!");
                         }
+                        destroyScreenLoading();
                     },
                     error: function (err) {
 

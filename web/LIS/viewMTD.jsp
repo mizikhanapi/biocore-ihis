@@ -5,12 +5,13 @@
 <%@page import="java.util.ArrayList"%>
 <%@page import="main.RMIConnector"%>
 <%@page import="java.sql.*"%>
+<div class="loading" style="display: none;"></div>
 <div class="table-guling">
     <table id="MTD"  class="table table-striped table-bordered" cellspacing="0" width="100%">
         <%
             String my_1_hfc_cd = (String) session.getAttribute("HEALTH_FACILITY_CODE");
             Conn conn = new Conn();
-            String query1 = "select item_cd,test_cat,item_name,spe_source,spe_container,volume,special_inst,status,buy_price,ser_price from lis_item_detail where hfc_cd = '"+my_1_hfc_cd+"'";
+            String query1 = "select item_cd,test_cat,item_name,spe_source,spe_container,volume,special_inst,status,buy_price,ser_price from lis_item_detail where hfc_cd = '" + my_1_hfc_cd + "'";
             ArrayList<ArrayList<String>> q1 = conn.getData(query1);
         %>
         <thead>
@@ -145,6 +146,7 @@
                     <a id="btn_delete<%=i%>" class="testing"><i class="fa fa-times" aria-hidden="true" style="display: inline-block;color: #d9534f;" ></i></a>
                     <script type="text/javascript" charset="utf-8">
                         $(document).ready(function () {
+                            destroyScreenLoading();
                             $("#btn_delete<%=i%>").click(function () {
                                 var conf = confirm('Are you sure want to delete?');
                                 if (conf) {
@@ -173,7 +175,6 @@
                             });
 
                             $("#btn_update1<%=i%>").click(function () {
-                                // var ccode = $("#ccode_<%=i%>").val();
                                 var icd10 = $("#icd10_<%=i%>").val();
                                 var analytename = $("#analytename_<%=i%>").val();
                                 var s_source = $("#ssource_<%=i%>").val();
@@ -200,8 +201,13 @@
                                         status: status
                                     }
                                 });
+                                createScreenLoading();
                                 $("#viewMTDpage").load("viewMTD.jsp");
+                                $('#testDetail_<%=i%>').modal('toggle');
+                                $("#testDetail_<%=i%>").hide();
                                 $(".modal-backdrop").hide();
+                                bootbox.alert("Test detail information is updated successfully.");
+                                
                             });
                         });
                     </script>  
