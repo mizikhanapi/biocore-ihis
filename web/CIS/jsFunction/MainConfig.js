@@ -72,7 +72,7 @@ $(window).bind('beforeunload', function(){
 });
 
     $('#holdBtn').bind('click', false);
-    loadSetting(doctor_id);
+    //loadSetting(doctor_id);
     
 
 
