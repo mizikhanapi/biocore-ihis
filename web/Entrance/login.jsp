@@ -30,7 +30,7 @@
     }
 
 
-    out.print(MySession.getSuperString());
+    //out.print(MySession.getSuperString());
 %>
 <!DOCTYPE html>
 <html lang="en">

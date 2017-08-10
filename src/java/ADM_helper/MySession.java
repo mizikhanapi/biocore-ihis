@@ -35,6 +35,8 @@ public class MySession {
     private ArrayList<String> dataPage;
     private Conn con;
     
+    private String sessionValidationMsg;
+    
     public MySession(){
         // empty constructor. Only to be used to generateRandom.
     }
@@ -43,6 +45,25 @@ public class MySession {
         userID=id;
         hfc_cd=hfc;
         con = new Conn();
+        
+        sessionValidationMsg = "";
+        
+    }
+    
+    //function to get the user current role code
+    public String getRoleCode(){
+        
+        String query="Select role_code from adm_user_access_role where user_id='"+userID+"' and health_facility_code='"+hfc_cd+"' and status='0' Limit 1;";
+        ArrayList<ArrayList<String>> dataRoleCode = con.getData(query);
+        System.out.println("\n"+query);
+        
+        String role_code="";
+        
+        if(dataRoleCode.size()>0)
+            role_code= dataRoleCode.get(0).get(0);
+        
+        return role_code;
+    
     }
     
     public void initModulePageAccess(){
@@ -117,27 +138,53 @@ public class MySession {
     
     public boolean isSessionValid(String sessionID){
         boolean isValid=true;
+        String curSessionID="";
+        String curLoginStatus="";
         
-        String query="Select user_status from adm_users where user_id='"+userID+"' and status='0' limit 1;";
+        String query="Select user_status, login_status from adm_users where user_id='"+userID+"' and status='0' limit 1;";
         
         ArrayList<ArrayList<String>> dataStatus = con.getData(query);
         
         if(dataStatus.size()>0){
             
-            String curSessionID = dataStatus.get(0).get(0);
+           curSessionID = dataStatus.get(0).get(0);
             
-            isValid = sessionID.equalsIgnoreCase(curSessionID);
+           curLoginStatus = dataStatus.get(0).get(1);
+            
         
         }
         else{
-        
+            sessionValidationMsg="Your user information is not exist!";
             isValid=false;
+            return isValid;
         }
         
+        if(curLoginStatus.equalsIgnoreCase("0")){ // check wheter the user is still log in. 0-log out, 1-log in
+            sessionValidationMsg="You are logged out.";
+            isValid = false;
+            return isValid;
+        }
+        else if(!curSessionID.equalsIgnoreCase(sessionID)){ // check session id is the same or not. If not same means same id has been used to login somewhere...
+            sessionValidationMsg="Multiple login using the same ID has been detected!";
+            isValid = false;
+            return isValid;
         
-        return isValid;
+        }
+        else{ // everything is ok... return true;
+            return true;
+        
+        }
+              
+        
     }
     
+    //function to get non valid session message
+    public String getInvalidSessionMsg(){
+    
+        return sessionValidationMsg;
+    }
+    
+    //function to generate session ID. Used when user is logging in.
     public String getRandomSessionID(){
         int length = 10; //length of the random string
         
@@ -157,7 +204,7 @@ public class MySession {
     
         RMIConnector rmic = new RMIConnector ();
         
-        String query = "Update adm_users set login_status = '0' where user_id = '"+userID+"'";
+        String query = "Update adm_users set login_status = '0' where user_id = '"+userID+"';";
 
         rmic.setQuerySQL(con.HOST, con.PORT, query);
     }
@@ -228,16 +275,28 @@ public class MySession {
         access = isSuperUser();
         
         // if super, skip this checking
-        if(access){
-            
-            return access;
+        if(access){            
+            return access;   
             
         }
-        else{
-            initModulePageAccess();
-            access = dataModule.contains(moduleCode);
-            return access;
-        }
+                
+        
+        //Search module in database based on role code and the module code. If record found more than 0 row, return true;
+        
+        String role_code = getRoleCode();
+        
+        String query="select ar.module_code "
+                + "from adm_responsibility ar "
+                + "join adm_module m on m.module_code = ar.module_code and m.status = ar.status "
+                + "join adm_system s on s.system_code=m.system_code and s.status=ar.status "
+                + "where ar.health_facility_code='"+hfc_cd+"' and ar.status='0' and ar.role_code='"+role_code+"' and ar.module_code='"+moduleCode+"' Limit 1;";
+        ArrayList<ArrayList<String>> tempModule = con.getData(query);
+        System.out.println("\n"+query);
+        
+        access = tempModule.size() > 0;
+        
+        return access;
+        
         
         
     }
