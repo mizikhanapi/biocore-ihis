@@ -77,6 +77,53 @@
 
                         <h3 style="margin: 0px;">Medical Certificate</h3>
                         <hr class="pemisah"/>
+                       
+                            <div class="col-md-5">
+                                <label class="control-label">Occupation</label>
+                                <div class="form-inline"> 
+                                    <div class="radio radio-primary">
+                                        <input type="radio" name="radioOccupation" id="RadioStaff" value="staff" checked>
+                                        <label for="RadioStaff">
+                                            Staff
+                                        </label>
+                                    </div>
+                                    <div class="radio radio-primary">
+                                        <input type="radio" name="radioOccupation" id="RadioStudent" value="student">
+                                        <label for="RadioStudent">
+                                            Student
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-5">
+                                <label class="control-label">Sort By</label>
+                                <div class="form-inline">   
+                                    <div class="radio radio-primary">
+                                        <input type="radio" name="radioSortBY" id="radioSortBYGender" value="gender" checked>
+                                        <label for="radioSortBYGender">
+                                            Gender
+                                        </label>
+                                    </div>
+                                    <div class="radio radio-primary">
+                                        <input type="radio" name="radioSortBY" id="radioSortBYAge" value="ageRange">
+                                        <label for="radioSortBYAge">
+                                            Age Range
+                                        </label>
+                                    </div>
+                                    <div class="radio radio-primary">
+                                        <input type="radio" name="radioSortBY" id="radioSortBYCenterCode" value="centerCode">
+                                        <label for="radioSortBYCenterCode">
+                                            Center
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="text-center" style="margin: auto">
+                                    <button class="btn btn-primary btn-lg" type="button" id="medicalCertificateViewReportBtn" name="patientAttandanceViewReport"><i class="fa fa-search fa-lg" ></i>&nbsp; View</button>
+                                </div>
+                            </div>
+                        
                         <div id="MCGraph">
 
                         </div>
@@ -222,23 +269,43 @@
 //                HHmmss = hours + ":" + ZeroMinutes + ":" + ZeroSeconds;
 //                ddMMyyyy = ZeroDay + "/" + ZeroMonth + "/" + year;
             }
+                  
+            
             viewMCGraph();
+            $("#medicalCertificateViewReportBtn").click(function () {
+                viewMCGraph();
+            });
+            
             function viewMCGraph() {
 
                 getDateNow();
-                var startDate, endDate, hfc;
+                var startDate, endDate, hfc, sortBy = "",  occupation,url="";
                 startDate = curYear + '-01-01';
                 endDate = yyyyMMdd;
                 hfc = "<%=hfc%>";
-
+                sortBy = $("input[name='radioSortBY']:checked").val();
+                occupation = $("input[name='radioOccupation']:checked").val();
+                
+                  if (sortBy === "gender") {
+                    url = "UTeMMedicalCertificateGraphByGender.jsp";
+                } else if (sortBy === "ageRange") {
+                    url = "UTeMMedicalCertificateGraphByAgeRange.jsp";
+                } else if (sortBy === "centerCode") {
+                    url = "UTeMMedicalCertificateGraphByCenterCode.jsp";
+                } else {
+                    alert("Uncorrect Type of Sort");
+                }
+                
                 var data = {
                     startDate: startDate,
                     endDate: endDate,
-                    hfc: hfc
+                    hfc: hfc,
+                    patientType: occupation                    
                 };
+                
                 $.ajax({
                     type: "POST",
-                    url: "UTeMMedicalCertificateGraph.jsp",
+                    url: url,
                     data: data,
                     timeout: 10000,
                     success: function (reply) {
