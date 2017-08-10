@@ -332,7 +332,7 @@
             },
             timeout: 10000,
             success: function (data) {
-                bootbox.alert("Specimen Accept succesfully");
+                bootbox.alert("New test is added.");
                 $("#viewTA").load("viewTA.jsp");
 
                 $("#TestCategory").hide();
