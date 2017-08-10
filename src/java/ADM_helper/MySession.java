@@ -211,7 +211,7 @@ public class MySession {
                 //compare the last character
                 isSuper = userID.substring(userID.length()-1).equals(SUPER_UID);
             }
-            else{
+            else if(COMPARE_TYPE.equalsIgnoreCase(MATCH_ALL)){
                 //compare all
                 isSuper = userID.equals(SUPER_UID);
             }
@@ -219,6 +219,27 @@ public class MySession {
         
         
         return isSuper;
+    }
+    
+    //function to check module access
+    public boolean haveModuleAccess(String moduleCode){
+        boolean access = true;
+        
+        access = isSuperUser();
+        
+        // if super, skip this checking
+        if(access){
+            
+            return access;
+            
+        }
+        else{
+            initModulePageAccess();
+            access = dataModule.contains(moduleCode);
+            return access;
+        }
+        
+        
     }
     
     public static String getSuperString(){

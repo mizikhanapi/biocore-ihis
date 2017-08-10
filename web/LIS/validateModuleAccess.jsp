@@ -1,23 +1,17 @@
 <%-- 
     Document   : validateModuleAccess
     Created on : Mar 18, 2017, 7:36:04 AM
-    Author     : user
+    Author     : Ardhi Surya Ibrahim; rdsurya147@gmail.com; insta: @rdcfc
 --%>
 
 <%@page import="ADM_helper.MySession"%>
 <%
     String adm_id= (String) session.getAttribute("USER_ID");
-    String adm_hfc= (String) session.getAttribute("HEALTH_FACILITY_CODE");
+    String adm_hfc= (String) session.getAttribute("HFC_99");
     
     MySession mys = new MySession(adm_id, adm_hfc);
-    mys.initModulePageAccess();
-    
-    String pages = mys.getLongStringPage();//session.getAttribute("PAGE_CODE").toString();
-    
-    if(!pages.contains("HIS05")){
-        
+    if(!mys.haveModuleAccess("05")){
         response.sendRedirect("../Entrance/dashboard.jsp");
-        
         return;
     }
 
