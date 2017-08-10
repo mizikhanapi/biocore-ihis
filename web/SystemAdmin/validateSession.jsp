@@ -20,14 +20,14 @@
         
         if(!mys.isSessionValid(sID)){
 //            response.sendRedirect("../index.jsp");
-            out.print("<h1>Multiple login using the same ID has been detected!</h1>");
+            out.print("<h1>"+mys.getInvalidSessionMsg()+"</h1>");
             session.invalidate();
 
 %>
 <script type="text/javascript">
      setTimeout(function () {
        window.location.href = "../index.jsp"; //will redirect to your blog page (an ex: blog.html)
-    }, 2000); //will call the function after 2 secs.
+    }, 3000); //will call the function after 2 secs.
 </script>
 <%
             return;        
