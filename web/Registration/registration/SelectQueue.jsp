@@ -513,8 +513,10 @@ Author     : user
                         success: function (list) {
                             console.log(list);
                             if ($.trim(list) === "Success") {
-                                bootbox.alert("Patient has been register successfully");
-//                                PrintLable(selectedqueue);
+                                bootbox.alert("Patient has been register successfully", function () {
+                                    window.history.back();
+//                                    PrintLable(selectedqueue);
+                                });
 
                             } else if ($.trim(list) === "already") {
                                 bootbox.alert("Patient is already registered");
