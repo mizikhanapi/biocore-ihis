@@ -51,10 +51,12 @@
         <link href="https://cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css"/>
         <link href="https://cdn.datatables.net/buttons/1.3.1/css/buttons.dataTables.min.css" rel="stylesheet" type="text/css"/>
 
-        <script src="https://code.highcharts.com/highcharts.js"></script>
-        <script src="https://code.highcharts.com/modules/exporting.js"></script>
-
-
+<!--        <script src="https://code.highcharts.com/highcharts.js"></script>
+        <script src="https://code.highcharts.com/modules/exporting.js"></script>-->
+        
+        <script src="../assets/js/highcharts-exporting.js" type="text/javascript"></script>
+        <script src="../assets/js/highcharts.js" type="text/javascript"></script>
+        
     </head>
     <body>
         <!-- side bar -->
@@ -70,9 +72,9 @@
 
                     <div class="thumbnail">
                         <form>
-                            <h3 style="margin: 0px;">Patient Attendance List</h3>
+                            <h3 style="margin: 0px;">Patient Attendance</h3>
                             <hr class="pemisah"/>
-                            <div class="col-md-5">
+                            <div class="col-md-3">
                                 <label class="control-label">Discipline</label>
                                 <div class="form-inline"> 
                                     <div class="radio radio-primary">
@@ -89,7 +91,24 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-5">
+                            <div class="col-md-3">
+                                <label class="control-label">Occupation</label>
+                                <div class="form-inline"> 
+                                    <div class="radio radio-primary">
+                                        <input type="radio" name="radioOccupation" id="RadioStaff" value="staff" checked>
+                                        <label for="RadioStaff">
+                                            Staff
+                                        </label>
+                                    </div>
+                                    <div class="radio radio-primary">
+                                        <input type="radio" name="radioOccupation" id="RadioStudent" value="student">
+                                        <label for="RadioStudent">
+                                            Student
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
                                 <label class="control-label">Sort By</label>
                                 <div class="form-inline">   
                                     <div class="radio radio-primary">
@@ -126,10 +145,10 @@
 
                     <div class="thumbnail">
                         <form>
-                            <h4 style="margin: 0px; padding: 0;">Search Patients</h4>
+                            <h4 style="margin: 0px; padding: 0;">Patients Attendance List</h4>
                             <hr class="pemisah"/>
                             <div class="form-group col-md-12" id="ReportFilturediv">
-                                <lebal class="col-md-4 control-label">Patient Type:</lebal>
+                                <lebal class="col-md-4 control-label">BY:</lebal>
                                 <div class="col-md-4">
                                     <select id="patientType" class="form-control">
                                         <option>Inpatient</option>
@@ -298,11 +317,12 @@
             function viewPAGraph() {
 
                 getDateNow();
-                var startDate, endDate, hfc, dis = "", sortBy = "", discipline = "", curMonth, url;
+                var startDate, endDate, hfc, dis = "", sortBy = "", discipline = "", occupation, url;
                 startDate = curYear + '-01-01';
                 endDate = yyyyMMdd;
                 hfc = "<%=hfc%>";
                 sortBy = $("input[name='radioSortBY']:checked").val();
+                occupation = $("input[name='radioOccupation']:checked").val();
                 discipline = $("input[name='radioDiscipline']:checked").val();
 
                 var result = [];
@@ -331,7 +351,8 @@
                     startDate: startDate,
                     endDate: endDate,
                     hfc: hfc,
-                    dis: dis
+                    dis: dis,
+                    patientType: occupation
                 };
                 $.ajax({
                     type: "POST",

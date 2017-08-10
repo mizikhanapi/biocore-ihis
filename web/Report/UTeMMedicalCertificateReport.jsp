@@ -53,9 +53,12 @@
 
 
 
-        <script src="https://code.highcharts.com/highcharts.js"></script>
-        <script src="https://code.highcharts.com/modules/exporting.js"></script>
-
+<!--        <script src="https://code.highcharts.com/highcharts.js"></script>
+        <script src="https://code.highcharts.com/modules/exporting.js"></script>-->
+        
+           <script src="../assets/js/highcharts-exporting.js" type="text/javascript"></script>
+        <script src="../assets/js/highcharts.js" type="text/javascript"></script>
+        
 
     </head>
     <body>
@@ -72,7 +75,7 @@
 
                     <div class="thumbnail">
 
-                        <h3 style="margin: 0px;">Medical Certificate List</h3>
+                        <h3 style="margin: 0px;">Medical Certificate</h3>
                         <hr class="pemisah"/>
                         <div id="MCGraph">
 
@@ -81,7 +84,7 @@
 
                     <div class="thumbnail">
                         <form>
-                            <h4 style="margin: 0px; padding: 0;">Search Patients</h4>
+                            <h4 style="margin: 0px; padding: 0;">Medical Certificate List</h4>
                             <hr class="pemisah"/>
 
                             <div class="form-group col-md-12">

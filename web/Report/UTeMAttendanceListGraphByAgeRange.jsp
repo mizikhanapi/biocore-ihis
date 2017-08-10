@@ -3,6 +3,8 @@
 <%@page import="Config.Config"%>
 <%@page import="dBConn.Conn"%>
 <%@page import="org.apache.commons.lang3.StringUtils"%>
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="java.util.Date"%>
 
 <%
 
@@ -10,22 +12,30 @@
     Config.getFile_url(session);
 
     Conn conn = new Conn();
-    String startDate, endDate, hfc, dis, monthDuration, query = "";
+    String startDate, endDate, hfc, dis, patientTypeName, query = "", displayFormatEndDate="",displayFormatStartDate="",patientType="";
     String Reply = "";
 
     startDate = request.getParameter("startDate").toString();
     endDate = request.getParameter("endDate").toString();
     hfc = request.getParameter("hfc").toString();
     dis = request.getParameter("dis").toString();
-//    startDate = "2017-01-26";
-//    endDate = "2017-07-28";
+    patientTypeName = request.getParameter("patientType").toString(); //either Staff OR Student (0 for staff,1 for student)
+//    startDate = "2017-01-01";
+//    endDate = "2017-08-28";
 //    hfc = "04010101";
 //    dis = "001";
+//    patientType = "1";
+
+    if(patientTypeName.equalsIgnoreCase("staff")) {
+        patientType = "0";
+    } else if (patientTypeName.equalsIgnoreCase("student")) {
+        patientType = "1";
+    }
 
     if (!startDate.equals("") && !endDate.equals("") && !hfc.equals("")) {
 
         query = "SELECT"
-                + " CASE"
+                + " CASE WHEN age >=0 AND age <=14 THEN '1-15'"
                 + " WHEN age >=15 AND age <=19 THEN '15-19'"
                 + " WHEN age >=20 AND age <=24 THEN '20-24'"
                 + " WHEN age >=25 AND age <=29 THEN '25-29'"
@@ -46,10 +56,14 @@
                 + " MONTHNAME(e.`EPISODE_DATE`) as months"
                 + " FROM pms_episode e INNER JOIN pms_patient_biodata b"
                 + " ON e.`PMI_NO` = b.`PMI_NO`"
+                + " INNER JOIN special_integration_information si"
+                + " ON  si.`PERSON_ID_NO` = b.`ID_NO`"
+                + " AND si.`NATIONAL_ID_NO` = b.`NEW_IC_NO`"
                 + " WHERE e.`HEALTH_FACILITY_CODE` = '"+hfc+"'  AND e.`DISCIPLINE_CODE` = '"+dis+"'"
                 + " AND DATE_FORMAT(NOW(), '%Y') - DATE_FORMAT(b.`BIRTH_DATE`, '%Y') - (DATE_FORMAT(NOW(),"
                 + " '00-%m-%d') < DATE_FORMAT(b.`BIRTH_DATE`, '00-%m-%d')) IS NOT NULL"
-                + " AND cast(e.`EPISODE_DATE` as date) BETWEEN '"+startDate+"' AND '"+endDate+"') as tbl"
+                + " AND cast(e.`EPISODE_DATE` as date) BETWEEN '"+startDate+"' AND '"+endDate+"'"
+                + " AND si.`PERSON_TYPE` = '"+patientType+"') as tbl"
                 + " GROUP BY ageband , months;";
 
 //    out.print("Replay : " + hfc + " - " + startDate + " - " + endDate + " + " + query +"<br>");
@@ -64,6 +78,14 @@
                     Reply += "^";
                 }
             }
+            
+            SimpleDateFormat parseDate = new java.text.SimpleDateFormat("yyyy-MM-dd");
+            SimpleDateFormat formatDate = new SimpleDateFormat("dd/MM/yyyy");
+            Date date = (Date) parseDate.parse(startDate);
+            displayFormatStartDate = formatDate.format(date);
+            date = (Date) parseDate.parse(endDate);
+            displayFormatEndDate = formatDate.format(date);
+            
         } else {
 
             Reply = "No Data";
@@ -76,6 +98,7 @@
 
 %>
 
+
 <div style="width: 100%; height: 400px">
     <div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
 
@@ -86,7 +109,7 @@
     var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
     var endMonth = new Date("<%=endDate%>").getMonth();
     var reply = "<%=Reply%>";
-//    console.log(reply);
+    console.log(reply);
     if (reply !== "No Data" && reply !== "UnCorrect Massage") {
         var dataRow = reply.trim().split("^");
 
@@ -112,12 +135,12 @@
                     name: name,
                     data: data.slice(0,endMonth+1)
                 };
-//                console.log(obj);
+                console.log(obj);
                 seriesOfData.push(obj);
                 }
 
         }
-//        console.log(seriesOfData);
+        console.log(seriesOfData);
     }
 
 
@@ -127,10 +150,10 @@
             type: 'column'
         },
         title: {
-            text: 'Yearly Patient Attendance Rate'
+            text: 'Statistics of Patient Attendance'
         },
         subtitle: {
-            text: 'By Age Range, From '+'<%=startDate%>'+' To '+'<%=endDate%>'
+            text: 'By Age Range, From '+'<%=displayFormatStartDate%>'+' To '+'<%=displayFormatEndDate%>'
         },
         xAxis: {
             categories: months,
@@ -139,13 +162,14 @@
         yAxis: {
             min: 0,
             title: {
-                text: 'Rainfall (mm)'
-            }
+                text: 'Total'
+            },
+                allowDecimals: false
         },
         tooltip: {
             headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
             pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
-                    '<td style="padding:0"><b>{point.y:.1f} mm</b></td></tr>',
+                    '<td style="padding:0"><b>{point.y}</b></td></tr>',
             footerFormat: '</table>',
             shared: true,
             useHTML: true
@@ -154,6 +178,7 @@
             column: {
                 pointPadding: 0.1,
                 borderWidth: 0
+                
             }
         },
         series: seriesOfData

@@ -17,9 +17,9 @@ Author     : user
     String dis = session.getAttribute("DISCIPLINE_CODE").toString();
     String subDis = session.getAttribute("SUB_DISCIPLINE_CODE").toString();
 
-    String Commonqueue = "select * from pms_queue_list where queue_type='CM' and hfc_cd='" + hfc + "' and status ='Active' and discipline_cd = '" + dis + "'";
-    String Consultationqueue = "select * from pms_queue_list where queue_type='FY' and hfc_cd='" + hfc + "' and status ='Active' and discipline_cd = '" + dis + "'";
-    String Doctorqueue = "select * from pms_queue_list where queue_type='PN' and hfc_cd='" + hfc + "' and status ='Active' and discipline_cd = '" + dis + "'";
+    String Commonqueue = "select distinct queue_type,queue_name,user_id,hfc_cd,discipline_cd,start_date,end_date,sub_discipline_cd,status,created_by,created_date from pms_queue_list where queue_type='CM' and hfc_cd='" + hfc + "' and status ='Active' and discipline_cd = '" + dis + "' AND sub_discipline_cd='" + subDis + "' group by queue_name; ";
+    String Consultationqueue = "select distinct queue_type,queue_name,user_id,hfc_cd,discipline_cd,start_date,end_date,sub_discipline_cd,status,created_by,created_date  from pms_queue_list where queue_type='FY' and hfc_cd='" + hfc + "' and status ='Active' and discipline_cd = '" + dis + "' AND sub_discipline_cd='" + subDis + "' group by queue_name;";
+    String Doctorqueue = "select distinct queue_type,queue_name,user_id,hfc_cd,discipline_cd,start_date,end_date,sub_discipline_cd,status,created_by,created_date from pms_queue_list where queue_type='PN' and hfc_cd='" + hfc + "' and status ='Active' and discipline_cd = '" + dis + "' AND sub_discipline_cd='" + subDis + "' group by queue_name;";
 
 //    String Consultationqueue = "select * from pms_queue_name where queue_type='FY' and hfc_cd = '" + session.getAttribute("HEALTH_FACILITY_CODE") + "' ";
 //    String Doctorqueue = "select * from pms_queue_name where queue_type='PN' and hfc_cd = '" + session.getAttribute("HEALTH_FACILITY_CODE") + "' ";
@@ -28,7 +28,7 @@ Author     : user
     dataQueueCommon = conn.getData(Commonqueue);
     dataQueue2Cons = conn.getData(Consultationqueue);
     dataQueue2Doc = conn.getData(Doctorqueue);
-    
+
     String add = null, text = null;
 %>
 
@@ -63,14 +63,13 @@ Author     : user
                 } else if (lang === "ml") {
                     $("div[lang=en]").css("display", 'none');
                 }
-                
-                    $("div[lang=" + lang + "] #inputUserIC").keyboard();
+
+                $("div[lang=" + lang + "] #inputUserIC").keyboard();
             });
         </script>
         <!--header-->
     </head>
     <body>
-        <input type="text" id="Rhfc" name="hiddeninput_HFC" hidden="" value='<%=session.getAttribute("HEALTH_FACILITY_CODE").toString()%>'>
         <div class="container-fluid m-scene" lang="ml">
             <div class="kiosk thumbnail" style="max-height: 690px; max-width: 485px;">
                 <a href="../mainMenu.jsp" title="Back to Dashboard"><i class="fa fa-arrow-left fa-lg pull-left" style="color: #ccc;"></i></a>
@@ -108,7 +107,8 @@ Author     : user
                         <option value="null" selected="" disabled="">Sila Pilih Giliran</option>
 
                         <%
-                             add = null; text = null;
+                            add = null;
+                            text = null;
                             for (int i = 0; i < dataQueue2Cons.size(); i++) {
                                 if (dataQueue2Cons.get(i).get(1) != "" || dataQueue2Cons.get(i).get(1) != null) {
 
@@ -199,7 +199,8 @@ Author     : user
                         <option value="null" selected="" disabled="">Please Select Queue</option>
 
                         <%
-                             add = null; text = null;
+                            add = null;
+                            text = null;
                             for (int i = 0; i < dataQueue2Cons.size(); i++) {
                                 if (dataQueue2Cons.get(i).get(1) != "" || dataQueue2Cons.get(i).get(1) != null) {
 
@@ -325,7 +326,7 @@ Author     : user
             }
 
             //event when radio consolate is change
-            $("div[lang=" + lang + "] #commonQueue").change( function () {
+            $("div[lang=" + lang + "] #commonQueue").change(function () {
                 changesComonClicked();
             });
             function changesComonClicked() {
@@ -339,7 +340,7 @@ Author     : user
             }
             ;
             //event when radio doctor is change
-            $("div[lang=" + lang + "] #doctorQueue").change( function () {
+            $("div[lang=" + lang + "] #doctorQueue").change(function () {
                 changesDocClicked();
             });
             function changesDocClicked() {
@@ -354,7 +355,7 @@ Author     : user
             }
             ;
             //event when radio service is change
-            $("div[lang=" + lang + "] #consultantQueue").change (function () {
+            $("div[lang=" + lang + "] #consultantQueue").change(function () {
                 changesSerClicked();
             });
             function changesSerClicked() {
@@ -369,7 +370,7 @@ Author     : user
             }
             ;
             //event when radio button1 is change
-            $("div[lang=" + lang + "] #inputUserIC").change( function () {
+            $("div[lang=" + lang + "] #inputUserIC").change(function () {
                 TextFiledchanges();
             });
             function TextFiledchanges() {
@@ -466,7 +467,7 @@ Author     : user
                     queueuserid = tempsplit[1];
                     console.log(selectedqueue + "+" + queueuserid);
                     //hfc amik kat session
-                    hfc = $("div[lang=" + lang + "] #Rhfc").val();
+                    var hfc = "<%=hfc%>";
                     var datas = {
                         'pmi': pmi_no,
                         'epiDate': yyyyMMdd + " " + HHmmss,
@@ -502,7 +503,7 @@ Author     : user
                         'comTy': queuetype,
                         'createdBy': user_id,
                         'queue': selectedqueuename,
-                        'docID': queueuserid};
+                        'docID': ''};
                     console.log(datas);
                     $.ajax({
                         type: "POST",
@@ -513,7 +514,6 @@ Author     : user
                             console.log(list);
                             if ($.trim(list) === "Success") {
                                 bootbox.alert("Patient has been register successfully");
-                                window.history.back();
 //                                PrintLable(selectedqueue);
 
                             } else if ($.trim(list) === "already") {
