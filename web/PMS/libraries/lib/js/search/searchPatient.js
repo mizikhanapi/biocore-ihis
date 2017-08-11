@@ -1,12 +1,16 @@
 $(function () {
-
+    $('.numbersOnly').keyup(function () {
+    if (this.value !== this.value.replace(/[^0-9\.]/g, '')) {
+        this.value = this.value.replace(/[^0-9\.]/g, '');
+    }
+});
     //validate max length of input
     $('#idType').on('change', function (e) {
         var id = $('#idType').val();
         console.log(id);
         if (id === "001") {
             $('#idInput').attr('maxlength', '13');
-            
+            $('#myForm #idInput').removeClass("numbersOnly");
 //            $("#idInput").on('keydown',function (e) {
 //                //if the letter is not digit then display error and don't type anything
 //                if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
@@ -17,7 +21,7 @@ $(function () {
 //            });
         } else if (id === "002") {
             $('#idInput').attr('maxlength', '12');
-            
+            $('#myForm #idInput').addClass("numbersOnly");
 //            $("#idInput").on('keydown',function (e) {
 //                //if the letter is not digit then display error and don't type anything
 //                if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
@@ -27,6 +31,7 @@ $(function () {
 //            });
         } else if (id === "003") {
             $('#idInput').attr('maxlength', '8');
+            $('#myForm #idInput').removeClass("numbersOnly");
 //            $("#idInput").on('keydown',function (e) {
 //                if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57) &&(e.which <97 || e.which > 122)) {
 //                    //display error message
@@ -37,6 +42,7 @@ $(function () {
                 
         } else {
             $('#idInput').attr('maxlength', '10');
+            $('#myForm #idInput').removeClass("numbersOnly");
 //            $("#idInput").on('keydown',function (e) {
 //                if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57) && (e.which <97 || e.which > 122)) {
 //                    //display error message

@@ -13,7 +13,7 @@
 <%
     RMIConnector rmic = new RMIConnector();
     Conn conn = new Conn();
-
+    String createdBy = session.getAttribute("USER_ID").toString();
     String MEDpmino, MEDinsurans, MEDpolicy, MEDdate, MEDhfc,MEDstatus,MEDseq,sql,sqlCheck;
     MEDpmino = request.getParameter("pmino");
     MEDinsurans = request.getParameter("insuranceCom");
@@ -40,7 +40,7 @@
 //        g[0] = formatted;
 //    }
 //    String newSeq = "FS" + g[0];
-    String sql2 = "INSERT INTO PMS_MEDICAL_INSURANCE (pmi_no,insurance_company_code,policy_no,maturity_date,health_facility,policy_status) VALUES ('" + MEDpmino + "','" + MEDinsurans + "','" + MEDpolicy + "','" + MEDdate + "','" + MEDhfc + "','" + MEDstatus + "')";
+    String sql2 = "INSERT INTO PMS_MEDICAL_INSURANCE (pmi_no,insurance_company_code,policy_no,maturity_date,health_facility,policy_status,created_by,created_date) VALUES ('" + MEDpmino + "','" + MEDinsurans + "','" + MEDpolicy + "','" + MEDdate + "','" + MEDhfc + "','" + MEDstatus + "','"+createdBy+"',now())";
     //String sql3 = "INSERT INTO AUTOGENERATE_FSNO (FAMILY_SEQ_NO) VALUES ('" + newSeq + "')";
 
     if (Checkseq.size() > 0) {

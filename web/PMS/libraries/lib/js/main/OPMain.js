@@ -1,12 +1,11 @@
 function Main(array_data) {
     var idInput = $('#idInput').val();
     var idType = $('#idType').find(":selected").val();
-    //onsole.log(array_data);
+    //console.log(array_data);
     //if the return value is empty
     if ($.trim(array_data) === "N/A1") {
-        //show alert
         bootbox.confirm({
-            message: "This is new patient,Please press continue button to key-in patient information...",
+            message: "This patient not an Employee or a Student,Are you sure want to proceed with registration?",
             buttons: {
                 confirm: {
                     label: 'Continue',
@@ -18,7 +17,6 @@ function Main(array_data) {
                 }
             },
             callback: function (result) {
-                
                 //if true go to PMI page
                 if (result === true) {
                     //$body.addClass("loading");
@@ -73,9 +71,8 @@ function Main(array_data) {
                 }
             }
         });
-
     } else if ($.trim(array_data[0]) === "SMP") {
-        console.log("SMP DATA");
+        //console.log("SMP DATA");
         var newic = array_data[1],
                 idnumber = array_data[2],
                 persontype = array_data[3],
@@ -89,7 +86,7 @@ function Main(array_data) {
                 country = array_data[11],
                 phone = array_data[12];
         bootbox.confirm({
-            message: "Patient biodata is not existed, Data will retieved from the SMP/SMSM",
+            message: "Patient biodata is not existed, Data will retieved from the SII",
             buttons: {
                 confirm: {
                     label: 'Continue',
@@ -162,10 +159,7 @@ function Main(array_data) {
                 }
             }
         });
-
     } else if ($.trim(array_data) === "N/A0") {
-        //var r = confirm("No Patient Found!");
-
         bootbox.confirm({
             message: "This is new patient,Please press continue button to key-in patient information...",
             buttons: {
@@ -207,6 +201,142 @@ function Main(array_data) {
                                     $('#PMIino').val($.trim(idInput));
                             }
                             $('input[id=PMIpmino]').val($.trim(list));
+                            //$('#PMInic').val($.trim(idInput));
+                            $('#PMIbday').val($.trim(ICbday));
+                            //console.log(ICbday);
+                            //registration
+                            $('input[id=pmino]').val($.trim(list));
+                            $('input[id=pnic]').val($.trim(idInput));
+                            $('input[id=PMIpmino]').prop('readonly', false);
+                            //employment
+                            $('input[id=EMPpmino]').val($.trim(list));
+                            $('#EMPcredate').val(ddMMyyyyDua);
+                            // set value in next of kin page
+                            $('input[id=KINpmino]').val($.trim(list));
+                            // set value in family page
+                            $('input[id=FAMpmi]').val($.trim(list));
+                            // set value in MEDICAL page
+                            $('input[id=MEDpmino]').val($.trim(list));
+
+                            console.log(ddMMyyyyDua);
+                            $body.removeClass("loading");
+                            $('.nav-tabs a[href="#tab_default_2"]').tab('show');
+                        }
+                    });
+                }
+            }
+        });
+    }else if($.trim(array_data[0]) === "FAM1"){
+        bootbox.confirm({
+            message: "This is patient is covered under University benefits,Are you sure want to proceed the registration?",
+            buttons: {
+                confirm: {
+                    label: 'Continue',
+                    className: 'btn-success'
+                },
+                cancel: {
+                    label: 'Cancel',
+                    className: 'btn-danger'
+                }
+            },
+            callback: function (result) {
+                //if true go to PMI page
+                if (result === true) {
+                    //$body.addClass("loading");
+                    
+                    $.ajax({
+                        async: true,
+                        type: "POST",
+                        url: "controller/pmiGen.jsp",
+                        data: {'idInput': idInput}, // Send input
+                        timeout: 10000,
+                        success: function (list) {
+                            x = idInput;
+                            getBday(x);
+                            getDateNow();
+                            //pmi
+                            switch(idType){
+                                case "002":
+                                    $('#PMInic').val($.trim(idInput));
+                                    break;
+                                case "003":
+                                    $('#PMIoic').val($.trim(idInput));
+                                    break;
+                                case "001" :
+                                    break;
+                                default:
+                                    $('#PMIino').val($.trim(idInput));
+                            }
+                            $('input[id=PMIpmino]').val($.trim(list));
+                            $('input[id=PMIpname]').val($.trim(array_data[4]));
+                            //$('#PMInic').val($.trim(idInput));
+                            $('#PMIbday').val($.trim(ICbday));
+                            //console.log(ICbday);
+                            //registration
+                            $('input[id=pmino]').val($.trim(list));
+                            $('input[id=pnic]').val($.trim(idInput));
+                            $('input[id=PMIpmino]').prop('readonly', false);
+                            //employment
+                            $('input[id=EMPpmino]').val($.trim(list));
+                            $('#EMPcredate').val(ddMMyyyyDua);
+                            // set value in next of kin page
+                            $('input[id=KINpmino]').val($.trim(list));
+                            // set value in family page
+                            $('input[id=FAMpmi]').val($.trim(list));
+                            // set value in MEDICAL page
+                            $('input[id=MEDpmino]').val($.trim(list));
+
+                            console.log(ddMMyyyyDua);
+                            $body.removeClass("loading");
+                            $('.nav-tabs a[href="#tab_default_2"]').tab('show');
+                        }
+                    });
+                }
+            }
+        });
+    }else if($.trim(array_data[0]) === "FAM0"){
+        bootbox.confirm({
+            message: "This is patient is covered under Family benefits,Are you sure want to proceed the registration?",
+            buttons: {
+                confirm: {
+                    label: 'Continue',
+                    className: 'btn-success'
+                },
+                cancel: {
+                    label: 'Cancel',
+                    className: 'btn-danger'
+                }
+            },
+            callback: function (result) {
+                //if true go to PMI page
+                if (result === true) {
+                    //$body.addClass("loading");
+                    
+                    $.ajax({
+                        async: true,
+                        type: "POST",
+                        url: "controller/pmiGen.jsp",
+                        data: {'idInput': idInput}, // Send input
+                        timeout: 10000,
+                        success: function (list) {
+                            x = idInput;
+                            getBday(x);
+                            getDateNow();
+                            //pmi
+                            switch(idType){
+                                case "002":
+                                    $('#PMInic').val($.trim(idInput));
+                                    break;
+                                case "003":
+                                    $('#PMIoic').val($.trim(idInput));
+                                    break;
+                                case "001" :
+                                    break;
+                                default:
+                                    $('#PMIino').val($.trim(idInput));
+                            }
+                            $('input[id=PMIpmino]').val($.trim(list));
+                            $('input[id=PMIpname]').val($.trim(array_data[4]));
                             //$('#PMInic').val($.trim(idInput));
                             $('#PMIbday').val($.trim(ICbday));
                             //console.log(ICbday);
@@ -282,26 +412,22 @@ function Main(array_data) {
                 ppcountryname= array_data[45],
                 ptitlename= array_data[46],
                 pnationalityname= array_data[47],
-                pidtypename = array_data[48];
+                pidtypename = array_data[48],
+                ppayer = array_data[49],
+                pperty = array_data[50];
         var splitBday = String(pbday).split("-");
         var daysplitted = splitBday[2];
         var monthsplitted = splitBday[1];
         var yearsplitted = splitBday[0];
         var idtype;
-        //console.log(splitBday);
-        //console.log(daysplitted);
-        //console.log(monthsplitted);
-        //console.log(yearsplitted);
         if (pit === "004") {
             idtype = "Matric No.";
         } else if (pit === "005") {
             idtype = "Staff No.";
         }
 
-        //var newbday = yearsplitted + "-" + monthsplitted + "-" + daysplitted;
         var newbday = daysplitted + "/" + monthsplitted + "/" + yearsplitted;
 
-        //console.log(newbday);
 
         $('input[id=pmino]').val($.trim(pmino));
         $('input[id=pname]').val($.trim(pname));
@@ -363,6 +489,8 @@ function Main(array_data) {
         $("#PMIppostcodeCODE").val($.trim(ppostalpostcode));
         $("#PMIpstateCODE").val($.trim(ppostalstate));
         $("#PMIpcountryCODE").val($.trim(ppostalcountry));
+        $("#PMIperty").val($.trim(pperty));
+        $("#PMIpg").val($.trim(ppayer));
         
         // set value in employment page
         $('input[id=EMPpmino]').val($.trim(pmino));
@@ -389,8 +517,6 @@ function Main(array_data) {
             data: data,
             timeout: 3000,
             success: function (returnData) {
-//                                console.log(returnData);
-//                                console.log(data);
                 $('#tableListKin').html(returnData);
             }, error: function (jqXHR, textStatus, errorThrown) {
                 console.log('error: ' + errorThrown);
@@ -408,8 +534,6 @@ function Main(array_data) {
             data: data,
             timeout: 3000,
             success: function (returnData) {
-//                                console.log(returnData);
-//                                console.log(data);
                 $('#tableListFamily').html(returnData);
             }, error: function (jqXHR, textStatus, errorThrown) {
                 console.log('error: ' + errorThrown);
@@ -425,8 +549,6 @@ function Main(array_data) {
             data: data,
             timeout: 3000,
             success: function (returnData) {
-//                                console.log(returnData);
-//                                console.log(data);
                 $('#tableListMed').html(returnData);
             }, error: function (jqXHR, textStatus, errorThrown) {
                 console.log('error: ' + errorThrown);
@@ -438,16 +560,15 @@ function Main(array_data) {
         $('#visTy').val('001');
         $('#EmTy').val('00701');
         $('#EliCat').val('003');
+        
         if ($('input[id=pit]').val() === "004") {
             $('#EliTy').val('003');
         } else if ($('input[id=pit]').val() === "005") {
             $('#EliTy').val('005');
         }
 
-        //$('#Dis').val('001');
         $('#prioGru').val('003');
-        //$('#select-1').val('Normal Queue');
-        //console.log(array_data);
+
     }
 
 }
