@@ -14,7 +14,7 @@
                 <script src="../assets/js/jquery-ui.js" type="text/javascript"></script>
 
         <script src="../PMS/libraries/lib/js/bootstrap.min.js"></script>
-        <script src="PMS/libraries/lib/datepicker/jquery-ui.js"></script>
+        <script src="../PMS/libraries/lib/datepicker/jquery-ui.js"></script>
         <script src="../PMS/libraries/lib/js/form-validator.min.js"></script>    
         <script src="../PMS/libraries/lib/js/bootbox.min.js"></script> 
         <%@include file = "../assets/header.html" %>
@@ -26,7 +26,7 @@
         <script src="../PMS/libraries/lib/js/jquery.min.js"></script>
         <script src="../PMS/libraries/lib/js/bootstrap.min.js"></script>
 <!--        <script src="libraries/lib/datepicker/jquery-ui.js"></script>-->
-        <script src="../assets/js/jquery-ui.js" type="text/javascript"></script>
+        <script src="../PMS/assets/js/jquery-ui.js" type="text/javascript"></script>
         <script src="../PMS/libraries/lib/js/form-validator.min.js"></script>    
         <script src="../PMS/libraries/lib/js/bootbox.min.js"></script>
         <script src="../PMS/libraries/lib/js/search/searchPatient.js" type="text/javascript"></script>

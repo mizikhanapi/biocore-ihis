@@ -317,6 +317,55 @@
     </servlet-mapping>
 
 
+   <!-- Mapping For ADT Hidding URL Start -->
+    
+    <!-- mapping for ADT HIS070006 -->
+    <servlet>
+        <servlet-name>Admission_List</servlet-name>
+        <jsp-file>/ADT/HIS070006.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Admission_List</servlet-name>
+        <url-pattern>/ADT/Admission_List</url-pattern>
+    </servlet-mapping>
+    <!-- mapping for ADT HIS070006 -->
+    
+      <!-- mapping for ADT HIS070007 -->
+    <servlet>
+        <servlet-name>Discharge_List</servlet-name>
+        <jsp-file>/ADT/HIS070007.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Discharge_List</servlet-name>
+        <url-pattern>/ADT/Discharge_List</url-pattern>
+    </servlet-mapping>
+    <!-- mapping for ADT HIS070007 -->
+    
+     <!-- mapping for ADT HIS070009 -->
+    <servlet>
+        <servlet-name>Summary_Of_Health_Workers_Workload</servlet-name>
+        <jsp-file>/ADT/HIS070009.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Summary_Of_Health_Workers_Workload</servlet-name>
+        <url-pattern>/ADT/Summary_Of_Health_Workers_Workload</url-pattern>
+    </servlet-mapping>
+    <!-- mapping for ADT HIS070009 -->
+    
+    
+     <!-- mapping for ADT HIS070010 -->
+    <servlet>
+        <servlet-name>List_Of_Ward_Occupancy</servlet-name>
+        <jsp-file>/ADT/HIS070010.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>List_Of_Ward_Occupancy</servlet-name>
+        <url-pattern>/ADT/List_Of_Ward_Occupancy</url-pattern>
+    </servlet-mapping>
+    <!-- mapping for ADT HIS070010 -->
+    
+<!-- Mapping For ADT Hidding URL End -->
+
     
     <session-config>
         <session-timeout>

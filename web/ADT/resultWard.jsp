@@ -40,7 +40,7 @@
 
         int age = 0;
 
-        String dob = "";
+        String status = "0";
         String dataFull = "";
         String ageS = "";
         boolean check;
@@ -64,7 +64,7 @@
                         + " left join pms_patient_biodata c on a.pmi_no = c.PMI_NO  "
                         + " left join wis_ward_class d on d.ward_class_code = a.ward_class_code "
                         + " left join adm_lookup_detail e on e.hfc_cd = a.hfc_cd  "
-                        + " where e.Master_Reference_code = '0041' and a.pmi_no='" + idInput + "' and e.hfc_cd='" + hfc + "' and a.hfc_cd='" + hfc + "' group by a.pmi_no";
+                        + " where e.Master_Reference_code = '0041' and a.inpatient_status='" + status + "' and a.pmi_no='" + idInput + "' and e.hfc_cd='" + hfc + "' and a.hfc_cd='" + hfc + "' group by a.pmi_no";
             
             } else if (idType.equals("icnew") || idType.equals("002")) {
                 searching = "select a.new_ic_no,a.old_ic_no,a.id_type,a.id_no,a.police_case,a.hfc_cd,a.pmi_no,a.episode_date,a.discipline_cd,a.subdiscipline_cd, a.ward_class_code,"
@@ -78,7 +78,7 @@
                         + " left join pms_patient_biodata c on a.pmi_no = c.PMI_NO  "
                         + " left join wis_ward_class d on d.ward_class_code = a.ward_class_code  "
                         + " left join adm_lookup_detail e on e.Detail_Reference_Code = c.SEX_CODE  "
-                        + " where a.NEW_IC_NO='" + idInput + "' and e.hfc_cd='" + hfc + "' and a.hfc_cd='" + hfc + "' group by a.pmi_no";
+                        + " where a.NEW_IC_NO='" + idInput + "' and a.inpatient_status='" + status + "' and e.hfc_cd='" + hfc + "' and a.hfc_cd='" + hfc + "' group by a.pmi_no";
              
 
             } else if (idType.equals("icold") || idType.equals("003")) {
@@ -93,7 +93,7 @@
                         + " left join pms_patient_biodata c on a.pmi_no = c.PMI_NO  "
                         + " left join wis_ward_class d on d.ward_class_code = a.ward_class_code  "
                         + " left join adm_lookup_detail e on e.Detail_Reference_Code = c.SEX_CODE  "
-                        + " where a.OLD_IC_NO='" + idInput + "' and e.hfc_cd='" + hfc + "' and a.hfc_cd='" + hfc + "' group by a.pmi_no";
+                        + " where a.OLD_IC_NO='" + idInput + "' and a.inpatient_status='" + status + "' and e.hfc_cd='" + hfc + "' and a.hfc_cd='" + hfc + "' group by a.pmi_no";
              
             } else {
                 searching = "select a.new_ic_no,a.old_ic_no,a.id_type,a.id_no,a.police_case,a.hfc_cd,a.pmi_no,a.episode_date,a.discipline_cd,a.subdiscipline_cd, a.ward_class_code,"
@@ -107,7 +107,7 @@
                         + " left join pms_patient_biodata c on a.pmi_no = c.PMI_NO  "
                         + " left join wis_ward_class d on d.ward_class_code = a.ward_class_code  "
                         + " left join adm_lookup_detail e on e.Detail_Reference_Code = c.SEX_CODE  "
-                        + " where a.ID_NO='" + idInput + "' AND a.ID_TYPE='" + idType + "' and e.hfc_cd='" + hfc + "' and a.hfc_cd='" + hfc + "' group by a.pmi_no";
+                        + " where a.ID_NO='" + idInput + "' and a.inpatient_status='" + status + "' AND a.ID_TYPE='" + idType + "' and e.hfc_cd='" + hfc + "' and a.hfc_cd='" + hfc + "' group by a.pmi_no";
              
             }
 
@@ -123,7 +123,7 @@
                     + " left join pms_patient_biodata c on a.pmi_no = c.PMI_NO  "
                     + " left join wis_ward_class d on d.ward_class_code = a.ward_class_code  "
                     + " left join adm_lookup_detail e on e.Detail_Reference_Code = c.SEX_CODE  "
-                    + " where e.Master_Reference_code = '0041' and a.ward_id ='" + idWard + "' and e.hfc_cd='" + hfc + "' and a.hfc_cd='" + hfc + "' group by a.pmi_no";
+                    + " where e.Master_Reference_code = '0041' and a.inpatient_status='" + status + "' and a.ward_id ='" + idWard + "' and e.hfc_cd='" + hfc + "'  and a.hfc_cd='" + hfc + "' group by a.pmi_no";
     
 
         }
@@ -195,6 +195,7 @@
 
 </tbody>
 </table>
+                               <script src="../assets/js/jquery-ui.js" type="text/javascript"></script>
 
 
 <script>

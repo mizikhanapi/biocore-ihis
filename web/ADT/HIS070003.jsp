@@ -116,8 +116,20 @@
 
         <script src="old/assets/datepicker/jquery-ui.js"></script>
         <script src="old/assets/js/form-validator.min.js"></script>
-        <script src="old/assets/js/bootbox.min.js"></script>
-        <script src="old/assets/js/dataTables.bootstrap.min.js"></script>
+        <script src="ReportLibraries/js/bootstrap.min.js" type="text/javascript"></script>
+        <script src="ReportLibraries/js/bootbox.min.js" type="text/javascript"></script>
+        <script src="ReportLibraries/js/jquery.dataTables.min.js"></script>
+        <script src="ReportLibraries/js/dataTables.bootstrap.min.js" type="text/javascript"></script>
+        <script src="ReportLibraries/js/dataTables.buttons.min.js" type="text/javascript"></script>
+        <script src="ReportLibraries/js/buttons.flash.min.js" type="text/javascript"></script>
+        <script src="ReportLibraries/js/jszip.min.js" type="text/javascript"></script>
+        <script src="ReportLibraries/js/pdfmake.min.js" type="text/javascript"></script>
+        <script src="ReportLibraries/js/vfs_fonts.js" type="text/javascript"></script>
+        <script src="ReportLibraries/js/buttons.html5.min.js" type="text/javascript"></script>
+        <script src="ReportLibraries/js/buttons.print.min.js" type="text/javascript"></script>
+        <script src="ReportLibraries/js/buttons.colVis.min.js" type="text/javascript"></script>
+        <script src="ReportLibraries/js/papaparse.min.js"></script>
+        <script src="ReportLibraries/js/jquery.multi-select.js" type="text/javascript"></script>
         <!-- Script Goes Here -->
     </body>
 </html>
@@ -128,4 +140,4 @@
 
 
     });
-</script
+            </script

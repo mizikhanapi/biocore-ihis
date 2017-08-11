@@ -327,10 +327,10 @@
                         success: function (databack) {
                             console.log(databack);
                             if (databack.trim() === "success") {
-                                bootbox.alert("success");
+                                bootbox.alert("Patient successfully transferred");
 
                             } else if (databack.trim() === "fail") {
-                                bootbox.alert("fail");
+                                bootbox.alert("Fail to transfer the patient");
                             }
                             $('#TransferForm')[0].reset();
                         }, error: function () {
