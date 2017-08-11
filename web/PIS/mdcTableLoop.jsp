@@ -139,7 +139,7 @@
 
 <!-- Modal Update MTC End -->
 <div class="modal fade" id="mdcUpdateModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
-    <div class="modal-dialog" style="width:70%;">
+    <div class="modal-dialog" style="width:95%;">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal"><i class="fa fa-times fa-lg"></i></button>
@@ -150,11 +150,15 @@
                 <!-- content goes here -->
                 <form class="form-horizontal" autocomplete="off">
                     <div class="row">
-                        <div class="col-md-6">
+                        
+                        
+                        <div class="col-md-4">
+
+                            <h4>HFC Information</h4>
 
                             <!-- Text input-->
                             <div class="form-group">
-                                <label class="col-md-4 control-label" for="textinput">HEALTH FACILITY CODE</label>
+                                <label class="col-md-4 control-label" for="textinput">HEALTH FACILITY CODE *</label>
                                 <div class="col-md-8">
                                     <input id="updateMDCHFC" name="textinput" type="text" class="form-control input-md" value="<%= hfc%>" readonly>
                                 </div>
@@ -162,7 +166,7 @@
 
                             <!-- Text input-->
                             <div class="form-group">
-                                <label class="col-md-4 control-label" for="textinput">DISCIPLINE CODE</label>
+                                <label class="col-md-4 control-label" for="textinput">DISCIPLINE CODE *</label>
                                 <div class="col-md-8">
                                     <input id="updateMDCDISCIPLINE" name="textinput" type="text" class="form-control input-md"  value="<%= dis%>" readonly>
                                 </div>
@@ -170,18 +174,22 @@
 
                             <!-- Text input-->
                             <div class="form-group">
-                                <label class="col-md-4 control-label" for="textinput">SUB-DISCIPLINE CODE</label>
+                                <label class="col-md-4 control-label" for="textinput">SUB-DISCIPLINE CODE *</label>
                                 <div class="col-md-8">
                                     <input id="updateMDCSUBDISCIPLINE" name="textinput" type="text" class="form-control input-md" value="<%= sub%>" readonly>
                                 </div>
                             </div>
 
-                            <h4>Drug Information</h4>
                             <hr/>
+
+
+
+
+                            <h4>Drug Information</h4>
 
                             <!-- Text input-->
                             <div class="form-group">
-                                <label class="col-md-4 control-label" for="textinput">ATC Drug Code</label>
+                                <label class="col-md-4 control-label" for="textinput">ATC Drug Code *</label>
                                 <div class="col-md-8">
                                     <input id="updateUD_ATC_CODE" name="textinput" type="text" placeholder="ATC Drug Code" class="form-control input-md" readonly>
                                 </div>
@@ -189,7 +197,7 @@
 
                             <!-- Text input-->
                             <div class="form-group">
-                                <label class="col-md-4 control-label" for="textinput">MDC Drug Code</label>
+                                <label class="col-md-4 control-label" for="textinput">MDC Drug Code *</label>
                                 <div class="col-md-8">
                                     <input id="updateUD_MDC_CODE" name="textinput" type="text" placeholder="MDC Drug Code" class="form-control input-md" readonly>
                                 </div>
@@ -198,7 +206,7 @@
 
                             <!-- Text input-->
                             <div class="form-group">
-                                <label class="col-md-4 control-label" for="textinput">Product Name</label>
+                                <label class="col-md-4 control-label" for="textinput">Product Name *</label>
                                 <div class="col-md-8">
                                     <input id="updateD_TRADE_NAME" name="textinput" type="text" placeholder="Product Name" class="form-control input-md" maxlength="200">
                                 </div>
@@ -206,18 +214,18 @@
 
                             <!-- Text input-->
                             <div class="form-group">
-                                <label class="col-md-4 control-label" for="textinput">Generic Name</label>
+                                <label class="col-md-4 control-label" for="textinput">Generic Name *</label>
                                 <div class="col-md-8">
-                                    <textarea id="updateD_GNR_NAME" class="form-control" rows="3" maxlength="500"></textarea>
+                                    <textarea id="updateD_GNR_NAME" class="form-control" rows="3" maxlength="300"></textarea>
                                 </div>
                             </div>
 
                             <!-- Select Basic -->
                             <div class="form-group">
-                                <label class="col-md-4 control-label" for="selectbasic">Drug Route</label>
+                                <label class="col-md-4 control-label" for="selectbasic">Drug Route *</label>
                                 <div class="col-md-8">
                                     <select id="updateD_ROUTE_CODE" name="selectbasic" class="form-control">
-                                        <option value="Select Drug Route">Select Drug Route</option>
+                                        <option value="-">Select Drug Route</option>
                                         <%
                                             String sql2 = "SELECT Master_Reference_code,Detail_Reference_code, Description FROM adm_lookup_detail where Master_Reference_code = '0066' AND hfc_cd = '" + hfc + "' ";
                                             ArrayList<ArrayList<String>> listOfDRoute = conn.getData(sql2);
@@ -238,10 +246,10 @@
 
                             <!-- Select Basic -->
                             <div class="form-group">
-                                <label class="col-md-4 control-label" for="selectbasic">Dosage Form</label>
+                                <label class="col-md-4 control-label" for="selectbasic">Dosage Form *</label>
                                 <div class="col-md-8">
                                     <select id="updateD_FORM_CODE" name="selectbasic" class="form-control">
-                                        <option value="Select Dosage Form">Select Dosage Form</option>
+                                        <option value="-">Select Dosage Form</option>
                                         <%
                                             String sql3 = "SELECT Master_Reference_code,Detail_Reference_code, Description FROM adm_lookup_detail where Master_Reference_code = '0067' AND hfc_cd = '" + hfc + "' ";
                                             ArrayList<ArrayList<String>> listOfDForm = conn.getData(sql3);
@@ -260,95 +268,142 @@
                                 </div>
                             </div>
 
+                        </div>
+
+
+
+
+
+                        <div class="col-md-4">
 
                             <!-- Text input-->
                             <div class="form-group">
-                                <label class="col-md-4 control-label" for="textinput">Strength</label>
+                                <label class="col-md-4 control-label" for="textinput">Strength *</label>
                                 <div class="col-md-8">
-                                    <input id="updateD_STRENGTH" name="textinput" type="text" placeholder="Strength" class="form-control input-md" maxlength="50">
+                                    <input id="updateD_STRENGTH" name="textinput" type="text" placeholder="Strength" class="form-control input-md" maxlength="20">
+                                </div>
+                            </div>
+
+
+                            <!-- Text input-->
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" for="textinput">Stock Quantity *</label>
+                                <div class="col-md-8">
+                                    <input id="updateD_STOCK_QTY" name="textinput" type="text" placeholder="Stock Qty" class="form-control input-md" maxlength="10">
+                                </div>
+                            </div>
+
+
+                            <!-- Text input-->
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" for="textinput">Minimum Quantity *</label>
+                                <div class="col-md-8">
+                                    <input id="updateD_MINIMUM_QTY" name="textinput" type="text" placeholder="Minimum Qty" class="form-control input-md" maxlength="10">
                                 </div>
                             </div>
 
                             <!-- Text input-->
                             <div class="form-group">
-                                <label class="col-md-4 control-label" for="textinput">Stock Quantity</label>
+                                <label class="col-md-4 control-label" for="textinput">Maximum Quantity *</label>
                                 <div class="col-md-8">
-                                    <input id="updateD_STOCK_QTY" name="textinput" type="number" step="0.01" placeholder="Stock Qty" class="form-control input-md" maxlength="20">
+                                    <input id="updateD_MAXIMUM_QTY" name="textinput" type="text" placeholder="Maximum Qty" class="form-control input-md" maxlength="10">
                                 </div>
                             </div>
 
                             <!-- Text input-->
                             <div class="form-group">
-                                <label class="col-md-4 control-label" for="textinput">Location Code</label>
+                                <label class="col-md-4 control-label" for="textinput">Reorder Quantity *</label>
                                 <div class="col-md-8">
-                                    <input id="updateD_LOCATION_CODE" name="textinput" type="text" placeholder="Location Code" class="form-control input-md" maxlength="4">
+                                    <input id="updateD_REORDER_QTY" name="textinput" type="text" placeholder="Reorder Qty" class="form-control input-md" maxlength="10">
                                 </div>
                             </div>
 
+                            <!-- Text input-->
                             <div class="form-group">
-                                <label class="col-md-4 control-label" for="selectbasic">Status</label>
+                                <label class="col-md-4 control-label" for="textinput">Location Code *</label>
                                 <div class="col-md-8">
-                                    <select id="updateSTATUS" name="addSTATUS" class="form-control">
-                                        <option value="No Status">No Status</option>
-                                        <option value="1">Active</option>
-                                        <option value="0">Inactive</option>   
+                                    <input id="updateD_LOCATION_CODE" name="textinput" type="text" placeholder="Location Code" class="form-control input-md" maxlength="10">
+                                </div>
+                            </div>
+
+                            <hr/>
+
+
+
+
+                            <h4>Purchase</h4>
+
+                            <!-- Select Basic -->
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" for="selectbasic">Packaging *</label>
+                                <div class="col-md-4">
+                                    <input id="updateD_PACKAGING" name="updateD_PACKAGING" type="number" placeholder="Please Insert Packaging" class="form-control input-md" maxlength="2">
+                                </div>
+                                <div class="col-md-4">
+                                    <select id="updateD_PACKAGINGT" name="updateD_PACKAGINGT" class="form-control">
+                                        <option value="-">No Packaging</option>
+                                        <%
+                                            String sql9 = "SELECT Master_Reference_code,Detail_Reference_code, Description FROM adm_lookup_detail where Master_Reference_code = '0025' AND hfc_cd = '" + hfc + "' ";
+                                            ArrayList<ArrayList<String>> listOfPack = conn.getData(sql9);
+
+                                            int size9 = listOfPack.size();
+
+                                            for (int i = 0; i < size9; i++) {
+                                        %>
+                                        <option value="<%= listOfPack.get(i).get(1)%>"><%= listOfPack.get(i).get(2)%> </option>
+                                        <%
+                                            }
+                                        %>
                                     </select>
                                 </div>
                             </div>
 
+                            <!-- Text input-->
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" for="textinput">Price per Pack *</label>
+                                <div class="col-md-8">
+                                    <input id="updateD_PRICE_PPACK" name="textinput" type="text" placeholder="Price per Pack" class="form-control input-md" maxlength="9">
+                                </div>
+                            </div>
+
+                            <!-- Text input-->
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" for="textinput">Purchase Price *</label>
+                                <div class="col-md-8">
+                                    <input id="updateD_COST_PRICE" name="textinput" type="text" placeholder="Purchase Price" class="form-control input-md" maxlength="9">
+                                </div>
+                            </div>
+
+                            <!-- Text input-->
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" for="textinput">Sell Price *</label>
+                                <div class="col-md-8">
+                                    <input id="updateD_SELL_PRICE" name="textinput" type="text" placeholder="Sell Price" class="form-control input-md" maxlength="9">
+                                </div>
+                            </div>
 
                         </div>
 
 
-                        <div class="col-md-6">
 
-                            <h4>Purchase</h4>
-                            <hr/>
 
-                            <!-- Text input-->
-                            <div class="form-group">
-                                <label class="col-md-4 control-label" for="textinput">Packaging</label>
-                                <div class="col-md-8">
-                                    <input id="updateD_PACKAGING" name="textinput" type="text" placeholder="Packaging" class="form-control input-md" maxlength="60">
-                                </div>
-                            </div>
 
-                            <!-- Text input-->
-                            <div class="form-group">
-                                <label class="col-md-4 control-label" for="textinput">Price per Pack</label>
-                                <div class="col-md-8">
-                                    <input id="updateD_PRICE_PPACK" name="textinput" type="text" placeholder="Price per Pack" class="form-control input-md" maxlength="20">
-                                </div>
-                            </div>
 
-                            <!-- Text input-->
-                            <div class="form-group">
-                                <label class="col-md-4 control-label" for="textinput">Purchase Price</label>
-                                <div class="col-md-8">
-                                    <input id="updateD_COST_PRICE" name="textinput" type="text" placeholder="Purchase Price" class="form-control input-md" maxlength="20">
-                                </div>
-                            </div>
 
-                            <!-- Text input-->
-                            <div class="form-group">
-                                <label class="col-md-4 control-label" for="textinput">Sell Price</label>
-                                <div class="col-md-8">
-                                    <input id="updateD_SELL_PRICE" name="textinput" type="text" placeholder="Sell Price" class="form-control input-md" maxlength="20">
-                                </div>
-                            </div>
 
+                        <div class="col-md-4">
 
                             <h4>Label Information</h4>
-                            <hr/>
+
                             <!-- Select Basic -->
                             <div class="form-group">
-                                <label class="col-md-4 control-label" for="selectbasic">Dose</label>
+                                <label class="col-md-4 control-label" for="selectbasic">Dose *</label>
                                 <div class="col-md-4">
-                                    <input id="updateD_QTY" name="textinput" type="text" class="form-control input-md" step="0.01" maxlength="20">
+                                    <input id="updateD_QTY" name="textinput" type="text" class="form-control input-md" maxlength="2">
                                 </div>
                                 <div class="col-md-4">
                                     <select id="updateD_QTYT" name="addD_QTYT" class="form-control">
-                                        <option value="No Dose">No Dose</option>
+                                        <option value="-">No Dose</option>
                                         <%
                                             String sql4 = "SELECT Master_Reference_code,Detail_Reference_code, Description FROM adm_lookup_detail where Master_Reference_code = '0025' AND hfc_cd = '" + hfc + "' ";
                                             ArrayList<ArrayList<String>> listOfDUOM = conn.getData(sql4);
@@ -369,10 +424,10 @@
 
                             <!-- Select Basic -->
                             <div class="form-group">
-                                <label class="col-md-4 control-label" for="selectbasic">Frequency</label>
+                                <label class="col-md-4 control-label" for="selectbasic">Frequency *</label>
                                 <div class="col-md-8">
                                     <select id="updateD_FREQUENCY" name="addD_FREQUENCY" class="form-control">
-                                        <option value="No Frequency">No Frequency</option>
+                                        <option value="-">No Frequency</option>
                                         <%
                                             String sql5 = "SELECT Master_Reference_code,Detail_Reference_code, Description FROM adm_lookup_detail where Master_Reference_code = '0088' AND hfc_cd = '" + hfc + "' ";
                                             ArrayList<ArrayList<String>> listOfDFreq = conn.getData(sql5);
@@ -393,13 +448,13 @@
 
                             <!-- Select Basic -->
                             <div class="form-group">
-                                <label class="col-md-4 control-label" for="selectbasic">Duration</label>
+                                <label class="col-md-4 control-label" for="selectbasic">Duration *</label>
                                 <div class="col-md-4">
-                                    <input id="updateD_DURATION" name="textinput" type="number" class="form-control input-md" step="0.01" maxlength="60">
+                                    <input id="updateD_DURATION" name="textinput" type="text" class="form-control input-md" maxlength="2">
                                 </div>
                                 <div class="col-md-4">
                                     <select id="updateD_DURATIONT" name="addD_DURATIONT" class="form-control">
-                                        <option value="No Duration">No Duration</option>
+                                        <option value="-">No Duration</option>
                                         <%
                                             String sql6 = "SELECT Master_Reference_code,Detail_Reference_code, Description FROM adm_lookup_detail where Master_Reference_code = '0089' AND hfc_cd = '" + hfc + "' ";
                                             ArrayList<ArrayList<String>> listOfDDura = conn.getData(sql6);
@@ -420,10 +475,10 @@
 
                             <!-- Select Basic -->
                             <div class="form-group">
-                                <label class="col-md-4 control-label" for="selectbasic">Instruction</label>
+                                <label class="col-md-4 control-label" for="selectbasic">Instruction *</label>
                                 <div class="col-md-8">
                                     <select id="updateD_ADVISORY_CODE" name="addD_ADVISORY_CODE" class="form-control">
-                                        <option value="No Instruction">No Instruction</option>
+                                        <option value="-">No Instruction</option>
                                         <%
                                             String sql7 = "SELECT Master_Reference_code,Detail_Reference_code, Description FROM adm_lookup_detail where Master_Reference_code = '0087' AND hfc_cd = '" + hfc + "' ";
                                             ArrayList<ArrayList<String>> listOfDInst = conn.getData(sql7);
@@ -444,15 +499,15 @@
 
                             <!-- Text input-->
                             <div class="form-group">
-                                <label class="col-md-4 control-label" for="textinput">Cautionary</label>
+                                <label class="col-md-4 control-label" for="textinput">Cautionary *</label>
                                 <div class="col-md-8">
-                                    <textarea id="updateD_CAUTIONARY_CODE" class="form-control" rows="3" placeholder="Drug Cautionary" maxlength="150"></textarea>
+                                    <textarea id="updateD_CAUTIONARY_CODE" class="form-control" rows="3" placeholder="Drug Cautionary" maxlength="100"></textarea>
                                 </div>
                             </div>
 
                             <!-- Text input-->
                             <div class="form-group">
-                                <label class="col-md-4 control-label" for="textinput">Expire Date</label>
+                                <label class="col-md-4 control-label" for="textinput">Expire Date *</label>
                                 <div class="col-md-8">
                                     <input id="updateD_EXP_DATE" name="updateD_EXP_DATE" type="text" class="form-control input-md" readonly>
                                 </div>
@@ -460,10 +515,10 @@
 
                             <!-- Select Basic -->
                             <div class="form-group">
-                                <label class="col-md-4 control-label" for="selectbasic">Classification</label>
+                                <label class="col-md-4 control-label" for="selectbasic">Classification *</label>
                                 <div class="col-md-8">
                                     <select id="updateD_CLASSIFICATION" name="updateD_CLASSIFICATION" class="form-control">
-                                        <option value="No Classification">No Classification</option>
+                                        <option value="-">No Classification</option>
                                         <%
                                             String sql8 = "SELECT Master_Reference_code,Detail_Reference_code, Description FROM adm_lookup_detail where Master_Reference_code = '0091' AND hfc_cd = '" + hfc + "' ";
                                             ArrayList<ArrayList<String>> listOfDClass = conn.getData(sql8);
@@ -481,6 +536,21 @@
                                     </select>
                                 </div>
                             </div>
+
+
+                            <!-- Text input-->
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" for="selectbasic">Status *</label>
+                                <div class="col-md-8">
+                                    <select id="updateSTATUS" name="addSTATUS" class="form-control">
+                                        <option value="-" disabled>No Status</option>
+                                        <option value="1">Active</option>
+                                        <option value="0">Inactive</option>   
+                                    </select>
+                                </div>
+                            </div>
+
+                            <hr/>
 
 
                         </div>
