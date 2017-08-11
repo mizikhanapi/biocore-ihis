@@ -623,7 +623,7 @@
                     };
 
                     $.ajax({
-                        url: "mdcDelete.jsp",
+                        url: "controllerProcess/mdcDelete.jsp",
                         type: "post",
                         data: data,
                         timeout: 10000, // 10 seconds
@@ -646,7 +646,7 @@
 
                         },
                         error: function (err) {
-                            alert("Error! Deletion Ajax failed!!");
+                            alert("Error! Deletion Ajax Failed!!");
                         }
 
                     });

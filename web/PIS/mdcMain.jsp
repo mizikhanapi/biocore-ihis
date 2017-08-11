@@ -570,12 +570,14 @@
 
         // Reset Function Start
         function reset() {
-            
+
             console.log("In reset");
-            
+
             document.getElementById("addUD_MDC_CODE").value = "";
+            
             document.getElementById("addUD_ATC_CODE").value = "";
-            document.getElementById("addUD_ATC_CODESearch").value = "";
+            $('#addUD_ATC_CODESearch').text('');
+            
             document.getElementById("addD_TRADE_NAME").value = "";
             document.getElementById("addD_GNR_NAME").value = "";
             document.getElementById("addD_ROUTE_CODE").value = "-";
@@ -602,7 +604,7 @@
             document.getElementById("addD_CAUTIONARY_CODE").value = "";
             document.getElementById("addD_EXP_DATE").value = "";
             document.getElementById("addD_CLASSIFICATION").value = "-";
-            
+
         }
         // Reset Function End
 
@@ -623,7 +625,7 @@
                 var dataFields = {input: input}; // We pass input argument in Ajax
                 $.ajax({
                     type: "POST",
-                    url: "mdcSearchATC.jsp", // call the php file ajax/tuto-autocomplete.php
+                    url: "controllerSearch/mdcSearchATC.jsp", // call the php file ajax/tuto-autocomplete.php
                     data: dataFields, // Send dataFields var
                     timeout: 3000,
                     success: function (dataBack) { // If success
@@ -654,6 +656,7 @@
         $('#addMDCButton').on('click', function () {
 
             console.log("In add");
+            
             var UD_MDC_CODECheck = document.getElementById("addUD_MDC_CODE");
             var UD_ATC_CODECheck = document.getElementById("addUD_ATC_CODE");
             var D_TRADE_NAMECheck = document.getElementById("addD_TRADE_NAME");
