@@ -12,30 +12,29 @@
     Config.getFile_url(session);
 
     Conn conn = new Conn();
-    String startDate, endDate, hfc, dis, patientTypeName, query = "", displayFormatEndDate="",displayFormatStartDate="",patientType="";
+    String startDate, endDate, hfc,patientTypeName="",displayFormatEndDate="",displayFormatStartDate="",patientType="",query = "";
     String Reply = "";
 
     startDate = request.getParameter("startDate").toString();
     endDate = request.getParameter("endDate").toString();
     hfc = request.getParameter("hfc").toString();
-    dis = request.getParameter("dis").toString();
     patientTypeName = request.getParameter("patientType").toString(); //either Staff OR Student (0 for staff,1 for student)
-//    startDate = "2017-01-01";
-//    endDate = "2017-08-28";
+
+//    startDate = "2017-01-26";
+//    endDate = "2017-06-28";
 //    hfc = "04010101";
-//    dis = "001";
-//    patientType = "1";
 
     if(patientTypeName.equalsIgnoreCase("staff")) {
         patientType = "0";
     } else if (patientTypeName.equalsIgnoreCase("student")) {
         patientType = "1";
     }
-
+    
     if (!startDate.equals("") && !endDate.equals("") && !hfc.equals("")) {
 
         query = "SELECT"
-                + " CASE WHEN age >=0 AND age <=14 THEN '1-15'"
+                + " CASE"
+                + " WHEN age >=0 AND age <=14 THEN '1-15'"
                 + " WHEN age >=15 AND age <=19 THEN '15-19'"
                 + " WHEN age >=20 AND age <=24 THEN '20-24'"
                 + " WHEN age >=25 AND age <=29 THEN '25-29'"
@@ -47,24 +46,20 @@
                 + " WHEN age >=55 AND age <=59 THEN '55-49'"
                 + " WHEN age >=60 AND age <=64 THEN '60-64'"
                 + " WHEN age >=65 AND age <=69 THEN '65-69'"
-                + " WHEN age >=70 THEN '70+'"
-                + " END AS ageband, months, COUNT(*)"
-                + " FROM("
-                + " Select distinct"
-                + " e.`EPISODE_DATE`,b.`BIRTH_DATE`,"
+                + " WHEN age >=70 THEN '70+' END AS ageband, months,"
+                + " COUNT(*) FROM("
+                + " Select distinct ml.episode_date ,b.`BIRTH_DATE`,"
                 + " DATE_FORMAT(NOW(), '%Y') - DATE_FORMAT(b.`BIRTH_DATE`, '%Y') - (DATE_FORMAT(NOW(), '00-%m-%d') < DATE_FORMAT(b.`BIRTH_DATE`, '00-%m-%d')) AS age,"
-                + " MONTHNAME(e.`EPISODE_DATE`) as months"
-                + " FROM pms_episode e INNER JOIN pms_patient_biodata b"
-                + " ON e.`PMI_NO` = b.`PMI_NO`"
+                + " MONTHNAME(ml.episode_date) as months"
+                + " FROM lhr_med_leave ml INNER JOIN pms_patient_biodata b"
+                + " ON ml.pmi_no = b.`PMI_NO`"
                 + " INNER JOIN special_integration_information si"
-                + " ON  si.`PERSON_ID_NO` = b.`ID_NO`"
+                + " ON si.`PERSON_ID_NO` = b.`ID_NO`"
                 + " AND si.`NATIONAL_ID_NO` = b.`NEW_IC_NO`"
-                + " WHERE e.`HEALTH_FACILITY_CODE` = '"+hfc+"'  AND e.`DISCIPLINE_CODE` = '"+dis+"'"
-                + " AND DATE_FORMAT(NOW(), '%Y') - DATE_FORMAT(b.`BIRTH_DATE`, '%Y') - (DATE_FORMAT(NOW(),"
-                + " '00-%m-%d') < DATE_FORMAT(b.`BIRTH_DATE`, '00-%m-%d')) IS NOT NULL"
-                + " AND cast(e.`EPISODE_DATE` as date) BETWEEN '"+startDate+"' AND '"+endDate+"'"
-                + " AND si.`PERSON_TYPE` = '"+patientType+"') as tbl"
-                + " GROUP BY ageband , months;";
+                + " WHERE ml.hfc_cd = '"+hfc+"' "
+                + " AND DATE_FORMAT(NOW(), '%Y') - DATE_FORMAT(b.`BIRTH_DATE`, '%Y') - (DATE_FORMAT(NOW(), '00-%m-%d') < DATE_FORMAT(b.`BIRTH_DATE`, '00-%m-%d')) IS NOT NULL"
+                + " AND cast(ml.episode_date  as date) BETWEEN '"+startDate+"' AND '"+endDate+"'"
+                + " AND si.`PERSON_TYPE` = '"+patientType+"') as tbl GROUP BY ageband , months;";
 
 //    out.print("Replay : " + hfc + " - " + startDate + " - " + endDate + " + " + query +"<br>");
         ArrayList<ArrayList<String>> medicalCertificateInfoGraph = conn.getData(query);
@@ -78,14 +73,12 @@
                     Reply += "^";
                 }
             }
-            
             SimpleDateFormat parseDate = new java.text.SimpleDateFormat("yyyy-MM-dd");
             SimpleDateFormat formatDate = new SimpleDateFormat("dd/MM/yyyy");
             Date date = (Date) parseDate.parse(startDate);
             displayFormatStartDate = formatDate.format(date);
             date = (Date) parseDate.parse(endDate);
             displayFormatEndDate = formatDate.format(date);
-            
         } else {
 
             Reply = "No Data";
@@ -97,7 +90,6 @@
 
 
 %>
-
 
 <div style="width: 100%; height: 400px">
     <div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>

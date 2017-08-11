@@ -12,7 +12,7 @@
 <%
     RMIConnector rmic = new RMIConnector();
     Conn conn = new Conn();
-
+    String createdBy = session.getAttribute("USER_ID").toString();
     String KINpmino, KINidtype, KINdob, KINphone, KINemail, KINname, KINoldic, KINidnumber, KINoccu, sql,sqlCheck, KINhomephone, KINaddress,KINdistrict,KINpostcode,KINcountry,KINtown,KINstate,KINseq,KINrelationship,KINnewic;
     KINpmino = request.getParameter("KINpmino");
     KINidtype = request.getParameter("KINidtype");
@@ -51,7 +51,7 @@
         g[0] = formatted;
     }
     String newSeq = "NOKS" + g[0];
-    String sql2 = "INSERT INTO pms_nextofkin (PMI_NO, NEXTOFKIN_SEQ_NO, NEXTOFKIN_RELATIONSHIP_CODE, NEXTOFKIN_NAME, NEW_IC_NO, OLD_IC_NO, ID_TYPE, ID_NO, BIRTH_DATE, OCCUPATION_CODE, ADDRESS, DISTRICT_CODE, TOWN_CODE, POSTCODE, STATE_CODE, COUNTRY_CODE, MOBILE_PHONE, HOME_PHONE, E_MAIL) VALUES ('" + KINpmino + "','" + newSeq + "','" + KINrelationship + "','" + KINname + "','" + KINnewic + "','" + KINoldic + "','" + KINidtype + "','" + KINidnumber + "','" + KINdob + "','" + KINoccu + "','" + KINaddress + "','" + KINdistrict + "','" + KINtown + "','" + KINpostcode + "','" + KINstate + "','" + KINcountry + "','" + KINphone + "','" + KINhomephone + "','" + KINemail + "')";
+    String sql2 = "INSERT INTO pms_nextofkin (PMI_NO, NEXTOFKIN_SEQ_NO, NEXTOFKIN_RELATIONSHIP_CODE, NEXTOFKIN_NAME, NEW_IC_NO, OLD_IC_NO, ID_TYPE, ID_NO, BIRTH_DATE, OCCUPATION_CODE, ADDRESS, DISTRICT_CODE, TOWN_CODE, POSTCODE, STATE_CODE, COUNTRY_CODE, MOBILE_PHONE, HOME_PHONE, E_MAIL,created_by,created_date) VALUES ('" + KINpmino + "','" + newSeq + "','" + KINrelationship + "','" + KINname + "','" + KINnewic + "','" + KINoldic + "','" + KINidtype + "','" + KINidnumber + "','" + KINdob + "','" + KINoccu + "','" + KINaddress + "','" + KINdistrict + "','" + KINtown + "','" + KINpostcode + "','" + KINstate + "','" + KINcountry + "','" + KINphone + "','" + KINhomephone + "','" + KINemail + "','"+createdBy+"',now())";
     String sql3 = "INSERT INTO autogenerate_noksno (NEXTOFKIN_SEQ_NO) VALUES ('" + newSeq + "')";
 
     if (Checkseq.size() > 0) {

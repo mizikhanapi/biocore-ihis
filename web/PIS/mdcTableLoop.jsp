@@ -22,11 +22,14 @@
     <th style="text-align: center;">ATC CODE</th>
     <th style="text-align: center;">TRADE NAME</th>
     <th style="text-align: center;">GNR NAME</th>
-    <th style="display: none">ROUTE_CODE</th>
+    <th style="display: none">ROUTE CODE</th>
     <th style="display: none">FORM CODE</th>
     <th style="text-align: center;">STRENGTH</th>
-    <th style="display: none">ADVISE</th>
+    <th style="display: none">ADVISORY CODE</th>
     <th style="text-align: center;">STOCK QTY</th>
+    <th style="display: none">MINIMUM QTY</th>
+    <th style="display: none">MAXIMUM QTY</th>
+    <th style="display: none">REORDER QTY</th>
     <th style="display: none">DOSE QTY</th>
     <th style="display: none">DOSE TYPE</th>
     <th style="display: none">DURATION</th>
@@ -45,72 +48,87 @@
     <th style="display: none">HFC</th>
     <th style="display: none">DISCIPLINE</th>
     <th style="display: none">SUB-DISCIPLINE</th>
+
     <th style="text-align: center;">Update</th>
     <th style="text-align: center;">Delete</th>
 </thead>
 <tbody>
 
     <%
-        //                              0         1           2           3           4           5           6           7           
-        String sqlMain = " SELECT UD_MDC_CODE,UD_ATC_CODE,D_TRADE_NAME,D_GNR_NAME,D_ROUTE_CODE,D_FORM_CODE,D_STRENGTH,D_ADVISORY_CODE,"
-                //      8       9       10      11      12          13          14          15          16              17          18          
-                + "D_STOCK_QTY,D_QTY,D_QTYT,D_DURATION,D_DURATIONT,D_FREQUENCY,D_CAUTION_CODE,D_EXP_DATE,D_CLASSIFICATION,STATUS,D_LOCATION_CODE,"
-                //      19          20          21              22          23        24        25              26
-                + "D_SELL_PRICE,D_COST_PRICE,D_PACKAGING,D_PACKAGINGT,D_PRICE_PPACK,hfc_cd,discipline_cd,subdiscipline_cd "
-                + "FROM pis_mdc2 WHERE hfc_cd  = '" + hfc + "' AND discipline_cd  = '" + dis + "' ";
+        //                              0         1           2           3           4           5           6           7                 8            9
+        String sqlMain = " SELECT ud_mdc_code,ud_atc_code,d_trade_name,d_gnr_name,d_route_code,d_form_code,d_strength,d_advisory_code,d_stock_qty,d_minimum_stock_level,"
+                //
+                //          10                      11          12     13        14         15          16            17                    18                   
+                + "d_maximum_stock_level,d_reorder_stock_level,d_qty,d_qtyt,d_duration,d_durationt,d_frequency,d_caution_code,DATE_FORMAT(DATE(d_exp_date),'%d/%m/%Y'),"
+                //
+                //          19        20         21             22          23            24          25            26        27          28            29
+                + "d_classification,status,d_location_code,d_sell_price,d_cost_price,d_packaging,d_packagingt,d_price_ppack,hfc_cd,discipline_cd,subdiscipline_cd "
+                //
+                // Where Condition
+                + "FROM pis_mdc2 WHERE hfc_cd  = '" + hfc + "' AND discipline_cd  = '" + dis + "'; ";
+
         ArrayList<ArrayList<String>> dataMTC = conn.getData(sqlMain);
 
         int sizeMain = dataMTC.size();
         for (int s = 0; s < sizeMain; s++) {
+
     %>
-    <%
-        if (Integer.parseInt(dataMTC.get(s).get(8)) < 30) {    %>
-    <tr style="font-weight:bolder;text-align: center;" >
-        <% } else if (Integer.parseInt(dataMTC.get(s).get(8)) < 100) {   %>
-    <tr style="font-weight:bolder;text-align: center;">
-        <% } else {   %>
+
     <tr style="text-align: center;">
-        <%   }%>
 
 <input id="dataMDChidden" type="hidden" value="<%=String.join("|", dataMTC.get(s))%>">
-<td><%= dataMTC.get(s).get(0)%></td>
-<td><%= dataMTC.get(s).get(1)%></td>
-<td><%= dataMTC.get(s).get(2)%></td>
-<td><%= dataMTC.get(s).get(3)%></td>
-<td style="display: none"><%= dataMTC.get(s).get(4)%></td>
-<td style="display: none"><%= dataMTC.get(s).get(5)%></td>
-<td><%= dataMTC.get(s).get(6)%></td>
-<td style="display: none"><%= dataMTC.get(s).get(7)%></td>
-<td><%= dataMTC.get(s).get(8)%></td>
-<td style="display: none"><%= dataMTC.get(s).get(9)%></td>
-<td style="display: none"><%= dataMTC.get(s).get(10)%></td>
-<td style="display: none"><%= dataMTC.get(s).get(11)%></td>
-<td style="display: none"><%= dataMTC.get(s).get(12)%></td>
-<td style="display: none"><%= dataMTC.get(s).get(13)%></td>
-<td style="display: none"><%= dataMTC.get(s).get(14)%></td>
-<td ><%= dataMTC.get(s).get(15)%></td>
-<td style="display: none"><%= dataMTC.get(s).get(16)%></td>
-<td style="display: none"><%= dataMTC.get(s).get(17)%></td>
-<td style="display: none"><%= dataMTC.get(s).get(18)%></td>
-<td ><%= dataMTC.get(s).get(19)%></td>
-<td style="display: none"><%= dataMTC.get(s).get(20)%></td>
-<td style="display: none"><%= dataMTC.get(s).get(21)%></td>
-<td style="display: none"><%= dataMTC.get(s).get(22)%></td>
-<td style="display: none"><%= dataMTC.get(s).get(23)%></td>
-<td style="display: none"><%= dataMTC.get(s).get(24)%></td>
-<td style="display: none"><%= dataMTC.get(s).get(25)%></td>
-<td style="display: none"><%= dataMTC.get(s).get(26)%></td>
+
+<td><%= dataMTC.get(s).get(0)%></td>                                            <!-- MDC Code -->
+<td><%= dataMTC.get(s).get(1)%></td>                                            <!-- ATC Code -->
+<td><%= dataMTC.get(s).get(2)%></td>                                            <!-- Trade Name -->
+<td><%= dataMTC.get(s).get(3)%></td>                                            <!-- Generic Name -->
+<td style="display: none"><%= dataMTC.get(s).get(4)%></td>                      <!-- Route Code -->
+<td style="display: none"><%= dataMTC.get(s).get(5)%></td>                      <!-- Form Code -->
+<td><%= dataMTC.get(s).get(6)%></td>                                            <!-- Strength -->
+<td style="display: none"><%= dataMTC.get(s).get(7)%></td>                      <!-- Advisory Code -->
+<td><%= dataMTC.get(s).get(8)%></td>                                            <!-- Stock Qty -->
+<td style="display: none"><%= dataMTC.get(s).get(9)%></td>                      <!-- Minimum Qty -->
+<td style="display: none"><%= dataMTC.get(s).get(10)%></td>                     <!-- Maximum Qty -->
+<td style="display: none"><%= dataMTC.get(s).get(11)%></td>                     <!-- Reorder Qty -->
+<td style="display: none"><%= dataMTC.get(s).get(12)%></td>                     <!-- Dose Qty -->
+<td style="display: none"><%= dataMTC.get(s).get(13)%></td>                     <!-- Dose T -->
+<td style="display: none"><%= dataMTC.get(s).get(14)%></td>                     <!-- Duration Qty -->
+<td style="display: none"><%= dataMTC.get(s).get(15)%></td>                     <!-- Duration T -->
+<td style="display: none"><%= dataMTC.get(s).get(16)%></td>                     <!-- Frequency -->
+<td style="display: none"><%= dataMTC.get(s).get(17)%></td>                     <!-- Caution -->
+<td ><%= dataMTC.get(s).get(18)%></td>                                          <!-- EXP Date -->
+<td style="display: none"><%= dataMTC.get(s).get(19)%></td>                     <!-- Classiffication -->
+<td style="display: none"><%= dataMTC.get(s).get(20)%></td>                     <!-- Status -->
+<td style="display: none"><%= dataMTC.get(s).get(21)%></td>                     <!-- Location -->
+<td ><%= dataMTC.get(s).get(22)%></td>                     <!-- Sell Price -->
+<td style="display: none"><%= dataMTC.get(s).get(23)%></td>                     <!-- Cost Price -->
+<td style="display: none"><%= dataMTC.get(s).get(24)%></td>                     <!-- Packaging -->
+<td style="display: none"><%= dataMTC.get(s).get(25)%></td>                     <!-- Packaging T -->
+<td style="display: none"><%= dataMTC.get(s).get(26)%></td>                     <!-- Package Per Price -->
+<td style="display: none"><%= dataMTC.get(s).get(27)%></td>                     <!-- HFC -->
+<td style="display: none"><%= dataMTC.get(s).get(28)%></td>                     <!-- Discipline -->
+<td style="display: none"><%= dataMTC.get(s).get(29)%></td>                     <!-- Sub Discipline -->
+
+
+<!-- Button Part Start -->
 <td>
     <!-- Update Button Start -->
-    <a id="mdcUpdateTButton" data-toggle="modal" data-target="#mdcUpdateModal"><i class="fa fa-pencil-square-o" aria-hidden="true" style="display: inline-block;color: #337ab7;"></i></a>
+    <a id="mdcUpdateTButton" data-toggle="modal" data-target="#mdcUpdateModal">
+        <i class="fa fa-pencil-square-o" aria-hidden="true" style="display: inline-block;color: #337ab7;"></i>
+    </a>
     <!-- Update Button End -->
 </td>
 <td>
     <!-- Delete Button Start -->
-    <a id="mdcDeleteTButton" class="testing"><i class="fa fa-times" aria-hidden="true" style="display: inline-block;color: #d9534f;" ></i></a>
+    <a id="mdcDeleteTButton" class="testing">
+        <i class="fa fa-times" aria-hidden="true" style="display: inline-block;color: #d9534f;" ></i>
+    </a>
     <!-- Delete Button End -->
 </td>
+<!-- Button Part End -->
+
 </tr>
+
 <%
     }
 %>

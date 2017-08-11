@@ -202,8 +202,6 @@
                                             <ul class="list-group">
                                                 <li class="list-group-item"><a href="UTeMAttendanceListReport.jsp">Patient Attendance List</a></li>
                                                 <li class="list-group-item"><a href="UTeMMedicalCertificateReport.jsp">Medical Certificate List</a></li>
-                                                <li class="list-group-item"><a href="">Insert Report Menu</a></li>
-                                                <li class="list-group-item"><a href="">Insert Report Menu</a></li>
                                             </ul>
                                         </div>
                                         <!-- Default panel contents -->
@@ -241,63 +239,63 @@
                                         <!-- Default panel contents -->
 
                                         <!-- Default panel contents -->
-                                        <div class="panel-heading">
+<!--                                        <div class="panel-heading">
                                             <a data-toggle="collapse" data-parent="#accordion" href="#LABORATORY">LABORATORY INFO SYSTEM</a>
                                             <span class="pull-right panel-collapse-clickable" data-toggle="collapse" data-parent="#accordion" href="#LABORATORY">
                                                 <i class="glyphicon glyphicon-chevron-down"></i>
                                             </span>
                                         </div>
-                                        <!-- List group -->
+                                         List group 
                                         <div id="LABORATORY" class="panel-collapse panel-collapse collapse">
                                             <ul class="list-group">
                                                 <li class="list-group-item"><a href="">Insert Report Menu</a></li>
                                             </ul>
-                                        </div>
+                                        </div>-->
                                         <!-- Default panel contents -->
 
                                         <!-- Default panel contents -->
-                                        <div class="panel-heading">
+<!--                                        <div class="panel-heading">
                                             <a data-toggle="collapse" data-parent="#accordion" href="#INPATIENT">INPATIENT MANAGEMENT</a>
                                             <span class="pull-right panel-collapse-clickable" data-toggle="collapse" data-parent="#accordion" href="#INPATIENT">
                                                 <i class="glyphicon glyphicon-chevron-down"></i>
                                             </span>
                                         </div>
-                                        <!-- List group -->
+                                         List group 
                                         <div id="INPATIENT" class="panel-collapse panel-collapse collapse">
                                             <ul class="list-group">
                                                 <li class="list-group-item"><a href="">Insert Report Menu</a></li>
                                             </ul>
-                                        </div>
+                                        </div>-->
                                         <!-- Default panel contents -->
 
                                         <!-- Default panel contents -->
-                                        <div class="panel-heading">
+<!--                                        <div class="panel-heading">
                                             <a data-toggle="collapse" data-parent="#accordion" href="#BILLING">BILLING SYSTEM</a>
                                             <span class="pull-right panel-collapse-clickable" data-toggle="collapse" data-parent="#accordion" href="#BILLING">
                                                 <i class="glyphicon glyphicon-chevron-down"></i>
                                             </span>
                                         </div>
-                                        <!-- List group -->
+                                         List group 
                                         <div id="BILLING" class="panel-collapse panel-collapse collapse">
                                             <ul class="list-group">
                                                 <li class="list-group-item"><a href="">Insert Report Menu</a></li>
                                             </ul>
-                                        </div>
+                                        </div>-->
                                         <!-- Default panel contents -->
 
                                         <!-- Default panel contents -->
-                                        <div class="panel-heading">
+<!--                                        <div class="panel-heading">
                                             <a data-toggle="collapse" data-parent="#accordion" href="#APPOINTMENT">PATIENT APPOINTMENT</a>
                                             <span class="pull-right panel-collapse-clickable" data-toggle="collapse" data-parent="#accordion" href="#APPOINTMENT">
                                                 <i class="glyphicon glyphicon-chevron-down"></i>
                                             </span>
                                         </div>
-                                        <!-- List group -->
+                                         List group 
                                         <div id="APPOINTMENT" class="panel-collapse panel-collapse collapse">
                                             <ul class="list-group">
                                                 <li class="list-group-item"><a href="">Insert Report Menu</a></li>
                                             </ul>
-                                        </div>
+                                        </div>-->
                                         <!-- Default panel contents -->
 
                                         <!-- Default panel contents -->
@@ -320,33 +318,33 @@
                                         <!-- Default panel contents -->
 
                                         <!-- Default panel contents -->
-                                        <div class="panel-heading">
+<!--                                        <div class="panel-heading">
                                             <a data-toggle="collapse" data-parent="#accordion" href="#KIOSK">KIOSK</a>
                                             <span class="pull-right panel-collapse-clickable" data-toggle="collapse" data-parent="#accordion" href="#KIOSK">
                                                 <i class="glyphicon glyphicon-chevron-down"></i>
                                             </span>
                                         </div>
-                                        <!-- List group -->
+                                         List group 
                                         <div id="KIOSK" class="panel-collapse panel-collapse collapse">
                                             <ul class="list-group">
                                                 <li class="list-group-item"><a href="">Insert Report Menu</a></li>
                                             </ul>
-                                        </div>
+                                        </div>-->
                                         <!-- Default panel contents -->
 
                                         <!-- Default panel contents -->
-                                        <div class="panel-heading">
+<!--                                        <div class="panel-heading">
                                             <a data-toggle="collapse" data-parent="#accordion" href="#RADIOLOGY">RADIOLOGY INFO SYSTEM</a>
                                             <span class="pull-right panel-collapse-clickable" data-toggle="collapse" data-parent="#accordion" href="#RADIOLOGY">
                                                 <i class="glyphicon glyphicon-chevron-down"></i>
                                             </span>
                                         </div>
-                                        <!-- List group -->
+                                         List group 
                                         <div id="RADIOLOGY" class="panel-collapse panel-collapse collapse">
                                             <ul class="list-group">
                                                 <li class="list-group-item"><a href="">Insert Report Menu</a></li>
                                             </ul>
-                                        </div>
+                                        </div>-->
                                         <!-- Default panel contents -->
                                     </div>
                                 </div>

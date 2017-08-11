@@ -13,7 +13,7 @@
 <%
     RMIConnector rmic = new RMIConnector();
     Conn conn = new Conn();
-
+    String createdBy = session.getAttribute("USER_ID").toString();
     String FAMpmino, FAMrelay, FAMfamilypmino, FAMname, FAMoccu,FAMseq,sql,sqlCheck;
     FAMpmino = request.getParameter("pmino");
     FAMrelay = request.getParameter("relay");
@@ -39,7 +39,7 @@
         g[0] = formatted;
     }
     String newSeq = "FS" + g[0];
-    String sql2 = "INSERT INTO pms_family (PMI_NO, FAMILY_SEQ_NO, FAMILY_RELATIONSHIP_CODE, PMI_NO_FAMILY, FAMILY_MEMBER_NAME, OCCUPATION_CODE) VALUES ('" + FAMpmino + "','" + newSeq + "','" + FAMrelay + "','" + FAMfamilypmino + "','" + FAMname + "','" + FAMoccu + "')";
+    String sql2 = "INSERT INTO pms_family (PMI_NO, FAMILY_SEQ_NO, FAMILY_RELATIONSHIP_CODE, PMI_NO_FAMILY, FAMILY_MEMBER_NAME, OCCUPATION_CODE,created_by,created_date) VALUES ('" + FAMpmino + "','" + newSeq + "','" + FAMrelay + "','" + FAMfamilypmino + "','" + FAMname + "','" + FAMoccu + "','"+createdBy+"',now()";
     String sql3 = "INSERT INTO AUTOGENERATE_FSNO (FAMILY_SEQ_NO) VALUES ('" + newSeq + "')";
 
     if (Checkseq.size() > 0) {

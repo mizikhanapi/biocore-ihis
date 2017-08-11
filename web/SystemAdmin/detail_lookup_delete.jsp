@@ -26,15 +26,27 @@
    
     String sqlSelect = "select detail_reference_code, description from adm_lookup_detail a "
             + "join adm_health_facility b on a.Detail_Reference_code = b.district_cd or a.detail_reference_code = b.town_cd or a.detail_reference_code = b.state_cd "
-            + "WHERE detail_reference_code = '"+detailCode+"' AND hfc_cd = '"+hfc_cd+"'  limit 1";
+            + "WHERE detail_reference_code = '"+detailCode+"' AND master_reference_code='"+masterCode+"' AND hfc_cd = '"+hfc_cd+"'  limit 1";
 
     ArrayList<ArrayList<String>> dataUse = conn.getData(sqlSelect);
+    
+    String sqlMaster="Select source_indicator from adm_lookup_master where master_reference_code='"+masterCode+"' limit 1;";
+    ArrayList<ArrayList<String>> dataImportant = conn.getData(sqlMaster);
+    
+    String source="";
+    if(dataImportant.size()>0){
+        source=dataImportant.get(0).get(0);
+    }
 
     if (dataUse.size() > 0) {
 
         out.print("You can't delete this item because it is referrenced by Health Facility");
 
-    } else {
+    }
+    else if(source.equalsIgnoreCase("IMPORTANT")){
+        out.print("This item cannot be modified because it is used by the system.");
+    }
+    else {
         RMIConnector rmic = new RMIConnector();
         String sql = "DELETE FROM adm_lookup_detail WHERE master_reference_code = '" + masterCode + "' AND detail_reference_code = '" + detailCode + "' AND hfc_cd = '"+hfc_cd+"'";
 

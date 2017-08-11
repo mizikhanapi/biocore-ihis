@@ -13,7 +13,7 @@
 <%
     RMIConnector rmic = new RMIConnector();
     Conn conn = new Conn();
-
+    String createdBy = session.getAttribute("USER_ID").toString();
     String pmino, empCode, empName, occupation, joinDate, incomeRange, hfc, createDate, status, sql, sqlCheck, empseq;
     pmino = request.getParameter("EMPpmino");
     empseq = request.getParameter("EMPseq");
@@ -41,7 +41,7 @@
         g[0] = formatted;
     }
     String newSeq = "ES" + g[0];
-    String sql2 = "INSERT INTO PMS_EMPLOYMENT (PMI_NO,EMPLOYMENT_SEQ_NO,EMPLOYER_CODE,EMPLOYER_NAME,OCCUPATION_CODE,JOINED_DATE,INCOME_RANGE_CODE,HEALTH_FACILITY,CREATE_DATE,EMPLOYMENT_STATUS) VALUES ('" + pmino + "','" + newSeq + "','" + empCode + "','" + empName + "','" + occupation + "','" + joinDate + "','" + incomeRange + "','" + hfc + "','" + createDate + "','" + status + "')";
+    String sql2 = "INSERT INTO PMS_EMPLOYMENT (PMI_NO,EMPLOYMENT_SEQ_NO,EMPLOYER_CODE,EMPLOYER_NAME,OCCUPATION_CODE,JOINED_DATE,INCOME_RANGE_CODE,HEALTH_FACILITY,CREATE_DATE,EMPLOYMENT_STATUS,created_by) VALUES ('" + pmino + "','" + newSeq + "','" + empCode + "','" + empName + "','" + occupation + "','" + joinDate + "','" + incomeRange + "','" + hfc + "','" + createDate + "','" + status + "','"+createdBy+"')";
     String sql3 = "INSERT INTO AUTOGENERATE_ESNO (EMPLOYMENT_SEQ_NO) VALUES ('" + newSeq + "')";
 
     if (Checkseq.size() > 0) {

@@ -49,7 +49,9 @@ $(document).ready(function () {
                 ppostalstate = $("#PMIpstateCODE").val(),
                 ppostalcountry = $("#PMIpcountryCODE").val(),
                 pmobilephone = $("#PMIhandphone").val(),
-                pemail = $("#PMIemail").val();
+                pemail = $("#PMIemail").val(),
+                ppayer = $("#PMIpg").val(),
+                ppty = $("#PMIperty").val();
         //console.log("title code: "+ptitle);
 
         
@@ -248,7 +250,9 @@ $(document).ready(function () {
             'ppostalstate': ppostalstate,
             'ppostalcountry': ppostalcountry,
             'pmobilephone': pmobilephone,
-            'pemail': pemail};
+            'pemail': pemail,
+            'ppayer': ppayer,
+            'ppty':ppty};
         console.log(data);
         //console.log(convertedBday);
         //convertedBday
@@ -329,7 +333,10 @@ $(document).ready(function () {
                 pmarital = $("#PMImarital").val(),
                 prace = $("#PMIrace").val(),
                 pnational = $("#PMInationalCODE").val(),
-                phomeadd = $("#PMIhadd").val();
+                phomeadd = $("#PMIhadd").val(),
+                ppayergroup = $("#PMIpg").val(),
+                pperty = $("#PMIperty").val();
+                
 
         if (pname === "") {
             bootbox.alert("Please key in patient's name..");
@@ -355,6 +362,10 @@ $(document).ready(function () {
             bootbox.alert("Please key in patient's home address..");
         }else if(pit === null){
             bootbox.alert("Please key in patient's Id Type..");
+        }else if(ppayergroup===null){
+            bootbox.alert("Please key in patient's Payer Group..");
+        }else if(pperty===null){
+            bootbox.alert("Please key in patient's Person Type..");
         }else {
             bootbox.confirm({
                 message: "Are you sure want to Save patient's biodata?",

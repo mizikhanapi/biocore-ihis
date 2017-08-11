@@ -228,9 +228,14 @@
                         console.log(codeName);
                         var tempArr = codeName.split("|");
                         loadLookupDetailData(tempArr[0].trim(), tempArr[1].trim());
-                    } else if (datas.trim() === 'Failed') {
-                        alert("Update failed!");
+                        
+                    } 
+                    else if (datas.trim() === 'Failed') {
+                        bootbox.alert("Update failed!");
 
+                    }
+                    else{
+                        bootbox.alert(datas.trim());
                     }
                 },
                 error: function (err) {

@@ -18,9 +18,11 @@
     String allergy4 = "select master_reference_code,detail_reference_code,description,priority_indicator,start_date,end_date,status,created_by,created_date from adm_lookup_detail where master_reference_code = '0075' AND hfc_cd = '" + hfc + "' and status ='0'";
     String chronicDesease4 = "select master_reference_code,detail_reference_code,description,priority_indicator,start_date,end_date,status,created_by,created_date from adm_lookup_detail where master_reference_code = '0076' AND hfc_cd = '" + hfc + "' and status ='0'";
     String organDonor4 = "select master_reference_code,detail_reference_code,description,priority_indicator,start_date,end_date,status,created_by,created_date from adm_lookup_detail where master_reference_code = '0077' AND hfc_cd = '" + hfc + "' and status ='0'";
+    String payerGroup ="select master_reference_code,detail_reference_code,description,priority_indicator,start_date,end_date,status,created_by,created_date from adm_lookup_detail where master_reference_code = '0055' AND hfc_cd = '" + hfc + "' and status ='0'";
+    String personType ="select master_reference_code,detail_reference_code,description,priority_indicator,start_date,end_date,status,created_by,created_date from adm_lookup_detail where master_reference_code = '0106' AND hfc_cd = '" + hfc + "' and status ='0'";
 
     ArrayList<ArrayList<String>> dataEliCat4, dataEliType4, dataIdType4, dataGender4, dataMarital4, dataRace4, dataNationality4, dataReligion4, dataTitle4,
-            dataBloodty4, dataRhesus4, dataAllergy4, dataChronicDesease4, dataOrganDonor4, dataDistrict4, dataPostcode4, dataCountry4, dataTown4, dataState4;
+            dataBloodty4, dataRhesus4, dataAllergy4, dataChronicDesease4, dataOrganDonor4, dataDistrict4, dataPostcode4, dataCountry4, dataTown4, dataState4,datapayer,datapersontype;
 
     dataEliCat4 = conn.getData(eliCat4);
     dataEliType4 = conn.getData(eliType4);
@@ -34,6 +36,8 @@
     dataAllergy4 = conn.getData(allergy4);
     dataChronicDesease4 = conn.getData(chronicDesease4);
     dataOrganDonor4 = conn.getData(organDonor4);
+    datapayer = conn.getData(payerGroup);
+    datapersontype = conn.getData(personType);
 
 
 %>
@@ -114,6 +118,20 @@
                         <label class="col-md-4 control-label" for="textinput">Identification No. *</label>
                         <div class="col-md-6">
                             <input id="PMIino" name="textinput" type="text" placeholder="" class="form-control input-md" maxlength="10">
+                        </div>
+                    </div>
+                    
+                    <!-- Text input-->
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="textinput">Payer group *</label>
+                        <div class="col-md-6">
+                             <select id="PMIpg" name="selectbasic" class="form-control">
+                                <option value="null" selected="" disabled="">Select payer group</option>
+                                <%                                        for (int i = 0; i < datapayer.size(); i++) {%>
+                                <option value="<%=datapayer.get(i).get(1)%>"><%=datapayer.get(i).get(2)%></option>
+                                <%  }
+                                %>
+                            </select>
                         </div>
                     </div>
                 </div>
@@ -244,6 +262,23 @@
                             </select>
                         </div>
                     </div>
+                            
+                    <!-- Select Basic -->
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="selectbasic">Person Type *</label>
+                        <div class="col-md-6">
+                            <select id="PMIperty" name="selectbasic" class="form-control">
+                                <option value="null" selected="" disabled="">Select type</option>
+                                <%
+                                    for (int i = 0;
+                                            i < datapersontype.size();
+                                            i++) {%>
+                                <option value="<%=datapersontype.get(i).get(1)%>"><%=datapersontype.get(i).get(2)%></option>
+                                <%  }
+                                %>
+                            </select>
+                        </div>
+                    </div>        
                 </div>
             </div>
 

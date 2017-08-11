@@ -300,6 +300,10 @@ $('#registerQueue').click(function () {
                             if ($.trim(list) === "Success") {
 
                                 bootbox.alert("Patient has been register successfully");
+                                $("#myForm2")[0].reset();
+                                $('#select-0').hide();
+                                $('#select-1').hide();
+                                $('select[id=select-2]').hide();
                             } else if ($.trim(list) === "already") {
                                 bootbox.alert("Patient is already registered");
                             }
