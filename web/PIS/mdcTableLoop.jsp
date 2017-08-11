@@ -289,7 +289,7 @@
                             <div class="form-group">
                                 <label class="col-md-4 control-label" for="textinput">Stock Quantity *</label>
                                 <div class="col-md-8">
-                                    <input id="updateD_STOCK_QTY" name="textinput" type="text" placeholder="Stock Qty" class="form-control input-md" maxlength="10">
+                                    <input id="updateD_STOCK_QTY" name="textinput" type="text" placeholder="Stock Qty" class="form-control input-md singleNumbersOnly" maxlength="10">
                                 </div>
                             </div>
 
@@ -298,7 +298,7 @@
                             <div class="form-group">
                                 <label class="col-md-4 control-label" for="textinput">Minimum Quantity *</label>
                                 <div class="col-md-8">
-                                    <input id="updateD_MINIMUM_QTY" name="textinput" type="text" placeholder="Minimum Qty" class="form-control input-md" maxlength="10">
+                                    <input id="updateD_MINIMUM_QTY" name="textinput" type="text" placeholder="Minimum Qty" class="form-control input-md singleNumbersOnly" maxlength="10">
                                 </div>
                             </div>
 
@@ -306,7 +306,7 @@
                             <div class="form-group">
                                 <label class="col-md-4 control-label" for="textinput">Maximum Quantity *</label>
                                 <div class="col-md-8">
-                                    <input id="updateD_MAXIMUM_QTY" name="textinput" type="text" placeholder="Maximum Qty" class="form-control input-md" maxlength="10">
+                                    <input id="updateD_MAXIMUM_QTY" name="textinput" type="text" placeholder="Maximum Qty" class="form-control input-md singleNumbersOnly" maxlength="10">
                                 </div>
                             </div>
 
@@ -314,7 +314,7 @@
                             <div class="form-group">
                                 <label class="col-md-4 control-label" for="textinput">Reorder Quantity *</label>
                                 <div class="col-md-8">
-                                    <input id="updateD_REORDER_QTY" name="textinput" type="text" placeholder="Reorder Qty" class="form-control input-md" maxlength="10">
+                                    <input id="updateD_REORDER_QTY" name="textinput" type="text" placeholder="Reorder Qty" class="form-control input-md singleNumbersOnly" maxlength="10">
                                 </div>
                             </div>
 
@@ -337,13 +337,13 @@
                             <div class="form-group">
                                 <label class="col-md-4 control-label" for="selectbasic">Packaging *</label>
                                 <div class="col-md-4">
-                                    <input id="updateD_PACKAGING" name="updateD_PACKAGING" type="number" placeholder="Please Insert Packaging" class="form-control input-md" maxlength="2">
+                                    <input id="updateD_PACKAGING" name="updateD_PACKAGING" type="text" placeholder="Please Insert Packaging" class="form-control input-md singleNumbersOnly" maxlength="2">
                                 </div>
                                 <div class="col-md-4">
                                     <select id="updateD_PACKAGINGT" name="updateD_PACKAGINGT" class="form-control">
                                         <option value="-">No Packaging</option>
                                         <%
-                                            String sql9 = "SELECT Master_Reference_code,Detail_Reference_code, Description FROM adm_lookup_detail where Master_Reference_code = '0025' AND hfc_cd = '" + hfc + "' ";
+                                            String sql9 = "SELECT Master_Reference_code,Detail_Reference_code, Description FROM adm_lookup_detail where Master_Reference_code = '0107' AND hfc_cd = '" + hfc + "' ";
                                             ArrayList<ArrayList<String>> listOfPack = conn.getData(sql9);
 
                                             int size9 = listOfPack.size();
@@ -362,7 +362,7 @@
                             <div class="form-group">
                                 <label class="col-md-4 control-label" for="textinput">Price per Pack *</label>
                                 <div class="col-md-8">
-                                    <input id="updateD_PRICE_PPACK" name="textinput" type="text" placeholder="Price per Pack" class="form-control input-md" maxlength="9">
+                                    <input id="updateD_PRICE_PPACK" name="textinput" type="text" placeholder="Price per Pack" class="form-control input-md decimalNumbersOnly" maxlength="9">
                                 </div>
                             </div>
 
@@ -370,7 +370,7 @@
                             <div class="form-group">
                                 <label class="col-md-4 control-label" for="textinput">Purchase Price *</label>
                                 <div class="col-md-8">
-                                    <input id="updateD_COST_PRICE" name="textinput" type="text" placeholder="Purchase Price" class="form-control input-md" maxlength="9">
+                                    <input id="updateD_COST_PRICE" name="textinput" type="text" placeholder="Purchase Price" class="form-control input-md decimalNumbersOnly" maxlength="9">
                                 </div>
                             </div>
 
@@ -378,7 +378,7 @@
                             <div class="form-group">
                                 <label class="col-md-4 control-label" for="textinput">Sell Price *</label>
                                 <div class="col-md-8">
-                                    <input id="updateD_SELL_PRICE" name="textinput" type="text" placeholder="Sell Price" class="form-control input-md" maxlength="9">
+                                    <input id="updateD_SELL_PRICE" name="textinput" type="text" placeholder="Sell Price" class="form-control input-md decimalNumbersOnly" maxlength="9">
                                 </div>
                             </div>
 
@@ -399,7 +399,7 @@
                             <div class="form-group">
                                 <label class="col-md-4 control-label" for="selectbasic">Dose *</label>
                                 <div class="col-md-4">
-                                    <input id="updateD_QTY" name="textinput" type="text" class="form-control input-md" maxlength="2">
+                                    <input id="updateD_QTY" name="textinput" type="text" class="form-control input-md singleNumbersOnly" maxlength="2">
                                 </div>
                                 <div class="col-md-4">
                                     <select id="updateD_QTYT" name="addD_QTYT" class="form-control">
@@ -450,7 +450,7 @@
                             <div class="form-group">
                                 <label class="col-md-4 control-label" for="selectbasic">Duration *</label>
                                 <div class="col-md-4">
-                                    <input id="updateD_DURATION" name="textinput" type="text" class="form-control input-md" maxlength="2">
+                                    <input id="updateD_DURATION" name="textinput" type="text" class="form-control input-md singleNumbersOnly" maxlength="2">
                                 </div>
                                 <div class="col-md-4">
                                     <select id="updateD_DURATIONT" name="addD_DURATIONT" class="form-control">

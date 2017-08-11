@@ -277,7 +277,7 @@
                             <div class="form-group">
                                 <label class="col-md-4 control-label" for="textinput">Stock Quantity *</label>
                                 <div class="col-md-8">
-                                    <input id="addD_STOCK_QTY" name="textinput" type="text" placeholder="Please Insert Stock Qty" class="form-control input-md" maxlength="10">
+                                    <input id="addD_STOCK_QTY" name="textinput" type="text" placeholder="Please Insert Stock Qty" class="form-control input-md singleNumbersOnly" maxlength="10">
                                 </div>
                             </div>
 
@@ -285,7 +285,7 @@
                             <div class="form-group">
                                 <label class="col-md-4 control-label" for="textinput">Minimum Quantity *</label>
                                 <div class="col-md-8">
-                                    <input id="addD_MINIMUM_QTY" name="textinput" type="text" placeholder="Please Insert Minimum Qty" class="form-control input-md" maxlength="10">
+                                    <input id="addD_MINIMUM_QTY" name="textinput" type="text" placeholder="Please Insert Minimum Qty" class="form-control input-md singleNumbersOnly" maxlength="10">
                                 </div>
                             </div>
 
@@ -293,7 +293,7 @@
                             <div class="form-group">
                                 <label class="col-md-4 control-label" for="textinput">Maximum Quantity *</label>
                                 <div class="col-md-8">
-                                    <input id="addD_MAXIMUM_QTY" name="textinput" type="text" placeholder="Please Insert Maximum Qty" class="form-control input-md" maxlength="10">
+                                    <input id="addD_MAXIMUM_QTY" name="textinput" type="text" placeholder="Please Insert Maximum Qty" class="form-control input-md singleNumbersOnly" maxlength="10">
                                 </div>
                             </div>
 
@@ -301,7 +301,7 @@
                             <div class="form-group">
                                 <label class="col-md-4 control-label" for="textinput">Reorder Quantity *</label>
                                 <div class="col-md-8">
-                                    <input id="addD_REORDER_QTY" name="textinput" type="text" placeholder="Please Insert Reorder Qty" class="form-control input-md" maxlength="10">
+                                    <input id="addD_REORDER_QTY" name="textinput" type="text" placeholder="Please Insert Reorder Qty" class="form-control input-md singleNumbersOnly" maxlength="10">
                                 </div>
                             </div>
 
@@ -326,13 +326,13 @@
                             <div class="form-group">
                                 <label class="col-md-4 control-label" for="selectbasic">Packaging *</label>
                                 <div class="col-md-4">
-                                    <input id="addD_PACKAGING" name="addD_PACKAGING" type="number" placeholder="Please Insert Packaging" class="form-control input-md" maxlength="2">
+                                    <input id="addD_PACKAGING" name="addD_PACKAGING" type="text" placeholder="Please Insert Packaging" class="form-control input-md singleNumbersOnly" maxlength="2">
                                 </div>
                                 <div class="col-md-4">
                                     <select id="addD_PACKAGINGT" name="addD_PACKAGINGT" class="form-control">
                                         <option value="-" selected>No Packaging</option>
                                         <%
-                                            String sql9 = "SELECT Master_Reference_code,Detail_Reference_code, Description FROM adm_lookup_detail where Master_Reference_code = '0025' AND hfc_cd = '" + hfc + "' ";
+                                            String sql9 = "SELECT Master_Reference_code,Detail_Reference_code, Description FROM adm_lookup_detail where Master_Reference_code = '0107' AND hfc_cd = '" + hfc + "' ";
                                             ArrayList<ArrayList<String>> listOfPack = conn.getData(sql9);
 
                                             int size9 = listOfPack.size();
@@ -351,7 +351,7 @@
                             <div class="form-group">
                                 <label class="col-md-4 control-label" for="textinput">Price per Pack *</label>
                                 <div class="col-md-8">
-                                    <input id="addD_PRICE_PPACK" name="textinput" type="text" placeholder="Please Insert Price per Pack" class="form-control input-md" maxlength="9">
+                                    <input id="addD_PRICE_PPACK" name="textinput" type="text" placeholder="Please Insert Price per Pack" class="form-control input-md decimalNumbersOnly" maxlength="9">
                                 </div>
                             </div>
 
@@ -359,7 +359,7 @@
                             <div class="form-group">
                                 <label class="col-md-4 control-label" for="textinput">Purchase Price *</label>
                                 <div class="col-md-8">
-                                    <input id="addD_COST_PRICE" name="textinput" type="text" placeholder="Please Insert Purchase Price" class="form-control input-md" maxlength="9">
+                                    <input id="addD_COST_PRICE" name="textinput" type="text" placeholder="Please Insert Purchase Price" class="form-control input-md decimalNumbersOnly" maxlength="9">
                                 </div>
                             </div>
 
@@ -368,7 +368,7 @@
                             <div class="form-group">
                                 <label class="col-md-4 control-label" for="textinput">Sell Price *</label>
                                 <div class="col-md-8">
-                                    <input id="addD_SELL_PRICE" name="textinput" type="text" placeholder="Please Insert Sell Price" class="form-control input-md" maxlength="9">
+                                    <input id="addD_SELL_PRICE" name="textinput" type="text" placeholder="Please Insert Sell Price" class="form-control input-md decimalNumbersOnly" maxlength="9">
                                 </div>
                             </div>
 
@@ -390,7 +390,7 @@
                             <div class="form-group">
                                 <label class="col-md-4 control-label" for="selectbasic">Dose *</label>
                                 <div class="col-md-4">
-                                    <input id="addD_QTY" name="textinput" type="text" placeholder="Please Insert Dosage" class="form-control input-md" maxlength="2">
+                                    <input id="addD_QTY" name="textinput" type="text" placeholder="Please Insert Dosage" class="form-control input-md singleNumbersOnly" maxlength="2">
                                 </div>
                                 <div class="col-md-4">
                                     <select id="addD_QTYT" name="addD_QTYT" class="form-control">
@@ -437,7 +437,7 @@
                             <div class="form-group">
                                 <label class="col-md-4 control-label" for="selectbasic">Duration *</label>
                                 <div class="col-md-4">
-                                    <input id="addD_DURATION" name="textinput" type="text" class="form-control input-md" placeholder="Please Insert Duration" maxlength="2">
+                                    <input id="addD_DURATION" name="textinput" type="text" class="form-control input-md singleNumbersOnly" placeholder="Please Insert Duration" maxlength="2">
                                 </div>
                                 <div class="col-md-4">
                                     <select id="addD_DURATIONT" name="addD_DURATIONT" class="form-control">
@@ -570,31 +570,39 @@
 
         // Reset Function Start
         function reset() {
+            
             console.log("In reset");
+            
             document.getElementById("addUD_MDC_CODE").value = "";
             document.getElementById("addUD_ATC_CODE").value = "";
+            document.getElementById("addUD_ATC_CODESearch").value = "";
             document.getElementById("addD_TRADE_NAME").value = "";
             document.getElementById("addD_GNR_NAME").value = "";
-            document.getElementById("addD_ROUTE_CODE").value = "Select Drug Route";
-            document.getElementById("addD_FORM_CODE").value = "Select Dosage Form";
+            document.getElementById("addD_ROUTE_CODE").value = "-";
+            document.getElementById("addD_FORM_CODE").value = "-";
             document.getElementById("addD_STRENGTH").value = "";
             document.getElementById("addD_STOCK_QTY").value = "";
+            document.getElementById("addD_MINIMUM_QTY").value = "";
+            document.getElementById("addD_MAXIMUM_QTY").value = "";
+            document.getElementById("addD_REORDER_QTY").value = "";
             document.getElementById("addD_LOCATION_CODE").value = "";
-            document.getElementById("addSTATUS").value = "No Status";
+            document.getElementById("addSTATUS").value = "-";
 
             document.getElementById("addD_PACKAGING").value = "";
+            document.getElementById("addD_PACKAGINGT").value = "-";
             document.getElementById("addD_PRICE_PPACK").value = "";
             document.getElementById("addD_COST_PRICE").value = "";
             document.getElementById("addD_SELL_PRICE").value = "";
             document.getElementById("addD_QTY").value = "";
-            document.getElementById("addD_QTYT").value = "No Dose";
-            document.getElementById("addD_FREQUENCY").value = "No Frequency";
+            document.getElementById("addD_QTYT").value = "-";
+            document.getElementById("addD_FREQUENCY").value = "-";
             document.getElementById("addD_DURATION").value = "";
-            document.getElementById("addD_DURATIONT").value = "No Duration";
-            document.getElementById("addD_ADVISORY_CODE").value = "No Instruction";
+            document.getElementById("addD_DURATIONT").value = "-";
+            document.getElementById("addD_ADVISORY_CODE").value = "-";
             document.getElementById("addD_CAUTIONARY_CODE").value = "";
             document.getElementById("addD_EXP_DATE").value = "";
-            document.getElementById("addD_CLASSIFICATION").value = "No Classification";
+            document.getElementById("addD_CLASSIFICATION").value = "-";
+            
         }
         // Reset Function End
 

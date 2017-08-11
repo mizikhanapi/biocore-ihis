@@ -13,8 +13,7 @@
 <%@include file="../Entrance/validateSession.jsp" %>
 <%@include file="validateModuleAccess.jsp" %>
 
-<%
-    Config.getFile_url(session);
+<%    Config.getFile_url(session);
     Config.getBase_url(request);
 
 %>
@@ -107,6 +106,20 @@
                 // Load MDC Data
                 $("#contentMDCMain").load("mdcMain.jsp");
                 $("#contentMDCTable").load("mdcTableLoop.jsp");
+
+
+                $('.decimalNumbersOnly').keyup(function () {
+                    if (this.value !== this.value.replace(/[^0-9\.]/g, '')) {
+                        this.value = this.value.replace(/[^0-9\.]/g, '');
+                    }
+                });
+
+
+                $('.singleNumbersOnly').keyup(function () {
+                    if (this.value !== this.value.replace(/[^0-9]/g, '')) {
+                        this.value = this.value.replace(/[^0-9]/g, '');
+                    }
+                });
 
 
             });
