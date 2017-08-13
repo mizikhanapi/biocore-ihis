@@ -227,7 +227,7 @@
 
                                             for (int i = 0; i < size2; i++) {
                                         %>
-                                        <option value="<%= listOfDRoute.get(i).get(1)%>"><%= listOfDRoute.get(i).get(2)%> </option>
+                                        <option value="<%= listOfDRoute.get(i).get(2)%>"><%= listOfDRoute.get(i).get(2)%> </option>
                                         <%
                                             }
                                         %>
@@ -249,7 +249,7 @@
 
                                             for (int i = 0; i < size3; i++) {
                                         %>
-                                        <option value="<%= listOfDForm.get(i).get(1)%>"> <%= listOfDForm.get(i).get(2)%> </option>
+                                        <option value="<%= listOfDForm.get(i).get(2)%>"> <%= listOfDForm.get(i).get(2)%> </option>
                                         <%
                                             }
                                         %>
@@ -339,7 +339,7 @@
 
                                             for (int i = 0; i < size9; i++) {
                                         %>
-                                        <option value="<%= listOfPack.get(i).get(1)%>"><%= listOfPack.get(i).get(2)%> </option>
+                                        <option value="<%= listOfPack.get(i).get(2)%>"><%= listOfPack.get(i).get(2)%> </option>
                                         <%
                                             }
                                         %>
@@ -403,7 +403,7 @@
 
                                             for (int i = 0; i < size4; i++) {
                                         %>
-                                        <option value="<%= listOfDUOM.get(i).get(1)%>"><%= listOfDUOM.get(i).get(2)%> </option>
+                                        <option value="<%= listOfDUOM.get(i).get(2)%>"><%= listOfDUOM.get(i).get(2)%> </option>
                                         <%
                                             }
                                         %>
@@ -425,7 +425,7 @@
 
                                             for (int i = 0; i < size5; i++) {
                                         %>
-                                        <option value="<%= listOfDFreq.get(i).get(1)%>"><%= listOfDFreq.get(i).get(2)%> </option>
+                                        <option value="<%= listOfDFreq.get(i).get(2)%>"><%= listOfDFreq.get(i).get(2)%> </option>
                                         <%
                                             }
                                         %>
@@ -450,7 +450,7 @@
 
                                             for (int i = 0; i < size6; i++) {
                                         %>
-                                        <option value="<%= listOfDDura.get(i).get(1)%>"><%= listOfDDura.get(i).get(2)%> </option>
+                                        <option value="<%= listOfDDura.get(i).get(2)%>"><%= listOfDDura.get(i).get(2)%> </option>
                                         <%
                                             }
                                         %>
@@ -472,7 +472,7 @@
 
                                             for (int i = 0; i < size7; i++) {
                                         %>
-                                        <option value="<%= listOfDInst.get(i).get(1)%>"><%= listOfDInst.get(i).get(2)%> </option>
+                                        <option value="<%= listOfDInst.get(i).get(2)%>"><%= listOfDInst.get(i).get(2)%> </option>
                                         <%
                                             }
                                         %>
@@ -510,7 +510,7 @@
 
                                             for (int i = 0; i < size8; i++) {
                                         %>
-                                        <option value="<%= listOfDClass.get(i).get(1)%>"><%= listOfDClass.get(i).get(2)%> </option>
+                                        <option value="<%= listOfDClass.get(i).get(2)%>"><%= listOfDClass.get(i).get(2)%> </option>
                                         <%
                                             }
                                         %>
@@ -563,10 +563,22 @@
         $("#addD_EXP_DATE").datepicker({
             changeMonth: true,
             changeYear: true,
-            dateFormat: 'yy-mm-dd',
+            dateFormat: 'dd/mm/yy',
             minDate: '0'
         });
 
+        $('.decimalNumbersOnly').keyup(function () {
+            if (this.value !== this.value.replace(/[^0-9\.]/g, '')) {
+                this.value = this.value.replace(/[^0-9\.]/g, '');
+            }
+        });
+
+
+        $('.singleNumbersOnly').keyup(function () {
+            if (this.value !== this.value.replace(/[^0-9]/g, '')) {
+                this.value = this.value.replace(/[^0-9]/g, '');
+            }
+        });
 
         // Reset Function Start
         function reset() {
@@ -574,10 +586,10 @@
             console.log("In reset");
 
             document.getElementById("addUD_MDC_CODE").value = "";
-            
+
             document.getElementById("addUD_ATC_CODE").value = "";
             $('#addUD_ATC_CODESearch').text('');
-            
+
             document.getElementById("addD_TRADE_NAME").value = "";
             document.getElementById("addD_GNR_NAME").value = "";
             document.getElementById("addD_ROUTE_CODE").value = "-";
@@ -656,13 +668,16 @@
         $('#addMDCButton').on('click', function () {
 
             console.log("In add");
-            
+
             var UD_MDC_CODECheck = document.getElementById("addUD_MDC_CODE");
             var UD_ATC_CODECheck = document.getElementById("addUD_ATC_CODE");
             var D_TRADE_NAMECheck = document.getElementById("addD_TRADE_NAME");
             var D_GNR_NAMECheck = document.getElementById("addD_GNR_NAME");
             var D_STRENGTHCheck = document.getElementById("addD_STRENGTH");
             var D_STOCK_QTYCheck = document.getElementById("addD_STOCK_QTY");
+            var D_MINIMUM_QTYCheck = document.getElementById("addD_MINIMUM_QTY");
+            var D_MAXIMUM_QTYCheck = document.getElementById("addD_MAXIMUM_QTY");
+            var D_REORDER_QTYCheck = document.getElementById("addD_REORDER_QTY");
             var D_LOCATION_CODECheck = document.getElementById("addD_LOCATION_CODE");
             var D_PACKAGINGCheck = document.getElementById("addD_PACKAGING");
             var D_PRICE_PPACKCheck = document.getElementById("addD_PRICE_PPACK");
@@ -681,10 +696,14 @@
             var D_FORM_CODE = document.getElementById("addD_FORM_CODE").value;
             var D_STRENGTH = document.getElementById("addD_STRENGTH").value;
             var D_STOCK_QTY = document.getElementById("addD_STOCK_QTY").value;
+            var D_MINIMUM_QTY = document.getElementById("addD_MINIMUM_QTY").value;
+            var D_MAXIMUM_QTY = document.getElementById("addD_MAXIMUM_QTY").value;
+            var D_REORDER_QTY = document.getElementById("addD_REORDER_QTY").value;
             var D_LOCATION_CODE = document.getElementById("addD_LOCATION_CODE").value;
             var STATUS = document.getElementById("addSTATUS").value;
 
             var D_PACKAGING = document.getElementById("addD_PACKAGING").value;
+            var D_PACKAGINGT = document.getElementById("addD_PACKAGINGT").value;
             var D_PRICE_PPACK = document.getElementById("addD_PRICE_PPACK").value;
             var D_COST_PRICE = document.getElementById("addD_COST_PRICE").value;
             var D_SELL_PRICE = document.getElementById("addD_SELL_PRICE").value;
@@ -701,6 +720,19 @@
             var strCom = D_CAUTIONARY_CODE.replace(/'/g, '\\\'');
             D_CAUTIONARY_CODE = strCom;
 
+            var newCostPrice = parseFloat(D_COST_PRICE).toFixed(2);
+            var newSellPrice = parseFloat(D_SELL_PRICE).toFixed(2);
+            var newPackPrice = parseFloat(D_PRICE_PPACK).toFixed(2);
+
+            D_COST_PRICE = newCostPrice;
+            D_SELL_PRICE = newSellPrice;
+            D_PRICE_PPACK = newPackPrice;
+
+            var sDate = D_EXP_DATE.split('/');
+            var newDate = sDate[2] + "-" + sDate[1] + "-" + sDate[0];
+
+            D_EXP_DATE = newDate + " 00:00:00.000";
+
             if (UD_MDC_CODE === "") {
                 bootbox.alert("Please Insert MDC Code");
             } else if (UD_ATC_CODE === "") {
@@ -709,21 +741,29 @@
                 bootbox.alert("Please Insert Drug Trade Name");
             } else if (D_GNR_NAME === "") {
                 bootbox.alert("Please Insert Drug Generic Name");
-            } else if (D_ROUTE_CODE === "Select Drug Route") {
+            } else if (D_ROUTE_CODE === "-") {
                 bootbox.alert("Select Any Route");
-            } else if (D_FORM_CODE === "Select Dosage Form") {
+            } else if (D_FORM_CODE === "-") {
                 bootbox.alert("Select Any Form");
             } else if (D_STRENGTH === "") {
                 bootbox.alert("Please Insert Drug Strength");
             } else if (D_STOCK_QTY === "") {
                 bootbox.alert("Please Insert Drug Stock Quantity");
+            } else if (D_MINIMUM_QTY === "") {
+                bootbox.alert("Please Insert Drug Minimum Quantity");
+            } else if (D_MAXIMUM_QTY === "") {
+                bootbox.alert("Please Insert Drug Maximum Quantity");
+            } else if (D_REORDER_QTY === "") {
+                bootbox.alert("Please Insert Drug Reorder Quantity");
             } else if (D_LOCATION_CODE === "") {
                 bootbox.alert("Please Insert Drug Location Code");
-            } else if (STATUS === "No Status") {
+            } else if (STATUS === "-") {
                 bootbox.alert("Select Any Status");
 
             } else if (D_PACKAGING === "") {
                 bootbox.alert("Please Insert Drug Packaging");
+            } else if (D_PACKAGINGT === "-") {
+                bootbox.alert("Please Select Drug Packaging Type");
             } else if (D_PRICE_PPACK === "") {
                 bootbox.alert("Please Insert Drug Per Pack Price");
             } else if (D_COST_PRICE === "") {
@@ -732,51 +772,57 @@
                 bootbox.alert("Please Insert Drug Sell Price");
             } else if (D_QTY === "") {
                 bootbox.alert("Please Insert Drug Quantity");
-            } else if (D_QTYT === "No Dose") {
+            } else if (D_QTYT === "-") {
                 bootbox.alert("Select Any Dose");
-            } else if (D_FREQUENCY === "No Frequency") {
+            } else if (D_FREQUENCY === "-") {
                 bootbox.alert("Select Any Frequency");
             } else if (D_DURATION === "") {
                 bootbox.alert("Please Insert Drug Duration");
-            } else if (D_DURATIONT === "No Duration") {
+            } else if (D_DURATIONT === "-") {
                 bootbox.alert("Select Any Duration");
-            } else if (D_ADVISORY_CODE === "No Instruction") {
+            } else if (D_ADVISORY_CODE === "-") {
                 bootbox.alert("Select Any Instruction");
             } else if (D_CAUTIONARY_CODE === "") {
                 bootbox.alert("Please Insert Drug Cautionary Code");
             } else if (D_EXP_DATE === "") {
                 bootbox.alert("Please Insert Drug Expire Date");
-            } else if (D_CLASSIFICATION === "No Classification") {
+            } else if (D_CLASSIFICATION === "-") {
                 bootbox.alert("Select Any Classification");
 
             } else if (UD_MDC_CODECheck.checkValidity() === false) {
-                bootbox.alert("Please Insert MDC Code Not More Than 25 Characters");
+                bootbox.alert("Please Insert MDC Code Not More Than 30 Characters");
             } else if (UD_ATC_CODECheck.checkValidity() === false) {
-                bootbox.alert("Please Insert ATC Code Not More Than 25 Characters");
+                bootbox.alert("Please Insert ATC Code Not More Than 30 Characters");
             } else if (D_TRADE_NAMECheck.checkValidity() === false) {
                 bootbox.alert("Please Insert Drug Trade Name Not More Than 200 Characters");
             } else if (D_GNR_NAMECheck.checkValidity() === false) {
-                bootbox.alert("Please Insert Drug Generic Name Not More Than 500 Characters");
+                bootbox.alert("Please Insert Drug Generic Name Not More Than 300 Characters");
             } else if (D_STRENGTHCheck.checkValidity() === false) {
-                bootbox.alert("Please Insert Drug Strength Not More Than 50 Characters");
+                bootbox.alert("Please Insert Drug Strength Not More Than 20 Characters");
             } else if (D_STOCK_QTYCheck.checkValidity() === false) {
-                bootbox.alert("Please Insert Drug Stock Not More Than 20 Number");
+                bootbox.alert("Please Insert Drug Stock Not More Than 10 Characters");
+            } else if (D_MINIMUM_QTYCheck.checkValidity() === false) {
+                bootbox.alert("Please Insert Drug Minimum Level Not More Than 10 Characters");
+            } else if (D_MAXIMUM_QTYCheck.checkValidity() === false) {
+                bootbox.alert("Please Insert Drug Maximum Level Not More Than 10 Characters");
+            } else if (D_REORDER_QTYCheck.checkValidity() === false) {
+                bootbox.alert("Please Insert Drug Reorder Level Not More Than 10 Characters");
             } else if (D_LOCATION_CODECheck.checkValidity() === false) {
-                bootbox.alert("Please Insert Drug Location Not More Than 4 Characters");
+                bootbox.alert("Please Insert Drug Location Not More Than 10 Characters");
             } else if (D_PACKAGINGCheck.checkValidity() === false) {
-                bootbox.alert("Please Insert Drug Packaging Not More Than 20 Number In Decimal Form");
+                bootbox.alert("Please Insert Drug Packaging Not More Than 2 Number");
             } else if (D_PRICE_PPACKCheck.checkValidity() === false) {
-                bootbox.alert("Please Insert Drug Per Pack Price Not More Than 20 Number In Decimal Form");
+                bootbox.alert("Please Insert Drug Per Pack Price Not More Than 9 Number In Decimal Form");
             } else if (D_COST_PRICECheck.checkValidity() === false) {
-                bootbox.alert("Please Insert Drug Cost Price Not More Than 20 Number In Decimal Form");
+                bootbox.alert("Please Insert Drug Cost Price Not More Than 9 Number In Decimal Form");
             } else if (D_SELL_PRICECheck.checkValidity() === false) {
-                bootbox.alert("Please Insert Drug Sell Price Not More Than 20 Number In Decimal Form");
+                bootbox.alert("Please Insert Drug Sell Price Not More Than 9 Number In Decimal Form");
             } else if (D_QTYCheck.checkValidity() === false) {
-                bootbox.alert("Please Insert Drug Dose Not More Than 20 Number In Decimal Form");
+                bootbox.alert("Please Insert Drug Dose Not More Than 2 Number");
             } else if (D_DURATIONCheck.checkValidity() === false) {
-                bootbox.alert("Please Insert Drug Duration Not More Than 10 Number");
+                bootbox.alert("Please Insert Drug Duration Not More Than 2 Number");
             } else if (D_CAUTIONARY_CODECheck.checkValidity() === false) {
-                bootbox.alert("Please Insert Drug Cautionary Not More Than 150 Characters");
+                bootbox.alert("Please Insert Drug Cautionary Not More Than 100 Characters");
 
             } else {
 
@@ -792,9 +838,13 @@
                     D_FORM_CODE: D_FORM_CODE,
                     D_STRENGTH: D_STRENGTH,
                     D_STOCK_QTY: D_STOCK_QTY,
+                    D_MINIMUM_QTY: D_MINIMUM_QTY,
+                    D_MAXIMUM_QTY: D_MAXIMUM_QTY,
+                    D_REORDER_QTY: D_REORDER_QTY,
                     D_LOCATION_CODE: D_LOCATION_CODE,
                     STATUS: STATUS,
                     D_PACKAGING: D_PACKAGING,
+                    D_PACKAGINGT: D_PACKAGINGT,
                     D_PRICE_PPACK: D_PRICE_PPACK,
                     D_COST_PRICE: D_COST_PRICE,
                     D_SELL_PRICE: D_SELL_PRICE,
@@ -811,12 +861,12 @@
                 console.log(data);
 
                 $.ajax({
-                    url: "mdcInsert.jsp",
+                    url: "controllerProcess/mdcInsert.jsp",
                     type: "post",
                     data: data,
                     timeout: 10000,
                     success: function (datas) {
-                        console.log(datas.trim());
+                        
                         if (datas.trim() === 'Success') {
 
                             $('#contentMDCTable').load('mdcTableLoop.jsp');
@@ -837,7 +887,7 @@
                             });
 
                         } else if (datas.trim() === 'Failed') {
-                            console.log(datas.trim());
+
                             bootbox.alert({
                                 message: "MDC Code Add Failed",
                                 title: "Process Result",
@@ -894,9 +944,10 @@
 
             $.ajax({
                 type: 'POST',
-                url: "mdcCloneDrugList.jsp",
+                url: "controllerSearch/mdcCloneDrugList.jsp",
                 data: data,
                 success: function (data, textStatus, jqXHR) {
+                    
                     $('#MDC_DrugCode').html(data);
                     $('#MDC_DrugCode').multiSelect({
                         selectableHeader: "<div style='display:block; color:white; background-color:#2196f3; '>Selectable MDC Code</div>",
@@ -941,7 +992,7 @@
                 };
 
                 $.ajax({
-                    url: "mdcCloneDrugListInsert.jsp",
+                    url: "controllerProcess/mdcCloneDrugListInsert.jsp",
                     type: "post",
                     data: data,
                     timeout: 15000,
@@ -1022,7 +1073,7 @@
 
             $.ajax({
                 type: 'POST',
-                url: "mdcDummaryDrugDate.jsp",
+                url: "controllerProcess/mdcDummaryDrugDate.jsp",
                 success: function (data, textStatus, jqXHR) {
                     $('#mdcDateSummary').html(data);
                 },
@@ -1043,7 +1094,7 @@
 
             $.ajax({
                 type: 'POST',
-                url: "mdcDummaryDrugStock.jsp",
+                url: "controllerProcess/mdcDummaryDrugStock.jsp",
                 success: function (data, textStatus, jqXHR) {
                     $('#mdcStockSummary').html(data);
                 },
