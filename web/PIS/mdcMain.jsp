@@ -1115,7 +1115,7 @@
 
             $.ajax({
                 type: 'POST',
-                url: "mdcDummaryDrugATC.jsp",
+                url: "controllerProcess/mdcDummaryDrugATC.jsp",
                 success: function (data, textStatus, jqXHR) {
                     $('#mdcATCSummary').html(data);
                 },
