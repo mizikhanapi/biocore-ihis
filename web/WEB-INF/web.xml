@@ -304,6 +304,29 @@
     </servlet-mapping>
     <!-- mapping for PIS HIS040009 -->
     
+    <!-- mapping for PIS HIS040010 -->
+    <servlet>
+        <servlet-name>Drug_Reorder_Level_List</servlet-name>
+        <jsp-file>/PIS/HIS040010.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Drug_Reorder_Level_List</servlet-name>
+        <url-pattern>/PIS/Drug_Reorder_Level_List</url-pattern>
+    </servlet-mapping>
+    <!-- mapping for PIS HIS040010 -->
+    
+    <!-- mapping for PIS HIS040010 -->
+    <servlet>
+        <servlet-name>Drug_Minimum_Level_List</servlet-name>
+        <jsp-file>/PIS/HIS040011.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Drug_Minimum_Level_List</servlet-name>
+        <url-pattern>/PIS/Drug_Minimum_Level_List</url-pattern>
+    </servlet-mapping>
+    <!-- mapping for PIS HIS040010 -->
+    
+    
     
     <!-- Mapping For PIS Hidding URL End -->
 
@@ -317,7 +340,7 @@
     </servlet-mapping>
 
 
-   <!-- Mapping For ADT Hidding URL Start -->
+    <!-- Mapping For ADT Hidding URL Start -->
     
     <!-- mapping for ADT HIS070006 -->
     <servlet>
@@ -330,7 +353,7 @@
     </servlet-mapping>
     <!-- mapping for ADT HIS070006 -->
     
-      <!-- mapping for ADT HIS070007 -->
+    <!-- mapping for ADT HIS070007 -->
     <servlet>
         <servlet-name>Discharge_List</servlet-name>
         <jsp-file>/ADT/HIS070007.jsp</jsp-file>
@@ -341,7 +364,7 @@
     </servlet-mapping>
     <!-- mapping for ADT HIS070007 -->
     
-     <!-- mapping for ADT HIS070009 -->
+    <!-- mapping for ADT HIS070009 -->
     <servlet>
         <servlet-name>Summary_Of_Health_Workers_Workload</servlet-name>
         <jsp-file>/ADT/HIS070009.jsp</jsp-file>
@@ -353,7 +376,7 @@
     <!-- mapping for ADT HIS070009 -->
     
     
-     <!-- mapping for ADT HIS070010 -->
+    <!-- mapping for ADT HIS070010 -->
     <servlet>
         <servlet-name>List_Of_Ward_Occupancy</servlet-name>
         <jsp-file>/ADT/HIS070010.jsp</jsp-file>
@@ -364,7 +387,7 @@
     </servlet-mapping>
     <!-- mapping for ADT HIS070010 -->
     
-<!-- Mapping For ADT Hidding URL End -->
+    <!-- Mapping For ADT Hidding URL End -->
 
     
     <session-config>
