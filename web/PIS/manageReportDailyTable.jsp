@@ -154,7 +154,7 @@
                                         <img src="<%=mysqlhfc_cd.get(0).get(0)%>" style="text-align: center; height: 100%; " /></div> <div class="mesej"><br>Pharmacy Daily Dispensed Drug List</div>\n\
                                         <div class="info_kecik">\n\
                                         <dd>Date: <strong><%=newdate%></strong></dd>\n\
-                                        <dd>Report No: <strong>PIS-0001</strong></dd>\n\
+                                        <dd>Report No: <strong>PIS-0007</strong></dd>\n\
                                         </div> '
                                         );
                         $(win.document.body).find('table')

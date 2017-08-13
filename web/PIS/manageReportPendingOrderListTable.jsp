@@ -34,7 +34,7 @@
         String dis = (String) session.getAttribute("DISCIPLINE_CODE");
 
         //                              0                           1                   2                                       3                                   4
-        String sql = "SELECT pis_order_master.ORDER_NO,pis_order_master.PMI_NO,pis_order_master.HEALTH_FACILITY_CODE,pis_order_master.EPISODE_CODE,pis_order_master.ENCOUNTER_DATE, "
+        String sql = "SELECT pis_order_master.ORDER_NO,pis_order_master.PMI_NO,pis_order_master.HEALTH_FACILITY_CODE,pis_order_master.EPISODE_DATE,pis_order_master.ENCOUNTER_DATE, "
                 //                  5                           6                           7                       8                           9                       10
                 + " pis_order_master.ORDER_DATE,pis_order_master.ORDER_BY,pis_order_master.ORDER_FROM,pis_order_master.ORDER_TO,pis_order_master.HFC_FROM,pis_order_master.HFC_TO, "
                 //                  11                      12                      13                              14                          15
@@ -119,7 +119,7 @@
                                         <img src="<%=mysqlhfc_cd.get(0).get(0)%>" style="text-align: center; height: 100%; " /></div> <div class="mesej"><br>Pharmacy Pending Order List</div>\n\
                                         <div class="info_kecik">\n\
                                         <dd>Date: <strong><%=newdate%></strong></dd>\n\
-                                        <dd>Report No: <strong><%=newdate%></strong></dd>\n\
+                                        <dd>Report No: <strong>PIS-0006</strong></dd>\n\
                                         </div> '
                                         );
                         $(win.document.body).find('table')
@@ -127,7 +127,7 @@
                                 .css('font-size', 'inherit');
                         $(win.document.body)
                                 .css('font-size', '10pt')
-                                .append('<div style="text-align: center;padding-top:20px;"><br> ***** &nbsp;&nbsp;  End Of Pharmacy Sales Report  &nbsp;&nbsp;  ***** </div>');
+                                .append('<div style="text-align: center;padding-top:20px;"><br> ***** &nbsp;&nbsp;  End Of Report  &nbsp;&nbsp;  ***** </div>');
                     },
                     exportOptions: {
                         columns: ':visible'

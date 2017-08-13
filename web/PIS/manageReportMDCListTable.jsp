@@ -158,7 +158,7 @@
                                         <img src="<%=mysqlhfc_cd.get(0).get(0)%>" style="text-align: center; height: 100%; " /></div> <div class="mesej"><br>Pharmacy MDC Drug List</div>\n\
                                         <div class="info_kecik">\n\
                                         <dd>Date: <strong><%=newdate%></strong></dd>\n\
-                                        <dd>Report No: <strong><%=newdate%></strong></dd>\n\
+                                        <dd>Report No: <strong>PIS-0002</strong></dd>\n\
                                         </div> '
                                         );
                         $(win.document.body).find('table')
@@ -166,7 +166,7 @@
                                 .css('font-size', 'inherit');
                         $(win.document.body)
                                 .css('font-size', '10pt')
-                                .append('<div style="text-align: center;padding-top:20px;"><br> ***** &nbsp;&nbsp;  End Of Pharmacy Sales Report  &nbsp;&nbsp;  ***** </div>');
+                                .append('<div style="text-align: center;padding-top:20px;"><br> ***** &nbsp;&nbsp;  End Of Report  &nbsp;&nbsp;  ***** </div>');
                     },
                     exportOptions: {
                         columns: ':visible'

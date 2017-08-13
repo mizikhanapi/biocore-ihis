@@ -224,7 +224,7 @@
                                         <img src="<%=mysqlhfc_cd.get(0).get(0)%>" style="text-align: center; height: 100%; " /></div> <div class="mesej"><br>Pharmacy Dispensed Drug List For ' + rdate + '</div>\n\
                                         <div class="info_kecik">\n\
                                         <dd>Date: <strong><%=newdate%></strong></dd>\n\
-                                        <dd>Report No: <strong>PIS-0002</strong></dd>\n\
+                                        <dd>Report No: <strong>PIS-0008</strong></dd>\n\
                                         </div> '
                                                         );
                                         $(win.document.body).find('table')
@@ -339,7 +339,7 @@
                                         <img src="<%=mysqlhfc_cd.get(0).get(0)%>" style="text-align: center; height: 100%; " /></div> <div class="mesej"><br>Pharmacy Dispensed Drug List For ' + rdate + '</div>\n\
                                         <div class="info_kecik">\n\
                                         <dd>Date: <strong><%=newdate%></strong></dd>\n\
-                                        <dd>Report No: <strong>PIS-0004</strong></dd>\n\
+                                        <dd>Report No: <strong>PIS-0010</strong></dd>\n\
                                         </div> '
                                                         );
                                         $(win.document.body).find('table')
@@ -456,7 +456,7 @@
                                         <img src="<%=mysqlhfc_cd.get(0).get(0)%>" style="text-align: center; height: 100%; " /></div> <div class="mesej"><br>Pharmacy Dispensed Drug List For ' + rdate + '</div>\n\
                                         <div class="info_kecik">\n\
                                         <dd>Date: <strong><%=newdate%></strong></dd>\n\
-                                        <dd>Report No: <strong>PIS-0006</strong></dd>\n\
+                                        <dd>Report No: <strong>PIS-0012</strong></dd>\n\
                                         </div> '
                                                         );
                                         $(win.document.body).find('table')
