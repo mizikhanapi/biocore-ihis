@@ -1,11 +1,9 @@
 <%-- 
-    Document   : mdcInsert
-    Created on : Jan 31, 2017, 9:43:35 PM
+    Document   : mdcUpdate
+    Created on : Jan 31, 2017, 11:07:39 AM
     Author     : Shammugam
 --%>
 
-<%@page import="java.time.LocalDateTime"%>
-<%@page import="java.time.format.DateTimeFormatter"%>
 <%@page import="Formatter.DateFormatter"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.util.Date"%>
@@ -21,11 +19,6 @@
     String hfc = session.getAttribute("HEALTH_FACILITY_CODE").toString();
     String dis = session.getAttribute("DISCIPLINE_CODE").toString();
     String sub = session.getAttribute("SUB_DISCIPLINE_CODE").toString();
-    String created_by = session.getAttribute("USER_ID").toString();
-
-    DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-    LocalDateTime now = LocalDateTime.now();
-    String created_date = format.format(now);
 
     String UD_MDC_CODE = request.getParameter("UD_MDC_CODE");
     String UD_ATC_CODE = request.getParameter("UD_ATC_CODE");
@@ -59,30 +52,21 @@
     RMIConnector rmic = new RMIConnector();
     Conn conn = new Conn();
 
-    String sqlCheck = "SELECT UD_MDC_CODE from pis_mdc2 WHERE UD_MDC_CODE = '" + UD_MDC_CODE + "' AND hfc_cd  = '" + hfc + "' AND discipline_cd  = '" + dis + "' LIMIT 1 ";
-    ArrayList<ArrayList<String>> duplicate = conn.getData(sqlCheck);
+    String sqlUpdate = "UPDATE pis_mdc2 SET d_trade_name = '" + D_TRADE_NAME + "',d_gnr_name = '" + D_GNR_NAME + "',d_route_code = '" + D_ROUTE_CODE + "',"
+            + " d_form_code = '" + D_FORM_CODE + "',d_strength = '" + D_STRENGTH + "',d_advisory_code = '" + D_ADVISORY_CODE + "',d_stock_qty = '" + D_STOCK_QTY + "', "
+            + " d_minimum_stock_level = '" + D_MINIMUM_QTY + "',d_maximum_stock_level = '" + D_MAXIMUM_QTY + "',d_reorder_stock_level = '" + D_REORDER_QTY + "',"
+            + " d_qty = '" + D_QTY + "',d_qtyt = '" + D_QTYT + "',d_duration = '" + D_DURATION + "',d_durationt = '" + D_DURATIONT + "',d_frequency = '" + D_FREQUENCY + "',"
+            + " d_caution_code = '" + D_CAUTIONARY_CODE + "',d_exp_date = '" + D_EXP_DATE + "',d_classification = '" + D_CLASSIFICATION + "',status = '" + STATUS + "',"
+            + " d_location_code = '" + D_LOCATION_CODE + "',d_sell_price = '" + D_SELL_PRICE + "',d_cost_price = '" + D_COST_PRICE + "',"
+            + " d_packaging = '" + D_PACKAGING + "',d_packagingt = '" + D_PACKAGINGT + "',d_price_ppack = '" + D_PRICE_PPACK + "'"
+            + " WHERE UD_MDC_CODE = '" + UD_MDC_CODE + "' AND hfc_cd  = '" + hfc + "' AND discipline_cd  = '" + dis + "' ";
 
-    if (duplicate.size() > 0) {
-        out.print("Duplicate");
+    boolean isUpdate = rmic.setQuerySQL(conn.HOST, conn.PORT, sqlUpdate);
+
+    if (isUpdate == true) {
+        out.print("Success");
     } else {
-
-        String sqlInsert = "INSERT INTO pis_mdc2 (ud_mdc_code,ud_atc_code,d_trade_name,d_gnr_name,d_route_code,d_form_code,d_strength,d_advisory_code,d_stock_qty,"
-                + "d_minimum_stock_level,d_maximum_stock_level,d_reorder_stock_level,d_qty,d_qtyt,d_duration,d_durationt,d_frequency,d_caution_code,d_exp_date,d_classification,"
-                + "status,d_location_code,d_sell_price,d_cost_price,d_packaging,d_packagingt,d_price_ppack,hfc_cd,discipline_cd,subdiscipline_cd,created_by,created_date) "
-                + " VALUES ('" + UD_MDC_CODE + "','" + UD_ATC_CODE + "','" + D_TRADE_NAME + "','" + D_GNR_NAME + "','" + D_ROUTE_CODE + "','" + D_FORM_CODE + "',"
-                + "'" + D_STRENGTH + "','" + D_ADVISORY_CODE + "','" + D_STOCK_QTY + "','" + D_MINIMUM_QTY + "','" + D_MAXIMUM_QTY + "','" + D_REORDER_QTY + "',"
-                + "'" + D_QTY + "','" + D_QTYT + "','" + D_DURATION + "','" + D_DURATIONT + "','" + D_FREQUENCY + "','" + D_CAUTIONARY_CODE + "','" + D_EXP_DATE + "',"
-                + "'" + D_CLASSIFICATION + "','" + STATUS + "','" + D_LOCATION_CODE + "','" + D_SELL_PRICE + "','" + D_COST_PRICE + "','" + D_PACKAGING + "','" + D_PACKAGINGT + "',"
-                + "'" + D_PRICE_PPACK + "','" + hfc + "','" + dis + "','" + sub + "','" + created_by + "','" + created_date + "' )";
-
-        boolean isInsert = rmic.setQuerySQL(conn.HOST, conn.PORT, sqlInsert);
-
-        if (isInsert == true) {
-            out.print("Success");
-        } else {
-            out.print("Failed");
-
-        }
+        out.print("Failed");
     }
 
 %>
