@@ -16,9 +16,11 @@
             <select id="USR_searchType" class="form-control" >
                 <option selected value="1">Created user within selected time frame</option>
 
-                <option value="2">Number of user by discipline/subdiscipline</option>
+                <option value="2">Number of user by discipline</option>
                 
-                <option value="3">Number of user by role</option>
+                <option value="3">Number of user by subdiscipline</option>
+                
+                <option value="4">Number of user by role</option>
 
             </select>
         </div>
@@ -51,6 +53,8 @@
     </div>
 
 </div>
+
+<jsp:include page="modal/report_modal.jsp"/>
 
 <script type="text/javascript">
     
@@ -115,6 +119,8 @@
         else if(type==="2")
             strURL="report_control/getUserListByDisc.jsp";
         else if(type==="3")
+            strURL="report_control/getUserListBySubdisc.jsp";
+        else if(type==="4")
             strURL="report_control/getUserListByRole.jsp";
         
        
