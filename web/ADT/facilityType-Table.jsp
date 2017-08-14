@@ -130,8 +130,7 @@
     </div>
 </div>
 
-<!--      <script src="old/assets/js/dataTables.bootstrap.min.js"></script>-->
-<!--<script src="bootstrap-3.3.6-dist/js/jquery.dataTables.min.js"></script>-->
+
 
 <script type="text/javascript" charset="utf-8">
 

@@ -31,7 +31,7 @@
     Boolean updBed, upMaster, upDetail;
 
     String updateBed = "UPDATE wis_bed_id SET bed_status = '" + bedstatus + "' where hfc_cd ='" + hfc + "' and discipline_cd ='" + Dis + "' and bed_id ='" + BedID + "' ";
-   String updateEpisode = "UPDATE wis_inpatient_episode SET inpatient_status = '" + status + "' where pmi_no ='" + pmiNo + "' and hfc_cd ='" + hfc + "' and discipline_cd ='" + Dis + "'  ";
+   String updateEpisode = "DELETE from wis_inpatient_episode where pmi_no ='" + pmiNo + "' and hfc_cd ='" + hfc + "' and discipline_cd ='" + Dis + "'  ";
     String insertHistory = "insert into wis_inpatient_episode_history"
            + "(pmi_no,episode_date,encounter_date,hfc_cd,ward_class_code,ward_id,bed_id,transfer_reason,inpatient_status,created_by,created_date) "
            + "values"

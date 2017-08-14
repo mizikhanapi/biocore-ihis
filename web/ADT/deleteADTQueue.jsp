@@ -14,18 +14,20 @@
 <%
     RMIConnector rmic = new RMIConnector();
     Conn conn = new Conn();
-    String pmino = request.getParameter("pmino");
+    String order = request.getParameter("order");
     String now = request.getParameter("today");
-     //   String delSql ="DELETE FROM wis_order_master WHERE pmi_no ='"+pmino+"' AND EPISODE_DATE = '"+now+"'";
+    //   String delSql ="DELETE FROM wis_order_master WHERE pmi_no ='"+pmino+"' AND EPISODE_DATE = '"+now+"'";
 
-    
-    String delSql ="DELETE FROM wis_order_master WHERE pmi_no ='"+pmino+"' ";
+    String delSql = "DELETE FROM wis_order_master WHERE order_no ='" + order + "' ";
+    String delSql2 = "DELETE FROM wis_order_detail WHERE order_no ='" + order + "' ";
     Boolean delSuccess = rmic.setQuerySQL(conn.HOST, conn.PORT, delSql);
-    if(delSuccess == true){
-out.print("success");
+    Boolean delSuccess2 = rmic.setQuerySQL(conn.HOST, conn.PORT, delSql2);
+
+    if (delSuccess == true && delSuccess2 == true) {
+        out.print("success");
 //out.print(delSql);
 //out.print(delSql); 
-    }else{
-out.print("fail");        
+    } else {
+        out.print("fail");
     }
 %>
