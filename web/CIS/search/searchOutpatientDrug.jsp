@@ -21,11 +21,10 @@
     String pmi_no = request.getParameter("pmi_no");
     String episodeDate = request.getParameter("episodeDate");
     String disiplineName = request.getParameter("discipline");
-    String sql = "";
     //out.println(pmi_no);
     //out.println(episodeDate);
 
-    String sql5 = "select drug_name,drug_cd from lhr_medication where pmi_no = '" + pmi_no + "' and episode_date = '" + episodeDate + "'";
+    String sql5 = "select drug_name,drug_cd,discipline_cd,subdiscipline_cd,hfc_cd,episode_date,pmi_no from lhr_medication where pmi_no = '" + pmi_no + "' and episode_date = '" + episodeDate + "'";
     ArrayList<ArrayList<String>> searchEpisode5 = conn.getData(sql5);
 
     if (searchEpisode5.size() > 0) {
@@ -54,7 +53,12 @@
 
             <td>
                 <p><strong><%=searchEpisode5.get(i).get(0)%></strong></p>
-                <input type="hidden" value="<%=searchEpisode5.get(i).get(1)%>">
+                <input type="hidden" id="idDrugOutPatient" value="<%=searchEpisode5.get(i).get(1)%>">
+                <input type="hidden" id="idDrugOutPatientepisodedate" value="<%=searchEpisode5.get(i).get(5)%>">
+                <input type="hidden" id="idDrugOutPatientdiscipline" value="<%=searchEpisode5.get(i).get(2)%>">
+                <input type="hidden" id="idDrugOutPatientsubdiscipline" value="<%=searchEpisode5.get(i).get(3)%>">
+                <input type="hidden" id="idDrugOutPatienthfc" value="<%=searchEpisode5.get(i).get(4)%>">
+                <input type="hidden" id="idDrugOutPatientpmino" value="<%=searchEpisode5.get(i).get(6)%>">
             </td>
             <td>
                 <button id="btnAddActivDrug" class="btn btn-success">ADD</button>

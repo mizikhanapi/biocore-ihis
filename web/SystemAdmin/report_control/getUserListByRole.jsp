@@ -15,9 +15,9 @@
        
     
 %>
-<h4 style="padding-top: 2%;padding-bottom: 1%;">Number Of Users Created Discipline and Subdiscipline</h4>
+<h4 style="padding-top: 2%;padding-bottom: 1%;">Number Of Users by Role</h4>
 <br>
-<table  id="reportListATCTable"  class="table table-striped table-bordered" cellspacing="0" width="100%">
+<table  id="reportListATCTable"  class="table table-striped table-bordered table-hover" cellspacing="0" width="100%">
     <thead>
     <th style="text-align: center;">Role Code</th>
     <th style="text-align: center;">Role Name</th>
@@ -45,11 +45,11 @@
             
     %>
 
-    <tr style="text-align: center;">
+    <tr style="text-align: center; cursor: pointer;">
         <td><%= dataATC.get(i).get(0)%></td>
         <td><%= dataATC.get(i).get(1)%></td>
         <td><%= dataATC.get(i).get(2)%></td>
-        <td hidden><%= String.join("|", dataATC.get(i))%></td>
+        <td hidden id="REP_hidden"><%= String.join("|", dataATC.get(i))%></td>
                 
     </tr>
     <%
@@ -108,7 +108,7 @@
                                         <img src="<%=mysqlhfc_cd.get(0).get(0)%>" style="text-align: center; height: 100%; " /></div> <div class="mesej"><br>Administration: Number of User By Role</div>\n\
                                         <div class="info_kecik">\n\
                                         <dd>Date: <strong><%=newdate%></strong></dd>\n\
-                                        <dd>Report No: <strong><%=newdate%></strong></dd>\n\
+                                        <dd>Report No: <strong>ADM-0002</strong></dd>\n\
                                         </div> '
                                         );
                        $(win.document.body).find('table')
@@ -132,6 +132,50 @@
                     className: 'btn btn-success'
                 }
             ]
+        });
+        
+        $('#reportListATCTable').off('click').on('click', 'tr', function(){
+            var row = $(this).closest('tr');
+            var arrData = row.find('#REP_hidden').text().split("|");
+            console.log(arrData);
+            
+            var intCount = parseInt(arrData[2]);
+            
+            $('#REP_modalTitle').text("List of "+arrData[1]);
+            
+            if(intCount < 1){
+                               
+                $('#REP_modalBody').html("<h3>This role has no user.</h3>");
+                
+                $('#modal_report').modal('show');
+            }
+            else{
+                var data ={
+                    code: arrData[0],
+                    name: arrData[1]
+                };
+                createScreenLoading();
+                $.ajax({
+                    type: 'POST',
+                    url: "report_control/getUserOfRole.jsp",
+                    data: data,
+                    timeout: 60000,
+                    success: function (data, textStatus, jqXHR) {
+                        $('#REP_modalBody').html(data);
+                        $('#modal_report').modal('show');
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                        $('#REP_modalBody').html("Opps! "+errorThrown);
+                    },
+                    complete: function (jqXHR, textStatus ) {
+                        destroyScreenLoading();
+                    }
+                    
+                });
+                
+            }
+            
+            
         });
 
     });

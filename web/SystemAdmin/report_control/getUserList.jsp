@@ -137,7 +137,7 @@
                                         <img src="<%=mysqlhfc_cd.get(0).get(0)%>" style="text-align: center; height: 100%; " /></div> <div class="mesej"><br>Administration: User List from <%=pDateFrom%> to <%=pDateTo%></div>\n\
                                         <div class="info_kecik">\n\
                                         <dd>Date: <strong><%=newdate%></strong></dd>\n\
-                                        <dd>Report No: <strong><%=newdate%></strong></dd>\n\
+                                        <dd>Report No: <strong>ADM-0001</strong></dd>\n\
                                         </div> '
                                         );
                        $(win.document.body).find('table')
@@ -147,7 +147,7 @@
                         $(win.document.body)
                                 .css('font-size', '10pt')
                                 .css('font-weight', 'bolder')
-                                .append('<div style="text-align: right;padding-top:10px;"><br>Total Number of Users : <%=dataATC.size()%> </div>')
+                                .append('<div style="text-align: right;padding-top:10px;"><br>Total Number of Users : <%=dataATC.size()%> </div>');
                         $(win.document.body)
                                 .css('font-size', '10pt')
                                 .append('<div style="text-align: center;padding-top:20px;"><br> ***** &nbsp;&nbsp;  End Of Administration Report  &nbsp;&nbsp;  ***** </div>');

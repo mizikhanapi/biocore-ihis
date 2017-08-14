@@ -212,6 +212,20 @@
             }});
 
     });
+    
+    $("#outpatientProblemDrug").on('click','#detailDrugList #btnAddActivDrug',function(){
+        var row = $(this).closest("tr");
+        var drugcode = row.find("#idDrugOutPatient").val();
+        var pmino =row.find("#idDrugOutPatientpmino").val();
+        var episodedate =row.find("#idDrugOutPatientepisodedate").val();
+        var discipline=row.find("#idDrugOutPatientdiscipline").val();
+        var subdiscipline=row.find("#idDrugOutPatientsubdiscipline").val();
+        var hfc=row.find("#idDrugOutPatienthfc").val();
+        
+        var doctor = "<%=session.getAttribute("USER_ID")%>";
+        alert(drugcode+" "+pmino+" "+episodedate+" "+discipline+" "+subdiscipline+" "+hfc+" "+doctor);
+        
+    });
 
 
 </script>

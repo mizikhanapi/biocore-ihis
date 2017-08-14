@@ -91,7 +91,8 @@
                                                 <p>
                                                     Collection Date:
                                                     <span class="p-label">
-                                                        <%= new SimpleDateFormat("dd/MM/yyyy").format(new java.util.Date())%><input type='text' name='Collection_date' id="C_date" value='<%= new SimpleDateFormat("dd/MM/yyyy").format(new java.util.Date())%>' style='display:none;'> 
+                                                        <%= new SimpleDateFormat("dd/MM/yyyy").format(new java.util.Date())%><input type='text' name='Collection_date' id="C_date" value='<%= new SimpleDateFormat("yyyy-MM-dd").format(new java.util.Date())%>' style='display:none;'>
+                                                        
                                                     </span>
 
                                                 </p>
