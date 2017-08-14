@@ -69,7 +69,7 @@ $(document).ready(function () {
                 hfc_code: hfc_cd
             },
             success: function (e) {
-           ;
+           ;    console.log(e)
                 $("#tCISOESPOConsultantCode").val(e.trim());
             }
         })

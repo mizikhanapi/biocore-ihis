@@ -23,7 +23,7 @@
                         <div class="form-group">
                             <label class="col-md-6 control-label" for="textinput">Search Problem</label>
                             <div class="col-md-12">
-                                <input class="form-control input-lg" type="text" name="problem"  id="tCISOEMONProblemName" placeholder="Search Problem Name..." tabindex="4">
+                                <input class="form-control input-lg" type="text" name="problem"  id="tCISOEMONProblemName" placeholder="(Optional) Search Problem Name..." tabindex="4">
                                 <input type="hidden" id="tCISOEMONProblemNameCode"/>
                                 <div id="tCISOEMONProblemNameLoading" ></div>
                             </div>

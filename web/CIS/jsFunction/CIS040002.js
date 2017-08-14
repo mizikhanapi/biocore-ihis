@@ -75,6 +75,7 @@ $(document).ready(function(){
             type: type,
             orderId: order_id
         }
+        console.log(data);
 
         $.ajax({
             url: "order/ResultSearchOrderDTO.jsp",
@@ -115,6 +116,7 @@ $(document).ready(function(){
                 status: "1"
             }
             sendOrder(data, "tableOrderDTO");
+            _dataDTO = [];
         } else {
             return false;
         }
@@ -399,7 +401,7 @@ $(document).ready(function(){
                 keyword: drugName
             },
             success: function (response) {
-                
+                console.log(response);
                 var array_data = String(response).split("|");
                 $('#tCIS_DTODrugCode').val(array_data[0].trim());
                 $('#tCIS_DTODrugForm').val(array_data[7].trim());

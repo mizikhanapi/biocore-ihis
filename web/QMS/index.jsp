@@ -15,8 +15,8 @@
 <%@page import="dBConn.Conn"%>
 <%@page import="Config.Config"%>
 <%@page import="main.RMIConnector"%>
-<%@include file="validation/validateSession.jsp" %>
-<%@include file="validation/validateModuleAccess.jsp" %>
+<%//@include file="validation/validateSession.jsp" %>
+<%@include file="validateModuleAccess.jsp" %>
 
 
 

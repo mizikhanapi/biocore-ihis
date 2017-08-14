@@ -45,7 +45,7 @@
                                             <input type="hidden" name="POS" id="codeROS" class="form-control input-lg"  tabindex="4">
                                             <label class="col-md-6 control-label" for="textinput">Search Problem</label>
                                             <div class="col-md-12">
-                                                <input class="form-control input-lg" type="text" name="problem"  id="tCISOELIOProblemName" placeholder="Search Problem Name..." tabindex="4" data-search-by-word="true">
+                                                <input class="form-control input-lg" type="text" name="problem"  id="tCISOELIOProblemName" placeholder="(Optional) Search Problem Name..." tabindex="4" data-search-by-word="true">
                                                 <div id="tCISOELIOProblemNameLoading" ></div>
                                             </div>
                                         </div>
