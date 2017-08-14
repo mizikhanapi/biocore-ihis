@@ -150,7 +150,7 @@
 
 <script>
     $(document).ready(function () {
-        createScreenLoading();
+        //createScreenLoading();
         $("#viewMTDpage").load("viewMTD.jsp");
 
         $("#Clone").click(function () {
@@ -228,7 +228,7 @@
                 alert("Complete The Fields");
                 return false;
             } else {
-                createScreenLoading();
+                //createScreenLoading();
                 $.ajax({
                     url: "tDetailInsert.jsp",
                     type: "post",
@@ -254,7 +254,7 @@
                         } else {
                             alert("Insertion failed!");
                         }
-                        destroyScreenLoading();
+                        //destroyScreenLoading();
                     },
                     error: function (err) {
 

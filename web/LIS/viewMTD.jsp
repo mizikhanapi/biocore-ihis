@@ -7,14 +7,19 @@
 <%@page import="java.sql.*"%>
 <div class="loading" style="display: none;"></div>
 <div class="table-guling">
+    <%
+        String my_1_hfc_cd = (String) session.getAttribute("HEALTH_FACILITY_CODE");
+        String masterCode = request.getParameter("masterCode");
+
+//          session.setAttribute("masterCode", masterCode);
+//          String masterCode1 = (String) session.getAttribute("masterCode");
+        Conn conn = new Conn();
+        String query1 = "select item_cd,test_cat,item_name,spe_source,spe_container,volume,special_inst,status,buy_price,ser_price from lis_item_detail where hfc_cd = '" + my_1_hfc_cd + "' and test_cat='" + masterCode + "'";
+        ArrayList<ArrayList<String>> q1 = conn.getData(query1);
+    %>
+
     <table id="MTD"  class="table table-striped table-bordered" cellspacing="0" width="100%">
-        <%
-            String my_1_hfc_cd = (String) session.getAttribute("HEALTH_FACILITY_CODE");
-            String masterCode = request.getParameter("masterCode");
-            Conn conn = new Conn();
-            String query1 = "select item_cd,test_cat,item_name,spe_source,spe_container,volume,special_inst,status,buy_price,ser_price from lis_item_detail where hfc_cd = '" + my_1_hfc_cd + "' and test_cat='"+masterCode+"'";
-            ArrayList<ArrayList<String>> q1 = conn.getData(query1);
-        %>
+
         <thead>
             <tr>
                 <th class="col-sm-1">Item code1</th>
@@ -65,13 +70,14 @@
                                         <div class="form-group">
                                             <label class="col-md-4 control-label" for="textinput">Category code</label>
                                             <div class="col-md-8">
-                                                <input class="form-control" type="text" id="ccode_<%=i%>" value="<%=q1.get(i).get(1)%>" readonly="">
+                                                <input type="text" name="ccode"  class="form-control" id="ccode_<%=i%>" value="<%=q1.get(i).get(1)%>" readonly="">
+
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <label class="col-md-4 control-label" for="textinput">ICD10-PCS</label>
                                             <div class="col-md-8">
-                                                <input type="text" name="testCatName"  class="form-control" id="icd10_<%=i%>" value="<%=q1.get(i).get(0)%>" required="required"/ readonly="">
+                                                <input type="text" name="testCatName"  class="form-control" id="icd10_<%=i%>" value="<%=q1.get(i).get(0)%>" required="required" readonly="">
                                             </div>
                                         </div>
                                         <div class="form-group">
@@ -131,7 +137,7 @@
                                 <div class="modal-footer">
                                     <div class="btn-group btn-group-justified" role="group" aria-label="group button">
                                         <div class="btn-group" role="group">
-                                            <button type="button" class="btn btn-success btn-block btn-lg" id="btn_update1<%=i%>">Update</button>
+                                            <button type="button" class="btn btn-success btn-block btn-lg" id="btn_update_item_detail<%=i%>">Update</button>
                                         </div>
                                         <div class="btn-group" role="group">
                                             <button type="button" id="updateReset" class="btn btn-default btn-block btn-lg" data-dismiss="modal" role="button">Cancel</button>
@@ -147,7 +153,7 @@
                     <a id="btn_delete<%=i%>" class="testing"><i class="fa fa-times" aria-hidden="true" style="display: inline-block;color: #d9534f;" ></i></a>
                     <script type="text/javascript" charset="utf-8">
                         $(document).ready(function () {
-                            destroyScreenLoading();
+                            //destroyScreenLoading();
                             $("#btn_delete<%=i%>").click(function () {
                                 var conf = confirm('Are you sure want to delete?');
                                 if (conf) {
@@ -175,7 +181,7 @@
                                 }
                             });
 
-                            $("#btn_update1<%=i%>").click(function () {
+                            $("#btn_update_item_detail<%=i%>").click(function () {
                                 var icd10 = $("#icd10_<%=i%>").val();
                                 var analytename = $("#analytename_<%=i%>").val();
                                 var s_source = $("#ssource_<%=i%>").val();
@@ -185,6 +191,8 @@
                                 var b_price = $("#bprice_<%=i%>").val();
                                 var s_price = $("#sprice_<%=i%>").val();
                                 var status = $("#status_<%=i%>").val();
+                                var category = "<%=q1.get(i).get(1)%>";
+
 
                                 $.ajax({
                                     url: "tDetailUpdate.jsp",
@@ -200,15 +208,57 @@
                                         b_price: b_price,
                                         s_price: s_price,
                                         status: status
+                                    },
+                                    timeout: 1000, // 10 seconds
+                                    success: function () {
+
+                                        //$("#viewMTDpage").val(orderDetail.trim());
+//                                      $('#viewMTDpage').html(orderDetail);
+//                                      $('#viewMTDpage').trigger('contentchanged');
+
+//                                        $.ajax({
+//                                            url: "viewMTD.jsp",
+//                                            type: "post",
+//                                            data: {masterCode: category},
+//                                            timeout: 1000, // 10 seconds
+//                                            success: function () {
+//                                                
+//                                            }
+//
+//                                        });
+
+                                        $.ajax({
+                                            type: 'POST',
+                                            url: "viewMTD.jsp",
+                                            timeout: 60000,
+                                            data: {masterCode: category},
+                                            success: function (data) {
+                                                
+                                                $('#testDetail_<%=i%>').modal('toggle');
+                                                $("#testDetail_<%=i%>").hide();
+                                                $(".modal-backdrop").hide();
+                                                bootbox.alert("Test detail information is updated successfully.");
+                                                $('#viewMTDpage').html(data);
+                                            }
+                                        });
+                                        //$('#viewMTDpage').load('viewMTD');
+
+
+
+
+
+
+                                    },
+                                    error: function (err) {
+                                        alert("Error! Update failed!!");
                                     }
                                 });
-                                createScreenLoading();
-                                $("#viewMTDpage").load("viewMTD.jsp");
-                                $('#testDetail_<%=i%>').modal('toggle');
-                                $("#testDetail_<%=i%>").hide();
-                                $(".modal-backdrop").hide();
-                                bootbox.alert("Test detail information is updated successfully.");
-                                
+                                //createScreenLoading();
+                                //$("#viewMTDpage").load("viewMTD.jsp");
+
+
+
+
                             });
                         });
                     </script>  

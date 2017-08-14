@@ -195,7 +195,7 @@
         var masterName = arrayData[1];
         
         //alert(masterCode+" "+masterName);
-
+        $('#MTD').DataTable().destroy();
         var data = {masterCode: masterCode};
         $('.nav-tabs a[href="#tab_default_2"]').tab('show');
         $('#detailTable_body').html('<div class="loader"></div>');
