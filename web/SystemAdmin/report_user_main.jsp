@@ -54,7 +54,6 @@
 
 </div>
 
-<jsp:include page="modal/report_modal.jsp"/>
 
 <script type="text/javascript">
     

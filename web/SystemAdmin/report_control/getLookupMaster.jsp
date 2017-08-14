@@ -1,6 +1,6 @@
 <%-- 
-    Document   : getUserListByDisc
-    Created on : Aug 14, 2017, 5:31:55 PM
+    Document   : getLookupMaster
+    Created on : Aug 14, 2017, 7:02:30 PM
     Author     : Ardhi Surya; rdsurya147@gmail.com; insta: @rdcfc
 --%>
 
@@ -12,45 +12,51 @@
 <%
     Conn conn = new Conn();
     String hfc = session.getAttribute("HEALTH_FACILITY_CODE").toString();
-       
+  
     
 %>
-<h4 style="padding-top: 2%;padding-bottom: 1%;">Number Of Users by Discipline</h4>
+<h4 style="padding-top: 2%;padding-bottom: 1%;">List Of User of Lookup Master </h4>
 <br>
-<table  id="reportListATCTable"  class="table table-striped table-bordered" cellspacing="0" width="100%">
+<table  id="reportListLookupTable"  class="table table-striped table-bordered table-hover" cellspacing="0" width="100%">
     <thead>
-    <th style="text-align: center;">Discipline Code</th>
-    <th style="text-align: center;">Discipline Name</th>
-    <th style="text-align: center;">Number of users</th>
+    <th style="text-align: center;">Code</th>
+    <th style="text-align: center;">Description</th>
+    <th style="text-align: center;">Source</th>
+    <th style="text-align: center;">Status</th>
+    <th style="text-align: center;">Number of Lookup Detail</th>
     <th hidden>Hidden</th>
     
+</thead>
 <tbody>
 
     <%
-        //                       0              1                   2 
-        String sql = "select d.discipline_cd, d.discipline_name, count(ua.user_id) "
-                + "from adm_hfc_discipline hd "
-                + "join adm_discipline d on d.discipline_hfc_cd=hd.hfc_cd and d.discipline_cd=hd.discipline_cd "
-                + "join adm_subdiscipline s on s.subdiscipline_hfc_cd=hd.hfc_cd and s.discipline_cd=hd.discipline_cd and s.subdiscipline_cd=hd.subdiscipline_cd "
-                + "join adm_user_access_role ua on ua.`HEALTH_FACILITY_CODE`=hd.hfc_cd and ua.`DISCIPLINE_CODE`=hd.discipline_cd and ua.`SUBDISCIPLINE_CODE`=hd.subdiscipline_cd "
-                + "where hd.hfc_cd='"+hfc+"' "
-                + "Group by d.discipline_name;";
+        //                       0                          1               2                     3                                 4
+        String sql = "select m.`Master_Reference_code`, m.`Description`, m.source_indicator, ifnull(m.status, '1'), count(d.`Detail_Reference_code`) "
+                + "from adm_lookup_master m "
+                + "left join adm_lookup_detail d on d.`Master_Reference_code`=m.`Master_Reference_code` and d.hfc_cd='"+hfc+"' "
+                + "group by m.`Master_Reference_code`;";
         ArrayList<ArrayList<String>> dataATC = conn.getData(sql);
 
         int size = dataATC.size();
-        int totalUsers = 0;
-       
+        int totalDetail =0;
+        
         for (int i = 0; i < size; i++) {
+            String  tempStatus="Active";
+            if(dataATC.get(i).get(3).equalsIgnoreCase("1"))
+                tempStatus="Inactive";
             
-            totalUsers = totalUsers + Integer.parseInt(dataATC.get(i).get(2));
+            totalDetail+= Integer.parseInt(dataATC.get(i).get(4));
             
+           
     %>
 
-    <tr style="text-align: center; cursor: pointer;">
+    <tr style="text-align: center; cursor: pointer">
         <td><%= dataATC.get(i).get(0)%></td>
         <td><%= dataATC.get(i).get(1)%></td>
         <td><%= dataATC.get(i).get(2)%></td>
-        <td hidden id="REP_hidden"><%= String.join("|", dataATC.get(i))%></td>
+        <td><%= tempStatus%></td>
+        <td><%= dataATC.get(i).get(4)%></td>
+        <td hidden id="REP_hidden"><%=String.join("|", dataATC.get(i))%></td>
                 
     </tr>
     <%
@@ -72,7 +78,7 @@
 
     $(document).ready(function () {
 
-        $('#reportListATCTable').DataTable({
+        $('#reportListLookupTable').DataTable({
             initComplete: function (settings, json) {
                 destroyScreenLoading();
             },
@@ -82,7 +88,7 @@
                 {
                     extend: 'excelHtml5',
                     text: 'Export To Excel',
-                    title: 'Administration: Number of User By Discipline',
+                    title: 'List Of Lookup Master',
                     className: 'btn btn-primary',
                     exportOptions: {
                         columns: ':visible'
@@ -90,14 +96,14 @@
                 }, {
                     extend: 'csvHtml5',
                     text: 'Export To Excel CSV',
-                    title: 'Administration: Number of User By Discipline',
+                    title: 'List Of Lookup Master',
                     className: 'btn btn-primary',
                     exportOptions: {
                         columns: ':visible'
                     }
                 }, {
                     extend: 'print',
-                    text: 'Print User List',
+                    text: 'Print Lookup Master List',
                     title: $('h1').text(),
                     message: '<br><br>',
                     className: 'btn btn-primary',
@@ -106,10 +112,10 @@
                                 .css('font-size', '10pt')
                                 .prepend(
                                         '<div class="logo-hfc asset-print-img" style="z-index: 0; top: 0px; opacity: 1.0;">\n\
-                                        <img src="<%=mysqlhfc_cd.get(0).get(0)%>" style="text-align: center; height: 100%; " /></div> <div class="mesej"><br>Administration: Number of User By Discipline</div>\n\
+                                        <img src="<%=mysqlhfc_cd.get(0).get(0)%>" style="text-align: center; height: 100%; " /></div> <div class="mesej"><br>Administration: List Of Lookup Master</div>\n\
                                         <div class="info_kecik">\n\
                                         <dd>Date: <strong><%=newdate%></strong></dd>\n\
-                                        <dd>Report No: <strong>ADM-0006</strong></dd>\n\
+                                        <dd>Report No: <strong>ADM-0008</strong></dd>\n\
                                         </div> '
                                         );
                        $(win.document.body).find('table')
@@ -119,7 +125,7 @@
                         $(win.document.body)
                                 .css('font-size', '10pt')
                                 .css('font-weight', 'bolder')
-                                .append('<div style="text-align: right;padding-top:10px;"><br>Total Number of Discipline with Users : <%=dataATC.size()%><br>Total Users : <%= totalUsers%></div>');
+                                .append('<div style="text-align: right;padding-top:10px;"><br>Total Number of Lookup Master : <%=dataATC.size()%><br>Total Number of Lookup Detail : <%=totalDetail%> </div>');
                         $(win.document.body)
                                 .css('font-size', '10pt')
                                 .append('<div style="text-align: center;padding-top:20px;"><br> ***** &nbsp;&nbsp;  End Of Administration Report  &nbsp;&nbsp;  ***** </div>');
@@ -135,30 +141,31 @@
             ]
         });
         
-        $('#reportListATCTable').off('click').on('click', 'tr', function(){
+        
+        $('#reportListLookupTable').off('click').on('click', 'tr', function(){
             var row = $(this).closest('tr');
             var arrData = row.find('#REP_hidden').text().split("|");
             console.log(arrData);
             
-            var intCount = parseInt(arrData[2]);
+            var intCount = parseInt(arrData[4]);
             
-            $('#REP_modalTitle').text("List of User of "+arrData[1]);
+            $('#REP_modalTitle').text("List of Lookup Detail of "+arrData[1]);
             
             if(intCount < 1){
                                
-                $('#REP_modalBody').html("<h3>This discipline has no user.</h3>");
+                $('#REP_modalBody').html("<h3>This Lookup has no detail.</h3>");
                 
                 $('#modal_report').modal('show');
             }
             else{
                 var data ={
-                    dis_cd: arrData[0],
-                    dis_name: arrData[1]
+                    code: arrData[0],
+                    name: arrData[1]
                 };
                 createScreenLoading();
                 $.ajax({
                     type: 'POST',
-                    url: "report_control/getUserOfDis.jsp",
+                    url: "report_control/getLookupDetail.jsp",
                     data: data,
                     timeout: 60000,
                     success: function (data, textStatus, jqXHR) {
