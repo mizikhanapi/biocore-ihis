@@ -22,7 +22,7 @@
     String sql2 = "";
     sql = "select w.pmi_no,w.episode_date,h.hfc_name,d.discipline_name from wis_inpatient_episode w inner join adm_health_facility h on w.hfc_cd = h.hfc_cd inner join  adm_discipline d on w.discipline_cd = d.discipline_cd where w.pmi_no = '" + pmiNo + "'AND w.inpatient_status = '1' group by w.episode_date;";
     sql2 = "select p.pmi_no,p.episode_date,h.hfc_name,d.discipline_name from pms_episode p inner join adm_health_facility h on p.`HEALTH_FACILITY_CODE` = h.hfc_cd inner join  adm_discipline d on p.DISCIPLINE_CODE = d.discipline_cd where p.pmi_no = '" + pmiNo + "' and p.`STATUS` = '1' group by p.`EPISODE_DATE` ORDER BY p.`EPISODE_DATE` ASC;";
-    //    1      2          3            4            5                6              7         8    9            10
+    //   q                           1      2          3            4            5                6              7         8    9            10
     String sqlActivDrug = "Select pmi_no,hfc_cd,episode_date,encounter_date,discipline_cd,subdiscipline_cd,onset_date,drug_cd,created_by,created_date from lhr_active_medication where pmi_no = '" + pmiNo + "';";
     ArrayList<ArrayList<String>> searchInpatient;
     searchInpatient = conn.getData(sql);
@@ -43,7 +43,6 @@
                 <th>NO</th>
                 <th>Name</th>
                 <th>Onset Date</th>
-                <th>Action</th>
                 </thead>
                 <tbody>
                     <%                      if (searchActivDrug.size() > 0) {
@@ -51,14 +50,14 @@
 
                     %>
                     <tr>
-                        <td><%=i%>
+                        <td><%=i+1%>
                             <input type="hidden" id="pmidrug" value="<%=searchActivDrug.get(i).get(0)%>">
                             <input type="hidden" id="episodedrug" value="<%=searchActivDrug.get(i).get(2)%>">
                             <input type="hidden" id="disciplinedrug" value="<%=searchActivDrug.get(i).get(5)%>">
                         </td>
-                        <td><%=searchActivDrug.get(i).get(8)%></td>
                         <td><%=searchActivDrug.get(i).get(7)%></td>
-                        <td>BUTTON HERE</td>
+                        <td><%=searchActivDrug.get(i).get(6)%></td>
+                        
                     </tr>
                     <%}
                     }%>
@@ -202,7 +201,7 @@
             url: 'search/searchOutpatientDrug.jsp',
             timeout: 10000,
             success: function (getData) {
-                console.log(getData);
+                //console.log(getData);
                 if (getData.trim() === "1") {
                     alert("No Medication!");
                     $('#outpatientProblemDrug').html("");
@@ -223,7 +222,30 @@
         var hfc=row.find("#idDrugOutPatienthfc").val();
         
         var doctor = "<%=session.getAttribute("USER_ID")%>";
-        alert(drugcode+" "+pmino+" "+episodedate+" "+discipline+" "+subdiscipline+" "+hfc+" "+doctor);
+        //alert(drugcode+" "+pmino+" "+episodedate+" "+discipline+" "+subdiscipline+" "+hfc+" "+doctor);
+        var data = {pmino:pmino,
+            episodedate:episodedate,
+            discipline:discipline,
+            subdiscipline:subdiscipline,
+            hfc:hfc,
+            doctor:doctor,
+        drugcode:drugcode}; 
+        
+        $.ajax({
+           type: 'post',
+           data:data,
+           url:'search/ResultAddActiveDrugOutPatient.jsp',
+           success: function(databack){
+               console.log(databack);
+               if($.trim(databack)==="already"){
+                   alert("This drug already Active");
+               }else if($.trim(databack)==="success"){
+                   alert("Success activating the drug");
+               }else if($.trim(databack)==="fail"){
+                   alert("Fail activating the drug");
+               }
+           }
+        });
         
     });
 
