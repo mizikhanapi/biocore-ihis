@@ -23,7 +23,7 @@
     sql = "select w.pmi_no,w.episode_date,h.hfc_name,d.discipline_name from wis_inpatient_episode w inner join adm_health_facility h on w.hfc_cd = h.hfc_cd inner join  adm_discipline d on w.discipline_cd = d.discipline_cd where w.pmi_no = '" + pmiNo + "'AND w.inpatient_status = '1' group by w.episode_date;";
     sql2 = "select p.pmi_no,p.episode_date,h.hfc_name,d.discipline_name from pms_episode p inner join adm_health_facility h on p.`HEALTH_FACILITY_CODE` = h.hfc_cd inner join  adm_discipline d on p.DISCIPLINE_CODE = d.discipline_cd where p.pmi_no = '" + pmiNo + "' and p.`STATUS` = '1' group by p.`EPISODE_DATE` ORDER BY p.`EPISODE_DATE` ASC;";
     //   q                           1      2          3            4            5                6              7         8    9            10
-    String sqlActivDrug = "Select pmi_no,hfc_cd,episode_date,encounter_date,discipline_cd,subdiscipline_cd,onset_date,drug_cd,created_by,created_date from lhr_active_medication where pmi_no = '" + pmiNo + "';";
+    String sqlActivDrug = "Select m.pmi_no,m.hfc_cd,m.episode_date,m.encounter_date,m.discipline_cd,m.subdiscipline_cd,m.onset_date,m.drug_cd,m.created_by,m.created_date,p.d_trade_name from lhr_active_medication m join pis_mdc2 p on m.drug_cd = p.ud_mdc_code and m.hfc_cd = p.hfc_cd where pmi_no = '" + pmiNo + "';";
     ArrayList<ArrayList<String>> searchInpatient;
     searchInpatient = conn.getData(sql);
 
@@ -40,7 +40,7 @@
         <div>
             <table class="table table-striped table-bordered" id="tableActiveDrugList" cellspacing="0" width="100%">
                 <thead>
-                <th>NO</th>
+                <th>No.</th>
                 <th>Name</th>
                 <th>Onset Date</th>
                 </thead>
@@ -54,8 +54,9 @@
                             <input type="hidden" id="pmidrug" value="<%=searchActivDrug.get(i).get(0)%>">
                             <input type="hidden" id="episodedrug" value="<%=searchActivDrug.get(i).get(2)%>">
                             <input type="hidden" id="disciplinedrug" value="<%=searchActivDrug.get(i).get(5)%>">
+                            <input type="hidden" id="drugcodedrug" value="<%=searchActivDrug.get(i).get(7)%>">
                         </td>
-                        <td><%=searchActivDrug.get(i).get(7)%></td>
+                        <td><%=searchActivDrug.get(i).get(10)%></td>
                         <td><%=searchActivDrug.get(i).get(6)%></td>
                         
                     </tr>
