@@ -53,7 +53,8 @@
     
         $('#QLdiv').on('click','#QLtable tr',function(){
         $('#QLStaff option:not(:selected)').prop('disabled', false);
-        $('#QLName option:not(:selected)').prop('disabled', false);
+        //$('#QLName option:not(:selected)').prop('disabled', false);
+        $('#QLName').prop('disabled', true);
         $('#Lform')[0].reset();
         var row = $(this).closest('tr');
         var rowname = row.find("#Ltype").text()+"|"+row.find("#Lname").text();
@@ -75,7 +76,7 @@
     
     $('#Lplus').on('click',function(){
         //$('#QLStaff option:not(:selected)').prop('disabled', false);
-        $('#QLName option:not(:selected)').prop('disabled', false);
+        $('#QLName').prop('disabled', false);
         $('#Lform')[0].reset();
         $("#QLStaff").prop('disabled', false);
     });

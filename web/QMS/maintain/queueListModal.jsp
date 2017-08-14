@@ -44,8 +44,15 @@
                         <div><label>Queue Name *: </label></div>
                         <select class="form-control" id="QLName">
                             <option selected="true" disabled="true">Please select Queue Name</option>
-                            <%                                for (int i = 0; i < dataQueue.size(); i++) {%>
-                            <option value="<%=dataQueue.get(i).get(0) + "|" + dataQueue.get(i).get(1)%>"><%="("+dataQueue.get(i).get(0) + ") " + dataQueue.get(i).get(1)%></option>  
+                            <%                                for (int i = 0; i < dataQueue.size(); i++) {
+                                                              String optDisabled="";
+                                                              if("PN".equalsIgnoreCase(dataQueue.get(i).get(0))){
+                                                                  optDisabled="disabled";
+                                                              }
+                                                                
+                            %>
+                                
+                            <option value="<%=dataQueue.get(i).get(0) + "|" + dataQueue.get(i).get(1)%>" <%=optDisabled%>><%="("+dataQueue.get(i).get(0) + ") " + dataQueue.get(i).get(1)%></option>  
                             <%   }
                             %>
                         </select>

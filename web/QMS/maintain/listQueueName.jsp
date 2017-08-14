@@ -16,13 +16,14 @@
     String disN = session.getAttribute("DISCIPLINE_CODE").toString();
 
     //                                                                                      DATE_FORMAT(n.created_date,'%d/%m/%Y')
-    String sql = "select n.queue_type,n.queue_name,n.queue_description,ifnull(n.user_id, '-'),n.quota,n.status,n.created_by, DATE_FORMAT(n.created_date,'%d/%m/%Y'),n.hfc_cd,d.discipline_name,s.subdiscipline_name,h.hfc_name,x.user_name"
+    //                      0               1               2                   3                 4        5        6                           7                       8           9                  10               11           12           13  
+    String sql = "select n.queue_type,n.queue_name,n.queue_description,ifnull(n.user_id, '-'),n.quota,n.status,n.created_by, DATE_FORMAT(n.created_date,'%d/%m/%Y'),n.hfc_cd,d.discipline_name,s.subdiscipline_name,h.hfc_name,x.user_name, creator.user_name "
             + " from pms_queue_name n "
             + "left join adm_users x on x.user_id = n.user_id " //aku tukar inner jadi left untuk test.
+            + "left join adm_users creator on creator.user_id=n.created_by "
             + "left join adm_health_facility h on h.hfc_cd = n.hfc_cd "
             + "left join adm_hfc_discipline a on a.discipline_cd = n.discipline_code and a.subdiscipline_cd = n.subdiscipline_code and a.hfc_cd = n.hfc_cd "
             + "left join adm_discipline d on d.discipline_cd = a.discipline_cd and d.discipline_hfc_cd = n.hfc_cd "
-            //+ "left join pms_queue_type q on q.queue_type = n.queue_type and q.status='Active' and q.hfc_cd = n.hfc_cd and q.discipline_code = n.discipline_code "
             + "LEFT JOIN adm_subdiscipline s on s.subdiscipline_cd = a.subdiscipline_cd and s.discipline_cd = a.discipline_cd and s.subdiscipline_hfc_cd = n.hfc_cd "
             + "where n.hfc_cd = '" + hfcN + "' and n.discipline_code='" + disN + "';";
     ArrayList<ArrayList<String>> dataQN;
@@ -32,15 +33,15 @@
     <thead>
     <th>Queue Type Code</th>
     <th>Queue Name Code</th>
-    <th>Staff ID</th>
-    <th hidden="true"></th>
+    <th hidden>Staff ID</th>
+    <th hidden></th>
     <th>Description</th>
     <th>Quota</th>
     <th>Status</th>
     <th>Modify by</th>
     <th>Modify date</th>
     <th>Health Facility</th>
-    <th hidden="true"></th>
+    <th hidden></th>
     <th>Discipline</th>
     <th>Sub-discipline</th>
 </thead>
@@ -57,15 +58,15 @@
     <tr data-status="pagado" data-toggle="modal" data-id="1" data-target="#names">
         <td id="tyCd"><%=dataQN.get(i).get(0)%></td>
         <td id="nmCd"><%=dataQN.get(i).get(1)%></td>
-        <td id="idName" ><%=dataQN.get(i).get(12)%></td>
-        <td id="id" hidden=""><%=dataQN.get(i).get(3)%></td>
+        <td id="idName" hidden><%=dataQN.get(i).get(12)%></td>
+        <td id="id" hidden><%=dataQN.get(i).get(3)%></td>
         <td id="desc"><%=dataQN.get(i).get(2)%></td>
         <td id="quota"><%=dataQN.get(i).get(4)%></td>
         <td id="status23"><%=dataQN.get(i).get(5)%></td>
-        <td id="createdBy"><%=dataQN.get(i).get(6)%></td>
+        <td id="createdBy">(<%=dataQN.get(i).get(6)%>) <%=dataQN.get(i).get(13)%></td>
         <td id="createdDate"><%=dataQN.get(i).get(7)%></td>
         <td ><%=dataQN.get(i).get(11)%></td>
-        <td id="hfc" hidden="true"><%=dataQN.get(i).get(8)%></td>
+        <td id="hfc" hidden><%=dataQN.get(i).get(8)%></td>
         <td id="disipline"><%=dataQN.get(i).get(9)%></td>
         <td id="subdicipline"><%=sub%></td>
     </tr>

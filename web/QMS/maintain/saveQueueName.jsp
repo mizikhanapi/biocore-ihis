@@ -29,9 +29,17 @@
     resultCheck = conn.getData(checkData);
     if(resultCheck.size() < 1){
         sql = "insert into pms_queue_name( queue_type,queue_name,queue_description,user_id,quota,status,created_by,created_date,hfc_cd,discipline_code,subdiscipline_code) values('"+code+"','"+name+"','"+desc+"','"+userid+"','"+quota+"','"+status+"','"+createdBy+"',NOW(),'"+hfc+"','"+dis+"','"+sub+"');";
+        operation = rmic.setQuerySQL(conn.HOST, conn.PORT, sql);
+        
+        if(operation && code.equalsIgnoreCase("PN")){
+            sql = "insert into pms_queue_list( queue_type,queue_name,user_id,start_date,end_date,hfc_cd,discipline_cd,sub_discipline_cd,status,created_by,created_date) values('" + code + "','" + name + "','" + userid + "', now(), now() + Interval 5 Year,'" + hfc + "','" + dis + "','" + sub + "','" + status + "','" + createdBy + "',NOW());";
+            operation = rmic.setQuerySQL(conn.HOST, conn.PORT, sql);
+        }
+        
     }else{
         sql = "update pms_queue_name set queue_description = '"+desc+"',user_id = '"+userid+"',quota ='"+quota+"',status = '"+status+"',created_by ='"+createdBy+"',created_date = NOW(),subdiscipline_code='"+sub+"' where queue_type = '"+code+"' and queue_name='"+name+"' and hfc_cd='"+hfc+"' and discipline_code='"+dis+"'";
+        operation = rmic.setQuerySQL(conn.HOST, conn.PORT, sql);
     }
-    operation = rmic.setQuerySQL(conn.HOST, conn.PORT, sql);
+    
     out.print(operation);
 %>

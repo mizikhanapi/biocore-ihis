@@ -46,7 +46,7 @@
                         <div><label>Queue Type Code *: </label></div>
                         <div class="form-group">
                             <select class="form-control" id="Qtype">
-                                <option selected="" disabled="">Please select Queue Type Code</option>
+                                <option selected disabled value="">Please select Queue Type Code</option>
                                 <option value="CM">(CM) Common Queue</option>
                                 <option value="FY">(FY) Consultant Room</option>
                                 <option value="PN">(PN) Doctor Queue</option>
@@ -59,18 +59,18 @@
                             </select>
                         </div>
                     </div>
-                    <div>
+                    <div class="type-based " id="QN_name_div">
                         <div><label>Queue Name *: </label></div>
                         <div class="form-group">
                             <input type="text" class="form-control" placeholder="Queue Name Code" maxlength="200" id="QnameCode">
                         </div>
                     </div>
-                    <div>
-                        <div><label>Staff(Optional): </label></div>
+                    <div class="type-based " id="QN_staff_div">
+                        <div><label>Staff *: </label></div>
                         <div class="form-group">
                             
                             <input id="QName" name="textinput" type="text" placeholder="select staff.." class="form-control input-md">
-                        <input id="QNameCD" name="PMIhstateCODE" type="hidden" placeholder="" class="form-control input-md">
+                        <input id="QNameCD" name="PMIhstateCODE" type="hidden" class="form-control input-md">
                         <div id="matchDoctorQ" class="search-drop"></div>
                         </div>
                     </div>  
@@ -83,7 +83,7 @@
                     <div>
                         <div><label>Quota*: </label></div>
                         <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Quota" width="50%" id="typeQuota" maxlength="7">
+                            <input type="text" class="form-control" placeholder="Quota" id="typeQuota" maxlength="7">
                         </div>
                     </div>
 
@@ -92,7 +92,7 @@
                         <div><label>Status: </label></div>
                         <div class="form-group">
                             <select class="form-control" id="status">
-                                <option selected="" disabled="">Please select status</option>
+                                <option selected="" disabled>Please select status</option>
                                 <option value="Active">Active</option>
                                 <option value="Inactive">Inactive</option>
                             </select>
@@ -112,7 +112,7 @@
                         <button  id="delName" class="btn btn-danger btn-block btn-lg" data-dismiss="modal" role="button" data-dismiss="modal">Delete</button>
                     </div>
                 </div>
-                </form>
+                
             </div>
         </div>
     </div>
@@ -155,8 +155,21 @@
     //function when the type is changed
     $('#Qtype').on('change', function () {
         $('#QnameCode').val("");
+        $('#QName').val("");
+        $('#QNameCD').val("");
+        
         var A = $('#Qtype').val();
         type = A;
+        
+        $('.type-based').hide();
+        
+        if(A==="PN"){
+            $('#QN_staff_div').show();
+        }
+        else{
+            $('#QN_name_div').show();
+        }
+        console.log("Type is changed");
     });
 
     //function to save or update the queue name
@@ -166,22 +179,25 @@
         var createdBy = "<%=user_id%>";
         var hfc = "<%=hfc%>";
         var stat = $('#status').val();
-         var dis= "<%=dis%>";
+        var dis= "<%=dis%>";
         var sub= "<%=sub%>";
+        var desc = $('#QnameDes').val();
+        var uid =  $('#QNameCD').val();
+        console.log("userid when updated" + uid);
+        var quota = $('#typeQuota').val();
+        
+        if(code==="PN"){
+            name=$('#QName').val();
+        }
 
-        if (code === "" || name === "") {
+        if (code === "" || name === "" || name==null || quota==="" || (code==="PN" && (uid==null || uid==="") ) )  {
             bootbox.alert("Please Fill in the Compulsory input");
         } else {
             var B2 = $('#QName').val();
             //
 //            var array_data2;
 //            array_data2 = B2.split("|");
-
-
-            var desc = $('#QnameDes').val();
-            var uid =  $('#QNameCD').val();
-            console.log("userid when updated" + uid);
-            var quota = $('#typeQuota').val();
+            
 
             var data = {cd: code,
                 desc: desc,

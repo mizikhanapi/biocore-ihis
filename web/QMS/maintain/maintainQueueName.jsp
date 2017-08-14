@@ -11,22 +11,14 @@
     </span>
 </h4>
 <div id="QNdiv" class="table-guling">
-    <table class="table table-filter table-striped table-guling" style="background: #fff; border: 1px solid #ccc; " id="QNtable">
-        <thead>
-        <th>Queue Type Code</th>
-        <th>Queue Name Code</th>
-        <th>Staff ID</th>
-        <th>Description</th>
-        <th>Quota</th>
-        </thead>
-    </table>
+    
 </div>
 <script>
     $(document).ready(function () {
         $.ajax({
             type: "post",
             url: "maintain/listQueueName.jsp",
-            timeout: 3000,
+            timeout: 60000,
             success: function (returnHtml) {
                 //console.log(returnHtml);
                 $('#QNdiv').html(returnHtml);
@@ -44,6 +36,8 @@
 
     $('#QNdiv').on('click', '#QNtable tr', function () {
         $('#Qtype option:not(:selected)').prop('disabled', false);
+        $('.type-based').hide();
+        $('#QN_name_div').show();
 
         var row = $(this).closest('tr');
         var rowCode = row.find("#tyCd").text();
@@ -90,6 +84,7 @@
 
     $('#Nplus').on('click', function () {
 //        $('#typeCode').prop('readonly',false);
+        $('.type-based').hide();
         $('#Nform')[0].reset();
         $('#Qtype option:not(:selected)').prop('disabled', false);
         $('#QnameCode').prop('readonly', false);
