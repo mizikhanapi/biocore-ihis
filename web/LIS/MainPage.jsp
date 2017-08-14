@@ -63,9 +63,9 @@
                                                             <div class="col-md-3">
                                                                 <select class="form-control" name="test" id="RMOM_oderTime">
                                                                     <option value="1">Today's Orders</option>
-                                                                    <option value="1">Monthly Orders</option>
-                                                                    <option value="1">Yearly Orders</option>
-                                                                    <option value="2">All Orders</option>
+                                                                    <option value="2">Monthly Orders</option>
+                                                                    <option value="3">Yearly Orders</option>
+                                                                    <option value="4">All Orders</option>
                                                                 </select>
                                                             </div>
                                                             <div class="col-md-2">
