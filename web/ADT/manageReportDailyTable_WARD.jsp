@@ -39,75 +39,59 @@
 <tbody>
 
     <%
-        String isAlreadyRegister = "SELECT  ward_id from wis_ward_name where hfc_cd = '" + hfc + "' ";
-        ArrayList<ArrayList<String>> alreadyRegis = conn.getData(isAlreadyRegister);
-        if (alreadyRegis.size() < 0) {
-            out.print("no ward name");
-//out.print(queue_now);
-        } else {
-            NumberFormat formatterInt = new DecimalFormat("#0");
-            NumberFormat formatter = new DecimalFormat("#0.00");
+        NumberFormat formatterInt = new DecimalFormat("#0");
+        NumberFormat formatter = new DecimalFormat("#0.00");
 
-            double quantity = 0.00;
-            double grandTotal = 0.00;
-            String totalA = "";
-            String totalP = "";
-            String totalO = "";
-            String totalS = "";
-            String sqlbedRemarks = "SELECT  a.ward_class_name, b.ward_name,  a.hfc_cd, a.ward_class_code,b.ward_class_code,  b.ward_id, DATE_FORMAT(c.created_date, '%d %M %Y') AS DATE FROM wis_ward_class a LEFT JOIN wis_ward_name b ON (a.ward_class_code = b.ward_class_code) "
-                    + "left join wis_bed_id c on c.ward_id = b.ward_id where a.hfc_cd = '" + hfc + "' AND b.hfc_cd = '" + hfc + "' group by DATE ";
+        double quantity = 0.00;
+        double grandTotal = 0.00;
+        String totalA = "";
+        String totalP = "";
+        String totalO = "";
+        String totalS = "";
+        String sqlbedRemarks = "SELECT  a.ward_class_name, b.ward_name, a.hfc_cd, a.ward_class_code,b.ward_class_code,  b.ward_id, DATE_FORMAT(c.created_date, '%d %M %Y') AS DATE  FROM wis_ward_class a LEFT JOIN wis_ward_name b ON (a.ward_class_code = b.ward_class_code) "
+                + "left join wis_bed_id c on (c.ward_id = b.ward_id) where a.hfc_cd = '" + hfc + "' AND b.hfc_cd = '" + hfc + "' group by  c.ward_id ";
 
-            ArrayList<ArrayList<String>> databedRemarks = conn.getData(sqlbedRemarks);
+        ArrayList<ArrayList<String>> databedRemarks = conn.getData(sqlbedRemarks);
 
-            int sizeR = databedRemarks.size();
-            for (int i = 0; i < sizeR; i++) {
+        int sizeR = databedRemarks.size();
+        for (int i = 0; i < sizeR; i++) {
 
-                String wardid = databedRemarks.get(i).get(5);
-                String wardclass = databedRemarks.get(i).get(4);
+            String wardid = databedRemarks.get(i).get(5);
+            String wardclass = databedRemarks.get(i).get(4);
+              String date = databedRemarks.get(i).get(6);
 
-                String a = "Available";
+            String a = "Available";
 
-                String totalAV = "SELECT COUNT(bed_status) FROM wis_bed_id where bed_status = '" + a + "' AND ward_id = '" + wardid + "' AND ward_class_code = '" + wardclass + "' AND hfc_cd = '" + hfc + "'  ";
-                ArrayList<ArrayList<String>> dataTotalAV = conn.getData(totalAV);
+            String totalAV = "SELECT COUNT(bed_status), DATE_FORMAT(wis_bed_id.created_date, '%d %M %Y') AS DATE  FROM wis_bed_id where bed_status = '" + a + "' AND ward_id = '" + wardid + "' AND ward_class_code = '" + wardclass + "' AND hfc_cd = '" + hfc + "' group by '" + date + "' ";
+            ArrayList<ArrayList<String>> dataTotalAV = conn.getData(totalAV);
 
-                int sizetotalAV = dataTotalAV.size();
-                for (int iTA = 0; iTA < sizetotalAV; iTA++) {
-                    String tA = dataTotalAV.get(iTA).get(0);
-                    totalA = tA;
-                }
+            int sizetotalAV = dataTotalAV.size();
+            for (int iTA = 0; iTA < sizetotalAV; iTA++) {
+                String tA = dataTotalAV.get(iTA).get(0);
+                totalA = tA;
+            }
 
-                String p = "Pending";
-                String totalPN = "SELECT COUNT(bed_status) FROM wis_bed_id where bed_status = '" + p + "' AND ward_id = '" + wardid + "' AND ward_class_code = '" + wardclass + "' AND hfc_cd = '" + hfc + "'  ";
-                ArrayList<ArrayList<String>> dataTotalP = conn.getData(totalPN);
+            String red = "Occupied";
+            String totalOC = "SELECT COUNT(bed_status) , DATE_FORMAT(wis_bed_id.created_date, '%d %M %Y') AS DATE FROM wis_bed_id where bed_status = '" + red + "' AND ward_id = '" + wardid + "' AND ward_class_code = '" + wardclass + "' AND hfc_cd = '" + hfc + "' group by '" + date + "' ";
+            ArrayList<ArrayList<String>> dataTotalOC = conn.getData(totalOC);
 
-                int sizetotalP = dataTotalP.size();
-                for (int iTP = 0; iTP < sizetotalP; iTP++) {
-                    String tP = dataTotalP.get(iTP).get(0);
-                    totalP = tP;
-                }
+            int sizetotalOC = dataTotalOC.size();
+            for (int iOC = 0; iOC < sizetotalOC; iOC++) {
+                String tOC = dataTotalOC.get(iOC).get(0);
+                totalO = tOC;
+            }
 
-                String red = "Occupied";
-                String totalOC = "SELECT COUNT(bed_status) FROM wis_bed_id where bed_status = '" + red + "' AND ward_id = '" + wardid + "' AND ward_class_code = '" + wardclass + "' AND hfc_cd = '" + hfc + "'  ";
-                ArrayList<ArrayList<String>> dataTotalOC = conn.getData(totalOC);
+            String totalSum = "SELECT COUNT(bed_status), DATE_FORMAT(wis_bed_id.created_date, '%d %M %Y') AS DATE FROM wis_bed_id where ward_id = '" + wardid + "' AND ward_class_code = '" + wardclass + "' AND hfc_cd = '" + hfc + "' group by '" + date + "'  ";
+            ArrayList<ArrayList<String>> dataTotalSum = conn.getData(totalSum);
+            // out.print(totalOC);
+            int sizetotalSum = dataTotalSum.size();
+            for (int sum1 = 0; sum1 < sizetotalSum; sum1++) {
+                String sum = dataTotalSum.get(sum1).get(0);
+                totalS = sum;
+                quantity = quantity + Double.parseDouble(dataTotalSum.get(sum1).get(0));
 
-                int sizetotalOC = dataTotalOC.size();
-                for (int iOC = 0; iOC < sizetotalOC; iOC++) {
-                    String tOC = dataTotalOC.get(iOC).get(0);
-                    totalO = tOC;
-                }
-
-                String totalSum = "SELECT COUNT(bed_status) FROM wis_bed_id where ward_id = '" + wardid + "' AND ward_class_code = '" + wardclass + "' AND hfc_cd = '" + hfc + "'  ";
-                ArrayList<ArrayList<String>> dataTotalSum = conn.getData(totalSum);
-                // out.print(totalOC);
-                int sizetotalSum = dataTotalSum.size();
-                for (int sum1 = 0; sum1 < sizetotalSum; sum1++) {
-                    String sum = dataTotalSum.get(sum1).get(0);
-                    totalS = sum;
-                }
-
-                //    quantity = quantity + Double.parseDouble(dataTotalSum.get(i).get(2));
                 //grandTotal = grandTotal + Double.parseDouble(dataReportDaily.get(i).get(3));
-
+            }
     %>
 
     <tr style="text-align: center;" id="moveToDailySalesDetailsTButton">
@@ -123,8 +107,9 @@
 
 </tr>
 <%
-        }
     }
+
+
 %>
 </tbody>
 </table>
@@ -140,9 +125,9 @@
 
             <!-- Text input-->
             <div class="form-group">
-                <label class="col-md-5 control-label" for="textinput">Total Quantity</label>
+                <label class="col-md-5 control-label" for="textinput">Total Bed </label>
                 <div class="col-md-4">
-                    <input id="reportDailyTotalQuantity" name="reportDailyTotalQuantity" type="text" placeholder="Total Order" class="form-control input-md" maxlength="50" value="" readonly>
+                    <input id="reportDailyTotalQuantity" name="reportDailyTotalQuantity" type="text" class="form-control input-md" maxlength="50" value="<%= formatterInt.format(quantity)%>" readonly>
                 </div>
             </div>
 
@@ -177,7 +162,7 @@
                 {
                     extend: 'excelHtml5',
                     text: 'Export To Excel',
-                    title: 'Inpatient Daily Discharge List',
+                    title: ' Daily Ward Occupancy List',
                     className: 'btn btn-primary',
                     exportOptions: {
                         columns: ':visible'
@@ -185,14 +170,14 @@
                 }, {
                     extend: 'csvHtml5',
                     text: 'Export To Excel CSV',
-                    title: 'Inpatient Daily Discharge List',
+                    title: 'Daily Ward Occupancy List',
                     className: 'btn btn-primary',
                     exportOptions: {
                         columns: ':visible'
                     }
                 }, {
                     extend: 'print',
-                    text: 'Print Daily Discharge List',
+                    text: 'Print Daily Ward Occupancy List',
                     title: $('h1').text(),
                     message: '<br><br>',
                     className: 'btn btn-primary',
@@ -201,7 +186,7 @@
                                 .css('font-size', '10pt')
                                 .prepend(
                                         '<div class="logo-hfc asset-print-img" style="z-index: 0; top: 0px; opacity: 1.0;">\n\
-                                        <img src="<%=mysqlhfc_cd.get(0).get(0)%>" style="text-align: center; height: 100%; " /></div> <div class="mesej"><br>Daily Inpatient Discharge List</div>\n\
+                                        <img src="<%=mysqlhfc_cd.get(0).get(0)%>" style="text-align: center; height: 100%; " /></div> <div class="mesej"><br>Daily Ward Occupancy List</div>\n\
                                         <div class="info_kecik">\n\
                                         <dd>Date: <strong><%=newdate%></strong></dd>\n\
                                         <dd>Report No: <strong>ADT-0001</strong></dd>\n\
@@ -213,7 +198,7 @@
                         $(win.document.body)
                                 .css('font-size', '10pt')
                                 .css('font-weight', 'bolder')
-                                .append('<div style="text-align: right;padding-top:10px;"><br> Grand Total Inpatient Discharged = ' + reportQuantity + ' </div>')
+                                .append('<div style="text-align: right;padding-top:10px;"><br> Grand Total Bed = ' + reportQuantity + ' </div>')
                         // .append('<div style="text-align: right;"><br> Grand Total (RM) = ' + reportGrandTotal + ' </div>');
                         $(win.document.body)
                                 .css('font-size', '10pt')

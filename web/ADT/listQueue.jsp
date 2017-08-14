@@ -18,14 +18,12 @@
 
     //amik kt session
     String hfc = session.getAttribute("HEALTH_FACILITY_CODE").toString();
-
-
+    String order = "T12111";
 
     String q = "select m.pmi_no,p.PATIENT_NAME,d.episode_date,d.ward_id,d.order_no,u.USER_NAME,m.order_status, m.order_no, m.order_by ,u.USER_ID, p.OLD_IC_NO, p.NEW_IC_NO, p.ID_TYPE, p.ID_NO, d.admission_reason,d.ward_class_code,d.ward_id, d.bed_id, d.order_status"
             + " from wis_order_master m left join wis_order_detail d on d.order_no = m.order_no "
             + "left join  adm_users u on  u.`USER_ID`= m.order_by "
-            + "left join pms_patient_biodata p on m.pmi_no = p.`PMI_NO` where m.order_status ='0' and d.order_status ='0' and m.hfc_cd = '"+hfc+"'  group by m.pmi_no ";
-
+            + "left join pms_patient_biodata p on m.pmi_no = p.`PMI_NO` where m.txn_type = '" + order + "'  AND m.order_status ='0' and d.order_status ='0' and m.hfc_cd = '" + hfc + "'  group by m.pmi_no ";
 
     ArrayList<ArrayList<String>> dataQueue, dataQ;
     //dataQueue = conn.getData(sql2);
@@ -39,12 +37,11 @@
         <th>PMI no. </th>
         <th>Name </th>
         <th>Episode Date/Time </th>
-        <!--                                <th>Episode Time </th>-->
-        <th>Order Name </th>
+
         <th>Order no.</th>
 
         <th>Doctor </th>
-        <th>Consultation Room </th>
+
         <th>Action </th>
 
         </thead>
@@ -64,11 +61,10 @@
         <td><%=dataQ.get(i).get(1)%></td>
         <td id="epiDate"><%=dataQ.get(i).get(2)%></td>
 
-        <td><%=dataQ.get(i).get(3)%></td>
         <td><%=dataQ.get(i).get(4)%></td>
 
         <td><%=dataQ.get(i).get(5)%></td>
-        <td><%=dataQ.get(i).get(3)%></td>
+
         <td>
             <!-- Update Part Start -->
             <a id="addQueue" class="btn btn-success">Add</a>
@@ -148,7 +144,8 @@
         var arrayData = rowData.split("|");
         console.log(arrayData);
         //assign into seprated val
-        var pmino = arrayData[1];
+        var order = arrayData[4];
+
         bootbox.confirm({
             message: "Are you sure want to delete the patient queue?",
             title: "Delete Item?",
@@ -167,7 +164,7 @@
                 if (result === true) {
 
                     var data = {
-                        pmino: pmino,
+                        order: order,
                     };
                     $.ajax({
                         type: "post",

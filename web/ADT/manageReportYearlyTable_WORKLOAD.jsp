@@ -173,7 +173,7 @@
                         $(win.document.body)
                                 .css('font-size', '10pt')
                                 .css('font-weight', 'bolder')
-                                .append('<div style="text-align: right;padding-top:10px;"><br> Grand Total Patient of Summary of Health Workers Workload : ' + reportQuantity + ' </div>')
+                                .append('<div style="text-align: right;padding-top:10px;"><br> Grand Total Patient : ' + reportQuantity + ' </div>')
                                 //.append('<div style="text-align: right;"><br> Grand Total (RM) : ' + reportGrandTotal + ' </div>');
                         $(win.document.body)
                                 .css('font-size', '10pt')

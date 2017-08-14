@@ -41,13 +41,13 @@
 
         double quantity = 0.00;
         double quantity2 = 0.00;
-        double grandTotal = 0.00;
+        double worker = 0.00;
         String status = "0";
 
         String sql = " SELECT COUNT(pms_patient_queue.pmi_no), "
-                + " pms_patient_queue.user_id "
+                + " pms_patient_queue.user_id , DATE(pms_patient_queue.created_date) "
                 + " FROM pms_patient_queue "
-                + " where hfc_cd  = '" + hfc + "' and patient_category = '003' GROUP BY  pms_patient_queue.user_id; ";
+                + " where pms_patient_queue.hfc_cd  = '" + hfc + "' and pms_patient_queue.patient_category = '003' GROUP BY  pms_patient_queue.user_id; ";
         ArrayList<ArrayList<String>> dataReportDaily = conn.getData(sql);
 
         int size = dataReportDaily.size();
@@ -59,7 +59,7 @@
             String sql1 = " SELECT DATE_FORMAT(pms_patient_queue.episode_date, '%d %M %Y') AS DATE,"
                     + "COUNT(pms_patient_queue.pmi_no),"
                     + "COUNT(pms_patient_queue.pmi_no),"
-                    + "DATE(pms_patient_queue.created_date),  pms_patient_queue.user_id, adm_users.USER_NAME, pms_patient_queue.pmi_no  "
+                    + "DATE(pms_patient_queue.episode_date),  pms_patient_queue.user_id, adm_users.USER_NAME, pms_patient_queue.pmi_no  "
                     + " FROM pms_patient_queue left join adm_users on (pms_patient_queue.user_id = adm_users.USER_ID) "
                     + " where pms_patient_queue.hfc_cd  = '" + hfc + "' AND pms_patient_queue.user_id  = '" + USERID + "'  GROUP BY DATE ; ";
             ArrayList<ArrayList<String>> dataTotal = conn.getData(sql1);
@@ -70,7 +70,7 @@
                 totalNew = t;
 
                 quantity = quantity + Double.parseDouble(dataTotal.get(i2).get(1));
-                //grandTotal = grandTotal + Double.parseDouble(dataReportDaily.get(i).get(3));
+                //worker = worker + Double.parseDouble(dataTotal.get(i2).get(3));
 
 
     %>
@@ -95,7 +95,7 @@
     <form class="form-horizontal" id="addForm">
 
         <div class="col-md-3">
-        </div>
+                     </div>
         <div class="col-md-3">
 
             <!-- Text input-->
@@ -173,7 +173,7 @@
                         $(win.document.body)
                                 .css('font-size', '10pt')
                                 .css('font-weight', 'bolder')
-                                .append('<div style="text-align: right;padding-top:10px;"><br> Grand Total Summary of Health Workers Workload = ' + reportQuantity + ' </div>')
+                                .append('<div style="text-align: right;padding-top:10px;"><br> Grand Total Patient = ' + reportQuantity + ' </div>')
                         //.append('<div style="text-align: right;"><br> Grand Total (RM) = ' + reportGrandTotal + ' </div>');
                         $(win.document.body)
                                 .css('font-size', '10pt')

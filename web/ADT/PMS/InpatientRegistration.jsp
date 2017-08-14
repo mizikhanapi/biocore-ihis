@@ -21,7 +21,7 @@
 
     String idTYpe = "select * from adm_lookup_detail where master_reference_code = '0012' and hfc_cd ='" + hfc + "'  ";
     String documentType = "select * from adm_lookup_detail where master_reference_code = '0065' and hfc_cd ='" + hfc + "'  ";
-   //String payerGroup = "select * from adm_lookup_detail where master_reference_code = '0055' and hfc_cd ='" + hfc + "'  ";
+   String payerGroup2 = "select * from adm_lookup_detail where master_reference_code = '0055' and hfc_cd ='" + hfc + "'  ";
 
     String DR2 = "002";
 //    
@@ -33,13 +33,13 @@
             + " ON a.USER_ID = b.USER_ID "
             + "where a.DISCIPLINE_CODE ='" + dis + "' and  a.ROLE_CODE = '" + DR2 + "' AND a.HEALTH_FACILITY_CODE='" + hfc + "' ";
 
-    ArrayList<ArrayList<String>> dataRole2, dataEliCat, dataAdmit, dataEliType, dataDocumentType, dataIdType, dataPayerGroup;
+    ArrayList<ArrayList<String>> dataRole2, dataEliCat, dataAdmit, dataEliType, dataDocumentType, dataIdType, dataPayerGroup2;
 
     dataEliCat = conn.getData(eliCat);
     dataAdmit = conn.getData(admit);
     dataIdType = conn.getData(idTYpe);
     dataDocumentType = conn.getData(documentType);
-   // dataPayerGroup = conn.getData(payerGroup);
+    dataPayerGroup2 = conn.getData(payerGroup2);
     dataRole2 = conn.getData(role2);
 
     // String dataSystemStatus2 = session.getAttribute("SYSTEMSTAT").toString();
@@ -260,19 +260,26 @@
 
 
 
-                    <!-- Select Basic -->
-
-
-                    
+                             
                                 
-                      <div class="form-group">
-                        <label class="col-md-4 control-label" for="textinput">Payer Group*</label>
+                          <!-- Select Basic -->
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="selectbasic">Payer Group *</label>
                         <div class="col-md-6">
-                             <input id="payer" readonly name="textinput" type="text" placeholder="" class="form-control input-md">
-                        </div>
-                    </div>           
-                                
-                                
+                            <select id="payer" name="selectbasic" class="form-control">
+                                <option value="-">-</option>
+                                <option value="null" selected="" disabled="">Select Payer Group</option>
+
+
+                                <% for (int i = 0; i < dataPayerGroup2.size(); i++) {%>
+                                <option value="<%=dataPayerGroup2.get(i).get(1)%>"><%=dataPayerGroup2.get(i).get(2)%></option>
+                                <%  }
+                                %>
+
+
+                            </select>
+                        </div> 
+                    </div>      
                                 
                                 
                     <!-- Text input-->
