@@ -32,7 +32,7 @@
                     <div class="row">
                         <div class="col-md-6">
 
-                            <input type="hidden" id="inStat">
+                            <input value="1" type="hidden" id="transStat">
                             <input type="hidden" id="oldDis">
                             <!-- Text input-->
                             <div class="form-group">
@@ -274,7 +274,7 @@
                 var hfc = $("#Rhfc").val();
                 var createdBy = $("#Rid").val();
                 //var sub = $("#Rsub").val();
-                var status = $('#inStat').val();
+                var status = $('#transStat').val();
                 var oldDis = $("#oldDis").val();
                 var episode_date = $("#AdmissionDatef").val();
                 var subO = $("#sub_cd").val();

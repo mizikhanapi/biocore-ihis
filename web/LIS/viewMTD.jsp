@@ -10,8 +10,9 @@
     <table id="MTD"  class="table table-striped table-bordered" cellspacing="0" width="100%">
         <%
             String my_1_hfc_cd = (String) session.getAttribute("HEALTH_FACILITY_CODE");
+            String masterCode = request.getParameter("masterCode");
             Conn conn = new Conn();
-            String query1 = "select item_cd,test_cat,item_name,spe_source,spe_container,volume,special_inst,status,buy_price,ser_price from lis_item_detail where hfc_cd = '" + my_1_hfc_cd + "'";
+            String query1 = "select item_cd,test_cat,item_name,spe_source,spe_container,volume,special_inst,status,buy_price,ser_price from lis_item_detail where hfc_cd = '" + my_1_hfc_cd + "' and test_cat='"+masterCode+"'";
             ArrayList<ArrayList<String>> q1 = conn.getData(query1);
         %>
         <thead>

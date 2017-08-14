@@ -129,5 +129,6 @@
 
 <%} else {
         out.print("No Order");
+        out.print(searchProblem);
       
     }%>

@@ -19,7 +19,7 @@
                                String searchProblem = "";
                                if(orderId.equals("-")){
                                 if (type.equals("today")) {
-                                        searchProblem = "SELECT om.`ORDER_NO`, om.`HFC_TO`, hf.hfc_name, om.`EPISODE_CODE`, od.`DRUG_ITEM_CODE`, od.`DRUG_ITEM_DESC`, od.`DRUG_FREQUENCY`, od.`DRUG_STRENGTH`, od.`DRUG_DOSAGE`, od.`DRUG_ROUTE`, od.`DRUG_FORM` ,au.`USER_NAME`"
+                                        searchProblem = "SELECT om.`ORDER_NO`, om.`HFC_TO`, hf.hfc_name, om.`EPISODE_DATE`, od.`DRUG_ITEM_CODE`, od.`DRUG_ITEM_DESC`, od.`DRUG_FREQUENCY`, od.`DRUG_STRENGTH`, od.`DRUG_DOSAGE`, od.`DRUG_ROUTE`, od.`DRUG_FORM` ,au.`USER_NAME`"
                                                 + "FROM pis_order_master om "
                                                 + "JOIN pis_order_detail od "
                                                 + "JOIN pis_mdc2 mdc "
@@ -37,7 +37,7 @@
                                         
                                        //out.print(searchProblem);
                                     } else if (type.equals("previous")) {
-                                        searchProblem = "SELECT om.`ORDER_NO`, om.`HFC_TO`, hf.hfc_name, om.`EPISODE_CODE`, od.`DRUG_ITEM_CODE`, od.`DRUG_ITEM_DESC`, od.`DRUG_FREQUENCY`, od.`DRUG_STRENGTH`, od.`DRUG_DOSAGE`, od.`DRUG_ROUTE`, od.`DRUG_FORM` ,au.`USER_NAME`"
+                                        searchProblem = "SELECT om.`ORDER_NO`, om.`HFC_TO`, hf.hfc_name, om.`EPISODE_DATE`, od.`DRUG_ITEM_CODE`, od.`DRUG_ITEM_DESC`, od.`DRUG_FREQUENCY`, od.`DRUG_STRENGTH`, od.`DRUG_DOSAGE`, od.`DRUG_ROUTE`, od.`DRUG_FORM` ,au.`USER_NAME`"
                                                 + "FROM pis_order_master om "
                                                 + "JOIN pis_order_detail od "
                                                 + "JOIN pis_mdc2 mdc "
@@ -57,7 +57,7 @@
                                     }
                                }else{
                                     if (type.equals("today")) {
-                                        searchProblem = "SELECT om.`ORDER_NO`, om.`HFC_TO`, hf.hfc_name, om.`EPISODE_CODE`, od.`DRUG_ITEM_CODE`, od.`DRUG_ITEM_DESC`, od.`DRUG_FREQUENCY`, od.`DRUG_STRENGTH`, od.`DRUG_DOSAGE`, od.`DRUG_ROUTE`, od.`DRUG_FORM`,au.`USER_NAME` "
+                                        searchProblem = "SELECT om.`ORDER_NO`, om.`HFC_TO`, hf.hfc_name, om.`EPISODE_DATE`, od.`DRUG_ITEM_CODE`, od.`DRUG_ITEM_DESC`, od.`DRUG_FREQUENCY`, od.`DRUG_STRENGTH`, od.`DRUG_DOSAGE`, od.`DRUG_ROUTE`, od.`DRUG_FORM`,au.`USER_NAME` "
                                                 + "FROM pis_order_master om "
                                                 + "JOIN pis_order_detail od "
                                                 + "JOIN pis_mdc2 mdc "
@@ -75,7 +75,7 @@
                                                 + "ORDER BY om.`ORDER_NO` DESC;";
                                             
                                         } else if (type.equals("previous")) {
-                                        searchProblem = "SELECT om.`ORDER_NO`, om.`HFC_TO`, hf.hfc_name, om.`EPISODE_CODE`, od.`DRUG_ITEM_CODE`, od.`DRUG_ITEM_DESC`, od.`DRUG_FREQUENCY`, od.`DRUG_STRENGTH`, od.`DRUG_DOSAGE`, od.`DRUG_ROUTE`, od.`DRUG_FORM`,au.`USER_NAME` "
+                                        searchProblem = "SELECT om.`ORDER_NO`, om.`HFC_TO`, hf.hfc_name, om.`EPISODE_DATE`, od.`DRUG_ITEM_CODE`, od.`DRUG_ITEM_DESC`, od.`DRUG_FREQUENCY`, od.`DRUG_STRENGTH`, od.`DRUG_DOSAGE`, od.`DRUG_ROUTE`, od.`DRUG_FORM`,au.`USER_NAME` "
                                                 + "FROM pis_order_master om "
                                                 + "JOIN pis_order_detail od "
                                                 + "JOIN pis_mdc2 mdc "
@@ -147,5 +147,6 @@
                        <%}
 else{
 out.print("No Order");
+//out.print(searchProblem);
 }%>
                        

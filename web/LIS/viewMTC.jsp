@@ -10,6 +10,7 @@
             Conn conn = new Conn();
             String sqlPatientApp = "SELECT category_code,category_name,status from lis_item_category ";
             ArrayList<ArrayList<String>> q1 = conn.getData(sqlPatientApp);
+            int size = q1.size();
         %>
         <thead>
             <tr>
@@ -17,16 +18,19 @@
                 <th class="col-sm-1">Test category name</th>
                 <th class="col-sm-1">Status</th>
                 <th class="col-sm-1">Action</th>
+                <th>View Detail</th>
             </tr>
         </thead>
         <tbody>
 
             <%
                 if (q1.size() > 0) {
-                    for (int i = 0; i < q1.size(); i++) {
-
+                    for (int i = 0; i < size; i++) {
+                        
             %>
+            
             <tr>
+                <input id="MLT_hidden" type="hidden" value="<%=String.join("|", q1.get(i))%>">
                 <td><%=q1.get(i).get(0)%></td>
                 <td><%=q1.get(i).get(1)%></td>
                 <td><%=q1.get(i).get(2)%></td>
@@ -163,6 +167,9 @@
                     </script>  
 
                 </td>
+                <td>
+                    <a id="MLT_btnViewDetail" style="cursor: pointer"><i class="fa fa-arrow-right" aria-hidden="true" style="display: inline-block;color: #337ab7;"></i></a>
+                </td>
             </tr>
             <%
                     }
@@ -174,5 +181,36 @@
 <script type="text/javascript" charset="utf-8">
     $(document).ready(function () {
         $('#MTC').DataTable();
+    });
+    
+    $('#MaintainTestCategory').off('click', '#MTC #MLT_btnViewDetail').on('click', '#MTC #MLT_btnViewDetail', function (e) {
+        e.preventDefault();
+        
+
+        var row = $(this).closest("tr");
+        var rowData = row.find("#MLT_hidden").val();
+        var arrayData = rowData.split("|");
+        //assign into seprated val
+        var masterCode = arrayData[0];
+        var masterName = arrayData[1];
+        
+        //alert(masterCode+" "+masterName);
+
+        var data = {masterCode: masterCode};
+        $('.nav-tabs a[href="#tab_default_2"]').tab('show');
+        $('#detailTable_body').html('<div class="loader"></div>');
+
+        $.ajax({
+            type: 'POST',
+            url: "viewMTD.jsp",
+            timeout: 60000,
+            data: data,
+            success: function (data) {
+                $('#viewMTDpage').html(data);
+               
+                
+            }
+        });
+
     });
 </script>

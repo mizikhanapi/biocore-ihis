@@ -93,7 +93,7 @@
 
                                                     <div id="contentReportDailyTable">
                                                     </div>
-                                                    <%@include file="manageReportDailyModal_DISCHARGE.jsp" %>
+                                                    <%@include file="manageReportDailyModal_WORKLOAD.jsp" %>
 
                                                 </div>
 
@@ -104,7 +104,7 @@
 
                                                     <div id="contentReportMonthlyTable">
                                                     </div>
-                                                    <%@include file="manageReportMonthlyModal_DISCHARGE.jsp" %>
+                                                    <%@include file="manageReportMonthlyModal_WORKLOAD.jsp" %>
 
                                                 </div>
 
@@ -115,7 +115,7 @@
 
                                                     <div id="contentReportYearlyTable">
                                                     </div>
-                                                    <%@include file="manageReportYearlyModal_DISCHARGE.jsp" %>
+                                                    <%@include file="manageReportYearlyModal_WORKLOAD.jsp" %>
 
                                                 </div>
 
@@ -172,9 +172,9 @@
             $('<div class="loading">Loading</div>').appendTo('body');
 
             $(document).ready(function () {
-                $("#contentReportDailyTable").load("manageReportDailyTable_DISCHARGE.jsp");
-                $("#contentReportMonthlyTable").load("manageReportMonthlyTable_DISCHARGE.jsp");
-                $("#contentReportYearlyTable").load("manageReportYearlyTable_DISCHARGE.jsp");
+                $("#contentReportDailyTable").load("manageReportDailyTable_WORKLOAD.jsp");
+                $("#contentReportMonthlyTable").load("manageReportMonthlyTable_WORKLOAD.jsp");
+                $("#contentReportYearlyTable").load("manageReportYearlyTable_WORKLOAD.jsp");
             });
 
 
@@ -201,7 +201,7 @@
                 };
 
                 $.ajax({
-                    url: "manageReportDailyDetailTable_DISCHARGE.jsp",
+                    url: "manageReportDailyDetailTable_WORKLOAD.jsp",
                     type: "post",
                     data: data,
                     timeout: 3000,
@@ -228,7 +228,7 @@
                                 {
                                     extend: 'excelHtml5',
                                     text: 'Export To Excel',
-                                    title: 'Inpatient Daily Discharge List For ' + rdate,
+                                    title: 'Daily Summary of Health Workers Workload List For ' + rdate,
                                     className: 'btn btn-primary',
                                     exportOptions: {
                                         columns: ':visible'
@@ -236,14 +236,14 @@
                                 }, {
                                     extend: 'csvHtml5',
                                     text: 'Export To Excel CSV',
-                                    title: 'Inpatient Daily Discharge List For ' + rdate,
+                                    title: 'Daily Summary of Health Workers Workload List For ' + rdate,
                                     className: 'btn btn-primary',
                                     exportOptions: {
                                         columns: ':visible'
                                     }
                                 }, {
                                     extend: 'print',
-                                    text: 'Print Daily Discharge List',
+                                    text: 'Print Daily Summary of Health Workers Workload List',
                                     title: $('h1').text(),
                                     message: '<br><br>',
                                     className: 'btn btn-primary',
@@ -252,7 +252,7 @@
                                                 .css('font-size', '10pt')
                                                 .prepend(
                                                         '<div class="logo-hfc asset-print-img" style="z-index: 0; top: 0px; opacity: 1.0;">\n\
-                                        <img src="<%=mysqlhfc_cd.get(0).get(0)%>" style="text-align: center; height: 100%; " /></div> <div class="mesej"><br>Daily Inpatient Discharge List For ' + rdate + '</div>\n\
+                                        <img src="<%=mysqlhfc_cd.get(0).get(0)%>" style="text-align: center; height: 100%; " /></div> <div class="mesej"><br>Daily Summary of Health Workers Workload List For ' + rdate + '</div>\n\
                                         <div class="info_kecik">\n\
                                         <dd>Date: <strong><%=newdate%></strong></dd>\n\
                                         <dd>Report No: <strong>ADT-0002</strong></dd>\n\
@@ -264,7 +264,7 @@
                                         $(win.document.body)
                                                 .css('font-size', '10pt')
                                                 .css('font-weight', 'bolder')
-                                                .append('<div style="text-align: right;padding-top:10px;"><br>  Grand Total Inpatient Discharge = ' + reportQuantity + ' </div>')
+                                                .append('<div style="text-align: right;padding-top:10px;"><br>  Grand Total Summary of Health Workers Workload = ' + reportQuantity + ' </div>')
                                                 //.append('<div style="text-align: right;"><br> Grand Total (RM) = ' + reportGrandTotal + ' </div>');
                                         $(win.document.body)
                                                 .css('font-size', '10pt')
@@ -316,7 +316,7 @@
                 };
 
                 $.ajax({
-                    url: "manageReportMonthlyDetailsTable_DISCHARGE.jsp",
+                    url: "manageReportMonthlyDetailsTable_WORKLOAD.jsp",
                     type: "post",
                     data: data,
                     timeout: 3000,
@@ -343,7 +343,7 @@
                                 {
                                     extend: 'excelHtml5',
                                     text: 'Export To Excel',
-                                    title: 'Inpatient Monthly Discharge List For ' + rdate,
+                                    title: 'Monthly Summary of Health Workers Workload List For ' + rdate,
                                     className: 'btn btn-primary',
                                     exportOptions: {
                                         columns: ':visible'
@@ -351,14 +351,14 @@
                                 }, {
                                     extend: 'csvHtml5',
                                     text: 'Export To Excel CSV',
-                                    title: 'Inpatient Monthly Discharge List For ' + rdate,
+                                    title: 'Monthly Summary of Health Workers Workload List For ' + rdate,
                                     className: 'btn btn-primary',
                                     exportOptions: {
                                         columns: ':visible'
                                     }
                                 }, {
                                     extend: 'print',
-                                    text: 'Print Monthly Discharge List',
+                                    text: 'Print Monthly Summary of Health Workers Workload List',
                                     title: $('h1').text(),
                                     message: '<br><br>',
                                     className: 'btn btn-primary',
@@ -367,7 +367,7 @@
                                                 .css('font-size', '10pt')
                                                 .prepend(
                                                         '<div class="logo-hfc asset-print-img" style="z-index: 0; top: 0px; opacity: 1.0;">\n\
-                                        <img src="<%=mysqlhfc_cd.get(0).get(0)%>" style="text-align: center; height: 100%; " /></div> <div class="mesej"><br>Monthly Inpatient Discharge List For ' + rdate + '</div>\n\
+                                        <img src="<%=mysqlhfc_cd.get(0).get(0)%>" style="text-align: center; height: 100%; " /></div> <div class="mesej"><br>Monthly Summary of Health Workers Workload List For ' + rdate + '</div>\n\
                                         <div class="info_kecik">\n\
                                         <dd>Date: <strong><%=newdate%></strong></dd>\n\
                                         <dd>Report No: <strong>ADT-0004</strong></dd>\n\
@@ -379,7 +379,7 @@
                                         $(win.document.body)
                                                 .css('font-size', '10pt')
                                                 .css('font-weight', 'bolder')
-                                                .append('<div style="text-align: right;padding-top:10px;"><br> Grand Total Inpatient Discharge : ' + reportQuantity + ' </div>')
+                                                .append('<div style="text-align: right;padding-top:10px;"><br> Grand Total Summary of Health Workers Workload : ' + reportQuantity + ' </div>')
                                                 //.append('<div style="text-align: right;"><br> Grand Total (RM) : ' + reportGrandTotal + ' </div>');
                                         $(win.document.body)
                                                 .css('font-size', '10pt')
@@ -433,7 +433,7 @@
                 };
 
                 $.ajax({
-                    url: "manageReportYearlyDetailsTable_DISCHARGE.jsp",
+                    url: "manageReportYearlyDetailsTable_WORKLOAD.jsp",
                     type: "post",
                     data: data,
                     timeout: 3000,
@@ -460,7 +460,7 @@
                                 {
                                     extend: 'excelHtml5',
                                     text: 'Export To Excel',
-                                    title: 'Yearly Inpatient Discharge List For ' + rdate,
+                                    title: 'Yearly Summary of Health Workers Workload List For ' + rdate,
                                     className: 'btn btn-primary',
                                     exportOptions: {
                                         columns: ':visible'
@@ -468,14 +468,14 @@
                                 }, {
                                     extend: 'csvHtml5',
                                     text: 'Export To Excel CSV',
-                                    title: 'Yearly Inpatient Discharge List For ' + rdate,
+                                    title: 'Yearly Summary of Health Workers Workload List For ' + rdate,
                                     className: 'btn btn-primary',
                                     exportOptions: {
                                         columns: ':visible'
                                     }
                                 }, {
                                     extend: 'print',
-                                    text: 'Print Yearly Discharge List',
+                                    text: 'Print Yearly Summary of Health Workers Workload List',
                                     title: $('h1').text(),
                                     message: '<br><br>',
                                     className: 'btn btn-primary',
@@ -484,7 +484,7 @@
                                                 .css('font-size', '10pt')
                                                 .prepend(
                                                         '<div class="logo-hfc asset-print-img" style="z-index: 0; top: 0px; opacity: 1.0;">\n\
-                                        <img src="<%=mysqlhfc_cd.get(0).get(0)%>" style="text-align: center; height: 100%; " /></div> <div class="mesej"><br>Inpatient Admission List For ' + rdate + '</div>\n\
+                                        <img src="<%=mysqlhfc_cd.get(0).get(0)%>" style="text-align: center; height: 100%; " /></div> <div class="mesej"><br>Summary of Health Workers Workload List For ' + rdate + '</div>\n\
                                         <div class="info_kecik">\n\
                                         <dd>Date: <strong><%=newdate%></strong></dd>\n\
                                         <dd>Report No: <strong>ADT-0006</strong></dd>\n\
@@ -496,7 +496,7 @@
                                         $(win.document.body)
                                                 .css('font-size', '10pt')
                                                 .css('font-weight', 'bolder')
-                                                .append('<div style="text-align: right;padding-top:10px;"><br> Grand Total Inpatient Discharge : ' + reportQuantity + ' </div>')
+                                                .append('<div style="text-align: right;padding-top:10px;"><br> Grand Total Summary of Health Workers Workload : ' + reportQuantity + ' </div>')
                                                // .append('<div style="text-align: right;"><br> Grand Total (RM) : ' + reportGrandTotal + ' </div>');
                                         $(win.document.body)
                                                 .css('font-size', '10pt')

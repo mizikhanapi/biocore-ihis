@@ -641,7 +641,7 @@ $(document).ready(function (e) {
         sendOrder(_data);
         var statusDesc;
         if (status === 2) {
-            statusDesc = "Oh Hold";
+            statusDesc = "On Hold";
         } else if (status === 1) {
             statusDesc = "Discharge";
         } else if (status === 0) {

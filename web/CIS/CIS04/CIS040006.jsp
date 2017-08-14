@@ -41,7 +41,7 @@
                                             <label class="col-md-6 control-label" for="textinput">Search Problem</label>
                                             <div class="col-md-12">
                                                 <input class="form-control input-lg" type="hidden"  id="problemCodePOS" placeholder="">
-                                                <input class="form-control input-lg" type="text" name="problem"  id="tCISOEPOSProblemName" placeholder="Search Problem Name..." tabindex="4">
+                                                <input class="form-control input-lg" type="text" name="problem"  id="tCISOEPOSProblemName" placeholder="(Optional) Search Problem Name..." tabindex="4">
                                                 <div id="tCISOEPOSProblemNameLoading" ></div>
                                             </div>
                                         </div>

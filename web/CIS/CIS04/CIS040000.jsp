@@ -78,7 +78,7 @@
                                                 <input type="hidden" name="POS" id="problemCode" class="form-control input-lg"  tabindex="4">
                                                 <label class="col-md-12" for="textinput">Search Problem Name</label>
                                                 <div class="col-md-12">
-                                                    <input class="form-control input-lg" type="text" name="problem"  id="tCISOEROSProblemName" placeholder="Search Problem Name..." tabindex="4" data-search-by-word="true">
+                                                    <input class="form-control input-lg" type="text" name="problem"  id="tCISOEROSProblemName" placeholder="(Optional) Search Problem Name..." tabindex="4" data-search-by-word="true">
                                                     <div id="tCISOEROSProblemNameLoading" ></div>
                                                     <!--                                                    <input class="form-control input-lg" type="text" name="problem"  id="ROS" placeholder="Search Radiology Procedure..." tabindex="4">
                                                                                                         <div id="matchROS" class="search-drop"></div>-->

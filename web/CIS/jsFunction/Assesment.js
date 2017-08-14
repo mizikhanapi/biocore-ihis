@@ -69,7 +69,13 @@ $(document).ready(function(){
             displayDGS(Type, date4, Problem8, Severity1, Site1, Laterality1, comment8);
 
             $("#searchDiag").val("");
+            retriveDataSearchingAssessment("tCISSubDGSSearch", "tCISSubDGSSearchLoading", "search/ResultDGSSearch.jsp", "search/ResultDGSSearchCode.jsp", "dgsCode", "");
             $("#commentDGS").val("");
+            $("#TypeDGS").val("1");
+            $("#dateDGS").val("");
+            $("#SiteDGS").val("1");
+            $("#SeverityDGS").val("1");
+            $("#LateralityDGS").val("1");
             $("#CIS030001").modal('toggle');
         }
  
