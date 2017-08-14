@@ -12,13 +12,13 @@
     Conn conn = new Conn();
 
     String superUserHFC = "99_iHIS_99";
-    String superUserDIS = "BIT1010";
+    String superUserDIS = "99_iHIS_99";
 
     String hfc = session.getAttribute("HEALTH_FACILITY_CODE").toString();
     String dis = session.getAttribute("DISCIPLINE_CODE").toString();
 
-    String searchProblem = "SELECT UD_ATC_Code,UD_ATC_Desc FROM pis_atc WHERE hfc_cd = '"+superUserHFC+"' AND discipline_cd = '"+superUserDIS+"' "
-            + " AND UD_ATC_Code NOT IN (SELECT UD_ATC_Code FROM pis_atc WHERE hfc_cd = '"+hfc+"' AND discipline_cd = '"+dis+"');";
+    String searchProblem = "SELECT UD_ATC_Code,UD_ATC_Desc FROM pis_atc WHERE hfc_cd = '"+superUserHFC+"' "
+            + " AND UD_ATC_Code NOT IN (SELECT UD_ATC_Code FROM pis_atc WHERE hfc_cd = '"+hfc+"');";
 
     ArrayList<ArrayList<String>> search = conn.getData(searchProblem);
     if (search.size() > 0) {

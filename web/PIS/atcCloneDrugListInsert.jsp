@@ -16,7 +16,7 @@
 <%
     Conn conn = new Conn();
     String superUserHFC = "99_iHIS_99";
-    String superUserDIS = "BIT1010";
+    String superUserDIS = "99_iHIS_99";
     String hfc = session.getAttribute("HEALTH_FACILITY_CODE").toString();
     String dis = session.getAttribute("DISCIPLINE_CODE").toString();
     String sub = session.getAttribute("SUB_DISCIPLINE_CODE").toString();
@@ -35,7 +35,7 @@
 
         sqlInsert = "INSERT INTO pis_atc (UD_ATC_Code, UD_ATC_Desc, Category_Code,hfc_cd,discipline_cd,subdiscipline_cd,Status) "
                 + " SELECT UD_ATC_Code, UD_ATC_Desc, Category_Code, '" + hfc + "','" + dis + "', '" + sub + "',Status "
-                + " FROM pis_atc WHERE UD_ATC_Code = '" + drugs[i] + "' AND hfc_cd = '" + superUserHFC + "' AND discipline_cd = '" + superUserDIS + "' ";
+                + " FROM pis_atc WHERE UD_ATC_Code = '" + drugs[i] + "' AND hfc_cd = '" + superUserHFC + "' ";
 
         isInsert = rmic.setQuerySQL(conn.HOST, conn.PORT, sqlInsert);
 

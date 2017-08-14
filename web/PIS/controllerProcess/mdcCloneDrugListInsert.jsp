@@ -49,7 +49,7 @@
                 + " d_minimum_stock_level,d_maximum_stock_level,d_reorder_stock_level,d_qty,d_qtyt,d_duration,d_durationt,d_frequency,d_caution_code,d_exp_date, "
                 + " d_classification,status,d_location_code,d_sell_price,d_cost_price,d_packaging,d_packagingt,d_price_ppack,"
                 + " '" + hfc + "','" + dis + "', '" + sub + "','" + created_by + "', '" + created_date + "' "
-                + " FROM pis_mdc2 WHERE UD_MDC_CODE = '" + drugs[i] + "' AND hfc_cd = '" + superUserHFC + "' AND discipline_cd = '" + superUserDIS + "' ";
+                + " FROM pis_mdc2 WHERE UD_MDC_CODE = '" + drugs[i] + "' AND hfc_cd = '" + superUserHFC + "' ";
 
         isInsert = rmic.setQuerySQL(conn.HOST, conn.PORT, sqlInsert);
 

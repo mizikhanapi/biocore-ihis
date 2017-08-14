@@ -484,7 +484,7 @@
                             <div class="form-group">
                                 <label class="col-md-4 control-label" for="textinput">Cautionary *</label>
                                 <div class="col-md-8">
-                                    <textarea id="addD_CAUTIONARY_CODE" class="form-control" rows="3" placeholder="Please Insert Drug Cautionary" maxlength="100"></textarea>
+                                    <textarea id="addD_CAUTIONARY_CODE" class="form-control" rows="3" placeholder="Please Insert Drug Cautionary" maxlength="200"></textarea>
                                 </div>
                             </div>
 
@@ -731,7 +731,7 @@
             var sDate = D_EXP_DATE.split('/');
             var newDate = sDate[2] + "-" + sDate[1] + "-" + sDate[0];
 
-            D_EXP_DATE = newDate + " 00:00:00.000";
+            D_EXP_DATE = newDate + " 00:00:00";
 
             if (UD_MDC_CODE === "") {
                 bootbox.alert("Please Insert MDC Code");
@@ -822,7 +822,7 @@
             } else if (D_DURATIONCheck.checkValidity() === false) {
                 bootbox.alert("Please Insert Drug Duration Not More Than 2 Number");
             } else if (D_CAUTIONARY_CODECheck.checkValidity() === false) {
-                bootbox.alert("Please Insert Drug Cautionary Not More Than 100 Characters");
+                bootbox.alert("Please Insert Drug Cautionary Not More Than 200 Characters");
 
             } else {
 
