@@ -15,6 +15,16 @@ $(document).ready(function(){
 
         });
     });
+    
+    $('#ActiveDrug').on('click',function(){
+     //alert("Works");
+        $.get("CIS03/CIS030004_1.jsp", function (data) {
+          
+               $('#CIS030004_modal').html(data);
+               //$('#outpatient').html(data);
+
+        });
+    });
     $( "#dateDGS" ).datepicker({
 
       changeMonth: true,

@@ -22,19 +22,59 @@
     String sql2 = "";
     sql = "select w.pmi_no,w.episode_date,h.hfc_name,d.discipline_name from wis_inpatient_episode w inner join adm_health_facility h on w.hfc_cd = h.hfc_cd inner join  adm_discipline d on w.discipline_cd = d.discipline_cd where w.pmi_no = '" + pmiNo + "'AND w.inpatient_status = '1' group by w.episode_date;";
     sql2 = "select p.pmi_no,p.episode_date,h.hfc_name,d.discipline_name from pms_episode p inner join adm_health_facility h on p.`HEALTH_FACILITY_CODE` = h.hfc_cd inner join  adm_discipline d on p.DISCIPLINE_CODE = d.discipline_cd where p.pmi_no = '" + pmiNo + "' and p.`STATUS` = '1' group by p.`EPISODE_DATE` ORDER BY p.`EPISODE_DATE` ASC;";
-
+    //    1      2          3            4            5                6              7         8    9            10
+    String sqlActivDrug = "Select pmi_no,hfc_cd,episode_date,encounter_date,discipline_cd,subdiscipline_cd,onset_date,drug_cd,created_by,created_date from lhr_active_medication where pmi_no = '" + pmiNo + "';";
     ArrayList<ArrayList<String>> searchInpatient;
     searchInpatient = conn.getData(sql);
 
     ArrayList<ArrayList<String>> searchOutpatient;
     searchOutpatient = conn.getData(sql2);
 
+    ArrayList<ArrayList<String>> searchActivDrug;
+    searchActivDrug = conn.getData(sqlActivDrug);
+
 %>
 <div class="row">
     <div class="col-md-12">
+        <h4 style="padding: 0px;">ACTIVE DRUG LIST</h4><br/>
+        <div>
+            <table class="table table-striped table-bordered" id="tableActiveDrugList" cellspacing="0" width="100%">
+                <thead>
+                <th>NO</th>
+                <th>Name</th>
+                <th>Onset Date</th>
+                <th>Action</th>
+                </thead>
+                <tbody>
+                    <%                      if (searchActivDrug.size() > 0) {
+                            for (int i = 0; i < searchActivDrug.size(); i++) {
+
+                    %>
+                    <tr>
+                        <td><%=i%>
+                            <input type="hidden" id="pmidrug" value="<%=searchActivDrug.get(i).get(0)%>">
+                            <input type="hidden" id="episodedrug" value="<%=searchActivDrug.get(i).get(2)%>">
+                            <input type="hidden" id="disciplinedrug" value="<%=searchActivDrug.get(i).get(5)%>">
+                        </td>
+                        <td><%=searchActivDrug.get(i).get(8)%></td>
+                        <td><%=searchActivDrug.get(i).get(7)%></td>
+                        <td>BUTTON HERE</td>
+                    </tr>
+                    <%}
+                    }%>
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+</div>
+                </br>
+                </br>
+<div class="row">
+    <div class="col-md-12">
         <h4 style="padding: 0px;">PREVIOUS VISIT (INPATIENT EPISODE) <% //out.print(pmiNo);%></h4><br/>
-        <div id="inpatient" >
-            <table id="inPatient" class="table table-stripout.print(pmiNo);ed table-bordered" cellspacing="0" width="100%">
+        <div id="inpatientdrug" >
+            <table id="inPatientDrug" class="table table-striped table-bordered" cellspacing="0" width="100%">
                 <thead>  
                     <tr>
                         <th class="col-sm-1">Episode Date</th>
@@ -44,7 +84,7 @@
                     </tr>
                 </thead>
 
-                <tbody id="inpatient">
+                <tbody id="inpatientdrug">
                     <%
                         if (searchInpatient.size() > 0) {
                             for (int i = 0; i < searchInpatient.size(); i++) {
@@ -52,13 +92,13 @@
                     %>
                     <tr>
                         <td><%=searchInpatient.get(i).get(1)%>
-                            <input type="hidden" id="pmi" value="<%=searchInpatient.get(i).get(0)%>">
-                            <input type="hidden" id="episode" value="<%=searchInpatient.get(i).get(1)%>">
-                            <input type="hidden" id="discipline" value="<%=searchInpatient.get(i).get(3)%>">
+                            <input type="hidden" id="pmidrug" value="<%=searchInpatient.get(i).get(0)%>">
+                            <input type="hidden" id="episodedrug" value="<%=searchInpatient.get(i).get(1)%>">
+                            <input type="hidden" id="disciplinedrug" value="<%=searchInpatient.get(i).get(3)%>">
                         </td>
                         <td><%=searchInpatient.get(i).get(2)%></td>
                         <td><%=searchInpatient.get(i).get(3)%></td>
-                        <td><a href="#inpatientProblem" id="inBtn" name="ViewDetail" class="btn btn-default" type="button" role="button">View Details</a></td>
+                        <td><a href="#inpatientProblemDrug" id="inBtndrug" name="ViewDetail" class="btn btn-default" type="button" role="button">View Details</a></td>
                     </tr>
                     <%}
                         }%>
@@ -72,8 +112,8 @@
     <hr/>
     <div class="col-md-12">
         <h4 style="padding: 0px;">PREVIOUS VISIT (OUTPATIENT EPISODE)</h4><br/>
-        <div id="outpatient">
-            <table id="outPatient"  class="table table-striped table-bordered" cellspacing="0" width="100%">
+        <div id="outpatientdrug">
+            <table id="outPatientDrug"  class="table table-striped table-bordered" cellspacing="0" width="100%">
                 <thead>  
                     <tr>
                         <th class="col-sm-1">Episode Date</th>
@@ -83,7 +123,7 @@
                     </tr>
                 </thead>
 
-                <tbody id="outpatient">
+                <tbody id="outpatientdrug">
                     <%
                         if (searchOutpatient.size() > 0) {
                             for (int i = 0; i < searchOutpatient.size(); i++) {
@@ -91,14 +131,14 @@
                     %>
                     <tr>
                         <td><%=searchOutpatient.get(i).get(1)%>
-                            <input type="hidden" id="pmi1" value="<%=searchOutpatient.get(i).get(0)%>">
-                            <input type="hidden" id="episode1" value="<%=searchOutpatient.get(i).get(1)%>">
-                            <input type="hidden" id="discipline1" value="<%=searchOutpatient.get(i).get(3)%>">
+                            <input type="hidden" id="pmi1drug" value="<%=searchOutpatient.get(i).get(0)%>">
+                            <input type="hidden" id="episode1drug" value="<%=searchOutpatient.get(i).get(1)%>">
+                            <input type="hidden" id="discipline1drug" value="<%=searchOutpatient.get(i).get(3)%>">
                         </td>
                         <td><%=searchOutpatient.get(i).get(2)%></td>
                         <td><%=searchOutpatient.get(i).get(3)%></td>       
                         <td>
-                            <a href="#outpatientProblem" id="outBtn" name="ViewDetail" class="btn btn-default" type="button" role="button">View Details</a>
+                            <a href="#outpatientProblemDrug" id="outBtndrug" name="ViewDetail" class="btn btn-default" type="button" role="button">View Details</a>
                         </td>
                     </tr>
                     <%
@@ -109,28 +149,29 @@
             </table>
             <script type="text/javascript">
                 $(document).ready(function () {
-                    $('#inPatient').DataTable();
-                    $('#outPatient').DataTable();
+                    $('#inPatientDrug').DataTable();
+                    $('#outPatientDrug').DataTable();
+                    $('#tableActiveDrugList').DataTable();
                 });
             </script>
         </div>
     </div>
 </div>
 
-<div  id="inpatientProblem">
+<div  id="inpatientProblemDrug">
 
 </div>
 
-<div  id="outpatientProblem">
+<div  id="outpatientProblemDrug">
 
 </div>
 <script type="text/javascript">
 
-    $('#inpatient').on('click', '#inBtn', function () {
+    $('#inpatientdrug').on('click', '#inBtndrug', function () {
         var row = $(this).closest("tr");
-        var pmi_no = row.find("#pmi").val();
-        var episodeDate = row.find("#episode").val();
-        var discipline = row.find("#discipline").val();
+        var pmi_no = row.find("#pmidrug").val();
+        var episodeDate = row.find("#episodedrug").val();
+        var discipline = row.find("#disciplinedrug").val();
 
         $.ajax({
             type: 'post',
@@ -139,33 +180,34 @@
             timeout: 10000,
             success: function (getData) {
                 if (getData.trim() === "1") {
-                    alert("No Problem!");
+                    alert("No Medication!");
+                    $('#inpatientProblemDrug').html("");
                 } else {
-                    $('#inpatientProblem').html(getData);
+                    $('#inpatientProblemDrug').html(getData);
                 }
             }});
 
     });
 </script>
 <script type="text/javascript">
-    $('#outpatient').on('click', '#outBtn', function () {
+    $('#outpatientdrug').on('click', '#outBtndrug', function () {
         var row = $(this).closest("tr");
-        var pmi_no = row.find("#pmi1").val();
-        var episodeDate = row.find("#episode1").val();
-        var discipline = row.find("#discipline1").val();
+        var pmi_no = row.find("#pmi1drug").val();
+        var episodeDate = row.find("#episode1drug").val();
+        var discipline = row.find("#discipline1drug").val();
 
         $.ajax({
             type: 'post',
             data: {pmi_no: pmi_no, episodeDate: episodeDate, discipline: discipline},
-            url: 'search/searchOutpatient.jsp',
+            url: 'search/searchOutpatientDrug.jsp',
             timeout: 10000,
             success: function (getData) {
+                console.log(getData);
                 if (getData.trim() === "1") {
-                    
-                    alert("No Problem!");
-                    $('#outpatientProblem').html(getData);
+                    alert("No Medication!");
+                    $('#outpatientProblemDrug').html("");
                 } else {
-                    $('#outpatientProblem').html(getData);
+                    $('#outpatientProblemDrug').html(getData);
                 }
             }});
 
