@@ -21,7 +21,7 @@
 
     String idTYpe = "select * from adm_lookup_detail where master_reference_code = '0012' and hfc_cd ='" + hfc + "'  ";
     String documentType = "select * from adm_lookup_detail where master_reference_code = '0065' and hfc_cd ='" + hfc + "'  ";
-    String payerGroup = "select * from adm_lookup_detail where master_reference_code = '0055' and hfc_cd ='" + hfc + "'  ";
+   //String payerGroup = "select * from adm_lookup_detail where master_reference_code = '0055' and hfc_cd ='" + hfc + "'  ";
 
     String DR2 = "002";
 //    
@@ -39,7 +39,7 @@
     dataAdmit = conn.getData(admit);
     dataIdType = conn.getData(idTYpe);
     dataDocumentType = conn.getData(documentType);
-    dataPayerGroup = conn.getData(payerGroup);
+   // dataPayerGroup = conn.getData(payerGroup);
     dataRole2 = conn.getData(role2);
 
     // String dataSystemStatus2 = session.getAttribute("SYSTEMSTAT").toString();
@@ -263,25 +263,18 @@
                     <!-- Select Basic -->
 
 
-                    <!-- Text input-->
-                    <div class="form-group">
+                    
+                                
+                      <div class="form-group">
                         <label class="col-md-4 control-label" for="textinput">Payer Group*</label>
                         <div class="col-md-6">
-
-                            <select id="payer" name="payer" class="form-control">
-                                <option value="null" selected="" disabled="">Select Payer group</option>
-                                <option value="-" >-</option>
-                                <%
-                                    for (int i = 0; i < dataPayerGroup.size(); i++) {%>
-                                <option value="<%=dataPayerGroup.get(i).get(1)%>"><%=dataPayerGroup.get(i).get(2)%></option>
-                                <%  }
-                                %>
-
-
-                            </select>
-
+                             <input id="payer" readonly name="textinput" type="text" placeholder="" class="form-control input-md">
                         </div>
-                    </div>
+                    </div>           
+                                
+                                
+                                
+                                
                     <!-- Text input-->
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="textinput">Police case *</label>
@@ -296,6 +289,13 @@
                             </label>
                         </div>
                     </div>
+                    
+                     <div class="form-group">
+                        <label class="col-md-4 control-label" for="textinput">Payer Group*</label>
+                        <div class="col-md-6">
+                             <input id="payer" readonly name="textinput" type="text" placeholder="" class="form-control input-md">
+                        </div>
+                    </div>   
 
                 </div>
             </div>
