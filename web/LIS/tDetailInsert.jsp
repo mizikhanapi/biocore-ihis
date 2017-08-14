@@ -28,8 +28,9 @@
     DateFormat df = new SimpleDateFormat("dd/MM/yy HH:mm:ss");
     Date dateobj = new Date();
     df.format(dateobj);
-    String createdby = "Ahmed Shiekh";
-
+    String createdby = session.getAttribute("USER_NAME").toString();
+    
+    String my_1_hfc_cd = (String) session.getAttribute("HEALTH_FACILITY_CODE");
     // out.println(ccode);
     // out.println(cname);
     // out.println(cstatus);

@@ -155,6 +155,7 @@
                         $(document).ready(function () {
                             //destroyScreenLoading();
                             $("#btn_delete<%=i%>").click(function () {
+                                var category = "<%=q1.get(i).get(1)%>";
                                 var conf = confirm('Are you sure want to delete?');
                                 if (conf) {
                                     $.ajax({
@@ -168,8 +169,18 @@
                                         success: function (data) {
                                             var d = data.split("|");
                                             if (d[1] == '1') {
-                                                $("#viewMTDpage").load("viewMTD.jsp");
-                                                alert("Delete successfully");
+
+                                                $.ajax({
+                                                    type: 'POST',
+                                                    url: "viewMTD.jsp",
+                                                    timeout: 60000,
+                                                    data: {masterCode: category},
+                                                    success: function (data) {
+
+                                                        bootbox.alert("Test detail is delete successfully.");
+                                                        $('#viewMTDpage').html(data);
+                                                    }
+                                                });
                                             } else {
                                                 alert("Deletion failed!");
                                             }
@@ -212,28 +223,13 @@
                                     timeout: 1000, // 10 seconds
                                     success: function () {
 
-                                        //$("#viewMTDpage").val(orderDetail.trim());
-//                                      $('#viewMTDpage').html(orderDetail);
-//                                      $('#viewMTDpage').trigger('contentchanged');
-
-//                                        $.ajax({
-//                                            url: "viewMTD.jsp",
-//                                            type: "post",
-//                                            data: {masterCode: category},
-//                                            timeout: 1000, // 10 seconds
-//                                            success: function () {
-//                                                
-//                                            }
-//
-//                                        });
-
                                         $.ajax({
                                             type: 'POST',
                                             url: "viewMTD.jsp",
                                             timeout: 60000,
                                             data: {masterCode: category},
                                             success: function (data) {
-                                                
+
                                                 $('#testDetail_<%=i%>').modal('toggle');
                                                 $("#testDetail_<%=i%>").hide();
                                                 $(".modal-backdrop").hide();
@@ -241,24 +237,11 @@
                                                 $('#viewMTDpage').html(data);
                                             }
                                         });
-                                        //$('#viewMTDpage').load('viewMTD');
-
-
-
-
-
-
                                     },
                                     error: function (err) {
                                         alert("Error! Update failed!!");
                                     }
                                 });
-                                //createScreenLoading();
-                                //$("#viewMTDpage").load("viewMTD.jsp");
-
-
-
-
                             });
                         });
                     </script>  
