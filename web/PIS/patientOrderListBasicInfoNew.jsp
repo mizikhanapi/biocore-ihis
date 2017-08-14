@@ -278,6 +278,7 @@
 //--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------//
 
 
+    var episodeDate;
 
     // Move to Order Details Fetch Details Start
     $('#patientOrderListContent').off('click', '#patientOrderListTable #moveToOrderDetailsTButton').on('click', '#patientOrderListTable #moveToOrderDetailsTButton', function (e) {
@@ -307,17 +308,20 @@
         var patientOrderNo = arrayData[0];
         var patientOrderDate = arrayData[5];
         var patientOrderLocationCode = arrayData[2];
+        var patientOrderEpisodeDate = arrayData[3];
         var patientOrderLocationCodeName = arrayData[23];
 
 
         var pmiNo = patientpmino;
         var orderNo = patientOrderNo;
         var orderDate = patientOrderDate;
+        episodeDate = patientOrderEpisodeDate;
 
         var data = {
             pmiNo: pmiNo,
             orderNo: orderNo,
-            orderDate: orderDate
+            orderDate: orderDate,
+            episodeDate:episodeDate
         };
 
         $.ajax({
