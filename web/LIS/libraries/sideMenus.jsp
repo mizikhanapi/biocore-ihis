@@ -39,7 +39,14 @@
                 <i class="fa fa-code fa-lg"></i> Manage Test Code
             </a>
         </li>
-
-
+        <li data-toggle="collapse" data-target="#Report" class="collapsed active">
+            <a href="#"><i class="fa fa-bar-chart fa-lg"></i> Report <span class="arrow"></span></a>
+        </li>
+        <ul class="sub-menu collapse in" id="Report" aria-expanded="true" style="">
+            <li><a data-toggle="modal" data-target="#" href="list_test_cd.jsp">List Of Test Code</a></li>
+            <li><a data-toggle="modal" data-target="#" href="list_pending_order.jsp">List Of Pending Order</a></li>
+            <li><a data-toggle="modal" data-target="#" href="list_order.jsp">List Of Order</a></li>
+            <li><a data-toggle="modal" data-target="#" href="list_OfSale.jsp">Sales For Laboratory</a></li>
+        </ul>
 
 </div>  
