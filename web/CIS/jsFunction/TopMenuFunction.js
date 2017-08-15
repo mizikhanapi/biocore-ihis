@@ -99,8 +99,8 @@ $(document).ready(function (e) {
             },
             callback: function (result) {
                 if (result === true) {
-                    //getSettingConsult(doctor_id);
-                    storeData(1);
+                    getSettingConsult();
+                    //storeData(1);
                     reloadStat = 0;
                     statusNow = 1;
                     var pmiNo = $('#pmiNumber').text();
@@ -733,7 +733,7 @@ $(document).ready(function (e) {
     }
 
 
-    function getSettingConsult(user_id) {
+    function getSettingConsult() {
         var checkCCN = false;
         var checkDGS = false;
         var checkDCG = false;
@@ -765,14 +765,14 @@ $(document).ready(function (e) {
                 if (c === true) {
                     storeData(1);
                 } else {
-                    alert('Discharge Cancel');
+                     bootbox.alert('Discharge Cancel');
                 }
             } else if (dataDischarge[0] === false) {
-                alert("Need to add Chief Complain");
+                 bootbox.alert("Need to add Chief Complain");
             } else if (dataDischarge[1] === false) {
-                alert("Need to add Diagnosis");
+                 bootbox.alert("Need to add Diagnosis");
             } else if (dataDischarge[2] === false) {
-                alert("Need to add Discharge Summary");
+                 bootbox.alert("Need to add Discharge Summary");
             }
             //011
         } else if (checkCCN === false && checkDGS === true && checkDCG === true) {
@@ -785,9 +785,9 @@ $(document).ready(function (e) {
                     alert('Discharge Cancel');
                 }
             } else if (dataDischarge[1] === false) {
-                alert("Need to add Diagnosis");
+                 bootbox.alert("Need to add Diagnosis");
             } else if (dataDischarge[2] === false) {
-                alert("Need to add Discharge Summary");
+                 bootbox.alert("Need to add Discharge Summary");
             }
             //001
         } else if (checkCCN === false && checkDGS === false && checkDCG === true) {
@@ -800,7 +800,7 @@ $(document).ready(function (e) {
                     alert('Discharge Cancel');
                 }
             } else if (dataDischarge[2] === false) {
-                alert("Need to add Discharge Summary");
+                 bootbox.alert("Need to add Discharge Summary");
             }
             //010
         } else if (checkCCN === false && checkDGS === true && checkDCG === false) {
@@ -810,10 +810,10 @@ $(document).ready(function (e) {
                 if (c === true) {
                     storeData(1);
                 } else {
-                    alert('Discharge Cancel');
+                     bootbox.alert('Discharge Cancel');
                 }
             } else if (dataDischarge[1] === false) {
-                alert("Need to add Diagnosis");
+                 bootbox.alert("Need to add Diagnosis");
             }
             //000
         } else if (checkCCN === true && checkDGS === false && checkDCG === false) {
@@ -823,10 +823,10 @@ $(document).ready(function (e) {
                 if (c === true) {
                     storeData(1);
                 } else {
-                    alert('Discharge Cancel');
+                     bootbox.alert('Discharge Cancel');
                 }
             } else if (dataDischarge[0] === false) {
-                alert("Need to add Chief Complain");
+                 bootbox.alert("Need to add Chief Complain");
             }
             //100
         } else if (checkCCN === true && checkDGS === false && checkDCG === true) {
@@ -836,12 +836,12 @@ $(document).ready(function (e) {
                 if (c === true) {
                     storeData(1);
                 } else {
-                    alert('Discharge Cancel');
+                     bootbox.alert('Discharge Cancel');
                 }
             } else if (dataDischarge[0] === false) {
-                alert("Need to add Chief Complain");
+                 bootbox.alert("Need to add Chief Complain");
             } else if (dataDischarge[2] === false) {
-                alert("Need to add Discharge Summary");
+                 bootbox.alert("Need to add Discharge Summary");
             }
             //101
         } else if (checkCCN === true && checkDGS === true && checkDCG === false) {
@@ -851,12 +851,12 @@ $(document).ready(function (e) {
                 if (c === true) {
                     storeData(1);
                 } else {
-                    alert('Discharge Cancel');
+                    bootbox.alert('Discharge Cancel');
                 }
             } else if (dataDischarge[0] === false) {
-                alert("Need to add Chief Complain");
+                bootbox.alert("Need to add Chief Complain");
             } else if (dataDischarge[1] === false) {
-                alert("Need to add Diagnosis");
+                 bootbox.alert("Need to add Diagnosis");
             }
             //110
         } else if (checkCCN === false && checkDGS === false && checkDCG === false) {
@@ -865,7 +865,7 @@ $(document).ready(function (e) {
             if (c === true) {
                 storeData(1);
             } else {
-                alert('Discharge Cancel');
+                 bootbox.alert('Discharge Cancel');
             }
         }
 
