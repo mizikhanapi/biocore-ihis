@@ -20,7 +20,7 @@
     
 
     
-    String searchProblem = "select detail_reference_code from adm_lookup_detail where master_reference_code = '0026' and description = '"+ newVal +"'AND hfc_cd = '"+hfc+"';";
+    String searchProblem = "select detail_reference_code from adm_lookup_detail where master_reference_code = '0026' and description = '"+ newVal +"'AND hfc_cd = '"+hfc+"' and status='0';";
     ArrayList<ArrayList<String>> search = Conn.getData(searchProblem);
     if (search.size() > 0) {
 
