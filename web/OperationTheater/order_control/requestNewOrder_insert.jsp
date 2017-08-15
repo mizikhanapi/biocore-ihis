@@ -94,8 +94,8 @@
          RMIConnector rmi = new RMIConnector();
          String cat_cd = proCode.substring(0, 3);
          
-         String query="INSERT INTO opt_order_detail(order_no, category_cd, procedure_cd, episode_date, encounter_date, consultant_id, ot_room_no, `startDateTime`, `endDateTime`, comments, order_status) "
-                 + "Values('"+orderNo+"', '"+cat_cd+"', '"+proCode+"', '"+epDate+"', now(), '"+consul+"', '"+roomNo+"', '"+start+"', '"+end+"', '"+comment+"', '0')";
+         String query="INSERT INTO opt_order_detail(order_no, category_cd, procedure_cd, episode_date, encounter_date, consultant_id, ot_room_no, `startDateTime`, `endDateTime`, comments, order_status, txn_date) "
+                 + "Values('"+orderNo+"', '"+cat_cd+"', '"+proCode+"', '"+epDate+"', now(), '"+consul+"', '"+roomNo+"', '"+start+"', '"+end+"', '"+comment+"', '0', now())";
          
          boolean isSuccess = rmi.setQuerySQL(con.HOST, con.PORT, query);
          

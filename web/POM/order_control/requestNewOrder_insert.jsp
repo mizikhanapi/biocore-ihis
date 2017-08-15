@@ -26,8 +26,8 @@
     }
     else{
         RMIConnector rmi = new RMIConnector();
-        query ="Insert into pos_order_detail(order_no, hfc_cd, episode_date, encounter_date, procedure_cd,comment, doctor_id, order_status) "
-                + "values('"+orderNo+"', '"+hfc_cd+"', '"+epDate+"', now(), '"+proCode+"', '"+comment+"', '"+creator+"', '0')";
+        query ="Insert into pos_order_detail(order_no, hfc_cd, episode_date, encounter_date, procedure_cd,comment, doctor_id, order_status, txn_date) "
+                + "values('"+orderNo+"', '"+hfc_cd+"', '"+epDate+"', now(), '"+proCode+"', '"+comment+"', '"+creator+"', '0', now())";
         
         boolean insert = rmi.setQuerySQL(con.HOST, con.PORT, query);
         
