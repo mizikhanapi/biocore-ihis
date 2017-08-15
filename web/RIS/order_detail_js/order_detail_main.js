@@ -186,9 +186,14 @@ $('#risOrderNewRequestButton').on('click', function () {
 
 
 $('#RNO_proName').on('keyup', function () {
-    var BScode = $('#RNO_bodySystem').val();
-    var MODcode = $('#RNO_modality').val();
-
+    var BScode = "dummy";//$('#RNO_bodySystem').val();
+    var MODcode = "dummy";//$('#RNO_modality').val();
+    
+    /*
+     * New update 15/8/2017
+     * Set dummy to BScode and MODcode to a value other than "" 
+     */
+    
     var input = $(this).val();
 
     if (input.length > 0) {
@@ -214,10 +219,16 @@ $('#RNO_proName').on('keyup', function () {
                     $('#RNO_pro_matchlist li').on('click', function () {
 
                         $('#RNO_proName').val($(this).text());
-                        $('#RNO_pro_match').html('');
+                                                
+                        $('#RNO_bodySystem').val($(this).data('bscode'));
+                        $('#RNO_modality').val($(this).data('modcode'));
+                        
+                        console.log($(this).data('bscode'));
+                        
                         isProSelected = true;
                         selectedPro = $('#RNO_proName').val();
-
+                        
+                        $('#RNO_pro_match').html('');//clear division
                     });
 
                 },

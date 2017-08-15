@@ -31,13 +31,24 @@
 
                 <!-- content goes here -->
                 <form class="form-horizontal" id="RNO_addForm" autocomplete="off">
-
+                                        
+                    <!-- Text input-->
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="textinput">Procedure*</label>
+                        <div class="col-md-8">
+                            <input type="text" placeholder="Search radiology procedure name" class="form-control" maxlength="330" id="RNO_proName">
+                            <div id="RNO_pro_match" class="search-drop">
+                                <!--search result-->
+                            </div>
+                        </div>
+                    </div>
+                   
                     <!-- Text input-->
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="textinput">Body System*</label>
                         <div class="col-md-8">
-                            <select class="form-control"  id="RNO_bodySystem">
-                                <option  value="" >-- Select Body System --</option>
+                            <select class="form-control"  id="RNO_bodySystem" disabled>
+                                <option  value="" >-- Selected Body System --</option>
                                 <%                                    for (int i = 0; i < RNO_dataBS.size(); i++) {
 
                                 %>
@@ -55,8 +66,8 @@
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="textinput">Modality*</label>
                         <div class="col-md-8">
-                            <select class="form-control"  id="RNO_modality">
-                                <option  value="" >-- Select Modality --</option>
+                            <select class="form-control"  id="RNO_modality" disabled>
+                                <option  value="" >-- Selected Modality --</option>
                                 <%
                                     for (int i = 0; i < RNO_dataMod.size(); i++) {
 
@@ -71,17 +82,6 @@
                         </div>
                     </div>
 
-                    <!-- Text input-->
-                    <div class="form-group">
-                        <label class="col-md-4 control-label" for="textinput">Procedure*</label>
-                        <div class="col-md-8">
-                            <input type="text" placeholder="Search radiology procedure name" class="form-control" maxlength="330" id="RNO_proName">
-                            <div id="RNO_pro_match" class="search-drop">
-                                <!--search result-->
-                            </div>
-                        </div>
-                    </div>
-                   
                     <!-- Text input-->
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="textinput">Instruction</label>

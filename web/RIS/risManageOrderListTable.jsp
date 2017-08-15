@@ -11,8 +11,9 @@
 
 <%
     Conn conn = new Conn();
+    String dis_cd = (String) session.getAttribute("DISCIPLINE_CODE");
     String current_user = (String) session.getAttribute("USER_ID");
-    String hfc_cd = session.getAttribute("HEALTH_FACILITY_CODE").toString();
+    String hfc_cd = (String) session.getAttribute("HEALTH_FACILITY_CODE");
     String last_nine = current_user.substring(current_user.length() - 1);
 %>
 

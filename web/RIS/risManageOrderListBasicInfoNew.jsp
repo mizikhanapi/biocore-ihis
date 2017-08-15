@@ -195,7 +195,7 @@
 <div class="text-left" id="patientOrderDispenseButtonDiv" > 
     <!--<button class="btn btn-success " type="button" id="btnRISOrderSave" name="btnRISOrderSave" > <i class="fa fa-shopping-cart fa-lg"></i>&nbsp; Save &nbsp;</button>-->
     <!--<button class="btn btn-primary " type="button" id="btnRISOrderSendResults" name="btnRISOrderSendResults" > <i class="fa fa-print fa-lg" ></i>&nbsp; Send Result &nbsp;</button>-->
-    <button class="btn btn-default " type="button" id="btnRISClearOrderDetail" name="btnRISClearOrderDetail" > <i class="fa fa-arrow-circle-left fa-lg"></i>&nbsp; Back &nbsp;</button>
+    <button class="btn btn-default " type="button" id="btnRISClearOrderDetail" name="btnRISClearOrderDetail" onclick="reloadOrderMasterListTable()"> <i class="fa fa-arrow-circle-left fa-lg"></i>&nbsp; Back &nbsp;</button>
 </div>
 <script src="order_detail_js/order_detail_main.js" type="text/javascript"></script>
 

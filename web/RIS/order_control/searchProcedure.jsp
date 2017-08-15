@@ -14,8 +14,14 @@
     String key =  request.getParameter("key");
     String hfc_cd = (String) session.getAttribute("HEALTH_FACILITY_CODE");
     
-    String query = "Select ris_procedure_cd, ris_procedure_name from ris_procedure_master "
+    /*
+    old query 15/8/2017
+    "Select ris_procedure_cd, ris_procedure_name from ris_procedure_master "
             + "where hfc_cd = '"+hfc_cd+"' AND body_system_cd = '"+bsCode+"' AND modality_cd = '"+modCode+"' AND concat(ris_procedure_cd, ' | ', ris_procedure_name) LIKE '%"+key+"%'";
+    */
+    
+    String query = "Select ris_procedure_cd, ris_procedure_name, body_system_cd, modality_cd from ris_procedure_master "
+            + "where hfc_cd = '"+hfc_cd+"' AND concat(ris_procedure_cd, ' | ', ris_procedure_name) LIKE '%"+key+"%'";
     
      ArrayList<ArrayList<String>> dataPro = conn.getData(query);
      
@@ -30,7 +36,7 @@
          for(int i = 0; i < dataPro.size(); i++){
              
 %>
-<li><a style="cursor:pointer"><%= dataPro.get(i).get(0)%> | <%=dataPro.get(i).get(1)%></a></li>
+<li data-bscode="<%=dataPro.get(i).get(2)%>" data-modcode="<%=dataPro.get(i).get(3)%>" ><a style="cursor:pointer"><%= dataPro.get(i).get(0)%> | <%=dataPro.get(i).get(1)%></a></li>
 <%
          
          }//end for loop

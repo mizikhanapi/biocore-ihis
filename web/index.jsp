@@ -9,7 +9,7 @@
     
     try{
                 
-        MySession.setPathToSuper(application.getRealPath("/superConfig"));
+        MySession.setPathToSuper(application.getRealPath("/superConfig")); //important
     
     }
     catch(Exception e){
