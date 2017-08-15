@@ -22,7 +22,7 @@
 
         <thead>
             <tr>
-                <th class="col-sm-1">Item code1</th>
+                <th class="col-sm-1">Item code</th>
                 <th class="col-sm-1">Category code</th>
                 <th class="col-sm-1">Item name</th>
                 <th class="col-sm-1">S.source</th>

@@ -53,7 +53,7 @@
             discipline = '<%out.print(discipline);%>';
             subdis = '<%out.print(subdicipline);%>';
             cisParam = '<%out.print(cisSystemParam);%>';
-
+            console.log(cisParam);
             $.ajax({
                 url: "search/searchRRI.jsp",
                 type: "post",
