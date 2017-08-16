@@ -65,10 +65,10 @@
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <div class="col-md-12" style=" align-items: center;">
-                                                <button id="today" class="btn btn-default" style=" padding-right: 10px;padding-left: 10px;color: black;">Today</button>
-                                                <button id="monthly" class="btn btn-default" style=" padding-right: 10px;padding-left: 10px;color: black;">Monthly</button>
-                                                <button id="yearly" class="btn btn-default" style=" padding-right: 10px;padding-left: 10px;color: black;">Yearly</button>
+                                            <div class="col-md-12" style=" text-align: center;">
+                                                <button id="today" class="btn btn-default" style=" padding-right: 10px;padding-left: 10px;color: black;">&nbsp;&nbsp;&nbsp;Today&nbsp;&nbsp;&nbsp;</button>
+                                                <button id="monthly" class="btn btn-default" style=" padding-right: 10px;padding-left: 10px;color: black;">&nbsp;&nbsp;&nbsp;Monthly&nbsp;&nbsp;&nbsp;</button>
+                                                <button id="yearly" class="btn btn-default" style=" padding-right: 10px;padding-left: 10px;color: black;">&nbsp;&nbsp;&nbsp;Yearly&nbsp;&nbsp;&nbsp;</button>
                                             </div>
                                         </div>
 
