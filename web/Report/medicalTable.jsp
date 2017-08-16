@@ -1,152 +1,259 @@
 <%-- 
     Document   : mcTable
-    Created on : Apr 17, 2017, 3:25:01 PM
-    Author     : user
+    Created on : Augt,15 2017, 3:25:01 PM
+    Author     : shay
 --%>
-
+<%@page import="java.util.Date"%>
+<%@page import="java.text.DateFormat"%>
 <%@page import="java.text.SimpleDateFormat"%>
-<%@page import="java.util.ArrayList"%>
-<%@page import="java.sql.*"%>
+<%@page import="org.apache.commons.lang3.StringUtils"%>
 <%@page import="dBConn.Conn"%>
-<%@page import="main.RMIConnector"%>
+<%@page import="Config.Config"%>
+<%@page import="java.util.ArrayList"%>
 
 <%
+//    Config.getBase_url(request);
+//    Config.getFile_url(session);
 
+    //String pmiNo = "";//session.getAttribute("patientPMINo").toString();
+    String idType = request.getParameter("mcType");
+    String idInput = request.getParameter("mcInput");
+    String hfc = session.getAttribute("HEALTH_FACILITY_CODE").toString();
     Conn conn = new Conn();
-    String mcType = request.getParameter("mcType");
-    String mcInput = request.getParameter("mcInput");
+    String sql = "";
+    String sql2 = "";
+    String sqlPatient = "";
+                         //0             1             2         3              4           5             6            7           8           9                                            10           11             12            13      
+    String half = "select b.pmi_no,b.patient_name,b.new_ic_no,b.blood_type,a.description,b.sex_code,c.description,b.id_type,d.description,YEAR(curdate()) - YEAR(b.birth_date) - (RIGHT(curdate(), 5) < RIGHT(b.birth_date, 5)) as age,b.race_code,e.description,b.allergy_ind,f.description from pms_patient_biodata b "
+            + "join adm_lookup_detail a on a.master_reference_code = '0074' and a.detail_reference_code = b.blood_type and a.hfc_cd='" + hfc + "' "
+            + "join adm_lookup_detail c on c.master_reference_code = '0041' and c.detail_reference_code = b.sex_code and c.hfc_cd='" + hfc + "' "
+            + "join adm_lookup_detail d on d.master_reference_code = '0012' and d.detail_reference_code = b.id_type and d.hfc_cd='" + hfc + "' "
+            + "join adm_lookup_detail e on e.master_reference_code = '0004' and e.detail_reference_code = b.race_code and e.hfc_cd='" + hfc + "' "
+            + "join adm_lookup_detail f on f.master_reference_code = '0075' and f.detail_reference_code = b.allergy_ind and f.hfc_cd='" + hfc + "'";
 
-%>
-
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<hr class="pemisah" />
-
-<table id="mcTableDivision1" class="table table-filter table-striped margin-top-50px" style="background: #fff; border: 1px solid #ccc; margin-top: 20px">
-
-    <thead>
-
-    <th> Nama </th>
-    <th> Episode date </th>
-    <th> PMI No </th>
-    <th> Reprint </th>
-
-    <%  String sql = "";
-        if (mcType.equals("001")) {
-            sql = "SELECT A.PATIENT_NAME , B.EPISODE_DATE, A.`PMI_NO`,B.start_date,B.end_date,B.comment,A.`NEW_IC_NO` FROM PMS_PATIENT_BIODATA A JOIN LHR_MED_LEAVE B ON A.`PMI_NO` = B.pmi_no WHERE A.PMI_NO = '" + mcInput + "'";
-        } else if (mcType.equals("002")) {
-            sql = "SELECT A.PATIENT_NAME , B.EPISODE_DATE, A.`PMI_NO`,B.start_date,B.end_date,B.comment,A.`NEW_IC_NO` FROM PMS_PATIENT_BIODATA A JOIN LHR_MED_LEAVE B ON A.`PMI_NO` = B.pmi_no WHERE A.NEW_IC_NO = '" + mcInput + "'";
-        } else if (mcType.equals("003")) {
-            sql = "SELECT A.PATIENT_NAME , B.EPISODE_DATE, A.`PMI_NO`,B.start_date,B.end_date,B.comment,A.`NEW_IC_NO` FROM PMS_PATIENT_BIODATA A JOIN LHR_MED_LEAVE B ON A.`PMI_NO` = B.pmi_no WHERE A.OLD_IC_NO = '" + mcInput + "'";
-        } else {
-            sql = "SELECT A.PATIENT_NAME , B.EPISODE_DATE, A.`PMI_NO`,B.start_date,B.end_date,B.comment,A.`NEW_IC_NO` FROM PMS_PATIENT_BIODATA A JOIN LHR_MED_LEAVE B ON A.`PMI_NO` = B.pmi_no WHERE A.ID_NO = '" + mcInput + "'";
-        }
-        ArrayList<ArrayList<String>> mc = conn.getData(sql);
-
-        int size = mc.size();
-        for (int i = 0; i < size; i++) {
-    %>
-</thead>
-<tr>
-    <td id="name"><%= mc.get(i).get(0)%></td>
-    <td id="episodeDate2"><%= mc.get(i).get(1)%>
-        <input type="hidden" id="episodeDate2_<%=i%>" value="<%= mc.get(i).get(1)%>">
-    </td>
-    <td id="pmino"><%= mc.get(i).get(2)%></td>
-    <td>
-        <input name="b_print" id="b_print<%=i%>" type="button" class="btn btn-success" value=" Print " data-toggle="modal" data-target="#basicModal">
-
-        <script>
-            $('#b_print<%=i%>').click(function () {
-
-                $.ajax({
-                    async: true,
-                    type: "POST",
-                    url: "mcReport.jsp",
-                    data: {'name': "<%=mc.get(i).get(0)%>",
-                        'episode': "<%=mc.get(i).get(1)%>",
-                        'pmi': "<%=mc.get(i).get(2)%>",
-                        'start_date': "<%=mc.get(i).get(3)%>",
-                        'end_date': "<%=mc.get(i).get(4)%>",
-                        'comment': "<%=mc.get(i).get(5)%>",
-                        'ic': "<%=mc.get(i).get(6)%>"},
-                    timeout: 10000,
-                    success: function (list) {
-
-                        $("#test").val(list.trim());
-                        $('#test').html(list);
-                        $('#test').trigger('contentchanged');
-                        //printReport();
-                    },
-                    error: function (xhr, status, error) {
-                        var err = eval("(" + xhr.responseText + ")");
-                        bootbox.alert(err.Message);
-                    }
-                });
-
-            });
-
-        </script>
-
-    </td>
-
-</tr>
-
-
-
-<%
+    if (idType.equals("001")) {
+        sqlPatient = half + " where b.pmi_no = '" + idInput + "'";
+    } else if (idType.equals("002")) {
+        sqlPatient = half + " where b.new_ic_no = '" + idInput + "'";
+    } else if (idType.equals("003")) {
+        sqlPatient = half + " where b.old_ic_no = '" + idInput + "'";
+    } else {
+        sqlPatient = half + " where b.id_no = '" + idInput + "' and b.id_type='" + idType + "'";
     }
+
+    ArrayList<ArrayList<String>> dataQueue = conn.getData(sqlPatient);
+    if (dataQueue.size() > 0) {
+        sql = "select w.pmi_no,w.episode_date,h.hfc_name,d.discipline_name from wis_inpatient_episode w inner join adm_health_facility h on w.hfc_cd = h.hfc_cd inner join  adm_discipline d on w.discipline_cd = d.discipline_cd where w.pmi_no = '" + dataQueue.get(0).get(0) + "'AND w.inpatient_status = '1' group by w.episode_date;";
+        sql2 = "select p.pmi_no,p.episode_date,h.hfc_name,d.discipline_name from pms_episode p inner join adm_health_facility h on p.`HEALTH_FACILITY_CODE` = h.hfc_cd inner join  adm_discipline d on p.DISCIPLINE_CODE = d.discipline_cd where p.pmi_no = '" + dataQueue.get(0).get(0) + "' and p.`STATUS` = '1' group by p.`EPISODE_DATE` ORDER BY p.`EPISODE_DATE` ASC;";
+
+        ArrayList<ArrayList<String>> searchInpatient;
+        searchInpatient = conn.getData(sql);
+
+        ArrayList<ArrayList<String>> searchOutpatient;
+        searchOutpatient = conn.getData(sql2);
 %>
-</table>
-<div class="modal fade" id="basicModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<div class="row" id="patientDemographic">
+    <div class="col-md-12">
+        <div>
+            <h4 style="margin: 0px; padding: 0px;"><b>Patient Details</b> </h4>
+            <hr class="pemisah"/>
+            <table class="p-table" style="width: 100%; color: #999;">
+                <tr>
+                    <td>
+                        <b>Name:</b>
+                        <span class="p-label" id="pName"><%=dataQueue.get(0).get(1)%></span>
+                    </td>
+                    <td>
+                        <b>IC/ID No:</b>
+                        <span class="p-label" id="pIC"><%=dataQueue.get(0).get(2)%></span>
+                    </td>
+                    <td>
+                        <b>BloodGroup/G6PD:</b>
+                        <span class="p-label" id="pBloodType"><%=dataQueue.get(0).get(4)%></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <b>Gender:</b>
+                        <span class="p-label" id="pSex"><%=dataQueue.get(0).get(6)%></span>
+                    </td>
+                    <td>
+                        <b>ID Type:</b>
+                        <span class="p-label" id="pIdType"><%=dataQueue.get(0).get(8)%></span>
+                    </td>
+                    <td>
+                        <b>Allergy:</b>
+                        <span class="p-label" id="pAllergy"><%=dataQueue.get(0).get(13)%></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <b>Age:</b>
+                        <span class="p-label" id="pAge"><%=dataQueue.get(0).get(9)%></span>
+                    </td>
+                    <td>
+                        <b>Race:</b>
+                        <span class="p-label" id="pRace"><%=dataQueue.get(0).get(11)%></span>
+                    </td>
+                    <td>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+<br/>
+<br/>
+<br/>
+<div class="row">
+    <div class="col-md-12">
+        <h4 style="padding: 0px;">PREVIOUS VISIT (INPATIENT EPISODE) <% //out.print(pmiNo);%></h4><br/>
+        <div id="inpatient" >
+            <table id="inPatient" class="table table-stripout.print(pmiNo);ed table-bordered" cellspacing="0" width="100%">
+                <thead>  
+                    <tr>
+                        <th class="col-sm-1">Episode Date</th>
+                        <th class="col-sm-1">Health Care Facility</th>
+                        <th class="col-sm-1">Discipline Name</th>
+                        <th class="col-sm-1">Action</th>				 
+                    </tr>
+                </thead>
 
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal"><i class="fa fa-times fa-lg"></i></button>
-                <h3 class="modal-title">Sijil Cuti Sakit</h3>
-            </div>
-            <div class="modal-body">
-                <div id="test"></div>
-            </div>
-            <div class="modal-footer">
-                <div class="btn-group btn-group-justified" role="group" aria-label="group button">
-                    <div class="btn-group" role="group">
-                        <input name="b_print" id="b_print" type="button" class="btn btn-success btn-lg" value=" Approve ">        
-                    </div>
-                    <div class="btn-group" role="group">
-                        <button type="button" class="btn btn-default btn-lg" data-dismiss="modal">Close</button>     
-                    </div>
-                </div>
+                <tbody id="inpatient">
+                    <%
+                        if (searchInpatient.size() > 0) {
+                            for (int i = 0; i < searchInpatient.size(); i++) {
 
-            </div>
+                    %>
+                    <tr>
+                        <td><%=searchInpatient.get(i).get(1)%>
+                            <input type="hidden" id="pmi" value="<%=searchInpatient.get(i).get(0)%>">
+                            <input type="hidden" id="episode" value="<%=searchInpatient.get(i).get(1)%>">
+                            <input type="hidden" id="discipline" value="<%=searchInpatient.get(i).get(3)%>">
+                        </td>
+                        <td><%=searchInpatient.get(i).get(2)%></td>
+                        <td><%=searchInpatient.get(i).get(3)%></td>
+                        <td><a href="#inpatientProblem" id="inBtn" name="ViewDetail" class="btn btn-default" type="button" role="button">View Details</a></td>
+                    </tr>
+                    <%}
+                        }%>
+                </tbody>
+            </table>
         </div>
     </div>
 </div>
 
-<script>
+<div class="row">
+    <hr/>
+    <div class="col-md-12">
+        <h4 style="padding: 0px;">PREVIOUS VISIT (OUTPATIENT EPISODE)</h4><br/>
+        <div id="outpatient">
+            <table id="outPatient"  class="table table-striped table-bordered" cellspacing="0" width="100%">
+                <thead>  
+                    <tr>
+                        <th class="col-sm-1">Episode Date</th>
+                        <th class="col-sm-1">Health Care Facility</th>
+                        <th class="col-sm-1">Discipline Name</th>
+                        <th class="col-sm-1">Action</th>				 
+                    </tr>
+                </thead>
 
-    $(document).ready(function () {
-        $('#mcTableDivision1').DataTable({
-            dom: 'Bfrtip',
-            buttons: [
-                'csv', 'excel', 'pdf', 'print'
-            ]
-        });
+                <tbody id="outpatient">
+                    <%
+                        if (searchOutpatient.size() > 0) {
+                            for (int i = 0; i < searchOutpatient.size(); i++) {
 
-        $('#b_print').click(function () {
-            printReport();
-        });
+                    %>
+                    <tr>
+                        <td><%=searchOutpatient.get(i).get(1)%>
+                            <input type="hidden" id="pmi1" value="<%=searchOutpatient.get(i).get(0)%>">
+                            <input type="hidden" id="episode1" value="<%=searchOutpatient.get(i).get(1)%>">
+                            <input type="hidden" id="discipline1" value="<%=searchOutpatient.get(i).get(3)%>">
+                        </td>
+                        <td><%=searchOutpatient.get(i).get(2)%></td>
+                        <td><%=searchOutpatient.get(i).get(3)%></td>       
+                        <td>
+                            <a href="#outpatientProblem" id="outBtn" name="ViewDetail" class="btn btn-default" type="button" role="button">View Details</a>
+                        </td>
+                    </tr>
+                    <%
+                            }
+                        }
+                    %>
+                </tbody>
+            </table>
+            <script type="text/javascript">
+                $(document).ready(function () {
+                    $('#inPatient').DataTable();
+                    $('#outPatient').DataTable();
+                });
+            </script>
+        </div>
+    </div>
+</div>
+
+<div  id="inpatientProblem">
+
+</div>
+
+<div  id="outpatientProblem">
+
+</div>
+<script type="text/javascript">
+
+    $('#inpatient').on('click', '#inBtn', function () {
+        var row = $(this).closest("tr");
+        var pmi_no = row.find("#pmi").val();
+        var episodeDate = row.find("#episode").val();
+        var discipline = row.find("#discipline").val();
+
+        $.ajax({
+            type: 'post',
+            data: {pmi_no: pmi_no, episodeDate: episodeDate, discipline: discipline},
+            url: 'searchInpatient.jsp',
+            timeout: 10000,
+            success: function (getData) {
+                if (getData.trim() === "1") {
+                    alert("No Problem!");
+                    $('#inpatientProblem').html("");
+                } else {
+                    $('#inpatientProblem').html(getData);
+                }
+            }});
     });
 </script>
-<script language="javascript">
+<script type="text/javascript">
+    $('#outpatient').on('click', '#outBtn', function () {
+        var row = $(this).closest("tr");
+        var pmi_no = row.find("#pmi1").val();
+        var episodeDate = row.find("#episode1").val();
+        var discipline = row.find("#discipline1").val();
 
+        $.ajax({
+            type: 'post',
+            data: {pmi_no: pmi_no, episodeDate: episodeDate, discipline: discipline},
+            url: 'searchOutpatient.jsp',
+            timeout: 10000,
+            success: function (getData) {
+                if (getData.trim() === "1") {
 
-
-    function printReport() {
-        var divElements = $('#test').html();
-        var popupWin = window.open('', '_blank', 'width=1200,height=500');
-        popupWin.document.open();
-        popupWin.document.write('<html><body onload="window.print()">' + divElements + '</html>');
-        popupWin.document.close();
-    }
+                    alert("No Problem!");
+                    $('#outpatientProblem').html("");
+                } else {
+                    $('#outpatientProblem').html(getData);
+                }
+            }});
+    });
 </script>
+
+<%
+    } else {
+        out.print("error");
+    }
+%>

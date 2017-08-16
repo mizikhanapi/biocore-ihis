@@ -51,12 +51,11 @@
 
     if (status.equals("1")) {
 
-        if (idType.equals("pmino") || idType.equals("001")) {
+        if (idType.equals("001")) {
             searchPatient = fullQuery + " where a.PMI_NO='" + idInput + "'";
-        } else if (idType.equals("icnew") || idType.equals("002")) {
+        } else if (idType.equals("002")) {
             searchPatient = fullQuery + " where a.NEW_IC_NO='" + idInput + "'";
-
-        } else if (idType.equals("icold") || idType.equals("003")) {
+        } else if (idType.equals("003")) {
             searchPatient = fullQuery + " where a.OLD_IC_NO='" + idInput + "'";
         } else {
             searchPatient = fullQuery + " where a.ID_NO='" + idInput + "' AND a.ID_TYPE='" + idType + "'";
@@ -73,6 +72,8 @@
                 searchSpecial = smpQuery + " where person_id_no ='" + idInput + "'";
             } else if (idType.equals("icnew") || idType.equals("002")) {
                 searchSpecial = smpQuery + " where national_id_no ='" + idInput + "'";
+            } else {
+                    searchSpecial ="";
             }
 
             ArrayList<ArrayList<String>> search2 = conn.getData(searchSpecial);
@@ -84,8 +85,8 @@
                 if (idType.equals("icnew") || idType.equals("002")) {
                     String searchFam = family + " where pmi_no_family='" + idInput + "';";
                     ArrayList<ArrayList<String>> searchFamily = conn.getData(searchFam);
-                    ArrayList<String> search9 = searchFamily.get(0);
                     if (searchFamily.size() > 0) {
+                        ArrayList<String> search9 = searchFamily.get(0);
                         String resultFamPub = StringUtils.join(search9, "|");
                         out.print("FAM1|" + resultFamPub);
                     } else {

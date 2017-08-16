@@ -1,7 +1,7 @@
 <%-- 
     Document   : mcMain2
-    Created on : Apr 17, 2017, 3:16:21 PM
-    Author     : user
+    Created on : Augt,15 2017, 3:16:21 PM
+    Author     : shay
 --%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.sql.*"%>
@@ -21,19 +21,17 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> 
-        <title>Sick Leave</title>
+        <title>Patient Medical Report</title>
 
 
         <script src="../assets/js/jquery.min.js"></script>
-        <script src="../assets/js/jquery-ui.js" type="text/javascript"></script>
         <script src="../assets/js/bootstrap.min.js" type="text/javascript"></script>
 
-        <%@include file="../assets/header.html"%>
+        <script src="../assets/js/jquery-ui.js" type="text/javascript"></script>
         <link href="../assets/css/dataTables.bootstrap.min.css" rel="stylesheet" type="text/css"/>
-        <link href="https://cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css"/>
-        <link href="https://cdn.datatables.net/buttons/1.3.1/css/buttons.dataTables.min.css" rel="stylesheet" type="text/css"/>
-        
-        
+
+        <%@include file="../assets/header.html"%>
+<link rel="stylesheet" type="text/css" media="print" href="../assets/css/bootstrap.min.css">
     </head>
     <body>
         <!-- side bar -->
@@ -48,7 +46,7 @@
 
                     <div class="col-md-12">
                         <div class="thumbnail">
-                            <h3 style="margin: 0px;">Print MC </h3>
+                            <h3 style="margin: 0px;">Print Medical Report</h3>
                             <hr class="pemisah"/>
                             <div id="SearchPatientdiv">
                             </div>
@@ -61,7 +59,6 @@
             </div>
 
         </div>
-        <script src="../assets/js/jquery-1.12.4.js" type="text/javascript"></script>
         <script src="../assets/js/jquery.dataTables.min.js" type="text/javascript"></script>
         <script src="../assets/js/dataTables.buttons.min.js" type="text/javascript"></script>
         <script src="../assets/js/buttons.flash.min.js" type="text/javascript"></script>
@@ -71,28 +68,26 @@
         <script src="../assets/js/buttons.html5.min.js" type="text/javascript"></script>
         <script src="../assets/js/buttons.print.min.js" type="text/javascript"></script>
 
-   
+
         <script>
+            function printReport2(divID1,divIDw,c)
+                {
+                    var popupWin = window.open('', '_blank', 'width=1080,height=768');
+                    popupWin.document.open();
+                    popupWin.document.write('<html><body onload="window.print()">' + divID1 + '<br/>'+divIDw+'</body></html>');
+                    popupWin.document.close();
+                }
+            $("#mcTableDivision").on('click','#outpatientProblem #btnPrintmedicalHistory',function(){
+                
+                var b = $("#mcTableDivision #outpatientProblem #medicalHistorydivision").html();
+                var a = $("#mcTableDivision #patientDemographic").html();
+                var c = $("#mcTableDivision #outpatientProblem #medicalHistorydivision #patientmedicalcomments").val();
+                printReport2(a,b,c);
+            });
             $(document).ready(function () {
-                $("#SearchPatientdiv").load("searchMc.jsp");
-                //$("#mcTableDivision").load("mcTable.jsp");
-
-                $(document).ready(function () {
-                    $.ajax({
-                        type: "post",
-                        url: "mcTable.jsp",
-                        timeout: 3000,
-                        success: function (returnHtml) {
-                            //console.log(returnHtml);
-                            $('#mcTableDivision1').html(returnHtml);
-
-                        }, error: function (jqXHR, textStatus, errorThrown) {
-
-                            console.log("ERROR: " + errorThrown);
-                        }
-                    });
-                });
-
+                $("#SearchPatientdiv").load("searchMedicalReport.jsp");
+                
+                
             });
         </script>
     </body>

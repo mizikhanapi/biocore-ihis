@@ -1,7 +1,7 @@
 <%-- 
     Document   : searchMc
-    Created on : Apr 17, 2017, 3:16:53 PM
-    Author     : user
+    Created on : Augt,15 2017, 3:16:53 PM
+    Author     : shay
 --%>
 
 <%@page import="dBConn.Conn"%>  
@@ -26,11 +26,6 @@
         <div class="col-md-4">
             <select id="mcType" name="mcType" class="form-control" required="">
                 <option selected="" disabled="" value="-"> Please select ID type</option>
-                <!--                    <option value="pmino">PMI No</option>
-                                    <option value="icnew">IC No (NEW)</option>
-                                    <option value="icold">IC No (OLD)</option>
-                                    <option value="matricno">Matric No</option>
-                                    <option value="staffno">Staff No</option>-->
                 <%  if (dataSystemStatus.equals("0")) {
 
                     } else if (dataSystemStatus.equals("1")) {
@@ -85,7 +80,6 @@
 
     //seaching patient function   
     function searchPatient() {
-
         var opt = $('#mcType option[disabled]:selected').val();
 
         //check if the input text or the select box is empty.
@@ -107,7 +101,7 @@
             $.ajax({
                 async: true,
                 type: "POST",
-                url: "mcTable.jsp",
+                url: "medicalTable.jsp",
                 data: {'mcType': mcType, 'mcInput': mcInput},
                 timeout: 10000,
                 success: function (list) {
