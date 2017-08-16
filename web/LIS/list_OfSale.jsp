@@ -60,7 +60,7 @@
                                 </div>
                                 <script>
                                     $(function () {
-                                        
+
                                         $('#today').click(function () {
                                             //alert("get_time");
                                             var process = $('#RMOM_oderTime').val();
@@ -70,7 +70,7 @@
                                                 process: process
                                             };
 
-                                           $.ajax({
+                                            $.ajax({
                                                 type: 'POST',
                                                 url: "order_bill.jsp",
                                                 data: data,
@@ -82,7 +82,7 @@
 
                                             });
                                         });
-                                        
+
                                         $('#monthly').click(function () {
                                             //alert("get_time");
                                             var process = $('#RMOM_oderTime').val();
@@ -92,7 +92,7 @@
                                                 process: process
                                             };
 
-                                           $.ajax({
+                                            $.ajax({
                                                 type: 'POST',
                                                 url: "order_bill.jsp",
                                                 data: data,
@@ -104,7 +104,7 @@
 
                                             });
                                         });
-                                        
+
                                         $('#yearly').click(function () {
                                             //alert("get_time");
                                             var process = $('#RMOM_oderTime').val();
@@ -114,7 +114,7 @@
                                                 process: process
                                             };
 
-                                           $.ajax({
+                                            $.ajax({
                                                 type: 'POST',
                                                 url: "order_bill.jsp",
                                                 data: data,
@@ -142,8 +142,8 @@
                                         String logo = "SELECT logo FROM adm_health_facility WHERE hfc_cd='" + hfc_cd + "'";
                                         ArrayList<ArrayList<String>> logo_hfc = conn.getData(logo);
 
-                                        String sql = "SELECT lis_order_master.ORDER_NO,lis_order_master.PMI_NO,ahf.hfc_name,lis_order_master.episode_date,lis_order_master.encounter_date,lis_order_master.created_by,lis_order_master.order_status,pms_patient_biodata.`PATIENT_NAME`,lis_order_master.order_status FROM lis_order_master JOIN pms_patient_biodata ON (lis_order_master.PMI_NO = pms_patient_biodata.PMI_NO) LEFT JOIN adm_lookup_detail s on pms_patient_biodata.SEX_CODE = s.detail_reference_code AND s.master_reference_code = '0041' AND s.hfc_cd = lis_order_master.hfc_cd LEFT JOIN adm_lookup_detail b on pms_patient_biodata.BLOOD_TYPE = b.detail_reference_code AND b.master_reference_code = '0074' AND b.hfc_cd = lis_order_master.hfc_cd LEFT JOIN adm_users a on lis_order_master.order_by = a.`USER_ID` LEFT JOIN adm_health_facility ahf on lis_order_master.hfc_cd = ahf.hfc_cd WHERE lis_order_master.order_status = '0' AND lis_order_master.hfc_cd = '" + hfc_cd + "' GROUP BY lis_order_master.ORDER_NO DESC";
-                                        ArrayList<ArrayList<String>> dataPatientApp = conn.getData(sql);
+                                        String query1 = "SELECT lis_order_master.ORDER_NO,lis_order_master.PMI_NO,ahf.hfc_name,lis_order_master.episode_date,lis_order_master.encounter_date,lis_order_master.created_by,lis_order_master.order_status,pms_patient_biodata.`PATIENT_NAME`,lis_order_master.order_status,SUM(lid.buy_price),SUM(lid.ser_price) FROM lis_order_master JOIN pms_patient_biodata ON (lis_order_master.PMI_NO = pms_patient_biodata.PMI_NO) LEFT JOIN adm_lookup_detail s on pms_patient_biodata.SEX_CODE = s.detail_reference_code AND s.master_reference_code = '0041' AND s.hfc_cd = lis_order_master.hfc_cd LEFT JOIN adm_lookup_detail b on pms_patient_biodata.BLOOD_TYPE = b.detail_reference_code AND b.master_reference_code = '0074' AND b.hfc_cd = lis_order_master.hfc_cd LEFT JOIN adm_users a on lis_order_master.order_by = a.`USER_ID` LEFT JOIN adm_health_facility ahf on lis_order_master.hfc_cd = ahf.hfc_cd LEFT JOIN lis_order_detail lod on lis_order_master.order_no = lod.order_no LEFT JOIN lis_item_detail lid on lid.item_cd = lod.item_cd WHERE lis_order_master.order_status = '4' AND lis_order_master.hfc_cd = '" + hfc_cd + "' AND DATE_FORMAT(lis_order_master.order_date, '%Y-%m-%d') = CURDATE() GROUP BY lis_order_master.ORDER_NO DESC";
+                                        ArrayList<ArrayList<String>> dataPatientApp = conn.getData(query1);
                                     %>
                                     <table id="OS"  class="table table-striped table-bordered" cellspacing="0" width="100%">
                                         <thead>
@@ -155,6 +155,8 @@
                                                 <th >Encounter Date</th>
                                                 <th >Created By</th>
                                                 <th> Patient Name</th>
+                                                <th> Buy Price</th>
+                                                <th> Service Price</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -169,7 +171,8 @@
                                                 <td><%=dataPatientApp.get(i).get(4)%></td>
                                                 <td><%=dataPatientApp.get(i).get(5)%></td>
                                                 <td><%=dataPatientApp.get(i).get(7)%></td>
-
+                                                <td><%=dataPatientApp.get(i).get(9)%></td>
+                                                <td><%=dataPatientApp.get(i).get(10)%></td>
                                             </tr>
                                             <%
                                                     }
