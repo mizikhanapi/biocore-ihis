@@ -222,6 +222,7 @@
                                             <tbody id="MONNotes"   class="P ConsultationNotes"> </tbody>
                                             <tbody id="ADWNotes"   class="P ConsultationNotes"> </tbody>
                                             <tbody id="DCGNotes"   class="P ConsultationNotes"> </tbody>
+                                            <tbody id="DCGDTONotes"   class="P ConsultationNotes"> </tbody>
                                         </table>
 
                                     </div>
