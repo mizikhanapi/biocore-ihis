@@ -50,7 +50,7 @@
 <h4 style="padding-top: 30px;padding-bottom: 35px; font-weight: bold">
     MAINTAIN WARD/ ASSIGN BED
     <span class="pull-right">
-        <button class="btn btn-success" data-status="pagado" data-toggle="modal" data-id="1" data-target="#beddetail" style=" padding-right: 10px;padding-left: 10px;color: white;"><a data-toggle="tooltip" data-placement="top" title="Add Items" id="test"><i class=" fa fa-plus" style=" padding-right: 10px;padding-left: 10px;color: white;"></i></a>ASSIGN BED</button>
+        <button class="btn btn-success" id="BED_btnModalAdd" style=" padding-right: 10px;padding-left: 10px;color: white;"><a data-toggle="tooltip" data-placement="top" title="Add Items" id="test"><i class=" fa fa-plus" style=" padding-right: 10px;padding-left: 10px;color: white;"></i></a>ASSIGN BED</button>
     </span>
 </h4>
 <!-- Add Button End -->
@@ -146,10 +146,7 @@
                                     <input type="radio" name="status" id="status1" value="Available">
                                     Available 
                                 </label>
-                                <label class="radio-inline">
-                                    <input type="radio" name="status" id="status2" value="Pending">
-                                    Pending
-                                </label>
+                               
                                 <label class="radio-inline">
                                     <input type="radio" name="status" id="status3" value="Occupied">
                                     Occupied
@@ -191,7 +188,10 @@
 //        $('#Discipline').on('change',function(){
 //           console.log(this.val());
 //        });
-    
+     $('#BED_btnModalAdd').on('click', function(){
+            $('#beddetail').modal('show');
+        });
+
         $("#DisAss").on('keyup', function () { // everytime keyup event
             var input = $(this).val(); // We take the input value
             var hfc = $("#Rhfc").val();

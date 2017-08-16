@@ -55,7 +55,7 @@
 
                                     <div class="pull-right">
                                         <span class="bed-booking-a"><i class="fa fa-square"></i>&nbsp;Available</span> 
-                                        <span class="bed-booking-p"><i class="fa fa-square"></i>&nbsp;Pending</span>
+                                        
                                         <span class="bed-booking-o"><i class="fa fa-square"></i>&nbsp;Occupied</span>
                                     </div>
                                 </div>

@@ -27,8 +27,8 @@
             <%
                 Conn conn4 = new Conn();
                 String hfcASS = session.getAttribute("HEALTH_FACILITY_CODE").toString();
-                String sqlbed = "SELECT  d.discipline_name ,  b.ward_class_name,c.ward_name, a.bed_id,a.bed_status,  a.discipline_cd,  a.ward_class_code, a.ward_id,  a.hfc_cd,b.ward_class_code,  c.ward_id, d.discipline_cd FROM wis_bed_id a LEFT JOIN wis_ward_class b ON a.ward_class_code = b.ward_class_code LEFT JOIN wis_ward_name c ON a.ward_id = c.ward_id LEFT JOIN adm_discipline d ON a.discipline_cd = d.discipline_cd where a.hfc_cd = '"+hfcASS+"' group by a.bed_id";
-                
+                String sqlbed = "SELECT  d.discipline_name ,  b.ward_class_name,c.ward_name, a.bed_id,a.bed_status,  a.discipline_cd,  a.ward_class_code, a.ward_id,  a.hfc_cd,b.ward_class_code,  c.ward_id, d.discipline_cd FROM wis_bed_id a LEFT JOIN wis_ward_class b ON a.ward_class_code = b.ward_class_code LEFT JOIN wis_ward_name c ON a.ward_id = c.ward_id LEFT JOIN adm_discipline d ON a.discipline_cd = d.discipline_cd where a.hfc_cd = '" + hfcASS + "' group by a.bed_id";
+
                 ArrayList<ArrayList<String>> databed = conn4.getData(sqlbed);
 
                 int size29 = databed.size();
@@ -46,7 +46,7 @@
         <td><%= databed.get(i).get(4)%></td>
         <td>
             <!-- Update Part Start -->
-            <a id="MWBed_edit" data-toggle="modal" data-target="#assignBedUpdateModal"><i class="fa fa-pencil-square-o" aria-hidden="true" style="display: inline-block;color: #337ab7;"></i></a>
+            <a id="MWBed_edit" ><i class="fa fa-pencil-square-o" aria-hidden="true" style="display: inline-block;color: #337ab7;"></i></a>
             <!-- Update Part End -->
         </td>
         <td>
@@ -97,7 +97,7 @@
                         <label class="col-md-4 control-label" for="selectbasic">Ward ID/Name</label>
                         <div class="col-md-6">
                             <input id="updateWard_IDBed" readonly class="form-control">
-                          
+
                         </div>
                     </div>   
 
@@ -114,7 +114,7 @@
                         <div class="col-md-6">
                             <select class="form-control" name="status" id="updatestatusBed">
                                 <option value="Available">Available</option>
-                                <option value="Pending">Pending</option>
+                               
                                 <option value="Occupied">Occupied</option>
                             </select>
                         </div>
@@ -151,7 +151,7 @@
         $('#AssignBedTable').off('click', '#assignBedTable #MWBed_edit').on('click', '#assignBedTable #MWBed_edit', function (e) {
             e.preventDefault();
             //go to the top
-
+            $('#assignBedUpdateModal').modal('show');
             //get the row value
             var row = $(this).closest("tr");
             var rowData = row.find("#dataAssignBedhidden").val();
@@ -199,7 +199,7 @@
             var createdBy = $("#Rid").val();
             var dis = $("#Rdis").val();
             var sub = $("#Rsub").val();
-         
+
 
             if (Dis === "Select Discipline" || Dis === null) {
                 bootbox.alert("Complete The Discipline Fields");
@@ -273,7 +273,7 @@
         var arrayData = rowData.split("|");
         console.log(arrayData);
         //assign into seprated val
-        var idbed = arrayData[3], hfc = arrayData[5];
+        var idbed = arrayData[3], hfc = arrayData[8];
         bootbox.confirm({
             message: "Are you sure to delete bed information?",
             title: "Delete Item?",
@@ -302,7 +302,7 @@
                         data: data,
                         timeout: 10000,
                         success: function (datas) {
-
+  
                             if (datas.trim() === 'Success') {
 
                                 row.remove();

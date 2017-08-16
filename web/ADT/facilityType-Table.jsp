@@ -2,12 +2,14 @@
 <%@page import="java.sql.*"%>
 <%@page import="dBConn.Conn"%>
 <%@page import="main.RMIConnector"%>
+<%@page import="Config.connect"%>
+
 <%@page session="true" %>
 
 
 
 <%
-        Conn conns = new Conn();
+    Conn conns = new Conn();
     String hfcTYT = session.getAttribute("HEALTH_FACILITY_CODE").toString();
     String idTYT = session.getAttribute("USER_ID").toString();
     String disTYT = session.getAttribute("DISCIPLINE_CODE").toString();
@@ -36,8 +38,8 @@
         <tbody>
 
             <%
-            
-                String sqlFacilityType = "SELECT ward_class_name,ward_class_code,ward_class_status, hfc_cd  FROM wis_ward_class where discipline_cd ='"+disTYT+"' AND hfc_cd ='" + hfcTYT + "'";
+
+                String sqlFacilityType = "SELECT  ward_class_name, ward_class_code, ifnull(ward_class_status, '0'), hfc_cd FROM wis_ward_class where discipline_cd ='" + disTYT + "' AND hfc_cd ='" + hfcTYT + "'";
                 ArrayList<ArrayList<String>> dataFacilityType = conns.getData(sqlFacilityType);
 
                 int size = dataFacilityType.size();
@@ -57,7 +59,7 @@
             }%></td>
         <td>
             <!-- Update Part Start -->
-            <a id="MW_edit" data-toggle="modal" data-target="#FacilityTypeUpdateModal"><i class="fa fa-pencil-square-o fa-lg" aria-hidden="true" style="display: inline-block;color: #337ab7;"></i></a>
+            <a id="MW_edit" id="btnEDITTYPE"><i class="fa fa-pencil-square-o fa-lg" aria-hidden="true" style="display: inline-block;color: #337ab7;"></i></a>
             <!-- Update Part End -->            
         </td>
         <td>
@@ -135,10 +137,13 @@
 <script type="text/javascript" charset="utf-8">
 
     $(document).ready(function () {
+
+
         //function to edit facility type from table
         $('#FacilityTypeTable').off('click', '#facilityTypeTable #MW_edit').on('click', '#facilityTypeTable #MW_edit', function (e) {
             e.preventDefault();
             //go to the top
+            $('#FacilityTypeUpdateModal').modal('show');
 
             //get the row value
             var row = $(this).closest("tr");
@@ -270,7 +275,7 @@
                         data: data,
                         timeout: 10000,
                         success: function (datas) {
-
+                         
                             if (datas.trim() === 'Success') {
                                 row.remove();
 

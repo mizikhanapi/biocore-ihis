@@ -44,7 +44,7 @@
                 String sqlFacilityID = "SELECT wwc.ward_class_name, a.ward_name, a.ward_id, b.discipline_name, a.no_of_bed, a.citizen_room_cost, a.citizen_deposit, a.citizen_discount, a.non_citizen_room_cost, a.non_citizen_deposit, a.non_citizen_discount, "
                         + "a.pensioner_room_cost,  a.pensioner_deposit, a.pensioner_discount,a.attach_toilet, a.include_television, a.attach_bathroom_tiolet, a.include_telephone, a.ward_status, a.hfc_cd , a.discipline_cd, b.discipline_cd, wwc.ward_class_code"
                         + " FROM wis_ward_name a LEFT JOIN adm_discipline b ON a.discipline_cd = b.discipline_cd "
-                        + "LEFT JOIN wis_ward_class wwc on wwc.ward_class_code = a.ward_class_code where a.discipline_cd = '" + disID + "' and a.hfc_cd ='" + hfcID + "' AND b.discipline_cd = '" + disID + "' and b.discipline_hfc_cd ='" + hfcID + "'";
+                        + "LEFT JOIN wis_ward_class wwc on wwc.ward_class_code = a.ward_class_code where a.discipline_cd = '" + disID + "' and a.hfc_cd ='" + hfcID + "' AND b.discipline_cd = '" + disID + "' and b.discipline_hfc_cd ='" + hfcID + "' GROUP BY  a.ward_id";
                 ArrayList<ArrayList<String>> dataFacilityID = conn3.getData(sqlFacilityID);
 
                 int size11 = dataFacilityID.size();
@@ -64,7 +64,7 @@
 
         <td>
             <!-- Update Part Start -->
-            <a id="MWID_edit" data-toggle="modal" data-target="#FacilityIDUpdateModal"><i class="fa fa-pencil-square-o" aria-hidden="true" style="display: inline-block;color: #337ab7;"></i></a>
+            <a id="MWID_edit" ><i class="fa fa-pencil-square-o" aria-hidden="true" style="display: inline-block;color: #337ab7;"></i></a>
             <!-- Update Part End -->
         </td>
         <td>
@@ -319,7 +319,7 @@
         $('#FacilityIDTable').off('click', '#facilityIDTable #MWID_edit').on('click', '#facilityIDTable #MWID_edit', function (e) {
             e.preventDefault();
             //go to the top
-
+ $('#FacilityIDUpdateModal').modal('show');
             //get the row value
             var row = $(this).closest("tr");
             var rowData = row.find("#dataFacilityIDhidden").val();
