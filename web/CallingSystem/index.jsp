@@ -155,7 +155,7 @@
                         </ul>
 
                         <div id="papar">
-                            <p>... Preparing ...</p>
+                            <p>.. Preparing ...</p>
 
                         </div>
 
@@ -214,7 +214,7 @@
                     <h4 style="padding: 0px;">Select Sound: </h4>
                     <div class="row"  id="hideshow">
                         <div class="col-md-12">
-                            <div class="form-group">
+                            <div class="form-group form-inline">
 
                                 <div class="radio radio-primary" id="L1">
                                     <input type="radio" id="1" class="setting" value="1" name="pilih" checked="chacked">
