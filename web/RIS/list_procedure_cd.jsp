@@ -53,28 +53,39 @@
                                                     String hfc_cd = session.getAttribute("HEALTH_FACILITY_CODE").toString();
                                                     String hfc_logo = "SELECT logo FROM adm_health_facility WHERE hfc_cd='" + hfc_cd + "'";
                                                     ArrayList<ArrayList<String>> logo = conn.getData(hfc_logo);
-                                                    
-                                                    
+
                                                     LocalDate localDate = LocalDate.now();
                                                     String newdate = DateTimeFormatter.ofPattern("dd/MM/yyyy").format(localDate);
-//                                                    String test_ca = "SELECT rbs.body_system_name,rm.modality_name,rpm.body_system_cd,rpm.modality_cd,rpm.ris_procedure_name,rpm.selling_price,rpm.buying_price,rpm.quantity,rpm.status FROM ris_body_system rbs,ris_modality rm, ris_procedure_master rpm WHERE rbs.body_system_cd = rpm.body_system_cd AND rm.modality_cd = rpm.modality_cd";
-//                                                    ArrayList<ArrayList<String>> test_cd = conn.getData(test_ca);
+                                                    String test_ca = "SELECT body_system_cd,body_system_name FROM ris_body_system WHERE hfc_cd = '"+hfc_cd+"'";
+                                                    ArrayList<ArrayList<String>> test_cd = conn.getData(test_ca);
                                                 %>
                                                 
                                                 <select class="form-control" name="test" id="body_System">
                                                     <option value="all">All</option>
-
+                                                    <%if (test_cd.size() > 0) {
+                                                            for (int i = 0; i < test_cd.size(); i++) {%>
+                                                    <option value="<%=test_cd.get(i).get(0)%>"><%=test_cd.get(i).get(1)%></option>
+                                                    <%
+                                                            }
+                                                        }
+                                                    %>
                                                 </select>
                                             </div>
                                             <label class="col-md-2 control-label" for="textinput">Select by modality: </label>
                                             <div class="col-md-3">
                                                 <%
-//                                                    String test_ca = "SELECT rbs.body_system_name,rm.modality_name,rpm.body_system_cd,rpm.modality_cd,rpm.ris_procedure_name,rpm.selling_price,rpm.buying_price,rpm.quantity,rpm.status FROM ris_body_system rbs,ris_modality rm, ris_procedure_master rpm WHERE rbs.body_system_cd = rpm.body_system_cd AND rm.modality_cd = rpm.modality_cd";
-//                                                    ArrayList<ArrayList<String>> test_cd = conn.getData(test_ca);
+                                                    String test_ca1 = "SELECT modality_cd,modality_name FROM ris_modality WHERE hfc_cd = '"+hfc_cd+"'";
+                                                    ArrayList<ArrayList<String>> test_cd1 = conn.getData(test_ca1);
                                                 %>
                                                 <select class="form-control" name="test" id="Select_modality">
                                                     <option value="all">All</option>
-
+                                                    <%if (test_cd1.size() > 0) {
+                                                            for (int i = 0; i < test_cd1.size(); i++) {%>
+                                                    <option value="<%=test_cd1.get(i).get(0)%>"><%=test_cd1.get(i).get(1)%></option>
+                                                    <%
+                                                            }
+                                                        }
+                                                    %>
                                                 </select>
 
                                             </div>
@@ -92,20 +103,22 @@
                                         $('#RMOM_btnRefresh').on('click', function () {
                                             //$('#risOrderListContent').html('<div class="loading">Loading</div>');
 
-                                            var process = $('#Select_modality').val();
+                                            var Select_modality = $('#Select_modality').val();
+                                            var body_System = $('#body_System').val();
                                             //alert(process);
                                             var data = {
-                                                process: process
+                                                Select_modality:Select_modality,
+                                                body_System: body_System
                                             };
 
                                             $.ajax({
                                                 type: 'POST',
-                                                url: "viewTC.jsp",
+                                                url: "viewPro.jsp",
                                                 data: data,
                                                 success: function (data) {
-                                                    $("#viewTC").val(data.trim());
-                                                    $('#viewTC').html(data);
-                                                    $('#viewTC').trigger('contentchanged');
+                                                    $("#viewProcedure").val(data.trim());
+                                                    $('#viewProcedure').html(data);
+                                                    $('#viewProcedure').trigger('contentchanged');
                                                 }
 
                                             });
