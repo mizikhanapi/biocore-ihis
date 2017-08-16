@@ -20,7 +20,7 @@
                             </div>
                             <div class="form-group">
                                
-                                <input class="form-control input-lg" type="text"  id="tCISSubCCNHFCSearch" placeholder="Type to search..." data-search-by-word="true">
+                                <input class="form-control input-lg" type="text"  id="tCISSubCCNHFCSearch" placeholder="Type to search..." data-search-by-word="true" onkeypress="return blockSpecialChar(event)">
                                 <div id="tCISSubCCNHFCSearchLoading" ></div>
                                 <input class="form-control input-lg" type="hidden" name="problem"  id="problem" placeholder="Please Type Chief Complain" tabindex="4">
                                 <div id="match50"></div>
@@ -111,7 +111,7 @@
                     <div class="modal-body">
                         <!-- content goes here -->
                         <div class="form-group">
-                            <input class="form-control input-lg" type="text"  id="tCISSubCCNHFCSearch_update" placeholder="Type to search chief complaint..." data-search-by-word="true"> 
+                            <input class="form-control input-lg" type="text"  id="tCISSubCCNHFCSearch_update" placeholder="Type to search chief complaint..." data-search-by-word="true" onkeypress="return blockSpecialChar(event)"> 
                             <div id="tCISSubCCNHFCSearchLoading_update" ></div>
                             <input class="form-control input-lg" type="hidden" name="uproblem"  id="uproblem" placeholder="Search CCN Problem..." tabindex="4">
                             <div id="match1"></div>
@@ -205,7 +205,7 @@
                             <input type="hidden" name="hpi" id="codeHPI" class="form-control input-lg" value="HPI" tabindex="4">
                         </div>
                         <div class="form-group">
-                            <textarea type="text" name="display_name" id="details" class="form-control input-lg" placeholder="Details.." tabindex="3"></textarea>
+                            <textarea type="text" name="display_name" id="details" class="form-control input-lg" placeholder="Details.." tabindex="3" onkeypress="return blockSpecialChar(event)"></textarea>
                         </div>
                     </div>     
                     <div class="modal-footer">
@@ -273,7 +273,7 @@
                             <input type="hidden" name="pmh" id="codePMH" class="form-control input-lg"tabindex="4">
                         </div>
                         <div class="form-group">
-                            <input class="form-control input-lg" type="text"  id="tCISSubPMHSearch" placeholder="Please Type Past Medical History" tabindex="4" data-search-by-word="true">
+                            <input class="form-control input-lg" type="text"  id="tCISSubPMHSearch" placeholder="Please Type Past Medical History" tabindex="4" data-search-by-word="true" onkeypress="return blockSpecialChar(event)">
                             <div id="tCISSubPMHSearchLoading" ></div>
 <!--                            <input class="form-control input-lg" type="text" name="problem"  id="Problem1" placeholder="Please Type Past Medical History" tabindex="4">-->
                             <div id="match2"></div>
@@ -319,7 +319,7 @@
                     <div class="modal-body">
                         <!-- content goes here -->
                         <div class="form-group">
-                            <input class="form-control input-lg" type="text"  id="tCISSubPMHSearch_update" placeholder="Please Type Past Medical History..." tabindex="4" data-search-by-word="true">
+                            <input class="form-control input-lg" type="text"  id="tCISSubPMHSearch_update" placeholder="Please Type Past Medical History..." tabindex="4" data-search-by-word="true" onkeypress="return blockSpecialChar(event)">
                             <div id="tCISSubPMHSearchLoading_update" ></div>
 <!--                            <input class="form-control input-lg" type="text" name="problem"  id="PProblem2"  placeholder="Please Type Past Medical History." tabindex="4">
                             <div id="match3"></div>-->
@@ -371,7 +371,7 @@
                             <input type="hidden" name="FMH" id="codeFMH" class="form-control input-lg" tabindex="4">
                         </div>
                         <div class="form-group">
-                            <input class="form-control input-lg" type="text"  id="tCISSubFMHSearch" placeholder="Please Type Family Medical History..." tabindex="4" data-search-by-word="true">
+                            <input class="form-control input-lg" type="text"  id="tCISSubFMHSearch" placeholder="Please Type Family Medical History..." tabindex="4" data-search-by-word="true" onkeypress="return blockSpecialChar(event)">
                             <div id="tCISSubFMHSearchLoading" ></div>
 <!--                            <input class="form-control input-lg" type="text" name="problem3"  id="Problem3" placeholder="Search FMH Problem..." tabindex="4">-->
 <!--                            <div id="match17"></div>-->
@@ -434,7 +434,7 @@
                     <div class="modal-body">
                         <!-- content goes here -->
                         <div class="form-group">
-                            <input class="form-control input-lg" type="text"  id="tCISSubFMHSearch_update" placeholder="Please Type Family Medical History..." tabindex="4" data-search-by-word="true">
+                            <input class="form-control input-lg" type="text"  id="tCISSubFMHSearch_update" placeholder="Please Type Family Medical History..." tabindex="4" data-search-by-word="true" onkeypress="return blockSpecialChar(event)">
                             <div id="tCISSubFMHSearchLoading_update" ></div>
 <!--                            <input class="form-control input-lg" type="text" name="problem"  id="PProblem3" placeholder="Search FMH Problem..." tabindex="4">
                             <div id="match16"></div>-->
@@ -501,7 +501,7 @@
                             <input type="hidden" name="SOH" id="codeSOH" class="form-control input-lg" tabindex="4">
                         </div>
                         <div class="form-group">
-                            <input class="form-control input-lg" type="text"  id="tCISSubSOHSearch" placeholder="Please Type Social History..." tabindex="4" data-search-by-word="true">
+                            <input class="form-control input-lg" type="text"  id="tCISSubSOHSearch" placeholder="Please Type Social History..." tabindex="4" data-search-by-word="true" onkeypress="return blockSpecialChar(event)">
                             <div id="tCISSubSOHSearchLoading" ></div>
 <!--                            <input class="form-control input-lg" type="text" name="problem"  id="Problem4" placeholder="Please Type Social History" tabindex="4">
                             <div id="match4"></div>-->
@@ -545,7 +545,7 @@
                     <div class="modal-body">
                         <!-- content goes here -->
                         <div class="form-group">
-                            <input class="form-control input-lg" type="text"  id="tCISSubSOHSearch_update" placeholder="Please Type Social History..." tabindex="4" data-search-by-word="true">
+                            <input class="form-control input-lg" type="text"  id="tCISSubSOHSearch_update" placeholder="Please Type Social History..." tabindex="4" data-search-by-word="true" onkeypress="return blockSpecialChar(event)">
                             <div id="tCISSubSOHSearchLoading_update" ></div>
 <!--                            <input class="form-control input-lg" type="text" name="problem"  id="PProblem4" placeholder="Social History" tabindex="4">
                             <div id="match5"></div>-->
@@ -715,7 +715,7 @@
                             <input type="hidden" name="Allergy" id="codeALG" class="form-control input-lg" tabindex="4">
                         </div>
                         <div class="form-group">
-                            <input class="form-control input-lg" type="text"  id="tCISSubALGSearch" placeholder="Please Type Allergy..." tabindex="4" data-search-by-word="true">
+                            <input class="form-control input-lg" type="text"  id="tCISSubALGSearch" placeholder="Please Type Allergy..." tabindex="4" data-search-by-word="true" onkeypress="return blockSpecialChar(event)">
                             <div id="tCISSubALGSearchLoading" ></div>
 <!--                            <input class="form-control input-lg" type="text" name="problem"  id="Problem5" placeholder="Please Type Allergy" tabindex="4">
                             <div id="match22"></div>-->
@@ -757,7 +757,7 @@
                     <div class="modal-body">
                         <!-- content goes here -->
                         <div class="form-group">
-                            <input class="form-control input-lg" type="text"  id="tCISSubALGSearch_update" placeholder="Please Type Allergy..." tabindex="4" data-search-by-word="true">
+                            <input class="form-control input-lg" type="text"  id="tCISSubALGSearch_update" placeholder="Please Type Allergy..." tabindex="4" data-search-by-word="true" onkeypress="return blockSpecialChar(event)">
                             <div id="tCISSubALGSearchLoading_update" ></div>
 <!--                            <input class="form-control input-lg" type="text" name="problem"  id="PProblem5" placeholder="Please Type Allergy" tabindex="4">
                             <div id="match23"></div>-->
@@ -805,7 +805,7 @@
                             <input type="hidden" name="IMU" id="codeIMU" class="form-control input-lg" tabindex="4">
                         </div>
                         <div class="form-group">
-                            <input class="form-control input-lg" type="text"  id="tCISSubIMUSearch" placeholder="Please Type Immunization..." tabindex="4" data-search-by-word="true">
+                            <input class="form-control input-lg" type="text"  id="tCISSubIMUSearch" placeholder="Please Type Immunization..." tabindex="4" data-search-by-word="true" onkeypress="return blockSpecialChar(event)">
                             <div id="tCISSubIMUSearchLoading" ></div>
 <!--                            <input class="form-control input-lg" type="text" name="problem"  id="Problem6" placeholder="Please Type Immunization" tabindex="4">
                             <div id="match6"></div>-->
@@ -847,7 +847,7 @@
                     <div class="modal-body">
                         <!-- content goes here -->
                         <div class="form-group">
-                            <input class="form-control input-lg" type="text"  id="tCISSubIMUSearch_update" placeholder="Please Type Immunization..." tabindex="4" data-search-by-word="true">
+                            <input class="form-control input-lg" type="text"  id="tCISSubIMUSearch_update" placeholder="Please Type Immunization..." tabindex="4" data-search-by-word="true" onkeypress="return blockSpecialChar(event)">
                             <div id="tCISSubIMUSearchLoading_update" ></div>
 <!--                            <input class="form-control input-lg" type="text" name="problem"  id="PProblem6" placeholder="Please Type Immunization" tabindex="4">
                             <div id="match25"></div>-->
@@ -895,7 +895,7 @@
                             <input type="hidden" name="DAB" id="codeDAB" class="form-control input-lg"  tabindex="4">
                         </div>
                         <div class="form-group">
-                            <input class="form-control input-lg" type="text"  id="tCISSubDABSearch" placeholder="Please Type Disability Name..." tabindex="4" data-search-by-word="true">
+                            <input class="form-control input-lg" type="text"  id="tCISSubDABSearch" placeholder="Please Type Disability Name..." tabindex="4" data-search-by-word="true" onkeypress="return blockSpecialChar(event)">
                             <div id="tCISSubDABSearchLoading" ></div>
 <!--                            <input class="form-control input-lg" type="text" name="problem"  id="Problem32" placeholder="Please Type Disability Name" tabindex="4">
                             <div id="match32"></div>-->
@@ -939,7 +939,7 @@
                     <div class="modal-body">
                         <!-- content goes here -->
                         <div class="form-group">
-                            <input class="form-control input-lg" type="text"  id="tCISSubDABSearch_update" placeholder="Please Type Disability Name..." tabindex="4" data-search-by-word="true">
+                            <input class="form-control input-lg" type="text"  id="tCISSubDABSearch_update" placeholder="Please Type Disability Name..." tabindex="4" data-search-by-word="true" onkeypress="return blockSpecialChar(event)">
                             <div id="tCISSubDABSearchLoading_update" ></div>
 <!--                            <input class="form-control input-lg" type="text" name="problem"  id="PProblem32" placeholder="Please Type Disability Name" tabindex="4">
                             <div id="mmatch32"></div>-->
