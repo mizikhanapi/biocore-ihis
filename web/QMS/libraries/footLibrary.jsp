@@ -1,7 +1,7 @@
 <%-- 
     Document   : radiologyFootLibrary
     Created on : Mar 28, 2017, 2:41:43 PM
-    Author     : Shammugam
+    Author     : Ardhi Surya; rdsurya147@gmail.com
 --%>
 
 <!--<script src="libraries/js/jquery-ui.js" type="text/javascript"></script>
@@ -31,5 +31,7 @@
 <script src="../assets/js/vfs_fonts.js" type="text/javascript"></script>
 <script src="../assets/js/buttons.html5.min.js" type="text/javascript"></script>
 <script src="../assets/js/papaparse.min.js"></script>
+<script src="../assets/js/buttons.print.min.js"></script>
+<script src="js/buttons.colVis.min.js"></script>
 <script src="js/create_destroy_loading.js" type="text/javascript"></script>
 <script src="libraries/SearchFacility/SearchFacility.js" type="text/javascript"></script>
