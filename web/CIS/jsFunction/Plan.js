@@ -1250,7 +1250,7 @@ $(document).ready(function () {
             index: dcgIndex
         }
         _data.push(obj1);
-
+        console.log(_data);
         $('#CIS040010').modal("hide");
         displayDCG(dateDCG, timeDCG, disposition, commentDCG);
 

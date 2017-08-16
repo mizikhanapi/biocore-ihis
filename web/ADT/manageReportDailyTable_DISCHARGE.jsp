@@ -48,7 +48,7 @@
                 + "COUNT(wis_inpatient_episode_history.pmi_no),"
                 + "DATE(wis_inpatient_episode_history.created_date) "
                 + " FROM wis_inpatient_episode_history LEFT JOIN wis_inpatient_episode ON (wis_inpatient_episode.pmi_no =  wis_inpatient_episode_history.pmi_no)"
-                + " WHERE wis_inpatient_episode.hfc_cd  = '" + hfc + "' AND wis_inpatient_episode_history.inpatient_status  = '2' AND wis_inpatient_episode.inpatient_status  = '2' group by DATE ";
+                + " WHERE wis_inpatient_episode.hfc_cd  = '" + hfc + "' AND wis_inpatient_episode_history.inpatient_status  = '2'  group by DATE ";
 
         ArrayList<ArrayList<String>> dataReportDaily = conn.getData(sql);
 

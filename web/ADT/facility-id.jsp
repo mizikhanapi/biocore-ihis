@@ -47,7 +47,7 @@
 <h4 style="padding-top: 30px;padding-bottom: 35px; font-weight: bold">
     MAINTAIN WARD/ FACILITY ID
     <span class="pull-right">
-        <button class="btn btn-success" data-status="pagado" data-toggle="modal" data-id="1" data-target="#detailID" style=" padding-right: 10px;padding-left: 10px;color: white;"><a data-toggle="tooltip" data-placement="top" title="Add Items" id="test"><i class=" fa fa-plus" style=" padding-right: 10px;padding-left: 10px;color: white;"></i></a>ADD FACILITY ID</button>
+        <button class="btn btn-success" id="FI_btnModalAdd" style=" padding-right: 10px;padding-left: 10px;color: white;"><a data-toggle="tooltip" data-placement="top" title="Add Items" id="test"><i class=" fa fa-plus" style=" padding-right: 10px;padding-left: 10px;color: white;"></i></a>ADD FACILITY ID</button>
     </span>
 </h4>
 <!-- Add Button End -->
@@ -304,6 +304,9 @@
 <script>
     w3IncludeHTML();
     $(document).ready(function () {
+ $('#FI_btnModalAdd').on('click', function(){
+            $('#detailID').modal('show');
+        });
 
 
         $("#WardClass1").on('keyup', function () { // everytime keyup event

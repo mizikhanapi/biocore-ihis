@@ -17,7 +17,7 @@
     String proCode = request.getParameter("proCode");
     String instruction = request.getParameter("instruction");
     
-    String sqlCheck = "Select order_no from ris order_detail "
+    String sqlCheck = "Select order_no from ris_order_detail "
             + "where order_no = '"+orderNo+"' AND modality_cd = '"+modCode+"' AND body_system_cd = '"+bsCode+"' AND procedure_cd = '"+proCode+"' LIMIT 1";
     
     ArrayList<ArrayList<String>> duplicate = conn.getData(sqlCheck);
@@ -27,8 +27,8 @@
         
     }else{
         RMIConnector rmic = new RMIConnector();
-        String query = "Insert into ris_order_detail(order_no, modality_cd, body_system_cd, procedure_cd, episode_date, encounter_date, requestor_comments, order_status, created_by, created_date) "
-                + "values('"+orderNo+"', '"+modCode+"', '"+bsCode+"', '"+proCode+"', now(), now(), '"+instruction+"', '0', '"+creator+"', now())";
+        String query = "Insert into ris_order_detail(order_no, modality_cd, body_system_cd, procedure_cd, episode_date, encounter_date, requestor_comments, order_status, created_by, created_date, txn_date) "
+                + "values('"+orderNo+"', '"+modCode+"', '"+bsCode+"', '"+proCode+"', now(), now(), '"+instruction+"', '0', '"+creator+"', now(), now());";
     
         boolean isInsert = rmic.setQuerySQL(conn.HOST, conn.PORT, query);
         

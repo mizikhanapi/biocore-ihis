@@ -89,7 +89,7 @@
                     <span class="bed-booking-total"><%= totalS%></span>
                     <div>
                         <span class="bed-booking-a"><i class="fa fa-square"></i>&nbsp;<%= totalA%></span> 
-                        <span class="bed-booking-p"><i class="fa fa-square"></i>&nbsp;<%= totalP%></span>
+                     
                         <span class="bed-booking-o"><i class="fa fa-square"></i>&nbsp;<%= totalO%></span>
                     </div>
                 </div>
@@ -108,10 +108,7 @@
             <th bgcolor="#33cc33">A</th>
             <td bgcolor="#33cc33">AVAILABLE</td>
         </tr>
-        <tr>
-            <th bgcolor="#ffff99">P</th>
-            <td bgcolor="#ffff99">PENDING</td>
-        </tr>
+      
         <tr>
             <th bgcolor="#ff5050">O</th>
             <td bgcolor="#ff5050">OCCUPIED</td><br>

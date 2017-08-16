@@ -39,7 +39,7 @@
         g[0] = formatted;
     }
     String newSeq = "FS" + g[0];
-    String sql2 = "INSERT INTO pms_family (PMI_NO, FAMILY_SEQ_NO, FAMILY_RELATIONSHIP_CODE, PMI_NO_FAMILY, FAMILY_MEMBER_NAME, OCCUPATION_CODE,created_by,created_date) VALUES ('" + FAMpmino + "','" + newSeq + "','" + FAMrelay + "','" + FAMfamilypmino + "','" + FAMname + "','" + FAMoccu + "','"+createdBy+"',now()";
+    String sql2 = "INSERT INTO pms_family (PMI_NO, FAMILY_SEQ_NO, FAMILY_RELATIONSHIP_CODE, PMI_NO_FAMILY, FAMILY_MEMBER_NAME, OCCUPATION_CODE,created_by,created_date) VALUES ('" + FAMpmino + "','" + newSeq + "','" + FAMrelay + "','" + FAMfamilypmino + "','" + FAMname + "','" + FAMoccu + "','"+createdBy+"',now());";
     String sql3 = "INSERT INTO AUTOGENERATE_FSNO (FAMILY_SEQ_NO) VALUES ('" + newSeq + "')";
 
     if (Checkseq.size() > 0) {

@@ -9,9 +9,9 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         
         <link rel="stylesheet" href="../PMS/libraries/lib/css/loading.css">
-<!--        <link href="../PMS/libraries/lib/datepicker/jquery-ui.css" rel="stylesheet">-->
+        <link href="../PMS/libraries/lib/datepicker/jquery-ui.css" rel="stylesheet">
         <script src="../PMS/libraries/lib/js/jquery.min.js"></script>
-                <script src="../assets/js/jquery-ui.js" type="text/javascript"></script>
+<!--        <script src="../assets/js/jquery-ui.js" type="text/javascript"></script>-->
 
         <script src="../PMS/libraries/lib/js/bootstrap.min.js"></script>
         <script src="../PMS/libraries/lib/datepicker/jquery-ui.js"></script>
@@ -26,7 +26,7 @@
         <script src="../PMS/libraries/lib/js/jquery.min.js"></script>
         <script src="../PMS/libraries/lib/js/bootstrap.min.js"></script>
 <!--        <script src="libraries/lib/datepicker/jquery-ui.js"></script>-->
-        <script src="../PMS/assets/js/jquery-ui.js" type="text/javascript"></script>
+<!--        <script src="PMS/assets/js/jquery-ui.js" type="text/javascript"></script>-->
         <script src="../PMS/libraries/lib/js/form-validator.min.js"></script>    
         <script src="../PMS/libraries/lib/js/bootbox.min.js"></script>
         <script src="../PMS/libraries/lib/js/search/searchPatient.js" type="text/javascript"></script>
@@ -165,7 +165,6 @@
         <script src="../PMS/libraries/lib/js/main/appointment.js" type="text/javascript"></script>
         <script src="../PMS/libraries/lib/js/main/patient_master_index.js" type="text/javascript"></script>
         <script src="../PMS/libraries/lib/js/main/OPMain.js" type="text/javascript"></script>
-        <script src="../PMS/libraries/lib/js/search/searchPatient.js" type="text/javascript"></script>
         <script src="../PMS/libraries/lib/js/onKeyPress.js" type="text/javascript"></script>
         <script src="../PMS/libraries/lib/js/main/nextOfKin.js" type="text/javascript"></script>
         <script src="../PMS/libraries/lib/js/search/searchCountry.js" type="text/javascript"></script>

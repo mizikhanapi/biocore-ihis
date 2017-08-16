@@ -53,12 +53,7 @@
 
         <li><a  href="HIS070008.jsp" ><i class="fa fa-usd fa-lg"></i> Maintain Hospital Charges </a> </li>
 
-        <li>
-            <a  href="HIS070004.jsp" >
-                <i class="fa fa-bed fa-lg"></i> Bed Booking Master Summary
-            </a>
-        </li>
-
+        
         
         
         <!-- Menu with dropdown -->
@@ -74,7 +69,12 @@
         </ul> 
         <!-- Menu with dropdown -->
         
-        
+        <li>
+            <a  href="HIS070004.jsp" >
+                <i class="fa fa-bed fa-lg"></i> Bed Booking Master Summary
+            </a>
+        </li>
+
 
         <!-- // menu tanpa dropdown -->
 

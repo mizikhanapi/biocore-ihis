@@ -76,13 +76,13 @@
                                 <td style="color:#26a69a;" >Available</td>
 
 
-                                <% } else if (databedId.get(i3).get(1).equals("Occupied")) { %>
+                             <% } else { %>
 
                                 <td style="color:#f5707a;" >Occupied</td>
 
-                                <% } else { %>
+                               
 
-                                <td style="color:#f9c851;" >Pending</td>
+                              
 
                                 <% } %>
                             </tr>

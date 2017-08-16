@@ -29,11 +29,9 @@
 </div>
 
 <script>
-    $(function(){
-        
-        //-------------------------refresh the order table ---------------------------------------
-        $('#RMOM_btnRefresh').on('click', function(){
-            $('#risOrderListContent').html('<div class="loading">Loading</div>');
+    
+    function reloadOrderMasterList(){
+        $('#risOrderListContent').html('<div class="loading">Loading</div>');
             
             var process = $('#RMOM_oderTime').val();
             
@@ -56,6 +54,15 @@
                 }
                 
             });
+            
+    }
+    
+    $(function(){
+        
+        //-------------------------refresh the order table ---------------------------------------
+        $('#RMOM_btnRefresh').on('click', function(){
+            
+            reloadOrderMasterList();
             
         });
         

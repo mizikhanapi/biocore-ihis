@@ -23,7 +23,7 @@
 
         <link rel="stylesheet" href="bootstrap-3.3.6-dist/css/dataTables.bootstrap.min.css">
         <link rel="stylesheet" href="css/table.css">
-        <link rel="stylesheet" href="css/loading_sham.css">
+        <!--<link rel="stylesheet" href="css/loading_sham.css">-->
 
         <!-- Bootstrap core JavaScript
       ================================================== -->
@@ -63,7 +63,7 @@
 
                                             <li>
                                                 <a href="#REP_tab2" data-toggle="tab">
-                                                    PMS Setting </a>
+                                                    Lookup List </a>
                                             </li>
 
                                            
@@ -88,18 +88,20 @@
 
                                             <div class="tab-pane" id="REP_tab2">
 
-                                                <div id="PMS">
-                                                    <div id="PMSMain">
+                                                <div id="Lookup">
+                                                    <div id="LookupMain">
                                                     </div>
                                                     
-                                                </div>
+                                                    <div id="LookupTable" class="table-guling">
+                                                    
+                                                    </div>
 
                                             </div>
 
                                         </div>
                                     </div>
                                 </div>
-
+                                    <jsp:include page="modal/report_modal.jsp"/>
                                 <!-- Tab Menu -->
 
 
@@ -127,6 +129,7 @@
             $(document).ready(function () {
                 
                 $("#USRMain").load("report_user_main.jsp");
+                $("#LookupMain").load("report_lookup_main.jsp");
                 destroyScreenLoading();
 
                 //$("#PMSMain").load("setting_PMS.jsp");

@@ -99,8 +99,8 @@ $(document).ready(function (e) {
             },
             callback: function (result) {
                 if (result === true) {
-                    //getSettingConsult(doctor_id);
-                    storeData(1);
+                    getSettingConsult();
+                    //storeData(1);
                     reloadStat = 0;
                     statusNow = 1;
                     var pmiNo = $('#pmiNumber').text();
@@ -139,7 +139,7 @@ $(document).ready(function (e) {
         searchHFCDetailv2(hfc_name,"-","tCIS_DCGHFCOrderDetail_P","tCIS_DCGHFCProviderDetail_P","-")
     });
     $('#CIS040010').on('hidden.bs.modal', function () {
-
+        $("#DCGDTONotes").html('');
         $('#tblCIS_Consultation_Table').html($('#divCIS_Discharge_P_Summary_P').html());
         $('.fa-pencil-square-o').css("display", "inline-block");
         $('.fa-times').css("display", "inline-block");
@@ -733,7 +733,7 @@ $(document).ready(function (e) {
     }
 
 
-    function getSettingConsult(user_id) {
+    function getSettingConsult() {
         var checkCCN = false;
         var checkDGS = false;
         var checkDCG = false;
@@ -765,14 +765,14 @@ $(document).ready(function (e) {
                 if (c === true) {
                     storeData(1);
                 } else {
-                    alert('Discharge Cancel');
+                     bootbox.alert('Discharge Cancel');
                 }
             } else if (dataDischarge[0] === false) {
-                alert("Need to add Chief Complain");
+                 bootbox.alert("Need to add Chief Complain");
             } else if (dataDischarge[1] === false) {
-                alert("Need to add Diagnosis");
+                 bootbox.alert("Need to add Diagnosis");
             } else if (dataDischarge[2] === false) {
-                alert("Need to add Discharge Summary");
+                 bootbox.alert("Need to add Discharge Summary");
             }
             //011
         } else if (checkCCN === false && checkDGS === true && checkDCG === true) {
@@ -785,9 +785,9 @@ $(document).ready(function (e) {
                     alert('Discharge Cancel');
                 }
             } else if (dataDischarge[1] === false) {
-                alert("Need to add Diagnosis");
+                 bootbox.alert("Need to add Diagnosis");
             } else if (dataDischarge[2] === false) {
-                alert("Need to add Discharge Summary");
+                 bootbox.alert("Need to add Discharge Summary");
             }
             //001
         } else if (checkCCN === false && checkDGS === false && checkDCG === true) {
@@ -800,7 +800,7 @@ $(document).ready(function (e) {
                     alert('Discharge Cancel');
                 }
             } else if (dataDischarge[2] === false) {
-                alert("Need to add Discharge Summary");
+                 bootbox.alert("Need to add Discharge Summary");
             }
             //010
         } else if (checkCCN === false && checkDGS === true && checkDCG === false) {
@@ -810,10 +810,10 @@ $(document).ready(function (e) {
                 if (c === true) {
                     storeData(1);
                 } else {
-                    alert('Discharge Cancel');
+                     bootbox.alert('Discharge Cancel');
                 }
             } else if (dataDischarge[1] === false) {
-                alert("Need to add Diagnosis");
+                 bootbox.alert("Need to add Diagnosis");
             }
             //000
         } else if (checkCCN === true && checkDGS === false && checkDCG === false) {
@@ -823,10 +823,10 @@ $(document).ready(function (e) {
                 if (c === true) {
                     storeData(1);
                 } else {
-                    alert('Discharge Cancel');
+                     bootbox.alert('Discharge Cancel');
                 }
             } else if (dataDischarge[0] === false) {
-                alert("Need to add Chief Complain");
+                 bootbox.alert("Need to add Chief Complain");
             }
             //100
         } else if (checkCCN === true && checkDGS === false && checkDCG === true) {
@@ -836,12 +836,12 @@ $(document).ready(function (e) {
                 if (c === true) {
                     storeData(1);
                 } else {
-                    alert('Discharge Cancel');
+                     bootbox.alert('Discharge Cancel');
                 }
             } else if (dataDischarge[0] === false) {
-                alert("Need to add Chief Complain");
+                 bootbox.alert("Need to add Chief Complain");
             } else if (dataDischarge[2] === false) {
-                alert("Need to add Discharge Summary");
+                 bootbox.alert("Need to add Discharge Summary");
             }
             //101
         } else if (checkCCN === true && checkDGS === true && checkDCG === false) {
@@ -851,12 +851,12 @@ $(document).ready(function (e) {
                 if (c === true) {
                     storeData(1);
                 } else {
-                    alert('Discharge Cancel');
+                    bootbox.alert('Discharge Cancel');
                 }
             } else if (dataDischarge[0] === false) {
-                alert("Need to add Chief Complain");
+                bootbox.alert("Need to add Chief Complain");
             } else if (dataDischarge[1] === false) {
-                alert("Need to add Diagnosis");
+                 bootbox.alert("Need to add Diagnosis");
             }
             //110
         } else if (checkCCN === false && checkDGS === false && checkDCG === false) {
@@ -865,7 +865,7 @@ $(document).ready(function (e) {
             if (c === true) {
                 storeData(1);
             } else {
-                alert('Discharge Cancel');
+                 bootbox.alert('Discharge Cancel');
             }
         }
 
@@ -1109,6 +1109,7 @@ $(document).ready(function (e) {
 });
 
 function load_DCG_DTO(){
+    var DTODGCItem = [];
             $.ajax({
             url: "search/ResultORDERDETAILDTOSearch.jsp",
             data: {
@@ -1120,9 +1121,46 @@ function load_DCG_DTO(){
             success: function (response) {
                 var allDetail = response.trim().split("[#-#]");
                 allDetail.pop();
+                for(var i in allDetail){
+                    var dtoA = allDetail[i].split("|");
+                    console.log(dtoA);
+
+                    var tempDTOObj = {
+                         Acode: 'DTO',
+                        drugName: dtoA[1],
+                        drugCode: dtoA[0],
+                        drugForm: dtoA[4],
+                        drugRoute: dtoA[3],
+                        drugCaution: "",
+                        drugFrequencyDetail: "",
+                        drugStrength: dtoA[6],
+                        drugStrengthUnit: "",
+                        drugDose: dtoA[7],
+                        drugDoseUnit: "",
+                        drugDuration: dtoA[9],
+                        drugDurationUnit: "",
+                        drugFrequency: dtoA[2],
+                        uomCode: dtoA[8],
+                        remark: "",
+                        comment: "",
+                        drugQuantity: dtoA[10],
+                        problemName: "",
+                        problemCode: "",
+                        priority: "Normal"
+                    }
+                    displayDTO2( tempDTOObj.drugName, tempDTOObj.drugStrength, tempDTOObj.drugDose, tempDTOObj.drugFrequency, tempDTOObj.drugDuration, tempDTOObj.uomCode, tempDTOObj, tempDTOObj);
+                    DTODGCItem.push(tempDTOObj);
+                    
+                }
                 
-                console.log(allDetail);
+                
                 
             }
         })
+}
+
+function displayDTO2( drugName, drugStr, drugDose, drugFreq, drugDur1, unit) {
+    var _tr = '<tr data-status="pagado" ><td><div class="ckbox"><input type="checkbox" id="checkbox|' + i + '" name="DTO_DCG"><label for="checkbox|' + i + '"></label></div></td><td><div class="media"><div class="media-body">Drug Ordered :<p class="summary" id="sum' + i + '">' + ' | Drug Name: ' + drugName + ' | Strength: ' + drugStr + ' | Dose: ' + drugDose + ' | Frequency: ' + drugFreq + ' | Duration: ' + drugDur1  +'</p></div></div></td><td></td><td></td></tr>';
+    $('#DCGDTONotes').append(_tr);
+    i = i + 1;
 }

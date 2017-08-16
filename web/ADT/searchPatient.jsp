@@ -56,7 +56,7 @@
         </div>
     </form>
 </div>
-<script src="old/assets/js/IPMain.js" type="text/javascript"></script>
+<!--<script src="old/assets/js/IPMain.js" type="text/javascript"></script>-->
 <script src="old/assets/js/onKeyPress.js" type="text/javascript"></script>
 <script>
     //validate max length of input

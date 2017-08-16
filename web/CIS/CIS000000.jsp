@@ -53,7 +53,7 @@
             discipline = '<%out.print(discipline);%>';
             subdis = '<%out.print(subdicipline);%>';
             cisParam = '<%out.print(cisSystemParam);%>';
-
+            console.log(cisParam);
             $.ajax({
                 url: "search/searchRRI.jsp",
                 type: "post",
@@ -222,6 +222,7 @@
                                             <tbody id="MONNotes"   class="P ConsultationNotes"> </tbody>
                                             <tbody id="ADWNotes"   class="P ConsultationNotes"> </tbody>
                                             <tbody id="DCGNotes"   class="P ConsultationNotes"> </tbody>
+                                            <tbody id="DCGDTONotes"   class="P ConsultationNotes"> </tbody>
                                         </table>
 
                                     </div>

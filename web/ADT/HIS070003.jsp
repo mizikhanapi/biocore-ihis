@@ -13,6 +13,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
+        <script src="old/assets/js/jquery.min.js"></script>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <!-- header -->
         <%@include file = "../assets/header.html" %>
@@ -22,7 +23,7 @@
         <link href="old/assets/css/buttons.dataTables.min.css" rel="stylesheet" type="text/css"/>
         <link href="old/assets/css/jquery-ui.css" rel="stylesheet" type="text/css"/>
         <!-- header -->
-        <script src="old/assets/js/jquery.min.js"></script>
+        
     </head>
 
     <body>
@@ -51,43 +52,43 @@
                                     <div class="tabbable-line">
                                         <ul class="nav nav-tabs ">
                                             <li class="active">
-                                                <a href="#tab_default_1" data-toggle="tab">
-                                                    Maintain Ward/ facility type </a>
+                                                <a href="#a" data-toggle="tab">
+                                                    Maintain Ward/ facility Type</a>
                                             </li>
+
                                             <li>
-                                                <a href="#tab_default_2" data-toggle="tab">
+                                                <a href="#b" data-toggle="tab">
                                                     Maintain Ward/ facility ID </a>
                                             </li>
                                             <li>
-                                                <a href="#tab_default_3" data-toggle="tab">
+                                                <a href="#c" data-toggle="tab">
                                                     Assign bed to ward </a>
                                             </li>
                                         </ul>
                                         <!-- tab content -->
                                         <div class="tab-content">
-                                            <div class="tab-pane active" id="tab_default_1">
+                                            <div class="tab-pane active" id="a">
                                                 <div>
-                                                    <div id="FacilityTypeMain">
+                                                    <div  id="FacilityTypeMain"> 
                                                         <%@include file = "facility-type.jsp" %>
                                                     </div>
-                                                    <div  id="FacilityTypeTable">
+
+                                                    <div id="FacilityTypeTable"> 
                                                         <%@include file = "facilityType-Table.jsp" %>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="tab-pane" id="tab_default_2">
-                                                <div>
-                                                    <div  id="FacilityIDMain"> 
-                                                        <%@include file = "facility-id.jsp" %>
-                                                    </div>
+                                            <div class="tab-pane" id="b">
 
-                                                    <div id="FacilityIDTable"> 
-                                                        <%@include file = "facilityID-Table.jsp" %>
-                                                    </div>
+                                                <div  id="FacilityIDMain"> 
+                                                    <%@include file = "facility-id.jsp" %>
                                                 </div>
 
+                                                <div id="FacilityIDTable"> 
+                                                    <%@include file = "facilityID-Table.jsp" %>
+                                                </div>
                                             </div>
-                                            <div class="tab-pane" id="tab_default_3">
+                                                 <div class="tab-pane" id="c">
 
                                                 <div>
                                                     <div id="AssignBed">  <%@include file = "assign-bed-to-ward.jsp" %>
@@ -97,6 +98,7 @@
                                                     </div>
                                                 </div>    
                                             </div>
+
                                         </div>
                                     </div>
                                 </div>
@@ -116,28 +118,14 @@
 
         <script src="old/assets/datepicker/jquery-ui.js"></script>
         <script src="old/assets/js/form-validator.min.js"></script>
-        <script src="ReportLibraries/js/bootstrap.min.js" type="text/javascript"></script>
-        <script src="ReportLibraries/js/bootbox.min.js" type="text/javascript"></script>
-        <script src="ReportLibraries/js/jquery.dataTables.min.js"></script>
+        <script src="old/assets/js/bootbox.min.js"></script>
+        <script src="old/assets/js/dataTables.bootstrap.min.js"></script>
+        <script src="PMS/libraries/lib/js/onKeyPress.js" type="text/javascript"></script>
+        <script src="old/assets/js/onKeyPress.js" type="text/javascript"></script>
         <script src="ReportLibraries/js/dataTables.bootstrap.min.js" type="text/javascript"></script>
-        <script src="ReportLibraries/js/dataTables.buttons.min.js" type="text/javascript"></script>
-        <script src="ReportLibraries/js/buttons.flash.min.js" type="text/javascript"></script>
-        <script src="ReportLibraries/js/jszip.min.js" type="text/javascript"></script>
-        <script src="ReportLibraries/js/pdfmake.min.js" type="text/javascript"></script>
-        <script src="ReportLibraries/js/vfs_fonts.js" type="text/javascript"></script>
-        <script src="ReportLibraries/js/buttons.html5.min.js" type="text/javascript"></script>
-        <script src="ReportLibraries/js/buttons.print.min.js" type="text/javascript"></script>
-        <script src="ReportLibraries/js/buttons.colVis.min.js" type="text/javascript"></script>
-        <script src="ReportLibraries/js/papaparse.min.js"></script>
-        <script src="ReportLibraries/js/jquery.multi-select.js" type="text/javascript"></script>
+<script src="ReportLibraries/js/dataTables.buttons.min.js" type="text/javascript"></script>
+<script src="ReportLibraries/js/jquery.dataTables.min.js"></script>
+
         <!-- Script Goes Here -->
     </body>
 </html>
-
-<script type="text/javascript">
-    $(document).ready(function () {
-
-
-
-    });
-            </script

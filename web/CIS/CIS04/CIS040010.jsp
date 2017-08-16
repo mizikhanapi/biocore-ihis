@@ -68,6 +68,9 @@
                     <div class="col-md-12">
                         <div id="divCIS_Discharge_P_Summary_P" style="overflow:auto; height:400px; border: 1px solid #ddd; padding: 15px 0px;">
                         </div>
+                        <table class="table table-filter " style="background: #fff; border: 1px solid #ccc; margin-left: -31px; margin-right: -31px; width: auto; max-width: inherit; " id="tblCIS_DischargeSummary" >
+                         
+                        </table>
                     </div>
                 </div>                        
 
