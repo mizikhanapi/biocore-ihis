@@ -18,7 +18,7 @@
     String dis = session.getAttribute("DISCIPLINE_CODE").toString();
 
     String searchProblem = "SELECT UD_ATC_Code,UD_ATC_Desc FROM pis_atc WHERE hfc_cd = '"+superUserHFC+"' "
-            + " AND UD_ATC_Code NOT IN (SELECT UD_ATC_Code FROM pis_atc WHERE hfc_cd = '"+hfc+"');";
+            + " AND UD_ATC_Code NOT IN (SELECT UD_ATC_Code FROM pis_atc WHERE hfc_cd = '"+hfc+"'  AND discipline_cd = '"+dis+"');";
 
     ArrayList<ArrayList<String>> search = conn.getData(searchProblem);
     if (search.size() > 0) {
