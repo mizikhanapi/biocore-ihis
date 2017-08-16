@@ -39,7 +39,7 @@
                 <i class="fa fa-code fa-lg"></i> Manage Test Code
             </a>
         </li>
-        <li data-toggle="collapse" data-target="#Report" class="collapsed active">
+        <li data-target="#Report" class="collapsed active">
             <a href="#"><i class="fa fa-bar-chart fa-lg"></i> Report <span class="arrow"></span></a>
         </li>
         <ul class="sub-menu collapse in" id="Report" aria-expanded="true" style="">

@@ -64,15 +64,15 @@
                                         $('#today').click(function () {
                                             //alert("get_time");
                                             var process = $('#RMOM_oderTime').val();
-                                            var get_time = "today";
+                                            var get_bill = "today";
                                             var data = {
-                                                get_time: get_time,
+                                                get_bill: get_bill,
                                                 process: process
                                             };
 
                                            $.ajax({
                                                 type: 'POST',
-                                                url: "order_time.jsp",
+                                                url: "order_bill.jsp",
                                                 data: data,
                                                 success: function (data) {
                                                     $("#viewOS").val(data.trim());
@@ -86,15 +86,15 @@
                                         $('#monthly').click(function () {
                                             //alert("get_time");
                                             var process = $('#RMOM_oderTime').val();
-                                            var get_time = "month";
+                                            var get_bill = "month";
                                             var data = {
-                                                get_time: get_time,
+                                                get_bill: get_bill,
                                                 process: process
                                             };
 
                                            $.ajax({
                                                 type: 'POST',
-                                                url: "order_time.jsp",
+                                                url: "order_bill.jsp",
                                                 data: data,
                                                 success: function (data) {
                                                     $("#viewOS").val(data.trim());
@@ -108,15 +108,15 @@
                                         $('#yearly').click(function () {
                                             //alert("get_time");
                                             var process = $('#RMOM_oderTime').val();
-                                            var get_time = "year";
+                                            var get_bill = "year";
                                             var data = {
-                                                get_time: get_time,
+                                                get_bill: get_bill,
                                                 process: process
                                             };
 
                                            $.ajax({
                                                 type: 'POST',
-                                                url: "order_time.jsp",
+                                                url: "order_bill.jsp",
                                                 data: data,
                                                 success: function (data) {
                                                     $("#viewOS").val(data.trim());
