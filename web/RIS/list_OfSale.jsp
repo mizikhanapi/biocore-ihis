@@ -47,28 +47,11 @@
                                 <div style="width:50%; margin: auto;">
                                     <div class="form-horizontal">
                                         <div class="form-group">
-                                            <label class="col-md-2 control-label" for="textinput">Select by body system: </label>
-                                            <div class="col-md-3">
-                                                <%  Conn conn = new Conn();
-                                                    String hfc_cd = session.getAttribute("HEALTH_FACILITY_CODE").toString();
-                                                    String hfc_logo = "SELECT logo FROM adm_health_facility WHERE hfc_cd='" + hfc_cd + "'";
-                                                    ArrayList<ArrayList<String>> logo = conn.getData(hfc_logo);
-                                                    
-                                                    
-                                                    LocalDate localDate = LocalDate.now();
-                                                    String newdate = DateTimeFormatter.ofPattern("dd/MM/yyyy").format(localDate);
-//                                                    String test_ca = "SELECT rbs.body_system_name,rm.modality_name,rpm.body_system_cd,rpm.modality_cd,rpm.ris_procedure_name,rpm.selling_price,rpm.buying_price,rpm.quantity,rpm.status FROM ris_body_system rbs,ris_modality rm, ris_procedure_master rpm WHERE rbs.body_system_cd = rpm.body_system_cd AND rm.modality_cd = rpm.modality_cd";
-//                                                    ArrayList<ArrayList<String>> test_cd = conn.getData(test_ca);
-                                                %>
-                                                
-                                                <select class="form-control" name="test" id="body_System">
-                                                    <option value="all">All</option>
 
-                                                </select>
-                                            </div>
-                                            <div class="col-md-2">
-                                                <button id="RMOM_btnRefresh" class="btn btn-default" style=" padding-right: 10px;padding-left: 10px;color: black;"><i class=" fa fa-refresh" style=" padding-right: 10px;padding-left: 10px;color: black;"></i>Refresh</button>
-
+                                            <div class="col-md-12" style=" align-items: center;">
+                                                <button id="today" class="btn btn-default" style=" padding-right: 10px;padding-left: 10px;color: black;">Today</button>
+                                                <button id="monthly" class="btn btn-default" style=" padding-right: 10px;padding-left: 10px;color: black;">Monthly</button>
+                                                <button id="yearly" class="btn btn-default" style=" padding-right: 10px;padding-left: 10px;color: black;">Yearly</button>
                                             </div>
                                         </div>
                                     </div>
@@ -76,28 +59,70 @@
                                 <script>
                                     $(function () {
 
-                                        //-------------------------refresh the order table ---------------------------------------
-                                        $('#RMOM_btnRefresh').on('click', function () {
-                                            //$('#risOrderListContent').html('<div class="loading">Loading</div>');
-
-                                            var process = $('#Select_modality').val();
-                                            //alert(process);
+                                        $('#today').click(function () {
+                                            //alert("get_time");
+                                            var process = $('#RMOM_oderTime').val();
+                                            var get_bill = "today";
                                             var data = {
+                                                get_bill: get_bill,
                                                 process: process
                                             };
 
                                             $.ajax({
                                                 type: 'POST',
-                                                url: "viewTC.jsp",
+                                                url: "order_bill.jsp",
                                                 data: data,
                                                 success: function (data) {
-                                                    $("#viewTC").val(data.trim());
-                                                    $('#viewTC').html(data);
-                                                    $('#viewTC').trigger('contentchanged');
+                                                    $("#viewOS").val(data.trim());
+                                                    $('#viewOS').html(data);
+                                                    $('#viewOS').trigger('contentchanged');
                                                 }
 
                                             });
+                                        });
 
+                                        $('#monthly').click(function () {
+                                            //alert("get_time");
+                                            var process = $('#RMOM_oderTime').val();
+                                            var get_bill = "month";
+                                            var data = {
+                                                get_bill: get_bill,
+                                                process: process
+                                            };
+
+                                            $.ajax({
+                                                type: 'POST',
+                                                url: "order_bill.jsp",
+                                                data: data,
+                                                success: function (data) {
+                                                    $("#viewOS").val(data.trim());
+                                                    $('#viewOS').html(data);
+                                                    $('#viewOS').trigger('contentchanged');
+                                                }
+
+                                            });
+                                        });
+
+                                        $('#yearly').click(function () {
+                                            //alert("get_time");
+                                            var process = $('#RMOM_oderTime').val();
+                                            var get_bill = "year";
+                                            var data = {
+                                                get_bill: get_bill,
+                                                process: process
+                                            };
+
+                                            $.ajax({
+                                                type: 'POST',
+                                                url: "order_bill.jsp",
+                                                data: data,
+                                                success: function (data) {
+                                                    $("#viewOS").val(data.trim());
+                                                    $('#viewOS').html(data);
+                                                    $('#viewOS').trigger('contentchanged');
+                                                }
+
+                                            });
                                         });
                                     });
 
@@ -106,13 +131,28 @@
 
 
                                 <div class="table-guling" id='viewProcedure'>
-                                    <%                                        
-                                        String sql = "SELECT rpm.body_system_cd,rbs.body_system_name,rpm.modality_cd,rm.modality_name,rpm.ris_procedure_name,rpm.selling_price,rpm.buying_price,rpm.quantity,rpm.status FROM ris_body_system rbs,ris_modality rm, ris_procedure_master rpm WHERE rbs.hfc_cd = rpm.hfc_cd AND rpm.hfc_cd = rm.hfc_cd AND rpm.body_system_cd = rbs.body_system_cd AND rpm.modality_cd = rm.modality_cd AND rpm.hfc_cd = '" + hfc_cd + "'";
+                                    <%                                        Conn conn = new Conn();
+                                        String hfc = session.getAttribute("HEALTH_FACILITY_CODE").toString();
+
+                                        LocalDate localDate = LocalDate.now();
+                                        String newdate = DateTimeFormatter.ofPattern("dd/MM/yyyy").format(localDate);
+
+                                        String logo = "SELECT logo FROM adm_health_facility WHERE hfc_cd='" + hfc + "'";
+                                        ArrayList<ArrayList<String>> logo_hfc = conn.getData(logo);
+
+                                        String sql = "SELECT rom.order_no,rpm.body_system_cd, bs.body_system_name,rpm.modality_cd, md.modality_name, rpm.ris_procedure_name,rpm.selling_price,rpm.buying_price,rpm.quantity,rpm.status "
+                                                + "FROM ris_procedure_master rpm"
+                                                + "join ris_body_system bs on bs.hfc_cd=rpm.hfc_cd and bs.body_system_cd=rpm.body_system_cd"
+                                                + "join ris_modality md on md.hfc_cd=rpm.hfc_cd and md.modality_cd=rpm.modality_cd"
+                                                + "join ris_order_detail rod on rod.procedure_cd=rpm.ris_procedure_cd"
+                                                + "join ris_order_master rom on rom.order_no = rod.order_no"
+                                                + "WHERE rpm.hfc_cd = '04010101' AND MONTH(DATE_FORMAT(rom.order_date, '%Y-%m-%d')) = MONTH(CURRENT_DATE()) GROUP BY rom.ORDER_NO DESC";
                                         ArrayList<ArrayList<String>> dataPatientApp = conn.getData(sql);
                                     %>
                                     <table id="procedure"  class="table table-striped table-bordered" cellspacing="0" width="100%">
                                         <thead>
                                             <tr>
+                                                <th >Order No</th>
                                                 <th >Body System Code</th>
                                                 <th >Body System Name</th>
                                                 <th >Modality Code</th>
@@ -138,6 +178,7 @@
                                                 <td><%=dataPatientApp.get(i).get(6)%></td>
                                                 <td><%=dataPatientApp.get(i).get(7)%></td>
                                                 <td><%=dataPatientApp.get(i).get(8)%></td>
+                                                <td><%=dataPatientApp.get(i).get(9)%></td>
                                             </tr>
                                             <%
                                                     }
@@ -170,7 +211,7 @@
         <script src="../assets/js/vfs_fonts.js" type="text/javascript"></script>
         <script src="../assets/js/buttons.html5.min.js" type="text/javascript"></script>
         <script src="../assets/js/buttons.print.min.js" type="text/javascript"></script>
-        
+
         <script>
 
                                     $(document).ready(function () {
@@ -196,7 +237,7 @@
                                                                 .css('font-size', '10pt')
                                                                 .prepend(
                                                                         '<div class="logo-hfc asset-print-img" style="z-index: 0; top: 0px; opacity: 1.0;">\n\
-                                        <img src="<%=logo.get(0).get(0)%>" style="text-align: center; height: 100%; " /></div> <div class="mesej">List of Code Procedure</div>\n\
+                                        <img src="<%=logo_hfc.get(0).get(0)%>" style="text-align: center; height: 100%; " /></div> <div class="mesej">List of Code Procedure</div>\n\
                                         <div class="info_kecik">\n\
                                         <dd>Date: <strong><%=newdate%></strong></dd>\n\
                                         <dd>Report No: <strong><%=newdate%></strong></dd>\n\
