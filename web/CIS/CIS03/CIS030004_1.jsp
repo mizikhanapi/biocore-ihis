@@ -22,8 +22,8 @@
     String sql2 = "";
     sql = "select w.pmi_no,w.episode_date,h.hfc_name,d.discipline_name from wis_inpatient_episode w inner join adm_health_facility h on w.hfc_cd = h.hfc_cd inner join  adm_discipline d on w.discipline_cd = d.discipline_cd where w.pmi_no = '" + pmiNo + "'AND w.inpatient_status = '1' group by w.episode_date order by w.episode_date desc;";
     sql2 = "select p.pmi_no,p.episode_date,h.hfc_name,d.discipline_name from pms_episode p inner join adm_health_facility h on p.`HEALTH_FACILITY_CODE` = h.hfc_cd inner join  adm_discipline d on p.DISCIPLINE_CODE = d.discipline_cd where p.pmi_no = '" + pmiNo + "' and p.`STATUS` = '1' group by p.`EPISODE_DATE` ORDER BY p.`EPISODE_DATE` desc;";
-    //   q                             0      1      2          3            4            5                6              7         8    9            10
-    String sqlActivDrug = "Select m.pmi_no,m.hfc_cd,m.episode_date,m.encounter_date,m.discipline_cd,m.subdiscipline_cd,m.onset_date,m.drug_cd,m.created_by,m.created_date,p.d_trade_name from lhr_active_medication m join pis_mdc2 p on m.drug_cd = p.ud_mdc_code and m.hfc_cd = p.hfc_cd where pmi_no = '" + pmiNo + "' order by m.onset_date desc;";
+    //   q                             0      1            2              3               4               5                6            7          8               9           10          11             12              13   
+    String sqlActivDrug = "Select distinct m.pmi_no,m.hfc_cd,m.episode_date,m.encounter_date,m.discipline_cd,m.subdiscipline_cd,m.onset_date,m.drug_cd,m.created_by,m.created_date,p.d_trade_name,m.drug_dosage,m.drug_strength,duration from lhr_active_medication m join pis_mdc2 p on m.drug_cd = p.ud_mdc_code and m.hfc_cd = p.hfc_cd where pmi_no = '" + pmiNo + "' order by m.onset_date desc;";
     ArrayList<ArrayList<String>> searchInpatient;
     searchInpatient = conn.getData(sql);
 
@@ -43,6 +43,9 @@
                 <th>No.</th>
                 <th>Name</th>
                 <th>Onset Date</th>
+                <th>Dosage</th>
+                <th>Strength</th>
+                <th>Duration</th>
                 </thead>
                 <tbody>
                     <%                      if (searchActivDrug.size() > 0) {
@@ -57,6 +60,9 @@
                         </td>
                         <td><%=searchActivDrug.get(i).get(10)%></td>
                         <td><%=searchActivDrug.get(i).get(6)%></td>
+                        <td><%=searchActivDrug.get(i).get(11)%></td>
+                        <td><%=searchActivDrug.get(i).get(12)%></td>
+                        <td><%=searchActivDrug.get(i).get(13)%></td>
                     </tr>
                     <%}
                     }%>
