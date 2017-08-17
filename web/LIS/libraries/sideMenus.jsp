@@ -40,12 +40,14 @@
             </a>
         </li>
         <li data-target="#Report" class="collapsed active">
+            <li data-toggle="collapse" data-target="#Report" class="collapsed active">
             <a href="#"><i class="fa fa-bar-chart fa-lg"></i> Report <span class="arrow"></span></a>
             <ul class="sub-menu collapse" id="Report" aria-expanded="true" style="">
                 <li><a data-toggle="modal" data-target="#" href="list_test_cd.jsp">List Of Test Code</a></li>
                 <li><a data-toggle="modal" data-target="#" href="list_pending_order.jsp">List of Order Status</a></li>
                 <li><a data-toggle="modal" data-target="#" href="list_OfSale.jsp">Sales For Laboratory</a></li>
             </ul>
+        </li>
         </li>
 
 
