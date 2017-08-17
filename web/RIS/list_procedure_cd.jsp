@@ -107,7 +107,7 @@
                                             var body_System = $('#body_System').val();
                                             //alert(process);
                                             var data = {
-                                                Select_modality:Select_modality,
+                                                Select_modality: Select_modality,
                                                 body_System: body_System
                                             };
 

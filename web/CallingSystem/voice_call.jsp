@@ -72,13 +72,13 @@
         if (i == 0) {
             val = val + (700 * 1);
         } else if (i == 1) {
-            val = val + (400 * 2);
+            val = val + (350 * 2);
         } else if (i == 2) {
-            val = val + (400 * 3);
+            val = val + (350 * 3);
         } else if (i == 3) {
-            val = val + (400 * 4);
+            val = val + (350 * 4);
         } else if (i == 4) {
-            val = val + (400 * 5);
+            val = val + (350 * 5);
         } else if (i == 5) {
             val = val + (400 * 6);
         } else if (i == 6) {

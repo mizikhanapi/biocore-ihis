@@ -53,24 +53,31 @@
                                                     String hfc_cd = session.getAttribute("HEALTH_FACILITY_CODE").toString();
                                                     String hfc_logo = "SELECT logo FROM adm_health_facility WHERE hfc_cd='" + hfc_cd + "'";
                                                     ArrayList<ArrayList<String>> logo = conn.getData(hfc_logo);
-                                                    
-                                                    
+
                                                     LocalDate localDate = LocalDate.now();
                                                     String newdate = DateTimeFormatter.ofPattern("dd/MM/yyyy").format(localDate);
 //                                                    String test_ca = "SELECT rbs.body_system_name,rm.modality_name,rpm.body_system_cd,rpm.modality_cd,rpm.ris_procedure_name,rpm.selling_price,rpm.buying_price,rpm.quantity,rpm.status FROM ris_body_system rbs,ris_modality rm, ris_procedure_master rpm WHERE rbs.body_system_cd = rpm.body_system_cd AND rm.modality_cd = rpm.modality_cd";
 //                                                    ArrayList<ArrayList<String>> test_cd = conn.getData(test_ca);
                                                 %>
-                                                
-                                                <select class="form-control" name="test" id="body_System">
-                                                    <option value="all">All</option>
 
+                                                <select class="form-control" name="test" id="body_System">
+                                                    <option value="0">Pending</option>
+                                                    <option value="2">Verified</option>
+                                                    <option value="3">?</option>
+                                                    <option value="all">All</option>
                                                 </select>
                                             </div>
-                                            
+
                                             <div class="col-md-2">
                                                 <button id="RMOM_btnRefresh" class="btn btn-default" style=" padding-right: 10px;padding-left: 10px;color: black;"><i class=" fa fa-refresh" style=" padding-right: 10px;padding-left: 10px;color: black;"></i>Refresh</button>
 
                                             </div>
+                                                
+                                            <div class="col-md-12" style=" text-align: center;">
+                                                <button id="today" class="btn btn-default" style=" padding-right: 10px;padding-left: 10px;color: black;">&nbsp;&nbsp;&nbsp;Today&nbsp;&nbsp;&nbsp;</button>
+                                                <button id="monthly" class="btn btn-default" style=" padding-right: 10px;padding-left: 10px;color: black;">&nbsp;&nbsp;&nbsp;Monthly&nbsp;&nbsp;&nbsp;</button>
+                                                <button id="yearly" class="btn btn-default" style=" padding-right: 10px;padding-left: 10px;color: black;">&nbsp;&nbsp;&nbsp;Yearly&nbsp;&nbsp;&nbsp;</button>
+                                            </div>    
                                         </div>
                                     </div>
                                 </div>
@@ -81,7 +88,7 @@
                                         $('#RMOM_btnRefresh').on('click', function () {
                                             //$('#risOrderListContent').html('<div class="loading">Loading</div>');
 
-                                            var process = $('#Select_modality').val();
+                                            var process = $('#body_System').val();
                                             //alert(process);
                                             var data = {
                                                 process: process
@@ -89,12 +96,12 @@
 
                                             $.ajax({
                                                 type: 'POST',
-                                                url: "viewTC.jsp",
+                                                url: "viewPro.jsp",
                                                 data: data,
                                                 success: function (data) {
-                                                    $("#viewTC").val(data.trim());
-                                                    $('#viewTC').html(data);
-                                                    $('#viewTC').trigger('contentchanged');
+                                                    $("#viewProcedure").val(data.trim());
+                                                    $('#viewProcedure').html(data);
+                                                    $('#viewProcedure').trigger('contentchanged');
                                                 }
 
                                             });
@@ -107,22 +114,32 @@
 
 
                                 <div class="table-guling" id='viewProcedure'>
-                                    <%                                        
-                                        String sql = "SELECT rpm.body_system_cd,rbs.body_system_name,rpm.modality_cd,rm.modality_name,rpm.ris_procedure_name,rpm.selling_price,rpm.buying_price,rpm.quantity,rpm.status FROM ris_body_system rbs,ris_modality rm, ris_procedure_master rpm WHERE rbs.hfc_cd = rpm.hfc_cd AND rpm.hfc_cd = rm.hfc_cd AND rpm.body_system_cd = rbs.body_system_cd AND rpm.modality_cd = rm.modality_cd AND rpm.hfc_cd = '" + hfc_cd + "'";
+                                    <%
+                                        String sql = "SELECT ris_order_master.pmi_no,ris_order_master.order_no,ris_order_master.hfc_cd,ris_order_master.episode_date,ris_order_master.encounter_date,ris_order_master.order_date,"
+                                                //  6                                           7                       8                           9                   10                                  11                  12                      
+                                                + "ris_order_master.order_by,ris_order_master.hfc_from,ris_order_master.hfc_to,ris_order_master.order_status,ris_order_master.diagnosis_cd,ris_order_master.created_by,ris_order_master.created_date,"
+                                                //  13                                          14                              15                                  16                          17
+                                                + "pms_patient_biodata.PATIENT_NAME,pms_patient_biodata.NEW_IC_NO,pms_patient_biodata.BIRTH_DATE,pms_patient_biodata.SEX_CODE,pms_patient_biodata.BLOOD_TYPE, "
+                                                //  18                  19              20
+                                                + "sx.description, blot.description, hfc.hfc_name "
+                                                + "FROM ris_order_master "
+                                                + "LEFT JOIN pms_patient_biodata ON (ris_order_master.pmi_no = pms_patient_biodata.PMI_NO) "
+                                                + "LEFT JOIN adm_lookup_detail sx on pms_patient_biodata.SEX_CODE = sx.detail_reference_code AND sx.master_reference_code = '0041' AND sx.hfc_cd = ris_order_master.hfc_cd "
+                                                + "LEFT JOIN adm_lookup_detail blot on pms_patient_biodata.BLOOD_TYPE = blot.detail_reference_code AND blot.master_reference_code = '0074' AND blot.hfc_cd = ris_order_master.hfc_cd "
+                                                + "Left JOIN adm_health_facility hfc on hfc.hfc_cd = ris_order_master.hfc_cd "
+                                                + "WHERE ris_order_master.order_no in (select distinct(order_no) from ris_order_detail ) AND ris_order_master.order_status = '0' AND ris_order_master.hfc_cd = '" + hfc_cd + "'";
                                         ArrayList<ArrayList<String>> dataPatientApp = conn.getData(sql);
                                     %>
                                     <table id="procedure"  class="table table-striped table-bordered" cellspacing="0" width="100%">
                                         <thead>
                                             <tr>
-                                                <th >Body System Code</th>
-                                                <th >Body System Name</th>
-                                                <th >Modality Code</th>
-                                                <th >Modality Name</th>	 
-                                                <th >Procedure Name</th>
-                                                <th >Selling Price</th>
-                                                <th >Buying Price</th>
-                                                <th> Quantity</th>
-                                                <th> Status</th>
+                                                <th >Order No</th>
+                                                <th >PMI No</th>
+                                                <th >HFC Name</th>
+                                                <th >Episode Date</th>	 
+                                                <th >Encounter Date</th>
+                                                <th >Created By</th>
+                                                <th >Patient Name</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -130,15 +147,13 @@
                                             <%if (dataPatientApp.size() > 0) {
                                                     for (int i = 0; i < dataPatientApp.size(); i++) {%>
                                             <tr>
-                                                <td><%=dataPatientApp.get(i).get(0)%></td>
                                                 <td><%=dataPatientApp.get(i).get(1)%></td>
-                                                <td><%=dataPatientApp.get(i).get(2)%></td>
+                                                <td><%=dataPatientApp.get(i).get(0)%></td>
+                                                <td><%=dataPatientApp.get(i).get(20)%></td>
                                                 <td><%=dataPatientApp.get(i).get(3)%></td>
                                                 <td><%=dataPatientApp.get(i).get(4)%></td>
-                                                <td><%=dataPatientApp.get(i).get(5)%></td>
-                                                <td><%=dataPatientApp.get(i).get(6)%></td>
-                                                <td><%=dataPatientApp.get(i).get(7)%></td>
-                                                <td><%=dataPatientApp.get(i).get(8)%></td>
+                                                <td><%=dataPatientApp.get(i).get(11)%></td>
+                                                <td><%=dataPatientApp.get(i).get(13)%></td>
                                             </tr>
                                             <%
                                                     }
@@ -171,20 +186,11 @@
         <script src="../assets/js/vfs_fonts.js" type="text/javascript"></script>
         <script src="../assets/js/buttons.html5.min.js" type="text/javascript"></script>
         <script src="../assets/js/buttons.print.min.js" type="text/javascript"></script>
-        
+
         <script>
 
                                     $(document).ready(function () {
-                                        //$("#WardOccupancy").load("WardOccupancy.jsp");
-                                        //$("#viewTC").load("viewTC.jsp");
-//                                        $('#procedure').DataTable({
-//                                            language: {
-//                                                emptyTable: "No data"
-//                                            }, initComplete: function (settings, json) {
-//                                                $('.loading').hide();
-//                                            }
-//                                        });
-
+   
                                         $('#procedure').DataTable({
                                             dom: 'Bfrtip',
                                             buttons: [
@@ -215,6 +221,74 @@
                                             ]
                                         });
 
+                                        $('#today').click(function () {
+                                           
+                                            var process = $('#body_System').val();
+                                            var get_time = "today";
+                                             alert(get_time+" "+process);
+                                            var data = {
+                                                get_time: get_time,
+                                                process: process
+                                            };
+
+                                           $.ajax({
+                                                type: 'POST',
+                                                url: "viewByTime.jsp",
+                                                data: data,
+                                                success: function (data) {
+                                                    $("#viewProcedure").val(data.trim());
+                                                    $('#viewProcedure').html(data);
+                                                    $('#viewProcedure').trigger('contentchanged');
+                                                }
+
+                                            });
+                                        });
+                                        
+                                        $('#monthly').click(function () {
+                                            //
+                                            var process = $('#body_System').val();
+                                            var get_time = "month";
+                                            alert(get_time+" "+process);
+                                            var data = {
+                                                get_time: get_time,
+                                                process: process
+                                            };
+
+                                           $.ajax({
+                                                type: 'POST',
+                                                url: "viewByTime.jsp",
+                                                data: data,
+                                                success: function (data) {
+                                                    $("#viewProcedure").val(data.trim());
+                                                    $('#viewProcedure').html(data);
+                                                    $('#viewProcedure').trigger('contentchanged');
+                                                }
+
+                                            });
+                                        });
+                                        
+                                        $('#yearly').click(function () {
+                                            //alert("get_time");
+                                            var process = $('#body_System').val();
+                                            var get_time = "year";
+                                           alert(get_time+" "+process);
+                                            var data = {
+                                                get_time: get_time,
+                                                process: process
+                                            };
+
+                                           $.ajax({
+                                                type: 'POST',
+                                                url: "viewByTime.jsp",
+                                                data: data,
+                                                success: function (data) {
+                                                    $("#viewProcedure").val(data.trim());
+                                                    $('#viewProcedure').html(data);
+                                                    $('#viewProcedure').trigger('contentchanged');
+                                                }
+
+                                            });
+                                        });
                                     });
 
         </script>
