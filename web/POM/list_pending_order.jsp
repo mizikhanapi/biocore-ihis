@@ -22,7 +22,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>iHIS | RIS</title>
         <!-- header -->
-        <%@include file = "libraries/radiologyHeadLibrary.jsp" %>
+        <%@include file = "libraries/headLibrary.jsp" %>
         <%@include file = "../assets/header.html" %>
         <!-- header -->
     </head>
@@ -32,12 +32,12 @@
         <div class="container-fluid">
             <div class="row">       
                 <!-- menu side -->	
-                <%@include file = "libraries/radiologySideMenus.jsp" %>
+                <%@include file = "libraries/sideMenus.jsp" %>
                 <!-- menu side -->	
                 <!-- main -->		
                 <div class="main" style="background: #f2f4f8;">
                     <!-- menu top -->
-                    <%@include file = "libraries/radiologyTopMenus.jsp" %>
+                    <%@include file = "libraries/topMenus.jsp" %>
                     <!-- menu top -->
                     <div class="row">
                         <div class="col-md-12">
@@ -173,7 +173,7 @@
 
 
         <!-- Placed at the end of the document so the pages load faster -->
-        <%@include file = "libraries/radiologyFootLibrary.jsp" %>
+        <%@include file = "libraries/footLibrary.jsp" %>
         <!-- Placed at the end of the document so the pages load faster -->
         <script src="libraries/js/jquery.check-file.js" type="text/javascript"></script>
         <script src="../assets/js/jquery-ui.js" type="text/javascript"></script>
