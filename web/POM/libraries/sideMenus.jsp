@@ -22,7 +22,7 @@
         <li><a href="HIS180003.jsp"><i class="fa fa-usd " aria-hidden="true" ></i>Billing</a></li>
         <li data-toggle="collapse" data-target="#Report" class="collapsed active">
             <a href="#"><i class="fa fa-bar-chart fa-lg"></i> Report <span class="arrow"></span></a>
-            <ul class="sub-menu collapse in" id="Report" aria-expanded="true" style="">
+            <ul class="sub-menu collapse" id="Report" aria-expanded="true" style="">
                 <li><a data-toggle="modal" data-target="#" href="list_procedure_cd.jsp">List of Procedure Code</a></li>
                 <li><a data-toggle="modal" data-target="#" href="list_pending_order.jsp">List of Order</a></li>
                 <li><a data-toggle="modal" data-target="#" href="list_OfSale.jsp">Bill of Procedure</a></li>

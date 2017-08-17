@@ -9,7 +9,7 @@
     <!-- logo -->
 
     <!-- profile Sidebar -->
-     <%@include file="../../assets/side_profile.jsp" %>
+    <%@include file="../../assets/side_profile.jsp" %>
     <hr/>
     <!-- profile Sidebar -->
     <ul id="menu-content" class="nav nav-sidebar">
@@ -41,11 +41,12 @@
         </li>
         <li data-target="#Report" class="collapsed active">
             <a href="#"><i class="fa fa-bar-chart fa-lg"></i> Report <span class="arrow"></span></a>
+            <ul class="sub-menu collapse" id="Report" aria-expanded="true" style="">
+                <li><a data-toggle="modal" data-target="#" href="list_test_cd.jsp">List Of Test Code</a></li>
+                <li><a data-toggle="modal" data-target="#" href="list_pending_order.jsp">List of Order Status</a></li>
+                <li><a data-toggle="modal" data-target="#" href="list_OfSale.jsp">Sales For Laboratory</a></li>
+            </ul>
         </li>
-        <ul class="sub-menu collapse in" id="Report" aria-expanded="true" style="">
-            <li><a data-toggle="modal" data-target="#" href="list_test_cd.jsp">List Of Test Code</a></li>
-            <li><a data-toggle="modal" data-target="#" href="list_pending_order.jsp">List of Order Status</a></li>
-            <li><a data-toggle="modal" data-target="#" href="list_OfSale.jsp">Sales For Laboratory</a></li>
-        </ul>
+
 
 </div>  
