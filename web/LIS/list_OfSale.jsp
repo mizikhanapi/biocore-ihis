@@ -44,7 +44,7 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div class="thumbnail">
-                                <h3 style="margin: 0px;">List of Order</h3>
+                                <h3 style="margin: 0px;">List of Sale</h3>
                                 <hr class="pemisah"/>
                                 <div style="width:50%; margin: auto;">
                                     <div class="form-horizontal">

@@ -42,7 +42,7 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div class="thumbnail">
-                                <h3 style="margin: 0px;">List of Procedure Code</h3>
+                                <h3 style="margin: 0px;">List of Order Status</h3>
                                 <hr class="pemisah"/>
                                 <div style="width:50%; margin: auto;">
                                     <div class="form-horizontal">
