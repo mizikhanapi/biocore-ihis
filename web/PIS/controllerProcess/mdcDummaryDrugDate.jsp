@@ -26,15 +26,16 @@
         <table class="table table-striped"  width="30%" style="margin-bottom: 0px; margin-top:-30px;">
             <thead>
                 <tr >
-                    <th style="color: #999; font-weight: 500;" > Drug Name</th>
-                    <th style="color: #999; font-weight: 500;" > Expire In (Days) </th>
+                    <th style="color: #999; font-weight: 500;" >Drug Name</th>
+                    <th style="color: #999; font-weight: 500;" >Expire Date</th>
+                    <th style="color: #999; font-weight: 500;" >Expire In (Days)</th>
                 </tr>
             </thead>
             <tbody>
 
                 <%
-                    String sqlMDCDate = "SELECT ud_mdc_code,d_trade_name,d_exp_date,DATEDIFF(DATE_FORMAT(DATE(d_exp_date),'%Y-%m-%d'),CURDATE()) FROM pis_mdc2 "
-                            + " WHERE DATEDIFF(DATE(`D_EXP_DATE`),CURDATE()) < 150 AND hfc_cd = '" + hfc + "' AND discipline_cd = '" + dis + "' ";
+                    String sqlMDCDate = "SELECT ud_mdc_code,d_trade_name,DATE_FORMAT(DATE(d_exp_date),'%d/%m/%Y'),DATEDIFF(DATE_FORMAT(DATE(d_exp_date),'%Y-%m-%d'),CURDATE()) FROM pis_mdc2 "
+                            + " WHERE DATEDIFF(DATE(d_exp_date),CURDATE()) < 150 AND hfc_cd = '" + hfc + "' AND discipline_cd = '" + dis + "' ";
                     ArrayList<ArrayList<String>> dataMDCDate = conn.getData(sqlMDCDate);
 
                     int sizeDate = dataMDCDate.size();
@@ -52,8 +53,11 @@
                     
                     <!-- First TD -->
                     <td style="font-weight: bolder;" align="center"><%= dataMDCDate.get(i).get(1)%> [<%= dataMDCDate.get(i).get(0)%>]</td>
-                                        
+                                       
                     <!-- Second TD -->
+                    <td style="font-weight: bolder;" align="center"><%= dataMDCDate.get(i).get(2)%></td>
+                                        
+                    <!-- Third TD -->
                     <%    if (dateValue < 151 && dateValue > 30) {%>
                     <td style="color:#FFD700;font-weight: bolder;" align="center"><%= dateValue%></td>
                     <% } else if (dateValue < 31) {%>
