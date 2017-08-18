@@ -25,9 +25,9 @@
 <h4 style="padding-top: 30px;padding-bottom: 35px; font-weight: bold">
     DRUG CODE MANAGEMENT
     <span class="pull-right">
-        <button class="btn btn-success" data-status="pagado" data-toggle="modal" data-id="1" data-target="#mdcAddModal" style=" padding-right: 10px;padding-left: 10px;color: white;"><a data-toggle="tooltip" data-placement="top" title="Add Items" id="test"><i class=" fa fa-plus" style=" padding-right: 10px;padding-left: 10px;color: white;"></i></a>ADD MDC CODE</button>
-        <button id="MDCClone_btnClone" class="btn btn-primary" data-status="pagado" data-toggle="modal" data-id="1" data-target="#mdcCloneModal" style=" padding-right: 10px;padding-left: 10px;color: white;"><a data-toggle="tooltip" data-placement="top" title="Add Items"><i class=" fa fa-copy" style=" padding-right: 10px;padding-left: 10px;color: white;"></i></a>CLONE MDC CODE</button>
-        <button id="MDCClone_btnSummary" class="btn btn-danger" data-status="pagado" data-toggle="modal" data-id="1" data-target="#mdcSummaryModal" style=" padding-right: 10px;padding-left: 10px;color: white;"><a data-toggle="tooltip" data-placement="top" title="Add Items"><i class=" fa fa-file" style=" padding-right: 10px;padding-left: 10px;color: white;"></i></a>MDC INVENTORY SUMMARY</button>
+        <button class="btn btn-success" data-status="pagado" data-toggle="modal" data-id="1" data-target="#mdcAddModal" style=" padding-right: 10px;padding-left: 10px;color: white;"><a data-toggle="tooltip" data-placement="top" title="Add Items" id="test"><i class=" fa fa-plus" style=" padding-right: 10px;padding-left: 10px;color: white;"></i></a>ADD DRUG CODE</button>
+        <button id="MDCClone_btnClone" class="btn btn-primary" data-status="pagado" data-toggle="modal" data-id="1" data-target="#mdcCloneModal" style=" padding-right: 10px;padding-left: 10px;color: white;"><a data-toggle="tooltip" data-placement="top" title="Add Items"><i class=" fa fa-copy" style=" padding-right: 10px;padding-left: 10px;color: white;"></i></a>CLONE DRUG CODE</button>
+        <button id="MDCClone_btnSummary" class="btn btn-danger" data-status="pagado" data-toggle="modal" data-id="1" data-target="#mdcSummaryModal" style=" padding-right: 10px;padding-left: 10px;color: white;"><a data-toggle="tooltip" data-placement="top" title="Add Items"><i class=" fa fa-file" style=" padding-right: 10px;padding-left: 10px;color: white;"></i></a>DRUG INVENTORY SUMMARY</button>
     </span>
 </h4>
 <!-- Add Button End -->
@@ -44,7 +44,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal"><i class="fa fa-times fa-lg"></i></button>
-                <h2 class="modal-title" id="lineModalLabel" align="center">MDC Inventory Summary</h2>
+                <h2 class="modal-title" id="lineModalLabel" align="center">Drug Inventory Summary</h2>
             </div>
             <div class="modal-body">
 
@@ -88,7 +88,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal"><i class="fa fa-times fa-lg"></i></button>
-                <h2 class="modal-title" id="lineModalLabel" align="center">Clone MDC Code</h2>
+                <h2 class="modal-title" id="lineModalLabel" align="center">Clone Drug Code</h2>
             </div>
             <div class="modal-body">
 
@@ -101,7 +101,7 @@
 
                         <div style="align-items: center; text-align: center">
                             <br>
-                            <label>Select MDC Drug To Be Cloned</label>
+                            <label>Select Drug To Be Cloned</label>
                             <br><br>
                             <span>
                                 <a href="#" class="btn btn-default" id="MDC_Code_selectAll">&nbsp; Select all &nbsp;</a>
@@ -133,7 +133,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal"><i class="fa fa-times fa-lg"></i></button>
-                <h2 class="modal-title" id="lineModalLabel" align="center">Add New MDC Code</h2>
+                <h2 class="modal-title" id="lineModalLabel" align="center">Add New Drug Code</h2>
             </div>
             <div class="modal-body">
 
@@ -189,9 +189,9 @@
 
                             <!-- Text input-->
                             <div class="form-group">
-                                <label class="col-md-4 control-label" for="textinput">MDC Drug Code *</label>
+                                <label class="col-md-4 control-label" for="textinput">Drug Code *</label>
                                 <div class="col-md-8">
-                                    <input id="addUD_MDC_CODE" name="textinput" type="text" placeholder="Please Insert MDC Drug Code" class="form-control input-md" maxlength="30" >
+                                    <input id="addUD_MDC_CODE" name="textinput" type="text" placeholder="Please Insert Drug Code" class="form-control input-md" maxlength="30" >
                                 </div>
                             </div>
 
@@ -734,7 +734,7 @@
             D_EXP_DATE = newDate + " 00:00:00";
 
             if (UD_MDC_CODE === "") {
-                bootbox.alert("Please Insert MDC Code");
+                bootbox.alert("Please Insert Drug Code");
             } else if (UD_ATC_CODE === "") {
                 bootbox.alert("Please Search Any ATC Code");
             } else if (D_TRADE_NAME === "") {
@@ -790,7 +790,7 @@
                 bootbox.alert("Select Any Classification");
 
             } else if (UD_MDC_CODECheck.checkValidity() === false) {
-                bootbox.alert("Please Insert MDC Code Not More Than 30 Characters");
+                bootbox.alert("Please Insert Drug Code Not More Than 30 Characters");
             } else if (UD_ATC_CODECheck.checkValidity() === false) {
                 bootbox.alert("Please Insert ATC Code Not More Than 30 Characters");
             } else if (D_TRADE_NAMECheck.checkValidity() === false) {
@@ -872,7 +872,7 @@
                             $('#contentMDCTable').load('mdcTableLoop.jsp');
                             $('#mdcAddModal').modal('hide');
                             bootbox.alert({
-                                message: "MDC Code is Added Successful",
+                                message: "Drug Code is Added Successful",
                                 title: "Process Result",
                                 backdrop: true
                             });
@@ -881,7 +881,7 @@
                         } else if (datas.trim() === 'Duplicate') {
 
                             bootbox.alert({
-                                message: "MDC Code Duplication Detected. Please use diffrerent MDC code",
+                                message: "Drug Code Duplication Detected. Please use diffrerent Drug code",
                                 title: "Process Result",
                                 backdrop: true
                             });
@@ -889,7 +889,7 @@
                         } else if (datas.trim() === 'Failed') {
 
                             bootbox.alert({
-                                message: "MDC Code Add Failed",
+                                message: "Drug Code Add Failed",
                                 title: "Process Result",
                                 backdrop: true
                             });
@@ -950,8 +950,8 @@
                     
                     $('#MDC_DrugCode').html(data);
                     $('#MDC_DrugCode').multiSelect({
-                        selectableHeader: "<div style='display:block; color:white; background-color:#2196f3; '>Selectable MDC Code</div>",
-                        selectionHeader: "<div style='display:block; color:white; background-color:#2196f3'>Selected MDC Code</div>",
+                        selectableHeader: "<div style='display:block; color:white; background-color:#2196f3; '>Selectable Drug Code</div>",
+                        selectionHeader: "<div style='display:block; color:white; background-color:#2196f3'>Selected Drug Code</div>",
                         keepOrder: true
                     });
 
@@ -983,7 +983,7 @@
             console.log(strMDCClone);
 
             if (strMDCClone === "") {
-                bootbox.alert("Select at least one MDC Medcine to be cloned");
+                bootbox.alert("Select at least one drug to be cloned");
             } else {
                 $('<div class="loading">Loading</div>').appendTo('#mdcCloneModal');
 
@@ -1004,7 +1004,7 @@
                             $('#mdcCloneModal').modal('hide');
 
                             bootbox.alert({
-                                message: "MDC Medcine is successfully cloned",
+                                message: "Drug is successfully cloned",
                                 title: "Process Result",
                                 backdrop: true
                             });
