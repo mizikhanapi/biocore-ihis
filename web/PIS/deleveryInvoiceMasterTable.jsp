@@ -19,7 +19,7 @@
     <thead>
     <th style="text-align: left;"> Invoice No.</th>
     <th style="text-align: left;">Vendor Name</th>
-    <th style="text-align: left;">Date</th>
+    <th style="text-align: left;">Invoice Date</th>
     <th style="text-align: left; display: none">HFC</th>
     <th style="text-align: left; display: none">DIS</th>
     <th style="text-align: left; display: none">SUB</th>
