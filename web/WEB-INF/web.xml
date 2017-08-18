@@ -315,7 +315,7 @@
     </servlet-mapping>
     <!-- mapping for PIS HIS040010 -->
     
-    <!-- mapping for PIS HIS040010 -->
+    <!-- mapping for PIS HIS040011 -->
     <servlet>
         <servlet-name>Drug_Minimum_Level_List</servlet-name>
         <jsp-file>/PIS/HIS040011.jsp</jsp-file>
@@ -324,7 +324,18 @@
         <servlet-name>Drug_Minimum_Level_List</servlet-name>
         <url-pattern>/PIS/Drug_Minimum_Level_List</url-pattern>
     </servlet-mapping>
-    <!-- mapping for PIS HIS040010 -->
+    <!-- mapping for PIS HIS040011 -->
+    
+    <!-- mapping for PIS HIS040012 -->
+    <servlet>
+        <servlet-name>Incomplete_Order_List</servlet-name>
+        <jsp-file>/PIS/HIS040012.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Incomplete_Order_List</servlet-name>
+        <url-pattern>/PIS/Incomplete_Order_List</url-pattern>
+    </servlet-mapping>
+    <!-- mapping for PIS HIS040012 -->
     
     
     
