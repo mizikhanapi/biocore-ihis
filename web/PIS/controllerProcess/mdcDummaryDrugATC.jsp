@@ -23,7 +23,7 @@
     String sub = session.getAttribute("SUB_DISCIPLINE_CODE").toString();
 %>
 <div class="thumbnail">
-    <h4 style="padding-top: 0px; padding-bottom: 30px;">ATC Medicine's List That Should Be Cloned To Avoid Conflict With MDC Medicines</h4>
+    <h4 style="padding-top: 0px; padding-bottom: 30px;">ATC Medicine's List That Should Be Cloned To Avoid Conflict With Drug Codes</h4>
     <hr class="pemisah" />
     <div style="height: 200px; overflow: auto; margin-top:-30px; padding-top: 30px;">    
         <table class="table table-striped"  width="30%" style="margin-bottom: 0px; margin-top:-30px;">
@@ -36,7 +36,7 @@
             <tbody>
 
                 <%
-                    String sqlMDCStock = "SELECT UD_ATC_Code,UD_ATC_Desc FROM pis_atc WHERE hfc_cd = '" + superUserHFC + "' AND discipline_cd = '" + superUserDIS + "' "
+                    String sqlMDCStock = "SELECT UD_ATC_Code,UD_ATC_Desc FROM pis_atc WHERE hfc_cd = '" + superUserHFC + "' "
                             + " AND UD_ATC_Code IN (SELECT DISTINCT(UD_ATC_CODE) FROM pis_mdc2 WHERE hfc_cd = '" + hfc + "' AND discipline_cd = '" + dis + "')"
                             + " AND UD_ATC_Code NOT IN (SELECT UD_ATC_Code FROM pis_atc WHERE hfc_cd = '" + hfc + "' AND discipline_cd = '" + dis + "');";
                     ArrayList<ArrayList<String>> dataMDCStock = conn.getData(sqlMDCStock);
