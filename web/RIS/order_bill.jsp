@@ -17,44 +17,30 @@
 <div class="table-guling" id="orderTable">
     <%  Conn conn = new Conn();
         String my_1_hfc_cd = (String) session.getAttribute("HEALTH_FACILITY_CODE");
+        out.print(my_1_hfc_cd);
         String hfc_logo = "SELECT logo FROM adm_health_facility WHERE hfc_cd='" + my_1_hfc_cd + "'";
         ArrayList<ArrayList<String>> mysqlhfc_cd = conn.getData(hfc_logo);
 
         String get_bill = request.getParameter("get_bill");
-        //out.print(get_time + " " + masterCode);
+        out.print(get_bill);
         //out.print(masterCode);
         LocalDate localDate = LocalDate.now();
         String newdate = DateTimeFormatter.ofPattern("dd/MM/yyyy").format(localDate);
-        String query1 = "";
+        String query1 ="";
+        String full = "SELECT rod.order_no,rpm.body_system_cd, bs.body_system_name,rpm.modality_cd, md.modality_name, rpm.ris_procedure_name,rpm.selling_price,rpm.buying_price,rpm.quantity,rpm.status "
+                    + "FROM ris_procedure_master rpm "
+                    + "join ris_body_system bs on bs.hfc_cd=rpm.hfc_cd and bs.body_system_cd=rpm.body_system_cd "
+                    + "join ris_modality md on md.hfc_cd=rpm.hfc_cd and md.modality_cd=rpm.modality_cd "
+                    + "join ris_order_detail rod on rod.procedure_cd=rpm.ris_procedure_cd "
+                    + "join ris_order_master rom on rom.order_no = rod.order_no ";
 
-        if ((get_bill.equals("today"))) {
-            query1 = "SELECT rod.order_no,rpm.body_system_cd, bs.body_system_name,rpm.modality_cd, md.modality_name, rpm.ris_procedure_name,rpm.selling_price,rpm.buying_price,rpm.quantity,rpm.status "
-                    + "FROM ris_procedure_master rpm"
-                    + "join ris_body_system bs on bs.hfc_cd=rpm.hfc_cd and bs.body_system_cd=rpm.body_system_cd"
-                    + "join ris_modality md on md.hfc_cd=rpm.hfc_cd and md.modality_cd=rpm.modality_cd"
-                    + "join ris_order_detail rod on rod.procedure_cd=rpm.ris_procedure_cd"
-                    + "join ris_order_master rom on rom.order_no = rod.order_no"
-                    + "WHERE rpm.hfc_cd = '"+my_1_hfc_cd+"' AND DATE_FORMAT(lom.order_date, '%Y-%m-%d') = CURDATE() GROUP BY lom.order_no DESC ;";
-
-        } else if ((get_bill.equals("month"))) {
-            query1 = "SELECT rod.order_no,rpm.body_system_cd, bs.body_system_name,rpm.modality_cd, md.modality_name, rpm.ris_procedure_name,rpm.selling_price,rpm.buying_price,rpm.quantity,rpm.status "
-                    + "FROM ris_procedure_master rpm"
-                    + "join ris_body_system bs on bs.hfc_cd=rpm.hfc_cd and bs.body_system_cd=rpm.body_system_cd"
-                    + "join ris_modality md on md.hfc_cd=rpm.hfc_cd and md.modality_cd=rpm.modality_cd"
-                    + "join ris_order_detail rod on rod.procedure_cd=rpm.ris_procedure_cd"
-                    + "join ris_order_master rom on rom.order_no = rod.order_no"
-                    + "WHERE rpm.hfc_cd = '"+my_1_hfc_cd+"' AND MONTH(DATE_FORMAT(rom.order_date, '%Y-%m-%d')) = MONTH(CURRENT_DATE()) GROUP BY rom.ORDER_NO DESC;";
-
-            //query1 = "SELECT lis_order_master.ORDER_NO,lis_order_master.PMI_NO,ahf.hfc_name,lis_order_master.episode_date,lis_order_master.encounter_date,lis_order_master.created_by,lis_order_master.order_status,pms_patient_biodata.`PATIENT_NAME`,lis_order_master.order_status FROM lis_order_master JOIN pms_patient_biodata ON (lis_order_master.PMI_NO = pms_patient_biodata.PMI_NO) LEFT JOIN adm_lookup_detail s on pms_patient_biodata.SEX_CODE = s.detail_reference_code AND s.master_reference_code = '0041' AND s.hfc_cd = lis_order_master.hfc_cd LEFT JOIN adm_lookup_detail b on pms_patient_biodata.BLOOD_TYPE = b.detail_reference_code AND b.master_reference_code = '0074' AND b.hfc_cd = lis_order_master.hfc_cd LEFT JOIN adm_users a on lis_order_master.order_by = a.`USER_ID` LEFT JOIN adm_health_facility ahf on lis_order_master.hfc_cd = ahf.hfc_cd WHERE lis_order_master.order_status = '0' AND lis_order_master.hfc_cd = '" + my_1_hfc_cd + "' AND MONTH(DATE_FORMAT(lis_order_master.order_date, '%Y-%m-%d')) = MONTH(CURRENT_DATE()) GROUP BY lis_order_master.ORDER_NO DESC";
-            //query1 = "SELECT lis_order_master.ORDER_NO,lis_order_master.PMI_NO,ahf.hfc_name,lis_order_master.episode_date,lis_order_master.encounter_date,lis_order_master.created_by,lis_order_master.order_status,pms_patient_biodata.`PATIENT_NAME`,lis_order_master.order_status,SUM(lid.buy_price),SUM(lid.ser_price) FROM lis_order_master JOIN pms_patient_biodata ON (lis_order_master.PMI_NO = pms_patient_biodata.PMI_NO) LEFT JOIN adm_lookup_detail s on pms_patient_biodata.SEX_CODE = s.detail_reference_code AND s.master_reference_code = '0041' AND s.hfc_cd = lis_order_master.hfc_cd LEFT JOIN adm_lookup_detail b on pms_patient_biodata.BLOOD_TYPE = b.detail_reference_code AND b.master_reference_code = '0074' AND b.hfc_cd = lis_order_master.hfc_cd LEFT JOIN adm_users a on lis_order_master.order_by = a.`USER_ID` LEFT JOIN adm_health_facility ahf on lis_order_master.hfc_cd = ahf.hfc_cd LEFT JOIN lis_order_detail lod on lis_order_master.order_no = lod.order_no LEFT JOIN lis_item_detail lid on lid.item_cd = lod.item_cd WHERE lis_order_master.order_status = '4' AND lis_order_master.hfc_cd = '" + my_1_hfc_cd + "' AND MONTH(DATE_FORMAT(lis_order_master.order_date, '%Y-%m-%d')) = MONTH(CURRENT_DATE()) GROUP BY lis_order_master.ORDER_NO DESC";
-        } else if ((get_bill.equals("year"))) {
-            query1 = "SELECT rod.order_no,rpm.body_system_cd, bs.body_system_name,rpm.modality_cd, md.modality_name, rpm.ris_procedure_name,rpm.selling_price,rpm.buying_price,rpm.quantity,rpm.status "
-                    + "FROM ris_procedure_master rpm"
-                    + "join ris_body_system bs on bs.hfc_cd=rpm.hfc_cd and bs.body_system_cd=rpm.body_system_cd"
-                    + "join ris_modality md on md.hfc_cd=rpm.hfc_cd and md.modality_cd=rpm.modality_cd"
-                    + "join ris_order_detail rod on rod.procedure_cd=rpm.ris_procedure_cd"
-                    + "join ris_order_master rom on rom.order_no = rod.order_no"
-                    + "WHERE rpm.hfc_cd = '"+my_1_hfc_cd+"' AND YEAR(DATE_FORMAT(rom.order_date, '%Y-%m-%d')) = YEAR(CURRENT_DATE()) GROUP BY rom.order_no DESC;";
+        if ((get_bill.equalsIgnoreCase("today"))) {
+            query1 = full+"WHERE rpm.hfc_cd = '" + my_1_hfc_cd + "' AND DATE_FORMAT(lom.order_date, '%Y-%m-%d') = CURDATE() GROUP BY lom.order_no DESC ;";
+        } else if ((get_bill.equalsIgnoreCase("month"))) {
+            out.print("test");
+            query1 = full+"WHERE rpm.hfc_cd = '04010101' AND MONTH(DATE_FORMAT(rom.order_date, '%Y-%m-%d')) = MONTH(CURRENT_DATE()) GROUP BY rom.ORDER_NO DESC ;";
+        } else if ((get_bill.equalsIgnoreCase("year"))) {
+            query1 = full+"WHERE rpm.hfc_cd = '" + my_1_hfc_cd + "' AND YEAR(DATE_FORMAT(rom.order_date, '%Y-%m-%d')) = YEAR(CURRENT_DATE()) GROUP BY rom.order_no DESC ;";
         }
         double grand_total_price = 0;
         double grand_total_service = 0;
