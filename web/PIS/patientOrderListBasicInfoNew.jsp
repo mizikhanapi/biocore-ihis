@@ -265,6 +265,7 @@
 </div>
 
 <div class="text-right" id="patientOrderDispenseButtonDiv" > 
+    <button class="btn btn-primary " type="button" id="" name="" onclick="test()"> <i class="fa fa-print fa-lg" ></i>&nbsp; test &nbsp;</button>
     <button class="btn btn-primary " type="button" id="btnOrderDispensePrescribe" name="btnOrderDispensePrescribe" > <i class="fa fa-print fa-lg" ></i>&nbsp; Generate Label &nbsp;</button>
     <button class="btn btn-warning " type="button" id="btnOrderDispenseCallPatient" name="btnOrderDispenseCallPatient" > <i class="fa fa-phone fa-lg" ></i>&nbsp; Call Patient &nbsp;</button>
     <button class="btn btn-danger " type="button" id="btnOrderDispenseDeclineCallPatient" name="btnOrderDispenseDeclineCallPatient" > <i class="fa fa-phone fa-lg" ></i>&nbsp; Decline Call Patient &nbsp;</button>
@@ -321,7 +322,7 @@
             pmiNo: pmiNo,
             orderNo: orderNo,
             orderDate: orderDate,
-            episodeDate:episodeDate
+            episodeDate: episodeDate
         };
 
         $.ajax({
@@ -1345,7 +1346,16 @@
 
 
 
+    function test() {
 
+        var contextPath = '<%=request.getContextPath()%>';
+
+        var url = contextPath + "/test?";
+
+        var win = window.open(url, '_blank');
+        win.focus();
+
+    }
 
 
     //------------------------------------------------------------------------------  Prescribe Part Start  -------------------------------------------------------------------------------//
