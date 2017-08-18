@@ -27,11 +27,12 @@
         </li>
         <ul class="sub-menu collapse" id="Report">
             <li><a data-toggle="modal" data-target="#" href="ATC_Drug_List">List Of ATC Drugs</a></li>
-            <li><a data-toggle="modal" data-target="#" href="MDC_Drug_List">List Of MDC Drugs</a></li>
+            <li><a data-toggle="modal" data-target="#" href="MDC_Drug_List">List Of Pharmacy Drugs</a></li>
             <li><a data-toggle="modal" data-target="#" href="Supplier_List">List Of Supplier</a></li>
             <li><a data-toggle="modal" data-target="#" href="Drug_Reorder_Level_List">List Of Drugs Below Reorder Level</a></li>
             <li><a data-toggle="modal" data-target="#" href="Drug_Minimum_Level_List">List Of Drugs Below Minimum Level</a></li>
-            <li><a data-toggle="modal" data-target="#" href="Pendding_Order_List">List Of Pending Order</a></li>
+<!--            <li><a data-toggle="modal" data-target="#" href="Pendding_Order_List">List Of Pending Order</a></li>-->
+            <li><a data-toggle="modal" data-target="#" href="Incomplete_Order_List">List Of Incomplete Order</a></li>
             <li><a data-toggle="modal" data-target="#" href="Pharmacy_Sales_List">Sales For Pharmacy</a></li>
         </ul> 
         <!-- Menu with dropdown -->
