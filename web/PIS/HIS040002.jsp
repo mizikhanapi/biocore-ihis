@@ -54,7 +54,7 @@
                                             </li>
                                             <li>
                                                 <a href="#tab_default_2" data-toggle="tab">
-                                                    MDC CODE MANAGEMENT </a>
+                                                    DRUG CODE MANAGEMENT </a>
                                             </li>
                                         </ul>
                                         <!-- tab content -->

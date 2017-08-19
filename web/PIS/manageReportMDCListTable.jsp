@@ -20,15 +20,15 @@
     String dis = session.getAttribute("DISCIPLINE_CODE").toString();
     String sub = session.getAttribute("SUB_DISCIPLINE_CODE").toString();
 %>
-<h4 style="padding-top: 2%;padding-bottom: 1%;">List Of MDC Drugs</h4>
+<h4 style="padding-top: 2%;padding-bottom: 1%;">List Of Pharmacy Drugs</h4>
 <br>
 <table  id="reportListMDCTable"  class="table table-striped table-bordered" cellspacing="0" width="100%">
     <thead>
-    <th style="text-align: center;">MDC CODE</th>
+    <th style="text-align: center;">Drug CODE</th>
     <th style="text-align: center;">ATC CODE</th>
     <th style="text-align: center;">TRADE NAME</th>
     <th style="text-align: center;">GNR NAME</th>
-    <th style="text-align: center;">ROUTE_CODE</th>
+    <th style="text-align: center;">ROUTE CODE</th>
     <th style="text-align: center;">FORM CODE</th>
     <th style="text-align: center;">STRENGTH</th>
     <th style="text-align: center;">ADVISE</th>
@@ -60,7 +60,7 @@
         //                              0         1           2           3           4           5           6           7           
         String sqlMain = " SELECT UD_MDC_CODE,UD_ATC_CODE,D_TRADE_NAME,D_GNR_NAME,D_ROUTE_CODE,D_FORM_CODE,D_STRENGTH,D_ADVISORY_CODE,"
                 //      8       9       10      11      12          13          14          15          16              17          18          
-                + "D_STOCK_QTY,D_QTY,D_QTYT,D_DURATION,D_DURATIONT,D_FREQUENCY,D_CAUTION_CODE,D_EXP_DATE,D_CLASSIFICATION,STATUS,D_LOCATION_CODE,"
+                + "D_STOCK_QTY,D_QTY,D_QTYT,D_DURATION,D_DURATIONT,D_FREQUENCY,D_CAUTION_CODE,DATE_FORMAT(DATE(d_exp_date),'%d/%m/%Y'),D_CLASSIFICATION,STATUS,D_LOCATION_CODE,"
                 //      19          20          21              22          23        24        25              26
                 + "D_SELL_PRICE,D_COST_PRICE,D_PACKAGING,D_PACKAGINGT,D_PRICE_PPACK,hfc_cd,discipline_cd,subdiscipline_cd "
                 + "FROM pis_mdc2 WHERE hfc_cd  = '" + hfc + "' AND discipline_cd  = '" + dis + "' ";
@@ -124,14 +124,14 @@
             pageLength: 15,
             dom: 'Bfrtip',
             columnDefs: [
-                {targets: [0, 1, 2, 3, 8, 15, 19], visible: true},
+                {targets: [0, 1, 2, 3, 4, 5, 6, 8, 15, 19], visible: true},
                 {targets: '_all', visible: false}
             ],
             buttons: [
                 {
                     extend: 'excelHtml5',
                     text: 'Export To Excel',
-                    title: 'Pharmacy MDC Drug List',
+                    title: 'Pharmacy Drug List',
                     className: 'btn btn-primary',
                     exportOptions: {
                         columns: ':visible'
@@ -139,14 +139,14 @@
                 }, {
                     extend: 'csvHtml5',
                     text: 'Export To Excel CSV',
-                    title: 'Pharmacy MDC Drug List',
+                    title: 'Pharmacy Drug List',
                     className: 'btn btn-primary',
                     exportOptions: {
                         columns: ':visible'
                     }
                 }, {
                     extend: 'print',
-                    text: 'Print MDC List',
+                    text: 'Print Drug List',
                     title: $('h1').text(),
                     message: '<br><br>',
                     className: 'btn btn-primary',
@@ -155,7 +155,7 @@
                                 .css('font-size', '10pt')
                                 .prepend(
                                         '<div class="logo-hfc asset-print-img" style="z-index: 0; top: 0px; opacity: 1.0;">\n\
-                                        <img src="<%=mysqlhfc_cd.get(0).get(0)%>" style="text-align: center; height: 100%; " /></div> <div class="mesej"><br>Pharmacy MDC Drug List</div>\n\
+                                        <img src="<%=mysqlhfc_cd.get(0).get(0)%>" style="text-align: center; height: 100%; " /></div> <div class="mesej"><br>Pharmacy Drug List</div>\n\
                                         <div class="info_kecik">\n\
                                         <dd>Date: <strong><%=newdate%></strong></dd>\n\
                                         <dd>Report No: <strong>PIS-0002</strong></dd>\n\

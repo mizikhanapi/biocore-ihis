@@ -27,6 +27,8 @@
             <thead>
                 <tr >
                     <th style="color: #999; font-weight: 500;" > Drug Name</th>
+                    <th style="color: #999; font-weight: 500;" > Reorder Level</th>
+                    <th style="color: #999; font-weight: 500;" > Minimum Level</th>
                     <th style="color: #999; font-weight: 500;" > Drug Stock </th>
                 </tr>
             </thead>
@@ -53,12 +55,18 @@
                     <td style="font-weight: bolder;" align="center"><%= dataMDCStock.get(i).get(1)%> [<%= dataMDCStock.get(i).get(0)%>]</td>
 
                     <!-- Second TD -->
+                    <td style="font-weight: bolder;" align="center"><%= reorderValue%></td>
+
+                    <!-- Third TD -->
+                    <td style="font-weight: bolder;" align="center"><%= minimumValue%></td>
+
+                    <!-- Fourth TD -->
                     <%    if (stockValue < reorderValue && stockValue > minimumValue) {%>
-                    <td style="color:#FFD700;font-weight: bolder;" align="center"><%= stockValue %></td>
+                    <td style="color:#FFD700;font-weight: bolder;" align="center"><%= stockValue%></td>
                     <% } else if (stockValue < minimumValue) {%>
                     <td style="color:red;font-weight: bolder;" align="center"><%= stockValue%></td>
                     <% }   %>
-                    
+
                 </tr>
                 <%
                     }

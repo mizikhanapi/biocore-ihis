@@ -59,67 +59,62 @@
                                 <script>
                                     $(function () {
 
-                                        $('#today').click(function () {
-                                            //alert("get_time");
-                                            var process = $('#RMOM_oderTime').val();
+                                        $('#today').on('click',function () {
+                                            
+                                            
                                             var get_bill = "today";
                                             var data = {
-                                                get_bill: get_bill,
-                                                process: process
+                                                get_bill: get_bill
                                             };
-
+                                            alert(get_bill);
                                             $.ajax({
                                                 type: 'POST',
                                                 url: "order_bill.jsp",
                                                 data: data,
                                                 success: function (data) {
-                                                    $("#viewOS").val(data.trim());
-                                                    $('#viewOS').html(data);
-                                                    $('#viewOS').trigger('contentchanged');
+                                                    $("#viewProcedure").val(data.trim());
+                                                    $('#viewProcedure').html(data);
+                                                    $('#viewProcedure').trigger('contentchanged');
                                                 }
 
                                             });
                                         });
 
-                                        $('#monthly').click(function () {
-                                            //alert("get_time");
-                                            var process = $('#RMOM_oderTime').val();
+                                        $('#monthly').on('click',function () {
+                                            
                                             var get_bill = "month";
                                             var data = {
-                                                get_bill: get_bill,
-                                                process: process
+                                                get_bill: get_bill
                                             };
-
+                                            alert(get_bill);
                                             $.ajax({
                                                 type: 'POST',
                                                 url: "order_bill.jsp",
                                                 data: data,
                                                 success: function (data) {
-                                                    $("#viewOS").val(data.trim());
-                                                    $('#viewOS').html(data);
-                                                    $('#viewOS').trigger('contentchanged');
+                                                    $("#viewProcedure").val(data.trim());
+                                                    $('#viewProcedure').html(data);
+                                                    $('#viewProcedure').trigger('contentchanged');
                                                 }
 
                                             });
                                         });
 
-                                        $('#yearly').click(function () {
-                                            //alert("get_time");
-                                            var process = $('#RMOM_oderTime').val();
+                                        $('#yearly').on('click',function () {
+                                            
                                             var get_bill = "year";
                                             var data = {
-                                                get_bill: get_bill,
-                                                process: process
+                                                get_bill: get_bill
                                             };
-
+                                            alert(get_bill);
                                             $.ajax({
                                                 type: 'POST',
                                                 url: "order_bill.jsp",
                                                 data: data,
                                                 success: function (data) {
-                                                    $("#viewOS").val(data.trim());
-                                                    $('#viewOS').html(data);
-                                                    $('#viewOS').trigger('contentchanged');
+                                                    $("#viewProcedure").val(data.trim());
+                                                    $('#viewProcedure').html(data);
+                                                    $('#viewProcedure').trigger('contentchanged');
                                                 }
 
                                             });
@@ -141,12 +136,12 @@
                                         ArrayList<ArrayList<String>> logo_hfc = conn.getData(logo);
 
                                         String sql = "SELECT rom.order_no,rpm.body_system_cd, bs.body_system_name,rpm.modality_cd, md.modality_name, rpm.ris_procedure_name,rpm.selling_price,rpm.buying_price,rpm.quantity,rpm.status "
-                                                + "FROM ris_procedure_master rpm"
-                                                + "join ris_body_system bs on bs.hfc_cd=rpm.hfc_cd and bs.body_system_cd=rpm.body_system_cd"
-                                                + "join ris_modality md on md.hfc_cd=rpm.hfc_cd and md.modality_cd=rpm.modality_cd"
-                                                + "join ris_order_detail rod on rod.procedure_cd=rpm.ris_procedure_cd"
-                                                + "join ris_order_master rom on rom.order_no = rod.order_no"
-                                                + "WHERE rpm.hfc_cd = '04010101' AND MONTH(DATE_FORMAT(rom.order_date, '%Y-%m-%d')) = MONTH(CURRENT_DATE()) GROUP BY rom.ORDER_NO DESC";
+                                                + "FROM ris_procedure_master rpm "
+                                                + "join ris_body_system bs on bs.hfc_cd=rpm.hfc_cd and bs.body_system_cd=rpm.body_system_cd " 
+                                                + "join ris_modality md on md.hfc_cd=rpm.hfc_cd and md.modality_cd=rpm.modality_cd "
+                                                + "join ris_order_detail rod on rod.procedure_cd=rpm.ris_procedure_cd "
+                                                + "join ris_order_master rom on rom.order_no = rod.order_no "
+                                                + "WHERE rpm.hfc_cd = '04010101' AND MONTH(DATE_FORMAT(rom.order_date, '%Y-%m-%d')) = MONTH(CURRENT_DATE()) GROUP BY rom.ORDER_NO DESC;";
                                         ArrayList<ArrayList<String>> dataPatientApp = conn.getData(sql);
                                     %>
                                     <table id="procedure"  class="table table-striped table-bordered" cellspacing="0" width="100%">
