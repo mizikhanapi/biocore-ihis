@@ -266,6 +266,10 @@
 
 <div class="text-right" id="patientOrderDispenseButtonDiv" > 
     <button class="btn btn-primary " type="button" id="" name="" onclick="test()"> <i class="fa fa-print fa-lg" ></i>&nbsp; test &nbsp;</button>
+    <button class="btn btn-primary " type="button" id="" name="" onclick="testing()"> <i class="fa fa-print fa-lg" ></i>&nbsp; testing &nbsp;</button>
+    <button class="btn btn-primary " type="button" id="" name="" onclick="testing1()"> <i class="fa fa-print fa-lg" ></i>&nbsp; testing1 &nbsp;</button>
+    <button class="btn btn-primary " type="button" id="" name="" onclick="testing2()"> <i class="fa fa-print fa-lg" ></i>&nbsp; testing2 &nbsp;</button>
+    <button class="btn btn-primary " type="button" id="" name="" onclick="testing3()"> <i class="fa fa-print fa-lg" ></i>&nbsp; testing3 &nbsp;</button>
     <button class="btn btn-primary " type="button" id="btnOrderDispensePrescribe" name="btnOrderDispensePrescribe" > <i class="fa fa-print fa-lg" ></i>&nbsp; Generate Label &nbsp;</button>
     <button class="btn btn-warning " type="button" id="btnOrderDispenseCallPatient" name="btnOrderDispenseCallPatient" > <i class="fa fa-phone fa-lg" ></i>&nbsp; Call Patient &nbsp;</button>
     <button class="btn btn-danger " type="button" id="btnOrderDispenseDeclineCallPatient" name="btnOrderDispenseDeclineCallPatient" > <i class="fa fa-phone fa-lg" ></i>&nbsp; Decline Call Patient &nbsp;</button>
@@ -1351,6 +1355,68 @@
         var contextPath = '<%=request.getContextPath()%>';
 
         var url = contextPath + "/test?";
+
+        var win = window.open(url, '_blank');
+        win.focus();
+
+    }
+
+    function testing() {
+
+        var contextPath = '<%=request.getContextPath()%>';
+
+
+        var testString = "Data 1.1|Data 1.2|Data 1.3|Data 1.4|Data 1.5<split>Data 2.1|Data 2.2|Data 2.3|Data 2.4|Data 2.5";
+
+        var url = contextPath + "/testing?";
+        url += "&labelData=" + testString;
+
+        var win = window.open(url, '_blank');
+        win.focus();
+
+    }
+
+    function testing1() {
+
+        var contextPath = '<%=request.getContextPath()%>';
+
+
+        var testString = "Data 1.1|Data 1.2|Data 1.3|Data 1.4|Data 1.5<split>Data 2.1|Data 2.2|Data 2.3|Data 2.4|Data 2.5";
+
+
+        var url = contextPath + "/testing1?";
+        url += "&labelData=" + testString;
+
+        var win = window.open(url, '_blank');
+        win.focus();
+
+    }
+
+    function testing2() {
+
+        var contextPath = '<%=request.getContextPath()%>';
+
+
+        var testString = "Data 1.1|Data 1.2|Data 1.3|Data 1.4|Data 1.5<split>Data 2.1|Data 2.2|Data 2.3|Data 2.4|Data 2.5";
+
+
+        var url = contextPath + "/testing2?";
+        url += "&labelData=" + testString;
+
+        var win = window.open(url, '_blank');
+        win.focus();
+
+    }
+
+    function testing3() {
+
+        var contextPath = '<%=request.getContextPath()%>';
+
+
+        var testString = "Data 1.1|Data 1.2|Data 1.3|Data 1.4|Data 1.5<split>Data 2.1|Data 2.2|Data 2.3|Data 2.4|Data 2.5";
+
+        var url = contextPath + "/testing3?";
+        url += "&labelData=" + testString;
 
         var win = window.open(url, '_blank');
         win.focus();
