@@ -183,7 +183,7 @@ public class Month {
         return null;
     }
     
-    public static String getFullLetterMonth(String digitMonth) {
+    public static String getFullLetterMonth(String month) {
         if (month != null) {
             switch (month) {
                 case "01":

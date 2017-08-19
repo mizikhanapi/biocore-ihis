@@ -24,9 +24,7 @@
     try{
         //Get hfc_cd
         String userId = session.getAttribute("USER_ID").toString();
-        String sql0 = "SELECT health_facility_code from adm_users where user_id = '"+ userId +"'";
-        ArrayList<ArrayList<String>> dataUser = Conn.getData(sql0);
-        String hfc_cd = dataUser.get(0).get(0);
+        String hfc_cd = session.getAttribute("HEALTH_FACILITY_CODE").toString();
 
         //Update far_order_master bill_no
         String sql = "UPDATE far_order_master "
@@ -53,8 +51,8 @@
         }
 
         //Insert to far_customer_hdr
-        String sql2 = "INSERT into far_customer_hdr(customer_id, bill_no, txn_date, item_desc, item_amt, quantity, order_no, payment, amt_paid, created_by, created_date) "
-                + "VALUES('"+ pmiNo +"','"+ billNo +"','"+ txnDate +"','"+ "" +"','"+ grandTotal +"','"+ totalItemQuantity +"','"+ orderNo +"','Unpaid','0','"+ userId +"',now())";
+        String sql2 = "INSERT into far_customer_hdr(customer_id, bill_no, txn_date, item_desc, item_amt, quantity, order_no, payment, amt_paid, created_by, created_date, hfc_cd) "
+                + "VALUES('"+ pmiNo +"','"+ billNo +"','"+ txnDate +"','"+ "" +"','"+ grandTotal +"','"+ totalItemQuantity +"','"+ orderNo +"','Unpaid','0','"+ userId +"',now(), '"+ hfc_cd +"')";
         Conn.setData(sql2);
 
         //Get customer_ledger current month debit add to current bill total

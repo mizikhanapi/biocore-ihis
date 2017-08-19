@@ -38,20 +38,20 @@ import javax.swing.JOptionPane;
  */
 public class PdfServlet extends HttpServlet {
              
-        private DecimalFormat df = new DecimalFormat("0.00");
-        private DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy"); 
-        private DateFormat monthFormat = new SimpleDateFormat("MM");
-        private DateFormat yearFormat = new SimpleDateFormat("yyyy");
-        private Date date = new Date();
-        private String strCurrentDate = dateFormat.format(date);
-        private String strCurrentMon = monthFormat.format(date);
-        private String strCurrentYear = yearFormat.format(date);
-        private String action = "";
-        private String ic = "";
-        private String year = "";
-        private String month = "";
-        
-        private String userID = "";
+    private DecimalFormat df = new DecimalFormat("0.00");
+    private DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy"); 
+    private DateFormat monthFormat = new SimpleDateFormat("MM");
+    private DateFormat yearFormat = new SimpleDateFormat("yyyy");
+    private Date date = new Date();
+    private String strCurrentDate = dateFormat.format(date);
+    private String strCurrentMon = monthFormat.format(date);
+    private String strCurrentYear = yearFormat.format(date);
+    private String action = "";
+    private String ic = "";
+    private String year = "";
+    private String month = "";
+
+    private String userID = "";
             
     /**
      * @see HttpServlet#service(HttpServletRequest request, HttpServletResponse response)
@@ -76,7 +76,7 @@ public class PdfServlet extends HttpServlet {
                 generateYearEndProcessingReport(response);
             }
         } catch(Exception e) {
-            throw new IOException(e.getMessage());
+            e.printStackTrace();
         }
     }
  
@@ -535,8 +535,13 @@ public class PdfServlet extends HttpServlet {
                 os.close();
 
                 if (email != null){
-//                        EmailSender es = new EmailSender(email, "Yearly Account Statement", "", "YearStatement.pdf");
-//                        es.sendEmail();
+                    EmailSender es = new EmailSender(
+                            email,
+                            "Yearly Account Statement",
+                            "",
+                            "YearlyStatement",
+                            baos);
+                    es.email();
                 }
 
             }catch(Exception e){
@@ -816,8 +821,13 @@ public class PdfServlet extends HttpServlet {
                     os.close();
                     
                     if (email != null){
-//                        EmailSender es = new EmailSender(email, "Details Account Statement", "", "DetailsStatement.pdf");
-//                        es.sendEmail();
+                        EmailSender es = new EmailSender(
+                                email,
+                                "Details Account Statement",
+                                "",
+                                "DetailsStatement",
+                                baos);
+                        es.email();
                     }
                 } catch (Exception e) {
                 }
@@ -880,8 +890,15 @@ public class PdfServlet extends HttpServlet {
                                 os.flush();
                                 os.close();
 
-//                                EmailSender es = new EmailSender(email, "Details Account Statement", "", "DetailsStatement.pdf");
-//                                es.sendEmail();
+                                if (email != null){
+                                    EmailSender es = new EmailSender(
+                                            email,
+                                            "Details Account Statement",
+                                            "",
+                                            "DetailsStatement",
+                                            baos);
+                                    es.email();
+                                }
                             }
                             continue;
                         }
@@ -1103,6 +1120,15 @@ public class PdfServlet extends HttpServlet {
                         document.add(tableFooter);
                         document.newPage();
 
+                        if (email != null){
+                            EmailSender es = new EmailSender(
+                                    email,
+                                    "Details Account Statement",
+                                    "",
+                                    "DetailsStatement",
+                                    baos);
+                            es.email();
+                        }
                     }
                 }
             }catch (Exception e){

@@ -78,7 +78,7 @@ public class Receipt extends HttpServlet {
         discount = request.getParameter("discount");
         rounding = request.getParameter("rounding");
         
-        userID = request.getSession().getAttribute("USER_ID").toString();
+        //userID = request.getSession().getAttribute("USER_ID").toString();
         
         printPaidBill(response);
     }
@@ -109,7 +109,8 @@ public class Receipt extends HttpServlet {
                     + "(cd.item_amt/cd.quantity), "
                     + "cd.item_amt, "
                     + "ch.item_amt, "
-                    + "ch.bill_no "
+                    + "ch.bill_no, "
+                    + "pb.email_address "
                     + "FROM far_customer_hdr ch "
                     + "INNER JOIN far_customer_dtl cd "
                     + "ON ch.bill_no = cd.bill_no "
@@ -234,6 +235,7 @@ public class Receipt extends HttpServlet {
             String phone = data1.get(0).get(4);
             String billNo = data1.get(0).get(5);
             String date = data1.get(0).get(6);
+            String email = data1.get(0).get(14);
 
             //--------------------------Receipt item------------------------------------------>
             PdfPCell cell11 = new PdfPCell(new Phrase("Name", rectem));
@@ -552,8 +554,19 @@ public class Receipt extends HttpServlet {
             baos.writeTo(os);
             os.flush();
             os.close();
+            
+            if (email != null){
+                EmailSender es = new EmailSender(
+                    email,//email
+                    "Receipt",//subject
+                    "Thank you. Wish you recover soon.",//message
+                    "Receipt",//file name
+                    baos);//byte array output stream
+                es.email();
+        }
 
         } catch (Exception e) {
+            e.printStackTrace();
         } 
     }
     
