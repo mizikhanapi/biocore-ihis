@@ -50,9 +50,9 @@
 
                 <!-- Text input-->
                 <div class="form-group">
-                    <label class="col-md-4 control-label" for="textinput">IC no./ID no.</label>  
+                    <label class="col-md-4 control-label" for="textinput">IC no.</label>  
                     <div class="col-md-8">
-                        <input id="FAMpmifam" name="FAMpmifam" type="text"  class="form-control input-md" maxlength="15">
+                        <input id="FAMpmifam" name="FAMpmifam" type="text"  class="form-control input-md" maxlength="12">
 
                     </div>
                 </div>
