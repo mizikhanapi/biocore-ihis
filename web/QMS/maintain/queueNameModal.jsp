@@ -48,7 +48,7 @@
                             <select class="form-control" id="Qtype">
                                 <option selected disabled value="">Please select Queue Type Code</option>
                                 <option value="CM">(CM) Common Queue</option>
-                                <option value="FY">(FY) Consultant Room</option>
+                                <option value="FY">(FY) Facility Room</option>
                                 <option value="PN">(PN) Doctor Queue</option>
                                 <%--
                                     for (int i = 0; i < dataTypeCode.size(); i++) {%>
@@ -277,7 +277,8 @@
             timeout: 3000,
             success: function (data, textStatus, jqXHR) {
                 console.log(data);
-                bootbox.alert("Queue Name successfully been deleted",function(){
+                if(data.trim()==="true"){
+                     bootbox.alert("Queue Name successfully been deleted",function(){
                         $('#modal1 #type').remove();
                         $('#modal2 #names').remove();
                         $('#modal3 #list').remove();
@@ -285,21 +286,29 @@
                         $('#modal2').load('maintain/queueNameModal.jsp');
                         $('#modal3').load('maintain/queueListModal.jsp');
                     });
-                $.ajax({
-                    type: "post",
-                    url: "maintain/listQueueName.jsp",
-                    timeout: 3000,
-                    success: function (returnHtml) {
-                        //console.log(returnHtml);
-                        $('#QNdiv').html(returnHtml);
+                    $.ajax({
+                        type: "post",
+                        url: "maintain/listQueueName.jsp",
+                        timeout: 3000,
+                        success: function (returnHtml) {
+                            //console.log(returnHtml);
+                            $('#QNdiv').html(returnHtml);
 
-                    }, error: function (jqXHR, textStatus, errorThrown) {
+                        }, error: function (jqXHR, textStatus, errorThrown) {
 
-                        console.log("ERROR: " + errorThrown);
-                    }
-                });
+                            console.log("ERROR: " + errorThrown);
+                        }
+                    });
+                }
+                else if(data.trim()==="false"){
+                    bootbox.alert("Failed to delete queue name.");
+                }
+                else{
+                    bootbox.alert(data.trim());
+                }
+               
             }, error: function (jqXHR, textStatus, errorThrown) {
-
+                bootbox.alert("Oopps! "+errorThrown);
             }
         });
     });

@@ -39,7 +39,7 @@
             <div class="modal-body">
 
                 <!-- content goes here -->
-                <form class="" id="Lform" >
+                <form class="" id="Lform" autocomplete="off">
                     <div class="form-group">
                         <div><label>Queue Name *: </label></div>
                         <select class="form-control" id="QLName">
@@ -56,6 +56,7 @@
                             <%   }
                             %>
                         </select>
+                        <input type="hidden" id="QLName_hidden">
                     </div>
                     <div class="form-group">
                         <div><label>Staff *: </label></div>
@@ -92,7 +93,7 @@
                         <button  id="delList" class="btn btn-danger btn-block btn-lg" data-dismiss="modal" role="button" >Delete</button>
                     </div>
                 </div>
-                </form>
+             
             </div>
         </div>
     </div>
@@ -111,7 +112,7 @@
     //function to save or update the queue name
     $('#saveList').on('click', function () {
         var staff = $('#QLStaffCODE').val();
-        var name = $('#QLName').val();
+        var name = $('#QLName_hidden').val();
         var createdBy = "<%=user_id%>";
         var hfc = "<%=hfc%>";
         var stat = $('#QLStatus').val();
@@ -212,7 +213,7 @@
         //var name = $('#QnameCode').val();
         var hfc = "<%=hfc%>";
         var staff = $('#QLStaffCODE').val();
-        var name = $('#QLName').val();
+        var name = $('#QLName_hidden').val();
         var array_data2;
             array_data2 = name.split("|");
             //var desc = $('#QnameDes').val();
@@ -246,6 +247,11 @@
                     if(!isSuccess){
                         return false;
                     }
+                
+                if(ty==="PN"){
+                   $('#queueName').html('');
+                   $('#queueName').load('maintain/maintainQueueName.jsp');
+                }
                     
                 $.ajax({
                     type: "post",

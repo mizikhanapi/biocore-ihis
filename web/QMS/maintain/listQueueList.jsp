@@ -34,6 +34,7 @@
 %>
 <table class="table table-filter table-striped table-bordered table-hover" style="background: #fff; border: 1px solid #ccc; width: 100%;" id="QLtable">
     <thead>
+    <th>Queue Type</th>
     <th>Queue Name</th>
     <th hidden="true"></th>
     <th>Staff Name</th>
@@ -58,8 +59,20 @@
             } else {
                 sub = dataQL.get(i).get(15);
             }
+            
+            String qlType=dataQL.get(i).get(0);
+            if(qlType.equalsIgnoreCase("CM")){
+                qlType="Common";
+            }
+            else if(qlType.equalsIgnoreCase("PN")){
+                qlType="Person";
+            }
+            else{
+                qlType="Facility";
+            }
     %>
     <tr data-status="pagado" data-toggle="modal" data-id="1" data-target="#list">
+        <td><%=qlType%></td>
         <td id="Lname"><%=dataQL.get(i).get(1)%></td>
         <td hidden="true" id="Ltype"><%=dataQL.get(i).get(0)%></td>
 

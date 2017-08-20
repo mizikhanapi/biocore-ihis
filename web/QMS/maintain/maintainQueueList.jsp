@@ -72,6 +72,10 @@
           $('#startDate').val(rowStart);
           $('#endDate').val(rowEnd);
           $('#QLStatus').val(rowStat);
+          $('#QLName_hidden').val(rowname);
+          
+          console.log($('#QLName').val());
+          console.log(rowname);
     });
     
     $('#Lplus').on('click',function(){
