@@ -14,7 +14,9 @@ import com.lowagie.text.Rectangle;
 import com.lowagie.text.pdf.PdfWriter;
 import com.lowagie.text.pdf.draw.DottedLineSeparator;
 import dBConn.Conn;
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.io.OutputStream;
 import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -44,13 +46,13 @@ public class generatePharmacyLabel extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        response.setContentType("application/pdf");
 
         try {
 
             // Getting Long Data For The Label Generation And Spliting The Data
             labelData = request.getParameter("labelData");
             String splittedData[] = labelData.split("\\|", -1);
+            System.out.println(splittedData);
 
             // Creating Variable For The Splitted Data
             String orderNo, patientPMI, patientName, hfc_cd, hfcName, discipline, sub_discipline, dateToday;
@@ -64,8 +66,9 @@ public class generatePharmacyLabel extends HttpServlet {
             dateToday = splittedData[7];
 
             // Setting Page Size And PDF Writter
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
             Document document = new Document(PageSize.A8, 5, 10, 10, 5);
-            PdfWriter.getInstance(document, response.getOutputStream());
+            PdfWriter.getInstance(document, baos);
 
             // Initialiase The PDF Document
             document.open();
@@ -76,6 +79,7 @@ public class generatePharmacyLabel extends HttpServlet {
                     + " FROM pis_order_detail om LEFT JOIN pis_mdc2 mdc ON (om.`DRUG_ITEM_CODE` = mdc.`UD_MDC_CODE`) "
                     + " WHERE mdc.hfc_cd = '" + hfc_cd + "' AND mdc.discipline_cd = '" + discipline + "' AND om.ORDER_NO='" + orderNo + "' AND om.STATUS='1'; ";
             data = conn.getData(sql);
+            System.out.println(data);
 
             // Loop To Generate The Label
             for (int i = 0; i < data.size(); i++) {
@@ -194,6 +198,17 @@ public class generatePharmacyLabel extends HttpServlet {
 
             // step 5
             document.close();
+            
+            //send to client
+            response.setHeader("Expires", "0");
+            response.setHeader("Cache-Control", "must-revalidate, post-check=0, pre-check=0");
+            response.setHeader("Pragma", "public");
+            response.setContentType("application/pdf");
+            response.setContentLength(baos.size());
+            OutputStream os = response.getOutputStream();
+            baos.writeTo(os);
+            os.flush();
+            os.close();
 
         } catch (Exception de) {
             throw new IOException(de.getMessage());
