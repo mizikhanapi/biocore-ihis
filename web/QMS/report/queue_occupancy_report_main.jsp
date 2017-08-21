@@ -19,7 +19,7 @@
     <div class="form-group"> 
         <label class="col-md-4 control-label" for="textinput">Show by: </label>
         <div class="col-md-4">
-            <select id="RQL_searchType" class="form-control" >
+            <select id="RQO_searchType" class="form-control" >
                 <option selected value="1">Daily</option>
 
                 <option value="2">Monthly</option>
@@ -34,7 +34,7 @@
 
 <script type="text/javascript">
     $(function(){
-        
+        postRequestToOccupancyTable("day");
     });
     
     function postRequestToOccupancyTable(leType){
@@ -51,15 +51,33 @@
             timeout: 60000,
             data: data,
             success: function (data, textStatus, jqXHR) {
-                        
+                        $('#RQO_table').html(data);
                     },
             error: function (jqXHR, textStatus, errorThrown) {
-                        
+                        bootbox.alert("Oopps! "+errorThrown);
                     },
             complete: function (jqXHR, textStatus ) {
                         destroyScreenLoading();
                 }
         });
     }
+    
+    $('#RQO_searchType').on('change', function(){
+        var type= $(this).val();
+        
+        var timeType="";
+        
+        if(type==="1"){
+            timeType="day";
+        }
+        else if(type==="2"){
+            timeType="month";
+        }
+        else if(type==="3"){
+            timeType="year";
+        }
+        
+        postRequestToOccupancyTable(timeType);
+    });
     
 </script>
