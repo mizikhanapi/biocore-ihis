@@ -43,7 +43,23 @@
         
         var data={
             type: leType
-        }
+        };
+        
+        $.ajax({
+            type: 'POST',
+            url: "report/queue_occupancy_table.jsp",
+            timeout: 60000,
+            data: data,
+            success: function (data, textStatus, jqXHR) {
+                        
+                    },
+            error: function (jqXHR, textStatus, errorThrown) {
+                        
+                    },
+            complete: function (jqXHR, textStatus ) {
+                        destroyScreenLoading();
+                }
+        });
     }
     
 </script>

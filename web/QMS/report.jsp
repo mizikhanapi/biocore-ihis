@@ -105,6 +105,8 @@
         <script>
             $('#RQL_main').load('report/queue_list_report_main.jsp');
             //$('#RQL_table').load('report/queue_list_table.jsp');
+            
+            $('#RQO_main').load('report/queue_occupancy_report_main.jsp');
 
         </script>
 
