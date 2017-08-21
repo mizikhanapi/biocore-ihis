@@ -107,7 +107,6 @@
                 success: function (list) {
 
                     //split the data into an array
-
                     //function when the value that returned either empty/null or has value.
                     //customize this part only
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

@@ -253,6 +253,7 @@
                                         <div id="CONSULTATION" class="panel-collapse panel-collapse collapse">
                                             <ul class="list-group">
                                                 <li class="list-group-item"><a href="mcMain2.jsp">Reprint MC</a></li>
+                                                <li class="list-group-item"><a href="medicalReportMain.jsp">Reprint Medical Report</a></li>
                                                 <li class="list-group-item"><a href="timeSlipMain.jsp">Reprint Time Slip</a></li>
                                             </ul>
                                         </div>

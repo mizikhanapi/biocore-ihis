@@ -83,7 +83,7 @@
         <div class="row">
             <strong>
                 <h4 style="margin: 0px; padding: 0px;"><b>Patient Medical History</b> </h4>
-            <hr class="pemisah"/>
+                <hr class="pemisah"/>
             </strong>
         </div>
 
@@ -96,13 +96,13 @@
                     <th></th>
                     <tbody>
                         <%                        if (searchEpisode6.size() > 0) {
-                            for (int i = 0; i < searchEpisode6.size(); i++) {%>
+                                for (int i = 0; i < searchEpisode6.size(); i++) {%>
                         <tr>
                             <td></td>
                             <td><%=i + 1%>. <%=searchEpisode6.get(i).get(0)%></td>
                         </tr>
                         <% }
-                    } else { %>
+                        } else { %>
                         <tr>
                             <td></td>
                             <td>-</td>
@@ -128,7 +128,7 @@
                             <td><%=i + 1%>. <%=searchEpisode2.get(i).get(0)%></td>
                         </tr>
                         <% }
-                    } else { %>
+                        } else { %>
                         <tr>
                             <td></td>
                             <td>-</td>
@@ -154,7 +154,7 @@
                             <td><%=i + 1%>. <%=searchEpisode1.get(i).get(0)%></td>
                         </tr>
                         <% }
-                    } else { %>
+                        } else { %>
                         <tr>
                             <td></td>
                             <td>-</td>
@@ -181,32 +181,7 @@
                             <td><%=i + 1%>. <%=searchActivDrug.get(i).get(10)%></td>
                         </tr>
                         <% }
-                    } else { %>
-                        <tr>
-                            <td></td>
-                            <td>-</td>
-                        </tr>
-                        <% }
-                        %>
-                        <tr></tr>
-                    </tbody>
-                </table><br/>
-
-                <table>
-                    <th>
-                        Medication :
-                    </th>
-                    <th></th>
-                    <tbody>
-                        <%
-                            if (searchEpisode5.size() > 0) {
-                                for (int i = 0; i < searchEpisode5.size(); i++) {%>
-                        <tr>
-                            <td></td>
-                            <td><%=i + 1%>. <%=searchEpisode5.get(i).get(0)%></td>
-                        </tr>
-                        <% }
-                    } else { %>
+                        } else { %>
                         <tr>
                             <td></td>
                             <td>-</td>
@@ -232,7 +207,7 @@
                             <td><%=i + 1%>. <%=searchEpisode11.get(i).get(0)%></td>
                         </tr>
                         <% }
-                    } else { %>
+                        } else { %>
                         <tr>
                             <td></td>
                             <td>-</td>
@@ -257,7 +232,7 @@
                             <td><%=i + 1%>. <%=searchEpisode3.get(i).get(0)%></td>
                         </tr>
                         <% }
-                    } else { %>
+                        } else { %>
                         <tr>
                             <td></td>
                             <td>-</td>
@@ -284,7 +259,7 @@
                             <td><%=i + 1%>. <%=searchEpisode12.get(i).get(0)%></td>
                         </tr>
                         <% }
-                    } else { %>
+                        } else { %>
                         <tr>
                             <td></td>
                             <td>-</td>
@@ -310,7 +285,7 @@
                             <td><%=i + 1%>. <%=searchEpisode7.get(i).get(0)%></td>
                         </tr>
                         <% }
-                    } else { %>
+                        } else { %>
                         <tr>
                             <td></td>
                             <td>-</td>
@@ -335,7 +310,7 @@
                             <td><%=i + 1%>. <%=searchEpisode10.get(i).get(0)%></td>
                         </tr>
                         <% }
-                    } else { %>
+                        } else { %>
                         <tr>
                             <td></td>
                             <td>-</td>
@@ -348,16 +323,16 @@
             </div>
 
         </div>
-        <div class="row">
-            <div class="col-xs-6 col-md-6">
-                <textarea placeholder="Comments.." rows="4" cols="500" style="width:500px;" id="patientmedicalcomments"></textarea>
-            </div>
-        </div>
-    </div>
 
+    </div>
 </div>
+<div id="commentModal"><div class="row">
+        <div class="col-xs-6 col-md-6">
+            <textarea placeholder="Comments.." rows="4" cols="500" style="width:500px;" id="patientmedicalcomments"></textarea>
+        </div>
+    </div></div>
 <div>
-    <button class="btn btn-success" id="btnPrintmedicalHistory">Print</button>
+    <button class="btn btn-success" data-toggle="modal" data-target="#basicModalMedical" id="btnPrintmedicalHistory">Print</button>
 </div>
 <%
     } else {

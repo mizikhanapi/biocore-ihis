@@ -112,7 +112,7 @@
 <br/>
 <br/>
 <div class="row">
-    <div class="col-md-12">
+    <div class="col-md-12" hidden="">
         <h4 style="padding: 0px;">PREVIOUS VISIT (INPATIENT EPISODE) <% //out.print(pmiNo);%></h4><br/>
         <div id="inpatient" >
             <table id="inPatient" class="table table-stripout.print(pmiNo);ed table-bordered" cellspacing="0" width="100%">
@@ -152,7 +152,7 @@
 <div class="row">
     <hr/>
     <div class="col-md-12">
-        <h4 style="padding: 0px;">PREVIOUS VISIT (OUTPATIENT EPISODE)</h4><br/>
+        <h4 style="padding: 0px;"> PREVIOUS VISIT </h4><br/>
         <div id="outpatient">
             <table id="outPatient"  class="table table-striped table-bordered" cellspacing="0" width="100%">
                 <thead>  
@@ -207,26 +207,26 @@
 </div>
 <script type="text/javascript">
 
-    $('#inpatient').on('click', '#inBtn', function () {
-        var row = $(this).closest("tr");
-        var pmi_no = row.find("#pmi").val();
-        var episodeDate = row.find("#episode").val();
-        var discipline = row.find("#discipline").val();
-
-        $.ajax({
-            type: 'post',
-            data: {pmi_no: pmi_no, episodeDate: episodeDate, discipline: discipline},
-            url: 'searchInpatient.jsp',
-            timeout: 10000,
-            success: function (getData) {
-                if (getData.trim() === "1") {
-                    alert("No Problem!");
-                    $('#inpatientProblem').html("");
-                } else {
-                    $('#inpatientProblem').html(getData);
-                }
-            }});
-    });
+//    $('#inpatient').on('click', '#inBtn', function () {
+//        var row = $(this).closest("tr");
+//        var pmi_no = row.find("#pmi").val();
+//        var episodeDate = row.find("#episode").val();
+//        var discipline = row.find("#discipline").val();
+//
+//        $.ajax({
+//            type: 'post',
+//            data: {pmi_no: pmi_no, episodeDate: episodeDate, discipline: discipline},
+//            url: 'searchInpatient.jsp',
+//            timeout: 10000,
+//            success: function (getData) {
+//                if (getData.trim() === "1") {
+//                    alert("No Problem!");
+//                    $('#inpatientProblem').html("");
+//                } else {
+//                    $('#inpatientProblem').html(getData);
+//                }
+//            }});
+//    });
 </script>
 <script type="text/javascript">
     $('#outpatient').on('click', '#outBtn', function () {

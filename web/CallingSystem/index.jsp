@@ -38,9 +38,9 @@
     sql_discipline = rmic.getQuerySQL(conn.HOST, conn.PORT,sql_dis);
 
     //String sqldiscipline = "SELECT ahd.discipline_cd,ahd.subdiscipline_cd,ad.discipline_name FROM adm_discipline ad, adm_hfc_discipline ahd WHERE ad.discipline_cd = ahd.discipline_cd AND ahd.hfc_cd = '"+mysqlhfc_cd.get(0).get(0)+"'"; 
-    String sql_subDis = "SELECT asd.subdiscipline_cd,asd.subdiscipline_name FROM adm_discipline ad, adm_subdiscipline asd, adm_hfc_discipline ahd WHERE  ahd.discipline_cd = ad.discipline_cd AND ad.discipline_cd = asd.discipline_cd AND ahd.hfc_cd = '" + health_facility_code + "' GROUP BY subdiscipline_name";
-    ArrayList<ArrayList<String>> sql_Subdiscipline;
-    sql_Subdiscipline = rmic.getQuerySQL(conn.HOST, conn.PORT,sql_subDis);
+//    String sql_subDis = "SELECT asd.subdiscipline_cd,asd.subdiscipline_name FROM adm_discipline ad, adm_subdiscipline asd, adm_hfc_discipline ahd WHERE  ahd.discipline_cd = ad.discipline_cd AND ad.discipline_cd = asd.discipline_cd AND ahd.hfc_cd = '" + health_facility_code + "' GROUP BY subdiscipline_name";
+//    ArrayList<ArrayList<String>> sql_Subdiscipline;
+//    sql_Subdiscipline = rmic.getQuerySQL(conn.HOST, conn.PORT,sql_subDis);
     
     String hfccd1 = "";
     String discp1 = "";
@@ -57,7 +57,8 @@
     }
 
 %>
-
+<script src="assets/js/jquery-3.1.1.js" type="text/javascript"></script>
+<script src="assets/js/bootstrap.js" type="text/javascript"></script>
 <!-- header -->
 <%@include file = "../assets/header.html" %>
 <style>
@@ -132,18 +133,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label class="col-md-4 control-label" for="selectbasic">Search Sub-Discipline</label>
-                                    <div class="col-md-4">
-                                        <select id="subdi" class="form-control">
-                                            <option value="">-- Select sub-discipline --</option>
-                                            <%
-                                                if (sql_Subdiscipline.size() > 0) {
-                                                    for (int i = 0; i < sql_Subdiscipline.size(); i++) {
-
-                                            %>
-                                            <option value="<%=sql_Subdiscipline.get(i).get(0)%>"><%=sql_Subdiscipline.get(i).get(1)%></option>
-                                            <%}
-                                                }%>
-                                        </select>
+                                    <div class="col-md-4" id="divSelectSub">
                                     </div>
                                 </div>
                             </div>
@@ -276,8 +266,7 @@
         }
     }
 </script>
-<script src="assets/js/jquery-3.1.1.js" type="text/javascript"></script>
-<script src="assets/js/bootstrap.js" type="text/javascript"></script>
+
 <script>
     function ulangPanggil(hfccd, discp, subdi, lang, initial) {
         $.ajax({
@@ -333,5 +322,21 @@
             $("#callingSetting").hide();
             $(".modal-backdrop").hide();
         });
+    });
+    $("#discp").on('change',function(){
+       
+       var hfc = "<%=hfccd1%>";
+       var dis = $(this).val();
+       var data = {"hfc":hfc,
+       "discipline":dis};
+       $.ajax({
+          type:"post",
+          url:"findSub.jsp",
+          data:data,
+          success:function(databack){
+              $("#divSelectSub").html(databack);
+          }
+       });
+       console.log(data);
     });
 </script>
