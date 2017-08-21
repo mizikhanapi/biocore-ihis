@@ -57,7 +57,7 @@
 
     String insertEpisode = "";
 
-    String quota = "SELECT count(pmi_no) from pms_episode where date(episode_date) = '" + now + "';";
+    String quota = "SELECT count(pmi_no) from pms_episode where date(episode_date) = '" + now + "' and (status = '5' or status = '0' or status = '2');";
     ArrayList<ArrayList<String>> quotaNum = conn.getData(quota);
 
     String quotaFromQueue = "SELECT quota from pms_queue_name where queue_name = '" + queue_name1 + "'";
