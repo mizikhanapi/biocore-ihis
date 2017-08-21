@@ -59,6 +59,9 @@
             </div>
 
         </div>
+            <div>
+                <%@ include file ="medicalModal.jsp" %>
+            </div>
         <script src="../assets/js/jquery.dataTables.min.js" type="text/javascript"></script>
         <script src="../assets/js/dataTables.buttons.min.js" type="text/javascript"></script>
         <script src="../assets/js/buttons.flash.min.js" type="text/javascript"></script>
@@ -70,24 +73,29 @@
 
 
         <script>
-            function printReport2(divID1,divIDw,c)
+            function printReport2(divID1)
                 {
                     var popupWin = window.open('', '_blank', 'width=1080,height=768');
                     popupWin.document.open();
-                    popupWin.document.write('<html><body onload="window.print()">' + divID1 + '<br/>'+divIDw+'</body></html>');
+                    popupWin.document.write('<html><body onload="window.print()">' + divID1 +'</body></html>');
                     popupWin.document.close();
                 }
-            $("#mcTableDivision").on('click','#outpatientProblem #btnPrintmedicalHistory',function(){
+            
+            $(document).ready(function () {
+                $("#SearchPatientdiv").load("searchMedicalReport.jsp");
+                $("#mcTableDivision").on('click','#outpatientProblem #btnPrintmedicalHistory',function(){
                 
                 var b = $("#mcTableDivision #outpatientProblem #medicalHistorydivision").html();
                 var a = $("#mcTableDivision #patientDemographic").html();
-                var c = $("#mcTableDivision #outpatientProblem #medicalHistorydivision #patientmedicalcomments").val();
-                printReport2(a,b,c);
+                var c = $("#mcTableDivision #outpatientProblem #commentModal #patientmedicalcomments").val();
+                var x = a+"<br/><br/>"+b+"<br/><p><strong>Comment : </strong></p>"+c;
+                $("#basicModalMedical #test").html(x);
             });
-            $(document).ready(function () {
-                $("#SearchPatientdiv").load("searchMedicalReport.jsp");
-                
-                
+               
+            });
+            $("#basicModalMedical #b_print2").on('click',function(){
+                var div = $("#basicModalMedical #allDiv").html();
+                printReport2(div);
             });
         </script>
     </body>
