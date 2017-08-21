@@ -33,6 +33,11 @@
         whereClause=" and qn.discipline_code='"+code+"' ";
     
     }
+    else if(searchType.equalsIgnoreCase("qName")){
+        reportTitle="List of Queue by Queue Name";
+        whereClause=" and qn.queue_name='"+code+"' ";
+    
+    }
     else{
        reportTitle="List of Queue by User";
        whereClause=" and ql.user_id='"+code+"' ";

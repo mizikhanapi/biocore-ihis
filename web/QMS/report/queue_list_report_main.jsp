@@ -29,6 +29,8 @@
 
                 <option value="4">By user</option>
                 
+                <option value="5">By queue name</option>
+                
             </select>
         </div>
     </div>
@@ -74,13 +76,24 @@
         </div>
     </div>
     
-     <div class="form-group searchingDiv" id="RQL_div_byUser" style="display: none;">
+    <div class="form-group searchingDiv" id="RQL_div_byUser" style="display: none;">
         <label class="col-md-4 control-label" for="textinput">User</label>
         <div class="col-md-3">
             <input type="text" class="form-control input-md" id="RQL_listByUser" placeholder="Search the user and select..." 
                    data-search-by-word="true"
                    data-selection-required="true">
             <div id="RQL_user_match" class="search-drop"></div>
+        </div>
+
+    </div>
+            
+    <div class="form-group searchingDiv" id="RQL_div_byQueueName" style="display: none;">
+        <label class="col-md-4 control-label" for="textinput">Queue name</label>
+        <div class="col-md-3">
+            <input type="text" class="form-control input-md" id="RQL_listByQName" placeholder="Search the queue and select..." 
+                   data-search-by-word="true"
+                   data-selection-required="true">
+            <div id="RQL_qName_match" class="search-drop"></div>
         </div>
 
     </div>
@@ -111,6 +124,8 @@
            $('#RQL_div_byDiscipline').show();
        else if(type==="4")
            $('#RQL_div_byUser').show();
+       else if(type==="5")
+           $('#RQL_div_byQueueName').show();
     });
     
     $('#RQL_btnSearch').on('click', function(){
@@ -122,8 +137,10 @@
             RQL_byType();
         else if(type==="3")
             RQL_byDiscipline();
-        else
+        else if(type==="4")
             RQL_byUser();
+        else
+            RQL_byQName();
     });
     
     //function to get the queue list
@@ -191,6 +208,18 @@
         }
     }
     
+    function RQL_byQName(){
+        var name = $('#RQL_listByQName').val();
+        
+        if(name==="" || name==null){
+            bootbox.alert("Please select existing queue name!");
+        }
+        else{
+            postRequestToQueueTable("qName", name);
+        }
+        
+    }
+    
     //------------- search consultant ----------------------------
     $('#RQL_listByUser').flexdatalist({
         minLength: 1,
@@ -223,4 +252,37 @@
     });
 
 //============= end search consultant ===============================================
+
+ //------------- search queue ----------------------------
+    $('#RQL_listByQName').flexdatalist({
+        minLength: 1,
+        searchIn: 'name', 
+        searchDelay: 2000,
+        selectionRequired: true,
+        url: "search/searchQueueName.jsp",
+        visibleProperties: 'name',
+        cache: true,
+        valueProperty: 'value',
+        params: {
+            timeout: 3000,
+            success: function (result) {
+                console.log(result);
+                if (result == null) {
+                    $('#RQL_qName_match').html('No Record');
+                }
+            }
+        }
+    });
+    
+    $("#RQL_listByQName").on('before:flexdatalist.data', function (response) {
+        $('#RQL_qName_match').html('<img src="img/LoaderIcon.gif" />');
+    });
+    $("#RQL_listByQName").on('after:flexdatalist.data', function (response) {
+        $('#RQL_qName_match').html('');
+    });
+    $("#RQL_listByQName").on('select:flexdatalist', function (response) {
+        $('#RQL_qName_match').html('');
+    });
+
+//============= end search queue ===============================================
 </script>

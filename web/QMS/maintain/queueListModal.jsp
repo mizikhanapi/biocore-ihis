@@ -112,7 +112,7 @@
     //function to save or update the queue name
     $('#saveList').on('click', function () {
         var staff = $('#QLStaffCODE').val();
-        var name = $('#QLName_hidden').val();
+        var name = $('#QLName').val();
         var createdBy = "<%=user_id%>";
         var hfc = "<%=hfc%>";
         var stat = $('#QLStatus').val();
@@ -120,6 +120,10 @@
         var sub = "<%=sub%>";
         var startDate = $('#startDate').val();
         var endDate = $('#endDate').val();
+        
+        if(name==="" || name==null){
+            name = $('#QLName_hidden').val();
+        }
         //console.log(staff);
 //        $('#QLStaff option:not(:selected)').prop('disabled', false);
 //        $('#QLName option:not(:selected)').prop('disabled', false);
