@@ -325,7 +325,7 @@
     });
     $("#discp").on('change',function(){
        
-       var hfc = "<%=hfccd1%>";
+       var hfc = "<%=health_facility_code%>";
        var dis = $(this).val();
        var data = {"hfc":hfc,
        "discipline":dis};
