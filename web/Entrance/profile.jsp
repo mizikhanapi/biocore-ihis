@@ -22,20 +22,20 @@
         <!-- header -->
 
         <%@include file="../assets/header.html" %>
+        <%@include file="libraries/headLibrary.jsp" %>
         <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>-->
-        <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+        <!--<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">-->
+                
+
+    </head>
         
-<!--        <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>-->
-        <script src="../assets/js/jquery.min.js"></script>
-        <script src="../assets/js/jquery-ui.js"></script>
 
 
 
 
 
         <!-- header -->
-    </head>
+    
 
     <body>
 
@@ -75,6 +75,10 @@
                                                 <a href="#PR_tab3" data-toggle="tab">
                                                     UPLOAD PICTURE </a>
                                             </li>
+                                            <li>
+                                                <a href="#PR_tab4" data-toggle="tab">
+                                                    CHANGE DISCIPLINE/SUBDISCIPLINE </a>
+                                            </li>
 
 
                                         </ul>
@@ -98,6 +102,14 @@
                                             <div class="tab-pane" id="PR_tab3">
 
                                                 <div id="changePicture">
+
+                                                </div>
+
+                                            </div>
+                                            
+                                            <div class="tab-pane" id="PR_tab4">
+
+                                                <div id="changeDiscipline">
 
                                                 </div>
 
@@ -132,16 +144,7 @@
         <!-- Placed at the end of the document so the pages load faster -->
         <!-- Bootstrap core JavaScript
         ================================================== -->
-        <!-- Placed at the end of the document so the pages load faster -->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-     
-        <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-         <!--    <script src="bootstrap-3.3.6-dist/js/jquery.dataTables.min.js"></script>-->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/4.4.0/bootbox.min.js"></script>
-        <!--    <script src="bootstrap-3.3.6-dist/js/jquery.dataTables.min.js"></script>
-            <script src="bootstrap-3.3.6-dist/js/dataTables.bootstrap.min.js" type="text/javascript"></script>-->
+        <%@include file="libraries/footLibrary.jsp" %>
 
 
         <script>
@@ -151,6 +154,7 @@
                 $("#personalInfo").load("personalInfo.jsp");
                 $("#changePassword").load("changePassword.jsp");
                 $("#changePicture").load("changePicture.jsp");
+                $('#changeDiscipline').load("changeDiscipline.jsp");
 
 
             });

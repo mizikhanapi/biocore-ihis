@@ -1,7 +1,7 @@
 <%-- 
     Document   : changePicture
     Created on : Mar 10, 2017, 12:16:05 AM
-    Author     : user
+    Author     : Ardhi Surya; rdsurya147@gmail.com
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
