@@ -1,8 +1,5 @@
-<%-- 
-    Document   : printReport_2
-    Created on : Apr 10, 2017, 5:13:02 PM
-    Author     : user
---%>
+<%@include file="../../Entrance/validateSession.jsp" %>
+
 <%
 
     if (session.getAttribute("Patient_IC") == null || session.getAttribute("Patient_IC").equals("")) {
@@ -142,7 +139,7 @@
                    
                 if(pmi_number === "")
                    {
-                       bootbox.alert("PMINO null");
+                       bootbox.alert("Oops!, There is a missing information");
                    }
                    else {
 //                       console.log("before ajax");

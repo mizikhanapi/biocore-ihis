@@ -8,8 +8,10 @@ Author     : user
 <%@page import="java.util.ArrayList"%>
 <%@page import="org.apache.commons.lang3.StringUtils"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%
-    Config.getBase_url(request);
+
+<%@include file="../../Entrance/validateSession.jsp" %>
+
+<%    Config.getBase_url(request);
     Config.getFile_url(session);
 
     Conn conn = new Conn();
@@ -53,7 +55,7 @@ Author     : user
         <link href="../assets/css/keyboard.css" rel="stylesheet">
         <link href="../assets/css/jquery-ui.min.css" rel="stylesheet">
         <script src="../assets/js/jquery.keyboard.js"></script>
-
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.2/jspdf.min.js"></script>
         <script>
 
             var lang = sessionStorage.getItem('lang');
@@ -80,84 +82,94 @@ Author     : user
                     Sila masukkan Nombor IC anda
                 </div>
                 <br/>
-                <form class="form-signin" action="dashboard.jsp">
-                    <span id="reauth-email" class="reauth-email"></span>
-                    <input type="text" id="inputUserIC" class="form-control" placeholder="Masukkan Nombor IC anda" name="useric">
-                    <input type="text" id="inputUserName" class="form-control" placeholder="Nama awak" name="username" disabled="">
+
+                <div id="fields" style="display: block">
+                    <form class="form-signin" action="dashboard.jsp">
+                        <span id="reauth-email" class="reauth-email"></span>
+                        <input type="text" id="inputUserIC" class="form-control" placeholder="Masukkan Nombor IC anda" name="useric">
+                        <input type="text" id="inputUserName" class="form-control" placeholder="Nama awak" name="username" disabled="">
 
 
-                    <div class="form-group">
-                        <label class="control-label" for="selectbasic">Sila Pilih Giliran</label>
-                        <!--<div class="col-md-8">-->
-                        <br>      
-                        <div class="btn-group" data-toggle="buttons">
-                            <label class="btn active marglft" for="commonQueue">
-                                <input type="radio" id ="commonQueue" name='queuetype' value="CM"><i class="fa fa-circle-o fa-2x"></i><i class="fa fa-dot-circle-o fa-2x "></i> <span>Perundingan</span>
-                            </label>
-                            <label class="btn marglft" for="consultantQueue">
-                                <input type="radio" id ="consultantQueue" name='queuetype' value="FY"><i class="fa fa-circle-o fa-2x"></i><i class="fa fa-dot-circle-o fa-2x "></i><span>Perkhidmatan</span>
-                            </label>
-                            <label class="btn marglft" for="doctorQueue">
-                                <input type="radio" id ="doctorQueue" name='queuetype' value="PN"><i class="fa fa-circle-o fa-2x"></i><i class="fa fa-dot-circle-o fa-2x "></i><span>Doktor</span>
-                            </label>
+                        <div class="form-group">
+                            <label class="control-label" for="selectbasic">Sila Pilih Giliran</label>
+                            <!--<div class="col-md-8">-->
+                            <br>      
+                            <div class="btn-group" data-toggle="buttons">
+                                <label class="btn active marglft" for="commonQueue">
+                                    <input type="radio" id ="commonQueue" name='queuetype' value="CM"><i class="fa fa-circle-o fa-2x"></i><i class="fa fa-dot-circle-o fa-2x "></i> <span>Perundingan</span>
+                                </label>
+                                <label class="btn marglft" for="consultantQueue">
+                                    <input type="radio" id ="consultantQueue" name='queuetype' value="FY"><i class="fa fa-circle-o fa-2x"></i><i class="fa fa-dot-circle-o fa-2x "></i><span>Perkhidmatan</span>
+                                </label>
+                                <label class="btn marglft" for="doctorQueue">
+                                    <input type="radio" id ="doctorQueue" name='queuetype' value="PN"><i class="fa fa-circle-o fa-2x"></i><i class="fa fa-dot-circle-o fa-2x "></i><span>Doktor</span>
+                                </label>
+                            </div>
+                            <!--</div>-->
                         </div>
-                        <!--</div>-->
-                    </div>
-                    <select  id="selectedServiceQueue"  class="form-control select-full" hidden>
-                        <option value="null" selected="" disabled="">Sila Pilih Giliran</option>
+                        <select  id="selectedServiceQueue"  class="form-control select-full" hidden>
+                            <option value="null" selected="" disabled="">Sila Pilih Giliran</option>
 
-                        <%
-                            add = null;
-                            text = null;
-                            for (int i = 0; i < dataQueue2Cons.size(); i++) {
-                                if (dataQueue2Cons.get(i).get(1) != "" || dataQueue2Cons.get(i).get(1) != null) {
+                            <%
+                                add = null;
+                                text = null;
+                                for (int i = 0; i < dataQueue2Cons.size(); i++) {
+                                    if (dataQueue2Cons.get(i).get(1) != "" || dataQueue2Cons.get(i).get(1) != null) {
 
-                                    if (!dataQueue2Cons.get(i).get(1).contains("Room")) {
+                                        if (!dataQueue2Cons.get(i).get(1).contains("Room")) {
 
-                        %>
+                            %>
 
-                        <option value="<%=dataQueue2Cons.get(i).get(1) + "|" + dataQueue2Cons.get(i).get(2)%>"><%="(" + dataQueue2Cons.get(i).get(0) + ") " + dataQueue2Cons.get(i).get(1)%></option>
-                        <%                  }
+                            <option value="<%=dataQueue2Cons.get(i).get(1) + "|" + dataQueue2Cons.get(i).get(2)%>"><%="(" + dataQueue2Cons.get(i).get(0) + ") " + dataQueue2Cons.get(i).get(1)%></option>
+                            <%                  }
+                                    }
                                 }
-                            }
-                        %>
+                            %>
 
-                    </select>
+                        </select>
 
-                    <select  id="selectedDoctorQueue"  class="form-control select-full">
-                        <option value="null" selected="" disabled="">Sila Pilih Giliran</option>
+                        <select  id="selectedDoctorQueue"  class="form-control select-full">
+                            <option value="null" selected="" disabled="">Sila Pilih Giliran</option>
 
-                        <%
-                            for (int i = 0; i < dataQueue2Doc.size(); i++) {
-                                if (dataQueue2Doc.get(i).get(1) != "" || dataQueue2Doc.get(i).get(1) != null) {
-                        %>
+                            <%
+                                for (int i = 0; i < dataQueue2Doc.size(); i++) {
+                                    if (dataQueue2Doc.get(i).get(1) != "" || dataQueue2Doc.get(i).get(1) != null) {
+                            %>
 
-                        <option value="<%=dataQueue2Doc.get(i).get(1) + "|" + dataQueue2Doc.get(i).get(2)%>"><%="(" + dataQueue2Doc.get(i).get(0) + ") " + dataQueue2Doc.get(i).get(1)%></option>
-                        <%                  }
-                            }
-                        %>
+                            <option value="<%=dataQueue2Doc.get(i).get(1) + "|" + dataQueue2Doc.get(i).get(2)%>"><%="(" + dataQueue2Doc.get(i).get(0) + ") " + dataQueue2Doc.get(i).get(1)%></option>
+                            <%                  }
+                                }
+                            %>
 
-                    </select>
+                        </select>
 
-                    <select  id="selectedCommonQueue"  class="form-control select-full">
-                        <option value="null" selected="" disabled="">Sila Pilih Giliran</option>
+                        <select  id="selectedCommonQueue"  class="form-control select-full">
+                            <option value="null" selected="" disabled="">Sila Pilih Giliran</option>
 
-                        <%
-                            for (int i = 0; i < dataQueueCommon.size(); i++) {
-                                if (dataQueueCommon.get(i).get(1) != "" || dataQueueCommon.get(i).get(1) != null) {
-                        %>
+                            <%
+                                for (int i = 0; i < dataQueueCommon.size(); i++) {
+                                    if (dataQueueCommon.get(i).get(1) != "" || dataQueueCommon.get(i).get(1) != null) {
+                            %>
 
-                        <option value="<%=dataQueueCommon.get(i).get(1) + "|" + dataQueueCommon.get(i).get(2)%>"><%="(" + dataQueueCommon.get(i).get(0) + ") " + dataQueueCommon.get(i).get(1)%></option>
-                        <%                  }
-                            }
-                        %>
+                            <option value="<%=dataQueueCommon.get(i).get(1) + "|" + dataQueueCommon.get(i).get(2)%>"><%="(" + dataQueueCommon.get(i).get(0) + ") " + dataQueueCommon.get(i).get(1)%></option>
+                            <%                  }
+                                }
+                            %>
 
-                    </select>
+                        </select>
 
-                </form>
-                <div class="text-center" style=" bottom: 30px; margin: auto; position: absolute; left: 30%;">
-                    <button id="registerSignup" class="btn btn-lg btn-primary">Daftar</button>
-                    <button id="cancelSignup" class="btn btn-lg btn-default">Batalkan</button>
+                    </form>
+                    <div class="text-center" style=" bottom: 30px; margin: auto; position: absolute; left: 30%;">
+                        <button id="registerSignup" class="btn btn-lg btn-primary">Daftar</button>
+                        <button id="cancelSignup" class="btn btn-lg btn-default">Batalkan</button>
+                    </div>
+                </div>
+                <div id="reportQueResultContent"  style="display: none; margin-top: auto">
+                    <div id="reportQueResult" style="margin: auto 0;"></div>
+                    <div class="text-center" style=" bottom: 30px; margin: auto; position: absolute; left: 30%;">
+                        <button id="SaveQueue" class="btn btn-lg btn-success">Save</button>
+                        <button id="cancelSignup" class="btn btn-lg btn-default">Cancel</button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -172,85 +184,96 @@ Author     : user
                     Please Enter your IC Number
                 </div>
                 <br/>
-                <form class="form-signin" action="dashboard.jsp">
-                    <span id="reauth-email" class="reauth-email"></span>
-                    <input type="text" id="inputUserIC" class="form-control" placeholder="Enter Your IC" name="useric">
-                    <input type="text" id="inputUserName" class="form-control" placeholder="Your Name" name="username" disabled="">
+                <div id="fields" style="display: block">
+                    <form class="form-signin" action="dashboard.jsp">
+                        <span id="reauth-email" class="reauth-email"></span>
+
+                        <input type="text" id="inputUserIC" class="form-control" placeholder="Enter Your IC" name="useric">
+                        <input type="text" id="inputUserName" class="form-control" placeholder="Your Name" name="username" disabled="">
 
 
-                    <div class="form-group">
-                        <label class="control-label" for="selectbasic">Please Select Queue</label>
-                        <!--<div class="col-md-8">-->
-                        <br>      
-                        <div class="btn-group" data-toggle="buttons">
-                            <label class="btn active marglft" for="commonQueue">
-                                <input type="radio" id ="commonQueue" name='queuetype' value="CM"><i class="fa fa-circle-o fa-2x"></i><i class="fa fa-dot-circle-o fa-2x "></i> <span>Consultation</span>
-                            </label>
-                            <label class="btn marglft" for="consultantQueue">
-                                <input type="radio" id ="consultantQueue" name='queuetype' value="FY"><i class="fa fa-circle-o fa-2x"></i><i class="fa fa-dot-circle-o fa-2x "></i><span>Services</span>
-                            </label>
-                            <label class="btn marglft" for="doctorQueue">
-                                <input type="radio" id ="doctorQueue" name='queuetype' value="PN"><i class="fa fa-circle-o fa-2x"></i><i class="fa fa-dot-circle-o fa-2x "></i><span>Doctors</span>
-                            </label>
+                        <div class="form-group">
+                            <label class="control-label" for="selectbasic">Please Select Queue</label>
+                            <!--<div class="col-md-8">-->
+                            <br>      
+                            <div class="btn-group" data-toggle="buttons">
+                                <label class="btn active marglft" for="commonQueue">
+                                    <input type="radio" id ="commonQueue" name='queuetype' value="CM"><i class="fa fa-circle-o fa-2x"></i><i class="fa fa-dot-circle-o fa-2x "></i> <span>Consultation</span>
+                                </label>
+                                <label class="btn marglft" for="consultantQueue">
+                                    <input type="radio" id ="consultantQueue" name='queuetype' value="FY"><i class="fa fa-circle-o fa-2x"></i><i class="fa fa-dot-circle-o fa-2x "></i><span>Services</span>
+                                </label>
+                                <label class="btn marglft" for="doctorQueue">
+                                    <input type="radio" id ="doctorQueue" name='queuetype' value="PN"><i class="fa fa-circle-o fa-2x"></i><i class="fa fa-dot-circle-o fa-2x "></i><span>Doctors</span>
+                                </label>
+                            </div>
+                            <!--</div>-->
                         </div>
-                        <!--</div>-->
-                    </div>
-                    <select  id="selectedServiceQueue"  class="form-control select-full" hidden>
-                        <option value="null" selected="" disabled="">Please Select Queue</option>
+                        <select  id="selectedServiceQueue"  class="form-control select-full" hidden>
+                            <option value="null" selected="" disabled="">Please Select Queue</option>
 
-                        <%
-                            add = null;
-                            text = null;
-                            for (int i = 0; i < dataQueue2Cons.size(); i++) {
-                                if (dataQueue2Cons.get(i).get(1) != "" || dataQueue2Cons.get(i).get(1) != null) {
+                            <%
+                                add = null;
+                                text = null;
+                                for (int i = 0; i < dataQueue2Cons.size(); i++) {
+                                    if (dataQueue2Cons.get(i).get(1) != "" || dataQueue2Cons.get(i).get(1) != null) {
 
-                                    if (!dataQueue2Cons.get(i).get(1).contains("Room")) {
+                                        if (!dataQueue2Cons.get(i).get(1).contains("Room")) {
 
-                        %>
+                            %>
 
-                        <option value="<%=dataQueue2Cons.get(i).get(1) + "|" + dataQueue2Cons.get(i).get(2)%>"><%="(" + dataQueue2Cons.get(i).get(0) + ") " + dataQueue2Cons.get(i).get(1)%></option>
-                        <%                  }
+                            <option value="<%=dataQueue2Cons.get(i).get(1) + "|" + dataQueue2Cons.get(i).get(2)%>"><%="(" + dataQueue2Cons.get(i).get(0) + ") " + dataQueue2Cons.get(i).get(1)%></option>
+                            <%                  }
+                                    }
                                 }
-                            }
-                        %>
+                            %>
 
-                    </select>
+                        </select>
 
-                    <select  id="selectedDoctorQueue"  class="form-control select-full">
-                        <option value="null" selected="" disabled="">Please Select Queue</option>
+                        <select  id="selectedDoctorQueue"  class="form-control select-full">
+                            <option value="null" selected="" disabled="">Please Select Queue</option>
 
-                        <%
-                            for (int i = 0; i < dataQueue2Doc.size(); i++) {
-                                if (dataQueue2Doc.get(i).get(1) != "" || dataQueue2Doc.get(i).get(1) != null) {
-                        %>
+                            <%
+                                for (int i = 0; i < dataQueue2Doc.size(); i++) {
+                                    if (dataQueue2Doc.get(i).get(1) != "" || dataQueue2Doc.get(i).get(1) != null) {
+                            %>
 
-                        <option value="<%=dataQueue2Doc.get(i).get(1) + "|" + dataQueue2Doc.get(i).get(2)%>"><%="(" + dataQueue2Doc.get(i).get(0) + ") " + dataQueue2Doc.get(i).get(1)%></option>
-                        <%                  }
-                            }
-                        %>
+                            <option value="<%=dataQueue2Doc.get(i).get(1) + "|" + dataQueue2Doc.get(i).get(2)%>"><%="(" + dataQueue2Doc.get(i).get(0) + ") " + dataQueue2Doc.get(i).get(1)%></option>
+                            <%                  }
+                                }
+                            %>
 
-                    </select>
+                        </select>
 
-                    <select  id="selectedCommonQueue"  class="form-control select-full">
-                        <option value="null" selected="" disabled="">Please Select Queue</option>
+                        <select  id="selectedCommonQueue"  class="form-control select-full">
+                            <option value="null" selected="" disabled="">Please Select Queue</option>
 
-                        <%
-                            for (int i = 0; i < dataQueueCommon.size(); i++) {
-                                if (dataQueueCommon.get(i).get(1) != "" || dataQueueCommon.get(i).get(1) != null) {
-                        %>
+                            <%
+                                for (int i = 0; i < dataQueueCommon.size(); i++) {
+                                    if (dataQueueCommon.get(i).get(1) != "" || dataQueueCommon.get(i).get(1) != null) {
+                            %>
 
-                        <option value="<%=dataQueueCommon.get(i).get(1) + "|" + dataQueueCommon.get(i).get(2)%>"><%="(" + dataQueueCommon.get(i).get(0) + ") " + dataQueueCommon.get(i).get(1)%></option>
-                        <%                  }
-                            }
-                        %>
+                            <option value="<%=dataQueueCommon.get(i).get(1) + "|" + dataQueueCommon.get(i).get(2)%>"><%="(" + dataQueueCommon.get(i).get(0) + ") " + dataQueueCommon.get(i).get(1)%></option>
+                            <%                  }
+                                }
+                            %>
 
-                    </select>
+                        </select>
 
-                </form>
-                <div class="text-center" style=" bottom: 30px; margin: auto; position: absolute; left: 30%;">
-                    <button id="registerSignup" class="btn btn-lg btn-primary">Register</button>
-                    <button id="cancelSignup" class="btn btn-lg btn-default">Cancel</button>
+                    </form>
+                    <div class="text-center" style=" bottom: 30px; margin: auto; position: absolute; left: 30%;">
+                        <button id="registerSignup" class="btn btn-lg btn-primary">Register</button>
+                        <button id="cancelSignup" class="btn btn-lg btn-default">Cancel</button>
+                    </div>
                 </div>
+                <div id="reportQueResultContent" style="display: none; margin-top: auto">
+                    <div id="reportQueResult" style="margin: auto 0;"></div>
+                    <div class="text-center" style=" bottom: 30px; margin: auto; position: absolute; left: 30%;">
+                        <button id="SaveQueue" class="btn btn-lg btn-primary" >Save</button>
+                        <button id="cancelSignup" class="btn btn-lg btn-default">Cancel</button>
+                    </div>
+                </div>
+
             </div>
         </div>
 
@@ -275,6 +298,8 @@ Author     : user
             var ddMMyyyy;
             var timeStamp;
             var pmi_no;
+            var ic_no;
+            var patient_name;
             var user_id;
             var user_name;
             //function to get date 
@@ -401,6 +426,8 @@ Author     : user
                                 var splitData = String(data.trim()).split("|");
                                 console.log(splitData);
                                 pmi_no = splitData[0];
+                                ic_no= splitData[4]
+                                patient_name= splitData[2]
                                 user_name = splitData[2];
                                 user_id = splitData[7];
                                 $("div[lang=" + lang + "] #inputUserName").val(user_name);
@@ -414,6 +441,89 @@ Author     : user
                 }
             }
             ;
+
+            function viewQueueReport(quename) {
+
+                var viewData = {
+                    today: yyyyMMdd,
+                    time: HHmmss,
+                    queuename: quename,
+                    icno:ic_no,
+                    patientname:patient_name
+                };
+
+                if (quename === "")
+                {
+                    bootbox.alert("Oops!, There is an error, Missing information");
+                } else {
+//                       console.log("before ajax");
+                    $.ajax({
+                        type: "POST",
+                        url: "queuenoView.jsp",
+                        data: viewData,
+                        timeout: 10000,
+                        success: function (data) {
+//                               console.log("print sent " + data.trim());
+                            console.log(data.trim());
+//                               respond = data;
+//                               if (data.trim() === "No Records")
+//                                 bootbox.alert("You got no report");
+
+                            $("div[lang=" + lang + "] #reportQueResult").html(data.trim());
+
+                            if ($("div[lang=" + lang + "] #checkReport").text() === "No Records")
+                            {
+                                bootbox.alert("Your Registration filed");
+                            } else {
+                                $("div[lang=" + lang + "] #fields").css("display", 'none');
+                                $("div[lang=" + lang + "] #reportQueResultContent").css("display", "block");
+                                $("div[lang=" + lang + "] #reportQueResult").css("display", "block");
+                            }
+
+                        },
+                        error: function (err) {
+                            console.log(err);
+                        }
+                    });
+                }
+            }
+            ;
+
+            $("div[lang=" + lang + "] #SaveQueue").click(function () {
+                $("div[lang=" + lang + "] #checkReport").text("");
+                var pdf = new jsPDF('p', 'mm', [74,52])
+                        , source = $("div[lang=" + lang + "] #reportQueResult")[0]
+                        , specialElementHandlers = {
+                            '#bypassme': function (element, renderer)
+                            {
+                                return true
+                            }
+                        }
+                margins = {
+                    top: 2,
+                    bottom: 3,
+                    left: 2,
+                    width:47
+                };
+                pdf.setFontSize(2);
+                pdf.fromHTML(
+                        source
+                        , margins.left
+                        , margins.top
+                        , {
+                            'width': margins.width
+                            , 'elementHandlers': specialElementHandlers
+                        },
+                        function (dispose) {
+                            pdf.save('queue-no_' + yyyyMMdd + '.pdf');
+                        },
+                        margins
+                        )
+            });
+
+
+
+
 //            
 //            
 //            
@@ -504,7 +614,7 @@ Author     : user
                         'createdBy': user_id,
                         'queue': selectedqueuename,
                         'docID': ''};
-                    console.log(datas);
+//                    console.log(datas);
                     $.ajax({
                         type: "POST",
                         url: "../../PMS/controller/registerqueue.jsp",
@@ -513,10 +623,8 @@ Author     : user
                         success: function (list) {
                             console.log(list);
                             if ($.trim(list) === "Success") {
-                                bootbox.alert("Patient has been register successfully", function () {
-                                    window.history.back();
-//                                    PrintLable(selectedqueue);
-                                });
+                                bootbox.alert("Patient has been register successfully");
+                                viewQueueReport(selectedqueuename);
 
                             } else if ($.trim(list) === "already") {
                                 bootbox.alert("Patient is already registered");

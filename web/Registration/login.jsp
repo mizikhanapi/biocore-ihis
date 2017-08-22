@@ -1,5 +1,8 @@
 <%@page import="dBConn.Conn"%>
 <%@page import="Config.Config"%>  
+
+<%@include file="../Entrance/validateSession.jsp" %>
+
 <%
 
     if (!(session.getAttribute("USER_IC") == null || session.getAttribute("USER_IC").equals(""))) {

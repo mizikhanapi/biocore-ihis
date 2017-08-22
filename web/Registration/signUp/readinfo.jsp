@@ -8,9 +8,10 @@
 <%@page import="java.util.ArrayList"%>
 <%@page import="org.apache.commons.lang3.StringUtils"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%
 
-    Config.getBase_url(request);
+<%@include file="../../Entrance/validateSession.jsp" %>
+
+<%    Config.getBase_url(request);
     Config.getFile_url(session);
 
     Conn conn = new Conn();
@@ -49,6 +50,7 @@
         <script>
 
             var lang = sessionStorage.getItem('lang');
+
             $(function () {
                 if (lang === "en") {
                     $("div[lang=ml]").css("display", 'none');
@@ -106,11 +108,11 @@
                         <label class="control-label " for="selectbasic">Please Select Gender</label>
                         <!--<div class="col-md-8">-->
 
-                        <div class="btn-group " data-toggle="buttons">
+                        <div class="btn-group genders" data-toggle="buttons">
 
                             <%                             for (int i = 0; i < dataGender.size(); i++) {%>
                             <label class="btn ">
-                                <input type="radio" name='gender' value="<%=dataGender.get(i).get(1)%>"><i class="fa fa-circle-o fa-2x"></i><i class="fa fa-dot-circle-o fa-2x"></i><span><%=dataGender.get(i).get(2)%></span>
+                                <input type="radio" name='gender' value="<%=dataGender.get(i).get(1)%>"><i class="fa fa-circle-o fa-2x"></i><i class="fa fa-dot-circle-o fa-2x"></i><span name="genders"><%=dataGender.get(i).get(2)%></span>
                             </label>
                             <%  }
                             %>
@@ -154,7 +156,9 @@
                         <%
                             for (int i = 0;
                                     i < dataNationality.size();
-                                    i++) {%>
+                                    i++) {
+
+                        %>
                         <option value="<%=dataNationality.get(i).get(1)%>"><%=dataNationality.get(i).get(2)%></option>
                         <%  }
                         %>
@@ -201,9 +205,22 @@
 
                         <div class="btn-group " data-toggle="buttons">
 
-                            <%                             for (int i = 0; i < dataGender.size(); i++) {%>
+                            <%                             for (int i = 0; i < dataGender.size(); i++) {
+
+                                    String genderName = dataGender.get(i).get(2).toString().trim();
+                                    if (genderName != null) {
+                                        if (genderName.equalsIgnoreCase("male")) {
+                                            genderName = "Lelaki";
+                                        } else if (genderName.equalsIgnoreCase("female")) {
+                                            genderName = "Perempuan";
+                                        } else if (genderName.equalsIgnoreCase("other")) {
+                                            genderName = "Lian";
+                                        }
+                                    }
+
+                            %>
                             <label class="btn ">
-                                <input type="radio" name='gender' value="<%=dataGender.get(i).get(1)%>"><i class="fa fa-circle-o fa-2x"></i><i class="fa fa-dot-circle-o fa-2x"></i><span><%=dataGender.get(i).get(2)%></span>
+                                <input type="radio" name='gender' value="<%=dataGender.get(i).get(1)%>"><i class="fa fa-circle-o fa-2x"></i><i class="fa fa-dot-circle-o fa-2x"></i><span><%=genderName%></span>
                             </label>
                             <%  }
                             %>
@@ -279,186 +296,186 @@
 
 
         <script type="text/javascript">
-                                        var guseric, gusername, gusergender, gusernationality, guseremail, guserphoneno,
-                                                guseroccupation, guserbirthday, userExist = false;
-                                        $("div[lang=" + lang + "] #submitSignup").on("click", function () {
+            var guseric, gusername, gusergender, gusernationality, guseremail, guserphoneno,
+                    guseroccupation, guserbirthday, userExist = false;
+            $("div[lang=" + lang + "] #submitSignup").on("click", function () {
 
-                                            signup();
+                signup();
 
-                                        });//on clcik submit
+            });//on clcik submit
 
-                                        $("div[lang=" + lang + "] #cancelSignup").on("click", function () {
+            $("div[lang=" + lang + "] #cancelSignup").on("click", function () {
 
-                                            window.history.back();
+                window.history.back();
 
-                                        });//on clcik cancel
-                                        
-                                        $("div[lang=" + lang + "] #txt_day").change(function () {
-                                            bdDayCahnged();
-                                        });
-                                        
-                                        $("div[lang=" + lang + "] #txt_month").change(function () {
-                                            bdMonthCahnged();
-                                        });
-                                        
-                                        $("div[lang=" + lang + "] #txt_year").change(function () {
-                                            bdYearCahnged();
-                                        });
-                                        
-                                        function bdDayCahnged()
-                                        {
-                                            var day = $("div[lang=" + lang + "] #txt_day").val();
+            });//on clcik cancel
 
-                                            if ($.isNumeric(day))
-                                            {
-                                                if (day < 0 || day > 31) {
-                                                    bootbox.alert("Wrong Day !!");
-                                                    $("div[lang=" + lang + "] #txt_day").focus();
-                                                }
-                                            } else {
-                                                bootbox.alert("Enter Numric Day !!");
-                                            }
-                                        }
-                                        ;
+            $("div[lang=" + lang + "] #txt_day").change(function () {
+                bdDayCahnged();
+            });
 
-                                        function bdMonthCahnged()
-                                        {
+            $("div[lang=" + lang + "] #txt_month").change(function () {
+                bdMonthCahnged();
+            });
 
-                                            var month = $("div[lang=" + lang + "] #txt_month").val();
+            $("div[lang=" + lang + "] #txt_year").change(function () {
+                bdYearCahnged();
+            });
 
-                                            if ($.isNumeric(month))
-                                            {
-                                                if (month < 0 || month > 12) {
-                                                    bootbox.alert("Wrong Month !!");
-                                                    $("div[lang=" + lang + "] #txt_month").focus();
-                                                }
-                                            } else {
-                                                bootbox.alert("Enter Numric Month !!");
-                                            }
-                                        }
-                                        ;
+            function bdDayCahnged()
+            {
+                var day = $("div[lang=" + lang + "] #txt_day").val();
 
+                if ($.isNumeric(day))
+                {
+                    if (day < 0 || day > 31) {
+                        bootbox.alert("Wrong Day !!");
+                        $("div[lang=" + lang + "] #txt_day").focus();
+                    }
+                } else {
+                    bootbox.alert("Enter Numric Day !!");
+                }
+            }
+            ;
 
+            function bdMonthCahnged()
+            {
 
-                                        $("div[lang=" + lang + "] #inputUserIC").change( function () {
-                                            icFiledchanges();
-                                        });
-                                        function icFiledchanges() {
-                                            var userIC;
-                                            userIC = $("div[lang=" + lang + "] #inputUserIC").val();
-                                            var data = {
-                                                userIC: userIC
-                                            };
-                                            if (userIC === "")
-                                            {
-                                                bootbox.alert("please Fill in the your IC");
-                                            } else {
-                                                //                       console.log("before ajax");
-                                                $.ajax({
-                                                    type: "POST",
-                                                    url: "../Controller/searchUser.jsp",
-                                                    data: data,
-                                                    timeout: 10000,
-                                                    success: function (data) {
-                                                        //                               console.log("in sucess");
-                                                        if (data.trim() === "NOT FOUND")
-                                                        {
-                                                            userExist = false;
-                                                            bootbox.alert("User Not Found");
-                                                        } else
-                                                        {
-                                                            userExist = true;
-                                                            //                                   console.log(data.trim());
-                                                            var splitData = String(data.trim()).split("|");
-                                                            console.log(splitData);
+                var month = $("div[lang=" + lang + "] #txt_month").val();
 
-                                                            gusername = splitData[2];
-                                                            gusergender = splitData[11];
-                                                            gusernationality = splitData[14];
-                                                            guseremail = splitData[35];
-                                                            guserphoneno = splitData[34];
-                                                            guserbirthday = splitData[10];
-                                                            guseric = splitData[4];
-                                                            //                                guseroccupation=splitData[7];
-                                                            $("div[lang=" + lang + "] #inputUserName").val(gusername);
-                                                            $("div[lang=" + lang + "] input[name=gender][value=" + gusergender + "]").prop('checked', true);
-                                                            $("div[lang=" + lang + "] #Usernational").val(gusernationality);
-                                                            $("div[lang=" + lang + "] #inputUserEmail").val(guseremail);
-                                                            $("div[lang=" + lang + "] #inputUserPhoneNo").val(guserphoneno);
-                                                            $("div[lang=" + lang + "] #inputUserLIC").val(guseric);
-                                                            var bdDate = new Date(guserbirthday);
-                                                            console.log(bdDate);
-                                                            $("div[lang=" + lang + "] #txt_year").val(bdDate.getFullYear());
-                                                            $("div[lang=" + lang + "] #txt_month").val(bdDate.getMonth() + 1);
-                                                            $("div[lang=" + lang + "] #txt_day").val(bdDate.getDate());
-                                                            //                            $("#inpuOccupation").val("");
-
-                                                            //                                   console.log(pmi_no +" " +user_name+" "+user_id);
-                                                        }
-                                                    },
-                                                    error: function (err) {
-                                                        console.log(err);
-                                                    }
-                                                });
-                                            }
-                                        }
-                                        ;
+                if ($.isNumeric(month))
+                {
+                    if (month < 0 || month > 12) {
+                        bootbox.alert("Wrong Month !!");
+                        $("div[lang=" + lang + "] #txt_month").focus();
+                    }
+                } else {
+                    bootbox.alert("Enter Numric Month !!");
+                }
+            }
+            ;
 
 
 
+            $("div[lang=" + lang + "] #inputUserIC").change(function () {
+                icFiledchanges();
+            });
+            function icFiledchanges() {
+                var userIC;
+                userIC = $("div[lang=" + lang + "] #inputUserIC").val();
+                var data = {
+                    userIC: userIC
+                };
+                if (userIC === "")
+                {
+                    bootbox.alert("please Fill in the your IC");
+                } else {
+                    //                       console.log("before ajax");
+                    $.ajax({
+                        type: "POST",
+                        url: "../Controller/searchUser.jsp",
+                        data: data,
+                        timeout: 10000,
+                        success: function (data) {
+                            //                               console.log("in sucess");
+                            if (data.trim() === "NOT FOUND")
+                            {
+                                userExist = false;
+                                bootbox.alert("User Not Found");
+                            } else
+                            {
+                                userExist = true;
+                                //                                   console.log(data.trim());
+                                var splitData = String(data.trim()).split("|");
+                                console.log(splitData);
 
-                                        function bdYearCahnged()
-                                        {
+                                gusername = splitData[2];
+                                gusergender = splitData[11];
+                                gusernationality = splitData[14];
+                                guseremail = splitData[35];
+                                guserphoneno = splitData[34];
+                                guserbirthday = splitData[10];
+                                guseric = splitData[4];
+                                //                                guseroccupation=splitData[7];
+                                $("div[lang=" + lang + "] #inputUserName").val(gusername);
+                                $("div[lang=" + lang + "] input[name=gender][value=" + gusergender + "]").prop('checked', true);
+                                $("div[lang=" + lang + "] #Usernational").val(gusernationality);
+                                $("div[lang=" + lang + "] #inputUserEmail").val(guseremail);
+                                $("div[lang=" + lang + "] #inputUserPhoneNo").val(guserphoneno);
+                                $("div[lang=" + lang + "] #inputUserLIC").val(guseric);
+                                var bdDate = new Date(guserbirthday);
+                                console.log(bdDate);
+                                $("div[lang=" + lang + "] #txt_year").val(bdDate.getFullYear());
+                                $("div[lang=" + lang + "] #txt_month").val(bdDate.getMonth() + 1);
+                                $("div[lang=" + lang + "] #txt_day").val(bdDate.getDate());
+                                //                            $("#inpuOccupation").val("");
 
-                                            var year = $("div[lang=" + lang + "] #txt_year").val();
-
-                                            if ($.isNumeric(year))
-                                            {
-                                                if (year < 1850) {
-                                                    bootbox.alert("Wrong Year !!");
-                                                    $("div[lang=" + lang + "] #txt_year").focus();
-                                                }
-                                            } else {
-                                                bootbox.alert("Enter Numric Year !!");
-                                            }
-                                        }
-                                        ;
+                                //                                   console.log(pmi_no +" " +user_name+" "+user_id);
+                            }
+                        },
+                        error: function (err) {
+                            console.log(err);
+                        }
+                    });
+                }
+            }
+            ;
 
 
-                                        function signup() {
-                                            var useric, userlic, username, usergender, usernationality, useremail, userphoneno,
-                                                    useroccupation, userpassword, userbirthday;
 
-                                            useric = $("div[lang=" + lang + "] #inputUserIC").val();
-                                            userlic = $("div[lang=" + lang + "] #inputUserLIC").val();
-                                            username = $("div[lang=" + lang + "] #inputUserName").val();
-                                            usergender = $("div[lang=" + lang + "] input[name='gender']:checked").val();
-                                            usernationality = $("div[lang=" + lang + "] #Usernational").val();
-                                            useremail = $("div[lang=" + lang + "] #inputUserEmail").val();
-                                            userphoneno = $("div[lang=" + lang + "] #inputUserPhoneNo").val();
-                                            userpassword = $("div[lang=" + lang + "] #inputUserPassword").val();
-                                            userbirthday = $("div[lang=" + lang + "] #txt_day").val() + "/" + $("div[lang=" + lang + "] #txt_month").val() + "/" + $("#div[lang=" + lang + "] txt_year").val();
-                                            useroccupation = $("div[lang=" + lang + "] #inpuOccupation").val();
 
-                                            if (useric === "") {
-                                                bootbox.alert("Fill in the User IC !");
-                                                $("div[lang=" + lang + "] #inputUserIC").focus();
-                                            } else if (username === "") {
-                                                bootbox.alert("Fill in the User Name !");
-                                                $("div[lang=" + lang + "] #inputUserName").focus();
-                                            } else if (containsNumber(username)) {
-                                                bootbox.alert("Unvalid Name, Contain Numbers !");
-                                                $("div[lang=" + lang + "] #inputUserName").focus();
-                                            } else if (!$("div[lang=" + lang + "] input[name='gender']:checked").val()) {
-                                                bootbox.alert("Select Gender !");
-                                                $("div[lang=" + lang + "] input[name='gender']").focus();
-                                            } else if (!isValidDate(userbirthday)) {
-                                                bootbox.alert("Wrong Birthday Date !");
-                                                $("div[lang=" + lang + "] #txt_day").focus();
-                                            } else if (usernationality === null) {
-                                                bootbox.alert("Select Nationality !");
-                                                $("div[lang=" + lang + "] #Usernational").focus();
-                                            }
+            function bdYearCahnged()
+            {
+
+                var year = $("div[lang=" + lang + "] #txt_year").val();
+
+                if ($.isNumeric(year))
+                {
+                    if (year < 1850) {
+                        bootbox.alert("Wrong Year !!");
+                        $("div[lang=" + lang + "] #txt_year").focus();
+                    }
+                } else {
+                    bootbox.alert("Enter Numric Year !!");
+                }
+            }
+            ;
+
+
+            function signup() {
+                var useric, userlic, username, usergender, usernationality, useremail, userphoneno,
+                        useroccupation, userpassword, userbirthday;
+
+                useric = $("div[lang=" + lang + "] #inputUserIC").val();
+                userlic = $("div[lang=" + lang + "] #inputUserLIC").val();
+                username = $("div[lang=" + lang + "] #inputUserName").val();
+                usergender = $("div[lang=" + lang + "] input[name='gender']:checked").val();
+                usernationality = $("div[lang=" + lang + "] #Usernational").val();
+                useremail = $("div[lang=" + lang + "] #inputUserEmail").val();
+                userphoneno = $("div[lang=" + lang + "] #inputUserPhoneNo").val();
+                userpassword = $("div[lang=" + lang + "] #inputUserPassword").val();
+                userbirthday = $("div[lang=" + lang + "] #txt_day").val() + "/" + $("div[lang=" + lang + "] #txt_month").val() + "/" + $("#div[lang=" + lang + "] txt_year").val();
+                useroccupation = $("div[lang=" + lang + "] #inpuOccupation").val();
+
+                if (useric === "") {
+                    bootbox.alert("Fill in the User IC !");
+                    $("div[lang=" + lang + "] #inputUserIC").focus();
+                } else if (username === "") {
+                    bootbox.alert("Fill in the User Name !");
+                    $("div[lang=" + lang + "] #inputUserName").focus();
+                } else if (containsNumber(username)) {
+                    bootbox.alert("Unvalid Name, Contain Numbers !");
+                    $("div[lang=" + lang + "] #inputUserName").focus();
+                } else if (!$("div[lang=" + lang + "] input[name='gender']:checked").val()) {
+                    bootbox.alert("Select Gender !");
+                    $("div[lang=" + lang + "] input[name='gender']").focus();
+                } else if (!isValidDate(userbirthday)) {
+                    bootbox.alert("Wrong Birthday Date !");
+                    $("div[lang=" + lang + "] #txt_day").focus();
+                } else if (usernationality === null) {
+                    bootbox.alert("Select Nationality !");
+                    $("div[lang=" + lang + "] #Usernational").focus();
+                }
 //                                                                else if (useroccupation === "") {
 //                                                                    bootbox.alert("Fill in user Occupation!");
 //                                                                    $("#inpuOccupation").focus();
@@ -475,176 +492,176 @@
 //                                                                    bootbox.alert("Not A Phone Number!");
 //                                                                    $("#inputUserPhoneNo").focus();
 //                                                                }
-                                            else if (userlic === "") {
-                                                bootbox.alert("Fill in the User IC !");
-                                                $("#div[lang=" + lang + "] inputUserLIC").focus();
-                                            } else if (userpassword === "") {
-                                                bootbox.alert("Fill in the User Password !");
-                                                $("div[lang=" + lang + "] #inputUserPassword").focus();
-                                            } else if (validPassword(userpassword))
-                                            {
+                else if (userlic === "") {
+                    bootbox.alert("Fill in the User IC !");
+                    $("#div[lang=" + lang + "] inputUserLIC").focus();
+                } else if (userpassword === "") {
+                    bootbox.alert("Fill in the User Password !");
+                    $("div[lang=" + lang + "] #inputUserPassword").focus();
+                } else if (validPassword(userpassword))
+                {
 
 
-                                                var bioData = {
-                                                    'userIC': useric,
-                                                    'userName': username,
-                                                    'userNationality': usernationality,
-                                                    'userGender': usergender,
-                                                    'userOccupation': useroccupation,
-                                                    'userEmail': useremail,
-                                                    'userPhoneNo': userphoneno,
-                                                    'userbirthday': userbirthday};
+                    var bioData = {
+                        'userIC': useric,
+                        'userName': username,
+                        'userNationality': usernationality,
+                        'userGender': usergender,
+                        'userOccupation': useroccupation,
+                        'userEmail': useremail,
+                        'userPhoneNo': userphoneno,
+                        'userbirthday': userbirthday};
 
-                                                var loginData = {
-                                                    'userIC': userlic,
-                                                    'userName': username,
-                                                    'userPassword': userpassword,
-                                                    'userEmail': useremail,
-                                                    'userPhoneNo': userphoneno
-                                                };
-                                                //                        console.log(bioData);
-                                                //                        console.log(loginData);
-                                                $.ajax({
-                                                    type: "POST",
-                                                    url: "../Controller/insertPatient.jsp",
-                                                    data: bioData,
-                                                    timeout: 3000,
-                                                    success: function (data) {
-                                                        //console.log(data.trim());
-                                                        $("div[lang=" + lang + "] #inputUserIC").val("");
-                                                        $("div[lang=" + lang + "] #inputUserLIC").val("");
-                                                        $("div[lang=" + lang + "] #inputUserName").val("");
-                                                        $("div[lang=" + lang + "] #UserGender").val("null");
-                                                        $("div[lang=" + lang + "] #Usernational").val("null");
-                                                        $("div[lang=" + lang + "] #inpuOccupation").val("");
-                                                        $("div[lang=" + lang + "] #inputUserEmail").val("");
-                                                        $("div[lang=" + lang + "] #inputUserPhoneNo").val("");
-                                                        $("div[lang=" + lang + "] #inputUserPassword").val("");
-                                                        $("div[lang=" + lang + "] #PMIbday").val("");
-                                                        $("div[lang=" + lang + "] #txt_year").val("");
-                                                        $("div[lang=" + lang + "] #txt_month").val("");
-                                                        $("div[lang=" + lang + "] #txt_day").val("");
+                    var loginData = {
+                        'userIC': userlic,
+                        'userName': username,
+                        'userPassword': userpassword,
+                        'userEmail': useremail,
+                        'userPhoneNo': userphoneno
+                    };
+                    //                        console.log(bioData);
+                    //                        console.log(loginData);
+                    $.ajax({
+                        type: "POST",
+                        url: "../Controller/insertPatient.jsp",
+                        data: bioData,
+                        timeout: 3000,
+                        success: function (data) {
+                            //console.log(data.trim());
+                            $("div[lang=" + lang + "] #inputUserIC").val("");
+                            $("div[lang=" + lang + "] #inputUserLIC").val("");
+                            $("div[lang=" + lang + "] #inputUserName").val("");
+                            $("div[lang=" + lang + "] #UserGender").val("null");
+                            $("div[lang=" + lang + "] #Usernational").val("null");
+                            $("div[lang=" + lang + "] #inpuOccupation").val("");
+                            $("div[lang=" + lang + "] #inputUserEmail").val("");
+                            $("div[lang=" + lang + "] #inputUserPhoneNo").val("");
+                            $("div[lang=" + lang + "] #inputUserPassword").val("");
+                            $("div[lang=" + lang + "] #PMIbday").val("");
+                            $("div[lang=" + lang + "] #txt_year").val("");
+                            $("div[lang=" + lang + "] #txt_month").val("");
+                            $("div[lang=" + lang + "] #txt_day").val("");
 
-                                                        //                                var num = parseInt(data);
-                                                        if (data.search("Existed") >= 0)
-                                                        {
-                                                            loginInser(loginData);
-                                                        } else {
-                                                            bootbox.alert("User not found, Please re-enter the your IC OR go to neareast Clinic or Hospital to register your information");
-                                                        }
+                            //                                var num = parseInt(data);
+                            if (data.search("Existed") >= 0)
+                            {
+                                loginInser(loginData);
+                            } else {
+                                bootbox.alert("User not found, Please re-enter the your IC OR go to neareast Clinic or Hospital to register your information");
+                            }
 
-                                                    },
-                                                    error: function (err) {
-                                                        console.log(err);
-                                                        bootbox.alert("Seems like system have problem in the system!");
-                                                    }
-                                                });
-                                            }
+                        },
+                        error: function (err) {
+                            console.log(err);
+                            bootbox.alert("Seems like system have problem in the system!");
+                        }
+                    });
+                }
 
-                                        }// sign up funtion
-                                        ;
+            }// sign up funtion
+            ;
 
-                                        function loginInser(loginData)
-                                        {
-                                            $.ajax({
-                                                type: "POST",
-                                                url: "../Controller/insertPatientLoginInfo.jsp",
-                                                data: loginData,
-                                                timeout: 3000,
-                                                success: function (data) {
-                                                    if (data.search("Existed") >= 0)
-                                                    {
-                                                        bootbox.alert("You are already registered, you can login to the system.");
-                                                    } else {
-                                                    }
-                                                },
-                                                error: function (err) {
-                                                    console.log(err);
-                                                    bootbox.alert("Seems like system have problem in the system!");
-                                                }
-                                            });
-                                        }
-                                        ;
-                                        function containsNumber(any) {
-                                            var alpha = /^[a-zA-Z-,]+(\s{0,1}[a-zA-Z-, ])*$/; //for sentence allow space
-                                            //var re = /^[A-Za-z]+$/; for one word only don't allow space
-                                            if (alpha.test(any))//contain no number
-                                                return false;
-                                            else               //comtain number
-                                                return true;
-                                        }
-                                        ;
+            function loginInser(loginData)
+            {
+                $.ajax({
+                    type: "POST",
+                    url: "../Controller/insertPatientLoginInfo.jsp",
+                    data: loginData,
+                    timeout: 3000,
+                    success: function (data) {
+                        if (data.search("Existed") >= 0)
+                        {
+                            bootbox.alert("You are already registered, you can login to the system.");
+                        } else {
+                        }
+                    },
+                    error: function (err) {
+                        console.log(err);
+                        bootbox.alert("Seems like system have problem in the system!");
+                    }
+                });
+            }
+            ;
+            function containsNumber(any) {
+                var alpha = /^[a-zA-Z-,]+(\s{0,1}[a-zA-Z-, ])*$/; //for sentence allow space
+                //var re = /^[A-Za-z]+$/; for one word only don't allow space
+                if (alpha.test(any))//contain no number
+                    return false;
+                else               //comtain number
+                    return true;
+            }
+            ;
 
-                                        function validateEmail(email)
-                                        {
-                                            //                     returns true if email is not correct
-                                            var re = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
+            function validateEmail(email)
+            {
+                //                     returns true if email is not correct
+                var re = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
 
-                                            return re.test(email);
-                                        }
-                                        ;
+                return re.test(email);
+            }
+            ;
 
-                                        // Validates that the input string is a valid date formatted as "yyyy/mm/dd"
-                                        function isValidDate(dateString)
-                                        {
-                                            // First check for the pattern \
-                                            // not correct always return false need edit for the number like 4/2/2
-                                            //            if(!/^\d{1,2}\/\d{1,2}\/\d{4}$/.test(dateString)) 
-                                            //            //                return false;
+            // Validates that the input string is a valid date formatted as "yyyy/mm/dd"
+            function isValidDate(dateString)
+            {
+                // First check for the pattern \
+                // not correct always return false need edit for the number like 4/2/2
+                //            if(!/^\d{1,2}\/\d{1,2}\/\d{4}$/.test(dateString)) 
+                //            //                return false;
 
-                                            // Parse the date parts to integers
-                                            var parts = dateString.split("/");
-                                            var day = parseInt(parts[0], 10);
-                                            var month = parseInt(parts[1], 10);
-                                            var year = parseInt(parts[2], 10);
-
-
-                                            // Check the ranges of month and year
-                                            if (year < 1000 || year > 3000 || month == 0 || month > 12)
-                                                return false;
-                                            var monthLength = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
-
-                                            // Adjust for leap years
-                                            if (year % 400 == 0 || (year % 100 != 0 && year % 4 == 0))
-                                                monthLength[1] = 29;
-
-                                            // Check the range of the day
-                                            return day > 0 && day <= monthLength[month - 1];
-                                        }
-                                        ;
+                // Parse the date parts to integers
+                var parts = dateString.split("/");
+                var day = parseInt(parts[0], 10);
+                var month = parseInt(parts[1], 10);
+                var year = parseInt(parts[2], 10);
 
 
-                                        function validPassword(password)
-                                        {
-                                            var re = /[0-9]/; //contain no number
-                                            if (!re.test(password)) {
-                                                bootbox.alert("Error: password must contain at least one number (0-9)!");
-                                                $("div[lang=" + lang + "] #inputUserPassword").focus();
-                                                return false;
-                                            }
-                                            re = /[a-z]/;   //contain no small alphbet 
-                                            if (!re.test(password)) {
-                                                bootbox.alert("Error: password must contain at least one lowercase letter (a-z)!");
-                                                $("div[lang=" + lang + "] #inputUserPassword").focus();
-                                                return false;
-                                            }
-                                            //                    re = /[A-Z]/;   //contain no capital alphbet 
-                                            //                    if(!re.test(password)) {
-                                            //                      bootbox.alert("Error: password must contain at least one uppercase letter (A-Z)!");
-                                            //                      $("#inputUserPassword").focus();
-                                            //                      return false;
-                                            //                    } 
-                                            //                    
-                                            //                    if(password.length <8) {
-                                            //                      bootbox.alert("Error: password must contain at least 8 Charachters!");
-                                            //                      $("#inputUserPassword").focus();
-                                            //                      return false;
-                                            //                    } 
-                                            return true;
-                                        }
-                                        ;
+                // Check the ranges of month and year
+                if (year < 1000 || year > 3000 || month == 0 || month > 12)
+                    return false;
+                var monthLength = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
 
-                                        //       });
+                // Adjust for leap years
+                if (year % 400 == 0 || (year % 100 != 0 && year % 4 == 0))
+                    monthLength[1] = 29;
+
+                // Check the range of the day
+                return day > 0 && day <= monthLength[month - 1];
+            }
+            ;
+
+
+            function validPassword(password)
+            {
+                var re = /[0-9]/; //contain no number
+                if (!re.test(password)) {
+                    bootbox.alert("Error: password must contain at least one number (0-9)!");
+                    $("div[lang=" + lang + "] #inputUserPassword").focus();
+                    return false;
+                }
+                re = /[a-z]/;   //contain no small alphbet 
+                if (!re.test(password)) {
+                    bootbox.alert("Error: password must contain at least one lowercase letter (a-z)!");
+                    $("div[lang=" + lang + "] #inputUserPassword").focus();
+                    return false;
+                }
+                //                    re = /[A-Z]/;   //contain no capital alphbet 
+                //                    if(!re.test(password)) {
+                //                      bootbox.alert("Error: password must contain at least one uppercase letter (A-Z)!");
+                //                      $("#inputUserPassword").focus();
+                //                      return false;
+                //                    } 
+                //                    
+                //                    if(password.length <8) {
+                //                      bootbox.alert("Error: password must contain at least 8 Charachters!");
+                //                      $("#inputUserPassword").focus();
+                //                      return false;
+                //                    } 
+                return true;
+            }
+            ;
+
+            //       });
 
         </script>
 
