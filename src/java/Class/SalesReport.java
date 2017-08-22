@@ -143,10 +143,12 @@ public class SalesReport extends HttpServlet {
             String reportDate = "";
             if (strDay == null){
                 temp = "Month";
-                reportDate = Month.getFullLetterMonth(strMon) + " " + strYear + "\n\n";
+                //reportDate = Month.getFullLetterMonth(strMon) + " " + strYear + "\n\n";
+                reportDate="";
             } else{
                 temp = "Date";
-                reportDate = strDay + " " + Month.getFullLetterMonth(strMon) + " " + strYear + "\n\n";
+                //reportDate = strDay + " " + Month.getFullLetterMonth(strMon) + " " + strYear + "\n\n";
+                reportDate="";
             }
             
             PdfPCell cell41 = new PdfPCell(new Phrase("Report " + temp + " : ", rectem));
