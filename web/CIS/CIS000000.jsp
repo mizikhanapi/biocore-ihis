@@ -270,9 +270,10 @@
         <%@ include file="queue/QueueModal.jsp" %> 
         <%@ include file="search/SearchModal.jsp" %>
         <%@ include file="setting/settingModal.jsp" %>
-
-        <%@ include file="CIS01/CIS0101.jsp" %>
-        <%@ include file="CIS01/CIS010001.jsp" %> 
+        
+         <jsp:include page="CIS01/CIS0101.jsp"/> 
+        
+      
 
         <%@ include file="CIS02/CIS020001.jsp" %> 
         <%@ include file="CIS02/CIS020002.jsp" %> 

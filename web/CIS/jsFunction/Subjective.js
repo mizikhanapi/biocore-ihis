@@ -110,6 +110,8 @@ $(document).ready(function () {
     /// ----------------------------------------------------------------------------------------------------------------------------------------------/////;
     $('#acceptBtn').click(function (e) {
         e.preventDefault();
+        var search_by = $('input[name="rCISSubCCNSearchType"]').val();
+       
         var problem = $('#tCISSubCCNHFCSearch').val();
         var Mild = $('#Mild').val();
         var Site = $('#Site').val();
@@ -120,6 +122,9 @@ $(document).ready(function () {
         var ccnCode = $('#ccnCode').val();
         notes += "CCN|" + getDate() + "|^" + ccnCode + "^" + problem + "^^" + Mild + "|<cr>\n";
         var $items = $('#codeCCN, #Mild, #Site, #duration, #sdur, #Laterality, #Comment,#ccnCode');
+        if(search_by === "P"){
+            problem = $('#tCISSubCCNHFCSearchPersonalised').val();
+        }
         var obj1 = {
             Acode:"CCN",
             problem:problem
@@ -141,6 +146,8 @@ $(document).ready(function () {
             $("#ccnCode").val("");
             $("#CIS01000001").modal('toggle');
         }
+        
+        console.log(_data);
         
 
     });

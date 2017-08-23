@@ -18,9 +18,20 @@
                             <div class="form-group">
                                 <input type="hidden" name="ccn" id="codeCCN" class="form-control input-lg" value="CCN" tabindex="4">
                             </div>
+                            <div class="col-md-12">
+                                <div class="col-md-11">
+                                    <label>Search From : </label>
+                                    <label class="radio-inline"><input type="radio" name="rCISSubCCNSearchType" value="P" >Personalised</label>
+                                    <label class="radio-inline"><input type="radio" name="rCISSubCCNSearchType" value="CT" checked="">Common Term</label>
+                                    <input class="form-control input-lg" type="hidden" name="tCISSUBCodeType"  id="tCISSUBCodeType"  value="CCN" tabindex="4" readonly="">
+                                    
+                                </div>
+                                <div class="col-md-1"><button class="btn btn-primary " id="btnCISSubCCNAddPersonalised" style="padding-left: 10px"><i class="fa fa-plus" aria-hidden="true"> </i></button></div>
+                            </div>
                             <div class="form-group">
                                
-                                <input class="form-control input-lg" type="text"  id="tCISSubCCNHFCSearch" placeholder="Type to search..." data-search-by-word="true" onkeypress="return blockSpecialChar(event)">
+                                <input class="form-control input-lg" type="text"  id="tCISSubCCNHFCSearch" placeholder="Type to search Common Term..." data-search-by-word="true" onkeypress="return blockSpecialChar(event)">
+                                <input class="form-control input-lg" type="text"  id="tCISSubCCNHFCSearchPersonalised" placeholder="Type to search Personalised..." data-search-by-word="true" onkeypress="return blockSpecialChar(event)">
                                 <div id="tCISSubCCNHFCSearchLoading" ></div>
                                 <input class="form-control input-lg" type="hidden" name="problem"  id="problem" placeholder="Please Type Chief Complain" tabindex="4">
                                 <div id="match50"></div>
@@ -973,21 +984,23 @@
         </div>
         <!--End Update Disability-->
         
-        <script type="text/javascript">
-//        $(document).ready(function(){
-        </script>
         <script src="jsFunction/SearchClinicalTerm.js"></script>
+      
         <script type="text/javascript">
                 
             searching("tCISSubCCNHFCSearch","tCISSubCCNHFCSearchLoading","search/ResultCCNSearch.jsp","ccnCode","search/ResultCCNSearchCode.jsp");
+            searching("tCISSubCCNHFCSearchPersonalised","tCISSubCCNHFCSearchLoading","search/ResultCCNPersonaliseSearch.jsp","ccnCode","search/ResultCCNPersonaliseSearchCode.jsp");
             searching("tCISSubPMHSearch","tCISSubPMHSearchLoading","search/ResultPMHSearch.jsp","codePMH","search/ResultPMHSearchCode.jsp");
             searching("tCISSubFMHSearch","tCISSubFMHSearchLoading","search/ResultPMHSearch.jsp","fmhCode","search/ResultPMHSearchCode.jsp");
             searching("tCISSubSOHSearch","tCISSubSOHSearchLoading","search/ResultSOHSearch.jsp","codeSOH","search/ResultSOHSearchCode.jsp");
             searching("tCISSubALGSearch","tCISSubALGSearchLoading","search/ResultALGSearch.jsp","codeALG","search/ResultALGSearchCode.jsp");
             searching("tCISSubIMUSearch","tCISSubIMUSearchLoading","search/ResultIMUSearch.jsp","codeIMU","search/ResultIMUSearchCode.jsp");
             searching("tCISSubDABSearch","tCISSubDABSearchLoading","search/ResultDABSearch.jsp","codeDAB","search/ResultDABSearchCode.jsp");
+            
+            
 //        });
         </script>
+          <script src="jsFunction/CIS0101.js"></script>
 
 
 
