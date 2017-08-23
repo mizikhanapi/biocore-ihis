@@ -131,6 +131,7 @@
         </div>
         <div  id="modalSaya"><%@include file = "AppointmentModal.jsp" %></div>
         <div id="modalSaya2"><%@include file = "QueueModal.jsp" %></div>
+        <div id="modalQueueNumberSaya"><%@include file = "queueNumberModal.jsp" %></div>
 
 
 
@@ -138,7 +139,19 @@
         <!-- header -->
 
         <script>
-
+            function printReport2(divID1)
+                {
+                    var popupWin = window.open('', '_blank');
+                    popupWin.document.open();
+                    popupWin.document.write('<html><head><style type="text/css" media="print">@page{margin:0mm;}</style></head><body onload="window.print()">' + divID1 +'</body></html>');
+                    popupWin.document.close();
+                }
+            $("#queueNumberModal #maintainQN #queueNumberPrint").on('click',function(){
+                
+                var div = $("#queueNumberModal #maintainQN #divQueueNo").html();
+                console.log(div);
+                printReport2(div);
+            });
 
 
             $('a[data-toggle="tab"]').click(function (e) {

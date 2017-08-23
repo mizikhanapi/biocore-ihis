@@ -21,6 +21,7 @@
     String hfc = request.getParameter("hfc");
     String dis = request.getParameter("dis");
     String sub = request.getParameter("sub");
+    String initial = request.getParameter("initial");
     String checkData = "select queue_type from pms_queue_name where queue_type='"+code+"' and queue_name='"+name+"' and hfc_cd='"+hfc+"' and discipline_code='"+dis+"'";
     String sql = "";
     Boolean operation = false;
@@ -28,7 +29,7 @@
     
     resultCheck = conn.getData(checkData);
     if(resultCheck.size() < 1){
-        sql = "insert into pms_queue_name( queue_type,queue_name,queue_description,user_id,quota,status,created_by,created_date,hfc_cd,discipline_code,subdiscipline_code) values('"+code+"','"+name+"','"+desc+"','"+userid+"','"+quota+"','"+status+"','"+createdBy+"',NOW(),'"+hfc+"','"+dis+"','"+sub+"');";
+        sql = "insert into pms_queue_name( queue_type,queue_name,queue_description,user_id,quota,status,created_by,created_date,hfc_cd,discipline_code,subdiscipline_code,initial_queue_no) values('"+code+"','"+name+"','"+desc+"','"+userid+"','"+quota+"','"+status+"','"+createdBy+"',NOW(),'"+hfc+"','"+dis+"','"+sub+"','"+initial+"');";
         operation = rmic.setQuerySQL(conn.HOST, conn.PORT, sql);
         
         if(operation && code.equalsIgnoreCase("PN")){
@@ -37,7 +38,7 @@
         }
         
     }else{
-        sql = "update pms_queue_name set queue_description = '"+desc+"',user_id = '"+userid+"',quota ='"+quota+"',status = '"+status+"',created_by ='"+createdBy+"',created_date = NOW(),subdiscipline_code='"+sub+"' where queue_type = '"+code+"' and queue_name='"+name+"' and hfc_cd='"+hfc+"' and discipline_code='"+dis+"'";
+        sql = "update pms_queue_name set queue_description = '"+desc+"',user_id = '"+userid+"',quota ='"+quota+"',status = '"+status+"',created_by ='"+createdBy+"',created_date = NOW(),subdiscipline_code='"+sub+"',initial_queue_no = '"+initial+"' where queue_type = '"+code+"' and queue_name='"+name+"' and hfc_cd='"+hfc+"' and discipline_code='"+dis+"'";
         operation = rmic.setQuerySQL(conn.HOST, conn.PORT, sql);
     }
     

@@ -60,7 +60,7 @@
     String quota = "SELECT count(pmi_no) from pms_episode where date(episode_date) = '" + now + "' and (status = '5' or status = '0' or status = '2');";
     ArrayList<ArrayList<String>> quotaNum = conn.getData(quota);
 
-    String quotaFromQueue = "SELECT quota from pms_queue_name where queue_name = '" + queue_name1 + "'";
+    String quotaFromQueue = "SELECT quota,initial_queue_no from pms_queue_name where queue_name = '" + queue_name1 + "'";
     ArrayList<ArrayList<String>> quotaNumFromQueue = conn.getData(quotaFromQueue);
 
     //String testInsert = "insert into pms_episode(pmi_no)values('"+pmi+"')";
@@ -81,12 +81,13 @@
     } else {
         int totalQuota = Integer.parseInt(quotaNum.get(0).get(0));
         int totalFromQuota = Integer.parseInt(quotaNumFromQueue.get(0).get(0));
+        int initialQueueNumber = Integer.parseInt(quotaNumFromQueue.get(0).get(1));
         if (totalQuota <= totalFromQuota) {
             String findQueueNo = "select last_queue_no from pms_last_queue_no where hfc_cd ='" + hfc + "' and queue_name ='" + queue_name1 + "' and episode_date like '%" + now + "%';";
             ArrayList<ArrayList<String>> numberQueue = conn.getData(findQueueNo);
             if (numberQueue.size() < 1) {
-                queueSql = "insert into pms_last_queue_no(hfc_cd,queue_name,episode_date,last_queue_no,created_by,created_date)values('" + hfc + "','" + queue_name1 + "','" + epiDate + "','1','" + createdBy + "',NOW());";
-                newQueueNo = queue_now + 1;
+                newQueueNo = initialQueueNumber + 1;
+                queueSql = "insert into pms_last_queue_no(hfc_cd,queue_name,episode_date,last_queue_no,created_by,created_date)values('" + hfc + "','" + queue_name1 + "','" + epiDate + "','"+newQueueNo+"','" + createdBy + "',NOW());";
             } else {
                 queue_now = Integer.valueOf(numberQueue.get(0).get(0));
                 newQueueNo = queue_now + 1;
@@ -99,7 +100,7 @@
             rmic.setQuerySQL(conn.HOST, conn.PORT, insertEpisode);
             rmic.setQuerySQL(conn.HOST, conn.PORT, insertPatientQueue);
             rmic.setQuerySQL(conn.HOST, conn.PORT, queueSql);
-            out.print("Success");
+            out.print("Success|"+newQueueNo+"|"+queue_now+"|"+epiDate);
         }else if(totalQuota > totalFromQuota){
             out.print("outQuota");
         }

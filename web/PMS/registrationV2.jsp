@@ -59,6 +59,7 @@
         <div id="searchPatientModule"><%@include file = "search/searchPatient.jsp" %></div>
         <hr class="pemisah" />
         <h4>Basic Info</h4>
+<!--        <button class="btn btn-success pull-right" data-toggle="modal" data-target="#queueNumberModal"><i class="fa fa-plus"></i>&nbsp; Add Next Of Kin Information</button></h4>-->
 
         <form class="form-horizontal" name="myForm2" id="myForm2">
             <div class="row">

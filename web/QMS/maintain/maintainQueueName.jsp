@@ -45,6 +45,7 @@
         var rowId = row.find("#id").text();
         var rowDesc = row.find("#desc").text();
         var rowQuota = row.find("#quota").text();
+        var rowInitial = row.find("#initialNo").text();
         var rowStatus = row.find("#status23").text();
         var rowStaffNameN = row.find("#idName").text();
         //console.log(row);
@@ -65,6 +66,7 @@
         $('#QnameCode').val(rowName);
         $('#QnameDes').val(rowDesc);
         $('#typeQuota').val(rowQuota);
+        $('#typeInitial').val(rowInitial);
         $('#status').val(rowStatus);
 
 

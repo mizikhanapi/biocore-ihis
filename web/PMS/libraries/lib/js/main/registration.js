@@ -297,15 +297,29 @@ $('#registerQueue').click(function () {
                         success: function (list) {
                             console.log(list);
                             $body.removeClass("loading");
-                            if ($.trim(list) === "Success") {
+                            var array_list = String(list).split("|");
+                            if ($.trim(array_list[0]) === "Success") {
 
-                                bootbox.alert("Patient has been register successfully");
-                                $("#myForm2")[0].reset();
-                                $('#select-0').hide();
-                                $('#select-1').hide();
-                                $('select[id=select-2]').hide();
-                            } else if ($.trim(list) === "already") {
+                                //bootbox.alert("Patient has been register successfully");
+                                bootbox.alert({
+                                    message: "Patient has been register successfully",
+                                    callback: function () {
+                                        $("#myForm2")[0].reset();
+                                        $('#select-0').hide();
+                                        $('#select-1').hide();
+                                        $('select[id=select-2]').hide();
+                                        $("#queueNumberModal").modal('show');
+                                        $("#queueNumberModal #maintainQN #noAnda").html("NO. ANDA : "+$.trim(array_list[1]));
+                                        $("#queueNumberModal #maintainQN #noSekarang").html("NO. SEKARANG : "+$.trim(array_list[2]));
+                                        $("#queueNumberModal #maintainQN #tarikh").html("TARIKH : "+$.trim(array_list[3]));
+                                    }
+                                });
+
+
+                            } else if ($.trim(array_list[0]) === "already") {
                                 bootbox.alert("Patient is already registered");
+                            } else if ($.trim(array_list[0]) === "outQuota") {
+                                bootbox.alert("<h3>Quota for this queue is over limit,choose another queue</h3>");
                             }
                         }, error: function () {
                             bootbox.alert("There is an error!");

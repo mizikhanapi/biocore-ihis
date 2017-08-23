@@ -86,7 +86,12 @@
                             <input type="text" class="form-control" placeholder="Quota" id="typeQuota" maxlength="7">
                         </div>
                     </div>
-
+                    <div>
+                        <div><label>Inital Queue*: </label></div>
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Initial" id="typeInitial" maxlength="7">
+                        </div>
+                    </div>        
 
                     <div>
                         <div><label>Status: </label></div>
@@ -185,12 +190,13 @@
         var uid =  $('#QNameCD').val();
         console.log("userid when updated" + uid);
         var quota = $('#typeQuota').val();
+        var initial = $("#typeInitial").val();
         
         if(code==="PN"){
             name=$('#QName').val();
         }
 
-        if (code === "" || name === "" || name==null || quota==="" || (code==="PN" && (uid==null || uid==="") ) )  {
+        if (code === "" || name === "" || name==null || quota==="" || initial==="" || (code==="PN" && (uid==null || uid==="") ) )  {
             bootbox.alert("Please Fill in the Compulsory input");
         } else {
             var B2 = $('#QName').val();
@@ -208,7 +214,8 @@
                 hfc : hfc,
                 status : stat,
                 dis : dis,
-                sub : sub
+                sub : sub,
+                initial : initial
             };
             $.ajax({
                 type: "post",

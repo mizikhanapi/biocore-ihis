@@ -16,8 +16,8 @@
     String disN = session.getAttribute("DISCIPLINE_CODE").toString();
 
     //                                                                                      DATE_FORMAT(n.created_date,'%d/%m/%Y')
-    //                      0               1               2                   3                 4        5        6                           7                       8           9                  10               11           12           13  
-    String sql = "select n.queue_type,n.queue_name,n.queue_description,ifnull(n.user_id, '-'),n.quota,n.status,n.created_by, DATE_FORMAT(n.created_date,'%d/%m/%Y'),n.hfc_cd,d.discipline_name,s.subdiscipline_name,h.hfc_name,x.user_name, creator.user_name "
+    //                      0               1               2                   3                 4        5        6                           7                       8           9                  10               11           12           13                 14
+    String sql = "select n.queue_type,n.queue_name,n.queue_description,ifnull(n.user_id, '-'),n.quota,n.status,n.created_by, DATE_FORMAT(n.created_date,'%d/%m/%Y'),n.hfc_cd,d.discipline_name,s.subdiscipline_name,h.hfc_name,x.user_name, creator.user_name,n.initial_queue_no "
             + " from pms_queue_name n "
             + "left join adm_users x on x.user_id = n.user_id " //aku tukar inner jadi left untuk test.
             + "left join adm_users creator on creator.user_id=n.created_by "
@@ -37,6 +37,7 @@
     <th hidden></th>
     <th>Description</th>
     <th>Quota</th>
+    <th>Initial</th>
     <th>Status</th>
     <th>Modify by</th>
     <th>Modify date</th>
@@ -62,6 +63,7 @@
         <td id="id" hidden><%=dataQN.get(i).get(3)%></td>
         <td id="desc"><%=dataQN.get(i).get(2)%></td>
         <td id="quota"><%=dataQN.get(i).get(4)%></td>
+        <td id="initialNo"><%=dataQN.get(i).get(14)%></td>
         <td id="status23"><%=dataQN.get(i).get(5)%></td>
         <td id="createdBy">(<%=dataQN.get(i).get(6)%>) <%=dataQN.get(i).get(13)%></td>
         <td id="createdDate"><%=dataQN.get(i).get(7)%></td>
