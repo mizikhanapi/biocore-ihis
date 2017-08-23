@@ -40,7 +40,7 @@
     dataDiscip = conn.getData(sql);
     
     String disVal = dataDiscip.get(0).get(1)+"|"+dataDiscip.get(0).get(0)+"|"+dataDiscip.get(0).get(2)+"|"+dataDiscip.get(0).get(3);
-
+    //String disVal="";
     // status 0 = public
     // status 1 = universiti
     // status bole dapat kat session
@@ -68,7 +68,7 @@
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="textinput">PMI No. *</label>
                         <div class="col-md-6">
-                            <input id="pmino" name="pmino" type="text" placeholder=" " readonly class="form-control input-md">                        </div>
+                            <input id="pmino" name="pmino" type="text" placeholder=" " readonly class="form-control input-md"></div>
                     </div>
 
                     <!-- Text input-->
@@ -182,7 +182,7 @@
                         <label class="col-md-4 control-label" for="selectbasic">Please select the Queue *</label>
 
                         <label class="col-md-4 control-label" for="selectbasic"></label>
-                        <div class="col-md-6">
+                        <div class="col-md-6" id="selectQPMS">
                             <label for="radios-0">
                                 <input type="radio" name="radios" id="radios-0" value="Consultant Room">
                                 Consultant Room&nbsp;
