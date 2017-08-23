@@ -65,12 +65,12 @@
         <tr>
             <td style="text-align: left; font-weight: 400; width: 5%; font-size:12px;">
 
-                <span id="qno_<%=i%>" style="    
+                <strong><span id="qno_<%=i%>" style="    
                       background: #58C102;
                       padding: 5px 10px;
                       margin-right: 30px;
                       font-weight: 500;
-                      color: #fff; font-size: 80px;"><strong><%=d.get(i).get(2)%></strong></span></td>
+                      color: #fff; font-size: 80px;"><%=d.get(i).get(2)%></span></strong></td>
             <td style="text-align: left; font-weight: 400; padding: 30px 0; font-size: 81px;"><span id="name_<%=i%>"><strong><%=d.get(i).get(1)%></strong></span></td>
             <td style="text-align: right;">
                 <p style="margin-bottom: 3px; font-weight: 400;">Room No</p>
@@ -96,15 +96,18 @@
                     });
 
                     var qno = $("#qno_<%=i%>").html();
+                    //console.log(qno);
                     var qname = $("#qname_<%=i%>").html();
                     qname = qname.toLowerCase().replace(/\b[a-z]/g, function (letter) {
                         return letter.toUpperCase();
                     });
                     //$("#view_VS").load("libraries/header.html");
                     //alert(qno);
-                    qno = Number(qno)+Number(initial);
+                    var qno1 = Number(qno)+Number(initial);
                     //alert(qno);
-                    $("#view_VS").load("voice_call.jsp?idResult=" + qno+"&room="+qname);
+                    $("#view_VS").load("voice_call.jsp?idResult=" + qno1+"&room="+qname);
+                    //console.log(qno1);
+                    //console.log(qname);
                 </script>   
                 <%
                 } else if (lang.equals("2")) {
