@@ -60,14 +60,14 @@
     String quota = "SELECT count(pmi_no) from pms_episode where date(episode_date) = '" + now + "' and (status = '5' or status = '0' or status = '2');";
     ArrayList<ArrayList<String>> quotaNum = conn.getData(quota);
 
-    String quotaFromQueue = "SELECT quota,initial_queue_no from pms_queue_name where queue_name = '" + queue_name1 + "'";
+    String quotaFromQueue = "SELECT quota,initial_queue_no from pms_queue_name where queue_name = '" + queue_name1 + "' and hfc_cd='"+hfc+"' and discipline_code = '"+disCode+"'";
     ArrayList<ArrayList<String>> quotaNumFromQueue = conn.getData(quotaFromQueue);
 
     //String testInsert = "insert into pms_episode(pmi_no)values('"+pmi+"')";
-    String isAlreadyRegister = "select pmi_no from pms_episode where pmi_no = '" + pmi + "' and (status = '5' or status = '0' or status = '2') and date(episode_date) = '" + now + "';";
+    String isAlreadyRegister = "select pmi_no from pms_episode where pmi_no = '" + pmi + "' and (status = '5' or status = '0' or status = '2') and date(episode_date) = '" + now + "' and health_facility_code ='"+hfc+"';";
     ArrayList<ArrayList<String>> alreadyRegis = conn.getData(isAlreadyRegister);
 
-    String sqlRoom = "select room_no from adm_users where user_id='" + docID + "'";
+    String sqlRoom = "select room_no from adm_users where user_id='" + docID + "' and health_facility_code ='"+hfc+"'";
     ArrayList<ArrayList<String>> dataRoom = conn.getData(sqlRoom);
     if (dataRoom.size() > 0) {
         roomNo = dataRoom.get(0).get(0);
@@ -83,15 +83,15 @@
         int totalFromQuota = Integer.parseInt(quotaNumFromQueue.get(0).get(0));
         int initialQueueNumber = Integer.parseInt(quotaNumFromQueue.get(0).get(1));
         if (totalQuota <= totalFromQuota) {
-            String findQueueNo = "select last_queue_no from pms_last_queue_no where hfc_cd ='" + hfc + "' and queue_name ='" + queue_name1 + "' and episode_date like '%" + now + "%';";
+            String findQueueNo = "select last_queue_no from pms_last_queue_no where hfc_cd ='" + hfc + "' and queue_name ='" + queue_name1 + "' and episode_date like '%" + now + "%' and discipline_cd = '"+disCode+"';";
             ArrayList<ArrayList<String>> numberQueue = conn.getData(findQueueNo);
             if (numberQueue.size() < 1) {
                 newQueueNo = initialQueueNumber + 1;
-                queueSql = "insert into pms_last_queue_no(hfc_cd,queue_name,episode_date,last_queue_no,created_by,created_date)values('" + hfc + "','" + queue_name1 + "','" + epiDate + "','"+newQueueNo+"','" + createdBy + "',NOW());";
+                queueSql = "insert into pms_last_queue_no(hfc_cd,queue_name,episode_date,last_queue_no,created_by,created_date,discipline_cd,subdiscipline_cd)values('" + hfc + "','" + queue_name1 + "','" + epiDate + "','"+newQueueNo+"','" + createdBy + "',NOW(),'"+disCode+"','"+subDis+"');";
             } else {
                 queue_now = Integer.valueOf(numberQueue.get(0).get(0));
                 newQueueNo = queue_now + 1;
-                queueSql = "update pms_last_queue_no set last_queue_no='" + newQueueNo + "' where hfc_cd='" + hfc + "' and queue_name ='" + queue_name1 + "' and episode_date like '%" + now + "%' ;";
+                queueSql = "update pms_last_queue_no set last_queue_no='" + newQueueNo + "' where hfc_cd='" + hfc + "' and queue_name ='" + queue_name1 + "' and episode_date like '%" + now + "%' and discipline_cd = '"+disCode+"';";
             }
             insertPatientQueue = "insert into pms_patient_queue(hfc_cd,queue_name,episode_date,pmi_no,queue_no,queue_type,status,patient_category,created_by,created_date)values('" + hfc + "','" + queue_name1 + "','" + epiDate + "','" + pmi + "','" + newQueueNo + "','" + comTy + "','0','001','" + createdBy + "',NOW());";
             insertEpisode = "INSERT INTO pms_episode(PMI_NO,EPISODE_DATE,NAME,NEW_IC_NO,OLD_IC_NO,ID_TYPE,ID_NO,RN_NO,PATIENT_CATEGORY_CODE,VISIT_TYPE_CODE,EMERGENCY_TYPE_CODE," + "ELIGIBILITY_CATEGORY_CODE,ELIGIBILITY_TYPE_CODE,DISCIPLINE_CODE,SUBDISCIPLINE_CODE,COMMON_QUEUE,PRIORITY_GROUP_CODE,POLICE_CASE,COMMUNICABLE_DISEASE_CODE,NATURAL_DISASTER_CODE,DOC_TYPE,GUARDIAN_IND,REFERENCE_NO,GROUP_GUARDIAN,GL_EXPIRY_DATE,EPISODE_TIME,STATUS,HEALTH_FACILITY_CODE,queue_type,queue_name,queue_no)"
