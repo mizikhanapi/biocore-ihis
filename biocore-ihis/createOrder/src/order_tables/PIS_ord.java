@@ -34,12 +34,13 @@ public class PIS_ord {
                 All_Seq_no allSeq = new All_Seq_no();
                         allSeq.genSeq(msh.getSendingFacilityCode(), msh.getSendingFacilityDis(), msh.getSendingFacilitySubDis(), "PIS");
                 Date date = new Date();
+                int sizePIS = pis.size();
                 String sql_pis_master = "INSERT INTO pis_order_master ("
                         + "order_no, "
                         + "pmi_no,"
                         + " txn_type,"
                         + " health_facility_code,"
-                        + " episode_code,"
+                        + " episode_date,"
                         + " ENCOUNTER_DATE,"
                         + " order_date,"
                         + " order_by,"
@@ -47,14 +48,14 @@ public class PIS_ord {
                         + " order_to,"
                         + " hfc_from,"
                         + " hfc_to,"
-                        //+ " spub_no,"
                         + " keyin_by,"
-                        //+ " total_order,"
                         + " status,"
                         + " order_status,"
                         + " discipline_code,"
                         + "txn_date,"
-                        + "subdiscipline_cd) values "
+                        + "subdiscipline_cd,"
+                        + "spub_no,"
+                        + "total_order) values "
                         + "('" + allSeq.getSeq() + "',"
                         + "'" + t.getPmi_no() + "',"
                         + "'" + orcs.get(1).get(0) + "',"
@@ -74,7 +75,9 @@ public class PIS_ord {
                         + "'0',"
                         + "'" + orcs.get(13).get(0) + "',"
                         + "'" + dateFormat.format(date) + "',"
-                        + "'"+msh.getSendingFacilitySubDis()+"')";
+                        + "'"+msh.getSendingFacilitySubDis()+"',"
+                        + "0,"
+                        + "'"+sizePIS+"')";
                 try {
 
                     status_pis_order_master = rc.setQuerySQL(Config.ipAddressServer, Config.portServer, sql_pis_master);
@@ -100,14 +103,11 @@ public class PIS_ord {
                                     + " duration, "
                                     + "order_status,"
                                     + " qty_ordered,"
-                                    //+ " qty_supplied,"
-                                    // + " supplied_oum,"
-                                    //+ " qty_dispensed,"
-                                    //+ " dispense_oum, "
                                     + "status"
-                                    //+ " drug_dosage_order_uom,"
-                                    //+ " drug_selling_price"
-                                    + ",txn_date)"
+                                    + ",txn_date,"
+                                    + "supplied_oum,"
+                                    + "dispense_oum,"
+                                    + "drug_dosage_order_uom)"
                                     + " values ("
                                     + "'" + allSeq.getSeq() + "',"
                                     + "'" + piss.get(2).get(0) + "',"
@@ -121,14 +121,12 @@ public class PIS_ord {
                                     + "'" + piss.get(10).get(0) + "',"
                                     + "'0',"
                                     + "'" + piss.get(11).get(0) + "',"
-                                    // + "'0',"
-                                    //+ "'-',"
-                                    // + "'0',"
                                     + "'0'"
-                                    //+ "'-',"
-                                    //+ "'1'"
                                     + ","
-                                    + "'" + dateFormat.format(date2) + "')";
+                                    + "'" + dateFormat.format(date2) + "',"
+                                    + "'-',"
+                                    + "'-',"
+                                    + "'-')";
                             try {
                                 status_pis_order_detail = rc.setQuerySQL(Config.ipAddressServer, Config.portServer, sql_pis_detail);
                                 if (status_pis_order_detail == true) {

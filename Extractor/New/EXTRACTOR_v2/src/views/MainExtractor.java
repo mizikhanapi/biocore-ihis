@@ -87,7 +87,7 @@ public class MainExtractor {
 
             //DDR
             lhr_DDR lhr_ddr = new lhr_DDR();
-            lhr_ddr.M_DDR(spv2.getVddr(), t,msh);
+            lhr_ddr.M_DDR(spv2.getVddr(), t,msh,spv2.getVorc());
 
             //RRS
             lhr_RRS lhr_rrs = new lhr_RRS();
