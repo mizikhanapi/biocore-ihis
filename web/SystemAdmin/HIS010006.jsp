@@ -79,6 +79,10 @@
                                                 <a href="#HM_tab2" data-toggle="tab">
                                                     PMS Setting </a>
                                             </li>
+                                            <li>
+                                                <a href="#HM_tab3" data-toggle="tab">
+                                                    Calling System Setting </a>
+                                            </li>
 
                                            
                                         </ul>
@@ -100,6 +104,16 @@
 
                                                 <div id="PMS">
                                                     <div id="PMSMain">
+                                                    </div>
+                                                    
+                                                </div>
+
+                                            </div>
+                                            
+                                            <div class="tab-pane" id="HM_tab3">
+
+                                                <div id="CS">
+                                                    <div id="CSMain">
                                                     </div>
                                                     
                                                 </div>
@@ -140,6 +154,7 @@
               
 
                 $("#PMSMain").load("setting_PMS.jsp");
+                $("#CSMain").load("setting_CS.jsp");
                 
 
                 

@@ -153,6 +153,15 @@
                 }
                 //==================================================
                 
+                //-------------- getting CS param -----------------
+                String sql99 = "select status from adm_system_parameter where system_code = 'CS' and parameter_code ='2' and hfc_cd='"+hfc_cd+"';";
+                ArrayList<ArrayList<String>> dataSysParacs = conn.getData(sql99);
+                String sysParaCS = "1";
+                if(dataSysParacs.size()>0){
+                    sysParaCS = dataSysPara.get(0).get(0);
+                }
+                //==================================================
+                
                 //setting the session;
                 session.setAttribute("USER_ID", user_id);
                 session.setAttribute("USER_NAME", user_name);
@@ -164,6 +173,7 @@
                 session.setAttribute("ROLE_CODE", role_code);
                 session.setAttribute("ROLE_NAME", role_name);
                 session.setAttribute("SYSTEM_CODE", system_code);
+                session.setAttribute("CS_PARAM", sysParaCS);
                 session.setAttribute("MODULE_CODE", module_code);
                 session.setAttribute("PAGE_CODE", page_code);
 

@@ -13,6 +13,7 @@
     String subdi = "-";
     String lang = "-";
     String initial = "-";
+    String filterType = (String) session.getAttribute("CS_PARAM");
     Conn conn = new Conn();
     try {
         hfccd = request.getParameter("hfccd");
@@ -20,6 +21,7 @@
         subdi = request.getParameter("subdi");
         lang = request.getParameter("lang");
         initial = request.getParameter("initial");
+        
     } catch (Exception e) {
     }
 
@@ -36,11 +38,17 @@
         subdi_str = " AND cs_sub_discipline = '" + subdi + "'";
     }
 
-    String sql = "SELECT Id,cs_patient_name,cs_queue_no,cs_queue_name,cs_callingtime,cs_room_no FROM qcs_calling_system_queue WHERE " + hfccd_str + discp_str + subdi_str;
-
+    String sql = "SELECT Id,cs_patient_name,cs_queue_no,cs_queue_name,cs_callingtime,cs_room_no FROM qcs_calling_system_queue";
+    String fullSql = "";
+    if(filterType.equalsIgnoreCase("0")){
+        fullSql = sql + " WHERE " + hfccd_str + discp_str + subdi_str;
+    }
+    else{
+        fullSql = sql + " WHERE " + hfccd_str + discp_str;
+    }
     Query q = new Query();
     //ArrayList<Calling_system_bean> d = q.getQueryCallingSystem(sql);
-    ArrayList<ArrayList<String>> d = conn.getData(sql);
+    ArrayList<ArrayList<String>> d = conn.getData(fullSql);
 
     Date datenow = new Date();
     SimpleDateFormat tarikh = new SimpleDateFormat("dd/MM/YYYY");

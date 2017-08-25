@@ -9,6 +9,7 @@
     String gamba = "";
     String nama = "";
     String role = "";
+    String filterType = "";
     String namaHfc = "";
     String health_facility_code="";
     Conn conn = new Conn();
@@ -20,6 +21,8 @@
         role = session.getAttribute("ROLE_NAME").toString();
         namaHfc = session.getAttribute("HFC_NAME").toString();
         health_facility_code = session.getAttribute("HEALTH_FACILITY_CODE").toString();
+        filterType = session.getAttribute("CS_PARAM").toString();
+        
 
     }
 
@@ -131,7 +134,7 @@
                                         </select>
                                     </div>
                                 </div>
-                                <div class="form-group">
+                                        <div class="form-group" id="divSubDis">
                                     <label class="col-md-4 control-label" for="selectbasic">Search Sub-Discipline</label>
                                     <div class="col-md-4" id="divSelectSub">
                                     </div>
@@ -322,6 +325,14 @@
             $("#callingSetting").hide();
             $(".modal-backdrop").hide();
         });
+        
+        var filterType = "<%=filterType%>";
+        console.log(filterType);
+        if(filterType==="1"){
+            $('#divSubDis').hide();
+        }else if(filterType==="0"){
+            $('#divSubDis').show();
+        }
     });
     $("#discp").on('change',function(){
        
