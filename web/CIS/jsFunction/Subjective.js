@@ -156,11 +156,14 @@ $(document).ready(function () {
     $('#tblCIS_Consultation_Table').on('click', '.updateBtnCCN', function (e) {
         e.preventDefault();
         $("#update_CIS01000001").modal("toggle");
+   
+ 
         var idName = $(this).get(0).id;
         var id = idName.split("|");
         var updateObj = _data[id[1]];
         
         retriveDataSearchingSubjective("tCISSubCCNHFCSearch_update", "tCISSubCCNHFCSearchLoading_update", "search/ResultCCNSearch.jsp", "search/ResultCCNSearchCode.jsp", "uccnCode", updateObj.problem);
+         retriveDataSearchingSubjective("tCISSubCCNHFCSearchPersonalised_update", "tCISSubCCNHFCSearchLoading_update", "search/ResultCCNPersonaliseSearch.jsp", "search/ResultCCNSearchCode.jsp", "uccnCode", "");
 
         $('#uMild').val(updateObj.Mild);
         $('#uSite').val(updateObj.Site);
@@ -170,7 +173,7 @@ $(document).ready(function () {
         $('#uComment').val(updateObj.Comment);
         $('#uccnCode').val(updateObj.ccnCode);
         $('#jsonId').val(id[1]);
-        
+         $("#tCISSubCCNHFCSearchPersonalised_update-flexdatalist").hide();
 
 
 
@@ -846,49 +849,6 @@ $(document).ready(function () {
 
     });
     
-    function retriveDataSearchingSubjective(fieldId, loadingDivId, urlData, urlCode, codeFieldId, retriveValue) {
-        $('#' + fieldId).val(retriveValue).flexdatalist({
-            minLength: 1,
-            searchIn: 'name',
-            searchDelay: 2000,
-            //data:arrayDGSDataAjax,
-            url: urlData,
-            cache: true,
-            params: {
-                timeout: 3000,
-                success: function (result) {
-                 
-                    if (result === undefined) {
-                        $('#'+loadingDivId).html('No Record');
-                    }
-                }
-            }
-        });
-        $("#" + fieldId).on('before:flexdatalist.data', function (response) {
-          
-            $('#' + loadingDivId).html('<img src="img/LoaderIcon.gif" />');
-        });
-        $("#" + fieldId).on('after:flexdatalist.data', function (response) {
-         
-            $('#' + loadingDivId).html('');
-        });
-        $("#" + fieldId).on('select:flexdatalist', function (response) {
-            var searchName = $("#" + fieldId).val();
-            
-            $.ajax({
-                type: "post",
-                url: urlCode,
-                timeout: 3000,
-                data: {id: searchName},
-                success: function (response) {
-                   
-                    $("#" + codeFieldId).val(response.trim());
-
-                }
-            });
-
-        });
-    }
 
 
 });

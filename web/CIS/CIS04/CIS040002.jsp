@@ -129,13 +129,14 @@
                                     </div>
                                     <div class="col-xs-2 col-sm-2 col-md-2">
                                         <div class="form-group">
-                                            <input class="form-control input-lg" type="number" name="dose" id="tCIS_DTODrugStrength" placeholder="" >
+                                            <input class="form-control input-lg" type="text" name="dose" id="tCIS_DTODrugStrength" placeholder="" >
                                         </div>
                                     </div>
                                     <div class="col-xs-2 col-sm-2 col-md-2">
                                         <div class="form-group">
                                             <select name="site" id="tCIS_DTODrugStrengthUnit" class="form-control input-lg">
-                                                <option value="" disabled="" >Unit</option>
+                                                <option disabled="">Unit</option>
+                                                <option value="">-</option>
                                                 <option value="ml">milliliter</option>
                                                 <option value="mg">milligram</option>  
 
@@ -156,7 +157,8 @@
                                     <div class="col-xs-2 col-sm-2 col-md-2">
                                         <div class="form-group">
                                             <select name="site" id="tCIS_DTODrugDoseUnit" class="form-control input-lg">
-                                                <option value="" disabled="" >Unit</option>
+                                                <option disabled="">Unit</option>
+                                                <option value="" >-</option>
                                                 <option value="tab">tab</option>
                                                 <option value="cap">cap</option>  
 
@@ -176,16 +178,17 @@
                                     <div class="form-group">
                                         <div class="col-xs-2 col-sm-2 col-md-2">
                                             <div class="form-group">
-                                                <input class="form-control input-lg" type="number" name="durationDTO" id="tCIS_DTODrugDuration" placeholder="" >
+                                                <input class="form-control input-lg" type="text" name="durationDTO" id="tCIS_DTODrugDuration" placeholder="" >
                                             </div>
                                         </div>
                                         <div class="col-xs-2 col-sm-2 col-md-2">
                                             <div class="form-group">
                                                 <select name="site" id="tCIS_DTODrugUnit" class="form-control input-lg">
-                                                    <option value="" disabled="" >Select Here</option>
-                                                    <option value="day">Day</option>
-                                                    <option value="week">Week</option>
-                                                    <option value="month">Month</option>     
+                                                    <option value="" disabled="">Duration</option>
+                                                      <option >-</option>
+                                                    <option value="Day">Day</option>
+                                                    <option value="Week">Week</option>
+                                                    <option value="Month">Month</option>     
                                                 </select>
                                             </div>
                                         </div>
@@ -200,7 +203,7 @@
                                     <div class="col-xs-4 col-sm-4 col-md-4">
                                         <div class="form-group">
                                             <select name="site" id="tCIS_DTODrugFrequency" class="form-control input-lg">
-                                                <option value="1" selected="" disabled="">Select Here</option>
+                                                <option value="-" selected="">Select Here</option>
                                                 <option value="Once">Once</option>
                                                 <option value="In the morning">In the morning</option>
                                                 <option value="At night">At night</option>
@@ -247,7 +250,7 @@
                                     </div>
                                     <div class="col-xs-4 col-sm-4 col-md-4">
                                         <div class="form-group">
-                                            <input class="form-control input-lg" type="number" name="dose" id="tCIS_DTOQuantity" placeholder="" >
+                                            <input class="form-control input-lg" type="text" name="dose" id="tCIS_DTOQuantity" placeholder="" >
                                         </div>
                                     </div>
                                     <div class="col-xs-2 col-sm-2 col-md-2">

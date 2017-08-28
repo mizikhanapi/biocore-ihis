@@ -11,12 +11,30 @@ $(document).ready(function () {
     $('input[name="rCISSubCCNSearchType"]').on('click',function(){
         var type = $(this).val();
         if(type === 'CT'){
+            $("#btnCISSubCCNAddPersonalised").show();
             $("#tCISSubCCNHFCSearchPersonalised-flexdatalist").hide();
-        
+            
             $("#tCISSubCCNHFCSearch-flexdatalist").show();
         } else{
             $("#tCISSubCCNHFCSearchPersonalised-flexdatalist").show();
             $("#tCISSubCCNHFCSearch-flexdatalist").hide();
+             $("#btnCISSubCCNAddPersonalised").hide();
+           
+        }
+    });
+    
+       
+    $('input[name="rCISSubCCNSearchType_update"]').on('click',function(){
+        var type = $(this).val();
+        if(type === 'CT'){
+            $("#btnCISSubCCNAddPersonalised_update").show();
+            $("#tCISSubCCNHFCSearchPersonalised_update-flexdatalist").hide();
+            
+            $("#tCISSubCCNHFCSearch_update-flexdatalist").show();
+        } else{
+            $("#tCISSubCCNHFCSearchPersonalised_update-flexdatalist").show();
+            $("#tCISSubCCNHFCSearch_update-flexdatalist").hide();
+             $("#btnCISSubCCNAddPersonalised_update").hide();
            
         }
     });
@@ -53,9 +71,11 @@ $(document).ready(function () {
 //                     $("input[name='radio'][value='P']").prop("checked",true);
 //                     $("#tCISSubCCNHFCSearchPersonalised").show();
 //                    $("#tCISSubCCNHFCSearch-flexdatalist").hide();
-                } else if(status === "SECCESS"){
+                    retriveDataSearchingSubjective("tCISSubCCNHFCSearch", "tCISSubCCNHFCSearchLoading", "search/ResultCCNSearch.jsp", "search/ResultCCNSearchCode.jsp", "ccnCode", "");
+                } else{
                    // $('#ccnCode').val(term_code);
-                    alert("The clinical term successfully added in your personalised. Please search in personalise to select the term")
+                   retriveDataSearchingSubjective("tCISSubCCNHFCSearch", "tCISSubCCNHFCSearchLoading", "search/ResultCCNSearch.jsp", "search/ResultCCNSearchCode.jsp", "ccnCode", "");
+                    alert("The clinical term successfully added in your personalised. Please search in personalise to select the term");
                 }
                 
             }

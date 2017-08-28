@@ -149,6 +149,10 @@ $(document).ready(function(){
         var problemCode = $("#problemCodeDTO").val();
         var problemName = $("#tCISOEDTOProblemName").val();
         
+        if(drugStrengthUnit === null){
+            drugStrengthUnit = " ";
+        }
+        
         var obj1 = {
 
             Acode: 'DTO',
@@ -408,7 +412,13 @@ $(document).ready(function(){
                 $('#tCIS_DTODrugRoute').val(array_data[6].trim());
                 $('#tCIS_DTODrugCaution').val(array_data[8].trim());
                 $('#tCIS_DTODrugFrequencyDetail').val(array_data[9].trim());
-            
+                $('#tCIS_DTODrugFrequency').val(array_data[9].trim());
+                $('#tCIS_DTODrugStrength').val(array_data[4].trim())
+                $('#tCIS_DTODrugStrengthUnit').val("");
+                $('#tCIS_DTODrugDuration').val(array_data[11].trim());
+                $('#tCIS_DTODrugUnit').val(array_data[12].trim());
+                $("#tCIS_DTOQuantity").val(array_data[5].trim()+" "+array_data[10].trim());
+                $('#tCIS_DTODrugDose').val(array_data[5].trim()+" "+array_data[10].trim());
             }
         });
     }

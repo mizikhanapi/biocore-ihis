@@ -932,6 +932,51 @@ function searchPOSSurgicalProcedure(searchFieldId, loadingId, currentValue,catCo
         $('#' + loadingId).html('');
     });
 }
+
+    function retriveDataSearchingSubjective(fieldId, loadingDivId, urlData, urlCode, codeFieldId, retriveValue) {
+        $('#' + fieldId).val(retriveValue).flexdatalist({
+            minLength: 1,
+            searchIn: 'name',
+            searchDelay: 2000,
+            //data:arrayDGSDataAjax,
+            url: urlData,
+            cache: true,
+            params: {
+                timeout: 3000,
+                success: function (result) {
+                 
+                    if (result === undefined) {
+                        $('#'+loadingDivId).html('No Record');
+                    }
+                }
+            }
+        });
+        $("#" + fieldId).on('before:flexdatalist.data', function (response) {
+          
+            $('#' + loadingDivId).html('<img src="img/LoaderIcon.gif" />');
+        });
+        $("#" + fieldId).on('after:flexdatalist.data', function (response) {
+         
+            $('#' + loadingDivId).html('');
+        });
+        $("#" + fieldId).on('select:flexdatalist', function (response) {
+            var searchName = $("#" + fieldId).val();
+            
+            $.ajax({
+                type: "post",
+                url: urlCode,
+                timeout: 3000,
+                data: {id: searchName},
+                success: function (response) {
+                   
+                    $("#" + codeFieldId).val(response.trim());
+
+                }
+            });
+
+        });
+    }
+
 //});
 
         function blockSpecialChar(e) {
