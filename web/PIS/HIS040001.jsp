@@ -13,8 +13,7 @@
 <%@include file="../Entrance/validateSession.jsp" %>
 <%@include file="validateModuleAccess.jsp" %>
 
-<%
-    Config.getFile_url(session);
+<%    Config.getFile_url(session);
     Config.getBase_url(request);
 
     Conn conn = new Conn();
@@ -284,7 +283,7 @@
                                     <div class="form-group">
                                         <label class="col-md-4 control-label" for="textinput">Instruction</label>
                                         <div class="col-md-8">
-                                            <input id="orderDrugDisplayInstruction" name="orderDrugDisplayFrequency" type="text" placeholder="Frequency"  class="form-control input-md" readonly>
+                                            <input id="orderDrugDisplayInstruction" name="orderDrugDisplayFrequency" type="text" placeholder="Instruction"  class="form-control input-md" readonly>
                                         </div>
                                     </div>
                                     <!-- Text input-->
@@ -306,13 +305,7 @@
 
                                     <h4>Order Information</h4>
                                     <hr/>
-                                    <!-- Text input-->
-                                    <div class="form-group">
-                                        <label class="col-md-4 control-label" for="textinput">Order Quantity *</label>
-                                        <div class="col-md-8">
-                                            <input id="orderDrugInputQuantity" name="orderDrugInputQuantity" type="number" placeholder="Insert Drug Quantity" class="form-control input-md" min="1" maxlength="7">
-                                        </div>
-                                    </div>
+
 
                                     <!-- Select Basic -->
                                     <div class="form-group">
@@ -322,7 +315,7 @@
                                         </div>
                                         <div class="col-md-4">
                                             <select id="orderDrugInputDoseT" name="orderDrugInputDoseT" class="form-control">
-                                                <option value="No Dose">Select Dose</option>
+                                                <option value="-">Select Dose</option>
                                                 <%  String sql4 = "SELECT Master_Reference_code,Detail_Reference_code, Description FROM adm_lookup_detail "
                                                             + " where Master_Reference_code = '0025' AND hfc_cd = '" + hfc + "' ";
                                                     ArrayList<ArrayList<String>> listOfDUOM = conn.getData(sql4);
@@ -342,35 +335,13 @@
 
                                     <!-- Select Basic -->
                                     <div class="form-group">
-                                        <label class="col-md-4 control-label" for="selectbasic">Frequency *</label>
-                                        <div class="col-md-8">
-                                            <select id="orderDrugInputFrequency" name="orderDrugInputFrequency" class="form-control">
-                                                <option value="No Frequency">Select Frequency</option>
-                                                <%  String sql5 = "SELECT Master_Reference_code,Detail_Reference_code, Description FROM adm_lookup_detail "
-                                                            + " where Master_Reference_code = '0088' AND hfc_cd = '" + hfc + "' ";
-                                                    ArrayList<ArrayList<String>> listOfDFreq = conn.getData(sql5);
-
-                                                    int size5 = listOfDFreq.size();
-
-                                                    for (int i = 0; i < size5; i++) {
-                                                %>
-                                                <option value="<%= listOfDFreq.get(i).get(2)%>"> <%= listOfDFreq.get(i).get(2)%> </option>
-                                                <%
-                                                    }
-                                                %>
-                                            </select>
-                                        </div>
-                                    </div>
-
-                                    <!-- Select Basic -->
-                                    <div class="form-group">
                                         <label class="col-md-4 control-label" for="selectbasic">Duration *</label>
                                         <div class="col-md-4">
                                             <input id="orderDrugInputDuration" name="orderDrugInputDuration" type="number" class="form-control input-md" step="0.01" placeholder="Insert Drug Duration" maxlength="12">
                                         </div>
                                         <div class="col-md-4">
                                             <select id="orderDrugInputDurationT" name="orderDrugInputDurationT" class="form-control">
-                                                <option value="No Duration">Select Duration</option>
+                                                <option value="-">Select Duration</option>
                                                 <%
                                                     String sql6 = "SELECT Master_Reference_code,Detail_Reference_code, Description FROM adm_lookup_detail "
                                                             + " where Master_Reference_code = '0089' AND hfc_cd = '" + hfc + "'  ";
@@ -385,6 +356,39 @@
                                                     }
                                                 %>
                                             </select>
+                                        </div>
+                                    </div>
+
+
+                                    <!-- Select Basic -->
+                                    <div class="form-group">
+                                        <label class="col-md-4 control-label" for="selectbasic">Frequency *</label>
+                                        <div class="col-md-8">
+                                            <select id="orderDrugInputFrequency" name="orderDrugInputFrequency" class="form-control">
+                                                <option value="-">Select Frequency</option>
+                                                <%
+                                                    String sql99 = "SELECT Master_Reference_code,Detail_Reference_code, Description FROM adm_lookup_detail "
+                                                            + " where Master_Reference_code = '0088' AND hfc_cd = '" + hfc + "'  ";
+                                                    ArrayList<ArrayList<String>> listOfFrequency = conn.getData(sql99);
+
+                                                    int size99 = listOfFrequency.size();
+
+                                                    for (int i = 0; i < size99; i++) {
+                                                %>
+                                                <option value="<%= listOfFrequency.get(i).get(2)%>"> <%= listOfFrequency.get(i).get(2)%> </option>
+                                                <%
+                                                    }
+                                                %>
+                                            </select>
+                                        </div>
+                                    </div>
+
+
+                                    <!-- Text input-->
+                                    <div class="form-group">
+                                        <label class="col-md-4 control-label" for="textinput">Order Quantity *</label>
+                                        <div class="col-md-8">
+                                            <input id="orderDrugInputQuantity" name="orderDrugInputQuantity" type="number" placeholder="Insert Drug Quantity" class="form-control input-md" min="1" maxlength="7">
                                         </div>
                                     </div>
 

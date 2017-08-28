@@ -581,7 +581,9 @@
             url: 'patientOrderListNewOrderSearchResult.jsp',
             data: {'id': id},
             success: function (reply_data) {
+                
                 console.log(reply_data);
+                
                 var array_data = String(reply_data).split("|");
                 var dtoCode = array_data[0];
                 var dtoGnr = array_data[1];
@@ -592,6 +594,11 @@
                 var dtoStrength = array_data[5];
                 var dtoInstruction = array_data[6];
                 var dtoCaution = array_data[7];
+                var dtoD_Qty = array_data[9];
+                var dtoDQtyT = array_data[10];
+                var dtoDuration = array_data[11];
+                var dtoDurationT = array_data[12];
+                var dtoFreq = array_data[13];
 
                 console.log(dtoCode);
 
@@ -603,6 +610,11 @@
                 $('#orderDrugDisplayStrength').val(dtoStrength);
                 $('#orderDrugDisplayInstruction').val(dtoInstruction);
                 $('#orderDrugDisplayCautionary').val(dtoCaution);
+                $('#orderDrugInputDose').val(dtoD_Qty);
+                $('#orderDrugInputDoseT').val(dtoDQtyT);
+                $('#orderDrugInputDuration').val(dtoDuration);
+                $('#orderDrugInputDurationT').val(dtoDurationT);
+                $('#orderDrugInputFrequency').val(dtoFreq);
 
                 $('.loading').hide();
 
@@ -644,13 +656,13 @@
             bootbox.alert("Please Insert Drug Order Quantity");
         } else if (drugDose === "" || drugDose === null) {
             bootbox.alert("Please Insert Drug Order Dose");
-        } else if (drugDoseT === "No Dose" || drugDoseT === null) {
+        } else if (drugDoseT === "-" || drugDoseT === null) {
             bootbox.alert("Please Select Drug Dose Type");
-        } else if (drugFrequency === "No Frequency" || drugFrequency === null) {
+        } else if (drugFrequency === "-" || drugFrequency === null) {
             bootbox.alert("Please Select Drug Frequency");
         } else if (drugDuration === "" || drugDuration === null) {
             bootbox.alert("Please Insert Drug Duration");
-        } else if (drugDurationT === "No Duration" || drugDurationT === null) {
+        } else if (drugDurationT === "-" || drugDurationT === null) {
             bootbox.alert("Please Select Drug Frequency");
         } else {
 
