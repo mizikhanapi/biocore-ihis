@@ -101,7 +101,8 @@ $(document).ready(function(){
         var id = idName.split("|");
         var updateObj = _data[id[1]];
        
-        retriveDataSearchingAssessment("tCISSubDGSSearch_update", "tCISSubDGSSearchLoading_update", "search/ResultDGSSearch.jsp", "search/ResultDGSSearchCode.jsp", "update_dgsCode", updateObj.searchDiag);
+        retriveDataSearchingAssessment("tCISSubDGSSearch_update", "tCISSubDGSSearchLoading_update", "search/ResultDGSPersonaliseSearch.jsp", "search/ResultDGSPersonaliseSearchCode.jsp", "update_dgsCode", updateObj.searchDiag);
+         retriveDataSearchingAssessment("tCISSubDGSSearchPersonalised_update", "tCISSubDGSSearchLoading_update", "search/ResultDGSPersonaliseSearch.jsp", "search/ResultDGSPersonaliseSearchCode.jsp", "update_dgsCode", "");
         $('#update_TypeDGS').val(updateObj.TypeDGS);
         $('#update_dateDGS').val(updateObj.dateDGS);
         //$('#update_searchDiag').val(updateObj.searchDiag);

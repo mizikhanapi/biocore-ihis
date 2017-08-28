@@ -19,7 +19,7 @@
     RMIConnector rmic = new RMIConnector();
     
 
-    String check_term_sql = "SELECT clinical_term_code,clinical_term_name FROM cis_personalised_clinical_term WHERE UPPER(clinical_term_name) = UPPER('"+term_name+"');";
+    String check_term_sql = "SELECT clinical_term_code,clinical_term_name FROM cis_personalised_clinical_term WHERE UPPER(clinical_term_name) = UPPER('"+term_name+"') AND user_id = '"+user_id+"';";
     ArrayList<ArrayList<String>> check_term = Conn.getData(check_term_sql); 
     
     if(check_term.size() > 0){
@@ -40,11 +40,16 @@
                 + "'"+term_code+"', "
                 + "'"+term_name+"', "
                 + "'', "
-                + "'"+term_code+"', "
+                + "NOW(), "
                 + "'"+user_id+"'); ";
         
-        rmic.setQuerySQL(Conn.HOST, Conn.PORT, insert_new_term_sql);
-        out.print("SUCCESS[-|-]");
+        if(rmic.setQuerySQL(Conn.HOST, Conn.PORT, insert_new_term_sql)){
+            out.print("SUCCESS[-|-]");
+        }else{
+            out.print("FAIL[-|-]" + insert_new_term_sql);
+                    
+        }
+        
         
     }
 

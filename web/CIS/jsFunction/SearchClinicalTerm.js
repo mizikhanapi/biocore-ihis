@@ -976,6 +976,28 @@ function searchPOSSurgicalProcedure(searchFieldId, loadingId, currentValue,catCo
 
         });
     }
+    
+    function addPersonalisedTerm(dataPersonalised){
+            $.ajax({
+            type:'POST',
+            url:'search/InsertPersonalised.jsp',
+            data:dataPersonalised,
+            timeout:3000,
+            success:function(response){
+                console.log(response);
+                var data_response = response.trim().split("[-|-]");
+                var status = data_response[0];
+                if(status === "ALREADY"){
+                    bootbox.alert("The clinical term already added in your personalised. Please search in personalise to select the term")
+                    retriveDataSearchingSubjective("tCISSubCCNHFCSearch", "tCISSubCCNHFCSearchLoading", "search/ResultCCNSearch.jsp", "search/ResultCCNSearchCode.jsp", "ccnCode", "");
+                } else{
+                   retriveDataSearchingSubjective("tCISSubCCNHFCSearch", "tCISSubCCNHFCSearchLoading", "search/ResultCCNSearch.jsp", "search/ResultCCNSearchCode.jsp", "ccnCode", "");
+                    bootbox.alert("The clinical term successfully added in your personalised. Please search in personalise to select the term");
+                }
+                
+            }
+        })
+}
 
 //});
 
