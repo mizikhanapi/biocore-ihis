@@ -582,9 +582,9 @@
             data: {'id': id},
             success: function (reply_data) {
                 
-                console.log(reply_data);
+                console.log(reply_data.trim());
                 
-                var array_data = String(reply_data).split("|");
+                var array_data = String(reply_data.trim()).split("|");
                 var dtoCode = array_data[0];
                 var dtoGnr = array_data[1];
                 var dtoQty = array_data[2];
