@@ -23,7 +23,7 @@
                                     <label>Search From : </label>
                                     <label class="radio-inline"><input type="radio" name="rCISSubCCNSearchType" value="P" >Personalised</label>
                                     <label class="radio-inline"><input type="radio" name="rCISSubCCNSearchType" value="CT" checked="">Common Term</label>
-                                    <input class="form-control input-lg" type="hidden" name="tCISSUBCodeType"  id="tCISSUBCodeType"  value="CCN" tabindex="4" readonly="">
+                                    <input class="form-control input-lg" type="hidden" name="tCISSUBCCNCodeType"  id="tCISSUBCCNCodeType"  value="CCN" tabindex="4" readonly="">
                                     
                                 </div>
                                 <div class="col-md-1"><button class="btn btn-primary " id="btnCISSubCCNAddPersonalised" style="padding-left: 10px"><i class="fa fa-plus" aria-hidden="true"> </i></button></div>
@@ -126,10 +126,10 @@
                                 <label>Search From : </label>
                                 <label class="radio-inline"><input type="radio" name="rCISSubCCNSearchType_update" value="P" >Personalised</label>
                                 <label class="radio-inline"><input type="radio" name="rCISSubCCNSearchType_update" value="CT" checked="">Common Term</label>
-                                <input class="form-control input-lg" type="hidden" name="tCISSUBCodeType_update"  id="tCISSUBCodeType"  value="CCN" tabindex="4" readonly="">
+                                <input class="form-control input-lg" type="hidden" name="tCISSUBCodeType_update"  id="tCISSUBCCNCodeType_update"  value="CCN" tabindex="4" readonly="">
 
                             </div>
-                            <div class="col-md-1"><button class="btn btn-primary " id="btnCISSubCCNAddPersonalised_update" style="padding-left: 10px"><i class="fa fa-plus" aria-hidden="true"> </i></button></div>
+                          
                         </div>
                         <div class="form-group">
                             <input class="form-control input-lg" type="text"  id="tCISSubCCNHFCSearch_update" placeholder="Type to search chief complaint..." data-search-by-word="true" onkeypress="return blockSpecialChar(event)"> 
@@ -259,7 +259,7 @@
                     <div class="modal-body">
                         <!-- content goes here -->
                         <div class="form-group">
-                            <textarea type="text" name="display_name" id="udetails" class="form-control input-lg" placeholder="details.." tabindex="3"></textarea>
+                            <textarea type="text" name="display_name" id="udetails" class="form-control input-lg" placeholder="details.." tabindex="3" onkeypress="return blockSpecialChar(event)"></textarea>
                             <input type="hidden" name="jsonId" id="jsonId" class="form-control input-lg" placeholder="Comments" tabindex="4">  
                         </div>
                     </div>     
@@ -291,22 +291,22 @@
                     </div>
                     <div class="modal-body">
                         <!-- content goes here -->
-<!--                        <div class="col-md-12">
+                        <div class="col-md-12">
                             <div class="col-md-11">
                                 <label>Search From : </label>
                                 <label class="radio-inline"><input type="radio" name="rCISSubPMHSearchType" value="P" >Personalised</label>
                                 <label class="radio-inline"><input type="radio" name="rCISSubPMHSearchType" value="CT" checked="">Common Term</label>
-                                <input class="form-control input-lg" type="hidden" name="tCISSUBCodeType"  id="tCISSUBCodeType"  value="PMH" tabindex="4" readonly="">
+                                <input class="form-control input-lg" type="hidden" name="tCISSUBPMHCodeType"  id="tCISSUBPMHCodeType"  value="PMH" tabindex="4" readonly="">
 
                             </div>
                             <div class="col-md-1"><button class="btn btn-primary " id="btnCISSubPMHAddPersonalised" style="padding-left: 10px"><i class="fa fa-plus" aria-hidden="true"> </i></button></div>
-                        </div>-->
+                        </div>
                         <div class="form-group">
                             <input type="hidden" name="pmh" id="codePMH" class="form-control input-lg"tabindex="4">
                         </div>
                         <div class="form-group">
                             <input class="form-control input-lg" type="text"  id="tCISSubPMHSearch" placeholder="Please Type Past Medical History" tabindex="4" data-search-by-word="true" onkeypress="return blockSpecialChar(event)">
-<!--                            <input class="form-control input-lg" type="text"  id="tCISSubPMHSearchPersonalised" placeholder="Type to search Personalised..." data-search-by-word="true" onkeypress="return blockSpecialChar(event)">-->
+                            <input class="form-control input-lg" type="text"  id="tCISSubPMHSearchPersonalised" placeholder="Type to search Personalised..." data-search-by-word="true" onkeypress="return blockSpecialChar(event)">
                             <div id="tCISSubPMHSearchLoading" ></div>
 <!--                            <input class="form-control input-lg" type="text" name="problem"  id="Problem1" placeholder="Please Type Past Medical History" tabindex="4">-->
                             <div id="match2"></div>
@@ -351,8 +351,19 @@
                     </div>
                     <div class="modal-body">
                         <!-- content goes here -->
+                      <div class="col-md-12">
+                            <div class="col-md-11">
+                                <label>Search From : </label>
+                                <label class="radio-inline"><input type="radio" name="rCISSubPMHSearchType_update" value="P" >Personalised</label>
+                                <label class="radio-inline"><input type="radio" name="rCISSubPMHSearchType_update" value="CT" checked="">Common Term</label>
+                                <input class="form-control input-lg" type="hidden" name="tCISSUBPMHCodeType_update"  id="tCISSUBPMHCodeType_update"  value="PMH" tabindex="4" readonly="">
+
+                            </div>
+                           
+                        </div>
                         <div class="form-group">
                             <input class="form-control input-lg" type="text"  id="tCISSubPMHSearch_update" placeholder="Please Type Past Medical History..." tabindex="4" data-search-by-word="true" onkeypress="return blockSpecialChar(event)">
+                            <input class="form-control input-lg" type="text"  id="tCISSubPMHSearchPersonalised_update" placeholder="Type to search Personalised..." data-search-by-word="true" onkeypress="return blockSpecialChar(event)">
                             <div id="tCISSubPMHSearchLoading_update" ></div>
 <!--                            <input class="form-control input-lg" type="text" name="problem"  id="PProblem2"  placeholder="Please Type Past Medical History." tabindex="4">
                             <div id="match3"></div>-->
@@ -400,11 +411,22 @@
                     </div>
                     <div class="modal-body">
                         <!-- content goes here -->
+                        <div class="col-md-12">
+                            <div class="col-md-11">
+                                <label>Search From : </label>
+                                <label class="radio-inline"><input type="radio" name="rCISSubFMHSearchType" value="P" >Personalised</label>
+                                <label class="radio-inline"><input type="radio" name="rCISSubFMHSearchType" value="CT" checked="">Common Term</label>
+                                <input class="form-control input-lg" type="hidden" name="tCISSUBFMHCodeType"  id="tCISSUBFMHCodeType"  value="FMH" tabindex="4" readonly="">
+
+                            </div>
+                           <div class="col-md-1"><button class="btn btn-primary " id="btnCISSubFMHAddPersonalised" style="padding-left: 10px"><i class="fa fa-plus" aria-hidden="true"> </i></button></div>
+                        </div>
                          <div class="form-group">
                             <input type="hidden" name="FMH" id="codeFMH" class="form-control input-lg" tabindex="4">
                         </div>
                         <div class="form-group">
                             <input class="form-control input-lg" type="text"  id="tCISSubFMHSearch" placeholder="Please Type Family Medical History..." tabindex="4" data-search-by-word="true" onkeypress="return blockSpecialChar(event)">
+                             <input class="form-control input-lg" type="text"  id="tCISSubFMHSearchPersonalised" placeholder="Type to search Personalised..." data-search-by-word="true" onkeypress="return blockSpecialChar(event)">
                             <div id="tCISSubFMHSearchLoading" ></div>
 <!--                            <input class="form-control input-lg" type="text" name="problem3"  id="Problem3" placeholder="Search FMH Problem..." tabindex="4">-->
 <!--                            <div id="match17"></div>-->
@@ -466,8 +488,19 @@
                     </div>
                     <div class="modal-body">
                         <!-- content goes here -->
+                                                <div class="col-md-12">
+                            <div class="col-md-11">
+                                <label>Search From : </label>
+                                <label class="radio-inline"><input type="radio" name="rCISSubFMHSearchType_update" value="P" >Personalised</label>
+                                <label class="radio-inline"><input type="radio" name="rCISSubFMHSearchType_update" value="CT" checked="">Common Term</label>
+                                <input class="form-control input-lg" type="hidden" name="tCISSUBFMHCodeType_update"  id="tCISSUBFMHCodeType_update"  value="FMH" tabindex="4" readonly="">
+
+                            </div>
+                           
+                        </div>
                         <div class="form-group">
                             <input class="form-control input-lg" type="text"  id="tCISSubFMHSearch_update" placeholder="Please Type Family Medical History..." tabindex="4" data-search-by-word="true" onkeypress="return blockSpecialChar(event)">
+                            <input class="form-control input-lg" type="text"  id="tCISSubFMHSearchPersonalised_update" placeholder="Type to search Personalised..." data-search-by-word="true" onkeypress="return blockSpecialChar(event)">
                             <div id="tCISSubFMHSearchLoading_update" ></div>
 <!--                            <input class="form-control input-lg" type="text" name="problem"  id="PProblem3" placeholder="Search FMH Problem..." tabindex="4">
                             <div id="match16"></div>-->
@@ -530,11 +563,22 @@
                     </div>
                     <div class="modal-body">
                         <!-- content goes here -->
+                                                <div class="col-md-12">
+                            <div class="col-md-11">
+                                <label>Search From : </label>
+                                <label class="radio-inline"><input type="radio" name="rCISSubSOHSearchType" value="P" >Personalised</label>
+                                <label class="radio-inline"><input type="radio" name="rCISSubSOHSearchType" value="CT" checked="">Common Term</label>
+                                <input class="form-control input-lg" type="hidden" name="tCISSUBSOHCodeType"  id="tCISSUBSOHCodeType"  value="SOH" tabindex="4" readonly="">
+
+                            </div>
+                           <div class="col-md-1"><button class="btn btn-primary " id="btnCISSubSOHAddPersonalised" style="padding-left: 10px"><i class="fa fa-plus" aria-hidden="true"> </i></button></div>
+                        </div>
                          <div class="form-group">
                             <input type="hidden" name="SOH" id="codeSOH" class="form-control input-lg" tabindex="4">
                         </div>
                         <div class="form-group">
                             <input class="form-control input-lg" type="text"  id="tCISSubSOHSearch" placeholder="Please Type Social History..." tabindex="4" data-search-by-word="true" onkeypress="return blockSpecialChar(event)">
+                            <input class="form-control input-lg" type="text"  id="tCISSubSOHSearchPersonalised" placeholder="Type to search Personalised..." data-search-by-word="true" onkeypress="return blockSpecialChar(event)">
                             <div id="tCISSubSOHSearchLoading" ></div>
 <!--                            <input class="form-control input-lg" type="text" name="problem"  id="Problem4" placeholder="Please Type Social History" tabindex="4">
                             <div id="match4"></div>-->
@@ -577,8 +621,19 @@
                     </div>
                     <div class="modal-body">
                         <!-- content goes here -->
+                                                <div class="col-md-12">
+                            <div class="col-md-11">
+                                <label>Search From : </label>
+                                <label class="radio-inline"><input type="radio" name="rCISSubSOHSearchType_update" value="P" >Personalised</label>
+                                <label class="radio-inline"><input type="radio" name="rCISSubSOHSearchType_update" value="CT" checked="">Common Term</label>
+                                <input class="form-control input-lg" type="hidden" name="tCISSUBSOHCodeType"  id="tCISSUBSOHCodeType_update"  value="SOH" tabindex="4" readonly="">
+
+                            </div>
+                          
+                        </div>
                         <div class="form-group">
                             <input class="form-control input-lg" type="text"  id="tCISSubSOHSearch_update" placeholder="Please Type Social History..." tabindex="4" data-search-by-word="true" onkeypress="return blockSpecialChar(event)">
+                            <input class="form-control input-lg" type="text"  id="tCISSubSOHSearchPersonalised_update" placeholder="Type to search Personalised..." data-search-by-word="true" onkeypress="return blockSpecialChar(event)">
                             <div id="tCISSubSOHSearchLoading_update" ></div>
 <!--                            <input class="form-control input-lg" type="text" name="problem"  id="PProblem4" placeholder="Social History" tabindex="4">
                             <div id="match5"></div>-->
@@ -744,11 +799,22 @@
                     </div>
                     <div class="modal-body">
                         <!-- content goes here -->
+                          <div class="col-md-12">
+                            <div class="col-md-11">
+                                <label>Search From : </label>
+                                <label class="radio-inline"><input type="radio" name="rCISSubALGSearchType" value="P" >Personalised</label>
+                                <label class="radio-inline"><input type="radio" name="rCISSubALGSearchType" value="CT" checked="">Common Term</label>
+                                <input class="form-control input-lg" type="hidden" name="tCISSUBALGCodeType"  id="tCISSUBALGCodeType"  value="ALG" tabindex="4" readonly="">
+
+                            </div>
+                           <div class="col-md-1"><button class="btn btn-primary " id="btnCISSubALGAddPersonalised" style="padding-left: 10px"><i class="fa fa-plus" aria-hidden="true"> </i></button></div>
+                        </div>
                         <div class="form-group">
                             <input type="hidden" name="Allergy" id="codeALG" class="form-control input-lg" tabindex="4">
                         </div>
                         <div class="form-group">
                             <input class="form-control input-lg" type="text"  id="tCISSubALGSearch" placeholder="Please Type Allergy..." tabindex="4" data-search-by-word="true" onkeypress="return blockSpecialChar(event)">
+                           <input class="form-control input-lg" type="text"  id="tCISSubALGSearchPersonalised" placeholder="Type to search Personalised..." data-search-by-word="true" onkeypress="return blockSpecialChar(event)">
                             <div id="tCISSubALGSearchLoading" ></div>
 <!--                            <input class="form-control input-lg" type="text" name="problem"  id="Problem5" placeholder="Please Type Allergy" tabindex="4">
                             <div id="match22"></div>-->
@@ -789,8 +855,19 @@
                     </div>
                     <div class="modal-body">
                         <!-- content goes here -->
+                                                <div class="col-md-12">
+                            <div class="col-md-11">
+                                <label>Search From : </label>
+                                <label class="radio-inline"><input type="radio" name="rCISSubALGSearchType_update" value="P" >Personalised</label>
+                                <label class="radio-inline"><input type="radio" name="rCISSubALGSearchType_update" value="CT" checked="">Common Term</label>
+                                <input class="form-control input-lg" type="hidden" name="tCISSUBALGCodeType_update"  id="tCISSUBALGCodeType_update"  value="ALG" tabindex="4" readonly="">
+
+                            </div>
+                           
+                        </div>
                         <div class="form-group">
                             <input class="form-control input-lg" type="text"  id="tCISSubALGSearch_update" placeholder="Please Type Allergy..." tabindex="4" data-search-by-word="true" onkeypress="return blockSpecialChar(event)">
+                             <input class="form-control input-lg" type="text"  id="tCISSubALGSearchPersonalised_update" placeholder="Type to search Personalised..." data-search-by-word="true" onkeypress="return blockSpecialChar(event)">
                             <div id="tCISSubALGSearchLoading_update" ></div>
 <!--                            <input class="form-control input-lg" type="text" name="problem"  id="PProblem5" placeholder="Please Type Allergy" tabindex="4">
                             <div id="match23"></div>-->
@@ -834,11 +911,22 @@
                     </div>
                     <div class="modal-body">
                         <!-- content goes here -->
+                          <div class="col-md-12">
+                            <div class="col-md-11">
+                                <label>Search From : </label>
+                                <label class="radio-inline"><input type="radio" name="rCISSubIMUSearchType" value="P" >Personalised</label>
+                                <label class="radio-inline"><input type="radio" name="rCISSubIMUSearchType" value="CT" checked="">Common Term</label>
+                                <input class="form-control input-lg" type="hidden" name="tCISSUBIMUCodeType"  id="tCISSUBIMUCodeType"  value="IMU" tabindex="4" readonly="">
+
+                            </div>
+                           <div class="col-md-1"><button class="btn btn-primary " id="btnCISSubIMUAddPersonalised" style="padding-left: 10px"><i class="fa fa-plus" aria-hidden="true"> </i></button></div>
+                        </div>
                           <div class="form-group">
                             <input type="hidden" name="IMU" id="codeIMU" class="form-control input-lg" tabindex="4">
                         </div>
                         <div class="form-group">
                             <input class="form-control input-lg" type="text"  id="tCISSubIMUSearch" placeholder="Please Type Immunization..." tabindex="4" data-search-by-word="true" onkeypress="return blockSpecialChar(event)">
+                             <input class="form-control input-lg" type="text"  id="tCISSubIMUSearchPersonalised" placeholder="Type to search Personalised..." data-search-by-word="true" onkeypress="return blockSpecialChar(event)">
                             <div id="tCISSubIMUSearchLoading" ></div>
 <!--                            <input class="form-control input-lg" type="text" name="problem"  id="Problem6" placeholder="Please Type Immunization" tabindex="4">
                             <div id="match6"></div>-->
@@ -879,8 +967,19 @@
                     </div>
                     <div class="modal-body">
                         <!-- content goes here -->
+                                                  <div class="col-md-12">
+                            <div class="col-md-11">
+                                <label>Search From : </label>
+                                <label class="radio-inline"><input type="radio" name="rCISSubIMUSearchType_update" value="P" >Personalised</label>
+                                <label class="radio-inline"><input type="radio" name="rCISSubIMUSearchType_update" value="CT" checked="">Common Term</label>
+                                <input class="form-control input-lg" type="hidden" name="tCISSUBIMUCodeType_update"  id="tCISSUBIMUCodeType_update"  value="IMU" tabindex="4" readonly="">
+
+                            </div>
+                           
+                        </div>
                         <div class="form-group">
                             <input class="form-control input-lg" type="text"  id="tCISSubIMUSearch_update" placeholder="Please Type Immunization..." tabindex="4" data-search-by-word="true" onkeypress="return blockSpecialChar(event)">
+                             <input class="form-control input-lg" type="text"  id="tCISSubIMUSearchPersonalised_update" placeholder="Type to search Personalised..." data-search-by-word="true" onkeypress="return blockSpecialChar(event)">
                             <div id="tCISSubIMUSearchLoading_update" ></div>
 <!--                            <input class="form-control input-lg" type="text" name="problem"  id="PProblem6" placeholder="Please Type Immunization" tabindex="4">
                             <div id="match25"></div>-->
@@ -924,11 +1023,22 @@
                     </div>
                     <div class="modal-body">
                         <!-- content goes here -->
+                                                  <div class="col-md-12">
+                            <div class="col-md-11">
+                                <label>Search From : </label>
+                                <label class="radio-inline"><input type="radio" name="rCISSubDABSearchType" value="P" >Personalised</label>
+                                <label class="radio-inline"><input type="radio" name="rCISSubDABSearchType" value="CT" checked="">Common Term</label>
+                                <input class="form-control input-lg" type="hidden" name="tCISSUBDABCodeType"  id="tCISSUBDABCodeType"  value="DAB" tabindex="4" readonly="">
+
+                            </div>
+                           <div class="col-md-1"><button class="btn btn-primary " id="btnCISSubDABAddPersonalised" style="padding-left: 10px"><i class="fa fa-plus" aria-hidden="true"> </i></button></div>
+                        </div>
                           <div class="form-group">
                             <input type="hidden" name="DAB" id="codeDAB" class="form-control input-lg"  tabindex="4">
                         </div>
                         <div class="form-group">
                             <input class="form-control input-lg" type="text"  id="tCISSubDABSearch" placeholder="Please Type Disability Name..." tabindex="4" data-search-by-word="true" onkeypress="return blockSpecialChar(event)">
+                           <input class="form-control input-lg" type="text"  id="tCISSubDABSearchPersonalised" placeholder="Type to search Personalised..." data-search-by-word="true" onkeypress="return blockSpecialChar(event)">
                             <div id="tCISSubDABSearchLoading" ></div>
 <!--                            <input class="form-control input-lg" type="text" name="problem"  id="Problem32" placeholder="Please Type Disability Name" tabindex="4">
                             <div id="match32"></div>-->
@@ -971,8 +1081,18 @@
                     </div>
                     <div class="modal-body">
                         <!-- content goes here -->
+                                                  <div class="col-md-12">
+                            <div class="col-md-11">
+                                <label>Search From : </label>
+                                <label class="radio-inline"><input type="radio" name="rCISSubDABSearchType_update" value="P" >Personalised</label>
+                                <label class="radio-inline"><input type="radio" name="rCISSubDABSearchType_update" value="CT" checked="">Common Term</label>
+                                <input class="form-control input-lg" type="hidden" name="tCISSUBDABCodeType_update"  id="tCISSUBDABCodeType_update"  value="DAB" tabindex="4" readonly="">
+
+                            </div>
+                           
                         <div class="form-group">
                             <input class="form-control input-lg" type="text"  id="tCISSubDABSearch_update" placeholder="Please Type Disability Name..." tabindex="4" data-search-by-word="true" onkeypress="return blockSpecialChar(event)">
+                           <input class="form-control input-lg" type="text"  id="tCISSubDABSearchPersonalised_update" placeholder="Type to search Personalised..." data-search-by-word="true" onkeypress="return blockSpecialChar(event)">
                             <div id="tCISSubDABSearchLoading_update" ></div>
 <!--                            <input class="form-control input-lg" type="text" name="problem"  id="PProblem32" placeholder="Please Type Disability Name" tabindex="4">
                             <div id="mmatch32"></div>-->
@@ -1012,12 +1132,24 @@
                 
             searching("tCISSubCCNHFCSearch","tCISSubCCNHFCSearchLoading","search/ResultCCNSearch.jsp","ccnCode","search/ResultCCNSearchCode.jsp");
             searching("tCISSubCCNHFCSearchPersonalised","tCISSubCCNHFCSearchLoading","search/ResultCCNPersonaliseSearch.jsp","ccnCode","search/ResultCCNPersonaliseSearchCode.jsp");
+            
             searching("tCISSubPMHSearch","tCISSubPMHSearchLoading","search/ResultPMHSearch.jsp","codePMH","search/ResultPMHSearchCode.jsp");
+            searching("tCISSubPMHSearchPersonalised","tCISSubPMHSearchLoading","search/ResultPMHPersonaliseSearch.jsp","codePMH","search/ResultPMHPersonaliseSearchCode.jsp");
+            
             searching("tCISSubFMHSearch","tCISSubFMHSearchLoading","search/ResultPMHSearch.jsp","fmhCode","search/ResultPMHSearchCode.jsp");
+            searching("tCISSubFMHSearchPersonalised","tCISSubFMHSearchLoading","search/ResultFMHPersonaliseSearch.jsp","fmhCode","search/ResultFMHPersonaliseSearchCode.jsp");
+            
             searching("tCISSubSOHSearch","tCISSubSOHSearchLoading","search/ResultSOHSearch.jsp","codeSOH","search/ResultSOHSearchCode.jsp");
+            searching("tCISSubSOHSearchPersonalised","tCISSubSOHSearchLoading","search/ResultSOHPersonaliseSearch.jsp","codeSOH","search/ResultSOHPersonaliseSearchCode.jsp");
+            
             searching("tCISSubALGSearch","tCISSubALGSearchLoading","search/ResultALGSearch.jsp","codeALG","search/ResultALGSearchCode.jsp");
+            searching("tCISSubALGSearchPersonalised","tCISSubALGSearchLoading","search/ResultALGPersonaliseSearch.jsp","codeALG","search/ResultALGPersonaliseSearchCode.jsp");
+            
             searching("tCISSubIMUSearch","tCISSubIMUSearchLoading","search/ResultIMUSearch.jsp","codeIMU","search/ResultIMUSearchCode.jsp");
+            searching("tCISSubIMUSearchPersonalised","tCISSubIMUSearchLoading","search/ResultIMUPersonaliseSearch.jsp","codeIMU","search/ResultIMUPersonaliseSearchCode.jsp");
+            
             searching("tCISSubDABSearch","tCISSubDABSearchLoading","search/ResultDABSearch.jsp","codeDAB","search/ResultDABSearchCode.jsp");
+            searching("tCISSubDABSearchPersonalised","tCISSubDABSearchLoading","search/ResultDABPersonaliseSearch.jsp","codeDAB","search/ResultDABPersonaliseSearchCode.jsp");
             
             
 //        });
