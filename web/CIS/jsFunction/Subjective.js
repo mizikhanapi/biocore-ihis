@@ -110,8 +110,9 @@ $(document).ready(function () {
     /// ----------------------------------------------------------------------------------------------------------------------------------------------/////;
     $('#acceptBtn').click(function (e) {
         e.preventDefault();
-        var search_by = $('input[name="rCISSubCCNSearchType"]').val();
+        var search_by = $('input[name=rCISSubCCNSearchType]:checked').val();
        
+
         var problem = $('#tCISSubCCNHFCSearch').val();
         var Mild = $('#Mild').val();
         var Site = $('#Site').val();
@@ -122,9 +123,14 @@ $(document).ready(function () {
         var ccnCode = $('#ccnCode').val();
         notes += "CCN|" + getDate() + "|^" + ccnCode + "^" + problem + "^^" + Mild + "|<cr>\n";
         var $items = $('#codeCCN, #Mild, #Site, #duration, #sdur, #Laterality, #Comment,#ccnCode');
+        
+        var search_by = $('input[name=rCISSubCCNSearchType]:checked').val();
         if(search_by === "P"){
             problem = $('#tCISSubCCNHFCSearchPersonalised').val();
+        } else {
+            problem = $('#tCISSubCCNHFCSearch').val();
         }
+        
         var obj1 = {
             Acode:"CCN",
             problem:problem
@@ -163,7 +169,7 @@ $(document).ready(function () {
         var updateObj = _data[id[1]];
         
         retriveDataSearchingSubjective("tCISSubCCNHFCSearch_update", "tCISSubCCNHFCSearchLoading_update", "search/ResultCCNSearch.jsp", "search/ResultCCNSearchCode.jsp", "uccnCode", updateObj.problem);
-         retriveDataSearchingSubjective("tCISSubCCNHFCSearchPersonalised_update", "tCISSubCCNHFCSearchLoading_update", "search/ResultCCNPersonaliseSearch.jsp", "search/ResultCCNSearchCode.jsp", "uccnCode", "");
+        // retriveDataSearchingSubjective("tCISSubCCNHFCSearchPersonalised_update", "tCISSubCCNHFCSearchLoading_update", "search/ResultCCNPersonaliseSearch.jsp", "search/ResultCCNSearchCode.jsp", "uccnCode", "");
 
         $('#uMild').val(updateObj.Mild);
         $('#uSite').val(updateObj.Site);
@@ -192,6 +198,16 @@ $(document).ready(function () {
         var _uComment = $('#uComment').val();
         var _uccnCode = $('#uccnCode').val();
         
+        var search_by = $('input[name=rCISSubCCNSearchType_update]:checked').val();
+        if(search_by === "P"){
+            _uproblem = $('#tCISSubCCNHFCSearchPersonalised_update').val();
+        } else {
+            _uproblem = $('#tCISSubCCNHFCSearch_update').val();
+        }
+        var tempccnObj = {
+            ccnCode:_uccnCode
+        }
+        
         if(upObject.ccnCode === _uccnCode){
             
             upObject.problem = _uproblem;
@@ -207,7 +223,8 @@ $(document).ready(function () {
             $("#update_CIS01000001").modal('toggle');
             
         }else{
-            if (checkCCN(_data, upObject)) {
+
+            if (checkCCN(_data, tempccnObj)) {
                 bootbox.alert("This Chief Complain already been inserted. Please choose at consultation note to update the record or add new chief complain");
             } else {
                 upObject.problem = _uproblem;
@@ -224,7 +241,7 @@ $(document).ready(function () {
             }
         }
         
-
+        console.log(upObject);
 
         
     });
@@ -284,6 +301,12 @@ $(document).ready(function () {
         var comment1 = $('#comment1').val();
         var pmhCode = $('#pmhCode').val();
         var $items = $(' #Status, #comment1,#codePMH');
+        var search_by = $('input[name=rCISSubpmhSearchType]:checked').val();
+        if (search_by === "P") {
+            Problem1 = $('#tCISSubPMHSearchPersonalised').val();
+        } else {
+            Problem1 = $('#tCISSubPMHSearch').val();
+        }
         var obj1 = {
             Acode:"PMH",
             Problem1:Problem1
@@ -291,6 +314,7 @@ $(document).ready(function () {
         $items.each(function () {
             obj1[this.id] = $(this).val();
         });
+        
         if (checkPMH(_data, obj1)) {
             bootbox.alert("This Past Medical History already been inserted. Please choose at consultation note to update the record or add new Past Medical History");
         } else{
@@ -328,6 +352,17 @@ $(document).ready(function () {
         var _Pcomment1 = $('#Pcomment1').val();
         var _Pcode = $("#ucodePMH").val();
         
+        var search_by = $('input[name=rCISSubPMHSearchType_update]:checked').val();
+        if (search_by === "P") {
+            _PProblem2 = $('#tCISSubPMHSearchPersonalised_update').val();
+        } else {
+            _PProblem2 = $('#tCISSubPMHSearch_update').val();
+        }
+        
+         var tempccnObj = {
+            codePMH:_Pcode
+        }
+        
         if (upObject.codePMH === _Pcode){
             
             upObject.Problem1 = _PProblem2;
@@ -339,7 +374,7 @@ $(document).ready(function () {
             $("#update_CIS01000003").modal('toggle');
             
         }else{
-            if (checkPMH(_data, upObject)) {
+            if (checkPMH(_data, tempccnObj)) {
                  bootbox.alert("This Past Medical History already been inserted. Please choose at consultation note to update the record or add new Past Medical History");
             }else{
                 upObject.Problem1 = _PProblem2;
@@ -365,6 +400,14 @@ $(document).ready(function () {
         var comment2 = $('#comment2').val();
         var code4 = $('#fmhCode').val();
         var $items = $('#f_relationship, #comment2');
+        
+        var search_by = $('input[name=rCISSubFMHSearchType]:checked').val();
+        if (search_by === "P") {
+            Problem3 = $('#tCISSubFMHSearchPersonalised').val();
+        } else {
+            Problem3 = $('#tCISSubFMHSearch').val();
+        }
+        
         var obj1 = {
             Acode:"FMH",
             Problem3:Problem3,
@@ -410,6 +453,18 @@ $(document).ready(function () {
         var _Pcomment2 = $('#Pcomment2').val();
         var codeFMH = $('#ufmhCode').val();
         
+        var search_by = $('input[name=rCISSubFMHSearchType_update]:checked').val();
+        if (search_by === "P") {
+            _PProblem3 = $('#tCISSubFMHSearchPersonalised_update').val();
+        } else {
+            _PProblem3 = $('#tCISSubFMHSearch_update').val();
+        }
+        
+        var tempccnObj = {
+            codeFMH:codeFMH
+        }
+        
+        
         if(upObject.codeFMH === codeFMH){
             upObject.Problem3 = _PProblem3;
             upObject.f_relationship = _ff_relationship;
@@ -419,7 +474,7 @@ $(document).ready(function () {
             $('#sum' + rowId).html(sum);
             $("#update_CIS01000004").modal('toggle');
         } else{
-            if (checkFMH(_data, upObject)) {
+            if (checkFMH(_data, tempccnObj)) {
                 bootbox.alert("This Family Medical History already been inserted. Please choose at consultation note to update the record or add new Family Medical History");
             } else {
                 upObject.Problem3 = _PProblem3;
@@ -445,6 +500,14 @@ $(document).ready(function () {
         var comment3 = $('#comment3').val();
         var code5 = $('#codeSOH').val();
         var $items = $('#date, #comment3');
+        
+        var search_by = $('input[name=rCISSubSOHSearchType]:checked').val();
+        if (search_by === "P") {
+            Problem4 = $('#tCISSubSOHSearchPersonalised').val();
+        } else {
+            Problem4 = $('#tCISSubSOHSearch').val();
+        }
+        
         var obj1 = {
             Acode:"SOH",
             Problem4:Problem4,
@@ -494,6 +557,18 @@ $(document).ready(function () {
         var _Pcomment3 = $('#Pcomment3').val();
         var _codeSOH = $('#usohCode').val();
         
+         var search_by = $('input[name=rCISSubSOHSearchType_update]:checked').val();
+        if (search_by === "P") {
+            _PProblem4 = $('#tCISSubSOHSearchPersonalised_update').val();
+        } else {
+            _PProblem4 = $('#tCISSubSOHSearch_update').val();
+        }
+        
+        
+        var tempccnObj = {
+            codeSOH:_codeSOH
+        }
+        
         if(upObject.codeSOH === _codeSOH){
             
             upObject.Problem4 = _PProblem4;
@@ -505,7 +580,7 @@ $(document).ready(function () {
             $("#update_CIS01000005").modal('toggle');
             
         }else{
-            if(checkSOH(_data,upObject)){
+            if(checkSOH(_data,tempccnObj)){
                 bootbox.alert("This Social History already been inserted. Please choose at consultation note to update the record or add new Social History");
             }else{
                 upObject.Problem4 = _PProblem4;
@@ -576,6 +651,8 @@ $(document).ready(function () {
         var _GG6PD_Status = $('#GG6PD_Status').val();
         var _Pcomment4 = $('#Pcomment4').val();
         
+
+        
         if(upObject.blood === _b_blood){
             upObject.blood = _b_blood;
             upObject.Rhesus_Type = _RRhesus_Type;
@@ -614,6 +691,14 @@ $(document).ready(function () {
         var comment5 = $('#comment5').val();
         var code7 = $('#codeALG').val();
         var $items = $('#codeALG, #date1, #comment5');
+        
+                 var search_by = $('input[name=rCISSubALGSearchType]:checked').val();
+        if (search_by === "P") {
+            Problem5 = $('#tCISSubALGSearchPersonalised').val();
+        } else {
+            Problem5 = $('#tCISSubALGSearch').val();
+        }
+        
         var obj1 = {
             Acode:"ALG",
             Problem5:Problem5
@@ -659,6 +744,18 @@ $(document).ready(function () {
         var _Pcomment5 = $('#Pcomment5').val();
         var _algCode = $('#uALG_cd').val();
         
+                         var search_by = $('input[name=rCISSubALGSearchType_update]:checked').val();
+        if (search_by === "P") {
+            _PProblem5 = $('#tCISSubALGSearchPersonalised_update').val();
+        } else {
+            _PProblem5 = $('#tCISSubALGSearch_update').val();
+        }
+        
+        
+                var tempccnObj = {
+            codeALG:_algCode
+        }
+        
         if(upObject.codeALG ===  _algCode){
             upObject.Problem5 = _PProblem5;
             upObject.date1 = _ddate1;
@@ -668,7 +765,7 @@ $(document).ready(function () {
             $('#sum' + rowId).html(sum);
             $("#update_CIS01000007").modal('toggle');
         } else {
-            if (checkALG(_data, upObject)) {
+            if (checkALG(_data, codeALG)) {
                 bootbox.alert("This Allergy already been inserted. Please choose at consultation note to update the record or add new Allergy");
             }else{
                 upObject.Problem5 = _PProblem5;
@@ -696,6 +793,14 @@ $(document).ready(function () {
         var code8 = $('#codeIMU').val();
         notes += "IMU|" + getDate() + "^|" + probcode + "^" + Problem6 + "^" + date2 + "^" + comment6 + "|<cr>\n";
         var $items = $('#codeIMU, #date2, #comment6');
+        
+        var search_by = $('input[name=rCISSubIMUSearchType]:checked').val();
+        if (search_by === "P") {
+            Problem6 = $('#tCISSubIMUSearchPersonalised').val();
+        } else {
+            Problem6 = $('#tCISSubIMUSearch').val();
+        }
+        
         var obj1 = {
             Acode:"IMU",
             Problem6:Problem6
@@ -739,6 +844,17 @@ $(document).ready(function () {
         var _Pcomment6 = $('#Pcomment6').val();
         var _IMUCode = $('#uIMU_cd').val();
         
+        var search_by = $('input[name=rCISSubIMUSearchType_update]:checked').val();
+        if (search_by === "P") {
+            _PProblem6 = $('#tCISSubIMUSearchPersonalised_update').val();
+        } else {
+            _PProblem6 = $('#tCISSubIMUSearch_update').val();
+        }
+        
+        var tempccnObj = {
+            codeIMU:_IMUCode
+        }
+        
         if(upObject.codeIMU === _IMUCode){
             upObject.Problem6 = _PProblem6;
             upObject.date2 = _ddate2;
@@ -748,7 +864,7 @@ $(document).ready(function () {
             $('#sum' + rowId).html(sum);
             $("#update_CIS01000008").modal('toggle');
         } else{
-            if (checkIMU(_data, upObject)) {
+            if (checkIMU(_data, tempccnObj)) {
                 bootbox.alert("This Immunization already been inserted. Please choose at consultation note to update the record or add new Immunization");
             }else{
                 upObject.Problem6 = _PProblem6;
@@ -778,6 +894,13 @@ $(document).ready(function () {
         var $items = $('#date3, #comment7');
         var strCom = Problem32.replace(/'/g, '\\\'');
         Problem32 = strCom;
+        
+        var search_by = $('input[name=rCISSubDABSearchType]:checked').val();
+        if (search_by === "P") {
+            Problem32 = $('#tCISSubDABSearchPersonalised').val();
+        } else {
+            Problem32 = $('#tCISSubIMUSearch').val();
+        }
         
         var obj1 = {
             Acode:"DAB",
@@ -825,6 +948,17 @@ $(document).ready(function () {
         var _codeDAB = $('#uDAS_cd').val();
         _PProblem32.replace(/'/g, '\\\'');
         
+                var search_by = $('input[name=rCISSubDABSearchType_update]:checked').val();
+        if (search_by === "P") {
+            _PProblem32 = $('#tCISSubDABSearchPersonalised_update').val();
+        } else {
+            _PProblem32 = $('#tCISSubIMUSearch_update').val();
+        }
+        
+                var tempccnObj = {
+            codeDAB:_codeDAB
+        }
+        
         if(upObject.codeDAB === _codeDAB){
             upObject.Problem32 = _PProblem32;
             upObject.date3 = _ddate3;
@@ -834,7 +968,7 @@ $(document).ready(function () {
             $('#sum' + rowId).html(sum);
             $("#update_CIS01000009").modal('toggle');
         }else{
-            if (checkDAB(_data, upObject)) {
+            if (checkDAB(_data, tempccnObj)) {
                 bootbox.alert("This Disability already been inserted. Please choose at consultation note to update the record or add new Disability");
             }else{
                 upObject.Problem32 = _PProblem32;
@@ -921,6 +1055,11 @@ function displayDAB(Problem32,date3,comment7){
 function checkCCN(datas,obj){
       var already = false;   
         for(var i in datas){
+            console.log(obj);
+            console.log(datas);
+            console.log(datas[i].ccnCode);
+            console.log(obj.ccnCode);
+            
             if(datas[i].ccnCode === obj.ccnCode){
                 already = true;
             }

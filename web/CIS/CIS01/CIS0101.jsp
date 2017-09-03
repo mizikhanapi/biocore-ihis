@@ -139,7 +139,7 @@
                             <div id="match1"></div>
                         </div>
                         <div class="form-group">
-                                <input class="form-control input-lg" type="hidden" name="uccnCode"  id="uccnCode"  tabindex="4">
+                                <input class="form-control input-lg" type="text" name="uccnCode"  id="uccnCode"  tabindex="4">
                         </div>
                         <div class="row">
                             <div class="col-xs-6 col-sm-6 col-md-6">
@@ -1132,24 +1132,31 @@
                 
             searching("tCISSubCCNHFCSearch","tCISSubCCNHFCSearchLoading","search/ResultCCNSearch.jsp","ccnCode","search/ResultCCNSearchCode.jsp");
             searching("tCISSubCCNHFCSearchPersonalised","tCISSubCCNHFCSearchLoading","search/ResultCCNPersonaliseSearch.jsp","ccnCode","search/ResultCCNPersonaliseSearchCode.jsp");
+            searching("tCISSubCCNHFCSearchPersonalised_update","tCISSubCCNHFCSearchLoading_update","search/ResultCCNPersonaliseSearch.jsp","uccnCode","search/ResultCCNPersonaliseSearchCode.jsp");
             
             searching("tCISSubPMHSearch","tCISSubPMHSearchLoading","search/ResultPMHSearch.jsp","codePMH","search/ResultPMHSearchCode.jsp");
             searching("tCISSubPMHSearchPersonalised","tCISSubPMHSearchLoading","search/ResultPMHPersonaliseSearch.jsp","codePMH","search/ResultPMHPersonaliseSearchCode.jsp");
+            searching("tCISSubPMHSearchPersonalised_update","tCISSubPMHSearchLoading_update","search/ResultPMHPersonaliseSearch.jsp","ucodePMH","search/ResultPMHPersonaliseSearchCode.jsp");
             
             searching("tCISSubFMHSearch","tCISSubFMHSearchLoading","search/ResultPMHSearch.jsp","fmhCode","search/ResultPMHSearchCode.jsp");
             searching("tCISSubFMHSearchPersonalised","tCISSubFMHSearchLoading","search/ResultFMHPersonaliseSearch.jsp","fmhCode","search/ResultFMHPersonaliseSearchCode.jsp");
+            searching("tCISSubFMHSearchPersonalised_update","tCISSubFMHSearchLoading_update","search/ResultFMHPersonaliseSearch.jsp","ufmhCode","search/ResultFMHPersonaliseSearchCode.jsp");
             
             searching("tCISSubSOHSearch","tCISSubSOHSearchLoading","search/ResultSOHSearch.jsp","codeSOH","search/ResultSOHSearchCode.jsp");
             searching("tCISSubSOHSearchPersonalised","tCISSubSOHSearchLoading","search/ResultSOHPersonaliseSearch.jsp","codeSOH","search/ResultSOHPersonaliseSearchCode.jsp");
+            searching("tCISSubSOHSearchPersonalised_update","tCISSubSOHSearchLoading_update","search/ResultSOHPersonaliseSearch.jsp","usohCode","search/ResultSOHPersonaliseSearchCode.jsp");
             
             searching("tCISSubALGSearch","tCISSubALGSearchLoading","search/ResultALGSearch.jsp","codeALG","search/ResultALGSearchCode.jsp");
             searching("tCISSubALGSearchPersonalised","tCISSubALGSearchLoading","search/ResultALGPersonaliseSearch.jsp","codeALG","search/ResultALGPersonaliseSearchCode.jsp");
+            searching("tCISSubALGSearchPersonalised_update","tCISSubALGSearchLoading_update","search/ResultALGPersonaliseSearch.jsp","uALG_cd","search/ResultALGPersonaliseSearchCode.jsp");
             
             searching("tCISSubIMUSearch","tCISSubIMUSearchLoading","search/ResultIMUSearch.jsp","codeIMU","search/ResultIMUSearchCode.jsp");
             searching("tCISSubIMUSearchPersonalised","tCISSubIMUSearchLoading","search/ResultIMUPersonaliseSearch.jsp","codeIMU","search/ResultIMUPersonaliseSearchCode.jsp");
+            searching("tCISSubIMUSearchPersonalised_update","tCISSubIMUSearchLoading_update","search/ResultIMUPersonaliseSearch.jsp","uIMU_cd","search/ResultIMUPersonaliseSearchCode.jsp");
             
             searching("tCISSubDABSearch","tCISSubDABSearchLoading","search/ResultDABSearch.jsp","codeDAB","search/ResultDABSearchCode.jsp");
             searching("tCISSubDABSearchPersonalised","tCISSubDABSearchLoading","search/ResultDABPersonaliseSearch.jsp","codeDAB","search/ResultDABPersonaliseSearchCode.jsp");
+            searching("tCISSubDABSearchPersonalised_update","tCISSubDABSearchLoading_update","search/ResultDABPersonaliseSearch.jsp","uDAS_cd","search/ResultDABPersonaliseSearchCode.jsp");
             
             
 //        });

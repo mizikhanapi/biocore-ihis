@@ -14,6 +14,14 @@ $(document).ready(function () {
     $("#tCISSubIMUSearchPersonalised-flexdatalist").hide();
     $("#tCISSubDABSearchPersonalised-flexdatalist").hide();
     
+    $("#tCISSubCCNHFCSearchPersonalised_update-flexdatalist").hide();
+    $("#tCISSubPMHSearchPersonalised_update-flexdatalist").hide();
+    $("#tCISSubFMHSearchPersonalised_update-flexdatalist").hide();
+    $("#tCISSubSOHSearchPersonalised_update-flexdatalist").hide();
+    $("#tCISSubALGSearchPersonalised_update-flexdatalist").hide();
+    $("#tCISSubIMUSearchPersonalised_update-flexdatalist").hide();
+    $("#tCISSubDABSearchPersonalised_update-flexdatalist").hide();
+    
     initialiseRadioPersonalised("CCN","CCNHFC");
     initialiseRadioPersonalised("PMH","PMH");
     initialiseRadioPersonalised("FMH","FMH");
