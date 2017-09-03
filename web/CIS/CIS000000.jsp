@@ -271,11 +271,11 @@
         <%@ include file="search/SearchModal.jsp" %>
         <%@ include file="setting/settingModal.jsp" %>
         
-         <jsp:include page="CIS01/CIS0101.jsp"/> 
-        
-      
-
-        <%@ include file="CIS02/CIS020001.jsp" %> 
+         
+         
+         
+         <%@ include file="CIS02/CIS020001.jsp" %> 
+   
         <%@ include file="CIS02/CIS020002.jsp" %> 
         <%@ include file="CIS02/CIS020003.jsp" %> 
         <%@ include file="CIS02/CIS020004.jsp" %> 
@@ -362,6 +362,6 @@
                 }
             }
         </script>
-
+<jsp:include page="CIS01/CIS0101.jsp"/> 
     </body>
 </html>
