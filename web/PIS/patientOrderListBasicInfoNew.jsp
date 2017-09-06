@@ -265,11 +265,6 @@
 </div>
 
 <div class="text-right" id="patientOrderDispenseButtonDiv" > 
-<!--    <button class="btn btn-primary " type="button" id="" name="" onclick="test()"> <i class="fa fa-print fa-lg" ></i>&nbsp; test &nbsp;</button>
-    <button class="btn btn-primary " type="button" id="" name="" onclick="testing()"> <i class="fa fa-print fa-lg" ></i>&nbsp; testing &nbsp;</button>
-    <button class="btn btn-primary " type="button" id="" name="" onclick="testing1()"> <i class="fa fa-print fa-lg" ></i>&nbsp; testing1 &nbsp;</button>
-    <button class="btn btn-primary " type="button" id="" name="" onclick="testing2()"> <i class="fa fa-print fa-lg" ></i>&nbsp; testing2 &nbsp;</button>
-    <button class="btn btn-primary " type="button" id="" name="" onclick="testing3()"> <i class="fa fa-print fa-lg" ></i>&nbsp; testing3 &nbsp;</button>-->
     <button class="btn btn-primary " type="button" id="btnOrderDispensePrescribe" name="btnOrderDispensePrescribe" > <i class="fa fa-print fa-lg" ></i>&nbsp; Generate Label &nbsp;</button>
     <button class="btn btn-warning " type="button" id="btnOrderDispenseCallPatient" name="btnOrderDispenseCallPatient" > <i class="fa fa-phone fa-lg" ></i>&nbsp; Call Patient &nbsp;</button>
     <button class="btn btn-danger " type="button" id="btnOrderDispenseDeclineCallPatient" name="btnOrderDispenseDeclineCallPatient" > <i class="fa fa-phone fa-lg" ></i>&nbsp; Decline Call Patient &nbsp;</button>
