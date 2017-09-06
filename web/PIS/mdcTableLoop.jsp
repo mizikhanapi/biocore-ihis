@@ -429,16 +429,14 @@
                                     <select id="updateD_FREQUENCY" name="addD_FREQUENCY" class="form-control">
                                         <option value="-">No Frequency</option>
                                         <%
-                                            String sql5 = "SELECT Master_Reference_code,Detail_Reference_code, Description FROM adm_lookup_detail where Master_Reference_code = '0088' AND hfc_cd = '" + hfc + "' ";
+                                            String sql5 = "SELECT frequency_code,frequency_desc,frequency_value FROM pis_drug_frequency where hfc_cd = '" + hfc + "' AND discipline_cd = '" + dis + "' ";
                                             ArrayList<ArrayList<String>> listOfDFreq = conn.getData(sql5);
 
                                             int size5 = listOfDFreq.size();
 
-                                            for (int i = 0;
-                                                    i < size5;
-                                                    i++) {
+                                            for (int i = 0; i < size5; i++) {
                                         %>
-                                        <option value="<%= listOfDFreq.get(i).get(2)%>"><%= listOfDFreq.get(i).get(2)%> </option>
+                                        <option value="<%= listOfDFreq.get(i).get(1)%>"><%= listOfDFreq.get(i).get(1)%> </option>
                                         <%
                                             }
                                         %>
@@ -947,9 +945,9 @@
                 data: data,
                 timeout: 10000,
                 success: function (datas) {
-                    
+
                     if (datas.trim() === 'Success') {
-                        
+
                         $('#contentMDCTable').load('mdcTableLoop.jsp');
                         $(".modal-backdrop").hide();
                         bootbox.alert({
@@ -957,9 +955,9 @@
                             title: "Process Result",
                             backdrop: true
                         });
-                        
+
                     } else if (datas.trim() === 'Failed') {
-                        
+
                         bootbox.alert({
                             message: "Drug Code Update Failed",
                             title: "Process Result",
