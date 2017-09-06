@@ -50,11 +50,18 @@
                                         <ul class="nav nav-tabs ">
                                             <li class="active">
                                                 <a href="#tab_default_1" data-toggle="tab">
-                                                    ATC CODE MANAGEMENT </a>
+                                                    ATC CODE MANAGEMENT
+                                                </a>
                                             </li>
                                             <li>
                                                 <a href="#tab_default_2" data-toggle="tab">
-                                                    DRUG CODE MANAGEMENT </a>
+                                                    DRUG CODE MANAGEMENT
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="#tab_default_3" data-toggle="tab">
+                                                    DRUG FREQUENCY MANAGEMENT
+                                                </a>
                                             </li>
                                         </ul>
                                         <!-- tab content -->
@@ -75,7 +82,16 @@
                                                     </div>
                                                 </div>
                                             </div>
-
+                                            <div class="tab-pane" id="tab_default_3">
+                                                <div id="contentFREQ">
+                                                    <div id="contentFREQMain">
+                                                    </div>
+                                                    <div id="contentFREQTable">
+                                                    </div>
+                                                    <%@include file="freqModal.jsp" %>
+                                                    <%@include file="freqCloneModal.jsp" %>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -107,6 +123,9 @@
                 $("#contentMDCMain").load("mdcMain.jsp");
                 $("#contentMDCTable").load("mdcTableLoop.jsp");
 
+                // Load FREQ Data
+                $("#contentFREQMain").load("freqMain.jsp");
+                $("#contentFREQTable").load("freqTableLoop.jsp");
 
             });
 
