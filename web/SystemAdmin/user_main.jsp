@@ -644,7 +644,9 @@
         $('#UM_endDate').datepicker({
             changeMonth: true,
             changeYear: true,
-            dateFormat: 'dd/mm/yy'
+            dateFormat: 'dd/mm/yy',
+            maxDate: '31/12/9999',
+            yearRange: '-nn:9999'
         });
 
         function UM_reset() {
@@ -655,6 +657,8 @@
 
             UM_reset();
             $('#UM_endDate').datepicker('option', 'minDate', null);
+            $('#UM_endDate').datepicker("setDate","31/12/9999");//setting the default end date; sampai kiamat
+            $('#UM_startDate').datepicker("setDate", new Date());
             isHFCselected = false;
             selectedHFC = "";
             gambarURI = "";
