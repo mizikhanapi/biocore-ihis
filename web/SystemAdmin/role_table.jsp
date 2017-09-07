@@ -251,6 +251,13 @@
                                     backdrop: true
                                 });
                             
+                            //reload list of role for assign role to user
+                            $('#ARM_role').html('');
+                            $('#ARM_role').load('accessRole_main.jsp #ARM_role option');
+
+                            $('#ART_role').html('');
+                            $('#ART_role').load('accessRole_table.jsp #ART_role option');
+                            
                         } else if (datas.trim() === 'Failed') {
                             bootbox.alert("Delete failed!");
                         }

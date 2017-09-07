@@ -136,11 +136,17 @@
                                 $('#RM_detail').modal('hide');
                                 //alert("Insertion Success");
                                 bootbox.alert({
-                                message: "New role is added",
-                                title: "Process Result",
-                                backdrop: true
-                            });
+                                    message: "New role is added",
+                                    title: "Process Result",
+                                    backdrop: true
+                                });
                                 RM_reset();
+                                //reload list of role in asign new role
+                                $('#ARM_role').html('');
+                                $('#ARM_role').load('accessRole_main.jsp #ARM_role option');
+                                
+                                $('#ART_role').html('');
+                                $('#ART_role').load('accessRole_table.jsp #ART_role option');
                                 
                             } else if (datas.trim() === 'Failed') {
                                 
