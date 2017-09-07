@@ -202,7 +202,10 @@
                                     </div>
                                     <div class="col-xs-4 col-sm-4 col-md-4">
                                         <div class="form-group">
-                                            <select name="site" id="tCIS_DTODrugFrequency" class="form-control input-lg">
+                                            <div id="divSelectDrugFrequency">
+                                                
+                                            </div>
+<!--                                            <select name="site" id="tCIS_DTODrugFrequency" class="form-control input-lg">
                                                 <option value="-" selected="">Select Here</option>
                                                 <option value="Once">Once</option>
                                                 <option value="In the morning">In the morning</option>
@@ -217,7 +220,7 @@
                                                 <option value="8 hourly">8 hourly</option>
                                                 <option value="Immediately">Immediately</option>
                                                 <option value="As needed">As needed</option>     
-                                            </select>
+                                            </select>-->
                                         </div>
                                     </div>
                                 </div>

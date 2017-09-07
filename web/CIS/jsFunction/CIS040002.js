@@ -20,7 +20,19 @@ $(document).ready(function(){
     
     $("#btnCIS_OE_DTO_SEARCH_CLEAR").click(function (e) {
         $("#divCIS_OE_DTO_OrderSearchResult").html('');
-    })
+    });
+    
+    $("#CIS040002").on('show.bs.modal',function(){
+       $.ajax({
+           url:'search/GetSelectDrugFrequency.jsp',
+           type:'POST',
+           timeout:3000,
+           success:function(r){
+               console.log(r);
+               $("#divSelectDrugFrequency").html(r.trim());
+           }
+       }) 
+    });
     
     $("#divCIS_OE_DTO_OrderSearchResult").on("click","#tblODTO #btnCIS_OE_DTO_SEARCH_ADD",function(e){
          e.preventDefault();
@@ -140,7 +152,7 @@ $(document).ready(function(){
         var drugDoseUnit = $('#tCIS_DTODrugDoseUnit').val();
         var drugDuration = $('#tCIS_DTODrugDuration').val();
         var drugDurationUnit = $('#tCIS_DTODrugUnit').val();
-        var drugFrequency = $('#tCIS_DTODrugFrequency').val();
+        var drugFrequency = $('#tCIS_DTODrugFrequency option:selected').text();
         var drugQuantity = $("#tCIS_DTOQuantity").val();
         var remark = $('#tCIS_DTORemark').val();
         var comment = $('#tCIS_DTOCommentArea').val();
@@ -148,6 +160,7 @@ $(document).ready(function(){
         var hfcProviderDetail = $('#hfcProviderDetailDTO').val();
         var problemCode = $("#problemCodeDTO").val();
         var problemName = $("#tCISOEDTOProblemName").val();
+        var drugFrequencyValue = $('#tCIS_DTODrugFrequency option:selected').val();
         
         if(drugStrengthUnit === null){
             drugStrengthUnit = " ";
@@ -177,43 +190,44 @@ $(document).ready(function(){
             drugQuantity: drugQuantity,
             problemName:problemName,
             problemCode:problemCode,
-            priority:"Normal"
+            priority:"Normal",
+            drugFrequencyValue:drugFrequencyValue
 
         };
         if (drugName === '' && drugStrength === '' && drugDose === '' && drugDuration === ''&& drugQuantity === '') {
-            alert("You not enter the Drug name, drug strength, drug duration and drug quantity");
+            bootbox.alert("<div id='buttbox'>Please enter Drug name, drug strength, drug duration and drug quantity</div>");
         } else if (drugName === '' && drugStrength === '' && drugDose === '' && drugDuration === '') {
-            alert("You not enter the Drug name, drug strength and drug duration");
+            bootbox.alert("<div id='buttbox'>Please enter Drug name, drug strength and drug duration</div>");
         } else if (drugName === '' && drugStrength === '' && drugDose === '' && drugQuantity === '') {
-            alert("You not enter the Drug name, drug strength and drug quantity");
+            bootbox.alert("<div id='buttbox'>Please enter Drug name, drug strength and drug quantity</div>");
         } else if (drugName === '' && drugStrength === '' && drugDuration === ''&& drugQuantity === '') {
-            alert("You not enter the Drug name, drug strength, drug duration and drug quantity");
+            bootbox.alert("<div id='buttbox'>Please enter Drug name, drug strength, drug duration and drug quantity</div>");
         } else if (drugName === ''  && drugDose === '' && drugDuration === ''&& drugQuantity === '') {
-            alert("You not enter the Drug name, drug strength, drug duration and drug quantity");
+            bootbox.alert("<div id='buttbox'>Please enter Drug name, drug strength, drug duration and drug quantity</div>");
         } else if ( drugStrength === '' && drugDose === '' && drugDuration === ''&& drugQuantity === '') {
-            alert("You not enter the drug strength, drug duration, drug dose and drug quantity");
+            bootbox.alert("<div id='buttbox'>Please enter drug strength, drug duration, drug dose and drug quantity</div>");
         } else if (drugName === '' && drugStrength === '' && drugDose === '' ) {
-            alert("You not enter the drug name, drug strength and durg dose");
+            bootbox.alert("<div id='buttbox'>Please enter drug name, drug strength and durg dose</div>");
         }else if (drugName === ''  && drugDuration === ''&& drugQuantity === '') {
-            alert("You not enter the drug name, drug duration and drug quantity");
+            bootbox.alert("<div id='buttbox'>Please enter drug name, drug duration and drug quantity</div>");
         }else if (  drugDose === '' && drugDuration === ''&& drugQuantity === '') {
-            alert("You not enter the drug dose, durg duration and drug quantity");
+            bootbox.alert("<div id='buttbox'>Please enter drug dose, durg duration and drug quantity</div>");
         }else if (drugName === '' && drugStrength === '' ) {
-            alert("You not enter the drug name and drug strength");
+            bootbox.alert("<div id='buttbox'>Please enter drug name and drug strength</div>");
         }else if (drugName === '' && drugQuantity === '') {
-            alert("You not enter the drug name and drug quantity");
+            bootbox.alert("<div id='buttbox'>Please enter drug name and drug quantity</div>");
         } else if (drugDuration === ''&& drugQuantity === '') {
-            alert("You not enter the duration");
+            bootbox.alert("<div id='buttbox'>Please enter duration</div>");
         }else if (drugName === '' ) {
-            alert("You not enter the drug name");
+            bootbox.alert("<div id='buttbox'>Please enter drug name</div>");
         }else if (drugQuantity === '') {
-            alert("You not enter the drug quantity");
+            bootbox.alert("<div id='buttbox'>Please enter drug quantity</div>");
         }else if ( drugDose === '') {
-            alert("You not enter the drug dose");
+            bootbox.alert("<div id='buttbox'>Please enter drug dose");
         }else if (drugDuration === '') {
-            alert("You not enter the drug duration");
+            bootbox.alert("<div id='buttbox'>Please enter drug duration");
         }else if (drugStrength === '') {
-            alert("You not enter the drug strength");
+            bootbox.alert("<div id='buttbox'>Please enter drug strength");
         }else{
             
             if (checkOrderCode(_dataDTO, obj1.drugCode)) {
@@ -249,7 +263,6 @@ $(document).ready(function(){
         searchingRetrieve("tCISOELIOProblemName", "tCISOELIOProblemNameLoading", "search/ResultCCNSearch.jsp", "problemCodeLIO", "search/ResultCCNSearchCode.jsp",updateDTOObj.problemName);
         searchDTO("tCISOEDTODrugName", "tCISOEDTODrugNameLoading", updateDTOObj.drugName);
         
-        
         $('#tCIS_DTODrugCode').val(updateDTOObj.drugCode);
         $('#tCIS_DTODrugForm').val(updateDTOObj.drugForm);
         $('#tCIS_DTODrugRoute').val(updateDTOObj.drugRoute);
@@ -257,18 +270,24 @@ $(document).ready(function(){
         $('#tCIS_DTODrugFrequencyDetail').val(updateDTOObj.drugFrequencyDetail);
         $('#tCIS_DTODrugStrength').val(updateDTOObj.drugStrength);
         $('#tCIS_DTODrugStrengthUnit').val(updateDTOObj.drugStrengthUnit);
-        
+        $("#tCIS_DTODrugFrequency").val(updateDTOObj.drugFrequencyValue);
         $('#tCIS_DTODrugDose').val(updateDTOObj.drugDose);
         $('#tCIS_DTODrugDoseUnit').val(updateDTOObj.drugDoseUnit);
         $('#tCIS_DTODrugDuration').val(updateDTOObj.drugDuration);
         $('#tCIS_DTODrugUnit').val(updateDTOObj.drugDurationUnit);
-        $('#tCIS_DTODrugFrequency').val(updateDTOObj.drugFrequency);
+       
         $("#tCIS_DTOQuantity").val(updateDTOObj.drugQuantity);
         $('#tCIS_DTORemark').val(updateDTOObj.remark);
         $('#tCIS_DTOCommentArea').val(updateDTOObj.comment);
         $('#hfcOrderDetailDTO').val(updateDTOObj.hfcOrderDetail);
         $('#hfcProviderDetailDTO').val(updateDTOObj.hfcProviderDetail);
         $("#problemCodeDTO").val(updateDTOObj.problemCode);
+        
+//        $("#tCIS_DTODrugFrequency option").each(function () {
+//            if ($(this).text() == updateDTOObj.drugFrequency) {
+//                $(this).attr('selected', 'selected');
+//            }
+//        });
        
         
     });
@@ -290,13 +309,14 @@ $(document).ready(function(){
         updateDTOObj.drugDoseUnit = $("#tCIS_DTODrugDoseUnit").val();
         updateDTOObj.drugDuration = $("#tCIS_DTODrugDuration").val();
         updateDTOObj.drugDurationUnit = $("#tCIS_DTODrugUnit").val();
-        updateDTOObj.drugFrequency = $("#tCIS_DTODrugFrequency").val();
+        updateDTOObj.drugFrequency = $('#tCIS_DTODrugFrequency option:selected').text();
         updateDTOObj.uomCode = $("tCIS_DTODrugStrengthUnit option:selected").text();
         updateDTOObj.remark = $("#tCIS_DTORemark").val();
         updateDTOObj.comment = $("#tCIS_DTOCommentArea").val();
         updateDTOObj.drugQuantity = $("#tCIS_DTOQuantity").val();
         updateDTOObj.problemName = $("#problemCodeDTO").val();
         updateDTOObj.problemCode = $("#tCISOEDTOProblemName").val();
+        updateDTOObj.drugFrequencyValue = $('#tCIS_DTODrugFrequency option:selected').val();
         updateOrderDTOTable(updateDTOObj,updateDTOIndex);
         $("#btnCIS_OE_DTO_UPDATE").hide();
         $("#btnCIS_OE_DTO_CANCEL").hide();
@@ -412,13 +432,20 @@ $(document).ready(function(){
                 $('#tCIS_DTODrugRoute').val(array_data[6].trim());
                 $('#tCIS_DTODrugCaution').val(array_data[8].trim());
                 $('#tCIS_DTODrugFrequencyDetail').val(array_data[9].trim());
-                $('#tCIS_DTODrugFrequency').val(array_data[9].trim());
+                //$('#tCIS_DTODrugFrequency').text(array_data[9].trim());
+                $("#tCIS_DTODrugFrequency option:contains(" + array_data[9].trim() + ")").attr('selected', 'selected');
                 $('#tCIS_DTODrugStrength').val(array_data[4].trim())
                 $('#tCIS_DTODrugStrengthUnit').val("");
                 $('#tCIS_DTODrugDuration').val(array_data[11].trim());
                 $('#tCIS_DTODrugUnit').val(array_data[12].trim());
-                //$("#tCIS_DTOQuantity").val(array_data[5].trim()+" "+array_data[10].trim());
+                
                 $('#tCIS_DTODrugDose').val(array_data[5].trim()+" "+array_data[10].trim());
+                
+                var dur = parseFloat(array_data[11].trim());
+                var fre = parseFloat($('#tCIS_DTODrugFrequency').val());
+                var quantity = dur*fre;
+                $("#tCIS_DTOQuantity").val(quantity);
+
             }
         });
     }
