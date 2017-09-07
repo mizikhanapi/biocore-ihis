@@ -62,9 +62,6 @@
             var frequencyValue = $('#freqValue').val();
             var frequencyStatus = $('#freqStatus').val();
 
-            var newFrequencyValue = parseFloat(frequencyValue).toFixed(2);
-
-            frequencyValue = newFrequencyValue;
 
             if (frequencyCode === "" || frequencyCode === null) {
                 bootbox.alert("Please Insert The Frequency Code");
@@ -76,6 +73,10 @@
                 bootbox.alert("Please Select A Status");
 
             } else {
+
+                var newFrequencyValue = parseFloat(frequencyValue).toFixed(2);
+
+                frequencyValue = newFrequencyValue;
 
                 var data = {
                     frequencyCode: frequencyCode,
@@ -174,10 +175,6 @@
             var frequencyValue = $('#freqValue').val();
             var frequencyStatus = $('#freqStatus').val();
 
-            var newFrequencyValue = parseFloat(frequencyValue).toFixed(2);
-
-            frequencyValue = newFrequencyValue;
-
             if (frequencyCode === "" || frequencyCode === null) {
                 bootbox.alert("Please Insert The Frequency Code");
             } else if (frequencyDesc === "" || frequencyDesc === null) {
@@ -188,6 +185,10 @@
                 bootbox.alert("Please Select A Status");
 
             } else {
+
+                var newFrequencyValue = parseFloat(frequencyValue).toFixed(2);
+
+                frequencyValue = newFrequencyValue;
 
                 var data = {
                     frequencyCode: frequencyCode,
@@ -398,7 +399,7 @@
                     timeout: 15000,
                     success: function (datas) {
                         console.log(datas.trim());
-                        
+
                         if (datas.trim() === 'Success') {
 
                             $("#contentFREQTable").load("freqTableLoop.jsp");
@@ -409,13 +410,13 @@
                                 title: "Process Result",
                                 backdrop: true
                             });
-                            
+
                             FREQCloneReset();
 
                         } else if (datas.trim() === 'Failed') {
 
                             bootbox.alert("Insertion failed!");
-                            
+
                             FREQCloneReset();
 
                         } else {

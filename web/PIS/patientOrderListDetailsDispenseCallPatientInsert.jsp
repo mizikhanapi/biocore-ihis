@@ -35,7 +35,7 @@
     String cs_queue_no = "";                                // Date 5
     String cs_queue_name = "Normal Queue 2";                // Date 6
     String cs_datetime = format.format(now);                // Date 7
-    String cs_callingtime = "5";                             // Date 8
+    String cs_callingtime = "2";                             // Date 8
     String cs_room_no = "Pharmacy";                             // Date 8
 
     String data[] = dataCallPatientFull.split("\\|");
