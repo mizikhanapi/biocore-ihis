@@ -417,7 +417,7 @@ $(document).ready(function(){
                 $('#tCIS_DTODrugStrengthUnit').val("");
                 $('#tCIS_DTODrugDuration').val(array_data[11].trim());
                 $('#tCIS_DTODrugUnit').val(array_data[12].trim());
-                $("#tCIS_DTOQuantity").val(array_data[5].trim()+" "+array_data[10].trim());
+                //$("#tCIS_DTOQuantity").val(array_data[5].trim()+" "+array_data[10].trim());
                 $('#tCIS_DTODrugDose').val(array_data[5].trim()+" "+array_data[10].trim());
             }
         });
