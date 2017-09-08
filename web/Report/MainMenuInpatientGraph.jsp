@@ -19,12 +19,13 @@
     hfc = session.getAttribute("HEALTH_FACILITY_CODE").toString();
  
     
-//    startDate = request.getParameter("startDate").toString();
-//    endDate = request.getParameter("endDate").toString();
+    startDate = request.getParameter("startDate").toString();
+    endDate = request.getParameter("endDate").toString();
+    dis = request.getParameter("dis").toString();
     
-    startDate = "2017-01-01";
-    endDate = "2017-08-28";
-    dis = "002";
+//    startDate = "2017-01-01";
+//    endDate = "2017-08-28";
+//    dis = "002";
     
     if(patientTypeName.equalsIgnoreCase("staff")) {
         patientType = "0";
@@ -44,10 +45,10 @@
                 + " ON adm_lookup_det.`Detail_Reference_code` = b.SEX_CODE"
                 + " AND adm_lookup_det.`hfc_cd` = e.`HEALTH_FACILITY_CODE`"
                 + " AND adm_lookup_det.`Master_Reference_code` like '0041'"
-                + " WHERE e.`HEALTH_FACILITY_CODE` = '04010101'"
+                + " WHERE e.`HEALTH_FACILITY_CODE` = '"+hfc+"'"
                 + " AND e.`DISCIPLINE_CODE` = '002'"
                 + " GROUP BY YEAR(e.`EPISODE_DATE`), MONTH(e.`EPISODE_DATE`) ,"
-                + " b.SEX_CODE having cast(e.`EPISODE_DATE` as date) BETWEEN '2017-01-01' AND '2017-08-28'";
+                + " b.SEX_CODE having cast(e.`EPISODE_DATE` as date) BETWEEN '"+startDate+"' AND '"+endDate+"'";
 
 //    out.print("Replay : " + hfc + " - " + startDate + " - " + endDate + " + " + query +"<br>");
         ArrayList<ArrayList<String>> medicalCertificateInfoGraph = conn.getData(query);

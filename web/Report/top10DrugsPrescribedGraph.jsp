@@ -24,7 +24,7 @@
                 + " GROUP BY drug_name "
                 + " ORDER BY counts DESC "
                 + " LIMIT 10;";
-
+        out.print(query);
         ArrayList<ArrayList<String>> medicalInfo = conn1.getData(query);
 
         if (medicalInfo.size() > 0) {
