@@ -13,11 +13,12 @@
     String fax = request.getParameter("fax");
     String home = request.getParameter("home");
     String office = request.getParameter("office");
+    String roomNo = request.getParameter("roomNo");
     
     Conn conn = new Conn();
     RMIConnector rmic = new RMIConnector();
     
-    String query = "Update adm_users set email = '"+email+"', mobile_phone = '"+mobile+"', home_phone = '"+home+"', office_phone = '"+office+"', fax_no = '"+fax+"' "
+    String query = "Update adm_users set email = '"+email+"', mobile_phone = '"+mobile+"', home_phone = '"+home+"', office_phone = '"+office+"', fax_no = '"+fax+"', room_no='"+roomNo+"'  "
             + "Where user_id = '"+userID+"' ";
     
     boolean isUpdate = rmic.setQuerySQL(conn.HOST, conn.PORT, query);

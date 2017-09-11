@@ -47,9 +47,9 @@
 
                 <!-- Text input-->
                 <div class="form-group">
-                    <label class="col-md-4 control-label" for="textinput">Room No</label>
+                    <label class="col-md-4 control-label" for="textinput">Room No*</label>
                     <div class="col-md-8">
-                        <input id="PI_roomNo"  type="text"  class="form-control input-md" readonly>
+                        <input id="PI_roomNo"  type="text"  class="form-control input-md" >
                     </div>
                 </div>
             </div>
@@ -283,7 +283,7 @@
         enableButton();
     });
 
-    $('#PI_btnCancel').on('click', function () {
+    $('#PI_btnCancel').off('click').on('click', function () {
         disableButton();
         setTextField();
     });
@@ -302,15 +302,16 @@
         $("#PI_btnCancel").prop('disabled', true);
     }
 
-    $('#PI_btnChange').on('click', function () {
+    $('#PI_btnChange').off('click').on('click', function () {
 
-        var email, mobile, home, office, fax;
+        var email, mobile, home, office, fax, roomNo;
 
         mobile = $('#PI_mobile').val();
         fax = $('#PI_fax').val();
         office = $('#PI_officeTel').val();
         home = $('#PI_homeTel').val();
         email = $('#PI_email').val();
+        roomNo = $('#PI_roomNo').val();
 
         if (mobile === "") {
             bootbox.alert("Fill in the mobile phone number");
@@ -318,6 +319,9 @@
         } else if (email === "") {
             bootbox.alert("Fill in the email");
 
+        } else if (roomNo === ""){
+            bootbox.alert("Fill in the room number");
+            
         } else if (validatePhonenumber(mobile) === false) {
             bootbox.alert("Invalid mobile phone number. Only numbers and +, - signs are allowed.");
             $('#PI_mobile').val("");
@@ -344,7 +348,8 @@
                 mobile: mobile,
                 home: home,
                 office: office,
-                fax: fax
+                fax: fax,
+                roomNo: roomNo
             };
 
             $.ajax({
