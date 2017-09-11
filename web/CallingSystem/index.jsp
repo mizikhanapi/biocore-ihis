@@ -62,6 +62,7 @@
 %>
 <script src="assets/js/jquery-3.1.1.js" type="text/javascript"></script>
 <script src="assets/js/bootstrap.js" type="text/javascript"></script>
+<script src="assets/js/bootbox.min.js"></script>
 <!-- header -->
 <%@include file = "../assets/header.html" %>
 <style>
