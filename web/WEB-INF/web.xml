@@ -345,6 +345,17 @@
     </servlet-mapping>
     <!-- mapping for PIS HIS040012 -->
     
+    <!-- mapping for PIS HIS040013 -->
+    <servlet>
+        <servlet-name>Archive_Order</servlet-name>
+        <jsp-file>/PIS/HIS040013.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Archive_Order</servlet-name>
+        <url-pattern>/PIS/Archive_Order</url-pattern>
+    </servlet-mapping>
+    <!-- mapping for PIS HIS040013 -->
+    
     
     
     <!-- Mapping For PIS Hidding URL End -->
