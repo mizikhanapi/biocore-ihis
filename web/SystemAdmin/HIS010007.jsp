@@ -125,7 +125,6 @@
 
         <script>
 
-
             $(document).ready(function () {
                 
                 $("#USRMain").load("report_user_main.jsp");

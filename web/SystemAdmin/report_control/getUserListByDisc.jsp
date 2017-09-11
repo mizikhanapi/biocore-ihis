@@ -46,7 +46,7 @@
             
     %>
 
-    <tr style="text-align: center; cursor: pointer;">
+    <tr class="clickable_tr" style="text-align: center; cursor: pointer;">
         <td><%= dataATC.get(i).get(0)%></td>
         <td><%= dataATC.get(i).get(1)%></td>
         <td><%= dataATC.get(i).get(2)%></td>
@@ -135,7 +135,7 @@
             ]
         });
         
-        $('#reportListATCTable').off('click').on('click', 'tr', function(){
+        $('#reportListATCTable').off('click').on('click', '.clickable_tr', function(){
             var row = $(this).closest('tr');
             var arrData = row.find('#REP_hidden').text().split("|");
             console.log(arrData);

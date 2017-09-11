@@ -22,16 +22,18 @@
     <th style="text-align: center;">Role Code</th>
     <th style="text-align: center;">Role Name</th>
     <th style="text-align: center;">Number of users</th>
+    <th style="text-align: center;">Number of modules</th>
     <th hidden>Hidden</th>
     
 <tbody>
 
     <%
-        //                       0              1                   2                                  
-        String sql = "select r.role_code, r.role_name, count(ar.`USER_ID`) "
+        //                       0              1                   2           3                       
+        String sql = "select r.role_code, r.role_name, count(distinct(ar.`USER_ID`)), count(distinct(res.module_code)) "
                 + "from adm_role r "
                 + "left join adm_users u on u.`HEALTH_FACILITY_CODE`=r.hfc_cd "
-                + "left join  adm_user_access_role ar on ar.`HEALTH_FACILITY_CODE`=r.hfc_cd and ar.`ROLE_CODE`=r.role_code and u.`USER_ID`=ar.`USER_ID` "
+                + "left join adm_user_access_role ar on ar.`HEALTH_FACILITY_CODE`=r.hfc_cd and ar.`ROLE_CODE`=r.role_code and u.`USER_ID`=ar.`USER_ID` "
+                + "left join adm_responsibility res on res.health_facility_code=r.hfc_cd and res.role_code=r.role_code "
                 + "where r.hfc_cd='"+hfc+"' "
                 + "group by r.role_code;";
         ArrayList<ArrayList<String>> dataATC = conn.getData(sql);
@@ -45,10 +47,11 @@
             
     %>
 
-    <tr style="text-align: center; cursor: pointer;">
+    <tr class="clickable_tr" style="text-align: center; cursor: pointer;">
         <td><%= dataATC.get(i).get(0)%></td>
         <td><%= dataATC.get(i).get(1)%></td>
         <td><%= dataATC.get(i).get(2)%></td>
+        <td><%= dataATC.get(i).get(3)%></td>
         <td hidden id="REP_hidden"><%= String.join("|", dataATC.get(i))%></td>
                 
     </tr>
@@ -134,14 +137,46 @@
             ]
         });
         
-        $('#reportListATCTable').off('click').on('click', 'tr', function(){
+        $('#reportListATCTable').off('click').on('click', '.clickable_tr', function(){
             var row = $(this).closest('tr');
             var arrData = row.find('#REP_hidden').text().split("|");
             console.log(arrData);
             
-            var intCount = parseInt(arrData[2]);
+            //ask the user what they want to see? Accessible moodule by the role or user of the role
+            bootbox.prompt({
+                title: "Which list you want to see?.",
+                inputType: 'select',
+                inputOptions: [
+                    {
+                        text: 'List of users with '+arrData[1]+ ' role.',
+                        value: '',
+                    },
+                    {
+                        text: 'List of accessible module by '+arrData[1]+' role.',
+                        value: '2',
+                    }
+                ],
+                callback: function (result) {
+                    if (result === '') {
+                       var intCount = parseInt(arrData[2]);
+                       ULBR_getUserOfRole(arrData[1], arrData[0], intCount);
+                       
+                    } else if (result === '2') {
+                        var intCount = parseInt(arrData[3]);
+                        ULBR_getModuleOfRole(arrData[1], arrData[0], intCount);
+                    }
+                }
+            });
+                       
             
-            $('#REP_modalTitle').text("List of "+arrData[1]);
+            
+                       
+            
+        });
+        
+        //------- get the user of the selected role --------------
+        function ULBR_getUserOfRole(roleName, roleCode, intCount){
+            $('#REP_modalTitle').text("List of "+roleName);
             
             if(intCount < 1){
                                
@@ -151,8 +186,8 @@
             }
             else{
                 var data ={
-                    code: arrData[0],
-                    name: arrData[1]
+                    code: roleCode,
+                    name: roleName
                 };
                 createScreenLoading();
                 $.ajax({
@@ -174,9 +209,48 @@
                 });
                 
             }
+        }
+        //---------- end function ----------------
+        
+        //--------- get list of module by role
+        function ULBR_getModuleOfRole(roleName, roleCode, intCount){
             
+             $('#REP_modalTitle').text("List of accessible modules by "+roleName);
             
-        });
+            if(intCount < 1){
+                               
+                $('#REP_modalBody').html("<h3>This role has no module.</h3>");
+                
+                $('#modal_report').modal('show');
+            }
+            else{
+                var data ={
+                    code: roleCode,
+                    name: roleName
+                };
+                createScreenLoading();
+                $.ajax({
+                    type: 'POST',
+                    url: "report_control/getModuleOfRole.jsp",
+                    data: data,
+                    timeout: 60000,
+                    success: function (data, textStatus, jqXHR) {
+                        $('#REP_modalBody').html(data);
+                        $('#modal_report').modal('show');
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                        $('#REP_modalBody').html("Opps! "+errorThrown);
+                    },
+                    complete: function (jqXHR, textStatus ) {
+                        destroyScreenLoading();
+                    }
+                    
+                });
+                
+            }
+            
+        }
+        //--------- end function -----------------
 
     });
 
