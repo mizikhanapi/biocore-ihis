@@ -33,7 +33,7 @@
     String cs_pmi_no = "";                                  // Date 4
     String cs_patient_name = "";                            // Date 5
     String cs_queue_no = "";                                // Date 5
-    String cs_queue_name = "Normal Queue 2";                // Date 6
+    String cs_queue_name = "-";                // Date 6
     String cs_datetime = format.format(now);                // Date 7
     String cs_callingtime = "2";                             // Date 8
     String cs_room_no = "Pharmacy";                             // Date 8
@@ -46,16 +46,26 @@
     cs_pmi_no = data[3];
     cs_patient_name = data[4];
 
-    // Get People Total In Queue Start
-    String sqlCallingCheck = " select * FROM qcs_calling_system_queue WHERE cs_hfc_cd = '" + cs_hfc_cd + "' AND cs_discipline = '" + cs_discipline + "' "
-            + "AND cs_sub_discipline = '" + cs_sub_discipline + "' AND cs_room_no = 'Pharmacy'; ";
+    // Get Queue No Start
+//    String sqlCallingCheck = " select * FROM qcs_calling_system_queue WHERE cs_hfc_cd = '" + cs_hfc_cd + "' AND cs_discipline = '" + cs_discipline + "' "
+//            + "AND cs_sub_discipline = '" + cs_sub_discipline + "' AND cs_room_no = 'Pharmacy'; ";
+//    ArrayList<ArrayList<String>> dataCallingCheck = conn.getData(sqlCallingCheck);
+//
+//    int sizeCallingCheck = dataCallingCheck.size();
+//    int sizeCallingCheckModified = sizeCallingCheck + 1;
+//    cs_queue_no = String.valueOf(sizeCallingCheckModified);
+
+    String sqlCallingCheck = " SELECT queue_no FROM pms_patient_queue WHERE hfc_cd = '" + cs_hfc_cd + "' AND pmi_no = '" + cs_pmi_no + "' "
+            + " ORDER BY created_date DESC LIMIT 1 ";
     ArrayList<ArrayList<String>> dataCallingCheck = conn.getData(sqlCallingCheck);
 
     int sizeCallingCheck = dataCallingCheck.size();
-    int sizeCallingCheckModified = sizeCallingCheck + 1;
-    cs_queue_no = String.valueOf(sizeCallingCheckModified);
-    // Get People Total In Queue End
+    for (int i = 0; i < sizeCallingCheck; i++) {
+        cs_queue_no = dataCallingCheck.get(i).get(0).toString();
+    }
+    // Get Queue No End
 
+    
     // Insert Into Calling System Start
     String sqlInsertCalling = "INSERT INTO qcs_calling_system_queue (cs_hfc_cd,cs_discipline,cs_sub_discipline,cs_pmi_no,cs_patient_name,cs_queue_no,cs_queue_name,cs_datetime,cs_callingtime,cs_room_no) "
             + " VALUES ('" + cs_hfc_cd + "','" + cs_discipline + "','" + cs_sub_discipline + "','" + cs_pmi_no + "','" + cs_patient_name + "','" + cs_queue_no + "','" + cs_queue_name + "', "
