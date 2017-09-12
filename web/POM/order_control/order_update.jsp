@@ -44,7 +44,7 @@
         boolean isSuccess = true;
         
         String query = "Update pos_order_detail set comment ='"+comment+"', order_status ='2', encounter_date =now() "
-                + "where order_no ='"+orderNo+"' and procedure_cd ='"+proCode+"' and hfc_cd = '"+hfc_cd+"'";
+                + "where order_no ='"+orderNo+"' and procedure_cd ='"+proCode+"' ;"; // and hfc_cd = '"+hfc_cd+"'";
         isSuccess = rmic.setQuerySQL(conn.HOST, conn.PORT, query);
         
         if(isSuccess){

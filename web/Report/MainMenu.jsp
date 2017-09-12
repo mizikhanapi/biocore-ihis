@@ -2,6 +2,12 @@
     Document   : MainMenu
     Created on : Feb 19, 2017, 12:01:30 AM
     Author     : User
+
+    --------------------------------------------------------------------------
+    Modified by: Ardhi Surya on 12/9/2017
+    Creating dashboard statistic for top ten drugs, top ten diseases (ICD-10)
+    Number of inpatient and outpatient
+    ---------------------------------------------------------------------------
 --%>
 <%@page import="java.util.Arrays"%>
 <%@page import="java.util.ArrayList"%>
@@ -10,8 +16,7 @@
 <%
 
     Conn conn = new Conn();
-    String hfc = session.getAttribute("HEALTH_FACILITY_CODE").toString();
-    String modules = session.getAttribute("MODULE_CODE").toString();
+    String hfc = (String) session.getAttribute("HEALTH_FACILITY_CODE");    
     String dis = (String) session.getAttribute("DISCIPLINE_CODE");
     String dis_names = "";
     String dis_name_query1 = "SELECT discipline_cd, discipline_name FROM adm_discipline WHERE discipline_hfc_cd='" + hfc + "'"
@@ -24,86 +29,7 @@
         }
     }
 
-    ArrayList<String> arrayModule = new ArrayList<String>(Arrays.asList(modules.split("\\|")));
-
-    boolean mod01, mod02, mod03, mod04, mod05, mod06, mod07, mod08, mod09, mod10, mod11, mod12, mod13, mod14, mod15, mod16, mod17;
-
-    mod01 = mod02 = mod03 = mod04 = mod05 = mod06 = mod07 = mod08 = mod09 = mod10 = mod11 = mod12 = mod13 = mod14 = mod15 = mod16 = mod17 = false;
-
-    for (int i = 0; i < arrayModule.size(); i++) {
-
-        if (arrayModule.get(i).equalsIgnoreCase("01")) {
-
-            mod01 = true;
-
-        } else if (arrayModule.get(i).equalsIgnoreCase("02")) {
-
-            mod02 = true;
-
-        } else if (arrayModule.get(i).equalsIgnoreCase("03")) {
-
-            mod03 = true;
-
-        } else if (arrayModule.get(i).equalsIgnoreCase("04")) {
-
-            mod04 = true;
-
-        } else if (arrayModule.get(i).equalsIgnoreCase("05")) {
-
-            mod05 = true;
-
-        } else if (arrayModule.get(i).equalsIgnoreCase("06")) {
-
-            mod06 = true;
-
-        } else if (arrayModule.get(i).equalsIgnoreCase("07")) {
-
-            mod07 = true;
-
-        } else if (arrayModule.get(i).equalsIgnoreCase("08")) {
-
-            mod08 = true;
-
-        } else if (arrayModule.get(i).equalsIgnoreCase("09")) {
-
-            mod09 = true;
-
-        } else if (arrayModule.get(i).equalsIgnoreCase("10")) {
-
-            mod10 = true;
-
-        } else if (arrayModule.get(i).equalsIgnoreCase("11")) {
-
-            mod11 = true;
-
-        } else if (arrayModule.get(i).equalsIgnoreCase("12")) {
-
-            mod12 = true;
-
-        } else if (arrayModule.get(i).equalsIgnoreCase("13")) {
-
-            mod13 = true;
-
-        } else if (arrayModule.get(i).equalsIgnoreCase("14")) {
-
-            mod14 = true;
-
-        } else if (arrayModule.get(i).equalsIgnoreCase("15")) {
-
-            mod15 = true;
-
-        } else if (arrayModule.get(i).equalsIgnoreCase("16")) {
-
-            mod16 = true;
-
-        } else if (arrayModule.get(i).equalsIgnoreCase("17")) {
-
-            mod17 = true;
-
-        }
-    }
-
-
+    
 %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -146,9 +72,9 @@
 
                                             <span class="bed-booking-total">500</span>
                                             <div>
-                                                <span class="bed-booking-a"><i class="fa fa-square"></i> Males:&nbsp;<%=0%></span> 
-                                                <span class="bed-booking-p"><i class="fa fa-square"></i> Females:&nbsp;<%=0%></span>
-                                                <span class="bed-booking-o"><i class="fa fa-square"></i> Others:&nbsp;<%=0%></span>
+                                                <span class="bed-booking-a" style="color: deepskyblue"><i class="fa fa-square"></i> Males:&nbsp;<%=0%></span> 
+                                                <span class="bed-booking-p" style="color: hotpink"><i class="fa fa-square"></i> Females:&nbsp;<%=0%></span>
+                                                <span class="bed-booking-o" style="color: green"><i class="fa fa-square"></i> Others:&nbsp;<%=0%></span>
                                             </div>
                                         </div>
                                     </div>
@@ -160,14 +86,14 @@
 
                                             <span class="bed-booking-total"><%=0%></span>
                                             <div>
-                                                <span class="bed-booking-a"><i class="fa fa-square"></i> Males:&nbsp;<%=0%></span> 
-                                                <span class="bed-booking-p"><i class="fa fa-square"></i> Females:&nbsp;<%=0%></span>
-                                                <span class="bed-booking-o"><i class="fa fa-square"></i> Others:&nbsp;<%=0%></span>
+                                                <span class="bed-booking-a" style="color: deepskyblue"><i class="fa fa-square"></i> Males:&nbsp;<%=0%></span> 
+                                                <span class="bed-booking-p" style="color: hotpink"><i class="fa fa-square"></i> Females:&nbsp;<%=0%></span>
+                                                <span class="bed-booking-o" style="color: green"><i class="fa fa-square"></i> Others:&nbsp;<%=0%></span>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-3">
+<!--                                <div class="col-md-3">
                                     <div class="thumbnail">
                                         <div class="text-center">
                                             <div class="bed-booking-title">Total Drug Cost</div>
@@ -194,7 +120,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                </div>-->
                             </div>
                         </div>
                     </div>

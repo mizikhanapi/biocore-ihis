@@ -119,15 +119,18 @@
         }
         var Maleobj = {
             name: "Male",
-            data: malesData.slice(0,endMonth+1)
+            data: malesData.slice(0,endMonth+1),
+            color: "#00bfff"
         };
         var Fmaleobj = {
-            name: "Famle",
-            data: femalesData.slice(0,endMonth+1)
+            name: "Female",
+            data: femalesData.slice(0,endMonth+1),
+            color: "#ff69b4"
         };
         var Otherobj = {
             name: "Other",
-            data: othersData.slice(0,endMonth+1)
+            data: othersData.slice(0,endMonth+1),
+            color: "#008000"
         };
 //        console.log(Maleobj);
 //        console.log(Fmaleobj);
