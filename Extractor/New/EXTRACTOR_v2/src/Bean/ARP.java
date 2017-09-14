@@ -39,7 +39,16 @@ public class ARP {
     private String episodeDate;
     private String discipline;
     private String subdiscipline;
+    private String procedureOutcome;
 
+    public String getProcedureOutcome() {
+        return procedureOutcome;
+    }
+
+    public void setProcedureOutcome(String procedureOutcome) {
+        this.procedureOutcome = procedureOutcome;
+    }
+    
     public String getDiscipline() {
         return discipline;
     }

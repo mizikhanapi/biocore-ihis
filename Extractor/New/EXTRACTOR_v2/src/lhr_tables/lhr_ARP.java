@@ -37,7 +37,7 @@ public class lhr_ARP {
     //private Vector<ALG2> alg2;
     private int rowsARP;
 
-    public void M_ARP(Vector<ARP2> arp2, get_ehr_central_data t, Vector<ORC2> orc, MSH msh,PDI pdi) {
+    public void M_ARP(Vector<ARP2> arp2, get_ehr_central_data t, Vector<ORC2> orc, MSH msh, PDI pdi) {
 
         int total_fail_insert = 0; //total of failed insert
         //set default value to true. When insertion failed var will switch to false and patient will noy update to 3
@@ -97,6 +97,7 @@ public class lhr_ARP {
                                 arpB.setRecHFCcode(alArp.get(10).get(0));
                                 arpB.setEpisodeDate(alArp.get(11).get(0));
                                 arpB.setEncounter_Date(orcs.get(8).get(0));
+                                arpB.setProcedureOutcome(alArp.get(12).get(0));
 
                                 query_alg_lhr_arp = "INSERT INTO lhr_procedure ("
                                         + "pmi_no,"
@@ -105,7 +106,7 @@ public class lhr_ARP {
                                         + "encounter_date,"
                                         + "procedure_cd,"
                                         + "procedure_name,"
-                                        //+ "procedure_outcome,"
+                                        + "procedure_outcome,"
                                         + "comment,"
                                         + "doctor_id,"
                                         + "doctor_name,"
@@ -123,18 +124,18 @@ public class lhr_ARP {
                                         + "'" + arpB.getEncounter_Date().trim() + "',"
                                         + "'" + arpB.getPrCode().trim() + "',"
                                         + "'" + arpB.getPrName().trim() + "',"
-                                        //+ "'',"
+                                        + "'" + arpB.getProcedureOutcome().trim() + "',"
                                         + "'" + arpB.getComment().trim() + "',"
                                         + "'" + arpB.getDocId().trim() + "',"
                                         + "'" + arpB.getDocName().trim() + "',"
                                         + "'" + a.trim() + "',"
-                                        + "'" + b.trim() + "',"
                                         + "'" + c.trim() + "',"
+                                        + "'" + b.trim() + "',"
                                         + "'" + d.trim() + "',"
-                                        + "'"+msh.getSendingFacilityDis()+"',"
-                                        + "'"+msh.getSendingFacilitySubDis()+"',"
-                                        + "'"+arpB.getDocId()+"',"
-                                        + "'"+msh.getDateTime()+"')";
+                                        + "'" + msh.getSendingFacilityDis() + "',"
+                                        + "'" + msh.getSendingFacilitySubDis() + "',"
+                                        + "'" + arpB.getDocId() + "',"
+                                        + "'" + msh.getDateTime() + "')";
 
                                 status_alg_lhr_arp = rc.setQuerySQL(Config.ipAddressServer, Config.portServer, query_alg_lhr_arp);
 
