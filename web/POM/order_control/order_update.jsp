@@ -39,6 +39,7 @@
         String comment = request.getParameter("comment");
         String ep_date = request.getParameter("epDate");
         String proName = request.getParameter("proName");
+        String outcome = request.getParameter("outcome");
         
         
         boolean isSuccess = true;
@@ -48,8 +49,8 @@
         isSuccess = rmic.setQuerySQL(conn.HOST, conn.PORT, query);
         
         if(isSuccess){
-            query = "Insert into pos_result_detail(order_no, procedure_cd, procedure_name, episode_date, encounter_date, comments, created_by, created_date) "
-                    + "values('"+orderNo+"', '"+proCode+"', '"+proName+"', '"+ep_date+"', now(), '"+comment+"', '"+creator+"', now())";
+            query = "Insert into pos_result_detail(order_no, procedure_cd, procedure_name, episode_date, encounter_date, comments, created_by, created_date, outcome) "
+                    + "values('"+orderNo+"', '"+proCode+"', '"+proName+"', '"+ep_date+"', now(), '"+comment+"', '"+creator+"', now(), '"+outcome+"')";
             
             isSuccess = rmic.setQuerySQL(conn.HOST, conn.PORT, query);
  
@@ -72,7 +73,7 @@
             String durationMin = request.getParameter("duration");
             
             POS_EHRMessenger pom = new POS_EHRMessenger(creator, hfc_cd, dis, subdis, pmiNo, orderNo, orderDate);
-            pom.insertIntoEHR_LHR("18", proCode, proName, userName, hfcName, ep_date, durationMin, comment);
+            pom.insertIntoEHR_LHR("18", proCode, proName, userName, hfcName, ep_date, durationMin, comment, outcome);
         } else {
             out.print("fail");
         }

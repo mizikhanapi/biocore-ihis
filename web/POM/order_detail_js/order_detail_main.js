@@ -384,6 +384,7 @@ $('#PR_btnSubmit').on('click', function () {
     var proName = $('#PR_procedureName').val();
     var comment = $('#PR_comment').val();
     var epDate = $('#posEpDate').val();
+    var outcome = $('#PR_outcome').val();
     
     //added on 29/6/2017
     var pmiNo = $('#rispatientpmino').val() ;
@@ -391,8 +392,8 @@ $('#PR_btnSubmit').on('click', function () {
     var duration = $('#PR_duration').val();
     
 
-    if (comment === '') {
-        bootbox.alert('Please write a meaningful comment.',
+    if (outcome === '') {
+        bootbox.alert('Please write your findings or outcome.',
                 function () {
                     $('#PR_comment').focus();
                 }
@@ -407,6 +408,7 @@ $('#PR_btnSubmit').on('click', function () {
     }
     else{
         comment = comment.replace(/'/g, "\\\'").replace(/"/g, "\\\"");
+        outcome = outcome.replace(/'/g, "\\\'").replace(/"/g, "\\\"");
         var data = {
             process: 'report',
             orderNo: orderNo,
@@ -416,7 +418,8 @@ $('#PR_btnSubmit').on('click', function () {
             epDate: epDate,
             pmiNo: pmiNo,
             orderDate: orderDate,
-            duration: duration
+            duration: duration,
+            outcome: outcome
         };
         
         $('#modal_prepareResult').modal('hide');

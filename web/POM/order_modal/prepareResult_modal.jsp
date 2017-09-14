@@ -34,7 +34,15 @@
                            
                         </div>
                     </div>
-                    
+                          
+                     <!-- Text input-->
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="textinput">Doctor's Comment*</label>
+                       <div class="col-md-8">
+                           <textarea id="PR_comment" class="form-control input-md" maxlength="225" rows="4" disabled></textarea>
+                        </div>
+                    </div>
+                     
                     <!-- Text input-->
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="textinput">Duration (In whole minutes)*</label>
@@ -44,13 +52,13 @@
                             
                         </div>
                     </div>
-
-                                       
-                     <!-- Text input-->
+                                
+                     
+                    <!-- Text input-->
                     <div class="form-group">
-                        <label class="col-md-4 control-label" for="textinput">Comment*</label>
+                        <label class="col-md-4 control-label" for="textinput">Procedure Outcome*</label>
                        <div class="col-md-8">
-                           <textarea id="PR_comment" placeholder="Write your comment here (Compulsory)" class="form-control input-md" maxlength="500" rows="5"></textarea>
+                           <textarea id="PR_outcome" placeholder="Write the outcome or findings (Compulsory)" class="form-control input-md" maxlength="225" rows="4" ></textarea>
                         </div>
                     </div>
 
