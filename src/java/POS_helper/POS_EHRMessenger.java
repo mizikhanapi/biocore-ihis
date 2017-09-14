@@ -21,7 +21,7 @@ public class POS_EHRMessenger extends EHRMessageSender {
         super(userID, hfc, dis, subdis, pmiNo, orderNo, orderDate);
     }
 
-    public void insertIntoEHR_LHR(String senderApp, String procedureCode, String procedureName, String userName, String hfcName, String episodeDate, String durationMin, String comments) {
+    public void insertIntoEHR_LHR(String senderApp, String procedureCode, String procedureName, String userName, String hfcName, String episodeDate, String durationMin, String comments, String outcome) {
         RMIConnector rmic = new RMIConnector();
 
         DateTimeFormatter timeFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
@@ -39,7 +39,7 @@ public class POS_EHRMessenger extends EHRMessageSender {
 
         String EHRSecondHeader = "";
 
-        /*==============RSS format========================
+        /*==============Old ARP format========================
         ARP|
         1<procedure code>^<procedure name>^<coding standard(iHIS)>|
         2<actual date/time dd/mm/yyyy hh:mm:ss>|  
@@ -54,6 +54,23 @@ public class POS_EHRMessenger extends EHRMessageSender {
         11<episode date>|
         <cr>
         =================================================*/
+        
+        /*================ ARP format 12/9/2017===========
+        ARP|
+        1<procedure code>^<procedure name>^<coding standard (iHIS)>| 
+        2<actual date/time dd/mm/yyyy hh:mm:ss>| 
+        3<Procedure duration in whole minutes>|
+        4<diagnosis code>| -- let empty first
+        5<doctor ID/ user id>|
+        6<doctor name / user name>|
+        7<location code>|
+        8<location name>|
+        9<doctor notes/ comment>|
+       10<receiving hfc code>|
+       11<episode date>|
+       12<procedure outcome>|
+        <cr>
+        ================================================*/
         String eachDetail = "ARP||||||||||||<cr>\n";
 
               
@@ -70,6 +87,7 @@ public class POS_EHRMessenger extends EHRMessageSender {
                 + "| "+comments +" "
                 + "| "+hfc +" "
                 + "| "+ episodeDate +" "
+                + "| "+ outcome +" "
                 + "|<cr>\n";
 
         EHRSecondHeader = eachDetail;
