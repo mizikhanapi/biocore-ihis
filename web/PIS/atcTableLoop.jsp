@@ -31,7 +31,11 @@
 <tbody>
 
     <%
-        String sql = " SELECT UD_ATC_Code, UD_ATC_Desc, Category_Code,hfc_cd,discipline_cd,subdiscipline_cd,Status FROM pis_atc WHERE hfc_cd  = '" + hfc + "' AND discipline_cd  = '" + dis + "' ";
+        //                         0         1                  2        3       4              5             6           
+        String sql = " SELECT UD_ATC_Code, UD_ATC_Desc, Category_Code,hfc_cd,discipline_cd,subdiscipline_cd,Status "
+                //
+                // Where Condition
+                + " FROM pis_atc WHERE hfc_cd  = '" + hfc + "' AND discipline_cd  = '" + dis + "' ";
         ArrayList<ArrayList<String>> dataATC = conn.getData(sql);
 
         int size = dataATC.size();
@@ -164,6 +168,7 @@
 
     // Getting Data Part Start
     $('#contentATCTable').off('click', '#atcTable #updateTButton').on('click', '#atcTable #updateTButton', function (e) {
+        
         e.preventDefault();
 
         //get the row value
@@ -257,12 +262,14 @@
             };
 
             $.ajax({
-                url: "atcUpdate.jsp",
+                url: "controllerProcess/atcUpdate.jsp",
                 type: "post",
                 data: data,
                 timeout: 10000,
                 success: function (datas) {
+
                     if (datas.trim() === 'Success') {
+
                         $('#contentATCTable').load('atcTableLoop.jsp');
                         $(".modal-backdrop").hide();
                         bootbox.alert({
@@ -270,7 +277,9 @@
                             title: "Process Result",
                             backdrop: true
                         });
+
                     } else if (datas.trim() === 'Failed') {
+
                         bootbox.alert({
                             message: "ATC Code Update Failed",
                             title: "Process Result",
@@ -330,25 +339,29 @@
                     };
 
                     $.ajax({
-                        url: "atcDelete.jsp",
+                        url: "controllerProcess/atcDelete.jsp",
                         type: "post",
                         data: data,
                         timeout: 10000, // 10 seconds
                         success: function (datas) {
 
                             if (datas.trim() === 'Success') {
+
                                 $('#contentATCTable').load('atcTableLoop.jsp');
                                 bootbox.alert({
                                     message: "ATC Code is Deleted Successful",
                                     title: "Process Result",
                                     backdrop: true
                                 });
+
                             } else if (datas.trim() === 'Failed') {
+
                                 bootbox.alert({
                                     message: "ATC Code Delete Failed",
                                     title: "Process Result",
                                     backdrop: true
                                 });
+
                             }
 
                         },

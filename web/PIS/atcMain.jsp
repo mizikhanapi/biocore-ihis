@@ -239,7 +239,7 @@
                 console.log(data);
 
                 $.ajax({
-                    url: "atcInsert.jsp",
+                    url: "controllerProcess/atcInsert.jsp",
                     type: "post",
                     data: data,
                     timeout: 10000,
@@ -339,9 +339,10 @@
 
             $.ajax({
                 type: 'POST',
-                url: "atcCloneDrugList.jsp",
+                url: "controllerSearch/atcCloneDrugList.jsp",
                 data: data,
                 success: function (data, textStatus, jqXHR) {
+
                     $('#ATC_DrugCode').html(data);
                     $('#ATC_DrugCode').multiSelect({
                         selectableHeader: "<div style='display:block; color:white; background-color:#2196f3; '>Selectable ATC Code</div>",
@@ -386,7 +387,7 @@
                 };
 
                 $.ajax({
-                    url: "atcCloneDrugListInsert.jsp",
+                    url: "controllerProcess/atcCloneDrugListInsert.jsp",
                     type: "post",
                     data: data,
                     timeout: 15000,
