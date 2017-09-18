@@ -683,7 +683,7 @@ $(document).ready(function () {
         _data.push(obj1);
     
         displayPEM(NotesPE, PEComment);
-        $("#CIS020009").modal('toggle');
+        $("#CIS020009").modal('hide');
     });
 
     $("#ortho_accpetPEBtn").click(function () {
@@ -737,9 +737,10 @@ $(document).ready(function () {
                         $('#get_physicalExam').html(returnPhysicalExam);
                        
                         $('#get_physicalExam').trigger('contentchanged');
-                        $('#CIS020009').modal('toggle');
-                        $("#CIS020009").hide();
-                        $(".modal-backdrop").hide();
+                        $('#CIS020009').modal('hide');
+                        $("#ortho_physical_exam").hide();
+                        //$("#CIS020009").hide();
+                        //$(".modal-backdrop").hide();
                         bootbox.alert("Physical Examination is saved.");
                     }
                 });
@@ -752,7 +753,7 @@ $(document).ready(function () {
     });
 
     $('#tblCIS_Consultation_Table').on('click', '.updatePE', function () {
-        $("#CIS020009").modal('toggle');
+        $("#CIS020009").modal('show');
         $('#actionPE').hide();
         $('#updatePE').show();
 
@@ -944,7 +945,7 @@ $(document).ready(function () {
 
         var sum = NotesPE + ' </br> Comment:' + upObject.PEComment;
         $('#sum' + rowId).html(sum);
-        $("#CIS020009").modal('toggle');
+        $("#CIS020009").modal('hide');
     });
 
     $('#RISResult').on('click', function () {
