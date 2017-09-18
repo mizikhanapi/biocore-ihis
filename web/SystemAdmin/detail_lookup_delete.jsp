@@ -30,6 +30,19 @@
 
     ArrayList<ArrayList<String>> dataUse = conn.getData(sqlSelect);
     
+    
+    String sqlSelectPMS = "select pb.`PATIENT_NAME` "
+            + "from adm_lookup_detail ld "
+            + "join pms_patient_biodata pb on ld.`Detail_Reference_code`=pb.`TITLE_CODE` or ld.`Detail_Reference_code`=pb.`ID_TYPE` or ld.`Detail_Reference_code`=pb.`ELIGIBILITY_CATEGORY_CODE` "
+            + "or ld.`Detail_Reference_code`=pb.`ELIGIBILITY_TYPE_CODE` or ld.`Detail_Reference_code`=pb.`SEX_CODE` or ld.`Detail_Reference_code`=pb.`MARITAL_STATUS_CODE` or ld.`Detail_Reference_code`=pb.`RACE_CODE` "
+            + "or ld.`Detail_Reference_code`=pb.`NATIONALITY` or ld.`Detail_Reference_code`=pb.`RELIGION_CODE` or ld.`Detail_Reference_code`=pb.`BLOOD_TYPE` or ld.`Detail_Reference_code`=pb.`BLOOD_RHESUS_CODE` "
+            + "or ld.`Detail_Reference_code`=pb.`HOME_DISTRICT_CODE` or ld.`Detail_Reference_code`=pb.`HOME_TOWN_CODE` or ld.`Detail_Reference_code`=pb.`HOME_POSTCODE` or ld.`Detail_Reference_code`=pb.`HOME_STATE_CODE` "
+            + "or ld.`Detail_Reference_code`=pb.`HOME_COUNTRY_CODE` or ld.`Detail_Reference_code`=pb.`POSTAL_DISTRICT_CODE` or ld.`Detail_Reference_code`=pb.`POSTAL_TOWN_CODE` or ld.`Detail_Reference_code`=pb.`POSTAL_POSTCODE` "
+            + "or ld.`Detail_Reference_code`=pb.`POSTAL_STATE_CODE` or ld.`Detail_Reference_code`=pb.`POSTAL_COUNTRY_CODE` or ld.`Detail_Reference_code`=pb.payer_group or ld.`Detail_Reference_code`=pb.person_type "
+            + "where ld.`Master_Reference_code`='"+masterCode+"' and ld.hfc_cd='"+hfc_cd+"' limit 1;";
+    
+    ArrayList<ArrayList<String>> dataUsePMS = conn.getData(sqlSelectPMS);
+    
     String sqlMaster="Select source_indicator from adm_lookup_master where master_reference_code='"+masterCode+"' limit 1;";
     ArrayList<ArrayList<String>> dataImportant = conn.getData(sqlMaster);
     
@@ -42,6 +55,9 @@
 
         out.print("You can't delete this item because it is referrenced by Health Facility");
 
+    }
+    else if(dataUsePMS.size()>0){
+        out.print("You can't delete this item because it is referenced by patient biodata");
     }
     else if(source.equalsIgnoreCase("IMPORTANT")){
         out.print("This item cannot be modified because it is used by the system.");

@@ -115,7 +115,7 @@
                         <button type="submit" class="btn btn-success btn-block btn-lg" role="button" id="btnAdd2">Add</button>
                     </div>
                     <div class="btn-group" role="group">
-                        <button type="reset" id="btnReset2" class="btn btn-default btn-block btn-lg" role="button" >Reset</button>
+                        <button type="reset" id="btnReset2" class="btn btn-default btn-block btn-lg" role="button" >Cancel</button>
                     </div>
                 </div>
             </div>

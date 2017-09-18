@@ -109,7 +109,7 @@
                         <button type="submit" class="btn btn-success btn-block btn-lg" role="button" id="SDM_btnAdd">Add</button>
                     </div>
                     <div class="btn-group" role="group">
-                        <button type="reset" id="SDM_btnReset" class="btn btn-default btn-block btn-lg" role="button" >Reset</button>
+                        <button type="reset" id="SDM_btnReset" class="btn btn-default btn-block btn-lg" role="button" >Cancel</button>
                     </div>
                 </div>
             </div>
