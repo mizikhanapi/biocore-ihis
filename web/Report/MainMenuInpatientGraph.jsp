@@ -46,7 +46,7 @@
                 + " AND adm_lookup_det.`hfc_cd` = e.`HEALTH_FACILITY_CODE`"
                 + " AND adm_lookup_det.`Master_Reference_code` like '0041'"
                 + " WHERE e.`HEALTH_FACILITY_CODE` = '"+hfc+"'"
-                + " AND e.`DISCIPLINE_CODE` = '002'"
+               // + " AND e.`DISCIPLINE_CODE` = '002'"
                 + " GROUP BY YEAR(e.`EPISODE_DATE`), MONTH(e.`EPISODE_DATE`) ,"
                 + " b.SEX_CODE having cast(e.`EPISODE_DATE` as date) BETWEEN '"+startDate+"' AND '"+endDate+"'";
 

@@ -43,7 +43,7 @@
             + "or ld.`Detail_Reference_code`=pb.`HOME_DISTRICT_CODE` or ld.`Detail_Reference_code`=pb.`HOME_TOWN_CODE` or ld.`Detail_Reference_code`=pb.`HOME_POSTCODE` or ld.`Detail_Reference_code`=pb.`HOME_STATE_CODE` "
             + "or ld.`Detail_Reference_code`=pb.`HOME_COUNTRY_CODE` or ld.`Detail_Reference_code`=pb.`POSTAL_DISTRICT_CODE` or ld.`Detail_Reference_code`=pb.`POSTAL_TOWN_CODE` or ld.`Detail_Reference_code`=pb.`POSTAL_POSTCODE` "
             + "or ld.`Detail_Reference_code`=pb.`POSTAL_STATE_CODE` or ld.`Detail_Reference_code`=pb.`POSTAL_COUNTRY_CODE` or ld.`Detail_Reference_code`=pb.payer_group or ld.`Detail_Reference_code`=pb.person_type "
-            + "where ld.`Master_Reference_code`='"+masterCode+"' and ld.hfc_cd='"+hfc_cd+"' limit 1;";
+            + "where ld.detail_reference_code='"+detailCode+"' and ld.`Master_Reference_code`='"+masterCode+"' and ld.hfc_cd='"+hfc_cd+"' limit 1;";
     
     ArrayList<ArrayList<String>> dataUsePMS = conn.getData(sqlSelectPMS);
     

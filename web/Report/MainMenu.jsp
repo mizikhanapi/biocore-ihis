@@ -80,7 +80,7 @@
                                     </div>
                                 </div>
                                 <div class="col-md-3">
-                                    <div class="thumbnail" >
+                                    <div class="thumbnail" id="MM_stat_outpatient">
                                         <div class="text-center">
                                             <div class="bed-booking-title">Total OutPatient</div>
 
@@ -321,10 +321,11 @@
 
         <script>
             $(function(){
-                MM_getIpatientStatistic();
+                MM_getInpatientStatistic();
+                MM_getOutpatientStatistic();
             });
             
-            function MM_getIpatientStatistic(){
+            function MM_getInpatientStatistic(){
                 
                 $.ajax({
                     timeout: 60000,
@@ -338,6 +339,22 @@
                     }
                     
                 });
+            }
+            
+            function MM_getOutpatientStatistic(){
+                $.ajax({
+                    timeout: 60000,
+                    type: 'POST',
+                    url: "MainMenu_control/getOutpatientStatistic.jsp",
+                    success: function (data, textStatus, jqXHR) {
+                        $('#MM_stat_outpatient').html(data);
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                         $('#MM_stat_outpatient').html("Oopps! "+errorThrown);
+                    }
+                    
+                });
+                
             }
 
             //    $("#test").load("libraries/reportSideMenus.jsp");
