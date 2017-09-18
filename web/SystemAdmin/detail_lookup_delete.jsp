@@ -4,6 +4,7 @@
     Author     : user
 --%>
 
+<%@page import="ADM_helper.MySession"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.util.Date"%>
 <%@page import="java.text.DateFormat"%>
@@ -19,6 +20,9 @@
 <%
     Conn conn = new Conn();
     String hfc_cd = (String) session.getAttribute("HEALTH_FACILITY_CODE");
+    String user_id = (String) session.getAttribute("USER_ID");
+    String hfc_99 = (String) session.getAttribute("HFC_99");
+    MySession mys = new MySession(user_id, hfc_99);
     
     String detailCode = request.getParameter("detailCode");
     String masterCode = request.getParameter("masterCode");
@@ -59,7 +63,7 @@
     else if(dataUsePMS.size()>0){
         out.print("You can't delete this item because it is referenced by patient biodata");
     }
-    else if(source.equalsIgnoreCase("IMPORTANT")){
+    else if(source.equalsIgnoreCase("IMPORTANT") && !mys.isSuperUser()){
         out.print("This item cannot be modified because it is used by the system.");
     }
     else {

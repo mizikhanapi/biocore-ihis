@@ -66,7 +66,7 @@
                         <div class="col-md-12">
                             <div class="row">
                                 <div class="col-md-3">
-                                    <div class="thumbnail">
+                                    <div class="thumbnail" id="MM_stat_inpatient">
                                         <div class="text-center">
                                             <div class="bed-booking-title">Total InPatient</div>
 
@@ -80,7 +80,7 @@
                                     </div>
                                 </div>
                                 <div class="col-md-3">
-                                    <div class="thumbnail">
+                                    <div class="thumbnail" >
                                         <div class="text-center">
                                             <div class="bed-booking-title">Total OutPatient</div>
 
@@ -320,6 +320,25 @@
 
 
         <script>
+            $(function(){
+                MM_getIpatientStatistic();
+            });
+            
+            function MM_getIpatientStatistic(){
+                
+                $.ajax({
+                    timeout: 60000,
+                    type: 'POST',
+                    url: "MainMenu_control/getInpatientStatistic.jsp",
+                    success: function (data, textStatus, jqXHR) {
+                        $('#MM_stat_inpatient').html(data);
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                         $('#MM_stat_inpatient').html("Oopps! "+errorThrown);
+                    }
+                    
+                });
+            }
 
             //    $("#test").load("libraries/reportSideMenus.jsp");
             //    $("#head").load("libraries/reportHeader.jsp");

@@ -4,6 +4,7 @@
     Author     : user
 --%>
 
+<%@page import="ADM_helper.MySession"%>
 <%@page import="Formatter.DateFormatter"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.util.Date"%>
@@ -19,6 +20,11 @@
     Conn conn = new Conn();
     
     String hfc_cd = session.getAttribute("HEALTH_FACILITY_CODE").toString();
+    String user_id = (String) session.getAttribute("USER_ID");
+    String hfc_99 = (String) session.getAttribute("HFC_99");
+    
+    MySession mys = new MySession(user_id, hfc_99);
+    
 
     String masterCode = request.getParameter("masterCode");
     String detailCode = request.getParameter("detailCode");
@@ -35,7 +41,7 @@
         source=dataImportant.get(0).get(0);
     }
     
-    if(source.equalsIgnoreCase("IMPORTANT")){
+    if(source.equalsIgnoreCase("IMPORTANT") && !mys.isSuperUser()){
         out.print("This item cannot be modified because it is used by the system.");
     }
     else{
