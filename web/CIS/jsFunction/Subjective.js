@@ -150,10 +150,10 @@ $(document).ready(function () {
             $("#duration").val("");
             $("#Comment").val("");
             $("#ccnCode").val("");
-            $("#CIS01000001").modal('toggle');
+            $("#CIS01000001").modal('hide');
         }
         
-        console.log(_data);
+      
         
 
     });
@@ -161,7 +161,7 @@ $(document).ready(function () {
     //js UPDATE Complaint 
     $('#tblCIS_Consultation_Table').on('click', '.updateBtnCCN', function (e) {
         e.preventDefault();
-        $("#update_CIS01000001").modal("toggle");
+        $("#update_CIS01000001").modal("show");
    
  
         var idName = $(this).get(0).id;
@@ -220,7 +220,7 @@ $(document).ready(function () {
             upObject.ccnCode = _uccnCode;
             var sum = _uproblem + '| ' + _uMild + '| ' + _uSite + '| ' + _uduration + '| ' + _ssdur + '| ' + _uLaterality + '| ' + _uComment
             $('#sum' + rowId).html(sum);
-            $("#update_CIS01000001").modal('toggle');
+            $("#update_CIS01000001").modal('hide');
             
         }else{
 
@@ -237,11 +237,11 @@ $(document).ready(function () {
                 upObject.ccnCode = _uccnCode;
                 var sum = _uproblem + '| ' + _uMild + '| ' + _uSite + '| ' + _uduration + '| ' + _ssdur + '| ' + _uLaterality + '| ' + _uComment
                 $('#sum' + rowId).html(sum);
-                $("#update_CIS01000001").modal('toggle');
+                $("#update_CIS01000001").modal('hide');
             }
         }
         
-        console.log(upObject);
+       
 
         
     });
@@ -265,7 +265,7 @@ $(document).ready(function () {
             _data.push(obj1);
             displayHPI(obj1.details);
             $("#details").val("");
-            $("#CIS01000002").modal('toggle');
+            $("#CIS01000002").modal('hide');
         
     });
 
@@ -276,7 +276,7 @@ $(document).ready(function () {
         var updateObj = _data[id[1]];
         $('#udetails').val(updateObj.details);
         $('#jsonId').val(id[1]);
-        $('#update_CIS01000002').modal("toggle");
+        $('#update_CIS01000002').modal("show");
     });
 
     $('#updateBtnHPI').click(function (e) {
@@ -287,7 +287,7 @@ $(document).ready(function () {
         upObject.details = _udetails;
         var sum = _udetails;
         $('#sum' + rowId).html(sum);
-        $("#update_CIS01000002").modal('toggle');
+        $("#update_CIS01000002").modal('hide');
     });
 
 /// -----------------------------------------------------------------------------------------------------------------------------------------------/////;
@@ -323,7 +323,7 @@ $(document).ready(function () {
             $("#Problem1").val("");
             $("#Status").val("Status");
             $("#comment1").val("");
-            $("#CIS01000003").modal('toggle');
+            $("#CIS01000003").modal('hide');
             retriveDataSearchingSubjective("tCISSubPMHSearch", "tCISSubPMHSearchLoading", "search/ResultPMHSearch.jsp", "search/ResultPMHSearchCode.jsp", "codePMH", "");
         }
 
@@ -331,7 +331,7 @@ $(document).ready(function () {
 
     //js UPDATE PMH
     $('#tblCIS_Consultation_Table').on('click', '.updateBtnPMH', function (e) {
-        $("#update_CIS01000003").modal('toggle');
+        $("#update_CIS01000003").modal('show');
         e.preventDefault();
         var idName = $(this).get(0).id;
         var id = idName.split("|");
@@ -371,7 +371,7 @@ $(document).ready(function () {
             upObject.codePMH = _Pcode;
             var sum = _PProblem2 + '| ' + _PStatus + '| ' + _Pcomment1
             $('#sum' + rowId).html(sum);
-            $("#update_CIS01000003").modal('toggle');
+            $("#update_CIS01000003").modal('hide');
             
         }else{
             if (checkPMH(_data, tempccnObj)) {
@@ -383,7 +383,7 @@ $(document).ready(function () {
                 upObject.codePMH = _Pcode;
                 var sum = _PProblem2 + '| ' + _PStatus + '| ' + _Pcomment1
                 $('#sum' + rowId).html(sum);
-                $("#update_CIS01000003").modal('toggle');
+                $("#update_CIS01000003").modal('hide');
             }
         }
   
@@ -424,7 +424,7 @@ $(document).ready(function () {
             $("#Problem3").val("");
             $("#f_relationship").val("Select Family Relationship");
             $("#comment2").val("");
-            $("#CIS01000004").modal('toggle');
+            $("#CIS01000004").modal('hide');
              retriveDataSearchingSubjective("tCISSubFMHSearch", "tCISSubFMHSearchLoading", "search/ResultPMHSearch.jsp", "search/ResultPMHSearchCode.jsp", "fmhCode", "");
         }
 
@@ -442,7 +442,7 @@ $(document).ready(function () {
         $('#Pcomment2').val(updateObj.comment2);
         $("#ufmhCode").val(updateObj.codeFMH);
         $('#jsonId').val(id[1]);
-        $("#update_CIS01000004").modal('toggle');
+        $("#update_CIS01000004").modal('show');
     });
 
     $('#updateBtnFMH').click(function () {
@@ -472,7 +472,7 @@ $(document).ready(function () {
             upObject.codeFMH = codeFMH;
             var sum = _PProblem3 + '| ' + _ff_relationship + '| ' + _Pcomment2;
             $('#sum' + rowId).html(sum);
-            $("#update_CIS01000004").modal('toggle');
+            $("#update_CIS01000004").modal('hide');
         } else{
             if (checkFMH(_data, tempccnObj)) {
                 bootbox.alert("This Family Medical History already been inserted. Please choose at consultation note to update the record or add new Family Medical History");
@@ -483,7 +483,7 @@ $(document).ready(function () {
                 upObject.codeFMH = codeFMH;
                 var sum = _PProblem3 + '| ' + _ff_relationship + '| ' + _Pcomment2;
                 $('#sum' + rowId).html(sum);
-                $("#update_CIS01000004").modal('toggle');
+                $("#update_CIS01000004").modal('hide');
             }
         }
         
@@ -525,7 +525,7 @@ $(document).ready(function () {
             $("#Problem4").val("");
             $("#date").val("");
             $("#comment3").val("");
-            $("#CIS01000005").modal('toggle');
+            $("#CIS01000005").modal('hide');
             retriveDataSearchingSubjective("tCISSubSOHSearch", "tCISSubSOHSearchLoading", "search/ResultSOHSearch.jsp", "search/ResultSOHSearchCode.jsp", "codeSOH", "");
         }
 
@@ -545,7 +545,7 @@ $(document).ready(function () {
         $('#Pcomment3').val(updateObj.comment3);
         $('#usohCode').val(updateObj.codeSOH);
         $('#jsonId').val(id[1]);
-        $("#update_CIS01000005").modal('toggle');
+        $("#update_CIS01000005").modal('show');
 
     });
 
@@ -577,7 +577,7 @@ $(document).ready(function () {
             upObject.codeSOH = _codeSOH;
             var sum = _PProblem4 + '| ' + _ddate + '| ' + _Pcomment3;
             $('#sum' + rowId).html(sum);
-            $("#update_CIS01000005").modal('toggle');
+            $("#update_CIS01000005").modal('hide');
             
         }else{
             if(checkSOH(_data,tempccnObj)){
@@ -589,7 +589,7 @@ $(document).ready(function () {
                 upObject.codeSOH = _codeSOH;
                 var sum = _PProblem4 + '| ' + _ddate + '| ' + _Pcomment3;
                 $('#sum' + rowId).html(sum);
-                $("#update_CIS01000005").modal('toggle');
+                $("#update_CIS01000005").modal('hide');
             }
         }
         
@@ -624,7 +624,7 @@ $(document).ready(function () {
             $('#Rhesus_Type').val("");
             $('#G6PD_Status').val("");
             $('#blood').val("");
-            $("#CIS01000006").modal('toggle');
+            $("#CIS01000006").modal('hide');
         }
 
     });
@@ -640,7 +640,7 @@ $(document).ready(function () {
         $('#GG6PD_Status').val(updateObj.G6PD_Status);
         $('#Pcomment4').val(updateObj.comment4);
         $('#jsonId').val(id[1]);
-        $("#update_CIS01000006").modal('toggle');
+        $("#update_CIS01000006").modal('show');
     });
 
     $('#updateBtnBLD').click(function () {
@@ -660,19 +660,17 @@ $(document).ready(function () {
             upObject.comment4 = _Pcomment4;
             var sum = _b_blood + '| ' + _RRhesus_Type + '| ' + _GG6PD_Status + '| ' + _Pcomment4
             $('#sum' + rowId).html(sum);
-            $("#update_CIS01000006").modal('toggle');
+            $("#update_CIS01000006").modal('hide');
         } else {
-            if (checkBLD(_data, obj1)) {
-                bootbox.alert("This Blood Group already been inserted. Please choose at consultation note to update the record");
-            } else {
+
                 upObject.blood = _b_blood;
                 upObject.Rhesus_Type = _RRhesus_Type;
                 upObject.G6PD_Status = _GG6PD_Status;
                 upObject.comment4 = _Pcomment4;
                 var sum = _b_blood + '| ' + _RRhesus_Type + '| ' + _GG6PD_Status + '| ' + _Pcomment4
                 $('#sum' + rowId).html(sum);
-                $("#update_CIS01000006").modal('toggle');
-            }
+                $("#update_CIS01000006").modal('hide');
+            
         }
         
 
@@ -714,7 +712,7 @@ $(document).ready(function () {
             $("#Problem5").val("");
             $("#date1").val("");
             $("#comment5").val("");
-            $("#CIS01000007").modal('toggle');
+            $("#CIS01000007").modal('hide');
             retriveDataSearchingSubjective("tCISSubALGSearch", "tCISSubALGSearchLoading", "search/ResultALGSearch.jsp", "search/ResultALGSearchCode.jsp", "codeALG", "");
         }
 
@@ -732,7 +730,7 @@ $(document).ready(function () {
         $('#Pcomment5').val(updateObj.comment5)
         $('#uALG_cd').val(updateObj.codeALG);;
         $('#jsonId').val(id[1]);
-        $("#update_CIS01000007").modal('toggle');
+        $("#update_CIS01000007").modal('show');
 
     });
 
@@ -763,9 +761,9 @@ $(document).ready(function () {
             upObject.codeALG = _algCode;
             var sum = _PProblem5 + '| ' + _ddate1 + '| ' + _Pcomment5
             $('#sum' + rowId).html(sum);
-            $("#update_CIS01000007").modal('toggle');
+            $("#update_CIS01000007").modal('hide');
         } else {
-            if (checkALG(_data, codeALG)) {
+            if (checkALG(_data, tempccnObj)) {
                 bootbox.alert("This Allergy already been inserted. Please choose at consultation note to update the record or add new Allergy");
             }else{
                 upObject.Problem5 = _PProblem5;
@@ -774,7 +772,7 @@ $(document).ready(function () {
                 upObject.codeALG = _algCode;
                 var sum = _PProblem5 + '| ' + _ddate1 + '| ' + _Pcomment5
                 $('#sum' + rowId).html(sum);
-                $("#update_CIS01000007").modal('toggle');
+                $("#update_CIS01000007").modal('hide');
             }
         }
         
@@ -816,7 +814,7 @@ $(document).ready(function () {
             $("#Problem6").val("");
             $("#date2").val("");
             $("#comment6").val("");
-            $("#CIS01000008").modal('toggle');
+            $("#CIS01000008").modal('hide');
              retriveDataSearchingSubjective("tCISSubIMUSearch", "tCISSubIMUSearchLoading", "search/ResultIMUSearch.jsp", "search/ResultIMUSearchCode.jsp", "codeIMU", "");
         }
 
@@ -833,7 +831,7 @@ $(document).ready(function () {
         $('#Pcomment6').val(updateObj.comment6);
         $('#uIMU_cd').val(updateObj.codeIMU);
         $('#jsonId').val(id[1]);
-          $("#update_CIS01000008").modal('toggle');
+          $("#update_CIS01000008").modal('show');
     });
 
     $('#updateBtnIMU').click(function () {
@@ -862,7 +860,7 @@ $(document).ready(function () {
             upObject.codeIMU = _IMUCode;
             var sum = _PProblem6 + '| ' + _ddate2 + '| ' + _Pcomment6
             $('#sum' + rowId).html(sum);
-            $("#update_CIS01000008").modal('toggle');
+            $("#update_CIS01000008").modal('hide');
         } else{
             if (checkIMU(_data, tempccnObj)) {
                 bootbox.alert("This Immunization already been inserted. Please choose at consultation note to update the record or add new Immunization");
@@ -873,7 +871,7 @@ $(document).ready(function () {
                 upObject.codeIMU = _IMUCode;
                 var sum = _PProblem6 + '| ' + _ddate2 + '| ' + _Pcomment6
                 $('#sum' + rowId).html(sum);
-                $("#update_CIS01000008").modal('toggle');
+                $("#update_CIS01000008").modal('hide');
             }
         }
         
@@ -899,14 +897,15 @@ $(document).ready(function () {
         if (search_by === "P") {
             Problem32 = $('#tCISSubDABSearchPersonalised').val();
         } else {
-            Problem32 = $('#tCISSubIMUSearch').val();
+            Problem32 = $('#tCISSubDABSearch').val();
         }
-        
+        console.log(search_by);
         var obj1 = {
             Acode:"DAB",
             Problem32:Problem32,
             codeDAB:code9
         };
+        console.log(obj1)
         $items.each(function () {
             obj1[this.id] = $(this).val();
         });
@@ -919,7 +918,7 @@ $(document).ready(function () {
             $("#Problem32").val("");
             $("#date3").val("");
             $("#comment7").val("");
-            $("#CIS01000009").modal('toggle');
+            $("#CIS01000009").modal('hide');
             retriveDataSearchingSubjective("tCISSubDABSearch", "tCISSubDABSearchLoading", "search/ResultDABSearch.jsp", "search/ResultDABSearchCode.jsp", "codeDAB", "");
         }
  
@@ -935,7 +934,7 @@ $(document).ready(function () {
         $('#ddate3').val(updateObj.date3);
         $('#Pcomment7').val(updateObj.comment7);
         $('#jsonId').val(id[1]);
-        $("#update_CIS01000009").modal('toggle');
+        $("#update_CIS01000009").modal('show');
 
     });
 
@@ -952,7 +951,7 @@ $(document).ready(function () {
         if (search_by === "P") {
             _PProblem32 = $('#tCISSubDABSearchPersonalised_update').val();
         } else {
-            _PProblem32 = $('#tCISSubIMUSearch_update').val();
+            _PProblem32 = $('#tCISSubDABSearch_update').val();
         }
         
                 var tempccnObj = {
@@ -964,9 +963,9 @@ $(document).ready(function () {
             upObject.date3 = _ddate3;
             upObject.comment7 = _Pcomment7;
             upObject.codeDAB = _codeDAB;
-            var sum = _PProblem32 + '| ' + _ddate3 + '| ' + _Pcomment7
+            var sum = upObject.Problem32 + '| ' + _ddate3 + '| ' + _Pcomment7
             $('#sum' + rowId).html(sum);
-            $("#update_CIS01000009").modal('toggle');
+            $("#update_CIS01000009").modal('hide');
         }else{
             if (checkDAB(_data, tempccnObj)) {
                 bootbox.alert("This Disability already been inserted. Please choose at consultation note to update the record or add new Disability");
@@ -975,9 +974,9 @@ $(document).ready(function () {
                 upObject.date3 = _ddate3;
                 upObject.comment7 = _Pcomment7;
                 upObject.codeDAB = _codeDAB;
-                var sum = _PProblem32 + '| ' + _ddate3 + '| ' + _Pcomment7
+                var sum = upObject.Problem32 + '| ' + _ddate3 + '| ' + _Pcomment7
                 $('#sum' + rowId).html(sum);
-                $("#update_CIS01000009").modal('toggle');
+                $("#update_CIS01000009").modal('hide');
             }
         }
 
@@ -1135,7 +1134,8 @@ function checkALG(datas,obj){
         return already;
 }
 function checkDAB(datas,obj){
-      var already = false;   
+      var already = false;  
+
         for(var i in datas){
             if(datas[i].codeDAB === obj.codeDAB){
                 already = true;

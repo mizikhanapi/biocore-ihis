@@ -638,7 +638,7 @@ $(document).ready(function (e) {
     }
 
     function storeData(status) {
-        sendOrder(_data);
+     
         var statusDesc;
         if (status === 2) {
             statusDesc = "On Hold";

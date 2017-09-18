@@ -1124,6 +1124,7 @@
                 </div>
             </div>
         </div>
+        </div>
         <!--End Update Disability-->
         
         <script src="jsFunction/SearchClinicalTerm.js"></script>

@@ -115,14 +115,14 @@ $(document).ready(function () {
 
 //        $('#resultMain').val('');
 //        $('#pointMain').val('');
-        $("#CIS020001").modal('toggle');
+        $("#CIS020001").modal('hide');
     });
     $('#tblCIS_Consultation_Table').on('click', '.updateGcs', function () {
         var idName = $(this).get(0).id;
         var id = idName.split('|');
         var updateObj = _data[id[1]];
         
-        $("#CIS020001").modal('toggle');
+        $("#CIS020001").modal('show');
         $('#actionGSC').hide();
         $('#updateGSC').show();
         //$('#actionGSC #updateBtn').show();
@@ -164,7 +164,7 @@ $(document).ready(function () {
         displayPGCS(pgcsResult, pgcsPoint);
 //        $('#resultMain').val('');
 //        $('#pointMain').val('');
-        $("#CIS020002").modal('toggle');
+        $("#CIS020002").modal('hide');
     });
 
     $('#ortho_actionPGSC').click(function (e) {
@@ -192,7 +192,7 @@ $(document).ready(function () {
                         $('#getNeuObservation').html(returnObservation);
                        
                         $('#getNeuObservation').trigger('contentchanged');
-                        $('#CIS020002').modal('toggle');
+                        $('#CIS020002').modal('hide');
                         $("#CIS020002").hide();
                         $(".modal-backdrop").hide();
                         bootbox.alert("Pediatric Glasgow Coma Scale is saved.");
@@ -210,7 +210,7 @@ $(document).ready(function () {
         var id = idName.split('|');
         var updateObj = _data[id[1]];
        
-        $("#CIS020002").modal('toggle');
+        $("#CIS020002").modal('show');
         $('#actionPGSC').hide();
         $('#updatePGSC').show();
         //$('#actionGSC #updateBtn').show();
@@ -230,7 +230,7 @@ $(document).ready(function () {
 
         var sum = 'PGCS Result:' + upObject.resultpgcsMain + '| PGCS Point:' + upObject.pointpgcsMain;
         $('#sum' + rowId).html(sum);
-        $("#CIS020002").modal('toggle');
+        $("#CIS020002").modal('hide');
     });
 
 /// -----------------------------------------------------------------------------------------------------------------------------------------------/////;
@@ -261,7 +261,7 @@ $(document).ready(function () {
       
         displayBP(_sitBPS, _sitBPD, _sitBPP, _standBPS, _standBPD, _standBPP, _lyingBPS, _lyingBPD, _lyingBPP);
 
-        $("#CIS020003").modal('toggle');
+        $("#CIS020003").modal('hide');
 
         $('#sitS').val("");
         $('#sitD').val("");
@@ -305,7 +305,7 @@ $(document).ready(function () {
                         $('#sitS').val("");
                         $('#sitD').val("");
                         $('#sitP').val("");
-                        $('#CIS020003').modal('toggle');
+                        $('#CIS020003').modal('hide');
                         $("#CIS020003").hide();
                         $(".modal-backdrop").hide();
                         bootbox.alert("Bllod pressure is saved.");
@@ -320,7 +320,7 @@ $(document).ready(function () {
     });
 
     $('#tblCIS_Consultation_Table').on('click', '.updateBP', function (e) {
-        $("#CIS020003").modal('toggle');
+        $("#CIS020003").modal('show');
         $('#actionBloodP').hide();
         $('#updateBloodP').show();
         var idName = $(this).get(0).id;
@@ -361,7 +361,7 @@ $(document).ready(function () {
 
         var sum = ' Sitting: Systolic =' + upObject.sitS + ' mmHg | Diastolic =' + upObject.sitD + ' mmHg | Pulse =' + upObject.sitP + 'mmHg </br> Standing: Systolic =' + upObject.standS + 'mmHg | Diatolic =' + upObject.standD + 'mmHg | Pulse =' + upObject.standP + 'mmHg </br> Lying: Systolic =' + upObject.lyingS + ' mmHg | Diatolic = ' + upObject.lyingD + ' mmHg | Pulse =' + upObject.lyingP + ' mmHg';
         $('#sum' + rowId).html(sum);
-        $("#CIS020003").modal('toggle');
+        $("#CIS020003").modal('hide');
     });
 
 /// -----------------------------------------------------------------------------------------------------------------------------------------------/////;
@@ -380,13 +380,13 @@ $(document).ready(function () {
         _data.push(obj1);
         displayrrRate(_rrRate);
 
-        $("#CIS020004").modal('toggle');
+        $("#CIS020004").modal('hide');
 
     });
 
     $('#tblCIS_Consultation_Table').on('click', '.updateRR', function (e) {
 
-        $("#CIS020004").modal('toggle');
+        $("#CIS020004").modal('show');
         $('#updateRR').show();
         $('#actionRR').hide();
 
@@ -409,7 +409,7 @@ $(document).ready(function () {
 
         var sum = 'Respiratory Rate:' + upObject.rrRate + ' breath/min';
         $('#sum' + rowId).html(sum);
-        $("#CIS020004").modal('toggle');
+        $("#CIS020004").modal('hide');
     });
 
 /// -----------------------------------------------------------------------------------------------------------------------------------------------/////;
@@ -427,11 +427,11 @@ $(document).ready(function () {
         _data.push(obj1);
         displayOsat(_OSat);
 
-        $("#CIS020005").modal('toggle');
+        $("#CIS020005").modal('hide');
     });
 
     $('#tblCIS_Consultation_Table').on('click', '.updateOS', function () {
-        $('#CIS020005').modal('toggle');
+        $('#CIS020005').modal('show');
         $('#actionOS').hide();
         $('#updateOS').show();
 
@@ -452,7 +452,7 @@ $(document).ready(function () {
 
         var sum = upObject.OSat;
         $('#sum' + rowId).html(sum);
-        $("#CIS020005").modal('toggle');
+        $("#CIS020005").modal('hide');
     });
 
 /// -----------------------------------------------------------------------------------------------------------------------------------------------/////;
@@ -473,11 +473,11 @@ $(document).ready(function () {
         });
         _data.push(obj1);
         displayBTemp(_BTemp)
-        $("#CIS020006").modal('toggle');
+        $("#CIS020006").modal('hide');
     });
 
     $('#tblCIS_Consultation_Table').on('click', '.updateBT', function () {
-        $('#CIS020006').modal('toggle');
+        $('#CIS020006').modal('show');
         $('#actionBT').hide();
         $('#updateBT').show();
 
@@ -500,7 +500,7 @@ $(document).ready(function () {
 
         var sum = upObject.BTemp + ascii(176) + "C";
         $('#sum' + rowId).html(sum);
-        $("#CIS020006").modal('toggle');
+        $("#CIS020006").modal('hide');
     });
 
 /// -----------------------------------------------------------------------------------------------------------------------------------------------/////;
@@ -521,11 +521,11 @@ $(document).ready(function () {
         _data.push(obj1);
         displayPanScale(painScale, resultpainScale);
 
-        $("#CIS020007").modal('toggle');
+        $("#CIS020007").modal('hide');
     });
 
     $('#tblCIS_Consultation_Table').on('click', '.updatePS', function () {
-        $('#CIS020007').modal('toggle');
+        $('#CIS020007').modal('show');
         $('#actionPS').hide();
         $('#updatePS').show();
         $('#actionPS #btnNIWps').hide();
@@ -549,7 +549,7 @@ $(document).ready(function () {
 
         var sum = 'Scale:' + upObject.painScale + '</br> Result:' + upObject.resultPanScale;
         $('#sum' + rowId).html(sum);
-        $("#CIS020007").modal('toggle');
+        $("#CIS020007").modal('hide');
     });
 
     $('#btnNIWps').on('click', function () {
@@ -583,13 +583,13 @@ $(document).ready(function () {
 
         displayOther(Oheight, Oweight, Obmi, OWeightStatus, OheadCir, OBloodGlucose);
 
-        $("#CIS020008").modal('toggle');
+        $("#CIS020008").modal('hide');
     });
 
 
     $('#tblCIS_Consultation_Table').on('click', '.updateOther', function () {
 
-        $('#CIS020008').modal('toggle');
+        $('#CIS020008').modal('show');
         $('#actionOther').hide();
         $('#updateOther').show();
 
@@ -621,7 +621,7 @@ $(document).ready(function () {
 
         var sum = 'Height:' + upObject.bmiHeight + 'cm </br> Weight:' + upObject.bmiWeight + 'kg </br> BMI:' + upObject.bmi + 'kg/m2 </br> Weight Status:' + upObject.bmiStatus + ' </br> Head Circumference:' + upObject.headCir + 'cm </br> Blood Glucose:' + upObject.bloodGlucose + 'mmol/L';
         $('#sum' + rowId).html(sum);
-        $("#CIS020008").modal('toggle');
+        $("#CIS020008").modal('hide');
     });
 
 /// -----------------------------------------------------------------------------------------------------------------------------------------------/////;
@@ -683,7 +683,7 @@ $(document).ready(function () {
         _data.push(obj1);
     
         displayPEM(NotesPE, PEComment);
-        $("#CIS020009").modal('toggle');
+        $("#CIS020009").modal('hide');
     });
 
     $("#ortho_accpetPEBtn").click(function () {
@@ -737,9 +737,10 @@ $(document).ready(function () {
                         $('#get_physicalExam').html(returnPhysicalExam);
                        
                         $('#get_physicalExam').trigger('contentchanged');
-                        $('#CIS020009').modal('toggle');
-                        $("#CIS020009").hide();
-                        $(".modal-backdrop").hide();
+                        $('#CIS020009').modal('hide');
+                        $("#ortho_physical_exam").hide();
+                        //$("#CIS020009").hide();
+                        //$(".modal-backdrop").hide();
                         bootbox.alert("Physical Examination is saved.");
                     }
                 });
@@ -752,7 +753,7 @@ $(document).ready(function () {
     });
 
     $('#tblCIS_Consultation_Table').on('click', '.updatePE', function () {
-        $("#CIS020009").modal('toggle');
+        $("#CIS020009").modal('show');
         $('#actionPE').hide();
         $('#updatePE').show();
 
@@ -944,7 +945,7 @@ $(document).ready(function () {
 
         var sum = NotesPE + ' </br> Comment:' + upObject.PEComment;
         $('#sum' + rowId).html(sum);
-        $("#CIS020009").modal('toggle');
+        $("#CIS020009").modal('hide');
     });
 
     $('#RISResult').on('click', function () {
