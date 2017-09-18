@@ -63,9 +63,9 @@
 
 
                     <div class="row">
-                        <div class="col-md-12">
+                        <div class="col-md-12 text-center">
                             <div class="row">
-                                <div class="col-md-3">
+                                <div class="col-md-6">
                                     <div class="thumbnail" id="MM_stat_inpatient">
                                         <div class="text-center">
                                             <div class="bed-booking-title">Total InPatient</div>
@@ -79,7 +79,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-3">
+                                <div class="col-md-6">
                                     <div class="thumbnail" id="MM_stat_outpatient">
                                         <div class="text-center">
                                             <div class="bed-booking-title">Total OutPatient</div>
@@ -93,58 +93,47 @@
                                         </div>
                                     </div>
                                 </div>
-<!--                                <div class="col-md-3">
-                                    <div class="thumbnail">
-                                        <div class="text-center">
-                                            <div class="bed-booking-title">Total Drug Cost</div>
 
-                                            <span class="bed-booking-total">RM50M</span>
-                                            <div>
-                                                <span class="bed-booking-a"><i class="fa fa-square"></i>&nbsp;0</span> 
-                                                <span class="bed-booking-p"><i class="fa fa-square"></i>&nbsp;0</span>
-                                                <span class="bed-booking-o"><i class="fa fa-square"></i>&nbsp;0</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-3">
-                                    <div class="thumbnail">
-                                        <div class="text-center">
-                                            <div class="bed-booking-title">Total ICD 10</div>
-
-                                            <span class="bed-booking-total">0</span>
-                                            <div>
-                                                <span class="bed-booking-a"><i class="fa fa-square"></i>&nbsp;0</span> 
-                                                <span class="bed-booking-p"><i class="fa fa-square"></i>&nbsp;0</span>
-                                                <span class="bed-booking-o"><i class="fa fa-square"></i>&nbsp;0</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>-->
                             </div>
                         </div>
                     </div>
 
                     <div class="row">
-                        <div class="col-md-8">
+                        <div class="col-md-12">
 
                             <div class="thumbnail">
                                 <div id="ALGraph"></div>
                             </div>
                         </div>
-                        <div class="col-md-4">
-                            <div class="thumbnail">
-                                 <%@ include file ="top10DrugsPrescribedGraph.jsp" %>
+                        
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="col-md-4">
+                                <div class="thumbnail" id="MM_stat_icd10">
+                                    <img src="img/ajax-loader.gif">
+                                </div>
+                                
                             </div>
+                                
+                            <div class="col-md-4">
+                                <div class="thumbnail" id="MM_stat_drug">
+                                    <img src="img/ajax-loader.gif">
+                                </div>
+                            </div>
+                            
+                            <div class="col-md-4">
+                                <div class="thumbnail" id="MM_stat_complaint">
+                                    <img src="img/ajax-loader.gif">
+                                </div>
+                            </div>
+                           
                         </div>
                     </div>
 
                     <div class="row">
-                        <div class="col-md-8">
-                            <div class="thumbnail">
-                                <%@ include file ="chart/chart1.jsp" %>
-                            </div>
-                        </div>
+
                         <div class="col-md-4">
                             <div class="row">
                                 <div class="col-md-12">
@@ -323,6 +312,7 @@
             $(function(){
                 MM_getInpatientStatistic();
                 MM_getOutpatientStatistic();
+                MM_getDiagnosisStatistic();
             });
             
             function MM_getInpatientStatistic(){
@@ -355,6 +345,21 @@
                     
                 });
                 
+            }
+            
+            function MM_getDiagnosisStatistic(){
+                 $.ajax({
+                    timeout: 60000,
+                    type: 'POST',
+                    url: "MainMenu_control/getDiagnosisStatistic.jsp",
+                    success: function (data, textStatus, jqXHR) {
+                        $('#MM_stat_icd10').html(data);
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                         $('#MM_stat_icd10').html("Oopps! "+errorThrown);
+                    }
+                    
+                });               
             }
 
             //    $("#test").load("libraries/reportSideMenus.jsp");
