@@ -72,7 +72,7 @@ type="text/javascript"></script>
     }
 </style>
 
-<div class=".chart-container">
+<div class="chart-container">
     <canvas id="top10ItemsChart" ></canvas>
     <div class="chart-legend" id="top10Legend"></div>
 </div>

@@ -1,7 +1,7 @@
 <%-- 
     Document   : getInpatientStatistic
     Created on : Sep 18, 2017, 12:04:41 PM
-    Author     : user
+    Author     : Ardhi Surya; rdsurya147@gmail.com; insta:@rdcfc
 --%>
 
 <%@page import="java.util.ArrayList"%>

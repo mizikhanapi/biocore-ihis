@@ -118,13 +118,13 @@
                             </div>
                                 
                             <div class="col-md-4">
-                                <div class="thumbnail" id="MM_stat_drug">
+                                <div class="thumbnail" id="MM_stat_complaint">
                                     <img src="img/ajax-loader.gif">
                                 </div>
                             </div>
                             
                             <div class="col-md-4">
-                                <div class="thumbnail" id="MM_stat_complaint">
+                                <div class="thumbnail" id="MM_stat_drug">
                                     <img src="img/ajax-loader.gif">
                                 </div>
                             </div>
@@ -313,6 +313,8 @@
                 MM_getInpatientStatistic();
                 MM_getOutpatientStatistic();
                 MM_getDiagnosisStatistic();
+                MM_getChiefComolaintStatistic();
+                MM_getDrugStatistic();
             });
             
             function MM_getInpatientStatistic(){
@@ -360,6 +362,37 @@
                     }
                     
                 });               
+            }
+            
+            function MM_getChiefComolaintStatistic(){
+                $.ajax({
+                    timeout: 60000,
+                    type: 'POST',
+                    url: "MainMenu_control/getCheifComplaintStatistic.jsp",
+                    success: function (data, textStatus, jqXHR) {
+                        $('#MM_stat_complaint').html(data);
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                         $('#MM_stat_complaint').html("Oopps! "+errorThrown);
+                    }
+                    
+                });      
+                
+            }
+            
+            function MM_getDrugStatistic(){
+                $.ajax({
+                    timeout: 60000,
+                    type: 'POST',
+                    url: "MainMenu_control/getDrugStatistic.jsp",
+                    success: function (data, textStatus, jqXHR) {
+                        $('#MM_stat_drug').html(data);
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                         $('#MM_stat_drug').html("Oopps! "+errorThrown);
+                    }
+                    
+                });     
             }
 
             //    $("#test").load("libraries/reportSideMenus.jsp");
