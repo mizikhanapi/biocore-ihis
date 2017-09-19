@@ -39,7 +39,7 @@
                 <li><a class="panelito ortho-opthe">Report</a></li>
             </ul>
         </li>
-        <!--        <li><a href="#ong" role="tab" data-toggle="tab" class="panelito"><i class="fa fa-angle-right fa-lg"></i> Obstetrics & Gynaecology</a></li>-->
+                <li><a href="#ong" role="tab" data-toggle="tab" class="panelito"><i class="fa fa-angle-right fa-lg"></i> Obstetrics & Gynaecology</a></li>
 
         <!-- Menu Specialist Panel -->
 
