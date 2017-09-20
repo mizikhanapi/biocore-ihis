@@ -41,9 +41,9 @@
     String sql = "SELECT Id,cs_patient_name,cs_queue_no,cs_queue_name,cs_callingtime,cs_room_no FROM qcs_calling_system_queue";
     String fullSql = "";
     if (filterType.equalsIgnoreCase("0")) {
-        fullSql = sql + " WHERE " + hfccd_str + discp_str + subdi_str + " and cs_callingtime > 0 order by cs_queue_no asc limit 1";
+        fullSql = sql + " WHERE " + hfccd_str + discp_str + subdi_str + " and cs_callingtime > 0 order by id asc limit 1";
     } else {
-        fullSql = sql + " WHERE " + hfccd_str + discp_str + " and cs_callingtime > 0 order by cs_queue_no asc limit 1";
+        fullSql = sql + " WHERE " + hfccd_str + discp_str + " and cs_callingtime > 0 order by id asc limit 1";
     }
     Query q = new Query();
     //ArrayList<Calling_system_bean> d = q.getQueryCallingSystem(sql);
