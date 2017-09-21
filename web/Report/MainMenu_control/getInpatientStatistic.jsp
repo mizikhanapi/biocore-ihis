@@ -15,7 +15,7 @@
             + "FROM adm_lookup_detail ld "
             + "left join pms_patient_biodata pb on pb.`SEX_CODE`=ld.`Detail_Reference_code` "
             + "left join wis_inpatient_episode ip on ip.pmi_no=pb.`PMI_NO` and ip.hfc_cd=ld.hfc_cd "
-            + "where ld.`Master_Reference_code`='0041' and ld.hfc_cd='"+hfc_cd+"' and extract(YEAR from ip.episode_date)=extract(YEAR from now()) "
+            + "where ld.`Master_Reference_code`='0041' and ld.hfc_cd='"+hfc_cd+"' and date_format(ip.episode_date, '%Y')=date_format(now(), '%Y') "
             + "group by ld.`Description`;";
     ArrayList<ArrayList<String>> dataStat = con.getData(query);
     
@@ -23,7 +23,7 @@
             + "FROM adm_lookup_detail ld "
             + "left join pms_patient_biodata pb on pb.`ID_TYPE`=ld.`Detail_Reference_code` "
             + "left join wis_inpatient_episode ip on ip.pmi_no=pb.`PMI_NO` and ip.hfc_cd=ld.hfc_cd "
-            + "where ld.`Master_Reference_code`='0012' and ld.hfc_cd='"+hfc_cd+"' and extract(YEAR from ip.episode_date)=extract(YEAR from now()) "
+            + "where ld.`Master_Reference_code`='0012' and ld.hfc_cd='"+hfc_cd+"' and date_format(ip.episode_date, '%Y')=date_format(now(), '%Y') "
             + "group by ld.`Description`;";
     ArrayList<ArrayList<String>> dataStatID = con.getData(queryID);
     

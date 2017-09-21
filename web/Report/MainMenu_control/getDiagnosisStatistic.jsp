@@ -13,7 +13,7 @@
     String query ="select ld.`Diagnosis_Cd`, i10.icd10_desc, count(ld.`Episode_Date`) as jumlah "
             + "from lhr_diagnosis ld "
             + "join icd10_codes i10 on i10.icd10_code=ld.`Diagnosis_Cd` "
-            + "where ld.hfc_cd='"+hfc_cd+"' and extract(YEAR from ld.`Episode_Date`)=extract(YEAR from now()) "
+            + "where ld.hfc_cd='"+hfc_cd+"' and date_format(ld.`Episode_Date`, '%Y')=date_format(now(), '%Y') "
             + "group by ld.`Diagnosis_Cd` "
             + "order by jumlah desc limit 10;";
     ArrayList<ArrayList<String>> dataStat = con.getData(query);

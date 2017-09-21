@@ -12,7 +12,7 @@
     String query="select lm.drug_cd, md.d_trade_name, sum(lm.quantity) as jumlah "
             + "from lhr_medication lm "
             + "join pis_mdc2 md on md.ud_mdc_code=lm.drug_cd and md.hfc_cd=lm.hfc_cd "
-            + "where lm.hfc_cd='"+hfc_cd+"' and extract(YEAR from lm.episode_date)=extract(YEAR from now()) "
+            + "where lm.hfc_cd='"+hfc_cd+"' and date_format(lm.episode_date, '%Y')=date_format(now(), '%Y') "
             + "group by lm.drug_cd order by jumlah desc limit 10;";
     ArrayList<ArrayList<String>> dataStat = con.getData(query);
     

@@ -12,7 +12,7 @@
     String query="select ls.symptom_cd, cc.`RCC_DESC`, count(ls.episode_date) as jumlah "
             + "from lhr_signs ls "
             + "join readcode_chief_complaint cc on cc.`RCC_CD`=ls.symptom_cd "
-            + "where ls.hfc_cd='"+hfc_cd+"' and extract(YEAR from ls.episode_date)=extract(YEAR from now()) "
+            + "where ls.hfc_cd='"+hfc_cd+"' and date_format(ls.episode_date, '%Y')=date_format(now(), '%Y') "
             + "group by ls.symptom_cd order by jumlah desc limit 10;";
     ArrayList<ArrayList<String>> dataStat = con.getData(query);
     

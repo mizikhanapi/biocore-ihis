@@ -9,11 +9,8 @@
 
 <%
 
-    Config.getBase_url(request);
-    Config.getFile_url(session);
-
     Conn conn = new Conn();
-    String startDate, endDate, hfc, dis, displayFormatEndDate="",displayFormatStartDate="", patientTypeName="", patientType="", query = "";
+    String startDate, endDate, hfc, displayFormatEndDate="",displayFormatStartDate="", patientTypeName="", patientType="", query = "";
     String Reply = "";
     
     hfc = session.getAttribute("HEALTH_FACILITY_CODE").toString();
@@ -21,7 +18,7 @@
     
     startDate = request.getParameter("startDate").toString();
     endDate = request.getParameter("endDate").toString();
-    dis = request.getParameter("dis").toString();
+    
     
 //    startDate = "2017-01-01";
 //    endDate = "2017-08-28";

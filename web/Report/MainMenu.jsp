@@ -43,9 +43,10 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
         <script src="../assets/js/Chart.bundle.js" type="text/javascript"></script>
-
-        <script src="../assets/js/highcharts-exporting.js" type="text/javascript"></script>
+        <!--<script src="https://code.highcharts.com/highcharts.src.js"></script>-->
+        
         <script src="../assets/js/highcharts.js" type="text/javascript"></script>
+        <script src="../assets/js/highcharts-exporting.js" type="text/javascript"></script>
 
 
         <!--header -->
@@ -311,10 +312,10 @@
         <script>
             $(function(){
                 MM_getInpatientStatistic();
-                MM_getOutpatientStatistic();
-                MM_getDiagnosisStatistic();
-                MM_getChiefComolaintStatistic();
-                MM_getDrugStatistic();
+                //MM_getOutpatientStatistic();
+                //MM_getDiagnosisStatistic();
+                //MM_getChiefComolaintStatistic();
+                //MM_getDrugStatistic();
             });
             
             function MM_getInpatientStatistic(){
@@ -328,6 +329,9 @@
                     },
                     error: function (jqXHR, textStatus, errorThrown) {
                          $('#MM_stat_inpatient').html("Oopps! "+errorThrown);
+                    },
+                    complete: function (jqXHR, textStatus ) {
+                        MM_getOutpatientStatistic();
                     }
                     
                 });
@@ -343,6 +347,9 @@
                     },
                     error: function (jqXHR, textStatus, errorThrown) {
                          $('#MM_stat_outpatient').html("Oopps! "+errorThrown);
+                    },
+                    complete: function (jqXHR, textStatus ) {
+                        MM_getDiagnosisStatistic();
                     }
                     
                 });
@@ -359,6 +366,9 @@
                     },
                     error: function (jqXHR, textStatus, errorThrown) {
                          $('#MM_stat_icd10').html("Oopps! "+errorThrown);
+                    },
+                    complete: function (jqXHR, textStatus ) {
+                        MM_getChiefComolaintStatistic();
                     }
                     
                 });               
@@ -374,6 +384,9 @@
                     },
                     error: function (jqXHR, textStatus, errorThrown) {
                          $('#MM_stat_complaint').html("Oopps! "+errorThrown);
+                    },
+                    complete: function (jqXHR, textStatus ) {
+                        MM_getDrugStatistic();
                     }
                     
                 });      
@@ -413,7 +426,7 @@
                         code: splitTemp[0]
                     };
 
-//                    console.log(newObj);
+                   console.log(newObj);
                     disciplineData.push(newObj);
                 }
             }
@@ -494,15 +507,14 @@
 //                        console.log((obj.name.toLowerCase().search(discipline.toLowerCase())) > -1);
                         return (obj.name.toLowerCase().search(discipline.toLowerCase())) > -1;
                     });
-//                    console.log(result);
+                   console.log(result);
                 }
-                dis = result[0].code;
+                //dis = result[0].code;
 
                 var data = {
                     startDate: startDate,
                     endDate: endDate,
-                    hfc: hfc,
-                    dis: dis
+                    hfc: hfc
                 };
                  console.log(data);
                 $.ajax({

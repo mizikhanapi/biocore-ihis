@@ -13,7 +13,7 @@
     String sqlGenderStat = "SELECT ld.`Detail_Reference_code`,ld.`Description`, count(distinct(concat(ip.pmi_no, ip.episode_date))) "
             + "FROM adm_lookup_detail ld "
             + "left join pms_patient_biodata pb on pb.`SEX_CODE`=ld.`Detail_Reference_code` "
-            + "left join pms_episode ip on ip.pmi_no=pb.`PMI_NO` and ip.`HEALTH_FACILITY_CODE`=ld.hfc_cd and extract(YEAR from ip.episode_date)=extract(YEAR from now()) "
+            + "left join pms_episode ip on ip.pmi_no=pb.`PMI_NO` and ip.`HEALTH_FACILITY_CODE`=ld.hfc_cd and date_format(ip.episode_date, '%Y')=date_format(now(), '%Y') "
             + "where ld.`Master_Reference_code`='0041' and ld.hfc_cd='"+hfc_cd+"' "
             + "group by ld.`Description`;";
     ArrayList<ArrayList<String>> dataGender = con.getData(sqlGenderStat);
@@ -21,7 +21,7 @@
     String sqlIDStat = "SELECT ld.`Detail_Reference_code`,ld.`Description`, count(distinct(concat(ip.pmi_no, ip.episode_date))) "
             + "FROM adm_lookup_detail ld "
             + "left join pms_patient_biodata pb on pb.`ID_TYPE`=ld.`Detail_Reference_code` "
-            + "left join pms_episode ip on ip.pmi_no=pb.`PMI_NO` and ip.`HEALTH_FACILITY_CODE`=ld.hfc_cd and extract(YEAR from ip.episode_date)=extract(YEAR from now()) "
+            + "left join pms_episode ip on ip.pmi_no=pb.`PMI_NO` and ip.`HEALTH_FACILITY_CODE`=ld.hfc_cd and date_format(ip.episode_date, '%Y')=date_format(now(), '%Y') "
             + "where ld.`Master_Reference_code`='0012' and ld.hfc_cd='"+hfc_cd+"' "
             + "group by ld.`Description`;";
     ArrayList<ArrayList<String>> dataID = con.getData(sqlIDStat);
