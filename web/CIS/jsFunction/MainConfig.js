@@ -52,8 +52,9 @@ var HCSContent = [];
 
 
 
-function disableMainBtn(){
-
+function  disableSOAP() {
+    bootbox.alert("You need to select the patient");
+    return false;
 }
 
 $(document).ready(function () {
@@ -73,13 +74,16 @@ $(window).bind('beforeunload', function(){
 
     $('#holdBtn').bind('click', false);
     //loadSetting(doctor_id);
+
+    $('.soap-select').on('click',disableSOAP);
+
+//    $('.soap-select').on('click',function () {
+//        bootbox.alert("You need to select the patient");
+//        return false;
+//    });
     
 
 
-    $('.soap-select').click(function () {
-        bootbox.alert("You need to select the patient");
-        return false;
-    });
 
     $('#settingBtn').click(function () {
         $('#settingModal').modal('toggle');
