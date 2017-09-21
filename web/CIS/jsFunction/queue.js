@@ -104,7 +104,8 @@ $(document).ready(function () {
                 }
 
                 $('#queueModal').modal('toggle');
-                $('.soap-select').unbind('click');
+                 $('.soap-select').off('click',disableSOAP);
+                //$('.soap-select').unbind('click');
 
 
             } else {

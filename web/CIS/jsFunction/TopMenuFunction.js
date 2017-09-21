@@ -634,7 +634,24 @@ $(document).ready(function (e) {
 
 
     function clearCIS() {
-        location.href = './CIS000000.jsp';
+        
+        //location.href = './CIS000000.jsp';
+     console.log(_data);
+        pmiNo = "";
+        episodeDate = "";
+        PDIInfo = "";
+        patientCategory = "";
+        fullPatientData = "";
+        _data = [];
+        i=0;
+        $("#divCIS_Consultation_Table").load("CIS000000.jsp #divCIS_Consultation_Table");
+        $("#div_CIS_PATIENT_DASHBOARD").load("CIS000000.jsp #div_CIS_PATIENT_DASHBOARD",function(){
+           $('.soap-select').on('click',disableSOAP);
+            $(".loading").fadeOut("slow");
+        });
+
+
+        
     }
 
     function storeData(status) {
@@ -712,8 +729,8 @@ $(document).ready(function (e) {
                     episodeDate = nextPArry[1];
 
                     findPatient(pmiNo, episodeDate);
-                    $('.soap-select').unbind('click');
-                    
+                    //$('.soap-select').unbind('click');
+                    $('.soap-select').off('click',disableSOAP);
                     getPDI(pmiNo);
                     updateStatus(pmiNo, episodeDate, 5);
                     

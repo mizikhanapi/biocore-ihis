@@ -94,12 +94,11 @@
                     <%@ include file="libraries/topMenus.html" %> 
                     <!--    <div w3-include-html="libraries/topMenus.html"></div>-->
                     <!-- menu top -->
-                    <div class="row" id="div_CIS_PATIENT_DASHBOARD">
+                    <div class="row">
                         <div class="col-md-12">
                             <div class="thumbnail">
                                 <h4 style="margin: 0px; padding: 0px;">Patient Details </h4>
                                 <hr class="pemisah"/>
-                                
                                 <table class="p-table" style="width: 100%; color: #999;">
                                     <tr>
                                         <td>
@@ -156,7 +155,6 @@
                                         <div class="tabbable-panel cis-tab">
                                             <div class="tabbable-line">
                                                 <ul class="nav nav-tabs ">
-
                                                     <li class="active">
                                                         <a href="#tab_default_1" data-toggle="tab" aria-expanded="false">
                                                             <i class="fa fa-info-circle fa-lg"></i> Subjective </a>
@@ -187,9 +185,8 @@
                                         <!-- Tab Menu -->
                                         <hr class="pemisah" />
                                         <h4 id="mainConsultBar">Consultation Notes</h4>
-                                        <div id="divCIS_Consultation_PARENT">
-                                        <div id="divCIS_Consultation_Table">
-                                        <table class="table table-filter tblCIS_Consultation_Table " style="background: #fff; border: 1px solid #ccc; margin-left: -31px; margin-right: -31px; width: auto; max-width: inherit; " id="tblCIS_Consultation_Table" >
+
+                                        <table class="table table-filter " style="background: #fff; border: 1px solid #ccc; margin-left: -31px; margin-right: -31px; width: auto; max-width: inherit; " id="tblCIS_Consultation_Table" >
 
                                             <tbody id="CCNNotes"  class="S ConsultationNotes"></tbody>
                                             <tbody id="HPINotes"   class="S ConsultationNotes"> </tbody>
@@ -227,8 +224,7 @@
                                             <tbody id="DCGNotes"   class="P ConsultationNotes"> </tbody>
                                             <tbody id="DCGDTONotes"   class="P ConsultationNotes"> </tbody>
                                         </table>
-                                        </div>
-                                        </div>
+
                                     </div>
                                 </div>
 

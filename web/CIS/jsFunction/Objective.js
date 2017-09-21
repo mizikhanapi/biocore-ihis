@@ -113,8 +113,12 @@ $(document).ready(function () {
     
         displayGCS(gcsResult, gcsPoint);
 
-//        $('#resultMain').val('');
-//        $('#pointMain').val('');
+        $('#resultMain').val('');
+        $('#pointMain').val('');
+         $('#rowEOR').replaceWith("<tr id='rowEOR'><td>-</td><td>0</td></tr>");
+         $('#rowMR').replaceWith("<tr id='rowMR'><td>-</td><td>0</td></tr>");
+         $('#rowVR').replaceWith("<tr id='rowVR'><td>-</td><td>0</td></tr>");
+
         $("#CIS020001").modal('hide');
     });
     $('#tblCIS_Consultation_Table').on('click', '.updateGcs', function () {
@@ -162,9 +166,13 @@ $(document).ready(function () {
         _data.push(obj1);
     
         displayPGCS(pgcsResult, pgcsPoint);
-//        $('#resultMain').val('');
-//        $('#pointMain').val('');
+        $('#resultpgcsMain').val('');
+        $('#pointpgcsMain').val('');
+        $('#rowpEO').replaceWith("<tr id='rowpEO'><td>-</td><td>0</td></tr>");
+        $('#rowpMR').replaceWith("<tr id='rowpMR'><td>-</td><td>0</td></tr>");
+        $('#rowpVR').replaceWith("<tr id='rowpVR'><td>-</td><td>0</td></tr>");
         $("#CIS020002").modal('hide');
+        
     });
 
     $('#ortho_actionPGSC').click(function (e) {
@@ -381,7 +389,7 @@ $(document).ready(function () {
         displayrrRate(_rrRate);
 
         $("#CIS020004").modal('hide');
-
+        $('#rrRate').val('');
     });
 
     $('#tblCIS_Consultation_Table').on('click', '.updateRR', function (e) {
@@ -473,6 +481,8 @@ $(document).ready(function () {
         });
         _data.push(obj1);
         displayBTemp(_BTemp)
+        $('#BTemp').val('');
+         $("#slider").slider("value", parseInt(1));
         $("#CIS020006").modal('hide');
     });
 
@@ -520,7 +530,8 @@ $(document).ready(function () {
         });
         _data.push(obj1);
         displayPanScale(painScale, resultpainScale);
-
+        $('#painScale').val("0");
+        $('#resultPanScale').val('');
         $("#CIS020007").modal('hide');
     });
 

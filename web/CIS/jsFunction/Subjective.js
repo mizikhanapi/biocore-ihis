@@ -8,7 +8,7 @@ function getDate() {
 var _data = [];
 var notes = "";
 
-var i = 0;
+
 $(document).ready(function () {
     function deleteRow(id) {
     }
@@ -90,13 +90,15 @@ $(document).ready(function () {
      /// -----------------------------------------------------------------------------------------------------------------------------------------------/////;
     /// -----------------------------------------------------------DELETED NOTES------------------------------------------------------------/////;
      /// ----------------------------------------------------------------------------------------------------------------------------------------------/////;
-    $('.ConsultationNotes').on("click", ".deleteBtn", function (e) {
+       $('#divCIS_Consultation_PARENT').on('click', "#divCIS_Consultation_Table #tblCIS_Consultation_Table .deleteBtn", function (e) {
         e.preventDefault();
         var delConfirm = confirm('Are you want to delete this notes? ');
         if (delConfirm === true) {
             var idName = $(this).get(0).id;
           
             var id = idName.split("|");
+            console.log(id);
+            console.log(_data);
             delete _data[id[1]];
             $(this).closest('tr').remove();
            
@@ -159,7 +161,7 @@ $(document).ready(function () {
     });
 
     //js UPDATE Complaint 
-    $('#tblCIS_Consultation_Table').on('click', '.updateBtnCCN', function (e) {
+    $('#divCIS_Consultation_PARENT').on('click', '#divCIS_Consultation_Table #tblCIS_Consultation_Table .updateBtnCCN', function (e) {
         e.preventDefault();
         $("#update_CIS01000001").modal("show");
    
@@ -260,16 +262,17 @@ $(document).ready(function () {
         $items.each(function () {
             obj1[this.id] = $(this).val();
         });
-        
+         
 
             _data.push(obj1);
             displayHPI(obj1.details);
-            $("#details").val("");
+           
+          $('.clsHPI_COMMENT').val('');
             $("#CIS01000002").modal('hide');
         
     });
 
-    $('#tblCIS_Consultation_Table').on('click', '.updateBtnHPI', function (e) {
+        $('#divCIS_Consultation_PARENT').on('click', '#divCIS_Consultation_Table #tblCIS_Consultation_Table .updateBtnHPI', function (e) {
         e.preventDefault();
         var idName = $(this).get(0).id;
         var id = idName.split("|");
@@ -324,13 +327,15 @@ $(document).ready(function () {
             $("#Status").val("Status");
             $("#comment1").val("");
             $("#CIS01000003").modal('hide');
-            retriveDataSearchingSubjective("tCISSubPMHSearch", "tCISSubPMHSearchLoading", "search/ResultPMHSearch.jsp", "search/ResultPMHSearchCode.jsp", "codePMH", "");
+            searching("tCISSubPMHSearch", "tCISSubPMHSearchLoading", "search/ResultPMHSearch.jsp", "codePMH", "search/ResultPMHSearchCode.jsp");
+            searching("tCISSubPMHSearchPersonalised", "tCISSubPMHSearchLoading", "search/ResultPMHPersonaliseSearch.jsp", "codePMH", "search/ResultPMHPersonaliseSearchCode.jsp");
+            $("#tCISSubPMHSearchPersonalised-flexdatalist").hide();
         }
 
     });
 
     //js UPDATE PMH
-    $('#tblCIS_Consultation_Table').on('click', '.updateBtnPMH', function (e) {
+    $('#divCIS_Consultation_PARENT').on('click', '#divCIS_Consultation_Table #tblCIS_Consultation_Table .updateBtnPMH', function (e) {
         $("#update_CIS01000003").modal('show');
         e.preventDefault();
         var idName = $(this).get(0).id;
@@ -426,12 +431,15 @@ $(document).ready(function () {
             $("#comment2").val("");
             $("#CIS01000004").modal('hide');
              retriveDataSearchingSubjective("tCISSubFMHSearch", "tCISSubFMHSearchLoading", "search/ResultPMHSearch.jsp", "search/ResultPMHSearchCode.jsp", "fmhCode", "");
+              searching("tCISSubFMHSearch", "tCISSubFMHSearchLoading", "search/ResultPMHSearch.jsp", "fmhCode", "search/ResultPMHSearchCode.jsp");
+            searching("tCISSubFMHSearchPersonalised", "tCISSubFMHSearchLoading", "search/ResultFMHPersonaliseSearch.jsp", "fmhCode", "search/ResultFMHPersonaliseSearchCode.jsp");
+            $("#tCISSubFMHSearchPersonalised-flexdatalist").hide();
         }
 
     });
 
     //js UPDATE for FMH
-    $('#tblCIS_Consultation_Table').on('click', '.updateBtnFMH', function () {
+    $('#divCIS_Consultation_PARENT').on('click', '#divCIS_Consultation_Table #tblCIS_Consultation_Table .updateBtnFMH', function () {
         
         var idName = $(this).get(0).id;
         var id = idName.split("|");
@@ -527,6 +535,10 @@ $(document).ready(function () {
             $("#comment3").val("");
             $("#CIS01000005").modal('hide');
             retriveDataSearchingSubjective("tCISSubSOHSearch", "tCISSubSOHSearchLoading", "search/ResultSOHSearch.jsp", "search/ResultSOHSearchCode.jsp", "codeSOH", "");
+        
+            searching("tCISSubSOHSearch", "tCISSubSOHSearchLoading", "search/ResultSOHSearch.jsp", "codeSOH", "search/ResultSOHSearchCode.jsp");
+            searching("tCISSubSOHSearchPersonalised", "tCISSubSOHSearchLoading", "search/ResultSOHPersonaliseSearch.jsp", "codeSOH", "search/ResultSOHPersonaliseSearchCode.jsp");
+            $("#tCISSubSOHSearchPersonalised-flexdatalist").hide();
         }
 
 
@@ -535,7 +547,7 @@ $(document).ready(function () {
     });
 
     //js UPDATE for Social History
-    $('#tblCIS_Consultation_Table').on('click', '.updateBtnSOH', function () {
+    $('#divCIS_Consultation_PARENT').on('click', '#divCIS_Consultation_Table #tblCIS_Consultation_Table .updateBtnSOH', function () {
         
         var idName = $(this).get(0).id;
         var id = idName.split("|");
@@ -630,7 +642,7 @@ $(document).ready(function () {
     });
 
     //js UPDATE for Blood Group/G6PD 
-    $('#tblCIS_Consultation_Table').on('click', '.updateBtnBLD', function () {
+    $('#divCIS_Consultation_PARENT').on('click', '#divCIS_Consultation_Table #tblCIS_Consultation_Table .updateBtnBLD', function () {
         var idName = $(this).get(0).id;
         var id = idName.split("|");
         var updateObj = _data[id[1]];
@@ -714,12 +726,15 @@ $(document).ready(function () {
             $("#comment5").val("");
             $("#CIS01000007").modal('hide');
             retriveDataSearchingSubjective("tCISSubALGSearch", "tCISSubALGSearchLoading", "search/ResultALGSearch.jsp", "search/ResultALGSearchCode.jsp", "codeALG", "");
+            searching("tCISSubALGSearch", "tCISSubALGSearchLoading", "search/ResultALGSearch.jsp", "codeALG", "search/ResultALGSearchCode.jsp");
+            searching("tCISSubALGSearchPersonalised", "tCISSubALGSearchLoading", "search/ResultALGPersonaliseSearch.jsp", "codeALG", "search/ResultALGPersonaliseSearchCode.jsp");
+            $("#tCISSubALGSearchPersonalised-flexdatalist").hide();
         }
 
     });
 
     //js UPDATE for Allergy
-    $('#tblCIS_Consultation_Table').on('click', '.updateBtnALG', function () {
+    $('#divCIS_Consultation_PARENT').on('click', '#divCIS_Consultation_Table #tblCIS_Consultation_Table .updateBtnALG', function () {
         var idName = $(this).get(0).id;
         var id = idName.split("|");
         var updateObj = _data[id[1]];
@@ -816,12 +831,15 @@ $(document).ready(function () {
             $("#comment6").val("");
             $("#CIS01000008").modal('hide');
              retriveDataSearchingSubjective("tCISSubIMUSearch", "tCISSubIMUSearchLoading", "search/ResultIMUSearch.jsp", "search/ResultIMUSearchCode.jsp", "codeIMU", "");
+             searching("tCISSubIMUSearch", "tCISSubIMUSearchLoading", "search/ResultIMUSearch.jsp", "codeIMU", "search/ResultIMUSearchCode.jsp");
+            searching("tCISSubIMUSearchPersonalised", "tCISSubIMUSearchLoading", "search/ResultIMUPersonaliseSearch.jsp", "codeIMU", "search/ResultIMUPersonaliseSearchCode.jsp");
+             $('#tCISSubIMUSearchPersonalised-flexdatalist').hide();
         }
 
     });
 
     //js UPDATE for Immunization
-    $('#tblCIS_Consultation_Table').on('click', '.updateBtnIMU', function () {
+    $('#divCIS_Consultation_PARENT').on('click', '#divCIS_Consultation_Table #tblCIS_Consultation_Table .updateBtnIMU', function () {
         var idName = $(this).get(0).id;
         var id = idName.split("|");
         var updateObj = _data[id[1]];
@@ -920,12 +938,15 @@ $(document).ready(function () {
             $("#comment7").val("");
             $("#CIS01000009").modal('hide');
             retriveDataSearchingSubjective("tCISSubDABSearch", "tCISSubDABSearchLoading", "search/ResultDABSearch.jsp", "search/ResultDABSearchCode.jsp", "codeDAB", "");
+            searching("tCISSubDABSearch", "tCISSubDABSearchLoading", "search/ResultDABSearch.jsp", "codeDAB", "search/ResultDABSearchCode.jsp");
+            searching("tCISSubDABSearchPersonalised", "tCISSubDABSearchLoading", "search/ResultDABPersonaliseSearch.jsp", "codeDAB", "search/ResultDABPersonaliseSearchCode.jsp");
+            $("#tCISSubDABSearchPersonalised-flexdatalist").hide();
         }
  
     });
 
     //js UPDATE for Disability
-    $('#tblCIS_Consultation_Table').on('click', '.updateBtnDAB', function () {
+    $('#divCIS_Consultation_PARENT').on('click', '#divCIS_Consultation_Table #tblCIS_Consultation_Table .updateBtnDAB', function () {
         var idName = $(this).get(0).id;
         var id = idName.split("|");
         var updateObj = _data[id[1]];
