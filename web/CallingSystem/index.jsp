@@ -312,11 +312,11 @@
             timeout: 60000,
             success: function (data) {
                 $("#papar2").html(data);
-                var t = setTimeout("ulangPanggil2('" + hfccd + "', '" + discp + "', '" + subdi + "', '" + lang + "', '" + initial + "')", 18000);
+                var t = setTimeout("ulangPanggil2('" + hfccd + "', '" + discp + "', '" + subdi + "', '" + lang + "', '" + initial + "')", 16000);
             },
             error: function (err) {
                 $("#papar2").html("Error viewing data!");
-                var t = setTimeout("ulangPanggil2('" + hfccd + "', '" + discp + "', '" + subdi + "', '" + lang + "', '" + initial + "')", 18000);
+                var t = setTimeout("ulangPanggil2('" + hfccd + "', '" + discp + "', '" + subdi + "', '" + lang + "', '" + initial + "')", 16000);
             }
         });
     }

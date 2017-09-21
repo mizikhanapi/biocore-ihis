@@ -72,17 +72,17 @@
             <td style="text-align: left; font-weight: 400; width: 5%; font-size:12px;">
 
                 <strong><span id="qno_<%=i%>" style="    
-                              background: #58C102;
+                              background: #a0ef5f;
                               padding: 5px 10px;
                               margin-right: 30px;
                               font-weight: 500;
                               color: #fff; font-size: 80px;"><%=d.get(i).get(2)%></span></strong></td>
-            <td style="text-align: left; font-weight: 400; padding: 30px 0; font-size: 81px;"><span id="name_<%=i%>"><strong><%=d.get(i).get(1)%></strong></span></td>
+            <td style="text-align: left; font-weight: 400; padding: 30px 0; font-size: 81px;color: #999999;"><span id="name_<%=i%>"><strong><%=d.get(i).get(1)%></strong></span></td>
             <td style="text-align: right;">
                 <p style="margin-bottom: 3px; font-weight: 400;">Room No</p>
                 <span style="    
                       font-weight: 500;
-                      color: #333; font-size: 80px;" id="qname_<%=i%>"><%=d.get(i).get(5)%></span>
+                      color: #333; font-size: 80px;color: #999999;" id="qname_<%=i%>"><%=d.get(i).get(5)%></span>
                 <%
                     String myString = d.get(i).get(2);
                 %>
