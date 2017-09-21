@@ -11,7 +11,7 @@
     String role = "";
     String filterType = "";
     String namaHfc = "";
-    String health_facility_code="";
+    String health_facility_code = "";
     Conn conn = new Conn();
 
     if (session.getAttribute("USER_NAME") != null) {
@@ -22,7 +22,6 @@
         namaHfc = session.getAttribute("HFC_NAME").toString();
         health_facility_code = session.getAttribute("HEALTH_FACILITY_CODE").toString();
         filterType = session.getAttribute("CS_PARAM").toString();
-        
 
     }
 
@@ -30,21 +29,20 @@
 
     String sqlHFC = "SELECT ahd.hfc_cd,ahd.discipline_cd,ahd.subdiscipline_cd,ahf.hfc_name FROM adm_hfc_discipline ahd, adm_health_facility ahf WHERE ahd.hfc_cd = ahf.hfc_cd AND ahf.hfc_name='" + namaHfc + "'";
     ArrayList<ArrayList<String>> dataHFC;
-    dataHFC = rmic.getQuerySQL(conn.HOST, conn.PORT,sqlHFC);
+    dataHFC = rmic.getQuerySQL(conn.HOST, conn.PORT, sqlHFC);
 
     String hfc_cd = "SELECT hfc_cd,logo FROM adm_health_facility WHERE hfc_name='" + namaHfc + "'";
     ArrayList<ArrayList<String>> mysqlhfc_cd;
-    mysqlhfc_cd=rmic.getQuerySQL(conn.HOST, conn.PORT,hfc_cd);
+    mysqlhfc_cd = rmic.getQuerySQL(conn.HOST, conn.PORT, hfc_cd);
 
     String sql_dis = "SELECT ad.discipline_cd,ad.discipline_name FROM adm_discipline ad, adm_hfc_discipline ahd WHERE  ahd.discipline_cd = ad.discipline_cd AND ahd.hfc_cd = '" + health_facility_code + "' GROUP BY ad.discipline_cd";
     ArrayList<ArrayList<String>> sql_discipline;
-    sql_discipline = rmic.getQuerySQL(conn.HOST, conn.PORT,sql_dis);
+    sql_discipline = rmic.getQuerySQL(conn.HOST, conn.PORT, sql_dis);
 
     //String sqldiscipline = "SELECT ahd.discipline_cd,ahd.subdiscipline_cd,ad.discipline_name FROM adm_discipline ad, adm_hfc_discipline ahd WHERE ad.discipline_cd = ahd.discipline_cd AND ahd.hfc_cd = '"+mysqlhfc_cd.get(0).get(0)+"'"; 
 //    String sql_subDis = "SELECT asd.subdiscipline_cd,asd.subdiscipline_name FROM adm_discipline ad, adm_subdiscipline asd, adm_hfc_discipline ahd WHERE  ahd.discipline_cd = ad.discipline_cd AND ad.discipline_cd = asd.discipline_cd AND ahd.hfc_cd = '" + health_facility_code + "' GROUP BY subdiscipline_name";
 //    ArrayList<ArrayList<String>> sql_Subdiscipline;
 //    sql_Subdiscipline = rmic.getQuerySQL(conn.HOST, conn.PORT,sql_subDis);
-    
     String hfccd1 = "";
     String discp1 = "";
     String subdi1 = "";
@@ -135,7 +133,7 @@
                                         </select>
                                     </div>
                                 </div>
-                                        <div class="form-group" id="divSubDis">
+                                <div class="form-group" id="divSubDis">
                                     <label class="col-md-4 control-label" for="selectbasic">Search Sub-Discipline</label>
                                     <div class="col-md-4" id="divSelectSub">
                                     </div>
@@ -150,6 +148,11 @@
 
                         <div id="papar">
                             <p>.. Preparing ...</p>
+
+                        </div>
+                            <hr class="pemisah" />
+                        <div id="papar2">
+
 
                         </div>
 
@@ -286,11 +289,34 @@
             timeout: 60000,
             success: function (data) {
                 $("#papar").html(data);
-                var t = setTimeout("ulangPanggil('" + hfccd + "', '" + discp + "', '" + subdi + "', '" + lang + "', '" + initial + "')", 8000);
+                var t = setTimeout("ulangPanggil('" + hfccd + "', '" + discp + "', '" + subdi + "', '" + lang + "', '" + initial + "')", 9000);
+                
             },
             error: function (err) {
                 $("#papar").html("Error viewing data!");
-                var t = setTimeout("ulangPanggil('" + hfccd + "', '" + discp + "', '" + subdi + "', '" + lang + "', '" + initial + "')", 8000);
+                var t = setTimeout("ulangPanggil('" + hfccd + "', '" + discp + "', '" + subdi + "', '" + lang + "', '" + initial + "')", 9000);
+            }
+        });
+    }
+    function ulangPanggil2(hfccd, discp, subdi, lang, initial) {
+        $.ajax({
+            url: "caller2.jsp",
+            type: 'POST',
+            data: {
+                hfccd: hfccd,
+                discp: discp,
+                subdi: subdi,
+                lang: lang,
+                initial: initial
+            },
+            timeout: 60000,
+            success: function (data) {
+                $("#papar2").html(data);
+                var t = setTimeout("ulangPanggil2('" + hfccd + "', '" + discp + "', '" + subdi + "', '" + lang + "', '" + initial + "')", 18000);
+            },
+            error: function (err) {
+                $("#papar2").html("Error viewing data!");
+                var t = setTimeout("ulangPanggil2('" + hfccd + "', '" + discp + "', '" + subdi + "', '" + lang + "', '" + initial + "')", 18000);
             }
         });
     }
@@ -305,6 +331,8 @@
             initial1 = request.getParameter("initial");
     %>
         ulangPanggil('<%=hfccd1%>', '<%=discp1%>', '<%=subdi1%>', '<%=lang1%>', '<%=initial1%>');
+        ulangPanggil2('<%=hfccd1%>', '<%=discp1%>', '<%=subdi1%>', '<%=lang1%>', '<%=initial1%>');
+        
     <%
         } catch (Exception e2) {
         }
@@ -318,7 +346,7 @@
             var lang = document.querySelector('input[name="pilih"]:checked').value;
             var initial = $("#initial").val();
 
-            location.href = 'index.jsp?hfccd=' + hfccd + '&discp=' + discp + '&subdi=' + subdi+'&lang=' + lang +'&initial='+initial;
+            location.href = 'index.jsp?hfccd=' + hfccd + '&discp=' + discp + '&subdi=' + subdi + '&lang=' + lang + '&initial=' + initial;
 
         });
 
@@ -326,29 +354,29 @@
             $("#callingSetting").hide();
             $(".modal-backdrop").hide();
         });
-        
+
         var filterType = "<%=filterType%>";
         console.log(filterType);
-        if(filterType==="1"){
+        if (filterType === "1") {
             $('#divSubDis').hide();
-        }else if(filterType==="0"){
+        } else if (filterType === "0") {
             $('#divSubDis').show();
         }
     });
-    $("#discp").on('change',function(){
-       
-       var hfc = "<%=health_facility_code%>";
-       var dis = $(this).val();
-       var data = {"hfc":hfc,
-       "discipline":dis};
-       $.ajax({
-          type:"post",
-          url:"findSub.jsp",
-          data:data,
-          success:function(databack){
-              $("#divSelectSub").html(databack);
-          }
-       });
-       console.log(data);
+    $("#discp").on('change', function () {
+
+        var hfc = "<%=health_facility_code%>";
+        var dis = $(this).val();
+        var data = {"hfc": hfc,
+            "discipline": dis};
+        $.ajax({
+            type: "post",
+            url: "findSub.jsp",
+            data: data,
+            success: function (databack) {
+                $("#divSelectSub").html(databack);
+            }
+        });
+        console.log(data);
     });
 </script>
