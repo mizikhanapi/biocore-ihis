@@ -205,7 +205,7 @@ $(document).ready(function(){
         displayPNT(pnt);
         
 
-        $("#comment9").val("");
+        $("#PNT").val("");
         $("#CIS030002").modal('toggle');
 
     });
