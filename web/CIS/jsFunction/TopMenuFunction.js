@@ -636,7 +636,7 @@ $(document).ready(function (e) {
     function clearCIS() {
         
         //location.href = './CIS000000.jsp';
-     console.log(_data);
+   
         pmiNo = "";
         episodeDate = "";
         PDIInfo = "";
@@ -644,11 +644,12 @@ $(document).ready(function (e) {
         fullPatientData = "";
         _data = [];
         i=0;
-        $("#divCIS_Consultation_Table").load("CIS000000.jsp #divCIS_Consultation_Table");
+        
         $("#div_CIS_PATIENT_DASHBOARD").load("CIS000000.jsp #div_CIS_PATIENT_DASHBOARD",function(){
            $('.soap-select').on('click',disableSOAP);
             $(".loading").fadeOut("slow");
         });
+        $("#divCIS_Consultation_Table").load("CIS000000.jsp #divCIS_Consultation_Table");
 
 
         

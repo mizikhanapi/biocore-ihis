@@ -129,7 +129,7 @@
                                     </div>
                                     <div class="col-xs-2 col-sm-2 col-md-2">
                                         <div class="form-group">
-                                            <input class="form-control input-lg" type="text" name="dose" id="tCIS_DTODrugStrength" placeholder="" >
+                                            <input class="form-control input-lg" type="text" name="dose" id="tCIS_DTODrugStrength" placeholder="" disabled="">
                                         </div>
                                     </div>
                                     <div class="col-xs-2 col-sm-2 col-md-2">
@@ -151,7 +151,7 @@
                                     </div>
                                     <div class="col-xs-2 col-sm-2 col-md-2">
                                         <div class="form-group">
-                                            <input class="form-control input-lg" type="text" name="dose" id="tCIS_DTODrugDose" placeholder="" >
+                                            <input class="form-control input-lg" type="text" name="dose" id="tCIS_DTODrugDose" placeholder="" disabled="">
                                         </div>
                                     </div>
                                     <div class="col-xs-2 col-sm-2 col-md-2">
@@ -178,12 +178,12 @@
                                     <div class="form-group">
                                         <div class="col-xs-2 col-sm-2 col-md-2">
                                             <div class="form-group">
-                                                <input class="form-control input-lg" type="text" name="durationDTO" id="tCIS_DTODrugDuration" placeholder="" >
+                                                <input class="form-control input-lg" type="number" name="durationDTO" id="tCIS_DTODrugDuration" placeholder=""  onchange="calculateQuantity()">
                                             </div>
                                         </div>
                                         <div class="col-xs-2 col-sm-2 col-md-2">
                                             <div class="form-group">
-                                                <select name="site" id="tCIS_DTODrugUnit" class="form-control input-lg">
+                                                <select name="site" id="tCIS_DTODrugUnit" class="form-control input-lg" onchange="calculateQuantity()">
                                                     <option value="" disabled="">Duration</option>
                                                       <option >-</option>
                                                     <option value="Day">Day</option>
@@ -253,7 +253,7 @@
                                     </div>
                                     <div class="col-xs-4 col-sm-4 col-md-4">
                                         <div class="form-group">
-                                            <input class="form-control input-lg" type="text" name="dose" id="tCIS_DTOQuantity" placeholder="" >
+                                            <input class="form-control input-lg" type="number" name="dose" id="tCIS_DTOQuantity" placeholder="" >
                                         </div>
                                     </div>
                                     <div class="col-xs-2 col-sm-2 col-md-2">

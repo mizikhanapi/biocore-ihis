@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 
+
 $(document).ready(function(){
     var _dataDTO = [];
     var indexDTO;
@@ -33,6 +34,8 @@ $(document).ready(function(){
            }
        }) 
     });
+    
+
     
     $("#divCIS_OE_DTO_OrderSearchResult").on("click","#tblODTO #btnCIS_OE_DTO_SEARCH_ADD",function(e){
          e.preventDefault();
@@ -459,4 +462,35 @@ $(document).ready(function(){
         }
         return already;
     }
+    
+
 });
+    function calculateQuantity(){
+        var drugDTOUnit = $("#tCIS_DTODrugUnit").val();
+        var times = 1;
+        if(drugDTOUnit === "Week"){
+            times = 7;
+        } else if(drugDTOUnit === "Month"){
+            var now = new Date();
+            var num_days = numberOfDays(now.getFullYear(), now.getMonth()+1);
+            times = num_days;
+            
+        }
+        var fre_value = $("#tCIS_DTODrugFrequency").val();
+        var dur =    $('#tCIS_DTODrugDuration').val();
+        
+        var dur = parseFloat(dur);
+        var time_dur = parseFloat(times);
+        var fre = parseFloat(fre_value);
+        var quantity = time_dur * dur * fre;   
+        $("#tCIS_DTOQuantity").val(quantity);
+    
+
+        
+        
+    }
+    
+    function numberOfDays(year, month) {
+    var d = new Date(year, month, 0);
+    return d.getDate();
+}
