@@ -4,6 +4,7 @@
     Author     : Shammugam
 --%>
 
+<%@page import="PIS_helper.NumberOrDecimalChecker"%>
 <%@page import="java.text.DecimalFormat"%>
 <%@page import="java.text.NumberFormat"%>
 <%@page import="org.apache.commons.lang3.StringUtils"%>
@@ -39,7 +40,7 @@
             // + " LEFT JOIN pis_atc ON (pis_mdc2.UD_ATC_CODE = pis_atc.UD_ATC_Code)  "
             + " LEFT join adm_lookup_detail lForm on (pis_mdc2.d_form_code = lForm.Detail_Reference_code) AND lForm.master_reference_code = '0067' AND lForm.hfc_cd = '" + HEALTH_FACILITY_CODE + "' "
             + " LEFT join adm_lookup_detail lRoute on (pis_mdc2.d_route_code = lRoute.Detail_Reference_code) AND lRoute.master_reference_code = '0066' AND lRoute.hfc_cd = '" + HEALTH_FACILITY_CODE + "' "
-             //  + " LEFT join adm_lookup_detail lFreq on (pis_mdc2.D_FREQUENCY = lFreq.Detail_Reference_code) AND lFreq.master_reference_code = '0088' AND lFreq.hfc_cd = '" + HEALTH_FACILITY_CODE + "' "
+            //  + " LEFT join adm_lookup_detail lFreq on (pis_mdc2.D_FREQUENCY = lFreq.Detail_Reference_code) AND lFreq.master_reference_code = '0088' AND lFreq.hfc_cd = '" + HEALTH_FACILITY_CODE + "' "
             + " LEFT join adm_lookup_detail lDose on (pis_mdc2.D_QTYT = lDose.Detail_Reference_code) AND lDose.master_reference_code = '0025' AND lDose.hfc_cd = '" + HEALTH_FACILITY_CODE + "' "
             + " LEFT join adm_lookup_detail lDura on (pis_mdc2.D_DURATIONT = lDura.Detail_Reference_code) AND lDura.master_reference_code = '0089' AND lDura.hfc_cd = '" + HEALTH_FACILITY_CODE + "' "
             + " LEFT join pis_drug_frequency lFreq on (pis_mdc2.D_FREQUENCY = lFreq.frequency_desc) AND lFreq.hfc_cd = '" + HEALTH_FACILITY_CODE + "' AND lFreq.discipline_cd = '" + DISCIPLINE_CODE + "' "
@@ -89,33 +90,48 @@
 <tbody>
     <%        for (int i = 0; i < dataOrderList.size(); i++) {
 
-            /* Stock */
-            String stock = dataOrderList.get(i).get(18);
+            NumberOrDecimalChecker check = new NumberOrDecimalChecker();
 
-            /* Ordered */
-            String ordered = formatterInt.format(Double.parseDouble(dataOrderList.get(i).get(11)));
+            boolean stockCheck = check.isInteger(dataOrderList.get(i).get(18));
+            boolean orderedCheck = check.isInteger(dataOrderList.get(i).get(11));
+            boolean suppliedCheck = check.isInteger(dataOrderList.get(i).get(12));
+            boolean priceCheck = check.isDouble(dataOrderList.get(i).get(19));
 
-            /* Supplied */
-            String supplied = dataOrderList.get(i).get(12);
+            if (stockCheck && orderedCheck && suppliedCheck && priceCheck) {
 
-            /* Dispensed */
-            String dispensed = formatterInt.format(Double.parseDouble(dataOrderList.get(i).get(11)) - Double.parseDouble(dataOrderList.get(i).get(12)));
+                /* Stock */
+                String stock = dataOrderList.get(i).get(18);
 
-            /* Price */
-            String price = formatter.format(Double.parseDouble(dataOrderList.get(i).get(19)));
 
-            /* Check Dispensed */
-            String checkDispensed = "0";
+                /* Ordered */
+                String ordered = formatterInt.format(Double.parseDouble(dataOrderList.get(i).get(11)));
 
-            /* Assign Dispensed */
-            if ((Double.parseDouble(dispensed)) > (Double.parseDouble(stock))) {
-                checkDispensed = stock;
-            } else {
-                checkDispensed = dispensed;
-            }
 
-            /* Total Price */
-            String totalPrice = formatter.format(Double.parseDouble(checkDispensed) * Double.parseDouble(price));
+                /* Supplied */
+                String supplied = dataOrderList.get(i).get(12);
+
+
+                /* Dispensed */
+                String dispensed = formatterInt.format(Double.parseDouble(dataOrderList.get(i).get(11)) - Double.parseDouble(dataOrderList.get(i).get(12)));
+
+
+                /* Price */
+                String price = formatter.format(Double.parseDouble(dataOrderList.get(i).get(19)));
+
+
+                /* Check Dispensed */
+                String checkDispensed = "0";
+
+                /* Assign Dispensed */
+                if ((Double.parseDouble(dispensed)) > (Double.parseDouble(stock))) {
+                    checkDispensed = stock;
+                } else {
+                    checkDispensed = dispensed;
+                }
+
+                /* Total Price */
+                String totalPrice = formatter.format(Double.parseDouble(checkDispensed) * Double.parseDouble(price));
+                //  boolean totalPriceCheck = check.isDouble(totalPrice);
 
     %>
 
@@ -160,7 +176,10 @@
 </tr>
 
 
-<%  }
+<%  } else {
+
+        }// end else
+    }// end for loop
 %>
 
 </tbody>
