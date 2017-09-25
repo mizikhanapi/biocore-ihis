@@ -358,7 +358,7 @@
             
             function MM_getDiagnosisStatistic(){
                  $.ajax({
-                    timeout: 60000,
+                    timeout: 120000,
                     type: 'POST',
                     url: "MainMenu_control/getDiagnosisStatistic.jsp",
                     success: function (data, textStatus, jqXHR) {
@@ -403,6 +403,9 @@
                     },
                     error: function (jqXHR, textStatus, errorThrown) {
                          $('#MM_stat_drug').html("Oopps! "+errorThrown);
+                    },
+                    complete: function (jqXHR, textStatus ) {
+                        viewPAGraph();
                     }
                     
                 });     
@@ -489,7 +492,7 @@
 //                ddMMyyyy = ZeroDay + "/" + ZeroMonth + "/" + year;
             }
 
-            viewPAGraph();
+            
             function viewPAGraph() {
 
                 getDateNow();
