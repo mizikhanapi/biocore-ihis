@@ -11,15 +11,14 @@
 <%@page import="Config.connect"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
-<h2>Maintain Test Category
+<h4>Maintain Test Category
     <span class="pull-right">
         <button id="MLM_btnAddNew" class="btn btn-success" data-status="pagado" data-toggle="modal" data-id="1" data-target="#TestCategory" style=" padding-right: 10px;padding-left: 10px;"><a data-toggle="tooltip" data-placement="top" title="Add Items" id="test"></a><i class=" fa fa-plus" style=" padding-right: 10px;padding-left: 10px;"></i>&nbsp;ADD Test Category</button>
     </span>
-</h2>
-<hr/>
+</h4>
 
 <!-- Table -->
-<div class="table-responsive" id='viewMTCpage'></div>
+<div id='viewMTCpage'></div>
 <!-- Table -->
 
 <div class="modal fade" id="TestCategory" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">

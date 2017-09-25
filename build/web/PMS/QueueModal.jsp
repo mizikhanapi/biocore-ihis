@@ -7,26 +7,25 @@
 <%@page import="org.apache.commons.lang3.StringUtils"%>
 
 <!-- Modal -->
-<div class="modal fade" id="queueModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
-    <div class="modal-dialog">
+<div class="modal fade" id="queueModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true" style="z-index: 99999999;">
+    <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">X</span><span class="sr-only">Close</span></button>
+                <button type="button" class="close" data-dismiss="modal"><i class="fa fa-times fa-lg"></i><span class="sr-only">Close</span></button>
                 <h3 class="modal-title" id="lineModalLabel">Queue List</h3>
             </div>
             <div class="modal-body" >
-                <div class="thumbnail">
-                    <div class="row"id="modalBodyQueue" >
+                    <div class="row"id="modalBodyQueue" style="overflow-x: auto;" >
                         <!-- content goes here -->
-                        <form role="form" id="formQueueSaya">
-                            <table class="table table-filter table-striped table-responsive" style="background: #fff; border: 1px solid #ccc; " id="listQueue">
+                        <form role="form" id="formQueueSaya" >
+                            <table class="table table-filter table-striped table-responsive" style="background: #fff;" id="listQueue">
                                 <thead>
                                 <th>PMI no. </th>
                                 <th>Name </th>
                                 <th>Episode Time </th>
-                                <th>Queue Name </th>
+                                <th class="hidden-xs">Queue Name </th>
                                 <th>Queue no.</th>
-                                <th>Doctor </th>
+                                <th class="hidden-xs">Doctor </th>
                                 <th>Status</th>
                                 <th>Action </th>
 
@@ -35,7 +34,6 @@
                             </table>
                         </form>
                     </div>
-                </div>
 
             </div>
             <div class="modal-footer">

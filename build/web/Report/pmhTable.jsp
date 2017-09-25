@@ -32,7 +32,7 @@
         <th> Episode date </th>
         <th> Name </th>
         <th> Health Facility Code </th>
-        <th> View </th>
+        <th> adadadasd</th>
 
         <%  String sql = "";
             if (idType.equals("pmino")) {

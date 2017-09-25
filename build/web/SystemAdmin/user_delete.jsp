@@ -26,6 +26,8 @@
 
         if (status == true) {
             out.print("Success");
+            sql = "DELETE FROM adm_user_access_role WHERE user_id = '"+userID+"'";
+            rmic.setQuerySQL(conn.HOST, conn.PORT, sql);
         } else {
             out.print("Failed");
         }

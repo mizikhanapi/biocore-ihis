@@ -125,8 +125,8 @@ public class lhr_IMU {
                                 + "'" + imuB.getDoctor_ID() + "',"
                                 + "'" + imuB.getDoctor_Name() + "'," //temp
                                 + "'" + a + "',"
-                                + "'" + b + "',"
                                 + "'" + c + "',"
+                                + "'" + b + "',"
                                 + "'" + d + "',"
                                 + "'"+msh.getSendingFacilityDis()+"',"
                                 + "'"+msh.getSendingFacilitySubDis()+"',"

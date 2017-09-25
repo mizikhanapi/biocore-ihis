@@ -14,6 +14,7 @@
 
 <%           
     Conn conn = new Conn();
+    String hfc_cd = session.getAttribute("HEALTH_FACILITY_CODE").toString();
     String roleCode = request.getParameter("roleCode");
     String systemCode = request.getParameter("systemCode");
     String moduleCode = request.getParameter("moduleCode");
@@ -22,7 +23,9 @@
     String creator = (String)session.getAttribute("USER_ID");
     
     
-    String sqlCheck = "SELECT page_code from adm_responsibility WHERE page_code = '"+pageCode+"' AND module_code = '"+moduleCode+"' AND system_code = '"+systemCode+"' AND role_code = '"+roleCode+"' LIMIT 1 ";
+    String sqlCheck = "SELECT page_code from adm_responsibility WHERE page_code = '"+pageCode+"' "
+            + "AND module_code = '"+moduleCode+"' AND system_code = '"+systemCode+"' "
+            + "AND role_code = '"+roleCode+"' AND health_facility_code = '"+hfc_cd+"' LIMIT 1 ";
     ArrayList<ArrayList<String>> duplicate = conn.getData(sqlCheck);
     
     if(duplicate.size() > 0)
@@ -33,7 +36,7 @@
         RMIConnector rmic = new RMIConnector();
 
         String sqlInsert = "INSERT INTO adm_responsibility(role_code, system_code, module_code, page_code, health_facility_code, status, created_by, created_date) "+
-                    "VALUES('"+roleCode+"', '"+systemCode+"', '"+moduleCode+"', '"+pageCode+"', '0', '"+status+"', '"+creator+"', now())";
+                    "VALUES('"+roleCode+"', '"+systemCode+"', '"+moduleCode+"', '"+pageCode+"', '"+hfc_cd+"', '"+status+"', '"+creator+"', now())";
 
         boolean isInsert = rmic.setQuerySQL(conn.HOST, conn.PORT, sqlInsert);
 

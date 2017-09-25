@@ -35,6 +35,7 @@
                 <li><a data-toggle="modal" data-target="#CIS020010" href="" id="RISResult"> <i class="fa fa-bolt fa-li"></i> Radiology Result</a></li>
                 <li><a data-toggle="modal" data-target="#CIS020011" href=""  id="LISResult"> <i class="fa fa-thermometer-empty fa-li"></i> Laboratory Result</a></li>
                 <li><a data-toggle="modal" data-target="#CIS020012" href=""id="OPResult"> <i class="fa fa-eye fa-li"></i> Observation Procedure</a></li>
+                <li><a href="#ortho-notes" class="panelito ortho-notes"> <i class="fa fa-eye fa-li"></i> Orthopedic Notes</a></li>
             </ul>
                 
             <div class="row">
@@ -45,7 +46,7 @@
                       <li><a data-toggle="modal" data-target="#CIS020004" href="" ><i class="flaticon flaticon-medical fa-li" style="display: inline"></i> Respiratory Rate</a></li>
                       <li><a data-toggle="modal" data-target="#CIS020005" href=""><i class="flaticon flaticon-science fa-li" style="display: block"></i> Oxygen Saturation</a></li>
                       <li><a data-toggle="modal" data-target="#CIS020006" href="" ><i class="fa fa-thermometer-half fa-li" style="display: block"></i> Body Temperature</a></li>
-                      <li><a data-toggle="modal" data-target="#CIS020007" href="" id="soapCtnPanScale"><i class="fa fa-line-chart fa-li" style="display: block"></i> Pan Scale</a></li>
+                      <li><a data-toggle="modal" data-target="#CIS020007" href="" id="soapCtnPanScale"><i class="fa fa-line-chart fa-li" style="display: block"></i> Pain Scale</a></li>
                       <li><a data-toggle="modal" data-target="#CIS020008" href="" ><i class="fa fa-bars fa-li" style="display: block"></i> Other</a></li>
                 </ul>
             </div>    
@@ -58,6 +59,7 @@
                     <li><a data-toggle="modal" data-target="#CIS030001" href="" class="soap-select"><i class="fa fa-stethoscope fa-li"></i> Diagnosis</a></li>
                     <li><a data-toggle="modal" data-target="#CIS030002" href="" class="soap-select"><i class="fa fa-tasks fa-li"></i> Progress Notes</a></li>
                     <li id="Problemlist"><a data-toggle="modal" data-target="#CIS030003" href="" class="soap-select" ><i class="fa fa-list-ul fa-li"></i> Problem List</a></li>
+                    <li id="ActiveDrug"><a data-toggle="modal" data-target="#CIS030004" href="" class="soap-select" ><i class="fa fa-list-ul fa-li"></i> Active Drug</a></li>
                 </ul>
             </div>
             <!-- content -->
@@ -70,12 +72,12 @@
                     <li><a data-toggle="modal" data-target="#CIS040002" href="" class="soap-select" onClick="searchHFCDetail('DTO')"> <i class="fa fa-medkit fa-li"></i> Drug Order</a></li>
                     <li><a data-toggle="modal" data-target="#CIS040003" href="" class="soap-select" ><i class="fa fa-file-text-o fa-li"></i> Monitoring</a></li>-->
                     <li><a data-toggle="modal" data-target="#CIS040004" href="" class="soap-select"> <i class="fa fa-bar-chart fa-li"></i> Follow Up</a></li>
-<!--                    <li><a data-toggle="modal" data-target="#CIS040005" href="" class="soap-select hide"><i class="fa fa-user-md fa-li"></i> Second Opinion</a></li>
-                    <li><a data-toggle="modal" data-target="#CIS040006" href="" class="soap-select" onClick="searchHFCDetail('POS')" ><i class="fa fa-list-ol fa-li"></i> Procedure</a></li>
+                    <li><a data-toggle="modal" data-target="#CIS040005" href="" class="soap-select hide"><i class="fa fa-user-md fa-li"></i> Second Opinion</a></li>
+ <!--                   <li><a data-toggle="modal" data-target="#CIS040006" href="" class="soap-select" onClick="searchHFCDetail('POS')" ><i class="fa fa-list-ol fa-li"></i> Procedure</a></li>
                     <li><a data-toggle="modal" data-target="#CIS040007" href="" class="soap-select" onClick="searchHFCDetail('ADW')"><i class="fa fa-bed fa-li"></i> Admit To Ward</a></li>-->
                     <li><a data-toggle="modal" data-target="#CIS040008" href="" class="soap-select"><i class="fa fa-clock-o fa-li"></i> MC & Time Slip</a></li>
 <!--                    <li><a data-toggle="modal" data-target="#CIS040009" href="" class="soap-select"><i class="fa fa-clock-o fa-li"></i> Referral</a></li>
-                    <li><a data-toggle="modal" data-target="#mCIS_Discharge_Summary" href="" class="soap-select" id=""><i class="fa fa-clock-o fa-li"></i> Discharge Summary</a></li>-->
+-->                    <li><a data-toggle="modal" data-target="#CIS040010" href="" class="soap-select" id=""><i class="fa fa-clock-o fa-li"></i> Discharge Summary</a></li>
                 </ul>
             </div>
             <!-- content -->

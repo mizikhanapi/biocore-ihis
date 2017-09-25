@@ -11,7 +11,7 @@
     <div class="form-group">
         <label class="col-md-4 control-label" for="textinput">Old password</label>
         <div class="col-md-4">
-            <input type="password"  class="form-control" id="oldPassword" maxlength="10">
+            <input type="password"  class="form-control" id="oldPassword" maxlength="30">
 
         </div>
     </div>
@@ -20,7 +20,7 @@
     <div class="form-group">
         <label class="col-md-4 control-label" for="textinput">New Password</label>
         <div class="col-md-4">
-            <input type="password"  class="form-control" id="newPassword"  maxlength="10">
+            <input type="password"  class="form-control" id="newPassword"  maxlength="30">
 
         </div>
     </div>
@@ -29,7 +29,7 @@
     <div class="form-group">
         <label class="col-md-4 control-label" for="textinput">Retype Password</label>
         <div class="col-md-4">
-            <input type="password"  class="form-control" id="newPassword2" maxlength="10">
+            <input type="password"  class="form-control" id="newPassword2" maxlength="30">
 
         </div>
     </div>
@@ -90,6 +90,7 @@
             $.ajax({
                 type: 'POST',
                 data: data,
+                timeout: 60000,
                 url: "changePassword_process.jsp",
                 success: function (data, textStatus, jqXHR) {
 
@@ -116,7 +117,7 @@
 
                 },
                 error: function (jqXHR, textStatus, errorThrown) {
-                    bootbox.alert("Something went wrong. Try again later");
+                    bootbox.alert("Something went wrong. Try again later. "+errorThrown);
                 }
             });
 

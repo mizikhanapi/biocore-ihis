@@ -30,10 +30,10 @@
 
                     <!-- Text input-->
                     <div class="form-group">
-                        <label class="col-md-4 control-label" for="textinput">System Name</label>
+                        <label class="col-md-4 control-label" for="textinput">System Name*</label>
                         <div class="col-md-8">
-                            <input id="PM_systemName"  type="text" placeholder="Name required" class="form-control input-md" maxlength="110">
-                             <div id="PM_match_system">
+                            <input id="PM_systemName"  type="text" placeholder="Search system name" class="form-control input-md" maxlength="110">
+                             <div id="PM_match_system" class="search-drop">
                                 <!--for search area-->
                             </div>
                         </div>
@@ -41,10 +41,10 @@
 
                     <!-- Text input-->
                     <div class="form-group">
-                        <label class="col-md-4 control-label" for="textinput">Module Name</label>
+                        <label class="col-md-4 control-label" for="textinput">Module Name*</label>
                         <div class="col-md-8">
-                            <input id="PM_moduleName"  type="text" placeholder="Name required" class="form-control input-md" maxlength="110">
-                            <div id="PM_match_module">
+                            <input id="PM_moduleName"  type="text" placeholder="Search module name" class="form-control input-md" maxlength="110">
+                            <div id="PM_match_module" class="search-drop">
                                 <!--for search area-->
                             </div>
                         </div>
@@ -52,23 +52,23 @@
                     
                     <!-- Text input-->
                     <div class="form-group">
-                        <label class="col-md-4 control-label" for="textinput">Page Name</label>
+                        <label class="col-md-4 control-label" for="textinput">Page Name*</label>
                         <div class="col-md-8">
-                            <input id="PM_pageName"  type="text" placeholder="Name required" class="form-control input-md" maxlength="100">
+                            <input id="PM_pageName"  type="text" placeholder="Insert page name" class="form-control input-md" maxlength="100">
                         </div>
                     </div>
                     
                     <!-- Text input-->
                     <div class="form-group">
-                        <label class="col-md-4 control-label" for="textinput">Page Code</label>
+                        <label class="col-md-4 control-label" for="textinput">Page Code*</label>
                         <div class="col-md-8">
-                            <input id="PM_pageCode"  type="text" placeholder="Code required" class="form-control input-md" maxlength="30">
+                            <input id="PM_pageCode"  type="text" placeholder="Insert page code " class="form-control input-md" maxlength="30">
                         </div>
                     </div>
                     
                     
                      <div class="form-group">
-                        <label class="col-md-4 control-label" for="textinput">Status</label>
+                        <label class="col-md-4 control-label" for="textinput">Status*</label>
                         <div class="col-md-8">
                             <select class="form-control"  id="PM_status">
                                 <option  value="0" >Active</option>
@@ -114,6 +114,8 @@
             document.getElementById("PM_moduleName").value = "";
             document.getElementById("PM_pageName").value = "";
             document.getElementById("PM_pageCode").value = "";
+            $('#PM_match_system').html('');
+            $('#PM_match_module').html('');
                        
         }
 
@@ -137,6 +139,8 @@
             var pageName = $('#PM_pageName').val();
             var pageCode = $('#PM_pageCode').val();
             var status = $('#PM_status').val();
+            
+            var gotSpecialChar = /[!@#$%^&*()+=,?\/\\:;\"\' ]/.test(pageCode);  
 
             if (systemCode === "" || systemCode === null) {
                 bootbox.alert("Fill in the system name");
@@ -150,7 +154,11 @@
                 bootbox.alert("Fill in the page name");
                 $('#PM_pageName').focus();
 
-            }else if (pageCode === "") {
+            } else if (gotSpecialChar){
+                bootbox.alert("Page code must contain only alphanumeric characters!");
+                $('#PM_pageCode').val('');
+            }
+            else if (pageCode === "") {
                 bootbox.alert("Fill in the page code");
                 $('#PM_pageCode').focus();
 
@@ -204,7 +212,7 @@
 
                         } else if (datas.trim() === 'Failed') {
 
-                            bootbox.alert("Insertion failed!");
+                            bootbox.alert("Failed to add new page!");
                             $('#PM_detail').modal('hide');
                           
 

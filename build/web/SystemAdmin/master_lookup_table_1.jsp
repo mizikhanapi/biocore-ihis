@@ -4,12 +4,17 @@
     Author     : user
 --%>
 
+<%@page import="ADM_helper.MySession"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.sql.*"%>
 <%@page import="dBConn.Conn"%>
 <%@page import="main.RMIConnector"%>
 <%
     Conn conn = new Conn();
+    String LT_user = session.getAttribute("USER_ID").toString();
+    String LT_hfc = session.getAttribute("HEALTH_FACILITY_CODE").toString();
+    MySession LT_mys = new MySession(LT_user, LT_hfc);
+   
 %>
 <table  id="THE_masterTable"  class="table table-striped table-bordered" cellspacing="0" width="100%">
     <thead>
@@ -18,8 +23,14 @@
     <th>Source</th>
     <th>Status</th>
     <th>View Detail</th>
+    <%
+    if(LT_mys.isSuperUser()){
+    %>
     <th>Update</th>
     <th>Delete</th>
+    <%
+    }
+    %>
 </thead>
 <tbody>
 
@@ -28,7 +39,9 @@
         ArrayList<ArrayList<String>> dataMaster = conn.getData(sql);
 
         int size = dataMaster.size();
-        for (int i = 0; i < size; i++) {
+        
+        if(LT_mys.isSuperUser()){
+            for (int i = 0; i < size; i++) {
     %>
 
     <tr>
@@ -66,7 +79,29 @@
 <!-- Delete Button End -->
 </tr>
 <%
-    }
+        }
+    }else{
+        for (int i = 0; i < size; i++) {
+        %>
+<tr>
+<input id="MLT_hidden" type="hidden" value="<%=String.join("|", dataMaster.get(i))%>">
+<td><%= dataMaster.get(i).get(0)%></td>
+<td><%= dataMaster.get(i).get(1)%></td>
+<td><%= dataMaster.get(i).get(3)%></td>
+<td><%if (dataMaster.get(i).get(2).equals("1")) {
+                out.print("Inactive");
+            } else {
+                out.print("Active");
+            } %></td>
+
+<td style="width: 5% ">
+
+    <a id="MLT_btnViewDetail" style="cursor: pointer"><i class="fa fa-arrow-right" aria-hidden="true" style="display: inline-block;color: #337ab7;"></i></a>
+
+</td>
+        <%
+        }
+    } 
 %>
 </tbody>
 </table>    
@@ -186,6 +221,9 @@
         } else if (status !== '1' && status !== '0') {
             bootbox.alert("Select the status");
         } else {
+            
+            masterDesc = masterDesc.replace(/'/g, "\\\'").replace(/"/g, "\\\"");
+            masterSource = masterSource.replace(/'/g, "\\\'").replace(/"/g, "\\\"");
             var data = {
                 masterCode: masterCode,
                 masterDesc: masterDesc,
@@ -198,7 +236,7 @@
                 url: "master_lookup_update.jsp",
                 type: "post",
                 data: data,
-                timeout: 10000, // 10 seconds
+                timeout: 60000, // 60 seconds
                 success: function (datas) {
 
                     if (datas.trim() === 'Success') {
@@ -244,7 +282,7 @@
                     url: "master_lookup_delete.jsp",
                     type: "post",
                     data: data,
-                    timeout: 10000, // 10 seconds
+                    timeout: 60000, // 10 seconds
                     success: function (datas) {
 
                         if (datas.trim() === 'Success') {
@@ -288,12 +326,14 @@
         $('#THE_detailTable').DataTable().destroy();
         
         $('#DLT_detailOf').text("Details of "+masterName);
+        $('#DLT_hidden_id_name').val(masterCode +" | "+masterName);
         $('.nav-tabs a[href="#tab_default_2"]').tab('show');
         $('#detailTable_body').html('<div class="loader"></div>');
 
         $.ajax({
             type: 'POST',
             url: "detail_lookup_table_loader.jsp",
+            timeout: 60000,
             data: data,
             success: function (data) {
                 $('#detailTable_body').html(data);
@@ -301,13 +341,6 @@
                 
             }
         });
-
-
-
-
-
-
-
 
     });
 

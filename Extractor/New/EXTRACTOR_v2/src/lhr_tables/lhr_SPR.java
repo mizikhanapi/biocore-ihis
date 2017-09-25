@@ -102,8 +102,8 @@ public class lhr_SPR {
                                 + sprbean.getActualSurgeonId() + "','"
                                 + sprbean.getActualSurgeonName() + "','"
                                 + a + "','"
-                                + b + "','"
                                 + c + "','"
+                                + b + "','"
                                 + d + "');";
                         status_lhr_spr = rmic.setQuerySQL(Config.ipAddressServer, Config.portServer, query_lhr_procedure);
 

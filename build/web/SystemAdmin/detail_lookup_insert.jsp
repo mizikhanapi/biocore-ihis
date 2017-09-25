@@ -4,6 +4,7 @@
     Author     : user
 --%>
 
+<%@page import="ADM_helper.MySession"%>
 <%@page import="Formatter.DateFormatter"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.util.Date"%>
@@ -17,7 +18,7 @@
 
 <%
     Conn conn = new Conn();
-
+   
     String masterCode = request.getParameter("masterCode");
     String detailCode = request.getParameter("detailCode");
     String detailDesc = request.getParameter("detailName");
@@ -25,31 +26,41 @@
     String startDate = request.getParameter("startDate");
     String endDate = request.getParameter("endDate");
     String status = request.getParameter("status");
+    
     String userID = (String) session.getAttribute("USER_ID");
+    String hfc_cd = (String) session.getAttribute("HEALTH_FACILITY_CODE");
+    String hfc_99 = (String) session.getAttribute("HFC_99");
+    
+    MySession mys = new MySession(userID, hfc_99);
 
-    String sqlCheck = "Select master_reference_code FROM adm_lookup_detail WHERE master_reference_code = '" + masterCode + "' AND detail_reference_code = '" + detailCode + "' LIMIT 1 ";
+    String sqlCheck = "Select master_reference_code FROM adm_lookup_detail WHERE master_reference_code = '" + masterCode + "' AND detail_reference_code = '" + detailCode + "' AND hfc_cd = '"+hfc_cd+"'  LIMIT 1 ";
 
     ArrayList<ArrayList<String>> duplicate = conn.getData(sqlCheck);
     
-    String sqlCheck2 = "SELECT master_reference_code FROM adm_lookup_master WHERE  master_reference_code = '"+masterCode+"' LIMIT 1";
+    String sqlCheck2 = "SELECT master_reference_code, source_indicator FROM adm_lookup_master WHERE  master_reference_code = '"+masterCode+"' LIMIT 1";
      ArrayList<ArrayList<String>> masterExist = conn.getData(sqlCheck2);
 
     if (duplicate.size() > 0) {
         out.print("Sorry, the code that you're entering is already used. Please, enter different code");
 
-    }else if(masterExist.size() <= 0){
+    }
+    else if(masterExist.size() <= 0){
     
         out.print("Master code does not exist");
     
-    } else {
+    }
+    else if(masterExist.get(0).get(1).equalsIgnoreCase("important") && !mys.isSuperUser()){
+        out.print("You are not authorized to modify this lookup detail because it is used by the system.");
+    }
+    else {
         
         startDate = DateFormatter.formatDate(startDate, "dd/MM/yyyy", "yyyy-MM-dd HH:mm:ss.ms");
         endDate = DateFormatter.formatDate(endDate, "dd/MM/yyyy", "yyyy-MM-dd HH:mm:ss.ms");
         
         RMIConnector rmic = new RMIConnector();
 
-        String sqlInsert = "INSERT INTO adm_lookup_detail"
-                + " VALUES('" + masterCode + "', '" + detailCode + "', '" + detailDesc + "', '"+priority+"', '"+startDate+"', '"+endDate+"', '" + status + "', '" + userID + "', now())";
+        String sqlInsert = "INSERT INTO adm_lookup_detail(master_reference_code, detail_reference_code, hfc_cd, description, priority_indicator, start_date, end_date, status, created_by, created_date)"
+                + " VALUES('" + masterCode + "', '" + detailCode + "', '"+hfc_cd+"', '" + detailDesc + "', '"+priority+"', '"+startDate+"', '"+endDate+"', '" + status + "', '" + userID + "', now())";
 
         boolean isInsert = rmic.setQuerySQL(conn.HOST, conn.PORT, sqlInsert);
 

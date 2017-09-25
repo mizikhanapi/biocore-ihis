@@ -12,6 +12,8 @@
     String code = request.getParameter("code");
     String process = request.getParameter("process");
     
+    String hfc_cd = session.getAttribute("HEALTH_FACILITY_CODE").toString();
+    
     Conn conn = new Conn();
     
     if(process.equalsIgnoreCase("district")){
@@ -20,7 +22,7 @@
         
         code = Integer.toString(intCode);
         
-        String sql = "Select detail_reference_code, description from adm_lookup_detail where master_reference_code = '0078' AND detail_reference_code like '"+code+"__' order by description";
+        String sql = "Select detail_reference_code, description from adm_lookup_detail where master_reference_code = '0078' AND status='0' AND hfc_cd = '"+hfc_cd+"' AND detail_reference_code like '"+code+"__' order by description";
         
         ArrayList<ArrayList<String>> listDistrict = conn.getData(sql);
         
@@ -45,7 +47,7 @@
         
     }else if(process.equalsIgnoreCase("town")){
 
-        String sql = "Select detail_reference_code, description from adm_lookup_detail where master_reference_code = '0003' AND detail_reference_code like '"+code+"%' order by description";
+        String sql = "Select detail_reference_code, description from adm_lookup_detail where master_reference_code = '0003' AND status='0' AND hfc_cd = '"+hfc_cd+"' AND detail_reference_code like '"+code+"%' order by description";
 
         ArrayList<ArrayList<String>> listDistrict = conn.getData(sql);
         
@@ -66,18 +68,18 @@
         }
     }else if(process.equalsIgnoreCase("postcode")){
     
-        String sql = "Select description from adm_lookup_detail where master_reference_code = '0079' AND description like '"+code+"%' order by description";
+        String sql = "Select detail_reference_code, description from adm_lookup_detail where master_reference_code = '0079' AND status='0' AND hfc_cd = '"+hfc_cd+"' AND description like '"+code+"%' order by description";
             
         ArrayList<ArrayList<String>> listPostcode = conn.getData(sql); 
         
         if(listPostcode.size() > 0){
            
-           %><ul id="matchList" style="width: 150px; height: 150px; overflow: auto"><%
+           %><ul id="matchList" style="width: 150px; max-height: 150px; height: 100%; overflow: auto"><%
            
             for(int i = 0; i < listPostcode.size(); i++){
 
                 %>
-                <li><a style="cursor:pointer"><%= listPostcode.get(i).get(0) %></a></li>
+                <li data-code="<%=listPostcode.get(i).get(0)%>"><a style="cursor:pointer"><%= listPostcode.get(i).get(1) %></a></li>
             
                 <%
 

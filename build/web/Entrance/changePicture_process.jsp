@@ -1,7 +1,7 @@
 <%-- 
     Document   : changePicture_process
     Created on : Mar 10, 2017, 12:37:34 AM
-    Author     : user
+    Author     : Ardhi Surya; rdsurya147@gmail.com
 --%>
 
 <%@page import="main.RMIConnector"%>

@@ -96,6 +96,8 @@
                 var systemName = $('#systemName').val();
                 var systemCode = $('#systemCode').val();
                 var status = $('#SM_status').val();
+                
+                var gotSpecialChar = /[!@#$%^&*()+=,?\/\\:;\"\' ]/.test(systemCode);  
 
                 if (systemName === "") {
                     bootbox.alert("Fill in the system name");
@@ -105,7 +107,12 @@
                     bootbox.alert("Fill in the system code");
                     $('#systemCode').focus();
                     
-                } else if (status !== "1" && status !== "0") {
+                } else if (gotSpecialChar){
+                    bootbox.alert("System code must only contain alphanumeric characters!");
+                    $('#systemCode').val('');
+                    
+                }
+                else if (status !== "1" && status !== "0") {
                     bootbox.alert("Select Any Status");
                     $('#SM_status').focus();
                 } else {

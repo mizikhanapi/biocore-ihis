@@ -98,6 +98,8 @@
                 var roleName = $('#RM_roleName').val();
                 var roleCode = $('#RM_roleCode').val();
                 var status = $('#RM_status').val();
+                
+                var gotSpecialChar = /[!@#$%^&*()+=,?\/\\:;\"\' ]/.test(roleCode); 
 
                 if (roleName === "") {
                     bootbox.alert("Fill in the role name");
@@ -107,7 +109,10 @@
                     bootbox.alert("Fill in the role code");
                     $('#RM_roleCode').focus();
                     
-                } else if (status !== "1" && status !== "0") {
+                } else if(gotSpecialChar){
+                    bootbox.alert("Role code cannot contain special characters and space!");
+                }
+                else if (status !== "1" && status !== "0") {
                     bootbox.alert("Select Any Status");
                     $('#RM_status').focus();
                 } else {
@@ -131,11 +136,17 @@
                                 $('#RM_detail').modal('hide');
                                 //alert("Insertion Success");
                                 bootbox.alert({
-                                message: "New role is added",
-                                title: "Process Result",
-                                backdrop: true
-                            });
+                                    message: "New role is added",
+                                    title: "Process Result",
+                                    backdrop: true
+                                });
                                 RM_reset();
+                                //reload list of role in asign new role
+                                $('#ARM_role').html('');
+                                $('#ARM_role').load('accessRole_main.jsp #ARM_role option');
+                                
+                                $('#ART_role').html('');
+                                $('#ART_role').load('accessRole_table.jsp #ART_role option');
                                 
                             } else if (datas.trim() === 'Failed') {
                                 
@@ -144,7 +155,7 @@
                                 RM_reset();
                                 
                             } else{
-                                bootboxalert(datas.trim());
+                                bootbox.alert(datas.trim());
                                 $('#RM_roleCode').val("");
                                 $('#RM_roleCode').focus();
                             }

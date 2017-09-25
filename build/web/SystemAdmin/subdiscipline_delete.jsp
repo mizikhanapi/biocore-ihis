@@ -12,14 +12,16 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
-
+<%@include file="validateSession.jsp" %>
+<%--<%@include file="controller/super_user_check.jsp" %>--%>
 <%
     Conn conn = new Conn();
 
+    String hfc_cd = request.getParameter("hfc_cd");
     String disciplineCode = request.getParameter("disciplineCode");
     String subdisciplineCode = request.getParameter("subdisciplineCode");
 
-    String sqlSelect = "Select hfc_cd from adm_hfc_discipline where discipline_cd = '" + disciplineCode + "' AND subdiscipline_cd = '" + subdisciplineCode + "' limit 1";
+    String sqlSelect = "Select hfc_cd from adm_hfc_discipline where discipline_cd = '" + disciplineCode + "' AND subdiscipline_cd = '" + subdisciplineCode + "' and hfc_cd = '"+hfc_cd+"' limit 1";
 
     ArrayList<ArrayList<String>> dataUse = conn.getData(sqlSelect);
 
@@ -30,7 +32,7 @@
     } else {
 
         RMIConnector rmic = new RMIConnector();
-        String sql = "DELETE FROM adm_subdiscipline WHERE discipline_cd = '" + disciplineCode + "' AND subdiscipline_cd = '" + subdisciplineCode + "' ";
+        String sql = "DELETE FROM adm_subdiscipline WHERE discipline_cd = '" + disciplineCode + "' AND subdiscipline_cd = '" + subdisciplineCode + "' AND subdiscipline_hfc_cd = '"+hfc_cd+"' ";
 
         boolean status = rmic.setQuerySQL(conn.HOST, conn.PORT, sql);
 

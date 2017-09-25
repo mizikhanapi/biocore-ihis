@@ -1,12 +1,12 @@
 <%@page import="dBConn.Conn"%>
 <%@page import="java.util.ArrayList"%>
-<%@page import="Config.connect"%>
+<%--<%@page import="Config.connect"%>--%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
     //String relation = "select * from lookup_detail where master_ref_code = '0007' order by Description";
-    String hcf81 = "select * from adm_lookup_detail where master_reference_code = '0081'   ";
+    String hcf81 = "select master_reference_code,detail_reference_code,description,priority_indicator,start_date,end_date,status,created_by,created_date from adm_lookup_detail where master_reference_code = '0081' AND hfc_cd = '"+hfc+"' and status ='0'";
     //String insuranceCompany81 = "select * from adm_lookup_detail where master_reference_code = '0083'   ";
-    String insurancePolicy81 = "select * from adm_lookup_detail where master_reference_code = '0058'   ";
+    String insurancePolicy81 = "select master_reference_code,detail_reference_code,description,priority_indicator,start_date,end_date,status,created_by,created_date from adm_lookup_detail where master_reference_code = '0058' AND hfc_cd = '"+hfc+"' and status ='0'";
     ArrayList<ArrayList<String>> dataHfc81, dataInsurancePolicy81, dataInsuranceCompany81;
     dataHfc81 = conn.getData(hcf81);
     dataInsurancePolicy81 = conn.getData(insurancePolicy81);
@@ -70,7 +70,7 @@
                             <label class="col-md-4 control-label" for="selectbasic">Health Facility</label>
                             <div class="col-md-8">
 
-                                <input id="MEDhfc" name="textinput" type="text" placeholder="select heatkh facility.." class="form-control input-md">
+                                <input id="MEDhfc" name="textinput" type="text" placeholder="select health facility.." class="form-control input-md">
                                 <input id="MEDhfcCODE" name="PMIhstateCODE" type="hidden" placeholder="select country.." class="form-control input-md">
                                 <div id="matcMEDhfc"></div>
                             </div>
@@ -110,7 +110,7 @@
 <script>
     $(document).ready(function () {
         $(function () {
-            $('#MEDdate').datepicker({dateFormat: 'dd-mm-yy', changeMonth: true, changeYear: true});
+            $('#MEDdate').datepicker({dateFormat: 'dd/mm/yy', changeMonth: true, changeYear: true});
         });
     });
     $('#MEDsave').on('click', function (e) {
@@ -138,8 +138,8 @@
         if (maturityDate === null) {
             maturityDate = "-";
         } else {
-            var splitmaturitydate = String(maturityDate).split("-");
-            var convertedmaturitydate = splitmaturitydate[2] + "/" + splitmaturitydate[1] + "/" + splitmaturitydate[0];
+            var splitmaturitydate = String(maturityDate).split("/");
+            var convertedmaturitydate = splitmaturitydate[2] + "-" + splitmaturitydate[1] + "-" + splitmaturitydate[0];
         }
 
 

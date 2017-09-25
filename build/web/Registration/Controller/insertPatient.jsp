@@ -20,7 +20,6 @@
             userOccupation,userEmail, userPhoneNo,userBirthday;
     
     userIC = request.getParameter("userIC");
-    userID = request.getParameter("userID");
     userName = request.getParameter("userName");
     userNationality = request.getParameter("userNationality");
     userGender = request.getParameter("userGender");
@@ -40,22 +39,22 @@
      if(patientRow.size() > 0)
      {
         
-        exsited= "  Existed ";
+        exsited= " Existed ";
      }  else {
          
             exsited= " not ";
-            String pmino = rmic.getPMI(conn.HOST, conn.PORT, userIC); 
-            out.print(pmino);
-            
-            Boolean SQL=false;
-            String sql1 = "insert into PMS_PATIENT_BIODATA(PMI_NO,PATIENT_NAME,NEW_IC_NO,ID_NO,NATIONALITY,"
-                   + "BIRTH_DATE,SEX_CODE,MOBILE_PHONE,EMAIL_ADDRESS)"
-                   + "values('" + pmino + "', '" + userName + "', '" + userIC + "', '" + userID 
-                   + "', '" + userNationality +"', '" + userBirthday + "', '" + userGender + "', '" + userPhoneNo + "', '" + userEmail + "')";
-
-            SQL = rmic.setQuerySQL(conn.HOST, conn.PORT, sql1);
-            out.print(SQL+"|"+sql1);
-    
+//            String pmino = rmic.getPMI(conn.HOST, conn.PORT, userIC); 
+//            out.print(pmino);
+//            
+//            Boolean SQL=false;
+//            String sql1 = "insert into PMS_PATIENT_BIODATA(PMI_NO,PATIENT_NAME,NEW_IC_NO,NATIONALITY,"
+//                   + "BIRTH_DATE,SEX_CODE,MOBILE_PHONE,EMAIL_ADDRESS)"
+//                   + "values('" + pmino + "', '" + userName + "', '" + userIC 
+//                   + "', '" + userNationality +"', '" + userBirthday + "', '" + userGender + "', '" + userPhoneNo + "', '" + userEmail + "')";
+//
+//            SQL = rmic.setQuerySQL(conn.HOST, conn.PORT, sql1);
+//            out.print(SQL+"|"+sql1);
+//    
     
 //            + " recived : "+userIC+"-"+ userID+"-"+ userName+"-"+ 
 //            userGender+"-"+ userNationality+"-"+ userOccupation+ "-"+userEmail+"-"+ userPhoneNo+"-"+userBirthday);

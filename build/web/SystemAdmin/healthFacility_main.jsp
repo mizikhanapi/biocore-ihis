@@ -4,19 +4,32 @@
     Author     : user
 --%>
 
+<%@page import="ADM_helper.MySession"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="dBConn.Conn"%>
 <!-- Add Part Start -->
 <!-- Add Button Start -->
+<%
+    Conn conn = new Conn();
+
+    String hfc_cd = session.getAttribute("HEALTH_FACILITY_CODE").toString();
+    String user_id = session.getAttribute("USER_ID").toString();
+    
+    MySession mys = new MySession(user_id, hfc_cd);
+%>
 <h4 style="padding-top: 30px;padding-bottom: 35px; font-weight: bold">
     HEALTH FACILITY MANAGEMENT
+    <%
+        if(mys.isSuperUser()){
+    %>
     <span class="pull-right">
         <button id="HFM_btnAddNew" class="btn btn-success" data-status="pagado" data-toggle="modal" data-id="1" data-target="#HFM_detail" style=" padding-right: 10px;padding-left: 10px;color: white;"><a data-toggle="tooltip" data-placement="top" title="Add Items" id="test"><i class=" fa fa-plus" style=" padding-right: 10px;padding-left: 10px;color: white;"></i></a>ADD Health Facility</button>
     </span>
+    <%
+        }
+    %>
 </h4>
 <!-- Add Button End -->
-
-<% Conn conn = new Conn();%>
 <!-- Add Modal Start -->
 <div class="modal fade" id="HFM_detail" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
     <div class="modal-dialog" style="width: 50%">
@@ -33,7 +46,7 @@
                             <div class="form-group" >
                                 <label class="col-md-2 control-label" for="textinput">Health Facility Name*</label>
                                 <div class="col-md-8">
-                                    <input type="text"  class="form-control" id="HFM_hfcName" placeholder="Insert health facility name" maxlength="30"> 
+                                    <input type="text"  class="form-control" id="HFM_hfcName" placeholder="Insert health facility name" maxlength="100"> 
                                 </div>
                             </div>
 
@@ -82,7 +95,7 @@
                                     <select class="form-control"  id="HFM_state" >
                                         <option  value="0" >Select the state</option>
                                         <%
-                                            String sql = "SELECT detail_reference_code, description FROM adm_lookup_detail WHERE master_reference_code = '0002' AND detail_reference_code NOT IN ('00', '98') order by description ";
+                                            String sql = "SELECT detail_reference_code, description FROM adm_lookup_detail WHERE master_reference_code = '0002' AND status='0' AND hfc_cd = '" + hfc_cd + "' AND detail_reference_code NOT IN ('00', '98') order by description ";
                                             ArrayList<ArrayList<String>> stateList = conn.getData(sql);
                                             for (int i = 0; i < stateList.size(); i++) {
                                         %>
@@ -121,7 +134,8 @@
                                 <label class="col-md-4 control-label" for="textinput">Postcode*</label>
                                 <div class="col-md-8">
                                     <input id="HFM_postcode" maxlength="30"  type="text" placeholder="search postcode" class="form-control input-md" autocomplete="off">
-                                    <div id="HFM_match">
+                                    <input id="HFM_postcode_hidden" type="hidden">
+                                    <div id="HFM_match" class="search-drop">
                                         <!--for list of postcode-->
                                     </div>
                                 </div>
@@ -166,8 +180,8 @@
                                 <label class="col-md-4 control-label" for="textinput">Status*</label>
                                 <div class="col-md-8">
                                     <select class="form-control"  id="HFM_status">
-                                        <option  value="1" >Active</option>
-                                        <option  value="0" >Inactive</option>
+                                        <option  value="0" >Active</option>
+                                        <option  value="1" >Inactive</option>
                                     </select>
                                 </div>
                             </div>
@@ -298,37 +312,37 @@
 <script src="libraries/validator.js" type="text/javascript"></script>
 
 <script>
-    
-    (function ($) {
-        $.fn.checkFileType = function (options) {
-            var defaults = {
-                allowedExtensions: [],
-                success: function () {},
-                error: function () {}
-            };
-            options = $.extend(defaults, options);
 
-            return this.each(function () {
-
-                $(this).on('change', function () {
-                    var value = $(this).val(),
-                            file = value.toLowerCase(),
-                            extension = file.substring(file.lastIndexOf('.') + 1);
-
-                    if ($.inArray(extension, options.allowedExtensions) === -1) {
-                        options.error();
-                        $(this).focus();
-                    } else {
-                        options.success();
-
-                    }
-
-                });
-
-            });
-        };
-
-    })(jQuery);
+//    (function ($) {
+//        $.fn.checkFileType = function (options) {
+//            var defaults = {
+//                allowedExtensions: [],
+//                success: function () {},
+//                error: function () {}
+//            };
+//            options = $.extend(defaults, options);
+//
+//            return this.each(function () {
+//
+//                $(this).on('change', function () {
+//                    var value = $(this).val(),
+//                            file = value.toLowerCase(),
+//                            extension = file.substring(file.lastIndexOf('.') + 1);
+//
+//                    if ($.inArray(extension, options.allowedExtensions) === -1) {
+//                        options.error();
+//                        $(this).focus();
+//                    } else {
+//                        options.success();
+//
+//                    }
+//
+//                });
+//
+//            });
+//        };
+//
+//    })(jQuery);
 
     $('#inputFileToLoad').checkFileType({
         allowedExtensions: ['jpg', 'jpeg', 'png', 'gif'],
@@ -412,12 +426,15 @@
             changeYear: true,
             changeMonth: true,
             maxDate: '0',
-            dateFormat: 'dd/mm/yy'
+            dateFormat: 'dd/mm/yy',
+            yearRange: '-100:nn'
         });
 
 
         function HFM_reset() {
             document.getElementById("HFM_form").reset();
+            $('#dym').html("");
+            $('#HFM_match').html('');
 
         }
 
@@ -430,6 +447,7 @@
         $('#HFM_btnAddNew').on('click', function () {
 
             HFM_reset();
+            $('#HFM_detail').css('overflow', 'auto');
 
         });
 
@@ -444,6 +462,7 @@
             var district = $('#HFM_district').val();
             var town = $('#HFM_town').val();
             var postcode = $('#HFM_postcode').val();
+            var postcode_hidden = $('#HFM_postcode_hidden').val();
             var faxNo = $('#HFM_faxNo').val();
             var telNo = $('#HFM_telNo').val();
             var email = $('#HFM_email').val();
@@ -457,8 +476,10 @@
             var director = $('#HFM_director').val();
             var status = $('#HFM_status').val();
             var establishDate = $('#HFM_establishedDate').val();
+            
+            var gotSpecialChar = /[!@#$%^&*()+=,?\/\\:;\"\' ]/.test(hfcCode);  
 
-            $('#HFM_detail').css('overflow', 'auto');
+            //$('#HFM_detail').css('overflow', 'auto');
 
             if (hfcName.trim() === "" || hfcName === null) {
                 bootbox.alert("Fill in the health facility name");
@@ -468,7 +489,11 @@
                 bootbox.alert("Fill in the health facility code");
                 $('#HFM_hfcCode').focus();
 
-            } else if (state.trim() === "0") {
+            } else if (gotSpecialChar){
+                bootbox.alert("Health facility code must only contain alphanumeric characters!");
+                $('#HFM_hfcCode').val('');
+            }
+            else if (state.trim() === "0") {
                 bootbox.alert("Select the state");
                 $('#HFM_state').focus();
 
@@ -480,8 +505,8 @@
                 bootbox.alert("Select the town");
                 $('#HFM_town').focus();
 
-            } else if (postcode.trim() === "") {
-                bootbox.alert("Fill in the postcode");
+            } else if (postcode.trim() === "" || postcode_hidden.trim() === "") {
+                bootbox.alert("Please choose existing postcode!");
                 $('#HFM_postcode').focus();
 
             } else if (status !== "1" && status !== "0") {
@@ -513,6 +538,15 @@
                 $('#HFM_IP').focus();
 
             } else {
+                
+                hfcName = hfcName.replace(/'/g, "\\\'").replace(/"/g, "\\\"");
+                address1 = address1.replace(/'/g, "\\\'").replace(/"/g, "\\\"");
+                address2 = address2.replace(/'/g, "\\\'").replace(/"/g, "\\\"");
+                address3 = address3.replace(/'/g, "\\\'").replace(/"/g, "\\\"");
+                contactPerson = contactPerson.replace(/'/g, "\\\'").replace(/"/g, "\\\"");
+                director = director.replace(/'/g, "\\\'").replace(/"/g, "\\\"");
+
+                $('<div class="loading">Loading</div>').appendTo('#HFM_detail');
 
                 var data = {
                     hfcName: hfcName,
@@ -523,7 +557,7 @@
                     state: state,
                     district: district,
                     town: town,
-                    postcode: postcode,
+                    postcode: postcode_hidden,
                     faxNo: faxNo,
                     telNo: telNo,
                     email: email,
@@ -537,7 +571,7 @@
                     director: director,
                     status: status,
                     establishDate: establishDate,
-                    logo : gambarURI
+                    logo: gambarURI
                 };
 
                 $.ajax({
@@ -557,13 +591,13 @@
                                 title: "Process Result",
                                 backdrop: true
                             });
-                            reset();
+                            //HFM_reset();
 
                         } else if (datas.trim() === 'Failed') {
 
                             alert("Insertion failed!");
                             $('#HFM_detail').modal('hide');
-                            reset();
+                            //HFM_reset();
 
                         } else {
 
@@ -580,6 +614,9 @@
                     },
                     error: function (err) {
                         console.log("Ajax Is Not Success: ");
+                    },
+                    complete: function (jqXHR, textStatus) {
+                        $('.loading').hide();
                     }
 
                 });
@@ -665,11 +702,18 @@
                     data: dataFields, // Send dataFields var
                     timeout: 3000,
                     success: function (dataBack) { // If success
+                        $('#HFM_postcode_hidden').val('');
                         $('#HFM_match').html(dataBack); // Return data (UL list) and insert it in the <div id="match"></div>
                         $('#matchList li').on('click', function () { // When click on an element in the list
                             //$('#masterCode2').text($(this).text()); // Update the field with the new element
                             $('#HFM_postcode').val($(this).text());
+                            
+                             //console.log($(this).data('code'));
+                            $('#HFM_postcode_hidden').val($(this).data('code'));
+                            
                             $('#HFM_match').text(''); // Clear the <div id="match"></div>
+                            
+                           
                         });
                     },
                     error: function () { // if error

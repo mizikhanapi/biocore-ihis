@@ -10,39 +10,59 @@
 <%
     Conn conn = new Conn();
     RMIConnector rmic = new RMIConnector();
-    
+
     String userID = request.getParameter("userID");
     String IC = request.getParameter("IC");
     String mother = request.getParameter("mother");
-    
-               
-    String sql = "Select user_id from adm_users where user_id = '"+userID+"' AND new_icno = '"+IC+"' AND mother_name = '"+mother+"' LIMIT 1";
-    
-    ArrayList<ArrayList<String>> dataUser = conn.getData(sql);
-    
-    if(dataUser.size() > 0){
-    
-        String sqlUpdate = "Update adm_users set password = 'abc123' where user_id = '"+userID+"'";
-        boolean isUpdate = rmic.setQuerySQL(conn.HOST, conn.PORT, sqlUpdate);
+    String process = request.getParameter("process");
+
+    if (process.equalsIgnoreCase("check")) {
         
-        if(isUpdate){
-            out.print("success");
+        mother = mother.toUpperCase();
         
-        }else{
-            out.print("fail");
-        
+        String sql = "Select user_id from adm_users where user_id = '" + userID + "' AND new_icno = '" + IC + "' AND mother_name = '" + mother + "' LIMIT 1";
+
+        ArrayList<ArrayList<String>> dataUser = conn.getData(sql);
+
+        if (dataUser.size() > 0) {
+
+           out.print("success");
+
+        } else {
+
+            out.print("Information that you have provided is wrong");
         }
+
+    }// end if check
+    else if (process.equalsIgnoreCase("reset")) {
         
-    
-    }else{
-    
-        out.print("Information that you have provided is wrong");
+        String sqlUpdate = "Update adm_users set password = 'abc123' where user_id = '" + userID + "'";
+        boolean isUpdate = rmic.setQuerySQL(conn.HOST, conn.PORT, sqlUpdate);
+
+        if (isUpdate) {
+            out.print("success");
+
+        } else {
+            out.print("fail");
+
+        }
+
+    }// end if reset
+    else if (process.equalsIgnoreCase("email")) {
+        
+        //                          0      1        2       3
+        String sql = "Select user_name, email, user_id, password from adm_users where user_id = '" + userID + "' LIMIT 1";
+
+        ArrayList<ArrayList<String>> dataUser = conn.getData(sql);
+        
+        String data = String.join("|", dataUser.get(0));
+        
+        out.print(data);
+
     }
-    
-    
-    
-
-
+    else{
+        out.print("What?");
+    }
 
 
 %>

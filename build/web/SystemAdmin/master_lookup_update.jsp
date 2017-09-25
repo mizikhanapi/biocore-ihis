@@ -12,6 +12,17 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <%  
+    
+    String userID = (String)session.getAttribute("USER_ID");
+    String hfc = session.getAttribute("HEALTH_FACILITY_CODE").toString();
+    
+    String last = userID.substring(userID.length() - 1);
+    
+    if(!hfc.equals("99_iHIS_99") || !last.equals("9")){
+    
+        out.print("Sorry, you are not authorized to do that!");
+        return;    
+    }
 //    Config.getBase_url(request);
 //    Config.getFile_url(session);
     Conn conn  = new Conn();

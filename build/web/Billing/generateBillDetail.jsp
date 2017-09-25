@@ -65,32 +65,27 @@
     
     //Display selected patient bill info
     String sql3 = "SELECT DISTINCT "
-            + "pb.PATIENT_NAME, "
-            + "pb.HOME_ADDRESS, "
-            + "pb.NEW_IC_NO, "
-            + "pb.ID_NO, "
-            + "pb.MOBILE_PHONE, "
-            + "NOW(), "
-            + "pdd.DRUG_ITEM_CODE, "
-            + "mdc.D_TRADE_NAME, "
-            + "pdd.DISPENSED_QTY, "
-            + "mdc.D_PRICE_PPACK, "
-            + "(pdd.DISPENSED_QTY * mdc.D_PRICE_PPACK) AS TOTAL, "
-            + "pb.ID_TYPE "
-            + "FROM pms_episode pe "
-            + "INNER JOIN pms_patient_biodata pb "
-            + "ON pe.PMI_NO = pb.PMI_NO "
-            + "INNER JOIN pis_order_master pom "
-            + "ON pe.PMI_NO = pom.PMI_NO "
-            + "INNER JOIN pis_dispense_master pdm "
-            + "ON pom.ORDER_NO = pdm.ORDER_NO "
-            + "INNER JOIN pis_dispense_detail pdd "
-            + "ON pdm.ORDER_NO = pdd.ORDER_NO "  
-            + "INNER JOIN pis_mdc2 mdc "
-            + "ON pdd.DRUG_ITEM_CODE = mdc.UD_MDC_CODE "
-            + "WHERE pe.PMI_NO = '"+ pmiNo +"' "
-            + "AND pom.order_no = '"+ orderNo +"' ";
+            + "pb.patient_name, "
+            + "pb.home_address, "
+            + "pb.new_ic_no, "
+            + "pb.id_no, "
+            + "pb.mobile_phone, "
+            + "now(), "
+            + "od.item_cd, "
+            + "od.item_desc, "
+            + "IFNULL(od.quantity, 0), "
+            + "IFNULL(od.item_amt/od.quantity, 0), "
+            + "IFNULL(od.item_amt, 0), "
+            + "pb.id_type "
+            + "FROM pms_patient_biodata pb, far_order_master om, far_order_detail od "
+            + "WHERE pb.PMI_NO = '"+ pmiNo +"' "
+            + "AND om.order_no = '"+ orderNo +"' "
+            + "AND od.order_no = '"+ orderNo +"'";
+    System.out.print(sql3);
     ArrayList<ArrayList<String>> data = Conn.getData(sql3);
+    if (data.isEmpty()){
+        out.print("No details found.");
+    } else{
 %>
 <div style="margin-bottom: 50px">
     <h4><b>Bill Detail</b></h4>
@@ -163,9 +158,9 @@
 
     //Search and add miscellaneous item to table.
     String type = data.get(0).get(11);
-    if (type.equals("Matric No.")) {
+    if (type.equals("004")) {
         type = "RG00001";
-    } else if (type.equals("Staff No.")) {
+    } else if (type.equals("005")) {
         type = "RG00002";
     } else if (type.equals("Foreigner")) {
         type = "RG00003";
@@ -173,7 +168,8 @@
 
     String sql4 = "SELECT * FROM far_miscellaneous_item WHERE item_code = '"+ type +"'";
     ArrayList<ArrayList<String>> dataItem = Conn.getData(sql4);
-    subtotal = subtotal + Double.parseDouble(dataItem.get(0).get(4));
+    if(!dataItem.isEmpty()){
+        subtotal = subtotal + Double.parseDouble(dataItem.get(0).get(4));
 %>
         <tr>
             <td><%=dataItem.get(0).get(1)%></td>
@@ -182,7 +178,8 @@
             <td style="text-align: right;"><%=df.format(Double.parseDouble(dataItem.get(0).get(4)))%></td>
             <td style="text-align: right;"><%=df.format(Double.parseDouble(dataItem.get(0).get(4)))%></td>
         </tr>
-<%
+<%  }
+    
     //Search and add billing parameters
     String sql5 = "SELECT param_code, param_name, param_value FROM far_billing_parameter WHERE enable = 'yes'";
     ArrayList<ArrayList<String>>billingParameters = Conn.getData(sql5);
@@ -243,13 +240,6 @@
         }
     }
 %>
-        <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td style="text-align: right;"><b>Grand Total</b></td>
-            <td id="grandTotal" style="text-align: right;"><%=df.format(grandTotal)%></td>
-        </tr>
             </tbody>
         </table>
     </div>
@@ -262,8 +252,8 @@
         <div class="col-lg-8 pull-right" style="margin-bottom: 10px; ">
             <button id="back" class="btn btn-success" style="float: right;" disabled="true">Back</button>
             <button id="confirm" class="btn btn-success" style="float: right; margin-right: 10px;" >Confirm</button>
-            <button id="openItemList" class="btn btn-success modal-toggle" data-toggle="modal" data-target="#addItemList" style="float: right; margin-right: 10px;">Add Item</button>
-            <button class="btn btn-success" data-toggle="modal" data-target="#makePayment" style="float: right; margin-right: 10px;">Payment</button>
+            <button id="openItemList" class="btn btn-success modal-toggle" data-toggle="modal" data-target="#addItemList" disabled="true" style="float: right; margin-right: 10px;">Add Item</button>
+            <button id="openMakePayment" class="btn btn-success" data-toggle="modal" data-target="#makePayment" disabled="true" style="float: right; margin-right: 10px;">Payment</button>
         </div>
 </div>
 <div class="modal fade" id="makePayment" role="dialog">
@@ -325,23 +315,24 @@
                             <div id="tabMiscItem" class="tab-pane active">
                                 <!-- Misc Item -->
                                 <div id="custom-search-input" style="margin-top: 10px;">
-                                    <div class="input-group ">
-                                        <input id="searchMiscItem" type="text" class=" search-query form-control" placeholder="Item Name" onkeyup="searchMiscItem()"/>
-                                        <span class="input-group-btn">
-                                            <button class="btn btn-success pull-right">Search</button>
-                                        </span>
+                                    <div class="form-group ">
+                                        <label class="col-md-4 control-label" for="textinput">Enter Item Name to Filter</label>
+                                        <div class="col-md-4">
+                                            <input id="searchMiscItem" type="text" class=" search-query form-control" placeholder="Item Name" onkeyup="searchMiscItem()"/>
+                                        </div>
                                     </div>
                                 </div>
                                 <div id="miscItem" ></div>
                             </div>
+
                             <div id="tabDrugsItem" class="tab-pane">
                                 <!-- Drugs Item -->
                                 <div id="custom-search-input" style="margin-top: 10px;">
-                                    <div class="input-group ">
-                                        <input id="searchDrugsItem" type="text" class=" search-query form-control" placeholder="Item Name" onkeyup="searchDrugsItem()"/>
-                                        <span class="input-group-btn">
-                                            <button class="btn btn-success pull-right">Search</button>
-                                        </span>
+                                    <div class="form-group ">
+                                        <label class="col-md-4 control-label" for="textinput">Enter Item Name to Filter</label>
+                                        <div class="col-md-4">
+                                            <input id="searchDrugsItem" type="text" class=" search-query form-control" placeholder="Item Name" onkeyup="searchDrugsItem()"/>
+                                        </div>
                                     </div>
                                 </div>
                                 <div id="drugsItem" ></div>
@@ -378,11 +369,59 @@
         </div>
     </div>
 </div>
+<%}%>
                 
+<script src="assets/js/jquery.min.js" type="text/javascript"></script>
+<script src="assets/js/custom.js" type="text/javascript"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script type="text/javascript">
+    function searchDrugsItem() {
+        // Declare variables
+        var input, filter, table, tr, td, i;
+        input = document.getElementById("searchDrugsItem");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("drugsItem");
+        tr = table.getElementsByTagName("tr");
+
+        // Loop through all table rows, and hide those who don't match the search query
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[1];
+            if (td) {
+                if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+    }
+
+    function searchMiscItem() {
+        // Declare variables
+        var input, filter, table, tr, td, i;
+        input = document.getElementById("searchMiscItem");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("miscItem");
+        tr = table.getElementsByTagName("tr");
+
+        // Loop through all table rows, and hide those who don't match the search query
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[1];
+            if (td) {
+                if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+    }
+    
     $(document).ready(function(){
+        
+        var contextPath = '<%=request.getContextPath()%>';
+        
         $('#cancel').click(function(){
             location.reload();
         });
@@ -398,7 +437,25 @@
                     && event.which != 8 ) {
                 event.preventDefault();
             }
-        });        
+        });
+        
+        $('#amtReceived').keyup(function() {
+            var amtReceived = $(this).val();
+            var grandTotal = document.getElementById('grandTotal').value;
+            var change = 0;
+
+            if (amtReceived == '.'){
+                amtReceived = 0;
+            }
+            
+            change = amtReceived - grandTotal;
+
+            $('#change').val(change);
+        });
+        
+        $('#method li a').click(function(){
+            $('#paymentMethod').text($(this).text());
+        });      
         
         $('#confirm').click(function(){
             var orderNo = document.getElementById('orderNo').value;
@@ -406,7 +463,7 @@
             var billNo = document.getElementById('billNo').value;
             var txnDate = document.getElementById('txnDate').value;
             var patientName = document.getElementById('patientName').value;
-            var grandTotal = document.getElementById('grandTotal').innerHTML;
+            var grandTotal = document.getElementById('grandTotal').value;
             var tableItem;
             tableItem = new Array();
 
@@ -440,8 +497,8 @@
                     if (d[1] == 1){
                         $('#confirm').prop('disabled', true);
                         $('#cancel').prop('disabled', true);
-                        $('#addItem').prop('disabled', false);
-                        $('#payment').prop('disabled', false);
+                        $('#openItemList').prop('disabled', false);
+                        $('#openMakePayment').prop('disabled', false);
                         $('#back').prop('disabled', false);
                         
                         document.getElementById('messageHeader').innerHTML = "Success!";
@@ -468,14 +525,12 @@
             var activeTab = $('ul#tabs').find('li.active').text();
             
             if (selected == ''){
-                document.getElementById('messageHeader').innerHTML = "Warning!";
-                document.getElementById('messageContent').innerHTML = "Please select an item.";
-                $("#alertMessage").modal();
+                alert("Please select an item.");
             } else {
                 var itemCode = $('#tableMisc').find(".row_selected td:nth-child(1)").text();
                 var itemName = $('#tableMisc').find(".row_selected td:nth-child(2)").text();
                 var unitPrice = $('#tableMisc').find(".row_selected td:nth-child(3)").text();
-                var custID = document.getElementById('custID').value;
+                var custID = document.getElementById('pmiNo').value;
                 var billNo = document.getElementById('billNo').value;
                 
                 if (activeTab == 'Miscellaneous Item'){
@@ -494,15 +549,17 @@
                         success: function(data) {
                            var d = data.split("|");
                            if (d[1] == 1){
+                                document.getElementById('messageHeader').innerHTML = "Success!";
+                                document.getElementById('messageContent').innerHTML = d[2];
+                                $("#alertMessage").modal();
+                               
                                 var row = 
                                         '<tr>\n\
-                                            <td></td>\n\
                                             <td>'+ itemCode +'</td>\n\
                                             <td>'+ itemName +'</td>\n\
                                             <td style="text-align: right;">1</td>\n\
                                             <td style="text-align: right;">'+ unitPrice +'</td>\n\
                                             <td style="text-align: right;">'+ unitPrice +'</td>\n\
-                                            <td></td>\n\
                                         </tr>';
                                $('#tableItems tr:last').after(row);
                                
@@ -511,22 +568,19 @@
                             
                                 subTotal = subTotal + parseFloat(unitPrice);
                                 grandTotal = grandTotal + parseFloat(d[3]);
-                                
+
                                 $('#subtotal').val(subTotal.toFixed(2));
                                 $('#grandTotal').val(grandTotal.toFixed(2));
                                
-                                document.getElementById('messageHeader').innerHTML = "Success!";
-                                document.getElementById('messageContent').innerHTML = d[2];
-                                $("#alertMessage").modal();
                            } else {
-                                document.getElementById('messageHeader').innerHTML = "Error!";
+                                document.getElementById('messageHeader').innerHTML = "Failed!";
                                 document.getElementById('messageContent').innerHTML = d[2];
                                 $("#alertMessage").modal();
                            }
                         },
                         error: function(err) {
                             document.getElementById('messageHeader').innerHTML = "Error!";
-                            document.getElementById('messageContent').innerHTML = "Failed to add item.";
+                            document.getElementById('messageContent').innerHTML = "Failed to make payment.\nPlease try again.";
                             $("#alertMessage").modal();
                         }
                     });
@@ -538,20 +592,15 @@
         });
         
         $('#addDrugsItem').click(function (){
-            
-            var contextPath = '<%=request.getContextPath()%>';
-            
             var quantity = document.getElementById('quantity').value;
             
             if (quantity == '' || quantity == 0){
-                document.getElementById('messageHeader').innerHTML = "Warning!";
-                document.getElementById('messageContent').innerHTML = "Please enter a quantity.";
-                $("#alertMessage").modal();
+                alert("Please enter a quantity.");
             } else {
                 var itemCode = $('#tableDrugsItem').find(".row_selected td:nth-child(1)").text();
                 var itemName = $('#tableDrugsItem').find(".row_selected td:nth-child(2)").text();
                 var unitPrice = $('#tableDrugsItem').find(".row_selected td:nth-child(4)").text();
-                var custID = document.getElementById('custID').value;
+                var custID = document.getElementById('pmiNo').value;
                 var billNo = document.getElementById('billNo').value;
                 
                 $.ajax({
@@ -570,18 +619,19 @@
                     success: function(data) {
                        var d = data.split("|");
                        if (d[1] == 1){
+                            document.getElementById('messageHeader').innerHTML = "Success!";
+                            document.getElementById('messageContent').innerHTML = d[2];
+                            $("#alertMessage").modal();
                            
                            var totalPrice = quantity * unitPrice;
                            
                             var row = 
                                     '<tr>\n\
-                                        <td></td>\n\
                                         <td>'+ itemCode +'</td>\n\
                                         <td>'+ itemName +'</td>\n\
                                         <td style="text-align: right;">'+ quantity +'</td>\n\
                                         <td style="text-align: right;">'+ unitPrice +'</td>\n\
                                         <td style="text-align: right;">'+ totalPrice.toFixed(2) +'</td>\n\
-                                        <td></td>\n\
                                     </tr>';
                            $('#tableItems tr:last').after(row);
 
@@ -594,18 +644,15 @@
                             $('#subtotal').val(subTotal.toFixed(2));
                             $('#grandTotal').val(grandTotal.toFixed(2));
 
-                            document.getElementById('messageHeader').innerHTML = "Success!";
-                            document.getElementById('messageContent').innerHTML = d[2];
-                            $("#alertMessage").modal();
                        } else {
-                            document.getElementById('messageHeader').innerHTML = "Error!";
+                            document.getElementById('messageHeader').innerHTML = "Failed!";
                             document.getElementById('messageContent').innerHTML = d[2];
                             $("#alertMessage").modal();
                        }
                     },
                     error: function(err) {
                         document.getElementById('messageHeader').innerHTML = "Error!";
-                        document.getElementById('messageContent').innerHTML = "Failed to add item.";
+                        document.getElementById('messageContent').innerHTML = "Failed to add item.\nPlease try again.";
                         $("#alertMessage").modal();
                     }
                 });
@@ -623,7 +670,7 @@
             var grandTotal = document.getElementById('grandTotal').value;
             var amtReceived = document.getElementById('amtReceived').value;
             var paymentMethod = document.getElementById('paymentMethod').innerHTML;
-            var custID = document.getElementById('custID').value;
+            var custID = document.getElementById('pmiNo').value;
             var billNo = document.getElementById('billNo').value;
             var change = document.getElementById('change').value;
             
@@ -666,11 +713,11 @@
                            location.reload();
                            
                             document.getElementById('messageHeader').innerHTML = "Success!";
-                            document.getElementById('messageContent').innerHTML = d[2];
+                            document.getElementById('messageContent').innerHTML = "Success make payement.";
                             $("#alertMessage").modal();
                        } else {
                             document.getElementById('messageHeader').innerHTML = "Error!";
-                            document.getElementById('messageContent').innerHTML = d[2];
+                            document.getElementById('messageContent').innerHTML = "Failed to make payment.";
                             $("#alertMessage").modal();
                        }
                     },

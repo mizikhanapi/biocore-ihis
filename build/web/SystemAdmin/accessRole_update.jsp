@@ -13,11 +13,11 @@
     
     String userID = request.getParameter("userID");
     String roleCode = request.getParameter("roleCode");
-    String disciplineCode = request.getParameter("disciplineCode");
-    String subdisciplineCode = request.getParameter("subdisciplineCode");
+    //String disciplineCode = request.getParameter("disciplineCode");
+   // String subdisciplineCode = request.getParameter("subdisciplineCode");
     String status = request.getParameter("status");
     
-    String sql = "UPDATE adm_user_access_role SET role_code = '"+roleCode+"', discipline_code = '"+disciplineCode+"', subdiscipline_code = '"+subdisciplineCode+"', status = '"+status+"' "
+    String sql = "UPDATE adm_user_access_role SET role_code = '"+roleCode+"', status = '"+status+"' "
             + "WHERE user_id = '"+userID+"'";
     
     boolean done = rmic.setQuerySQL(conn.HOST, conn.PORT, sql);
