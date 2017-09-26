@@ -261,6 +261,9 @@
                         } else if (datas.trim() === 'Failed') {
                             bootbox.alert("Delete failed!");
                         }
+                        else{
+                            bootbox.alert(datas.trim());
+                        }
 
                     },
                     error: function (err) {
@@ -270,7 +273,7 @@
                 });
                     
                 } else {
-                    console.log("Process Is Canceled");
+                    console.log("Process Is Canceled...");
                 }
 
             }

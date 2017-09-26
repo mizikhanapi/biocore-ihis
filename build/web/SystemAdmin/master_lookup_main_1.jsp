@@ -3,14 +3,28 @@
     Created on : Jan 25, 2017, 4:11:22 PM
     Author     : user
 --%>
+<%@page import="ADM_helper.MySession"%>
+<%
+    String LM_user = session.getAttribute("USER_ID").toString();
+    String LM_hfc = session.getAttribute("HEALTH_FACILITY_CODE").toString();
+    MySession LM_mys = new MySession(LM_user, LM_hfc);
+    
+
+%>
 
 <!-- Add Part Start -->
 <!-- Add Button Start -->
 <h4 style="padding-top: 30px;padding-bottom: 35px; font-weight: bold">
     LOOKUP MASTER MANAGEMENT
+    <%
+        if(LM_mys.isSuperUser()){
+    %>
     <span class="pull-right">
         <button id="MLM_btnAddNew" class="btn btn-success" data-status="pagado" data-toggle="modal" data-id="1" data-target="#detail" style=" padding-right: 10px;padding-left: 10px;color: white;"><a data-toggle="tooltip" data-placement="top" title="Add Items" id="test"><i class=" fa fa-plus" style=" padding-right: 10px;padding-left: 10px;color: white;"></i></a>ADD Lookup Master</button>
     </span>
+    <%
+        }
+    %>
 </h4>
 <!-- Add Button End -->
 
@@ -125,6 +139,8 @@
                 } else if (status !== "1" && status !== "0") {
                     alert("Select Any Status");
                 } else {
+                    
+                    masterName = masterName.replace(/'/g, "\\\'").replace(/"/g, "\\\"");
 
                     var data = {
                         masterCode : masterCode,
@@ -137,7 +153,7 @@
                         url: "master_lookup_insert.jsp",
                         type: "post",
                         data: data,
-                        timeout: 10000,
+                        timeout: 60000,
                         success: function (datas) {
 
                             if (datas.trim() === 'Success') {
@@ -174,14 +190,14 @@
                 $.ajax({
                     url : 'master_lookup_getMasterCode.jsp',
                     type: 'POST',
-                    timeout: 5000,
+                    timeout: 60000,
                     success: function (data) {
                         
                         $('#masterCode').val(data.trim());
                     },
-                    error: function (err) {
+                    error: function (err, jqhr, errThrown) {
                         
-                        console.log("Ajax Is Not Success");
+                        console.log("Ajax Is Not Success: "+errThrown);
                     }
                 });
             });

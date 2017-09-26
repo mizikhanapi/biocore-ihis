@@ -4,6 +4,7 @@
     Author     : user
 --%>
 
+<%@page import="ADM_helper.MySession"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.sql.*"%>
 <%@page import="dBConn.Conn"%>
@@ -11,7 +12,18 @@
 
 <%
     Conn conn = new Conn();
+    String hfc_cd = session.getAttribute("HEALTH_FACILITY_CODE").toString();
+    String user_id = session.getAttribute("USER_ID").toString();
+   
+    MySession mys = new MySession(user_id, hfc_cd);
+    
+    String whereClause = " ";
+    
+    if(!mys.isSuperUser()){
+        whereClause = "WHERE a.hfc_cd = '"+hfc_cd+"' ";
+    }
 %>
+
 
 <table  id="THE_healthFacilityTable"  class="table table-striped table-bordered" cellspacing="0" width="100%">
     <thead>
@@ -21,18 +33,28 @@
     <th>Address</th>
     <th>Change Logo</th>
     <th>Update</th>
+    <%
+        if(mys.isSuperUser()){
+    %>
     <th>Delete</th>
+    <%
+        }
+    %>
 </thead>
 <tbody>
 
     <%
-        String sql ="Select hfc_cd, hfc_type, hfc_name, address1, address2, address3, state_cd, district_cd, town_cd, country_cd, postcode, telephone_no, fax_no, email, hfc_server, hfc_report, ifnull(DATE_FORMAT(established_date,'%d/%m/%Y'), ''), director_name, hfc_category_cd, hfc_sub_type, contact_person, hfc_status, hfc_ip "+
-                    "FROM adm_health_facility";
+        //----------------      0        1           2       3           4       5           6       7           8          9           10                 11         12     13        14         15       16                                                      17                18              19            20               21        22            23                   
+        String sql ="Select a.hfc_cd, hfc_type, hfc_name, address1, address2, address3, state_cd, district_cd, town_cd, country_cd, post.description, telephone_no, fax_no, email, hfc_server, hfc_report, ifnull(DATE_FORMAT(established_date,'%d/%m/%Y'), ''), director_name, hfc_category_cd, hfc_sub_type, contact_person, hfc_status, hfc_ip, post.detail_reference_code "
+                +"FROM adm_health_facility a "
+                + "JOIN adm_lookup_detail post on master_reference_code = '0079' AND post.detail_reference_code = postcode AND post.hfc_cd = '"+hfc_cd+"' "  
+                +whereClause;
         
         ArrayList<ArrayList<String>> dataHFC = conn.getData(sql);
 
         int size = dataHFC.size();
-        for (int i = 0; i < size; i++) {
+        if(mys.isSuperUser()){
+            for (int i = 0; i < size; i++) {
     %>
 
     <tr>
@@ -63,7 +85,37 @@
 
 
 <%
-    }
+        }//end for loop
+    }//end if
+    else{
+        for (int i = 0; i < size; i++) {
+
+%>
+<tr>
+    <input id="HFT_hidden" type="hidden" value="<%=String.join("|", dataHFC.get(i))%>">
+    <td><%= dataHFC.get(i).get(0)%></td> <!-- HFC code -->   
+    <td><%= dataHFC.get(i).get(2)%></td> <!-- HFC name  --> 
+    <td><%= dataHFC.get(i).get(17)%></td> <!-- Director --> 
+    <td><%= dataHFC.get(i).get(3)%> <%=dataHFC.get(i).get(4)%> <%= dataHFC.get(i).get(5)%></td> <!-- Address  --> 
+
+
+    <td style="width: 5% ">
+
+        <!-- Update Part Start -->
+        <a id="HFT_btnLogo" data-toggle="modal" data-target="#HFT_detail2" style="cursor: pointer"><i class="fa fa-picture-o" aria-hidden="true" style="display: inline-block;color: #337ab7;"></i></a>
+    </td>
+    <td style="width: 5% ">
+
+        <!-- Update Part Start -->
+        <a id="HFT_btnUpdate" data-toggle="modal" data-target="#HFT_detail" style="cursor: pointer"><i class="fa fa-pencil-square-o" aria-hidden="true" style="display: inline-block;color: #337ab7;"></i></a>
+    </td>
+</tr>
+
+<%
+
+        }//end for loop
+
+    }//end else
 %>
 
 </tbody>
@@ -86,7 +138,7 @@
                             <div class="form-group" >
                                 <label class="col-md-2 control-label" for="textinput">Health Facility Code*</label>
                                 <div class="col-md-8">
-                                    <input type="text"  class="form-control" id="HFT_hfcCode" placeholder="Health Facility Code" maxlength="30" readonly="true">   
+                                    <input type="text"  class="form-control" id="HFT_hfcCode" placeholder="Health Facility Code" maxlength="30" readonly="readonly">   
                                 </div>
                             </div>
                             
@@ -94,7 +146,7 @@
                             <div class="form-group" >
                                 <label class="col-md-2 control-label" for="textinput">Health Facility Name*</label>
                                 <div class="col-md-8">
-                                    <input type="text"  class="form-control" id="HFT_hfcName" placeholder="Insert health facility name" maxlength="30"> 
+                                    <input type="text"  class="form-control" id="HFT_hfcName" placeholder="Insert health facility name" maxlength="100"> 
                                 </div>
                             </div>
                             
@@ -135,7 +187,7 @@
                                     <select class="form-control"  id="HFT_state" >
                                         <option  value="0" >Select the state</option>
                                         <%
-                                            String sql2 = "SELECT detail_reference_code, description FROM adm_lookup_detail WHERE master_reference_code = '0002' AND detail_reference_code NOT IN ('00', '98') order by description ";
+                                            String sql2 = "SELECT detail_reference_code, description FROM adm_lookup_detail WHERE master_reference_code = '0002' AND status='0' AND hfc_cd = '"+hfc_cd+"' AND detail_reference_code NOT IN ('00', '98') order by description ";
                                             ArrayList<ArrayList<String>> stateList = conn.getData(sql2);
                                             for(int i = 0; i < stateList.size(); i++){
                                         %>
@@ -175,6 +227,7 @@
                                 <label class="col-md-4 control-label" for="textinput">Postcode</label>
                                 <div class="col-md-8">
                                     <input id="HFT_postcode" maxlength="30"  type="text" placeholder="Search postcode" class="form-control input-md">
+                                    <input id="HFT_postcode_hidden" type="hidden">
                                     <div id="HFT_match">
                                         <!--list of postcode-->
                                     </div>
@@ -219,8 +272,8 @@
                                 <label class="col-md-4 control-label" for="textinput">Status*</label>
                                 <div class="col-md-8">
                                     <select class="form-control"  id="HFT_status">
-                                        <option  value="1" >Active</option>
-                                        <option  value="0" >Inactive</option>
+                                        <option  value="0" >Active</option>
+                                        <option  value="1" >Inactive</option>
                                     </select>
                                 </div>
                             </div>
@@ -295,7 +348,7 @@
                              <div class="form-group">
                                 <label class="col-md-4 control-label" for="textinput">Established Date</label>
                                 <div class="col-md-8">
-                                    <input id="HFT_establishedDate" maxlength="30"  type="text" placeholder="Pick Established date (Optional)" class="form-control input-md" readonly="true">
+                                    <input id="HFT_establishedDate" maxlength="30"  type="text" placeholder="Pick Established date (Optional)" class="form-control input-md" readonly="readonly">
                                 </div>
                             </div>
                             
@@ -344,7 +397,7 @@
                                 <img src="" id="gambaLogo">
                             </div>
                             <div class="form-group">
-                                <input class="form-control" id="inputFileToLoad2" type="file" accept=".jpg, .png, .gif" >
+                                <input class="form-control" id="inputFileToLoad2" type="file" accept="image/jpg, image/png, image/gif" >
                             </div>
                         </div>
                 </div>
@@ -356,6 +409,11 @@
                     <div class="btn-group" role="group">
                         <button type="submit" class="btn btn-success btn-block btn-lg" role="button" id="HFT_btnChangeLogo">Change <span class="fa fa-check" aria-hidden="true" style="display: inline-block;" ></span></button>
                     </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 <!-- Update Part End -->
 
 <!-- Delete Part Start -->
@@ -371,7 +429,7 @@
         var rowData = row.find("#HFT_hidden").val();
         var arrayData = rowData.split("|");
         //assign into seprated val
-        var hfc_cd = arrayData[0], hfc_type = arrayData[1], hfc_name = arrayData[2], address1 = arrayData[3], address2 = arrayData[4], address3 = arrayData[5], state_cd = arrayData[6], district_cd = arrayData[7], town_cd = arrayData[8], country_cd = arrayData[9], postcode = arrayData[10], telephone_no = arrayData[11], fax_no = arrayData[12], email = arrayData[13], hfc_server = arrayData[14], hfc_report = arrayData[15], established_date = arrayData[16], director_name = arrayData[17], hfc_category_cd = arrayData[18], hfc_sub_type = arrayData[19], contact_person = arrayData[20], hfc_status = arrayData[21], hfc_ip = arrayData[22];
+        var hfc_cd = arrayData[0], hfc_type = arrayData[1], hfc_name = arrayData[2], address1 = arrayData[3], address2 = arrayData[4], address3 = arrayData[5], state_cd = arrayData[6], district_cd = arrayData[7], town_cd = arrayData[8], country_cd = arrayData[9], postcode = arrayData[10], telephone_no = arrayData[11], fax_no = arrayData[12], email = arrayData[13], hfc_server = arrayData[14], hfc_report = arrayData[15], established_date = arrayData[16], director_name = arrayData[17], hfc_category_cd = arrayData[18], hfc_sub_type = arrayData[19], contact_person = arrayData[20], hfc_status = arrayData[21], hfc_ip = arrayData[22], postcode_hidden = arrayData[23];
         //set value in input on the top
         $('#HFT_hfcCode').val(hfc_cd);
         $('#HFT_hfcName').val(hfc_name);
@@ -380,6 +438,7 @@
         $('#HFT_address3').val(address3);
         $('#HFT_state').val(state_cd);
         $('#HFT_postcode').val(postcode);
+        $('#HFT_postcode_hidden').val(postcode_hidden);
         $('#HFT_telNo').val(telephone_no);
         $('#HFT_faxNo').val(fax_no);
         $('#HFT_email').val(email);
@@ -396,7 +455,7 @@
         createDistrictList(state_cd, district_cd);
         createTownList(district_cd, town_cd);
        
-
+        $('#HFT_match').html('');
 
 
         //console.log(arrayData);
@@ -414,6 +473,7 @@
         var district = $('#HFT_district').val();
         var town = $('#HFT_town').val();
         var postcode = $('#HFT_postcode').val();
+        var postcode_hidden = $('#HFT_postcode_hidden').val();
         var faxNo = $('#HFT_faxNo').val();
         var telNo = $('#HFT_telNo').val();
         var email = $('#HFT_email').val();
@@ -450,8 +510,8 @@
             bootbox.alert("Select the town");
             $('#HFT_town').focus();
 
-        }else if (postcode.trim() === "") {
-            bootbox.alert("Fill in the postcode");
+        }else if (postcode.trim() === "" || postcode_hidden === "") {
+            bootbox.alert("Please choose existing postcode");
             $('#HFT_postcode').focus();
 
         } else if (status !== "1" && status !== "0") {
@@ -483,6 +543,13 @@
             $('#HFT_IP').focus();
 
         } else {
+            
+            hfcName = hfcName.replace(/'/g, "\\\'").replace(/"/g, "\\\"");
+            address1 = address1.replace(/'/g, "\\\'").replace(/"/g, "\\\"");
+            address2 = address2.replace(/'/g, "\\\'").replace(/"/g, "\\\"");
+            address3 = address3.replace(/'/g, "\\\'").replace(/"/g, "\\\"");
+            contactPerson = contactPerson.replace(/'/g, "\\\'").replace(/"/g, "\\\"");
+            director = director.replace(/'/g, "\\\'").replace(/"/g, "\\\"");
 
             var data = {
                  hfcName : hfcName,
@@ -493,7 +560,7 @@
                     state : state,
                     district : district,
                     town : town,
-                    postcode : postcode,
+                    postcode : postcode_hidden,
                     faxNo : faxNo,
                     telNo : telNo,
                     email : email,
@@ -697,11 +764,16 @@
                     data: dataFields, // Send dataFields var
                     timeout: 3000,
                     success: function (dataBack) { // If success
+                        $('#HFT_postcode_hidden').val('');
                         $('#HFT_match').html(dataBack); // Return data (UL list) and insert it in the <div id="match"></div>
                         $('#matchList li').on('click', function () { // When click on an element in the list
                             //$('#masterCode2').text($(this).text()); // Update the field with the new element
                             $('#HFT_postcode').val($(this).text());
+                            $('#HFT_postcode_hidden').val($(this).data('code'));
+                            
                             $('#HFT_match').text(''); // Clear the <div id="match"></div>
+                            
+                            
                         });
                     },
                     error: function () { // if error
@@ -718,7 +790,10 @@
          
         $('#gambaLogo').attr("src", "");
         $('#inputFileToLoad2').val("");
-        gambarURI2 = "";       
+        gambarURI2 = "";   
+        
+        //disable change button until bew picture is chosen
+        $('#HFT_btnChangeLogo').addClass('disabled').prop('disabled', true);
 
         var row = $(this).closest("tr");
         var rowData = row.find("#HFT_hidden").val();
@@ -745,14 +820,16 @@
     });
     
     
+    
+    
     $('#inputFileToLoad2').checkFileType({
         allowedExtensions: ['jpg', 'jpeg', 'png', 'gif'],
         success: function () {
-            loadImageFileAsURL();
+            loadImageFileAsURL2();
         },
         error: function () {
             bootbox.alert('Incompatible file type');
-            $('#inputFileToLoad').val("");
+            $('#inputFileToLoad2').val("");
             
             gambarURI2 = "";
         }
@@ -761,7 +838,7 @@
 
     var gambarURI2 = "";
 
-    function loadImageFileAsURL()
+    function loadImageFileAsURL2()
     {
 
         var iSize = 0;
@@ -781,12 +858,6 @@
 
         }
 
-
-
-
-
-
-
         if (sizeSmall) {
             
             var filesSelected = document.getElementById("inputFileToLoad2").files;
@@ -803,6 +874,7 @@
 
 
                    $('#gambaLogo').attr("src", gambarURI2);
+                   $('#HFT_btnChangeLogo').removeClass('disabled').prop('disabled', false);
                 };
 
                 fileReader.readAsDataURL(fileToLoad);
@@ -811,7 +883,7 @@
         } else {
 
             bootbox.alert("File size must not exceed 40kb");
-            $('#inputFileToLoad').val("");
+            $('#inputFileToLoad2').val("");
             gambarURI2 = "";
             
         }
@@ -878,8 +950,14 @@
 
 <script type="text/javascript" charset="utf-8">
     $(document).ready(function () {
-        $('#THE_healthFacilityTable').DataTable();
         
+        <%
+            if(mys.isSuperUser()){
+        %>
+        $('#THE_healthFacilityTable').DataTable();
+        <%
+            }
+        %>
         $('#HFT_establishedDate').datepicker({
             changeYear: true,
             changeMonth: true,

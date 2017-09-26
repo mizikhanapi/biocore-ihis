@@ -14,11 +14,12 @@
 
     //                          0       1              2            3                                      4            5          6            7           8           9           10        11              12                13              14              
     String query = "SELECT  room_no, hfc_name, oc.description, DATE_FORMAT(birth_date,'%d/%m/%Y'), sx.description, new_icno, home_phone, office_phone, mobile_phone, a.fax_no, a.email, id_category_code, tit.description, nat.description, mother_name "
-            + "FROM adm_users a join adm_health_facility b on health_facility_code = hfc_cd "
-            + "join adm_lookup_detail oc on oc.detail_reference_code = occupation_code and oc.master_reference_code = '0050' "
-            + "join adm_lookup_detail sx on sx.detail_reference_code = sex_code and sx.master_reference_code = '0041' "
-            + "join adm_lookup_detail tit on tit.detail_reference_code = title and tit.master_reference_code = '0026' "
-            + "join adm_lookup_detail nat on nat.detail_reference_code = nationality_code and nat.master_reference_code = '0011'"
+            + "FROM adm_users a "
+            + "left join adm_health_facility b on health_facility_code = b.hfc_cd "
+            + "left join adm_lookup_detail oc on oc.detail_reference_code = occupation_code and oc.master_reference_code = '0050' AND  health_facility_code = oc.hfc_cd  "
+            + "left join adm_lookup_detail sx on sx.detail_reference_code = sex_code and sx.master_reference_code = '0041' AND  health_facility_code = sx.hfc_cd   "
+            + "left join adm_lookup_detail tit on tit.detail_reference_code = title and tit.master_reference_code = '0026' AND  health_facility_code = tit.hfc_cd   "
+            + "left join adm_lookup_detail nat on nat.detail_reference_code = nationality_code and nat.master_reference_code = '0011' AND  health_facility_code = nat.hfc_cd  "
             + " WHERE user_id = '" + userID + "'";
 
     ArrayList<ArrayList<String>> personalData = conn.getData(query);
@@ -46,9 +47,9 @@
 
                 <!-- Text input-->
                 <div class="form-group">
-                    <label class="col-md-4 control-label" for="textinput">Room No</label>
+                    <label class="col-md-4 control-label" for="textinput">Room No*</label>
                     <div class="col-md-8">
-                        <input id="PI_roomNo"  type="text"  class="form-control input-md" readonly>
+                        <input id="PI_roomNo"  type="text"  class="form-control input-md" >
                     </div>
                 </div>
             </div>
@@ -282,7 +283,7 @@
         enableButton();
     });
 
-    $('#PI_btnCancel').on('click', function () {
+    $('#PI_btnCancel').off('click').on('click', function () {
         disableButton();
         setTextField();
     });
@@ -301,15 +302,16 @@
         $("#PI_btnCancel").prop('disabled', true);
     }
 
-    $('#PI_btnChange').on('click', function () {
+    $('#PI_btnChange').off('click').on('click', function () {
 
-        var email, mobile, home, office, fax;
+        var email, mobile, home, office, fax, roomNo;
 
         mobile = $('#PI_mobile').val();
         fax = $('#PI_fax').val();
         office = $('#PI_officeTel').val();
         home = $('#PI_homeTel').val();
         email = $('#PI_email').val();
+        roomNo = $('#PI_roomNo').val();
 
         if (mobile === "") {
             bootbox.alert("Fill in the mobile phone number");
@@ -317,6 +319,9 @@
         } else if (email === "") {
             bootbox.alert("Fill in the email");
 
+        } else if (roomNo === ""){
+            bootbox.alert("Fill in the room number");
+            
         } else if (validatePhonenumber(mobile) === false) {
             bootbox.alert("Invalid mobile phone number. Only numbers and +, - signs are allowed.");
             $('#PI_mobile').val("");
@@ -343,12 +348,14 @@
                 mobile: mobile,
                 home: home,
                 office: office,
-                fax: fax
+                fax: fax,
+                roomNo: roomNo
             };
 
             $.ajax({
                 type: 'POST',
                 url: "profile_update.jsp",
+                timeout: 60000,
                 data: data,
                 success: function (data) {
 
@@ -362,6 +369,9 @@
                         setTextField();
                     }
 
+                },
+                error: function (e, ee, err){
+                    bootbox.alert("Oopps! "+ err);
                 }
             });
 

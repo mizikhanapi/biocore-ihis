@@ -1,6 +1,6 @@
 
 <%@page import="java.util.ArrayList"%>
-<%//@page import="models.Query"%>
+<%@page import="models.Query"%>
 <%@page import="main.RMIConnector"%>
 <%@page import="dBConn.Conn"%>
 <%//@include file="../Entrance/validateSession.jsp"%>

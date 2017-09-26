@@ -4,53 +4,111 @@
     Author     : user
 --%>
 
-<%@page import="Config.Config"%>
-<%@page import="dBConn.Conn"%>
-<%@page import="java.io.*"%> 
-<%@page import="java.sql.Connection"%> 
-<%@page import="java.sql.DriverManager"%>
-<%@page import="java.util.HashMap"%>
-<%@page import="java.util.Map"%>
-<%@page import="net.sf.jasperreports.engine.*"%>
-<%@page import="main.RMIConnector"%>
+<%@page import="org.json.JSONObject"%>
+<%@page import="java.util.List"%>
+<%@page import="java.util.LinkedList"%>
 <%@page import="java.util.ArrayList"%>
+<%@page import="java.sql.*"%>
+<%@page import="dBConn.Conn"%>
+<%@page import="main.RMIConnector"%>
+<%@page import="Config.Config"%>
+
+<%
+    Config.getBase_url(request);
+    Config.getFile_url(session);
+    Conn conn = new Conn();
+    String startDate = request.getParameter("startDate");
+    String endDate = request.getParameter("endDate");
+
+%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
-    </head>
-    <body>
-        <%
 
-            String startDate = request.getParameter("startDate");
-            String endDate = request.getParameter("endDate");
-            try {
-                Class.forName("com.mysql.jdbc.Driver").newInstance();
-                Connection conn = DriverManager.getConnection("jdbc:mysql://10.73.32.200:3306/emedica?zeroDateTimeBehavior=convertToNull", "root", "qwerty");
+<%@include file="../assets/header.html"%>
 
-                File reportFile = new File(application.getRealPath("//reports//drugOrderList.jasper"));
+<hr class="pemisah" />
+<table id="drugListTable" class="table table-filter table-striped table-bordered margin-top-50px" style="background: #fff; border: 1px solid #ccc; margin-top: 20px">
 
-                Map parameters = new HashMap();
-                parameters.put("startDate", startDate);
-                parameters.put("endDate", endDate);
-                byte[] bytes = JasperRunManager.runReportToPdf(reportFile.getPath(), parameters, conn);
+    <thead>
 
-                response.setContentType("application/pdf");
-                response.setContentLength(bytes.length);
-                ServletOutputStream outStream = response.getOutputStream();
-                outStream.write(bytes, 0, bytes.length);
-                outStream.flush();
-                outStream.close();
-            } catch (Exception ex) {
-                out.println("Error: " + ex.getMessage());
-            }
+    <th> No </th>
+    <th> Drug Code </th>
+    <th> Description</th>
+    <th> Price (RM)</th>
+    <th> Total Patient </th>
+    <th> Total Usage </th>
+    <th> Total Amount (RM) </th>
+        <%        String sql = "";
+            sql = "select count(m.drug_cd),count(distinct(m.pmi_no)),m.drug_cd,m.drug_name,pmd2.`D_SELL_PRICE` from lhr_medication m, pis_mdc2 pmd2 where m.drug_cd = pmd2.`UD_MDC_CODE` and m.episode_date between '" + startDate + "' and '" + endDate + "' group by m.drug_cd";
 
+            ArrayList<ArrayList<String>> ps = conn.getData(sql);
+            List empdetails = new LinkedList();
+            JSONObject responseObj = new JSONObject();
+            JSONObject empObj = null;
+            int size = ps.size();
+            for (int i = 0; i < size; i++) {
 
+                String drug_name = ps.get(i).get(4);
+                String drug_usage = ps.get(i).get(0);
+                float drug = Float.parseFloat(drug_usage);
+                String total_patient = ps.get(i).get(1);
+                float totPatient = Float.parseFloat(total_patient);
+                String price = ps.get(i).get(4);
+                float pri = Float.parseFloat(price);
+                float total_amt = drug * totPatient * pri;
+
+//                empObj = new JSONObject();
+//                empObj.put("drug_name", drug_name);
+//                empObj.put("total_amount", total_amt);
+//                empdetails.add(empObj);
+//
+//                responseObj.put("empdetails", empdetails);
+//                out.print(responseObj.toString());
         %>
+</thead>
+<tr>
+    <td>
+        <%= i + 1%>
+    </td>
+    <td>
+        <%= ps.get(i).get(2)%> 
+    </td>
+    <td>
+        <%= ps.get(i).get(3)%>
+        <input type="hidden" id="drug_name" value="<%= ps.get(i).get(3)%>">
+    </td>
+    <td>
+        <%= ps.get(i).get(4)%>
+    </td>
+
+    <td>
+        <%= ps.get(i).get(1)%>
+    </td>
+
+    <td>
+        <%= ps.get(i).get(0)%>
+    </td>
+
+    <td>
+        <%= total_amt%>
+    </td>
+
+</tr>
 
 
-    </body>
-</html>
+<%
+    }
+%>
+
+<script>
+
+    $(document).ready(function () {
+        $('#drugListTable').DataTable({
+            dom: 'Bfrtip',
+            buttons: [
+                'csv', 'excel', 'pdf', 'print'
+            ]
+        });
+
+    });
+</script>

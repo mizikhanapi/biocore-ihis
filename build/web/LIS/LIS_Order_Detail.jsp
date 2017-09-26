@@ -24,7 +24,7 @@
                                 {
                                     %>
                                     alert('<%=error %>');
-                                    location.href = 'MainPage.jsp';
+                                    location.href = 'Order_list';
                                     <%
                                 }
                             } 
@@ -67,7 +67,7 @@
     </div>
     <div class="collapse navbar-collapse" id="bs-sidebar-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li class="active"><a href="MainPage.jsp">Home<span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-home"></span></a></li>
+        <li class="active"><a href="Order_list">Home<span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-home"></span></a></li>
         <li ><a href="#">View Order<span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-th-list"></span></a></li>        
         <li ><a href="#">Order test<span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-tags"></span></a></li>
          <li class="dropdown" id="tab"><a class="dropdown-toggle" data-toggle="dropdown">Maintenance test<span class="caret"></span></a>

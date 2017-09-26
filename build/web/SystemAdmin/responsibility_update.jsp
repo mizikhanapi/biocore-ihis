@@ -13,6 +13,7 @@
 
 <%  
     Conn conn  = new Conn();
+    String hfc_cd = session.getAttribute("HEALTH_FACILITY_CODE").toString();
     
     String roleCode = request.getParameter("roleCode");
     String pageCode = request.getParameter("pageCode");
@@ -21,7 +22,7 @@
     RMIConnector rmic = new RMIConnector();
 
     String sqlUpdate = "UPDATE adm_responsibility SET status = '"+status+"'"+
-                        " WHERE role_code = '"+roleCode+"' AND page_code = '"+pageCode+"'";
+                        " WHERE role_code = '"+roleCode+"' AND page_code = '"+pageCode+"' AND health_facility_code = '"+hfc_cd+"'";
     
     boolean isUpdate = rmic.setQuerySQL(conn.HOST, conn.PORT, sqlUpdate);
     

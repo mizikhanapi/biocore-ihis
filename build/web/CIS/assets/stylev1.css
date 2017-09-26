@@ -59,7 +59,7 @@ subUl{
 
 
 li :hover{
-    background-color: #1484DE;
+    color: #1484DE;
      text-decoration: none;
 }
 li:selected{
@@ -101,9 +101,9 @@ thead{
       width: auto;
   }
   
-  .sub-menu li{
+/*  .sub-menu li{
       margin: 5%;
-  }
+  }*/
 
   body{
       overflow: scroll;
@@ -146,7 +146,7 @@ thead{
         padding-left:30px;
     }
 
-    #matchList{float:left;list-style:none;margin:0;padding:0;width:400px;}
+    #matchList{float:left;list-style:none;margin:0;padding:0;width:100% !important;}
     #matchList li{padding: 10px; background:#FAFAFA;border-bottom:#F0F0F0 1px solid;}
 
     .collapsibleList li{
@@ -170,4 +170,8 @@ select option:first-child{
 
 .modalTextLabel{
     margin: 10px;
+}
+
+.ui-timepicker-container{ 
+     z-index:1151 !important; 
 }

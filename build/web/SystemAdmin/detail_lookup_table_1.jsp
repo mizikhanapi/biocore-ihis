@@ -1,9 +1,12 @@
 
 
 
-<h3><span id="DLT_detailOf"></span></h3>
+<h3>
+    <span id="DLT_detailOf"></span>
+    <input type="hidden" value="" id="DLT_hidden_id_name">
+</h3>
 
-<span id="DLT_detailOf"></span>
+<!--<span id="DLT_detailOf"></span>-->
 <table  id="THE_detailTable"  class="table table-striped table-bordered" cellspacing="0" width="100%">
     <thead>
     <th>Master Code</th>
@@ -155,7 +158,7 @@
 
 
 
-    $('#DLT_btn_update_').on('click', function () {
+    $('#DLT_btn_update_').off('click').on('click', function () {
 
         var masterCode = $('#DLT_masterCode_').val();
         var detailCode = $('#detailCode_').val();
@@ -195,6 +198,8 @@
             $('#DLT_endDate').focus();
 
         } else {
+            
+            detailDesc = detailDesc.replace(/'/g, "\\\'").replace(/"/g, "\\\"");
 
             var data = {
                 masterCode: masterCode,
@@ -214,12 +219,23 @@
                 success: function (datas) {
                     console.log(datas.trim());
                     if (datas.trim() === 'Success') {
-                        $('#detailTable').load('detail_lookup_table_1.jsp');
+                        //$('#detailTable').load('detail_lookup_table_1.jsp');
                         $(".modal-backdrop").hide();
+                        $('.modal').modal('hide');
                         bootbox.alert("A lookup detail code is updated");
-                    } else if (datas.trim() === 'Failed') {
-                        alert("Update failed!");
+                        //backToMasterTab();
+                        var codeName = $('#DLT_hidden_id_name').val();
+                        console.log(codeName);
+                        var tempArr = codeName.split("|");
+                        loadLookupDetailData(tempArr[0].trim(), tempArr[1].trim());
+                        
+                    } 
+                    else if (datas.trim() === 'Failed') {
+                        bootbox.alert("Update failed!");
 
+                    }
+                    else{
+                        bootbox.alert(datas.trim());
                     }
                 },
                 error: function (err) {
@@ -257,12 +273,17 @@
                 url: "detail_lookup_delete.jsp",
                 type: "post",
                 data: data,
-                timeout: 10000, // 10 seconds
+                timeout: 60000, // 10 seconds
                 success: function (datas) {
 
                     if (datas.trim() === 'Success') {
-                        $('#detailTable').load('detail_lookup_table_1.jsp');
+                        //$('#detailTable').load('detail_lookup_table_1.jsp');
                         bootbox.alert("A lookup detail is deleted");
+                        //backToMasterTab();
+                        var codeName = $('#DLT_hidden_id_name').val();
+                        console.log(codeName);
+                        var tempArr = codeName.split("|");
+                        loadLookupDetailData(tempArr[0].trim(), tempArr[1].trim());
                         
                     } else if (datas.trim() === 'Failed') {
                         bootbox.alert("Delete failed!");
@@ -281,13 +302,11 @@
 
         }
             
-        }  );
+        });
         
-
-
-
     });
-
+    
+     
 
 
 </script>  

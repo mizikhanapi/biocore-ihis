@@ -173,5 +173,5 @@
 <jsp:include page="specialistTemplate/ONG/progressNotes-modal.jsp" />
 <jsp:include page="specialistTemplate/ONG/frequentObservationsChart-modal.jsp" />
 <jsp:include page="specialistTemplate/ONG/nurseryFeeding-modal.jsp" />
-<jsp:include page="specialistTemplate/ONG/maternityUnit-modal.jsp" />
+<%--<jsp:include page="specialistTemplate/ONG/maternityUnit-modal.jsp" />--%>
 <jsp:include page="specialistTemplate/ONG/labourSummary-modal.jsp" />

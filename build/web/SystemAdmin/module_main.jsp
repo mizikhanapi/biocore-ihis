@@ -33,7 +33,7 @@
                         <label class="col-md-4 control-label" for="textinput">System Name</label>
                         <div class="col-md-8">
                             <input id="MM_systemName"  type="text" placeholder="Name required" class="form-control input-md" maxlength="120">
-                             <div id="MM_match">
+                             <div id="MM_match" class="search-drop">
                                 <!--for search area-->
                             </div>
                         </div>
@@ -99,6 +99,7 @@
             document.getElementById("MM_systemName").value = "";
             document.getElementById("MM_moduleName").value = "";
             document.getElementById("MM_moduleCode").value = "";
+            $('#MM_match').html('');
                        
         }
 
@@ -120,6 +121,8 @@
             var moduleName = $('#MM_moduleName').val();
             var moduleCode = $('#MM_moduleCode').val();
             var status = $('#MM_status').val();
+            
+            var gotSpecialChar = /[!@#$%^&*()+=,?\/\\:;\"\' ]/.test(moduleCode);  
 
             if (systemCode === "" || systemCode === null) {
                 bootbox.alert("Fill in the system name");
@@ -133,7 +136,11 @@
                 bootbox.alert("Fill in the module code");
                 $('#MM_moduleCode').focus();
 
-            } else if (status !== "1" && status !== "0") {
+            } else if (gotSpecialChar){
+                bootbox.alert("Module code must contain only alphanumeric characters!");
+                $('#MM_moduleCode').val('');
+            }
+            else if (status !== "1" && status !== "0") {
                 alert("Select Any Status");
 
             } else if (isSysCodeExist === false || strSystem !== systemCode) {

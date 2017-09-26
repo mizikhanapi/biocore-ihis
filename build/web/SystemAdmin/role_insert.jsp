@@ -13,24 +13,27 @@
 
 <%           
     Conn conn = new Conn();
+    
+    String hfc_cd = session.getAttribute("HEALTH_FACILITY_CODE").toString();
+    
     String roleName = request.getParameter("roleName");
     String roleCode = request.getParameter("roleCode");
     String status = request.getParameter("status");
     String userID = (String)session.getAttribute("USER_ID");
     
     
-    String sqlCheck = "SELECT role_code from adm_role WHERE role_code = '"+roleCode+"' LIMIT 1 ";
+    String sqlCheck = "SELECT role_code from adm_role WHERE role_code = '"+roleCode+"' AND hfc_cd = '"+hfc_cd+"' LIMIT 1 ";
     ArrayList<ArrayList<String>> duplicate = conn.getData(sqlCheck);
     
     if(duplicate.size() > 0)
     {
-        out.print("Sorry, the role code is already used. Please enter different code.");
+        out.print("Sorry, the role code "+roleCode+" is already used. Please enter different code.");
     }
     else{
         RMIConnector rmic = new RMIConnector();
 
-        String sqlInsert = "INSERT INTO adm_role(role_code, role_name, status, created_by, created_date) "+
-                    "VALUES('"+roleCode+"', '"+roleName+"', '"+status+"', '"+userID+"', now())";
+        String sqlInsert = "INSERT INTO adm_role(role_code, role_name, status, created_by, created_date, hfc_cd) "+
+                    "VALUES('"+roleCode+"', '"+roleName+"', '"+status+"', '"+userID+"', now(), '"+hfc_cd+"')";
 
         boolean isInsert = rmic.setQuerySQL(conn.HOST, conn.PORT, sqlInsert);
 

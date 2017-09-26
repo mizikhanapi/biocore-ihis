@@ -31,7 +31,12 @@
                             <label for="typeCode">Queue Type Code *: </label>
                         </div>
                         <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Queue Type Code " id="typeCode" maxlength="30">
+                            <select class="form-control" id="typeCode" >
+                                <option value=""> -- Select Queue Type -- </option>
+                                <option value="CM">(CM) Common Queue</option>
+                                <option value="FY">(FY) Facility Queue</option>
+                                <option value="PN">(PN) Doctor Queue</option>
+                            </select>
                         </div>
                     </div>
                     <div>

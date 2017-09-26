@@ -146,8 +146,8 @@ public class lhr_FMH {
                                 + "'" + fmh_Obj.getDoctor_Id() + "',"
                                 + "'" + fmh_Obj.getDoctor_Name() + "'," //temp
                                 + "'" + a + "',"
-                                + "'" + b + "',"
                                 + "'" + c + "',"
+                                + "'" + b + "',"
                                 + "'" + d + "',"
                                 + "'"+msh.getSendingFacilityDis()+"',"
                                 + "'"+msh.getSendingFacilitySubDis()+"',"

@@ -1,7 +1,7 @@
 <%-- 
     Document   : changePicture
     Created on : Mar 10, 2017, 12:16:05 AM
-    Author     : user
+    Author     : Ardhi Surya; rdsurya147@gmail.com
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -191,17 +191,24 @@
         $.ajax({
             type: 'POST',
             url: "changePicture_process.jsp",
+            timeout: 60000,
             data: data,
             success: function (data, textStatus, jqXHR) {
                 if (data.trim() === 'success') {
-                    bootbox.alert("Picture is changed");
                     $('#proPic').attr("src", gambarURI);
                     $('#dym').html("");
                     $('#inputFileToLoad').val("");
                     gambarURI = "";
+
+                    bootbox.alert("Picture is changed", function(){
+                        location.reload(true);
+                    });
                 } else {
                     bootbox.alert("Fail");
                 }
+            },
+            error: function (e, ee, err){
+                bootbox.alert("Oopps! "+err);
             }
         });
 
