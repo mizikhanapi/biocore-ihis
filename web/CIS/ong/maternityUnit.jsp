@@ -138,7 +138,7 @@
             success: function (data, textStatus, jqXHR) {
                 var table = data.split("X-RD_split-X");
                 $('#MU_div_theraphyTable').html(table[0]);
-//                $('#MU_div_investigationTable').html(table[1]);
+                $('#MU_div_investigationTable').html(table[1]);
             },
             error: function (jqXHR, textStatus, errorThrown) {
                 $('#MU_div_theraphyTable').html(errorThrown);
@@ -165,8 +165,16 @@
     
     //==============================================================================
  
-    //initialise datepicker and timepicker for continuation modal.
+    //initialise datepicker and timepicker for therapy modal.
     $('#MU_therapyOrderDate').datepicker({
+        changeMonth: true,
+        changeYear: true,
+        dateFormat: 'dd/mm/yy',
+        yearRange: '1990:+0',
+        maxDate: '+0d'
+    });
+    
+    $('#MU_therapyOffDate').datepicker({
         changeMonth: true,
         changeYear: true,
         dateFormat: 'dd/mm/yy',
@@ -179,11 +187,58 @@
         'scrollbar': 'true',
         'minTime': '00:00',
         'maxTime': '23:59',
-        'interval': 1     
+        'interval': 1,
+        'startTime': new Date()
     });
+    
+    $('#MU_therapyOffTime').timepicker({
+        'timeFormat': 'HH:mm',
+        'scrollbar': 'true',
+        'minTime': '00:00',
+        'maxTime': '23:59',
+        'interval': 1,
+        'startTime': new Date()
+    });
+    
+    
+    $('#MU_investigationOrderDate').datepicker({
+        changeMonth: true,
+        changeYear: true,
+        dateFormat: 'dd/mm/yy',
+        yearRange: '1990:+0',
+        maxDate: '+0d'
+    });
+    
+    $('#MU_investigationOffDate').datepicker({
+        changeMonth: true,
+        changeYear: true,
+        dateFormat: 'dd/mm/yy',
+        yearRange: '1990:+0',
+        maxDate: '+0d'
+    });
+    
+    $('#MU_investigationOrderTime').timepicker({
+        'timeFormat': 'HH:mm',
+        'scrollbar': 'true',
+        'minTime': '00:00',
+        'maxTime': '23:59',
+        'interval': 1,
+        'startTime': new Date()
+    });
+    
+    $('#MU_investigationOffTime').timepicker({
+        'timeFormat': 'HH:mm',
+        'scrollbar': 'true',
+        'minTime': '00:00',
+        'maxTime': '23:59',
+        'interval': 1,
+        'startTime': new Date()
+    });
+    
+    //********************************************************* Therapy *************************************************************
 
     $('#ong-maternityUnit1').on('hidden.bs.modal', function(){
-        $('#MU_therapyModalTitle').text("Add Intravenous Therapy ...");
+        $('#MU_therapyModalTitle').text("Add Intravenous Therapy");
         $('#MU_therapy_div_add').show();
         $('#MU_theraphy_div_update').hide();
         $('#MU_theraphyModalID').val('');
@@ -314,6 +369,63 @@
        $('#ong-maternityUnit1').modal('show');
        
     });
+    
+    $('#MU_theraphy_btnUpdate').on('click', function(){
+        if(MU_theraphyFieldCheck()){
+            
+            var id =$('#MU_theraphyModalID').val();
+            var leDate=$('#MU_therapyOrderDate').val();
+            var leTime=$('#MU_therapyOrderTime').val();
+            var therapy=$('#MU_txtTherapy').val();
+            var offDate=$('#MU_therapyOffDate').val();
+            var offTime=$('#MU_therapyOffTime').val();
+            var status=$('#MU_therapyStatus').val();
+
+            therapy = therapy.replace(/'/g, "\\\'").replace(/"/g, "\\\"");
+            
+            var data={
+                id: id,
+                orderDate: leDate,
+                orderTime: leTime,
+                therapy: therapy,
+                offDate: offDate,
+                offTime: offTime,
+                status: status,
+                process: 'update',
+                type: 'T'
+            };
+            
+            createScreenLoading()
+            $.ajax({
+                type: 'POST',
+                timeout: 60000,
+                url: "specialistTemplate/ONG/MU_control/controller.jsp",
+                data: data,
+                success: function (reply, textStatus, jqXHR) {
+                    if(reply.trim()==="success"){
+                        MU_loadData();
+                        bootbox.alert("Therapy order is updated successfully.");
+                        $('#ong-maternityUnit1').modal('hide');
+
+                    }
+                    else if(reply.trim()==="fail"){
+                        bootbox.alert("Failed to update therapy order.");
+                    }
+                    else{
+                        bootbox.alert(reply.trim());
+                    }
+
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    bootbox.alert("Oops! "+ errorThrown);
+                },
+                complete: function (jqXHR, textStatus) {
+                    destroyScreenLoading();
+                }
+            });
+        }
+    });
+    
     //=============================================
     
     //----------- delete therapy-------------------
@@ -383,5 +495,274 @@
         
     });
     //=============================================
+    //********************************************************* Therapy end *************************************************************
+    
+    //********************************************* Investigation ********************************************************************
+    //---reset modal
+     $('#ong-maternityUnit2').on('hidden.bs.modal', function(){
+        $('#MU_investigationModalTitle').text("Add Investigation");
+        $('#MU_investigation_div_add').show();
+        $('#MU_investigation_div_update').hide();
+        $('#MU_investigationModalID').val('');
+        $('#MU_investigationForm')[0].reset();
+    });
+    
+    //---check field
+    function MU_investigationFieldCheck(){
+        var isComplete=true;
+        var msg="";
+        
+        var leDate=$('#MU_investigationOrderDate').val();
+        var leTime=$('#MU_investigationOrderTime').val();
+        var investigation=$('#MU_txtInvestigation').val();
+        
+        var offDate=$('#MU_investigationOffDate').val();
+        var offTime=$('#MU_investigationOffTime').val();
+        
+        if(leDate===""){
+            isComplete=false;
+            msg="Please fill in the order date.";
+        }
+        else if(leTime===""){
+            isComplete=false;
+            msg="Please fill in the order time.";
+        }
+        else if(investigation===""){
+            isComplete=false;
+            msg="Please fill in the investigation.";
+        }
+        else if(offTime==="" && offDate!==""){
+            isComplete=false;
+            msg="Please fill in the off time.";
+        }
+        else if(offTime!=="" && offDate===""){
+            isComplete=false;
+            msg="Please fill in the off date.";
+        }
+        
+        if(!isComplete){
+            bootbox.alert(msg);
+        }
+        
+        return isComplete;
+    }
+    
+    //---------------- Add button clicked -----------
+        $('#MU_investigationBtnAdd').on('click', function(){
+            if(MU_investigationFieldCheck()){
+                var leDate=$('#MU_investigationOrderDate').val();
+                var leTime=$('#MU_investigationOrderTime').val();
+                var investigation=$('#MU_txtInvestigation').val();
+
+                var offDate=$('#MU_investigationOffDate').val();
+                var offTime=$('#MU_investigationOffTime').val();
+                var status=$('#MU_investigationStatus').val();
+                
+                investigation = investigation.replace(/'/g, "\\\'").replace(/"/g, "\\\"");
+                
+                var data={
+                    orderDate: leDate,
+                    orderTime: leTime,
+                    investigation: investigation,
+                    offDate: offDate,
+                    offTime: offTime,
+                    status: status,
+                    process: 'add',
+                    type: 'I'
+                };
+                createScreenLoading();
+                $.ajax({
+                    type: 'POST',
+                    timeout: 60000,
+                    url: "specialistTemplate/ONG/MU_control/controller.jsp",
+                    data: data,
+                    success: function (reply, textStatus, jqXHR) {
+                        if(reply.trim()==="success"){
+                            MU_loadData();
+                            bootbox.alert("Investigation order is added successfully.");
+                            $('#ong-maternityUnit2').modal('hide');
+                            
+                        }
+                        else if(reply.trim()==="fail"){
+                            bootbox.alert("Failed to add investigation order.");
+                        }
+                        else{
+                            bootbox.alert(reply.trim());
+                        }
+                        
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                        bootbox.alert("Oops! "+ errorThrown);
+                    },
+                    complete: function (jqXHR, textStatus) {
+                        destroyScreenLoading();
+                    }
+                });
+            }
+        });
+    //===============================================
+    
+    
+    //---------- update investigation -------------------
+    $('#MU_div_investigationTable').on('click', '#MU_investigationUpdateModal', function(){
+       var hidden = $(this).closest('tr').find('#MU_investigationHidden').val();
+       var array = hidden.split("|");
+       
+       var id=array[0], orderDate=array[1], orderTime=array[2], therapy=array[3], offDate=array[4], offTime=array[5], status=array[6];
+       
+       $('#MU_investigationModalID').val(id);
+       $('#MU_investigationOrderDate').val(orderDate);
+       $('#MU_investigationOrderTime').val(orderTime);
+       $('#MU_txtInvestigation').val(therapy);
+       $('#MU_investigationStatus').val(status);
+       
+       if(offDate == null || offDate==="null"){
+           offDate="";
+       }
+       
+       if(offTime == null || offTime === "null"){
+           offTime="";
+       }
+       
+       $('#MU_investigationOffDate').val(offDate);
+       $('#MU_investigationOffTime').val(offTime);
+       
+       $('#MU_therapyModalTitle').text("Update Investigation");
+       $('#MU_investigation_div_update').show();
+       $('#MU_investigation_div_add').hide();
+       
+       $('#ong-maternityUnit2').modal('show');
+       
+    });
+    
+    $('#MU_investigationBtnUpdate').on('click', function(){
+        if(MU_investigationFieldCheck()){
+            
+            var id =$('#MU_investigationModalID').val();
+            var leDate=$('#MU_investigationOrderDate').val();
+            var leTime=$('#MU_investigationOrderTime').val();
+            var investigation=$('#MU_txtInvestigation').val();
+
+            var offDate=$('#MU_investigationOffDate').val();
+            var offTime=$('#MU_investigationOffTime').val();
+            var status=$('#MU_investigationStatus').val();
+
+            investigation = investigation.replace(/'/g, "\\\'").replace(/"/g, "\\\"");
+            
+            
+            var data={
+                id: id,
+                orderDate: leDate,
+                orderTime: leTime,
+                investigation: investigation,
+                offDate: offDate,
+                offTime: offTime,
+                status: status,
+                process: 'update',
+                type: 'I'
+            };
+            
+            createScreenLoading();
+            $.ajax({
+                type: 'POST',
+                timeout: 60000,
+                url: "specialistTemplate/ONG/MU_control/controller.jsp",
+                data: data,
+                success: function (reply, textStatus, jqXHR) {
+                    if(reply.trim()==="success"){
+                        MU_loadData();
+                        bootbox.alert("Investigation order is updated successfully.");
+                        $('#ong-maternityUnit2').modal('hide');
+
+                    }
+                    else if(reply.trim()==="fail"){
+                        bootbox.alert("Failed to update investigation order.");
+                    }
+                    else{
+                        bootbox.alert(reply.trim());
+                    }
+
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    bootbox.alert("Oops! "+ errorThrown);
+                },
+                complete: function (jqXHR, textStatus) {
+                    destroyScreenLoading();
+                }
+            });
+        }
+    });
+    
+    //=============================================
+    
+    
+     //----------- delete investigation-------------------
+    $('#MU_div_investigationTable').on('click', '#MU_investigationBtnDelete', function(){
+        var hidden = $(this).closest('tr').find('#MU_investigationHidden').val();
+        var array = hidden.split("|");
+        
+        var id = array[0];
+        var name = array[3];
+        
+        bootbox.confirm({
+            title: "Delete item?",
+            message: "Are you sure you want to delete "+ name + "?",
+            buttons: {
+                confirm: {
+                    label: "Yes",
+                    className: "btn-success"
+                },
+                cancel: {
+                    label: "No",
+                    className: "btn-danger"
+                }
+            },
+            callback: function (result) {
+
+                if (result) {
+                    var data = {
+                        id: id,
+                        process:'delete',
+                        type:'I'
+                    };
+
+                    var msg = "";
+
+                    createScreenLoading();
+                    $.ajax({
+                        type: 'POST',
+                        url: "specialistTemplate/ONG/MU_control/controller.jsp",
+                        timeout: 60000,
+                        data: data,
+                        success: function (data, textStatus, jqXHR) {
+                            if (data.trim() === 'success') {
+                                msg = "Order " + name + " is deleted.";
+                                MU_loadData();
+                            } else if (data.trim() === 'fail') {
+                                msg = "Failed to delete order " +name;
+                            }
+                            else{
+                                msg=data.trim();
+                            }
+
+                        },
+                        error: function (jqXHR, textStatus, errorThrown) {
+                            msg = "Oopps! " + errorThrown;
+                        },
+                        complete: function (jqXHR, textStatus) {
+                            destroyScreenLoading();
+                            bootbox.alert(msg);
+
+                        }
+
+                    });
+
+                }
+            }
+        });
+        
+    });
+    //=============================================
+    //******************************************** Investigation end ****************************************************************
     
 </script>

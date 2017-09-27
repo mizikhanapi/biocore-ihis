@@ -32,6 +32,17 @@
             mu.addTherapy(orderDate, orderTime, therapy, offDate, offTime, status);
                        
         }
+        else if(process.equalsIgnoreCase("update")){
+            String orderDate = request.getParameter("orderDate");            
+            String orderTime = request.getParameter("orderTime");            
+            String therapy = request.getParameter("therapy"); 
+            String offDate = request.getParameter("offDate");
+            String offTime = request.getParameter("offTime");
+            String status = request.getParameter("status");
+            String item_id = request.getParameter("id");
+            
+            mu.updateTherapy(item_id, orderDate, orderTime, therapy, offDate, offTime, status);
+        }
         else if(process.equalsIgnoreCase("delete")){
             String id = request.getParameter("id");
             mu.deleteTherapy(id);
@@ -39,7 +50,33 @@
     
     }
     else{ //investigation process
-    
+        if(process.equalsIgnoreCase("add")){
+            String orderDate = request.getParameter("orderDate");            
+            String orderTime = request.getParameter("orderTime");            
+            String investigation = request.getParameter("investigation"); 
+            String offDate = request.getParameter("offDate");
+            String offTime = request.getParameter("offTime");
+            String status = request.getParameter("status");
+                     
+            mu.addInvestigation(orderDate, orderTime, investigation, offDate, offTime, status);
+            
+        }
+        else if(process.equalsIgnoreCase("update")){
+            String orderDate = request.getParameter("orderDate");            
+            String orderTime = request.getParameter("orderTime");            
+            String investigation = request.getParameter("investigation"); 
+            String offDate = request.getParameter("offDate");
+            String offTime = request.getParameter("offTime");
+            String status = request.getParameter("status");
+            String item_id = request.getParameter("id");
+            
+            mu.updateInvestigation(item_id, orderDate, orderTime, investigation, offDate, offTime, status);
+            
+        }
+        else if(process.equalsIgnoreCase("delete")){
+            String id = request.getParameter("id");
+            mu.deleteInvestigation(id);
+        }
     }
     
     out.print(mu.getMessage());
