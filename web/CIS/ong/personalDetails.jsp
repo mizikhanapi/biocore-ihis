@@ -8,7 +8,7 @@
     <div class="col-md-8">
         <h4>Consultation Notes</h4>
     </div>
-    <div class="col-md-4" style="padding-top: 20px">
+    <div class="col-md-4 hidden" style="padding-top: 20px">
         <label class="col-sm-6 control-label text-right" for="formGroupInputLarge">View history assessment:</label>
         <div class="col-sm-6" style="padding-right: 0px;">
             <select class="form-control">
@@ -22,7 +22,7 @@
             </select>
         </div>
     </div>
-    <div class="col-md-6 col-md-offset-6 text-right margin-bottom-30px">
+    <div class="col-md-6 col-md-offset-6 text-right margin-bottom-30px hidden">
         <div class="col-sm-12 form-inline" style="padding-right: 0px;">
             <div class="form-group">
                 <label for="exampleInputName2">Start</label>
@@ -37,14 +37,19 @@
     </div>
 </div>
 
-<div class="well well-sm well-primary">
+<div class="well well-sm well-primary" id="PIdiv">
     <div class="row">
         <div class="col-xs-3">
             <dt style="font-size: 18px;">Personal Info</dt>
         </div>
         <div class="col-xs-3">
             <dt style="font-size: 18px;">Gravida: </dt>
-            <dd class="summary">Gravida Info</dd>
+            <dd class="">Gravida: <strong>Broken.pdf</strong></dd>
+            <dd class="">Parity: <strong>Broken.pdf</strong> </dd>
+            <dd class="">LMP  <strong>Broken.pdf</strong></dd>
+            <dd class="">EDD  <strong>Broken.pdf</strong> </dd>
+            <dd class="">Scan EDD  <strong>Broken.pdf</strong></dd>
+            <dd class="">Period Cycle  <strong>Broken.pdf</strong></dd>
         </div>
         <div class="col-xs-3">
             <dt style="font-size: 18px;">Past History: </dt>
