@@ -12,7 +12,8 @@
         <label class="col-sm-6 control-label text-right" for="formGroupInputLarge">View history assessment:</label>
         <div class="col-sm-6 soap-select" style="padding-right: 0px;">
             <select class="form-control" id="LS_viewBy">
-                <option value="all">View by</option>
+                <option value="all" selected disabled>View by</option>
+                <option value="all">All</option>
                 <option value="0">Today</option>
                 <option value="1">Yesterday</option>
                 <option value="7">7 Days</option>
@@ -22,6 +23,8 @@
             </select>
         </div>
     </div>
+    
+    
     <div class="col-md-6 col-md-offset-6 text-right margin-bottom-30px">
         <div class="col-sm-12 form-inline" style="padding-right: 0px; display: none;" id="LS_div_selectDate">
             <div class="form-group">
@@ -40,22 +43,31 @@
 <div class="panel panel-default">
     <div class="panel-body">
         <div class="row">
-            <div class="col-xs-3">
-                <dd>Labour Onset: <strong>Spontaneous</strong></dd>
-            </div>
-            <div class="col-xs-3">
-                <dd>Delivery Date & Time: <strong>15/06/2017</strong> | <strong>10:43PM</strong></dd>
-                <dd>Vaginal: <strong>Vaccum Delivery</strong></dd>
-                <dd>Operative: <strong>Emergency</strong></dd>
-            </div>
-            <div class="col-xs-3">
-                <dt>3rd Stage:</dt>
-                <dd>Blood loss: <strong>10 ml</strong></dd>
-                <dd>Placenta: <strong>Complete</strong></dd>
-            </div>
-            <div class="col-xs-3">
-                <dt>Other:</dt>
-                <dd>Cord Round Neck, Repaired By blablabla</dd>
+            <div class="col-xs-12">
+                <div class="media">
+                    <div class="col-xs-3">
+                        <dd>Labour Onset: <strong>Spontaneous</strong></dd>
+                    </div>
+                    <div class="col-xs-3">
+                        <dd>Delivery Date & Time: <strong>15/06/2017</strong> | <strong>10:43PM</strong></dd>
+                        <dd>Vaginal: <strong>Vaccum Delivery</strong></dd>
+                        <dd>Operative: <strong>Emergency</strong></dd>
+                    </div>
+                    <div class="col-xs-3">
+                        <dt>3rd Stage:</dt>
+                        <dd>Blood loss: <strong>10 ml</strong></dd>
+                        <dd>Placenta: <strong>Complete</strong></dd>
+                    </div>
+                    <div class="col-xs-3">
+                        <dt>Other:</dt>
+                        <dd>Cord Round Neck, Repaired By blablabla</dd>
+                    </div>
+                    <div style="position: absolute; bottom: 0px; right: 15px;">
+                        <a style="vertical-align: middle;" href="#"><i class="fa fa-pencil-square-o fa-lg" aria-hidden="true" style=" color: #337ab7;"></i></a>
+                        &nbsp;&nbsp;&nbsp;
+                        <a href="#"><i class="fa fa-times fa-lg" aria-hidden="true" style="color: #d9534f;"></i></a>
+                    </div>
+                </div>
             </div>
         </div>  
     </div>
@@ -100,28 +112,37 @@
 <div class="panel panel-default">
     <div class="panel-body">
         <div class="row">
-            <div class="col-xs-3">
-                <dt style="font-size: 18px;">INFANT - Birth Record</dt>
-                <dd>Alive?: <strong>Yes</strong></dd>
-                <dd>Other: <strong>State your comments</strong></dd>
-            </div>
-            <div class="col-xs-3">
-                <dd>Infant Tag No.: <strong>00012</strong> | <strong>10:43PM</strong></dd>
-                <dd>Date of Birth: <strong>15/06/2017</strong></dd>
-                <dd>Time: <strong>3:59 PM</strong></dd>
-                <dd>Sex: <strong>Male</strong></dd>
-            </div>
-            <div class="col-xs-3">
-                <dd>Birth Weight: <strong>36gms</strong></dd>
-                <dd>Head Circumference: <strong>180cm</strong></dd>
-                <dd>Apgar Score: 1 Min.: <strong>65</strong> | 5 Min.: <strong>75</strong> | 10 Min.: <strong>50</strong></dd>
-                <dd>Length: <strong>500cm</strong></dd>
-            </div>
-            <div class="col-xs-3">
-                <dd>Cord Blood Collected: <strong>Yes</strong></dd>
-                <dd>Vitamin K: <strong>Yes</strong> | Hepatitis B Vaccine: <strong>No</strong></dd>
-                <dd>Foetal Abnormality: <strong>Normal</strong></dd>
-            </div>
+            <div class="col-xs-12">
+               <div class="media">
+                    <div class="col-xs-3">
+                        <dt style="font-size: 18px;">INFANT - Birth Record</dt>
+                        <dd>Alive?: <strong>Yes</strong></dd>
+                        <dd>Other: <strong>State your comments</strong></dd>
+                    </div>
+                    <div class="col-xs-3">
+                        <dd>Infant Tag No.: <strong>00012</strong> | <strong>10:43PM</strong></dd>
+                        <dd>Date of Birth: <strong>15/06/2017</strong></dd>
+                        <dd>Time: <strong>3:59 PM</strong></dd>
+                        <dd>Sex: <strong>Male</strong></dd>
+                    </div>
+                    <div class="col-xs-3">
+                        <dd>Birth Weight: <strong>36gms</strong></dd>
+                        <dd>Head Circumference: <strong>180cm</strong></dd>
+                        <dd>Apgar Score: 1 Min.: <strong>65</strong> | 5 Min.: <strong>75</strong> | 10 Min.: <strong>50</strong></dd>
+                        <dd>Length: <strong>500cm</strong></dd>
+                    </div>
+                    <div class="col-xs-3">
+                        <dd>Cord Blood Collected: <strong>Yes</strong></dd>
+                        <dd>Vitamin K: <strong>Yes</strong> | Hepatitis B Vaccine: <strong>No</strong></dd>
+                        <dd>Foetal Abnormality: <strong>Normal</strong></dd>
+                    </div>
+                    <div style="position: absolute; bottom: 0px; right: 15px;">
+                        <a style="vertical-align: middle;" href="#"><i class="fa fa-pencil-square-o fa-lg" aria-hidden="true" style=" color: #337ab7;"></i></a>
+                        &nbsp;&nbsp;&nbsp;
+                        <a href="#"><i class="fa fa-times fa-lg" aria-hidden="true" style="color: #d9534f;"></i></a>
+                    </div>
+                </div>
+            </div> 
         </div>  
     </div>
 </div>
@@ -129,24 +150,36 @@
 <div class="panel panel-default">
     <div class="panel-body">
         <div class="row">
-            <div class="col-xs-3">
-                <dt style="font-size: 18px;">MOTHER - Transfer Observations</dt>
-            </div>
-            <div class="col-xs-3">
-                <dd>Pulse: <strong>128</strong></dd>
-                <dd>Blood Pressure: <strong>123</strong></dd>
-            </div>
-            <div class="col-xs-3">
-                <dd>Uterus: <strong>36gms</strong></dd>
-                <dd>Perineum: <strong>180cm</strong></dd>
-            </div>
-            <div class="col-xs-3">
-                <dd>Time: <strong>4:16 PM</strong></dd>
-                <dd>Doctor/Nurse: <strong>Dr Mira Filzah</strong></dd>
+            <div class="col-xs-12">
+                <div class="media">
+                    <div class="col-xs-3">
+                        <dt style="font-size: 18px;">MOTHER - Transfer Observations</dt>
+                    </div>
+                    <div class="col-xs-3">
+                        <dd>Pulse: <strong>128</strong></dd>
+                        <dd>Blood Pressure: <strong>123</strong></dd>
+                    </div>
+                    <div class="col-xs-3">
+                        <dd>Uterus: <strong>36gms</strong></dd>
+                        <dd>Perineum: <strong>180cm</strong></dd>
+                    </div>
+                    <div class="col-xs-3">
+                        <dd>Time: <strong>4:16 PM</strong></dd>
+                        <dd>Doctor/Nurse: <strong>Dr Mira Filzah</strong></dd>
+                    </div>
+                    <div style="position: absolute; bottom: 0px; right: 15px;">
+                        <a style="vertical-align: middle;" href="#"><i class="fa fa-pencil-square-o fa-lg" aria-hidden="true" style=" color: #337ab7;"></i></a>
+                        &nbsp;&nbsp;&nbsp;
+                        <a href="#"><i class="fa fa-times fa-lg" aria-hidden="true" style="color: #d9534f;"></i></a>
+                    </div>
+                </div>
             </div>
         </div>  
     </div>
 </div>
+
+
+<jsp:include page="specialistTemplate/ONG/labourSummary-modal.jsp" />
 
 <script type="text/javascript">
      //--- initialise datepicker for from ----
