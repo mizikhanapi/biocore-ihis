@@ -13,7 +13,7 @@
                 <div class="tabbable-line">
                     <ul class="nav nav-tabs ">
                         <li class="active">
-                            <a href="#ONG_1" data-toggle="tab" aria-expanded="false">
+                            <a href="#ONG_1" data-toggle="tab" aria-expanded="false" id="tabPI">
                                 <i class="fa fa-info-circle fa-lg"></i> Personal Details </a>
                         </li>
                         <li class="">
@@ -55,7 +55,6 @@
                         <div class="tab-pane active fade in" id="ONG_1">
                             <ul class="soap-content nav">
                                 <li><a data-toggle="modal" data-target="#ong-pDetails1" href="" class="soap-select"><i class="fa fa-comments  fa-li"></i> Gravida</a></li>
-                                <li><a data-toggle="modal" data-target="#ong-pDetails2" href=""  class="soap-select"><i class="fa fa-history  fa-li"></i> Past History</a></li>
                                 <li><a data-toggle="modal" data-target="#ong-pDetails3" href=""  class="soap-select"><i class="fa fa-medkit  fa-li"></i> Previous Pregnancy</a></li>
                             </ul>
                             <hr class="pemisah" />
@@ -175,3 +174,12 @@
 <jsp:include page="specialistTemplate/ONG/nurseryFeeding-modal.jsp" />
 <%--<jsp:include page="specialistTemplate/ONG/maternityUnit-modal.jsp" />--%>
 <jsp:include page="specialistTemplate/ONG/labourSummary-modal.jsp" />
+<script>
+    $('#tabPI').on('click',function(){
+        var pmi_no = pmiNo;
+        var hfc_cd1 = hfc_cd;
+        var x = pmi_no + "|" + hfc_cd1;
+        getPI(x);
+    });
+    
+</script>
