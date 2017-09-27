@@ -8,6 +8,9 @@
 $(document).ready(function () {
     
     $('#CIS030001').on('show.bs.modal',function(e){
+        
+        searching("tCISSubDGSSearch", "tCISSubDGSSearchLoading", "search/ResultDGSSearch.jsp", "search/ResultDGSSearchCode.jsp", "dgsCode");
+        searching("tCISSubDGSSearchPersonalised", "tCISSubDGSSearchLoading", "search/ResultDGSPersonaliseSearch.jsp", "dgsCode", "search/ResultDGSPersonaliseSearchCode.jsp");
         $("#tCISSubDGSSearchPersonalised-flexdatalist").hide();
     });
     
@@ -69,12 +72,11 @@ $(document).ready(function () {
     });
 
 
-    searching("tCISSubDGSSearch", "tCISSubDGSSearchLoading", "search/ResultDGSSearch.jsp", "search/ResultDGSSearchCode.jsp", "dgsCode");
-    searching("tCISSubDGSSearchPersonalised", "tCISSubDGSSearchLoading", "search/ResultDGSPersonaliseSearch.jsp", "dgsCode", "search/ResultDGSPersonaliseSearchCode.jsp");
+
     //function searching Diagnosis Ajax
     function searching(fieldId, loadingDivId, urlData, urlCode, codeFieldId) {
         $('#' + fieldId).flexdatalist({
-            minLength: 3,
+            minLength: 1,
             searchIn: 'name',
             searchDelay: 2000,
             //data:arrayDGSDataAjax,
