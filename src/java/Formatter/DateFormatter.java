@@ -18,11 +18,19 @@ import java.util.logging.Logger;
  */
 public class DateFormatter {
 
-    public static String formatDate(String date, String initDateFormat, String endDateFormat) throws ParseException {
+    public static String formatDate(String date, String initDateFormat, String endDateFormat) {
 
-        Date initDate = new SimpleDateFormat(initDateFormat).parse(date);
-        SimpleDateFormat formatter = new SimpleDateFormat(endDateFormat);
-        String parsedDate = formatter.format(initDate);
+        Date initDate;
+        String parsedDate="0000-00-00 00:00:00";
+        try {
+            initDate = new SimpleDateFormat(initDateFormat).parse(date);
+            SimpleDateFormat formatter = new SimpleDateFormat(endDateFormat);
+            parsedDate = formatter.format(initDate);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            return "0000-00-00 00:00:00";
+        }
+       
 
         return parsedDate;
     }

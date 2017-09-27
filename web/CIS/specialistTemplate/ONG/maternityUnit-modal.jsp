@@ -12,13 +12,13 @@
                 <h4 class="modal-title" id="MU_therapyModalTitle">Add Intravenous Therapy</h4>
             </div>
             <div class="modal-body">
-                <form>
-                    <input type="hidden" id="MU_modal_id">
+                <form id="MU_theraphyForm">
+                    <input type="hidden" id="MU_theraphyModalID">
                     <div class="row">
                         <div class="col-md-6">
                             <!-- Text input-->
                             <div class="form-group">
-                                <label class="col-md-12 control-label" for="textinput">Date</label>
+                                <label class="col-md-12 control-label" for="textinput">Order Date</label>
                                 <div class="col-md-12">
                                     <input type="text" class="form-control input-md" id="MU_therapyOrderDate" placeholder="Pick a date (dd/mm/yyyy)" readonly>
                                 </div>
@@ -27,7 +27,7 @@
                         <div class="col-md-6">
                             <!-- Text input-->
                             <div class="form-group">
-                                <label class="col-md-12 control-label" for="textinput">Time</label>
+                                <label class="col-md-12 control-label" for="textinput">Order Time</label>
                                 <div class="col-md-12">
                                     <input type="text" class="form-control input-md" id="MU_therapyOrderTime" placeholder="Pick a time (hh:mm:ss)" readonly>
                                 </div>
@@ -41,10 +41,42 @@
                             <div class="form-group">
 
                                 <div class="col-md-12">
-                                    <textarea id="MU_txtTherapy" class="form-control input-lg" placeholder="Insert Intravenous Therapy..." tabindex="3"></textarea>
+                                    <textarea id="MU_txtTherapy" class="form-control input-lg" placeholder="Insert Intravenous Therapy..." tabindex="3" maxlength="230"></textarea>
                                 </div>
                             </div>
                         </div>
+                    </div>
+                     <div class="row">
+                        <div class="col-md-6">
+                            <!-- Text input-->
+                            <div class="form-group">
+                                <label class="col-md-12 control-label" for="textinput">Off Date</label>
+                                <div class="col-md-12">
+                                    <input type="text" class="form-control input-md" id="MU_therapyOffDate" placeholder="Pick a date (dd/mm/yyyy)" readonly>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <!-- Text input-->
+                            <div class="form-group">
+                                <label class="col-md-12 control-label" for="textinput">Off Time</label>
+                                <div class="col-md-12">
+                                    <input type="text" class="form-control input-md" id="MU_therapyOffTime" placeholder="Pick a time (hh:mm:ss)" readonly>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group">
+                                <label class="col-md-12 control-label" for="textinput">Status</label>
+                                <div class="col-md-12">
+                                    <select class="form-control input-md"  id="MU_therapyStatus">
+                                        <option  value="0" >Have not follow up</option>
+                                        <option  value="1" >Results noted to doctor</option>
+                                        <option  value="2" >Results already traced</option>
+                                    </select>
+                                </div>
+                            </div>
                     </div>
 
                 </form>

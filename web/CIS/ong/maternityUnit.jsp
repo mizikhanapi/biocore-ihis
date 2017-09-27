@@ -12,7 +12,7 @@
         <label class="col-sm-6 control-label text-right" for="formGroupInputLarge">View history assessment:</label>
         <div class="col-sm-6" style="padding-right: 0px;">
             <select class="form-control soap-select" id="MU_viewBy">
-                <option value="" disabled="">View by</option>
+                <option value="" disabled selected>View by</option>
                 <option value="all">All</option>
                 <option value="0">Today</option>
                 <option value="1">Yesterday</option>
@@ -136,7 +136,7 @@
             timeout: 60000,
             url: "specialistTemplate/ONG/MU_control/retrieve_table.jsp",
             success: function (data, textStatus, jqXHR) {
-                var table = data.split("</RD_split>");
+                var table = data.split("X-RD_split-X");
                 $('#MU_div_theraphyTable').html(table[0]);
 //                $('#MU_div_investigationTable').html(table[1]);
             },
@@ -186,6 +186,202 @@
         $('#MU_therapyModalTitle').text("Add Intravenous Therapy ...");
         $('#MU_therapy_div_add').show();
         $('#MU_theraphy_div_update').hide();
-    });   
+        $('#MU_theraphyModalID').val('');
+        $('#MU_theraphyForm')[0].reset();
+    });
+    
+    function MU_theraphyFieldCheck(){
+        var isComplete=true;
+        var msg="";
+        
+        var leDate=$('#MU_therapyOrderDate').val();
+        var leTime=$('#MU_therapyOrderTime').val();
+        var therapy=$('#MU_txtTherapy').val();
+        
+        var offDate=$('#MU_therapyOffDate').val();
+        var offTime=$('#MU_therapyOffTime').val();
+        
+        if(leDate===""){
+            isComplete=false;
+            msg="Please fill in the order date.";
+        }
+        else if(leTime===""){
+            isComplete=false;
+            msg="Please fill in the order time.";
+        }
+        else if(therapy===""){
+            isComplete=false;
+            msg="Please fill in the therapy.";
+        }
+        else if(offTime==="" && offDate!==""){
+            isComplete=false;
+            msg="Please fill in the off time.";
+        }
+        else if(offTime!=="" && offDate===""){
+            isComplete=false;
+            msg="Please fill in the off date.";
+        }
+        
+        if(!isComplete){
+            bootbox.alert(msg);
+        }
+        
+        return isComplete;
+    }
+    
+    //---------------- Add button clicked -----------
+        $('#MU_therapy_btnAdd').on('click', function(){
+            if(MU_theraphyFieldCheck()){
+                var leDate=$('#MU_therapyOrderDate').val();
+                var leTime=$('#MU_therapyOrderTime').val();
+                var therapy=$('#MU_txtTherapy').val();
+                var offDate=$('#MU_therapyOffDate').val();
+                var offTime=$('#MU_therapyOffTime').val();
+                var status=$('#MU_therapyStatus').val();
+                
+                therapy = therapy.replace(/'/g, "\\\'").replace(/"/g, "\\\"");
+                
+                var data={
+                    orderDate: leDate,
+                    orderTime: leTime,
+                    therapy: therapy,
+                    offDate: offDate,
+                    offTime: offTime,
+                    status: status,
+                    process: 'add',
+                    type: 'T'
+                };
+                createScreenLoading();
+                $.ajax({
+                    type: 'POST',
+                    timeout: 60000,
+                    url: "specialistTemplate/ONG/MU_control/controller.jsp",
+                    data: data,
+                    success: function (reply, textStatus, jqXHR) {
+                        if(reply.trim()==="success"){
+                            MU_loadData();
+                            bootbox.alert("Therapy order is added successfully.");
+                            $('#ong-maternityUnit1').modal('hide');
+                            
+                        }
+                        else if(reply.trim()==="fail"){
+                            bootbox.alert("Failed to add therapy order.");
+                        }
+                        else{
+                            bootbox.alert(reply.trim());
+                        }
+                        
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                        bootbox.alert("Oops! "+ errorThrown);
+                    },
+                    complete: function (jqXHR, textStatus) {
+                        destroyScreenLoading();
+                    }
+                });
+            }
+        });
+    //===============================================
+    
+    //---------- update therapy -------------------
+    $('#MU_div_theraphyTable').on('click', '#MU_therapyUpdateModal', function(){
+       var hidden = $(this).closest('tr').find('#MU_theraphyHidden').val();
+       var array = hidden.split("|");
+       
+       var id=array[0], orderDate=array[1], orderTime=array[2], therapy=array[3], offDate=array[4], offTime=array[5], status=array[6];
+       
+       $('#MU_theraphyModalID').val(id);
+       $('#MU_therapyOrderDate').val(orderDate);
+       $('#MU_therapyOrderTime').val(orderTime);
+       $('#MU_txtTherapy').val(therapy);
+       $('#MU_therapyStatus').val(status);
+       
+       if(offDate == null || offDate==="null"){
+           offDate="";
+       }
+       
+       if(offTime == null || offTime === "null"){
+           offTime="";
+       }
+       
+       $('#MU_therapyOffDate').val(offDate);
+       $('#MU_therapyOffTime').val(offTime);
+       
+       $('#MU_therapyModalTitle').text("Update Intravenous Therapy");
+       $('#MU_theraphy_div_update').show();
+       $('#MU_therapy_div_add').hide();
+       
+       $('#ong-maternityUnit1').modal('show');
+       
+    });
+    //=============================================
+    
+    //----------- delete therapy-------------------
+    $('#MU_div_theraphyTable').on('click', '#MU_therapyBtnDelete', function(){
+        var hidden = $(this).closest('tr').find('#MU_theraphyHidden').val();
+        var array = hidden.split("|");
+        
+        var id = array[0];
+        var name = array[3];
+        
+        bootbox.confirm({
+            title: "Delete item?",
+            message: "Are you sure you want to delete "+ name + "?",
+            buttons: {
+                confirm: {
+                    label: "Yes",
+                    className: "btn-success"
+                },
+                cancel: {
+                    label: "No",
+                    className: "btn-danger"
+                }
+            },
+            callback: function (result) {
+
+                if (result) {
+                    var data = {
+                        id: id,
+                        process:'delete',
+                        type:'T'
+                    };
+
+                    var msg = "";
+
+                    createScreenLoading();
+                    $.ajax({
+                        type: 'POST',
+                        url: "specialistTemplate/ONG/MU_control/controller.jsp",
+                        timeout: 60000,
+                        data: data,
+                        success: function (data, textStatus, jqXHR) {
+                            if (data.trim() === 'success') {
+                                msg = "Order " + name + " is deleted.";
+                                MU_loadData();
+                            } else if (data.trim() === 'fail') {
+                                msg = "Failed to delete order " +name;
+                            }
+                            else{
+                                msg=data.trim();
+                            }
+
+                        },
+                        error: function (jqXHR, textStatus, errorThrown) {
+                            msg = "Oopps! " + errorThrown;
+                        },
+                        complete: function (jqXHR, textStatus) {
+                            destroyScreenLoading();
+                            bootbox.alert(msg);
+
+                        }
+
+                    });
+
+                }
+            }
+        });
+        
+    });
+    //=============================================
     
 </script>

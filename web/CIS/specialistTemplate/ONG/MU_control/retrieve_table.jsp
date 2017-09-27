@@ -3,8 +3,8 @@
     Created on : Sep 25, 2017, 10:50:56 AM
     Author     : user
 --%>
+<%@page  import="Formatter.DateFormatter"%>
 <%@page import="java.util.ArrayList"%>
-<%@page import="Formatter.DateFormatter"%>
 <%@page import="dBConn.Conn"%>
 <%
     String pmiNo = (String) session.getAttribute("patientPMINo");
@@ -37,22 +37,46 @@
     </thead>
     <tbody>
     <%
-        //                              0                               1                       2                       3                   4
-        String queryTheraphy="select created_date, date_format(order_date, '%d/%m/%Y'), intravenous_therapy, ifnull(completed_date, ''), status "
+        //                              0                               1                               2                         3                           4                                        5                        6
+        String queryTheraphy="select created_date, date_format(order_date, '%d/%m/%Y'), date_format(order_date, '%H:%i'), intravenous_therapy, date_format(completed_date, '%d/%m/%Y'), date_format(completed_date, '%H:%i'), status "
                 + "from lhr_ong_maternity_unit "
                 + "where pmi_no='"+pmiNo+"' and intravenous_therapy is not null "+whenCondition
-                +"oder by order_date desc;";
+                +"order by order_date desc;";
         ArrayList<ArrayList<String>> dataTheraphy = con.getData(queryTheraphy);
         
         for(int i=0; i<dataTheraphy.size(); i++){
+            //out.print(String.join("|", dataTheraphy.get(i)));
+            String completed_date ="";
+            if(dataTheraphy.get(i).get(4) != null){
+                completed_date=dataTheraphy.get(i).get(4)+" "+dataTheraphy.get(i).get(5);
+            }
+            
+            String status = dataTheraphy.get(i).get(6);
+            
+            String symbol="";
+            
+            if(status.equals("0")){
+                symbol="Have not follow up";
+            }
+            else if(status.equals("1")){
+                symbol="<span style=\"color:red;\">Noted to doctor</span>";
+            }
+            else{
+                symbol="<span style=\"color:blue;\">Results are traced</span>";
+            }
     
         %>
          <tr>
-            <td><%=dataTheraphy.get(i).get(1)%></td>
-            <td><%=dataTheraphy.get(i).get(2)%></td>
+            <td><%=dataTheraphy.get(i).get(1)+" "+dataTheraphy.get(i).get(2)%></td>
             <td><%=dataTheraphy.get(i).get(3)%></td>
-            <td><%=dataTheraphy.get(i).get(4)%></td>
-            <td><input type="hidden" id="MU_theraphyID" value="<%=dataTheraphy.get(i).get(0)%>"></td>
+            <td><%=completed_date%></td>
+            <td><%=symbol%></td>
+            <td>
+                <input type="hidden" id="MU_theraphyHidden" value="<%=String.join("|", dataTheraphy.get(i))%>">
+                <a id="MU_therapyUpdateModal" style="cursor: pointer" title="Update record" ><i class="fa fa-pencil-square-o" aria-hidden="true" style="display: inline-block;color: #337ab7;"></i></a>
+                &nbsp;
+                <a id="MU_therapyBtnDelete" style="cursor: pointer" title="Delete record"><i class="fa fa-times" aria-hidden="true" style="display: inline-block;color: #d9534f;"></i></a>
+            </td>
         </tr>
         <%
         }//end for loop
@@ -71,11 +95,9 @@
         });
     </script>    
 <%
-    
+    //out.print(queryTheraphy);
     }catch(Exception e){
         e.printStackTrace();
-        out.print("Oops! Something went wrong. Try again later!</RD_split>Oops! Something went wrong. Try again later!");
+        out.print("Oops! Something went wrong. Try again later! X-RD_split-X Oops! Something went wrong. Try again later!");
     }
 %>
-
-
