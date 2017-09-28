@@ -86,10 +86,7 @@
                         <!-- content -->
                         <div class="tab-pane fade" id="ONG_4">
                             <ul class="soap-content nav">
-                                <li><a data-toggle="modal" data-target="#ong-fObservationChart1" href="" class="soap-select"><i class="fa fa-comments  fa-li"></i> T | P | R | BP</a></li>
-                                <li><a data-toggle="modal" data-target="#ong-fObservationChart2" href="" class="soap-select"><i class="fa fa-comments  fa-li"></i>Pupils</a></li>
-                                <li><a data-toggle="modal" data-target="#ong-fObservationChart3" href="" class="soap-select"><i class="fa fa-comments  fa-li"></i>Conscious State & Remarks</a></li>
-                                <li><a data-toggle="modal" data-target="#ong-fObservationChart4" href="" class="soap-select"><i class="fa fa-comments  fa-li"></i>Drugs Given</a></li>
+                                <li><a data-toggle="modal" data-target="#ong-freqObservationChart" href="" class="soap-select" id="frequentObservationAddNewRecord"><i class="fa fa-comments  fa-li"></i>Add New Record</a></li>
                             </ul>
                             <hr class="pemisah" />
                             <%@include file="ong/frequentObservation.jsp"%>
@@ -109,13 +106,7 @@
                         <!-- content -->
                         <div class="tab-pane fade" id="ONG_6">
                             <ul class="soap-content nav">
-                                <li><a data-toggle="modal" data-target="#ong-nurseryFeeding1" href="" class="soap-select"><i class="fa fa-comments  fa-li"></i>Type Strength of Milk</a></li>
-                                <li><a data-toggle="modal" data-target="#ong-nurseryFeeding2" href="" class="soap-select"><i class="fa fa-comments  fa-li"></i>Method of Feeding</a></li>
-                                <li><a data-toggle="modal" data-target="#ong-nurseryFeeding3" href="" class="soap-select"><i class="fa fa-comments  fa-li"></i>Aspirate Vomit</a></li>
-                                <li><a data-toggle="modal" data-target="#CIS020006" href="" class="soap-select"><i class="fa fa-comments  fa-li"></i>Temperature</a></li>
-                                <li><a data-toggle="modal" data-target="#ong-nurseryFeeding4" href="" class="soap-select"><i class="fa fa-comments  fa-li"></i>Resp & HR (MIN)</a></li>
-                                <li><a data-toggle="modal" data-target="#ong-nurseryFeeding5" href="" class="soap-select"><i class="fa fa-comments  fa-li"></i>PU</a></li>
-                                <li><a data-toggle="modal" data-target="#ong-nurseryFeeding6" href="" class="soap-select"><i class="fa fa-comments  fa-li"></i>BO</a></li>
+                                <li><a data-toggle="modal" data-target="#ong-nurseryFeedingChart" href="" class="soap-select" id="nurseryFeedingChartAddNewRecord"><i class="fa fa-comments  fa-li"></i>Add New Record</a></li>
                             </ul>
                             <hr class="pemisah" />
                             <%@include file="ong/nurseryFeeding.jsp"%>
@@ -170,8 +161,8 @@
 <jsp:include page="specialistTemplate/ONG/personalDetail-modal.jsp" />
 <jsp:include page="specialistTemplate/ONG/anteNatal-modal.jsp" />
 <jsp:include page="specialistTemplate/ONG/progressNotes-modal.jsp" />
-<jsp:include page="specialistTemplate/ONG/frequentObservationsChart-modal.jsp" />
-<jsp:include page="specialistTemplate/ONG/nurseryFeeding-modal.jsp" />
+<%--<jsp:include page="specialistTemplate/ONG/frequentObservationsChart-modal.jsp" />
+<jsp:include page="specialistTemplate/ONG/nurseryFeeding-modal.jsp" />--%>
 <%--<jsp:include page="specialistTemplate/ONG/maternityUnit-modal.jsp" />--%>
 
 <script>
