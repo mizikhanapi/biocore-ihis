@@ -173,9 +173,7 @@
 <jsp:include page="specialistTemplate/ONG/frequentObservationsChart-modal.jsp" />
 <jsp:include page="specialistTemplate/ONG/nurseryFeeding-modal.jsp" />
 <%--<jsp:include page="specialistTemplate/ONG/maternityUnit-modal.jsp" />--%>
-<<<<<<< HEAD
 <%--<jsp:include page="specialistTemplate/ONG/labourSummary-modal.jsp" />--%>
-=======
 <jsp:include page="specialistTemplate/ONG/labourSummary-modal.jsp" />
 <script>
     $('#tabPI').on('click',function(){
@@ -183,7 +181,6 @@
         var hfc_cd1 = hfc_cd;
         var x = pmi_no + "|" + hfc_cd1;
         getPI(x);
+        getPIpreg(x);
     });
-    
 </script>
->>>>>>> f55d2dacd53cbb8f7a505f6d295bf1adb1657d08

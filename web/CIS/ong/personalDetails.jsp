@@ -44,27 +44,27 @@
         </div>
         <div class="col-xs-3">
             <dt style="font-size: 18px;">Gravida: </dt>
-            <dd class="">Gravida: <strong>Broken.pdf</strong></dd>
-            <dd class="">Parity: <strong>Broken.pdf</strong> </dd>
-            <dd class="">LMP  <strong>Broken.pdf</strong></dd>
-            <dd class="">EDD  <strong>Broken.pdf</strong> </dd>
-            <dd class="">Scan EDD  <strong>Broken.pdf</strong></dd>
-            <dd class="">Period Cycle  <strong>Broken.pdf</strong></dd>
+            <dd class="">Gravida: <strong>-</strong></dd>
+            <dd class="">Parity: <strong>-</strong> </dd>
+            <dd class="">LMP  <strong>-</strong></dd>
+            <dd class="">EDD  <strong>-</strong> </dd>
+            <dd class="">Scan EDD  <strong>-</strong></dd>
+            <dd class="">Period Cycle  <strong>-</strong></dd>
         </div>
         <div class="col-xs-3">
             <dt style="font-size: 18px;">Past History: </dt>
-            <dd>Past gynaelogical History: <strong>Broken.pdf</strong></dd>
-            <dd>Past Medical History: <strong>Heart-Broken.jpg</strong></dd>
-            <dd>Past Surgical History: <strong>Heart-Broken.jpg</strong></dd>
+            <dd>Past gynaelogical History: <strong>-</strong></dd>
+            <dd>Past Medical History: <strong>-</strong></dd>
+            <dd>Past Surgical History: <strong>-</strong></dd>
         </div>
     </div>  
 </div>
 
-<div class="panel panel-default">
+<div class="panel panel-default" id="divPIpreg">
     <div class="panel-body">
         <dt style="font-size: 18px;">Pregnancy History</dt>
     </div>  
-    <table class="table table-striped" style="margin-bottom: 0px;">
+    <table class="table table-striped" style="margin-bottom: 0px;" id="tblPreg">
         <thead>
             <tr>
                 <th>No.</th>
@@ -79,28 +79,34 @@
             </tr>  
         </thead>
         <tbody>
-            <tr>
-                <td>1.</td>
-                <td>1991</td>
-                <td>Incubation</td>
-                <td>HKL</td>
-                <td>Labour</td>
-                <td>Apa kah?</td>
-                <td>Female</td>
-                <td>Good girl gone bad</td>
-                <td></td>
-            </tr>
-            <tr>
-                <td>2.</td>
-                <td>1990</td>
-                <td>Incubation</td>
-                <td>HKL</td>
-                <td>Labour</td>
-                <td>Apa kah?</td>
-                <td>Female</td>
-                <td>Good girl gone bad</td>
-                <td></td>
-            </tr>
         </tbody>
     </table>
+    
 </div>
+<script>
+        $('#divPIpreg ').on('click','#tblPreg tbody tr td a#delPIpreg',function(e){
+            e.preventDefault();
+            var row = $(this).closest("tr");
+            var dataEncounter = row.find('#PIpregencounter').val();
+            var dataEpisode = row.find('#PIpregepisode').val();
+            var pmi_no = pmiNo;
+            var hfc_cd1 = hfc_cd;
+            var datas2 = pmi_no + "|" + hfc_cd1;
+            var datas = datas2 +"|"+ dataEpisode+"|"+dataEncounter;
+            
+            $.ajax({
+                type: "post",
+                url: "specialistTemplate/ONG/PI_control/personalDetailFunction.jsp",
+                data: {datas: datas, methodName: "delPreg"},
+                success: function (databack) {
+                    getPI(datas2);
+                    getPIpreg(datas2);
+                    if (databack) {
+                        bootbox.alert("Deleted");
+                    } else {
+                        bootbox.alert("fail deleting");
+                    }
+                }
+            });
+        });
+    </script>
