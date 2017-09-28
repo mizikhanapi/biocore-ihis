@@ -6,7 +6,7 @@
 
 <div class="row">
     <div class="col-md-8">
-        <h4>Consultation Notes</h4>
+        <h4>Maternity Unit</h4>
     </div>
     <div class="col-md-4" style="padding-top: 20px">
         <label class="col-sm-6 control-label text-right" for="formGroupInputLarge">View history assessment:</label>
