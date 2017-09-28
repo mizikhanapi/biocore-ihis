@@ -136,13 +136,13 @@
                         <!-- content -->
                         <div class="tab-pane fade" id="ONG_8">
                             <ul class="soap-content nav">
-                                <li><a data-toggle="modal" data-target="#ong-labourSummary1" href="" class="soap-select"><i class="fa fa-comments  fa-li"></i>Labour Onset</a></li>
-                                <li><a data-toggle="modal" data-target="#ong-labourSummary2" href="" class="soap-select"><i class="fa fa-comments  fa-li"></i>Delivery Date & Time</a></li>
+                                <li><a data-toggle="modal" data-target="#ong-labourSummary1" href="" class="soap-select"><i class="fa fa-comments  fa-li"></i>New Summary</a></li>
+<!--                                <li><a data-toggle="modal" data-target="#ong-labourSummary2" href="" class="soap-select"><i class="fa fa-comments  fa-li"></i>Delivery Date & Time</a></li>
                                 <li><a data-toggle="modal" data-target="#CIS01000001" href="" class="soap-select"><i class="fa fa-comments  fa-li"></i>Labour Begin</a></li>
                                 <li><a data-toggle="modal" data-target="#CIS01000001" href="" class="soap-select"><i class="fa fa-comments  fa-li"></i>Conducterd & Witness</a></li>
                                 <li><a data-toggle="modal" data-target="#CIS01000001" href="" class="soap-select"><i class="fa fa-comments  fa-li"></i>Infant - Birth Record</a></li>
                                 <li><a data-toggle="modal" data-target="#CIS01000001" href="" class="soap-select"><i class="fa fa-comments  fa-li"></i>Mother - Transfer Observations</a></li>
-                                <li><a data-toggle="modal" data-target="#CIS01000001" href="" class="soap-select"><i class="fa fa-comments  fa-li"></i>Puerperium</a></li>
+                                <li><a data-toggle="modal" data-target="#CIS01000001" href="" class="soap-select"><i class="fa fa-comments  fa-li"></i>Puerperium</a></li>-->
                             </ul>
                             <hr class="pemisah" />
                             <%@include file="ong/labourSummary.jsp"%>
@@ -173,10 +173,9 @@
 <jsp:include page="specialistTemplate/ONG/frequentObservationsChart-modal.jsp" />
 <jsp:include page="specialistTemplate/ONG/nurseryFeeding-modal.jsp" />
 <%--<jsp:include page="specialistTemplate/ONG/maternityUnit-modal.jsp" />--%>
-<<<<<<< HEAD
+
 <%--<jsp:include page="specialistTemplate/ONG/labourSummary-modal.jsp" />--%>
-=======
-<jsp:include page="specialistTemplate/ONG/labourSummary-modal.jsp" />
+
 <script>
     $('#tabPI').on('click',function(){
         var pmi_no = pmiNo;
@@ -186,4 +185,4 @@
     });
     
 </script>
->>>>>>> f55d2dacd53cbb8f7a505f6d295bf1adb1657d08
+
