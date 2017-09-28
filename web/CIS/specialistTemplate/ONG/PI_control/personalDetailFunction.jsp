@@ -17,13 +17,13 @@
     if (methodName.equalsIgnoreCase("add")) {
         result = pd.insertPersonalDetail(data);
         out.print(result);
-    }else if(methodName.equalsIgnoreCase("addPREG")){
+    } else if (methodName.equalsIgnoreCase("addPREG")) {
         result = pd.insertPregnancy(data);
         out.print(result);
     } else if (methodName.equalsIgnoreCase("getPI")) {
         ArrayList<ArrayList<String>> datas = pd.getPersonalDetail(data);
         if (datas.size() > 0) {
-            for (int i = 0; i < datas.size(); i++) { %>
+            for (int i = 0; i < datas.size(); i++) {%>
 
 <div class="row">
     <div class="col-xs-3">
@@ -68,5 +68,27 @@
     </div>
 </div> 
 <%       }
+} else if (methodName.equalsIgnoreCase("getPIpreg")) {
+    ArrayList<ArrayList<String>> pregnancies = pd.getPregnancy(data);
+    if (pregnancies.size() > 0) {
+        for (int i = 0; i < pregnancies.size(); i++) {%>
+<tr>
+    <td><%=i + 1%><input type="hidden" id="PIpregencounter" value="<%=pregnancies.get(i).get(3)%>">
+    <input type="hidden" id="PIpregepisode" value="<%=pregnancies.get(i).get(2)%>"></td>
+    <td><%=pregnancies.get(i).get(4)%></td>
+    <td><%=pregnancies.get(i).get(5)%></td>
+    <td><%=pregnancies.get(i).get(6)%></td>
+    <td><%=pregnancies.get(i).get(7)%></td>
+    <td><%=pregnancies.get(i).get(8)%></td>
+    <td><%=pregnancies.get(i).get(9)%></td>
+    <td><%=pregnancies.get(i).get(10)%></td>
+    <td><a id="delPIpreg" class="testing"><i class="fa fa-times fa-lg" aria-hidden="true" style="display: inline-block;color: #d9534f;"></i></a></td>
+</tr>
+
+<%    }
+        }
+    } else if (methodName.equalsIgnoreCase("delPreg")) {
+        result = pd.deletePregnancy(data);
+        out.print(result);
     }
 %>

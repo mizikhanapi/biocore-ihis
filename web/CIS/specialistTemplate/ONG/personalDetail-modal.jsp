@@ -217,7 +217,7 @@
                             <!-- Text input-->
                             <div class="form-group">
                                 <div class="col-md-12">
-                                    <textarea type="text" name="" id="" class="form-control input-lg" placeholder="Comment..." tabindex="3" id="PIcoment"></textarea>
+                                    <textarea type="text" name="" class="form-control input-lg" placeholder="Comment..." tabindex="3" id="PIcoment"></textarea>
                                 </div>
                             </div>
                         </div>
@@ -228,7 +228,7 @@
             <div class="modal-footer">
                 <div class="btn-group btn-group-justified" role="group" aria-label="group button">
                     <div class="btn-group" role="group">
-                        <button type="button" class="btn btn-success btn-block btn-lg" id="acceptBloodPBtn" role="button">Add Items</button>
+                        <button type="button" class="btn btn-success btn-block btn-lg" id="btnPIpreg" role="button">Add Items</button>
                     </div>
                     <div class="btn-group btn-delete hidden" role="group">
                         <button type="button" id="delImage" class="btn btn-default btn-block btn-lg" data-dismiss="modal" role="button">Clear</button>
@@ -243,6 +243,7 @@
 </div>
 <!-- End Modal -->
 <script>
+    // when modal close,reset all input
     $('#ong-pDetails1').on('hidden.bs.modal', function (e) {
         $(this)
                 .find("input,textarea,select")
@@ -251,9 +252,17 @@
                 .find("input[type=checkbox], input[type=radio]")
                 .prop("checked", "")
                 .end();
-        //$(this).find('form')[0].reset();
     });
-
+    $('#ong-pDetails3').on('hidden.bs.modal', function (e) {
+        $(this)
+                .find("input,textarea,select")
+                .val('')
+                .end()
+                .find("input[type=checkbox], input[type=radio]")
+                .prop("checked", "")
+                .end();
+    });
+    //function for get personal detail
     function getPI(data) {
         //console.log(data);
         $.ajax({
@@ -265,25 +274,41 @@
             }
         });
     }
-
+    
+    //function for get pregnancy
+    function getPIpreg(data) {
+        //console.log(data);
+        $.ajax({
+            type: "post",
+            url: "specialistTemplate/ONG/PI_control/personalDetailFunction.jsp",
+            data: {datas: data, methodName: "getPIpreg"},
+            success: function (databack) {
+                $('#divPIpreg #tblPreg tbody').html(databack);
+            }
+        });
+    }
+    // function for datepicker
     $(function () {
         $('#PIlmp').datepicker({dateFormat: 'dd/mm/yy', changeMonth: true, changeYear: true});
         $('#PIedd').datepicker({dateFormat: 'dd/mm/yy', changeMonth: true, changeYear: true});
         $('#PIscanedd').datepicker({dateFormat: 'dd/mm/yy', changeMonth: true, changeYear: true});
     });
-
+    
+    //function for validate numbersonly
     $('.numbersOnly').keyup(function () {
         if (this.value !== this.value.replace(/[^0-9\.]/g, '')) {
             this.value = this.value.replace(/[^0-9\.]/g, '');
         }
     });
-
+    
+    // function to convert date to another format from datepicker
     function convertDate(date) {
         var date = date.split('/');
         var newDate = date[2] + "-" + date[1] + "-" + date[0];
         return newDate;
     }
-
+    
+    // button add item for personal detail
     $('#btnPIadd').on('click', function () {
         var gravida, parity, lmp, edd, scanEdd, periodCycle, pgh, pmh, psh;
         gravida = $('#PIgravida').val();
@@ -326,8 +351,59 @@
                 data: {datas: datas, methodName: "add"},
                 success: function (databack) {
                     getPI(datas2);
+                    getPIpreg(datas2);
                     if (databack) {
                         bootbox.alert("succes inserting");
+                        $('#ong-pDetails1').modal('hide');
+                    } else {
+                        bootbox.alert("fail inserting");
+                    }
+                }
+            });
+        }
+
+    });
+    
+    // button add item for personal detail pregnancy
+    $('#btnPIpreg').on('click', function () {
+        var pregnancyYear, gestation, place, labour, wt, gender, comment;
+        pregnancyYear = $('#PIyear').val();
+        gestation = $('#PIgestation').val();
+        place = $('#PIpod').val();
+        labour = $('#PIlabour').val();
+        wt = $('#PIwt').val();
+        gender = $('#PIgender').val();
+        comment = $('textarea#PIcoment').val();
+
+
+        if (pregnancyYear === "" || gestation === "" || place === "" || labour === "" || wt === "" || gender === "") {
+            bootbox.alert("please insert the compulsory item to proceed");
+        } else {
+            var pmi_no = pmiNo;
+            var hfc_cd1 = hfc_cd;
+            var epDate = episodeDate;
+            var enDate = new Date();
+            var dd = ("0" + enDate.getDate()).slice(-2);
+            var mm = ("0" + (enDate.getMonth() + 1)).slice(-2);
+            var yy = enDate.getFullYear();
+            var hh = enDate.getHours();
+            var m = enDate.getMinutes();
+            var ss = enDate.getSeconds();
+            var ms = enDate.getMilliseconds();
+            var encounterDate = yy + "-" + mm + "-" + dd + " " + hh + ":" + m + ":" + ss + "." + ms;
+
+            var datas2 = pmi_no + "|" + hfc_cd1;
+            var datas = datas2 + "|" + epDate + "|" + encounterDate + "|" + pregnancyYear + "|" + gestation + "|" + place + "|" + labour + "|" + wt + "|" + gender + "|" + comment;
+            $.ajax({
+                type: "post",
+                url: "specialistTemplate/ONG/PI_control/personalDetailFunction.jsp",
+                data: {datas: datas, methodName: "addPREG"},
+                success: function (databack) {
+                    getPI(datas2);
+                    getPIpreg(datas2);
+                    if (databack) {
+                        bootbox.alert("succes inserting");
+                        $('#ong-pDetails3').modal('hide');
                     } else {
                         bootbox.alert("fail inserting");
                     }
