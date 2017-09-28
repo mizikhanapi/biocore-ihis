@@ -173,14 +173,7 @@
 <jsp:include page="specialistTemplate/ONG/frequentObservationsChart-modal.jsp" />
 <jsp:include page="specialistTemplate/ONG/nurseryFeeding-modal.jsp" />
 <%--<jsp:include page="specialistTemplate/ONG/maternityUnit-modal.jsp" />--%>
-<<<<<<< HEAD
 
-<%--<jsp:include page="specialistTemplate/ONG/labourSummary-modal.jsp" />--%>
-
-=======
-<%--<jsp:include page="specialistTemplate/ONG/labourSummary-modal.jsp" />--%>
-<jsp:include page="specialistTemplate/ONG/labourSummary-modal.jsp" />
->>>>>>> 07d9c4038b83377000ecea9f1dd83da4f794ec89
 <script>
     $('#tabPI').on('click',function(){
         var pmi_no = pmiNo;
@@ -190,7 +183,4 @@
         getPIpreg(x);
     });
 </script>
-<<<<<<< HEAD
 
-=======
->>>>>>> 07d9c4038b83377000ecea9f1dd83da4f794ec89
