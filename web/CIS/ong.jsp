@@ -136,7 +136,7 @@
                         <!-- content -->
                         <div class="tab-pane fade" id="ONG_8">
                             <ul class="soap-content nav">
-                                <li><a data-toggle="modal" data-target="#ong-labourSummary1" href="" class="soap-select"><i class="fa fa-comments  fa-li"></i>New Summary</a></li>
+                                <li><a data-toggle="modal" data-target="#LS_labourModal" href="" class="soap-select"><i class="fa fa-comments  fa-li"></i>New Summary</a></li>
 <!--                                <li><a data-toggle="modal" data-target="#ong-labourSummary2" href="" class="soap-select"><i class="fa fa-comments  fa-li"></i>Delivery Date & Time</a></li>
                                 <li><a data-toggle="modal" data-target="#CIS01000001" href="" class="soap-select"><i class="fa fa-comments  fa-li"></i>Labour Begin</a></li>
                                 <li><a data-toggle="modal" data-target="#CIS01000001" href="" class="soap-select"><i class="fa fa-comments  fa-li"></i>Conducterd & Witness</a></li>
