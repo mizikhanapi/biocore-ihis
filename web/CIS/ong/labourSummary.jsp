@@ -41,7 +41,7 @@
 </div>
 
 <div id="LS_viewDIv">
-    <div class="panel panel-default" id="LS_viewGroup">
+<!--    <div class="panel panel-default" id="LS_viewGroup">
         <div class="panel-heading clearfix"> 
             <p class="pull-right">
                 <button type="button" class="btn btn-danger" data-dismiss="modal" aria-label="Close" title="Delete summary"><span aria-hidden="true"><i class="fa fa-times fa-lg"></i></span></button>
@@ -77,7 +77,7 @@
                                     <dd>8 stich</dd>
                                 </div>
                                 <div style="position: absolute; bottom: 0px; right: 15px;">
-                                    <a style="vertical-align: middle;" href="#"><i class="fa fa-pencil-square-o fa-lg" aria-hidden="true" style=" color: #337ab7;"></i></a>
+                                    <a style="vertical-align: middle; cursor: pointer;" id="LS_labourUpdateModal"><i class="fa fa-pencil-square-o fa-lg" aria-hidden="true" style=" color: #337ab7;"></i></a>
                                 </div>
                             </div>
                         </div>
@@ -99,11 +99,11 @@
                         </tr>
                         <tr>
                             <td rowspan="2">Date</td>
-                            <td rowspan="2"></td>
-                            <td rowspan="2"></td>
-                            <td rowspan="2"></td>
-                            <td rowspan="2"></td>
-                            <td rowspan="2"></td>
+                            <td rowspan="2">begin date</td>
+                            <td rowspan="2">membrane date</td>
+                            <td rowspan="2">second date</td>
+                            <td rowspan="2">born date</td>
+                            <td rowspan="2">placenta date</td>
                             <td>1st.</td>
                         </tr>
                         <tr>
@@ -111,11 +111,11 @@
                         </tr>
                         <tr>
                             <td rowspan="2">Time</td>
-                            <td rowspan="2"></td>
-                            <td rowspan="2"></td>
-                            <td rowspan="2"></td>
-                            <td rowspan="2"></td>
-                            <td rowspan="2"></td>
+                            <td rowspan="2">begin time</td>
+                            <td rowspan="2">membrane time</td>
+                            <td rowspan="2">second time</td>
+                            <td rowspan="2">born time</td>
+                            <td rowspan="2">placenta time</td>
                             <td>3rd.</td>
                         </tr>
                         <tr>
@@ -153,7 +153,7 @@
             </div> 
 
             <ul class="soap-content nav">
-                <li><a data-toggle="modal" data-target="#LS_infantModal" class=""><i class="fa fa-comments  fa-li"></i>New Birth Record</a>
+                <li><a style="cursor: pointer;" id="LS_infantAddModal"><i class="fa fa-comments  fa-li"></i>New Birth Record</a>
             </ul>
             <div class="panel panel-default">
                 <div class="panel-body">
@@ -183,9 +183,9 @@
                                     <dd>Foetal Abnormality: <strong>Normal</strong></dd>
                                 </div>
                                 <div style="position: absolute; bottom: 0px; right: 15px;">
-                                    <a style="vertical-align: middle;" href="#"><i class="fa fa-pencil-square-o fa-lg" aria-hidden="true" style=" color: #337ab7;"></i></a>
+                                    <a style="vertical-align: middle; cursor: pointer" id="LS_infantUpdateModal"><i class="fa fa-pencil-square-o fa-lg" aria-hidden="true" style=" color: #337ab7;"></i></a>
                                     &nbsp;&nbsp;&nbsp;
-                                    <a href="#"><i class="fa fa-times fa-lg" aria-hidden="true" style="color: #d9534f;"></i></a>
+                                    <a style="cursor: pointer;" id="LS_infantBtnDelete"><i class="fa fa-times fa-lg" aria-hidden="true" style="color: #d9534f;"></i></a>
                                 </div>
                             </div>
                         </div> 
@@ -214,7 +214,7 @@
                                     <dd>Doctor/Nurse: <strong>Dr Mira Filzah</strong></dd>
                                 </div>
                                 <div style="position: absolute; bottom: 0px; right: 15px;">
-                                    <a style="vertical-align: middle;"><i class="fa fa-pencil-square-o fa-lg" aria-hidden="true" style=" color: #337ab7;"></i></a>
+                                    <a style="vertical-align: middle; cursor: pointer;" id="LS_transferUpdateModal"><i class="fa fa-pencil-square-o fa-lg" aria-hidden="true" style=" color: #337ab7;"></i></a>
                                 </div>
                             </div>
                         </div>
@@ -222,7 +222,7 @@
                 </div>
             </div> 
         </div>
-    </div>
+    </div>-->
 </div>
 
 
@@ -264,7 +264,7 @@
             $('#LS_div_selectDate').show();
         } else {
             $('#LS_div_selectDate').hide();
-            //loadMorsefallAssessment();// view previous assessment
+            LS_loadData();
         }
     });
     
@@ -290,6 +290,176 @@
     initDatepicker("LS_infantBirthDate");
     initTimepicker("LS_infantBirthTime");
     
+    initTimepicker("LS_transferTime");
+    
+    function LS_loadData(){
+        var data = {
+            day: $('#LS_viewBy').val(),
+            from: $('#LS_dateFrom').val(),
+            to: $('#LS_dateTo').val()
+        };
+        
+        createScreenLoading();
+        $.ajax({
+            type: 'POST',
+            data: data,
+            timeout: 60000,
+            url: "specialistTemplate/ONG/LS_control/retrieveLabourSummary.jsp",
+            success: function (data, textStatus, jqXHR) {
+                $('#LS_viewDIv').html(data);
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                $('#LS_viewDIv').html(errorThrown);
+            },
+            complete: function (jqXHR, textStatus) {
+                destroyScreenLoading();
+            }
+        });
+    }
+    
+    //****************************************************************************** summary ****************************************************************
+    
+    function LS_labourCheckField(){
+        var msg="";
+        var isComplete = true;
+        
+        var deliveryDate = $('#LS_labourDeliveryDate').val();
+        var deliveryTime = $('#LS_labourDeliveryTime').val();
+        var labourOnset = $('#LS_labourOnset').val();
+        var vaginal = $('#LS_labourVaginal').val();
+        var operative = $('#LS_labourOperative').val();
+        var bloodLoss = $('#LS_labourBloodLoss').val();
+        var placenta = $('#LS_labourPlacenta').val();
+        var cord = $('#LS_labourCord').val();
+        var tear = $('#LS_labourTear').val();
+        var repair = $('#LS_labourRepair').val();
+        
+        if(deliveryDate===""){
+            isComplete=false;
+            msg="Please choose delivery date";
+        }
+        else if(deliveryTime===""){
+            isComplete=false;
+            msg="Please choose delivery time";
+        }
+        else if(labourOnset==="" || labourOnset==null){
+            isComplete=false;
+            msg="Please choose labour onset.";
+        }
+        else if(vaginal==="" || vaginal==null){
+            isComplete=false;
+            msg="Please choose vaginal delivery.";
+        }
+        else if(operative==="" || operative==null){
+            isComplete=false;
+            msg="Please choose operative.";
+        }
+        else if(placenta==="" || placenta==null){
+            isComplete=false;
+            msg="Please choose placenta condition.";
+        }
+        else if(cord==="" || cord==null){
+            isComplete=false;
+            msg="Please choose cord condition.";
+        }
+        else if(tear==="" || tear ==null){
+            isComplete=false;
+            msg="Please choose tear condition.";
+        }
+        
+        
+        if(bloodLoss==="" || isNaN(bloodLoss)){
+            $('#LS_labourBloodLoss').val("0");
+        }
+       
+       if(!isComplete){
+           bootbox.alert(msg);
+       }
+        
+        return isComplete;        
+    }
+    
+    //----------------- add labour----------------------------------
+    $('#LS_labourModal').on('hidden.bs.modal', function (){
+        
+        $('#LS_labour_div_add').show();
+        $('#LS_labour_div_update').hide();
+        $('#LS_labourForm')[0].reset();
+    });
+    
+    $('#LS_labourBtnAdd').on('click', function(){
+        if(LS_labourCheckField()){
+            var deliveryDate = $('#LS_labourDeliveryDate').val();
+            var deliveryTime = $('#LS_labourDeliveryTime').val();
+            var labourOnset = $('#LS_labourOnset').val();
+            var vaginal = $('#LS_labourVaginal').val();
+            var operative = $('#LS_labourOperative').val();
+            var bloodLoss = $('#LS_labourBloodLoss').val();
+            var placenta = $('#LS_labourPlacenta').val();
+            var cord = $('#LS_labourCord').val();
+            var tear = $('#LS_labourTear').val();
+            var repair = $('#LS_labourRepair').val();
+            
+            repair = repair.replace(/'/g, "\\\'").replace(/"/g, "\\\"");
+            
+            var data={
+                deliveryDate : deliveryDate,
+                deliveryTime : deliveryTime,
+                labourOnset : labourOnset,
+                vaginal : vaginal,
+                operative : operative,
+                bloodLoss : bloodLoss,
+                placenta : placenta,
+                cord : cord,
+                tear : tear,
+                repair : repair
+            };
+            var message="";
+            createScreenLoading();
+            $.ajax({
+                type: 'POST',
+                timeout: 60000,
+                data: data,
+                url: "specialistTemplate/ONG/LS_control/labourSummary_insert.jsp",
+                success: function (data, textStatus, jqXHR) {
+                        var reply = data.trim();
+                        if(reply==="success"){
+                            message="Labour Summary is inserted successfully.";
+                            $('#LS_viewBy').val('x');
+                            $('#LS_dateFrom').val(deliveryDate);
+                            $('#LS_dateTo').val(deliveryDate);
+                            LS_loadData();
+                            $('#LS_labourModal').modal('hide');
+                        }
+                        else if(reply==="fail"){
+                            message="Failed to insert labour summary.";
+                        }
+                        else{
+                            message=data;
+                        }
+                    },
+                error: function (jqXHR, textStatus, errorThrown) {
+                        message="Oops! "+errorThrown;
+                    },
+                complete: function (jqXHR, textStatus ) {
+                        destroyScreenLoading();
+                        bootbox.alert(message);
+                    }
+            });
+        }
+    });
+    //==============================================================
+    
+     //-------------------update labour ------------------------
+    $('#LS_viewDIv').on('click', '#LS_labourUpdateModal', function (){
+        $('#LS_labourModal').modal('show');
+        $('#LS_labour_div_add').hide();
+        $('#LS_labour_div_update').show();
+    });
+    //========================================================
+    
+    //****************************************************************************** summary ****************************************************************
+    
     //---------- update labour stage ------
     $('#LS_viewDIv').on('click', '#LS_stageUpdateModal', function (){
         $('#LS_stageModal').modal('show');
@@ -297,11 +467,37 @@
     
     //===============================
     
+   
+     
     //---------- update labour event-----
     $('#LS_viewDIv').on('click', '#LS_eventUpdateModal', function (){
         $('#LS_eventModal').modal('show');
     });
     //===================================
+    
+    //--------------- add new infant ---------------------
+    $('#LS_viewDIv').on('click', '#LS_infantAddModal', function (){
+        $('#LS_infantModal').modal('show');
+        $('#LS_infant_div_add').show();
+        $('#LS_infant_div_update').hide();
+        $('#LS_infantForm')[0].reset();
+    });
+    //====================================================
+    
+    //-------------------- update infant birth record ---------------------------
+     $('#LS_viewDIv').on('click', '#LS_infantUpdateModal', function (){
+        $('#LS_infantModal').modal('show');
+        $('#LS_infant_div_add').hide();
+        $('#LS_infant_div_update').show();
+    });
+    //=======================================================================
+    
+    
+    //-------------------update mother transfer ---------------------
+    $('#LS_viewDIv').on('click', '#LS_transferUpdateModal', function (){
+        $('#LS_transferModal').modal('show');
+    });
+    //===============================================================
     
     
     
