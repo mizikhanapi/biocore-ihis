@@ -100,7 +100,7 @@
                                 <h4 style="margin: 0px; padding: 0px;">Patient Details </h4>
                                 <hr class="pemisah"/>
                                 
-                                <table class="p-table" style="width: 100%; color: #999;">
+                                <table class="p-table" style="width: 100%; color: #999;" id="patient-detail-dashboard">
                                     <tr>
                                         <td>
                                             Name:

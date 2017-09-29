@@ -43,7 +43,7 @@ String sqlNextPatientV2 = "SELECT q.pmi_no,q.episode_date, b.patient_name,q.queu
         + "(SELECT queue_name FROM pms_queue_list "
         + "WHERE user_id = '"+doctor_id+"'  AND hfc_cd = '"+hfc_cd+"' AND discipline_cd = '"+discipline+"' AND sub_discipline_cd = '"+subdicipline+"' )  "
         + " AND q.episode_date LIKE '%"+now+"%' AND q.status ='0' OR (q.patient_category = '003'  AND q.status = '0' "
-        + "AND q.user_id='"+doctor_id+"') ORDER BY q.episode_date ASC;";
+        + "AND q.user_id='"+doctor_id+"') ORDER BY q.episode_date ASC LIMIT 1;";
 
 String sqlNextPatient = "select a.pmi_no, a.episode_date from pms_patient_queue a,  pms_patient_biodata b where status = '0'  AND a.episode_date LIKE '%"+now+"%' and a.pmi_no = b.`PMI_NO` and a.hfc_cd = '"+hfc_cd+"' order by queue_no LIMIT 1 ";
 ArrayList<ArrayList<String>> dataNextPatient = conn.getData(sqlNextPatientV2);

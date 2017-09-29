@@ -16,7 +16,7 @@
         <link rel="stylesheet" type="text/css" href="js/jquery.ptTimeSelect.css"> 
         <script type="text/javascript" src="js/jquery.ptTimeSelect.js"></script> 
 
-   <script src="js/24hourTime.js"></script>
+        <script src="js/24hourTime.js"></script>
         <script src="js/jquery.bootpag.js"></script>
         <script src="js/login.js"></script>
         <script src="js/passwordValidation.js"></script>
@@ -30,7 +30,10 @@
 
         <script src="SearchFacility/SearchFacility.js" type="text/javascript"></script>
         <script src="assets/js/jquery.flexdatalist.min.js" type="text/javascript"></script>
+        <script src="js/jquery.datetimepicker.full.js" type="text/javascript"></script>
         
+        
+        <script src="calender/AppointmentCalendar.js" type="text/javascript"></script>
         
         <%
         Config.getFile_url(session);

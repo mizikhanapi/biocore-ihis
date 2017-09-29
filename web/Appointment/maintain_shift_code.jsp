@@ -16,7 +16,7 @@
     MAINTAIN SHIFT CODE
 
     <span class="pull-right">
-        <button id="MLM_btnAddNew" class="btn btn-success" data-status="pagado" data-toggle="modal" data-id="1" data-target="#detail" style=" padding-right: 10px;padding-left: 10px;color: white;"><a data-toggle="tooltip" data-placement="top" title="Add Items" id="test"><i class=" fa fa-plus" style=" padding-right: 10px;padding-left: 10px;color: white;"></i></a>ADD Lookup Master</button>
+        <button id="MLM_btnAddNew" class="btn btn-success" data-status="pagado" data-toggle="modal" data-id="1" data-target="#detail" style=" padding-right: 10px;padding-left: 10px;color: white;"><a data-toggle="tooltip" data-placement="top" title="Add Items" id="test"><i class=" fa fa-plus" style=" padding-right: 10px;padding-left: 10px;color: white;"></i></a>ADD SHIFT CODE</button>
     </span>
 
 </h4>
@@ -51,30 +51,6 @@
                             <input id="shiftName" name="masterName" type="text" placeholder="Master Lookup Name" class="form-control input-md" maxlength="100">
                         </div>
                     </div>
-                    
-                     <!-- Text input-->
-                    <div class="form-group">
-                        <label class="col-md-4 control-label" for="textinput">Shift Start Time</label>
-                        <div class="col-md-8">
-                            <input id="shiftStartTime" name="masterName" type="text"  class="form-control input-md" maxlength="30">
-                        </div>
-                    </div>
-                     
-                     <div class="form-group">
-                         <label class="col-md-4 control-label" for="textinput">Shift Hours</label>
-                         <div class="col-md-8">
-                             <input id="shiftHours" name="masterName" type="text"  class="form-control input-md" maxlength="30">
-                         </div>
-                     </div>
-                     
-                     <div class="form-group">
-                         <label class="col-md-4 control-label" for="textinput">End Hours</label>
-                         <div class="col-md-8">
-                             <input id="shiftEndTime" name="masterName" type="text" class="form-control input-md" maxlength="30">
-                         </div>
-                     </div>
-
-                   
 
 
                 </form>
@@ -103,99 +79,7 @@
 
         $(document).ready(function () {
             
-            function reset () {
-                document.getElementById("masterCode").value = "";
-                document.getElementById("masterName").value = "";
-                document.getElementById("masterSource").value = "";
-                document.getElementById("status1").checked = false;
-                document.getElementById("status2").checked = false;
-            }
-
-            $('#btnReset').on('click', function () {
-                reset();
-            });
-
-            $('#btnAdd').on('click', function () {
-                               
-                var masterCode = $('#masterCode').val();
-                var masterName = $('#masterName').val();
-                var masterSource = $('#masterSource').val();
-                var status = $('input[name="status"]:checked').val();
-
-                if (masterCode === "") {
-                    bootbox.alert("Fill in the Master Code");
-                    $('#masterCode').focus();
-                    
-                } else if (masterName === "") {
-                    bootbox.alert("Complete The Fields");
-                    $('#masterName').focus();
-                    
-                } else if (status !== "1" && status !== "0") {
-                    alert("Select Any Status");
-                } else {
-                    
-                    masterName = masterName.replace(/'/g, "\\\'").replace(/"/g, "\\\"");
-
-                    var data = {
-                        masterCode : masterCode,
-                        masterName : masterName,
-                        masterSource : masterSource,
-                        status: status
-                    };
-
-                    $.ajax({
-                        url: "master_lookup_insert.jsp",
-                        type: "post",
-                        data: data,
-                        timeout: 60000,
-                        success: function (datas) {
-
-                            if (datas.trim() === 'Success') {
-
-                                $('#masterTable').load('master_lookup_table_1.jsp');
-                                $('#detail').modal('hide');
-                                bootbox.alert("New master lookup code is added");
-                                reset();
-                                
-                            } else if (datas.trim() === 'Failed') {
-                                
-                                bootbox.alert("Insertion failed!");
-                                //$('#detail').modal('hide');
-                                reset();
-                                
-                            } else{
-                                bootbox.alert(datas.trim());
-                                document.getElementById("masterCode").value = "";
-                                $('#masterCode').focus();
-                            }
-                            
-                        },
-                        error: function (err) {
-                            console.log("Ajax Is Not Success");
-                        }
-
-                    });
-                }
-
-            });
-            
-            $('#MLM_btnAddNew').on('click', function(){
-                
-                $.ajax({
-                    url : 'master_lookup_getMasterCode.jsp',
-                    type: 'POST',
-                    timeout: 60000,
-                    success: function (data) {
-                        
-                        $('#masterCode').val(data.trim());
-                    },
-                    error: function (err, jqhr, errThrown) {
-                        
-                        console.log("Ajax Is Not Success: "+errThrown);
-                    }
-                });
-            });
-
+ 
 
         });
 

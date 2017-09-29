@@ -36,7 +36,7 @@
                 </div>
                 <div class="form-group">
                     <div class="form-group">
-                        <input type='text' id="tCISSubDGSSearch" placeholder='Type to Search Diagnosis...' class='form-control input-lg flexdatalist' data-min-length='1' name='country_name_suggestion' data-search-by-word="true" onkeypress="return blockSpecialChar(event)">
+                        <input type='text' id="tCISSubDGSSearch" placeholder='Type more than 3 character to search diagnosis...' class='form-control input-lg flexdatalist' data-min-length='1' name='country_name_suggestion' data-search-by-word="true" onkeypress="return blockSpecialChar(event)">
                         <input class="form-control input-lg" type="text"  id="tCISSubDGSSearchPersonalised" placeholder="Type to Search Diagnosis Personalised..." data-search-by-word="true" onkeypress="return blockSpecialChar(event)">
                         <div id="tCISSubDGSSearchLoading"></div>
                     </div>   

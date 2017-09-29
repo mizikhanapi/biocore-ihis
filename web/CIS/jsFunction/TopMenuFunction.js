@@ -634,7 +634,7 @@ $(document).ready(function (e) {
 
 
     function clearCIS() {
-        
+        $(".loading").fadeOut("slow");
         //location.href = './CIS000000.jsp';
    
         pmiNo = "";
@@ -643,13 +643,31 @@ $(document).ready(function (e) {
         patientCategory = "";
         fullPatientData = "";
         _data = [];
+        _dataDTO = [];
+        _dataLIO = [];
+        _dataROS = [];
+         _dataPOS = [];
+         _dataPOSSurgical = [];
         i=0;
+        var vital_tab = $("#vital-tab");
+        if(vital_tab.hasClass("in")){
+            vital_tab.removeClass("in");
+        }
+        //removeClass("in");
         
-        $("#div_CIS_PATIENT_DASHBOARD").load("CIS000000.jsp #div_CIS_PATIENT_DASHBOARD",function(){
-           $('.soap-select').on('click',disableSOAP);
-            $(".loading").fadeOut("slow");
-        });
-        $("#divCIS_Consultation_Table").load("CIS000000.jsp #divCIS_Consultation_Table");
+        $("#tableOrderDTO").html('');
+        $("#patient-detail-dashboard").find("span").html("-");
+        $('.soap-select').on('click',disableSOAP);
+        $('#tblCIS_Consultation_Table tbody').empty();
+        
+        
+        
+//        $("#div_CIS_PATIENT_DASHBOARD").load("CIS000000.jsp #div_CIS_PATIENT_DASHBOARD",function(){
+//           $("#divCIS_Consultation_Table").load("CIS000000.jsp #divCIS_Consultation_Table");
+//            $('.soap-select').on('click',disableSOAP);
+//            $(".loading").fadeOut("slow");
+//        });
+        
 
 
         

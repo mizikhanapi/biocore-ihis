@@ -13,15 +13,20 @@ $(document).ready(function(){
     var rowPOSId;
     var rowPOSDataTR;
 
-    $("#btnCIS_OE_POS_UPDATE").hide();
-    $("#btnCIS_OE_POS_CANCEL").hide();
+    $("#CIS040006").on('show.bs.modal',function(){
+        searchInitialize("POS", "I");
+    });
     
-    $("#div_CIS_OE_POS_LVL1").hide();
-    $("#div_CIS_OE_POS_LVL2").hide();
-    
-    searching("tCISOEPOSProblemName","tCISOEPOSProblemNameLoading","search/ResultCCNSearch.jsp","problemCodePOS","search/ResultCCNSearchCode.jsp");
-    searchPOS("tCISOEPOSSearch", "tCISOEPOSSearchLoading", "","0");
-    searchPOSCode("tCISOEPOSSearch","tCISOEPOSSearchLoading","tCISOEPOS_0_ID","0");
+    $("#update_CIS040006").on('show.bs.modal', function(){
+         searchInitialize("POS", "I");
+    });
+    $("#CIS040006").on('hide.bs.modal', function () {
+        searchInitialize("POS", "D");
+    });
+
+    $("#update_CIS040006").on('hide.bs.modal', function () {
+        searchInitialize("POS", "D");
+    })
     
    $("#divCIS_OE_POS_OrderSearchResult").on("click","#tblOPOS #btnCIS_OE_POS_SEARCH_ADD",function(e){
         e.preventDefault();

@@ -7,9 +7,9 @@
     function searching(fieldId,loadingDivId,urlData,codeFieldId,urlCode){
       
         $('#'+fieldId).flexdatalist({
-            minLength: 1,
+            minLength: 3,
             searchIn: 'name',
-            searchDelay:2000,
+            //searchDelay:3000,
 
             url:urlData,
             cache:true,

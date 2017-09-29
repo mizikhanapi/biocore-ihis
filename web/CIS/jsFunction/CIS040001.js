@@ -22,20 +22,17 @@ $(document).ready(function () {
     }
     $("#btnCIS_OE_LIO_UPDATE").hide();
     $("#btnCIS_OE_LIO_CANCEL").hide();
-    searchingHFC( "tCISOELIOHFC", "tCISOELIOHFCSearchLoading", "search/ResultHFCSearch.jsp", "search/ResultHFCSearchCode.jsp", "hfcIdLOS", "-", "hfcOrderDetailLIO", "hfcProviderDetailLIO");
-    searching("tCISOELIOProblemName","tCISOELIOProblemNameLoading","search/ResultCCNSearch.jsp","problemCodeLIO","search/ResultCCNSearchCode.jsp");
-    searchLIO("tCISOELIOSearch","search/ResultLIOSearch.jsp","tCISOELIOSearchLoading","");
+
     
     $("#CIS040001").on("show.bs.modal",function(e){
-        searchingHFCValue( "tCISOELIOHFC", "tCISOELIOHFCSearchLoading", "search/ResultHFCSearch.jsp", "search/ResultHFCSearchCode.jsp", "hfcIdLOS", "-", "hfcOrderDetailLIO", "hfcProviderDetailLIO",hfc_name);
-        searchHFCDetailv2($("#tCISOELIOHFC").val(),"hfcIdLOS","hfcOrderDetailLIO","hfcProviderDetailLIO","-");
+        searchInitialize("LIO", "I");
     });
     $("#btnCIS_OE_LIO_SEARCH_CLEAR").click(function (e) {
         $("#divCIS_OE_LIO_OrderSearchResult").html('');
-    })
+    });
     
     $("#divCIS_OE_LIO_OrderSearchResult").on("click","#tblOLIO #btnCIS_OE_LIO_VIEW_RESULT",function(e){
-        alert("lol");
+      
         
          var rowOrder = $(this).closest("tr");
          var orderId = rowOrder.find("#id_result").html();

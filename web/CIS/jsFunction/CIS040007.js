@@ -7,13 +7,25 @@
 
 $(document).ready(function () {
 
-    searchHFCOnly("tCIS_ADWHFCreferFrom", "tCIS_ADWHFCreferFromLoading");
+    $("#CIS040007").on('show.bs.modal',function(){
+         searchInitialize("ADW", "I");
+    });
+    
+    $("#update_CIS040007").on('show.bs.modal',function(){
+         searchInitialize("ADW", "I");
+    });
+    
+    $("#CIS040007").on('hide.bs.modal', function () {
+        searchInitialize("ADW", "D");
+    });
 
+    $("#update_CIS040007").on('hide.bs.modal', function () {
+        searchInitialize("ADW", "D");
+    });
+    
     $("#tCIS_ADWHFCreferFrom").on("select:flexdatalist", function (response) {
         getHFCCode($(this).val(), "tCIS_ADWHFCreferFromCd", "hfcOrderDetailADW", "tCIS_ADWreferFrom", "tCIS_ADWreferFromLoading");
     });
-
-    searchHFCOnly("tCIS_ADWsearchHFC", "tCIS_ADWsearchHFCLoading");
 
     $("#tCIS_ADWsearchHFC").on("select:flexdatalist", function (response) {
         getHFCCode($(this).val(), "tCIS_ADWsearchHFCCd", "hfcProviderDetailADW", "tCIS_ADWsearchDis", "tCIS_ADWsearchDisLoading");
@@ -185,6 +197,9 @@ $(document).ready(function () {
         }
     });
 
+
+});
+
     function clearFieldADW() {
         $('#tCIS_ADWsearchDis').val('');
         $('#tCIS_ADWsearchDisCd').val('');
@@ -199,4 +214,3 @@ $(document).ready(function () {
         $('#hfcOrderDetailADW').val('');
         $('#hfcProviderDetailADW').val('');
     }
-});
