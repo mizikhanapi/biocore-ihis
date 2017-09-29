@@ -8,13 +8,22 @@
 $(document).ready(function () {
     
     $('#CIS030001').on('show.bs.modal',function(e){
-        
-        searching("tCISSubDGSSearch", "tCISSubDGSSearchLoading", "search/ResultDGSSearch.jsp", "search/ResultDGSSearchCode.jsp", "dgsCode");
-        searching("tCISSubDGSSearchPersonalised", "tCISSubDGSSearchLoading", "search/ResultDGSPersonaliseSearch.jsp", "dgsCode", "search/ResultDGSPersonaliseSearchCode.jsp");
+        searchInitialize("DGS", "I");
+        $("#tCISSubDGSSearchPersonalised-flexdatalist").hide();
+    });
+    
+    $('#CIS030001').on('hide.bs.modal', function (e) {
+        searchInitialize("DGS", "D");
         $("#tCISSubDGSSearchPersonalised-flexdatalist").hide();
     });
     
    $('#update_CIS030001').on('show.bs.modal',function(e){
+       searchInitialize("DGS", "I");
+        $("#tCISSubDGSSearchPersonalised_update-flexdatalist").hide();
+    });
+    
+    $('#update_CIS030001').on('hide.bs.modal', function (e) {
+        searchInitialize("DGS", "D");
         $("#tCISSubDGSSearchPersonalised_update-flexdatalist").hide();
     });
     

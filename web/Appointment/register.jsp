@@ -101,25 +101,25 @@
                     var password = $('#PASSWORD').val();
                     var username = $('#USERNAME').val();
                     e.preventDefault();
-                    var pValid = passwordValidation(password);
+                    //var pValid = passwordValidation(password);
 
 
                     var uValid = AllowAlphabet(username);
-                    if (uValid === "alphabetonly") {
-                        alert("Please Enter only alphabets in text with 10 character");
-                    } else {
+//                    if (uValid === "alphabetonly") {
+//                        alert("Please Enter only alphabets in text with 10 character");
+//                    } else {
 
-                        if (pValid === "short") {
-                            alert("Error: Password must contain at least six characters and at most ten character!");
-                        } else if (pValid === "nonumber") {
-                            alert("Error: password must contain at least one number (0-9)!");
-                        } else if (pValid === "nolower") {
-                            alert("Error: password must contain at least one lowercase letter (a-z)!");
-                        } else if (pValid === "noupper") {
-                            alert("Error: password must contain at least one uppercase letter (A-Z)!");
-                        } else if (pValid === "nospecial") {
-                            alert("Error: password must contain at least one special character!");
-                        } else {
+//                        if (pValid === "short") {
+//                            alert("Error: Password must contain at least six characters and at most ten character!");
+//                        } else if (pValid === "nonumber") {
+//                            alert("Error: password must contain at least one number (0-9)!");
+//                        } else if (pValid === "nolower") {
+//                            alert("Error: password must contain at least one lowercase letter (a-z)!");
+//                        } else if (pValid === "noupper") {
+//                            alert("Error: password must contain at least one uppercase letter (A-Z)!");
+//                        } else if (pValid === "nospecial") {
+//                            alert("Error: password must contain at least one special character!");
+//                        } else {
 
                             var dataRegister = {
                                 ic_no: $('#IC').val(),
@@ -151,8 +151,8 @@
                                     }
                                 }
                             });
-                        }
-                    }
+                        //}
+                   // }
 
                 });
             });

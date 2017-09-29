@@ -16,23 +16,18 @@ $(document).ready(function(){
     $("#btnCIS_OE_DTO_UPDATE").hide();
     $("#btnCIS_OE_DTO_CANCEL").hide();
     
-    searching("tCISOEDTOProblemName","tCISOEDTOProblemNameLoading","search/ResultCCNSearch.jsp","problemCodeDTO","search/ResultCCNSearchCode.jsp");
-    searchDTO("tCISOEDTODrugName", "tCISOEDTODrugNameLoading", "");
+
     
     $("#btnCIS_OE_DTO_SEARCH_CLEAR").click(function (e) {
         $("#divCIS_OE_DTO_OrderSearchResult").html('');
     });
     
     $("#CIS040002").on('show.bs.modal',function(){
-       $.ajax({
-           url:'search/GetSelectDrugFrequency.jsp',
-           type:'POST',
-           timeout:3000,
-           success:function(r){
-               console.log(r);
-               $("#divSelectDrugFrequency").html(r.trim());
-           }
-       }) 
+        searchInitialize("DTO", "I");
+    });
+    
+    $("#CIS040002").on('hide.bs.modal', function () {
+        searchInitialize("DTO", "D");
     });
     
 

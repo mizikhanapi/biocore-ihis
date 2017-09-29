@@ -62,7 +62,7 @@
                     </li>
                     <li>
                         <a href="#tab_shift_hour" data-toggle="tab">
-                            MAINTAIN SHIFT HOUR </a>
+                            MANAGE SHIFT </a>
                     </li>
 
                 </ul>
@@ -84,7 +84,7 @@
                     <div class="tab-pane" id="tab_shift_hour">
 
                         <div id="detail">
-                            <div id="detailMain">
+                            <div id="manage_shift">
                             </div>
                             <div id="detailTable" class="table-guling">
                             </div>
@@ -104,5 +104,7 @@
         
         $(document).ready(function(){
             $("#shift_code").load("maintain_shift_code.jsp");
+            $("#manage_shift").load("manage_shift.jsp");
+            
         })
         </script>

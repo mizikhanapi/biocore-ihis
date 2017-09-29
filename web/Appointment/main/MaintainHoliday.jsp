@@ -15,6 +15,8 @@
          String discipline = (String) session.getAttribute("DISCIPLINE_CODE");
          String subdiscipline = (String) session.getAttribute("SUB_DISCIPLINE_CODE");
          
+         String sqlHFCState = "SELECT hf.state_cd, ld.`Description` FROM adm_health_facility hf INNER JOIN adm_lookup_detail ld ON hf.state_cd = ld.`Detail_Reference_code`  WHERE hf.hfc_cd = '"+hfc+"' AND ld.hfc_cd = '"+hfc+"' AND ld.`Master_Reference_code` = '0002'  ";
+          ArrayList<ArrayList<String>> dataHFCState = Conn.getData(sqlHFCState);
          //                                     0                           1                           2                  3                    4                   5               6                 7             8              9                10                  11           
     String sqlDisplayHoliday = "SELECT lm.Master_Reference_code, ld.`Master_Reference_code`, ld.Detail_Reference_code, pmsh.state_code, pmsh.holiday_date, pmsh.holiday_desc, pmsh.holiday_type, pmsh.status, pmsh.status, pmsh.created_by, pmsh.created_date, ld.Description "
                 + "FROM adm_lookup_master lm, adm_lookup_detail ld, pms_holiday pmsh "
@@ -37,9 +39,21 @@
                                                         ArrayList<ArrayList<String>> dataState = Conn.getData(sql2);
 
                                                         if (dataState.size() > 0) {
-                                                            for (int i = 0; i < dataState.size(); i++) {%>
+                                                            for (int i = 0; i < dataState.size(); i++) {
+                                                                
+                                                            if(dataState.get(i).get(0).equals(dataHFCState.get(0).get(0))){
+                                                                
+                                                                %>
+                                                                <option value="<%=dataState.get(i).get(0)%>" selected=""><%=dataState.get(i).get(1)%></option>
+                                                    <%
+                                                                
+                                                            }else{
+                                                                
+                                                            
+                                                    
+                                                    %>
                                                     <option value="<%=dataState.get(i).get(0)%>"><%=dataState.get(i).get(1)%></option>
-                                                    <%}
+                                                    <%}}
                                                         }
                                                     %>
                                                 </select>

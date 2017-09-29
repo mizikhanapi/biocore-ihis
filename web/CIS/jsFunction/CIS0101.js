@@ -6,72 +6,55 @@
 
 
 $(document).ready(function () {
-    $("#tCISSubCCNHFCSearchPersonalised-flexdatalist").hide();
-    $("#tCISSubPMHSearchPersonalised-flexdatalist").hide();
-    $("#tCISSubFMHSearchPersonalised-flexdatalist").hide();
-    $("#tCISSubSOHSearchPersonalised-flexdatalist").hide();
-    $("#tCISSubALGSearchPersonalised-flexdatalist").hide();
-    $("#tCISSubIMUSearchPersonalised-flexdatalist").hide();
-    $("#tCISSubDABSearchPersonalised-flexdatalist").hide();
     
-    $("#tCISSubCCNHFCSearchPersonalised_update-flexdatalist").hide();
-    $("#tCISSubPMHSearchPersonalised_update-flexdatalist").hide();
-    $("#tCISSubFMHSearchPersonalised_update-flexdatalist").hide();
-    $("#tCISSubSOHSearchPersonalised_update-flexdatalist").hide();
-    $("#tCISSubALGSearchPersonalised_update-flexdatalist").hide();
-    $("#tCISSubIMUSearchPersonalised_update-flexdatalist").hide();
-    $("#tCISSubDABSearchPersonalised_update-flexdatalist").hide();
+//    $("#tCISSubPMHSearchPersonalised-flexdatalist").hide();
+//    $("#tCISSubFMHSearchPersonalised-flexdatalist").hide();
+//    $("#tCISSubSOHSearchPersonalised-flexdatalist").hide();
+//    $("#tCISSubALGSearchPersonalised-flexdatalist").hide();
+//    $("#tCISSubIMUSearchPersonalised-flexdatalist").hide();
+//    $("#tCISSubDABSearchPersonalised-flexdatalist").hide();
     
-    initialiseRadioPersonalised("CCN","CCNHFC");
-    initialiseRadioPersonalised("PMH","PMH");
-    initialiseRadioPersonalised("FMH","FMH");
-    initialiseRadioPersonalised("SOH","SOH");
-    initialiseRadioPersonalised("ALG","ALG");
-    initialiseRadioPersonalised("IMU","IMU");
-    initialiseRadioPersonalised("DAB","DAB");
+//    $("#tCISSubCCNHFCSearchPersonalised_update-flexdatalist").hide();
+//    $("#tCISSubPMHSearchPersonalised_update-flexdatalist").hide();
+//    $("#tCISSubFMHSearchPersonalised_update-flexdatalist").hide();
+//    $("#tCISSubSOHSearchPersonalised_update-flexdatalist").hide();
+//    $("#tCISSubALGSearchPersonalised_update-flexdatalist").hide();
+//    $("#tCISSubIMUSearchPersonalised_update-flexdatalist").hide();
+//    $("#tCISSubDABSearchPersonalised_update-flexdatalist").hide();
     
-//    $('input[name="rCISSubCCNSearchType"]').on('click',function(){
-//        var type = $(this).val();
-//        if(type === 'CT'){
-//            $("#btnCISSubCCNAddPersonalised").show();
-//            $("#tCISSubCCNHFCSearchPersonalised-flexdatalist").hide();
-//            $("#tCISSubCCNHFCSearch-flexdatalist").show();
-//        } else{
-//            $("#tCISSubCCNHFCSearchPersonalised-flexdatalist").show();
-//            $("#tCISSubCCNHFCSearch-flexdatalist").hide();
-//             $("#btnCISSubCCNAddPersonalised").hide();
-//        }
-//    });
-//    
-//    $('input[name="rCISSubCCNSearchType_update"]').on('click',function(){
-//        var type = $(this).val();
-//        if(type === 'CT'){
-//            $("#btnCISSubCCNAddPersonalised_update").show();
-//            $("#tCISSubCCNHFCSearchPersonalised_update-flexdatalist").hide();
-//            $("#tCISSubCCNHFCSearch_update-flexdatalist").show();
-//        } else{
-//            $("#tCISSubCCNHFCSearchPersonalised_update-flexdatalist").show();
-//            $("#tCISSubCCNHFCSearch_update-flexdatalist").hide();
-//             $("#btnCISSubCCNAddPersonalised_update").hide();
-//           
-//        }
-//    });
     
-//    $('#btnCISSubCCNAddPersonalised').click(function(e){
-//        e.preventDefault();
-//        var search_by = $('input[name="rCISSubCCNSearchType"]').val();
-//        var term_name =  term_name = $("#tCISSubCCNHFCSearch").val();;
-//        var term_code = getDate();
-//        var code_type = $("#tCISSUBCodeType").val();
-//        var dataPersonalised = {
-//            term_name : term_name,
-//            term_code : term_code,
-//            code_type : code_type
-//        }
-//        addPersonalisedTerm(dataPersonalised);
-//    });
+    initialisedModalSearch("CIS01000001","tCISSubCCNHFCSearchPersonalised","CCN","CCNHFC");
+    initialisedModalSearch("update_CIS01000001","tCISSubCCNHFCSearchPersonalised_update","CCN","CCNHFC");
+    
+    initialisedModalSearch("CIS01000003","tCISSubPMHSearchPersonalised","PMH","PMH");
+    initialisedModalSearch("update_CIS01000003","tCISSubPMHSearchPersonalised_update","PMH","PMH");
+    
+    initialisedModalSearch("CIS01000004","tCISSubFMHSearchPersonalised","FMH","FMH");
+    initialisedModalSearch("update_CIS01000004","tCISSubFMHSearchPersonalised_update","FMH","FMH");
+    
+    initialisedModalSearch("CIS01000005", "tCISSubSOHSearchPersonalised", "SOH", "SOH");
+    initialisedModalSearch("update_CIS01000005", "tCISSubSOHSearchPersonalised_update", "SOH", "SOH");
+    
+    initialisedModalSearch("CIS01000007", "tCISSubALGSearchPersonalised", "ALG", "ALG");
+    initialisedModalSearch("update_CIS01000007", "tCISSubALGSearchPersonalised_update", "ALG", "ALG");
+    
+    initialisedModalSearch("CIS01000008", "tCISSubDABSearchPersonalised", "DAB", "DAB");
+    initialisedModalSearch("update_CIS01000008", "tCISSubDABSearchPersonalised_update", "DAB", "DAB");
+    
     
 });
+
+function initialisedModalSearch(modal_id,personalised_id,modal_name,modal_name2){
+        $("#"+modal_id).on('show.bs.modal',function(){
+        searchInitialize(modal_name, "I");
+        $("#"+personalised_id+"-flexdatalist").hide();
+        initialiseRadioPersonalised(modal_name,modal_name2);
+    });
+    $("#"+modal_id).on('hide.bs.modal', function () {
+        searchInitialize(modal_name, "D");
+    });
+}
+
 
 function initialiseRadioPersonalised(code,field){
         $('input[name="rCISSub'+code+'SearchType"]').on('click',function(){

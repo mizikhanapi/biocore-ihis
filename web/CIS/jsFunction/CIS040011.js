@@ -40,9 +40,7 @@ $(document).ready(function () {
     $("#tCISOESPOSearch").prop("disabled", true);
     
     //searching("tCISOESPOProblemName", "tCISOESPOProblemNameLoading", "search/ResultCCNSearch.jsp", "problemCodeSPO", "search/ResultCCNSearchCode.jsp");
-    searchPOSSurgicalCategory("tCISOESPOCategoryName", "tCISOESPOCategoryNameLoading", "");
-    searchDOCTOROnlySurgical("tCISOESPOConsultantName", "tCISOESPOConsultantNameLoading", hfc_cd, "");
-    searchOTRoomSurgical("tCISOESPOOTRoomName", "tCISOESPOOTRoomNameLoading", "");
+
 
     $("#tCISOESPOOTRoomName").on('select:flexdatalist', function (value) {
         $.ajax({
@@ -373,6 +371,8 @@ $(document).ready(function () {
         $('#POSSurgical_NEW a[href="#surgicalProcedure1"]').tab('show');
 
     });
+    
+    });
 
     function clearFieldPOSSurgical() {
         $("#tCISOESPOSearch").val("");
@@ -407,4 +407,3 @@ $(document).ready(function () {
         return already;
     }
 
-});

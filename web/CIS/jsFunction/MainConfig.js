@@ -239,3 +239,202 @@ function loadSetting(user_id) {
     });
 }
 
+function searchInitialize(id, action){
+    if(action === "I"){
+        if(id === "CCN"){
+            
+            searching("tCISSubCCNHFCSearch", "tCISSubCCNHFCSearchLoading", "search/ResultCCNSearch.jsp", "ccnCode", "search/ResultCCNSearchCode.jsp");
+            searching("tCISSubCCNHFCSearchPersonalised", "tCISSubCCNHFCSearchLoading", "search/ResultCCNPersonaliseSearch.jsp", "ccnCode", "search/ResultCCNPersonaliseSearchCode.jsp");
+            searching("tCISSubCCNHFCSearchPersonalised_update", "tCISSubCCNHFCSearchLoading_update", "search/ResultCCNPersonaliseSearch.jsp", "uccnCode", "search/ResultCCNPersonaliseSearchCode.jsp");
+            
+        } else if(id === "PMH"){
+            
+            searching("tCISSubPMHSearch", "tCISSubPMHSearchLoading", "search/ResultPMHSearch.jsp", "codePMH", "search/ResultPMHSearchCode.jsp");
+            searching("tCISSubPMHSearchPersonalised", "tCISSubPMHSearchLoading", "search/ResultPMHPersonaliseSearch.jsp", "codePMH", "search/ResultPMHPersonaliseSearchCode.jsp");
+            searching("tCISSubPMHSearchPersonalised_update", "tCISSubPMHSearchLoading_update", "search/ResultPMHPersonaliseSearch.jsp", "ucodePMH", "search/ResultPMHPersonaliseSearchCode.jsp");
+            
+        } else if(id === "FMH"){
+            searching("tCISSubFMHSearch", "tCISSubFMHSearchLoading", "search/ResultPMHSearch.jsp", "fmhCode", "search/ResultPMHSearchCode.jsp");
+            searching("tCISSubFMHSearchPersonalised", "tCISSubFMHSearchLoading", "search/ResultFMHPersonaliseSearch.jsp", "fmhCode", "search/ResultFMHPersonaliseSearchCode.jsp");
+            searching("tCISSubFMHSearchPersonalised_update", "tCISSubFMHSearchLoading_update", "search/ResultFMHPersonaliseSearch.jsp", "ufmhCode", "search/ResultFMHPersonaliseSearchCode.jsp");
+        }else if(id === "SOH"){
+            searching("tCISSubSOHSearch", "tCISSubSOHSearchLoading", "search/ResultSOHSearch.jsp", "codeSOH", "search/ResultSOHSearchCode.jsp");
+            searching("tCISSubSOHSearchPersonalised", "tCISSubSOHSearchLoading", "search/ResultSOHPersonaliseSearch.jsp", "codeSOH", "search/ResultSOHPersonaliseSearchCode.jsp");
+            searching("tCISSubSOHSearchPersonalised_update", "tCISSubSOHSearchLoading_update", "search/ResultSOHPersonaliseSearch.jsp", "usohCode", "search/ResultSOHPersonaliseSearchCode.jsp");
+            
+        }else if(id === "ALG"){
+            searching("tCISSubALGSearch", "tCISSubALGSearchLoading", "search/ResultALGSearch.jsp", "codeALG", "search/ResultALGSearchCode.jsp");
+            searching("tCISSubALGSearchPersonalised", "tCISSubALGSearchLoading", "search/ResultALGPersonaliseSearch.jsp", "codeALG", "search/ResultALGPersonaliseSearchCode.jsp");
+            searching("tCISSubALGSearchPersonalised_update", "tCISSubALGSearchLoading_update", "search/ResultALGPersonaliseSearch.jsp", "uALG_cd", "search/ResultALGPersonaliseSearchCode.jsp");
+            
+        }else if(id === "IMU"){
+            searching("tCISSubIMUSearch", "tCISSubIMUSearchLoading", "search/ResultIMUSearch.jsp", "codeIMU", "search/ResultIMUSearchCode.jsp");
+            searching("tCISSubIMUSearchPersonalised", "tCISSubIMUSearchLoading", "search/ResultIMUPersonaliseSearch.jsp", "codeIMU", "search/ResultIMUPersonaliseSearchCode.jsp");
+            searching("tCISSubIMUSearchPersonalised_update", "tCISSubIMUSearchLoading_update", "search/ResultIMUPersonaliseSearch.jsp", "uIMU_cd", "search/ResultIMUPersonaliseSearchCode.jsp");
+            
+        }else if(id === "DAB"){
+            searching("tCISSubDABSearch", "tCISSubDABSearchLoading", "search/ResultDABSearch.jsp", "codeDAB", "search/ResultDABSearchCode.jsp");
+            searching("tCISSubDABSearchPersonalised", "tCISSubDABSearchLoading", "search/ResultDABPersonaliseSearch.jsp", "codeDAB", "search/ResultDABPersonaliseSearchCode.jsp");
+            searching("tCISSubDABSearchPersonalised_update", "tCISSubDABSearchLoading_update", "search/ResultDABPersonaliseSearch.jsp", "uDAS_cd", "search/ResultDABPersonaliseSearchCode.jsp");
+            
+        }else if(id === "DGS"){
+            searching("tCISSubDGSSearch", "tCISSubDGSSearchLoading", "search/ResultDGSSearch.jsp", "dgsCode", "search/ResultDGSSearchCode.jsp");
+            searching("tCISSubDGSSearchPersonalised", "tCISSubDGSSearchLoading", "search/ResultDGSPersonaliseSearch.jsp", "dgsCode", "search/ResultDGSPersonaliseSearchCode.jsp");
+            
+        }else if(id === "RIS"){
+            searching("tCISOEROSProblemName", "tCISOEROSProblemNameLoading", "search/ResultCCNSearch.jsp", "problemCode", "search/ResultCCNSearchCode.jsp");
+            searchingHFCValue("tCISOEROSHFC", "tCISOEROSHFCSearchLoading", "search/ResultHFCSearch.jsp", "search/ResultHFCSearchCode.jsp", "hfcIdROS", "locationROS", "hfcOrderDetail", "hfcProviderDetail", hfc_name);
+            searchHFCDetailv2($("#tCISOEROSHFC").val(), "hfcIdROS", "hfcOrderDetail", "hfcProviderDetail", "locationROS");
+            $("#tCISOEROSProcedureSearch").prop("disabled", false);
+            searchingRISPRO("tCISOEROSProcedureSearch", "tCISOEROSProcedureSearchLoading", "search/ResultRISProcedureSearch.jsp", "search/ResultRISProcedureSearchCode.jsp", "codeROS_2", "modalityROSCode", "modalityROS", "bodySystemROSCode", "bodySystemROS", '')
+       
+        }else if(id === "LIO"){
+            searchingHFC("tCISOELIOHFC", "tCISOELIOHFCSearchLoading", "search/ResultHFCSearch.jsp", "search/ResultHFCSearchCode.jsp", "hfcIdLOS", "-", "hfcOrderDetailLIO", "hfcProviderDetailLIO");
+            searching("tCISOELIOProblemName", "tCISOELIOProblemNameLoading", "search/ResultCCNSearch.jsp", "problemCodeLIO", "search/ResultCCNSearchCode.jsp");
+            searchLIO("tCISOELIOSearch", "search/ResultLIOSearch.jsp", "tCISOELIOSearchLoading", "");
+            searchingHFCValue("tCISOELIOHFC", "tCISOELIOHFCSearchLoading", "search/ResultHFCSearch.jsp", "search/ResultHFCSearchCode.jsp", "hfcIdLOS", "-", "hfcOrderDetailLIO", "hfcProviderDetailLIO", hfc_name);
+            searchHFCDetailv2($("#tCISOELIOHFC").val(), "hfcIdLOS", "hfcOrderDetailLIO", "hfcProviderDetailLIO", "-");
+        }else if(id === "DTO"){
+            searching("tCISOEDTOProblemName", "tCISOEDTOProblemNameLoading", "search/ResultCCNSearch.jsp", "problemCodeDTO", "search/ResultCCNSearchCode.jsp");
+            searchDTO("tCISOEDTODrugName", "tCISOEDTODrugNameLoading", "");
+            $.ajax({
+                url: 'search/GetSelectDrugFrequency.jsp',
+                type: 'POST',
+                timeout: 3000,
+                success: function (r) {
+                    console.log(r);
+                    $("#divSelectDrugFrequency").html(r.trim());
+                }
+            }); 
+            
+        }else if(id === "FLU"){
+            searchDOCTORValue("tCISPlanFLUDOCSearch_Update", "tCISPlanFLUDOCSearchLoading_Update", hfc_cd, "");
+            searchDOCTORValue("tCISPlanFLUDOCSearch", "tCISPlanFLUDOCSearchLoading", hfc_cd, "");
+            
+        } else if (id === "POS") {
+            $("#btnCIS_OE_POS_UPDATE").hide();
+            $("#btnCIS_OE_POS_CANCEL").hide();
+
+            $("#div_CIS_OE_POS_LVL1").hide();
+            $("#div_CIS_OE_POS_LVL2").hide();
+
+            searching("tCISOEPOSProblemName", "tCISOEPOSProblemNameLoading", "search/ResultCCNSearch.jsp", "problemCodePOS", "search/ResultCCNSearchCode.jsp");
+            searchPOS("tCISOEPOSSearch", "tCISOEPOSSearchLoading", "", "0");
+            searchPOSCode("tCISOEPOSSearch", "tCISOEPOSSearchLoading", "tCISOEPOS_0_ID", "0");
+
+        } else if(id === "OPT"){
+            searchPOSSurgicalCategory("tCISOESPOCategoryName", "tCISOESPOCategoryNameLoading", "");
+            searchDOCTOROnlySurgical("tCISOESPOConsultantName", "tCISOESPOConsultantNameLoading", hfc_cd, "");
+            searchOTRoomSurgical("tCISOESPOOTRoomName", "tCISOESPOOTRoomNameLoading", "");
+            
+        }else if(id === "REF"){
+            
+        }else if(id === "ADW"){
+            searchHFCOnly("tCIS_ADWHFCreferFrom", "tCIS_ADWHFCreferFromLoading");
+            searchHFCOnly("tCIS_ADWsearchHFC", "tCIS_ADWsearchHFCLoading");
+        }
+        
+
+       
+    } else if(action === "D"){
+        
+            $("#tCISOEDTODrugName").flexdatalist('destroy');
+            $("#tCISOEDTOProblemName").flexdatalist('destroy');
+            
+            
+             if (id === "CCN") {
+                 $("#tCISSubCCNHFCSearch").flexdatalist('destroy');
+                 $("#tCISSubCCNHFCSearchPersonalised").flexdatalist('destroy');
+                 $("#tCISSubCCNHFCSearchPersonalised_update").flexdatalist('destroy');
+
+        } else if (id === "PMH") {
+            
+            $("#tCISSubPMHSearch").flexdatalist('destroy');
+            $("#tCISSubPMHSearchPersonalised").flexdatalist('destroy');
+            $("#tCISSubPMHSearchPersonalised_update").flexdatalist('destroy');
+
+        } else if (id === "FMH") {
+            
+            $("#tCISSubFMHSearch").flexdatalist('destroy');
+            $("#tCISSubFMHSearchPersonalised").flexdatalist('destroy');
+            $("#tCISSubFMHSearchPersonalised_update").flexdatalist('destroy');
+            
+        } else if (id === "SOH") { 
+            $("#tCISSubSOHSearch").flexdatalist('destroy');
+            $("#tCISSubSOHSearchPersonalised").flexdatalist('destroy');
+            $("#tCISSubSOHSearchPersonalised_update").flexdatalist('destroy');
+            
+
+        } else if (id === "ALG") {
+            
+            $("#tCISSubALGSearch").flexdatalist('destroy');
+            $("#tCISSubALGSearchPersonalised").flexdatalist('destroy');
+            $("#tCISSubALGSearchPersonalised_update").flexdatalist('destroy');
+            
+            
+
+        } else if (id === "IMU") {
+            
+            $("#tCISSubIMUSearch").flexdatalist('destroy');
+            $("#tCISSubIMUSearchPersonalised").flexdatalist('destroy');
+            $("#tCISSubIMUSearchPersonalised_update").flexdatalist('destroy');
+            
+    
+
+        } else if (id === "DAB") {
+            
+            $("#tCISSubDABSearch").flexdatalist('destroy');
+            $("#tCISSubDABSearchPersonalised").flexdatalist('destroy');
+            $("#tCISSubDABSearchPersonalised_update").flexdatalist('destroy');
+
+
+        } else if (id === "DGS") {
+            $("#tCISOEROSProblemName").flexdatalist('destroy');
+            $("#tCISOEROSProcedureSearch").flexdatalist('destroy');
+
+        } else if (id === "RIS") {
+            $("#tCISOEROSHFC").flexdatalist('destroy');
+            $("#tCISOELIOProblemName").flexdatalist('destroy');
+            $("#tCISOEROSProcedureSearch").flexdatalist('destroy');
+
+        } else if (id === "LIO") {
+             $("#tCISOELIOHFC").flexdatalist('destroy');
+             $("#tCISOELIOProblemName").flexdatalist('destroy');
+             $("#tCISOELIOSearch").flexdatalist('destroy');
+
+        } else if (id === "DTO") {
+            $("#tCISOEDTOProblemName").flexdatalist('destroy');
+            $("#tCISOEDTODrugName").flexdatalist('destroy');
+
+        } else if (id === "FLU") {
+            
+            $("#tCISPlanFLUDOCSearch").flexdatalist('destroy');
+            $("#tCISPlanFLUDOCSearch_Update").flexdatalist('destroy');
+
+        } else if (id === "POS") {
+
+            $("#tCISOEPOSProblemName").flexdatalist('destroy');
+            $("#tCISOEPOSSearch").flexdatalist('destroy');
+            $("#tCISOEPOSSearch").flexdatalist('destroy');
+            
+
+        } else if (id === "OPT") {
+    
+            $("#tCISOEPOSSearch").flexdatalist('destroy');
+            $("#tCISOEPOSProblemName").flexdatalist('destroy');
+            $("#tCISOEPOSSearch").flexdatalist('destroy');
+            
+
+        } else if (id === "REF") {
+
+        } else if (id === "ADW") {
+
+            $("#tCIS_ADWsearchHFC").flexdatalist('destroy');
+            $("#tCIS_ADWHFCreferFrom").flexdatalist('destroy');
+            
+
+        }
+        
+    }
+
+}

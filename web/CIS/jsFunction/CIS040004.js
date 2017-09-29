@@ -6,7 +6,21 @@
 
 
 $(document).ready(function(e){
-    searchDOCTORValue("tCISPlanFLUDOCSearch", "tCISPlanFLUDOCSearchLoading", hfc_cd, "");
+    
+    $("#CIS040004").on('show.bs.modal',function(){
+        searchInitialize("FLU", "I");
+    });
+    $("#update_CIS040004").on('show.bs.modal', function () {
+        searchInitialize("FLU", "I");
+    });
+    
+    $("#CIS040004").on('hide.bs.modal', function () {
+        searchInitialize("FLU", "D");
+    })
+    $("#update_CIS040004").on('hide.bs.modal', function () {
+        searchInitialize("FLU", "D");
+    })
+    
     
     $("#tCISPlanFLUDOCSearch").on('select:flexdatalist',function(e){
         $.ajax({
@@ -38,7 +52,8 @@ $(document).ready(function(e){
                 $("#UdocFLUCode").val(e.trim());
             }
         });
-    })
-    searchDOCTORValue("tCISPlanFLUDOCSearch_Update", "tCISPlanFLUDOCSearchLoading_Update", hfc_cd, "");
+    });
+    
+   
     
 })
