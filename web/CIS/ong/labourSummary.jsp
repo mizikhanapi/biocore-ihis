@@ -455,6 +455,87 @@
         $('#LS_labourModal').modal('show');
         $('#LS_labour_div_add').hide();
         $('#LS_labour_div_update').show();
+        var summaryDate =$(this).closest('#LS_viewGroup').find('#LS_theSummaryDate').text();
+        var arrData = $(this).closest('div').find('#LS_labourHidden').val().split("|");
+        
+        $('#LS_labourDeliveryDate').val(arrData[1]);
+        $('#LS_labourDeliveryTime').val(arrData[2]);
+        $('#LS_labourOnset').val(arrData[3]);
+        $('#LS_labourVaginal').val(arrData[4]);
+        $('#LS_labourOperative').val(arrData[5]);
+        $('#LS_labourBloodLoss').val(arrData[6]);
+        $('#LS_labourPlacenta').val(arrData[7]);
+        $('#LS_labourCord').val(arrData[8]);
+        $('#LS_labourTear').val(arrData[9]);
+        $('#LS_labourRepair').val(arrData[10]);
+        
+        $('#LS_labourModalID').val(summaryDate);
+        
+    });
+    
+    $('#LS_labourBtnUpdate').on('click', function(){
+        if(LS_labourCheckField()){
+            var deliveryDate = $('#LS_labourDeliveryDate').val();
+            var deliveryTime = $('#LS_labourDeliveryTime').val();
+            var labourOnset = $('#LS_labourOnset').val();
+            var vaginal = $('#LS_labourVaginal').val();
+            var operative = $('#LS_labourOperative').val();
+            var bloodLoss = $('#LS_labourBloodLoss').val();
+            var placenta = $('#LS_labourPlacenta').val();
+            var cord = $('#LS_labourCord').val();
+            var tear = $('#LS_labourTear').val();
+            var repair = $('#LS_labourRepair').val();
+            
+            var summaryDate = $('#LS_labourModalID').val();
+            
+            repair = repair.replace(/'/g, "\\\'").replace(/"/g, "\\\"");
+            
+            var data={
+                deliveryDate : deliveryDate,
+                deliveryTime : deliveryTime,
+                labourOnset : labourOnset,
+                vaginal : vaginal,
+                operative : operative,
+                bloodLoss : bloodLoss,
+                placenta : placenta,
+                cord : cord,
+                tear : tear,
+                repair : repair,
+                summaryDate : summaryDate
+            };
+            var message="";
+            createScreenLoading();
+            $.ajax({
+                type: 'POST',
+                timeout: 60000,
+                data: data,
+                url: "specialistTemplate/ONG/LS_control/labourSummary_update.jsp",
+                success: function (data, textStatus, jqXHR) {
+                        var reply = data.trim();
+                        if(reply==="success"){
+                            message="Labour Summary is updated successfully.";
+                            $('#LS_viewBy').val('x');
+                            $('#LS_dateFrom').val(deliveryDate);
+                            $('#LS_dateTo').val(deliveryDate);
+                            LS_loadData();
+                            $('#LS_labourModal').modal('hide');
+                        }
+                        else if(reply==="fail"){
+                            message="Failed to update labour summary.";
+                        }
+                        else{
+                            message=data;
+                        }
+                    },
+                error: function (jqXHR, textStatus, errorThrown) {
+                        message="Oops! "+errorThrown;
+                    },
+                complete: function (jqXHR, textStatus ) {
+                        destroyScreenLoading();
+                        bootbox.alert(message);
+                    }
+            });
+        }
     });
     //========================================================
     

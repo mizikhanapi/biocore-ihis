@@ -117,7 +117,7 @@
             <p class="pull-right">
                 <button type="button" class="btn btn-danger" data-dismiss="modal" aria-label="Close" title="Delete summary"><span aria-hidden="true"><i class="fa fa-times fa-lg"></i></span></button>
             </p>
-            <h4>Summary Date: <span id="LS_theSummaryDate"><%=FormatTarikh.formatDate(dataLS.get(i).get(0), "dd/", endDateFormat)%></span></h4>
+            <h4>Summary Date: <span id="LS_theSummaryDate"><%=dataLS.get(i).get(0)%></span></h4>
         </div>
         
         <div class="panel-body">
@@ -149,7 +149,7 @@
                                 </div>
                                 <div style="position: absolute; bottom: 0px; right: 15px;">
                                     <input type="hidden" id="LS_labourHidden" value="<%=String.join("|", dataLS.get(i))%>">
-                                    <a style="vertical-align: middle;" id="LS_labourUpdateModal"><i class="fa fa-pencil-square-o fa-lg" aria-hidden="true" style=" color: #337ab7;"></i></a>
+                                    <a style="vertical-align: middle; cursor: pointer;" id="LS_labourUpdateModal"><i class="fa fa-pencil-square-o fa-lg" aria-hidden="true" style=" color: #337ab7;"></i></a>
                                 </div>
                             </div>
                         </div>
