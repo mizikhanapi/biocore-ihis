@@ -539,16 +539,215 @@
     });
     //========================================================
     
-    //****************************************************************************** summary ****************************************************************
+    //****************************************************************************** ==summary== ****************************************************************
+    
+    //******************************************************** stage *****************************************************
     
     //---------- update labour stage ------
     $('#LS_viewDIv').on('click', '#LS_stageUpdateModal', function (){
         $('#LS_stageModal').modal('show');
+        var arrTime = $(this).closest('div').find('#LS_theHiddenLabourTime').val().split("|");
+        var arrDur = $(this).closest('div').find('#LS_theHiddenLabourDuration').val().split("|");
+        var summaryDate =$(this).closest('#LS_viewGroup').find('#LS_theSummaryDate').text();
+        
+        $('#LS_stageModalID').val(summaryDate);
+        $('#LS_stageBeginDate').val(arrTime[0]);
+        $('#LS_stageBeginTime').val(arrTime[1]);
+        $('#LS_stageMembraneDate').val(arrTime[2]);
+        $('#LS_stageMembraneTime').val(arrTime[3]);
+        $('#LS_stageSecondDate').val(arrTime[4]);
+        $('#LS_stageSecondTime').val(arrTime[5]);
+        $('#LS_stageBornDate').val(arrTime[6]);
+        $('#LS_stageBornTime').val(arrTime[7]);
+        $('#LS_stagePlacentaDate').val(arrTime[8]);
+        $('#LS_stagePlacentaTime').val(arrTime[9]);
+        
+        $('#LS_stage1hour').val(arrDur[0]);
+        $('#LS_stage1minute').val(arrDur[1]);
+        $('#LS_stage2hour').val(arrDur[2]);
+        $('#LS_stage2minute').val(arrDur[3]);
+        $('#LS_stage3hour').val(arrDur[4]);
+        $('#LS_stage3minute').val(arrDur[5]);
+        
+    });
+    
+    function LS_stageCheckField(){
+        var isComplete=true;
+        var msg="";
+        
+        var beginDate = $('#LS_stageBeginDate').val();
+        var beginTime = $('#LS_stageBeginTime').val();
+        var membraneDate = $('#LS_stageMembraneDate').val();
+        var membraneTime=$('#LS_stageMembraneTime').val();
+        var secondDate=$('#LS_stageSecondDate').val();
+        var secondTime=$('#LS_stageSecondTime').val();
+        var bornDate=$('#LS_stageBornDate').val();
+        var bornTime=$('#LS_stageBornTime').val();
+        var placentaDate=$('#LS_stagePlacentaDate').val();
+        var placentaTime=$('#LS_stagePlacentaTime').val();
+        
+        var hour1=$('#LS_stage1hour').val();
+        var minute1=$('#LS_stage1minute').val();
+        var hour2=$('#LS_stage2hour').val();
+        var minute2=$('#LS_stage2minute').val();
+        var hour3 = $('#LS_stage3hour').val();
+        var minute3=$('#LS_stage3minute').val();
+        
+        if(beginDate===""){
+            isComplete=false;
+            msg="Please choose labour begin date";
+        }
+        else if(beginTime===""){
+            isComplete=false;
+            msg="Please choose labour begin tme";
+        }
+        else if(membraneDate===""){
+            isComplete=false;
+            msg="Please choose membrane ruptured date";
+        }
+        else if(membraneTime===""){
+            isComplete=false;
+            msg="Please choose membrane ruptured time";
+        }
+        else if(secondDate===""){
+            isComplete=false;
+            msg="Please choose second stage date";
+        }
+        else if(secondTime===""){
+            isComplete=false;
+            msg="Pleae choose second stage time";
+        }
+        else if(bornDate===""){
+            isComplete=false;
+            msg="Pleae choose child born date";
+        }
+        else if(bornTime===""){
+            isComplete=false;
+            msg="Please choose child born time";
+        }
+        else if(placentaDate===""){
+            isComplete=false;
+            msg="Please choose placenta expelled date";
+        }
+        else if(placentaTime===""){
+            isComplete=false;
+            msg="Please choose placenta expelled time";
+        }
+        
+        if(hour1==="" || isNaN(hour1)){
+            $('#LS_stage1hour').val("0");
+        }
+        
+        if(minute1==="" || isNaN(minute1)){
+            $('#LS_stage1minute').val("0");
+        }
+        
+        if(hour2==="" || isNaN(hour2)){
+            $('#LS_stage2hour').val("0");
+        }
+        
+        if(minute2==="" || isNaN(minute2)){
+            $('#LS_stage2minute').val("0");
+        }
+        
+        if(hour3==="" || isNaN(hour3)){
+            $('#LS_stage3hour').val("0");
+        }
+        
+        if(minute3==="" || isNaN(minute3)){
+            $('#LS_stage3minute').val("0");
+        }
+        
+        if(!isComplete){
+            bootbox.alert(msg);
+        }
+        
+        return isComplete;
+    }
+    
+    $('#LS_stageBtnAdd').on('click', function(){
+        
+        if(LS_stageCheckField()){
+            var summaryDate = $('#LS_stageModalID').val();
+            var beginDate = $('#LS_stageBeginDate').val();
+            var beginTime = $('#LS_stageBeginTime').val();
+            var membraneDate = $('#LS_stageMembraneDate').val();
+            var membraneTime=$('#LS_stageMembraneTime').val();
+            var secondDate=$('#LS_stageSecondDate').val();
+            var secondTime=$('#LS_stageSecondTime').val();
+            var bornDate=$('#LS_stageBornDate').val();
+            var bornTime=$('#LS_stageBornTime').val();
+            var placentaDate=$('#LS_stagePlacentaDate').val();
+            var placentaTime=$('#LS_stagePlacentaTime').val();
+
+            var hour1=$('#LS_stage1hour').val();
+            var minute1=$('#LS_stage1minute').val();
+            var hour2=$('#LS_stage2hour').val();
+            var minute2=$('#LS_stage2minute').val();
+            var hour3 = $('#LS_stage3hour').val();
+            var minute3=$('#LS_stage3minute').val();
+            
+            var theDate = summaryDate.split(" ")[0];
+            
+            var data={
+                summaryDate : summaryDate,
+                beginDate : beginDate,
+                beginTime : beginTime,
+                membraneDate : membraneDate,
+                membraneTime : membraneTime,
+                secondDate : secondDate,
+                secondTime : secondTime,
+                bornDate : bornDate,
+                bornTime : bornTime,
+                placentaDate : placentaDate,
+                placentaTime : placentaTime,
+                hour1 : hour1,
+                minute1 : minute1,
+                hour2 : hour2,
+                minute2 : minute2,
+                hour3 : hour3,
+                minute3 : minute3
+            };
+            
+            createScreenLoading();
+            var message="";
+            $.ajax({
+                type: 'POST',
+                timeout: 60000,
+                data: data,
+                url: "specialistTemplate/ONG/LS_control/labourStage_update.jsp",
+                success: function (data, textStatus, jqXHR) {
+                        var reply = data.trim();
+                        if(reply==="success"){
+                            message="Labour stage is saved successfully.";
+                            $('#LS_viewBy').val('x');
+                            $('#LS_dateFrom').val(theDate);
+                            $('#LS_dateTo').val(theDate);
+                            LS_loadData();
+                            $('#LS_stageModal').modal('hide');
+                        }
+                        else if(reply==="fail"){
+                            message="Failed to save labour stage.";
+                        }
+                        else{
+                            message=data;
+                        }
+                    },
+                error: function (jqXHR, textStatus, errorThrown) {
+                        message="Oops! "+errorThrown;
+                    },
+                complete: function (jqXHR, textStatus ) {
+                        destroyScreenLoading();
+                        bootbox.alert(message);
+                    }
+            });
+        }
+        
     });
     
     //===============================
     
-   
+   //**************************************************** == stage == **************************************************
      
     //---------- update labour event-----
     $('#LS_viewDIv').on('click', '#LS_eventUpdateModal', function (){

@@ -40,8 +40,8 @@
         strOut="Labour summary for date "+deliveryDate+" "+deliveryTime+" is already existed!";
     }
     else{
-        String queryInsert="Insert into lhr_ong_labour_summary(pmi_no, hfc_cd, episode_date, encounter_date, summary_date, delivery_datetime, labour_onset, vaginal, operative, `3stage_blood_lost`, placenta, cord, tear, repaired_by) "
-                + "VALUES('"+pmiNo+"', '"+hfc_cd+"', '"+epDate+"', now(), '"+theDeliveryDate+"', '"+theDeliveryDate+"', '"+labourOnset+"', '"+vaginal+"', '"+operative+"', '"+bloodLoss+"', '"+placenta+"', '"+cord+"', '"+tear+"', '"+repair+"');";
+        String queryInsert="Insert into lhr_ong_labour_summary(pmi_no, hfc_cd, episode_date, encounter_date, summary_date, delivery_datetime, labour_onset, vaginal, operative, `3stage_blood_lost`, placenta, cord, tear, repaired_by, created_by, created_date) "
+                + "VALUES('"+pmiNo+"', '"+hfc_cd+"', '"+epDate+"', now(), '"+theDeliveryDate+"', '"+theDeliveryDate+"', '"+labourOnset+"', '"+vaginal+"', '"+operative+"', '"+bloodLoss+"', '"+placenta+"', '"+cord+"', '"+tear+"', '"+repair+"', '"+creator+"', now());";
         RMIConnector rmi = new RMIConnector();
         boolean isSuccess = rmi.setQuerySQL(con.HOST, con.PORT, queryInsert);
         
