@@ -38,8 +38,11 @@ $(document).ready(function () {
     initialisedModalSearch("CIS01000007", "tCISSubALGSearchPersonalised", "ALG", "ALG");
     initialisedModalSearch("update_CIS01000007", "tCISSubALGSearchPersonalised_update", "ALG", "ALG");
     
-    initialisedModalSearch("CIS01000008", "tCISSubDABSearchPersonalised", "DAB", "DAB");
-    initialisedModalSearch("update_CIS01000008", "tCISSubDABSearchPersonalised_update", "DAB", "DAB");
+    initialisedModalSearch("CIS01000008", "tCISSubIMUSearchPersonalised", "IMU", "IMU");
+    initialisedModalSearch("update_CIS01000008", "tCISSubIMUSearchPersonalised_update", "IMU", "IMU");
+    
+    initialisedModalSearch("CIS01000009", "tCISSubDABSearchPersonalised", "DAB", "DAB");
+    initialisedModalSearch("update_CIS01000009", "tCISSubDABSearchPersonalised_update", "DAB", "DAB");
     
     
 });

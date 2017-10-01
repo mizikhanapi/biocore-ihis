@@ -71,7 +71,7 @@
                                                                                             <a href="#tab_default_1" data-toggle="tab">
                                                                                                 Maintain Queue Type </a>
                                                                                         </li>-->
-                                            <li class="active">
+                                            <li >
                                                 <a href="#tab_default_2" data-toggle="tab">
                                                     Maintain Queue Name </a>
                                             </li>
@@ -79,7 +79,7 @@
                                                 <a href="#tab_default_3" data-toggle="tab">
                                                     Maintain Queue List </a>
                                             </li>
-                                            <li>
+                                            <li class="active">
                                                 <a href="#tab_default_4" data-toggle="tab">
                                                     Assign To Queue </a>
                                             </li>
@@ -89,13 +89,13 @@
                                             <!--                                            <div class="tab-pane active" id="tab_default_1">
                                                                                             <div id="queueType"></div>
                                                                                         </div>-->
-                                            <div class="tab-pane active" id="tab_default_2">
+                                            <div class="tab-pane " id="tab_default_2">
                                                 <div id="queueName" class="table-guling"></div>
                                             </div>
                                             <div class="tab-pane" id="tab_default_3">
                                                 <div id="queueList" class="table-guling"></div>
                                             </div>
-                                            <div class="tab-pane" id="tab_default_4">
+                                            <div class="tab-pane active" id="tab_default_4">
                                                 <div id="assignToQueue" class="table-guling"></div>
                                             </div>
                                         </div>
