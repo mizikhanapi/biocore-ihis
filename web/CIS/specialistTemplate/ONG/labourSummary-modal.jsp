@@ -369,7 +369,7 @@
             </div>
             <div class="modal-body">
                 <form id="LS_eventForm">
-                    <input type="hidden" id="LS_infantModalID">
+                    <input type="hidden" id="LS_eventModalID">
                     <div class="col-md-12">
                         <!-- Text input-->
                         <div class="form-group">
@@ -426,8 +426,8 @@
                                 <div class="col-md-8">
                                     <select id="LS_infantAlive" class="form-control input-md">
                                         <option selected disabled value="">Select baby condition</option>
-                                        <option value="">Yes</option>
-                                        <option value="">No</option>
+                                        <option value="Yes">Yes</option>
+                                        <option value="No">No</option>
                                     </select>
                                 </div>
                             </div>
@@ -438,7 +438,7 @@
                             <div class="form-group">
                                 <label class="col-md-4 control-label" for="textinput">Other condition:</label>
                                 <div class="col-md-8">
-                                    <textarea id="LS_infantOther" class="form-control input-md" maxlength="200" cols="4"></textarea>
+                                    <textarea id="LS_infantOther" class="form-control input-md" maxlength="185" cols="4" placeholder="Insert other comment if any..."></textarea>
                                 </div>
                             </div>
                         </div>
@@ -582,7 +582,7 @@
                             <div class="form-group">
                                 <label class="col-md-4 control-label" for="textinput">Foetal Abnormality:</label>
                                 <div class="col-md-8">
-                                    <textarea id="LS_infantAbnormal" class="form-control input-md" placeholder="Insert baby's abnormality if got any..." cols="4"></textarea>
+                                    <textarea id="LS_infantAbnormal" class="form-control input-md" placeholder="Insert baby's abnormality if got any..." cols="4" maxlength="185"></textarea>
                                 </div>
                             </div>
                         </div>

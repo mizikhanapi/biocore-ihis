@@ -230,6 +230,9 @@
 <jsp:include page="specialistTemplate/ONG/labourSummary-modal.jsp" />
 
 <script type="text/javascript">
+    $(document).on('focus', ':input', function() {
+        $(this).attr('autocomplete', 'off');
+    });
      //--- initialise datepicker for from ----
     $('#LS_dateFrom').datepicker({
         changeMonth: true,
@@ -748,30 +751,403 @@
     //===============================
     
    //**************************************************** == stage == **************************************************
+   
+   
+   //**************************************** labour event **********************************************
      
     //---------- update labour event-----
     $('#LS_viewDIv').on('click', '#LS_eventUpdateModal', function (){
         $('#LS_eventModal').modal('show');
+        var eventArr = $(this).closest('div').find('#LS_theEventHidden').val().split("|");
+        var summaryDate =$(this).closest('#LS_viewGroup').find('#LS_theSummaryDate').text();
+        
+        $('#LS_eventModalID').val(summaryDate);
+        $('#LS_eventConductedBy').val(eventArr[0]);
+        $('#LS_eventWitness').val(eventArr[1]);
+    });
+    
+    function LS_eventCheckField(){
+        var isComplete = true;
+        var msg="";
+        
+        var conductedBy = $('#LS_eventConductedBy').val();
+        var witness = $('#LS_eventWitness').val();
+        
+        if(conductedBy===""){
+            isComplete=false;
+            msg="Please fill in the conductor name";
+        }
+        else if(witness===""){
+            isComplete=false;
+            msg="Please fill in the witness name";
+        }
+        
+        if(!isComplete){
+            bootbox.alert(msg);
+        }
+        
+        return isComplete;
+    }
+    
+    $('#LS_eventBtnAdd').on('click', function(){
+        if(LS_eventCheckField()){
+            var conductedBy = $('#LS_eventConductedBy').val();
+            var witness = $('#LS_eventWitness').val();
+            var summaryDate = $('#LS_eventModalID').val();
+            var theDate = summaryDate.split("|")[0];
+            
+            conductedBy = conductedBy.replace(/'/g, "\\\'").replace(/"/g, "\\\"");
+            witness = witness.replace(/'/g, "\\\'").replace(/"/g, "\\\"");
+            
+            var data={
+                summaryDate : summaryDate,
+                conductedBy : conductedBy,
+                witness : witness
+            };
+            
+            var message="";
+            createScreenLoading();
+            $.ajax({
+                type: 'POST',
+                timeout: 60000,
+                data: data,
+                url: "specialistTemplate/ONG/LS_control/event_update.jsp",
+                success: function (data, textStatus, jqXHR) {
+                        var reply = data.trim();
+                        if(reply==="success"){
+                            message="Event record is saved successfully.";
+                            $('#LS_viewBy').val('x');
+                            $('#LS_dateFrom').val(theDate);
+                            $('#LS_dateTo').val(theDate);
+                            LS_loadData();
+                            $('#LS_eventModal').modal('hide');
+                        }
+                        else if(reply==="fail"){
+                            message="Failed to save event record.";
+                        }
+                        else{
+                            message=data;
+                        }
+                    },
+                error: function (jqXHR, textStatus, errorThrown) {
+                        message="Oops! "+errorThrown;
+                    },
+                complete: function (jqXHR, textStatus ) {
+                        destroyScreenLoading();
+                        bootbox.alert(message);
+                    }
+            });
+        }
     });
     //===================================
     
+    //********************************* == labour event == ********************************************
+    
+    //********************************* infant ************************************************
     //--------------- add new infant ---------------------
     $('#LS_viewDIv').on('click', '#LS_infantAddModal', function (){
         $('#LS_infantModal').modal('show');
         $('#LS_infant_div_add').show();
         $('#LS_infant_div_update').hide();
         $('#LS_infantForm')[0].reset();
+        
+        var summaryDate =$(this).closest('#LS_viewGroup').find('#LS_theSummaryDate').text();
+        var summaryDateArr = summaryDate.split(" ");
+        var birthDate = summaryDateArr[0];
+        var birthTime = summaryDateArr[1];
+        
+       
+        $('#LS_infantBirthDate').val(birthDate);
+        $('#LS_infantBirthTime').val(birthTime);
+        $('#LS_infantModalID').val(summaryDate);
+        
     });
+    
+    function LS_infantCheckField(){
+        var isComplete=true;
+        var msg="";
+        
+        var alive = $('#LS_infantAlive').val();
+        var other = $('#LS_infantOther').val();
+        var tag = $('#LS_infantTag').val();
+        var birthDate = $('#LS_infantBirthDate').val();
+        var birthTime = $('#LS_infantBirthTime').val();
+        var sex = $('#LS_infantSex').val();
+        var weight = $('#LS_infantWeight').val();
+        var head = $('#LS_infantHead').val();
+        var apgar1 = $('#LS_infantApgar1').val();
+        var apgar2 = $('#LS_infantApgar2').val();
+        var apgar3 = $('#LS_infantApgar3').val();
+        var length = $('#LS_infantLength').val();
+        var cord = $('#LS_infantCord').val();
+        var vitamin = $('#LS_infantVitaminK').val();
+        var vaccine = $('#LS_infantVaccine').val();
+        var abnormal = $('#LS_infantAbnormal').val();
+        
+        if(alive===""){
+            isComplete=false;
+            msg="Please choose baby's condition";
+        }
+        else if(tag ===""){
+            isComplete=false;
+            msg="Please insert baby's tag number";
+        }
+        else if(birthDate ===""){
+            isComplete=false;
+            msg="Please choose baby's birth date";
+        }
+        else if(birthTime ===""){
+            isComplete=false;
+            msg="Please choose baby's birth time";
+        }
+        else if(sex ===""){
+            isComplete=false;
+            msg="Please choose baby's sex";
+        }
+        else if(cord ===""){
+            isComplete=false;
+            msg="Please choose the cord blood collection status";
+        }
+        else if(vitamin ===""){
+            isComplete=false;
+            msg="Please choose the vitamin status";
+        }
+        else if(vaccine ===""){
+            isComplete=false;
+            msg="Please choose the vaccination status";
+        }
+        
+        if(weight==="" || isNaN(weight)){
+            $('#LS_infantWeight').val("0");
+        }
+        
+        if(head==="" || isNaN(head)){
+            $('#LS_infantHead').val("0");
+        }
+        
+        if(apgar1==="" || isNaN(apgar1)){
+            $('#LS_infantApgar1').val("0");
+        }
+        
+        if(apgar2==="" || isNaN(apgar2)){
+            $('#LS_infantApgar2').val("0");
+        }
+        
+        if(apgar3==="" || isNaN(apgar3)){
+            $('#LS_infantApgar3').val("0");
+        }
+        
+        if(length==="" || isNaN(length)){
+            $('#LS_infantLength').val("0");
+        }
+        
+        if(!isComplete){
+            bootbox.alert(msg);
+        }
+        
+        return isComplete;
+    }
     //====================================================
     
+    //----- add infant record by click --------------
+    $('#LS_infantBtnAdd').on('click', function(){
+        if(LS_infantCheckField()){
+            
+            var summaryDate = $('#LS_infantModalID').val();
+            var theDate = summaryDate.split(" ")[0];
+            
+            var alive = $('#LS_infantAlive').val();
+            var other = $('#LS_infantOther').val();
+            var tag = $('#LS_infantTag').val();
+            var birthDate = $('#LS_infantBirthDate').val();
+            var birthTime = $('#LS_infantBirthTime').val();
+            var sex = $('#LS_infantSex').val();
+            var weight = $('#LS_infantWeight').val();
+            var head = $('#LS_infantHead').val();
+            var apgar1 = $('#LS_infantApgar1').val();
+            var apgar2 = $('#LS_infantApgar2').val();
+            var apgar3 = $('#LS_infantApgar3').val();
+            var length = $('#LS_infantLength').val();
+            var cord = $('#LS_infantCord').val();
+            var vitamin = $('#LS_infantVitaminK').val();
+            var vaccine = $('#LS_infantVaccine').val();
+            var abnormal = $('#LS_infantAbnormal').val();
+            
+            other = other.replace(/'/g, "\\\'").replace(/"/g, "\\\"");
+            abnormal = abnormal.replace(/'/g, "\\\'").replace(/"/g, "\\\"");
+            
+            var data={
+                summaryDate : summaryDate,
+                alive : alive,
+                other : other,
+                tag : tag,
+                birthDate : birthDate,
+                birthTime : birthTime,
+                sex : sex,
+                weight : weight,
+                head : head,
+                apgar1 : apgar1,
+                apgar2 : apgar2,
+                apgar3 : apgar3,
+                length : length,
+                cord : cord,
+                vitamin : vitamin,
+                vaccine : vaccine,
+                abnormal : abnormal
+                
+            };
+            
+            var message="";
+            createScreenLoading();
+            $.ajax({
+                type: 'POST',
+                timeout: 60000,
+                data: data,
+                url: "specialistTemplate/ONG/LS_control/infant_insert.jsp",
+                success: function (data, textStatus, jqXHR) {
+                        var reply = data.trim();
+                        if(reply==="success"){
+                            message="Infant record is saved successfully.";
+                            $('#LS_viewBy').val('x');
+                            $('#LS_dateFrom').val(theDate);
+                            $('#LS_dateTo').val(theDate);
+                            LS_loadData();
+                            $('#LS_infantModal').modal('hide');
+                        }
+                        else if(reply==="fail"){
+                            message="Failed to save infant record.";
+                        }
+                        else{
+                            message=data;
+                        }
+                    },
+                error: function (jqXHR, textStatus, errorThrown) {
+                        message="Oops! "+errorThrown;
+                    },
+                complete: function (jqXHR, textStatus ) {
+                        destroyScreenLoading();
+                        bootbox.alert(message);
+                    }
+            });
+        }
+    });
+    //=============================================
+    
+       
     //-------------------- update infant birth record ---------------------------
      $('#LS_viewDIv').on('click', '#LS_infantUpdateModal', function (){
         $('#LS_infantModal').modal('show');
         $('#LS_infant_div_add').hide();
         $('#LS_infant_div_update').show();
+        $('#LS_infantTag').prop('disabled', true);
+        
+        var summaryDate =$(this).closest('#LS_viewGroup').find('#LS_theSummaryDate').text();
+        var hiddenArr = $(this).closest('div').find('#LS_theInfantHidden').val().split("|");
+        
+        $('#LS_infantModalID').val(summaryDate);
+        $('#LS_infantAlive').val(hiddenArr[0]);
+        $('#LS_infantOther').val(hiddenArr[1]);
+        $('#LS_infantTag').val(hiddenArr[2]);
+        $('#LS_infantBirthDate').val(hiddenArr[3]);
+        $('#LS_infantBirthTime').val(hiddenArr[4]);
+        $('#LS_infantSex').val(hiddenArr[5]);
+        $('#LS_infantWeight').val(hiddenArr[6]);
+        $('#LS_infantHead').val(hiddenArr[7]);
+        $('#LS_infantApgar1').val(hiddenArr[8]);
+        $('#LS_infantApgar2').val(hiddenArr[9]);
+        $('#LS_infantApgar3').val(hiddenArr[10]);
+        $('#LS_infantLength').val(hiddenArr[11]);
+        $('#LS_infantCord').val(hiddenArr[12]);
+        $('#LS_infantVitaminK').val(hiddenArr[13]);
+        $('#LS_infantVaccine').val(hiddenArr[14]);
+        $('#LS_infantAbnormal').val(hiddenArr[15]);
+        
+    });
+    
+    $('#LS_infantBtnUpdate').on('click', function(){
+        if(LS_infantCheckField()){
+            
+            var summaryDate = $('#LS_infantModalID').val();
+            var theDate = summaryDate.split(" ")[0];
+            
+            var alive = $('#LS_infantAlive').val();
+            var other = $('#LS_infantOther').val();
+            var tag = $('#LS_infantTag').val();
+            var birthDate = $('#LS_infantBirthDate').val();
+            var birthTime = $('#LS_infantBirthTime').val();
+            var sex = $('#LS_infantSex').val();
+            var weight = $('#LS_infantWeight').val();
+            var head = $('#LS_infantHead').val();
+            var apgar1 = $('#LS_infantApgar1').val();
+            var apgar2 = $('#LS_infantApgar2').val();
+            var apgar3 = $('#LS_infantApgar3').val();
+            var length = $('#LS_infantLength').val();
+            var cord = $('#LS_infantCord').val();
+            var vitamin = $('#LS_infantVitaminK').val();
+            var vaccine = $('#LS_infantVaccine').val();
+            var abnormal = $('#LS_infantAbnormal').val();
+            
+            other = other.replace(/'/g, "\\\'").replace(/"/g, "\\\"");
+            abnormal = abnormal.replace(/'/g, "\\\'").replace(/"/g, "\\\"");
+            
+            var data={
+                summaryDate : summaryDate,
+                alive : alive,
+                other : other,
+                tag : tag,
+                birthDate : birthDate,
+                birthTime : birthTime,
+                sex : sex,
+                weight : weight,
+                head : head,
+                apgar1 : apgar1,
+                apgar2 : apgar2,
+                apgar3 : apgar3,
+                length : length,
+                cord : cord,
+                vitamin : vitamin,
+                vaccine : vaccine,
+                abnormal : abnormal
+                
+            };
+            
+            var message="";
+            createScreenLoading();
+            $.ajax({
+                type: 'POST',
+                timeout: 60000,
+                data: data,
+                url: "specialistTemplate/ONG/LS_control/infant_update.jsp",
+                success: function (data, textStatus, jqXHR) {
+                        var reply = data.trim();
+                        if(reply==="success"){
+                            message="Infant record is saved successfully.";
+                            $('#LS_viewBy').val('x');
+                            $('#LS_dateFrom').val(theDate);
+                            $('#LS_dateTo').val(theDate);
+                            LS_loadData();
+                            $('#LS_infantModal').modal('hide');
+                        }
+                        else if(reply==="fail"){
+                            message="Failed to save infant record.";
+                        }
+                        else{
+                            message=data;
+                        }
+                    },
+                error: function (jqXHR, textStatus, errorThrown) {
+                        message="Oops! "+errorThrown;
+                    },
+                complete: function (jqXHR, textStatus ) {
+                        destroyScreenLoading();
+                        bootbox.alert(message);
+                    }
+            });
+        }
     });
     //=======================================================================
     
+    //********************************** == infant == *******************************************************
     
     //-------------------update mother transfer ---------------------
     $('#LS_viewDIv').on('click', '#LS_transferUpdateModal', function (){

@@ -111,6 +111,18 @@
             String longStrLabourTime = String.join("|", labourBeginDate, labourBeginTime, membraneDate, membraneTime, secondStageDate, secondStageTime, bornDate, bornTime, placentaDate, placentaTime, dataLS.get(i).get(16), dataLS.get(i).get(17), dataLS.get(i).get(18), dataLS.get(i).get(19));
             String longStrLabourDuration = String.join("|", Integer.toString(stage1stArr[0]), Integer.toString(stage1stArr[1]), Integer.toString(stage2ndArr[0]), Integer.toString(stage2ndArr[1]), Integer.toString(stage3rdArr[0]), Integer.toString(stage3rdArr[1]), Integer.toString(stageTotalArr[0]), Integer.toString(stageTotalArr[1]));
             
+            String conductedBy = "", witness="";
+            
+            if(dataLS.get(i).get(20) != null){
+                conductedBy = dataLS.get(i).get(20);
+            }
+            
+            if(dataLS.get(i).get(21) != null){
+                witness = dataLS.get(i).get(21);
+            }
+            
+            String summaryDate = FormatTarikh.formatDate(dataLS.get(i).get(0), "dd/MM/yyyy HH:mm", "yyyy-MM-dd HH:mm:ss");
+            
 %>
 <div class="panel panel-default" id="LS_viewGroup">
         <div class="panel-heading clearfix"> 
@@ -211,13 +223,14 @@
                                     <dt style="font-size: 18px;">Delivery Event</dt>
                                 </div>
                                 <div class="col-xs-4">
-                                    <dd>Conducted by: <strong>Someone</strong></dd>
+                                    <dd>Conducted by: <strong><%=conductedBy%></strong></dd>
                                 </div>
                                 <div class="col-xs-4">
-                                    <dd>Witnessed by: <strong>Someone</strong></dd>
+                                    <dd>Witnessed by: <strong><%=witness%></strong></dd>
                                 </div>
                                 
                                 <div style="position: absolute; bottom: 0px; right: 15px;">
+                                    <input type="hidden" id="LS_theEventHidden" value="<%= conductedBy+"|"+witness%>">
                                     <a style="vertical-align: middle; cursor: pointer;" id="LS_eventUpdateModal"><i class="fa fa-pencil-square-o fa-lg" aria-hidden="true" style=" color: #337ab7;"></i></a>
                                 </div>
                             </div>
@@ -227,45 +240,72 @@
             </div> 
 
             <ul class="soap-content nav">
-                <li><a data-toggle="modal" data-target="#LS_infantModal" class=""><i class="fa fa-comments  fa-li"></i>New Birth Record</a>
+                <li><a style="cursor: pointer;" id="LS_infantAddModal"><i class="fa fa-comments  fa-li"></i>New Birth Record</a>
             </ul>
-            <div class="panel panel-default">
-                <div class="panel-body">
-                    <div class="row">
-                        <div class="col-xs-12">
-                           <div class="media">
-                                <div class="col-xs-3">
-                                    <dt style="font-size: 18px;">INFANT - Birth Record</dt>
-                                    <dd>Alive?: <strong>Yes</strong></dd>
-                                    <dd>Other: <strong>State your comments</strong></dd>
-                                </div>
-                                <div class="col-xs-3">
-                                    <dd>Infant Tag No.: <strong>00012</strong> | <strong>10:43PM</strong></dd>
-                                    <dd>Date of Birth: <strong>15/06/2017</strong></dd>
-                                    <dd>Time: <strong>3:59 PM</strong></dd>
-                                    <dd>Sex: <strong>Male</strong></dd>
-                                </div>
-                                <div class="col-xs-3">
-                                    <dd>Birth Weight: <strong>36gms</strong></dd>
-                                    <dd>Head Circumference: <strong>180cm</strong></dd>
-                                    <dd>Apgar Score: 1 Min.: <strong>65</strong> | 5 Min.: <strong>75</strong> | 10 Min.: <strong>50</strong></dd>
-                                    <dd>Length: <strong>500cm</strong></dd>
-                                </div>
-                                <div class="col-xs-3">
-                                    <dd>Cord Blood Collected: <strong>Yes</strong></dd>
-                                    <dd>Vitamin K: <strong>Yes</strong> | Hepatitis B Vaccine: <strong>No</strong></dd>
-                                    <dd>Foetal Abnormality: <strong>Normal</strong></dd>
-                                </div>
-                                <div style="position: absolute; bottom: 0px; right: 15px;">
-                                    <a style="vertical-align: middle;" href="#"><i class="fa fa-pencil-square-o fa-lg" aria-hidden="true" style=" color: #337ab7;"></i></a>
-                                    &nbsp;&nbsp;&nbsp;
-                                    <a href="#"><i class="fa fa-times fa-lg" aria-hidden="true" style="color: #d9534f;"></i></a>
-                                </div>
-                            </div>
-                        </div> 
-                    </div>  
+<%
+    //                           0       1        2                           3                                     4                          5      6                     7            8                 9              10             
+    String queryInfant="SELECT alive, other, infant_tag_no, date_format(date_of_birth, '%d/%m/%Y'), date_format(date_of_birth, '%H:%i'), d_sex, birth_weight, head_circumference, apgar_score1, apgar_score5, apgar_score10, "
+    //             11           12                 13       14          15        
+            + "`length`, cord_blood_collected, vitamin, vaccine, foetal_abnormality "
+            + "FROM lhr_ong_infant_birth_record "
+            + "where pmi_no='"+pmiNo+"' and summary_date='"+summaryDate+"';";
+    ArrayList<ArrayList<String>> dataInfant = con.getData(queryInfant);
+    
+    for(int j=0; j<dataInfant.size(); j++){
+        
+        String sex="Male";
+        
+        if(dataInfant.get(j).get(5).equalsIgnoreCase("002")){
+            sex="Female";
+        }
+        else if(dataInfant.get(j).get(5).equalsIgnoreCase("003")){
+            sex="Other";
+        }
+    
+%>
+<div class="panel panel-default">
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-xs-12">
+               <div class="media">
+                    <div class="col-xs-3">
+                        <dt style="font-size: 18px;">INFANT - Birth Record</dt>
+                        <dd>Alive?: <strong><%=dataInfant.get(j).get(0)%></strong></dd>
+                        <dd>Other: <strong><%=dataInfant.get(j).get(1)%></strong></dd>
+                    </div>
+                    <div class="col-xs-3">
+                        <dd>Infant Tag No.: <strong><%=dataInfant.get(j).get(2)%></strong></dd>
+                        <dd>Date of Birth: <strong><%=dataInfant.get(j).get(3)%></strong></dd>
+                        <dd>Time: <strong><%=dataInfant.get(j).get(4)%></strong></dd>
+                        <dd>Sex: <strong><%=sex%></strong></dd>
+                    </div>
+                    <div class="col-xs-3">
+                        <dd>Birth Weight: <strong><%=dataInfant.get(j).get(6)%> gms</strong></dd>
+                        <dd>Head Circumference: <strong><%=dataInfant.get(j).get(7)%> cm</strong></dd>
+                        <dd>Apgar Score: 1 Min.: <strong><%=dataInfant.get(j).get(8)%></strong> | 5 Min.: <strong><%=dataInfant.get(j).get(9)%></strong> | 10 Min.: <strong><%=dataInfant.get(j).get(10)%></strong></dd>
+                        <dd>Length: <strong><%=dataInfant.get(j).get(11)%> cm</strong></dd>
+                    </div>
+                    <div class="col-xs-3">
+                        <dd>Cord Blood Collected: <strong><%=dataInfant.get(j).get(12)%></strong></dd>
+                        <dd>Vitamin K: <strong><%=dataInfant.get(j).get(13)%></strong> | Hepatitis B Vaccine: <strong><%=dataInfant.get(j).get(14)%></strong></dd>
+                        <dd>Foetal Abnormality: <strong><%=dataInfant.get(j).get(15)%></strong></dd>
+                    </div>
+                    <div style="position: absolute; bottom: 0px; right: 15px;">
+                        <input type="hidden" id="LS_theInfantHidden" value="<%=String.join("|", dataInfant.get(j))%>">
+                        <a style="vertical-align: middle; cursor: pointer" id="LS_infantUpdateModal"><i class="fa fa-pencil-square-o fa-lg" aria-hidden="true" style=" color: #337ab7;"></i></a>
+                        &nbsp;&nbsp;&nbsp;
+                        <a href="#"><i class="fa fa-times fa-lg" aria-hidden="true" style="color: #d9534f;"></i></a>
+                    </div>
                 </div>
-            </div>
+            </div> 
+        </div>  
+    </div>
+</div>          
+<%
+        
+    }//end infant for loop
+%>
+            
 
             <div class="panel panel-default">
                 <div class="panel-body">
