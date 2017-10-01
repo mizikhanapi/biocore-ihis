@@ -30,9 +30,9 @@
             //      6                   7       8     9      10            
             + "`3stage_blood_lost`, placenta, cord, tear, repaired_by, "
             //                      11                                                  12                                                          13                                                   14
-            + "date_format(date(labour_begin), '%d/%m/%Y %H:%i'), date_format(date(membranes_ruptured), '%d/%m/%Y %H:%i'), date_format(date(second_stage_labour), 'd/%m/%Y %H:%i'), date_format(date(child_born), 'd/%m/%Y %H:%i'), "
+            + "date_format(labour_begin, '%d/%m/%Y %H:%i'), date_format(membranes_ruptured, '%d/%m/%Y %H:%i'), date_format(second_stage_labour, '%d/%m/%Y %H:%i'), date_format(child_born, '%d/%m/%Y %H:%i'), "
             //                          15                                     16                  17                  18             19            20           21          22
-            + "date_format(date(placenta_expelled), 'd/%m/%Y %H:%i'), `1st_Stage_labour`, `2nd_Stage_labour`, `3rd_stage_labour`, total_hour, conducted_by, witnessed_by, approved_by "
+            + "date_format(placenta_expelled, '%d/%m/%Y %H:%i'), `1st_Stage_labour`, `2nd_Stage_labour`, `3rd_stage_labour`, total_hour, conducted_by, witnessed_by, approved_by "
             + "FROM lhr_ong_labour_summary "
             + "WHERE pmi_no='"+pmiNo+"' "+whenCondition
             + " ;";
