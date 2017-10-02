@@ -141,20 +141,25 @@ $(document).ready(function () {
             obj1[this.id] = $(this).val();
         });
         
-
-        if(checkCCN(_data,obj1)){
-           bootbox.alert("This Chief Complain already been inserted. Please choose at consultation note to update the record or add new chief complain");
-        }else{
-            _data.push(obj1);
-            displayCCN(problem, Mild, Site, duration, sdur, Laterality, Comment);
-             retriveDataSearchingSubjective("tCISSubCCNHFCSearch", "tCISSubCCNHFCSearchLoading", "search/ResultCCNSearch.jsp", "search/ResultCCNSearchCode.jsp", "ccnCode", "");
-            $("#problem").val("");
-            $("#duration").val("");
-            $("#Comment").val("");
-            $("#ccnCode").val("");
-            $("#CIS01000001").modal('hide');
-        }
         
+        if(validationField(obj1.problem,"Please enter the correct symptoms")){
+            if (checkCCN(_data, obj1)) {
+                bootbox.alert("This Chief Complain already been inserted. Please choose at consultation note to update the record or add new chief complain");
+            } else {
+                _data.push(obj1);
+                displayCCN(problem, Mild, Site, duration, sdur, Laterality, Comment);
+                //retriveDataSearchingSubjective("tCISSubCCNHFCSearch", "tCISSubCCNHFCSearchLoading", "search/ResultCCNSearch.jsp", "search/ResultCCNSearchCode.jsp", "ccnCode", "");
+                $("#Mild").val("");
+                $("#Site").val("");
+                $("#Laterality").val("");
+                $("#problem").val("");
+                $("#duration").val("");
+                $("#Comment").val("");
+                $("#ccnCode").val("");
+                $("#CIS01000001").modal('hide');
+            }
+        
+        }
       
         
 
@@ -209,8 +214,8 @@ $(document).ready(function () {
         var tempccnObj = {
             ccnCode:_uccnCode
         }
-        
-        if(upObject.ccnCode === _uccnCode){
+        if(validationField(_uproblem,"Please enter the correct symptoms")){
+                    if(upObject.ccnCode === _uccnCode){
             
             upObject.problem = _uproblem;
             upObject.Mild = _uMild;
@@ -243,6 +248,8 @@ $(document).ready(function () {
             }
         }
         
+        }
+
        
 
         
@@ -262,13 +269,17 @@ $(document).ready(function () {
         $items.each(function () {
             obj1[this.id] = $(this).val();
         });
-         
-
+        
+        if(validationField(obj1.details,"Please enter the correct history present illness")){
+            
             _data.push(obj1);
             displayHPI(obj1.details);
-           
-          $('.clsHPI_COMMENT').val('');
+
+            $('.clsHPI_COMMENT').val('');
             $("#CIS01000002").modal('hide');
+        }
+         
+
         
     });
 
@@ -287,10 +298,13 @@ $(document).ready(function () {
         var upObject = _data[$('#jsonId').val()];
         var rowId = $('#jsonId').val();
         var _udetails = $('#udetails').val();
-        upObject.details = _udetails;
-        var sum = _udetails;
-        $('#sum' + rowId).html(sum);
-        $("#update_CIS01000002").modal('hide');
+         if(validationField(_udetails,"Please enter the correct history present illness")){
+              upObject.details = _udetails;
+            var sum = _udetails;
+            $('#sum' + rowId).html(sum);
+            $("#update_CIS01000002").modal('hide');
+         }
+       
     });
 
 /// -----------------------------------------------------------------------------------------------------------------------------------------------/////;

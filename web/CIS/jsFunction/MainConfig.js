@@ -346,23 +346,34 @@ function searchInitialize(id, action){
                  $("#tCISSubCCNHFCSearch").flexdatalist('destroy');
                  $("#tCISSubCCNHFCSearchPersonalised").flexdatalist('destroy');
                  $("#tCISSubCCNHFCSearchPersonalised_update").flexdatalist('destroy');
+                 $("#Mild").val('None');
+                 $("#Site").val('None');
+                 $("#Laterality").val('None');
+                 $("#sdur").val('');
 
         } else if (id === "PMH") {
             
             $("#tCISSubPMHSearch").flexdatalist('destroy');
             $("#tCISSubPMHSearchPersonalised").flexdatalist('destroy');
             $("#tCISSubPMHSearchPersonalised_update").flexdatalist('destroy');
+            $("#Status").val('');
+            $("#comment1").val('');
 
         } else if (id === "FMH") {
             
             $("#tCISSubFMHSearch").flexdatalist('destroy');
             $("#tCISSubFMHSearchPersonalised").flexdatalist('destroy');
             $("#tCISSubFMHSearchPersonalised_update").flexdatalist('destroy');
+            $("#f_relationship").val('');
+            $("#comment2").val('');
+            
             
         } else if (id === "SOH") { 
             $("#tCISSubSOHSearch").flexdatalist('destroy');
             $("#tCISSubSOHSearchPersonalised").flexdatalist('destroy');
             $("#tCISSubSOHSearchPersonalised_update").flexdatalist('destroy');
+            $("#comment3").val('');
+            $("#date").val('');
             
 
         } else if (id === "ALG") {
@@ -371,6 +382,9 @@ function searchInitialize(id, action){
             $("#tCISSubALGSearchPersonalised").flexdatalist('destroy');
             $("#tCISSubALGSearchPersonalised_update").flexdatalist('destroy');
             
+            $("#comment5").val();
+            $("#date1").val();
+            
             
 
         } else if (id === "IMU") {
@@ -378,6 +392,8 @@ function searchInitialize(id, action){
             $("#tCISSubIMUSearch").flexdatalist('destroy');
             $("#tCISSubIMUSearchPersonalised").flexdatalist('destroy');
             $("#tCISSubIMUSearchPersonalised_update").flexdatalist('destroy');
+            $("#comment6").val('');
+            $("#date2").val('');
             
     
 
@@ -386,6 +402,8 @@ function searchInitialize(id, action){
             $("#tCISSubDABSearch").flexdatalist('destroy');
             $("#tCISSubDABSearchPersonalised").flexdatalist('destroy');
             $("#tCISSubDABSearchPersonalised_update").flexdatalist('destroy');
+            $("#date3").val('');
+            $("#comment7").val('');
 
 
         } else if (id === "DGS") {
@@ -437,4 +455,14 @@ function searchInitialize(id, action){
         
     }
 
+}
+
+function validationField(id,message){
+    var val = id;
+    if(val === ''){
+     bootbox.alert(message) 
+     return false
+    }else{
+        return true
+    }
 }

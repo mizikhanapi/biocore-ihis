@@ -56,10 +56,10 @@
 
     <%
         //                              0         1           2           3           4           5           6           7                 8            9
-        String sqlMain = " SELECT ud_mdc_code,ud_atc_code,d_trade_name,d_gnr_name,d_route_code,d_form_code,d_strength,d_advisory_code,d_stock_qty,d_minimum_stock_level,"
+        String sqlMain = " SELECT ud_mdc_code,ud_atc_code,d_trade_name,d_gnr_name,d_route_code,d_form_code,d_strength,d_advisory_code,d_stock_qty,IFNULL(d_minimum_stock_level,'0'),"
                 //
-                //          10                      11          12     13        14         15          16            17                    18                   
-                + "d_maximum_stock_level,d_reorder_stock_level,d_qty,d_qtyt,d_duration,d_durationt,d_frequency,d_caution_code,DATE_FORMAT(DATE(d_exp_date),'%d/%m/%Y'),"
+                //          10                                              11          12     13        14         15          16            17                    18                   
+                + "IFNULL(d_maximum_stock_level,'0'),IFNULL(d_reorder_stock_level,'0'),d_qty,d_qtyt,d_duration,d_durationt,d_frequency,d_caution_code,DATE_FORMAT(DATE(d_exp_date),'%d/%m/%Y'),"
                 //
                 //          19        20         21             22          23            24          25            26        27          28            29
                 + "d_classification,status,d_location_code,d_sell_price,d_cost_price,d_packaging,d_packagingt,d_price_ppack,hfc_cd,discipline_cd,subdiscipline_cd "
