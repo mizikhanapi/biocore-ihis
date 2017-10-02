@@ -1280,7 +1280,11 @@
     }
     
     $('#LS_transferBtnAdd').on('click', function(){
-        if(LS_transferCheckField()){
+        
+        if( !$('#LS_transferForm')[0].checkValidity()){
+            $('<input type="submit">').hide().appendTo('#LS_transferForm').click().remove();
+        }
+        else if(LS_transferCheckField()){
             
             var summaryDate = $('#LS_transferModalID').val();
             var theDate = summaryDate.split(" ")[0];
@@ -1346,5 +1350,137 @@
     //===============================================================
     
     //******************************* == transfer == ****************************************
+    
+    
+    //********************* approve *******************************
+    $('#LS_viewDIv').on('click', '#LS_btnApprove', function(){
+        var summaryDate=$(this).closest('#LS_viewGroup').find('#LS_theSummaryDate').text();
+        var theDate = summaryDate.split(" ")[0];
+        
+        bootbox.confirm({
+            title: "Approve record?",
+            message: "Are you sure you want to approve this labour summary? Once you have approved this record, you can no longer edit it.",
+            buttons: {
+                confirm: {
+                    label: "Yes",
+                    className: "btn-success"
+                },
+                cancel: {
+                    label: "No",
+                    className: "btn-danger"
+                }
+            },
+            callback: function (result) {
+
+                if (result) {
+                    var data = {
+                        summaryDate : summaryDate
+                    };
+
+                    var message = "";
+
+                    createScreenLoading();
+                    $.ajax({
+                        type: 'POST',
+                        timeout: 60000,
+                        data: data,
+                        url: "specialistTemplate/ONG/LS_control/labourSummary_approve.jsp",
+                        success: function (data, textStatus, jqXHR) {
+                                var reply = data.trim();
+                                if(reply==="success"){
+                                    message="Labour summary is approved successfully.";
+                                    $('#LS_viewBy').val('x');
+                                    $('#LS_dateFrom').val(theDate);
+                                    $('#LS_dateTo').val(theDate);
+                                    LS_loadData();
+                                    
+                                }
+                                else if(reply==="fail"){
+                                    message="Failed to approve this record.";
+                                }
+                                else{
+                                    message=data;
+                                }
+                            },
+                        error: function (jqXHR, textStatus, errorThrown) {
+                                message="Oops! "+errorThrown;
+                            },
+                        complete: function (jqXHR, textStatus ) {
+                                destroyScreenLoading();
+                                bootbox.alert(message);
+                            }
+                    });
+
+                }
+            }
+        });
+        
+    });
+    //******************** == approve == ************************
+    
+    //****************** delete summary **********************
+    $('#LS_viewDIv').on('click', '#LS_btnDeleteAll', function(){
+        var summaryDate=$(this).closest('#LS_viewGroup').find('#LS_theSummaryDate').text();
+        var theDate = summaryDate.split(" ")[0];
+        
+        bootbox.confirm({
+            title: "Delete record?",
+            message: "Are you sure you want to delete this labour summary? Once you have deleted this record, you can no longer see it.",
+            buttons: {
+                confirm: {
+                    label: "Yes",
+                    className: "btn-success"
+                },
+                cancel: {
+                    label: "No",
+                    className: "btn-danger"
+                }
+            },
+            callback: function (result) {
+
+                if (result) {
+                    var data = {
+                        summaryDate : summaryDate
+                    };
+
+                    var message = "";
+
+                    createScreenLoading();
+                    $.ajax({
+                        type: 'POST',
+                        timeout: 60000,
+                        data: data,
+                        url: "specialistTemplate/ONG/LS_control/labourSummary_delete.jsp",
+                        success: function (data, textStatus, jqXHR) {
+                                var reply = data.trim();
+                                if(reply==="success"){
+                                    message="Labour summary is deleted successfully.";
+                                    $('#LS_viewBy').val('x');
+                                    $('#LS_dateFrom').val(theDate);
+                                    $('#LS_dateTo').val(theDate);
+                                    LS_loadData();
+                                    
+                                }
+                                else if(reply==="fail"){
+                                    message="Failed to delete this record.";
+                                }
+                                else{
+                                    message=data;
+                                }
+                            },
+                        error: function (jqXHR, textStatus, errorThrown) {
+                                message="Oops! "+errorThrown;
+                            },
+                        complete: function (jqXHR, textStatus ) {
+                                destroyScreenLoading();
+                                bootbox.alert(message);
+                            }
+                    });
+
+                }
+            }
+        });
+    });
+    //***************** == delete summary == *****************
     
 </script>

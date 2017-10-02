@@ -44,6 +44,18 @@
     else{
         for(int i=0; i<dataLS.size(); i++){
             
+            boolean isApproved = dataLS.get(i).get(22) != null;
+            String approveStatus = "This labour summary is not approved yet. This record is still editable while it is not approved.";
+            String panelClass = "panel-default";
+            
+            if(isApproved){
+                String queryApprover = "Select ifnull(user_name, '-') from adm_users where user_id='"+dataLS.get(i).get(22)+"'; ";
+                ArrayList<ArrayList<String>> dataApp = con.getData(queryApprover);
+                String approver = dataApp.get(0).get(0);    
+                approveStatus="Approved by "+approver;
+                panelClass = "panel-success";
+            }
+            
             String labourBeginDate= "";
             String labourBeginTime= "";
             if(dataLS.get(i).get(11)!=null){
@@ -124,11 +136,17 @@
             String summaryDate = FormatTarikh.formatDate(dataLS.get(i).get(0), "dd/MM/yyyy HH:mm", "yyyy-MM-dd HH:mm:ss");
             
 %>
-<div class="panel panel-default" id="LS_viewGroup">
-        <div class="panel-heading clearfix"> 
+<div class="panel <%=panelClass%>" id="LS_viewGroup">
+        <div class="panel-heading clearfix">
+            <%
+                if(!isApproved){
+            %>
             <p class="pull-right">
-                <button type="button" class="btn btn-danger" data-dismiss="modal" aria-label="Close" title="Delete summary"><span aria-hidden="true"><i class="fa fa-times fa-lg"></i></span></button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal" aria-label="Close" title="Delete summary" id="LS_btnDeleteAll"><span aria-hidden="true"><i class="fa fa-times fa-lg"></i></span></button>
             </p>
+            <%
+                }
+            %>
             <h4>Summary Date: <span id="LS_theSummaryDate"><%=dataLS.get(i).get(0)%></span></h4>
         </div>
         
@@ -161,7 +179,13 @@
                                 </div>
                                 <div style="position: absolute; bottom: 0px; right: 15px;">
                                     <input type="hidden" id="LS_labourHidden" value="<%=String.join("|", dataLS.get(i))%>">
+                                    <%
+                                        if(!isApproved){
+                                    %>
                                     <a style="vertical-align: middle; cursor: pointer;" id="LS_labourUpdateModal"><i class="fa fa-pencil-square-o fa-lg" aria-hidden="true" style=" color: #337ab7;"></i></a>
+                                    <%
+                                        }
+                                    %>
                                 </div>
                             </div>
                         </div>
@@ -209,7 +233,13 @@
                     <div class="pull-right">
                         <input type="hidden" id="LS_theHiddenLabourTime" value="<%=longStrLabourTime%>">
                         <input type="hidden" id="LS_theHiddenLabourDuration" value="<%=longStrLabourDuration%>">
+                        <%
+                            if(!isApproved){
+                        %>
                         <a style="vertical-align: middle; cursor: pointer" id="LS_stageUpdateModal"><i class="fa fa-pencil-square-o fa-lg" aria-hidden="true" style=" color: #337ab7;"></i></a>
+                        <%
+                            }
+                        %>
                     </div>
                 </div>
             </div>
@@ -231,7 +261,13 @@
                                 
                                 <div style="position: absolute; bottom: 0px; right: 15px;">
                                     <input type="hidden" id="LS_theEventHidden" value="<%= conductedBy+"|"+witness%>">
+                                    <%
+                                        if(!isApproved){
+                                    %>
                                     <a style="vertical-align: middle; cursor: pointer;" id="LS_eventUpdateModal"><i class="fa fa-pencil-square-o fa-lg" aria-hidden="true" style=" color: #337ab7;"></i></a>
+                                    <%
+                                        }
+                                    %>
                                 </div>
                             </div>
                         </div>
@@ -239,10 +275,15 @@
                 </div>
             </div> 
 
+            <%
+                if(!isApproved){
+            %>                            
             <ul class="soap-content nav">
                 <li><a style="cursor: pointer;" id="LS_infantAddModal"><i class="fa fa-comments  fa-li"></i>New Birth Record</a>
             </ul>
-<%
+            <%
+                }
+ 
     //                           0       1        2                           3                                     4                          5      6                     7            8                 9              10             
     String queryInfant="SELECT alive, other, infant_tag_no, date_format(date_of_birth, '%d/%m/%Y'), date_format(date_of_birth, '%H:%i'), d_sex, birth_weight, head_circumference, apgar_score1, apgar_score5, apgar_score10, "
     //             11           12                 13       14          15        
@@ -291,12 +332,18 @@
                         <dd>Vitamin K: <strong><%=dataInfant.get(j).get(13)%></strong> | Hepatitis B Vaccine: <strong><%=dataInfant.get(j).get(14)%></strong></dd>
                         <dd>Foetal Abnormality: <strong><%=dataInfant.get(j).get(15)%></strong></dd>
                     </div>
+                    <%
+                        if(!isApproved){
+                    %>
                     <div style="position: absolute; bottom: 0px; right: 15px;">
                         <input type="hidden" id="LS_theInfantHidden" value="<%=String.join("|", dataInfant.get(j))%>">
                         <a style="vertical-align: middle; cursor: pointer" id="LS_infantUpdateModal"><i class="fa fa-pencil-square-o fa-lg" aria-hidden="true" style=" color: #337ab7;"></i></a>
                         &nbsp;&nbsp;&nbsp;
                         <a style="cursor: pointer;" id="LS_infantBtnDelete"><i class="fa fa-times fa-lg" aria-hidden="true" style="color: #d9534f;"></i></a>
                     </div>
+                    <%
+                        }
+                    %>    
                 </div>
             </div> 
         </div>  
@@ -343,10 +390,16 @@
                                     <dd>Time: <strong><%=time%></strong></dd>
                                     <dd>Doctor/Nurse: <strong><%=doctor%></strong></dd>
                                 </div>
+                                <%
+                                    if(!isApproved){
+                                %>
                                 <div style="position: absolute; bottom: 0px; right: 15px;">
                                     <input type="hidden" id="LS_theHiddenTransfer" value="<%= String.join("|", pulse, systol, diastol, uterus, time, perineum, doctor)%>">
                                     <a style="vertical-align: middle; cursor: pointer;" id="LS_transferUpdateModal"><i class="fa fa-pencil-square-o fa-lg" aria-hidden="true" style=" color: #337ab7;"></i></a>
                                 </div>
+                                <%
+                                    }
+                                %>
                             </div>
                         </div>
                     </div>  
@@ -354,8 +407,17 @@
             </div> 
         </div>
         
-        <div class="panel-footer text-center">
-            Footer Bhai
+        <div class="panel-footer  text-center">
+            <h4><%=approveStatus%></h4> 
+            <%
+                if(!isApproved){
+            %>
+            <div>
+                <button id="LS_btnApprove" class="btn btn-success btn-lg"><i class="fa fa-check-square-o fa-lg"></i>&nbsp; Approve</button>
+            </div>
+            <%
+                }
+            %>
         </div>
     </div>
 <%
