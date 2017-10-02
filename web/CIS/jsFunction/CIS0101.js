@@ -21,7 +21,9 @@ $(document).ready(function () {
 //    $("#tCISSubALGSearchPersonalised_update-flexdatalist").hide();
 //    $("#tCISSubIMUSearchPersonalised_update-flexdatalist").hide();
 //    $("#tCISSubDABSearchPersonalised_update-flexdatalist").hide();
-    
+
+validateDuration("duration");
+validateDuration("uduration");
     
     initialisedModalSearch("CIS01000001","tCISSubCCNHFCSearchPersonalised","CCN","CCNHFC");
     initialisedModalSearch("update_CIS01000001","tCISSubCCNHFCSearchPersonalised_update","CCN","CCNHFC");
@@ -103,3 +105,12 @@ function initialiseRadioPersonalised(code,field){
     });
 }
 
+function validateDuration(id){
+    $("#"+id).on('keyup', function () {
+        var num_str = $(this).val().length;
+        if (num_str > 3) {
+            $(this).val('');
+            bootbox.alert('Please enter correct duration.');
+        }
+    })
+}

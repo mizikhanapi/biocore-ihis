@@ -28,6 +28,7 @@
                         </div>
                         <div class="col-md-1"><button class="btn btn-primary " id="btnCISSubCCNAddPersonalised" style="padding-left: 10px"><i class="fa fa-plus" aria-hidden="true"> </i></button></div>
                     </div>
+                    <label>Symptoms</label>
                     <div class="form-group">
 
                         <input class="form-control input-lg" type="text"  id="tCISSubCCNHFCSearch" placeholder="Type to search Common Term..." data-search-by-word="true" onkeypress="return blockSpecialChar(event)">
@@ -41,10 +42,11 @@
                     </div>
                     <div class="row">
                         <div class="col-xs-6 col-sm-6 col-md-6">
+                            <label>Severity</label>
                             <div class="form-group">
                                 <select name="mild" id="Mild" class="form-control input-lg" placeholder="Severity">
-                                    <option value="" selected="">Severity</option>
-                                    <option value="None">None</option>
+                                    
+                                    <option value="None" selected="">None</option>
                                     <option value="Mild">Mild</option>
                                     <option value="Moderate">Moderate</option>
                                     <option value="Severe">Severe</option>
@@ -52,10 +54,11 @@
                             </div>
                         </div>
                         <div class="col-xs-6 col-sm-6 col-md-6">
+                            <label>Site</label>
                             <div class="form-group">
                                 <select name="site" id="Site" class="form-control input-lg">
-                                    <option value="" selected="" >Site</option>
-                                    <option value="None">None</option>
+                                    
+                                    <option value="None" selected="">None</option>
                                     <option value="Right">Right</option>
                                     <option value="Left">Left</option>
                                 </select>
@@ -65,11 +68,13 @@
 
                     <div class="row">
                         <div class="col-xs-6 col-sm-6 col-md-6">
+                            <label>Duration</label>
                             <div class="form-group">
-                                <input class="form-control input-lg" type="number" name="dur" id="duration" placeholder="Duration" max="31" min="1">
+                                <input class="form-control input-lg" max="999" type="number" name="dur" id="duration" placeholder="Duration" />
                             </div>
                         </div>
                         <div class="col-xs-6 col-sm-6 col-md-6">
+                            <label>Unit</label>
                             <div class="form-group">
                                 <select name="lat" id="sdur" class="form-control input-lg">
                                     <option value="" selected="">Select One</option>
@@ -84,9 +89,10 @@
                         </div>
                     </div>
                     <div class="form-group">
+                        <label>Laterality</label>
                         <select name="lat" id="Laterality" class="form-control input-lg">
-                            <option value="" selected="">Laterality</option>
-                            <option value="None">None</option>
+                            
+                            <option value="None" selected="">None</option>
                             <option value="Right">Right</option>
                             <option value="Left">Left</option>
                         </select>
@@ -136,6 +142,7 @@
                         </div>
 
                     </div>
+                    <label>Symptoms</label>
                     <div class="form-group">
                         <input class="form-control input-lg" type="text"  id="tCISSubCCNHFCSearch_update" placeholder="Type to search chief complaint..." data-search-by-word="true" onkeypress="return blockSpecialChar(event)"> 
                         <input class="form-control input-lg" type="text"  id="tCISSubCCNHFCSearchPersonalised_update" placeholder="Type to search Personalised..." data-search-by-word="true" onkeypress="return blockSpecialChar(event)">
@@ -148,10 +155,11 @@
                     </div>
                     <div class="row">
                         <div class="col-xs-6 col-sm-6 col-md-6">
+                            <label>Severity</label>
                             <div class="form-group">
                                 <select name="mild" id="uMild" class="form-control input-lg">
-                                    <option value="" selected="" disabled="">Severity</option>
-                                    <option value="None">None</option>
+                                   
+                                    <option value="None" selected="">None</option>
                                     <option value="Mild">Mild</option>
                                     <option value="Moderate">Moderate</option>
                                     <option value="Severe">Severe</option>
@@ -159,10 +167,11 @@
                             </div>
                         </div>
                         <div class="col-xs-6 col-sm-6 col-md-6">
+                            <label>Site</label>
                             <div class="form-group">
                                 <select name="site" id="uSite" class="form-control input-lg">
-                                    <option value="" selected="" disabled="">Site</option>
-                                    <option value="None">None</option>
+                                    
+                                    <option value="None" selected="">None</option>
                                     <option value="Right">Right</option>
                                     <option value="Left">Left</option>
                                 </select>
@@ -172,11 +181,13 @@
 
                     <div class="row">
                         <div class="col-xs-6 col-sm-6 col-md-6">
+                             <label>Duration</label>
                             <div class="form-group">
-                                <input class="form-control input-lg" type="number" name="dur" id="uduration" placeholder="Duration" max="31" min="1">
+                                <input class="form-control input-lg" type="number" name="dur" id="uduration" placeholder="Duration" max="999" min="1">
                             </div>
                         </div>
                         <div class="col-xs-6 col-sm-6 col-md-6">
+                            <label>Unit</label>
                             <div class="form-group">
                                 <select name="lat" id="ssdur" class="form-control input-lg">
                                     <option value="1" selected="" disabled="">Select One</option>
@@ -191,10 +202,10 @@
                         </div>
                     </div>
                     <div class="form-group">
+                        <label>Laterality</label>
                         <select name="lat" id="uLaterality" class="form-control input-lg">
-                            <option value="1" selected="" disabled="">Laterality</option>
-                           
-                            <option value="None">None</option>
+               
+                            <option value="None" selected="">None</option>
                             <option value="Right">Right</option>
                             <option value="Left">Left</option>
                         </select>
@@ -319,6 +330,7 @@
                 <div class="form-group">
                     <input type="hidden" name="pmh" id="codePMH" class="form-control input-lg"tabindex="4">
                 </div>
+            
                 <div class="form-group">
                     <input class="form-control input-lg" type="text"  id="tCISSubPMHSearch" placeholder="Please Type Past Medical History" tabindex="4" data-search-by-word="true" onkeypress="return blockSpecialChar(event)">
                     <input class="form-control input-lg" type="text"  id="tCISSubPMHSearchPersonalised" placeholder="Type to search Personalised..." data-search-by-word="true" onkeypress="return blockSpecialChar(event)">
@@ -329,7 +341,7 @@
 
                 <div class="form-group">
                     <select name="mild" id="Status" class="form-control input-lg">
-                        <option value="1" selected="" disabled="">Status</option>
+                        <option value="" selected="">Status</option>
                         <option value="Active">Active</option>
                         <option value="Inactive">Inactive</option>
                     </select>
@@ -454,7 +466,7 @@
                 </div>
                 <div class="form-group">
                     <select name="mild" id="f_relationship" class="form-control input-lg">
-                        <option value="1" selected="" disabled="">Select Family Relationship</option>
+                        <option value="" selected="" disabled="">Select Family Relationship</option>
                         <option value="Adopted child">Adopted child</option>
                         <option value="Biological child">Biological child</option>
                         <option value="cousin">cousin</option>
