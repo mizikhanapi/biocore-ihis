@@ -147,7 +147,10 @@ $(document).ready(function () {
         }else{
             _data.push(obj1);
             displayCCN(problem, Mild, Site, duration, sdur, Laterality, Comment);
-             retriveDataSearchingSubjective("tCISSubCCNHFCSearch", "tCISSubCCNHFCSearchLoading", "search/ResultCCNSearch.jsp", "search/ResultCCNSearchCode.jsp", "ccnCode", "");
+             //retriveDataSearchingSubjective("tCISSubCCNHFCSearch", "tCISSubCCNHFCSearchLoading", "search/ResultCCNSearch.jsp", "search/ResultCCNSearchCode.jsp", "ccnCode", "");
+             $("#Mild").val("");
+             $("#Site").val("");
+             $("#Laterality").val("");
             $("#problem").val("");
             $("#duration").val("");
             $("#Comment").val("");

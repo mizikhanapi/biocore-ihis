@@ -33,7 +33,7 @@
                         <input class="form-control input-lg" type="text"  id="tCISSubCCNHFCSearch" placeholder="Type to search Common Term..." data-search-by-word="true" onkeypress="return blockSpecialChar(event)">
                         <input class="form-control input-lg" type="text"  id="tCISSubCCNHFCSearchPersonalised" placeholder="Type to search Personalised..." data-search-by-word="true" onkeypress="return blockSpecialChar(event)">
                         <div id="tCISSubCCNHFCSearchLoading" ></div>
-                        <input class="form-control input-lg" type="hidden" name="problem"  id="problem" placeholder="Please Type Chief Complain" tabindex="4">
+                        <input class="form-control input-lg" type="hidden" name="problem"  id="problem" placeholder="Please Type Chief Complaint" tabindex="4">
                         <div id="match50"></div>
                     </div>
                     <div class="form-group">
@@ -43,7 +43,8 @@
                         <div class="col-xs-6 col-sm-6 col-md-6">
                             <div class="form-group">
                                 <select name="mild" id="Mild" class="form-control input-lg" placeholder="Severity">
-                                    <option>Severity</option>
+                                    <option value="" selected="">Severity</option>
+                                    <option value="None">None</option>
                                     <option value="Mild">Mild</option>
                                     <option value="Moderate">Moderate</option>
                                     <option value="Severe">Severe</option>
@@ -53,7 +54,8 @@
                         <div class="col-xs-6 col-sm-6 col-md-6">
                             <div class="form-group">
                                 <select name="site" id="Site" class="form-control input-lg">
-                                    <option value="1" selected="" disabled="">Site</option>
+                                    <option value="" selected="" >Site</option>
+                                    <option value="None">None</option>
                                     <option value="Right">Right</option>
                                     <option value="Left">Left</option>
                                 </select>
@@ -70,7 +72,7 @@
                         <div class="col-xs-6 col-sm-6 col-md-6">
                             <div class="form-group">
                                 <select name="lat" id="sdur" class="form-control input-lg">
-                                    <option value="1" selected="" disabled="">Select One</option>
+                                    <option value="" selected="">Select One</option>
                                     <option value="Minutes">Minutes</option>
                                     <option value="Hour">Hour</option>
                                     <option value="Day">Day</option>
@@ -83,7 +85,8 @@
                     </div>
                     <div class="form-group">
                         <select name="lat" id="Laterality" class="form-control input-lg">
-                            <option value="1" selected="" disabled="">Laterality</option>
+                            <option value="" selected="">Laterality</option>
+                            <option value="None">None</option>
                             <option value="Right">Right</option>
                             <option value="Left">Left</option>
                         </select>
@@ -141,13 +144,14 @@
                         <div id="match1"></div>
                     </div>
                     <div class="form-group">
-                        <input class="form-control input-lg" type="text" name="uccnCode"  id="uccnCode"  tabindex="4">
+                        <input class="form-control input-lg" type="hidden" name="uccnCode"  id="uccnCode"  tabindex="4">
                     </div>
                     <div class="row">
                         <div class="col-xs-6 col-sm-6 col-md-6">
                             <div class="form-group">
                                 <select name="mild" id="uMild" class="form-control input-lg">
-                                    <option value="1" selected="" disabled="">Severity</option>
+                                    <option value="" selected="" disabled="">Severity</option>
+                                    <option value="None">None</option>
                                     <option value="Mild">Mild</option>
                                     <option value="Moderate">Moderate</option>
                                     <option value="Severe">Severe</option>
@@ -157,7 +161,8 @@
                         <div class="col-xs-6 col-sm-6 col-md-6">
                             <div class="form-group">
                                 <select name="site" id="uSite" class="form-control input-lg">
-                                    <option value="1" selected="" disabled="">Site</option>
+                                    <option value="" selected="" disabled="">Site</option>
+                                    <option value="None">None</option>
                                     <option value="Right">Right</option>
                                     <option value="Left">Left</option>
                                 </select>
@@ -188,6 +193,8 @@
                     <div class="form-group">
                         <select name="lat" id="uLaterality" class="form-control input-lg">
                             <option value="1" selected="" disabled="">Laterality</option>
+                           
+                            <option value="None">None</option>
                             <option value="Right">Right</option>
                             <option value="Left">Left</option>
                         </select>
