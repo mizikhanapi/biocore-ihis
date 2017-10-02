@@ -166,6 +166,12 @@
 <%--<jsp:include page="specialistTemplate/ONG/maternityUnit-modal.jsp" />--%>
 
 <script>
+    // function to convert date to another format from datepicker
+    function convertDate(date) {
+        var date = date.split('/');
+        var newDate = date[2] + "-" + date[1] + "-" + date[0];
+        return newDate;
+    }
     $('#tabPI').on('click',function(){
         var pmi_no = pmiNo;
         var hfc_cd1 = hfc_cd;
@@ -173,5 +179,6 @@
         getPI(x);
         getPIpreg(x);
     });
+    
 </script>
 

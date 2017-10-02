@@ -301,12 +301,7 @@
         }
     });
     
-    // function to convert date to another format from datepicker
-    function convertDate(date) {
-        var date = date.split('/');
-        var newDate = date[2] + "-" + date[1] + "-" + date[0];
-        return newDate;
-    }
+    
     
     // button add item for personal detail
     $('#btnPIadd').on('click', function () {
