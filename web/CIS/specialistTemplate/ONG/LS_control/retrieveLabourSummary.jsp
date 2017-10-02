@@ -35,7 +35,7 @@
             + "date_format(placenta_expelled, '%d/%m/%Y %H:%i'), `1st_Stage_labour`, `2nd_Stage_labour`, `3rd_stage_labour`, total_hour, conducted_by, witnessed_by, approved_by "
             + "FROM lhr_ong_labour_summary "
             + "WHERE pmi_no='"+pmiNo+"' "+whenCondition
-            + " ;";
+            + " order by summary_date desc;";
     ArrayList<ArrayList<String>> dataLS = con.getData(queryLabourSummary);
     
     if(dataLS.size()<1){
@@ -248,7 +248,8 @@
     //             11           12                 13       14          15        
             + "`length`, cord_blood_collected, vitamin, vaccine, foetal_abnormality "
             + "FROM lhr_ong_infant_birth_record "
-            + "where pmi_no='"+pmiNo+"' and summary_date='"+summaryDate+"';";
+            + "where pmi_no='"+pmiNo+"' and summary_date='"+summaryDate+"' "
+            + "order by date_of_birth desc;";
     ArrayList<ArrayList<String>> dataInfant = con.getData(queryInfant);
     
     for(int j=0; j<dataInfant.size(); j++){
@@ -294,7 +295,7 @@
                         <input type="hidden" id="LS_theInfantHidden" value="<%=String.join("|", dataInfant.get(j))%>">
                         <a style="vertical-align: middle; cursor: pointer" id="LS_infantUpdateModal"><i class="fa fa-pencil-square-o fa-lg" aria-hidden="true" style=" color: #337ab7;"></i></a>
                         &nbsp;&nbsp;&nbsp;
-                        <a href="#"><i class="fa fa-times fa-lg" aria-hidden="true" style="color: #d9534f;"></i></a>
+                        <a style="cursor: pointer;" id="LS_infantBtnDelete"><i class="fa fa-times fa-lg" aria-hidden="true" style="color: #d9534f;"></i></a>
                     </div>
                 </div>
             </div> 
@@ -304,8 +305,23 @@
 <%
         
     }//end infant for loop
+    
+    //                                  0                   1           2              3                   4                   5       6
+    String queryTransfer="SELECT standing_pulse, systolic_supine, diastolic_supine, uterus, time_format(`time`, '%H:%i'), perineum, doctor_nurse_name "
+                        + "FROM lhr_ong_mother_transfer_observation where pmi_no='"+pmiNo+"' and summary_date='"+summaryDate+"' limit 1;";
+    ArrayList<ArrayList<String>> dataTransfer = con.getData(queryTransfer);
+    String pulse="", systol="", diastol="", uterus="", perineum="", time="", doctor="";
+    
+    if(dataTransfer.size()>0){
+        pulse=dataTransfer.get(0).get(0);
+        systol=dataTransfer.get(0).get(1);
+        diastol=dataTransfer.get(0).get(2);
+        uterus=dataTransfer.get(0).get(3);
+        time=dataTransfer.get(0).get(4);
+        perineum=dataTransfer.get(0).get(5);
+        doctor=dataTransfer.get(0).get(6);
+    }
 %>
-            
 
             <div class="panel panel-default">
                 <div class="panel-body">
@@ -316,18 +332,19 @@
                                     <dt style="font-size: 18px;">MOTHER - Transfer Observations</dt>
                                 </div>
                                 <div class="col-xs-3">
-                                    <dd>Pulse: <strong>128</strong></dd>
-                                    <dd>Blood Pressure: <strong>123</strong></dd>
+                                    <dd>Pulse: <strong><%=pulse%> bpm</strong></dd>
+                                    <dd>Blood Pressure: <strong><%=systol%>/<%=diastol%> mmHg</strong></dd>
                                 </div>
                                 <div class="col-xs-3">
-                                    <dd>Uterus: <strong>36gms</strong></dd>
-                                    <dd>Perineum: <strong>180cm</strong></dd>
+                                    <dd>Uterus: <strong><%=uterus%></strong></dd>
+                                    <dd>Perineum: <strong><%=perineum%></strong></dd>
                                 </div>
                                 <div class="col-xs-3">
-                                    <dd>Time: <strong>4:16 PM</strong></dd>
-                                    <dd>Doctor/Nurse: <strong>Dr Mira Filzah</strong></dd>
+                                    <dd>Time: <strong><%=time%></strong></dd>
+                                    <dd>Doctor/Nurse: <strong><%=doctor%></strong></dd>
                                 </div>
                                 <div style="position: absolute; bottom: 0px; right: 15px;">
+                                    <input type="hidden" id="LS_theHiddenTransfer" value="<%= String.join("|", pulse, systol, diastol, uterus, time, perineum, doctor)%>">
                                     <a style="vertical-align: middle; cursor: pointer;" id="LS_transferUpdateModal"><i class="fa fa-pencil-square-o fa-lg" aria-hidden="true" style=" color: #337ab7;"></i></a>
                                 </div>
                             </div>
@@ -335,6 +352,10 @@
                     </div>  
                 </div>
             </div> 
+        </div>
+        
+        <div class="panel-footer text-center">
+            Footer Bhai
         </div>
     </div>
 <%

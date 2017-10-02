@@ -850,6 +850,7 @@
         $('#LS_infant_div_add').show();
         $('#LS_infant_div_update').hide();
         $('#LS_infantForm')[0].reset();
+        $('#LS_infantTag').prop('disabled', false);
         
         var summaryDate =$(this).closest('#LS_viewGroup').find('#LS_theSummaryDate').text();
         var summaryDateArr = summaryDate.split(" ");
@@ -884,7 +885,7 @@
         var vaccine = $('#LS_infantVaccine').val();
         var abnormal = $('#LS_infantAbnormal').val();
         
-        if(alive===""){
+        if(alive==="" || alive==null){
             isComplete=false;
             msg="Please choose baby's condition";
         }
@@ -900,19 +901,19 @@
             isComplete=false;
             msg="Please choose baby's birth time";
         }
-        else if(sex ===""){
+        else if(sex ==="" || sex==null){
             isComplete=false;
             msg="Please choose baby's sex";
         }
-        else if(cord ===""){
+        else if(cord ==="" || cord==null){
             isComplete=false;
             msg="Please choose the cord blood collection status";
         }
-        else if(vitamin ===""){
+        else if(vitamin ==="" || vitamin==null){
             isComplete=false;
             msg="Please choose the vitamin status";
         }
-        else if(vaccine ===""){
+        else if(vaccine ==="" || vaccine==null){
             isComplete=false;
             msg="Please choose the vaccination status";
         }
@@ -1147,14 +1148,203 @@
     });
     //=======================================================================
     
+    //---------- delete infant record ---------------------------
+    $('#LS_viewDIv').on('click', '#LS_infantBtnDelete', function(){
+        var summaryDate = $(this).closest('#LS_viewDIv').find('#LS_theSummaryDate').text();
+        var theDate = summaryDate.split("|")[0];
+        
+        var dataArr = $(this).closest('div').find('#LS_theInfantHidden').val().split("|");
+        var tag = dataArr[2];
+        
+        bootbox.confirm({
+            title: "Delete item?",
+            message: "Are you sure you want to delete birth record for infant with tag " + tag+"?",
+            buttons: {
+                confirm: {
+                    label: "Yes",
+                    className: "btn-success"
+                },
+                cancel: {
+                    label: "No",
+                    className: "btn-danger"
+                }
+            },
+            callback: function (result) {
+
+                if (result) {
+                    var data = {
+                        summaryDate : summaryDate,
+                        tag : tag
+                    };
+
+                    var message = "";
+
+                    createScreenLoading();
+                    $.ajax({
+                        type: 'POST',
+                        timeout: 60000,
+                        data: data,
+                        url: "specialistTemplate/ONG/LS_control/infant_delete.jsp",
+                        success: function (data, textStatus, jqXHR) {
+                                var reply = data.trim();
+                                if(reply==="success"){
+                                    message="Infant record is deleted successfully.";
+                                    $('#LS_viewBy').val('x');
+                                    $('#LS_dateFrom').val(theDate);
+                                    $('#LS_dateTo').val(theDate);
+                                    LS_loadData();
+                                    $('#LS_infantModal').modal('hide');
+                                }
+                                else if(reply==="fail"){
+                                    message="Failed to delete infant record.";
+                                }
+                                else{
+                                    message=data;
+                                }
+                            },
+                        error: function (jqXHR, textStatus, errorThrown) {
+                                message="Oops! "+errorThrown;
+                            },
+                        complete: function (jqXHR, textStatus ) {
+                                destroyScreenLoading();
+                                bootbox.alert(message);
+                            }
+                    });
+
+                }
+            }
+        });
+    });
+    //==========================================================
+    
     //********************************** == infant == *******************************************************
+    
+    //********************************** transfer *********************************************
     
     //-------------------update mother transfer ---------------------
     $('#LS_viewDIv').on('click', '#LS_transferUpdateModal', function (){
         $('#LS_transferModal').modal('show');
+        var summaryDate = $(this).closest('#LS_viewDIv').find('#LS_theSummaryDate').text();
+        
+        var dataArr = $(this).closest('div').find('#LS_theHiddenTransfer').val().split("|");
+        
+        $('#LS_transferSystolic').val(dataArr[1]);
+        $('#LS_transferDiastolic').val(dataArr[2]);
+        $('#LS_transferPulse').val(dataArr[0]);
+        $('#LS_transferUterus').val(dataArr[3]);
+        $('#LS_transferTime').val(dataArr[4]);
+        $('#LS_transferPerineum').val(dataArr[5]);
+        $('#LS_transferDoctor').val(dataArr[6]);
+        
+        $('#LS_transferModalID').val(summaryDate);
+    });
+    
+    function LS_transferCheckField(){
+        var isCom = true;
+        var msg="";
+        
+        var pulse= $('#LS_transferPulse').val();
+        var systol = $('#LS_transferSystolic').val();
+        var diastol = $('#LS_transferDiastolic').val();
+        var uterus = $('#LS_transferUterus').val();
+        var time = $('#LS_transferTime').val();
+        var perineum = $('#LS_transferPerineum').val();
+        var doctor = $('#LS_transferDoctor').val();
+        
+        if(time===""){
+            isCom=false;
+            msg="Please choose transfer time";
+        }
+        else if(doctor===""){
+            isCom=false;
+            msg="Please insert doctor or nurse";
+        }
+        
+        if(pulse==="" || isNaN(pulse)){
+            $('#LS_transferPulse').val("0");
+        }
+        
+        if(systol==="" || isNaN(systol)){
+            $('#LS_transferSystolic').val("0");
+        }
+        
+        if(diastol==="" || isNaN(diastol)){
+            $('#LS_transferDiastolic').val("0");
+        }
+        
+        if(!isCom){
+            bootbox.alert(msg);
+        }
+        
+        return isCom;
+    }
+    
+    $('#LS_transferBtnAdd').on('click', function(){
+        if(LS_transferCheckField()){
+            
+            var summaryDate = $('#LS_transferModalID').val();
+            var theDate = summaryDate.split(" ")[0];
+            
+            var pulse= $('#LS_transferPulse').val();
+            var systol = $('#LS_transferSystolic').val();
+            var diastol = $('#LS_transferDiastolic').val();
+            var uterus = $('#LS_transferUterus').val();
+            var time = $('#LS_transferTime').val();
+            var perineum = $('#LS_transferPerineum').val();
+            var doctor = $('#LS_transferDoctor').val();
+            
+            uterus = uterus.replace(/'/g, "\\\'").replace(/"/g, "\\\"");
+            perineum = perineum.replace(/'/g, "\\\'").replace(/"/g, "\\\"");
+            doctor = doctor.replace(/'/g, "\\\'").replace(/"/g, "\\\"");
+            
+            var data={
+                summaryDate : summaryDate,
+                pulse : pulse,
+                systol : systol,
+                diastol : diastol,
+                uterus : uterus,
+                time : time,
+                perineum : perineum,
+                doctor : doctor
+                
+            };
+            
+            var message="-";
+            createScreenLoading();
+            $.ajax({
+                type: 'POST',
+                timeout: 60000,
+                data: data,
+                url: "specialistTemplate/ONG/LS_control/transfer_save.jsp",
+                success: function (data, textStatus, jqXHR) {
+                        var reply = data.trim();
+                        if(reply==="success"){
+                            message="Transfer record is saved successfully.";
+                            $('#LS_viewBy').val('x');
+                            $('#LS_dateFrom').val(theDate);
+                            $('#LS_dateTo').val(theDate);
+                            LS_loadData();
+                            $('#LS_transferModal').modal('hide');
+                        }
+                        else if(reply==="fail"){
+                            message="Failed to save transfer record.";
+                        }
+                        else{
+                            message=data;
+                        }
+                    },
+                error: function (jqXHR, textStatus, errorThrown) {
+                        message="Oops! "+errorThrown;
+                    },
+                complete: function (jqXHR, textStatus ) {
+                        destroyScreenLoading();
+                        bootbox.alert(message);
+                    }
+            });
+        }
     });
     //===============================================================
     
-    
+    //******************************* == transfer == ****************************************
     
 </script>

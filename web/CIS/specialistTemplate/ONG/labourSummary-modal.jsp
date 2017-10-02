@@ -618,7 +618,7 @@
                 <h3 class="modal-title">Mother Transfer Observation</h3>
             </div>
             <div class="modal-body">
-                <form id="LS_infantForm">
+                <form id="LS_transferForm">
                     <input type="hidden" id="LS_transferModalID">
                     <div class="col-md-12">
                         
@@ -626,19 +626,19 @@
                             <div class="col-md-6">
                                  <!-- Text input-->
                                 <div class="form-group">
-                                    <label class="col-md-4 control-label" for="textinput">Blood pressure:</label>
+                                    <label class="col-md-4 control-label" for="textinput">Blood pressure (mmHg):</label>
                                     <div class="col-md-4">
-                                        <input class="form-control input-md" type="number" min="0" step="1" placeholder="Systolic mmHg" id="LS_transferSystolic">
+                                        <input class="form-control input-md" type="number" min="0" max="999" step="1" placeholder="Systolic" id="LS_transferSystolic">
                                     </div>
                                     <div class="col-md-4">
-                                        <input class="form-control input-md" type="number" min="0" step="1" placeholder="Diastolic mmHg" id="LS_transferDiastolic">
+                                        <input class="form-control input-md" type="number" min="0" max="999" step="1" placeholder="Diastolic" id="LS_transferDiastolic">
                                     </div>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <label class="col-md-4 control-label" for="textinput">Blood pulse:</label>
                                     <div class="col-md-8">
-                                        <input class="form-control input-md" type="number" min="0" step="1" placeholder="bpm" id="LS_transferPulse">
+                                        <input class="form-control input-md" type="number" min="0" step="1" placeholder="Blood pulse in bpm" id="LS_transferPulse">
                                     </div>
                             </div>
                            
