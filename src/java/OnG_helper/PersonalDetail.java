@@ -42,8 +42,8 @@ public class PersonalDetail {
         String sql = "";
         pmino = splittedData[0];
         hfc = splittedData[1];
-        
-        sql = "pmi_no,hfc_cd,episode_date,encounter_date,pregnancy_year,gestation,place_of_delivery,labour_delivery,wt,gender,comment FROM lhr_ong_pregnancy where pmi_no='"+pmino+"' and hfc_cd ='"+hfc+"'";
+                    //  0      1        2              3               4             5          6                  7        8   9      10
+        sql = "select pmi_no,hfc_cd,episode_date,encounter_date,pregnancy_year,gestation,place_of_delivery,labour_delivery,wt,gender,comment FROM lhr_ong_pregnancy where pmi_no='"+pmino+"' and hfc_cd ='"+hfc+"'";
         data = conn.getData(sql);
         return data;
     }
@@ -103,5 +103,20 @@ public class PersonalDetail {
         sql = "INSERT into lhr_ong_pregnancy(pmi_no,hfc_cd,episode_date,encounter_date,pregnancy_year,gestation,place_of_delivery,labour_delivery,wt,gender,comment) values('"+pmino+"','"+hfc+"','"+episode+"','"+encounter+"','"+pregnancy_year+"','"+gestation+"','"+place_of_delivery+"','"+labour_deliver+"','"+wt+"','"+gender+"','"+comment+"')";
         ins = rmic.setQuerySQL(conn.HOST, conn.PORT, sql);
         return ins;
+    }
+    
+    public Boolean deletePregnancy(String datas){
+        Boolean data = false;
+        String splittedData[] = datas.split("\\|", -1);
+        String pmino,hfc,epi,encounter;
+        String sql = "";
+        pmino = splittedData[0];
+        hfc = splittedData[1];
+        epi = splittedData[2];
+        encounter = splittedData[3];
+        
+        sql = "DELETE from lhr_ong_pregnancy where pmi_no='"+pmino+"' and hfc_cd ='"+hfc+"' and episode_date='"+epi+"' and encounter_date='"+encounter+"'";
+        data = rmic.setQuerySQL(conn.HOST, conn.PORT, sql);
+        return data;
     }
 }
