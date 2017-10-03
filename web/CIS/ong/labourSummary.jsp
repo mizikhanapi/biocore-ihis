@@ -295,6 +295,8 @@
     
     initTimepicker("LS_transferTime");
     
+    initDatepicker("LS_perNoteDate");
+    
     function LS_loadData(){
         var data = {
             day: $('#LS_viewBy').val(),
@@ -1482,5 +1484,93 @@
         });
     });
     //***************** == delete summary == *****************
+    
+    //***************************** puerperium notes *******************************
+    $('#LS_viewDIv').on('click', '#LS_perNoteUpdateModal', function(){
+        var arrData = $(this).closest('div').find('#LS_theHiddenPerNote').val().split("|");
+        var summaryDate = $(this).closest('#LS_viewDIv').find('#LS_theSummaryDate').text();
+        
+        $('#LS_perNoteModalID').val(summaryDate);
+        $('#LS_perNoteModal').modal('show');
+        
+        $('#LS_perNoteDate').val(arrData[0]);
+        $('#LS_perNoteNotes').val(arrData[1]);
+        $('#LS_perNoteTreatment').val(arrData[2]);
+    });
+    
+    $('#LS_perNoteBtnAdd').on('click', function(){
+        var perDate = $('#LS_perNoteDate').val();
+        var perNote = $('#LS_perNoteNotes').val();
+        var treatment = $('#LS_perNoteTreatment').val();
+        var summaryDate = $('#LS_perNoteModalID').val();
+        var theDate = summaryDate.split("|")[0];
+        
+        var isComplete = true;
+        var message="";
+        if(perDate===""){
+            isComplete=false;
+            message="Please choose date";
+        }
+        else if(perNote===""){
+            isComplete=false;
+            message="Please fill in the notes";
+        }
+        else if(treatment===""){
+            isComplete=false;
+            message="Please fill in the treatment";
+        }
+        
+        if(!isComplete){
+            bootbox.alert(message);
+        }
+        else{
+            
+            perNote = perNote.replace(/'/g, "\\\'").replace(/"/g, "\\\"");
+            treatment = treatment.replace(/'/g, "\\\'").replace(/"/g, "\\\"");
+            
+            var data ={
+                summaryDate : summaryDate,
+                perDate : perDate,
+                note : perNote,
+                treatment : treatment
+            };
+            
+            createScreenLoading();
+            $.ajax({
+                type: 'POST',
+                timeout: 60000,
+                data: data,
+                url: "specialistTemplate/ONG/LS_control/perNote_save.jsp",
+                success: function (data, textStatus, jqXHR) {
+                        var reply = data.trim();
+                        if(reply==="success"){
+                            message="Puerperium note is saved successfully.";
+                            $('#LS_viewBy').val('x');
+                            $('#LS_dateFrom').val(theDate);
+                            $('#LS_dateTo').val(theDate);
+                            $('#LS_perNoteModal').modal('hide');
+                            LS_loadData();
+
+                        }
+                        else if(reply==="fail"){
+                            message="Failed to save this record.";
+                        }
+                        else{
+                            message=data;
+                        }
+                    },
+                error: function (jqXHR, textStatus, errorThrown) {
+                        message="Oops! "+errorThrown;
+                    },
+                complete: function (jqXHR, textStatus ) {
+                        destroyScreenLoading();
+                        bootbox.alert(message);
+                    }
+            });
+
+        }
+    });
+    
+    //*************************** == puerperium notes == **********************************
     
 </script>

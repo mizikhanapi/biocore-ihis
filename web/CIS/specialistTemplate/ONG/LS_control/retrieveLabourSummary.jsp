@@ -404,8 +404,68 @@
                         </div>
                     </div>  
                 </div>
-            </div> 
+            </div>
+                            
+            <%
+                if(!isApproved){
+            %>                            
+            <ul class="soap-content nav">
+                <li><a style="cursor: pointer;" id="LS_puerperiumAddModal"><i class="fa fa-comments  fa-li"></i>New Puerperium Observation</a>
+            </ul>
+            <%
+                }
+                
+                String queryPerNote="SELECT date_format(encounter_date, '%d/%m/%Y'), notes, treatment "
+                                    + "FROM lhr_ong_puerperium_note "
+                                    + "WHERE pmi_no='"+pmiNo+"' and summary_date='"+summaryDate+"' limit 1; ";
+                ArrayList<ArrayList<String>> dataPerNote = con.getData(queryPerNote);
+                String perNote="", perDate="", perTreatment="";
+                if(dataPerNote.size()>0){
+                    perDate=dataPerNote.get(0).get(0);
+                    perNote=dataPerNote.get(0).get(1);
+                    perTreatment=dataPerNote.get(0).get(2);
+                }
+
+               
+            %>                
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <div class="media">
+                                <div class="col-xs-3">
+                                    <dt style="font-size: 18px;">PUERPERIUM NOTES</dt>
+                                </div>
+                                <div class="col-xs-3">
+                                    <dt>Date: </dt>
+                                    <dd><strong><%=perDate%></strong></dd>
+                                </div>
+                                <div class="col-xs-3">
+                                    <dt>Notes: </dt>
+                                    <dd><strong><%=perNote%></strong></dd>
+                                </div>
+                                <div class="col-xs-3">
+                                    <dt>Treatment:</dt>
+                                    <dd><strong><%=perTreatment%></strong></dd>
+                                </div>
+                                <%
+                                    if(!isApproved){
+                                %>
+                                <div style="position: absolute; bottom: 0px; right: 15px;">
+                                    <input type="hidden" id="LS_theHiddenPerNote" value="<%= String.join("|", perDate, perNote, perTreatment)%>">
+                                    <a style="vertical-align: middle; cursor: pointer;" id="LS_perNoteUpdateModal"><i class="fa fa-pencil-square-o fa-lg" aria-hidden="true" style=" color: #337ab7;"></i></a>
+                                </div>
+                                <%
+                                    }
+                                %>
+                            </div>
+                        </div>
+                    </div>  
+                </div>
+            </div>    
+                            
         </div>
+                        
         
         <div class="panel-footer  text-center">
             <h4><%=approveStatus%></h4> 
