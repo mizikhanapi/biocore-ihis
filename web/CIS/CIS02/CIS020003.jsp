@@ -52,7 +52,7 @@
                         </div>
                         <div class="col-xs-4 col-sm-4 col-md-4">
                             <div class="form-group">
-                                <input type="number" name="sitP" id="sitP" class="form-control input-lg" placeholder="mmHg" tabindex="4">
+                                <input type="number" name="sitP" id="sitP" class="form-control input-lg" placeholder="bpm" tabindex="4">
 
                             </div>
                         </div>
@@ -92,7 +92,7 @@
                             </div>
                             <div class="col-xs-4 col-sm-4 col-md-4">
                                 <div class="form-group">
-                                    <input type="number" name="standP" id="standP" class="form-control input-lg" placeholder="mmHg" tabindex="4">
+                                    <input type="number" name="standP" id="standP" class="form-control input-lg" placeholder="bpm" tabindex="4">
 
                                 </div>
                             </div>
@@ -132,7 +132,7 @@
                             </div>
                             <div class="col-xs-4 col-sm-4 col-md-4">
                                 <div class="form-group">
-                                    <input type="number" name="lyingP" id="lyingP" class="form-control input-lg" placeholder="mmHg" tabindex="4">
+                                    <input type="number" name="lyingP" id="lyingP" class="form-control input-lg" placeholder="bpm" tabindex="4">
                                 </div>
                             </div>
                         </div>
