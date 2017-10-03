@@ -27,7 +27,7 @@ public class PersonalDetail {
         pmino = splittedData[0];
         hfc = splittedData[1];
 
-        sql = "SELECT pmi_no,hfc_cd,episode_date,encounter_date,gravida,parity,pregnancy_lmp,pregnancy_edd,pregnancy_scan_edd,period_cycle,past_gynaecological_history,past_medical_history,past_surgical_history FROM lhr_ong_personal_info where pmi_no = '" + pmino + "' and hfc_cd ='"+hfc+"'";
+        sql = "SELECT pmi_no,hfc_cd,episode_date,encounter_date,gravida,parity,pregnancy_lmp,pregnancy_edd,pregnancy_scan_edd,period_cycle,past_gynaecological_history,past_medical_history,past_surgical_history FROM lhr_ong_personal_info where pmi_no = '" + pmino + "' and hfc_cd ='"+hfc+"' limit 1";
 
         data = conn.getData(sql);
         return data;

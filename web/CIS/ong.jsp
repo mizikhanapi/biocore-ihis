@@ -17,7 +17,7 @@
                                 <i class="fa fa-info-circle fa-lg"></i> Personal Details </a>
                         </li>
                         <li class="">
-                            <a href="#ONG_2" data-toggle="tab" aria-expanded="false">
+                            <a href="#ONG_2" data-toggle="tab" aria-expanded="false" id="tabBP">
                                 <i class="fa fa-check fa-lg"></i> AnteNatal Record  </a>
                         </li>
                         <li >
@@ -178,6 +178,14 @@
         var x = pmi_no + "|" + hfc_cd1;
         getPI(x);
         getPIpreg(x);
+    });
+    
+    $('#tabBP').on('click',function(){
+        var pmi_no = pmiNo;
+        var hfc_cd1 = hfc_cd;
+        var x = pmi_no + "|" + hfc_cd1;
+        getBP(x);
+        getAnteNatal(x);
     });
     
 </script>

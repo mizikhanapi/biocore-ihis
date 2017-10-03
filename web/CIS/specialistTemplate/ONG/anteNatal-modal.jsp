@@ -316,6 +316,31 @@
         $('#BPbooster').datepicker({dateFormat: 'dd/mm/yy', changeMonth: true, changeYear: true});
     });
     
+        function getBP(data) {
+        //console.log(data);
+        $.ajax({
+            type: "post",
+            url: "specialistTemplate/ONG/AN_control/antenatalFunction.jsp",
+            data: {datas: data, methodName: "getBP"},
+            success: function (databack) {
+                $('#divAntenatal').html(databack);
+            }
+        });
+    }
+    
+    function getAnteNatal(data) {
+        //console.log(data);
+        $.ajax({
+            type: "post",
+            url: "specialistTemplate/ONG/AN_control/antenatalFunction.jsp",
+            data: {datas: data, methodName: "getAnte"},
+            success: function (databack) {
+                console.log(databack);
+                $('#divAnteB #tblante tbody').html(databack);
+            }
+        });
+    }
+    
     $('#btnBPAddItem').on('click',function(){
         var bloodGroup = $('#BPbGroup').val();
         var attInjection = $('#BPatt').val();
@@ -361,6 +386,8 @@
                     if (databack) {
                         bootbox.alert("succes inserting");
                         $('#ong-anteNatal1').modal('hide');
+                        getBP(datas2);
+                        getAnteNatal(datas2);
                     } else {
                         bootbox.alert("fail inserting");
                     }
@@ -410,6 +437,8 @@
                     console.log(databack);
                     if (databack) {
                         bootbox.alert("succes inserting");
+                        getBP(datas2);
+                        getAnteNatal(datas2);
                         $('#ong-anteNatal2').modal('hide');
                     } else {
                         bootbox.alert("fail inserting");

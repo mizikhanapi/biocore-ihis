@@ -27,7 +27,7 @@ public class AnteNatalRecord {
         pmino = splittedData[0];
         hfc = splittedData[1];
 //                        0        1        2           3           4               5           6           7             8         9               10                  11          12      13
-        sql = "SELECT pmi_no,hfc_cd,episode_date,encounter_date,blood_group,att_injection,rhesus_factor,rubella_status,vdrl,hepatitis_b_antibody,hepatitis_b_antigen,1st_dose,2nd_dose,booster from lhr_ong_blood_profile where pmi_no = '" + pmino + "' and hfc_cd ='" + hfc + "'";
+        sql = "SELECT pmi_no,hfc_cd,episode_date,encounter_date,blood_group,att_injection,rhesus_factor,rubella_status,vdrl,hepatitis_b_antibody,hepatitis_b_antigen,1st_dose,2nd_dose,booster from lhr_ong_blood_profile where pmi_no = '" + pmino + "' and hfc_cd ='" + hfc + "' limit 1";
 
         data = conn.getData(sql);
         return data;
@@ -74,7 +74,7 @@ public class AnteNatalRecord {
         return ins;
     }
     
-    public String insertAntenatal(String datas){
+    public Boolean insertAntenatal(String datas){
         
         Boolean ins = false;
         String sql = "";
@@ -96,7 +96,7 @@ public class AnteNatalRecord {
 
         sql = "INSERT into lhr_ong_antenatal_record(pmi_no,hfc_cd,episode_date,encounter_date,gestation_weeks,prest_lie,ultrasound,bp,hb,wt,urine_a,urine_s,followup) values('"+pmino+"','"+hfc+"','"+episode+"','"+encounter+"','"+gestation_week+"','"+prest_lie+"','"+ultrasound+"','"+bp+"','"+hb+"','"+wt+"','"+urine_a+"','"+urine_s+"','"+followup+"')";
         ins = rmic.setQuerySQL(conn.HOST, conn.PORT, sql);
-        return sql;
+        return ins;
     }
     
         public Boolean deleteAntenatal(String datas){

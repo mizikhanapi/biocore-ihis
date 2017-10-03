@@ -8,7 +8,7 @@
     <div class="col-md-8">
         <h4>Consultation Notes</h4>
     </div>
-    <div class="col-md-4" style="padding-top: 20px">
+    <div class="col-md-4 hidden" style="padding-top: 20px">
         <label class="col-sm-6 control-label text-right" for="formGroupInputLarge">View history assessment:</label>
         <div class="col-sm-6" style="padding-right: 0px;">
             <select class="form-control">
@@ -22,7 +22,7 @@
             </select>
         </div>
     </div>
-    <div class="col-md-6 col-md-offset-6 text-right margin-bottom-30px">
+    <div class="col-md-6 col-md-offset-6 text-right margin-bottom-30px hidden">
         <div class="col-sm-12 form-inline" style="padding-right: 0px;">
             <div class="form-group">
                 <label for="exampleInputName2">Start</label>
@@ -37,31 +37,31 @@
     </div>
 </div>
 
-<div class="panel panel-default">
-    <div class="panel-body">
+<div class="panel panel-default" id="divAnteB">
+    <div class="panel-body" id="divAntenatal">
         <div class="row">
             <div class="col-xs-3">
                 <dt style="font-size: 18px;">Blood Profile</dt>
             </div>
             <div class="col-xs-3">
-                <dd>Blood Group: <strong>A</strong></dd>
-                <dd>Rhesus Factor: <strong>Rhesus Factor Info</strong></dd>
-                <dd>VDRL: <strong>VDRL Info</strong></dd>
+                <dd>Blood Group: <strong>-</strong></dd>
+                <dd>Rhesus Factor: <strong>-</strong></dd>
+                <dd>VDRL: <strong>-</strong></dd>
             </div>
             <div class="col-xs-3">
-                <dd>ATT Injection: <strong>VDRL Info</strong></dd>
-                <dd>Rubella Status: <strong>VDRL Info</strong></dd>
-                <dd>Hepatitis B Antibody: <strong>VDRL Info</strong></dd>
-                <dd>Hepatitis B Antigen: <strong>VDRL Info</strong></dd>
+                <dd>ATT Injection: <strong>-</strong></dd>
+                <dd>Rubella Status: <strong>-</strong></dd>
+                <dd>Hepatitis B Antibody: <strong>-</strong></dd>
+                <dd>Hepatitis B Antigen: <strong>-</strong></dd>
             </div>
             <div class="col-xs-3">
-                <dd>1st dose: <strong>13/06/2017</strong></dd>
-                <dd>2nd dose: <strong>14/06/2017</strong></dd>
-                <dd>Booster: <strong>15/06/2017</strong></dd>
+                <dd>1st dose: <strong>-</strong></dd>
+                <dd>2nd dose: <strong>-</strong></dd>
+                <dd>Booster: <strong>-</strong></dd>
             </div>
         </div>  
     </div>  
-    <table class="table table-striped table-bordered" style="margin-bottom: 0px;">
+    <table class="table table-striped table-bordered" style="margin-bottom: 0px;" id="tblante">
         <thead>
             <tr>
                 <th>Date.</th>
@@ -76,39 +76,38 @@
                     <span class="pull-right" style="padding-right: 10px;">S</span>
                 </th>
                 <th>Follow up</th>
-                <th>Examined By</th>
                 <th>Action</th>
             </tr>  
         </thead>
         <tbody>
-            <tr>
-                <td>15/06/2017</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr>
-                <td>15/06/2017</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
+            
         </tbody>
     </table>
 </div>
+<script>
+        $('#divAnteB ').on('click','#tblante tbody tr td a#delAN',function(e){
+            e.preventDefault();
+            var row = $(this).closest("tr");
+            var dataEncounter = row.find('#ANencounter').val();
+            var dataEpisode = row.find('#ANepisode').val();
+            var pmi_no = pmiNo;
+            var hfc_cd1 = hfc_cd;
+            var datas2 = pmi_no + "|" + hfc_cd1;
+            var datas = datas2 +"|"+ dataEpisode+"|"+dataEncounter;
+            
+            $.ajax({
+                type: "post",
+                url: "specialistTemplate/ONG/AN_control/antenatalFunction.jsp",
+                data: {datas: datas, methodName: "del"},
+                success: function (databack) {
+                    getBP(datas2);
+                    getAnteNatal(datas2);
+                    if (databack) {
+                        bootbox.alert("Deleted");
+                    } else {
+                        bootbox.alert("fail deleting");
+                    }
+                }
+            });
+        });
+    </script>
