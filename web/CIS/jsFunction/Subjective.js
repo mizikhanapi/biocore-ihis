@@ -296,7 +296,7 @@ $(document).ready(function () {
     $('#updateBtnHPI').click(function (e) {
         e.preventDefault();
         var upObject = _data[$('#jsonId').val()];
-        var rowId = $('#jsonId').val();
+        var rowId = $('#jsonId').val(); 
         var _udetails = $('#udetails').val();
          if(validationField(_udetails,"Please enter the correct history present illness")){
               upObject.details = _udetails;

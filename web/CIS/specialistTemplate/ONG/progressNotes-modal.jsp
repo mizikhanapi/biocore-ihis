@@ -18,7 +18,7 @@
                             <!-- Text input-->
                             <div class="form-group">
                                 <div class="col-md-12">
-                                    <textarea type="text" name="display_name" id="details" class="form-control input-lg" placeholder="Add Clinical Notes.." tabindex="3"></textarea>
+                                    <textarea type="text" name="display_name" id="tCIS_ONG_PROGRESS_NOTE" class="form-control input-lg" placeholder="Add Clinical Notes.." tabindex="3"></textarea>
                                 </div>
                             </div>
                         </div>
@@ -30,7 +30,7 @@
             <div class="modal-footer">
                 <div class="btn-group btn-group-justified" role="group" aria-label="group button">
                     <div class="btn-group" role="group">
-                        <button type="button" class="btn btn-success btn-block btn-lg" id="acceptBloodPBtn" role="button">Add Items</button>
+                        <button type="button" class="btn btn-success btn-block btn-lg" id="acceptONG_PROGRESS_NOTE" role="button">Add Items</button>
                     </div>
                     <div class="btn-group btn-delete hidden" role="group">
                         <button type="button" id="delImage" class="btn btn-default btn-block btn-lg" data-dismiss="modal" role="button">Clear</button>
@@ -44,3 +44,4 @@
     </div>
 </div>
 <!-- End Modal -->
+

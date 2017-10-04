@@ -16,16 +16,16 @@
     //out.print(data.size()); 
     //if (true) { return; }
 
-//        String ic_no = request.getParameter("ic_no");
-//        String username = request.getParameter("username");
-//        String password = request.getParameter("password");
-//        String email = request.getParameter("email");
-//        String mobile_no = request.getParameter("mobile_no");
-    String ic_no = "950706025269";
-    String username = "piansaja";
-    String password = "abc123";
-    String email = "pian46@gmail.com";
-    String mobile_no = "0172123124";
+        String ic_no = request.getParameter("ic_no");
+        String username = request.getParameter("username");
+        String password = request.getParameter("password");
+        String email = request.getParameter("email");
+        String mobile_no = request.getParameter("mobile_no");
+//    String ic_no = "950706025269";
+//    String username = "piansaja";
+//    String password = "abc123";
+//    String email = "pian46@gmail.com";
+//    String mobile_no = "0172123124";
     
     
      String hashPassword = hash.getHashPassword(password);
@@ -84,7 +84,7 @@
                     + "`STATUS`, " //14
                     + "`CREATED_BY`, " //15
                     + "`CREATED_DATE`, " //16
-                    + "mother_name" //17
+                    + "mother_name, `HEALTH_FACILITY_CODE`,`START_DATE`,`END_DATE`" //17
                     + ") VALUES ("
                     + "'" + username + "',  " //0
                     + "'" + dataPatientDetail.get(0).get(0) + "', " //1
@@ -97,19 +97,19 @@
                     + "'" + dataPatientDetail.get(0).get(4) + "',  " // 8
                     + "'" + email + "', " //9
                     + "'" + dataPatientDetail.get(0).get(5) + "', " //10
-                    + "'PUBLIC_USER', " //11
+                    + "'PUBLIC', " //11
                     + "'', " //12
                     + "'', " //13
                     + "'0'," //14
                     + " ''," //15
                     + " NOW()," // 16
                     + " '-'" //17
-                    + ");";
+                    + ", 'NO FACILITY', NOW(), '2099-12-30 00:00:00.0');";
 
             boolean isInsertSgt = rmic.setQuerySQL(Conn.HOST, Conn.PORT, sqlInsertSgt);
             
             
-             out.print(sqlInsertSgt);
+             //out.print(sqlInsertSgt);
              
             if (isInsertSgt) {
                 out.print("success");

@@ -24,7 +24,7 @@
 
                             <ul class="nav navbar-nav navbar-right logout" style="">
                                 <li class="visible-md visible-lg"><a href="Profile" title="Log Out">Welcome <span id="welcome"><%=name%></span></a></li>
-                                <li><a onclick="window.location.href = 'destroySession.jsp'" title="Log Out"><i class=" fa fa-power-off"></i></a></li>
+                                <li><a onclick="logOut()" title="Log Out"><i class=" fa fa-power-off"></i></a></li>
                             </ul>
 
                         </div>
@@ -34,3 +34,10 @@
                 </div>
             </nav>
             <!-- Menu Top -->
+            
+            <script type="text/javascript">
+                function logOut(){
+                    location.href = '../Entrance/destroySession.jsp';
+                }
+                </script>
+                
