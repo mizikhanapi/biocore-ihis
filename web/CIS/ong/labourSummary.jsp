@@ -295,6 +295,8 @@
     
     initTimepicker("LS_transferTime");
     
+    initDatepicker("LS_puerDate");
+    
     initDatepicker("LS_perNoteDate");
     
     function LS_loadData(){
@@ -1573,4 +1575,293 @@
     
     //*************************** == puerperium notes == **********************************
     
+    
+    //*************************** puerperium observation **********************************
+    //---- add new observation
+    $('#LS_viewDIv').on('click', '#LS_puerAddModal', function(){
+        $('#LS_puerForm')[0].reset();
+        $('#LS_puerModal').modal('show');
+        $('#LS_puer_div_add').show();
+        $('#LS_puer_div_update').hide();
+        $('.ls-add-update').prop('disabled', false);
+        
+        var summaryDate = $(this).closest('#LS_viewDIv').find('#LS_theSummaryDate').text();
+        $('#LS_puerModalID').val(summaryDate);
+    });
+    
+    function LS_puerCheckField(){
+        var isComplete = true;
+        var message="";
+        
+        var dateOfMonth = $('#LS_puerDate').val();
+        var day = $('#LS_puerDay').val();
+        var time = $('#LS_puerTime').val();
+        var height = $('#LS_puerHeight').val();
+        var temperature = $('#LS_puerTemperature').val();
+        var systolic = $('#LS_puerSystolic').val();
+        var diastolic = $('#LS_puerDiastolic').val();
+        var pulse = $('#LS_puerPulse').val();
+        
+        if(dateOfMonth===""){
+            isComplete = false;
+            message="Please choose the date";
+        }
+        else if(day===""){
+            isComplete=false;
+            message="Please insert the day of puerperium";
+        }
+        else if(time===""){
+            isComplete=false;
+            message="Please choose the time of observation";
+        }
+        
+        
+        if(height==="" || isNaN(height)){
+            $('#LS_puerHeight').val("0");
+        }
+        
+        if(temperature==="" || isNaN(temperature)){
+            $('#LS_puerTemperature').val("0");
+        }
+        
+        if(systolic==="" || isNaN(systolic)){
+            $('#LS_puerSystolic').val("0");
+        }
+        
+        if(diastolic==="" || isNaN(diastolic)){
+            $('#LS_puerDiastolic').val("0");
+        }
+        
+        if(pulse==="" || isNaN(pulse)){
+            $('#LS_puerPulse').val("0");
+        }
+        
+        if(!isComplete){
+            bootbox.alert(message);
+        }
+        
+        if(isComplete && !$('#LS_puerForm')[0].checkValidity() ){
+           $('<input type="submit">').hide().appendTo('#LS_puerForm').click().remove();
+           isComplete=false;
+        }
+        
+        return isComplete;
+    }
+    
+    $('#LS_puerBtnAdd').on('click', function(){
+        if(LS_puerCheckField()){
+            var dateOfMonth = $('#LS_puerDate').val();
+            var day = $('#LS_puerDay').val();
+            var time = $('#LS_puerTime').val();
+            var height = $('#LS_puerHeight').val();
+            var temperature = $('#LS_puerTemperature').val();
+            var systolic = $('#LS_puerSystolic').val();
+            var diastolic = $('#LS_puerDiastolic').val();
+            var pulse = $('#LS_puerPulse').val();
+            
+            var summaryDate = $('#LS_puerModalID').val();
+            var theDate = summaryDate.split(" ")[0];
+            
+            var data={
+                dateOfMonth : dateOfMonth,
+                day : day,
+                time : time,
+                height : height,
+                temperature : temperature,
+                systolic : systolic,
+                diastolic : diastolic,
+                pulse : pulse,
+                summaryDate : summaryDate
+            };
+            
+            var message="";
+            createScreenLoading();
+            $.ajax({
+                type: 'POST',
+                timeout: 60000,
+                data: data,
+                url: "specialistTemplate/ONG/LS_control/puerNote_insert.jsp",
+                success: function (data, textStatus, jqXHR) {
+                        var reply = data.trim();
+                        if(reply==="success"){
+                            message="Puerperium observation is saved successfully.";
+                            $('#LS_viewBy').val('x');
+                            $('#LS_dateFrom').val(theDate);
+                            $('#LS_dateTo').val(theDate);
+                            $('#LS_puerModal').modal('hide');
+                            LS_loadData();
+
+                        }
+                        else if(reply==="fail"){
+                            message="Failed to save this record.";
+                        }
+                        else{
+                            message=data;
+                        }
+                    },
+                error: function (jqXHR, textStatus, errorThrown) {
+                        message="Oops! "+errorThrown;
+                    },
+                complete: function (jqXHR, textStatus ) {
+                        destroyScreenLoading();
+                        bootbox.alert(message);
+                    }
+            });
+            
+        }
+    });
+    
+    //----------- update puerperium obeservation
+    $('#LS_viewDIv').on('click', '#LS_puerUpdateModal', function(){
+        var arrData = $(this).closest('td').find('#LS_theHiddenPuer').val().split("|");
+        var summaryDate = $(this).closest('#LS_viewDIv').find('#LS_theSummaryDate').text();
+        
+        $('#LS_puerModal').modal('show');
+        $('#LS_puer_div_add').hide();
+        $('#LS_puer_div_update').show();
+        $('.ls-add-update').prop('disabled', true);
+        
+        $('#LS_puerDate').val(arrData[0]);
+        $('#LS_puerDay').val(arrData[2]);
+        $('#LS_puerTime').val(arrData[1]);
+        $('#LS_puerHeight').val(arrData[3]);
+        $('#LS_puerTemperature').val(arrData[4]);
+        $('#LS_puerSystolic').val(arrData[5]);
+        $('#LS_puerDiastolic').val(arrData[6]);
+        $('#LS_puerPulse').val(arrData[8]);
+        
+        $('#LS_puerModalID').val(summaryDate);
+    });
+    
+    $('#LS_puerBtnUpdate').on('click', function(){
+        if(LS_puerCheckField()){
+            var dateOfMonth = $('#LS_puerDate').val();
+            var day = $('#LS_puerDay').val();
+            var time = $('#LS_puerTime').val();
+            var height = $('#LS_puerHeight').val();
+            var temperature = $('#LS_puerTemperature').val();
+            var systolic = $('#LS_puerSystolic').val();
+            var diastolic = $('#LS_puerDiastolic').val();
+            var pulse = $('#LS_puerPulse').val();
+            
+            var summaryDate = $('#LS_puerModalID').val();
+            var theDate = summaryDate.split(" ")[0];
+            
+            var data={
+                dateOfMonth : dateOfMonth,
+                day : day,
+                time : time,
+                height : height,
+                temperature : temperature,
+                systolic : systolic,
+                diastolic : diastolic,
+                pulse : pulse,
+                summaryDate : summaryDate
+            };
+            
+            var message="";
+            createScreenLoading();
+            $.ajax({
+                type: 'POST',
+                timeout: 60000,
+                data: data,
+                url: "specialistTemplate/ONG/LS_control/puerNote_update.jsp",
+                success: function (data, textStatus, jqXHR) {
+                        var reply = data.trim();
+                        if(reply==="success"){
+                            message="Puerperium observation is updated successfully.";
+                            $('#LS_viewBy').val('x');
+                            $('#LS_dateFrom').val(theDate);
+                            $('#LS_dateTo').val(theDate);
+                            $('#LS_puerModal').modal('hide');
+                            LS_loadData();
+
+                        }
+                        else if(reply==="fail"){
+                            message="Failed to update this record.";
+                        }
+                        else{
+                            message=data;
+                        }
+                    },
+                error: function (jqXHR, textStatus, errorThrown) {
+                        message="Oops! "+errorThrown;
+                    },
+                complete: function (jqXHR, textStatus ) {
+                        destroyScreenLoading();
+                        bootbox.alert(message);
+                    }
+            });
+        }
+    });
+    
+    //---------------- delete observation 
+    $('#LS_viewDIv').on('click', '#LS_puerBtnDelete', function(){
+        var arrData = $(this).closest('td').find('#LS_theHiddenPuer').val().split("|");
+        var summaryDate = $(this).closest('#LS_viewDIv').find('#LS_theSummaryDate').text();
+        
+        var theDate = summaryDate.split("|")[0];
+        
+        bootbox.confirm({
+            title: "Delete record?",
+            message: "Are you sure you want to delete this observation record? Once you have deleted this record, you can no longer see it.",
+            buttons: {
+                confirm: {
+                    label: "Yes",
+                    className: "btn-success"
+                },
+                cancel: {
+                    label: "No",
+                    className: "btn-danger"
+                }
+            },
+            callback: function (result) {
+
+                if (result) {
+                    var data = {
+                        summaryDate : summaryDate,
+                        dateOfMonth : arrData[0],
+                        time : arrData[1]
+                    };
+
+                    var message = "";
+
+                    createScreenLoading();
+                    $.ajax({
+                        type: 'POST',
+                        timeout: 60000,
+                        data: data,
+                        url: "specialistTemplate/ONG/LS_control/puerNote_delete.jsp",
+                        success: function (data, textStatus, jqXHR) {
+                                var reply = data.trim();
+                                if(reply==="success"){
+                                    message="Labour summary is deleted successfully.";
+                                    $('#LS_viewBy').val('x');
+                                    $('#LS_dateFrom').val(theDate);
+                                    $('#LS_dateTo').val(theDate);
+                                    LS_loadData();
+                                    
+                                }
+                                else if(reply==="fail"){
+                                    message="Failed to delete this record.";
+                                }
+                                else{
+                                    message=data;
+                                }
+                            },
+                        error: function (jqXHR, textStatus, errorThrown) {
+                                message="Oops! "+errorThrown;
+                            },
+                        complete: function (jqXHR, textStatus ) {
+                                destroyScreenLoading();
+                                bootbox.alert(message);
+                            }
+                    });
+
+                }
+            }
+        });
+    });
+    
+    //**************************** == puerperium observation == **************************************
 </script>

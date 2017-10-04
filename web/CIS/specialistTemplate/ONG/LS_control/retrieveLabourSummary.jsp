@@ -182,7 +182,7 @@
                                     <%
                                         if(!isApproved){
                                     %>
-                                    <a style="vertical-align: middle; cursor: pointer;" id="LS_labourUpdateModal"><i class="fa fa-pencil-square-o fa-lg" aria-hidden="true" style=" color: #337ab7;"></i></a>
+                                    <a style="vertical-align: middle; cursor: pointer;" id="LS_labourUpdateModal" title="Edit record"><i class="fa fa-pencil-square-o fa-lg" aria-hidden="true" style=" color: #337ab7;"></i></a>
                                     <%
                                         }
                                     %>
@@ -236,7 +236,7 @@
                         <%
                             if(!isApproved){
                         %>
-                        <a style="vertical-align: middle; cursor: pointer" id="LS_stageUpdateModal"><i class="fa fa-pencil-square-o fa-lg" aria-hidden="true" style=" color: #337ab7;"></i></a>
+                        <a style="vertical-align: middle; cursor: pointer" id="LS_stageUpdateModal" title="Edit record"><i class="fa fa-pencil-square-o fa-lg" aria-hidden="true" style=" color: #337ab7;"></i></a>
                         <%
                             }
                         %>
@@ -264,7 +264,7 @@
                                     <%
                                         if(!isApproved){
                                     %>
-                                    <a style="vertical-align: middle; cursor: pointer;" id="LS_eventUpdateModal"><i class="fa fa-pencil-square-o fa-lg" aria-hidden="true" style=" color: #337ab7;"></i></a>
+                                    <a style="vertical-align: middle; cursor: pointer;" id="LS_eventUpdateModal" title="Edit record"><i class="fa fa-pencil-square-o fa-lg" aria-hidden="true" style=" color: #337ab7;"></i></a>
                                     <%
                                         }
                                     %>
@@ -337,9 +337,9 @@
                     %>
                     <div style="position: absolute; bottom: 0px; right: 15px;">
                         <input type="hidden" id="LS_theInfantHidden" value="<%=String.join("|", dataInfant.get(j))%>">
-                        <a style="vertical-align: middle; cursor: pointer" id="LS_infantUpdateModal"><i class="fa fa-pencil-square-o fa-lg" aria-hidden="true" style=" color: #337ab7;"></i></a>
+                        <a style="vertical-align: middle; cursor: pointer" id="LS_infantUpdateModal" title="Edit record"><i class="fa fa-pencil-square-o fa-lg" aria-hidden="true" style=" color: #337ab7;"></i></a>
                         &nbsp;&nbsp;&nbsp;
-                        <a style="cursor: pointer;" id="LS_infantBtnDelete"><i class="fa fa-times fa-lg" aria-hidden="true" style="color: #d9534f;"></i></a>
+                        <a style="cursor: pointer;" id="LS_infantBtnDelete" title="Delete record"><i class="fa fa-times fa-lg" aria-hidden="true" style="color: #d9534f;"></i></a>
                     </div>
                     <%
                         }
@@ -395,7 +395,7 @@
                                 %>
                                 <div style="position: absolute; bottom: 0px; right: 15px;">
                                     <input type="hidden" id="LS_theHiddenTransfer" value="<%= String.join("|", pulse, systol, diastol, uterus, time, perineum, doctor)%>">
-                                    <a style="vertical-align: middle; cursor: pointer;" id="LS_transferUpdateModal"><i class="fa fa-pencil-square-o fa-lg" aria-hidden="true" style=" color: #337ab7;"></i></a>
+                                    <a style="vertical-align: middle; cursor: pointer;" id="LS_transferUpdateModal" title="Edit record"><i class="fa fa-pencil-square-o fa-lg" aria-hidden="true" style=" color: #337ab7;"></i></a>
                                 </div>
                                 <%
                                     }
@@ -410,10 +410,74 @@
                 if(!isApproved){
             %>                            
             <ul class="soap-content nav">
-                <li><a style="cursor: pointer;" id="LS_puerperiumAddModal"><i class="fa fa-comments  fa-li"></i>New Puerperium Observation</a>
+                <li><a style="cursor: pointer;" id="LS_puerAddModal"><i class="fa fa-comments  fa-li"></i>New Puerperium Observation</a>
             </ul>
             <%
                 }
+                //                                         0                                        1                       2                   3           4           5           6          7            8           
+                String queryPuer="SELECT date_format(date_of_month, '%d/%m/%Y'), date_format(date_of_month, '%H:%i') ,day_of_puerperium, fundal_height, temperature, systolic, diastolic, blood_pressure, pulse "
+                                + "FROM lhr_ong_puerperium WHERE pmi_no='"+pmiNo+"' and summary_date='"+summaryDate+"' order by date_of_month desc;";
+                ArrayList<ArrayList<String>> dataPuer = con.getData(queryPuer);
+            %>
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <div class="table-guling">
+                         <table class="table table-bordered">
+                            <tr>
+                                <th>Date of month</th>
+                                <th>Day of puerperium</th>
+                                <th>Time</th>
+                                <th>Fundal height (cm)</th>
+                                <th>Temperature (&#8451;)</th>
+                                <th>SBP (mmHg)</th>
+                                <th>DBP(mmHg)</th>
+                                <th>MAP(mmHg)</th>
+                                <th>Pulse(bpm)</th>
+                                <%if(!isApproved){%>
+                                <th>Action</th>
+                                <%}%>
+                            </tr>
+                            <tbody>
+                            <%
+                                for(int k=0; k<dataPuer.size(); k++){
+                                    
+                                    String puerWaktu = dataPuer.get(k).get(1);
+                                    if(puerWaktu.equalsIgnoreCase("09:00")){
+                                        puerWaktu="Morning";
+                                    }
+                                    else{
+                                        puerWaktu="Evening";
+                                    }
+                            %> 
+                                <tr>
+                                <td><%=dataPuer.get(k).get(0)%></td>
+                                <td><%=dataPuer.get(k).get(2)%></td>
+                                <td><%=puerWaktu%></td>
+                                <td><%=dataPuer.get(k).get(3)%></td>
+                                <td><%=dataPuer.get(k).get(4)%></td>
+                                <td><%=dataPuer.get(k).get(5)%></td>
+                                <td><%=dataPuer.get(k).get(6)%></td>
+                                <td><%=dataPuer.get(k).get(7)%></td>
+                                <td><%=dataPuer.get(k).get(8)%></td>
+                                <%if(!isApproved){%>
+                                <td>
+                                    <input type="hidden" id="LS_theHiddenPuer" value="<%= String.join("|", dataPuer.get(k))%>">
+                                    <a style="vertical-align: middle; cursor: pointer;" id="LS_puerUpdateModal" title="Update record"><i class="fa fa-pencil-square-o fa-lg" aria-hidden="true" style=" color: #337ab7;"></i></a>
+                                    &nbsp;
+                                    <a style="cursor: pointer;" id="LS_puerBtnDelete" title="Delete record"><i class="fa fa-times fa-lg" aria-hidden="true" style="color: #d9534f;"></i></a>
+                                </td>
+                                </tr>
+                                <%}%>
+                            <%
+                                }//end for loop Puerperium
+                            %>    
+                            </tbody>
+                        </table>
+                    </div>
+                                      
+                </div>
+            </div>
+            <%    
                 
                 String queryPerNote="SELECT date_format(encounter_date, '%d/%m/%Y'), notes, treatment "
                                     + "FROM lhr_ong_puerperium_note "
@@ -438,22 +502,22 @@
                                 </div>
                                 <div class="col-xs-3">
                                     <dt>Date: </dt>
-                                    <dd><strong><%=perDate%></strong></dd>
+                                    <dd><%=perDate%></dd>
                                 </div>
                                 <div class="col-xs-3">
                                     <dt>Notes: </dt>
-                                    <dd><strong><%=perNote%></strong></dd>
+                                    <dd><%=perNote%></dd>
                                 </div>
                                 <div class="col-xs-3">
                                     <dt>Treatment:</dt>
-                                    <dd><strong><%=perTreatment%></strong></dd>
+                                    <dd><%=perTreatment%></dd>
                                 </div>
                                 <%
                                     if(!isApproved){
                                 %>
                                 <div style="position: absolute; bottom: 0px; right: 15px;">
                                     <input type="hidden" id="LS_theHiddenPerNote" value="<%= String.join("|", perDate, perNote, perTreatment)%>">
-                                    <a style="vertical-align: middle; cursor: pointer;" id="LS_perNoteUpdateModal"><i class="fa fa-pencil-square-o fa-lg" aria-hidden="true" style=" color: #337ab7;"></i></a>
+                                    <a style="vertical-align: middle; cursor: pointer;" id="LS_perNoteUpdateModal" title="Edit record"><i class="fa fa-pencil-square-o fa-lg" aria-hidden="true" style=" color: #337ab7;"></i></a>
                                 </div>
                                 <%
                                     }

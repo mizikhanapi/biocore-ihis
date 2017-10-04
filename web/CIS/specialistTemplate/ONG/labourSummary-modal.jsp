@@ -597,7 +597,7 @@
                         <button type="button" class="btn btn-success btn-block btn-lg" id="LS_infantBtnAdd" role="button">Add Birth Record</button>
                     </div>
                     <div class="btn-group" role="group" id="LS_infant_div_update" style="display: none">
-                        <button type="button" class="btn btn-success btn-block btn-lg" data-dismiss="modal" role="button" id="LS_infantBtnUpdate">Update Birth Record</button>
+                        <button type="button" class="btn btn-success btn-block btn-lg" role="button" id="LS_infantBtnUpdate">Update Birth Record</button>
                     </div>
                     <div class="btn-group" role="group">
                         <button type="button" id="saveImage" class="btn btn-default btn-block btn-lg" data-dismiss="modal" role="button">Close</button>
@@ -763,6 +763,126 @@
                         <button type="button" class="btn btn-success btn-block btn-lg" id="LS_perNoteBtnAdd" role="button">Save Puerperium Notes</button>
                     </div>
                    
+                    <div class="btn-group" role="group">
+                        <button type="button" id="saveImage" class="btn btn-default btn-block btn-lg" data-dismiss="modal" role="button">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Modal -->
+
+<!--Start Modal -->
+<div class="modal fade" id="LS_puerModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><i class="fa fa-times fa-lg"></i></span></button>
+                <h3 class="modal-title">Puerperium Observation</h3>
+            </div>
+            <div class="modal-body">
+                <form id="LS_puerForm">
+                    <input type="hidden" id="LS_puerModalID">
+                    <div class="col-md-12">
+                        
+                        <div class="row">
+                           <!-- Text input-->
+                            <div class="form-group">
+                                <label class="col-md-4 control-label ls-add-update" for="textinput">Date of month:</label>
+                                <div class="col-md-8">
+                                    <input class="form-control input-md" type="text" placeholder="dd/mm/yyyy" id="LS_puerDate" readonly>
+                                </div>
+                             </div>
+                        </div>
+                        
+                        <div class="row">
+                           <!-- Text input-->
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" for="textinput">Day of puerperium:</label>
+                                <div class="col-md-8">
+                                    <input class="form-control input-md" type="number" placeholder="Day of puerperium" id="LS_puerDay" max="999" min="0" step="1">
+                                </div>
+                             </div>
+                        </div>
+                        
+                        <div class="row">
+                           <!-- Text input-->
+                            <div class="form-group">
+                                <label class="col-md-4 control-label ls-add-update" for="textinput">Time:</label>
+                                <div class="col-md-8">
+                                    <select class="form-control input-md" id="LS_puerTime">
+                                        <option value="" selected disabled>-- Select time --<option>
+                                        <option value="09:00">Morning<option>
+                                        <option value="17:00">Evening<option>
+                                    </select>
+                                </div>
+                             </div>
+                        </div>
+                        
+                        <div class="row">
+                           <!-- Text input-->
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" for="textinput">Fundal height (cm):</label>
+                                <div class="col-md-8">
+                                    <input class="form-control input-md" id="LS_puerHeight" type="number" min="0" max="999" step="1">
+                                </div>
+                             </div>
+                        </div>
+                                                
+                        <div class="row">
+                           <!-- Text input-->
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" for="textinput">Temperature (&#8451;):</label>
+                                <div class="col-md-8">
+                                    <input class="form-control input-md" id="LS_puerTemperature" type="number" min="0" max="999" step="1">
+                                </div>
+                             </div>
+                        </div>
+                        
+                        <div class="row">
+                           <!-- Text input-->
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" for="textinput">Systolic (mmHg):</label>
+                                <div class="col-md-8">
+                                    <input class="form-control input-md" id="LS_puerSystolic" type="number" min="0" max="999" step="1">
+                                </div>
+                             </div>
+                        </div>
+                        
+                        <div class="row">
+                           <!-- Text input-->
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" for="textinput">Diastolic (mmHg):</label>
+                                <div class="col-md-8">
+                                    <input class="form-control input-md" id="LS_puerDiastolic" type="number" min="0" max="999" step="1">
+                                </div>
+                             </div>
+                        </div>
+                        
+                        <div class="row">
+                           <!-- Text input-->
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" for="textinput">Pulse (bpm):</label>
+                                <div class="col-md-8">
+                                    <input class="form-control input-md" id="LS_puerPulse" type="number" min="0" max="999" step="1">
+                                </div>
+                             </div>
+                        </div>
+                        
+                        
+                     </div> 
+                </form>
+
+            </div>
+            <div class="modal-footer">
+                <div class="btn-group btn-group-justified" role="group" aria-label="group button">
+                    <div class="btn-group" role="group" id="LS_puer_div_add">
+                        <button type="button" class="btn btn-success btn-block btn-lg" id="LS_puerBtnAdd" role="button">Add Puerperium Observation</button>
+                    </div>
+                    <div class="btn-group" role="group" id="LS_puer_div_update" style="display: none">
+                        <button type="button" class="btn btn-success btn-block btn-lg" role="button" id="LS_puerBtnUpdate">Update Puerperium Observation</button>
+                    </div>
                     <div class="btn-group" role="group">
                         <button type="button" id="saveImage" class="btn btn-default btn-block btn-lg" data-dismiss="modal" role="button">Close</button>
                     </div>
