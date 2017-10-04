@@ -20,22 +20,56 @@
     String discipline_name = null;
     String subdiscipline_name = null;
     String username = (String) session.getAttribute("USER_ID");
+    String my_1_gamba = "";
+    //String my_1_gamba = session.getAttribute("PICTURE").toString();
+    
+    String user_type = (String)session.getAttribute("USER_TYPE");
+    
+    if(user_type.equals("PUBLIC")){
+        //user
+        String P_NAME = session.getAttribute("USER_NAME").toString();
+        String PMI_NO = session.getAttribute("PMI_NO").toString();
+        String P_EMAIL = session.getAttribute("EMAIL").toString();
+        String P_MOBILE_PHONE = session.getAttribute("MOBILE_PHONE").toString();
+//        String P_DETAIL = session.getAttribute("PATIENT_DETAIL").toString();
+//        
+//        String[] P_DETAIL_SPLIT = P_DETAIL.split("-|-");
+//        String P_ID_NO =  P_DETAIL_SPLIT[0];
+//        String P_BIRTH_DATE = P_DETAIL_SPLIT[1];
+//        String P_RACE = P_DETAIL_SPLIT[2];
+//        String P_NATIONALITY = P_DETAIL_SPLIT[3];
+//        String P_RELIGION  = P_DETAIL_SPLIT[4];
+//        String P_BLOOD_TYPE = P_DETAIL_SPLIT[5];
+//        String P_DISTRICT = P_DETAIL_SPLIT[6];
+//        String P_TOWN = P_DETAIL_SPLIT[7];
+//        String P_STATE = P_DETAIL_SPLIT[8];
+//        String P_COUNTRY = P_DETAIL_SPLIT[9];
+//        String P_HOME_ADDRESS = P_DETAIL_SPLIT[10];
+//        String P_POSTCODE = P_DETAIL_SPLIT[11];
+        
+  
+        
+        
+    }else{
+        
+   
+    
+   
     String hfc = (String) session.getAttribute("HEALTH_FACILITY_CODE");
     String hfc_name = (String) session.getAttribute("HFC_NAME");
     String name = (String) session.getAttribute("USER_NAME");
     String title = (String) session.getAttribute("OCCUPATION_CODE");
     String discipline = (String) session.getAttribute("DISCIPLINE_CODE");
     String subdiscipline = (String) session.getAttribute("SUB_DISCIPLINE_CODE");
-    String my_1_gamba = session.getAttribute("PICTURE").toString();
-
+    
     String discipline_name_sql = "SELECT discipline_name FROM adm_discipline WHERE discipline_cd = '" + discipline + "' AND discipline_hfc_cd = '" + hfc + "';";
     ArrayList<ArrayList<String>> discipline_name_AL = Conn.getData(discipline_name_sql);
     discipline_name = discipline_name_AL.get(0).get(0);
-
     String subdiscipline_name_sql = "SELECT subdiscipline_name FROM adm_subdiscipline WHERE subdiscipline_hfc_cd = '" + hfc + "' AND discipline_cd = '" + discipline + "' AND subdiscipline_cd = '" + subdiscipline + "'";
-
     ArrayList<ArrayList<String>> subdiscipline_name_AL = Conn.getData(subdiscipline_name_sql);
     subdiscipline_name = subdiscipline_name_AL.get(0).get(0);
+    
+ }
 
 %>
 <html>

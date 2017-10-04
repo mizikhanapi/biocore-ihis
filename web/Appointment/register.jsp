@@ -29,7 +29,7 @@
                     Create your Account
                 </div>
                 <p id="profile-name" class="profile-name-card" style="font-weight: 400;">Integrated Health Information System</p>
-                <form role="myForm" name="frm"  method="post" class="form-signin">
+                <form role="myForm" id="register_form" name="frm"  method="post" class="form-signin">
                     <div class="form-group">
                         <input id="IC" type="text" class="form-control" name="ic_no" onkeypress="return isNumberKey(event)" maxlength="12" placeholder="Identity No (IC No.)" required>
                     </div>
@@ -105,21 +105,21 @@
 
 
                     var uValid = AllowAlphabet(username);
-//                    if (uValid === "alphabetonly") {
-//                        alert("Please Enter only alphabets in text with 10 character");
-//                    } else {
+                    if (uValid === "alphabetonly") {
+                        alert("Please Enter only alphabets in text with 10 character");
+                    } else {
 
-//                        if (pValid === "short") {
-//                            alert("Error: Password must contain at least six characters and at most ten character!");
-//                        } else if (pValid === "nonumber") {
-//                            alert("Error: password must contain at least one number (0-9)!");
-//                        } else if (pValid === "nolower") {
-//                            alert("Error: password must contain at least one lowercase letter (a-z)!");
-//                        } else if (pValid === "noupper") {
-//                            alert("Error: password must contain at least one uppercase letter (A-Z)!");
-//                        } else if (pValid === "nospecial") {
-//                            alert("Error: password must contain at least one special character!");
-//                        } else {
+                        if (pValid === "short") {
+                            alert("Error: Password must contain at least six characters and at most ten character!");
+                        } else if (pValid === "nonumber") {
+                            alert("Error: password must contain at least one number (0-9)!");
+                        } else if (pValid === "nolower") {
+                            alert("Error: password must contain at least one lowercase letter (a-z)!");
+                        } else if (pValid === "noupper") {
+                            alert("Error: password must contain at least one uppercase letter (A-Z)!");
+                        } else if (pValid === "nospecial") {
+                            alert("Error: password must contain at least one special character!");
+                        } else {
 
                             var dataRegister = {
                                 ic_no: $('#IC').val(),
@@ -140,6 +140,7 @@
                                         alert("You already a registered user and just login into the system");
                                     } else if (message === "success") {
                                         alert("You have successfully register!!!");
+                                        $("#register_form")[0].reset();
                                     } else if (message === "fail") {
                                         alert("Register fail! Username has been used..");
                                     } else if (message === "mobile") {
@@ -151,8 +152,8 @@
                                     }
                                 }
                             });
-                        //}
-                   // }
+                        }
+                    }
 
                 });
             });

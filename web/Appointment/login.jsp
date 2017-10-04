@@ -53,7 +53,46 @@
     <title>Login page</title>
     <%//@include file="header.jsp"%>
 
-    <%@include file="assets/header.html"%>
+    <title>iHIS | Biocore</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="shortcut icon" type="image/png" href="../assets/favicon.png"/>
+    <link href="assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href="assets/font-awesome/css/font-awesome.min.css" rel="stylesheet"> <!-- Font Icons -->
+    <link href="assets/css/dashboard.css" rel="stylesheet"> <!-- Main CSS -->
+    <link href="assets/css/Line-tabs.css" rel="stylesheet"> <!-- Page Tab -->
+    <link href="assets/css/checkgif.css" rel="stylesheet"> <!-- Check Gif -->
+    <link href="assets/css/jquery.flexdatalist.min.css" rel="stylesheet" type="text/css"/>
+    <!--<link rel="stylesheet" href="/assets/css/demo-relevant.css">  Page Transition -->
+    <link href="assets/css/jquery.flexdatalist.min.css" rel="stylesheet"> <!-- Auto Complete Search -->
+    <link href="assets/css/jquery-ui.css" rel="stylesheet" type="text/css"/>
+    <link href="assets/css/wickedpicker.css" rel="stylesheet" type="text/css"/> <!--Time Picker-->
+    <link href="js/jquery.datetimepicker.css" rel="stylesheet" type="text/css"/>
+    <script src="js/jquery-3.1.1.min.js" type="text/javascript"></script>
+    <style>
+        .no-js #loader { display: none;  }
+        .js #loader { display: block; position: absolute; left: 100px; top: 0; }
+        /* Absolute Center Spinner */
+        .loading {
+            position: fixed;
+            left: 0px;
+            top: 0px;
+            width: 100%;
+            height: 100%;
+            z-index: 9999;
+            background: url(../assets/ring.svg) center no-repeat;
+            background-color: rgba(255, 255, 255, 1) !important;
+        }
+        .fc-sun { background-color: #FFCDD2; }
+        .fc-sat {  background-color:#FFCDD2;  }
+
+        .fc-day:hover{
+            background-color: #51adf6 
+        }
+
+    </style>
     <link href="assets/css/login.css" rel="stylesheet">
   
 
@@ -69,11 +108,12 @@
                     <span>e-Appointment</span>
                 </div>
                 <p id="profile-name" class="profile-name-card" style="font-weight: 400;">Integrated Health Information System</p>
-                <form class="form-signin" role="form" method="post" action="login_process.jsp" >
+<!--                <form class="form-signin" role="form" method="post" action="login_process.jsp" >-->
+                <form class="form-signin" role="form" >
                     <span id="reauth-email" class="reauth-email"></span>
-                    <input type="text" class="form-control"  name="username" placeholder="Username" required>
-                    <input type="password" class="form-control" name="password" placeholder="Password" required>
-                    <button type="submit" class="btn btn-lg btn-primary btn-block btn-signin">Login</button>
+                    <input type="text" class="form-control"  name="username" placeholder="Username" id="username" required>
+                    <input type="password" class="form-control" name="password" placeholder="Password" id="password" required>
+                    <button class="btn btn-lg btn-primary btn-block btn-signin" id="btn_APP_LOGIN">Login</button>
                 </form> <!--/form -->
 
 
@@ -83,30 +123,43 @@
                 <a href="register.jsp" class="forgot-password">You have no account?</a>
             </div> <!--/card-container -->
         </div> <!--/container -->
-
-
-        <!--                <div class="container-fluid">
-                            <div class="row">
-                                <div class="col-md-4 col-md-offset-4 col-sm-12  col-xs-12 login_area"> 
-                                    <img src="image/oldutemlogo.png" class="img-responsive center-block" alt="Responsive image" ><hr><hr>
-                                    <h3>Login</h3>
-                                    <hr>
-                                    <form role="form" method="post" action="login_process.jsp">
-                                        <div class="form-group">
-                                            <label for="ic_no">Login Id</label>
-                                            <input type="text" class="form-control"  name="username" placeholder="Username" required>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="username">Password</label> 
-                                            <input type="password" class="form-control" name="password" placeholder="Password" required>
-                                        </div>
-                                        <p style="padding-bottom: 2%"><a href="register.jsp">You have no account?</a></p>
-                                        <button type="submit" class="btn btn-success">Login</button>
-                                        <button type="reset" class="btn btn-success ">Reset</button>
-                                        <button type="reset" class="btn btn-primary buttonMainPage" onclick="window.location.href = 'index.jsp'" >Back</button>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>-->
+        
+        <script type="text/javascript">
+            $(document).ready(function(){
+                $("#btn_APP_LOGIN").click(function(e){
+                    e.preventDefault();
+                    
+                    var username = $("#username").val();
+                    var password = $("#password").val();
+                    var data = {
+                        username:username,
+                        password:password
+                    }
+                    $.ajax({
+                        method:"POST",
+                        //timeout:"3000",
+                        url:"login_processv2.jsp",
+                        data:data,
+                        success:function(r){
+                           var res = r.trim();
+                           if(res === "|SUCCESS-PUBLIC-LOGIN|"){
+                               location.href = "indexPatient.jsp";
+                           }else if(res === "4"){
+                               alert("You have logged in to another PC or you did not log out properly");
+                               location.href = "../Entrance/ReSign-in";
+                           } else if(res === "2"){
+                               window.location = "index.jsp";
+                           } else if(res === "1") {
+                               alert("Wrong password");
+                           } else if(res === "0") {
+                               alert("User ID does not exist");
+                           }
+                        }
+                    })
+                })
+            })
+        </script>
     </body>
 </html>
+
+
