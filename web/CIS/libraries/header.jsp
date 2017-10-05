@@ -43,6 +43,8 @@
 <script src="jsFunction/create_destroy_loading.js"></script>
 <script src="jsFunction/date_time_picker_initializer.js"></script>
 
+<script src="../assets/js/Chart.bundle.js"></script>
+
 <!--<script src="jsFunction/search/SeaarchuCCN_cd.js" type="text/javascript"></script>
 
 <script src="jsFunction/search/SearchALG_cd.js" type="text/javascript"></script>
