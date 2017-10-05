@@ -416,8 +416,17 @@
                 }
                 //                                         0                                        1                       2                   3           4           5           6          7            8           
                 String queryPuer="SELECT date_format(date_of_month, '%d/%m/%Y'), date_format(date_of_month, '%H:%i') ,day_of_puerperium, fundal_height, temperature, systolic, diastolic, blood_pressure, pulse "
-                                + "FROM lhr_ong_puerperium WHERE pmi_no='"+pmiNo+"' and summary_date='"+summaryDate+"' order by date_of_month desc;";
+                                + "FROM lhr_ong_puerperium WHERE pmi_no='"+pmiNo+"' and summary_date='"+summaryDate+"' order by date_of_month asc;";
                 ArrayList<ArrayList<String>> dataPuer = con.getData(queryPuer);
+
+                ArrayList<String> dataLabel = new ArrayList<String>();
+                ArrayList<String> dataSystol = new ArrayList<String>();
+                ArrayList<String> dataDiastol = new ArrayList<String>();
+                ArrayList<String> dataTemperature = new ArrayList<String>();
+                ArrayList<String> dataMBP = new ArrayList<String>();
+                ArrayList<String> dataHeight = new ArrayList<String>();
+                ArrayList<String> dataPulse = new ArrayList<String>();
+                
             %>
             <div class="panel panel-default">
                 <div class="panel-body">
@@ -440,14 +449,23 @@
                             <tbody>
                             <%
                                 for(int k=0; k<dataPuer.size(); k++){
-                                    
+                                    String puerWaktuSymbol = "M";
                                     String puerWaktu = dataPuer.get(k).get(1);
                                     if(puerWaktu.equalsIgnoreCase("09:00")){
                                         puerWaktu="Morning";
                                     }
                                     else{
                                         puerWaktu="Evening";
+                                        puerWaktuSymbol="E";
                                     }
+                                    
+                                    dataLabel.add(dataPuer.get(k).get(0)+" "+puerWaktuSymbol);
+                                    dataHeight.add(dataPuer.get(k).get(3));
+                                    dataTemperature.add(dataPuer.get(k).get(4));
+                                    dataSystol.add(dataPuer.get(k).get(5));
+                                    dataDiastol.add(dataPuer.get(k).get(6));
+                                    dataMBP.add(dataPuer.get(k).get(7));
+                                    dataPulse.add(dataPuer.get(k).get(8));
                             %> 
                                 <tr>
                                 <td><%=dataPuer.get(k).get(0)%></td>
@@ -474,6 +492,21 @@
                             </tbody>
                         </table>
                     </div>
+                            
+                    <div class="chart-container" style="height: 100%;">
+                        <input type="hidden" id="LS_chartLabel" value="<%=String.join("|", dataLabel)%>">
+                        <input type="hidden" id="LS_chartHeight" value="<%=String.join("|", dataHeight)%>">
+                        <input type="hidden" id="LS_chartTemperature" value="<%=String.join("|", dataTemperature)%>">
+                        <input type="hidden" id="LS_chartSystol" value="<%=String.join("|", dataSystol)%>">
+                        <input type="hidden" id="LS_chartDiastol" value="<%=String.join("|", dataDiastol)%>">
+                        <input type="hidden" id="LS_chartMBP" value="<%=String.join("|", dataMBP)%>">
+                        <input type="hidden" id="LS_chartPulse" value="<%=String.join("|", dataPulse)%>">
+                    <h4>
+                        Graph &nbsp; <a style="vertical-align: middle; cursor: pointer;" id="LS_puerPlot" title="Plot graph"><i class="fa fa-line-chart fa-lg" aria-hidden="true" style=" color: #337ab7;"></i></a>
+                    </h4> 
+                       <canvas id="LS_canvas" style="height: 500px; display: none;"></canvas>
+                    </div>
+                   
                                       
                 </div>
             </div>

@@ -35,7 +35,7 @@
                 <label for="exampleInputEmail2">to</label>
                 <input type="text" class="form-control" id="LS_dateTo" placeholder="dd/mm/yyyy" style="margin-bottom: 0px !important;">
             </div>
-            <button type="submit" class="btn btn-default"><i class="fa fa-search fa-lg"></i></button>
+            <button type="submit" class="btn btn-default" id="LS_btnSearch"><i class="fa fa-search fa-lg"></i></button>
         </div>
     </div>
 </div>
@@ -267,6 +267,18 @@
             $('#LS_div_selectDate').show();
         } else {
             $('#LS_div_selectDate').hide();
+            LS_loadData();
+        }
+    });
+    
+    $('#LS_btnSearch').on('click', function(){
+        var dateFrom = $('#LS_dateFrom').val();
+        var dateTo = $('#LS_dateTo').val();
+        
+        if(dateFrom==="" || dateTo===""){
+            bootbox.alert("Please choose the dates");
+        }
+        else{
             LS_loadData();
         }
     });
@@ -1863,5 +1875,169 @@
         });
     });
     
+    
+    //------------plot graph puerperium
+        
+    $('#LS_viewDIv').on('click', '#LS_puerPlot', function(){
+        
+        var canvas = $(this).closest('div').find('#LS_canvas');
+       
+        
+        var label = $(this).closest('div').find('#LS_chartLabel').val().split("|");
+        var height = $(this).closest('div').find('#LS_chartHeight').val().split("|");
+        var temperature = $(this).closest('div').find('#LS_chartTemperature').val().split("|");
+        var systol = $(this).closest('div').find('#LS_chartSystol').val().split("|");
+        var diastol = $(this).closest('div').find('#LS_chartDiastol').val().split("|");
+        var MBP = $(this).closest('div').find('#LS_chartMBP').val().split("|");
+        var pulse = $(this).closest('div').find('#LS_chartPulse').val().split("|");
+        
+        
+        var dataHeight = {
+            label: "Fundal Height(cm)",
+            data: height,
+            lineTension: 0.3,
+            fill: false,
+            borderColor: 'green',
+            backgroundColor: 'transparent',
+            pointBorderColor: 'green',
+            pointBackgroundColor: 'green',
+            pointRadius: 5,
+            pointHoverRadius: 15,
+            pointHitRadius: 30,
+            pointBorderWidth: 2,
+            yAxisID: "y-axis-2"
+          };
+
+        var dataTemperature = {
+            label: "Temperature (C)",
+            data: temperature,
+            lineTension: 0.3,
+            fill: false,
+            borderColor: 'blue',
+            backgroundColor: 'transparent',
+            pointBorderColor: 'blue',
+            pointBackgroundColor: 'blue',
+            pointRadius: 5,
+            pointHoverRadius: 10,
+            pointHitRadius: 30,
+            pointBorderWidth: 2,
+            yAxisID: "y-axis-2"
+          };
+          
+        var dataSystol = {
+            label: "Systolic pressure (mmHg)",
+            data: systol,
+            lineTension: 0.3,
+            fill: false,
+            borderColor: 'red',
+            backgroundColor: 'transparent',
+            pointBorderColor: 'red',
+            pointBackgroundColor: 'red',
+            pointRadius: 5,
+            pointHoverRadius: 10,
+            pointHitRadius: 30,
+            pointBorderWidth: 2,
+            yAxisID: "y-axis-1"
+          };
+
+        var dataDiastol = {
+            label: "Diastolic pressure (mmHg)",
+            data: diastol,
+            lineTension: 0.3,
+            fill: false,
+            borderColor: 'orange',
+            backgroundColor: 'transparent',
+            pointBorderColor: 'orange',
+            pointBackgroundColor: 'orange',
+            pointRadius: 5,
+            pointHoverRadius: 10,
+            pointHitRadius: 30,
+            pointBorderWidth: 2,
+            yAxisID: "y-axis-1"
+          };
+          
+        var dataMBP = {
+            label: "Mean arterial pressure (mmHg)",
+            data: MBP,
+            lineTension: 0.3,
+            fill: false,
+            borderColor: 'yellow',
+            backgroundColor: 'transparent',
+            pointBorderColor: 'yellow',
+            pointBackgroundColor: 'yellow',
+            pointRadius: 5,
+            pointHoverRadius: 10,
+            pointHitRadius: 30,
+            pointBorderWidth: 2,
+            yAxisID: "y-axis-1"
+          };
+          
+        var dataPulse = {
+            label: "Pulse (bpm)",
+            data: pulse,
+            lineTension: 0.3,
+            fill: false,
+            borderColor: 'purple',
+            backgroundColor: 'transparent',
+            pointBorderColor: 'purple',
+            pointBackgroundColor: 'purple',
+            pointRadius: 5,
+            pointHoverRadius: 10,
+            pointHitRadius: 30,
+            pointBorderWidth: 2,
+            yAxisID: "y-axis-1"
+          };
+
+          var chartOptions = {
+              legend: {
+                display: true,
+                position: 'top',
+                labels: {
+                  boxWidth: 40,
+                  fontColor: 'black'
+                }
+              },
+              tooltips: {
+                  mode: 'index',
+                  intersect: true
+              },
+              responsive: true,
+              scales: {
+                    yAxes: [{
+                        type: "linear", // only linear but allow scale type registration. This allows extensions to exist solely for log scale for instance
+                        display: true,
+                        position: "left",
+                        id: "y-axis-1"
+                    }, {
+                        type: "linear", // only linear but allow scale type registration. This allows extensions to exist solely for log scale for instance
+                        display: true,
+                        position: "right",
+                        id: "y-axis-2",
+
+                        // grid line settings
+                        gridLines: {
+                            drawOnChartArea: false// only want the grid lines for one axis to show up
+                        }
+                    }]
+                }
+            };
+
+        var speedData = {
+          labels: label,
+          datasets: [dataHeight, dataTemperature, dataSystol, dataDiastol, dataMBP, dataPulse]
+        };
+
+
+        var lineChart = new Chart(canvas, {
+          type: 'line',
+          data: speedData,
+          options: chartOptions
+        });
+        
+        canvas.toggle();
+    });
+    
     //**************************** == puerperium observation == **************************************
+    
+    
 </script>
