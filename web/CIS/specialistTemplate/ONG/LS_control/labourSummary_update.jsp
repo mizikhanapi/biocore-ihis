@@ -24,6 +24,7 @@
     String bloodLoss= request.getParameter("bloodLoss");
     String placenta = request.getParameter("placenta");
     String cord= request.getParameter("cord");
+    String tightness= request.getParameter("tightness");
     String tear= request.getParameter("tear");
     String repair= request.getParameter("repair");
     String summaryDate= request.getParameter("summaryDate");
@@ -37,7 +38,7 @@
     deliveryDate = FormatTarikh.formatDate(deliveryDate+" "+deliveryTime, "dd/MM/yyyy HH:mm", "yyyy-MM-dd HH:mm:ss");
     
     String query="UPDATE lhr_ong_labour_summary set delivery_datetime='"+deliveryDate+"', labour_onset='"+labourOnset+"', vaginal='"+vaginal+"', "
-            + "operative='"+operative+"', `3stage_blood_lost`='"+bloodLoss+"', placenta='"+placenta+"', cord='"+cord+"', tear='"+tear+"', repaired_by='"+repair+"' "
+            + "operative='"+operative+"', `3stage_blood_lost`='"+bloodLoss+"', placenta='"+placenta+"', cord_round='"+cord+"', cord_tightness='"+tightness+"', tear='"+tear+"', repaired_by='"+repair+"' "
             + "WHERE pmi_no='"+pmiNo+"' and summary_date='"+summaryDate+"';";
     
     boolean isSuccess = rmi.setQuerySQL(con.HOST, con.PORT, query);

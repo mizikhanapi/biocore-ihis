@@ -79,6 +79,7 @@
                                 <div class="col-md-8">
                                     <select id="LS_labourOperative" class="form-control input-md">
                                         <option selected disabled value="">Select operative</option>
+                                        <option value="None">None</option>
                                         <option value="Caesarian">Caesarian</option>
                                         <option value="Emergency">Emergency</option>
                                     </select>
@@ -96,7 +97,7 @@
                             </div>
                         </div>
                         
-                         <div class="row">
+                        <div class="row">
                         <!-- Text input-->
                             <div class="form-group">
                                 <label class="col-md-4 control-label" for="textinput">Placenta:</label>
@@ -115,9 +116,18 @@
                             <div class="form-group">
                                 <label class="col-md-4 control-label" for="textinput">Cord round neck:</label>
                                 <div class="col-md-8">
-                                    <select id="LS_labourCord" class="form-control input-md">
-                                        <option selected disabled value="">Select cord condition</option>
-                                        <option value="None">None</option>
+                                    <input id="LS_labourCord" placeholder="Insert how many loop of cord" class="form-control input-md" type="number" min="0" step="1">
+                                </div>
+                            </div>
+                        </div>
+                        
+                         <div class="row">
+                        <!-- Text input-->
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" for="textinput">Cord tightness:</label>
+                                <div class="col-md-8">
+                                    <select id="LS_labourTightness" class="form-control input-md" >
+                                        <option value="" selected disabled>-- Select cord tightness --</option>
                                         <option value="Tight">Tight</option>
                                         <option value="Loose">Loose</option>
                                     </select>
@@ -144,13 +154,18 @@
                             <div class="form-group">
                                 <label class="col-md-4 control-label" for="textinput">Repaired by:</label>
                                 <div class="col-md-8">
-                                    <textarea id="LS_labourRepair" placeholder="Insert how you repair the damage" class="form-control input-md" cols="4" maxlength="230"></textarea>
+                                    <input id="LS_labourRepair" placeholder="Search doctor/nurse ..." class="form-control input-md flexdatalist"
+                                           data-search-by-word="true"
+                                           data-selection-required="true">
+                                    <div id="LS_labourRepairMatch" class="search-drop"></div>
                                 </div>
                             </div>
                         </div>
                         
                     </div> 
                 </form>
+                
+                <br>
 
             </div>
             <div class="modal-footer">
@@ -375,7 +390,10 @@
                         <div class="form-group">
                             <label class="col-md-4 control-label" for="textinput">Conducted by:</label>
                             <div class="col-md-8">
-                                <input id="LS_eventConductedBy"  type="text" class="form-control input-md" maxlength="200">
+                                <input id="LS_eventConductedBy"  type="text" class="form-control input-md flexdatalist" placeholder="Search doctor/nurse..."
+                                        data-search-by-word="true"
+                                        data-selection-required="true">
+                                <div id="LS_eventMatch" class="search-drop"></div>
 
                             </div>
                         </div>
@@ -676,7 +694,10 @@
                             <div class="col-md-6">
                                 <label class="col-md-4 control-label" for="textinput">Doctor/Nurse:</label>
                                     <div class="col-md-8">
-                                        <input class="form-control input-md" type="text" placeholder="Insert the health worker" id="LS_transferDoctor" maxlength="200">
+                                        <input class="form-control input-md flexdatalist" type="text" placeholder="Search doctor/nurse..." id="LS_transferDoctor" 
+                                            data-search-by-word="true"
+                                            data-selection-required="true">
+                                        <div id="LS_transferMatch" class="search-drop"></div>
                                     </div>
                             </div>
                            

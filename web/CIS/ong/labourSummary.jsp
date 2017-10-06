@@ -262,6 +262,8 @@
     
     $('#LS_viewBy').on('change', function(){
         var howTo = $(this).val();
+        $('#LS_dateFrom').val("");
+        $("#LS_dateTo").val("");
 
         if (howTo === 'x') {
             $('#LS_div_selectDate').show();
@@ -311,6 +313,7 @@
     
     initDatepicker("LS_perNoteDate");
     
+    //------------------ retrieve data
     function LS_loadData(){
         var data = {
             day: $('#LS_viewBy').val(),
@@ -336,6 +339,37 @@
         });
     }
     
+    //------------------- initialise flex search
+    function LS_initFlexSearch(input_name, value, url, div){
+        $("#"+input_name).flexdatalist('destroy');
+        $("#"+input_name).val(value).flexdatalist({
+            minLength: 1,
+            searchIn: 'name', 
+            searchDelay: 2000,
+            selectionRequired: true,
+            url: url,
+            visibleProperties: 'name',
+            cache: true,
+            valueProperty: 'value',
+            params: {
+                timeout: 3000,
+                success: function (result) {
+                    console.log(result);
+                    if (result == null) {
+                        $('#RNO_pro_match').html('No Record');
+                    }
+                }
+            }
+        });
+
+        $("#"+input_name).on('before:flexdatalist.data', function (response) {
+            $('#'+div).html('<img src="img/LoaderIcon.gif" />');
+        });
+        $("#"+input_name).on('after:flexdatalist.data', function (response) {
+            $('#'+div).html('');
+        });
+    }
+    
     //****************************************************************************** summary ****************************************************************
     
     function LS_labourCheckField(){
@@ -350,6 +384,7 @@
         var bloodLoss = $('#LS_labourBloodLoss').val();
         var placenta = $('#LS_labourPlacenta').val();
         var cord = $('#LS_labourCord').val();
+        var tightness = $('#LS_labourTightness').val();
         var tear = $('#LS_labourTear').val();
         var repair = $('#LS_labourRepair').val();
         
@@ -377,30 +412,44 @@
             isComplete=false;
             msg="Please choose placenta condition.";
         }
-        else if(cord==="" || cord==null){
+        else if(tightness==="" || cord==null){
             isComplete=false;
-            msg="Please choose cord condition.";
+            msg="Please choose cord tightness condition.";
         }
         else if(tear==="" || tear ==null){
             isComplete=false;
             msg="Please choose tear condition.";
+        }
+        else if(repair==="" || repair==null){
+            isComplete=false;
+            msg="Please select exisitng doctor/nurse";
         }
         
         
         if(bloodLoss==="" || isNaN(bloodLoss)){
             $('#LS_labourBloodLoss').val("0");
         }
+        
+        if(cord==="" || isNaN(cord)){
+            $("#LS_labourCord").val("0");
+        }
        
        if(!isComplete){
            bootbox.alert(msg);
        }
+       
+       if(isComplete && !$('#LS_labourForm')[0].checkValidity() ){
+           $('<input type="submit">').hide().appendTo('#LS_labourForm').click().remove();
+           isComplete=false;
+        }
         
         return isComplete;        
     }
     
     //----------------- add labour----------------------------------
     $('#LS_labourModal').on('hidden.bs.modal', function (){
-        
+        var url="specialistTemplate/ONG/LS_control/searchUserFlex.jsp";
+        LS_initFlexSearch("LS_labourRepair", "", url, "LS_labourRepairMatch");
         $('#LS_labour_div_add').show();
         $('#LS_labour_div_update').hide();
         $('#LS_labourForm')[0].reset();
@@ -416,10 +465,11 @@
             var bloodLoss = $('#LS_labourBloodLoss').val();
             var placenta = $('#LS_labourPlacenta').val();
             var cord = $('#LS_labourCord').val();
+            var tightness = $('#LS_labourTightness').val();
             var tear = $('#LS_labourTear').val();
             var repair = $('#LS_labourRepair').val();
             
-            repair = repair.replace(/'/g, "\\\'").replace(/"/g, "\\\"");
+            
             
             var data={
                 deliveryDate : deliveryDate,
@@ -430,6 +480,7 @@
                 bloodLoss : bloodLoss,
                 placenta : placenta,
                 cord : cord,
+                tightness : tightness,
                 tear : tear,
                 repair : repair
             };
@@ -485,10 +536,13 @@
         $('#LS_labourBloodLoss').val(arrData[6]);
         $('#LS_labourPlacenta').val(arrData[7]);
         $('#LS_labourCord').val(arrData[8]);
+        $('#LS_labourTightness').val(arrData[23]);
         $('#LS_labourTear').val(arrData[9]);
-        $('#LS_labourRepair').val(arrData[10]);
+        //$('#LS_labourRepair').val(arrData[10]);
         
         $('#LS_labourModalID').val(summaryDate);
+        var url="specialistTemplate/ONG/LS_control/searchUserFlex.jsp";
+        LS_initFlexSearch("LS_labourRepair", arrData[10], url, "LS_labourRepairMatch");
         
     });
     
@@ -502,12 +556,12 @@
             var bloodLoss = $('#LS_labourBloodLoss').val();
             var placenta = $('#LS_labourPlacenta').val();
             var cord = $('#LS_labourCord').val();
+            var tightness = $('#LS_labourTightness').val();
             var tear = $('#LS_labourTear').val();
             var repair = $('#LS_labourRepair').val();
             
             var summaryDate = $('#LS_labourModalID').val();
-            
-            repair = repair.replace(/'/g, "\\\'").replace(/"/g, "\\\"");
+                      
             
             var data={
                 deliveryDate : deliveryDate,
@@ -518,6 +572,7 @@
                 bloodLoss : bloodLoss,
                 placenta : placenta,
                 cord : cord,
+                tightness : tightness,
                 tear : tear,
                 repair : repair,
                 summaryDate : summaryDate
@@ -778,8 +833,11 @@
         var summaryDate =$(this).closest('#LS_viewGroup').find('#LS_theSummaryDate').text();
         
         $('#LS_eventModalID').val(summaryDate);
-        $('#LS_eventConductedBy').val(eventArr[0]);
+        //$('#LS_eventConductedBy').val(eventArr[0]);
         $('#LS_eventWitness').val(eventArr[1]);
+        
+        var url="specialistTemplate/ONG/LS_control/searchUserFlex.jsp";
+        LS_initFlexSearch("LS_eventConductedBy", eventArr[0], url, "LS_eventMatch");
     });
     
     function LS_eventCheckField(){
@@ -812,7 +870,7 @@
             var summaryDate = $('#LS_eventModalID').val();
             var theDate = summaryDate.split("|")[0];
             
-            conductedBy = conductedBy.replace(/'/g, "\\\'").replace(/"/g, "\\\"");
+            //conductedBy = conductedBy.replace(/'/g, "\\\'").replace(/"/g, "\\\"");
             witness = witness.replace(/'/g, "\\\'").replace(/"/g, "\\\"");
             
             var data={
@@ -1250,9 +1308,12 @@
         $('#LS_transferUterus').val(dataArr[3]);
         $('#LS_transferTime').val(dataArr[4]);
         $('#LS_transferPerineum').val(dataArr[5]);
-        $('#LS_transferDoctor').val(dataArr[6]);
+        //$('#LS_transferDoctor').val(dataArr[6]);
         
         $('#LS_transferModalID').val(summaryDate);
+        var url="specialistTemplate/ONG/LS_control/searchUserFlex.jsp";
+        
+        LS_initFlexSearch("LS_transferDoctor", dataArr[6], url, "LS_transferMatch");
     });
     
     function LS_transferCheckField(){

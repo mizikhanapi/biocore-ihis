@@ -27,12 +27,12 @@
     
     //                                                    0                                            1                                             2                        3           4        5
     String queryLabourSummary ="SELECT date_format(summary_date, '%d/%m/%Y %H:%i'), date_format(delivery_datetime, '%d/%m/%Y'), date_format(delivery_datetime, '%H:%i'), labour_onset, vaginal, operative, "
-            //      6                   7       8     9      10            
-            + "`3stage_blood_lost`, placenta, cord, tear, repaired_by, "
+            //      6                   7       8            9      10            
+            + "`3stage_blood_lost`, placenta, cord_round, tear, repaired_by, "
             //                      11                                                  12                                                          13                                                   14
             + "date_format(labour_begin, '%d/%m/%Y %H:%i'), date_format(membranes_ruptured, '%d/%m/%Y %H:%i'), date_format(second_stage_labour, '%d/%m/%Y %H:%i'), date_format(child_born, '%d/%m/%Y %H:%i'), "
-            //                          15                                     16                  17                  18             19            20           21          22
-            + "date_format(placenta_expelled, '%d/%m/%Y %H:%i'), `1st_Stage_labour`, `2nd_Stage_labour`, `3rd_stage_labour`, total_hour, conducted_by, witnessed_by, approved_by "
+            //                          15                                     16                  17                  18             19            20           21          22         23
+            + "date_format(placenta_expelled, '%d/%m/%Y %H:%i'), `1st_Stage_labour`, `2nd_Stage_labour`, `3rd_stage_labour`, total_hour, conducted_by, witnessed_by, approved_by, cord_tightness  "
             + "FROM lhr_ong_labour_summary "
             + "WHERE pmi_no='"+pmiNo+"' "+whenCondition
             + " order by summary_date desc;";
@@ -128,9 +128,23 @@
             if(dataLS.get(i).get(20) != null){
                 conductedBy = dataLS.get(i).get(20);
             }
+            String queryConductedBy = "SELECT user_name from adm_users where user_id='"+conductedBy+"' limit 1;";
+            ArrayList<ArrayList<String>> dataConductedBy = con.getData(queryConductedBy);
+            if(dataConductedBy.size()>0){
+                conductedBy = dataConductedBy.get(0).get(0);
+            }
             
             if(dataLS.get(i).get(21) != null){
                 witness = dataLS.get(i).get(21);
+            }
+            
+            String repaired_by=dataLS.get(i).get(10);
+            
+            String queryRepairName = "SELECT user_name from adm_users where user_id='"+repaired_by+"' limit 1;";
+            ArrayList<ArrayList<String>> dataRepairName = con.getData(queryRepairName);
+            
+            if(dataRepairName.size()>0){
+                repaired_by=dataRepairName.get(0).get(0);
             }
             
             String summaryDate = FormatTarikh.formatDate(dataLS.get(i).get(0), "dd/MM/yyyy HH:mm", "yyyy-MM-dd HH:mm:ss");
@@ -171,11 +185,12 @@
                                 <div class="col-xs-3">
                                     <dt>Other:</dt>
                                     <dd>Cord Round Neck:<strong><%=dataLS.get(i).get(8)%></strong></dd>
+                                    <dd>Cord Tightness:<strong><%=dataLS.get(i).get(23)%></strong></dd>
                                     <dd>Episiotomy/tear: <strong><%=dataLS.get(i).get(9)%></strong></dd>
                                 </div>
                                 <div class="col-xs-3">
                                     <dt>Repaired by:</dt>
-                                    <dd><%=dataLS.get(i).get(10)%></dd>
+                                    <dd><%=repaired_by%></dd>
                                 </div>
                                 <div style="position: absolute; bottom: 0px; right: 15px;">
                                     <input type="hidden" id="LS_labourHidden" value="<%=String.join("|", dataLS.get(i))%>">
@@ -367,6 +382,12 @@
         time=dataTransfer.get(0).get(4);
         perineum=dataTransfer.get(0).get(5);
         doctor=dataTransfer.get(0).get(6);
+
+        String queryTransferDoc = "SELECT user_name from adm_users where user_id='"+doctor+"' limit 1;";
+        ArrayList<ArrayList<String>> dataTransferDoc = con.getData(queryTransferDoc);
+        if(dataTransferDoc.size()>0){
+            doctor=dataTransferDoc.get(0).get(0);
+        }
     }
 %>
 
