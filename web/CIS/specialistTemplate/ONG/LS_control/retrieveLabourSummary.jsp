@@ -523,7 +523,10 @@
                         <input type="hidden" id="LS_chartMBP" value="<%=String.join("|", dataMBP)%>">
                         <input type="hidden" id="LS_chartPulse" value="<%=String.join("|", dataPulse)%>">
                     <h4>
-                        Graph &nbsp; <a style="vertical-align: middle; cursor: pointer;" id="LS_puerPlot" title="Plot graph"><i class="fa fa-line-chart fa-lg" aria-hidden="true" style=" color: #337ab7;"></i></a>
+                        Graph &nbsp; 
+                        <a style="vertical-align: middle; cursor: pointer;" id="LS_puerPlot" title="Plot graph"><i class="fa fa-line-chart fa-lg" aria-hidden="true" style=" color: #337ab7;"></i></a>
+                        &nbsp;
+                        <a style="vertical-align: middle; cursor: pointer;" id="LS_puerPrint" ><i class="fa fa-print fa-lg" aria-hidden="true" style=" color: #337ab7;"></i></a>
                     </h4> 
                        <canvas id="LS_canvas" style="height: 500px; display: none;"></canvas>
                     </div>
