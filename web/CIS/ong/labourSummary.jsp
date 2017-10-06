@@ -1963,7 +1963,7 @@
             pointBorderColor: 'green',
             pointBackgroundColor: 'green',
             pointRadius: 5,
-            pointHoverRadius: 15,
+            pointHoverRadius: 10,
             pointHitRadius: 30,
             pointBorderWidth: 2,
             yAxisID: "y-axis-2"
