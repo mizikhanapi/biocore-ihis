@@ -659,6 +659,7 @@ $(document).ready(function (e) {
         $("#patient-detail-dashboard").find("span").html("-");
         $('.soap-select').on('click',disableSOAP);
         $('#tblCIS_Consultation_Table tbody').empty();
+        $(".clear-patient").html("");
         
         
         

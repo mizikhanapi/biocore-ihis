@@ -33,7 +33,7 @@
                                             <i class="fa fa-check fa-lg"></i> AnteNatal Record  </a>
                                     </li>
                                     <li >
-                                        <a href="#ONG_3" data-toggle="tab" aria-expanded="true">
+                                        <a href="#ONG_3" data-toggle="tab" aria-expanded="true" id="CIS_PN_TAB">
                                             <i class="fa fa-th-list fa-lg"></i> Progress Notes </a>
                                     </li>
                                     <li >
