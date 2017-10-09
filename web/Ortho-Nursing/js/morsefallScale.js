@@ -23,7 +23,7 @@ $(function () {
 //---------- bind function to add new assessment button-----------
 $('#pName').on('DOMSubtreeModified', function () {
     
-    console.log('Name has change!');
+    //console.log('Name has change!');
     var name = $(this).text().trim();
 
     if (name.localeCompare('-') !== 0) {
@@ -39,7 +39,7 @@ $('#pName').on('DOMSubtreeModified', function () {
             
         });
         
-        console.log('Function is binded!');
+        //console.log('Function is binded!');
     }
 });
 //========== end binding ==========================

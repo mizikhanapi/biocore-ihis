@@ -20,7 +20,7 @@
     
     for(int i = 0; i < bigFields.length; i++){
         String[] smallFields = bigFields[i].split("\\|");
-        ems = new POS_EHRMessenger(userID, hfc, dis, subdis, smallFields[1], smallFields[0], smallFields[2]);
+        ems = new POS_EHRMessenger(userID, hfc, dis, subdis, smallFields[1], smallFields[0], smallFields[2], smallFields[3], smallFields[4]);
         ems.insertIntoEHR_FAR("18"); //18 is code for POM
         
     }

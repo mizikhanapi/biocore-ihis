@@ -143,10 +143,10 @@
                         <!-- content -->
                         <div class="tab-pane fade" id="ONG_9">
                             <ul class="soap-content nav">
-                                <li><a data-toggle="modal" data-target="#CIS01000001" href="" class="soap-select"><i class="fa fa-comments  fa-li"></i>Discharge of Baby</a></li>
-                                <li><a data-toggle="modal" data-target="#CIS01000001" href="" class="soap-select"><i class="fa fa-comments  fa-li"></i>Discharge Bill</a></li>
+                                <li><a id="DB_dischargeAddModal" class=""><i class="fa fa-comments  fa-li"></i>Discharge of Baby</a></li>
+                                <!--<li><a data-toggle="modal" data-target="#CIS01000001" href="" class="soap-select"><i class="fa fa-comments  fa-li"></i>Discharge Bill</a></li>-->
                             </ul>
-                            <%//@include file="PIRAssessment.jsp"%>
+                            <%@include file="ong/dischargeBaby.jsp"%>
                         </div>
                         <!-- content -->
                     </div>

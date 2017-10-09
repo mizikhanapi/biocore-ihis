@@ -17,8 +17,8 @@ import main.RMIConnector;
  */
 public class POS_EHRMessenger extends EHRMessageSender {
     
-    public POS_EHRMessenger(String userID, String hfc, String dis, String subdis, String pmiNo, String orderNo, String orderDate) {
-        super(userID, hfc, dis, subdis, pmiNo, orderNo, orderDate);
+    public POS_EHRMessenger(String userID, String hfc, String dis, String subdis, String pmiNo, String orderNo, String orderDate, String episodeDate, String encounterDate) {
+        super(userID, hfc, dis, subdis, pmiNo, orderNo, orderDate, episodeDate, encounterDate);
     }
 
     public void insertIntoEHR_LHR(String senderApp, String procedureCode, String procedureName, String userName, String hfcName, String episodeDate, String durationMin, String comments, String outcome) {
