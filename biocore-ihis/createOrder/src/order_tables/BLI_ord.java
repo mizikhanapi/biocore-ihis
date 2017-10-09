@@ -77,7 +77,7 @@ public class BLI_ord {
 
 
 
-                                       sql_bli_det = "INSERT INTO far_order_detail (order_no, txn_date, item_cd, item_desc, item_amt, quantity, location, customer_id, status, created_by, created_date) values ('" + allSeq.getSeq() + "','" +blis.get(1).get(1) + "','" + blis.get(4).get(0) + "','" + blis.get(5).get(0) + "','" + blis.get(6).get(0) + "','" + blis.get(7).get(0) + "','" + orcs.get(12).get(0) + "','" + blis.get(3).get(0) + "','0','" + blis.get(8).get(0) + "','" + blis.get(9).get(0) + "')";
+                                       sql_bli_det = "INSERT INTO far_order_detail (order_no, txn_date, item_cd, item_desc, item_amt, quantity, location, customer_id, status, created_by, created_date) values ('" + orcs.get(2).get(0) + "','" +blis.get(1).get(1) + "','" + blis.get(4).get(0) + "','" + blis.get(5).get(0) + "','" + blis.get(6).get(0) + "','" + blis.get(7).get(0) + "','" + orcs.get(12).get(0) + "','" + blis.get(3).get(0) + "','0','" + blis.get(8).get(0) + "','" + blis.get(9).get(0) + "')";
                                         status_far_detail = rc.setQuerySQL(Config.ipAddressServer, Config.portServer, sql_bli_det);
                                         if (status_far_detail == true) {
                                             System.out.println("Done with far MASTER and far DETAIL");
