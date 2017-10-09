@@ -38,9 +38,9 @@
         </div>
     </div>
 
-    <div class="row">
+    <div class="row" >
         <div class="col-md-12" >
-            <div id="tableChartNursingUseMasterDiv">
+            <div id="tableChartNursingUseMasterDiv" class="clear-patient">
                 <h5>Nursing Use Master Chart</h5>
                 <div class="table-guling">
                     <table class="table table-bordered" id="tableChartNursingUseMasterTable" style="width: 100%">
@@ -760,7 +760,7 @@
                 $('#nurseryUseMasterChartModalDrugNameSearchResultDIV').html('');
             });
 
-            $('nurseryUseMasterChartModalDrugName.flexdatalist').on('select:flexdatalist', function (event, set, options) {
+            $('input.flexdatalist').on('select:flexdatalist', function (event, set, options) {
 
                 console.log(set.value);
 
