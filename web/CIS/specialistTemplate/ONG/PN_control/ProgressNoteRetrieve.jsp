@@ -34,8 +34,9 @@
         sql = "SELECT pn.episode_date,pn.encounter_date,pn.`Clinical_Notes`, au.`USER_NAME`, pn.created_date FROM lhr_ong_progress_notes pn  INNER JOIN adm_users au ON au.`USER_ID` = pn.created_by WHERE pn.pmi_no = '" + pmiNo + "' AND pn.hfc_cd = '" + hfc + "' AND  DATE(pn.episode_date) = DATE(CURDATE()) ORDER BY pn.created_date DESC; ";
     }else if (view.equals("1")){
         sql = "SELECT pn.episode_date,pn.encounter_date,pn.`Clinical_Notes`, au.`USER_NAME`, pn.created_date FROM lhr_ong_progress_notes pn  INNER JOIN adm_users au ON au.`USER_ID` = pn.created_by WHERE pn.pmi_no = '" + pmiNo + "' AND pn.hfc_cd = '" + hfc + "' AND  DATE(pn.episode_date) = DATE(CURDATE()-1) ORDER BY pn.created_date DESC; ";
-    }else if (view.equals("7")){
-        sql = "SELECT pn.episode_date,pn.encounter_date,pn.`Clinical_Notes`, au.`USER_NAME`, pn.created_date FROM lhr_ong_progress_notes pn  INNER JOIN adm_users au ON au.`USER_ID` = pn.created_by WHERE pn.pmi_no = '" + pmiNo + "' AND pn.hfc_cd = '" + hfc + "' AND  DATE(pn.episode_date) = DATE(CURDATE()) ORDER BY pn.created_date DESC; ";
+       
+    }else if (view.equals("7") || view.equals("30") || view.equals("60")){
+         sql = "SELECT pn.episode_date,pn.encounter_date,pn.`Clinical_Notes`, au.`USER_NAME`, pn.created_date FROM lhr_ong_progress_notes pn INNER JOIN adm_users au ON au.`USER_ID` = pn.created_by WHERE pn.pmi_no = '" + pmiNo + "' AND pn.hfc_cd = '" + hfc + "' AND  date(pn.episode_date) between curdate()- interval "+view+" day and curdate() ORDER BY pn.created_date DESC;";
     }else if(view.equals("x")){
         String dateFrom = request.getParameter("from");
         String dateTo = request.getParameter("to");
@@ -81,7 +82,21 @@
 <%
     }
 } else{
-    out.print(sql);
+    //out.print(sql);
+%>
+<div class="panel panel-default">
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="media">
+                    <h4>NO RECORD</h4>
+                </div>
+            </div>
+        </div>   
+    </div>
+</div>
+
+<%
 }
 
 

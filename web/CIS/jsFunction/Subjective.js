@@ -332,19 +332,23 @@ $(document).ready(function () {
             obj1[this.id] = $(this).val();
         });
         
-        if (checkPMH(_data, obj1)) {
-            bootbox.alert("This Past Medical History already been inserted. Please choose at consultation note to update the record or add new Past Medical History");
-        } else{
-            _data.push(obj1);
-            displayPMH(Problem1, Status, comment1);
-            $("#Problem1").val("");
-            $("#Status").val("Status");
-            $("#comment1").val("");
-            $("#CIS01000003").modal('hide');
-            searching("tCISSubPMHSearch", "tCISSubPMHSearchLoading", "search/ResultPMHSearch.jsp", "codePMH", "search/ResultPMHSearchCode.jsp");
-            searching("tCISSubPMHSearchPersonalised", "tCISSubPMHSearchLoading", "search/ResultPMHPersonaliseSearch.jsp", "codePMH", "search/ResultPMHPersonaliseSearchCode.jsp");
-            $("#tCISSubPMHSearchPersonalised-flexdatalist").hide();
+        if(validationField(obj1.Problem1,"Please enter the correct Past Medical History")){
+            if (checkPMH(_data, obj1)) {
+                bootbox.alert("This Past Medical History already been inserted. Please choose at consultation note to update the record or add new Past Medical History");
+            } else {
+                _data.push(obj1);
+                displayPMH(Problem1, Status, comment1);
+                $("#Problem1").val("");
+                $("#Status").val("Status");
+                $("#comment1").val("");
+                $("#CIS01000003").modal('hide');
+                searching("tCISSubPMHSearch", "tCISSubPMHSearchLoading", "search/ResultPMHSearch.jsp", "codePMH", "search/ResultPMHSearchCode.jsp");
+                searching("tCISSubPMHSearchPersonalised", "tCISSubPMHSearchLoading", "search/ResultPMHPersonaliseSearch.jsp", "codePMH", "search/ResultPMHPersonaliseSearchCode.jsp");
+                $("#tCISSubPMHSearchPersonalised-flexdatalist").hide();
+            }
         }
+        
+
 
     });
 
@@ -381,21 +385,9 @@ $(document).ready(function () {
          var tempccnObj = {
             codePMH:_Pcode
         }
-        
-        if (upObject.codePMH === _Pcode){
-            
-            upObject.Problem1 = _PProblem2;
-            upObject.Status = _PStatus;
-            upObject.comment1 = _Pcomment1;
-            upObject.codePMH = _Pcode;
-            var sum = _PProblem2 + '| ' + _PStatus + '| ' + _Pcomment1
-            $('#sum' + rowId).html(sum);
-            $("#update_CIS01000003").modal('hide');
-            
-        }else{
-            if (checkPMH(_data, tempccnObj)) {
-                 bootbox.alert("This Past Medical History already been inserted. Please choose at consultation note to update the record or add new Past Medical History");
-            }else{
+        if(validationField(_PProblem2,"Please enter the correct Past Medical History")){
+            if (upObject.codePMH === _Pcode) {
+
                 upObject.Problem1 = _PProblem2;
                 upObject.Status = _PStatus;
                 upObject.comment1 = _Pcomment1;
@@ -403,8 +395,23 @@ $(document).ready(function () {
                 var sum = _PProblem2 + '| ' + _PStatus + '| ' + _Pcomment1
                 $('#sum' + rowId).html(sum);
                 $("#update_CIS01000003").modal('hide');
+
+            } else {
+                if (checkPMH(_data, tempccnObj)) {
+                    bootbox.alert("This Past Medical History already been inserted. Please choose at consultation note to update the record or add new Past Medical History");
+                } else {
+                    upObject.Problem1 = _PProblem2;
+                    upObject.Status = _PStatus;
+                    upObject.comment1 = _Pcomment1;
+                    upObject.codePMH = _Pcode;
+                    var sum = _PProblem2 + '| ' + _PStatus + '| ' + _Pcomment1
+                    $('#sum' + rowId).html(sum);
+                    $("#update_CIS01000003").modal('hide');
+                }
             }
         }
+        
+
   
      
     });
@@ -435,20 +442,24 @@ $(document).ready(function () {
         $items.each(function () {
             obj1[this.id] = $(this).val();
         });
-        if (checkFMH(_data, obj1)) {
-            bootbox.alert("This Family Medical History already been inserted. Please choose at consultation note to update the record or add new Family Medical History");
-        } else{
-            _data.push(obj1);
-            displayFMH(Problem3, f_relationship, comment2);
-            $("#Problem3").val("");
-            $("#f_relationship").val("Select Family Relationship");
-            $("#comment2").val("");
-            $("#CIS01000004").modal('hide');
-             retriveDataSearchingSubjective("tCISSubFMHSearch", "tCISSubFMHSearchLoading", "search/ResultPMHSearch.jsp", "search/ResultPMHSearchCode.jsp", "fmhCode", "");
-              searching("tCISSubFMHSearch", "tCISSubFMHSearchLoading", "search/ResultPMHSearch.jsp", "fmhCode", "search/ResultPMHSearchCode.jsp");
-            searching("tCISSubFMHSearchPersonalised", "tCISSubFMHSearchLoading", "search/ResultFMHPersonaliseSearch.jsp", "fmhCode", "search/ResultFMHPersonaliseSearchCode.jsp");
-            $("#tCISSubFMHSearchPersonalised-flexdatalist").hide();
+        
+        if(validationField(Problem3,"Please enter the correct Family Medical History")){
+            if (checkFMH(_data, obj1)) {
+                bootbox.alert("This Family Medical History already been inserted. Please choose at consultation note to update the record or add new Family Medical History");
+            } else {
+                _data.push(obj1);
+                displayFMH(Problem3, f_relationship, comment2);
+                $("#Problem3").val("");
+                $("#f_relationship").val("Select Family Relationship");
+                $("#comment2").val("");
+                $("#CIS01000004").modal('hide');
+                retriveDataSearchingSubjective("tCISSubFMHSearch", "tCISSubFMHSearchLoading", "search/ResultPMHSearch.jsp", "search/ResultPMHSearchCode.jsp", "fmhCode", "");
+                searching("tCISSubFMHSearch", "tCISSubFMHSearchLoading", "search/ResultPMHSearch.jsp", "fmhCode", "search/ResultPMHSearchCode.jsp");
+                searching("tCISSubFMHSearchPersonalised", "tCISSubFMHSearchLoading", "search/ResultFMHPersonaliseSearch.jsp", "fmhCode", "search/ResultFMHPersonaliseSearchCode.jsp");
+                $("#tCISSubFMHSearchPersonalised-flexdatalist").hide();
+            }
         }
+
 
     });
 
@@ -486,19 +497,8 @@ $(document).ready(function () {
             codeFMH:codeFMH
         }
         
-        
-        if(upObject.codeFMH === codeFMH){
-            upObject.Problem3 = _PProblem3;
-            upObject.f_relationship = _ff_relationship;
-            upObject.comment2 = _Pcomment2;
-            upObject.codeFMH = codeFMH;
-            var sum = _PProblem3 + '| ' + _ff_relationship + '| ' + _Pcomment2;
-            $('#sum' + rowId).html(sum);
-            $("#update_CIS01000004").modal('hide');
-        } else{
-            if (checkFMH(_data, tempccnObj)) {
-                bootbox.alert("This Family Medical History already been inserted. Please choose at consultation note to update the record or add new Family Medical History");
-            } else {
+        if(validationField(_PProblem3,"Please enter the correct Family Medical History")){
+            if (upObject.codeFMH === codeFMH) {
                 upObject.Problem3 = _PProblem3;
                 upObject.f_relationship = _ff_relationship;
                 upObject.comment2 = _Pcomment2;
@@ -506,8 +506,21 @@ $(document).ready(function () {
                 var sum = _PProblem3 + '| ' + _ff_relationship + '| ' + _Pcomment2;
                 $('#sum' + rowId).html(sum);
                 $("#update_CIS01000004").modal('hide');
+            } else {
+                if (checkFMH(_data, tempccnObj)) {
+                    bootbox.alert("This Family Medical History already been inserted. Please choose at consultation note to update the record or add new Family Medical History");
+                } else {
+                    upObject.Problem3 = _PProblem3;
+                    upObject.f_relationship = _ff_relationship;
+                    upObject.comment2 = _Pcomment2;
+                    upObject.codeFMH = codeFMH;
+                    var sum = _PProblem3 + '| ' + _ff_relationship + '| ' + _Pcomment2;
+                    $('#sum' + rowId).html(sum);
+                    $("#update_CIS01000004").modal('hide');
+                }
             }
         }
+
         
         
     });
@@ -539,21 +552,24 @@ $(document).ready(function () {
             obj1[this.id] = $(this).val();
         });
         
-        if (checkSOH(_data, obj1)) {
-            bootbox.alert("This Social History already been inserted. Please choose at consultation note to update the record or add new Social History");
-        } else{
-            _data.push(obj1);
-            displaySOH(Problem4, date, comment3);
-            $("#Problem4").val("");
-            $("#date").val("");
-            $("#comment3").val("");
-            $("#CIS01000005").modal('hide');
-            retriveDataSearchingSubjective("tCISSubSOHSearch", "tCISSubSOHSearchLoading", "search/ResultSOHSearch.jsp", "search/ResultSOHSearchCode.jsp", "codeSOH", "");
-        
-            searching("tCISSubSOHSearch", "tCISSubSOHSearchLoading", "search/ResultSOHSearch.jsp", "codeSOH", "search/ResultSOHSearchCode.jsp");
-            searching("tCISSubSOHSearchPersonalised", "tCISSubSOHSearchLoading", "search/ResultSOHPersonaliseSearch.jsp", "codeSOH", "search/ResultSOHPersonaliseSearchCode.jsp");
-            $("#tCISSubSOHSearchPersonalised-flexdatalist").hide();
+        if(validationField(Problem4,"Please enter the correct Social History")){
+            if (checkSOH(_data, obj1)) {
+                bootbox.alert("This Social History already been inserted. Please choose at consultation note to update the record or add new Social History");
+            } else {
+                _data.push(obj1);
+                displaySOH(Problem4, date, comment3);
+                $("#Problem4").val("");
+                $("#date").val("");
+                $("#comment3").val("");
+                $("#CIS01000005").modal('hide');
+                retriveDataSearchingSubjective("tCISSubSOHSearch", "tCISSubSOHSearchLoading", "search/ResultSOHSearch.jsp", "search/ResultSOHSearchCode.jsp", "codeSOH", "");
+
+                searching("tCISSubSOHSearch", "tCISSubSOHSearchLoading", "search/ResultSOHSearch.jsp", "codeSOH", "search/ResultSOHSearchCode.jsp");
+                searching("tCISSubSOHSearchPersonalised", "tCISSubSOHSearchLoading", "search/ResultSOHPersonaliseSearch.jsp", "codeSOH", "search/ResultSOHPersonaliseSearchCode.jsp");
+                $("#tCISSubSOHSearchPersonalised-flexdatalist").hide();
+            }
         }
+
 
 
  
@@ -595,20 +611,9 @@ $(document).ready(function () {
             codeSOH:_codeSOH
         }
         
-        if(upObject.codeSOH === _codeSOH){
-            
-            upObject.Problem4 = _PProblem4;
-            upObject.date = _ddate;
-            upObject.comment3 = _Pcomment3;
-            upObject.codeSOH = _codeSOH;
-            var sum = _PProblem4 + '| ' + _ddate + '| ' + _Pcomment3;
-            $('#sum' + rowId).html(sum);
-            $("#update_CIS01000005").modal('hide');
-            
-        }else{
-            if(checkSOH(_data,tempccnObj)){
-                bootbox.alert("This Social History already been inserted. Please choose at consultation note to update the record or add new Social History");
-            }else{
+        if(validationField(_PProblem4,"Please enter the correct Social History")){
+            if (upObject.codeSOH === _codeSOH) {
+
                 upObject.Problem4 = _PProblem4;
                 upObject.date = _ddate;
                 upObject.comment3 = _Pcomment3;
@@ -616,8 +621,23 @@ $(document).ready(function () {
                 var sum = _PProblem4 + '| ' + _ddate + '| ' + _Pcomment3;
                 $('#sum' + rowId).html(sum);
                 $("#update_CIS01000005").modal('hide');
+
+            } else {
+                if (checkSOH(_data, tempccnObj)) {
+                    bootbox.alert("This Social History already been inserted. Please choose at consultation note to update the record or add new Social History");
+                } else {
+                    upObject.Problem4 = _PProblem4;
+                    upObject.date = _ddate;
+                    upObject.comment3 = _Pcomment3;
+                    upObject.codeSOH = _codeSOH;
+                    var sum = _PProblem4 + '| ' + _ddate + '| ' + _Pcomment3;
+                    $('#sum' + rowId).html(sum);
+                    $("#update_CIS01000005").modal('hide');
+                }
             }
         }
+        
+
         
 
    
@@ -640,18 +660,26 @@ $(document).ready(function () {
         $items.each(function () {
             obj1[this.id] = $(this).val();
         });
-        if (checkBLD(_data, obj1)) {
-            bootbox.alert("This Blood Group already been inserted. Please choose at consultation note to update the record");
-        } else{
-            _data.push(obj1);
-            displayBLD(blood, Rhesus_Type, G6PD_Status, comment4);
-            console.log(obj1);
-            $("#comment4").val("");
-            $('#Rhesus_Type').val("");
-            $('#G6PD_Status').val("");
-            $('#blood').val("");
-            $("#CIS01000006").modal('hide');
+        if(blood === "null" || blood === ""){
+           
+           bootbox.alert("Please enter the blood type properly");
+            
+        }else{
+            if (checkBLD(_data, obj1)) {
+                bootbox.alert("This Blood Group already been inserted. Please choose at consultation note to update the record");
+            } else {
+                _data.push(obj1);
+                displayBLD(blood, Rhesus_Type, G6PD_Status, comment4);
+                console.log(obj1);
+                $("#comment4").val("");
+                $('#Rhesus_Type').val("");
+                $('#G6PD_Status').val("");
+                $('#blood').val("");
+                $("#CIS01000006").modal('hide');
+            }
         }
+        
+      
 
     });
 
@@ -676,18 +704,20 @@ $(document).ready(function () {
         var _RRhesus_Type = $('#RRhesus_Type').val();
         var _GG6PD_Status = $('#GG6PD_Status').val();
         var _Pcomment4 = $('#Pcomment4').val();
-        
+        if (_b_blood === "null" || _b_blood === "") {
 
-        
-        if(upObject.blood === _b_blood){
-            upObject.blood = _b_blood;
-            upObject.Rhesus_Type = _RRhesus_Type;
-            upObject.G6PD_Status = _GG6PD_Status;
-            upObject.comment4 = _Pcomment4;
-            var sum = _b_blood + '| ' + _RRhesus_Type + '| ' + _GG6PD_Status + '| ' + _Pcomment4
-            $('#sum' + rowId).html(sum);
-            $("#update_CIS01000006").modal('hide');
-        } else {
+            bootbox.alert("Please enter the blood type properly");
+
+        } else{
+            if (upObject.blood === _b_blood) {
+                upObject.blood = _b_blood;
+                upObject.Rhesus_Type = _RRhesus_Type;
+                upObject.G6PD_Status = _GG6PD_Status;
+                upObject.comment4 = _Pcomment4;
+                var sum = _b_blood + '| ' + _RRhesus_Type + '| ' + _GG6PD_Status + '| ' + _Pcomment4
+                $('#sum' + rowId).html(sum);
+                $("#update_CIS01000006").modal('hide');
+            } else {
 
                 upObject.blood = _b_blood;
                 upObject.Rhesus_Type = _RRhesus_Type;
@@ -696,8 +726,12 @@ $(document).ready(function () {
                 var sum = _b_blood + '| ' + _RRhesus_Type + '| ' + _GG6PD_Status + '| ' + _Pcomment4
                 $('#sum' + rowId).html(sum);
                 $("#update_CIS01000006").modal('hide');
-            
+
+            }
         }
+
+        
+
         
 
     
@@ -730,20 +764,25 @@ $(document).ready(function () {
         $items.each(function () {
             obj1[this.id] = $(this).val();
         });
-        if (checkALG(_data, obj1)) {
-             bootbox.alert("This Allergy already been inserted. Please choose at consultation note to update the record or add new Allergy");
-        } else{
-            _data.push(obj1);
-            displayAllergy(Problem5, date1, comment5);
-            $("#Problem5").val("");
-            $("#date1").val("");
-            $("#comment5").val("");
-            $("#CIS01000007").modal('hide');
-            retriveDataSearchingSubjective("tCISSubALGSearch", "tCISSubALGSearchLoading", "search/ResultALGSearch.jsp", "search/ResultALGSearchCode.jsp", "codeALG", "");
-            searching("tCISSubALGSearch", "tCISSubALGSearchLoading", "search/ResultALGSearch.jsp", "codeALG", "search/ResultALGSearchCode.jsp");
-            searching("tCISSubALGSearchPersonalised", "tCISSubALGSearchLoading", "search/ResultALGPersonaliseSearch.jsp", "codeALG", "search/ResultALGPersonaliseSearchCode.jsp");
-            $("#tCISSubALGSearchPersonalised-flexdatalist").hide();
-        }
+        
+          if(validationField(Problem5,"Please enter the correct Allergy")){
+           if (checkALG(_data, obj1)) {
+                bootbox.alert("This Allergy already been inserted. Please choose at consultation note to update the record or add new Allergy");
+            } else {
+                _data.push(obj1);
+                displayAllergy(Problem5, date1, comment5);
+                $("#Problem5").val("");
+                $("#date1").val("");
+                $("#comment5").val("");
+                $("#CIS01000007").modal('hide');
+                retriveDataSearchingSubjective("tCISSubALGSearch", "tCISSubALGSearchLoading", "search/ResultALGSearch.jsp", "search/ResultALGSearchCode.jsp", "codeALG", "");
+                searching("tCISSubALGSearch", "tCISSubALGSearchLoading", "search/ResultALGSearch.jsp", "codeALG", "search/ResultALGSearchCode.jsp");
+                searching("tCISSubALGSearchPersonalised", "tCISSubALGSearchLoading", "search/ResultALGPersonaliseSearch.jsp", "codeALG", "search/ResultALGPersonaliseSearchCode.jsp");
+                $("#tCISSubALGSearchPersonalised-flexdatalist").hide();
+            }
+          }
+        
+
 
     });
 
@@ -771,7 +810,7 @@ $(document).ready(function () {
         var _Pcomment5 = $('#Pcomment5').val();
         var _algCode = $('#uALG_cd').val();
         
-                         var search_by = $('input[name=rCISSubALGSearchType_update]:checked').val();
+        var search_by = $('input[name=rCISSubALGSearchType_update]:checked').val();
         if (search_by === "P") {
             _PProblem5 = $('#tCISSubALGSearchPersonalised_update').val();
         } else {
@@ -779,22 +818,12 @@ $(document).ready(function () {
         }
         
         
-                var tempccnObj = {
+        var tempccnObj = {
             codeALG:_algCode
         }
         
-        if(upObject.codeALG ===  _algCode){
-            upObject.Problem5 = _PProblem5;
-            upObject.date1 = _ddate1;
-            upObject.comment5 = _Pcomment5;
-            upObject.codeALG = _algCode;
-            var sum = _PProblem5 + '| ' + _ddate1 + '| ' + _Pcomment5
-            $('#sum' + rowId).html(sum);
-            $("#update_CIS01000007").modal('hide');
-        } else {
-            if (checkALG(_data, tempccnObj)) {
-                bootbox.alert("This Allergy already been inserted. Please choose at consultation note to update the record or add new Allergy");
-            }else{
+         if(validationField(_PProblem5,"Please enter the correct Allergy")){
+            if (upObject.codeALG === _algCode) {
                 upObject.Problem5 = _PProblem5;
                 upObject.date1 = _ddate1;
                 upObject.comment5 = _Pcomment5;
@@ -802,8 +831,22 @@ $(document).ready(function () {
                 var sum = _PProblem5 + '| ' + _ddate1 + '| ' + _Pcomment5
                 $('#sum' + rowId).html(sum);
                 $("#update_CIS01000007").modal('hide');
+            } else {
+                if (checkALG(_data, tempccnObj)) {
+                    bootbox.alert("This Allergy already been inserted. Please choose at consultation note to update the record or add new Allergy");
+                } else {
+                    upObject.Problem5 = _PProblem5;
+                    upObject.date1 = _ddate1;
+                    upObject.comment5 = _Pcomment5;
+                    upObject.codeALG = _algCode;
+                    var sum = _PProblem5 + '| ' + _ddate1 + '| ' + _Pcomment5
+                    $('#sum' + rowId).html(sum);
+                    $("#update_CIS01000007").modal('hide');
+                }
             }
-        }
+         }
+        
+
         
 
     });
@@ -835,20 +878,23 @@ $(document).ready(function () {
         $items.each(function () {
             obj1[this.id] = $(this).val();
         });
-        if (checkIMU(_data, obj1)) {
-            bootbox.alert("This Immunization already been inserted. Please choose at consultation note to update the record or add new Immunization");
-        } else{
-            _data.push(obj1);
-            displayIMU(Problem6, date2, comment6);
-            $("#Problem6").val("");
-            $("#date2").val("");
-            $("#comment6").val("");
-            $("#CIS01000008").modal('hide');
-             retriveDataSearchingSubjective("tCISSubIMUSearch", "tCISSubIMUSearchLoading", "search/ResultIMUSearch.jsp", "search/ResultIMUSearchCode.jsp", "codeIMU", "");
-             searching("tCISSubIMUSearch", "tCISSubIMUSearchLoading", "search/ResultIMUSearch.jsp", "codeIMU", "search/ResultIMUSearchCode.jsp");
-            searching("tCISSubIMUSearchPersonalised", "tCISSubIMUSearchLoading", "search/ResultIMUPersonaliseSearch.jsp", "codeIMU", "search/ResultIMUPersonaliseSearchCode.jsp");
-             $('#tCISSubIMUSearchPersonalised-flexdatalist').hide();
+        if(validationField(Problem6,"Please enter the correct Immunization")){
+            if (checkIMU(_data, obj1)) {
+                bootbox.alert("This Immunization already been inserted. Please choose at consultation note to update the record or add new Immunization");
+            } else {
+                _data.push(obj1);
+                displayIMU(Problem6, date2, comment6);
+                $("#Problem6").val("");
+                $("#date2").val("");
+                $("#comment6").val("");
+                $("#CIS01000008").modal('hide');
+                retriveDataSearchingSubjective("tCISSubIMUSearch", "tCISSubIMUSearchLoading", "search/ResultIMUSearch.jsp", "search/ResultIMUSearchCode.jsp", "codeIMU", "");
+                searching("tCISSubIMUSearch", "tCISSubIMUSearchLoading", "search/ResultIMUSearch.jsp", "codeIMU", "search/ResultIMUSearchCode.jsp");
+                searching("tCISSubIMUSearchPersonalised", "tCISSubIMUSearchLoading", "search/ResultIMUPersonaliseSearch.jsp", "codeIMU", "search/ResultIMUPersonaliseSearchCode.jsp");
+                $('#tCISSubIMUSearchPersonalised-flexdatalist').hide();
+            }
         }
+
 
     });
 
@@ -884,19 +930,8 @@ $(document).ready(function () {
         var tempccnObj = {
             codeIMU:_IMUCode
         }
-        
-        if(upObject.codeIMU === _IMUCode){
-            upObject.Problem6 = _PProblem6;
-            upObject.date2 = _ddate2;
-            upObject.comment6 = _Pcomment6;
-            upObject.codeIMU = _IMUCode;
-            var sum = _PProblem6 + '| ' + _ddate2 + '| ' + _Pcomment6
-            $('#sum' + rowId).html(sum);
-            $("#update_CIS01000008").modal('hide');
-        } else{
-            if (checkIMU(_data, tempccnObj)) {
-                bootbox.alert("This Immunization already been inserted. Please choose at consultation note to update the record or add new Immunization");
-            }else{
+         if(validationField(_PProblem6,"Please enter the correct Immunization")){
+                     if (upObject.codeIMU === _IMUCode) {
                 upObject.Problem6 = _PProblem6;
                 upObject.date2 = _ddate2;
                 upObject.comment6 = _Pcomment6;
@@ -904,8 +939,21 @@ $(document).ready(function () {
                 var sum = _PProblem6 + '| ' + _ddate2 + '| ' + _Pcomment6
                 $('#sum' + rowId).html(sum);
                 $("#update_CIS01000008").modal('hide');
+            } else {
+                if (checkIMU(_data, tempccnObj)) {
+                    bootbox.alert("This Immunization already been inserted. Please choose at consultation note to update the record or add new Immunization");
+                } else {
+                    upObject.Problem6 = _PProblem6;
+                    upObject.date2 = _ddate2;
+                    upObject.comment6 = _Pcomment6;
+                    upObject.codeIMU = _IMUCode;
+                    var sum = _PProblem6 + '| ' + _ddate2 + '| ' + _Pcomment6
+                    $('#sum' + rowId).html(sum);
+                    $("#update_CIS01000008").modal('hide');
+                }
             }
-        }
+         }
+
         
 
     });
@@ -941,21 +989,23 @@ $(document).ready(function () {
         $items.each(function () {
             obj1[this.id] = $(this).val();
         });
-        
-        if (checkDAB(_data, obj1)) {
-            bootbox.alert("This Disability already been inserted. Please choose at consultation note to update the record or add new Disability");
-        } else{
-            _data.push(obj1);
-            displayDAB(Problem32, date3, comment7);
-            $("#Problem32").val("");
-            $("#date3").val("");
-            $("#comment7").val("");
-            $("#CIS01000009").modal('hide');
-            retriveDataSearchingSubjective("tCISSubDABSearch", "tCISSubDABSearchLoading", "search/ResultDABSearch.jsp", "search/ResultDABSearchCode.jsp", "codeDAB", "");
-            searching("tCISSubDABSearch", "tCISSubDABSearchLoading", "search/ResultDABSearch.jsp", "codeDAB", "search/ResultDABSearchCode.jsp");
-            searching("tCISSubDABSearchPersonalised", "tCISSubDABSearchLoading", "search/ResultDABPersonaliseSearch.jsp", "codeDAB", "search/ResultDABPersonaliseSearchCode.jsp");
-            $("#tCISSubDABSearchPersonalised-flexdatalist").hide();
+        if(validationField(Problem32,"Please enter the correct Disability")){
+            if (checkDAB(_data, obj1)) {
+                bootbox.alert("This Disability already been inserted. Please choose at consultation note to update the record or add new Disability");
+            } else {
+                _data.push(obj1);
+                displayDAB(Problem32, date3, comment7);
+                $("#Problem32").val("");
+                $("#date3").val("");
+                $("#comment7").val("");
+                $("#CIS01000009").modal('hide');
+                retriveDataSearchingSubjective("tCISSubDABSearch", "tCISSubDABSearchLoading", "search/ResultDABSearch.jsp", "search/ResultDABSearchCode.jsp", "codeDAB", "");
+                searching("tCISSubDABSearch", "tCISSubDABSearchLoading", "search/ResultDABSearch.jsp", "codeDAB", "search/ResultDABSearchCode.jsp");
+                searching("tCISSubDABSearchPersonalised", "tCISSubDABSearchLoading", "search/ResultDABPersonaliseSearch.jsp", "codeDAB", "search/ResultDABPersonaliseSearchCode.jsp");
+                $("#tCISSubDABSearchPersonalised-flexdatalist").hide();
+            }
         }
+
  
     });
 
@@ -972,6 +1022,7 @@ $(document).ready(function () {
         $("#update_CIS01000009").modal('show');
 
     });
+
 
     $('#updateBtnDAB').click(function () {
         var upObject = _data[$('#jsonId').val()];
@@ -992,19 +1043,8 @@ $(document).ready(function () {
                 var tempccnObj = {
             codeDAB:_codeDAB
         }
-        
-        if(upObject.codeDAB === _codeDAB){
-            upObject.Problem32 = _PProblem32;
-            upObject.date3 = _ddate3;
-            upObject.comment7 = _Pcomment7;
-            upObject.codeDAB = _codeDAB;
-            var sum = upObject.Problem32 + '| ' + _ddate3 + '| ' + _Pcomment7
-            $('#sum' + rowId).html(sum);
-            $("#update_CIS01000009").modal('hide');
-        }else{
-            if (checkDAB(_data, tempccnObj)) {
-                bootbox.alert("This Disability already been inserted. Please choose at consultation note to update the record or add new Disability");
-            }else{
+        if(validationField(_PProblem32,"Please enter the correct Disability")){
+            if (upObject.codeDAB === _codeDAB) {
                 upObject.Problem32 = _PProblem32;
                 upObject.date3 = _ddate3;
                 upObject.comment7 = _Pcomment7;
@@ -1012,8 +1052,21 @@ $(document).ready(function () {
                 var sum = upObject.Problem32 + '| ' + _ddate3 + '| ' + _Pcomment7
                 $('#sum' + rowId).html(sum);
                 $("#update_CIS01000009").modal('hide');
+            } else {
+                if (checkDAB(_data, tempccnObj)) {
+                    bootbox.alert("This Disability already been inserted. Please choose at consultation note to update the record or add new Disability");
+                } else {
+                    upObject.Problem32 = _PProblem32;
+                    upObject.date3 = _ddate3;
+                    upObject.comment7 = _Pcomment7;
+                    upObject.codeDAB = _codeDAB;
+                    var sum = upObject.Problem32 + '| ' + _ddate3 + '| ' + _Pcomment7
+                    $('#sum' + rowId).html(sum);
+                    $("#update_CIS01000009").modal('hide');
+                }
             }
         }
+
 
     });
     

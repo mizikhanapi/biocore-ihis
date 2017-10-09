@@ -193,6 +193,11 @@
                 dataViewPN.view = day;
                 loadAllProgressNote(dataViewPN);
                 console.log(dataViewPN);
+            }else if(day === "1" || day === "7" || day === "30" || day === "60"){
+                $("#dateSelectionView").hide();
+                dataViewPN.view = day;
+                loadAllProgressNote(dataViewPN);
+                console.log(dataViewPN);
             }else if(day = "x"){
                 $("#dateSelectionView").show();
             }
