@@ -86,7 +86,7 @@ public class ROS_ord {
                               + "'" + orcs.get(9).get(0) + "',"
                               + "'" + orcs.get(7).get(0) + "',"
                               + "'" + pdis.get(2).get(0) + "',"
-                              + "'" + dateFormat.format(date) + "')";
+                              + "'" + orcs.get(7).get(0) + "')";
                         try {
                             
                              status_ris_order_master = rc.setQuerySQL(Config.ipAddressServer, Config.portServer, sql_RIS);
@@ -123,7 +123,7 @@ public class ROS_ord {
                                    + "'" + orcs.get(7).get(0) + "',"
                                    + "'" + orcs.get(9).get(0) + "',"
                                    + "now(),"
-                                   + "'" + dateFormat.format(date2) + "')";
+                                   + "'" + orcs.get(7).get(0) + "')";
                            status_ris_order_detail = rc.setQuerySQL(Config.ipAddressServer, Config.portServer, sql_ROS);
 
                                         if (status_ris_order_detail == true) {

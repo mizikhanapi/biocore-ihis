@@ -78,7 +78,7 @@ public class ADW_ord {
                             + "'-',"
                             + "'" + orcs.get(9).get(0) + "',"
                             + "now(),"
-                            + "'" + dateFormat.format(date) + "')";
+                            + "'" + orcs.get(7).get(0) + "')";
                     try {
                         status_adw_master = rc.setQuerySQL(Config.ipAddressServer, Config.portServer, sql_ADW);
                         if (status_adw_master == true) {
@@ -121,7 +121,7 @@ public class ADW_ord {
                                         + "'0',"
                                         + "'" + adws.get(2).get(14) + "',"
                                         + "now(),"
-                                        + "'" + dateFormat2.format(date2) + "')";
+                                        + "'" + orcs.get(7).get(0) + "')";
                                 status_adw_detail = rc.setQuerySQL(Config.ipAddressServer, Config.portServer, sql_adw_det);
                                 if (status_adw_detail == true) {
                                     System.out.println("Done with wis MASTER and wis DETAIL");

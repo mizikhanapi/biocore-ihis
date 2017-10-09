@@ -74,7 +74,7 @@ public class PIS_ord {
                         + "'0',"
                         + "'0',"
                         + "'" + orcs.get(13).get(0) + "',"
-                        + "'" + dateFormat.format(date) + "',"
+                        + "'" + orcs.get(7).get(0) + "',"
                         + "'"+msh.getSendingFacilitySubDis()+"',"
                         + "0,"
                         + "'"+sizePIS+"')";
@@ -123,7 +123,7 @@ public class PIS_ord {
                                     + "'" + piss.get(11).get(0) + "',"
                                     + "'0'"
                                     + ","
-                                    + "'" + dateFormat.format(date2) + "',"
+                                    + "'" + orcs.get(7).get(0) + "',"
                                     + "'-',"
                                     + "'-',"
                                     + "'-')";

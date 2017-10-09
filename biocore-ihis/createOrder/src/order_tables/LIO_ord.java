@@ -98,7 +98,7 @@ public class LIO_ord {
                                 + "'" + orcs.get(9).get(0) + "',"
                                 + "now(),"
                                 + "'" + pdis.get(2).get(0) + "',"
-                                + "'" + dateFormat.format(date) + "')";
+                                + "'" + orcs.get(7).get(0) + "')";
                         try {
                             status_lio_order_master = rc.setQuerySQL(Config.ipAddressServer, Config.portServer, sql_lis_master);
                             if (status_lio_order_master == true) {
@@ -163,7 +163,7 @@ public class LIO_ord {
                                                  + "'Pending',"
                                                  + "'" + lios.get(3).get(0) + "',"
                                                     + "'0',"
-                                                    + "'" + dateFormat.format(date2) + "')";
+                                                    + "'" + orcs.get(7).get(0) + "')";
                                         status_lis_order_detail = rc.setQuerySQL(Config.ipAddressServer, Config.portServer, sql_lis_detail);
 
                                         if (status_lis_order_detail == true) {

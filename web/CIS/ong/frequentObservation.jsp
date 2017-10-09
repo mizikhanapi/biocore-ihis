@@ -39,7 +39,7 @@
         </div>
     </div>
 
-    <div id="tableFreqObservationChartDiv" class="table-guling">
+    <div id="tableFreqObservationChartDiv" class="table-guling clear-patient">
         <table class="table table-bordered" id="tableFreqObservationChartTable" style="width: 100%">
             <thead>
             <th>Date</th>
@@ -259,6 +259,47 @@
 
 
 // ---------------------------------------------------------------------------- VIew ------------------------------------------------------------------------------------------- //
+
+
+// ---------------------------------------------------------------------------- Search Flexdata Drug ------------------------------------------------------------------------------------------- //
+
+
+
+        $('#freqObservationChartModalDrugGiven').flexdatalist({
+            minLength: 1,
+            searchIn: 'name',
+            searchDelay: 2000,
+            selectionRequired: true,
+            url: "specialistTemplate/ONG/controller/nursingUseChartControllerSearchDrugCode.jsp",
+            visibleProperties: 'name',
+            cache: true,
+            valueProperty: 'value',
+            params: {
+                timeout: 3000,
+                success: function (result) {
+
+                    if (result == null) {
+                        $('#freqObservationChartModalDrugGivenSearchResultDIV').html('No Record');
+                    }
+
+                }
+
+            }
+        });
+
+        $("#freqObservationChartModalDrugGiven").on('before:flexdatalist.data', function (response) {
+            $('#freqObservationChartModalDrugGivenSearchResultDIV').html('<img src="img/LoaderIcon.gif" />');
+        });
+        $("#freqObservationChartModalDrugGiven").on('after:flexdatalist.data', function (response) {
+            $('#freqObservationChartModalDrugGivenSearchResultDIV').html('');
+        });
+        $("#freqObservationChartModalDrugGiven").on('select:flexdatalist', function (response) {
+            $('#freqObservationChartModalDrugGivenSearchResultDIV').html('');
+        });
+
+
+
+// ---------------------------------------------------------------------------- Search Flexdata Drug ------------------------------------------------------------------------------------------- //
 
 
 
