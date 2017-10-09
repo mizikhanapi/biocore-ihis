@@ -576,9 +576,9 @@
             url: 'patientOrderListNewOrderSearchResult.jsp',
             data: {'id': id},
             success: function (reply_data) {
-                
+
                 console.log(reply_data.trim());
-                
+
                 var array_data = String(reply_data.trim()).split("|");
                 var dtoCode = array_data[0];
                 var dtoGnr = array_data[1];
@@ -1140,7 +1140,7 @@
             if (drugChecked === true && drugDispensedQty !== "0") {
 
                 //                              0           1       2                3               4                  5                   6                    7                   8     
-                var dataOneRowBLI = "BLI|T^" + dateBill + "|CH|" + pmino + "|" + drugCode + "|" + drugDesc + "|" + drugPrice + "|" + drugDispensedQty + "|" + userIDBill + "|" + dateBill + "<cr>\n";
+                var dataOneRowBLI = "BLI|T^" + dateBill + "|CH|" + pmino + "|" + drugCode + "|" + drugDesc + "|" + drugTotalPrice + "|" + drugDispensedQty + "|" + userIDBill + "|" + dateBill + "<cr>\n";
 
 
                 //                    0                         1                                       2                               3                                                       4    
