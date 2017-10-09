@@ -134,6 +134,8 @@
                     var patientBtype = arrayData[22];
                     var patientOrderNo = arrayData[1];
                     var patientOrderDate = arrayData[5];
+                    var episodeDate = arrayData[3];
+                    var encounterDate = arrayData[4];
                     var patientOrderLocationCode = arrayData[2];
 
 
@@ -144,7 +146,9 @@
                     var data = {
                         pmiNo: pmiNo,
                         orderNo: orderNo,
-                        orderDate: orderDate
+                        orderDate: orderDate,
+                        episodeDate: episodeDate,
+                        encounterDate: encounterDate
                     };
                     $.ajax({
                         url: "patientOrderListDetailDispenseEHRCentralGetMSH.jsp",

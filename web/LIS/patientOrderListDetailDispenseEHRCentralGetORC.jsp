@@ -19,6 +19,8 @@
     Conn conn = new Conn();
     String orderNo = request.getParameter("orderNo");
     String orderDate = request.getParameter("orderDate");
+    String episodeDate = request.getParameter("episodeDate");
+    String encounterDate = request.getParameter("encounterDate");
     String userID = (String) session.getAttribute("USER_ID");
     String hfc = (String) session.getAttribute("HEALTH_FACILITY_CODE");
     String dis = (String) session.getAttribute("DISCIPLINE_CODE");
@@ -34,10 +36,10 @@
     String fillerOrderNoORC = "";                     // Data 3
     String orderStatusORC = "NO";                     // Data 4
     String orderPriorityORC = "NORMAL";               // Data 5
-    String orderDateORC = format.format(now);         // Data 6
+    String orderDateORC = orderDate;         // Data 6
 
-    String episodeDateORC = orderDate;                 // Data 7
-    String encounterDateORC = orderDate;               // Data 8
+    String episodeDateORC = episodeDate;                 // Data 7
+    String encounterDateORC = encounterDate;               // Data 8
     String enteredByORC = userID;                      // Data 9
     String verifiedByORC = userID;                     // Data 10
     String designationORC = "";                        // Data 11
