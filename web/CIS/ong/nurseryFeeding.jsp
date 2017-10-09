@@ -39,7 +39,7 @@
         </div>
     </div>
 
-    <div id="tableNurseryFeedingChartDiv" class="table-guling">
+    <div id="tableNurseryFeedingChartDiv" class="table-guling clear-patient">
         <table class="table table-bordered" id="tableNurseryFeedingChartTable" style="width: 100%">
             <thead>
             <th>Date</th>
