@@ -24,9 +24,11 @@ public class EHRMessageSender {
     protected String pmiNo;
     protected String orderNo;
     private String orderDate;
+    private String episodeDate;
+    private String encounterDate;
     protected Conn conn;
 
-    public EHRMessageSender(String userID, String hfc, String dis, String subdis, String pmiNo, String orderNo, String orderDate) {
+    public EHRMessageSender(String userID, String hfc, String dis, String subdis, String pmiNo, String orderNo, String orderDate, String episodeDate, String encounterDate) {
 
         this.userID = userID;
         this.hfc = hfc;
@@ -35,6 +37,8 @@ public class EHRMessageSender {
         this.pmiNo = pmiNo;
         this.orderNo = orderNo;
         this.orderDate = orderDate;
+        this.episodeDate = episodeDate;
+        this.encounterDate = encounterDate;
         this.conn = new Conn();
 
     }
@@ -286,10 +290,10 @@ public class EHRMessageSender {
         String fillerOrderNoORC = "";                     // Data 3
         String orderStatusORC = "NO";                     // Data 4
         String orderPriorityORC = "NORMAL";               // Data 5
-        String orderDateORC = format.format(now);         // Data 6
+        String orderDateORC = orderDate;         // Data 6
 
-        String episodeDateORC = orderDate;                 // Data 7
-        String encounterDateORC = format.format(now);               // Data 8
+        String episodeDateORC = episodeDate;                 // Data 7
+        String encounterDateORC = encounterDate;               // Data 8
         String enteredByORC = userID;                      // Data 9
         String verifiedByORC = userID;                     // Data 10
         String designationORC = "";                        // Data 11
@@ -549,7 +553,7 @@ public class EHRMessageSender {
         but receiver App is here is remain the same: 14-LHR(data warehouse)  
         Transaction code is T12202 for RIS response report
         ==================================================================*/
-        String MSH_PDI_ORC = getMSH(senderApp, "14") + getPDI() + getORC("T12202", senderApp, "14");
+        String MSH_PDI_ORC = getMSH(senderApp, "08") + getPDI() + getORC("T12202", senderApp, "08");
 
         String FullEHRHeader = "";
 

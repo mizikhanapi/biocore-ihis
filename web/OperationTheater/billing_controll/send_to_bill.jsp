@@ -23,7 +23,7 @@
     
     for(int i = 0; i < bigFields.length; i++){
         String[] smallFields = bigFields[i].split("\\|");
-        ems = new OPT_EHRMessageSender(userID, hfc, dis, subdis, smallFields[1], smallFields[0], smallFields[2]);
+        ems = new OPT_EHRMessageSender(userID, hfc, dis, subdis, smallFields[1], smallFields[0], smallFields[2], smallFields[3], smallFields[4]);
         isSuccess = ems.isInsertIntoEHR_FAR("19"); //19 is code for OPT
         
         if(!isSuccess)

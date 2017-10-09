@@ -19,8 +19,8 @@ import main.RMIConnector;
 public class OPT_EHRMessageSender extends EHRMessageSender
 {
     
-    public OPT_EHRMessageSender(String userID, String hfc, String dis, String subdis, String pmiNo, String orderNo, String orderDate) {
-        super(userID, hfc, dis, subdis, pmiNo, orderNo, orderDate);
+    public OPT_EHRMessageSender(String userID, String hfc, String dis, String subdis, String pmiNo, String orderNo, String orderDate, String episodeDate, String encounterDate) {
+        super(userID, hfc, dis, subdis, pmiNo, orderNo, orderDate, episodeDate, encounterDate);
     }
 
     @Override

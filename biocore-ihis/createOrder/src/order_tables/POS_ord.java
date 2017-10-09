@@ -119,7 +119,7 @@ public class POS_ord {
                         + "'" + d + "',"
                         + "'0',"
                         + "'0',"
-                        + "'" + dateFormat4.format(date4) + "')";
+                        + "'" + orcs.get(7).get(0) + "')";
                 try {
                     status_pos_order_master = rc.setQuerySQL(Config.ipAddressServer, Config.portServer, sql_pos_master);
                     if (status_pos_order_master) {
@@ -161,7 +161,7 @@ public class POS_ord {
                                     + "'" + c + "',"
                                     + "'" + b + "',"
                                     + "'" + d + "',"
-                                    + "'" + dateFormat.format(date) + "')";
+                                    + "'" + orcs.get(7).get(0) + "')";
 
                             status_pos_order_detail = rc.setQuerySQL(Config.ipAddressServer, Config.portServer, sql_pos_detail);
                             if (status_pos_order_detail) {
@@ -217,7 +217,7 @@ public class POS_ord {
                         + "'0',"
                         + "'0',"
                         + "'-',"
-                        + "'" + dateFormat.format(date) + "')";
+                        + "'" + orcs.get(7).get(0) + "')";
                 try {
                     status_pos_order_master = rc.setQuerySQL(Config.ipAddressServer, Config.portServer, sql_pos_master);
                     if (status_pos_order_master) {
@@ -251,7 +251,7 @@ public class POS_ord {
                                     + "'" + poss.get(3).get(2) + " " + poss.get(3).get(3).trim() + ":00',"
                                     + "'" + poss.get(11).get(0) + "',"
                                     + "'0',"
-                                    + "'" + dateFormat2.format(date2) + "')";
+                                    + "'" + orcs.get(7).get(0) + "')";
 
                             status_pos_order_detail = rc.setQuerySQL(Config.ipAddressServer, Config.portServer, sql_pos_detail);
                             if (status_pos_order_detail) {

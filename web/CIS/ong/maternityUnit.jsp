@@ -39,7 +39,7 @@
 </div>
 
 <div class="row">
-    <div class="col-md-6" id="MU_div_theraphyTable">
+    <div class="col-md-6 clear-patient" id="MU_div_theraphyTable">
         <table class="table table-bordered table-striped">
             <thead>
                 <tr>
@@ -59,7 +59,7 @@
             </tbody>
         </table>
     </div>
-    <div class="col-md-6" id="MU_div_investigationTable">
+    <div class="col-md-6 clear-patient" id="MU_div_investigationTable">
         <table class="table table-bordered table-striped">
             <thead>
                 <tr>
@@ -84,7 +84,7 @@
 <script type="text/javascript">
     
    
-     //--- initialise datepicker for from ----
+    //--- initialise datepicker for from ----
     $('#MU_dateFrom').datepicker({
         changeMonth: true,
         changeYear: true,
