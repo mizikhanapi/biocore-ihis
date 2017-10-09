@@ -52,7 +52,7 @@
                             <div class="form-group">
                                 <label class="col-md-12 control-label" for="textinput">Temperature</label>
                                 <div class="col-md-12">
-                                    <input type="text" class="form-control input-md" id="freqObservationChartModalTemperature">
+                                    <input type="text" class="form-control input-md singleNumbersOnly" id="freqObservationChartModalTemperature" maxlength="3">
                                 </div>
                             </div>
                         </div>
@@ -61,7 +61,7 @@
                             <div class="form-group">
                                 <label class="col-md-12 control-label" for="textinput">Pulse</label>
                                 <div class="col-md-12">
-                                    <input type="text" class="form-control input-md" id="freqObservationChartModalPulse"> 
+                                    <input type="text" class="form-control input-md singleNumbersOnly" id="freqObservationChartModalPulse" maxlength="3"> 
                                 </div>
                             </div>
                         </div>
@@ -70,7 +70,7 @@
                             <div class="form-group">
                                 <label class="col-md-12 control-label" for="textinput">Respiration</label>
                                 <div class="col-md-12">
-                                    <input type="text" class="form-control input-md" id="freqObservationChartModalRespiration"> 
+                                    <input type="text" class="form-control input-md singleNumbersOnly" id="freqObservationChartModalRespiration" maxlength="3"> 
                                 </div>
                             </div>
                         </div>
@@ -96,10 +96,10 @@
                             <div class="form-group">
                                 <label class="col-md-12 control-label" for="textinput">Pupil Left</label>
                                 <div class="col-md-6">
-                                    <input type="text" class="form-control input-md" placeholder="React" id="freqObservationChartModalPupilLeftReact">
+                                    <input type="text" class="form-control input-md singleNumbersOnly" placeholder="React" id="freqObservationChartModalPupilLeftReact" maxlength="2">
                                 </div>
                                 <div class="col-md-6">
-                                    <input type="text" class="form-control input-md" placeholder="Size" id="freqObservationChartModalPupilLeftSize">
+                                    <input type="text" class="form-control input-md singleNumbersOnly" placeholder="Size" id="freqObservationChartModalPupilLeftSize" maxlength="2">
                                 </div>
                             </div>
                         </div>
@@ -108,10 +108,10 @@
                             <div class="form-group">
                                 <label class="col-md-12 control-label" for="textinput">Pupil Right</label>
                                 <div class="col-md-6">
-                                    <input type="text" class="form-control input-md" placeholder="React" id="freqObservationChartModalPupilRightReact">
+                                    <input type="text" class="form-control input-md singleNumbersOnly" placeholder="React" id="freqObservationChartModalPupilRightReact" maxlength="2">
                                 </div>
                                 <div class="col-md-6">
-                                    <input type="text" class="form-control input-md" placeholder="Size" id="freqObservationChartModalPupilRightSize">
+                                    <input type="text" class="form-control input-md singleNumbersOnly" placeholder="Size" id="freqObservationChartModalPupilRightSize" maxlength="2">
                                 </div>
                             </div>
                         </div>
@@ -127,7 +127,7 @@
                             <div class="form-group">
                                 <label class="col-md-12 control-label" for="textinput">Conscious State & Remarks</label>
                                 <div class="col-md-12">
-                                    <textarea type="text" name="display_name" id="freqObservationChartModalConsiousState" class="form-control input-md" placeholder="Add conscious state & remarks.."></textarea>
+                                    <textarea type="text" name="display_name" id="freqObservationChartModalConsiousState" class="form-control input-md" placeholder="Add conscious state & remarks.." maxlength="100"></textarea>
                                 </div>
                             </div>
                         </div>

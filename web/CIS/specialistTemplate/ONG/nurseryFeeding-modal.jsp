@@ -52,7 +52,7 @@
                             <div class="form-group">
                                 <label class="col-md-12 control-label" for="textinput">Strength Of Milk</label>
                                 <div class="col-md-12">
-                                    <input type="text" class="form-control input-md" id="nurseryFeedingChartModalMilkStrength">
+                                    <input type="text" class="form-control input-md" id="nurseryFeedingChartModalMilkStrength" maxlength="50">
                                 </div>
                             </div>
                         </div>
@@ -61,7 +61,7 @@
                             <div class="form-group">
                                 <label class="col-md-12 control-label" for="textinput">Method Of Feeding</label>
                                 <div class="col-md-12">
-                                    <input type="text" class="form-control input-md" id="nurseryFeedingChartModalFeedingMethod">
+                                    <input type="text" class="form-control input-md" id="nurseryFeedingChartModalFeedingMethod" maxlength="50">
                                 </div>
                             </div>
                         </div>
@@ -77,7 +77,7 @@
                             <div class="form-group">
                                 <label class="col-md-12 control-label" for="textinput">Aspirate Vomit</label>
                                 <div class="col-md-12">
-                                    <input type="text" class="form-control input-md" id="nurseryFeedingChartModalAspirateVomit">
+                                    <input type="text" class="form-control input-md" id="nurseryFeedingChartModalAspirateVomit" maxlength="50">
                                 </div>
                             </div>
                         </div>
@@ -86,7 +86,7 @@
                             <div class="form-group">
                                 <label class="col-md-12 control-label" for="textinput">Temperature</label>
                                 <div class="col-md-12">
-                                    <input type="text" class="form-control input-md" id="nurseryFeedingChartModalTemperature">
+                                    <input type="text" class="form-control input-md singleNumbersOnly" id="nurseryFeedingChartModalTemperature" maxlength="3">
 
                                 </div>
                             </div>
@@ -96,7 +96,7 @@
                             <div class="form-group">
                                 <label class="col-md-12 control-label" for="textinput">Respiration</label>
                                 <div class="col-md-12">
-                                    <input type="text" class="form-control input-md" id="nurseryFeedingChartModalRespiration">
+                                    <input type="text" class="form-control input-md singleNumbersOnly" id="nurseryFeedingChartModalRespiration" maxlength="3">
                                 </div>
                             </div>
                         </div>
@@ -112,7 +112,7 @@
                             <div class="form-group">
                                 <label class="col-md-12 control-label" for="textinput">PU</label>
                                 <div class="col-md-12">
-                                    <input type="text" class="form-control input-md" id="nurseryFeedingChartModalPU">
+                                    <input type="text" class="form-control input-md" id="nurseryFeedingChartModalPU" maxlength="10">
                                 </div>
                             </div>
                         </div>
@@ -121,7 +121,7 @@
                             <div class="form-group">
                                 <label class="col-md-12 control-label" for="textinput">BO</label>
                                 <div class="col-md-12">
-                                    <input type="text" class="form-control input-md" id="nurseryFeedingChartModalBO">
+                                    <input type="text" class="form-control input-md" id="nurseryFeedingChartModalBO" maxlength="10">
                                 </div>
                             </div>
                         </div>
@@ -137,7 +137,7 @@
                             <div class="form-group">
                                 <label class="col-md-12 control-label" for="textinput">Conscious State & Remarks</label>
                                 <div class="col-md-12">
-                                    <textarea type="text" name="display_name" id="nurseryFeedingChartModalRemark" class="form-control input-md" placeholder="Add conscious state & remarks.."></textarea>
+                                    <textarea type="text" name="display_name" id="nurseryFeedingChartModalRemark" class="form-control input-md" placeholder="Add conscious state & remarks.." maxlength="100"></textarea>
                                 </div>
                             </div>
                         </div>

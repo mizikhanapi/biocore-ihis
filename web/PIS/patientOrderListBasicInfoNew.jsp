@@ -279,6 +279,7 @@
 
 
     var episodeDate;
+    var encounterDate;
 
     // Move to Order Details Fetch Details Start
     $('#patientOrderListContent').off('click', '#patientOrderListTable #moveToOrderDetailsTButton').on('click', '#patientOrderListTable #moveToOrderDetailsTButton', function (e) {
@@ -309,6 +310,7 @@
         var patientOrderDate = arrayData[5];
         var patientOrderLocationCode = arrayData[2];
         var patientOrderEpisodeDate = arrayData[3];
+        var patientOrderEncounterDate = arrayData[4];
         var patientOrderLocationCodeName = arrayData[23];
 
 
@@ -316,12 +318,14 @@
         var orderNo = patientOrderNo;
         var orderDate = patientOrderDate;
         episodeDate = patientOrderEpisodeDate;
+        encounterDate = patientOrderEncounterDate;
 
         var data = {
             pmiNo: pmiNo,
             orderNo: orderNo,
             orderDate: orderDate,
-            episodeDate: episodeDate
+            episodeDate: episodeDate,
+            encounterDate: encounterDate
         };
 
         $.ajax({
@@ -576,9 +580,9 @@
             url: 'patientOrderListNewOrderSearchResult.jsp',
             data: {'id': id},
             success: function (reply_data) {
-                
+
                 console.log(reply_data.trim());
-                
+
                 var array_data = String(reply_data.trim()).split("|");
                 var dtoCode = array_data[0];
                 var dtoGnr = array_data[1];
@@ -1140,7 +1144,7 @@
             if (drugChecked === true && drugDispensedQty !== "0") {
 
                 //                              0           1       2                3               4                  5                   6                    7                   8     
-                var dataOneRowBLI = "BLI|T^" + dateBill + "|CH|" + pmino + "|" + drugCode + "|" + drugDesc + "|" + drugPrice + "|" + drugDispensedQty + "|" + userIDBill + "|" + dateBill + "<cr>\n";
+                var dataOneRowBLI = "BLI|T^" + dateBill + "|CH|" + pmino + "|" + drugCode + "|" + drugDesc + "|" + drugTotalPrice + "|" + drugDispensedQty + "|" + userIDBill + "|" + dateBill + "<cr>\n";
 
 
                 //                    0                         1                                       2                               3                                                       4    

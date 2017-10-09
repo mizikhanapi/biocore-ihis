@@ -96,7 +96,7 @@
                         <!-- content -->
                         <div class="tab-pane fade" id="ONG_5">
                             <ul class="soap-content nav">
-                                <li><a data-toggle="modal" data-target="#CIS01000001" href="" class="soap-select"><i class="fa fa-comments  fa-li"></i>Forms</a></li>
+                                <li><a data-toggle="modal" data-target="#ong-nurseryUseMaster" id="nurseryUseMasterAddNewRecord" href="" class="soap-select"><i class="fa fa-comments  fa-li"></i>Add Master</a></li>
                             </ul>
                             <hr class="pemisah" />
                             <%@include file="ong/nurseUse.jsp"%>
@@ -128,12 +128,12 @@
                         <div class="tab-pane fade" id="ONG_8">
                             <ul class="soap-content nav">
                                 <li><a data-toggle="modal" data-target="#LS_labourModal" href="" class="soap-select"><i class="fa fa-comments  fa-li"></i>New Summary</a></li>
-<!--                                <li><a data-toggle="modal" data-target="#ong-labourSummary2" href="" class="soap-select"><i class="fa fa-comments  fa-li"></i>Delivery Date & Time</a></li>
-                                <li><a data-toggle="modal" data-target="#CIS01000001" href="" class="soap-select"><i class="fa fa-comments  fa-li"></i>Labour Begin</a></li>
-                                <li><a data-toggle="modal" data-target="#CIS01000001" href="" class="soap-select"><i class="fa fa-comments  fa-li"></i>Conducterd & Witness</a></li>
-                                <li><a data-toggle="modal" data-target="#CIS01000001" href="" class="soap-select"><i class="fa fa-comments  fa-li"></i>Infant - Birth Record</a></li>
-                                <li><a data-toggle="modal" data-target="#CIS01000001" href="" class="soap-select"><i class="fa fa-comments  fa-li"></i>Mother - Transfer Observations</a></li>
-                                <li><a data-toggle="modal" data-target="#CIS01000001" href="" class="soap-select"><i class="fa fa-comments  fa-li"></i>Puerperium</a></li>-->
+                                <!--                                <li><a data-toggle="modal" data-target="#ong-labourSummary2" href="" class="soap-select"><i class="fa fa-comments  fa-li"></i>Delivery Date & Time</a></li>
+                                                                <li><a data-toggle="modal" data-target="#CIS01000001" href="" class="soap-select"><i class="fa fa-comments  fa-li"></i>Labour Begin</a></li>
+                                                                <li><a data-toggle="modal" data-target="#CIS01000001" href="" class="soap-select"><i class="fa fa-comments  fa-li"></i>Conducterd & Witness</a></li>
+                                                                <li><a data-toggle="modal" data-target="#CIS01000001" href="" class="soap-select"><i class="fa fa-comments  fa-li"></i>Infant - Birth Record</a></li>
+                                                                <li><a data-toggle="modal" data-target="#CIS01000001" href="" class="soap-select"><i class="fa fa-comments  fa-li"></i>Mother - Transfer Observations</a></li>
+                                                                <li><a data-toggle="modal" data-target="#CIS01000001" href="" class="soap-select"><i class="fa fa-comments  fa-li"></i>Puerperium</a></li>-->
                             </ul>
                             <hr class="pemisah" />
                             <%@include file="ong/labourSummary.jsp"%>
@@ -172,21 +172,37 @@
         var newDate = date[2] + "-" + date[1] + "-" + date[0];
         return newDate;
     }
-    $('#tabPI').on('click',function(){
+    $('#tabPI').on('click', function () {
         var pmi_no = pmiNo;
         var hfc_cd1 = hfc_cd;
         var x = pmi_no + "|" + hfc_cd1;
         getPI(x);
         getPIpreg(x);
     });
-    
-    $('#tabBP').on('click',function(){
+
+    $('#tabBP').on('click', function () {
         var pmi_no = pmiNo;
         var hfc_cd1 = hfc_cd;
         var x = pmi_no + "|" + hfc_cd1;
         getBP(x);
         getAnteNatal(x);
     });
-    
+
+
+
+    $('.decimalNumbersOnly').keyup(function () {
+        if (this.value !== this.value.replace(/[^0-9\.]/g, '')) {
+            this.value = this.value.replace(/[^0-9\.]/g, '');
+        }
+    });
+
+
+    $('.singleNumbersOnly').keyup(function () {
+        if (this.value !== this.value.replace(/[^0-9]/g, '')) {
+            this.value = this.value.replace(/[^0-9]/g, '');
+        }
+    });
+
+
 </script>
 
