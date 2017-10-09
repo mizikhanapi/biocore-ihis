@@ -165,8 +165,6 @@ public class PRI_ord {
                             }
                         }
                     }
-                } else {
-                    System.out.println("NO data");
                 }
             }
         } catch (Exception e) {

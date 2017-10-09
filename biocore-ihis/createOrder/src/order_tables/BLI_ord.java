@@ -32,6 +32,8 @@ public class BLI_ord {
         //set default value to true. When insertion failed var will switch to false and patient will noy update to 3
         boolean status_far_master = true;
         boolean status_far_detail = true;
+        double tAmt = 0.0;
+        int tQnt = 0;
         //import get_ehr_central_data class to get the records from ehr_central
        // get_ehr_central_data t = new get_ehr_central_data();
       //  t.getQuery();
@@ -53,18 +55,24 @@ public class BLI_ord {
 
                   ArrayList<ArrayList<String>> orcs = orc.get(orc_i).getValue();
                 if (orcs.get(1).get(0).equals("T12113")) {
-                    Date date2 = new Date();
-                        All_Seq_no allSeq = new All_Seq_no();
-                        allSeq.genSeq(msh.getSendingFacilityCode(), msh.getSendingFacilityDis(), msh.getSendingFacilitySubDis(), "BLI");
-                        double tAmt = 0.0;
-                        int tQnt = 0;
-                        for (int bli_i = 0; bli_i < bli1.size(); bli_i++) {
-                            ArrayList<ArrayList<String>> blis = bli1.get(bli_i).getValue();
-                            tAmt += Double.parseDouble(blis.get(bli_i).get(6));
-                            tQnt += Integer.parseInt(blis.get(bli_i).get(7));
-                        }
-                String sql_BLI = "INSERT INTO far_order_master (customer_id, order_no, txn_date, item_desc, item_amt, bill_no, quantity, location, payment, amt_paid, hfc_cd, discipline_cd, subdiscipline_cd, ordering_hfc_cd, ordering_subdiscipline, ordering_subdiscipline_cd, txn_type, status, created_by, created_date) values ('" + t.getPmi_no() + "','" + orcs.get(2).get(0) + "','" + orcs.get(7).get(0) + "','-','"+tQnt+"','-','"+tAmt+"','" + orcs.get(12).get(0) + "','unpaid','0','" + orcs.get(12).get(0) + "','" + orcs.get(13).get(0) + "','" + orcs.get(14).get(0) + "','" + orcs.get(12).get(0) + "','-','-','"+msh.getSendingApplication()+"','0','" + orcs.get(9).get(0) + "','" + orcs.get(7).get(0) + "')";
+//                    Date date2 = new Date();
+//                        All_Seq_no allSeq = new All_Seq_no();
+//                        allSeq.genSeq(msh.getSendingFacilityCode(), msh.getSendingFacilityDis(), msh.getSendingFacilitySubDis(), "BLI");
+                        
+
                           try {
+                            for (int bli_i = 0; bli_i < bli1.size(); bli_i++) {
+                                
+                            ArrayList<ArrayList<String>> blis2 = bli1.get(bli_i).getValue();
+                            
+                            tAmt += Double.parseDouble(blis2.get(6).get(0));
+                            System.out.println("Total Amount Billing : "+tAmt);
+                            tQnt += Integer.parseInt(blis2.get(7).get(0));
+                            
+                            System.out.println("Total Quantity Billing : "+tQnt);
+                            
+                        }
+                                String sql_BLI = "INSERT INTO far_order_master (customer_id, order_no, txn_date, item_desc, item_amt, bill_no, quantity, location, payment, amt_paid, hfc_cd, discipline_cd, subdiscipline_cd, ordering_hfc_cd, ordering_subdiscipline, ordering_subdiscipline_cd, txn_type, status, created_by, created_date) values ('" + t.getPmi_no() + "','" + orcs.get(2).get(0) + "','" + orcs.get(7).get(0) + "','-','"+tAmt+"','-','"+tQnt+"','" + orcs.get(12).get(0) + "','unpaid','0','" + orcs.get(12).get(0) + "','" + orcs.get(13).get(0) + "','" + orcs.get(14).get(0) + "','" + orcs.get(12).get(0) + "','-','-','"+msh.getSendingApplication()+"','0','" + orcs.get(9).get(0) + "','" + orcs.get(7).get(0) + "')";
                                 status_far_master = rc.setQuerySQL(Config.ipAddressServer, Config.portServer, sql_BLI);
                                 if (status_far_master == true  && orcs.get(29).get(0).equalsIgnoreCase("08")) {
                                     System.out.println("-------------------------------------------");
@@ -72,12 +80,8 @@ public class BLI_ord {
                                     // Vector<BLI2> bli1 = sv.getVbli();
 
                                     for (int bli_i = 0; bli_i < bli1.size(); bli_i++) {
-                                        Date date = new Date();
                                         ArrayList<ArrayList<String>> blis = bli1.get(bli_i).getValue();
-
-
-
-                                       sql_bli_det = "INSERT INTO far_order_detail (order_no, txn_date, item_cd, item_desc, item_amt, quantity, location, customer_id, status, created_by, created_date) values ('" + orcs.get(2).get(0) + "','" +blis.get(1).get(1) + "','" + blis.get(4).get(0) + "','" + blis.get(5).get(0) + "','" + blis.get(6).get(0) + "','" + blis.get(7).get(0) + "','" + orcs.get(12).get(0) + "','" + blis.get(3).get(0) + "','0','" + blis.get(8).get(0) + "','" + blis.get(9).get(0) + "')";
+                                       sql_bli_det = "INSERT INTO far_order_detail (order_no, txn_date, item_cd, item_desc, item_amt, quantity, location, customer_id, status, created_by, created_date) values ('" + orcs.get(2).get(0) + "','" +orcs.get(7).get(0) + "','" + blis.get(4).get(0) + "','" + blis.get(5).get(0) + "','" + blis.get(6).get(0) + "','" + blis.get(7).get(0) + "','" + orcs.get(12).get(0) + "','" + blis.get(3).get(0) + "','0','" + blis.get(8).get(0) + "','" + blis.get(9).get(0) + "')";
                                         status_far_detail = rc.setQuerySQL(Config.ipAddressServer, Config.portServer, sql_bli_det);
                                         if (status_far_detail == true) {
                                             System.out.println("Done with far MASTER and far DETAIL");
@@ -85,12 +89,14 @@ public class BLI_ord {
                                     } 
 
                                 }else {
-                                                System.out.println("False Insert. " + orcs.get(29).get(0) + " "+ status_far_detail + " " + sql_bli_det);
+                                    System.out.println("False Insert. " + orcs.get(29).get(0) + " "+ status_far_detail + " " + sql_bli_det);
                                 }
                         } catch (Exception e) {
                             e.getStackTrace();
                         }
-                    }
+                    }else{
+                    System.out.println("No data");
+                }
                 }         
 
         } catch (Exception e) {
