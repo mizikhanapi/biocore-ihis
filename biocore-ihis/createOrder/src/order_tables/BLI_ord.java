@@ -56,7 +56,14 @@ public class BLI_ord {
                     Date date2 = new Date();
                         All_Seq_no allSeq = new All_Seq_no();
                         allSeq.genSeq(msh.getSendingFacilityCode(), msh.getSendingFacilityDis(), msh.getSendingFacilitySubDis(), "BLI");
-                String sql_BLI = "INSERT INTO far_order_master (customer_id, order_no, txn_date, item_desc, item_amt, bill_no, quantity, location, payment, amt_paid, hfc_cd, discipline_cd, subdiscipline_cd, ordering_hfc_cd, ordering_subdiscipline, ordering_subdiscipline_cd, txn_type, status, created_by, created_date) values ('" + t.getPmi_no() + "','" + allSeq.getSeq() + "','" + orcs.get(7).get(0) + "','-','2','-','2','" + orcs.get(12).get(0) + "','unpaid','10','" + orcs.get(12).get(0) + "','" + orcs.get(13).get(0) + "','" + orcs.get(14).get(0) + "','" + orcs.get(12).get(0) + "','-','-','"+orcs.get(1).get(0)+"','0','" + orcs.get(9).get(0) + "','" + orcs.get(7).get(0) + "')";
+                        double tAmt = 0.0;
+                        int tQnt = 0;
+                        for (int bli_i = 0; bli_i < bli1.size(); bli_i++) {
+                            ArrayList<ArrayList<String>> blis = bli1.get(bli_i).getValue();
+                            tAmt += Double.parseDouble(blis.get(bli_i).get(6));
+                            tQnt += Integer.parseInt(blis.get(bli_i).get(7));
+                        }
+                String sql_BLI = "INSERT INTO far_order_master (customer_id, order_no, txn_date, item_desc, item_amt, bill_no, quantity, location, payment, amt_paid, hfc_cd, discipline_cd, subdiscipline_cd, ordering_hfc_cd, ordering_subdiscipline, ordering_subdiscipline_cd, txn_type, status, created_by, created_date) values ('" + t.getPmi_no() + "','" + orcs.get(2).get(0) + "','" + orcs.get(7).get(0) + "','-','"+tQnt+"','-','"+tAmt+"','" + orcs.get(12).get(0) + "','unpaid','0','" + orcs.get(12).get(0) + "','" + orcs.get(13).get(0) + "','" + orcs.get(14).get(0) + "','" + orcs.get(12).get(0) + "','-','-','"+msh.getSendingApplication()+"','0','" + orcs.get(9).get(0) + "','" + orcs.get(7).get(0) + "')";
                           try {
                                 status_far_master = rc.setQuerySQL(Config.ipAddressServer, Config.portServer, sql_BLI);
                                 if (status_far_master == true  && orcs.get(29).get(0).equalsIgnoreCase("08")) {
