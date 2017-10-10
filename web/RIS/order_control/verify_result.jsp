@@ -27,6 +27,8 @@
     String comment = request.getParameter("comment");
     String pmiNo = request.getParameter("pmiNo");
     String orderDate = request.getParameter("orderDate");
+    String episodeDate = request.getParameter("episodeDate");
+    String encounterDate = request.getParameter("encounterDate");
     
     
     boolean isSuccess = false;
@@ -47,7 +49,7 @@
         Order_Master om = new Order_Master(orderNo);
         om.updateOrderMasterStatus();
         
-        EHRMessageSender ems = new EHRMessageSender(userID, hfc, dis, subdis, pmiNo, orderNo, orderDate);
+        EHRMessageSender ems = new EHRMessageSender(userID, hfc, dis, subdis, pmiNo, orderNo, orderDate, episodeDate, encounterDate);
         ems.insertIntoEHR_LHR("06", bsCode, modCode, proCode);
         
         out.print("success");    

@@ -553,7 +553,7 @@ public class EHRMessageSender {
         but receiver App is here is remain the same: 14-LHR(data warehouse)  
         Transaction code is T12202 for RIS response report
         ==================================================================*/
-        String MSH_PDI_ORC = getMSH(senderApp, "08") + getPDI() + getORC("T12202", senderApp, "08");
+        String MSH_PDI_ORC = getMSH(senderApp, "14") + getPDI() + getORC("T12202", senderApp, "14");
 
         String FullEHRHeader = "";
 
