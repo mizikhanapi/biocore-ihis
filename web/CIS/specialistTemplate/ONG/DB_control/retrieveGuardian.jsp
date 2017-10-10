@@ -8,12 +8,20 @@
 <%@page import="dBConn.Conn"%>
 <%
      String pmiNo = (String) session.getAttribute("patientPMINo");
+     String leic_no = request.getParameter("ic_no");
      
      Conn con = new Conn();
+     
+     String whereCondition = "`PMI_NO`='"+pmiNo+"'";
+     
+     if(!leic_no.equalsIgnoreCase("")){
+         whereCondition=" new_ic_no='"+leic_no+"'";
+     }
    
      //                         0              1            2               3                   4                   5                   6                   7           
      String query="SELECT `PATIENT_NAME`, `NEW_IC_NO`, `HOME_ADDRESS`, `HOME_TOWN_CODE`, `HOME_DISTRICT_CODE`, `HOME_STATE_CODE`, `HOME_COUNTRY_CODE`, `HOME_POSTCODE` "
-             + "FROM pms_patient_biodata where `PMI_NO`='"+pmiNo+"' limit 1;";
+             + "FROM pms_patient_biodata where "+whereCondition
+             + " limit 1;";
     ArrayList<ArrayList<String>> dataPat = con.getData(query);
     
     String address="", name="", ic_no="";

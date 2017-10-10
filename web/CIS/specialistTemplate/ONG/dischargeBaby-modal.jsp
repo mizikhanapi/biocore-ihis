@@ -21,16 +21,23 @@
                 <h3 class="modal-title">Discharge Letter</h3>
             </div>
             <div class="modal-body">
+                <div class="pull-right">
+                            <button class="btn btn-warning" id="DB_btnOverride" title="Override"><span aria-hidden="true"><i class="fa fa-warning fa-lg"></i></span></button>
+                </div>
+                <br>
                 <form id="DB_dischargeForm">
                     <input type="hidden" id="DB_dischargeModalID">
                     <div class="col-md-12">
-                        
-                        <div class="row">
+                                               
+                          <div class="row">
                            <!-- Text input-->
                             <div class="form-group">
-                                <label class="col-md-4 control-label ls-add-update" for="textinput">Name:</label>
+                                <label class="col-md-4 control-label" for="textinput">IC /Passport number:</label>
                                 <div class="col-md-8">
-                                    <input class="form-control input-md db-override" type="text" placeholder="Insert guardian name" id="DB_guardianName" maxlength="190" disabled>
+                                    <input class="form-control input-md db-override flexdatalist" type="text" placeholder="Insert guardian IC no / passport no" id="DB_guardianID" 
+                                           data-search-by-word="true"
+                                            data-selection-required="true">
+                                    <div class="search-drop" id="DB_guardianID_match"></div>
                                 </div>
                              </div>
                         </div>
@@ -38,9 +45,9 @@
                         <div class="row">
                            <!-- Text input-->
                             <div class="form-group">
-                                <label class="col-md-4 control-label" for="textinput">IC /Passport number:</label>
+                                <label class="col-md-4 control-label ls-add-update" for="textinput">Name:</label>
                                 <div class="col-md-8">
-                                    <input class="form-control input-md db-override" type="text" placeholder="Insert guardian IC no / passport no" id="DB_guardianID" >
+                                    <input class="form-control input-md " type="text" placeholder="Insert guardian name" id="DB_guardianName" maxlength="190" disabled>
                                 </div>
                              </div>
                         </div>
@@ -82,7 +89,10 @@
                             <div class="form-group">
                                 <label class="col-md-4 control-label" for="textinput">Infant tag number:</label>
                                 <div class="col-md-8">
-                                    <input class="form-control input-md" id="DB_tagNo" type="text" maxlength="200">
+                                    <input class="form-control input-md flexdatalist" id="DB_tagNo" type="text" maxlength="200" 
+                                           data-search-by-word="true"
+                                            data-selection-required="true">
+                                     <div class="search-drop" id="DB_tagNo_match"></div>
                                 </div>
                              </div>
                         </div>
@@ -112,7 +122,10 @@
                             <div class="form-group">
                                 <label class="col-md-4 control-label" for="textinput">Staff on duty:</label>
                                 <div class="col-md-8">
-                                    <input class="form-control input-md db-override" id="DB_staff" type="text">
+                                    <input class="form-control input-md db-override flexdatalist" id="DB_staff" type="text" 
+                                           data-search-by-word="true"
+                                            data-selection-required="true">
+                                     <div class="search-drop" id="DB_staff_match"></div>
                                     <input type="hidden" id="DB_staffID">
                                 </div>
                              </div>

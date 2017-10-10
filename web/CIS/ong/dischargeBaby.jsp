@@ -152,7 +152,7 @@
 
                 $('.db-override').prop('disabled', true);
                 $('#DB_tagNo').prop("disabled",false);
-                DB_loadGuardian();
+                DB_loadGuardian("", true);
                 DB_getInfantTag();
                 DB_getStaff();
                 $('#DB_dischargeModal').modal('show');
@@ -182,16 +182,20 @@
         });
     }
     
-    function DB_loadGuardian(){
+    function DB_loadGuardian(ic_no, canIC){
         createScreenLoading();
+        var data ={ic_no : ic_no};
         $.ajax({
             type: 'POST',
             url: "specialistTemplate/ONG/DB_control/retrieveGuardian.jsp",
+            data : data,
             timeout: 60000,
             success: function (data, textStatus, jqXHR) {
                         var arrData = data.split("x-RD-split");
                         $('#DB_guardianName').val(arrData[0]);
-                        $('#DB_guardianID').val(arrData[1]);
+                        if(canIC){
+                            $('#DB_guardianID').val(arrData[1]);
+                        }
                         $('#DB_address').val(arrData[2]);
                     },
             error: function (jqXHR, textStatus, errorThrown) {
@@ -258,14 +262,15 @@
         var disDate = $('#DB_dischargeDate').val();
         var disTime = $('#DB_dischargeTime').val();
         var staff_id = $('#DB_staffID').val();
+        var staff_name = $('#DB_staff').val();
         
         if(name===""){
            isCom=false;
            msg="Please insert guardian's name.";
         }
-        else if(ic_no===""){
+        else if(ic_no==="" || ic_no==null){
             isCom=false;
-            msg="Please insert guardian's IC / passport number";
+            msg="Please seelct existing guardian's IC / passport number";
         }
         else if(address===""){
             isCom=false;
@@ -275,9 +280,9 @@
             isCom=false;
             msg="Please choose the guardian's relation with infant";
         }
-        else if(tagNo===""){
+        else if(tagNo==="" || tagNo==null){
             isCom=false;
-            msg="Please insert infant's tag number";
+            msg="Please seelct existing infant's tag";
         }
         else if(disDate===""){
             isCom=false;
@@ -287,9 +292,9 @@
             isCom=false;
             msg="Please pick discharge time";
         }
-        else if(staff_id===""){
+        else if(staff_id==="" || staff_id==null || staff_name==="" || staff_name==null){
             isCom=false;
-            msg="Opps! Something went wrong. Staff name and ID cannot be empty";
+            msg="Please choose existing staff";
         }
                 
         if(!isCom){
@@ -527,4 +532,34 @@
         printWindow.close();
     });
     //---------------------- == print == ------------------------------------
+    
+    //----------- destroy flex search --------------------------------------
+    $('#DB_dischargeModal').on('hidden.bs.modal', function (){
+        $('#DB_guardianID').flexdatalist('destroy');
+        $('#DB_tagNo').flexdatalist('destroy');
+        $('#DB_staff').flexdatalist('destroy');
+    });
+    //---------- == destroy flex == ---------------------------------------
+    
+    $('#DB_btnOverride').on('click', function(){
+        var guardianID = $('#DB_guardianID').val().trim();
+        LS_initFlexSearch("DB_guardianID", guardianID, "specialistTemplate/ONG/DB_control/searchPatientICFlex.jsp", "DB_guardianID_match");
+        $('#DB_guardianID').on('select:flexdatalist', function(response){
+            DB_loadGuardian($(this).val(), false);
+        });
+        
+        var tagNo = $('#DB_tagNo').val().trim();
+        LS_initFlexSearch("DB_tagNo", tagNo, "specialistTemplate/ONG/DB_control/searchInfantTagFlex.jsp", "DB_tagNo_match");
+        
+        var staff = $('#DB_staff').val().trim();
+        LS_initFlexSearch("DB_staff", staff, "specialistTemplate/ONG/LS_control/searchUserFlex.jsp", "DB_staff_match");
+        $('#DB_staff').on('select:flexdatalist', function(response){
+            var id = $(this).val();
+            $('#DB_staffID').val(id);
+        });
+        
+        $('.db-override').prop("disabled", false);
+    });
+    
+   
 </script>

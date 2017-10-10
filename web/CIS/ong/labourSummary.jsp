@@ -356,7 +356,7 @@
                 success: function (result) {
                     console.log(result);
                     if (result == null) {
-                        $('#RNO_pro_match').html('No Record');
+                        $('#'+div).html('No Record');
                     }
                 }
             }

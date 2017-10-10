@@ -86,7 +86,7 @@
                             <p>I am : <b><%=name%></b></p>
                             <p>Identity Card Number/Passport : <b><%=ic_no%></b></p>
                             <p>Address : <b><%=address%></b></p>
-                            <p>Relationship :<b><%=relationship%>&nbsp;</b> is bringing home the baby with tag number : <b><%=tag_no%></b></p>
+                            <p>Relationship :<b><%=relationship%>&nbsp;</b> is taking the baby with tag number : <b><%=tag_no%></b> home</p>
                             <p>With doctor's permission.</p>
                             <p>&nbsp;</p>
                             <p>Date : <b><%=disDate%></b></p>
@@ -107,10 +107,12 @@
                     <div> &nbsp;</div>
                     <div class="center-block">
                         <div class="text-left " style="font-family: sans-serif; font-size: 11pt;">
+                            <h4><u>DISCHARGE OF BABY</u></h4>
+                            <br>
                             <p>I am : <b><%=name%></b></p>
                             <p>Identity Card Number/Passport : <b><%=ic_no%></b></p>
                             <p>Address : <b><%=address%></b></p>
-                            <p>Relationship : <b><%=relationship%>&nbsp;</b> is bringing home the baby with <span style="white-space: nowrap">tag number : <b><%=tag_no%></b></span></p>
+                            <p>Relationship : <b><%=relationship%>&nbsp;</b> is taking the baby with <span style="white-space: nowrap">tag number : <b><%=tag_no%></b></span> home</p>
                             <p>With doctor's permission.</p>
                             <p>&nbsp;</p>
                             <p>Date : <b><%=disDate%></b></p>
