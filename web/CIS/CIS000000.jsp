@@ -35,7 +35,12 @@
         <%@ include file="../assets/header.html" %> 
         <link href="../assets/css/toggleButton.css" rel="stylesheet" type="text/css"/>
         <!-- header -->
-
+        <style type="text/css">
+            u.dotted{
+              border-bottom: 1px dashed #999;
+              text-decoration: none; 
+            }
+        </style>
 
 
         <script type="text/javascript">
