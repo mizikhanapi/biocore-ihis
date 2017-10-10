@@ -18,6 +18,8 @@
                     
                     <input type="hidden" id="VR_pmiNo">
                     <input type="hidden" id="VR_orderDate">
+                    <input type="hidden" id="VR_episodeDate">
+                    <input type="hidden" id="VR_encounterDate">
                     
                      <!-- Text input-->
                     <div class="form-group">

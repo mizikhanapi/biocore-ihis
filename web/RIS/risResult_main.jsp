@@ -29,7 +29,7 @@
 
         var row = $(this).closest("tr");
         var arrData = row.find('td').eq(0).text().split('|');
-        var bsCode = arrData[1], bsName = arrData[2], modCode = arrData[3], modName = arrData[4], proCode = arrData[5], proName = arrData[6], orderNo = arrData[0], comment = arrData[7], pmiNo = arrData[8], orderDate = arrData[9];
+        var bsCode = arrData[1], bsName = arrData[2], modCode = arrData[3], modName = arrData[4], proCode = arrData[5], proName = arrData[6], orderNo = arrData[0], comment = arrData[7], pmiNo = arrData[8], orderDate = arrData[9], episodeDate=arrData[10], encounterDate=arrData[11];
 
         var data = {
             orderNo: orderNo,
@@ -63,6 +63,8 @@
         $('#VR_comment').val(comment);
         $('#VR_pmiNo').val(pmiNo);
         $('#VR_orderDate').val(orderDate);
+        $('#VR_episodeDate').val(episodeDate);
+        $('#VR_encounterDate').val(encounterDate);
         
         console.log(pmiNo + '-' + orderDate);
         $('#modal_verifyResult').modal('show');
@@ -77,6 +79,8 @@
         var comment = $('#VR_comment').val();
         var pmiNo = $('#VR_pmiNo').val();
         var orderDate = $('#VR_orderDate').val();
+        var episodeDate = $('#VR_episodeDate').val();
+        var encounterDate = $('#VR_encounterDate').val();
 
         comment = comment.replace(/'/g, "\\\'").replace(/"/g, "\\\"");
         createScreenLoading();
@@ -88,7 +92,9 @@
             proCode: proCode,
             comment: comment,
             pmiNo: pmiNo,
-            orderDate: orderDate
+            orderDate: orderDate,
+            episodeDate : episodeDate,
+            encounterDate : encounterDate
         };
 
         $.ajax({

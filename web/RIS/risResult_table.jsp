@@ -38,8 +38,8 @@
         if (!hfc_cd.equals("99_iHIS_99") || !last_nine.equals("9")) {
             whereClause = " where hfc_cd = '"+hfc_cd+"' or hfc_to = '"+hfc_cd+"' ";
         }
-//                                  0             1                       2                  3           4                    5                    6                    7                   8           9
-        String sql = "SELECT res.order_no, res.body_system_cd, bs.body_system_name, res.modality_cd, md.modality_name, res.procedure_cd, pm.ris_procedure_name, res.filler_comments, rom.pmi_no, rom.order_date "
+//                                  0             1                       2                  3           4                    5                    6                    7                   8           9               10                  11
+        String sql = "SELECT res.order_no, res.body_system_cd, bs.body_system_name, res.modality_cd, md.modality_name, res.procedure_cd, pm.ris_procedure_name, res.filler_comments, rom.pmi_no, rom.order_date, rom.episode_date, rom.encounter_date "
                 + "from ris_result_detail res "
                 + "left join ris_body_system bs on res.body_system_cd = bs.body_system_cd AND bs.hfc_cd = '"+hfc_cd+"' "
                 + "left join ris_modality md on res.modality_cd = md.modality_cd AND md.hfc_cd = '"+hfc_cd+"' "

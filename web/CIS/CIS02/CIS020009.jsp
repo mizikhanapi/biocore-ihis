@@ -66,6 +66,7 @@
                 <h3 class="modal-title" id="lineModalLabel">Physical Exam</h3>
             </div>
             <div class="modal-body">
+                <label>Physical Examination</label>
                 <div class="form-group">
                     <select name="pe0" id="pe0" class="form-control input-lg">
                         <option value="">-Select Physical Examination-</option>

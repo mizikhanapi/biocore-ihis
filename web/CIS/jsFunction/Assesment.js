@@ -72,22 +72,25 @@ $(document).ready(function(){
             obj1[this.id] = $(this).val();
           
         });
-        if (checkDGS(_data, obj1)) {
-            bootbox.alert("This Diagnosis already been inserted. Please choose at consultation note to update the record or add new Diagnosis");
-        }else{
-            _data.push(obj1);
-            displayDGS(Type, date4, Problem8, Severity1, Site1, Laterality1, comment8);
+         if(validationField(Problem8,"Please enter the correct Diagnosis")){
+              if (checkDGS(_data, obj1)) {
+                bootbox.alert("This Diagnosis already been inserted. Please choose at consultation note to update the record or add new Diagnosis");
+            } else {
+                _data.push(obj1);
+                displayDGS(Type, date4, Problem8, Severity1, Site1, Laterality1, comment8);
 
-            $("#searchDiag").val("");
-            retriveDataSearchingAssessment("tCISSubDGSSearch", "tCISSubDGSSearchLoading", "search/ResultDGSSearch.jsp", "search/ResultDGSSearchCode.jsp", "dgsCode", "");
-            $("#commentDGS").val("");
-            $("#TypeDGS").val("1");
-            $("#dateDGS").val("");
-            $("#SiteDGS").val("1");
-            $("#SeverityDGS").val("1");
-            $("#LateralityDGS").val("1");
-            $("#CIS030001").modal('toggle');
-        }
+                $("#searchDiag").val("");
+                retriveDataSearchingAssessment("tCISSubDGSSearch", "tCISSubDGSSearchLoading", "search/ResultDGSSearch.jsp", "search/ResultDGSSearchCode.jsp", "dgsCode", "");
+                $("#commentDGS").val("");
+                $("#TypeDGS").val("1");
+                $("#dateDGS").val("");
+                $("#SiteDGS").val("1");
+                $("#SeverityDGS").val("1");
+                $("#LateralityDGS").val("1");
+                $("#CIS030001").modal('toggle');
+            }
+         }
+       
  
 
       

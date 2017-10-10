@@ -654,47 +654,49 @@ $(document).ready(function () {
         var PEComment = $('#PEComment').val();
 
         //var NotesPE = pe0 + ', ' + pe1 + ', ' + pe2 + ',' + pe3 + ', ' + pe4 + ', ' + pe5 + ', ' + pe6 + ', ' + pe7 + ', ' + pe8;
+         if(validationField(pe0,"Please enter the correct Physical Examination")){
+             if (pe1.length < 1) {
+                NotesPE = pe0;
+            } else if (pe2.length < 1) {
+                NotesPE = pe0 + ', ' + pe1;
+            } else if (pe3.length < 1) {
+                NotesPE = pe0 + ', ' + pe1 + ', ' + pe2;
+            } else if (pe4.length < 1) {
+                NotesPE = pe0 + ', ' + pe1 + ', ' + pe2 + ',' + pe3;
+            } else if (pe5.length < 1) {
+                NotesPE = pe0 + ', ' + pe1 + ', ' + pe2 + ',' + pe3 + ', ' + pe4;
+            } else if (pe6.length < 1) {
+                NotesPE = pe0 + ', ' + pe1 + ', ' + pe2 + ',' + pe3 + ', ' + pe4 + ', ' + pe5;
+            } else if (pe7.length < 1) {
+                NotesPE = pe0 + ', ' + pe1 + ', ' + pe2 + ',' + pe3 + ', ' + pe4 + ', ' + pe5 + ', ' + pe6;
+            } else if (pe8.length < 1) {
+                NotesPE = pe0 + ', ' + pe1 + ', ' + pe2 + ',' + pe3 + ', ' + pe4 + ', ' + pe5 + ', ' + pe6 + ', ' + pe7;
+            }
 
-        if (pe1.length < 1) {
-            NotesPE = pe0;
-        } else if (pe2.length < 1) {
-            NotesPE = pe0 + ', ' + pe1;
-        } else if (pe3.length < 1) {
-            NotesPE = pe0 + ', ' + pe1 + ', ' + pe2;
-        } else if (pe4.length < 1) {
-            NotesPE = pe0 + ', ' + pe1 + ', ' + pe2 + ',' + pe3;
-        } else if (pe5.length < 1) {
-            NotesPE = pe0 + ', ' + pe1 + ', ' + pe2 + ',' + pe3 + ', ' + pe4;
-        } else if (pe6.length < 1) {
-            NotesPE = pe0 + ', ' + pe1 + ', ' + pe2 + ',' + pe3 + ', ' + pe4 + ', ' + pe5;
-        } else if (pe7.length < 1) {
-            NotesPE = pe0 + ', ' + pe1 + ', ' + pe2 + ',' + pe3 + ', ' + pe4 + ', ' + pe5 + ', ' + pe6;
-        } else if (pe8.length < 1) {
-            NotesPE = pe0 + ', ' + pe1 + ', ' + pe2 + ',' + pe3 + ', ' + pe4 + ', ' + pe5 + ', ' + pe6 + ', ' + pe7;
-        }
-
-        var itemIDpe = [];
-        itemIDpe.push(pitemIDpe0);
-        itemIDpe.push(pitemIDpe1);
-        itemIDpe.push(pitemIDpe2);
-        itemIDpe.push(pitemIDpe3);
-        itemIDpe.push(pitemIDpe4);
-        itemIDpe.push(pitemIDpe5);
-        itemIDpe.push(pitemIDpe6);
-        itemIDpe.push(pitemIDpe7);
-        itemIDpe.push(pitemIDpe8);
+            var itemIDpe = [];
+            itemIDpe.push(pitemIDpe0);
+            itemIDpe.push(pitemIDpe1);
+            itemIDpe.push(pitemIDpe2);
+            itemIDpe.push(pitemIDpe3);
+            itemIDpe.push(pitemIDpe4);
+            itemIDpe.push(pitemIDpe5);
+            itemIDpe.push(pitemIDpe6);
+            itemIDpe.push(pitemIDpe7);
+            itemIDpe.push(pitemIDpe8);
 
 
-        var items = $('#pe1,#pe2,#pe3,#pe4,#pe5,#pe6,#pe7,#pe8,#PEComment');
+            var items = $('#pe1,#pe2,#pe3,#pe4,#pe5,#pe6,#pe7,#pe8,#PEComment');
 
-        var obj1 = {Acode: "PEM", pe0: pe0, id: itemIDpe};
-        items.each(function () {
-            obj1[this.id] = $(this).val();
-        });
-        _data.push(obj1);
-    
-        displayPEM(NotesPE, PEComment);
-        $("#CIS020009").modal('hide');
+            var obj1 = {Acode: "PEM", pe0: pe0, id: itemIDpe};
+            items.each(function () {
+                obj1[this.id] = $(this).val();
+            });
+            _data.push(obj1);
+
+            displayPEM(NotesPE, PEComment);
+            $("#CIS020009").modal('hide');
+         }
+        
     });
 
     $("#ortho_accpetPEBtn").click(function () {
@@ -886,77 +888,79 @@ $(document).ready(function () {
 
         var itemIDpe = [];
 
-      
+      if(validationField(upObject.pe0,"Please enter the correct Physical Examination")){
+            var NotesPE;
+            if (upObject.pe1.length < 1) {
+                NotesPE = upObject.pe0;
+            } else if (upObject.pe2.length < 1) {
+                NotesPE = upObject.pe0 + ', ' + upObject.pe1;
 
-        var NotesPE;
-        if (upObject.pe1.length < 1) {
-            NotesPE = upObject.pe0;
-        } else if (upObject.pe2.length < 1) {
-            NotesPE = upObject.pe0 + ', ' + upObject.pe1;
+                pitemIDpe2 = "";
+                pitemIDpe3 = "";
+                pitemIDpe4 = "";
+                pitemIDpe5 = "";
+                pitemIDpe6 = "";
+                pitemIDpe7 = "";
+                pitemIDpe8 = "";
+            } else if (upObject.pe3.length < 1) {
+                NotesPE = upObject.pe0 + ', ' + upObject.pe1 + ', ' + upObject.pe2;
 
-            pitemIDpe2 = "";
-            pitemIDpe3 = "";
-            pitemIDpe4 = "";
-            pitemIDpe5 = "";
-            pitemIDpe6 = "";
-            pitemIDpe7 = "";
-            pitemIDpe8 = "";
-        } else if (upObject.pe3.length < 1) {
-            NotesPE = upObject.pe0 + ', ' + upObject.pe1 + ', ' + upObject.pe2;
+                pitemIDpe3 = "";
+                pitemIDpe4 = "";
+                pitemIDpe5 = "";
+                pitemIDpe6 = "";
+                pitemIDpe7 = "";
+                pitemIDpe8 = "";
+            } else if (upObject.pe4.length < 1) {
+                NotesPE = upObject.pe0 + ', ' + upObject.pe1 + ', ' + upObject.pe2 + ',' + upObject.pe3;
 
-            pitemIDpe3 = "";
-            pitemIDpe4 = "";
-            pitemIDpe5 = "";
-            pitemIDpe6 = "";
-            pitemIDpe7 = "";
-            pitemIDpe8 = "";
-        } else if (upObject.pe4.length < 1) {
-            NotesPE = upObject.pe0 + ', ' + upObject.pe1 + ', ' + upObject.pe2 + ',' + upObject.pe3;
+                pitemIDpe4 = "";
+                pitemIDpe5 = "";
+                pitemIDpe6 = "";
+                pitemIDpe7 = "";
+                pitemIDpe8 = "";
+            } else if (upObject.pe5.length < 1) {
+                NotesPE = upObject.pe0 + ', ' + upObject.pe1 + ', ' + upObject.pe2 + ',' + upObject.pe3 + ', ' + upObject.pe4;
 
-            pitemIDpe4 = "";
-            pitemIDpe5 = "";
-            pitemIDpe6 = "";
-            pitemIDpe7 = "";
-            pitemIDpe8 = "";
-        } else if (upObject.pe5.length < 1) {
-            NotesPE = upObject.pe0 + ', ' + upObject.pe1 + ', ' + upObject.pe2 + ',' + upObject.pe3 + ', ' + upObject.pe4;
+                pitemIDpe5 = "";
+                pitemIDpe6 = "";
+                pitemIDpe7 = "";
+                pitemIDpe8 = "";
+            } else if (upObject.pe6.length < 1) {
+                NotesPE = upObject.pe0 + ', ' + upObject.pe1 + ', ' + upObject.pe2 + ',' + upObject.pe3 + ', ' + upObject.pe4 + ', ' + upObject.pe5;
 
-            pitemIDpe5 = "";
-            pitemIDpe6 = "";
-            pitemIDpe7 = "";
-            pitemIDpe8 = "";
-        } else if (upObject.pe6.length < 1) {
-            NotesPE = upObject.pe0 + ', ' + upObject.pe1 + ', ' + upObject.pe2 + ',' + upObject.pe3 + ', ' + upObject.pe4 + ', ' + upObject.pe5;
+                pitemIDpe6 = "";
+                pitemIDpe7 = "";
+                pitemIDpe8 = "";
+            } else if (upObject.pe7.length < 1) {
+                NotesPE = upObject.pe0 + ', ' + upObject.pe1 + ', ' + upObject.pe2 + ',' + upObject.pe3 + ', ' + upObject.pe4 + ', ' + upObject.pe5 + ', ' + upObject.pe6;
 
-            pitemIDpe6 = "";
-            pitemIDpe7 = "";
-            pitemIDpe8 = "";
-        } else if (upObject.pe7.length < 1) {
-            NotesPE = upObject.pe0 + ', ' + upObject.pe1 + ', ' + upObject.pe2 + ',' + upObject.pe3 + ', ' + upObject.pe4 + ', ' + upObject.pe5 + ', ' + upObject.pe6;
+                pitemIDpe7 = "";
+                pitemIDpe8 = "";
+            } else if (upObject.pe8.length < 1) {
+                NotesPE = upObject.pe0 + ', ' + upObject.pe1 + ', ' + upObject.pe2 + ',' + upObject.pe3 + ', ' + upObject.pe4 + ', ' + upObject.pe5 + ', ' + upObject.pe6 + ', ' + upObject.pe7;
 
-            pitemIDpe7 = "";
-            pitemIDpe8 = "";
-        } else if (upObject.pe8.length < 1) {
-            NotesPE = upObject.pe0 + ', ' + upObject.pe1 + ', ' + upObject.pe2 + ',' + upObject.pe3 + ', ' + upObject.pe4 + ', ' + upObject.pe5 + ', ' + upObject.pe6 + ', ' + upObject.pe7;
+                pitemIDpe8 = "";
+            }
 
-            pitemIDpe8 = "";
-        }
+            itemIDpe.push(pitemIDpe0);
+            itemIDpe.push(pitemIDpe1);
+            itemIDpe.push(pitemIDpe2);
+            itemIDpe.push(pitemIDpe3);
+            itemIDpe.push(pitemIDpe4);
+            itemIDpe.push(pitemIDpe5);
+            itemIDpe.push(pitemIDpe6);
+            itemIDpe.push(pitemIDpe7);
+            itemIDpe.push(pitemIDpe8);
 
-        itemIDpe.push(pitemIDpe0);
-        itemIDpe.push(pitemIDpe1);
-        itemIDpe.push(pitemIDpe2);
-        itemIDpe.push(pitemIDpe3);
-        itemIDpe.push(pitemIDpe4);
-        itemIDpe.push(pitemIDpe5);
-        itemIDpe.push(pitemIDpe6);
-        itemIDpe.push(pitemIDpe7);
-        itemIDpe.push(pitemIDpe8);
+            upObject.id = itemIDpe;
 
-        upObject.id = itemIDpe;
+            var sum = NotesPE + ' </br> Comment:' + upObject.PEComment;
+            $('#sum' + rowId).html(sum);
+            $("#CIS020009").modal('hide');
+      }
 
-        var sum = NotesPE + ' </br> Comment:' + upObject.PEComment;
-        $('#sum' + rowId).html(sum);
-        $("#CIS020009").modal('hide');
+        
     });
 
     $('#RISResult').on('click', function () {
