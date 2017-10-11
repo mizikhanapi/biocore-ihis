@@ -156,7 +156,7 @@
                         </div>
                     </div>
 
-                    <div class="tab-content" style="padding: 0px;">
+                    <div class="tab-content" style="padding: 0px;" id="tabContent">
                         <div class="tab-pane fade in active" id="generic-soap">
                             <div class="row">
                                 <div class="col-md-12">

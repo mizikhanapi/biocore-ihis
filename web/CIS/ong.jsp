@@ -173,6 +173,7 @@
         return newDate;
     }
     function getGra(){
+        console.log("test");
         var pmi_no = pmiNo;
         var hfc_cd1 = hfc_cd;
         var x = pmi_no + "|" + hfc_cd1;
