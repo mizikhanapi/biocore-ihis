@@ -2,6 +2,7 @@
     Document   : anteNatal-modal (UI)
     Created on : May 15, 2017, 10:49:00 AM
     Author     : Mizi K
+    Modified by: Ardhi Surya; rdsurya147@gmail.com; @rdcfc
 --%>
 
 
@@ -92,7 +93,7 @@
                             <div class="form-group">
                                 <label class="col-md-4 control-label" for="textinput">Blood loss:</label>
                                 <div class="col-md-8">
-                                    <input id="LS_labourBloodLoss" type="number" placeholder="Insert blood loss in ml" class="form-control input-md" min="0" step="1">
+                                    <input id="LS_labourBloodLoss" type="number" placeholder="Insert blood loss in ml" class="form-control input-md" min="0" max="9999" step="1">
                                 </div>
                             </div>
                         </div>
@@ -116,7 +117,7 @@
                             <div class="form-group">
                                 <label class="col-md-4 control-label" for="textinput">Cord round neck:</label>
                                 <div class="col-md-8">
-                                    <input id="LS_labourCord" placeholder="Insert how many loop of cord" class="form-control input-md" type="number" min="0" step="1">
+                                    <input id="LS_labourCord" placeholder="Insert how many loop of cord" class="form-control input-md" type="number" min="0" max="30" step="1">
                                 </div>
                             </div>
                         </div>
@@ -174,7 +175,7 @@
                         <button type="button" class="btn btn-success btn-block btn-lg" id="LS_labourBtnAdd" role="button">Add Summary</button>
                     </div>
                     <div class="btn-group" role="group" id="LS_labour_div_update" style="display: none">
-                        <button type="button" class="btn btn-success btn-block btn-lg" data-dismiss="modal" role="button" id="LS_labourBtnUpdate">Update Summary</button>
+                        <button type="button" class="btn btn-success btn-block btn-lg" role="button" id="LS_labourBtnUpdate">Update Summary</button>
                     </div>
                     <div class="btn-group" role="group">
                         <button type="button" id="saveImage" class="btn btn-default btn-block btn-lg" data-dismiss="modal" role="button">Close</button>
@@ -195,7 +196,7 @@
                 <h3 class="modal-title">Labour Stage</h3>
             </div>
             <div class="modal-body">
-                <form id="LS_labourForm">
+                <form id="LS_stageForm">
                     <input type="hidden" id="LS_stageModalID">
                     <div class="col-md-12">
                         
@@ -512,7 +513,7 @@
                             <div class="form-group">
                                 <label class="col-md-4 control-label" for="textinput">Birth weight:</label>
                                 <div class="col-md-8">
-                                    <input id="LS_infantWeight" class="form-control input-md" type="number" min="0" step="1" placeholder="Insert weight in gms">
+                                    <input id="LS_infantWeight" class="form-control input-md" type="number" min="0" max="9999" step="1" placeholder="Insert weight in gms">
                                 </div>
                             </div>
                         </div>
@@ -522,7 +523,7 @@
                             <div class="form-group">
                                 <label class="col-md-4 control-label" for="textinput">Head circumference:</label>
                                 <div class="col-md-8">
-                                    <input id="LS_infantHead" class="form-control input-md" type="number" min="0" step="1" placeholder="Insert head circumference in cm">
+                                    <input id="LS_infantHead" class="form-control input-md" type="number" min="0" max="150" step="1" placeholder="Insert head circumference in cm">
                                 </div>
                             </div>
                         </div>
@@ -532,13 +533,13 @@
                             <div class="form-group">
                                 <label class="col-md-3 control-label" for="textinput">Apgar score:</label>
                                 <div class="col-md-3">
-                                    <input id="LS_infantApgar1" class="form-control input-md" type="number" min="0" step="1" placeholder="1 min">
+                                    <input id="LS_infantApgar1" class="form-control input-md" type="number" min="0" max="10" step="1" placeholder="1 min">
                                 </div>
                                 <div class="col-md-3">
-                                    <input id="LS_infantApgar2" class="form-control input-md" type="number" min="0" step="1" placeholder="5 min">
+                                    <input id="LS_infantApgar2" class="form-control input-md" type="number" min="0" max="10" step="1" placeholder="5 min">
                                 </div>
                                 <div class="col-md-3">
-                                    <input id="LS_infantApgar3" class="form-control input-md" type="number" min="0" step="1" placeholder="10 min">
+                                    <input id="LS_infantApgar3" class="form-control input-md" type="number" min="0" max="10" step="1" placeholder="10 min">
                                 </div>
                             </div>
                         </div>
@@ -548,7 +549,7 @@
                             <div class="form-group">
                                 <label class="col-md-4 control-label" for="textinput">Length:</label>
                                 <div class="col-md-8">
-                                    <input id="LS_infantLength" class="form-control input-md" type="number" min="0" step="1" placeholder="Insert length in cm">
+                                    <input id="LS_infantLength" class="form-control input-md" type="number" min="0" max="150" step="1" placeholder="Insert length in cm">
                                 </div>
                             </div>
                         </div>
@@ -656,7 +657,7 @@
                             <div class="col-md-6">
                                 <label class="col-md-4 control-label" for="textinput">Blood pulse:</label>
                                     <div class="col-md-8">
-                                        <input class="form-control input-md" type="number" min="0" step="1" placeholder="Blood pulse in bpm" id="LS_transferPulse">
+                                        <input class="form-control input-md" type="number" min="0" max="999" step="1" placeholder="Blood pulse in bpm" id="LS_transferPulse">
                                     </div>
                             </div>
                            
@@ -856,7 +857,7 @@
                             <div class="form-group">
                                 <label class="col-md-4 control-label" for="textinput">Temperature (&#8451;):</label>
                                 <div class="col-md-8">
-                                    <input class="form-control input-md" id="LS_puerTemperature" type="number" min="0" max="999" step="1">
+                                    <input class="form-control input-md" id="LS_puerTemperature" type="number" min="0" max="100" step="1">
                                 </div>
                              </div>
                         </div>

@@ -1,7 +1,7 @@
 <%-- 
     Document   : infant_update
     Created on : Oct 1, 2017, 11:22:04 PM
-    Author     : user
+    Author     : Ardhi Surya; rdsurya147@gmail.com; @rdcfc
 --%>
 
 <%@page import="main.RMIConnector"%>

@@ -1,7 +1,7 @@
 <%-- 
     Document   : labourSummary_approve
     Created on : Oct 2, 2017, 6:48:58 PM
-    Author     : user
+    Author     : Ardhi Surya; rdsurya147@gmail.com; @rdcfc
 --%>
 
 <%@page import="Formatter.FormatTarikh"%>

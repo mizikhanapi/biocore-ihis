@@ -1,7 +1,7 @@
 <%-- 
     Document   : getStaff
     Created on : Oct 9, 2017, 3:02:18 PM
-    Author     : user
+    Author     : Ardhi Surya; rdsurya147@gmail.com; @rdcfc
 --%>
 
 <%@page import="java.util.ArrayList"%>

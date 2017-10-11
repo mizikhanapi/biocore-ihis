@@ -1,7 +1,7 @@
 <%-- 
     Document   : retrieve_table
     Created on : Sep 25, 2017, 10:50:56 AM
-    Author     : user
+    Author     : Ardhi Surya; rdsurya147@gmail.com; @rdcfc
 --%>
 <%@page  import="Formatter.DateFormatter"%>
 <%@page import="java.util.ArrayList"%>

@@ -1,7 +1,7 @@
 <%-- 
     Document   : puerNote_update
     Created on : Oct 4, 2017, 3:01:01 PM
-    Author     : user
+    Author     : Ardhi Surya; rdsurya147@gmail.com; @rdcfc
 --%>
 
 <%@page import="main.RMIConnector"%>

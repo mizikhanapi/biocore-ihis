@@ -1,7 +1,7 @@
 <%-- 
     Document   : labourSummary_insert
     Created on : Sep 29, 2017, 8:31:04 PM
-    Author     : user
+    Author     : Ardhi Surya; rdsurya147@gmail.com; @rdcfc
 --%>
 
 <%@page import="main.RMIConnector"%>

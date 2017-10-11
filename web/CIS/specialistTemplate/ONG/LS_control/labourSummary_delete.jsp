@@ -1,7 +1,7 @@
 <%-- 
     Document   : labourSummary_delete
     Created on : Oct 2, 2017, 9:06:36 PM
-    Author     : user
+    Author     : Ardhi Surya; rdsurya147@gmail.com; @rdcfc
 --%>
 
 <%@page import="Formatter.FormatTarikh"%>

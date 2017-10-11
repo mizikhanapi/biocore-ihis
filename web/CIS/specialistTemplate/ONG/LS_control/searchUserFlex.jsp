@@ -1,7 +1,7 @@
 <%-- 
     Document   : searchUserFlex
     Created on : Oct 6, 2017, 10:46:23 AM
-    Author     : user
+    Author     : Ardhi Surya; rdsurya147@gmail.com; @rdcfc
 --%>
 
 <%@page import="java.util.ArrayList"%>

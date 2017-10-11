@@ -1,7 +1,7 @@
 <%-- 
     Document   : dischargeBaby
     Created on : Oct 9, 2017, 8:57:48 AM
-    Author     : user
+    Author     : Ardhi Surya; rdsurya147@gmail.com; @rdcfc
 --%>
 <%@page import="dBConn.Conn"%>
 <%@page import="java.util.ArrayList"%>
@@ -299,6 +299,7 @@
                 
         if(!isCom){
             bootbox.alert(msg);
+            $('#DB_dischargeModal').css('overflow', 'auto');
         }
         return isCom;
     }

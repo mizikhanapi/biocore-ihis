@@ -1,7 +1,7 @@
 <%-- 
     Document   : labourStage_update
     Created on : Sep 30, 2017, 11:45:37 PM
-    Author     : user
+    Author     : Ardhi Surya; rdsurya147@gmail.com; @rdcfc
 --%>
 
 <%@page import="Formatter.ConvertMasa"%>

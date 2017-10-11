@@ -1,7 +1,7 @@
 <%-- 
     Document   : perNote_save
     Created on : Oct 3, 2017, 10:53:12 PM
-    Author     : user
+    Author     : Ardhi Surya; rdsurya147@gmail.com; @rdcfc
 --%>
 
 <%@page import="java.util.ArrayList"%>

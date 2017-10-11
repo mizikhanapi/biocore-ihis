@@ -1,7 +1,7 @@
 <%-- 
     Document   : retrieveDischargeLetter
     Created on : Oct 9, 2017, 4:21:34 PM
-    Author     : user
+    Author     : Ardhi Surya; rdsurya147@gmail.com; @rdcfc
 --%>
 
 <%@page import="javax.management.relation.Relation"%>

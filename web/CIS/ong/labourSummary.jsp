@@ -2,6 +2,7 @@
     Document   : maternityUnit
     Created on : Jun 14, 2017, 4:32:59 PM
     Author     : user
+    Modified by: Ardhi Surya; rdsurya147@gmail.com; @rdcfc
 --%>
 
 <div class="row">
@@ -436,6 +437,7 @@
        
        if(!isComplete){
            bootbox.alert(msg);
+           $('#LS_labourModal').css('overflow', 'auto');
        }
        
        if(isComplete && !$('#LS_labourForm')[0].checkValidity() ){
@@ -449,10 +451,11 @@
     //----------------- add labour----------------------------------
     $('#LS_labourModal').on('hidden.bs.modal', function (){
         var url="specialistTemplate/ONG/LS_control/searchUserFlex.jsp";
+        $('#LS_labourForm')[0].reset();
         LS_initFlexSearch("LS_labourRepair", "", url, "LS_labourRepairMatch");
         $('#LS_labour_div_add').show();
         $('#LS_labour_div_update').hide();
-        $('#LS_labourForm')[0].reset();
+        
     });
     
     $('#LS_labourBtnAdd').on('click', function(){
@@ -548,6 +551,7 @@
     
     $('#LS_labourBtnUpdate').on('click', function(){
         if(LS_labourCheckField()){
+            
             var deliveryDate = $('#LS_labourDeliveryDate').val();
             var deliveryTime = $('#LS_labourDeliveryTime').val();
             var labourOnset = $('#LS_labourOnset').val();
@@ -609,6 +613,9 @@
                         bootbox.alert(message);
                     }
             });
+        }
+        else{
+            console.log("Error");
         }
     });
     //========================================================
@@ -734,6 +741,12 @@
         
         if(!isComplete){
             bootbox.alert(msg);
+            $('#LS_stageModal').css('overflow', 'auto');
+        }
+        
+        if(isComplete && !$('#LS_stageForm')[0].checkValidity() ){
+           $('<input type="submit">').hide().appendTo('#LS_stageForm').click().remove();
+           isComplete=false;
         }
         
         return isComplete;
@@ -858,6 +871,12 @@
         
         if(!isComplete){
             bootbox.alert(msg);
+            $('#LS_eventModal').css('overflow', 'auto');
+        }
+        
+        if(isComplete && !$('#LS_eventForm')[0].checkValidity() ){
+           $('<input type="submit">').hide().appendTo('#LS_eventForm').click().remove();
+           isComplete=false;
         }
         
         return isComplete;
@@ -1018,6 +1037,12 @@
         
         if(!isComplete){
             bootbox.alert(msg);
+            $('#LS_infantModal').css('overflow', 'auto');
+        }
+        
+        if(isComplete && !$('#LS_infantForm')[0].checkValidity() ){
+           $('<input type="submit">').hide().appendTo('#LS_infantForm').click().remove();
+           isComplete=false;
         }
         
         return isComplete;
@@ -1351,6 +1376,12 @@
         
         if(!isCom){
             bootbox.alert(msg);
+            $('#LS_transferModal').css('overflow', 'auto');
+        }
+        
+       if(isCom && !$('#LS_transferForm')[0].checkValidity() ){
+           $('<input type="submit">').hide().appendTo('#LS_transferForm').click().remove();
+           isCom=false;
         }
         
         return isCom;
@@ -1358,10 +1389,7 @@
     
     $('#LS_transferBtnAdd').on('click', function(){
         
-        if( !$('#LS_transferForm')[0].checkValidity()){
-            $('<input type="submit">').hide().appendTo('#LS_transferForm').click().remove();
-        }
-        else if(LS_transferCheckField()){
+        if(LS_transferCheckField()){
             
             var summaryDate = $('#LS_transferModalID').val();
             var theDate = summaryDate.split(" ")[0];
@@ -1711,6 +1739,7 @@
         
         if(!isComplete){
             bootbox.alert(message);
+            $('#LS_puerModal').css('overflow', 'auto');
         }
         
         if(isComplete && !$('#LS_puerForm')[0].checkValidity() ){

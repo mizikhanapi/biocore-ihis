@@ -31,6 +31,7 @@
 
         
         
+        <!--<li><a href="" role="presentation" data-toggle="tab" class="panelito general-exam"><i class="fa fa-angle-right fa-lg"></i> General Examination</a></li>-->
         <li><a href="#generic-soap" role="tab" data-toggle="tab" class="panelito general-exam"><i class="fa fa-angle-right fa-lg"></i> General Examination</a></li>
 
         <li role="presentation" class="dropdown">

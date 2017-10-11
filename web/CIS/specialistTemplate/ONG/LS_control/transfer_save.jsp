@@ -1,7 +1,7 @@
 <%-- 
     Document   : transfer_save
     Created on : Oct 2, 2017, 1:48:14 PM
-    Author     : user
+    Author     : Ardhi Surya; rdsurya147@gmail.com; @rdcfc
 --%>
 
 <%@page import="dBConn.Conn"%>

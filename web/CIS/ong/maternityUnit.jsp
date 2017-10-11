@@ -2,6 +2,7 @@
     Document   : maternityUnit
     Created on : Jun 14, 2017, 4:32:59 PM
     Author     : user
+    Modified by: Ardhi Surya; rdsurya147@gmail.com; @rdcfc
 --%>
 
 <div class="row">
@@ -279,6 +280,7 @@
         
         if(!isComplete){
             bootbox.alert(msg);
+            $('#ong-maternityUnit1').css('overflow', 'auto');
         }
         
         return isComplete;
@@ -542,6 +544,7 @@
         
         if(!isComplete){
             bootbox.alert(msg);
+            $('#ong-maternityUnit2').css('overflow', 'auto');
         }
         
         return isComplete;

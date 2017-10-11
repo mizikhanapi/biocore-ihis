@@ -1,7 +1,7 @@
 <%-- 
     Document   : puerNote_insert
     Created on : Oct 4, 2017, 12:27:40 PM
-    Author     : user
+    Author     : Ardhi Surya; rdsurya147@gmail.com; @rdcfc
 --%>
 
 <%@page import="java.util.ArrayList"%>

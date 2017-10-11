@@ -1,7 +1,7 @@
 <%-- 
     Document   : discharge_update
     Created on : Oct 10, 2017, 11:41:44 AM
-    Author     : user
+    Author     : Ardhi Surya; rdsurya147@gmail.com; @rdcfc
 --%>
 
 <%@page import="Formatter.FormatTarikh"%>

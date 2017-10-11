@@ -1,7 +1,7 @@
 <%-- 
     Document   : retrieveLabourSummary
     Created on : Sep 29, 2017, 9:30:20 AM
-    Author     : user
+    Author     : Ardhi Surya; rdsurya147@gmail.com; @rdcfc
 --%>
 
 <%@page import="Formatter.ConvertMasa"%>

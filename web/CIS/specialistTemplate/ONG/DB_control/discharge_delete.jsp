@@ -1,7 +1,7 @@
 <%-- 
     Document   : discharge_delete
     Created on : Oct 10, 2017, 11:57:10 AM
-    Author     : user
+    Author     : Ardhi Surya; rdsurya147@gmail.com; @rdcfc
 --%>
 
 <%@page import="main.RMIConnector"%>

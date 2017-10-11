@@ -1,7 +1,7 @@
 <%-- 
     Document   : searchInfantTagFlex
     Created on : Oct 10, 2017, 4:52:02 PM
-    Author     : user
+    Author     : Ardhi Surya; rdsurya147@gmail.com; @rdcfc
 --%>
 
 <%@page import="dBConn.Conn"%>

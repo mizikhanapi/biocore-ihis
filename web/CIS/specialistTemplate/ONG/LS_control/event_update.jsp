@@ -1,7 +1,7 @@
 <%-- 
     Document   : event_update
     Created on : Oct 1, 2017, 7:01:05 PM
-    Author     : user
+    Author     : Ardhi Surya; rdsurya147@gmail.com; @rdcfc
 --%>
 
 <%@page import="Formatter.FormatTarikh"%>

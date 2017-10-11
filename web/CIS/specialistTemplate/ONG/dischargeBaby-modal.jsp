@@ -1,7 +1,7 @@
 <%-- 
     Document   : dischargeBaby-modal
     Created on : Oct 9, 2017, 9:56:46 AM
-    Author     : user
+    Author     : Ardhi Surya; rdsurya147@gmail.com; @rdcfc
 --%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="main.RMIConnector"%>
@@ -72,7 +72,7 @@
                                         <%
                                             String queryRelation="select `Description` "
                                                     + "from adm_lookup_detail "
-                                                    + "where `Master_Reference_code`='0007' and hfc_cd='"+DB_hfc_cd+"';";
+                                                    + "where `Master_Reference_code`='0007' and hfc_cd='"+DB_hfc_cd+"' order by description;";
                                             ArrayList<ArrayList<String>> dataRelation = DB_con.getData(queryRelation);
                                             for(int i=0; i<dataRelation.size(); i++){
                                                 out.print("<option value='"+dataRelation.get(i).get(0)+"'>"+dataRelation.get(i).get(0)+"</option>");

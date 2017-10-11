@@ -1,7 +1,7 @@
 <%-- 
     Document   : infant_delete
     Created on : Oct 2, 2017, 10:38:26 AM
-    Author     : user
+    Author     : Ardhi Surya; rdsurya147@gmail.com; @rdcfc
 --%>
 
 <%@page import="Formatter.FormatTarikh"%>

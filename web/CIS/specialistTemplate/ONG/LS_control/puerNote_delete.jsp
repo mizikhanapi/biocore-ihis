@@ -1,7 +1,7 @@
 <%-- 
     Document   : puerNote_delete
     Created on : Oct 4, 2017, 3:32:31 PM
-    Author     : user
+    Author     : Ardhi Surya; rdsurya147@gmail.com; @rdcfc
 --%>
 
 <%@page import="Formatter.FormatTarikh"%>
