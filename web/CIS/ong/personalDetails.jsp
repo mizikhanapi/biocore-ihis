@@ -81,32 +81,50 @@
         <tbody>
         </tbody>
     </table>
-    
+
 </div>
 <script>
-        $('#divPIpreg ').on('click','#tblPreg tbody tr td a#delPIpreg',function(e){
-            e.preventDefault();
-            var row = $(this).closest("tr");
-            var dataEncounter = row.find('#PIpregencounter').val();
-            var dataEpisode = row.find('#PIpregepisode').val();
-            var pmi_no = pmiNo;
-            var hfc_cd1 = hfc_cd;
-            var datas2 = pmi_no + "|" + hfc_cd1;
-            var datas = datas2 +"|"+ dataEpisode+"|"+dataEncounter;
-            
-            $.ajax({
-                type: "post",
-                url: "specialistTemplate/ONG/PI_control/personalDetailFunction.jsp",
-                data: {datas: datas, methodName: "delPreg"},
-                success: function (databack) {
-                    getPI(datas2);
-                    getPIpreg(datas2);
-                    if (databack) {
-                        bootbox.alert("Deleted");
-                    } else {
-                        bootbox.alert("fail deleting");
-                    }
+    $('#divPIpreg ').on('click', '#tblPreg tbody tr td a#delPIpreg', function (e) {
+        e.preventDefault();
+        var row = $(this).closest("tr");
+        var dataEncounter = row.find('#PIpregencounter').val();
+        var dataEpisode = row.find('#PIpregepisode').val();
+        var pmi_no = pmiNo;
+        var hfc_cd1 = hfc_cd;
+        var datas2 = pmi_no + "|" + hfc_cd1;
+        var datas = datas2 + "|" + dataEpisode + "|" + dataEncounter;
+        
+        bootbox.confirm({
+            message: "Are you sure want to delete?",
+            buttons: {
+                confirm: {
+                    label: 'Yes',
+                    className: 'btn-success'
+                },
+                cancel: {
+                    label: 'No',
+                    className: 'btn-danger'
                 }
-            });
+            },
+            callback: function (result) {
+                if (result) {
+                    $.ajax({
+                        type: "post",
+                        url: "specialistTemplate/ONG/PI_control/personalDetailFunction.jsp",
+                        data: {datas: datas, methodName: "delPreg"},
+                        success: function (databack) {
+                            getPI(datas2);
+                            getPIpreg(datas2);
+                            if (databack) {
+                                bootbox.alert("Deleted");
+                            } else {
+                                bootbox.alert("fail deleting");
+                            }
+                        }
+                    });
+                }
+            }
         });
-    </script>
+
+    });
+</script>

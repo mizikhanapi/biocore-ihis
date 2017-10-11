@@ -35,7 +35,19 @@
         <%@ include file="../assets/header.html" %> 
         <link href="../assets/css/toggleButton.css" rel="stylesheet" type="text/css"/>
         <!-- header -->
-        
+        <style>
+            .modal-dialog-gra{
+    overflow-y: initial !important
+}
+    .modal-body-gra{
+    height: 800px;
+    overflow-y: auto;
+}
+    .modal-body-pp{
+    height: 600px;
+    overflow-y: auto;
+}
+        </style>
         <script type="text/javascript">
             
             window.location.hash = "no-back-button";
@@ -334,7 +346,12 @@
                     $(this).find('.dropdown-menu').first().stop(true, true).slideUp();
                 });
             })(jQuery);
-
+            
+            $('#menu-content #linkOng').on('click',function(){
+                console.log('xxx');
+                getGra();
+            });
+            
             function toggleChevron(e) {
                 $(e.target)
                         .prev('.panel-heading')

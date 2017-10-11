@@ -27,7 +27,7 @@ public class PersonalDetail {
         pmino = splittedData[0];
         hfc = splittedData[1];
 
-        sql = "SELECT pmi_no,hfc_cd,episode_date,encounter_date,gravida,parity,pregnancy_lmp,pregnancy_edd,pregnancy_scan_edd,period_cycle,past_gynaecological_history,past_medical_history,past_surgical_history FROM lhr_ong_personal_info where pmi_no = '" + pmino + "' and hfc_cd ='"+hfc+"' limit 1";
+        sql = "SELECT pmi_no,hfc_cd,episode_date,encounter_date,gravida,parity,DATE_FORMAT(DATE(pregnancy_lmp),'%d/%m/%Y'),DATE_FORMAT(DATE(pregnancy_edd),'%d/%m/%Y'),DATE_FORMAT(DATE(pregnancy_scan_edd),'%d/%m/%Y'),period_cycle,past_gynaecological_history,past_medical_history,past_surgical_history FROM lhr_ong_personal_info where pmi_no = '" + pmino + "' and hfc_cd ='"+hfc+"' limit 1";
 
         data = conn.getData(sql);
         return data;
@@ -43,7 +43,7 @@ public class PersonalDetail {
         pmino = splittedData[0];
         hfc = splittedData[1];
                     //  0      1        2              3               4             5          6                  7        8   9      10
-        sql = "select pmi_no,hfc_cd,episode_date,encounter_date,pregnancy_year,gestation,place_of_delivery,labour_delivery,wt,gender,comment FROM lhr_ong_pregnancy where pmi_no='"+pmino+"' and hfc_cd ='"+hfc+"'";
+        sql = "select p.pmi_no,p.hfc_cd,p.episode_date,p.encounter_date,p.pregnancy_year,p.gestation,p.place_of_delivery,p.labour_delivery,p.wt,g.description,p.comment FROM lhr_ong_pregnancy p join adm_lookup_detail g on g.master_reference_code = '0041' AND g.hfc_cd = '" + hfc + "' and g.status ='0' and g.detail_reference_code = p.gender where p.pmi_no='"+pmino+"' and p.hfc_cd ='"+hfc+"'";
         data = conn.getData(sql);
         return data;
     }

@@ -3,16 +3,25 @@
     Created on : May 15, 2017, 10:49:00 AM
     Author     : Mizi K
 --%>
+<%@page import="dBConn.Conn"%>
+<%
+    String hfc = session.getAttribute("HEALTH_FACILITY_CODE").toString();
+    String gender4 = "select master_reference_code,detail_reference_code,description,priority_indicator,start_date,end_date,status,created_by,created_date from adm_lookup_detail where master_reference_code = '0041' AND hfc_cd = '" + hfc + "' and status ='0'";
+    ArrayList<ArrayList<String>> dataGender4;
+    Conn Cconn = new Conn();
+    dataGender4 = Cconn.getData(gender4);
+%>
+<%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!-- Start Modal -->
 <div class="modal fade" id="ong-pDetails1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog" role="document">
+    <div class="modal-dialog modal-dialog-gra" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><i class="fa fa-times fa-lg"></i></span></button>
                 <h4 class="modal-title" id="myModalLabel">Gravida & etc</h4>
             </div>
-            <div class="modal-body">
+            <div class="modal-body modal-body-gra">
                 <form>
                     <div class="row">
                         <div class="col-md-6">
@@ -132,14 +141,15 @@
 </div>
 <!-- End Modal -->
 <!-- Start Modal -->
+
 <div class="modal fade" id="ong-pDetails3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog" role="document">
+    <div class="modal-dialog modal-dialog-gra" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><i class="fa fa-times fa-lg"></i></span></button>
                 <h4 class="modal-title" id="myModalLabel">Previous Pregnancy</h4>
             </div>
-            <div class="modal-body">
+            <div class="modal-body modal-body-pp">
                 <form>
                     <div class="row">
                         <div class="col-md-6">
@@ -147,7 +157,7 @@
                             <div class="form-group">
                                 <label class="col-md-12 control-label" for="textinput">Year *</label>
                                 <div class="col-md-12">
-                                    <input type="text" class="form-control input-md numbersOnly" id="PIyear" size="4" maxlength="4">
+                                    <input type="text" class="form-control input-md numbersOnly" id="PIyear" size="4" maxlength="4" placeholder="YYYY">
                                 </div>
                             </div>
                         </div>
@@ -156,7 +166,7 @@
                             <div class="form-group">
                                 <label class="col-md-12 control-label" for="textinput">Gestation *</label>
                                 <div class="col-md-12">
-                                    <input type="text" class="form-control input-md" id="PIgestation">
+                                    <input type="text" class="form-control input-md" id="PIgestation" placeholder="gestation">
                                 </div>
                             </div>
                         </div>
@@ -170,7 +180,7 @@
                             <div class="form-group">
                                 <label class="col-md-12 control-label" for="textinput">Place of Delivery *</label>
                                 <div class="col-md-12">
-                                    <input type="text" class="form-control input-md" id="PIpod">
+                                    <input type="text" class="form-control input-md" id="PIpod" placeholder="place of delivery">
                                 </div>
                             </div>
                         </div>
@@ -181,7 +191,7 @@
                             <div class="form-group">
                                 <label class="col-md-12 control-label" for="textinput">Labour/Delivery *</label>
                                 <div class="col-md-12">
-                                    <input type="text" class="form-control input-md" id="PIlabour">
+                                    <input type="text" class="form-control input-md" id="PIlabour" placeholder="labour/delivery">
                                 </div>
                             </div>
                         </div>
@@ -195,7 +205,7 @@
                             <div class="form-group">
                                 <label class="col-md-12 control-label" for="textinput">WT *</label>
                                 <div class="col-md-12">
-                                    <input type="text" class="form-control input-md" id="PIwt">
+                                    <input type="text" class="form-control input-md decimalNumbersOnly" id="PIwt" placeholder="weight (Kg)" maxlength="5">
                                 </div>
                             </div>
                         </div>
@@ -205,7 +215,17 @@
                             <div class="form-group">
                                 <label class="col-md-12 control-label" for="textinput">Gender *</label>
                                 <div class="col-md-12">
-                                    <input type="text" class="form-control input-md" id="PIgender">
+                                    <select id="PIgender" name="selectbasic" class="form-control">
+                                        <option value="null">Select Gender</option>
+                                        <option value="-">-</option>
+                                        <%
+                                            for (int i = 0;
+                                                    i < dataGender4.size();
+                                                    i++) {%>
+                                        <option value="<%=dataGender4.get(i).get(1)%>"><%=dataGender4.get(i).get(2)%></option>
+                                        <%  }
+                                        %>
+                                    </select>
                                 </div>
                             </div>
                         </div>
@@ -274,7 +294,7 @@
             }
         });
     }
-    
+
     //function for get pregnancy
     function getPIpreg(data) {
         //console.log(data);
@@ -293,16 +313,16 @@
         $('#PIedd').datepicker({dateFormat: 'dd/mm/yy', changeMonth: true, changeYear: true});
         $('#PIscanedd').datepicker({dateFormat: 'dd/mm/yy', changeMonth: true, changeYear: true});
     });
-    
+
     //function for validate numbersonly
     $('.numbersOnly').keyup(function () {
         if (this.value !== this.value.replace(/[^0-9\.]/g, '')) {
             this.value = this.value.replace(/[^0-9\.]/g, '');
         }
     });
-    
-    
-    
+
+
+
     // button add item for personal detail
     $('#btnPIadd').on('click', function () {
         var gravida, parity, lmp, edd, scanEdd, periodCycle, pgh, pmh, psh;
@@ -315,7 +335,7 @@
         pgh = $('#PIgynaecologicalHistory').val();
         pmh = $('#PIpastMedHis').val();
         psh = $('#PIsurHis').val();
-
+        
 
         if (gravida === "" || parity === "" || lmp === "" || edd === "" || scanEdd === "" || periodCycle === "") {
             bootbox.alert("please insert the compulsory item to proceed");
@@ -358,7 +378,7 @@
         }
 
     });
-    
+
     // button add item for personal detail pregnancy
     $('#btnPIpreg').on('click', function () {
         var pregnancyYear, gestation, place, labour, wt, gender, comment;
@@ -369,9 +389,18 @@
         wt = $('#PIwt').val();
         gender = $('#PIgender').val();
         comment = $('textarea#PIcoment').val();
+        console.log("pregnancyYear" + pregnancyYear);
+        console.log("gestation" + gestation);
+        console.log("place" + place);
+        console.log("labour" + labour);
+        console.log("wt" + wt);
+        console.log("gender" + gender);
+        console.log("comment" + comment);
+        
+        
+        
 
-
-        if (pregnancyYear === "" || gestation === "" || place === "" || labour === "" || wt === "" || gender === "") {
+        if (pregnancyYear === "" || gestation === "" || place === "" || labour === "" || wt === "" || gender === "null") {
             bootbox.alert("please insert the compulsory item to proceed");
         } else {
             var pmi_no = pmiNo;

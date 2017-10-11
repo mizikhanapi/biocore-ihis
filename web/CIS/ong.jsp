@@ -172,12 +172,16 @@
         var newDate = date[2] + "-" + date[1] + "-" + date[0];
         return newDate;
     }
-    $('#tabPI').on('click', function () {
+    function getGra(){
         var pmi_no = pmiNo;
         var hfc_cd1 = hfc_cd;
         var x = pmi_no + "|" + hfc_cd1;
         getPI(x);
         getPIpreg(x);
+    }
+    
+    $('#tabPI').on('click', function () {
+        getGra();
     });
 
     $('#tabBP').on('click', function () {

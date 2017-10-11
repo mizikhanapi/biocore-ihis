@@ -80,34 +80,53 @@
             </tr>  
         </thead>
         <tbody>
-            
+
         </tbody>
     </table>
 </div>
 <script>
-        $('#divAnteB ').on('click','#tblante tbody tr td a#delAN',function(e){
-            e.preventDefault();
-            var row = $(this).closest("tr");
-            var dataEncounter = row.find('#ANencounter').val();
-            var dataEpisode = row.find('#ANepisode').val();
-            var pmi_no = pmiNo;
-            var hfc_cd1 = hfc_cd;
-            var datas2 = pmi_no + "|" + hfc_cd1;
-            var datas = datas2 +"|"+ dataEpisode+"|"+dataEncounter;
-            
-            $.ajax({
-                type: "post",
-                url: "specialistTemplate/ONG/AN_control/antenatalFunction.jsp",
-                data: {datas: datas, methodName: "del"},
-                success: function (databack) {
-                    getBP(datas2);
-                    getAnteNatal(datas2);
-                    if (databack) {
-                        bootbox.alert("Deleted");
-                    } else {
-                        bootbox.alert("fail deleting");
-                    }
+    $('#divAnteB ').on('click', '#tblante tbody tr td a#delAN', function (e) {
+        e.preventDefault();
+        var row = $(this).closest("tr");
+        var dataEncounter = row.find('#ANencounter').val();
+        var dataEpisode = row.find('#ANepisode').val();
+        var pmi_no = pmiNo;
+        var hfc_cd1 = hfc_cd;
+        var datas2 = pmi_no + "|" + hfc_cd1;
+        var datas = datas2 + "|" + dataEpisode + "|" + dataEncounter;
+
+        bootbox.confirm({
+            message: "Are you sure want to delete?",
+            buttons: {
+                confirm: {
+                    label: 'Yes',
+                    className: 'btn-success'
+                },
+                cancel: {
+                    label: 'No',
+                    className: 'btn-danger'
                 }
-            });
+            },
+            callback: function (result) {
+                if (result) {
+                    $.ajax({
+                        type: "post",
+                        url: "specialistTemplate/ONG/AN_control/antenatalFunction.jsp",
+                        data: {datas: datas, methodName: "del"},
+                        success: function (databack) {
+                            getBP(datas2);
+                            getAnteNatal(datas2);
+                            if (databack) {
+                                bootbox.alert("Deleted");
+                            } else {
+                                bootbox.alert("fail deleting");
+                            }
+                        }
+                    });
+                }
+            }
         });
-    </script>
+
+
+    });
+</script>

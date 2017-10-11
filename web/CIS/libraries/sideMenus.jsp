@@ -44,7 +44,7 @@
             </ul>
         </li>
         
-        <li><a href="#ong" role="tab" data-toggle="tab" class="panelito ong-general"><i class="fa fa-angle-right fa-lg"></i> Obstetrics & Gynecology</a></li>
+        <li><a href="#ong" role="tab" data-toggle="tab" class="panelito ong-general" id="linkOng"><i class="fa fa-angle-right fa-lg"></i> Obstetrics & Gynecology</a></li>
 
         <!-- Menu Specialist Panel -->
 
