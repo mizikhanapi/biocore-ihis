@@ -144,7 +144,7 @@
                             <div class="form-group">
                                 <label class="col-md-12 control-label" for="textinput">Search Drug</label>
                                 <div class="col-md-12">
-                                    <input type="text" class="form-control input-md" placeholder="Type to search..." id="freqObservationChartModalDrugGiven"
+                                    <input type="text" class="form-control input-md flexdatalist" placeholder="Type to search..." id="freqObservationChartModalDrugGiven"
                                            data-search-by-word="true" 
                                            data-selection-required="true"
                                            > 

@@ -261,45 +261,57 @@
 // ---------------------------------------------------------------------------- VIew ------------------------------------------------------------------------------------------- //
 
 
-// ---------------------------------------------------------------------------- Search Flexdata Drug ------------------------------------------------------------------------------------------- //
+// ----------------------------------------------------------------- Search Flexdata Drug Function ------------------------------------------------------------------------------------------- //
 
 
+        function flexDataListFreqObserReinitializeSearch(fish) {
 
-        $('#freqObservationChartModalDrugGiven').flexdatalist({
-            minLength: 1,
-            searchIn: 'name',
-            searchDelay: 2000,
-            selectionRequired: true,
-            url: "specialistTemplate/ONG/controller/nursingUseChartControllerSearchDrugCode.jsp",
-            visibleProperties: 'name',
-            cache: true,
-            valueProperty: 'value',
-            params: {
-                timeout: 3000,
-                success: function (result) {
 
-                    if (result == null) {
-                        $('#freqObservationChartModalDrugGivenSearchResultDIV').html('No Record');
+            $('#freqObservationChartModalDrugGiven').flexdatalist('destroy');
+
+
+            $('#freqObservationChartModalDrugGiven').val(fish).flexdatalist({
+                minLength: 1,
+                searchIn: 'name',
+                searchDelay: 2000,
+                selectionRequired: true,
+                url: "specialistTemplate/ONG/controller/nursingUseChartControllerSearchDrugCode.jsp",
+                visibleProperties: 'name',
+                cache: true,
+                valueProperty: 'value',
+                params: {
+                    timeout: 3000,
+                    success: function (result) {
+
+                        if (result == null) {
+                            $('#freqObservationChartModalDrugGivenSearchResultDIV').html('No Record');
+                        }
+
                     }
 
                 }
-
-            }
-        });
-
-        $("#freqObservationChartModalDrugGiven").on('before:flexdatalist.data', function (response) {
-            $('#freqObservationChartModalDrugGivenSearchResultDIV').html('<img src="img/LoaderIcon.gif" />');
-        });
-        $("#freqObservationChartModalDrugGiven").on('after:flexdatalist.data', function (response) {
-            $('#freqObservationChartModalDrugGivenSearchResultDIV').html('');
-        });
-        $("#freqObservationChartModalDrugGiven").on('select:flexdatalist', function (response) {
-            $('#freqObservationChartModalDrugGivenSearchResultDIV').html('');
-        });
+            });
 
 
+            $("#freqObservationChartModalDrugGiven").on('before:flexdatalist.data', function (response) {
+                $('#freqObservationChartModalDrugGivenSearchResultDIV').html('<img src="img/LoaderIcon.gif" />');
+            });
 
-// ---------------------------------------------------------------------------- Search Flexdata Drug ------------------------------------------------------------------------------------------- //
+
+            $("#freqObservationChartModalDrugGiven").on('after:flexdatalist.data', function (response) {
+                $('#freqObservationChartModalDrugGivenSearchResultDIV').html('');
+            });
+
+
+            $("#freqObservationChartModalDrugGiven").on('select:flexdatalist', function (response) {
+                $('#freqObservationChartModalDrugGivenSearchResultDIV').html('');
+            });
+
+
+        }
+
+
+// ----------------------------------------------------------------- Search Flexdata Drug Function ------------------------------------------------------------------------------------------- //
 
 
 
@@ -314,6 +326,12 @@
             $('#freqObservationChartModal_btnAdd_or_btnUpdate_div').html('<button type="button" class="btn btn-success btn-block btn-lg" id="frequentObservationAddModalBtn" role="button">Add Items</button>');
 
             $('#freqObservationChartModalForm')[0].reset();
+            
+            $('#freqObservationChartModalDrugGiven').val('');
+
+            var val = $('#freqObservationChartModalDrugGiven').val().trim();
+
+            flexDataListFreqObserReinitializeSearch(val);
 
             $("#freqObservationChartModalDate").datepicker({
                 changeMonth: true,
@@ -430,14 +448,14 @@
             $('#freqObservationChartModalTitle').text("Update Frequency Observation");
             $('#freqObservationChartModal_btnAdd_or_btnUpdate_div').html('<button type="button" class="btn btn-success btn-block btn-lg" id="freqObservationChartUpdateModalBtn" role="button">Update Items</button>');
 
-            $('#freqObservationChartModalForm')[0].reset();
-
+            //$('#freqObservationChartModalForm')[0].reset();
             $("#freqObservationChartModalDate").datepicker({
                 changeMonth: true,
                 changeYear: true,
                 maxDate: '+0d',
                 dateFormat: 'dd/mm/yy'
             });
+
 
             $('#freqObservationChartModalTime').timepicker({
                 'timeFormat': 'HH:mm',
@@ -472,6 +490,11 @@
             $('#freqObservationChartModalPupilRightSize').val(arrayData[10]);
             $('#freqObservationChartModalConsiousState').val(arrayData[14]);
             $('#freqObservationChartModalDrugGiven').val(arrayData[15]);
+
+
+            var val = $('#freqObservationChartModalDrugGiven').val().trim();
+
+            flexDataListFreqObserReinitializeSearch(val);
 
             $("#ong-freqObservationChart").modal('show');
 
@@ -723,73 +746,3 @@
 </script>
 
 
-
-
-
-
-
-
-
-
-
-
-
-<!--
-
-
-<table class="table table-bordered" id="tableFreqObservationChartTable" style="width: 100%">
-    <thead>
-        <tr>
-            <th rowspan="2">Date / Time</th>
-            <th rowspan="2">T</th>
-            <th rowspan="2">P</th>
-            <th rowspan="2">R</th>
-            <th rowspan="2">BP</th>
-            <th colspan="2">Pupils</th>
-            <th rowspan="2">Conscious State &amp; Remarks</th>
-            <th rowspan="2">Drugs Given</th>
-            <th rowspan="2">Doctor Approval</th>
-            <th rowspan="2">Action</th>
-        </tr>
-        <tr>
-            <td>Right</td>
-            <td>Left</td>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>15/06/20</td>
-            <td>10</td>
-            <td>5</td>
-            <td>12</td>
-            <td>12</td>
-            <td>Size: <strong>5</strong><br>React: <strong>15</strong></td>
-            <td>Size: <strong>5</strong><br>React: <strong>15</strong></td>
-            <td>Good job</td>
-            <td>Weed</td>
-            <td>Dr Ahmed</td>
-            <td>
-                <a style="vertical-align: middle;" href="#"><i class="fa fa-pencil-square-o fa-lg" aria-hidden="true" style=" color: #337ab7;"></i></a>
-                &nbsp;&nbsp;&nbsp;
-                <a href="#"><i class="fa fa-times fa-lg" aria-hidden="true" style="color: #d9534f;"></i></a>
-            </td>
-        </tr>
-        <tr>
-            <td>15/06/20</td>
-            <td>10</td>
-            <td>5</td>
-            <td>12</td>
-            <td>12</td>
-            <td>Size: <strong>5</strong><br>React: <strong>15</strong></td>
-            <td>Size: <strong>5</strong><br>React: <strong>15</strong></td>
-            <td>Good job</td>
-            <td>Weed</td>
-            <td>Dr Ahmed</td>
-            <td>
-                <a style="vertical-align: middle;" href="#"><i class="fa fa-pencil-square-o fa-lg" aria-hidden="true" style=" color: #337ab7;"></i></a>
-                &nbsp;&nbsp;&nbsp;
-                <a href="#"><i class="fa fa-times fa-lg" aria-hidden="true" style="color: #d9534f;"></i></a>
-            </td>
-        </tr>
-    </tbody>
-</table>-->

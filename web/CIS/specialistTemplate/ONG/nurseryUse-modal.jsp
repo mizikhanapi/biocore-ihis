@@ -77,7 +77,7 @@
                             <div class="form-group">
                                 <label class="col-md-12 control-label" for="textinput">Drug Name</label>
                                 <div class="col-md-12">
-                                    <input type="text" class="form-control input-md" id="nurseryUseMasterChartModalDrugName" maxlength="100" placeholder="Please Search Drug Name...." 
+                                    <input type="text" class="form-control input-md flexdatalist" id="nurseryUseMasterChartModalDrugName" maxlength="100" placeholder="Please Search Drug Name...." 
                                            data-search-by-word="true" 
                                            data-selection-required="true"
                                            > 
@@ -151,7 +151,7 @@
                             <div class="form-group">
                                 <label class="col-md-12 control-label" for="textinput">Dispensed By</label>
                                 <div class="col-md-12">
-                                    <input type="text" class="form-control input-md" id="nurseryUseMasterChartModalDrugSupplyOneDispensedBy" maxlength="100" placeholder="Please Search Staff Name...." 
+                                    <input type="text" class="form-control input-md flexdatalist" id="nurseryUseMasterChartModalDrugSupplyOneDispensedBy" maxlength="100" placeholder="Please Search Staff Name...." 
                                            data-search-by-word="true" 
                                            data-selection-required="true"
                                            > 
@@ -181,7 +181,7 @@
                             <div class="form-group">
                                 <label class="col-md-12 control-label" for="textinput">Dispensed By</label>
                                 <div class="col-md-12">
-                                    <input type="text" class="form-control input-md" id="nurseryUseMasterChartModalDrugSupplyTwoDispensedBy" maxlength="100" placeholder="Please Search Staff Name...." 
+                                    <input type="text" class="form-control input-md flexdatalist" id="nurseryUseMasterChartModalDrugSupplyTwoDispensedBy" maxlength="100" placeholder="Please Search Staff Name...." 
                                            data-search-by-word="true" 
                                            data-selection-required="true"
                                            >  
