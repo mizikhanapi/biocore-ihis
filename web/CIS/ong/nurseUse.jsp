@@ -308,7 +308,16 @@
 
             document.getElementById("nurseryUseMasterChartModalForm").reset();
 
-            flexDataListMasterFunctionForDestroyInit();
+            $('#nurseryUseMasterChartModalDrugName').val('');
+            $('#nurseryUseMasterChartModalDrugSupplyOneDispensedBy').val('');
+            $('#nurseryUseMasterChartModalDrugSupplyTwoDispensedBy').val('');
+
+            var val1 = $('#nurseryUseMasterChartModalDrugName').val().trim();
+            var val2 = $('#nurseryUseMasterChartModalDrugSupplyOneDispensedBy').val().trim();
+            var val3 = $('#nurseryUseMasterChartModalDrugSupplyTwoDispensedBy').val().trim();
+
+            flexDataListNurseUseReinitializeSearchDrug(val1);
+            flexDataListNurseUseReinitializeSearchUserID(val2 + "|" + val3);
 
             $("#nurseryUseMasterChartModalMasterDate").datepicker({
                 changeMonth: true,
@@ -454,8 +463,6 @@
 
             document.getElementById("nurseryUseMasterChartModalForm").reset();
 
-            flexDataListMasterFunctionForDestroyInit();
-
             $("#nurseryUseMasterChartModalStartDate").datepicker({
                 changeMonth: true,
                 changeYear: true,
@@ -494,9 +501,16 @@
             $('#nurseryUseMasterChartModalDrugStrength').val(arrayData[23]);
             $('#nurseryUseMasterChartModalDrugFrequency').val(arrayData[26]);
             $('#nurseryUseMasterChartModalDrugSupplyOne').val(arrayData[11]);
-            $('#nurseryUseMasterChartModalDrugSupplyOneDispensedBy').val(arrayData[27]);
+            $('#nurseryUseMasterChartModalDrugSupplyOneDispensedBy').val(arrayData[12]);
             $('#nurseryUseMasterChartModalDrugSupplyTwo').val(arrayData[13]);
-            $('#nurseryUseMasterChartModalDrugSupplyTwoDispensedBy').val(arrayData[28]);
+            $('#nurseryUseMasterChartModalDrugSupplyTwoDispensedBy').val(arrayData[14]);
+
+            var val1 = $('#nurseryUseMasterChartModalDrugName').val().trim();
+            var val2 = $('#nurseryUseMasterChartModalDrugSupplyOneDispensedBy').val().trim();
+            var val3 = $('#nurseryUseMasterChartModalDrugSupplyTwoDispensedBy').val().trim();
+
+            flexDataListNurseUseReinitializeSearchDrug(val1);
+            flexDataListNurseUseReinitializeSearchUserID(val2 + "|" + val3);
 
             $("#ong-nurseryUseMaster").modal('show');
 
@@ -712,23 +726,16 @@
 
 
 
-        function flexDataListMasterFunctionForDestroyInit() {
+// ---------------------------------------------------------------------------- Search Flexdata ------------------------------------------------------------------------------------------- //
+
+
+        function flexDataListNurseUseReinitializeSearchDrug(fish) {
+
 
             $('#nurseryUseMasterChartModalDrugName').flexdatalist('destroy');
-            $('#nurseryUseMasterChartModalDrugSupplyOneDispensedBy').flexdatalist('destroy');
-            $('#nurseryUseMasterChartModalDrugSupplyTwoDispensedBy').flexdatalist('destroy');
-
-            flexDataListSearchDrugName();
-            flexDataListSearchDispensedBy();
-
-        }
-
-// ---------------------------------------------------------------------------- Search Flexdata Drug ------------------------------------------------------------------------------------------- //
 
 
-        function flexDataListSearchDrugName() {
-
-            $('#nurseryUseMasterChartModalDrugName').flexdatalist({
+            $('#nurseryUseMasterChartModalDrugName').val(fish).flexdatalist({
                 minLength: 1,
                 searchIn: 'name',
                 searchDelay: 2000,
@@ -753,14 +760,16 @@
             $("#nurseryUseMasterChartModalDrugName").on('before:flexdatalist.data', function (response) {
                 $('#nurseryUseMasterChartModalDrugNameSearchResultDIV').html('<img src="img/LoaderIcon.gif" />');
             });
+
             $("#nurseryUseMasterChartModalDrugName").on('after:flexdatalist.data', function (response) {
                 $('#nurseryUseMasterChartModalDrugNameSearchResultDIV').html('');
             });
+
             $("#nurseryUseMasterChartModalDrugName").on('select:flexdatalist', function (response) {
                 $('#nurseryUseMasterChartModalDrugNameSearchResultDIV').html('');
             });
 
-            $('input.flexdatalist').on('select:flexdatalist', function (event, set, options) {
+            $('#nurseryUseMasterChartModalDrugName').on('select:flexdatalist', function (event, set, options) {
 
                 console.log(set.value);
 
@@ -796,22 +805,24 @@
 
             });
 
+
+
+
         }
 
+        function flexDataListNurseUseReinitializeSearchUserID(fish) {
 
+            var arrayFish = fish.split("|");
 
-// ---------------------------------------------------------------------------- Search Flexdata Drug ------------------------------------------------------------------------------------------- //
+            var fish0 = arrayFish[0];
+            var fish1 = arrayFish[1];
 
+            $('#nurseryUseMasterChartModalDrugSupplyOneDispensedBy').flexdatalist('destroy');
+            $('#nurseryUseMasterChartModalDrugSupplyTwoDispensedBy').flexdatalist('destroy');
 
-
-
-// ---------------------------------------------------------------------------- Search Flexdata Dispensed By ------------------------------------------------------------------------------------------- //
-
-
-        function flexDataListSearchDispensedBy() {
 
             // Supply One //
-            $('#nurseryUseMasterChartModalDrugSupplyOneDispensedBy').flexdatalist({
+            $('#nurseryUseMasterChartModalDrugSupplyOneDispensedBy').val(fish0).flexdatalist({
                 minLength: 1,
                 searchIn: 'name',
                 searchDelay: 2000,
@@ -836,9 +847,11 @@
             $("#nurseryUseMasterChartModalDrugSupplyOneDispensedBy").on('before:flexdatalist.data', function (response) {
                 $('#nurseryUseMasterChartModalDrugSupplyOneDispensedBySearchResultDIV').html('<img src="img/LoaderIcon.gif" />');
             });
+
             $("#nurseryUseMasterChartModalDrugSupplyOneDispensedBy").on('after:flexdatalist.data', function (response) {
                 $('#nurseryUseMasterChartModalDrugSupplyOneDispensedBySearchResultDIV').html('');
             });
+
             $("#nurseryUseMasterChartModalDrugSupplyOneDispensedBy").on('select:flexdatalist', function (response) {
                 $('#nurseryUseMasterChartModalDrugSupplyOneDispensedBySearchResultDIV').html('');
             });
@@ -846,7 +859,7 @@
 
 
             // Supply Two //
-            $('#nurseryUseMasterChartModalDrugSupplyTwoDispensedBy').flexdatalist({
+            $('#nurseryUseMasterChartModalDrugSupplyTwoDispensedBy').val(fish1).flexdatalist({
                 minLength: 1,
                 searchIn: 'name',
                 searchDelay: 2000,
@@ -871,18 +884,22 @@
             $("#nurseryUseMasterChartModalDrugSupplyTwoDispensedBy").on('before:flexdatalist.data', function (response) {
                 $('#nurseryUseMasterChartModalDrugSupplyTwoDispensedBySearchResultDIV').html('<img src="img/LoaderIcon.gif" />');
             });
+
             $("#nurseryUseMasterChartModalDrugSupplyTwoDispensedBy").on('after:flexdatalist.data', function (response) {
                 $('#nurseryUseMasterChartModalDrugSupplyTwoDispensedBySearchResultDIV').html('');
             });
+
             $("#nurseryUseMasterChartModalDrugSupplyTwoDispensedBy").on('select:flexdatalist', function (response) {
                 $('#nurseryUseMasterChartModalDrugSupplyTwoDispensedBySearchResultDIV').html('');
             });
             // Supply Two //
 
-
         }
 
-// ---------------------------------------------------------------------------- Search Flexdata Dispensed By ------------------------------------------------------------------------------------------- //
+
+
+// ---------------------------------------------------------------------------- Search Flexdata ------------------------------------------------------------------------------------------- //
+
 
 
         var detailsDataMasterForView;
