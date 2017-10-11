@@ -13,6 +13,7 @@ $(document).ready(function () {
         $("#orthopedic-niw").hide();
         $("#orthopedic-con").hide();
         $("#orthopedic-ot").hide();
+        $("#ong").hide();
     });
 
     //Order-Entry
@@ -22,6 +23,7 @@ $(document).ready(function () {
         $("#orthopedic-niw").hide();
         $("#orthopedic-con").hide();
         $("#orthopedic-ot").hide();
+        $("#ong").hide();
     });
 
     //Ortho-Consultation
@@ -31,6 +33,7 @@ $(document).ready(function () {
         $("#orthopedic-niw").hide();
         $("#orthopedic-con").show(400);
         $("#orthopedic-ot").hide();
+        $("#ong").hide();
 
     });
 
@@ -41,6 +44,7 @@ $(document).ready(function () {
         $("#orthopedic-niw").show(400);
         $("#orthopedic-con").hide();
         $("#orthopedic-ot").hide();
+        $("#ong").hide();
 
     });
 
@@ -51,6 +55,18 @@ $(document).ready(function () {
         $("#orthopedic-niw").hide();
         $("#orthopedic-con").hide();
         $("#orthopedic-ot").show(400);
+        $("#ong").hide();
+
+    });
+    
+    //ong-general
+    $(".ong-general").click(function () {
+        $("#generic-soap").hide();
+        $("#order-entry").hide();
+        $("#orthopedic-niw").hide();
+        $("#orthopedic-con").hide();
+        $("#orthopedic-ot").hide();
+        $("#ong").show(400);
 
     });
 });

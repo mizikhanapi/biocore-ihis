@@ -29,8 +29,9 @@
 
         <!-- Menu Specialist Panel -->
 
-
-        <li><a href="" role="presentation" data-toggle="tab" class="panelito general-exam"><i class="fa fa-angle-right fa-lg"></i> General Examination</a></li>
+        
+        
+        <li><a href="#generic-soap" role="tab" data-toggle="tab" class="panelito general-exam"><i class="fa fa-angle-right fa-lg"></i> General Examination</a></li>
 
         <li role="presentation" class="dropdown">
             <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
@@ -42,7 +43,7 @@
             </ul>
         </li>
         
-        <li><a href="#ong" role="tab" data-toggle="tab" class="panelito"><i class="fa fa-angle-right fa-lg"></i> Obstetrics & Gynecology</a></li>
+        <li><a href="#ong" role="tab" data-toggle="tab" class="panelito ong-general"><i class="fa fa-angle-right fa-lg"></i> Obstetrics & Gynecology</a></li>
 
         <!-- Menu Specialist Panel -->
 
