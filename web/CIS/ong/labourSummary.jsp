@@ -11,9 +11,9 @@
     </div>
     <div class="col-md-4" style="padding-top: 20px">
         <label class="col-sm-6 control-label text-right" for="formGroupInputLarge">View history assessment:</label>
-        <div class="col-sm-6 soap-select" style="padding-right: 0px;">
-            <select class="form-control" id="LS_viewBy">
-                <option value="all" selected disabled>View by</option>
+        <div class="col-sm-6 " style="padding-right: 0px;">
+            <select class="form-control soap-select" id="LS_viewBy">
+                <option value="" selected disabled>View by</option>
                 <option value="all">All</option>
                 <option value="0">Today</option>
                 <option value="1">Yesterday</option>

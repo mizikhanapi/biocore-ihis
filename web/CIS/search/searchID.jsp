@@ -55,7 +55,6 @@
                 + "inner join adm_health_facility h on w.hfc_cd = h.hfc_cd "
                 + "inner join  adm_discipline d on w.discipline_cd = d.discipline_cd "
                 + "where w.pmi_no = '" + idInput + "' AND  "
-                + "GROUP BY w.`EPISODE_DATE` "
                 + "ORDER BY w.`EPISODE_DATE` DESC;";
         
         sql2 = "select p.pmi_no,p.episode_date,h.hfc_name,d.discipline_name,p.new_ic_no,p.old_ic_no "
@@ -63,9 +62,7 @@
                 + "inner join adm_health_facility h on p.`HEALTH_FACILITY_CODE` = h.hfc_cd "
                 + "inner join  adm_discipline d on p.DISCIPLINE_CODE = d.discipline_cd "
                 + "where p.pmi_no = '" + idInput + "' "
-                + "GROUP BY p.`EPISODE_DATE` "
-                + "ORDER BY p.`EPISODE_DATE` "
-                + "DESC;;;";
+                + "ORDER BY p.`EPISODE_DATE` DESC;";
 
     } else if (idType.equals("002")) { // IC No (New)
         sql = "select w.pmi_no,w.episode_date,h.hfc_name,d.discipline_name,w.new_ic_no,w.old_ic_no "
@@ -75,13 +72,13 @@
                  + "where w.`NEW_IC_NO` = '" + idInput + "'  "
                 + "GROUP BY w.`EPISODE_DATE` "
                 + "ORDER BY w.`EPISODE_DATE` "
-                + "DESC;;";
+                + "DESC;";
         sql2 = "select p.pmi_no,p.episode_date,h.hfc_name,d.discipline_name,p.new_ic_no,p.old_ic_no from pms_episode p "
                 + "inner join adm_health_facility h on p.`HEALTH_FACILITY_CODE` = h.hfc_cd "
                 + "inner join  adm_discipline d on p.DISCIPLINE_CODE = d.discipline_cd "
                 + "where p.`NEW_IC_NO` = '" + idInput + "' "
                 + "GROUP BY p.`EPISODE_DATE` "
-                + "ORDER BY p.`EPISODE_DATE` DESC;;;";
+                + "ORDER BY p.`EPISODE_DATE` DESC;";
 
     } else if (idType.equals("003")) { // IC No (Old)
         sql = "select w.pmi_no,w.episode_date,h.hfc_name,d.discipline_name,w.new_ic_no,w.old_ic_no "
@@ -90,7 +87,7 @@
                 + "inner join  adm_discipline d on w.discipline_cd = d.discipline_cd "
                  + "where w.`OLD_IC_NO` = '" + idInput + "'  "
                 + "GROUP BY w.`EPISODE_DATE` "
-                + "ORDER BY w.`EPISODE_DATE` DESC;;";
+                + "ORDER BY w.`EPISODE_DATE` DESC;";
         
         sql2 = "select p.pmi_no,p.episode_date,h.hfc_name,d.discipline_name,p.new_ic_no,p.old_ic_no "
                 + "from pms_episode p "
@@ -98,7 +95,7 @@
                 + "inner join  adm_discipline d on p.DISCIPLINE_CODE = d.discipline_cd "
                 + "where p.`OLD_IC_NO` = '" + idInput + "' "
                 + " GROUP BY p.`EPISODE_DATE` "
-                + " ORDER BY p.`EPISODE_DATE` DESC;;;";
+                + " ORDER BY p.`EPISODE_DATE` DESC;";
        
     }else if (idType.equals("004")) { // Matric No
         sql = "select w.pmi_no,w.episode_date,h.hfc_name,d.discipline_name,w.new_ic_no,w.old_ic_no "
@@ -107,7 +104,7 @@
                 + "inner join  adm_discipline d on w.discipline_cd = d.discipline_cd "
                  + "where w.`ID_NO` = '" + idInput + "'  "
                 + "GROUP BY w.`EPISODE_DATE` "
-                + "ORDER BY w.`EPISODE_DATE` DESC;;";
+                + "ORDER BY w.`EPISODE_DATE` DESC;";
         
         sql2 = "select p.pmi_no,p.episode_date,h.hfc_name,d.discipline_name,p.new_ic_no,p.old_ic_no "
                 + "from pms_episode p "
@@ -116,7 +113,7 @@
                 + "where p.id_no = '" + idInput + "' "
                 + "GROUP BY p.`EPISODE_DATE` "
                 + "ORDER BY p.`EPISODE_DATE` "
-                + "DESC;;;";
+                + "DESC;";
     }else if (idType.equals("005")) { // Staff No
         sql = "select w.pmi_no,w.episode_date,h.hfc_name,d.discipline_name,w.new_ic_no,w.old_ic_no "
                 + "from wis_inpatient_episode w "
@@ -124,7 +121,7 @@
                 + "inner join  adm_discipline d on w.discipline_cd = d.discipline_cd "
                  + "where w.`ID_NO` = '" + idInput + "'  "
                 + "GROUP BY w.`EPISODE_DATE` "
-                + "ORDER BY w.`EPISODE_DATE` DESC;;";
+                + "ORDER BY w.`EPISODE_DATE` DESC;";
         
         sql2 = "select p.pmi_no,p.episode_date,h.hfc_name,d.discipline_name,p.new_ic_no,p.old_ic_no "
                 + "from pms_episode p "
@@ -132,7 +129,7 @@
                 + "inner join  adm_discipline d on p.DISCIPLINE_CODE = d.discipline_cd "
                 + "where p.`ID_NO` = '" + idInput + "' "
                 + "GROUP BY p.`EPISODE_DATE` "
-                + "ORDER BY p.`EPISODE_DATE` DESC;;;";
+                + "ORDER BY p.`EPISODE_DATE` DESC;";
     }
     
     ArrayList<ArrayList<String>> searchID;
@@ -145,7 +142,7 @@
     if (searchID.size() > 0 || searchID1.size() > 0) {
 
         //Convert Code to Description
-        String sqlPatient = "select pmi_no,patient_name,new_ic_no,blood_type,sex_code,id_type,birth_date,race_code,allergy_ind,old_ic_no from pms_patient_biodata where pmi_no = '" + idInput + "' or new_ic_no = '" + idInput + "' or old_ic_no = '" + idInput + "' or id_no =  '"+idInput+"' ";
+        String sqlPatient = "select pmi_no,patient_name,new_ic_no,blood_type,sex_code,id_type,year(birth_date),race_code,allergy_ind,old_ic_no from pms_patient_biodata where pmi_no = '" + idInput + "' or new_ic_no = '" + idInput + "' or old_ic_no = '" + idInput + "' or id_no =  '"+idInput+"' ";
         ArrayList<ArrayList<String>> dataQueue = conn.getData(sqlPatient);
 
         String pmino = dataQueue.get(0).get(0);
@@ -226,18 +223,27 @@
         }
 
 // Get Age from Date of Birth
-        dob = dataQueue.get(0).get(6).toString();
-
-        check = cdf.isValidFormat("dd/MM/yyyy", dob);
-        if (check) {
-            String[] dobAr = StringUtils.split(dob, "/");
-            int dobYear = Integer.parseInt(dobAr[2]);
-            int dobMonth = Integer.parseInt(dobAr[1]);
-            age = year - dobYear;
+        if(dataQueue.get(0).get(6) != null){
+            dob = dataQueue.get(0).get(6);
+            age = year - Integer.parseInt(dob);
             ageS = Integer.toString(age);
-        } else {
+        }
+        else{
             ageS = "undefined";
         }
+        
+
+//        check = cdf.isValidFormat("dd/MM/yyyy", dob);
+//        if (check) {
+//            String[] dobAr = StringUtils.split(dob, "/");
+//            int dobYear = Integer.parseInt(dobAr[2]);
+//            int dobMonth = Integer.parseInt(dobAr[1]);
+//            age = year - dobYear;
+//            ageS = Integer.toString(age);
+//        } else {
+//            ageS = "undefined";
+//        }
+
 
 
 %>
@@ -299,7 +305,7 @@
                     </td>
                     <td><%=searchID.get(i).get(2)%></td>
                     <td><%=searchID.get(i).get(3)%></td>
-                    <td><a href="#episodeDetail" id="ViewDetail" name="ViewDetail" class="btn btn-default" type="button" role="button">View Details</a></td>
+                    <td><a href="#episodeDetail" id="ViewDetail" name="ViewDetail" class="btn btn-default" role="button">View Details</a></td>
                 </tr>
 
                 <% }
@@ -323,8 +329,6 @@
             <tbody id="detailList1">
                 <%
                     for (int i = 0; i < searchID1.size(); i++) {
-                        if (searchID1.size() > 0) {
-
                             //out.print(String.join("|", searchID1.get(i)));
                 %>
                 <tr>
@@ -337,10 +341,10 @@
                     </td>
                     <td><%=searchID1.get(i).get(2)%></td>
                     <td><%=searchID1.get(i).get(3)%></td>
-                    <td><a href="#episodeDetail" id="ViewDetail1" name="ViewDetail" class="btn btn-default" type="button" role="button">View Details</a></td>
+                    <td><a href="#episodeDetail" id="ViewDetail1" name="ViewDetail" class="btn btn-default" role="button">View Details</a></td>
                 </tr>
 
-                <% }
+                <% 
                     }
                 %>
             </tbody>
@@ -350,7 +354,9 @@
 <script type="text/javascript">
     $(document).ready(function () {
         $('#searchPatient').DataTable();
-        $('#searchPatient1').DataTable();
+        $('#searchPatient1').DataTable({
+            "order": [],
+        });
     });
 </script>
 <%

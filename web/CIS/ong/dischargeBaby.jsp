@@ -18,6 +18,7 @@
                 logo = dataLogo.get(0).get(0);
         }
 %>
+<hr class="pemisah"/>
 <div class="row">
     <div class="col-md-8">
         <h4>Discharge Baby</h4>
@@ -159,6 +160,9 @@
             });
 
             //console.log('Function is binded!');
+        }
+        else{
+            $('select.soap-select').val($('select.soap-select option:first').val());
         }
     });
     
