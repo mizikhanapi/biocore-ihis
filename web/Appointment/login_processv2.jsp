@@ -29,7 +29,7 @@
     if (data_check_user.size() > 0) {
 
         if (data_check_user.get(0).get(6).equals("PUBLIC")) {
-            if (data_check_user.get(0).get(1).equals(hashPassword)) {
+            if (data_check_user.get(0).get(1).equals(password)) {
 
                 session.setAttribute("USER_ID", data_check_user.get(0).get(0));
                 session.setAttribute("USER_NAME", data_check_user.get(0).get(3));
@@ -41,7 +41,7 @@
 
                 //                                      0       1               2           3              4              5              6                7                 8               9                 10                11                            
                 String sql_patient_detail = " SELECT `ID_NO`,`BIRTH_DATE`,`RACE_CODE`,`NATIONALITY`,`RELIGION_CODE`,`BLOOD_TYPE`,`HOME_ADDRESS`,`HOME_DISTRICT_CODE`,`HOME_TOWN_CODE`,`HOME_POSTCODE`,`HOME_STATE_CODE`,`HOME_COUNTRY_CODE`, PMI_NO "
-                        + "FROM pms_patient_biodata WHERE `PATIENT_NAME` = 'MUHAMAD BUDIE BIN BASRI';";
+                        + "FROM pms_patient_biodata WHERE `PATIENT_NAME` = '"+data_check_user.get(0).get(3)+"';";
                 ArrayList<ArrayList<String>> data_patient_detail = Conn.getData(sql_patient_detail);
 
                 String sql_race_code = "SELECT `Description` FROM adm_lookup_detail WHERE `Detail_Reference_code` = '" + data_patient_detail.get(0).get(2) + "' AND `Master_Reference_code` = '0004' AND hfc_cd = '99_iHIS_99';";
@@ -68,6 +68,7 @@
 //                        + "-|-" + data_patient_detail.get(0).get(9)  + "-|-" + data_patient_detail.get(0).get(12);
 //                
                 session.setAttribute("PATIENT_DETAIL", data_patient_detail.get(0));
+                session.setAttribute("ID_NO", data_patient_detail.get(0).get(0));
 
                 session.setAttribute("PMI_NO", data_patient_detail.get(0).get(12));
 

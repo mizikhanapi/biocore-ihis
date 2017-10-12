@@ -305,7 +305,7 @@
                         %>
 
                        <div class="col-xs-6 col-sm-6 col-md-3">
-                            <a href="../Appointment/" class="thumbnail" target="_blank">
+                            <a href="../Appointment/" class="thumbnail">
                                 <div class="kotak text-center">
                                     <i class="fa fa-calendar" aria-hidden="true" style="color: #33B3AA;font-size: 4em;"></i>
                                     <h3>Patient Appointment</h3>

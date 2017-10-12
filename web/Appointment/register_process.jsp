@@ -88,7 +88,7 @@
                     + ") VALUES ("
                     + "'" + username + "',  " //0
                     + "'" + dataPatientDetail.get(0).get(0) + "', " //1
-                    + "'" + hashPassword + "',  " //2
+                    + "'" + password + "',  " //2
                     + "'" + dataPatientDetail.get(0).get(1) + " 00:00:00.0', " //3
                     + "'" + dataPatientDetail.get(0).get(2) + "', " //4
                     + "'" + ic_no + "', " //5

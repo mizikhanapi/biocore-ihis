@@ -55,21 +55,11 @@
         <div class="tabbable-panel">
 
             <div class="tabbable-line">
-                <ul class="nav nav-tabs ">
-                    <li class="active">
-                        <a href="#tab_shift_code" data-toggle="tab">
-                            SHIFT CODE </a>
-                    </li>
-                    <li>
-                        <a href="#tab_shift_hour" data-toggle="tab">
-                            MANAGE SHIFT </a>
-                    </li>
-
-                </ul>
+   
 
                 <!-- tab content -->
                 <div class="tab-content">
-                    <div class="tab-pane active" id="tab_shift_code">
+                    <div class="tab-pane " id="tab_shift_code">
 
                         <div id="master">
 
@@ -81,7 +71,7 @@
                         </div>
 
                     </div>
-                    <div class="tab-pane" id="tab_shift_hour">
+                    <div class="tab-pane active" id="tab_shift_hour">
 
                         <div id="detail">
                             <div id="manage_shift">
@@ -105,6 +95,7 @@
         $(document).ready(function(){
             $("#shift_code").load("maintain_shift_code.jsp");
             $("#manage_shift").load("manage_shift.jsp");
+            $("#detailTable").load("manage_shift_table.jsp");
             
         })
         </script>

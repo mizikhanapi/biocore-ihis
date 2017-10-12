@@ -15,15 +15,15 @@
            
                 Conn Conn = new Conn();
                 //String hfc_cd = "04010101";
-                String hfc_cd = request.getParameter("hfc_cd");
-                String discipline_cd = request.getParameter("discipline_cd");
-                String subdiscipline_cd = request.getParameter("subdiscipline_cd");
+     String hfc = (String) session.getAttribute("HEALTH_FACILITY_CODE");
+     String discipline = (String) session.getAttribute("DISCIPLINE_CODE");
+     String subdiscipline = (String) session.getAttribute("SUB_DISCIPLINE_CODE");
 %>
 
 <select class="form-control input-lg" id="t_ADD_Appoinment_Time" name="t_ADD_Appoinment_Time" required>
     <option></option>
     <%
-        String sqlDoc = "select start_time from pms_appointment_time where hfc_cd = '"+hfc_cd+"' AND discipline_cd = '"+discipline_cd+"' AND subdiscipline_cd = '"+subdiscipline_cd+"'";
+        String sqlDoc = "select start_time from pms_appointment_time where hfc_cd = '"+hfc+"' AND discipline_cd = '"+discipline+"' AND subdiscipline_cd = '"+subdiscipline+"'";
         ArrayList<ArrayList<String>> dataDoctor = Conn.getData(sqlDoc);
 
         if (dataDoctor.size() > 0) {
