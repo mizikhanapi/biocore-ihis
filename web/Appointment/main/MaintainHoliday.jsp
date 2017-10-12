@@ -9,11 +9,7 @@
 <%
     Conn Conn = new Conn();
      String hfc = (String) session.getAttribute("HEALTH_FACILITY_CODE");
-         String hfc_name = (String) session.getAttribute("HFC_NAME");
-         String name = (String) session.getAttribute("USER_NAME");
-         String title = (String) session.getAttribute("OCCUPATION_CODE");
-         String discipline = (String) session.getAttribute("DISCIPLINE_CODE");
-         String subdiscipline = (String) session.getAttribute("SUB_DISCIPLINE_CODE");
+
          
          String sqlHFCState = "SELECT hf.state_cd, ld.`Description` FROM adm_health_facility hf INNER JOIN adm_lookup_detail ld ON hf.state_cd = ld.`Detail_Reference_code`  WHERE hf.hfc_cd = '"+hfc+"' AND ld.hfc_cd = '"+hfc+"' AND ld.`Master_Reference_code` = '0002'  ";
           ArrayList<ArrayList<String>> dataHFCState = Conn.getData(sqlHFCState);

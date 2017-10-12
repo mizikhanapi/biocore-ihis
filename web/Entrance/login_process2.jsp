@@ -191,6 +191,7 @@
                 session.setAttribute("SYSTEM_PARAMETER", sysParaIT);
                 
                 session.setAttribute("CIS_PARAM", CISLongString);
+                session.setAttribute("USER_TYPE", "STAFF");
                 
                 //==========================================
 

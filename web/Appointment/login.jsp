@@ -143,7 +143,8 @@
                         success:function(r){
                            var res = r.trim();
                            if(res === "|SUCCESS-PUBLIC-LOGIN|"){
-                               location.href = "indexPatient.jsp";
+                               //location.href = "index.jsp";
+                               location.href = "patientSelectHFC.jsp"
                            }else if(res === "4"){
                                alert("You have logged in to another PC or you did not log out properly");
                                location.href = "../Entrance/ReSign-in";

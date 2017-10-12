@@ -8,31 +8,31 @@
 $(document).ready(function () {
 
     var hfc_name = $("#t_SEARCH_Appointment_HFC_NAME").val();
-    $("#t_SEARCH_Appointment_SUBDIS_NAME").prop('disabled', true);
-    searchHFCDefault("t_SEARCH_Appointment_HFC_NAME", "t_SEARCH_Appointment_HFC_NAME_LOADING", hfc_name);
-    searchDisciplineOnly("t_SEARCH_Appointment_DIS_NAME", "t_SEARCH_Appointment_DIS_NAME_LOADING", $("#t_SEARCH_Appointment_HFC_CD").val());
-
-    $("#t_SEARCH_Appointment_HFC_NAME").on('select:flexdatalist', function () {
-        var current_hfc_name = $(this).val();
-
-        getHFCCode(current_hfc_name, "t_SEARCH_Appointment_HFC_CD", "-", "t_SEARCH_Appointment_DIS_NAME", "t_SEARCH_Appointment_DIS_NAME_LOADING");
-
-    });
-
-    $("#t_SEARCH_Appointment_DIS_NAME").on('select:flexdatalist', function () {
-        var discipline_name = $(this).val();
-        var hfc_cd = $("#t_SEARCH_Appointment_HFC_CD").val();
-
-        $("#t_SEARCH_Appointment_SUBDIS_NAME").prop('disabled', false);
-        getDisciplineCode(hfc_cd, discipline_name, "t_SEARCH_Appointment_DIS_CODE", "t_SEARCH_Appointment_SUBDIS_NAME", "t_SEARCH_Appointment_SUBDIS_NAME_LOADING");
-    });
-
-    $("#t_SEARCH_Appointment_SUBDIS_NAME").on('select:flexdatalist', function () {
-        var sub_discipline_name = $(this).val();
-        var hfc_cd = $("#t_SEARCH_Appointment_HFC_CD").val();
-        var discipline_code = $("#t_SEARCH_Appointment_DIS_CODE").val();
-        getSubDisciplineCode(hfc_cd, discipline_code, sub_discipline_name, "t_SEARCH_Appointment_SUBDIS_CODE");
-    });
+//    $("#t_SEARCH_Appointment_SUBDIS_NAME").prop('disabled', true);
+//    searchHFCDefault("t_SEARCH_Appointment_HFC_NAME", "t_SEARCH_Appointment_HFC_NAME_LOADING", hfc_name);
+//    searchDisciplineOnly("t_SEARCH_Appointment_DIS_NAME", "t_SEARCH_Appointment_DIS_NAME_LOADING", $("#t_SEARCH_Appointment_HFC_CD").val());
+//
+//    $("#t_SEARCH_Appointment_HFC_NAME").on('select:flexdatalist', function () {
+//        var current_hfc_name = $(this).val();
+//
+//        getHFCCode(current_hfc_name, "t_SEARCH_Appointment_HFC_CD", "-", "t_SEARCH_Appointment_DIS_NAME", "t_SEARCH_Appointment_DIS_NAME_LOADING");
+//
+//    });
+//
+//    $("#t_SEARCH_Appointment_DIS_NAME").on('select:flexdatalist', function () {
+//        var discipline_name = $(this).val();
+//        var hfc_cd = $("#t_SEARCH_Appointment_HFC_CD").val();
+//
+//        $("#t_SEARCH_Appointment_SUBDIS_NAME").prop('disabled', false);
+//        getDisciplineCode(hfc_cd, discipline_name, "t_SEARCH_Appointment_DIS_CODE", "t_SEARCH_Appointment_SUBDIS_NAME", "t_SEARCH_Appointment_SUBDIS_NAME_LOADING");
+//    });
+//
+//    $("#t_SEARCH_Appointment_SUBDIS_NAME").on('select:flexdatalist', function () {
+//        var sub_discipline_name = $(this).val();
+//        var hfc_cd = $("#t_SEARCH_Appointment_HFC_CD").val();
+//        var discipline_code = $("#t_SEARCH_Appointment_DIS_CODE").val();
+//        getSubDisciplineCode(hfc_cd, discipline_code, sub_discipline_name, "t_SEARCH_Appointment_SUBDIS_CODE");
+//    });
 
     $('#t_SEARCH_HFC_VIEW_Appointment').click(function (e) {
         e.preventDefault();
@@ -192,7 +192,7 @@ $(document).ready(function () {
 
 });
 
-function initilizeAppointmentCalendar(_hfc_cd_CODE, _discipline_CODE, _subdiscipline_CODE, start_time, end_time, slot_duration) {
+function initilizeAppointmentCalendarPatient(_hfc_cd_CODE, _discipline_CODE, _subdiscipline_CODE, start_time, end_time, slot_duration) {
 
     $('#AppointmentCalender').fullCalendar({
         header: {
@@ -207,35 +207,32 @@ function initilizeAppointmentCalendar(_hfc_cd_CODE, _discipline_CODE, _subdiscip
             console.log('All Items Rendered!');
         },
         dayClick: function (date, allDay, jsEvent, view) {
-            $.ajax({
-                url: 'calender/SelectTIMEAvailability.jsp',
-                method: 'POST',
-                timeout: 3000,
-                data: {
-                    hfc_cd: _hfc_cd_CODE,
-                    discipline_cd: _discipline_CODE,
-                    subdiscipline_cd: _subdiscipline_CODE
-                },
-                success: function (result) {
-                    $("#div_ADD_Appoinment_TIME").html(result);
-                }
-            });
-
+            console.log();
+            var dateArray = date._i;
             var view = $('#AppointmentCalender').fullCalendar('getView');
             console.log(view.name);
             if (view.name === 'month') {
                 $('#AppointmentCalender').fullCalendar('changeView', 'agendaDay');
                 $('#AppointmentCalender').fullCalendar('gotoDate', date);
             } else {
-                $("#AppointmentAddPatient").modal("show");
-                $('#t_ADD_Appointment_PATIENT_HFC_CD').val(_hfc_cd_CODE);
-                $('#t_ADD_Appointment_PATIENT_DIS_CODE').val(_discipline_CODE);
-                $('#t_ADD_Appointment_PATIENT_SUBDIS_CODE').val(_subdiscipline_CODE);
 
+                $("#AppointmentAdd").modal("show");
+                var hour = dateArray[3];
+                var minutes = dateArray[4];
+                if (hour < 10) {
+                    hour = "0" + hour
+                }
+                if (minutes < 10) {
+                    minutes = "0" + minutes
+                }
+
+                var selectedTime = hour + ":" + minutes + ":00"
                 var date2 = date.format().substr(0, 10);
                 var datAR = date2.split("-");
                 var newDate = datAR[2] + "-" + datAR[1] + "-" + datAR[0];
+                console.log(selectedTime);
                 $("#t_ADD_Appoinment_Date").val(newDate);
+                $("#t_ADD_Appoinment_Time").val(selectedTime);
             }
         },
         eventClick: function (calEvent, jsEvent, view) {
@@ -260,11 +257,7 @@ function initilizeAppointmentCalendar(_hfc_cd_CODE, _discipline_CODE, _subdiscip
 
 
         },
-//        eventSources:{
-//            url: "calender/AppointmentDataPatient.jsp?h="+_hfc_cd_CODE+"&d="+_discipline_CODE+"&s="+_subdiscipline_CODE, // use the `url` property
-//            //color: 'red',    // an option!
-//            //textColor: 'red'  // an option!
-//        }
+
         events: "calender/AppointmentDataPatient.jsp?h=" + _hfc_cd_CODE + "&d=" + _discipline_CODE + "&s=" + _subdiscipline_CODE,
     });
 }

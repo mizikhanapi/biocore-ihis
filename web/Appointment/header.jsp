@@ -33,7 +33,15 @@
         <script src="js/jquery.datetimepicker.full.js" type="text/javascript"></script>
         
         
-        <script src="calender/AppointmentCalendar.js" type="text/javascript"></script>
+        
+        
+        <script src="jsfile/ViewHoliday.js"></script> 
+        <script src="jsfile/SearchPatient.js"></script>       
+        <script src="jsfile/ApplyLeave.js"></script>    
+        <script src="jsfile/ViewAppointment.js"></script> 
+        <script src="jsfile/CancelAppointment.js"></script>
+        <script src="jsfile/DoctorAvaibility.js"></script>
+        <script src="jsfile/ManageAppointmentDuration.js"></script>
         
         <%
         Config.getFile_url(session);
