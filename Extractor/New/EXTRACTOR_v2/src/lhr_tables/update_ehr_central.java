@@ -1,5 +1,6 @@
 package lhr_tables;
 
+import Bean.ERRCOUNT;
 import Process.MainRetrieval;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -36,12 +37,14 @@ public class update_ehr_central {
     }
     
     public void update_status_5(String centralCD){
-        String sql_update_ehr_central = "UPDATE `ehr_central` SET `status_5` = 'FAIL' WHERE `ehr_central`.`central_code` = '" + centralCD + "'"; // Update patient status to 3 by using CENTRAL_CODE unique column data.
+        String sql_update_ehr_central = "UPDATE `ehr_central` SET `status_5` = '"+ERRCOUNT.getErrMsg()+"' WHERE `ehr_central`.`central_code` = '" + centralCD + "'"; // Update patient status to 3 by using CENTRAL_CODE unique column data.
         update_ehr_central_boolean2 = rc.setQuerySQL(Config.ipAddressServer, Config.portServer, sql_update_ehr_central);
         if (update_ehr_central_boolean2 == true) {
             System.out.println("Done Update Status_5");
+            ERRCOUNT.setCounterError(0);
+            ERRCOUNT.setErrMsg("");
         } else {
-            System.out.println("False when updating status_%");
+            System.out.println("False when updating status_5");
         }
     }
 

@@ -28,19 +28,22 @@ $(document).ready(function () {
         }
     });
     
-    initilizeAppointmentCalendar(_hfc_cd_CODE, _discipline_CODE, _subdiscipline_CODE, _start_time, _end_time, _duration);
-    //initilizeAppointmentCalendarPatient(_hfc_cd_CODE, _discipline_CODE, _subdiscipline_CODE, _start_time, _end_time, _duration)
-    $.ajax({
-        url: "calender/AppointmentData.jsp",
-        timeout: 3000,
-        method: "POST",
-        data: {
+//    $("#t_SEARCH_HFC_VIEW_Appointment").on('click',function(){
+//        var hfc_cd_1 = $("#hfc_code").val();
+//        var dis_cd_1 = $("#dis_code").val();
+//        var subdis_cd_1 = $("#subdis_code").val();
+//        console.log(hfc_cd_1);
+//        console.log(dis_cd_1);
+//        console.log(subdis_cd_1);
+//        initilizeAppointmentCalendarPatient(hfc_cd_1, dis_cd_1, subdis_cd_1, _start_time, _end_time, _duration);
+//        $('#AppointmentCalender').fullCalendar('rerenderEvents');
+//        //$('#AppointmentCalender').fullCalendar('destroy');
+//        //$('#AppointmentCalender').fullCalendar('render');
+//    })
+//    
+    //initilizeAppointmentCalendar(_hfc_cd_CODE, _discipline_CODE, _subdiscipline_CODE, _start_time, _end_time, _duration);
+    initilizeAppointmentCalendarPatient(_hfc_cd_CODE, _discipline_CODE, _subdiscipline_CODE, _start_time, _end_time, _duration);
 
-        },
-        success: function (response) {
-            console.log(response);
-        }
-    });
 
     $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
         $('#AppointmentCalender').fullCalendar('render');

@@ -138,6 +138,7 @@ public class lhr_RRS {
                             System.out.println("false extracting rrs");
                             System.out.println(query_lhr_radiology_result);
                             ERRCOUNT.plusOne();
+                            ERRCOUNT.msgErr("RRS|");
                         } else {
                             System.out.println("true extracting rrs");
                         }

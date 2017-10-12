@@ -122,6 +122,7 @@ public class lhr_SOH {
                                 total_fail_insert++;
                                 System.out.println("false extract SOH");
                                 ERRCOUNT.plusOne();
+                                ERRCOUNT.msgErr("SOH|");
                             }else{
                                 System.out.println("done extract SOH");
                             }

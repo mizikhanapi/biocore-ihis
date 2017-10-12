@@ -105,6 +105,7 @@ public class lhr_DCG {
                             System.out.println("false extracting dcg");
                             System.out.println(query_lhr_discharge_summary);
                             ERRCOUNT.plusOne();
+                            ERRCOUNT.msgErr("DCG|");
                         } else {
                             System.out.println("true extracting dcg");
                         }

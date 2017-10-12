@@ -130,6 +130,7 @@ public class lhr_MEC {
                             System.out.println("false extract MEC");
                             System.out.println(query_lhr_ml);
                             ERRCOUNT.plusOne();
+                            ERRCOUNT.msgErr("MEC|");
                         } else {
                             System.out.println("done extract MEC");
                         }

@@ -13,9 +13,7 @@
 <%
     Conn Conn = new Conn();
     String hfc = (String) session.getAttribute("HEALTH_FACILITY_CODE");
-    String hfcName = (String) session.getAttribute("HFC_NAME");
-        String discipline = (String) session.getAttribute("DISCIPLINE_CODE");
-            String subdiscipline = (String) session.getAttribute("SUB_DISCIPLINE_CODE");
+
             
        String sqlDoctorAvailable = "SELECT doc.*,DATE(pdr.start_date),DATE(pdr.end_date) "
             + "from pms_duty_roster pdr, "

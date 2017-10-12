@@ -114,6 +114,7 @@ public class lhr_LIR {
                             System.out.println("false extract lir");
                             System.out.println(query_lhr_test);
                             ERRCOUNT.plusOne();
+                            ERRCOUNT.msgErr("LIR|");
                         } else {
                             System.out.println("done extract lir");
                         }

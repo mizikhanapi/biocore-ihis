@@ -121,7 +121,7 @@ $(document).ready(function () {
                                     // console.log(manageAppointmentData);
                                     addDuration(manageAppointmentData);
                                 }
-                                  $("#div_VIEW_DURATION_APPOINMENT").load("adminAppointmentAjax.jsp #div_VIEW_DURATION_APPOINMENT");
+                                  $("#div_VIEW_DURATION_APPOINMENT").load("main/ManageAppointment.jsp #div_VIEW_DURATION_APPOINMENT");
                                   location.reload();
                             }
                         })
@@ -167,8 +167,8 @@ $(document).ready(function () {
                             // console.log(manageAppointmentData);
                             addDuration(manageAppointmentData);
                         }
-                        $("#div_VIEW_DURATION_APPOINMENT").load("adminAppointmentAjax.jsp #div_VIEW_DURATION_APPOINMENT");
-                        location.reload();
+                        $("#div_VIEW_DURATION_APPOINMENT").load("main/ManageAppointment.jsp #div_VIEW_DURATION_APPOINMENT");
+                        //location.reload();
                 }
             }
         })
@@ -202,3 +202,101 @@ function addDuration(manageAppointmentData) {
     })
 }
 
+  $(document).ready(function(){
+      
+      $("#hfc_code").hide();
+       $("#t_SEARCH_HFC_CANCEL").hide()
+       $("#t_SEARCH_HFC_VIEW_Appointment").hide();
+       
+       $("#t_SEARCH_HFC_CHANGE_HFC").click(function(){
+           location.href = "patientSelectHFC.jsp";
+//            $("#t_SEARCH_HFC_VIEW_Appointment").show();
+//            $("#t_SEARCH_HFC_CANCEL").show();
+//            $("#hfc_code").show();
+//                   
+//        $("#subDiscipline").show();
+//        $("#divDiscipline").show();
+//            $("#t_SEARCH_Appointment_HFC_NAME").hide();
+//            $("#t_SEARCH_Appointment_DIS_NAME").hide();
+//            $("#t_SEARCH_Appointment_SUBDIS_NAME").hide();
+//            $(this).hide();
+       })
+       
+       $("#t_SEARCH_HFC_CANCEL").click(function(){
+           $(this).hide();
+           $("#t_SEARCH_HFC_VIEW_Appointment").hide();
+           $("#t_SEARCH_HFC_CHANGE_HFC").show();
+                       $("#t_SEARCH_Appointment_HFC_NAME").show();
+        $("#t_SEARCH_Appointment_DIS_NAME").show();
+        $("#t_SEARCH_Appointment_SUBDIS_NAME").show();
+        $("#hfc_code").hide();
+
+        $("#subDiscipline").hide();
+        $("#divDiscipline").hide();
+
+       })
+                $("#hfc_code").on('change',function(){
+                    
+                    $.ajax({
+                      url:"search/getSelectDiscipline.jsp",
+                      data:{
+                          hfc_cd : $("#hfc_code").val()
+                      },
+                      timeout:3000,
+                      success:function(r){
+                          console.log(r);
+                          $("#divDiscipline").html(r.trim());
+                      }
+                    })
+                });
+                
+                $("#btnSelectHFC").click( function(e){
+                    e.preventDefault();
+                    var hfc_cd = $("#hfc_code").val();
+                    var hfc_name = $("#hfc_code option:selected").text();
+                    var dis_cd = $("#dis_code").val();
+                    var dis_name = $("#dis_code option:selected").text();
+                    var subdis_cd = $("#subdis_code").val();
+                    var subdis_name = $("#subdis_code option:selected").text();
+                    
+                    var data = {
+                        hfc_cd:hfc_cd,
+                        hfc_name:hfc_name,
+                        dis_cd:dis_cd,
+                        dis_name:dis_name,
+                        subdis_cd:subdis_cd,
+                        subdis_name:subdis_name
+                    }
+                    $.ajax({
+                        url:"setSessionPatient.jsp",
+                        timeout:3000,
+                        data:data,
+                        success:function(r){
+                            if(r.trim() === "|SUCCESS|"){
+                                location.href = "index.jsp"
+                            }else{
+                                bootbox.alert("Choose the correct Health Facility");
+                            }
+                        }
+                    })
+                    console.log(data);
+                });
+                
+
+                
+            });
+             $(document).on('change','#dis_code',function(){
+                    $.ajax({
+                        url:"search/getSelectSubdiscipline.jsp",
+                        data:{
+                             hfc_cd : $("#hfc_code").val(),
+                             dis_cd: $("#dis_code").val()
+                        },
+                        timeout:3000,
+                        success:function(r){
+                            console.log(r.trim())
+                            $("#subDiscipline").html(r.trim());
+                        }
+                    })
+                });
+                

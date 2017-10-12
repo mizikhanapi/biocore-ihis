@@ -165,6 +165,7 @@ public class lhr_PMH {
                                 System.out.println("false extract pmh");
                                 System.out.println("query : " + query_lhr_pmh);
                                 ERRCOUNT.plusOne();
+                                ERRCOUNT.msgErr("PMH|");
                             }else{
                                 System.out.println("done extract pmh");
                             }

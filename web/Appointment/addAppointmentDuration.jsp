@@ -20,7 +20,7 @@
         String sub_discipline_cd = request.getParameter("sub_discipline_cd");
         String start_time = request.getParameter("start_time");
         String duration = request.getParameter("duration");
-        String username = (String)session.getAttribute("username");
+        String username = (String)session.getAttribute("USER_ID");
         
         
         

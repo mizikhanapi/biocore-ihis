@@ -111,6 +111,7 @@ public class lhr_SPR {
                             System.out.println("false extracting spr");
                             System.out.println(query_lhr_procedure);
                             ERRCOUNT.plusOne();
+                            ERRCOUNT.msgErr("SPR|");
                         } else {
                             System.out.println("true extracting spr");
                         }

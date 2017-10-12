@@ -21,6 +21,15 @@ package Bean;
  */
 public class ERRCOUNT {
     public static int counterError = 0;
+    public static String errMsg = "";
+
+    public static String getErrMsg() {
+        return errMsg;
+    }
+
+    public static void setErrMsg(String errMsg) {
+        ERRCOUNT.errMsg = errMsg;
+    }
 
     public static int getCounterError() {
         return counterError;
@@ -33,6 +42,11 @@ public class ERRCOUNT {
     public static int plusOne(){
         counterError += 1;
         return counterError;
-    } 
+    }
+    
+    public static String msgErr(String msj){
+        errMsg += msj;
+        return errMsg;
+    }
     
 }

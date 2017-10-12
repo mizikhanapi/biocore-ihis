@@ -102,6 +102,7 @@ public class lhr_HPI {
                         System.out.println("false extract hpi");
                         System.out.println(query2);
                         ERRCOUNT.plusOne();
+                        ERRCOUNT.msgErr("HPI|");
                     }else{
                         System.out.println("done extract hpi");
                     }
