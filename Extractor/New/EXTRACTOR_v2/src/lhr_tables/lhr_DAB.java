@@ -90,6 +90,7 @@ public class lhr_DAB {
                             total_fail_insert++;
                             System.out.println("False extract DAB");
                             ERRCOUNT.plusOne();
+                            ERRCOUNT.msgErr("DAB|");
                         }else{
                             System.out.println("Done extract DAB");
                         }

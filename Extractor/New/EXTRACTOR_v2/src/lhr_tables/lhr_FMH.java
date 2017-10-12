@@ -162,6 +162,7 @@ public class lhr_FMH {
                                 System.out.println("false insert fmh");
                                 System.out.println(query_fmh_lhr_fh);
                                 ERRCOUNT.plusOne();
+                                ERRCOUNT.msgErr("FMH|");
                             }else{
                                 System.out.println("done insert fmh");
                             }

@@ -146,6 +146,7 @@ public class lhr_ALG {
                             System.out.println("False extract alg");
                             System.out.println(query_alg_lhr_alg);
                             ERRCOUNT.plusOne();
+                            ERRCOUNT.msgErr("ALG|");
                         }
                         algBr.add(algB);
 

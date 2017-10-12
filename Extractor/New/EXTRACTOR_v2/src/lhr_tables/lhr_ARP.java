@@ -145,6 +145,7 @@ public class lhr_ARP {
                                     System.out.println("False extract arp");
                                     System.out.println("query arp: " + query_alg_lhr_arp);
                                     ERRCOUNT.plusOne();
+                                    ERRCOUNT.msgErr("ARP|");
                                 }
                                 arpBr.add(arpB);
 

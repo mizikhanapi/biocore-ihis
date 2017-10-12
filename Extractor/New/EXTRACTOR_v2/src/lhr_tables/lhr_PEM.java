@@ -104,10 +104,11 @@ public class lhr_PEM {
                 status_imu_lhr_pem = rc.setQuerySQL(Config.ipAddressServer, Config.portServer, query_imu_lhr_pem);
                 
                 if (status_imu_lhr_pem == false) {
-                    System.out.println("Query for IMU: " + query_imu_lhr_pem);
+                    System.out.println("Query for PEM: " + query_imu_lhr_pem);
                     System.out.println("false extract PEM");
                     total_fail_insert++;
                     ERRCOUNT.plusOne();
+                    ERRCOUNT.msgErr("PEM|");
                 } else {
                     System.out.println("done extract PEM");
                 }

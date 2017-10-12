@@ -82,6 +82,7 @@ public class lhr_BLD {
                           System.out.println("False extract BLD");
                           System.out.println(query_bld_lhr_bld);
                           ERRCOUNT.plusOne();
+                          ERRCOUNT.msgErr("BLD|");
                     }
 
                     bldBr.add(bldB);

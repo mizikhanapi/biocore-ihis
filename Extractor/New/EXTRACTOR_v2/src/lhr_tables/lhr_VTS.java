@@ -181,6 +181,7 @@ public class lhr_VTS {
                             System.out.println("false extract vts weight height");
                             System.out.println(query_vts_lhr_wh);
                             ERRCOUNT.plusOne();
+                            ERRCOUNT.msgErr("LWH|");
                         } else {
                             System.out.println("done extract vts weight height");
                         }
@@ -247,6 +248,7 @@ public class lhr_VTS {
                             System.out.println("False extract vts bp");
                             System.out.println(query_vts_lhr_bp);
                             ERRCOUNT.plusOne();
+                            ERRCOUNT.msgErr("BPP|");
                         } else {
                             System.out.println("done extract vts bp");
                         }
@@ -305,6 +307,7 @@ public class lhr_VTS {
                             System.out.println("false extract vts blood glucose");
                             System.out.println(query_vts_lhr_bg);
                             ERRCOUNT.plusOne();
+                            ERRCOUNT.msgErr("BLG|");
                         } else {
                             System.out.println("done extract vts blood glucose");
                         }
@@ -361,6 +364,7 @@ public class lhr_VTS {
                             System.out.println("false extract vts spo2");
                             System.out.println(query_vts_lhr_spo2);
                             ERRCOUNT.plusOne();
+                            ERRCOUNT.msgErr("SPO2|");
                         } else {
                             System.out.println("done extract vts spo2");
                         }
@@ -467,6 +471,7 @@ public class lhr_VTS {
                                 System.out.println("false extract vts temperature");
                                 System.out.println(query_vts_lhr_temperature);
                                 ERRCOUNT.plusOne();
+                                ERRCOUNT.msgErr("TEMP|");
                             } else {
                                 System.out.println("done extract vts temperature");
                             }

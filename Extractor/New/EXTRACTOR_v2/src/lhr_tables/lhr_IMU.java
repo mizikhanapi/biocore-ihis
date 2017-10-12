@@ -138,6 +138,7 @@ public class lhr_IMU {
                             System.out.println("false extract IMU");
                             System.out.println(query_imu_lhr_imu);
                             ERRCOUNT.plusOne();
+                            ERRCOUNT.msgErr("IMU|");
                         } else {
                             System.out.println("done extract IMU");
                         }

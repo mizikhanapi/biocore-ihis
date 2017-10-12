@@ -107,6 +107,7 @@ public class lhr_PNT {
                                 System.out.println("false extract PNT");
                                 System.out.println(query_pnt_lhr_pnt);
                                 ERRCOUNT.plusOne();
+                                ERRCOUNT.msgErr("PNT|");
                             }else{
                                 System.out.println("done extract PNT");
                             }

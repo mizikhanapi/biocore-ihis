@@ -175,6 +175,7 @@ public class lhr_DDR {
                                 System.out.println("false extracting ddr");
                                 System.out.println(query_lhr_medication);
                                 ERRCOUNT.plusOne();
+                                ERRCOUNT.msgErr("DDR|");
                             } else {
                                 System.out.println("true extracting ddr");
                             }

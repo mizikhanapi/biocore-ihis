@@ -147,6 +147,7 @@ public class lhr_CCN {
                             System.out.println("False extract ccn");
                             System.out.println("query ccn: "+query1);
                             ERRCOUNT.plusOne();
+                            ERRCOUNT.msgErr("CCN|");
                         }
 
                         ccnBeans.add(ccnBean);

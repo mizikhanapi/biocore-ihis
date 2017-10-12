@@ -163,6 +163,7 @@ public class lhr_DGS {
                             System.out.println("False extract DGS");
                             System.out.println(query2);
                             ERRCOUNT.plusOne();
+                            ERRCOUNT.msgErr("DGS|");
                         }
                         dgsBr.add(dgsB);
                     } catch (Exception e) {
