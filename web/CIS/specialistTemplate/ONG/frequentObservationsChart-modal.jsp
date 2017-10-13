@@ -86,7 +86,7 @@
                             <div class="form-group">
                                 <label class="col-md-12 control-label" for="textinput">Blood Pressure</label>
                                 <div class="col-md-12">
-                                    <input type="text" class="form-control input-md" id="freqObservationChartModalBP">
+                                    <input type="text" class="form-control input-md" id="freqObservationChartModalBP" maxlength="7">
                                 </div>
                             </div>
                         </div>

@@ -290,7 +290,7 @@
                             <div class="form-group">
                                 <label class="col-md-12 control-label" for="textinput">Description</label>
                                 <div class="col-md-12">
-                                    <input type="text" class="form-control input-md" id="nurseryUseDetailChartModalDescription">
+                                    <input type="text" class="form-control input-md" id="nurseryUseDetailChartModalDescription" maxlength="20">
                                 </div>
                             </div>
                         </div>
