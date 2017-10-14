@@ -49,7 +49,7 @@
     // De Select All Order Function End
 
 
-    // De Select All Order Function Start
+    // Archive Order Function Start
     $('#contentDataManagementAchiveOrderDetail').off('click', '#dataManagementArchiveOrderButtonRightDiv #btnArchiveOrderArchiveSelected').on('click', '#dataManagementArchiveOrderButtonRightDiv #btnArchiveOrderArchiveSelected', function (e) {
 
         var longString = "";
@@ -156,7 +156,7 @@
         }
 
     });
-    // De Select All Order Function End
+    // Archive Order Function End
 
 
 </script>
