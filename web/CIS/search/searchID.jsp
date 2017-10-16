@@ -55,6 +55,7 @@
                 + "inner join adm_health_facility h on w.hfc_cd = h.hfc_cd "
                 + "inner join  adm_discipline d on w.discipline_cd = d.discipline_cd "
                 + "where w.pmi_no = '" + idInput + "' AND  "
+                + "GROUP BY w.`EPISODE_DATE` "
                 + "ORDER BY w.`EPISODE_DATE` DESC;";
         
         sql2 = "select p.pmi_no,p.episode_date,h.hfc_name,d.discipline_name,p.new_ic_no,p.old_ic_no "
@@ -62,6 +63,7 @@
                 + "inner join adm_health_facility h on p.`HEALTH_FACILITY_CODE` = h.hfc_cd "
                 + "inner join  adm_discipline d on p.DISCIPLINE_CODE = d.discipline_cd "
                 + "where p.pmi_no = '" + idInput + "' "
+                + "GROUP BY p.`EPISODE_DATE` "
                 + "ORDER BY p.`EPISODE_DATE` DESC;";
 
     } else if (idType.equals("002")) { // IC No (New)

@@ -65,9 +65,35 @@
     sql="SELECT systolic_sitting, diastolic_sitting, sitting_pulse, systolic_standing, diastolic_standing, standing_pulse, systolic_supine, diastolic_supine, supine_pulse FROM lhr_bp WHERE pmi_no='"+pmi_no+"' and episode_date='"+episodeDate+"';";
     ArrayList<ArrayList<String>> searchEpisode12 = conn.getData(sql);
 
+    sql="SELECT icd10_description, `DAB_comment` FROM lhr_disability WHERE pmi_no='"+pmi_no+"' and episode_date='"+episodeDate+"';";
+    ArrayList<ArrayList<String>> searchEpisode13 = conn.getData(sql);
+
+    sql="SELECT `signDesc`, comment FROM lhr_physical_examination WHERE pmi_no='"+pmi_no+"' and episode_date='"+episodeDate+"';";
+    ArrayList<ArrayList<String>> searchEpisode14 = conn.getData(sql);
+
+    sql="SELECT progress_notes FROM lhr_progress_notes WHERE pmi_no='"+pmi_no+"' and episode_date='"+episodeDate+"';";
+    ArrayList<ArrayList<String>> searchEpisode15 = conn.getData(sql);
+
+    sql="SELECT investigation_name, report_notes FROM lhr_radiology_result WHERE pmi_no='"+pmi_no+"' and episode_date='"+episodeDate+"';";
+    ArrayList<ArrayList<String>> searchEpisode16 = conn.getData(sql);
+    
+    sql="SELECT soh_name, soh_comment  FROM lhr_social_history WHERE pmi_no='"+pmi_no+"' and episode_date='"+episodeDate+"';";
+    ArrayList<ArrayList<String>> searchEpisode17 = conn.getData(sql);
+
+    sql="SELECT spo2_reading FROM lhr_spo2 WHERE pmi_no='"+pmi_no+"' and episode_date='"+episodeDate+"';";
+    ArrayList<ArrayList<String>> searchEpisode18 = conn.getData(sql);
+
+    sql="SELECT test_name, test_result FROM lhr_test WHERE pmi_no='"+pmi_no+"' and episode_date='"+episodeDate+"';";
+    ArrayList<ArrayList<String>> searchEpisode19 = conn.getData(sql);
+
+    sql="SELECT weight_reading, height_reading FROM lhr_weight_height WHERE pmi_no='"+pmi_no+"' and episode_date='"+episodeDate+"';";
+    ArrayList<ArrayList<String>> searchEpisode20 = conn.getData(sql);
+
           if(searchEpisode.size() > 0 || searchEpisode1.size() > 0 || searchEpisode2.size() > 0 || searchEpisode3.size() > 0 || searchEpisode4.size() > 0 
          || searchEpisode5.size() > 0 || searchEpisode6.size() > 0 || searchEpisode7.size() > 0 || searchEpisode8.size() > 0 || searchEpisode9.size() > 0
-         || searchEpisode10.size()>0 || searchEpisode11.size()>0  || searchEpisode12.size()>0      ){
+         || searchEpisode10.size()> 0 || searchEpisode11.size()> 0 || searchEpisode12.size()> 0 || searchEpisode13.size()> 0 || searchEpisode14.size()> 0
+         || searchEpisode15.size()> 0 || searchEpisode16.size()> 0 || searchEpisode17.size()> 0 || searchEpisode18.size()> 0 || searchEpisode19.size()> 0
+         || searchEpisode20.size()> 0         ){
               
               
           
@@ -320,7 +346,141 @@
         </tr>
         <%
                 }// end loop search12
-            }// end if search12    
+            }// end if search12
+
+            if(searchEpisode13.size()>0){
+                for(int i=0; i<searchEpisode13.size(); i++){
+         %>
+        <tr data-status="pagado">
+            <td>
+                <div class="media">
+                    <div class="media-body">
+                        <p class="summary"  id="summary"><b>Disability <%= i + 1%></b> : <%=searchEpisode13.get(i).get(0)%></p>
+                        <p><b>Comment: </b>  <%=searchEpisode13.get(i).get(1)%></p>
+                    </div>
+                </div>
+            </td>   
+        </tr>
+        <%            
+                }//end for 13
+            }// end if 13
+            
+             if(searchEpisode14.size()>0){
+                for(int i=0; i<searchEpisode14.size(); i++){
+         %>
+        <tr data-status="pagado">
+            <td>
+                <div class="media">
+                    <div class="media-body">
+                        <p class="summary"  id="summary"><b>Physical Examination <%= i + 1%></b> : <%=searchEpisode14.get(i).get(0)%></p>
+                        <p><b>Comment: </b>  <%=searchEpisode14.get(i).get(1)%></p>
+                    </div>
+                </div>
+            </td>   
+        </tr>
+        <%            
+                }//end for 14
+            }// end if 14
+
+            if(searchEpisode15.size()>0){
+                for(int i=0; i<searchEpisode15.size(); i++){
+         %>
+        <tr data-status="pagado">
+            <td>
+                <div class="media">
+                    <div class="media-body">
+                        <p class="summary"  id="summary"><b>Progress notes <%= i + 1%></b> : <%=searchEpisode15.get(i).get(0)%></p>
+                     </div>
+                </div>
+            </td>   
+        </tr>
+        <%            
+                }//end for 15
+            }// end if 15
+
+            if(searchEpisode16.size()>0){
+                for(int i=0; i<searchEpisode16.size(); i++){
+         %>
+        <tr data-status="pagado">
+            <td>
+                <div class="media">
+                    <div class="media-body">
+                        <p class="summary"  id="summary"><b>Investigation name <%= i + 1%></b> : <%=searchEpisode16.get(i).get(0)%></p>
+                        <p><b>Report notes: </b>  <%=searchEpisode16.get(i).get(1)%></p>
+                    </div>
+                </div>
+            </td>   
+        </tr>
+        <%            
+                }//end for 16
+            }// end if 16
+
+            if(searchEpisode17.size()>0){
+                for(int i=0; i<searchEpisode17.size(); i++){
+         %>
+        <tr data-status="pagado">
+            <td>
+                <div class="media">
+                    <div class="media-body">
+                        <p class="summary"  id="summary"><b>Social history <%= i + 1%></b> : <%=searchEpisode17.get(i).get(0)%></p>
+                        <p><b>Comment: </b>  <%=searchEpisode17.get(i).get(1)%></p>
+                    </div>
+                </div>
+            </td>   
+        </tr>
+        <%            
+                }//end for 17
+            }// end if 17
+
+            if(searchEpisode18.size()>0){
+                for(int i=0; i<searchEpisode18.size(); i++){
+         %>
+        <tr data-status="pagado">
+            <td>
+                <div class="media">
+                    <div class="media-body">
+                        <p class="summary"  id="summary"><b>SPO reading <%= i + 1%></b> : <%=searchEpisode18.get(i).get(0)%></p>
+                     </div>
+                </div>
+            </td>   
+        </tr>
+        <%            
+                }//end for 18
+            }// end if 18
+
+            if(searchEpisode19.size()>0){
+                for(int i=0; i<searchEpisode19.size(); i++){
+         %>
+        <tr data-status="pagado">
+            <td>
+                <div class="media">
+                    <div class="media-body">
+                        <p class="summary"  id="summary"><b>Test name <%= i + 1%></b> : <%=searchEpisode19.get(i).get(0)%></p>
+                        <p><b>Result: </b>  <%=searchEpisode19.get(i).get(1)%></p>
+                    </div>
+                </div>
+            </td>   
+        </tr>
+        <%            
+                }//end for 19
+            }// end if 19
+
+            if(searchEpisode20.size()>0){
+                for(int i=0; i<searchEpisode20.size(); i++){
+         %>
+        <tr data-status="pagado">
+            <td>
+                <div class="media">
+                    <div class="media-body">
+                        <p class="summary"  id="summary"><b>Weight <%= i + 1%></b> : <%=searchEpisode20.get(i).get(0)%> kg</p>
+                        <p class="summary"  id="summary"><b>Height <%= i + 1%></b> : <%=searchEpisode20.get(i).get(1)%> cm</p>
+                    </div>
+                </div>
+            </td>   
+        </tr>
+        <%            
+                }//end for 20
+            }// end if 20
         %>
     </tbody>
 </table>
