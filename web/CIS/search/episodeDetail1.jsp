@@ -89,11 +89,14 @@
     sql="SELECT weight_reading, height_reading FROM lhr_weight_height WHERE pmi_no='"+pmi_no+"' and episode_date='"+episodeDate+"';";
     ArrayList<ArrayList<String>> searchEpisode20 = conn.getData(sql);
 
+    sql="SELECT details FROM lhr_health_of_present_illness WHERE pmi_no='"+pmi_no+"' and episode_date='"+episodeDate+"';";
+    ArrayList<ArrayList<String>> searchEpisode21 = conn.getData(sql);
+
           if(searchEpisode.size() > 0 || searchEpisode1.size() > 0 || searchEpisode2.size() > 0 || searchEpisode3.size() > 0 || searchEpisode4.size() > 0 
          || searchEpisode5.size() > 0 || searchEpisode6.size() > 0 || searchEpisode7.size() > 0 || searchEpisode8.size() > 0 || searchEpisode9.size() > 0
          || searchEpisode10.size()> 0 || searchEpisode11.size()> 0 || searchEpisode12.size()> 0 || searchEpisode13.size()> 0 || searchEpisode14.size()> 0
          || searchEpisode15.size()> 0 || searchEpisode16.size()> 0 || searchEpisode17.size()> 0 || searchEpisode18.size()> 0 || searchEpisode19.size()> 0
-         || searchEpisode20.size()> 0         ){
+         || searchEpisode20.size()> 0 || searchEpisode21.size()> 0        ){
               
               
           
@@ -481,6 +484,22 @@
         <%            
                 }//end for 20
             }// end if 20
+
+              if(searchEpisode21.size()>0){
+                for(int i=0; i<searchEpisode21.size(); i++){
+         %>
+        <tr data-status="pagado">
+            <td>
+                <div class="media">
+                    <div class="media-body">
+                        <p class="summary"  id="summary"><b>Health of present illness <%= i + 1%></b> : <%=searchEpisode21.get(i).get(0)%></p>
+                    </div>
+                </div>
+            </td>   
+        </tr>
+        <%            
+                }//end for 21
+            }// end if 21
         %>
     </tbody>
 </table>
