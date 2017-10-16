@@ -32,7 +32,7 @@
     sql = "select icd10_description, comment from lhr_family_history where pmi_no = '" + pmi_no + "' and episode_date = '" + episodeDate + "'";
     ArrayList<ArrayList<String>> searchEpisode1 = conn.getData(sql);
 
-    sql = "select icd10_description, comment from lhr_past_medical_history where pmi_no = '" + pmi_no + "' and onset_data = '" + episodeDate + "'";
+    sql = "select icd10_description, comment from lhr_past_medical_history where pmi_no = '" + pmi_no + "' and episode_date = '" + episodeDate + "'";
     ArrayList<ArrayList<String>> searchEpisode2 = conn.getData(sql);
 
     sql = "select icd10_description, comment from lhr_immunisation where pmi_no = '" + pmi_no + "' and episode_date = '" + episodeDate + "'";
