@@ -67,7 +67,7 @@
                                                 <div class="col-md-8">
                                                     <select class="form-control" name="test" id="selectTimeframe">
                                                         <option value="%d/%m/%Y">Daily</option>
-                                                        <option value="%m/%Y">Monthly</option>
+                                                        <option value="%M %Y">Monthly</option>
                                                         <option value="%Y">Yearly</option>
                                                     </select>
                                                 </div>
@@ -92,6 +92,26 @@
             <!-- main -->		
 
         </div>
+<!-- Add Modal Start -->
+<div class="modal fade" id="modal_report" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+    <div class="modal-dialog" style="width: 80%">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><i class="fa fa-times fa-lg"></i></button>
+                <h3 class="modal-title" id="REP_modalTitle"></h3>
+            </div>
+            <div class="modal-body" id="REP_modalBody">
+
+                
+                <!-- content goes here -->
+            </div>
+            <div class="modal-footer">
+               
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Add Modal End -->  
 
 
         <!-- Placed at the end of the document so the pages load faster -->
@@ -133,15 +153,51 @@
                 }
 
             });
-            
-             //-------------------------refresh the order table ---------------------------------------
-            $('#RMOM_btnRefresh').on('click', function () {
-                //$('#risOrderListContent').html('<div class="loading">Loading</div>');
-                 load_orderStatus();               
-
-            });
+                       
         }
+        
+      //-------------------------refresh the order table ---------------------------------------
+        $('#RMOM_btnRefresh').on('click', function () {
+            //$('#risOrderListContent').html('<div class="loading">Loading</div>');
+             load_orderStatus();               
 
+        });
+        
+        //------------ get details on tr click --------------------------------
+        $('#viewOrder').on('click', '.clickable_tr', function(){
+            var tr = $(this).closest('tr');
+            var leDate = tr.find('#leDate').val();
+            var leTimeFrame = tr.find('#leTimeFrame').val();
+            var leStatus = tr.find('#leStatus').val();
+            
+            var data = {
+                date : leDate,
+                timeFrame : leTimeFrame,
+                status : leStatus
+            };
+            
+            //console.log(data);
+            
+            createScreenLoading();
+            
+            $.ajax({
+                type: 'POST',
+                timeout: 60000,
+                url: "report_control/getListOfOrderDetail.jsp",
+                data: data,
+                success: function (data, textStatus, jqXHR) {
+                        $('#REP_modalBody').html(data);
+                        $('#modal_report').modal('show');
+                    },
+                error: function (jqXHR, textStatus, errorThrown) {
+                        bootbox.alert("Oops! "+errorThrown);
+                    },
+                complete: function (jqXHR, textStatus ) {
+                        destroyScreenLoading();
+                }
+            });
+        });
+        
     </script>
 
         

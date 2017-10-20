@@ -99,7 +99,7 @@
                                     </div>
                                 </div>
                                
-
+                                <hr class="pemisah"/>                    
                                 <div class="table-guling" id='viewProcedure'>
                                     
                                 </div>
@@ -117,6 +117,7 @@
         <%@include file = "libraries/radiologyFootLibrary.jsp" %>
         <!-- Placed at the end of the document so the pages load faster -->
         <script src="../assets/js/buttons.print.min.js" type="text/javascript"></script>
+        <script src="../assets/js/buttons.colVis.min.js" type="text/javascript"></script>
         
          <script>
              

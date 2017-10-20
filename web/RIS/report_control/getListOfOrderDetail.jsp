@@ -1,6 +1,6 @@
 <%-- 
-    Document   : getListOfOrder
-    Created on : Oct 17, 2017, 10:18:54 PM
+    Document   : getListOfOrderDetail
+    Created on : Oct 19, 2017, 5:15:49 AM
     Author     : user
 --%>
 
@@ -18,80 +18,83 @@
     String newdate = DateTimeFormatter.ofPattern("dd/MM/yyyy").format(localDate);
     
 
+    String date = request.getParameter("date");
     String status = request.getParameter("status");
     String timeFrame = request.getParameter("timeFrame");
     
-   String whereCondition="", tabStat="";
+    String whereCondition="", tabStat="";
    
     if(status.equalsIgnoreCase("0")){
-        whereCondition=" AND order_no in "
+        whereCondition=" AND ris_order_master.order_no in "
                 + "(SELECT order_no FROM ris_order_detail "
                 + "GROUP BY order_no HAVING sum(order_status <> '0') = 0) ";
         tabStat="Pending";
     }
     else if(status.equalsIgnoreCase("1")){
-        whereCondition=" AND order_no in "
+        whereCondition=" AND ris_order_master.order_no in "
                 + "(SELECT order_no FROM ris_order_detail "
                 + "WHERE order_status in ('1', '5')) ";
         tabStat="In progress";
     }
     else if(status.equalsIgnoreCase("2")){
-        whereCondition=" AND order_status='2' ";
+        whereCondition=" AND ris_order_master.order_status='2' ";
         
         tabStat="Complete";
     }
     else if(status.equalsIgnoreCase("3")){
-        whereCondition=" AND order_status='3' ";
+        whereCondition=" AND ris_order_master.order_status='3' ";
         
         tabStat="Cancel";
     }
     
-
-    String query="SELECT date_format(order_date, '"+timeFrame+"') as masa, order_status, count(order_no) "
-            + "FROM ris_order_master "
-            + "WHERE hfc_cd='"+hfc_cd+"' "+whereCondition
-            + "GROUP BY masa;";
-    
-    ArrayList<ArrayList<String>> dataPatientApp = con.getData(query);
-    
+    //                                      0                           1                           2                       3                         4                             5                            
+     String sql = "SELECT ris_order_master.pmi_no, ris_order_master.order_no, ris_order_master.hfc_cd, ris_order_master.episode_date, ris_order_master.encounter_date, date_format(ris_order_master.order_date, '%d/%m/%Y'), "
+                //  6                                          
+                + "ris_order_master.order_status, "
+                //   7                                              8
+                + "pms_patient_biodata.PATIENT_NAME,pms_patient_biodata.NEW_IC_NO "
+                + "FROM ris_order_master  "
+                + "LEFT JOIN pms_patient_biodata ON (ris_order_master.pmi_no = pms_patient_biodata.PMI_NO) "
+                + "WHERE ris_order_master.hfc_cd = '" + hfc_cd + "' AND date_format(ris_order_master.order_date, '"+timeFrame+"')='"+date+"' "+whereCondition;
+        ArrayList<ArrayList<String>> dataOrder = con.getData(sql);
 %>
-
-<table id="tableOrder"  class="table table-striped table-bordered table-hover" cellspacing="0" width="100%">
+<table id="tableOrderDetail"  class="table table-striped table-bordered" cellspacing="0" width="100%">
     <thead>
         <tr>
+            <th>Order No</th>
+            <th>Episode Date</th>
             <th>Order Date</th>
-            <th >Status</th>
-            <th >Total order</th>
+            <th>Patient PMI</th>
+            <th>Patient Name</th>
+            <th>Status</th>
         </tr>
     </thead>
     <tbody>
 
         <%
-            for (int i = 0; i < dataPatientApp.size(); i++) {
+            for (int i = 0; i < dataOrder.size(); i++) {
                                
         %>
-        <tr class="clickable_tr" style="cursor: pointer;">
-            <td><%=dataPatientApp.get(i).get(0)%></td>
+        <tr>
+            <td><%=dataOrder.get(i).get(1)%></td>
+            <td><%=dataOrder.get(i).get(3)%></td>
+            <td><%=dataOrder.get(i).get(5)%></td>
+            <td><%=dataOrder.get(i).get(0)%></td>
+            <td><%=dataOrder.get(i).get(7)%></td>
             <td><%=tabStat%></td>
-            <td>
-                <%=dataPatientApp.get(i).get(2)%>
-                <input type="hidden" id="leDate" value="<%=dataPatientApp.get(i).get(0)%>">
-                <input type="hidden" id="leStatus" value="<%=status%>">
-                <input type="hidden" id="leTimeFrame" value="<%=timeFrame%>">
-            </td>
-            
-        </tr>
+         </tr>
         <%
               
             }
         %>
     </tbody>
 </table>
+    
 <script>
 
     //$('#tableOrder').DataTable("destroy");
 
-    $('#tableOrder').DataTable({
+    $('#tableOrderDetail').DataTable({
         pageLength: 15,
         dom: 'Bfrtip',
         buttons: [
@@ -104,7 +107,7 @@
                             .css('font-size', '10pt')
                             .prepend(
                                     '<div class="logo-hfc asset-print-img" style="z-index: 0; top: 0px; opacity: 1.0;">\n\
-    <img src="<%=logo.get(0).get(0)%>" style="text-align: center; height: 100%; " /></div> <div class="mesej">Radilogy Order Status</div>\n\
+    <img src="<%=logo.get(0).get(0)%>" style="text-align: center; height: 100%; " /></div> <div class="mesej">Radiology List of Order</div>\n\
     <div class="info_kecik">\n\
     <dd>Date: <strong><%=newdate%></strong></dd>\n\
     <dd>Report No: <strong><%=newdate%></strong></dd>\n\

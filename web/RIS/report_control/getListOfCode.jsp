@@ -31,7 +31,7 @@
     String hfc_logo = "SELECT logo FROM adm_health_facility WHERE hfc_cd='" + hfc_cd + "'";
     ArrayList<ArrayList<String>> logo = con.getData(hfc_logo);
                                         
-    String sql = "SELECT rpm.body_system_cd,rbs.body_system_name,rpm.modality_cd,rm.modality_name,rpm.ris_procedure_name,rpm.selling_price,rpm.buying_price,rpm.quantity,rpm.status "
+    String sql = "SELECT rpm.body_system_cd,rbs.body_system_name,rpm.modality_cd,rm.modality_name,rpm.ris_procedure_name,rpm.selling_price,rpm.buying_price,rpm.quantity,rpm.status, rpm.ris_procedure_cd "
             + "FROM ris_procedure_master rpm "
             + "JOIN ris_body_system rbs on rpm.body_system_cd = rbs.body_system_cd AND rbs.hfc_cd = rpm.hfc_cd "
             + "JOIN ris_modality rm on rpm.hfc_cd = rm.hfc_cd AND rpm.modality_cd = rm.modality_cd "
@@ -45,6 +45,7 @@
             <th >Body System Name</th>
             <th >Modality Code</th>
             <th >Modality Name</th>	 
+            <th >Procedure Code</th>
             <th >Procedure Name</th>
             <th >Selling Price</th>
             <th >Buying Price</th>
@@ -56,18 +57,22 @@
 
         <%
             for (int i = 0; i < dataPatientApp.size(); i++) {
-            
+                String tempStatus = "Active";
+                if(dataPatientApp.get(i).get(8).equalsIgnoreCase("1")){
+                    tempStatus = "Inactive";
+                }
         %>
         <tr>
             <td><%=dataPatientApp.get(i).get(0)%></td>
             <td><%=dataPatientApp.get(i).get(1)%></td>
             <td><%=dataPatientApp.get(i).get(2)%></td>
             <td><%=dataPatientApp.get(i).get(3)%></td>
+            <td><%=dataPatientApp.get(i).get(9)%></td>
             <td><%=dataPatientApp.get(i).get(4)%></td>
             <td><%=dataPatientApp.get(i).get(5)%></td>
             <td><%=dataPatientApp.get(i).get(6)%></td>
             <td><%=dataPatientApp.get(i).get(7)%></td>
-            <td><%=dataPatientApp.get(i).get(8)%></td>
+            <td><%=tempStatus%></td>
         </tr>
         <%
             }//end for loop
@@ -90,6 +95,7 @@
 //                                        });
 
         $('#procedure').DataTable({
+            pageLength: 15,
             dom: 'Bfrtip',
             buttons: [
                 'csv', 'excel', 'pdf',
@@ -113,7 +119,14 @@
                         $(win.document.body)
                                 .css('font-size', '10pt')
                                 .append('<div style="text-align: center;padding-top:30px;"><br> ***** &nbsp;&nbsp;  End Of Report  &nbsp;&nbsp;  ***** </div>');
+                    },
+                    exportOptions: {
+                        columns: ':visible'
                     }
+                },
+                {
+                    extend: 'colvis',
+                    text: 'Filter Table Column'
                 }
 
             ]

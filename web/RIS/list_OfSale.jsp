@@ -44,143 +44,33 @@
                             <div class="thumbnail">
                                 <h3 style="margin: 0px;">List of Sale</h3>
                                 <hr class="pemisah"/>
-                                <div style="width:50%; margin: auto;">
+                                <div style="width:30%; margin: auto;">
                                     <div class="form-horizontal">
                                         <div class="form-group">
+                                            
+                                            <div class="col-md-10" style=" text-align: center;">
+                                                <label class="col-md-4 control-label" for="textinput">View by: </label>
+                                                <div class="col-md-8">
+                                                    <select class="form-control" name="test" id="selectTimeframe">
+                                                        <option value="%d/%m/%Y">Daily</option>
+                                                        <option value="%M %Y">Monthly</option>
+                                                        <option value="%Y">Yearly</option>
+                                                    </select>
+                                                </div>
+                                            </div> 
+                                            
+                                            <div class="col-md-2">
+                                                <button id="REP_btnRefresh" class="btn btn-default" style=" padding-right: 10px;padding-left: 10px;color: black;"><i class=" fa fa-refresh" style=" padding-right: 10px;padding-left: 10px;color: black;"></i>Refresh</button>
 
-                                            <div class="col-md-12" style=" align-items: center;">
-                                                <button id="today" class="btn btn-default" style=" padding-right: 10px;padding-left: 10px;color: black;">Today</button>
-                                                <button id="monthly" class="btn btn-default" style=" padding-right: 10px;padding-left: 10px;color: black;">Monthly</button>
-                                                <button id="yearly" class="btn btn-default" style=" padding-right: 10px;padding-left: 10px;color: black;">Yearly</button>
                                             </div>
+                                            
                                         </div>
                                     </div>
                                 </div>
-                                <script>
-                                    $(function () {
-
-                                        $('#today').on('click',function () {
-                                            
-                                            
-                                            var get_bill = "today";
-                                            var data = {
-                                                get_bill: get_bill
-                                            };
-                                            alert(get_bill);
-                                            $.ajax({
-                                                type: 'POST',
-                                                url: "order_bill.jsp",
-                                                data: data,
-                                                success: function (data) {
-                                                    $("#viewProcedure").val(data.trim());
-                                                    $('#viewProcedure').html(data);
-                                                    $('#viewProcedure').trigger('contentchanged');
-                                                }
-
-                                            });
-                                        });
-
-                                        $('#monthly').on('click',function () {
-                                            
-                                            var get_bill = "month";
-                                            var data = {
-                                                get_bill: get_bill
-                                            };
-                                            alert(get_bill);
-                                            $.ajax({
-                                                type: 'POST',
-                                                url: "order_bill.jsp",
-                                                data: data,
-                                                success: function (data) {
-                                                    $("#viewProcedure").val(data.trim());
-                                                    $('#viewProcedure').html(data);
-                                                    $('#viewProcedure').trigger('contentchanged');
-                                                }
-
-                                            });
-                                        });
-
-                                        $('#yearly').on('click',function () {
-                                            
-                                            var get_bill = "year";
-                                            var data = {
-                                                get_bill: get_bill
-                                            };
-                                            alert(get_bill);
-                                            $.ajax({
-                                                type: 'POST',
-                                                url: "order_bill.jsp",
-                                                data: data,
-                                                success: function (data) {
-                                                    $("#viewProcedure").val(data.trim());
-                                                    $('#viewProcedure').html(data);
-                                                    $('#viewProcedure').trigger('contentchanged');
-                                                }
-
-                                            });
-                                        });
-                                    });
-
-                                </script>
-
-
-
-                                <div class="table-guling" id='viewProcedure'>
-                                    <%                                        Conn conn = new Conn();
-                                        String hfc = session.getAttribute("HEALTH_FACILITY_CODE").toString();
-
-                                        LocalDate localDate = LocalDate.now();
-                                        String newdate = DateTimeFormatter.ofPattern("dd/MM/yyyy").format(localDate);
-
-                                        String logo = "SELECT logo FROM adm_health_facility WHERE hfc_cd='" + hfc + "'";
-                                        ArrayList<ArrayList<String>> logo_hfc = conn.getData(logo);
-
-                                        String sql = "SELECT rom.order_no,rpm.body_system_cd, bs.body_system_name,rpm.modality_cd, md.modality_name, rpm.ris_procedure_name,rpm.selling_price,rpm.buying_price,rpm.quantity,rpm.status "
-                                                + "FROM ris_procedure_master rpm "
-                                                + "join ris_body_system bs on bs.hfc_cd=rpm.hfc_cd and bs.body_system_cd=rpm.body_system_cd " 
-                                                + "join ris_modality md on md.hfc_cd=rpm.hfc_cd and md.modality_cd=rpm.modality_cd "
-                                                + "join ris_order_detail rod on rod.procedure_cd=rpm.ris_procedure_cd "
-                                                + "join ris_order_master rom on rom.order_no = rod.order_no "
-                                                + "WHERE rpm.hfc_cd = '04010101' AND MONTH(DATE_FORMAT(rom.order_date, '%Y-%m-%d')) = MONTH(CURRENT_DATE()) GROUP BY rom.ORDER_NO DESC;";
-                                        ArrayList<ArrayList<String>> dataPatientApp = conn.getData(sql);
-                                    %>
-                                    <table id="procedure"  class="table table-striped table-bordered" cellspacing="0" width="100%">
-                                        <thead>
-                                            <tr>
-                                                <th >Order No</th>
-                                                <th >Body System Code</th>
-                                                <th >Body System Name</th>
-                                                <th >Modality Code</th>
-                                                <th >Modality Name</th>	 
-                                                <th >Procedure Name</th>
-                                                <th >Selling Price</th>
-                                                <th >Buying Price</th>
-                                                <th> Quantity</th>
-                                                <th> Status</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-
-                                            <%if (dataPatientApp.size() > 0) {
-                                                    for (int i = 0; i < dataPatientApp.size(); i++) {%>
-                                            <tr>
-                                                <td><%=dataPatientApp.get(i).get(0)%></td>
-                                                <td><%=dataPatientApp.get(i).get(1)%></td>
-                                                <td><%=dataPatientApp.get(i).get(2)%></td>
-                                                <td><%=dataPatientApp.get(i).get(3)%></td>
-                                                <td><%=dataPatientApp.get(i).get(4)%></td>
-                                                <td><%=dataPatientApp.get(i).get(5)%></td>
-                                                <td><%=dataPatientApp.get(i).get(6)%></td>
-                                                <td><%=dataPatientApp.get(i).get(7)%></td>
-                                                <td><%=dataPatientApp.get(i).get(8)%></td>
-                                                <td><%=dataPatientApp.get(i).get(9)%></td>
-                                            </tr>
-                                            <%
-                                                    }
-                                                }
-                                            %>
-                                        </tbody>
-                                    </table>
+                                
+                                <div class="table-guling" id='viewSale'>
+                                 
+                                   
                                 </div>
                             </div>
                         </div>
@@ -190,70 +80,103 @@
             <!-- main -->		
 
         </div>
+    <!-- Add Modal Start -->
+    <div class="modal fade" id="modal_report" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+        <div class="modal-dialog" style="width: 80%">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><i class="fa fa-times fa-lg"></i></button>
+                    <h3 class="modal-title" id="REP_modalTitle"></h3>
+                </div>
+                <div class="modal-body" id="REP_modalBody">
 
+
+                    <!-- content goes here -->
+                </div>
+                <div class="modal-footer">
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Add Modal End -->  
 
         <!-- Placed at the end of the document so the pages load faster -->
         <%@include file = "libraries/radiologyFootLibrary.jsp" %>
         <!-- Placed at the end of the document so the pages load faster -->
-        <script src="libraries/js/jquery.check-file.js" type="text/javascript"></script>
-        <script src="../assets/js/jquery-ui.js" type="text/javascript"></script>
-        <script src="../assets/js/jquery.dataTables.min.js" type="text/javascript"></script>
-        <script src="../assets/js/dataTables.bootstrap.min.js" type="text/javascript"></script>
-        <script src="../assets/js/dataTables.buttons.min.js" type="text/javascript"></script>
-        <script src="../assets/js/buttons.flash.min.js" type="text/javascript"></script>
-        <script src="../assets/js/jszip.min.js" type="text/javascript"></script>
-        <script src="../assets/js/pdfmake.min.js" type="text/javascript"></script>
-        <script src="../assets/js/vfs_fonts.js" type="text/javascript"></script>
-        <script src="../assets/js/buttons.html5.min.js" type="text/javascript"></script>
+     
         <script src="../assets/js/buttons.print.min.js" type="text/javascript"></script>
+        
+        <script type="text/javascript">
+            $(function(){
+                load_sale();
+            });
+            
+            function load_sale(){
+                createScreenLoading();
+                var timeFrame = $('#selectTimeframe').val();
+                var strName = $("#selectTimeframe option:selected").text(); 
+                
+                var data={
+                    timeFrame : timeFrame,
+                    strName : strName
+                };
+                
+                $.ajax({
+                    type: 'POST',
+                    url: "report_control/getListOfSale.jsp",
+                    data: data,
+                    success: function (data) {
 
-        <script>
+                        $('#viewSale').html(data);
 
-                                    $(document).ready(function () {
-                                        //$("#WardOccupancy").load("WardOccupancy.jsp");
-                                        //$("#viewTC").load("viewTC.jsp");
-//                                        $('#procedure').DataTable({
-//                                            language: {
-//                                                emptyTable: "No data"
-//                                            }, initComplete: function (settings, json) {
-//                                                $('.loading').hide();
-//                                            }
-//                                        });
+                        },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                             $('#viewSale').html("Oopps! "+ errorThrown);
+                        },
+                    complete: function (jqXHR, textStatus ) {
+                            destroyScreenLoading();
+                    }
 
-                                        $('#procedure').DataTable({
-                                            dom: 'Bfrtip',
-                                            buttons: [
-                                                'csv', 'excel', 'pdf',
-                                                {
-                                                    extend: 'print',
-                                                    title: $('h1').text(),
-                                                    customize: function (win) {
-                                                        $(win.document.body)
-                                                                .css('font-size', '10pt')
-                                                                .prepend(
-                                                                        '<div class="logo-hfc asset-print-img" style="z-index: 0; top: 0px; opacity: 1.0;">\n\
-                                        <img src="<%=logo_hfc.get(0).get(0)%>" style="text-align: center; height: 100%; " /></div> <div class="mesej">List of Code Procedure</div>\n\
-                                        <div class="info_kecik">\n\
-                                        <dd>Date: <strong><%=newdate%></strong></dd>\n\
-                                        <dd>Report No: <strong><%=newdate%></strong></dd>\n\
-                                        </div> '
-                                                                        );
-                                                        $(win.document.body).find('table')
-                                                                .addClass('compact')
-                                                                .css('font-size', 'inherit');
-                                                        $(win.document.body)
-                                                                .css('font-size', '10pt')
-                                                                .append('<div style="text-align: center;padding-top:30px;"><br> ***** &nbsp;&nbsp;  End Of Report  &nbsp;&nbsp;  ***** </div>');
-                                                    }
-                                                }
+                });
+            }
+            
+            $('#REP_btnRefresh').on('click', function(){
+                load_sale();
+            });
+            
+            $('#viewSale').on('click', '.clickable_tr', function(){
+                var tr = $(this).closest('tr');
+                var leDate = tr.find('#hiddenDate').val();
+                var leTimeFrame = tr.find('#hiddenTimeFrame').val();
+              
+                var data = {
+                    date : leDate,
+                    timeFrame : leTimeFrame
 
-                                            ]
-                                        });
+                console.log(data);
 
-                                    });
+                createScreenLoading();
 
+                $.ajax({
+                    type: 'POST',
+                    timeout: 60000,
+                    url: "report_control/getListOfSaleDetail.jsp",
+                    data: data,
+                    success: function (data, textStatus, jqXHR) {
+                            $('#REP_modalBody').html(data);
+                            $('#modal_report').modal('show');
+                        },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                            bootbox.alert("Oops! "+errorThrown);
+                        },
+                    complete: function (jqXHR, textStatus ) {
+                            destroyScreenLoading();
+                    }
+                });
+            });
         </script>
-
+        
     </body>
 
 </html>
