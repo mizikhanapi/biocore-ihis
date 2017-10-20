@@ -26,8 +26,8 @@
     String query="SELECT date_format(om.order_date, '"+timeFrame+"') as masa, count(od.order_no), sum(pm.selling_price) "
             + "FROM ris_order_master om "
             + "JOIN ris_order_detail od on om.order_no=od.order_no "
-            + "JOIN ris_procedure_master pm on pm.ris_procedure_cd=od.procedure_cd and pm.hfc_cd=om.hfc_cd "
-            + "WHERE om.hfc_cd='"+hfc+"' AND om.billing_status='2' "
+            + "JOIN ris_procedure_master pm on pm.ris_procedure_cd=od.procedure_cd and pm.hfc_cd=om.hfc_to "
+            + "WHERE om.hfc_to='"+hfc+"' AND om.billing_status='2' "
             + "GROUP BY masa;";
     ArrayList<ArrayList<String>> dataSale = con.getData(query);
     

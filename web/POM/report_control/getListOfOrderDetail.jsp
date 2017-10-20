@@ -25,37 +25,37 @@
     String whereCondition="", tabStat="";
    
     if(status.equalsIgnoreCase("0")){
-        whereCondition=" AND ris_order_master.order_no in "
-                + "(SELECT order_no FROM ris_order_detail "
+        whereCondition=" AND pos_order_master.order_no in "
+                + "(SELECT order_no FROM pos_order_detail "
                 + "GROUP BY order_no HAVING sum(order_status <> '0') = 0) ";
         tabStat="Pending";
     }
     else if(status.equalsIgnoreCase("1")){
-        whereCondition=" AND ris_order_master.order_no in "
-                + "(SELECT order_no FROM ris_order_detail "
-                + "WHERE order_status in ('1', '5')) ";
+        whereCondition=" AND pos_order_master.order_no in "
+                + "(SELECT order_no FROM pos_order_detail "
+                + "GROUP BY order_no HAVING sum(order_status = '0') > 0 AND sum(order_status = '2')>0 ) ";
         tabStat="In progress";
     }
     else if(status.equalsIgnoreCase("2")){
-        whereCondition=" AND ris_order_master.order_status='2' ";
+        whereCondition=" AND pos_order_master.order_status='2' ";
         
         tabStat="Complete";
     }
     else if(status.equalsIgnoreCase("3")){
-        whereCondition=" AND ris_order_master.order_status='3' ";
+        whereCondition=" AND pos_order_master.order_status='3' ";
         
         tabStat="Cancel";
     }
     
     //                                      0                           1                           2                       3                         4                             5                            
-     String sql = "SELECT ris_order_master.pmi_no, ris_order_master.order_no, ris_order_master.hfc_cd, ris_order_master.episode_date, ris_order_master.encounter_date, date_format(ris_order_master.order_date, '%d/%m/%Y'), "
+     String sql = "SELECT pos_order_master.pmi_no, pos_order_master.order_no, pos_order_master.hfc_cd, pos_order_master.episode_date, pos_order_master.encounter_date, date_format(pos_order_master.order_date, '%d/%m/%Y'), "
                 //  6                                          
-                + "ris_order_master.order_status, "
+                + "pos_order_master.order_status, "
                 //   7                                              8
                 + "pms_patient_biodata.PATIENT_NAME,pms_patient_biodata.NEW_IC_NO "
-                + "FROM ris_order_master  "
-                + "LEFT JOIN pms_patient_biodata ON (ris_order_master.pmi_no = pms_patient_biodata.PMI_NO) "
-                + "WHERE ris_order_master.hfc_to = '" + hfc_cd + "' AND date_format(ris_order_master.order_date, '"+timeFrame+"')='"+date+"' "+whereCondition;
+                + "FROM pos_order_master  "
+                + "LEFT JOIN pms_patient_biodata ON (pos_order_master.pmi_no = pms_patient_biodata.PMI_NO) "
+                + "WHERE pos_order_master.hfc_to = '" + hfc_cd + "' AND date_format(pos_order_master.order_date, '"+timeFrame+"')='"+date+"' "+whereCondition;
         ArrayList<ArrayList<String>> dataOrder = con.getData(sql);
 %>
 <table id="tableOrderDetail"  class="table table-striped table-bordered" cellspacing="0" width="100%">
@@ -107,7 +107,7 @@
                             .css('font-size', '10pt')
                             .prepend(
                                     '<div class="logo-hfc asset-print-img" style="z-index: 0; top: 0px; opacity: 1.0;">\n\
-    <img src="<%=logo.get(0).get(0)%>" style="text-align: center; height: 100%; " /></div> <div class="mesej">Radiology List of Order</div>\n\
+    <img src="<%=logo.get(0).get(0)%>" style="text-align: center; height: 100%; " /></div> <div class="mesej">Procedure List of Order</div>\n\
     <div class="info_kecik">\n\
     <dd>Date: <strong><%=newdate%></strong></dd>\n\
     <dd>Report No: <strong><%=newdate%></strong></dd>\n\

@@ -20,7 +20,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>iHIS | RIS</title>
+        <title>iHIS | POS</title>
         <!-- header -->
         <%@include file = "libraries/headLibrary.jsp" %>
         <%@include file = "../assets/header.html" %>
@@ -44,123 +44,45 @@
                             <div class="thumbnail">
                                 <h3 style="margin: 0px;">List of Order Status</h3>
                                 <hr class="pemisah"/>
-                                <div style="width:50%; margin: auto;">
+                                <div style="width:70%; margin: auto;">
                                     <div class="form-horizontal">
                                         <div class="form-group">
-                                            <label class="col-md-2 control-label" for="textinput">Select by body system: </label>
-                                            <div class="col-md-3">
-                                                <%  Conn conn = new Conn();
-                                                    String hfc_cd = session.getAttribute("HEALTH_FACILITY_CODE").toString();
-                                                    String hfc_logo = "SELECT logo FROM adm_health_facility WHERE hfc_cd='" + hfc_cd + "'";
-                                                    ArrayList<ArrayList<String>> logo = conn.getData(hfc_logo);
+                                            <div class="col-md-5">
+                                                <label class="col-md-5 control-label" for="textinput">Select by order status: </label>
+                                                <div class="col-md-7">
+                                                    <select class="form-control" name="test" id="selectStatus">
+                                                        <option value="0">Pending</option>
+                                                        <option value="1">In progress</option>
+                                                        <option value="2">Complete</option>
+                                                        <option value="3">Cancel</option>
+                                                     </select>
+                                                </div>
 
-                                                    LocalDate localDate = LocalDate.now();
-                                                    String newdate = DateTimeFormatter.ofPattern("dd/MM/yyyy").format(localDate);
-//                                                    String test_ca = "SELECT rbs.body_system_name,rm.modality_name,rpm.body_system_cd,rpm.modality_cd,rpm.ris_procedure_name,rpm.selling_price,rpm.buying_price,rpm.quantity,rpm.status FROM ris_body_system rbs,ris_modality rm, ris_procedure_master rpm WHERE rbs.body_system_cd = rpm.body_system_cd AND rm.modality_cd = rpm.modality_cd";
-//                                                    ArrayList<ArrayList<String>> test_cd = conn.getData(test_ca);
-                                                %>
 
-                                                <select class="form-control" name="test" id="body_System">
-                                                    <option value="0">Pending</option>
-                                                    <option value="2">Verified</option>
-                                                    <option value="3">?</option>
-                                                    <option value="all">All</option>
-                                                </select>
                                             </div>
+
+                                            <div class="col-md-5" style=" text-align: center;">
+                                               <label class="col-md-4 control-label" for="textinput">View by: </label>
+                                                <div class="col-md-8">
+                                                    <select class="form-control" name="test" id="selectTimeframe">
+                                                        <option value="%d/%m/%Y">Daily</option>
+                                                        <option value="%M %Y">Monthly</option>
+                                                        <option value="%Y">Yearly</option>
+                                                    </select>
+                                                </div>
+                                            </div> 
 
                                             <div class="col-md-2">
                                                 <button id="RMOM_btnRefresh" class="btn btn-default" style=" padding-right: 10px;padding-left: 10px;color: black;"><i class=" fa fa-refresh" style=" padding-right: 10px;padding-left: 10px;color: black;"></i>Refresh</button>
 
-                                            </div>
-                                                
-                                            <div class="col-md-12" style=" text-align: center;">
-                                                <button id="today" class="btn btn-default" style=" padding-right: 10px;padding-left: 10px;color: black;">&nbsp;&nbsp;&nbsp;Today&nbsp;&nbsp;&nbsp;</button>
-                                                <button id="monthly" class="btn btn-default" style=" padding-right: 10px;padding-left: 10px;color: black;">&nbsp;&nbsp;&nbsp;Monthly&nbsp;&nbsp;&nbsp;</button>
-                                                <button id="yearly" class="btn btn-default" style=" padding-right: 10px;padding-left: 10px;color: black;">&nbsp;&nbsp;&nbsp;Yearly&nbsp;&nbsp;&nbsp;</button>
                                             </div>    
                                         </div>
                                     </div>
                                 </div>
-                                <script>
-                                    $(function () {
-
-                                        //-------------------------refresh the order table ---------------------------------------
-                                        $('#RMOM_btnRefresh').on('click', function () {
-                                            //$('#risOrderListContent').html('<div class="loading">Loading</div>');
-
-                                            var process = $('#body_System').val();
-                                            //alert(process);
-                                            var data = {
-                                                process: process
-                                            };
-
-                                            $.ajax({
-                                                type: 'POST',
-                                                url: "viewPro.jsp",
-                                                data: data,
-                                                success: function (data) {
-                                                    $("#viewProcedure").val(data.trim());
-                                                    $('#viewProcedure').html(data);
-                                                    $('#viewProcedure').trigger('contentchanged');
-                                                }
-
-                                            });
-
-                                        });
-                                    });
-
-                                </script>
-
-
-
-                                <div class="table-guling" id='viewProcedure'>
-                                    <%
-                                        String sql = "SELECT ris_order_master.pmi_no,ris_order_master.order_no,ris_order_master.hfc_cd,ris_order_master.episode_date,ris_order_master.encounter_date,ris_order_master.order_date,"
-                                                //  6                                           7                       8                           9                   10                                  11                  12                      
-                                                + "ris_order_master.order_by,ris_order_master.hfc_from,ris_order_master.hfc_to,ris_order_master.order_status,ris_order_master.diagnosis_cd,ris_order_master.created_by,ris_order_master.created_date,"
-                                                //  13                                          14                              15                                  16                          17
-                                                + "pms_patient_biodata.PATIENT_NAME,pms_patient_biodata.NEW_IC_NO,pms_patient_biodata.BIRTH_DATE,pms_patient_biodata.SEX_CODE,pms_patient_biodata.BLOOD_TYPE, "
-                                                //  18                  19              20
-                                                + "sx.description, blot.description, hfc.hfc_name "
-                                                + "FROM ris_order_master "
-                                                + "LEFT JOIN pms_patient_biodata ON (ris_order_master.pmi_no = pms_patient_biodata.PMI_NO) "
-                                                + "LEFT JOIN adm_lookup_detail sx on pms_patient_biodata.SEX_CODE = sx.detail_reference_code AND sx.master_reference_code = '0041' AND sx.hfc_cd = ris_order_master.hfc_cd "
-                                                + "LEFT JOIN adm_lookup_detail blot on pms_patient_biodata.BLOOD_TYPE = blot.detail_reference_code AND blot.master_reference_code = '0074' AND blot.hfc_cd = ris_order_master.hfc_cd "
-                                                + "Left JOIN adm_health_facility hfc on hfc.hfc_cd = ris_order_master.hfc_cd "
-                                                + "WHERE ris_order_master.order_no in (select distinct(order_no) from ris_order_detail ) AND ris_order_master.order_status = '0' AND ris_order_master.hfc_cd = '" + hfc_cd + "'";
-                                        ArrayList<ArrayList<String>> dataPatientApp = conn.getData(sql);
-                                    %>
-                                    <table id="procedure"  class="table table-striped table-bordered" cellspacing="0" width="100%">
-                                        <thead>
-                                            <tr>
-                                                <th >Order No</th>
-                                                <th >PMI No</th>
-                                                <th >HFC Name</th>
-                                                <th >Episode Date</th>	 
-                                                <th >Encounter Date</th>
-                                                <th >Created By</th>
-                                                <th >Patient Name</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-
-                                            <%if (dataPatientApp.size() > 0) {
-                                                    for (int i = 0; i < dataPatientApp.size(); i++) {%>
-                                            <tr>
-                                                <td><%=dataPatientApp.get(i).get(1)%></td>
-                                                <td><%=dataPatientApp.get(i).get(0)%></td>
-                                                <td><%=dataPatientApp.get(i).get(20)%></td>
-                                                <td><%=dataPatientApp.get(i).get(3)%></td>
-                                                <td><%=dataPatientApp.get(i).get(4)%></td>
-                                                <td><%=dataPatientApp.get(i).get(11)%></td>
-                                                <td><%=dataPatientApp.get(i).get(13)%></td>
-                                            </tr>
-                                            <%
-                                                    }
-                                                }
-                                            %>
-                                        </tbody>
-                                    </table>
+                                
+                                <div class="table-guling" id='viewOrder'>
+                                   
+                                    
                                 </div>
                             </div>
                         </div>
@@ -170,128 +92,113 @@
             <!-- main -->		
 
         </div>
+        <!-- Add Modal Start -->
+        <div class="modal fade" id="modal_report" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+            <div class="modal-dialog" style="width: 80%">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"><i class="fa fa-times fa-lg"></i></button>
+                        <h3 class="modal-title" id="REP_modalTitle"></h3>
+                    </div>
+                    <div class="modal-body" id="REP_modalBody">
+
+
+                        <!-- content goes here -->
+                    </div>
+                    <div class="modal-footer">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Add Modal End -->  
 
 
         <!-- Placed at the end of the document so the pages load faster -->
         <%@include file = "libraries/footLibrary.jsp" %>
         <!-- Placed at the end of the document so the pages load faster -->
-        <script src="libraries/js/jquery.check-file.js" type="text/javascript"></script>
-        <script src="../assets/js/jquery-ui.js" type="text/javascript"></script>
-        <script src="../assets/js/jquery.dataTables.min.js" type="text/javascript"></script>
-        <script src="../assets/js/dataTables.bootstrap.min.js" type="text/javascript"></script>
-        <script src="../assets/js/dataTables.buttons.min.js" type="text/javascript"></script>
-        <script src="../assets/js/buttons.flash.min.js" type="text/javascript"></script>
-        <script src="../assets/js/jszip.min.js" type="text/javascript"></script>
-        <script src="../assets/js/pdfmake.min.js" type="text/javascript"></script>
-        <script src="../assets/js/vfs_fonts.js" type="text/javascript"></script>
-        <script src="../assets/js/buttons.html5.min.js" type="text/javascript"></script>
-        <script src="../assets/js/buttons.print.min.js" type="text/javascript"></script>
+       <script src="../assets/js/buttons.html5.min.js" type="text/javascript"></script>
+       <script src="../assets/js/buttons.print.min.js" type="text/javascript"></script>
+       
+       <script>
+           $(function(){
+                load_orderStatus();           
+            });
 
-        <script>
+            function load_orderStatus(){
+                createScreenLoading();
+                $('#viewOrder').html("");
+                 var status = $('#selectStatus').val();
+                 var timeFrame = $('#selectTimeframe').val();
+                //alert(process);
+                var data = {
+                    status : status,
+                    timeFrame : timeFrame
+                };
 
-                                    $(document).ready(function () {
-   
-                                        $('#procedure').DataTable({
-                                            dom: 'Bfrtip',
-                                            buttons: [
-                                                'csv', 'excel', 'pdf',
-                                                {
-                                                    extend: 'print',
-                                                    title: $('h1').text(),
-                                                    customize: function (win) {
-                                                        $(win.document.body)
-                                                                .css('font-size', '10pt')
-                                                                .prepend(
-                                                                        '<div class="logo-hfc asset-print-img" style="z-index: 0; top: 0px; opacity: 1.0;">\n\
-                                        <img src="<%=logo.get(0).get(0)%>" style="text-align: center; height: 100%; " /></div> <div class="mesej">List of Code Procedure</div>\n\
-                                        <div class="info_kecik">\n\
-                                        <dd>Date: <strong><%=newdate%></strong></dd>\n\
-                                        <dd>Report No: <strong><%=newdate%></strong></dd>\n\
-                                        </div> '
-                                                                        );
-                                                        $(win.document.body).find('table')
-                                                                .addClass('compact')
-                                                                .css('font-size', 'inherit');
-                                                        $(win.document.body)
-                                                                .css('font-size', '10pt')
-                                                                .append('<div style="text-align: center;padding-top:30px;"><br> ***** &nbsp;&nbsp;  End Of Report  &nbsp;&nbsp;  ***** </div>');
-                                                    }
-                                                }
+                $.ajax({
+                    type: 'POST',
+                    url: "report_control/getListOfOrder.jsp",
+                    data: data,
+                    success: function (data) {
 
-                                            ]
-                                        });
+                        $('#viewOrder').html(data);
 
-                                        $('#today').click(function () {
-                                           
-                                            var process = $('#body_System').val();
-                                            var get_time = "today";
-                                             alert(get_time+" "+process);
-                                            var data = {
-                                                get_time: get_time,
-                                                process: process
-                                            };
+                        },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                             $('#viewOrder').html("Oopps! "+ errorThrown);
+                        },
+                    complete: function (jqXHR, textStatus ) {
+                            destroyScreenLoading();
+                    }
 
-                                           $.ajax({
-                                                type: 'POST',
-                                                url: "viewByTime.jsp",
-                                                data: data,
-                                                success: function (data) {
-                                                    $("#viewProcedure").val(data.trim());
-                                                    $('#viewProcedure').html(data);
-                                                    $('#viewProcedure').trigger('contentchanged');
-                                                }
+                });
 
-                                            });
-                                        });
-                                        
-                                        $('#monthly').click(function () {
-                                            //
-                                            var process = $('#body_System').val();
-                                            var get_time = "month";
-                                            alert(get_time+" "+process);
-                                            var data = {
-                                                get_time: get_time,
-                                                process: process
-                                            };
+            }
 
-                                           $.ajax({
-                                                type: 'POST',
-                                                url: "viewByTime.jsp",
-                                                data: data,
-                                                success: function (data) {
-                                                    $("#viewProcedure").val(data.trim());
-                                                    $('#viewProcedure').html(data);
-                                                    $('#viewProcedure').trigger('contentchanged');
-                                                }
+          //-------------------------refresh the order table ---------------------------------------
+            $('#RMOM_btnRefresh').on('click', function () {
+                //$('#risOrderListContent').html('<div class="loading">Loading</div>');
+                 load_orderStatus();               
 
-                                            });
-                                        });
-                                        
-                                        $('#yearly').click(function () {
-                                            //alert("get_time");
-                                            var process = $('#body_System').val();
-                                            var get_time = "year";
-                                           alert(get_time+" "+process);
-                                            var data = {
-                                                get_time: get_time,
-                                                process: process
-                                            };
+            });
 
-                                           $.ajax({
-                                                type: 'POST',
-                                                url: "viewByTime.jsp",
-                                                data: data,
-                                                success: function (data) {
-                                                    $("#viewProcedure").val(data.trim());
-                                                    $('#viewProcedure').html(data);
-                                                    $('#viewProcedure').trigger('contentchanged');
-                                                }
+            //------------ get details on tr click --------------------------------
+            $('#viewOrder').on('click', '.clickable_tr', function(){
+                var tr = $(this).closest('tr');
+                var leDate = tr.find('#leDate').val();
+                var leTimeFrame = tr.find('#leTimeFrame').val();
+                var leStatus = tr.find('#leStatus').val();
 
-                                            });
-                                        });
-                                    });
+                var data = {
+                    date : leDate,
+                    timeFrame : leTimeFrame,
+                    status : leStatus
+                };
 
-        </script>
+                //console.log(data);
+
+                createScreenLoading();
+
+                $.ajax({
+                    type: 'POST',
+                    timeout: 60000,
+                    url: "report_control/getListOfOrderDetail.jsp",
+                    data: data,
+                    success: function (data, textStatus, jqXHR) {
+                            $('#REP_modalBody').html(data);
+                            $('#modal_report').modal('show');
+                        },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                            bootbox.alert("Oops! "+errorThrown);
+                        },
+                    complete: function (jqXHR, textStatus ) {
+                            destroyScreenLoading();
+                    }
+                });
+            });
+       </script>
+        
 
     </body>
 

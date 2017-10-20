@@ -15,7 +15,8 @@
     String proCode = request.getParameter("proCode");
     String comment = request.getParameter("instruction");
     String epDate = request.getParameter("epDate");
-    
+    String proName = request.getParameter("proName");
+        
     Conn con = new Conn();
     
     String query ="Select procedure_cd from pos_order_detail where hfc_cd='"+hfc_cd+"' and order_no='"+orderNo+"' and procedure_cd='"+proCode+"' limit 1;";
@@ -26,8 +27,8 @@
     }
     else{
         RMIConnector rmi = new RMIConnector();
-        query ="Insert into pos_order_detail(order_no, hfc_cd, episode_date, encounter_date, procedure_cd,comment, doctor_id, order_status, txn_date) "
-                + "values('"+orderNo+"', '"+hfc_cd+"', '"+epDate+"', now(), '"+proCode+"', '"+comment+"', '"+creator+"', '0', now())";
+        query ="Insert into pos_order_detail(order_no, hfc_cd, episode_date, encounter_date, procedure_cd,comment, doctor_id, order_status, txn_date, procedure_name) "
+                + "values('"+orderNo+"', '"+hfc_cd+"', '"+epDate+"', now(), '"+proCode+"', '"+comment+"', '"+creator+"', '0', now(), '"+proName+"')";
         
         boolean insert = rmi.setQuerySQL(con.HOST, con.PORT, query);
         

@@ -49,7 +49,7 @@
 
     String query="SELECT date_format(order_date, '"+timeFrame+"') as masa, order_status, count(order_no) "
             + "FROM ris_order_master "
-            + "WHERE hfc_cd='"+hfc_cd+"' "+whereCondition
+            + "WHERE hfc_to='"+hfc_cd+"' "+whereCondition
             + "GROUP BY masa;";
     
     ArrayList<ArrayList<String>> dataPatientApp = con.getData(query);

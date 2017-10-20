@@ -25,7 +25,7 @@
             <ul class="sub-menu collapse" id="Report" aria-expanded="true" style="">
                 <li><a data-toggle="modal" data-target="#" href="list_procedure_cd.jsp">List of Procedure Code</a></li>
                 <li><a data-toggle="modal" data-target="#" href="list_pending_order.jsp">List of Order</a></li>
-                <li><a data-toggle="modal" data-target="#" href="list_OfSale.jsp">Bill of Procedure</a></li>
+                <li><a data-toggle="modal" data-target="#" href="list_OfSale.jsp">Procedure Sale</a></li>
             </ul>
         </li>
     </ul>  

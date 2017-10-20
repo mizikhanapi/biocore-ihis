@@ -20,7 +20,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>iHIS | RIS</title>
+        <title>iHIS | POS</title>
         <!-- header -->
         <%@include file = "libraries/headLibrary.jsp" %>
         <%@include file = "../assets/header.html" %>
@@ -44,107 +44,33 @@
                             <div class="thumbnail">
                                 <h3 style="margin: 0px;">List of Sale</h3>
                                 <hr class="pemisah"/>
-                                <div style="width:50%; margin: auto;">
+                                <div style="width:30%; margin: auto;">
                                     <div class="form-horizontal">
                                         <div class="form-group">
-                                            <label class="col-md-2 control-label" for="textinput">Select by body system: </label>
-                                            <div class="col-md-3">
-                                                <%  Conn conn = new Conn();
-                                                    String hfc_cd = session.getAttribute("HEALTH_FACILITY_CODE").toString();
-                                                    String hfc_logo = "SELECT logo FROM adm_health_facility WHERE hfc_cd='" + hfc_cd + "'";
-                                                    ArrayList<ArrayList<String>> logo = conn.getData(hfc_logo);
-                                                    
-                                                    
-                                                    LocalDate localDate = LocalDate.now();
-                                                    String newdate = DateTimeFormatter.ofPattern("dd/MM/yyyy").format(localDate);
-//                                                    String test_ca = "SELECT rbs.body_system_name,rm.modality_name,rpm.body_system_cd,rpm.modality_cd,rpm.ris_procedure_name,rpm.selling_price,rpm.buying_price,rpm.quantity,rpm.status FROM ris_body_system rbs,ris_modality rm, ris_procedure_master rpm WHERE rbs.body_system_cd = rpm.body_system_cd AND rm.modality_cd = rpm.modality_cd";
-//                                                    ArrayList<ArrayList<String>> test_cd = conn.getData(test_ca);
-                                                %>
-                                                
-                                                <select class="form-control" name="test" id="body_System">
-                                                    <option value="all">All</option>
-
-                                                </select>
-                                            </div>
+                                            
+                                            <div class="col-md-10" style=" text-align: center;">
+                                                <label class="col-md-4 control-label" for="textinput">View by: </label>
+                                                <div class="col-md-8">
+                                                    <select class="form-control" name="test" id="selectTimeframe">
+                                                        <option value="%d/%m/%Y">Daily</option>
+                                                        <option value="%M %Y">Monthly</option>
+                                                        <option value="%Y">Yearly</option>
+                                                    </select>
+                                                </div>
+                                            </div> 
+                                            
                                             <div class="col-md-2">
-                                                <button id="RMOM_btnRefresh" class="btn btn-default" style=" padding-right: 10px;padding-left: 10px;color: black;"><i class=" fa fa-refresh" style=" padding-right: 10px;padding-left: 10px;color: black;"></i>Refresh</button>
+                                                <button id="REP_btnRefresh" class="btn btn-default" style=" padding-right: 10px;padding-left: 10px;color: black;"><i class=" fa fa-refresh" style=" padding-right: 10px;padding-left: 10px;color: black;"></i>Refresh</button>
 
                                             </div>
+                                            
                                         </div>
                                     </div>
                                 </div>
-                                <script>
-                                    $(function () {
-
-                                        //-------------------------refresh the order table ---------------------------------------
-                                        $('#RMOM_btnRefresh').on('click', function () {
-                                            //$('#risOrderListContent').html('<div class="loading">Loading</div>');
-
-                                            var process = $('#Select_modality').val();
-                                            //alert(process);
-                                            var data = {
-                                                process: process
-                                            };
-
-                                            $.ajax({
-                                                type: 'POST',
-                                                url: "viewTC.jsp",
-                                                data: data,
-                                                success: function (data) {
-                                                    $("#viewTC").val(data.trim());
-                                                    $('#viewTC').html(data);
-                                                    $('#viewTC').trigger('contentchanged');
-                                                }
-
-                                            });
-
-                                        });
-                                    });
-
-                                </script>
-
-
-
-                                <div class="table-guling" id='viewProcedure'>
-                                    <%                                        
-                                        String sql = "SELECT rpm.body_system_cd,rbs.body_system_name,rpm.modality_cd,rm.modality_name,rpm.ris_procedure_name,rpm.selling_price,rpm.buying_price,rpm.quantity,rpm.status FROM ris_body_system rbs,ris_modality rm, ris_procedure_master rpm WHERE rbs.hfc_cd = rpm.hfc_cd AND rpm.hfc_cd = rm.hfc_cd AND rpm.body_system_cd = rbs.body_system_cd AND rpm.modality_cd = rm.modality_cd AND rpm.hfc_cd = '" + hfc_cd + "'";
-                                        ArrayList<ArrayList<String>> dataPatientApp = conn.getData(sql);
-                                    %>
-                                    <table id="procedure"  class="table table-striped table-bordered" cellspacing="0" width="100%">
-                                        <thead>
-                                            <tr>
-                                                <th >Body System Code</th>
-                                                <th >Body System Name</th>
-                                                <th >Modality Code</th>
-                                                <th >Modality Name</th>	 
-                                                <th >Procedure Name</th>
-                                                <th >Selling Price</th>
-                                                <th >Buying Price</th>
-                                                <th> Quantity</th>
-                                                <th> Status</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-
-                                            <%if (dataPatientApp.size() > 0) {
-                                                    for (int i = 0; i < dataPatientApp.size(); i++) {%>
-                                            <tr>
-                                                <td><%=dataPatientApp.get(i).get(0)%></td>
-                                                <td><%=dataPatientApp.get(i).get(1)%></td>
-                                                <td><%=dataPatientApp.get(i).get(2)%></td>
-                                                <td><%=dataPatientApp.get(i).get(3)%></td>
-                                                <td><%=dataPatientApp.get(i).get(4)%></td>
-                                                <td><%=dataPatientApp.get(i).get(5)%></td>
-                                                <td><%=dataPatientApp.get(i).get(6)%></td>
-                                                <td><%=dataPatientApp.get(i).get(7)%></td>
-                                                <td><%=dataPatientApp.get(i).get(8)%></td>
-                                            </tr>
-                                            <%
-                                                    }
-                                                }
-                                            %>
-                                        </tbody>
-                                    </table>
+                                
+                                <div class="table-guling" id='viewSale'>
+                                 
+                                   
                                 </div>
                             </div>
                         </div>
@@ -154,70 +80,103 @@
             <!-- main -->		
 
         </div>
+    <!-- Add Modal Start -->
+    <div class="modal fade" id="modal_report" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+        <div class="modal-dialog" style="width: 80%">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><i class="fa fa-times fa-lg"></i></button>
+                    <h3 class="modal-title" id="REP_modalTitle"></h3>
+                </div>
+                <div class="modal-body" id="REP_modalBody">
 
+
+                    <!-- content goes here -->
+                </div>
+                <div class="modal-footer">
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Add Modal End -->  
 
         <!-- Placed at the end of the document so the pages load faster -->
         <%@include file = "libraries/footLibrary.jsp" %>
         <!-- Placed at the end of the document so the pages load faster -->
-        <script src="libraries/js/jquery.check-file.js" type="text/javascript"></script>
-        <script src="../assets/js/jquery-ui.js" type="text/javascript"></script>
-        <script src="../assets/js/jquery.dataTables.min.js" type="text/javascript"></script>
-        <script src="../assets/js/dataTables.bootstrap.min.js" type="text/javascript"></script>
-        <script src="../assets/js/dataTables.buttons.min.js" type="text/javascript"></script>
-        <script src="../assets/js/buttons.flash.min.js" type="text/javascript"></script>
-        <script src="../assets/js/jszip.min.js" type="text/javascript"></script>
-        <script src="../assets/js/pdfmake.min.js" type="text/javascript"></script>
-        <script src="../assets/js/vfs_fonts.js" type="text/javascript"></script>
-        <script src="../assets/js/buttons.html5.min.js" type="text/javascript"></script>
+     
         <script src="../assets/js/buttons.print.min.js" type="text/javascript"></script>
         
-        <script>
+        <script type="text/javascript">
+            $(function(){
+                load_sale();
+            });
+            
+            function load_sale(){
+                createScreenLoading();
+                var timeFrame = $('#selectTimeframe').val();
+                var strName = $("#selectTimeframe option:selected").text(); 
+                
+                var data={
+                    timeFrame : timeFrame,
+                    strName : strName
+                };
+                
+                $.ajax({
+                    type: 'POST',
+                    url: "report_control/getListOfSale.jsp",
+                    data: data,
+                    success: function (data) {
 
-                                    $(document).ready(function () {
-                                        //$("#WardOccupancy").load("WardOccupancy.jsp");
-                                        //$("#viewTC").load("viewTC.jsp");
-//                                        $('#procedure').DataTable({
-//                                            language: {
-//                                                emptyTable: "No data"
-//                                            }, initComplete: function (settings, json) {
-//                                                $('.loading').hide();
-//                                            }
-//                                        });
+                        $('#viewSale').html(data);
 
-                                        $('#procedure').DataTable({
-                                            dom: 'Bfrtip',
-                                            buttons: [
-                                                'csv', 'excel', 'pdf',
-                                                {
-                                                    extend: 'print',
-                                                    title: $('h1').text(),
-                                                    customize: function (win) {
-                                                        $(win.document.body)
-                                                                .css('font-size', '10pt')
-                                                                .prepend(
-                                                                        '<div class="logo-hfc asset-print-img" style="z-index: 0; top: 0px; opacity: 1.0;">\n\
-                                        <img src="<%=logo.get(0).get(0)%>" style="text-align: center; height: 100%; " /></div> <div class="mesej">List of Code Procedure</div>\n\
-                                        <div class="info_kecik">\n\
-                                        <dd>Date: <strong><%=newdate%></strong></dd>\n\
-                                        <dd>Report No: <strong><%=newdate%></strong></dd>\n\
-                                        </div> '
-                                                                        );
-                                                        $(win.document.body).find('table')
-                                                                .addClass('compact')
-                                                                .css('font-size', 'inherit');
-                                                        $(win.document.body)
-                                                                .css('font-size', '10pt')
-                                                                .append('<div style="text-align: center;padding-top:30px;"><br> ***** &nbsp;&nbsp;  End Of Report  &nbsp;&nbsp;  ***** </div>');
-                                                    }
-                                                }
+                        },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                             $('#viewSale').html("Oopps! "+ errorThrown);
+                        },
+                    complete: function (jqXHR, textStatus ) {
+                            destroyScreenLoading();
+                    }
 
-                                            ]
-                                        });
+                });
+            }
+            
+            $('#REP_btnRefresh').on('click', function(){
+                load_sale();
+            });
+            
+            $('#viewSale').on('click', '.clickable_tr', function(){
+                var tr = $(this).closest('tr');
+                var leDate = tr.find('#hiddenDate').val();
+                var leTimeFrame = tr.find('#hiddenTimeFrame').val();
+              
+                var data = {
+                    date : leDate,
+                    timeFrame : leTimeFrame
+                }    
+                console.log(data);
 
-                                    });
+                createScreenLoading();
 
+                $.ajax({
+                    type: 'POST',
+                    timeout: 60000,
+                    url: "report_control/getListOfSaleDetail.jsp",
+                    data: data,
+                    success: function (data, textStatus, jqXHR) {
+                            $('#REP_modalBody').html(data);
+                            $('#modal_report').modal('show');
+                        },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                            bootbox.alert("Oops! "+errorThrown);
+                        },
+                    complete: function (jqXHR, textStatus ) {
+                            destroyScreenLoading();
+                    }
+                });
+            });
         </script>
-
+        
     </body>
 
 </html>

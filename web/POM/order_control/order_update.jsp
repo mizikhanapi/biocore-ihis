@@ -72,7 +72,7 @@
             String orderDate = request.getParameter("orderDate");
             String durationMin = request.getParameter("duration");
             
-            POS_EHRMessenger pom = new POS_EHRMessenger(creator, hfc_cd, dis, subdis, pmiNo, orderNo, orderDate);
+            POS_EHRMessenger pom = new POS_EHRMessenger(creator, hfc_cd, dis, subdis, pmiNo, orderNo, orderDate, ep_date, orderDate);
             pom.insertIntoEHR_LHR("18", proCode, proName, userName, hfcName, ep_date, durationMin, comment, outcome);
         } else {
             out.print("fail");

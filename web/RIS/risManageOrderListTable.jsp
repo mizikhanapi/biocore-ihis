@@ -50,7 +50,7 @@
 
         //=============================================================================================
         if (!hfc_cd.equals("99_iHIS_99") || !last_nine.equals("9")) {
-            whereClause = " AND ris_order_master.hfc_cd = '" + hfc_cd + "' ";
+            whereClause = " AND ris_order_master.hfc_to = '" + hfc_cd + "' ";
         }
 //                                  0                       1                       2                           3                                   4                       5                       
         String sql = "SELECT ris_order_master.pmi_no,ris_order_master.order_no,ris_order_master.hfc_cd,ris_order_master.episode_date,ris_order_master.encounter_date,ris_order_master.order_date,"
@@ -62,9 +62,9 @@
                 + "sx.description, blot.description, hfc.hfc_name "
                 + "FROM ris_order_master "
                 + "LEFT JOIN pms_patient_biodata ON (ris_order_master.pmi_no = pms_patient_biodata.PMI_NO) "
-                + "LEFT JOIN adm_lookup_detail sx on pms_patient_biodata.SEX_CODE = sx.detail_reference_code AND sx.master_reference_code = '0041' AND sx.hfc_cd = ris_order_master.hfc_cd "
-                + "LEFT JOIN adm_lookup_detail blot on pms_patient_biodata.BLOOD_TYPE = blot.detail_reference_code AND blot.master_reference_code = '0074' AND blot.hfc_cd = ris_order_master.hfc_cd "
-                + "Left JOIN adm_health_facility hfc on hfc.hfc_cd = ris_order_master.hfc_cd "
+                + "LEFT JOIN adm_lookup_detail sx on pms_patient_biodata.SEX_CODE = sx.detail_reference_code AND sx.master_reference_code = '0041' AND sx.hfc_cd = ris_order_master.hfc_to "
+                + "LEFT JOIN adm_lookup_detail blot on pms_patient_biodata.BLOOD_TYPE = blot.detail_reference_code AND blot.master_reference_code = '0074' AND blot.hfc_cd = ris_order_master.hfc_to "
+                + "Left JOIN adm_health_facility hfc on hfc.hfc_cd = ris_order_master.hfc_to "
                 + "WHERE ris_order_master.order_no in (select distinct(order_no) from ris_order_detail ) AND ris_order_master.order_status = '0' "
                 + orderWhereClause
                 + whereClause + " ;";

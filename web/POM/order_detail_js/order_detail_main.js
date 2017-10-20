@@ -219,6 +219,7 @@ $('#RNO_div_btnAdd_or_update').on('click', '#RNO_btnAdd', function () {
         instruction = instruction.replace(/'/g, "\\\'").replace(/"/g, "\\\"");
         var arrData = procedure.split('|');
         procedure = arrData[0].trim();
+        var pro_name = arrData[1].trim();
         
         var epDate = $('#posEpDate').val();
         
@@ -226,6 +227,7 @@ $('#RNO_div_btnAdd_or_update').on('click', '#RNO_btnAdd', function () {
         var data = {
             orderNo: orderNo,
             proCode: procedure,
+            proName: pro_name,
             epDate: epDate,
             instruction: instruction
         };

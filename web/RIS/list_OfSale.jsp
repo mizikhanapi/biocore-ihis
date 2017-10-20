@@ -153,7 +153,7 @@
                 var data = {
                     date : leDate,
                     timeFrame : leTimeFrame
-
+                }    
                 console.log(data);
 
                 createScreenLoading();

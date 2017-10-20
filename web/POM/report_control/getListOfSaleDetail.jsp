@@ -21,12 +21,12 @@
     String date = request.getParameter("date");
     String timeFrame = request.getParameter("timeFrame");
    
-    String query="SELECT od.procedure_cd, pm.ris_procedure_name, count(od.order_no), sum(pm.selling_price), pm.selling_price "
-            + "FROM ris_order_master om "
-            + "JOIN ris_order_detail od ON om.order_no=od.order_no "
-            + "JOIN ris_procedure_master pm ON pm.ris_procedure_cd=od.procedure_cd AND pm.hfc_cd=om.hfc_to "
+    String query="SELECT pm.procedure_cd, pm.procedure_name, count(od.order_no), sum(pm.selling_price), pm.selling_price "
+            + "FROM pos_order_master om "
+            + "JOIN pos_order_detail od ON om.order_no=od.order_no "
+            + "JOIN cis_procedure pm ON pm.procedure_cd=substring_index(od.procedure_cd, '.', 1) AND pm.hfc_cd=om.hfc_to "
             + "WHERE om.hfc_to='"+hfc_cd+"' AND om.billing_status='2' AND date_format(om.order_date, '"+timeFrame+"')='"+date+"' "
-            + "GROUP BY od.procedure_cd; ";
+            + "GROUP BY pm.procedure_cd; ";
     ArrayList<ArrayList<String>> dataSale = con.getData(query);
     
     int intTotal=0;
@@ -71,6 +71,7 @@
             }
         %>
     </tbody>
+    
 </table>
     
     <div style="text-align: right;">
