@@ -40,78 +40,83 @@ public class lhr_VTS {
 
                     //
                     if (alVts.get(2).get(21).isEmpty() || alVts.get(2).get(21).equalsIgnoreCase("-") || alVts.get(2).get(21).equalsIgnoreCase(" ")) {
-                        //vts_Obj.setEncounter_Date(null);
                         vts_Obj.setEncounter_Date("'" + alVts.get(1).get(0) + "'");
                     } else {
                         vts_Obj.setEncounter_Date("'" + alVts.get(2).get(21) + "'");
                     }
-                    vts_Obj.setWeight_Reading(alVts.get(2).get(7));
+                   
                     vts_Obj.setHeight_Reading(alVts.get(2).get(8));
                     vts_Obj.setDoctor_ID(alVts.get(2).get(23));
                     vts_Obj.setDoctor_Name(alVts.get(2).get(24));
-                    //vts_Obj.setSystolic_Sitting(dataVTS[vts_i][2]);
-                    //vts_Obj.setDiastolic_Sitting(dataVTS[vts_i][3]);
-                    //vts_Obj.setSitting_Pulse(dataVTS[vts_i][33]);
-                    //vts_Obj.setSystolic_Supine(dataVTS[vts_i][4]);
-                    //vts_Obj.setDiastolic_Supine(dataVTS[vts_i][5]);
-                    //vts_Obj.setSupine_Pulse(dataVTS[vts_i][34]);                            
-                    //vts_Obj.setSystolic_Standing(dataVTS[vts_i][6]);
-                    //vts_Obj.setDiastolic_Standing(dataVTS[vts_i][7]);
-                    //vts_Obj.setStanding_Pulse(dataVTS[vts_i][35]);
-                    //vts_Obj.setBlood_Glucose_Level(dataVTS[vts_i][32]);
-                    //vts_Obj.setTemperature_Reading(dataVTS[vts_i][1]);
+
 //                        vts_Obj.setComment(alVts.get(2).get(22));
-                    vts_Obj.setSPO2_Reading(alVts.get(2).get(29));
+//                    vts_Obj.setSPO2_Reading(alVts.get(2).get(29));
 //                        vts_Obj.setECG_Reading(alVts.get(2).get(22));
 //                        vts_Obj.setECG_Comments(dataVTS[vts_i][16]);
-
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                     //check whether data is not null, not empty and numeric
+                    //wight height
+                    if (alVts.get(2).get(7) != null && !alVts.get(2).get(7).isEmpty() && alVts.get(2).get(7).matches("\\d+") && !alVts.get(2).get(7).equals("-")) {
+                         vts_Obj.setWeight_Reading(alVts.get(2).get(7));
+                    } else {
+                         vts_Obj.setWeight_Reading("0");
+                    }
+                    
+                    if (alVts.get(2).get(8) != null && !alVts.get(2).get(8).isEmpty() && alVts.get(2).get(8).matches("\\d+") && !alVts.get(2).get(8).equals("-")) {
+                        vts_Obj.setHeight_Reading(alVts.get(2).get(8));
+                    } else {
+                        vts_Obj.setHeight_Reading("0");
+                    }
+                    
+                    
                     //sitting
-                    if (alVts.get(2).get(1) != null && !alVts.get(2).get(1).isEmpty() && alVts.get(2).get(1).matches("\\d+")) {
+                    if (alVts.get(2).get(1) != null && !alVts.get(2).get(1).isEmpty() && alVts.get(2).get(1).matches("\\d+") && !alVts.get(2).get(1).equals("-")) {
                         vts_Obj.setSystolic_Sitting(alVts.get(2).get(1));
                     } else {
                         vts_Obj.setSystolic_Sitting("0");
                     }
-                    if (alVts.get(2).get(2) != null && !alVts.get(2).get(2).isEmpty() && alVts.get(2).get(2).matches("\\d+")) {
+                    
+                    if (alVts.get(2).get(2) != null && !alVts.get(2).get(2).isEmpty() && alVts.get(2).get(2).matches("\\d+") && !alVts.get(2).get(2).equals("-")) {
                         vts_Obj.setDiastolic_Sitting(alVts.get(2).get(2));
                     } else {
                         vts_Obj.setDiastolic_Sitting("0");
                     }
-                    if (alVts.get(2).get(32) != null && !alVts.get(2).get(32).isEmpty() && alVts.get(2).get(32).matches("\\d+")) {
+                    
+                    if (alVts.get(2).get(32) != null && !alVts.get(2).get(32).isEmpty() && alVts.get(2).get(32).matches("\\d+") && !alVts.get(2).get(32).equals("-")) {
                         vts_Obj.setSitting_Pulse(alVts.get(2).get(32));
                     } else {
                         vts_Obj.setSitting_Pulse("0");
                     }
 
                     //supine
-                    if (alVts.get(2).get(3) != null && !alVts.get(2).get(3).isEmpty() && alVts.get(2).get(3).matches("\\d+")) {
+                    if (alVts.get(2).get(3) != null && !alVts.get(2).get(3).isEmpty() && alVts.get(2).get(3).matches("\\d+") && !alVts.get(2).get(3).equals("-")) {
                         vts_Obj.setSystolic_Supine(alVts.get(2).get(3));
                     } else {
                         vts_Obj.setSystolic_Supine("0");
                     }
-                    if (alVts.get(2).get(4) != null && !alVts.get(2).get(4).isEmpty() && alVts.get(2).get(4).matches("\\d+")) {
+                    if (alVts.get(2).get(4) != null && !alVts.get(2).get(4).isEmpty() && alVts.get(2).get(4).matches("\\d+") && !alVts.get(2).get(4).equals("-")) {
                         vts_Obj.setDiastolic_Supine(alVts.get(2).get(4));
                     } else {
                         vts_Obj.setDiastolic_Supine("0");
                     }
-                    if (alVts.get(2).get(33) != null && !alVts.get(2).get(33).isEmpty() && alVts.get(2).get(33).matches("\\d+")) {
+                    if (alVts.get(2).get(33) != null && !alVts.get(2).get(33).isEmpty() && alVts.get(2).get(33).matches("\\d+")&& !alVts.get(2).get(33).equals("-")) {
                         vts_Obj.setSupine_Pulse(alVts.get(2).get(33));
                     } else {
                         vts_Obj.setSupine_Pulse("0");
                     }
 
                     // standing
-                    if (alVts.get(2).get(5) != null && !alVts.get(2).get(5).isEmpty() && alVts.get(2).get(5).matches("\\d+")) {
+                    if (alVts.get(2).get(5) != null && !alVts.get(2).get(5).isEmpty() && alVts.get(2).get(5).matches("\\d+") && !alVts.get(2).get(5).equals("-")) {
                         vts_Obj.setSystolic_Standing(alVts.get(2).get(5));
                     } else {
                         vts_Obj.setSystolic_Standing("0");
                     }
-                    if (alVts.get(2).get(6) != null && !alVts.get(2).get(6).isEmpty() && alVts.get(2).get(6).matches("\\d+")) {
+                    if (alVts.get(2).get(6) != null && !alVts.get(2).get(6).isEmpty() && alVts.get(2).get(6).matches("\\d+") && !alVts.get(2).get(6).equals("-")) {
                         vts_Obj.setDiastolic_Standing(alVts.get(2).get(6));
                     } else {
                         vts_Obj.setDiastolic_Standing("0");
                     }
-                    if (alVts.get(2).get(34) != null && !alVts.get(2).get(34).isEmpty() && alVts.get(2).get(34).matches("\\d+")) {
+                    if (alVts.get(2).get(34) != null && !alVts.get(2).get(34).isEmpty() && alVts.get(2).get(34).matches("\\d+") && !alVts.get(2).get(34).equals("-")) {
                         vts_Obj.setStanding_Pulse(alVts.get(2).get(34));
                     } else {
                         vts_Obj.setStanding_Pulse("0");
@@ -255,10 +260,10 @@ public class lhr_VTS {
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
-
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                     //check whether Blood_Glucose_Level data is null or empty
-                    if (alVts.get(2).get(31) != null && !alVts.get(2).get(31).isEmpty()) {
-                        vts_Obj.setBlood_Glucose_Level(alVts.get(2).get(31));
+                    if (alVts.get(2).get(31) != null && !alVts.get(2).get(31).isEmpty() && !alVts.get(2).get(31).equals("-")) {
+                        vts_Obj.setBlood_Glucose_Level(alVts.get(2).get(31) );
                     } else {
                         vts_Obj.setBlood_Glucose_Level("0");
                     }
@@ -315,8 +320,11 @@ public class lhr_VTS {
                         e.printStackTrace();
                     }
 
+                    
+                    
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////                    
                     //check whether spo2 data is null or empty
-                    if (alVts.get(2).get(29) != null && !alVts.get(2).get(29).isEmpty()) {
+                    if (alVts.get(2).get(29) != null && !alVts.get(2).get(29).isEmpty() && !alVts.get(2).get(29).equals("-")) {
                         vts_Obj.setSPO2_Reading(alVts.get(2).get(29));
                     } else {
                         vts_Obj.setSPO2_Reading("0");
@@ -371,56 +379,7 @@ public class lhr_VTS {
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
-
-//                        // insert into lhr_procedure table for VTS
-//                        String query_vts_lhr_procedure = "insert into lhr_procedure "
-//                                + "(pmi_no, "
-//                                + "hfc_cd, "
-//                                + "episode_date, "
-//                                + "encounter_date, "
-//                                + "procedure_cd, "
-//                                + "procedure_name, "
-//                                + "procedure_outcome, "
-////                                + "comment, "
-//                                + "doctor_id, "
-//                                + "doctor_name, "
-//                                + "national_id_no, "
-//                                + "person_id_no, "
-//                                + "person_status, "
-//                                + "centre_code )"
-//                                + "values ('" + vts_Obj.getPMI_no() + "',"
-//                                + "'" + vts_Obj.getHFC_Cd() + "',"
-//                                + "'" + vts_Obj.getEpisode_Date() + "',"
-//                                + "" + vts_Obj.getEncounter_Date() + ","
-//                                + "'" + vts_Obj.getProcedure_Cd() + "',"
-//                                + "'" + vts_Obj.getProcedure_Name() + "',"
-//                                + "'" + vts_Obj.getProcedure_Outcome() + "',"
-////                                + "'" + vts_Obj.getComment() + "',"
-//                                + "'" + vts_Obj.getDoctor_ID() + "',"
-//                                + "'" + vts_Obj.getDoctor_Name() + "',"
-//                                + "'" +a + "',"
-//                                + "'" + b + "',"
-//                                + "'" + c + "',"
-//                                + "'" + d + "')";
-//
-//                        try {
-//                            if (vts_Obj.getProcedure_Cd() != "" && vts_Obj.getProcedure_Cd() != null) {
-//                                status_vts_lhr_procedure = rc.setQuerySQL(Config.ipAddressServer, Config.portServer, query_vts_lhr_procedure);
-//                            }
-//                    //    //System.out.println("status vts_lhr_procedure:" + status_vts_lhr_procedure);
-//                            //    //System.out.println("sql vts_lhr_procedure : " + query_vts_lhr_procedure);     
-//                            if (status_vts_lhr_procedure == false) {
-//                        //System.out.println("Failed to insert data into lhr_procedure (VTS_PROC) where PMI No : " + PMI_no + " & National ID No : " + NATIONAL_ID_NO + " & Person ID No : " + PERSON_ID_NO);   
-//                                //System.out.println("Query for VTS_PROC: " + query_vts_lhr_procedure);
-//                                total_fail_insert++;
-//                                System.out.println("false extract vts procedure");
-//                                //System.out.println("query vts procedure: "+ query_vts_lhr_procedure);
-//                            }else{
-//                                System.out.println("done extract vts procedure");
-//                            }
-//                        } catch (Exception e) {
-//                            e.printStackTrace();
-//                        }
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                     //check whether temperature_reading data is null or empty
                     if (alVts.get(2).get(0) != null && !alVts.get(2).get(0).equals("-") && !alVts.get(2).get(0).isEmpty() && alVts.get(2).get(0).matches("\\d+")) {
                         vts_Obj.setTemperature_Reading(alVts.get(2).get(0));
@@ -480,7 +439,7 @@ public class lhr_VTS {
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
-
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                     vts_ArrayList.add(vts_Obj);
                 }
 
