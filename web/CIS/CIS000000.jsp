@@ -157,7 +157,7 @@
                     </div>
 
                     <div class="tab-content" style="padding: 0px;" id="tabContent">
-                        <div class="tab-pane fade in active" id="generic-soap">
+                        <div class="tab-pane fade in active swapping-tab" id="generic-soap">
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="thumbnail">
@@ -244,10 +244,10 @@
 
                             </div>
                         </div>
-                        <div class="none" id="order-entry">
+                        <div class="none swapping-tab" id="order-entry">
                             <jsp:include page="order/orderEntry.jsp"/> 
                         </div>
-                        <div class="none" id="orthopedic-con" style="display: none;">
+                        <div class="none swapping-tab" id="orthopedic-con" style="display: none;">
                             <jsp:include page="../Ortho-Consultation/orthopedic.jsp"/>
                         </div>
 
@@ -255,16 +255,20 @@
                             <%--<jsp:include page="../Ortho-Nursing/Nursing.jsp"/>--%>
                         </div> -->
 
-                        <div class="none" id="orthopedic-niw">
+                        <div class="none swapping-tab" id="orthopedic-niw">
                             <jsp:include page="../Ortho-NursingInWard/NursingInWard.jsp"/>
                         </div> 
 
-                        <div class="none" id="orthopedic-ot">
+                        <div class="none swapping-tab" id="orthopedic-ot">
                             <jsp:include page="../Ortho-operationTheater/OperationTheater.jsp"/>
                         </div> 
 
-                        <div class="none" id="ong">
+                        <div class="none swapping-tab" id="ong">
                             <jsp:include page="ong.jsp"/>
+                        </div> 
+
+                        <div class="none swapping-tab" id="CIS-analyseTab">
+                            <jsp:include page="analyse/analyse.jsp"/>
                         </div> 
 
 
