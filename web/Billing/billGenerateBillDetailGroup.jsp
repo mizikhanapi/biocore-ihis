@@ -29,6 +29,7 @@
 
     // Generate Decimal Format
     DecimalFormat df = new DecimalFormat("0.00");
+    DecimalFormat dfQuan = new DecimalFormat("0");
 
     // Generate Parameter
     String pmiNo = request.getParameter("pmiNo");
@@ -37,6 +38,8 @@
     String test = "";
 
     // Variables
+    int subQuantity = 0;
+    int grandQuantity;
     double grandTotal;
     double rounding;
     double subtotal = 0;
@@ -222,7 +225,9 @@
     </div>
 </div>
 
+            
 <hr/>
+
 
 <h5><b>Bill Detail</b></h5>
 <div>
@@ -252,6 +257,7 @@
                 </tr>
                 <%
                         subtotal += Double.parseDouble(dataBillGenerateMasterDetailsItems.get(i).get(11));
+                        subQuantity += Integer.parseInt(dataBillGenerateMasterDetailsItems.get(i).get(12));
                     }
 
                     //Search and add miscellaneous item to table.
@@ -267,13 +273,14 @@
                     String sqlBillGenerateDetailsMisceItem = "SELECT * FROM far_miscellaneous_item WHERE item_code = '" + type + "'";
                     ArrayList<ArrayList<String>> dataBillGenerateDetailsMisceItem = Conn.getData(sqlBillGenerateDetailsMisceItem);
                     subtotal = subtotal + Double.parseDouble(dataBillGenerateDetailsMisceItem.get(0).get(4));
+                    subQuantity += 1;
                 %>
                 <tr>
                     <td><%=billNo%></td>
                     <td><%=txtTime%></td>
                     <td><%=dataBillGenerateDetailsMisceItem.get(0).get(1)%></td>
                     <td><%=dataBillGenerateDetailsMisceItem.get(0).get(2)%></td>
-                    <td style="text-align: right;">1.00</td>
+                    <td style="text-align: right;">1</td>
                     <td style="text-align: right;"><%=df.format(Double.parseDouble(dataBillGenerateDetailsMisceItem.get(0).get(4)))%></td>
                     <td style="text-align: right;"><%=df.format(Double.parseDouble(dataBillGenerateDetailsMisceItem.get(0).get(4)))%></td>
                 </tr>
@@ -293,6 +300,8 @@
                             discount = Double.parseDouble(dataBillGenerateDetailsBillingParameters.get(i).get(2));
                         }
 
+                        subQuantity += 1;
+
                     }
 
                     //Calculate grand total
@@ -307,6 +316,9 @@
                     gstAmount = subtotal * gst;
                     gstAmount = Double.parseDouble(df.format(gstAmount));
                     subtotal = subtotal + gstAmount;
+
+                    //Get Sub Quan And Set To Grand Quantity
+                    grandQuantity = subQuantity;
 
                     //Round the grand total
                     grandTotal = subtotal;
@@ -348,8 +360,44 @@
     </div>
 </div>
 
+            
+<br>
+
+
+<div class="row">
+    <!-- content goes here -->
+    <form class="form-horizontal" id="addForm">
+
+        <div class="col-md-8">
+        </div>
+
+        <div class="col-md-4">
+
+            <!-- Text input-->
+            <div class="form-group">
+                <label class="col-md-5 control-label" for="textinput">Total Quantity :</label>
+                <div class="col-md-4">
+                    <input id="billDetailOrderDetailGroupTotalQuantity" name="billDetailOrderDetailGroupTotalQuantity" type="text" placeholder="Total Quantity" class="form-control input-md" maxlength="50" value="<%=dfQuan.format(grandQuantity)%>" readonly>
+                </div>
+            </div>
+
+            <!-- Text input-->
+            <div class="form-group">
+                <label class="col-md-5 control-label" for="textinput">Grand Total (RM) :</label>
+                <div class="col-md-4">
+                    <input id="billDetailOrderDetailGroupGrandTotal" name="billDetailOrderDetailGroupGrandTotal" type="text" placeholder="Grand Total (RM)" class="form-control input-md" maxlength="50" value="<%=df.format(grandTotal)%>" readonly>
+                </div>
+            </div>          
+
+        </div>
+
+    </form>
+</div>
+
+
 <br>
 <hr/>
+
 
 <div id="viewBillGenereteBillDetailsGroupButtonRightDiv">
     <div class="col-lg-4 pull-left" style="margin-bottom: 10px; ">
