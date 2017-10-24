@@ -55,9 +55,11 @@
                                     </div>
                                 </form>
                             </div>
+                            
                             <div class="row ANL-toggle" id="ANL_div_info" style="display: none;">
                                 <div id="ANL_div_patientBiodata"></div>
                             </div>
+                            
                             <hr class="pemisah" />
                            
                             <div class="row">
@@ -69,13 +71,13 @@
                                     <div class="col-sm-6 " style="padding-right: 0px;">
                                         <select class="form-control" id="ANL_viewBy">
                                             <option value="0" selected disabled> --View by-- </option>
-                                            <option value="all">All</option>
                                             <option value="0">Today</option>
                                             <option value="1">Yesterday</option>
                                             <option value="7">7 Days</option>
                                             <option value="30">30 Days</option>
                                             <option value="60">60 Days</option>
                                             <option value="x">Select date</option>
+                                            <option value="all">All</option>
                                         </select>
                                     </div>
                                 </div>
@@ -96,7 +98,7 @@
                                 </div>
                             </div>
                             
-                            <div class="row" id="ANL_viewDiv">
+                            <div class="row table-guling" id="ANL_viewDiv" style="max-height: 500px; height: 100%; width: 100%; overflow-y: auto; overflow-style: panner;">
                                 
                             </div>
                             
@@ -112,8 +114,36 @@
         </div>
     </div>
 </div>
+<!-- Add Modal Start -->
+<div class="modal fade" id="ANL_modal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+    <div class="modal-dialog" style="width: 80%">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><i class="fa fa-times fa-lg"></i></button>
+                <h3 class="modal-title" id="REP_modalTitle"></h3>
+            </div>
+            <div class="modal-body" id="REP_modalBody">
+
+                <div class="chart-container" style="height: 100%;">
+                   <canvas id="ANL_canvas" style="height: 500px;"></canvas>
+                </div>
+                
+                <!-- content goes here -->
+            </div>
+            <div class="modal-footer">
+               
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Add Modal End -->  
                         
 <script type="text/javascript">
+         
+    $(function(){
+        $('#ANL_searchPatient #myFormApp #ANL_idType').load('search/SearchModal.jsp #myFormApp #idType option');
+    });
+    
     
      //--- initialise datepicker for from ----
     $('#ANL_dateFrom').datepicker({
@@ -142,7 +172,29 @@
         
     });
     
+//    $('#ANL_viewBy').on('focus', function(){
+//        var hiddenPat = $('#ANL_hidden_patientBio');
+//        
+//        if(hiddenPat.length < 1){
+//            bootbox.alert("Search a patient first!");
+//            return false;
+//        }
+//    });
+
+    function ANL_gotPatient(){
+        var hiddenPat = $('#ANL_hidden_patientBio');
+       
+        if(hiddenPat.length < 1){
+            bootbox.alert("Search a patient first!");
+            return false;
+        }
+        else{
+            return true;
+        }
+    }
+    
     $('#ANL_viewBy').on('change', function(){
+        
         var howTo = $(this).val();
         $('#ANL_dateFrom').val("");
         $("#ANL_dateTo").val("");
@@ -151,26 +203,28 @@
             $('#ANL_div_selectDate').show();
         } else {
             $('#ANL_div_selectDate').hide();
-            ANL_loadData();
+            if(ANL_gotPatient()){
+                ANL_loadData();
+            }           
         }
     });
     
     $('#ANL_btnSearchRecord').on('click', function(){
-        var dateFrom = $('#ANL_dateFrom').val();
-        var dateTo = $('#ANL_dateTo').val();
         
-        if(dateFrom==="" || dateTo===""){
-            bootbox.alert("Please choose the dates");
+        if(ANL_gotPatient()){
+            var dateFrom = $('#ANL_dateFrom').val();
+            var dateTo = $('#ANL_dateTo').val();
+
+            if(dateFrom==="" || dateTo===""){
+                bootbox.alert("Please choose the dates");
+            }
+            else{
+                ANL_loadData();
+            }
         }
-        else{
-            ANL_loadData();
-        }
+        
     });
-    
-    $(function(){
-        $('#ANL_searchPatient #myFormApp #ANL_idType').load('search/SearchModal.jsp #myFormApp #idType option');
-    });
-    
+   
     function ANL_searchPatient(idType, id){
         
         createScreenLoading();
@@ -187,12 +241,16 @@
             success: function (data, textStatus, jqXHR) {
                         
                         if(data.trim()==="0"){
-                            bootbox.alert("Cannot find the patient.");
+                            bootbox.alert("Cannot find the patient. Try different ID.");
                         }
                         else{
                             $('#ANL_div_patientBiodata').html(data);
                             $('.ANL-toggle').hide();
                             $('#ANL_div_info').show();
+                            
+                            $('#ANL_viewDiv').html("");
+                            $('#ANL_viewBy').val("0");
+                            ANL_loadData();
                         }
                     },
             error: function (jqXHR, textStatus, errorThrown) {
@@ -220,12 +278,14 @@
     
     //------------------ retrieve data
     function ANL_loadData(){
+        var patArr = $('#ANL_div_patientBiodata').find('#ANL_hidden_patientBio').val().split("|");
         var data = {
             day: $('#ANL_viewBy').val(),
             from: $('#ANL_dateFrom').val(),
-            to: $('#ANL_dateTo').val()
+            to: $('#ANL_dateTo').val(),
+            pmiNo: patArr[0]
         };
-        
+        //console.log(data);
         createScreenLoading();
         $.ajax({
             type: 'POST',
@@ -233,7 +293,14 @@
             timeout: 60000,
             url: "analyse/controller/getPastRecord.jsp",
             success: function (data, textStatus, jqXHR) {
-                $('#ANL_viewDiv').html(data);
+                if(data.trim()==="0"){
+                    bootbox.alert("This patient has no records on the selected time.");
+                    $('#ANL_viewDiv').html("");
+                }
+                else{
+                    $('#ANL_viewDiv').html(data);
+                }
+                
             },
             error: function (jqXHR, textStatus, errorThrown) {
                 $('#ANL_viewDiv').html(errorThrown);
@@ -241,7 +308,114 @@
             complete: function (jqXHR, textStatus) {
                 destroyScreenLoading();
             }
-        });
+        });     
+              
     }
+    
+    
+     //-------------------graph processing-------------------------------------
+        function ANL_getRandomColor() {
+            var letters = '0123456789ABCDEF'.split('');
+            var color = '#';
+            for (var i = 0; i < 6; i++ ) {
+                color += letters[Math.floor(Math.random() * 16)];
+            }
+            return color;
+        }
+        
+        $('#ANL_viewDiv').on('click', '#ANL_btnGraph', function(){
+            
+            Chart.helpers.each(Chart.instances, function(instance){
+                instance.destroy();
+             });
+            
+            createScreenLoading();
+            var dataArr = $(this).closest('td').find('.hidden');
+            $('#ANL_canvas').html("");
+            var canvas = $('#ANL_canvas');
+                       
+            var lhrData = [];
+            var lhrLabel = [];
+            var lhrColour = [];
+            
+            dataArr.each(function(){
+                var tempArr = $(this).text().split("|");
+                lhrLabel.push(tempArr[1]);
+                lhrData.push(tempArr[2]);
+                lhrColour.push(ANL_getRandomColor());
+            });
+            
+            var chartOptions = {
+              legend: {
+                display: false,
+                position: 'top',
+                labels: {
+                  boxWidth: 40,
+                  fontColor: 'black'
+                }
+              },
+              tooltips: {
+                  mode: 'index',
+                  intersect: true
+              },
+              responsive: true,
+              scales:{
+                        yAxes:[{
+                                ticks:{beginAtZero:true}
+                            }]
+               },
+               maxBarThickness: 10,
+               categoryPercentage: 0.1,
+               barPercentage: 0.5
+            };
+            
+//            var barChart = new Chart(canvas, {
+//                type: 'bar',
+//                data: lhrData,
+//                options: chartOptions
+//            });
+            
+            new Chart(canvas,
+            {
+                type:"bar",
+                data:{
+                    labels:lhrLabel,
+                    datasets:[{
+                            label:"LHR Data",
+                            data:lhrData,
+                            fill:false,
+                            backgroundColor:lhrColour,
+                            borderColor:lhrColour,
+                            borderWidth:1
+                        }]
+                },
+                options: { 
+                    scales:{
+                        yAxes:[{
+                                ticks:{beginAtZero:true}
+                            }],
+                        xAxes: [{
+                            maxBarThickness: 30,
+                            categoryPercentage: 0.5,
+                            barPercentage: 0.8,
+                            stacked: false,
+                            beginAtZero: true,
+                            scaleLabel: {
+                                labelString: 'Description'
+                            },
+                            ticks: {
+                                stepSize: 1,
+                                min: 0,
+                                autoSkip: false
+                            }
+                        }]
+                    }
+                }
+            });
+            
+            $('#ANL_modal').modal('show');
+            destroyScreenLoading();
+                        
+        });
     
 </script>

@@ -92,7 +92,7 @@
     sql="SELECT details FROM lhr_health_of_present_illness WHERE pmi_no='"+pmi_no+"' and episode_date='"+episodeDate+"';";
     ArrayList<ArrayList<String>> searchEpisode21 = conn.getData(sql);
 
-          if(searchEpisode.size() > 0 || searchEpisode1.size() > 0 || searchEpisode2.size() > 0 || searchEpisode3.size() > 0 || searchEpisode4.size() > 0 
+        if(  searchEpisode.size() > 0 || searchEpisode1.size() > 0 || searchEpisode2.size() > 0 || searchEpisode3.size() > 0 || searchEpisode4.size() > 0 
          || searchEpisode5.size() > 0 || searchEpisode6.size() > 0 || searchEpisode7.size() > 0 || searchEpisode8.size() > 0 || searchEpisode9.size() > 0
          || searchEpisode10.size()> 0 || searchEpisode11.size()> 0 || searchEpisode12.size()> 0 || searchEpisode13.size()> 0 || searchEpisode14.size()> 0
          || searchEpisode15.size()> 0 || searchEpisode16.size()> 0 || searchEpisode17.size()> 0 || searchEpisode18.size()> 0 || searchEpisode19.size()> 0

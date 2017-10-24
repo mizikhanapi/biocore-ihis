@@ -154,6 +154,7 @@
 %>
 
 <div class="center-block" style="margin: 10px;">
+    <input type="hidden" id="ANL_hidden_patientBio" value="<%=patientBio%>">
     <div class="col-md-12">
         <h4 style="padding: 0px;">Patient Info</h4>
     </div>

@@ -107,4 +107,8 @@ $(document).ready(function () {
         event.stopPropagation();
         
     });
+    $('#CIS-analyseTab').on('hide', '.modal', function(event) {
+        event.stopPropagation();
+        
+    });
 });

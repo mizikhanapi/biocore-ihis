@@ -36,8 +36,8 @@
                             <label class="col-md-4 control-label" for="selectbasic">ID Type</label>
                             <div class="col-md-4">
                               
-                                <select id="idType" name="idType" class="form-control" required="">
-                                    <option selected="" disabled="" value="-"> Please select ID type</option>
+                                <select id="idType" name="idType" class="form-control">
+                                    <option selected disabled value=""> Please select ID type</option>
 
                                     <%  //if (dataSystemStatus2.equals("0")) {
 
