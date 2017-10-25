@@ -20,8 +20,14 @@ public class lhr_VTS {
         boolean status_vts_lhr_bp = false;
         boolean status_vts_lhr_bg = false;
         boolean status_vts_lhr_spo2 = false;
-        boolean status_vts_lhr_procedure = false;
+        boolean status_vts_lhr_pupil = false;
         boolean status_vts_lhr_temperature = false;
+        boolean status_vts_lhr_circum = false;
+        boolean status_vts_lhr_gcs = false;
+        boolean status_vts_lhr_pgcs = false;
+        boolean status_vts_lhr_pain_scale = false;
+        boolean status_vts_lhr_respiratory = false;
+        boolean status_vts_lhr_visual = false;
 
         try {
 
@@ -37,51 +43,592 @@ public class lhr_VTS {
                     vts_Obj.setHFC_Cd(alVts.get(2).get(22));
                     vts_Obj.setPMI_no(t.getPmi_no());
                     vts_Obj.setEpisode_Date(alVts.get(1).get(0));
+                    
+                    String a, b, c, d;
+                    a = t.getNational_id_no();
+                    b = t.getPERSON_STATUS();
+                    c = t.getPERSON_ID_NO();
+                    d = t.getCentre_Code();
 
+                    if (a == null || a.isEmpty() || a.equals(" ")) {
+                        a = "PUBLIC HOSPITAL";
+                    }
+
+                    if (b == null || b.isEmpty() || b.equals(" ")) {
+                        b = "PUBLIC HOSPITAL";
+                    }
+
+                    if (c == null || c.isEmpty() || c.equals(" ")) {
+                        c = "PUBLIC HOSPITAL";
+                    }
+
+                    if (d == null || d.isEmpty() || d.equals(" ")) {
+                        d = "PUBLIC HOSPITAL";
+                    }
+                    
                     //
                     if (alVts.get(2).get(21).isEmpty() || alVts.get(2).get(21).equalsIgnoreCase("-") || alVts.get(2).get(21).equalsIgnoreCase(" ")) {
                         vts_Obj.setEncounter_Date("'" + alVts.get(1).get(0) + "'");
                     } else {
                         vts_Obj.setEncounter_Date("'" + alVts.get(2).get(21) + "'");
                     }
-                   
+
                     vts_Obj.setHeight_Reading(alVts.get(2).get(8));
                     vts_Obj.setDoctor_ID(alVts.get(2).get(23));
                     vts_Obj.setDoctor_Name(alVts.get(2).get(24));
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//                  PUPIL THINGS
+                    if (alVts.get(2).get(13) != null && !alVts.get(2).get(13).isEmpty() && !alVts.get(2).get(13).equals("-")) {
+                        vts_Obj.setLeft_pupil_condition(alVts.get(2).get(13));
+                    } else {
+                        vts_Obj.setLeft_pupil_condition("");
+                    }
 
-//                        vts_Obj.setComment(alVts.get(2).get(22));
-//                    vts_Obj.setSPO2_Reading(alVts.get(2).get(29));
-//                        vts_Obj.setECG_Reading(alVts.get(2).get(22));
-//                        vts_Obj.setECG_Comments(dataVTS[vts_i][16]);
+                    if (alVts.get(2).get(14) != null && !alVts.get(2).get(14).isEmpty() && !alVts.get(2).get(14).equals("-")) {
+                        vts_Obj.setLeft_pupil_option(alVts.get(2).get(14));
+                    } else {
+                        vts_Obj.setLeft_pupil_option("");
+                    }
+
+                    if (alVts.get(2).get(15) != null && !alVts.get(2).get(15).isEmpty() && !alVts.get(2).get(15).equals("-")) {
+                        vts_Obj.setLeft_pupil_size(alVts.get(2).get(15));
+                    } else {
+                        vts_Obj.setLeft_pupil_size("");
+                    }
+
+                    if (alVts.get(2).get(16) != null && !alVts.get(2).get(16).isEmpty() && !alVts.get(2).get(16).equals("-")) {
+                        vts_Obj.setLeft_pupil_reflex(alVts.get(2).get(16));
+                    } else {
+                        vts_Obj.setLeft_pupil_reflex("");
+                    }
+
+                    if (alVts.get(2).get(18) != null && !alVts.get(2).get(18).isEmpty() && !alVts.get(2).get(18).equals("-")) {
+                        vts_Obj.setLeft_accom_reflex(alVts.get(2).get(18));
+                    } else {
+                        vts_Obj.setLeft_accom_reflex("");
+                    }
+
+                    if (alVts.get(2).get(35) != null && !alVts.get(2).get(35).isEmpty() && !alVts.get(2).get(35).equals("-")) {
+                        vts_Obj.setRight_pupil_condition(alVts.get(2).get(35));
+                    } else {
+                        vts_Obj.setRight_pupil_condition("");
+                    }
+
+                    if (alVts.get(2).get(36) != null && !alVts.get(2).get(36).isEmpty() && !alVts.get(2).get(36).equals("-")) {
+                        vts_Obj.setRight_pupil_option(alVts.get(2).get(36));
+                    } else {
+                        vts_Obj.setRight_pupil_option("");
+                    }
+
+                    if (alVts.get(2).get(37) != null && !alVts.get(2).get(37).isEmpty() && !alVts.get(2).get(37).equals("-")) {
+                        vts_Obj.setRight_pupil_size(alVts.get(2).get(37));
+                    } else {
+                        vts_Obj.setRight_pupil_size("");
+                    }
+
+                    if (alVts.get(2).get(17) != null && !alVts.get(2).get(17).isEmpty() && !alVts.get(2).get(16).equals("-")) {
+                        vts_Obj.setRight_pupil_reflex(alVts.get(2).get(17));
+                    } else {
+                        vts_Obj.setRight_pupil_reflex("");
+                    }
+
+                    if (alVts.get(2).get(19) != null && !alVts.get(2).get(19).isEmpty() && !alVts.get(2).get(19).equals("-")) {
+                        vts_Obj.setRight_accom_reflex(alVts.get(2).get(19));
+                    } else {
+                        vts_Obj.setRight_accom_reflex("");
+                    }
+                    
+                    String query_vts_lhr_pupil = "insert into lhr_pupil "
+                            + "(pmi_no, "
+                            + "hfc_cd, "
+                            + "episode_date, "
+                            + "encounter_date, "
+                            + "dicipline_cd, "
+                            + "subdiscipline_cd,"
+                            + "doctor_id,"
+                            + "doctor_name,"
+                            + "national_id_no,"
+                            + "person_id_no,"
+                            + "centre_code,"
+                            + "created_by,"
+                            + "created_date,"
+                            + "left_accom_reflex,"
+                            + "left_light_reflex,"
+                            + "left_pupil_condition,"
+                            + "left_pupil_option,"
+                            + "left_pupil_size,"
+                            + "right_accom_reflex,"
+                            + "right_light_reflex,"
+                            + "right_pupil_condition,"
+                            + "right_pupil_option,"
+                            + "right_pupil_size("
+                            + "'"+vts_Obj.getPMI_no()+"',"
+                            + "'"+vts_Obj.getHFC_Cd()+"',"
+                            + "'"+vts_Obj.getEpisode_Date()+"',"
+                            + "'"+vts_Obj.getEncounter_Date()+"',"
+                            + "'"+vts_Obj.getDiscipline()+"',"
+                            + "'"+vts_Obj.getSubdiscipline()+"',"
+                            + "'"+vts_Obj.getDoctor_ID()+"',"
+                            + "'"+vts_Obj.getDoctor_Name()+"',"
+                            + "'"+a+"',"
+                            + "'"+c+"',"
+                            + "'"+d+"',"
+                            + "'"+vts_Obj.getDoctor_ID()+"',"
+                            + "'"+vts_Obj.getEncounter_Date()+"',"
+                            + "'"+vts_Obj.getLeft_accom_reflex()+"',"
+                            + "'"+vts_Obj.getLeft_pupil_reflex()+"',"
+                            + "'"+vts_Obj.getLeft_pupil_condition()+"',"
+                            + "'"+vts_Obj.getLeft_pupil_option()+"',"
+                            + "'"+vts_Obj.getLeft_pupil_size()+"',"
+                            + "'"+vts_Obj.getRight_accom_reflex()+"',"
+                            + "'"+vts_Obj.getRight_pupil_reflex()+"',"
+                            + "'"+vts_Obj.getRight_pupil_condition()+"',"
+                            + "'"+vts_Obj.getRight_pupil_option()+"',"
+                            + "'"+vts_Obj.getRight_pupil_size()+"');";
+                          
+                    try {
+                        if (Integer.parseInt(vts_Obj.getRight_pupil_size()) > 0 && Integer.parseInt(vts_Obj.getLeft_pupil_size()) > 0 && !vts_Obj.getLeft_accom_reflex().equals("") && !vts_Obj.getLeft_pupil_condition().equals("") 
+                                && !vts_Obj.getLeft_pupil_option().equals("") && !vts_Obj.getLeft_pupil_reflex().equals("") &&
+                                !vts_Obj.getRight_accom_reflex().equals("") && !vts_Obj.getRight_pupil_condition().equals("") 
+                                && !vts_Obj.getRight_pupil_option().equals("") && !vts_Obj.getRight_pupil_reflex().equals("") ) {
+                            status_vts_lhr_pupil = rc.setQuerySQL(Config.ipAddressServer, Config.portServer, query_vts_lhr_pupil);
+                        }
+                        if (status_vts_lhr_pupil == false) {
+                            System.out.println("false extract vts pupil");
+                            System.out.println(query_vts_lhr_pupil);
+                            ERRCOUNT.plusOne();
+                            ERRCOUNT.msgErr("PUP|");
+                        } else {
+                            System.out.println("done extract vts PUPIL");
+                        }
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                    
+
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//                  circumference
+                    if (alVts.get(2).get(9) != null && !alVts.get(2).get(9).isEmpty() && !alVts.get(2).get(9).equals("-")) {
+                        vts_Obj.setHead_cicum(alVts.get(2).get(9));
+                    } else {
+                        vts_Obj.setHead_cicum("");
+                    }
+                    
+                    String query_vts_lhr_circum = "insert into lhr_head_circumference "
+                            + "(pmi_no, "
+                            + "hfc_cd, "
+                            + "episode_date, "
+                            + "encounter_date, "
+                            + "dicipline_cd, "
+                            + "subdiscipline_cd,"
+                            + "doctor_id,"
+                            + "doctor_name,"
+                            + "national_id_no,"
+                            + "person_id_no,"
+                            + "centre_code,"
+                            + "created_by,"
+                            + "created_date,"
+                            + "person_status,"
+                            + "circumference_size("
+                            + "'"+vts_Obj.getPMI_no()+"',"
+                            + "'"+vts_Obj.getHFC_Cd()+"',"
+                            + "'"+vts_Obj.getEpisode_Date()+"',"
+                            + "'"+vts_Obj.getEncounter_Date()+"',"
+                            + "'"+vts_Obj.getDiscipline()+"',"
+                            + "'"+vts_Obj.getSubdiscipline()+"',"
+                            + "'"+vts_Obj.getDoctor_ID()+"',"
+                            + "'"+vts_Obj.getDoctor_Name()+"',"
+                            + "'"+a+"',"
+                            + "'"+c+"',"
+                            + "'"+d+"',"
+                            + "'"+vts_Obj.getDoctor_ID()+"',"
+                            + "'"+vts_Obj.getEncounter_Date()+"',"
+                            + "'"+b+"',"
+                            + "'"+vts_Obj.getHead_cicum()+"');";
+                          
+                    try {
+                        if (Integer.parseInt(vts_Obj.getHead_cicum()) > 0 ) {
+                            status_vts_lhr_circum = rc.setQuerySQL(Config.ipAddressServer, Config.portServer, query_vts_lhr_circum);
+                        }
+                        if (status_vts_lhr_circum == false) {
+                            System.out.println("false extract vts CIRCUM");
+                            System.out.println(status_vts_lhr_circum);
+                            ERRCOUNT.plusOne();
+                            ERRCOUNT.msgErr("CIRCUM|");
+                        } else {
+                            System.out.println("done extract vts CIRCUM");
+                        }
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//                  glasgow coma scale
+                    if (alVts.get(2).get(25) != null && !alVts.get(2).get(25).isEmpty() && !alVts.get(2).get(25).equals("-")) {
+                        vts_Obj.setGsc_point(alVts.get(2).get(25));
+                    } else {
+                        vts_Obj.setGsc_point("");
+                    }
+                    
+                    if (alVts.get(2).get(26) != null && !alVts.get(2).get(26).isEmpty() && !alVts.get(2).get(26).equals("-")) {
+                        vts_Obj.setGcs_result(alVts.get(2).get(26));
+                    } else {
+                        vts_Obj.setGcs_result("");
+                    }
+                    
+                    String query_vts_lhr_gcs = "insert into lhr_gcs "
+                            + "(pmi_no, "
+                            + "hfc_cd, "
+                            + "episode_date, "
+                            + "encounter_date, "
+                            + "dicipline_cd, "
+                            + "subdiscipline_cd,"
+                            + "doctor_id,"
+                            + "doctor_name,"
+                            + "national_id_no,"
+                            + "person_id_no,"
+                            + "centre_code,"
+                            + "created_by,"
+                            + "created_date,"
+                            + "person_status,"
+                            + "gcs_point,"
+                            + "gcs_result("
+                            + "'"+vts_Obj.getPMI_no()+"',"
+                            + "'"+vts_Obj.getHFC_Cd()+"',"
+                            + "'"+vts_Obj.getEpisode_Date()+"',"
+                            + "'"+vts_Obj.getEncounter_Date()+"',"
+                            + "'"+vts_Obj.getDiscipline()+"',"
+                            + "'"+vts_Obj.getSubdiscipline()+"',"
+                            + "'"+vts_Obj.getDoctor_ID()+"',"
+                            + "'"+vts_Obj.getDoctor_Name()+"',"
+                            + "'"+a+"',"
+                            + "'"+c+"',"
+                            + "'"+d+"',"
+                            + "'"+vts_Obj.getDoctor_ID()+"',"
+                            + "'"+vts_Obj.getEncounter_Date()+"',"
+                            + "'"+b+"',"
+                            + "'"+vts_Obj.getGsc_point()+"',"
+                            + "'"+vts_Obj.getGcs_result()+"');";
+                          
+                    try {
+                        if (Integer.parseInt(vts_Obj.getGsc_point()) > 0 && !vts_Obj.getGcs_result().equals("") ) {
+                            status_vts_lhr_gcs = rc.setQuerySQL(Config.ipAddressServer, Config.portServer, query_vts_lhr_gcs);
+                        }
+                        if (status_vts_lhr_gcs == false) {
+                            System.out.println("false extract vts GCS");
+                            System.out.println(query_vts_lhr_gcs);
+                            ERRCOUNT.plusOne();
+                            ERRCOUNT.msgErr("GCS|");
+                        } else {
+                            System.out.println("done extract vts GCS");
+                        }
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//                  paedetric glasgow coma scale
+                    if (alVts.get(2).get(27) != null && !alVts.get(2).get(27).isEmpty() && !alVts.get(2).get(27).equals("-")) {
+                        vts_Obj.setPgsc_point(alVts.get(2).get(27));
+                    } else {
+                        vts_Obj.setPgsc_point("");
+                    }
+                    
+                    if (alVts.get(2).get(28) != null && !alVts.get(2).get(28).isEmpty() && !alVts.get(2).get(28).equals("-")) {
+                        vts_Obj.setPgcs_result(alVts.get(2).get(28));
+                    } else {
+                        vts_Obj.setPgcs_result("");
+                    }
+                    
+                    String query_vts_lhr_pgcs = "insert into lhr_pgcs "
+                            + "(pmi_no, "
+                            + "hfc_cd, "
+                            + "episode_date, "
+                            + "encounter_date, "
+                            + "dicipline_cd, "
+                            + "subdiscipline_cd,"
+                            + "doctor_id,"
+                            + "doctor_name,"
+                            + "national_id_no,"
+                            + "person_id_no,"
+                            + "centre_code,"
+                            + "created_by,"
+                            + "created_date,"
+                            + "person_status,"
+                            + "pgcs_point,"
+                            + "pgcs_result("
+                            + "'"+vts_Obj.getPMI_no()+"',"
+                            + "'"+vts_Obj.getHFC_Cd()+"',"
+                            + "'"+vts_Obj.getEpisode_Date()+"',"
+                            + "'"+vts_Obj.getEncounter_Date()+"',"
+                            + "'"+vts_Obj.getDiscipline()+"',"
+                            + "'"+vts_Obj.getSubdiscipline()+"',"
+                            + "'"+vts_Obj.getDoctor_ID()+"',"
+                            + "'"+vts_Obj.getDoctor_Name()+"',"
+                            + "'"+a+"',"
+                            + "'"+c+"',"
+                            + "'"+d+"',"
+                            + "'"+vts_Obj.getDoctor_ID()+"',"
+                            + "'"+vts_Obj.getEncounter_Date()+"',"
+                            + "'"+b+"',"
+                            + "'"+vts_Obj.getPgsc_point()+"',"
+                            + "'"+vts_Obj.getPgcs_result()+"');";
+                          
+                    try {
+                        if (Integer.parseInt(vts_Obj.getPgsc_point()) > 0 && !vts_Obj.getPgcs_result().equals("") ) {
+                            status_vts_lhr_pgcs = rc.setQuerySQL(Config.ipAddressServer, Config.portServer, query_vts_lhr_pgcs);
+                        }
+                        if (status_vts_lhr_pgcs == false) {
+                            System.out.println("false extract vts PGCS");
+                            System.out.println(query_vts_lhr_pgcs);
+                            ERRCOUNT.plusOne();
+                            ERRCOUNT.msgErr("PGCS|");
+                        } else {
+                            System.out.println("done extract vts PGCS");
+                        }
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//                  pain scale
+                    if (alVts.get(2).get(30) != null && !alVts.get(2).get(30).isEmpty() && !alVts.get(2).get(30).equals("-")) {
+                        vts_Obj.setPain_scale_point(alVts.get(2).get(30));
+                    } else {
+                        vts_Obj.setPain_scale_point("");
+                    }
+                    
+                    if (alVts.get(2).get(43) != null && !alVts.get(2).get(43).isEmpty() && !alVts.get(2).get(43).equals("-")) {
+                        vts_Obj.setPain_scale_result(alVts.get(2).get(43));
+                    } else {
+                        vts_Obj.setPain_scale_result("");
+                    }
+                    
+                    String query_vts_lhr_pain_scale = "insert into lhr_pain_scale "
+                            + "(pmi_no, "
+                            + "hfc_cd, "
+                            + "episode_date, "
+                            + "encounter_date, "
+                            + "dicipline_cd, "
+                            + "subdiscipline_cd,"
+                            + "doctor_id,"
+                            + "doctor_name,"
+                            + "national_id_no,"
+                            + "person_id_no,"
+                            + "centre_code,"
+                            + "created_by,"
+                            + "created_date,"
+                            + "person_status,"
+                            + "point,"
+                            + "result("
+                            + "'"+vts_Obj.getPMI_no()+"',"
+                            + "'"+vts_Obj.getHFC_Cd()+"',"
+                            + "'"+vts_Obj.getEpisode_Date()+"',"
+                            + "'"+vts_Obj.getEncounter_Date()+"',"
+                            + "'"+vts_Obj.getDiscipline()+"',"
+                            + "'"+vts_Obj.getSubdiscipline()+"',"
+                            + "'"+vts_Obj.getDoctor_ID()+"',"
+                            + "'"+vts_Obj.getDoctor_Name()+"',"
+                            + "'"+a+"',"
+                            + "'"+c+"',"
+                            + "'"+d+"',"
+                            + "'"+vts_Obj.getDoctor_ID()+"',"
+                            + "'"+vts_Obj.getEncounter_Date()+"',"
+                            + "'"+b+"',"
+                            + "'"+vts_Obj.getPain_scale_point()+"',"
+                            + "'"+vts_Obj.getPain_scale_result()+"');";
+                          
+                    try {
+                        if (Integer.parseInt(vts_Obj.getPain_scale_point()) >= 0 && !vts_Obj.getPain_scale_result().equals("") ) {
+                            status_vts_lhr_pain_scale = rc.setQuerySQL(Config.ipAddressServer, Config.portServer, query_vts_lhr_pain_scale);
+                        }
+                        if (status_vts_lhr_pain_scale == false) {
+                            System.out.println("false extract vts PAINS");
+                            System.out.println(query_vts_lhr_pain_scale);
+                            ERRCOUNT.plusOne();
+                            ERRCOUNT.msgErr("PAINS|");
+                        } else {
+                            System.out.println("done extract vts PAINS");
+                        }
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//                  respiratory rate
+                    if (alVts.get(2).get(30) != null && !alVts.get(2).get(30).isEmpty() && !alVts.get(2).get(30).equals("-")) {
+                        vts_Obj.setRespiratory_rate(alVts.get(2).get(30));
+                    } else {
+                        vts_Obj.setRespiratory_rate("");
+                    }
+                    
+                    String query_vts_lhr_respiratory = "insert into lhr_respiratory_rate "
+                            + "(pmi_no, "
+                            + "hfc_cd, "
+                            + "episode_date, "
+                            + "encounter_date, "
+                            + "dicipline_cd, "
+                            + "subdiscipline_cd,"
+                            + "doctor_id,"
+                            + "doctor_name,"
+                            + "national_id_no,"
+                            + "person_id_no,"
+                            + "centre_code,"
+                            + "created_by,"
+                            + "created_date,"
+                            + "person_status,"
+                            + "rate("
+                            + "'"+vts_Obj.getPMI_no()+"',"
+                            + "'"+vts_Obj.getHFC_Cd()+"',"
+                            + "'"+vts_Obj.getEpisode_Date()+"',"
+                            + "'"+vts_Obj.getEncounter_Date()+"',"
+                            + "'"+vts_Obj.getDiscipline()+"',"
+                            + "'"+vts_Obj.getSubdiscipline()+"',"
+                            + "'"+vts_Obj.getDoctor_ID()+"',"
+                            + "'"+vts_Obj.getDoctor_Name()+"',"
+                            + "'"+a+"',"
+                            + "'"+c+"',"
+                            + "'"+d+"',"
+                            + "'"+vts_Obj.getDoctor_ID()+"',"
+                            + "'"+vts_Obj.getEncounter_Date()+"',"
+                            + "'"+b+"',"
+                            + "'"+vts_Obj.getRespiratory_rate()+"');";
+                          
+                    try {
+                        if (Integer.parseInt(vts_Obj.getRespiratory_rate()) > 0) {
+                            status_vts_lhr_respiratory = rc.setQuerySQL(Config.ipAddressServer, Config.portServer, query_vts_lhr_respiratory);
+                        }
+                        if (status_vts_lhr_respiratory == false) {
+                            System.out.println("false extract vts RR");
+                            System.out.println(query_vts_lhr_respiratory);
+                            ERRCOUNT.plusOne();
+                            ERRCOUNT.msgErr("RR|");
+                        } else {
+                            System.out.println("done extract vts RR");
+                        }
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//                  visual
+                    if (alVts.get(2).get(38) != null && !alVts.get(2).get(38).isEmpty() && !alVts.get(2).get(38).equals("-")) {
+                        vts_Obj.setVision_type(alVts.get(2).get(38));
+                    } else {
+                        vts_Obj.setVision_type("");
+                    }
+                    
+                    if (alVts.get(2).get(39) != null && !alVts.get(2).get(39).isEmpty() && !alVts.get(2).get(39).equals("-")) {
+                        vts_Obj.setLeft_eye_score(alVts.get(2).get(39));
+                    } else {
+                        vts_Obj.setLeft_eye_score("");
+                    }
+                    
+                    if (alVts.get(2).get(40) != null && !alVts.get(2).get(40).isEmpty() && !alVts.get(2).get(40).equals("-")) {
+                        vts_Obj.setRight_eye_score(alVts.get(2).get(40));
+                    } else {
+                        vts_Obj.setRight_eye_score("");
+                    }
+                    
+                    if (alVts.get(2).get(41) != null && !alVts.get(2).get(41).isEmpty() && !alVts.get(2).get(41).equals("-")) {
+                        vts_Obj.setColor_vision(alVts.get(2).get(41));
+                    } else {
+                        vts_Obj.setColor_vision("");
+                    }
+                    
+                    if (alVts.get(2).get(42) != null && !alVts.get(2).get(42).isEmpty() && !alVts.get(2).get(42).equals("-")) {
+                        vts_Obj.setComment(alVts.get(2).get(42));
+                    } else {
+                        vts_Obj.setComment("");
+                    }
+                    
+                    String query_vts_lhr_visual = "insert into lhr_visual "
+                            + "(pmi_no, "
+                            + "hfc_cd, "
+                            + "episode_date, "
+                            + "encounter_date, "
+                            + "dicipline_cd, "
+                            + "subdiscipline_cd,"
+                            + "doctor_id,"
+                            + "doctor_name,"
+                            + "national_id_no,"
+                            + "person_id_no,"
+                            + "centre_code,"
+                            + "created_by,"
+                            + "created_date,"
+                            + "person_status,"
+                            + "vision_type,"
+                            + "right_eye_score,"
+                            + "left_eye_score,"
+                            + "colour_vision,"
+                            + "comment("
+                            + "'"+vts_Obj.getPMI_no()+"',"
+                            + "'"+vts_Obj.getHFC_Cd()+"',"
+                            + "'"+vts_Obj.getEpisode_Date()+"',"
+                            + "'"+vts_Obj.getEncounter_Date()+"',"
+                            + "'"+vts_Obj.getDiscipline()+"',"
+                            + "'"+vts_Obj.getSubdiscipline()+"',"
+                            + "'"+vts_Obj.getDoctor_ID()+"',"
+                            + "'"+vts_Obj.getDoctor_Name()+"',"
+                            + "'"+a+"',"
+                            + "'"+c+"',"
+                            + "'"+d+"',"
+                            + "'"+vts_Obj.getDoctor_ID()+"',"
+                            + "'"+vts_Obj.getEncounter_Date()+"',"
+                            + "'"+b+"',"
+                            + "'"+vts_Obj.getVision_type()+"',"
+                            + "'"+vts_Obj.getRight_eye_score()+"',"
+                            + "'"+vts_Obj.getLeft_eye_score()+"',"
+                            + "'"+vts_Obj.getColor_vision()+"',"
+                            + "'"+vts_Obj.getComment()+"');";
+                          
+                    try {
+                        if (Integer.parseInt(vts_Obj.getRight_eye_score()) > 0 && Integer.parseInt(vts_Obj.getLeft_eye_score()) > 0 && !vts_Obj.getVision_type().equals("") 
+                                && !vts_Obj.getColor_vision().equals("") && !vts_Obj.getComment().equals("")) {
+                            status_vts_lhr_visual = rc.setQuerySQL(Config.ipAddressServer, Config.portServer, query_vts_lhr_visual);
+                        }
+                        if (status_vts_lhr_visual == false) {
+                            System.out.println("false extract vts VS");
+                            System.out.println(query_vts_lhr_visual);
+                            ERRCOUNT.plusOne();
+                            ERRCOUNT.msgErr("VS|");
+                        } else {
+                            System.out.println("done extract vts VS");
+                        }
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                     //check whether data is not null, not empty and numeric
                     //wight height
                     if (alVts.get(2).get(7) != null && !alVts.get(2).get(7).isEmpty() && alVts.get(2).get(7).matches("\\d+") && !alVts.get(2).get(7).equals("-")) {
-                         vts_Obj.setWeight_Reading(alVts.get(2).get(7));
+                        vts_Obj.setWeight_Reading(alVts.get(2).get(7));
                     } else {
-                         vts_Obj.setWeight_Reading("0");
+                        vts_Obj.setWeight_Reading("0");
                     }
-                    
+
                     if (alVts.get(2).get(8) != null && !alVts.get(2).get(8).isEmpty() && alVts.get(2).get(8).matches("\\d+") && !alVts.get(2).get(8).equals("-")) {
                         vts_Obj.setHeight_Reading(alVts.get(2).get(8));
                     } else {
                         vts_Obj.setHeight_Reading("0");
                     }
-                    
-                    
+
                     //sitting
                     if (alVts.get(2).get(1) != null && !alVts.get(2).get(1).isEmpty() && alVts.get(2).get(1).matches("\\d+") && !alVts.get(2).get(1).equals("-")) {
                         vts_Obj.setSystolic_Sitting(alVts.get(2).get(1));
                     } else {
                         vts_Obj.setSystolic_Sitting("0");
                     }
-                    
+
                     if (alVts.get(2).get(2) != null && !alVts.get(2).get(2).isEmpty() && alVts.get(2).get(2).matches("\\d+") && !alVts.get(2).get(2).equals("-")) {
                         vts_Obj.setDiastolic_Sitting(alVts.get(2).get(2));
                     } else {
                         vts_Obj.setDiastolic_Sitting("0");
                     }
-                    
+
                     if (alVts.get(2).get(32) != null && !alVts.get(2).get(32).isEmpty() && alVts.get(2).get(32).matches("\\d+") && !alVts.get(2).get(32).equals("-")) {
                         vts_Obj.setSitting_Pulse(alVts.get(2).get(32));
                     } else {
@@ -99,7 +646,7 @@ public class lhr_VTS {
                     } else {
                         vts_Obj.setDiastolic_Supine("0");
                     }
-                    if (alVts.get(2).get(33) != null && !alVts.get(2).get(33).isEmpty() && alVts.get(2).get(33).matches("\\d+")&& !alVts.get(2).get(33).equals("-")) {
+                    if (alVts.get(2).get(33) != null && !alVts.get(2).get(33).isEmpty() && alVts.get(2).get(33).matches("\\d+") && !alVts.get(2).get(33).equals("-")) {
                         vts_Obj.setSupine_Pulse(alVts.get(2).get(33));
                     } else {
                         vts_Obj.setSupine_Pulse("0");
@@ -122,27 +669,7 @@ public class lhr_VTS {
                         vts_Obj.setStanding_Pulse("0");
                     }
 
-                    String a, b, c, d;
-                    a = t.getNational_id_no();
-                    b = t.getPERSON_STATUS();
-                    c = t.getPERSON_ID_NO();
-                    d = t.getCentre_Code();
-
-                    if (a == null || a.isEmpty() || a.equals(" ")) {
-                        a = "PUBLIC HOSPITAL";
-                    }
-
-                    if (b == null || b.isEmpty() || b.equals(" ")) {
-                        b = "PUBLIC HOSPITAL";
-                    }
-
-                    if (c == null || c.isEmpty() || c.equals(" ")) {
-                        c = "PUBLIC HOSPITAL";
-                    }
-
-                    if (d == null || d.isEmpty() || d.equals(" ")) {
-                        d = "PUBLIC HOSPITAL";
-                    }
+                    
 
                     String query_vts_lhr_wh = "insert into lhr_weight_height "
                             + "(pmi_no, "
@@ -263,7 +790,7 @@ public class lhr_VTS {
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                     //check whether Blood_Glucose_Level data is null or empty
                     if (alVts.get(2).get(31) != null && !alVts.get(2).get(31).isEmpty() && !alVts.get(2).get(31).equals("-")) {
-                        vts_Obj.setBlood_Glucose_Level(alVts.get(2).get(31) );
+                        vts_Obj.setBlood_Glucose_Level(alVts.get(2).get(31));
                     } else {
                         vts_Obj.setBlood_Glucose_Level("0");
                     }
@@ -320,8 +847,6 @@ public class lhr_VTS {
                         e.printStackTrace();
                     }
 
-                    
-                    
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////                    
                     //check whether spo2 data is null or empty
                     if (alVts.get(2).get(29) != null && !alVts.get(2).get(29).isEmpty() && !alVts.get(2).get(29).equals("-")) {
