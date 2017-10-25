@@ -43,6 +43,8 @@ public class lhr_VTS {
                     vts_Obj.setHFC_Cd(alVts.get(2).get(22));
                     vts_Obj.setPMI_no(t.getPmi_no());
                     vts_Obj.setEpisode_Date(alVts.get(1).get(0));
+                    vts_Obj.setDiscipline(msh.getSendingFacilityDis());
+                    vts_Obj.setSubdiscipline(msh.getSendingFacilitySubDis());
                     
                     String a, b, c, d;
                     a = t.getNational_id_no();
@@ -70,7 +72,7 @@ public class lhr_VTS {
                     if (alVts.get(2).get(21).isEmpty() || alVts.get(2).get(21).equalsIgnoreCase("-") || alVts.get(2).get(21).equalsIgnoreCase(" ")) {
                         vts_Obj.setEncounter_Date("'" + alVts.get(1).get(0) + "'");
                     } else {
-                        vts_Obj.setEncounter_Date("'" + alVts.get(2).get(21) + "'");
+                        vts_Obj.setEncounter_Date("'"+alVts.get(2).get(21)+"'");
                     }
 
                     vts_Obj.setHeight_Reading(alVts.get(2).get(8));
@@ -93,7 +95,7 @@ public class lhr_VTS {
                     if (alVts.get(2).get(15) != null && !alVts.get(2).get(15).isEmpty() && !alVts.get(2).get(15).equals("-")) {
                         vts_Obj.setLeft_pupil_size(alVts.get(2).get(15));
                     } else {
-                        vts_Obj.setLeft_pupil_size("");
+                        vts_Obj.setLeft_pupil_size("0");
                     }
 
                     if (alVts.get(2).get(16) != null && !alVts.get(2).get(16).isEmpty() && !alVts.get(2).get(16).equals("-")) {
@@ -123,7 +125,7 @@ public class lhr_VTS {
                     if (alVts.get(2).get(37) != null && !alVts.get(2).get(37).isEmpty() && !alVts.get(2).get(37).equals("-")) {
                         vts_Obj.setRight_pupil_size(alVts.get(2).get(37));
                     } else {
-                        vts_Obj.setRight_pupil_size("");
+                        vts_Obj.setRight_pupil_size("0");
                     }
 
                     if (alVts.get(2).get(17) != null && !alVts.get(2).get(17).isEmpty() && !alVts.get(2).get(16).equals("-")) {
@@ -143,7 +145,7 @@ public class lhr_VTS {
                             + "hfc_cd, "
                             + "episode_date, "
                             + "encounter_date, "
-                            + "dicipline_cd, "
+                            + "discipline_cd, "
                             + "subdiscipline_cd,"
                             + "doctor_id,"
                             + "doctor_name,"
@@ -161,11 +163,11 @@ public class lhr_VTS {
                             + "right_light_reflex,"
                             + "right_pupil_condition,"
                             + "right_pupil_option,"
-                            + "right_pupil_size("
+                            + "right_pupil_size) values("
                             + "'"+vts_Obj.getPMI_no()+"',"
                             + "'"+vts_Obj.getHFC_Cd()+"',"
                             + "'"+vts_Obj.getEpisode_Date()+"',"
-                            + "'"+vts_Obj.getEncounter_Date()+"',"
+                            + ""+vts_Obj.getEncounter_Date()+","
                             + "'"+vts_Obj.getDiscipline()+"',"
                             + "'"+vts_Obj.getSubdiscipline()+"',"
                             + "'"+vts_Obj.getDoctor_ID()+"',"
@@ -174,7 +176,7 @@ public class lhr_VTS {
                             + "'"+c+"',"
                             + "'"+d+"',"
                             + "'"+vts_Obj.getDoctor_ID()+"',"
-                            + "'"+vts_Obj.getEncounter_Date()+"',"
+                            + ""+vts_Obj.getEncounter_Date()+","
                             + "'"+vts_Obj.getLeft_accom_reflex()+"',"
                             + "'"+vts_Obj.getLeft_pupil_reflex()+"',"
                             + "'"+vts_Obj.getLeft_pupil_condition()+"',"
@@ -219,7 +221,7 @@ public class lhr_VTS {
                             + "hfc_cd, "
                             + "episode_date, "
                             + "encounter_date, "
-                            + "dicipline_cd, "
+                            + "discipline_cd, "
                             + "subdiscipline_cd,"
                             + "doctor_id,"
                             + "doctor_name,"
@@ -229,11 +231,11 @@ public class lhr_VTS {
                             + "created_by,"
                             + "created_date,"
                             + "person_status,"
-                            + "circumference_size("
+                            + "circumference_size) values("
                             + "'"+vts_Obj.getPMI_no()+"',"
                             + "'"+vts_Obj.getHFC_Cd()+"',"
                             + "'"+vts_Obj.getEpisode_Date()+"',"
-                            + "'"+vts_Obj.getEncounter_Date()+"',"
+                            + ""+vts_Obj.getEncounter_Date()+","
                             + "'"+vts_Obj.getDiscipline()+"',"
                             + "'"+vts_Obj.getSubdiscipline()+"',"
                             + "'"+vts_Obj.getDoctor_ID()+"',"
@@ -242,7 +244,7 @@ public class lhr_VTS {
                             + "'"+c+"',"
                             + "'"+d+"',"
                             + "'"+vts_Obj.getDoctor_ID()+"',"
-                            + "'"+vts_Obj.getEncounter_Date()+"',"
+                            + ""+vts_Obj.getEncounter_Date()+","
                             + "'"+b+"',"
                             + "'"+vts_Obj.getHead_cicum()+"');";
                           
@@ -252,7 +254,7 @@ public class lhr_VTS {
                         }
                         if (status_vts_lhr_circum == false) {
                             System.out.println("false extract vts CIRCUM");
-                            System.out.println(status_vts_lhr_circum);
+                            System.out.println(query_vts_lhr_circum);
                             ERRCOUNT.plusOne();
                             ERRCOUNT.msgErr("CIRCUM|");
                         } else {
@@ -281,7 +283,7 @@ public class lhr_VTS {
                             + "hfc_cd, "
                             + "episode_date, "
                             + "encounter_date, "
-                            + "dicipline_cd, "
+                            + "discipline_cd, "
                             + "subdiscipline_cd,"
                             + "doctor_id,"
                             + "doctor_name,"
@@ -292,11 +294,11 @@ public class lhr_VTS {
                             + "created_date,"
                             + "person_status,"
                             + "gcs_point,"
-                            + "gcs_result("
+                            + "gcs_result) values("
                             + "'"+vts_Obj.getPMI_no()+"',"
                             + "'"+vts_Obj.getHFC_Cd()+"',"
                             + "'"+vts_Obj.getEpisode_Date()+"',"
-                            + "'"+vts_Obj.getEncounter_Date()+"',"
+                            + ""+vts_Obj.getEncounter_Date()+","
                             + "'"+vts_Obj.getDiscipline()+"',"
                             + "'"+vts_Obj.getSubdiscipline()+"',"
                             + "'"+vts_Obj.getDoctor_ID()+"',"
@@ -305,7 +307,7 @@ public class lhr_VTS {
                             + "'"+c+"',"
                             + "'"+d+"',"
                             + "'"+vts_Obj.getDoctor_ID()+"',"
-                            + "'"+vts_Obj.getEncounter_Date()+"',"
+                            + ""+vts_Obj.getEncounter_Date()+","
                             + "'"+b+"',"
                             + "'"+vts_Obj.getGsc_point()+"',"
                             + "'"+vts_Obj.getGcs_result()+"');";
@@ -345,7 +347,7 @@ public class lhr_VTS {
                             + "hfc_cd, "
                             + "episode_date, "
                             + "encounter_date, "
-                            + "dicipline_cd, "
+                            + "discipline_cd, "
                             + "subdiscipline_cd,"
                             + "doctor_id,"
                             + "doctor_name,"
@@ -356,11 +358,11 @@ public class lhr_VTS {
                             + "created_date,"
                             + "person_status,"
                             + "pgcs_point,"
-                            + "pgcs_result("
+                            + "pgcs_result) values("
                             + "'"+vts_Obj.getPMI_no()+"',"
                             + "'"+vts_Obj.getHFC_Cd()+"',"
                             + "'"+vts_Obj.getEpisode_Date()+"',"
-                            + "'"+vts_Obj.getEncounter_Date()+"',"
+                            + ""+vts_Obj.getEncounter_Date()+","
                             + "'"+vts_Obj.getDiscipline()+"',"
                             + "'"+vts_Obj.getSubdiscipline()+"',"
                             + "'"+vts_Obj.getDoctor_ID()+"',"
@@ -369,7 +371,7 @@ public class lhr_VTS {
                             + "'"+c+"',"
                             + "'"+d+"',"
                             + "'"+vts_Obj.getDoctor_ID()+"',"
-                            + "'"+vts_Obj.getEncounter_Date()+"',"
+                            + ""+vts_Obj.getEncounter_Date()+","
                             + "'"+b+"',"
                             + "'"+vts_Obj.getPgsc_point()+"',"
                             + "'"+vts_Obj.getPgcs_result()+"');";
@@ -409,7 +411,7 @@ public class lhr_VTS {
                             + "hfc_cd, "
                             + "episode_date, "
                             + "encounter_date, "
-                            + "dicipline_cd, "
+                            + "discipline_cd, "
                             + "subdiscipline_cd,"
                             + "doctor_id,"
                             + "doctor_name,"
@@ -420,11 +422,11 @@ public class lhr_VTS {
                             + "created_date,"
                             + "person_status,"
                             + "point,"
-                            + "result("
+                            + "result) values("
                             + "'"+vts_Obj.getPMI_no()+"',"
                             + "'"+vts_Obj.getHFC_Cd()+"',"
                             + "'"+vts_Obj.getEpisode_Date()+"',"
-                            + "'"+vts_Obj.getEncounter_Date()+"',"
+                            + ""+vts_Obj.getEncounter_Date()+","
                             + "'"+vts_Obj.getDiscipline()+"',"
                             + "'"+vts_Obj.getSubdiscipline()+"',"
                             + "'"+vts_Obj.getDoctor_ID()+"',"
@@ -433,7 +435,7 @@ public class lhr_VTS {
                             + "'"+c+"',"
                             + "'"+d+"',"
                             + "'"+vts_Obj.getDoctor_ID()+"',"
-                            + "'"+vts_Obj.getEncounter_Date()+"',"
+                            + ""+vts_Obj.getEncounter_Date()+","
                             + "'"+b+"',"
                             + "'"+vts_Obj.getPain_scale_point()+"',"
                             + "'"+vts_Obj.getPain_scale_result()+"');";
@@ -467,7 +469,7 @@ public class lhr_VTS {
                             + "hfc_cd, "
                             + "episode_date, "
                             + "encounter_date, "
-                            + "dicipline_cd, "
+                            + "discipline_cd, "
                             + "subdiscipline_cd,"
                             + "doctor_id,"
                             + "doctor_name,"
@@ -477,11 +479,11 @@ public class lhr_VTS {
                             + "created_by,"
                             + "created_date,"
                             + "person_status,"
-                            + "rate("
+                            + "rate) values("
                             + "'"+vts_Obj.getPMI_no()+"',"
                             + "'"+vts_Obj.getHFC_Cd()+"',"
                             + "'"+vts_Obj.getEpisode_Date()+"',"
-                            + "'"+vts_Obj.getEncounter_Date()+"',"
+                            + ""+vts_Obj.getEncounter_Date()+","
                             + "'"+vts_Obj.getDiscipline()+"',"
                             + "'"+vts_Obj.getSubdiscipline()+"',"
                             + "'"+vts_Obj.getDoctor_ID()+"',"
@@ -490,7 +492,7 @@ public class lhr_VTS {
                             + "'"+c+"',"
                             + "'"+d+"',"
                             + "'"+vts_Obj.getDoctor_ID()+"',"
-                            + "'"+vts_Obj.getEncounter_Date()+"',"
+                            + ""+vts_Obj.getEncounter_Date()+","
                             + "'"+b+"',"
                             + "'"+vts_Obj.getRespiratory_rate()+"');";
                           
@@ -548,7 +550,7 @@ public class lhr_VTS {
                             + "hfc_cd, "
                             + "episode_date, "
                             + "encounter_date, "
-                            + "dicipline_cd, "
+                            + "discipline_cd, "
                             + "subdiscipline_cd,"
                             + "doctor_id,"
                             + "doctor_name,"
@@ -562,11 +564,11 @@ public class lhr_VTS {
                             + "right_eye_score,"
                             + "left_eye_score,"
                             + "colour_vision,"
-                            + "comment("
+                            + "comment) values("
                             + "'"+vts_Obj.getPMI_no()+"',"
                             + "'"+vts_Obj.getHFC_Cd()+"',"
                             + "'"+vts_Obj.getEpisode_Date()+"',"
-                            + "'"+vts_Obj.getEncounter_Date()+"',"
+                            + ""+vts_Obj.getEncounter_Date()+","
                             + "'"+vts_Obj.getDiscipline()+"',"
                             + "'"+vts_Obj.getSubdiscipline()+"',"
                             + "'"+vts_Obj.getDoctor_ID()+"',"
@@ -575,7 +577,7 @@ public class lhr_VTS {
                             + "'"+c+"',"
                             + "'"+d+"',"
                             + "'"+vts_Obj.getDoctor_ID()+"',"
-                            + "'"+vts_Obj.getEncounter_Date()+"',"
+                            + ""+vts_Obj.getEncounter_Date()+","
                             + "'"+b+"',"
                             + "'"+vts_Obj.getVision_type()+"',"
                             + "'"+vts_Obj.getRight_eye_score()+"',"
