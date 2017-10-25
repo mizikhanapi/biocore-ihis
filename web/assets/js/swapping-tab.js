@@ -4,21 +4,22 @@
  * and open the template in the editor.
  */
 
-(function ($) {
-  $.each(['show', 'hide'], function (i, ev) {
-    var el = $.fn[ev];
-    $.fn[ev] = function () {
-      this.trigger(ev);
-      return el.apply(this, arguments);
-    };
-  });
-})(jQuery);
+//(function ($) {
+//  $.each(['show', 'hide'], function (i, ev) {
+//    var el = $.fn[ev];
+//    $.fn[ev] = function () {
+//      this.trigger(ev);
+//      return el.apply(this, arguments);
+//    };
+//  });
+//})(jQuery);
 
 $(document).ready(function () {
     //Ortho-Consultation
     $(".general-exam").click(function () {
         $('.swapping-tab').hide();
         $("#generic-soap").show(400);
+        $('#div_CIS_PATIENT_DASHBOARD').show();
 //        $("#order-entry").hide();
 //        $("#orthopedic-niw").hide();
 //        $("#orthopedic-con").hide();
@@ -36,6 +37,7 @@ $(document).ready(function () {
 //        $("#orthopedic-con").hide();
 //        $("#orthopedic-ot").hide();
 //        $("#ong").hide();
+        $('#div_CIS_PATIENT_DASHBOARD').show();
         
     });
 
@@ -46,6 +48,7 @@ $(document).ready(function () {
 //        $("#order-entry").hide();
 //        $("#orthopedic-niw").hide();
         $("#orthopedic-con").show(400);
+        $('#div_CIS_PATIENT_DASHBOARD').show();
 //        $("#orthopedic-ot").hide();
 //        $("#ong").hide();
      
@@ -58,6 +61,7 @@ $(document).ready(function () {
 //        $("#generic-soap").hide();
 //        $("#order-entry").hide();
         $("#orthopedic-niw").show(400);
+        $('#div_CIS_PATIENT_DASHBOARD').show();
 //        $("#orthopedic-con").hide();
 //        $("#orthopedic-ot").hide();
 //        $("#ong").hide();
@@ -73,6 +77,7 @@ $(document).ready(function () {
 //        $("#orthopedic-niw").hide();
 //        $("#orthopedic-con").hide();
         $("#orthopedic-ot").show(400);
+        $('#div_CIS_PATIENT_DASHBOARD').show();
 //        $("#ong").hide();
         
 
@@ -87,6 +92,7 @@ $(document).ready(function () {
 //        $("#orthopedic-con").hide();
 //        $("#orthopedic-ot").hide();
         $("#ong").show(400);
+        $('#div_CIS_PATIENT_DASHBOARD').show();
        
 
     });
@@ -98,17 +104,17 @@ $(document).ready(function () {
         $("#CIS-analyseTab").show(400);
     });
     
-    $('#CIS-analyseTab').on('hide', function(event) {
-        event.stopPropagation();
-        $('#div_CIS_PATIENT_DASHBOARD').show(400);
-    });
-    
-    $('#CIS-analyseTab').on('hide', '.thumbnail', function(event) {
-        event.stopPropagation();
-        
-    });
-    $('#CIS-analyseTab').on('hide', '.modal', function(event) {
-        event.stopPropagation();
-        
-    });
+//    $('#CIS-analyseTab').on('hide', function(event) {
+//        event.stopPropagation();
+//        $('#div_CIS_PATIENT_DASHBOARD').show(400);
+//    });
+//    
+//    $('#CIS-analyseTab').on('hide', '.thumbnail', function(event) {
+//        event.stopPropagation();
+//        
+//    });
+//    $('#CIS-analyseTab').on('hide', '.modal', function(event) {
+//        event.stopPropagation();
+//        
+//    });
 });
