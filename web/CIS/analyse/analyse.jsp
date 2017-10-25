@@ -323,6 +323,103 @@
             return color;
         }
         
+        function ANL_getUniqueColors(t)
+        {
+            t = parseInt(t);
+            if (t < 2){
+//                throw new Error("'t' must be greater than 1.");
+                  var err=[];
+                  err.push(ANL_hsvToRgb(360, 200, 100));
+                  return err;
+            }
+              
+
+            // distribute the colors evenly on
+            // the hue range (the 'H' in HSV)
+            var i = 360 / (t - 1);
+
+            // hold the generated colors
+            var r = [];
+            var sv = 70;
+            for (var x = 0; x < t; x++) {
+              // alternate the s, v for more
+              // contrast between the colors.
+              sv = sv > 90 ? 70 : sv+10;
+              r.push(ANL_hsvToRgb(i * x, sv, sv));
+            }
+            return r;
+        }
+        
+        function ANL_hsvToRgb(h, s, v) {
+            var r, g, b;
+            var i;
+            var f, p, q, t;
+
+            // Make sure our arguments stay in-range
+            h = Math.max(0, Math.min(360, h));
+            s = Math.max(0, Math.min(100, s));
+            v = Math.max(0, Math.min(100, v));
+
+            // We accept saturation and value arguments from 0 to 100 because that's
+            // how Photoshop represents those values. Internally, however, the
+            // saturation and value are calculated from a range of 0 to 1. We make
+            // That conversion here.
+            s /= 100;
+            v /= 100;
+
+            if (s == 0) {
+              // Achromatic (grey)
+              r = g = b = v;
+              return [Math.round(r * 255), Math.round(g * 255), Math.round(b * 255)];
+            }
+
+            h /= 60; // sector 0 to 5
+            i = Math.floor(h);
+            f = h - i; // factorial part of h
+            p = v * (1 - s);
+            q = v * (1 - s * f);
+            t = v * (1 - s * (1 - f));
+
+            switch (i) {
+              case 0:
+                r = v;
+                g = t;
+                b = p;
+                break;
+
+              case 1:
+                r = q;
+                g = v;
+                b = p;
+                break;
+
+              case 2:
+                r = p;
+                g = v;
+                b = t;
+                break;
+
+              case 3:
+                r = p;
+                g = q;
+                b = v;
+                break;
+
+              case 4:
+                r = t;
+                g = p;
+                b = v;
+                break;
+
+              default: // case 5:
+                r = v;
+                g = p;
+                b = q;
+            }
+
+            return [Math.round(r * 255), Math.round(g * 255), Math.round(b * 255)];
+         }
+        
         $('#ANL_viewDiv').on('click', '#ANL_btnGraph', function(){
             
             Chart.helpers.each(Chart.instances, function(instance){
@@ -331,6 +428,7 @@
             
             createScreenLoading();
             var dataArr = $(this).closest('td').find('.hidden');
+            var chartTitle = $(this).closest('td').find('#ANL_chartTitle').text();
             $('#ANL_canvas').html("");
             var canvas = $('#ANL_canvas');
                        
@@ -338,42 +436,24 @@
             var lhrLabel = [];
             var lhrColour = [];
             
+            var intT = 0;
+            
             dataArr.each(function(){
                 var tempArr = $(this).text().split("|");
                 lhrLabel.push(tempArr[1]);
                 lhrData.push(tempArr[2]);
-                lhrColour.push(ANL_getRandomColor());
+                intT++;
+                //lhrColour.push(ANL_getRandomColor());
             });
+            console.log(intT);
+            var lhrColourTemp = ANL_getUniqueColors(intT);
+            console.log(lhrColourTemp.length);
             
-            var chartOptions = {
-              legend: {
-                display: false,
-                position: 'top',
-                labels: {
-                  boxWidth: 40,
-                  fontColor: 'black'
-                }
-              },
-              tooltips: {
-                  mode: 'index',
-                  intersect: true
-              },
-              responsive: true,
-              scales:{
-                        yAxes:[{
-                                ticks:{beginAtZero:true}
-                            }]
-               },
-               maxBarThickness: 10,
-               categoryPercentage: 0.1,
-               barPercentage: 0.5
-            };
+            for(var tempI=0; tempI<lhrColourTemp.length; tempI++){
+                 var strRGBA = "rgba("+lhrColourTemp[tempI][0]+", "+lhrColourTemp[tempI][1]+", "+lhrColourTemp[tempI][2]+", 0.5)";
+                lhrColour.push(strRGBA);
+            }
             
-//            var barChart = new Chart(canvas, {
-//                type: 'bar',
-//                data: lhrData,
-//                options: chartOptions
-//            });
             
             new Chart(canvas,
             {
@@ -381,7 +461,7 @@
                 data:{
                     labels:lhrLabel,
                     datasets:[{
-                            label:"LHR Data",
+                            label:"Frequency",
                             data:lhrData,
                             fill:false,
                             backgroundColor:lhrColour,
@@ -390,6 +470,14 @@
                         }]
                 },
                 options: { 
+                    legend: {
+                        display: false,
+                        position: 'top',
+                        labels: {
+                          boxWidth: 40,
+                          fontColor: 'black'
+                        }
+                    },
                     scales:{
                         yAxes:[{
                                 ticks:{beginAtZero:true}
@@ -397,7 +485,7 @@
                         xAxes: [{
                             maxBarThickness: 30,
                             categoryPercentage: 0.5,
-                            barPercentage: 0.8,
+                            barPercentage: 1,
                             stacked: false,
                             beginAtZero: true,
                             scaleLabel: {
@@ -409,6 +497,12 @@
                                 autoSkip: false
                             }
                         }]
+                    },
+                    title: {
+                        display: true,
+                        fontSize: 20,
+                        fontFamily: 'Arial',
+                        text: chartTitle
                     }
                 }
             });
@@ -416,6 +510,93 @@
             $('#ANL_modal').modal('show');
             destroyScreenLoading();
                         
+        });
+        
+        $('#ANL_viewDiv').on('click', '#ANL_btnGraphLine', function(){
+            Chart.helpers.each(Chart.instances, function(instance){
+                instance.destroy();
+             });
+            
+            createScreenLoading();
+            var dataArr = $(this).closest('td').find('.hidden');
+            var chartTitle = $(this).closest('td').find('#ANL_chartTitle').text();
+            $('#ANL_canvas').html("");
+            var canvas = $('#ANL_canvas');
+            
+            var lhrData = [];
+            var lhrLabel = [];
+            
+            
+            dataArr.each(function(){
+                var tempArr = $(this).text().split("|");
+                lhrLabel.push(tempArr[4]);
+                lhrData.push(tempArr[3]);
+                
+                
+            });
+            
+            
+            var dataReading = {
+                label: chartTitle,
+                data: lhrData,
+                lineTension: 0.3,
+                fill: false,
+                borderColor: 'purple',
+                backgroundColor: 'transparent',
+                pointBorderColor: 'purple',
+                pointBackgroundColor: 'purple',
+                pointRadius: 5,
+                pointHoverRadius: 10,
+                pointHitRadius: 30,
+                pointBorderWidth: 2,
+                yAxisID: "y-axis-1"
+              };
+
+              var chartOptions = {
+                  legend: {
+                    display: false,
+                    position: 'top',
+                    labels: {
+                      boxWidth: 40,
+                      fontColor: 'black'
+                    }
+                  },
+                  title: {
+                        display: true,
+                        fontSize: 20,
+                        fontFamily: 'Arial',
+                        text: chartTitle
+                   },
+                  tooltips: {
+                      mode: 'index',
+                      intersect: true
+                  },
+                  responsive: true,
+                  scales: {
+                        yAxes: [{
+                            type: "linear", // only linear but allow scale type registration. This allows extensions to exist solely for log scale for instance
+                            display: true,
+                            position: "left",
+                            id: "y-axis-1"
+                        }]
+                    }
+                };
+
+            var speedData = {
+              labels: lhrLabel,
+              datasets: [dataReading]
+            };
+
+
+            var lineChart = new Chart(canvas, {
+              type: 'line',
+              data: speedData,
+              options: chartOptions
+            });
+            
+            $('#ANL_modal').modal('show');
+            destroyScreenLoading();
+            
         });
     
 </script>
