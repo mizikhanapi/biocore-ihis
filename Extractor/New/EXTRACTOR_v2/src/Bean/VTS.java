@@ -39,6 +39,29 @@ public class VTS {
     private String Procedure_Outcome;
     private String discipline;
     private String subdiscipline;
+    private String left_pupil_condition;
+    private String left_pupil_option;
+    private String left_pupil_reflex;
+    private String left_pupil_size;
+    private String left_accom_reflex;
+    private String right_pupil_condition;
+    private String right_pupil_option;
+    private String right_pupil_reflex;
+    private String right_pupil_size;
+    private String right_accom_reflex;
+    private String head_cicum;
+    private String gsc_point;
+    private String gcs_result;
+    private String pgsc_point;
+    private String pgcs_result;
+    private String pain_scale_point;
+    private String pain_scale_result;
+    private String respiratory_rate;
+    private String vision_type;
+    private String left_eye_score;
+    private String right_eye_score;
+    private String color_vision;
+    private String comment;
 
     public String getDiscipline() {
         return discipline;
@@ -420,4 +443,182 @@ public class VTS {
         this.Procedure_Outcome = Procedure_Outcome;
     }
 
+    public String getLeft_pupil_condition() {
+        return left_pupil_condition;
+    }
+
+    public void setLeft_pupil_condition(String left_pupil_condition) {
+        this.left_pupil_condition = left_pupil_condition;
+    }
+
+    public String getLeft_pupil_option() {
+        return left_pupil_option;
+    }
+
+    public void setLeft_pupil_option(String left_pupil_option) {
+        this.left_pupil_option = left_pupil_option;
+    }
+
+    public String getLeft_pupil_reflex() {
+        return left_pupil_reflex;
+    }
+
+    public void setLeft_pupil_reflex(String left_pupil_reflex) {
+        this.left_pupil_reflex = left_pupil_reflex;
+    }
+
+    public String getLeft_pupil_size() {
+        return left_pupil_size;
+    }
+
+    public void setLeft_pupil_size(String left_pupil_size) {
+        this.left_pupil_size = left_pupil_size;
+    }
+
+    public String getLeft_accom_reflex() {
+        return left_accom_reflex;
+    }
+
+    public void setLeft_accom_reflex(String left_accom_reflex) {
+        this.left_accom_reflex = left_accom_reflex;
+    }
+
+    public String getRight_pupil_condition() {
+        return right_pupil_condition;
+    }
+
+    public void setRight_pupil_condition(String right_pupil_condition) {
+        this.right_pupil_condition = right_pupil_condition;
+    }
+
+    public String getRight_pupil_option() {
+        return right_pupil_option;
+    }
+
+    public void setRight_pupil_option(String right_pupil_option) {
+        this.right_pupil_option = right_pupil_option;
+    }
+
+    public String getRight_pupil_reflex() {
+        return right_pupil_reflex;
+    }
+
+    public void setRight_pupil_reflex(String right_pupil_reflex) {
+        this.right_pupil_reflex = right_pupil_reflex;
+    }
+
+    public String getRight_pupil_size() {
+        return right_pupil_size;
+    }
+
+    public void setRight_pupil_size(String right_pupil_size) {
+        this.right_pupil_size = right_pupil_size;
+    }
+
+    public String getRight_accom_reflex() {
+        return right_accom_reflex;
+    }
+
+    public void setRight_accom_reflex(String right_accom_reflex) {
+        this.right_accom_reflex = right_accom_reflex;
+    }
+
+    public String getHead_cicum() {
+        return head_cicum;
+    }
+
+    public void setHead_cicum(String head_cicum) {
+        this.head_cicum = head_cicum;
+    }
+
+    public String getGsc_point() {
+        return gsc_point;
+    }
+
+    public void setGsc_point(String gsc_point) {
+        this.gsc_point = gsc_point;
+    }
+
+    public String getGcs_result() {
+        return gcs_result;
+    }
+
+    public void setGcs_result(String gcs_result) {
+        this.gcs_result = gcs_result;
+    }
+
+    public String getPgsc_point() {
+        return pgsc_point;
+    }
+
+    public void setPgsc_point(String pgsc_point) {
+        this.pgsc_point = pgsc_point;
+    }
+
+    public String getPgcs_result() {
+        return pgcs_result;
+    }
+
+    public void setPgcs_result(String pgcs_result) {
+        this.pgcs_result = pgcs_result;
+    }
+
+    public String getPain_scale_point() {
+        return pain_scale_point;
+    }
+
+    public void setPain_scale_point(String pain_scale_point) {
+        this.pain_scale_point = pain_scale_point;
+    }
+
+    public String getPain_scale_result() {
+        return pain_scale_result;
+    }
+
+    public void setPain_scale_result(String pain_scale_result) {
+        this.pain_scale_result = pain_scale_result;
+    }
+
+    public String getRespiratory_rate() {
+        return respiratory_rate;
+    }
+
+    public void setRespiratory_rate(String respiratory_rate) {
+        this.respiratory_rate = respiratory_rate;
+    }
+
+    public String getVision_type() {
+        return vision_type;
+    }
+
+    public void setVision_type(String vision_type) {
+        this.vision_type = vision_type;
+    }
+
+    public String getLeft_eye_score() {
+        return left_eye_score;
+    }
+
+    public void setLeft_eye_score(String left_eye_score) {
+        this.left_eye_score = left_eye_score;
+    }
+
+    public String getRight_eye_score() {
+        return right_eye_score;
+    }
+
+    public void setRight_eye_score(String right_eye_score) {
+        this.right_eye_score = right_eye_score;
+    }
+
+    public String getColor_vision() {
+        return color_vision;
+    }
+
+    public void setColor_vision(String color_vision) {
+        this.color_vision = color_vision;
+    }
+    
+    
+    
 }
