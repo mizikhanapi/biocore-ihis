@@ -70,7 +70,7 @@
                                     <label class="col-sm-6 control-label text-right" for="formGroupInputLarge">View history assessment:</label>
                                     <div class="col-sm-6 " style="padding-right: 0px;">
                                         <select class="form-control" id="ANL_viewBy">
-                                            <option value="0" selected disabled> --View by-- </option>
+                                            <option value="" selected disabled> --View by-- </option>
                                             <option value="0">Today</option>
                                             <option value="1">Yesterday</option>
                                             <option value="7">7 Days</option>
@@ -116,15 +116,15 @@
 </div>
 <!-- Add Modal Start -->
 <div class="modal fade" id="ANL_modal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
-    <div class="modal-dialog" style="width: 80%">
+    <div class="modal-dialog" style="width: 90%; min-height: 350px; height: auto;">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal"><i class="fa fa-times fa-lg"></i></button>
                 <h3 class="modal-title" id="REP_modalTitle"></h3>
             </div>
-            <div class="modal-body" id="REP_modalBody">
+            <div class="modal-body" id="REP_modalBody" style="overflow: auto; max-width: 1500px; width: 100%; margin: auto;">
 
-                <div class="chart-container" style="height: 100%;">
+                <div class="chart-container" style="height: 100%; min-height: 550px; width: 100%; min-width: 550px;">
                    <canvas id="ANL_canvas" style="height: 500px;"></canvas>
                 </div>
                 
@@ -249,7 +249,7 @@
                             $('#ANL_div_info').show();
                             
                             $('#ANL_viewDiv').html("");
-                            $('#ANL_viewBy').val("0");
+                            $('#ANL_viewBy').val("30");
                             ANL_loadData();
                         }
                     },
@@ -420,6 +420,7 @@
             return [Math.round(r * 255), Math.round(g * 255), Math.round(b * 255)];
          }
         
+        //--------------------------------- general lhr bar graph ----------------------------------------
         $('#ANL_viewDiv').on('click', '#ANL_btnGraph', function(){
             
             Chart.helpers.each(Chart.instances, function(instance){
@@ -512,6 +513,8 @@
                         
         });
         
+        //------------------------------------------- general VTS line chart ---------------------------------------------------------------------
+        
         $('#ANL_viewDiv').on('click', '#ANL_btnGraphLine', function(){
             Chart.helpers.each(Chart.instances, function(instance){
                 instance.destroy();
@@ -582,7 +585,7 @@
                     }
                 };
 
-            var speedData = {
+            var chartData = {
               labels: lhrLabel,
               datasets: [dataReading]
             };
@@ -590,7 +593,366 @@
 
             var lineChart = new Chart(canvas, {
               type: 'line',
-              data: speedData,
+              data: chartData,
+              options: chartOptions
+            });
+            
+            $('#ANL_modal').modal('show');
+            destroyScreenLoading();
+            
+        });
+    
+    //--------------------------------------- blood pressure line chart -----------------------------------------------------
+        $("#ANL_viewDiv").on('click', '#ANL_btnGraphBP', function(){
+            
+            Chart.helpers.each(Chart.instances, function(instance){
+                instance.destroy();
+             });
+            
+            createScreenLoading();
+            var dataArr = $(this).closest('td').find('.hidden');
+            var chartTitle = $(this).closest('td').find('#ANL_chartTitle').text();
+            $('#ANL_canvas').html("");
+            var canvas = $('#ANL_canvas');
+            
+            var sitSysArr = [];
+            var sitDiasArr = [];
+            var sitPulseArr = [];
+            var standSysArr = [];
+            var standDiasArr = [];
+            var standPulseArr = [];
+            var supSysArr = [];
+            var supDiasArr = [];
+            var supPulseArr = [];
+            var dateArr = [];
+            var lhrColour = [];
+            
+            
+            dataArr.each(function(){
+                var tempArr = $(this).text().split("|");
+                sitSysArr.push(tempArr[3]);
+                sitDiasArr.push(tempArr[4]);                
+                sitPulseArr.push(tempArr[5]);                
+                standSysArr.push(tempArr[6]);
+                standDiasArr.push(tempArr[7]);                
+                standPulseArr.push(tempArr[8]);                
+                supSysArr.push(tempArr[9]);
+                supDiasArr.push(tempArr[10]);                
+                supPulseArr.push(tempArr[11]);  
+                dateArr.push(tempArr[12]);
+                
+            });
+            
+           
+            var lhrColourTemp = ANL_getUniqueColors(9);
+            
+            for(var tempI=0; tempI<lhrColourTemp.length; tempI++){
+                 var strRGBA = "rgba("+lhrColourTemp[tempI][0]+", "+lhrColourTemp[tempI][1]+", "+lhrColourTemp[tempI][2]+", 0.8)";
+                lhrColour.push(strRGBA);
+            }
+            
+            
+            var dataSitSys = {
+                label: "Sit Systol (mmHg)",
+                data: sitSysArr,
+                lineTension: 0.3,
+                fill: false,
+                borderColor: lhrColour[0],
+                backgroundColor: 'transparent',
+                pointBorderColor: lhrColour[0],
+                pointBackgroundColor: lhrColour[0],
+                pointRadius: 5,
+                pointHoverRadius: 10,
+                pointHitRadius: 30,
+                pointBorderWidth: 2,
+                yAxisID: "y-axis-1"
+              };
+
+            var dataSitDias = {
+                label: "Sit Diastol (mmHg)",
+                data: sitDiasArr,
+                lineTension: 0.3,
+                fill: false,
+                borderColor: lhrColour[1],
+                backgroundColor: 'transparent',
+                pointBorderColor: lhrColour[1],
+                pointBackgroundColor: lhrColour[1],
+                pointRadius: 5,
+                pointHoverRadius: 10,
+                pointHitRadius: 30,
+                pointBorderWidth: 2,
+                yAxisID: "y-axis-1"
+              };
+
+            var dataSitPulse = {
+                label: "Sit pulse (bpm)",
+                data: sitPulseArr,
+                lineTension: 0.3,
+                fill: false,
+                borderColor: lhrColour[2],
+                backgroundColor: 'transparent',
+                pointBorderColor: lhrColour[2],
+                pointBackgroundColor: lhrColour[2],
+                pointRadius: 5,
+                pointHoverRadius: 10,
+                pointHitRadius: 30,
+                pointBorderWidth: 2,
+                yAxisID: "y-axis-1"
+              };
+
+            var dataStandSys = {
+                label: "Stand Systol (mmHg)",
+                data: standSysArr,
+                lineTension: 0.3,
+                fill: false,
+                borderColor: lhrColour[3],
+                backgroundColor: 'transparent',
+                pointBorderColor: lhrColour[3],
+                pointBackgroundColor: lhrColour[3],
+                pointRadius: 5,
+                pointHoverRadius: 10,
+                pointHitRadius: 30,
+                pointBorderWidth: 2,
+                yAxisID: "y-axis-1"
+              };
+
+            var dataStandDias = {
+                label: "Stand Diastol (mmHg)",
+                data: standDiasArr,
+                lineTension: 0.3,
+                fill: false,
+                borderColor: lhrColour[4],
+                backgroundColor: 'transparent',
+                pointBorderColor: lhrColour[4],
+                pointBackgroundColor: lhrColour[4],
+                pointRadius: 5,
+                pointHoverRadius: 10,
+                pointHitRadius: 30,
+                pointBorderWidth: 2,
+                yAxisID: "y-axis-1"
+              };
+
+            var dataStandPulse = {
+                label: "Stand pulse (bpm)",
+                data: standPulseArr,
+                lineTension: 0.3,
+                fill: false,
+                borderColor: lhrColour[5],
+                backgroundColor: 'transparent',
+                pointBorderColor: lhrColour[5],
+                pointBackgroundColor: lhrColour[5],
+                pointRadius: 5,
+                pointHoverRadius: 10,
+                pointHitRadius: 30,
+                pointBorderWidth: 2,
+                yAxisID: "y-axis-1"
+              };
+
+            var dataSupSys = {
+                label: "Supine Systol (mmHg)",
+                data: supSysArr,
+                lineTension: 0.3,
+                fill: false,
+                borderColor: lhrColour[6],
+                backgroundColor: 'transparent',
+                pointBorderColor: lhrColour[6],
+                pointBackgroundColor: lhrColour[6],
+                pointRadius: 5,
+                pointHoverRadius: 10,
+                pointHitRadius: 30,
+                pointBorderWidth: 2,
+                yAxisID: "y-axis-1"
+              };
+
+            var dataSupDias = {
+                label: "Supine Diastol (mmHg)",
+                data: supDiasArr,
+                lineTension: 0.3,
+                fill: false,
+                borderColor: lhrColour[7],
+                backgroundColor: 'transparent',
+                pointBorderColor: lhrColour[7],
+                pointBackgroundColor: lhrColour[7],
+                pointRadius: 5,
+                pointHoverRadius: 10,
+                pointHitRadius: 30,
+                pointBorderWidth: 2,
+                yAxisID: "y-axis-1"
+              };
+
+            var dataSupPulse = {
+                label: "Supine pulse (bpm)",
+                data: supPulseArr,
+                lineTension: 0.3,
+                fill: false,
+                borderColor: lhrColour[8],
+                backgroundColor: 'transparent',
+                pointBorderColor: lhrColour[8],
+                pointBackgroundColor: lhrColour[8],
+                pointRadius: 5,
+                pointHoverRadius: 10,
+                pointHitRadius: 30,
+                pointBorderWidth: 2,
+                yAxisID: "y-axis-1"
+              };
+
+              var chartOptions = {
+                  legend: {
+                    display: true,
+                    position: 'top',
+                    labels: {
+                      boxWidth: 40,
+                      fontColor: 'black'
+                    }
+                  },
+                  title: {
+                        display: true,
+                        fontSize: 20,
+                        fontFamily: 'Arial',
+                        text: chartTitle
+                   },
+                  tooltips: {
+                      mode: 'index',
+                      intersect: true
+                  },
+                  responsive: true,
+                  maintainAspectRatio: true,
+                  scales: {
+                        yAxes: [{
+                            type: "linear", // only linear but allow scale type registration. This allows extensions to exist solely for log scale for instance
+                            display: true,
+                            position: "left",
+                            id: "y-axis-1"
+                        }]
+                    }
+                };
+
+            var chartData = {
+              labels: dateArr,
+              datasets: [dataSitSys, dataSitDias, dataSitPulse, dataStandSys, dataStandDias, dataStandPulse, dataSupSys, dataSupDias, dataSupPulse ]
+            };
+
+
+            var lineChart = new Chart(canvas, {
+              type: 'line',
+              data: chartData,
+              options: chartOptions
+            });
+            
+            $('#ANL_modal').modal('show');
+            destroyScreenLoading();
+            
+        });
+        
+        //--------------------------------------- height weight line chart -----------------------------------------------------
+        $("#ANL_viewDiv").on('click', '#ANL_btnGraphHtWt', function(){
+            
+            Chart.helpers.each(Chart.instances, function(instance){
+                instance.destroy();
+             });
+            
+            createScreenLoading();
+            var dataArr = $(this).closest('td').find('.hidden');
+            var chartTitle = $(this).closest('td').find('#ANL_chartTitle').text();
+            $('#ANL_canvas').html("");
+            var canvas = $('#ANL_canvas');
+            
+            var heightArr = [];
+            var weightArr = [];
+            var dateArr = [];
+            var lhrColour = [];
+            
+            
+            dataArr.each(function(){
+                var tempArr = $(this).text().split("|");
+                weightArr.push(tempArr[3]);
+                heightArr.push(tempArr[4]);
+                dateArr.push(tempArr[5]);
+                
+            });
+            
+           
+            var lhrColourTemp = ANL_getUniqueColors(2);
+            
+            for(var tempI=0; tempI<lhrColourTemp.length; tempI++){
+                 var strRGBA = "rgba("+lhrColourTemp[tempI][0]+", "+lhrColourTemp[tempI][1]+", "+lhrColourTemp[tempI][2]+", 0.8)";
+                lhrColour.push(strRGBA);
+            }
+            
+            
+            var dataWeight = {
+                label: "Weight(kg)",
+                data: weightArr,
+                lineTension: 0.3,
+                fill: false,
+                borderColor: lhrColour[0],
+                backgroundColor: 'transparent',
+                pointBorderColor: lhrColour[0],
+                pointBackgroundColor: lhrColour[0],
+                pointRadius: 5,
+                pointHoverRadius: 10,
+                pointHitRadius: 30,
+                pointBorderWidth: 2,
+                yAxisID: "y-axis-1"
+              };
+
+            var dataHeight = {
+                label: "Height(cm)",
+                data: heightArr,
+                lineTension: 0.3,
+                fill: false,
+                borderColor: lhrColour[1],
+                backgroundColor: 'transparent',
+                pointBorderColor: lhrColour[1],
+                pointBackgroundColor: lhrColour[1],
+                pointRadius: 5,
+                pointHoverRadius: 10,
+                pointHitRadius: 30,
+                pointBorderWidth: 2,
+                yAxisID: "y-axis-1"
+              };
+
+
+              var chartOptions = {
+                  legend: {
+                    display: true,
+                    position: 'top',
+                    labels: {
+                      boxWidth: 40,
+                      fontColor: 'black'
+                    }
+                  },
+                  title: {
+                        display: true,
+                        fontSize: 20,
+                        fontFamily: 'Arial',
+                        text: chartTitle
+                   },
+                  tooltips: {
+                      mode: 'index',
+                      intersect: true
+                  },
+                  responsive: true,
+                  maintainAspectRatio: true,
+                  scales: {
+                        yAxes: [{
+                            type: "linear", // only linear but allow scale type registration. This allows extensions to exist solely for log scale for instance
+                            display: true,
+                            position: "left",
+                            id: "y-axis-1"
+                        }]
+                    }
+                };
+
+            var chartData = {
+              labels: dateArr,
+              datasets: [dataWeight, dataHeight ]
+            };
+
+
+            var lineChart = new Chart(canvas, {
+              type: 'line',
+              data: chartData,
               options: chartOptions
             });
             

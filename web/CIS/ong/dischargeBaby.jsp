@@ -525,7 +525,7 @@
         console.log("Printing");
         var printDiv = $(this).closest('#DB_viewGroup').find('#DB_printDiv').html();
         
-        var printWindow = window.open('', '', 'height=400,width=800');
+        var printWindow = window.open('', 'Print Discahrge Letter');
         printWindow.document.write('<html><head><title>Discharge Letter</title>');
         printWindow.document.write('</head><body >');
         //printWindow.document.write('<div class="logo-hfc asset-print-img" style="text-align: center;"><img src="<%=logo%>" alt="Health Facility Logo"></div><br><div> &nbsp;</div>');
