@@ -798,6 +798,9 @@
               };
 
               var chartOptions = {
+                  plugins:{
+                    valueOnGraph: false                  
+                  },
                   legend: {
                     display: true,
                     position: 'top',
@@ -814,7 +817,8 @@
                    },
                   tooltips: {
                       mode: 'index',
-                      intersect: true
+                      intersect: true,
+                      position: 'nearest'
                   },
                   responsive: true,
                   maintainAspectRatio: true,
@@ -931,7 +935,8 @@
                    },
                   tooltips: {
                       mode: 'index',
-                      intersect: true
+                      intersect: true,
+                      position: 'nearest'
                   },
                   responsive: true,
                   maintainAspectRatio: true,
@@ -964,6 +969,7 @@
         
          // Define a plugin to provide data labels
         Chart.plugins.register({
+            id: "valueOnGraph",
             afterDatasetsDraw: function(chart, easing) {
                 // To only draw at the end of animation, check for easing === 1
                 var ctx = chart.ctx;
