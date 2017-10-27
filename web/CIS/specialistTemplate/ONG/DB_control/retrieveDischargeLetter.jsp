@@ -71,6 +71,7 @@
     <div class="panel-heading">
          <p class="pull-right">
                 <button type="button" class="btn btn-info" title="Print discharge letter" id="DB_btnPrint"><span aria-hidden="true"><i class="fa fa-print fa-lg"></i></span></button>
+                <!--<button type="button" class="btn btn-warning" title="Print discharge letter" id="DB_btnPrint2"><span aria-hidden="true"><i class="fa fa-print fa-lg"></i></span></button>-->
                 <button type="button" class="btn btn-default" title="Update discharge letter" id="DB_updateModal" value="<%=strLong%>"><span aria-hidden="true"><i class="fa fa-pencil-square fa-lg"></i></span></button>
                 <button type="button" class="btn btn-danger" title="Delete discharge letter" id="DB_btnDelete" value="<%=strLong%>"><span aria-hidden="true"><i class="fa fa-times fa-lg"></i></span></button>
         </p>

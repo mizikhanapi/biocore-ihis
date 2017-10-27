@@ -536,6 +536,29 @@
         printWindow.print();
         printWindow.close();
     });
+    
+//    $('#DB_viewDiv').on('click', '#DB_btnPrint2', function(){
+//        console.log("Printing");
+//        var printDiv = $(this).closest('#DB_viewGroup').find('#DB_printDiv').html();
+//        
+//        $.ajax({
+//            type: 'POST',
+//            data: {
+//                process: "set",
+//                letter: printDiv
+//            },
+//            url: "specialistTemplate/ONG/DB_control/setSession.jsp",
+//            timeout: 60000,
+//            success: function (data, textStatus, jqXHR) {
+//                        
+//                    },
+//            error: function (jqXHR, textStatus, errorThrown) {
+//                        bootbox.alert("Cannot print right now.");
+//                    }
+//        });
+//        var printWindow = window.open('specialistTemplate/ONG/DB_control/printLetter.jsp');
+//        
+//    });
     //---------------------- == print == ------------------------------------
     
     //----------- destroy flex search --------------------------------------
