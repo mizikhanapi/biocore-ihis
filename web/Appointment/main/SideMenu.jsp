@@ -159,7 +159,7 @@
             <ul class="dropdown-menu">
                 <li><a data-toggle="tab" class="dropdown-item" href="#addAppointment" id="tab_ADD_Appointment">Make Patient Appointment</a></li>
 <!--                <li><a data-toggle="tab" class="dropdown-item" href="#viewAppointment">View Patient Appointment</a></li>-->
-                <li><a data-toggle="tab" class="dropdown-item" href="#manageAppointment">Manage Appointment Time</a></li>
+                <li><a data-toggle="tab" class="dropdown-item" href="#manageAppointment">Manage Appointment Duration</a></li>
             </ul>
         </li>
         <li id="tab"><a href="http://www.utem.edu.my/pusat_kesihatan/en/" target="_blank"><i class="fa fa-chevron-right sideIcon" aria-hidden="true" ></i>University Health Centre</a></li>

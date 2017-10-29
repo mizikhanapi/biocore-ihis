@@ -42,17 +42,17 @@
                     <div class="row lineSeperator">
                         <div class="col-xs-4 col-sm-4 col-md-4">
                             <div class="form-group">
-                                <input type="number" name="sitS" id="sitS" class="form-control input-lg" placeholder="mmHg" tabindex="4">
+                                <input type="number" name="sitS" id="sitS" class="form-control input-lg BP-class" placeholder="mmHg" tabindex="4" >
                             </div>
                         </div>
                         <div class="col-xs-4 col-sm-4 col-md-4">
                             <div class="form-group">
-                                <input type="number" name="sitD" id="sitD" class="form-control input-lg" placeholder="mmHg" tabindex="4">
+                                <input type="number" name="sitD" id="sitD" class="form-control input-lg BP-class" placeholder="mmHg" tabindex="4" >
                             </div>
                         </div>
                         <div class="col-xs-4 col-sm-4 col-md-4">
                             <div class="form-group">
-                                <input type="number" name="sitP" id="sitP" class="form-control input-lg" placeholder="bpm" tabindex="4">
+                                <input type="number" name="sitP" id="sitP" class="form-control input-lg BP-class" placeholder="bpm" tabindex="4"  >
 
                             </div>
                         </div>
@@ -82,17 +82,17 @@
                         <div class="row lineSeperator">
                             <div class="col-xs-4 col-sm-4 col-md-4">
                                 <div class="form-group">
-                                    <input type="number" name="standS" id="standS" class="form-control input-lg" placeholder="mmHg" tabindex="4">
+                                    <input type="number" name="standS" id="standS" class="form-control input-lg BP-class" placeholder="mmHg" tabindex="4" >
                                 </div>
                             </div>
                             <div class="col-xs-4 col-sm-4 col-md-4">
                                 <div class="form-group">
-                                    <input type="number" name="standD" id="standD" class="form-control input-lg" placeholder="mmHg" tabindex="4">
+                                    <input type="number" name="standD" id="standD" class="form-control input-lg BP-class" placeholder="mmHg" tabindex="4" >
                                 </div>
                             </div>
                             <div class="col-xs-4 col-sm-4 col-md-4">
                                 <div class="form-group">
-                                    <input type="number" name="standP" id="standP" class="form-control input-lg" placeholder="bpm" tabindex="4">
+                                    <input type="number" name="standP" id="standP" class="form-control input-lg BP-class" placeholder="bpm" tabindex="4" >
 
                                 </div>
                             </div>
@@ -122,17 +122,17 @@
                             <div class="col-xs-4 col-sm-4 col-md-4">
 
                                 <div class="form-group">
-                                    <input type="number" name="lyingS" id="lyingS" class="form-control input-lg" placeholder="mmHg" tabindex="4">
+                                    <input type="number" name="lyingS" id="lyingS" class="form-control input-lg BP-class" placeholder="mmHg" tabindex="4">
                                 </div>
                             </div>
                             <div class="col-xs-4 col-sm-4 col-md-4">
                                 <div class="form-group">
-                                    <input type="number" name="lyingD" id="lyingD" class="form-control input-lg" placeholder="mmHg" tabindex="4">
+                                    <input type="number" name="lyingD" id="lyingD" class="form-control input-lg BP-class" placeholder="mmHg" tabindex="4" >
                                 </div>
                             </div>
                             <div class="col-xs-4 col-sm-4 col-md-4">
                                 <div class="form-group">
-                                    <input type="number" name="lyingP" id="lyingP" class="form-control input-lg" placeholder="bpm" tabindex="4">
+                                    <input type="number" name="lyingP" id="lyingP" class="form-control input-lg BP-class" placeholder="bpm" tabindex="4" >
                                 </div>
                             </div>
                         </div>
@@ -189,6 +189,15 @@
 <script type="text/javascript">
     $(document).ready(function () {
         $('#updateBloodP').hide();
+        
+        $(".BP-class").on('keyup keydown',function(){
+            if ($(this).val().length > 4){
+                bootbox.alert("Enter the specific value");
+                $(this).val('')
+            }
+        })
 
     });
+    
+
 </script>

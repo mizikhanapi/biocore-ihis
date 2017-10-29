@@ -24,7 +24,7 @@
                             <div class="col-xs-2 col-sm-2 col-md-2">
                                 <div class="form-group">
                                     
-                                    <input type="text" name="bmiHeight" id="bmiHeight" class="form-control input-lg" placeholder="" tabindex="4">
+                                    <input type="text" name="bmiHeight" id="bmiHeight" class="form-control input-lg BP-class" placeholder="" tabindex="4">
                                 </div>
                             </div>
                             <div class="col-xs-2 col-sm-2 col-md-2"><h4>cm</h4></div>
@@ -39,7 +39,7 @@
                             <div class="col-xs-2 col-sm-2 col-md-2"><h4>Weight</h4></div>
                             <div class="col-xs-2 col-sm-2 col-md-2">
                                 <div class="form-group">
-                                    <input type="text" name="bmiWeight" id="bmiWeight" class="form-control input-lg" placeholder="" tabindex="4">
+                                    <input type="text" name="bmiWeight" id="bmiWeight" class="form-control input-lg BP-class" placeholder="" tabindex="4">
                                 </div>
                             </div>
                             <div class="col-xs-2 col-sm-2 col-md-2"><h4>kg</h4></div>
@@ -55,7 +55,7 @@
                             <div class="col-xs-2 col-sm-2 col-md-2"><h4>BMI</h4></div>
                             <div class="col-xs-4 col-sm-4 col-md-4">
                                 <div class="form-group">
-                                    <input type="text" name="bmi" id="bmi" class="form-control input-lg" placeholder="kg/m2" tabindex="4">
+                                    <input type="text" name="bmi" id="bmi" class="form-control input-lg " placeholder="kg/m2" tabindex="4">
                                 </div>
                             </div>
                             
