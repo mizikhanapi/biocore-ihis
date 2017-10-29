@@ -575,7 +575,7 @@ function convertEHR(ehr) {
                 var objPainScale = {
                     Acode: "VTS",
                     painScale: VTSData[30],
-                    resultPanScale: resultPC
+                    resultPanScale: VTSData[43]
                 };
                 _data.push(objPainScale);
                 displayPanScale(objPainScale.painScale, objPainScale.resultPanScale);

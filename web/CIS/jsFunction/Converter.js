@@ -527,8 +527,17 @@ function getProcedureDisplay(procedure) {
             d.rrRate = "";
         }
         
+        // VTS|Episode_Date | <Temperature (NM)> ^ <BP-sitting-sys (NM)> ^ <BP-sitting-diag (NM)> ^ <BP-supine-sys (NM)> ^ <BP-supine-diag (NM)> ^ <BP-standing-sys (NM)> ^ <BP-standing-diag (NM)> ^ 
+        // <weight (NM)> ^ <Height (NM)> ^ <Head circumference (NM)> ^ <Respiratory rate (NM)> ^ <GCS (NM)> ^ <Pulse rate (NM)> ^ <left pupil condition (NM)> ^ <left pupil option (NM)> ^ 
+        // <Left pupil size (ST)> ^ <left light reflex (ST)> ^ <Right light reflex (ST)> ^ <left accom reflex (ST)> ^ <Right accom reflex (ST)> ^ <Heart rate (ST)> ^ <encounter date (TS)> ^
+        //  <hfc cd (ST)> ^ <doctor id (ST)> ^ <doctor name (ST)> ^ <gcs point> ^ <gcs result> ^ <pgcs point> ^ <pgcs result> ^ <so2> ^ <pain scale> ^ <blood glucose> ^ <sitting-pulse> ^ 
+        //  <supine-pulse> ^ <standing-pulse> ^ <right-pupil-condition> ^ <right-pupil-option> ^ <right-pupil-size> ^ <vision-type> ^ <left-eye-score> ^ <right-eye-score> ^ <colour-vision> ^ 
+        //  <vision comment> ^ <pain scale result>
+        
         var vtsNotes = "";  //                      0               1               2               3               4               5               6               7                       8                   9               10              11              12                      
-        vtsNotes += "VTS|" + episodeDate + "|" + d.BTemp + "^" + d.sitS + "^" + d.sitD + "^" + d.lyingS + "^" + d.lyingD + "^" + d.standS + "^" + d.standD + "^" + d.bmiWeight + "^" + d.bmiHeight + "^" + d.headCir + "^" + d.rrRate + "^" + d.pointMain + "^" + "^^^^^^^^^"+encounterDate+"^" + hfc_cd + "^" + doctor_id + "^" + doctor_name + "^" + d.pointMain + "^" + d.resultMain + "^" + d.pointpgcsMain + "^" + d.resultpgcsMain + "^" + d.OSat + "^" + d.painScale + "^" + d.bloodGlucose + "^" + d.sitP + "^" + d.lyingP + "^" + d.standP + "|<cr>\n";
+        vtsNotes += "VTS|" + episodeDate + "|" + d.BTemp + "^" + d.sitS + "^" + d.sitD + "^" + d.lyingS + "^" + d.lyingD + "^" + d.standS + "^" + d.standD + "^" + d.bmiWeight + "^" + d.bmiHeight + "^" + d.headCir + "^" + d.rrRate + "^" + d.pointMain + "^^^^^^^^^^"+encounterDate+"^" + hfc_cd + "^" + doctor_id + "^" + doctor_name + "^" + d.pointMain + "^" + d.resultMain + "^" + d.pointpgcsMain + "^" + d.resultpgcsMain + "^" + d.OSat + "^" + d.painScale + "^" + d.bloodGlucose + "^" + d.sitP + "^" + d.lyingP + "^" + d.standP + "^^^^^^^^^"+d.resultPanScale+"|<cr>\n";
+        
+        
         return vtsNotes;
     }
     

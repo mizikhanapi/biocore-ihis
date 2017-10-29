@@ -62,7 +62,9 @@ $(document).ready(function (e) {
         
     });
     
-
+$("#btnCIS_TEST_BUTTON").click(function(e){
+    console.log(_data);
+});
 
 
 
