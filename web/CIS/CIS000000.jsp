@@ -185,7 +185,7 @@
                                                     </li>
                                                     <li>
 
-                                                        <i class="fa fa-list-alt fa-lg hide"></i><button id="btnCIS_TEST_BUTTON" class="">testbutton</button>
+<!--                                                        <i class="fa fa-list-alt fa-lg hide"></i><button id="btnCIS_TEST_BUTTON" class="">testbutton</button>-->
                                                     </li>
 
 
