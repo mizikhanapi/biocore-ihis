@@ -27,7 +27,7 @@
                             </div>
                             <div class="col-xs-4 col-sm-4 col-md-4">
                                 <div class="form-group">
-                                    <input type="number" name="rrRate" id="rrRate" class="form-control input-lg" placeholder="Respiratory Rate" tabindex="4">
+                                    <input type="number" name="rrRate" id="rrRate" class="form-control input-lg rr-rate-input" placeholder="Respiratory Rate" tabindex="4">
                                     <input type="hidden" id="RRid">
                                    
                                 </div>
@@ -81,4 +81,11 @@
     
     <script type="text/javascript">
         $('#updateRR').hide();
+        $(document).ready(function(){
+            $(".rr-rate-input").on('keyup keydown',function(){
+                if ($(this).val().length > 3){
+                    bootbox.alert("Enter the correct Respiratory rate");
+                }
+            })
+        })
         </script>

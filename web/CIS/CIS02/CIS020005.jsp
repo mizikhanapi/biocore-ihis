@@ -25,7 +25,7 @@
 
       
                         <div class="form-group">
-                            <input type="number" name="OSat" id="OSat" class="form-control input-lg" placeholder="Oxygen Saturation" tabindex="4">
+                            <input type="number" name="OSat" id="OSat" class="form-control input-lg" placeholder="Oxygen Saturation" tabindex="4" >
                             <input type="hidden" name="idOS" id="idOS" class="form-control input-lg" placeholder="Oxygen Saturation" tabindex="4">
                         </div>
 
@@ -68,5 +68,10 @@
     <script type="text/javascript">
         $(document).ready(function(){
             $('#updateOS').hide();
+            $("#OSat").on('keyup keydown',function(){
+                 if ($(this).val().length > 3){
+                    bootbox.alert("Enter the correct Oxygen saturation");
+                }
+            })
         })
         </script>

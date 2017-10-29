@@ -86,8 +86,14 @@
         });
         
         $('#BTemp').on('keyup',function(){
-            var value = $('#BTemp').val();
-            $("#slider").slider("value", parseInt(value));
+           
+            var value = $(this).val();
+             if(value.length > 3){
+                 bootbox.alert("Please enter the correct Body Temperature");
+             }else{
+                  $("#slider").slider("value", parseInt(value));
+             }
+           
         
         });
      
