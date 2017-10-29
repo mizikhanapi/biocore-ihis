@@ -144,9 +144,12 @@
 
     function printReport() {
         var divElements = $('#test').html();
-        var popupWin = window.open('', '_blank', 'width=1200,height=500');
+        var popupWin = window.open('', '_blank');
         popupWin.document.open();
-        popupWin.document.write('<html><body onload="window.print()">' + divElements + '</html>');
+        popupWin.document.write('<html><head><title>Print MC</title></head><body>' + divElements + '</body></html>');
         popupWin.document.close();
+        popupWin.focus();
+        popupWin.print();
+        popupWin.close();
     }
 </script>
