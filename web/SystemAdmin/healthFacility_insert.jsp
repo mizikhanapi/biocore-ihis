@@ -45,7 +45,7 @@
     boolean isInsert = false;
 
     if (duplicate.size() > 0) {
-        out.print("Sorry, the code is already used. Please enter different code.");
+        out.print("Sorry, the code "+hfcCode+" is already used. Please enter different code.");
     } else if (!establishDate.equalsIgnoreCase("")) {
 
         establishDate = DateFormatter.formatDate(establishDate, "dd/MM/yyyy", "yyyy-MM-dd HH:mm:ss.ms");
@@ -122,13 +122,14 @@
                 + "select `item_cd`, `item_name`, `test_cat`, spe_source, spe_container, volume, special_inst, status, buy_price, ser_price, '" + hfcCode + "'"
                 + "from lis_item_detail where hfc_cd='99_iHIS_99'";
         
-        String copyOT_category="INSERT INTO ot_procedure_category(hfc_cd, category_cd, category_name, created_by, created_date, status) "
-                + "Select '"+hfcCode+"', category_cd, category_name, '"+creator+"', now(), '0' from ot_procedure_category "
+        String copyOT_category="INSERT INTO opt_procedure_category(hfc_cd, category_cd, category_name, created_by, created_date, status) "
+                + "Select '"+hfcCode+"', category_cd, category_name, '"+creator+"', now(), '0' from opt_procedure_category "
                 + "where hfc_cd='99_iHIS_99';";
         
-        String copyOT_procedure="INSERT INTO ot_procedure(hfc_cd, category_cd, procedure_cd, `procedure_shortName`, `procedure_longName`, quantity, buying_price, selling_price, status, created_by, created_date) "
-                + "Select '"+hfcCode+"', category_cd, procedure_cd, `procedure_shortName`, `procedure_longName`, quantity, buying_price, selling_price, '0', '"+creator+"', now()  from ot_procedure "
+        String copyOT_procedure="INSERT INTO opt_procedure(hfc_cd, category_cd, procedure_cd, `procedure_shortName`, `procedure_longName`, quantity, buying_price, selling_price, status, created_by, created_date) "
+                + "Select '"+hfcCode+"', category_cd, procedure_cd, `procedure_shortName`, `procedure_longName`, quantity, buying_price, selling_price, '0', '"+creator+"', now()  from opt_procedure "
                 + "where hfc_cd='99_iHIS_99';";
+        
 
         rmic.setQuerySQL(conn.HOST, conn.PORT, copyLookup);
         rmic.setQuerySQL(conn.HOST, conn.PORT, copyRole);

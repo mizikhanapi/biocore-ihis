@@ -74,11 +74,11 @@
         rmic.setQuerySQL(conn.HOST, conn.PORT, sql);
         
         //clear OT category 
-        sql="Delete from ot_procedure_category where hfc_cd='"+id+"'";
+        sql="Delete from opt_procedure_category where hfc_cd='"+id+"'";
         rmic.setQuerySQL(conn.HOST, conn.PORT, sql);
         
         //clear OT procedure
-        sql="Delete from ot_procedure where hfc_cd='"+id+"'";
+        sql="Delete from opt_procedure where hfc_cd='"+id+"'";
         rmic.setQuerySQL(conn.HOST, conn.PORT, sql);
         
     } else {

@@ -541,6 +541,8 @@
 //        console.log("Printing");
 //        var printDiv = $(this).closest('#DB_viewGroup').find('#DB_printDiv').html();
 //        
+//        var printWindow = window.open();
+//        
 //        $.ajax({
 //            type: 'POST',
 //            data: {
@@ -550,13 +552,14 @@
 //            url: "specialistTemplate/ONG/DB_control/setSession.jsp",
 //            timeout: 60000,
 //            success: function (data, textStatus, jqXHR) {
-//                        
+//                        printWindow.location.replace("specialistTemplate/ONG/DB_control/printLetter.jsp");
+//                        printWindow.focus();
 //                    },
 //            error: function (jqXHR, textStatus, errorThrown) {
 //                        bootbox.alert("Cannot print right now.");
 //                    }
 //        });
-//        var printWindow = window.open('specialistTemplate/ONG/DB_control/printLetter.jsp');
+//        
 //        
 //    });
     //---------------------- == print == ------------------------------------
