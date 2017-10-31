@@ -9,8 +9,8 @@
     String adm_id= (String) session.getAttribute("USER_ID");
     String adm_hfc= (String) session.getAttribute("HFC_99");
     
-    MySession mys = new MySession(adm_id, adm_hfc);
-    if(!mys.haveModuleAccess("19")){
+    MySession mys2 = new MySession(adm_id, adm_hfc);
+    if(!mys2.haveModuleAccess("19")){
         response.sendRedirect("../Entrance/dashboard.jsp");
         return;
     }

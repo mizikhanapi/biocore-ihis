@@ -23,7 +23,7 @@
         <li><a href="HIS060002.jsp"><i class="fa fa-code-fork " aria-hidden="true" ></i>RIS Procedure Maintenance</a></li>
         <li><a href="HIS060004.jsp"><i class="fa fa-usd " aria-hidden="true" ></i>Billing</a></li>
         <li data-toggle="collapse" data-target="#Report" class="collapsed active">
-            <a href="#"><i class="fa fa-bar-chart fa-lg"></i> Report <span class="arrow"></span></a>
+            <a href="#"><i class="fa fa-bar-chart fa-lg"></i> Report <span class="caret"></span></a>
             <ul class="sub-menu collapse" id="Report" aria-expanded="true" style="">
                 <li><a data-toggle="modal" data-target="#" href="list_procedure_cd.jsp">List of Procedure</a></li>
                 <li><a data-toggle="modal" data-target="#" href="list_pending_order.jsp">List of Order</a></li>

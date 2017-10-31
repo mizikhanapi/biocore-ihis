@@ -11,8 +11,7 @@
 <%@page import="Config.Config"%>
 
 <%@include file="../Entrance/validateSession.jsp" %>
-<%--<%@include file="validateModuleAccess.jsp" %>--%>
-
+<%@include file="validateModuleAccess.jsp" %>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -23,6 +22,7 @@
         <!-- header -->
         <%@include file = "libraries/headLibrary.jsp" %>
         <%@include file = "../assets/header.html" %>
+        <link rel="stylesheet" href="../assets/css/multi-select.css">
         <!-- header -->
     </head>
 
@@ -96,8 +96,8 @@
         <!-- Placed at the end of the document so the pages load faster -->
         <%@include file = "libraries/footLibrary.jsp" %>
         <!-- Placed at the end of the document so the pages load faster -->
-        <script src="libraries/js/jquery.check-file.js" type="text/javascript"></script>
-
+        <script type="text/javascript" src="../assets/js/jquery.multi-select.js"></script>
+        
         <script>
 
             $('<div class="loading">&nbsp;</div>').appendTo('body');

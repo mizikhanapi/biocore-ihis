@@ -303,7 +303,7 @@
                         $('#PRO_clone_select_list').html(data);
                         $('#PRO_clone_select_list').multiSelect({
                             selectableHeader: "<div style='display:block; color:white; background-color:#2196f3; '>Available Procedure Level 1</div>",
-                            selectionHeader: "<div style='display:block; color:white; background-color:#2196f3'>Selected Procedure Level 1</div>",
+                            selectionHeader: "<div style='display:block; color:white; background-color:#2196f3;'>Selected Procedure Level 1</div>",
                             keepOrder: true
                         });
                         $('#PRO_clone_modal').modal('show');

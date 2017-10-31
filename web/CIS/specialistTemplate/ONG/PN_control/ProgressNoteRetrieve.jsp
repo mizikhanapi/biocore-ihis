@@ -58,7 +58,7 @@
             <div class="col-xs-12">
                 <div class="media">
                     <div class="media-left media-middle">
-                        <div class="ckbox"><input type="checkbox" id="checkbox0" name="CIS_consult_notes"><label for="checkbox0"></label></div>
+                       
                     </div>
                     <div class="media-body">
                         <dt class="media-heading"><%out.print(data.get(i).get(1));%></dt>
