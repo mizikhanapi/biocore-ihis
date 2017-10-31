@@ -26,11 +26,11 @@
       
                         <div class="form-group">
                             <input type="number" name="OSat" id="OSat" class="form-control input-lg" placeholder="Oxygen Saturation" tabindex="4" >
-                            <input type="hidden" name="idOS" id="idOS" class="form-control input-lg" placeholder="Oxygen Saturation" tabindex="4">
+                            <input type="hidden" name="idOS" id="idOS" class="form-control input-lg" tabindex="4">
                         </div>
 
 
-
+                     </form>
                 </div>
                 <div class="modal-footer" id="updateOS">
                     <div class="btn-group btn-group-justified" role="group" aria-label="group button">
@@ -44,7 +44,7 @@
                             <button type="button" id="saveImage" class="btn btn-default btn-block btn-lg" data-dismiss="modal" role="button">Close</button>
                         </div>
                     </div>
-                    </form>
+                    
                 </div>
                 
                 <div class="modal-footer" id="actionOS">
@@ -59,7 +59,7 @@
                             <button type="button" id="saveImage" class="btn btn-default btn-block btn-lg" data-dismiss="modal" role="button">Close</button>
                         </div>
                     </div>
-                    </form>
+                   
                 </div>
             </div>
         </div>
@@ -71,7 +71,8 @@
             $("#OSat").on('keyup keydown',function(){
                  if ($(this).val().length > 3){
                     bootbox.alert("Enter the correct Oxygen saturation");
+                    $(this).val('');
                 }
-            })
+            });
         })
         </script>

@@ -11,7 +11,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal"><i class="fa fa-times fa-lg"></i><span class="sr-only">Close</span></button>
-                    <h3 class="modal-title" id="lineModalLabel">Pan Scale</h3>
+                    <h3 class="modal-title" id="lineModalLabel">Pain Scale</h3>
                 </div>
                 <div class="modal-body">
 
@@ -35,8 +35,8 @@
                         <div class="row">
                             <div class="col-xs-6 col-sm-6 col-md-6">
                                 <div class="form-group">
-                                    <input type="text" name="resultPanScale" id="resultPanScale" class="form-control input-lg" placeholder="Result" tabindex="4">
-                                    <input type="hidden" name="resultPanScale" id="PSid" class="form-control input-lg" placeholder="Result" tabindex="4">
+                                    <input type="text" name="resultPanScale" id="resultPanScale" class="form-control input-lg" placeholder="Result" tabindex="4" readonly>
+                                    <input type="hidden" name="resultPanScale" id="PSid" class="form-control input-lg" tabindex="4">
                                 </div>
                             </div>
                             <div class="col-xs-6 col-sm-6 col-md-6">
@@ -64,7 +64,7 @@
                         </div>
 
 
-
+                    </form>
 
                 </div>
                 <div class="modal-footer" id="updatePS">
@@ -79,7 +79,7 @@
                             <button type="button" id="saveImage" class="btn btn-default btn-block btn-lg" data-dismiss="modal" role="button">Close</button>
                         </div>
                     </div>
-                    </form>
+                    
                 </div>
                 <div class="modal-footer" id="actionPS">
                     <div class="btn-group btn-group-justified" role="group" aria-label="group button">
@@ -96,7 +96,7 @@
                             <button type="button" id="saveImage" class="btn btn-default btn-block btn-lg" data-dismiss="modal" role="button">Close</button>
                         </div>
                     </div>
-                    </form>
+                    
                 </div>
             </div>
         </div>

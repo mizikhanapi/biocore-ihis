@@ -42,10 +42,8 @@
                             </div>
                         </div>
 
-                 
+                </form>
                      
-
-
                 </div>
                 <div class="modal-footer" id="updateRR">
                     <div class="btn-group btn-group-justified" role="group" aria-label="group button">
@@ -59,7 +57,7 @@
                             <button type="button" id="saveImage" class="btn btn-default btn-block btn-lg" data-dismiss="modal" role="button">Close</button>
                         </div>
                     </div>
-                    </form>
+                  
                 </div>
                 <div class="modal-footer" id="actionRR">
                     <div class="btn-group btn-group-justified" role="group" aria-label="group button">
@@ -73,7 +71,7 @@
                             <button type="button" id="saveImage" class="btn btn-default btn-block btn-lg" data-dismiss="modal" role="button">Close</button>
                         </div>
                     </div>
-                    </form>
+                   
                 </div>
             </div>
         </div>
@@ -85,7 +83,8 @@
             $(".rr-rate-input").on('keyup keydown',function(){
                 if ($(this).val().length > 3){
                     bootbox.alert("Enter the correct Respiratory rate");
+                    $(this).val('');
                 }
-            })
-        })
+            });
+        });
         </script>
