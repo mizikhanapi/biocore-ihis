@@ -40,7 +40,7 @@
 </div>
 
 <div class="row">
-    <div class="col-md-6 clear-patient" id="MU_div_theraphyTable">
+    <div class="col-md-6 clear-patient table-guling" id="MU_div_theraphyTable">
         <table class="table table-bordered table-striped">
             <thead>
                 <tr>
@@ -60,7 +60,7 @@
             </tbody>
         </table>
     </div>
-    <div class="col-md-6 clear-patient" id="MU_div_investigationTable">
+    <div class="col-md-6 clear-patient table-guling" id="MU_div_investigationTable">
         <table class="table table-bordered table-striped">
             <thead>
                 <tr>
@@ -179,8 +179,8 @@
         changeMonth: true,
         changeYear: true,
         dateFormat: 'dd/mm/yy',
-        yearRange: '1990:+0',
-        maxDate: '+0d'
+        yearRange: '1990:+5',
+        maxDate: '+5y'
     });
     
     $('#MU_therapyOrderTime').timepicker({
@@ -214,8 +214,8 @@
         changeMonth: true,
         changeYear: true,
         dateFormat: 'dd/mm/yy',
-        yearRange: '1990:+0',
-        maxDate: '+0d'
+        yearRange: '1990:+5',
+        maxDate: '+5y'
     });
     
     $('#MU_investigationOrderTime').timepicker({

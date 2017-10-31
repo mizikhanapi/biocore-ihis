@@ -166,7 +166,7 @@
         
         <div class="panel-body">
             <div class="panel panel-default">
-                <div class="panel-body">
+                <div class="panel-body" style="overflow: auto;">
                     <div class="row">
                         <div class="col-xs-12">
                             <div class="media">
@@ -208,7 +208,7 @@
                 </div>
             </div>
 
-            <div class="panel panel-default">
+            <div class="panel panel-default" style="overflow:auto;">
                 <div class="panel-body">
                     <table class="table table-bordered">
                         <tr>
@@ -260,7 +260,7 @@
             </div>
             
             <div class="panel panel-default">
-                <div class="panel-body">
+                <div class="panel-body" style="overflow: auto;">
                     <div class="row">
                         <div class="col-xs-12">
                             <div class="media">
@@ -321,7 +321,7 @@
     
 %>
 <div class="panel panel-default">
-    <div class="panel-body">
+    <div class="panel-body" style="overflow: auto;">
         <div class="row">
             <div class="col-xs-12">
                <div class="media">
@@ -392,7 +392,7 @@
 %>
 
             <div class="panel panel-default">
-                <div class="panel-body">
+                <div class="panel-body" style="overflow: auto;">
                     <div class="row">
                         <div class="col-xs-12">
                             <div class="media">
@@ -450,7 +450,7 @@
                 
             %>
             <div class="panel panel-default">
-                <div class="panel-body">
+                <div class="panel-body" style="overflow: auto;">
                     <div class="table-guling">
                          <table class="table table-bordered">
                             <tr>
@@ -514,7 +514,7 @@
                         </table>
                     </div>
                             
-                    <div class="chart-container" style="height: 100%;">
+                    <div class="chart-container" style="height: 100%; width: 100%;">
                         <input type="hidden" id="LS_chartLabel" value="<%=String.join("|", dataLabel)%>">
                         <input type="hidden" id="LS_chartHeight" value="<%=String.join("|", dataHeight)%>">
                         <input type="hidden" id="LS_chartTemperature" value="<%=String.join("|", dataTemperature)%>">
@@ -550,7 +550,7 @@
                
             %>                
             <div class="panel panel-default">
-                <div class="panel-body">
+                <div class="panel-body" style="overflow: auto;">
                     <div class="row">
                         <div class="col-xs-12">
                             <div class="media">

@@ -45,11 +45,18 @@
 
 </div>
 
-
-
-<jsp:include page="specialistTemplate/ONG/labourSummary-modal.jsp" />
+<div id="LS_modal_div">
+    <jsp:include page="specialistTemplate/ONG/labourSummary-modal.jsp" />
+</div>
 
 <script type="text/javascript">
+    
+    $(function(){
+        var url="specialistTemplate/ONG/LS_control/searchUserFlex.jsp";
+        
+        LS_initFlexSearch("LS_labourRepair", "", url, "LS_labourRepairMatch");
+    });
+    
     $(document).on('focus', ':input', function() {
         $(this).attr('autocomplete', 'off');
     });
@@ -320,6 +327,7 @@
                             $('#LS_viewBy').val('x');
                             $('#LS_dateFrom').val(deliveryDate);
                             $('#LS_dateTo').val(deliveryDate);
+                            $('#LS_div_selectDate').show();
                             LS_loadData();
                             $('#LS_labourModal').modal('hide');
                         }
@@ -414,6 +422,7 @@
                             $('#LS_viewBy').val('x');
                             $('#LS_dateFrom').val(deliveryDate);
                             $('#LS_dateTo').val(deliveryDate);
+                            $('#LS_div_selectDate').show();
                             LS_loadData();
                             $('#LS_labourModal').modal('hide');
                         }
@@ -629,6 +638,7 @@
                             $('#LS_viewBy').val('x');
                             $('#LS_dateFrom').val(theDate);
                             $('#LS_dateTo').val(theDate);
+                            $('#LS_div_selectDate').show();
                             LS_loadData();
                             $('#LS_stageModal').modal('hide');
                         }
@@ -731,6 +741,7 @@
                             $('#LS_viewBy').val('x');
                             $('#LS_dateFrom').val(theDate);
                             $('#LS_dateTo').val(theDate);
+                            $('#LS_div_selectDate').show();
                             LS_loadData();
                             $('#LS_eventModal').modal('hide');
                         }
@@ -930,6 +941,7 @@
                             $('#LS_viewBy').val('x');
                             $('#LS_dateFrom').val(theDate);
                             $('#LS_dateTo').val(theDate);
+                            $('#LS_div_selectDate').show();
                             LS_loadData();
                             $('#LS_infantModal').modal('hide');
                         }
@@ -1044,6 +1056,7 @@
                             $('#LS_viewBy').val('x');
                             $('#LS_dateFrom').val(theDate);
                             $('#LS_dateTo').val(theDate);
+                            $('#LS_div_selectDate').show();
                             LS_loadData();
                             $('#LS_infantModal').modal('hide');
                         }
@@ -1110,6 +1123,7 @@
                                     $('#LS_viewBy').val('x');
                                     $('#LS_dateFrom').val(theDate);
                                     $('#LS_dateTo').val(theDate);
+                                    $('#LS_div_selectDate').show();
                                     LS_loadData();
                                     $('#LS_infantModal').modal('hide');
                                 }
@@ -1251,6 +1265,7 @@
                             $('#LS_viewBy').val('x');
                             $('#LS_dateFrom').val(theDate);
                             $('#LS_dateTo').val(theDate);
+                            $('#LS_div_selectDate').show();
                             LS_loadData();
                             $('#LS_transferModal').modal('hide');
                         }
@@ -1316,6 +1331,7 @@
                                     $('#LS_viewBy').val('x');
                                     $('#LS_dateFrom').val(theDate);
                                     $('#LS_dateTo').val(theDate);
+                                    $('#LS_div_selectDate').show();
                                     LS_loadData();
                                     
                                 }
@@ -1382,6 +1398,7 @@
                                     $('#LS_viewBy').val('x');
                                     $('#LS_dateFrom').val(theDate);
                                     $('#LS_dateTo').val(theDate);
+                                    $('#LS_div_selectDate').show();
                                     LS_loadData();
                                     
                                 }
@@ -1471,6 +1488,7 @@
                             $('#LS_dateFrom').val(theDate);
                             $('#LS_dateTo').val(theDate);
                             $('#LS_perNoteModal').modal('hide');
+                            $('#LS_div_selectDate').show();
                             LS_loadData();
 
                         }
@@ -1610,6 +1628,7 @@
                             $('#LS_dateFrom').val(theDate);
                             $('#LS_dateTo').val(theDate);
                             $('#LS_puerModal').modal('hide');
+                            $('#LS_div_selectDate').show();
                             LS_loadData();
 
                         }
@@ -1695,6 +1714,7 @@
                             $('#LS_dateFrom').val(theDate);
                             $('#LS_dateTo').val(theDate);
                             $('#LS_puerModal').modal('hide');
+                            $('#LS_div_selectDate').show();
                             LS_loadData();
 
                         }
@@ -1760,6 +1780,7 @@
                                     $('#LS_viewBy').val('x');
                                     $('#LS_dateFrom').val(theDate);
                                     $('#LS_dateTo').val(theDate);
+                                    $('#LS_div_selectDate').show();
                                     LS_loadData();
                                     
                                 }
