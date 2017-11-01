@@ -34,37 +34,13 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div class="thumbnail">
-                                <h3 style="margin: 0px;">List of Procedure Category Code</h3>
+                                <h3 style="margin: 0px;">List of Procedure Category</h3>
                                 <hr class="pemisah"/>
                                 <div style="width:100%; margin: auto;">
                                     <div class="form-horizontal">
                                         <div class="form-group">
-                                            <div class="col-md-6">
-                                                <label class="col-md-4 control-label" for="textinput">Select by body system: </label>
-                                                <div class="col-md-8">
-                                                    
-                                                    <select class="form-control" name="test" id="body_System">
-                                                        <option value="all">All</option>
-                                                       
-                                                    </select>
-                                                </div>
-                                            </div>
-                                            
-                                            <div class="col-md-4">
-                                                <label class="col-md-4 control-label" for="textinput">Select by modality: </label>
-                                                <div class="col-md-8">
-                                                    
-                                                    <select class="form-control" name="test" id="Select_modality">
-                                                        <option value="all">All</option>
-                                                       
-                                                    </select>
-
-                                                </div>
-                                            </div>
-                                           
-                                            <div class="col-md-2">
+                                            <div class="text-center">
                                                 <button id="RMOM_btnRefresh" class="btn btn-default" style=" padding-right: 10px;padding-left: 10px;color: black;"><i class=" fa fa-refresh" style=" padding-right: 10px;padding-left: 10px;color: black;"></i>Refresh</button>
-
                                             </div>
                                         </div>
                                     </div>
@@ -82,6 +58,26 @@
             <!-- main -->		
 
         </div>
+        <!-- Add Modal Start -->
+<div class="modal fade" id="modal_report" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+    <div class="modal-dialog" style="width: 80%">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><i class="fa fa-times fa-lg"></i></button>
+                <h3 class="modal-title" id="REP_modalTitle"></h3>
+            </div>
+            <div class="modal-body" id="REP_modalBody">
+
+                
+                <!-- content goes here -->
+            </div>
+            <div class="modal-footer">
+               
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Add Modal End -->  
 
 
         <!-- Placed at the end of the document so the pages load faster -->
@@ -130,6 +126,40 @@
                 //$('#risOrderListContent').html('<div class="loading">Loading</div>');
                 load_catCode();
             });
+            
+            //------------------ load procedure of the selected category -------------------------------
+            $('#viewProcedure').on('click', '.clickable_tr', function(){
+                var datArr = $(this).closest('tr').find('#CAT_hidden').val().split("|");
+                var data={
+                    cat_cd: datArr[0],
+                    cat_name: datArr[1]
+                };
+                
+                createScreenLoading();
+                
+                $.ajax({
+                    type: 'POST',
+                    timeout: 60000,
+                    url: "report_control/getListOfProcedure.jsp",
+                    data: data,
+                    success: function (data, textStatus, jqXHR) {
+                        if(data.trim()==='0'){
+                            bootbox.alert("There is no procedure under category "+datArr[1]);
+                        }
+                        else{
+                            $('#REP_modalBody').html(data);
+                            $('#modal_report').modal('show');
+                        }
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                        bootbox.alert("Oops! "+errorThrown);
+                    },
+                    complete: function (jqXHR, textStatus ) {
+                        destroyScreenLoading();
+                    }
+                });
+            });
+            //================= end load procedure ===================================================
 
         </script>
         

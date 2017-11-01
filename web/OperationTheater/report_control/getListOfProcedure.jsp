@@ -10,19 +10,8 @@
 <%@page import="dBConn.Conn"%>
 <%
      String hfc_cd = (String) session.getAttribute("HEALTH_FACILITY_CODE");
-    
-    String modality = request.getParameter("Select_modality");
-    String body_System = request.getParameter("body_System");
-    
-    String whereBS="", whereMod="";
-    
-    if(!modality.equalsIgnoreCase("all")){
-        whereMod=" AND rpm.modality_cd='"+modality+"' ";
-    }
-    
-    if(!body_System.equalsIgnoreCase("all")){
-        whereBS=" AND rpm.body_system_cd='"+body_System+"' ";
-    }
+     String cat_cd = request.getParameter("cat_cd");
+     String cat_name = request.getParameter("cat_name");
     
     Conn con = new Conn();
     
@@ -30,27 +19,23 @@
     String newdate = DateTimeFormatter.ofPattern("dd/MM/yyyy").format(localDate);
     String hfc_logo = "SELECT logo FROM adm_health_facility WHERE hfc_cd='" + hfc_cd + "'";
     ArrayList<ArrayList<String>> logo = con.getData(hfc_logo);
-                                        
-    String sql = "SELECT rpm.body_system_cd,rbs.body_system_name,rpm.modality_cd,rm.modality_name,rpm.ris_procedure_name,rpm.selling_price,rpm.buying_price,rpm.quantity,rpm.status, rpm.ris_procedure_cd "
-            + "FROM ris_procedure_master rpm "
-            + "JOIN ris_body_system rbs on rpm.body_system_cd = rbs.body_system_cd AND rbs.hfc_cd = rpm.hfc_cd "
-            + "JOIN ris_modality rm on rpm.hfc_cd = rm.hfc_cd AND rpm.modality_cd = rm.modality_cd "
-            + "WHERE rpm.hfc_cd = '" + hfc_cd + "' "+whereBS+whereMod;
+    
+    //                          0               1                       2           3           4           5           6
+    String sql = "SELECT procedure_cd, procedure_shortName, procedure_longName, quantity, buying_price, selling_price, status FROM opt_procedure "
+            + "WHERE hfc_cd='"+hfc_cd+"' and category_cd='"+cat_cd+"';";
     ArrayList<ArrayList<String>> dataPatientApp = con.getData(sql);
 %>
-<table id="procedure"  class="table table-striped table-bordered" cellspacing="0" width="100%">
+<h3 id="leTitle">List of Procedure under <%=cat_name%> Category </h3>
+<table id="theProcedureTable"  class="table table-striped table-bordered" cellspacing="0" width="100%">
     <thead>
         <tr>
-            <th >Body System Code</th>
-            <th >Body System Name</th>
-            <th >Modality Code</th>
-            <th >Modality Name</th>	 
-            <th >Procedure Code</th>
-            <th >Procedure Name</th>
-            <th >Selling Price</th>
-            <th >Buying Price</th>
-            <th> Quantity</th>
-            <th> Status</th>
+            <th>Procedure Code</th>
+            <th>Procedure Name</th>
+            <th>Procedure Complete Name</th>
+            <th>Quantity</th>
+            <th>Buying Price (RM)</th>
+            <th>Selling Price (RM)</th>
+            <th>Status</th>
         </tr>
     </thead>
     <tbody>
@@ -58,7 +43,7 @@
         <%
             for (int i = 0; i < dataPatientApp.size(); i++) {
                 String tempStatus = "Active";
-                if(dataPatientApp.get(i).get(8).equalsIgnoreCase("1")){
+                if(dataPatientApp.get(i).get(6).equalsIgnoreCase("1")){
                     tempStatus = "Inactive";
                 }
         %>
@@ -67,11 +52,8 @@
             <td><%=dataPatientApp.get(i).get(1)%></td>
             <td><%=dataPatientApp.get(i).get(2)%></td>
             <td><%=dataPatientApp.get(i).get(3)%></td>
-            <td><%=dataPatientApp.get(i).get(9)%></td>
             <td><%=dataPatientApp.get(i).get(4)%></td>
             <td><%=dataPatientApp.get(i).get(5)%></td>
-            <td><%=dataPatientApp.get(i).get(6)%></td>
-            <td><%=dataPatientApp.get(i).get(7)%></td>
             <td><%=tempStatus%></td>
         </tr>
         <%
@@ -85,7 +67,7 @@
 
     $(document).ready(function () {
        
-        $('#procedure').DataTable({
+        $('#theProcedureTable').DataTable({
             pageLength: 15,
             dom: 'Bfrtip',
             buttons: [
@@ -98,7 +80,7 @@
                                 .css('font-size', '10pt')
                                 .prepend(
                                         '<div class="logo-hfc asset-print-img" style="z-index: 0; top: 0px; opacity: 1.0;">\n\
-        <img src="<%=logo.get(0).get(0)%>" style="text-align: center; height: 100%; " /></div> <div class="mesej">List of Code Procedure</div>\n\
+        <img src="<%=logo.get(0).get(0)%>" style="text-align: center; height: 100%; " /></div> <div class="mesej">'+$("#leTitle").text()+'</div>\n\
         <div class="info_kecik">\n\
         <dd>Date: <strong><%=newdate%></strong></dd>\n\
         <dd>Report No: <strong><%=newdate%></strong></dd>\n\
@@ -112,7 +94,11 @@
                                 .append('<div style="text-align: center;padding-top:30px;"><br> ***** &nbsp;&nbsp;  End Of Report  &nbsp;&nbsp;  ***** </div>');
                     },
                     exportOptions: {
-                        columns: ':visible'
+                        columns: ':visible',
+                        modifier: { 
+                            search: 'applied',
+                            order: 'current'
+                        }
                     }
                 },
                 {

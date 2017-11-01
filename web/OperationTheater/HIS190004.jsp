@@ -36,7 +36,7 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div  class="thumbnail">
-                                <h3 style="margin: 0px;">Completed Order List</h3>
+                                <h3 style="margin: 0px;">Billing List</h3>
                                 <hr class="pemisah" />
                                 <div id="CompleteOrderListMain">
 
