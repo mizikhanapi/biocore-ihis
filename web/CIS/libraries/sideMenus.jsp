@@ -16,7 +16,7 @@
     <ul id="menu-content" class="nav nav-sidebar">
         <!-- // menu tanpa dropdown -->
         <li><a id="btnCIS_MAIN_QUEUE"><i class="fa fa-users fa-lg"></i> Queue</a></li>
-        <li><a id="searchBtn"><i class="fa fa-search fa-lg"></i> View Life Time Health Record</a></li>
+        <li><a id="searchBtn"><i class="fa fa-search fa-lg"></i> View Visit History</a></li>
         <li><a id="btnAnalysePatient"><i class="fa fa-bar-chart-o fa-lg"></i> Analyse Patient</a></li>
         <li><a href="../QMS/"><i class="fa fa-gear fa-lg"></i> Second Opinion</a></li>
         <li class="hidden"><a id="settingBtn"><i class="fa fa-gear fa-lg"></i> Setting</a></li>

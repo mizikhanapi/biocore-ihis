@@ -142,7 +142,7 @@
                                 <div class="col-md-12">
                                     <div class="input-group">
                                         <span class="input-group-btn">
-                                            <button type="button" class="btn btn-default btn-number" disabled="disabled" data-type="minus" data-field="quant[1]">
+                                            <button type="button" class="btn btn-default btn-number" disabled="disabled" data-type="minus" data-field="quant[2]">
                                                 <span class="glyphicon glyphicon-minus"></span>
                                             </button>
                                         </span>
@@ -162,7 +162,7 @@
                             <div class="form-group">
                                 <label class="col-md-12 control-label" for="textinput"></label>
                                 <div class="col-md-12">
-<!--                                    <img src="lib/Pupil-Scale-(mm).jpg" alt="" style="width: 100%;" />-->
+                                    <img src="img/Pupil-Scale-(mm).jpg" alt="" style="width: 100%;" />
                                     <p style="text-align: center; font-weight: 500; margin-bottom: 0px;">Pupil Scale<br/>(mm)</p>
                                 </div>
                             </div>

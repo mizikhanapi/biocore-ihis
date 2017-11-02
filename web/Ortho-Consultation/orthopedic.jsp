@@ -70,12 +70,12 @@
 
 
                     <script>
-                        $('#blood_pressure').on('click', '.blood_pressure', function () {
-                            $("#neuAssessment2").load("../Ortho-Consultation/modal/neuAssessment.jsp");
-                            //$('#actionPE').hide();
-                            //$('#updatePE').hide();
-                            //$('#ortho_physical_exam').show();
-                        });
+//                        $('#blood_pressure').on('click', '.blood_pressure', function () {
+//                            $("#neuAssessment2").load("../Ortho-Consultation/modal/neuAssessment.jsp");
+//                            //$('#actionPE').hide();
+//                            //$('#updatePE').hide();
+//                            //$('#ortho_physical_exam').show();
+//                        });
                     </script>
                 </div>
                 <!-- content -->

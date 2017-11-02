@@ -4,13 +4,15 @@
  * and open the template in the editor.
  */
 
-$('.btn-number').click(function (e) {
+$('.btn-number').off('click').on('click', function (e) {
     e.preventDefault();
-
+   
     fieldName = $(this).attr('data-field');
     type = $(this).attr('data-type');
-    var input = $("input[name='" + fieldName + "']");
+//    var input = $("input[name='" + fieldName + "']");
+    var input = $(this).closest('.modal-body').find("input[name='" + fieldName + "']");
     var currentVal = parseInt(input.val());
+    
     if (!isNaN(currentVal)) {
         if (type == 'minus') {
 
@@ -31,6 +33,7 @@ $('.btn-number').click(function (e) {
             }
 
         }
+        
     } else {
         input.val(0);
     }
