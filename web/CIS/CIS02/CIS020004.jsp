@@ -81,9 +81,22 @@
         $('#updateRR').hide();
         $(document).ready(function(){
             $(".rr-rate-input").on('keyup keydown',function(){
+                var input = this;
                 if ($(this).val().length > 3){
                     bootbox.alert("Enter the correct Respiratory rate");
                     $(this).val('');
+                }
+                else if(input.validity.stepMismatch || isNaN(this.value)){
+                    bootbox.alert("Enter whole number only.");
+                    $(this).val(''); 
+                }
+                else if(!input.checkValidity()){
+                    bootbox.alert(input.validationMessage);
+                    $(this).val('');
+                }
+                else{
+                    var intNum = parseInt(this.value.replace(/[^0-9\.]/g, ''), 10);
+                    $(this).val(intNum);
                 }
             });
         });

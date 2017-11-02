@@ -25,7 +25,7 @@
 
       
                         <div class="form-group">
-                            <input type="number" name="OSat" id="OSat" class="form-control input-lg" placeholder="Oxygen Saturation" tabindex="4" >
+                            <input type="number" min="0" max="99.9" step="0.1" name="OSat" id="OSat" class="form-control input-lg" placeholder="Oxygen Saturation" tabindex="4" >
                             <input type="hidden" name="idOS" id="idOS" class="form-control input-lg" tabindex="4">
                         </div>
 
@@ -69,10 +69,19 @@
         $(document).ready(function(){
             $('#updateOS').hide();
             $("#OSat").on('keyup keydown',function(){
-                 if ($(this).val().length > 3){
+                 if ($(this).val().length > 4){
                     bootbox.alert("Enter the correct Oxygen saturation");
                     $(this).val('');
                 }
+                else if(this.validity.stepMismatch){
+                    bootbox.alert("Enter number with one decimal place only.");
+                    $(this).val('');
+                }
+                else if(!this.checkValidity()){
+                    bootbox.alert(this.validationMessage);
+                    $(this).val('');
+                }
+                
             });
         })
         </script>

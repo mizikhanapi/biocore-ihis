@@ -351,6 +351,20 @@
                 });
             })(jQuery);
             
+            $(function(){
+                $('.BP-class').attr({
+                    min:"0",
+                    max:"300",
+                    step:"1"
+                });
+                
+                $('.rr-rate-input').attr({
+                    min:"0",
+                    max:"300",
+                    step:"1"
+                });
+            });
+            
             $('#menu-content #linkOng').on('click',function(){
                 console.log('xxx');
                 getGra();

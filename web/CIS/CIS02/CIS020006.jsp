@@ -86,12 +86,17 @@
         });
         
         $('#BTemp').on('keyup',function(){
-           
+            var intNum = parseInt(this.value);
             var value = $(this).val();
              if(value.length > 3){
                 bootbox.alert("Please enter the correct Body Temperature");
                 $(this).val('');
-             }else{
+             }
+             else if(intNum<0 || intNum>100){
+                 bootbox.alert("Value for temperature must be within the range 0 - 100");
+                 $(this).val('');
+             }
+             else{
                   $("#slider").slider("value", parseInt(value));
              }
            
