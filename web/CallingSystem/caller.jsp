@@ -41,9 +41,9 @@
     String sql = "SELECT Id,cs_patient_name,cs_queue_no,cs_queue_name,cs_callingtime,cs_room_no FROM qcs_calling_system_queue";
     String fullSql = "";
     if (filterType.equalsIgnoreCase("0")) {
-        fullSql = sql + " WHERE " + hfccd_str + discp_str + subdi_str + " and cs_callingtime > 0 order by id asc limit 1";
+        fullSql = sql + " WHERE " + hfccd_str + discp_str + subdi_str + " and cs_callingtime > 0 and date(cs_datetime) = date(curdate()) order by id asc limit 1";
     } else {
-        fullSql = sql + " WHERE " + hfccd_str + discp_str + " and cs_callingtime > 0 order by id asc limit 1";
+        fullSql = sql + " WHERE " + hfccd_str + discp_str + " and cs_callingtime > 0 and date(cs_datetime) = date(curdate()) order by id asc limit 1";
     }
     Query q = new Query();
     //ArrayList<Calling_system_bean> d = q.getQueryCallingSystem(sql);
@@ -59,7 +59,7 @@
     <span style="display: block; font-size: 26px; letter-spacing: .14em; margin-bottom: -10px; font-weight: 300;"><%out.print(tarikh.format(datenow));%></span>
     <%out.print(masa.format(datenow));%>&nbsp;<%out.print(formate.format(datenow));%>
 </p>
-<table class="table table-hover" style="text-transform: uppercase; font-weight: 500; margin-top:-30px;" id="callerTable">
+<table class="table table-hover" style="text-transform: uppercase; font-weight: 500; margin-top:-30px;overflow-y: scroll;" id="callerTable">
 
     <tbody>
         <%            if (d.size() > 0) {
