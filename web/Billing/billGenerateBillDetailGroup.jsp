@@ -225,7 +225,7 @@
     </div>
 </div>
 
-            
+
 <hr/>
 
 
@@ -360,7 +360,7 @@
     </div>
 </div>
 
-            
+
 <br>
 
 
@@ -403,10 +403,10 @@
     <div class="col-lg-4 pull-left" style="margin-bottom: 10px; ">
         <input id="grandTotal" type="hidden" value="<%=df.format(grandTotal)%>">
         <input id="dataBillDetailsOrderListGrandTotalValuehidden" type="hidden" value="">
-        <button id="btnViewBillGenereteBillDetailsGroupCancelBtn" class="btn btn-warning" style="float: left;"><i class="fa fa-times fa-lg" aria-hidden="true"></i>&nbsp; Cancel</button>
+        <button id="btnViewBillGenereteBillDetailsGroupCancelBtn" class="btn btn-warning" style="float: left;"><i class="fa fa-times-circle-o fa-lg" aria-hidden="true"></i>&nbsp; Cancel Bill &nbsp;</button>
     </div>
     <div class="col-lg-8 pull-right" style="margin-bottom: 10px; ">
-        <button id="btnViewBillGenereteBillDetailsGroupConfirmBtn" class="btn btn-success" style="float: right; margin-right: 10px;" > <i class="fa fa-check fa-lg" aria-hidden="true"></i>&nbsp; Confirm</button>
+        <button id="btnViewBillGenereteBillDetailsGroupConfirmBtn" class="btn btn-success" style="float: right; margin-right: 10px;" > <i class="fa fa-check-square-o fa-lg" aria-hidden="true"></i>&nbsp; Confirm Bill &nbsp;</button>
     </div>
 </div>
 

@@ -51,8 +51,10 @@
 
 <script>
 
-// Disabling Start And End Date OnLoad
+
+    // Disabling Start And End Date OnLoad
     $("#BILL_MasterOrderSelectAssessmentStartEnd").hide();
+
 
 // ---------------------------------------------------------------------------- Date ------------------------------------------------------------------------------------------- //
 
@@ -73,7 +75,9 @@
     $('#BILL_MasterOrderSelectAssessmentStart').on('change', function () {
 
         $("#BILL_MasterOrderSelectAssessmentEnd").datepicker("destroy");
+
         $('#BILL_MasterOrderSelectAssessmentEnd').val('');
+
         var fromDate = $("#BILL_MasterOrderSelectAssessmentStart").datepicker("getDate");
 
         $('#BILL_MasterOrderSelectAssessmentEnd').datepicker({
@@ -105,17 +109,23 @@
 // ---------------------------------------------------------------------------- Date On Change ------------------------------------------------------------------------------------------- //
 
 
+    // Load Date Input For Range Start
     $('#billMasterOrderListMain').on('change', '#BILL_MasterOrderRefreshSelect', function (e) {
 
         var process = $('#BILL_MasterOrderRefreshSelect').val();
 
         if (process === "custom") {
+
             $("#BILL_MasterOrderSelectAssessmentStartEnd").show();
+
         } else {
+
             $("#BILL_MasterOrderSelectAssessmentStartEnd").hide();
+
         }
 
     });
+    // Load Date Input For Range End
 
 
 // ---------------------------------------------------------------------------- Date On Change ------------------------------------------------------------------------------------------- //
@@ -126,6 +136,7 @@
 // --------------------------------------------------------------- Load Data In Master Table --------------------------------------------------------------- //
 
 
+    // Load Master Start
     $('#billMasterOrderListMain').off('click', '#BILL_MasterOrderRefreshBtn').on('click', '#BILL_MasterOrderRefreshBtn', function (e) {
 
         $('#billMasterOrderListContent').html('<div class="loading">Loading</div>');
@@ -144,15 +155,25 @@
         todayDate = yy + "-" + mm + "-" + dd;
 
         if (process === "today") {
+
             longString = "today|" + todayDate;
+
         } else if (process === "yesterday") {
+
             longString = "yesterday|" + todayDate;
+
         } else if (process === "7day") {
+
             longString = "7day|" + todayDate;
+
         } else if (process === "30day") {
+
             longString = "30day|" + todayDate;
+
         } else if (process === "60day") {
+
             longString = "60day|" + todayDate;
+
         } else if (process === "custom") {
 
             var strtDate = $('#BILL_MasterOrderSelectAssessmentStart').val();
@@ -167,13 +188,16 @@
             longString = "custom|" + SnewDate + "^" + EnewDate;
 
         } else if (process === "all") {
+
             longString = "all|" + todayDate;
+
         }
 
 
         var data = {
             longString: longString
         };
+
 
         console.log(data);
 
@@ -183,18 +207,25 @@
             url: "billMasterOrderListTable.jsp",
             data: data,
             success: function (data, textStatus, jqXHR) {
+
                 $('#billMasterOrderListContent').html(data);
+
             },
             error: function (jqXHR, textStatus, errorThrown) {
+
                 bootbox.alert('Opps! ' + errorThrown);
+
             },
             complete: function (jqXHR, textStatus) {
+
                 $('.loading').hide();
+
             }
 
         });
 
     });
+    // Load Master End
 
 
 // --------------------------------------------------------------- Load Data In Master Table --------------------------------------------------------------- //
@@ -217,7 +248,7 @@
 // --------------------------------------------------------------- Load Data In Details Table --------------------------------------------------------------- //
 
 
-// Move to Order Details Fetch Details Start
+    // Move to Order Details Fetch Details Start
     $('#billMasterOrderListContent').off('click', '#billMasterOrderListTable #moveToBillDetailsTButton').on('click', '#billMasterOrderListTable #moveToBillDetailsTButton', function (e) {
 
         $('<div class="loading">Loading</div>').appendTo('body');
@@ -254,7 +285,7 @@
 
 
     });
-// Move to Order Details Fetch Details End
+    // Move to Order Details Fetch Details End
 
 
 // --------------------------------------------------------------- Load Data In Details Table --------------------------------------------------------------- //
@@ -265,16 +296,16 @@
 // --------------------------------------------------------------- Generate Individual Bill View Function --------------------------------------------------------------- //
 
 
+    // Generate Single Bill Function Start
     $('#billDetailOrderDetailContent').off('click', '#billDetailOrderListTable #generateBillDetailSingleRecordBtn').on('click', '#billDetailOrderListTable #generateBillDetailSingleRecordBtn', function (e) {
 
         e.preventDefault();
-
-        $('<div class="loading">Loading</div>').appendTo('body');
 
 
         var row = $(this).closest("tr");
         var rowData = row.find("#dataBillDetailsOrderListhidden").val();
         var arrayData = rowData.split("|");
+
 
         var orderNo = arrayData[7];
         var pmiNo = arrayData[0];
@@ -284,6 +315,7 @@
         var address = arrayData[4];
         var phoneNo = arrayData[5];
         var otherID = arrayData[3];
+
 
         var data = {
             orderNo: orderNo,
@@ -296,25 +328,61 @@
             txtDate: txtDate
         };
 
+
         console.log(data);
 
-        $.ajax({
-            url: "billGenerateBillDetailSingle.jsp",
-            type: "post",
-            data: data,
-            timeout: 10000,
-            success: function (data) {
 
-                $('#billDetailOrderDetailContent').html(data);
-                $('.loading').hide();
 
+        bootbox.confirm({
+            message: "Are you sure that you want to generate bill for the selected record ?",
+            title: "Archive Order ?",
+            buttons: {
+                confirm: {
+                    label: 'Yes',
+                    className: 'btn-success'
+                },
+                cancel: {
+                    label: 'No',
+                    className: 'btn-danger'
+                }
             },
-            error: function (err) {
+            callback: function (result) {
+
+                if (result === true) {
+
+                    $('<div class="loading">Loading</div>').appendTo('body');
+
+                    $.ajax({
+                        url: "billGenerateBillDetailSingle.jsp",
+                        type: "post",
+                        data: data,
+                        timeout: 10000,
+                        success: function (data) {
+
+                            $('#billDetailOrderDetailContent').html(data);
+                            $('.loading').hide();
+
+                        },
+                        error: function (err) {
+
+                        }
+                    });
+
+
+
+                } else {
+
+                    console.log("Process Is Canceled");
+
+                }
+
             }
         });
 
 
+
     });
+    // Generate Single Bill Function End
 
 
 // --------------------------------------------------------------- Generate Individual Bill View Function --------------------------------------------------------------- //
@@ -325,6 +393,7 @@
 // --------------------------------------------------------------- Generate Individual Bill Confirm Function --------------------------------------------------------------- //
 
 
+    // Generate Single Bill Confirm Function Start
     $('#billDetailOrderDetailContent').off('click', '#viewBillGenereteBillDetailsButtonRightDiv #btnViewBillGenereteBillDetailsConfirmBtn').on('click', '#viewBillGenereteBillDetailsButtonRightDiv #btnViewBillGenereteBillDetailsConfirmBtn', function (e) {
 
         e.preventDefault();
@@ -335,6 +404,7 @@
         var txnDate = document.getElementById('txnDate').value;
         var patientName = document.getElementById('patientName').value;
         var grandTotal = document.getElementById('grandTotal').value;
+
         var tableItem;
         tableItem = new Array();
 
@@ -347,6 +417,7 @@
                 , "totalPrice": $(tr).find('td:eq(4)').text()
             };
         });
+
         tableItem.shift();  // first row will be empty - so remove
         tableItem = JSON.stringify(tableItem);
 
@@ -396,6 +467,7 @@
                             $('.loading').hide();
 
                             if (d[1] === "1") {
+
                                 $('#btnViewBillGenereteBillDetailsCancelBtn').prop('disabled', true);
                                 $('#btnViewBillGenereteBillDetailsConfirmBtn').prop('disabled', true);
 
@@ -403,6 +475,8 @@
                                 document.getElementById('messageContent').innerHTML = "Bill created.";
 
                                 $("#alertMessage").modal();
+
+                                resetTableBillMasterOrderList();
 
                                 $('.nav-tabs a[href="#tab_default_1"]').tab('show');
 
@@ -417,11 +491,14 @@
 
                         },
                         error: function (err) {
+
                         }
                     });
 
                 } else {
+
                     console.log("Process Is Canceled");
+
                 }
 
             }
@@ -432,6 +509,7 @@
 
 
     });
+    // Generate Single Bill Confirm Function End
 
 
 // --------------------------------------------------------------- Generate Individual Bill Confirm Function --------------------------------------------------------------- //
@@ -442,6 +520,7 @@
 // --------------------------------------------------------------- Generate Individual Bill Cancel Function --------------------------------------------------------------- //
 
 
+    // Generate Single Bill Cancel Function Start
     $('#billDetailOrderDetailContent').off('click', '#viewBillGenereteBillDetailsButtonRightDiv #btnViewBillGenereteBillDetailsCancelBtn').on('click', '#viewBillGenereteBillDetailsButtonRightDiv #btnViewBillGenereteBillDetailsCancelBtn', function (e) {
 
         e.preventDefault();
@@ -449,6 +528,7 @@
         location.reload();
 
     });
+    // Generate Single Bill Cancel Function End
 
 
 // --------------------------------------------------------------- Generate Individual Bill Cancel Function --------------------------------------------------------------- //
@@ -460,7 +540,9 @@
 // --------------------------------------------------------------- Generate Group Bill View Function --------------------------------------------------------------- //
 
 
+    // Generate Group Bill View Function Start
     $('#billDetailOrderDetailContent').off('click', '#viewBillGenereteBillMasterButtonRightDiv #btnViewBillGenereteBillMasterGenerateSelected').on('click', '#viewBillGenereteBillMasterButtonRightDiv #btnViewBillGenereteBillMasterGenerateSelected', function (e) {
+
         e.preventDefault();
 
 
@@ -469,6 +551,7 @@
         var table = $("#billDetailOrderListTable tbody");
 
         var masterPMIANDIC = $('#viewBillGenereteBillMasterButtonRightDivPMIPatientHidden').val();
+
         var arrayData = masterPMIANDIC.split("|");
         var pmiNoDetail = arrayData[1];
         var icNoDetail = arrayData[0];
@@ -487,12 +570,14 @@
             orderNo = $tds.eq(2).text();
             pmiNo = $tds.eq(3).text();
             ic = $tds.eq(4).text();
+
             var icData = ic.split(" / ");
             var icNew = icData[0];
 
             if (billChecked === true) {
 
                 generateBillOrderList.push(pmiNo + "^" + orderNo + "^" + episodeDate + "^" + icNew);
+
                 longString = generateBillOrderList.join("|");
 
             }
@@ -502,7 +587,9 @@
         console.log(longString);
 
         if (longString === "") {
+
             bootbox.alert("Please Select At Least A Record To Generate The Billing Details !");
+
         } else {
 
             bootbox.confirm({
@@ -552,7 +639,9 @@
 
 
                     } else {
+
                         console.log("Process Is Canceled");
+
                     }
 
                 }
@@ -562,6 +651,7 @@
         }
 
     });
+    // Generate Group Bill View Function End
 
 
 // --------------------------------------------------------------- Generate Group Bill View Function --------------------------------------------------------------- //
@@ -574,6 +664,7 @@
 // --------------------------------------------------------------- Generate Group Bill Confirm Function --------------------------------------------------------------- //
 
 
+    // Generate Group Bill Confirm Function Start
     $('#billDetailOrderDetailContent').off('click', '#viewBillGenereteBillDetailsGroupButtonRightDiv #btnViewBillGenereteBillDetailsGroupConfirmBtn').on('click', '#viewBillGenereteBillDetailsGroupButtonRightDiv #btnViewBillGenereteBillDetailsGroupConfirmBtn', function (e) {
 
         e.preventDefault();
@@ -584,6 +675,7 @@
         var txnDate = document.getElementById('txnDate').value;
         var patientName = document.getElementById('patientName').value;
         var grandTotal = document.getElementById('grandTotal').value;
+
         var tableOrder = "";
 
         var table = $("#tableMasterItems tbody");
@@ -603,13 +695,16 @@
             masterItemAmnt = $tds.eq(3).text();
             masterItemQuantity = $tds.eq(4).text();
 
-            generateMasterBillDetailsList.push(masterOrderNo + "^" + masterEpisodeDate + "^" + masterItemDesc + "^" + masterItemAmnt+ "^" + masterItemQuantity);
+            generateMasterBillDetailsList.push(masterOrderNo + "^" + masterEpisodeDate + "^" + masterItemDesc + "^" + masterItemAmnt + "^" + masterItemQuantity);
+
             tableOrder = generateMasterBillDetailsList.join("|");
 
         });
 
         var tableItem;
+
         tableItem = new Array();
+
         $('#listOfItems #tableItems tr').each(function (row, tr) {
             tableItem[row] = {
                 "itemOrderNo": $(tr).find('td:eq(0)').text()
@@ -621,6 +716,7 @@
                 , "totalPrice": $(tr).find('td:eq(6)').text()
             };
         });
+
         tableItem.shift();  // first row will be empty - so remove
         tableItem = JSON.stringify(tableItem);
 
@@ -671,6 +767,7 @@
                             $('.loading').hide();
 
                             if (d[1] === "1") {
+
                                 $('#btnViewBillGenereteBillDetailsGroupCancelBtn').prop('disabled', true);
                                 $('#btnViewBillGenereteBillDetailsGroupConfirmBtn').prop('disabled', true);
 
@@ -678,6 +775,8 @@
                                 document.getElementById('messageContent').innerHTML = "Bill created.";
 
                                 $("#alertMessage").modal();
+
+                                resetTableBillMasterOrderList();
 
                                 $('.nav-tabs a[href="#tab_default_1"]').tab('show');
 
@@ -692,12 +791,16 @@
 
                         },
                         error: function (err) {
+
                         }
                     });
 
                 } else {
+
                     console.log("Process Is Canceled");
+
                 }
+
 
             }
         });
@@ -707,6 +810,7 @@
 
 
     });
+    // Generate Group Bill Confirm Function End
 
 
 // --------------------------------------------------------------- Generate Group Bill Confirm Function --------------------------------------------------------------- //
@@ -716,15 +820,10 @@
 
 
 
-
-
-
-
-
-
 // --------------------------------------------------------------- Generate Group Bill Cancel Function --------------------------------------------------------------- //
 
 
+    // Generate Group Bill Cancel Function Start
     $('#billDetailOrderDetailContent').off('click', '#viewBillGenereteBillDetailsGroupButtonRightDiv #btnViewBillGenereteBillDetailsGroupCancelBtn').on('click', '#viewBillGenereteBillDetailsGroupButtonRightDiv #btnViewBillGenereteBillDetailsGroupCancelBtn', function (e) {
 
         e.preventDefault();
@@ -732,12 +831,48 @@
         location.reload();
 
     });
+    // Generate Group Bill Cancel Function End
 
 
 // --------------------------------------------------------------- Generate Group Bill Cancel Function --------------------------------------------------------------- //
 
 
 
+
+
+
+
+// --------------------------------------------------------------- Generate Bill Reset Table Function --------------------------------------------------------------- //
+
+
+
+    // Reset Function for Table Start
+    function resetTableBillMasterOrderList() {
+
+        $("#billMasterOrderListContent").html('<table class="table table-bordered" id="billMasterOrderListTable" style="width: 100%">\n\
+                        <thead>\n\
+                             <th style="text-align: left;">PMI No.</th>\n\
+                             <th style="text-align: left;">Name</th>\n\
+                             <th style="text-align: left;">IC No.</th>\n\
+                             <th style="text-align: left;">Other ID</th>\n\
+                             <th style="text-align: left;">Address</th>\n\
+                             <th style="text-align: left;">Phone No.</th>\n\
+                        </thead>\n\
+                        <tbody>\n\
+                            <tr>\n\
+                                <td colspan="6" align="center">No Record To Show<br>Please Select Correct Filter And Press Refresh Button</td>\n\
+                            </tr> \n\
+                        </tbody>\n\
+                    </table>');
+
+        $('#freqObservationChartSelectAssessment').prop('selectedIndex', 0);
+
+    }
+    // Reset Function for Table End
+
+
+
+// --------------------------------------------------------------- Generate Bill Reset Table Function --------------------------------------------------------------- //
 
 
 

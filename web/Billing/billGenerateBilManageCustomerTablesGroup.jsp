@@ -75,9 +75,9 @@
 
         //Insert to far_customer_hdr
         String sql2 = "INSERT into far_customer_hdr(customer_id, bill_no, txn_date, item_desc, item_amt, quantity, location, order_no, payment, amt_paid, "
-                + " hfc_cd, discipline_cd, subdiscipline_cd, status,created_by, created_date, txn_type) "
+                + " hfc_cd, discipline_cd, subdiscipline_cd, status,created_by, created_date, txn_type, amt_given, amt_change) "
                 + "VALUES('" + pmiNo + "','" + billNo + "','" + txnDate + "','" + "" + "','" + grandTotal + "','" + totalItemQuantity + "','" + hfc_cd + "','" + orderNo + "',"
-                + " 'Unpaid','0','" + hfc_cd + "','" + dis_cd + "','" + sub_cd + "','0','" + userId + "',now(),'-')";
+                + " 'Unpaid','0','" + hfc_cd + "','" + dis_cd + "','" + sub_cd + "','0','" + userId + "',now(),'-','0','0')";
         Conn.setData(sql2);
 
         
