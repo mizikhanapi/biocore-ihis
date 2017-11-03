@@ -326,7 +326,7 @@
             $('#freqObservationChartModal_btnAdd_or_btnUpdate_div').html('<button type="button" class="btn btn-success btn-block btn-lg" id="frequentObservationAddModalBtn" role="button">Add Items</button>');
 
             $('#freqObservationChartModalForm')[0].reset();
-            
+
             $('#freqObservationChartModalDrugGiven').val('');
 
             var val = $('#freqObservationChartModalDrugGiven').val().trim();
@@ -390,9 +390,17 @@
 
 
             if (date === null || date === "") {
+
                 bootbox.alert("Please Insert Assessment Date !!");
+
+                removeRestrictionForModal();
+
             } else if (time === null || time === "") {
+
                 bootbox.alert("Please Insert Assessment Time !!");
+
+                removeRestrictionForModal();
+
             } else {
 
                 var datas = pmi_no + "|" + hfc_cd1 + "|" + epDate + "|" + encounterDate + "|" + newDate + " " + time + ":00.0|" +
@@ -739,6 +747,21 @@
 
 
 // ---------------------------------------------------------------------------- Date ------------------------------------------------------------------------------------------- //
+
+
+
+
+
+// ---------------------------------------------------------------------------- Modal Restriction ------------------------------------------------------------------------------------------- //
+
+
+        function removeRestrictionForModal() {
+
+            $('#ong-freqObservationChart').css('overflow', 'auto');
+
+        }
+
+// ---------------------------------------------------------------------------- Modal Restriction ------------------------------------------------------------------------------------------- //
 
 
     });
