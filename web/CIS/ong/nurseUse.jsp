@@ -394,17 +394,41 @@
 
 
             if (date === null || date === "") {
+
                 bootbox.alert("Please Insert Assessment Date !!");
+
+                removeRestrictionForModal();
+
             } else if (time === null || time === "") {
+
                 bootbox.alert("Please Insert Assessment Time !!");
+
+                removeRestrictionForModal();
+
             } else if (supplyOne !== "" && supplyOneDispensedBy === "") {
+
                 bootbox.alert("Please Fill The Dispensed By For The Supply One !!");
+
+                removeRestrictionForModal();
+
             } else if (supplyTwo !== "" && supplyTwoDispensedBy === "") {
+
                 bootbox.alert("Please Fill The Dispensed By For The Supply Two !!");
+
+                removeRestrictionForModal();
+
             } else if (supplyOne === "" && supplyOneDispensedBy !== "") {
+
                 bootbox.alert("Please Fill The Dispensed Quantity For The Supply One !!");
+
+                removeRestrictionForModal();
+
             } else if (supplyTwo === "" && supplyTwoDispensedBy !== "") {
+
                 bootbox.alert("Please Fill The Dispensed Quantity For The Supply Two !!");
+
+                removeRestrictionForModal();
+
             } else {
 
                 var datas = pmi_no + "|" + hfc_cd1 + "|" + epDate + "|" + encounterDate + "|" + newDate + " " + time + ":00.0|" +
@@ -1054,10 +1078,18 @@
             var epDate = episodeDate;
 
 
-            if (date === null || date === "") {
+            if (detailDate === null || detailDate === "") {
+
                 bootbox.alert("Please Insert Assessment Date !!");
-            } else if (time === null || time === "") {
+
+                removeRestrictionForModal();
+
+            } else if (detailTime === null || detailTime === "") {
+
                 bootbox.alert("Please Insert Assessment Time !!");
+
+                removeRestrictionForModal();
+
             } else {
 
                 var datas = pmi_no + "|" + hfc_cd1 + "|" + epDate + "|" + encounterDate + "|" + newDate + " " + time + ":00.0|" +
@@ -1290,7 +1322,28 @@
 
 // ---------------------------------------------------------------------------- Date ------------------------------------------------------------------------------------------- //
 
+
+
+
+
+// ---------------------------------------------------------------------------- Modal Restriction ------------------------------------------------------------------------------------------- //
+
+
+        function removeRestrictionForModal() {
+
+            $('#ong-nurseryUseMaster').css('overflow', 'auto');
+            $('#ong-nurseryUseDetail').css('overflow', 'auto');
+
+        }
+
+// ---------------------------------------------------------------------------- Modal Restriction ------------------------------------------------------------------------------------------- //
+
+
+
     });
+
+
+
 
 
 
