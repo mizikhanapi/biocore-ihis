@@ -26,14 +26,16 @@
 
 <table class="table table-filter table-striped table-bordered dt-head-right" style="background: #fff; border: 1px solid #ccc; width: 100%; text-align: center" id="risManageDiagnosisListTable">
     <thead>
-    <th style="display: none;text-align: left;">PMI NO</th>
-    <th style="text-align: left; width: 5%">HFC CODE</th>
-    <th style="text-align: left; width: 15%">EPISODE DATE</th>
-    <th style="text-align: left; width: 15%">ENCOUNTER DATE</th>
-    <th style="text-align: left; width: 15%">DIAGNOSIS CODE</th>
-    <th style="text-align: left; width: 25%">DIAGNOSIS DESCRIPTION</th>
-    <th style="text-align: left; width: 25%">COMMENT</th>
-</thead>
+        <tr>
+            <th style="display: none;text-align: left;">PMI NO</th>
+            <th style="text-align: left; width: 5%">HFC CODE</th>
+            <th style="text-align: left; width: 15%">EPISODE DATE</th>
+            <th style="text-align: left; width: 15%">ENCOUNTER DATE</th>
+            <th style="text-align: left; width: 15%">DIAGNOSIS CODE</th>
+            <th style="text-align: left; width: 25%">DIAGNOSIS DESCRIPTION</th>
+            <th style="text-align: left; width: 25%">COMMENT</th>
+        </tr>
+    </thead>
 <tbody>
     <%        for (int i = 0; i < dataDiagnosisList.size(); i++) {
 

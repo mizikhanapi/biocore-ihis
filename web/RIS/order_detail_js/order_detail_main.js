@@ -90,7 +90,7 @@ function loadAllergyDiagnosisOrder(orderNo, pmino) {
         timeout: 3000,
         success: function (returnAllergyTableHTML) {
             //console.log(returnAllergyTableHTML);
-            $('#risManageAllergyListTable').html(returnAllergyTableHTML);
+            $('#risManageAllergyListTableDiv').html(returnAllergyTableHTML);
 
             $.ajax({
                 url: "risManageOrderListDiagnosisTable.jsp",
@@ -99,7 +99,7 @@ function loadAllergyDiagnosisOrder(orderNo, pmino) {
                 timeout: 3000,
                 success: function (returnDiagnosisTableHTML) {
                     //console.log(returnDiagnosisTableHTML);
-                    $('#risManageDiagnosisListTable').html(returnDiagnosisTableHTML);
+                    $('#risManageDiagnosisListTableDiv').html(returnDiagnosisTableHTML);
 
                     $.ajax({
                         url: "risManageOrderListDetails.jsp",

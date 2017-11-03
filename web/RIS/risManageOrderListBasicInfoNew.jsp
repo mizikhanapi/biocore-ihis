@@ -72,7 +72,7 @@
     ALLERGY LIST
 </h5>
 
-<div id="risManageAllergyListTableDiv" class="form-group">
+<div id="risManageAllergyListTableDiv" class="form-group table-guling">
     <table class="table table-filter table-striped table-bordered" style="background: #fff; border: 1px solid #ccc; width: 100%" id="risManageAllergyListTable">
         <thead>
         <th style="display: none">PMI NO</th>
@@ -93,7 +93,7 @@
 
 <h4>Diagnosis Info</h4>
 <!--<hr/>-->
-<div id="risManageDiagnosisListTableDiv" class="form-group">
+<div id="risManageDiagnosisListTableDiv" class="form-group table-guling">
     <table class="table table-filter table-striped table-bordered" style="background: #fff; border: 1px solid #ccc; width: 100%" id="risManageDiagnosisListTable">
         <thead>
         <th style="display: none">PMI NO</th>

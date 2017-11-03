@@ -53,7 +53,7 @@
                                 <div id="risResultMain">
 
                                 </div>
-                                <div id="risResultContent">
+                                <div id="risResultContent" class="table-guling">
 
                                 </div>
                                 <%@include file="order_modal/verifyResult_modal.jsp" %>

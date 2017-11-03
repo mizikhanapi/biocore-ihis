@@ -69,12 +69,12 @@
                                                 <div id="risOrderMain">
 
                                                 </div>
-                                                <div id="risOrderListContent">
+                                                <div id="risOrderListContent" class="table-guling">
 
                                                 </div>
                                             </div>
                                             <div class="tab-pane" id="tab_default_2">
-                                                <div id="risOrderDetailContent">
+                                                <div id="risOrderDetailContent" class="table-guling">
 
                                                 </div>
                                                 <%@include file="order_modal/requestNewOrder_modal.jsp" %>

@@ -21,13 +21,15 @@
 
 <table  id="risManageOrderListTable"  class="table table-filter table-striped table-bordered table-hover" style="background: #fff; border: 1px solid #ccc; width: 100%">
     <thead>
-    <th style="text-align: left; width: 8%;">Order No.</th>
-    <th style="text-align: left; width: 10%;">PMI No.</th>
-    <th style="text-align: left; width: 40%;">Name</th>
-    <th style="text-align: left; width: 12%;">Order Date</th>
-    <th style="text-align: left;">Health Facility</th>
-    <th style="text-align: left;">Doctor's Name</th>
-</thead>
+        <tr>
+            <th style="text-align: left; width: 8%;">Order No.</th>
+            <th style="text-align: left; width: 10%;">PMI No.</th>
+            <th style="text-align: left; width: 40%;">Name</th>
+            <th style="text-align: left; width: 12%;">Order Date</th>
+            <th style="text-align: left;">Health Facility</th>
+            <th style="text-align: left;">Doctor's Name</th>
+        </tr>
+    </thead>
 <tbody>
 
 
@@ -75,7 +77,7 @@
         for (int i = 0; i < size; i++) {
     %>
 
-    <tr id="moveToRISOrderDetailsTButton" style="text-align: left; cursor: pointer;">
+    <tr id="moveToRISOrderDetailsTButton" class="clickable_tr" style="text-align: left; cursor: pointer;">
 <input id="dataRISOrderListhidden" type="hidden" value="<%=String.join("|", dataRISOrderList.get(i))%>">
 <td><%= dataRISOrderList.get(i).get(1)%></td> <!-- Order No -->
 <td><%= dataRISOrderList.get(i).get(0)%></td> <!-- PMI No -->

@@ -35,17 +35,18 @@
 
 <table class="table table-filter table-striped table-bordered dt-head-right" style="background: #fff; border: 1px solid #ccc; width: 100%; text-align: left" id="risManageOrderDetailsListTable">
     <thead>
-    <th style="display: none">Hidden</th>    
-    <th style="width: 15%">Body System</th>
-    <th style="width: 5%">Modality</th>
-    <th style="width: 5%">Procedure Code</th>
-    <th style="width: 15%">Procedure Name</th>
-    <th style="width: 20%">Requestor Instruction</th>
-    <th style="width: 5%">Exam Date</th>
-    <th style="width: 5%">Status</th>
-    <th>Actions</th>
-
-</thead>
+        <tr>
+            <th style="display: none">Hidden</th>    
+            <th style="width: 15%">Body System</th>
+            <th style="width: 5%">Modality</th>
+            <th style="width: 5%">Procedure Code</th>
+            <th style="width: 15%">Procedure Name</th>
+            <th style="width: 20%">Requestor Instruction</th>
+            <th style="width: 5%">Exam Date</th>
+            <th style="width: 5%">Status</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
 <tbody>
     <%        for (int i = 0; i < dataOrderList.size(); i++) {
             String status = dataOrderList.get(i).get(8);
