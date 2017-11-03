@@ -329,9 +329,17 @@
 
 
             if (date === null || date === "") {
+
                 bootbox.alert("Please Insert Assessment Date !!");
+
+                removeRestrictionForModal();
+
             } else if (time === null || time === "") {
+
                 bootbox.alert("Please Insert Assessment Time !!");
+
+                removeRestrictionForModal();
+
             } else {
 
                 var datas = pmi_no + "|" + hfc_cd1 + "|" + epDate + "|" + encounterDate + "|" + newDate + " " + time + ":00.0|" +
@@ -670,6 +678,22 @@
 
 
 // ---------------------------------------------------------------------------- Date ------------------------------------------------------------------------------------------- //
+
+
+
+// ---------------------------------------------------------------------------- Modal Restriction ------------------------------------------------------------------------------------------- //
+
+
+        function removeRestrictionForModal() {
+
+            $('#ong-nurseryFeedingChart').css('overflow', 'auto');
+
+        }
+
+// ---------------------------------------------------------------------------- Modal Restriction ------------------------------------------------------------------------------------------- //
+
+
+
 
 
     });
