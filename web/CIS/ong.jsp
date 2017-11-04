@@ -55,7 +55,7 @@
                         <div class="tab-pane active fade in" id="ONG_1">
                             <ul class="soap-content nav">
                                 <li><a data-toggle="modal" data-target="#ong-pDetails1" href="" class="soap-select"><i class="fa fa-comments  fa-li"></i> Gravida</a></li>
-                                <li><a data-toggle="modal" data-target="#ong-pDetails3" href=""  class="soap-select"><i class="fa fa-medkit  fa-li"></i> Previous Pregnancy</a></li>
+                                <li><a data-toggle="modal" data-target="#ong-pDetails3" href=""  class="soap-select" id="btnnewpreviouspregnancy"><i class="fa fa-medkit  fa-li"></i> Previous Pregnancy</a></li>
                             </ul>
                             <hr class="pemisah" />
                             <%@include file="ong/personalDetails.jsp"%>
@@ -207,7 +207,11 @@
             this.value = this.value.replace(/[^0-9]/g, '');
         }
     });
-
+    
+    $('#btnnewpreviouspregnancy').on('click',function(){
+       $('#btnPIpregUpdate').hide(); 
+       $('#btnPIpreg').show();
+    });
 
 </script>
 
