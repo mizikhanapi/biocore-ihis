@@ -31,6 +31,7 @@
                     <div class="row">
                         <div class="col-md-6">
                             <!-- Text input-->
+                            <input type="hidden" id="BPkeyupdate">
                             <div class="form-group">
                                 <label class="col-md-12 control-label" for="textinput">Blood Group *</label>
                                 <div class="col-md-12">
@@ -160,6 +161,7 @@
                 <div class="btn-group btn-group-justified" role="group" aria-label="group button">
                     <div class="btn-group" role="group">
                         <button type="button" class="btn btn-success btn-block btn-lg" id="btnBPAddItem" role="button">Add Items</button>
+                        <button type="button" class="btn btn-success btn-block btn-lg" id="btnBPUpdateItem" role="button">Update Items</button>
                     </div>
                     <div class="btn-group btn-delete hidden" role="group">
                         <button type="button" id="delImage" class="btn btn-default btn-block btn-lg" data-dismiss="modal" role="button">Clear</button>
@@ -186,6 +188,7 @@
                     <div class="row">
                         <div class="col-md-6">
                             <!-- Text input-->
+                            <input type="hidden" id="ANTEkeyupdate">
                             <div class="form-group">
                                 <label class="col-md-12 control-label" for="textinput">Gestation Weeks *</label>
                                 <div class="col-md-12">
@@ -225,7 +228,8 @@
                             <div class="form-group">
                                 <label class="col-md-12 control-label" for="textinput">BP</label>
                                 <div class="col-md-12">
-                                    <input type="text" class="form-control input-md singleNumbersOnly" id="anteBp" maxlength="3">
+                                    <input type="text" class="form-control input-md singleNumbersOnly" id="anteBpSystolic" maxlength="3" placeholder="systolic">
+                                    <input type="text" class="form-control input-md singleNumbersOnly" id="anteBpDiastolic" maxlength="3" placeholder="diastolic">
                                 </div>
                             </div>
                         </div>
@@ -295,6 +299,7 @@
                 <div class="btn-group btn-group-justified" role="group" aria-label="group button">
                     <div class="btn-group" role="group">
                         <button type="button" class="btn btn-success btn-block btn-lg" id="btnAnteAddItem" role="button">Add Items</button>
+                        <button type="button" class="btn btn-success btn-block btn-lg" id="btnAnteUpdateItem" role="button">Update Items</button>
                     </div>
                     <div class="btn-group btn-delete hidden" role="group">
                         <button type="button" id="delImage" class="btn btn-default btn-block btn-lg" data-dismiss="modal" role="button">Clear</button>
@@ -420,7 +425,8 @@
         var gestation_week = $('#anteGestation').val();
         var prest_lie = $('#antePrest').val();
         var ultrasound = $('#anteUltra').val();
-        var bp = $('#anteBp').val();
+        var bpSystolic = $('#anteBpSystolic').val();
+        var bpDiastolic = $('#anteBpDiastolic').val();
         var hb = $('#anteHb').val();
         var wt = $('#anteWt').val();
         var urineA = $('#anteA').val();
@@ -444,7 +450,7 @@
             var encounterDate = yy + "-" + mm + "-" + dd + " " + hh + ":" + m + ":" + ss + "." + ms;
             
             var datas2 = pmi_no + "|" + hfc_cd1;
-            var datas = datas2 + "|" + epDate + "|" + encounterDate + "|" + gestation_week + "|" + prest_lie + "|" + ultrasound + "|" + bp + "|" + hb + "|" + wt + "|" + urineA + "|" + urineS + "|" + followUp;
+            var datas = datas2 + "|" + epDate + "|" + encounterDate + "|" + gestation_week + "|" + prest_lie + "|" + ultrasound + "|" + bpSystolic + "|" + hb + "|" + wt + "|" + urineA + "|" + urineS + "|" + followUp + "|" + bpDiastolic;
 
             $.ajax({
                 type: "post",

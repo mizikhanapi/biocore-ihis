@@ -65,8 +65,8 @@
                         <!-- content -->
                         <div class="tab-pane fade" id="ONG_2">
                             <ul class="soap-content nav">
-                                <li><a data-toggle="modal" data-target="#ong-anteNatal1" href="" class="soap-select"><i class="fa fa-comments  fa-li"></i> Blood Profile</a></li>
-                                <li><a data-toggle="modal" data-target="#ong-anteNatal2" href=""  class="soap-select"><i class="fa fa-history  fa-li"></i> Care Plan</a></li>
+                                <li><a data-toggle="modal" data-target="#ong-anteNatal1" href="" class="soap-select" id="anteBPnew"><i class="fa fa-comments  fa-li"></i> Blood Profile</a></li>
+                                <li><a data-toggle="modal" data-target="#ong-anteNatal2" href=""  class="soap-select" id="anteRecordNew"><i class="fa fa-history  fa-li"></i> Care Plan</a></li>
                             </ul>
                             <hr class="pemisah" />
                             <%@include file="ong/anteNatal.jsp"%>
@@ -185,13 +185,13 @@
         getGra();
     });
 
-    $('#tabBP').on('click', function () {
-        var pmi_no = pmiNo;
-        var hfc_cd1 = hfc_cd;
-        var x = pmi_no + "|" + hfc_cd1;
-        getBP(x);
-        getAnteNatal(x);
-    });
+//    $('#tabBP').on('click', function () {
+//        var pmi_no = pmiNo;
+//        var hfc_cd1 = hfc_cd;
+//        var x = pmi_no + "|" + hfc_cd1;
+//        getBP(x);
+//        getAnteNatal(x);
+//    });
 
 
 
@@ -211,6 +211,16 @@
     $('#btnnewpreviouspregnancy').on('click',function(){
        $('#btnPIpregUpdate').hide(); 
        $('#btnPIpreg').show();
+    });
+    
+    $('#anteBPnew').on('click',function(){
+       $('#btnBPUpdateItem').hide();
+       $('#btnBPAddItem').show();
+    });
+    
+    $('#anteRecordNew').on('click',function(){
+       $('#btnAnteUpdateItem').hide();
+       $('#btnAnteAddItem').show();
     });
 
 </script>
