@@ -74,7 +74,8 @@
         for (int i = 0; i < pregnancies.size(); i++) {%>
 <tr>
     <td><%=i + 1%><input type="hidden" id="PIpregencounter" value="<%=pregnancies.get(i).get(3)%>">
-    <input type="hidden" id="PIpregepisode" value="<%=pregnancies.get(i).get(2)%>"></td>
+        <input type="hidden" id="PIpregepisode" value="<%=pregnancies.get(i).get(2)%>">
+        <input type="hidden" id="PIdetailsFull" value="<%=pregnancies.get(i).get(0)+"|"+pregnancies.get(i).get(1)+"|"+pregnancies.get(i).get(2)+"|"+pregnancies.get(i).get(3)+"|"+pregnancies.get(i).get(4)+"|"+pregnancies.get(i).get(5)+"|"+pregnancies.get(i).get(6)+"|"+pregnancies.get(i).get(7)+"|"+pregnancies.get(i).get(8)+"|"+pregnancies.get(i).get(9)+"|"+pregnancies.get(i).get(10)+"|"+pregnancies.get(i).get(11)%>"></td>
     <td><%=pregnancies.get(i).get(4)%></td>
     <td><%=pregnancies.get(i).get(5)%></td>
     <td><%=pregnancies.get(i).get(6)%></td>
@@ -82,7 +83,8 @@
     <td><%=pregnancies.get(i).get(8)%></td>
     <td><%=pregnancies.get(i).get(9)%></td>
     <td><%=pregnancies.get(i).get(10)%></td>
-    <td><a id="delPIpreg" class="testing"><i class="fa fa-times fa-lg" aria-hidden="true" style="display: inline-block;color: #d9534f;"></i></a></td>
+    <td><a id="updatePIpreg" class="testing" href="" data-toggle="modal" data-target="#ong-pDetails3"><i class="fa fa-pencil-square-o fa-lg" aria-hidden="true" style="display: inline-block;color: #488dd8;"></i></a>&nbsp;&nbsp;
+        <a id="delPIpreg" class="testing"><i class="fa fa-times fa-lg" aria-hidden="true" style="display: inline-block;color: #d9534f;"></i></a></td>
 </tr>
 
 <%    }
@@ -90,5 +92,8 @@
     } else if (methodName.equalsIgnoreCase("delPreg")) {
         result = pd.deletePregnancy(data);
         out.print(result);
-    }
+    }else if(methodName.equalsIgnoreCase("updatePREG")){
+        result = pd.updatePregnancy(data);
+        out.print(result);
+}
 %>

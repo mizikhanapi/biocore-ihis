@@ -42,8 +42,8 @@ public class PersonalDetail {
         String sql = "";
         pmino = splittedData[0];
         hfc = splittedData[1];
-                    //  0      1        2              3               4             5          6                  7        8   9      10
-        sql = "select p.pmi_no,p.hfc_cd,p.episode_date,p.encounter_date,p.pregnancy_year,p.gestation,p.place_of_delivery,p.labour_delivery,p.wt,g.description,p.comment FROM lhr_ong_pregnancy p join adm_lookup_detail g on g.master_reference_code = '0041' AND g.hfc_cd = '" + hfc + "' and g.status ='0' and g.detail_reference_code = p.gender where p.pmi_no='"+pmino+"' and p.hfc_cd ='"+hfc+"'";
+                    //  0          1        2              3               4                  5          6                  7                8   9               10        11      
+        sql = "select p.pmi_no,p.hfc_cd,p.episode_date,p.encounter_date,p.pregnancy_year,p.gestation,p.place_of_delivery,p.labour_delivery,p.wt,g.description,p.comment,p.gender FROM lhr_ong_pregnancy p join adm_lookup_detail g on g.master_reference_code = '0041' AND g.hfc_cd = '" + hfc + "' and g.status ='0' and g.detail_reference_code = p.gender where p.pmi_no='"+pmino+"' and p.hfc_cd ='"+hfc+"'";
         data = conn.getData(sql);
         return data;
     }
@@ -116,6 +116,28 @@ public class PersonalDetail {
         encounter = splittedData[3];
         
         sql = "DELETE from lhr_ong_pregnancy where pmi_no='"+pmino+"' and hfc_cd ='"+hfc+"' and episode_date='"+epi+"' and encounter_date='"+encounter+"'";
+        data = rmic.setQuerySQL(conn.HOST, conn.PORT, sql);
+        return data;
+    }
+    
+    public Boolean updatePregnancy(String datas){
+        Boolean data = false;
+        String splittedData[] = datas.split("\\|",-1);
+        String pmino,hfc,epi,encounter,year,gestation,pod,labourdelivery,wt,gender,comment;
+        String sql = "";
+        pmino = splittedData[0];
+        hfc= splittedData[1];
+        epi = splittedData[2];
+        encounter = splittedData[3];
+        year = splittedData[4];
+        gestation = splittedData[5];
+        pod = splittedData[6];
+        labourdelivery = splittedData[7];
+        wt = splittedData[8];
+        gender = splittedData[9];
+        comment = splittedData[10];
+        
+        sql = "UPDATE lhr_ong_pregnancy set pregnancy_year = '"+year+"',gestation ='"+gestation+"',place_of_delivery ='"+pod+"',labour_delivery='"+labourdelivery+"',wt='"+wt+"',gender='"+gender+"',comment='"+comment+"' where pmi_no='"+pmino+"' and hfc_cd ='"+hfc+"' and episode_date='"+epi+"' and encounter_date='"+encounter+"'";
         data = rmic.setQuerySQL(conn.HOST, conn.PORT, sql);
         return data;
     }

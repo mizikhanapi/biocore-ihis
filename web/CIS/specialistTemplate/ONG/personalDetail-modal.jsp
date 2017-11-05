@@ -158,7 +158,7 @@
                                 <label class="col-md-12 control-label" for="textinput">Year *</label>
                                 <div class="col-md-12">
                                     <input type="text" class="form-control input-md numbersOnly" id="PIyear" size="4" maxlength="4" placeholder="YYYY">
-                                </div>
+                                    <input type="hidden" class="form-control input-md" id="PIupdateKey">                                </div>
                             </div>
                         </div>
                         <div class="col-md-6">
@@ -237,7 +237,7 @@
                             <!-- Text input-->
                             <div class="form-group">
                                 <div class="col-md-12">
-                                    <textarea type="text" name="" class="form-control input-lg" placeholder="Comment..." tabindex="3" id="PIcoment"></textarea>
+                                    <textarea  class="form-control input-lg" placeholder="Comment..." tabindex="3" id="PIcoment"></textarea>
                                 </div>
                             </div>
                         </div>
@@ -249,6 +249,7 @@
                 <div class="btn-group btn-group-justified" role="group" aria-label="group button">
                     <div class="btn-group" role="group">
                         <button type="button" class="btn btn-success btn-block btn-lg" id="btnPIpreg" role="button">Add Items</button>
+                        <button type="button" class="btn btn-success btn-block btn-lg" id="btnPIpregUpdate" role="button" hidden="">Update Items</button>
                     </div>
                     <div class="btn-group btn-delete hidden" role="group">
                         <button type="button" id="delImage" class="btn btn-default btn-block btn-lg" data-dismiss="modal" role="button">Clear</button>
@@ -281,6 +282,8 @@
                 .find("input[type=checkbox], input[type=radio]")
                 .prop("checked", "")
                 .end();
+        
+        
     });
     //function for get personal detail
     function getPI(data) {
@@ -430,6 +433,58 @@
                         $('#ong-pDetails3').modal('hide');
                     } else {
                         bootbox.alert("fail inserting");
+                    }
+                }
+            });
+        }
+
+    });
+    
+     // button update item for personal detail pregnancy
+    $('#btnPIpregUpdate').on('click', function () {
+        var pregnancyYear, gestation, place, labour, wt, gender, comment;
+        pregnancyYear = $('#PIyear').val();
+        gestation = $('#PIgestation').val();
+        place = $('#PIpod').val();
+        labour = $('#PIlabour').val();
+        wt = $('#PIwt').val();
+        gender = $('#PIgender').val();
+        comment = $('textarea#PIcoment').val();
+//        console.log("pregnancyYear" + pregnancyYear);
+//        console.log("gestation" + gestation);
+//        console.log("place" + place);
+//        console.log("labour" + labour);
+//        console.log("wt" + wt);
+//        console.log("gender" + gender);
+//        console.log("comment" + comment);
+        
+        
+        
+
+        if (pregnancyYear === "" || gestation === "" || place === "" || labour === "" || wt === "" || gender === "null") {
+            bootbox.alert("please insert the compulsory item to proceed");
+        } else {
+            var key = $('#PIupdateKey').val();
+            var splitkey = key.split("|");
+            var pmi_no = splitkey[0];
+            var hfc_cd1 = splitkey[1];
+            var epDate = splitkey[2];
+            var encounterDate = splitkey[3];
+
+            var datas2 = pmi_no + "|" + hfc_cd1;
+            var datas = datas2 + "|" + epDate + "|" + encounterDate + "|" + pregnancyYear + "|" + gestation + "|" + place + "|" + labour + "|" + wt + "|" + gender + "|" + comment;
+            $.ajax({
+                type: "post",
+                url: "specialistTemplate/ONG/PI_control/personalDetailFunction.jsp",
+                data: {datas: datas, methodName: "updatePREG"},
+                success: function (databack) {
+                    getPI(datas2);
+                    getPIpreg(datas2);
+                    if (databack) {
+                        bootbox.alert("succes updating");
+                        $('#ong-pDetails3').modal('hide');
+                    } else {
+                        bootbox.alert("fail updatings");
                     }
                 }
             });

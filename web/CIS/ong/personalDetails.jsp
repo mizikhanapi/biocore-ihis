@@ -127,4 +127,35 @@
         });
 
     });
+    
+    $('#divPIpreg ').on('click', '#tblPreg tbody tr td a#updatePIpreg', function (e) {
+        e.preventDefault();
+        $('#btnPIpregUpdate').show(); 
+       $('#btnPIpreg').hide();
+        var row = $(this).closest("tr");
+        var fulldata = row.find('#PIdetailsFull').val();
+        var splittedData = fulldata.split("|");
+        var pmino = splittedData[0];
+        var hfc = splittedData[1];
+        var episode = splittedData[2];
+        var encounter = splittedData[3];
+        var year = splittedData[4];
+        var gestation = splittedData[5];
+        var place = splittedData[6];
+        var labour = splittedData[7];
+        var wt = splittedData[8];
+        var description = splittedData[9];
+        var coment = splittedData[10];
+        var gender = splittedData[11];
+        
+        $('#ong-pDetails3 #PIupdateKey').val(pmino+"|"+hfc+"|"+episode+"|"+encounter);
+        $('#ong-pDetails3 #PIyear').val(year);
+        $('#ong-pDetails3 #PIgestation').val(gestation);
+        $('#ong-pDetails3 #PIpod').val(place);
+        $('#ong-pDetails3 #PIlabour').val(labour);
+        $('#ong-pDetails3 #PIwt').val(wt);
+        $('#ong-pDetails3 #PIgender').val(gender);
+        $('#ong-pDetails3 #PIcoment').val(coment);
+        
+    });
 </script>
