@@ -983,6 +983,8 @@
 
     $(document).ready(function () {
 
+        $('#mdcUpdateModal').css('overflow', 'auto');
+
         $('#mdcTable').DataTable({
             pageLength: 15,
             lengthMenu: [[15, 25, 50, -1], [15, 25, 50, "All"]],

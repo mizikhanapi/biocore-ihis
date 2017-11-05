@@ -559,6 +559,9 @@
 
     $(document).ready(function () {
 
+        $('#mdcAddModal').css('overflow', 'auto');
+
+
         // Date Picker For Insert
         $("#addD_EXP_DATE").datepicker({
             changeMonth: true,
@@ -866,7 +869,7 @@
                     data: data,
                     timeout: 10000,
                     success: function (datas) {
-                        
+
                         if (datas.trim() === 'Success') {
 
                             $('#contentMDCTable').load('mdcTableLoop.jsp');
@@ -947,7 +950,7 @@
                 url: "controllerSearch/mdcCloneDrugList.jsp",
                 data: data,
                 success: function (data, textStatus, jqXHR) {
-                    
+
                     $('#MDC_DrugCode').html(data);
                     $('#MDC_DrugCode').multiSelect({
                         selectableHeader: "<div style='display:block; color:white; background-color:#2196f3; '>Selectable Drug Code</div>",
