@@ -72,7 +72,7 @@
     <td><%=datas.get(i).get(10)%></td>
     <td><%=datas.get(i).get(11)%></td>
     <td><%=datas.get(i).get(12)%></td>
-    <td><a id="upAN" class="testing"><i class="fa fa-pencil-square-o fa-lg" aria-hidden="true" style="display: inline-block;color: #d9534f;"></i></a>&nbsp;&nbsp;
+    <td><a id="upAN" class="testing" data-toggle="modal" data-target="#ong-anteNatal2"><i class="fa fa-pencil-square-o fa-lg" aria-hidden="true" style="display: inline-block;color: #488dd8;"></i></a>&nbsp;&nbsp;
         <a id="delAN" class="testing"><i class="fa fa-times fa-lg" aria-hidden="true" style="display: inline-block;color: #d9534f;"></i></a></td>
 </tr>
 
@@ -87,11 +87,11 @@
     }else if(methodName.equalsIgnoreCase("delBP")){
         result = an.deleteBloodProfile(data);
         out.print(result);
-    }else if(methodName.equalsIgnoreCase("updateBP")){
-        result = an.updateBloodProfile(data);
-        out.print(result);
     }else if(methodName.equalsIgnoreCase("updateAntenatal")){
         result = an.updateAntenatal(data);
         out.print(result);
-}
+    }else if(methodName.equalsIgnoreCase("updateBP")){
+        result = an.updateBloodProfile(data);
+        out.print(result);
+    }
 %>

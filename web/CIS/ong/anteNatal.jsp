@@ -116,6 +116,29 @@
         var hfc_cd1 = hfc_cd;
         var datas2 = pmi_no + "|" + hfc_cd1;
         var datas = datas2 + "|" + dataEpisode + "|" + dataEncounter;
+        
+        var enDate = new Date();
+            var dd = ("0" + enDate.getDate()).slice(-2);
+            var mm = ("0" + (enDate.getMonth() + 1)).slice(-2);
+            var yy = enDate.getFullYear();
+            var hh = enDate.getHours();
+            var m = enDate.getMinutes();
+            var ss = enDate.getSeconds();
+            var ms = enDate.getMilliseconds();
+        
+        var startdate = $('#startdateantenatal').val();
+        var enddate = $('#enddateantenatal').val();
+        
+        if(startdate === "" || enddate === ""){
+                var data3 = datas2+"|"+yy + "-" + mm + "-" + dd+"|"+yy + "-" + mm + "-" + dd;
+            }else{
+                var sDate = startdate.split('/');
+                var SnewDate = sDate[2] + "-" + sDate[1] + "-" + sDate[0];
+
+                var eDate = enddate.split('/');
+                var EnewDate = eDate[2] + "-" + eDate[1] + "-" + eDate[0];
+                var data3 = datas2+"|"+SnewDate+"|"+EnewDate;
+            }
 
         bootbox.confirm({
             message: "Are you sure want to delete?",
@@ -136,8 +159,8 @@
                         url: "specialistTemplate/ONG/AN_control/antenatalFunction.jsp",
                         data: {datas: datas, methodName: "del"},
                         success: function (databack) {
-                            getBP(datas2);
-                            getAnteNatal(datas2);
+                            getBP(data3);
+                            getAnteNatal(data3);
                             if (databack) {
                                 bootbox.alert("Deleted");
                             } else {
@@ -218,6 +241,29 @@
         var encounter = split[3];
         var datas2 = pmi + "|" + hfc;
         var datas = datas2 + "|" + episode + "|" + encounter;
+        var enDate = new Date();
+            var dd = ("0" + enDate.getDate()).slice(-2);
+            var mm = ("0" + (enDate.getMonth() + 1)).slice(-2);
+            var yy = enDate.getFullYear();
+            var hh = enDate.getHours();
+            var m = enDate.getMinutes();
+            var ss = enDate.getSeconds();
+            var ms = enDate.getMilliseconds();
+        
+        var startdate = $('#startdateantenatal').val();
+        var enddate = $('#enddateantenatal').val();
+        
+        if(startdate === "" || enddate === ""){
+                var data3 = datas2+"|"+yy + "-" + mm + "-" + dd+"|"+yy + "-" + mm + "-" + dd;
+            }else{
+                var sDate = startdate.split('/');
+                var SnewDate = sDate[2] + "-" + sDate[1] + "-" + sDate[0];
+
+                var eDate = enddate.split('/');
+                var EnewDate = eDate[2] + "-" + eDate[1] + "-" + eDate[0];
+                var data3 = datas2+"|"+SnewDate+"|"+EnewDate;
+            }
+        
         bootbox.confirm({
             message: "Are you sure want to delete?",
             buttons: {
@@ -237,8 +283,8 @@
                         url: "specialistTemplate/ONG/AN_control/antenatalFunction.jsp",
                         data: {datas: datas, methodName: "delBP"},
                         success: function (databack) {
-                            getBP(datas2);
-                            getAnteNatal(datas2);
+                            getBP(data3);
+                            getAnteNatal(data3);
                             if (databack) {
                                 bootbox.alert("Deleted");
                             } else {

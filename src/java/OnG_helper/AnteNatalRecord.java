@@ -139,7 +139,7 @@ public class AnteNatalRecord {
         first_dose = splittedData[11];
         second_dose = splittedData[12];
         booster = splittedData[13];
-        sql = "UPDATE lhr_ong_blood_profile set blood_group='"+blood_group+"',att_injection='"+att_injection+"',rhesus_factior='"+rhesus_factor+"',rubella_status='"+rubella_status+"',vdrl='"+vdrl+"',hepatitis_b_antibody='"+hepatitis_b_antibody+"',hepatitis_b_antigen='"+hepatitis_b_antigen+"',1st_dose='"+first_dose+"',2nd_dose='"+second_dose+"',booster='"+booster+"' where pmi_no='"+pmino+"' and hfc_cd ='"+hfc+"' and episode_date='"+episode+"' and encounter_date='"+encounter+"' ";
+        sql = "UPDATE lhr_ong_blood_profile set blood_group='"+blood_group+"',att_injection='"+att_injection+"',rhesus_factor='"+rhesus_factor+"',rubella_status='"+rubella_status+"',vdrl='"+vdrl+"',hepatitis_b_antibody='"+hepatitis_b_antibody+"',hepatitis_b_antigen='"+hepatitis_b_antigen+"',1st_dose='"+first_dose+"',2nd_dose='"+second_dose+"',booster='"+booster+"' where pmi_no='"+pmino+"' and hfc_cd ='"+hfc+"' and episode_date='"+episode+"' and encounter_date='"+encounter+"' ";
         
         ins = rmic.setQuerySQL(conn.HOST, conn.PORT, sql);
         return ins;

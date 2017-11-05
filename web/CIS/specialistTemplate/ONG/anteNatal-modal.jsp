@@ -399,7 +399,20 @@
             
             var datas2 = pmi_no + "|" + hfc_cd1;
             var datas = datas2 + "|" + epDate + "|" + encounterDate + "|" + bloodGroup + "|" + attInjection + "|" + rhesus + "|" + rubella + "|" + vdrl + "|" + hepatitisAntibody + "|" + hepatitisAntigen + "|" + CFdose + "|" + CSdose + "|" + CBooster;
+            
+            
+            var startdate = $('#startdateantenatal').val();
+            var enddate = $('#enddateantenatal').val();
+            if(startdate === "" || enddate === ""){
+                var data3 = datas2+"|"+yy + "-" + mm + "-" + dd+"|"+yy + "-" + mm + "-" + dd;
+            }else{
+                var sDate = startdate.split('/');
+                var SnewDate = sDate[2] + "-" + sDate[1] + "-" + sDate[0];
 
+                var eDate = enddate.split('/');
+                var EnewDate = eDate[2] + "-" + eDate[1] + "-" + eDate[0];
+                var data3 = datas2+"|"+SnewDate+"|"+EnewDate;
+            }
             $.ajax({
                 type: "post",
                 url: "specialistTemplate/ONG/AN_control/antenatalFunction.jsp",
@@ -410,8 +423,8 @@
                     if (databack) {
                         bootbox.alert("succes inserting");
                         $('#ong-anteNatal1').modal('hide');
-                        getBP(datas2);
-                        getAnteNatal(datas2);
+                        getBP(data3);
+                        getAnteNatal(data3);
                     } else {
                         bootbox.alert("fail inserting");
                     }
@@ -451,7 +464,24 @@
             
             var datas2 = pmi_no + "|" + hfc_cd1;
             var datas = datas2 + "|" + epDate + "|" + encounterDate + "|" + gestation_week + "|" + prest_lie + "|" + ultrasound + "|" + bpSystolic + "|" + hb + "|" + wt + "|" + urineA + "|" + urineS + "|" + followUp + "|" + bpDiastolic;
+            
+            var startdate = $('#startdateantenatal').val();
+            var enddate = $('#enddateantenatal').val();
 
+             var startdate = $('#startdateantenatal').val();
+            var enddate = $('#enddateantenatal').val();
+            if(startdate === "" || enddate === ""){
+                var data3 = datas2+"|"+yy + "-" + mm + "-" + dd+"|"+yy + "-" + mm + "-" + dd;
+            }else{
+                var sDate = startdate.split('/');
+                var SnewDate = sDate[2] + "-" + sDate[1] + "-" + sDate[0];
+
+                var eDate = enddate.split('/');
+                var EnewDate = eDate[2] + "-" + eDate[1] + "-" + eDate[0];
+                var data3 = datas2+"|"+SnewDate+"|"+EnewDate;
+            }
+            
+            
             $.ajax({
                 type: "post",
                 url: "specialistTemplate/ONG/AN_control/antenatalFunction.jsp",
@@ -462,11 +492,147 @@
                     console.log(databack);
                     if (databack) {
                         bootbox.alert("succes inserting");
-                        getBP(datas2);
-                        getAnteNatal(datas2);
+                        getBP(data3);
+                        getAnteNatal(data3);
                         $('#ong-anteNatal2').modal('hide');
                     } else {
                         bootbox.alert("fail inserting");
+                    }
+                }
+            });
+            
+        }
+    });
+    
+    $('#btnBPUpdateItem').on('click',function(){
+        var bloodGroup = $('#BPbGroup').val();
+        var attInjection = $('#BPatt').val();
+        var rhesus = $('#BPbRhesus').val();
+        var rubella = $('#BPrubella').val();
+        var vdrl = $('#BPvdrl').val();
+        var hepatitisAntibody = $('#BPhBantibody').val();
+        var hepatitisAntigen = $('#BPhBantigen').val();
+        var Fdose = $('#BP1dose').val();
+        var Sdose = $('#BP2dose').val();
+        var booster = $('#BPbooster').val();
+        var enDate = new Date();
+            var dd = ("0" + enDate.getDate()).slice(-2);
+            var mm = ("0" + (enDate.getMonth() + 1)).slice(-2);
+            var yy = enDate.getFullYear();
+            var hh = enDate.getHours();
+            var m = enDate.getMinutes();
+            var ss = enDate.getSeconds();
+            var ms = enDate.getMilliseconds();
+        if (bloodGroup === "" || rhesus === "" || rubella === "") {
+            bootbox.alert("please insert the compulsory item to proceed");
+        }else{
+            var key = $('#BPkeyupdate').val();
+            var keySPlit = key.split("|");
+            var hfc_cd1 = keySPlit[1];
+            var pmi = keySPlit[0];
+            
+            
+            var CFdose = convertDate(Fdose);
+            var CSdose = convertDate(Sdose);
+            var CBooster = convertDate(booster);
+            
+            var datas2 = pmi + "|" + hfc_cd1;
+            var datas = key + "|" + bloodGroup + "|" + attInjection + "|" + rhesus + "|" + rubella + "|" + vdrl + "|" + hepatitisAntibody + "|" + hepatitisAntigen + "|" + CFdose + "|" + CSdose + "|" + CBooster;
+            
+            
+            var startdate = $('#startdateantenatal').val();
+            var enddate = $('#enddateantenatal').val();
+
+            if(startdate === "" || enddate === ""){
+                var data3 = datas2+"|"+yy + "-" + mm + "-" + dd+"|"+yy + "-" + mm + "-" + dd;
+            }else{
+                var sDate = startdate.split('/');
+                var SnewDate = sDate[2] + "-" + sDate[1] + "-" + sDate[0];
+
+                var eDate = enddate.split('/');
+                var EnewDate = eDate[2] + "-" + eDate[1] + "-" + eDate[0];
+                var data3 = datas2+"|"+SnewDate+"|"+EnewDate;
+            }
+            //console.log(datas);
+            $.ajax({
+                type: "post",
+                url: "specialistTemplate/ONG/AN_control/antenatalFunction.jsp",
+                data: {datas: datas, methodName: "updateBP"},
+                success: function (databack) {
+                    if (databack) {
+                        bootbox.alert("succes updating");
+                        $('#ong-anteNatal1').modal('hide');
+                        getBP(data3);
+                        getAnteNatal(data3);
+                    } else {
+                        bootbox.alert("fail updating");
+                    }
+                }
+            });
+        }
+    });
+    
+    $('#btnAnteUpdateItem').on('click',function(){
+        var gestation_week = $('#anteGestation').val();
+        var prest_lie = $('#antePrest').val();
+        var ultrasound = $('#anteUltra').val();
+        var bpSystolic = $('#anteBpSystolic').val();
+        var bpDiastolic = $('#anteBpDiastolic').val();
+        var hb = $('#anteHb').val();
+        var wt = $('#anteWt').val();
+        var urineA = $('#anteA').val();
+        var urineS = $('#anteS').val();
+        var followUp = $('#anteFollowUp').val();
+        var enDate = new Date();
+            var dd = ("0" + enDate.getDate()).slice(-2);
+            var mm = ("0" + (enDate.getMonth() + 1)).slice(-2);
+            var yy = enDate.getFullYear();
+            var hh = enDate.getHours();
+            var m = enDate.getMinutes();
+            var ss = enDate.getSeconds();
+            var ms = enDate.getMilliseconds();
+        if (gestation_week === "" || prest_lie === "" || ultrasound === "") {
+            bootbox.alert("please insert the compulsory item to proceed");
+        }else{
+            var key = $('#ANTEkeyupdate').val();
+            var keySplit = key.split("|");
+            var pmi_no = keySplit[0];
+            var hfc_cd1 = keySplit[1];
+            
+            
+            var datas2 = pmi_no + "|" + hfc_cd1;
+            var datas = key + "|" + gestation_week + "|" + prest_lie + "|" + ultrasound + "|" + bpSystolic + "|" + hb + "|" + wt + "|" + urineA + "|" + urineS + "|" + followUp + "|" + bpDiastolic;
+            
+            var startdate = $('#startdateantenatal').val();
+            var enddate = $('#enddateantenatal').val();
+
+            if(startdate === "" || enddate === ""){
+                var data3 = datas2+"|"+yy + "-" + mm + "-" + dd+"|"+yy + "-" + mm + "-" + dd;
+            }else{
+                var sDate = startdate.split('/');
+                var SnewDate = sDate[2] + "-" + sDate[1] + "-" + sDate[0];
+
+                var eDate = enddate.split('/');
+                var EnewDate = eDate[2] + "-" + eDate[1] + "-" + eDate[0];
+                var data3 = datas2+"|"+SnewDate+"|"+EnewDate;
+            }
+            
+            
+            $.ajax({
+                type: "post",
+                url: "specialistTemplate/ONG/AN_control/antenatalFunction.jsp",
+                data: {datas: datas, methodName: "updateAntenatal"},
+                success: function (databack) {
+//                    getPI(datas2);
+//                    getPIpreg(datas2);
+                    console.log(databack);
+                    if (databack) {
+                        bootbox.alert("succes updating");
+                        getBP(data3);
+                        getAnteNatal(data3);
+                        $('#ong-anteNatal2').modal('hide');
+                    } else {
+                        bootbox.alert("fail updating");
                     }
                 }
             });
