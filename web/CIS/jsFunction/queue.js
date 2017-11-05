@@ -515,7 +515,7 @@ function convertEHR(ehr) {
                 displayPGCS(objPGCS.resultpgcsMain, objPGCS.pointpgcsMain);
 
             }
-            if (VTSData[4] === "" && VTSData[33] === "undefined" && VTSData[3] === "" && VTSData[2] === "" && VTSData[32] === "undefined" && VTSData[1] === "" && VTSData[6] === "" && VTSData[34] === "undefined" && VTSData[5] === "") {
+            if (VTSData[4] === "" && VTSData[33] === "" && VTSData[3] === "" && VTSData[2] === "" && VTSData[32] === "" && VTSData[1] === "" && VTSData[6] === "" && VTSData[34] === "" && VTSData[5] === "") {
 
             } else {
 
@@ -606,6 +606,35 @@ function convertEHR(ehr) {
                 _data.push(objOther);
 
                 displayOther(heightO[0], weightO[0], objOther.bmi, objOther.bmiStatus, objOther.headCir, objOther.bloodGlucose);
+            }
+            if (VTSData[15] === "" && VTSData[37] === "") {
+
+            } else {
+                var objPupil = {
+                    Acode: "VTS",
+                    left_pupil:VTSData[15],
+                    right_pupil:VTSData[37],
+                    left_reactivity:VTSData[16],
+                    right_reactivity:VTSData[17]
+                };
+             
+                _data.push(objPupil);
+
+                displayPupil(objPupil);
+            }
+            if (VTSData[39] === "" && VTSData[40] === ""&& VTSData[42] === "") {
+
+            } else {
+                var objVision = {
+                    Acode: "VTS",
+                    left_eye_score:VTSData[39],
+                    right_eye_score:VTSData[40],
+                    vision_comment:VTSData[42]
+                };
+                console.log(objVision);
+                _data.push(objVision);
+
+                displayVision(objVision);
             }
 
         } else if (header === "PEM") {

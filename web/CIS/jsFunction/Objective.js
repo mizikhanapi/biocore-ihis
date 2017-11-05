@@ -91,7 +91,7 @@ var NotesPE;
        
    
 $(document).ready(function () {
-
+    
 
 /// -----------------------------------------------------------------------------------------------------------------------------------------------/////;
 /// -------------------------------------------------------------GCS MODUL----------------------------------------------------------------/////;
@@ -634,6 +634,143 @@ $(document).ready(function () {
         $('#sum' + rowId).html(sum);
         $("#CIS020008").modal('hide');
     });
+    
+    /// -----------------------------------------------------------------------------------------------------------------------------------------------/////;
+/// -------------------------------------------------------------PUPIL CHECK MODAL-----------------------------------------------/////;
+/// ----------------------------------------------------------------------------------------------------------------------------------------------/////;
+    
+    $(".vts-pupil-update").hide();
+    
+    
+    $('#CIS0200013').on('hide.bs.modal',function(e){
+        $(".vts-pupil-update").hide();
+        $(".vts-pupil-add").show();
+        $("#cis-vts-left_pupil").val('1');
+        $("#cis-vts-right_pupil").val('1');
+        $("#cis-vts-left-reactivity").val('');
+        $("#cis-vts-right-reactivity").val('');
+        
+    });
+
+    
+    $('#btn_CIS_VTS_Pupil_ADD').click(function (e) {
+        
+        var left_pupil = $("#cis-vts-left_pupil").val();
+        var right_pupil = $("#cis-vts-right_pupil").val();
+        var left_reactivity = $("#cis-vts-left-reactivity").val();
+        var right_reactivity = $("#cis-vts-right-reactivity").val();
+        
+        var obj1 = {
+            Acode: "VTS",
+            left_pupil:left_pupil,
+            right_pupil:right_pupil,
+            left_reactivity:left_reactivity,
+            right_reactivity:right_reactivity
+        }
+        _data.push(obj1);
+        displayPupil(obj1);
+        console.log(obj1);
+        $("#CIS0200013").modal('hide');
+    });
+    
+    $('#tblCIS_Consultation_Table').on('click', '.updatePupil', function () {
+
+        $('#CIS0200013').modal('show');
+        $(".vts-pupil-update").show();
+        $(".vts-pupil-add").hide();
+        
+        var idName = $(this).get(0).id;
+        var id = idName.split('|');
+        var updateObj = _data[id[1]];
+
+        $('#pupil-ID').val(id[1]);
+        $("#cis-vts-left_pupil").val(updateObj.left_pupil);
+        $("#cis-vts-right_pupil").val(updateObj.right_pupil);
+        $("#cis-vts-left-reactivity").val(updateObj.left_reactivity);
+        $("#cis-vts-right-reactivity").val(updateObj.right_reactivity);
+    });
+    
+    $('#btn_CIS_VTS_Pupil_UPDATE').click(function (e) {
+        e.preventDefault();
+        var upObject = _data[$('#pupil-ID').val()];
+        var rowId = $('#pupil-ID').val();
+       
+        upObject.left_pupil = $("#cis-vts-left_pupil").val();
+        upObject.right_pupil = $("#cis-vts-right_pupil").val(); 
+        upObject.left_reactivity = $("#cis-vts-left-reactivity").val(); 
+        upObject.right_reactivity = $("#cis-vts-right-reactivity").val(); 
+
+        var sum = 'Left Pupil : ' + upObject.left_pupil + ' | Reactivity to Light : ' + upObject.left_reactivity + ' </br>Right Pupil : ' + upObject.right_pupil + ' | Reactivity to Light : ' + upObject.right_reactivity
+        $('#sum' + rowId).html(sum);
+        $("#CIS0200013").modal('hide');
+    });
+    
+/// -----------------------------------------------------------------------------------------------------------------------------------------------/////;
+/// -------------------------------------------------------------VISION MODAL----------------------------------------------------------------------/////;
+/// ----------------------------------------------------------------------------------------------------------------------------------------------/////;
+    $(".vts-vision-update").hide();
+    
+    $('#CIS0200014').on('hide.bs.modal', function (e) {
+        $(".vts-vision-update").hide();
+        $(".vts-vision-add").show();
+         $('#cis-vts-rvs').val('');
+         $('#cis-vts-lvs').val('');
+         $('#cis-vts-vision-comment').val('');
+         
+
+    })
+    
+    $('#btn_CIS_VTS_Vision_ADD').click(function(e){
+        e.preventDefault();
+        var left_eye_score = $('#cis-vts-lvs').val();
+        var right_eye_score = $('#cis-vts-rvs').val();
+        var vision_comment = $('#cis-vts-vision-comment').val();
+        var obj1 = {
+            Acode:"VTS",
+            left_eye_score:left_eye_score,
+            right_eye_score:right_eye_score,
+            vision_comment:vision_comment
+        }
+        _data.push(obj1);
+        displayVision(obj1);
+        
+        $("#CIS0200014").modal('hide');
+        
+    });
+    
+    
+    $('#tblCIS_Consultation_Table').on('click', '.updateVision', function () {
+
+        $('#CIS0200014').modal('show');
+        $(".vts-vision-update").show();
+        $(".vts-vision-add").hide();
+
+        var idName = $(this).get(0).id;
+        var id = idName.split('|');
+        var updateObj = _data[id[1]];
+
+        $('#vision-ID').val(id[1]);
+        $('#cis-vts-lvs').val(updateObj.left_eye_score);
+        $('#cis-vts-rvs').val(updateObj.right_eye_score);
+        $('#cis-vts-vision-comment').val(updateObj.vision_comment);
+      
+    });
+    
+    $('#btn_CIS_VTS_Vision_Update').click(function (e) {
+        e.preventDefault();
+        var upObject = _data[$('#vision-ID').val()];
+        var rowId = $('#vision-ID').val();
+
+        upObject.left_eye_score = $("#cis-vts-lvs").val();
+        upObject.right_eye_score = $("#cis-vts-rvs").val();
+        upObject.vision_comment = $("#cis-vts-vision-comment").val();
+
+
+        var sum = 'Left Eye : ' + upObject.left_eye_score + ' |  Right Eye : ' + upObject.right_eye_score + '<br/> Comment : ' +upObject.vision_comment
+        $('#sum' + rowId).html(sum);
+        $("#CIS0200014").modal('hide');
+    });
+    
 
 /// -----------------------------------------------------------------------------------------------------------------------------------------------/////;
 /// -------------------------------------------------------------PHYSICAL EXAM MODAL-----------------------------------------------/////;
@@ -1138,5 +1275,18 @@ function displayPEM(NotesPE, PEComment) {
     var _tr = '<tr data-status="pagado" ><td><div class="ckbox"><input type="checkbox" id="checkbox|' + i + '" name="CIS_consult_notes"><label for="checkbox|' + i + '"></label></div></td><td><div class="media"><div class="media-body">Physical Examination:<p class="summary" id="sum' + i + '">' + NotesPE + ' </br>Comment:' + PEComment + '</p></div></div></td><td><a data-toggle="modal"  data-target="#updateModal" href="" class="updatePE" id="row|' + i + '"><i class="fa fa-pencil-square-o" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #337ab7;" ></i></a></a></td><td><a href="javascript:;" class="star"><a href="#" class="deleteBtn" id="row|' + i + '"><i class="fa fa-times" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #d9534f;"></i></a></a></td></tr>';
     $('#PEMNotes').append(_tr);
 
+    i = i + 1;
+}
+
+function displayPupil(obj) {
+
+    var _tr = '<tr data-status="pagado" ><td><div class="ckbox"><input type="checkbox" id="checkbox|' + i + '" name="CIS_consult_notes"><label for="checkbox|' + i + '"></label></div></td><td><div class="media"><div class="media-body">Pupil Check:<p class="summary" id="sum' + i + '"> Left Pupil : ' + obj.left_pupil + ' | Reactivity to Light : ' + obj.left_reactivity + ' </br>Right Pupil : ' + obj.right_pupil + ' | Reactivity to Light : ' + obj.right_reactivity + '</br></p></div></div></td><td><a data-toggle="modal"  data-target="#updateModal" href="" class="updatePupil" id="row|' + i + '"><i class="fa fa-pencil-square-o" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #337ab7;" ></i></a></a></td><td><a href="javascript:;" class="star"><a href="#" class="deleteBtn" id="row|' + i + '"><i class="fa fa-times" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #d9534f;"></i></a></a></td></tr>';
+    $('#PupilNotes').append(_tr);
+    i = i + 1;
+}
+function displayVision(obj) {
+
+    var _tr = '<tr data-status="pagado" ><td><div class="ckbox"><input type="checkbox" id="checkbox|' + i + '" name="CIS_consult_notes"><label for="checkbox|' + i + '"></label></div></td><td><div class="media"><div class="media-body">Vision Test:<p class="summary" id="sum' + i + '"> Left Eye : ' + obj.left_eye_score + ' | Right Eye : ' + obj.right_eye_score + ' </br> Comment : '+obj.vision_comment+'</p></div></div></td><td><a data-toggle="modal"  data-target="#updateModal" href="" class="updateVision" id="row|' + i + '"><i class="fa fa-pencil-square-o" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #337ab7;" ></i></a></a></td><td><a href="javascript:;" class="star"><a href="#" class="deleteBtn" id="row|' + i + '"><i class="fa fa-times" aria-hidden="true" style="display: inline-block;font-size: 30px;color: #d9534f;"></i></a></a></td></tr>';
+    $('#PupilNotes').append(_tr);
     i = i + 1;
 }

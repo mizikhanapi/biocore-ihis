@@ -219,6 +219,7 @@
                                             <tbody id="PSCNotes"   class="O ConsultationNotes"> </tbody>
                                             <tbody id="BTEMPNotes"   class="O ConsultationNotes"> </tbody>
                                             <tbody id="OTRNotes"   class="O ConsultationNotes"> </tbody>
+                                            <tbody id="PupilNotes"   class="O ConsultationNotes"> </tbody>
                                             <tbody id="PEMNotes"   class="O ConsultationNotes"> </tbody>
 
                                             <tbody id="DGSNotes"   class="A ConsultationNotes"> </tbody>
@@ -289,7 +290,7 @@
         <%@ include file="search/SearchModal.jsp" %>
         <%@ include file="setting/settingModal.jsp" %>
         
-         
+       
          
          
          <%@ include file="CIS02/CIS020001.jsp" %> 
@@ -305,34 +306,16 @@
         <%@ include file="CIS02/CIS020010.jsp" %> 
         <%@ include file="CIS02/CIS020011.jsp" %> 
         <%@ include file="CIS02/CIS020012.jsp" %> 
-
+        
         <%@ include file="CIS03/CIS0103.jsp" %> 
 
         <%@ include file="CIS04/CIS0104.jsp" %> 
         <%@ include file="discharge/dischargeSummaryModal.jsp" %> 
+        
+        <jsp:include page="CIS02/CIS020014.jsp"/>
+        <jsp:include page="CIS02/CIS020013.jsp"/>
 
 
-
-
-        <!--<div w3-include-html=""></div>
-        <div w3-include-html="CIS02/CIS020002.jsp"></div>
-        <div w3-include-html="CIS02/CIS020003.jsp"></div>
-        <div w3-include-html="CIS02/CIS020004.jsp"></div>
-        <div w3-include-html="CIS02/CIS020005.jsp"></div>
-        <div w3-include-html="CIS02/CIS020006.jsp"></div>-->
-
-        <!-- Bootstrap core Javascript
-        ================================================== -->
-        <!-- Placed at the end of the document so the pages load faster -->
-
-        <!--    <script src="assets/jquery.min.js.download"></script>
-            <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>');</script>
-            <script src="assets/bootstrap.min.js.download"></script>
-             Just to make our placeholder images work. Don't actually copy the next line! 
-            <script src="assets/holder.min.js.download"></script>
-             IE10 viewport hack for Surface/desktop Windows 8 bug 
-            <script src="assets/ie10-viewport-bug-workaround.js.download"></script>
-        -->
         <script src="../assets/js/toggleButton.js" type="text/javascript"></script>
         <script src="../assets/js/swapping-tab.js" type="text/javascript"></script>
         <script>
