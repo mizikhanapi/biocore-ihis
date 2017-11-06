@@ -26,7 +26,7 @@
    
    rmic.setQuerySQL(conn.HOST, conn.PORT, sqlPQ);
    
-   String sqlCheck="Select user_id from pms_patient_queue where user_id='"+user_id+"' AND pmi_no = '"+pmino+"' AND episode_date = '"+episodedate+"' AND status='"+status+"';";
+   String sqlCheck="Select user_id from pms_patient_queue where user_id='"+user_id+"' AND pmi_no = '"+pmino+"' AND episode_date = '"+episodedate+"' AND status='"+status+"' order by created_date asc limit 1;";
    ArrayList<ArrayList<String>> dataCheck = conn.getData(sqlCheck);
    
    if(dataCheck.size()>0){
