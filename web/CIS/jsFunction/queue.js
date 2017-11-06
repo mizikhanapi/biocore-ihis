@@ -92,10 +92,14 @@ $(document).ready(function () {
                 } else if (statusBe4 === 'Discharge') {
                     statusNow = 1;
                 }
-                var updateConsult = updateStatus(pmiNo, episodeDate, 5);
+                
+                //Kept comment for a while
+//                var updateConsult = updateStatus(pmiNo, episodeDate, 5);
+//
+//                var patient = findPatient(pmiNo, episodeDate);
+//                var getPDIInfo = getPDI(pmiNo, episodeDate);
 
-                var patient = findPatient(pmiNo, episodeDate);
-                var getPDIInfo = getPDI(pmiNo, episodeDate);
+                updateStatus_2(pmiNo, episodeDate, 5, statusNow);
 
                 encounterDate = getDate();
 
@@ -180,6 +184,33 @@ function updateStatus(pmiNo, episodeDate, status) {
         },
         success: function (result) {
 
+        },
+        error: function (err) {
+            console.log(err);
+        }
+    });
+}
+
+//------------ update status to handle multiple user in selecting the same patient------
+function updateStatus_2(pmiNo, episodeDate, status, preStatus) {
+    $.ajax({
+        url: 'search/changeStatus_2.jsp',
+        method: 'POST',
+        data: {
+            status: status,
+            pmiNo: pmiNo,
+            episodeDate: episodeDate,
+            preStatus: preStatus
+        },
+        success: function (result) {
+            
+            if(result.trim()==="|1|"){
+                var patient = findPatient(pmiNo, episodeDate);
+                var getPDIInfo = getPDI(pmiNo, episodeDate);
+            }
+            else{
+                bootbox.alert("The patient has been taken by other doctor.");
+            }
         },
         error: function (err) {
             console.log(err);

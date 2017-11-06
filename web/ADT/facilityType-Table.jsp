@@ -21,7 +21,7 @@
 <input type="hidden" value="<%=disTYT%>" id="Rdis">
 <input type="hidden" value="<%=subTYT%>" id="Rsub">  
 
-<div id="tablefacilityTypeTable" class="form-group">
+<div id="tablefacilityTypeTable">
 
     <table id="facilityTypeTable"  class="table table-striped table-bordered" cellspacing="0" width="100%">
 
@@ -213,14 +213,7 @@
                                 title: "Process Result",
                                 backdrop: true
                             });
-//                            $.ajax({
-//                                url: "listWard.jsp",
-//                                type: "post",
-//                                timeout: 10000,
-//                                success: function (result2) {
-//                                    $("#selectID").html(result2);
-//                                }
-//                            });
+                            FT_loadWardClassOption();
                         } else if (data.trim() === 'Failed') {
                             bootbox.alert({
                                 message: "Update Failed",
@@ -285,14 +278,7 @@
                                     title: "Process Result",
                                     backdrop: true
                                 });
-//                                $.ajax({
-//                                    url: "listWard.jsp",
-//                                    type: "post",
-//                                    timeout: 10000,
-//                                    success: function (result2) {
-//                                        $("#selectID").html(result2);
-//                                    }
-//                                });
+                                FT_loadWardClassOption();
                             } else if (datas.trim() === 'Failed') {
                                 bootbox.alert({
                                     message: "Delete Failed",

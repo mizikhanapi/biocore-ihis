@@ -23,6 +23,11 @@ public class MySessionKey {
             USER_NAME="USER_NAME",
             USER_PICTURE="PICTURE",
             USER_TYPE="USER_TYPE",
-            SESSION_ID="SESSION_ID";
+            SESSION_ID="SESSION_ID",
+            DISCIPLINE_CD="DISCIPLINE_CODE",
+            DISCIPLINE_NAME="DISCIPLINE_NAME",
+            SUBDISCIPLINE_CD="SUB_DISCIPLINE_CODE",
+            SUBDISCIPLINE_NAME="SUB_DISCIPLINE_NAME",
+            HFC_99="HFC_99";
     
 }

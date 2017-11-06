@@ -8,26 +8,7 @@
 <%@page import="Config.connect"%>
 <%@page import="dBConn.Conn"%>
 <%@page import="java.sql.*"%>
-<head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <!--    <link rel="stylesheet" href="old/assets/datepicker/jquery-ui.css">-->
-    <!--    <script src="old/assets/js/jquery.min.js"></script>-->
-    <!-- Custom styles for this template -->
 
-    <link rel="stylesheet" href="old/assets/css/loading.css">
-    <link href="old/assets/datepicker/jquery-ui.css" rel="stylesheet">    
-    <script src="old/assets/datepicker/jquery-ui.js"></script>
-    <script src="old/assets/js/form-validator.min.js"></script>
-    <script src="old/assets/js/bootstrap.min.js"></script> 
-
-    <script src="old/assets/js/w3data.js"></script>
-    <script src="old/assets/js/bootbox.min.js"></script>   
-
-    <!-- header -->
-    <%@include file = "../assets/header.html" %>
-
-    <!-- header -->
-</head>
 <%
            // Conn conn = new Conn();
     String hfcTY = session.getAttribute("HEALTH_FACILITY_CODE").toString();
@@ -117,14 +98,14 @@
         </div>
     </div>
 </div>
-<!--      <script src="old/assets/js/dataTables.bootstrap.min.js"></script>-->
-<!--        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-        <script src="bootstrap-3.3.6-dist/js/bootstrap.js" type="text/javascript"></script>
-<script src="bootstrap-3.3.6-dist/js/jquery.dataTables.min.js"></script>-->
 
 <script>
-
+    
+    function FT_loadWardClassOption(){
+        $('#beddetail #Ward_Class').html('');
+        $('#beddetail #Ward_Class').load('assign-bed-to-ward.jsp #beddetail #Ward_Class option');
+    }
+    
     $(document).ready(function () {
         
         $('#FT_btnModalAdd').on('click', function(){
@@ -187,14 +168,7 @@
                                     $("#FacilityTypeTable").html(result);
                                 }
                             });
-                            $.ajax({
-                                url: "listWard.jsp",
-                                type: "post",
-                                timeout: 10000,
-                                success: function (result2) {
-                                    $("#selectID").html(result2);
-                                }
-                            });
+                            FT_loadWardClassOption();                         
 
                             $('#detailType').modal('hide');
                             $(".modal-backdrop").hide();

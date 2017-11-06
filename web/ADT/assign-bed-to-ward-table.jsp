@@ -1,14 +1,15 @@
+<%@page import="ADM_helper.MySessionKey"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.sql.*"%>
 <%@page import="dBConn.Conn"%>
 <%@page import="main.RMIConnector"%>
 <%@page session="true" %>
 
-<div id="tableassignBedTable" class="form-group">
+<div id="tableassignBedTable">
 
 
 
-    <table id="assignBedTable"  class="table table-striped table-bordered" cellspacing="0" width="100%">
+    <table id="assignBedTable"  class="table table-striped table-bordered" style="width: 100%;">
 
 
         <thead>
@@ -26,8 +27,16 @@
 
             <%
                 Conn conn4 = new Conn();
-                String hfcASS = session.getAttribute("HEALTH_FACILITY_CODE").toString();
-                String sqlbed = "SELECT  d.discipline_name ,  b.ward_class_name,c.ward_name, a.bed_id,a.bed_status,  a.discipline_cd,  a.ward_class_code, a.ward_id,  a.hfc_cd,b.ward_class_code,  c.ward_id, d.discipline_cd FROM wis_bed_id a LEFT JOIN wis_ward_class b ON a.ward_class_code = b.ward_class_code LEFT JOIN wis_ward_name c ON a.ward_id = c.ward_id LEFT JOIN adm_discipline d ON a.discipline_cd = d.discipline_cd where a.hfc_cd = '" + hfcASS + "' group by a.bed_id";
+                String hfcASS = (String) session.getAttribute("HEALTH_FACILITY_CODE");
+                String disAss = (String) session.getAttribute(MySessionKey.DISCIPLINE_CD);
+                
+                String sqlbed = "SELECT  d.discipline_name ,  b.ward_class_name,c.ward_name, a.bed_id,a.bed_status,  a.discipline_cd,  a.ward_class_code, a.ward_id, "
+                        + "a.hfc_cd,b.ward_class_code,  c.ward_id, d.discipline_cd "
+                        + "FROM wis_bed_id a "
+                        + "LEFT JOIN wis_ward_class b ON a.ward_class_code = b.ward_class_code AND b.hfc_cd=a.hfc_cd AND b.discipline_cd=a.discipline_cd "
+                        + "LEFT JOIN wis_ward_name c ON a.ward_id = c.ward_id  AND c.hfc_cd=a.hfc_cd AND c.discipline_cd=a.discipline_cd "
+                        + "LEFT JOIN adm_discipline d ON a.discipline_cd = d.discipline_cd AND d.discipline_hfc_cd=a.hfc_cd "
+                        + "where a.hfc_cd = '"+hfcASS+"' AND a.discipline_cd='"+disAss+"' group by a.bed_id; ";
 
                 ArrayList<ArrayList<String>> databed = conn4.getData(sqlbed);
 
@@ -61,6 +70,7 @@
         %>
         </tbody>
     </table>
+   
 </div>
 <!-- Modal Update -->
 <div class="modal fade" id="assignBedUpdateModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">

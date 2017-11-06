@@ -1,4 +1,5 @@
 
+<%@page import="ADM_helper.MySessionKey"%>
 <%@page import="Config.Config"%>
 <%@page import="java.util.Date"%>
 <%@page import="java.util.*"%>
@@ -8,26 +9,6 @@
 <%@page import="Config.connect"%>
 <%@page import="dBConn.Conn"%>
 <%@page import="java.sql.*"%>
-<head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <!--    <link rel="stylesheet" href="old/assets/datepicker/jquery-ui.css">-->
-    <!--    <script src="old/assets/js/jquery.min.js"></script>-->
-    <!-- Custom styles for this template -->
-
-    <link rel="stylesheet" href="old/assets/css/loading.css">
-    <link href="old/assets/datepicker/jquery-ui.css" rel="stylesheet">    
-    <script src="old/assets/datepicker/jquery-ui.js"></script>
-    <script src="old/assets/js/form-validator.min.js"></script>
-    <script src="old/assets/js/bootstrap.min.js"></script> 
-
-    <script src="old/assets/js/w3data.js"></script>
-    <script src="old/assets/js/bootbox.min.js"></script>   
-
-    <!-- header -->
-    <%@include file = "../assets/header.html" %>
-
-    <!-- header -->
-</head>
 
 <%
     // Conn conn = new Conn();
@@ -35,6 +16,8 @@
     String id = session.getAttribute("USER_ID").toString();
     String dis = session.getAttribute("DISCIPLINE_CODE").toString();
     String sub = session.getAttribute("SUB_DISCIPLINE_CODE").toString();
+    
+    String disName = (String) session.getAttribute(MySessionKey.DISCIPLINE_NAME);
 
 
 %>
@@ -103,7 +86,7 @@
                             <div class="form-group">
                                 <label class="col-md-4 control-label" for="selectbasic">Discipline *</label>
                                 <div class="col-md-6">
-                                    <input id="Dis" name="Dis" placeholder="Insert Discipline Code" maxlength="30" type="text"  class="form-control input-md">
+                                    <input id="Dis" name="Dis" placeholder="Insert Discipline Code" type="text"  class="form-control input-md" readonly value="<%=dis%> | <%=disName%>">
                                     <div id="disList" class="search-drop"></div>
                                 </div>
                             </div>
@@ -302,9 +285,14 @@
 
 <!--      <script src="old/assets/js/dataTables.bootstrap.min.js"></script>-->
 <script>
-    w3IncludeHTML();
+    
+    function FI_loadWardNameOption(){
+        $('#beddetail #Ward_ID').html('');
+        $('#beddetail #Ward_ID').load('assign-bed-to-ward.jsp #beddetail #Ward_ID option');
+    }
+    
     $(document).ready(function () {
- $('#FI_btnModalAdd').on('click', function(){
+        $('#FI_btnModalAdd').on('click', function(){
             $('#detailID').modal('show');
         });
 
@@ -312,12 +300,13 @@
         $("#WardClass1").on('keyup', function () { // everytime keyup event
             var input = $(this).val(); // We take the input value
             var hfc = $("#Rhfc").val();
+            var dis = $('#Rdis').val();
 
 
 
             if (input.length >= 1) { // Minimum characters = 2 (you can change)
                 $('#WardClassList').html('<img src="libraries/LoaderIcon.gif" />'); // Loader icon apprears in the <div id="match"></div>
-                var dataFields = {input: input, hfc: hfc}; // We pass input argument in Ajax
+                var dataFields = {input: input, hfc: hfc, dis: dis}; // We pass input argument in Ajax
                 $.ajax({
                     type: "POST",
                     url: "facility-id-ward-class.jsp", // call the php file ajax/tuto-autocomplete.php
@@ -384,7 +373,7 @@
 
 
         $('#MWID_add').on('click', function () {
-
+            $('#detailID').css('overflow', 'auto');
             var WardClass = $('#WardClass1').val();
             var array_WardClass = WardClass.split("|");
             var WardClass = array_WardClass[0];
@@ -544,6 +533,7 @@
                             backdrop: true
                         });
                         reset();
+                        FI_loadWardNameOption();
                     } else if (data.trim() === 'Duplicate') {
 
                         bootbox.alert({

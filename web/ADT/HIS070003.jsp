@@ -13,26 +13,17 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <script src="old/assets/js/jquery.min.js"></script>
+       
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <!-- header -->
+        <%@include file="libraries/headLibrary.jsp"%>
         <%@include file = "../assets/header.html" %>
-        <link rel="stylesheet" href="old/assets/datepicker/jquery-ui.css">
-        <link rel="stylesheet" href="old/assets/css/loading.css">
-        <link href="old/assets/css/dataTables.bootstrap.min.css" rel="stylesheet" type="text/css"/>
-        <link href="old/assets/css/buttons.dataTables.min.css" rel="stylesheet" type="text/css"/>
-        <link href="old/assets/css/jquery-ui.css" rel="stylesheet" type="text/css"/>
-        <!-- header -->
-        
+            
     </head>
 
     <body>
         <div class="loading"></div>
-        <%//            Config.getFile_url(session);
-//            Config.getBase_url(request);
-            Conn conn = new Conn();
-
-        %>
+        
         <div class="container-fluid">
             <div class="row">       
                 <!-- menu side -->		
@@ -70,31 +61,32 @@
                                             <div class="tab-pane active" id="a">
                                                 <div>
                                                     <div  id="FacilityTypeMain"> 
-                                                        <%@include file = "facility-type.jsp" %>
+                                                      
                                                     </div>
 
                                                     <div id="FacilityTypeTable"> 
-                                                        <%@include file = "facilityType-Table.jsp" %>
+                                                       
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="tab-pane" id="b">
 
                                                 <div  id="FacilityIDMain"> 
-                                                    <%@include file = "facility-id.jsp" %>
+                                                   
                                                 </div>
 
                                                 <div id="FacilityIDTable"> 
-                                                    <%@include file = "facilityID-Table.jsp" %>
+                                                    
                                                 </div>
                                             </div>
-                                                 <div class="tab-pane" id="c">
+                                            <div class="tab-pane" id="c">
 
                                                 <div>
-                                                    <div id="AssignBed">  <%@include file = "assign-bed-to-ward.jsp" %>
+                                                    <div id="AssignBed">  
+                                                       
                                                     </div>
                                                     <div id="AssignBedTable">  
-                                                        <%@include file = "assign-bed-to-ward-table.jsp" %>
+                                                        
                                                     </div>
                                                 </div>    
                                             </div>
@@ -115,17 +107,21 @@
         </div>
 
         <!-- Script Goes Here -->
-
-        <script src="old/assets/datepicker/jquery-ui.js"></script>
-        <script src="old/assets/js/form-validator.min.js"></script>
-        <script src="old/assets/js/bootbox.min.js"></script>
-        <script src="old/assets/js/dataTables.bootstrap.min.js"></script>
+        <%@include file="libraries/footLibrary.jsp"%>
+       
         <script src="PMS/libraries/lib/js/onKeyPress.js" type="text/javascript"></script>
         <script src="old/assets/js/onKeyPress.js" type="text/javascript"></script>
-        <script src="ReportLibraries/js/dataTables.bootstrap.min.js" type="text/javascript"></script>
-<script src="ReportLibraries/js/dataTables.buttons.min.js" type="text/javascript"></script>
-<script src="ReportLibraries/js/jquery.dataTables.min.js"></script>
-
-        <!-- Script Goes Here -->
+        <script type="text/javascript">
+            $(function(){
+                $('#FacilityTypeMain').load('facility-type.jsp');
+                $('#FacilityTypeTable').load('facilityType-Table.jsp');
+                
+                $('#FacilityIDMain').load('facility-id.jsp');
+                $("#FacilityIDTable").load('facilityID-Table.jsp');
+                
+                $('#AssignBed').load('assign-bed-to-ward.jsp');
+                $('#AssignBedTable').load('assign-bed-to-ward-table.jsp');
+            });
+        </script>
     </body>
 </html>

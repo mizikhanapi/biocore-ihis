@@ -7,25 +7,16 @@
 <%@page import="dBConn.Conn"%>
 <%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%
-
-
-    String id = session.getAttribute("USER_ID").toString();
-    String dis = session.getAttribute("DISCIPLINE_CODE").toString();
-    String sub = session.getAttribute("SUB_DISCIPLINE_CODE").toString();
- 
-%>
-
-
 
 <%
     Conn conn = new Conn();
     String key = request.getParameter("input");
     String hfc = request.getParameter("hfc");
+    String dis = request.getParameter("dis");
     
      
 
-  String sql1 = "SELECT ward_class_code,ward_class_name FROM wis_ward_class WHERE hfc_cd ='" + hfc + "' ";
+  String sql1 = "SELECT ward_class_code,ward_class_name FROM wis_ward_class WHERE hfc_cd ='" + hfc + "' AND discipline_cd='"+dis+"' AND concat(ward_class_code, ' | ', ward_class_name) like '%"+key+"%'; ";
     
    
 

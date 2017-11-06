@@ -21,7 +21,7 @@
 <input type="hidden" value="<%=subID%>" id="Rsub">
 
 
-<div id="tablefacilityIDTable" class="form-group">
+<div id="tablefacilityIDTable">
 
 
     <table id="facilityIDTable"  class="table table-striped table-bordered" cellspacing="0" width="100%">
@@ -42,9 +42,11 @@
 
             <% //                Conn conn = new Conn();
                 String sqlFacilityID = "SELECT wwc.ward_class_name, a.ward_name, a.ward_id, b.discipline_name, a.no_of_bed, a.citizen_room_cost, a.citizen_deposit, a.citizen_discount, a.non_citizen_room_cost, a.non_citizen_deposit, a.non_citizen_discount, "
-                        + "a.pensioner_room_cost,  a.pensioner_deposit, a.pensioner_discount,a.attach_toilet, a.include_television, a.attach_bathroom_tiolet, a.include_telephone, a.ward_status, a.hfc_cd , a.discipline_cd, b.discipline_cd, wwc.ward_class_code"
-                        + " FROM wis_ward_name a LEFT JOIN adm_discipline b ON a.discipline_cd = b.discipline_cd "
-                        + "LEFT JOIN wis_ward_class wwc on wwc.ward_class_code = a.ward_class_code where a.discipline_cd = '" + disID + "' and a.hfc_cd ='" + hfcID + "' AND b.discipline_cd = '" + disID + "' and b.discipline_hfc_cd ='" + hfcID + "' GROUP BY  a.ward_id";
+                        + "a.pensioner_room_cost,  a.pensioner_deposit, a.pensioner_discount,a.attach_toilet, a.include_television, a.attach_bathroom_tiolet, a.include_telephone, a.ward_status, a.hfc_cd , a.discipline_cd, b.discipline_cd, wwc.ward_class_code "
+                        + "FROM wis_ward_name a "
+                        + "LEFT JOIN adm_discipline b ON a.discipline_cd = b.discipline_cd AND a.hfc_cd=b.discipline_hfc_cd "
+                        + "LEFT JOIN wis_ward_class wwc on wwc.ward_class_code = a.ward_class_code AND a.hfc_cd=wwc.hfc_cd AND wwc.discipline_cd=a.discipline_cd "
+                        + "where a.discipline_cd = '"+disID+"' and a.hfc_cd ='"+hfcID+"' GROUP BY a.ward_id;";
                 ArrayList<ArrayList<String>> dataFacilityID = conn3.getData(sqlFacilityID);
 
                 int size11 = dataFacilityID.size();
@@ -79,6 +81,7 @@
         %>
         </tbody>
     </table>
+        
 </div>
 
 
@@ -382,7 +385,7 @@
         });
 
         $("#updateIDButton").off('click').on('click', function (e) {
-
+            $('#FacilityIDUpdateModal').css('overflow', 'auto');
             e.preventDefault();
             var WardClassCode = $('#updateWC').val();
             var WardName = $('#updateWardName').val();
@@ -407,7 +410,6 @@
             var createdBy = $("#Rid").val();
             var dis = $("#UdisCode").val();
             var sub = $("#Rsub").val();
-
 
             console.log(dis);
             if (WardName === "" || WardName === null) {
@@ -478,6 +480,7 @@
                                 title: "Process Result",
                                 backdrop: true
                             });
+                            FI_loadWardNameOption();
                         } else if (datas.trim() === 'Failed') {
                             bootbox.alert({
                                 message: "Update Failed",
@@ -544,6 +547,7 @@
                                     title: "Process Result",
                                     backdrop: true
                                 });
+                                FI_loadWardNameOption();
                             } else if (result.trim() === 'Failed') {
                                 bootbox.alert({
                                     message: "Delete Failed",

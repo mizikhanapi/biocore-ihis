@@ -7,33 +7,15 @@
 <%@page import="Config.connect"%>
 <%@page import="dBConn.Conn"%>
 <%@page import="java.sql.*"%>
-<head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <!--    <script src="old/assets/js/jquery.min.js"></script>-->
-    <!--    <link rel="stylesheet" href="old/assets/datepicker/jquery-ui.css">-->
 
-    <!-- Custom styles for this template -->
-
-    <!--    <link rel="stylesheet" href="old/assets/css/loading.css">
-        <link href="old/assets/datepicker/jquery-ui.css" rel="stylesheet">    
-        <script src="old/assets/datepicker/jquery-ui.js"></script>
-        <script src="old/assets/js/form-validator.min.js"></script>
-        <script src="old/assets/js/bootstrap.min.js"></script> 
-    
-        <script src="old/assets/js/w3data.js"></script>
-        <script src="old/assets/js/bootbox.min.js"></script>   -->
-
-    <!-- header -->
-
-
-    <!-- header -->
-</head>
 <%
             //Conn conn = new Conn();
     String hfcAS = session.getAttribute("HEALTH_FACILITY_CODE").toString();
     String idAS = session.getAttribute("USER_ID").toString();
     String disAS = session.getAttribute("DISCIPLINE_CODE").toString();
     String subAS = session.getAttribute("SUB_DISCIPLINE_CODE").toString();
+    
+    Conn conn = new Conn();
 
 %>
 <input type="hidden" value="<%=hfcAS%>" id="Rhfc">
