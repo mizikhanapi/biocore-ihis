@@ -178,6 +178,8 @@
                         type = "RG00002";
                     } else if (type.equals("Foreigner")) {
                         type = "RG00003";
+                    } else {
+                        type = "RG00003";
                     }
 
                     String sqlBillGenerateDetailsMisceItem = "SELECT * FROM far_miscellaneous_item WHERE item_code = '" + type + "'";
