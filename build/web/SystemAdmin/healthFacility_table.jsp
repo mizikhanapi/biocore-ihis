@@ -550,6 +550,8 @@
             address3 = address3.replace(/'/g, "\\\'").replace(/"/g, "\\\"");
             contactPerson = contactPerson.replace(/'/g, "\\\'").replace(/"/g, "\\\"");
             director = director.replace(/'/g, "\\\'").replace(/"/g, "\\\"");
+            
+            createScreenLoading();
 
             var data = {
                  hfcName : hfcName,
@@ -601,6 +603,9 @@
                 },
                 error: function (err) {
                     alert("Error update!");
+                },
+                complete: function (jqXHR, textStatus ) {
+                    destroyScreenLoading();    
                 }
 
             });
@@ -640,7 +645,7 @@
                     var data = {
                         hfc_cd : hfcCode
                     };
-
+                    createScreenLoading();
                     $.ajax({
                         url: "healthFacility_delete.jsp",
                         type: "post",
@@ -664,6 +669,9 @@
                         },
                         error: function (err) {
                             alert("Error! Deletion failed!!");
+                        },
+                        complete: function (jqXHR, textStatus ) {
+                            destroyScreenLoading();
                         }
 
                     });
