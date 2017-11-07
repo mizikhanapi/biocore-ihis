@@ -168,7 +168,7 @@ function getPDI(pmiNo, episodeDate) {
             PDIInfo = result.trim();
         },
         error: function (err) {
-            alert(err);
+            alert("Get PDI error: "+err);
         }
     });
 }

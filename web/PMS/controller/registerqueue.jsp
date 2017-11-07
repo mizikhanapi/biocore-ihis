@@ -93,7 +93,11 @@
                 newQueueNo = queue_now + 1;
                 queueSql = "update pms_last_queue_no set last_queue_no='" + newQueueNo + "' where hfc_cd='" + hfc + "' and queue_name ='" + queue_name1 + "' and episode_date like '%" + now + "%' and discipline_cd = '"+disCode+"';";
             }
-            insertPatientQueue = "insert into pms_patient_queue(hfc_cd,queue_name,episode_date,pmi_no,queue_no,queue_type,status,patient_category,created_by,created_date)values('" + hfc + "','" + queue_name1 + "','" + epiDate + "','" + pmi + "','" + newQueueNo + "','" + comTy + "','0','001','" + createdBy + "',NOW());";
+            
+            // changes made here to include discipline and subdiscipline into pms_patient_queue
+            insertPatientQueue = "insert into pms_patient_queue(hfc_cd,queue_name,episode_date,pmi_no,queue_no,queue_type,status,patient_category,created_by,created_date, discipline_cd, subdiscipline_cd) "
+                    + "values('" + hfc + "','" + queue_name1 + "','" + epiDate + "','" + pmi + "','" + newQueueNo + "','" + comTy + "','0','001','" + createdBy + "',NOW(), '"+disCode+"', '"+subDis+"');";
+            
             insertEpisode = "INSERT INTO pms_episode(PMI_NO,EPISODE_DATE,NAME,NEW_IC_NO,OLD_IC_NO,ID_TYPE,ID_NO,RN_NO,PATIENT_CATEGORY_CODE,VISIT_TYPE_CODE,EMERGENCY_TYPE_CODE," + "ELIGIBILITY_CATEGORY_CODE,ELIGIBILITY_TYPE_CODE,DISCIPLINE_CODE,SUBDISCIPLINE_CODE,COMMON_QUEUE,PRIORITY_GROUP_CODE,POLICE_CASE,COMMUNICABLE_DISEASE_CODE,NATURAL_DISASTER_CODE,DOC_TYPE,GUARDIAN_IND,REFERENCE_NO,GROUP_GUARDIAN,GL_EXPIRY_DATE,EPISODE_TIME,STATUS,HEALTH_FACILITY_CODE,queue_type,queue_name,queue_no)"
                     + "VALUES ('" + pmi + "','" + epiDate + "','" + name + "','" + newic + "','" + oldic + "','" + typeId + "','" + idNo + "','" + rnNo + "','" + patCatCode + "','" + visTyCode + "','" + emTy + "','" + eliCatCode + "','" + eliTyCode + "','" + disCode + "','" + subDis + "','" + queue_name1 + "','" + prioGruCode + "','" + polCase + "','" + commDis + "','" + natuDisasCode + "','" + docTy + "','" + guardInd + "','" + referNo + "','" + gruGuard + "','" + glExpDate + "','" + epiTime + "','" + stat + "','" + hfc + "','" + comTy + "','" + comQueue + "','" + newQueueNo + "');";
 

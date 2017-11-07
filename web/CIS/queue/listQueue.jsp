@@ -33,8 +33,8 @@
     String sql = "select q.pmi_no,e.name,q.episode_date,e.episode_time,q.queue_name,q.queue_no,e.doctor,l.description,e.consultation_room from pms_patient_queue q , pms_episode e,adm_lookup_detail l where l.`Master_Reference_code` ='0069' and l.`Detail_Reference_code` = q.status and e.pmi_no = q.pmi_no and e.episode_date = q.episode_date and e.`HEALTH_FACILITY_CODE` = q.hfc_cd and l.`hfc_cd` = '" + hfc + "' and q.episode_date like '%" + now + "%' and q.status !='1' and q.hfc_cd='" + hfc + "' AND (q.queue_type = 'CM' OR q.queue_name = '" + doctor + "') LIMIT 5";
 
                              //0    //1            //2                //3        //4         //5      //6           //7       //8
-    String sqlV3 = "SELECT q.pmi_no,b.patient_name,q.episode_date,q.queue_name,q.queue_no,q.user_id,l.description,u.room_no,q.patient_category,x.description"
-            + " from pms_patient_queue q"
+    String sqlV3 = "SELECT q.pmi_no,b.patient_name,q.episode_date,q.queue_name,q.queue_no,q.user_id,l.description,u.room_no,q.patient_category,x.description "
+            + " from pms_patient_queue q "
             + " join pms_patient_biodata b on b.pmi_no = q.pmi_no"
             + " join adm_lookup_detail l on l.`Master_Reference_code` ='0069' and l.`Detail_Reference_code` = q.status and l.`hfc_cd` = '" + hfc + "'"
             + " left join adm_lookup_detail x on x.`Master_Reference_code` ='0033' and x.`Detail_Reference_code` = q.patient_category and x.`hfc_cd` = '" + hfc + "'"
@@ -51,9 +51,9 @@
             + "AND l.`Detail_Reference_code` = q.status AND l.`hfc_cd` = '" + hfc + "'" 
             + "LEFT JOIN adm_lookup_detail x ON x.`Master_Reference_code` ='0033' "
             + "AND x.`Detail_Reference_code` = q.patient_category "
-            + "AND x.`hfc_cd` = '" + hfc + "'"
-
-            + "WHERE q.queue_name IN (SELECT queue_name FROM pms_queue_list WHERE user_id = '" + doctor_id + "' AND hfc_cd = '" + hfc + "' AND discipline_cd = '" + discipline + "' AND sub_discipline_cd = '" + subdicipline + "' )  "
+            + "AND x.`hfc_cd` = '" + hfc + "' "
+// changes made on after this line; One additional where condition which is the patient queue discipline must equal with current user's discipline.: 
+            + "WHERE q.discipline_cd='"+discipline+"' AND q.queue_name IN (SELECT queue_name FROM pms_queue_list WHERE user_id = '" + doctor_id + "' AND hfc_cd = '" + hfc + "' AND discipline_cd = '" + discipline + "' AND sub_discipline_cd = '" + subdicipline + "' ) "
             + "AND q.episode_date LIKE '%" + now + "%'  AND q.status !='1'  "
             + "OR (q.patient_category = '003' "
             + "AND q.status != '1' "
