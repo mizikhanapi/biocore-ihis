@@ -263,6 +263,7 @@
                             }
                         }
                     %>
+                </tr>
             </tbody>
         </table>
     </div>

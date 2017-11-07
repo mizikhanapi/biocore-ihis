@@ -357,6 +357,7 @@
                             }
                         }
                     %>
+                </tr>
             </tbody>
         </table>
     </div>
