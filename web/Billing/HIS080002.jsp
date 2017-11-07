@@ -1,135 +1,141 @@
-<%-- 
-    Document   : manage
-    Created on : Dec 24, 2016, 6:17:18 PM
-    Author     : Mike Ho
+<%--
+    Document   : HIS080002
+    Created on : Oct 11, 2017, 3:13:21 AM
+    Author     : Shammugam
 --%>
 
-<%@page import="dbConn1.Conn"%>
+<%@page import="Config.Config"%>
 <%@page import="java.util.ArrayList"%>
-<%@page import="java.text.DecimalFormat"%>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="dBConn.Conn"%>
+
 <%@include file="../Entrance/validateSession.jsp" %>
 <%@include file="validateModuleAccess.jsp" %>
+
+
+<%    Config.getFile_url(session);
+    Config.getBase_url(request);
+
+    Conn conn = new Conn();
+    String hfc = session.getAttribute("HEALTH_FACILITY_CODE").toString();
+    String dis = session.getAttribute("DISCIPLINE_CODE").toString();
+    String sub = session.getAttribute("SUB_DISCIPLINE_CODE").toString();
+
+%>
+
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-    <%@include file = "includes/header.jsp" %>
+
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <!-- header -->
+        <%@include file = "libraries/billingHeadLibrary.jsp" %>
+        <%@include file = "../assets/header.html" %>
+        <!-- header -->
+        <style>
+
+            .selectedtr {
+                background-color:yellow;
+            }
+
+        </style>
+    </head>
+
     <body>
         <div class="container-fluid">
-            <div class="row">      
-            <%@include file = "includes/sideMenus.jsp" %>
+            <div class="row">       
+                <!-- menu side -->	
+                <%@include file = "libraries/billingSideMenus.jsp" %>
+                <!-- menu side -->	
                 <!-- main -->		
-
                 <div class="main" style="background: #f2f4f8;">
-                    
-                <%@include file = "includes/topMenu.html" %>
+                    <!-- menu top -->
+                    <%@include file = "libraries/billingTopMenu.jsp" %>
+                    <!-- menu top -->
                     <div class="row">
-                        <!--body-->
                         <div class="col-md-12">
-                            <div class="thumbnail">
-                                <div id="loadBill">
-                                    <div style="margin-bottom: 50px">
-                                        <h4><b>Manage Bill</b></h4>
-                                        <form class="form-horizontal" name="myForm" id="myForm">
-                                            <div class="form-group">
-                                                <label class="col-md-4 control-label" for="textinput">Bill Status</label>
-                                                <div class="col-sm-7 col-md-7" style="margin-bottom: 10px">
-                                                    <div class="input-group">
-                                                        <div id="rbStatus" class="btn-group">
-                                                                <a class="btn btn-primary btn-sm active" data-toggle="status" data-title="U">UNPAID</a>
-                                                                <a class="btn btn-primary btn-sm" data-toggle="status" data-title="P">PAID</a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div id="custom-search-input">
-                                                <div class="form-group">
-                                                    <label class="col-md-4 control-label" for="textinput">IC No.</label>
-                                                    <div class="col-md-4">
-                                                        <input type="text" class="form-control input-md" id="ic" placeholder="IC No.">
-                                                    </div>
-                                                    <button class="btn btn-primary" type="button" id="searchBill" name="searchPatient"><i class="fa fa-search fa-lg"></i>&nbsp; Search</button>
-                                                </div>
-                                            </div>
-                                        </form>
-                                    </div>
+                            <div  class="thumbnail">
 
-                                    <div id="billDetails">
-                                        <table id="tableBill" class="table table-filter table-striped table-bordered">
-                                            <thead>
-                                                <th>Transaction Date</th>
-                                                <th>Bill No.</th>
-                                                <th>Customer ID</th>
-                                                <th>Name</th>
-                                                <th>IC No.</th>
-                                                <th>Other ID</th>
-                                                <th>Phone No.</th>
-                                                <th>Outstanding (RM)</th>
-                                                <th></th>
-                                            </thead>
-                                        </table>
+
+                                <!-- Tab Menu -->
+                                <div class="tabbable-panel">
+                                    <div class="tabbable-line">
+                                        <ul class="nav nav-tabs " id="myTab">
+                                            <li class="active">
+                                                <a href="#tab_default_1" data-toggle="tab">
+                                                    GENERATED BILL MASTER</a>
+                                            </li>
+                                            <li>
+                                                <a href="#tab_default_2" data-toggle="tab">
+                                                    GENERATED BILL DETAIL</a>
+                                            </li>
+                                        </ul>
+                                        <!-- tab content -->
+                                        <div class="tab-content">
+                                            <div class="tab-pane active" id="tab_default_1">
+
+                                                <div id="manageBillMasterOrderListMain">
+                                                </div>
+
+                                                <hr/>
+                                                <br>
+
+                                                <div id="manageBillMasterOrderListContent">
+                                                    <table class="table table-bordered" id="manageBillMasterOrderListTable" style="width: 100%">
+                                                        <thead>
+                                                        <th>Transaction Date</th>
+                                                        <th>Bill No.</th>
+                                                        <th>Customer ID</th>
+                                                        <th>Name</th>
+                                                        <th>IC No.</th>
+                                                        <th>Other ID</th>
+                                                        <th>Phone No.</th>
+                                                        <th>Outstanding (RM)</th>
+                                                        <th>Action</th>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr>
+                                                                <td colspan="9" align="center">No Record To Show<br>Please Select Correct Filter And Press Refresh Button</td>
+                                                            </tr> 
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+
+                                            </div>
+
+                                            <div class="tab-pane" id="tab_default_2">
+
+                                                <div id="manageBillDetailOrderDetailContent">
+                                                </div>
+
+                                            </div>
+
+                                        </div>
                                     </div>
                                 </div>
+                                <!-- Tab Menu -->
+
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-            
-        <%@include file = "includes/message.html" %>                    
-        
-        <!--js-->
-        <script src="assets/js/jquery.min.js" type="text/javascript"></script>
-        <script src="assets/js/custom.js" type="text/javascript"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script> 
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> 
-        <script type="text/javascript">
-            $(document).ready(function(){
-                $('#ic').keypress(function(event) {
-                    if ((event.which != 46 || $(this).val().indexOf('.') != 1) && (event.which < 48 || event.which > 57) && event.which != 8) {
-                        event.preventDefault();
-                    }
-                });     
-                
-                $('#rbStatus a').on('click', function(){
-                    var sel = $(this).data('title');
-                    var tog = $(this).data('toggle');
-                    $('#'+tog).prop('value', sel);
+            <!-- main -->		
 
-                    $('a[data-toggle="'+tog+'"]').not('[data-title="'+sel+'"]').removeClass('active').addClass('notActive');
-                    $('a[data-toggle="'+tog+'"][data-title="'+sel+'"]').removeClass('notActive').addClass('active');
-                });
-                
-                $('#searchBill').click(function(){
-                  var ic = document.getElementById('ic').value;
-                  var status = $('#rbStatus a.active').html();
-                  status = String(status).toLowerCase();
-                  
-                  if (ic === "") {
-                  } else {
-                      $.ajax({
-                          url: "searchBill.jsp",
-                          type: "post",
-                          data: {
-                              ic: ic,
-                              status: status
-                          },
-                          timeout: 10000,
-                          success: function(data) {
-                            var d = data.split("|");
-                            $('#billDetails').html(d[0]);
-                            if (d[1] == '-1') {
-                                document.getElementById('messageHeader').innerHTML = "No record!";
-                                document.getElementById('messageContent').innerHTML = d[2];
-                                $("#alertMessage").modal();
-                            }
-                          },
-                          error: function(err) {
-                          }
-                      });
-                    }
-                });
-            });
+        </div>
+
+        <%@include file = "includes/message.html" %>    
+
+        <!-- Placed at the end of the document so the pages load faster -->
+        <%@include file = "libraries/billingFootLibrary.jsp" %>
+        <!-- Placed at the end of the document so the pages load faster -->
+
+        <script>
+
+            $("#manageBillMasterOrderListMain").load("manageBillMasterListMainFilter.jsp");
+
         </script>
+
     </body>
 </html>
