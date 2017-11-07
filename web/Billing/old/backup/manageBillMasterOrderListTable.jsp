@@ -1,0 +1,78 @@
+<%-- 
+    Document   : manageBillMasterOrderListTable
+    Created on : Oct 25, 2017, 5:19:43 PM
+    Author     : Shammugam
+--%>
+
+<%@page import="dbConn1.Conn"%>
+<%@page import="java.text.DecimalFormat"%>
+<%@page import="java.util.ArrayList"%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%
+    String ic = request.getParameter("ic");
+    String status = request.getParameter("status");
+    DecimalFormat df = new DecimalFormat("0.00");
+    Conn conn = new Conn();
+    String userID = session.getAttribute("USER_ID").toString();
+
+    //                        0               1                  2                  3           4             5
+    String query = "SELECT ch.bill_no, ch.customer_id, UPPER(pb.patient_name), pb.new_ic_no, pb.id_no, pb.home_address, "
+            //          6             7                     8                  9           10           11
+            + " pb.mobile_phone, ch.quantity, (ch.item_amt-ch.amt_paid), ch.txn_date, ch.item_amt, ch.amt_paid "
+            // FROM CONDITION
+            + " FROM far_customer_hdr ch "
+            // JOIN CONDITION
+            + " LEFT JOIN pms_patient_biodata pb ON (ch.customer_id = pb.PMI_NO) "
+            // WHERE CONDITION
+            + " WHERE ch.payment = '" + status + "' AND pb.new_ic_no = '" + ic + "' ";
+
+    ArrayList<ArrayList<String>> dataManageBillMasterOrderList = conn.getData(query);
+
+    int size = dataManageBillMasterOrderList.size();
+%>
+<input id="dataManageBillMasterOrderListhiddenStatus" type="hidden" value="<%=status%>">
+<table class="table table-bordered" id="manageBillMasterOrderListTable" style="width: 100%">
+    <thead>
+    <th>Transaction Date</th>
+    <th>Bill No.</th>
+    <th>Customer ID</th>
+    <th>Name</th>
+    <th>IC No.</th>
+    <th>Other ID</th>
+    <th>Phone No.</th>
+    <th>Outstanding (RM)</th>
+    <th></th>
+</thead>
+<tbody>
+    <%
+        for (int i = 0; i < size; i++) {
+    %>
+    <tr style="text-align: left;"> 
+<input id="dataManageBillMasterOrderListhidden" type="hidden" value="<%=String.join("|", dataManageBillMasterOrderList.get(i))%>">
+<td><%=dataManageBillMasterOrderList.get(i).get(9)%></td>
+<td><%=dataManageBillMasterOrderList.get(i).get(0)%></td>
+<td><%=dataManageBillMasterOrderList.get(i).get(1)%></td>
+<td><%=dataManageBillMasterOrderList.get(i).get(2)%></td>
+<td><%=dataManageBillMasterOrderList.get(i).get(3)%></td>
+<td><%=dataManageBillMasterOrderList.get(i).get(4)%></td>
+<td><%=dataManageBillMasterOrderList.get(i).get(6)%></td>
+<td><%=df.format(Double.parseDouble(dataManageBillMasterOrderList.get(i).get(8)))%></td>
+<td><button id="manageBillViewBillDetailBtn" class="btn btn-success pull-right" type="button"><i class="fa fa-file-o fa-lg" aria-hidden="true"></i>&nbsp; View Detail</button></td>
+</tr>
+<% }
+%>
+</tbody>
+</table>
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        $('#manageBillMasterOrderListTable').DataTable({
+            "language": {
+                "emptyTable": "No Bill Record Available To Display"
+            }, initComplete: function (settings, json) {
+                $('.loading').hide();
+            }
+        });
+
+    });
+</script>
