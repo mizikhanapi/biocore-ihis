@@ -1,3 +1,4 @@
+<%@page import="ADM_helper.MySessionKey"%>
 <%@page import="Config.Config"%>
 <%@page import="java.util.Date"%>
 <%@page import="java.util.*"%>
@@ -14,6 +15,7 @@
     String idAS = session.getAttribute("USER_ID").toString();
     String disAS = session.getAttribute("DISCIPLINE_CODE").toString();
     String subAS = session.getAttribute("SUB_DISCIPLINE_CODE").toString();
+    String disNameAS = (String) session.getAttribute(MySessionKey.DISCIPLINE_NAME);
     
     Conn conn = new Conn();
 
@@ -56,7 +58,7 @@
                         <div class="form-group">
                             <label class="col-md-4 control-label" for="selectbasic">Discipline *</label>
                             <div class="col-md-6">
-                                <input id="DisAss" name="Dis" placeholder="Insert Discipline Code" maxlength="30" type="text"  class="form-control input-md">
+                                <input id="DisAss" name="Dis" placeholder="Insert Discipline Code"  type="text"  class="form-control input-md" readonly value="<%=disAS%> | <%=disNameAS%>">
                                 <div id="disListAss" class="search-drop"></div>
                             </div>
 
@@ -69,7 +71,8 @@
                                 <select id="Ward_Class" name="selectbasic" class="form-control">
                                     <option value="Ward Class" >Ward Class</option>
 
-                                    <%                                        String sql124 = "SELECT ward_class_code, ward_class_name FROM wis_ward_class where hfc_cd ='" + hfcAS + "' ";
+                                    <%                                       
+                                        String sql124 = "SELECT ward_class_code, ward_class_name FROM wis_ward_class where hfc_cd ='" + hfcAS + "' AND discipline_cd='"+disAS+"';";
                                         ArrayList<ArrayList<String>> dataClass = conn.getData(sql124);
 
                                         int size124 = dataClass.size();
