@@ -211,6 +211,7 @@ function updateStatus_2(pmiNo, episodeDate, status, preStatus) {
             }
             else{
                 bootbox.alert("The patient has been taken by other doctor.");
+                clearCIS();
             }
         },
         error: function (err) {
