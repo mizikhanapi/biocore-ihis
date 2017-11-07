@@ -93,7 +93,7 @@
                                     <table id="MTC"  class="table table-striped table-bordered" cellspacing="0" width="100%">
                                         <%  Conn conn = new Conn();
                                             String hfc_cd = session.getAttribute("HEALTH_FACILITY_CODE").toString();
-                                            String sqlPatientApp = "SELECT DISTINCT ls.specimen_no,ls.pmi_no,pms.NEW_IC_NO,pms.PATIENT_NAME,lom.order_no,lom.order_status,lom.order_date,ls.item_cd FROM lis_specimen ls,lis_order_detail lod,lis_order_master lom,pms_patient_biodata pms WHERE ls.order_no=lod.order_no AND receive_specimen_status = 'Approve' AND lod.order_no= lom.order_no AND lom.pmi_no = pms.PMI_NO AND lom.order_status='2' AND lom.hfc_cd='" + hfc_cd + "' GROUP BY(ls.specimen_no) ORDER by lom.order_status ASC";
+                                            String sqlPatientApp = "SELECT DISTINCT ls.specimen_no,ls.pmi_no,pms.NEW_IC_NO,pms.PATIENT_NAME,lom.order_no,lom.order_status,lom.order_date,ls.item_cd,lom.billing_status FROM lis_specimen ls,lis_order_detail lod,lis_order_master lom,pms_patient_biodata pms WHERE ls.order_no=lod.order_no AND receive_specimen_status = 'Approve' AND lod.order_no= lom.order_no AND lom.pmi_no = pms.PMI_NO AND lom.order_status='2' AND lom.hfc_cd='" + hfc_cd + "' GROUP BY(ls.specimen_no) ORDER by lom.order_status ASC";
                                             ArrayList<ArrayList<String>> dataPatientApp = conn.getData(sqlPatientApp);
 
                                         %>
@@ -125,7 +125,7 @@
                                                     %>
                                                     Pending
                                                     <%
-                                                    } else if (dataPatientApp.get(i).get(5).equals("4")) {
+                                                    } else if (dataPatientApp.get(i).get(8).equals("2")) {
                                                     %>
                                                     Send
                                                     <%
