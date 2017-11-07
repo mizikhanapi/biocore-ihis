@@ -15,6 +15,14 @@ $(document).ready(function () {
     var updatePOSSurgicalObj;
     var rowPOSSurgicalId;
     var rowPOSSurgicalDataTR;
+    
+    $("#CIS040011").on('show.bs.modal',function(){
+        searchPOSSurgicalCategory("tCISOESPOCategoryName", "tCISOESPOCategoryNameLoading", "");
+        searchDOCTOROnlySurgical("tCISOESPOConsultantName", "tCISOESPOConsultantNameLoading", hfc_cd, "");
+        searchOTRoomSurgical("tCISOESPOOTRoomName", "tCISOESPOOTRoomNameLoading", "")
+    })
+    
+   
 
     $(".CIS-OE-SPO-DATE").datepicker({
         changeMonth: true,
