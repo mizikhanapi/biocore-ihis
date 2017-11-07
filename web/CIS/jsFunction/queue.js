@@ -210,6 +210,7 @@ function updateStatus_2(pmiNo, episodeDate, status, preStatus) {
                  reloadStat = "1";
             }
             else{
+                //pmiNo = "";
                 bootbox.alert("The patient has been taken by other doctor.");
                 clearCIS();
             }
