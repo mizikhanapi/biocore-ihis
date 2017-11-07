@@ -207,6 +207,7 @@ function updateStatus_2(pmiNo, episodeDate, status, preStatus) {
             if(result.trim()==="|1|"){
                 var patient = findPatient(pmiNo, episodeDate);
                 var getPDIInfo = getPDI(pmiNo, episodeDate);
+                 reloadStat = "1";
             }
             else{
                 bootbox.alert("The patient has been taken by other doctor.");
