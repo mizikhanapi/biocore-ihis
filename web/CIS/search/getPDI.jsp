@@ -66,7 +66,7 @@
 
     String sqlcountry = "select `Description`  from adm_lookup_detail where `Master_Reference_code` = '0001' and `Detail_Reference_code` = '" + dataPDI.get(0).get(19) + "' group by description";
     ArrayList<ArrayList<String>> desccountry = conn.getData(sqlcountry);
-    if (dataPDI.size() > 0) {
+    if (descIDType.size() > 0) {
         if (dataPDI.get(0).get(0).equals("-")) {
             IdType = "-";
         } else {
