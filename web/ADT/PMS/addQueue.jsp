@@ -48,7 +48,7 @@
     if (isInsert == true) {
         out.print("Success");
     } else {
-        out.print("Failed");
+        out.print("Failed: "+sql);
     }
 
 %>
