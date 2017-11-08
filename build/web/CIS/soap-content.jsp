@@ -49,7 +49,6 @@
                       <li><a data-toggle="modal" data-target="#CIS020007" href="" id="soapCtnPanScale"><i class="fa fa-line-chart fa-li" style="display: block"></i> Pain Scale</a></li>
                       <li><a data-toggle="modal" data-target="#CIS0200013" href=""><i class="fa fa-line-chart fa-li" style="display: block"></i> Pupil</a></li>
                       <li><a data-toggle="modal" data-target="#CIS0200014" href=""><i class="fa fa-line-chart fa-li" style="display: block"></i> Vision</a></li>
-<!--                      <li><a data-toggle="modal" data-target="#CIS0200015" href=""><i class="fa fa-line-chart fa-li" style="display: block"></i> Height and Weight</a></li>-->
                       <li><a data-toggle="modal" data-target="#CIS020008" href="" ><i class="fa fa-bars fa-li" style="display: block"></i> Other</a></li>
                 </ul>
             </div>    
