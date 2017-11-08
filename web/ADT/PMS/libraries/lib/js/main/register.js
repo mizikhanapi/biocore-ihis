@@ -289,6 +289,9 @@ $('#registerBed').click(function () {
                                                     } else if ($.trim(l) === "Failed") {
                                                         bootbox.alert("There something error with the query of add patient to queue");
                                                     }
+                                                    else{
+                                                        bootbox.alert(l);
+                                                    }
                                                 }, error: function () {
                                                     bootbox.alert("There is an error!");
                                                 }
@@ -298,6 +301,9 @@ $('#registerBed').click(function () {
                                             bootbox.alert("Patient is already registered");
                                         } else if ($.trim(list) === "false") {
                                             bootbox.alert("There something error with the query of register the inpatient");
+                                        }
+                                        else{
+                                            bootbox.alert(list);
                                         }
 
                                         var wname = $('#wname').val();
