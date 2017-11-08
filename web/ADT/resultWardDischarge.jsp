@@ -89,13 +89,14 @@
                     + "left join pms_patient_biodata c on a.pmi_no = c.pmi_no "
                     + "left join wis_ward_name wwn on wwn.ward_id = a.ward_id "
                     + "left join wis_inpatient_episode_history wieh on a.pmi_no = wieh.pmi_no "
-                    + "where a.inpatient_status ='" + status + "' and a.ward_id ='" + idWard + "'and b.txn_type ='" + txntype + "' and b.hfc_cd='" + hfc + "' group by  a.pmi_no ";
+                    + "where a.inpatient_status ='" + status + "' and a.ward_id ='" + idWard + "' and b.txn_type ='" + txntype + "' and b.hfc_cd='" + hfc + "' group by  a.pmi_no ";
         }
 
         ArrayList<ArrayList<String>> dataList = conn.getData(searching);
-
+        //out.print(searching);
         int size1141 = dataList.size();
         if (size1141 > 0) {
+           
 
             for (int i = 0; i < size1141; i++) {
 

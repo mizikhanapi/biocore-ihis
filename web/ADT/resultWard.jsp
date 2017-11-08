@@ -161,6 +161,7 @@
 //        session.setAttribute("patientCategory", patientBio);
         //  out.print(patientBio);
         int size1141 = dataList.size();
+        //out.print(searching);
         if (size1141 > 0) {
 
             for (int i = 0; i < size1141; i++) {
