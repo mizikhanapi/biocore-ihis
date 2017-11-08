@@ -80,7 +80,7 @@
     String insertEpisode = "";
     String insertEpisode2 = "";
 
-    String isAlreadyRegister = "select pmi_no from wis_inpatient_episode where pmi_no = '" + pmino + "';";
+    String isAlreadyRegister = "select pmi_no from wis_inpatient_episode where pmi_no = '" + pmino + "' and inpatient_status != '2';";
     ArrayList<ArrayList<String>> alreadyRegis = conn.getData(isAlreadyRegister);
 
     if (alreadyRegis.size() > 0) {
@@ -114,7 +114,15 @@
         } else {
             out.print("false");
             //out.print(insertEpisode);
-        }
+            if(!regis)
+                out.print(insertEpisode);
+            if(!updBed)
+                out.print(updateBed);
+            if(!upMaster)
+                out.print(updateMaster);
+            if(!upDetail)
+                out.print(updateDetail);
+        }          
 
     }
 

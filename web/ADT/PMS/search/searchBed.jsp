@@ -168,7 +168,7 @@
         //seaching bed function   
         function searchBed() {
 
-            var DisO = $('#Dis').val();
+            var DisO = $('#DisWard').val();
             var wnameO = $('#wname').val();
             var WardTypeO = $('#WardType').val();
 
@@ -180,15 +180,17 @@
 
             //check if the input text or the select box is empty.
 
-            if (DisO === "-") {
+            if (DisO === "-" || DisO == null || DisO === "") {
 
                 bootbox.alert('Please select Discipline Code first');
-            } else if (wnameO === "-") {
-
-                bootbox.alert('Please select Ward Name first.');
-            } else if (WardTypeO === "-") {
+            } else if (WardTypeO === "-" || WardTypeO == null || WardTypeO ==="") {
 
                 bootbox.alert('Please select Ward Type first.');
+            
+            } else if (wnameO === "-" || wnameO == null || wnameO ==="") {
+
+                bootbox.alert('Please select Ward Name first.');
+            
             } else {
                 //if the select box is choosen and the input in key-in.
 
@@ -248,6 +250,7 @@
                         } else if (pageNow === "IR") {
                             $('#bedtest').html(list);
                         }
+                        window.location.hash = '#displayBedDiv';
 
                     },
                     error: function (xhr, status, error) {
@@ -280,8 +283,9 @@
         //event on click search button
         $('#searchBed').on('click', function (e) {
             e.preventDefault();
+           
             searchBed();
-
+            
         });
 
 

@@ -72,7 +72,8 @@
                                     <option value="Ward Class" >Ward Class</option>
 
                                     <%                                       
-                                        String sql124 = "SELECT ward_class_code, ward_class_name FROM wis_ward_class where hfc_cd ='" + hfcAS + "' AND discipline_cd='"+disAS+"';";
+                                  //       String sql124 = "SELECT ward_class_code, ward_class_name FROM wis_ward_class where hfc_cd ='" + hfcAS + "' AND discipline_cd='"+disAS+"';";
+                                        String sql124 = "SELECT ward_class_code, ward_class_name FROM wis_ward_class where hfc_cd ='" + hfcAS + "' ;";
                                         ArrayList<ArrayList<String>> dataClass = conn.getData(sql124);
 
                                         int size124 = dataClass.size();
@@ -94,7 +95,8 @@
                                 <select id="Ward_ID" name="selectbasic" class="form-control">
                                     <option value="null" selected="" disabled="">Select Ward ID/Name</option>
                                     <%
-                                        String sql312 = "SELECT ward_id, ward_name FROM wis_ward_name where hfc_cd = '" + hfcAS + "'";
+                                        String sql312 = "SELECT ward_id, ward_name FROM wis_ward_name where hfc_cd = '" + hfcAS + "' AND discipline_cd='"+disAS+"' ;";
+                                        //String sql312 = "SELECT ward_id, ward_name FROM wis_ward_name where hfc_cd = '" + hfcAS + "'";
                                         ArrayList<ArrayList<String>> dataID = conn.getData(sql312);
 
                                         int size312 = dataID.size();

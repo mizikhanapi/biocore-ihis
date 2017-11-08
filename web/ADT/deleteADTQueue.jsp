@@ -15,7 +15,7 @@
     RMIConnector rmic = new RMIConnector();
     Conn conn = new Conn();
     String order = request.getParameter("order");
-    String now = request.getParameter("today");
+    
     //   String delSql ="DELETE FROM wis_order_master WHERE pmi_no ='"+pmino+"' AND EPISODE_DATE = '"+now+"'";
 
     String delSql = "DELETE FROM wis_order_master WHERE order_no ='" + order + "' ";
@@ -23,11 +23,15 @@
     Boolean delSuccess = rmic.setQuerySQL(conn.HOST, conn.PORT, delSql);
     Boolean delSuccess2 = rmic.setQuerySQL(conn.HOST, conn.PORT, delSql2);
 
-    if (delSuccess == true && delSuccess2 == true) {
+    if (delSuccess && delSuccess2) {
         out.print("success");
 //out.print(delSql);
 //out.print(delSql); 
     } else {
         out.print("fail");
+        if(!delSuccess)
+            out.print(delSql);
+        if(!delSuccess2)
+            out.print(delSql2);
     }
 %>

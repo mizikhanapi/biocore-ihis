@@ -40,7 +40,7 @@
                 <div class="btn-group btn-group-justified" role="group" aria-label="group button">
 
                 </div>
-                </form>
+               
             </div>
         </div>
     </div>

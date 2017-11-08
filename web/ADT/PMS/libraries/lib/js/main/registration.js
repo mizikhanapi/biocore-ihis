@@ -27,21 +27,21 @@
         });
     });
 
-    $('#queue').on('click', function () {
-        $.ajax({
-            type: "POST",
-            data: {idType: "", idInput: ""},
-            url: "PMS/controller/listQueue.jsp", // call the php file ajax/tuto-autocomplete.php
-            timeout: 10000,
-            success: function (list) {
-                $('#modalBodyQueue').html(list);
-            },
-            error: function (xhr, status, error) {
-                var err = eval("(" + xhr.responseText + ")");
-                bootbox.alert(err.Message);
-            }
-        });
-    });
+//    $('#queue').on('click', function () {
+//        $.ajax({
+//            type: "POST",
+//            data: {idType: "", idInput: ""},
+//            url: "PMS/controller/listQueue.jsp", // call the php file ajax/tuto-autocomplete.php
+//            timeout: 10000,
+//            success: function (list) {
+//                $('#modalBodyQueue').html(list);
+//            },
+//            error: function (xhr, status, error) {
+//                var err = eval("(" + xhr.responseText + ")");
+//                bootbox.alert(err.Message);
+//            }
+//        });
+//    });
 
     $('#select-0').hide();
     $('#select-1').hide();

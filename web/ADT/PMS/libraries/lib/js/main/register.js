@@ -120,14 +120,6 @@ $('#registerBed').click(function () {
     } else if ($('input[name="PoliceCase"]').val() === null) {
         bootbox.alert('Please choose the police case');
 
-
-
-
-
-
-
-
-
     } else {
 
 
@@ -259,7 +251,7 @@ $('#registerBed').click(function () {
                         type: "POST",
                         url: "PMS/checkQueue.jsp",
                         data: datas, // Send input
-                        timeout: 3000,
+                        timeout: 60000,
                         success: function (l) {
                             console.log(l);
                             $body.removeClass("loading");
@@ -269,7 +261,7 @@ $('#registerBed').click(function () {
                                     type: "POST",
                                     url: "PMS/registration.jsp",
                                     data: datas, // Send input
-                                    timeout: 3000,
+                                    timeout: 60000,
                                     success: function (list) {
                                         console.log(list);
 
@@ -280,25 +272,27 @@ $('#registerBed').click(function () {
                                                 url: "PMS/addQueue.jsp",
                                                 data: datas,
                                                 //data: {'wname': wname, 'createdBy': createdBy, 'hfc': hfc, 'Dis': Dis, 'sub': sub, 'pmino': pmino}, // Send input
-                                                timeout: 3000,
-                                                success: function (l) {
-                                                    console.log(l);
+                                                timeout: 60000,
+                                                success: function (l2) {
+                                                    console.log(l2);
                                                     $body.removeClass("loading");
-                                                    if ($.trim(l) === "Success") {
+                                                    if ($.trim(l2) === "Success") {
                                                         bootbox.alert("Patient has been add to queue successfully");
-                                                    } else if ($.trim(l) === "Failed") {
+                                                    } else if ($.trim(l2) === "Failed") {
                                                         bootbox.alert("There something error with the query of add patient to queue");
                                                     }
                                                     else{
-                                                        bootbox.alert(l);
+                                                        bootbox.alert(l2);
                                                     }
                                                 }, error: function () {
                                                     bootbox.alert("There is an error!");
                                                 }
                                             });
                                             bootbox.alert("Patient has been register successfully");
+                                            
                                         } else if ($.trim(list) === "already") {
-                                            bootbox.alert("Patient is already registered");
+                                            bootbox.alert("Patient is already registered. Duplicate registration.");
+                                            
                                         } else if ($.trim(list) === "false") {
                                             bootbox.alert("There something error with the query of register the inpatient");
                                         }
@@ -318,6 +312,9 @@ $('#registerBed').click(function () {
                                 });
                             } else if ($.trim(l) === "Failed") {
                                 bootbox.alert("Cannot register the patient because the queue is not exists");
+                            }
+                            else{
+                                bootbox.alert(l);
                             }
 
 

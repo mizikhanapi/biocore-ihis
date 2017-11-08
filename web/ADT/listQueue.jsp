@@ -20,10 +20,12 @@
     String hfc = session.getAttribute("HEALTH_FACILITY_CODE").toString();
     String order = "T12111";
 
-    String q = "select m.pmi_no,p.PATIENT_NAME,d.episode_date,d.ward_id,d.order_no,u.USER_NAME,m.order_status, m.order_no, m.order_by ,u.USER_ID, p.OLD_IC_NO, p.NEW_IC_NO, p.ID_TYPE, p.ID_NO, d.admission_reason,d.ward_class_code,d.ward_id, d.bed_id, d.order_status"
-            + " from wis_order_master m left join wis_order_detail d on d.order_no = m.order_no "
+    String q = "select m.pmi_no,p.PATIENT_NAME,d.episode_date,d.ward_id,m.order_no,u.USER_NAME,m.order_status, d.order_no, m.order_by ,u.USER_ID, p.OLD_IC_NO, p.NEW_IC_NO, p.ID_TYPE, p.ID_NO, d.admission_reason,d.ward_class_code,d.ward_id, d.bed_id, d.order_status "
+            + "from wis_order_master m "
+            + "left join wis_order_detail d on d.order_no = m.order_no AND d.order_status=m.order_status "
             + "left join  adm_users u on  u.`USER_ID`= m.order_by "
-            + "left join pms_patient_biodata p on m.pmi_no = p.`PMI_NO` where m.txn_type = '" + order + "'  AND m.order_status ='0' and d.order_status ='0' and m.hfc_cd = '" + hfc + "'  group by m.pmi_no ";
+            + "left join pms_patient_biodata p on m.pmi_no = p.`PMI_NO` "
+            + "where m.txn_type = '" + order + "'  AND m.order_status ='0' and m.hfc_cd = '" + hfc + "'; ";
 
     ArrayList<ArrayList<String>> dataQueue, dataQ;
     //dataQueue = conn.getData(sql2);
@@ -31,7 +33,7 @@
 
     //out.print(dataQueue);
 %>
-<div id="QueueTable" data-dismiss="modal">
+<div id="QueueTable">
     <table class="table table-filter table-striped" style="background: #fff; border: 1px solid #ccc; " id="ADTQueue">
         <thead>
         <th>PMI no. </th>
@@ -65,11 +67,11 @@
 
         <td><%=dataQ.get(i).get(5)%></td>
 
-        <td>
+        <td data-dismiss="modal">
             <!-- Update Part Start -->
             <a id="addQueue" class="btn btn-success">Add</a>
             <!-- Update Part End -->
-            <button class="btn btn-danger" id="delQueue" data-dismiss="modal" role="button">Delete</button></td>
+            <button class="btn btn-danger" id="delQueue" role="button">Delete</button></td>
         </tr>    
         <%    }
         %>
@@ -125,9 +127,9 @@
         var discode = arrayData[0];
         $('#dis_cd').val(discode);
 
-        var Dis = $('#Dis').val();
-        var array_dis = Dis.split("|");
-        var Dis = array_dis[0];
+//        var Dis = $('#Dis').val();
+//        var array_dis = Dis.split("|");
+//        var Dis = array_dis[0];
 
 
 
@@ -147,7 +149,7 @@
         var order = arrayData[4];
 
         bootbox.confirm({
-            message: "Are you sure want to delete the patient queue?",
+            message: "Are you sure want to delete the patient from the queue?",
             title: "Delete Item?",
             buttons: {
                 confirm: {
@@ -164,7 +166,7 @@
                 if (result === true) {
 
                     var data = {
-                        order: order,
+                        order: order
                     };
                     $.ajax({
                         type: "post",
@@ -177,6 +179,9 @@
                                 bootbox.alert("Succeed deleting patient in queue.");
                             } else if ($.trim(datas) === "fail") {
                                 bootbox.alert("Failed deleting patient in queue.");
+                            }
+                            else{
+                                bootbox.alert(datas);
                             }
 
                         }, error: function (err) {

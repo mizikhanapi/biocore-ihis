@@ -36,7 +36,7 @@
 //    String PoliceCase = request.getParameter("PoliceCase");
 //    String DocNo = request.getParameter("DocNo");
 //    String payer = request.getParameter("payer");
-//    String Dis = request.getParameter("Dis");
+    String Dis = request.getParameter("Dis");
     String wname = request.getParameter("wnamequeue");
   
     String hfc = request.getParameter("hfc");
@@ -60,14 +60,17 @@
 //
 //    String insertEpisode = "";
 //    String insertEpisode2 = "";
-    String isAlreadyRegister = "select a.queue_name from pms_queue_name a left join wis_ward_name b on( a.queue_name = b.ward_name) where (a.hfc_cd = '" + hfc + "' and b.ward_name = '" + wname + "');";
+    String isAlreadyRegister = "select a.queue_name "
+            + "from pms_queue_name a "
+            + "join wis_ward_name b on a.queue_name = b.ward_name and b.hfc_cd=a.hfc_cd and b.discipline_cd=a.discipline_code "
+            + "where a.hfc_cd = '" + hfc + "' and b.ward_name = '" + wname + "' and a.discipline_code='"+Dis+"';";
     ArrayList<ArrayList<String>> alreadyRegis = conn.getData(isAlreadyRegister);
 
     if (alreadyRegis.size() > 0) {
         out.print("Success");
 //out.print(queue_now);
     } else {
-         out.print("Failed");
+         out.print("Failed :"+isAlreadyRegister);
       
     }
 

@@ -297,16 +297,16 @@
                         </div>
                     </div>
                     
-                     <div class="form-group">
+<!--                    <div class="form-group">
                         <label class="col-md-4 control-label" for="textinput">Payer Group*</label>
                         <div class="col-md-6">
                              <input id="payer" readonly name="textinput" type="text" placeholder="" class="form-control input-md">
                         </div>
-                    </div>   
+                    </div>   -->
 
                 </div>
             </div>
-
+                                <a id="displayBedDiv" name="displayBedDiv"></a>
             <hr/>
             <h4>Assign Ward</h4>
 
