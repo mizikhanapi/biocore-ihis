@@ -27,9 +27,12 @@
     String diastolic= request.getParameter("diastolic");
     String pulse= request.getParameter("pulse");
     
+    time = (time==null)? "09:00":time;
+    
     summaryDate = FormatTarikh.formatDate(summaryDate, "dd/MM/yyyy HH:mm", "yyyy-MM-dd HH:mm:ss");
     String leDate = FormatTarikh.formatDate(dateOfMonth+" "+time, "dd/MM/yyyy HH:mm", "yyyy-MM-dd HH:mm:ss");
     
+        
     String waktu="morning";
     
     if(time.equalsIgnoreCase("17:00")){

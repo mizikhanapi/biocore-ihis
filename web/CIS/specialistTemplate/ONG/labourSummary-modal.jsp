@@ -833,7 +833,7 @@
                             <div class="form-group">
                                 <label class="col-md-4 control-label" for="textinput">Time:</label>
                                <div class="col-md-8">
-                                    <select class="form-control input-md ls-add-update" id="fuck">
+                                    <select class="form-control input-md ls-add-update" id="LS_puerTime">
                                         <option value="" selected disabled>-- Select time --</option>
                                         <option value="09:00">Morning</option>
                                         <option value="17:00">Evening</option>
