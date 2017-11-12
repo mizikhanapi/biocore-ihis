@@ -707,7 +707,7 @@ public class lhr_VTS {
                             + ",'" + msh.getDateTime() + "')";
 
                     try {
-                        if (Integer.parseInt(vts_Obj.getWeight_Reading()) > 0 && Integer.parseInt(vts_Obj.getHeight_Reading()) > 0) {
+                        if (Float.parseFloat(vts_Obj.getWeight_Reading()) > 0 && Float.parseFloat(vts_Obj.getHeight_Reading()) > 0) {
                             status_vts_lhr_wh = rc.setQuerySQL(Config.ipAddressServer, Config.portServer, query_vts_lhr_wh);
                             if (status_vts_lhr_wh == false) {
                                 System.out.println("false extract vts weight height");
@@ -715,7 +715,7 @@ public class lhr_VTS {
                                 ERRCOUNT.plusOne();
                                 ERRCOUNT.msgErr("LWH|");
                             } else {
-                                System.out.println("done extract vts weight height");
+                                System.out.println("done extract vts WEIGHT HEIGHT");
                             }
                         }
                         
@@ -783,7 +783,7 @@ public class lhr_VTS {
                                 ERRCOUNT.plusOne();
                                 ERRCOUNT.msgErr("BPP|");
                             } else {
-                                System.out.println("done extract vts bp");
+                                System.out.println("done extract vts BP");
                             }
                         }
                         
@@ -834,7 +834,7 @@ public class lhr_VTS {
                             + "'" + msh.getDateTime() + "')";
 
                     try {
-                        if (Integer.parseInt(vts_Obj.getBlood_Glucose_Level()) > 0) {
+                        if (Float.parseFloat(vts_Obj.getBlood_Glucose_Level()) > 0) {
                             status_vts_lhr_bg = rc.setQuerySQL(Config.ipAddressServer, Config.portServer, query_vts_lhr_bg);
                             if (status_vts_lhr_bg == false) {
                                 total_fail_insert++;
@@ -843,7 +843,7 @@ public class lhr_VTS {
                                 ERRCOUNT.plusOne();
                                 ERRCOUNT.msgErr("BLG|");
                             } else {
-                                System.out.println("done extract vts blood glucose");
+                                System.out.println("done extract vts BLOOD GLUCOSE");
                             }
                         }
                         
@@ -893,7 +893,7 @@ public class lhr_VTS {
                             + "'" + msh.getDateTime() + "')";
 
                     try {
-                        if (Integer.parseInt(vts_Obj.getSPO2_Reading()) > 0) {
+                        if (Float.parseFloat(vts_Obj.getSPO2_Reading()) > 0) {
                             status_vts_lhr_spo2 = rc.setQuerySQL(Config.ipAddressServer, Config.portServer, query_vts_lhr_spo2);
                             if (status_vts_lhr_spo2 == false) {
                                 total_fail_insert++;
@@ -902,7 +902,7 @@ public class lhr_VTS {
                                 ERRCOUNT.plusOne();
                                 ERRCOUNT.msgErr("SPO2|");
                             } else {
-                                System.out.println("done extract vts spo2");
+                                System.out.println("done extract vts SPO2");
                             }
                         }
                         
@@ -962,7 +962,7 @@ public class lhr_VTS {
                                 ERRCOUNT.plusOne();
                                 ERRCOUNT.msgErr("TEMP|");
                             } else {
-                                System.out.println("done extract vts temperature");
+                                System.out.println("done extract vts TEMPERATURE");
                             }
                         }
 
