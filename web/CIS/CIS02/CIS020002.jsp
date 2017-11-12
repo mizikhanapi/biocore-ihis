@@ -248,7 +248,8 @@
             
                            var result =  calcPoint(eor,mr,vr);
                 $('#pgcsresult').val(result[0]);
-                $('#pgcstpoint').val(result[1]+" Points");
+//                $('#pgcstpoint').val(result[1]+" Points");
+                $('#pgcstpoint').val(result[1]);
 
         });
 
@@ -260,7 +261,8 @@
             $('#rowpMR').replaceWith("<tr id='rowpMR'><td>" + response + "</td><td>" + point + "</td></tr>");
                            var result =  calcPoint(eor,mr,vr);
                 $('#pgcsresult').val(result[0]);
-                $('#pgcstpoint').val(result[1]+" Points");
+//                $('#pgcstpoint').val(result[1]+" Points");
+                $('#pgcstpoint').val(result[1]);
 
         });
 
@@ -272,7 +274,8 @@
             $('#rowpVR').replaceWith("<tr id='rowpVR'><td>" + response + "</td><td>" + point + "</td></tr>");
                           var result =  calcPoint(eor,mr,vr);
                 $('#pgcsresult').val(result[0]);
-                $('#pgcstpoint').val(result[1]+" Points");
+//                $('#pgcstpoint').val(result[1]+" Points");
+                $('#pgcstpoint').val(result[1]);
 
         });
 

@@ -189,7 +189,8 @@
            
                var result =  calcPoint(eor,mr,vr);
                 $('#result').val(result[0]);
-                $('#tpoint').val(result[1]+" Points");
+//                $('#tpoint').val(result[1]+" Points");
+                $('#tpoint').val(result[1]);
 
             });
             
@@ -201,7 +202,8 @@
                 $('#rowMR').replaceWith("<tr id='rowMR'><td>"+response+"</td><td>"+point+"</td></tr>");
                 var result =  calcPoint(eor,mr,vr);
                 $('#result').val(result[0]);
-                $('#tpoint').val(result[1]+" Points");
+//                $('#tpoint').val(result[1]+" Points");
+                $('#tpoint').val(result[1]);
 
             });
             
@@ -213,7 +215,8 @@
                 $('#rowVR').replaceWith("<tr id='rowVR'><td>"+response+"</td><td>"+point+"</td></tr>");
                 var result =  calcPoint(eor,mr,vr);
                 $('#result').val(result[0]);
-                $('#tpoint').val(result[1]+" Points");
+//                $('#tpoint').val(result[1]+" Points");
+                $('#tpoint').val(result[1]);
 
             });
 
