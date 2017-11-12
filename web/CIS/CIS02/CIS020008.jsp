@@ -24,7 +24,7 @@
                             <div class="col-xs-2 col-sm-2 col-md-2">
                                 <div class="form-group">
                                     
-                                    <input type="text" name="bmiHeight" id="bmiHeight" class="form-control input-lg BP-class" placeholder="" tabindex="4">
+                                    <input type="number" name="bmiHeight" id="bmiHeight" class="form-control input-lg BP-class" placeholder="" tabindex="4">
                                 </div>
                             </div>
                             <div class="col-xs-2 col-sm-2 col-md-2"><h4>cm</h4></div>
@@ -39,7 +39,7 @@
                             <div class="col-xs-2 col-sm-2 col-md-2"><h4>Weight</h4></div>
                             <div class="col-xs-2 col-sm-2 col-md-2">
                                 <div class="form-group">
-                                    <input type="text" name="bmiWeight" id="bmiWeight" class="form-control input-lg BP-class" placeholder="" tabindex="4">
+                                    <input type="number" name="bmiWeight" id="bmiWeight" class="form-control input-lg BP-class" placeholder="" tabindex="4">
                                 </div>
                             </div>
                             <div class="col-xs-2 col-sm-2 col-md-2"><h4>kg</h4></div>
@@ -90,7 +90,7 @@
                                 <div class="col-xs-2 col-sm-2 col-md-2">
                                     <div class="form-group">
 
-                                        <input type="text" name="headCir" id="headCir" class="form-control input-lg" placeholder="cm" tabindex="4">
+                                        <input type="number" name="headCir" id="headCir" class="form-control input-lg num-3-1" placeholder="cm" tabindex="4">
                                     </div>
                                 </div>
                                 <div class="col-xs-2 col-sm-2 col-md-2">
@@ -117,12 +117,13 @@
                                 <div class="col-xs-2 col-sm-2 col-md-2">
                                     <div class="form-group">
 
-                                        <input type="text" name="bloodGlucose" id="bloodGlucose" class="form-control input-lg" placeholder="" tabindex="4">
+                                        <input type="number" name="bloodGlucose" id="bloodGlucose" class="form-control input-lg num-3-1" placeholder="" tabindex="4">
                                     </div>
                                 </div>
                                 <div class="col-xs-2 col-sm-2 col-md-2"><h4>mmol/L</h4></div>
                                 <div class="col-xs-2 col-sm-2 col-md-3"></div>
                             </div>
+                    </form>    
                 </div>
                 
                 
@@ -138,7 +139,7 @@
                             <button type="button" id="saveImage" class="btn btn-default btn-block btn-lg" data-dismiss="modal" role="button">Close</button>
                         </div>
                     </div>
-                    </form>
+                    
                 </div>
                 
                 <div class="modal-footer" id="actionOther">
@@ -153,7 +154,7 @@
                             <button type="button" id="saveImage" class="btn btn-default btn-block btn-lg" data-dismiss="modal" role="button">Close</button>
                         </div>
                     </div>
-                    </form>
+                   
                 </div>
                 
             </div>
@@ -206,21 +207,47 @@
                  
                   
               });
-        $('#headCirSlider').slider({
-                  value:0,
-                  min:50,
-                  max:100,
-                  step:1,
-                  slide:function(event,ui){
-                      $('#headCir').val(ui.value + "");
-                  }
+            $('#headCirSlider').slider({
+                      value:0,
+                      min:10,
+                      max:99.9,
+                      step:0.1,
+                      slide:function(event,ui){
+                          $('#headCir').val(ui.value + "");
+                      }
+                  });
+
+              $('#headCir').on('change',function(e){
+                  var headCir = parseFloat($('#headCir').val());
+                  $('#headCirSlider').slider("option","value",headCir);
+                  $('#headCir').val(headCir + "");
               });
-          
-          $('#headCir').on('change',function(e){
-              var headCir = parseInt($('#headCir').val());
-              $('#headCirSlider').slider("option","value",headCir);
-              $('#headCir').val(headCir + "");
-          })
+              
+            $(".num-3-1").on('keyup keydown',function(){
+                var input = this; 
+                                
+                if ($(this).val().length > 4){
+                    bootbox.alert("Enter the specific value");
+                    $(this).val('');
+                }
+                else if(input.validity.stepMismatch || isNaN(this.value)){
+                    bootbox.alert("Enter number with one decimal number only.");
+                    $(this).val(''); 
+                }
+                else if(!input.checkValidity()){
+                    bootbox.alert(input.validationMessage);
+                    $(this).val('');
+                }
+                else{
+                    if(input.value.length > 0){
+                       var number = input.value;
+                       var rounded = Math.round( number * 10 ) / 10;
+                       $(this).val(rounded); 
+                    }                    
+                }
+
+            });
+
    
           });
         </script>

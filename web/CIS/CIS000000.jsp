@@ -346,6 +346,12 @@
                     max:"300",
                     step:"1"
                 });
+                
+                $('.num-3-1').attr({
+                    min:"0",
+                    max:"99.9",
+                    step:"0.1"
+                });
             });
             
             $('#menu-content #linkOng').on('click',function(){
