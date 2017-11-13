@@ -28,6 +28,10 @@ public class lhr_VTS {
         boolean status_vts_lhr_pain_scale = false;
         boolean status_vts_lhr_respiratory = false;
         boolean status_vts_lhr_visual = false;
+        
+        //dynamic query for lhr_bp
+//        ArrayList<String> bp_attribute = new ArrayList<String>();
+//        ArrayList<String> bp_value = new ArrayList<String>();
 
         try {
 
@@ -795,7 +799,7 @@ public class lhr_VTS {
                     if (alVts.get(2).get(31) != null && !alVts.get(2).get(31).isEmpty() && !alVts.get(2).get(31).equals("-")) {
                         vts_Obj.setBlood_Glucose_Level(alVts.get(2).get(31));
                     } else {
-                        vts_Obj.setBlood_Glucose_Level("0");
+                        vts_Obj.setBlood_Glucose_Level("x");
                     }
 
                     // insert record from ehr_central into lhr_blood_glucose table
@@ -834,7 +838,10 @@ public class lhr_VTS {
                             + "'" + msh.getDateTime() + "')";
 
                     try {
-                        if (Float.parseFloat(vts_Obj.getBlood_Glucose_Level()) > 0) {
+                        if(vts_Obj.getBlood_Glucose_Level().equalsIgnoreCase("x")){
+                            System.out.println("Skip extract vts BLOOD GLUCOSE");                        
+                        }
+                        else if (Float.parseFloat(vts_Obj.getBlood_Glucose_Level()) >= 0) {
                             status_vts_lhr_bg = rc.setQuerySQL(Config.ipAddressServer, Config.portServer, query_vts_lhr_bg);
                             if (status_vts_lhr_bg == false) {
                                 total_fail_insert++;
@@ -856,7 +863,7 @@ public class lhr_VTS {
                     if (alVts.get(2).get(29) != null && !alVts.get(2).get(29).isEmpty() && !alVts.get(2).get(29).equals("-")) {
                         vts_Obj.setSPO2_Reading(alVts.get(2).get(29));
                     } else {
-                        vts_Obj.setSPO2_Reading("0");
+                        vts_Obj.setSPO2_Reading("x");
                     }
 
                     // insert into lhr_spo2 table for VTS
@@ -893,7 +900,10 @@ public class lhr_VTS {
                             + "'" + msh.getDateTime() + "')";
 
                     try {
-                        if (Float.parseFloat(vts_Obj.getSPO2_Reading()) > 0) {
+                        if(vts_Obj.getSPO2_Reading().equalsIgnoreCase("x")){
+                            System.out.println("Skip extract vts SPO2");
+                        }
+                        else if (Float.parseFloat(vts_Obj.getSPO2_Reading()) >= 0) {
                             status_vts_lhr_spo2 = rc.setQuerySQL(Config.ipAddressServer, Config.portServer, query_vts_lhr_spo2);
                             if (status_vts_lhr_spo2 == false) {
                                 total_fail_insert++;
@@ -911,10 +921,11 @@ public class lhr_VTS {
                     }
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                     //check whether temperature_reading data is null or empty
-                    if (alVts.get(2).get(0) != null && !alVts.get(2).get(0).equals("-") && !alVts.get(2).get(0).isEmpty() && alVts.get(2).get(0).matches("\\d+")) {
+                    if (alVts.get(2).get(0) != null && !alVts.get(2).get(0).equals("-") && !alVts.get(2).get(0).isEmpty() /*&& alVts.get(2).get(0).matches("\\d+")*/) {
                         vts_Obj.setTemperature_Reading(alVts.get(2).get(0));
                     } else {
-                        vts_Obj.setTemperature_Reading("0");
+//                        vts_Obj.setTemperature_Reading("0");
+                        vts_Obj.setTemperature_Reading("x");
                     }
 
                     // insert into lhr_procedure table for VTS
@@ -953,7 +964,10 @@ public class lhr_VTS {
                             + "'" + msh.getDateTime() + "')";
 
                     try {
-                        if (Integer.parseInt(vts_Obj.getTemperature_Reading()) >= 0) {
+                        if(vts_Obj.getTemperature_Reading().equalsIgnoreCase("x")){
+                            System.out.println("Skip extract vts TEMPERATURE");
+                        }
+                        else if (Float.parseFloat(vts_Obj.getTemperature_Reading()) >= 0) {
                             status_vts_lhr_temperature = rc.setQuerySQL(Config.ipAddressServer, Config.portServer, query_vts_lhr_temperature);
                             if (status_vts_lhr_temperature == false) {
                                 total_fail_insert++;
