@@ -419,7 +419,25 @@
     
     <!-- Mapping For ADT Hidding URL End -->
 
+     
+    <!-- Mapping For SMS Hidding URL Start -->
     
+    
+    <!-- mapping for PIS HIS220001 -->
+    <servlet>
+        <servlet-name>Distribution_Stock_Order</servlet-name>
+        <jsp-file>/SMS/HIS220001.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Distribution_Stock_Order</servlet-name>
+        <url-pattern>/SMS/Distribution_Stock_Order</url-pattern>
+    </servlet-mapping>
+    <!-- mapping for PIS HIS220001 -->
+
+        
+    <!-- Mapping For SMS Hidding URL End -->
+
+
     <session-config>
         <session-timeout>
             -1
