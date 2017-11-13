@@ -43,7 +43,7 @@
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="textinput">Module Name</label>
                         <div class="col-md-8">
-                            <input id="MM_moduleName"  type="text" placeholder="Code required" class="form-control input-md" maxlength="100">
+                            <input id="MM_moduleName"  type="text" placeholder="Name required" class="form-control input-md" maxlength="100">
                         </div>
                     </div>
                     

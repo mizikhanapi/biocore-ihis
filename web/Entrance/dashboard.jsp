@@ -53,12 +53,12 @@
 
     ArrayList<String> arrayModule = new ArrayList<String>(Arrays.asList(modules.split("\\|")));
 
-    boolean mod01, mod02, mod03, mod04, mod05, mod06, mod07, mod08, mod09, mod10, mod11, mod12, mod13, mod14, mod15, mod16, mod17, mod18, mod19;
+    boolean mod01, mod02, mod03, mod04, mod05, mod06, mod07, mod08, mod09, mod10, mod11, mod12, mod13, mod14, mod15, mod16, mod17, mod18, mod19, mod20, mod21, mod22;
 
-    mod01 = mod02 = mod03 = mod04 = mod05 = mod06 = mod07 = mod08 = mod09 = mod10 = mod11 = mod12 = mod13 = mod14 = mod15 = mod16 = mod17 = mod18 = mod19 = false;
+    mod01 = mod02 = mod03 = mod04 = mod05 = mod06 = mod07 = mod08 = mod09 = mod10 = mod11 = mod12 = mod13 = mod14 = mod15 = mod16 = mod17 = mod18 = mod19 = mod20 = mod21 = mod22 = false;
 
     if (mys.isSuperUser()) {
-        mod01 = mod02 = mod03 = mod04 = mod05 = mod06 = mod07 = mod08 = mod09 = mod10 = mod11 = mod12 = mod13 = mod14 = mod15 = mod16 = mod17 = mod18 = mod19 = true;
+        mod01 = mod02 = mod03 = mod04 = mod05 = mod06 = mod07 = mod08 = mod09 = mod10 = mod11 = mod12 = mod13 = mod14 = mod15 = mod16 = mod17 = mod18 = mod19 = mod20 = mod21 = mod22 = true;
 
     } else {
 
@@ -139,6 +139,18 @@
             }else if (arrayModule.get(i).equalsIgnoreCase("19")) {
 
                 mod19 = true;
+
+            }else if (arrayModule.get(i).equalsIgnoreCase("20")) {
+
+                mod20 = true;
+
+            }else if (arrayModule.get(i).equalsIgnoreCase("21")) {
+
+                mod21 = true;
+
+            }else if (arrayModule.get(i).equalsIgnoreCase("22")) {
+
+                mod22 = true;
 
             }
         }//end for loop
@@ -323,7 +335,7 @@
                         <div class="col-xs-6 col-sm-6 col-md-3">
                             <a href="../Report/MainMenu.jsp" class="thumbnail">
                                 <div class="kotak text-center">
-                                    <i class="fa fa-bar-chart" aria-hidden="true" style="color: #17A086;font-size: 4em;"></i>
+                                    <i class="fa fa-bar-chart" aria-hidden="true" style="color: #00dd1c;font-size: 4em;"></i>
                                     <h3>Reports</h3>
                                 </div>
                             </a>
@@ -332,7 +344,7 @@
                         <%
                             }
 
-                            if (mod03) {
+                            if (mod21) {
                         %>
 
                         <div class="col-xs-6 col-sm-6 col-md-3">
@@ -365,7 +377,7 @@
                         <div class="col-xs-6 col-sm-6 col-md-3">
                             <a href="../OperationTheater/index.jsp" class="thumbnail">
                                 <div class="kotak text-center">
-                                    <i class="fa fa-user-md" aria-hidden="true" style="color: orange;font-size: 4em;"></i>
+                                    <i class="fa fa-user-md" aria-hidden="true" style="color:#0000A0;font-size: 4em;"></i>
                                     <h3>Operation Theater</h3>
                                 </div>
                             </a>
@@ -373,7 +385,7 @@
 <%
                             }//end if mod19
                             
-                            if(mod03){
+                            if(mod20){
 %>                        
                         <div class="col-xs-6 col-sm-6 col-md-3">
                             <a href="../QMS/" class="thumbnail">
@@ -384,7 +396,20 @@
                             </a>
                         </div>                        
 <%
-                        }// end if mod03
+                        }// end if mod20
+
+                        if(mod22){
+%>                        
+                        <div class="col-xs-6 col-sm-6 col-md-3">
+                            <a href="../QMS/" class="thumbnail">
+                                <div class="kotak text-center">
+                                    <i class="fa fa-cubes" aria-hidden="true" style="color:#777620;font-size: 4em;"></i>
+                                    <h3>Stock Management</h3>
+                                </div>
+                            </a>
+                        </div>                        
+<%
+                        }// end if mod22
 %>
 
                     </div>
