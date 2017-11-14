@@ -10,7 +10,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal"><i class="fa fa-times fa-lg"></i><span class="sr-only">Close</span></button>
-                <h3 class="modal-title" id="lineModalLabel">Body Temperature</h3>
+                <h3 class="modal-title" id="lineModalLabel">Body Temperature &deg;C</h3>
             </div>
             <div class="modal-body">
 
@@ -18,7 +18,7 @@
                 <form role="form" id="myForm2" method="post">
 
                     <div class="form-group">
-                        <input type="text"  id="BTemp" class="form-control input-lg" placeholder="Body Temperature" tabindex="4"  >
+                        <input type="number"  id="BTemp" class="form-control input-lg" placeholder="Body Temperature" tabindex="4"  >
                         <input type="hidden"  id="BTid" class="form-control input-lg" placeholder="Body Temperature" tabindex="4" readonly >
                     </div>
                     <div class="form-group">
@@ -26,7 +26,7 @@
                     </div>
 
 
-
+                </form>        
 
             </div>
             <div class="modal-footer" id="updateBT">
@@ -41,7 +41,7 @@
                         <button type="button" id="saveImage" class="btn btn-default btn-block btn-lg" data-dismiss="modal" role="button">Close</button>
                     </div>
                 </div>
-                </form>
+                
             </div>
             <div class="modal-footer" id="actionBT">
                 <div class="btn-group btn-group-justified" role="group" aria-label="group button">
@@ -55,7 +55,7 @@
                         <button type="button" id="saveImage" class="btn btn-default btn-block btn-lg" data-dismiss="modal" role="button">Close</button>
                     </div>
                 </div>
-                </form>
+                
             </div>
         </div>
     </div>
@@ -70,11 +70,12 @@
         $("#slider").slider({
             range: "min",
             value: 1,
-            step: 1,
+            step: 0.01,
             min: 1,
             max: 100,
             slide: function (event, ui) {
-                $("#BTemp").val(ui.value +" "+ ascii(176) + "C");
+                //$("#BTemp").val(ui.value +" "+ ascii(176) + "C");
+                $("#BTemp").val(ui.value);
             }
         });
 
@@ -88,7 +89,7 @@
         $('#BTemp').on('keyup',function(){
             var intNum = parseInt(this.value);
             var value = $(this).val();
-             if(value.length > 3){
+             if(value.length > 5){
                 bootbox.alert("Please enter the correct Body Temperature");
                 $(this).val('');
              }
@@ -97,7 +98,13 @@
                  $(this).val('');
              }
              else{
-                  $("#slider").slider("value", parseInt(value));
+                  var rounded = 0;
+                  if(value.length > 0){
+                       var number = value;
+                       rounded = Math.round( number * 100 ) / 100;
+                       $(this).val(rounded); 
+                    }       
+                  $("#slider").slider("value", rounded);
              }
            
         
