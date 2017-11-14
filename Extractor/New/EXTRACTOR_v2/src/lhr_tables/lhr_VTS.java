@@ -627,53 +627,53 @@ public class lhr_VTS {
                     if (alVts.get(2).get(1) != null && !alVts.get(2).get(1).isEmpty() && !alVts.get(2).get(1).equals("-")) {
                         vts_Obj.setSystolic_Sitting(alVts.get(2).get(1));
                     } else {
-                        vts_Obj.setSystolic_Sitting("");
+                        vts_Obj.setSystolic_Sitting("NULL");
                     }
 
                     if (alVts.get(2).get(2) != null && !alVts.get(2).get(2).isEmpty()  && !alVts.get(2).get(2).equals("-")) {
                         vts_Obj.setDiastolic_Sitting(alVts.get(2).get(2));
                     } else {
-                        vts_Obj.setDiastolic_Sitting("");
+                        vts_Obj.setDiastolic_Sitting("NULL");
                     }
 
                     if (alVts.get(2).get(32) != null && !alVts.get(2).get(32).isEmpty()  && !alVts.get(2).get(32).equals("-")) {
                         vts_Obj.setSitting_Pulse(alVts.get(2).get(32));
                     } else {
-                        vts_Obj.setSitting_Pulse("");
+                        vts_Obj.setSitting_Pulse("NULL");
                     }
 
                     //supine
                     if (alVts.get(2).get(3) != null && !alVts.get(2).get(3).isEmpty()  && !alVts.get(2).get(3).equals("-")) {
                         vts_Obj.setSystolic_Supine(alVts.get(2).get(3));
                     } else {
-                        vts_Obj.setSystolic_Supine("");
+                        vts_Obj.setSystolic_Supine("NULL");
                     }
                     if (alVts.get(2).get(4) != null && !alVts.get(2).get(4).isEmpty() && !alVts.get(2).get(4).equals("-")) {
                         vts_Obj.setDiastolic_Supine(alVts.get(2).get(4));
                     } else {
-                        vts_Obj.setDiastolic_Supine("");
+                        vts_Obj.setDiastolic_Supine("NULL");
                     }
                     if (alVts.get(2).get(33) != null && !alVts.get(2).get(33).isEmpty()  && !alVts.get(2).get(33).equals("-")) {
                         vts_Obj.setSupine_Pulse(alVts.get(2).get(33));
                     } else {
-                        vts_Obj.setSupine_Pulse("");
+                        vts_Obj.setSupine_Pulse("NULL");
                     }
 
                     // standing
                     if (alVts.get(2).get(5) != null && !alVts.get(2).get(5).isEmpty() && !alVts.get(2).get(5).equals("-")) {
                         vts_Obj.setSystolic_Standing(alVts.get(2).get(5));
                     } else {
-                        vts_Obj.setSystolic_Standing("");
+                        vts_Obj.setSystolic_Standing("NULL");
                     }
                     if (alVts.get(2).get(6) != null && !alVts.get(2).get(6).isEmpty() && !alVts.get(2).get(6).equals("-")) {
                         vts_Obj.setDiastolic_Standing(alVts.get(2).get(6));
                     } else {
-                        vts_Obj.setDiastolic_Standing("");
+                        vts_Obj.setDiastolic_Standing("NULL");
                     }
                     if (alVts.get(2).get(34) != null && !alVts.get(2).get(34).isEmpty() && !alVts.get(2).get(34).equals("-")) {
                         vts_Obj.setStanding_Pulse(alVts.get(2).get(34));
                     } else {
-                        vts_Obj.setStanding_Pulse("");
+                        vts_Obj.setStanding_Pulse("NULL");
                     }
 
                     String query_vts_lhr_wh = "insert into lhr_weight_height "
@@ -755,15 +755,15 @@ public class lhr_VTS {
                             + "'" + vts_Obj.getHFC_Cd() + "',"
                             + "'" + vts_Obj.getEpisode_Date() + "',"
                             + "" + vts_Obj.getEncounter_Date() + ","
-                            + "'" + vts_Obj.getSystolic_Sitting() + "',"
-                            + "'" + vts_Obj.getDiastolic_Sitting() + "',"
-                            + "'" + vts_Obj.getSitting_Pulse() + "',"
-                            + "'" + vts_Obj.getSystolic_Standing() + "',"
-                            + "'" + vts_Obj.getDiastolic_Standing() + "',"
-                            + "'" + vts_Obj.getStanding_Pulse() + "',"
-                            + "'" + vts_Obj.getSystolic_Supine() + "',"
-                            + "'" + vts_Obj.getDiastolic_Supine() + "',"
-                            + "'" + vts_Obj.getSupine_Pulse() + "',"
+                            + "" + vts_Obj.getSystolic_Sitting() + ","
+                            + "" + vts_Obj.getDiastolic_Sitting() + ","
+                            + "" + vts_Obj.getSitting_Pulse() + ","
+                            + "" + vts_Obj.getSystolic_Standing() + ","
+                            + "" + vts_Obj.getDiastolic_Standing() + ","
+                            + "" + vts_Obj.getStanding_Pulse() + ","
+                            + "" + vts_Obj.getSystolic_Supine() + ","
+                            + "" + vts_Obj.getDiastolic_Supine() + ","
+                            + "" + vts_Obj.getSupine_Pulse() + ","
                             + "'" + vts_Obj.getDoctor_ID() + "',"
                             + "'" + vts_Obj.getDoctor_Name() + "',"
                             + "'" + a + "',"
