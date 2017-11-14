@@ -1,1 +1,0 @@
-start "ehr-extractor_i-HIS.com" java -jar ehr_extractor_v1.0.jar

@@ -611,69 +611,69 @@ public class lhr_VTS {
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                     //check whether data is not null, not empty and numeric
                     //wight height
-                    if (alVts.get(2).get(7) != null && !alVts.get(2).get(7).isEmpty() && alVts.get(2).get(7).matches("\\d+") && !alVts.get(2).get(7).equals("-")) {
+                    if (alVts.get(2).get(7) != null && !alVts.get(2).get(7).isEmpty()  && !alVts.get(2).get(7).equals("-")) {
                         vts_Obj.setWeight_Reading(alVts.get(2).get(7));
                     } else {
-                        vts_Obj.setWeight_Reading("0");
+                        vts_Obj.setWeight_Reading("");
                     }
 
-                    if (alVts.get(2).get(8) != null && !alVts.get(2).get(8).isEmpty() && alVts.get(2).get(8).matches("\\d+") && !alVts.get(2).get(8).equals("-")) {
+                    if (alVts.get(2).get(8) != null && !alVts.get(2).get(8).isEmpty()  && !alVts.get(2).get(8).equals("-")) {
                         vts_Obj.setHeight_Reading(alVts.get(2).get(8));
                     } else {
-                        vts_Obj.setHeight_Reading("0");
+                        vts_Obj.setHeight_Reading("");
                     }
 
                     //sitting
-                    if (alVts.get(2).get(1) != null && !alVts.get(2).get(1).isEmpty() && alVts.get(2).get(1).matches("\\d+") && !alVts.get(2).get(1).equals("-")) {
+                    if (alVts.get(2).get(1) != null && !alVts.get(2).get(1).isEmpty() && !alVts.get(2).get(1).equals("-")) {
                         vts_Obj.setSystolic_Sitting(alVts.get(2).get(1));
                     } else {
-                        vts_Obj.setSystolic_Sitting("0");
+                        vts_Obj.setSystolic_Sitting("");
                     }
 
-                    if (alVts.get(2).get(2) != null && !alVts.get(2).get(2).isEmpty() && alVts.get(2).get(2).matches("\\d+") && !alVts.get(2).get(2).equals("-")) {
+                    if (alVts.get(2).get(2) != null && !alVts.get(2).get(2).isEmpty()  && !alVts.get(2).get(2).equals("-")) {
                         vts_Obj.setDiastolic_Sitting(alVts.get(2).get(2));
                     } else {
-                        vts_Obj.setDiastolic_Sitting("0");
+                        vts_Obj.setDiastolic_Sitting("");
                     }
 
-                    if (alVts.get(2).get(32) != null && !alVts.get(2).get(32).isEmpty() && alVts.get(2).get(32).matches("\\d+") && !alVts.get(2).get(32).equals("-")) {
+                    if (alVts.get(2).get(32) != null && !alVts.get(2).get(32).isEmpty()  && !alVts.get(2).get(32).equals("-")) {
                         vts_Obj.setSitting_Pulse(alVts.get(2).get(32));
                     } else {
-                        vts_Obj.setSitting_Pulse("0");
+                        vts_Obj.setSitting_Pulse("");
                     }
 
                     //supine
-                    if (alVts.get(2).get(3) != null && !alVts.get(2).get(3).isEmpty() && alVts.get(2).get(3).matches("\\d+") && !alVts.get(2).get(3).equals("-")) {
+                    if (alVts.get(2).get(3) != null && !alVts.get(2).get(3).isEmpty()  && !alVts.get(2).get(3).equals("-")) {
                         vts_Obj.setSystolic_Supine(alVts.get(2).get(3));
                     } else {
-                        vts_Obj.setSystolic_Supine("0");
+                        vts_Obj.setSystolic_Supine("");
                     }
-                    if (alVts.get(2).get(4) != null && !alVts.get(2).get(4).isEmpty() && alVts.get(2).get(4).matches("\\d+") && !alVts.get(2).get(4).equals("-")) {
+                    if (alVts.get(2).get(4) != null && !alVts.get(2).get(4).isEmpty() && !alVts.get(2).get(4).equals("-")) {
                         vts_Obj.setDiastolic_Supine(alVts.get(2).get(4));
                     } else {
-                        vts_Obj.setDiastolic_Supine("0");
+                        vts_Obj.setDiastolic_Supine("");
                     }
-                    if (alVts.get(2).get(33) != null && !alVts.get(2).get(33).isEmpty() && alVts.get(2).get(33).matches("\\d+") && !alVts.get(2).get(33).equals("-")) {
+                    if (alVts.get(2).get(33) != null && !alVts.get(2).get(33).isEmpty()  && !alVts.get(2).get(33).equals("-")) {
                         vts_Obj.setSupine_Pulse(alVts.get(2).get(33));
                     } else {
-                        vts_Obj.setSupine_Pulse("0");
+                        vts_Obj.setSupine_Pulse("");
                     }
 
                     // standing
-                    if (alVts.get(2).get(5) != null && !alVts.get(2).get(5).isEmpty() && alVts.get(2).get(5).matches("\\d+") && !alVts.get(2).get(5).equals("-")) {
+                    if (alVts.get(2).get(5) != null && !alVts.get(2).get(5).isEmpty() && !alVts.get(2).get(5).equals("-")) {
                         vts_Obj.setSystolic_Standing(alVts.get(2).get(5));
                     } else {
-                        vts_Obj.setSystolic_Standing("0");
+                        vts_Obj.setSystolic_Standing("");
                     }
-                    if (alVts.get(2).get(6) != null && !alVts.get(2).get(6).isEmpty() && alVts.get(2).get(6).matches("\\d+") && !alVts.get(2).get(6).equals("-")) {
+                    if (alVts.get(2).get(6) != null && !alVts.get(2).get(6).isEmpty() && !alVts.get(2).get(6).equals("-")) {
                         vts_Obj.setDiastolic_Standing(alVts.get(2).get(6));
                     } else {
-                        vts_Obj.setDiastolic_Standing("0");
+                        vts_Obj.setDiastolic_Standing("");
                     }
-                    if (alVts.get(2).get(34) != null && !alVts.get(2).get(34).isEmpty() && alVts.get(2).get(34).matches("\\d+") && !alVts.get(2).get(34).equals("-")) {
+                    if (alVts.get(2).get(34) != null && !alVts.get(2).get(34).isEmpty() && !alVts.get(2).get(34).equals("-")) {
                         vts_Obj.setStanding_Pulse(alVts.get(2).get(34));
                     } else {
-                        vts_Obj.setStanding_Pulse("0");
+                        vts_Obj.setStanding_Pulse("");
                     }
 
                     String query_vts_lhr_wh = "insert into lhr_weight_height "
@@ -711,7 +711,7 @@ public class lhr_VTS {
                             + ",'" + msh.getDateTime() + "')";
 
                     try {
-                        if (Float.parseFloat(vts_Obj.getWeight_Reading()) > 0 && Float.parseFloat(vts_Obj.getHeight_Reading()) > 0) {
+                        if(!vts_Obj.getWeight_Reading().equalsIgnoreCase("") && !vts_Obj.getHeight_Reading().equalsIgnoreCase("")){
                             status_vts_lhr_wh = rc.setQuerySQL(Config.ipAddressServer, Config.portServer, query_vts_lhr_wh);
                             if (status_vts_lhr_wh == false) {
                                 System.out.println("false extract vts weight height");
@@ -776,9 +776,9 @@ public class lhr_VTS {
                             + "'" + msh.getDateTime() + "')";
 
                     try {
-                        if (Double.parseDouble(vts_Obj.getSystolic_Sitting()) > 0
-                                && Double.parseDouble(vts_Obj.getDiastolic_Sitting()) > 0
-                                && Double.parseDouble(vts_Obj.getSitting_Pulse()) > 0) {
+                        if(!vts_Obj.getSystolic_Sitting().equalsIgnoreCase("") || !vts_Obj.getSystolic_Standing().equalsIgnoreCase("") || !vts_Obj.getSystolic_Supine().equalsIgnoreCase("") 
+                                || !vts_Obj.getDiastolic_Sitting().equalsIgnoreCase("") || !vts_Obj.getDiastolic_Standing().equalsIgnoreCase("") || 
+                                !vts_Obj.getDiastolic_Supine().equalsIgnoreCase("") || !vts_Obj.getSitting_Pulse().equalsIgnoreCase("")){
                             status_vts_lhr_bp = rc.setQuerySQL(Config.ipAddressServer, Config.portServer, query_vts_lhr_bp);
                             if (status_vts_lhr_bp == false) {
                                 total_fail_insert++;
@@ -790,6 +790,11 @@ public class lhr_VTS {
                                 System.out.println("done extract vts BP");
                             }
                         }
+//                        if (Double.parseDouble(vts_Obj.getSystolic_Sitting()) > 0
+//                                && Double.parseDouble(vts_Obj.getDiastolic_Sitting()) > 0
+//                                && Double.parseDouble(vts_Obj.getSitting_Pulse()) > 0) {
+//                            
+//                        }
                         
                     } catch (Exception e) {
                         e.printStackTrace();
