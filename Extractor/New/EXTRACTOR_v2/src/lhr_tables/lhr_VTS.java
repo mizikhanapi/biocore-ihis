@@ -28,6 +28,8 @@ public class lhr_VTS {
         boolean status_vts_lhr_pain_scale = false;
         boolean status_vts_lhr_respiratory = false;
         boolean status_vts_lhr_visual = false;
+        String singleQuote = "'";
+        String strNull = "NULL";
         
         //dynamic query for lhr_bp
 //        ArrayList<String> bp_attribute = new ArrayList<String>();
@@ -85,63 +87,63 @@ public class lhr_VTS {
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //                  PUPIL THINGS
                     if (alVts.get(2).get(13) != null && !alVts.get(2).get(13).isEmpty() && !alVts.get(2).get(13).equals("-")) {
-                        vts_Obj.setLeft_pupil_condition(alVts.get(2).get(13));
+                        vts_Obj.setLeft_pupil_condition(singleQuote+alVts.get(2).get(13)+singleQuote);
                     } else {
-                        vts_Obj.setLeft_pupil_condition("");
+                        vts_Obj.setLeft_pupil_condition(strNull);
                     }
 
                     if (alVts.get(2).get(14) != null && !alVts.get(2).get(14).isEmpty() && !alVts.get(2).get(14).equals("-")) {
-                        vts_Obj.setLeft_pupil_option(alVts.get(2).get(14));
+                        vts_Obj.setLeft_pupil_option(singleQuote+alVts.get(2).get(14)+singleQuote);
                     } else {
-                        vts_Obj.setLeft_pupil_option("");
+                        vts_Obj.setLeft_pupil_option(strNull);
                     }
 
                     if (alVts.get(2).get(15) != null && !alVts.get(2).get(15).isEmpty() && !alVts.get(2).get(15).equals("-")) {
                         vts_Obj.setLeft_pupil_size(alVts.get(2).get(15));
                     } else {
-                        vts_Obj.setLeft_pupil_size("0");
+                        vts_Obj.setLeft_pupil_size(strNull);
                     }
 
                     if (alVts.get(2).get(16) != null && !alVts.get(2).get(16).isEmpty() && !alVts.get(2).get(16).equals("-")) {
-                        vts_Obj.setLeft_pupil_reflex(alVts.get(2).get(16));
+                        vts_Obj.setLeft_pupil_reflex(singleQuote+alVts.get(2).get(16)+singleQuote);
                     } else {
-                        vts_Obj.setLeft_pupil_reflex("");
+                        vts_Obj.setLeft_pupil_reflex(strNull);
                     }
 
                     if (alVts.get(2).get(18) != null && !alVts.get(2).get(18).isEmpty() && !alVts.get(2).get(18).equals("-")) {
-                        vts_Obj.setLeft_accom_reflex(alVts.get(2).get(18));
+                        vts_Obj.setLeft_accom_reflex(singleQuote+alVts.get(2).get(18)+singleQuote);
                     } else {
-                        vts_Obj.setLeft_accom_reflex("");
+                        vts_Obj.setLeft_accom_reflex(strNull);
                     }
 
                     if (alVts.get(2).get(35) != null && !alVts.get(2).get(35).isEmpty() && !alVts.get(2).get(35).equals("-")) {
-                        vts_Obj.setRight_pupil_condition(alVts.get(2).get(35));
+                        vts_Obj.setRight_pupil_condition(singleQuote+alVts.get(2).get(35)+singleQuote);
                     } else {
-                        vts_Obj.setRight_pupil_condition("");
+                        vts_Obj.setRight_pupil_condition(strNull);
                     }
 
                     if (alVts.get(2).get(36) != null && !alVts.get(2).get(36).isEmpty() && !alVts.get(2).get(36).equals("-")) {
-                        vts_Obj.setRight_pupil_option(alVts.get(2).get(36));
+                        vts_Obj.setRight_pupil_option(singleQuote+alVts.get(2).get(36)+singleQuote);
                     } else {
-                        vts_Obj.setRight_pupil_option("");
+                        vts_Obj.setRight_pupil_option(strNull);
                     }
 
                     if (alVts.get(2).get(37) != null && !alVts.get(2).get(37).isEmpty() && !alVts.get(2).get(37).equals("-")) {
                         vts_Obj.setRight_pupil_size(alVts.get(2).get(37));
                     } else {
-                        vts_Obj.setRight_pupil_size("0");
+                        vts_Obj.setRight_pupil_size(strNull);
                     }
 
                     if (alVts.get(2).get(17) != null && !alVts.get(2).get(17).isEmpty() && !alVts.get(2).get(16).equals("-")) {
-                        vts_Obj.setRight_pupil_reflex(alVts.get(2).get(17));
+                        vts_Obj.setRight_pupil_reflex(singleQuote+alVts.get(2).get(17)+singleQuote);
                     } else {
-                        vts_Obj.setRight_pupil_reflex("");
+                        vts_Obj.setRight_pupil_reflex(strNull);
                     }
 
                     if (alVts.get(2).get(19) != null && !alVts.get(2).get(19).isEmpty() && !alVts.get(2).get(19).equals("-")) {
-                        vts_Obj.setRight_accom_reflex(alVts.get(2).get(19));
+                        vts_Obj.setRight_accom_reflex(singleQuote+alVts.get(2).get(19)+singleQuote);
                     } else {
-                        vts_Obj.setRight_accom_reflex("");
+                        vts_Obj.setRight_accom_reflex(strNull);
                     }
 
                     String query_vts_lhr_pupil = "insert into lhr_pupil "
@@ -181,19 +183,22 @@ public class lhr_VTS {
                             + "'" + d + "',"
                             + "'" + vts_Obj.getDoctor_ID() + "',"
                             + "" + vts_Obj.getEncounter_Date() + ","
-                            + "'" + vts_Obj.getLeft_accom_reflex() + "',"
-                            + "'" + vts_Obj.getLeft_pupil_reflex() + "',"
-                            + "'" + vts_Obj.getLeft_pupil_condition() + "',"
-                            + "'" + vts_Obj.getLeft_pupil_option() + "',"
-                            + "'" + vts_Obj.getLeft_pupil_size() + "',"
-                            + "'" + vts_Obj.getRight_accom_reflex() + "',"
-                            + "'" + vts_Obj.getRight_pupil_reflex() + "',"
-                            + "'" + vts_Obj.getRight_pupil_condition() + "',"
-                            + "'" + vts_Obj.getRight_pupil_option() + "',"
-                            + "'" + vts_Obj.getRight_pupil_size() + "');";
+                            + "" + vts_Obj.getLeft_accom_reflex() + ","
+                            + "" + vts_Obj.getLeft_pupil_reflex() + ","
+                            + "" + vts_Obj.getLeft_pupil_condition() + ","
+                            + "" + vts_Obj.getLeft_pupil_option() + ","
+                            + "" + vts_Obj.getLeft_pupil_size() + ","
+                            + "" + vts_Obj.getRight_accom_reflex() + ","
+                            + "" + vts_Obj.getRight_pupil_reflex() + ","
+                            + "" + vts_Obj.getRight_pupil_condition() + ","
+                            + "" + vts_Obj.getRight_pupil_option() + ","
+                            + "" + vts_Obj.getRight_pupil_size() + ");";
 
                     try {
-                        if (Integer.parseInt(vts_Obj.getRight_pupil_size()) > 0 && Integer.parseInt(vts_Obj.getLeft_pupil_size()) > 0) {
+                        if (!vts_Obj.getRight_pupil_size().equalsIgnoreCase(strNull)|| !vts_Obj.getLeft_pupil_size().equalsIgnoreCase(strNull)
+                                || !vts_Obj.getLeft_accom_reflex().equalsIgnoreCase(strNull) || !vts_Obj.getLeft_pupil_reflex().equalsIgnoreCase(strNull) || !vts_Obj.getLeft_pupil_condition().equalsIgnoreCase(strNull) || !vts_Obj.getLeft_pupil_option().equalsIgnoreCase(strNull)
+                                || !vts_Obj.getRight_accom_reflex().equalsIgnoreCase(strNull) || !vts_Obj.getRight_pupil_reflex().equalsIgnoreCase(strNull) || !vts_Obj.getRight_pupil_condition().equalsIgnoreCase(strNull) || !vts_Obj.getRight_pupil_option().equalsIgnoreCase(strNull)) 
+                        {
                             status_vts_lhr_pupil = rc.setQuerySQL(Config.ipAddressServer, Config.portServer, query_vts_lhr_pupil);
 
                             if (status_vts_lhr_pupil == false) {
@@ -522,33 +527,33 @@ public class lhr_VTS {
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //                  visual
                     if (alVts.get(2).get(38) != null && !alVts.get(2).get(38).isEmpty() && !alVts.get(2).get(38).equals("-")) {
-                        vts_Obj.setVision_type(alVts.get(2).get(38));
+                        vts_Obj.setVision_type(singleQuote+alVts.get(2).get(38)+singleQuote);
                     } else {
-                        vts_Obj.setVision_type("");
+                        vts_Obj.setVision_type(strNull);
                     }
 
                     if (alVts.get(2).get(39) != null && !alVts.get(2).get(39).isEmpty() && !alVts.get(2).get(39).equals("-")) {
-                        vts_Obj.setLeft_eye_score(alVts.get(2).get(39));
+                        vts_Obj.setLeft_eye_score(singleQuote+alVts.get(2).get(39)+singleQuote);
                     } else {
-                        vts_Obj.setLeft_eye_score("");
+                        vts_Obj.setLeft_eye_score(strNull);
                     }
 
                     if (alVts.get(2).get(40) != null && !alVts.get(2).get(40).isEmpty() && !alVts.get(2).get(40).equals("-")) {
-                        vts_Obj.setRight_eye_score(alVts.get(2).get(40));
+                        vts_Obj.setRight_eye_score(singleQuote+alVts.get(2).get(40)+singleQuote);
                     } else {
-                        vts_Obj.setRight_eye_score("");
+                        vts_Obj.setRight_eye_score(strNull);
                     }
 
                     if (alVts.get(2).get(41) != null && !alVts.get(2).get(41).isEmpty() && !alVts.get(2).get(41).equals("-")) {
-                        vts_Obj.setColor_vision(alVts.get(2).get(41));
+                        vts_Obj.setColor_vision(singleQuote+alVts.get(2).get(41)+singleQuote);
                     } else {
-                        vts_Obj.setColor_vision("");
+                        vts_Obj.setColor_vision(strNull);
                     }
 
                     if (alVts.get(2).get(42) != null && !alVts.get(2).get(42).isEmpty() && !alVts.get(2).get(42).equals("-")) {
-                        vts_Obj.setComment(alVts.get(2).get(42));
+                        vts_Obj.setComment(singleQuote+alVts.get(2).get(42)+singleQuote);
                     } else {
-                        vts_Obj.setComment("");
+                        vts_Obj.setComment(strNull);
                     }
 
                     String query_vts_lhr_visual = "insert into lhr_visual "
@@ -585,11 +590,11 @@ public class lhr_VTS {
                             + "'" + vts_Obj.getDoctor_ID() + "',"
                             + "" + vts_Obj.getEncounter_Date() + ","
                             + "'" + b + "',"
-                            + "'" + vts_Obj.getVision_type() + "',"
-                            + "'" + vts_Obj.getRight_eye_score() + "',"
-                            + "'" + vts_Obj.getLeft_eye_score() + "',"
-                            + "'" + vts_Obj.getColor_vision() + "',"
-                            + "'" + vts_Obj.getComment() + "');";
+                            + "" + vts_Obj.getVision_type() + ","
+                            + "" + vts_Obj.getRight_eye_score() + ","
+                            + "" + vts_Obj.getLeft_eye_score() + ","
+                            + "" + vts_Obj.getColor_vision() + ","
+                            + "" + vts_Obj.getComment() + ");";
 
                     try {
                         if (!vts_Obj.getRight_eye_score().equalsIgnoreCase("") && !vts_Obj.getLeft_eye_score().equalsIgnoreCase("")) {
@@ -614,13 +619,13 @@ public class lhr_VTS {
                     if (alVts.get(2).get(7) != null && !alVts.get(2).get(7).isEmpty()  && !alVts.get(2).get(7).equals("-")) {
                         vts_Obj.setWeight_Reading(alVts.get(2).get(7));
                     } else {
-                        vts_Obj.setWeight_Reading("");
+                        vts_Obj.setWeight_Reading("NULL");
                     }
 
                     if (alVts.get(2).get(8) != null && !alVts.get(2).get(8).isEmpty()  && !alVts.get(2).get(8).equals("-")) {
                         vts_Obj.setHeight_Reading(alVts.get(2).get(8));
                     } else {
-                        vts_Obj.setHeight_Reading("");
+                        vts_Obj.setHeight_Reading("NULL");
                     }
 
                     //sitting
@@ -697,8 +702,8 @@ public class lhr_VTS {
                             + "'" + vts_Obj.getHFC_Cd() + "',"
                             + "'" + vts_Obj.getEpisode_Date() + "',"
                             + "" + vts_Obj.getEncounter_Date() + ","
-                            + "'" + vts_Obj.getWeight_Reading() + "',"
-                            + "'" + vts_Obj.getHeight_Reading() + "',"
+                            + "" + vts_Obj.getWeight_Reading() + ","
+                            + "" + vts_Obj.getHeight_Reading() + ","
                             + "'" + vts_Obj.getDoctor_ID() + "',"
                             + "'" + vts_Obj.getDoctor_Name() + "',"
                             + "'" + a + "',"
@@ -711,7 +716,7 @@ public class lhr_VTS {
                             + ",'" + msh.getDateTime() + "')";
 
                     try {
-                        if(!vts_Obj.getWeight_Reading().equalsIgnoreCase("") && !vts_Obj.getHeight_Reading().equalsIgnoreCase("")){
+                        if(!vts_Obj.getWeight_Reading().equalsIgnoreCase("NULL") || !vts_Obj.getHeight_Reading().equalsIgnoreCase("NULL")){
                             status_vts_lhr_wh = rc.setQuerySQL(Config.ipAddressServer, Config.portServer, query_vts_lhr_wh);
                             if (status_vts_lhr_wh == false) {
                                 System.out.println("false extract vts weight height");
@@ -776,9 +781,9 @@ public class lhr_VTS {
                             + "'" + msh.getDateTime() + "')";
 
                     try {
-                        if(!vts_Obj.getSystolic_Sitting().equalsIgnoreCase("") || !vts_Obj.getSystolic_Standing().equalsIgnoreCase("") || !vts_Obj.getSystolic_Supine().equalsIgnoreCase("") 
-                                || !vts_Obj.getDiastolic_Sitting().equalsIgnoreCase("") || !vts_Obj.getDiastolic_Standing().equalsIgnoreCase("") || 
-                                !vts_Obj.getDiastolic_Supine().equalsIgnoreCase("") || !vts_Obj.getSitting_Pulse().equalsIgnoreCase("")){
+                        if(!vts_Obj.getSystolic_Sitting().equalsIgnoreCase("NULL") || !vts_Obj.getSystolic_Standing().equalsIgnoreCase("NULL") || !vts_Obj.getSystolic_Supine().equalsIgnoreCase("NULL") 
+                                || !vts_Obj.getDiastolic_Sitting().equalsIgnoreCase("NULL") || !vts_Obj.getDiastolic_Standing().equalsIgnoreCase("NULL") || !vts_Obj.getDiastolic_Supine().equalsIgnoreCase("NULL") 
+                                || !vts_Obj.getSitting_Pulse().equalsIgnoreCase("NULL") || !vts_Obj.getStanding_Pulse().equalsIgnoreCase("NULL") || !vts_Obj.getSupine_Pulse().equalsIgnoreCase("NULL")){
                             status_vts_lhr_bp = rc.setQuerySQL(Config.ipAddressServer, Config.portServer, query_vts_lhr_bp);
                             if (status_vts_lhr_bp == false) {
                                 total_fail_insert++;
