@@ -317,22 +317,6 @@
         var otherID = arrayData[3];
 
 
-        var data = {
-            orderNo: orderNo,
-            pmiNo: pmiNo,
-            icNo: icNo,
-            address: address,
-            phoneNo: phoneNo,
-            otherID: otherID,
-            pName: pName,
-            txtDate: txtDate
-        };
-
-
-        console.log(data);
-
-
-
         bootbox.confirm({
             message: "Are you sure that you want to generate bill for the selected record ?",
             title: "Archive Order ?",
@@ -353,20 +337,53 @@
                     $('<div class="loading">Loading</div>').appendTo('body');
 
                     $.ajax({
-                        url: "billGenerateBillDetailSingle.jsp",
+                        url: "billGenerateBillDetailGetSeqNo.jsp",
                         type: "post",
-                        data: data,
                         timeout: 10000,
-                        success: function (data) {
+                        success: function (datas) {
 
-                            $('#billDetailOrderDetailContent').html(data);
-                            $('.loading').hide();
+
+                            console.log("Get Seq Success (S)");
+
+                            var data = {
+                                orderNo: orderNo,
+                                pmiNo: pmiNo,
+                                icNo: icNo,
+                                address: address,
+                                phoneNo: phoneNo,
+                                otherID: otherID,
+                                pName: pName,
+                                txtDate: txtDate,
+                                billNo: datas.trim()
+                            };
+
+                            $.ajax({
+                                url: "billGenerateBillDetailSingle.jsp",
+                                type: "post",
+                                data: data,
+                                timeout: 10000,
+                                success: function (dataBill) {
+
+                                    console.log("Generate Success (S)");
+
+                                    $('#billDetailOrderDetailContent').html(dataBill);
+                                    $('.loading').hide();
+
+                                },
+                                error: function (err) {
+
+                                    console.log("Error Ajax Generate Bill");
+
+                                }
+                            });
 
                         },
                         error: function (err) {
 
                         }
                     });
+
+
 
 
 
@@ -609,30 +626,51 @@
 
                     if (result === true) {
 
+
                         $('<div class="loading">Loading</div>').appendTo('body');
 
-                        var data = {
-                            pmiNo: pmiNoDetail,
-                            icNo: icNoDetail,
-                            longString: longString
-                        };
-
-                        console.log(data);
 
                         $.ajax({
-                            url: "billGenerateBillDetailGroup.jsp",
+                            url: "billGenerateBillDetailGetSeqNo.jsp",
                             type: "post",
-                            data: data,
                             timeout: 10000,
-                            success: function (data) {
+                            success: function (datas) {
 
-                                $('#billDetailOrderDetailContent').html(data);
-                                $('.loading').hide();
+
+                                var data = {
+                                    pmiNo: pmiNoDetail,
+                                    icNo: icNoDetail,
+                                    billNo: datas.trim(),
+                                    longString: longString
+                                };
+
+
+                                console.log("Get Seq Success (G)");
+
+
+                                $.ajax({
+                                    url: "billGenerateBillDetailGroup.jsp",
+                                    type: "post",
+                                    data: data,
+                                    timeout: 10000,
+                                    success: function (dataBill) {
+
+                                        console.log("Generate Success (G)");
+
+                                        $('#billDetailOrderDetailContent').html(dataBill);
+                                        $('.loading').hide();
+
+                                    },
+                                    error: function (err) {
+
+                                        console.log("Error Ajax");
+
+                                    }
+                                });
+
 
                             },
                             error: function (err) {
-
-                                console.log("Error Ajax");
 
                             }
                         });
