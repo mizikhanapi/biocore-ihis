@@ -4,10 +4,10 @@
     Author     : Shammugam
 --%>
 
+<%@page import="dBConn.Conn"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.util.Date"%>
 <%@page import="java.text.DateFormat"%>
-<%@page import="dbConn1.Conn"%>
 <%@page import="java.text.DecimalFormat"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.sql.*"%>
@@ -18,6 +18,8 @@
     DateFormat dateFormat = new SimpleDateFormat("MMyyyy");
     Date date = new Date();
     String dateString = dateFormat.format(date);
+    
+    Conn conn = new Conn();
 
     // Generate Decimal Format
     DecimalFormat df = new DecimalFormat("0.00");
@@ -62,7 +64,7 @@
             + " WHERE pb.new_ic_no = '" + icNo + "' AND fm.order_no = '" + orderNo + "' "
             + " AND fd.order_no = '" + orderNo + "' ORDER BY fm.txn_date DESC;";
 
-    ArrayList<ArrayList<String>> dataBillGenerateDetails = Conn.getData(sqlBillGenerateDetails);
+    ArrayList<ArrayList<String>> dataBillGenerateDetails = conn.getData(sqlBillGenerateDetails);
 
 %>
 
@@ -152,7 +154,7 @@
                     }
 
                     String sqlBillGenerateDetailsMisceItem = "SELECT * FROM far_miscellaneous_item WHERE item_code = '" + type + "'";
-                    ArrayList<ArrayList<String>> dataBillGenerateDetailsMisceItem = Conn.getData(sqlBillGenerateDetailsMisceItem);
+                    ArrayList<ArrayList<String>> dataBillGenerateDetailsMisceItem = conn.getData(sqlBillGenerateDetailsMisceItem);
                     subtotal = subtotal + Double.parseDouble(dataBillGenerateDetailsMisceItem.get(0).get(4));
                     subQuantity += 1;
                 %>
@@ -167,7 +169,7 @@
 
                     //Search and add billing parameters
                     String sqlBillGenerateDetailsBillingParameters = "SELECT param_code, param_name, param_value FROM far_billing_parameter WHERE enable = 'yes'";
-                    ArrayList<ArrayList<String>> dataBillGenerateDetailsBillingParameters = Conn.getData(sqlBillGenerateDetailsBillingParameters);
+                    ArrayList<ArrayList<String>> dataBillGenerateDetailsBillingParameters = conn.getData(sqlBillGenerateDetailsBillingParameters);
 
                     for (int i = 0; i < dataBillGenerateDetailsBillingParameters.size(); i++) {
 

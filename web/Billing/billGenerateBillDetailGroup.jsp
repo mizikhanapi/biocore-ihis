@@ -5,12 +5,12 @@
 --%>
 
 
+<%@page import="dBConn.Conn"%>
 <%@page import="java.time.LocalDateTime"%>
 <%@page import="java.time.format.DateTimeFormatter"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.util.Date"%>
 <%@page import="java.text.DateFormat"%>
-<%@page import="dbConn1.Conn"%>
 <%@page import="java.text.DecimalFormat"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.sql.*"%>
@@ -21,6 +21,8 @@
     DateFormat dateFormat = new SimpleDateFormat("MMyyyy");
     Date date = new Date();
     String dateString = dateFormat.format(date);
+
+    Conn conn = new Conn();
 
     // Generate Time Format
     DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.0");
@@ -59,7 +61,7 @@
             // WHERE CONDITION
             + " WHERE pb.new_ic_no = '" + icNo + "' ";
 
-    ArrayList<ArrayList<String>> dataBillGeneratePatientDetails = Conn.getData(sqlBillGeneratePatientDetails);
+    ArrayList<ArrayList<String>> dataBillGeneratePatientDetails = conn.getData(sqlBillGeneratePatientDetails);
 
     // Get Master Bill Record
     String orders[] = detailsLongString.split("\\|");
@@ -80,7 +82,7 @@
                 // WHERE CONDITION
                 + " WHERE customer_id = '" + masterPMINo + "' AND order_no = '" + masterOrderNo + "' ; ";
 
-        ArrayList<ArrayList<String>> dataBillGenerateMasterDetailsDetails = Conn.getData(sqlBillGenerateMasterDetails);
+        ArrayList<ArrayList<String>> dataBillGenerateMasterDetailsDetails = conn.getData(sqlBillGenerateMasterDetails);
         dataBillGenerateMasterDetailsMain.addAll(dataBillGenerateMasterDetailsDetails);
 
     }
@@ -112,7 +114,7 @@
                 + " WHERE pb.new_ic_no = '" + masteric + "' AND fm.order_no = '" + masterOrderNo + "' "
                 + " AND fd.order_no = '" + masterOrderNo + "' ORDER BY fm.txn_date DESC;";
 
-        ArrayList<ArrayList<String>> dataBillGenerateMasterDetailsSingle = Conn.getData(sqlBillGenerateMasterDetailsItems);
+        ArrayList<ArrayList<String>> dataBillGenerateMasterDetailsSingle = conn.getData(sqlBillGenerateMasterDetailsItems);
         dataBillGenerateMasterDetailsItems.addAll(dataBillGenerateMasterDetailsSingle);
 
     }
@@ -242,7 +244,7 @@
                     }
 
                     String sqlBillGenerateDetailsMisceItem = "SELECT * FROM far_miscellaneous_item WHERE item_code = '" + type + "'";
-                    ArrayList<ArrayList<String>> dataBillGenerateDetailsMisceItem = Conn.getData(sqlBillGenerateDetailsMisceItem);
+                    ArrayList<ArrayList<String>> dataBillGenerateDetailsMisceItem = conn.getData(sqlBillGenerateDetailsMisceItem);
                     subtotal = subtotal + Double.parseDouble(dataBillGenerateDetailsMisceItem.get(0).get(4));
                     subQuantity += 1;
                 %>
@@ -259,7 +261,7 @@
 
                     //Search and add billing parameters
                     String sqlBillGenerateDetailsBillingParameters = "SELECT param_code, param_name, param_value FROM far_billing_parameter WHERE enable = 'yes'";
-                    ArrayList<ArrayList<String>> dataBillGenerateDetailsBillingParameters = Conn.getData(sqlBillGenerateDetailsBillingParameters);
+                    ArrayList<ArrayList<String>> dataBillGenerateDetailsBillingParameters = conn.getData(sqlBillGenerateDetailsBillingParameters);
 
                     for (int i = 0; i < dataBillGenerateDetailsBillingParameters.size(); i++) {
 
