@@ -42,12 +42,12 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal"><i class="fa fa-times fa-lg"></i></button>
-                <h3 class="modal-title" id="lineModalLabel">Add New Shift</h3>
+                <h3 class="modal-title" id="lineModalLabel">Manage Shift</h3>
             </div>
             <div class="modal-body">
 
                 <!-- content goes here -->
-                <form class="form-horizontal" id="addForm">
+                <form class="form-horizontal" id="Manage_SHIFT_ADD_FORM">
 
                     <!-- Text input-->
                     <div class="form-group">
@@ -155,7 +155,14 @@
 
  <script>
 
-     
+    function getDate( element ) {
+      var date;
+      try {
+        date = $.datepicker.parseDate( "dd-mm-yy", element.value );
+      } catch( error ) {
+        date = null;
+      }
+  }
 
         $(document).ready(function () {
             $('#shift_duration').prop('disabled', 'disabled');
@@ -166,25 +173,30 @@
                 $('#ActionAddShift').show();
                 
             });
-            
-            
-            
-                $( "#Add_shift_start_date" ).datepicker({
-
+               
+              var start_date_picker = $( "#Add_shift_start_date" ).datepicker({
                 changeMonth: true,
                 changeYear: true,
                 //yearRange: "+100:+0",
                 dateFormat:"dd-mm-yy"
+              }).on( "change", function() {
+                  var date_start_min = $( "#Add_shift_start_date" ).val();
+                  var date_start_min_obj = date_start_min.split("-");
+                  var new_day = parseInt(date_start_min_obj[0])+1;
+                end_date_picker.datepicker( "option", "minDate", new_day+"-"+date_start_min_obj[1]+"-"+date_start_min_obj[2] );
+                
               });
               
                           
-                $( "#Add_shift_end_date" ).datepicker({
+              var end_date_picker = $( "#Add_shift_end_date" ).datepicker({
 
                 changeMonth: true,
                 changeYear: true,
                 ///yearRange: "+100:+0",
                 dateFormat:"dd-mm-yy"
               });
+//              
+        
             
             $('#Add_shift_start_time').datetimepicker({
                 datepicker:false,
@@ -220,6 +232,7 @@
                             
                             
                             $("#detailTable").load("manage_shift_table.jsp");
+                          
                         }else{
                             console.log(r.trim());
                         }
@@ -288,6 +301,7 @@
                             alert("Update Success");
                             $("#modal_manage_shift").modal('hide');
                             $("#detailTable").load("manage_shift_table.jsp");
+                            
                         }else{
                             console.log(r.trim());
                         }
@@ -327,6 +341,7 @@
                             alert("Inserting Success");
                             $("#modal_manage_shift").modal('hide');
                             $("#detailTable").load("manage_shift_table.jsp");
+                              clearShiftForm();
                         }else{
                             console.log(r.trim());
                         }
@@ -345,6 +360,17 @@
                 time.add(parseInt(hour)+1,'H');
                 
                 $('#Add_shift_end_time').val(time.format("HH:mm"));
+        }
+
+        function clearShiftForm(){
+             $("#Add_shift_code").val("");
+             $("#Add_shift_name").val("");
+             $("#Add_shift_start_time").val("");
+             $("#Add_shift_duration").val("");
+            $("#Add_shift_end_time").val("");
+                 $("#Add_shift_start_date").val("");
+              $("#Add_shift_end_date").val("");
+                  $("#Add_shift_status").val("active");
         }
 
 

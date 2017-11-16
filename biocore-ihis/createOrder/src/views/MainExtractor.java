@@ -6,6 +6,7 @@
 package views;
 
 import Bean.MSH;
+import Bean.PDI;
 import order_tables.*;
 import order_tables.get_ehr_central_data;
 import order_tables.update_ehr_central;
@@ -30,7 +31,8 @@ public class MainExtractor {
             //System.out.println(t.getTxndata());
 
             spv2.startProcess(t.getTxndata());
-            
+            PDI_ord lhr_pde = new PDI_ord();
+            PDI pdi = lhr_pde.lhr_PDI(spv2.getVpdi(), t);
             //MSH
             lhr_MSH lhr_msh = new lhr_MSH();
             MSH msh = lhr_msh.M_MSH(spv2.getVmsh(),t);

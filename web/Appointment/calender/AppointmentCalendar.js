@@ -27,7 +27,7 @@ $(document).ready(function () {
             $("#div_ADD_Appoinment_TIME").html(result);
         }
     });
-    
+
     initilizeAppointmentCalendar(_hfc_cd_CODE, _discipline_CODE, _subdiscipline_CODE, _start_time, _end_time, _duration);
     //initilizeAppointmentCalendarPatient(_hfc_cd_CODE, _discipline_CODE, _subdiscipline_CODE, _start_time, _end_time, _duration)
     $.ajax({
@@ -128,20 +128,15 @@ $(document).ready(function () {
 
     $("#btn_ADD_Appoinment_ADD").click(function (e) {
         e.preventDefault();
-
         var dateConvert = $("#t_ADD_Appoinment_Date").val().split("-");
-
         var _pmi_no = $("#t_ADD_Appointment_PMI_NO").val();
-
         var _ic_no = $("#t_ADD_Appointment_IC_NO").val();
         var _id_no = $("#t_ADD_Appointment_ID_NO").val();
         var _patient_name = $("#t_ADD_Appointment_Patient_Name").val();
-
         var _doctor = $("#t_ADD_Appoinment_Doctor option:selected").val();
         var _date = dateConvert[2] + "-" + dateConvert[1] + "-" + dateConvert[0];
         var _time = $("#t_ADD_Appoinment_Time option:selected").val();
         var _type = $("#t_ADD_Appoinment_Type option:selected").val();
-
         var _discipline = $("#t_ADD_Appointment_DIS_CODE").val();
         var _subdiscipline = $("#t_ADD_Appointment_SUBDIS_CODE").val();
         var _hfc_cd = $("#t_ADD_Appointment_HFC_CD").val();
@@ -255,32 +250,41 @@ function initilizeAppointmentCalendar(_hfc_cd_CODE, _discipline_CODE, _subdiscip
             console.log('All Items Rendered!');
         },
         dayClick: function (date, allDay, jsEvent, view) {
-            console.log();
+
             var dateArray = date._i;
-            var view = $('#AppointmentCalender').fullCalendar('getView');
-            console.log(view.name);
-            if (view.name === 'month') {
-                $('#AppointmentCalender').fullCalendar('changeView', 'agendaDay');
-                $('#AppointmentCalender').fullCalendar('gotoDate', date);
+            var click_date = new Date(date._d);
+            var current_date = new Date();
+            console.log(click_date);
+            console.log(current_date);
+            if (click_date < current_date) {
+                alert("You cannot make appointment before today date");
             } else {
+                alert("after today");
 
-                $("#AppointmentAdd").modal("show");
-                var hour = dateArray[3];
-                var minutes = dateArray[4];
-                if (hour < 10) {
-                    hour = "0" + hour
-                }
-                if (minutes < 10) {
-                    minutes = "0" + minutes
-                }
+                var view = $('#AppointmentCalender').fullCalendar('getView');
+                if (view.name === 'month') {
+                    $('#AppointmentCalender').fullCalendar('changeView', 'agendaDay');
+                    $('#AppointmentCalender').fullCalendar('gotoDate', date);
+                } else {
 
-                var selectedTime = hour + ":" + minutes + ":00"
-                var date2 = date.format().substr(0, 10);
-                var datAR = date2.split("-");
-                var newDate = datAR[2] + "-" + datAR[1] + "-" + datAR[0];
-                console.log(selectedTime);
-                $("#t_ADD_Appoinment_Date").val(newDate);
-                $("#t_ADD_Appoinment_Time").val(selectedTime);
+                    $("#AppointmentAdd").modal("show");
+                    var hour = dateArray[3];
+                    var minutes = dateArray[4];
+                    if (hour < 10) {
+                        hour = "0" + hour
+                    }
+                    if (minutes < 10) {
+                        minutes = "0" + minutes
+                    }
+
+                    var selectedTime = hour + ":" + minutes + ":00"
+                    var date2 = date.format().substr(0, 10);
+                    var datAR = date2.split("-");
+                    var newDate = datAR[2] + "-" + datAR[1] + "-" + datAR[0];
+                    console.log(selectedTime);
+                    $("#t_ADD_Appoinment_Date").val(newDate);
+                    $("#t_ADD_Appoinment_Time").val(selectedTime);
+                }
             }
         },
 
@@ -298,8 +302,6 @@ function initilizeAppointmentCalendar(_hfc_cd_CODE, _discipline_CODE, _subdiscip
             }
             getAppointmentDetail(detail_data);
             $("#AppointmentViewModal").modal("show");
-
-
         },
 
         events: "calender/AppointmentData.jsp?h=" + _hfc_cd_CODE + "&d=" + _discipline_CODE + "&s=" + _subdiscipline_CODE + "&p=" + slot[1],
