@@ -1,6 +1,7 @@
 package order_tables;
 
 import Bean.MSH;
+import Bean.PDI;
 import Config_Pack.Config;
 import bean.ADW2;
 import bean.ORC2;
@@ -133,6 +134,54 @@ public class ADW_ord {
                         }
                     } catch (Exception e) {
                         e.getStackTrace();
+                    }
+                }else if (orcs.get(1).get(0).equals("T12115")) {
+                    All_Seq_no allSeq = new All_Seq_no();
+                    allSeq.genSeq(msh.getSendingFacilityCode(), msh.getSendingFacilityDis(), msh.getSendingFacilitySubDis(), "ADW");
+                    String sql_ADWD = "INSERT INTO wis_order_master (pmi_no,"
+                            + " order_no,"
+                            + " txn_type,"
+                            + " hfc_cd,"
+                            + " episode_date, "
+                            + "encounter_date,"
+                            + " order_date,"
+                            + " order_by,"
+                            + " discipline_cd,"
+                            + "subdiscipline_cd,"
+                            + " ordering_hfc_cd,"
+                            + " ordering_discipline_cd, "
+                            + "ordering_subdiscipline_cd,"
+                            + " order_status, "
+                            + "diagnosis_cd, "
+                            + "created_by,"
+                            + " create_date,"
+                            + "txn_date) values ("
+                            + "'" + t.getPmi_no() + "',"
+                            + "'" + allSeq.getSeq() + "',"
+                            + "'" + orcs.get(1).get(0) + "',"
+                            + "'" + orcs.get(12).get(0) + "',"
+                            + "'" + orcs.get(7).get(0) + "',"
+                            + "'" + orcs.get(8).get(0) + "',"
+                            + "'" + orcs.get(6).get(0) + "',"
+                            + "'" + orcs.get(9).get(0) + "',"
+                            + "'" + orcs.get(13).get(0) + "',"
+                            + "'" + orcs.get(14).get(0) + "',"
+                            + "'" + orcs.get(12).get(0) + "',"
+                            + "'" + orcs.get(13).get(0) + "',"
+                            + "'" + orcs.get(14).get(0) + "',"
+                            + "'0',"
+                            + "'-',"
+                            + "'" + orcs.get(9).get(0) + "',"
+                            + "now(),"
+                            + "'" + orcs.get(7).get(0) + "')";
+                    try {
+                        status_adw_master = rc.setQuerySQL(Config.ipAddressServer, Config.portServer, sql_ADWD);
+                        if (status_adw_master == true) {
+                            System.out.println("-------------------------------------------");
+                            System.out.println("record (ADW): #" + " " + t.getCentral_Code());
+                            System.out.println("Done with WIS MASTER");
+                        }
+                    }catch(Exception e){
                     }
                 }
             }
