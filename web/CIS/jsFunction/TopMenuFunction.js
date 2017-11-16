@@ -1153,7 +1153,6 @@ function load_DCG_DTO(){
                 allDetail.pop();
                 for(var i in allDetail){
                     var dtoA = allDetail[i].split("|");
-                    console.log(dtoA);
 
                     var tempDTOObj = {
                          Acode: 'DTO',
@@ -1180,11 +1179,7 @@ function load_DCG_DTO(){
                     }
                     displayDTO2( tempDTOObj.drugName, tempDTOObj.drugStrength, tempDTOObj.drugDose, tempDTOObj.drugFrequency, tempDTOObj.drugDuration, tempDTOObj.uomCode, tempDTOObj, tempDTOObj);
                     DTODGCItem.push(tempDTOObj);
-                    
                 }
-                
-                
-                
             }
         })
 }

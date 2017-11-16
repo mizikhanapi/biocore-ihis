@@ -585,15 +585,25 @@ $(document).ready(function () {
         var OBloodGlucose = $('#bloodGlucose').val();
 
         var items = $('#bmiHeight,#bmiWeight,#bmi,#bmiStatus,#headCir,#bloodGlucose');
+        
+        var obj = {
+            Acode:"VTS",
+            bmiHeight:Oheight,
+            bmiWeight:Oweight,
+            bmi:Obmi,
+            bmiStatus:OWeightStatus,
+            headCir:OheadCir,
+            bloodGlucose:OBloodGlucose
+        }
 
-        var obj1 = {Acode: "VTS"};
-        items.each(function () {
-            obj1[this.id] = $(this).val();
-        });
-        _data.push(obj1);
+//        var obj1 = {Acode: "VTS"};
+//        items.each(function () {
+//            obj1[this.id] = $(this).val();
+//        });
+        _data.push(obj);
 
         displayOther(Oheight, Oweight, Obmi, OWeightStatus, OheadCir, OBloodGlucose);
-
+        console.log(_data);
         $("#CIS020008").modal('hide');
     });
 
