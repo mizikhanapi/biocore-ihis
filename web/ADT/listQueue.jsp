@@ -4,6 +4,7 @@
     Author     : shay
 --%>
 
+<%@page import="ADM_helper.LookupHelper"%>
 <%@page import="java.util.Date"%>
 <%@page import="java.text.DateFormat"%>
 <%@page import="java.text.SimpleDateFormat"%>
@@ -15,12 +16,16 @@
     Conn conn = new Conn();
     SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
     String now = sdf.format(new Date());
-
+     
     //amik kt session
     String hfc = session.getAttribute("HEALTH_FACILITY_CODE").toString();
     String order = "T12111";
+    LookupHelper lh = new LookupHelper(hfc);
 
-    String q = "select m.pmi_no,p.PATIENT_NAME,d.episode_date,d.ward_id,m.order_no,u.USER_NAME,m.order_status, d.order_no, m.order_by ,u.USER_ID, p.OLD_IC_NO, p.NEW_IC_NO, p.ID_TYPE, p.ID_NO, d.admission_reason,d.ward_class_code,d.ward_id, d.bed_id, d.order_status "
+    //                      0       1                  2            3          4        5           6               7           8           9           10          
+    String q = "select m.pmi_no,p.PATIENT_NAME,d.episode_date,d.ward_id,m.order_no,u.USER_NAME,m.order_status, d.order_no, m.order_by ,u.USER_ID, p.OLD_IC_NO, "
+            //      11          12          13      14              15                  16          17      18              19                       20
+            + "p.NEW_IC_NO, p.ID_TYPE, p.ID_NO, d.admission_reason,d.ward_class_code,d.ward_id, d.bed_id, d.order_status, m.ordering_hfc_cd " //ordering hfc_name
             + "from wis_order_master m "
             + "left join wis_order_detail d on d.order_no = m.order_no AND d.order_status=m.order_status "
             + "left join  adm_users u on  u.`USER_ID`= m.order_by "
@@ -48,7 +53,11 @@
 
         </thead>
         <tbody>
-            <%                                        for (int i = 0; i < dataQ.size(); i++) {%>
+            <%
+                for (int i = 0; i < dataQ.size(); i++) {
+                    String leHfc_name = lh.getHFCName(dataQ.get(i).get(19));
+                    dataQ.get(i).add(leHfc_name);
+            %>
 
 
             <tr id="moveToInpatientRegistration" style="text-align: left;">
@@ -102,6 +111,10 @@
         var wname = arrayData[16];
         var BedIDReg = arrayData[17];
         var orderNo = arrayData[4];
+        var hfc_name = arrayData[20];
+        var hfc_cd = arrayData[19];
+        var dr_id = arrayData[8];
+        var dr_name = arrayData[5];
 
         var orderS = "YesOrder";
 
@@ -122,6 +135,10 @@
         $("#WardType").val(WardType);
         $("#wname").val(wname);
         $("#BedIDReg").val(BedIDReg);
+        $("#HFCFROM").val(hfc_cd+" | "+hfc_name);
+        $("#HF_cd").val(hfc_cd);
+        $("#HFCBY").val(dr_id+" | "+dr_name);
+        $("#HB_cd").val(dr_id);
 
         var arrayData = $('#DisWard').val().split("|");
         var discode = arrayData[0];

@@ -384,18 +384,32 @@
         }
 
     });
-
+    
+    $("#HFCBY").on('keypress', function () {
+        var hfc_cd = $('#HF_cd').val();
+        if(hfc_cd == null || hfc_cd ===""){
+            bootbox.alert("Select referring health facility first!");
+            $(this).val("");
+            $(this).blur();
+            return false;
+        }
+    });
 
     $("#HFCBY").on('keyup', function () { // everytime keyup event
+        var hfc_cd = $('#HF_cd').val();
+//        if(hfc_cd == null || hfc_cd ===""){
+//            bootbox.alert("Select referring health facility first!");
+//            $(this).val("");
+//            return false;
+//        }
         var input = $(this).val(); // We take the input value
-        var hfc = $("#Rhfc").val();
         var createdBy = $("#Rid").val();
         var dis = $("#Rdis").val();
         var sub = $("#Rsub").val();
 
         if (input.length >= 1) { // Minimum characters = 2 (you can change)
             $('#HB_List').html('<img src="libraries/LoaderIcon.gif" />'); // Loader icon apprears in the <div id="match"></div>
-            var dataFields = {input: input, hfc: hfc, dis: dis, sub: sub}; // We pass input argument in Ajax
+            var dataFields = {input: input, hfc: hfc_cd, dis: dis, sub: sub}; // We pass input argument in Ajax
             $.ajax({
                 type: "POST",
                 url: "PMS/search/searchUsers.jsp", // call the php file ajax/tuto-autocomplete.php
