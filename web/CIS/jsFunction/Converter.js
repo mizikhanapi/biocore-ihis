@@ -424,6 +424,9 @@ function convertDCG(obj, dischargeSummary) {
 function convertORC(obj, moduleFrom, moduleTo, transectionCode) {
     var hfcOFDetail = obj.hfcOrderDetail.split("|");
     var hfcPFDetail = obj.hfcProviderDetail.split("|");
+    if(obj.priority === "undefined"){
+        obj.priority = "-";
+    }
 
     var orc = getORC(transectionCode, "", "", "NO", obj.priority, getDate(), episodeDate, encounterDate, doctor_id, doctor_id, "", hfc_cd, discipline, subdis, moduleFrom, hfcOFDetail[1],
             hfcOFDetail[2], hfcOFDetail[3], hfcOFDetail[10], hfcOFDetail[12], hfcOFDetail[14], hfcOFDetail[13], hfcOFDetail[8], hfcOFDetail[9], hfcPFDetail[0], "-", "", moduleTo, hfcPFDetail[1],
@@ -546,6 +549,12 @@ function convertVTS(VTSData) {
     }
     if (d.vision_comment === undefined) {
         d.vision_comment = "";
+    }
+        if (d.left_reactivity === undefined) {
+        d.left_reactivity = "";
+    }
+        if (d.right_reactivity === undefined) {
+        d.right_reactivity = "";
     }
 
 
