@@ -21,11 +21,14 @@
     String tableOrder = request.getParameter("tableOrder");
     String tableItem = request.getParameter("tableItem");
     String grandTotal = request.getParameter("grandTotal");
+    
     double totalItemQuantity = 0;
 
     Conn conn = new Conn();
     RMIConnector rmic = new RMIConnector();
+    
     boolean isGenerateConfirmBill = false;
+    
     int falseCount = 0;
 
     try {
@@ -55,7 +58,9 @@
             isGenerateConfirmBill = rmic.setQuerySQL(conn.HOST, conn.PORT, sqlUpdateOrderMaster);
 
             if (isGenerateConfirmBill == false) {
+                
                 falseCount = falseCount + 1;
+                
             }
 
         }
@@ -81,7 +86,9 @@
             isGenerateConfirmBill = rmic.setQuerySQL(conn.HOST, conn.PORT, sql1);
 
             if (isGenerateConfirmBill == false) {
+                
                 falseCount = falseCount + 1;
+                
             }
 
             //Calculate total quantity of items
@@ -98,7 +105,9 @@
         isGenerateConfirmBill = rmic.setQuerySQL(conn.HOST, conn.PORT, sql2);
 
         if (isGenerateConfirmBill == false) {
+            
             falseCount = falseCount + 1;
+            
         }
 
         //Get customer_ledger current month debit add to current bill total
@@ -120,7 +129,9 @@
             isGenerateConfirmBill = rmic.setQuerySQL(conn.HOST, conn.PORT, sql4);
             
             if (isGenerateConfirmBill == false) {
+                
                 falseCount = falseCount + 1;
+                
             }
 
         } else //When customer exits, update far_customer_ledger but no value in that month
@@ -134,7 +145,9 @@
                 isGenerateConfirmBill = rmic.setQuerySQL(conn.HOST, conn.PORT, sql5);
                 
                 if (isGenerateConfirmBill == false) {
+                    
                     falseCount = falseCount + 1;
+                    
                 }
 
             } else {
@@ -149,7 +162,9 @@
                 isGenerateConfirmBill = rmic.setQuerySQL(conn.HOST, conn.PORT, sql5);
                 
                 if (isGenerateConfirmBill == false) {
+                    
                     falseCount = falseCount + 1;
+                    
                 }
 
             }

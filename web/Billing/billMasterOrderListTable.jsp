@@ -12,6 +12,7 @@
 <%
     Conn conn = new Conn();
     String userID = session.getAttribute("USER_ID").toString();
+    String mainLongString = "";
 %>
 
 <table  id="billMasterOrderListTable"  class="table table-filter table-striped table-bordered" style="background: #fff; border: 1px solid #ccc; width: 100%">
@@ -37,16 +38,25 @@
         String whereClause = "";
         String orderWhereClause = " ";
 
-        //-------------------------- to refresh order table based on request--------------------------------
+        //
+        // -------------------------------------------------------- to refresh order table based on request -------------------------------------------------------- //
+        //
+        //
+        //
         String longString, dateTime, filter, startDate, endDate;
+
         filter = "all";
         dateTime = "";
         startDate = "";
         endDate = "";
 
+        // Request Parameter
         if (request.getParameter("longString") != null) {
 
             longString = request.getParameter("longString");
+
+            mainLongString = longString;
+
             String splittedData[] = longString.split("\\|", -1);
 
             dateTime = splittedData[1];
@@ -54,9 +64,11 @@
 
         }
 
+        //                
+        // Setting date SQL base on selected filter
         if (filter.equalsIgnoreCase("today")) {
 
-            whereClause = " WHERE fm.hfc_cd = '" + hfc + "' AND fm.status ='0' AND date(fm.txn_date) = date(now()) GROUP BY pb.pmi_no ORDER BY fm.txn_date DESC; ";
+            whereClause = " WHERE fm.hfc_cd = '" + hfc + "' AND fm.status ='0' AND DATE(fm.txn_date) = DATE(now()) GROUP BY pb.pmi_no ORDER BY fm.txn_date DESC; ";
 
         } else if (filter.equalsIgnoreCase("yesterday")) {
 
@@ -77,17 +89,21 @@
         } else if (filter.equalsIgnoreCase("custom")) {
 
             String dateSplit[] = dateTime.split("\\^", -1);
+
             startDate = dateSplit[0];
             endDate = dateSplit[1];
-            whereClause = " WHERE fm.hfc_cd = '" + hfc + "' AND fm.status ='0' AND DATE(fm.txn_date) between '" + startDate + "' and '" + endDate + "' GROUP BY pb.pmi_no ORDER BY fm.txn_date DESC; ";
+
+            whereClause = " WHERE fm.hfc_cd = '" + hfc + "' AND fm.status ='0' AND DATE(fm.txn_date) BETWEEN '" + startDate + "' AND '" + endDate + "' GROUP BY pb.pmi_no ORDER BY fm.txn_date DESC; ";
 
         } else if (filter.equalsIgnoreCase("all")) {
 
             whereClause = " WHERE fm.hfc_cd = '" + hfc + "' AND fm.status ='0'  GROUP BY pb.pmi_no ORDER BY fm.txn_date DESC; ";
 
         }
+        // Setting date SQL base on selected filter
+        //
 
-        //=============================================================================================
+        //==================================================================================================================================================================//
         //                     0                 1               2            3            4            5               6           7               8
         String sql = "SELECT pb.pmi_no,UPPER(pb.patient_name),pb.new_ic_no,pb.id_no,pb.home_address,pb.mobile_phone,fm.txn_date,COUNT(fm.order_no),fm.hfc_cd "
                 + " FROM far_order_master fm  "
@@ -97,6 +113,7 @@
         ArrayList<ArrayList<String>> dataBillMasterOrderList = conn.getData(sql);
 
         int size = dataBillMasterOrderList.size();
+        
         for (int i = 0; i < size; i++) {
     %>
 
@@ -118,6 +135,7 @@
 </tbody>
 </table>
 
+<input id="billMasterOrderListRecordFilterHidden" type="hidden" value="<%=mainLongString%>" readonly>
 
 <script type="text/javascript" charset="utf-8">
     $(document).ready(function () {

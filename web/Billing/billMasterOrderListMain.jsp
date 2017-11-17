@@ -258,7 +258,10 @@
         var row = $(this).closest("tr");
         var rowData = row.find("#dataBillMasterOrderListhidden").val();
         var arrayData = rowData.split("|");
+        
         console.log(arrayData);
+        
+        var longString = $('#billMasterOrderListRecordFilterHidden').val();
 
         //Assign Array into seprated val
         var patientpmino = arrayData[0];
@@ -267,9 +270,11 @@
 
         var data = {
             patientnic: patientnic,
-            patientpmino: patientpmino
+            patientpmino: patientpmino,
+           longString: longString
         };
-
+        
+        
         $.ajax({
             url: "billDetailOrderListTable.jsp",
             type: "post",
@@ -278,6 +283,7 @@
             success: function (returnDataBillDetailList) {
 
                 $('#billDetailOrderDetailContent').html(returnDataBillDetailList);
+                
                 $('.nav-tabs a[href="#tab_default_2"]').tab('show');
 
             }
@@ -367,6 +373,7 @@
                                     console.log("Generate Success (S)");
 
                                     $('#billDetailOrderDetailContent').html(dataBill);
+                                    
                                     $('.loading').hide();
 
                                 },

@@ -173,8 +173,8 @@
             <th>Order No</th>
             <th>Episode Date</th>
             <th>Item Description</th>
-            <th style="text-align: right;">Item Amount (RM)</th>
-            <th style="text-align: right;">Quantity</th>
+            <th style="text-align: right;">Total Quantity</th>
+            <th style="text-align: right;">Total Amount (RM)</th>
             </thead>
             <tbody>
                 <%
@@ -185,8 +185,8 @@
                     <td><%=dataBillGenerateMasterDetailsMain.get(i).get(1)%></td>
                     <td><%=dataBillGenerateMasterDetailsMain.get(i).get(2)%></td>
                     <td><%=dataBillGenerateMasterDetailsMain.get(i).get(3)%></td>
-                    <td style="text-align: right;"><%=df.format(Double.parseDouble(dataBillGenerateMasterDetailsMain.get(i).get(4)))%></td>
                     <td style="text-align: right;"><%=dataBillGenerateMasterDetailsMain.get(i).get(5)%></td>
+                    <td style="text-align: right;"><%=df.format(Double.parseDouble(dataBillGenerateMasterDetailsMain.get(i).get(4)))%></td>
                 </tr>
                 <%
                     }

@@ -44,7 +44,9 @@
         isGenerateConfirmBill = rmic.setQuerySQL(conn.HOST, conn.PORT, sqlUpdateOrderMaster);
 
         if (isGenerateConfirmBill == false) {
+            
             falseCount = falseCount + 1;
+            
         }
 
         //This parses the bill item json and save to far_customer_dtl
@@ -67,7 +69,9 @@
 
             
             if (isGenerateConfirmBill == false) {
+                
                 falseCount = falseCount + 1;
+                
             }
             
             //Calculate total quantity of items
@@ -85,7 +89,9 @@
         
             
             if (isGenerateConfirmBill == false) {
+                
                 falseCount = falseCount + 1;
+                
             }
             
         
@@ -101,7 +107,9 @@
 
         
         if (isGenerateConfirmBill == false) {
+            
             falseCount = falseCount + 1;
+            
         }
 
         if (data.isEmpty()) {
@@ -113,7 +121,9 @@
             isGenerateConfirmBill = rmic.setQuerySQL(conn.HOST, conn.PORT, sql4);
 
             if (isGenerateConfirmBill == false) {
+                
                 falseCount = falseCount + 1;
+                
             }
             
         } else {
@@ -128,7 +138,9 @@
                 isGenerateConfirmBill = rmic.setQuerySQL(conn.HOST, conn.PORT, sql5);
                 
                 if (isGenerateConfirmBill == false) {
+                    
                     falseCount = falseCount + 1;
+                    
                 }
                             
             } else {
@@ -143,7 +155,9 @@
                 isGenerateConfirmBill = rmic.setQuerySQL(conn.HOST, conn.PORT, sql5);
                 
                 if (isGenerateConfirmBill == false) {
+                    
                     falseCount = falseCount + 1;
+                    
                 }
                 
             }

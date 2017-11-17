@@ -12,7 +12,9 @@
 <%@include file="validateModuleAccess.jsp" %>
 
 
-<%    Config.getFile_url(session);
+<%    
+    
+    Config.getFile_url(session);
     Config.getBase_url(request);
 
     Conn conn = new Conn();
@@ -120,6 +122,7 @@
         <!-- Placed at the end of the document so the pages load faster -->
 
         <script>
+
 
             $('<div class="loading">Loading</div>').appendTo('body');
 
