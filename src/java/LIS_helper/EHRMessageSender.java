@@ -538,8 +538,8 @@ public class EHRMessageSender {
         String EHRSecondHeader = "";
 
         String eachDetail = "BLI|T^|CH|||||||<cr>\n";
-        //                                     0                    1                       2                   3               4
-        String sqlGetOrderDetail = "Select lid.item_cd, lid.item_name, IFNULL(lid.ser_price,'0'), lod.created_by, lod.created_date "
+        //                                     0                    1               2                   3               4
+        String sqlGetOrderDetail = "Select lid.item_cd, lid.item_name, IFNULL(lid.ser_price,0), lod.created_by, lod.created_date "
                 + "from lis_order_detail lod "
                 + "left join lis_item_detail lid on (lod.item_cd = lid.item_cd) AND lid.hfc_cd = '" + hfc + "' "
                 + "where lod.detail_status = '2' AND lod.order_no = '" + orderNo + "';";
@@ -553,13 +553,19 @@ public class EHRMessageSender {
 
             for (int i = 0; i < dataOrderDetail.size(); i++) {
 
+                String itemPrice = dataOrderDetail.get(i).get(2);
+
+                if (itemPrice.equals("null")) {
+                    itemPrice = "0";
+                }
+
                 eachDetail = "BLI"
                         + "|T^" + format.format(now)
                         + "|CH"
                         + "|" + pmiNo
                         + "|" + dataOrderDetail.get(i).get(0)
                         + "|" + dataOrderDetail.get(i).get(1)
-                        + "|" + dataOrderDetail.get(i).get(2)
+                        + "|" + itemPrice
                         + "|1"
                         + "|" + dataOrderDetail.get(i).get(3)
                         + "|" + dataOrderDetail.get(i).get(4)
