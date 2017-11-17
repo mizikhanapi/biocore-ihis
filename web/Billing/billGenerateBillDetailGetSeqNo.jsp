@@ -34,6 +34,7 @@
 
     //Get last sequance number
     String seqNo = dataSeqBillBoss.get(0).get(0);
+    
     int seq = Integer.parseInt(seqNo);
     int currSeq = seq + 1;
     String currentSeq = Integer.toString(currSeq);
@@ -42,16 +43,23 @@
     String sqlSeqUpdate = "UPDATE far_last_seq_no "
             + "SET last_seq_no = '" + currentSeq + "' "
             + "WHERE module_name = 'B'";
+    
     boolean isInsertMaster = rmic.setQuerySQL(conn.HOST, conn.PORT, sqlSeqUpdate);
 
     //Generate bill no
     int length = (int) Math.log10(currSeq) + 1;
+    
     String zero = "0";
     String num = currentSeq;
+    
     int count;
+    
     for (count = length; count < 10; count++) {
+        
         num = zero + num;
+        
     }
+    
     String billNo = num + dateString;
 
     out.print(billNo);

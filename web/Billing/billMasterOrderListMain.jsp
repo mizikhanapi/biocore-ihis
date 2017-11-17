@@ -488,8 +488,22 @@
                                 $('#btnViewBillGenereteBillDetailsCancelBtn').prop('disabled', true);
                                 $('#btnViewBillGenereteBillDetailsConfirmBtn').prop('disabled', true);
 
-                                document.getElementById('messageHeader').innerHTML = "Success!";
+                                document.getElementById('messageHeader').innerHTML = "Success !!!";
                                 document.getElementById('messageContent').innerHTML = "Bill created.";
+
+                                $("#alertMessage").modal();
+
+                                resetTableBillMasterOrderList();
+
+                                $('.nav-tabs a[href="#tab_default_1"]').tab('show');
+
+                            } else if (d[1] === "2") {
+
+                                $('#btnViewBillGenereteBillDetailsCancelBtn').prop('disabled', true);
+                                $('#btnViewBillGenereteBillDetailsConfirmBtn').prop('disabled', true);
+
+                                document.getElementById('messageHeader').innerHTML = "Partial Success !!!";
+                                document.getElementById('messageContent').innerHTML = "Bill created with complication.";
 
                                 $("#alertMessage").modal();
 
@@ -809,8 +823,22 @@
                                 $('#btnViewBillGenereteBillDetailsGroupCancelBtn').prop('disabled', true);
                                 $('#btnViewBillGenereteBillDetailsGroupConfirmBtn').prop('disabled', true);
 
-                                document.getElementById('messageHeader').innerHTML = "Success!";
+                                document.getElementById('messageHeader').innerHTML = "Success !!!";
                                 document.getElementById('messageContent').innerHTML = "Bill created.";
+
+                                $("#alertMessage").modal();
+
+                                resetTableBillMasterOrderList();
+
+                                $('.nav-tabs a[href="#tab_default_1"]').tab('show');
+
+                            } else if (d[1] === "2") {
+
+                                $('#btnViewBillGenereteBillDetailsCancelBtn').prop('disabled', true);
+                                $('#btnViewBillGenereteBillDetailsConfirmBtn').prop('disabled', true);
+
+                                document.getElementById('messageHeader').innerHTML = "Partial Success !!!";
+                                document.getElementById('messageContent').innerHTML = "Bill created with complication.";
 
                                 $("#alertMessage").modal();
 
