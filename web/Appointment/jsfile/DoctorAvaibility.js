@@ -4,51 +4,72 @@
  * and open the template in the editor.
  */
 
-$(document).ready(function(){
-    
+$(document).ready(function () {
+
     $(function () {
-        $('#dateDoctorA').datepicker({dateFormat: 'dd/mm/yy'});
+        $('#dateDoctorA').datepicker({dateFormat: 'dd-mm-yy'});
     });
-            
-  function searchDoctor(){
+    
+    $("#dateDoctorA").on('change',function(){
+        var dateChange = $(this).val().split("-");
+        var date = dateChange[2]+"-"+dateChange[1]+"-"+dateChange[0];
+        var data = {
+            date:date
+        }
+        $.ajax({
+            method:"POST",
+            url:"search/DoctorAvailabilitySelect.jsp",
+            data:data,
+            success:function(r){
+                $("#searchDoctorAvailibilitySelectDiv").html(r.trim());
+            }
+        })
+    })
 
-            
-         var dateAppointment = $("#dateDoctorA").datepicker().val();
-        dateAppointment = dateAppointment.split('/');
-        dateAppointment = dateAppointment[2]+ "-"+dateAppointment[1]+"-"+ dateAppointment[0];
+
+    
+    $('#todaySearch').click(function (e) {
+        e.preventDefault();
+        //$('#doctorAvailabilityTable').load('adminAppointmentAjax.jsp #doctorAvailabilityTable');
+    });
+
+    $('#searchDoctor').click(function (e) {
+        e.preventDefault();
+        var doc_name = $("#selectDoctorAvailibility").val();
+        var date =  $("#dateDoctorA").val();
+        var dateAppointment = date.split('-');
+        dateAppointment = dateAppointment[2] + "-" + dateAppointment[1] + "-" + dateAppointment[0];
         
-             var dataSearch = {
-                date:dateAppointment,
-                doctor:$('#selectDoctorA').val()
-            };
-        
-            console.log(dateAppointment);
-            //ada bug x boleh click href lain
-            $.ajax({
-                url:'adminDoctorAvailability.jsp',
-                method:'post',
-                data:dataSearch,
-                timeout:1000,
-                success:function(result){
-
-                    $('#doctorAvailabilityTable').html(result);
-                    //console.log(result);
-
-
-                },
-                error:function(e){
-                    console.log(e);
-                }
-            });
-    };
-    $('#todaySearch').click(function(e){
-                    e.preventDefault();
-                    $('#doctorAvailabilityTable').load('adminAppointmentAjax.jsp #doctorAvailabilityTable');
-                });
-                
-        $('#searchDoctor').click(function(e){
-            e.preventDefault();
-            searchDoctor();
-            searchDoctor();
-        });
+        var data = {
+            doc_name:doc_name,
+            date : dateAppointment
+        }
+      searchDoctorAvailibility(data)
+        //searchDoctor();
+        //searchDoctor();
+    });
 });
+
+
+    function searchDoctorAvailibility(data) {
+
+
+
+
+        $.ajax({
+            url: 'search/DoctorAvailibilityResult.jsp',
+            method: 'post',
+            data: data,
+            timeout: 1000,
+            success: function (result) {
+                console.log(result.trim())
+                $('#doctorAvailabilityTableDiv').html(result.trim());
+             
+
+
+            },
+            error: function (e) {
+                console.log(e);
+            }
+        });
+    }

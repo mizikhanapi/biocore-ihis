@@ -13,6 +13,9 @@
 <%
     Conn Conn = new Conn();
     String hfc = (String) session.getAttribute("HEALTH_FACILITY_CODE");
+    
+    String sqlDctorAvailability = "SELECT doc.*from pms_duty_roster pdr, (SELECT USER_ID,USER_NAME,OCCUPATION_CODE FROM adm_users WHERE OCCUPATION_CODE = '002')doc where doc.USER_ID=pdr.user_id AND pdr.status='active' AND  pdr.hfc_cd = '"+hfc+"'";
+    ArrayList<ArrayList<String>> dataDctorAvailability = Conn.getData(sqlDctorAvailability);
 
             
        String sqlDoctorAvailable = "SELECT doc.*,DATE(pdr.start_date),DATE(pdr.end_date) "
@@ -28,7 +31,6 @@
     
 %>
 
-                                
                                     <h3 class="headerTitle">Doctor Availability</h3>
                                     <p>Search Area:</p>                     
                                     <div class='row' style="padding-bottom: 2%; padding-top: 2%; padding-left: 2%; background-color: #d9d9d9; margin-bottom: 4%">
@@ -39,20 +41,10 @@
                                                     <input type="text" name="searchDateAvailability"  id="dateDoctorA" class="form-control" placeholder="Search Appointment Date" required="required"/>
                                                 </div>
                                                 <div class="form-group"> 
-                                                    <!--<div class="col-sm-10">--> 
-                                                    <select class="form-control" id="selectDoctorA" placeholder="Search Doctor Name"  name="searchDoctorAvailability" required>
+                                                    <div id="searchDoctorAvailibilitySelectDiv">
+                                                    <select class="form-control" id="selectDoctorAvailibility" placeholder="Search Doctor Name"  name="searchDoctorAvailability" required>
                                                         <option></option>
-                                                        <%   String sqlDctorAvailability = "SELECT doc.*,pdr.start_date,pdr.end_date "
-                                                                    + "from pms_duty_roster pdr, "
-                                                                    + "(SELECT USER_ID,USER_NAME,OCCUPATION_CODE "
-                                                                    + "FROM adm_users "
-                                                                    + "WHERE OCCUPATION_CODE = 'DOCTOR' OR  OCCUPATION_CODE = '002')doc "
-                                                                    + "where doc.USER_ID=pdr.user_id AND pdr.status='active' AND "
-                                                                    + "DATE(now()) BETWEEN DATE(start_date) AND DATE(end_date) AND pdr.hfc_cd = '" + hfc + "'";
-                                                            ArrayList<ArrayList<String>> dataDctorAvailability = Conn.getData(sqlDctorAvailability);
-
-                                                            //                                                        DateTime dt = DateTime.now();
-                                                            //                                                        String todaysDate =(String) dt.toString("dd/MM/yyyy");
+                                                        <%
                                                             if (dataDctorAvailability.size() > 0) {
                                                                 for (int i = 0; i < dataDctorAvailability.size(); i++) {%>
                                                         <option value="<%=dataDctorAvailability.get(i).get(1)%>"><%=dataDctorAvailability.get(i).get(1)%></option>
@@ -60,7 +52,7 @@
                                                             }
                                                         %>
                                                     </select>
-                                                    <!--</div>-->
+                                                    </div>
                                                 </div>
                                                 <div class="form-group">
                                                     <button class="btn btn-xs btn-success" id="searchDoctor">Search</button>
@@ -73,6 +65,7 @@
                                         </div>
                                     </div>
                                     <div class="table-responsive">
+                                        <div id="doctorAvailabilityTableDiv">
                                         <table class="table table-bordered table-hover" id="doctorAvailabilityTable">
                                             <thead>
                                                 <tr>
@@ -149,5 +142,6 @@
                                             <%}%>
                                             </tbody>
                                         </table>
+                                            </div>
                                     </div>
                 

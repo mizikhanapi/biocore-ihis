@@ -13,22 +13,8 @@
 <%@page import="main.RMIConnector"%>
 
         <%
-           
                 Conn Conn = new Conn();
-//                                String pmiNo = "9504050251851";
-//                                    String dataUserId = "D031310012";
-//                                    String ic = "950405025185";
-//                                    String hfc = "04010101";
-//                                    //String discipline = request.getParameter("discipline");
-//                                    //String subdiscipline = request.getParameter("subdiscipline");
-//                                    String doctor = "02472";
-//                                    String dateAppointment = "2017-08-2017";
-//                                    String timeAppointment = "10:40:00";
-//                                    String datetimeAppoinment = dateAppointment + " " + timeAppointment;
-//                                    String typeAppointment = "Referral";
 
-
-                
                 String pmiNo = request.getParameter("pmiNo");
                 String dataUserId = request.getParameter("dataUserId");
                 String ic = request.getParameter("ic");
@@ -40,20 +26,8 @@
                 String datetimeAppoinment = dateAppointment + " " + timeAppointment;
                 String typeAppointment = request.getParameter("typeAppointment");
                 String hfc = request.getParameter("HfcCode");
-                
-                
-                
-                
-                //out.print(hfc);
-                
-           
-                
+
                 String id = null;
-                
-                //out.print(hfc);
-                //out.print("Time Appointment : "+timeAppointment);
-                //out.print("Date Appointment : " + dateAppointment + "\n");
-                //out.print("Doctor : " + doctor);
                 
                Date today = new Date();
                String expectedPattern = "yyyy-MM-dd HH:mm:ss.SSS";
@@ -67,36 +41,17 @@
                String appDateTime = dateAppointment +  " " + timeAppointment;
                SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
                
-//               out.print(newAppDate);
-//               out.print(newAppTime);
-//               out.print(appDateTime);
+
                Date d1 = df.parse(dateAppointment);
-//
-                //Choosen date/day
+
                 SimpleDateFormat sdf = new SimpleDateFormat("EEEE");
                 String chosenDayDate = sdf.format(d1);
-//                
-//                out.println("new app date : "+newAppDate+"\n");   
-//                out.print("new app time : " + newAppTime+"\n");  
-//                out.print("new date time : " + appDateTime+"\n");  
-//                out.print("new d1 : " + d1+"\n");  
-//                out.print("new sdf : " + sdf+"\n"); 
-//                out.print("chosenDate : " + chosenDayDate+"\n");
-//                out.print("HFC Session : " + hfc+"\n");
-////                
-               
-
-
-                //out.print("HFC Code : " + hfcCode+"\n");
-//                
-//                
+         
                 String sqlGetClinicDay = "SELECT day_cd, discipline_cd, subdiscipline_cd, hfc_cd, state_code "
                 + "FROM pms_clinic_day "
                 + "WHERE hfc_cd = '"+hfc+"' AND status = 'active' AND day_cd = '"+chosenDayDate+"' AND ('"+timeAppointment+"' BETWEEN start_time AND end_time)";
                 ArrayList<ArrayList<String>> dataGetStates = Conn.getData(sqlGetClinicDay);
-                //out.print(sqlGetClinicDay);
 
-//
                 String dataStates;
 
                 if(dataGetStates.size() > 0)
