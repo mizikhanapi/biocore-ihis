@@ -42,18 +42,21 @@
         <tbody>
 
             <% //                Conn conn = new Conn();
-                String sqlFacilityID = " SELECT es.Description,et.Description, ct.Description,a.eligibility_sources_cd, a.eligibility_type_cd, a.charges_type, a.charges_fees,wwc.ward_class_name,wwn.ward_name, a.ward_class_code,a.ward_id "
-                        + "from wis_hospital_charges a  left join adm_lookup_detail es on  a.eligibility_sources_cd = es.Detail_Reference_Code  and es.hfc_cd = a.hfc_cd "
-                        + "left join adm_lookup_detail et on  a.eligibility_type_cd = et.Detail_Reference_Code  and et.hfc_cd = a.hfc_cd "
-                        + " left join adm_lookup_detail ct on  a.charges_type = ct.Detail_Reference_Code  and ct.hfc_cd = a.hfc_cd "
-                        + "left join wis_ward_class wwc on wwc.ward_class_code = a.ward_class_code  "
-                        + "left join wis_ward_name wwn on wwn.ward_id = a.ward_id "
-                        + "where "
-                        + " a.discipline_cd = '" + disID + "' and a.hfc_cd ='" + hfcID + "' and  wwn.discipline_cd = '" + disID + "' and wwn.hfc_cd ='" + hfcID + "' and  wwc.discipline_cd = '002' and wwc.hfc_cd ='04010101'  and es.`Master_Reference_code`='0063' and et.`Master_Reference_code`='0034' and ct.`Master_Reference_code`='0100'";
+                String sqlFacilityID = "SELECT es.Description,et.Description, ct.Description,a.eligibility_sources_cd, a.eligibility_type_cd, a.charges_type, a.charges_fees, "
+                        + "wwc.ward_class_name,wwn.ward_name, a.ward_class_code,a.ward_id, a.hfc_cd, a.discipline_cd "
+                        + "from wis_hospital_charges a "
+                        + "left join adm_lookup_detail es on a.eligibility_sources_cd = es.Detail_Reference_Code and es.hfc_cd = a.hfc_cd and es.`Master_Reference_code`='0063' "
+                        + "left join adm_lookup_detail et on a.eligibility_type_cd = et.Detail_Reference_Code and et.hfc_cd = a.hfc_cd and et.`Master_Reference_code`='0034' "
+                        + "left join adm_lookup_detail ct on a.charges_type = ct.Detail_Reference_Code and ct.hfc_cd = a.hfc_cd and ct.`Master_Reference_code`='0100' "
+                        + "left join wis_ward_class wwc on wwc.ward_class_code = a.ward_class_code and wwc.hfc_cd=a.hfc_cd "
+                        + "left join wis_ward_name wwn on wwn.ward_id = a.ward_id and wwn.hfc_cd=a.hfc_cd and wwn.discipline_cd=a.discipline_cd "
+                        + "where a.discipline_cd = '"+disID+"' and a.hfc_cd ='"+hfcID+"'";
                 ArrayList<ArrayList<String>> dataFacilityID = conn3.getData(sqlFacilityID);
 
                 int size11 = dataFacilityID.size();
+                
                 for (int i = 0; i < size11; i++) {
+                    
             %>
 
 

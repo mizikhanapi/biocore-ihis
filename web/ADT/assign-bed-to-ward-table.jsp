@@ -29,13 +29,15 @@
                 Conn conn4 = new Conn();
                 String hfcASS = (String) session.getAttribute("HEALTH_FACILITY_CODE");
                 String disAss = (String) session.getAttribute(MySessionKey.DISCIPLINE_CD);
-                
+                //                              0                       1              2         3          4               5               6                   7
                 String sqlbed = "SELECT  d.discipline_name ,  b.ward_class_name,c.ward_name, a.bed_id,a.bed_status,  a.discipline_cd,  a.ward_class_code, a.ward_id, "
-                        + "a.hfc_cd,b.ward_class_code,  c.ward_id, d.discipline_cd "
+                        //      8           9               10          11              12                      13
+                        + "a.hfc_cd,b.ward_class_code, c.ward_id, d.discipline_cd, sd.subdiscipline_cd, sd.subdiscipline_name "
                         + "FROM wis_bed_id a "
                         + "LEFT JOIN wis_ward_class b ON a.ward_class_code = b.ward_class_code AND b.hfc_cd=a.hfc_cd AND b.discipline_cd=a.discipline_cd "
                         + "LEFT JOIN wis_ward_name c ON a.ward_id = c.ward_id  AND c.hfc_cd=a.hfc_cd AND c.discipline_cd=a.discipline_cd "
                         + "LEFT JOIN adm_discipline d ON a.discipline_cd = d.discipline_cd AND d.discipline_hfc_cd=a.hfc_cd "
+                        + "LEFT JOIN adm_subdiscipline sd ON sd.subdiscipline_hfc_cd = d.discipline_hfc_cd AND sd.discipline_cd = d.discipline_cd AND sd.subdiscipline_cd = a.subdiscipline_cd "
                         + "where a.hfc_cd = '"+hfcASS+"' AND a.discipline_cd='"+disAss+"' group by a.bed_id; ";
 
             /*    String sqlbed = "SELECT  d.discipline_name ,  b.ward_class_name,c.ward_name, a.bed_id,a.bed_status,  a.discipline_cd,  a.ward_class_code, a.ward_id, "
@@ -56,7 +58,7 @@
             <tr>
 
         <input id="dataAssignBedhidden" type="hidden" value="<%=String.join("|", databed.get(i))%>">
-        <td><%= databed.get(i).get(0)%></td>
+        <td><%= databed.get(i).get(0)%> - <%= databed.get(i).get(13)%></td>
         <td><%= databed.get(i).get(1)%></td>
         <td><%= databed.get(i).get(2)%></td>
         <td><%= databed.get(i).get(3)%></td>

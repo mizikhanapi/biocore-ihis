@@ -17,9 +17,7 @@
 %>
 <select id="EliTy" name="selectbasic" class="form-control">
     <option value="-">-</option>
-    <option value="null" selected="" disabled="">Select Eligibility Type </option>
-
-    <%
+     <%
         String eliType = "select  Detail_Reference_Code, Description from adm_lookup_detail where master_reference_code = '0034' and  Detail_Reference_Code like '" + EliSrc + "%' and hfc_cd ='" + hfc + "' ";
         ArrayList<ArrayList<String>> dataEliType;
 

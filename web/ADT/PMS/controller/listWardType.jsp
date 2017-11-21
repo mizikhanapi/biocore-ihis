@@ -15,7 +15,7 @@
 %>
 
                 <select id="WardType" name="WardType" class="form-control">
-                    <option value="1" selected="" disabled="">Select Ward Type </option>
+                    <option value="" selected disabled>Select Ward Type </option>
 
                     <%
                         String wtype = "select ward_class_code,ward_class_name from wis_ward_class where hfc_cd='" + hfc + "' and discipline_cd = '"+disipline+"'";
@@ -31,25 +31,4 @@
                         }
                     %>
                 </select>
-                <script>
-            $("#WardType").on('change', function () {
-            var classCode = $(this).val();
-            $.ajax({
-                type: "post",
-                url: "PMS/controller/listbedname.jsp",
-                data: {'classCode': classCode},
-                timeout: 10000,
-                success: function (list) {
-                    //remove the loading 
-                    //$body.removeClass("loading");
-                    console.log(list);
-                    $('#wardNameDropdown').html(list);
-
-                },
-                error: function (xhr, status, error) {
-                    var err = eval("(" + xhr.responseText + ")");
-                    //bootbox.alert(err.Message);
-                }
-            });
-        });
-                </script>
+                

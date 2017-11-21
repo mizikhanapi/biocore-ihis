@@ -12,43 +12,29 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
-<!--    <input type="text" id="test">-->
-
 <%
 
     Conn conn = new Conn();
-%>
-<%
+
     String hfc = session.getAttribute("HEALTH_FACILITY_CODE").toString();
 
     String disb = request.getParameter("Dis");
-    String wnameb = request.getParameter("wname");
+    String wnamecode = request.getParameter("wnamecode");
     String WardTypeb = request.getParameter("WardType");
     String EliSource = request.getParameter("EliSource");
     String EliTy = request.getParameter("EliTy");
     String total = "";
 //eligibility_source_cd ='" + EliSource + "'
 
-%>
-<div id="depositDiv">
-
-    <%        String resultEliSrc = "select  charges_fees from wis_hospital_charges  where charges_type = '001' and  ward_class_code ='" + WardTypeb + "' and  hfc_cd ='" + hfc + "' ";
+  
+        String resultEliSrc = "select  charges_fees from wis_hospital_charges  where charges_type = '001' and  ward_class_code ='" + WardTypeb + "' and  hfc_cd ='" + hfc + "' AND ward_id='"+wnamecode+"' ";
         ArrayList<ArrayList<String>> dataEliSrc = conn.getData(resultEliSrc);
-//                out.print(sqlBedID1);
-
+        
         for (int E = 0; E < dataEliSrc.size(); E++) {
             String t = dataEliSrc.get(E).get(0);
             total = t;
         }
-
-    %>
-
-    <input id="Deposit"  value="<%=total%>"  class="form-control input-md">
+        out.print(total);
+%>
 
 
-    <%
-
-
-    %>
-
-</div>

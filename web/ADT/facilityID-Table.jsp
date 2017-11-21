@@ -42,10 +42,15 @@
 
             <% 
                 //Conn conn = new Conn();
+                //                                      0               1           2           3                   4           5                       6                   7                   8                       9                       10
                 String sqlFacilityID = "SELECT wwc.ward_class_name, a.ward_name, a.ward_id, b.discipline_name, a.no_of_bed, a.citizen_room_cost, a.citizen_deposit, a.citizen_discount, a.non_citizen_room_cost, a.non_citizen_deposit, a.non_citizen_discount, "
-                        + "a.pensioner_room_cost,  a.pensioner_deposit, a.pensioner_discount,a.attach_toilet, a.include_television, a.attach_bathroom_tiolet, a.include_telephone, a.ward_status, a.hfc_cd , a.discipline_cd, b.discipline_cd, wwc.ward_class_code "
+                        //      11                          12                  13                  14                  15                  16                          17              18            19            20              21                  22          
+                        + "a.pensioner_room_cost,  a.pensioner_deposit, a.pensioner_discount,a.attach_toilet, a.include_television, a.attach_bathroom_tiolet, a.include_telephone, a.ward_status, a.hfc_cd , a.discipline_cd, b.discipline_cd, wwc.ward_class_code, "
+                        //      23                     24
+                        + "sd.subdiscipline_cd, sd.subdiscipline_name "
                         + "FROM wis_ward_name a "
                         + "LEFT JOIN adm_discipline b ON a.discipline_cd = b.discipline_cd AND a.hfc_cd=b.discipline_hfc_cd "
+                        + "LEFT JOIN adm_subdiscipline sd ON sd.subdiscipline_hfc_cd = b.discipline_hfc_cd AND sd.discipline_cd = b.discipline_cd AND sd.subdiscipline_cd = a.subdiscipline_cd "
                         + "LEFT JOIN wis_ward_class wwc on wwc.ward_class_code = a.ward_class_code AND a.hfc_cd=wwc.hfc_cd AND wwc.discipline_cd=a.discipline_cd "
                         + "where a.discipline_cd = '"+disID+"' and a.hfc_cd ='"+hfcID+"' GROUP BY a.ward_id;";
                 /*String sqlFacilityID = "SELECT wwc.ward_class_name, a.ward_name, a.ward_id, b.discipline_name, a.no_of_bed, a.citizen_room_cost, a.citizen_deposit, a.citizen_discount, a.non_citizen_room_cost, a.non_citizen_deposit, a.non_citizen_discount, "
@@ -67,7 +72,7 @@
         <td><%= dataFacilityID.get(i).get(0)%></td>
         <td><%= dataFacilityID.get(i).get(1)%></td>
         <td><%= dataFacilityID.get(i).get(4)%></td>
-        <td><%= dataFacilityID.get(i).get(3)%></td>
+        <td><%= dataFacilityID.get(i).get(3)%> - <%= dataFacilityID.get(i).get(24)%></td>
         <td><%= dataFacilityID.get(i).get(5)%></td>
         <td><%= dataFacilityID.get(i).get(8)%></td>
 

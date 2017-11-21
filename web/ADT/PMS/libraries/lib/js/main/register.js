@@ -335,6 +335,7 @@ $('#registerBed').click(function () {
 //event on click clear buton
 $('#btnclear').click(function () {
     $('#myForm2')[0].reset();
+    $('#bedtest').html('');
 });
 //
 //
