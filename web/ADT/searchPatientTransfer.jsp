@@ -137,7 +137,6 @@
 
                 //run the MAIN ajax function
                 $.ajax({
-                    async: true,
                     type: "POST",
                     url: "resultWard.jsp",
                     data: {'idType': idType, 'idInput': idInput, 'methodSearch': methodSearch},
@@ -177,7 +176,7 @@
         $('#clearSearch').click(function () {
 
             $('#myForm')[0].reset();
-            $
+           
         });
 
     });

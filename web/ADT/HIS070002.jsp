@@ -20,6 +20,7 @@
 
         <script src="old/assets/js/jquery.min.js"></script>
         <link rel="stylesheet" href="old/assets/css/loading.css">
+        <link rel="stylesheet" href="../assets/css/mystyles.css">
         <link href="old/assets/datepicker/jquery-ui.css" rel="stylesheet">    
         <script src="old/assets/js/form-validator.min.js"></script>
         <script src="old/assets/js/bootstrap.min.js"></script> 
@@ -34,8 +35,8 @@
         <script src="old/assets/js/OccuPatient.js" type="text/javascript"></script>
         <script src="old/assets/js/onKeyPress.js" type="text/javascript"></script>
         <script src="old/assets/js/IPMain.js" type="text/javascript"></script>
-        <script src="old/assets/js/onKeyPress.js" type="text/javascript"></script>
-
+        <script src="../assets/js/create_destroy_loading.js"></script>
+        
         <!-- header -->
         <%@include file = "../assets/header.html" %>
 
@@ -46,8 +47,6 @@
         <div class="loading"></div>
 
         <%
-            Config.getFile_url(session);
-            Config.getBase_url(request);
             Conn conn = new Conn();
         %>
 
@@ -126,40 +125,23 @@
             <!-- main -->		
 
         </div>
-                                                               <script src="PMS/libraries/lib/js/onKeyPress.js" type="text/javascript"></script>
-                    <script src="old/assets/js/onKeyPress.js" type="text/javascript"></script>
-                               <script src="../assets/js/jquery-ui.js" type="text/javascript"></script>
-<script src="ReportLibraries/js/bootstrap.min.js" type="text/javascript"></script>
-<script src="ReportLibraries/js/bootbox.min.js" type="text/javascript"></script>
-<script src="ReportLibraries/js/jquery.dataTables.min.js"></script>
-<script src="ReportLibraries/js/dataTables.bootstrap.min.js" type="text/javascript"></script>
-<script src="ReportLibraries/js/dataTables.buttons.min.js" type="text/javascript"></script>
-<script src="ReportLibraries/js/buttons.flash.min.js" type="text/javascript"></script>
-<script src="ReportLibraries/js/jszip.min.js" type="text/javascript"></script>
-<script src="ReportLibraries/js/pdfmake.min.js" type="text/javascript"></script>
-<script src="ReportLibraries/js/vfs_fonts.js" type="text/javascript"></script>
-<script src="ReportLibraries/js/buttons.html5.min.js" type="text/javascript"></script>
-<script src="ReportLibraries/js/buttons.print.min.js" type="text/javascript"></script>
-<script src="ReportLibraries/js/buttons.colVis.min.js" type="text/javascript"></script>
-<script src="ReportLibraries/js/papaparse.min.js"></script>
-<script src="ReportLibraries/js/jquery.multi-select.js" type="text/javascript"></script>
-
-        <script>
-
-            $(document).ready(function () {
-                 // $('<div class="loading">Loading</div>').appendTo('body');
-                //$("#WardOccupancy").load("WardOccupancy.jsp");
-                //$("#WardOccupancyTable").load("WardOccupancy-Table.jsp");
-                //            
-                //            
-                //            $("#headerindex").load("libraries/header.html");
-                //            $("#topmenuindex").load("libraries/topMenus.html");
-                //            $("#sidemenus").load("libraries/sideMenus.jsp");
-                //$("#PatientTransfer").load("PatientTransfer.jsp");
-
-            });
-
-        </script>
+        <!--<script src="PMS/libraries/lib/js/onKeyPress.js" type="text/javascript"></script>-->
+        <!--<script src="old/assets/js/onKeyPress.js" type="text/javascript"></script>-->
+        <!--<script src="../assets/js/jquery-ui.js" type="text/javascript"></script>-->
+        <!--<script src="ReportLibraries/js/bootstrap.min.js" type="text/javascript"></script>-->
+        <!--<script src="ReportLibraries/js/bootbox.min.js" type="text/javascript"></script>-->
+        <script src="ReportLibraries/js/jquery.dataTables.min.js"></script>
+        <script src="ReportLibraries/js/dataTables.bootstrap.min.js" type="text/javascript"></script>
+        <!--<script src="ReportLibraries/js/dataTables.buttons.min.js" type="text/javascript"></script>-->
+        <!--<script src="ReportLibraries/js/buttons.flash.min.js" type="text/javascript"></script>-->
+        <!--<script src="ReportLibraries/js/jszip.min.js" type="text/javascript"></script>-->
+        <!--<script src="ReportLibraries/js/pdfmake.min.js" type="text/javascript"></script>-->
+        <!--<script src="ReportLibraries/js/vfs_fonts.js" type="text/javascript"></script>-->
+        <!--<script src="ReportLibraries/js/buttons.html5.min.js" type="text/javascript"></script>-->
+        <!--<script src="ReportLibraries/js/buttons.print.min.js" type="text/javascript"></script>-->
+        <!--<script src="ReportLibraries/js/buttons.colVis.min.js" type="text/javascript"></script>-->
+        <!--<script src="ReportLibraries/js/papaparse.min.js"></script>-->
+        <!--<script src="ReportLibraries/js/jquery.multi-select.js" type="text/javascript"></script>-->
 
     </body>
 </html>

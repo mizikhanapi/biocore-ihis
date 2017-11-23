@@ -10,7 +10,7 @@
         
         <link rel="stylesheet" href="../PMS/libraries/lib/css/loading.css">
         <link href="../PMS/libraries/lib/datepicker/jquery-ui.css" rel="stylesheet">
-        <link href="../assets/css/jquery.flexdatalist.min.css" rel="stylesheet">
+        <!--<link href="../assets/css/jquery.flexdatalist.min.css" rel="stylesheet">-->
         <link href="../assets/css/mystyles.css" rel="stylesheet">
         <script src="../PMS/libraries/lib/js/jquery.min.js"></script>
 <!--        <script src="../assets/js/jquery-ui.js" type="text/javascript"></script>-->
@@ -174,7 +174,7 @@
         <script src="PMS/libraries/lib/js/main/addQueue.js" type="text/javascript"></script>
 
         <script src="libraries/js/queue.js" type="text/javascript"></script>
-        <script src="../assets/js/jquery.flexdatalist.min.js" type="text/javascript"></script>       
+        <!--<script src="../assets/js/jquery.flexdatalist.min.js" type="text/javascript"></script>-->       
         <script src="../assets/js/create_destroy_loading.js" type="text/javascript"></script>
         <script src="../assets/js/jquery.dataTables.min.js" type="text/javascript"></script>
         <script src="../assets/js/dataTables.bootstrap.min.js" type="text/javascript"></script>

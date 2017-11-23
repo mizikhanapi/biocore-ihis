@@ -50,7 +50,7 @@
             <td><%= dataBed.get(i).get(1)%> - <%= dataBed.get(i).get(3)%></td>
             <td><%= dataBed.get(i).get(5)%></td>
             <td><%= dataBed.get(i).get(7)%></td>
-            <td><%= dataBed.get(i).get(8)%><input type="hidden" id="hiddenAB" value="<%= String.join("|", dataBed.get(i))%>"></td>
+            <td><button style="background-color: #bada55" class="btn btn-default"> <%= dataBed.get(i).get(8)%></button><input type="hidden" id="hiddenAB" value="<%= String.join("|", dataBed.get(i))%>"></td>
         </tr>
         <%
             

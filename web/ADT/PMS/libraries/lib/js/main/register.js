@@ -277,7 +277,7 @@ $('#registerBed').click(function () {
                                                     console.log(l2);
                                                     $body.removeClass("loading");
                                                     if ($.trim(l2) === "Success") {
-                                                        bootbox.alert("Patient has been add to queue successfully");
+                                                        bootbox.alert("Patient has been added to queue successfully.");
                                                     } else if ($.trim(l2) === "Failed") {
                                                         bootbox.alert("There something error with the query of add patient to queue");
                                                     }
@@ -288,8 +288,7 @@ $('#registerBed').click(function () {
                                                     bootbox.alert("There is an error!");
                                                 }
                                             });
-                                            bootbox.alert("Patient has been register successfully");
-                                            
+                                                                                       
                                         } else if ($.trim(list) === "already") {
                                             bootbox.alert("Patient is already registered. Duplicate registration.");
                                             

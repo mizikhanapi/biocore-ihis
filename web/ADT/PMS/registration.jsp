@@ -46,8 +46,8 @@
     String gruGuard = request.getParameter("gruGuard");
     String glExpDate = request.getParameter("glExpDate");
     String epiTime = request.getParameter("epiTime");
-    String stat = request.getParameter("stat");
-    String hfc = request.getParameter("hfc");
+    String stat = request.getParameter("stat"); // stat default is 0. It is fixed. I don't understand Lynn
+    String hfc = request.getParameter("hfc"); // current user's hfc. It is actually session. I don't know why lynn did this.
 
     String order = request.getParameter("order");
 
@@ -80,7 +80,7 @@
     String insertEpisode = "";
     String insertEpisode2 = "";
 
-    String isAlreadyRegister = "select pmi_no from wis_inpatient_episode where pmi_no = '" + pmino + "' and inpatient_status != '2';";
+    String isAlreadyRegister = "select pmi_no from wis_inpatient_episode where hfc_cd='"+hfc+"' AND pmi_no = '" + pmino + "' and inpatient_status != '1';";
     ArrayList<ArrayList<String>> alreadyRegis = conn.getData(isAlreadyRegister);
 
     if (alreadyRegis.size() > 0) {
