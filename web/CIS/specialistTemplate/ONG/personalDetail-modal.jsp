@@ -78,6 +78,17 @@
                         <div class="col-md-4">
                             <!-- Text input-->
                             <div class="form-group">
+                                <label class="col-md-12 control-label" for="textinput">Current Pregnancy Week *</label>
+                                <div class="col-md-12">
+                                    <input type="text" class="form-control input-md numbersOnly" id="PIcpw"> 
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <!-- Text input-->
+                            <div class="form-group">
                                 <label class="col-md-12 control-label" for="textinput">Scan EDD *</label>
                                 <div class="col-md-12">
                                     <input type="text" class="form-control input-md" id="PIscanedd"> 
@@ -85,7 +96,6 @@
                             </div>
                         </div>
                     </div>
-
                     <div class="row">
                         <hr>
                         <h4>Period Cycle *</h4>
@@ -305,6 +315,18 @@
 </div>
 <!-- End Modal -->
 <script>
+//    $('#PIlmp').on('blur paste',function(){
+//        var datePicked = $(this).val();
+//        if(!datePicked===""){
+//            var araay = datePicked.split("/");
+//            var date = new Date(araay[2],araay[1]-1,araay[0]);
+//            console.log("date "+date);
+//            var newdate = new Date();
+//            newdate.setDate(date+283.75);
+//            console.log(newdate.getFullYear() + "-" + (newdate.getMonth() + 1) + "-" + newdate.getDate());
+//            
+//        }
+//    });
     // when modal close,reset all input
     $('#ong-pDetails1').on('hidden.bs.modal', function (e) {
         $(this)
@@ -353,7 +375,20 @@
     }
     // function for datepicker
     $(function () {
-        $('#PIlmp').datepicker({dateFormat: 'dd/mm/yy', changeMonth: true, changeYear: true});
+        $('#PIlmp').datepicker({dateFormat: 'dd/mm/yy', changeMonth: true, changeYear: true,onSelect: function(date2) {
+            var araay = date2.split("/");
+            var newdate = new Date(araay[2],araay[1]-1,araay[0]);
+            var x = new Date();
+            x.setDate(newdate.getDate()+283.75);
+//            console.log(newdate.getFullYear() + "-" + (newdate.getMonth() + 1) + "-" + newdate.getDate());
+            $('#PIedd').val(("0" + x.getDate()).slice(-2)+"/"+("0" + (x.getMonth() + 1)).slice(-2)+"/"+x.getFullYear());
+            var tday = new Date();
+            var $weekDiff = Math.floor((tday - newdate + 1) / (1000 * 60 * 60 * 24) / 7);
+            $('#PIcpw').val($weekDiff);
+            console.log("lmp: "+ newdate);
+            console.log("today: "+tday);
+        }});
+    
         $('#PIedd').datepicker({dateFormat: 'dd/mm/yy', changeMonth: true, changeYear: true});
         $('#PIscanedd').datepicker({dateFormat: 'dd/mm/yy', changeMonth: true, changeYear: true});
     });
