@@ -64,17 +64,6 @@
                                 </div>
                             </div>
                         </div>
-
-                        <div class="col-md-4">
-                            <!-- Text input-->
-                            <div class="form-group">
-                                <label class="col-md-12 control-label" for="textinput">EDD *</label>
-                                <div class="col-md-12">
-                                    <input type="text" class="form-control input-md" id="PIedd">
-                                </div>
-                            </div>
-                        </div>
-
                         <div class="col-md-4">
                             <!-- Text input-->
                             <div class="form-group">
@@ -84,6 +73,17 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="col-md-4">
+                            <!-- Text input-->
+                            <div class="form-group">
+                                <label class="col-md-12 control-label" for="textinput">EDD *</label>
+                                <div class="col-md-12">
+                                    <input type="text" class="form-control input-md" id="PIedd" readonly="">
+                                </div>
+                            </div>
+                        </div>
+
+                        
                     </div>
                     <div class="row">
                         <div class="col-md-4">
@@ -389,7 +389,7 @@
             console.log("today: "+tday);
         }});
     
-        $('#PIedd').datepicker({dateFormat: 'dd/mm/yy', changeMonth: true, changeYear: true});
+//        $('#PIedd').datepicker({dateFormat: 'dd/mm/yy', changeMonth: true, changeYear: true});
         $('#PIscanedd').datepicker({dateFormat: 'dd/mm/yy', changeMonth: true, changeYear: true});
     });
 

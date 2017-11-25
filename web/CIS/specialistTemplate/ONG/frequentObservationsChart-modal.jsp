@@ -52,7 +52,7 @@
                                 <div class="col-md-12">
 <!--                                    <input type="text" class="form-control input-md" id="freqObservationChartModalTime" readonly>-->
                                     <select id="freqObservationChartModalTime" class="form-control">
-                                        <option value="null" selected="" disabled="">Select Time</option>
+                                        <option value="-" selected="" disabled="">Select Time</option>
                                         <option value="-">-</option>
                                         <% for (int i = 0;i < datadatee5.size();i++) {%>
                                         <option value="<%=datadatee5.get(i).get(1)%>"><%=datadatee5.get(i).get(2)%></option>
