@@ -45,7 +45,16 @@
             </ul>
         </li>
         
-        <li><a href="#ong" role="tab" data-toggle="tab" class="panelito ong-general" id="linkOng"><i class="fa fa-angle-right fa-lg"></i> Obstetrics & Gynecology</a></li>
+<!--        <li><a href="#ong" role="tab" data-toggle="tab" class="panelito ong-general" id="linkOng"><i class="fa fa-angle-right fa-lg"></i> Obstetrics & Gynecology</a></li>-->
+        <li role="presentation" class="dropdown">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                <i class="fa fa-angle-right fa-lg"></i> Obstetrics & Gynecology <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu">
+                <li><a class="panelito ong-general" style="cursor: pointer;" id="LinkOngGeneral">General</a></li>
+                <li><a class="panelito ong-general" style="cursor: pointer;" id="LinkOngCareWard">Care Ward</a></li>
+            </ul>
+        </li>
 
         <!-- Menu Specialist Panel -->
 

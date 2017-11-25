@@ -354,9 +354,38 @@
                 });
             });
             
-            $('#menu-content #linkOng').on('click',function(){
+            $('#menu-content #LinkOngGeneral').on('click',function(){
                 console.log('xxx');
                 getGra();
+                $('#frequentObserbationTab').hide();
+                $('#nursingUseTab').hide();
+                $('#nurseryFeedingCharttab').hide();
+                $('#maternityUnitTab').hide();
+                $('#LabourSumaaryTab').hide();
+                $('#reportTab').hide();
+                
+                $('#tabPI').show();
+                $('#tabBP').show();
+                $('#CIS_PN_TAB').show();
+                
+                
+            });
+            
+            $('#menu-content #LinkOngCareWard').on('click',function(){
+//                console.log('xxx');
+//                getGra();
+                $('#frequentObserbationTab').show();
+                $('#nursingUseTab').show();
+                $('#nurseryFeedingCharttab').show();
+                $('#maternityUnitTab').show();
+                $('#LabourSumaaryTab').show();
+                $('#reportTab').show();
+                
+                $('#tabPI').hide();
+                $('#tabBP').hide();
+                $('#CIS_PN_TAB').hide();
+                
+                
             });
             
             function toggleChevron(e) {
