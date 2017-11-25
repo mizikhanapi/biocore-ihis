@@ -364,9 +364,20 @@
                 $('#LabourSumaaryTab').hide();
                 $('#reportTab').hide();
                 
+                $('#ONG_4').removeClass("active");
+                $('#ONG_5').removeClass("active");
+                $('#ONG_6').removeClass("active");
+                $('#ONG_7').removeClass("active");
+                $('#ONG_8').removeClass("active");
+                $('#ONG_9').removeClass("active");
+                
                 $('#tabPI').show();
                 $('#tabBP').show();
                 $('#CIS_PN_TAB').show();
+                
+                $('#ONG_1').addClass("active in");
+//                $('#ONG_2').removeClass("active");
+//                $('#ONG_3').removeClass("active");
                 
                 
             });
@@ -381,9 +392,21 @@
                 $('#LabourSumaaryTab').show();
                 $('#reportTab').show();
                 
+//                $('#ONG_4').addClass("active");
+//                $('#ONG_5').removeClass("active");
+//                $('#ONG_6').removeClass("active");
+//                $('#ONG_7').removeClass("active");
+//                $('#ONG_8').removeClass("active");
+//                $('#ONG_9').removeClass("active");
+                
                 $('#tabPI').hide();
                 $('#tabBP').hide();
                 $('#CIS_PN_TAB').hide();
+                
+                $('#ONG_1').removeClass("active");
+                $('#ONG_2').removeClass("active");
+                $('#ONG_3').removeClass("active");
+                $('#ONG_4').addClass("active in");
                 
                 
             });

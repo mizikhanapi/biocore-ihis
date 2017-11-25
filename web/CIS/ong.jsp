@@ -24,7 +24,7 @@
                             <a href="#ONG_3" data-toggle="tab" aria-expanded="true" id="CIS_PN_TAB">
                                 <i class="fa fa-th-list fa-lg"></i> Progress Notes </a>
                         </li>
-                        <li >
+                        <li class="active">
                             <a href="#ONG_4" data-toggle="tab" aria-expanded="true" id="frequentObserbationTab">
                                 <i class="fa fa-th-list fa-lg"></i> Frequent Observations Chart </a>
                         </li>
@@ -52,7 +52,7 @@
 
                     <div class="tab-content">
                         <!-- content -->
-                        <div class="tab-pane active fade in" id="ONG_1">
+                        <div class="tab-pane fade" id="ONG_1">
                             <ul class="soap-content nav">
                                 <li><a data-toggle="modal" data-target="#ong-pDetails1" href="" class="soap-select"><i class="fa fa-comments  fa-li"></i> Gravida</a></li>
                                 <li><a data-toggle="modal" data-target="#ong-pDetails3" href=""  class="soap-select" id="btnnewpreviouspregnancy"><i class="fa fa-medkit  fa-li"></i> Previous Pregnancy</a></li>
