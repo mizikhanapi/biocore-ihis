@@ -14,9 +14,26 @@
     String hfc = session.getAttribute("HEALTH_FACILITY_CODE").toString();
     String rhesus4 = "select master_reference_code,detail_reference_code,description,priority_indicator,start_date,end_date,status,created_by,created_date from adm_lookup_detail where master_reference_code = '0017' AND hfc_cd = '" + hfc + "' and status ='0'";
     String bloodty4 = "select master_reference_code,detail_reference_code,description,priority_indicator,start_date,end_date,status,created_by,created_date from adm_lookup_detail where master_reference_code = '0074' AND hfc_cd = '" + hfc + "' and status ='0'";
-    ArrayList<ArrayList<String>> dataBloodty4, dataRhesus4;
+    
+    String rubella4 = "select master_reference_code,detail_reference_code,description,priority_indicator,start_date,end_date,status,created_by,created_date from adm_lookup_detail where master_reference_code = '0116' AND hfc_cd = '" + hfc + "' and status ='0'";
+    String cdrl4 = "select master_reference_code,detail_reference_code,description,priority_indicator,start_date,end_date,status,created_by,created_date from adm_lookup_detail where master_reference_code = '0117' AND hfc_cd = '" + hfc + "' and status ='0'";
+    String antibody4 = "select master_reference_code,detail_reference_code,description,priority_indicator,start_date,end_date,status,created_by,created_date from adm_lookup_detail where master_reference_code = '0118' AND hfc_cd = '" + hfc + "' and status ='0'";
+    String antigen4 = "select master_reference_code,detail_reference_code,description,priority_indicator,start_date,end_date,status,created_by,created_date from adm_lookup_detail where master_reference_code = '0119' AND hfc_cd = '" + hfc + "' and status ='0'";
+    
+    String prestlie4 = "select master_reference_code,detail_reference_code,description,priority_indicator,start_date,end_date,status,created_by,created_date from adm_lookup_detail where master_reference_code = '0120' AND hfc_cd = '" + hfc + "' and status ='0'";
+    String a4 = "select master_reference_code,detail_reference_code,description,priority_indicator,start_date,end_date,status,created_by,created_date from adm_lookup_detail where master_reference_code = '0121' AND hfc_cd = '" + hfc + "' and status ='0'";
+    String s4 = "select master_reference_code,detail_reference_code,description,priority_indicator,start_date,end_date,status,created_by,created_date from adm_lookup_detail where master_reference_code = '0122' AND hfc_cd = '" + hfc + "' and status ='0'";
+    ArrayList<ArrayList<String>> dataBloodty4, dataRhesus4,datarubela4,datacdrl4,dataantibody4,dataantigen4,dataprestlie4,dataa4,datas4;
     dataBloodty4 = conn.getData(bloodty4);
     dataRhesus4 = conn.getData(rhesus4);
+    datarubela4 = conn.getData(rubella4);
+    datacdrl4 = conn.getData(cdrl4);
+    dataantibody4 = conn.getData(antibody4);
+    dataantigen4 = conn.getData(antigen4);
+    
+    dataprestlie4 = conn.getData(prestlie4);
+    dataa4 = conn.getData(a4);
+    datas4 = conn.getData(s4);
 
 %>
 <div class="modal fade" id="ong-anteNatal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -46,12 +63,12 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-6 hidden">
                             <!-- Text input-->
                             <div class="form-group">
                                 <label class="col-md-12 control-label" for="textinput">ATT Injection</label>
                                 <div class="col-md-12">
-                                    <input type="text" class="form-control input-md" id="BPatt">
+                                    <input type="text" class="form-control input-md" id="BPatt" value="-">
                                 </div>
                             </div>
                         </div>
@@ -82,7 +99,15 @@
                             <div class="form-group">
                                 <label class="col-md-12 control-label" for="textinput">Rubella Status *</label>
                                 <div class="col-md-12">
-                                    <input type="text" class="form-control input-md" id="BPrubella">
+<!--                                    <input type="text" class="form-control input-md" id="BPrubella">-->
+                                    <select id="BPrubella" class="form-control">
+                                        <option value="null" selected="" disabled="">Select Rubella Status</option>
+                                        <option value="-">-</option>
+                                        <% for (int i = 0;i < datarubela4.size();i++) {%>
+                                        <option value="<%=datarubela4.get(i).get(2)%>"><%=datarubela4.get(i).get(2)%></option>
+                                        <%  }
+                                        %>
+                                    </select>
                                 </div>
                             </div>
                         </div>
@@ -96,7 +121,15 @@
                             <div class="form-group">
                                 <label class="col-md-12 control-label" for="textinput">VDRL</label>
                                 <div class="col-md-12">
-                                    <input type="text" class="form-control input-md" id="BPvdrl">
+<!--                                    <input type="text" class="form-control input-md" id="BPvdrl">-->
+                                    <select id="BPvdrl" class="form-control">
+                                        <option value="null" selected="" disabled="">Select VDRL</option>
+                                        <option value="-">-</option>
+                                        <% for (int i = 0;i < datacdrl4.size();i++) {%>
+                                        <option value="<%=datacdrl4.get(i).get(2)%>"><%=datacdrl4.get(i).get(2)%></option>
+                                        <%  }
+                                        %>
+                                    </select>
                                 </div>
                             </div>
                         </div>
@@ -106,7 +139,15 @@
                             <div class="form-group">
                                 <label class="col-md-12 control-label" for="textinput">Hepatitis B Antibody</label>
                                 <div class="col-md-12">
-                                    <input type="text" class="form-control input-md" id="BPhBantibody">
+<!--                                    <input type="text" class="form-control input-md" id="BPhBantibody">-->
+                                    <select id="BPhBantibody" class="form-control">
+                                        <option value="null" selected="" disabled="">Select Antibody</option>
+                                        <option value="-">-</option>
+                                        <% for (int i = 0;i < dataantibody4.size();i++) {%>
+                                        <option value="<%=dataantibody4.get(i).get(2)%>"><%=dataantibody4.get(i).get(2)%></option>
+                                        <%  }
+                                        %>
+                                    </select>
                                 </div>
                             </div>
                         </div>
@@ -116,7 +157,15 @@
                             <div class="form-group">
                                 <label class="col-md-12 control-label" for="textinput">Hepatitis B Antigen</label>
                                 <div class="col-md-12">
-                                    <input type="text" class="form-control input-md" id="BPhBantigen">
+<!--                                    <input type="text" class="form-control input-md" id="BPhBantigen">-->
+                                    <select id="BPhBantigen" class="form-control">
+                                        <option value="null" selected="" disabled="">Select Antigen</option>
+                                        <option value="-">-</option>
+                                        <% for (int i = 0;i < dataantigen4.size();i++) {%>
+                                        <option value="<%=dataantigen4.get(i).get(2)%>"><%=dataantigen4.get(i).get(2)%></option>
+                                        <%  }
+                                        %>
+                                    </select>
                                 </div>
                             </div>
                         </div>
@@ -124,7 +173,7 @@
 
                     <div class="row">
                         <hr>
-                        <h4>Date</h4>
+                        <h4>ATT Injection</h4>
                         <div class="col-md-4">
                             <!-- Text input-->
                             <div class="form-group">
@@ -201,7 +250,15 @@
                             <div class="form-group">
                                 <label class="col-md-12 control-label" for="textinput">Prest/Lie *</label>
                                 <div class="col-md-12">
-                                    <input type="text" class="form-control input-md" id="antePrest">
+<!--                                    <input type="text" class="form-control input-md" id="antePrest">-->
+                                    <select id="antePrest" class="form-control">
+                                        <option value="null" selected="" disabled="">Select Prest/Lie</option>
+                                        <option value="-">-</option>
+                                        <% for (int i = 0;i < dataprestlie4.size();i++) {%>
+                                        <option value="<%=dataprestlie4.get(i).get(2)%>"><%=dataprestlie4.get(i).get(2)%></option>
+                                        <%  }
+                                        %>
+                                    </select>
                                 </div>
                             </div>
                         </div>
@@ -263,7 +320,15 @@
                             <div class="form-group">
                                 <label class="col-md-12 control-label" for="textinput">A</label>
                                 <div class="col-md-12">
-                                    <input type="text" class="form-control input-md" id="anteA">
+<!--                                    <input type="text" class="form-control input-md" id="anteA">-->
+                                    <select id="anteA" class="form-control">
+                                        <option value="null" selected="" disabled="">Select Urine A</option>
+                                        <option value="-">-</option>
+                                        <% for (int i = 0;i < dataa4.size();i++) {%>
+                                        <option value="<%=dataa4.get(i).get(2)%>"><%=dataa4.get(i).get(2)%></option>
+                                        <%  }
+                                        %>
+                                    </select>
                                 </div>
                             </div>
                         </div>
@@ -273,7 +338,15 @@
                             <div class="form-group">
                                 <label class="col-md-12 control-label" for="textinput">S</label>
                                 <div class="col-md-12">
-                                    <input type="text" class="form-control input-md" id="anteS">
+<!--                                    <input type="text" class="form-control input-md" id="anteS">-->
+                                    <select id="anteS" class="form-control">
+                                        <option value="null" selected="" disabled="">Select Urine S</option>
+                                        <option value="-">-</option>
+                                        <% for (int i = 0;i < datas4.size();i++) {%>
+                                        <option value="<%=datas4.get(i).get(2)%>"><%=datas4.get(i).get(2)%></option>
+                                        <%  }
+                                        %>
+                                    </select>
                                 </div>
                             </div>
                         </div>

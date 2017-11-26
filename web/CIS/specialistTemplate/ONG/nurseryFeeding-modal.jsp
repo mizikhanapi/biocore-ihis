@@ -3,6 +3,23 @@
     Created on : May 15, 2017, 10:49:00 AM
     Author     : Mizi K
 --%>
+<%@page import="dBConn.Conn"%>
+<%@page import="java.util.ArrayList"%>
+<%
+    Conn cccconn = new Conn();
+    String hfc = session.getAttribute("HEALTH_FACILITY_CODE").toString();
+    String datee52 = "select master_reference_code,detail_reference_code,description,priority_indicator,start_date,end_date,status,created_by,created_date from adm_lookup_detail where master_reference_code = '0123' AND hfc_cd = '" + hfc + "' and status ='0'";
+
+    String methodfedd5 = "select master_reference_code,detail_reference_code,description,priority_indicator,start_date,end_date,status,created_by,created_date from adm_lookup_detail where master_reference_code = '0124' AND hfc_cd = '" + hfc + "' and status ='0'";
+    String aspi5 = "select master_reference_code,detail_reference_code,description,priority_indicator,start_date,end_date,status,created_by,created_date from adm_lookup_detail where master_reference_code = '0125' AND hfc_cd = '" + hfc + "' and status ='0'";
+    ArrayList<ArrayList<String>>  datamethodfedd5,dataaspi5,datadate52;
+    datamethodfedd5 = cccconn.getData(methodfedd5);
+    dataaspi5 = cccconn.getData(aspi5);
+    datadate52 = cccconn.getData(datee52);
+
+%>
+
+%>
 
 
 <!-- Start Modal -->
@@ -36,7 +53,15 @@
                             <div class="form-group">
                                 <label class="col-md-12 control-label" for="textinput">Time</label>
                                 <div class="col-md-12">
-                                    <input type="text" class="form-control input-md" id="nurseryFeedingChartModalTime" readonly>
+<!--                                    <input type="text" class="form-control input-md" id="nurseryFeedingChartModalTime" readonly>-->
+                                    <select id="nurseryFeedingChartModalTime" class="form-control">
+                                        <option value="null" selected="" disabled="">Select Time</option>
+                                        <option value="-">-</option>
+                                        <% for (int i = 0;i < datadate52.size();i++) {%>
+                                        <option value="<%=datadate52.get(i).get(1)%>"><%=datadate52.get(i).get(2)%></option>
+                                        <%  }
+                                        %>
+                                    </select>
                                 </div>
                             </div>
                         </div>
@@ -61,7 +86,15 @@
                             <div class="form-group">
                                 <label class="col-md-12 control-label" for="textinput">Method Of Feeding</label>
                                 <div class="col-md-12">
-                                    <input type="text" class="form-control input-md" id="nurseryFeedingChartModalFeedingMethod" maxlength="50">
+<!--                                    <input type="text" class="form-control input-md" id="nurseryFeedingChartModalFeedingMethod" maxlength="50">-->
+                                    <select id="nurseryFeedingChartModalFeedingMethod" class="form-control">
+                                        <option value="null" selected="" disabled="">Select Method Of Feeding</option>
+                                        <option value="-">-</option>
+                                        <% for (int i = 0;i < datamethodfedd5.size();i++) {%>
+                                        <option value="<%=datamethodfedd5.get(i).get(1)%>"><%=datamethodfedd5.get(i).get(2)%></option>
+                                        <%  }
+                                        %>
+                                    </select>
                                 </div>
                             </div>
                         </div>
@@ -77,7 +110,15 @@
                             <div class="form-group">
                                 <label class="col-md-12 control-label" for="textinput">Aspirate Vomit</label>
                                 <div class="col-md-12">
-                                    <input type="text" class="form-control input-md" id="nurseryFeedingChartModalAspirateVomit" maxlength="50">
+<!--                                    <input type="text" class="form-control input-md" id="nurseryFeedingChartModalAspirateVomit" maxlength="50">-->
+                                    <select id="nurseryFeedingChartModalAspirateVomit" class="form-control">
+                                        <option value="null" selected="" disabled="">Select Aspirate Vomit</option>
+                                        <option value="-">-</option>
+                                        <% for (int i = 0;i < dataaspi5.size();i++) {%>
+                                        <option value="<%=dataaspi5.get(i).get(1)%>"><%=dataaspi5.get(i).get(2)%></option>
+                                        <%  }
+                                        %>
+                                    </select>
                                 </div>
                             </div>
                         </div>

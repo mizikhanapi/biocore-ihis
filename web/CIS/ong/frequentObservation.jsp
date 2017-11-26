@@ -340,13 +340,13 @@
                 dateFormat: 'dd/mm/yy'
             });
 
-            $('#freqObservationChartModalTime').timepicker({
-                'timeFormat': 'HH:mm',
-                'scrollbar': 'true',
-                'minTime': '00:00',
-                'maxTime': '23:59',
-                'interval': 1
-            });
+//            $('#freqObservationChartModalTime').timepicker({
+//                'timeFormat': 'HH:mm',
+//                'scrollbar': 'true',
+//                'minTime': '00:00',
+//                'maxTime': '23:59',
+//                'interval': 1
+//            });
 
         });
         // Function For Add Button End
@@ -403,7 +403,7 @@
 
             } else {
 
-                var datas = pmi_no + "|" + hfc_cd1 + "|" + epDate + "|" + encounterDate + "|" + newDate + " " + time + ":00.0|" +
+                var datas = pmi_no + "|" + hfc_cd1 + "|" + epDate + "|" + encounterDate + "|" + newDate + " " + time + ":00:00.0|" +
                         temperature + "|" + pulse + "|" + respiration + "|" + bp + "|" + pupilLeftReact + "|" + pupilLeftSize + "|" +
                         pupilRightReact + "|" + pupilRightSize + "|" + consiousState + "|" + drugGiven + "||Pending";
 
@@ -465,28 +465,29 @@
             });
 
 
-            $('#freqObservationChartModalTime').timepicker({
-                'timeFormat': 'HH:mm',
-                'scrollbar': 'true',
-                'minTime': '00:00',
-                'maxTime': '23:59',
-                'interval': 1
-            });
+//            $('#freqObservationChartModalTime').timepicker({
+//                'timeFormat': 'HH:mm',
+//                'scrollbar': 'true',
+//                'minTime': '00:00',
+//                'maxTime': '23:59',
+//                'interval': 1
+//            });
 
 
             //get the row value
             var row = $(this).closest("tr");
             var rowData = row.find("#dataFreqObservationCharthidden").val();
 
-            var arrayData = rowData.split("|");
-
+            var arrayData = rowData.split("|"); 
+            var ti = arrayData[18].split(":");
+            var newTi = ti[0];
             $('#ONGFreqObservationChartPmi').val(arrayData[0]);
             $('#ONGFreqObservationChartHfc').val(arrayData[1]);
             $('#ONGFreqObservationChartEpisodeDate').val(arrayData[2]);
             $('#ONGFreqObservationChartEncounterDate').val(arrayData[3]);
 
             $('#freqObservationChartModalDate').val(arrayData[5]);
-            $('#freqObservationChartModalTime').val(arrayData[18]);
+            $('#freqObservationChartModalTime').val(newTi);
 
             $('#freqObservationChartModalTemperature').val(arrayData[6]);
             $('#freqObservationChartModalPulse').val(arrayData[7]);
@@ -525,8 +526,8 @@
             var encounterDate = $('#ONGFreqObservationChartEncounterDate').val();
 
             var time = $('#freqObservationChartModalTime').val();
-            var sTime = time.split(':');
-            var newTime = sTime[0] + ":" + sTime[1];
+//            var sTime = time.split(':');
+//            var newTime = sTime[0] + ":" + sTime[1];
 
             var temperature = $('#freqObservationChartModalTemperature').val();
             var pulse = $('#freqObservationChartModalPulse').val();
@@ -540,7 +541,7 @@
             var drugGiven = $('#freqObservationChartModalDrugGiven').val();
 
 
-            var datas = pmi_no + "|" + hfc_cd1 + "|" + epDate + "|" + encounterDate + "|" + newDate + " " + newTime + ":00.0|" +
+            var datas = pmi_no + "|" + hfc_cd1 + "|" + epDate + "|" + encounterDate + "|" + newDate + " " + time + ":00:00.0|" +
                     temperature + "|" + pulse + "|" + respiration + "|" + bp + "|" + pupilLeftReact + "|" + pupilLeftSize + "|" +
                     pupilRightReact + "|" + pupilRightSize + "|" + consiousState + "|" + drugGiven + "||Pending";
 

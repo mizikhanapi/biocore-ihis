@@ -7,9 +7,17 @@
 <%
     String hfc = session.getAttribute("HEALTH_FACILITY_CODE").toString();
     String gender4 = "select master_reference_code,detail_reference_code,description,priority_indicator,start_date,end_date,status,created_by,created_date from adm_lookup_detail where master_reference_code = '0041' AND hfc_cd = '" + hfc + "' and status ='0'";
-    ArrayList<ArrayList<String>> dataGender4;
+    String periodCycle = "select master_reference_code,detail_reference_code,description,priority_indicator,start_date,end_date,status,created_by,created_date from adm_lookup_detail where master_reference_code = '0113' AND hfc_cd = '" + hfc + "' and status ='0'";
+    String gestation4 = "select master_reference_code,detail_reference_code,description,priority_indicator,start_date,end_date,status,created_by,created_date from adm_lookup_detail where master_reference_code = '0114' AND hfc_cd = '" + hfc + "' and status ='0'";
+    String labourdellivery4 = "select master_reference_code,detail_reference_code,description,priority_indicator,start_date,end_date,status,created_by,created_date from adm_lookup_detail where master_reference_code = '0115' AND hfc_cd = '" + hfc + "' and status ='0'";
+
+
+    ArrayList<ArrayList<String>> dataGender4,dataperiodCycle4,datagestation4,datalabourdelivery4;
     Conn Cconn = new Conn();
     dataGender4 = Cconn.getData(gender4);
+    dataperiodCycle4 = Cconn.getData(periodCycle);
+    datagestation4 = Cconn.getData(gestation4);
+    datalabourdelivery4 = Cconn.getData(labourdellivery4);
 %>
 <%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -50,23 +58,34 @@
                         <div class="col-md-4">
                             <!-- Text input-->
                             <div class="form-group">
-                                <label class="col-md-12 control-label" for="textinput">LMP *</label>
+                                <label class="col-md-12 control-label" for="textinput">LMP </label>
                                 <div class="col-md-12">
                                     <input type="text" class="form-control input-md" id="PIlmp">
                                 </div>
                             </div>
                         </div>
-
+                        <div class="col-md-4">
+                            <!-- Text input-->
+                            <div class="form-group">
+                                <label class="col-md-12 control-label" for="textinput">Current Pregnancy Week *</label>
+                                <div class="col-md-12">
+                                    <input type="text" class="form-control input-md numbersOnly" id="PIcpw"> 
+                                </div>
+                            </div>
+                        </div>
                         <div class="col-md-4">
                             <!-- Text input-->
                             <div class="form-group">
                                 <label class="col-md-12 control-label" for="textinput">EDD *</label>
                                 <div class="col-md-12">
-                                    <input type="text" class="form-control input-md" id="PIedd">
+                                    <input type="text" class="form-control input-md" id="PIedd" readonly="">
                                 </div>
                             </div>
                         </div>
 
+                        
+                    </div>
+                    <div class="row">
                         <div class="col-md-4">
                             <!-- Text input-->
                             <div class="form-group">
@@ -77,7 +96,6 @@
                             </div>
                         </div>
                     </div>
-
                     <div class="row">
                         <hr>
                         <h4>Period Cycle *</h4>
@@ -85,7 +103,18 @@
                             <!-- Text input-->
                             <div class="form-group">
                                 <div class="col-md-12">
-                                    <input type="text" class="form-control input-md" id="PIperiodCycle"> 
+<!--                                    <input type="text" class="form-control input-md" id="PIperiodCycle">-->
+                                    <select id="PIperiodCycle" name="selectbasic" class="form-control">
+                                        <option value="null">Select Period Cycle</option>
+                                        <option value="-">-</option>
+                                        <%
+                                            for (int i = 0;
+                                                    i < dataperiodCycle4.size();
+                                                    i++) {%>
+                                        <option value="<%=dataperiodCycle4.get(i).get(2)%>"><%=dataperiodCycle4.get(i).get(2)%></option>
+                                        <%  }
+                                        %>
+                                    </select>
                                 </div>
                             </div>
                         </div>
@@ -166,7 +195,18 @@
                             <div class="form-group">
                                 <label class="col-md-12 control-label" for="textinput">Gestation *</label>
                                 <div class="col-md-12">
-                                    <input type="text" class="form-control input-md" id="PIgestation" placeholder="gestation">
+<!--                                    <input type="text" class="form-control input-md" id="PIgestation" placeholder="gestation">-->
+                                    <select id="PIgestation" name="selectbasic" class="form-control">
+                                        <option value="null">Select Gestation</option>
+                                        <option value="-">-</option>
+                                        <%
+                                            for (int i = 0;
+                                                    i < datagestation4.size();
+                                                    i++) {%>
+                                        <option value="<%=datagestation4.get(i).get(2)%>"><%=datagestation4.get(i).get(2)%></option>
+                                        <%  }
+                                        %>
+                                    </select>
                                 </div>
                             </div>
                         </div>
@@ -191,7 +231,18 @@
                             <div class="form-group">
                                 <label class="col-md-12 control-label" for="textinput">Labour/Delivery *</label>
                                 <div class="col-md-12">
-                                    <input type="text" class="form-control input-md" id="PIlabour" placeholder="labour/delivery">
+<!--                                    <input type="text" class="form-control input-md" id="PIlabour" placeholder="labour/delivery">-->
+                                    <select id="PIlabour" name="selectbasic" class="form-control">
+                                        <option value="null">Select Labour Delivery</option>
+                                        <option value="-">-</option>
+                                        <%
+                                            for (int i = 0;
+                                                    i < datalabourdelivery4.size();
+                                                    i++) {%>
+                                        <option value="<%=datalabourdelivery4.get(i).get(2)%>"><%=datalabourdelivery4.get(i).get(2)%></option>
+                                        <%  }
+                                        %>
+                                    </select>
                                 </div>
                             </div>
                         </div>
@@ -264,6 +315,18 @@
 </div>
 <!-- End Modal -->
 <script>
+//    $('#PIlmp').on('blur paste',function(){
+//        var datePicked = $(this).val();
+//        if(!datePicked===""){
+//            var araay = datePicked.split("/");
+//            var date = new Date(araay[2],araay[1]-1,araay[0]);
+//            console.log("date "+date);
+//            var newdate = new Date();
+//            newdate.setDate(date+283.75);
+//            console.log(newdate.getFullYear() + "-" + (newdate.getMonth() + 1) + "-" + newdate.getDate());
+//            
+//        }
+//    });
     // when modal close,reset all input
     $('#ong-pDetails1').on('hidden.bs.modal', function (e) {
         $(this)
@@ -312,8 +375,21 @@
     }
     // function for datepicker
     $(function () {
-        $('#PIlmp').datepicker({dateFormat: 'dd/mm/yy', changeMonth: true, changeYear: true});
-        $('#PIedd').datepicker({dateFormat: 'dd/mm/yy', changeMonth: true, changeYear: true});
+        $('#PIlmp').datepicker({dateFormat: 'dd/mm/yy', changeMonth: true, changeYear: true,onSelect: function(date2) {
+            var araay = date2.split("/");
+            var newdate = new Date(araay[2],araay[1]-1,araay[0]);
+            var x = new Date();
+            x.setDate(newdate.getDate()+283.75);
+//            console.log(newdate.getFullYear() + "-" + (newdate.getMonth() + 1) + "-" + newdate.getDate());
+            $('#PIedd').val(("0" + x.getDate()).slice(-2)+"/"+("0" + (x.getMonth() + 1)).slice(-2)+"/"+x.getFullYear());
+            var tday = new Date();
+            var $weekDiff = Math.floor((tday - newdate + 1) / (1000 * 60 * 60 * 24) / 7);
+            $('#PIcpw').val($weekDiff);
+            console.log("lmp: "+ newdate);
+            console.log("today: "+tday);
+        }});
+    
+//        $('#PIedd').datepicker({dateFormat: 'dd/mm/yy', changeMonth: true, changeYear: true});
         $('#PIscanedd').datepicker({dateFormat: 'dd/mm/yy', changeMonth: true, changeYear: true});
     });
 
@@ -340,7 +416,7 @@
         psh = $('#PIsurHis').val();
         
 
-        if (gravida === "" || parity === "" || lmp === "" || edd === "" || scanEdd === "" || periodCycle === "") {
+        if (gravida === "" || parity === "" || edd === "" || scanEdd === "" || periodCycle === "") {
             bootbox.alert("please insert the compulsory item to proceed");
         } else {
             var pmi_no = pmiNo;

@@ -24,35 +24,35 @@
                             <a href="#ONG_3" data-toggle="tab" aria-expanded="true" id="CIS_PN_TAB">
                                 <i class="fa fa-th-list fa-lg"></i> Progress Notes </a>
                         </li>
-                        <li >
-                            <a href="#ONG_4" data-toggle="tab" aria-expanded="true">
+                        <li class="active">
+                            <a href="#ONG_4" data-toggle="tab" aria-expanded="true" id="frequentObserbationTab">
                                 <i class="fa fa-th-list fa-lg"></i> Frequent Observations Chart </a>
                         </li>
                         <li >
-                            <a href="#ONG_5" data-toggle="tab" aria-expanded="true">
+                            <a href="#ONG_5" data-toggle="tab" aria-expanded="true" id="nursingUseTab">
                                 <i class="fa fa-th-list fa-lg"></i> Nursing Use </a>
                         </li>
                         <li >
-                            <a href="#ONG_6" data-toggle="tab" aria-expanded="true">
+                            <a href="#ONG_6" data-toggle="tab" aria-expanded="true" id="nurseryFeedingCharttab">
                                 <i class="fa fa-th-list fa-lg"></i> Nursery Feeding Chart </a>
                         </li>
                         <li >
-                            <a href="#ONG_7" data-toggle="tab" aria-expanded="true">
+                            <a href="#ONG_7" data-toggle="tab" aria-expanded="true" id="maternityUnitTab">
                                 <i class="fa fa-th-list fa-lg"></i> Maternity Unit </a>
                         </li>
                         <li >
-                            <a href="#ONG_8" data-toggle="tab" aria-expanded="true">
+                            <a href="#ONG_8" data-toggle="tab" aria-expanded="true" id="LabourSumaaryTab">
                                 <i class="fa fa-th-list fa-lg"></i> Labour Summary </a>
                         </li>
                         <li >
-                            <a href="#ONG_9" data-toggle="tab" aria-expanded="true">
+                            <a href="#ONG_9" data-toggle="tab" aria-expanded="true" id="reportTab">
                                 <i class="fa fa-th-list fa-lg"></i> Reports </a>
                         </li>
                     </ul>
 
                     <div class="tab-content">
                         <!-- content -->
-                        <div class="tab-pane active fade in" id="ONG_1">
+                        <div class="tab-pane fade" id="ONG_1">
                             <ul class="soap-content nav">
                                 <li><a data-toggle="modal" data-target="#ong-pDetails1" href="" class="soap-select"><i class="fa fa-comments  fa-li"></i> Gravida</a></li>
                                 <li><a data-toggle="modal" data-target="#ong-pDetails3" href=""  class="soap-select" id="btnnewpreviouspregnancy"><i class="fa fa-medkit  fa-li"></i> Previous Pregnancy</a></li>
