@@ -40,7 +40,7 @@
         </thead>
         <tbody>
 
-            <% 
+            <%
                 //Conn conn = new Conn();
                 //                                      0               1           2           3                   4           5                       6                   7                   8                       9                       10
                 String sqlFacilityID = "SELECT wwc.ward_class_name, a.ward_name, a.ward_id, b.discipline_name, a.no_of_bed, a.citizen_room_cost, a.citizen_deposit, a.citizen_discount, a.non_citizen_room_cost, a.non_citizen_deposit, a.non_citizen_discount, "
@@ -52,7 +52,7 @@
                         + "LEFT JOIN adm_discipline b ON a.discipline_cd = b.discipline_cd AND a.hfc_cd=b.discipline_hfc_cd "
                         + "LEFT JOIN adm_subdiscipline sd ON sd.subdiscipline_hfc_cd = b.discipline_hfc_cd AND sd.discipline_cd = b.discipline_cd AND sd.subdiscipline_cd = a.subdiscipline_cd "
                         + "LEFT JOIN wis_ward_class wwc on wwc.ward_class_code = a.ward_class_code AND a.hfc_cd=wwc.hfc_cd AND wwc.discipline_cd=a.discipline_cd "
-                        + "where a.discipline_cd = '"+disID+"' and a.hfc_cd ='"+hfcID+"' GROUP BY a.ward_id;";
+                        + "where a.discipline_cd = '" + disID + "' and a.hfc_cd ='" + hfcID + "' GROUP BY a.ward_id;";
                 /*String sqlFacilityID = "SELECT wwc.ward_class_name, a.ward_name, a.ward_id, b.discipline_name, a.no_of_bed, a.citizen_room_cost, a.citizen_deposit, a.citizen_discount, a.non_citizen_room_cost, a.non_citizen_deposit, a.non_citizen_discount, "
                         + "a.pensioner_room_cost,  a.pensioner_deposit, a.pensioner_discount,a.attach_toilet, a.include_television, a.attach_bathroom_tiolet, a.include_telephone, a.ward_status, a.hfc_cd , a.discipline_cd, b.discipline_cd, wwc.ward_class_code "
                         + "FROM wis_ward_name a "
@@ -93,7 +93,7 @@
         %>
         </tbody>
     </table>
-        
+
 </div>
 
 
@@ -103,8 +103,8 @@
 
     <!-- Modal Update -->
 <div class="modal fade" id="FacilityIDUpdateModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content" style="width: 175%">
+    <div class="modal-dialog" style="width: 75%">
+        <div class="modal-content" >
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal"><i class="fa fa-times fa-lg"></i></button>
                 <h3 class="modal-title" id="lineIDLabel">Update Facility ID Details</h3>
@@ -334,7 +334,7 @@
         $('#FacilityIDTable').off('click', '#facilityIDTable #MWID_edit').on('click', '#facilityIDTable #MWID_edit', function (e) {
             e.preventDefault();
             //go to the top
- $('#FacilityIDUpdateModal').modal('show');
+            $('#FacilityIDUpdateModal').modal('show');
             //get the row value
             var row = $(this).closest("tr");
             var rowData = row.find("#dataFacilityIDhidden").val();
@@ -499,6 +499,14 @@
                                 title: "Process Result",
                                 backdrop: true
                             });
+                        } else if (datas.trim() === 'name') {
+                            bootbox.alert({
+                                message: "Ward Name Duplication Detected. Please use different Ward Name.",
+                                title: "Process Result",
+                                backdrop: true
+                            });
+                        } else {
+                            bootbox.alert(datas.trim());
                         }
 
                     },

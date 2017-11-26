@@ -542,7 +542,17 @@
                             backdrop: true
                         });
 
-                    } else if (data.trim() === 'Failed') {
+                    }
+                    else if (data.trim() === 'name') {
+
+                        bootbox.alert({
+                            message: "Ward Name Duplication Detected. Please use different Ward Name.",
+                            title: "Process Result",
+                            backdrop: true
+                        });
+
+                    }
+                    else if (data.trim() === 'Failed') {
                         bootbox.alert({
                             message: "Add Failed",
                             title: "Process Result",

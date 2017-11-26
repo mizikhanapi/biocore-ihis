@@ -43,13 +43,23 @@
     DateFormat df = new SimpleDateFormat("dd/MM/yy HH:mm:ss");
     Date dateobj = new Date();
     df.format(dateobj);
+    
+    // ward name and id must be unique because pms_queue_name is using ward name as it key.
+    //ward id unique in one hfc
+    //ward_name unique in one hfc
 
-    String sqlCheck = "SELECT ward_id from wis_ward_name WHERE ward_id = '" + wid + "' LIMIT 1 ";
+    String sqlCheck = "SELECT ward_id from wis_ward_name WHERE ward_id = '" + wid + "' AND hfc_cd='"+hfc+"' LIMIT 1 ";
     ArrayList<ArrayList<String>> duplicate = conn.getData(sqlCheck);
+    String sqlCheckName = "SELECT ward_id from wis_ward_name WHERE ward_name = '" + wwardname + "' AND hfc_cd='"+hfc+"' AND discipline_cd='"+wdiscipline+"'  LIMIT 1 ";
+    ArrayList<ArrayList<String>> duplicateName = conn.getData(sqlCheckName);
 
     if (duplicate.size() > 0) {
         out.print("Duplicate");
-    } else {
+    }
+    else if(duplicateName.size()>0){
+        out.print("name");
+    }
+    else {
 
         String sqlInsert = "INSERT INTO wis_ward_name (ward_class_code, hfc_cd, ward_id, discipline_cd, ward_name, subdiscipline_cd,"
                 + "citizen_room_cost, citizen_deposit, citizen_discount,non_citizen_room_cost,non_citizen_deposit, non_citizen_discount, pensioner_deposit, pensioner_room_cost, pensioner_discount, "
@@ -62,6 +72,17 @@
 
         if (isInsert == true) {
             out.print("Success");
+            String checkData = "select queue_type from pms_queue_name where queue_type='FY' and queue_name='"+wwardname+"' and hfc_cd='"+hfc+"' and discipline_code='"+wdiscipline+"'";
+            ArrayList<ArrayList<String>> arrCheck = conn.getData(checkData);
+            
+            //create queue if queue does not exist;
+            if(arrCheck.size()<1){
+                String sqlCreateQueue = "insert into pms_queue_name( queue_type,queue_name,queue_description,user_id,quota,status,created_by,created_date,hfc_cd,discipline_code,subdiscipline_code,initial_queue_no) "
+                        + "values('FY','"+wwardname+"','-','"+createdBy+"','"+wnobed+"','Active','"+createdBy+"',NOW(),'"+hfc+"','"+wdiscipline+"','"+sub+"','99000');";
+                
+                rmic.setQuerySQL(conn.HOST, conn.PORT, sqlCreateQueue);
+            }
+            
         } else {
             out.print("Failed");
         }

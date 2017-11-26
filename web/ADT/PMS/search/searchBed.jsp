@@ -25,10 +25,10 @@
 
 
 <div class="row">
-    
+
     <div class="col-md-12">
         <span class="pull-right">
-                <button class="btn btn-primary" id="btnShowBed"><i class="fa fa-eye "></i> Show available bed</button>
+            <button class="btn btn-primary" id="btnShowBed"><i class="fa fa-eye "></i> Show available bed</button>
         </span>
     </div>
 
@@ -159,8 +159,8 @@
                         $('#sub_cd').val(subcode);
                         //console.log(arrayData);
                         IR_getWardClass(discode, "");
-                        
-                        
+
+
                     });
                 },
                 error: function () { // if error
@@ -172,8 +172,8 @@
         }
 
     });
-    
-    function IR_getWardClass(discode, selected){
+
+    function IR_getWardClass(discode, selected) {
         $.ajax({
             type: "post",
             url: "PMS/controller/listWardType.jsp",
@@ -195,10 +195,10 @@
     $("#wardTypeList").on('change', '#WardType', function () {
         var classCode = $(this).val();
         IR_getWardName(classCode, "-");
-        
+
     });
-    
-    function IR_getWardName(classCode, selected){
+
+    function IR_getWardName(classCode, selected) {
         $.ajax({
             type: "post",
             url: "PMS/controller/listbedname.jsp",
@@ -218,9 +218,9 @@
             }
         });
     }
-    
-    $('#wardNameDropdown').on('change', '#wname', function(){
-        IR_getDepositPrice("","");
+
+    $('#wardNameDropdown').on('change', '#wname', function () {
+        IR_getDepositPrice("", "");
     });
 
 
@@ -261,7 +261,7 @@
             var Diso = $('#dis_cd').val();
             var Dis = Diso;
             var WardType = $('#WardType').val();
-            
+
             var wnamecode = $('#wname').val();
             var array_dis = wnamecode.split("|");
             var wnamecode = array_dis[0];
@@ -326,35 +326,34 @@
         var EliSource = $('#EliSource').val();
         var EliTy = $('#EliTy').val();
         var wnamecode, WardType;
-        
-        if(wardClass==="" || wardClass==null || wardName==="" || wardName==null){
-              
+
+        if (wardClass === "" || wardClass == null || wardName === "" || wardName == null) {
+
             wnamecode = $('#wname').val();
             var array_dis = wnamecode.split("|");
             wnamecode = array_dis[0];
             WardType = $('#WardType').val();
 
-            if(wnamecode==="" || wnamecode==null || WardType==="" || WardType==null){
+            if (wnamecode === "" || wnamecode == null || WardType === "" || WardType == null) {
                 console.log("Incomlete data to get deposit");
-                canProceed=false;
+                canProceed = false;
             }
+        } else {
+            wnamecode = wardName;
+            WardType = wardClass;
         }
-        else{
-            wnamecode=wardName;
-            WardType=wardClass;
-        }
-        
-        if(!canProceed){
+
+        if (!canProceed) {
             return false;
         }
         console.log("Ajax to get deposit");
         $.ajax({
             type: "POST",
             url: "PMS/controller/chargesDeposit.jsp",
-            data: {'WardType': WardType, 'EliSource': EliSource, 'EliTy': EliTy, 'wnamecode':wnamecode},
+            data: {'WardType': WardType, 'EliSource': EliSource, 'EliTy': EliTy, 'wnamecode': wnamecode},
             timeout: 10000,
             success: function (list) {
-                 console.log(list);
+                console.log(list);
                 $('#Deposit').val(list);
 
             },
@@ -363,27 +362,42 @@
             }
         });
     }
-    
-    
+
+
     //-------------- choose available bed ----------------------
-    $('#divShowBedTable').on('click', '.clickable_tr', function(){
+    $('#divShowBedTable').on('click', '.clickable_tr', function () {
         var arrData = $(this).closest('tr').find('#hiddenAB').val().split("|");
         console.log(arrData);
-        var strDis = arrData[0]+"|"+arrData[1]+"|"+arrData[2]+"|"+arrData[3];
+        var strDis = arrData[0] + "|" + arrData[1] + "|" + arrData[2] + "|" + arrData[3];
         $('#DisWard').val(strDis);
         $('#dis_cd').val(arrData[0]);
         $('#sub_cd').val(arrData[2]);
-       
+
         IR_getWardClass(arrData[0], arrData[4]);
-        var strWName = arrData[6]+"|"+arrData[7];
+        var strWName = arrData[6] + "|" + arrData[7];
         IR_getWardName(arrData[4], strWName);
         IR_getDepositPrice(arrData[4], arrData[6]);
         $('#BedIDReg').val(arrData[8]);
-                        
-                        
+        var pageNow = $('#pageNow').val();
+        if (pageNow === "PT") {
+            var subO = $("#sub_cd").val();
+
+            var Diso = $('#dis_cd').val();
+            var wname = $('#wname').val();
+            var array_dis = wname.split("|");
+            var wname = array_dis[0];
+            var WardType = $('#WardType').val();
+
+            $('#wardnew').val(wname);
+            $('#classnew').val(WardType);
+            //$('#ratenew').val();
+           
+        }
+
+
     });
-    
-    
+
+
     // show list of available bed
     $('#btnShowBed').on('click', function () {
         createScreenLoading();
@@ -401,5 +415,5 @@
             }
         });
     });
-    
+
 </script>

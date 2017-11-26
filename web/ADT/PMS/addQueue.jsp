@@ -42,7 +42,7 @@
     //  Boolean operation = false;
 //    ArrayList<ArrayList<String>> resultCheck;
     String sql = "insert into pms_patient_queue( queue_type,queue_name,queue_no,user_id,patient_category,status,created_by,created_date,hfc_cd,episode_date,pmi_no, discipline_cd, subdiscipline_cd) values"
-            + "('" + code + "','" + name + "','" + desc + "','" + userid + "','" + category + "','" + status + "','" + createdBy + "',NOW(),'" + hfc + "',NOW(),'" + pmino + "', '"+dis+"', '"+sub+"' );";
+            + "('" + code + "','" + name + "','" + desc + "', NULL,'" + category + "','" + status + "','" + createdBy + "',NOW(),'" + hfc + "',NOW(),'" + pmino + "', '"+dis+"', '"+sub+"' );";
 
     boolean isInsert = rmic.setQuerySQL(conn.HOST, conn.PORT, sql);
     if (isInsert == true) {

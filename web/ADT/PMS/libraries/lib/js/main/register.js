@@ -277,7 +277,7 @@ $('#registerBed').click(function () {
                                                     console.log(l2);
                                                     $body.removeClass("loading");
                                                     if ($.trim(l2) === "Success") {
-                                                        bootbox.alert("Patient has been added to queue successfully.");
+                                                        bootbox.alert("Patient has been added to ward and queue successfully.");
                                                     } else if ($.trim(l2) === "Failed") {
                                                         bootbox.alert("There something error with the query of add patient to queue");
                                                     }

@@ -41,14 +41,32 @@
     wstatus = request.getParameter("status");
     RMIConnector rmic = new RMIConnector();
     Conn conn = new Conn();
+    
+    //check the new ward name, ward name must be unique in a discipline;
+    String sqlCheckName = "SELECT ward_id from wis_ward_name WHERE ward_name = '" + wwardname + "' AND hfc_cd='"+hfc+"' AND discipline_cd='"+wdiscipline+"'  LIMIT 1 ";
+    ArrayList<ArrayList<String>> duplicateName = conn.getData(sqlCheckName);
+    
+    //get the original ward name before updating
+    String oriWardName ="";
+    String getOriWardName = "Select ward_name from wis_ward_name WHERE ward_class_code = '" + wclass + "' AND hfc_cd = '" + hfc + "' AND ward_id = '" + wid + "';";
+    
+    ArrayList<ArrayList<String>> arrOriName = conn.getData(getOriWardName);
+    oriWardName = arrOriName.get(0).get(0);
 
+    
+    if(duplicateName.size()>0 && !oriWardName.equals(wwardname)){
+        out.print("name");
+        return; //abort process...
+    }
+      
+   
     String sqlUpdate = "UPDATE wis_ward_name SET ward_name = '" + wwardname + "',citizen_room_cost = '" + wcitizenrates + "',"
             + " citizen_deposit = '" + wcitizendeposit + "',citizen_discount = '" + wcitizendiscount + "', non_citizen_room_cost = '" + wnoncitizenrates + "',"
             + " non_citizen_deposit = '" + wnoncitizendeposit + "', non_citizen_discount = '" + wnoncitizendiscount + "',"
             + " pensioner_deposit = '" + wpensionerdeposit + "',pensioner_discount = '" + wpensionerdiscount + "', pensioner_room_cost = '" + wpensionerrates + "',"
             + "no_of_bed = '" + wnobed + "', attach_bathroom_tiolet = '" + wbathroom + "',attach_toilet = '" + wtoilet + "',include_television = '" + wtelevision + "',"
             + "include_telephone = '" + wtelephone + "', ward_status = '" + wstatus + "',discipline_cd = '" + wdiscipline + "',"
-            + "hfc_cd = '" + hfc + "',subdiscipline_cd = '" + sub + "', created_by = '" + createdBy + "' WHERE ward_class_code = '" + wclass + "' AND hfc_cd = '" + hfc + "' AND ward_id = '" + wid + "' ";
+            + "hfc_cd = '" + hfc + "',subdiscipline_cd = '" + sub + "', created_by = '" + createdBy + "' WHERE ward_class_code = '" + wclass + "' AND hfc_cd = '" + hfc + "' AND ward_id = '" + wid + "';";
 
          
             
@@ -56,9 +74,25 @@
     
     if (isUpdate == true) {
         out.print("Success");
+        boolean qProceed = false;
+        String qStatus = wstatus.equalsIgnoreCase("1")? "Active":"Inactive";
+        
+        // update pms_queue_name
+        String sqlUpdateQ = "update pms_queue_name set queue_name='"+wwardname+"', quota ='"+wnobed+"',status = '"+qStatus+"',created_by ='"+createdBy+"',created_date = NOW(),subdiscipline_code='"+sub+"' "
+                + "where queue_type = 'FY' and queue_name='"+oriWardName+"' and hfc_cd='"+hfc+"' and discipline_code='"+dis+"'";
+        qProceed=rmic.setQuerySQL(conn.HOST, conn.PORT, sqlUpdateQ);
+        
+        //update pms_queue_list
+        if(qProceed){
+            String sqlUpdateQL="update pms_queue_list set queue_name='"+wwardname+"' ,sub_discipline_cd ='" + sub + "',status = '" + qStatus + "',created_by ='" + createdBy + "',created_date=NOW() "
+                    + "where queue_type = 'FY' and queue_name='" + oriWardName + "' and hfc_cd='" + hfc + "' and discipline_cd='" + dis + "'";
+            rmic.setQuerySQL(conn.HOST, conn.PORT, sqlUpdateQL);
+        }
+        
+        
     } else {
-        //out.print("Failed");
-        out.print(sqlUpdate);
+        out.print("Failed");
+//        out.print(sqlUpdate);
     }
 
 %>
