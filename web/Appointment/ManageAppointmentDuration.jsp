@@ -26,7 +26,7 @@
     String name = (String) session.getAttribute("USER_NAME");
     String title = (String) session.getAttribute("OCCUPATION_CODE");
     String discipline = (String) session.getAttribute("DISCIPLINE_CODE");
-    String subdiscipline = (String) session.getAttribute("SUBDISCIPLINE_CODE");
+    String subdiscipline = (String) session.getAttribute("SUB_DISCIPLINE_CODE");
 
     String sqlTimeAppoinment = "SELECT start_time, consultation_period FROM pms_appointment_time pat WHERE hfc_cd = '"+hfc+"' AND discipline_cd = '"+discipline+"' AND subdiscipline_cd = '"+subdiscipline+"' ORDER BY start_time ASC";
     ArrayList<ArrayList<String>> data_time_appointment = Conn.getData(sqlTimeAppoinment);

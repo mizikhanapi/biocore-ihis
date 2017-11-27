@@ -44,29 +44,29 @@
                         + "FROM pms_patient_biodata WHERE `PATIENT_NAME` = '"+data_check_user.get(0).get(3)+"';";
                 ArrayList<ArrayList<String>> data_patient_detail = Conn.getData(sql_patient_detail);
 
-                String sql_race_code = "SELECT `Description` FROM adm_lookup_detail WHERE `Detail_Reference_code` = '" + data_patient_detail.get(0).get(2) + "' AND `Master_Reference_code` = '0004' AND hfc_cd = '99_iHIS_99';";
-                String sql_nationality = "SELECT `Description` FROM adm_lookup_detail WHERE `Detail_Reference_code` = '" + data_patient_detail.get(0).get(3) + "' AND `Master_Reference_code` = '0011' AND hfc_cd = '99_iHIS_99';";
-                String sql_religion = "SELECT `Description` FROM adm_lookup_detail WHERE `Detail_Reference_code` = '" + data_patient_detail.get(0).get(4) + "' AND `Master_Reference_code` = '0005' AND hfc_cd = '99_iHIS_99';";
-                String sql_blood_type = "SELECT `Description` FROM adm_lookup_detail WHERE `Detail_Reference_code` = '" + data_patient_detail.get(0).get(5) + "' AND `Master_Reference_code` = '0074' AND hfc_cd = '99_iHIS_99';";
-                String sql_district = "SELECT `Description` FROM adm_lookup_detail WHERE `Detail_Reference_code` = '" + data_patient_detail.get(0).get(7) + "' AND `Master_Reference_code` = '0078' AND hfc_cd = '99_iHIS_99';";
-                String sql_town = "SELECT `Description` FROM adm_lookup_detail WHERE `Detail_Reference_code` = '" + data_patient_detail.get(0).get(8) + "' AND `Master_Reference_code` = '0003' AND hfc_cd = '99_iHIS_99';";
-                String sql_state = "SELECT `Description` FROM adm_lookup_detail WHERE `Detail_Reference_code` = '" + data_patient_detail.get(0).get(10) + "' AND `Master_Reference_code` = '0002' AND hfc_cd = '99_iHIS_99';";
-                String sql_country = "SELECT `Description` FROM adm_lookup_detail WHERE `Detail_Reference_code` = '" + data_patient_detail.get(0).get(0) + "' AND `Master_Reference_code` = '0001' AND hfc_cd = '99_iHIS_99';";
-
-//                ArrayList<ArrayList<String>> data_race = Conn.getData(sql_race_code);
-//                ArrayList<ArrayList<String>> data_nationality = Conn.getData(sql_nationality);
-//                ArrayList<ArrayList<String>> data_religion = Conn.getData(sql_religion);
-//                ArrayList<ArrayList<String>> data_blood_type = Conn.getData(sql_blood_type);
-//                ArrayList<ArrayList<String>> data_district = Conn.getData(sql_district);
-//                ArrayList<ArrayList<String>> data_town = Conn.getData(sql_town);
-//                ArrayList<ArrayList<String>> data_state = Conn.getData(sql_state);
-//                ArrayList<ArrayList<String>> data_country = Conn.getData(sql_country);
-//                String patient_detail = data_patient_detail.get(0).get(0) + "-|-" + data_patient_detail.get(0).get(1)
-//                        + "-|-" + data_race.get(0).get(0) + "-|-" +data_nationality.get(0).get(0)  + "-|-" + data_religion.get(0).get(0)
-//                        + "-|-" + data_blood_type.get(0).get(0)  + "-|-" + data_district.get(0).get(0) + "-|-" + data_town.get(0).get(0)
-//                        + "-|-" + data_state.get(0).get(0)  + "-|-" + data_country.get(0).get(0) + "-|-" + data_patient_detail.get(0).get(6)
-//                        + "-|-" + data_patient_detail.get(0).get(9)  + "-|-" + data_patient_detail.get(0).get(12);
-//                
+//                String sql_race_code = "SELECT `Description` FROM adm_lookup_detail WHERE `Detail_Reference_code` = '" + data_patient_detail.get(0).get(2) + "' AND `Master_Reference_code` = '0004' AND hfc_cd = '99_iHIS_99';";
+//                String sql_nationality = "SELECT `Description` FROM adm_lookup_detail WHERE `Detail_Reference_code` = '" + data_patient_detail.get(0).get(3) + "' AND `Master_Reference_code` = '0011' AND hfc_cd = '99_iHIS_99';";
+//                String sql_religion = "SELECT `Description` FROM adm_lookup_detail WHERE `Detail_Reference_code` = '" + data_patient_detail.get(0).get(4) + "' AND `Master_Reference_code` = '0005' AND hfc_cd = '99_iHIS_99';";
+//                String sql_blood_type = "SELECT `Description` FROM adm_lookup_detail WHERE `Detail_Reference_code` = '" + data_patient_detail.get(0).get(5) + "' AND `Master_Reference_code` = '0074' AND hfc_cd = '99_iHIS_99';";
+//                String sql_district = "SELECT `Description` FROM adm_lookup_detail WHERE `Detail_Reference_code` = '" + data_patient_detail.get(0).get(7) + "' AND `Master_Reference_code` = '0078' AND hfc_cd = '99_iHIS_99';";
+//                String sql_town = "SELECT `Description` FROM adm_lookup_detail WHERE `Detail_Reference_code` = '" + data_patient_detail.get(0).get(8) + "' AND `Master_Reference_code` = '0003' AND hfc_cd = '99_iHIS_99';";
+//                String sql_state = "SELECT `Description` FROM adm_lookup_detail WHERE `Detail_Reference_code` = '" + data_patient_detail.get(0).get(10) + "' AND `Master_Reference_code` = '0002' AND hfc_cd = '99_iHIS_99';";
+//                String sql_country = "SELECT `Description` FROM adm_lookup_detail WHERE `Detail_Reference_code` = '" + data_patient_detail.get(0).get(0) + "' AND `Master_Reference_code` = '0001' AND hfc_cd = '99_iHIS_99';";
+//
+////                ArrayList<ArrayList<String>> data_race = Conn.getData(sql_race_code);
+////                ArrayList<ArrayList<String>> data_nationality = Conn.getData(sql_nationality);
+////                ArrayList<ArrayList<String>> data_religion = Conn.getData(sql_religion);
+////                ArrayList<ArrayList<String>> data_blood_type = Conn.getData(sql_blood_type);
+////                ArrayList<ArrayList<String>> data_district = Conn.getData(sql_district);
+////                ArrayList<ArrayList<String>> data_town = Conn.getData(sql_town);
+////                ArrayList<ArrayList<String>> data_state = Conn.getData(sql_state);
+////                ArrayList<ArrayList<String>> data_country = Conn.getData(sql_country);
+////                String patient_detail = data_patient_detail.get(0).get(0) + "-|-" + data_patient_detail.get(0).get(1)
+////                        + "-|-" + data_race.get(0).get(0) + "-|-" +data_nationality.get(0).get(0)  + "-|-" + data_religion.get(0).get(0)
+////                        + "-|-" + data_blood_type.get(0).get(0)  + "-|-" + data_district.get(0).get(0) + "-|-" + data_town.get(0).get(0)
+////                        + "-|-" + data_state.get(0).get(0)  + "-|-" + data_country.get(0).get(0) + "-|-" + data_patient_detail.get(0).get(6)
+////                        + "-|-" + data_patient_detail.get(0).get(9)  + "-|-" + data_patient_detail.get(0).get(12);
+////                
                 session.setAttribute("PATIENT_DETAIL", data_patient_detail.get(0));
                 session.setAttribute("ID_NO", data_patient_detail.get(0).get(0));
 

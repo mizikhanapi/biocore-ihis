@@ -49,7 +49,6 @@ $(document).ready(function () {
             typeAppointment: _typeAppointment,
             HfcCode: _HFCCode
         };
-        console.log(data);
 
         $.ajax({
             url: "patientCheckAppointmentAjax.jsp",

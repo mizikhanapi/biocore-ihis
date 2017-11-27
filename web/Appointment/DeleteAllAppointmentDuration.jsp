@@ -12,7 +12,7 @@
 
     String hfc = (String) session.getAttribute("HEALTH_FACILITY_CODE");
     String discipline = (String) session.getAttribute("DISCIPLINE_CODE");
-    String subdiscipline = (String) session.getAttribute("SUBDISCIPLINE_CODE");
+    String subdiscipline = (String) session.getAttribute("SUB_DISCIPLINE_CODE");
 
 
         RMIConnector rmic = new RMIConnector();

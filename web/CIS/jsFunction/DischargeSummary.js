@@ -51,7 +51,6 @@ $(document).ready(function () {
            dcgMsg += convertDCG(obj,dischargeSummary);
 
         }
-        console.log(dcgMsg);
   
         var submitConfirm = confirm('Confirm All Order');
         if (submitConfirm === true) {
@@ -69,7 +68,7 @@ $(document).ready(function () {
                 episodedate: episodeDate,
                 status: "1"
             }
-          console.log(fullmsg);
+
             sendOrder(data, "-");
         } else {
             return false;

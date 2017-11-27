@@ -4,8 +4,23 @@
  * and open the template in the editor.
  */
 $(document).ready(function(){
-     $('#startDateLeave').datepicker({dateFormat:'dd/mm/yy'});
-       $('#endDateLeave').datepicker({dateFormat:'dd/mm/yy'});
+    initDateStartEnd("startDateLeave","endDateLeave","dd/mm/yy");
+//     $('#startDateLeave').datepicker({
+//            dateFormat: "dd/mm/yy",
+//            minDate: 0,
+//            onSelect: function (date) {
+//                var dt2 = $('#endDateLeave');
+//                var startDate = $(this).datepicker('getDate');
+//                var minDate = $(this).datepicker('getDate');
+//                dt2.datepicker('setDate', minDate);
+//                startDate.setDate(startDate.getDate() + 30);
+//                //sets dt2 maxDate to the last day of 30 days window
+//                dt2.datepicker('option', 'maxDate', startDate);
+//                dt2.datepicker('option', 'minDate', minDate);
+//                $(this).datepicker('option', 'minDate', minDate);
+//            }
+//        });
+//       $('#endDateLeave').datepicker({dateFormat:'dd/mm/yy'});
         $('#applyLeave').click(function(e){
             e.preventDefault(e);
             
@@ -19,8 +34,7 @@ $(document).ready(function(){
                endDate:endDateLeave,
                desc:$('#descLeave').val()
             };
-            
-            console.log(dataLeave);
+
             $.ajax({
                 url:'addLeaveAdminAjax.jsp',
                 method:'post',

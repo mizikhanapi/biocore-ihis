@@ -91,7 +91,7 @@
 
 
                                         <div class="col-md-12">
-                                            <label class="col-md-12" for="textinput">Start Time</label>
+                                            <label class="col-md-12" for="textinput">Start Working Hour</label>
                                             <input class="form-control input-lg" type="text"  id="t_MANAGE_Appointment_START_TIME" >
                                            
                                         </div>
@@ -101,7 +101,7 @@
 
 
                                         <div class="col-md-12">
-                                            <label class="col-md-12" for="textinput">END Time</label>
+                                            <label class="col-md-12" for="textinput">End Working Hour</label>
                                             <input class="form-control input-lg" type="text"  id="t_MANAGE_Appointment_END_TIME" >
                                            
                                         </div>
@@ -110,7 +110,7 @@
                                     <div class="col-md-4">
 
                                         <div class="col-md-12">
-                                            <label class="col-md-12" for="textinput">Duration</label>
+                                            <label class="col-md-12" for="textinput">How Long</label>
                                             <input class="form-control input-lg" type="number"  id="t_MANAGE_Appointment_DURATION" >
 
 

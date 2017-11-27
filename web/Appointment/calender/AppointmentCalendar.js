@@ -259,7 +259,7 @@ function initilizeAppointmentCalendar(_hfc_cd_CODE, _discipline_CODE, _subdiscip
             if (click_date < current_date) {
                 alert("You cannot make appointment before today date");
             } else {
-                alert("after today");
+               
 
                 var view = $('#AppointmentCalender').fullCalendar('getView');
                 if (view.name === 'month') {
@@ -281,7 +281,7 @@ function initilizeAppointmentCalendar(_hfc_cd_CODE, _discipline_CODE, _subdiscip
                     var date2 = date.format().substr(0, 10);
                     var datAR = date2.split("-");
                     var newDate = datAR[2] + "-" + datAR[1] + "-" + datAR[0];
-                    console.log(selectedTime);
+          
                     $("#t_ADD_Appoinment_Date").val(newDate);
                     $("#t_ADD_Appoinment_Time").val(selectedTime);
                 }

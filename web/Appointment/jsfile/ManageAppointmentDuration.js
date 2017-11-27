@@ -74,6 +74,7 @@ $(document).ready(function () {
             data: {manageAppointmentData: ""},
             timeout: 3000,
             success: function (response) {
+            
                 console.log("fromm check duration " + response.trim());
                 if (response.trim() === '[HAVE-DATA]') {
                     var r = confirm("The appointment duration already added. Proceed if you want to overwrite the appointment duration");
@@ -122,7 +123,7 @@ $(document).ready(function () {
                                     addDuration(manageAppointmentData);
                                 }
                                   $("#div_VIEW_DURATION_APPOINMENT").load("main/ManageAppointment.jsp #div_VIEW_DURATION_APPOINMENT");
-                                  location.reload();
+                                  //location.reload();
                             }
                         })
 

@@ -34,8 +34,8 @@
             <label class="control-label col-sm-2" for="hfc">Health Facility Name </label>
             <div class="col-sm-10"> 
 
-
-                <input  class="form-control" value="<%=hfc%>" type="text" id="hfcNameL" readonly>
+                <input  class="form-control" value="<%=hfcName%>" type="text" id="hfcNameFull" readonly>
+                <input  class="form-control hidden" value="<%=hfc%>" type="text" id="hfcNameL" readonly>
 
 
             </div>
@@ -62,7 +62,7 @@
             <label class="control-label col-sm-2" for="endLeave">End Leave </label>
             <div class="col-sm-10">
 
-                <input  class="form-control" name="end_leave" value="" type="text" id="endDateLeave" required>
+                <input  class="form-control" name="end_leave" value="" type="text" id="endDateLeave" disabled="" required>
 
             </div>
         </div>
