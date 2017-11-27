@@ -58,7 +58,7 @@
             + "OR (q.patient_category = '003' "
             + "AND q.status != '1' "
             + "AND q.status != '6' "
-            + "AND q.user_id='" + doctor_id + "')  "
+            + "AND q.queue_name IN (SELECT queue_name FROM pms_queue_list WHERE user_id = '" + doctor_id + "' AND hfc_cd = '" + hfc + "' AND discipline_cd = '" + discipline + "') ) "
             + "ORDER BY q.episode_date DESC;";
     ArrayList<ArrayList<String>> dataQueue;
     dataQueue = conn.getData(sqlV4);

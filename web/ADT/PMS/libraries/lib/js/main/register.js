@@ -277,25 +277,25 @@ $('#registerBed').click(function () {
                                                     console.log(l2);
                                                     $body.removeClass("loading");
                                                     if ($.trim(l2) === "Success") {
-                                                        bootbox.alert("Patient has been added to ward and queue successfully.");
+                                                        bootbox.alert("Patient has been added to ward and queue successfully.", function () {
+                                                            IR_assignDoctor(wnamequeue, Dis, sub);
+                                                        });
                                                     } else if ($.trim(l2) === "Failed") {
                                                         bootbox.alert("There something error with the query of add patient to queue");
-                                                    }
-                                                    else{
+                                                    } else {
                                                         bootbox.alert(l2);
                                                     }
                                                 }, error: function () {
                                                     bootbox.alert("There is an error!");
                                                 }
                                             });
-                                                                                       
+
                                         } else if ($.trim(list) === "already") {
                                             bootbox.alert("Patient is already registered. Duplicate registration.");
-                                            
+
                                         } else if ($.trim(list) === "false") {
                                             bootbox.alert("There something error with the query of register the inpatient");
-                                        }
-                                        else{
+                                        } else {
                                             bootbox.alert(list);
                                         }
 
@@ -311,8 +311,7 @@ $('#registerBed').click(function () {
                                 });
                             } else if ($.trim(l) === "Failed") {
                                 bootbox.alert("Cannot register the patient because the queue is not exists");
-                            }
-                            else{
+                            } else {
                                 bootbox.alert(l);
                             }
 
@@ -336,6 +335,36 @@ $('#btnclear').click(function () {
     $('#myForm2')[0].reset();
     $('#bedtest').html('');
 });
+
+
+//----------assign doctor to ward
+function IR_assignDoctor(qname, dis, sub) {
+
+    bootbox.confirm({
+        message: "Do you want to assign a doctor to the ward " + qname + "?",
+        buttons: {
+            confirm: {
+                label: 'Yes',
+                className: 'btn-success'
+            },
+            cancel: {
+                label: 'Skip',
+                className: 'btn-default'
+            }
+        },
+        callback: function (result) {
+            if (result === true) {
+                $('#modal_assignDoctor').modal('show');
+                $('#assD_qname').val(qname);
+                $('#assD_dis').val(dis);
+                $('#assD_sub').val(sub);
+            }
+        }
+    });
+
+
+}
+
 //
 //
 //    //load appointment modal into the registration page

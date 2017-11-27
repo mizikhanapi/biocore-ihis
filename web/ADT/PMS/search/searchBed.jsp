@@ -16,6 +16,9 @@
     String EliSrc = request.getParameter("EliSrc");
     String EliSource = request.getParameter("EliSource");
 
+    String url = request.getRequestURL().toString();
+    String baseURL = url.substring(0, url.length() - request.getRequestURI().length()) + request.getContextPath() + "/";
+
 
 %>
 <input type="hidden" value="<%=hfc%>" id="Rhfc">
@@ -29,6 +32,7 @@
     <div class="col-md-12">
         <span class="pull-right">
             <button class="btn btn-primary" id="btnShowBed"><i class="fa fa-eye "></i> Show available bed</button>
+            <!--<button class="btn btn-primary" id="btnAssDTest"><i class="fa fa-eye "></i> Test</button>-->
         </span>
     </div>
 
@@ -128,7 +132,57 @@
 </div>
 <!-- Add Modal End -->  
 
+<!-- Add Modal Start -->
+<div class="modal fade" id="modal_assignDoctor" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><i class="fa fa-times fa-lg"></i></button>
+                <h3 class="modal-title"><i class="fa fa-user-md"></i> Assign Doctor to ward</h3>
+            </div>
+            <div class="modal-body">
+
+                <!-- content goes here -->
+                <form id="assD_form" class="form-horizontal">
+
+                    <input type="hidden" id="assD_qname">
+                    <input type="hidden" id="assD_dis">
+                    <input type="hidden" id="assD_sub">
+
+                    <!-- Text input-->
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="textinput">Doctor</label>
+                        <div class="col-md-6" id="depositResult">
+                            <input id="assD_doctor" name="textinput" type="text" placeholder="Search doctor" class="form-control input-md flexdatalist"
+                                   data-search-by-word="true"
+                                   data-selection-required="true">
+                        </div>
+                    </div>
+                </form>
+
+                <!-- content goes here -->
+            </div>  
+            <div class="modal-footer">
+                <div class="btn-group btn-group-justified" role="group" aria-label="group button">
+                    <div class="btn-group" role="group">
+                        <button type="submit" class="btn btn-success btn-block btn-lg" role="button" id="assD_btnAssign">Assign</button>
+                    </div>
+                    <div class="btn-group" role="group">
+                        <button type="reset" class="btn btn-default btn-block btn-lg" data-dismiss="modal" role="button" >Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </div>        
+    </div>
+</div>
+<!-- Add Modal End -->  
+
 <script>
+
+    $(function () {
+        SB_initFlexSearch("#assD_doctor", "<%=baseURL + "general/search/user.jsp"%>", "");
+    });
+
     //----------------------- search bed--------------------------------------
     $("#DisWard").on('keyup', function () { // everytime keyup event
         var input = $(this).val(); // We take the input value
@@ -391,7 +445,7 @@
             $('#wardnew').val(wname);
             $('#classnew').val(WardType);
             //$('#ratenew').val();
-           
+
         }
 
 
@@ -414,6 +468,72 @@
                 bootbox.alert("Oops! " + errorThrown);
             }
         });
+    });
+
+    //init flexdata search
+    //---------------------- init flex datalist
+    function SB_initFlexSearch(elemID, url, value) {
+        $(elemID).flexdatalist('destroy');
+        $(elemID).val(value).flexdatalist({
+            minLength: 1,
+            searchIn: 'name',
+            searchDelay: 2000,
+            selectionRequired: true,
+            url: url,
+            visibleProperties: ['name'],
+            cache: true,
+            valueProperty: 'value'
+        });
+    }
+
+    $('#assD_btnAssign').on('click', function () {
+        var user_id = $('#assD_doctor').val();
+        if(user_id==="" || user_id==null){
+            bootbox.alert("Please choose existing doctor!");
+        }
+        else{
+            var qname = $('#assD_qname').val();
+            var dis = $('#assD_dis').val();
+            var sub = $('#assD_sub').val();
+            var createdBy = $("#Rid").val();
+            var nowDate = new Date();
+            var hfc = $("#Rhfc").val();
+            
+            var data={
+                staff: user_id,
+                ty: "FY",
+                nm: qname,
+                startDate: "01/01/"+nowDate.getFullYear(),
+                endDate: "31/12/9999",
+                createdBy: createdBy,
+                hfc: hfc,
+                dis: dis,
+                sub: sub,
+                stat: "Active"
+            };
+            createScreenLoading();
+            $.ajax({
+                type: 'POST',
+                url: "<%=baseURL + "QMS/maintain/saveQueueList.jsp"%>",
+                data: data,
+                timeout: 60000,
+                success: function (data, textStatus, jqXHR) {
+                        if(data.trim()==="true"){
+                            bootbox.alert("Doctor is assigned to ward.");
+                            $('#modal_assignDoctor').modal('hide');
+                        }
+                        else{
+                            bootbox.alert("Failed to assigned doctor. Try again later!");
+                        }
+                    },
+                error: function (jqXHR, textStatus, errorThrown) {
+                        alert("Oops! "+errorThrown);
+                    },
+                complete: function (jqXHR, textStatus ) {
+                        destroyScreenLoading();
+                }
+            });
+        }
     });
 
 </script>
