@@ -26,15 +26,15 @@
             //      7           8       9           10          11          12          13              14
             + " DRUG_DOSAGE,ORDER_OUM,DURATION,ORDER_STATUS,QTY_ORDERED,QTY_SUPPLIED,SUPPLIED_OUM,QTY_DISPENSED,"
             //      15                  16                           17                 18                      19
-            + " DISPENSE_OUM,pis_order_detail.STATUS,pis_order_detail.DURATIONT,pis_mdc2.D_STOCK_QTY,pis_mdc2.D_SELL_PRICE,"
+            + " DISPENSE_OUM,pis_order_detail.STATUS,IFNULL(pis_order_detail.DURATIONT,''),pis_mdc2.D_STOCK_QTY,pis_mdc2.D_SELL_PRICE,"
             //                                                                       20 
             + " CASE ORDER_STATUS WHEN '0' THEN 'New' WHEN '1' THEN 'Partial' WHEN '2' THEN 'Complete Partial' WHEN '3' THEN 'Full Complete' WHEN '4' THEN 'Full' END  AS ORDER_STATUSCON,"
             //          21                  22                  23                      24                      25                  26                           27
             + " pis_mdc2.UD_ATC_CODE,pis_mdc2.UD_ATC_CODE,pis_mdc2.D_TRADE_NAME,pis_mdc2.D_STRENGTH,lForm.Master_Reference_code,lForm.Detail_Reference_code,lForm.Description,"
             //                28                     29                         30                   31                              32                     33
             + " lRoute.Master_Reference_code,lRoute.Detail_Reference_code,lRoute.Description,lFreq.frequency_code,lFreq.frequency_code,lFreq.frequency_desc, "
-            //          34              35                36                  37                
-            + " pis_mdc2.D_QTY,lDose.Description,pis_mdc2.D_DURATION,lDura.Description "
+            //          34              35                36                  37                38
+            + " pis_mdc2.D_QTY,lDose.Description,pis_mdc2.D_DURATION,lDura.Description,IFNULL(pis_order_detail.COMMENT,'-') "
             + " FROM pis_order_detail "
             + " LEFT JOIN pis_mdc2 ON (pis_order_detail.DRUG_ITEM_CODE = pis_mdc2.UD_MDC_CODE)  "
             // + " LEFT JOIN pis_atc ON (pis_mdc2.UD_ATC_CODE = pis_atc.UD_ATC_Code)  "
@@ -86,6 +86,7 @@
     <th style="display: none;text-align: center;">MDC Frequency Desc</th>
     <th style="display: none;text-align: center;">MDC Dosage</th>
     <th style="display: none;text-align: center;">MDC Duration</th>
+    <th style="text-align: left;">Comment</th>
 </thead>
 <tbody>
     <%        for (int i = 0; i < dataOrderList.size(); i++) {
@@ -173,6 +174,7 @@
 <td align="center" style="display:none;"><%= dataOrderList.get(i).get(33)%></td> <!-- MDC Frequency Desc -->
 <td align="center" style="display:none;"><%= dataOrderList.get(i).get(34)%><%= dataOrderList.get(i).get(35)%></td> <!-- MDC Dosage -->
 <td align="center" style="display:none;"><%= dataOrderList.get(i).get(36)%><%= dataOrderList.get(i).get(37)%></td> <!-- MDC Duration -->
+<td id="updateOrderDetailsTButton" data-status="pagado" data-toggle="modal" data-id="1" data-target="#updateOrder" align="center"><%= dataOrderList.get(i).get(38)%></td> <!-- Comment -->
 </tr>
 
 

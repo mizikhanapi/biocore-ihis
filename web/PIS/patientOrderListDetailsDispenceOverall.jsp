@@ -44,6 +44,8 @@
     String DISPENSED_UOM = "-";
     int STATUS = 1;
 
+    String COMMENT = request.getParameter("drugComment"); // Data 8
+
     QTY_DISPENSED = "0";
 
     RMIConnector rmic = new RMIConnector();
@@ -124,7 +126,7 @@
         // Order Table Part Start //
         // Update Master Order
         String sqlUpdateOrderDetailsData = "UPDATE pis_order_detail SET QTY_SUPPLIED = '" + QTY_SUPPLIED + "',QTY_DISPENSED = '" + QTY_DISPENSED + "',"
-                + "ORDER_STATUS = '" + ORDER_STATUS + "' WHERE ORDER_NO = '" + ORDER_NO + "' AND DRUG_ITEM_CODE = '" + DRUG_ITEM_CODE + "' ";
+                + "ORDER_STATUS = '" + ORDER_STATUS + "',COMMENT = '" + COMMENT + "'  WHERE ORDER_NO = '" + ORDER_NO + "' AND DRUG_ITEM_CODE = '" + DRUG_ITEM_CODE + "' ";
         boolean isUpdateOrderDetailsData = rmic.setQuerySQL(conn.HOST, conn.PORT, sqlUpdateOrderDetailsData);
 
         if (isUpdateOrderDetailsData == true) {

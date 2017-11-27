@@ -70,7 +70,7 @@ $(document).ready(function () {
                 status: "1"
             }
           console.log(fullmsg);
-            //sendOrder(data, "-");
+            sendOrder(data, "-");
         } else {
             return false;
         }
