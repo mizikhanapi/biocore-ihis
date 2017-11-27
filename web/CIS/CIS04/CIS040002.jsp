@@ -149,9 +149,16 @@
                                             <h4 class="modal-title modalTextLabel">Dosage</h4>
                                         </div>
                                     </div>
-                                    <div class="col-xs-2 col-sm-2 col-md-2">
+                                    <div class="col-xs-1 col-sm-1 col-md-1 " style="padding: 0px;">
                                         <div class="form-group">
-                                            <input class="form-control input-lg" type="text" name="dose" id="tCIS_DTODrugDose" placeholder="" disabled="">
+                                            <input class="form-control input-lg" type="number" name="dose" id="tCIS_DTODrugDose" step="0.01" placeholder="" >
+                                            
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-1 col-sm-1 col-md-1"  style="padding: 0px;">
+                                        <div class="form-group">
+                                            
+                                            <input class="form-control input-lg" type="text" name="dose" id="tCIS_DTODrugDoseType" placeholder="" disabled="">
                                         </div>
                                     </div>
                                     <div class="col-xs-2 col-sm-2 col-md-2">

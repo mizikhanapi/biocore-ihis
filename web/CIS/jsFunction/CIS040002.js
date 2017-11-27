@@ -16,8 +16,6 @@ $(document).ready(function(){
     $("#btnCIS_OE_DTO_UPDATE").hide();
     $("#btnCIS_OE_DTO_CANCEL").hide();
     
-
-    
     $("#btnCIS_OE_DTO_SEARCH_CLEAR").click(function (e) {
         $("#divCIS_OE_DTO_OrderSearchResult").html('');
     });
@@ -29,8 +27,6 @@ $(document).ready(function(){
     $("#CIS040002").on('hide.bs.modal', function () {
         searchInitialize("DTO", "D");
     });
-    
-
     
     $("#divCIS_OE_DTO_OrderSearchResult").on("click","#tblODTO #btnCIS_OE_DTO_SEARCH_ADD",function(e){
          e.preventDefault();
@@ -147,6 +143,7 @@ $(document).ready(function(){
         var drugStrengthUnit = $('#tCIS_DTODrugStrengthUnit').val();
         var uomCode = $('#tCIS_DTODrugStrengthUnit option:selected').text();
         var drugDose = $('#tCIS_DTODrugDose').val();
+        var drugDoseType = $('#tCIS_DTODrugDoseType').val();
         var drugDoseUnit = $('#tCIS_DTODrugDoseUnit').val();
         var drugDuration = $('#tCIS_DTODrugDuration').val();
         var drugDurationUnit = $('#tCIS_DTODrugUnit').val();
@@ -177,7 +174,7 @@ $(document).ready(function(){
             drugFrequencyDetail: drugFrequencyDetail,
             drugStrength: drugStrength,
             drugStrengthUnit: drugStrengthUnit,
-            drugDose: drugDose,
+            drugDose: drugDose+" "+drugDoseType,
             drugDoseUnit: drugDoseUnit,
             drugDuration: drugDuration,
             drugDurationUnit: drugDurationUnit,
@@ -231,6 +228,7 @@ $(document).ready(function(){
             if (checkOrderCode(_dataDTO, obj1.drugCode)) {
                 alert("This order already been added");
             } else{
+                
                 _dataDTO.push(obj1);
                 indexDTO = _dataDTO.lastIndexOf(obj1);
                 appendOrderDTO(obj1, indexDTO);
@@ -261,6 +259,9 @@ $(document).ready(function(){
         searchingRetrieve("tCISOELIOProblemName", "tCISOELIOProblemNameLoading", "search/ResultCCNSearch.jsp", "problemCodeLIO", "search/ResultCCNSearchCode.jsp",updateDTOObj.problemName);
         searchDTO("tCISOEDTODrugName", "tCISOEDTODrugNameLoading", updateDTOObj.drugName);
         
+        var dosesplit = updateDTOObj.drugDose.split(" ");
+        
+        
         $('#tCIS_DTODrugCode').val(updateDTOObj.drugCode);
         $('#tCIS_DTODrugForm').val(updateDTOObj.drugForm);
         $('#tCIS_DTODrugRoute').val(updateDTOObj.drugRoute);
@@ -269,7 +270,8 @@ $(document).ready(function(){
         $('#tCIS_DTODrugStrength').val(updateDTOObj.drugStrength);
         $('#tCIS_DTODrugStrengthUnit').val(updateDTOObj.drugStrengthUnit);
         $("#tCIS_DTODrugFrequency").val(updateDTOObj.drugFrequencyValue);
-        $('#tCIS_DTODrugDose').val(updateDTOObj.drugDose);
+        $('#tCIS_DTODrugDose').val(dosesplit[0]);
+        $('#tCIS_DTODrugDoseType').val(dosesplit[1]);
         $('#tCIS_DTODrugDoseUnit').val(updateDTOObj.drugDoseUnit);
         $('#tCIS_DTODrugDuration').val(updateDTOObj.drugDuration);
         $('#tCIS_DTODrugUnit').val(updateDTOObj.drugDurationUnit);
@@ -303,7 +305,7 @@ $(document).ready(function(){
         updateDTOObj.drugFrequencyDetail = $("#tCIS_DTODrugFrequencyDetail").val();
         updateDTOObj.drugStrength = $("#tCIS_DTODrugStrength").val();
         updateDTOObj.drugStrengthUnit = $("#tCIS_DTODrugStrengthUnit").val();
-        updateDTOObj.drugDose = $("#tCIS_DTODrugDose").val();
+        updateDTOObj.drugDose = $("#tCIS_DTODrugDose").val()+" "+$("#tCIS_DTODrugDoseType").val();
         updateDTOObj.drugDoseUnit = $("#tCIS_DTODrugDoseUnit").val();
         updateDTOObj.drugDuration = $("#tCIS_DTODrugDuration").val();
         updateDTOObj.drugDurationUnit = $("#tCIS_DTODrugUnit").val();
@@ -401,6 +403,7 @@ $(document).ready(function(){
         $('#tCIS_DTODrugStrengthUnit').val('');
         $('#tCIS_DTODrugStrengthUnit option:selected').text('');
         $('#tCIS_DTODrugDose').val('');
+        $('#tCIS_DTODrugDoseType').val('');
         $('#tCIS_DTODrugDoseUnit').val('');
         $('#tCIS_DTODrugDuration').val('');
         $('#tCIS_DTODrugUnit').val('');
@@ -437,8 +440,8 @@ $(document).ready(function(){
                 $('#tCIS_DTODrugDuration').val(array_data[11].trim());
                 $('#tCIS_DTODrugUnit').val(array_data[12].trim());
                 
-                $('#tCIS_DTODrugDose').val(array_data[5].trim()+" "+array_data[10].trim());
-                
+                $('#tCIS_DTODrugDose').val(array_data[5].trim());
+                $('#tCIS_DTODrugDoseType').val(array_data[10].trim());
                 var dur = parseFloat(array_data[11].trim());
                 var fre = parseFloat($('#tCIS_DTODrugFrequency').val());
                 var quantity = dur*fre;
