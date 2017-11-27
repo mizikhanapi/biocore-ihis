@@ -64,12 +64,12 @@
     <th style="text-align: left;">Frequency</th>
     <th style="text-align: left;">Duration</th>
     <th style="text-align: left;">Dose</th>
-    <th style="text-align: left;">Stock Qty</th>
-    <th style="text-align: left;">Order Qty</th>
-    <th style="text-align: left;">Dispensed Qty</th>
-    <th style="text-align: left;">Qty To Dispense</th>
-    <th style="text-align: left;">Price/Unit</th>
-    <th style="text-align: left;">Total (RM)</th>
+    <th style="text-align: left;" title="Stock Qty">S.Qty</th>
+    <th style="text-align: left;" title="Order Qty">O.Qty</th>
+    <th style="text-align: left;" title="Dispensed Qty">D.Qty</th>
+    <th style="text-align: left;" title="Qty To Dispense">Qty.To.Disp</th>
+    <th style="text-align: left;" title="Qty To Dispense">P/U</th>
+    <th style="text-align: left;" >Total</th>
     <th style="text-align: left;">Status</th>
     <th style="display: none;text-align: center;">ATC Code</th>
     <th style="display: none;text-align: center;">ATC Desc</th>
