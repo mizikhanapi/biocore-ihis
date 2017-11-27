@@ -328,6 +328,18 @@
 //        }
 //    });
     // when modal close,reset all input
+    
+    $('#PIcpw').on('keyup',function(){
+        var A = ($(this).val() * 7);
+        var B = (283.75 - A);
+        var x = new Date();
+        x.setDate(x.getDate()+B);
+        console.log("A "+ A);
+        console.log("B "+ B);
+        console.log("x "+ x);
+        
+    });
+    
     $('#ong-pDetails1').on('hidden.bs.modal', function (e) {
         $(this)
                 .find("input,textarea,select")
@@ -416,7 +428,7 @@
         psh = $('#PIsurHis').val();
         
 
-        if (gravida === "" || parity === "" || edd === "" || scanEdd === "" || periodCycle === "") {
+        if (gravida === "" || parity === "" || edd === "" || periodCycle === "") {
             bootbox.alert("please insert the compulsory item to proceed");
         } else {
             var pmi_no = pmiNo;
