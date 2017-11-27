@@ -159,6 +159,15 @@
                                 </div>
                             </div>
 
+                            <!-- Text input-->
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" for="textinput">Comment</label>
+                                <div class="col-md-8">
+                                    <input id="updateOrderComment" name="updateOrderComment" type="text" placeholder="Order Comment" class="form-control input-md" maxlength="200" required>
+                                </div>
+                            </div>
+
+
                             <!-- Select input-->
                             <div class="form-group">
                                 <label class="col-md-4 control-label" for="textinput">Status</label>
@@ -388,6 +397,15 @@
                                         <label class="col-md-4 control-label" for="textinput">Order Quantity *</label>
                                         <div class="col-md-8">
                                             <input id="orderDrugInputQuantity" name="orderDrugInputQuantity" type="number" placeholder="Insert Drug Quantity" class="form-control input-md" min="1" maxlength="7">
+                                        </div>
+                                    </div>
+
+
+                                    <!-- Text input-->
+                                    <div class="form-group">
+                                        <label class="col-md-4 control-label" for="textinput">Comment</label>
+                                        <div class="col-md-8">
+                                            <input id="orderComment" name="orderComment" type="text" placeholder="Comment" class="form-control input-md" maxlength="200">
                                         </div>
                                     </div>
 

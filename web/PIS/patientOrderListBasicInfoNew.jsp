@@ -648,6 +648,7 @@
         var drugFrequency = $('#orderDrugInputFrequency').val();
         var drugDuration = $('#orderDrugInputDuration').val();
         var drugDurationT = $('#orderDrugInputDurationT').val();
+        var drugComment = $('#orderComment').val();
 
         if (drugTradeName === "" || drugTradeName === null) {
             bootbox.alert("Please Search The Drug Before Continue");
@@ -689,7 +690,8 @@
                 suppliedOUM: "-",
                 qtyDispensed: "0",
                 dispensedOUM: "-",
-                drugDurationT: drugDurationT
+                drugDurationT: drugDurationT,
+                drugComment: drugComment
             };
 
             console.log(datas);
@@ -808,6 +810,7 @@
         var updateOrderDrugStockQty = arrayData[18];
         var updateOrderDrugDispensed = row.find('td').eq(11).text();
         var updateOrderDrugStatus = row.find('td').eq(14).text();
+        var updateOrderComment = row.find('td').eq(30).text();
 
         $("#updateOrderNo").val(updateOrderNo);
         $("#updateStockQuantity").val(updateOrderDrugStockQty);
@@ -815,6 +818,7 @@
         $("#updateOrderedDrugQuantity").val(updateOrderDrugOrdered);
         $("#updateSuppliedDrugQuantity").val(updateOrderDrugSupplied);
         $("#updatestatus").val(updateOrderDrugStatus);
+        $("#updateOrderComment").val(updateOrderComment);
 
         if (updateOrderDrugDispensed === "0") {
             $("#updateDispensedDrugQuantity").val("");
@@ -838,6 +842,7 @@
         var updateSuppliedQty = $("#updateSuppliedDrugQuantity").val();
         var updateDispensedQuantity = $("#updateDispensedDrugQuantity").val();
         var updateOrderStatusStatic = $("#updatestatus").val();
+        var updateOrderCommentStatic = $("#updateOrderComment").val();
         var updateOrderPrice = row.find('td').eq(12).text();
 
 
@@ -861,6 +866,7 @@
             var updateOrderDrugDispensed = row.find('td').eq(11).text(updateDispensedQuantity);
             var updateOrderTotalPrice = row.find('td').eq(13).text(orderTotalFloat);
             var updateOrderDrugStatus = row.find('td').eq(14).text(updateOrderStatusStatic);
+            var updateOrderDrugComment = row.find('td').eq(30).text(updateOrderCommentStatic);
 
 
             $('#updateOrder').modal('hide');
@@ -994,7 +1000,7 @@
         var table = $("#patientOrderDetailsListTable tbody");
 
         var orderNo, drugCode, drugDesc, drugStrength, drugFrequency, drugDuration, drugDose,
-                drugStockQty, drugOrderedQty, drugSuppliedQty, drugDispensedQty, drugPrice, drugTotalPrice, drugStatus, drugChecked;
+                drugStockQty, drugOrderedQty, drugSuppliedQty, drugDispensedQty, drugPrice, drugTotalPrice, drugStatus, drugComment, drugChecked;
 
         var cars = [];
 
@@ -1018,6 +1024,7 @@
             drugPrice = $tds.eq(12).text();
             drugTotalPrice = $tds.eq(13).text();
             drugStatus = $tds.eq(14).text();
+            drugComment = $tds.eq(30).text();
 
             cars.push(drugChecked);
 
@@ -1071,7 +1078,7 @@
         var table = $("#patientOrderDetailsListTable tbody");
 
         var orderNo, drugCode, drugDesc, drugStrength, drugFrequency, drugDuration, drugDose,
-                drugStockQty, drugOrderedQty, drugSuppliedQty, drugDispensedQty, drugPrice, drugTotalPrice, drugStatus, drugChecked;
+                drugStockQty, drugOrderedQty, drugSuppliedQty, drugDispensedQty, drugPrice, drugTotalPrice, drugStatus, drugComment, drugChecked;
 
         var orderDate, locationCode, arrivalDate, pmino, pname, dispenseFarMasterQuantity, dispenseFarMasterTotal, dispenseFarMasterQuantityChecked, dispenseFarMasterTotalChecked;
 
@@ -1136,10 +1143,11 @@
             drugMDCOUM = "-^-^-";
             drugMDCDuration = $tds.eq(29).text();
             drugMDCDispenseLocation = "-^-^-";
-            drugMDCDispenseNotes = "-";
+            drugMDCDispenseNotes = $tds.eq(30).text();
             drugMDCDispenseProvider = "-^-^-";
             drugMDCIndicator = "-";
 
+            drugComment = $tds.eq(30).text();
 
             if (drugChecked === true && drugDispensedQty !== "0") {
 
@@ -1213,7 +1221,8 @@
                     dispenseDrugMasterTotal: dispenseFarMasterTotal,
                     dispenseDrugMasterQuantityChecked: dispenseFarMasterQuantityChecked,
                     dispenseDrugMasterTotalChecked: dispenseFarMasterTotalChecked,
-                    drugChecked: drugChecked
+                    drugChecked: drugChecked,
+                    drugComment: drugComment
                 };
 
                 console.log(dataAjax);

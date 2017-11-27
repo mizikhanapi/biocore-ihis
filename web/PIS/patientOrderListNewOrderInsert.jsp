@@ -42,6 +42,8 @@
     String QTY_DISPENSED = request.getParameter("qtyDispensed");
     String DISPENSE_OUM = request.getParameter("dispensedOUM");
     String DURATIONT = request.getParameter("drugDurationT");
+    String COMMENT = request.getParameter("drugComment");
+
     int STATUS = 1;
     String DRUG_DOSAGE_ORDER_UOM = "-";
 
@@ -57,10 +59,11 @@
 
         String sqlInsert = "INSERT INTO pis_order_detail (ORDER_NO, TXN_DATE,DRUG_ITEM_CODE, DRUG_ITEM_DESC, DRUG_FREQUENCY, "
                 + "DRUG_ROUTE, DRUG_FORM, DRUG_STRENGTH, DRUG_DOSAGE, ORDER_OUM, DURATION, ORDER_STATUS, QTY_ORDERED, "
-                + "QTY_SUPPLIED, SUPPLIED_OUM, QTY_DISPENSED, DISPENSE_OUM,STATUS,DRUG_DOSAGE_ORDER_UOM, DURATIONT) "
+                + "QTY_SUPPLIED, SUPPLIED_OUM, QTY_DISPENSED, DISPENSE_OUM,STATUS,DRUG_DOSAGE_ORDER_UOM, DURATIONT,COMMENT) "
                 + " VALUES ('" + ORDER_NO + "','" + TXN_DATE + "','" + DRUG_ITEM_CODE + "','" + DRUG_ITEM_DESC + "','" + DRUG_FREQUENCY + "','" + DRUG_ROUTE + "', "
                 + " '" + DRUG_FORM + "','" + DRUG_STRENGTH + "','" + DRUG_DOSAGE + "','" + ORDER_OUM + "','" + DURATION + "','" + ORDER_STATUS + "', "
-                + " '" + QTY_ORDERED + "','" + QTY_SUPPLIED + "','" + SUPPLIED_OUM + "','" + QTY_DISPENSED + "','" + DISPENSE_OUM + "'," + STATUS + ",'" + DRUG_DOSAGE_ORDER_UOM + "','" + DURATIONT + "' )";
+                + " '" + QTY_ORDERED + "','" + QTY_SUPPLIED + "','" + SUPPLIED_OUM + "','" + QTY_DISPENSED + "','" + DISPENSE_OUM + "'," + STATUS + ","
+                + "'" + DRUG_DOSAGE_ORDER_UOM + "','" + DURATIONT + "' ,'" + COMMENT + "')";
 
         boolean isInsert = rmic.setQuerySQL(conn.HOST, conn.PORT, sqlInsert);
 
