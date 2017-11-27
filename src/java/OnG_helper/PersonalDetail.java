@@ -69,14 +69,14 @@ public class PersonalDetail {
         past_surgical_history = splittedData[12];
         
         ArrayList<ArrayList<String>> data = new ArrayList<ArrayList<String>>();
-        String selSql = "Select pmi_no from lhr_ong_personal_info where pmi_no='"+pmino+"' and hfc_cd='"+hfc+"'";
+        String selSql = "Select pmi_no from lhr_ong_personal_info where pmi_no='"+pmino+"' and hfc_cd='"+hfc+"' and status='0'";
         data = conn.getData(selSql);
         
         if(data.size() < 1){
            sql = "INSERT into lhr_ong_personal_info(pmi_no,hfc_cd,episode_date,encounter_date,gravida,parity,pregnancy_lmp,pregnancy_edd,pregnancy_scan_edd,period_cycle,past_gynaecological_history,past_medical_history,past_surgical_history)values('"+pmino+"','"+hfc+"','"+episode+"','"+encounter+"','"+gravida+"','"+parity+"','"+pregnancy_lmp+"','"+pregnancy_edd+"','"+pregnancy_scan_edd+"','"+period_cycle+"','"+past_gynaecological_history+"','"+past_medical_history+"','"+past_surgical_history+"')";
 
         }else if(data.size() > 0){
-            sql = "UPDATE lhr_ong_personal_info set gravida='"+gravida+"',parity='"+parity+"',pregnancy_lmp='"+pregnancy_lmp+"',pregnancy_edd='"+pregnancy_edd+"',pregnancy_scan_edd='"+pregnancy_scan_edd+"',period_cycle='"+period_cycle+"',past_gynaecological_history='"+past_gynaecological_history+"',past_medical_history='"+past_medical_history+"',past_surgical_history='"+past_surgical_history+"' where pmi_no = '"+pmino+"' and hfc_cd='"+hfc+"'";
+            sql = "UPDATE lhr_ong_personal_info set gravida='"+gravida+"',parity='"+parity+"',pregnancy_lmp='"+pregnancy_lmp+"',pregnancy_edd='"+pregnancy_edd+"',pregnancy_scan_edd='"+pregnancy_scan_edd+"',period_cycle='"+period_cycle+"',past_gynaecological_history='"+past_gynaecological_history+"',past_medical_history='"+past_medical_history+"',past_surgical_history='"+past_surgical_history+"' where pmi_no = '"+pmino+"' and hfc_cd='"+hfc+"' and status='0'";
         }
         ins = rmic.setQuerySQL(conn.HOST, conn.PORT, sql);
         return ins;

@@ -184,7 +184,17 @@
     $('#tabPI').on('click', function () {
         getGra();
     });
-
+    $('#nurseryFeedingChartAddNewRecord').on('click',function(){
+       var harini = new Date();
+       var hariniyangtelahconvert = ("0" + harini.getDate()).slice(-2)+"/"+("0" + (harini.getMonth() + 1)).slice(-2)+"/"+harini.getFullYear();
+       $('#nurseryFeedingChartModalDate').val(hariniyangtelahconvert);
+       $('#susupower').show();
+    });
+    $('#frequentObservationAddNewRecord').on('click',function(){
+        var harini = new Date();
+        var hariniyangtelahconvert = ("0" + harini.getDate()).slice(-2)+"/"+("0" + (harini.getMonth() + 1)).slice(-2)+"/"+harini.getFullYear();
+        $('#freqObservationChartModalDate').val(hariniyangtelahconvert);
+    });
 //    $('#tabBP').on('click', function () {
 //        var pmi_no = pmiNo;
 //        var hfc_cd1 = hfc_cd;

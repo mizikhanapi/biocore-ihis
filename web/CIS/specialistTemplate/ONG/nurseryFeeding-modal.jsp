@@ -18,10 +18,6 @@
     datadate52 = cccconn.getData(datee52);
 
 %>
-
-%>
-
-
 <!-- Start Modal -->
 <div class="modal fade" id="ong-nurseryFeedingChart" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
@@ -31,11 +27,8 @@
                 <h2 class="modal-title" id="nurseryFeedingChartModalTitle"></h2>
             </div>
             <div class="modal-body">
-
-                <form autocomplete="off" id="nurseryFeedingChartModalForm">
-
-                    <div class="row">
-                        <div class="col-md-6">
+                <div class="row">
+                    <div class="col-md-6">
                             <input type="hidden" id="ONGNurseryFeedingChartPmi" >
                             <input type="hidden" id="ONGNurseryFeedingChartHfc" >
                             <input type="hidden" id="ONGNurseryFeedingChartEpisodeDate" >
@@ -48,6 +41,23 @@
                                 </div>
                             </div>
                         </div>
+                </div>
+                <form autocomplete="off" id="nurseryFeedingChartModalForm">
+
+                    <div class="row">
+<!--                        <div class="col-md-6">
+                            <input type="hidden" id="ONGNurseryFeedingChartPmi" >
+                            <input type="hidden" id="ONGNurseryFeedingChartHfc" >
+                            <input type="hidden" id="ONGNurseryFeedingChartEpisodeDate" >
+                            <input type="hidden" id="ONGNurseryFeedingChartEncounterDate">
+                             Text input
+                            <div class="form-group">
+                                <label class="col-md-12 control-label" for="textinput">Date</label>
+                                <div class="col-md-12">
+                                    <input type="text" class="form-control input-md" id="nurseryFeedingChartModalDate" readonly>
+                                </div>
+                            </div>
+                        </div>-->
                         <div class="col-md-6">
                             <!-- Text input-->
                             <div class="form-group">
@@ -75,15 +85,6 @@
                         <div class="col-md-6">
                             <!-- Text input-->
                             <div class="form-group">
-                                <label class="col-md-12 control-label" for="textinput">Strength Of Milk</label>
-                                <div class="col-md-12">
-                                    <input type="text" class="form-control input-md" id="nurseryFeedingChartModalMilkStrength" maxlength="50">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <!-- Text input-->
-                            <div class="form-group">
                                 <label class="col-md-12 control-label" for="textinput">Method Of Feeding</label>
                                 <div class="col-md-12">
 <!--                                    <input type="text" class="form-control input-md" id="nurseryFeedingChartModalFeedingMethod" maxlength="50">-->
@@ -98,6 +99,16 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="col-md-6">
+                            <!-- Text input-->
+                            <div class="form-group" id="susupower">
+                                <label class="col-md-12 control-label" for="textinput">Strength Of Milk</label>
+                                <div class="col-md-12">
+                                    <input type="text" class="form-control input-md" id="nurseryFeedingChartModalMilkStrength" maxlength="50">
+                                </div>
+                            </div>
+                        </div>
+              
                     </div>
 
 

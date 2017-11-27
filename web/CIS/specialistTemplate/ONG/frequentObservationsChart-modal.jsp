@@ -28,11 +28,8 @@
                 <h2 class="modal-title" id="freqObservationChartModalTitle"></h2>
             </div>
             <div class="modal-body">
-
-                <form autocomplete="off" id="freqObservationChartModalForm">
-
-                    <div class="row">
-                        <div class="col-md-6">
+                <div class="row">
+                    <div class="col-md-12">
                             <input type="hidden" id="ONGFreqObservationChartPmi" >
                             <input type="hidden" id="ONGFreqObservationChartHfc" >
                             <input type="hidden" id="ONGFreqObservationChartEpisodeDate" >
@@ -45,6 +42,23 @@
                                 </div>
                             </div>
                         </div>
+                </div>
+                <form autocomplete="off" id="freqObservationChartModalForm">
+
+                    <div class="row">
+<!--                        <div class="col-md-6">
+                            <input type="hidden" id="ONGFreqObservationChartPmi" >
+                            <input type="hidden" id="ONGFreqObservationChartHfc" >
+                            <input type="hidden" id="ONGFreqObservationChartEpisodeDate" >
+                            <input type="hidden" id="ONGFreqObservationChartEncounterDate">
+                             Text input
+                            <div class="form-group">
+                                <label class="col-md-12 control-label" for="textinput">Date</label>
+                                <div class="col-md-12">
+                                    <input type="text" class="form-control input-md" id="freqObservationChartModalDate" readonly>
+                                </div>
+                            </div>
+                        </div>-->
                         <div class="col-md-6">
                             <!-- Text input-->
                             <div class="form-group">

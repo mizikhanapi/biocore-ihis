@@ -105,7 +105,7 @@
                                 <div class="col-md-12">
 <!--                                    <input type="text" class="form-control input-md" id="PIperiodCycle">-->
                                     <select id="PIperiodCycle" name="selectbasic" class="form-control">
-                                        <option value="null">Select Period Cycle</option>
+                                        <option value="null" selected disabled>Select Period Cycle</option>
                                         <option value="-">-</option>
                                         <%
                                             for (int i = 0;

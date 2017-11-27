@@ -70,7 +70,14 @@
 
 
 <script>
-
+    $('#nurseryFeedingChartModalFeedingMethod').on('change',function(){
+        var jenissusu = $(this).val();
+        if(jenissusu==="01"){
+            $('#susupower').hide();
+        }else{
+            $('#susupower').show();
+        }
+    });
     $(document).ready(function () {
 
 
@@ -275,20 +282,20 @@
 
             $('#nurseryFeedingChartModalForm')[0].reset();
 
-            $("#nurseryFeedingChartModalDate").datepicker({
-                changeMonth: true,
-                changeYear: true,
-                maxDate: '+0d',
-                dateFormat: 'dd/mm/yy'
-            });
-
-            $('#nurseryFeedingChartModalTime').timepicker({
-                'timeFormat': 'HH:mm',
-                'scrollbar': 'true',
-                'minTime': '00:00',
-                'maxTime': '23:59',
-                'interval': 1
-            });
+//            $("#nurseryFeedingChartModalDate").datepicker({
+//                changeMonth: true,
+//                changeYear: true,
+//                maxDate: '+0d',
+//                dateFormat: 'dd/mm/yy'
+//            });
+//
+//            $('#nurseryFeedingChartModalTime').timepicker({
+//                'timeFormat': 'HH:mm',
+//                'scrollbar': 'true',
+//                'minTime': '00:00',
+//                'maxTime': '23:59',
+//                'interval': 1
+//            });
 
         });
         // Function For Add Button End
@@ -397,20 +404,20 @@
 
             $('#nurseryFeedingChartModalForm')[0].reset();
 
-            $("#nurseryFeedingChartModalDate").datepicker({
-                changeMonth: true,
-                changeYear: true,
-                maxDate: '+0d',
-                dateFormat: 'dd/mm/yy'
-            });
+//            $("#nurseryFeedingChartModalDate").datepicker({
+//                changeMonth: true,
+//                changeYear: true,
+//                maxDate: '+0d',
+//                dateFormat: 'dd/mm/yy'
+//            });
 
-            $('#nurseryFeedingChartModalTime').timepicker({
-                'timeFormat': 'HH:mm',
-                'scrollbar': 'true',
-                'minTime': '00:00',
-                'maxTime': '23:59',
-                'interval': 1
-            });
+//            $('#nurseryFeedingChartModalTime').timepicker({
+//                'timeFormat': 'HH:mm',
+//                'scrollbar': 'true',
+//                'minTime': '00:00',
+//                'maxTime': '23:59',
+//                'interval': 1
+//            });
 
 
 
@@ -419,17 +426,27 @@
             var rowData = row.find("#dataNurseryFeedingCharthidden").val();
 
             var arrayData = rowData.split("|");
-
+            var ti = arrayData[16].split(":");
+            var newTi = ti[0];
+            console.log(newTi);
             $('#ONGNurseryFeedingChartPmi').val(arrayData[0]);
             $('#ONGNurseryFeedingChartHfc').val(arrayData[1]);
             $('#ONGNurseryFeedingChartEpisodeDate').val(arrayData[2]);
             $('#ONGNurseryFeedingChartEncounterDate').val(arrayData[3]);
 
             $('#nurseryFeedingChartModalDate').val(arrayData[5]);
-            $('#nurseryFeedingChartModalTime').val(arrayData[16]);
+            $('#nurseryFeedingChartModalTime').val(newTi);
 
-            $('#nurseryFeedingChartModalMilkStrength').val(arrayData[6]);
+            
             $('#nurseryFeedingChartModalFeedingMethod').val(arrayData[7]);
+            var jenissusu = arrayData[7];
+            if(jenissusu==="01"){
+                $('#susupower').hide();
+                $('#nurseryFeedingChartModalMilkStrength').val("-");
+            }else{
+                $('#susupower').show();
+                $('#nurseryFeedingChartModalMilkStrength').val(arrayData[6]);
+            }
             $('#nurseryFeedingChartModalAspirateVomit').val(arrayData[8]);
             $('#nurseryFeedingChartModalTemperature').val(arrayData[9]);
             $('#nurseryFeedingChartModalRespiration').val(arrayData[10]);
@@ -458,8 +475,8 @@
             var encounterDate = $('#ONGNurseryFeedingChartEncounterDate').val();
 
             var time = $('#nurseryFeedingChartModalTime').val();
-            var sTime = time.split(':');
-            var newTime = sTime[0] + ":" + sTime[1];
+//            var sTime = time.split(':');
+//            var newTime = sTime[0] + ":" + sTime[1];
 
             var milkStrength = $('#nurseryFeedingChartModalMilkStrength').val();
             var feedingMethod = $('#nurseryFeedingChartModalFeedingMethod').val();
@@ -470,7 +487,7 @@
             var bo = $('#nurseryFeedingChartModalBO').val();
             var remark = $('#nurseryFeedingChartModalRemark').val();
 
-            var datas = pmi_no + "|" + hfc_cd1 + "|" + epDate + "|" + encounterDate + "|" + newDate + " " + newTime + ":00.0|" +
+            var datas = pmi_no + "|" + hfc_cd1 + "|" + epDate + "|" + encounterDate + "|" + newDate + " " + time + ":00:00.0|" +
                     milkStrength + "|" + feedingMethod + "|" + aspirateVomit + "|" + temperature + "|" + respiration + "|" +
                     pu + "|" + bo + "|" + remark + "||Pending";
 

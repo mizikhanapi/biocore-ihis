@@ -107,7 +107,9 @@ public class PIS_ord {
                                     + ",txn_date,"
                                     + "supplied_oum,"
                                     + "dispense_oum,"
-                                    + "drug_dosage_order_uom)"
+                                    + "drug_dosage_order_uom,"
+                                    + "comment,"
+                                    + "durationt)"
                                     + " values ("
                                     + "'" + allSeq.getSeq() + "',"
                                     + "'" + piss.get(2).get(0) + "',"
@@ -126,7 +128,9 @@ public class PIS_ord {
                                     + "'" + orcs.get(7).get(0) + "',"
                                     + "'-',"
                                     + "'-',"
-                                    + "'-')";
+                                    + "'-',"
+                                    + "'" + piss.get(15).get(0) + "',"
+                                    + "'"+ piss.get(10).get(1)+"')";
                             try {
                                 status_pis_order_detail = rc.setQuerySQL(Config.ipAddressServer, Config.portServer, sql_pis_detail);
                                 if (status_pis_order_detail == true) {

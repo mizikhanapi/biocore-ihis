@@ -74,8 +74,7 @@
 
         // Disabling Start And End Date
         $("#freqObservationChartSelectAssessmentStartEnd").hide();
-
-
+        
 // ---------------------------------------------------------------------------- VIew ------------------------------------------------------------------------------------------- //
 
 
@@ -333,12 +332,12 @@
 
             flexDataListFreqObserReinitializeSearch(val);
 
-            $("#freqObservationChartModalDate").datepicker({
-                changeMonth: true,
-                changeYear: true,
-                maxDate: '+0d',
-                dateFormat: 'dd/mm/yy'
-            });
+//            $("#freqObservationChartModalDate").datepicker({
+//                changeMonth: true,
+//                changeYear: true,
+//                maxDate: '+0d',
+//                dateFormat: 'dd/mm/yy'
+//            });
 
 //            $('#freqObservationChartModalTime').timepicker({
 //                'timeFormat': 'HH:mm',
@@ -457,12 +456,12 @@
             $('#freqObservationChartModal_btnAdd_or_btnUpdate_div').html('<button type="button" class="btn btn-success btn-block btn-lg" id="freqObservationChartUpdateModalBtn" role="button">Update Items</button>');
 
             //$('#freqObservationChartModalForm')[0].reset();
-            $("#freqObservationChartModalDate").datepicker({
-                changeMonth: true,
-                changeYear: true,
-                maxDate: '+0d',
-                dateFormat: 'dd/mm/yy'
-            });
+//            $("#freqObservationChartModalDate").datepicker({
+//                changeMonth: true,
+//                changeYear: true,
+//                maxDate: '+0d',
+//                dateFormat: 'dd/mm/yy'
+//            });
 
 
 //            $('#freqObservationChartModalTime').timepicker({
@@ -481,6 +480,7 @@
             var arrayData = rowData.split("|"); 
             var ti = arrayData[18].split(":");
             var newTi = ti[0];
+            console.log(ti);
             $('#ONGFreqObservationChartPmi').val(arrayData[0]);
             $('#ONGFreqObservationChartHfc').val(arrayData[1]);
             $('#ONGFreqObservationChartEpisodeDate').val(arrayData[2]);
